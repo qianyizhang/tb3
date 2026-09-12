@@ -6,8 +6,8 @@
   ],
   "hypothesis": "Repairing record assembly from decoded leaf streams can require reasoning jointly about repeated ancestors, optional parents, sibling alignment, and independent page boundaries.",
   "id": "dremel-assembly",
-  "next_action": "Inspect the completed Terra/high pass and its submitted decoder before deciding whether to retire this snapshot or design a materially different next probe.",
-  "notes": "Active prototype direction. The public interface receives already decoded levels, not whole Parquet files. This is an incident-inspired extraction rather than a reproduction of a particular upstream patch; difficulty remains unmeasured in the recorded screen. Update: the first frozen Docker Terra/high trial completed with reward 1 and no exception at 2026-09-12T06:43:05Z. Its plain-text verifier provides no structured per-case results; the catalog retains the overall pass and links the raw evidence.",
+  "next_action": "Retain this frozen passing snapshot for calibration; no Sol/Opus trials.",
+  "notes": "Completed real Docker Terra/high pass (reward 1, no exception) after oracle1/nop0 controls. This snapshot is retained for calibration and retired from difficulty selection. Plain-text verifier reports aggregate success; per-case fields remain unknown in the catalog.",
   "schema_version": 1,
   "sources": [
     {
@@ -23,7 +23,7 @@
       "url": "https://github.com/apache/parquet-java/issues/3672"
     }
   ],
-  "status": "prototyping",
+  "status": "calibration",
   "tags": [
     "data",
     "columnar",
@@ -32,5 +32,5 @@
     "python"
   ],
   "title": "Nested Dremel record assembly",
-  "why_hard": "Definition and repetition levels encode ancestry independently from leaf values. A locally plausible decoder can confuse a missing parent with a null member or align sibling values against the wrong repeated record."
+  "why_hard": "Nested ancestor state and sibling alignment interact, but Terra solved this extracted kernel in about five minutes. This snapshot does not justify Sol trials."
 }
