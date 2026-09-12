@@ -4,7 +4,9 @@ Local setup, incident research, and inexpensive feasibility probes for [the assi
 
 Docker runs through Colima on this Mac. The Codex CLI is repaired and retains its ChatGPT login. Harbor's trial and validation versions are installed separately and pinned to the inspected CI snapshot.
 
-Docker controls and Terra/high trials pass for cache invalidation, nested Dremel assembly, Ninja dynamic dependencies, SQLite EXISTS optimization, and Clipper2 PolyTree hierarchy. These five snapshots are retired from difficulty selection. The geometry pickup completed in 8m15s; its controls, grading fixes and result are recorded in the [pickup](docs/pickup-20260912.md). A [numerical interpolation lead](docs/research-numerical-candidates.md) has a limited local reference check and still needs full public-API reproduction. No genuine Terra failure has been observed; Sol remains unused. Two earlier network failures are retained as infrastructure errors.
+Six frozen snapshots have completed valid Terra/high passes and are retired from difficulty selection: cache invalidation, nested Dremel assembly, Ninja dynamic dependencies, SQLite EXISTS optimization, Clipper2 PolyTree hierarchy, and integral homology bases. The latest [diverse short-horizon screen](docs/research-short-horizon.md) covers eight fields/task directions; the homology diagnostic passed 43/43 cases in 6m40s. The [numerical interpolation lead](docs/research-numerical-candidates.md) now has an unchanged full-class API reproduction and needs an independent complete repair oracle. No genuine Terra failure has been observed; Sol remains unused. Two earlier network failures are retained as infrastructure errors.
+
+Current research scope explicitly excludes security tasks and favors hard but less complex, short-horizon work: one conceptual crux, a small deliverable and fast independent verification. See [AGENTS.md](AGENTS.md) for the durable scope instructions.
 
 | Start here | Purpose |
 | --- | --- |
@@ -12,6 +14,7 @@ Docker controls and Terra/high trials pass for cache invalidation, nested Dremel
 | [Ledger](docs/ledger.md) | Successful and failed attempts, evidence and remaining trial counts. |
 | [Research](docs/research.md) | Initial firsthand sources and ideas. |
 | [Harder screen](docs/harder-screen.md) | Broader incident research, measured trials, and promotion criteria. |
+| [Short-horizon survey](docs/research-short-horizon.md) | Eight diverse directions, explicit non-security scope, homology pass and numerical follow-up. |
 | [Catalog](docs/catalog.md) | Searchable idea/trial records and local browser report. |
 | [Requirements](docs/requirements.md) | Frozen CI/defaults, discrepancies, human-authored submission requirements. |
 | [Codex repair](docs/codex-repair.md) | Diagnosis, repair command and checks. |

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "ellipsoidal-polygon-area",
+  "title": "Oriented ellipsoidal polygon area across the antimeridian",
+  "status": "rejected",
+  "tags": [
+    "geodesy",
+    "numerical-computation",
+    "short-horizon",
+    "non-security"
+  ],
+  "hypothesis": "Orientation and pole enclosure affect the interpreted ellipsoidal area.",
+  "why_hard": "The plain operation is already supplied by GeographicLib, so the direct version lacks a credible hardness crux.",
+  "next_action": "Retain as a rejected wrapper; do not ban available libraries to force difficulty.",
+  "sources": [
+    {
+      "url": "https://geographiclib.sourceforge.io/html/python/",
+      "note": "Primary source inspected 2026-09-12; motivation, not a model result."
+    }
+  ],
+  "evidence": [
+    "docs/research-short-horizon.md"
+  ],
+  "notes": "Research-only rejection; no task or model trial."
+}

@@ -6,9 +6,14 @@ The initial screen inspected upstream reports, patches, and mathematical
 references. A subsequent limited local execution of historical SciPy numerical
 blocks is recorded below; no full-package build or model trial was performed.
 
+**Latest follow-up:** the unchanged full historical modules now reproduce the
+incremental error through their public class API in Docker. See the final
+section below. The older numerical-block experiment remains preserved; no
+historical full-package build or numerical model trial is claimed.
+
 ## 1. SciPy barycentric interpolation: stable weights and incremental updates
 
-**Worth reproducing through the full SciPy API; not ready to package.**
+**Public class API reproduced; an independent complete repair oracle is next.**
 [PR #14255](https://github.com/scipy/scipy/pull/14255) reports interpolation
 failure beyond roughly 800 nodes, caused by underflow/overflow while forming
 barycentric weights. Its added test uses 801 Chebyshev nodes and compares
@@ -113,3 +118,36 @@ Durable copies of the limited local check are retained in
 [results](evidence/barycentric-reference-check.json) and
 [source provenance](evidence/barycentric-source-provenance.json). The exact
 source files and execution harness remain in the local `runs/` research folder.
+
+## Full historical module through the public class API
+
+The short-horizon survey ran both complete, unmodified `polyint.py` files in a
+small Docker image: Python 3.12.14, NumPy 1.26.4 and SciPy 1.12.0. The latter
+provides the real `factorial`, `_asarray_validated` and `float_factorial`
+imports; no AST extraction, helper stubs or rewritten numerical statements are
+used. Source SHA-256 values match the earlier provenance. This tests the
+historical class API and normalization paths, **not** an installation/build of
+the whole historical SciPy release. The container executes with no network.
+
+| Public-interface check | Historical parent | Published patch |
+| --- | --- | --- |
+| Construct `[0,1]` with `y=x`, append `[2]`, evaluate at `0.5` | `0.5000000000000001` | `0.7999999999999999` |
+| Fresh `[0,1,2]` constructor, same value | `0.5000000000000001` | `0.5000000000000001` |
+| Append before `set_yi`, then evaluate | `0.5000000000000001` | `0.7999999999999999` |
+| `axis=1`, two channels `x` and `2x`, after append | approximately `[0.5,1.0]` | approximately `[0.8,1.6]` |
+| 1,098 Chebyshev nodes, fixed seed 0 | 0 finite weights; nonfinite evaluations | 1,098 finite weights; polynomial error `3.11e-15` |
+
+The check took 0.075 seconds after NumPy/SciPy imports; image download/build
+time is separate in the raw build log. This advances the lead from extracted
+arithmetic to a full-class reproduction. It supports a compact numerical
+repair task, but gives no evidence that Terra will fail it. The next gate is
+an independently justified stable constructor/update oracle and a small fair
+verifier. Do not use the published patch by itself as the oracle.
+
+Durable evidence: [result and execution scope](evidence/barycentric-public-api.json),
+[exact executed check](evidence/barycentric-public-api-check.py), and
+[environment recipe](evidence/barycentric-public-api-environment.Dockerfile).
+The recipe's context uses `parent_polyint.py` and `patch_polyint.py`, copied
+byte-for-byte from the source paths in the earlier provenance, plus the check
+script as `check.py`. Public source URLs and exact hashes are retained for
+reconstruction. The image and raw source copies stay local.

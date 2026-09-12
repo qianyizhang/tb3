@@ -64,6 +64,17 @@ All entries dated 2026-09-12. Research claims and ranked alternatives live in [r
 
 ## Denominators
 
-Completed early model diagnostics so far: **5 valid Terra/high passes**, **0 genuine model failures**, plus **2 infrastructure-only model attempts** from initial setup. Authoring oracle failures are separate controls and never model failures. Detailed controls and snapshot revisions are preserved in [initial summary](evidence/trial-summary.json) and [harder summary](evidence/harder-trial-summary.json).
+Completed early model diagnostics so far: **6 valid Terra/high passes**, **0 genuine model failures**, plus **2 infrastructure-only model attempts** from initial setup. Authoring oracle failures are separate controls and never model failures. Detailed controls and snapshot revisions are preserved in [initial summary](evidence/trial-summary.json), [harder summary](evidence/harder-trial-summary.json), [geometry summary](evidence/clipper-trial-summary.json), and [homology summary](evidence/homology-trial-summary.json).
 
 Required final standard trials: **0/6**. Required final adversarial trials: **0/2**. No final task selected. See [harder screen](harder-screen.md) for active runs and the predeclared follow-up rule.
+
+## Diverse short-horizon screen
+
+| ID | Attempt / finding | Result | Evidence / next action |
+| --- | --- | --- | --- |
+| D01 | User narrowed research scope | Explicitly stay away from security tasks; favor hard but less complex, short-horizon work. Eight fields/task directions screened; seven new idea records. Historical HTTP framing lead parked. | [AGENTS.md](../AGENTS.md), [survey](research-short-horizon.md). |
+| D02 | Compact homology certificate prototype | One Python interface; independent exact determinant/rank/identity verifier. Six focused mutation/acceptance tests passed. Custom canary/category metadata corrected before controls. | probes/homology-basis and [static summary](evidence/homology-static-summary.json). |
+| D03 | Matching Docker controls | Oracle 1, 43/43 cases, 29.951s; nop 0, 37/43 cases fail, 24.536s; no exceptions and matching checksum. | [Freeze](evidence/homology-pilot-freeze.json), [commands](evidence/homology-evaluation-plan.sh). |
+| D04 | Homology Terra/high | **Completed pass**, 43/43 cases, no exception; 399.743s total, 340.514s agent, 12.735s verifier phase. | [Trial summary](evidence/homology-trial-summary.json), [trajectory review](../catalog/analyses/homology-calibration.md). Retire; no failure-confirmation or Sol trial. |
+| D05 | Numerical public-class follow-up | Both unchanged historical modules loaded with actual NumPy/SciPy helpers. Incremental linear output is 0.8 instead of 0.5 in the published patch; high-degree constructor fix works. | [Result](evidence/barycentric-public-api.json). Full historical module API witness, not a historical full-package build or model trial. Independent complete repair oracle is next. |
+| D06 | Repository validation | Staged artifact gate and 61 offline tests pass on Python 3.12.13. Local probe static sanity 21/22; human-authored task README absent. | runs/short-horizon-make-check.log. No final qualification claimed. |

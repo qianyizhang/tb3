@@ -1,5 +1,20 @@
 # Repository work
 
+## Candidate research scope
+
+- Stay away from security tasks. Do not pursue vulnerability discovery,
+  exploitation, authentication/authorization, sandbox escape or protocol attacks;
+  do not resume the stopped security research. Preserve its historical evidence.
+- Seek **hard but less complex, short-horizon tasks**: one conceptual crux,
+  a small deliverable and fast, independent verification. Diversify field and
+  task type. Do not manufacture difficulty through long workflows, setup cost,
+  arbitrary restrictions or shorter reasoning time.
+- Follow the bounded diagnostic plan in `docs/research-short-horizon.md`.
+  A source bug, oracle fault, agent crash or timeout is not a genuine Terra
+  failure. Final submission gates remain separately owned by requirements.md.
+
+## Artifact ownership and checks
+
 Read [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/governance.md](docs/governance.md)
 for artifact ownership and checks. `docs/requirements.md` owns final submission
 requirements; repository hygiene does not certify a benchmark task.

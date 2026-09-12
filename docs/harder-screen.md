@@ -2,6 +2,27 @@
 
 Purpose: find credible candidates worth later Sol trials by observing Terra/high solve or fail real tasks. A Terra failure does not establish a Sol failure. The earlier cache probe passed and stays unchanged as calibration.
 
+## Current scope: non-security, short horizon
+
+The user explicitly reinforced these constraints on 2026-09-12:
+
+- **Stay away from security tasks.** Do not select vulnerability discovery,
+  exploitation, authentication/authorization, sandbox escape, protocol attacks,
+  or other security-focused work. Do not resume the stopped security research
+  or launch adversarial trials in this survey. Historical evidence stays intact.
+- **Go for hard but less complex tasks, especially short-horizon tasks.** Prefer
+  one concrete mathematical, scientific, data, or hardware invariant; one small
+  deliverable; a compact fixture; and verification in seconds. Difficulty should
+  come from a conceptual crux, not repository size, lengthy workflows, obscure
+  setup, arbitrary restrictions, or reduced reasoning time.
+- Diversify both field and task type. A new language around another compact
+  bug fix is not sufficient diversity. Screen constructive certificates,
+  reconstruction, optimization, and numerical correctness as well as repairs.
+
+The [short-horizon survey](research-short-horizon.md) owns the next bounded
+screen and its dispositions. The existing 1,800-second diagnostic allowance
+remains; a short task horizon does not mean manufacturing timeout failures.
+
 ## Predeclared procedure
 
 1. Screen incident reports and executable specifications for interacting mechanisms, efficient reproduction, and overlap with the pinned TB3 inventory.
@@ -48,7 +69,7 @@ Build and runtime research details are recorded in [build candidates](research-b
 | `sqlite-exists` | Corrected oracle1 in37s, nop0 in36s | **Pass**, reward1, no exception;204.778s total,133.447s agent | Retire. Initial oracle failure was a missing patch tool, not a model failure. |
 | `clipper-polytree` | Final oracle1 in49.916s, nop0 in26.597s, no exceptions | **Pass**, reward1, no exception;494.711s total,421.371s agent | Retire. Pre-trial grading defects were fixed; no additional Sol trial. |
 
-[Sanitized trial summary](evidence/harder-trial-summary.json) retains every completed attempt. The canonical runner hashes are in each `*-pilot-freeze.json`; their superseded pre-trial snapshots remain alongside them. No genuine Terra failure has been observed yet. No Sol/Opus run has started.
+[Sanitized trial summary](evidence/harder-trial-summary.json) retains this earlier screen's completed attempts. The later geometry and homology attempts have separate linked summaries. The canonical runner hashes are in each `*-pilot-freeze.json`; their superseded pre-trial snapshots remain alongside them. No genuine Terra failure has been observed yet. No Sol/Opus run has started.
 
 The Dremel trajectory implements a general schema-driven decoder, retains repetition positions across pages, merges sibling fields, and passes the supplied example. It does not obtain an online solution. A final `git diff` command fails because the image is not a Git checkout; this incidental command failure did not interrupt the agent or verifier. Its aggregate pass is valid. Promotion-only verifier improvements (immutable artifact copy and a global runtime guard) remain unnecessary for this retired difficulty snapshot; it is not adversarially qualified.
 
@@ -64,8 +85,21 @@ The non-security pickup completed the fifth valid Terra/high pass. See the
 The geometry semantic verifier covers three base geometries and one translation;
 its historical test suite is diagnostic. No final qualification claim follows.
 
-The next candidate is [barycentric interpolation](research-numerical-candidates.md):
-a limited execution of unchanged historical numerical blocks confirmed that the
-published constructor stability fix makes incremental-node weights inconsistent.
-This is a source/reference check, not a complete SciPy public-API reproduction
-or a model failure. Full reference reproduction comes before any new task or trial.
+At the geometry pickup, the next lead was
+[barycentric interpolation](research-numerical-candidates.md): limited execution
+of historical numerical blocks showed that the published constructor fix leaves
+incremental-node weights inconsistent. The short-horizon follow-up has now
+confirmed this through unchanged full historical modules and their public class
+API with real SciPy helper imports. It remains a source reproduction, not a
+historical full-package build or model result; a complete repair oracle is next.
+
+## Diverse short-horizon follow-up
+
+The [eight-direction survey](research-short-horizon.md) explicitly excludes
+security tasks and favors compact conceptual difficulty. A new constructive
+topology task, `homology-basis`, passed matching Docker oracle/nop controls and
+Terra/high: reward 1, no exception, 43/43 cases, 399.743 seconds total. Retire
+that snapshot. See the [summary](evidence/homology-trial-summary.json) and
+[trajectory review](../catalog/analyses/homology-calibration.md). Current totals:
+six valid Terra passes, zero genuine failures, and two earlier infrastructure
+attempts. No new Sol/Opus or adversarial trial was run.

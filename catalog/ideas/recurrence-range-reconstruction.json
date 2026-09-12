@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "recurrence-range-reconstruction",
+  "title": "Recurring-instance reconstruction across a clock change",
+  "status": "screening",
+  "tags": [
+    "calendaring",
+    "reconstruction",
+    "short-horizon",
+    "non-security"
+  ],
+  "hypothesis": "Original recurrence identity, local-time validity and a range exception can disagree with a naive UTC shift.",
+  "why_hard": "A moved instance retains its original recurrence identity; the tested RFC subset must be explicit.",
+  "next_action": "Specify one short series and manually check all expected instances before any prototype.",
+  "sources": [
+    {
+      "url": "https://datatracker.ietf.org/doc/html/rfc5545",
+      "note": "Primary source inspected 2026-09-12; motivation, not a model result."
+    }
+  ],
+  "evidence": [
+    "docs/research-short-horizon.md"
+  ],
+  "notes": "Full iCalendar implementation is too broad. No executable reproduction or model outcome."
+}

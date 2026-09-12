@@ -1,0 +1,56 @@
+{
+  "python": "3.12.14",
+  "numpy": "1.26.4",
+  "scipy_helpers": "1.12.0",
+  "scope": "Unmodified full historical polyint module and public class API, using wheel-provided SciPy helpers; not a historical full-package build.",
+  "cases": [
+    {
+      "source": "parent",
+      "sha256": "882aeaa9342af278a6c38441c9933d8eafd8aae8ccbb7ffd44af166aac6ee78f",
+      "linear_after_append": 0.5000000000000001,
+      "linear_fresh": 0.5000000000000001,
+      "deferred_y_after_append": 0.5000000000000001,
+      "axis1_vector_after_append": [
+        [
+          0.5000000000000001
+        ],
+        [
+          1.0000000000000002
+        ]
+      ],
+      "degree1097_finite_weights": 0,
+      "degree1097_max_polynomial_error": null,
+      "warnings": [
+        "divide by zero encountered in reciprocal",
+        "invalid value encountered in reduce",
+        "overflow encountered in reciprocal"
+      ]
+    },
+    {
+      "source": "patch",
+      "sha256": "d786ed6bba844f2f8ea872c8719b78352607e8f2cf9f6075d480637a25db196e",
+      "linear_after_append": 0.7999999999999999,
+      "linear_fresh": 0.5000000000000001,
+      "deferred_y_after_append": 0.7999999999999999,
+      "axis1_vector_after_append": [
+        [
+          0.7999999999999999
+        ],
+        [
+          1.5999999999999999
+        ]
+      ],
+      "degree1097_finite_weights": 1098,
+      "degree1097_max_polynomial_error": 3.1086244689504383e-15,
+      "warnings": []
+    }
+  ],
+  "elapsed_seconds": 0.07456858300065505,
+  "raw_result": "runs/homology-numerical-followup/result.json",
+  "raw_build_log": "runs/homology-numerical-followup/build.log",
+  "source_provenance": "docs/evidence/barycentric-source-provenance.json",
+  "check_script": "docs/evidence/barycentric-public-api-check.py",
+  "check_sha256": "230731842ef3698f42588d5c8470612d615d1bed0044815d8290b80293321313",
+  "command": "docker build --build-arg http_proxy=http://192.168.5.2:10808 --build-arg https_proxy=http://192.168.5.2:10808 -t tb3-barycentric-reference runs/homology-numerical-followup && docker run --rm --network none tb3-barycentric-reference",
+  "model_trial": false
+}

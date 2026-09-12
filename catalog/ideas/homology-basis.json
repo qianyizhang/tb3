@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "homology-basis",
+  "title": "Compatible integral homology bases",
+  "status": "calibration",
+  "tags": [
+    "topology",
+    "constructive-certificate",
+    "integer-algebra",
+    "non-security"
+  ],
+  "hypothesis": "A saturated cycle basis and a boundary image basis must use the same integer coordinates.",
+  "why_hard": "Rational rank and separate normal forms can report the right abstract group while losing valid cycle representatives.",
+  "next_action": "Retire this snapshot from difficulty selection. Retain its compact exact verifier; select a new conceptual crux rather than enlarging the matrices or removing libraries.",
+  "sources": [
+    {
+      "url": "https://pi.math.cornell.edu/~hatcher/AT/AT.pdf",
+      "note": "Primary source inspected 2026-09-12; motivation, not a model result."
+    }
+  ],
+  "evidence": [
+    "docs/research-short-horizon.md",
+    "probes/homology-basis/authoring/notes.md",
+    "docs/evidence/homology-pilot-freeze.json",
+    "docs/evidence/homology-trial-summary.json",
+    "catalog/analyses/homology-calibration.md"
+  ],
+  "notes": "Same-snapshot Docker oracle 1 / nop 0 and Terra/high reward 1, with no exceptions. Terra passed all 43 certificate cases in 399.743 seconds total (340.514 seconds agent). Its own exact Euclidean reduction solved the compatible-basis construction. This is the sixth valid Terra pass, not a failure or final qualification."
+}
