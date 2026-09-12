@@ -20,7 +20,7 @@ All model trials use Harbor 0.14, Docker, ChatGPT subscription authentication, a
 | Nested Dremel record assembly | Implement a pure-Python repair probe at the decoded leaf-stream boundary: repeated ancestors, optional parents, sibling alignment, and independent page boundaries. Apache documents this reader boundary; real readers have failed on nested schemas. The interface deliberately receives decoded levels rather than whole Parquet files. It is an incident-inspired extraction, **not** a reproduction of a specific upstream patch. Difficulty remains unknown. |
 | Ninja dynamic dependencies | Actual Ninja scheduler regression reproduced, oracle1/nop0, Terra/high pass. Retire this snapshot. Public-fix discoverability remains a concern for any later promotion. |
 | SQLite correlated EXISTS | Actual 3.53.0 optimizer regression reproduced against3.53.1, oracle1/nop0, Terra/high pass. The accepted repair is compact; retire this snapshot. |
-| Clipper2 Rust PolyTree joins | A firsthand porting account identifies three interacting horizontal-join mistakes. The historical parent fails9/14 upstream tests; the fixed version passes14/14 in Docker. Semantic verifier isolation and coverage are being reviewed before the first model trial. |
+| Clipper2 Rust PolyTree joins | A firsthand porting account identifies three interacting horizontal-join mistakes. The historical parent fails9/14 upstream tests; the fixed version passes14/14 in Docker. Pickup review corrected order/normalization grading; final oracle1/nop0 and Terra/high reward1 completed. Retire this snapshot. |
 
 ## Additional searched leads
 
@@ -46,6 +46,7 @@ Build and runtime research details are recorded in [build candidates](research-b
 | `dremel-assembly` | Oracle1, nop0; both about24s, no exception | **Pass**, reward1, no exception; 320.557s total, 255.573s agent | Retire this snapshot from difficulty selection. All 16 verifier invocations completed; stdout is an aggregate success, not structured per-case evidence. |
 | `ninja-dyndep` | Corrected oracle1 in49s, nop0 in37s | **Pass**, reward1, no exception;379.766s total,308.716s agent | Retire. First two oracle failures were verifier packaging/permission faults, retained separately. |
 | `sqlite-exists` | Corrected oracle1 in37s, nop0 in36s | **Pass**, reward1, no exception;204.778s total,133.447s agent | Retire. Initial oracle failure was a missing patch tool, not a model failure. |
+| `clipper-polytree` | Final oracle1 in49.916s, nop0 in26.597s, no exceptions | **Pass**, reward1, no exception;494.711s total,421.371s agent | Retire. Pre-trial grading defects were fixed; no additional Sol trial. |
 
 [Sanitized trial summary](evidence/harder-trial-summary.json) retains every completed attempt. The canonical runner hashes are in each `*-pilot-freeze.json`; their superseded pre-trial snapshots remain alongside them. No genuine Terra failure has been observed yet. No Sol/Opus run has started.
 
@@ -54,3 +55,17 @@ The Dremel trajectory implements a general schema-driven decoder, retains repeti
 SQLite Terra repairs the containing SELECT's LIMIT/OFFSET guard and passes the normal-versus-disabled-optimizer comparisons. It does not need the oracle's entire two-hunk patch; the verifier accepts equivalent behavior. Ninja Terra repairs graph.cc and graph.h and adds local regression coverage. Its optional CMake attempt fails because CMake is absent, then the supplied bootstrap build succeeds. Both are completed model passes, not infrastructure failures.
 
 The Ninja compiler-download slowdown was isolated from task difficulty: stale authoring build clients held an old non-proxy APT operation alive. After stopping confirmed owners and rebuilding with temporary proxy arguments, the unchanged image built in56.851s (10.1s Ninja bootstrap); proxy-free cache reuse then completed in0.084s. No proxy address was baked into task Dockerfiles. See the [network diagnostic summary](../runs/ninja-network-diagnostic-summary.md).
+
+## Geometry pickup and next numerical lead
+
+The non-security pickup completed the fifth valid Terra/high pass. See the
+[geometry trial summary](evidence/clipper-trial-summary.json),
+[grading review](geometry-review.md), and [pickup record](pickup-20260912.md).
+The geometry semantic verifier covers three base geometries and one translation;
+its historical test suite is diagnostic. No final qualification claim follows.
+
+The next candidate is [barycentric interpolation](research-numerical-candidates.md):
+a limited execution of unchanged historical numerical blocks confirmed that the
+published constructor stability fix makes incremental-node weights inconsistent.
+This is a source/reference check, not a complete SciPy public-API reproduction
+or a model failure. Full reference reproduction comes before any new task or trial.

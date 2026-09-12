@@ -4,7 +4,7 @@ Local setup, incident research, and inexpensive feasibility probes for [the assi
 
 Docker runs through Colima on this Mac. The Codex CLI is repaired and retains its ChatGPT login. Harbor's trial and validation versions are installed separately and pinned to the inspected CI snapshot.
 
-Docker controls and Terra/high trials pass for cache invalidation, nested Dremel assembly, Ninja dynamic dependencies, and SQLite EXISTS optimization. These four snapshots are retired from difficulty selection. A historical Clipper2 PolyTree regression is under validation. No genuine Terra failure has been observed; Sol remains unused. Two earlier network failures are retained as infrastructure errors.
+Docker controls and Terra/high trials pass for cache invalidation, nested Dremel assembly, Ninja dynamic dependencies, SQLite EXISTS optimization, and Clipper2 PolyTree hierarchy. These five snapshots are retired from difficulty selection. The geometry pickup completed in 8m15s; its controls, grading fixes and result are recorded in the [pickup](docs/pickup-20260912.md). A [numerical interpolation lead](docs/research-numerical-candidates.md) has a limited local reference check and still needs full public-API reproduction. No genuine Terra failure has been observed; Sol remains unused. Two earlier network failures are retained as infrastructure errors.
 
 | Start here | Purpose |
 | --- | --- |

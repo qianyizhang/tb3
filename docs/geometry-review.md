@@ -53,3 +53,9 @@ passes all 14 historical diagnostic tests. Final local static sanity is 21/22;
 the sole remaining failure is the intentionally missing human-authored task
 README. The [freeze](evidence/clipper-pilot-freeze.json) and
 [trial summary](evidence/clipper-trial-summary.json) identify this revision.
+
+The final Terra/high trial also returned reward 1 without exception. Its submitted
+source changes horizontal registration/order and containment cleanup; it is not
+identical to the upstream patch. The tested semantic queries and all 14 historical
+diagnostics pass, which does not establish equivalence for arbitrary polygons.
+Keep the frozen passing result; do not retrospectively change its grading.

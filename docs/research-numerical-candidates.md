@@ -2,12 +2,13 @@
 
 Retrieved 2026-09-12. Two new leads beyond the existing
 [SoPlex/SUNDIALS screen](research-math-candidates.md) and Clipper2 probe.
-Only upstream reports, patches, and mathematical references were inspected:
-**no local reproduction, build, control, or model trial was performed**.
+The initial screen inspected upstream reports, patches, and mathematical
+references. A subsequent limited local execution of historical SciPy numerical
+blocks is recorded below; no full-package build or model trial was performed.
 
 ## 1. SciPy barycentric interpolation: stable weights and incremental updates
 
-**Worth a bounded reference check; not ready to package.**
+**Worth reproducing through the full SciPy API; not ready to package.**
 [PR #14255](https://github.com/scipy/scipy/pull/14255) reports interpolation
 failure beyond roughly 800 nodes, caused by underflow/overflow while forming
 barycentric weights. Its added test uses 801 Chebyshev nodes and compares
@@ -36,8 +37,8 @@ at degree 1097; these are upstream observations, not local measurements.
   [patched constructor and `add_xi`](https://github.com/scipy/scipy/blob/4f11f1ea84a16ef220f51c0237f2bef92c418e4c/scipy/interpolate/polyint.py)
   use inconsistent difference signs. Starting with nodes `[0,1]` and appending
   `[2]` appears to produce relative weights `[-1,2,1]`, whereas the polynomial
-  formula requires `[1,-2,1]` up to a common factor. This has not been executed.
-  Check it before accepting that commit as a complete oracle. Upstream also
+  formula requires `[1,-2,1]` up to a common factor. This was initially a static hypothesis; the limited local check below confirms
+  the numerical-block inconsistency. Do not accept that commit as a complete oracle. Upstream also
   documents a separate [incremental-update stability limitation](https://github.com/scipy/scipy/issues/19373).
 - **Setup estimate:** the changed implementation is a Python module importing
   NumPy and SciPy helpers. A compatible wheel-backed environment could avoid
