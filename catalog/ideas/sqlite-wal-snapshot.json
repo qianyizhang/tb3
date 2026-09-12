@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "id": "sqlite-wal-snapshot",
+  "title": "SQLite WAL standalone snapshot exporter",
+  "status": "idea",
+  "tags": ["database", "sqlite", "snapshot", "wal", "python"],
+  "hypothesis": "A snapshot exporter that copies only the main database can lose committed WAL-resident rows; a repair should produce a portable standalone snapshot under realistic reader constraints.",
+  "why_hard": "Committed data can reside outside the main database file, and concurrent readers can block checkpointing. Correctness is a query-level consistent snapshot that opens read-only without sidecars.",
+  "next_action": "Build a deterministic database generator with committed WAL data and held readers; verify the exported snapshot through independent read-only queries and sidecar absence rather than byte identity.",
+  "sources": [
+    {
+      "url": "https://sqlite.org/forum/info/d33843ff0dfdf9fd",
+      "note": "Recorded incident discussion distinguishes WAL recovery notices from corruption and explains recovery write-access needs. It motivates the boundary without proving snapshot-export failure."
+    },
+    {
+      "url": "https://www.sqlite.org/wal.html",
+      "note": "Recorded supporting specification source for WAL behavior."
+    }
+  ],
+  "evidence": ["docs/research.md"],
+  "notes": "Untested initial shortlist proposal. Do not reinterpret a WAL recovery notice as data loss or corruption. Check full instructions of neighboring database tasks before authoring; a broad corruption-salvage task was separately rejected."
+}

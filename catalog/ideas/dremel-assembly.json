@@ -1,0 +1,36 @@
+{
+  "evidence": [
+    "docs/harder-screen.md",
+    "docs/evidence/dremel-pilot-freeze.json",
+    "catalog/trials/dremel-assembly__3evVBu2-98ff4414.json"
+  ],
+  "hypothesis": "Repairing record assembly from decoded leaf streams can require reasoning jointly about repeated ancestors, optional parents, sibling alignment, and independent page boundaries.",
+  "id": "dremel-assembly",
+  "next_action": "Inspect the completed Terra/high pass and its submitted decoder before deciding whether to retire this snapshot or design a materially different next probe.",
+  "notes": "Active prototype direction. The public interface receives already decoded levels, not whole Parquet files. This is an incident-inspired extraction rather than a reproduction of a particular upstream patch; difficulty remains unmeasured in the recorded screen. Update: the first frozen Docker Terra/high trial completed with reward 1 and no exception at 2026-09-12T06:43:05Z. Its plain-text verifier provides no structured per-case results; the catalog retains the overall pass and links the raw evidence.",
+  "schema_version": 1,
+  "sources": [
+    {
+      "note": "Recorded specification basis for nested definition/repetition levels; independent expected output should start from original records.",
+      "url": "https://arrow.apache.org/blog/2022/10/08/arrow-parquet-encoding-part-2/"
+    },
+    {
+      "note": "Recorded firsthand motivation involving null structs versus null members; not a claim about current fastparquet releases.",
+      "url": "https://github.com/dask/fastparquet/issues/373"
+    },
+    {
+      "note": "Recorded nested-list and projection reading failures motivate the reader boundary without reproducing the Java stack.",
+      "url": "https://github.com/apache/parquet-java/issues/3672"
+    }
+  ],
+  "status": "prototyping",
+  "tags": [
+    "data",
+    "columnar",
+    "nested-records",
+    "representation",
+    "python"
+  ],
+  "title": "Nested Dremel record assembly",
+  "why_hard": "Definition and repetition levels encode ancestry independently from leaf values. A locally plausible decoder can confuse a missing parent with a null member or align sibling values against the wrong repeated record."
+}

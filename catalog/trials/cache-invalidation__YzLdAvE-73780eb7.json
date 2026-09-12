@@ -1,0 +1,63 @@
+{
+  "agent": "codex",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "cases": [],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "execution_error",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/cache-terra-high-retry-20260912/cache-invalidation__YzLdAvE/result.json",
+      "sha256": "3886b1ba6b60da0807be11a3e25289b8316ba4f37b73106b16f8037f705be9e6"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/cache-terra-high-retry-20260912/cache-invalidation__YzLdAvE/agent/trajectory.json",
+      "sha256": "92ff2a5236209687285adf26493678e856e7c9de2783a19f787ca6c79dadd1ef"
+    },
+    {
+      "label": "Submitted artifact: build_runner.py",
+      "path": "runs/cache-terra-high-retry-20260912/cache-invalidation__YzLdAvE/artifacts/app/build_runner.py",
+      "sha256": "27d3ef2ea6981cde858213b558f49e6ab411e7de6897b6029b89768d4d56cf79"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/cache-terra-high-retry-20260912/lock.json",
+      "sha256": "72c152c89b7f1688254ce032ff56b9b31aaa240a6bc299ff6b451cf8fe6acb26"
+    }
+  ],
+  "evidence_sha256": "44d474909e5664742a3a72ac007e27d8eb523a84a7e675b6bfb5c1a466726221",
+  "exception_type": "CancelledError",
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-12T05:31:58.156876Z",
+  "harbor_version": "0.14.0",
+  "id": "cache-invalidation__YzLdAvE-73780eb7",
+  "job": "cache-terra-high-retry-20260912",
+  "model": "openai/gpt-5.6-terra",
+  "qualifying_final_trial": false,
+  "reasoning_effort": "high",
+  "reward": null,
+  "schema_version": 1,
+  "source_result": "runs/cache-terra-high-retry-20260912/cache-invalidation__YzLdAvE/result.json",
+  "source_sha256": "3886b1ba6b60da0807be11a3e25289b8316ba4f37b73106b16f8037f705be9e6",
+  "started_at": "2026-09-12T05:26:20.725019Z",
+  "task_checksum": "5b6007a79b86f7fb539b175438e5a6a9cfccc5994e7f833aa2a883b3b990e418",
+  "task_id": "cache-invalidation",
+  "task_sha256": null,
+  "timing": {
+    "agent": 154.607,
+    "setup": 170.81,
+    "total": 337.432,
+    "verifier": null
+  },
+  "trial_name": "cache-invalidation__YzLdAvE",
+  "usage": {
+    "n_cache_tokens": null,
+    "n_input_tokens": null,
+    "n_output_tokens": null
+  },
+  "warnings": [
+    "No verifier case output is available."
+  ]
+}

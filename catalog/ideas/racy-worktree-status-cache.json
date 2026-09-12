@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "id": "racy-worktree-status-cache",
+  "title": "Racy worktree status cache with simulated metadata",
+  "status": "parked",
+  "tags": ["filesystem", "cache", "git", "metadata", "simulation"],
+  "hypothesis": "An application-side status cache can miss content replacement when recorded file metadata stays equal; deterministic synthetic stat records can isolate this freshness failure.",
+  "why_hard": "Metadata equality cannot always prove byte equality. A repair must reason about when a stat shortcut is trustworthy while retaining useful cache behavior.",
+  "next_action": "Revisit only if reviewers accept the simulated metadata boundary as realistic paid work; otherwise seek a portable primary reproducer without host timestamp dependence.",
+  "sources": [
+    {
+      "url": "https://github.com/git/git/blob/master/t/t0010-racy-git.sh",
+      "note": "Recorded maintained upstream regression tests establish racy metadata as a real concern; they are not evidence that the proposed local fixture exists."
+    }
+  ],
+  "evidence": ["docs/research.md"],
+  "notes": "Fallback candidate. Simulation weakens authenticity, while the installed-system-Git variant introduces version and filesystem sensitivity. No local trial or demonstrated model failure is recorded."
+}

@@ -1,0 +1,58 @@
+{
+  "agent": "codex",
+  "agent_version": "unknown",
+  "backend": "docker",
+  "cases": [],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "execution_error",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/cache-terra-high-20260912/cache-invalidation__QCGrLrt/result.json",
+      "sha256": "06db8c65fcf8567b0fff493c62f37454e4d4edd5b433d7c4c3d9332ba917737b"
+    },
+    {
+      "label": "Submitted artifact: build_runner.py",
+      "path": "runs/cache-terra-high-20260912/cache-invalidation__QCGrLrt/artifacts/app/build_runner.py",
+      "sha256": "27d3ef2ea6981cde858213b558f49e6ab411e7de6897b6029b89768d4d56cf79"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/cache-terra-high-20260912/lock.json",
+      "sha256": "c117d16a2bf1ac08ec406eeee5b9133245dc8afac35284595719d86623f4bddb"
+    }
+  ],
+  "evidence_sha256": "0be74db87853160613015fe41dbf489f03703c7ae261f1b26da5a81f48a60499",
+  "exception_type": "NonZeroAgentExitCodeError",
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-12T05:21:18.943984Z",
+  "harbor_version": "0.14.0",
+  "id": "cache-invalidation__QCGrLrt-2dd04abb",
+  "job": "cache-terra-high-20260912",
+  "model": "openai/gpt-5.6-terra",
+  "qualifying_final_trial": false,
+  "reasoning_effort": "high",
+  "reward": null,
+  "schema_version": 1,
+  "source_result": "runs/cache-terra-high-20260912/cache-invalidation__QCGrLrt/result.json",
+  "source_sha256": "06db8c65fcf8567b0fff493c62f37454e4d4edd5b433d7c4c3d9332ba917737b",
+  "started_at": "2026-09-12T05:20:59.822661Z",
+  "task_checksum": "5b6007a79b86f7fb539b175438e5a6a9cfccc5994e7f833aa2a883b3b990e418",
+  "task_id": "cache-invalidation",
+  "task_sha256": null,
+  "timing": {
+    "agent": null,
+    "setup": 7.223,
+    "total": 19.121,
+    "verifier": null
+  },
+  "trial_name": "cache-invalidation__QCGrLrt",
+  "usage": {
+    "n_cache_tokens": null,
+    "n_input_tokens": null,
+    "n_output_tokens": null
+  },
+  "warnings": [
+    "No verifier case output is available."
+  ]
+}

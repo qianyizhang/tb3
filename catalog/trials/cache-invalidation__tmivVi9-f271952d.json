@@ -1,0 +1,117 @@
+{
+  "agent": "nop",
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "cases": [
+    {
+      "detail": "",
+      "name": "initial_and_unchanged",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "hit_reuses_existing_artifact",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "source_change_is_target_local",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "target_config_change_is_target_local",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "unrelated_file_stays_hit",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "target_local_input_change",
+      "status": "failed"
+    },
+    {
+      "detail": "",
+      "name": "equal_mtime_and_size_edit",
+      "status": "failed"
+    },
+    {
+      "detail": "",
+      "name": "literal_input_delete",
+      "status": "failed"
+    },
+    {
+      "detail": "",
+      "name": "glob_add_and_delete",
+      "status": "failed"
+    },
+    {
+      "detail": "",
+      "name": "shared_input_rebuilds_each_target",
+      "status": "failed"
+    }
+  ],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "control_fail",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/cache-nop-20260912/cache-invalidation__tmivVi9/result.json",
+      "sha256": "71b2d8ad201f466641fc97d7a1d6535385551e9e40e9eab4e29f58e73514eb4a"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/cache-nop-20260912/cache-invalidation__tmivVi9/verifier/test-stdout.txt",
+      "sha256": "1fbd1f9af8aaf0c82e5161468a465ae116e5a320d8cd59f9b657def71d812de6"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/cache-nop-20260912/cache-invalidation__tmivVi9/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Submitted artifact: build_runner.py",
+      "path": "runs/cache-nop-20260912/cache-invalidation__tmivVi9/artifacts/app/build_runner.py",
+      "sha256": "27d3ef2ea6981cde858213b558f49e6ab411e7de6897b6029b89768d4d56cf79"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/cache-nop-20260912/lock.json",
+      "sha256": "25a361ca9a575f8198ceb9ac7a05e6ba8e6c0237b697c4f545895fd88b900b60"
+    }
+  ],
+  "evidence_sha256": "b7222a30eca845909380547dea6eb25b720891247c7dad892381d7adc183ad1d",
+  "exception_type": null,
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-12T05:19:10.425568Z",
+  "harbor_version": "0.18.0",
+  "id": "cache-invalidation__tmivVi9-f271952d",
+  "job": "cache-nop-20260912",
+  "model": null,
+  "qualifying_final_trial": false,
+  "reasoning_effort": null,
+  "reward": 0.0,
+  "schema_version": 1,
+  "source_result": "runs/cache-nop-20260912/cache-invalidation__tmivVi9/result.json",
+  "source_sha256": "71b2d8ad201f466641fc97d7a1d6535385551e9e40e9eab4e29f58e73514eb4a",
+  "started_at": "2026-09-12T05:18:46.142885Z",
+  "task_checksum": "cc3f733dbbf5601c59b31bbe3e6a02a760359667d336c5b628a4ef2b65dc8743",
+  "task_id": "cache-invalidation",
+  "task_sha256": null,
+  "timing": {
+    "agent": 0.0,
+    "setup": 0.0,
+    "total": 24.283,
+    "verifier": 12.411
+  },
+  "trial_name": "cache-invalidation__tmivVi9",
+  "usage": {
+    "n_cache_tokens": null,
+    "n_input_tokens": null,
+    "n_output_tokens": null
+  },
+  "warnings": []
+}

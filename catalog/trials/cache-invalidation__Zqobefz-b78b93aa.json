@@ -1,0 +1,117 @@
+{
+  "agent": "nop",
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "cases": [
+    {
+      "detail": "",
+      "name": "initial_and_unchanged",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "hit_reuses_existing_artifact",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "source_change_is_target_local",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "target_config_change_is_target_local",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "unrelated_file_stays_hit",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "target_local_input_change",
+      "status": "failed"
+    },
+    {
+      "detail": "",
+      "name": "equal_mtime_and_size_edit",
+      "status": "failed"
+    },
+    {
+      "detail": "",
+      "name": "literal_input_delete",
+      "status": "failed"
+    },
+    {
+      "detail": "",
+      "name": "glob_add_and_delete",
+      "status": "failed"
+    },
+    {
+      "detail": "",
+      "name": "shared_input_rebuilds_each_target",
+      "status": "failed"
+    }
+  ],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "control_fail",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/cache-nop-final-20260912/cache-invalidation__Zqobefz/result.json",
+      "sha256": "518248965fcd3d85a606527f7daff2c8a90d6b1bcc659570af8eb03434f256a9"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/cache-nop-final-20260912/cache-invalidation__Zqobefz/verifier/test-stdout.txt",
+      "sha256": "1fbd1f9af8aaf0c82e5161468a465ae116e5a320d8cd59f9b657def71d812de6"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/cache-nop-final-20260912/cache-invalidation__Zqobefz/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Submitted artifact: build_runner.py",
+      "path": "runs/cache-nop-final-20260912/cache-invalidation__Zqobefz/artifacts/app/build_runner.py",
+      "sha256": "27d3ef2ea6981cde858213b558f49e6ab411e7de6897b6029b89768d4d56cf79"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/cache-nop-final-20260912/lock.json",
+      "sha256": "ba63e13cd8e2f246fb5510b7830488388b02f169ba870786c01ef60f5aa721bc"
+    }
+  ],
+  "evidence_sha256": "c76d5cba7cf9bf03cbe5a7eaf7a2d86e9b74e88a2bfdbec5626f9ea1b1def7c3",
+  "exception_type": null,
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-12T05:20:53.400229Z",
+  "harbor_version": "0.18.0",
+  "id": "cache-invalidation__Zqobefz-b78b93aa",
+  "job": "cache-nop-final-20260912",
+  "model": null,
+  "qualifying_final_trial": false,
+  "reasoning_effort": null,
+  "reward": 0.0,
+  "schema_version": 1,
+  "source_result": "runs/cache-nop-final-20260912/cache-invalidation__Zqobefz/result.json",
+  "source_sha256": "518248965fcd3d85a606527f7daff2c8a90d6b1bcc659570af8eb03434f256a9",
+  "started_at": "2026-09-12T05:20:29.131448Z",
+  "task_checksum": "5b6007a79b86f7fb539b175438e5a6a9cfccc5994e7f833aa2a883b3b990e418",
+  "task_id": "cache-invalidation",
+  "task_sha256": null,
+  "timing": {
+    "agent": 0.0,
+    "setup": 0.0,
+    "total": 24.269,
+    "verifier": 12.415
+  },
+  "trial_name": "cache-invalidation__Zqobefz",
+  "usage": {
+    "n_cache_tokens": null,
+    "n_input_tokens": null,
+    "n_output_tokens": null
+  },
+  "warnings": []
+}

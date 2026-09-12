@@ -1,0 +1,68 @@
+{
+  "agent": "nop",
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "cases": [],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "control_fail",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/dremel-nop-20260912/dremel-assembly__83grAco/result.json",
+      "sha256": "0bf33ce7e2608fc4bbc148a8a05e27f085f77dca31e0705d02c6ef703512d9ec"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/dremel-nop-20260912/dremel-assembly__83grAco/verifier/test-stdout.txt",
+      "sha256": "3133beab2614e78685ff511446edbeb63ae55d9a059a450409701c07cbb0f9a9"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/dremel-nop-20260912/dremel-assembly__83grAco/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Submitted artifact: assemble.py",
+      "path": "runs/dremel-nop-20260912/dremel-assembly__83grAco/artifacts/app/assemble.py",
+      "sha256": "b606b0a02be588043d423433929f8404bfae55168079c81e16e0aa40907c1618"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/dremel-nop-20260912/lock.json",
+      "sha256": "4224719f4925ed8b697bc569ea6c5d85ce6213e474696a5b7e8d413c08630dd1"
+    }
+  ],
+  "evidence_sha256": "7e13a595de9946369b04f1835bd1ad0cac69a9b6a252b0a9144e24972e02e453",
+  "exception_type": null,
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-12T06:37:14.536628Z",
+  "harbor_version": "0.18.0",
+  "id": "dremel-assembly__83grAco-2cf3b8cb",
+  "job": "dremel-nop-20260912",
+  "model": null,
+  "qualifying_final_trial": false,
+  "reasoning_effort": null,
+  "reward": 0.0,
+  "schema_version": 1,
+  "source_result": "runs/dremel-nop-20260912/dremel-assembly__83grAco/result.json",
+  "source_sha256": "0bf33ce7e2608fc4bbc148a8a05e27f085f77dca31e0705d02c6ef703512d9ec",
+  "started_at": "2026-09-12T06:36:50.295894Z",
+  "task_checksum": "4a2f0f3bf1398c3defe3670a7073113aba100d3955469b63f19424d9ab570ecf",
+  "task_id": "dremel-assembly",
+  "task_sha256": null,
+  "timing": {
+    "agent": 0.0,
+    "setup": 0.0,
+    "total": 24.241,
+    "verifier": 12.16
+  },
+  "trial_name": "dremel-assembly__83grAco",
+  "usage": {
+    "n_cache_tokens": null,
+    "n_input_tokens": null,
+    "n_output_tokens": null
+  },
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ]
+}

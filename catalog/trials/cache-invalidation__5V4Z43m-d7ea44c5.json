@@ -1,0 +1,122 @@
+{
+  "agent": "codex",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "cases": [
+    {
+      "detail": "",
+      "name": "initial_and_unchanged",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "hit_reuses_existing_artifact",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "source_change_is_target_local",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "target_config_change_is_target_local",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "target_local_input_change",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "equal_mtime_and_size_edit",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "literal_input_delete",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "glob_add_and_delete",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "unrelated_file_stays_hit",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "shared_input_rebuilds_each_target",
+      "status": "passed"
+    }
+  ],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "model_pass",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/cache-terra-high-proxy-20260912/cache-invalidation__5V4Z43m/result.json",
+      "sha256": "b900511ce2e78b1cc2edbee3389f306a9a4d5fd2981b070713509b52d8f8fd7d"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/cache-terra-high-proxy-20260912/cache-invalidation__5V4Z43m/verifier/test-stdout.txt",
+      "sha256": "234a289b13df3858889718caa7006483c0ebc1d7f260bfb169f5bd89f9eff1e6"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/cache-terra-high-proxy-20260912/cache-invalidation__5V4Z43m/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/cache-terra-high-proxy-20260912/cache-invalidation__5V4Z43m/agent/trajectory.json",
+      "sha256": "de6390e5337cb8f2463116384725f0d442f9def34a843dcab37c970e59c3dc4c"
+    },
+    {
+      "label": "Submitted artifact: build_runner.py",
+      "path": "runs/cache-terra-high-proxy-20260912/cache-invalidation__5V4Z43m/artifacts/app/build_runner.py",
+      "sha256": "78c2d0c87ade4e5b64f9444578c9d3c529c68ab73027944b6b6c4e4151862216"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/cache-terra-high-proxy-20260912/lock.json",
+      "sha256": "384475a2ab8ad87f8878f0ebf43a42b8203f34038982442502734ea907e31679"
+    }
+  ],
+  "evidence_sha256": "59c6413d1f70bf45b61da9de4cd8a6b3fe8d36358b207d7abe96a70a15c0c700",
+  "exception_type": null,
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-12T05:34:40.695796Z",
+  "harbor_version": "0.14.0",
+  "id": "cache-invalidation__5V4Z43m-d7ea44c5",
+  "job": "cache-terra-high-proxy-20260912",
+  "model": "openai/gpt-5.6-terra",
+  "qualifying_final_trial": false,
+  "reasoning_effort": "high",
+  "reward": 1.0,
+  "schema_version": 1,
+  "source_result": "runs/cache-terra-high-proxy-20260912/cache-invalidation__5V4Z43m/result.json",
+  "source_sha256": "b900511ce2e78b1cc2edbee3389f306a9a4d5fd2981b070713509b52d8f8fd7d",
+  "started_at": "2026-09-12T05:32:15.128279Z",
+  "task_checksum": "5b6007a79b86f7fb539b175438e5a6a9cfccc5994e7f833aa2a883b3b990e418",
+  "task_id": "cache-invalidation",
+  "task_sha256": null,
+  "timing": {
+    "agent": 84.943,
+    "setup": 32.768,
+    "total": 145.568,
+    "verifier": 12.542
+  },
+  "trial_name": "cache-invalidation__5V4Z43m",
+  "usage": {
+    "n_cache_tokens": 126976.0,
+    "n_input_tokens": 140789.0,
+    "n_output_tokens": 3372.0
+  },
+  "warnings": []
+}
