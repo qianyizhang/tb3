@@ -1,0 +1,19 @@
+{
+  "kind": "harder-screen-diagnostic",
+  "task": "probes/sqlite-exists",
+  "task_sha256": "159b0d3c94bca49abc8683d688463a906e6429c148225046379bb6958c6fc865",
+  "frozen_at": "2026-09-12T06:52:39.019202+00:00",
+  "upstream": "e2995b93b0a46edee7bc9942ea5622411a6d5bb9",
+  "source_version": "SQLite 3.53.0",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "initial_attempts": 1,
+  "repeat_if_genuine_failure": 1,
+  "qualifying_final_trial": false,
+  "agent_timeout_seconds": 1800,
+  "validation_jobs": [
+    "sqlite-oracle-final-20260912",
+    "sqlite-nop-20260912"
+  ],
+  "change_from_previous": "Repair authoring fault witnessed by first Docker oracle; no model trial had run."
+}

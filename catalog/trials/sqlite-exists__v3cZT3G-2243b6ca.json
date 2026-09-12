@@ -1,0 +1,68 @@
+{
+  "agent": "oracle",
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "cases": [],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "control_fail",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/sqlite-oracle-20260912/sqlite-exists__v3cZT3G/result.json",
+      "sha256": "e5d943f5272371c704d90989cf7fafeb85201f906189e8784ffeb5e982ba08ed"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/sqlite-oracle-20260912/sqlite-exists__v3cZT3G/verifier/test-stdout.txt",
+      "sha256": "897e80afddfe344499ef566c8ba8fcfe4c52faa286490229167b313a09060a35"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/sqlite-oracle-20260912/sqlite-exists__v3cZT3G/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Submitted artifact: sqlite/sqlite3.c",
+      "path": "runs/sqlite-oracle-20260912/sqlite-exists__v3cZT3G/artifacts/app/sqlite/sqlite3.c",
+      "sha256": "c94657c2a08ed5f3f61a25f0018eb2f64ec42fd053da26d741db9e52e6ffaa77"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/sqlite-oracle-20260912/lock.json",
+      "sha256": "c010c647bb1b0bb7dc5eedfb61e0d0d6b2a7b726288eae19306e1daa850fce65"
+    }
+  ],
+  "evidence_sha256": "ec2f86fcc73edee863ea6ff34ceaf6f849ede7db46e3ead3260a79726ea9209c",
+  "exception_type": null,
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-12T06:50:28.336671Z",
+  "harbor_version": "0.18.0",
+  "id": "sqlite-exists__v3cZT3G-2243b6ca",
+  "job": "sqlite-oracle-20260912",
+  "model": null,
+  "qualifying_final_trial": false,
+  "reasoning_effort": null,
+  "reward": 0.0,
+  "schema_version": 1,
+  "source_result": "runs/sqlite-oracle-20260912/sqlite-exists__v3cZT3G/result.json",
+  "source_sha256": "e5d943f5272371c704d90989cf7fafeb85201f906189e8784ffeb5e982ba08ed",
+  "started_at": "2026-09-12T06:49:50.668045Z",
+  "task_checksum": "4dc5cf88ba5f326f8f0cc4ba10e9157f2371b26696b78bced7bd504a411c13f1",
+  "task_id": "sqlite-exists",
+  "task_sha256": null,
+  "timing": {
+    "agent": 0.143,
+    "setup": 0.0,
+    "total": 37.669,
+    "verifier": 25.103
+  },
+  "trial_name": "sqlite-exists__v3cZT3G",
+  "usage": {
+    "n_cache_tokens": null,
+    "n_input_tokens": null,
+    "n_output_tokens": null
+  },
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ]
+}
