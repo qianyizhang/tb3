@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "max_file_bytes": 1048576,
+  "local_roots": [
+    "runs",
+    "jobs",
+    ".cache"
+  ],
+  "blocked_components": [
+    ".venv*",
+    "__pycache__",
+    "*.pyc",
+    "*.pyo",
+    ".pytest_cache",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".coverage",
+    "htmlcov",
+    ".env",
+    ".env.*",
+    ".DS_Store",
+    "*.swp",
+    "*.swo",
+    "*~",
+    "*.dSYM",
+    "*.o",
+    "*.obj",
+    "*.so",
+    "*.dylib",
+    "*.dll",
+    "*.exe",
+    "*.a",
+    "*.lib",
+    "target",
+    "CMakeFiles"
+  ],
+  "vendor_roots": [
+    "probes/ninja-dyndep/environment/ninja-src/",
+    "probes/ninja-dyndep/tests/ninja-src/",
+    "probes/clipper-polytree/environment/clipper2-src/",
+    "probes/sqlite-exists/environment/sqlite/"
+  ],
+  "retained_artifacts": {
+    "probes/sqlite-exists/environment/sqlite/sqlite3.c": {
+      "sha256": "c94657c2a08ed5f3f61a25f0018eb2f64ec42fd053da26d741db9e52e6ffaa77",
+      "reason": "Pinned SQLite 3.53.0 task source; see probes/sqlite-exists/README.md."
+    },
+    "probes/sqlite-exists/environment/sqlite/shell.c": {
+      "sha256": "ab228173dbd661b5511a799ef147f9c2dbd319d54b329cebaa2b4d1663fbfc86",
+      "reason": "Pinned SQLite shell used by the task build; see probes/sqlite-exists/README.md."
+    },
+    "probes/sqlite-exists/tests/shell.c": {
+      "sha256": "111cc21192f149ad5521b199a02b577020505c8211152e70961be8907e84011a",
+      "reason": "Separate verifier shell fixture; see probes/sqlite-exists/authoring/review.md."
+    },
+    "probes/clipper-polytree/tests/clipper2-src.tar": {
+      "sha256": "bd1ca4b1b89055475eff8e4558d4234fc29f9966389a176d4f35770e3480caf7",
+      "reason": "Docker ADD input for the isolated verifier; see probes/clipper-polytree/authoring/provenance.md."
+    }
+  }
+}

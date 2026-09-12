@@ -1,10 +1,38 @@
-.cache/
-.venv/
-.venv-validation/
+# Local runtime evidence and disposable environments. Keep concise evidence in
+# docs/evidence and probes/*/authoring/evidence; never blanket-ignore JSON/text.
+/.cache/
+/.venv*/
+/jobs/
+/runs/
+
+# Python and developer tooling outputs.
 __pycache__/
-*.pyc
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local credentials and machine/editor state.
 .env
 .env.*
 !.env.example
-jobs/
-runs/
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Compilers/debuggers. Vendored source, lockfiles, fixtures and required
+# verifier archives remain visible and must be reviewed before staging.
+*.dSYM/
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.exe
+*.a
+*.lib
+probes/**/target/
+probes/**/CMakeFiles/
