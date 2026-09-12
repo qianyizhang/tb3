@@ -1,6 +1,6 @@
 # TB3 task-idea research ledger
 
-Retrieved 2026-09-12. This is a shortlist for a small, reproducible prototype; it is **not** a task implementation, oracle run, model trial, or evidence that any model fails. “Estimate” means design judgment, not measured result.
+Retrieved 2026-09-12. This records the initial shortlist and its completed cache calibration. “Estimate” means design judgment, not measured result. The active follow-up is the [harder candidate screen](harder-screen.md).
 
 ## What the sources establish
 
@@ -67,12 +67,6 @@ The next candidate needs an authentic multi-step diagnosis. A credible shape wou
 | General SQLite corruption salvage | SQLite’s recovery tooling addresses a broad class of damage. A tiny fixture tends to become either a contrived byte puzzle or an underspecified miniature recovery engine; neither is a good first TB3 build. |
 | Direct Bazel/apt-cache reproduction | The firsthand report explicitly cannot reproduce from a clean state and depends on host toolchain/cache history. That is unsuitable for a stable, portable benchmark image. |
 | Git internals against the installed system Git | Real Git regressions are valuable, but pinning behavior across Git versions and filesystem semantics would make the task environment-sensitive. The simulated status-cache candidate is only a fallback. |
-
-## Next concrete step, if selected
-
-Use rank 1 only as a ≤250-line stdlib runner to prove task plumbing, an independent verifier, and behavioral cache semantics. Do not extend it with more toy cases. First locate and model a real multi-step build/package incident before spending substantial authoring or evaluation time.
-
-**Single meaningful Terra-high feasibility probe (proposed, not run):** give Terra high this one runner after the independent verifier is ready. The probe is successful only as a *design signal* if it produces an artifact that passes all six behavioral cases; inspect its trajectory for whether it finds the missing external-input fingerprint, wrongly rebuilds every target, overlooks deletion/glob membership, or tries to infer tests. The verifier should take 3–8 seconds once the container is built. Spend Sol only on this selected candidate after the probe and reward-hack review support it; TB’s eventual required agent trials and failure analysis remain separate work.
 
 ## Measured pilot result
 

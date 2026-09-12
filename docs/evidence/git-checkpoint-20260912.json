@@ -1,0 +1,37 @@
+{
+  "date": "2026-09-12",
+  "scope": "Git-visible source checkpoint; local runs, environments and debug output excluded. This does not replace historical task freezes or prove final qualification.",
+  "validation": "55 offline unit tests passed in an isolated source snapshot; staged artifact gate passed. No Docker or model trials launched.",
+  "probes": [
+    {
+      "task": "probes/dremel-assembly",
+      "historical_freeze": "docs/evidence/dremel-pilot-freeze.json",
+      "historical_task_sha256": "0aebfe5b4abd14ef7c095a305ceb75d6d13735dca158e8907eb39f56bf0accc5",
+      "git_visible_task_sha256": "0aebfe5b4abd14ef7c095a305ceb75d6d13735dca158e8907eb39f56bf0accc5",
+      "matches_historical_freeze": true
+    },
+    {
+      "task": "probes/ninja-dyndep",
+      "historical_freeze": "docs/evidence/ninja-pilot-freeze.json",
+      "historical_task_sha256": "a928e6d7a6fb46b7477bf247e46ad6ce8e4cb28e2c36608d5741cbbc9c124c59",
+      "git_visible_task_sha256": "1ece7027d03d4681c8a1376305b941a02529618413f56953470c2349a7a64e72",
+      "matches_historical_freeze": false,
+      "note": "Git does not retain the empty misc/afl-fuzz directories in the environment and verifier source trees. The runner hashes directory entries, so the Git-visible hash differs although all source file bytes are retained. Historical freezes are unchanged."
+    },
+    {
+      "task": "probes/sqlite-exists",
+      "historical_freeze": "docs/evidence/sqlite-pilot-freeze.json",
+      "historical_task_sha256": "159b0d3c94bca49abc8683d688463a906e6429c148225046379bb6958c6fc865",
+      "git_visible_task_sha256": "0e71a40b7bffa66aadf89fc859737c00b8505968c782de0416a6be412bcb03a5",
+      "matches_historical_freeze": false,
+      "note": "The original full-tree freeze includes three local sqlite3.dSYM debug-bundle files. They remain on disk and ignored; historical hashes are unchanged. The committed source tree therefore has a different runner hash."
+    },
+    {
+      "task": "probes/clipper-polytree",
+      "historical_freeze": "docs/evidence/clipper-pilot-freeze.json",
+      "historical_task_sha256": "f1f2fa7052946784e87b66ec3cfaf01078a8ad95da34af3328adf44c71bc0b36",
+      "git_visible_task_sha256": "f1f2fa7052946784e87b66ec3cfaf01078a8ad95da34af3328adf44c71bc0b36",
+      "matches_historical_freeze": true
+    }
+  ]
+}

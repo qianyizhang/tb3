@@ -4,13 +4,15 @@ Local setup, incident research, and inexpensive feasibility probes for [the assi
 
 Docker runs through Colima on this Mac. The Codex CLI is repaired and retains its ChatGPT login. Harbor's trial and validation versions are installed separately and pinned to the inspected CI snapshot.
 
-Verified in Docker: oracle **1**, nop **0**, Terra/high **1** (10/10 cases, 2m25s total). Linux static checks pass **21/22**, with only the deliberately absent human-authored task README sections failing. The cache probe is too small to advance to expensive difficulty trials. Two earlier network failures are retained as infrastructure errors.
+Docker controls and Terra/high trials pass for cache invalidation, nested Dremel assembly, Ninja dynamic dependencies, and SQLite EXISTS optimization. These four snapshots are retired from difficulty selection. A historical Clipper2 PolyTree regression is under validation. No genuine Terra failure has been observed; Sol remains unused. Two earlier network failures are retained as infrastructure errors.
 
 | Start here | Purpose |
 | --- | --- |
 | [Setup](docs/setup.md) | Install/recreate environments, start Docker, subscription commands. |
 | [Ledger](docs/ledger.md) | Successful and failed attempts, evidence and remaining trial counts. |
-| [Research](docs/research.md) | Eight firsthand sources, four ranked ideas, rejected directions. |
+| [Research](docs/research.md) | Initial firsthand sources and ideas. |
+| [Harder screen](docs/harder-screen.md) | Broader incident research, measured trials, and promotion criteria. |
+| [Catalog](docs/catalog.md) | Searchable idea/trial records and local browser report. |
 | [Requirements](docs/requirements.md) | Frozen CI/defaults, discrepancies, human-authored submission requirements. |
 | [Codex repair](docs/codex-repair.md) | Diagnosis, repair command and checks. |
 | [Cache probe](probes/cache-invalidation/README.md) | Small setup/calibration task; difficulty remains unproven. |
@@ -29,4 +31,4 @@ bash scripts/bootstrap.sh
 
 Raw `runs/` files stay local and are ignored by Git; concise checked-in evidence is under `docs/evidence/`. Inspect raw trajectories before publishing them. No GitHub remote or public submission was created.
 
-Use Terra/high for the first small diagnostic. Reserve Sol/xhigh and Opus/max for a frozen candidate that warrants their cost. Failed infrastructure, timeouts and proxy/subagent runs never count as genuine model failures.
+Use Terra/high for initial diagnostics. Reserve Sol/xhigh and Opus/max for a frozen candidate that warrants their cost. Failed infrastructure, timeouts and mirrored subagent runs never count as genuine model failures. The explicit network proxy used by real Harbor runs does not change their Docker execution scope.

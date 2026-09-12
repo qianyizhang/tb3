@@ -1,18 +1,26 @@
 {
-  "schema_version": 1,
-  "id": "ordinal-safe-filter-pushdown",
-  "title": "Ordinal-safe filter pushdown through duplicate labels",
-  "status": "idea",
-  "tags": ["data", "query-optimizer", "identity", "projection", "python"],
+  "evidence": [
+    "docs/research-runtime-candidates.md"
+  ],
   "hypothesis": "A repair to a small physical-plan optimizer can require preserving positional column identity through alias reversal and predicate remapping when displayed labels repeat.",
-  "why_hard": "Output ordinal, display label, source expression, and predicate scope are distinct. A label-only lookup can redirect a filter onto the wrong side of a left join while leaving the plan superficially plausible.",
-  "next_action": "Build original plan fixtures and compare ordered rows before and after optimization; include nested and reordered projections, duplicate labels, computed expressions, and a control that requires safe pushdown.",
+  "id": "ordinal-safe-filter-pushdown",
+  "next_action": "Do not use a prescribed pushdown trace to create difficulty in a miniature engine.",
+  "notes": "Source incident retained. Root review rejected the miniature name-to-ordinal repair before implementation; a prescribed optimizer trace was not a sufficiently natural way to rule out correct alternatives. No model trial.",
+  "schema_version": 1,
   "sources": [
     {
-      "url": "https://github.com/apache/datafusion/issues/21246",
-      "note": "Recorded issue reproducer for incorrect predicate binding through duplicate projection labels; current upstream status has not been rechecked for this catalog."
+      "note": "Recorded issue reproducer for incorrect predicate binding through duplicate projection labels; current upstream status has not been rechecked for this catalog.",
+      "url": "https://github.com/apache/datafusion/issues/21246"
     }
   ],
-  "evidence": ["docs/research-runtime-candidates.md"],
-  "notes": "Runtime fallback behind fixed-binary validity. Public behavior must state that labels may repeat and predicates bind to ordinals. A safe-pushdown audit prevents disabling the optimizer from satisfying the task. No completed model trial is documented."
+  "status": "rejected",
+  "tags": [
+    "data",
+    "query-optimizer",
+    "identity",
+    "projection",
+    "python"
+  ],
+  "title": "Ordinal-safe filter pushdown through duplicate labels",
+  "why_hard": "Output ordinal, display label, source expression, and predicate scope are distinct. A label-only lookup can redirect a filter onto the wrong side of a left join while leaving the plan superficially plausible."
 }

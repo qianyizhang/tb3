@@ -1,18 +1,26 @@
 {
-  "schema_version": 1,
-  "id": "fixed-binary-join-validity",
-  "title": "Fixed-width binary outer-join null materialization",
-  "status": "idea",
-  "tags": ["data", "columnar", "join", "null-semantics", "python"],
+  "evidence": [
+    "docs/research-runtime-candidates.md"
+  ],
   "hypothesis": "A compact columnar engine can expose an outer-join repair that must carry row-match state consistently through physical bytes, validity bitmaps, selection, and projection.",
-  "why_hard": "Unused slot bytes can remain present while the value is null; valid all-zero bytes must remain values. Fixing displayed bytes alone cannot make null predicates and later operations agree.",
-  "next_action": "Prototype the generic fixed-binary gather path and an independent nested-loop reference; check unmatched rows, empty inputs, repeated keys, multi-batch behavior, and the documented gather trace before a Terra/high screen.",
+  "id": "fixed-binary-join-validity",
+  "next_action": "Do not build the proposed toy engine; preserve the incident as a research lead.",
+  "notes": "Source incident retained. Root review rejected the proposed miniature Python engine before implementation: a direct sentinel/validity repair plus prescribed gather traces would create an artificial difficulty signal. No model trial.",
+  "schema_version": 1,
   "sources": [
     {
-      "url": "https://github.com/apache/datafusion/issues/19067",
-      "note": "Recorded incorrect-result reproducer: an unmatched right-side fixed-size binary key appears non-null after a left join. Use as failure-shape provenance, not transplanted code."
+      "note": "Recorded incorrect-result reproducer: an unmatched right-side fixed-size binary key appears non-null after a left join. Use as failure-shape provenance, not transplanted code.",
+      "url": "https://github.com/apache/datafusion/issues/19067"
     }
   ],
-  "evidence": ["docs/research-runtime-candidates.md"],
-  "notes": "Ranked first within the runtime research shortlist, which explicitly records no created task or model trial. The compact representation may still make the defect obvious; a worked oracle and observed trajectories must establish whether it is worth promotion."
+  "status": "rejected",
+  "tags": [
+    "data",
+    "columnar",
+    "join",
+    "null-semantics",
+    "python"
+  ],
+  "title": "Fixed-width binary outer-join null materialization",
+  "why_hard": "Unused slot bytes can remain present while the value is null; valid all-zero bytes must remain values. Fixing displayed bytes alone cannot make null predicates and later operations agree."
 }
