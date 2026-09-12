@@ -1,0 +1,30 @@
+{
+  "id": "barycentric-stability",
+  "title": "Stable barycentric weights with incremental nodes",
+  "hypothesis": "Interval scaling, multiplication ordering, and constructor/update consistency interact in high-degree interpolation.",
+  "why_hard": "Requires numerical stability and mathematically equivalent weights across construction modes; historical patch may be an incomplete reference.",
+  "status": "screening",
+  "tags": [
+    "numerical",
+    "interpolation",
+    "python"
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/scipy/scipy/pull/14255",
+      "note": "Historical merged weight-stability patch; source screen only."
+    },
+    {
+      "url": "https://github.com/scipy/scipy/issues/19373",
+      "note": "Separate upstream incremental-update stability report."
+    }
+  ],
+  "next_action": "Reproduce full historical public-API behavior in a small compatible environment, then design independent numerical controls; do not treat the published patch as a complete oracle.",
+  "notes": "Limited local execution of verbatim historical numerical blocks confirms stability repair but incremental-update sign inconsistency: y=x at0.5 gives0.8 after append instead of0.5. Existing NumPy2.5.3; SciPy absent. Not a full-package reproduction or model trial.",
+  "schema_version": 1,
+  "evidence": [
+    "docs/research-numerical-candidates.md",
+    "docs/evidence/barycentric-reference-check.json",
+    "docs/evidence/barycentric-source-provenance.json"
+  ]
+}

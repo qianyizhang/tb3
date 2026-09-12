@@ -1,0 +1,28 @@
+{
+  "id": "nested-norm-derivatives",
+  "title": "Nested dual-number derivatives of a stable norm",
+  "hypothesis": "Independent differentiation tags interact with argument promotion and stable norm evaluation.",
+  "why_hard": "An ordinary gradient can pass while a mixed derivative becomes zero; difficulty is unmeasured and reference provenance is weak for predicting Opus failures.",
+  "status": "screening",
+  "tags": [
+    "numerical",
+    "autodiff",
+    "julia"
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/JuliaDiff/ForwardDiff.jl/issues/834",
+      "note": "Mixed-derivative reproduction supplied upstream."
+    },
+    {
+      "url": "https://github.com/JuliaDiff/ForwardDiff.jl/pull/835",
+      "note": "Proposed reference was unmerged at retrieval and credits an AI coauthor."
+    }
+  ],
+  "next_action": "Keep as fallback; verify reference and provisioning cost before any model trial.",
+  "notes": "No local build or reproduction. Numerical correctness only.",
+  "schema_version": 1,
+  "evidence": [
+    "docs/research-numerical-candidates.md"
+  ]
+}
