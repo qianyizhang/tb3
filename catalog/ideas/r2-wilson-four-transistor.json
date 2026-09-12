@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "id": "r2-wilson-four-transistor",
+  "title": "Construct a four-transistor Wilson mirror",
+  "status": "screening",
+  "tags": [
+    "candidate-search-r2",
+    "screened-r2-20260912",
+    "non-security",
+    "analog-electronics",
+    "construct",
+    "screen-hold"
+  ],
+  "hypothesis": "Produce a four-device SPICE netlist with the intended feedback and device matching.",
+  "why_hard": "Published GPT-5.5 output parses but receives no graph-isomorphic reference match. The inspected run has max_tokens=8000, one repetition and null stop_reason/usage fields. Short denotes the prompt tier, not a measured short reasoning horizon. Screening: One small artifact and a deterministic topology checker, but a strict graph mismatch is not proof of functional failure or adequate reasoning budget. No Terra receipt.",
+  "next_action": "Check the submitted circuit electrically and audit alternate valid topologies before using this as a hard construction task.",
+  "sources": [
+    {
+      "url": "https://github.com/levantlabs/circuitrubric-bench/blob/f96512bf602152d1646c0cfc11ea7af8e6ade99f/fixtures/039_wilson_mirror_4t_nmos/prompts.yaml",
+      "note": "CircuitRubric / 039_wilson_mirror_4t_nmos; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/levantlabs/circuitrubric-bench/blob/f96512bf602152d1646c0cfc11ea7af8e6ade99f/examples/or-gpt-5.5-closed-short-strict_ports/summary.jsonl",
+      "note": "CircuitRubric / 039_wilson_mirror_4t_nmos; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/levantlabs/circuitrubric-bench/blob/f96512bf602152d1646c0cfc11ea7af8e6ade99f/examples/or-gpt-5.5-closed-short-strict_ports/config.json",
+      "note": "CircuitRubric / 039_wilson_mirror_4t_nmos; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/levantlabs/circuitrubric-bench/blob/f96512bf602152d1646c0cfc11ea7af8e6ade99f/docs/methodology.md",
+      "note": "CircuitRubric / 039_wilson_mirror_4t_nmos; inspected 2026-09-12."
+    }
+  ],
+  "evidence": [
+    "docs/research-candidate-search-r2-20260912.md",
+    "docs/evidence/candidate-search-r2-20260912.json",
+    "docs/evidence/candidate-search-r2-checks.json"
+  ],
+  "notes": "Independent verifier: Allow alpha-renamed/electrically equivalent circuits and verify bias, mirror ratio and output resistance, alongside structural requirements that are actually requested. Easy baseline: A standard topology template may solve it; the source reference is four device lines. New source-screening card, outside the frozen original 100. No local model trial; not submission-ready."
+}

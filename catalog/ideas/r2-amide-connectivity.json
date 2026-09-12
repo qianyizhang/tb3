@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "r2-amide-connectivity",
+  "title": "Recover amide connectivity from NMR peaks",
+  "status": "screening",
+  "tags": [
+    "candidate-search-r2",
+    "screened-r2-20260912",
+    "non-security",
+    "organic-chemistry",
+    "infer",
+    "screen-hold"
+  ],
+  "hypothesis": "Return a molecular connectivity graph or ranked SMILES from two short peak lists.",
+  "why_hard": "GPT-5.5 finishes all three records with status ok, finish_reason stop and 10644/9783/12206 completion tokens. Manual graph inspection finds a rank-one connectivity miss in repetitions 1 and 3, but the correct connectivity in repetition 2. No RDKit grading was run here. Screening: A concrete inverse problem and completed other-model answers, but prompts omit formula and mass. Source low accuracy cannot establish unique identifiability. No Terra evidence.",
+  "next_action": "Review spectra and supporting publication; supply genuinely available formula/2D evidence if needed, then remeasure that changed task separately.",
+  "sources": [
+    {
+      "url": "https://github.com/odanchem/NMRArena/blob/950a021579347e3fb13a4dfa1d435990e3d31471/dataset/dataset_selected_clean_105.json",
+      "note": "NMRArena / a923380e-3546-43f2-bd99-c9a6ad98612f; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/odanchem/NMRArena/blob/950a021579347e3fb13a4dfa1d435990e3d31471/dataset/llm_track.ipynb",
+      "note": "NMRArena / a923380e-3546-43f2-bd99-c9a6ad98612f; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/odanchem/NMRArena/blob/950a021579347e3fb13a4dfa1d435990e3d31471/results/LLM_results/llm_rep1_clean.jsonl",
+      "note": "NMRArena / a923380e-3546-43f2-bd99-c9a6ad98612f; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/odanchem/NMRArena/blob/950a021579347e3fb13a4dfa1d435990e3d31471/results/LLM_results/llm_rep2_clean.jsonl",
+      "note": "NMRArena / a923380e-3546-43f2-bd99-c9a6ad98612f; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/odanchem/NMRArena/blob/950a021579347e3fb13a4dfa1d435990e3d31471/results/LLM_results/llm_rep3_clean.jsonl",
+      "note": "NMRArena / a923380e-3546-43f2-bd99-c9a6ad98612f; inspected 2026-09-12."
+    }
+  ],
+  "evidence": [
+    "docs/research-candidate-search-r2-20260912.md",
+    "docs/evidence/candidate-search-r2-20260912.json",
+    "docs/evidence/candidate-search-r2-checks.json"
+  ],
+  "notes": "Independent verifier: Canonical graph comparison plus independent chemical review that the supplied evidence distinguishes alternatives. Easy baseline: Fragment assembly from the amide carbonyl, aromatic pattern, tert-butyl and cyclopentyl signals. New source-screening card, outside the frozen original 100. No local model trial; not submission-ready."
+}

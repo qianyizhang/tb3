@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "id": "r2-positional-port-swap",
+  "title": "Preserve positional bindings during a SPICE port reorder",
+  "status": "screening",
+  "tags": [
+    "candidate-search-r2",
+    "screened-r2-20260912",
+    "non-security",
+    "netlist-semantics",
+    "transform",
+    "screen-hold"
+  ],
+  "hypothesis": "Change one subcircuit interface and its single call site in a 1.6 kB netlist; preserve every formal-to-actual binding.",
+  "why_hard": "The published DeepSeek demo fails case 071 and passes sibling 072. Independent binding comparison confirms the expected file preserves connectivity and the failed output changes it. The inspected demo does not identify a precise provider model or completion budget. Screening: An authentic semantic mistake, but the ordinary permutation solution is very small and Terra difficulty is unknown. No need to add more ports or stages to inflate difficulty.",
+  "next_action": "Keep as a cheap calibration/control; advance only if an ordinary-tools Terra pilot misses the unchanged source task with normal completion.",
+  "sources": [
+    {
+      "url": "https://github.com/WoshiMayou/NetlistBench/blob/413c56f4fedd2c574d4be0ffcc66480504f8d364/benchmark/Cases/v2_edit_raw/subckt_port_swap/cases/complex_subckt_port_swap_071/case.json",
+      "note": "NetlistBench / complex_subckt_port_swap_071; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/WoshiMayou/NetlistBench/blob/413c56f4fedd2c574d4be0ffcc66480504f8d364/example_run/deepseek_demo/edit/subckt_port_swap/report.json",
+      "note": "NetlistBench / complex_subckt_port_swap_071; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/WoshiMayou/NetlistBench/blob/413c56f4fedd2c574d4be0ffcc66480504f8d364/example_run/deepseek_demo/edit/subckt_port_swap/complex_subckt_port_swap_071.sp",
+      "note": "NetlistBench / complex_subckt_port_swap_071; inspected 2026-09-12."
+    }
+  ],
+  "evidence": [
+    "docs/research-candidate-search-r2-20260912.md",
+    "docs/evidence/candidate-search-r2-20260912.json",
+    "docs/evidence/candidate-search-r2-checks.json"
+  ],
+  "notes": "Independent verifier: Compare each formal-port-to-actual-node mapping before and after; check internal device statements are unchanged. Easy baseline: Apply the same positional permutation to the header and call arguments. This directly solves the inspected fixture. New source-screening card, outside the frozen original 100. No local model trial; not submission-ready."
+}

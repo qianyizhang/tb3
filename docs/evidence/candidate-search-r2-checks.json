@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-12",
+  "checks": {
+    "source_follower_stack_control": {
+      "method": "Independent two-node KCL, illustrative parameters; not an ngspice replay",
+      "gm1_S": 0.002,
+      "gm2_S": 0.004,
+      "gds1_S": 1e-05,
+      "gds2_S": 2e-05,
+      "stack_resistance_ohm": 149999.99999999997,
+      "source_follower_approximation_ohm": 150500.0,
+      "usual_cascode_heuristic_ohm": 19999999.999999996,
+      "maximum_KCL_residual_A": 4.440892098500626e-16,
+      "limitation": "Topology read from the inspected figure and curated netlist; not a new Terra trial or a proof of image-to-netlist transfer difficulty."
+    },
+    "subcircuit_port_binding": {
+      "method": "Independent positional binding comparison; no upstream grader execution",
+      "cases": [
+        {
+          "case_id": "complex_subckt_port_swap_071",
+          "reference_preserves_bindings": true,
+          "published_output_preserves_bindings": false,
+          "affected_calls": 1
+        },
+        {
+          "case_id": "complex_subckt_port_swap_072",
+          "reference_preserves_bindings": true,
+          "published_output_preserves_bindings": true,
+          "affected_calls": 1
+        }
+      ],
+      "limitation": "A simple permutation solves the reference; missing provider completion metadata and unknown Terra difficulty."
+    },
+    "linguistic_answer_screen": {
+      "archive_member": "chained_responses/v1_Gemini_2.5_Flash_chained_pattern_evaluation_20251015_113250.jsonl",
+      "model": "Gemini 2.5 Flash",
+      "cases": [
+        {
+          "overall_question_n": 20,
+          "obfuscated_question_n": "20_0002",
+          "question_n": "Q 1.2",
+          "correct": 1,
+          "total": 2,
+          "normalization": "NFC, case, outer whitespace and trailing period"
+        },
+        {
+          "overall_question_n": 20,
+          "obfuscated_question_n": "20_0002",
+          "question_n": "Q 1.3",
+          "correct": 1,
+          "total": 2,
+          "normalization": "NFC, case, outer whitespace and trailing period"
+        },
+        {
+          "overall_question_n": 171,
+          "obfuscated_question_n": "171_0004",
+          "question_n": "Q 1.1",
+          "correct": 5,
+          "total": 16,
+          "normalization": "NFC, case, outer whitespace and trailing period"
+        },
+        {
+          "overall_question_n": 171,
+          "obfuscated_question_n": "171_0004",
+          "question_n": "Q 1.2",
+          "correct": 0,
+          "total": 4,
+          "normalization": "NFC, case, outer whitespace and trailing period"
+        }
+      ],
+      "limitation": "Replayed answer comparisons only; these public records lack finish reasons. No fuzzy or alternative-answer cases counted."
+    },
+    "nmr_completion_audit": {
+      "cases": [
+        {
+          "compound_id": "a923380e-3546-43f2-bd99-c9a6ad98612f",
+          "replicate": 1,
+          "model": "openai/gpt-5.5",
+          "status": "ok",
+          "finish_reason": "stop",
+          "error": null,
+          "completion_tokens": 10644,
+          "candidate_count": 10
+        },
+        {
+          "compound_id": "e7fd4c85-a1f8-423d-80d2-49cd87dd9fa6",
+          "replicate": 1,
+          "model": "openai/gpt-5.5",
+          "status": "ok",
+          "finish_reason": "stop",
+          "error": null,
+          "completion_tokens": 5826,
+          "candidate_count": 1
+        },
+        {
+          "compound_id": "a923380e-3546-43f2-bd99-c9a6ad98612f",
+          "replicate": 2,
+          "model": "openai/gpt-5.5",
+          "status": "ok",
+          "finish_reason": "stop",
+          "error": null,
+          "completion_tokens": 9783,
+          "candidate_count": 10
+        },
+        {
+          "compound_id": "e7fd4c85-a1f8-423d-80d2-49cd87dd9fa6",
+          "replicate": 2,
+          "model": "openai/gpt-5.5",
+          "status": "ok",
+          "finish_reason": "stop",
+          "error": null,
+          "completion_tokens": 3673,
+          "candidate_count": 2
+        },
+        {
+          "compound_id": "a923380e-3546-43f2-bd99-c9a6ad98612f",
+          "replicate": 3,
+          "model": "openai/gpt-5.5",
+          "status": "ok",
+          "finish_reason": "stop",
+          "error": null,
+          "completion_tokens": 12206,
+          "candidate_count": 10
+        },
+        {
+          "compound_id": "e7fd4c85-a1f8-423d-80d2-49cd87dd9fa6",
+          "replicate": 3,
+          "model": "openai/gpt-5.5",
+          "status": "ok",
+          "finish_reason": "stop",
+          "error": null,
+          "completion_tokens": 6692,
+          "candidate_count": 1
+        }
+      ],
+      "limitation": "No RDKit canonicalization run. Structural observations are manual in the review; prompts omit molecular formula and mass."
+    },
+    "external_terra_receipts": {
+      "trials": [
+        {
+          "task": "neo-orbit-determination",
+          "trial_id": "b2ef1265-cabd-50e5-8aec-b09c47797a62",
+          "agent_seconds": 871.653222,
+          "exception_type": null,
+          "reward": 0.0,
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "max",
+          "task_checksum": "ce1b49e3a9b6e292d6650608518bba3cd26b761a0fc247cda69d1be59f4f5fbb",
+          "lock_digest": "sha256:b0038fd39395b57f2036b2c0271f37b508e1250fc97d12c899590b61e997cada",
+          "result_sha256": "ac9c4e66e22ad4700c63289b33e4441121a1cf5ef766d365064644033a5c582d",
+          "verifier_log_sha256": "b7ce9bcaa84f43c48be98dffa5e785cd8a3537771e07b4001e4fcea1f76a731c"
+        },
+        {
+          "task": "neo-orbit-determination",
+          "trial_id": "b2f66950-d03c-5150-a73b-94caa6b3052a",
+          "agent_seconds": 832.607935,
+          "exception_type": null,
+          "reward": 0.0,
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "max",
+          "task_checksum": "ce1b49e3a9b6e292d6650608518bba3cd26b761a0fc247cda69d1be59f4f5fbb",
+          "lock_digest": "sha256:b0038fd39395b57f2036b2c0271f37b508e1250fc97d12c899590b61e997cada",
+          "result_sha256": "1bb02705e45a152aea06eba6af127ff06a9984b221e9a6f535f8b9168769dfe9",
+          "verifier_log_sha256": "942290a8e75480acdcaa52df134b435f266f8700535bb8ed1202a9bf9f0e6e7c"
+        },
+        {
+          "task": "neo-orbit-determination",
+          "trial_id": "c0ed5220-3ec4-5a1f-bd2b-a851625e7d5f",
+          "agent_seconds": 1545.613006,
+          "exception_type": null,
+          "reward": 0.0,
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "max",
+          "task_checksum": "ce1b49e3a9b6e292d6650608518bba3cd26b761a0fc247cda69d1be59f4f5fbb",
+          "lock_digest": "sha256:b0038fd39395b57f2036b2c0271f37b508e1250fc97d12c899590b61e997cada",
+          "result_sha256": "b5cc730ec9b5e67dc611ff472854ebbf4a919b058cc959bc9a347543bf20ba04",
+          "verifier_log_sha256": "908552d91383bf29bddf10f686aaad6fd471af5447056753a095aee96f278218"
+        },
+        {
+          "task": "spatial-cell-annotation",
+          "trial_id": "32badb1e-0cc6-5ce7-ae48-56b9c79a2312",
+          "agent_seconds": 457.981926,
+          "exception_type": null,
+          "reward": 0.0,
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "max",
+          "task_checksum": "abe0dae361054c50798c741cc3d21e49902d5f3afc8a634735ee2a741a77a915",
+          "lock_digest": "sha256:a937cdfa5e49762a87042bf9d107dd085ae5eb2f3588d187db960e7e9657295a",
+          "result_sha256": "9dc32211227c90911662d335ad503c54b9ad22170b09320646c2478a9c283f75",
+          "verifier_log_sha256": "0f1f514c40eed6003f6c0c0cdd8f597c5323fd5216f7be5aa1509cfe190a65cb"
+        },
+        {
+          "task": "spatial-cell-annotation",
+          "trial_id": "44871e2d-294f-575e-9887-1172d547d737",
+          "agent_seconds": 381.958751,
+          "exception_type": null,
+          "reward": 0.0,
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "max",
+          "task_checksum": "abe0dae361054c50798c741cc3d21e49902d5f3afc8a634735ee2a741a77a915",
+          "lock_digest": "sha256:a937cdfa5e49762a87042bf9d107dd085ae5eb2f3588d187db960e7e9657295a",
+          "result_sha256": "83f932d18860544081d4ad4aadd14d79c9d8daeb443e0d9676a7b34f6cdbadfa",
+          "verifier_log_sha256": "be7eb8b37e81d90bad9bf85e7f42480e53632cd16b782322d6a414eb51b24e8e"
+        },
+        {
+          "task": "spatial-cell-annotation",
+          "trial_id": "898aef5b-285c-5766-a96d-5f13154472bc",
+          "agent_seconds": 503.85453,
+          "exception_type": null,
+          "reward": 0.0,
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "max",
+          "task_checksum": "abe0dae361054c50798c741cc3d21e49902d5f3afc8a634735ee2a741a77a915",
+          "lock_digest": "sha256:a937cdfa5e49762a87042bf9d107dd085ae5eb2f3588d187db960e7e9657295a",
+          "result_sha256": "d07779c26a22924bb5d15d679b0ebfa93969e63fed026be8ea8c40c7128757a1",
+          "verifier_log_sha256": "08be4e1919ad452aa32e24a258933d6893afc25b737741ce7360fdc687ac2838"
+        },
+        {
+          "task": "spin-glass-groundstate",
+          "trial_id": "188dc988-661f-5367-84b1-fcfafe6c01b5",
+          "agent_seconds": 28801.061336,
+          "exception_type": "AgentTimeoutError",
+          "reward": 0.0,
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "max",
+          "task_checksum": "e18102272360db1907388d71728ff836398cb25f3ff48f256765119434ae34c8",
+          "lock_digest": "sha256:96373c8f043745cfe27f9eabdd17f28095a8b5297d48433d835650e868e78e72",
+          "result_sha256": "a2488424c4378a0d275dba76767d208079c5002be6dfd4ffb3c123dbae023c19",
+          "verifier_log_sha256": "f508aeedb2f1e9b9a6cc611638d6a2757287ffb1000e8b7cfa4823e20a2aea1c"
+        },
+        {
+          "task": "spin-glass-groundstate",
+          "trial_id": "8961149c-6f8f-53a6-bb07-5f9febd7957c",
+          "agent_seconds": 2460.883099,
+          "exception_type": null,
+          "reward": 0.0,
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "max",
+          "task_checksum": "e18102272360db1907388d71728ff836398cb25f3ff48f256765119434ae34c8",
+          "lock_digest": "sha256:96373c8f043745cfe27f9eabdd17f28095a8b5297d48433d835650e868e78e72",
+          "result_sha256": "b996f28fd2e5c1a529a1a78a00f7268a5a7ae1d3b6cecc5ae96c2aa9f1487649",
+          "verifier_log_sha256": "b19f860f18e1beb39f9b748267d5ab307322299a0bbcb7619cda687e38c91add"
+        },
+        {
+          "task": "spin-glass-groundstate",
+          "trial_id": "ea49681a-3b05-5712-8098-2b64dfa9b929",
+          "agent_seconds": 28800.373802,
+          "exception_type": "AgentTimeoutError",
+          "reward": 0.0,
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "max",
+          "task_checksum": "e18102272360db1907388d71728ff836398cb25f3ff48f256765119434ae34c8",
+          "lock_digest": "sha256:96373c8f043745cfe27f9eabdd17f28095a8b5297d48433d835650e868e78e72",
+          "result_sha256": "2ca927d63988b742f4ebf73bc98891021ed5a42a70f6b42b531e87f553eaf480",
+          "verifier_log_sha256": "af806c85a0b2049089704f96afeba8adf70840ecafc5614d0ccba6bc6fdcc7db"
+        }
+      ],
+      "completed_verifier_misses": 7,
+      "excluded_timeouts": 2,
+      "limitation": "External receipts, not local trials. Historical lock digests and source Git revisions are different namespaces; equality is not asserted."
+    }
+  },
+  "elapsed_seconds": 0.013968,
+  "model_trials_launched": 0
+}

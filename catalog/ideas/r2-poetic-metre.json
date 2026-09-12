@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "id": "r2-poetic-metre",
+  "title": "Infer a quantitative poetic metre",
+  "status": "screening",
+  "tags": [
+    "candidate-search-r2",
+    "screened-r2-20260912",
+    "non-security",
+    "linguistics",
+    "infer",
+    "screen-hold"
+  ],
+  "hypothesis": "Infer a 19-syllable heavy/light pattern from eight lines, then order word groups and return permitted positions.",
+  "why_hard": "Published Gemini 2.5 Flash answers match 5/16 ordering entries and 0/4 position entries under NFC/case/whitespace normalization. Exact records and supplied examples were inspected; finish metadata is absent. Screening: Promising short-horizon rule induction with tiny output; only older-model evidence, and a deterministic solver may make it routine. No poetic-quality judge is needed.",
+  "next_action": "Build the small syllable-constraint baseline and check uniqueness before choosing one original, naturally motivated transcription or scansion task.",
+  "sources": [
+    {
+      "url": "https://github.com/JamieGarnham/lingoly-team/blob/7440c64001b3bab9cfa91021106304cc8bd30b0d/data/splits/benchmark_same_obf_pattern.jsonl.zip",
+      "note": "LingOly-Team / 171_0004 / Q 1.1 and Q 1.2; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/JamieGarnham/lingoly-team/blob/7440c64001b3bab9cfa91021106304cc8bd30b0d/data/chained_responses.zip",
+      "note": "LingOly-Team / 171_0004 / Q 1.1 and Q 1.2; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/JamieGarnham/lingoly-team/blob/7440c64001b3bab9cfa91021106304cc8bd30b0d/README.md",
+      "note": "LingOly-Team / 171_0004 / Q 1.1 and Q 1.2; inspected 2026-09-12."
+    }
+  ],
+  "evidence": [
+    "docs/research-candidate-search-r2-20260912.md",
+    "docs/evidence/candidate-search-r2-20260912.json",
+    "docs/evidence/candidate-search-r2-checks.json"
+  ],
+  "notes": "Independent verifier: An independent syllabifier and finite constraint enumeration should certify the metre and allowed placements. Easy baseline: Enumerate candidate heavy/light patterns consistent with vowel length and all example lines. New source-screening card, outside the frozen original 100. No local model trial; not submission-ready."
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "id": "r2-brominated-ketone",
+  "title": "Identify a symmetric brominated ketone from sparse NMR",
+  "status": "rejected",
+  "tags": [
+    "candidate-search-r2",
+    "screened-r2-20260912",
+    "non-security",
+    "organic-chemistry",
+    "infer",
+    "screen-reject"
+  ],
+  "hypothesis": "One SMILES from a six-proton singlet and three carbon shifts.",
+  "why_hard": "Three GPT-5.5 answers terminate normally, but their rank-one structures omit the two bromine atoms in the reference. This proves graph mismatch, not that bromine is uniquely inferable from the supplied input. Screening: Reject this formulation: very sparse input, no formula/mass and an exact hidden identity. A failure to guess unobserved elemental composition is not established genuine difficulty.",
+  "next_action": "Retain as an identifiability counterexample. A formula-supplied version would be a separately screened task with unknown difficulty.",
+  "sources": [
+    {
+      "url": "https://github.com/odanchem/NMRArena/blob/950a021579347e3fb13a4dfa1d435990e3d31471/dataset/dataset_selected_clean_105.json",
+      "note": "NMRArena / e7fd4c85-a1f8-423d-80d2-49cd87dd9fa6; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/odanchem/NMRArena/blob/950a021579347e3fb13a4dfa1d435990e3d31471/dataset/llm_track.ipynb",
+      "note": "NMRArena / e7fd4c85-a1f8-423d-80d2-49cd87dd9fa6; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/odanchem/NMRArena/blob/950a021579347e3fb13a4dfa1d435990e3d31471/results/LLM_results/llm_rep1_clean.jsonl",
+      "note": "NMRArena / e7fd4c85-a1f8-423d-80d2-49cd87dd9fa6; inspected 2026-09-12."
+    }
+  ],
+  "evidence": [
+    "docs/research-candidate-search-r2-20260912.md",
+    "docs/evidence/candidate-search-r2-20260912.json",
+    "docs/evidence/candidate-search-r2-checks.json"
+  ],
+  "notes": "Independent verifier: A molecular formula or orthogonal measurement is needed before exact identity can be defended; graph equality alone is insufficient. Easy baseline: Enumerate symmetry-compatible skeletons and alternative heteroatom substitutions. New source-screening card, outside the frozen original 100. No local model trial; not submission-ready."
+}

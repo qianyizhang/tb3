@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "id": "r2-retroflex-rule",
+  "title": "Infer dialect-specific retroflex alternation",
+  "status": "screening",
+  "tags": [
+    "candidate-search-r2",
+    "screened-r2-20260912",
+    "non-security",
+    "linguistics",
+    "infer",
+    "screen-hold"
+  ],
+  "hypothesis": "Infer a phonological conditioning rule from a small table and return two short dialect forms per question.",
+  "why_hard": "Replayed published Gemini 2.5 Flash answers score 1/2 and 1/2 after Unicode normalization. These are word-form disagreements, not Unicode-only differences. Responses lack finish reasons. Screening: Compact and outside coding/science, but the only inspected model is older and the benchmark obfuscates language symbols. No Terra failure or proof of a unique induced rule.",
+  "next_action": "Check all table rows and the obfuscation mapping, then preserve natural linguistic constraints in any new task. Do not count extra obfuscations as diversity.",
+  "sources": [
+    {
+      "url": "https://github.com/JamieGarnham/lingoly-team/blob/7440c64001b3bab9cfa91021106304cc8bd30b0d/data/splits/benchmark_same_obf_pattern.jsonl.zip",
+      "note": "LingOly-Team / 20_0002 / Q 1.2 and Q 1.3; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/JamieGarnham/lingoly-team/blob/7440c64001b3bab9cfa91021106304cc8bd30b0d/data/chained_responses.zip",
+      "note": "LingOly-Team / 20_0002 / Q 1.2 and Q 1.3; inspected 2026-09-12."
+    },
+    {
+      "url": "https://github.com/JamieGarnham/lingoly-team/blob/7440c64001b3bab9cfa91021106304cc8bd30b0d/code/chained_prompting/evaluate_chained_responses.py",
+      "note": "LingOly-Team / 20_0002 / Q 1.2 and Q 1.3; inspected 2026-09-12."
+    }
+  ],
+  "evidence": [
+    "docs/research-candidate-search-r2-20260912.md",
+    "docs/evidence/candidate-search-r2-20260912.json",
+    "docs/evidence/candidate-search-r2-checks.json"
+  ],
+  "notes": "Independent verifier: Compare forms after NFC normalization and independently validate the induction rule against every supplied example. Easy baseline: Infer word-initial and suffix-conditioned alternations; check whether a simple finite rule fits all examples. New source-screening card, outside the frozen original 100. No local model trial; not submission-ready."
+}

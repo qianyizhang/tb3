@@ -25,6 +25,14 @@ provenance, exclusion rules and the distinction between source screening and
 genuine model failures. The published receipts and original shortlist below
 remain historical evidence rather than being rewritten to match these decisions.
 
+The [round-two search](research-candidate-search-r2-20260912.md) adds 12 exact
+records from six benchmark sources: analog circuits, SPICE semantics,
+linguistic induction, NMR and three further science tasks. Nine hold and three
+reject; no new candidate displaces the two reproduction priorities. Its nine
+science receipts establish seven completed Terra verifier misses and two
+excluded timeouts. Razavi's Terra model-judge observations remain a separate
+evidence class. All 24 new search queries and screening reasons are recorded.
+
 ## Main finding
 
 [Terminal-Bench-Science 0.1](https://www.tbench.ai/news/terminal-bench-science-0-1)

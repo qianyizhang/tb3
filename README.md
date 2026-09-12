@@ -10,6 +10,8 @@ The [100-card broad task bank](docs/research-broad-task-bank.md) expands this in
 
 The [first screening pass](docs/research-screening-20260912.md) now records decisions for all 100: **2 advance to bounded reproduction, 50 hold, 48 reject**. It deepens 29 source audits, including local calculations or fixture checks for 14 cards, and corrects easy tasks, faulty references and unsupported extractions. The [sourcing methodology](docs/research-sourcing-methodology.md) records search strategy, provenance, exclusions and evidence gates. Search the catalog for `screen-advance`, `screen-hold` or `screen-reject`; this pass ran no model trials.
 
+The [round-two search](docs/research-candidate-search-r2-20260912.md) adds **12 exact records: 9 hold, 3 reject** across circuits, netlists, linguistics, NMR and further science tasks. It records 24 actual queries, independent small checks and nine external Terra receipts (seven completed misses, two excluded timeouts). Search `candidate-search-r2`; the original 100-card snapshot and local trial ledger are unchanged.
+
 Six local frozen snapshots completed valid Terra/high passes and remain retired: cache invalidation, nested Dremel assembly, Ninja dynamic dependencies, SQLite EXISTS optimization, Clipper2 PolyTree hierarchy, and integral homology bases. The [earlier short-horizon screen](docs/research-short-horizon.md) and [interpolation reproduction](docs/research-numerical-candidates.md) are retained. The local denominator remains six passes, zero genuine failures, and two infrastructure-only attempts; no local Sol/Opus trial has run.
 
 Current research scope explicitly excludes security tasks and favors hard but less complex, short-horizon work: one conceptual crux, a small deliverable and fast independent verification. See [AGENTS.md](AGENTS.md) for the durable scope instructions.
@@ -25,6 +27,7 @@ Current research scope explicitly excludes security tasks and favors hard but le
 | [100-card broad task bank](docs/research-broad-task-bank.md) | Diverse experiment candidates, corrected CAD receipts, community anecdotes, evidence labels and preparation queue. |
 | [Sourcing methodology](docs/research-sourcing-methodology.md) | Search method, query examples, provenance, exclusion and screening rules. |
 | [100-card screening](docs/research-screening-20260912.md) | Every decision, 14 bounded calculation/fixture checks, source corrections and next gates. |
+| [Round-two candidate search](docs/research-candidate-search-r2-20260912.md) | 12 new exact records, 24-query search log, completed-failure audits and rejected long/ambiguous formulations. |
 | [Catalog](docs/catalog.md) | Searchable idea/trial records and local browser report. |
 | [Requirements](docs/requirements.md) | Frozen CI/defaults, discrepancies, human-authored submission requirements. |
 | [Codex repair](docs/codex-repair.md) | Diagnosis, repair command and checks. |

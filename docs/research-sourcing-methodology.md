@@ -5,6 +5,14 @@ This is a retrospective account of how that bank was sourced, followed by
 the decision rules for its first screening pass. It is not a preregistered
 systematic review, a complete historical search log, or a random sample.
 
+The subsequent [round-two search](research-candidate-search-r2-20260912.md)
+applies this method to new sources. Its [actual query log](evidence/candidate-search-r2-queries.json)
+retains all 24 searches in six batches, outcomes and artifact follow-ups;
+its [retrieval manifest](evidence/candidate-search-r2-sources.json) records
+fetched URLs, hashes and failures. This forward record is distinct from the
+retrospective examples below. Twelve new exact records were screened: nine
+hold and three reject; none was added to the frozen original 100.
+
 ## Scope and selection unit
 
 **Stay away from security tasks:** no vulnerability discovery, exploitation,
