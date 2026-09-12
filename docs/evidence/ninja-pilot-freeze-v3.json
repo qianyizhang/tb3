@@ -1,0 +1,21 @@
+{
+  "kind": "harder-screen-diagnostic",
+  "task": "probes/ninja-dyndep",
+  "task_sha256": "cd226a78d56333dc258c242b9ac58055a24926718eeb4be1c3ab4593d3e3ba33",
+  "frozen_at": "2026-09-12T06:52:39.011808+00:00",
+  "upstream": "e2995b93b0a46edee7bc9942ea5622411a6d5bb9",
+  "source_version": "Ninja v1.12.1",
+  "source_commit": "2daa09ba270b0a43e1929d29b073348aa985dfaa",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "initial_attempts": 1,
+  "repeat_if_genuine_failure": 1,
+  "qualifying_final_trial": false,
+  "agent_timeout_seconds": 1800,
+  "validation_jobs": [
+    "ninja-oracle-final-20260912",
+    "ninja-nop-20260912"
+  ],
+  "change_from_v1": "Exact instruction suffix, literal artifact-parent mkdir, comment-only canaries in trusted vendor scaffold; no model had run.",
+  "change_from_previous": "Repair authoring fault witnessed by first Docker oracle; no model trial had run."
+}
