@@ -19,14 +19,15 @@
       "note": "Separate upstream incremental-update stability report."
     }
   ],
-  "next_action": "Design a compact repair probe with an independently derived stable constructor/update oracle. Full historical module public-API reproduction now confirms the bug; the published patch is not a complete oracle.",
-  "notes": "Limited local execution of verbatim historical numerical blocks confirms stability repair but incremental-update sign inconsistency: y=x at0.5 gives0.8 after append instead of0.5. Existing NumPy2.5.3; SciPy absent. Not a full-package reproduction or model trial. Follow-up 2026-09-12: unchanged complete historical modules executed through constructor, add_xi, set_yi, axis=1 and __call__ in Docker with Python3.12.14/NumPy1.26.4/SciPy1.12.0 helper imports. Patched incremental linear output remains0.8 rather than0.5; high-degree patch evaluation is finite and accurate. This is a full-module API witness, not a historical full-package build or model trial.",
+  "next_action": "Deprioritize behind the benchmark-backed physical inference and formula-discovery leads. Retain the full-module reproduction; build an independent repair oracle only if this numerical direction is selected again.",
+  "notes": "Limited local execution of verbatim historical numerical blocks confirms stability repair but incremental-update sign inconsistency: y=x at0.5 gives0.8 after append instead of0.5. Existing NumPy2.5.3; SciPy absent. Not a full-package reproduction or model trial. Follow-up 2026-09-12: unchanged complete historical modules executed through constructor, add_xi, set_yi, axis=1 and __call__ in Docker with Python3.12.14/NumPy1.26.4/SciPy1.12.0 helper imports. Patched incremental linear output remains0.8 rather than0.5; high-degree patch evaluation is finite and accurate. This is a full-module API witness, not a historical full-package build or model trial. Subsequent 2026-09-12 user steering requested benchmark-backed hard problems; this source-only lead is no longer first priority.",
   "schema_version": 1,
   "evidence": [
     "docs/research-numerical-candidates.md",
     "docs/evidence/barycentric-reference-check.json",
     "docs/evidence/barycentric-source-provenance.json",
     "docs/evidence/barycentric-public-api.json",
-    "docs/evidence/barycentric-public-api-check.py"
+    "docs/evidence/barycentric-public-api-check.py",
+    "docs/research-benchmark-backed.md"
   ]
 }

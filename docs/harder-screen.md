@@ -19,7 +19,8 @@ The user explicitly reinforced these constraints on 2026-09-12:
   bug fix is not sufficient diversity. Screen constructive certificates,
   reconstruction, optimization, and numerical correctness as well as repairs.
 
-The [short-horizon survey](research-short-horizon.md) owns the next bounded
+The [benchmark-backed survey](research-benchmark-backed.md) now owns selection.
+The [short-horizon survey](research-short-horizon.md) records a completed bounded
 screen and its dispositions. The existing 1,800-second diagnostic allowance
 remains; a short task horizon does not mean manufacturing timeout failures.
 
@@ -103,3 +104,11 @@ that snapshot. See the [summary](evidence/homology-trial-summary.json) and
 [trajectory review](../catalog/analyses/homology-calibration.md). Current totals:
 six valid Terra passes, zero genuine failures, and two earlier infrastructure
 attempts. No new Sol/Opus or adversarial trial was run.
+
+## Benchmark-backed search supersedes the next-source recommendation
+
+The user requested a harder search after six local passes. The
+[new survey](research-benchmark-backed.md) found published Terra failures with
+completed verifier assertions on compact scientific tasks. Start with these
+measured failures rather than another plausible incident-inspired repair.
+External evidence remains separate from all local trial counts and freezes.

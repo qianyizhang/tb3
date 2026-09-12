@@ -9,7 +9,13 @@
   a small deliverable and fast, independent verification. Diversify field and
   task type. Do not manufacture difficulty through long workflows, setup cost,
   arbitrary restrictions or shorter reasoning time.
-- Follow the bounded diagnostic plan in `docs/research-short-horizon.md`.
+- Start new selection from **benchmark-backed failures**, not just plausible
+  difficult bugs. `docs/research-benchmark-backed.md` owns the current shortlist;
+  the bounded round in `docs/research-short-horizon.md` is complete. Inspect
+  task-level results, normal completion, verifier failures and task digests.
+  Prefer a compact crux already missed with ample reasoning time; distinguish
+  published external results from this workshop's local trial ledger.
+  Published tasks are calibration references, not original submissions.
   A source bug, oracle fault, agent crash or timeout is not a genuine Terra
   failure. Final submission gates remain separately owned by requirements.md.
 

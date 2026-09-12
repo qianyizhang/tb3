@@ -108,3 +108,10 @@ then decide whether its coupled numerical invariant warrants a diagnostic.
 The three-node sign defect by itself is likely too direct; adding a large
 SciPy build would not improve the task. Preserve the non-security and
 short-horizon selection constraints.
+
+## Subsequent selection decision
+
+The user requested a deeper search for benchmarks containing genuinely hard
+problems. The [benchmark-backed survey](research-benchmark-backed.md) supersedes
+the interpolation-first recommendation above. This round's inputs, results,
+denominators and original recommendation remain historical evidence.
