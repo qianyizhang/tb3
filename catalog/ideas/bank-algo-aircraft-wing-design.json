@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-algo-aircraft-wing-design",
   "title": "Solve a coupled wing design model",
-  "status": "idea",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "aeronautics",
     "optimize",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One small vector of wing dimensions. Weight, lift and drag are coupled through a geometric program.",
-  "why_hard": "Weight, lift and drag are coupled through a geometric program. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: The inspected wing-design task is a supplied geometric program; the card has no demonstrated difficulty beyond calling its standard solver.",
+  "next_action": "Reopen for a documented numerical/modeling failure on a compact instance, with the ordinary GP solver allowed.",
   "sources": [
     {
       "url": "https://github.com/oripress/AlgoTune/blob/dff9914c10800c7a031c9e8c3d4d1c8cd1b38906/AlgoTuneTasks/aircraft_wing_design/aircraft_wing_design.py",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #36. Proposed verifier: Independent physical residuals and convexified objective bound. Exclusion/easy baseline: A supplied design model only; no real flight qualification. Standard GP may be sufficient. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #36. Proposed verifier: Independent physical residuals and convexified objective bound. Exclusion/easy baseline: A supplied design model only; no real flight qualification. Standard GP may be sufficient. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. The inspected wing-design task is a supplied geometric program; the card has no demonstrated difficulty beyond calling its standard solver. Basis: desk_assessment. No local model trial; not submission-ready."
 }

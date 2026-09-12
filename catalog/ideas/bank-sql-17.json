@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-sql-17",
   "title": "Select the latest two records per subject",
-  "status": "idea",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "database-analytics",
     "repair",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One query preserving outer rows. Top-k-per-group and ties interact with a missing related row.",
-  "why_hard": "Top-k-per-group and ties interact with a missing related row. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Latest-two-per-group with missing outer rows is a conventional window-function repair; unsupported LATERAL syntax is not enough.",
+  "next_action": "Retain as easy calibration with explicit tie policy and an allowed ROW_NUMBER left join.",
   "sources": [
     {
       "url": "https://huggingface.co/datasets/birdsql/bird-critic-1.0-sqlite",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #67. Proposed verifier: Independent grouped sort and null-extension comparison. Exclusion/easy baseline: Specify ties and ordering; unsupported LATERAL syntax alone is an easy dialect fix. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #67. Proposed verifier: Independent grouped sort and null-extension comparison. Exclusion/easy baseline: Specify ties and ordering; unsupported LATERAL syntax alone is an easy dialect fix. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. Latest-two-per-group with missing outer rows is a conventional window-function repair; unsupported LATERAL syntax is not enough. Basis: desk_assessment. No local model trial; not submission-ready."
 }

@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-scicode-26",
   "title": "Find a serial-dilution ecological fixed point",
-  "status": "idea",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "ecology",
     "solve",
-    "evidence-i"
+    "evidence-i",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One cycle-map fixed point and stability value. Stability belongs to the dilution cycle map, not just within-cycle ODEs.",
-  "why_hard": "Stability belongs to the dilution cycle map, not just within-cycle ODEs. Evidence I: Exact parent ID found in a benchmark index; proposed extraction needs full statement/data audit.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Full SciCode 26 returns surviving species after serial dilution, not a fixed point or stability value; the bank invented the distinguishing output.",
+  "next_action": "Find a separately sourced cycle-map stability fixture before using this direction as a hard candidate.",
   "sources": [
     {
       "url": "https://scicode-bench.github.io/problems/",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #29. Proposed verifier: Independent repeated cycles and finite-difference monodromy. Exclusion/easy baseline: Use a small supplied system; avoid a multi-species parameter-search project. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #29. Proposed verifier: Independent repeated cycles and finite-difference monodromy. Exclusion/easy baseline: Use a small supplied system; avoid a multi-species parameter-search project. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. Full SciCode 26 returns surviving species after serial dilution, not a fixed point or stability value; the bank invented the distinguishing output. Basis: deeper_source_audit. No local model trial; not submission-ready."
 }

@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-sql-7",
   "title": "Repair monthly inventory stock and flow",
-  "status": "idea",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "database-analytics",
     "repair",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One monthly stock/flow query. Open-ended lifetimes and month boundaries affect existing inventory.",
-  "why_hard": "Open-ended lifetimes and month boundaries affect existing inventory. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Monthly stock/flow is a conventional calendar aggregation once removal boundaries are specified; no source failure establishes current difficulty.",
+  "next_action": "Retain as easy calibration or reopen with a documented compact failure beyond ordinary date-boundary handling.",
   "sources": [
     {
       "url": "https://huggingface.co/datasets/birdsql/bird-critic-1.0-sqlite",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #63. Proposed verifier: Independent event sweep on a small synthetic ledger. Exclusion/easy baseline: Specify whether removals count before or after month-end; initial rows alone may hide mistakes. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #63. Proposed verifier: Independent event sweep on a small synthetic ledger. Exclusion/easy baseline: Specify whether removals count before or after month-end; initial rows alone may hide mistakes. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. Monthly stock/flow is a conventional calendar aggregation once removal boundaries are specified; no source failure establishes current difficulty. Basis: desk_assessment. No local model trial; not submission-ready."
 }

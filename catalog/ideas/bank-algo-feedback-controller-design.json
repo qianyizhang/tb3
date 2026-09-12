@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-algo-feedback-controller-design",
   "title": "Construct a stabilizing state-feedback gain",
-  "status": "idea",
+  "status": "parked",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "control-systems",
     "construct",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One gain matrix. Recover a well-conditioned controller from an LMI witness.",
-  "why_hard": "Recover a well-conditioned controller from an LMI witness. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: A controller LMI is a credible bounded artifact, but notation and gain recovery need reconciliation and no standard-solver baseline was run.",
+  "next_action": "Freeze an executable L/Y convention and validate the recovered gain by Lyapunov residual and closed-loop stability.",
   "sources": [
     {
       "url": "https://github.com/oripress/AlgoTune/blob/dff9914c10800c7a031c9e8c3d4d1c8cd1b38906/AlgoTuneTasks/feedback_controller_design/feedback_controller_design.py",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #37. Proposed verifier: Independent closed-loop eigenvalues and Lyapunov residual. Exclusion/easy baseline: Source notation mixes L/Y; use executable definition and a standard control-library baseline. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #37. Proposed verifier: Independent closed-loop eigenvalues and Lyapunov residual. Exclusion/easy baseline: Source notation mixes L/Y; use executable definition and a standard control-library baseline. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. A controller LMI is a credible bounded artifact, but notation and gain recovery need reconciliation and no standard-solver baseline was run. Basis: desk_assessment. No local model trial; not submission-ready."
 }

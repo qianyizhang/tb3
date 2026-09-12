@@ -9,11 +9,13 @@
     "short-horizon",
     "industrial-optimization",
     "allocate",
-    "evidence-p"
+    "evidence-p",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One order-to-slab assignment. Color compatibility and slab capacity couple assignment and waste.",
-  "why_hard": "Color compatibility and slab capacity couple assignment and waste. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Steel-slab allocation lacks an exact instance and attainable objective threshold; the family name alone is not enough.",
+  "next_action": "Select a small published instance with a waste bound and test a standard allowed solver before promotion.",
   "sources": [
     {
       "url": "https://www.csplib.org/Problems/prob038/",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #96. Proposed verifier: Independent capacity/color checks and a certified objective bound. Exclusion/easy baseline: Family reference only; use a compact instance and legitimate waste target, not an arbitrary timeout. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #96. Proposed verifier: Independent capacity/color checks and a certified objective bound. Exclusion/easy baseline: Family reference only; use a compact instance and legitimate waste target, not an arbitrary timeout. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. Steel-slab allocation lacks an exact instance and attainable objective threshold; the family name alone is not enough. Basis: desk_assessment. No local model trial; not submission-ready."
 }

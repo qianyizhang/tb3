@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-cad-83ca2dab2e",
   "title": "Editable ball joint with an axial bore",
-  "status": "idea",
+  "status": "parked",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "cad",
     "construct",
-    "evidence-c"
+    "evidence-c",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One FreeCAD script and one FCStd. Place the ball, shaft and bore consistently in a driven feature tree.",
-  "why_hard": "Place the ball, shaft and bore consistently in a driven feature tree. Evidence C: New external Terra completed partial-credit CAD observation with score details; independent geometry audit pending.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Published partial credit remains confounded by unstated ball/shaft placement and bore extent; no independent solid audit resolves it.",
+  "next_action": "Extract reference placement and show it is uniquely implied by the instruction before reusing this as Terra difficulty evidence.",
   "sources": [
     {
       "url": "https://hub.harborframework.com/tasks/gnucleus-ai/freecad-83ca2dab2e/latest",
@@ -23,7 +25,9 @@
   "evidence": [
     "docs/research-broad-task-bank.md",
     "docs/evidence/broad-task-bank.json",
-    "docs/evidence/cad-v2-survey.json"
+    "docs/evidence/cad-v2-survey.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #56. Proposed verifier: Independent volume/section checks and parameter perturbation rebuilds. Exclusion/easy baseline: Narrative placement may admit multiple interpretations; independently inspect reference geometry. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #56. Proposed verifier: Independent volume/section checks and parameter perturbation rebuilds. Exclusion/easy baseline: Narrative placement may admit multiple interpretations; independently inspect reference geometry. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. Published partial credit remains confounded by unstated ball/shaft placement and bore extent; no independent solid audit resolves it. Basis: desk_assessment. No local model trial; not submission-ready."
 }

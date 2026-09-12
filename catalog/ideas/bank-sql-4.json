@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-sql-4",
   "title": "Repair bounded purchasing optimization in SQL",
-  "status": "idea",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "database-algorithms",
     "repair",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One SQL query over supplied item rows. Quantities and a shared budget cannot be optimized independently per item.",
-  "why_hard": "Quantities and a shared budget cannot be optimized independently per item. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: The described purchasing objective may simply maximize unit count, which favors cheapest available units; no nontrivial value structure is established.",
+  "next_action": "Reopen only after the exact source objective and data defeat the allowed greedy ordering; do not silently turn it into knapsack.",
   "sources": [
     {
       "url": "https://huggingface.co/datasets/birdsql/bird-critic-1.0-sqlite",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #62. Proposed verifier: Independent bounded-knapsack solver and SQL result comparison. Exclusion/easy baseline: The source objective may permit a greedy solution for uniform unit value; test that easy baseline. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #62. Proposed verifier: Independent bounded-knapsack solver and SQL result comparison. Exclusion/easy baseline: The source objective may permit a greedy solution for uniform unit value; test that easy baseline. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. The described purchasing objective may simply maximize unit count, which favors cheapest available units; no nontrivial value structure is established. Basis: desk_assessment. No local model trial; not submission-ready."
 }

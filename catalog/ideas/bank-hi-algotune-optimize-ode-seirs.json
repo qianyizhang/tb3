@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-hi-algotune-optimize-ode-seirs",
   "title": "Accelerate a multiscale compartment ODE",
-  "status": "idea",
+  "status": "parked",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "dynamical-systems",
     "optimize",
-    "evidence-h"
+    "evidence-h",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One Solver.solve method. Use asymptotic structure while preserving transient and oscillatory behavior.",
-  "why_hard": "Use asymptotic structure while preserving transient and oscillatory behavior. Evidence H: Harbor-Index task-level publisher TP/TN/FP/FN labels; individual completion audit pending, no Terra row.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: The 1200x requirement may reward shortcuts tied to the sampled ODE regime; no hardware or independent transient-accuracy audit has been completed.",
+  "next_action": "Compare a standard ODE solver and structural reduction across transient and oscillatory instances before choosing a portable bar.",
   "sources": [
     {
       "url": "https://harbor-index.org/data/v1/tasks/algotune-optimize-ode-seirs",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #18. Proposed verifier: High-precision integration, mass conservation and trajectory error. Exclusion/easy baseline: Published 1200x speed bar needs hardware and accuracy audit; not a clinical prediction task. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #18. Proposed verifier: High-precision integration, mass conservation and trajectory error. Exclusion/easy baseline: Published 1200x speed bar needs hardware and accuracy audit; not a clinical prediction task. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. The 1200x requirement may reward shortcuts tied to the sampled ODE regime; no hardware or independent transient-accuracy audit has been completed. Basis: desk_assessment. No local model trial; not submission-ready."
 }

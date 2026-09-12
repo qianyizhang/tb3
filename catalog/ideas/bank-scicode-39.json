@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-scicode-39",
   "title": "Compute an absorbing multilayer spectrum",
-  "status": "idea",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "photonics",
     "compute",
-    "evidence-i"
+    "evidence-i",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One reflection/transmission spectrum. Choose propagation conventions that remain stable for thick or absorbing layers.",
-  "why_hard": "Choose propagation conventions that remain stable for thick or absorbing layers. Evidence I: Exact parent ID found in a benchmark index; proposed extraction needs full statement/data audit.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: SciCode 39 specifies a quarter-wave GaAs/AlAs DBR reflection calculation; an absorbing thick-stack stability task is not supported by the inspected statement.",
+  "next_action": "Source an actual absorbing-stack failure and its complex-index convention separately; do not inherit this parent's benchmark difficulty.",
   "sources": [
     {
       "url": "https://scicode-bench.github.io/problems/",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #30. Proposed verifier: Independent scattering matrices, energy balance in lossless cases and limiting stacks. Exclusion/easy baseline: Parent may only require a standard transfer matrix; stronger variants are new hypotheses. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #30. Proposed verifier: Independent scattering matrices, energy balance in lossless cases and limiting stacks. Exclusion/easy baseline: Parent may only require a standard transfer matrix; stronger variants are new hypotheses. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. SciCode 39 specifies a quarter-wave GaAs/AlAs DBR reflection calculation; an absorbing thick-stack stability task is not supported by the inspected statement. Basis: deeper_source_audit. No local model trial; not submission-ready."
 }

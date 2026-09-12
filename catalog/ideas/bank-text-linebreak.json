@@ -9,11 +9,13 @@
     "short-horizon",
     "typography",
     "repair",
-    "evidence-p"
+    "evidence-p",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One line-break/shaping integration fix. Safe break positions and cluster reordering require contextual reshaping.",
-  "why_hard": "Safe break positions and cluster reordering require contextual reshaping. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Contextual reshaping at a line break is credible but currently lacks an exact licensed font, string and glyph oracle.",
+  "next_action": "Pin one Indic cluster and legal break; compare HarfBuzz unsafe-to-break flags and reshaping with the proposed expected glyph trace.",
   "sources": [
     {
       "url": "https://harfbuzz.github.io/working-with-harfbuzz-clusters.html",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #85. Proposed verifier: Independent whole-run versus broken-run glyph traces at allowed boundaries. Exclusion/easy baseline: Do not grade screenshots by aesthetic similarity; use licensed pinned fonts. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #85. Proposed verifier: Independent whole-run versus broken-run glyph traces at allowed boundaries. Exclusion/easy baseline: Do not grade screenshots by aesthetic similarity; use licensed pinned fonts. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. Contextual reshaping at a line break is credible but currently lacks an exact licensed font, string and glyph oracle. Basis: desk_assessment. No local model trial; not submission-ready."
 }

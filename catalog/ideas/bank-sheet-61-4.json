@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-sheet-61-4",
   "title": "Compress consecutive negative OHLC runs",
-  "status": "idea",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "financial-data-processing",
     "transform",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One output table. Group by adjacency within an instrument, not by a global negative-value filter.",
-  "why_hard": "Group by adjacency within an instrument, not by a global negative-value filter. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: After reading the specified comments, a direct adjacency-preserving OHLC reduction matches all 98 graded cells, including blank rows, in the actual workbook.",
+  "next_action": "Retain as easy calibration; standard run grouping already resolves the proposed conceptual crux.",
   "sources": [
     {
       "url": "https://github.com/RUCKBReasoning/SpreadsheetBench/blob/49b73a94775fb489063f60ca1865e3a650079a79/data/spreadsheetbench_verified_400.tar.gz",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #50. Proposed verifier: Independent run segmentation and exact OHLC/volume aggregation. Exclusion/easy baseline: This is data transformation; not trading guidance. Test a straightforward groupby baseline. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #50. Proposed verifier: Independent run segmentation and exact OHLC/volume aggregation. Exclusion/easy baseline: This is data transformation; not trading guidance. Test a straightforward groupby baseline. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. After reading the specified comments, a direct adjacency-preserving OHLC reduction matches all 98 graded cells, including blank rows, in the actual workbook. Basis: local_calculation_or_fixture_check. No local model trial; not submission-ready."
 }

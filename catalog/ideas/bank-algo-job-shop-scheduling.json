@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-algo-job-shop-scheduling",
   "title": "Produce a compact job-shop schedule",
-  "status": "idea",
+  "status": "parked",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "manufacturing",
     "schedule",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One operation start-time table. Machine conflicts interact with job precedence.",
-  "why_hard": "Machine conflicts interact with job precedence. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: A job-shop family and solver implementation do not identify a small instance resistant to ordinary CP-SAT.",
+  "next_action": "Choose one published small instance with a known feasible witness and objective bound; benchmark allowed CP-SAT first.",
   "sources": [
     {
       "url": "https://github.com/oripress/AlgoTune/blob/dff9914c10800c7a031c9e8c3d4d1c8cd1b38906/AlgoTuneTasks/job_shop_scheduling/job_shop_scheduling.py",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #34. Proposed verifier: Independent overlap/precedence checker and certified objective bound. Exclusion/easy baseline: Use published small hard instances; off-the-shelf CP-SAT is an allowed baseline, not forbidden. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #34. Proposed verifier: Independent overlap/precedence checker and certified objective bound. Exclusion/easy baseline: Use published small hard instances; off-the-shelf CP-SAT is an allowed baseline, not forbidden. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. A job-shop family and solver implementation do not identify a small instance resistant to ordinary CP-SAT. Basis: desk_assessment. No local model trial; not submission-ready."
 }

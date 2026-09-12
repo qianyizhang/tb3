@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-algo-chebyshev-center",
   "title": "Recover a largest inscribed ball",
-  "status": "parked",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "computational-geometry",
     "optimize",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One center/radius or an unboundedness certificate. Normalize facet constraints and recognize recession directions.",
-  "why_hard": "Normalize facet constraints and recognize recession directions. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Opposing facets bound the radius; a midpoint linear solve attains the analytic upper bound on 100 checked family instances. The earlier unboundedness suspicion was cleared.",
+  "next_action": "Retire this formulation unless an exact source instance defeats the direct solution under a meaningful independently calibrated contract.",
   "sources": [
     {
       "url": "https://github.com/oripress/AlgoTune/blob/dff9914c10800c7a031c9e8c3d4d1c8cd1b38906/AlgoTuneTasks/chebyshev_center/chebyshev_center.py",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #41. Proposed verifier: Independent facet distances and LP dual/recession certificate. Exclusion/easy baseline: Source generator uses few facets relative to dimension; audit boundedness before running and park invalid instances. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #41. Proposed verifier: Independent facet distances and LP dual/recession certificate. Exclusion/easy baseline: Source generator uses few facets relative to dimension; audit boundedness before running and park invalid instances. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. Opposing facets bound the radius; a midpoint linear solve attains the analytic upper bound on 100 checked family instances. The earlier unboundedness suspicion was cleared. Basis: local_calculation_or_fixture_check. No local model trial; not submission-ready."
 }

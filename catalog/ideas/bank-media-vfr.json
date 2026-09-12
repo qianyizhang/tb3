@@ -9,11 +9,13 @@
     "short-horizon",
     "video-processing",
     "repair",
-    "evidence-p"
+    "evidence-p",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One transformed clip and time-map JSON. Presentation timestamps, frame counts and subtitle time bases differ.",
-  "why_hard": "Presentation timestamps, frame counts and subtitle time bases differ. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: The FFmpeg anecdotes concern setup and common commands; no supplied VFR clip or timestamp failure supports this new proposal yet.",
+  "next_action": "Freeze a tiny clip with known audio/subtitle events, define the edit map, and run a standard PTS-based FFmpeg pipeline.",
   "sources": [
     {
       "url": "https://ffmpeg.org/ffmpeg-filters.html",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #88. Proposed verifier: Independent decoded timestamp/event alignment on a synthetic clip. Exclusion/easy baseline: Simple conversion complaints were setup failures; use a real timing invariant and prepared codecs. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #88. Proposed verifier: Independent decoded timestamp/event alignment on a synthetic clip. Exclusion/easy baseline: Simple conversion complaints were setup failures; use a real timing invariant and prepared codecs. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. The FFmpeg anecdotes concern setup and common commands; no supplied VFR clip or timestamp failure supports this new proposal yet. Basis: desk_assessment. No local model trial; not submission-ready."
 }

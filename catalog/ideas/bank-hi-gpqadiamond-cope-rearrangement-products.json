@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-hi-gpqadiamond-cope-rearrangement-products",
   "title": "Resolve a rearrangement product graph",
-  "status": "idea",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "organic-chemistry",
     "reason",
-    "evidence-h"
+    "evidence-h",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One selected product; optional atom mapping in an original task. Track bond rearrangement and product stereochemistry.",
-  "why_hard": "Track bond rearrangement and product stereochemistry. Evidence H: Harbor-Index task-level publisher TP/TN/FP/FN labels; individual completion audit pending, no Terra row.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: The released task is multiple-choice chemistry; adding an atom-mapped terminal artifact would invent a new task without a demonstrated work use case.",
+  "next_action": "Reopen only with a real bounded molecular-editing fixture and graph-based oracle, not a terminal wrapper around the answer choice.",
   "sources": [
     {
       "url": "https://harbor-index.org/data/v1/tasks/gpqadiamond-cope-rearrangement-products",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #16. Proposed verifier: Independent molecular graph and stereochemical reference. Exclusion/easy baseline: Released task is multiple choice; a new terminal artifact needs a real use case and new grading. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #16. Proposed verifier: Independent molecular graph and stereochemical reference. Exclusion/easy baseline: Released task is multiple choice; a new terminal artifact needs a real use case and new grading. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. The released task is multiple-choice chemistry; adding an atom-mapped terminal artifact would invent a new task without a demonstrated work use case. Basis: desk_assessment. No local model trial; not submission-ready."
 }

@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-scicode-18",
   "title": "Preserve a rational spline during knot insertion",
-  "status": "idea",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "computational-geometry",
     "transform",
-    "evidence-i"
+    "evidence-i",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One knot-insertion function. Homogeneous weights and knot multiplicity must preserve the same curve.",
-  "why_hard": "Homogeneous weights and knot multiplicity must preserve the same curve. Evidence I: Exact parent ID found in a benchmark index; proposed extraction needs full statement/data audit.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Full SciCode 18 contains B-spline and NURBS basis evaluation, not knot insertion; the card's distinctive hardening is unsupported by this parent.",
+  "next_action": "Source a real knot-insertion failure independently or replace this proposal with an honestly labeled basis-evaluation calibration.",
   "sources": [
     {
       "url": "https://scicode-bench.github.io/problems/",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #23. Proposed verifier: Independent dense curve/derivative evaluation before and after insertion. Exclusion/easy baseline: Parent NURBS subproblem statement still needs inspection; library implementations may make this easy. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #23. Proposed verifier: Independent dense curve/derivative evaluation before and after insertion. Exclusion/easy baseline: Parent NURBS subproblem statement still needs inspection; library implementations may make this easy. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. Full SciCode 18 contains B-spline and NURBS basis evaluation, not knot insertion; the card's distinctive hardening is unsupported by this parent. Basis: deeper_source_audit. No local model trial; not submission-ready."
 }

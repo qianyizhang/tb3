@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-cad-dbf8356a78",
   "title": "Convert imperial gear stock into a driven metric model",
-  "status": "idea",
+  "status": "parked",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "cad",
     "transform",
-    "evidence-c"
+    "evidence-c",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One editable gear-stock model. Reconcile nominal imperial dimensions with derived module and pitch.",
-  "why_hard": "Reconcile nominal imperial dimensions with derived module and pitch. Evidence C: New external Terra completed partial-credit CAD observation with score details; independent geometry audit pending.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Nominal inch pitch/outer dimensions are rounded relative to module/teeth relations; parameter detection also remains unaudited.",
+  "next_action": "State dimension precedence and tolerances, then compare derived metric geometry with an ordinary gear generator.",
   "sources": [
     {
       "url": "https://hub.harborframework.com/tasks/gnucleus-ai/freecad-dbf8356a78/latest",
@@ -23,7 +25,9 @@
   "evidence": [
     "docs/research-broad-task-bank.md",
     "docs/evidence/broad-task-bank.json",
-    "docs/evidence/cad-v2-survey.json"
+    "docs/evidence/cad-v2-survey.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #61. Proposed verifier: Independent unit/geometry relations and parameter sweeps. Exclusion/easy baseline: Rounded source dimensions can conflict; do not demand simultaneous exact equality. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #61. Proposed verifier: Independent unit/geometry relations and parameter sweeps. Exclusion/easy baseline: Rounded source dimensions can conflict; do not demand simultaneous exact equality. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. Nominal inch pitch/outer dimensions are rounded relative to module/teeth relations; parameter detection also remains unaudited. Basis: desk_assessment. No local model trial; not submission-ready."
 }

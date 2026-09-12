@@ -9,11 +9,13 @@
     "short-horizon",
     "geodesy",
     "calibrate",
-    "evidence-p"
+    "evidence-p",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One PROJ pipeline and a coordinate table. Datum motion is separate from axis order and projection.",
-  "why_hard": "Datum motion is separate from axis order and projection. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Epoch-aware transformation can be meaningful, but missing grids or metadata would make it a setup/identifiability problem.",
+  "next_action": "Supply all grids, CRS/axis/epoch metadata and authoritative check coordinates; run the PROJ pipeline baseline first.",
   "sources": [
     {
       "url": "https://proj.org/en/stable/usage/transformation.html",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #79. Proposed verifier: Independent control points with known epoch and reverse transformation. Exclusion/easy baseline: All required grids and epoch metadata must be provided; missing downloads are not reasoning difficulty. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #79. Proposed verifier: Independent control points with known epoch and reverse transformation. Exclusion/easy baseline: All required grids and epoch metadata must be provided; missing downloads are not reasoning difficulty. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. Epoch-aware transformation can be meaningful, but missing grids or metadata would make it a setup/identifiability problem. Basis: desk_assessment. No local model trial; not submission-ready."
 }

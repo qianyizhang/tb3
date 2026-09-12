@@ -9,11 +9,13 @@
     "short-horizon",
     "music-software",
     "transform",
-    "evidence-p"
+    "evidence-p",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One note-event table. Delta ticks, changing tempo and sustain-release semantics determine sounding duration.",
-  "why_hard": "Delta ticks, changing tempo and sustain-release semantics determine sounding duration. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Tempo and sustain interpretation can be compact, but same-tick ordering and note retrigger policy are unspecified and no MIDI fixture is selected.",
+  "next_action": "Freeze a short event stream, specify sounding-note semantics and compare Mido timing plus a simple pedal state machine.",
   "sources": [
     {
       "url": "https://mido.readthedocs.io/en/stable/files/midi.html",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #92. Proposed verifier: Independent event replay on a synthetic multitrack file. Exclusion/easy baseline: Timing policy for simultaneous events must be explicit; no subjective music-quality grading. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #92. Proposed verifier: Independent event replay on a synthetic multitrack file. Exclusion/easy baseline: Timing policy for simultaneous events must be explicit; no subjective music-quality grading. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. Tempo and sustain interpretation can be compact, but same-tick ordering and note retrigger policy are unspecified and no MIDI fixture is selected. Basis: desk_assessment. No local model trial; not submission-ready."
 }

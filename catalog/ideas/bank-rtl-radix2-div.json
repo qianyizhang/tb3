@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-rtl-radix2-div",
   "title": "Signed divider under output backpressure",
-  "status": "idea",
+  "status": "parked",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "digital-hardware",
     "construct",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One arithmetic RTL module. Signed remainder rules must coexist with a stalled result handshake.",
-  "why_hard": "Signed remainder rules must coexist with a stalled result handshake. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: The divider uses live sign in result correction rather than storing it with operands; ready/valid input stability and exceptional division cases are not settled.",
+  "next_action": "Specify when sign may change, then simulate output stalls and signed corner cases against a mathematical quotient/remainder oracle.",
   "sources": [
     {
       "url": "https://github.com/hkust-zhiyao/RTLLM/blob/51ed553d0ffd32797a1a0a13e051656bf302c81f/Arithmetic/Divider/radix2_div/design_description.txt",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #43. Proposed verifier: Exhaustive small operands plus independently generated handshake traces. Exclusion/easy baseline: Define division by zero and signed overflow explicitly; do not impose an arbitrary microarchitecture. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #43. Proposed verifier: Exhaustive small operands plus independently generated handshake traces. Exclusion/easy baseline: Define division by zero and signed overflow explicitly; do not impose an arbitrary microarchitecture. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. The divider uses live sign in result correction rather than storing it with operands; ready/valid input stability and exceptional division cases are not settled. Basis: deeper_source_audit. No local model trial; not submission-ready."
 }

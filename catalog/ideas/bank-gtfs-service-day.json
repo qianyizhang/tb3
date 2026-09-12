@@ -9,11 +9,13 @@
     "short-horizon",
     "transportation",
     "repair",
-    "evidence-p"
+    "evidence-p",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One trip-time normalization function. Service date, local civil time and times above 24:00 are distinct.",
-  "why_hard": "Service date, local civil time and times above 24:00 are distinct. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: GTFS service-day semantics are real, but there is no exact trip/calendar/time-zone fixture or current-model failure.",
+  "next_action": "Freeze a beyond-midnight trip with explicit service date and zone, and compare a standard time conversion against the GTFS convention.",
   "sources": [
     {
       "url": "https://gtfs.org/documentation/schedule/reference/",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #82. Proposed verifier: Independent timetable instants around DST and service exceptions. Exclusion/easy baseline: Provide the calendar and agency zone; do not turn this into route-search or live API work. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #82. Proposed verifier: Independent timetable instants around DST and service exceptions. Exclusion/easy baseline: Provide the calendar and agency zone; do not turn this into route-search or live API work. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. GTFS service-day semantics are real, but there is no exact trip/calendar/time-zone fixture or current-model failure. Basis: desk_assessment. No local model trial; not submission-ready."
 }

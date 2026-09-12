@@ -9,11 +9,13 @@
     "short-horizon",
     "compiler-optimization",
     "optimize",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One LLVM IR rewrite. Zero input makes the shift-count boundary semantically different.",
-  "why_hard": "Zero input makes the shift-count boundary semantically different. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: The source has a genuine zero/poison boundary, but no profitable replacement or task-level model miss has been established.",
+  "next_action": "Verify a proposed rewrite including x=0 and compare current LLVM output before calling the tiny expression hard.",
   "sources": [
     {
       "url": "https://github.com/uw-pluverse/lpo-artifact/blob/47e637067d95f696d8736f922ef722eb9266e4c7/previously_reported/issue_131444_src.ll",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #71. Proposed verifier: Alive2 and exhaustive i8 semantics; declared target cost model. Exclusion/easy baseline: Plain cttz rewriting may not improve the target; never demand impossible profit. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #71. Proposed verifier: Alive2 and exhaustive i8 semantics; declared target cost model. Exclusion/easy baseline: Plain cttz rewriting may not improve the target; never demand impossible profit. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. The source has a genuine zero/poison boundary, but no profitable replacement or task-level model miss has been established. Basis: desk_assessment. No local model trial; not submission-ready."
 }

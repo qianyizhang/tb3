@@ -17,6 +17,15 @@ libraries and ample reasoning time available. A larger dataset, restrictive
 API, arbitrary speed target or missing dependency is not a reason to call a
 task hard. Small output alone also does not establish a short horizon.
 
+**Update after screening:** the [first screening pass](research-screening-20260912.md)
+disposes of all 100 cards: **2 advance to bounded reproduction, 50 hold, 48 reject**.
+The [sourcing/search methodology](research-sourcing-methodology.md) is now explicit.
+The dated screening ledger and current catalog decisions supersede the initial
+preparation queue and source-depth notes below; this document and the bank JSON
+retain the original sourcing snapshot. In particular, full SciCode statements
+and spreadsheet/CAD/RTL inputs were subsequently inspected and several proposed
+cruxes proved unsupported or easy. These are still not 100 hard runnable tasks.
+
 ## Evidence and readiness
 
 The [machine-readable bank](evidence/broad-task-bank.json) owns the exact
@@ -129,9 +138,10 @@ source text, not executed. Public source metadata does not authorize copying
 a whole benchmark into an original submission; preserve licenses when fixtures
 are eventually vendored.
 
-## First 12 candidates to qualify
+## Initial 12-candidate preparation queue (superseded)
 
-This is an ordered **preparation queue**, not permission to launch a large
+This was the original ordered **preparation queue**, now superseded by the
+[completed screen](research-screening-20260912.md). It was not permission to launch a large
 model batch. It deliberately mixes strong evidence with a few high-value
 diversity probes. One representative per close family comes first.
 

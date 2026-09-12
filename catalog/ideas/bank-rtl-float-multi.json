@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-rtl-float-multi",
   "title": "Floating-point rounding at a normalization boundary",
-  "status": "idea",
+  "status": "parked",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "digital-hardware",
     "repair",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One multiplier datapath correction. Sticky bits, subnormals and rounding carry cross exponent boundaries.",
-  "why_hard": "Sticky bits, subnormals and rounding carry cross exponent boundaries. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: The proposed single-rounding repair is not yet isolated from the full multiplier's special-value and normalization behavior.",
+  "next_action": "Select one real rounding defect with explicit IEEE semantics and an independent SoftFloat-style oracle; do not build a whole floating-point unit.",
   "sources": [
     {
       "url": "https://github.com/hkust-zhiyao/RTLLM/blob/51ed553d0ffd32797a1a0a13e051656bf302c81f/Arithmetic/Other/float_multi/design_description.txt",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #44. Proposed verifier: Independent IEEE-754 reference vectors plus randomized bit patterns. Exclusion/easy baseline: Extract one rounding crux from the full multiplier; check source special-value handling first. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #44. Proposed verifier: Independent IEEE-754 reference vectors plus randomized bit patterns. Exclusion/easy baseline: Extract one rounding crux from the full multiplier; check source special-value handling first. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. The proposed single-rounding repair is not yet isolated from the full multiplier's special-value and normalization behavior. Basis: desk_assessment. No local model trial; not submission-ready."
 }

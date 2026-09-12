@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-audio-loudness",
   "title": "Meet integrated loudness and true-peak targets",
-  "status": "parked",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "audio-engineering",
     "transform",
-    "evidence-p"
+    "evidence-p",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One processed audio clip. Gated loudness and intersample peaks interact with gain and limiting.",
-  "why_hard": "Gated loudness and intersample peaks interact with gain and limiting. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: The stated deliverable is directly served by standard two-pass loudnorm; no attainable target combination or actual failure has been supplied.",
+  "next_action": "Reopen only with an exact feasible clip/target pair that survives that ordinary baseline.",
   "sources": [
     {
       "url": "https://ffmpeg.org/ffmpeg-filters.html#loudnorm",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #89. Proposed verifier: Independent loudness meter and oversampled peak measurement. Exclusion/easy baseline: A standard two-pass loudnorm run may pass; use it as an allowed baseline. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #89. Proposed verifier: Independent loudness meter and oversampled peak measurement. Exclusion/easy baseline: A standard two-pass loudnorm run may pass; use it as an allowed baseline. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. The stated deliverable is directly served by standard two-pass loudnorm; no attainable target combination or actual failure has been supplied. Basis: desk_assessment. No local model trial; not submission-ready."
 }

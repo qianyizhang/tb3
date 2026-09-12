@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-hi-algotune-optimize-lti-sim",
   "title": "Accelerate continuous-time response simulation",
-  "status": "idea",
+  "status": "parked",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "control-systems",
     "optimize",
-    "evidence-h"
+    "evidence-h",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One Solver.solve method. Exploit state-transition structure without changing input interpolation.",
-  "why_hard": "Exploit state-transition structure without changing input interpolation. Evidence H: Harbor-Index task-level publisher TP/TN/FP/FN labels; individual completion audit pending, no Terra row.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: The 200x performance requirement is uncalibrated locally; the prompt allows monotone times while its lsim reference expects uniform spacing.",
+  "next_action": "Inspect the actual time-grid generator and a normal-completion failure; establish an attainable hardware-stable bar with interpolation and transient checks.",
   "sources": [
     {
       "url": "https://harbor-index.org/data/v1/tasks/algotune-optimize-lti-sim",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #17. Proposed verifier: Independent analytical systems and high-accuracy integration. Exclusion/easy baseline: Published 200x bar is hardware-sensitive; justify a new speed bar and include transient cases. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #17. Proposed verifier: Independent analytical systems and high-accuracy integration. Exclusion/easy baseline: Published 200x bar is hardware-sensitive; justify a new speed bar and include transient cases. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. The 200x performance requirement is uncalibrated locally; the prompt allows monotone times while its lsim reference expects uniform spacing. Basis: desk_assessment. No local model trial; not submission-ready."
 }

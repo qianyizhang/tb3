@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-lpo-104875",
   "title": "Lower signed-to-unsigned saturation",
-  "status": "parked",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "compiler-optimization",
     "optimize",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One saturated conversion rewrite. Signed lower-bound handling and unsigned clamping must survive truncation.",
-  "why_hard": "Signed lower-bound handling and unsigned clamping must survive truncation. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Signed clamping to [0,255] is a standard saturating conversion; source presence does not demonstrate a hard optimization.",
+  "next_action": "Require a pinned target and proven performance/code-size opportunity before revisiting this direction.",
   "sources": [
     {
       "url": "https://github.com/uw-pluverse/lpo-artifact/blob/47e637067d95f696d8736f922ef722eb9266e4c7/previously_reported/issue_104875_src.ll",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #77. Proposed verifier: Independent exhaustive small-width saturation plus Alive2. Exclusion/easy baseline: Simple source remains a calibration lead; optimization benefit needs a measured target baseline. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #77. Proposed verifier: Independent exhaustive small-width saturation plus Alive2. Exclusion/easy baseline: Simple source remains a calibration lead; optimization benefit needs a measured target baseline. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. Signed clamping to [0,255] is a standard saturating conversion; source presence does not demonstrate a hard optimization. Basis: desk_assessment. No local model trial; not submission-ready."
 }

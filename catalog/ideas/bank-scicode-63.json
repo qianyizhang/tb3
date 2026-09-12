@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-scicode-63",
   "title": "Resolve an early-exercise boundary",
-  "status": "idea",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "computational-finance",
     "solve",
-    "evidence-i"
+    "evidence-i",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One price and exercise-boundary table for a supplied toy contract. Optimal stopping differs from a European payoff expectation.",
-  "why_hard": "Optimal stopping differs from a European payoff expectation. Evidence I: Exact parent ID found in a benchmark index; proposed extraction needs full statement/data audit.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: SciCode 63 explicitly prices a European call; the proposed early-exercise boundary is not part of this parent.",
+  "next_action": "Source a genuine optimal-stopping instance separately; preserve the European/American distinction in any replacement.",
   "sources": [
     {
       "url": "https://scicode-bench.github.io/problems/",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #32. Proposed verifier: Independent lattice/PDE convergence and no-arbitrage bounds. Exclusion/easy baseline: Parent index only inspected; American-option extraction is proposed, not asserted source content or financial advice. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #32. Proposed verifier: Independent lattice/PDE convergence and no-arbitrage bounds. Exclusion/easy baseline: Parent index only inspected; American-option extraction is proposed, not asserted source content or financial advice. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. SciCode 63 explicitly prices a European call; the proposed early-exercise boundary is not part of this parent. Basis: deeper_source_audit. No local model trial; not submission-ready."
 }

@@ -9,11 +9,13 @@
     "short-horizon",
     "discrete-geometry",
     "construct",
-    "evidence-p"
+    "evidence-p",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One table of integer square coordinates. Global packing constraints invalidate local placement heuristics.",
-  "why_hard": "Global packing constraints invalidate local placement heuristics. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Square packing has a cheap witness check, but neither a specific small instance nor its feasibility proof is in the card.",
+  "next_action": "Select a published feasible instance and compare standard packing/CP models; do not replace reasoning difficulty with brute-force size.",
   "sources": [
     {
       "url": "https://www.csplib.org/Problems/prob009/",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #94. Proposed verifier: Independent overlap, boundary and total-area checks. Exclusion/easy baseline: Pick a small published instance with an available witness; solver difficulty is unmeasured. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #94. Proposed verifier: Independent overlap, boundary and total-area checks. Exclusion/easy baseline: Pick a small published instance with an available witness; solver difficulty is unmeasured. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. Square packing has a cheap witness check, but neither a specific small instance nor its feasibility proof is in the card. Basis: desk_assessment. No local model trial; not submission-ready."
 }

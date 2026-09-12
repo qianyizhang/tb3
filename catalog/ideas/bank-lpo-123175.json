@@ -9,11 +9,13 @@
     "short-horizon",
     "compiler-optimization",
     "prove",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One LLVM IR rewrite and its valid precondition. Intermediate poison domains change under reassociation.",
-  "why_hard": "Intermediate poison domains change under reassociation. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: No found artifact is not a failed attempt; no-wrap reassociation changes definedness, and target profitability is unproven.",
+  "next_action": "Demonstrate one valid rewrite in Alive2 and actual target improvement, then inspect the corresponding complete published attempt.",
   "sources": [
     {
       "url": "https://github.com/uw-pluverse/lpo-artifact/blob/47e637067d95f696d8736f922ef722eb9266e4c7/previously_reported/issue_123175_src.ll",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #70. Proposed verifier: Alive2 refinement proof plus real target profitability. Exclusion/easy baseline: No published found artifact is not proof of a model miss; a profitable valid rewrite must first be demonstrated. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #70. Proposed verifier: Alive2 refinement proof plus real target profitability. Exclusion/easy baseline: No published found artifact is not proof of a model miss; a profitable valid rewrite must first be demonstrated. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. No found artifact is not a failed attempt; no-wrap reassociation changes definedness, and target profitability is unproven. Basis: desk_assessment. No local model trial; not submission-ready."
 }

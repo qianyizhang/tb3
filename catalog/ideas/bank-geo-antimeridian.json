@@ -9,11 +9,13 @@
     "short-horizon",
     "geospatial-geometry",
     "repair",
-    "evidence-p"
+    "evidence-p",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One GeoJSON transformation. Split crossing rings while retaining holes and geographic extent.",
-  "why_hard": "Split crossing rings while retaining holes and geographic extent. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Dateline splitting with holes is a concrete geometry concern, but no valid failing polygon or modern library baseline has been selected.",
+  "next_action": "Freeze one geographic polygon and compare allowed dateline-aware splitting while checking area and hole containment.",
   "sources": [
     {
       "url": "https://www.rfc-editor.org/info/rfc7946/",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #78. Proposed verifier: Independent geodesic area, topology and round-trip point inclusion. Exclusion/easy baseline: Existing geometry libraries may solve this; avoid repeating the already-passed planar Clipper probe. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #78. Proposed verifier: Independent geodesic area, topology and round-trip point inclusion. Exclusion/easy baseline: Existing geometry libraries may solve this; avoid repeating the already-passed planar Clipper probe. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. Dateline splitting with holes is a concrete geometry concern, but no valid failing polygon or modern library baseline has been selected. Basis: desk_assessment. No local model trial; not submission-ready."
 }

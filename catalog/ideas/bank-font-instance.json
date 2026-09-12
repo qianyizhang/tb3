@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-font-instance",
   "title": "Preserve metrics when instancing a variable font",
-  "status": "parked",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "font-engineering",
     "transform",
-    "evidence-p"
+    "evidence-p",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One static font instance and metric report. Composite variation and metric deltas must agree at the chosen axis location.",
-  "why_hard": "Composite variation and metric deltas must agree at the chosen axis location. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: fontTools already provides variable-font instancing and metric updates; the card has no concrete surviving transformation bug.",
+  "next_action": "Reopen only with a licensed font and an independently reproduced metric defect after the standard instancer.",
   "sources": [
     {
       "url": "https://fonttools.readthedocs.io/en/latest/varLib/instancer.html",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #86. Proposed verifier: Independent fontTools instance, shaping metrics and outline samples. Exclusion/easy baseline: fontTools may solve it directly; require an actual documented transformation bug before promotion. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #86. Proposed verifier: Independent fontTools instance, shaping metrics and outline samples. Exclusion/easy baseline: fontTools may solve it directly; require an actual documented transformation bug before promotion. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. fontTools already provides variable-font instancing and metric updates; the card has no concrete surviving transformation bug. Basis: desk_assessment. No local model trial; not submission-ready."
 }

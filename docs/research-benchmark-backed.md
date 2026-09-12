@@ -16,6 +16,15 @@ every card. Its 100 candidates are research leads, not demonstrated failures
 or runnable tasks. This document still owns benchmark-first prioritization;
 the bank owns the broader exploration inventory.
 
+The [completed first screen](research-screening-20260912.md) now prioritizes
+**localization and stellar periods for bounded reproduction**. The other three
+science references remain on hold for the fairness gates detailed there. Across
+the complete bank, 2 advance, 50 hold and 48 reject; no new model trials were run.
+The [sourcing method](research-sourcing-methodology.md) records search strategy,
+provenance, exclusion rules and the distinction between source screening and
+genuine model failures. The published receipts and original shortlist below
+remain historical evidence rather than being rewritten to match these decisions.
+
 ## Main finding
 
 [Terminal-Bench-Science 0.1](https://www.tbench.ai/news/terminal-bench-science-0-1)

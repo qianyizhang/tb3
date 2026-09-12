@@ -9,11 +9,13 @@
     "short-horizon",
     "bioinformatics",
     "extract",
-    "evidence-h"
+    "evidence-h",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One gene set and count. Resolve identifiers and the exact differential-expression contrast.",
-  "why_hard": "Resolve identifiers and the exact differential-expression contrast. Evidence H: Harbor-Index task-level publisher TP/TN/FP/FN labels; individual completion audit pending, no Terra row.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Only the outer instruction was recovered; the inner question and supplementary table needed for the count are missing from the inspected layer.",
+  "next_action": "Recover the exact inner instruction and licensed table, then compare a direct identifier join and set count.",
   "sources": [
     {
       "url": "https://harbor-index.org/data/v1/tasks/labbench-count-deg-in-pathway",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #14. Proposed verifier: Independent table parsing and curated pathway intersection. Exclusion/easy baseline: Linked inner instruction and licensed supplementary data still need recovery; five audited successes. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #14. Proposed verifier: Independent table parsing and curated pathway intersection. Exclusion/easy baseline: Linked inner instruction and licensed supplementary data still need recovery; five audited successes. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. Only the outer instruction was recovered; the inner question and supplementary table needed for the count are missing from the inspected layer. Basis: desk_assessment. No local model trial; not submission-ready."
 }

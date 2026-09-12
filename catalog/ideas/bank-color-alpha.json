@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-color-alpha",
   "title": "Repair compositing across alpha and color spaces",
-  "status": "parked",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "color-science",
     "repair",
-    "evidence-p"
+    "evidence-p",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One image compositing function. Premultiplied alpha and nonlinear transfer functions cannot be mixed arbitrarily.",
-  "why_hard": "Premultiplied alpha and nonlinear transfer functions cannot be mixed arbitrarily. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Once alpha and transfer-function conventions are explicit, this is a direct compositing formula; no source-specific hard case is evidenced.",
+  "next_action": "Retain as a correctness calibration with fixed profiles, rather than adding unrelated image-pipeline stages.",
   "sources": [
     {
       "url": "https://www.w3.org/TR/compositing-1/",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #90. Proposed verifier: Independent linear-light analytical pixels and transparent-edge cases. Exclusion/easy baseline: Explicitly state color profiles and alpha convention; standard color libraries are allowed. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #90. Proposed verifier: Independent linear-light analytical pixels and transparent-edge cases. Exclusion/easy baseline: Explicitly state color profiles and alpha convention; standard color libraries are allowed. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. Once alpha and transfer-function conventions are explicit, this is a direct compositing formula; no source-specific hard case is evidenced. Basis: desk_assessment. No local model trial; not submission-ready."
 }

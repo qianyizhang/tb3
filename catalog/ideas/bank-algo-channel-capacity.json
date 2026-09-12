@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-algo-channel-capacity",
   "title": "Optimize a channel input distribution",
-  "status": "idea",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "information-theory",
     "optimize",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One probability distribution and capacity. Optimize entropy stably near vanishing probabilities.",
-  "why_hard": "Optimize entropy stably near vanishing probabilities. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: A standard channel-capacity algorithm directly addresses the stated crux; no current-model failure or justified speed gap was found.",
+  "next_action": "Reopen only if Blahut-Arimoto with explicit zero-probability handling fails a legitimate compact instance.",
   "sources": [
     {
       "url": "https://github.com/oripress/AlgoTune/blob/dff9914c10800c7a031c9e8c3d4d1c8cd1b38906/AlgoTuneTasks/channel_capacity/channel_capacity.py",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #39. Proposed verifier: Independent mutual information and primal/dual capacity bounds. Exclusion/easy baseline: Blahut-Arimoto may solve it directly; continuous score does not establish Terra failure. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #39. Proposed verifier: Independent mutual information and primal/dual capacity bounds. Exclusion/easy baseline: Blahut-Arimoto may solve it directly; continuous score does not establish Terra failure. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. A standard channel-capacity algorithm directly addresses the stated crux; no current-model failure or justified speed gap was found. Basis: desk_assessment. No local model trial; not submission-ready."
 }

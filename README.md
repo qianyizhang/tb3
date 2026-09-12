@@ -8,6 +8,8 @@ The [benchmark-backed survey](docs/research-benchmark-backed.md) is the current 
 
 The [100-card broad task bank](docs/research-broad-task-bank.md) expands this into 23 broad directions, including CAD, hardware, SQL, spreadsheets, compilers, typography, GIS and media. It adds six completed Terra/max CAD observations, records HN/Reddit leads and counterexamples, and gives every candidate a small deliverable, proposed verifier and easy-baseline exclusion. These are research candidates, not 100 runnable tasks or demonstrated Terra failures. Search the catalog for `broad-bank-100`.
 
+The [first screening pass](docs/research-screening-20260912.md) now records decisions for all 100: **2 advance to bounded reproduction, 50 hold, 48 reject**. It deepens 29 source audits, including local calculations or fixture checks for 14 cards, and corrects easy tasks, faulty references and unsupported extractions. The [sourcing methodology](docs/research-sourcing-methodology.md) records search strategy, provenance, exclusions and evidence gates. Search the catalog for `screen-advance`, `screen-hold` or `screen-reject`; this pass ran no model trials.
+
 Six local frozen snapshots completed valid Terra/high passes and remain retired: cache invalidation, nested Dremel assembly, Ninja dynamic dependencies, SQLite EXISTS optimization, Clipper2 PolyTree hierarchy, and integral homology bases. The [earlier short-horizon screen](docs/research-short-horizon.md) and [interpolation reproduction](docs/research-numerical-candidates.md) are retained. The local denominator remains six passes, zero genuine failures, and two infrastructure-only attempts; no local Sol/Opus trial has run.
 
 Current research scope explicitly excludes security tasks and favors hard but less complex, short-horizon work: one conceptual crux, a small deliverable and fast independent verification. See [AGENTS.md](AGENTS.md) for the durable scope instructions.
@@ -21,6 +23,8 @@ Current research scope explicitly excludes security tasks and favors hard but le
 | [Short-horizon survey](docs/research-short-horizon.md) | Eight diverse directions, explicit non-security scope, homology pass and numerical follow-up. |
 | [Benchmark-backed survey](docs/research-benchmark-backed.md) | Current shortlist: published failures, task-level audit, compactness, fairness concerns and source-selection decisions. |
 | [100-card broad task bank](docs/research-broad-task-bank.md) | Diverse experiment candidates, corrected CAD receipts, community anecdotes, evidence labels and preparation queue. |
+| [Sourcing methodology](docs/research-sourcing-methodology.md) | Search method, query examples, provenance, exclusion and screening rules. |
+| [100-card screening](docs/research-screening-20260912.md) | Every decision, 14 bounded calculation/fixture checks, source corrections and next gates. |
 | [Catalog](docs/catalog.md) | Searchable idea/trial records and local browser report. |
 | [Requirements](docs/requirements.md) | Frozen CI/defaults, discrepancies, human-authored submission requirements. |
 | [Codex repair](docs/codex-repair.md) | Diagnosis, repair command and checks. |

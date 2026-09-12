@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-cad-b55517ee4b",
   "title": "Disk-brake hub and cooling-hole placement",
-  "status": "idea",
+  "status": "parked",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "cad",
     "construct",
-    "evidence-c"
+    "evidence-c",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One FreeCAD script and one FCStd. Correct named dimensions do not guarantee their correct relative placement.",
-  "why_hard": "Correct named dimensions do not guarantee their correct relative placement. Evidence C: New external Terra completed partial-credit CAD observation with score details; independent geometry audit pending.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Reference and answer place the hub on opposite versus overlapping sides of the disk; analytic placement differences explain the reported 6.461% volume and 12.5% bbox metrics.",
+  "next_action": "Clarify relative placement and audit historical-version equivalence; remeasure a repaired specification rather than counting the old score as a fair miss.",
   "sources": [
     {
       "url": "https://hub.harborframework.com/tasks/gnucleus-ai/freecad-b55517ee4b/latest",
@@ -23,7 +25,9 @@
   "evidence": [
     "docs/research-broad-task-bank.md",
     "docs/evidence/broad-task-bank.json",
-    "docs/evidence/cad-v2-survey.json"
+    "docs/evidence/cad-v2-survey.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #58. Proposed verifier: Independent cross-sections, holes, solid volume and rebuilds. Exclusion/easy baseline: Source Terra has 12/12 parameter consistency but geometry mismatch; placement ambiguity still needs audit. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #58. Proposed verifier: Independent cross-sections, holes, solid volume and rebuilds. Exclusion/easy baseline: Source Terra has 12/12 parameter consistency but geometry mismatch; placement ambiguity still needs audit. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. Reference and answer place the hub on opposite versus overlapping sides of the disk; analytic placement differences explain the reported 6.461% volume and 12.5% bbox metrics. Basis: local_calculation_or_fixture_check. No local model trial; not submission-ready."
 }

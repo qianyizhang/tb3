@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-scicode-79",
   "title": "Repair a thermostat integration step",
-  "status": "idea",
+  "status": "parked",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "statistical-mechanics",
     "repair",
-    "evidence-i"
+    "evidence-i",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One deterministic integrator step. Reversible splitting couples particle and chain momenta.",
-  "why_hard": "Reversible splitting couples particle and chain momenta. Evidence I: Exact parent ID found in a benchmark index; proposed extraction needs full statement/data audit.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: SciCode 79.2 is a genuine one-step thermostat subproblem, but external numeric targets and the exact splitting convention still govern acceptance.",
+  "next_action": "Recover the target/reference, specify the splitting map and test reversibility plus step-size convergence against an independent integrator.",
   "sources": [
     {
       "url": "https://scicode-bench.github.io/problems/",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #31. Proposed verifier: Time-reversal checks and independently derived extended-energy behavior. Exclusion/easy baseline: Chaotic path equality is not a fair long-run verifier; use local invariants and convergence. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #31. Proposed verifier: Time-reversal checks and independently derived extended-energy behavior. Exclusion/easy baseline: Chaotic path equality is not a fair long-run verifier; use local invariants and convergence. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. SciCode 79.2 is a genuine one-step thermostat subproblem, but external numeric targets and the exact splitting convention still govern acceptance. Basis: deeper_source_audit. No local model trial; not submission-ready."
 }

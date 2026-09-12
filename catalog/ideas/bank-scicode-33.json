@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-scicode-33",
   "title": "Compute a gauge-invariant Chern number",
-  "status": "idea",
+  "status": "parked",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "condensed-matter",
     "compute",
-    "evidence-i"
+    "evidence-i",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One integer invariant from a Bloch Hamiltonian grid. Band eigenvector phase choices cannot affect the topological result.",
-  "why_hard": "Band eigenvector phase choices cannot affect the topological result. Evidence I: Exact parent ID found in a benchmark index; proposed extraction needs full statement/data audit.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: SciCode 33.2 really computes a Chern number, but exact numerical targets are external and the Haldane phase has a simple analytic baseline.",
+  "next_action": "Compare a gauge-invariant lattice calculation and analytic phase classification away from gap closures; audit the numeric target and orientation convention.",
   "sources": [
     {
       "url": "https://scicode-bench.github.io/problems/",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #24. Proposed verifier: Known phases, grid refinement and an independent Berry-curvature calculation. Exclusion/easy baseline: Confirm gap-closing cases are excluded or have an explicit undefined result. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #24. Proposed verifier: Known phases, grid refinement and an independent Berry-curvature calculation. Exclusion/easy baseline: Confirm gap-closing cases are excluded or have an explicit undefined result. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. SciCode 33.2 really computes a Chern number, but exact numerical targets are external and the Haldane phase has a simple analytic baseline. Basis: deeper_source_audit. No local model trial; not submission-ready."
 }

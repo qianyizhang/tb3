@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-scicode-58",
   "title": "Locate a relativistic stellar surface",
-  "status": "idea",
+  "status": "parked",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "astrophysics",
     "solve",
-    "evidence-i"
+    "evidence-i",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One mass-radius pair from an equation of state. Regularize the center and stop at the physical pressure-zero surface.",
-  "why_hard": "Regularize the center and stop at the physical pressure-zero surface. Evidence I: Exact parent ID found in a benchmark index; proposed extraction needs full statement/data audit.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: SciCode 58 returns mass and central lapse, not the proposed mass-radius pair; surface extraction is plausible but changed and unmeasured.",
+  "next_action": "Retain source units and EOS, define surface interpolation, and compare an event-based integrator with a refined radial grid.",
   "sources": [
     {
       "url": "https://scicode-bench.github.io/problems/",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #27. Proposed verifier: Independent high-precision integration and convergence under step refinement. Exclusion/easy baseline: Parent full scope uninspected; one EOS, units and boundary convention must be supplied. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #27. Proposed verifier: Independent high-precision integration and convergence under step refinement. Exclusion/easy baseline: Parent full scope uninspected; one EOS, units and boundary convention must be supplied. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. SciCode 58 returns mass and central lapse, not the proposed mass-radius pair; surface extraction is plausible but changed and unmeasured. Basis: deeper_source_audit. No local model trial; not submission-ready."
 }

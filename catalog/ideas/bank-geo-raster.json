@@ -9,11 +9,13 @@
     "short-horizon",
     "remote-sensing",
     "transform",
-    "evidence-p"
+    "evidence-p",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One small remapped raster and weight matrix. NoData masks and partial-cell areas affect conservation.",
-  "why_hard": "NoData masks and partial-cell areas affect conservation. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Conservative masked remapping needs explicit extensive/intensive values and overlap geometry; the current family lead has neither a fixture nor measured failure.",
+  "next_action": "Freeze a small raster pair and conservation oracle; compare GDAL average/sum and exact cell-overlap weights.",
   "sources": [
     {
       "url": "https://gdal.org/en/stable/programs/gdalwarp.html",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #80. Proposed verifier: Independent cell-overlap areas and global mass conservation. Exclusion/easy baseline: A plain gdalwarp command is the easy baseline; specify intensive versus extensive values. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #80. Proposed verifier: Independent cell-overlap areas and global mass conservation. Exclusion/easy baseline: A plain gdalwarp command is the easy baseline; specify intensive versus extensive values. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. Conservative masked remapping needs explicit extensive/intensive values and overlap geometry; the current family lead has neither a fixture nor measured failure. Basis: desk_assessment. No local model trial; not submission-ready."
 }

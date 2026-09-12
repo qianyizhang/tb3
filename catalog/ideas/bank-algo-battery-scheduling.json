@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-algo-battery-scheduling",
   "title": "Optimize a cyclic battery schedule",
-  "status": "idea",
+  "status": "parked",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "energy-systems",
     "optimize",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One charge/storage schedule. Efficiency and cyclic state coupling invalidate greedy arbitrage.",
-  "why_hard": "Efficiency and cyclic state coupling invalidate greedy arbitrage. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: The cyclic battery LP is source-backed but no ordinary convex-solver baseline or compact hard instance has been measured.",
+  "next_action": "Run the supplied convex model with cyclic balance and efficiency checks; retire if a standard solver meets a justified budget.",
   "sources": [
     {
       "url": "https://github.com/oripress/AlgoTune/blob/dff9914c10800c7a031c9e8c3d4d1c8cd1b38906/AlgoTuneTasks/battery_scheduling/battery_scheduling.py",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #33. Proposed verifier: Independent dynamics and a dual objective bound. Exclusion/easy baseline: Generic convex solver may already meet the task; exclude unphysical simultaneous-charge solutions. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #33. Proposed verifier: Independent dynamics and a dual objective bound. Exclusion/easy baseline: Generic convex solver may already meet the task; exclude unphysical simultaneous-charge solutions. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. The cyclic battery LP is source-backed but no ordinary convex-solver baseline or compact hard instance has been measured. Basis: desk_assessment. No local model trial; not submission-ready."
 }

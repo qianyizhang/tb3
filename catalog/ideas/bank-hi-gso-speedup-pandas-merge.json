@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-hi-gso-speedup-pandas-merge",
   "title": "Optimize an ordered table join",
-  "status": "idea",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "data-engineering",
     "optimize",
-    "evidence-h"
+    "evidence-h",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One bounded join-kernel patch. Exploit sorted keys while retaining duplicate multiplicity and null behavior.",
-  "why_hard": "Exploit sorted keys while retaining duplicate multiplicity and null behavior. Evidence H: Harbor-Index task-level publisher TP/TN/FP/FN labels; individual completion audit pending, no Terra row.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: The source checks shape and aggregate values rather than complete joined rows, and the repo-patch setup does not yet establish a short horizon.",
+  "next_action": "Reopen with a bounded prepared join kernel, duplicate/null fixtures and exact multiset/order verification.",
   "sources": [
     {
       "url": "https://harbor-index.org/data/v1/tasks/gso-speedup-pandas-merge",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #21. Proposed verifier: Full independent row comparison on varied keys, not aggregate sums. Exclusion/easy baseline: Released repository task may be long; source summary-only verifier is insufficient for a new task. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #21. Proposed verifier: Full independent row comparison on varied keys, not aggregate sums. Exclusion/easy baseline: Released repository task may be long; source summary-only verifier is insufficient for a new task. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. The source checks shape and aggregate values rather than complete joined rows, and the repo-patch setup does not yet establish a short horizon. Basis: desk_assessment. No local model trial; not submission-ready."
 }

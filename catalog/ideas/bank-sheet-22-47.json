@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-sheet-22-47",
   "title": "Repair a stable custom-priority table sort",
-  "status": "parked",
+  "status": "rejected",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "spreadsheet-engineering",
     "repair",
-    "evidence-b"
+    "evidence-b",
+    "screened-20260912",
+    "screen-reject"
   ],
   "hypothesis": "One sorted range. Custom priorities, duplicates and residual order interact.",
-  "why_hard": "Custom priorities, duplicates and residual order interact. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: The instruction simultaneously preserves within-group order and demands sorting H; its F:H versus G:H output wording also conflicts.",
+  "next_action": "Resolve the authored ordering/range contract before any model experiment.",
   "sources": [
     {
       "url": "https://github.com/RUCKBReasoning/SpreadsheetBench/blob/49b73a94775fb489063f60ca1865e3a650079a79/data/spreadsheetbench_verified_400.tar.gz",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #51. Proposed verifier: Independent stable-order and duplicate-key checks. Exclusion/easy baseline: Source last sentence conflicts with prior sorting/range instructions; parked until intent is resolved. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #51. Proposed verifier: Independent stable-order and duplicate-key checks. Exclusion/easy baseline: Source last sentence conflicts with prior sorting/range instructions; parked until intent is resolved. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: REJECT. The instruction simultaneously preserves within-group order and demands sorting H; its F:H versus G:H output wording also conflicts. Basis: deeper_source_audit. No local model trial; not submission-ready."
 }

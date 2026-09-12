@@ -9,11 +9,13 @@
     "short-horizon",
     "internationalization",
     "repair",
-    "evidence-p"
+    "evidence-p",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One small index-mapping routine. Isolate boundaries and combining characters alter visual ordering.",
-  "why_hard": "Isolate boundaries and combining characters alter visual ordering. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Bidi index mapping is specification-backed, but no exact isolate/combining-mark conformance case has been selected and libraries already implement the algorithm.",
+  "next_action": "Select a non-security mapping fixture and compare ICU/FriBidi output to the pinned Unicode conformance data.",
   "sources": [
     {
       "url": "https://www.unicode.org/reports/tr9/tr9-51.html",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #84. Proposed verifier: Pinned Unicode bidi conformance cases and inverse index checks. Exclusion/easy baseline: Only text layout; no spoofing, parser attacks or security task. Existing bidi library allowed. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #84. Proposed verifier: Pinned Unicode bidi conformance cases and inverse index checks. Exclusion/easy baseline: Only text layout; no spoofing, parser attacks or security task. Existing bidi library allowed. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. Bidi index mapping is specification-backed, but no exact isolate/combining-mark conformance case has been selected and libraries already implement the algorithm. Basis: desk_assessment. No local model trial; not submission-ready."
 }

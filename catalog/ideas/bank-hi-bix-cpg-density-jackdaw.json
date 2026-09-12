@@ -2,18 +2,20 @@
   "schema_version": 1,
   "id": "bank-hi-bix-cpg-density-jackdaw",
   "title": "Compute CpG density with the right denominator",
-  "status": "idea",
+  "status": "parked",
   "tags": [
     "broad-bank-100",
     "non-security",
     "short-horizon",
     "genomics",
     "analyze",
-    "evidence-h"
+    "evidence-h",
+    "screened-20260912",
+    "screen-hold"
   ],
   "hypothesis": "One scalar and an audit table. Unique loci, strict methylation filters and chromosome weighting.",
-  "why_hard": "Unique loci, strict methylation filters and chromosome weighting. Evidence H: Harbor-Index task-level publisher TP/TN/FP/FN labels; individual completion audit pending, no Terra row.",
-  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "why_hard": "Initial hypothesis is preserved in the original broad-bank snapshot. Screening: Publisher 18 TN labels are not Terra failures; arithmetic versus chromosome-length-weighted density remains underspecified.",
+  "next_action": "Resolve the exact chromosome denominator from data/oracle and inspect one normal-completion failure before trial preparation.",
   "sources": [
     {
       "url": "https://harbor-index.org/data/v1/tasks/bix-cpg-density-jackdaw",
@@ -22,7 +24,9 @@
   ],
   "evidence": [
     "docs/research-broad-task-bank.md",
-    "docs/evidence/broad-task-bank.json"
+    "docs/evidence/broad-task-bank.json",
+    "docs/research-screening-20260912.md",
+    "docs/evidence/broad-bank-screening-20260912.json"
   ],
-  "notes": "Bank #11. Proposed verifier: Independent set arithmetic and independently checked chromosome lengths. Exclusion/easy baseline: Question may underspecify arithmetic versus length-weighted mean; resolve before running. Research card only; no new local trial; not submission-ready."
+  "notes": "Bank #11. Proposed verifier: Independent set arithmetic and independently checked chromosome lengths. Exclusion/easy baseline: Question may underspecify arithmetic versus length-weighted mean; resolve before running. Research card only; no new local trial; not submission-ready.\nFirst screening 2026-09-12: HOLD. Publisher 18 TN labels are not Terra failures; arithmetic versus chromosome-length-weighted density remains underspecified. Basis: desk_assessment. No local model trial; not submission-ready."
 }
