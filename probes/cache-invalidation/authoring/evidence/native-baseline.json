@@ -1,0 +1,22 @@
+{
+  "command": "RUNNER_PATH=environment/build_runner.py REWARD_FILE=authoring/native-baseline-reward.txt sh tests/test.sh",
+  "exit_code": 1,
+  "reward_file": "0",
+  "verifier": {
+    "failures": [
+      "target_local_input_change: alpha: output differs from the current declared inputs",
+      "equal_mtime_and_size_edit: alpha: output differs from the current declared inputs",
+      "literal_input_delete: alpha: output differs from the current declared inputs",
+      "glob_add_and_delete: alpha: output differs from the current declared inputs",
+      "shared_input_rebuilds_each_target: alpha: output differs from the current declared inputs"
+    ],
+    "ok": false,
+    "passed": [
+      "initial_and_unchanged",
+      "hit_reuses_existing_artifact",
+      "source_change_is_target_local",
+      "target_config_change_is_target_local",
+      "unrelated_file_stays_hit"
+    ]
+  }
+}
