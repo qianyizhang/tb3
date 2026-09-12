@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-audio-loudness",
+  "title": "Meet integrated loudness and true-peak targets",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "audio-engineering",
+    "transform",
+    "evidence-p"
+  ],
+  "hypothesis": "One processed audio clip. Gated loudness and intersample peaks interact with gain and limiting.",
+  "why_hard": "Gated loudness and intersample peaks interact with gain and limiting. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://ffmpeg.org/ffmpeg-filters.html#loudnorm",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #89. Proposed verifier: Independent loudness meter and oversampled peak measurement. Exclusion/easy baseline: A standard two-pass loudnorm run may pass; use it as an allowed baseline. Research card only; no new local trial; not submission-ready."
+}

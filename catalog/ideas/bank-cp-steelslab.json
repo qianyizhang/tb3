@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-cp-steelslab",
+  "title": "Minimize waste in a steel-slab allocation",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "industrial-optimization",
+    "allocate",
+    "evidence-p"
+  ],
+  "hypothesis": "One order-to-slab assignment. Color compatibility and slab capacity couple assignment and waste.",
+  "why_hard": "Color compatibility and slab capacity couple assignment and waste. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://www.csplib.org/Problems/prob038/",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Problem family prob038."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #96. Proposed verifier: Independent capacity/color checks and a certified objective bound. Exclusion/easy baseline: Family reference only; use a compact instance and legitimate waste target, not an arbitrary timeout. Research card only; no new local trial; not submission-ready."
+}

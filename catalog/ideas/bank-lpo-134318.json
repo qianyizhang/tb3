@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-lpo-134318",
+  "title": "Combine signed integer divisions correctly",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "compiler-optimization",
+    "prove",
+    "evidence-b"
+  ],
+  "hypothesis": "One rewrite or a counterexample with repaired preconditions. Truncation toward zero and signed-overflow domains govern division fusion.",
+  "why_hard": "Truncation toward zero and signed-overflow domains govern division fusion. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/uw-pluverse/lpo-artifact/blob/47e637067d95f696d8736f922ef722eb9266e4c7/previously_reported/issue_134318_src.ll",
+      "note": "Upstream issue_134318_src.ll; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #72. Proposed verifier: Independent exhaustive i8 arithmetic and Alive2 refinement. Exclusion/easy baseline: Do not equate mathematical integer division with finite-width LLVM behavior. Research card only; no new local trial; not submission-ready."
+}

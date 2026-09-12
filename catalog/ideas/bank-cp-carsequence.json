@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-cp-carsequence",
+  "title": "Construct a feasible assembly-line sequence",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "manufacturing",
+    "schedule",
+    "evidence-p"
+  ],
+  "hypothesis": "One car-class sequence. Several rolling capacity windows must hold simultaneously.",
+  "why_hard": "Several rolling capacity windows must hold simultaneously. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://www.csplib.org/Problems/prob001/",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Problem family prob001."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #93. Proposed verifier: Independent sliding-window counts and exact demand totals. Exclusion/easy baseline: CSPLib family, no selected hard instance yet; CP-SAT must remain allowed. Research card only; no new local trial; not submission-ready."
+}

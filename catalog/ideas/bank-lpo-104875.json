@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-lpo-104875",
+  "title": "Lower signed-to-unsigned saturation",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "compiler-optimization",
+    "optimize",
+    "evidence-b"
+  ],
+  "hypothesis": "One saturated conversion rewrite. Signed lower-bound handling and unsigned clamping must survive truncation.",
+  "why_hard": "Signed lower-bound handling and unsigned clamping must survive truncation. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/uw-pluverse/lpo-artifact/blob/47e637067d95f696d8736f922ef722eb9266e4c7/previously_reported/issue_104875_src.ll",
+      "note": "Upstream issue_104875_src.ll; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #77. Proposed verifier: Independent exhaustive small-width saturation plus Alive2. Exclusion/easy baseline: Simple source remains a calibration lead; optimization benefit needs a measured target baseline. Research card only; no new local trial; not submission-ready."
+}

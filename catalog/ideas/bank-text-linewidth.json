@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-text-linewidth",
+  "title": "Measure wrapped mixed-script text correctly",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "document-layout",
+    "calculate",
+    "evidence-p"
+  ],
+  "hypothesis": "One line-layout measurement function. Glyph advances, grapheme boundaries and bidi runs cannot be treated as character widths.",
+  "why_hard": "Glyph advances, grapheme boundaries and bidi runs cannot be treated as character widths. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://harfbuzz.github.io/shaping-concepts.html",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #87. Proposed verifier: Pinned shaper output and independent layout fixtures. Exclusion/easy baseline: Provide exact fonts and wrapping policy; otherwise the answer is not uniquely specified. Research card only; no new local trial; not submission-ready."
+}

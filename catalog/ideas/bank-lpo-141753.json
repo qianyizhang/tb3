@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-lpo-141753",
+  "title": "Use range information in a bit-mask predicate",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "compiler-optimization",
+    "optimize",
+    "evidence-b"
+  ],
+  "hypothesis": "One predicate rewrite. Range metadata changes which bit patterns must be preserved.",
+  "why_hard": "Range metadata changes which bit patterns must be preserved. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/uw-pluverse/lpo-artifact/blob/47e637067d95f696d8736f922ef722eb9266e4c7/previously_reported/issue_141753_src.ll",
+      "note": "Upstream issue_141753_src.ll; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #75. Proposed verifier: Independent exhaustive domain plus Alive2. Exclusion/easy baseline: Tiny finite-domain reasoning is likely easy for Terra; low-priority calibration only. Research card only; no new local trial; not submission-ready."
+}

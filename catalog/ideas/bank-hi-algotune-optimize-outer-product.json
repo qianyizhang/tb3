@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-hi-algotune-optimize-outer-product",
+  "title": "Optimize a memory-bound outer product",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "numerical-computing",
+    "optimize",
+    "evidence-h"
+  ],
+  "hypothesis": "One Solver.solve method. Memory traffic and allocation dominate arithmetic.",
+  "why_hard": "Memory traffic and allocation dominate arithmetic. Evidence H: Harbor-Index task-level publisher TP/TN/FP/FN labels; individual completion audit pending, no Terra row.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://harbor-index.org/data/v1/tasks/algotune-optimize-outer-product",
+      "note": "Upstream algotune-optimize-outer-product; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #19. Proposed verifier: Every output element versus an independent product plus stable timing. Exclusion/easy baseline: Likely a bandwidth ceiling task; exclude if 1.8x rests on hardware luck rather than algorithmic work. Research card only; no new local trial; not submission-ready."
+}

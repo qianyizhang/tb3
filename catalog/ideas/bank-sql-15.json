@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-sql-15",
+  "title": "Insert at the first free date",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "database-mutation",
+    "repair",
+    "evidence-b"
+  ],
+  "hypothesis": "One transactional insert script. Find the earliest gap at or after a requested date, not max(date)+1.",
+  "why_hard": "Find the earliest gap at or after a requested date, not max(date)+1. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://huggingface.co/datasets/birdsql/bird-critic-1.0-sqlite",
+      "note": "Upstream SQLite_15; inspected 2026-09-12 at depth: public dataset viewer rows; full database/verifier not replayed."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #66. Proposed verifier: Independent set membership and unchanged-row checks. Exclusion/easy baseline: Single-user fixture only; do not add authentication or concurrency infrastructure. Research card only; no new local trial; not submission-ready."
+}

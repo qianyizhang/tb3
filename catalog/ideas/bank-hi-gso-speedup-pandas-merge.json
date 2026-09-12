@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-hi-gso-speedup-pandas-merge",
+  "title": "Optimize an ordered table join",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "data-engineering",
+    "optimize",
+    "evidence-h"
+  ],
+  "hypothesis": "One bounded join-kernel patch. Exploit sorted keys while retaining duplicate multiplicity and null behavior.",
+  "why_hard": "Exploit sorted keys while retaining duplicate multiplicity and null behavior. Evidence H: Harbor-Index task-level publisher TP/TN/FP/FN labels; individual completion audit pending, no Terra row.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://harbor-index.org/data/v1/tasks/gso-speedup-pandas-merge",
+      "note": "Upstream gso-speedup-pandas-merge; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #21. Proposed verifier: Full independent row comparison on varied keys, not aggregate sums. Exclusion/easy baseline: Released repository task may be long; source summary-only verifier is insufficient for a new task. Research card only; no new local trial; not submission-ready."
+}

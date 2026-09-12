@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-sql-20",
+  "title": "Detect changes with missing observations",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "data-quality",
+    "repair",
+    "evidence-b"
+  ],
+  "hypothesis": "One query returning changed or incomplete histories. SQL three-valued logic hides changes when null comparisons propagate.",
+  "why_hard": "SQL three-valued logic hides changes when null comparisons propagate. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://huggingface.co/datasets/birdsql/bird-critic-1.0-sqlite",
+      "note": "Upstream SQLite_20; inspected 2026-09-12 at depth: public dataset viewer rows; full database/verifier not replayed."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #68. Proposed verifier: Independent nullable-vector comparison on a small truth table. Exclusion/easy baseline: A plain COALESCE fix may be enough; retain as a diversity diagnostic until measured. Research card only; no new local trial; not submission-ready."
+}

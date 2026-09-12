@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-geo-epoch",
+  "title": "Recover a coordinate transform with an observation epoch",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "geodesy",
+    "calibrate",
+    "evidence-p"
+  ],
+  "hypothesis": "One PROJ pipeline and a coordinate table. Datum motion is separate from axis order and projection.",
+  "why_hard": "Datum motion is separate from axis order and projection. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://proj.org/en/stable/usage/transformation.html",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #79. Proposed verifier: Independent control points with known epoch and reverse transformation. Exclusion/easy baseline: All required grids and epoch metadata must be provided; missing downloads are not reasoning difficulty. Research card only; no new local trial; not submission-ready."
+}

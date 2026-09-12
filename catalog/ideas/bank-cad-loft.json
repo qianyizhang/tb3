@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-cad-loft",
+  "title": "Repair correspondence between two loft sections",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "geometric-modeling",
+    "repair",
+    "evidence-p"
+  ],
+  "hypothesis": "One valid loft model from two supplied closed profiles. Profile winding and seam correspondence can twist an otherwise valid loft.",
+  "why_hard": "Profile winding and seam correspondence can twist an otherwise valid loft. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://www.reddit.com/r/FreeCAD/comments/1oeh6o7",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #100. Proposed verifier: Independent section reproduction, manifoldness and volume. Exclusion/easy baseline: Reddit report lacks a verified valid fixture; invalid input or a kernel fault must not count as Terra failure. Research card only; no new local trial; not submission-ready."
+}

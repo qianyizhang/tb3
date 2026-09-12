@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-algo-cvar-projection",
+  "title": "Project onto a tail-risk constraint",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "risk-mathematics",
+    "optimize",
+    "evidence-b"
+  ],
+  "hypothesis": "One projected vector. The active tail set changes with the projection itself.",
+  "why_hard": "The active tail set changes with the projection itself. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/oripress/AlgoTune/blob/dff9914c10800c7a031c9e8c3d4d1c8cd1b38906/AlgoTuneTasks/cvar_projection/cvar_projection.py",
+      "note": "Upstream cvar_projection; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #40. Proposed verifier: Independent convex objective and tail-loss constraint residual. Exclusion/easy baseline: Mathematical synthetic data only; a generic convex solver may already be adequate. Research card only; no new local trial; not submission-ready."
+}

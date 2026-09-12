@@ -8,6 +8,14 @@ The earlier search over-weighted plausible bug mechanisms. Six local Terra
 passes are evidence to change the source-selection strategy. Start from
 published, inspectable failures and then isolate the smallest authentic crux.
 
+The subsequent [100-card broad task bank](research-broad-task-bank.md) expands
+this shortlist across benchmark sources, HN/Reddit practitioner leads and
+compact artifact types. It adds corrected CAD v2 Terra receipts and records
+evidence strength, proposed verification and easy-baseline exclusions for
+every card. Its 100 candidates are research leads, not demonstrated failures
+or runnable tasks. This document still owns benchmark-first prioritization;
+the bank owns the broader exploration inventory.
+
 ## Main finding
 
 [Terminal-Bench-Science 0.1](https://www.tbench.ai/news/terminal-bench-science-0-1)

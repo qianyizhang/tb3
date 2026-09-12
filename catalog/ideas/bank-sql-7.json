@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-sql-7",
+  "title": "Repair monthly inventory stock and flow",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "database-analytics",
+    "repair",
+    "evidence-b"
+  ],
+  "hypothesis": "One monthly stock/flow query. Open-ended lifetimes and month boundaries affect existing inventory.",
+  "why_hard": "Open-ended lifetimes and month boundaries affect existing inventory. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://huggingface.co/datasets/birdsql/bird-critic-1.0-sqlite",
+      "note": "Upstream SQLite_7; inspected 2026-09-12 at depth: public dataset viewer rows; full database/verifier not replayed."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #63. Proposed verifier: Independent event sweep on a small synthetic ledger. Exclusion/easy baseline: Specify whether removals count before or after month-end; initial rows alone may hide mistakes. Research card only; no new local trial; not submission-ready."
+}

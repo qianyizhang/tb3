@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-algo-feedback-controller-design",
+  "title": "Construct a stabilizing state-feedback gain",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "control-systems",
+    "construct",
+    "evidence-b"
+  ],
+  "hypothesis": "One gain matrix. Recover a well-conditioned controller from an LMI witness.",
+  "why_hard": "Recover a well-conditioned controller from an LMI witness. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/oripress/AlgoTune/blob/dff9914c10800c7a031c9e8c3d4d1c8cd1b38906/AlgoTuneTasks/feedback_controller_design/feedback_controller_design.py",
+      "note": "Upstream feedback_controller_design; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #37. Proposed verifier: Independent closed-loop eigenvalues and Lyapunov residual. Exclusion/easy baseline: Source notation mixes L/Y; use executable definition and a standard control-library baseline. Research card only; no new local trial; not submission-ready."
+}

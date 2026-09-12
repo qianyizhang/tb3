@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-rtl-asyn-fifo",
+  "title": "Asynchronous FIFO pointer wrap",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "digital-hardware",
+    "repair",
+    "evidence-b"
+  ],
+  "hypothesis": "One FIFO module patch. Cross-clock Gray pointers and wrap bits determine full versus empty.",
+  "why_hard": "Cross-clock Gray pointers and wrap bits determine full versus empty. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/hkust-zhiyao/RTLLM/blob/51ed553d0ffd32797a1a0a13e051656bf302c81f/Memory/FIFO/asyn_fifo/design_description.txt",
+      "note": "Upstream Memory/FIFO/asyn_fifo; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #42. Proposed verifier: Independent queue scoreboard across clock ratios plus formal bounded properties. Exclusion/easy baseline: Source describes configurable depth but fixed pointer widths; resolve the contract and audit the oracle. Research card only; no new local trial; not submission-ready."
+}

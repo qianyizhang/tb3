@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-rtl-radix2-div",
+  "title": "Signed divider under output backpressure",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "digital-hardware",
+    "construct",
+    "evidence-b"
+  ],
+  "hypothesis": "One arithmetic RTL module. Signed remainder rules must coexist with a stalled result handshake.",
+  "why_hard": "Signed remainder rules must coexist with a stalled result handshake. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/hkust-zhiyao/RTLLM/blob/51ed553d0ffd32797a1a0a13e051656bf302c81f/Arithmetic/Divider/radix2_div/design_description.txt",
+      "note": "Upstream Arithmetic/Divider/radix2_div; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #43. Proposed verifier: Exhaustive small operands plus independently generated handshake traces. Exclusion/easy baseline: Define division by zero and signed overflow explicitly; do not impose an arbitrary microarchitecture. Research card only; no new local trial; not submission-ready."
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-hi-algotune-simplex-projection-speedup",
+  "title": "Accelerate probability-simplex projection",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "convex-optimization",
+    "optimize",
+    "evidence-h"
+  ],
+  "hypothesis": "One Solver.solve method. Find the active threshold without full generic optimization.",
+  "why_hard": "Find the active threshold without full generic optimization. Evidence H: Harbor-Index task-level publisher TP/TN/FP/FN labels; individual completion audit pending, no Terra row.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://harbor-index.org/data/v1/tasks/algotune-simplex-projection-speedup",
+      "note": "Upstream algotune-simplex-projection-speedup; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #20. Proposed verifier: KKT conditions, nonnegativity, mass and independent objective. Exclusion/easy baseline: Displayed example y=[1,1.2] -> [.25,.75] is inconsistent with Euclidean projection; audit source and 5x bar. Research card only; no new local trial; not submission-ready."
+}

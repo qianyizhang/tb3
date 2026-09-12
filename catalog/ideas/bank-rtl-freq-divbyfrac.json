@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-rtl-freq-divbyfrac",
+  "title": "Half-integer clock division with phase correctness",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "digital-hardware",
+    "construct",
+    "evidence-b"
+  ],
+  "hypothesis": "One small clock-divider module. Both clock edges determine output phase and duty cycle.",
+  "why_hard": "Both clock edges determine output phase and duty cycle. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/hkust-zhiyao/RTLLM/blob/51ed553d0ffd32797a1a0a13e051656bf302c81f/Miscellaneous/Frequency%20divider/freq_divbyfrac/design_description.txt",
+      "note": "Upstream Miscellaneous/Frequency divider/freq_divbyfrac; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #45. Proposed verifier: Independent edge-time sequence and synthesis legality checks. Exclusion/easy baseline: If the supplied recipe makes it routine, retire it; timing must be fully specified. Research card only; no new local trial; not submission-ready."
+}

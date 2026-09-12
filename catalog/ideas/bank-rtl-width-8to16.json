@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-rtl-width-8to16",
+  "title": "Generalize a width converter without losing a partial word",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "digital-hardware",
+    "repair",
+    "evidence-b"
+  ],
+  "hypothesis": "One small streaming converter patch with supplied variable-width interface. Remainder bits and backpressure must preserve byte order across boundaries.",
+  "why_hard": "Remainder bits and backpressure must preserve byte order across boundaries. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/hkust-zhiyao/RTLLM/blob/51ed553d0ffd32797a1a0a13e051656bf302c81f/Miscellaneous/Others/width_8to16/design_description.txt",
+      "note": "Upstream Miscellaneous/Others/width_8to16; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #46. Proposed verifier: Independent bitstream concatenation scoreboard with stalls/reset. Exclusion/easy baseline: Published 8-to-16 task is likely easy; variable non-divisible widths are a new extraction hypothesis, not its measured difficulty. Research card only; no new local trial; not submission-ready."
+}

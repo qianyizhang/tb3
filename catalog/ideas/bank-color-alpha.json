@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-color-alpha",
+  "title": "Repair compositing across alpha and color spaces",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "color-science",
+    "repair",
+    "evidence-p"
+  ],
+  "hypothesis": "One image compositing function. Premultiplied alpha and nonlinear transfer functions cannot be mixed arbitrarily.",
+  "why_hard": "Premultiplied alpha and nonlinear transfer functions cannot be mixed arbitrarily. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://www.w3.org/TR/compositing-1/",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #90. Proposed verifier: Independent linear-light analytical pixels and transparent-edge cases. Exclusion/easy baseline: Explicitly state color profiles and alpha convention; standard color libraries are allowed. Research card only; no new local trial; not submission-ready."
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-hi-bix-cpg-density-jackdaw",
+  "title": "Compute CpG density with the right denominator",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "genomics",
+    "analyze",
+    "evidence-h"
+  ],
+  "hypothesis": "One scalar and an audit table. Unique loci, strict methylation filters and chromosome weighting.",
+  "why_hard": "Unique loci, strict methylation filters and chromosome weighting. Evidence H: Harbor-Index task-level publisher TP/TN/FP/FN labels; individual completion audit pending, no Terra row.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://harbor-index.org/data/v1/tasks/bix-cpg-density-jackdaw",
+      "note": "Upstream bix-cpg-density-jackdaw; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #11. Proposed verifier: Independent set arithmetic and independently checked chromosome lengths. Exclusion/easy baseline: Question may underspecify arithmetic versus length-weighted mean; resolve before running. Research card only; no new local trial; not submission-ready."
+}

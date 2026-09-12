@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-algo-chebyshev-center",
+  "title": "Recover a largest inscribed ball",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "computational-geometry",
+    "optimize",
+    "evidence-b"
+  ],
+  "hypothesis": "One center/radius or an unboundedness certificate. Normalize facet constraints and recognize recession directions.",
+  "why_hard": "Normalize facet constraints and recognize recession directions. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/oripress/AlgoTune/blob/dff9914c10800c7a031c9e8c3d4d1c8cd1b38906/AlgoTuneTasks/chebyshev_center/chebyshev_center.py",
+      "note": "Upstream chebyshev_center; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #41. Proposed verifier: Independent facet distances and LP dual/recession certificate. Exclusion/easy baseline: Source generator uses few facets relative to dimension; audit boundedness before running and park invalid instances. Research card only; no new local trial; not submission-ready."
+}

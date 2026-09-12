@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-media-vfr",
+  "title": "Retain audio and subtitle timing after a VFR edit",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "video-processing",
+    "repair",
+    "evidence-p"
+  ],
+  "hypothesis": "One transformed clip and time-map JSON. Presentation timestamps, frame counts and subtitle time bases differ.",
+  "why_hard": "Presentation timestamps, frame counts and subtitle time bases differ. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://ffmpeg.org/ffmpeg-filters.html",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #88. Proposed verifier: Independent decoded timestamp/event alignment on a synthetic clip. Exclusion/easy baseline: Simple conversion complaints were setup failures; use a real timing invariant and prepared codecs. Research card only; no new local trial; not submission-ready."
+}

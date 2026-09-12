@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-sheet-55468",
+  "title": "Repair a lookup across two header axes",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "spreadsheet-engineering",
+    "repair",
+    "evidence-b"
+  ],
+  "hypothesis": "One lookup formula. Each axis has a composite key; independent MATCH calls select incompatible rows.",
+  "why_hard": "Each axis has a composite key; independent MATCH calls select incompatible rows. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/RUCKBReasoning/SpreadsheetBench/blob/49b73a94775fb489063f60ca1865e3a650079a79/data/spreadsheetbench_verified_400.tar.gz",
+      "note": "Upstream 55468; inspected 2026-09-12 at depth: verified_archive_metadata; workbook XML not yet audited."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #52. Proposed verifier: Independent keyed table lookup under renamed/reordered headers. Exclusion/easy baseline: Likely solvable once layout is explicit; retain only if the ordinary array-formula baseline misses. Research card only; no new local trial; not submission-ready."
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-font-instance",
+  "title": "Preserve metrics when instancing a variable font",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "font-engineering",
+    "transform",
+    "evidence-p"
+  ],
+  "hypothesis": "One static font instance and metric report. Composite variation and metric deltas must agree at the chosen axis location.",
+  "why_hard": "Composite variation and metric deltas must agree at the chosen axis location. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://fonttools.readthedocs.io/en/latest/varLib/instancer.html",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #86. Proposed verifier: Independent fontTools instance, shaping metrics and outline samples. Exclusion/easy baseline: fontTools may solve it directly; require an actual documented transformation bug before promotion. Research card only; no new local trial; not submission-ready."
+}

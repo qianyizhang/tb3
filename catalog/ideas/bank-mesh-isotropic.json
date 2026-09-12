@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-mesh-isotropic",
+  "title": "Remesh a surface while preserving sharp features",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "geometry-processing",
+    "transform",
+    "evidence-p"
+  ],
+  "hypothesis": "One small remeshed surface. Feature constraints and isotropic edge targets must coexist at corners.",
+  "why_hard": "Feature constraints and isotropic edge targets must coexist at corners. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://doc.cgal.org/latest/Polygon_mesh_processing/index.html",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #98. Proposed verifier: Independent Hausdorff distance, feature retention and mesh-quality checks. Exclusion/easy baseline: CGAL remeshing is an allowed baseline; avoid arbitrary aesthetic constraints. Research card only; no new local trial; not submission-ready."
+}

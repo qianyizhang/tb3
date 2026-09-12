@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-hi-gso-speedup-pillow-filter",
+  "title": "Optimize a 3D color lookup filter",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "image-processing",
+    "optimize",
+    "evidence-h"
+  ],
+  "hypothesis": "One bounded filtering-kernel patch. Interpolate a 3D lookup table without sacrificing channel accuracy.",
+  "why_hard": "Interpolate a 3D lookup table without sacrificing channel accuracy. Evidence H: Harbor-Index task-level publisher TP/TN/FP/FN labels; individual completion audit pending, no Terra row.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://harbor-index.org/data/v1/tasks/gso-speedup-pillow-filter",
+      "note": "Upstream gso-speedup-pillow-filter; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #22. Proposed verifier: Full pixel comparison and independent interpolation samples. Exclusion/easy baseline: Source average-color check is weak; repository setup and remote test image must be replaced by prepared inputs. Research card only; no new local trial; not submission-ready."
+}

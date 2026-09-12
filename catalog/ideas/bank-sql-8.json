@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-sql-8",
+  "title": "Merge only connected mission time spans",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "temporal-databases",
+    "repair",
+    "evidence-b"
+  ],
+  "hypothesis": "One interval-coalescing query. Nested intervals require a running frontier, not only the previous end time.",
+  "why_hard": "Nested intervals require a running frontier, not only the previous end time. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://huggingface.co/datasets/birdsql/bird-critic-1.0-sqlite",
+      "note": "Upstream SQLite_8; inspected 2026-09-12 at depth: public dataset viewer rows; full database/verifier not replayed."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #64. Proposed verifier: Independent interval-union algorithm on touching/nested/disjoint spans. Exclusion/easy baseline: Nested-span hardening is an original variant; published prompt shows continuity but not every edge case. Research card only; no new local trial; not submission-ready."
+}

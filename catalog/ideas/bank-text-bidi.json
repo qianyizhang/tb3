@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-text-bidi",
+  "title": "Preserve logical-to-visual indices in mixed-direction text",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "internationalization",
+    "repair",
+    "evidence-p"
+  ],
+  "hypothesis": "One small index-mapping routine. Isolate boundaries and combining characters alter visual ordering.",
+  "why_hard": "Isolate boundaries and combining characters alter visual ordering. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://www.unicode.org/reports/tr9/tr9-51.html",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #84. Proposed verifier: Pinned Unicode bidi conformance cases and inverse index checks. Exclusion/easy baseline: Only text layout; no spoofing, parser attacks or security task. Existing bidi library allowed. Research card only; no new local trial; not submission-ready."
+}

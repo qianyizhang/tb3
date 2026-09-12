@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-sql-21",
+  "title": "Compare recursive make-versus-buy costs",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "database-algorithms",
+    "repair",
+    "evidence-b"
+  ],
+  "hypothesis": "One query over an acyclic recipe graph. Shared ingredients and nested recipes need consistent quantities.",
+  "why_hard": "Shared ingredients and nested recipes need consistent quantities. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://huggingface.co/datasets/birdsql/bird-critic-1.0-sqlite",
+      "note": "Upstream SQLite_21; inspected 2026-09-12 at depth: public dataset viewer rows; full database/verifier not replayed."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #69. Proposed verifier: Independent bottom-up graph cost calculation. Exclusion/easy baseline: Source wording alone may not require recursion; a recursive variant is new and must supply an acyclic graph. Research card only; no new local trial; not submission-ready."
+}

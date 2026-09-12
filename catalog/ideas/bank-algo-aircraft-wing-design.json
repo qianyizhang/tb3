@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-algo-aircraft-wing-design",
+  "title": "Solve a coupled wing design model",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "aeronautics",
+    "optimize",
+    "evidence-b"
+  ],
+  "hypothesis": "One small vector of wing dimensions. Weight, lift and drag are coupled through a geometric program.",
+  "why_hard": "Weight, lift and drag are coupled through a geometric program. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/oripress/AlgoTune/blob/dff9914c10800c7a031c9e8c3d4d1c8cd1b38906/AlgoTuneTasks/aircraft_wing_design/aircraft_wing_design.py",
+      "note": "Upstream aircraft_wing_design; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #36. Proposed verifier: Independent physical residuals and convexified objective bound. Exclusion/easy baseline: A supplied design model only; no real flight qualification. Standard GP may be sufficient. Research card only; no new local trial; not submission-ready."
+}

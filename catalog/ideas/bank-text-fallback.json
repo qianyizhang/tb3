@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-text-fallback",
+  "title": "Keep a grapheme intact during font fallback",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "typography",
+    "repair",
+    "evidence-p"
+  ],
+  "hypothesis": "One font-run selection function. Character coverage does not establish that a grapheme can be shaped correctly.",
+  "why_hard": "Character coverage does not establish that a grapheme can be shaped correctly. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://www.reddit.com/r/programming/comments/1m6a7xo/we_maintain_harfbuzz_the_text_shaping_engine_used/",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #83. Proposed verifier: Pinned font fixtures and independent HarfBuzz glyph/cluster traces. Exclusion/easy baseline: Practitioner difficulty only; simple shaper-first fallback may suffice. Research card only; no new local trial; not submission-ready."
+}

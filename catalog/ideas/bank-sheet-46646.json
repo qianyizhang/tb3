@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-sheet-46646",
+  "title": "Count night shifts across calendar boundaries",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "workforce-planning",
+    "calculate",
+    "evidence-b"
+  ],
+  "hypothesis": "One monthly percentage row. Rotation phase and calendar length must use the same anchor.",
+  "why_hard": "Rotation phase and calendar length must use the same anchor. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/RUCKBReasoning/SpreadsheetBench/blob/49b73a94775fb489063f60ca1865e3a650079a79/data/spreadsheetbench_verified_400.tar.gz",
+      "note": "Upstream 46646; inspected 2026-09-12 at depth: verified_archive_metadata; workbook XML not yet audited."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #53. Proposed verifier: Independent day-by-day schedule enumeration over leap and non-leap years. Exclusion/easy baseline: Read workbook rotation definition; formatting is secondary and must not manufacture difficulty. Research card only; no new local trial; not submission-ready."
+}

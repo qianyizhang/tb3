@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-algo-earth-movers-distance",
+  "title": "Accelerate a discrete transport plan",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "optimal-transport",
+    "optimize",
+    "evidence-b"
+  ],
+  "hypothesis": "One transport matrix. Exploit cost structure while satisfying both marginals.",
+  "why_hard": "Exploit cost structure while satisfying both marginals. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/oripress/AlgoTune/blob/dff9914c10800c7a031c9e8c3d4d1c8cd1b38906/AlgoTuneTasks/earth_movers_distance/earth_movers_distance.py",
+      "note": "Upstream earth_movers_distance; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #35. Proposed verifier: Independent marginal constraints and dual optimality gap. Exclusion/easy baseline: Uniform generated marginals may reduce to assignment; test that baseline before promotion. Research card only; no new local trial; not submission-ready."
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-algo-channel-capacity",
+  "title": "Optimize a channel input distribution",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "information-theory",
+    "optimize",
+    "evidence-b"
+  ],
+  "hypothesis": "One probability distribution and capacity. Optimize entropy stably near vanishing probabilities.",
+  "why_hard": "Optimize entropy stably near vanishing probabilities. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/oripress/AlgoTune/blob/dff9914c10800c7a031c9e8c3d4d1c8cd1b38906/AlgoTuneTasks/channel_capacity/channel_capacity.py",
+      "note": "Upstream channel_capacity; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #39. Proposed verifier: Independent mutual information and primal/dual capacity bounds. Exclusion/easy baseline: Blahut-Arimoto may solve it directly; continuous score does not establish Terra failure. Research card only; no new local trial; not submission-ready."
+}

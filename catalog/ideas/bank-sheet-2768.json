@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-sheet-2768",
+  "title": "Allocate incoming stock across repeated order lines",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "operations",
+    "allocate",
+    "evidence-b"
+  ],
+  "hypothesis": "One allocation range. Order-level stock must not be counted again for each matching line.",
+  "why_hard": "Order-level stock must not be counted again for each matching line. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/RUCKBReasoning/SpreadsheetBench/blob/49b73a94775fb489063f60ca1865e3a650079a79/data/spreadsheetbench_verified_400.tar.gz",
+      "note": "Upstream 2768; inspected 2026-09-12 at depth: verified_archive_metadata; workbook XML not yet audited."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #49. Proposed verifier: Independent sequential inventory ledger and conservation of units. Exclusion/easy baseline: Freeze priority and tie rules; full workbook layout must be inspected before calling this ready. Research card only; no new local trial; not submission-ready."
+}

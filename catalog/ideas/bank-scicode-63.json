@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-scicode-63",
+  "title": "Resolve an early-exercise boundary",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "computational-finance",
+    "solve",
+    "evidence-i"
+  ],
+  "hypothesis": "One price and exercise-boundary table for a supplied toy contract. Optimal stopping differs from a European payoff expectation.",
+  "why_hard": "Optimal stopping differs from a European payoff expectation. Evidence I: Exact parent ID found in a benchmark index; proposed extraction needs full statement/data audit.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://scicode-bench.github.io/problems/",
+      "note": "Upstream 63_Estimating_Stock_Option_Price; inspected 2026-09-12 at depth: published_problem_index_only."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #32. Proposed verifier: Independent lattice/PDE convergence and no-arbitrage bounds. Exclusion/easy baseline: Parent index only inspected; American-option extraction is proposed, not asserted source content or financial advice. Research card only; no new local trial; not submission-ready."
+}

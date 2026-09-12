@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-geo-cluster",
+  "title": "Repair transitive clustering of intersecting shapes",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "spatial-databases",
+    "repair",
+    "evidence-p"
+  ],
+  "hypothesis": "One spatial query or merge routine. Connectivity is transitive even when two members never intersect directly.",
+  "why_hard": "Connectivity is transitive even when two members never intersect directly. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://postgis.net/docs/ST_ClusterIntersectingWin.html",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #81. Proposed verifier: Independent intersection graph components. Exclusion/easy baseline: ST_ClusterIntersectingWin may solve it directly; only retain a real integration/partition crux. Research card only; no new local trial; not submission-ready."
+}

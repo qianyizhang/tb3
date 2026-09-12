@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-mesh-orient",
+  "title": "Orient nested mesh shells for correct material volume",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "3d-geometry",
+    "repair",
+    "evidence-p"
+  ],
+  "hypothesis": "One oriented mesh. An interior cavity has opposite material orientation from an exterior shell.",
+  "why_hard": "An interior cavity has opposite material orientation from an exterior shell. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://doc.cgal.org/latest/Polygon_mesh_processing/index.html",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #97. Proposed verifier: Independent winding/containment checks and analytical cavity volumes. Exclusion/easy baseline: Only valid benign geometry; no malformed-file or crash-finding task. Research card only; no new local trial; not submission-ready."
+}

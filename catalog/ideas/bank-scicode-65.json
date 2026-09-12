@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-scicode-65",
+  "title": "Evaluate noisy entanglement fidelity",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "quantum-information",
+    "compute",
+    "evidence-i"
+  ],
+  "hypothesis": "One density-matrix function. Noise composition and tensor ordering change the same-looking circuit.",
+  "why_hard": "Noise composition and tensor ordering change the same-looking circuit. Evidence I: Exact parent ID found in a benchmark index; proposed extraction needs full statement/data audit.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://scicode-bench.github.io/problems/",
+      "note": "Upstream 65_GHZ_protocol_fidelity; inspected 2026-09-12 at depth: published_problem_index_only."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #26. Proposed verifier: Independent small-matrix channel calculation and trace/positivity checks. Exclusion/easy baseline: Explicitly give subsystem order; no dependence on cryptographic applications. Research card only; no new local trial; not submission-ready."
+}

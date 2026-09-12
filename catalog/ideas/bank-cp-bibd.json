@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-cp-bibd",
+  "title": "Construct a balanced incomplete block design",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "experimental-design",
+    "construct",
+    "evidence-p"
+  ],
+  "hypothesis": "One incidence matrix. Pair co-occurrence counts must agree globally with row/column degrees.",
+  "why_hard": "Pair co-occurrence counts must agree globally with row/column degrees. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://www.csplib.org/Problems/prob028/",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Problem family prob028."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #95. Proposed verifier: Independent exact matrix products and combinatorial constraints. Exclusion/easy baseline: Do not ask for a nonexistent design; known constructors are an allowed baseline. Research card only; no new local trial; not submission-ready."
+}

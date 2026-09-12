@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-lpo-123175",
+  "title": "Generalize a no-wrap multiply reassociation",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "compiler-optimization",
+    "prove",
+    "evidence-b"
+  ],
+  "hypothesis": "One LLVM IR rewrite and its valid precondition. Intermediate poison domains change under reassociation.",
+  "why_hard": "Intermediate poison domains change under reassociation. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/uw-pluverse/lpo-artifact/blob/47e637067d95f696d8736f922ef722eb9266e4c7/previously_reported/issue_123175_src.ll",
+      "note": "Upstream issue_123175_src.ll; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #70. Proposed verifier: Alive2 refinement proof plus real target profitability. Exclusion/easy baseline: No published found artifact is not proof of a model miss; a profitable valid rewrite must first be demonstrated. Research card only; no new local trial; not submission-ready."
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-lpo-142497",
+  "title": "Simplify a leading-zero byte-count idiom",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "compiler-optimization",
+    "optimize",
+    "evidence-b"
+  ],
+  "hypothesis": "One target-aware IR rewrite. Ceiling division and the zero input interact with count-leading-zero semantics.",
+  "why_hard": "Ceiling division and the zero input interact with count-leading-zero semantics. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/uw-pluverse/lpo-artifact/blob/47e637067d95f696d8736f922ef722eb9266e4c7/previously_reported/issue_142497_src.ll",
+      "note": "Upstream issue_142497_src.ll; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #76. Proposed verifier: Independent integer byte counts, Alive2 and target cost. Exclusion/easy baseline: A standard idiom may pass immediately; do not manufacture hardness with a shorter time cap. Research card only; no new local trial; not submission-ready."
+}

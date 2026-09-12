@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-sheet-254-34",
+  "title": "Find an invoice subset within a reconciliation tolerance",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "accounting",
+    "construct",
+    "evidence-b"
+  ],
+  "hypothesis": "One selected subset and highlighted cells. Exact amount selection has multiple valid witnesses.",
+  "why_hard": "Exact amount selection has multiple valid witnesses. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/RUCKBReasoning/SpreadsheetBench/blob/49b73a94775fb489063f60ca1865e3a650079a79/data/spreadsheetbench_verified_400.tar.gz",
+      "note": "Upstream 254-34; inspected 2026-09-12 at depth: verified_archive_metadata; workbook XML not yet audited."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #55. Proposed verifier: Independent sum and membership checks; accept any valid witness. Exclusion/easy baseline: Do not grade only one golden highlight pattern; generic subset-sum solver may make this easy. Research card only; no new local trial; not submission-ready."
+}

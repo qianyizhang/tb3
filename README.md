@@ -6,6 +6,8 @@ Docker runs through Colima on this Mac. The Codex CLI is repaired and retains it
 
 The [benchmark-backed survey](docs/research-benchmark-backed.md) is the current selection authority. It inspects Terminal-Bench-Science's 70-task inventory, five compact tasks with Terra 0/3, and their public trial evidence, alongside Harbor-Index and other research benchmarks. Baseline-free damage localization is the strongest current lead: one function returning a coordinate, three valid but inaccurate Terra submissions, and fast verification. These are external published results, not new local trials or original submissions.
 
+The [100-card broad task bank](docs/research-broad-task-bank.md) expands this into 23 broad directions, including CAD, hardware, SQL, spreadsheets, compilers, typography, GIS and media. It adds six completed Terra/max CAD observations, records HN/Reddit leads and counterexamples, and gives every candidate a small deliverable, proposed verifier and easy-baseline exclusion. These are research candidates, not 100 runnable tasks or demonstrated Terra failures. Search the catalog for `broad-bank-100`.
+
 Six local frozen snapshots completed valid Terra/high passes and remain retired: cache invalidation, nested Dremel assembly, Ninja dynamic dependencies, SQLite EXISTS optimization, Clipper2 PolyTree hierarchy, and integral homology bases. The [earlier short-horizon screen](docs/research-short-horizon.md) and [interpolation reproduction](docs/research-numerical-candidates.md) are retained. The local denominator remains six passes, zero genuine failures, and two infrastructure-only attempts; no local Sol/Opus trial has run.
 
 Current research scope explicitly excludes security tasks and favors hard but less complex, short-horizon work: one conceptual crux, a small deliverable and fast independent verification. See [AGENTS.md](AGENTS.md) for the durable scope instructions.
@@ -18,6 +20,7 @@ Current research scope explicitly excludes security tasks and favors hard but le
 | [Harder screen](docs/harder-screen.md) | Broader incident research, measured trials, and promotion criteria. |
 | [Short-horizon survey](docs/research-short-horizon.md) | Eight diverse directions, explicit non-security scope, homology pass and numerical follow-up. |
 | [Benchmark-backed survey](docs/research-benchmark-backed.md) | Current shortlist: published failures, task-level audit, compactness, fairness concerns and source-selection decisions. |
+| [100-card broad task bank](docs/research-broad-task-bank.md) | Diverse experiment candidates, corrected CAD receipts, community anecdotes, evidence labels and preparation queue. |
 | [Catalog](docs/catalog.md) | Searchable idea/trial records and local browser report. |
 | [Requirements](docs/requirements.md) | Frozen CI/defaults, discrepancies, human-authored submission requirements. |
 | [Codex repair](docs/codex-repair.md) | Diagnosis, repair command and checks. |

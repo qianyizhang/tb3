@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-rtl-pulse-detect",
+  "title": "Write a discriminating temporal checker",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "hardware-verification",
+    "verify",
+    "evidence-b"
+  ],
+  "hypothesis": "One assertion/checker for a specified short event pattern. Overlapping occurrences and reset sampling distinguish plausible implementations.",
+  "why_hard": "Overlapping occurrences and reset sampling distinguish plausible implementations. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://github.com/hkust-zhiyao/RTLLM/blob/51ed553d0ffd32797a1a0a13e051656bf302c81f/Miscellaneous/Others/pulse_detect/design_description.txt",
+      "note": "Upstream Miscellaneous/Others/pulse_detect; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #47. Proposed verifier: Independent enumerated traces and semantic mutants. Exclusion/easy baseline: Published pulse detector is basic; checker mutation task is newly proposed and may also be easy. Research card only; no new local trial; not submission-ready."
+}

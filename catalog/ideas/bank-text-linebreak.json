@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-text-linebreak",
+  "title": "Reshape an Indic cluster at a line boundary",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "typography",
+    "repair",
+    "evidence-p"
+  ],
+  "hypothesis": "One line-break/shaping integration fix. Safe break positions and cluster reordering require contextual reshaping.",
+  "why_hard": "Safe break positions and cluster reordering require contextual reshaping. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://harfbuzz.github.io/working-with-harfbuzz-clusters.html",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #85. Proposed verifier: Independent whole-run versus broken-run glyph traces at allowed boundaries. Exclusion/easy baseline: Do not grade screenshots by aesthetic similarity; use licensed pinned fonts. Research card only; no new local trial; not submission-ready."
+}

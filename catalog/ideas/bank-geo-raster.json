@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-geo-raster",
+  "title": "Preserve quantity while remapping a masked raster",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "remote-sensing",
+    "transform",
+    "evidence-p"
+  ],
+  "hypothesis": "One small remapped raster and weight matrix. NoData masks and partial-cell areas affect conservation.",
+  "why_hard": "NoData masks and partial-cell areas affect conservation. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://gdal.org/en/stable/programs/gdalwarp.html",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #80. Proposed verifier: Independent cell-overlap areas and global mass conservation. Exclusion/easy baseline: A plain gdalwarp command is the easy baseline; specify intensive versus extensive values. Research card only; no new local trial; not submission-ready."
+}

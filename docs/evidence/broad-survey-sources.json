@@ -1,0 +1,503 @@
+{
+  "schema_version": 1,
+  "survey_date": "2026-09-12",
+  "purpose": "Retrieval provenance; cache bodies remain ignored and are not runtime fixtures. Candidate-level source URLs and exact upstream IDs are in broad-task-bank.json.",
+  "git_inventories": {
+    "cad-submission-tree": {
+      "git_tree_revision": "6b85cbafd00961c105b1fbc2173163a9b595bbdd",
+      "response_sha256": "e6cc0751dd0768c1f9814ee5169266eae8b1955c946c9be45b576b1ec8f165a7",
+      "truncated": false
+    },
+    "sygus-tree": {
+      "git_tree_revision": "13c8deb68a873635879c9a69bc78caebd340f646",
+      "response_sha256": "178176ad368728774ffa98460c40338e515cf893b5bcbf86795b6f33d82e9d8a",
+      "truncated": false
+    },
+    "rtllm-tree": {
+      "git_tree_revision": "51ed553d0ffd32797a1a0a13e051656bf302c81f",
+      "response_sha256": "01447c2d2f7d4566f633430b4dc60be5d9bec81fa1587b58373a2d279b30092e",
+      "truncated": false
+    },
+    "typst-tree": {
+      "git_tree_revision": "00103d295e19edd82b44a0b766dfca444d463d53",
+      "response_sha256": "46690bfe483bc18f78541c05e135c372a2953e1e40214e69fbb1b1e8333ff26c",
+      "truncated": false
+    },
+    "algotune-tree": {
+      "git_tree_revision": "dff9914c10800c7a031c9e8c3d4d1c8cd1b38906",
+      "response_sha256": "783926e9ab59fe0bd51bc60ecc1ae5f1e52d185659bbb4ef6fd0450e210b660a",
+      "truncated": false
+    },
+    "sheets-tree": {
+      "git_tree_revision": "49b73a94775fb489063f60ca1865e3a650079a79",
+      "response_sha256": "8663f9d5c73a36d64ea737c6f1ba8836fc017e31bcb1b162431d178f18d0f590",
+      "truncated": false
+    },
+    "scicode-tree": {
+      "git_tree_revision": "e3158ea011d4235245a547460d3688d7ccbf9900",
+      "response_sha256": "c05e94b2be8d91635baa2b8464d15212f8f56924027bc57ddb4bcca5907ac781",
+      "truncated": false
+    },
+    "bird-tree": {
+      "git_tree_revision": "f408d6c9db9f16e75b44a1e23f22c04579d1f390",
+      "response_sha256": "98fecaec3bd88a03884b7771b1adbb18f0c25f11398068380a9ffe22af3f8add",
+      "truncated": false
+    },
+    "frontier-tree": {
+      "git_tree_revision": "ae69c52ce978968918f6f04d4e6ba99d31ddd3be",
+      "response_sha256": "a441c19354e33fc3e1f6f7e3bf8a93c9f7298c93c25078add9c40902829ae320",
+      "truncated": false
+    },
+    "cvdp-tree": {
+      "git_tree_revision": "8e894cf74414ab1eaea1e2b4e80a02f123df07b6",
+      "response_sha256": "57562d9a40ccef08ab543b043eeed0e9f973c83daa3ef756b9f6ae12307efa3f",
+      "truncated": false
+    },
+    "lpo-tree": {
+      "git_tree_revision": "47e637067d95f696d8736f922ef722eb9266e4c7",
+      "response_sha256": "df27ed96209edec96323d96d1fc504b49876b7a8947fceabe902074cacd76c82",
+      "truncated": false
+    }
+  },
+  "known_retrieval_limits": [
+    "Several direct Hugging Face requests timed out; BIRD SQLite rows were read through the public web dataset viewer. No full SQLite dataset fixture or verifier was downloaded.",
+    "CVDP GitHub example has one easy arbiter; no new hard CVDP task IDs were selected.",
+    "SciCode additions are index-level parent references only.",
+    "Spreadsheet Verified 400 metadata was read from the downloaded 14958255-byte archive; source/golden workbook XML was not examined.",
+    "Typst source files inspected include simple formatting and a draft advanced table; none enter the 100-card bank.",
+    "CAD v2 score details and eight trial records were read; submitted CAD geometry was not independently replayed."
+  ],
+  "source_scope": "All URLs were public research sources. No authentication, private data, model launch, installation or publication.",
+  "retrieved_source_content": [
+    {
+      "cache_name": "sheets-metadata.json",
+      "bytes": 306533,
+      "sha256": "bcecaa89a005bd4e3bbe98da150a86e8062c27f262e575d5e47bd9861b3525e7"
+    },
+    {
+      "cache_name": "science-dapi-he-alignment.md",
+      "bytes": 2694,
+      "sha256": "1f8720b3271ba0c7438800093967e3d34478699a2ba2010d6c103c7f3202c486"
+    },
+    {
+      "cache_name": "science-geometric-pharmacophore-alignment.md",
+      "bytes": 1724,
+      "sha256": "dd0023a3e041eef7f6a6eacb84c88086099c82e28ac53266bbc47b4044f3eaaf"
+    },
+    {
+      "cache_name": "science-mri-harmonization.md",
+      "bytes": 4351,
+      "sha256": "8374497cd03e38cbf234ffed2575fe844a14d0f72da1f4a9c0e1e94d60311df5"
+    },
+    {
+      "cache_name": "science-nanoindentation-property-extraction.md",
+      "bytes": 9770,
+      "sha256": "30b8f7673bd206ffd00e80515e96c61514192cf31e6fc55ca1aa163984c432cb"
+    },
+    {
+      "cache_name": "science-ont-tn-qc.md",
+      "bytes": 5780,
+      "sha256": "88c6db474d9eef6140aa47da9d53b24546b0bc307c468e4f7e4db76f0ef08033"
+    },
+    {
+      "cache_name": "rtl-asyn_fifo.txt",
+      "bytes": 5354,
+      "sha256": "26037554c6ccc19811444a1bbeb9bc811dd42e8f41de6a2503b906a35f2eab7b"
+    },
+    {
+      "cache_name": "rtl-float_multi.txt",
+      "bytes": 1976,
+      "sha256": "b5b52a39d155ff8bec4a95148ac3f3be9b6ac803b53ed8d139c9ba49a8852df7"
+    },
+    {
+      "cache_name": "rtl-freq_divbyfrac.txt",
+      "bytes": 1489,
+      "sha256": "1ec158d00b58c44e167142f10fbd87b9182dc4c2c6c15f24f80ae8a9e6ba6881"
+    },
+    {
+      "cache_name": "rtl-pulse_detect.txt",
+      "bytes": 1512,
+      "sha256": "cdc350928bd3af1c4849fb1c04382096164236ffbdc979420628715bb1727c5a"
+    },
+    {
+      "cache_name": "rtl-radix2_div.txt",
+      "bytes": 2176,
+      "sha256": "4d05a33590edb04685a6c0f3caf32e0ceef55814f682a0165a35cbb6cb071ce4"
+    },
+    {
+      "cache_name": "rtl-width_8to16.txt",
+      "bytes": 1860,
+      "sha256": "e5ead5c4adb9523c6d3bb9a036a9e53197afc138963a08afcadde5ad35a16acd"
+    },
+    {
+      "cache_name": "algo-aircraft_wing_design.py",
+      "bytes": 17736,
+      "sha256": "8f234a9b3bbc2216d08136ab46ef3c8ee96466680878e3249c7c0e641f6aa3ba"
+    },
+    {
+      "cache_name": "algo-battery_scheduling.py",
+      "bytes": 15897,
+      "sha256": "c5cb5aa43c6cc7cf1d939faeed10b540d647e69db1068bff96e607d2fc5319b4"
+    },
+    {
+      "cache_name": "algo-channel_capacity.py",
+      "bytes": 3884,
+      "sha256": "6c3c5472044485b3ba7ab1c640d4ae624c78cd555a90c1ab477bde8dd416de76"
+    },
+    {
+      "cache_name": "algo-chebyshev_center.py",
+      "bytes": 4252,
+      "sha256": "9050519fdfd9189e9008b0c7fa2d5226ea8eb2d7dab8debcb1cdd6231e31d155"
+    },
+    {
+      "cache_name": "algo-cvar_projection.py",
+      "bytes": 6561,
+      "sha256": "c71fc3928b3a606fe519080354894d55f22132a1acde78636275faab05e6f3c3"
+    },
+    {
+      "cache_name": "algo-earth_movers_distance.py",
+      "bytes": 6764,
+      "sha256": "84879353c13160d2f40d7c4be5af06309bded8671142c7186cf605324ec6ed88"
+    },
+    {
+      "cache_name": "algo-feedback_controller_design.py",
+      "bytes": 6151,
+      "sha256": "226670de4a7b95aeb6bb2aa09a704f4f398472851b86b5a820505fae65ec3a2d"
+    },
+    {
+      "cache_name": "algo-firls.py",
+      "bytes": 2524,
+      "sha256": "b5e217a5d18db7ef5b7e728b0588bc5ecb558a97b6d79b956f0d36d08ea08782"
+    },
+    {
+      "cache_name": "algo-job_shop_scheduling.py",
+      "bytes": 5609,
+      "sha256": "10f616b3f6f80a121b9631485181bd5629430aa7136390a06985385a0de2b66a"
+    },
+    {
+      "cache_name": "lpo-issue_104875_src.ll",
+      "bytes": 192,
+      "sha256": "de4ff19cf41139acd9056148237b605dfa308b89aa16917f7fd668eb79b3b9f4"
+    },
+    {
+      "cache_name": "lpo-issue_107228_src.ll",
+      "bytes": 208,
+      "sha256": "312f4e10944b694148438c57b7deb0fee8c35cf5f989a2f8a1af0c1c0c7cd6b1"
+    },
+    {
+      "cache_name": "lpo-issue_108451_src.ll",
+      "bytes": 135,
+      "sha256": "5705f44b8442ef40a41618caee1557ecd4013d0c917f8eb6aed4f3f3cff6091c"
+    },
+    {
+      "cache_name": "lpo-issue_108559_src1.ll",
+      "bytes": 152,
+      "sha256": "9e58a1dc7b92d49433ccc86641b0fdd3b124cf04bfb0761830427c9e30dc511b"
+    },
+    {
+      "cache_name": "lpo-issue_110591_src.ll",
+      "bytes": 237,
+      "sha256": "cc4a5eaa58643fa7721a89b3a817adbf07811da029ddda6e5e31ee3672f8e480"
+    },
+    {
+      "cache_name": "lpo-issue_115466_src.ll",
+      "bytes": 186,
+      "sha256": "88e8d1937017f860b3a8d4970178e0d77d071f209fb9fcac4e811691d9ebd5ca"
+    },
+    {
+      "cache_name": "lpo-issue_118155_src.ll",
+      "bytes": 106,
+      "sha256": "5d455f2378d42c7fd540acec081d066c14f9ec032e924d5867d62484cfc3764b"
+    },
+    {
+      "cache_name": "lpo-issue_122235_src.ll",
+      "bytes": 123,
+      "sha256": "236596ff200b8014b94a8cc497c340c25f2243892c2ee433de1be8ec90d788d1"
+    },
+    {
+      "cache_name": "lpo-issue_122388_src.ll",
+      "bytes": 170,
+      "sha256": "bd59a2d6b3c1acd43fd936d4915dde20ffbd99897f0a2134d29a7c8bb32e3401"
+    },
+    {
+      "cache_name": "lpo-issue_123175_src.ll",
+      "bytes": 115,
+      "sha256": "39dc092882f0662ec320eeaf31bbe139d7284373597b6a45f7ba047ab2731361"
+    },
+    {
+      "cache_name": "lpo-issue_128475_src.ll",
+      "bytes": 112,
+      "sha256": "d9b071b4c4f73630ffa8eaf18e7a608c116449f2d2e0d70d2e0f40e5a25f1d39"
+    },
+    {
+      "cache_name": "lpo-issue_128778_src1.ll",
+      "bytes": 188,
+      "sha256": "d84c9db0c2562563670317546853e7753531b792b1cb3703b66d33e387e456c1"
+    },
+    {
+      "cache_name": "lpo-issue_129947_src1.ll",
+      "bytes": 224,
+      "sha256": "4d1b762dcb663a04c10476fca48bca32e41a891f2afcb98a22093e550081669c"
+    },
+    {
+      "cache_name": "lpo-issue_131444_src.ll",
+      "bytes": 117,
+      "sha256": "497711a38d80f3db70b8254bf818f59cff629abcfb9b7f8f3c538f9bff5b2069"
+    },
+    {
+      "cache_name": "lpo-issue_132508_src.ll",
+      "bytes": 184,
+      "sha256": "27758d2571252a25507d39e5a59956931a395bac4b19f5022b2fb067a03f9de1"
+    },
+    {
+      "cache_name": "lpo-issue_134318_src.ll",
+      "bytes": 138,
+      "sha256": "1aaf794d8de9f01f5ee91901948daff1418157077a9b7eac7a3bd16cad5431f8"
+    },
+    {
+      "cache_name": "lpo-issue_135411_src.ll",
+      "bytes": 118,
+      "sha256": "08153b69cba5c89e65bd680259f2bc46930245742c7c67fecafedf8e2640e8ba"
+    },
+    {
+      "cache_name": "lpo-issue_141479_src.ll",
+      "bytes": 223,
+      "sha256": "4984541fbd88b33dd357d155146f86fc5da8a1239dfddde1ea17d7cfa52ce9a1"
+    },
+    {
+      "cache_name": "lpo-issue_141753_src.ll",
+      "bytes": 138,
+      "sha256": "4c566505522fad0d6e3c46d9a809e05664f7c3a44e65d5a28cacfc8f1e6e44fb"
+    },
+    {
+      "cache_name": "lpo-issue_141930_src.ll",
+      "bytes": 260,
+      "sha256": "a63e61c8d464bee41a0af8547bdfdbed6878ee156d3695171a70d21b9f399052"
+    },
+    {
+      "cache_name": "lpo-issue_142497_src.ll",
+      "bytes": 358,
+      "sha256": "15f4141b9cf557f057c69ce17b27b9715851bcda3c6ec7cbe171e18f052265d1"
+    },
+    {
+      "cache_name": "lpo-issue_142593_src.ll",
+      "bytes": 344,
+      "sha256": "25d2370a0014409ac84b51fc57146c390f6d5e162c9f9232b48da8c3ae1e1a9a"
+    },
+    {
+      "cache_name": "lpo-issue_143259_src.ll",
+      "bytes": 210,
+      "sha256": "b4c926070ab2be0fe7860cd6329a58e6fa731fe5af871e87f68cf498667db186"
+    },
+    {
+      "cache_name": "hi-algotune-optimize-lti-sim.html",
+      "bytes": 109712,
+      "sha256": "a24cf553c0402b088d93c62f1d413182ace2548a951ca2ebdd203b6540e85b9c"
+    },
+    {
+      "cache_name": "hi-algotune-optimize-ode-seirs.html",
+      "bytes": 116019,
+      "sha256": "8bcd177f3d1cab62beef3936fa231be7e0909508c078e3bdc9612623f8790ce0"
+    },
+    {
+      "cache_name": "hi-algotune-optimize-outer-product.html",
+      "bytes": 99627,
+      "sha256": "e3bef50d89201997439a12069c77c418815f10fb8d4109f29ade08def3be60c7"
+    },
+    {
+      "cache_name": "hi-algotune-simplex-projection-speedup.html",
+      "bytes": 103312,
+      "sha256": "9a3608ebee0b8d388164d57d905af91d3f70bc53ed6b82e44f65359ae2fd323e"
+    },
+    {
+      "cache_name": "hi-arcagi2-grid-transform-88e3.html",
+      "bytes": 322221,
+      "sha256": "55dd6a0efffa2e5ae2b8444cf2e63338b483b0976515e1ebdd4ede26a51b7a63"
+    },
+    {
+      "cache_name": "hi-arcagi2-grid-transform-8b7b.html",
+      "bytes": 340884,
+      "sha256": "6d871c5da6bc8a2f827e0313b7604a4392af906b8c4ee1f9e25ff64dcd42ad7d"
+    },
+    {
+      "cache_name": "hi-arcagi2-grid-transform-a32d.html",
+      "bytes": 429985,
+      "sha256": "6553beac2339e7c8e54e6ddfc444a5b30e54c507133ae475ae38ce89bd2671f0"
+    },
+    {
+      "cache_name": "hi-arcagi2-grid-transform-de80.html",
+      "bytes": 297536,
+      "sha256": "bcc2447622866d399a7c85cd531d9bbdfc292e9b1164c3d00aa531fc334e8608"
+    },
+    {
+      "cache_name": "hi-arcagi2-grid-transform-faa9.html",
+      "bytes": 203554,
+      "sha256": "1927bafb5700fc2dd80d833e8000a3f353d70b34746cc6bcdf30f18c3d5ca1b3"
+    },
+    {
+      "cache_name": "hi-bix-cpg-density-jackdaw.html",
+      "bytes": 93850,
+      "sha256": "ba5b6d283bea4521e82233e83336aa6326460d983707bb8acf26fcfab643703e"
+    },
+    {
+      "cache_name": "hi-bix-diff-expr-mirna.html",
+      "bytes": 93542,
+      "sha256": "646866815bfb4c97480d782135961ded3614e1f16a53ec1feeb6f5a723f180f1"
+    },
+    {
+      "cache_name": "hi-bix-ordinal-logit-covid.html",
+      "bytes": 94788,
+      "sha256": "d36243a2ec624719c583c59417d067d3e2f87fbc9caeefde26aaae4aeeb3c900"
+    },
+    {
+      "cache_name": "hi-gpqadiamond-cope-rearrangement-products.html",
+      "bytes": 95867,
+      "sha256": "431c197e901d902a787dc2f5cbd83940085398dd097ca5b978d9c67f6cc82398"
+    },
+    {
+      "cache_name": "hi-gso-speedup-pandas-merge.html",
+      "bytes": 99955,
+      "sha256": "8e868e74831070589af714cef3c0a9da62517977a3372bdaab3e75b3c9f8b8c1"
+    },
+    {
+      "cache_name": "hi-gso-speedup-pillow-filter.html",
+      "bytes": 100166,
+      "sha256": "cbf480112c7c5c3fed4741ccc343e4372a015fb7154e680979e69445fbf06cee"
+    },
+    {
+      "cache_name": "hi-hle-vowel-marking-system.html",
+      "bytes": 95562,
+      "sha256": "c02ba4f6053086ee540134a139a00190732a50df61abc2c8545dff7a29cda0f3"
+    },
+    {
+      "cache_name": "hi-labbench-count-deg-in-pathway.html",
+      "bytes": 94019,
+      "sha256": "2ac9b16d6d162582b765da0dbe9c2408d6892ff7fa4946fd986d883083ba18dd"
+    },
+    {
+      "cache_name": "hi-labbench-habenula-fluorescence-change.html",
+      "bytes": 94766,
+      "sha256": "ef87830d6930bbeb3640e915d5198cd675d3dd284c61228086229b34efd4553a"
+    },
+    {
+      "cache_name": "cad-detail-163672a65f.json",
+      "bytes": 562,
+      "sha256": "a2752057bf30798e7483793b06d93239db94ec5b8672cfc0cb6225a49d47ebd5"
+    },
+    {
+      "cache_name": "cad-detail-41b24257f7.json",
+      "bytes": 566,
+      "sha256": "1dbf2a264a65efeea154167786a82500d45460aca1dbab7b2b6d89e36c5c07f2"
+    },
+    {
+      "cache_name": "cad-detail-7476ec86b6.json",
+      "bytes": 448,
+      "sha256": "6f834276d0bd8bec608b45751db46e99883abbb24f7c2ea0e01d798e2d9cf666"
+    },
+    {
+      "cache_name": "cad-detail-83ca2dab2e.json",
+      "bytes": 558,
+      "sha256": "29ff1d47dbccac6a9cc32a056cd760d965a69779ffc326efb9b3d642b0577898"
+    },
+    {
+      "cache_name": "cad-detail-8450a6402b.json",
+      "bytes": 563,
+      "sha256": "822e9d4343b6a984e2c62ef913358c93b759c3900bdad3eb0668e42dcf31fb34"
+    },
+    {
+      "cache_name": "cad-detail-b55517ee4b.json",
+      "bytes": 557,
+      "sha256": "0158ed5aaf0e30e7cda5d8ba3c68654e48312d3d24f2ec701b75765d88f78d45"
+    },
+    {
+      "cache_name": "cad-detail-dbf8356a78.json",
+      "bytes": 567,
+      "sha256": "ecebac0227a4d2ca4253f168d97be5904f687a8794015bd49bf5199a10f2e674"
+    },
+    {
+      "cache_name": "cad-detail-fa1a50cf2b.json",
+      "bytes": 446,
+      "sha256": "111fe8e55862467b15cfdbeea6a87e67ecdb6f405e5da6e03bc9732567bae1dd"
+    },
+    {
+      "cache_name": "cad-toml-163672a65f.txt",
+      "bytes": 916,
+      "sha256": "2331c4e2a7659d2e3a144d2f18036289594c9b1094a544e138b7fdd081e8485e"
+    },
+    {
+      "cache_name": "cad-toml-41b24257f7.txt",
+      "bytes": 915,
+      "sha256": "eddf9aa98adaaa87e55fb6d2559004f13dcedad787339c3b68b7ab1baff49ffb"
+    },
+    {
+      "cache_name": "cad-toml-7476ec86b6.txt",
+      "bytes": 914,
+      "sha256": "5085b59f6ebd03a9286abd911ff086883d05bd0d8509ad1b1be258cd750ee0db"
+    },
+    {
+      "cache_name": "cad-toml-83ca2dab2e.txt",
+      "bytes": 912,
+      "sha256": "10b1c3017d47f08651ee4d3032346654f760d40e0e0acdcb447424aa6c5d7757"
+    },
+    {
+      "cache_name": "cad-toml-8450a6402b.txt",
+      "bytes": 913,
+      "sha256": "4f616494b156efddc2e32c16925695f02daaa6cca21b50079885b66569512f76"
+    },
+    {
+      "cache_name": "cad-toml-b55517ee4b.txt",
+      "bytes": 912,
+      "sha256": "9e13a97edc52705a2a6480cc2e793e1ebb4f49749b0db964e046122830ab1822"
+    },
+    {
+      "cache_name": "cad-toml-dbf8356a78.txt",
+      "bytes": 911,
+      "sha256": "13ac561d05070b1f2f96ffbb66160f5f46efea9c21ee4a8bca7ff7f0b287f103"
+    },
+    {
+      "cache_name": "cad-toml-fa1a50cf2b.txt",
+      "bytes": 912,
+      "sha256": "2b409c560e68a4a617d5543d851d6b5348e553999140f53edf3d95d0bb1c75fd"
+    },
+    {
+      "cache_name": "cad-task-163672a65f-instruction.txt",
+      "bytes": 1757,
+      "sha256": "a3128001e21f1a85b361f296e946b6d619c92bcd81510cb1fc1222824fdcb1fa"
+    },
+    {
+      "cache_name": "cad-task-41b24257f7-instruction.txt",
+      "bytes": 2328,
+      "sha256": "514d86fc1832038be923487682ed9945e4285d2db5b80814d567008d1c009357"
+    },
+    {
+      "cache_name": "cad-task-7476ec86b6-instruction.txt",
+      "bytes": 1742,
+      "sha256": "2363954ad94af6e875302aa5c98fcad85083d95463e9d5902a297a50770a4f77"
+    },
+    {
+      "cache_name": "cad-task-83ca2dab2e-instruction.txt",
+      "bytes": 1602,
+      "sha256": "c98542af693575e285b2110480ea3ecdab38a25f5422014fa4727829223ca434"
+    },
+    {
+      "cache_name": "cad-task-8450a6402b-instruction.txt",
+      "bytes": 1687,
+      "sha256": "643388283528dbcff2b5003e59a8ee50ba9d5ec60854ef4323b157f29d71751e"
+    },
+    {
+      "cache_name": "cad-task-b55517ee4b-instruction.txt",
+      "bytes": 1964,
+      "sha256": "ff8cf0338620ec8e1cae7653078cb1abf0dfb59a37c214164dd951bc4b79c506"
+    },
+    {
+      "cache_name": "cad-task-dbf8356a78-instruction.txt",
+      "bytes": 1713,
+      "sha256": "1f34b1eb4e0f2baad874b9f553d3044234e35583a27e4a75ead3f90dcc75f821"
+    },
+    {
+      "cache_name": "cad-task-fa1a50cf2b-instruction.txt",
+      "bytes": 2283,
+      "sha256": "3398bdc4bf89e2fc177dcb2107bfd24cdc20ae02799d3e72f094f92fe854c717"
+    }
+  ]
+}

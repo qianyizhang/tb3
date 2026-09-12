@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-scicode-18",
+  "title": "Preserve a rational spline during knot insertion",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "computational-geometry",
+    "transform",
+    "evidence-i"
+  ],
+  "hypothesis": "One knot-insertion function. Homogeneous weights and knot multiplicity must preserve the same curve.",
+  "why_hard": "Homogeneous weights and knot multiplicity must preserve the same curve. Evidence I: Exact parent ID found in a benchmark index; proposed extraction needs full statement/data audit.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://scicode-bench.github.io/problems/",
+      "note": "Upstream 18_NURBS; inspected 2026-09-12 at depth: published_problem_index_only."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #23. Proposed verifier: Independent dense curve/derivative evaluation before and after insertion. Exclusion/easy baseline: Parent NURBS subproblem statement still needs inspection; library implementations may make this easy. Research card only; no new local trial; not submission-ready."
+}

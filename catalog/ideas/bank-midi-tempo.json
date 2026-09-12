@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-midi-tempo",
+  "title": "Recover note intervals across tempo changes and sustain",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "music-software",
+    "transform",
+    "evidence-p"
+  ],
+  "hypothesis": "One note-event table. Delta ticks, changing tempo and sustain-release semantics determine sounding duration.",
+  "why_hard": "Delta ticks, changing tempo and sustain-release semantics determine sounding duration. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://mido.readthedocs.io/en/stable/files/midi.html",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #92. Proposed verifier: Independent event replay on a synthetic multitrack file. Exclusion/easy baseline: Timing policy for simultaneous events must be explicit; no subjective music-quality grading. Research card only; no new local trial; not submission-ready."
+}

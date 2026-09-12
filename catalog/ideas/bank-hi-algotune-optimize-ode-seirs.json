@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-hi-algotune-optimize-ode-seirs",
+  "title": "Accelerate a multiscale compartment ODE",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "dynamical-systems",
+    "optimize",
+    "evidence-h"
+  ],
+  "hypothesis": "One Solver.solve method. Use asymptotic structure while preserving transient and oscillatory behavior.",
+  "why_hard": "Use asymptotic structure while preserving transient and oscillatory behavior. Evidence H: Harbor-Index task-level publisher TP/TN/FP/FN labels; individual completion audit pending, no Terra row.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://harbor-index.org/data/v1/tasks/algotune-optimize-ode-seirs",
+      "note": "Upstream algotune-optimize-ode-seirs; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #18. Proposed verifier: High-precision integration, mass conservation and trajectory error. Exclusion/easy baseline: Published 1200x speed bar needs hardware and accuracy audit; not a clinical prediction task. Research card only; no new local trial; not submission-ready."
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "bank-cad-b55517ee4b",
+  "title": "Disk-brake hub and cooling-hole placement",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "cad",
+    "construct",
+    "evidence-c"
+  ],
+  "hypothesis": "One FreeCAD script and one FCStd. Correct named dimensions do not guarantee their correct relative placement.",
+  "why_hard": "Correct named dimensions do not guarantee their correct relative placement. Evidence C: New external Terra completed partial-credit CAD observation with score details; independent geometry audit pending.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://hub.harborframework.com/tasks/gnucleus-ai/freecad-b55517ee4b/latest",
+      "note": "Upstream gnucleus-ai/freecad-b55517ee4b; inspected 2026-09-12 at depth: task_text."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json",
+    "docs/evidence/cad-v2-survey.json"
+  ],
+  "notes": "Bank #58. Proposed verifier: Independent cross-sections, holes, solid volume and rebuilds. Exclusion/easy baseline: Source Terra has 12/12 parameter consistency but geometry mismatch; placement ambiguity still needs audit. Research card only; no new local trial; not submission-ready."
+}

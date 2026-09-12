@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-geo-antimeridian",
+  "title": "Repair a dateline-crossing polygon export",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "geospatial-geometry",
+    "repair",
+    "evidence-p"
+  ],
+  "hypothesis": "One GeoJSON transformation. Split crossing rings while retaining holes and geographic extent.",
+  "why_hard": "Split crossing rings while retaining holes and geographic extent. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://www.rfc-editor.org/info/rfc7946/",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #78. Proposed verifier: Independent geodesic area, topology and round-trip point inclusion. Exclusion/easy baseline: Existing geometry libraries may solve this; avoid repeating the already-passed planar Clipper probe. Research card only; no new local trial; not submission-ready."
+}

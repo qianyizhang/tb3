@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-audio-resample",
+  "title": "Align a resampled impulse response without phase drift",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "digital-signal-processing",
+    "repair",
+    "evidence-p"
+  ],
+  "hypothesis": "One resampling/alignment function. Fractional group delay and sample-grid origins determine phase.",
+  "why_hard": "Fractional group delay and sample-grid origins determine phase. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://ffmpeg.org/ffmpeg-filters.html#aresample",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #91. Proposed verifier: Independent sinusoid phase and impulse energy/delay checks. Exclusion/easy baseline: A mature resampler may already handle this; do not ban it to force difficulty. Research card only; no new local trial; not submission-ready."
+}

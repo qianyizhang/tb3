@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-render-refraction",
+  "title": "Fix nested-dielectric ray transmission",
+  "status": "parked",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "rendering",
+    "repair",
+    "evidence-p"
+  ],
+  "hypothesis": "One ray-medium transition function. Entering and leaving nested media changes the refractive-index ratio.",
+  "why_hard": "Entering and leaving nested media changes the refractive-index ratio. Evidence P: Community or primary-specification hypothesis; not measured model difficulty.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://www.pbr-book.org/4ed/Reflection_Models/Specular_Reflection_and_Transmission",
+      "note": "New task hypothesis; no upstream task ID. Source inspected 2026-09-12; Practitioner discussion or specification; no upstream task ID."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #99. Proposed verifier: Analytical Snell-law paths and total-internal-reflection cases. Exclusion/easy baseline: Use a tiny supplied renderer; a full renderer implementation is out of scope. Research card only; no new local trial; not submission-ready."
+}

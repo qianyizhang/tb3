@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "bank-sql-17",
+  "title": "Select the latest two records per subject",
+  "status": "idea",
+  "tags": [
+    "broad-bank-100",
+    "non-security",
+    "short-horizon",
+    "database-analytics",
+    "repair",
+    "evidence-b"
+  ],
+  "hypothesis": "One query preserving outer rows. Top-k-per-group and ties interact with a missing related row.",
+  "why_hard": "Top-k-per-group and ties interact with a missing related row. Evidence B: Public task specification/metadata or source fixture inspected; no qualifying Terra failure established.",
+  "next_action": "Audit the cited specification and oracle; try the ordinary library/solver baseline before preparing a frozen Terra diagnostic.",
+  "sources": [
+    {
+      "url": "https://huggingface.co/datasets/birdsql/bird-critic-1.0-sqlite",
+      "note": "Upstream SQLite_17; inspected 2026-09-12 at depth: public dataset viewer rows; full database/verifier not replayed."
+    }
+  ],
+  "evidence": [
+    "docs/research-broad-task-bank.md",
+    "docs/evidence/broad-task-bank.json"
+  ],
+  "notes": "Bank #67. Proposed verifier: Independent grouped sort and null-extension comparison. Exclusion/easy baseline: Specify ties and ordering; unsupported LATERAL syntax alone is an easy dialect fix. Research card only; no new local trial; not submission-ready."
+}
