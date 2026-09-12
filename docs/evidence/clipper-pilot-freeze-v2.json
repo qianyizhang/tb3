@@ -1,0 +1,21 @@
+{
+  "kind": "non-security-geometry-diagnostic",
+  "task": "probes/clipper-polytree",
+  "task_sha256": "62beb79943613942231a8ce2b06010725e49f6a1347423ce0b3ea89895f6e334",
+  "frozen_at": "2026-09-12T07:56:59.675576+00:00",
+  "upstream": "e2995b93b0a46edee7bc9942ea5622411a6d5bb9",
+  "source_commit": "4ae2372ddcb1bfae77ee6ae00b15e63cc66300c4",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "initial_attempts": 1,
+  "repeat_if_genuine_failure": 1,
+  "qualifying_final_trial": false,
+  "agent_timeout_seconds": 1800,
+  "validation_jobs": [
+    "clipper-oracle-v2-20260912",
+    "clipper-nop-v2-20260912"
+  ],
+  "pickup_from": "01a093fe-a6bb-7ef0-a1ca-da3b39e5aee2",
+  "model_job": "clipper-terra-high-v2-20260912",
+  "change_from_previous": "Before any model trial: normalize repeated ring endpoints correctly; semantic verdict accepts unordered trees; historical suite is diagnostic; check public tree links/levels and successful closed-path operation; explain Cargo registration; move dependency fetching before verifier COPY for build reuse."
+}

@@ -7,7 +7,7 @@ hygiene:
 	$(PYTHON) scripts/check_hygiene.py
 
 test:
-	$(PYTHON) -m unittest discover -s tests -p 'test_tb3*.py' -v
+	$(PYTHON) -m unittest discover -s tests -p 'test_*.py' -v
 
 # Inventory only: never delete ignored runs, caches, or frozen inputs.
 artifacts:

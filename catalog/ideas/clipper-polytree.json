@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "clipper-polytree",
+  "title": "Clipper2 horizontal joins and PolyTree hierarchy",
+  "hypothesis": "Three interacting horizontal-join state errors corrupt nested polygon hierarchy while ordinary polygons appear plausible.",
+  "why_hard": "Porting diagnosis crosses horizontal eligibility, sort order, and persisted traversal state; difficulty is unmeasured until a fair completed model trial.",
+  "status": "screening",
+  "tags": [
+    "geometry",
+    "rust",
+    "polygon-clipping"
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/larsbrubaker/clipper2-rust/commit/561f3f861f27cd2501678c3851e0d6cb2dd5c517",
+      "note": "Historical upstream geometry correction; prior source research and local reproduction are recorded in research-geometry-candidate.md."
+    }
+  ],
+  "evidence": [
+    "docs/research-geometry-candidate.md",
+    "docs/geometry-review.md",
+    "docs/pickup-20260912.md",
+    "probes/clipper-polytree/authoring/evidence/docker-control.json"
+  ],
+  "next_action": "Repair pre-trial geometry equivalence grading, freeze, run oracle/nop, then one Terra/high diagnostic.",
+  "notes": "Picked up from stopped source task; computational geometry only. The superseded first Harbor oracle was cancelled for authoring fixes, with no verifier reward and no model run."
+}
