@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "quad-face-flux",
+  "title": "Physical velocity from quadrilateral face fluxes",
+  "status": "calibration",
+  "tags": [
+    "brainstorm-20260914",
+    "numerical-geometry",
+    "finite-elements",
+    "non-security"
+  ],
+  "hypothesis": "An agent may interpolate fluxes as scalar velocities instead of using the required geometry.",
+  "why_hard": "Pointwise geometry and flux units interact; the original pilot does not inherit the spherical source failure.",
+  "next_action": "Retire the clean Terra/high pass. Continue E03.",
+  "sources": [
+    {
+      "url": "https://defelement.org/elements/raviart-thomas.html",
+      "note": "Public finite-element definition; direct mapping is permitted."
+    }
+  ],
+  "evidence": [
+    "docs/research-brainstorm-experiments-20260914.md",
+    "docs/evidence/quad-author-controls.json",
+    "docs/evidence/quad-pilot-freeze.json",
+    "docs/evidence/quad-trial-summary.json",
+    "catalog/analyses/quad-face-flux.md"
+  ],
+  "notes": "Terra passed 72/72 in 34.529 agent seconds. H02 not supported. Matching oracle 1/nop 0; eighth valid local pass."
+}

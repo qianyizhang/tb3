@@ -1,0 +1,47 @@
+{
+  "task": "probes/quad-face-flux",
+  "task_sha256": "d4d14db1f78837aaf2183fea02583d30061dc8f77cd973e302aebc4a416bb0c4",
+  "frozen_at": "2026-09-14T04:32:00.510092+00:00",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "agent_timeout_seconds": 1800,
+  "initial_attempts": 1,
+  "repeat_if_genuine_failure": 1,
+  "qualifying_final_trial": false,
+  "case_count": 72,
+  "controls": [
+    {
+      "job": "quad-oracle-v1-20260914",
+      "result": "runs/quad-oracle-v1-20260914/quad-face-flux__PHPEdej/result.json",
+      "task_checksum": "7df1ae085e30d1cd30257a51fb8c40c513630852b971102328a2809f43445400",
+      "reward": 1
+    },
+    {
+      "job": "quad-nop-v1-20260914",
+      "result": "runs/quad-nop-v1-20260914/quad-face-flux__PnMkt6g/result.json",
+      "task_checksum": "7df1ae085e30d1cd30257a51fb8c40c513630852b971102328a2809f43445400",
+      "reward": 0
+    }
+  ],
+  "model_job": "quad-terra-high-v1-20260914",
+  "files": {
+    "authoring/fixtures.py": "32b4a8d6c3dc8e35feda430b41ef39eb408b087373471a059429ddf3128402a5",
+    "authoring/notes.md": "de7ec8ed8a72996e847cc02347fc2082efec9aaee98e54c08da76f9b2939bf08",
+    "authoring/validate.py": "fbf906b7e970ada7a72baef3fa01b3e88d96fef6dac9ec30b89f7ceccdfbfc5d",
+    "environment/Dockerfile": "e41502b933709449182ea8a899da56d94b48123642d97301983512bac00a8ea7",
+    "environment/check_examples.py": "722f6927d7abd691ddbbfaa54f99d6cad865920d12ca114c8479dfe5079605c7",
+    "environment/driver.py": "4f9f029d01c93c9e635f77f823acc30e555ebf526f007ce444af61daeb4eaf24",
+    "environment/examples.json": "df2a78e4ecaf63629e991b5fc923e7019ba3c26d5d6d41c61a541603586cce46",
+    "environment/geometry.py": "0c97cd642cf8d45c515f48bfbf51874197652d2327fa783c9f0bf8217e8f5030",
+    "environment/solution.py": "a2edd87a567d8b096a56f6fc5148726fc280c1977948bc626df9fe1351d1fc17",
+    "instruction.md": "133d84659846573a84977a7967ed122a481103a62c57d64847ed74be1bd7a22e",
+    "solution/reference.py": "dbcaca1128a3b417e627d7f897442b7ed5761dc9b21a7e1c35a4640834eb7420",
+    "solution/solve.sh": "d2540384afe113213d17e012c21da980ce6bba309dceb263383cc210d1faf431",
+    "task.toml": "b2f650579253cb62b31cf30a20eda4d7f51591e05b107c364f0c46129deb5969",
+    "tests/Dockerfile": "4217a67a3b91e25b6c33aeb9c0cbc51787942f3e678988e95a0c2455fd651f02",
+    "tests/cases.json": "46ef52f81342acdc95a775b96e6a23c73764f32c179f44998073c6ac72ae4fba",
+    "tests/driver.py": "4f9f029d01c93c9e635f77f823acc30e555ebf526f007ce444af61daeb4eaf24",
+    "tests/test.sh": "411a55435dd5d955192f7635d0184062b7541159db7774a1b84cb0e8e485e2a0",
+    "tests/verifier.py": "81f8fb457c3d1219ce757c0591971682205d26315bb5f3f686e945c77745366c"
+  }
+}

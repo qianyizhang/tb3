@@ -29,8 +29,8 @@ errors, timeouts and source/oracle faults do not count as model failures.
 | ID | Deliverable and hypothesis | Independent evaluation | Initial status |
 | --- | --- | --- | --- |
 | E01 | Reconstruct a synthetic MR acquisition; storage order may be confused with metadata association | Canonical samples and physical landmarks generated before serialization; equivalent encodings; metadata profile audit | Retired: Terra passed 36/36 |
-| E02 | RT0 face-flux velocity on a planar quadrilateral; flux may be treated as scalar velocity | Manufactured reference-coordinate values plus physical-edge quadrature | Preparing |
-| E03 | First derivative of a separated spectral projector; arbitrary eigenbasis may be differentiated | Cross-subspace analytical VJP plus directional differences at several step sizes | Queued |
+| E02 | RT0 face-flux velocity on a planar quadrilateral; flux may be treated as scalar velocity | Manufactured reference-coordinate values plus physical-edge quadrature | Retired: Terra passed 72/72 |
+| E03 | First derivative of a separated spectral projector; arbitrary eigenbasis may be differentiated | Cross-subspace analytical VJP plus directional differences at several step sizes | Preparing |
 | E04 | Calibrate one fixed affine two-channel instrument under clamps; observational fitting may replace intervention testing | Independent structural equations, logged measurements, held-out settings | Queued; first check service support |
 | E05 | Canonical stress from extxyz stress/virial labels; round trip may hide physical change | Canonical tensor, determinant volume and rotated equivalents | Reserve; source audit first |
 | E06 | Derivative through one nongrazing collision; event-time dependence may be omitted | Analytical event trajectory plus directional differences with stable event count | Reserve; reproducer first |
@@ -89,3 +89,12 @@ Current local denominator after E01: seven valid Terra passes, zero genuine
 failures, two historical infrastructure-only attempts. The temporary automatic
 approval block was resolved by inspecting the synthetic/public agent payload;
 it did not execute a model attempt.
+
+## E02 result
+
+[Face-flux summary](evidence/quad-trial-summary.json): clean Terra/high pass,
+72/72, 34.529 agent seconds and 91.451 seconds total. Matching controls returned
+1/0. The agent directly implemented the declared Piola mapping; H02 is not
+supported. All eight base cells and their flux/rigid-transform variants passed.
+Current local denominator: eight passes, zero genuine failures, two historical
+infrastructure-only attempts. E03 follows without adding difficulty to E02.
