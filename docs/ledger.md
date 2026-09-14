@@ -64,7 +64,7 @@ All entries dated 2026-09-12. Research claims and ranked alternatives live in [r
 
 ## Denominators
 
-Completed early model diagnostics so far: **6 valid Terra/high passes**, **0 genuine model failures**, plus **2 infrastructure-only model attempts** from initial setup. Authoring oracle failures are separate controls and never model failures. Detailed controls and snapshot revisions are preserved in [initial summary](evidence/trial-summary.json), [harder summary](evidence/harder-trial-summary.json), [geometry summary](evidence/clipper-trial-summary.json), and [homology summary](evidence/homology-trial-summary.json).
+Completed early model diagnostics so far: **12 valid Terra/high passes**, **0 genuine model failures**, plus **2 infrastructure-only model attempts** from initial setup. Authoring oracle failures are separate controls and never model failures. Six passes predate the 2026-09-14 round; six are in the [completed brainstorm round](research-brainstorm-experiments-20260914.md). Detailed earlier controls and snapshot revisions remain preserved in [initial summary](evidence/trial-summary.json), [harder summary](evidence/harder-trial-summary.json), [geometry summary](evidence/clipper-trial-summary.json), and [homology summary](evidence/homology-trial-summary.json).
 
 Required final standard trials: **0/6**. Required final adversarial trials: **0/2**. No final task selected. See [harder screen](harder-screen.md) for active runs and the predeclared follow-up rule.
 
@@ -78,3 +78,26 @@ Required final standard trials: **0/6**. Required final adversarial trials: **0/
 | D04 | Homology Terra/high | **Completed pass**, 43/43 cases, no exception; 399.743s total, 340.514s agent, 12.735s verifier phase. | [Trial summary](evidence/homology-trial-summary.json), [trajectory review](../catalog/analyses/homology-calibration.md). Retire; no failure-confirmation or Sol trial. |
 | D05 | Numerical public-class follow-up | Both unchanged historical modules loaded with actual NumPy/SciPy helpers. Incremental linear output is 0.8 instead of 0.5 in the published patch; high-degree constructor fix works. | [Result](evidence/barycentric-public-api.json). Full historical module API witness, not a historical full-package build or model trial. Independent complete repair oracle is next. |
 | D06 | Repository validation | Staged artifact gate and 61 offline tests pass on Python 3.12.13. Local probe static sanity 21/22; human-authored task README absent. | runs/short-horizon-make-check.log. No final qualification claimed. |
+
+## Sequential brainstorm round (2026-09-14, complete)
+
+The user requested design and trials one by one from “Brainstorm New Tasks”.
+All six original pilots completed once under Terra/high with 1,800 seconds
+available. Each had matching healthy oracle 1 / nop 0 controls. Published
+source receipts are calibration evidence and remain distinct from this ledger.
+
+| ID | Diagnostic | Result | Evidence |
+| --- | --- | --- | --- |
+| B01 | MR frame association | Pass 36/36; 150.284 agent seconds; retired | [Summary](evidence/mr-trial-summary.json) |
+| B02 | Quadrilateral face-flux reconstruction | Pass 72/72; 34.529 seconds; retired | [Summary](evidence/quad-trial-summary.json) |
+| B03 | Spectral projector gradient | Pass 24/24; 102.691 seconds; retired | [Summary](evidence/projector-trial-summary.json) |
+| B04 | Clamped instrument calibration | Pass 20/20; 48.682 seconds; 42 measurements; retired | [Summary](evidence/instrument-trial-summary.json) |
+| B05 | Physical stress/virial conversion | Pass 36/36; 27.022 seconds; retired | [Summary](evidence/stress-trial-summary.json) |
+| B06 | Collision-event derivative | Pass 24/24; 46.887 seconds; retired | [Summary](evidence/collision-trial-summary.json) |
+
+The [round receipt](evidence/brainstorm-round-summary.json) verifies sequential
+model timestamps and unchanged frozen bytes. There were no model exceptions,
+repeats, Sol/Opus runs or genuine failures in this round. Two superseded MR
+draft controls and a corrected pre-freeze extxyz package build are retained;
+neither is a model failure. The proposed compact failure mechanisms were not
+observed. Final submission counts remain 0/6 standard and 0/2 adversarial.

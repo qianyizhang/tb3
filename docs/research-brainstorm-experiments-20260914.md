@@ -1,9 +1,42 @@
 # Sequential experiments from Brainstorm New Tasks
 
 Requested 2026-09-14. Reference: ChatGPT conversation
-`6aa74ac6-4190-83ee-9eaf-603e1ae6ab9e`, “Brainstorm New Tasks”. Its first
-four specifications were retrieved; the cached final response truncates during
-E05. These are proposed original extractions, not inherited benchmark failures.
+`6aa74ac6-4190-83ee-9eaf-603e1ae6ab9e`, “Brainstorm New Tasks”. Four full
+specifications and the two reserve overviews were retrieved; the cached final
+response truncates during E05. These are original extractions, not inherited
+benchmark failures.
+
+## Completed round
+
+All six ideas were designed, independently checked, frozen and trialed one by
+one. Each had a single healthy Terra/high pass; all are retired. The
+[round receipt](evidence/brainstorm-round-summary.json) checks unchanged frozen
+bytes, matching oracle/nop/model checksums and sequential model timestamps.
+
+| Experiment | Private cases passed | Terra agent seconds | Observed repair |
+| --- | ---: | ---: | --- |
+| E01 MR frame association | 36/36 | 150.284 | Actual acquisition metadata and physical slice positions |
+| E02 quadrilateral face flux | 72/72 | 34.529 | Declared contravariant Piola mapping |
+| E03 spectral projector gradient | 24/24 | 102.691 | Custom derivative using cross-subspace gaps |
+| E04 clamped instrument | 20/20 | 48.682 | 42 measurements; correct structural equations |
+| E05 stress/virial conversion | 36/36 | 27.022 | Voigt expansion and negative virial over absolute volume |
+| E06 collision derivative | 24/24 | 46.887 | Differentiate impact time and contact normal |
+
+These are **six model attempts**, not 212 independent attempts. Related
+encodings and rotations share canonical fixtures. Matching final oracle/nop
+controls returned 1/0 for every task; two earlier MR draft controls remain
+separately retained. No local Sol/Opus run or final qualification is claimed.
+The local ledger now has twelve healthy Terra passes, zero genuine failures
+and the same two historical infrastructure-only attempts.
+
+The trials do not support H01–H06 on these fixed profiles. Explicit semantics,
+working input helpers and standard mathematical repairs made these compact
+versions tractable. The audited source misses were often on different surfaces
+that the extraction removed. This does not show that the full source problems
+are easy, or estimate a general pass rate from one attempt per task. Do not
+scale these tasks or add restrictions to reverse the result. The existing
+benchmark-backed localization/stellar-period reproduction priorities remain
+unchanged; this round produced useful calibration tasks, no promoted candidate.
 
 ## Protocol fixed before trials
 
@@ -26,7 +59,7 @@ health, task success and support for the proposed hypothesis separately. A
 syntax error does not establish a conceptual misunderstanding. Infrastructure
 errors, timeouts and source/oracle faults do not count as model failures.
 
-| ID | Deliverable and hypothesis | Independent evaluation | Initial status |
+| ID | Deliverable and hypothesis | Independent evaluation | Final status |
 | --- | --- | --- | --- |
 | E01 | Reconstruct a synthetic MR acquisition; storage order may be confused with metadata association | Canonical samples and physical landmarks generated before serialization; equivalent encodings; metadata profile audit | Retired: Terra passed 36/36 |
 | E02 | RT0 face-flux velocity on a planar quadrilateral; flux may be treated as scalar velocity | Manufactured reference-coordinate values plus physical-edge quadrature | Retired: Terra passed 72/72 |

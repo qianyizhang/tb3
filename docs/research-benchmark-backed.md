@@ -8,6 +8,13 @@ The earlier search over-weighted plausible bug mechanisms. Six local Terra
 passes are evidence to change the source-selection strategy. Start from
 published, inspectable failures and then isolate the smallest authentic crux.
 
+The requested [2026-09-14 brainstorm round](research-brainstorm-experiments-20260914.md)
+subsequently tested six original compact extractions, all healthy Terra/high
+passes. They are retired, and the local denominator is now twelve passes.
+Audited SWE-bench-Science source misses differed from several extracted
+mechanisms; their published failure rates do not transfer to these pilots.
+This round does not change the benchmark-backed reproduction priorities below.
+
 The subsequent [100-card broad task bank](research-broad-task-bank.md) expands
 this shortlist across benchmark sources, HN/Reddit practitioner leads and
 compact artifact types. It adds corrected CAD v2 Terra receipts and records
