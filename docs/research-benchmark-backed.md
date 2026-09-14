@@ -15,6 +15,12 @@ Audited SWE-bench-Science source misses differed from several extracted
 mechanisms; their published failure rates do not transfer to these pilots.
 This round does not change the benchmark-backed reproduction priorities below.
 
+The later [BR-002 capability discussion](research-rounds/BR-002-sol-astra-capabilities.md)
+adds four proposed pilots and a queue of reported Sol-fail/Astra-pass source
+tasks. Their mechanisms and imported outcome claims await source audit; no new
+local trial or shortlist promotion is recorded. The [round register](research-rounds.md)
+keeps this intake distinct from completed screens and experiments.
+
 The subsequent [100-card broad task bank](research-broad-task-bank.md) expands
 this shortlist across benchmark sources, HN/Reddit practitioner leads and
 compact artifact types. It adds corrected CAD v2 Terra receipts and records

@@ -56,6 +56,12 @@ imported. It neither resumes nor cancels another session's work.
 
 ## Capture and curate ideas
 
+Use the [round register](research-rounds.md) to group recurring discussions and
+their experiment handoffs. Each candidate keeps one stable catalog ID and links
+its owning round specification. Search `brainstorm-round-002` for the four new
+Sol/Astra capability ideas. Round membership uses tags and existing evidence
+links; a new brainstorm is not a new trial or a model-failure classification.
+
 ```bash
 .venv/bin/python scripts/tb3_catalog.py idea-add my-candidate \
   --title 'A concrete user problem' \

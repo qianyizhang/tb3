@@ -18,6 +18,10 @@
   Published tasks are calibration references, not original submissions.
   A source bug, oracle fault, agent crash or timeout is not a genuine Terra
   failure. Final submission gates remain separately owned by requirements.md.
+- Keep recurring brainstorms in `docs/research-rounds.md`: assign stable round
+  IDs, retain source-message provenance and retrieval gaps, and link candidate
+  cards to their round. Separate proposed experiments from completed outcomes;
+  a later discussion in the same conversation may be a new round.
 
 ## Artifact ownership and checks
 

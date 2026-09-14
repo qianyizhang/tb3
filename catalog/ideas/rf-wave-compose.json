@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "rf-wave-compose",
+  "title": "Compose RF networks across wave conventions",
+  "status": "idea",
+  "tags": [
+    "brainstorm-round-002",
+    "sol-astra-capabilities",
+    "non-security",
+    "scientific-representation",
+    "rf",
+    "source-audit"
+  ],
+  "hypothesis": "Default wave/reference assumptions pass common 50-ohm controls but break equivalent encodings of the same connected physical networks.",
+  "why_hard": "Complex reference impedances and wave conventions must preserve the physical circuit during composition. A correct scikit-rf wrapper is allowed; source 047's actual failure mechanism remains unaudited.",
+  "next_action": "Audit source 047's seventh assertion, then compare a convention-aware scikit-rf baseline with an independently assembled nodal oracle.",
+  "sources": [
+    {
+      "url": "https://chatgpt.com/c/6aa74ac6-4190-83ee-9eaf-603e1ae6ab9e",
+      "note": "Brainstorm New Tasks, design message c360defc-431f-4eb3-926b-2bf1e633eb70; BR-002/D02. Retrieved prefix, not verified benchmark/model evidence."
+    }
+  ],
+  "evidence": [
+    "docs/research-rounds/BR-002-sol-astra-capabilities.md",
+    "docs/evidence/brainstorm-round-002-intake.json"
+  ],
+  "notes": "BR-002/D02; main scientific preparation candidate. Proposed eight circuit pairs, four representations and sixteen frequencies. GOLD-Z ablation supplies individual physical matrices. Reported 128 checks are discussion claims with no retrieved raw evidence; no local trials."
+}

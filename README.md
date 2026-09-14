@@ -14,6 +14,8 @@ The [round-two search](docs/research-candidate-search-r2-20260912.md) adds **12 
 
 The [sequential brainstorm experiments](docs/research-brainstorm-experiments-20260914.md) completed all four primary ideas and both reserves: MR frame association, quadrilateral flux, spectral-projector gradients, clamped-instrument calibration, stress conversion and collision derivatives. Each passed one Terra/high diagnostic with matching oracle/nop controls; all six are retired. The smaller original tasks did not inherit the published source failures.
 
+The [round register](docs/research-rounds.md) organizes that completed round as BR-001 and captures the later [Sol/Astra capability discussion](docs/research-rounds/BR-002-sol-astra-capabilities.md) as BR-002: moving-frame velocity, RF wave conventions, actuator memory and score-image transcription. The four new designs are ideas awaiting source/fixture checks, with no local attempts. Search the catalog for `brainstorm-round-002`; the register includes a template for future rounds.
+
 Together with the six earlier retired snapshots, the local denominator is now **twelve valid Terra/high passes, zero genuine failures, and two historical infrastructure-only attempts**. The [earlier short-horizon screen](docs/research-short-horizon.md) and [interpolation reproduction](docs/research-numerical-candidates.md) are retained; no local Sol/Opus trial has run.
 
 Current research scope explicitly excludes security tasks and favors hard but less complex, short-horizon work: one conceptual crux, a small deliverable and fast independent verification. See [AGENTS.md](AGENTS.md) for the durable scope instructions.
@@ -22,6 +24,7 @@ Current research scope explicitly excludes security tasks and favors hard but le
 | --- | --- |
 | [Setup](docs/setup.md) | Install/recreate environments, start Docker, subscription commands. |
 | [Ledger](docs/ledger.md) | Successful and failed attempts, evidence and remaining trial counts. |
+| [Round register](docs/research-rounds.md) | Recurring brainstorms, stable round IDs, candidate handoffs and a reusable template. |
 | [Sequential brainstorm experiments](docs/research-brainstorm-experiments-20260914.md) | Six completed original pilots, independent controls, frozen snapshots and clean Terra passes. |
 | [Research](docs/research.md) | Initial firsthand sources and ideas. |
 | [Harder screen](docs/harder-screen.md) | Broader incident research, measured trials, and promotion criteria. |

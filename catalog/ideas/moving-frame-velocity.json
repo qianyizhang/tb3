@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "moving-frame-velocity",
+  "title": "Convert velocity into a moving observation frame",
+  "status": "idea",
+  "tags": [
+    "brainstorm-round-002",
+    "sol-astra-capabilities",
+    "non-security",
+    "scientific-representation",
+    "kinematics",
+    "cheap-calibration"
+  ],
+  "hypothesis": "A rotation-only repair passes static controls but omits translating or rotating frame motion; test this proposed Sol/Astra contrast on a shared frozen task.",
+  "why_hard": "Recognizing a coordinate time derivative differs from rotating a velocity vector. A simple permitted derivative may solve it; difficulty is unknown.",
+  "next_action": "Audit source 041's actual failed assertions, reproduce the stationary-world-point witness and validate analytic/numerical derivative baselines before freezing.",
+  "sources": [
+    {
+      "url": "https://chatgpt.com/c/6aa74ac6-4190-83ee-9eaf-603e1ae6ab9e",
+      "note": "Brainstorm New Tasks, design message c360defc-431f-4eb3-926b-2bf1e633eb70; BR-002/D01. Retrieved prefix, not verified benchmark/model evidence."
+    }
+  ],
+  "evidence": [
+    "docs/research-rounds/BR-002-sol-astra-capabilities.md",
+    "docs/evidence/brainstorm-round-002-intake.json"
+  ],
+  "notes": "BR-002/D01. Proposed 12 tracks; formula/derivative-supplied ablations. Discussion-reported 32 checks lack retrieved raw artifacts. No local fixture or model run. Retire a clean Sol pass."
+}

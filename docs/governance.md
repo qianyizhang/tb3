@@ -14,6 +14,12 @@ outputs out of commits. It does not delete files or move frozen task inputs.
 | `runs/`, `jobs/` | Raw logs, trajectories, submissions and generated HTML; local, ignored. |
 | `.cache/`, `.venv*`, compiler/debug outputs | Rebuildable local material; ignored. |
 
+The [round register](research-rounds.md) owns brainstorm chronology and handoffs;
+round documents retain source provenance, proposed experiments and dispositions.
+They link candidate cards, plans, freezes and ledger evidence without replacing
+those authorities. Raw conversation exports stay local. Capturing a round does
+not establish its hypotheses or change the submission requirements.
+
 ## Commit gate
 
 `make hygiene` reads blobs and policy from the Git index, not the working files.
