@@ -1,0 +1,78 @@
+{
+  "case_count": 24,
+  "base_collisions": 8,
+  "rotations": 3,
+  "pass_counts": {
+    "autograd_reference": 24,
+    "coordinate_finite_difference": 24,
+    "frozen_event_and_normal": 6,
+    "zero_vjp": 3
+  },
+  "max_relative_errors": {
+    "reference_state": 2.8595513618106894e-16,
+    "reference_vjp": 4.818360159294913e-16,
+    "finite_difference": 5.902759030102827e-11,
+    "momentum": 1.1102230246251565e-16,
+    "energy": 1.3322676295501878e-15,
+    "contact_distance": 2.220446049250313e-16,
+    "forward_starter": 2.8595513618106894e-16,
+    "rotation_equivariance": 3.3397413177459e-16
+  },
+  "max_directional_relative_errors": {
+    "0.001": 1.7881608031240633e-06,
+    "0.0001": 1.8465520914940866e-08,
+    "1e-05": 2.3882409063132164e-10
+  },
+  "domain_bounds": {
+    "min_initial_separation": 1.3687707812362357,
+    "min_contact_time": 0.370074968352199,
+    "min_time_after_contact": 0.5250659119534056,
+    "min_normal_speed": 0.9808641271976701,
+    "max_cotangent": 2.036261926232751
+  },
+  "seconds": 0.38592229200003203,
+  "truth": "Known contact trajectory and implicit contact differential; independent quadratic-root autograd and finite differences.",
+  "linux_controls": {
+    "case_count": 24,
+    "base_collisions": 8,
+    "rotations": 3,
+    "pass_counts": {
+      "autograd_reference": 24,
+      "coordinate_finite_difference": 24,
+      "frozen_event_and_normal": 6,
+      "zero_vjp": 3
+    },
+    "max_relative_errors": {
+      "reference_state": 2.977185639869491e-16,
+      "reference_vjp": 4.2218649437255567e-16,
+      "finite_difference": 5.902759030102827e-11,
+      "momentum": 1.1102230246251565e-16,
+      "energy": 8.881784197001252e-16,
+      "contact_distance": 2.220446049250313e-16,
+      "forward_starter": 2.977185639869491e-16,
+      "rotation_equivariance": 2.814576629150371e-16
+    },
+    "max_directional_relative_errors": {
+      "0.001": 1.788160729113399e-06,
+      "0.0001": 1.846783019075035e-08,
+      "1e-05": 2.184682108295212e-10
+    },
+    "domain_bounds": {
+      "min_initial_separation": 1.3687707812362357,
+      "min_contact_time": 0.370074968352199,
+      "min_time_after_contact": 0.5250659119534056,
+      "min_normal_speed": 0.9808641271976702,
+      "max_cotangent": 2.036261926232751
+    },
+    "seconds": 0.4735410419998516,
+    "truth": "Known contact trajectory and implicit contact differential; independent quadratic-root autograd and finite differences."
+  },
+  "static": {
+    "manifest": "/Users/zhangqy/pkgs/tb3/runs/static-20260914T050252283427Z/manifest.json",
+    "pass_count": 21,
+    "check_count": 22,
+    "failures": [
+      "Task fields"
+    ]
+  }
+}

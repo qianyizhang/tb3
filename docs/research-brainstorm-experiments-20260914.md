@@ -33,7 +33,7 @@ errors, timeouts and source/oracle faults do not count as model failures.
 | E03 | First derivative of a separated spectral projector; arbitrary eigenbasis may be differentiated | Cross-subspace analytical VJP plus directional differences at several step sizes | Retired: Terra passed 24/24 |
 | E04 | Calibrate one fixed affine two-channel instrument under clamps; observational fitting may replace intervention testing | Independent structural equations, logged measurements, held-out settings | Retired: Terra passed 20/20 |
 | E05 | Canonical stress from extxyz stress/virial labels; round trip may hide physical change | Canonical tensor, determinant volume and rotated equivalents | Retired: Terra passed 36/36 |
-| E06 | Derivative through one nongrazing collision; event-time dependence may be omitted | Analytical event trajectory plus directional differences with stable event count | Reserve; reproducer first |
+| E06 | Derivative through one nongrazing collision; event-time dependence may be omitted | Analytical event trajectory plus directional differences with stable event count | Retired: Terra passed 24/24 |
 
 The reference's E01 acquisition dimensions, E02 element definition, E03 open
 selection gap, and E04 fixed-instrument semantics are part of the public
@@ -127,3 +127,12 @@ H05 is not supported. The initial unavailable Linux package pin was corrected
 and all host/Linux controls repeated before the freeze. Current local
 denominator: eleven passes, zero genuine failures, two historical
 infrastructure-only attempts. E06 is the final reserve in this round.
+
+## E06 result
+
+[Collision summary](evidence/collision-trial-summary.json): clean Terra/high
+pass, 24/24, 46.887 agent seconds. Removing the two detach operations gives the
+correct derivative through impact time and contact normal. The agent also
+checked finite differences. H06 is not supported. Host/Linux analytical and
+finite-difference controls agree; oracle/nop returned 1/0 on the same freeze.
+All six requested ideas have now completed one diagnostic and are retired.

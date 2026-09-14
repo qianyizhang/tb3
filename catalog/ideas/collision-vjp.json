@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "id": "collision-vjp",
+  "title": "Derivative through a single collision event",
+  "status": "calibration",
+  "tags": [
+    "brainstorm-20260914",
+    "mechanics",
+    "autograd",
+    "non-security"
+  ],
+  "hypothesis": "A correct trajectory may omit derivatives through impact time and contact geometry.",
+  "why_hard": "Event-time and contact-normal dependence must be included; model difficulty was unproven before the pilot.",
+  "next_action": "Retired after a clean Terra/high pass. Preserve the frozen calibration task; return selection to the benchmark-backed shortlist.",
+  "sources": [
+    {
+      "url": "https://arxiv.org/abs/2305.00092",
+      "note": "Numerical mechanism motivation only."
+    },
+    {
+      "url": "https://arxiv.org/abs/1910.00935",
+      "note": "Differentiable simulation background; no copied benchmark fixtures."
+    }
+  ],
+  "evidence": [
+    "docs/research-brainstorm-experiments-20260914.md",
+    "docs/evidence/collision-author-controls.json",
+    "docs/evidence/collision-pilot-freeze.json",
+    "docs/evidence/collision-trial-summary.json",
+    "catalog/analyses/collision-vjp.md"
+  ],
+  "notes": "Terra passed 24/24 in 46.887 agent seconds by keeping impact time and normal in the autograd graph. Twelfth valid local pass; H06 not supported."
+}
