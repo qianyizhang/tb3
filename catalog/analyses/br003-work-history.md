@@ -38,6 +38,12 @@ SVG. The model also rendered its outputs through CairoSVG. The independent
 verifier's source-mask truth agrees, so there is no orientation or anatomy
 placement failure on this snapshot. Retire v1.
 
+A later user-requested [provenance audit](br003-svg-provenance-audit.md) reviewed
+all eight recorded tool calls, verified the prompt and reconstructed the final
+artifact from the model's patch. No private reference/generator retrieval was
+observed. The task is explicitly mask resampling with supplied coordinate and
+rasterization rules; Dice 1.0 does not establish independent anatomical drawing.
+
 ## Anatomical annotation QA
 
 Terra completed normally and passed all five packets. It read local segment

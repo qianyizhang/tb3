@@ -231,3 +231,15 @@ not authored tasks or completed experiments. Do not stack more labels, formats,
 or time restrictions onto the passed versions. The benchmark-backed shortlist
 retains overall priority; this authorized history-derived round makes no new
 promotion.
+
+## Follow-up: SVG solution-provenance audit
+
+On 2026-09-15 the user questioned whether perfect Dice came from copying the
+generation code. The [audit](../../catalog/analyses/br003-svg-provenance-audit.md)
+checks the launch, all eight paired tool calls, public prompt, input archive,
+container construction, output hashes and exact patch-to-artifact lineage.
+No private solution/generator/GT read or additional model assistance is observed.
+The original container image was not retained for a direct filesystem audit.
+The corrected interpretation is exact agreement on a strongly specified
+mask-resampling fixture, not unaided anatomical drawing. The pass and retired
+disposition remain unchanged; no new model trial was run.

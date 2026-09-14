@@ -10,7 +10,8 @@
     "medical-imaging",
     "geometry",
     "svg",
-    "dicom"
+    "dicom",
+    "specified-mask-resampling"
   ],
   "hypothesis": "A viewer may mistake acquisition-array slices for patient-coordinate planes or misassociate sparse SEG frames.",
   "why_hard": "Requires a correct physical affine and source-reference mapping. Terra achieved Dice 1.0 on all 72 label/view comparisons.",
@@ -36,7 +37,9 @@
     "docs/evidence/br003-renderer-freeze.json",
     "docs/evidence/br003-round-summary.json",
     "catalog/analyses/br003-work-history.md",
-    "docs/evidence/br003-medical-source.json"
+    "docs/evidence/br003-medical-source.json",
+    "catalog/analyses/br003-svg-provenance-audit.md",
+    "docs/evidence/br003-svg-provenance-audit.json"
   ],
-  "notes": "Original research prototype; source incidents and author controls are not benchmark model failures. Final submission requirements remain separate."
+  "notes": "Original research prototype; source incidents and author controls are not benchmark model failures. Final submission requirements remain separate. Follow-up provenance audit found no observed private solution or generator retrieval in eight paired tool calls; the successful patch exactly reconstructs the submitted artifact. Supplied masks and explicit coordinate rules limit this to specified resampling, not unaided anatomical drawing."
 }

@@ -1,0 +1,217 @@
+{
+  "scope": "BR-003/H04 SVG trial only; retrospective provenance audit, no model rerun",
+  "audited_at": "2026-09-14T23:27:32.405418+00:00",
+  "conclusion": "No observed private solution/generator/GT retrieval or other-model assistance. The result is a trace-consistent Terra implementation of a strongly specified mask-resampling task, not evidence of unaided anatomical drawing.",
+  "raw_session": "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/agent/sessions/2026/09/14/rollout-2026-09-14T17-35-36-01a0a0fd-18f5-77d0-8cc9-c1d58074cb71.jsonl",
+  "raw_session_sha256": "f4be9fa8a7b60134bbe885a4ff146885784d501422a3aebdeedbac598a257118",
+  "raw_session_records": 86,
+  "response_tool_calls": 8,
+  "paired_tool_outputs": 8,
+  "model_identity": {
+    "config": "openai/gpt-5.6-terra",
+    "context": "gpt-5.6-terra",
+    "reasoning_effort": "high",
+    "cli_version": "0.154.0",
+    "runtime_cwd": "/app",
+    "task_context_line": 8
+  },
+  "prompt": {
+    "line": 9,
+    "matches_frozen_instruction_ignoring_terminal_newlines": true,
+    "sha256": "bf0fb7dba24799cad7f7869af68bb11221f34c5ddf16f1a84cf608b4653eeddc",
+    "ambient_user_record_line": 6,
+    "later_user_messages": 0,
+    "extra_instruction_paths": [],
+    "inherited_parent_conversation_observed": false
+  },
+  "code_lineage": {
+    "starter_observed_at_output_line": 27,
+    "starter_sha256": "c767eb546d8356ef16239fe64559d6338ab450c43620e4c543b88993e11e406b",
+    "failed_patch_line": 44,
+    "successful_patch_line": 50,
+    "successful_patch_exactly_reconstructs_submitted_artifact": true,
+    "submitted_source": "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/artifacts/app/answer/renderer.py",
+    "submitted_sha256": "1adde80941115e389bbf1983f66f6bd613b51973d24be3297492febda151d15f",
+    "reference_sha256": "5eb8dd075eb278fc7441bad72d6ede56c0f6a7e0552bbb838c884ab1dca960df",
+    "generator_sha256": "ea2a57ff3d9d7514bfe61e386603da0b9097262464fc7cc96d7a523ab385be47",
+    "submitted_equals_reference": false,
+    "submitted_equals_generator": false,
+    "submitted_functions": [
+      "_as_float",
+      "_load",
+      "_sample_plane",
+      "_svg",
+      "render"
+    ],
+    "reference_functions": [
+      "read_grid",
+      "sample",
+      "to_svg",
+      "render"
+    ],
+    "generator_functions": [
+      "uid",
+      "archive",
+      "write_ct",
+      "write_seg",
+      "main"
+    ],
+    "comparison_note": "Different source structures support separate construction but similarity metrics cannot prove absence of copying."
+  },
+  "input_archive": {
+    "path": "probes/dicom-triplanar-svg/environment/data.tar.gz",
+    "sha256": "5f0d0ced8131181c009410c40b78a52de0c49d551bfd7152fcd49dc829108918",
+    "members": 93,
+    "ct_instances": 91,
+    "seg_instances": 1,
+    "other_files": [
+      "label-list.json"
+    ],
+    "contains_code_or_expected_npz": false
+  },
+  "execution_boundary": {
+    "agent_build_context": "probes/dicom-triplanar-svg/environment",
+    "verifier_build_context": "probes/dicom-triplanar-svg/tests",
+    "agent_custom_mounts": null,
+    "agent_mcp_servers": [],
+    "agent_custom_skills": [],
+    "default_mounts": [
+      "own trial /logs/agent",
+      "own trial /logs/verifier",
+      "own trial /logs/artifacts"
+    ],
+    "host_repository_mount_configured": false,
+    "verifier_starts_after_agent_finishes": true,
+    "agent_finished_at": "2026-09-14T17:39:12.898135Z",
+    "verifier_started_at": "2026-09-14T17:39:24.375413Z",
+    "historical_image_available_for_direct_inspection": false,
+    "image_gap": "Harbor removed the trial containers and local images; current cached-image query returned no matching image. No forensic claim about a preserved full historical filesystem."
+  },
+  "tool_argument_screen": {
+    "spawn_agent": false,
+    "followup_task": false,
+    "send_message": false,
+    "web__": false,
+    "image_gen": false,
+    "curl ": false,
+    "wget ": false,
+    "/solution": false,
+    "/verifier": false,
+    "expected.npz": false,
+    "build_imaging.py": false,
+    "read_grid(": false,
+    "/Users/zhangqy": false
+  },
+  "tool_inventory": [
+    {
+      "call_line": 15,
+      "output_line": 18,
+      "tool": "exec",
+      "summary": "Lists /app and answer; reads public driver and input names.",
+      "arguments_sha256": "87947a49b55c86bb3a643b82c8b93b0c2c71d518bb4d1ced1782d62eecc4b00f",
+      "visible_output_sha256": "2a6bd80a3062848d775f6b0e62aa9e592265153d1a82be35b901e675ffd56c36",
+      "nested_tools": [
+        "exec_command"
+      ]
+    },
+    {
+      "call_line": 24,
+      "output_line": 27,
+      "tool": "exec",
+      "summary": "Reads the five-line empty SVG starter, CT metadata, SEG metadata and public requests.",
+      "arguments_sha256": "8cd31fc091ae3b44517886c7ffe138e241c0ab4cd8d6a82feb06b9c15aa37fcc",
+      "visible_output_sha256": "5d305ab35841036165dbaab2d144ebed6b9e675f9e04fd2bafc6d88561320d1e",
+      "nested_tools": [
+        "exec_command"
+      ]
+    },
+    {
+      "call_line": 33,
+      "output_line": 36,
+      "tool": "exec",
+      "summary": "Inspects segment labels/source UIDs and independently orders CT positions.",
+      "arguments_sha256": "7ee862827c8861c2278af437fcda4e6059e4b2207c5e93c461f5c5154d31cb99",
+      "visible_output_sha256": "e0e3ab46d681aa80d9b7b4d26728aefc86a041c95a29a9f71c1518044aedec90",
+      "nested_tools": [
+        "exec_command"
+      ]
+    },
+    {
+      "call_line": 44,
+      "output_line": 46,
+      "tool": "exec",
+      "summary": "Attempts to replace renderer with generated implementation; patch rejected because delete/add target duplicates.",
+      "arguments_sha256": "a01bd4155205558e56df217efedf8f30e519febc858885d993d45459c4d55d24",
+      "visible_output_sha256": "905b1999215ab9adc2a142d5f8400384474c1b5913cf76d4f75f899b279bcc85",
+      "nested_tools": [
+        "apply_patch"
+      ]
+    },
+    {
+      "call_line": 50,
+      "output_line": 53,
+      "tool": "exec",
+      "summary": "Updates the starter with a complete implementation; patch succeeds.",
+      "arguments_sha256": "0ef78801f3b588902464344ee4a8bf108d6d69876a6f39b762925f9bed2434bb",
+      "visible_output_sha256": "83bd0d8242a8e49c3f509c96c09e745e665f74e3f623f6106afa54f2c3487aa2",
+      "nested_tools": [
+        "apply_patch"
+      ]
+    },
+    {
+      "call_line": 57,
+      "output_line": 60,
+      "tool": "exec",
+      "summary": "Compiles and runs the submitted renderer on four public requests.",
+      "arguments_sha256": "aef32f9e14bddb54e328ba5a5cf282afd4db1e7b2f6a62e7933dddea4ca94aa7",
+      "visible_output_sha256": "d718935269ea55aba77cc61d930cd9d921781e9350989af2e67bdf97956dfac3",
+      "nested_tools": [
+        "exec_command"
+      ]
+    },
+    {
+      "call_line": 64,
+      "output_line": 67,
+      "tool": "exec",
+      "summary": "Inspects its own geometry/counts and locally renders its SVG through CairoSVG.",
+      "arguments_sha256": "3e78434ac477b0a416d5e5fe1af8fe7e474e7e694461dfe1a419c365aca8c677",
+      "visible_output_sha256": "08364e3f6cec14939b75cbd2e731cca07578b2c81005784d71e1fa7c66154e65",
+      "nested_tools": [
+        "exec_command"
+      ]
+    },
+    {
+      "call_line": 75,
+      "output_line": 78,
+      "tool": "exec",
+      "summary": "Attempts Git inspection (Git absent), then checks its own loaded grid.",
+      "arguments_sha256": "739752fe03178675f79a4fc16873d09ccd603b870405407a1ccb73db4c8c6c8e",
+      "visible_output_sha256": "54801c7f62aa447529018071e53a3af36af42256e00ed61d17438ceb843cd3ab",
+      "nested_tools": [
+        "exec_command"
+      ]
+    }
+  ],
+  "evidence_hash_checks": {
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/agent/codex.txt": true,
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/agent/trajectory.json": true,
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/artifacts/app/answer/__pycache__/renderer.cpython-312.pyc": true,
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/artifacts/app/answer/renderer.py": true,
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/artifacts/manifest.json": true,
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/verifier/dice.json": true,
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/verifier/reward.txt": true,
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/verifier/test-stdout.txt": true
+  },
+  "scaffolding": [
+    "Input contains labeled 3-D organ masks, so no new segmentation is required.",
+    "Prompt supplies exact LPS display axes, pixel-center formulas, nearest-neighbor rounding and color/scoring rules.",
+    "Four fixed requests are public; 12 views are correlated, not 12 independent tasks.",
+    "Task tests deterministic coordinate conversion and SVG rendering; exact Dice is attainable without hidden answers."
+  ],
+  "limits": [
+    "Local model labels are not provider-side attestation.",
+    "No private retrieval is observed; this is not a proof about hidden provider behavior or training data.",
+    "Recorded commands and inputs were audited; the deleted historical container was not reimaged.",
+    "This audit does not establish broad drawing or medical-reasoning ability."
+  ]
+}
