@@ -64,7 +64,7 @@ Initial entries are dated 2026-09-12; later rounds carry their own dates. Resear
 
 ## Denominators
 
-Completed local pilots so far: **12 valid Terra/high passes, 4 Sol/max passes, 4 Astra/max passes, 0 genuine model failures**, plus **2 infrastructure-only model attempts** from initial setup. Authoring oracle failures are separate controls and never model failures. Six Terra passes predate BR-001; six are in the [completed BR-001 round](research-brainstorm-experiments-20260914.md). The eight Sol/Astra passes belong to [BR-002](research-rounds/BR-002-results.md); different tasks and protocols are not pooled into a model ranking. Detailed earlier controls and snapshot revisions remain preserved in [initial summary](evidence/trial-summary.json), [harder summary](evidence/harder-trial-summary.json), [geometry summary](evidence/clipper-trial-summary.json), and [homology summary](evidence/homology-trial-summary.json).
+Completed local pilots so far: **16 valid Terra/high passes, 4 Sol/max passes, 4 Astra/max passes, 0 genuine model failures**, plus **2 infrastructure-only model attempts** from initial setup. Authoring oracle failures are separate controls and never model failures. Six Terra passes predate BR-001; six are in the [completed BR-001 round](research-brainstorm-experiments-20260914.md). Four further Terra passes belong to [BR-003](research-rounds/BR-003-work-history.md). The eight Sol/Astra passes belong to [BR-002](research-rounds/BR-002-results.md); different tasks and protocols are not pooled into a model ranking. Detailed earlier controls and snapshot revisions remain preserved in [initial summary](evidence/trial-summary.json), [harder summary](evidence/harder-trial-summary.json), [geometry summary](evidence/clipper-trial-summary.json), and [homology summary](evidence/homology-trial-summary.json).
 
 Required final standard trials: **0/6**. Required final adversarial trials: **0/2**. No final task selected. Completed local rounds are indexed in the [round register](research-rounds.md).
 
@@ -124,3 +124,29 @@ pre-freeze score/actuator controls are retained separately from model attempts.
 The [result analysis](research-rounds/BR-002-results.md) links submitted-artifact
 inspections and the source 041/047 audit. H-D01–H-D04 are unsupported on these
 snapshots; one pair per task cannot estimate a population capability gap.
+
+## BR-003 work-history prototypes (2026-09-15, complete)
+
+Nine selected historical conversations supplied recurring PDF crop and Tavern
+lifecycle evidence. Later user messages added anatomy inference and SVG physical
+planes. These source reports are distinct from the four original controlled
+Terra/high diagnostic attempts. All model runs completed normally; all passed.
+
+| Scoped ID | Diagnostic | Result | Evidence |
+| --- | --- | --- | --- |
+| BR-003/H01 | PDF table lineage | 4/4 checks; 146.066 agent seconds; retired | [Probe](../probes/pdf-table-lineage/instruction.md), [controls](evidence/br003-pdf-author-controls.json) |
+| BR-003/H02 | Durable chat recovery | 22/22 traces; 197.254 agent seconds; retired | [Probe](../probes/chat-round-recovery/instruction.md), [controls](evidence/br003-chat-author-controls.json) |
+| BR-003/H03 | Anatomical DICOM annotation QA | 5/5 packets; 293.135 agent seconds; retired | [Probe](../probes/dicom-label-audit/instruction.md), [controls](evidence/br003-audit-author-controls.json) |
+| BR-003/H04 | Patient-coordinate SVG | 12/12 views, all 72 Dice comparisons 1.0; 217.431 agent seconds; retired | [Probe](../probes/dicom-triplanar-svg/instruction.md), [controls](evidence/br003-svg-author-controls.json) |
+
+Eight matching Docker controls passed oracle=1/nop=0. Four sequential model
+trials had no exceptions and no retries. [Receipts](evidence/br003-round-summary.json)
+retain exact historical checksums, source freezes, raw output hashes and timings.
+[Inspection](../catalog/analyses/br003-work-history.md) records successful repairs
+and fixed-cohort limits. A local report-server preview was rejected before
+execution because its proposed directory also contained private history exports;
+a file preview was used instead. This is not a model or task failure.
+
+Final qualification counts remain 0/6 standard and 0/2 adversarial. The source
+selection lessons and parked vector-diagram lead belong to the
+[round record](research-rounds/BR-003-work-history.md).

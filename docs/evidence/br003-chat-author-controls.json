@@ -1,0 +1,69 @@
+{
+  "oracle": {
+    "cases": 22,
+    "passed": 22
+  },
+  "incorrect_controls": {
+    "empty_scaffold": [
+      "idle-is-not-termination",
+      "exact-deadline-late-verdict",
+      "room-local-identity",
+      "cancel-unblocks-ready-successor",
+      "failed-head-and-receipt-order",
+      "lost-receipt-retransmit-only",
+      "incarnation-replaces-only-live-slots",
+      "offline-skip-does-not-consume-attempt",
+      "large-time-jump-one-new-assignment",
+      "full-assignment-identity-required",
+      "partial-cancel-keeps-completed-slot",
+      "early-receipt-cannot-ack-new-reply",
+      "partial-results-and-sorted-failures",
+      "worker-restart-shared-across-rooms",
+      "expiration-precedes-incarnation-update",
+      "identifiers-are-tuples-not-delimited-strings",
+      "fanout-order-0",
+      "fanout-order-1",
+      "fanout-order-2",
+      "fanout-order-3",
+      "fanout-order-4",
+      "fanout-order-5"
+    ],
+    "accept_at_deadline": [
+      "exact-deadline-late-verdict",
+      "failed-head-and-receipt-order",
+      "early-receipt-cannot-ack-new-reply",
+      "partial-results-and-sorted-failures",
+      "expiration-precedes-incarnation-update"
+    ],
+    "ignore_incarnation": [
+      "full-assignment-identity-required"
+    ],
+    "global_message_id": [
+      "room-local-identity",
+      "full-assignment-identity-required",
+      "worker-restart-shared-across-rooms"
+    ],
+    "restart_reuses_attempt": [
+      "exact-deadline-late-verdict",
+      "incarnation-replaces-only-live-slots",
+      "offline-skip-does-not-consume-attempt",
+      "large-time-jump-one-new-assignment",
+      "worker-restart-shared-across-rooms",
+      "expiration-precedes-incarnation-update"
+    ],
+    "drop_reply_retransmit": [
+      "cancel-unblocks-ready-successor",
+      "failed-head-and-receipt-order",
+      "lost-receipt-retransmit-only",
+      "early-receipt-cannot-ack-new-reply",
+      "partial-results-and-sorted-failures"
+    ],
+    "skip_room_fifo": [
+      "cancel-unblocks-ready-successor",
+      "failed-head-and-receipt-order"
+    ]
+  },
+  "elapsed_seconds": 13.803582208005537,
+  "runtime": "fresh Python process and JSON state per event",
+  "model_trials": 0
+}

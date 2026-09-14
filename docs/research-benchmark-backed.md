@@ -10,7 +10,7 @@ published, inspectable failures and then isolate the smallest authentic crux.
 
 The requested [2026-09-14 brainstorm round](research-brainstorm-experiments-20260914.md)
 subsequently tested six original compact extractions, all healthy Terra/high
-passes. They are retired, and the local denominator is now twelve passes.
+passes. They are retired, bringing the denominator at that point to twelve passes.
 Audited SWE-bench-Science source misses differed from several extracted
 mechanisms; their published failure rates do not transfer to these pilots.
 This round does not change the benchmark-backed reproduction priorities below.
@@ -23,6 +23,14 @@ for 041 and 047 show that their missed requirements differ from the extracted
 derivative/composition tasks. The remaining imported differential source claims
 remain unaudited. The [round register](research-rounds.md) keeps intake designs,
 local outcomes and future selection work distinct.
+
+The user-authorized [BR-003 work-history hunt](research-rounds/BR-003-work-history.md)
+inspected nine historical conversations and built PDF lineage, chat recovery,
+anatomical annotation QA and DICOM-to-SVG prototypes. All four passed one healthy
+Terra/high diagnostic with matching oracle/nop controls; the local Terra pass
+count is now sixteen. All four snapshots are retired. Earlier uncontrolled
+session problems did not establish difficulty for these small new artifacts,
+and the benchmark-backed priorities below remain unchanged.
 
 The subsequent [100-card broad task bank](research-broad-task-bank.md) expands
 this shortlist across benchmark sources, HN/Reddit practitioner leads and

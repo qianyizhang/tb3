@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "dicom-triplanar-svg",
+  "title": "DICOM patient-coordinate triplanar SVG",
+  "status": "calibration",
+  "tags": [
+    "brainstorm-round-003",
+    "work-history",
+    "non-security",
+    "medical-imaging",
+    "geometry",
+    "svg",
+    "dicom"
+  ],
+  "hypothesis": "A viewer may mistake acquisition-array slices for patient-coordinate planes or misassociate sparse SEG frames.",
+  "why_hard": "Requires a correct physical affine and source-reference mapping. Terra achieved Dice 1.0 on all 72 label/view comparisons.",
+  "next_action": "Retired after one healthy Terra/high pass; preserve evidence and return to source selection.",
+  "sources": [
+    {
+      "url": "codex://threads/01a0a0cf-3d4b-7f00-a47f-4133211cb483",
+      "note": "BR-003 user-authorized work-history hunt; follow-up messages add anatomy QA and patient-coordinate SVG."
+    },
+    {
+      "url": "https://zenodo.org/records/10047263",
+      "note": "CC BY 4.0 TotalSegmentator small subset v2.0.1, subject s1245; derived research CT and labels."
+    },
+    {
+      "url": "https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.7.6.2.html",
+      "note": "Patient geometry convention; reference consulted at DICOM 2026c."
+    }
+  ],
+  "evidence": [
+    "docs/research-rounds/BR-003-work-history.md",
+    "docs/evidence/br003-source-audit.json",
+    "docs/evidence/br003-svg-author-controls.json",
+    "docs/evidence/br003-renderer-freeze.json",
+    "docs/evidence/br003-round-summary.json",
+    "catalog/analyses/br003-work-history.md",
+    "docs/evidence/br003-medical-source.json"
+  ],
+  "notes": "Original research prototype; source incidents and author controls are not benchmark model failures. Final submission requirements remain separate."
+}

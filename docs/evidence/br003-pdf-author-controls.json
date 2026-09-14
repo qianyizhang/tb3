@@ -1,0 +1,44 @@
+{
+  "oracle_content_and_geometry": {
+    "passed": [
+      "table-1-content",
+      "table-1-geometry",
+      "table-2-content",
+      "table-2-geometry"
+    ],
+    "failures": []
+  },
+  "incorrect_controls": {
+    "swap_dry_wet": [
+      "table-1-content: A1.dry_yield",
+      "table-2-content: B1.dry_yield"
+    ],
+    "merge_notes": [
+      "table-2-content: footnotes"
+    ],
+    "drop_continuation": [
+      "table-1-content: A3.method"
+    ],
+    "page_number_from_inheritance": [
+      "table-1-content: A6.source_pages"
+    ],
+    "ignore_rotation": [
+      "table-1-geometry: page bounds"
+    ],
+    "crop_whole_page": [
+      "table-1-geometry: page 1 excess area: 2.9799",
+      "table-2-geometry: page 4 excess area: 2.7248"
+    ]
+  },
+  "pdfplumber_detected_tables_per_page": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "baseline_note": "Per-page extraction only; raw output retained locally. Not an end-to-end model trial.",
+  "rendered_pages": 5,
+  "logical_rows": 12,
+  "model_trials": 0
+}

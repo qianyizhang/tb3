@@ -13,6 +13,7 @@ priority; the [catalog](catalog.md) owns searchable candidate decisions;
 | --- | --- | --- | --- | --- |
 | BR-001 | 2026-09-14 | [Compact scientific extractions](research-brainstorm-experiments-20260914.md): E01–E06, six original pilots | Complete | Six healthy Terra/high passes; all snapshots retired. [Receipt](evidence/brainstorm-round-summary.json). |
 | BR-002 | 2026-09-14 | [Sol/Astra capability experiments](research-rounds/BR-002-sol-astra-capabilities.md): D01 moving frames, D02 RF conventions, D03 actuator memory, D04 score images | Complete | [Local results](research-rounds/BR-002-results.md): four Sol/max and four Astra/max passes; all snapshots retired. No observed success split. [Receipt](evidence/br002-round-summary.json). |
+| BR-003 | 2026-09-15 | [Work-history task hunt](research-rounds/BR-003-work-history.md): H01 PDF lineage, H02 chat recovery, H03 anatomical QA, H04 DICOM-to-SVG | Complete | Four healthy Terra/high passes with eight matching controls; all snapshots retired. Nine historical conversations inspected. [Receipt](evidence/br003-round-summary.json). |
 
 BR-001 is a retrospective navigation label for the existing completed report;
 its E IDs, ledger B IDs, probe names and evidence paths retain their meanings.

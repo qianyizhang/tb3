@@ -16,7 +16,9 @@ The [sequential brainstorm experiments](docs/research-brainstorm-experiments-202
 
 The [round register](docs/research-rounds.md) organizes that completed round as BR-001 and the later Sol/Astra capability experiments as BR-002: moving-frame velocity, RF wave conventions, actuator memory and score-image transcription. [BR-002 is complete](docs/research-rounds/BR-002-results.md): all four tasks passed with both Sol/max and Astra/max on matching frozen snapshots. Eight valid model runs produced no success split; all four snapshots are retired. Search the catalog for `brainstorm-round-002`; the register includes a template for future rounds.
 
-The local model denominator is now **12 Terra/high passes, 4 Sol/max passes, 4 Astra/max passes, zero genuine failures, and two historical infrastructure-only attempts**. These are pilot observations across different tasks and protocols, not a pooled model ranking. The [earlier short-horizon screen](docs/research-short-horizon.md) and [interpolation reproduction](docs/research-numerical-candidates.md) are retained. No Opus or final qualifying trial has run.
+The [BR-003 work-history hunt](docs/research-rounds/BR-003-work-history.md) inspected nine historical conversations and built four runnable prototypes: PDF table lineage, durable chat routing, anatomical annotation QA, and patient-coordinate SVG. All four passed Terra/high with matching controls and are retired. The DICOM task supplies all label names while requiring anatomical expectations to be inferred at test time. Search `brainstorm-round-003`.
+
+The local model denominator is now **16 Terra/high passes, 4 Sol/max passes, 4 Astra/max passes, zero genuine failures, and two historical infrastructure-only attempts**. These are pilot observations across different tasks and protocols, not a pooled model ranking. The [earlier short-horizon screen](docs/research-short-horizon.md) and [interpolation reproduction](docs/research-numerical-candidates.md) are retained. No Opus or final qualifying trial has run.
 
 Current research scope explicitly excludes security tasks and favors hard but less complex, short-horizon work: one conceptual crux, a small deliverable and fast independent verification. See [AGENTS.md](AGENTS.md) for the durable scope instructions.
 
@@ -25,6 +27,7 @@ Current research scope explicitly excludes security tasks and favors hard but le
 | [Setup](docs/setup.md) | Install/recreate environments, start Docker, subscription commands. |
 | [Ledger](docs/ledger.md) | Successful and failed attempts, evidence and remaining trial counts. |
 | [Round register](docs/research-rounds.md) | Recurring brainstorms, stable round IDs, candidate handoffs and a reusable template. |
+| [BR-003 work-history hunt](docs/research-rounds/BR-003-work-history.md) | Historical source evidence, four runnable PDF/chat/DICOM prototypes, independent controls and retired diagnostic passes. |
 | [BR-002 results](docs/research-rounds/BR-002-results.md) | Four Sol/Astra natural-task pairs, matching controls, artifact inspections and retired snapshots. |
 | [Sequential brainstorm experiments](docs/research-brainstorm-experiments-20260914.md) | Six completed original pilots, independent controls, frozen snapshots and clean Terra passes. |
 | [Research](docs/research.md) | Initial firsthand sources and ideas. |

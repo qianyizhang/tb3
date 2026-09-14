@@ -1,0 +1,119 @@
+{
+  "name": "example",
+  "events": [
+    {
+      "at": 0,
+      "type": "start",
+      "timeout": 5,
+      "workers": {
+        "a": 1,
+        "b": 1,
+        "c": 1
+      }
+    },
+    {
+      "at": 1,
+      "type": "open",
+      "room": "r",
+      "message": "m",
+      "slots": {
+        "x": [
+          "a",
+          "b"
+        ]
+      }
+    },
+    {
+      "at": 2,
+      "type": "result",
+      "room": "r",
+      "message": "m",
+      "slot": "x",
+      "attempt": 1,
+      "worker": "a",
+      "epoch": 1,
+      "value": "A"
+    },
+    {
+      "at": 3,
+      "type": "receipt",
+      "room": "r",
+      "message": "m"
+    }
+  ],
+  "checks": [
+    {
+      "index": 0,
+      "effects": [],
+      "view": []
+    },
+    {
+      "index": 1,
+      "effects": [
+        {
+          "kind": "job",
+          "id": [
+            "r",
+            "m",
+            "x",
+            1,
+            "a",
+            1
+          ],
+          "deadline": 6
+        }
+      ],
+      "view": [
+        {
+          "room": "r",
+          "message": "m",
+          "state": "pending",
+          "slots": {
+            "x": "pending"
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "effects": [
+        {
+          "kind": "reply",
+          "id": [
+            "r",
+            "m"
+          ],
+          "status": "ok",
+          "values": {
+            "x": "A"
+          },
+          "failed": []
+        }
+      ],
+      "view": [
+        {
+          "room": "r",
+          "message": "m",
+          "state": "reply_pending",
+          "slots": {
+            "x": "done"
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "effects": [],
+      "view": [
+        {
+          "room": "r",
+          "message": "m",
+          "state": "delivered",
+          "slots": {
+            "x": "done"
+          }
+        }
+      ]
+    }
+  ]
+}
