@@ -20,12 +20,15 @@ The [BR-003 work-history hunt](docs/research-rounds/BR-003-work-history.md) insp
 
 The local model denominator is now **16 Terra/high passes, 4 Sol/max passes, 4 Astra/max passes, zero genuine failures, and two historical infrastructure-only attempts**. These are pilot observations across different tasks and protocols, not a pooled model ranking. The [earlier short-horizon screen](docs/research-short-horizon.md) and [interpolation reproduction](docs/research-numerical-candidates.md) are retained. No Opus or final qualifying trial has run.
 
+The [specification/scaffolding audit](docs/research-specification-audit-20260915.md) reviews all 20 unique trialed tasks: five supply a central recipe or reference, seven substantially guide the solution, and eight retain the main reasoning problem. These are qualitative assessments, not causal comparisons or additional leakage findings. The 24 completed passes remain valid observations of the supplied tasks; they do not establish unaided discovery or inherited source-benchmark difficulty.
+
 Current research scope explicitly excludes security tasks and favors hard but less complex, short-horizon work: one conceptual crux, a small deliverable and fast independent verification. See [AGENTS.md](AGENTS.md) for the durable scope instructions.
 
 | Start here | Purpose |
 | --- | --- |
 | [Setup](docs/setup.md) | Install/recreate environments, start Docker, subscription commands. |
 | [Ledger](docs/ledger.md) | Successful and failed attempts, evidence and remaining trial counts. |
+| [Specification/scaffolding audit](docs/research-specification-audit-20260915.md) | All 20 trialed tasks, supplied solution ingredients, worker-trace evidence, counterexamples and authoring lessons. |
 | [Round register](docs/research-rounds.md) | Recurring brainstorms, stable round IDs, candidate handoffs and a reusable template. |
 | [BR-003 work-history hunt](docs/research-rounds/BR-003-work-history.md) | Historical source evidence, four runnable PDF/chat/DICOM prototypes, independent controls and retired diagnostic passes. |
 | [BR-002 results](docs/research-rounds/BR-002-results.md) | Four Sol/Astra natural-task pairs, matching controls, artifact inspections and retired snapshots. |
