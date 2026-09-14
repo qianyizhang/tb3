@@ -1,0 +1,48 @@
+{
+  "task": "probes/mr-frame-association",
+  "task_sha256": "ee4ae9aa900798ec2d4a00e9479d05c185414b484a192861eb3eb83dfe1928a8",
+  "frozen_at": "2026-09-14T04:20:21.444286+00:00",
+  "upstream": "e2995b93b0a46edee7bc9942ea5622411a6d5bb9",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "agent_timeout_seconds": 1800,
+  "initial_attempts": 1,
+  "repeat_if_genuine_failure": 1,
+  "qualifying_final_trial": false,
+  "case_count": 36,
+  "controls": [
+    {
+      "job": "mr-oracle-v1-20260914",
+      "result": "runs/mr-oracle-v1-20260914/mr-frame-association__rRCx2Ei/result.json",
+      "task_checksum": "e660f333099bc0a41fd355f3c48acb5658f7fe9af53fcf39d61d87046ed38f28",
+      "reward": 1
+    },
+    {
+      "job": "mr-nop-v1-20260914",
+      "result": "runs/mr-nop-v1-20260914/mr-frame-association__SQN2Xkd/result.json",
+      "task_checksum": "e660f333099bc0a41fd355f3c48acb5658f7fe9af53fcf39d61d87046ed38f28",
+      "reward": 0
+    }
+  ],
+  "model_job": "mr-terra-high-v1-20260914",
+  "files": {
+    "authoring/fixtures.py": "eae463c17d65e072a98c87853c0cbc7489c4228f2a00313b9707a455ae542c74",
+    "authoring/notes.md": "20704bd1fb82bd120826cd178e9c748aecc2d174ff27504ebb635e3626a86ee4",
+    "authoring/validate.py": "6927c29387558e8ecbe145514b990a5df48582f0c5609d787b659698d4511d61",
+    "environment/Dockerfile": "d8498bf0d5f828857aa08ec20baa4f5bbfb4cfa152e142b09b4c8a72d71c4790",
+    "environment/check_examples.py": "e38a4801e60b2545f00556e389de6cc6d83f251ae0b331530babef32046ab717",
+    "environment/driver.py": "056065564466ebd1f488e47392a0ee91f78c8045da39d86fed7ff7cfd93e71a6",
+    "environment/examples.json": "24691dbd8066dbb6ce8ec6a4caa8e92bf29ce924c24ab5df1a1b336f362ff4a9",
+    "environment/solution.py": "0fb32488728ae127306e9fe208c1853acb1100fe0e25baa4c0a68a682e327933",
+    "instruction.md": "8d01f621a06f7790f371eb545333ca5e6f5b8dea95996484073363ee6df6e514",
+    "solution/reference.py": "e4230b25551f0ecc7661e7f2bfb07c22820336bf48127d4b3e6695c98ab543db",
+    "solution/solve.sh": "d2540384afe113213d17e012c21da980ce6bba309dceb263383cc210d1faf431",
+    "task.toml": "69857610cc13520d02f56bf5e3ab7443b01b1a7dd12363d2f38cd132f4f74804",
+    "tests/Dockerfile": "3ddf24969668c714f208da831f1ae0f11da189cbb01c51eb83f6e34bde4c966d",
+    "tests/cases.json": "fd2839a4b2c2b97e9331bccf69ceee9f7af1e05620f7cfa75c169b45d0c1f092",
+    "tests/driver.py": "056065564466ebd1f488e47392a0ee91f78c8045da39d86fed7ff7cfd93e71a6",
+    "tests/test.sh": "411a55435dd5d955192f7635d0184062b7541159db7774a1b84cb0e8e485e2a0",
+    "tests/verifier.py": "b70ecbbdc0a63c0c906e6e07769dfafdc4bdce0f4ac9622d7f57c108b89ee8a6"
+  },
+  "notes": "Earlier pre-freeze controls are retained; matching v1 controls follow the canary correction."
+}

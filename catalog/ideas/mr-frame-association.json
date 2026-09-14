@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "id": "mr-frame-association",
+  "title": "Canonical multiframe acquisition reconstruction",
+  "status": "calibration",
+  "tags": [
+    "brainstorm-20260914",
+    "imaging",
+    "dicom",
+    "non-security"
+  ],
+  "hypothesis": "A repair may retain storage-order assumptions and lose sample-to-metadata association under equivalent encodings.",
+  "why_hard": "Physical and acquisition coordinates need independent canonical ordering; source benchmark misses do not establish this original pilot's difficulty.",
+  "next_action": "Retire this frozen snapshot. Continue E02; do not add complexity to recover difficulty.",
+  "sources": [
+    {
+      "url": "https://swescience.github.io/task-matrix/gradient/",
+      "note": "Source lead only; audited Sol misses differ from the pilot's chosen crux."
+    },
+    {
+      "url": "https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.7.6.17.html",
+      "note": "Dimension descriptors and logical ordinals."
+    }
+  ],
+  "evidence": [
+    "docs/research-brainstorm-experiments-20260914.md",
+    "docs/evidence/brainstorm-source-receipts.json",
+    "docs/evidence/mr-author-controls.json",
+    "docs/evidence/mr-pilot-freeze.json",
+    "probes/mr-frame-association/authoring/notes.md",
+    "docs/evidence/mr-trial-summary.json",
+    "catalog/analyses/mr-frame-association.md"
+  ],
+  "notes": "Terra/high passed 36/36 with matching oracle 1/nop 0 and no exception. Actual metadata and physical slice positions were used. H01 is not supported by this trial. Seventh valid local Terra pass."
+}

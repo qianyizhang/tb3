@@ -1,0 +1,254 @@
+{
+  "source_release_commit": "5f7871f9f8541998a1730bd825f59d8102b58a88",
+  "source": "https://swescience.github.io/traces/gpt-5-6-sol-max/",
+  "classification": "published completed verifier misses; not local trials",
+  "trials": [
+    {
+      "task": {
+        "publishedTaskId": "037",
+        "title": "Repair an inconsistent multiframe MR reconstruction",
+        "domain": "medical-imaging",
+        "language": "python",
+        "sourceRepository": "https://github.com/nipy/nibabel"
+      },
+      "run": {
+        "id": "gpt-5-6-sol-max-037",
+        "model": "gpt-5.6-sol",
+        "harness": "Codex"
+      },
+      "summary": {
+        "status": "failed",
+        "agentReturnCode": 0,
+        "workflowReturnCode": 1,
+        "agentDurationSec": 1116.464,
+        "verifierDurationSec": 34.071,
+        "workflowDurationSec": 1199.029,
+        "startedAt": "2026-08-30T20:41:10.195Z",
+        "finishedAt": "2026-08-30T21:01:09.222Z",
+        "rawEventCount": 105,
+        "normalizedEventCount": 142,
+        "eventCounts": {
+          "lifecycle": 1,
+          "thinking": 89,
+          "assistant": 5,
+          "tool": 45,
+          "final": 1,
+          "message": 1
+        },
+        "toolCounts": {
+          "Shell": 43,
+          "File edit": 2
+        }
+      },
+      "usage": {
+        "inputTokens": 4285865,
+        "outputTokens": 41401,
+        "totalTokens": 4327266,
+        "cacheReadTokens": 4096000,
+        "cacheCreationTokens": null,
+        "callCount": 48,
+        "costUsd": null,
+        "reasoningOutputTokens": 29085
+      },
+      "evaluation": {
+        "public": {
+          "name": "public",
+          "kind": "reproduce.py",
+          "collected": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "allPassed": true,
+          "returnCode": 0
+        },
+        "private": {
+          "name": "private",
+          "kind": "pytest",
+          "collected": 13,
+          "passed": 10,
+          "failed": 3,
+          "skipped": 0,
+          "allPassed": false,
+          "returnCode": 1
+        },
+        "reward": 0,
+        "scoreMode": "private_only",
+        "verifierReturnCode": 1,
+        "logSummary": "[science-bench] public tests: 1/1 passed (failed=0, skipped=0)\n[science-bench] private tests: 10/13 passed (failed=3, skipped=0)\n[science-bench] score mode: private_only (eval kind: agent)"
+      },
+      "failed_assertions": [
+        "private_tests/task_037/test_multiframe_reconstruction.py::test_redundant_singleton_dimension_is_not_a_scientific_axis",
+        "private_tests/task_037/test_multiframe_reconstruction.py::test_duplicate_physical_plane_is_rejected",
+        "private_tests/task_037/test_multiframe_reconstruction.py::test_valid_two_dimensional_single_frame_remains_supported"
+      ],
+      "trace_sha256": "17c0864d8e371f7c90d000a5ca68979dd931c52606339299bec4f9ad44ab7a40",
+      "trace_url": "https://swescience.github.io/traces/gpt-5-6-sol-max/task-037.json",
+      "historical_task_digest": null,
+      "digest_note": "Normalized trace and index do not expose Harbor task checksum; current release image digests are not historical run proof."
+    },
+    {
+      "task": {
+        "publishedTaskId": "036",
+        "title": "Repair inconsistent sampling on a spherical curvilinear ocean grid",
+        "domain": "computational-oceanography-and-spherical-geometry",
+        "language": "python",
+        "sourceRepository": "https://github.com/Parcels-code/Parcels"
+      },
+      "run": {
+        "id": "gpt-5-6-sol-max-036",
+        "model": "gpt-5.6-sol",
+        "harness": "Codex"
+      },
+      "summary": {
+        "status": "failed",
+        "agentReturnCode": 0,
+        "workflowReturnCode": 1,
+        "agentDurationSec": 1026.77,
+        "verifierDurationSec": 17.176,
+        "workflowDurationSec": 1116.037,
+        "startedAt": "2026-08-30T20:07:45.007Z",
+        "finishedAt": "2026-08-30T20:26:21.042Z",
+        "rawEventCount": 145,
+        "normalizedEventCount": 140,
+        "eventCounts": {
+          "lifecycle": 1,
+          "thinking": 67,
+          "assistant": 5,
+          "tool": 65,
+          "final": 1,
+          "message": 1
+        },
+        "toolCounts": {
+          "Shell": 62,
+          "File edit": 3
+        }
+      },
+      "usage": {
+        "inputTokens": 3893779,
+        "outputTokens": 40743,
+        "totalTokens": 3934522,
+        "cacheReadTokens": 3735808,
+        "cacheCreationTokens": null,
+        "callCount": 43,
+        "costUsd": null,
+        "reasoningOutputTokens": 20312
+      },
+      "evaluation": {
+        "public": {
+          "name": "public",
+          "kind": "reproduce.py",
+          "collected": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "allPassed": true,
+          "returnCode": 0
+        },
+        "private": {
+          "name": "private",
+          "kind": "pytest",
+          "collected": 9,
+          "passed": 8,
+          "failed": 1,
+          "skipped": 0,
+          "allPassed": false,
+          "returnCode": 1
+        },
+        "reward": 0,
+        "scoreMode": "private_only",
+        "verifierReturnCode": 1,
+        "logSummary": "[science-bench] public tests: 1/1 passed (failed=0, skipped=0)\n[science-bench] private tests: 8/9 passed (failed=1, skipped=0)\n[science-bench] score mode: private_only (eval kind: agent)"
+      },
+      "failed_assertions": [
+        "private_tests/task_036/test_spherical_grid_sampling.py::test_vector_sampling_remains_finite_for_spherical_coordinates"
+      ],
+      "trace_sha256": "1c0d286a34e38ba53a8cfbbbcff79d6f964b1f9eea152becd2a3837666b8f67d",
+      "trace_url": "https://swescience.github.io/traces/gpt-5-6-sol-max/task-036.json",
+      "historical_task_digest": null,
+      "digest_note": "Normalized trace and index do not expose Harbor task checksum; current release image digests are not historical run proof."
+    },
+    {
+      "task": {
+        "publishedTaskId": "003",
+        "title": "Repair extxyz stress and virial tensor-label preservation",
+        "domain": "atomistic-machine-learning-data",
+        "language": "python",
+        "sourceRepository": "https://github.com/deepmodeling/dpdata"
+      },
+      "run": {
+        "id": "gpt-5-6-sol-max-003",
+        "model": "gpt-5.6-sol",
+        "harness": "Codex"
+      },
+      "summary": {
+        "status": "failed",
+        "agentReturnCode": 0,
+        "workflowReturnCode": 1,
+        "agentDurationSec": 429.3,
+        "verifierDurationSec": 45.048,
+        "workflowDurationSec": 524.861,
+        "startedAt": "2026-08-30T20:09:11.857Z",
+        "finishedAt": "2026-08-30T20:17:56.756Z",
+        "rawEventCount": 116,
+        "normalizedEventCount": 91,
+        "eventCounts": {
+          "lifecycle": 1,
+          "thinking": 33,
+          "assistant": 4,
+          "tool": 51,
+          "final": 1,
+          "message": 1
+        },
+        "toolCounts": {
+          "Shell": 47,
+          "File edit": 4
+        }
+      },
+      "usage": {
+        "inputTokens": 1080128,
+        "outputTokens": 13483,
+        "totalTokens": 1093611,
+        "cacheReadTokens": 958976,
+        "cacheCreationTokens": null,
+        "callCount": 26,
+        "costUsd": null,
+        "reasoningOutputTokens": 7946
+      },
+      "evaluation": {
+        "public": {
+          "name": "public",
+          "kind": "reproduce.py",
+          "collected": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "allPassed": true,
+          "returnCode": 0
+        },
+        "private": {
+          "name": "private",
+          "kind": "pytest",
+          "collected": 6,
+          "passed": 3,
+          "failed": 3,
+          "skipped": 0,
+          "allPassed": false,
+          "returnCode": 1
+        },
+        "reward": 0,
+        "scoreMode": "private_only",
+        "verifierReturnCode": 1,
+        "logSummary": "[science-bench] public tests: 1/1 passed (failed=0, skipped=0)\n[science-bench] private tests: 3/6 passed (failed=3, skipped=0)\n[science-bench] score mode: private_only (eval kind: agent)"
+      },
+      "failed_assertions": [
+        "private_tests/task_003/test_extxyz_stress_virial.py::test_voigt_stress_uses_correct_off_diagonal_order_and_sign_option",
+        "private_tests/task_003/test_extxyz_stress_virial.py::test_ase_forces_key_and_unknown_atom_properties_do_not_drop_columns",
+        "private_tests/task_003/test_extxyz_stress_virial.py::test_labeled_system_direct_read_and_writer_roundtrip_preserve_tensor_labels"
+      ],
+      "trace_sha256": "df87721b1e7ccb5a1698dabcd066663897debb9b497e4e7032b69b347d6b7eef",
+      "trace_url": "https://swescience.github.io/traces/gpt-5-6-sol-max/task-003.json",
+      "historical_task_digest": null,
+      "digest_note": "Normalized trace and index do not expose Harbor task checksum; current release image digests are not historical run proof."
+    }
+  ]
+}
