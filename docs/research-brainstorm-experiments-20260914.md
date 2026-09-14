@@ -32,7 +32,7 @@ errors, timeouts and source/oracle faults do not count as model failures.
 | E02 | RT0 face-flux velocity on a planar quadrilateral; flux may be treated as scalar velocity | Manufactured reference-coordinate values plus physical-edge quadrature | Retired: Terra passed 72/72 |
 | E03 | First derivative of a separated spectral projector; arbitrary eigenbasis may be differentiated | Cross-subspace analytical VJP plus directional differences at several step sizes | Retired: Terra passed 24/24 |
 | E04 | Calibrate one fixed affine two-channel instrument under clamps; observational fitting may replace intervention testing | Independent structural equations, logged measurements, held-out settings | Retired: Terra passed 20/20 |
-| E05 | Canonical stress from extxyz stress/virial labels; round trip may hide physical change | Canonical tensor, determinant volume and rotated equivalents | Reserve; source audit first |
+| E05 | Canonical stress from extxyz stress/virial labels; round trip may hide physical change | Canonical tensor, determinant volume and rotated equivalents | Retired: Terra passed 36/36 |
 | E06 | Derivative through one nongrazing collision; event-time dependence may be omitted | Analytical event trajectory plus directional differences with stable event count | Reserve; reproducer first |
 
 The reference's E01 acquisition dimensions, E02 element definition, E03 open
@@ -117,3 +117,13 @@ matches the structural equations. H04 is not supported. Matching service
 oracle/nop controls returned 1/0. The four primary ideas are complete; the two
 reserves follow. Current local denominator: ten passes, zero genuine failures,
 two historical infrastructure-only attempts.
+
+## E05 result
+
+[Stress summary](evidence/stress-trial-summary.json): clean Terra/high pass,
+36/36, 27.022 agent seconds. The direct correction uses standard Voigt order,
+negative virial sign and absolute determinant volume, with no basis change.
+H05 is not supported. The initial unavailable Linux package pin was corrected
+and all host/Linux controls repeated before the freeze. Current local
+denominator: eleven passes, zero genuine failures, two historical
+infrastructure-only attempts. E06 is the final reserve in this round.

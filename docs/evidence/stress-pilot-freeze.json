@@ -1,0 +1,50 @@
+{
+  "task": "probes/extxyz-stress",
+  "task_sha256": "cf5c42adffedf7565fd18d0524763eb897db696a02e7aed8ed3dd89c9508bf9d",
+  "frozen_at": "2026-09-14T05:01:45.498340+00:00",
+  "upstream": "e2995b93b0a46edee7bc9942ea5622411a6d5bb9",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "harbor_trial_version": "0.14.0",
+  "harbor_control_version": "0.18.0",
+  "agent_timeout_seconds": 1800,
+  "initial_attempts": 1,
+  "repeat_if_genuine_failure": 1,
+  "qualifying_final_trial": false,
+  "case_count": 36,
+  "controls": [
+    {
+      "job": "stress-oracle-v1-20260914",
+      "result": "runs/stress-oracle-v1-20260914/extxyz-stress__VL9m4TF/result.json",
+      "task_checksum": "0e94c95a503552860e53e6ea7963ce200d2920b24444904c369f29882daee105",
+      "reward": 1
+    },
+    {
+      "job": "stress-nop-v1-20260914",
+      "result": "runs/stress-nop-v1-20260914/extxyz-stress__FcUsj3J/result.json",
+      "task_checksum": "0e94c95a503552860e53e6ea7963ce200d2920b24444904c369f29882daee105",
+      "reward": 0
+    }
+  ],
+  "model_job": "stress-terra-high-v1-20260914",
+  "files": {
+    "authoring/fixtures.py": "c70bbe54233156c7b1a128dddfef7c559fb5e69c732ef2d9d51e57670c3e318b",
+    "authoring/notes.md": "c3045eb272c38a29baecdb182a1c9e0b7bad1c6a6ac4568f6ff609543aff61a7",
+    "authoring/validate.py": "e0fa57b47217e82fb1e26d0d001aad4e7191edec2a1c6d0db6711c71c220aba4",
+    "environment/Dockerfile": "1ee1a09b7810f53cda5e52088fab7a8be6fc78e5b15846b6eecc0992b2a4986b",
+    "environment/check_examples.py": "22ab4bcd3aade3c36a01d4b41d7270d9786f8af983b4379e8796b2a9262f2096",
+    "environment/driver.py": "1a4b59c88c0498db1fca0d85704907c66dc41492fe914a07461d421cef98e7d4",
+    "environment/examples.json": "5b706a82706bb3a7be5fe74d693bc75a623e2bec7fa4bbe8d2f9a26b408bc39c",
+    "environment/header.py": "dd338d7e900e57f416c248cf5a98cbe231e43e85aa5bad73463fb5eeaa5baec3",
+    "environment/solution.py": "15b3dfb2dc0dd823d99c54911c049d5c4631c74d072e02cac5b30fa373980649",
+    "instruction.md": "f3c9709d4b36ddaa5c8a0d4f62e313507e42880d3a719fbdd2fad70f545df71f",
+    "solution/reference.py": "6ee406efdeb3a7965b6fc576b0b1749d8329605f328bf8a54ffe8430c1d78de6",
+    "solution/solve.sh": "d2540384afe113213d17e012c21da980ce6bba309dceb263383cc210d1faf431",
+    "task.toml": "a90a8123d608640476717039b14abb3079d3916fdff670289c1c6f2e75e33fdf",
+    "tests/Dockerfile": "8a513af6f2a3bf583bb793e446e0a054727379535517a6243c2e365b3f4dfa5f",
+    "tests/cases.json": "b0c31ea947e2baad1921d1e59c402d0a8a537f40490dddbd018fbe9b2fdd9964",
+    "tests/driver.py": "1a4b59c88c0498db1fca0d85704907c66dc41492fe914a07461d421cef98e7d4",
+    "tests/test.sh": "411a55435dd5d955192f7635d0184062b7541159db7774a1b84cb0e8e485e2a0",
+    "tests/verifier.py": "0dd082c6da615d1c132075a23a62e0092f09d6453e1a5831fd15035e68205d72"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "id": "extxyz-stress",
+  "title": "Canonical stress from extxyz labels",
+  "status": "calibration",
+  "tags": [
+    "brainstorm-20260914",
+    "atomistic-data",
+    "tensors",
+    "non-security"
+  ],
+  "hypothesis": "Round-trip preservation of tensor-shaped values may hide physical sign, volume or Voigt changes.",
+  "why_hard": "Several physical conventions must agree; audited source misses do not establish difficulty of this miniature.",
+  "next_action": "Retire the clean Terra/high pass. Continue E06.",
+  "sources": [
+    {
+      "url": "https://github.com/libAtoms/extxyz",
+      "note": "Format and library baseline; original fixtures."
+    },
+    {
+      "url": "https://github.com/deepmodeling/dpdata/issues/973",
+      "note": "Source lead, not a local model failure."
+    }
+  ],
+  "evidence": [
+    "docs/research-brainstorm-experiments-20260914.md",
+    "docs/evidence/stress-author-controls.json",
+    "docs/evidence/stress-pilot-freeze.json",
+    "docs/evidence/stress-trial-summary.json",
+    "catalog/analyses/extxyz-stress.md"
+  ],
+  "notes": "Terra passed 36/36 in 27.022 agent seconds. Eleventh valid local pass; H05 not supported."
+}
