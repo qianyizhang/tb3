@@ -31,7 +31,7 @@ errors, timeouts and source/oracle faults do not count as model failures.
 | E01 | Reconstruct a synthetic MR acquisition; storage order may be confused with metadata association | Canonical samples and physical landmarks generated before serialization; equivalent encodings; metadata profile audit | Retired: Terra passed 36/36 |
 | E02 | RT0 face-flux velocity on a planar quadrilateral; flux may be treated as scalar velocity | Manufactured reference-coordinate values plus physical-edge quadrature | Retired: Terra passed 72/72 |
 | E03 | First derivative of a separated spectral projector; arbitrary eigenbasis may be differentiated | Cross-subspace analytical VJP plus directional differences at several step sizes | Retired: Terra passed 24/24 |
-| E04 | Calibrate one fixed affine two-channel instrument under clamps; observational fitting may replace intervention testing | Independent structural equations, logged measurements, held-out settings | Preparing; service support confirmed |
+| E04 | Calibrate one fixed affine two-channel instrument under clamps; observational fitting may replace intervention testing | Independent structural equations, logged measurements, held-out settings | Retired: Terra passed 20/20 |
 | E05 | Canonical stress from extxyz stress/virial labels; round trip may hide physical change | Canonical tensor, determinant volume and rotated equivalents | Reserve; source audit first |
 | E06 | Derivative through one nongrazing collision; event-time dependence may be omitted | Analytical event trajectory plus directional differences with stable event count | Reserve; reproducer first |
 
@@ -107,3 +107,13 @@ gaps; H03 is not supported. Analytical, finite-difference and Linux controls
 agree. Current local denominator: nine passes, zero genuine failures, two
 historical infrastructure-only attempts. E04 proceeds with a separate
 instrument service, fixed coefficients and unrestricted measurements.
+
+## E04 result
+
+[Instrument summary](evidence/instrument-trial-summary.json): clean Terra/high
+pass, 20/20, 48.682 agent seconds. Its 42 recorded measurements include both
+clamp directions and extra held-out-style checks; the resulting predictor
+matches the structural equations. H04 is not supported. Matching service
+oracle/nop controls returned 1/0. The four primary ideas are complete; the two
+reserves follow. Current local denominator: ten passes, zero genuine failures,
+two historical infrastructure-only attempts.
