@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "moving-frame-velocity",
   "title": "Convert velocity into a moving observation frame",
-  "status": "idea",
+  "status": "calibration",
   "tags": [
     "brainstorm-round-002",
     "sol-astra-capabilities",
@@ -12,8 +12,8 @@
     "cheap-calibration"
   ],
   "hypothesis": "A rotation-only repair passes static controls but omits translating or rotating frame motion; test this proposed Sol/Astra contrast on a shared frozen task.",
-  "why_hard": "Recognizing a coordinate time derivative differs from rotating a velocity vector. A simple permitted derivative may solve it; difficulty is unknown.",
-  "next_action": "Audit source 041's actual failed assertions, reproduce the stationary-world-point witness and validate analytic/numerical derivative baselines before freezing.",
+  "why_hard": "A coordinate time derivative requires origin and axis motion terms. Both models derive those terms correctly on this snapshot; a permitted finite-difference baseline also passes.",
+  "next_action": "Retired after matching Sol/max and Astra/max passes, 24/24 each; preserve the freeze and return to source selection.",
   "sources": [
     {
       "url": "https://chatgpt.com/c/6aa74ac6-4190-83ee-9eaf-603e1ae6ab9e",
@@ -22,7 +22,13 @@
   ],
   "evidence": [
     "docs/research-rounds/BR-002-sol-astra-capabilities.md",
-    "docs/evidence/brainstorm-round-002-intake.json"
+    "docs/evidence/brainstorm-round-002-intake.json",
+    "docs/research-rounds/BR-002-results.md",
+    "docs/evidence/br002-frame-author-controls.json",
+    "docs/evidence/br002-frame-freeze.json",
+    "docs/evidence/br002-frame-summary.json",
+    "docs/evidence/br002-frame-inspection.json",
+    "docs/evidence/br002-source-receipts.json"
   ],
-  "notes": "BR-002/D01. Proposed 12 tracks; formula/derivative-supplied ablations. Discussion-reported 32 checks lack retrieved raw artifacts. No local fixture or model run. Retire a clean Sol pass."
+  "notes": "BR-002/D01: two healthy natural-task passes; H-D01 unsupported. Sol uses rotation-matrix derivatives; Astra uses world angular velocity. Both subtract the origin velocity and preserve timestamp order. Source 041 tests Cartesian vector semantics, not this derivative task. No formula-supplied ablation triggered."
 }

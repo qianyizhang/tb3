@@ -1,6 +1,6 @@
 # Findings and experiment ledger
 
-All entries dated 2026-09-12. Research claims and ranked alternatives live in [research.md](research.md); acceptance rules in [requirements.md](requirements.md). Append outcomes, including failures. No model difficulty claims without completed verifiers.
+Initial entries are dated 2026-09-12; later rounds carry their own dates. Research claims and ranked alternatives live in [research.md](research.md); acceptance rules in [requirements.md](requirements.md). Append outcomes, including failures. No model difficulty claims without completed verifiers.
 
 | ID | Attempt / finding | Result | Evidence / next action |
 | --- | --- | --- | --- |
@@ -64,9 +64,9 @@ All entries dated 2026-09-12. Research claims and ranked alternatives live in [r
 
 ## Denominators
 
-Completed early model diagnostics so far: **12 valid Terra/high passes**, **0 genuine model failures**, plus **2 infrastructure-only model attempts** from initial setup. Authoring oracle failures are separate controls and never model failures. Six passes predate the 2026-09-14 round; six are in the [completed brainstorm round](research-brainstorm-experiments-20260914.md). Detailed earlier controls and snapshot revisions remain preserved in [initial summary](evidence/trial-summary.json), [harder summary](evidence/harder-trial-summary.json), [geometry summary](evidence/clipper-trial-summary.json), and [homology summary](evidence/homology-trial-summary.json).
+Completed local pilots so far: **12 valid Terra/high passes, 4 Sol/max passes, 4 Astra/max passes, 0 genuine model failures**, plus **2 infrastructure-only model attempts** from initial setup. Authoring oracle failures are separate controls and never model failures. Six Terra passes predate BR-001; six are in the [completed BR-001 round](research-brainstorm-experiments-20260914.md). The eight Sol/Astra passes belong to [BR-002](research-rounds/BR-002-results.md); different tasks and protocols are not pooled into a model ranking. Detailed earlier controls and snapshot revisions remain preserved in [initial summary](evidence/trial-summary.json), [harder summary](evidence/harder-trial-summary.json), [geometry summary](evidence/clipper-trial-summary.json), and [homology summary](evidence/homology-trial-summary.json).
 
-Required final standard trials: **0/6**. Required final adversarial trials: **0/2**. No final task selected. See [harder screen](harder-screen.md) for active runs and the predeclared follow-up rule.
+Required final standard trials: **0/6**. Required final adversarial trials: **0/2**. No final task selected. Completed local rounds are indexed in the [round register](research-rounds.md).
 
 ## Diverse short-horizon screen
 
@@ -101,3 +101,26 @@ repeats, Sol/Opus runs or genuine failures in this round. Two superseded MR
 draft controls and a corrected pre-freeze extxyz package build are retained;
 neither is a model failure. The proposed compact failure mechanisms were not
 observed. Final submission counts remain 0/6 standard and 0/2 adversarial.
+
+## BR-002 capability pilots (2026-09-14, complete)
+
+The user authorized testing the four newly organized designs. The
+[predeclared plan](research-rounds/BR-002-execution.md) calls for Sol/max then
+Astra/max on each natural task, with 1,800 seconds available and identical
+task bytes/access. All eight model runs completed normally and passed. No
+repeat or ablation was triggered; all four snapshots are retired.
+
+| Scoped ID | Diagnostic | Sol/max | Astra/max | Evidence |
+| --- | --- | --- | --- | --- |
+| BR-002/D02 | RF wave composition | 32/32, 203.718 agent seconds | 32/32, 214.608 seconds | [Summary](evidence/br002-rf-summary.json) |
+| BR-002/D04 | Score sounding events | Exact 96/96 events, F1 1.00, 849.882 seconds | Exact 96/96 events, F1 1.00, 195.167 seconds | [Summary](evidence/br002-score-summary.json) |
+| BR-002/D03 | Actuator memory | 12/12 histories, 68.715 seconds | 12/12 histories, 96.648 seconds | [Summary](evidence/br002-actuator-summary.json) |
+| BR-002/D01 | Moving-frame velocity | 24/24, 132.703 seconds | 24/24, 184.816 seconds | [Summary](evidence/br002-frame-summary.json) |
+
+The [round receipt](evidence/br002-round-summary.json) verifies unchanged frozen
+bytes, matching healthy oracle/nop checksums, model/effort/CLI settings and
+sequential timestamps. Eight final-snapshot controls and four superseded
+pre-freeze score/actuator controls are retained separately from model attempts.
+The [result analysis](research-rounds/BR-002-results.md) links submitted-artifact
+inspections and the source 041/047 audit. H-D01–H-D04 are unsupported on these
+snapshots; one pair per task cannot estimate a population capability gap.

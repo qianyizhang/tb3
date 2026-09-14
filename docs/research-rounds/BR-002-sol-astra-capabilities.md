@@ -1,9 +1,11 @@
 # BR-002 — Sol/Astra capability experiments
 
-Captured 2026-09-14. **State: captured; preparation pending.** Four proposed
-original pilots, zero local attempts. Current work captures and organizes the
-new discussion. Fixture construction, source reproduction and model runs remain
-future work. See the [round register](../research-rounds.md).
+Captured 2026-09-14. **Historical intake snapshot below; execution is complete.**
+All four pilots subsequently passed with both Sol/max and Astra/max and were
+retired. See the [execution plan](BR-002-execution.md),
+[local results](BR-002-results.md) and [round register](../research-rounds.md).
+The proposal statuses, untested claims and next actions below describe the
+intake before execution; they are retained as the original design record.
 
 ## Provenance and change of question
 

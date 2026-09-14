@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "score-sounding-events",
   "title": "Recover sounding events from score images",
-  "status": "idea",
+  "status": "calibration",
   "tags": [
     "brainstorm-round-002",
     "sol-astra-capabilities",
@@ -12,8 +12,8 @@
     "artifact-production"
   ],
   "hypothesis": "An agent recognizes symbols but misconstructs simultaneity, accidental scope, sustained ties or repeated attacks in the sounding-event representation.",
-  "why_hard": "Relationships among visible symbols determine the exact event multiset. All images are visible and manual/OMR correction is legitimate; original task difficulty is untested.",
-  "next_action": "Recover the truncated GOLD-GLYPHS and protocol sections or explicitly author a replacement, then independently validate one rendered excerpt and equal model image access.",
+  "why_hard": "Visible symbol relationships determine the exact event multiset. All images are visible and manual/OMR correction is legitimate; both models correctly reconstruct every event on this fixed task.",
+  "next_action": "Retired after Sol/max and Astra/max both achieved exact 96/96 events and F1 1.00; preserve the fixed images and freeze.",
   "sources": [
     {
       "url": "https://chatgpt.com/c/6aa74ac6-4190-83ee-9eaf-603e1ae6ab9e",
@@ -22,7 +22,13 @@
   ],
   "evidence": [
     "docs/research-rounds/BR-002-sol-astra-capabilities.md",
-    "docs/evidence/brainstorm-round-002-intake.json"
+    "docs/evidence/brainstorm-round-002-intake.json",
+    "docs/research-rounds/BR-002-results.md",
+    "docs/evidence/br002-score-author-controls.json",
+    "docs/evidence/br002-score-freeze.json",
+    "docs/evidence/br002-score-summary.json",
+    "docs/evidence/br002-score-sol-inspection.json",
+    "docs/evidence/br002-score-astra-inspection.json"
   ],
-  "notes": "BR-002/D04; main visual branch. Proposed four four-bar excerpts and public exact-event F1 thresholds 0.98 aggregate/0.95 per excerpt. Metric details, strong baseline and stop rule remain to be frozen. No local fixture or model result."
+  "notes": "BR-002/D04: both natural runs pass; H-D04 unsupported. Four artifacts use two notation patterns across treble/bass. Sol took 849.882 agent seconds and Astra 195.167; one pair does not estimate a general speed or capability gap."
 }

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "rf-wave-compose",
   "title": "Compose RF networks across wave conventions",
-  "status": "idea",
+  "status": "calibration",
   "tags": [
     "brainstorm-round-002",
     "sol-astra-capabilities",
@@ -12,8 +12,8 @@
     "source-audit"
   ],
   "hypothesis": "Default wave/reference assumptions pass common 50-ohm controls but break equivalent encodings of the same connected physical networks.",
-  "why_hard": "Complex reference impedances and wave conventions must preserve the physical circuit during composition. A correct scikit-rf wrapper is allowed; source 047's actual failure mechanism remains unaudited.",
-  "next_action": "Audit source 047's seventh assertion, then compare a convention-aware scikit-rf baseline with an independently assembled nodal oracle.",
+  "why_hard": "Complex reference impedances and wave conventions must preserve the physical circuit during composition. Both models and a permitted scikit-rf wrapper solve this snapshot. Source 047's audited residual miss concerns media generation, outside this extraction.",
+  "next_action": "Retired after matching Sol/max and Astra/max passes, 32/32 each; preserve the freeze and return to source selection.",
   "sources": [
     {
       "url": "https://chatgpt.com/c/6aa74ac6-4190-83ee-9eaf-603e1ae6ab9e",
@@ -22,7 +22,13 @@
   ],
   "evidence": [
     "docs/research-rounds/BR-002-sol-astra-capabilities.md",
-    "docs/evidence/brainstorm-round-002-intake.json"
+    "docs/evidence/brainstorm-round-002-intake.json",
+    "docs/evidence/br002-rf-author-controls.json",
+    "docs/evidence/br002-rf-freeze.json",
+    "docs/evidence/br002-rf-summary.json",
+    "catalog/analyses/br002-rf-wave-compose.md",
+    "docs/research-rounds/BR-002-results.md",
+    "docs/evidence/br002-source-receipts.json"
   ],
-  "notes": "BR-002/D02; main scientific preparation candidate. Proposed eight circuit pairs, four representations and sixteen frequencies. GOLD-Z ablation supplies individual physical matrices. Reported 128 checks are discussion claims with no retrieved raw evidence; no local trials."
+  "notes": "BR-002/D02: two healthy natural-task passes; H-D02 unsupported. Strong scikit-rf baseline also passes. Source 047 residual miss is media generation, outside this extraction."
 }

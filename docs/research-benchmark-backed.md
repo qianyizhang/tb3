@@ -15,11 +15,14 @@ Audited SWE-bench-Science source misses differed from several extracted
 mechanisms; their published failure rates do not transfer to these pilots.
 This round does not change the benchmark-backed reproduction priorities below.
 
-The later [BR-002 capability discussion](research-rounds/BR-002-sol-astra-capabilities.md)
-adds four proposed pilots and a queue of reported Sol-fail/Astra-pass source
-tasks. Their mechanisms and imported outcome claims await source audit; no new
-local trial or shortlist promotion is recorded. The [round register](research-rounds.md)
-keeps this intake distinct from completed screens and experiments.
+The later [BR-002 capability experiments](research-rounds/BR-002-results.md)
+tested four further original pilots: all passed once with Sol/max and once with
+Astra/max, with healthy matching controls. All four snapshots are retired;
+no success split or shortlist promotion was observed. Audited published traces
+for 041 and 047 show that their missed requirements differ from the extracted
+derivative/composition tasks. The remaining imported differential source claims
+remain unaudited. The [round register](research-rounds.md) keeps intake designs,
+local outcomes and future selection work distinct.
 
 The subsequent [100-card broad task bank](research-broad-task-bank.md) expands
 this shortlist across benchmark sources, HN/Reddit practitioner leads and

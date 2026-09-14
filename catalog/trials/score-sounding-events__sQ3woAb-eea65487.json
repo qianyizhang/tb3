@@ -1,0 +1,92 @@
+{
+  "agent": "nop",
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "cases": [
+    {
+      "detail": "",
+      "name": "fragment_01",
+      "status": "failed"
+    },
+    {
+      "detail": "",
+      "name": "fragment_02",
+      "status": "failed"
+    },
+    {
+      "detail": "",
+      "name": "fragment_03",
+      "status": "failed"
+    },
+    {
+      "detail": "",
+      "name": "fragment_04",
+      "status": "failed"
+    },
+    {
+      "detail": "",
+      "name": "aggregate_f1",
+      "status": "failed"
+    }
+  ],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "control_fail",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br002-score-nop-v2-20260914/score-sounding-events__sQ3woAb/result.json",
+      "sha256": "1c4c2e2ee40041cd5d70354ac23e8ca54712a97453b80603e15dc227b5dcd5a5"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br002-score-nop-v2-20260914/score-sounding-events__sQ3woAb/verifier/test-stdout.txt",
+      "sha256": "df712becdf79183fe25bbc6367e4296a2e1d25dbcd94d3519e152bcd037d9691"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br002-score-nop-v2-20260914/score-sounding-events__sQ3woAb/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Submitted artifact: answer/events.json",
+      "path": "runs/br002-score-nop-v2-20260914/score-sounding-events__sQ3woAb/artifacts/app/answer/events.json",
+      "sha256": "695fceb0a2ae6db67f8d46f8fe20dee0bb7d37c2d0f675d5b81966eed4e411ec"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br002-score-nop-v2-20260914/lock.json",
+      "sha256": "70d4696a570dbcbadf648bdf894e692539def8164406a0cd0ac32522182e89c4"
+    }
+  ],
+  "evidence_sha256": "443c7b330867192909c80a010aa7c8a748dbf3cfa39e813371e727c9619f1abc",
+  "exception_type": null,
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-14T09:21:16.648182Z",
+  "harbor_version": "0.18.0",
+  "id": "score-sounding-events__sQ3woAb-eea65487",
+  "job": "br002-score-nop-v2-20260914",
+  "model": null,
+  "qualifying_final_trial": false,
+  "reasoning_effort": null,
+  "reward": 0.0,
+  "schema_version": 1,
+  "source_result": "runs/br002-score-nop-v2-20260914/score-sounding-events__sQ3woAb/result.json",
+  "source_sha256": "1c4c2e2ee40041cd5d70354ac23e8ca54712a97453b80603e15dc227b5dcd5a5",
+  "started_at": "2026-09-14T09:20:50.914812Z",
+  "task_checksum": "1fd7b0311e213370c7c182bde0c78b47f4bc46d366056b32d2590a593b80a2e2",
+  "task_id": "score-sounding-events",
+  "task_sha256": null,
+  "timing": {
+    "agent": 0.0,
+    "setup": 0.0,
+    "total": 25.733,
+    "verifier": 12.569
+  },
+  "trial_name": "score-sounding-events__sQ3woAb",
+  "usage": {
+    "n_cache_tokens": null,
+    "n_input_tokens": null,
+    "n_output_tokens": null
+  },
+  "warnings": []
+}
