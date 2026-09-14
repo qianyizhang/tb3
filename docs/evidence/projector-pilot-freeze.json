@@ -1,0 +1,49 @@
+{
+  "task": "probes/spectral-projector",
+  "task_sha256": "c4d4d8d89d4282af5c6769f56665a9375057e6050d2937cff0e41c9ffd9ee82a",
+  "frozen_at": "2026-09-14T04:39:42.689276+00:00",
+  "upstream": "e2995b93b0a46edee7bc9942ea5622411a6d5bb9",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "harbor_trial_version": "0.14.0",
+  "harbor_control_version": "0.18.0",
+  "agent_timeout_seconds": 1800,
+  "initial_attempts": 1,
+  "repeat_if_genuine_failure": 1,
+  "qualifying_final_trial": false,
+  "case_count": 24,
+  "controls": [
+    {
+      "job": "projector-oracle-v1-20260914",
+      "result": "runs/projector-oracle-v1-20260914/spectral-projector__HY4QLUZ/result.json",
+      "task_checksum": "83dfb4912e62761da4fecd00631f3e716c1d11366258a0c9f6eab25393dbe536",
+      "reward": 1
+    },
+    {
+      "job": "projector-nop-v1-20260914",
+      "result": "runs/projector-nop-v1-20260914/spectral-projector__2zDcERz/result.json",
+      "task_checksum": "83dfb4912e62761da4fecd00631f3e716c1d11366258a0c9f6eab25393dbe536",
+      "reward": 0
+    }
+  ],
+  "model_job": "projector-terra-high-v1-20260914",
+  "files": {
+    "authoring/fixtures.py": "aa094ca726e83a49cdc35bbd6fab4aed007d54fbb7e48457ae5ef5d6b9d4ae36",
+    "authoring/notes.md": "f5f514ca3b13cba08183409d60c711f5d7757e05839206a4131d79b823f3de4d",
+    "authoring/validate.py": "97e9b2ec395b30c7f976b118bb2658af36edc325920f7e08cb80137f8085865c",
+    "environment/Dockerfile": "99cd00a5acb4c74b400fb28c5ef1aefee984d3d5a3438fe0bba9a49ea4f2ee3c",
+    "environment/check_examples.py": "5a016e5f03958a68f988362e67e48fa18887e7f9095c60e862b3cb5f9f7d26b8",
+    "environment/driver.py": "8612eba2dbc1977285a8069345751faf36211c9ef335a9fac2267eba8332012d",
+    "environment/examples.json": "f014615a07338bfea077f223d0c2ff775cc95b4f0f6cdecb8f8ebfa90b5adafd",
+    "environment/solution.py": "b3fc821807a33329c0066c285b1a37c1258a51578371ae447d253e830f934d90",
+    "instruction.md": "3b203efdf400667e162025061cd062b2baa9986cfae798935747d250f699a3bd",
+    "solution/reference.py": "d6fce7b448700a845f6b95eeba6bceeb6e93a3534ae6959d1cbd8327ea9c07d0",
+    "solution/solve.sh": "d2540384afe113213d17e012c21da980ce6bba309dceb263383cc210d1faf431",
+    "task.toml": "edcb6647222ceecb895b1f0f409c1c8bd5a23a3eb7eaab3177744c15c9d922e3",
+    "tests/Dockerfile": "e146940b386200ad3e7b7707db7a1966bb0cb4389ebbb0a4739c6bb6492097b0",
+    "tests/cases.json": "efbeb96320177f279021701b11b6d976b5fbea6b3060ab028247bdcc1de971e0",
+    "tests/driver.py": "8612eba2dbc1977285a8069345751faf36211c9ef335a9fac2267eba8332012d",
+    "tests/test.sh": "411a55435dd5d955192f7635d0184062b7541159db7774a1b84cb0e8e485e2a0",
+    "tests/verifier.py": "73c9fcc529b602395cb559653bf2f134a7a6ee2360fa16ac6e8328d477ae0506"
+  }
+}

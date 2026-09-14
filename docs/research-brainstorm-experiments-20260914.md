@@ -30,8 +30,8 @@ errors, timeouts and source/oracle faults do not count as model failures.
 | --- | --- | --- | --- |
 | E01 | Reconstruct a synthetic MR acquisition; storage order may be confused with metadata association | Canonical samples and physical landmarks generated before serialization; equivalent encodings; metadata profile audit | Retired: Terra passed 36/36 |
 | E02 | RT0 face-flux velocity on a planar quadrilateral; flux may be treated as scalar velocity | Manufactured reference-coordinate values plus physical-edge quadrature | Retired: Terra passed 72/72 |
-| E03 | First derivative of a separated spectral projector; arbitrary eigenbasis may be differentiated | Cross-subspace analytical VJP plus directional differences at several step sizes | Preparing |
-| E04 | Calibrate one fixed affine two-channel instrument under clamps; observational fitting may replace intervention testing | Independent structural equations, logged measurements, held-out settings | Queued; first check service support |
+| E03 | First derivative of a separated spectral projector; arbitrary eigenbasis may be differentiated | Cross-subspace analytical VJP plus directional differences at several step sizes | Retired: Terra passed 24/24 |
+| E04 | Calibrate one fixed affine two-channel instrument under clamps; observational fitting may replace intervention testing | Independent structural equations, logged measurements, held-out settings | Preparing; service support confirmed |
 | E05 | Canonical stress from extxyz stress/virial labels; round trip may hide physical change | Canonical tensor, determinant volume and rotated equivalents | Reserve; source audit first |
 | E06 | Derivative through one nongrazing collision; event-time dependence may be omitted | Analytical event trajectory plus directional differences with stable event count | Reserve; reproducer first |
 
@@ -98,3 +98,12 @@ it did not execute a model attempt.
 supported. All eight base cells and their flux/rigid-transform variants passed.
 Current local denominator: eight passes, zero genuine failures, two historical
 infrastructure-only attempts. E03 follows without adding difficulty to E02.
+
+## E03 result
+
+[Projector summary](evidence/projector-trial-summary.json): clean Terra/high
+pass, 24/24, 102.691 agent seconds. The custom VJP uses only cross-subspace
+gaps; H03 is not supported. Analytical, finite-difference and Linux controls
+agree. Current local denominator: nine passes, zero genuine failures, two
+historical infrastructure-only attempts. E04 proceeds with a separate
+instrument service, fixed coefficients and unrestricted measurements.
