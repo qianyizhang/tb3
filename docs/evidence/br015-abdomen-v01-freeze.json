@@ -1,0 +1,319 @@
+{
+  "round": "BR-015",
+  "tasks": [
+    {
+      "task": "abdomen-v01",
+      "task_path": "runs/br015-clinical/tasks/abdomen-v01",
+      "case": "ColonVessels pat_016 venous phase",
+      "mode": "recognition",
+      "object_count": 8,
+      "context_count": 1,
+      "source_segmentation_sha256": "6e1071ae4f14b19d15871e162a733b2176661c9227cb6e11da32555132a11680",
+      "source_ct_sha256": "ebadf28f40ffa688d4163d0f84297a3af59d35e8ec0697c23001c56fbc1a3c0a",
+      "ct_crop_start": [
+        67,
+        91,
+        110
+      ],
+      "ct_crop_stop": [
+        439,
+        411,
+        661
+      ],
+      "all_target_geometry_unchanged": true,
+      "ct_registration": [
+        {
+          "object_id": "o425",
+          "all_target_voxels_registered": 10865
+        },
+        {
+          "object_id": "o609",
+          "all_target_voxels_registered": 3239
+        },
+        {
+          "object_id": "o570",
+          "all_target_voxels_registered": 5591
+        },
+        {
+          "object_id": "o185",
+          "all_target_voxels_registered": 45989
+        },
+        {
+          "object_id": "o863",
+          "all_target_voxels_registered": 5391
+        },
+        {
+          "object_id": "o597",
+          "all_target_voxels_registered": 18331
+        },
+        {
+          "object_id": "o582",
+          "all_target_voxels_registered": 16831
+        },
+        {
+          "object_id": "o307",
+          "all_target_voxels_registered": 3287
+        }
+      ],
+      "controls": [
+        {
+          "name": "oracle",
+          "expected": true,
+          "grade": {
+            "passed": true,
+            "missing": [],
+            "extra": [],
+            "wrong": [],
+            "identities_correct": 8,
+            "identities_total": 8,
+            "missed_corrections": null,
+            "false_repairs": null
+          }
+        },
+        {
+          "name": "order_invariant",
+          "expected": true,
+          "grade": {
+            "passed": true,
+            "missing": [],
+            "extra": [],
+            "wrong": [],
+            "identities_correct": 8,
+            "identities_total": 8,
+            "missed_corrections": null,
+            "false_repairs": null
+          }
+        },
+        {
+          "name": "empty",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "missing": [
+              "o185",
+              "o307",
+              "o425",
+              "o570",
+              "o582",
+              "o597",
+              "o609",
+              "o863"
+            ],
+            "extra": [],
+            "wrong": [],
+            "identities_correct": 0,
+            "identities_total": 8,
+            "missed_corrections": null,
+            "false_repairs": null
+          }
+        },
+        {
+          "name": "missing",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "missing": [
+              "o425"
+            ],
+            "extra": [],
+            "wrong": [],
+            "identities_correct": 7,
+            "identities_total": 8,
+            "missed_corrections": null,
+            "false_repairs": null
+          }
+        },
+        {
+          "name": "duplicate",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "error": "Non-string field or duplicate object_id"
+          }
+        },
+        {
+          "name": "swap",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "missing": [],
+            "extra": [],
+            "wrong": [
+              "o425",
+              "o609"
+            ],
+            "identities_correct": 6,
+            "identities_total": 8,
+            "missed_corrections": null,
+            "false_repairs": null
+          }
+        },
+        {
+          "name": "context_answer",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "missing": [],
+            "extra": [
+              "context"
+            ],
+            "wrong": [],
+            "identities_correct": 8,
+            "identities_total": 8,
+            "missed_corrections": null,
+            "false_repairs": null
+          }
+        }
+      ],
+      "source_identities": [
+        {
+          "number": 1,
+          "name": "portal vein (v. portae)",
+          "layer": 1,
+          "value": 1,
+          "object_id": "o185",
+          "voxels": 45989,
+          "volume_ml": 26.896996746826186,
+          "extent_mm": [
+            94.1484375,
+            100.546875,
+            65.80000000000003
+          ],
+          "cropped_mask_sha256": "1c897093fbb30df9bc07144c6535fe4179375307d9e5806b1d660250b4f82dac",
+          "canonical_label": "portal_vein"
+        },
+        {
+          "number": 2,
+          "name": "splenic vein (v. lienalis)",
+          "layer": 2,
+          "value": 1,
+          "object_id": "o597",
+          "voxels": 18331,
+          "volume_ml": 10.721016925048835,
+          "extent_mm": [
+            116.0859375,
+            104.203125,
+            78.40000000000003
+          ],
+          "cropped_mask_sha256": "8f858b40b65d242855e8f02e3256df702337e814be81778a1ae9aa34a2b9b46a",
+          "canonical_label": "splenic_vein"
+        },
+        {
+          "number": 3,
+          "name": "short gastric veins (vv. gastricae breves)",
+          "layer": 1,
+          "value": 2,
+          "object_id": "o863",
+          "voxels": 5391,
+          "volume_ml": 3.152965045166017,
+          "extent_mm": [
+            60.328125,
+            74.0390625,
+            44.100000000000016
+          ],
+          "cropped_mask_sha256": "aed43eca40afbabca3e74f259cbc12ec4586f8896fdd159853abec7730ada339",
+          "canonical_label": "short_gastric_veins"
+        },
+        {
+          "number": 5,
+          "name": "right gastroomental vein (v. gastroomentalis l. dx)",
+          "layer": 1,
+          "value": 3,
+          "object_id": "o570",
+          "voxels": 5591,
+          "volume_ml": 3.269936480712892,
+          "extent_mm": [
+            74.0390625,
+            56.671875,
+            84.70000000000003
+          ],
+          "cropped_mask_sha256": "7676ed56ae1122ed3a59ac79fae6c521f42ef9fe371d973d63c29d7de2c0178f",
+          "canonical_label": "right_gastro_omental_vein"
+        },
+        {
+          "number": 6,
+          "name": "collateral vein from right gastroomental vein to short gastric veins",
+          "layer": 1,
+          "value": 4,
+          "object_id": "o307",
+          "voxels": 3287,
+          "volume_ml": 1.9224255432128916,
+          "extent_mm": [
+            120.65625,
+            64.8984375,
+            77.00000000000003
+          ],
+          "cropped_mask_sha256": "190743e4bfc3212c8ea3ce8c1975f0c578a2e7b34ea8cfb089f6254ce5054542",
+          "canonical_label": "collateral_between_right_gastro_omental_and_short_gastric_veins"
+        },
+        {
+          "number": 7,
+          "name": "left gastric vein (v. gastrica l. sin)",
+          "layer": 2,
+          "value": 3,
+          "object_id": "o609",
+          "voxels": 3239,
+          "volume_ml": 1.8943523986816415,
+          "extent_mm": [
+            56.671875,
+            43.875,
+            57.40000000000003
+          ],
+          "cropped_mask_sha256": "0863c5c8247cd5c8d6477b9f807a6bb4bbbad96bd949a354b35b624f0918a1f0",
+          "canonical_label": "left_gastric_vein"
+        },
+        {
+          "number": 12,
+          "name": "superior mesenteric vein (v. mesenterica superior)",
+          "layer": 3,
+          "value": 1,
+          "object_id": "o582",
+          "voxels": 16831,
+          "volume_ml": 9.84373115844727,
+          "extent_mm": [
+            33.8203125,
+            32.90625,
+            143.50000000000006
+          ],
+          "cropped_mask_sha256": "cc8d82d62c91d067ecbc36fd7c2a6deb4b2eaa34ef84a76cccd23636f2264f54",
+          "canonical_label": "superior_mesenteric_vein"
+        },
+        {
+          "number": 21,
+          "name": "inferior mesenteric vein (v. mesenterica inferior)",
+          "layer": 1,
+          "value": 11,
+          "object_id": "o425",
+          "voxels": 10865,
+          "volume_ml": 6.3544732360839875,
+          "extent_mm": [
+            53.9296875,
+            74.0390625,
+            219.10000000000008
+          ],
+          "cropped_mask_sha256": "056c5343acc5c57943a63cdc1eab083a3404ebfa88d7cc642ec0e3c710034656",
+          "canonical_label": "inferior_mesenteric_vein"
+        }
+      ],
+      "admission": "Eight substantial, source-named vessels with same-phase CT; one diagnostic Sol trial. Specialist publication supports keys; independent input-identifiability review is pending. Not yet a certified hard task.",
+      "files": {
+        "environment/DATA-LICENSE.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+        "environment/Dockerfile": "7b0a35de2e9ec6e0670c1083946766769f4b933f01934c7ba463a5a9a4f3e2ae",
+        "environment/SOURCE_NOTICE.md": "fdb53e32c8cd48c5e08e45f046c77b864d395a50aa85f5cbc1141cccaa645730",
+        "environment/answer.json": "c8960def3a00791f98d7378b17ffcaf4427c1ab8b9b3f68ea67ef8f2e7bf0777",
+        "environment/data.tar.gz": "50f07b7a95f1a667b14ba13bb5b5fd51959cd172770b369de2b3a52b30645f69",
+        "environment/inspect_ct.py": "c61e15ba95a592724d28943a8c2d402a7086888fbb5ccd7672327bfb11f5eb5b",
+        "environment/inspect_scene.py": "0d8207392712d01de0f217471951d92dd71749726a8d875d8057e49762f78bba",
+        "instruction.md": "7fe458adf5977931107b80fd1f63a6f3c7a0077aa271fde9459134c14c4cac0e",
+        "solution/answer.json": "76f48bdc948dbfd35f0fe27f8721e97cf7492c5209b1e9f51c281fc9a9b94b36",
+        "solution/solve.sh": "0b244745b700b2a6856e68f7236bc18e3a476c8c588a27c84d1838da637a86c4",
+        "task.toml": "d3421f0a58db16122b30fbf9862d9b6a53bcf58de76807e050e7300cdaf1efa3",
+        "tests/Dockerfile": "881761e1b6c4d7bcb5bc14dd55795fee3b84919f0da21dc96a0a3a5372c1c3f2",
+        "tests/expected.json": "c8467adeece18b8fe3d0e912925bfca9a839d0b0b810956c79a0b6436884e4f8",
+        "tests/scoring.py": "09869732afdbf3d4b60c7647ce39b1500818043789cfe69d9939793210d08c67",
+        "tests/test.sh": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3",
+        "tests/verifier.py": "fb6a6597824671d257f8661b472156b46729e4a8a4e57dd9c410e1e36e0446e6"
+      }
+    }
+  ]
+}

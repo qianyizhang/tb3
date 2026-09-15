@@ -1,0 +1,239 @@
+{
+  "round": "BR-014",
+  "tasks": [
+    {
+      "task": "abdomen-f01",
+      "task_path": "runs/br014-components/tasks/abdomen-f01",
+      "case": 28,
+      "mode": "recognition",
+      "object_count": 15,
+      "class_count": 13,
+      "source_task": "BR013-A01 ordinary calibration",
+      "gap_mm": 6,
+      "cuts": [
+        {
+          "label": "pancreas",
+          "gap_mm": 6,
+          "axis_lps": [
+            0.5839193505283503,
+            -0.004625456869591532,
+            0.8117984954576456
+          ],
+          "plane_offset_mm": 261.6842067145085,
+          "original_voxels": 17606,
+          "retained_voxels": [
+            7971,
+            8070
+          ],
+          "retained_ml": [
+            26.902125,
+            27.23625
+          ],
+          "removed_voxels": 1565,
+          "removed_ml": 5.281875,
+          "components26": [
+            [
+              7971
+            ],
+            [
+              8070
+            ]
+          ]
+        },
+        {
+          "label": "duodenum",
+          "gap_mm": 6,
+          "axis_lps": [
+            0.8949737970545873,
+            0.18812240985995368,
+            -0.40451435264299174
+          ],
+          "plane_offset_mm": -169.29076073260447,
+          "original_voxels": 16552,
+          "retained_voxels": [
+            7938,
+            7944
+          ],
+          "retained_ml": [
+            26.79075,
+            26.811
+          ],
+          "removed_voxels": 670,
+          "removed_ml": 2.26125,
+          "components26": [
+            [
+              7938
+            ],
+            [
+              7944
+            ]
+          ]
+        }
+      ],
+      "nearest_surface_pairs_correct": 0,
+      "identity_controls": [
+        {
+          "name": "oracle",
+          "expected": true,
+          "grade": {
+            "passed": true,
+            "missing": [],
+            "extra": [],
+            "wrong": [],
+            "identities_correct": 15,
+            "identities_total": 15,
+            "missed_corrections": null,
+            "false_repairs": null
+          }
+        },
+        {
+          "name": "order_invariant",
+          "expected": true,
+          "grade": {
+            "passed": true,
+            "missing": [],
+            "extra": [],
+            "wrong": [],
+            "identities_correct": 15,
+            "identities_total": 15,
+            "missed_corrections": null,
+            "false_repairs": null
+          }
+        },
+        {
+          "name": "empty",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "missing": [
+              "o165",
+              "o211",
+              "o287",
+              "o368",
+              "o404",
+              "o468",
+              "o475",
+              "o611",
+              "o785",
+              "o912",
+              "o919",
+              "o925",
+              "o942",
+              "o951",
+              "o952"
+            ],
+            "extra": [],
+            "wrong": [],
+            "identities_correct": 0,
+            "identities_total": 15,
+            "missed_corrections": null,
+            "false_repairs": null
+          }
+        },
+        {
+          "name": "missing_piece",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "missing": [
+              "o919"
+            ],
+            "extra": [],
+            "wrong": [],
+            "identities_correct": 14,
+            "identities_total": 15,
+            "missed_corrections": null,
+            "false_repairs": null
+          }
+        },
+        {
+          "name": "duplicate_piece",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "error": "Non-string field or duplicate object_id"
+          }
+        },
+        {
+          "name": "wrong_class",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "missing": [],
+            "extra": [],
+            "wrong": [
+              "o919"
+            ],
+            "identities_correct": 14,
+            "identities_total": 15,
+            "missed_corrections": null,
+            "false_repairs": null
+          }
+        },
+        {
+          "name": "extra_piece",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "missing": [],
+            "extra": [
+              "extra"
+            ],
+            "wrong": [],
+            "identities_correct": 15,
+            "identities_total": 15,
+            "missed_corrections": null,
+            "false_repairs": null
+          }
+        },
+        {
+          "name": "malformed",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "error": "Expected exactly one list named assignments"
+          }
+        },
+        {
+          "name": "pancreas_duodenum_switch",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "missing": [],
+            "extra": [],
+            "wrong": [
+              "o165",
+              "o475",
+              "o919",
+              "o942"
+            ],
+            "identities_correct": 11,
+            "identities_total": 15,
+            "missed_corrections": null,
+            "false_repairs": null
+          }
+        }
+      ],
+      "screen_sha256": "e6c9898091a5621c11c196883132a47087ef4aa9e7b063ddee692c85d718e667",
+      "admission": "Diagnostic synthetic grouping pilot; substantial connected pieces, exact retained-voxel lineage. Not clinical omission detection or a certified hard task. Planar cut cues remain available.",
+      "files": {
+        "environment/DATA-LICENSE.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+        "environment/Dockerfile": "a513b17c8813d0d3cc3d84acb01e9373df3c8d8c1e79ca8988acc4b22286cafc",
+        "environment/LABEL-LICENSE.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "environment/SOURCE_NOTICE.md": "509831d8fda1d273c5ceeff0309df2525550c04d8daa16e8f9f3ba8e69118534",
+        "environment/answer.json": "c8960def3a00791f98d7378b17ffcaf4427c1ab8b9b3f68ea67ef8f2e7bf0777",
+        "environment/data.tar.gz": "f1db6ad4b2c4f3e2efcfc2d7c23b77345b29e888567409642a2bae2d6a363a6e",
+        "environment/inspect_scene.py": "6526917be69b6f7f330eb2981e70ca6f3535ecf532daccafadc85edbc7f13002",
+        "instruction.md": "19a3c75e9924bbb13d44cb8db9be616c1cb1ce7a2b0cc3a042b82e84057d0c40",
+        "solution/answer.json": "44ac9bbbcd80d047c842e17ecbf40e98c4e90294a9c39f74a040e5480679121a",
+        "solution/solve.sh": "0b244745b700b2a6856e68f7236bc18e3a476c8c588a27c84d1838da637a86c4",
+        "task.toml": "664348e06e32845c97a5c5855277c2da83b3a2a872fb27a2191c7bce2d94b75a",
+        "tests/Dockerfile": "881761e1b6c4d7bcb5bc14dd55795fee3b84919f0da21dc96a0a3a5372c1c3f2",
+        "tests/expected.json": "4be2db32af6d374db863e978e857787bfb47c48a77e7ad77c50d76de7276452a",
+        "tests/scoring.py": "09869732afdbf3d4b60c7647ce39b1500818043789cfe69d9939793210d08c67",
+        "tests/test.sh": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3",
+        "tests/verifier.py": "fb6a6597824671d257f8661b472156b46729e4a8a4e57dd9c410e1e36e0446e6"
+      }
+    }
+  ]
+}

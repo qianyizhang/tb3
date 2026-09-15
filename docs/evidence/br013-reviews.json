@@ -1,0 +1,64 @@
+{
+  "abdomen-a01": {
+    "validity": "completed_pass",
+    "decision": "Retire as hard candidate; retain ordinary calibration."
+  },
+  "abdomen-a02": {
+    "validity": "valid_model_failure",
+    "review_scope": "Author-reviewed whole-object identity failure; not independent specialist certification or proof of a general anatomical weakness.",
+    "grade": "9/11 correct; o197 pancreas called gallbladder, o277 duodenum called pancreas.",
+    "validity_checks": {
+      "normal_completion": true,
+      "runtime_model_effort_verified": true,
+      "frozen_instruction_seen": true,
+      "independent_artifact_replay": true,
+      "no_geometry_edit": true,
+      "whole_voxel_affine_roundtrip": true,
+      "no_object_touches_scan_boundary": true
+    },
+    "source_reassessment": "Nine additional axial CT planes (source z170 through210 every5 voxels) reviewed after the miss. Source o197 encloses solid pancreatic tissue; o277 follows the duodenal course around it, continuing inferior/transverse. These labels agree with the original individual source files. Pancreas median65 HU, no voxels below-200 HU; duodenum median58 HU with67 such voxels. Intensities are corroboration of source review, not solver evidence and not a standalone organ discriminator.",
+    "mask_only_support": "The source pancreas occupies the concavity of the adjacent duodenal loop. The loop is clearer in isolated multi-view inspection than in the crowded whole scene; those public views and full masks were available. A03 independently resolved the same geometric relationship while given proposed names; that is corroboration of inferability with labels, not proof that anonymous recognition is uniquely determined.",
+    "reference": {
+      "title": "Segmentation of Pancreatic Subregions in Computed Tomography Images, section 2.2.1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9317715/",
+      "use": "General pancreatic head relationship to duodenal curve; does not adjudicate this patient."
+    },
+    "behavior": "Sol viewed the overview and four focused PNGs, measured principal-axis extents, attempted but did not complete a SciPy nearest-neighbor calculation, then inspected ASCII projections. Public commentary favored familiar transverse pancreas and sac-shaped gallbladder silhouettes. Full identity JSON validated schema but retained both errors.",
+    "failed_optional_tool_step": "The solver imported scipy, which was not installed. The task explicitly advertised NumPy/Pillow; ordinary installation or NumPy computations were available. This was a solver-selected unavailable dependency followed by normal completion, not an environment startup failure. It limits interpretation as a pure anatomical-prior test.",
+    "limits": [
+      "No verified surgery or disease history; omitted source masks are not adjudicated as organ absence.",
+      "No specialist mask-only adjudication. Before submission, independently review whether compact pancreas vs gallbladder is sufficiently inferable without proposed names.",
+      "One stochastic attempt; no causal claim that shape familiarity or label inventory caused failure."
+    ],
+    "evidence": [
+      {
+        "path": "runs/br013-abdomen/author/source83-central-axial.png",
+        "sha256": "06e0e039344087520900ee7d14bdd177deffac03c5f669cca753f7c1449732f2"
+      },
+      {
+        "path": "runs/br013-abdomen/author/neighborhood-83.png",
+        "sha256": "4a6f247108a08cb648daf2f3a7e8965a91a4f9b602137a496d794ccb03b0b2b3"
+      },
+      {
+        "path": "runs/br013-abdomen-a02-sol-xhigh-v1-20260915/abdomen-a02__zemQR6P/result.json",
+        "sha256": "f99a7836f8c8bf942f6bfeacc3c112f793cf9cbf9256f1c4458fc587dbe54ee1"
+      }
+    ],
+    "followup": "One Terra/max attempt on unchanged A02 bytes, no hints or prior answer.",
+    "terra_followup": {
+      "validity": "valid_model_failure",
+      "review_scope": "Same authored source/identity review limits apply; independent specialist adjudication remains outstanding.",
+      "grade": "10/11; same o197 pancreas-to-gallbladder error; duodenum correct.",
+      "behavior": "Viewed overview plus isolated renderings for all 11 objects, and read source-free physical measurements. Correctly identified the duodenum but assigned gallbladder to the enclosed compact pancreas. No successful targeted pairwise-distance computation is present. It corrected one failed answer-file patch and completed normally.",
+      "result_path": "runs/br013-abdomen-a02-terra-max-v1-20260915/abdomen-a02__JJc4VpZ/result.json",
+      "result_sha256": "a1663c04aa2967d98f0ac1c12a974d86a5e7d269eed1ffb15e1e2a3b83cfc573",
+      "runtime_model_effort_verified": true,
+      "independent_artifact_replay": true,
+      "interpretation": "Replicates the narrow identity error on the same frozen task, not an overall Sol/Terra comparison."
+    }
+  },
+  "abdomen-a03": {
+    "validity": "completed_pass",
+    "decision": "Retire this identity-audit condition as hard candidate. Exact two corrections, no false repairs. Proposed names may help identify the relevant categories; anchoring failure not observed."
+  }
+}

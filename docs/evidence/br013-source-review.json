@@ -1,0 +1,54 @@
+{
+  "round": "BR-013",
+  "review_type": "Author CT/source-mask identity review, not independent clinical adjudication",
+  "accepted": [
+    {
+      "task": "A01",
+      "case": 28,
+      "role": "ordinary recognition calibration; both geometry baselines already 13/13",
+      "observations": "13 nonempty masks; no supplied object touches source scan boundary. Axial and coronal CT overlays support identities and pancreas/duodenum neighborhood. Source contours are not scored."
+    },
+    {
+      "task": "A02",
+      "case": 83,
+      "role": "recognition residual; independent templates 9/11 and injective assignment 8/11",
+      "observations": "11 nonempty masks, none touches source scan boundary. Pancreas is compact rather than a full transverse textbook outline; its source mask overlays soft tissue anterior to the central vessels and within the adjacent duodenal course on inspected axial/coronal sections. Duodenum spans below and around this region; portal/splenic venous object remains superior. No spleen/gallbladder object is exported because the source masks are empty. Their absence is not graded and no cause is inferred. Large vessel and both kidney/adrenal context retained.",
+      "limits": "Cause of altered anatomy not verified. This does not certify surgery, disease, contour quality, or clinical severity. Any model disagreement will receive source/identifiability review before being called a valid failure."
+    },
+    {
+      "task": "A03",
+      "case": 83,
+      "role": "paired audit",
+      "edit": "Exchange whole-object proposed pancreas and duodenum identities; no voxel changes, counts and label multiset preserved."
+    }
+  ],
+  "not_selected": [
+    {
+      "case": 32,
+      "reason": "Complete scene solved 13/13 by both new baselines, not a difficult residual."
+    },
+    {
+      "case": 46,
+      "reason": "Prior unresolved source issues and a second altered case not needed in this bounded pilot."
+    },
+    {
+      "case": 74,
+      "reason": "Previously flagged limited coverage; not used as hard candidate."
+    }
+  ],
+  "evidence": [
+    {
+      "path": "runs/br013-abdomen/author/source-28.png",
+      "sha256": "41878b1da90d496b0044598661fcb822d084daa51cd430117e290ce3f4d8955f"
+    },
+    {
+      "path": "runs/br013-abdomen/author/source-32.png",
+      "sha256": "5c23ad53f8462ec7f1e7e5ae5c1720cf4176d9ea562b777e591f82840b0cd0cf"
+    },
+    {
+      "path": "runs/br013-abdomen/author/source-83.png",
+      "sha256": "1edb77895410a9d114fdac3cfc1f3546c7a7754a31571c58965136b5b7f00393"
+    }
+  ],
+  "source_review_method": "Review original CT and original individual source masks; six axial/coronal representative planes per scene. No CT shown to solver. Identity-level pilot admission, not contour approval."
+}

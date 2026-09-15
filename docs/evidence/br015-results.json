@@ -1,0 +1,513 @@
+{
+  "round": "BR-015",
+  "freeze_sha256": {
+    "abdomen-c01.json": "86a6b99a11d6453831384abfb1b7be84595d5b88cfc341c2221a4ba4ef28d98d",
+    "abdomen-v01.json": "5d48863d947ec8f3b7fd9bc34faf4d712c9920d4907dd44a84f9244329a2ee56"
+  },
+  "task_files_unchanged": true,
+  "rows": [
+    {
+      "task": "abdomen-c01",
+      "phase": "oracle",
+      "case": 83,
+      "mode": "recognition",
+      "result_path": "runs/br015-abdomen-c01-oracle-v1-20260915/abdomen-c01__R5VV5uY/result.json",
+      "result_sha256": "a4f111e20589343f424a8e52f236a1156a7ecb32c3dc3a3b902074007c76fb68",
+      "task_checksum": "4315b755a6927cb53f15c98592481943d72f0fb5d27c3523f951a820c19e88bb",
+      "started_at": "2026-09-15T11:29:15.704976Z",
+      "finished_at": "2026-09-15T11:29:41.216616Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 0.162836,
+      "total_seconds": 25.51164,
+      "environment_setup_seconds": 2.23092,
+      "agent_setup_seconds": 5.2e-05,
+      "verifier_seconds": 12.186339,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": true,
+        "missing": [],
+        "extra": [],
+        "wrong": [],
+        "identities_correct": 11,
+        "identities_total": 11,
+        "missed_corrections": null,
+        "false_repairs": null,
+        "grading_seconds": 0.0005485000001499429
+      },
+      "grade_sha256": "fd966706515a774dacead7738f2d23ae7bcb2298ae1f415a02e41cadc7af019d",
+      "answer_path": "runs/br015-abdomen-c01-oracle-v1-20260915/abdomen-c01__R5VV5uY/artifacts/app/answer/answer.json",
+      "answer_sha256": "42ba9a196e2effe42188a89698e0dadb6af6dfe2810e16522298e72756566f77",
+      "answer": {
+        "assignments": [
+          {
+            "object_id": "o631",
+            "label": "stomach"
+          },
+          {
+            "object_id": "o219",
+            "label": "inferior_vena_cava"
+          },
+          {
+            "object_id": "o717",
+            "label": "kidney_right"
+          },
+          {
+            "object_id": "o192",
+            "label": "liver"
+          },
+          {
+            "object_id": "o197",
+            "label": "pancreas"
+          },
+          {
+            "object_id": "o291",
+            "label": "aorta"
+          },
+          {
+            "object_id": "o277",
+            "label": "duodenum"
+          },
+          {
+            "object_id": "o923",
+            "label": "kidney_left"
+          },
+          {
+            "object_id": "o412",
+            "label": "adrenal_gland_left"
+          },
+          {
+            "object_id": "o729",
+            "label": "portal_vein_and_splenic_vein"
+          },
+          {
+            "object_id": "o536",
+            "label": "adrenal_gland_right"
+          }
+        ]
+      },
+      "replay_matches": true,
+      "independent_exact_set_check": true
+    },
+    {
+      "task": "abdomen-c01",
+      "phase": "nop",
+      "case": 83,
+      "mode": "recognition",
+      "result_path": "runs/br015-abdomen-c01-nop-v1-20260915/abdomen-c01__G9mMiHb/result.json",
+      "result_sha256": "2bf7a29a3b45ce586506355d302f9e867d8303408d521a9799fb1c4fb59bb4e8",
+      "task_checksum": "4315b755a6927cb53f15c98592481943d72f0fb5d27c3523f951a820c19e88bb",
+      "started_at": "2026-09-15T11:29:41.506824Z",
+      "finished_at": "2026-09-15T11:30:06.317158Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "agent_seconds": 0.0001,
+      "total_seconds": 24.810334,
+      "environment_setup_seconds": 1.727929,
+      "agent_setup_seconds": 5.6e-05,
+      "verifier_seconds": 12.195416,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": false,
+        "missing": [
+          "o192",
+          "o197",
+          "o219",
+          "o277",
+          "o291",
+          "o412",
+          "o536",
+          "o631",
+          "o717",
+          "o729",
+          "o923"
+        ],
+        "extra": [],
+        "wrong": [],
+        "identities_correct": 0,
+        "identities_total": 11,
+        "missed_corrections": null,
+        "false_repairs": null,
+        "grading_seconds": 0.0005137080006534234
+      },
+      "grade_sha256": "298f82231a5c6b3f89b0c75f9c94d9bf21eab65203ffac2346d2055b3b64c7e8",
+      "answer_path": "runs/br015-abdomen-c01-nop-v1-20260915/abdomen-c01__G9mMiHb/artifacts/app/answer/answer.json",
+      "answer_sha256": "c8960def3a00791f98d7378b17ffcaf4427c1ab8b9b3f68ea67ef8f2e7bf0777",
+      "answer": {
+        "assignments": []
+      },
+      "replay_matches": true,
+      "independent_exact_set_check": false
+    },
+    {
+      "task": "abdomen-c01",
+      "phase": "sol-xhigh",
+      "case": 83,
+      "mode": "recognition",
+      "result_path": "runs/br015-abdomen-c01-sol-xhigh-v1-20260915/abdomen-c01__ytrARUt/result.json",
+      "result_sha256": "d3ddf138177b147b6d884a73412fdd4803297a7f39db332336be0cdee17acc3d",
+      "task_checksum": "4315b755a6927cb53f15c98592481943d72f0fb5d27c3523f951a820c19e88bb",
+      "started_at": "2026-09-15T11:30:06.567279Z",
+      "finished_at": "2026-09-15T11:33:19.319698Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 136.163839,
+      "total_seconds": 192.752419,
+      "environment_setup_seconds": 1.714469,
+      "agent_setup_seconds": 30.880339,
+      "verifier_seconds": 12.186747,
+      "input_tokens": 289818,
+      "cached_input_tokens": 258304,
+      "output_tokens": 5150,
+      "estimated_cost_usd": 0.33237760000000005,
+      "agent_version": "0.154.0",
+      "grade": {
+        "passed": true,
+        "missing": [],
+        "extra": [],
+        "wrong": [],
+        "identities_correct": 11,
+        "identities_total": 11,
+        "missed_corrections": null,
+        "false_repairs": null,
+        "grading_seconds": 0.0004969159926986322
+      },
+      "grade_sha256": "a2e7c5857888a95a609a96070c7644e9bce78ddce5f9a7fbc367ec1af3fe0617",
+      "answer_path": "runs/br015-abdomen-c01-sol-xhigh-v1-20260915/abdomen-c01__ytrARUt/artifacts/app/answer/answer.json",
+      "answer_sha256": "72f893828971202863c7615b11eb15e0e057079c3a0f8a2aa6b57f21fb65ed40",
+      "answer": {
+        "assignments": [
+          {
+            "object_id": "o631",
+            "label": "stomach"
+          },
+          {
+            "object_id": "o219",
+            "label": "inferior_vena_cava"
+          },
+          {
+            "object_id": "o717",
+            "label": "kidney_right"
+          },
+          {
+            "object_id": "o192",
+            "label": "liver"
+          },
+          {
+            "object_id": "o197",
+            "label": "pancreas"
+          },
+          {
+            "object_id": "o291",
+            "label": "aorta"
+          },
+          {
+            "object_id": "o277",
+            "label": "duodenum"
+          },
+          {
+            "object_id": "o923",
+            "label": "kidney_left"
+          },
+          {
+            "object_id": "o412",
+            "label": "adrenal_gland_left"
+          },
+          {
+            "object_id": "o729",
+            "label": "portal_vein_and_splenic_vein"
+          },
+          {
+            "object_id": "o536",
+            "label": "adrenal_gland_right"
+          }
+        ]
+      },
+      "replay_matches": true,
+      "independent_exact_set_check": true,
+      "requested_model": "openai/gpt-5.6-sol",
+      "requested_effort": "xhigh",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br015-abdomen-c01-sol-xhigh-v1-20260915/abdomen-c01__ytrARUt/agent/sessions/2026/09/15/rollout-2026-09-15T11-30-40-01a0a4d5-5994-7871-919f-bbeada96451e.jsonl",
+          "sha256": "0f09b228de2cd6d9f66f9cf6f71258d2f50b2aab1d63a058a12b15424cc1e6f3"
+        }
+      ],
+      "session_file_count": 1,
+      "frozen_instruction_seen_in_user_message": true,
+      "runtime_matches_request": true,
+      "reasoning_output_tokens": 3201,
+      "last_record_stream_usage": {
+        "input_tokens": 289818,
+        "cached_input_tokens": 258304,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5150,
+        "reasoning_output_tokens": 3201,
+        "total_tokens": 294968
+      },
+      "token_basis": "Harbor counters; reasoning reported only from exactly matching legacy runtime counters. Record-stream totals retained separately.",
+      "trajectory_sha256": "cada0623771ed34bb799344d92ada89aa35a371dd9f2a86931e854ee2115f434",
+      "tool_wrappers": 9,
+      "image_review_wrappers": 3
+    },
+    {
+      "task": "abdomen-v01",
+      "phase": "oracle",
+      "case": "ColonVessels pat_016 venous phase",
+      "mode": "recognition",
+      "result_path": "runs/br015-abdomen-v01-oracle-v1-20260915/abdomen-v01__svtikDb/result.json",
+      "result_sha256": "5eb8761b7a0fd59129ea90703b985d7e70d9ac49547cb4756c3996a0f01a85a8",
+      "task_checksum": "8b1841207b6af3d1da6310ad015e1a2f79060c04f218845237525e62a1bdecba",
+      "started_at": "2026-09-15T11:47:03.003666Z",
+      "finished_at": "2026-09-15T11:47:29.778634Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 0.162842,
+      "total_seconds": 26.774968,
+      "environment_setup_seconds": 3.278931,
+      "agent_setup_seconds": 4.7e-05,
+      "verifier_seconds": 12.395443,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": true,
+        "missing": [],
+        "extra": [],
+        "wrong": [],
+        "identities_correct": 8,
+        "identities_total": 8,
+        "missed_corrections": null,
+        "false_repairs": null,
+        "grading_seconds": 0.000578624996705912
+      },
+      "grade_sha256": "a5c937e66c6db3b1597dd3091e3ac54815e569fe963666c6b9a50ef1e20376cb",
+      "answer_path": "runs/br015-abdomen-v01-oracle-v1-20260915/abdomen-v01__svtikDb/artifacts/app/answer/answer.json",
+      "answer_sha256": "76f48bdc948dbfd35f0fe27f8721e97cf7492c5209b1e9f51c281fc9a9b94b36",
+      "answer": {
+        "assignments": [
+          {
+            "object_id": "o425",
+            "label": "inferior_mesenteric_vein"
+          },
+          {
+            "object_id": "o609",
+            "label": "left_gastric_vein"
+          },
+          {
+            "object_id": "o570",
+            "label": "right_gastro_omental_vein"
+          },
+          {
+            "object_id": "o185",
+            "label": "portal_vein"
+          },
+          {
+            "object_id": "o863",
+            "label": "short_gastric_veins"
+          },
+          {
+            "object_id": "o597",
+            "label": "splenic_vein"
+          },
+          {
+            "object_id": "o582",
+            "label": "superior_mesenteric_vein"
+          },
+          {
+            "object_id": "o307",
+            "label": "collateral_between_right_gastro_omental_and_short_gastric_veins"
+          }
+        ]
+      },
+      "replay_matches": true,
+      "independent_exact_set_check": true
+    },
+    {
+      "task": "abdomen-v01",
+      "phase": "nop",
+      "case": "ColonVessels pat_016 venous phase",
+      "mode": "recognition",
+      "result_path": "runs/br015-abdomen-v01-nop-v1-20260915/abdomen-v01__DqZ5W8E/result.json",
+      "result_sha256": "b7540a5d696d16eb93342c811da15a54b5b03582595890b5ea6be8a59762eaaa",
+      "task_checksum": "8b1841207b6af3d1da6310ad015e1a2f79060c04f218845237525e62a1bdecba",
+      "started_at": "2026-09-15T11:47:30.170640Z",
+      "finished_at": "2026-09-15T11:47:55.058118Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "agent_seconds": 7.8e-05,
+      "total_seconds": 24.887478,
+      "environment_setup_seconds": 1.785783,
+      "agent_setup_seconds": 3.7e-05,
+      "verifier_seconds": 12.194094,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": false,
+        "missing": [
+          "o185",
+          "o307",
+          "o425",
+          "o570",
+          "o582",
+          "o597",
+          "o609",
+          "o863"
+        ],
+        "extra": [],
+        "wrong": [],
+        "identities_correct": 0,
+        "identities_total": 8,
+        "missed_corrections": null,
+        "false_repairs": null,
+        "grading_seconds": 0.0004965420084772632
+      },
+      "grade_sha256": "28e751b33639dae5742803770734d267ff596bbe83b823767dcadfdd6732fe75",
+      "answer_path": "runs/br015-abdomen-v01-nop-v1-20260915/abdomen-v01__DqZ5W8E/artifacts/app/answer/answer.json",
+      "answer_sha256": "c8960def3a00791f98d7378b17ffcaf4427c1ab8b9b3f68ea67ef8f2e7bf0777",
+      "answer": {
+        "assignments": []
+      },
+      "replay_matches": true,
+      "independent_exact_set_check": false
+    },
+    {
+      "task": "abdomen-v01",
+      "phase": "sol-xhigh",
+      "case": "ColonVessels pat_016 venous phase",
+      "mode": "recognition",
+      "result_path": "runs/br015-abdomen-v01-sol-xhigh-v1-20260915/abdomen-v01__NKBATMu/result.json",
+      "result_sha256": "59131bd483796c13a82d6fba2b5c770cce2439e8c24fa01d0740bc252350eb5d",
+      "task_checksum": "8b1841207b6af3d1da6310ad015e1a2f79060c04f218845237525e62a1bdecba",
+      "started_at": "2026-09-15T11:47:55.390505Z",
+      "finished_at": "2026-09-15T11:50:32.348285Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 98.123362,
+      "total_seconds": 156.95778,
+      "environment_setup_seconds": 1.778435,
+      "agent_setup_seconds": 31.401407,
+      "verifier_seconds": 13.592877,
+      "input_tokens": 327531,
+      "cached_input_tokens": 299904,
+      "output_tokens": 2852,
+      "estimated_cost_usd": 0.28750960000000003,
+      "agent_version": "0.154.0",
+      "grade": {
+        "passed": true,
+        "missing": [],
+        "extra": [],
+        "wrong": [],
+        "identities_correct": 8,
+        "identities_total": 8,
+        "missed_corrections": null,
+        "false_repairs": null,
+        "grading_seconds": 0.0016659579996485263
+      },
+      "grade_sha256": "aef1c1210597c42ca19c64babeb157ce88c27f136b917f694f5aa8076a12c218",
+      "answer_path": "runs/br015-abdomen-v01-sol-xhigh-v1-20260915/abdomen-v01__NKBATMu/artifacts/app/answer/answer.json",
+      "answer_sha256": "ea0bf53fb9dcd6d3510057e1a7c2ef054243c824ade2389a67eb63d7b44b81cd",
+      "answer": {
+        "assignments": [
+          {
+            "object_id": "o425",
+            "label": "inferior_mesenteric_vein"
+          },
+          {
+            "object_id": "o609",
+            "label": "left_gastric_vein"
+          },
+          {
+            "object_id": "o570",
+            "label": "right_gastro_omental_vein"
+          },
+          {
+            "object_id": "o185",
+            "label": "portal_vein"
+          },
+          {
+            "object_id": "o863",
+            "label": "short_gastric_veins"
+          },
+          {
+            "object_id": "o597",
+            "label": "splenic_vein"
+          },
+          {
+            "object_id": "o582",
+            "label": "superior_mesenteric_vein"
+          },
+          {
+            "object_id": "o307",
+            "label": "collateral_between_right_gastro_omental_and_short_gastric_veins"
+          }
+        ]
+      },
+      "replay_matches": true,
+      "independent_exact_set_check": true,
+      "requested_model": "openai/gpt-5.6-sol",
+      "requested_effort": "xhigh",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br015-abdomen-v01-sol-xhigh-v1-20260915/abdomen-v01__NKBATMu/agent/sessions/2026/09/15/rollout-2026-09-15T11-48-29-01a0a4e5-aa76-7d92-b0aa-887dd20a588d.jsonl",
+          "sha256": "d848feebd56af5e70544753a61d55e801bc6d9b4e80aa59a19fac3a9bd8c0821"
+        }
+      ],
+      "session_file_count": 1,
+      "frozen_instruction_seen_in_user_message": true,
+      "runtime_matches_request": true,
+      "reasoning_output_tokens": 1362,
+      "last_record_stream_usage": {
+        "input_tokens": 327531,
+        "cached_input_tokens": 299904,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2852,
+        "reasoning_output_tokens": 1362,
+        "total_tokens": 330383
+      },
+      "token_basis": "Harbor counters; reasoning reported only from exactly matching legacy runtime counters. Record-stream totals retained separately.",
+      "trajectory_sha256": "1fdad57040c01d5438aabba55b3aa327d001fd7eaf3fbfdea406212b9ab79316",
+      "tool_wrappers": 11,
+      "image_review_wrappers": 3
+    }
+  ],
+  "limitations": [
+    "One attempt per condition, not a success-rate estimate.",
+    "C01 preserves the BR013-A02 broad inventory and adds original CT plus public reslicing tools.",
+    "No mask editing or rare-disease diagnosis is graded.",
+    "Source identity review is authored; independent specialist adjudication is outstanding.",
+    "Input includes cache; output includes reasoning; model costs are harness estimates.",
+    "No Terra follow-up is planned in this round."
+  ]
+}

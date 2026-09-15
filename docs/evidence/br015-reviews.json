@@ -1,0 +1,174 @@
+{
+  "round": "BR-015",
+  "review_basis": "Authored review of observable commands, requested images, public messages and answer artifacts; independent source-array comparisons. No independent clinician adjudication.",
+  "tasks": {
+    "abdomen-c01": {
+      "validity": "valid_model_pass",
+      "outcome": "11/11 identities; retire this tested condition.",
+      "strategy": "Read scene statistics, inspected HU samples and focused central-object 3-D views plus axial CT slices. Replaced an unavailable SciPy dependency with NumPy. Correctly assigned compact pancreas and surrounding duodenum.",
+      "tool_issue": "One coronal reslice request failed because a negative comma-separated positions argument lacked an equals sign. Frozen helper remains unchanged; --positions=-195,-185 is the documented workaround.",
+      "interpretation": "The same broad-inventory geometry that produced the BR013-A02 miss is solved with source CT and ready tools. One trial does not isolate CT from its accompanying previews/examples or estimate a causal effect. Broad anatomical-prior weakness is not established."
+    },
+    "abdomen-v01": {
+      "validity": "valid_model_pass",
+      "outcome": "8/8 identities; retire this tested condition.",
+      "strategy": "Read all eight target CT preview images, the two overview images, helper sources and object statistics. No new focused renderer, CT reslicing, endpoint-distance calculation or graph metric was executed. Recovered answer-patch mismatch and unavailable xxd command.",
+      "interpretation": "Intact specialist vessel masks with exact vocabulary and same-phase CT did not elicit a miss. A public example groups the collateral and its two neighboring routes; it contains no identity key but supplies a focus hint. This is a scaffolded diagnostic, not a demonstration of unaided clinical reasoning.",
+      "source_caveats": [
+        "Published surgeon annotations support the reference identities, not blind solvability of this packet.",
+        "Slicer in-progress status tags are retained and not resolved by the data paper.",
+        "Some small-vessel mask samples have low HU, consistent with a source/partial-volume concern that needs expert review; this audit does not certify contour accuracy.",
+        "No full learned geometric or graph baseline was measured."
+      ],
+      "clinical_diagnosis": "None asserted; the descriptive connecting-vessel name is not a rare-disease diagnosis."
+    }
+  },
+  "observable_access_audit": "No private reference-key access or external source/patient matching observed in either trial.",
+  "historical_and_current_freeze_checks": [
+    {
+      "freeze": "docs/evidence/br013-freeze.json",
+      "task": "abdomen-a01",
+      "files": 16
+    },
+    {
+      "freeze": "docs/evidence/br013-freeze.json",
+      "task": "abdomen-a02",
+      "files": 16
+    },
+    {
+      "freeze": "docs/evidence/br013-freeze.json",
+      "task": "abdomen-a03",
+      "files": 16
+    },
+    {
+      "freeze": "docs/evidence/br014-abdomen-f01-freeze.json",
+      "task": "abdomen-f01",
+      "files": 16
+    },
+    {
+      "freeze": "docs/evidence/br014-abdomen-i01-freeze.json",
+      "task": "abdomen-i01",
+      "files": 16
+    },
+    {
+      "freeze": "docs/evidence/br015-abdomen-c01-freeze.json",
+      "task": "abdomen-c01",
+      "files": 17
+    },
+    {
+      "freeze": "docs/evidence/br015-abdomen-v01-freeze.json",
+      "task": "abdomen-v01",
+      "files": 16
+    }
+  ],
+  "c01_old_public_members_byte_identical": 14,
+  "c01_original_ct_voxels_equal": 26195840,
+  "v01_original_mask_checks": [
+    {
+      "object_id": "context",
+      "source_segment": 0,
+      "source_layer": 0,
+      "source_value": 1,
+      "voxels_identical": 225949,
+      "source_crop_exact": true
+    },
+    {
+      "object_id": "o185",
+      "source_segment": 1,
+      "source_layer": 1,
+      "source_value": 1,
+      "voxels_identical": 45989,
+      "source_crop_exact": true
+    },
+    {
+      "object_id": "o597",
+      "source_segment": 2,
+      "source_layer": 2,
+      "source_value": 1,
+      "voxels_identical": 18331,
+      "source_crop_exact": true
+    },
+    {
+      "object_id": "o863",
+      "source_segment": 3,
+      "source_layer": 1,
+      "source_value": 2,
+      "voxels_identical": 5391,
+      "source_crop_exact": true
+    },
+    {
+      "object_id": "o570",
+      "source_segment": 5,
+      "source_layer": 1,
+      "source_value": 3,
+      "voxels_identical": 5591,
+      "source_crop_exact": true
+    },
+    {
+      "object_id": "o307",
+      "source_segment": 6,
+      "source_layer": 1,
+      "source_value": 4,
+      "voxels_identical": 3287,
+      "source_crop_exact": true
+    },
+    {
+      "object_id": "o609",
+      "source_segment": 7,
+      "source_layer": 2,
+      "source_value": 3,
+      "voxels_identical": 3239,
+      "source_crop_exact": true
+    },
+    {
+      "object_id": "o582",
+      "source_segment": 12,
+      "source_layer": 3,
+      "source_value": 1,
+      "voxels_identical": 16831,
+      "source_crop_exact": true
+    },
+    {
+      "object_id": "o425",
+      "source_segment": 21,
+      "source_layer": 1,
+      "source_value": 11,
+      "voxels_identical": 10865,
+      "source_crop_exact": true
+    }
+  ],
+  "v01_ct_crop_voxels_equal": 65591040,
+  "v01_source_grid_max_error_bound_mm": 2.2737367544323206e-13,
+  "v01_decoded_source_mask_sha256": "826018afbe857f9f16dae00bdea5a8898f43377beb672d1547d7ba2a59b68ab3",
+  "v01_decoded_source_ct_sha256": "de5334bf45d162b157cca5df454fe8238355f9a66d83b7cc8492ceb8e991b7fb",
+  "v01_author_scoring_controls": 7,
+  "review_packet": {
+    "path": "runs/br015-clinical/review/v01",
+    "targets_sampled": [
+      "o307",
+      "o609",
+      "o570"
+    ],
+    "reference_key_embedded": false,
+    "model_output_embedded": false,
+    "native_axial_planes": 551,
+    "html_sha256": "d5ed17841d47fba8ec90cc0c11a0b96790af0a9b1f6433e397f8a5b9fb3728b6",
+    "public_ct_sha256": "de63ec84ca9af1d215005ad3f3564bdc98f7979a290a98bd9430782d6e96ea50",
+    "public_scene_sha256": "c71a9e9ca650929f6ec1d943c0b8e615aaa1c51b5fa96a0c1a387a51602b308f"
+  },
+  "human_review": {
+    "status": "not_completed",
+    "targets_requested": [
+      "o307",
+      "o609",
+      "o570"
+    ],
+    "answers_received": 0,
+    "human_accuracy": null,
+    "reviewer_background": "User reported some relevant experience, then declined to label the packet and deferred to author judgment.",
+    "interpretation": "Neither a scored human failure nor demonstrated clinician solvability. No clinician credentials inferred.",
+    "model_outcome_disclosed_after_decline": true
+  },
+  "result_sha256": "cb7580f4f29ea9eab69ea8a651a1c08247037ddc6c9673d7f4a14a3a6d4b2970",
+  "decision": "Two normal passes, no new Sol failure and no completed independent human review. Retire these conditions. Further trials require a documented, expert-supported error-versus-variant case; do not expand labels, trim evidence or inject smaller defects to force a miss."
+}

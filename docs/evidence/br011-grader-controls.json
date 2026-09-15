@@ -1,0 +1,106 @@
+{
+  "controls_passed": 8,
+  "results": [
+    {
+      "name": "source_key",
+      "expected_success": true,
+      "grade": {
+        "success": true,
+        "missing": [],
+        "extra": [],
+        "wrong": []
+      }
+    },
+    {
+      "name": "reordered",
+      "expected_success": true,
+      "grade": {
+        "success": true,
+        "missing": [],
+        "extra": [],
+        "wrong": []
+      }
+    },
+    {
+      "name": "empty",
+      "expected_success": false,
+      "grade": {
+        "success": false,
+        "missing": [
+          "o100",
+          "o121",
+          "o364",
+          "o423",
+          "o444",
+          "o451",
+          "o456",
+          "o457",
+          "o461",
+          "o470",
+          "o479",
+          "o512",
+          "o591",
+          "o648",
+          "o670",
+          "o717",
+          "o971"
+        ],
+        "extra": [],
+        "wrong": []
+      }
+    },
+    {
+      "name": "missing",
+      "expected_success": false,
+      "grade": {
+        "success": false,
+        "missing": [
+          "o444"
+        ],
+        "extra": [],
+        "wrong": []
+      }
+    },
+    {
+      "name": "duplicate",
+      "expected_success": false,
+      "grade": {
+        "success": false,
+        "error": "duplicate object_id"
+      }
+    },
+    {
+      "name": "extra",
+      "expected_success": false,
+      "grade": {
+        "success": false,
+        "missing": [],
+        "extra": [
+          "unknown"
+        ],
+        "wrong": []
+      }
+    },
+    {
+      "name": "wrong_identity",
+      "expected_success": false,
+      "grade": {
+        "success": false,
+        "missing": [],
+        "extra": [],
+        "wrong": [
+          "o444"
+        ]
+      }
+    },
+    {
+      "name": "malformed",
+      "expected_success": false,
+      "grade": {
+        "success": false,
+        "error": "assignments must be a list"
+      }
+    }
+  ],
+  "limitation": "Only scorer behavior is validated; source identity and inferability require independent review."
+}

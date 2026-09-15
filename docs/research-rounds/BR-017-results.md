@@ -6,6 +6,7 @@ control also passed. Each condition received one Sol/xhigh trial.
 
 [**Open the visual presentation**](../../runs/br017-absorption/review/index.html) ·
 [How each Sol trial worked](BR-017-traces.md) ·
+[Earlier trials and current candidate ranking](../anatomy-experiments.md) ·
 [Protocol](BR-017-absorbed-anatomy.md) ·
 [Measured results](../evidence/br017-results.json) ·
 [Authoring and reproduction](../../probes/revisions/br017/authoring/README.md)

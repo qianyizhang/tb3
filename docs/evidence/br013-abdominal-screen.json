@@ -1,0 +1,192 @@
+{
+  "round": "BR-013",
+  "status": "proposal_with_retrospective_subset_analysis",
+  "source": "docs/evidence/br011-author-screen.json",
+  "source_sha256": "2437cfda866c842d8604163ca287feef7b4293f6ba6482f01ea7558cde2e60b3",
+  "method": "Filter retained BR-011 predictions to nine prespecified abdominal organ classes listed here. No classifier retraining or new inference. Also report exclusion of previously identified partial-coverage case 74 as a sensitivity analysis.",
+  "classes": [
+    "spleen",
+    "kidney_right",
+    "kidney_left",
+    "gallbladder",
+    "liver",
+    "stomach",
+    "pancreas",
+    "adrenal_gland_right",
+    "adrenal_gland_left"
+  ],
+  "per_class": {
+    "spleen": {
+      "correct": 5,
+      "total": 6
+    },
+    "kidney_right": {
+      "correct": 8,
+      "total": 8
+    },
+    "kidney_left": {
+      "correct": 6,
+      "total": 8
+    },
+    "gallbladder": {
+      "correct": 4,
+      "total": 7
+    },
+    "liver": {
+      "correct": 7,
+      "total": 8
+    },
+    "stomach": {
+      "correct": 3,
+      "total": 8
+    },
+    "pancreas": {
+      "correct": 7,
+      "total": 8
+    },
+    "adrenal_gland_right": {
+      "correct": 8,
+      "total": 8
+    },
+    "adrenal_gland_left": {
+      "correct": 8,
+      "total": 8
+    }
+  },
+  "per_case": [
+    {
+      "case_id": 19,
+      "correct": 9,
+      "total": 9,
+      "errors": []
+    },
+    {
+      "case_id": 28,
+      "correct": 8,
+      "total": 9,
+      "errors": [
+        {
+          "source_label": "stomach",
+          "predicted": "pancreas",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "case_id": 32,
+      "correct": 8,
+      "total": 9,
+      "errors": [
+        {
+          "source_label": "spleen",
+          "predicted": "stomach",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "case_id": 46,
+      "correct": 6,
+      "total": 8,
+      "errors": [
+        {
+          "source_label": "gallbladder",
+          "predicted": "pancreas",
+          "correct": false
+        },
+        {
+          "source_label": "stomach",
+          "predicted": "pancreas",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "case_id": 61,
+      "correct": 7,
+      "total": 9,
+      "errors": [
+        {
+          "source_label": "gallbladder",
+          "predicted": "pancreas",
+          "correct": false
+        },
+        {
+          "source_label": "stomach",
+          "predicted": "pancreas",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "case_id": 74,
+      "correct": 4,
+      "total": 9,
+      "errors": [
+        {
+          "source_label": "kidney_left",
+          "predicted": "spleen",
+          "correct": false
+        },
+        {
+          "source_label": "gallbladder",
+          "predicted": "kidney_right",
+          "correct": false
+        },
+        {
+          "source_label": "liver",
+          "predicted": "lung_lower_lobe_right",
+          "correct": false
+        },
+        {
+          "source_label": "stomach",
+          "predicted": "lung_upper_lobe_left",
+          "correct": false
+        },
+        {
+          "source_label": "pancreas",
+          "predicted": "stomach",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "case_id": 83,
+      "correct": 7,
+      "total": 7,
+      "errors": []
+    },
+    {
+      "case_id": 95,
+      "correct": 7,
+      "total": 9,
+      "errors": [
+        {
+          "source_label": "kidney_left",
+          "predicted": "stomach",
+          "correct": false
+        },
+        {
+          "source_label": "stomach",
+          "predicted": "heart",
+          "correct": false
+        }
+      ]
+    }
+  ],
+  "all_cases": {
+    "correct": 56,
+    "total": 69
+  },
+  "without_partial_coverage_case_74": {
+    "correct": 52,
+    "total": 60
+  },
+  "new_model_trials": 0,
+  "limitations": [
+    "Eight source patients, clustered organ instances.",
+    "Predictions compete against the original 17-class thoracoabdominal vocabulary, not an abdomen-only classifier.",
+    "Source labels are not a new blind clinical adjudication.",
+    "Classifier errors do not establish Sol or Terra failure."
+  ]
+}

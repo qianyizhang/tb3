@@ -1,0 +1,182 @@
+{
+  "round_id": "BR-010",
+  "status": "retrospective tool-action audit; mask-only proposals untested",
+  "review_date": "2026-09-15",
+  "scope": "Seven targeted historical trajectories, not an exhaustive model-capability audit. No new model trials.",
+  "trials": [
+    {
+      "model": "terra",
+      "case_id": "28",
+      "trajectory_path": "runs/br004-single-28-terra-max-v1-20260915/dicom-audit-28__CDY2uUm/agent/trajectory.json",
+      "trajectory_sha256": "820e75596dea0884bd882d8965bff34063199fe5b16936fbbf4f055fca9d3fa9",
+      "steps": [
+        16,
+        34,
+        39,
+        42,
+        49,
+        52,
+        53,
+        60,
+        61
+      ],
+      "observation": "Connected-component and enclosed-cavity checks; within- and cross-label fragment distances; reflected opposite-side rib matching; submitted both exchanged rib labels correctly.",
+      "outcome": "pass"
+    },
+    {
+      "model": "terra",
+      "case_id": "32",
+      "trajectory_path": "runs/br004-single-32-terra-max-v1-20260915/dicom-audit-32__Txe4eHJ/agent/trajectory.json",
+      "trajectory_sha256": "ab81a0ea56428d685cd20298727a900727778497073f3d755d2044539852c641",
+      "steps": [
+        18,
+        23,
+        31,
+        36,
+        43
+      ],
+      "observation": "Connected components, kidney views, CT intensity quantiles and label inventories; final empty report misses controlled extension.",
+      "outcome": "controlled-defect miss; task fairness unestablished"
+    },
+    {
+      "model": "terra",
+      "case_id": "83",
+      "trajectory_path": "runs/br004-single-83-terra-max-v1-20260915/dicom-audit-83__8EdLfrW/agent/trajectory.json",
+      "trajectory_sha256": "b21d2d94bf48d3d461c0993f6826ce9f9f83501e93997e673d63b5305cd1ced1",
+      "steps": [
+        11,
+        17,
+        26,
+        32,
+        41,
+        44,
+        55,
+        66,
+        67
+      ],
+      "observation": "Mask-derived axial sampling, components, intensity quantiles, enclosed cavities, padded multiplanar views and heart interior-distance check; final empty report.",
+      "outcome": "controlled-defect miss; task fairness unestablished"
+    },
+    {
+      "model": "sol",
+      "case_id": "32",
+      "trajectory_path": "runs/br004-sol-32-sol-xhigh-v1-20260915/dicom-audit-32__zb9QgU6/agent/trajectory.json",
+      "trajectory_sha256": "99f9a51164b6aa6c13a8fe47845774c966e3f3252be1be11534affa478e4c611",
+      "steps": [
+        19,
+        21,
+        23,
+        34,
+        39,
+        42,
+        44,
+        47,
+        48
+      ],
+      "observation": "Components and HU quantiles; all-mask axial views; iterative erosion plus interior HU checks; bone outside-mask shell candidates; final empty report.",
+      "outcome": "controlled-defect miss; task fairness unestablished"
+    },
+    {
+      "model": "sol",
+      "case_id": "83",
+      "trajectory_path": "runs/br004-sol-83-sol-xhigh-v1-20260915/dicom-audit-83__9H9sx6V/agent/trajectory.json",
+      "trajectory_sha256": "c98e745aa89b4622b6d5933f732f09952b33f423d0c69c55c35c657fc7a4dad4",
+      "steps": [
+        11,
+        17,
+        22,
+        27,
+        32,
+        33,
+        35,
+        36,
+        46,
+        47,
+        53,
+        58
+      ],
+      "observation": "Components, HU quantiles, enclosed slice holes, rib projections and multicolor context; filled and outline axial views use submitted-mask endpoints; final empty report despite coronal coverage of omission.",
+      "outcome": "controlled-defect miss; task fairness unestablished"
+    },
+    {
+      "model": "sol",
+      "case_id": "46",
+      "trajectory_path": "runs/br004-sol-46-sol-xhigh-v1-20260915/dicom-audit-46-v2__8Zt8yqY/agent/trajectory.json",
+      "trajectory_sha256": "d80997d5f0c672198e48117a160d1dbd0953f06f1a8a306e92822be7ebb4b073",
+      "steps": [
+        11,
+        22,
+        24,
+        28,
+        29,
+        32,
+        34
+      ],
+      "observation": "Components, eroded interiors, organ/rib context and counts of neighboring segment labels around detached heart component; submitted heart finding.",
+      "outcome": "source-label adjudication hold, not established failure"
+    },
+    {
+      "model": "sol",
+      "case_id": "61",
+      "trajectory_path": "runs/br004-sol-61-sol-xhigh-v1-20260915/dicom-audit-61-v2__YKZrAMC/agent/trajectory.json",
+      "trajectory_sha256": "73e257cf7fdc7715fca68f36fb1f3d90db18282c14aa682ff603358ca0bff117",
+      "steps": [
+        19,
+        24,
+        33,
+        41,
+        43,
+        48,
+        49,
+        50,
+        51,
+        53,
+        56,
+        57
+      ],
+      "observation": "Components, HU quantiles, group views, local neighbor counts, morphological opening/closing and axis-aligned boundary-face counts; final empty report.",
+      "outcome": "controlled-defect miss on revised scope; task fairness unestablished"
+    }
+  ],
+  "sol32_signal_reconstruction": {
+    "method": "Repeat step 34 two iterations of six-neighbor binary erosion and ct_hu < 0 on task kidney mask; compare resulting coordinates to private source after the historical trial. The solver did not receive this source comparison.",
+    "source_path": "runs/br004-v1/build/case-32-private.npz",
+    "source_sha256": "e8bab2cffb7684347bcb73a9ce70e0d0279afe3215e960a07ba2f848681e2804",
+    "points": [
+      {
+        "index_zyx": [
+          94,
+          62,
+          52
+        ],
+        "ct_hu": -83,
+        "source_label_id": 0,
+        "submitted_label_id": 3,
+        "in_controlled_edit": true
+      },
+      {
+        "index_zyx": [
+          95,
+          62,
+          52
+        ],
+        "ct_hu": -35,
+        "source_label_id": 0,
+        "submitted_label_id": 3,
+        "in_controlled_edit": true
+      },
+      {
+        "index_zyx": [
+          94,
+          63,
+          52
+        ],
+        "ct_hu": -65,
+        "source_label_id": 0,
+        "submitted_label_id": 3,
+        "in_controlled_edit": true
+      }
+    ],
+    "interpretation": "A numeric signal in the edited area appeared in tool output before the empty answer. This does not establish medical significance or a fair failure criterion."
+  }
+}

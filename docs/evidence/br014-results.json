@@ -1,0 +1,576 @@
+{
+  "round": "BR-014",
+  "freeze_sha256": {
+    "abdomen-f01.json": "7334fa9be694a457eb85b10833725a4d821d008621b75111a5d2d23434d2a28a",
+    "abdomen-i01.json": "313b34f111a1de4e7a317f8bb805d32ccba268532a8bc086317107faa0102c02"
+  },
+  "task_files_unchanged": true,
+  "rows": [
+    {
+      "task": "abdomen-f01",
+      "phase": "oracle",
+      "case": 28,
+      "mode": "recognition",
+      "result_path": "runs/br014-abdomen-f01-oracle-v1-20260915/abdomen-f01__utgREC4/result.json",
+      "result_sha256": "051a9f5d7b392774dd271b46d1ee59910d7fd8d6e2014ac8509f6b2b6deda99a",
+      "task_checksum": "890b779f69ac18d8779b6039eff8a33427f0cbb8bdfd5f4d7843265c3aa3e7fc",
+      "started_at": "2026-09-15T11:07:56.816336Z",
+      "finished_at": "2026-09-15T11:08:26.063341Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 0.269984,
+      "total_seconds": 29.247005,
+      "environment_setup_seconds": 2.817004,
+      "agent_setup_seconds": 5.7e-05,
+      "verifier_seconds": 14.106764,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": true,
+        "missing": [],
+        "extra": [],
+        "wrong": [],
+        "identities_correct": 15,
+        "identities_total": 15,
+        "missed_corrections": null,
+        "false_repairs": null,
+        "grading_seconds": 0.0025830000085989013
+      },
+      "grade_sha256": "1e451be53c246a4f3c7389a19a877a04bc10c7bcd8442dcff3419830e5290292",
+      "answer_path": "runs/br014-abdomen-f01-oracle-v1-20260915/abdomen-f01__utgREC4/artifacts/app/answer/answer.json",
+      "answer_sha256": "44ac9bbbcd80d047c842e17ecbf40e98c4e90294a9c39f74a040e5480679121a",
+      "answer": {
+        "assignments": [
+          {
+            "object_id": "o919",
+            "label": "pancreas"
+          },
+          {
+            "object_id": "o404",
+            "label": "inferior_vena_cava"
+          },
+          {
+            "object_id": "o368",
+            "label": "stomach"
+          },
+          {
+            "object_id": "o211",
+            "label": "liver"
+          },
+          {
+            "object_id": "o912",
+            "label": "kidney_left"
+          },
+          {
+            "object_id": "o925",
+            "label": "kidney_right"
+          },
+          {
+            "object_id": "o942",
+            "label": "duodenum"
+          },
+          {
+            "object_id": "o952",
+            "label": "spleen"
+          },
+          {
+            "object_id": "o287",
+            "label": "gallbladder"
+          },
+          {
+            "object_id": "o468",
+            "label": "portal_vein_and_splenic_vein"
+          },
+          {
+            "object_id": "o785",
+            "label": "aorta"
+          },
+          {
+            "object_id": "o165",
+            "label": "duodenum"
+          },
+          {
+            "object_id": "o475",
+            "label": "pancreas"
+          },
+          {
+            "object_id": "o611",
+            "label": "adrenal_gland_left"
+          },
+          {
+            "object_id": "o951",
+            "label": "adrenal_gland_right"
+          }
+        ]
+      },
+      "replay_matches": true,
+      "independent_exact_set_check": true
+    },
+    {
+      "task": "abdomen-f01",
+      "phase": "nop",
+      "case": 28,
+      "mode": "recognition",
+      "result_path": "runs/br014-abdomen-f01-nop-v1-20260915/abdomen-f01__J23xuD2/result.json",
+      "result_sha256": "c260c499456aff430fe1fb8983d4b6e5b9fbbaa8d8c5ade6f80bd2ff329ebe25",
+      "task_checksum": "890b779f69ac18d8779b6039eff8a33427f0cbb8bdfd5f4d7843265c3aa3e7fc",
+      "started_at": "2026-09-15T11:08:26.352223Z",
+      "finished_at": "2026-09-15T11:08:54.643128Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "agent_seconds": 0.000112,
+      "total_seconds": 28.290905,
+      "environment_setup_seconds": 2.583414,
+      "agent_setup_seconds": 5.7e-05,
+      "verifier_seconds": 13.949241,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": false,
+        "missing": [
+          "o165",
+          "o211",
+          "o287",
+          "o368",
+          "o404",
+          "o468",
+          "o475",
+          "o611",
+          "o785",
+          "o912",
+          "o919",
+          "o925",
+          "o942",
+          "o951",
+          "o952"
+        ],
+        "extra": [],
+        "wrong": [],
+        "identities_correct": 0,
+        "identities_total": 15,
+        "missed_corrections": null,
+        "false_repairs": null,
+        "grading_seconds": 0.0014814999885857105
+      },
+      "grade_sha256": "917790fc2eaeefa64ef3c2deab95f76d38b9d274dcd397dc8982853222a756ae",
+      "answer_path": "runs/br014-abdomen-f01-nop-v1-20260915/abdomen-f01__J23xuD2/artifacts/app/answer/answer.json",
+      "answer_sha256": "c8960def3a00791f98d7378b17ffcaf4427c1ab8b9b3f68ea67ef8f2e7bf0777",
+      "answer": {
+        "assignments": []
+      },
+      "replay_matches": true,
+      "independent_exact_set_check": false
+    },
+    {
+      "task": "abdomen-f01",
+      "phase": "sol-xhigh",
+      "case": 28,
+      "mode": "recognition",
+      "result_path": "runs/br014-abdomen-f01-sol-xhigh-v1-20260915/abdomen-f01__9nEFduz/result.json",
+      "result_sha256": "9091fdd30711d089129f7bf3fba7c2552dd53f7033186d66c85deec1954d11bf",
+      "task_checksum": "890b779f69ac18d8779b6039eff8a33427f0cbb8bdfd5f4d7843265c3aa3e7fc",
+      "started_at": "2026-09-15T11:08:54.913704Z",
+      "finished_at": "2026-09-15T11:13:40.243810Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 222.648984,
+      "total_seconds": 285.330106,
+      "environment_setup_seconds": 2.601399,
+      "agent_setup_seconds": 36.102162,
+      "verifier_seconds": 12.167151,
+      "input_tokens": 478510,
+      "cached_input_tokens": 411520,
+      "output_tokens": 6620,
+      "estimated_cost_usd": 0.5649679999999999,
+      "agent_version": "0.154.0",
+      "grade": {
+        "passed": true,
+        "missing": [],
+        "extra": [],
+        "wrong": [],
+        "identities_correct": 15,
+        "identities_total": 15,
+        "missed_corrections": null,
+        "false_repairs": null,
+        "grading_seconds": 0.0005748749972553924
+      },
+      "grade_sha256": "4cc1bd53ffc1d3897fa140e624b098c77b693c03db693c9e5ca820984db4902b",
+      "answer_path": "runs/br014-abdomen-f01-sol-xhigh-v1-20260915/abdomen-f01__9nEFduz/artifacts/app/answer/answer.json",
+      "answer_sha256": "9cd13ed86db6e3b4c06cc902eb77f3ed3b21d8c79cb2a59a6646b3e22cd070f2",
+      "answer": {
+        "assignments": [
+          {
+            "object_id": "o919",
+            "label": "pancreas"
+          },
+          {
+            "object_id": "o404",
+            "label": "inferior_vena_cava"
+          },
+          {
+            "object_id": "o368",
+            "label": "stomach"
+          },
+          {
+            "object_id": "o211",
+            "label": "liver"
+          },
+          {
+            "object_id": "o912",
+            "label": "kidney_left"
+          },
+          {
+            "object_id": "o925",
+            "label": "kidney_right"
+          },
+          {
+            "object_id": "o942",
+            "label": "duodenum"
+          },
+          {
+            "object_id": "o952",
+            "label": "spleen"
+          },
+          {
+            "object_id": "o287",
+            "label": "gallbladder"
+          },
+          {
+            "object_id": "o468",
+            "label": "portal_vein_and_splenic_vein"
+          },
+          {
+            "object_id": "o785",
+            "label": "aorta"
+          },
+          {
+            "object_id": "o165",
+            "label": "duodenum"
+          },
+          {
+            "object_id": "o475",
+            "label": "pancreas"
+          },
+          {
+            "object_id": "o611",
+            "label": "adrenal_gland_left"
+          },
+          {
+            "object_id": "o951",
+            "label": "adrenal_gland_right"
+          }
+        ]
+      },
+      "replay_matches": true,
+      "independent_exact_set_check": true,
+      "requested_model": "openai/gpt-5.6-sol",
+      "requested_effort": "xhigh",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br014-abdomen-f01-sol-xhigh-v1-20260915/abdomen-f01__9nEFduz/agent/sessions/2026/09/15/rollout-2026-09-15T11-09-35-01a0a4c2-0d48-7483-8817-e70a0eb909bd.jsonl",
+          "sha256": "885320e851afbf39b0db543cc32d168429f69f2505adf660d5d67d252ee7567d"
+        }
+      ],
+      "session_file_count": 1,
+      "frozen_instruction_seen_in_user_message": true,
+      "runtime_matches_request": true,
+      "reasoning_output_tokens": 4231,
+      "last_record_stream_usage": {
+        "input_tokens": 478510,
+        "cached_input_tokens": 411520,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6620,
+        "reasoning_output_tokens": 4231,
+        "total_tokens": 485130
+      },
+      "token_basis": "Harbor counters; reasoning reported only from exactly matching legacy runtime counters. Record-stream totals retained separately.",
+      "trajectory_sha256": "4939d307d009337830b92540aa2acbdf19d8cc139c9cd35c554f2162fe5c7538",
+      "tool_wrappers": 14,
+      "image_review_wrappers": 3
+    },
+    {
+      "task": "abdomen-i01",
+      "phase": "oracle",
+      "case": 83,
+      "mode": "recognition",
+      "result_path": "runs/br014-abdomen-i01-oracle-v1-20260915/abdomen-i01__EwQph58/result.json",
+      "result_sha256": "ecf1ba8952604e7e2d0ded3a3aa0540715cb5f73d7549878631516460bd4d157",
+      "task_checksum": "3eac4603a50539be73086f78af54eb75b06baad2251cb59e82255d62f67e90eb",
+      "started_at": "2026-09-15T10:59:22.066717Z",
+      "finished_at": "2026-09-15T10:59:51.273678Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 0.288209,
+      "total_seconds": 29.206961,
+      "environment_setup_seconds": 3.062052,
+      "agent_setup_seconds": 6.7e-05,
+      "verifier_seconds": 14.043258,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": true,
+        "missing": [],
+        "extra": [],
+        "wrong": [],
+        "identities_correct": 11,
+        "identities_total": 11,
+        "missed_corrections": null,
+        "false_repairs": null,
+        "grading_seconds": 0.0016322080045938492
+      },
+      "grade_sha256": "4514983a58cb6aa93ef3fc234b2e17ef8450e739b026b3909d6f0b929d3c971f",
+      "answer_path": "runs/br014-abdomen-i01-oracle-v1-20260915/abdomen-i01__EwQph58/artifacts/app/answer/answer.json",
+      "answer_sha256": "42ba9a196e2effe42188a89698e0dadb6af6dfe2810e16522298e72756566f77",
+      "answer": {
+        "assignments": [
+          {
+            "object_id": "o631",
+            "label": "stomach"
+          },
+          {
+            "object_id": "o219",
+            "label": "inferior_vena_cava"
+          },
+          {
+            "object_id": "o717",
+            "label": "kidney_right"
+          },
+          {
+            "object_id": "o192",
+            "label": "liver"
+          },
+          {
+            "object_id": "o197",
+            "label": "pancreas"
+          },
+          {
+            "object_id": "o291",
+            "label": "aorta"
+          },
+          {
+            "object_id": "o277",
+            "label": "duodenum"
+          },
+          {
+            "object_id": "o923",
+            "label": "kidney_left"
+          },
+          {
+            "object_id": "o412",
+            "label": "adrenal_gland_left"
+          },
+          {
+            "object_id": "o729",
+            "label": "portal_vein_and_splenic_vein"
+          },
+          {
+            "object_id": "o536",
+            "label": "adrenal_gland_right"
+          }
+        ]
+      },
+      "replay_matches": true,
+      "independent_exact_set_check": true
+    },
+    {
+      "task": "abdomen-i01",
+      "phase": "nop",
+      "case": 83,
+      "mode": "recognition",
+      "result_path": "runs/br014-abdomen-i01-nop-v1-20260915/abdomen-i01__peCoE2F/result.json",
+      "result_sha256": "46a5d0036fad0346cf2410d5bb761f0a2835bb41db7f06cbc60869b77e7b76bf",
+      "task_checksum": "3eac4603a50539be73086f78af54eb75b06baad2251cb59e82255d62f67e90eb",
+      "started_at": "2026-09-15T10:59:51.543619Z",
+      "finished_at": "2026-09-15T11:00:20.391610Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "agent_seconds": 0.000109,
+      "total_seconds": 28.847991,
+      "environment_setup_seconds": 2.805367,
+      "agent_setup_seconds": 6.1e-05,
+      "verifier_seconds": 14.093099,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": false,
+        "missing": [
+          "o192",
+          "o197",
+          "o219",
+          "o277",
+          "o291",
+          "o412",
+          "o536",
+          "o631",
+          "o717",
+          "o729",
+          "o923"
+        ],
+        "extra": [],
+        "wrong": [],
+        "identities_correct": 0,
+        "identities_total": 11,
+        "missed_corrections": null,
+        "false_repairs": null,
+        "grading_seconds": 0.0019871670083375648
+      },
+      "grade_sha256": "f749bc2e39934c97b135f0f2570edb0a6c05a168c2700a078ce1e498644bbb7a",
+      "answer_path": "runs/br014-abdomen-i01-nop-v1-20260915/abdomen-i01__peCoE2F/artifacts/app/answer/answer.json",
+      "answer_sha256": "c8960def3a00791f98d7378b17ffcaf4427c1ab8b9b3f68ea67ef8f2e7bf0777",
+      "answer": {
+        "assignments": []
+      },
+      "replay_matches": true,
+      "independent_exact_set_check": false
+    },
+    {
+      "task": "abdomen-i01",
+      "phase": "sol-xhigh",
+      "case": 83,
+      "mode": "recognition",
+      "result_path": "runs/br014-abdomen-i01-sol-xhigh-v1-20260915/abdomen-i01__ByXzTRu/result.json",
+      "result_sha256": "dccc53107278c1b7ae6c2fb30e2ff36a20d3995a2db20e207f89a4d664744630",
+      "task_checksum": "3eac4603a50539be73086f78af54eb75b06baad2251cb59e82255d62f67e90eb",
+      "started_at": "2026-09-15T11:00:20.642522Z",
+      "finished_at": "2026-09-15T11:02:44.456749Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 75.57967,
+      "total_seconds": 143.814227,
+      "environment_setup_seconds": 2.881434,
+      "agent_setup_seconds": 37.491376,
+      "verifier_seconds": 14.315246,
+      "input_tokens": 216133,
+      "cached_input_tokens": 183040,
+      "output_tokens": 2602,
+      "estimated_cost_usd": 0.25762799999999997,
+      "agent_version": "0.154.0",
+      "grade": {
+        "passed": true,
+        "missing": [],
+        "extra": [],
+        "wrong": [],
+        "identities_correct": 11,
+        "identities_total": 11,
+        "missed_corrections": null,
+        "false_repairs": null,
+        "grading_seconds": 0.0015577089943690225
+      },
+      "grade_sha256": "9be884cee35b9ad2855178dac065f2419338c87877eadc206e24a5dd8f4cb970",
+      "answer_path": "runs/br014-abdomen-i01-sol-xhigh-v1-20260915/abdomen-i01__ByXzTRu/artifacts/app/answer/answer.json",
+      "answer_sha256": "72f893828971202863c7615b11eb15e0e057079c3a0f8a2aa6b57f21fb65ed40",
+      "answer": {
+        "assignments": [
+          {
+            "object_id": "o631",
+            "label": "stomach"
+          },
+          {
+            "object_id": "o219",
+            "label": "inferior_vena_cava"
+          },
+          {
+            "object_id": "o717",
+            "label": "kidney_right"
+          },
+          {
+            "object_id": "o192",
+            "label": "liver"
+          },
+          {
+            "object_id": "o197",
+            "label": "pancreas"
+          },
+          {
+            "object_id": "o291",
+            "label": "aorta"
+          },
+          {
+            "object_id": "o277",
+            "label": "duodenum"
+          },
+          {
+            "object_id": "o923",
+            "label": "kidney_left"
+          },
+          {
+            "object_id": "o412",
+            "label": "adrenal_gland_left"
+          },
+          {
+            "object_id": "o729",
+            "label": "portal_vein_and_splenic_vein"
+          },
+          {
+            "object_id": "o536",
+            "label": "adrenal_gland_right"
+          }
+        ]
+      },
+      "replay_matches": true,
+      "independent_exact_set_check": true,
+      "requested_model": "openai/gpt-5.6-sol",
+      "requested_effort": "xhigh",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br014-abdomen-i01-sol-xhigh-v1-20260915/abdomen-i01__ByXzTRu/agent/sessions/2026/09/15/rollout-2026-09-15T11-01-02-01a0a4ba-3964-7351-9fd1-b5ac60f9a715.jsonl",
+          "sha256": "4ee6609e789e836fbe6122462813f1dcdcc1b1cc683250adb1ab96bf29cfa701"
+        }
+      ],
+      "session_file_count": 1,
+      "frozen_instruction_seen_in_user_message": true,
+      "runtime_matches_request": true,
+      "reasoning_output_tokens": 1136,
+      "last_record_stream_usage": {
+        "input_tokens": 216133,
+        "cached_input_tokens": 183040,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2602,
+        "reasoning_output_tokens": 1136,
+        "total_tokens": 218735
+      },
+      "token_basis": "Harbor counters; reasoning reported only from exactly matching legacy runtime counters. Record-stream totals retained separately.",
+      "trajectory_sha256": "0c3bc9c717361b3a2a3dc36fa6310ca6cf91606e66433d7dadfd8e0c6fbdcd0e",
+      "tool_wrappers": 8,
+      "image_review_wrappers": 2
+    }
+  ],
+  "limitations": [
+    "One attempt per condition, not a success-rate estimate.",
+    "I01 differs from BR013-A02 only in the supplied class inventory and contract.",
+    "F01 is synthetic grouping of retained fragments, not diagnosis or reconstruction of missing tissue.",
+    "Source identity review is authored; independent specialist adjudication is outstanding.",
+    "Input includes cache; output includes reasoning; model costs are harness estimates.",
+    "Terra is conditional on a reviewed Sol failure."
+  ]
+}
