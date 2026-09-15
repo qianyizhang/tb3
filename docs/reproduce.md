@@ -16,6 +16,41 @@ python3 -m http.server 8766 --bind 127.0.0.1
 
 Then open `http://127.0.0.1:8766/docs/report.html`. Stop the server when finished.
 
+## Experiment presentations
+
+The updated overview links three reused presentations. With the existing raw
+reports/assets restored, run from the repository root:
+
+```sh
+python3 scripts/build_interview_presentations.py
+python3 scripts/build_interview_presentations.py --check
+python3 -m http.server 8767 --bind 127.0.0.1
+```
+
+Open `http://127.0.0.1:8767/docs/report.html`. All three presentations use that
+same origin and provide navigation back to the overview. No other report server
+or fixed localhost port is required.
+
+The builder reads the existing anatomy-history, BR-017 and BR-016 reports,
+retains their analysis and interactions, and adds `docs/presentation-theme.css`
+plus shared navigation. It writes only `runs/interview-presentations/`.
+Its manifest records the source/output hashes. Original reports stay unchanged.
+
+| Presentation | Required original output |
+| --- | --- |
+| Anatomy history | `runs/anatomy-history-presentation/index.html` |
+| Absorption | `runs/br017-absorption/review/index.html` |
+| Aneurysm | `runs/br016-aneurysm/blind-review/`, including JSON and native `.bin` arrays |
+
+The first two pages embed their images and can open offline. The aneurysm page
+fetches local arrays, so use HTTP rather than a file URL. A fresh Git clone lacks
+these ignored outputs; read the linked written reports or restore the local
+archive. The original authoring READMEs describe source-report reconstruction:
+[anatomy](../probes/revisions/anatomy-history/authoring/README.md),
+[absorption](../probes/revisions/br017/authoring/README.md),
+[aneurysm](../probes/revisions/br016/README.md). Those source builders may also
+write derived trace indexes; they are not automatically run by this wrapper.
+
 ## Repository checks
 
 Python 3.12, Git and Make are sufficient; Docker and model credentials are not

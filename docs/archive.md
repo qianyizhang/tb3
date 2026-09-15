@@ -2,12 +2,36 @@
 
 [Final report](report.html) · [Selected task](submission.md) · [Reproduction](reproduce.md)
 
-The research is closed. This index exposes detail progressively; historical
-“active”, “next action” and “pending” wording records the state at the time,
-not a current instruction. Original snapshots and evidence remain at stable
-paths so hashes, source receipts and reviewed outcomes keep their meaning.
+This archive preserves completed research and subsequent authorized follow-ups.
+Historical “active”, “next action” and “pending” wording records its capture
+state, not an instruction to resume work. The final report includes completed
+BR-013–017 outcomes; BR-018 preparation has no model result in this update.
+Original snapshots and evidence retain their stable paths and meanings.
 
-## Start with the selected result
+## Current experiment reports
+
+| Study | Synthesis and traces | Reused interactive presentation (local assets) |
+| --- | --- | --- |
+| Anatomical identity, BR-013–015 | [Current verdict](anatomy-experiments.md), [eight trace walkthroughs](anatomy-traces.md) | [Identity comparison](../runs/interview-presentations/anatomy.html) |
+| Tissue ownership, BR-017 | [Results](research-rounds/BR-017-results.md), [four traces](research-rounds/BR-017-traces.md) | [Label toggles and trial explorer](../runs/interview-presentations/absorption.html) |
+| Aneurysm localization, BR-016 | [Results and three traces](research-rounds/BR-016-results.md), [trace audit](evidence/br016-trace-reviews.json) | [Native scan explorer](../runs/interview-presentations/aneurysm.html) |
+
+The current anatomy lead is M02's **broad** partial-absorption audit. Its focused
+version passed. The anonymous identity miss is a secondary diagnostic after
+three contextual follow-ups passed. BR-016 is a separate source-label pilot;
+its N03 pass followed allowed source identification. These judgments do not
+establish repeatable difficulty or clinical performance.
+
+[BR-010](research-rounds/BR-010-mask-only-anatomy.md),
+[BR-011](research-rounds/BR-011-unlabeled-anatomy.md) and
+[BR-012](research-rounds/BR-012-anatomy-curation.md) contain reassessment,
+author screening and curation, without model trials. In particular, BR-010
+paused promotion of the earlier kidney-boundary cases.
+
+## Historical case-32 result
+
+The following records explain the first selected package. They preserve its
+observed misses; later task-validity concerns supersede its promotion verdict.
 
 | Question | Retained record |
 | --- | --- |
@@ -29,7 +53,8 @@ paths so hashes, source receipts and reviewed outcomes keep their meaning.
 | Final research selection | [BR-004 Sol follow-up](../catalog/analyses/br004-sol-followup.md), [case-83 alternative](../catalog/analyses/br004-single-case-83.md) |
 | Parallel Xiangqi branch | [BR-006 player](research-rounds/BR-006-results.md), [BR-008 library](research-rounds/BR-008-results.md), [BR-009 sustained server](research-rounds/BR-009-results.md) |
 
-[Closed round register](research-rounds.md) preserves all nine IDs.
+[Round register](research-rounds.md) preserves the original rounds and later
+follow-ups; the original closeout covered BR-001–009.
 [Historical ledger](ledger.md) retains early setup attempts, original local
 identifiers and later summaries. It is an audit record, not another maintained
 final report. Source inventories, case variants, controls and model attempts
@@ -96,16 +121,21 @@ original protocols and reviews continue to own their evidence.
 | Pre-cleanup authored state | Local recovery archive plus file hashes in `runs/archive-closeout/` |
 | Runtime environments and caches | Retained while submission work is active; no blanket cleanup |
 
-The embedded report illustration is an attributed author reconstruction; its
-[provenance receipt](report-figure.json) records the exact bytes. It is the only
-image included in the report and is not represented as a pilot screenshot.
+The current embedded report illustration reuses BR-017’s partial-absorption
+comparison; its
+[provenance receipt](report-figure.json) records the exact bytes. It is not represented as a pilot screenshot. The detailed presentations reuse
+original report images and interactions through a shared theme/navigation layer.
+`build_interview_presentations.py` writes only local presentation outputs and
+a source/output hash manifest; it never changes original reports or raw trials.
 
 Git history preserves previous tracked versions. The local recovery archive
 also includes the uncommitted research files present at closeout start. Neither
 is an off-machine backup of raw runs. There was no publication, remote backup,
 GitHub read-only archival or raw-evidence deletion in this cleanup.
 
-## Closeout verification — 2026-09-15
+## Initial closeout verification — commit `6c40ca7`
+
+These counts describe the original closeout, before BR-010–017 were integrated.
 
 - Python 3.12.13: `make check` passed the staged artifact gate and all 61 offline tests.
 - A clean Git export plus the staged presentation changes also passed the gate

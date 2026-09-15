@@ -1,8 +1,15 @@
-# Selected task and submission handoff
+# Historical case-32 submission handoff
 
-[Final report](report.html) · [Research archive](archive.md)
+[Current report](report.html) · [Research archive](archive.md)
 
-## Selected task
+**Selection superseded.** BR-010 paused promotion of the micro-boundary cases
+over unresolved task-validity concerns. The later anatomy retrospective favors
+BR-017 M02, with scope and repeatability caveats. This document preserves the
+original package handoff; it does not endorse case 32 as the current lead.
+[Reassessment](research-rounds/BR-010-mask-only-anatomy.md) ·
+[Current anatomy verdict](anatomy-experiments.md#candidate-verdict).
+
+## Task selected at the initial closeout
 
 **Case 32: anatomical annotation audit.** Inspect one CT/segmentation pair,
 review eleven labels, and return a JSON report with spatial witnesses for errors.
