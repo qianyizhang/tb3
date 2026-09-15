@@ -1,6 +1,17 @@
 # Repository work
 
-## Candidate research scope
+## Research closeout
+
+The investigation is closed for interview presentation. `docs/report.html` owns
+the final synthesis; `docs/archive.md` indexes retained evidence. The clean
+submission is maintained in a separate sibling workspace described in
+`docs/submission.md`. Historical selection priorities and next actions are not
+an active queue. Do not launch new research or trials without a new user request.
+Preserve frozen task/evidence bytes and active submission ownership. The authored
+interview report is intentionally tracked; generated runtime reports stay local.
+
+
+## Scope if research is explicitly resumed
 
 - Stay away from security tasks. Do not pursue vulnerability discovery,
   exploitation, authentication/authorization, sandbox escape or protocol attacks;
@@ -10,7 +21,7 @@
   task type. Do not manufacture difficulty through long workflows, setup cost,
   arbitrary restrictions or shorter reasoning time.
 - Start new selection from **benchmark-backed failures**, not just plausible
-  difficult bugs. `docs/research-benchmark-backed.md` owns the current shortlist;
+  difficult bugs. `docs/research-benchmark-backed.md` owns the historical shortlist;
   the bounded round in `docs/research-short-horizon.md` is complete. Inspect
   task-level results, normal completion, verifier failures and task digests.
   Prefer a compact crux already missed with ample reasoning time; distinguish

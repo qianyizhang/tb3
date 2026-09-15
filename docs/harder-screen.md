@@ -82,7 +82,7 @@ The Ninja compiler-download slowdown was isolated from task difficulty: stale au
 
 The non-security pickup completed the fifth valid Terra/high pass. See the
 [geometry trial summary](evidence/clipper-trial-summary.json),
-[grading review](geometry-review.md), and [pickup record](pickup-20260912.md).
+[grading review](geometry-review.md), and [pickup record](archive/operations.md#geometry-pickup).
 The geometry semantic verifier covers three base geometries and one translation;
 its historical test suite is diagnostic. No final qualification claim follows.
 

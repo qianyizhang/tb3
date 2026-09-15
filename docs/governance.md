@@ -1,5 +1,9 @@
 # Artifact ownership and retention
 
+Research is closed; [the final report](report.html) owns the synthesis and
+[the archive index](archive.md) owns reader navigation. Historical next actions
+do not authorize new work. The clean submission has [separate ownership](submission.md).
+
 This policy preserves the small authored record while keeping local execution
 outputs out of commits. It does not delete files or move frozen task inputs.
 
@@ -8,6 +12,7 @@ outputs out of commits. It does not delete files or move frozen task inputs.
 | `scripts/`, `tests/`, `configs/` | Workshop implementation, executable contracts, dependency pins and artifact policy; track. |
 | `probes/<id>/environment`, `tests`, `solution` | Task and verifier inputs, including vendored source, licenses, locks and required archives; track after review. |
 | `probes/<id>/authoring` | Provenance, reviews and concise controls; track. |
+| `docs/report.html` and report provenance | Authored interview presentation, including attributed embedded illustration; track. |
 | `docs/` and `docs/evidence/` | Source-linked research, decisions, frozen plans and concise evidence; track, retaining historical failures. |
 | `catalog/ideas`, `reviews`, `analyses` | Authored candidate decisions and append-only reviews; track. |
 | `catalog/trials` | Allowlisted imports from raw evidence; track deliberately after review. |

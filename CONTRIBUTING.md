@@ -1,6 +1,7 @@
-# Contributing to the workshop
+# Maintaining the research archive
 
-Start with [artifact governance](docs/governance.md) and
+Research is closed. Start with the [final report](docs/report.html) or
+[reproduction guide](docs/reproduce.md). For corrections, read [artifact governance](docs/governance.md) and
 [submission requirements](docs/requirements.md). The workshop is a research
 workspace; passing repository CI does not establish task difficulty or readiness.
 
@@ -25,5 +26,6 @@ measured research outcomes reviewable. Avoid `git add .` in a shared checkout.
 
 GitHub Actions runs `make check` on pushes and pull requests, with monthly
 Dependabot updates for action versions. A newly cloned repository must run
-`make hooks` to enable its local hook. There is currently no configured Git
-remote; hosted CI starts only when the repository is pushed to GitHub.
+`make hooks` to enable its local hook. The configured remote is `https://github.com/qianyizhang/tb3.git`. Local
+verification does not establish hosted CI status; this closeout does not push
+changes or change GitHub repository settings.

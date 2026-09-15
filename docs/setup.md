@@ -1,4 +1,8 @@
-# Local setup
+# Historical machine setup
+
+Recorded 2026-09-12. These versions and host settings describe the original
+execution environment; they are not current installation recommendations.
+Start with the [reproduction guide](reproduce.md) for archive inspection.
 
 This workspace uses Python 3.12, Harbor 0.14.0 for trials and Harbor 0.18.0 for validation/review. Both are isolated from global Python. `configs/harbor-*.lock.txt` records resolved dependencies; `configs/upstream-lock.json` pins the TB3 rules and hashes. `bash scripts/bootstrap.sh` recreates these environments and the sparse public upstream checkout.
 
@@ -35,7 +39,7 @@ This is host runtime configuration, not a task-specific network exception. The f
 
 ## Codex and subscription authentication
 
-See [codex-repair.md](codex-repair.md) for the repaired global CLI and verification. Keep login credentials out of this repository, logs, image layers and build contexts.
+See [codex-repair.md](archive/operations.md#codex-cli-repair) for the repaired global CLI and verification. Keep login credentials out of this repository, logs, image layers and build contexts.
 
 For an early container trial, the assignment's subscription route is:
 

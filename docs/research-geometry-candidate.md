@@ -56,6 +56,6 @@ the Docker target. Model difficulty and submission eligibility are unverified.
 The geometry-only pickup corrected pre-trial semantic grading defects and ran
 same-snapshot Harbor/Docker controls: oracle 1, nop 0, no exceptions. The
 Terra/high diagnostic completed with reward 1 and no exception in 494.711s.
-Retire this snapshot from difficulty selection; no Sol/Opus run is warranted. See [pickup](pickup-20260912.md),
+Retire this snapshot from difficulty selection; no Sol/Opus run is warranted. See [pickup](archive/operations.md#geometry-pickup),
 [review](geometry-review.md), and [trial evidence](evidence/clipper-trial-summary.json).
 Historical controls remain distinct from model outcomes.

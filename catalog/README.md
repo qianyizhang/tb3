@@ -1,4 +1,10 @@
-# Idea catalog
+# Archived research catalog
+
+Start with the [final report](../docs/report.html) and
+[evidence archive](../docs/archive.md). Candidate statuses and `next_action`
+fields retain their historical meanings; they are not an active work queue.
+Records are preserved for provenance, including passes and rejected ideas.
+
 
 Each `ideas/*.json` file is one authored candidate record. Keep the filename equal to its stable `id`; use tags to search across domains and mechanisms. The initial records summarize the repository's research on 2026-09-12. Source URLs are recorded leads from those notes, not newly verified reports of current upstream behavior.
 

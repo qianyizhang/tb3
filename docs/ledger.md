@@ -1,11 +1,16 @@
-# Findings and experiment ledger
+# Historical findings and experiment ledger
+
+**Archived research record.** Outcomes and IDs are retained. “Active” and “next”
+below describe the original work, not a current queue. Read the
+[final report](report.html) for the conclusion and the [archive](archive.md)
+for navigation. Submission qualification is [maintained separately](submission.md).
 
 Initial entries are dated 2026-09-12; later rounds carry their own dates. Research claims and ranked alternatives live in [research.md](research.md); acceptance rules in [requirements.md](requirements.md). Append outcomes, including failures. No model difficulty claims without completed verifiers.
 
 | ID | Attempt / finding | Result | Evidence / next action |
 | --- | --- | --- | --- |
 | S01 | Initial host inventory | Docker, Colima, Podman and Apple container absent; no Docker socket. macOS arm64. | User subsequently authorized install/repair. |
-| S02 | Global `codex --version` | Failed: missing optional package `@openai/codex-darwin-arm64`. | Same-version reinstall restored the runtime; CLI 0.147.0 and ChatGPT login verified. See codex-repair.md. No model trial occurred. |
+| S02 | Global `codex --version` | Failed: missing optional package `@openai/codex-darwin-arm64`. | Same-version reinstall restored the runtime; CLI 0.147.0 and ChatGPT login verified. See [repair record](archive/operations.md#codex-cli-repair). No model trial occurred. |
 | S03 | Upstream fetch in restricted shell | Failed connecting to configured localhost proxy; escalated public clone succeeded. | `.cache/terminal-bench` at `e2995b9`; no upstream changes. |
 | S04 | Upstream sanity audit by Terra/high | Completed source/config review; found stale CONTRIBUTING network example and split Harbor versions. | requirements.md and configs/upstream-lock.json. |
 | S05 | Workspace Harbor installation | 0.14.0 in `.venv`; 0.18.0 in `.venv-validation`. Version commands pass. | Separate dependency lock files in configs/. |
@@ -52,7 +57,7 @@ Initial entries are dated 2026-09-12; later rounds carry their own dates. Resear
 
 | ID | Attempt / finding | Result | Evidence / next action |
 | --- | --- | --- | --- |
-| G01 | Resume stopped source task | User excluded security tasks; geometry selected. Docker had no active containers or experiment writers. Prior saved results preserved. | [Pickup](pickup-20260912.md); source task `01a093fe-a6bb-7ef0-a1ca-da3b39e5aee2`. Platform research flags are not benchmark results. |
+| G01 | Resume stopped source task | User excluded security tasks; geometry selected. Docker had no active containers or experiment writers. Prior saved results preserved. | [Pickup](archive/operations.md#geometry-pickup); source task `01a093fe-a6bb-7ef0-a1ca-da3b39e5aee2`. Platform research flags are not benchmark results. |
 | G02 | Pre-trial geometry review | Fixed order-sensitive grading and duplicate-closing-vertex normalization; added tree consistency assertions and documented Cargo registration. | [Geometry review](geometry-review.md); 10 focused tests, 47 total tests pass. |
 | G03 | Superseded first oracle | CancelledError, no accepted verifier reward; excluded control. No model run. | runs/clipper-oracle-pickup-20260912; preserved v1 freeze. |
 | G04 | Revised v2 reference control | Oracle 1, no exception, 49.757s. Static check then required absolute paths in the local test command. | runs/clipper-oracle-v2-20260912; preserved v2 freeze. |
@@ -254,3 +259,54 @@ claimed. See the [analysis](../catalog/analyses/br004-single-patient.md),
 [frozen protocol](research-rounds/BR-004-single-patient-benchmark.md),
 [summary](evidence/br004-single-patient-summary.json), and
 [case reviews](evidence/br004-single-patient-reviews.json).
+
+## BR-004 corrected-scope Sol follow-up (2026-09-15, complete)
+
+One fresh Sol/xhigh attempt per selected patient, sequentially, zero trial
+retries, normal 1,800-second allowance. All four completed normally; raw grades
+were zero for all four. Review retains **three controlled-defect misses**
+(cases 32, 83, 61-v2) and **one additional source-label hold** (46-v2).
+
+Cases 32 and 83 use identical task bytes and Harbor checksums to their reviewed
+Terra misses. Cases 46/61 received public label-specific exclusions for known
+source ambiguities, with unchanged CT/SEG and planted-error bytes. Sol honored
+the exclusions but missed the inferior heart omission in 61. In 46 it reported
+a further original-source heart component; that raw miss is not counted as a
+genuine model failure. No post-answer grading change or retry was made.
+
+**Case 32 remains the lead:** 12.60 agent minutes, 20,930 output tokens,
+151,865 uncached input tokens and estimated USD 2.072, lowest on these four
+measures among the reviewed Sol misses. A supplied-viewer contrast with fixed
+anatomical scope is proposed, not launched. Total resources for all four rows:
+59.56 agent minutes, 94,756 output tokens, 731,487 uncached input tokens and
+estimated USD 10.680; complete sequential benchmark 69.10 minutes. Case 46's
+wall time includes client transport recovery within the same attempt.
+
+Eight container controls, 47 author scoring checks and four independent
+re-scores agree with the declared contract. Frozen bytes remain unchanged.
+One attempt per task/configuration does not establish a failure probability.
+[Analysis](../catalog/analyses/br004-sol-followup.md),
+[protocol](research-rounds/BR-004-sol-followup.md),
+[freeze](evidence/br004-sol-freeze.json),
+[summary](evidence/br004-sol-summary.json), and
+[reviews](evidence/br004-sol-reviews.json) retain the evidence.
+
+## BR-009 — sustained Xiangqi server optimization (2026-09-15, complete)
+
+Built the strong-C1-baseline successor with fixed search/server, exact API/search
+checks, a 20% CPU-reduction gate and uninterrupted fresh-state memory stress.
+The known allocation leak and an unbounded cache fail the memory control; the
+bounded reference passes. Pre-model affinity, corpus-coverage and keyword-reference
+corrections are retained separately.
+
+Final v4: oracle 1 (CPU ratio 0.7075), nop 0 (0.9694), Terra/high 1 (0.6983).
+Terra completed normally in 628.844 s, with 253 semantic cases, all 32 memory
+epochs, at most 0.145 MiB settled growth, and 7 W / 5 D / 4 L in 16 complete
+games. One model attempt, no retry. Retire the snapshot; no Sol trial because
+the required genuine Terra failure did not occur. The intended profiling and
+optimization behavior was observed, but no capability failure was demonstrated.
+See [results](research-rounds/BR-009-results.md),
+[final freeze](evidence/br009-xiangqi-v4-freeze.json),
+[controls](evidence/br009-v4-controls.json),
+[trace](evidence/br009-terra-trace-summary.json), and
+[receipt](evidence/br009-round-summary.json).

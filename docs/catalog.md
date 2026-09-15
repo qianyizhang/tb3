@@ -1,4 +1,10 @@
-# Trial catalog and research workbench
+# Catalog reference
+
+Research is closed. Use [the reproduction guide](reproduce.md) for read-only
+inspection and [the final report](report.html) for conclusions. The authoring
+and sync commands below are retained as a tooling reference, not a closeout
+checklist or authorization to create more trials.
+
 
 This is a local authoring tool for the TB3 workshop. It imports Harbor evidence,
 keeps candidate decisions and trial reviews in small JSON records, and produces

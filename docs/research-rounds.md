@@ -1,81 +1,36 @@
-# Brainstorm and experiment rounds
+# Research rounds — closed register
 
-This register keeps recurring discussions, candidate decisions and experiment
-handoffs together. It owns round identity and navigation. The
-[benchmark-backed shortlist](research-benchmark-backed.md) still owns selection
-priority; the [catalog](catalog.md) owns searchable candidate decisions;
-[ledger](ledger.md) and linked freezes/results own local observations;
-[requirements](requirements.md) owns final submission gates.
+[Final report](report.html) · [Evidence archive](archive.md)
 
-## Round register
+Nine rounds capture the completed investigation. Original IDs and records are
+retained; proposed “next actions” in historical documents are not an active
+backlog. The report owns the closing synthesis; linked protocols, freezes and
+reviews own the observations. [Submission status](submission.md) is separate.
 
 | Round | Captured | Question and candidates | State | Outcome / next action |
 | --- | --- | --- | --- | --- |
 | BR-001 | 2026-09-14 | [Compact scientific extractions](research-brainstorm-experiments-20260914.md): E01–E06, six original pilots | Complete | Six healthy Terra/high passes; all snapshots retired. [Receipt](evidence/brainstorm-round-summary.json). |
 | BR-002 | 2026-09-14 | [Sol/Astra capability experiments](research-rounds/BR-002-sol-astra-capabilities.md): D01 moving frames, D02 RF conventions, D03 actuator memory, D04 score images | Complete | [Local results](research-rounds/BR-002-results.md): four Sol/max and four Astra/max passes; all snapshots retired. No observed success split. [Receipt](evidence/br002-round-summary.json). |
 | BR-003 | 2026-09-15 | [Work-history task hunt](research-rounds/BR-003-work-history.md): H01 PDF lineage, H02 chat recovery, H03 anatomical QA, H04 DICOM-to-SVG | Complete | Four healthy Terra/high passes with eight matching controls; all snapshots retired. Nine historical conversations inspected. [Receipt](evidence/br003-round-summary.json). |
-| BR-004 | 2026-09-15 | [DICOM annotation revisit](research-rounds/BR-004-dicom-annotation-revisit.md): localized label defects with spatial evidence | Single-patient screen complete | [Results](../catalog/analyses/br004-single-patient.md): eight normal Terra/max completions; five raw passes, three raw misses; two reviewed failures and two source holds. Case-32 leads at 10.21 min / 23,713 output tokens / estimated $0.857. Original batch timeout remains separate. |
+| BR-004 | 2026-09-15 | [DICOM annotation revisit](research-rounds/BR-004-dicom-annotation-revisit.md): localized label defects with spatial evidence | Complete | [Sol follow-up](../catalog/analyses/br004-sol-followup.md): four normal Sol/xhigh completions; three reviewed misses and one additional source hold. Case-32 leads at 12.60 min / 20,930 output tokens / estimated $2.072. [Earlier Terra screen](../catalog/analyses/br004-single-patient.md) and batch timeout remain separate. |
 | BR-005 | 2026-09-15 | [Scaffolding correction and retest](research-rounds/BR-005-scaffolding-retest.md): five clear audit cases | Complete | [Results](research-rounds/BR-005-results.md): five model passes, one genuine Clipper failure, ten matching controls. Four revised tasks retired; failing Clipper condition retained separately. |
 | BR-006 | 2026-09-15 | [Budget-limited Xiangqi player](research-rounds/BR-006-xiangqi-budget-player.md): full player and game-library optimization | Retired (Terra pass) | [Results](research-rounds/BR-006-results.md): oracle 56/5/3, nop 25/13/26, Terra/high 56/7/1; all 64 games complete per row, identical frozen v2; Sol skipped under the conditional plan. |
 | BR-007 | 2026-09-15 | [Clipper topology generalization](research-rounds/BR-007-clipper-sol-xhigh.md): strengthen the failure-backed source repair for Sol/xhigh | Complete | [Results](research-rounds/BR-007-results.md): Sol/xhigh passes 144/144; replay and trace audit agree. Difficulty target not reached; this condition retired for Sol. |
 | BR-008 | 2026-09-15 | [Xiangqi game-library optimization](research-rounds/BR-008-xiangqi-game-kernel.md): freeze the searcher and compare author/native controls with Terra | Retired — Terra pass | [Results](research-rounds/BR-008-results.md): Terra 61/64 wins in 327 s authoring; author 62/64. Auxiliary memory leak confirmed, graded pass retained; no Sol. |
+| BR-009 | 2026-09-15 | [Sustained Xiangqi server performance](research-rounds/BR-009-xiangqi-server-throughput.md): C1 native baseline and mandatory memory stability | Retired — Terra pass | [Results](research-rounds/BR-009-results.md): Terra/high passes in 629 s; CPU ratio 0.698, stable fresh-state memory, 7/5/4 in 16 games. Matched controls valid; no Sol trigger. |
 
-BR-001 is a retrospective navigation label for the existing completed report;
-its E IDs, ledger B IDs, probe names and evidence paths retain their meanings.
-BR-002 comes from later turns in the **same conversation**. A conversation URL
-alone does not identify a round. Use scoped references such as **BR-002/D01**;
-bare D01 also occurs in historical ledger entries.
 
-Earlier sourcing rounds remain available: the
-[100-card bank](research-broad-task-bank.md), its
-[completed screen](research-screening-20260912.md), and the
-[12-record second search](research-candidate-search-r2-20260912.md).
-They are source inventories/screens, not additional model experiments.
+## How to read the record
 
-## Adding and closing a round
+BR-001 was assigned retrospectively to the six original pilots. BR-002 came from
+later turns in the same conversation. Round IDs identify experiments, not chats
+or globally unique local case labels. BR-004 has several separately frozen
+conditions; its later follow-up did not replace the earlier results.
 
-1. Allocate the next unused BR number and copy the
-   [round template](research-rounds/TEMPLATE.md). Record conversation and message
-   IDs, capture date, retrieval gaps and what changed since the previous round.
-   New turns with a different question/design cohort get a new round; corrections
-   to a current design get a dated entry in that round.
-2. Preserve the proposed contract, hypothesis, discriminating cases, independent
-   verifier, permitted baseline, failure interpretation and stop rule. Record
-   source claims separately from locally reproduced evidence. A compact oracle
-   establishes solvability; model difficulty requires a valid trial.
-3. Reuse an existing catalog ID for the same candidate. Create a new ID for a
-   materially different deliverable/crux and link its predecessor. Add a
-   round-specific tag such as `brainstorm-round-002`, retaining prior tags and
-   review history. Keep candidate IDs aligned with future probe directory names.
-4. Before execution, link the owning plan with its exact frozen conditions,
-   model/harness settings, attempts, controls and stopping rule. Record whether
-   execution is proposed or part of the active task. Capturing a discussion does
-   not launch its suggested runs. An ablation is a separate frozen condition;
-   comparisons within each condition use identical task bytes.
-5. Close with per-candidate dispositions, local attempt denominators, exclusions,
-   hypothesis support, lessons and the next selection action. Retain easy passes
-   and superseded designs. Update this register and catalog; import completed
-   raw trials explicitly through the existing tooling.
+The earlier [100-card bank](research-broad-task-bank.md),
+[screen](research-screening-20260912.md) and
+[second search](research-candidate-search-r2-20260912.md) are source inventories,
+not additional local model trials. Keep their denominators separate.
 
-Round states are **captured**, **preparing**, **running**, **complete**, or
-**parked**. They describe work, not evidence strength. Candidate records continue
-to use the existing catalog statuses; no new catalog schema is introduced.
-
-## Evidence and search
-
-Keep three judgments separate: **execution validity**, **task success**, and
-**support for the proposed hypothesis**. Published aggregate scores, published
-task-level verifier misses, locally checked fixtures, and local model trials
-must retain separate denominators. Syntax errors can fail a task without
-supporting a conceptual hypothesis; crashes, timeouts and oracle faults do not
-establish genuine model failure.
-
-```bash
-.venv/bin/python scripts/tb3_catalog.py list --kind ideas --query brainstorm-round-002
-.venv/bin/python scripts/tb3_catalog.py report
-```
-
-The existing `brainstorm-20260914` tag identifies BR-001's six cards. Use the
-numbered tag for BR-002 and future rounds; dates alone can collide. Reports are
-local snapshots. Authored summaries belong in docs/catalog; raw conversation
-exports, traces and generated reports remain local under ignored paths.
+The former [round template](archive/operations.md#historical-round-template)
+is retained for reference. No new round or trial is authorized by this register.
