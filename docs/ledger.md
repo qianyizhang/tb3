@@ -182,6 +182,28 @@ This adds five passes and one reviewed genuine failure to the preceding
 not a repeatable failure rate or a prompt-only causal ablation. No final standard
 or adversarial qualification run was performed.
 
+
+## BR-004 localized anatomical audit (2026-09-15, inconclusive)
+
+The user authorized an eight-patient subtle-error test and one fresh Terra/max
+attempt. The frozen task has 86 focus-label decisions, four unmodified controls
+and five altered labels across four patients. Exact labels and 3-mm-tolerant
+spatial witnesses give deterministic grading. Author geometry/truth checks and
+matching normal Harbor oracle 1 / nop 0 controls passed.
+
+**Terra/max reached the 1,800-second limit with AgentTimeoutError.** The answer
+artifact equals the empty starter byte-for-byte. Its reward 0 and 4/8 passing
+cases are unfinished-artifact checks, not anatomical accuracy. This round adds
+one excluded timeout, zero completed model accuracy results and zero genuine
+failures. It does not change the counts of healthy completed model trials.
+
+All frozen bytes remain unchanged. V1 is parked; a smaller one-family batch and
+complete source-region adjudication are proposed before another trial. No
+confirmed postoperative history or specialist clinical certification is claimed.
+See the [round](research-rounds/BR-004-dicom-annotation-revisit.md),
+[receipt](evidence/br004-anatomy-round-summary.json), and
+[authored analysis](../catalog/analyses/br004-anatomy-audit.md).
+
 ## BR-007 Clipper topology coverage (2026-09-15, complete)
 
 The [predeclared study](research-rounds/BR-007-clipper-sol-xhigh.md) expanded the
@@ -202,3 +224,33 @@ a failure rate or final qualification.
 [round summary](evidence/br007-round-summary.json),
 [freeze](evidence/br007-clipper-freeze.json), and
 [controls](evidence/br007-author-controls.json) retain the evidence.
+
+## BR-004 single-patient resource screen (2026-09-15, complete)
+
+One fresh Terra/max attempt on each of eight unchanged patient subsets,
+sequentially, with zero retries and the normal 1,800-second allowance.
+**All eight completed normally: five raw passes, three raw misses.** Matched
+oracle/nop controls and independent re-scoring agree; all frozen task bytes,
+patient files, protocol and builder remain unchanged.
+
+Review retains **two genuine controlled-defect misses** (cases 83 and 32), four
+solved controls (74, 19, 28, 95), and two source holds (46 raw pass, 61 raw miss).
+Case-61 reported unadjudicated original-source regions and did not locate the
+planted omission; it is not counted as a genuine overall task failure.
+Case-46's hold was declared before testing. Keep all eight resource rows.
+
+**Case-32 leads:** 10.21 agent minutes, 23,713 output tokens, 98,915 uncached input
+tokens, estimated $0.857. Its 63-voxel kidney extension was missed despite
+reviewed views covering the region. Compared with case-83, it used 35.9% less
+time and 27.6% fewer output tokens. No reliable failure probability follows
+from one observation. Reduced anatomical focus and a supplied viewer are
+proposed next contrasts; no additional model run was launched.
+
+Total model resources: 117.80 agent minutes, 262,186 output tokens, 1,624,554
+uncached input tokens and estimated $13.257. The sequential benchmark took
+136.22 minutes including controls/setup; this is separate from the earlier
+batch timeout. No specialist clinical or final submission qualification is
+claimed. See the [analysis](../catalog/analyses/br004-single-patient.md),
+[frozen protocol](research-rounds/BR-004-single-patient-benchmark.md),
+[summary](evidence/br004-single-patient-summary.json), and
+[case reviews](evidence/br004-single-patient-reviews.json).
