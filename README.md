@@ -32,6 +32,7 @@ Current research scope explicitly excludes security tasks and favors hard but le
 | [Ledger](docs/ledger.md) | Successful and failed attempts, evidence and remaining trial counts. |
 | [Specification/scaffolding audit](docs/research-specification-audit-20260915.md) | All 20 trialed tasks, supplied solution ingredients, worker-trace evidence, counterexamples and authoring lessons. |
 | [BR-005 correction and retest](docs/research-rounds/BR-005-results.md) | Five revised packages, six model retests, matching controls, trace audits and one independently confirmed Clipper failure. |
+| [BR-007 Clipper / Sol-xhigh](docs/research-rounds/BR-007-results.md) | Stronger 18-layout/144-case coverage; Sol passes with matching replay and trace audit. Difficulty target not reached. |
 | [Round register](docs/research-rounds.md) | Recurring brainstorms, stable round IDs, candidate handoffs and a reusable template. |
 | [BR-003 work-history hunt](docs/research-rounds/BR-003-work-history.md) | Historical source evidence, four runnable PDF/chat/DICOM prototypes, independent controls and retired diagnostic passes. |
 | [BR-002 results](docs/research-rounds/BR-002-results.md) | Four Sol/Astra natural-task pairs, matching controls, artifact inspections and retired snapshots. |

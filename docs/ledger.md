@@ -181,3 +181,24 @@ This adds five passes and one reviewed genuine failure to the preceding
 24-pass cohort. It is a package comparison with one attempt per model/condition,
 not a repeatable failure rate or a prompt-only causal ablation. No final standard
 or adversarial qualification run was performed.
+
+## BR-007 Clipper topology coverage (2026-09-15, complete)
+
+The [predeclared study](research-rounds/BR-007-clipper-sol-xhigh.md) expanded the
+reference-removed source repair to 18 base layouts and 144 transformed/order
+variants, with independently computed contour truth. Matched Harbor controls
+returned oracle 1 / nop 0. Native controls reject the BR-005 Terra artifact on
+72 cases; removing persistence updates alone passes and is not a detected bug.
+
+**Sol/xhigh passes 144/144**, completing normally in 1,315.843 of 1,800 seconds.
+The source replay matches. The 55-call trace shows a substantive boundary
+normalization/containment repair, with no observed private-reference read,
+online solution fetch or delegation. No retry or post-answer test change.
+The requested Sol difficulty target was not reached; retire this exact condition
+for Sol while preserving BR-005's distinct Terra failure. One diagnostic is not
+a failure rate or final qualification.
+
+[Results and trace anchors](research-rounds/BR-007-results.md),
+[round summary](evidence/br007-round-summary.json),
+[freeze](evidence/br007-clipper-freeze.json), and
+[controls](evidence/br007-author-controls.json) retain the evidence.
