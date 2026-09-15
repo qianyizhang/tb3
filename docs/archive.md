@@ -151,3 +151,7 @@ These counts describe the original closeout, before BR-010–017 were integrated
 Detailed check logs, the pre-cleanup authored snapshot and the raw-file checksum
 inventory are retained locally in `runs/archive-closeout/`. These are archive
 integrity checks, not additional task trials or submission qualification.
+
+## Earlier boundary-audit presentation
+
+[Four BR-004 Sol cases](boundary-audits.html) explains three reviewed misses and one source hold, with retained images and later dispositions. [Shared interactive-series page](../runs/interview-presentations/boundaries.html). Case 32 is ruled out as too nitpicky; case 61 has a clearly labeled omission-plane comparison.

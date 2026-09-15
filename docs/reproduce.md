@@ -103,3 +103,5 @@ inventory; it is a same-disk recovery copy, not an off-machine backup.
 Raw runs, environments and caches were retained during cleanup because the
 submission work was active. No remote backup, data deletion or GitHub archive
 operation is implied by this research closeout.
+
+The presentation builder also includes the authored [earlier boundary audits](boundary-audits.html), reusing images from `runs/br004-v1/evidence-images/` and `runs/br004-sol/review/`. It produces `runs/interview-presentations/boundaries.html` alongside the three later studies.

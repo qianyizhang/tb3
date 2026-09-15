@@ -15,6 +15,7 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'runs/interview-presentations'
 REPORTS = {
+    'boundaries': ('Earlier boundary audits', 'docs/boundary-audits.html', 'catalog/analyses/br004-sol-followup.md'),
     'anatomy': ('Anatomical identity', 'runs/anatomy-history-presentation/index.html', 'docs/anatomy-experiments.md'),
     'absorption': ('Tissue ownership', 'runs/br017-absorption/review/index.html', 'docs/research-rounds/BR-017-results.md'),
     'aneurysm': ('Aneurysm localization', 'runs/br016-aneurysm/blind-review/index.html', 'docs/research-rounds/BR-016-results.md'),
@@ -88,12 +89,12 @@ def main():
         mismatches = [str(p.relative_to(ROOT)) for p, text in products.items() if not p.is_file() or p.read_text() != text]
         if mismatches:
             raise SystemExit('Missing/stale presentation outputs: ' + ', '.join(mismatches))
-        print('All 3 reused presentations and provenance manifest match their sources.')
+        print(f'All {len(REPORTS)} presentations and provenance manifest match their sources.')
     else:
         OUT.mkdir(parents=True, exist_ok=True)
         for path, text in products.items():
             path.write_text(text)
-        print('Built 3 reused presentations under runs/interview-presentations/.')
+        print(f'Built {len(REPORTS)} presentations under runs/interview-presentations/.')
 
 
 if __name__ == '__main__':
