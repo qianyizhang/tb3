@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "xiangqi-budget-player",
+  "title": "Build a Xiangqi player that beats enhanced alpha-beta within a compute budget",
+  "status": "rejected",
+  "tags": [
+    "brainstorm-round-006",
+    "work-history",
+    "non-security",
+    "xiangqi",
+    "game-search",
+    "resource-budget",
+    "paired-games"
+  ],
+  "hypothesis": "The solver must locate the actual cost of the full player execution path and improve playing strength under fixed compute while preserving move-generation and state-transition semantics.",
+  "why_hard": "The frozen v2 difficulty hypothesis did not hold: one fresh Terra/high trial completed normally and won 56/64 private games within the declared budget. A compact native rewrite was sufficient while preserving the Python API unchanged.",
+  "next_action": "Retire v2 from hard-task selection. Preserve the viable task, passing Terra artifact and matched controls. Do not run conditional Sol or tighten this passed snapshot.",
+  "sources": [
+    {
+      "url": "codex://threads/01a0a24e-8af0-7761-95f4-9b7c7fc73a81",
+      "note": "Optimize enhanced alpha-beta: active Qi experiment inspected 2026-09-15; source conditions and retrieval limits retained in BR-006."
+    },
+    {
+      "url": "https://github.com/xqbase/eleeye",
+      "note": "Primary engine source inspected 2026-09-15 as a permitted reuse control; performance and deployment fit here are unmeasured."
+    }
+  ],
+  "evidence": [
+    "docs/research-rounds/BR-006-xiangqi-budget-player.md",
+    "docs/evidence/br006-xiangqi-design-sources.json",
+    "docs/research-rounds/BR-006-execution.md",
+    "docs/evidence/br006-xiangqi-v2-freeze.json",
+    "docs/evidence/br006-xiangqi-v2-controls.json",
+    "docs/research-rounds/BR-006-results.md",
+    "docs/evidence/br006-round-summary.json",
+    "docs/evidence/br006-terra-trace-summary.json"
+  ],
+  "notes": "BR-006 completed 2026-09-15. Oracle 56/5/3 and nop 25/13/26 at identical frozen inputs; Terra/high 56/7/1, reward 1, 797.199 authoring seconds. The cost bottleneck was real, but no Terra failure was obtained. One diagnostic result, not final qualification."
+}

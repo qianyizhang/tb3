@@ -1,0 +1,34 @@
+{
+  "classification": "execution_error",
+  "evidence": [
+    "docs/evidence/br006-xiangqi-v1-freeze.json",
+    "docs/evidence/br006-xiangqi-v2-freeze.json",
+    "runs/br006-xiangqi-oracle-v1-20260915/xiangqi-budget-player__qhPVts2/result.json"
+  ],
+  "evidence_files": [
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br006-xiangqi-v1-freeze.json",
+      "sha256": "3124cf0af3fad484ad9d4c54ff6796e97b7e9c2a4d7b750f50783b833702ca90"
+    },
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br006-xiangqi-v2-freeze.json",
+      "sha256": "37d25f33a1ab42cba06025a5203036840ff9fa5e123324093d03eb8be433b507"
+    },
+    {
+      "label": "Review evidence",
+      "path": "runs/br006-xiangqi-oracle-v1-20260915/xiangqi-budget-player__qhPVts2/result.json",
+      "sha256": "0e4be5da0b98d37457992193d5364e56688da7db805a9f2e05fc8d5728ae216a"
+    }
+  ],
+  "evidence_sha256": "8626c5f3a77b4c95805b4515be14204836024276a32172797219b11c5098ecca",
+  "explanation": "V1 was intentionally cancelled before any model trial to repair game-worker CPU assignment. The retained CancelledError is an infrastructure event, not a failed oracle solution or model failure. This review uses immutable receipts so later execution-note additions do not stale its evidence.",
+  "failure_mode": "author-cancelled CPU scheduling repair",
+  "next_action": "Preserve v1; use the separately frozen, completed v2 results.",
+  "schema_version": 1,
+  "source_sha256": "0e4be5da0b98d37457992193d5364e56688da7db805a9f2e05fc8d5728ae216a",
+  "trial_id": "xiangqi-budget-player__qhPVts2-bb715f35",
+  "updated_at": "2026-09-15T02:35:12.025824+00:00",
+  "verdict": "infrastructure"
+}

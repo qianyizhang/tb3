@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "round": "BR-006",
+  "recorded_at": "2026-09-15T02:28:17.010236+00:00",
+  "trial": "runs/br006-xiangqi-terra-high-v2-20260915/xiangqi-budget-player__Mo6uyb3",
+  "task_checksum": "27db494fad49aafb2c389e781f1ec06b36450d469d064bbff9b4a821eedbc532",
+  "actual_agent": {
+    "name": "codex",
+    "version": "0.154.0",
+    "model_name": "gpt-5.6-terra",
+    "extra": {
+      "originator": "codex_exec",
+      "cwd": "/app"
+    }
+  },
+  "turn_context": [
+    {
+      "model": "gpt-5.6-terra",
+      "effort": "high"
+    }
+  ],
+  "prompt_audit": {
+    "user_messages": 2,
+    "additional_context": "Standard recommended-plugin list and /app environment metadata; inspected directly. No author diagnosis or Qi optimization conversation.",
+    "task_instruction_exact_match": true,
+    "instruction_sha256": "e229af53ce009c3c509c1294b6b95bceb9c35aab96e6085f0e0ad7dc50049c22"
+  },
+  "approach": "Read supplied Python rules/search code, implement a self-contained C++17 persistent engine with mutable board make/unmake, piece-directed generation, iterative alpha-beta/PVS, transpositions, ordering and quiescence. Preserve the exported Python game API unchanged.",
+  "completed_commands": 35,
+  "profiler_command_matches": [],
+  "profiling_caveat": "No explicit profiler invocation observed; source inspection and native rewriting do not establish measured diagnosis of the original hotspot.",
+  "observed_external_engine_fetch_commands": [],
+  "selected_messages": [
+    "The supplied player is a Python alpha-beta search. I\u2019m replacing only its decision loop with a compiled, persistent searcher; the supplied `qi.game` API will remain unchanged.",
+    "The compiled searcher is producing legal moves across replayed positions and is already completing five full iterations in a typical public opening within the decision budget. I\u2019m running a paired public check now to tune its time margin and evaluation.",
+    "The broader public run at a reduced 500 ms already finished 14 wins, 2 draws, and no losses over all 16 paired games. I\u2019ve also corrected horizon handling for check evasions and rebuilt the shipped binary.",
+    "Completed the upgraded offline player.\n\n- Added compiled iterative alpha-beta Xiangqi engine with transposition table, move ordering, quiescence, and check-evasion handling: [xiangqi.cpp](/app/submission/xiangqi.cpp)\n- Updated [run.sh](/app/submission/run.sh) and [build.sh](/app/submission/build.sh) to launch the persistent compiled engine.\n- Preserved the supplied `qi.game` API unchanged.\n- Rule fixtures pass.\n- Full public development suite at 750 ms: 13 wins, 3 draws, 0 losses (16 games).\n- Submission footprint: 232 KiB."
+  ],
+  "artifact": {
+    "path": "runs/br006-xiangqi-terra-high-v2-20260915/xiangqi-budget-player__Mo6uyb3/artifacts/app/submission",
+    "logical_file_bytes": 137004,
+    "reported_du_size": "232 KiB (filesystem block allocation; differs from logical bytes)",
+    "changed_existing_files": [
+      "build.sh",
+      "run.sh"
+    ],
+    "new_files": [
+      "qi/__pycache__/__init__.cpython-312.pyc",
+      "qi/__pycache__/game.cpython-312.pyc",
+      "xiangqi",
+      "xiangqi.cpp"
+    ],
+    "qi_game_unchanged": true,
+    "files": {
+      "build.sh": "14b8384960d4503036a8d10e2ebc70c778fc8c11b368d654386884f54e27bdb0",
+      "engine.py": "b0b539c0c4fa4bd8964034e154a334304feb3f7149f954f92069f10538679bc2",
+      "player.py": "84752a06839a30abf4ceb69fa2673aaac1fcc46a144cf4d171eb3070a9dc748c",
+      "qi/__init__.py": "63b800abbf1b909111eb7bd75d9c117c981a068f28156699752ad5f896521e0f",
+      "qi/__pycache__/__init__.cpython-312.pyc": "506481d6628c49c6d5e495716410fb2a835d841ee49b275afcad9ee0d9982297",
+      "qi/__pycache__/game.cpython-312.pyc": "a12f20a477298bcdcf183c59c3be6753d3aafbc35d2513b27b48866669c8dc08",
+      "qi/game.py": "cba84514eb058856de98fcebc5819763a7680f438490a167f072bba87d0cc7e2",
+      "qi/players/__init__.py": "63b800abbf1b909111eb7bd75d9c117c981a068f28156699752ad5f896521e0f",
+      "qi/players/alphabeta/__init__.py": "9da09d44ddfd207f50672957b42c4d9af32fb6825e995156e6ca7e16f222df94",
+      "qi/players/common.py": "80aa63b40f6a2099393b7feea6c02ca51e053fb207ffe01b3cfee4d4ec89e736",
+      "qi/players/components/__init__.py": "790c34b6d5bfcd511b3fcda84340aa76c287ec5213475484f2ab7a12dd7a9bea",
+      "qi/players/components/exchange/__init__.py": "b159e92f94cbca241b54f05d44e22630bdb6787d4f7b9ea3db69a7a677762d7a",
+      "qi/players/components/extensions/__init__.py": "04dda9ff4d8fd0ab6594d077be8000084a96f9b80ecb7a41b2175bbe4d1ba0b8",
+      "qi/players/components/ordering/__init__.py": "b349ced58067f2323ad4263cfc52d1b34eda6d26aa6259fa44efacbaf92be6bd",
+      "qi/players/components/positional/__init__.py": "3d6ed72269b98fc66700edbc20915ead5c9016b54759dba17a445f04a47bdf3d",
+      "qi/players/components/transpositions/__init__.py": "42199dce88ab845b6e2209360e6af89ed60a963646cedd8be68be5c76816003c",
+      "qi/players/core.py": "148f3598a8e89de6df10d65e3a93c35ada2950f3bec0b205cc06d3a29424118c",
+      "qi/players/enhanced/__init__.py": "1f729bd2a02221b01b44216dda7ebcd4f033987fa9fa5b0b43fa48cc55a6b48b",
+      "qi/players/quiescence/__init__.py": "16f57a8efbfda65afecd625a0df9f5edaea394b19aca1101d17afb176f7987b3",
+      "qi/players/trace.py": "7986910a850ae9a555e2e714303e1e8d3c7f907d876bc42c511b7b5d6a86bc86",
+      "run.sh": "329ee0bcaea45f85e5f293774127bd22cefcc0dbf89674c569ab8c02afe1ad9d",
+      "xiangqi": "dbb5624c38dd8e8550ab73a03ff8b0c01afa02682b117f69e15d817b51a2cf33",
+      "xiangqi.cpp": "e2050c9fdd599a04a1c4079158d4323237d887222404aea74aa2b83eff04de35"
+    }
+  },
+  "raw_usage": {
+    "total_prompt_tokens": 1634041,
+    "total_completion_tokens": 14247,
+    "total_cached_tokens": 1562624,
+    "total_cost_usd": 0.6263228,
+    "total_steps": 50,
+    "extra": {
+      "reasoning_output_tokens": 4220,
+      "total_tokens": 1648288,
+      "last_token_usage": {
+        "input_tokens": 52561,
+        "cached_input_tokens": 51968,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 288,
+        "reasoning_output_tokens": 151,
+        "total_tokens": 52849
+      }
+    }
+  },
+  "usage_caveat": "Harness-reported token counts include repeated cached prompt tokens; estimated cost is not a statement of subscription billing.",
+  "evidence": {
+    "runs/br006-xiangqi-terra-high-v2-20260915/xiangqi-budget-player__Mo6uyb3/agent/trajectory.json": "7007cdb857faee0a47857691e1a4360335052bc65ecb1feeceadff20e1960f4b",
+    "runs/br006-xiangqi-terra-high-v2-20260915/xiangqi-budget-player__Mo6uyb3/agent/sessions/2026/09/15/rollout-2026-09-15T02-06-20-01a0a2d0-aff5-7ef0-ab7b-9279bdf27b58.jsonl": "6aac87eb22c76a9739f306c119210cac7028fa2b5f8a9e92b6aa815783106761",
+    "runs/br006-xiangqi-terra-high-v2-20260915/xiangqi-budget-player__Mo6uyb3/agent/codex.txt": "bd1dfff92c7b3b80010b0fbcc885a1ba0ae666506f83bfe849acc62f4551a28d"
+  },
+  "private_result": "pending; see separate completed trial and round result receipt"
+}

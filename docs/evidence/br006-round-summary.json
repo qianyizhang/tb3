@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "round": "BR-006",
+  "recorded_at": "2026-09-15T02:35:11.733603+00:00",
+  "decision": "Retire frozen v2 from hard-task selection after a clean Terra/high pass. Do not tighten the task or retry to manufacture failure.",
+  "task_checksum": "27db494fad49aafb2c389e781f1ec06b36450d469d064bbff9b4a821eedbc532",
+  "controls": {
+    "oracle": {
+      "reward": 1,
+      "W": 56,
+      "D": 5,
+      "L": 3
+    },
+    "nop": {
+      "reward": 0,
+      "W": 25,
+      "D": 13,
+      "L": 26
+    }
+  },
+  "terra": {
+    "trial": "runs/br006-xiangqi-terra-high-v2-20260915/xiangqi-budget-player__Mo6uyb3",
+    "task_checksum": "27db494fad49aafb2c389e781f1ec06b36450d469d064bbff9b4a821eedbc532",
+    "reward": {
+      "rewards": {
+        "reward": 1.0
+      }
+    },
+    "exception": null,
+    "started_at": "2026-09-15T02:05:41.011022Z",
+    "finished_at": "2026-09-15T02:30:29.439689Z",
+    "games": 64,
+    "WDL": {
+      "W": 56,
+      "L": 1,
+      "D": 7
+    },
+    "complete": 64,
+    "errors": [],
+    "worker_cpus": {
+      "[0]": 20,
+      "[1]": 14,
+      "[2]": 14,
+      "[3]": 16
+    },
+    "players": {
+      "candidate": {
+        "decisions": 1429,
+        "cpu_seconds": 969.22,
+        "mean_cpu_ms": 678.2505248425472,
+        "mean_wall_ms": 848.5829510146956,
+        "max_cpu_ms": 710.0,
+        "reported_mean_depth": 5.226731980405878,
+        "reported_fallback_count": 0,
+        "forced_stops": 0,
+        "peak_rss_bytes": 28241920
+      },
+      "baseline": {
+        "decisions": 1402,
+        "cpu_seconds": 946.84,
+        "mean_cpu_ms": 675.3495007132667,
+        "mean_wall_ms": 833.623272467903,
+        "max_cpu_ms": 770.0,
+        "reported_mean_depth": 1.5834522111269616,
+        "reported_fallback_count": 146,
+        "forced_stops": 157,
+        "peak_rss_bytes": 51900416
+      }
+    },
+    "classification": "model_pass",
+    "timing_seconds": {
+      "agent": 797.199,
+      "setup": 36.898,
+      "total": 1488.429,
+      "verifier": 640.764
+    },
+    "catalog_id": "xiangqi-budget-player__Mo6uyb3-fe1175be",
+    "actual_configuration": {
+      "harbor": "0.14.0",
+      "agent": "codex",
+      "codex_version": "0.154.0",
+      "model": "gpt-5.6-terra",
+      "reasoning_effort": "high",
+      "agent_allowance_seconds": 3600
+    },
+    "win_rate": 0.875,
+    "draw_adjusted_score": 0.9296875
+  },
+  "sol": {
+    "launched": false,
+    "reason": "The frozen plan permits Sol only after a genuine Terra failure; Terra passed."
+  },
+  "hypothesis_assessment": {
+    "bottleneck": "Supported for the sampled source profile and calibrated generator benchmark. The game-library-only reference won 56/64 at equal allowed CPU.",
+    "difficulty": "Not established; Terra solved this snapshot in 797.199 authoring seconds using a compact native searcher while leaving qi.game unchanged. No explicit profiler invocation was observed.",
+    "task_defect_or_model_failure": "No model failure claimed. Both controls and all 64 Terra games completed. V1 cancellation remains a separate infrastructure record."
+  },
+  "post_hoc_baseline_stop_breakdown": [
+    {
+      "baseline_had_forced_stop": false,
+      "games": 40,
+      "WDL": {
+        "W": 37,
+        "D": 3
+      }
+    },
+    {
+      "baseline_had_forced_stop": true,
+      "games": 24,
+      "WDL": {
+        "L": 1,
+        "W": 19,
+        "D": 4
+      }
+    }
+  ],
+  "post_hoc_caveat": "Descriptive only; selected by observed execution behavior, not a predeclared causal contrast or replacement for the 64-game grade.",
+  "timer_observation": {
+    "baseline_forced_stops": 157,
+    "candidate_forced_stops": 0,
+    "baseline_turns_with_sampled_cpu_over_760_ms": 3,
+    "max_sampled_baseline_cpu_ms": 770,
+    "interpretation": "The supervisor can observe CPU beyond the nominal boundary before killing. It accepts only move updates observed by 760 ms; these samples include stop-detection latency and do not establish hard real-time CPU precision."
+  },
+  "limits": [
+    "One diagnostic Terra trial, not a model pass-rate estimate or final TB3 qualification.",
+    "Observed wins are against this frozen baseline and opening suite, not tournament Elo.",
+    "Opening families are a withheld partition of previously exposed Qi development data, not certified training-disjoint data.",
+    "Task README human-author explanations and final submission metadata remain feasibility placeholders."
+  ],
+  "evidence": {
+    "docs/evidence/br006-xiangqi-v2-freeze.json": "37d25f33a1ab42cba06025a5203036840ff9fa5e123324093d03eb8be433b507",
+    "docs/evidence/br006-xiangqi-v2-controls.json": "690c2d104030156d8a9ceb9f5a2724ac44be5dd8cc0557ec543b6267e3f7a266",
+    "docs/evidence/br006-terra-trace-summary.json": "4ce108b837f3a87627845ab1e791f24ec3a9b5c98352c3fd4c632d7490de5f61",
+    "runs/br006-xiangqi-terra-high-v2-20260915/xiangqi-budget-player__Mo6uyb3/result.json": "9cc7efb6b737c4ecb30ce8869ef5ec2a3db92ff2a94606a98125f979bdb161b8",
+    "runs/br006-xiangqi-terra-high-v2-20260915/xiangqi-budget-player__Mo6uyb3/verifier/test-stdout.txt": "30fe934681d95db85b4a63d859f0676ceb9d7674eb2c688a621af9247d32e810",
+    "runs/br006-author/terra-high-v2-summary.json": "e25029cafd26b08a8a71b33872cfe5041cd2cb9c2b4a8efd3e6d26ee88594a31"
+  }
+}
