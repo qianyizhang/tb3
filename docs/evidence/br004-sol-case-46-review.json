@@ -1,0 +1,117 @@
+{
+  "case_id": "case-46",
+  "result_path": "runs/br004-sol-46-sol-xhigh-v1-20260915/dicom-audit-46-v2__8Zt8yqY/result.json",
+  "result_sha256": "98318c4e9c0d5e13d2e67478c15ff41294d879e8db8edc7e5971e98e20d2a52e",
+  "artifact_path": "runs/br004-sol-46-sol-xhigh-v1-20260915/dicom-audit-46-v2__8Zt8yqY/artifacts/app/answer/findings.json",
+  "artifact_sha256": "3288ca15a3638993fd55cce50e39330c272240e72845fff9fc57f6c5b6b73e16",
+  "grade": {
+    "passed": false,
+    "cases": [
+      {
+        "case_id": "case-46",
+        "missing": [],
+        "extra": [
+          "heart"
+        ],
+        "bad_points": [],
+        "located": [],
+        "expected_positive_labels": 0,
+        "focus_labels": 10,
+        "source_stratum": "source pathology",
+        "passed": false,
+        "ignored_findings": []
+      }
+    ],
+    "correctly_located_labels": 0,
+    "expected_positive_labels": 0,
+    "false_positive_labels": 1
+  },
+  "independent_rescore_matches": true,
+  "agent_seconds": 833.979535,
+  "input_tokens": 2154521,
+  "cached_input_tokens": 1966592,
+  "uncached_input_tokens": 187929,
+  "output_tokens": 16750,
+  "reasoning_output_tokens": 8691,
+  "estimated_cost_usd": 1.8733527999999997,
+  "trajectory_sha256": "d80997d5f0c672198e48117a160d1dbd0953f06f1a8a306e92822be7ebb4b073",
+  "client_error_events": [
+    "Reconnecting... 2/5 (stream disconnected before completion: failed to send websocket request: IO error: Broken pipe (os error 32))",
+    "Reconnecting... 3/5 (stream disconnected before completion: failed to send websocket request: IO error: Broken pipe (os error 32))",
+    "Reconnecting... 4/5 (stream disconnected before completion: failed to send websocket request: IO error: Broken pipe (os error 32))",
+    "Reconnecting... 5/5 (stream disconnected before completion: failed to send websocket request: IO error: Broken pipe (os error 32))",
+    "Falling back from WebSockets to HTTPS transport. stream disconnected before completion: websocket closed by server before response.completed"
+  ],
+  "transport_recovery_observed": true,
+  "condition": "sol-corrected-scope-v1",
+  "authored_review": {
+    "outcome": "pending",
+    "validity": "raw miss; additional source-label hold",
+    "source_truth_hold": true,
+    "failure_hypothesis_supported": false,
+    "failure_mode": "unadjudicated_source_heart_component",
+    "evidence": "Normal completion, oracle=1/nop=1 as predeclared for the scoped clean control, identical model/control checksums and matching independent re-score. Sol reported a heart component outside the public L2 exclusion; the frozen grader calls it extra. The reported voxels are unchanged from the original source, so this is not a planted-error miss.",
+    "source_review": "Author high-resolution CT review shows an isolated tubular hilar component in the source heart mask. It has 236 voxels on the task grid and 1,869 voxels in the original-resolution 26-connected mask, so the isolation is not solely a coarse-grid artifact. The submitted point is inside that source component. Nearby pulmonary-vein and atrial-appendage masks provide context but do not adjudicate the exact heart-label boundary. The finding is a credible source-label question, not an established model false positive.",
+    "trace_observation": "Sol explicitly recognized and honored the L2 exclusion, then inspected the separate heart component against pulmonary-vein and atrial-appendage context. It deliberately wrote and validated the reported LPS point. The known L2 correction worked; the rest of the case cannot be certified clean from this trial.",
+    "resource_observation": "833.980 agent seconds, 16,750 output tokens (8,691 reasoning), 187,929 uncached input tokens and estimated USD 1.8733528. Client connection retries and WebSocket-to-HTTPS recovery occurred within this single attempt; its wall time includes transport disruption.",
+    "disposition": "Park case 46 for source adjudication. Preserve v2 and its raw grade; do not change the frozen key after seeing this answer, count it as a genuine model failure, or launch a retry. A future corrected version requires a separately declared truth decision."
+  },
+  "source_geometry": {
+    "source_path": "runs/br004-v1/source/s0885/segmentations/heart.nii.gz",
+    "source_sha256": "949947df6db686080f8858cb94191c71fa09c80fbfbd41563e3516746abdc2a4",
+    "source_point_xyz": [
+      88,
+      104,
+      348
+    ],
+    "source_component_26_voxels": 1869,
+    "source_total_heart_voxels": 250571,
+    "source_component_min_xyz": [
+      81,
+      99,
+      331
+    ],
+    "source_component_max_xyz": [
+      98,
+      110,
+      357
+    ],
+    "coarse_component_26_voxels": 236,
+    "coarse_min_xyz": [
+      41,
+      50,
+      166
+    ],
+    "coarse_max_xyz": [
+      48,
+      55,
+      178
+    ],
+    "reported_region_unchanged_from_original_source": true,
+    "interpretation": "Source-supported isolated tubular component near the pulmonary hilum; exact anatomical scope is not clinically adjudicated. Do not count a report here as a genuine model false positive.",
+    "submitted_point_lps_mm": [
+      73.1201171875,
+      -131.8798828125,
+      188.5
+    ],
+    "submitted_point_voxel_xyz": [
+      44,
+      52,
+      173
+    ],
+    "submitted_point_ct_hu": 64,
+    "original_label": 51,
+    "submitted_label": 51,
+    "source_component_probe_note": "Native component was measured at an adjacent point 3 mm superior to the final submitted point; both belong to the same retained component."
+  },
+  "retained_model_images": [
+    {
+      "path": "runs/br004-sol/review/case-46-sol-heart-context.png",
+      "sha256": "af6a297329b040ce1ae212c8b447195a2a19c5d5f37eedb81fa6e6271408c76d",
+      "step_id": 26
+    }
+  ],
+  "author_viewed_image": "runs/br004-sol/review/case-46-heart-highres-context.png",
+  "author_viewed_image_sha256": "0583c4ab6325673d6c78896f5a5410c7efe2623dd8c8725926f0daf8a615dfc7",
+  "author_viewed_image_kind": "Original-resolution source CT and context masks, rendered independently after the trial."
+}

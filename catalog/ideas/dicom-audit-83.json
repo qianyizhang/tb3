@@ -10,8 +10,8 @@
     "single-patient-benchmark"
   ],
   "hypothesis": "A single patient can expose a localized anatomical annotation reasoning gap without the cost of reviewing the full eight-patient batch.",
-  "why_hard": "Terra/max completed normally but reported no defects, missing a frozen visible kidney-pole omission. The run used 15.92 agent minutes and 32744 output tokens.",
-  "next_action": "Retain the frozen completed failure and compare resource use with the remaining single-patient tasks. Do not repeat this one-attempt condition.",
+  "why_hard": "Reviewed Terra/max and Sol/xhigh misses on identical task bytes: both omitted the planted kidney-pole defect from their final reports. Sol used 16.61 agent minutes, 30,292 output tokens and estimated USD 3.092, despite receiving multi-plane images.",
+  "next_action": "Retain as a cross-model failure-backed alternate; prioritize case 32 for the lower observed Sol time, output and estimated cost. Any viewer contrast must be separately frozen.",
   "sources": [
     {
       "url": "codex://threads/01a0a248-241a-76b0-8ecf-15e259df9734",
@@ -21,7 +21,10 @@
   "evidence": [
     "docs/research-rounds/BR-004-single-patient-benchmark.md",
     "docs/evidence/br004-single-patient-freeze.json",
-    "docs/evidence/br004-single-patient-reviews.json"
+    "docs/evidence/br004-single-patient-reviews.json",
+    "docs/research-rounds/BR-004-sol-followup.md",
+    "docs/evidence/br004-sol-freeze.json",
+    "docs/evidence/br004-sol-case-83-review.json"
   ],
   "notes": "Separate single-patient condition derived from dicom-anatomy-audit; source bytes and normal time budget unchanged. No specialist clinical certification; inspect any alleged source error."
 }

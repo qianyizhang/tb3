@@ -1,0 +1,89 @@
+{
+  "scope_decision": "Quarantine unresolved source regions publicly; do not invent replacement anatomy labels.",
+  "clinical_adjudication": false,
+  "data_relabelled": false,
+  "prior_reviews": [
+    "docs/evidence/br004-single-patient-reviews.json",
+    "docs/evidence/br004-single-case-61-review.json"
+  ],
+  "additional_source_review": {
+    "image": "runs/br004-sol/review/case-46-highres-context.png",
+    "sha256": "24c923c899e21c91fa017cf1bb1967ff6ef5096f8fb0510f8234277be1dd4430",
+    "finding": "Higher-resolution CT and original masks preserve an isolated L2 component. Its precise anatomical inclusion remains uncertain; the box is an exclusion, not a validated false-positive label."
+  },
+  "retrospective_terra_replays": [
+    {
+      "case_id": "case-46",
+      "old_result": "runs/br004-single-46-terra-max-v1-20260915/dicom-audit-46__wem5Z8X/result.json",
+      "old_artifact_sha256": "5fddaf8a4bb19e575bc16438e7effabe52c2e61874ef88e6ffce3f75e6dd44b8",
+      "old_validity": "raw pass; source truth hold",
+      "revised_scope_grade": {
+        "passed": true,
+        "cases": [
+          {
+            "case_id": "case-46",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 10,
+            "source_stratum": "source pathology",
+            "passed": true,
+            "ignored_findings": []
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 0,
+        "false_positive_labels": 0
+      },
+      "interpretation": "Retrospective artifact replay only. No fresh Terra attempt and no change to the original source-held review."
+    },
+    {
+      "case_id": "case-61",
+      "old_result": "runs/br004-single-61-terra-max-v1-20260915/dicom-audit-61__ihBKTbE/result.json",
+      "old_artifact_sha256": "0d79a42e7fb8b7add8f219b994d78d7961e42f515a7419a1c5f4a4712210b410",
+      "old_validity": "raw miss; source adjudication required",
+      "revised_scope_grade": {
+        "passed": false,
+        "cases": [
+          {
+            "case_id": "case-61",
+            "missing": [
+              "heart"
+            ],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 1,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": false,
+            "ignored_findings": [
+              {
+                "label": "liver",
+                "point_lps_mm": [
+                  -16.3,
+                  -196.3,
+                  810.2
+                ]
+              },
+              {
+                "label": "heart",
+                "point_lps_mm": [
+                  58.7,
+                  -157.3,
+                  942.2
+                ]
+              }
+            ]
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 1,
+        "false_positive_labels": 0
+      },
+      "interpretation": "Retrospective artifact replay only. No fresh Terra attempt and no change to the original source-held review."
+    }
+  ]
+}

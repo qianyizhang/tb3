@@ -1,0 +1,73 @@
+{
+  "case_id": "case-83",
+  "result_path": "runs/br004-sol-83-sol-xhigh-v1-20260915/dicom-audit-83__9H9sx6V/result.json",
+  "result_sha256": "25b2533085c4c875e233a31dbc7f60742be20c5cb22642fe29311a5c0b640126",
+  "artifact_path": "runs/br004-sol-83-sol-xhigh-v1-20260915/dicom-audit-83__9H9sx6V/artifacts/app/answer/findings.json",
+  "artifact_sha256": "bf29b40bdb65170d574e35db61aa2a7a96d8b0f179c61395007184f6e203ad17",
+  "grade": {
+    "passed": false,
+    "cases": [
+      {
+        "case_id": "case-83",
+        "missing": [
+          "kidney_left"
+        ],
+        "extra": [],
+        "bad_points": [],
+        "located": [],
+        "expected_positive_labels": 1,
+        "focus_labels": 10,
+        "source_stratum": "marked thoracic abnormality",
+        "passed": false
+      }
+    ],
+    "correctly_located_labels": 0,
+    "expected_positive_labels": 1,
+    "false_positive_labels": 0
+  },
+  "independent_rescore_matches": true,
+  "agent_seconds": 996.465432,
+  "input_tokens": 4769726,
+  "cached_input_tokens": 4609024,
+  "uncached_input_tokens": 160702,
+  "output_tokens": 30292,
+  "reasoning_output_tokens": 16323,
+  "estimated_cost_usd": 3.0922576,
+  "trajectory_sha256": "c98e745aa89b4622b6d5933f732f09952b33f423d0c69c55c35c657fc7a4dad4",
+  "condition": "sol-corrected-scope-v1",
+  "authored_review": {
+    "outcome": "genuine_failure",
+    "validity": "reviewed genuine miss",
+    "failure_hypothesis_supported": true,
+    "failure_mode": "kidney_superior_pole_omission_missed",
+    "evidence": "Normal completion, a deliberately written and validated empty report, oracle=1/nop=0 on identical frozen bytes, and matching independent re-score. The sole missing label is kidney_left; no alternate source defect was alleged.",
+    "source_review": "The unchanged 215-voxel superior-cap omission and prior CT/source/submitted review remain applicable. The corrected-scope follow-up did not alter this task; no specialist clinical certification is asserted.",
+    "trace_observation": "Step 17 delivered whole-volume coronal and sagittal kidney sheets that include the superior-pole region. Steps 36 and 47 delivered dense filled/outline axial sheets; their slice range is derived from the submitted mask and stops at its endpoint, so the omitted slices above it are absent from those axial views. The coronal image was author-reviewed, so this is not a claim that the model received no view of the region. Step 57 explicitly judged the masks plausible and step 58 wrote and validated no findings.",
+    "resource_observation": "996.465 agent seconds, 30,292 output tokens (16,323 reasoning), 160,702 uncached input tokens, estimated USD 3.0922576; 48 tool wrappers, 19 image-review wrappers and 50 delivered image blocks.",
+    "disposition": "Retain as a same-task cross-model controlled-defect miss, but case 32 uses fewer observed Sol resources. One attempt per model does not establish a failure probability."
+  },
+  "prior_source_review": "docs/evidence/br004-single-case-83-review.json",
+  "retained_model_images": [
+    {
+      "path": "runs/br004-sol/review/case-83-sol-step-17-0.png",
+      "sha256": "f47a406923fa0e8a3c982975c92ff96e3904de21e46254ab0540ff7b2418a7ce",
+      "step_id": 17
+    },
+    {
+      "path": "runs/br004-sol/review/case-83-sol-step-17-1.png",
+      "sha256": "f5d6f6a3aaa46d5f244a174650052bea2834cb79b6ae0ac2b29fa4cfe7c3962c",
+      "step_id": 17
+    },
+    {
+      "path": "runs/br004-sol/review/case-83-sol-step-36-0.png",
+      "sha256": "bc211a764d22929e5180cf9d84d8fb46cc0f7296607efeb6cbfa990d17befd36",
+      "step_id": 36
+    },
+    {
+      "path": "runs/br004-sol/review/case-83-sol-step-47-0.png",
+      "sha256": "1e49dd1dc66fd62b43ca2df15f361d4cc21154036a91aa76180d98fde1217330",
+      "step_id": 47
+    }
+  ],
+  "author_viewed_image": "runs/br004-sol/review/case-83-sol-step-17-0.png"
+}

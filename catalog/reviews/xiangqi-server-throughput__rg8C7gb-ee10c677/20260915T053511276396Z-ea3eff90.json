@@ -1,0 +1,40 @@
+{
+  "classification": "control_fail",
+  "evidence": [
+    "docs/evidence/br009-xiangqi-v1-freeze.json",
+    "docs/evidence/br009-v1-affinity-defect.json",
+    "runs/br009-author/affinity-after.json",
+    "runs/br009-xiangqi-oracle-v1-20260915/xiangqi-server-throughput__rg8C7gb/result.json"
+  ],
+  "evidence_files": [
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br009-xiangqi-v1-freeze.json",
+      "sha256": "c530f5b5e8a98f77a40f3da8f89a19193402289d75b92d79fe83e943b96a81aa"
+    },
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br009-v1-affinity-defect.json",
+      "sha256": "8c7eb5b37d620da1c29cdb2ade79cc5bcef74226d3e813a51749876812722188"
+    },
+    {
+      "label": "Review evidence",
+      "path": "runs/br009-author/affinity-after.json",
+      "sha256": "f6b6e42c69b962688cfcf18aff8ddcaff02d5065ff9b5d6a28dc9069ffc28166"
+    },
+    {
+      "label": "Review evidence",
+      "path": "runs/br009-xiangqi-oracle-v1-20260915/xiangqi-server-throughput__rg8C7gb/result.json",
+      "sha256": "f635230ce39666787abd1f54b9862eb0b65f16a4b943ea121c0e1b90def62e20"
+    }
+  ],
+  "evidence_sha256": "e55bae2e87d5293b58087e2468a9dd153b21a6fd7d5bbf62b88a13568387e3ee",
+  "explanation": "The oracle completed, but the verifier tried to change CPU affinity after switching worker UID; Docker correctly denied that syscall. The driver stopped before any model launch. This is a fixed-runner defect, not model evidence.",
+  "failure_mode": "cross_uid_affinity",
+  "next_action": "Preserve v1 and use the repaired frozen worker which sets its own affinity.",
+  "schema_version": 1,
+  "source_sha256": "f635230ce39666787abd1f54b9862eb0b65f16a4b943ea121c0e1b90def62e20",
+  "trial_id": "xiangqi-server-throughput__rg8C7gb-ee10c677",
+  "updated_at": "2026-09-15T05:35:11.276394+00:00",
+  "verdict": "verifier_defect"
+}

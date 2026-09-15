@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "round": "BR-009",
+  "classification": "verifier_defect",
+  "affected_freeze": "8e56edf90db08e0c04bb3b0d9957f91206d473c0e7e336d98fb87fbb96adb94a",
+  "trial": "runs/br009-xiangqi-oracle-v1-20260915/xiangqi-server-throughput__rg8C7gb",
+  "error": "psutil.AccessDenied while root coordinator tried to set affinity on a switched-UID engine worker.",
+  "scope": "Oracle only; driver stopped before nop or model launch.",
+  "repair": "Pass assigned CPU to protected worker and set its own affinity before imports. Coordinator verifies affinity read-only.",
+  "unchanged": "Candidate/reference implementation, workloads, thresholds, search, game service and memory checks.",
+  "changed_files": [
+    "environment/work_client.py",
+    "environment/work_runner.py",
+    "tests/work_client.py",
+    "tests/work_runner.py"
+  ],
+  "regression": {
+    "workers": 4,
+    "uids": [
+      1000,
+      1000,
+      1000,
+      1000
+    ],
+    "affinities": [
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3
+      ]
+    ],
+    "pids": [
+      989,
+      991,
+      993,
+      995
+    ],
+    "responses": 4
+  },
+  "regression_raw": "runs/br009-author/affinity-after.json",
+  "evidence_sha256": {
+    "runs/br009-xiangqi-oracle-v1-20260915/xiangqi-server-throughput__rg8C7gb/result.json": "f635230ce39666787abd1f54b9862eb0b65f16a4b943ea121c0e1b90def62e20",
+    "runs/br009-xiangqi-oracle-v1-20260915/xiangqi-server-throughput__rg8C7gb/verifier/test-stdout.txt": "811d249103d46c55accedb223255238b748541f8fda8e06fb5191940bc893392",
+    "runs/br009-author/affinity-after.json": "f6b6e42c69b962688cfcf18aff8ddcaff02d5065ff9b5d6a28dc9069ffc28166"
+  }
+}

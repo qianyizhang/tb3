@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "round": "BR-009",
+  "revision": "v3-fresh-state-stream",
+  "before_any_model_trial": true,
+  "reason": "A finite repeated corpus masks an unbounded board cache. The v2 memory-only unbounded control passes, though it would keep growing with new games.",
+  "v2_unbounded_control": {
+    "raw": "runs/br009-author/unbounded-repeated-corpus/summary.json",
+    "sha256": "afed6a02cbe07eb70c18af67a3f1d7045c437950ac35c308ad27447a6cbcdb79",
+    "passed": true
+  },
+  "change": "Every epoch introduces 6144 new legal board/side states, 196608 distinct states per worker. Trusted C1 generates the seeded stream. The CPU target, memory limit/growth threshold, searcher and submitted C3 reference are unchanged.",
+  "controls": {
+    "C1": {
+      "complete": true,
+      "passed": true,
+      "error": null,
+      "completed_epochs": 32,
+      "growth_bytes": [
+        100352.0,
+        100352.0,
+        100352.0,
+        100352.0
+      ],
+      "last_rss_bytes": [
+        31350784,
+        31350784,
+        31354880,
+        31350784
+      ],
+      "raw": "runs/br009-author/v3-C1-memory/summary.json",
+      "sha256": "08e66c57cf5099ebada235470b4cdfe649eba07eecbdf5206cdc329eb582ca1d"
+    },
+    "C3": {
+      "complete": true,
+      "passed": true,
+      "error": null,
+      "completed_epochs": 32,
+      "growth_bytes": [
+        122880.0,
+        122880.0,
+        122880.0,
+        122880.0
+      ],
+      "last_rss_bytes": [
+        31477760,
+        31481856,
+        31477760,
+        31477760
+      ],
+      "raw": "runs/br009-author/v3-C3-memory/summary.json",
+      "sha256": "ecf3e9c6bb86cb3c84f942e30be510e625f8edfb299d652c40262608e0476255"
+    },
+    "repaired": {
+      "complete": true,
+      "passed": true,
+      "error": null,
+      "completed_epochs": 32,
+      "growth_bytes": [
+        83968.0,
+        83968.0,
+        83968.0,
+        83968.0
+      ],
+      "last_rss_bytes": [
+        29908992,
+        29908992,
+        29913088,
+        29908992
+      ],
+      "raw": "runs/br009-author/v3-repaired-memory/summary.json",
+      "sha256": "a9a0de05627962cbacdecab4439b0eda576cb453cd8e7e23018b24dfa400af49"
+    },
+    "leaky": {
+      "complete": false,
+      "passed": false,
+      "error": "RuntimeError: persistent worker closed (status 1)",
+      "completed_epochs": 20,
+      "growth_bytes": null,
+      "last_rss_bytes": [
+        251305984,
+        251277312,
+        251273216,
+        251277312
+      ],
+      "raw": "runs/br009-author/v3-leaky-memory/summary.json",
+      "sha256": "514d0acc45d3af8255561c48f8e56b1bafbee8ff2f0f2cc0a694a168379040bd"
+    },
+    "unbounded": {
+      "complete": false,
+      "passed": false,
+      "error": "RuntimeError: persistent worker closed (status None)",
+      "completed_epochs": 18,
+      "growth_bytes": null,
+      "last_rss_bytes": [
+        254627840,
+        254631936,
+        254627840,
+        254627840
+      ],
+      "raw": "runs/br009-author/v3-unbounded-memory/summary.json",
+      "sha256": "eaa8de40633bef41ee1b9f6bedbe645ef1ce1164757509b738436254f1419ac6"
+    }
+  },
+  "corpus_sha256": "7d5080231f02853ed7461f853873faa2dc3600511f65db075214a02717ebbafc",
+  "source_control": {
+    "description": "C3 with the legal-move LRU changed from 4096 entries to maxsize=None.",
+    "game_sha256": "5535308a3a5d4de97c432269661b37aa9013d4a2863e50ca8c264db29b4e0705"
+  },
+  "v2_oracle_result": {
+    "path": "runs/br009-xiangqi-oracle-v2-20260915/xiangqi-server-throughput__9SLd7GT/result.json",
+    "reward": 1.0
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "agent": "oracle",
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "cases": [],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "control_pass",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br004-sol-46-oracle-v1-20260915/dicom-audit-46-v2__PEoAo99/result.json",
+      "sha256": "d15b046d616b720110c33dda19db17a3326236b34cc0787061c72c4d0141b6d7"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br004-sol-46-oracle-v1-20260915/dicom-audit-46-v2__PEoAo99/verifier/test-stdout.txt",
+      "sha256": "20932916f208eaec1074bf25b0f1d03eb50896598a2c6e52d45c52cad049b327"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br004-sol-46-oracle-v1-20260915/dicom-audit-46-v2__PEoAo99/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Submitted artifact: answer/findings.json",
+      "path": "runs/br004-sol-46-oracle-v1-20260915/dicom-audit-46-v2__PEoAo99/artifacts/app/answer/findings.json",
+      "sha256": "5fddaf8a4bb19e575bc16438e7effabe52c2e61874ef88e6ffce3f75e6dd44b8"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br004-sol-46-oracle-v1-20260915/lock.json",
+      "sha256": "de7465a2aa4b4ae74c599cbf3676dd12c95081c1a3f08b821aa44db3e3fa54f3"
+    }
+  ],
+  "evidence_sha256": "d483bf265ee9350b89a24de1c38f417826483f299cc159a87c63af43aaddcc61",
+  "exception_type": null,
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-15T05:51:13.172687Z",
+  "harbor_version": "0.18.0",
+  "id": "dicom-audit-46-v2__PEoAo99-57e0acac",
+  "job": "br004-sol-46-oracle-v1-20260915",
+  "model": null,
+  "qualifying_final_trial": false,
+  "reasoning_effort": null,
+  "reward": 1.0,
+  "schema_version": 1,
+  "source_result": "runs/br004-sol-46-oracle-v1-20260915/dicom-audit-46-v2__PEoAo99/result.json",
+  "source_sha256": "d15b046d616b720110c33dda19db17a3326236b34cc0787061c72c4d0141b6d7",
+  "started_at": "2026-09-15T05:50:43.496683Z",
+  "task_checksum": "db7576ede4f3a3ed9dc0616d9a72d6d13869732eb701e072bbb09a36fd50e594",
+  "task_id": "dicom-audit-46-v2",
+  "task_sha256": null,
+  "timing": {
+    "agent": 0.281,
+    "setup": 0.0,
+    "total": 29.676,
+    "verifier": 14.04
+  },
+  "trial_name": "dicom-audit-46-v2__PEoAo99",
+  "usage": {
+    "n_cache_tokens": null,
+    "n_input_tokens": null,
+    "n_output_tokens": null
+  },
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ]
+}

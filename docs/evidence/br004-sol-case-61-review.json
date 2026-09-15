@@ -1,0 +1,72 @@
+{
+  "case_id": "case-61",
+  "result_path": "runs/br004-sol-61-sol-xhigh-v1-20260915/dicom-audit-61-v2__YKZrAMC/result.json",
+  "result_sha256": "484e712b961e33e67ef51dd78dece2bd9730a70e5bef4c4b76b7c22d04120470",
+  "artifact_path": "runs/br004-sol-61-sol-xhigh-v1-20260915/dicom-audit-61-v2__YKZrAMC/artifacts/app/answer/findings.json",
+  "artifact_sha256": "be3cd903003b3429db827e2c430b572ec18c9b75b9b48131f3232a3ce0432782",
+  "grade": {
+    "passed": false,
+    "cases": [
+      {
+        "case_id": "case-61",
+        "missing": [
+          "heart"
+        ],
+        "extra": [],
+        "bad_points": [],
+        "located": [],
+        "expected_positive_labels": 1,
+        "focus_labels": 11,
+        "source_stratum": "ordinary anatomy",
+        "passed": false,
+        "ignored_findings": []
+      }
+    ],
+    "correctly_located_labels": 0,
+    "expected_positive_labels": 1,
+    "false_positive_labels": 0
+  },
+  "independent_rescore_matches": true,
+  "agent_seconds": 987.4903,
+  "input_tokens": 5687887,
+  "cached_input_tokens": 5456896,
+  "uncached_input_tokens": 230991,
+  "output_tokens": 26784,
+  "reasoning_output_tokens": 13121,
+  "estimated_cost_usd": 3.6424024,
+  "trajectory_sha256": "73e257cf7fdc7715fca68f36fb1f3d90db18282c14aa682ff603358ca0bff117",
+  "client_error_events": [],
+  "transport_recovery_observed": false,
+  "condition": "sol-corrected-scope-v1",
+  "authored_review": {
+    "outcome": "genuine_failure",
+    "validity": "reviewed genuine miss after scope correction",
+    "failure_hypothesis_supported": true,
+    "failure_mode": "inferior_heart_cap_omission_missed",
+    "evidence": "Normal completion, deliberately written and validated empty report, oracle=1/nop=0 on matching frozen snapshots, and matching independent re-score. The sole missing label is heart. Sol explicitly recognized the two public source exclusions and alleged no additional in-scope source defect.",
+    "source_review": "The original planted 791-voxel inferior heart-cap omission, CT/SEG bytes, spatial discrepancy region and 3 mm tolerance are unchanged. Both excluded source patches are disjoint from the planted region. The retained author CT/source/submitted comparison supports this controlled-omission miss; no specialist clinical certification is asserted.",
+    "trace_observation": "Steps 16, 38 and 53 delivered heart views. The targeted outline coronal sheet at step 53 includes the inferior heart border and the retained witness plane y=80. Step 55 identified the known liver gap and superior heart island as excluded and concluded no retained defect; steps 56-57 wrote and validated the empty report. Region exposure is established, but this trial does not isolate perception from rendering or attention choices.",
+    "resource_observation": "987.490 agent seconds, 26,784 output tokens (13,121 reasoning), 230,991 uncached input tokens, estimated USD 3.6424024; 47 tool wrappers, 13 image-review wrappers and 68 delivered image blocks. No client transport-recovery event was observed.",
+    "disposition": "Retain the revised task as a reviewed Sol miss. Do not treat the earlier source-held Terra attempt as an identical-task comparison; case 32 is lower on every measured resource axis among the three reviewed Sol misses."
+  },
+  "prior_source_review": "docs/evidence/br004-single-case-61-review.json",
+  "scope_review": "docs/evidence/br004-sol-scope-review.json",
+  "retained_model_images": [
+    {
+      "path": "runs/br004-sol/review/case-61-sol-step-16-1.png",
+      "sha256": "c3a10aebb341998abd02d6a2b574fd1656354b18647a574053f30da2e680d2cf",
+      "step_id": 16
+    },
+    {
+      "path": "runs/br004-sol/review/case-61-sol-step-53-8.png",
+      "sha256": "24b2578d980587e6e138e5bdec1a8adbc79f8bdb04e53c8b85ab15981d552c6f",
+      "step_id": 53
+    },
+    {
+      "path": "runs/br004-sol/review/case-61-sol-step-53-9.png",
+      "sha256": "94f75d990269bb89604fb586f4baf451a3903f734cebde69185e85d00a6d8d5a",
+      "step_id": 53
+    }
+  ],
+  "author_viewed_image": "runs/br004-sol/review/case-61-sol-step-53-8.png"
+}

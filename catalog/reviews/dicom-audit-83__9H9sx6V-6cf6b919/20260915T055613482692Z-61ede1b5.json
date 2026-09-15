@@ -1,0 +1,34 @@
+{
+  "classification": "model_failure_candidate",
+  "evidence": [
+    "docs/evidence/br004-sol-case-83-review.json",
+    "docs/evidence/br004-sol-freeze.json",
+    "docs/evidence/br004-sol-author-controls.json"
+  ],
+  "evidence_files": [
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br004-sol-case-83-review.json",
+      "sha256": "173929a63c6df44509809da65b01b7db006c9c0e7b63778ce7621faf4c610bee"
+    },
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br004-sol-freeze.json",
+      "sha256": "d28c40ca3c93896ad6abb4696bb71821a141bfaf0729e43349c6d88a9dae888b"
+    },
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br004-sol-author-controls.json",
+      "sha256": "9524b4bbcc32a1249a9234e82ddc6dd2b31440238bc35926dfdde30c9bc41119"
+    }
+  ],
+  "evidence_sha256": "01f008b95832da002d3ff2e65a50c45b5bd3b771e5e37a4f157252afd875666e",
+  "explanation": "Normal completion, a deliberately written and validated empty report, oracle=1/nop=0 on identical frozen bytes, and matching independent re-score. The sole missing label is kidney_left; no alternate source defect was alleged.",
+  "failure_mode": "kidney_superior_pole_omission_missed",
+  "next_action": "Retain as a same-task cross-model controlled-defect miss, but case 32 uses fewer observed Sol resources. One attempt per model does not establish a failure probability.",
+  "schema_version": 1,
+  "source_sha256": "25b2533085c4c875e233a31dbc7f60742be20c5cb22642fe29311a5c0b640126",
+  "trial_id": "dicom-audit-83__9H9sx6V-6cf6b919",
+  "updated_at": "2026-09-15T05:56:13.482689+00:00",
+  "verdict": "genuine_failure"
+}

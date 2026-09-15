@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "round": "BR-009",
+  "revision": "v4-keyword-compatible-reference",
+  "before_any_model_trial": true,
+  "defect": "The C3 reference aliases owner/reaches/moved directly to native functions that reject valid keyword calls supported by C1 and the original API.",
+  "repair": "C4 preserves positional native fast paths and binds keyword/mixed calls with the original parameter names. Add explicit keyword API checks to the public and private contract runner.",
+  "selection": "Correctness repair of C3, not selection using private outcomes; CPU target and workloads unchanged.",
+  "performance": {
+    "median_cpu_ratio": 0.7144469525959368,
+    "round_ratios": [
+      0.7387978142076502,
+      0.7144469525959368,
+      0.6775280898876405
+    ]
+  },
+  "memory": {
+    "passed": true,
+    "growth_bytes": [
+      122880.0,
+      122880.0,
+      122880.0,
+      122880.0
+    ]
+  },
+  "semantic": {
+    "cases": 222,
+    "fixed_searches": 12,
+    "equivalent": true,
+    "candidate_cpu": 1.4367790249999994,
+    "baseline_cpu": 16.699246777999992
+  },
+  "before": {
+    "C1": {
+      "owner": {
+        "value": "red"
+      },
+      "reaches": {
+        "value": true
+      },
+      "moved": {
+        "value": ".NBAKABNRR.........C.....C.P.P.P.P.P..................p.p.p.p.p.c.....c..........rnbakabnr"
+      }
+    },
+    "C3": {
+      "owner": {
+        "error": "TypeError",
+        "message": "qi.game_helpers._native.owner() takes no keyword arguments"
+      },
+      "reaches": {
+        "error": "TypeError",
+        "message": "qi.game_helpers._native.reaches() takes no keyword arguments"
+      },
+      "moved": {
+        "error": "TypeError",
+        "message": "qi.game_helpers._native.moved() takes no keyword arguments"
+      }
+    }
+  },
+  "after": {
+    "C1": {
+      "owner": {
+        "value": "red"
+      },
+      "reaches": {
+        "value": true
+      },
+      "moved": {
+        "value": ".NBAKABNRR.........C.....C.P.P.P.P.P..................p.p.p.p.p.c.....c..........rnbakabnr"
+      }
+    },
+    "C4": {
+      "owner": {
+        "value": "red"
+      },
+      "reaches": {
+        "value": true
+      },
+      "moved": {
+        "value": ".NBAKABNRR.........C.....C.P.P.P.P.P..................p.p.p.p.p.c.....c..........rnbakabnr"
+      }
+    }
+  },
+  "raw_sha256": {
+    "runs/br009-author/C4-performance/summary.json": "ac331f66751922cfb2f24c609d717696be4e5bc2e665283206927ba7533db1d4",
+    "runs/br009-author/C4-memory/summary.json": "937917f981a0c3ce031cb0c2ca96a71f36c81fc7caf0129a5b87bf7ea5b2cb58",
+    "runs/br009-author/C4-contract.json": "beec584267230075de2e3cd79d65902e6dd9e7f3c924383ca7ed247b6afdc859",
+    "runs/br009-author/keyword-before.json": "69e121b7b31091787c8a48d321fb1208c2ff0129d6bbaa7e5d7ee693ab70ac7d",
+    "runs/br009-author/keyword-after.json": "654ee7a2e8d086098ca310519395a616b4b04fc4ac0b59906b55c1ac08be5711"
+  },
+  "v3_oracle_result": {
+    "path": "runs/br009-xiangqi-oracle-v3-20260915/xiangqi-server-throughput__s3WFwqc/result.json",
+    "reward": 1.0
+  }
+}

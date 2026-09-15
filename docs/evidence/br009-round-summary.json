@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "round": "BR-009",
+  "completed_at": "2026-09-15T06:32:53.896121+00:00",
+  "status": "retired_terra_pass",
+  "task_checksum": "ea096a337849515fbdc728fb9274b671e4064996da9770a2b5638dc09cb3b188",
+  "task_files": 94,
+  "task_bytes_unchanged_after_trial": true,
+  "artifact_hashes_match_trace_audit": true,
+  "controls": "docs/evidence/br009-v4-controls.json",
+  "terra": {
+    "trial": "runs/br009-xiangqi-terra-high-v4-20260915/xiangqi-server-throughput__Q28PPEU",
+    "task_checksum": "ea096a337849515fbdc728fb9274b671e4064996da9770a2b5638dc09cb3b188",
+    "reward": {
+      "reward": 1.0
+    },
+    "exception": null,
+    "agent_seconds": 628.843973,
+    "verifier_seconds": 541.534732,
+    "started_at": "2026-09-15T06:08:39.808361Z",
+    "finished_at": "2026-09-15T06:28:56.911781Z",
+    "work": {
+      "complete": true,
+      "passed": true,
+      "error": null,
+      "cpu_ratio": 0.6983356449375867,
+      "round_ratios": [
+        0.6983356449375867,
+        0.6745897000565929,
+        0.7146212566059895
+      ],
+      "performance_passed": true,
+      "memory_passed": true,
+      "memory_epochs": 32,
+      "memory_growth_bytes": [
+        4096.0,
+        151552.0,
+        -4096.0,
+        69632.0
+      ],
+      "memory_peak_rss_bytes": 38580224
+    },
+    "contract": {
+      "cases": 253,
+      "fixed_searches": 12,
+      "equivalent": true,
+      "candidate_cpu": 1.07265261,
+      "baseline_cpu": 14.717672329000003
+    },
+    "games": {
+      "planned": 16,
+      "complete": 16,
+      "W": 7,
+      "D": 5,
+      "L": 4,
+      "elapsed_seconds": 457.262,
+      "service_requests": 1765,
+      "valid": true,
+      "score_fraction": 0.59375
+    },
+    "evidence_sha256": {
+      "runs/br009-xiangqi-terra-high-v4-20260915/xiangqi-server-throughput__Q28PPEU/result.json": "6a53e7ab502790ad9ff05ad5c7dd2cfc2e6cd2dae73a090b91edd2ef8c2b0076",
+      "runs/br009-xiangqi-terra-high-v4-20260915/xiangqi-server-throughput__Q28PPEU/verifier/test-stdout.txt": "2964b221d11345f47941c579a89d243d1a344a603855813b174337b5f1eaf579",
+      "runs/br009-xiangqi-terra-high-v4-20260915/xiangqi-server-throughput__Q28PPEU/verifier/fixed-work/summary.json": "004f9eb5bb947df2f3bb29230e972b58856df94488d99e7effbe0515b82712fc",
+      "runs/br009-xiangqi-terra-high-v4-20260915/xiangqi-server-throughput__Q28PPEU/verifier/contract.json": "0ef69e69dd662d85f44e2209518de120c7bcba39e2d886760449abbe71d23778",
+      "runs/br009-xiangqi-terra-high-v4-20260915/xiangqi-server-throughput__Q28PPEU/verifier/games/summary.json": "2f1e78b65ab6943beae5ea8696f0707888aff96fd6a92f03fdd709b697a1eeea"
+    }
+  },
+  "terra_catalog_id": "xiangqi-server-throughput__Q28PPEU-f7e30218",
+  "trace": "docs/evidence/br009-terra-trace-summary.json",
+  "source_audit": {
+    "intervention_preserved": true,
+    "modified_sources": [
+      "game.py",
+      "helpers/native.cpp",
+      "build.sh"
+    ],
+    "changes": [
+      "Bounded parse_move cache (4096 entries).",
+      "Native FASTCALL entry points retaining keyword/mixed calls.",
+      "Direct one-byte Unicode board access and cached owner strings.",
+      "-march=native and -flto compiler flags."
+    ],
+    "unchanged": [
+      "Game/history/outcome implementation.",
+      "Move-generation algorithm and ordering.",
+      "Frozen search, evaluator, adapters, server and clocks."
+    ],
+    "memory_ownership": "Retains the baseline temporary-list Py_DECREF; increments references for returned owner strings. Legal/replay/parse caches remain bounded.",
+    "domain": "Geometry and piece classification are specialized to the declared ASCII Xiangqi board/piece alphabet. Arbitrary-string helper behavior outside that domain is not certified by this experiment."
+  },
+  "model_resources": {
+    "agent_seconds": 628.843973,
+    "completion_tokens": 13069,
+    "uncached_prompt_tokens": 109060,
+    "cached_prompt_tokens": 1440000,
+    "harbor_reported_cost_estimate_usd": 0.6629479999999999,
+    "note": "Subscription-backed run; reported cost is a harness estimate, not an invoice."
+  },
+  "model_attempts": {
+    "terra_high": 1,
+    "sol_xhigh": 0,
+    "retries": 0
+  },
+  "sol_decision": "Not launched: the required genuine Terra failure did not occur.",
+  "interpretation": "The task exercises the intended diagnosis and bounded-memory discipline, but this normally completed pass does not establish a Terra capability failure. Retire the exact snapshot.",
+  "pretrial_history": [
+    "v1 oracle verifier affinity defect; excluded.",
+    "v2 oracle pass; repeated-corpus coverage revised before model trials.",
+    "v3 oracle pass; C3 keyword API omission repaired before model trials."
+  ],
+  "qualification": "Local feasibility evidence, not final submission qualification."
+}

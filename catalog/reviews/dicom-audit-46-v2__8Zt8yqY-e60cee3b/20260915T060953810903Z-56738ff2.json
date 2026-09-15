@@ -1,0 +1,34 @@
+{
+  "classification": "model_failure_candidate",
+  "evidence": [
+    "docs/evidence/br004-sol-case-46-review.json",
+    "docs/evidence/br004-sol-freeze.json",
+    "docs/evidence/br004-sol-author-controls.json"
+  ],
+  "evidence_files": [
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br004-sol-case-46-review.json",
+      "sha256": "33dc9f1c080cd7749b99d53e48152514e890aef56409395cbfb7a17fb4555b87"
+    },
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br004-sol-freeze.json",
+      "sha256": "d28c40ca3c93896ad6abb4696bb71821a141bfaf0729e43349c6d88a9dae888b"
+    },
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br004-sol-author-controls.json",
+      "sha256": "9524b4bbcc32a1249a9234e82ddc6dd2b31440238bc35926dfdde30c9bc41119"
+    }
+  ],
+  "evidence_sha256": "96b8725e2ee94fb29fa72968252152bd9603fc36dbf6762f8c151bcaecc53d1a",
+  "explanation": "Normal completion, oracle=1/nop=1 as predeclared for the scoped clean control, identical model/control checksums and matching independent re-score. Sol reported a heart component outside the public L2 exclusion; the frozen grader calls it extra. The reported voxels are unchanged from the original source, so this is not a planted-error miss.",
+  "failure_mode": "unadjudicated_source_heart_component",
+  "next_action": "Park case 46 for source adjudication. Preserve v2 and its raw grade; do not change the frozen key after seeing this answer, count it as a genuine model failure, or launch a retry. A future corrected version requires a separately declared truth decision.",
+  "schema_version": 1,
+  "source_sha256": "98318c4e9c0d5e13d2e67478c15ff41294d879e8db8edc7e5971e98e20d2a52e",
+  "trial_id": "dicom-audit-46-v2__8Zt8yqY-e60cee3b",
+  "updated_at": "2026-09-15T06:09:53.810899+00:00",
+  "verdict": "pending"
+}

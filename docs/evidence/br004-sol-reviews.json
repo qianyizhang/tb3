@@ -1,0 +1,51 @@
+{
+  "round": "BR-004",
+  "condition": "sol-corrected-scope-v1",
+  "reviews": {
+    "case-32": {
+      "outcome": "genuine_failure",
+      "validity": "reviewed genuine miss",
+      "failure_hypothesis_supported": true,
+      "failure_mode": "small_connected_kidney_extension_missed",
+      "evidence": "Normal completion, a deliberately written and validated empty report, oracle=1/nop=0 on identical frozen bytes, and a matching independent re-score. The sole missing label is kidney_left; no alternate source defect was alleged.",
+      "source_review": "Same task bytes and controlled 63-voxel extension as the previously reviewed Terra failure. The prior CT/source/submitted comparison and geometry remain applicable; no specialist clinical certification is asserted.",
+      "trace_observation": "Step 23 delivered the full kidney-left axial sheet, including slice 94 at the retained witness. Steps 16 and 42 additionally delivered overview and reformatted kidney views. Step 46 explicitly concluded no clear >3 mm mismatch; steps 47-48 wrote and validated an empty report. Dense colored boundary overlays may affect visibility; the trial does not isolate perception from inspection choices.",
+      "resource_observation": "755.883 agent seconds, 20,930 output tokens (12,248 reasoning), 151,865 uncached input tokens, estimated USD 2.0723832. There were 38 tool wrappers, 16 image-review wrappers and 34 delivered image blocks.",
+      "disposition": "Retain this frozen task as a cross-model controlled-defect miss: one Terra/max observation and one Sol/xhigh observation. This is not a failure-probability estimate."
+    },
+    "case-83": {
+      "outcome": "genuine_failure",
+      "validity": "reviewed genuine miss",
+      "failure_hypothesis_supported": true,
+      "failure_mode": "kidney_superior_pole_omission_missed",
+      "evidence": "Normal completion, a deliberately written and validated empty report, oracle=1/nop=0 on identical frozen bytes, and matching independent re-score. The sole missing label is kidney_left; no alternate source defect was alleged.",
+      "source_review": "The unchanged 215-voxel superior-cap omission and prior CT/source/submitted review remain applicable. The corrected-scope follow-up did not alter this task; no specialist clinical certification is asserted.",
+      "trace_observation": "Step 17 delivered whole-volume coronal and sagittal kidney sheets that include the superior-pole region. Steps 36 and 47 delivered dense filled/outline axial sheets; their slice range is derived from the submitted mask and stops at its endpoint, so the omitted slices above it are absent from those axial views. The coronal image was author-reviewed, so this is not a claim that the model received no view of the region. Step 57 explicitly judged the masks plausible and step 58 wrote and validated no findings.",
+      "resource_observation": "996.465 agent seconds, 30,292 output tokens (16,323 reasoning), 160,702 uncached input tokens, estimated USD 3.0922576; 48 tool wrappers, 19 image-review wrappers and 50 delivered image blocks.",
+      "disposition": "Retain as a same-task cross-model controlled-defect miss, but case 32 uses fewer observed Sol resources. One attempt per model does not establish a failure probability."
+    },
+    "case-46": {
+      "outcome": "pending",
+      "validity": "raw miss; additional source-label hold",
+      "source_truth_hold": true,
+      "failure_hypothesis_supported": false,
+      "failure_mode": "unadjudicated_source_heart_component",
+      "evidence": "Normal completion, oracle=1/nop=1 as predeclared for the scoped clean control, identical model/control checksums and matching independent re-score. Sol reported a heart component outside the public L2 exclusion; the frozen grader calls it extra. The reported voxels are unchanged from the original source, so this is not a planted-error miss.",
+      "source_review": "Author high-resolution CT review shows an isolated tubular hilar component in the source heart mask. It has 236 voxels on the task grid and 1,869 voxels in the original-resolution 26-connected mask, so the isolation is not solely a coarse-grid artifact. The submitted point is inside that source component. Nearby pulmonary-vein and atrial-appendage masks provide context but do not adjudicate the exact heart-label boundary. The finding is a credible source-label question, not an established model false positive.",
+      "trace_observation": "Sol explicitly recognized and honored the L2 exclusion, then inspected the separate heart component against pulmonary-vein and atrial-appendage context. It deliberately wrote and validated the reported LPS point. The known L2 correction worked; the rest of the case cannot be certified clean from this trial.",
+      "resource_observation": "833.980 agent seconds, 16,750 output tokens (8,691 reasoning), 187,929 uncached input tokens and estimated USD 1.8733528. Client connection retries and WebSocket-to-HTTPS recovery occurred within this single attempt; its wall time includes transport disruption.",
+      "disposition": "Park case 46 for source adjudication. Preserve v2 and its raw grade; do not change the frozen key after seeing this answer, count it as a genuine model failure, or launch a retry. A future corrected version requires a separately declared truth decision."
+    },
+    "case-61": {
+      "outcome": "genuine_failure",
+      "validity": "reviewed genuine miss after scope correction",
+      "failure_hypothesis_supported": true,
+      "failure_mode": "inferior_heart_cap_omission_missed",
+      "evidence": "Normal completion, deliberately written and validated empty report, oracle=1/nop=0 on matching frozen snapshots, and matching independent re-score. The sole missing label is heart. Sol explicitly recognized the two public source exclusions and alleged no additional in-scope source defect.",
+      "source_review": "The original planted 791-voxel inferior heart-cap omission, CT/SEG bytes, spatial discrepancy region and 3 mm tolerance are unchanged. Both excluded source patches are disjoint from the planted region. The retained author CT/source/submitted comparison supports this controlled-omission miss; no specialist clinical certification is asserted.",
+      "trace_observation": "Steps 16, 38 and 53 delivered heart views. The targeted outline coronal sheet at step 53 includes the inferior heart border and the retained witness plane y=80. Step 55 identified the known liver gap and superior heart island as excluded and concluded no retained defect; steps 56-57 wrote and validated the empty report. Region exposure is established, but this trial does not isolate perception from rendering or attention choices.",
+      "resource_observation": "987.490 agent seconds, 26,784 output tokens (13,121 reasoning), 230,991 uncached input tokens, estimated USD 3.6424024; 47 tool wrappers, 13 image-review wrappers and 68 delivered image blocks. No client transport-recovery event was observed.",
+      "disposition": "Retain the revised task as a reviewed Sol miss. Do not treat the earlier source-held Terra attempt as an identical-task comparison; case 32 is lower on every measured resource axis among the three reviewed Sol misses."
+    }
+  }
+}

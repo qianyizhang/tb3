@@ -1,0 +1,73 @@
+{
+  "agent": "codex",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "cases": [],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "model_failure_candidate",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br004-sol-32-sol-xhigh-v1-20260915/dicom-audit-32__zb9QgU6/result.json",
+      "sha256": "d70e70f3b06dd97d25485c9735eeb19e8cb879fbd2d08c8b9d80f46e2e8bfdd8"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br004-sol-32-sol-xhigh-v1-20260915/dicom-audit-32__zb9QgU6/verifier/test-stdout.txt",
+      "sha256": "b8b51ef9ff0dcf5168b31c00217319611b306d492ef6401fe51589204ffbbcd0"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br004-sol-32-sol-xhigh-v1-20260915/dicom-audit-32__zb9QgU6/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br004-sol-32-sol-xhigh-v1-20260915/dicom-audit-32__zb9QgU6/agent/trajectory.json",
+      "sha256": "99f9a51164b6aa6c13a8fe47845774c966e3f3252be1be11534affa478e4c611"
+    },
+    {
+      "label": "Submitted artifact: answer/findings.json",
+      "path": "runs/br004-sol-32-sol-xhigh-v1-20260915/dicom-audit-32__zb9QgU6/artifacts/app/answer/findings.json",
+      "sha256": "1a173abb489188bfe50e40250a2660b2f8fd44e7b2bc09b4b8b91e4f0bd8be6a"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br004-sol-32-sol-xhigh-v1-20260915/lock.json",
+      "sha256": "1892a8cf252dbb4f8cfb99ad72d63348c3ccbd999bc93598881ee81e2151909d"
+    }
+  ],
+  "evidence_sha256": "0734867246ef3dd17e5301a15f4ae5a04f6802882c60c8001f6dab5b80e205b2",
+  "exception_type": null,
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-15T05:31:37.113251Z",
+  "harbor_version": "0.14.0",
+  "id": "dicom-audit-32__zb9QgU6-7f56bfed",
+  "job": "br004-sol-32-sol-xhigh-v1-20260915",
+  "model": "openai/gpt-5.6-sol",
+  "qualifying_final_trial": false,
+  "reasoning_effort": "xhigh",
+  "reward": 0.0,
+  "schema_version": 1,
+  "source_result": "runs/br004-sol-32-sol-xhigh-v1-20260915/dicom-audit-32__zb9QgU6/result.json",
+  "source_sha256": "d70e70f3b06dd97d25485c9735eeb19e8cb879fbd2d08c8b9d80f46e2e8bfdd8",
+  "started_at": "2026-09-15T05:17:39.061202Z",
+  "task_checksum": "c88e4af6bfa4e09f2a3f7e3a18c19f90c277c5836295b0224cccd06c307da378",
+  "task_id": "dicom-audit-32",
+  "task_sha256": null,
+  "timing": {
+    "agent": 755.883,
+    "setup": 45.723,
+    "total": 838.052,
+    "verifier": 16.498
+  },
+  "trial_name": "dicom-audit-32__zb9QgU6",
+  "usage": {
+    "n_cache_tokens": 2615808.0,
+    "n_input_tokens": 2767673.0,
+    "n_output_tokens": 20930.0
+  },
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ]
+}

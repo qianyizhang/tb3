@@ -1,0 +1,34 @@
+{
+  "classification": "model_failure_candidate",
+  "evidence": [
+    "docs/evidence/br004-sol-case-32-review.json",
+    "docs/evidence/br004-sol-freeze.json",
+    "docs/evidence/br004-sol-author-controls.json"
+  ],
+  "evidence_files": [
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br004-sol-case-32-review.json",
+      "sha256": "5e3324c398355289e57e2fa176327b69f286435f01e62de495278d660b37bb9d"
+    },
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br004-sol-freeze.json",
+      "sha256": "d28c40ca3c93896ad6abb4696bb71821a141bfaf0729e43349c6d88a9dae888b"
+    },
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br004-sol-author-controls.json",
+      "sha256": "9524b4bbcc32a1249a9234e82ddc6dd2b31440238bc35926dfdde30c9bc41119"
+    }
+  ],
+  "evidence_sha256": "0734867246ef3dd17e5301a15f4ae5a04f6802882c60c8001f6dab5b80e205b2",
+  "explanation": "Normal completion, a deliberately written and validated empty report, oracle=1/nop=0 on identical frozen bytes, and a matching independent re-score. The sole missing label is kidney_left; no alternate source defect was alleged.",
+  "failure_mode": "small_connected_kidney_extension_missed",
+  "next_action": "Retain this frozen task as a cross-model controlled-defect miss: one Terra/max observation and one Sol/xhigh observation. This is not a failure-probability estimate.",
+  "schema_version": 1,
+  "source_sha256": "d70e70f3b06dd97d25485c9735eeb19e8cb879fbd2d08c8b9d80f46e2e8bfdd8",
+  "trial_id": "dicom-audit-32__zb9QgU6-7f56bfed",
+  "updated_at": "2026-09-15T05:56:13.286193+00:00",
+  "verdict": "genuine_failure"
+}

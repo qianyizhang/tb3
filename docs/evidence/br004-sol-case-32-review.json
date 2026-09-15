@@ -1,0 +1,68 @@
+{
+  "case_id": "case-32",
+  "result_path": "runs/br004-sol-32-sol-xhigh-v1-20260915/dicom-audit-32__zb9QgU6/result.json",
+  "result_sha256": "d70e70f3b06dd97d25485c9735eeb19e8cb879fbd2d08c8b9d80f46e2e8bfdd8",
+  "artifact_path": "runs/br004-sol-32-sol-xhigh-v1-20260915/dicom-audit-32__zb9QgU6/artifacts/app/answer/findings.json",
+  "artifact_sha256": "1a173abb489188bfe50e40250a2660b2f8fd44e7b2bc09b4b8b91e4f0bd8be6a",
+  "grade": {
+    "passed": false,
+    "cases": [
+      {
+        "case_id": "case-32",
+        "missing": [
+          "kidney_left"
+        ],
+        "extra": [],
+        "bad_points": [],
+        "located": [],
+        "expected_positive_labels": 1,
+        "focus_labels": 11,
+        "source_stratum": "ordinary anatomy",
+        "passed": false
+      }
+    ],
+    "correctly_located_labels": 0,
+    "expected_positive_labels": 1,
+    "false_positive_labels": 0
+  },
+  "independent_rescore_matches": true,
+  "agent_seconds": 755.88291,
+  "input_tokens": 2767673,
+  "cached_input_tokens": 2615808,
+  "uncached_input_tokens": 151865,
+  "output_tokens": 20930,
+  "reasoning_output_tokens": 12248,
+  "estimated_cost_usd": 2.0723832,
+  "trajectory_sha256": "99f9a51164b6aa6c13a8fe47845774c966e3f3252be1be11534affa478e4c611",
+  "condition": "sol-corrected-scope-v1",
+  "authored_review": {
+    "outcome": "genuine_failure",
+    "validity": "reviewed genuine miss",
+    "failure_hypothesis_supported": true,
+    "failure_mode": "small_connected_kidney_extension_missed",
+    "evidence": "Normal completion, a deliberately written and validated empty report, oracle=1/nop=0 on identical frozen bytes, and a matching independent re-score. The sole missing label is kidney_left; no alternate source defect was alleged.",
+    "source_review": "Same task bytes and controlled 63-voxel extension as the previously reviewed Terra failure. The prior CT/source/submitted comparison and geometry remain applicable; no specialist clinical certification is asserted.",
+    "trace_observation": "Step 23 delivered the full kidney-left axial sheet, including slice 94 at the retained witness. Steps 16 and 42 additionally delivered overview and reformatted kidney views. Step 46 explicitly concluded no clear >3 mm mismatch; steps 47-48 wrote and validated an empty report. Dense colored boundary overlays may affect visibility; the trial does not isolate perception from inspection choices.",
+    "resource_observation": "755.883 agent seconds, 20,930 output tokens (12,248 reasoning), 151,865 uncached input tokens, estimated USD 2.0723832. There were 38 tool wrappers, 16 image-review wrappers and 34 delivered image blocks.",
+    "disposition": "Retain this frozen task as a cross-model controlled-defect miss: one Terra/max observation and one Sol/xhigh observation. This is not a failure-probability estimate."
+  },
+  "prior_source_review": "docs/evidence/br004-single-case-32-review.json",
+  "retained_model_images": [
+    {
+      "path": "runs/br004-sol/review/case-32-sol-step-23-0.png",
+      "sha256": "2368ba4bb58f5e3d99445ce975a39fa974cae628aab8c1142a12917ba65d91ff",
+      "step_id": 23
+    },
+    {
+      "path": "runs/br004-sol/review/case-32-sol-step-42-0.png",
+      "sha256": "72f049e78e7cd928070bef8d49a99106793a4c08b533a40f206cfdc76825d7f1",
+      "step_id": 42
+    },
+    {
+      "path": "runs/br004-sol/review/case-32-sol-step-42-1.png",
+      "sha256": "75782daa95ef3e9ea616292f8889f5da69d337047aa62169f03b6ca3495579e0",
+      "step_id": 42
+    }
+  ],
+  "author_viewed_image": "runs/br004-sol/review/case-32-sol-step-23-0.png"
+}

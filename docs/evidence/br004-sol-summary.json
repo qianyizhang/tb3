@@ -1,0 +1,778 @@
+{
+  "round": "BR-004",
+  "condition": "sol-corrected-scope-v1",
+  "captured_at": "2026-09-15T06:30:37.463014+00:00",
+  "freeze_sha256": "d28c40ca3c93896ad6abb4696bb71821a141bfaf0729e43349c6d88a9dae888b",
+  "rows": [
+    {
+      "task_id": "dicom-audit-32",
+      "case_id": "case-32",
+      "focus_label_count": 11,
+      "expected_positive_labels": 1,
+      "source_truth_hold": false,
+      "task_kind": "Small kidney extension",
+      "task_bytes_unchanged_from_terra": true,
+      "review_exclusions": [],
+      "post_trial_source_truth_hold": false,
+      "controls": {
+        "oracle": {
+          "result_path": "runs/br004-sol-32-oracle-v1-20260915/dicom-audit-32__cVDewP7/result.json",
+          "result_sha256": "628f35844560da58370986ab02eba68e4823978b1bd6bb8fc0a8f28574d92478",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 35.554242,
+          "task_checksum": "c88e4af6bfa4e09f2a3f7e3a18c19f90c277c5836295b0224cccd06c307da378"
+        },
+        "nop": {
+          "result_path": "runs/br004-sol-32-nop-v1-20260915/dicom-audit-32__yCW4xQV/result.json",
+          "result_sha256": "66c38f3669df97d9078a58720d1a53bb084f45d427d3dfbea4ce997909d12e24",
+          "reward": 0.0,
+          "exception_type": null,
+          "total_seconds": 34.223253,
+          "task_checksum": "c88e4af6bfa4e09f2a3f7e3a18c19f90c277c5836295b0224cccd06c307da378"
+        }
+      },
+      "controls_total_seconds": 69.777495,
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br004-sol-32-sol-xhigh-v1-20260915/dicom-audit-32__zb9QgU6/result.json",
+      "result_sha256": "d70e70f3b06dd97d25485c9735eeb19e8cb879fbd2d08c8b9d80f46e2e8bfdd8",
+      "task_checksum": "c88e4af6bfa4e09f2a3f7e3a18c19f90c277c5836295b0224cccd06c307da378",
+      "model": "openai/gpt-5.6-sol",
+      "reasoning_effort": "xhigh",
+      "agent_version": "0.154.0",
+      "started_at": "2026-09-15T05:17:39.061202Z",
+      "finished_at": "2026-09-15T05:31:37.113251Z",
+      "agent_started_at": "2026-09-15T05:18:30.325874Z",
+      "agent_finished_at": "2026-09-15T05:31:06.208784Z",
+      "agent_seconds": 755.88291,
+      "total_seconds": 838.052049,
+      "environment_setup_seconds": 5.448868,
+      "agent_setup_seconds": 45.722951,
+      "verifier_seconds": 16.498107,
+      "raw_reward": 0.0,
+      "input_tokens": 2767673,
+      "cached_input_tokens": 2615808,
+      "output_tokens": 20930,
+      "uncached_input_tokens": 151865,
+      "estimated_cost_usd": 2.0723832,
+      "client_error_events": [],
+      "transport_recovery_observed": false,
+      "reasoning_output_tokens": 12248,
+      "token_accounting": {
+        "basis": "Harbor agent_result; matched legacy runtime event when available",
+        "matching_legacy_event": {
+          "timestamp": "2026-09-15T05:31:02.914Z",
+          "usage": {
+            "input_tokens": 2767673,
+            "cached_input_tokens": 2615808,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 20930,
+            "reasoning_output_tokens": 12248,
+            "total_tokens": 2788603
+          },
+          "path": "runs/br004-sol-32-sol-xhigh-v1-20260915/dicom-audit-32__zb9QgU6/agent/sessions/2026/09/15/rollout-2026-09-15T05-18-33-01a0a380-a85b-7af1-8bb4-b7f9e46e5654.jsonl",
+          "sha256": "f0e98ebf3073aff89c2a199d3de258769f4fda490a6ed4e8766151bbeb478fa8"
+        },
+        "last_record_stream_usage": {
+          "input_tokens": 2767673,
+          "cached_input_tokens": 2615808,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 20930,
+          "reasoning_output_tokens": 12248,
+          "total_tokens": 2788603
+        },
+        "record_stream_differs_from_harbor": false
+      },
+      "runtime_model_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "runtime_contexts_match_requested": true,
+      "grade": {
+        "passed": false,
+        "cases": [
+          {
+            "case_id": "case-32",
+            "missing": [
+              "kidney_left"
+            ],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 1,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": false
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 1,
+        "false_positive_labels": 0
+      },
+      "grade_sha256": "46eb69558acd8724864cc5d111ab6d3a1bad3589cf4c0731a814511b63812b55",
+      "finding_diagnostics": {
+        "expected_labels": 1,
+        "positive_labels_named": 0,
+        "positive_labels_located": 0,
+        "missing": [
+          "kidney_left"
+        ],
+        "extra": [],
+        "bad_points": []
+      },
+      "artifact_exists": true,
+      "artifact_path": "runs/br004-sol-32-sol-xhigh-v1-20260915/dicom-audit-32__zb9QgU6/artifacts/app/answer/findings.json",
+      "artifact_sha256": "1a173abb489188bfe50e40250a2660b2f8fd44e7b2bc09b4b8b91e4f0bd8be6a",
+      "artifact_equals_starter": false,
+      "submission": {
+        "cases": [
+          {
+            "case_id": "case-32",
+            "findings": []
+          }
+        ]
+      },
+      "nearest_discrepancy_distance_mm": {},
+      "independent_rescore_matches": true,
+      "tool_wrappers": 38,
+      "image_review_wrappers": 16,
+      "seconds_to_first_image_review": 97.331126,
+      "observed_image_blocks": 34,
+      "trajectory_sha256": "99f9a51164b6aa6c13a8fe47845774c966e3f3252be1be11534affa478e4c611",
+      "raw_outcome": "miss",
+      "validity": "reviewed genuine miss",
+      "authored_review": {
+        "outcome": "genuine_failure",
+        "validity": "reviewed genuine miss",
+        "failure_hypothesis_supported": true,
+        "failure_mode": "small_connected_kidney_extension_missed",
+        "evidence": "Normal completion, a deliberately written and validated empty report, oracle=1/nop=0 on identical frozen bytes, and a matching independent re-score. The sole missing label is kidney_left; no alternate source defect was alleged.",
+        "source_review": "Same task bytes and controlled 63-voxel extension as the previously reviewed Terra failure. The prior CT/source/submitted comparison and geometry remain applicable; no specialist clinical certification is asserted.",
+        "trace_observation": "Step 23 delivered the full kidney-left axial sheet, including slice 94 at the retained witness. Steps 16 and 42 additionally delivered overview and reformatted kidney views. Step 46 explicitly concluded no clear >3 mm mismatch; steps 47-48 wrote and validated an empty report. Dense colored boundary overlays may affect visibility; the trial does not isolate perception from inspection choices.",
+        "resource_observation": "755.883 agent seconds, 20,930 output tokens (12,248 reasoning), 151,865 uncached input tokens, estimated USD 2.0723832. There were 38 tool wrappers, 16 image-review wrappers and 34 delivered image blocks.",
+        "disposition": "Retain this frozen task as a cross-model controlled-defect miss: one Terra/max observation and one Sol/xhigh observation. This is not a failure-probability estimate."
+      }
+    },
+    {
+      "task_id": "dicom-audit-83",
+      "case_id": "case-83",
+      "focus_label_count": 10,
+      "expected_positive_labels": 1,
+      "source_truth_hold": false,
+      "task_kind": "Kidney-pole omission",
+      "task_bytes_unchanged_from_terra": true,
+      "review_exclusions": [],
+      "post_trial_source_truth_hold": false,
+      "controls": {
+        "oracle": {
+          "result_path": "runs/br004-sol-83-oracle-v1-20260915/dicom-audit-83__4xvSJxB/result.json",
+          "result_sha256": "defb76d4e91b453b0b0286f041b676a2d23d55e61a1df2e4b3f37b742608497d",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 34.384325,
+          "task_checksum": "2f96e0a7a3b862d7e7e4ab13dd7d47729944f1de4de72f266d8a646f98adc319"
+        },
+        "nop": {
+          "result_path": "runs/br004-sol-83-nop-v1-20260915/dicom-audit-83__8YSZgLf/result.json",
+          "result_sha256": "ad2f6ff27a0ef586ba62b679dc3cf50c077e74f5565a908aa348c1c731805e07",
+          "reward": 0.0,
+          "exception_type": null,
+          "total_seconds": 34.031418,
+          "task_checksum": "2f96e0a7a3b862d7e7e4ab13dd7d47729944f1de4de72f266d8a646f98adc319"
+        }
+      },
+      "controls_total_seconds": 68.41574299999999,
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br004-sol-83-sol-xhigh-v1-20260915/dicom-audit-83__9H9sx6V/result.json",
+      "result_sha256": "25b2533085c4c875e233a31dbc7f60742be20c5cb22642fe29311a5c0b640126",
+      "task_checksum": "2f96e0a7a3b862d7e7e4ab13dd7d47729944f1de4de72f266d8a646f98adc319",
+      "model": "openai/gpt-5.6-sol",
+      "reasoning_effort": "xhigh",
+      "agent_version": "0.154.0",
+      "started_at": "2026-09-15T05:32:46.701765Z",
+      "finished_at": "2026-09-15T05:50:42.888984Z",
+      "agent_started_at": "2026-09-15T05:33:38.700052Z",
+      "agent_finished_at": "2026-09-15T05:50:15.165484Z",
+      "agent_seconds": 996.465432,
+      "total_seconds": 1076.187219,
+      "environment_setup_seconds": 5.150867,
+      "agent_setup_seconds": 46.767843,
+      "verifier_seconds": 14.588402,
+      "raw_reward": 0.0,
+      "input_tokens": 4769726,
+      "cached_input_tokens": 4609024,
+      "output_tokens": 30292,
+      "uncached_input_tokens": 160702,
+      "estimated_cost_usd": 3.0922576,
+      "client_error_events": [],
+      "transport_recovery_observed": false,
+      "reasoning_output_tokens": 16323,
+      "token_accounting": {
+        "basis": "Harbor agent_result; matched legacy runtime event when available",
+        "matching_legacy_event": {
+          "timestamp": "2026-09-15T05:50:12.155Z",
+          "usage": {
+            "input_tokens": 4769726,
+            "cached_input_tokens": 4609024,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 30292,
+            "reasoning_output_tokens": 16323,
+            "total_tokens": 4800018
+          },
+          "path": "runs/br004-sol-83-sol-xhigh-v1-20260915/dicom-audit-83__9H9sx6V/agent/sessions/2026/09/15/rollout-2026-09-15T05-33-41-01a0a38e-83e0-7172-a315-79c480374947.jsonl",
+          "sha256": "7d9b31d775dd994ad3d7b57735fd58103094cce099405a3adcd58c898468f5b4"
+        },
+        "last_record_stream_usage": {
+          "input_tokens": 4769726,
+          "cached_input_tokens": 4609024,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 30292,
+          "reasoning_output_tokens": 16323,
+          "total_tokens": 4800018
+        },
+        "record_stream_differs_from_harbor": false
+      },
+      "runtime_model_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "runtime_contexts_match_requested": true,
+      "grade": {
+        "passed": false,
+        "cases": [
+          {
+            "case_id": "case-83",
+            "missing": [
+              "kidney_left"
+            ],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 1,
+            "focus_labels": 10,
+            "source_stratum": "marked thoracic abnormality",
+            "passed": false
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 1,
+        "false_positive_labels": 0
+      },
+      "grade_sha256": "ca4149bc9070dd3f1a5b1d0611ef81714cb9f4d2b188d380a1c4c123dcef64db",
+      "finding_diagnostics": {
+        "expected_labels": 1,
+        "positive_labels_named": 0,
+        "positive_labels_located": 0,
+        "missing": [
+          "kidney_left"
+        ],
+        "extra": [],
+        "bad_points": []
+      },
+      "artifact_exists": true,
+      "artifact_path": "runs/br004-sol-83-sol-xhigh-v1-20260915/dicom-audit-83__9H9sx6V/artifacts/app/answer/findings.json",
+      "artifact_sha256": "bf29b40bdb65170d574e35db61aa2a7a96d8b0f179c61395007184f6e203ad17",
+      "artifact_equals_starter": false,
+      "submission": {
+        "cases": [
+          {
+            "case_id": "case-83",
+            "findings": []
+          }
+        ]
+      },
+      "nearest_discrepancy_distance_mm": {},
+      "independent_rescore_matches": true,
+      "tool_wrappers": 48,
+      "image_review_wrappers": 19,
+      "seconds_to_first_image_review": 120.546948,
+      "observed_image_blocks": 50,
+      "trajectory_sha256": "c98e745aa89b4622b6d5933f732f09952b33f423d0c69c55c35c657fc7a4dad4",
+      "raw_outcome": "miss",
+      "validity": "reviewed genuine miss",
+      "authored_review": {
+        "outcome": "genuine_failure",
+        "validity": "reviewed genuine miss",
+        "failure_hypothesis_supported": true,
+        "failure_mode": "kidney_superior_pole_omission_missed",
+        "evidence": "Normal completion, a deliberately written and validated empty report, oracle=1/nop=0 on identical frozen bytes, and matching independent re-score. The sole missing label is kidney_left; no alternate source defect was alleged.",
+        "source_review": "The unchanged 215-voxel superior-cap omission and prior CT/source/submitted review remain applicable. The corrected-scope follow-up did not alter this task; no specialist clinical certification is asserted.",
+        "trace_observation": "Step 17 delivered whole-volume coronal and sagittal kidney sheets that include the superior-pole region. Steps 36 and 47 delivered dense filled/outline axial sheets; their slice range is derived from the submitted mask and stops at its endpoint, so the omitted slices above it are absent from those axial views. The coronal image was author-reviewed, so this is not a claim that the model received no view of the region. Step 57 explicitly judged the masks plausible and step 58 wrote and validated no findings.",
+        "resource_observation": "996.465 agent seconds, 30,292 output tokens (16,323 reasoning), 160,702 uncached input tokens, estimated USD 3.0922576; 48 tool wrappers, 19 image-review wrappers and 50 delivered image blocks.",
+        "disposition": "Retain as a same-task cross-model controlled-defect miss, but case 32 uses fewer observed Sol resources. One attempt per model does not establish a failure probability."
+      }
+    },
+    {
+      "task_id": "dicom-audit-46-v2",
+      "case_id": "case-46",
+      "focus_label_count": 10,
+      "expected_positive_labels": 0,
+      "source_truth_hold": false,
+      "task_kind": "Scoped pathology control",
+      "task_bytes_unchanged_from_terra": false,
+      "review_exclusions": [
+        {
+          "label": "vertebrae_L2",
+          "min_lps_mm": [
+            1.1201171875,
+            -161.8798828125,
+            -45.5
+          ],
+          "max_lps_mm": [
+            31.1201171875,
+            -143.8798828125,
+            -24.5
+          ]
+        }
+      ],
+      "post_trial_source_truth_hold": true,
+      "controls": {
+        "oracle": {
+          "result_path": "runs/br004-sol-46-oracle-v1-20260915/dicom-audit-46-v2__PEoAo99/result.json",
+          "result_sha256": "d15b046d616b720110c33dda19db17a3326236b34cc0787061c72c4d0141b6d7",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 29.676004,
+          "task_checksum": "db7576ede4f3a3ed9dc0616d9a72d6d13869732eb701e072bbb09a36fd50e594"
+        },
+        "nop": {
+          "result_path": "runs/br004-sol-46-nop-v1-20260915/dicom-audit-46-v2__J64EfkY/result.json",
+          "result_sha256": "3ce27830351a71714e2cdb13cc7830bc7568a2fc30f9b4940cf55060679d5016",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 28.73824,
+          "task_checksum": "db7576ede4f3a3ed9dc0616d9a72d6d13869732eb701e072bbb09a36fd50e594"
+        }
+      },
+      "controls_total_seconds": 58.414244,
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br004-sol-46-sol-xhigh-v1-20260915/dicom-audit-46-v2__8Zt8yqY/result.json",
+      "result_sha256": "98318c4e9c0d5e13d2e67478c15ff41294d879e8db8edc7e5971e98e20d2a52e",
+      "task_checksum": "db7576ede4f3a3ed9dc0616d9a72d6d13869732eb701e072bbb09a36fd50e594",
+      "model": "openai/gpt-5.6-sol",
+      "reasoning_effort": "xhigh",
+      "agent_version": "0.154.0",
+      "started_at": "2026-09-15T05:51:42.600942Z",
+      "finished_at": "2026-09-15T06:06:44.137792Z",
+      "agent_started_at": "2026-09-15T05:52:22.022968Z",
+      "agent_finished_at": "2026-09-15T06:06:16.002503Z",
+      "agent_seconds": 833.979535,
+      "total_seconds": 901.53685,
+      "environment_setup_seconds": 3.128723,
+      "agent_setup_seconds": 36.197929,
+      "verifier_seconds": 14.614469,
+      "raw_reward": 0.0,
+      "input_tokens": 2154521,
+      "cached_input_tokens": 1966592,
+      "output_tokens": 16750,
+      "uncached_input_tokens": 187929,
+      "estimated_cost_usd": 1.8733527999999997,
+      "client_error_events": [
+        "Reconnecting... 2/5 (stream disconnected before completion: failed to send websocket request: IO error: Broken pipe (os error 32))",
+        "Reconnecting... 3/5 (stream disconnected before completion: failed to send websocket request: IO error: Broken pipe (os error 32))",
+        "Reconnecting... 4/5 (stream disconnected before completion: failed to send websocket request: IO error: Broken pipe (os error 32))",
+        "Reconnecting... 5/5 (stream disconnected before completion: failed to send websocket request: IO error: Broken pipe (os error 32))",
+        "Falling back from WebSockets to HTTPS transport. stream disconnected before completion: websocket closed by server before response.completed"
+      ],
+      "transport_recovery_observed": true,
+      "reasoning_output_tokens": 8691,
+      "token_accounting": {
+        "basis": "Harbor agent_result; matched legacy runtime event when available",
+        "matching_legacy_event": {
+          "timestamp": "2026-09-15T06:06:12.717Z",
+          "usage": {
+            "input_tokens": 2154521,
+            "cached_input_tokens": 1966592,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 16750,
+            "reasoning_output_tokens": 8691,
+            "total_tokens": 2171271
+          },
+          "path": "runs/br004-sol-46-sol-xhigh-v1-20260915/dicom-audit-46-v2__8Zt8yqY/agent/sessions/2026/09/15/rollout-2026-09-15T05-52-24-01a0a39f-a65a-7f31-a629-eaed06f4d816.jsonl",
+          "sha256": "812341441226bbc17c10023589b67b34a00d309275289a970f156e42cb971fa6"
+        },
+        "last_record_stream_usage": {
+          "input_tokens": 2154521,
+          "cached_input_tokens": 1966592,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 16750,
+          "reasoning_output_tokens": 8691,
+          "total_tokens": 2171271
+        },
+        "record_stream_differs_from_harbor": false
+      },
+      "runtime_model_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "runtime_contexts_match_requested": true,
+      "grade": {
+        "passed": false,
+        "cases": [
+          {
+            "case_id": "case-46",
+            "missing": [],
+            "extra": [
+              "heart"
+            ],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 10,
+            "source_stratum": "source pathology",
+            "passed": false,
+            "ignored_findings": []
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 0,
+        "false_positive_labels": 1
+      },
+      "grade_sha256": "24140123401d9e8876feaf3f566859ef673a788ab5527136970af63c3d900e3d",
+      "finding_diagnostics": {
+        "expected_labels": 0,
+        "positive_labels_named": 0,
+        "positive_labels_located": 0,
+        "missing": [],
+        "extra": [
+          "heart"
+        ],
+        "bad_points": []
+      },
+      "artifact_exists": true,
+      "artifact_path": "runs/br004-sol-46-sol-xhigh-v1-20260915/dicom-audit-46-v2__8Zt8yqY/artifacts/app/answer/findings.json",
+      "artifact_sha256": "3288ca15a3638993fd55cce50e39330c272240e72845fff9fc57f6c5b6b73e16",
+      "artifact_equals_starter": false,
+      "submission": {
+        "cases": [
+          {
+            "case_id": "case-46",
+            "findings": [
+              {
+                "label": "heart",
+                "point_lps_mm": [
+                  73.1201171875,
+                  -131.8798828125,
+                  188.5
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "nearest_discrepancy_distance_mm": {},
+      "independent_rescore_matches": true,
+      "tool_wrappers": 25,
+      "image_review_wrappers": 7,
+      "seconds_to_first_image_review": 133.246032,
+      "observed_image_blocks": 28,
+      "trajectory_sha256": "d80997d5f0c672198e48117a160d1dbd0953f06f1a8a306e92822be7ebb4b073",
+      "raw_outcome": "miss",
+      "validity": "raw miss; additional source-label hold",
+      "authored_review": {
+        "outcome": "pending",
+        "validity": "raw miss; additional source-label hold",
+        "source_truth_hold": true,
+        "failure_hypothesis_supported": false,
+        "failure_mode": "unadjudicated_source_heart_component",
+        "evidence": "Normal completion, oracle=1/nop=1 as predeclared for the scoped clean control, identical model/control checksums and matching independent re-score. Sol reported a heart component outside the public L2 exclusion; the frozen grader calls it extra. The reported voxels are unchanged from the original source, so this is not a planted-error miss.",
+        "source_review": "Author high-resolution CT review shows an isolated tubular hilar component in the source heart mask. It has 236 voxels on the task grid and 1,869 voxels in the original-resolution 26-connected mask, so the isolation is not solely a coarse-grid artifact. The submitted point is inside that source component. Nearby pulmonary-vein and atrial-appendage masks provide context but do not adjudicate the exact heart-label boundary. The finding is a credible source-label question, not an established model false positive.",
+        "trace_observation": "Sol explicitly recognized and honored the L2 exclusion, then inspected the separate heart component against pulmonary-vein and atrial-appendage context. It deliberately wrote and validated the reported LPS point. The known L2 correction worked; the rest of the case cannot be certified clean from this trial.",
+        "resource_observation": "833.980 agent seconds, 16,750 output tokens (8,691 reasoning), 187,929 uncached input tokens and estimated USD 1.8733528. Client connection retries and WebSocket-to-HTTPS recovery occurred within this single attempt; its wall time includes transport disruption.",
+        "disposition": "Park case 46 for source adjudication. Preserve v2 and its raw grade; do not change the frozen key after seeing this answer, count it as a genuine model failure, or launch a retry. A future corrected version requires a separately declared truth decision."
+      }
+    },
+    {
+      "task_id": "dicom-audit-61-v2",
+      "case_id": "case-61",
+      "focus_label_count": 11,
+      "expected_positive_labels": 1,
+      "source_truth_hold": false,
+      "task_kind": "Inferior heart omission",
+      "task_bytes_unchanged_from_terra": false,
+      "review_exclusions": [
+        {
+          "label": "liver",
+          "min_lps_mm": [
+            -25.33203125,
+            -217.33203125,
+            804.2000122070312
+          ],
+          "max_lps_mm": [
+            -7.33203125,
+            -190.33203125,
+            822.2000122070312
+          ]
+        },
+        {
+          "label": "heart",
+          "min_lps_mm": [
+            46.66796875,
+            -169.33203125,
+            933.2000122070312
+          ],
+          "max_lps_mm": [
+            67.66796875,
+            -148.33203125,
+            954.2000122070312
+          ]
+        }
+      ],
+      "post_trial_source_truth_hold": false,
+      "controls": {
+        "oracle": {
+          "result_path": "runs/br004-sol-61-oracle-v1-20260915/dicom-audit-61-v2__sF4LLBq/result.json",
+          "result_sha256": "dc59d662088d5ae851c0014a740704063c86e065f616c8b1d0ac39ac1189dae7",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 29.78061,
+          "task_checksum": "5449787df89f8d071b8597fad274b53b8c581662d4d2bf7f75697c49e1715a27"
+        },
+        "nop": {
+          "result_path": "runs/br004-sol-61-nop-v1-20260915/dicom-audit-61-v2__EiPyyuH/result.json",
+          "result_sha256": "2a100661588f0e42b7b9db1d10fd9c5728e92bf84ae04804840b2792f4710f5c",
+          "reward": 0.0,
+          "exception_type": null,
+          "total_seconds": 30.544135,
+          "task_checksum": "5449787df89f8d071b8597fad274b53b8c581662d4d2bf7f75697c49e1715a27"
+        }
+      },
+      "controls_total_seconds": 60.324745,
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br004-sol-61-sol-xhigh-v1-20260915/dicom-audit-61-v2__YKZrAMC/result.json",
+      "result_sha256": "484e712b961e33e67ef51dd78dece2bd9730a70e5bef4c4b76b7c22d04120470",
+      "task_checksum": "5449787df89f8d071b8597fad274b53b8c581662d4d2bf7f75697c49e1715a27",
+      "model": "openai/gpt-5.6-sol",
+      "reasoning_effort": "xhigh",
+      "agent_version": "0.154.0",
+      "started_at": "2026-09-15T06:07:45.684422Z",
+      "finished_at": "2026-09-15T06:25:33.857478Z",
+      "agent_started_at": "2026-09-15T06:08:35.311152Z",
+      "agent_finished_at": "2026-09-15T06:25:02.801452Z",
+      "agent_seconds": 987.4903,
+      "total_seconds": 1068.173056,
+      "environment_setup_seconds": 5.184778,
+      "agent_setup_seconds": 44.359589,
+      "verifier_seconds": 16.467007,
+      "raw_reward": 0.0,
+      "input_tokens": 5687887,
+      "cached_input_tokens": 5456896,
+      "output_tokens": 26784,
+      "uncached_input_tokens": 230991,
+      "estimated_cost_usd": 3.6424024,
+      "client_error_events": [],
+      "transport_recovery_observed": false,
+      "reasoning_output_tokens": 13121,
+      "token_accounting": {
+        "basis": "Harbor agent_result; matched legacy runtime event when available",
+        "matching_legacy_event": {
+          "timestamp": "2026-09-15T06:24:59.393Z",
+          "usage": {
+            "input_tokens": 5687887,
+            "cached_input_tokens": 5456896,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 26784,
+            "reasoning_output_tokens": 13121,
+            "total_tokens": 5714671
+          },
+          "path": "runs/br004-sol-61-sol-xhigh-v1-20260915/dicom-audit-61-v2__YKZrAMC/agent/sessions/2026/09/15/rollout-2026-09-15T06-08-37-01a0a3ae-8121-7e91-a667-d853306fff50.jsonl",
+          "sha256": "8037219638a5a5dbaf98151e5724aec6e069159a2a339bae7c30cde18b21f149"
+        },
+        "last_record_stream_usage": {
+          "input_tokens": 5687887,
+          "cached_input_tokens": 5456896,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 26784,
+          "reasoning_output_tokens": 13121,
+          "total_tokens": 5714671
+        },
+        "record_stream_differs_from_harbor": false
+      },
+      "runtime_model_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "runtime_contexts_match_requested": true,
+      "grade": {
+        "passed": false,
+        "cases": [
+          {
+            "case_id": "case-61",
+            "missing": [
+              "heart"
+            ],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 1,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": false,
+            "ignored_findings": []
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 1,
+        "false_positive_labels": 0
+      },
+      "grade_sha256": "c58b362f5347ee8dc4260f73191451d22107c56cbe4b7860790f174664559c16",
+      "finding_diagnostics": {
+        "expected_labels": 1,
+        "positive_labels_named": 0,
+        "positive_labels_located": 0,
+        "missing": [
+          "heart"
+        ],
+        "extra": [],
+        "bad_points": []
+      },
+      "artifact_exists": true,
+      "artifact_path": "runs/br004-sol-61-sol-xhigh-v1-20260915/dicom-audit-61-v2__YKZrAMC/artifacts/app/answer/findings.json",
+      "artifact_sha256": "be3cd903003b3429db827e2c430b572ec18c9b75b9b48131f3232a3ce0432782",
+      "artifact_equals_starter": false,
+      "submission": {
+        "cases": [
+          {
+            "case_id": "case-61",
+            "findings": []
+          }
+        ]
+      },
+      "nearest_discrepancy_distance_mm": {},
+      "independent_rescore_matches": true,
+      "tool_wrappers": 47,
+      "image_review_wrappers": 13,
+      "seconds_to_first_image_review": 91.574848,
+      "observed_image_blocks": 68,
+      "trajectory_sha256": "73e257cf7fdc7715fca68f36fb1f3d90db18282c14aa682ff603358ca0bff117",
+      "raw_outcome": "miss",
+      "validity": "reviewed genuine miss after scope correction",
+      "authored_review": {
+        "outcome": "genuine_failure",
+        "validity": "reviewed genuine miss after scope correction",
+        "failure_hypothesis_supported": true,
+        "failure_mode": "inferior_heart_cap_omission_missed",
+        "evidence": "Normal completion, deliberately written and validated empty report, oracle=1/nop=0 on matching frozen snapshots, and matching independent re-score. The sole missing label is heart. Sol explicitly recognized the two public source exclusions and alleged no additional in-scope source defect.",
+        "source_review": "The original planted 791-voxel inferior heart-cap omission, CT/SEG bytes, spatial discrepancy region and 3 mm tolerance are unchanged. Both excluded source patches are disjoint from the planted region. The retained author CT/source/submitted comparison supports this controlled-omission miss; no specialist clinical certification is asserted.",
+        "trace_observation": "Steps 16, 38 and 53 delivered heart views. The targeted outline coronal sheet at step 53 includes the inferior heart border and the retained witness plane y=80. Step 55 identified the known liver gap and superior heart island as excluded and concluded no retained defect; steps 56-57 wrote and validated the empty report. Region exposure is established, but this trial does not isolate perception from rendering or attention choices.",
+        "resource_observation": "987.490 agent seconds, 26,784 output tokens (13,121 reasoning), 230,991 uncached input tokens, estimated USD 3.6424024; 47 tool wrappers, 13 image-review wrappers and 68 delivered image blocks. No client transport-recovery event was observed.",
+        "disposition": "Retain the revised task as a reviewed Sol miss. Do not treat the earlier source-held Terra attempt as an identical-task comparison; case 32 is lower on every measured resource axis among the three reviewed Sol misses."
+      }
+    }
+  ],
+  "completed_attempts": 4,
+  "model_attempts_per_task": 1,
+  "frozen_files_unchanged": true,
+  "model_execution_sequential": true,
+  "limitations": [
+    "One attempt per task; no success probability or causal optimization estimate.",
+    "Only 32 and 83 use identical task bytes across Terra and Sol. The 46/61 comparison also changes audit scope.",
+    "Source regions excluded in 46/61 remain anatomically unadjudicated. New in-scope allegations require review.",
+    "Input includes cached input; reasoning is included in output. Costs are estimates, not invoices.",
+    "Reasoning tokens use a legacy runtime counter matching Harbor totals. Other record-stream totals are retained separately.",
+    "Timeouts and execution errors are not genuine model failures.",
+    "CPU/RAM limits are fixed; actual CPU-seconds and peak memory were not measured.",
+    "Trials are sequential within this study; host load and provider latency were not experimentally isolated.",
+    "Client transport recovery is retained per row. Such wall times include connection disruption; token/cost values remain the reported client/harness scope.",
+    "No specialist clinical certification or confirmed postoperative cohort."
+  ],
+  "observed_totals": {
+    "finished_attempts": 4,
+    "normally_completed": 4,
+    "raw_passes": 0,
+    "raw_misses": 4,
+    "reviewed_genuine_misses": 3,
+    "source_truth_holds": 1,
+    "execution_exclusions": 0,
+    "agent_seconds": 3573.818177,
+    "agent_seconds_available_attempts": 4,
+    "total_seconds": 3883.949174,
+    "total_seconds_available_attempts": 4,
+    "input_tokens": 15379807,
+    "input_tokens_available_attempts": 4,
+    "cached_input_tokens": 14648320,
+    "cached_input_tokens_available_attempts": 4,
+    "uncached_input_tokens": 731487,
+    "uncached_input_tokens_available_attempts": 4,
+    "output_tokens": 94756,
+    "output_tokens_available_attempts": 4,
+    "reasoning_output_tokens": 50383,
+    "reasoning_output_tokens_available_attempts": 4,
+    "estimated_cost_usd": 10.680396,
+    "estimated_cost_usd_available_attempts": 4,
+    "controls_total_seconds": 256.932227,
+    "controls_total_seconds_available_attempts": 4
+  },
+  "benchmark_wall_seconds": 4145.868848,
+  "terra_comparison": [
+    {
+      "case_id": "case-32",
+      "task_bytes_identical": true,
+      "harbor_task_checksums_equal": true,
+      "terra_outcome": "miss",
+      "terra_validity": "reviewed genuine miss",
+      "terra_agent_seconds": 612.751863,
+      "terra_output_tokens": 23713,
+      "terra_estimated_cost_usd": 0.8566324,
+      "sol_outcome": "miss",
+      "sol_agent_seconds": 755.88291,
+      "sol_output_tokens": 20930,
+      "sol_estimated_cost_usd": 2.0723832
+    },
+    {
+      "case_id": "case-83",
+      "task_bytes_identical": true,
+      "harbor_task_checksums_equal": true,
+      "terra_outcome": "miss",
+      "terra_validity": "reviewed genuine miss",
+      "terra_agent_seconds": 955.42512,
+      "terra_output_tokens": 32744,
+      "terra_estimated_cost_usd": 1.6430879999999999,
+      "sol_outcome": "miss",
+      "sol_agent_seconds": 996.465432,
+      "sol_output_tokens": 30292,
+      "sol_estimated_cost_usd": 3.0922576
+    },
+    {
+      "case_id": "case-46",
+      "task_bytes_identical": false,
+      "harbor_task_checksums_equal": false,
+      "terra_outcome": "pass",
+      "terra_validity": "raw pass; source truth hold",
+      "terra_agent_seconds": 734.108096,
+      "terra_output_tokens": 26836,
+      "terra_estimated_cost_usd": 1.5657040000000002,
+      "sol_outcome": "miss",
+      "sol_agent_seconds": 833.979535,
+      "sol_output_tokens": 16750,
+      "sol_estimated_cost_usd": 1.8733527999999997
+    },
+    {
+      "case_id": "case-61",
+      "task_bytes_identical": false,
+      "harbor_task_checksums_equal": false,
+      "terra_outcome": "miss",
+      "terra_validity": "raw miss; source adjudication required",
+      "terra_agent_seconds": 1193.32356,
+      "terra_output_tokens": 48633,
+      "terra_estimated_cost_usd": 2.4871476,
+      "sol_outcome": "miss",
+      "sol_agent_seconds": 987.4903,
+      "sol_output_tokens": 26784,
+      "sol_estimated_cost_usd": 3.6424024
+    }
+  ],
+  "conclusion": "Three reviewed Sol/xhigh misses: both unchanged kidney tasks and the revised heart-omission task. Case 46 remains source-held after a credible additional heart-region finding. Case 32 is the strongest low-resource lead: it was missed by both Terra/max and Sol/xhigh, and used the least agent time, output tokens, uncached input and estimated cost among the three reviewed Sol misses. Next proposed contrast: supply a standard viewer while keeping its anatomical scope and planted error fixed. No further trial was launched."
+}
