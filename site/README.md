@@ -1,38 +1,89 @@
 # Interview report
 
-`index.html` is the complete, tracked publication: overview and four studies,
-embedded images, identity/overlay controls, case walkthroughs and trace details.
-It opens directly in a browser and works under a GitHub project-site prefix.
-Written evidence links open the repository. No local `runs/` assets are fetched.
+`index.html` contains the overview and four studies in one portable page. All
+figures, styling, and guided image controls are embedded. Open it directly in a
+browser; it also works under a GitHub project-site prefix. Evidence links open
+GitHub. The published page never requests local scans.
 
-## Publish with GitHub Pages
+## Come back and explore locally
 
-1. In the repository, open **Settings → Pages → Build and deployment** and select
-   **GitHub Actions** as the source.
-2. Push `main`, or run **Publish interview report** from the Actions tab.
-3. The workflow publishes only `site/index.html`. The expected URL is
-   `https://qianyizhang.github.io/tb3/`.
+Double-click **Open local report.command** in this folder, or run from the repo:
 
-The workflow uses GitHub's [custom Pages workflow](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
-This checkout has not been pushed or deployed by the report cleanup.
+```sh
+make site
+```
+
+This opens **http://127.0.0.1:8768/** in your browser. In the aneurysm chapter,
+choose **Explore full scan** on any case. You can:
+
+- Scroll through linked side, front, and top views.
+- Click an image to move the shared cursor.
+- Change zoom, brightness, and the number of combined slices.
+- Switch between the original scan and the brain-only image.
+- Hide the guide markers or return to the reference location.
+
+A lower **White level** makes the image brighter. **Single slice** is useful for
+confirming depth; combined slices show the brightest value along several slices.
+Yellow rings mark approximate reference locations, not lesion boundaries. Pink
+diamonds mark Sol's answer; blue crosshairs mark your cursor.
+
+Keep the terminal open while exploring. Stop with Ctrl+C; run `make site` or
+use the launcher to return later. An existing report server is reused. To choose
+another port or avoid automatically opening the browser:
+
+```sh
+python3 scripts/serve_site.py --port 8769
+```
+
+The server uses Python's standard library and listens only on this computer.
+It reads the six existing arrays in `runs/br016-aneurysm/blind-review/R01` through
+`R03`. It does not install packages, launch trials, download scans, or rewrite
+source files. One scan is loaded at a time. On a fresh clone, the guided figures
+still work; restore those folders from your local archive for full exploration.
 
 ## Edit and preview
 
-Edit the authored HTML chapters in `content/`, then run:
+- `content/`: authored chapter text, comparisons, and retained trace images.
+- `report.css`: shared typography, spacing, colors, and controls.
+- `aneurysm.js`: guided figures and optional native-array viewer.
+- `aneurysm-figures.json`: small, source-derived views with crop coordinates,
+  voxel spacing, reference points, and source checksums.
+
+After editing:
 
 ```sh
 python3 scripts/build_site.py
 python3 scripts/build_site.py --check
-python3 -m http.server 8767 --bind 127.0.0.1
+make site
 ```
 
-Open `http://127.0.0.1:8767/site/index.html`. Commit both the changed chapter and
-rebuilt `index.html`. `provenance.json` records the original presentation/image
-hashes used in the migration. Frozen evidence stays at its original paths.
-The narrowly scoped large-file receipts in `configs/artifact-policy.json` must
-be refreshed for changed presentation files before staging.
+Refresh the local page to see changes. Commit changed sources and rebuilt
+`index.html` together. Chapter files are build inputs; use `index.html` to read
+the report. `build_site.py` requires no native scans or imaging libraries.
 
-The public aneurysm chapter includes the retained three-plane overview images
-and full authored case narratives. Its full-resolution volume viewer remains
-local: the original arrays total roughly 650 MB and are not publication assets.
-No source scans or segmentation masks were rewritten for this presentation.
+Re-render the guided scan figures only when deliberately changing their display:
+
+```sh
+.venv-br003/bin/python scripts/render_site_scans.py
+python3 scripts/build_site.py
+```
+
+The renderer uses NumPy and Pillow from the existing imaging environment. It
+reads retained arrays in place and writes only `site/aneurysm-figures.json`.
+The positive cases use 48 mm fields centered on the source references; all views
+combine seven native slices. Reference overlays are drawn separately, so they
+can be hidden. No generated or retouched anatomy is used.
+
+`provenance.json` retains migration history and the current figure derivation.
+Update changed large-file receipts in `configs/artifact-policy.json` before
+staging. Frozen tasks, source scans, and original model images stay unchanged.
+
+## Publish with GitHub Pages
+
+1. In **Settings → Pages → Build and deployment**, select **GitHub Actions**.
+2. Push `main`, or run **Publish interview report** from the Actions tab.
+3. The workflow publishes only `site/index.html` at
+   `https://qianyizhang.github.io/tb3/`.
+
+The full native scan arrays remain local. Publishing this report does not
+publish them. Local edits alone do not update the hosted page.

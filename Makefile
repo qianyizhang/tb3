@@ -1,6 +1,6 @@
 PYTHON ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 
-.PHONY: check hygiene test artifacts hooks
+.PHONY: check hygiene test artifacts hooks site
 check: hygiene test
 
 hygiene:
@@ -8,6 +8,10 @@ hygiene:
 
 test:
 	$(PYTHON) -m unittest discover -s tests -p 'test_*.py' -v
+
+# Reopen the report and native scan explorer; no model trials or downloads.
+site:
+	$(PYTHON) scripts/serve_site.py --open
 
 # Inventory only: never delete ignored runs, caches, or frozen inputs.
 artifacts:

@@ -1,5 +1,5 @@
 {
-  "scope": "Presentation-only migration. Original source reports, images and frozen evidence unchanged. Public aneurysm view uses retained overview images instead of native-array navigation.",
+  "scope": "Presentation-only revision. Shared reading style, guided native-grid aneurysm views, and optional local scan exploration. Original reports, source arrays, and frozen evidence are unchanged.",
   "inputs": [
     {
       "path": "docs/report.html",
@@ -63,5 +63,13 @@
     }
   ],
   "migration_source_commit": "5e0b88eb9775c720b44db17fc155b358f8053c77",
-  "source_retention": "Tracked input versions remain in Git history; original generated reports and raw images remain in the local archive. Embedded image bytes are unchanged."
+  "source_retention": "The original migration inputs and their hashes remain recorded below and in Git history. Existing embedded trace images are unchanged. New aneurysm figures are derived separately from native arrays as documented in guided_figures.",
+  "guided_figures": {
+    "manifest": "site/aneurysm-figures.json",
+    "renderer": "scripts/render_site_scans.py",
+    "source": "runs/br016-aneurysm/blind-review",
+    "method": "Native float32 brain arrays, seven-slice maximum-brightness projection; 48 mm fields around positive-case reference centres, full field for the negative case. Grayscale window clipping only; no source voxel edits. Per-view crop offsets, slice ranges, voxel spacing, display high and source SHA-256 are retained in the manifest.",
+    "markers": "Separate canvas overlays: yellow source reference rings, pink submitted-point diamond for N02, optional blue local cursor. Rings are location aids, not lesion contours. Author-guided views were not supplied to the model.",
+    "local_viewer": "scripts/serve_site.py reads the retained brain/original float32 arrays on demand. Native arrays are not embedded or published."
+  }
 }

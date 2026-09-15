@@ -8,14 +8,14 @@ evidence arrives.
 
 One tracked page contains the overview and all four studies, including figures,
 interactive comparisons and trace walkthroughs. Open `site/index.html` directly,
-or serve the repository. No ignored runtime files are needed.
+or use the local launcher below. Guided figures need no runtime files; full scan exploration uses the retained local arrays.
 
 ## Reading order
 
 | Study | Main finding |
 | --- | --- |
-| [Earlier boundary audits](site/index.html#boundaries) | Three reviewed misses and one source hold; case 32 ruled out as too nitpicky; case 61 explained with a labeled omission plane. |
-| [Anatomical identity](site/index.html#anatomy) | A compact-pancreas miss resolves when context is added. |
+| [Boundary errors](site/index.html#boundaries) | Three reviewed misses and one source hold; case 32 ruled out as too nitpicky; case 61 explained with a labeled omission plane. |
+| [Organ identity](site/index.html#anatomy) | A compact-pancreas miss resolves when context is added. |
 | [Tissue ownership](site/index.html#absorption) | Broad partial-inclusion audit misses; a focused audit of identical data passes. |
 | [Aneurysm localization](site/index.html#aneurysm) | One reference-label miss, one localization, one source-assisted negative answer. |
 
@@ -34,13 +34,18 @@ individual outcomes, task-validity limits and later reassessments.
 See [reproduction](docs/reproduce.md), [historical submission handoff](docs/submission.md),
 and [the original assignment](docs/task.md).
 
-## Preview and publish
+## Reopen locally or publish
 
 ```sh
-python3 -m http.server 8767 --bind 127.0.0.1
+make site
 ```
 
-Open `http://127.0.0.1:8767/site/index.html`.
+This opens `http://127.0.0.1:8768/`. You can also double-click
+`site/Open local report.command`. In the aneurysm chapter, choose **Explore full
+scan** for slice sliders, zoom, contrast, and reference markers. Keep the terminal
+open while exploring; Ctrl+C stops it. Run the same command to return later.
+See the [local viewing guide](site/README.md) for scan restoration and controls.
+
 For GitHub Pages, select **GitHub Actions** in repository **Settings → Pages**,
 then push `main`. The included workflow publishes only the bundled report.
 Expected URL after successful deployment: `https://qianyizhang.github.io/tb3/`.

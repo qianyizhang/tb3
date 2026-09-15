@@ -5,34 +5,21 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>When plausible boundaries hide an error · BR-004</title>
 
-<style>*{box-sizing:border-box}body{margin:0;line-height:1.65}main{max-width:1120px;margin:auto;padding:40px 36px}header{padding:24px 0 38px}h1{font-size:clamp(42px,6vw,72px);line-height:1.05;margin:18px 0}h2{font-size:34px;line-height:1.2}h3{font-size:19px}.eyebrow{color:var(--teal);font-size:12px;letter-spacing:.12em;text-transform:uppercase}.lede{font-size:21px;max-width:850px}.note{border-left:3px solid var(--teal);padding:14px 22px;background:var(--panel)}section{padding:24px 0;border-top:1px solid var(--line)}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:14px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}th:first-child{white-space:normal;min-width:170px}.case-nav{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}.case-nav a{border:1px solid var(--line);border-radius:4px;padding:9px 16px;text-decoration:none}.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}.grid>*{min-width:0}details{border-top:1px solid var(--line);padding:16px 0}summary{cursor:pointer;font-weight:650}figure{margin:20px 0}img{width:100%;height:auto;border:1px solid var(--line);border-radius:5px}figcaption,.small{font-size:13px;color:var(--muted)}.outcome{color:var(--teal);font-weight:700}.hold{color:#825822}a:focus-visible,summary:focus-visible{outline:3px solid #b36c16;outline-offset:4px}footer{margin:32px 0;font-size:13px;color:var(--muted)}@media(max-width:700px){main{padding:24px 20px}.grid{grid-template-columns:1fr}h2{font-size:29px}}</style><style data-interview-theme>/* Shared interview presentation layer. Native scan canvases retain dark backgrounds. */
-:root{color-scheme:light;--paper:#f6f4ee;--ink:#172b32;--muted:#54696d;--line:#ccd4d1;--teal:#006e65;--panel:#fffefa;--code:#eaf0ec}
-html{scroll-behavior:smooth}body{background:var(--paper)!important;color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--teal)}
-h1{font-family:Georgia,"Times New Roman",serif;font-weight:400!important;letter-spacing:-.035em}h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.02em}
-.interview-nav{max-width:1180px;margin:0 auto;padding:18px 36px;display:flex;align-items:center;flex-wrap:wrap;gap:12px 20px;border-bottom:1px solid var(--line);font-size:13px;line-height:1.6}
-.interview-nav a{text-decoration:none;color:var(--teal);padding:3px 0}.interview-nav a[aria-current]{font-weight:750;border-bottom:2px solid var(--teal)}.interview-nav span{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em}.interview-scope{max-width:1180px;margin:0 auto!important;padding:10px 36px 0;font-size:12px!important;color:var(--muted)!important}
-a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #b36c16;outline-offset:4px}
-.aneurysm-report main{max-width:1180px!important;padding:26px 36px!important}.aneurysm-report h1{font-size:clamp(38px,5vw,64px)!important;line-height:1.12}.aneurysm-report header{padding:20px 0 26px}
-.aneurysm-report p,.aneurysm-report li,.aneurysm-report small{color:var(--muted)}.aneurysm-report .eyebrow,.aneurysm-report h3,.aneurysm-report summary,.aneurysm-report code,.aneurysm-report #status{color:var(--teal)}
-.aneurysm-report .summary>div,.aneurysm-report .card,.aneurysm-report .story{background:var(--panel)!important;border-color:var(--line)!important;border-radius:6px!important}.aneurysm-report .summary span{color:var(--muted)}.aneurysm-report .summary b{font-family:Georgia,serif;color:var(--teal);font-weight:400}
-.aneurysm-report .flow>div{background:#e5efea;color:var(--ink)}.aneurysm-report .flow span{color:var(--teal)}.aneurysm-report .story-grid>*{min-width:0}.aneurysm-report pre{background:var(--code);color:var(--ink)}.aneurysm-report button,.aneurysm-report select,.aneurysm-report input{background:var(--panel);color:var(--ink);border-color:#96aaa4}.aneurysm-report button:hover{background:#e5efea}.aneurysm-report .view{background:#101820}.aneurysm-report .view h2,.aneurysm-report .view label{color:#e9f0ee}.aneurysm-report .miss{color:#7a352c;background:#f6e4df}.aneurysm-report .pass{color:#006e65;background:#e1eee8}.aneurysm-report .assisted{color:#825822;background:#f4e9d5}.aneurysm-report footer{color:var(--muted)}
-@media(max-width:740px){.interview-nav{padding:16px 20px;gap:9px 14px}.interview-nav span{flex-basis:100%}.interview-scope{padding:10px 20px 0}.aneurysm-report main{padding:20px!important}.aneurysm-report .flow{grid-template-columns:1fr}.aneurysm-report .view{min-width:min(280px,100%)}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-</style>
+<style>*{box-sizing:border-box}body{margin:0;line-height:1.65}main{max-width:1120px;margin:auto;padding:40px 36px}header{padding:24px 0 38px}h1{font-size:clamp(42px,6vw,72px);line-height:1.05;margin:18px 0}h2{font-size:34px;line-height:1.2}h3{font-size:19px}.eyebrow{color:var(--teal);font-size:12px;letter-spacing:.12em;text-transform:uppercase}.lede{font-size:21px;max-width:850px}.note{border-left:3px solid var(--teal);padding:14px 22px;background:var(--panel)}section{padding:24px 0;border-top:1px solid var(--line)}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:14px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}th:first-child{white-space:normal;min-width:170px}.case-nav{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}.case-nav a{border:1px solid var(--line);border-radius:4px;padding:9px 16px;text-decoration:none}.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}.grid>*{min-width:0}details{border-top:1px solid var(--line);padding:16px 0}summary{cursor:pointer;font-weight:650}figure{margin:20px 0}img{width:100%;height:auto;border:1px solid var(--line);border-radius:5px}figcaption,.small{font-size:13px;color:var(--muted)}.outcome{color:var(--teal);font-weight:700}.hold{color:#825822}a:focus-visible,summary:focus-visible{outline:3px solid #b36c16;outline-offset:4px}footer{margin:32px 0;font-size:13px;color:var(--muted)}@media(max-width:700px){main{padding:24px 20px}.grid{grid-template-columns:1fr}h2{font-size:29px}}</style>
+<link rel="stylesheet" href="../report.css">
 </head>
 <body>
 <main>
-<header>
-<div class="eyebrow">BR-004 / Earlier annotation audits · 15 September 2026</div>
-<h1>When plausible boundaries<br>hide an error.</h1>
-<p class="lede">Sol/xhigh produced three reviewed misses and one source-label hold, with one attempt per task. Reviewing the answer against the source mattered as much as reading the grade.</p>
-<p class="note">
+<header><div class="top"><span class="eyebrow">BR-004 · Boundary errors</span><nav aria-label="Report sections"><a href="#task">Task</a><a href="#walkthroughs">Cases</a><a href="#case-61">Heart example</a></nav></div><div class="hero"><span class="eyebrow">Four Sol/xhigh attempts · 15 September 2026</span>
+<h1>Small errors at<br>organ boundaries</h1>
+<p class="lede">Sol missed three deliberately changed organ boundaries. A fourth case raised an unresolved question about the source annotation. Reviewing the images changed how the scores should be read.</p>
+</div><p class="note">
 <strong>Historical findings, later reassessed.</strong> These controlled alterations remain recorded misses. Case 32 was subsequently ruled out as too nitpicky for the intended task. Case 61 remains a reviewed miss, but the omitted annotation is easier to explain with a clearly labeled view of the affected plane. The current anatomy lead is <a href="#study=absorption">BR-017’s tissue-ownership audit</a>.</p>
 </header>
-<section>
+<section id="task">
 <div class="eyebrow">01 / Task and outcomes</div>
-<h2>Inspect the annotation. Return a precise finding.</h2>
-<p>The agent inspected supplied CT and DICOM segmentation data, using code to decode, measure and render anatomy. The deliverable was a label and physical location for each in-scope discrepancy, with a 3 mm localization tolerance—or an empty findings list.</p>
+<h2>Find the boundary error and mark its location.</h2>
+<p>The agent received CT scans and organ masks in DICOM, a medical imaging format. It had to name each affected organ and mark the error’s location within 3 mm, or return no findings.</p>
 <div class="table-wrap">
 <table>
 <caption>Sol/xhigh · one attempt per frozen task · zero trial retries</caption>
@@ -68,7 +55,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,su
 <th scope="row">
 <a href="#case-46">46: unusual-anatomy control</a>
 </th>
-<td>Source hold</td>
+<td>Source unresolved</td>
 <td>13.90</td>
 <td>16,750</td>
 <td>$1.873</td>
@@ -88,15 +75,15 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,su
 <p class="small">Cases 46 and 61 use the revised v2 scope. Agent time excludes setup and verification. Output includes reported reasoning tokens; cost estimates are not invoices.</p>
 <details>
 <summary>Resources, execution and matched controls</summary>
-<p>All four attempts completed normally. The raw grader returned zero for each; review retains three controlled-defect misses and holds case 46 for source adjudication. All four independent re-scores agree with the frozen grades.</p>
-<p>Eight matched container controls and 47 author scoring controls support the declared contracts. Oracle/no-op outcomes were 1/0 on the three altered cases and 1/1 on the scoped clean control.</p>
+<p>All four attempts completed normally. The raw grader returned zero for each; review retains three controlled-defect misses and holds case 46 for source review. All four independent re-scores agree with the frozen grades.</p>
+<p>Eight matched container controls and 47 author scoring controls support the declared contracts. Reference-solution / no-op outcomes were 1/0 on the three altered cases and 1/1 on the scoped clean control.</p>
 <p>All four runs together: 59.56 agent minutes, 94,756 output tokens, 731,487 uncached input tokens and estimated $10.680. The sequential benchmark took 69.10 minutes, including 4.28 minutes in controls. Case 46 includes connection retries and a WebSocket-to-HTTPS recovery within its single attempt.</p>
 <a href="https://github.com/qianyizhang/tb3/blob/main/catalog/analyses/br004-sol-followup.md">Complete resource analysis</a>
 </details>
 </section>
-<section>
+<section id="walkthroughs">
 <div class="eyebrow">02 / Four case walkthroughs</div>
-<h2>The same raw grade needs different interpretations.</h2>
+<h2>Four low scores, with different explanations.</h2>
 <nav class="case-nav" aria-label="Case walkthroughs">
 <a href="#case-32">32 · Kidney extension</a>
 <a href="#case-83">83 · Kidney-pole omission</a>
@@ -114,11 +101,11 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,su
 <p class="lede">63 task-grid voxels added to the left kidney.</p>
 <div class="grid">
 <div>
-<h3>What the trace shows</h3>
+<h3>What the agent did</h3>
 <p>Step 23 delivered the full kidney-left axial sheet, including slice 94 at the retained witness. Steps 16 and 42 additionally delivered overview and reformatted kidney views. Step 46 explicitly concluded no clear &gt;3 mm mismatch; steps 47-48 wrote and validated an empty report. Dense colored boundary overlays may affect visibility; the trial does not isolate perception from inspection choices.</p>
 </div>
 <div>
-<h3>What the review supports</h3>
+<h3>What the result means</h3>
 <p>Normal completion, a deliberately written and validated empty report, oracle=1/nop=0 on identical frozen bytes, and a matching independent re-score. The sole missing label is kidney_left; no alternate source defect was alleged.</p>
 <p>The controlled alteration was missed after normal completion. Seeing the region in a returned image does not establish effective attention or isolate the cause of failure.</p>
 </div>
@@ -139,7 +126,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,su
 </figure>
 </details>
 <details>
-<summary>Source validity and provenance</summary>
+<summary>Source checks and evidence</summary>
 <p>Same task bytes and controlled 63-voxel extension as the previously reviewed Terra failure. The prior CT/source/submitted comparison and geometry remain applicable; no specialist clinical certification is asserted.</p>
 <p>
 <a href="https://github.com/qianyizhang/tb3/blob/main/docs/evidence/br004-sol-reviews.json">Authored case reviews</a> · <a href="https://github.com/qianyizhang/tb3/blob/main/docs/archive.md">Original report and full resource row</a>
@@ -153,11 +140,11 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,su
 <p class="lede">215 task-grid voxels removed from the superior left-kidney cap.</p>
 <div class="grid">
 <div>
-<h3>What the trace shows</h3>
+<h3>What the agent did</h3>
 <p>Step 17 delivered whole-volume coronal and sagittal kidney sheets that include the superior-pole region. Steps 36 and 47 delivered dense filled/outline axial sheets; their slice range is derived from the submitted mask and stops at its endpoint, so the omitted slices above it are absent from those axial views. The coronal image was author-reviewed, so this is not a claim that the model received no view of the region. Step 57 explicitly judged the masks plausible and step 58 wrote and validated no findings.</p>
 </div>
 <div>
-<h3>What the review supports</h3>
+<h3>What the result means</h3>
 <p>Normal completion, a deliberately written and validated empty report, oracle=1/nop=0 on identical frozen bytes, and matching independent re-score. The sole missing label is kidney_left; no alternate source defect was alleged.</p>
 <p>The controlled alteration was missed after normal completion. Seeing the region in a returned image does not establish effective attention or isolate the cause of failure.</p>
 </div>
@@ -178,7 +165,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,su
 </figure>
 </details>
 <details>
-<summary>Source validity and provenance</summary>
+<summary>Source checks and evidence</summary>
 <p>The unchanged 215-voxel superior-cap omission and prior CT/source/submitted review remain applicable. The corrected-scope follow-up did not alter this task; no specialist clinical certification is asserted.</p>
 <p>
 <a href="https://github.com/qianyizhang/tb3/blob/main/docs/evidence/br004-sol-reviews.json">Authored case reviews</a> · <a href="https://github.com/qianyizhang/tb3/blob/main/docs/archive.md">Original report and full resource row</a>
@@ -188,15 +175,15 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,su
 <section id="case-46">
 <div class="eyebrow">Case 46 · v2 scope</div>
 <h2>Unusual-anatomy control</h2>
-<p class="outcome hold">Source hold · 13.90 min · 16,750 output tokens</p>
+<p class="outcome hold">Source unresolved · 13.90 min · 16,750 output tokens</p>
 <p class="lede">A scoped clean control with a public L2 exclusion; Sol raised a different source-label question.</p>
 <div class="grid">
 <div>
-<h3>What the trace shows</h3>
+<h3>What the agent did</h3>
 <p>Sol explicitly recognized and honored the L2 exclusion, then inspected the separate heart component against pulmonary-vein and atrial-appendage context. It deliberately wrote and validated the reported LPS point. The known L2 correction worked; the rest of the case cannot be certified clean from this trial.</p>
 </div>
 <div>
-<h3>What the review supports</h3>
+<h3>What the result means</h3>
 <p>Normal completion, oracle=1/nop=1 as predeclared for the scoped clean control, identical model/control checksums and matching independent re-score. Sol reported a heart component outside the public L2 exclusion; the frozen grader calls it extra. The reported voxels are unchanged from the original source, so this is not a planted-error miss.</p>
 <p>A credible source-label question remains unresolved. This raw zero is not an established model false positive.</p>
 </div>
@@ -211,7 +198,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,su
 </figure>
 </details>
 <details>
-<summary>Source validity and provenance</summary>
+<summary>Source checks and evidence</summary>
 <p>Author high-resolution CT review shows an isolated tubular hilar component in the source heart mask. It has 236 voxels on the task grid and 1,869 voxels in the original-resolution 26-connected mask, so the isolation is not solely a coarse-grid artifact. The submitted point is inside that source component. Nearby pulmonary-vein and atrial-appendage masks provide context but do not adjudicate the exact heart-label boundary. The finding is a credible source-label question, not an established model false positive.</p>
 <p>
 <a href="https://github.com/qianyizhang/tb3/blob/main/docs/evidence/br004-sol-reviews.json">Authored case reviews</a> · <a href="https://github.com/qianyizhang/tb3/blob/main/docs/archive.md">Original report and full resource row</a>
@@ -234,11 +221,11 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,su
 <p class="lede">791 task-grid voxels removed from the inferior heart cap. Two unrelated source patches were publicly excluded.</p>
 <div class="grid">
 <div>
-<h3>What the trace shows</h3>
+<h3>What the agent did</h3>
 <p>Steps 16, 38 and 53 delivered heart views. The targeted outline coronal sheet at step 53 includes the inferior heart border and the retained witness plane y=80. Step 55 identified the known liver gap and superior heart island as excluded and concluded no retained defect; steps 56-57 wrote and validated the empty report. Region exposure is established, but this trial does not isolate perception from rendering or attention choices.</p>
 </div>
 <div>
-<h3>What the review supports</h3>
+<h3>What the result means</h3>
 <p>Normal completion, deliberately written and validated empty report, oracle=1/nop=0 on matching frozen snapshots, and matching independent re-score. The sole missing label is heart. Sol explicitly recognized the two public source exclusions and alleged no additional in-scope source defect.</p>
 <p>The controlled alteration was missed after normal completion. Seeing the region in a returned image does not establish effective attention or isolate the cause of failure.</p>
 </div>
@@ -259,7 +246,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,su
 </figure>
 </details>
 <details>
-<summary>Source validity and provenance</summary>
+<summary>Source checks and evidence</summary>
 <p>The original planted 791-voxel inferior heart-cap omission, CT/SEG bytes, spatial discrepancy region and 3 mm tolerance are unchanged. Both excluded source patches are disjoint from the planted region. The retained author CT/source/submitted comparison supports this controlled-omission miss; no specialist clinical certification is asserted.</p>
 <p>
 <a href="https://github.com/qianyizhang/tb3/blob/main/docs/evidence/br004-sol-reviews.json">Authored case reviews</a> · <a href="https://github.com/qianyizhang/tb3/blob/main/docs/archive.md">Original report and full resource row</a>
@@ -293,6 +280,6 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,su
 <p>One attempt per task/model configuration cannot establish a failure rate. Source contours are not specialist-certified clinical truth. The earlier multi-patient timeout and source-held Terra results are separate observations.</p>
 </section>
 <footer>BR-004 · Historical experiment, current presentation. CT and source segmentations: TotalSegmentator / Jakob Wasserthal, University Hospital Basel, CC BY 4.0. <a href="https://zenodo.org/records/10047263">Dataset release</a>. Existing images, records and task bytes are reused unchanged; all displayed images are bundled into this page. <a href="#study=overview">Return to the research overview</a>.</footer>
-</main>
+<nav class="chapter-end" aria-label="Continue reading"><a href="#study=overview">← Overview</a><a href="#study=anatomy">Organ identity →</a></nav></main>
 </body>
 </html>

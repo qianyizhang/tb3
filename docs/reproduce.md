@@ -4,18 +4,25 @@
 
 ## Read or publish
 
-The overview and four study presentations are bundled in tracked
-`site/index.html`. Open it directly, or serve the repository and visit
-`http://127.0.0.1:8767/site/index.html`.
+The overview and four studies are bundled in `site/index.html`. Open it directly
+for offline reading, guided scan figures, and interactive comparisons.
+
+For the full local scan explorer, double-click `site/Open local report.command`
+or run:
 
 ```sh
-python3 -m http.server 8767 --bind 127.0.0.1
+make site
 ```
 
-No `runs/` restoration is needed to read the published report. Images and
-interactive comparisons are embedded. Written evidence links open GitHub.
-The aneurysm chapter uses retained scan overviews; full-resolution native-array
-navigation remains a local archive capability.
+The report opens at **http://127.0.0.1:8768/**. Choose **Explore full scan** in the
+aneurysm chapter to use linked slice sliders, zoom, contrast, original/brain-only
+images, and reference markers. Keep the terminal open; Ctrl+C stops it. Reopen
+with the same command whenever you want to return.
+
+The guided figures work without `runs/`. Full exploration reads the six retained
+arrays under `runs/br016-aneurysm/blind-review/R01` through `R03`; restore those
+folders when moving to another machine. No trials, downloads, or package
+installation run when opening the report. Written evidence links open GitHub.
 
 ## Edit and validate the presentation
 
@@ -24,7 +31,7 @@ python3 scripts/build_site.py
 python3 scripts/build_site.py --check
 ```
 
-The builder reads only tracked `site/content/` chapters. It neither launches
+The builder reads tracked chapters, shared styling, viewer code, and guided-figure data under `site/`. It neither launches
 trials nor changes frozen evidence. [Publishing instructions](../site/README.md)
 cover the included GitHub Pages workflow and the one-time repository setting.
 [Presentation provenance](../site/provenance.json) identifies the reused sources.
