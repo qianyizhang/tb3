@@ -1,0 +1,58 @@
+{
+  "case_id": "case-61",
+  "result_path": "runs/br004-single-61-terra-max-v1-20260915/dicom-audit-61__ihBKTbE/result.json",
+  "result_sha256": "f02c97a634513f4c65d7ce1797265e672c94fccb15a104fc29bb883073acfe44",
+  "artifact_sha256": "0d79a42e7fb8b7add8f219b994d78d7961e42f515a7419a1c5f4a4712210b410",
+  "grade": {
+    "passed": false,
+    "cases": [
+      {
+        "case_id": "case-61",
+        "missing": [],
+        "extra": [
+          "liver"
+        ],
+        "bad_points": [
+          "heart"
+        ],
+        "located": [],
+        "expected_positive_labels": 1,
+        "focus_labels": 11,
+        "source_stratum": "ordinary anatomy",
+        "passed": false
+      }
+    ],
+    "correctly_located_labels": 0,
+    "expected_positive_labels": 1,
+    "false_positive_labels": 1
+  },
+  "independent_rescore_matches": true,
+  "agent_seconds": 1193.32356,
+  "output_tokens": 48633,
+  "uncached_input_tokens": 372883,
+  "estimated_cost_usd": 2.4871476,
+  "nearest_discrepancy_distance_mm": {
+    "heart": 90.85131145028389
+  },
+  "condition": "single-patient-v1",
+  "authored_review": {
+    "outcome": "source_truth_hold",
+    "validity": "raw miss; source adjudication required",
+    "source_truth_hold": true,
+    "hold_timing": "post-trial review of model-reported source regions",
+    "failure_hypothesis_supported": null,
+    "failure_mode": "unadjudicated_source_findings_and_unlocated_planted_omission",
+    "evidence": "Normal completion, matched oracle=1/nop=0 controls and independent re-score. The model reported liver plus heart. Its heart witness is 90.8513 mm from the planted inferior omission; the raw grade has an extra liver label and an invalid heart witness.",
+    "source_review": "Both reported voxel regions are unchanged from the original source: liver [63,80,110] is background at 70 HU in both arrays; heart [38,67,154] is heart at 54 HU in both. The trace explicitly inspects an internal liver gap and a detached superior heart component. Their clinical interpretation is not settled by the planted-error map. Author image review does not justify dismissing both source findings as model errors.",
+    "trace_observation": "The final heart point uses the supplied affine correctly; this is not a simple LPS conversion error. The final report does not locate the controlled inferior cap omission. Broad review included debugging scripts and investigation of original-source irregularities.",
+    "resource_observation": "19.89 agent minutes, 48633 output tokens, 372883 uncached input tokens, estimated USD 2.487.",
+    "disposition": "Exclude from genuine overall task-failure counts pending source adjudication. Retain the raw miss, unlocated planted omission and resource measurement separately; do not alter this freeze or rerun it."
+  },
+  "reported_points_source_unchanged": true,
+  "private_comparison_path": "runs/br004-v1/build/case-61-private.npz",
+  "private_comparison_sha256": "2b542e20265aef43b103a2943d7e236376b4737bf3fe21baa7a8bed19e67661d",
+  "viewed_images": {
+    "runs/br004-single/review/case-61-terra-step-51-0.png": "38d56fb89fa7f4361ebb0af3a75cda617885d281c75ce0aeb976295b42d12fa1",
+    "runs/br004-single/review/case-61-terra-step-59-0.png": "4043bd442ceed193658eb0220635d56e2359617ffb5898bf4df0033fc1894cce"
+  }
+}

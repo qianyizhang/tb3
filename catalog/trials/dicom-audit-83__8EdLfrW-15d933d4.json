@@ -1,0 +1,73 @@
+{
+  "agent": "codex",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "cases": [],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "model_failure_candidate",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br004-single-83-terra-max-v1-20260915/dicom-audit-83__8EdLfrW/result.json",
+      "sha256": "9b681c0f3b37e6ec555d88180c824330341ac40870869424798fdf935717e35c"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br004-single-83-terra-max-v1-20260915/dicom-audit-83__8EdLfrW/verifier/test-stdout.txt",
+      "sha256": "dd796da692749a52788d347971dbea030903e13ec56f9d7f2d652974231f21b6"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br004-single-83-terra-max-v1-20260915/dicom-audit-83__8EdLfrW/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br004-single-83-terra-max-v1-20260915/dicom-audit-83__8EdLfrW/agent/trajectory.json",
+      "sha256": "b21d2d94bf48d3d461c0993f6826ce9f9f83501e93997e673d63b5305cd1ced1"
+    },
+    {
+      "label": "Submitted artifact: answer/findings.json",
+      "path": "runs/br004-single-83-terra-max-v1-20260915/dicom-audit-83__8EdLfrW/artifacts/app/answer/findings.json",
+      "sha256": "bf29b40bdb65170d574e35db61aa2a7a96d8b0f179c61395007184f6e203ad17"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br004-single-83-terra-max-v1-20260915/lock.json",
+      "sha256": "352c36cdf070b18a41313488819fb836aa935e70dca27db3ca204ce65985d984"
+    }
+  ],
+  "evidence_sha256": "3274694f48b448786e96b109088e0403c0a50fbeb62954be745216eb7dafc4e0",
+  "exception_type": null,
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-15T03:04:22.185064Z",
+  "harbor_version": "0.14.0",
+  "id": "dicom-audit-83__8EdLfrW-15d933d4",
+  "job": "br004-single-83-terra-max-v1-20260915",
+  "model": "openai/gpt-5.6-terra",
+  "qualifying_final_trial": false,
+  "reasoning_effort": "max",
+  "reward": 0.0,
+  "schema_version": 1,
+  "source_result": "runs/br004-single-83-terra-max-v1-20260915/dicom-audit-83__8EdLfrW/result.json",
+  "source_sha256": "9b681c0f3b37e6ec555d88180c824330341ac40870869424798fdf935717e35c",
+  "started_at": "2026-09-15T02:47:16.038268Z",
+  "task_checksum": "2f96e0a7a3b862d7e7e4ab13dd7d47729944f1de4de72f266d8a646f98adc319",
+  "task_id": "dicom-audit-83",
+  "task_sha256": null,
+  "timing": {
+    "agent": 955.425,
+    "setup": 40.326,
+    "total": 1026.147,
+    "verifier": 14.015
+  },
+  "trial_name": "dicom-audit-83__8EdLfrW",
+  "usage": {
+    "n_cache_tokens": 4488320.0,
+    "n_input_tokens": 4664568.0,
+    "n_output_tokens": 32744.0
+  },
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ]
+}

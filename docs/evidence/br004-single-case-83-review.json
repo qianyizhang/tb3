@@ -1,0 +1,56 @@
+{
+  "case_id": "case-83",
+  "condition": "single-patient-v1",
+  "authored_review": {
+    "outcome": "genuine_failure",
+    "validity": "reviewed genuine miss",
+    "failure_hypothesis_supported": true,
+    "failure_mode": "local_kidney_pole_omission_missed",
+    "evidence": "Normal completion and explicit final empty report; matched healthy controls and independent re-score show kidney_left omitted from findings, with no extras or localization-only error. Author-reviewed CT/source/task overlays show continuous kidney tissue beyond the truncated mask. The defect was frozen before the run and exceeds the fine boundary band.",
+    "source_review": "Controlled source-mask change and CT reviewed by task author; no independent specialist certification. No alternate source defect was alleged in the final report.",
+    "trace_observation": "Axial choices are restricted to the submitted mask slice range 82..113, while the source extends to 116; 108 of 215 changed voxels lie above slice 113. However, padded coronal kidney views were also generated and inspected, including the affected region. Crop selection is a possible contributor, not a demonstrated sole cause.",
+    "resource_observation": "15.92 agent minutes; 32744 output tokens including 21090 reasoning tokens; 176248 uncached input tokens; estimated USD 1.643. This is a completed semantic miss but still a substantial review cost.",
+    "disposition": "Retain as the first completed failure in this condition; one observation only, no repeat or final qualification. Compare with remaining planted-error tasks before selecting an efficiency candidate."
+  },
+  "result_path": "runs/br004-single-83-terra-max-v1-20260915/dicom-audit-83__8EdLfrW/result.json",
+  "result_sha256": "9b681c0f3b37e6ec555d88180c824330341ac40870869424798fdf935717e35c",
+  "artifact_sha256": "bf29b40bdb65170d574e35db61aa2a7a96d8b0f179c61395007184f6e203ad17",
+  "grade": {
+    "passed": false,
+    "cases": [
+      {
+        "case_id": "case-83",
+        "missing": [
+          "kidney_left"
+        ],
+        "extra": [],
+        "bad_points": [],
+        "located": [],
+        "expected_positive_labels": 1,
+        "focus_labels": 10,
+        "source_stratum": "marked thoracic abnormality",
+        "passed": false
+      }
+    ],
+    "correctly_located_labels": 0,
+    "expected_positive_labels": 1,
+    "false_positive_labels": 0
+  },
+  "independent_rescore_matches": true,
+  "agent_seconds": 955.42512,
+  "output_tokens": 32744,
+  "uncached_input_tokens": 176248,
+  "estimated_cost_usd": 1.6430879999999999,
+  "viewed_image": "runs/br004-single/review/case-83-terra-kidney-coronal.png",
+  "viewed_image_sha256": "3ba98d99aa0ff9d8387111891a6e18abade7a84a191bb8ccfabe989e75e84a45",
+  "source_mask_z_range": [
+    82,
+    116
+  ],
+  "task_mask_z_range": [
+    82,
+    113
+  ],
+  "changed_voxels": 215,
+  "changed_voxels_above_task_mask_zmax": 108
+}

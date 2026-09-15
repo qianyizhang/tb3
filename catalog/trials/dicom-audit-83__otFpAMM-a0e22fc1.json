@@ -1,0 +1,68 @@
+{
+  "agent": "oracle",
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "cases": [],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "control_pass",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br004-single-83-oracle-v1-20260915/dicom-audit-83__otFpAMM/result.json",
+      "sha256": "16d7e446be1a8f86c4379d5be36c85e2c17283e8fcb5d5e202e7830d9fe689ec"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br004-single-83-oracle-v1-20260915/dicom-audit-83__otFpAMM/verifier/test-stdout.txt",
+      "sha256": "475d1015adffa04d93f24dfa07d0af6bbe9eb9737f1259cf19fde2dfb1fdceeb"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br004-single-83-oracle-v1-20260915/dicom-audit-83__otFpAMM/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Submitted artifact: answer/findings.json",
+      "path": "runs/br004-single-83-oracle-v1-20260915/dicom-audit-83__otFpAMM/artifacts/app/answer/findings.json",
+      "sha256": "7f49740edc687f44ff9142759d3fc975a91383bc48df3a290d676fe5baaf9661"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br004-single-83-oracle-v1-20260915/lock.json",
+      "sha256": "6dcef1253a8c7124e41c0e37de487e67a2e995289a51a4c5f1576a2cfaefacd4"
+    }
+  ],
+  "evidence_sha256": "980709a92e2c26ea0beb3688bc8f311691226145f23909bbe7c3b23e606f95aa",
+  "exception_type": null,
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-15T02:46:46.240002Z",
+  "harbor_version": "0.18.0",
+  "id": "dicom-audit-83__otFpAMM-a0e22fc1",
+  "job": "br004-single-83-oracle-v1-20260915",
+  "model": null,
+  "qualifying_final_trial": false,
+  "reasoning_effort": null,
+  "reward": 1.0,
+  "schema_version": 1,
+  "source_result": "runs/br004-single-83-oracle-v1-20260915/dicom-audit-83__otFpAMM/result.json",
+  "source_sha256": "16d7e446be1a8f86c4379d5be36c85e2c17283e8fcb5d5e202e7830d9fe689ec",
+  "started_at": "2026-09-15T02:46:16.368310Z",
+  "task_checksum": "2f96e0a7a3b862d7e7e4ab13dd7d47729944f1de4de72f266d8a646f98adc319",
+  "task_id": "dicom-audit-83",
+  "task_sha256": null,
+  "timing": {
+    "agent": 0.244,
+    "setup": 0.0,
+    "total": 29.872,
+    "verifier": 14.154
+  },
+  "trial_name": "dicom-audit-83__otFpAMM",
+  "usage": {
+    "n_cache_tokens": null,
+    "n_input_tokens": null,
+    "n_output_tokens": null
+  },
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ]
+}

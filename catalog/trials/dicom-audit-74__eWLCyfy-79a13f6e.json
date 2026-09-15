@@ -1,0 +1,73 @@
+{
+  "agent": "codex",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "cases": [],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "model_pass",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br004-single-74-terra-max-v1-20260915/dicom-audit-74__eWLCyfy/result.json",
+      "sha256": "4876c416a62dfaf629913380aa048048267a17af76726eb18dcf9831bcefc51f"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br004-single-74-terra-max-v1-20260915/dicom-audit-74__eWLCyfy/verifier/test-stdout.txt",
+      "sha256": "48c8670dd35bd00cc7242146771a994ab0219b1a7abae91e4b9575946301228f"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br004-single-74-terra-max-v1-20260915/dicom-audit-74__eWLCyfy/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br004-single-74-terra-max-v1-20260915/dicom-audit-74__eWLCyfy/agent/trajectory.json",
+      "sha256": "0037bf99bcd7048cfcbf4284d18b20c76033fa96e8ec4d208016ea010b81be69"
+    },
+    {
+      "label": "Submitted artifact: answer/findings.json",
+      "path": "runs/br004-single-74-terra-max-v1-20260915/dicom-audit-74__eWLCyfy/artifacts/app/answer/findings.json",
+      "sha256": "b56c4976df764cc6106d309188de1423f00cbb713b2701e4c6d2d56ac6748ce6"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br004-single-74-terra-max-v1-20260915/lock.json",
+      "sha256": "d0d92dadb2864f259f14c716cf1d331db3c477a5fdbba99a6b53464ce8274d4a"
+    }
+  ],
+  "evidence_sha256": "4d031d09412d77e55eca3963752bf18efe55ee16ebce37d0acad7a1718cd1d1e",
+  "exception_type": null,
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-15T02:29:38.092881Z",
+  "harbor_version": "0.14.0",
+  "id": "dicom-audit-74__eWLCyfy-79a13f6e",
+  "job": "br004-single-74-terra-max-v1-20260915",
+  "model": "openai/gpt-5.6-terra",
+  "qualifying_final_trial": false,
+  "reasoning_effort": "max",
+  "reward": 1.0,
+  "schema_version": 1,
+  "source_result": "runs/br004-single-74-terra-max-v1-20260915/dicom-audit-74__eWLCyfy/result.json",
+  "source_sha256": "4876c416a62dfaf629913380aa048048267a17af76726eb18dcf9831bcefc51f",
+  "started_at": "2026-09-15T02:13:43.275688Z",
+  "task_checksum": "81356be2d535481ecadfbdb9b842762526b1493354a327e07e49ee3ff51ffcb4",
+  "task_id": "dicom-audit-74",
+  "task_sha256": null,
+  "timing": {
+    "agent": 889.866,
+    "setup": 32.566,
+    "total": 954.817,
+    "verifier": 15.729
+  },
+  "trial_name": "dicom-audit-74__eWLCyfy",
+  "usage": {
+    "n_cache_tokens": 5624576.0,
+    "n_input_tokens": 5818483.0,
+    "n_output_tokens": 32336.0
+  },
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ]
+}

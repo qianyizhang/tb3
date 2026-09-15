@@ -1,0 +1,28 @@
+{
+  "classification": "model_failure_candidate",
+  "evidence": [
+    "docs/evidence/br004-single-case-32-review.json",
+    "docs/evidence/br004-single-patient-freeze.json"
+  ],
+  "evidence_files": [
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br004-single-case-32-review.json",
+      "sha256": "707ab41e7dd04d735259e676d41648adf114d9fb7fcfd46492e3e4a44a7a0e96"
+    },
+    {
+      "label": "Review evidence",
+      "path": "docs/evidence/br004-single-patient-freeze.json",
+      "sha256": "3a59e052d0972371eca41d8995ed50ac2867f5bbedd87a6e6483d8cf0b7c01bd"
+    }
+  ],
+  "evidence_sha256": "bf746c5169f8f3dbf27c0d706ff65eb9f2a015b212c65554d69288e0423d9941",
+  "explanation": "Normal completion, deliberate validated empty report, matched oracle=1/nop=0 controls and independent re-score. Exactly kidney_left is missing, with no extras or localization-only error. Author-reviewed source/task/CT overlays show a connected local extension into adjacent fat and muscle. The controlled change adds 63 voxels, retaining Dice 0.993572. Changed centers extend up to 9 mm from the original mask centers; 44 are more than 3 mm away. The source labels those voxels as background (43) or iliopsoas (20). Geometry and author CT review support a local planted-error miss; no independent specialist certification is claimed. No alternate source defect was alleged in the final report.",
+  "failure_mode": "small_connected_kidney_extension_missed",
+  "next_action": "Retain as the strongest observed difficulty/resource candidate in this one-attempt screen. One completed miss does not establish a repeatable failure probability or final submission readiness.",
+  "schema_version": 1,
+  "source_sha256": "ae49aafb935d745ec9f7d9d54577058be276dd05778466293913e1db4b637726",
+  "trial_id": "dicom-audit-32__Txe4eHJ-7ecc5611",
+  "updated_at": "2026-09-15T04:31:52.335917+00:00",
+  "verdict": "genuine_failure"
+}

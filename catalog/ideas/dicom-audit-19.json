@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "dicom-audit-19",
+  "title": "Anatomical annotation audit: case-19",
+  "status": "calibration",
+  "tags": [
+    "brainstorm-round-004",
+    "non-security",
+    "medical-imaging",
+    "single-patient-benchmark"
+  ],
+  "hypothesis": "A single patient can expose a localized anatomical annotation reasoning gap without the cost of reviewing the full eight-patient batch.",
+  "why_hard": "One healthy Terra/max pass required 14.48 agent minutes and 31291 output tokens; no difficulty failure is demonstrated.",
+  "next_action": "Retire this condition from difficulty selection; preserve its resource observation and negative-control role.",
+  "sources": [
+    {
+      "url": "codex://threads/01a0a248-241a-76b0-8ecf-15e259df9734",
+      "note": "User requests one trial per task and resource benchmarking."
+    }
+  ],
+  "evidence": [
+    "docs/research-rounds/BR-004-single-patient-benchmark.md",
+    "docs/evidence/br004-single-patient-freeze.json",
+    "docs/evidence/br004-single-patient-reviews.json"
+  ],
+  "notes": "Separate single-patient condition derived from dicom-anatomy-audit; source bytes and normal time budget unchanged. No specialist clinical certification; inspect any alleged source error."
+}

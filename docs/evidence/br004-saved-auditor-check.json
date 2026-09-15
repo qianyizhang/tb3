@@ -1,0 +1,170 @@
+{
+  "round": "BR-004",
+  "date": "2026-09-15",
+  "evidence_class": "saved_program_author_diagnostic",
+  "source_subjects": 1,
+  "new_model_trials": 0,
+  "source": "TotalSegmentator small v2.0.1 s1245, previously derived BR-003 3-mm fixture",
+  "source_record": "https://zenodo.org/records/10047263",
+  "inputs": [
+    {
+      "path": "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/artifacts/app/answer/auditor.py",
+      "sha256": "40e7566b0829460c4864c72f91b1ed995faa54a23329a8a9fd3031a641263416"
+    },
+    {
+      "path": "probes/dicom-triplanar-svg/authoring/build_imaging.py",
+      "sha256": "ea2a57ff3d9d7514bfe61e386603da0b9097262464fc7cc96d7a523ab385be47"
+    },
+    {
+      "path": "runs/br003-history/imaging/base-truth.npz",
+      "sha256": "d61badb954dc358f86fef42d6e7f6d8948767131943b3cf072cd48e42ae43c4f"
+    },
+    {
+      "path": "runs/br003-history/imaging/audit-data/packet-41.dcm",
+      "sha256": "4bcd3617a4013d01ecfe60e38a98e14fdbc79b3399a0b00634f821f1342e8f8b"
+    },
+    {
+      "path": "runs/br004-revisit/check_saved.py",
+      "sha256": "f5f6fdb71ae1be2a274ed111616018b529e2709637709f914198f6158cce41c6"
+    }
+  ],
+  "original_packets": [
+    {
+      "packet": "packet-41",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "packet": "packet-73",
+      "passed": true,
+      "actual": [
+        {
+          "label": "heart",
+          "issue": "missing"
+        }
+      ]
+    },
+    {
+      "packet": "packet-28",
+      "passed": true,
+      "actual": [
+        {
+          "label": "lung_upper_lobe_left",
+          "issue": "wrong_side"
+        },
+        {
+          "label": "lung_upper_lobe_right",
+          "issue": "wrong_side"
+        }
+      ]
+    },
+    {
+      "packet": "packet-56",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "packet": "packet-92",
+      "passed": true,
+      "actual": [
+        {
+          "label": "rib_right_7",
+          "issue": "wrong_side"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "adjacent_right_ribs",
+      "mutation": {
+        "operation": "exchange_all_voxel_class_ids",
+        "labels": [
+          "rib_right_7",
+          "rib_right_8"
+        ]
+      },
+      "focus_labels": [
+        "heart",
+        "lung_upper_lobe_left",
+        "lung_upper_lobe_right",
+        "rib_right_7"
+      ],
+      "expected": [
+        {
+          "label": "rib_right_7",
+          "issue": "misplaced"
+        }
+      ],
+      "actual": [],
+      "passed": false,
+      "elapsed_seconds": 0.181,
+      "voxels_in_original_masks": {
+        "rib_right_7": 629,
+        "rib_right_8": 567
+      },
+      "checks": {
+        "ct_unchanged": true,
+        "foreground_union_unchanged": true,
+        "unrelated_label_voxels_unchanged": true,
+        "source_reference_readback_exact": true
+      },
+      "seg_sha256": "2e8c8bed1273165d80d21b3cdd3292434baad1708fa73d6fa11ccd8d8784b5e6",
+      "seg_frames": 2116
+    },
+    {
+      "id": "same_side_lung_lobes",
+      "mutation": {
+        "operation": "exchange_all_voxel_class_ids",
+        "labels": [
+          "lung_upper_lobe_right",
+          "lung_middle_lobe_right"
+        ]
+      },
+      "focus_labels": [
+        "heart",
+        "lung_upper_lobe_left",
+        "lung_upper_lobe_right",
+        "rib_right_7"
+      ],
+      "expected": [
+        {
+          "label": "lung_upper_lobe_right",
+          "issue": "misplaced"
+        }
+      ],
+      "actual": [],
+      "passed": false,
+      "elapsed_seconds": 0.2,
+      "voxels_in_original_masks": {
+        "lung_upper_lobe_right": 31882,
+        "lung_middle_lobe_right": 13526
+      },
+      "checks": {
+        "ct_unchanged": true,
+        "foreground_union_unchanged": true,
+        "unrelated_label_voxels_unchanged": true,
+        "source_reference_readback_exact": true
+      },
+      "seg_sha256": "ab421ca86b15116ed47a930a47b1d8ab2255645a0fc6b03651a9741096fd8ecb",
+      "seg_frames": 2116
+    }
+  ],
+  "ct_sampling_crosscheck": {
+    "calls": 22,
+    "all_exact": true,
+    "warning_counts": {
+      "divide by zero encountered in matmul": 932,
+      "overflow encountered in matmul": 932,
+      "invalid value encountered in matmul": 932
+    },
+    "method": "Observation wrapper returns original HU samples and asserts exact equality to elementwise geometry; saved program bytes unchanged."
+  },
+  "interpretation": "The unchanged saved program still passes all five original packets and misses these two same-side whole-mask relabelings. This is not a fresh Terra attempt or a benchmark failure; it does not establish difficulty after the task is revised.",
+  "limitations": [
+    "One correlated source subject.",
+    "Expected semantic identities inherit the BR-003 inspected source; no new clinical adjudication.",
+    "Writer highdicom read-back validates serialization, not independent clinical truth.",
+    "No postoperative cases or subtle contour defects tested."
+  ]
+}

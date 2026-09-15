@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "dicom-anatomy-audit",
+  "title": "CT annotation audit with localized anatomical defects",
+  "status": "parked",
+  "tags": [
+    "brainstorm-round-004",
+    "non-security",
+    "medical-imaging",
+    "anatomy",
+    "dicom"
+  ],
+  "hypothesis": "A solver must detect localized mask defects while accepting plausible annotations on real scans with coverage and pathology variation; global label presence, side and tissue summaries are insufficient.",
+  "why_hard": "Localized changes preserve plausible whole-mask shape and tissue class, but the fresh Terra/max run timed out after 1800 seconds with its empty starter unchanged. Genuine short-horizon difficulty is not established.",
+  "next_action": "Preserve the batch timeout as inconclusive. The completed single-patient screen identifies dicom-audit-32 as the lead and dicom-audit-83 as a second reviewed miss; source holds remain for cases 46 and 61. See the separate resource benchmark before any newly frozen design.",
+  "sources": [
+    {
+      "url": "codex://threads/01a0a248-241a-76b0-8ecf-15e259df9734",
+      "note": "BR-004 user explicitly requests harder subtle test set and Terra/max attempt."
+    },
+    {
+      "url": "https://zenodo.org/records/10047263",
+      "note": "CC BY 4.0 TotalSegmentator small v2.0.1; eight independently sourced patients."
+    }
+  ],
+  "evidence": [
+    "docs/research-rounds/BR-004-dicom-annotation-revisit.md",
+    "docs/evidence/br004-anatomy-audit-v1-freeze.json",
+    "docs/evidence/br004-anatomy-author-controls.json",
+    "docs/evidence/br004-anatomy-source-provenance.json",
+    "docs/evidence/br004-anatomy-saved-baseline.json",
+    "docs/evidence/br004-anatomy-round-summary.json",
+    "docs/evidence/br004-anatomy-terra-trace-summary.json",
+    "catalog/analyses/br004-anatomy-audit.md",
+    "docs/evidence/br004-single-patient-summary.json",
+    "catalog/analyses/br004-single-patient.md"
+  ],
+  "notes": "Successor to retired dicom-label-audit with a fixed-report deliverable. One excluded timeout, zero completed model accuracy results, zero genuine failures. No certified postoperative cases, specialist clinical validation or unseen-patient generalization. Final submission requirements remain separate. The counts above describe the original batch only; the separate single-patient condition has eight normal completions, two reviewed failures and two source holds."
+}

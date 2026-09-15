@@ -1,0 +1,466 @@
+{
+  "round": "BR-004",
+  "candidate": "dicom-anatomy-audit",
+  "condition": "frozen-v1",
+  "captured_at": "2026-09-15T00:47:58.337325+00:00",
+  "trials": [
+    {
+      "condition": "oracle",
+      "trial": "dicom-anatomy-audit__XDmMQoQ",
+      "result_path": "runs/br004-anatomy-oracle-v1-20260915/dicom-anatomy-audit__XDmMQoQ/result.json",
+      "result_sha256": "68614af72fd6948756d1fd11dde2b18b1132c203cfeabf213b677fabccd8e2ec",
+      "task_checksum": "59495ca0fc6045a2e9d153567d095a0d9a88c5a404c0385f0d12144d8a1ca278",
+      "model": null,
+      "reasoning_effort": null,
+      "reward": 1.0,
+      "exception_info": null,
+      "started_at": "2026-09-15T00:12:45.581687Z",
+      "finished_at": "2026-09-15T00:13:25.919704Z",
+      "agent_seconds": 0.15205,
+      "total_seconds": 40.338017,
+      "agent_info": {
+        "name": "oracle",
+        "version": "1.0.0",
+        "model_info": null
+      },
+      "details_path": "runs/br004-anatomy-oracle-v1-20260915/dicom-anatomy-audit__XDmMQoQ/verifier/details.json",
+      "details_sha256": "1184d32c5935e58183d91354f4b19b9510a4a8c96094d6df496c7785ba5db4d9",
+      "grade": {
+        "passed": true,
+        "cases": [
+          {
+            "case_id": "case-19",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 11,
+            "source_stratum": "marked thoracic abnormality",
+            "passed": true
+          },
+          {
+            "case_id": "case-28",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [
+              "rib_right_7",
+              "rib_right_8"
+            ],
+            "expected_positive_labels": 2,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": true
+          },
+          {
+            "case_id": "case-32",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [
+              "kidney_left"
+            ],
+            "expected_positive_labels": 1,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": true
+          },
+          {
+            "case_id": "case-46",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 10,
+            "source_stratum": "source pathology",
+            "passed": true
+          },
+          {
+            "case_id": "case-61",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [
+              "heart"
+            ],
+            "expected_positive_labels": 1,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": true
+          },
+          {
+            "case_id": "case-74",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 11,
+            "source_stratum": "limited coverage",
+            "passed": true
+          },
+          {
+            "case_id": "case-83",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [
+              "kidney_left"
+            ],
+            "expected_positive_labels": 1,
+            "focus_labels": 10,
+            "source_stratum": "marked thoracic abnormality",
+            "passed": true
+          },
+          {
+            "case_id": "case-95",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 11,
+            "source_stratum": "source pathology",
+            "passed": true
+          }
+        ],
+        "correctly_located_labels": 5,
+        "expected_positive_labels": 5,
+        "false_positive_labels": 0
+      }
+    },
+    {
+      "condition": "nop",
+      "trial": "dicom-anatomy-audit__mgZWRLg",
+      "result_path": "runs/br004-anatomy-nop-v1-20260915/dicom-anatomy-audit__mgZWRLg/result.json",
+      "result_sha256": "48cfaa2a25584cc5a8d1d5842b9d21e7e18ed13c5f691b43f35227243be04f4b",
+      "task_checksum": "59495ca0fc6045a2e9d153567d095a0d9a88c5a404c0385f0d12144d8a1ca278",
+      "model": null,
+      "reasoning_effort": null,
+      "reward": 0.0,
+      "exception_info": null,
+      "started_at": "2026-09-15T00:14:24.364916Z",
+      "finished_at": "2026-09-15T00:14:49.735608Z",
+      "agent_seconds": 0.000106,
+      "total_seconds": 25.370692,
+      "agent_info": {
+        "name": "nop",
+        "version": "1.0.0",
+        "model_info": null
+      },
+      "details_path": "runs/br004-anatomy-nop-v1-20260915/dicom-anatomy-audit__mgZWRLg/verifier/details.json",
+      "details_sha256": "40fd1ef455267a536e95efbb508ca3eb373dfd2068f995e59dd2c9b01112c703",
+      "grade": {
+        "passed": false,
+        "cases": [
+          {
+            "case_id": "case-19",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 11,
+            "source_stratum": "marked thoracic abnormality",
+            "passed": true
+          },
+          {
+            "case_id": "case-28",
+            "missing": [
+              "rib_right_7",
+              "rib_right_8"
+            ],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 2,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": false
+          },
+          {
+            "case_id": "case-32",
+            "missing": [
+              "kidney_left"
+            ],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 1,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": false
+          },
+          {
+            "case_id": "case-46",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 10,
+            "source_stratum": "source pathology",
+            "passed": true
+          },
+          {
+            "case_id": "case-61",
+            "missing": [
+              "heart"
+            ],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 1,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": false
+          },
+          {
+            "case_id": "case-74",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 11,
+            "source_stratum": "limited coverage",
+            "passed": true
+          },
+          {
+            "case_id": "case-83",
+            "missing": [
+              "kidney_left"
+            ],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 1,
+            "focus_labels": 10,
+            "source_stratum": "marked thoracic abnormality",
+            "passed": false
+          },
+          {
+            "case_id": "case-95",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 11,
+            "source_stratum": "source pathology",
+            "passed": true
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 5,
+        "false_positive_labels": 0
+      }
+    },
+    {
+      "condition": "terra",
+      "trial": "dicom-anatomy-audit__cZPMKGf",
+      "result_path": "runs/br004-anatomy-terra-max-v1-20260915/dicom-anatomy-audit__cZPMKGf/result.json",
+      "result_sha256": "e39936b27c879c4d5fc7111accc7b6e3d3b6d88214710b1769c6228e68bf58e9",
+      "task_checksum": "59495ca0fc6045a2e9d153567d095a0d9a88c5a404c0385f0d12144d8a1ca278",
+      "model": "openai/gpt-5.6-terra",
+      "reasoning_effort": "max",
+      "reward": 0.0,
+      "exception_info": {
+        "exception_type": "AgentTimeoutError",
+        "exception_message": "Agent execution timed out after 1800.0 seconds",
+        "occurred_at": "2026-09-15T08:46:34.763102"
+      },
+      "started_at": "2026-09-15T00:16:02.981748Z",
+      "finished_at": "2026-09-15T00:46:58.826552Z",
+      "agent_seconds": 1800.112325,
+      "total_seconds": 1855.844804,
+      "agent_info": {
+        "name": "codex",
+        "version": "0.154.0",
+        "model_info": {
+          "name": "gpt-5.6-terra",
+          "provider": "openai"
+        }
+      },
+      "details_path": "runs/br004-anatomy-terra-max-v1-20260915/dicom-anatomy-audit__cZPMKGf/verifier/details.json",
+      "details_sha256": "40fd1ef455267a536e95efbb508ca3eb373dfd2068f995e59dd2c9b01112c703",
+      "grade": {
+        "passed": false,
+        "cases": [
+          {
+            "case_id": "case-19",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 11,
+            "source_stratum": "marked thoracic abnormality",
+            "passed": true
+          },
+          {
+            "case_id": "case-28",
+            "missing": [
+              "rib_right_7",
+              "rib_right_8"
+            ],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 2,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": false
+          },
+          {
+            "case_id": "case-32",
+            "missing": [
+              "kidney_left"
+            ],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 1,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": false
+          },
+          {
+            "case_id": "case-46",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 10,
+            "source_stratum": "source pathology",
+            "passed": true
+          },
+          {
+            "case_id": "case-61",
+            "missing": [
+              "heart"
+            ],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 1,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": false
+          },
+          {
+            "case_id": "case-74",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 11,
+            "source_stratum": "limited coverage",
+            "passed": true
+          },
+          {
+            "case_id": "case-83",
+            "missing": [
+              "kidney_left"
+            ],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 1,
+            "focus_labels": 10,
+            "source_stratum": "marked thoracic abnormality",
+            "passed": false
+          },
+          {
+            "case_id": "case-95",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 11,
+            "source_stratum": "source pathology",
+            "passed": true
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 5,
+        "false_positive_labels": 0
+      },
+      "answer_path": "runs/br004-anatomy-terra-max-v1-20260915/dicom-anatomy-audit__cZPMKGf/artifacts/app/answer/findings.json",
+      "answer_sha256": "a18219ad99f332d721c0b803f2aff041789d29327bcf469be419138abd15bac0",
+      "submission": {
+        "cases": [
+          {
+            "case_id": "case-74",
+            "findings": []
+          },
+          {
+            "case_id": "case-19",
+            "findings": []
+          },
+          {
+            "case_id": "case-83",
+            "findings": []
+          },
+          {
+            "case_id": "case-46",
+            "findings": []
+          },
+          {
+            "case_id": "case-28",
+            "findings": []
+          },
+          {
+            "case_id": "case-61",
+            "findings": []
+          },
+          {
+            "case_id": "case-95",
+            "findings": []
+          },
+          {
+            "case_id": "case-32",
+            "findings": []
+          }
+        ]
+      },
+      "independent_rescore_matches": true,
+      "normal_model_completion": false,
+      "artifact_equals_starter": true,
+      "diagnostics": {
+        "interpretation": "Unfinished starter-artifact checks, not model accuracy or evidence of missed anatomy.",
+        "case_count": 8,
+        "exact_cases": 4,
+        "positive_labels": 5,
+        "positive_labels_named": 0,
+        "positive_labels_correctly_located": 0,
+        "missed_positive_labels": 5,
+        "incorrectly_localized_labels": 0,
+        "negative_focus_labels": 81,
+        "false_positive_labels": 0,
+        "clean_cases": 4,
+        "clean_cases_passed": 4,
+        "clean_case_negative_labels": 43,
+        "clean_case_false_positive_labels": 0
+      }
+    }
+  ],
+  "frozen_files_unchanged": 23,
+  "execution_snapshot_matches": true,
+  "original_br003_files_unchanged": 19,
+  "all_three_harbor_checksums_match": true,
+  "outcome": "AgentTimeoutError at 1800 seconds; unchanged empty starter report. Inconclusive for anatomical reasoning difficulty.",
+  "limitations": [
+    "One local Terra/max attempt, not a population capability estimate or final submission qualification.",
+    "Eight fixed patients; no held-out patient generalization.",
+    "Controlled annotation edits with author source review; no independent specialist clinical certification.",
+    "No confirmed postoperative cases. Coverage and pathology variation do not establish postoperative discrimination.",
+    "Oracle report uses authored truth. Oracle/nop validate the grading interface, not an independent general anatomical solver.",
+    "The catalog importer does not parse this scorer case schema; the retained details.json and this independently reproduced grade own case results."
+  ]
+}

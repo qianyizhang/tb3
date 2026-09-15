@@ -1,0 +1,26 @@
+{
+  "condition": "br004-single-patient-v1",
+  "harbor_version": "0.14.0",
+  "source_path": ".venv/lib/python3.12/site-packages/harbor/agents/installed/codex.py",
+  "source_sha256": "6b26e9e713cc9e939efb30bdd18ac9e7a2e33fb2ef799d1d0686c4afd14e9f36",
+  "source_lines": [
+    570,
+    607,
+    668,
+    673
+  ],
+  "primary_usage_basis": "Last event_msg token_count info.total_token_usage, as used by Harbor trajectory conversion and agent_result.",
+  "input_includes_cached_input": true,
+  "output_includes_reasoning_output": true,
+  "reasoning_counter_admission": "Only a legacy runtime counter matching Harbor input, cache and output totals exactly.",
+  "cost_basis": "Harbor reports runtime cost when supplied, otherwise estimates using its LiteLLM pricing table. Do not call this an invoice.",
+  "alternate_counter": "token_usage_record.payload.thread_token_usage is retained separately if present. Its totals may differ; no undocumented scope equivalence is assumed.",
+  "prior_batch_counter_difference_observed": {
+    "harbor_input": 9790131,
+    "record_stream_input": 10047357,
+    "harbor_output": 53501,
+    "record_stream_output": 58136,
+    "reasoning_output_both_streams": 31810
+  },
+  "timing_basis": "Agent and total wall-clock durations from Harbor phase timestamps. CPU-seconds and peak memory not measured."
+}

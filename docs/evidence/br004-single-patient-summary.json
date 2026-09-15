@@ -1,0 +1,1216 @@
+{
+  "round": "BR-004",
+  "condition": "single-patient-v1",
+  "captured_at": "2026-09-15T04:32:26.807521+00:00",
+  "freeze_sha256": "3a59e052d0972371eca41d8995ed50ac2867f5bbedd87a6e6483d8cf0b7c01bd",
+  "rows": [
+    {
+      "task_id": "dicom-audit-74",
+      "case_id": "case-74",
+      "focus_label_count": 11,
+      "expected_positive_labels": 0,
+      "source_truth_hold": false,
+      "task_kind": "Limited-coverage control",
+      "post_trial_source_truth_hold": false,
+      "controls": {
+        "oracle": {
+          "result_path": "runs/br004-single-74-oracle-v1-20260915/dicom-audit-74__KjdhNLZ/result.json",
+          "result_sha256": "2d90cd931542b437e140008a96512985a7539a2b567d6956f653903cbd972c2b",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 26.132415,
+          "task_checksum": "81356be2d535481ecadfbdb9b842762526b1493354a327e07e49ee3ff51ffcb4"
+        },
+        "nop": {
+          "result_path": "runs/br004-single-74-nop-v1-20260915/dicom-audit-74__CZHze5y/result.json",
+          "result_sha256": "2b5c6fb170c699dd0fec193261f11e6ea7223fab0a6c15d463d965dd6b13a2d9",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 26.086288,
+          "task_checksum": "81356be2d535481ecadfbdb9b842762526b1493354a327e07e49ee3ff51ffcb4"
+        }
+      },
+      "controls_total_seconds": 52.218703000000005,
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br004-single-74-terra-max-v1-20260915/dicom-audit-74__eWLCyfy/result.json",
+      "result_sha256": "4876c416a62dfaf629913380aa048048267a17af76726eb18dcf9831bcefc51f",
+      "task_checksum": "81356be2d535481ecadfbdb9b842762526b1493354a327e07e49ee3ff51ffcb4",
+      "model": "openai/gpt-5.6-terra",
+      "reasoning_effort": "max",
+      "agent_version": "0.154.0",
+      "started_at": "2026-09-15T02:13:43.275688Z",
+      "finished_at": "2026-09-15T02:29:38.092881Z",
+      "agent_started_at": "2026-09-15T02:14:18.285253Z",
+      "agent_finished_at": "2026-09-15T02:29:08.151398Z",
+      "agent_seconds": 889.866145,
+      "total_seconds": 954.817193,
+      "environment_setup_seconds": 2.348735,
+      "agent_setup_seconds": 32.565786,
+      "verifier_seconds": 15.729243,
+      "raw_reward": 1.0,
+      "input_tokens": 5818483,
+      "cached_input_tokens": 5624576,
+      "output_tokens": 32336,
+      "uncached_input_tokens": 193907,
+      "estimated_cost_usd": 1.9007611999999998,
+      "reasoning_output_tokens": 18506,
+      "token_accounting": {
+        "basis": "Harbor agent_result; matched legacy runtime event when available",
+        "matching_legacy_event": {
+          "timestamp": "2026-09-15T02:29:05.957Z",
+          "usage": {
+            "input_tokens": 5818483,
+            "cached_input_tokens": 5624576,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 32336,
+            "reasoning_output_tokens": 18506,
+            "total_tokens": 5850819
+          },
+          "path": "runs/br004-single-74-terra-max-v1-20260915/dicom-audit-74__eWLCyfy/agent/sessions/2026/09/15/rollout-2026-09-15T02-14-19-01a0a2d8-0007-78e3-a9ef-819b48530a7d.jsonl",
+          "sha256": "bace16b91fad5da0a35f3486cfbf6285343d438877afc7133119beb37305e099"
+        },
+        "last_record_stream_usage": {
+          "input_tokens": 5818483,
+          "cached_input_tokens": 5624576,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 32336,
+          "reasoning_output_tokens": 18506,
+          "total_tokens": 5850819
+        },
+        "record_stream_differs_from_harbor": false
+      },
+      "grade": {
+        "passed": true,
+        "cases": [
+          {
+            "case_id": "case-74",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 11,
+            "source_stratum": "limited coverage",
+            "passed": true
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 0,
+        "false_positive_labels": 0
+      },
+      "grade_sha256": "32da7ec5ae95a9fc9086fcad40a1a1c905898765600bfe9461f52ef3abb4fe41",
+      "finding_diagnostics": {
+        "expected_labels": 0,
+        "positive_labels_named": 0,
+        "positive_labels_located": 0,
+        "missing": [],
+        "extra": [],
+        "bad_points": []
+      },
+      "artifact_exists": true,
+      "artifact_path": "runs/br004-single-74-terra-max-v1-20260915/dicom-audit-74__eWLCyfy/artifacts/app/answer/findings.json",
+      "artifact_sha256": "b56c4976df764cc6106d309188de1423f00cbb713b2701e4c6d2d56ac6748ce6",
+      "artifact_equals_starter": true,
+      "submission": {
+        "cases": [
+          {
+            "case_id": "case-74",
+            "findings": []
+          }
+        ]
+      },
+      "nearest_discrepancy_distance_mm": {},
+      "independent_rescore_matches": true,
+      "tool_wrappers": 75,
+      "image_review_wrappers": 42,
+      "seconds_to_first_image_review": 66.585747,
+      "observed_image_blocks": 42,
+      "trajectory_sha256": "0037bf99bcd7048cfcbf4284d18b20c76033fa96e8ec4d208016ea010b81be69",
+      "raw_outcome": "pass",
+      "validity": "completed raw pass",
+      "authored_review": {
+        "outcome": "completed_pass",
+        "validity": "completed raw pass",
+        "failure_hypothesis_supported": false,
+        "evidence": "Normal completion, matching controls and independent re-score. The model explicitly validated an empty findings list after 42 image-review calls across the requested masks.",
+        "resource_observation": "14.83 agent minutes, 32336 output tokens, 193907 uncached input tokens, estimated USD 1.901. First image at 66.59 s; this was not simply a slow startup.",
+        "disposition": "Retire as a difficulty candidate; preserve as a costly negative control."
+      }
+    },
+    {
+      "task_id": "dicom-audit-19",
+      "case_id": "case-19",
+      "focus_label_count": 11,
+      "expected_positive_labels": 0,
+      "source_truth_hold": false,
+      "task_kind": "Thoracic-abnormality control",
+      "post_trial_source_truth_hold": false,
+      "controls": {
+        "oracle": {
+          "result_path": "runs/br004-single-19-oracle-v1-20260915/dicom-audit-19__ewzqgpf/result.json",
+          "result_sha256": "4fc2aefd6ae1928ec8fb940eeda6529148269b271cb9590f88bd9f2aeaf73f0f",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 30.752496,
+          "task_checksum": "13eacb528bb9cca24877e179715d031c00fb6c270ae7ddfed0fa8f7567190c27"
+        },
+        "nop": {
+          "result_path": "runs/br004-single-19-nop-v1-20260915/dicom-audit-19__vCLRx7c/result.json",
+          "result_sha256": "907fb8935ba956a54ab0d7ff1e6c39b030d6a642c5db027c4130b240fb153157",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 30.107016,
+          "task_checksum": "13eacb528bb9cca24877e179715d031c00fb6c270ae7ddfed0fa8f7567190c27"
+        }
+      },
+      "controls_total_seconds": 60.859512,
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br004-single-19-terra-max-v1-20260915/dicom-audit-19__9wBvqge/result.json",
+      "result_sha256": "c4bd8a3636a70683514c47d873498fc0bfbc07e9dc8b10fe97035ebdac86acc7",
+      "task_checksum": "13eacb528bb9cca24877e179715d031c00fb6c270ae7ddfed0fa8f7567190c27",
+      "model": "openai/gpt-5.6-terra",
+      "reasoning_effort": "max",
+      "agent_version": "0.154.0",
+      "started_at": "2026-09-15T02:30:40.334840Z",
+      "finished_at": "2026-09-15T02:46:15.740003Z",
+      "agent_started_at": "2026-09-15T02:31:22.038582Z",
+      "agent_finished_at": "2026-09-15T02:45:50.790089Z",
+      "agent_seconds": 868.751507,
+      "total_seconds": 935.405163,
+      "environment_setup_seconds": 3.172773,
+      "agent_setup_seconds": 38.425328,
+      "verifier_seconds": 12.987494,
+      "raw_reward": 1.0,
+      "input_tokens": 4308309,
+      "cached_input_tokens": 4055936,
+      "output_tokens": 31291,
+      "uncached_input_tokens": 252373,
+      "estimated_cost_usd": 1.6914251999999999,
+      "reasoning_output_tokens": 18781,
+      "token_accounting": {
+        "basis": "Harbor agent_result; matched legacy runtime event when available",
+        "matching_legacy_event": {
+          "timestamp": "2026-09-15T02:45:48.066Z",
+          "usage": {
+            "input_tokens": 4308309,
+            "cached_input_tokens": 4055936,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 31291,
+            "reasoning_output_tokens": 18781,
+            "total_tokens": 4339600
+          },
+          "path": "runs/br004-single-19-terra-max-v1-20260915/dicom-audit-19__9wBvqge/agent/sessions/2026/09/15/rollout-2026-09-15T02-31-23-01a0a2e7-9f9f-7a61-b812-9c44f1055918.jsonl",
+          "sha256": "540b4c9e09c30128b7b9a64177325f8fe6346833ac70c7218654a4ae2467a1ec"
+        },
+        "last_record_stream_usage": {
+          "input_tokens": 4308309,
+          "cached_input_tokens": 4055936,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 31291,
+          "reasoning_output_tokens": 18781,
+          "total_tokens": 4339600
+        },
+        "record_stream_differs_from_harbor": false
+      },
+      "grade": {
+        "passed": true,
+        "cases": [
+          {
+            "case_id": "case-19",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 11,
+            "source_stratum": "marked thoracic abnormality",
+            "passed": true
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 0,
+        "false_positive_labels": 0
+      },
+      "grade_sha256": "268e3b88a62c8c185ae45a1168cf3ab985abb8e9fb37e73a205d99dc3942e050",
+      "finding_diagnostics": {
+        "expected_labels": 0,
+        "positive_labels_named": 0,
+        "positive_labels_located": 0,
+        "missing": [],
+        "extra": [],
+        "bad_points": []
+      },
+      "artifact_exists": true,
+      "artifact_path": "runs/br004-single-19-terra-max-v1-20260915/dicom-audit-19__9wBvqge/artifacts/app/answer/findings.json",
+      "artifact_sha256": "5f0194820102c4de0d39b2c429d9daed3f7b90814bda157a08ca4302e2ab38a4",
+      "artifact_equals_starter": false,
+      "submission": {
+        "cases": [
+          {
+            "case_id": "case-19",
+            "findings": []
+          }
+        ]
+      },
+      "nearest_discrepancy_distance_mm": {},
+      "independent_rescore_matches": true,
+      "tool_wrappers": 45,
+      "image_review_wrappers": 14,
+      "seconds_to_first_image_review": 112.129418,
+      "observed_image_blocks": 63,
+      "trajectory_sha256": "7674b6f491faab7fd05a23eb66e55c11a653b416ea2cd31f713b7e311e202bda",
+      "raw_outcome": "pass",
+      "validity": "completed raw pass",
+      "authored_review": {
+        "outcome": "completed_pass",
+        "validity": "completed raw pass",
+        "failure_hypothesis_supported": false,
+        "evidence": "Normal completion, matching oracle/nop controls, independent re-score and explicit final validation of an empty report. The trace includes 14 image-review wrappers carrying 63 observed image blocks, often grouped per wrapper.",
+        "resource_observation": "14.48 agent minutes, 31291 output tokens, 252373 uncached input tokens, estimated USD 1.691. First image at 112.13 s. Lower wrapper count than case-74 did not coincide with a large wall-time or output-token reduction, though the patients and strategies differ.",
+        "disposition": "Retire as a difficulty candidate; retain as a negative control. Do not infer causal tooling effects from this cross-patient observation."
+      }
+    },
+    {
+      "task_id": "dicom-audit-83",
+      "case_id": "case-83",
+      "focus_label_count": 10,
+      "expected_positive_labels": 1,
+      "source_truth_hold": false,
+      "task_kind": "Kidney-pole omission",
+      "post_trial_source_truth_hold": false,
+      "controls": {
+        "oracle": {
+          "result_path": "runs/br004-single-83-oracle-v1-20260915/dicom-audit-83__otFpAMM/result.json",
+          "result_sha256": "16d7e446be1a8f86c4379d5be36c85e2c17283e8fcb5d5e202e7830d9fe689ec",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 29.871692,
+          "task_checksum": "2f96e0a7a3b862d7e7e4ab13dd7d47729944f1de4de72f266d8a646f98adc319"
+        },
+        "nop": {
+          "result_path": "runs/br004-single-83-nop-v1-20260915/dicom-audit-83__tkRUYqK/result.json",
+          "result_sha256": "d3ac13cbe51944b12b5170d0c524800e3ec1cd453386cc730789a7f664438271",
+          "reward": 0.0,
+          "exception_type": null,
+          "total_seconds": 29.1485,
+          "task_checksum": "2f96e0a7a3b862d7e7e4ab13dd7d47729944f1de4de72f266d8a646f98adc319"
+        }
+      },
+      "controls_total_seconds": 59.020191999999994,
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br004-single-83-terra-max-v1-20260915/dicom-audit-83__8EdLfrW/result.json",
+      "result_sha256": "9b681c0f3b37e6ec555d88180c824330341ac40870869424798fdf935717e35c",
+      "task_checksum": "2f96e0a7a3b862d7e7e4ab13dd7d47729944f1de4de72f266d8a646f98adc319",
+      "model": "openai/gpt-5.6-terra",
+      "reasoning_effort": "max",
+      "agent_version": "0.154.0",
+      "started_at": "2026-09-15T02:47:16.038268Z",
+      "finished_at": "2026-09-15T03:04:22.185064Z",
+      "agent_started_at": "2026-09-15T02:47:59.654835Z",
+      "agent_finished_at": "2026-09-15T03:03:55.079955Z",
+      "agent_seconds": 955.42512,
+      "total_seconds": 1026.146796,
+      "environment_setup_seconds": 3.190615,
+      "agent_setup_seconds": 40.326489,
+      "verifier_seconds": 14.015158,
+      "raw_reward": 0.0,
+      "input_tokens": 4664568,
+      "cached_input_tokens": 4488320,
+      "output_tokens": 32744,
+      "uncached_input_tokens": 176248,
+      "estimated_cost_usd": 1.6430879999999999,
+      "reasoning_output_tokens": 21090,
+      "token_accounting": {
+        "basis": "Harbor agent_result; matched legacy runtime event when available",
+        "matching_legacy_event": {
+          "timestamp": "2026-09-15T03:03:52.315Z",
+          "usage": {
+            "input_tokens": 4664568,
+            "cached_input_tokens": 4488320,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 32744,
+            "reasoning_output_tokens": 21090,
+            "total_tokens": 4697312
+          },
+          "path": "runs/br004-single-83-terra-max-v1-20260915/dicom-audit-83__8EdLfrW/agent/sessions/2026/09/15/rollout-2026-09-15T02-48-01-01a0a2f6-d92e-7123-8438-7a585c0d20db.jsonl",
+          "sha256": "37231c10c2f75aa8d9e1c88d6983d9a330a22c17168ed145e3cc6e32c1c647a9"
+        },
+        "last_record_stream_usage": {
+          "input_tokens": 4664568,
+          "cached_input_tokens": 4488320,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 32744,
+          "reasoning_output_tokens": 21090,
+          "total_tokens": 4697312
+        },
+        "record_stream_differs_from_harbor": false
+      },
+      "grade": {
+        "passed": false,
+        "cases": [
+          {
+            "case_id": "case-83",
+            "missing": [
+              "kidney_left"
+            ],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 1,
+            "focus_labels": 10,
+            "source_stratum": "marked thoracic abnormality",
+            "passed": false
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 1,
+        "false_positive_labels": 0
+      },
+      "grade_sha256": "ca4149bc9070dd3f1a5b1d0611ef81714cb9f4d2b188d380a1c4c123dcef64db",
+      "finding_diagnostics": {
+        "expected_labels": 1,
+        "positive_labels_named": 0,
+        "positive_labels_located": 0,
+        "missing": [
+          "kidney_left"
+        ],
+        "extra": [],
+        "bad_points": []
+      },
+      "artifact_exists": true,
+      "artifact_path": "runs/br004-single-83-terra-max-v1-20260915/dicom-audit-83__8EdLfrW/artifacts/app/answer/findings.json",
+      "artifact_sha256": "bf29b40bdb65170d574e35db61aa2a7a96d8b0f179c61395007184f6e203ad17",
+      "artifact_equals_starter": false,
+      "submission": {
+        "cases": [
+          {
+            "case_id": "case-83",
+            "findings": []
+          }
+        ]
+      },
+      "nearest_discrepancy_distance_mm": {},
+      "independent_rescore_matches": true,
+      "tool_wrappers": 59,
+      "image_review_wrappers": 32,
+      "seconds_to_first_image_review": 93.979165,
+      "observed_image_blocks": 32,
+      "trajectory_sha256": "b21d2d94bf48d3d461c0993f6826ce9f9f83501e93997e673d63b5305cd1ced1",
+      "raw_outcome": "miss",
+      "validity": "reviewed genuine miss",
+      "authored_review": {
+        "outcome": "genuine_failure",
+        "validity": "reviewed genuine miss",
+        "failure_hypothesis_supported": true,
+        "failure_mode": "local_kidney_pole_omission_missed",
+        "evidence": "Normal completion and explicit final empty report; matched healthy controls and independent re-score show kidney_left omitted from findings, with no extras or localization-only error. Author-reviewed CT/source/task overlays show continuous kidney tissue beyond the truncated mask. The defect was frozen before the run and exceeds the fine boundary band.",
+        "source_review": "Controlled source-mask change and CT reviewed by task author; no independent specialist certification. No alternate source defect was alleged in the final report.",
+        "trace_observation": "Axial choices are restricted to the submitted mask slice range 82..113, while the source extends to 116; 108 of 215 changed voxels lie above slice 113. However, padded coronal kidney views were also generated and inspected, including the affected region. Crop selection is a possible contributor, not a demonstrated sole cause.",
+        "resource_observation": "15.92 agent minutes; 32744 output tokens including 21090 reasoning tokens; 176248 uncached input tokens; estimated USD 1.643. This is a completed semantic miss but still a substantial review cost.",
+        "disposition": "Retain as the first completed failure in this condition; one observation only, no repeat or final qualification. Compare with remaining planted-error tasks before selecting an efficiency candidate."
+      }
+    },
+    {
+      "task_id": "dicom-audit-46",
+      "case_id": "case-46",
+      "focus_label_count": 10,
+      "expected_positive_labels": 0,
+      "source_truth_hold": true,
+      "task_kind": "Pathology control; source hold",
+      "post_trial_source_truth_hold": false,
+      "controls": {
+        "oracle": {
+          "result_path": "runs/br004-single-46-oracle-v1-20260915/dicom-audit-46__MZ4v9Kr/result.json",
+          "result_sha256": "74715c334b426314244b3fdf431379622c790c5931504735b6fa6bfee84c0d3c",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 31.021125,
+          "task_checksum": "ad71157ae4588c731f1f677098a878b32722278cf82db046d3bbaaab4c913bcb"
+        },
+        "nop": {
+          "result_path": "runs/br004-single-46-nop-v1-20260915/dicom-audit-46__eki94hQ/result.json",
+          "result_sha256": "b302aed1ecb1a034f713c9a27700ab8dca8a851072721cdc8510a6c28ad86fa5",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 28.909233,
+          "task_checksum": "ad71157ae4588c731f1f677098a878b32722278cf82db046d3bbaaab4c913bcb"
+        }
+      },
+      "controls_total_seconds": 59.930358,
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br004-single-46-terra-max-v1-20260915/dicom-audit-46__wem5Z8X/result.json",
+      "result_sha256": "739ad2327702156c2dba55535fbaad8d2a525fd982d15b26ff58deb5924ad904",
+      "task_checksum": "ad71157ae4588c731f1f677098a878b32722278cf82db046d3bbaaab4c913bcb",
+      "model": "openai/gpt-5.6-terra",
+      "reasoning_effort": "max",
+      "agent_version": "0.154.0",
+      "started_at": "2026-09-15T03:05:23.407006Z",
+      "finished_at": "2026-09-15T03:18:49.555884Z",
+      "agent_started_at": "2026-09-15T03:06:07.954964Z",
+      "agent_finished_at": "2026-09-15T03:18:22.063060Z",
+      "agent_seconds": 734.108096,
+      "total_seconds": 806.148878,
+      "environment_setup_seconds": 3.035854,
+      "agent_setup_seconds": 41.41249,
+      "verifier_seconds": 14.136944,
+      "raw_reward": 1.0,
+      "input_tokens": 4529420,
+      "cached_input_tokens": 4341760,
+      "output_tokens": 26836,
+      "uncached_input_tokens": 187660,
+      "estimated_cost_usd": 1.5657040000000002,
+      "reasoning_output_tokens": 17273,
+      "token_accounting": {
+        "basis": "Harbor agent_result; matched legacy runtime event when available",
+        "matching_legacy_event": {
+          "timestamp": "2026-09-15T03:18:18.122Z",
+          "usage": {
+            "input_tokens": 4529420,
+            "cached_input_tokens": 4341760,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 26836,
+            "reasoning_output_tokens": 17273,
+            "total_tokens": 4556256
+          },
+          "path": "runs/br004-single-46-terra-max-v1-20260915/dicom-audit-46__wem5Z8X/agent/sessions/2026/09/15/rollout-2026-09-15T03-06-09-01a0a307-73ce-7c00-a4d7-7e06c0cf63aa.jsonl",
+          "sha256": "1261a3331665523cedec37b8a9b259c5da52adf16d98b213e2969fc00ecc7f1b"
+        },
+        "last_record_stream_usage": {
+          "input_tokens": 4529420,
+          "cached_input_tokens": 4341760,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 26836,
+          "reasoning_output_tokens": 17273,
+          "total_tokens": 4556256
+        },
+        "record_stream_differs_from_harbor": false
+      },
+      "grade": {
+        "passed": true,
+        "cases": [
+          {
+            "case_id": "case-46",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 10,
+            "source_stratum": "source pathology",
+            "passed": true
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 0,
+        "false_positive_labels": 0
+      },
+      "grade_sha256": "cecf1f33d295104847ca2099871fb854b4fe4b3afb76c9bc52a5daefed26c5de",
+      "finding_diagnostics": {
+        "expected_labels": 0,
+        "positive_labels_named": 0,
+        "positive_labels_located": 0,
+        "missing": [],
+        "extra": [],
+        "bad_points": []
+      },
+      "artifact_exists": true,
+      "artifact_path": "runs/br004-single-46-terra-max-v1-20260915/dicom-audit-46__wem5Z8X/artifacts/app/answer/findings.json",
+      "artifact_sha256": "5fddaf8a4bb19e575bc16438e7effabe52c2e61874ef88e6ffce3f75e6dd44b8",
+      "artifact_equals_starter": true,
+      "submission": {
+        "cases": [
+          {
+            "case_id": "case-46",
+            "findings": []
+          }
+        ]
+      },
+      "nearest_discrepancy_distance_mm": {},
+      "independent_rescore_matches": true,
+      "tool_wrappers": 42,
+      "image_review_wrappers": 18,
+      "seconds_to_first_image_review": 105.929036,
+      "observed_image_blocks": 58,
+      "trajectory_sha256": "63b8e5a35aa77b25341d22127696137ffbcf8f269ef9849796ce4c3f9786c030",
+      "raw_outcome": "pass",
+      "validity": "raw pass; source truth hold",
+      "authored_review": {
+        "outcome": "completed_pass_source_hold",
+        "validity": "raw pass; source truth hold",
+        "failure_hypothesis_supported": false,
+        "evidence": "Normal completion, matching controls and independent re-score. The model explicitly validated its empty findings report after 58 observed image blocks. The raw frozen grade passes.",
+        "source_review": "The anterior L2 component was flagged as ambiguous before this trial. A raw pass cannot settle that source-label question; retain the predeclared hold.",
+        "resource_observation": "12.24 agent minutes, 26836 output tokens, 187660 uncached input tokens, estimated USD 1.566.",
+        "disposition": "Park anatomical accuracy interpretation pending source adjudication; retain the completed resource measurement and raw grade."
+      }
+    },
+    {
+      "task_id": "dicom-audit-28",
+      "case_id": "case-28",
+      "focus_label_count": 11,
+      "expected_positive_labels": 2,
+      "source_truth_hold": false,
+      "task_kind": "Local rib-identity exchange",
+      "post_trial_source_truth_hold": false,
+      "controls": {
+        "oracle": {
+          "result_path": "runs/br004-single-28-oracle-v1-20260915/dicom-audit-28__KnNWX2A/result.json",
+          "result_sha256": "6753fd7abd540d738fe25cf55803bc4162d50613d5ea3cea9ccdeb96d62d0523",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 30.76924,
+          "task_checksum": "615817cc24421dd42e5065e53b8e1ae301f4daac16b6b9039bc56e712df76f26"
+        },
+        "nop": {
+          "result_path": "runs/br004-single-28-nop-v1-20260915/dicom-audit-28__JzKhiio/result.json",
+          "result_sha256": "1b6f1dc021ff492242014b541499373c35a11218082736ef02c69137035a99f8",
+          "reward": 0.0,
+          "exception_type": null,
+          "total_seconds": 34.804768,
+          "task_checksum": "615817cc24421dd42e5065e53b8e1ae301f4daac16b6b9039bc56e712df76f26"
+        }
+      },
+      "controls_total_seconds": 65.574008,
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br004-single-28-terra-max-v1-20260915/dicom-audit-28__CDY2uUm/result.json",
+      "result_sha256": "99df738043992d2db200e3a6e8e1e2ea1e1076f7b21249072fe757406d2fd9e5",
+      "task_checksum": "615817cc24421dd42e5065e53b8e1ae301f4daac16b6b9039bc56e712df76f26",
+      "model": "openai/gpt-5.6-terra",
+      "reasoning_effort": "max",
+      "agent_version": "0.154.0",
+      "started_at": "2026-09-15T03:19:56.381710Z",
+      "finished_at": "2026-09-15T03:38:19.360394Z",
+      "agent_started_at": "2026-09-15T03:20:51.938615Z",
+      "agent_finished_at": "2026-09-15T03:37:47.876006Z",
+      "agent_seconds": 1015.937391,
+      "total_seconds": 1102.978684,
+      "environment_setup_seconds": 5.165444,
+      "agent_setup_seconds": 50.296918,
+      "verifier_seconds": 16.737019,
+      "raw_reward": 1.0,
+      "input_tokens": 4428437,
+      "cached_input_tokens": 4258048,
+      "output_tokens": 37678,
+      "uncached_input_tokens": 170389,
+      "estimated_cost_usd": 1.6445236,
+      "reasoning_output_tokens": 21797,
+      "token_accounting": {
+        "basis": "Harbor agent_result; matched legacy runtime event when available",
+        "matching_legacy_event": {
+          "timestamp": "2026-09-15T03:37:44.991Z",
+          "usage": {
+            "input_tokens": 4428437,
+            "cached_input_tokens": 4258048,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 37678,
+            "reasoning_output_tokens": 21797,
+            "total_tokens": 4466115
+          },
+          "path": "runs/br004-single-28-terra-max-v1-20260915/dicom-audit-28__CDY2uUm/agent/sessions/2026/09/15/rollout-2026-09-15T03-20-54-01a0a314-f3ac-7700-97f6-a8105b78c92e.jsonl",
+          "sha256": "08efa9c93cb74978e36d02b7b1e1e56774b711f510ab7972a52b5e4696cdadc2"
+        },
+        "last_record_stream_usage": {
+          "input_tokens": 4428437,
+          "cached_input_tokens": 4258048,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 37678,
+          "reasoning_output_tokens": 21797,
+          "total_tokens": 4466115
+        },
+        "record_stream_differs_from_harbor": false
+      },
+      "grade": {
+        "passed": true,
+        "cases": [
+          {
+            "case_id": "case-28",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [
+              "rib_right_7",
+              "rib_right_8"
+            ],
+            "expected_positive_labels": 2,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": true
+          }
+        ],
+        "correctly_located_labels": 2,
+        "expected_positive_labels": 2,
+        "false_positive_labels": 0
+      },
+      "grade_sha256": "6dc133b7111813669e44bdc41f5ae856179ec093e963c2a3a35a8084c5c47e6a",
+      "finding_diagnostics": {
+        "expected_labels": 2,
+        "positive_labels_named": 2,
+        "positive_labels_located": 2,
+        "missing": [],
+        "extra": [],
+        "bad_points": []
+      },
+      "artifact_exists": true,
+      "artifact_path": "runs/br004-single-28-terra-max-v1-20260915/dicom-audit-28__CDY2uUm/artifacts/app/answer/findings.json",
+      "artifact_sha256": "5e514ddee8fdedf0d19e1b16333497695a8cdf65dd93bb3ba7a4c0313e6585dc",
+      "artifact_equals_starter": false,
+      "submission": {
+        "cases": [
+          {
+            "case_id": "case-28",
+            "findings": [
+              {
+                "label": "rib_right_7",
+                "point_lps_mm": [
+                  -132.4,
+                  -100.9,
+                  434.2
+                ]
+              },
+              {
+                "label": "rib_right_8",
+                "point_lps_mm": [
+                  -120.4,
+                  -97.9,
+                  461.2
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "nearest_discrepancy_distance_mm": {
+        "rib_right_7": 0.01602039266195182,
+        "rib_right_8": 0.01602039266195182
+      },
+      "independent_rescore_matches": true,
+      "tool_wrappers": 53,
+      "image_review_wrappers": 21,
+      "seconds_to_first_image_review": 92.974385,
+      "observed_image_blocks": 21,
+      "trajectory_sha256": "820e75596dea0884bd882d8965bff34063199fe5b16936fbbf4f055fca9d3fa9",
+      "raw_outcome": "pass",
+      "validity": "completed positive pass",
+      "authored_review": {
+        "outcome": "completed_pass",
+        "validity": "completed positive pass",
+        "failure_hypothesis_supported": false,
+        "evidence": "Normal completion, matched oracle=1/nop=0 controls and independent re-score. The submitted report names exactly rib_right_7 and rib_right_8, with both LPS witnesses 0.0161 mm or less from the respective discrepancy voxel centers. No extra labels or invalid points.",
+        "trace_observation": "The visible trajectory includes component analysis, cross-side geometric comparisons and image review before submitting both rib identity findings.",
+        "resource_observation": "16.93 agent minutes, 37678 output tokens, 170389 uncached input tokens, estimated USD 1.645.",
+        "disposition": "Retire this frozen condition from difficulty selection; preserve as an expensive positive control."
+      }
+    },
+    {
+      "task_id": "dicom-audit-61",
+      "case_id": "case-61",
+      "focus_label_count": 11,
+      "expected_positive_labels": 1,
+      "source_truth_hold": false,
+      "task_kind": "Heart-apex omission",
+      "post_trial_source_truth_hold": true,
+      "controls": {
+        "oracle": {
+          "result_path": "runs/br004-single-61-oracle-v1-20260915/dicom-audit-61__EfUdYJ3/result.json",
+          "result_sha256": "c04377735a455eeca586cb03f2104f83bddd83a5a04682dd24366c9e06333c9c",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 37.504886,
+          "task_checksum": "8ceafc9ef8f0326f510ceff0fe0304e3a15802ce853ac13d2d8aeba30ecf317c"
+        },
+        "nop": {
+          "result_path": "runs/br004-single-61-nop-v1-20260915/dicom-audit-61__rdNyTMa/result.json",
+          "result_sha256": "b9a1df056b5b18c926c8143de9beec55465e80e194cfd382ddfcbe8d89aa0c58",
+          "reward": 0.0,
+          "exception_type": null,
+          "total_seconds": 35.563253,
+          "task_checksum": "8ceafc9ef8f0326f510ceff0fe0304e3a15802ce853ac13d2d8aeba30ecf317c"
+        }
+      },
+      "controls_total_seconds": 73.068139,
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br004-single-61-terra-max-v1-20260915/dicom-audit-61__ihBKTbE/result.json",
+      "result_sha256": "f02c97a634513f4c65d7ce1797265e672c94fccb15a104fc29bb883073acfe44",
+      "task_checksum": "8ceafc9ef8f0326f510ceff0fe0304e3a15802ce853ac13d2d8aeba30ecf317c",
+      "model": "openai/gpt-5.6-terra",
+      "reasoning_effort": "max",
+      "agent_version": "0.154.0",
+      "started_at": "2026-09-15T03:39:33.702688Z",
+      "finished_at": "2026-09-15T04:00:48.469422Z",
+      "agent_started_at": "2026-09-15T03:40:24.983109Z",
+      "agent_finished_at": "2026-09-15T04:00:18.306669Z",
+      "agent_seconds": 1193.32356,
+      "total_seconds": 1274.766734,
+      "environment_setup_seconds": 5.169068,
+      "agent_setup_seconds": 46.015979,
+      "verifier_seconds": 16.184386,
+      "raw_reward": 0.0,
+      "input_tokens": 6161811,
+      "cached_input_tokens": 5788928,
+      "output_tokens": 48633,
+      "uncached_input_tokens": 372883,
+      "estimated_cost_usd": 2.4871476,
+      "reasoning_output_tokens": 29895,
+      "token_accounting": {
+        "basis": "Harbor agent_result; matched legacy runtime event when available",
+        "matching_legacy_event": {
+          "timestamp": "2026-09-15T04:00:15.426Z",
+          "usage": {
+            "input_tokens": 6161811,
+            "cached_input_tokens": 5788928,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 48633,
+            "reasoning_output_tokens": 29895,
+            "total_tokens": 6210444
+          },
+          "path": "runs/br004-single-61-terra-max-v1-20260915/dicom-audit-61__ihBKTbE/agent/sessions/2026/09/15/rollout-2026-09-15T03-40-27-01a0a326-da54-7051-91c0-f0c76a5ce8a0.jsonl",
+          "sha256": "e145c22779cff6aef449f67e53381d4c000496ce0432d6d790e56bb7e06f6a82"
+        },
+        "last_record_stream_usage": {
+          "input_tokens": 6161811,
+          "cached_input_tokens": 5788928,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 48633,
+          "reasoning_output_tokens": 29895,
+          "total_tokens": 6210444
+        },
+        "record_stream_differs_from_harbor": false
+      },
+      "grade": {
+        "passed": false,
+        "cases": [
+          {
+            "case_id": "case-61",
+            "missing": [],
+            "extra": [
+              "liver"
+            ],
+            "bad_points": [
+              "heart"
+            ],
+            "located": [],
+            "expected_positive_labels": 1,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": false
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 1,
+        "false_positive_labels": 1
+      },
+      "grade_sha256": "84b1f29543de2dcc93780f301f572a47e4e24859fcbb06bd1bf050b258648f20",
+      "finding_diagnostics": {
+        "expected_labels": 1,
+        "positive_labels_named": 1,
+        "positive_labels_located": 0,
+        "missing": [],
+        "extra": [
+          "liver"
+        ],
+        "bad_points": [
+          "heart"
+        ]
+      },
+      "artifact_exists": true,
+      "artifact_path": "runs/br004-single-61-terra-max-v1-20260915/dicom-audit-61__ihBKTbE/artifacts/app/answer/findings.json",
+      "artifact_sha256": "0d79a42e7fb8b7add8f219b994d78d7961e42f515a7419a1c5f4a4712210b410",
+      "artifact_equals_starter": false,
+      "submission": {
+        "cases": [
+          {
+            "case_id": "case-61",
+            "findings": [
+              {
+                "label": "liver",
+                "point_lps_mm": [
+                  -16.3,
+                  -196.3,
+                  810.2
+                ]
+              },
+              {
+                "label": "heart",
+                "point_lps_mm": [
+                  58.7,
+                  -157.3,
+                  942.2
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "nearest_discrepancy_distance_mm": {
+        "heart": 90.85131145028389
+      },
+      "independent_rescore_matches": true,
+      "tool_wrappers": 54,
+      "image_review_wrappers": 12,
+      "seconds_to_first_image_review": 99.463891,
+      "observed_image_blocks": 25,
+      "trajectory_sha256": "26222844110db1a05a72af8e368204a79c0188f737edfc0029fd4035b10e94d9",
+      "raw_outcome": "miss",
+      "validity": "raw miss; source adjudication required",
+      "authored_review": {
+        "outcome": "source_truth_hold",
+        "validity": "raw miss; source adjudication required",
+        "source_truth_hold": true,
+        "hold_timing": "post-trial review of model-reported source regions",
+        "failure_hypothesis_supported": null,
+        "failure_mode": "unadjudicated_source_findings_and_unlocated_planted_omission",
+        "evidence": "Normal completion, matched oracle=1/nop=0 controls and independent re-score. The model reported liver plus heart. Its heart witness is 90.8513 mm from the planted inferior omission; the raw grade has an extra liver label and an invalid heart witness.",
+        "source_review": "Both reported voxel regions are unchanged from the original source: liver [63,80,110] is background at 70 HU in both arrays; heart [38,67,154] is heart at 54 HU in both. The trace explicitly inspects an internal liver gap and a detached superior heart component. Their clinical interpretation is not settled by the planted-error map. Author image review does not justify dismissing both source findings as model errors.",
+        "trace_observation": "The final heart point uses the supplied affine correctly; this is not a simple LPS conversion error. The final report does not locate the controlled inferior cap omission. Broad review included debugging scripts and investigation of original-source irregularities.",
+        "resource_observation": "19.89 agent minutes, 48633 output tokens, 372883 uncached input tokens, estimated USD 2.487.",
+        "disposition": "Exclude from genuine overall task-failure counts pending source adjudication. Retain the raw miss, unlocated planted omission and resource measurement separately; do not alter this freeze or rerun it."
+      }
+    },
+    {
+      "task_id": "dicom-audit-95",
+      "case_id": "case-95",
+      "focus_label_count": 11,
+      "expected_positive_labels": 0,
+      "source_truth_hold": false,
+      "task_kind": "Pathology control",
+      "post_trial_source_truth_hold": false,
+      "controls": {
+        "oracle": {
+          "result_path": "runs/br004-single-95-oracle-v1-20260915/dicom-audit-95__vHwsrJw/result.json",
+          "result_sha256": "f87ea7fc7cd65afc7b3ac8c85f84a20ebc678e183f7c586ab07ebb06030fd771",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 35.595434,
+          "task_checksum": "64ce082034081473398894873ab2788364726e0ba48b0df93c1c435db42dec79"
+        },
+        "nop": {
+          "result_path": "runs/br004-single-95-nop-v1-20260915/dicom-audit-95__3qvJrzP/result.json",
+          "result_sha256": "71bd50846c0e1b7c6f5a7a077a56de31b505e6ff5fd945d64f4c2031e54993e3",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 33.3389,
+          "task_checksum": "64ce082034081473398894873ab2788364726e0ba48b0df93c1c435db42dec79"
+        }
+      },
+      "controls_total_seconds": 68.934334,
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br004-single-95-terra-max-v1-20260915/dicom-audit-95__mN79N27/result.json",
+      "result_sha256": "8ac72b108ec384a4480000ae42a33005dcdb61c9b2dfb12413a4001ba213ba82",
+      "task_checksum": "64ce082034081473398894873ab2788364726e0ba48b0df93c1c435db42dec79",
+      "model": "openai/gpt-5.6-terra",
+      "reasoning_effort": "max",
+      "agent_version": "0.154.0",
+      "started_at": "2026-09-15T04:01:58.538999Z",
+      "finished_at": "2026-09-15T04:16:33.206365Z",
+      "agent_started_at": "2026-09-15T04:02:47.861221Z",
+      "agent_finished_at": "2026-09-15T04:16:05.975835Z",
+      "agent_seconds": 798.114614,
+      "total_seconds": 874.667366,
+      "environment_setup_seconds": 5.017488,
+      "agent_setup_seconds": 44.22402,
+      "verifier_seconds": 14.134727,
+      "raw_reward": 1.0,
+      "input_tokens": 4049683,
+      "cached_input_tokens": 3877504,
+      "output_tokens": 28955,
+      "uncached_input_tokens": 172179,
+      "estimated_cost_usd": 1.4673188000000001,
+      "reasoning_output_tokens": 16324,
+      "token_accounting": {
+        "basis": "Harbor agent_result; matched legacy runtime event when available",
+        "matching_legacy_event": {
+          "timestamp": "2026-09-15T04:16:03.294Z",
+          "usage": {
+            "input_tokens": 4049683,
+            "cached_input_tokens": 3877504,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 28955,
+            "reasoning_output_tokens": 16324,
+            "total_tokens": 4078638
+          },
+          "path": "runs/br004-single-95-terra-max-v1-20260915/dicom-audit-95__mN79N27/agent/sessions/2026/09/15/rollout-2026-09-15T04-02-50-01a0a33b-56f7-70d1-ae48-3ca7257004ef.jsonl",
+          "sha256": "67517996de73b99e1da763b274eba333ae5061b717b4b3f068ecb1e7812d2043"
+        },
+        "last_record_stream_usage": {
+          "input_tokens": 4049683,
+          "cached_input_tokens": 3877504,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 28955,
+          "reasoning_output_tokens": 16324,
+          "total_tokens": 4078638
+        },
+        "record_stream_differs_from_harbor": false
+      },
+      "grade": {
+        "passed": true,
+        "cases": [
+          {
+            "case_id": "case-95",
+            "missing": [],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 0,
+            "focus_labels": 11,
+            "source_stratum": "source pathology",
+            "passed": true
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 0,
+        "false_positive_labels": 0
+      },
+      "grade_sha256": "31e29689f7034c0ce5cd5b927c0b5c8b29bb9e98741563cf3065d1b141606b4c",
+      "finding_diagnostics": {
+        "expected_labels": 0,
+        "positive_labels_named": 0,
+        "positive_labels_located": 0,
+        "missing": [],
+        "extra": [],
+        "bad_points": []
+      },
+      "artifact_exists": true,
+      "artifact_path": "runs/br004-single-95-terra-max-v1-20260915/dicom-audit-95__mN79N27/artifacts/app/answer/findings.json",
+      "artifact_sha256": "fbed25270f347d5f323f98380662d1b338bd6e998b85cea13ae4495e9ad95887",
+      "artifact_equals_starter": false,
+      "submission": {
+        "cases": [
+          {
+            "case_id": "case-95",
+            "findings": []
+          }
+        ]
+      },
+      "nearest_discrepancy_distance_mm": {},
+      "independent_rescore_matches": true,
+      "tool_wrappers": 50,
+      "image_review_wrappers": 25,
+      "seconds_to_first_image_review": 74.860779,
+      "observed_image_blocks": 56,
+      "trajectory_sha256": "dca1e19d33178c719082eaf573958b364a7c92b73f2d00b4e382402031dbb4d1",
+      "raw_outcome": "pass",
+      "validity": "completed raw pass",
+      "authored_review": {
+        "outcome": "completed_pass",
+        "validity": "completed raw pass",
+        "failure_hypothesis_supported": false,
+        "evidence": "Normal completion, matched expected oracle/nop passes and independent re-score. The model explicitly rewrote and validated an empty report, treating minor single-voxel edge artifacts as below the stated threshold. No false-positive labels.",
+        "resource_observation": "13.30 agent minutes, 28955 output tokens, 172179 uncached input tokens, estimated USD 1.467. The trace contains 56 observed image blocks.",
+        "disposition": "Retire from difficulty selection; retain as a negative control."
+      }
+    },
+    {
+      "task_id": "dicom-audit-32",
+      "case_id": "case-32",
+      "focus_label_count": 11,
+      "expected_positive_labels": 1,
+      "source_truth_hold": false,
+      "task_kind": "Small kidney extension",
+      "post_trial_source_truth_hold": false,
+      "controls": {
+        "oracle": {
+          "result_path": "runs/br004-single-32-oracle-v1-20260915/dicom-audit-32__PB2zuBG/result.json",
+          "result_sha256": "bfca5ecb2155ea5a5fa6155f2c68745f51b0ceceeb2eeb31917aae2a5e5295bd",
+          "reward": 1.0,
+          "exception_type": null,
+          "total_seconds": 31.064768,
+          "task_checksum": "c88e4af6bfa4e09f2a3f7e3a18c19f90c277c5836295b0224cccd06c307da378"
+        },
+        "nop": {
+          "result_path": "runs/br004-single-32-nop-v1-20260915/dicom-audit-32__meqxgbw/result.json",
+          "result_sha256": "6756c14e30bfc7ef188d752981dd1a9ab53c1cdacc55ee3aac1709c916bbac26",
+          "reward": 0.0,
+          "exception_type": null,
+          "total_seconds": 30.721673,
+          "task_checksum": "c88e4af6bfa4e09f2a3f7e3a18c19f90c277c5836295b0224cccd06c307da378"
+        }
+      },
+      "controls_total_seconds": 61.786440999999996,
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br004-single-32-terra-max-v1-20260915/dicom-audit-32__Txe4eHJ/result.json",
+      "result_sha256": "ae49aafb935d745ec9f7d9d54577058be276dd05778466293913e1db4b637726",
+      "task_checksum": "c88e4af6bfa4e09f2a3f7e3a18c19f90c277c5836295b0224cccd06c307da378",
+      "model": "openai/gpt-5.6-terra",
+      "reasoning_effort": "max",
+      "agent_version": "0.154.0",
+      "started_at": "2026-09-15T04:17:36.109047Z",
+      "finished_at": "2026-09-15T04:29:03.148208Z",
+      "agent_started_at": "2026-09-15T04:18:20.064105Z",
+      "agent_finished_at": "2026-09-15T04:28:32.815968Z",
+      "agent_seconds": 612.751863,
+      "total_seconds": 687.039161,
+      "environment_setup_seconds": 3.649147,
+      "agent_setup_seconds": 40.221397,
+      "verifier_seconds": 16.2003,
+      "raw_reward": 0.0,
+      "input_tokens": 1970147,
+      "cached_input_tokens": 1871232,
+      "output_tokens": 23713,
+      "uncached_input_tokens": 98915,
+      "estimated_cost_usd": 0.8566324,
+      "reasoning_output_tokens": 15230,
+      "token_accounting": {
+        "basis": "Harbor agent_result; matched legacy runtime event when available",
+        "matching_legacy_event": {
+          "timestamp": "2026-09-15T04:28:30.668Z",
+          "usage": {
+            "input_tokens": 1970147,
+            "cached_input_tokens": 1871232,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23713,
+            "reasoning_output_tokens": 15230,
+            "total_tokens": 1993860
+          },
+          "path": "runs/br004-single-32-terra-max-v1-20260915/dicom-audit-32__Txe4eHJ/agent/sessions/2026/09/15/rollout-2026-09-15T04-18-21-01a0a349-8ea6-74a1-87f4-5c54743800af.jsonl",
+          "sha256": "f3e92997afc7793a4dd7e991e14331b674e020b11ac8a0523572a440b6d0b92d"
+        },
+        "last_record_stream_usage": {
+          "input_tokens": 1970147,
+          "cached_input_tokens": 1871232,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 23713,
+          "reasoning_output_tokens": 15230,
+          "total_tokens": 1993860
+        },
+        "record_stream_differs_from_harbor": false
+      },
+      "grade": {
+        "passed": false,
+        "cases": [
+          {
+            "case_id": "case-32",
+            "missing": [
+              "kidney_left"
+            ],
+            "extra": [],
+            "bad_points": [],
+            "located": [],
+            "expected_positive_labels": 1,
+            "focus_labels": 11,
+            "source_stratum": "ordinary anatomy",
+            "passed": false
+          }
+        ],
+        "correctly_located_labels": 0,
+        "expected_positive_labels": 1,
+        "false_positive_labels": 0
+      },
+      "grade_sha256": "46eb69558acd8724864cc5d111ab6d3a1bad3589cf4c0731a814511b63812b55",
+      "finding_diagnostics": {
+        "expected_labels": 1,
+        "positive_labels_named": 0,
+        "positive_labels_located": 0,
+        "missing": [
+          "kidney_left"
+        ],
+        "extra": [],
+        "bad_points": []
+      },
+      "artifact_exists": true,
+      "artifact_path": "runs/br004-single-32-terra-max-v1-20260915/dicom-audit-32__Txe4eHJ/artifacts/app/answer/findings.json",
+      "artifact_sha256": "be9b2adb58d47c533a0653aba02a079ded8cc770ec48f2a919e9d867acaad5d8",
+      "artifact_equals_starter": true,
+      "submission": {
+        "cases": [
+          {
+            "case_id": "case-32",
+            "findings": []
+          }
+        ]
+      },
+      "nearest_discrepancy_distance_mm": {},
+      "independent_rescore_matches": true,
+      "tool_wrappers": 35,
+      "image_review_wrappers": 12,
+      "seconds_to_first_image_review": 96.202895,
+      "observed_image_blocks": 12,
+      "trajectory_sha256": "ab81a0ea56428d685cd20298727a900727778497073f3d755d2044539852c641",
+      "raw_outcome": "miss",
+      "validity": "reviewed genuine miss",
+      "authored_review": {
+        "outcome": "genuine_failure",
+        "validity": "reviewed genuine miss",
+        "failure_hypothesis_supported": true,
+        "failure_mode": "small_connected_kidney_extension_missed",
+        "evidence": "Normal completion, deliberate validated empty report, matched oracle=1/nop=0 controls and independent re-score. Exactly kidney_left is missing, with no extras or localization-only error. Author-reviewed source/task/CT overlays show a connected local extension into adjacent fat and muscle.",
+        "source_review": "The controlled change adds 63 voxels, retaining Dice 0.993572. Changed centers extend up to 9 mm from the original mask centers; 44 are more than 3 mm away. The source labels those voxels as background (43) or iliopsoas (20). Geometry and author CT review support a local planted-error miss; no independent specialist certification is claimed. No alternate source defect was alleged in the final report.",
+        "trace_observation": "The initial axial contact sheet includes slice 94 at the retained witness. Later targeted kidney images sample slices 77..113 every 2 slices, and the model also inspected coronal and sagittal views. The actual targeted kidney contact sheet is retained. The outcome is not attributable simply to never receiving views of the affected region; perceptual versus inspection-policy causes are not isolated.",
+        "resource_observation": "10.21 agent minutes, 23713 output tokens including 15230 reasoning tokens, 98915 uncached input tokens, estimated USD 0.857; 12 observed image blocks. Lowest observed time, output tokens, uncached input and estimated cost among these eight attempts.",
+        "disposition": "Retain as the strongest observed difficulty/resource candidate in this one-attempt screen. One completed miss does not establish a repeatable failure probability or final submission readiness."
+      }
+    }
+  ],
+  "completed_attempts": 8,
+  "model_attempts_per_task": 1,
+  "frozen_files_unchanged": true,
+  "model_execution_sequential": true,
+  "limitations": [
+    "One attempt per task; no success-probability or causal optimization estimate.",
+    "Case-46 source-truth hold predeclared; all completed misses require review.",
+    "Input includes cached input. Missing usage is unavailable. Estimated cost is not an invoice.",
+    "Reasoning output is included in output, and reported only from a runtime counter matching Harbor totals. Other record-stream totals may differ; retain them without mixing scopes.",
+    "Timeout time is censored; unfinished artifact grades are not considered final findings.",
+    "Time to first image is a trace-derived interval, not a direct measurement of rendering CPU time. Image blocks may include repeated views.",
+    "CPU/RAM limits are fixed; actual CPU-seconds and peak resident memory were not measured.",
+    "No specialist clinical certification or confirmed postoperative cohort."
+  ],
+  "observed_totals": {
+    "finished_attempts": 8,
+    "normally_completed": 8,
+    "raw_passes": 5,
+    "raw_misses": 3,
+    "reviewed_genuine_misses": 2,
+    "source_truth_holds": 2,
+    "predeclared_source_truth_holds": 1,
+    "post_trial_source_truth_holds": 1,
+    "execution_exclusions": 0,
+    "agent_seconds": 7068.278296,
+    "agent_seconds_available_attempts": 8,
+    "agent_seconds_median": 879.308826,
+    "total_seconds": 7661.969975,
+    "total_seconds_available_attempts": 8,
+    "total_seconds_median": 945.111178,
+    "input_tokens": 35930858,
+    "input_tokens_available_attempts": 8,
+    "input_tokens_median": 4478928.5,
+    "cached_input_tokens": 34306304,
+    "cached_input_tokens_available_attempts": 8,
+    "cached_input_tokens_median": 4299904.0,
+    "uncached_input_tokens": 1624554,
+    "uncached_input_tokens_available_attempts": 8,
+    "uncached_input_tokens_median": 181954.0,
+    "output_tokens": 262186,
+    "output_tokens_available_attempts": 8,
+    "output_tokens_median": 31813.5,
+    "reasoning_output_tokens": 158896,
+    "reasoning_output_tokens_available_attempts": 8,
+    "reasoning_output_tokens_median": 18643.5,
+    "estimated_cost_usd": 13.2566008,
+    "estimated_cost_usd_available_attempts": 8,
+    "estimated_cost_usd_median": 1.6438058,
+    "controls_total_seconds": 501.391687,
+    "controls_total_seconds_available_attempts": 8,
+    "controls_total_seconds_median": 61.322976499999996
+  },
+  "benchmark_wall_seconds": 8173.171633,
+  "benchmark_wall_definition": "First control launch to final model trial completion, including sequential controls and setup; excludes report authoring and earlier batch.",
+  "prior_batch": {
+    "interpretation": "Eight-patient timeout with unchanged empty starter; cost context only, not an accuracy baseline.",
+    "result_path": "runs/br004-anatomy-terra-max-v1-20260915/dicom-anatomy-audit__cZPMKGf/result.json",
+    "result_sha256": "e39936b27c879c4d5fc7111accc7b6e3d3b6d88214710b1769c6228e68bf58e9",
+    "agent_seconds": 1800.112325,
+    "total_seconds": 1855.844804,
+    "input_tokens": 9790131,
+    "cached_input_tokens": 9348096,
+    "output_tokens": 53501,
+    "estimated_cost_usd": 3.3957011999999995
+  }
+}

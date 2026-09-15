@@ -1,0 +1,84 @@
+{
+  "condition": "single-patient-v1",
+  "reviewer": "task author",
+  "specialist_clinical_review": false,
+  "reviews": {
+    "case-74": {
+      "outcome": "completed_pass",
+      "validity": "completed raw pass",
+      "failure_hypothesis_supported": false,
+      "evidence": "Normal completion, matching controls and independent re-score. The model explicitly validated an empty findings list after 42 image-review calls across the requested masks.",
+      "resource_observation": "14.83 agent minutes, 32336 output tokens, 193907 uncached input tokens, estimated USD 1.901. First image at 66.59 s; this was not simply a slow startup.",
+      "disposition": "Retire as a difficulty candidate; preserve as a costly negative control."
+    },
+    "case-19": {
+      "outcome": "completed_pass",
+      "validity": "completed raw pass",
+      "failure_hypothesis_supported": false,
+      "evidence": "Normal completion, matching oracle/nop controls, independent re-score and explicit final validation of an empty report. The trace includes 14 image-review wrappers carrying 63 observed image blocks, often grouped per wrapper.",
+      "resource_observation": "14.48 agent minutes, 31291 output tokens, 252373 uncached input tokens, estimated USD 1.691. First image at 112.13 s. Lower wrapper count than case-74 did not coincide with a large wall-time or output-token reduction, though the patients and strategies differ.",
+      "disposition": "Retire as a difficulty candidate; retain as a negative control. Do not infer causal tooling effects from this cross-patient observation."
+    },
+    "case-83": {
+      "outcome": "genuine_failure",
+      "validity": "reviewed genuine miss",
+      "failure_hypothesis_supported": true,
+      "failure_mode": "local_kidney_pole_omission_missed",
+      "evidence": "Normal completion and explicit final empty report; matched healthy controls and independent re-score show kidney_left omitted from findings, with no extras or localization-only error. Author-reviewed CT/source/task overlays show continuous kidney tissue beyond the truncated mask. The defect was frozen before the run and exceeds the fine boundary band.",
+      "source_review": "Controlled source-mask change and CT reviewed by task author; no independent specialist certification. No alternate source defect was alleged in the final report.",
+      "trace_observation": "Axial choices are restricted to the submitted mask slice range 82..113, while the source extends to 116; 108 of 215 changed voxels lie above slice 113. However, padded coronal kidney views were also generated and inspected, including the affected region. Crop selection is a possible contributor, not a demonstrated sole cause.",
+      "resource_observation": "15.92 agent minutes; 32744 output tokens including 21090 reasoning tokens; 176248 uncached input tokens; estimated USD 1.643. This is a completed semantic miss but still a substantial review cost.",
+      "disposition": "Retain as the first completed failure in this condition; one observation only, no repeat or final qualification. Compare with remaining planted-error tasks before selecting an efficiency candidate."
+    },
+    "case-46": {
+      "outcome": "completed_pass_source_hold",
+      "validity": "raw pass; source truth hold",
+      "failure_hypothesis_supported": false,
+      "evidence": "Normal completion, matching controls and independent re-score. The model explicitly validated its empty findings report after 58 observed image blocks. The raw frozen grade passes.",
+      "source_review": "The anterior L2 component was flagged as ambiguous before this trial. A raw pass cannot settle that source-label question; retain the predeclared hold.",
+      "resource_observation": "12.24 agent minutes, 26836 output tokens, 187660 uncached input tokens, estimated USD 1.566.",
+      "disposition": "Park anatomical accuracy interpretation pending source adjudication; retain the completed resource measurement and raw grade."
+    },
+    "case-28": {
+      "outcome": "completed_pass",
+      "validity": "completed positive pass",
+      "failure_hypothesis_supported": false,
+      "evidence": "Normal completion, matched oracle=1/nop=0 controls and independent re-score. The submitted report names exactly rib_right_7 and rib_right_8, with both LPS witnesses 0.0161 mm or less from the respective discrepancy voxel centers. No extra labels or invalid points.",
+      "trace_observation": "The visible trajectory includes component analysis, cross-side geometric comparisons and image review before submitting both rib identity findings.",
+      "resource_observation": "16.93 agent minutes, 37678 output tokens, 170389 uncached input tokens, estimated USD 1.645.",
+      "disposition": "Retire this frozen condition from difficulty selection; preserve as an expensive positive control."
+    },
+    "case-61": {
+      "outcome": "source_truth_hold",
+      "validity": "raw miss; source adjudication required",
+      "source_truth_hold": true,
+      "hold_timing": "post-trial review of model-reported source regions",
+      "failure_hypothesis_supported": null,
+      "failure_mode": "unadjudicated_source_findings_and_unlocated_planted_omission",
+      "evidence": "Normal completion, matched oracle=1/nop=0 controls and independent re-score. The model reported liver plus heart. Its heart witness is 90.8513 mm from the planted inferior omission; the raw grade has an extra liver label and an invalid heart witness.",
+      "source_review": "Both reported voxel regions are unchanged from the original source: liver [63,80,110] is background at 70 HU in both arrays; heart [38,67,154] is heart at 54 HU in both. The trace explicitly inspects an internal liver gap and a detached superior heart component. Their clinical interpretation is not settled by the planted-error map. Author image review does not justify dismissing both source findings as model errors.",
+      "trace_observation": "The final heart point uses the supplied affine correctly; this is not a simple LPS conversion error. The final report does not locate the controlled inferior cap omission. Broad review included debugging scripts and investigation of original-source irregularities.",
+      "resource_observation": "19.89 agent minutes, 48633 output tokens, 372883 uncached input tokens, estimated USD 2.487.",
+      "disposition": "Exclude from genuine overall task-failure counts pending source adjudication. Retain the raw miss, unlocated planted omission and resource measurement separately; do not alter this freeze or rerun it."
+    },
+    "case-95": {
+      "outcome": "completed_pass",
+      "validity": "completed raw pass",
+      "failure_hypothesis_supported": false,
+      "evidence": "Normal completion, matched expected oracle/nop passes and independent re-score. The model explicitly rewrote and validated an empty report, treating minor single-voxel edge artifacts as below the stated threshold. No false-positive labels.",
+      "resource_observation": "13.30 agent minutes, 28955 output tokens, 172179 uncached input tokens, estimated USD 1.467. The trace contains 56 observed image blocks.",
+      "disposition": "Retire from difficulty selection; retain as a negative control."
+    },
+    "case-32": {
+      "outcome": "genuine_failure",
+      "validity": "reviewed genuine miss",
+      "failure_hypothesis_supported": true,
+      "failure_mode": "small_connected_kidney_extension_missed",
+      "evidence": "Normal completion, deliberate validated empty report, matched oracle=1/nop=0 controls and independent re-score. Exactly kidney_left is missing, with no extras or localization-only error. Author-reviewed source/task/CT overlays show a connected local extension into adjacent fat and muscle.",
+      "source_review": "The controlled change adds 63 voxels, retaining Dice 0.993572. Changed centers extend up to 9 mm from the original mask centers; 44 are more than 3 mm away. The source labels those voxels as background (43) or iliopsoas (20). Geometry and author CT review support a local planted-error miss; no independent specialist certification is claimed. No alternate source defect was alleged in the final report.",
+      "trace_observation": "The initial axial contact sheet includes slice 94 at the retained witness. Later targeted kidney images sample slices 77..113 every 2 slices, and the model also inspected coronal and sagittal views. The actual targeted kidney contact sheet is retained. The outcome is not attributable simply to never receiving views of the affected region; perceptual versus inspection-policy causes are not isolated.",
+      "resource_observation": "10.21 agent minutes, 23713 output tokens including 15230 reasoning tokens, 98915 uncached input tokens, estimated USD 0.857; 12 observed image blocks. Lowest observed time, output tokens, uncached input and estimated cost among these eight attempts.",
+      "disposition": "Retain as the strongest observed difficulty/resource candidate in this one-attempt screen. One completed miss does not establish a repeatable failure probability or final submission readiness."
+    }
+  }
+}

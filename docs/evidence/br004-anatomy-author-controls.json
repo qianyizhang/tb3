@@ -1,0 +1,606 @@
+{
+  "round": "BR-004",
+  "task": "dicom-anatomy-audit",
+  "evidence_class": "author_controls",
+  "model_trials": 0,
+  "oracle": {
+    "passed": true,
+    "cases": [
+      {
+        "case_id": "case-19",
+        "missing": [],
+        "extra": [],
+        "bad_points": [],
+        "located": [],
+        "expected_positive_labels": 0,
+        "focus_labels": 11,
+        "source_stratum": "marked thoracic abnormality",
+        "passed": true
+      },
+      {
+        "case_id": "case-28",
+        "missing": [],
+        "extra": [],
+        "bad_points": [],
+        "located": [
+          "rib_right_7",
+          "rib_right_8"
+        ],
+        "expected_positive_labels": 2,
+        "focus_labels": 11,
+        "source_stratum": "ordinary anatomy",
+        "passed": true
+      },
+      {
+        "case_id": "case-32",
+        "missing": [],
+        "extra": [],
+        "bad_points": [],
+        "located": [
+          "kidney_left"
+        ],
+        "expected_positive_labels": 1,
+        "focus_labels": 11,
+        "source_stratum": "ordinary anatomy",
+        "passed": true
+      },
+      {
+        "case_id": "case-46",
+        "missing": [],
+        "extra": [],
+        "bad_points": [],
+        "located": [],
+        "expected_positive_labels": 0,
+        "focus_labels": 10,
+        "source_stratum": "source pathology",
+        "passed": true
+      },
+      {
+        "case_id": "case-61",
+        "missing": [],
+        "extra": [],
+        "bad_points": [],
+        "located": [
+          "heart"
+        ],
+        "expected_positive_labels": 1,
+        "focus_labels": 11,
+        "source_stratum": "ordinary anatomy",
+        "passed": true
+      },
+      {
+        "case_id": "case-74",
+        "missing": [],
+        "extra": [],
+        "bad_points": [],
+        "located": [],
+        "expected_positive_labels": 0,
+        "focus_labels": 11,
+        "source_stratum": "limited coverage",
+        "passed": true
+      },
+      {
+        "case_id": "case-83",
+        "missing": [],
+        "extra": [],
+        "bad_points": [],
+        "located": [
+          "kidney_left"
+        ],
+        "expected_positive_labels": 1,
+        "focus_labels": 10,
+        "source_stratum": "marked thoracic abnormality",
+        "passed": true
+      },
+      {
+        "case_id": "case-95",
+        "missing": [],
+        "extra": [],
+        "bad_points": [],
+        "located": [],
+        "expected_positive_labels": 0,
+        "focus_labels": 11,
+        "source_stratum": "source pathology",
+        "passed": true
+      }
+    ],
+    "correctly_located_labels": 5,
+    "expected_positive_labels": 5,
+    "false_positive_labels": 0
+  },
+  "incorrect_controls": {
+    "no_findings": {
+      "passed": false,
+      "cases": [
+        {
+          "case_id": "case-19",
+          "missing": [],
+          "extra": [],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 0,
+          "focus_labels": 11,
+          "source_stratum": "marked thoracic abnormality",
+          "passed": true
+        },
+        {
+          "case_id": "case-28",
+          "missing": [
+            "rib_right_7",
+            "rib_right_8"
+          ],
+          "extra": [],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 2,
+          "focus_labels": 11,
+          "source_stratum": "ordinary anatomy",
+          "passed": false
+        },
+        {
+          "case_id": "case-32",
+          "missing": [
+            "kidney_left"
+          ],
+          "extra": [],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 1,
+          "focus_labels": 11,
+          "source_stratum": "ordinary anatomy",
+          "passed": false
+        },
+        {
+          "case_id": "case-46",
+          "missing": [],
+          "extra": [],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 0,
+          "focus_labels": 10,
+          "source_stratum": "source pathology",
+          "passed": true
+        },
+        {
+          "case_id": "case-61",
+          "missing": [
+            "heart"
+          ],
+          "extra": [],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 1,
+          "focus_labels": 11,
+          "source_stratum": "ordinary anatomy",
+          "passed": false
+        },
+        {
+          "case_id": "case-74",
+          "missing": [],
+          "extra": [],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 0,
+          "focus_labels": 11,
+          "source_stratum": "limited coverage",
+          "passed": true
+        },
+        {
+          "case_id": "case-83",
+          "missing": [
+            "kidney_left"
+          ],
+          "extra": [],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 1,
+          "focus_labels": 10,
+          "source_stratum": "marked thoracic abnormality",
+          "passed": false
+        },
+        {
+          "case_id": "case-95",
+          "missing": [],
+          "extra": [],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 0,
+          "focus_labels": 11,
+          "source_stratum": "source pathology",
+          "passed": true
+        }
+      ],
+      "correctly_located_labels": 0,
+      "expected_positive_labels": 5,
+      "false_positive_labels": 0
+    },
+    "flag_every_focus_label": {
+      "passed": false,
+      "cases": [
+        {
+          "case_id": "case-19",
+          "missing": [],
+          "extra": [
+            "heart",
+            "kidney_left",
+            "kidney_right",
+            "liver",
+            "rib_left_7",
+            "rib_left_8",
+            "rib_right_7",
+            "rib_right_8",
+            "spleen",
+            "vertebrae_L1",
+            "vertebrae_L2"
+          ],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 0,
+          "focus_labels": 11,
+          "source_stratum": "marked thoracic abnormality",
+          "passed": false
+        },
+        {
+          "case_id": "case-28",
+          "missing": [],
+          "extra": [
+            "heart",
+            "kidney_left",
+            "kidney_right",
+            "liver",
+            "rib_left_7",
+            "rib_left_8",
+            "spleen",
+            "vertebrae_L1",
+            "vertebrae_L2"
+          ],
+          "bad_points": [
+            "rib_right_7",
+            "rib_right_8"
+          ],
+          "located": [],
+          "expected_positive_labels": 2,
+          "focus_labels": 11,
+          "source_stratum": "ordinary anatomy",
+          "passed": false
+        },
+        {
+          "case_id": "case-32",
+          "missing": [],
+          "extra": [
+            "heart",
+            "kidney_right",
+            "liver",
+            "rib_left_7",
+            "rib_left_8",
+            "rib_right_7",
+            "rib_right_8",
+            "spleen",
+            "vertebrae_L1",
+            "vertebrae_L2"
+          ],
+          "bad_points": [
+            "kidney_left"
+          ],
+          "located": [],
+          "expected_positive_labels": 1,
+          "focus_labels": 11,
+          "source_stratum": "ordinary anatomy",
+          "passed": false
+        },
+        {
+          "case_id": "case-46",
+          "missing": [],
+          "extra": [
+            "heart",
+            "kidney_left",
+            "kidney_right",
+            "liver",
+            "rib_left_7",
+            "rib_left_8",
+            "rib_right_7",
+            "rib_right_8",
+            "vertebrae_L1",
+            "vertebrae_L2"
+          ],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 0,
+          "focus_labels": 10,
+          "source_stratum": "source pathology",
+          "passed": false
+        },
+        {
+          "case_id": "case-61",
+          "missing": [],
+          "extra": [
+            "kidney_left",
+            "kidney_right",
+            "liver",
+            "rib_left_7",
+            "rib_left_8",
+            "rib_right_7",
+            "rib_right_8",
+            "spleen",
+            "vertebrae_L1",
+            "vertebrae_L2"
+          ],
+          "bad_points": [
+            "heart"
+          ],
+          "located": [],
+          "expected_positive_labels": 1,
+          "focus_labels": 11,
+          "source_stratum": "ordinary anatomy",
+          "passed": false
+        },
+        {
+          "case_id": "case-74",
+          "missing": [],
+          "extra": [
+            "heart",
+            "kidney_left",
+            "kidney_right",
+            "liver",
+            "rib_left_7",
+            "rib_left_8",
+            "rib_right_7",
+            "rib_right_8",
+            "spleen",
+            "vertebrae_L1",
+            "vertebrae_L2"
+          ],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 0,
+          "focus_labels": 11,
+          "source_stratum": "limited coverage",
+          "passed": false
+        },
+        {
+          "case_id": "case-83",
+          "missing": [],
+          "extra": [
+            "heart",
+            "kidney_right",
+            "liver",
+            "rib_left_7",
+            "rib_left_8",
+            "rib_right_7",
+            "rib_right_8",
+            "vertebrae_L1",
+            "vertebrae_L2"
+          ],
+          "bad_points": [
+            "kidney_left"
+          ],
+          "located": [],
+          "expected_positive_labels": 1,
+          "focus_labels": 10,
+          "source_stratum": "marked thoracic abnormality",
+          "passed": false
+        },
+        {
+          "case_id": "case-95",
+          "missing": [],
+          "extra": [
+            "heart",
+            "kidney_left",
+            "kidney_right",
+            "liver",
+            "rib_left_7",
+            "rib_left_8",
+            "rib_right_7",
+            "rib_right_8",
+            "spleen",
+            "vertebrae_L1",
+            "vertebrae_L2"
+          ],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 0,
+          "focus_labels": 11,
+          "source_stratum": "source pathology",
+          "passed": false
+        }
+      ],
+      "correctly_located_labels": 0,
+      "expected_positive_labels": 5,
+      "false_positive_labels": 81
+    },
+    "correct_labels_wrong_points": {
+      "passed": false,
+      "cases": [
+        {
+          "case_id": "case-19",
+          "missing": [],
+          "extra": [],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 0,
+          "focus_labels": 11,
+          "source_stratum": "marked thoracic abnormality",
+          "passed": true
+        },
+        {
+          "case_id": "case-28",
+          "missing": [],
+          "extra": [],
+          "bad_points": [
+            "rib_right_7",
+            "rib_right_8"
+          ],
+          "located": [],
+          "expected_positive_labels": 2,
+          "focus_labels": 11,
+          "source_stratum": "ordinary anatomy",
+          "passed": false
+        },
+        {
+          "case_id": "case-32",
+          "missing": [],
+          "extra": [],
+          "bad_points": [
+            "kidney_left"
+          ],
+          "located": [],
+          "expected_positive_labels": 1,
+          "focus_labels": 11,
+          "source_stratum": "ordinary anatomy",
+          "passed": false
+        },
+        {
+          "case_id": "case-46",
+          "missing": [],
+          "extra": [],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 0,
+          "focus_labels": 10,
+          "source_stratum": "source pathology",
+          "passed": true
+        },
+        {
+          "case_id": "case-61",
+          "missing": [],
+          "extra": [],
+          "bad_points": [
+            "heart"
+          ],
+          "located": [],
+          "expected_positive_labels": 1,
+          "focus_labels": 11,
+          "source_stratum": "ordinary anatomy",
+          "passed": false
+        },
+        {
+          "case_id": "case-74",
+          "missing": [],
+          "extra": [],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 0,
+          "focus_labels": 11,
+          "source_stratum": "limited coverage",
+          "passed": true
+        },
+        {
+          "case_id": "case-83",
+          "missing": [],
+          "extra": [],
+          "bad_points": [
+            "kidney_left"
+          ],
+          "located": [],
+          "expected_positive_labels": 1,
+          "focus_labels": 10,
+          "source_stratum": "marked thoracic abnormality",
+          "passed": false
+        },
+        {
+          "case_id": "case-95",
+          "missing": [],
+          "extra": [],
+          "bad_points": [],
+          "located": [],
+          "expected_positive_labels": 0,
+          "focus_labels": 11,
+          "source_stratum": "source pathology",
+          "passed": true
+        }
+      ],
+      "correctly_located_labels": 0,
+      "expected_positive_labels": 5,
+      "false_positive_labels": 0
+    }
+  },
+  "geometry": [
+    {
+      "case_id": "case-74",
+      "ct_exact": true,
+      "all_label_voxels_exact": true,
+      "affine_exact": true
+    },
+    {
+      "case_id": "case-19",
+      "ct_exact": true,
+      "all_label_voxels_exact": true,
+      "affine_exact": true
+    },
+    {
+      "case_id": "case-83",
+      "ct_exact": true,
+      "all_label_voxels_exact": true,
+      "affine_exact": true
+    },
+    {
+      "case_id": "case-46",
+      "ct_exact": true,
+      "all_label_voxels_exact": true,
+      "affine_exact": true
+    },
+    {
+      "case_id": "case-28",
+      "ct_exact": true,
+      "all_label_voxels_exact": true,
+      "affine_exact": true
+    },
+    {
+      "case_id": "case-61",
+      "ct_exact": true,
+      "all_label_voxels_exact": true,
+      "affine_exact": true
+    },
+    {
+      "case_id": "case-95",
+      "ct_exact": true,
+      "all_label_voxels_exact": true,
+      "affine_exact": true
+    },
+    {
+      "case_id": "case-32",
+      "ct_exact": true,
+      "all_label_voxels_exact": true,
+      "affine_exact": true
+    }
+  ],
+  "discrepancy_truth": [
+    {
+      "case_id": "case-83",
+      "label": "kidney_left",
+      "voxels": 215,
+      "evidence_coordinates_match_source_difference": true
+    },
+    {
+      "case_id": "case-28",
+      "label": "rib_right_7",
+      "voxels": 192,
+      "evidence_coordinates_match_source_difference": true
+    },
+    {
+      "case_id": "case-28",
+      "label": "rib_right_8",
+      "voxels": 192,
+      "evidence_coordinates_match_source_difference": true
+    },
+    {
+      "case_id": "case-61",
+      "label": "heart",
+      "voxels": 791,
+      "evidence_coordinates_match_source_difference": true
+    },
+    {
+      "case_id": "case-32",
+      "label": "kidney_left",
+      "voxels": 63,
+      "evidence_coordinates_match_source_difference": true
+    }
+  ],
+  "additional_checks": [
+    "each finding individually necessary",
+    "duplicate case rejected",
+    "nonfinite point rejected",
+    "3 mm inclusive spatial boundary"
+  ],
+  "limits": "Reference report comes from reviewed source masks and authored edits. Oracle control checks solvability of the output/grader interface, not an independent general anatomical detector or expert clinical certification."
+}

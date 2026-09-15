@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "dicom-audit-61",
+  "title": "Anatomical annotation audit: case-61",
+  "status": "parked",
+  "tags": [
+    "brainstorm-round-004",
+    "non-security",
+    "medical-imaging",
+    "single-patient-benchmark"
+  ],
+  "hypothesis": "A single patient can expose a localized anatomical annotation reasoning gap without the cost of reviewing the full eight-patient batch.",
+  "why_hard": "One completed Terra/max raw miss used 19.89 agent minutes and 48633 output tokens. The submitted regions raise source-label questions, so this does not yet establish an unambiguous task failure.",
+  "next_action": "Adjudicate the original liver gap and detached heart component before any anatomical-accuracy claim; preserve this frozen observation without rerunning.",
+  "sources": [
+    {
+      "url": "codex://threads/01a0a248-241a-76b0-8ecf-15e259df9734",
+      "note": "User requests one trial per task and resource benchmarking."
+    }
+  ],
+  "evidence": [
+    "docs/research-rounds/BR-004-single-patient-benchmark.md",
+    "docs/evidence/br004-single-patient-freeze.json",
+    "docs/evidence/br004-single-case-61-review.json"
+  ],
+  "notes": "Separate single-patient condition derived from dicom-anatomy-audit; source bytes and normal time budget unchanged. No specialist clinical certification; inspect any alleged source error."
+}

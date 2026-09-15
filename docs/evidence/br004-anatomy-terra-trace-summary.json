@@ -1,0 +1,27 @@
+{
+  "trajectory_path": "runs/br004-anatomy-terra-max-v1-20260915/dicom-anatomy-audit__cZPMKGf/agent/trajectory.json",
+  "trajectory_sha256": "1f3dfc0bcbe9d3f199940c67950b12b1f290f38a09879de378fd070d7e6dbfb6",
+  "steps": 117,
+  "tool_invocations": 109,
+  "assistant_messages": [
+    {
+      "step_id": 6,
+      "timestamp": "2026-09-15T00:16:44.627Z",
+      "message": "I\u2019ll inspect each CT/SEG pair against its requested labels, localize any clear discrepancies in DICOM LPS coordinates, and write the required JSON report."
+    },
+    {
+      "step_id": 60,
+      "timestamp": "2026-09-15T00:33:25.695Z",
+      "message": "I\u2019ve completed the broad CT-and-mask review and am doing a final targeted consistency pass before writing the audit file."
+    }
+  ],
+  "last_step_timestamp": "2026-09-15T00:46:20.306Z",
+  "limitations": [
+    "Tool invocations include code-mode wrappers; counts are trace observations, not separate semantic reasoning steps.",
+    "Identity comes from configured model and runtime metadata; the trace does not independently authenticate provider internals.",
+    "An empty starter file is not a considered final answer.",
+    "Some image-review invocations loop over multiple images; wrapper counts are not image counts."
+  ],
+  "code_mode_invocations_containing_image_review": 53,
+  "all_eight_case_overview_calls_present": true
+}

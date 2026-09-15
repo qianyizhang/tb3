@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "dicom-audit-32",
+  "title": "Anatomical annotation audit: case-32",
+  "status": "screening",
+  "tags": [
+    "brainstorm-round-004",
+    "non-security",
+    "medical-imaging",
+    "single-patient-benchmark"
+  ],
+  "hypothesis": "A single patient can expose a localized anatomical annotation reasoning gap without the cost of reviewing the full eight-patient batch.",
+  "why_hard": "One normally completed Terra/max attempt missed the controlled 63-voxel kidney extension after image review. At 10.21 agent minutes, 23713 output tokens and estimated USD 0.857, it is the lowest-resource attempt in this eight-patient screen.",
+  "next_action": "Retain as the lead for a separately frozen, narrower kidney-audit design with adjudicated source labels and a supplied viewer. Preserve this completed single observation.",
+  "sources": [
+    {
+      "url": "codex://threads/01a0a248-241a-76b0-8ecf-15e259df9734",
+      "note": "User requests one trial per task and resource benchmarking."
+    }
+  ],
+  "evidence": [
+    "docs/research-rounds/BR-004-single-patient-benchmark.md",
+    "docs/evidence/br004-single-patient-freeze.json",
+    "docs/evidence/br004-single-case-32-review.json"
+  ],
+  "notes": "Separate single-patient condition derived from dicom-anatomy-audit; source bytes and normal time budget unchanged. No specialist clinical certification; inspect any alleged source error."
+}

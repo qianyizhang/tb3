@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "dicom-audit-46",
+  "title": "Anatomical annotation audit: case-46",
+  "status": "parked",
+  "tags": [
+    "brainstorm-round-004",
+    "non-security",
+    "medical-imaging",
+    "single-patient-benchmark"
+  ],
+  "hypothesis": "A single patient can expose a localized anatomical annotation reasoning gap without the cost of reviewing the full eight-patient batch.",
+  "why_hard": "One normally completed Terra/max raw pass used 12.24 agent minutes and 26836 output tokens. The predeclared source-truth hold prevents a definitive anatomical-accuracy conclusion.",
+  "next_action": "Retain the resource observation; adjudicate the anterior L2 source component before using this task as an anatomical accuracy control.",
+  "sources": [
+    {
+      "url": "codex://threads/01a0a248-241a-76b0-8ecf-15e259df9734",
+      "note": "User requests one trial per task and resource benchmarking."
+    }
+  ],
+  "evidence": [
+    "docs/research-rounds/BR-004-single-patient-benchmark.md",
+    "docs/evidence/br004-single-patient-freeze.json",
+    "docs/evidence/br004-single-patient-reviews.json"
+  ],
+  "notes": "Separate single-patient condition derived from dicom-anatomy-audit; source bytes and normal time budget unchanged. Unresolved anterior L2 component; exact anatomical success is provisional pending adjudication."
+}

@@ -5,6 +5,7 @@
   "status": "calibration",
   "tags": [
     "brainstorm-round-003",
+    "brainstorm-round-004",
     "work-history",
     "non-security",
     "medical-imaging",
@@ -13,7 +14,7 @@
   ],
   "hypothesis": "A checker must infer coverage-dependent omissions and anatomical label misassignments without a supplied anatomy rule list.",
   "why_hard": "Native BINARY SEG parsing and anatomical context interact; five fixed packets share one source and four focus labels. Terra repaired an initial DICOM row/column error and passed all five packets.",
-  "next_action": "Retired after one healthy Terra/high pass; preserve evidence and return to source selection.",
+  "next_action": "BR-003 remains retired after its healthy Terra/high pass. Preserve the separate BR-004 batch timeout and completed single-patient resource screen; dicom-audit-32 is the current observed lead.",
   "sources": [
     {
       "url": "codex://threads/01a0a0cf-3d4b-7f00-a47f-4133211cb483",
@@ -35,7 +36,11 @@
     "docs/evidence/br003-auditor-freeze.json",
     "docs/evidence/br003-round-summary.json",
     "catalog/analyses/br003-work-history.md",
-    "docs/evidence/br003-medical-source.json"
+    "docs/evidence/br003-medical-source.json",
+    "docs/research-rounds/BR-004-dicom-annotation-revisit.md",
+    "docs/evidence/br004-saved-auditor-check.json",
+    "docs/evidence/br004-anatomy-round-summary.json",
+    "catalog/analyses/br004-single-patient.md"
   ],
   "notes": "Original research prototype; source incidents and author controls are not benchmark model failures. Final submission requirements remain separate."
 }

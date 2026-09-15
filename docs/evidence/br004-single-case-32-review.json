@@ -1,0 +1,67 @@
+{
+  "case_id": "case-32",
+  "result_path": "runs/br004-single-32-terra-max-v1-20260915/dicom-audit-32__Txe4eHJ/result.json",
+  "result_sha256": "ae49aafb935d745ec9f7d9d54577058be276dd05778466293913e1db4b637726",
+  "artifact_sha256": "be9b2adb58d47c533a0653aba02a079ded8cc770ec48f2a919e9d867acaad5d8",
+  "grade": {
+    "passed": false,
+    "cases": [
+      {
+        "case_id": "case-32",
+        "missing": [
+          "kidney_left"
+        ],
+        "extra": [],
+        "bad_points": [],
+        "located": [],
+        "expected_positive_labels": 1,
+        "focus_labels": 11,
+        "source_stratum": "ordinary anatomy",
+        "passed": false
+      }
+    ],
+    "correctly_located_labels": 0,
+    "expected_positive_labels": 1,
+    "false_positive_labels": 0
+  },
+  "independent_rescore_matches": true,
+  "agent_seconds": 612.751863,
+  "output_tokens": 23713,
+  "uncached_input_tokens": 98915,
+  "estimated_cost_usd": 0.8566324,
+  "condition": "single-patient-v1",
+  "authored_review": {
+    "outcome": "genuine_failure",
+    "validity": "reviewed genuine miss",
+    "failure_hypothesis_supported": true,
+    "failure_mode": "small_connected_kidney_extension_missed",
+    "evidence": "Normal completion, deliberate validated empty report, matched oracle=1/nop=0 controls and independent re-score. Exactly kidney_left is missing, with no extras or localization-only error. Author-reviewed source/task/CT overlays show a connected local extension into adjacent fat and muscle.",
+    "source_review": "The controlled change adds 63 voxels, retaining Dice 0.993572. Changed centers extend up to 9 mm from the original mask centers; 44 are more than 3 mm away. The source labels those voxels as background (43) or iliopsoas (20). Geometry and author CT review support a local planted-error miss; no independent specialist certification is claimed. No alternate source defect was alleged in the final report.",
+    "trace_observation": "The initial axial contact sheet includes slice 94 at the retained witness. Later targeted kidney images sample slices 77..113 every 2 slices, and the model also inspected coronal and sagittal views. The actual targeted kidney contact sheet is retained. The outcome is not attributable simply to never receiving views of the affected region; perceptual versus inspection-policy causes are not isolated.",
+    "resource_observation": "10.21 agent minutes, 23713 output tokens including 15230 reasoning tokens, 98915 uncached input tokens, estimated USD 0.857; 12 observed image blocks. Lowest observed time, output tokens, uncached input and estimated cost among these eight attempts.",
+    "disposition": "Retain as the strongest observed difficulty/resource candidate in this one-attempt screen. One completed miss does not establish a repeatable failure probability or final submission readiness."
+  },
+  "defect_geometry": {
+    "case_id": "case-32",
+    "captured_at": "2026-09-15T04:18:55.982436+00:00",
+    "source_path": "runs/br004-v1/build/case-32-private.npz",
+    "source_sha256": "e8bab2cffb7684347bcb73a9ce70e0d0279afe3215e960a07ba2f848681e2804",
+    "changed_voxels": 63,
+    "minimum_distance_from_changed_centers_to_original_mask_centers_mm": 3.0,
+    "maximum_distance_from_changed_centers_to_original_mask_centers_mm": 9.0,
+    "changed_centers_more_than_3mm_from_original_mask_centers": 44,
+    "original_voxels": 4869,
+    "submitted_voxels": 4932,
+    "original_labels_in_changed_region": {
+      "0": 43,
+      "88": 20
+    },
+    "ct_hu_range_changed": [
+      -117,
+      88
+    ],
+    "interpretation": "Voxel-center distances are geometric descriptors, not independent clinical adjudication. Source/task/CT images were also reviewed."
+  },
+  "viewed_image": "runs/br004-single/review/case-32-terra-kidneys-0.png",
+  "viewed_image_sha256": "f650636daf08c77ef26b0eb7425105bb8453e53b491358a47bd83044264c96cc"
+}
