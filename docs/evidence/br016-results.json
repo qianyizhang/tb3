@@ -1,0 +1,528 @@
+{
+  "round": "BR-016",
+  "freeze_sha256": {
+    "aneurysm-n01-v2.json": "6040ec9b04532b3942d7a54ab5124f586c5e13f767f8fffd7dcb5b5ee2ee4487",
+    "aneurysm-n01.json": "986a53f51360274f640dfc3b0c47d3dff3a45afdf07510c2b681bc49cac19dbc",
+    "aneurysm-n02-v2.json": "b35a028fba1b0e8e7464406e67a05c574ee32058659eabe2beef2f7238ba8168",
+    "aneurysm-n02.json": "a353861b388be4782cfafefc937199aa0d36a80ed8c039ceb8ba70ff98ec11f6",
+    "aneurysm-n03-v2.json": "4776bd3fb2ce09b431c46ed3dfeecb9bfc9482ad15d53fdad6819bcf279951d0",
+    "aneurysm-n03.json": "94b4e5c8176ebd9df5679338ede611ca2f71cfdcc29fe61bfa935da1c9692b36"
+  },
+  "task_files_unchanged": true,
+  "rows": [
+    {
+      "task": "aneurysm-n01-v2",
+      "phase": "oracle",
+      "source_subject": "013",
+      "result_path": "runs/br016-aneurysm-n01-v2-oracle-v1-20260915/aneurysm-n01-v2__DeAkVXD/result.json",
+      "result_sha256": "9c0d8115a9569a67a79353e4764e49845762ada34675870086cb9c7c8cdaebc5",
+      "task_checksum": "54f212ea8ff46dea5229f6c75f240ab9912c4629a1567899346221910cc8fc5b",
+      "started_at": "2026-09-15T11:58:38.655724Z",
+      "finished_at": "2026-09-15T11:59:08.715298Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 0.444553,
+      "total_seconds": 30.059574,
+      "environment_setup_seconds": 3.18026,
+      "agent_setup_seconds": 5.8e-05,
+      "verifier_seconds": 14.596305,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": true,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "predictions": [
+          [
+            166.0,
+            273.0,
+            84.0
+          ]
+        ],
+        "matches": [
+          {
+            "reference": 0,
+            "prediction": 0
+          }
+        ],
+        "grading_seconds": 0.002709459004108794
+      },
+      "grade_sha256": "e1bb5249ee21d581f2e46f53aa26899aa1307edfe312689968de54be84db3fb0",
+      "answer_path": "runs/br016-aneurysm-n01-v2-oracle-v1-20260915/aneurysm-n01-v2__DeAkVXD/artifacts/app/answer/answer.json",
+      "answer_sha256": "d0f46e8f9f3b3b601ef6e9b1778a7882a3e14ed6469ce064ff849db8d89d9eed",
+      "answer": {
+        "aneurysms": [
+          [
+            166.0,
+            273.0,
+            84.0
+          ]
+        ]
+      },
+      "replay_matches": true
+    },
+    {
+      "task": "aneurysm-n01-v2",
+      "phase": "nop",
+      "source_subject": "013",
+      "result_path": "runs/br016-aneurysm-n01-v2-nop-v1-20260915/aneurysm-n01-v2__NTtJnA4/result.json",
+      "result_sha256": "f48953aca9c8fa6f2f0f2a7ce6471327399bfeb9ce79d958e8f2f21c6e6f6368",
+      "task_checksum": "54f212ea8ff46dea5229f6c75f240ab9912c4629a1567899346221910cc8fc5b",
+      "started_at": "2026-09-15T11:59:09.074459Z",
+      "finished_at": "2026-09-15T11:59:38.879111Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "agent_seconds": 0.000149,
+      "total_seconds": 29.804652,
+      "environment_setup_seconds": 3.255747,
+      "agent_setup_seconds": 5.7e-05,
+      "verifier_seconds": 14.221998,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": false,
+        "error": "Expected only aneurysms key",
+        "grading_seconds": 0.0028936669987160712
+      },
+      "grade_sha256": "2ed55e1be5bb96d8a7221f30b3519143a271d953c9c76cf75d267f6a76ededf5",
+      "answer_path": "runs/br016-aneurysm-n01-v2-nop-v1-20260915/aneurysm-n01-v2__NTtJnA4/artifacts/app/answer/answer.json",
+      "answer_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "answer": {},
+      "replay_matches": true
+    },
+    {
+      "task": "aneurysm-n01-v2",
+      "phase": "sol-xhigh",
+      "source_subject": "013",
+      "result_path": "runs/br016-aneurysm-n01-v2-sol-xhigh-v1-20260915/aneurysm-n01-v2__6Sm6SoR/result.json",
+      "result_sha256": "6c4bae7e641cae2844db5ac6127a5ae52c6d717f846d62ea7928321165beacf7",
+      "task_checksum": "54f212ea8ff46dea5229f6c75f240ab9912c4629a1567899346221910cc8fc5b",
+      "started_at": "2026-09-15T11:59:39.186986Z",
+      "finished_at": "2026-09-15T12:07:25.871801Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "agent_seconds": 400.386539,
+      "total_seconds": 466.684815,
+      "environment_setup_seconds": 3.112653,
+      "agent_setup_seconds": 38.919271,
+      "verifier_seconds": 12.225972,
+      "input_tokens": 1198485,
+      "cached_input_tokens": 1098112,
+      "output_tokens": 9908,
+      "estimated_cost_usd": 1.0388967999999998,
+      "agent_version": "0.154.0",
+      "grade": {
+        "passed": false,
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "predictions": [],
+        "matches": [],
+        "grading_seconds": 0.0006823339936090633
+      },
+      "grade_sha256": "efd90a9abf6f21aa40778fdbbf56f818cd90fa438e0753c8dfa3daf145e9080e",
+      "answer_path": "runs/br016-aneurysm-n01-v2-sol-xhigh-v1-20260915/aneurysm-n01-v2__6Sm6SoR/artifacts/app/answer/answer.json",
+      "answer_sha256": "e8e1b7c40bae90da3ad623835061180852a13c91649dafdd860fef2590d857f9",
+      "answer": {
+        "aneurysms": []
+      },
+      "replay_matches": true,
+      "requested_model": "openai/gpt-5.6-sol",
+      "requested_effort": "xhigh",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br016-aneurysm-n01-v2-sol-xhigh-v1-20260915/aneurysm-n01-v2__6Sm6SoR/agent/sessions/2026/09/15/rollout-2026-09-15T12-00-23-01a0a4f0-8cac-76a3-9f00-6be1ff4485d4.jsonl",
+          "sha256": "ebedb3a3bda1081ab59304f7c40a03c67ed3e7840b2839c9a705340b4640b7b4"
+        }
+      ],
+      "session_file_count": 1,
+      "frozen_instruction_seen_in_user_message": true,
+      "runtime_matches_request": true,
+      "reasoning_output_tokens": 5560,
+      "last_record_stream_usage": {
+        "input_tokens": 1198485,
+        "cached_input_tokens": 1098112,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9908,
+        "reasoning_output_tokens": 5560,
+        "total_tokens": 1208393
+      },
+      "token_basis": "Harbor counters; reasoning reported only from exactly matching legacy runtime counters. Record-stream totals retained separately.",
+      "trajectory_sha256": "6c59fadcdecc2958eac9bbee6cc302d5ad3801e84aa3169ffd367fd443e10fdc",
+      "tool_wrappers": 22,
+      "image_review_wrappers": 7,
+      "public_source_match_observed": false,
+      "annotation_inventory_exposed": false,
+      "capability_evidence": "no_source_lookup_observed"
+    },
+    {
+      "task": "aneurysm-n01",
+      "phase": "oracle",
+      "source_subject": "013",
+      "result_path": "runs/br016-aneurysm-n01-oracle-v1-20260915/aneurysm-n01__5MfwERG/result.json",
+      "result_sha256": "dd6348a361e0a03bf947dbe4c80bae6f11053b73321259c07a06c704966e264f",
+      "task_checksum": "a6b4d744b5a4c85ce0d931f3ef592d1bf6c29c2f6ce8a42739ded90bf59f8823",
+      "started_at": "2026-09-15T11:56:05.458046Z",
+      "finished_at": "2026-09-15T11:56:19.394079Z",
+      "execution": "execution_error",
+      "exception_type": "FileNotFoundError",
+      "reward": null,
+      "agent_seconds": 0.168529,
+      "total_seconds": 13.936033,
+      "environment_setup_seconds": 2.870973,
+      "agent_setup_seconds": 4.2e-05,
+      "verifier_seconds": 0.000374,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0"
+    },
+    {
+      "task": "aneurysm-n02-v2",
+      "phase": "oracle",
+      "source_subject": "022",
+      "result_path": "runs/br016-aneurysm-n02-v2-oracle-v1-20260915/aneurysm-n02-v2__hmCBnwC/result.json",
+      "result_sha256": "77f247bb4ef2dc72599ad1dab3398bf594639345da136ac2302e471732aef065",
+      "task_checksum": "4452590627a0e89c6ec6b2ead69ca9103bb91b79f9534268aa717609be6bd9b3",
+      "started_at": "2026-09-15T12:08:03.225292Z",
+      "finished_at": "2026-09-15T12:08:29.298250Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 0.152337,
+      "total_seconds": 26.072958,
+      "environment_setup_seconds": 2.748179,
+      "agent_setup_seconds": 4.2e-05,
+      "verifier_seconds": 12.294763,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": true,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "predictions": [
+          [
+            307.0,
+            214.0,
+            93.0
+          ]
+        ],
+        "matches": [
+          {
+            "reference": 0,
+            "prediction": 0
+          }
+        ],
+        "grading_seconds": 0.0012722910032607615
+      },
+      "grade_sha256": "4ce0a0125da7b622218986a78dd8f135f4d3c162ce7c92372c64d4f6697c06b2",
+      "answer_path": "runs/br016-aneurysm-n02-v2-oracle-v1-20260915/aneurysm-n02-v2__hmCBnwC/artifacts/app/answer/answer.json",
+      "answer_sha256": "0942745e5e4522e9d11f8a94219b0ea4128cfe6ba4fd14da096cff6636cbbab6",
+      "answer": {
+        "aneurysms": [
+          [
+            307.0,
+            214.0,
+            93.0
+          ]
+        ]
+      },
+      "replay_matches": true
+    },
+    {
+      "task": "aneurysm-n02-v2",
+      "phase": "nop",
+      "source_subject": "022",
+      "result_path": "runs/br016-aneurysm-n02-v2-nop-v1-20260915/aneurysm-n02-v2__B8o2KU4/result.json",
+      "result_sha256": "f62e4d1960431c3de6d337255ec84336d9487852a41603983dd83ac89b381325",
+      "task_checksum": "4452590627a0e89c6ec6b2ead69ca9103bb91b79f9534268aa717609be6bd9b3",
+      "started_at": "2026-09-15T12:08:29.604953Z",
+      "finished_at": "2026-09-15T12:08:54.372427Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "agent_seconds": 8.9e-05,
+      "total_seconds": 24.767474,
+      "environment_setup_seconds": 1.79359,
+      "agent_setup_seconds": 4.9e-05,
+      "verifier_seconds": 12.075891,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": false,
+        "error": "Expected only aneurysms key",
+        "grading_seconds": 0.0012580420006997883
+      },
+      "grade_sha256": "76cc2bed30108c9f085ebe84650869006b422cd7754ab08232506e38360a69ae",
+      "answer_path": "runs/br016-aneurysm-n02-v2-nop-v1-20260915/aneurysm-n02-v2__B8o2KU4/artifacts/app/answer/answer.json",
+      "answer_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "answer": {},
+      "replay_matches": true
+    },
+    {
+      "task": "aneurysm-n02-v2",
+      "phase": "sol-xhigh",
+      "source_subject": "022",
+      "result_path": "runs/br016-aneurysm-n02-v2-sol-xhigh-v1-20260915/aneurysm-n02-v2__aSMqVvc/result.json",
+      "result_sha256": "267239b861a6b6f94e0a5393006e72bc5f690d406045ccc7d98196b01150a833",
+      "task_checksum": "4452590627a0e89c6ec6b2ead69ca9103bb91b79f9534268aa717609be6bd9b3",
+      "started_at": "2026-09-15T12:08:54.663388Z",
+      "finished_at": "2026-09-15T12:15:38.908346Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 345.935499,
+      "total_seconds": 404.244958,
+      "environment_setup_seconds": 1.82317,
+      "agent_setup_seconds": 32.273629,
+      "verifier_seconds": 12.189353,
+      "input_tokens": 1099977,
+      "cached_input_tokens": 997632,
+      "output_tokens": 8763,
+      "estimated_cost_usd": 0.9836928,
+      "agent_version": "0.154.0",
+      "grade": {
+        "passed": true,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "predictions": [
+          [
+            312,
+            213,
+            94
+          ]
+        ],
+        "matches": [
+          {
+            "reference": 0,
+            "prediction": 0
+          }
+        ],
+        "grading_seconds": 0.0012570410035550594
+      },
+      "grade_sha256": "937407108514b47bf0911a23a9752e0619a550201960986758d3b01c21f6249c",
+      "answer_path": "runs/br016-aneurysm-n02-v2-sol-xhigh-v1-20260915/aneurysm-n02-v2__aSMqVvc/artifacts/app/answer/answer.json",
+      "answer_sha256": "133fc673bf03a414a9c894741adc741a6c218640263b9053540fa634e0d993b9",
+      "answer": {
+        "aneurysms": [
+          [
+            312,
+            213,
+            94
+          ]
+        ]
+      },
+      "replay_matches": true,
+      "requested_model": "openai/gpt-5.6-sol",
+      "requested_effort": "xhigh",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br016-aneurysm-n02-v2-sol-xhigh-v1-20260915/aneurysm-n02-v2__aSMqVvc/agent/sessions/2026/09/15/rollout-2026-09-15T12-09-30-01a0a4f8-e5a2-7ea1-ab12-94dabd6188ef.jsonl",
+          "sha256": "1404f6d0f9592206079be77cc768b65b32ef428d2c6b4c41438f933794091604"
+        }
+      ],
+      "session_file_count": 1,
+      "frozen_instruction_seen_in_user_message": true,
+      "runtime_matches_request": true,
+      "reasoning_output_tokens": 4631,
+      "last_record_stream_usage": {
+        "input_tokens": 1099977,
+        "cached_input_tokens": 997632,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8763,
+        "reasoning_output_tokens": 4631,
+        "total_tokens": 1108740
+      },
+      "token_basis": "Harbor counters; reasoning reported only from exactly matching legacy runtime counters. Record-stream totals retained separately.",
+      "trajectory_sha256": "8aefadd1df3841ff5e91022e00fba1fdc38cc057a0bc94fae506d25da5ecba2b",
+      "tool_wrappers": 20,
+      "image_review_wrappers": 7,
+      "public_source_match_observed": false,
+      "annotation_inventory_exposed": false,
+      "capability_evidence": "no_source_lookup_observed"
+    },
+    {
+      "task": "aneurysm-n03-v2",
+      "phase": "oracle",
+      "source_subject": "000",
+      "result_path": "runs/br016-aneurysm-n03-v2-oracle-v1-20260915/aneurysm-n03-v2__8Ayr4m2/result.json",
+      "result_sha256": "faac7b675ca9252bafa3d31a754c7fbdd2d81ca0b543c9be1b590cbaa8ed43d0",
+      "task_checksum": "78905eceb11b01643c2784a6ac667d669ccfef7da9e3aae299b63eb0be8b472f",
+      "started_at": "2026-09-15T12:15:53.432015Z",
+      "finished_at": "2026-09-15T12:16:19.498472Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 0.15688,
+      "total_seconds": 26.066457,
+      "environment_setup_seconds": 2.832147,
+      "agent_setup_seconds": 6.3e-05,
+      "verifier_seconds": 12.191904,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": true,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "predictions": [],
+        "matches": [],
+        "grading_seconds": 0.0005111250065965578
+      },
+      "grade_sha256": "d9987237ef4c6754a04d12fd80e8ba321a873b37f6ece4d23484fac10babfcfd",
+      "answer_path": "runs/br016-aneurysm-n03-v2-oracle-v1-20260915/aneurysm-n03-v2__8Ayr4m2/artifacts/app/answer/answer.json",
+      "answer_sha256": "e8e1b7c40bae90da3ad623835061180852a13c91649dafdd860fef2590d857f9",
+      "answer": {
+        "aneurysms": []
+      },
+      "replay_matches": true
+    },
+    {
+      "task": "aneurysm-n03-v2",
+      "phase": "nop",
+      "source_subject": "000",
+      "result_path": "runs/br016-aneurysm-n03-v2-nop-v1-20260915/aneurysm-n03-v2__UnKNe37/result.json",
+      "result_sha256": "247d6cf984c5256010ecc7df86a255a71fa8e0d5fed4d6bddd5d342938762377",
+      "task_checksum": "78905eceb11b01643c2784a6ac667d669ccfef7da9e3aae299b63eb0be8b472f",
+      "started_at": "2026-09-15T12:16:19.848842Z",
+      "finished_at": "2026-09-15T12:16:44.830633Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "agent_seconds": 9.5e-05,
+      "total_seconds": 24.981791,
+      "environment_setup_seconds": 1.800472,
+      "agent_setup_seconds": 5.5e-05,
+      "verifier_seconds": 12.264376,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": false,
+        "error": "Expected only aneurysms key",
+        "grading_seconds": 0.0006557919987244532
+      },
+      "grade_sha256": "54f36a6fcacc2ebdde78af64db3a2a41e0df515a2442c64f15b31345571fe9f2",
+      "answer_path": "runs/br016-aneurysm-n03-v2-nop-v1-20260915/aneurysm-n03-v2__UnKNe37/artifacts/app/answer/answer.json",
+      "answer_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "answer": {},
+      "replay_matches": true
+    },
+    {
+      "task": "aneurysm-n03-v2",
+      "phase": "sol-xhigh",
+      "source_subject": "000",
+      "result_path": "runs/br016-aneurysm-n03-v2-sol-xhigh-v1-20260915/aneurysm-n03-v2__AiKatB3/result.json",
+      "result_sha256": "3baa070c2eb0690d33569873e3dbcee147d97f30c793ccb0eb11f8a245a81fc4",
+      "task_checksum": "78905eceb11b01643c2784a6ac667d669ccfef7da9e3aae299b63eb0be8b472f",
+      "started_at": "2026-09-15T12:16:45.132112Z",
+      "finished_at": "2026-09-15T12:25:33.861894Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 452.237089,
+      "total_seconds": 528.729782,
+      "environment_setup_seconds": 1.815566,
+      "agent_setup_seconds": 50.19546,
+      "verifier_seconds": 12.287939,
+      "input_tokens": 2445016,
+      "cached_input_tokens": 2359680,
+      "output_tokens": 13806,
+      "estimated_cost_usd": 1.5613359999999998,
+      "agent_version": "0.154.0",
+      "grade": {
+        "passed": true,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "predictions": [],
+        "matches": [],
+        "grading_seconds": 0.00044691699440591037
+      },
+      "grade_sha256": "d950d92ae0ea3d7bfd1b04e85dd89f280ab68a9ee4bbd35154303702a822a2f1",
+      "answer_path": "runs/br016-aneurysm-n03-v2-sol-xhigh-v1-20260915/aneurysm-n03-v2__AiKatB3/artifacts/app/answer/answer.json",
+      "answer_sha256": "e8e1b7c40bae90da3ad623835061180852a13c91649dafdd860fef2590d857f9",
+      "answer": {
+        "aneurysms": []
+      },
+      "replay_matches": true,
+      "requested_model": "openai/gpt-5.6-sol",
+      "requested_effort": "xhigh",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br016-aneurysm-n03-v2-sol-xhigh-v1-20260915/aneurysm-n03-v2__AiKatB3/agent/sessions/2026/09/15/rollout-2026-09-15T12-17-38-01a0a500-5aa8-70f1-bb4c-657560eb0fb3.jsonl",
+          "sha256": "074506dc1f8a0449145ea427ff4c9ae6583907a3c894246508dce2abed865e9a"
+        }
+      ],
+      "session_file_count": 1,
+      "frozen_instruction_seen_in_user_message": true,
+      "runtime_matches_request": true,
+      "reasoning_output_tokens": 6896,
+      "last_record_stream_usage": {
+        "input_tokens": 2445016,
+        "cached_input_tokens": 2359680,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 13806,
+        "reasoning_output_tokens": 6896,
+        "total_tokens": 2458822
+      },
+      "token_basis": "Harbor counters; reasoning reported only from exactly matching legacy runtime counters. Record-stream totals retained separately.",
+      "trajectory_sha256": "53595b166830ad7bb3c4bb414a4ea385568667f2ef94b26408c44d0e2e634ed7",
+      "tool_wrappers": 40,
+      "image_review_wrappers": 7,
+      "public_source_match_observed": true,
+      "annotation_inventory_exposed": true,
+      "capability_evidence": "source_assisted"
+    }
+  ],
+  "limitations": [
+    "One attempt per case; not a success-rate estimate.",
+    "Public dataset reference agreement; independent sampled review pending.",
+    "Weak labels support coarse localization, not precise segmentation.",
+    "Input includes cache; output includes reasoning. Costs are harness estimates.",
+    "The tiny multi-lesion case was held before any model trial.",
+    "N03 matched a public source scan and exposed the annotation inventory before final submission; its pass is reference-assisted."
+  ]
+}

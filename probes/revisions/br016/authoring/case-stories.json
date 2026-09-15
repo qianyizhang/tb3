@@ -1,0 +1,89 @@
+[
+  {
+    "id": "R02",
+    "name": "N01",
+    "badge": "Miss",
+    "tone": "miss",
+    "time": "6m 40s",
+    "tokens": "9,908",
+    "cost": "$1.04",
+    "answer": "[]",
+    "title": "Extensive search, missed candidate",
+    "stages": [
+      "Survey projections",
+      "Inspect native planes",
+      "Rank thick / blob-like regions",
+      "Close up other candidates",
+      "Return no findings"
+    ],
+    "observed": "Sol generated serial slices and slab projections, then wrote NumPy checks: repeated binary erosion to retain thick bright regions, and multiscale Hessian eigenvalue scoring to rank blob-like structures. Its last two candidate close-ups were around [192,248,74] and [166,309,100], away from the reference at [166,273,84].",
+    "interpretation": "The reference region occurred in generated views, but was not retained in the final candidate close-ups. This supports a search or recognition miss; it does not tell us whether the limiting factor was attention, image perception, or anatomical interpretation. The empty answer fails regardless of precise boundary tolerance.",
+    "pseudo": "views = render_slices_and_slabs(volume)\ncandidates = inspect(views)\ncandidates += thick_regions(thresholds, erosion)\ncandidates += blob_peaks(scales, Hessian)\ninspect_in_three_planes(selected_candidates)\nwrite({\"aneurysms\": []})",
+    "anchors": [
+      "work_k82_106.png; fine_j260_292.png: reference-region coverage",
+      "erode26 / comps: threshold + erosion + connected components",
+      "smm in [0.8,1.2,1.8,2.5]; eigvalsh: blob scoring",
+      "cand1_*.png; cand2_*.png: final close-ups"
+    ],
+    "trajectory_sha256": "6c59fadcdecc2958eac9bbee6cc302d5ad3801e84aa3169ffd367fd443e10fdc",
+    "trajectory": "runs/br016-aneurysm-n01-v2-sol-xhigh-v1-20260915/aneurysm-n01-v2__6Sm6SoR/agent/trajectory.json"
+  },
+  {
+    "id": "R03",
+    "name": "N02",
+    "badge": "Localized",
+    "tone": "pass",
+    "time": "5m 46s",
+    "tokens": "8,763",
+    "cost": "$0.98",
+    "answer": "[[312,213,94]]",
+    "title": "Candidate \u2192 cross-plane confirmation \u2192 point",
+    "stages": [
+      "Find focal outpouching",
+      "Check three planes",
+      "Survey remaining branches",
+      "Refine voxel centre",
+      "Return one location"
+    ],
+    "observed": "Sol narrowed an apparent outpouching to a local crop and generated consecutive axial, sagittal and coronal slices. It then built thin-slab montages and regional surveys, counted connected bright components at several thresholds, and measured candidate-crop centroids before selecting [312,213,94].",
+    "interpretation": "The public updates describe a rounded candidate persisting across all three planes. The submitted point matches the coarse reference region near [307,214,93]. Here, visual candidate selection and numerical localization worked together; the component counts alone do not establish the diagnosis.",
+    "pseudo": "candidate = inspect(projections)\nconfirm = inspect(orthogonal_slices(candidate))\nsurvey_remaining_branches(thin_slabs)\ncentres = threshold_centroids(candidate_crop)\npoint = choose_native_voxel(centres, views)\nwrite({\"aneurysms\": [[312,213,94]]})",
+    "anchors": [
+      "cand_k.png / cand_i.png / cand_j.png: candidate in three planes",
+      "thin_*.png; *_review.png; low_k.png / high_k.png: additional survey",
+      "TH [600,800,1000,1200,1400]: connected-component sweep",
+      "candidate crop bounds + thresholds [350,450,550,650,750]: centroid checks"
+    ],
+    "trajectory_sha256": "8aefadd1df3841ff5e91022e00fba1fdc38cc057a0bc94fae506d25da5ecba2b",
+    "trajectory": "runs/br016-aneurysm-n02-v2-sol-xhigh-v1-20260915/aneurysm-n02-v2__aSMqVvc/agent/trajectory.json"
+  },
+  {
+    "id": "R01",
+    "name": "N03",
+    "badge": "Source-assisted pass",
+    "tone": "assisted",
+    "time": "7m 32s",
+    "tokens": "13,806",
+    "cost": "$1.56",
+    "answer": "[]",
+    "title": "Image inspection followed by source identification",
+    "stages": [
+      "Survey native slices",
+      "Check widths and oblique MIPs",
+      "Look up public dataset",
+      "Match exact source array",
+      "Return no findings"
+    ],
+    "observed": "Sol generated additional slice montages, counted bright voxels in local boxes, installed SciPy for distance-transform width peaks, and wrote rotated MIP views. It then retrieved the public dataset tree and manual-mask inventory, downloaded sub-000, and confirmed exact array equality with the task input before writing its negative answer.",
+    "interpretation": "The grade is correct, but the final answer follows exposure to the source annotation inventory. Earlier public comments leaned negative; no answer was frozen before lookup. This demonstrates flexible tool use and source identification, not an isolated test of negative image interpretation. Source lookup was allowed by the prompt.",
+    "pseudo": "inspect(native_slices, slabs, oblique_MIPs)\ncheck(local_density, distance_transform_peaks)\ntree = fetch(public_dataset_inventory)\nsource = download(candidate_scan)\nassert array_equal(source, task_original)\nwrite({\"aneurysms\": []})  # after source exposure",
+    "anchors": [
+      "montage_mra.py / oblique_mra.py: agent-authored viewing tools",
+      "distance_transform_edt(..., sampling=sp): width heuristic",
+      "ds003949-tree.json; manual_masks: reference inventory exposed",
+      "canonical source comparison: diff 0.0 0.0 True"
+    ],
+    "trajectory_sha256": "53595b166830ad7bb3c4bb414a4ea385568667f2ef94b26408c44d0e2e634ed7",
+    "trajectory": "runs/br016-aneurysm-n03-v2-sol-xhigh-v1-20260915/aneurysm-n03-v2__AiKatB3/agent/trajectory.json"
+  }
+]

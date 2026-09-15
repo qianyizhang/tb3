@@ -1,0 +1,109 @@
+{
+  "round": "BR-016",
+  "tasks": [
+    {
+      "task": "aneurysm-n01-v2",
+      "task_path": "runs/br016-aneurysm/tasks/aneurysm-n01-v2",
+      "source_subject": "013",
+      "source_image_sha256": "d253b9205124fdfa472dc0b7a3e448b0aca2f272f3bef81a34f9ba22bbb0d897",
+      "source_brain_sha256": "c9a447fa2c5107a11fe6a512081cc17c2afd15176ee0b2b0eb9356ef14aeca5e",
+      "clinical_review": "pending sampled experienced-user review",
+      "matching": "released source mask dilated by 1 mm Euclidean voxel-centre distance, then nearest-voxel membership",
+      "controls": [
+        {
+          "name": "oracle",
+          "passed": true,
+          "expected": true
+        },
+        {
+          "name": "invalid_missing_key",
+          "passed": false,
+          "expected": false
+        },
+        {
+          "name": "empty",
+          "passed": false,
+          "expected": false
+        },
+        {
+          "name": "false_positive_corner",
+          "passed": false,
+          "expected": false
+        },
+        {
+          "name": "nan",
+          "passed": false,
+          "expected": false
+        },
+        {
+          "name": "out_of_volume",
+          "passed": false,
+          "expected": false
+        },
+        {
+          "name": "boolean_coordinate",
+          "passed": false,
+          "expected": false
+        },
+        {
+          "name": "duplicate_detection",
+          "passed": false,
+          "expected": false
+        },
+        {
+          "name": "acceptance_edge_0",
+          "passed": true,
+          "expected": true
+        }
+      ],
+      "baselines": {
+        "volume_center": {
+          "passed": false,
+          "tp": 0,
+          "fp": 1,
+          "fn": 1,
+          "predictions": [
+            [
+              174.5,
+              223.5,
+              71.5
+            ]
+          ],
+          "matches": []
+        },
+        "brightest_voxel": {
+          "passed": false,
+          "tp": 0,
+          "fp": 1,
+          "fn": 1,
+          "predictions": [
+            [
+              183,
+              234,
+              70
+            ]
+          ],
+          "matches": []
+        }
+      },
+      "revision": 2,
+      "supersedes": "aneurysm-n01",
+      "revision_reason": "Add missing separate verifier Dockerfile; no model trial on original fixture",
+      "files": {
+        "environment/Dockerfile": "2dcdb9f7fcce03ecc6b36f3bfe9303102e17e2d7ab0ae20c3b0829cd29177b01",
+        "environment/SOURCE_NOTICE.md": "961c9d508af677ad4d569301fe064b22d5db77aad340f6bee1a7c6016549bdea",
+        "environment/answer.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+        "environment/data.tar.gz": "481b7ab2b403ef055ec12eb724818fef5a5fe1dfae25468b09eae073cac7b08b",
+        "environment/inspect_mra.py": "090b5d0df7b8e7ea26f680fe178189e4173d40ebad9b2cd69073eb877bfb5e71",
+        "instruction.md": "944154dc29b3fad8ec60c5c9c23d53e3dcf121b0510a4be9ffa37d42c3ee2077",
+        "solution/solve.sh": "b8d4954f3e3ef237d2d8741a77b300ed4576d5fd7abf22770450eb801346ef1d",
+        "task.toml": "a6194b76e7b7f755eccc22c21a96f0abb0eaa6d7ca6d9f0f2fd0433c4e702510",
+        "tests/Dockerfile": "881761e1b6c4d7bcb5bc14dd55795fee3b84919f0da21dc96a0a3a5372c1c3f2",
+        "tests/expected.json": "47e0fb3c9dcfd409757dca1f21906e952e8ad5d5cf2602547bf36e1764962cc8",
+        "tests/scoring.py": "40e8f216752523836922c97924d5e5f9439f1d1bf0f27b7c32d27233c3b54d6e",
+        "tests/test.sh": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3",
+        "tests/verifier.py": "0967732bce22d5f768f88ff758293f640b7a9f6a0aef8eedcbcd60ecc020fe12"
+      }
+    }
+  ]
+}
