@@ -1,0 +1,306 @@
+{
+  "round": "BR-017",
+  "tasks": [
+    {
+      "task": "abdomen-f01",
+      "task_path": "runs/br017-absorption/tasks/abdomen-f01",
+      "case": 28,
+      "mode": "inclusion_audit",
+      "source_screen_sha256": "73732a5900187449b66454cbc7ceb73e03aa696dff607c19404ca4e599bae784",
+      "object_count": 13,
+      "finding_count": 1,
+      "included_volume_ml": 21.036375,
+      "remaining_pancreas_ml": 38.383874999999996,
+      "foreground_union_exact": true,
+      "ct_samples_exact": 28160225,
+      "controls": [
+        {
+          "name": "oracle",
+          "expected": true,
+          "grade": {
+            "passed": true,
+            "detection_correct": true,
+            "identity_correct": true,
+            "localization_correct": true,
+            "expected_findings": 1,
+            "reported_findings": 1,
+            "missing_pairs": [],
+            "extra_pairs": [],
+            "witnesses": [
+              {
+                "object_id": "o327",
+                "included_label": "pancreas",
+                "distance_to_included_voxel_mm": 0.0,
+                "accepted": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "invalid_starter",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "error": "Expected exactly one list named findings"
+          }
+        },
+        {
+          "name": "empty",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "detection_correct": false,
+            "identity_correct": false,
+            "localization_correct": false,
+            "expected_findings": 1,
+            "reported_findings": 0,
+            "missing_pairs": [
+              [
+                "o327",
+                "pancreas"
+              ]
+            ],
+            "extra_pairs": [],
+            "witnesses": []
+          }
+        },
+        {
+          "name": "alternate_interior_point",
+          "expected": true,
+          "grade": {
+            "passed": true,
+            "detection_correct": true,
+            "identity_correct": true,
+            "localization_correct": true,
+            "expected_findings": 1,
+            "reported_findings": 1,
+            "missing_pairs": [],
+            "extra_pairs": [],
+            "witnesses": [
+              {
+                "object_id": "o327",
+                "included_label": "pancreas",
+                "distance_to_included_voxel_mm": 0.0,
+                "accepted": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "within_3mm",
+          "expected": true,
+          "grade": {
+            "passed": true,
+            "detection_correct": true,
+            "identity_correct": true,
+            "localization_correct": true,
+            "expected_findings": 1,
+            "reported_findings": 1,
+            "missing_pairs": [],
+            "extra_pairs": [],
+            "witnesses": [
+              {
+                "object_id": "o327",
+                "included_label": "pancreas",
+                "distance_to_included_voxel_mm": 3.0,
+                "accepted": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "outside_3mm",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "detection_correct": true,
+            "identity_correct": true,
+            "localization_correct": false,
+            "expected_findings": 1,
+            "reported_findings": 1,
+            "missing_pairs": [],
+            "extra_pairs": [],
+            "witnesses": [
+              {
+                "object_id": "o327",
+                "included_label": "pancreas",
+                "distance_to_included_voxel_mm": 3.01,
+                "accepted": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "distant_point",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "detection_correct": true,
+            "identity_correct": true,
+            "localization_correct": false,
+            "expected_findings": 1,
+            "reported_findings": 1,
+            "missing_pairs": [],
+            "extra_pairs": [],
+            "witnesses": [
+              {
+                "object_id": "o327",
+                "included_label": "pancreas",
+                "distance_to_included_voxel_mm": 1000.0,
+                "accepted": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "nonfinite_point",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "error": "point_lps_mm must contain three finite numbers"
+          }
+        },
+        {
+          "name": "boolean_coordinate",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "error": "point_lps_mm must contain three finite numbers"
+          }
+        },
+        {
+          "name": "wrong_class",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "detection_correct": true,
+            "identity_correct": false,
+            "localization_correct": false,
+            "expected_findings": 1,
+            "reported_findings": 1,
+            "missing_pairs": [
+              [
+                "o327",
+                "pancreas"
+              ]
+            ],
+            "extra_pairs": [
+              [
+                "o327",
+                "stomach"
+              ]
+            ],
+            "witnesses": []
+          }
+        },
+        {
+          "name": "wrong_host",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "detection_correct": false,
+            "identity_correct": false,
+            "localization_correct": false,
+            "expected_findings": 1,
+            "reported_findings": 1,
+            "missing_pairs": [
+              [
+                "o327",
+                "pancreas"
+              ]
+            ],
+            "extra_pairs": [
+              [
+                "o550",
+                "pancreas"
+              ]
+            ],
+            "witnesses": []
+          }
+        },
+        {
+          "name": "duplicate",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "error": "Duplicate host/class pair"
+          }
+        },
+        {
+          "name": "false_positive",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "detection_correct": false,
+            "identity_correct": false,
+            "localization_correct": false,
+            "expected_findings": 1,
+            "reported_findings": 2,
+            "missing_pairs": [],
+            "extra_pairs": [
+              [
+                "o550",
+                "spleen"
+              ]
+            ],
+            "witnesses": [
+              {
+                "object_id": "o327",
+                "included_label": "pancreas",
+                "distance_to_included_voxel_mm": 0.0,
+                "accepted": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "prose_field",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "error": "Expected exactly one list named findings"
+          }
+        },
+        {
+          "name": "malformed_finding",
+          "expected": false,
+          "grade": {
+            "passed": false,
+            "error": "Malformed finding"
+          }
+        }
+      ],
+      "source_task": "BR017-M02",
+      "audit_target_ids": [
+        "o327",
+        "o589"
+      ],
+      "changed_files_from_m02": [
+        "instruction.md",
+        "task.toml"
+      ],
+      "all_public_inputs_and_key_byte_identical": true,
+      "admission": "Conditional scope reduction declared after M02 miss/M01 pass and before N01 result. New one-attempt condition, not an original-scope replication. No clinical adjudication.",
+      "files": {
+        "environment/DATA-LICENSE.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+        "environment/Dockerfile": "3c574a43a031121ee85e52fb93b986d1045db308a8551fe527998ad2ee9fadd7",
+        "environment/LABEL-LICENSE.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "environment/SOURCE_NOTICE.md": "1d3f2328269a126e53b8c14341e9cd971420b3fbaa550ed1103955d2f78a6626",
+        "environment/answer.json": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+        "environment/data.tar.gz": "7224b1d03d5847c77576aca361913cf87145d4aa40c4321acb5bfeedc589439e",
+        "environment/inspect_ct.py": "c61e15ba95a592724d28943a8c2d402a7086888fbb5ccd7672327bfb11f5eb5b",
+        "environment/inspect_scene.py": "0d8207392712d01de0f217471951d92dd71749726a8d875d8057e49762f78bba",
+        "instruction.md": "e7e393820a6dc0d3603a01aa73514f7150fd13fe5ff4be06af01cbb4278c0cf9",
+        "solution/answer.json": "ed00d68b31bd2d83896e79c52e4fd9ccc4ffc6a5a2e36c43042702609f181c19",
+        "solution/solve.sh": "0b244745b700b2a6856e68f7236bc18e3a476c8c588a27c84d1838da637a86c4",
+        "task.toml": "f36b105e4bc68a7a806161ebd688cb76c736f00ea544e285ebb86a6f499b1966",
+        "tests/Dockerfile": "453c62e4e57565b352fe6a13e9af7b4e5330c939d9229e4f2cff4b8da2d24ae4",
+        "tests/expected.json": "7a616abf9efb613ee5d03e76d62476b77efaf27bcbfae6f3d3e3940a6ef184be",
+        "tests/region-0.npz": "dc5d05806a81f6d7efca53a209be39d0544a1ed27d9f3fabed65f0e5017d473d",
+        "tests/scoring.py": "d9d4763c15c8475ec73d050146b65712084b2031dacdfe2983397051680a264f",
+        "tests/test.sh": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3",
+        "tests/verifier.py": "d8a9993beaf2890ee1b12620e5f8dd43f1e693182aad4acfac59a6639ee1de40"
+      }
+    }
+  ]
+}

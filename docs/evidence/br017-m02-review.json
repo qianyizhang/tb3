@@ -1,0 +1,62 @@
+{
+  "task": "abdomen-m02",
+  "status": "reviewed_synthetic_detection_miss",
+  "clinical_validation": "Not established.",
+  "normal_completion": true,
+  "output": {
+    "findings": []
+  },
+  "expected_host": "o327",
+  "expected_included_label": "pancreas",
+  "missed_ml": 21.036375,
+  "failure_stage": "Detection: explicit empty findings. Localization tolerance played no role.",
+  "observable_strategy": "Read all ready CT previews and overviews, computed HU distributions, connected components and mask overlaps, generated additional axial/coronal/sagittal CT sheets including the pancreas/duodenum pair and inspected them. Completed a broad organ sweep and reported no substantial foreign-organ inclusion.",
+  "image_paths_requested": [
+    "/app/data/overview.png",
+    "/app/data/ct-overview.png",
+    "/app/data/ct-o550.png",
+    "/app/data/ct-o961.png",
+    "/app/data/ct-o143.png",
+    "/app/data/ct-o642.png",
+    "/app/data/ct-o327.png",
+    "/app/data/ct-o589.png",
+    "/app/data/ct-o156.png",
+    "/app/data/ct-o480.png",
+    "/app/data/ct-o402.png",
+    "/app/data/ct-o426.png",
+    "/app/data/ct-o896.png",
+    "/app/data/ct-o111.png",
+    "/app/data/ct-o415.png",
+    "/app/gall_ax.png",
+    "/app/pan_ax.png",
+    "/app/pan_cor.png",
+    "/app/pan_sag.png",
+    "/app/sweep550.png",
+    "/app/sweep143.png",
+    "/app/sweep642.png",
+    "/app/sweep111.png",
+    "/app/sweep156.png",
+    "/app/sweep402.png",
+    "/app/sweep415.png",
+    "/app/sweepadrenal.png"
+  ],
+  "images_requested": 27,
+  "command_count": 23,
+  "nonzero_command_exit_codes": [
+    1,
+    1
+  ],
+  "delegation_calls": 0,
+  "private_key_or_external_patient_matching_observed": false,
+  "mechanism_hypothesis": "A named remnant and a plausible host mask may encourage acceptance of the supplied organ labels despite ownership inconsistency; this is an interpretation, not a measured causal mechanism.",
+  "source_limits": "Low-attenuation source pancreas, synthetic distance-based transfer and no independent specialist adjudication. Frozen source-lineage audit establishes the injected edit; it does not certify clinical contours.",
+  "result_sha256": "f510c8081a35ccd58d0112c45c57b50a4da37675b7519d6f1b8150ece918146f",
+  "trajectory_sha256": "d3e5c774482e26816fb4e73434e819608a255eeab77afd4ca00cfc57e486d642",
+  "recovered_tool_errors": [
+    "Unavailable SciPy import; later replaced by NumPy/Python calculations.",
+    "Tried indexing full CT with a cropped boolean mask; then correctly mapped mask voxel coordinates through affines."
+  ],
+  "infrastructure_interpretation": "Both initial command errors were recovered; the model completed CT viewing and calculations normally, with no timeout. No unrecovered environment fault explains the empty finding.",
+  "images_returned_as_input_image": 27,
+  "image_tool_wrappers_completed": 7
+}

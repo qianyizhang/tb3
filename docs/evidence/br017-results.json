@@ -1,0 +1,730 @@
+{
+  "round": "BR-017",
+  "freeze_sha256": {
+    "abdomen-f01.json": "a0ff7df4f9afbb4ed55ab82cb48191af7faa31a2673db4e1a4d4505376e05487",
+    "abdomen-m01.json": "4910cb06c6e4eb0684a0679ff0bc4a830aa758b6a75738c03617ff94e520d980",
+    "abdomen-m02.json": "b43c872900d0437637ada6582f74856be4fb965a629039f900aa7369c3978677",
+    "abdomen-n01.json": "beaf0e5d8c9e0dc2e933f57fb1c770f620079165be08fb04a8f02214b977b733"
+  },
+  "task_files_unchanged": true,
+  "rows": [
+    {
+      "task": "abdomen-f01",
+      "phase": "oracle",
+      "case": 28,
+      "mode": "inclusion_audit",
+      "result_path": "runs/br017-abdomen-f01-oracle-v1-20260915/abdomen-f01__DuibU8Z/result.json",
+      "result_sha256": "3a4ac88623856ffba60677f83581258e94edfbcffb3ede7d0058ff7bee987ee1",
+      "task_checksum": "bf3e97e2b87af0164bb5a49b9f29638e8a7b24c0060700c0ea4376d2c4aae869",
+      "started_at": "2026-09-15T12:58:42.312903Z",
+      "finished_at": "2026-09-15T12:59:07.279314Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 0.160442,
+      "total_seconds": 24.966411,
+      "environment_setup_seconds": 1.759972,
+      "agent_setup_seconds": 4.3e-05,
+      "verifier_seconds": 12.174091,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": true,
+        "detection_correct": true,
+        "identity_correct": true,
+        "localization_correct": true,
+        "expected_findings": 1,
+        "reported_findings": 1,
+        "missing_pairs": [],
+        "extra_pairs": [],
+        "witnesses": [
+          {
+            "object_id": "o327",
+            "included_label": "pancreas",
+            "distance_to_included_voxel_mm": 0.0,
+            "accepted": true
+          }
+        ],
+        "grading_seconds": 0.005842416008817963
+      },
+      "grade_sha256": "5a554a88b6d1956eb3efa126a150082a7b9ad7a7974c3848ef71a7409b0b7da5",
+      "answer_path": "runs/br017-abdomen-f01-oracle-v1-20260915/abdomen-f01__DuibU8Z/artifacts/app/answer/answer.json",
+      "answer_sha256": "ed00d68b31bd2d83896e79c52e4fd9ccc4ffc6a5a2e36c43042702609f181c19",
+      "answer": {
+        "findings": [
+          {
+            "object_id": "o327",
+            "included_label": "pancreas",
+            "point_lps_mm": [
+              -13.888671875,
+              -202.888671875,
+              299.20000076293945
+            ]
+          }
+        ]
+      },
+      "replay_matches": true,
+      "independent_pair_check": true
+    },
+    {
+      "task": "abdomen-f01",
+      "phase": "nop",
+      "case": 28,
+      "mode": "inclusion_audit",
+      "result_path": "runs/br017-abdomen-f01-nop-v1-20260915/abdomen-f01__3sJQRUU/result.json",
+      "result_sha256": "f99eb54123d758d47be8358380e2634b927b9a52155830e390018fb09c7f6b4a",
+      "task_checksum": "bf3e97e2b87af0164bb5a49b9f29638e8a7b24c0060700c0ea4376d2c4aae869",
+      "started_at": "2026-09-15T12:59:07.565410Z",
+      "finished_at": "2026-09-15T12:59:32.336399Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "agent_seconds": 8.7e-05,
+      "total_seconds": 24.770989,
+      "environment_setup_seconds": 1.674614,
+      "agent_setup_seconds": 4.3e-05,
+      "verifier_seconds": 12.212739,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": false,
+        "error": "Expected exactly one list named findings",
+        "grading_seconds": 0.0005483339919010177
+      },
+      "grade_sha256": "6ebad87210f9395bcddc9c4b9f0748f992cf04bc689e6a8702cb74704c23bee7",
+      "answer_path": "runs/br017-abdomen-f01-nop-v1-20260915/abdomen-f01__3sJQRUU/artifacts/app/answer/answer.json",
+      "answer_sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "answer": {
+        "findings": null
+      },
+      "replay_matches": true,
+      "independent_pair_check": false
+    },
+    {
+      "task": "abdomen-f01",
+      "phase": "sol-xhigh",
+      "case": 28,
+      "mode": "inclusion_audit",
+      "result_path": "runs/br017-abdomen-f01-sol-xhigh-v1-20260915/abdomen-f01__dmBoEbU/result.json",
+      "result_sha256": "5079a454b78b7c68e8f6b88459da6f34e01f4b6a8a579bead34d604b8c0e9c2b",
+      "task_checksum": "bf3e97e2b87af0164bb5a49b9f29638e8a7b24c0060700c0ea4376d2c4aae869",
+      "started_at": "2026-09-15T12:59:32.616289Z",
+      "finished_at": "2026-09-15T13:06:33.286266Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 351.1765,
+      "total_seconds": 420.669977,
+      "environment_setup_seconds": 1.703312,
+      "agent_setup_seconds": 43.70885,
+      "verifier_seconds": 12.126055,
+      "input_tokens": 947867,
+      "cached_input_tokens": 861056,
+      "output_tokens": 12009,
+      "estimated_cost_usd": 0.9318464,
+      "agent_version": "0.154.0",
+      "grade": {
+        "passed": true,
+        "detection_correct": true,
+        "identity_correct": true,
+        "localization_correct": true,
+        "expected_findings": 1,
+        "reported_findings": 1,
+        "missing_pairs": [],
+        "extra_pairs": [],
+        "witnesses": [
+          {
+            "object_id": "o327",
+            "included_label": "pancreas",
+            "distance_to_included_voxel_mm": 0.016020388029427478,
+            "accepted": true
+          }
+        ],
+        "grading_seconds": 0.003368916004546918
+      },
+      "grade_sha256": "299fbf6b511b9023db78ddeac45ead4e08f3da3bc799d29b524e1a679b035bea",
+      "answer_path": "runs/br017-abdomen-f01-sol-xhigh-v1-20260915/abdomen-f01__dmBoEbU/artifacts/app/answer/answer.json",
+      "answer_sha256": "e7b673adeee501320c936d9fb0adc16063e6eea9353fe66679537ea7b50a37c4",
+      "answer": {
+        "findings": [
+          {
+            "object_id": "o327",
+            "included_label": "pancreas",
+            "point_lps_mm": [
+              -22.9,
+              -199.9,
+              324.7
+            ]
+          }
+        ]
+      },
+      "replay_matches": true,
+      "independent_pair_check": true,
+      "requested_model": "openai/gpt-5.6-sol",
+      "requested_effort": "xhigh",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br017-abdomen-f01-sol-xhigh-v1-20260915/abdomen-f01__dmBoEbU/agent/sessions/2026/09/15/rollout-2026-09-15T13-00-19-01a0a527-6dcf-73e3-9bc5-eac7a95290f3.jsonl",
+          "sha256": "53c72e54ce9074a9d5788f4c84bfe687dba816379e7de0c33a67fe6dd98cf667"
+        }
+      ],
+      "session_file_count": 1,
+      "frozen_instruction_seen_in_user_message": true,
+      "runtime_matches_request": true,
+      "reasoning_output_tokens": 6973,
+      "last_record_stream_usage": {
+        "input_tokens": 947867,
+        "cached_input_tokens": 861056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 12009,
+        "reasoning_output_tokens": 6973,
+        "total_tokens": 959876
+      },
+      "token_basis": "Harbor counters; reasoning reported only from exactly matching legacy runtime counters. Record-stream totals retained separately.",
+      "trajectory_sha256": "84e9c099c43574991d5dd9aec0005828ad10275b4097c006e1ceabec3a6ba27f",
+      "tool_wrappers": 21,
+      "image_review_wrappers": 5
+    },
+    {
+      "task": "abdomen-m01",
+      "phase": "oracle",
+      "case": 28,
+      "mode": "inclusion_audit",
+      "result_path": "runs/br017-abdomen-m01-oracle-v1-20260915/abdomen-m01__wmziuek/result.json",
+      "result_sha256": "54589a77b14dae7a47d02cc04b8202a77580468533c42c34d88b4d2e9f77ee0a",
+      "task_checksum": "4e3d02f459129f5c0a94d3e4fe4b2aa22020b94afdd0269711d521c5aff4349e",
+      "started_at": "2026-09-15T12:37:53.919416Z",
+      "finished_at": "2026-09-15T12:38:19.406057Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 0.160429,
+      "total_seconds": 25.486641,
+      "environment_setup_seconds": 2.153591,
+      "agent_setup_seconds": 4e-05,
+      "verifier_seconds": 12.29516,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": true,
+        "detection_correct": true,
+        "identity_correct": true,
+        "localization_correct": true,
+        "expected_findings": 1,
+        "reported_findings": 1,
+        "missing_pairs": [],
+        "extra_pairs": [],
+        "witnesses": [
+          {
+            "object_id": "o327",
+            "included_label": "pancreas",
+            "distance_to_included_voxel_mm": 0.0,
+            "accepted": true
+          }
+        ],
+        "grading_seconds": 0.004020708991447464
+      },
+      "grade_sha256": "b1306e3b1c289d38b812d3bed4a009c2164e787441c928e354a671d4cdeba72c",
+      "answer_path": "runs/br017-abdomen-m01-oracle-v1-20260915/abdomen-m01__wmziuek/artifacts/app/answer/answer.json",
+      "answer_sha256": "3a62852b08c57557397f68ce4e15b701a258aae5e1f65694c40fa966e73675b5",
+      "answer": {
+        "findings": [
+          {
+            "object_id": "o327",
+            "included_label": "pancreas",
+            "point_lps_mm": [
+              -15.388671875,
+              -195.388671875,
+              323.20000076293945
+            ]
+          }
+        ]
+      },
+      "replay_matches": true,
+      "independent_pair_check": true
+    },
+    {
+      "task": "abdomen-m01",
+      "phase": "nop",
+      "case": 28,
+      "mode": "inclusion_audit",
+      "result_path": "runs/br017-abdomen-m01-nop-v1-20260915/abdomen-m01__WsujMJf/result.json",
+      "result_sha256": "029b44598ca6de331622a5a6ab721b53805c733ac5803f96ac77cd1c6ba41654",
+      "task_checksum": "4e3d02f459129f5c0a94d3e4fe4b2aa22020b94afdd0269711d521c5aff4349e",
+      "started_at": "2026-09-15T12:38:19.692437Z",
+      "finished_at": "2026-09-15T12:38:44.361253Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "agent_seconds": 9.7e-05,
+      "total_seconds": 24.668816,
+      "environment_setup_seconds": 1.668687,
+      "agent_setup_seconds": 4.4e-05,
+      "verifier_seconds": 12.124035,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": false,
+        "error": "Expected exactly one list named findings",
+        "grading_seconds": 0.0034229579905513674
+      },
+      "grade_sha256": "9c433dcab80a9767bee5aa7a5dbe9b25abd1831faad2a5896b9b77e57405e68b",
+      "answer_path": "runs/br017-abdomen-m01-nop-v1-20260915/abdomen-m01__WsujMJf/artifacts/app/answer/answer.json",
+      "answer_sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "answer": {
+        "findings": null
+      },
+      "replay_matches": true,
+      "independent_pair_check": false
+    },
+    {
+      "task": "abdomen-m01",
+      "phase": "sol-xhigh",
+      "case": 28,
+      "mode": "inclusion_audit",
+      "result_path": "runs/br017-abdomen-m01-sol-xhigh-v1-20260915/abdomen-m01__jmaLeZe/result.json",
+      "result_sha256": "488c13e5f066039c2c801677846f6bdfc4dafa2dbe2cea5f109482dd39923426",
+      "task_checksum": "4e3d02f459129f5c0a94d3e4fe4b2aa22020b94afdd0269711d521c5aff4349e",
+      "started_at": "2026-09-15T12:38:44.637436Z",
+      "finished_at": "2026-09-15T12:45:36.960151Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 348.733369,
+      "total_seconds": 412.322715,
+      "environment_setup_seconds": 1.663965,
+      "agent_setup_seconds": 38.048899,
+      "verifier_seconds": 12.120223,
+      "input_tokens": 1229817,
+      "cached_input_tokens": 1139200,
+      "output_tokens": 15102,
+      "estimated_cost_usd": 1.120188,
+      "agent_version": "0.154.0",
+      "grade": {
+        "passed": true,
+        "detection_correct": true,
+        "identity_correct": true,
+        "localization_correct": true,
+        "expected_findings": 1,
+        "reported_findings": 1,
+        "missing_pairs": [],
+        "extra_pairs": [],
+        "witnesses": [
+          {
+            "object_id": "o327",
+            "included_label": "pancreas",
+            "distance_to_included_voxel_mm": 0.0004640394523451243,
+            "accepted": true
+          }
+        ],
+        "grading_seconds": 0.006370624992996454
+      },
+      "grade_sha256": "8021a6961509216f03165685a3685b35c5302fc0056c4ec64d8f706652538ba3",
+      "answer_path": "runs/br017-abdomen-m01-sol-xhigh-v1-20260915/abdomen-m01__jmaLeZe/artifacts/app/answer/answer.json",
+      "answer_sha256": "bf88c59e6a263f2bfbe1d8884b128d41f85e9454f8a57a858d8baf2dd04fbdb4",
+      "answer": {
+        "findings": [
+          {
+            "object_id": "o327",
+            "included_label": "pancreas",
+            "point_lps_mm": [
+              23.611,
+              -195.389,
+              369.7
+            ]
+          }
+        ]
+      },
+      "replay_matches": true,
+      "independent_pair_check": true,
+      "requested_model": "openai/gpt-5.6-sol",
+      "requested_effort": "xhigh",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br017-abdomen-m01-sol-xhigh-v1-20260915/abdomen-m01__jmaLeZe/agent/sessions/2026/09/15/rollout-2026-09-15T12-39-25-01a0a514-4bd6-7da2-943e-6eab82b21b83.jsonl",
+          "sha256": "fac6d2b2ad14ff08cf5b5a181ce3e6553f480b59a85d4bf7e0c30750684513be"
+        }
+      ],
+      "session_file_count": 1,
+      "frozen_instruction_seen_in_user_message": true,
+      "runtime_matches_request": true,
+      "reasoning_output_tokens": 9198,
+      "last_record_stream_usage": {
+        "input_tokens": 1229817,
+        "cached_input_tokens": 1139200,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 15102,
+        "reasoning_output_tokens": 9198,
+        "total_tokens": 1244919
+      },
+      "token_basis": "Harbor counters; reasoning reported only from exactly matching legacy runtime counters. Record-stream totals retained separately.",
+      "trajectory_sha256": "74b0da86a55f05cb54a3b719c111ab76758bc65ac6a753da43eaa050d092a872",
+      "tool_wrappers": 23,
+      "image_review_wrappers": 9
+    },
+    {
+      "task": "abdomen-m02",
+      "phase": "oracle",
+      "case": 28,
+      "mode": "inclusion_audit",
+      "result_path": "runs/br017-abdomen-m02-oracle-v1-20260915/abdomen-m02__GbhnTAC/result.json",
+      "result_sha256": "d2395ad60d3335fd30dc64ab1c51351d61a3a788be0ed8aa541425b229337cb3",
+      "task_checksum": "ed91aa4394d8e1709439639c011ef2688db3bc1129cf6e866b03bd412efbf3c5",
+      "started_at": "2026-09-15T12:28:24.774388Z",
+      "finished_at": "2026-09-15T12:28:50.418401Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 0.168733,
+      "total_seconds": 25.644013,
+      "environment_setup_seconds": 2.225915,
+      "agent_setup_seconds": 4.8e-05,
+      "verifier_seconds": 12.343665,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": true,
+        "detection_correct": true,
+        "identity_correct": true,
+        "localization_correct": true,
+        "expected_findings": 1,
+        "reported_findings": 1,
+        "missing_pairs": [],
+        "extra_pairs": [],
+        "witnesses": [
+          {
+            "object_id": "o327",
+            "included_label": "pancreas",
+            "distance_to_included_voxel_mm": 0.0,
+            "accepted": true
+          }
+        ],
+        "grading_seconds": 0.0033873329957714304
+      },
+      "grade_sha256": "0bfccb2f0734db54f073efd382fa062e371b6f4f5cf0bd50e3ed0218d2d467f4",
+      "answer_path": "runs/br017-abdomen-m02-oracle-v1-20260915/abdomen-m02__GbhnTAC/artifacts/app/answer/answer.json",
+      "answer_sha256": "ed00d68b31bd2d83896e79c52e4fd9ccc4ffc6a5a2e36c43042702609f181c19",
+      "answer": {
+        "findings": [
+          {
+            "object_id": "o327",
+            "included_label": "pancreas",
+            "point_lps_mm": [
+              -13.888671875,
+              -202.888671875,
+              299.20000076293945
+            ]
+          }
+        ]
+      },
+      "replay_matches": true,
+      "independent_pair_check": true
+    },
+    {
+      "task": "abdomen-m02",
+      "phase": "nop",
+      "case": 28,
+      "mode": "inclusion_audit",
+      "result_path": "runs/br017-abdomen-m02-nop-v1-20260915/abdomen-m02__5gbsK2t/result.json",
+      "result_sha256": "33c0b54185527a85e8a4d7eee87334aeec40e3d8f487d33dad51afa09082b67d",
+      "task_checksum": "ed91aa4394d8e1709439639c011ef2688db3bc1129cf6e866b03bd412efbf3c5",
+      "started_at": "2026-09-15T12:28:50.706367Z",
+      "finished_at": "2026-09-15T12:29:15.469651Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "agent_seconds": 8.8e-05,
+      "total_seconds": 24.763284,
+      "environment_setup_seconds": 1.714723,
+      "agent_setup_seconds": 5.1e-05,
+      "verifier_seconds": 12.181752,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": false,
+        "error": "Expected exactly one list named findings",
+        "grading_seconds": 0.0023857079941080883
+      },
+      "grade_sha256": "6b2d99fffdc7b67a1251d741a81d10d0bf6d93a275b337de70f0b408ae69d765",
+      "answer_path": "runs/br017-abdomen-m02-nop-v1-20260915/abdomen-m02__5gbsK2t/artifacts/app/answer/answer.json",
+      "answer_sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "answer": {
+        "findings": null
+      },
+      "replay_matches": true,
+      "independent_pair_check": false
+    },
+    {
+      "task": "abdomen-m02",
+      "phase": "sol-xhigh",
+      "case": 28,
+      "mode": "inclusion_audit",
+      "result_path": "runs/br017-abdomen-m02-sol-xhigh-v1-20260915/abdomen-m02__YQZJHca/result.json",
+      "result_sha256": "f510c8081a35ccd58d0112c45c57b50a4da37675b7519d6f1b8150ece918146f",
+      "task_checksum": "ed91aa4394d8e1709439639c011ef2688db3bc1129cf6e866b03bd412efbf3c5",
+      "started_at": "2026-09-15T12:29:15.751192Z",
+      "finished_at": "2026-09-15T12:37:04.277824Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "agent_seconds": 404.393577,
+      "total_seconds": 468.526632,
+      "environment_setup_seconds": 1.729446,
+      "agent_setup_seconds": 38.139202,
+      "verifier_seconds": 12.250594,
+      "input_tokens": 1148305,
+      "cached_input_tokens": 1053824,
+      "output_tokens": 10593,
+      "estimated_cost_usd": 1.0113136,
+      "agent_version": "0.154.0",
+      "grade": {
+        "passed": false,
+        "detection_correct": false,
+        "identity_correct": false,
+        "localization_correct": false,
+        "expected_findings": 1,
+        "reported_findings": 0,
+        "missing_pairs": [
+          [
+            "o327",
+            "pancreas"
+          ]
+        ],
+        "extra_pairs": [],
+        "witnesses": [],
+        "grading_seconds": 0.0005775829922640696
+      },
+      "grade_sha256": "9e818382e6679e74f37fde1f2b89080713a69cd2cb34a52dd4206ef153ba00d2",
+      "answer_path": "runs/br017-abdomen-m02-sol-xhigh-v1-20260915/abdomen-m02__YQZJHca/artifacts/app/answer/answer.json",
+      "answer_sha256": "9ba8071ce819632d6b70ddc2d9e13da3b5d20201af51595badc4aaf1647bd878",
+      "answer": {
+        "findings": []
+      },
+      "replay_matches": true,
+      "independent_pair_check": false,
+      "requested_model": "openai/gpt-5.6-sol",
+      "requested_effort": "xhigh",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br017-abdomen-m02-sol-xhigh-v1-20260915/abdomen-m02__YQZJHca/agent/sessions/2026/09/15/rollout-2026-09-15T12-29-57-01a0a50b-9e3c-7d91-83c0-cbbfa61bdf07.jsonl",
+          "sha256": "be9b12c0672151becedd6d6afdef5b56e8a6f1f43cb3f7d90b5c677b4e7fd337"
+        }
+      ],
+      "session_file_count": 1,
+      "frozen_instruction_seen_in_user_message": true,
+      "runtime_matches_request": true,
+      "reasoning_output_tokens": 6003,
+      "last_record_stream_usage": {
+        "input_tokens": 1148305,
+        "cached_input_tokens": 1053824,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10593,
+        "reasoning_output_tokens": 6003,
+        "total_tokens": 1158898
+      },
+      "token_basis": "Harbor counters; reasoning reported only from exactly matching legacy runtime counters. Record-stream totals retained separately.",
+      "trajectory_sha256": "d3e5c774482e26816fb4e73434e819608a255eeab77afd4ca00cfc57e486d642",
+      "tool_wrappers": 22,
+      "image_review_wrappers": 7
+    },
+    {
+      "task": "abdomen-n01",
+      "phase": "oracle",
+      "case": 28,
+      "mode": "inclusion_audit",
+      "result_path": "runs/br017-abdomen-n01-oracle-v1-20260915/abdomen-n01__3gvp8su/result.json",
+      "result_sha256": "4618ec9b3ecb27d97521904a220bdd5a52745dc698ed628204eae95dce15d213",
+      "task_checksum": "572db63fd64bf0da09fe433c9d7aa21e97bf8787da6033982f383c401fb50d9b",
+      "started_at": "2026-09-15T12:46:42.937258Z",
+      "finished_at": "2026-09-15T12:47:08.373112Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 0.162996,
+      "total_seconds": 25.435854,
+      "environment_setup_seconds": 2.123179,
+      "agent_setup_seconds": 5.4e-05,
+      "verifier_seconds": 12.270233,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": true,
+        "detection_correct": true,
+        "identity_correct": true,
+        "localization_correct": true,
+        "expected_findings": 0,
+        "reported_findings": 0,
+        "missing_pairs": [],
+        "extra_pairs": [],
+        "witnesses": [],
+        "grading_seconds": 0.0031779169949004427
+      },
+      "grade_sha256": "95e594574046dda8a5bd3401669eebb7e7460b703c10a0cc5e7adaf47652eb94",
+      "answer_path": "runs/br017-abdomen-n01-oracle-v1-20260915/abdomen-n01__3gvp8su/artifacts/app/answer/answer.json",
+      "answer_sha256": "8aa973100a15bf817985395637131e838cf84e427be4792583def923f020f5fa",
+      "answer": {
+        "findings": []
+      },
+      "replay_matches": true,
+      "independent_pair_check": true
+    },
+    {
+      "task": "abdomen-n01",
+      "phase": "nop",
+      "case": 28,
+      "mode": "inclusion_audit",
+      "result_path": "runs/br017-abdomen-n01-nop-v1-20260915/abdomen-n01__RJHtc4U/result.json",
+      "result_sha256": "6586bf2dc86c5bb4892d89d68b28d8c4bdeea0ff20d699c05698b5c988edd0a1",
+      "task_checksum": "572db63fd64bf0da09fe433c9d7aa21e97bf8787da6033982f383c401fb50d9b",
+      "started_at": "2026-09-15T12:47:08.657995Z",
+      "finished_at": "2026-09-15T12:47:33.363441Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "agent_seconds": 8.6e-05,
+      "total_seconds": 24.705446,
+      "environment_setup_seconds": 1.685984,
+      "agent_setup_seconds": 4.3e-05,
+      "verifier_seconds": 12.164899,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "passed": false,
+        "error": "Expected exactly one list named findings",
+        "grading_seconds": 0.0024088329955702648
+      },
+      "grade_sha256": "31917a841a9ca912dd7ad3090b5a8f3975facff1c87968b07f986797e94ac00f",
+      "answer_path": "runs/br017-abdomen-n01-nop-v1-20260915/abdomen-n01__RJHtc4U/artifacts/app/answer/answer.json",
+      "answer_sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "answer": {
+        "findings": null
+      },
+      "replay_matches": true,
+      "independent_pair_check": false
+    },
+    {
+      "task": "abdomen-n01",
+      "phase": "sol-xhigh",
+      "case": 28,
+      "mode": "inclusion_audit",
+      "result_path": "runs/br017-abdomen-n01-sol-xhigh-v1-20260915/abdomen-n01__aTnyAWY/result.json",
+      "result_sha256": "963bfd657aa86637b519a092a1a25ac46b6830cd180e694fe516fff9b2dfcca1",
+      "task_checksum": "572db63fd64bf0da09fe433c9d7aa21e97bf8787da6033982f383c401fb50d9b",
+      "started_at": "2026-09-15T12:47:33.632681Z",
+      "finished_at": "2026-09-15T12:56:10.924756Z",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "agent_seconds": 453.391182,
+      "total_seconds": 517.292075,
+      "environment_setup_seconds": 1.679762,
+      "agent_setup_seconds": 37.901422,
+      "verifier_seconds": 12.234607,
+      "input_tokens": 1656389,
+      "cached_input_tokens": 1556224,
+      "output_tokens": 11864,
+      "estimated_cost_usd": 1.2604296,
+      "agent_version": "0.154.0",
+      "grade": {
+        "passed": true,
+        "detection_correct": true,
+        "identity_correct": true,
+        "localization_correct": true,
+        "expected_findings": 0,
+        "reported_findings": 0,
+        "missing_pairs": [],
+        "extra_pairs": [],
+        "witnesses": [],
+        "grading_seconds": 0.0005669590027537197
+      },
+      "grade_sha256": "b93186142ff2a82307da2b639e86409c914f532f14b19df4ea58862d89e3e8f7",
+      "answer_path": "runs/br017-abdomen-n01-sol-xhigh-v1-20260915/abdomen-n01__aTnyAWY/artifacts/app/answer/answer.json",
+      "answer_sha256": "9ba8071ce819632d6b70ddc2d9e13da3b5d20201af51595badc4aaf1647bd878",
+      "answer": {
+        "findings": []
+      },
+      "replay_matches": true,
+      "independent_pair_check": true,
+      "requested_model": "openai/gpt-5.6-sol",
+      "requested_effort": "xhigh",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br017-abdomen-n01-sol-xhigh-v1-20260915/abdomen-n01__aTnyAWY/agent/sessions/2026/09/15/rollout-2026-09-15T12-48-14-01a0a51c-5d78-71b3-ae3e-72d9262ca784.jsonl",
+          "sha256": "d47b4cb293fd3943103e194becae4112ebb8293d7cef2290d9ef4a309807d6ef"
+        }
+      ],
+      "session_file_count": 1,
+      "frozen_instruction_seen_in_user_message": true,
+      "runtime_matches_request": true,
+      "reasoning_output_tokens": 6645,
+      "last_record_stream_usage": {
+        "input_tokens": 1656389,
+        "cached_input_tokens": 1556224,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11864,
+        "reasoning_output_tokens": 6645,
+        "total_tokens": 1668253
+      },
+      "token_basis": "Harbor counters; reasoning reported only from exactly matching legacy runtime counters. Record-stream totals retained separately.",
+      "trajectory_sha256": "0feb441300d934a6397b407fd14c268a72ad5fb644d4ef12cf5884ef7dd5bf64",
+      "tool_wrappers": 28,
+      "image_review_wrappers": 9
+    }
+  ],
+  "limitations": [
+    "One attempt per condition, not a success-rate estimate.",
+    "Substantial synthetic label transfers with full original CT; no clinical adjudication.",
+    "M02 retains all names; M01 has a missing-label cue; N01 is the unchanged control.",
+    "Reference lineage establishes injected tissue identity, not specialist solvability.",
+    "Input includes cache; output includes reasoning; model costs are harness estimates.",
+    "No Terra or Claude trial in this round."
+  ]
+}

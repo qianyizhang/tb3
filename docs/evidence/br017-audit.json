@@ -1,0 +1,111 @@
+{
+  "round": "BR-017",
+  "basis": "Independent reconstruction from public crop affine plus original NIfTI source; no comparison only to a generator-produced key.",
+  "tasks": [
+    {
+      "task": "abdomen-f01",
+      "all_public_members_match_frozen_archive": true,
+      "original_ct_samples_equal": 28160225,
+      "union_voxels_equal": 733354,
+      "unaltered_classes_equal": 11,
+      "host_added_voxels_equal_payload": 6233,
+      "all_payload_voxels_original_pancreas": true,
+      "missing_proposed_labels": [],
+      "label_absence_cue_identifies_foreign_class": false,
+      "public_components26": {
+        "pancreas": [
+          11351,
+          14,
+          6,
+          2
+        ],
+        "duodenum": [
+          22785
+        ]
+      }
+    },
+    {
+      "task": "abdomen-m01",
+      "all_public_members_match_frozen_archive": true,
+      "original_ct_samples_equal": 28160225,
+      "union_voxels_equal": 733354,
+      "unaltered_classes_equal": 11,
+      "host_added_voxels_equal_payload": 17584,
+      "all_payload_voxels_original_pancreas": true,
+      "missing_proposed_labels": [
+        "pancreas"
+      ],
+      "label_absence_cue_identifies_foreign_class": true,
+      "public_components26": {
+        "pancreas": [],
+        "duodenum": [
+          34136
+        ]
+      }
+    },
+    {
+      "task": "abdomen-m02",
+      "all_public_members_match_frozen_archive": true,
+      "original_ct_samples_equal": 28160225,
+      "union_voxels_equal": 733354,
+      "unaltered_classes_equal": 11,
+      "host_added_voxels_equal_payload": 6233,
+      "all_payload_voxels_original_pancreas": true,
+      "missing_proposed_labels": [],
+      "label_absence_cue_identifies_foreign_class": false,
+      "public_components26": {
+        "pancreas": [
+          11351,
+          14,
+          6,
+          2
+        ],
+        "duodenum": [
+          22785
+        ]
+      }
+    },
+    {
+      "task": "abdomen-n01",
+      "all_public_members_match_frozen_archive": true,
+      "original_ct_samples_equal": 28160225,
+      "union_voxels_equal": 733354,
+      "unaltered_classes_equal": 11,
+      "host_added_voxels_equal_payload": 0,
+      "all_payload_voxels_original_pancreas": true,
+      "missing_proposed_labels": [],
+      "label_absence_cue_identifies_foreign_class": false,
+      "public_components26": {
+        "pancreas": [
+          17606
+        ],
+        "duodenum": [
+          16552
+        ]
+      }
+    }
+  ],
+  "source_components26": {
+    "pancreas": [
+      17606
+    ],
+    "duodenum": [
+      16552
+    ]
+  },
+  "author_scoring_controls": 36,
+  "scoring_control_records_across_snapshots": 51,
+  "historical_tasks_unchanged": [
+    "abdomen-a01",
+    "abdomen-a02",
+    "abdomen-a03",
+    "abdomen-f01",
+    "abdomen-i01",
+    "abdomen-c01",
+    "abdomen-v01"
+  ],
+  "limitations": [
+    "Voxel lineage proves the synthetic edit, not clinical realism or specialist solvability.",
+    "Missing-label and component counts are narrow shortcut screens, not a general anatomy baseline."
+  ]
+}
