@@ -1,6 +1,6 @@
 # Maintaining the research archive
 
-Research is closed. Start with the [final report](docs/report.html) or
+Research is closed. Start with the [final report](site/index.html) or
 [reproduction guide](docs/reproduce.md). For corrections, read [artifact governance](docs/governance.md) and
 [submission requirements](docs/requirements.md). The workshop is a research
 workspace; passing repository CI does not establish task difficulty or readiness.

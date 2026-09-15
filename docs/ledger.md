@@ -2,7 +2,7 @@
 
 **Archived research record.** Outcomes and IDs are retained. “Active” and “next”
 below describe the original work, not a current queue. Read the
-[final report](report.html) for the conclusion and the [archive](archive.md)
+[final report](../site/index.html) for the conclusion and the [archive](archive.md)
 for navigation. Submission qualification is [maintained separately](submission.md).
 
 Initial entries are dated 2026-09-12; later rounds carry their own dates. Research claims and ranked alternatives live in [research.md](research.md); acceptance rules in [requirements.md](requirements.md). Append outcomes, including failures. No model difficulty claims without completed verifiers.

@@ -2,7 +2,7 @@
 
 ## Research closeout
 
-The investigation is closed for interview presentation. `docs/report.html` owns
+The investigation is closed for interview presentation. `site/index.html` owns
 the final synthesis; `docs/archive.md` indexes retained evidence. The clean
 submission is maintained in a separate sibling workspace described in
 `docs/submission.md`. Historical selection priorities and next actions are not

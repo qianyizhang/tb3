@@ -1,7 +1,7 @@
 # Catalog reference
 
 Research is closed. Use [the reproduction guide](reproduce.md) for read-only
-inspection and [the final report](report.html) for conclusions. The authoring
+inspection and [the final report](../site/index.html) for conclusions. The authoring
 and sync commands below are retained as a tooling reference, not a closeout
 checklist or authorization to create more trials.
 

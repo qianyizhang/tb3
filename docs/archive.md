@@ -1,6 +1,6 @@
 # Research archive
 
-[Final report](report.html) · [Selected task](submission.md) · [Reproduction](reproduce.md)
+[Final report](../site/index.html) · [Selected task](submission.md) · [Reproduction](reproduce.md)
 
 This archive preserves completed research and subsequent authorized follow-ups.
 Historical “active”, “next action” and “pending” wording records its capture
@@ -12,9 +12,9 @@ Original snapshots and evidence retain their stable paths and meanings.
 
 | Study | Synthesis and traces | Reused interactive presentation (local assets) |
 | --- | --- | --- |
-| Anatomical identity, BR-013–015 | [Current verdict](anatomy-experiments.md), [eight trace walkthroughs](anatomy-traces.md) | [Identity comparison](../runs/interview-presentations/anatomy.html) |
-| Tissue ownership, BR-017 | [Results](research-rounds/BR-017-results.md), [four traces](research-rounds/BR-017-traces.md) | [Label toggles and trial explorer](../runs/interview-presentations/absorption.html) |
-| Aneurysm localization, BR-016 | [Results and three traces](research-rounds/BR-016-results.md), [trace audit](evidence/br016-trace-reviews.json) | [Native scan explorer](../runs/interview-presentations/aneurysm.html) |
+| Anatomical identity, BR-013–015 | [Current verdict](anatomy-experiments.md), [eight trace walkthroughs](anatomy-traces.md) | [Identity comparison](../site/index.html#anatomy) |
+| Tissue ownership, BR-017 | [Results](research-rounds/BR-017-results.md), [four traces](research-rounds/BR-017-traces.md) | [Label toggles and trial explorer](../site/index.html#absorption) |
+| Aneurysm localization, BR-016 | [Results and three traces](research-rounds/BR-016-results.md), [trace audit](evidence/br016-trace-reviews.json) | [Native scan explorer](../site/index.html#aneurysm) |
 
 The current anatomy lead is M02's **broad** partial-absorption audit. Its focused
 version passed. The anonymous identity miss is a secondary diagnostic after
@@ -117,7 +117,7 @@ original protocols and reviews continue to own their evidence.
 | Original protocols, freezes, results and reviews | Retained at original paths; no retrospective reward or task change |
 | CLI repair, geometry pickup, round template | Consolidated into `archive/operations.md`; inbound links updated |
 | Ledger and candidate searches | Retained as historical detail, removed from primary reading path |
-| Generated catalog and raw traces | Local-only in `runs/`; not embedded in the interview report |
+| Generated catalog and raw traces | Local-only in `runs/`; raw traces stay local; selected attributed figures are bundled in the publication |
 | Pre-cleanup authored state | Local recovery archive plus file hashes in `runs/archive-closeout/` |
 | Runtime environments and caches | Retained while submission work is active; no blanket cleanup |
 
@@ -125,8 +125,9 @@ The current embedded report illustration reuses BR-017’s partial-absorption
 comparison; its
 [provenance receipt](report-figure.json) records the exact bytes. It is not represented as a pilot screenshot. The detailed presentations reuse
 original report images and interactions through a shared theme/navigation layer.
-`build_interview_presentations.py` writes only local presentation outputs and
-a source/output hash manifest; it never changes original reports or raw trials.
+The tracked `site/content/` chapters and `site/index.html` now retain the publication.
+`build_site.py` bundles these sources without runtime files; `site/provenance.json`
+records the original inputs. The native aneurysm viewer remains local.
 
 Git history preserves previous tracked versions. The local recovery archive
 also includes the uncommitted research files present at closeout start. Neither
@@ -154,4 +155,4 @@ integrity checks, not additional task trials or submission qualification.
 
 ## Earlier boundary-audit presentation
 
-[Four BR-004 Sol cases](boundary-audits.html) explains three reviewed misses and one source hold, with retained images and later dispositions. [Shared interactive-series page](../runs/interview-presentations/boundaries.html). Case 32 is ruled out as too nitpicky; case 61 has a clearly labeled omission-plane comparison.
+[Four BR-004 Sol cases](../site/index.html#boundaries) explains three reviewed misses and one source hold, with retained images and later dispositions. [Shared interactive-series page](../site/index.html#boundaries). Case 32 is ruled out as too nitpicky; case 61 has a clearly labeled omission-plane comparison.

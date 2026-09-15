@@ -1,55 +1,42 @@
 # Inspect and reproduce
 
-[Final report](report.html) · [Research archive](archive.md) · [Submission](submission.md)
+[Final report](../site/index.html) · [Research archive](archive.md) · [Submission](submission.md)
 
-## Read without setup
+## Read or publish
 
-Open `docs/report.html` in a browser. It is a standalone, offline report with
-no package installation or external script dependency. Evidence links resolve
-against the repository; links explicitly marked local-only need retained `runs/`.
-
-For a local HTTP preview, from the repository root:
+The overview and four study presentations are bundled in tracked
+`site/index.html`. Open it directly, or serve the repository and visit
+`http://127.0.0.1:8767/site/index.html`.
 
 ```sh
-python3 -m http.server 8766 --bind 127.0.0.1
-```
-
-Then open `http://127.0.0.1:8766/docs/report.html`. Stop the server when finished.
-
-## Experiment presentations
-
-The updated overview links three reused presentations. With the existing raw
-reports/assets restored, run from the repository root:
-
-```sh
-python3 scripts/build_interview_presentations.py
-python3 scripts/build_interview_presentations.py --check
 python3 -m http.server 8767 --bind 127.0.0.1
 ```
 
-Open `http://127.0.0.1:8767/docs/report.html`. All three presentations use that
-same origin and provide navigation back to the overview. No other report server
-or fixed localhost port is required.
+No `runs/` restoration is needed to read the published report. Images and
+interactive comparisons are embedded. Written evidence links open GitHub.
+The aneurysm chapter uses retained scan overviews; full-resolution native-array
+navigation remains a local archive capability.
 
-The builder reads the existing anatomy-history, BR-017 and BR-016 reports,
-retains their analysis and interactions, and adds `docs/presentation-theme.css`
-plus shared navigation. It writes only `runs/interview-presentations/`.
-Its manifest records the source/output hashes. Original reports stay unchanged.
+## Edit and validate the presentation
 
-| Presentation | Required original output |
-| --- | --- |
-| Anatomy history | `runs/anatomy-history-presentation/index.html` |
-| Absorption | `runs/br017-absorption/review/index.html` |
-| Aneurysm | `runs/br016-aneurysm/blind-review/`, including JSON and native `.bin` arrays |
+```sh
+python3 scripts/build_site.py
+python3 scripts/build_site.py --check
+```
 
-The first two pages embed their images and can open offline. The aneurysm page
-fetches local arrays, so use HTTP rather than a file URL. A fresh Git clone lacks
-these ignored outputs; read the linked written reports or restore the local
-archive. The original authoring READMEs describe source-report reconstruction:
+The builder reads only tracked `site/content/` chapters. It neither launches
+trials nor changes frozen evidence. [Publishing instructions](../site/README.md)
+cover the included GitHub Pages workflow and the one-time repository setting.
+[Presentation provenance](../site/provenance.json) identifies the reused sources.
+
+## Original local viewers
+
+Original generated reports and full-resolution viewers remain unchanged under
+`runs/`. Their authoring records explain reconstruction:
 [anatomy](../probes/revisions/anatomy-history/authoring/README.md),
 [absorption](../probes/revisions/br017/authoring/README.md),
-[aneurysm](../probes/revisions/br016/README.md). Those source builders may also
-write derived trace indexes; they are not automatically run by this wrapper.
+[aneurysm](../probes/revisions/br016/README.md).
+These are optional research-archive tools, independent of the published page.
 
 ## Repository checks
 
@@ -103,5 +90,3 @@ inventory; it is a same-disk recovery copy, not an off-machine backup.
 Raw runs, environments and caches were retained during cleanup because the
 submission work was active. No remote backup, data deletion or GitHub archive
 operation is implied by this research closeout.
-
-The presentation builder also includes the authored [earlier boundary audits](boundary-audits.html), reusing images from `runs/br004-v1/evidence-images/` and `runs/br004-sol/review/`. It produces `runs/interview-presentations/boundaries.html` alongside the three later studies.

@@ -1,6 +1,6 @@
 # Research rounds — historical results and anatomy follow-ups
 
-[Final report](report.html) · [Evidence archive](archive.md) ·
+[Final report](../site/index.html) · [Evidence archive](archive.md) ·
 [Anatomy experiments, traces and current verdict](anatomy-experiments.md)
 
 Nine rounds capture the completed investigation. BR-010 records a later

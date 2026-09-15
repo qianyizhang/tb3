@@ -1,6 +1,6 @@
 # Historical case-32 submission handoff
 
-[Current report](report.html) · [Research archive](archive.md)
+[Current report](../site/index.html) · [Research archive](archive.md)
 
 **Selection superseded.** BR-010 paused promotion of the micro-boundary cases
 over unresolved task-validity concerns. The later anatomy retrospective favors
