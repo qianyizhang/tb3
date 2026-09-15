@@ -1,0 +1,83 @@
+{
+  "agent": "oracle",
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "cases": [],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "control_fail",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br008-xiangqi-oracle-v1-20260915/xiangqi-game-kernel__cMdGFvC/result.json",
+      "sha256": "561562534c29d97d6e24905cf1e2ce9b3b352bd71ade82931f4651e189c8f296"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br008-xiangqi-oracle-v1-20260915/xiangqi-game-kernel__cMdGFvC/verifier/test-stdout.txt",
+      "sha256": "e79370ed48600e08426293eeefbc1edf5b48db0f594a107a20cb84f644e92ce0"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br008-xiangqi-oracle-v1-20260915/xiangqi-game-kernel__cMdGFvC/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Submitted artifact: submission/build.sh",
+      "path": "runs/br008-xiangqi-oracle-v1-20260915/xiangqi-game-kernel__cMdGFvC/artifacts/app/submission/build.sh",
+      "sha256": "345d159af424460fa787de7a3b1d3419c169daac0684b9da8ddc6610fc6307fb"
+    },
+    {
+      "label": "Submitted artifact: submission/game.py",
+      "path": "runs/br008-xiangqi-oracle-v1-20260915/xiangqi-game-kernel__cMdGFvC/artifacts/app/submission/game.py",
+      "sha256": "ce65f8ec912ea0c1e3a598a8b16e8d0ab4d3ccc6545abb9dbeecba389048de01"
+    },
+    {
+      "label": "Submitted artifact: submission/helpers/_native.cpython-312-aarch64-linux-gnu.so",
+      "path": "runs/br008-xiangqi-oracle-v1-20260915/xiangqi-game-kernel__cMdGFvC/artifacts/app/submission/helpers/_native.cpython-312-aarch64-linux-gnu.so",
+      "sha256": "bad4aa55f4f44b875b5f3ab9b3aac44bb3496edd93fe6290b09b0f8648a89177"
+    },
+    {
+      "label": "Submitted artifact: submission/helpers/native.cpp",
+      "path": "runs/br008-xiangqi-oracle-v1-20260915/xiangqi-game-kernel__cMdGFvC/artifacts/app/submission/helpers/native.cpp",
+      "sha256": "11fd7a0d86bf4f88c4ec7348a929f13d6be757281aff36db13d2800b23e1084f"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br008-xiangqi-oracle-v1-20260915/lock.json",
+      "sha256": "247d3349b3c02809841d713f83a5c2079732bf204bac73d7471393a5403d668c"
+    }
+  ],
+  "evidence_sha256": "c46b136236541f50dc38e23d1875e2f2e63a318ea05c1b5e908666da8a8461c4",
+  "exception_type": null,
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-15T03:33:12.527777Z",
+  "harbor_version": "0.18.0",
+  "id": "xiangqi-game-kernel__cMdGFvC-a22918f7",
+  "job": "br008-xiangqi-oracle-v1-20260915",
+  "model": null,
+  "qualifying_final_trial": false,
+  "reasoning_effort": null,
+  "reward": 0.0,
+  "schema_version": 1,
+  "source_result": "runs/br008-xiangqi-oracle-v1-20260915/xiangqi-game-kernel__cMdGFvC/result.json",
+  "source_sha256": "561562534c29d97d6e24905cf1e2ce9b3b352bd71ade82931f4651e189c8f296",
+  "started_at": "2026-09-15T03:18:53.212823Z",
+  "task_checksum": "1aeab4f5f951aaf71f286293e23a54c7f3dc158709e5747530258ddd56fc67c3",
+  "task_id": "xiangqi-game-kernel",
+  "task_sha256": null,
+  "timing": {
+    "agent": 1.475,
+    "setup": 0.0,
+    "total": 859.315,
+    "verifier": 843.615
+  },
+  "trial_name": "xiangqi-game-kernel__cMdGFvC",
+  "usage": {
+    "n_cache_tokens": null,
+    "n_input_tokens": null,
+    "n_output_tokens": null
+  },
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ]
+}

@@ -1,0 +1,370 @@
+{
+  "task_checksum": "1aeab4f5f951aaf71f286293e23a54c7f3dc158709e5747530258ddd56fc67c3",
+  "cheap_C0_match": {
+    "planned": 16,
+    "complete": 16,
+    "W": 15,
+    "D": 1,
+    "L": 0,
+    "elapsed_seconds": 261.538,
+    "service_requests": 915,
+    "pass": false
+  },
+  "wrong_controls": {
+    "reversed_order": {
+      "rejected": true,
+      "first_mismatch": 0,
+      "operation": "state"
+    },
+    "board_only_outcome": {
+      "rejected": true,
+      "first_mismatch": 44,
+      "operation": "state"
+    },
+    "mutable_apply": {
+      "rejected": true,
+      "error": "contract process failed: Traceback (most recent call last):\n  File \"/task/environment/contract_runner.py\", line 65, in <module>\n    result=observe(request)\n           ^^^^^^^^^^^^^^^^\n  File \"/task/environment/contract_runner.py\", line 57, in observe\n    child=game.apply(move)\n          ^^^^^^^^^^^^^^^^\n  File \"/work/wrong/mutable_apply-assembled/qi/game.py\", line 165, in _apply\n    child=_original_apply(g,move,expected_hash)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/work/wrong/mutable_apply-assembled/qi/game.py\", line 150, in apply\n    raise GameError(\"wrong_player\", f\"It is {self.turn}'s turn.\")\nqi.game.GameError: It is black's turn.\n"
+    }
+  },
+  "server": {
+    "requests": 12,
+    "persistent_workers": 4,
+    "records": [
+      {
+        "game": 0,
+        "cpu_ms": 640.0,
+        "wall_ms": 954.992,
+        "depth": 1,
+        "nodes": 210,
+        "forced_stop": false,
+        "peak_rss_bytes": 17924096,
+        "service_worker": 139,
+        "worker_request": 1,
+        "service_ms": 1252.128,
+        "request_id": 1
+      },
+      {
+        "game": 1,
+        "cpu_ms": 650.0,
+        "wall_ms": 970.58,
+        "depth": 2,
+        "nodes": 857,
+        "forced_stop": false,
+        "peak_rss_bytes": 30281728,
+        "service_worker": 142,
+        "worker_request": 1,
+        "service_ms": 1290.037,
+        "request_id": 2
+      },
+      {
+        "game": 2,
+        "cpu_ms": 660.0,
+        "wall_ms": 1027.953,
+        "depth": 1,
+        "nodes": 47,
+        "forced_stop": false,
+        "peak_rss_bytes": 18038784,
+        "service_worker": 140,
+        "worker_request": 1,
+        "service_ms": 1370.025,
+        "request_id": 3
+      },
+      {
+        "game": 3,
+        "cpu_ms": 650.0,
+        "wall_ms": 1050.35,
+        "depth": 2,
+        "nodes": 1659,
+        "forced_stop": false,
+        "peak_rss_bytes": 29917184,
+        "service_worker": 141,
+        "worker_request": 1,
+        "service_ms": 1420.889,
+        "request_id": 4
+      },
+      {
+        "game": 0,
+        "cpu_ms": 670.0,
+        "wall_ms": 1191.878,
+        "depth": 2,
+        "nodes": 857,
+        "forced_stop": false,
+        "peak_rss_bytes": 30085120,
+        "service_worker": 139,
+        "worker_request": 2,
+        "service_ms": 1233.602,
+        "request_id": 5
+      },
+      {
+        "game": 1,
+        "cpu_ms": 680.0,
+        "wall_ms": 1040.124,
+        "depth": 1,
+        "nodes": 47,
+        "forced_stop": false,
+        "peak_rss_bytes": 17997824,
+        "service_worker": 142,
+        "worker_request": 2,
+        "service_ms": 1067.518,
+        "request_id": 6
+      },
+      {
+        "game": 2,
+        "cpu_ms": 650.0,
+        "wall_ms": 964.521,
+        "depth": 2,
+        "nodes": 1659,
+        "forced_stop": false,
+        "peak_rss_bytes": 29159424,
+        "service_worker": 140,
+        "worker_request": 2,
+        "service_ms": 991.68,
+        "request_id": 7
+      },
+      {
+        "game": 3,
+        "cpu_ms": 650.0,
+        "wall_ms": 924.109,
+        "depth": 1,
+        "nodes": 67,
+        "forced_stop": false,
+        "peak_rss_bytes": 17936384,
+        "service_worker": 141,
+        "worker_request": 2,
+        "service_ms": 951.024,
+        "request_id": 8
+      },
+      {
+        "game": 0,
+        "cpu_ms": 670.0,
+        "wall_ms": 1036.529,
+        "depth": 1,
+        "nodes": 47,
+        "forced_stop": false,
+        "peak_rss_bytes": 18948096,
+        "service_worker": 141,
+        "worker_request": 3,
+        "service_ms": 1083.223,
+        "request_id": 9
+      },
+      {
+        "game": 1,
+        "cpu_ms": 640.0,
+        "wall_ms": 915.327,
+        "depth": 2,
+        "nodes": 1659,
+        "forced_stop": false,
+        "peak_rss_bytes": 29986816,
+        "service_worker": 140,
+        "worker_request": 3,
+        "service_ms": 920.265,
+        "request_id": 10
+      },
+      {
+        "game": 2,
+        "cpu_ms": 660.0,
+        "wall_ms": 998.281,
+        "depth": 1,
+        "nodes": 67,
+        "forced_stop": false,
+        "peak_rss_bytes": 18935808,
+        "service_worker": 142,
+        "worker_request": 3,
+        "service_ms": 1023.679,
+        "request_id": 11
+      },
+      {
+        "game": 3,
+        "cpu_ms": 660.0,
+        "wall_ms": 1084.435,
+        "depth": 2,
+        "nodes": 2637,
+        "forced_stop": false,
+        "peak_rss_bytes": 30666752,
+        "service_worker": 139,
+        "worker_request": 3,
+        "service_ms": 1109.658,
+        "request_id": 12
+      }
+    ]
+  },
+  "generation": [
+    {
+      "name": "B0",
+      "positions": 160,
+      "samples": [
+        {
+          "cold_cpu": 0.241327871,
+          "warm_cpu": 1.6989169999999666e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.255889576,
+          "warm_cpu": 1.9510409999999867e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.22927708700000005,
+          "warm_cpu": 1.836042000000093e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.23731203899999997,
+          "warm_cpu": 1.5947920000001225e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.24912312400000003,
+          "warm_cpu": 4.39487500000002e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.26771883400000007,
+          "warm_cpu": 2.8006670000000344e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.22121037599999993,
+          "warm_cpu": 2.0731670000000425e-05,
+          "moves": 5843
+        }
+      ]
+    },
+    {
+      "name": "P1",
+      "positions": 160,
+      "samples": [
+        {
+          "cold_cpu": 0.02066975,
+          "warm_cpu": 4.252583000000004e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.017332249999999993,
+          "warm_cpu": 3.104875000000007e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.020695919000000007,
+          "warm_cpu": 3.6495e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.02330054099999998,
+          "warm_cpu": 4.0109580000000086e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.018386709,
+          "warm_cpu": 2.1979999999999776e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.014939001000000007,
+          "warm_cpu": 1.898416000000014e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.018473915000000007,
+          "warm_cpu": 4.161832999999976e-05,
+          "moves": 5843
+        }
+      ]
+    },
+    {
+      "name": "C0",
+      "positions": 160,
+      "samples": [
+        {
+          "cold_cpu": 0.007250167000000002,
+          "warm_cpu": 3.1895420000000035e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.005346208000000005,
+          "warm_cpu": 3.177709000000001e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.006126457000000002,
+          "warm_cpu": 2.5234160000000007e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.0057946669999999895,
+          "warm_cpu": 3.611457999999984e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.00662974999999999,
+          "warm_cpu": 3.29241600000002e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.004876041999999997,
+          "warm_cpu": 3.095249999999994e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.0053842080000000014,
+          "warm_cpu": 3.63195899999999e-05,
+          "moves": 5843
+        }
+      ]
+    },
+    {
+      "name": "C1",
+      "positions": 160,
+      "samples": [
+        {
+          "cold_cpu": 0.0009852909999999993,
+          "warm_cpu": 2.4104159999999986e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.0010540009999999989,
+          "warm_cpu": 2.1902920000000103e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.0012006250000000107,
+          "warm_cpu": 2.4292090000000017e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.001039042000000004,
+          "warm_cpu": 2.5513749999999945e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.0011100420000000055,
+          "warm_cpu": 3.4301239999999924e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.0008062910000000006,
+          "warm_cpu": 3.244790999999997e-05,
+          "moves": 5843
+        },
+        {
+          "cold_cpu": 0.0017062079999999868,
+          "warm_cpu": 3.160375000000007e-05,
+          "moves": 5843
+        }
+      ]
+    }
+  ],
+  "private_contract": {
+    "cases": 124,
+    "fixed_searches": 12,
+    "equivalent": true,
+    "candidate_cpu": 1.7910274920000004,
+    "baseline_cpu": 14.581357097999998
+  },
+  "author_clock": {
+    "native_start_utc": "2026-09-15T03:03:56.618217+00:00",
+    "allowance_active_minutes": 60,
+    "native_implementation_end_utc": "2026-09-15T03:14:35.625959+00:00",
+    "note": "No further native/library optimization after selection; this interval also includes extensive harness work."
+  }
+}

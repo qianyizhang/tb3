@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "xiangqi-game-kernel",
+  "title": "Optimize a Xiangqi library beneath a frozen concurrent server and searcher",
+  "status": "rejected",
+  "tags": [
+    "brainstorm-round-008",
+    "xiangqi",
+    "performance",
+    "semantic-equivalence",
+    "non-security",
+    "persistent-service"
+  ],
+  "hypothesis": "A constrained game-library optimization tests reduction of execution cost while preserving state/history, move ordering, and fixed-search behavior.",
+  "why_hard": "Not established: the straightforward native author port won 15/16 validation games and Terra/high passed 61/64 private wins in 327 seconds. The extra memory-stress failure is not a frozen verifier failure.",
+  "next_action": "Retire v2 as a hard candidate. No Sol trigger. Preserve the separately diagnosed memory leak as a verifier-coverage finding; any sustained-memory successor needs its own predeclared freeze and controls.",
+  "sources": [
+    {
+      "url": "codex://threads/01a0a25c-e24d-77e1-9864-2827d7867d30",
+      "note": "User-authorized successor and author optimization comparison; exact message IDs unavailable."
+    }
+  ],
+  "evidence": [
+    "docs/research-rounds/BR-008-xiangqi-game-kernel.md",
+    "docs/research-rounds/BR-006-results.md",
+    "docs/research-rounds/BR-008-results.md",
+    "docs/evidence/br008-xiangqi-v1-freeze.json",
+    "docs/evidence/br008-author-controls.json",
+    "docs/evidence/br008-xiangqi-v2-freeze.json",
+    "docs/evidence/br008-v2-controls.json",
+    "docs/evidence/br008-terra-trace-summary.json",
+    "docs/evidence/br008-terra-memory-diagnostic.json",
+    "docs/evidence/br008-round-summary.json"
+  ],
+  "notes": "Fixed concurrent server/search and native library helpers implemented. Oracle/nop controls valid on v2; v1 fixed transport defect retained. Author reference 62/64; Terra 61/64. A missing Py_DECREF causes unbounded retention under separate long-lived testing, but the graded run passed and remains a pass."
+}

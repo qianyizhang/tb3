@@ -1,0 +1,93 @@
+{
+  "agent": "codex",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "cases": [],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "model_pass",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br008-xiangqi-terra-high-v2-20260915/xiangqi-game-kernel__Csfrmxh/result.json",
+      "sha256": "4b2f1e6c54a78bf20ab41469bc1db063a0aedff1c8b147c00277ac211e4eb7f8"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br008-xiangqi-terra-high-v2-20260915/xiangqi-game-kernel__Csfrmxh/verifier/test-stdout.txt",
+      "sha256": "4050fd8d1a319e801d3ea6efbbd25c0b8892b3eed955099b9705fd93503bc4c5"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br008-xiangqi-terra-high-v2-20260915/xiangqi-game-kernel__Csfrmxh/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br008-xiangqi-terra-high-v2-20260915/xiangqi-game-kernel__Csfrmxh/agent/trajectory.json",
+      "sha256": "ba8df7fc56f1113cb29ff484dbd846d29435c3830a103a212826895ccc98a6fb"
+    },
+    {
+      "label": "Submitted artifact: submission/README.md",
+      "path": "runs/br008-xiangqi-terra-high-v2-20260915/xiangqi-game-kernel__Csfrmxh/artifacts/app/submission/README.md",
+      "sha256": "a5866e5cb9c9283186d52e95314e72b883b59a179c38799784650e409ba5b5c7"
+    },
+    {
+      "label": "Submitted artifact: submission/build.sh",
+      "path": "runs/br008-xiangqi-terra-high-v2-20260915/xiangqi-game-kernel__Csfrmxh/artifacts/app/submission/build.sh",
+      "sha256": "15141a30eec7357089a4b39fe22814d3d675e055e0ccca737c5a5260ddb6f7e8"
+    },
+    {
+      "label": "Submitted artifact: submission/game.py",
+      "path": "runs/br008-xiangqi-terra-high-v2-20260915/xiangqi-game-kernel__Csfrmxh/artifacts/app/submission/game.py",
+      "sha256": "875acbcebea5cf6c4d6aa0f919d6c21d60204910b0a979a4473bcd9cf24ef0af"
+    },
+    {
+      "label": "Submitted artifact: submission/helpers/xqfast.c",
+      "path": "runs/br008-xiangqi-terra-high-v2-20260915/xiangqi-game-kernel__Csfrmxh/artifacts/app/submission/helpers/xqfast.c",
+      "sha256": "034a2f250832326d2ee60d2bebb2b71616e184474ea652ebb68635f9db1928ae"
+    },
+    {
+      "label": "Submitted artifact: submission/helpers/xqfast.cpython-312-aarch64-linux-gnu.so",
+      "path": "runs/br008-xiangqi-terra-high-v2-20260915/xiangqi-game-kernel__Csfrmxh/artifacts/app/submission/helpers/xqfast.cpython-312-aarch64-linux-gnu.so",
+      "sha256": "07da6bd7386c3e894465314cce1d4bd32b07fd5afe2b20fc7105a5b0fc3308e4"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br008-xiangqi-terra-high-v2-20260915/lock.json",
+      "sha256": "4fe9be60ece0d7ffef758e3cd6cf95258733c0096fdca386af736c17d0649ddd"
+    }
+  ],
+  "evidence_sha256": "1cc668b7740405d2e0030eb224d222b0b3b195dbd69d2add2a75baa20b742e4b",
+  "exception_type": null,
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-15T04:36:48.117129Z",
+  "harbor_version": "0.14.0",
+  "id": "xiangqi-game-kernel__Csfrmxh-d95d0c96",
+  "job": "br008-xiangqi-terra-high-v2-20260915",
+  "model": "openai/gpt-5.6-terra",
+  "qualifying_final_trial": false,
+  "reasoning_effort": "high",
+  "reward": 1.0,
+  "schema_version": 1,
+  "source_result": "runs/br008-xiangqi-terra-high-v2-20260915/xiangqi-game-kernel__Csfrmxh/result.json",
+  "source_sha256": "4b2f1e6c54a78bf20ab41469bc1db063a0aedff1c8b147c00277ac211e4eb7f8",
+  "started_at": "2026-09-15T04:16:58.891895Z",
+  "task_checksum": "5757e6e83d69acb744f469183662ed7410639d8038bf633f1919837db4b36109",
+  "task_id": "xiangqi-game-kernel",
+  "task_sha256": null,
+  "timing": {
+    "agent": 327.167,
+    "setup": 36.546,
+    "total": 1189.225,
+    "verifier": 810.114
+  },
+  "trial_name": "xiangqi-game-kernel__Csfrmxh",
+  "usage": {
+    "n_cache_tokens": 605952.0,
+    "n_input_tokens": 650280.0,
+    "n_output_tokens": 9198.0
+  },
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ]
+}

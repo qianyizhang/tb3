@@ -1,0 +1,73 @@
+{
+  "agent": "nop",
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "cases": [],
+  "checksum_kind": "harbor.task_checksum",
+  "classification": "control_fail",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br008-xiangqi-nop-v2-20260915/xiangqi-game-kernel__toAjK26/result.json",
+      "sha256": "c2392a5dfe390de8fe09b1ab63c36e63983932100adfd5a52b8c8741e3d810da"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br008-xiangqi-nop-v2-20260915/xiangqi-game-kernel__toAjK26/verifier/test-stdout.txt",
+      "sha256": "6de08fce0eee50d738a3e0d676b9c406063f961005243c0368d710e4a3defc4d"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br008-xiangqi-nop-v2-20260915/xiangqi-game-kernel__toAjK26/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Submitted artifact: submission/build.sh",
+      "path": "runs/br008-xiangqi-nop-v2-20260915/xiangqi-game-kernel__toAjK26/artifacts/app/submission/build.sh",
+      "sha256": "f365f9f6adb20fdc78d3935e66495ba01c8580e8689455e736f25bb5f237be00"
+    },
+    {
+      "label": "Submitted artifact: submission/game.py",
+      "path": "runs/br008-xiangqi-nop-v2-20260915/xiangqi-game-kernel__toAjK26/artifacts/app/submission/game.py",
+      "sha256": "cba84514eb058856de98fcebc5819763a7680f438490a167f072bba87d0cc7e2"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br008-xiangqi-nop-v2-20260915/lock.json",
+      "sha256": "3a9791e947fd856dfec263f207a8e49b667b3501fb5ff39c99b4f0d98f56951c"
+    }
+  ],
+  "evidence_sha256": "207ac98333db62d14490a7bc9236d29246a66844c3629667c40a4bdfca1e1536",
+  "exception_type": null,
+  "execution_mode": "harbor",
+  "finished_at": "2026-09-15T04:16:58.595614Z",
+  "harbor_version": "0.18.0",
+  "id": "xiangqi-game-kernel__toAjK26-44ac70f7",
+  "job": "br008-xiangqi-nop-v2-20260915",
+  "model": null,
+  "qualifying_final_trial": false,
+  "reasoning_effort": null,
+  "reward": 0.0,
+  "schema_version": 1,
+  "source_result": "runs/br008-xiangqi-nop-v2-20260915/xiangqi-game-kernel__toAjK26/result.json",
+  "source_sha256": "c2392a5dfe390de8fe09b1ab63c36e63983932100adfd5a52b8c8741e3d810da",
+  "started_at": "2026-09-15T03:53:27.443827Z",
+  "task_checksum": "5757e6e83d69acb744f469183662ed7410639d8038bf633f1919837db4b36109",
+  "task_id": "xiangqi-game-kernel",
+  "task_sha256": null,
+  "timing": {
+    "agent": 0.0,
+    "setup": 0.0,
+    "total": 1411.152,
+    "verifier": 1398.772
+  },
+  "trial_name": "xiangqi-game-kernel__toAjK26",
+  "usage": {
+    "n_cache_tokens": null,
+    "n_input_tokens": null,
+    "n_output_tokens": null
+  },
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ]
+}
