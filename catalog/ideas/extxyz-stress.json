@@ -7,11 +7,12 @@
     "brainstorm-20260914",
     "atomistic-data",
     "tensors",
-    "non-security"
+    "non-security",
+    "brainstorm-round-005"
   ],
   "hypothesis": "Round-trip preservation of tensor-shaped values may hide physical sign, volume or Voigt changes.",
   "why_hard": "Several physical conventions must agree; audited source misses do not establish difficulty of this miniature.",
-  "next_action": "Retired after a clean Terra/high pass. Preserve the frozen calibration task; return selection to the benchmark-backed shortlist.",
+  "next_action": "Original and BR-005 revised snapshots retired after passes. Preserve both conditions and return selection to failure-backed candidates; do not force hardness.",
   "sources": [
     {
       "url": "https://github.com/libAtoms/extxyz",
@@ -27,7 +28,9 @@
     "docs/evidence/stress-author-controls.json",
     "docs/evidence/stress-pilot-freeze.json",
     "docs/evidence/stress-trial-summary.json",
-    "catalog/analyses/extxyz-stress.md"
+    "catalog/analyses/extxyz-stress.md",
+    "docs/research-rounds/BR-005-results.md",
+    "docs/evidence/br005-round-summary.json"
   ],
-  "notes": "Terra passed 36/36 in 27.022 agent seconds. Eleventh valid local pass; H05 not supported."
+  "notes": "Terra passed 36/36 in 27.022 agent seconds. Eleventh valid local pass; H05 not supported. BR-005: supplied solution ingredients removed; gpt-5.6-terra/high passes in 48.421s. Revised condition remains a passing calibration."
 }

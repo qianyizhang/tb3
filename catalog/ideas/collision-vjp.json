@@ -7,11 +7,12 @@
     "brainstorm-20260914",
     "mechanics",
     "autograd",
-    "non-security"
+    "non-security",
+    "brainstorm-round-005"
   ],
   "hypothesis": "A correct trajectory may omit derivatives through impact time and contact geometry.",
   "why_hard": "Event-time and contact-normal dependence must be included; model difficulty was unproven before the pilot.",
-  "next_action": "Retired after a clean Terra/high pass. Preserve the frozen calibration task; return selection to the benchmark-backed shortlist.",
+  "next_action": "Original and BR-005 revised snapshots retired after passes. Preserve both conditions and return selection to failure-backed candidates; do not force hardness.",
   "sources": [
     {
       "url": "https://arxiv.org/abs/2305.00092",
@@ -27,7 +28,9 @@
     "docs/evidence/collision-author-controls.json",
     "docs/evidence/collision-pilot-freeze.json",
     "docs/evidence/collision-trial-summary.json",
-    "catalog/analyses/collision-vjp.md"
+    "catalog/analyses/collision-vjp.md",
+    "docs/research-rounds/BR-005-results.md",
+    "docs/evidence/br005-round-summary.json"
   ],
-  "notes": "Terra passed 24/24 in 46.887 agent seconds by keeping impact time and normal in the autograd graph. Twelfth valid local pass; H06 not supported."
+  "notes": "Terra passed 24/24 in 46.887 agent seconds by keeping impact time and normal in the autograd graph. Twelfth valid local pass; H06 not supported. BR-005: supplied solution ingredients removed; gpt-5.6-terra/high passes in 88.072s. Revised condition remains a passing calibration."
 }

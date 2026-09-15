@@ -1,0 +1,535 @@
+{
+  "round": "BR-005",
+  "plan": "docs/research-rounds/BR-005-scaffolding-retest.md",
+  "revisions": 5,
+  "model_attempts": 6,
+  "control_attempts": 10,
+  "outcomes": {
+    "model_pass": 5,
+    "model_failure_candidate": 1
+  },
+  "reviewed_outcomes": {
+    "model_pass": 5,
+    "genuine_failure": 1
+  },
+  "failure_review": "docs/evidence/br005-clipper-failure.json",
+  "actuator_replay": "docs/evidence/br005-actuator-measurement-replay.json",
+  "normal_turn_completed_count": 6,
+  "sequential_model_trials_verified": true,
+  "agent_timeout_seconds": 1800,
+  "comparison_limit": "Historical versus revised packages, not randomized prompt-only ablations. Same models, effort, grader cases, tolerances and per-task execution budgets; implementations and guidance differ.",
+  "original_preservation": {
+    "collision": {
+      "original_freeze": "docs/evidence/collision-pilot-freeze.json",
+      "original_manifest_entries_verified": 17,
+      "tracked_source_unchanged_from_commit": "877fc54"
+    },
+    "stress": {
+      "original_freeze": "docs/evidence/stress-pilot-freeze.json",
+      "original_manifest_entries_verified": 18,
+      "tracked_source_unchanged_from_commit": "877fc54"
+    },
+    "flux": {
+      "original_freeze": "docs/evidence/quad-pilot-freeze.json",
+      "original_manifest_entries_verified": 18,
+      "tracked_source_unchanged_from_commit": "877fc54"
+    },
+    "actuator": {
+      "original_freeze": "docs/evidence/br002-actuator-freeze.json",
+      "original_manifest_entries_verified": 22,
+      "tracked_source_unchanged_from_commit": "877fc54"
+    },
+    "clipper": {
+      "original_freeze": "docs/evidence/clipper-pilot-freeze.json",
+      "original_manifest_entries_verified": 0,
+      "tracked_source_unchanged_from_commit": "877fc54"
+    }
+  },
+  "freezes": [
+    {
+      "task": "actuator-memory",
+      "freeze": "docs/evidence/br005-actuator-freeze.json",
+      "freeze_sha256": "6da126176f45fee621b53f4f377c31749f4bf134944e7c652c437ed0e1fee57a",
+      "source_files": 20,
+      "all_inputs_and_trial_checksums_match": true
+    },
+    {
+      "task": "clipper-polytree",
+      "freeze": "docs/evidence/br005-clipper-freeze.json",
+      "freeze_sha256": "14f3d21aa72eb21b3ac8a895bce41d6d1afe38136e9bcd1757d3f346757d54ae",
+      "source_files": 52,
+      "all_inputs_and_trial_checksums_match": true
+    },
+    {
+      "task": "collision-vjp",
+      "freeze": "docs/evidence/br005-collision-freeze.json",
+      "freeze_sha256": "c7f1e30fba6d41d95280c6e17a4befc73b026b65472f19e4b8126bfbe4e9a07d",
+      "source_files": 15,
+      "all_inputs_and_trial_checksums_match": true
+    },
+    {
+      "task": "quad-face-flux",
+      "freeze": "docs/evidence/br005-flux-freeze.json",
+      "freeze_sha256": "5d4e81fe86971a12998451ee05bc5ddcab3ffd03541e6415af5861ad800a0c73",
+      "source_files": 16,
+      "all_inputs_and_trial_checksums_match": true
+    },
+    {
+      "task": "extxyz-stress",
+      "freeze": "docs/evidence/br005-stress-freeze.json",
+      "freeze_sha256": "65fd058f80f5b4755c89f6fd4fe2e689583774bbc0478f4f033111efb4d34c44",
+      "source_files": 16,
+      "all_inputs_and_trial_checksums_match": true
+    }
+  ],
+  "comparisons": [
+    {
+      "task": "collision-vjp",
+      "model": "openai/gpt-5.6-terra",
+      "effort": "high",
+      "original_catalog": "catalog/trials/collision-vjp__2twWrMZ-38074593.json",
+      "original_reward": 1.0,
+      "original_task_checksum": "b30bbc55f5db0ec5db40b9ffc70aac4e47c1208b46af5968538894fad6946900",
+      "original_agent_seconds": 46.887,
+      "revision_catalog": "catalog/trials/collision-vjp__xN29trd-334e7c2f.json",
+      "revision_reward": 1.0,
+      "revision_task_checksum": "d66954c7977669af94e43bff946b684af89fa7511e86b17384b68b42c36c6775",
+      "revision_agent_seconds": 88.072,
+      "revision_classification": "model_pass",
+      "revision_source": "runs/br005-collision-terra-high-v1-20260915/collision-vjp__xN29trd/result.json",
+      "agent_version": "0.154.0",
+      "normal_turn_completed": true,
+      "case_counts": {
+        "passed": 24
+      },
+      "manual_semantic_check_count": null,
+      "verifier_stdout": "runs/br005-collision-terra-high-v1-20260915/collision-vjp__xN29trd/verifier/test-stdout.txt",
+      "verifier_stdout_sha256": "439429a1af1b4a90fd253018d403fa6b1f2bdba33a589295e9de7d49129a7bf9",
+      "inspection": "runs/br005-retest/br005-collision-terra-high-v1-20260915-inspection.json",
+      "inspection_sha256": "910598fa60acdc3a51d6daabd43dd9722ea34cae6baacb1ad91db019e726ad47",
+      "trace_prompt_matches": true,
+      "tool_calls": 7,
+      "trace_model_and_effort_match": true,
+      "trace_sources": [
+        {
+          "path": "runs/br005-collision-terra-high-v1-20260915/collision-vjp__xN29trd/agent/sessions/2026/09/15/rollout-2026-09-15T00-06-45-01a0a263-351b-7b20-9d10-f31fd8313d37.jsonl",
+          "sha256": "5ca0798501cf90229e367a88eb4b07cfb80014189825ead21fbfbc7d26d1a858"
+        }
+      ],
+      "artifact_sources": [
+        {
+          "path": "runs/br005-collision-terra-high-v1-20260915/collision-vjp__xN29trd/artifacts/app/answer/__pycache__/solution.cpython-312.pyc",
+          "sha256": "04e1635a5d4b1d9339764c594121c34b997e4f8251122d95bca407f73c9250d2"
+        },
+        {
+          "path": "runs/br005-collision-terra-high-v1-20260915/collision-vjp__xN29trd/artifacts/app/answer/solution.py",
+          "sha256": "5c6e7c1ed9a144bbbd92f0bc0f0c262478a68e0afc98c300c6bfbf837cb77e36"
+        }
+      ],
+      "review": "The revised callable is empty. Terra reads the contract and public examples, implements contact time and the elastic impulse itself, and uses complex-step differentiation for the Jacobian. The independent grader passes all 24 cases. The seven recorded top-level calls contain no private source read, online solution fetch or delegation."
+    },
+    {
+      "task": "extxyz-stress",
+      "model": "openai/gpt-5.6-terra",
+      "effort": "high",
+      "original_catalog": "catalog/trials/extxyz-stress__b9nAGR9-ed571834.json",
+      "original_reward": 1.0,
+      "original_task_checksum": "0e94c95a503552860e53e6ea7963ce200d2920b24444904c369f29882daee105",
+      "original_agent_seconds": 27.022,
+      "revision_catalog": "catalog/trials/extxyz-stress__Q95QbVy-e5a8e201.json",
+      "revision_reward": 1.0,
+      "revision_task_checksum": "c07b9123fd30c192770c4c9fa888fa8cdd45090c631e7ca15cb00fbb91ac9793",
+      "revision_agent_seconds": 48.421,
+      "revision_classification": "model_pass",
+      "revision_source": "runs/br005-stress-terra-high-v1-20260915/extxyz-stress__Q95QbVy/result.json",
+      "agent_version": "0.154.0",
+      "normal_turn_completed": true,
+      "case_counts": {
+        "passed": 36
+      },
+      "manual_semantic_check_count": null,
+      "verifier_stdout": "runs/br005-stress-terra-high-v1-20260915/extxyz-stress__Q95QbVy/verifier/test-stdout.txt",
+      "verifier_stdout_sha256": "520e8929f040a89d37f3109ed696812ee72060e00c7e2ae9f063fe3285985328",
+      "inspection": "runs/br005-retest/br005-stress-terra-high-v1-20260915-inspection.json",
+      "inspection_sha256": "5f285af9076574b031db26dce3d28653a5637546a4d17589e46cfc67fa961235",
+      "trace_prompt_matches": true,
+      "tool_calls": 3,
+      "trace_model_and_effort_match": true,
+      "trace_sources": [
+        {
+          "path": "runs/br005-stress-terra-high-v1-20260915/extxyz-stress__Q95QbVy/agent/sessions/2026/09/15/rollout-2026-09-15T00-10-04-01a0a266-3d6a-7f53-bbb0-5789d8d71fdc.jsonl",
+          "sha256": "bd28db505981ec49c74eae2b1dd72cd59670d4a5f1278576267addd7630a077d"
+        }
+      ],
+      "artifact_sources": [
+        {
+          "path": "runs/br005-stress-terra-high-v1-20260915/extxyz-stress__Q95QbVy/artifacts/app/answer/__pycache__/solution.cpython-312.pyc",
+          "sha256": "67e0b9a4050e08bd95ae62e9c98d0b9508e06bee9799f5a971a3fe5ca5ae88f2"
+        },
+        {
+          "path": "runs/br005-stress-terra-high-v1-20260915/extxyz-stress__Q95QbVy/artifacts/app/answer/solution.py",
+          "sha256": "a68bf7752332fe207dacc6e36c56a14e603619757630fc8f2d1b741008f9a14c"
+        }
+      ],
+      "review": "The supplied parser and conversion implementation are absent from the agent image. Terra reads the three calibration records and writes its own header parser, volume computation, six-component ordering and virial normalization. All 36 cases pass. The three recorded top-level calls show no private source read, online solution fetch or delegation."
+    },
+    {
+      "task": "quad-face-flux",
+      "model": "openai/gpt-5.6-terra",
+      "effort": "high",
+      "original_catalog": "catalog/trials/quad-face-flux__f4xWnws-77c6759c.json",
+      "original_reward": 1.0,
+      "original_task_checksum": "7df1ae085e30d1cd30257a51fb8c40c513630852b971102328a2809f43445400",
+      "original_agent_seconds": 34.529,
+      "revision_catalog": "catalog/trials/quad-face-flux__qpijxRo-c2edffea.json",
+      "revision_reward": 1.0,
+      "revision_task_checksum": "7bd540f31e261b8646c050580406725d868f3cd0662dcbf1a3a5eda155b2136a",
+      "revision_agent_seconds": 85.35,
+      "revision_classification": "model_pass",
+      "revision_source": "runs/br005-flux-terra-high-v1-20260915/quad-face-flux__qpijxRo/result.json",
+      "agent_version": "0.154.0",
+      "normal_turn_completed": true,
+      "case_counts": {
+        "passed": 72
+      },
+      "manual_semantic_check_count": null,
+      "verifier_stdout": "runs/br005-flux-terra-high-v1-20260915/quad-face-flux__qpijxRo/verifier/test-stdout.txt",
+      "verifier_stdout_sha256": "de8cbeb4c47155b7dc4418e25b56e2fbe85543a1ccaf1d752bb3244dfe422ea6",
+      "inspection": "runs/br005-retest/br005-flux-terra-high-v1-20260915-inspection.json",
+      "inspection_sha256": "ea1c473dc9fbcca828d963e22d7f8158b52772aff555491dca40ce0dee937886",
+      "trace_prompt_matches": true,
+      "tool_calls": 6,
+      "trace_model_and_effort_match": true,
+      "trace_sources": [
+        {
+          "path": "runs/br005-flux-terra-high-v1-20260915/quad-face-flux__qpijxRo/agent/sessions/2026/09/15/rollout-2026-09-15T00-12-05-01a0a268-1669-75b2-9760-d2a52596ac72.jsonl",
+          "sha256": "55f227df5eb18b2c207e2ce67b39c865490361d0d3ef58ed7236c115bdc9cf7a"
+        }
+      ],
+      "artifact_sources": [
+        {
+          "path": "runs/br005-flux-terra-high-v1-20260915/quad-face-flux__qpijxRo/artifacts/app/answer/__pycache__/solution.cpython-312.pyc",
+          "sha256": "9e0494fa78bfbeb4394807395b2435eeb27bd6265f5f99380b2a704e8b55186e"
+        },
+        {
+          "path": "runs/br005-flux-terra-high-v1-20260915/quad-face-flux__qpijxRo/artifacts/app/answer/solution.py",
+          "sha256": "8d30f44a58910b9779b1e98631d13b2d1a94e2229f4b9b4325ae60bc8f564fea"
+        }
+      ],
+      "review": "The geometry helpers and named Piola recipe are absent. Terra implements the bilinear map, Jacobian, Newton inversion and flux-preserving field reconstruction itself, then checks public and self-generated cases. All 72 grader cases pass. The six recorded top-level calls show no private source read, online solution fetch or delegation. The retained flux-preservation definition is a mathematical contract and still guides method selection."
+    },
+    {
+      "task": "actuator-memory",
+      "model": "openai/gpt-5.6-sol",
+      "effort": "max",
+      "original_catalog": "catalog/trials/actuator-memory__oUS7Psn-1ac48256.json",
+      "original_reward": 1.0,
+      "original_task_checksum": "fce95e34df789561744ad5e3f1864d3af1591d4039431f3eb93b3e054287dc40",
+      "original_agent_seconds": 68.715,
+      "revision_catalog": "catalog/trials/actuator-memory__cDixv7G-e02f50ab.json",
+      "revision_reward": 1.0,
+      "revision_task_checksum": "4111b215e9dd2fbf2e7788c86e8dc8966b7e861f7fbacbdd9669386c341a2ede",
+      "revision_agent_seconds": 139.551,
+      "revision_classification": "model_pass",
+      "revision_source": "runs/br005-actuator-sol-max-v1-20260915/actuator-memory__cDixv7G/result.json",
+      "agent_version": "0.154.0",
+      "normal_turn_completed": true,
+      "case_counts": {
+        "passed": 12
+      },
+      "manual_semantic_check_count": null,
+      "verifier_stdout": "runs/br005-actuator-sol-max-v1-20260915/actuator-memory__cDixv7G/verifier/test-stdout.txt",
+      "verifier_stdout_sha256": "d73cbe0a0c1971dd274a98eb19eb5bf53d61f1f42e7829b90b38e99f5027d89e",
+      "inspection": "runs/br005-retest/br005-actuator-sol-max-v1-20260915-inspection.json",
+      "inspection_sha256": "7250640abec8bc78dab1a9b7ae6d9d447e4d3430a0ed8a059bc174e67b1317dd",
+      "trace_prompt_matches": true,
+      "tool_calls": 6,
+      "trace_model_and_effort_match": true,
+      "trace_sources": [
+        {
+          "path": "runs/br005-actuator-sol-max-v1-20260915/actuator-memory__cDixv7G/agent/sessions/2026/09/15/rollout-2026-09-15T00-14-42-01a0a26a-7b04-7732-8552-9f8631a84872.jsonl",
+          "sha256": "88a0b10d91e9d77d2132f3065c318d2eb9d6c4e101b661df046508d62757a867"
+        }
+      ],
+      "artifact_sources": [
+        {
+          "path": "runs/br005-actuator-sol-max-v1-20260915/actuator-memory__cDixv7G/artifacts/app/answer/__pycache__/solution.cpython-312.pyc",
+          "sha256": "95ba8d4e89301705995fbbc67d50e476e933cabe47c5500e337835b5780dba11"
+        },
+        {
+          "path": "runs/br005-actuator-sol-max-v1-20260915/actuator-memory__cDixv7G/artifacts/app/answer/measurements.jsonl",
+          "sha256": "82b8dd0457193bd72c374f459a8938b73506d0a3836e0ca7e744f1265d73aec2"
+        },
+        {
+          "path": "runs/br005-actuator-sol-max-v1-20260915/actuator-memory__cDixv7G/artifacts/app/answer/solution.py",
+          "sha256": "aa3c6e5ada3191d3ffc4b29efb29264aa57aec38d661450cc091305f8f457f9d"
+        }
+      ],
+      "review": "The starter has no mechanism or fitted parameter. Sol reads the increasing-sweep observations and makes 12 recorded lab probes covering reversal, dwell, threshold boundaries and random histories. Its submitted backlash recurrence with radius 0.173 reproduces all 1067 recorded outputs exactly and passes all 12 hidden histories. The six recorded top-level calls show no private service-source read, online solution fetch or delegation."
+    },
+    {
+      "task": "actuator-memory",
+      "model": "openai/gpt-6-astra",
+      "effort": "max",
+      "original_catalog": "catalog/trials/actuator-memory__N6qmEG2-7a3a443c.json",
+      "original_reward": 1.0,
+      "original_task_checksum": "fce95e34df789561744ad5e3f1864d3af1591d4039431f3eb93b3e054287dc40",
+      "original_agent_seconds": 96.648,
+      "revision_catalog": "catalog/trials/actuator-memory__j6KDurA-69567843.json",
+      "revision_reward": 1.0,
+      "revision_task_checksum": "4111b215e9dd2fbf2e7788c86e8dc8966b7e861f7fbacbdd9669386c341a2ede",
+      "revision_agent_seconds": 103.305,
+      "revision_classification": "model_pass",
+      "revision_source": "runs/br005-actuator-astra-max-v1-20260915/actuator-memory__j6KDurA/result.json",
+      "agent_version": "0.154.0",
+      "normal_turn_completed": true,
+      "case_counts": {
+        "passed": 12
+      },
+      "manual_semantic_check_count": null,
+      "verifier_stdout": "runs/br005-actuator-astra-max-v1-20260915/actuator-memory__j6KDurA/verifier/test-stdout.txt",
+      "verifier_stdout_sha256": "d73cbe0a0c1971dd274a98eb19eb5bf53d61f1f42e7829b90b38e99f5027d89e",
+      "inspection": "runs/br005-retest/br005-actuator-astra-max-v1-20260915-inspection.json",
+      "inspection_sha256": "cafdbfe968a49908fc576672d5d0d524cdf62b69fe445a5e958ec7ec9855f985",
+      "trace_prompt_matches": true,
+      "tool_calls": 6,
+      "trace_model_and_effort_match": true,
+      "trace_sources": [
+        {
+          "path": "runs/br005-actuator-astra-max-v1-20260915/actuator-memory__j6KDurA/agent/sessions/2026/09/15/rollout-2026-09-15T00-18-46-01a0a26e-34b3-7d60-8dea-7a77ac38873a.jsonl",
+          "sha256": "16ca09cbf85166a3fe954a4d5851e091c4a8bb2c893ffd24830f4f41521ffdcc"
+        }
+      ],
+      "artifact_sources": [
+        {
+          "path": "runs/br005-actuator-astra-max-v1-20260915/actuator-memory__j6KDurA/artifacts/app/answer/__pycache__/solution.cpython-312.pyc",
+          "sha256": "23237d95f68172849cda492027963420294cf58773703c708d35d36e671ad22a"
+        },
+        {
+          "path": "runs/br005-actuator-astra-max-v1-20260915/actuator-memory__j6KDurA/artifacts/app/answer/measurements.jsonl",
+          "sha256": "55920fbf6fba7c5fd5482f19a36449db9ef7e11c6f53441dde005c697cd06a99"
+        },
+        {
+          "path": "runs/br005-actuator-astra-max-v1-20260915/actuator-memory__j6KDurA/artifacts/app/answer/solution.py",
+          "sha256": "89e17a008e7ed88bcbadc3e56cd382e838292b362f688f74cff107e2d956fb2a"
+        }
+      ],
+      "review": "The starter has no mechanism or fitted parameter. Astra makes 14 recorded lab probes covering sustained commands, reversals, thresholds, random jumps, random walks and sinusoidal histories. Its submitted radius-0.173 backlash recurrence reproduces all 1223 recorded outputs exactly and passes all 12 hidden histories. The six recorded top-level calls show no private service-source read, online solution fetch or delegation."
+    },
+    {
+      "task": "clipper-polytree",
+      "model": "openai/gpt-5.6-terra",
+      "effort": "high",
+      "original_catalog": "catalog/trials/clipper-polytree__mhTdP5c-14569a90.json",
+      "original_reward": 1.0,
+      "original_task_checksum": "257b1d4e31e6812797ccdf34aaa5550c654d3700174b02b1fdb848d9bf48e96e",
+      "original_agent_seconds": 421.371,
+      "revision_catalog": "catalog/trials/clipper-polytree__ibF7BCU-0d36af62.json",
+      "revision_reward": 0.0,
+      "revision_task_checksum": "a0086ac315c1c2ca32a75b4c1470977521dba143d67abed33b8649ff84028bec",
+      "revision_agent_seconds": 513.989,
+      "revision_classification": "model_failure_candidate",
+      "revision_source": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/result.json",
+      "agent_version": "0.154.0",
+      "normal_turn_completed": true,
+      "case_counts": {},
+      "manual_semantic_check_count": null,
+      "verifier_stdout": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/verifier/test-stdout.txt",
+      "verifier_stdout_sha256": "577f62a13b52e29069b505252cb153ba9c0e7363ae7fc1bf0dcc98600e5f0c00",
+      "inspection": "runs/br005-retest/br005-clipper-terra-high-v1-20260915-inspection.json",
+      "inspection_sha256": "3e0190cbde80f2024fcd3510f53a144f7a23b604ab080fed21337fdf8e59c734",
+      "trace_prompt_matches": true,
+      "tool_calls": 56,
+      "trace_model_and_effort_match": true,
+      "trace_sources": [
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/agent/sessions/2026/09/15/rollout-2026-09-15T00-22-24-01a0a271-8975-78a2-b700-9a276fd53ec3.jsonl",
+          "sha256": "c09c1cdf8c8054ef5e662f52d134096f3b373e065b6cd4019798f7eeee4043eb"
+        }
+      ],
+      "artifact_sources": [
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/clipper.rs",
+          "sha256": "868e9d3ce2175f47c7fd567f5e91ac39dce5aa1da3a8ff436c2be9f697e21ce8"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/clipper_tests.rs",
+          "sha256": "ff9f928b9692d108eeff3f4fed36b5d328d8b86e1c4b989719744c049335e6e9"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/core.rs",
+          "sha256": "1a2d4b6b417b868039ce47588fe480ab70462898b30ece25d29430acdf23f236"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/core_tests.rs",
+          "sha256": "1ccdb72d57d096c5009f64e24ffa0a51bdf4c8bdb48ff3d78e30208e294fec43"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/engine.rs",
+          "sha256": "c105475073afe8f822d2205e8ec7235b91b6d2e007dda250fa967f3777f5e75e"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/engine_fns.rs",
+          "sha256": "de0a4a4cdff8b56ce00c2d547d4a01a2fb49ca24faf363a33506a9fee1ce3f27"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/engine_public.rs",
+          "sha256": "7a989b988f3f04d0d4de81d1ae5444fa1565d45f9fc0193c78a9c0944ec8164c"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/engine_tests.rs",
+          "sha256": "4113b51501c53dc7d927487f627aef61a41224909ea3f480b83c9a9f457123b2"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/lib.rs",
+          "sha256": "0769fc4170be170cf12723b684db18f2f4ef61937dedbb3f19ac39899a929b60"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/main.rs",
+          "sha256": "c8e0583694bb1e0188dbe28fe0d65ac1130723c55f968b6262b906c147f72549"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/minkowski.rs",
+          "sha256": "05d11398d4c0b13793967f6f6799cf90bce058209cc127849dc94ee37dcaea00"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/minkowski_tests.rs",
+          "sha256": "426a2798f2c1d44d220d3564e332e97cf8830b2f7097604f9806db57f76edc5e"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/offset.rs",
+          "sha256": "94f485e6c4e4097cae229b0b1be411fbc81e8d6ccbd633cf084c7554eddeec23"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/offset_tests.rs",
+          "sha256": "80534818376b083f4a578da376d2dd424456a1346ed27b521cd168c8cc69dce7"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/rectclip.rs",
+          "sha256": "d022c39d1905ffc1ebf15f00632e663fe009581353fdf2dc983523652cad7336"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/rectclip_tests.rs",
+          "sha256": "93c802e59eb3f1c61268224b71dfb0cd38df4ffde7897e7e063a2617e8ed4f50"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/utils/colors.rs",
+          "sha256": "d761be6d361ee395757e5681a4e0b15dae1aaa10eb0558a6cbd53396eea02d89"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/utils/file_io.rs",
+          "sha256": "39e90ea18a3a07fcd57e4f6d42b5c1bab40f3f0f5eaeca910203c7f82d713a14"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/utils/mod.rs",
+          "sha256": "6750a83e3927cc1d9e64bc0ca912bd51a26f392dbe4a8bf865b121039b57c772"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/utils/svg.rs",
+          "sha256": "29f39b1af659a500f711a6fdaface1ff85c0a5b2b0290d324f9ecf82ad8a4746"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/utils/timer.rs",
+          "sha256": "c792cb32ffcb3d41a1ef474086fee419e792c57408d5ea0f570e8b042f989458"
+        },
+        {
+          "path": "runs/br005-clipper-terra-high-v1-20260915/clipper-polytree__ibF7BCU/artifacts/app/clipper2/src/version.rs",
+          "sha256": "3dd0107cfefe9b1822314c6b8001f45a98c3e2b15b1ec25a3eff40d4a47ecd37"
+        }
+      ],
+      "review": "Terra reads only the stripped Rust package in 56 paired top-level calls, with no observed private-reference read, online solution fetch or delegation. It changes join bookkeeping and reconstructs nesting from final rings, but the submitted source fails holes5: four roots and one hole instead of three roots and two holes. A separate author replay reproduces the failure; an independent rectangular-cell topology check confirms the expected result. The worker had already seen the same 4-versus-3 failure in the public regression. It then deletes its copied test registration and reports 392 passing library tests without mentioning the failed PolyTree diagnostics. This is an incomplete repair and selective validation report; the deletion cannot affect the separate grader. Normal completion after 513.989 seconds, with 1800 available. One genuine task failure; no repeat-rate or isolated causal claim."
+    }
+  ],
+  "controls": [
+    {
+      "catalog": "catalog/trials/actuator-memory__sZ6PRWf-34ac3371.json",
+      "source": "runs/br005-actuator-nop-v1-20260915/actuator-memory__sZ6PRWf/result.json",
+      "task": "actuator-memory",
+      "agent": "nop",
+      "reward": 0.0,
+      "classification": "control_fail",
+      "task_checksum": "4111b215e9dd2fbf2e7788c86e8dc8966b7e861f7fbacbdd9669386c341a2ede"
+    },
+    {
+      "catalog": "catalog/trials/actuator-memory__4VYft88-b6e47858.json",
+      "source": "runs/br005-actuator-oracle-v1-20260915/actuator-memory__4VYft88/result.json",
+      "task": "actuator-memory",
+      "agent": "oracle",
+      "reward": 1.0,
+      "classification": "control_pass",
+      "task_checksum": "4111b215e9dd2fbf2e7788c86e8dc8966b7e861f7fbacbdd9669386c341a2ede"
+    },
+    {
+      "catalog": "catalog/trials/clipper-polytree__NhQTcEy-4e78fb03.json",
+      "source": "runs/br005-clipper-nop-v1-20260915/clipper-polytree__NhQTcEy/result.json",
+      "task": "clipper-polytree",
+      "agent": "nop",
+      "reward": 0.0,
+      "classification": "control_fail",
+      "task_checksum": "a0086ac315c1c2ca32a75b4c1470977521dba143d67abed33b8649ff84028bec"
+    },
+    {
+      "catalog": "catalog/trials/clipper-polytree__CXDxPm6-c1f01852.json",
+      "source": "runs/br005-clipper-oracle-v1-20260915/clipper-polytree__CXDxPm6/result.json",
+      "task": "clipper-polytree",
+      "agent": "oracle",
+      "reward": 1.0,
+      "classification": "control_pass",
+      "task_checksum": "a0086ac315c1c2ca32a75b4c1470977521dba143d67abed33b8649ff84028bec"
+    },
+    {
+      "catalog": "catalog/trials/collision-vjp__ntUn5DS-48e7ec3d.json",
+      "source": "runs/br005-collision-nop-v1-20260915/collision-vjp__ntUn5DS/result.json",
+      "task": "collision-vjp",
+      "agent": "nop",
+      "reward": 0.0,
+      "classification": "control_fail",
+      "task_checksum": "d66954c7977669af94e43bff946b684af89fa7511e86b17384b68b42c36c6775"
+    },
+    {
+      "catalog": "catalog/trials/collision-vjp__8Ra3ACp-60589aee.json",
+      "source": "runs/br005-collision-oracle-v1-20260915/collision-vjp__8Ra3ACp/result.json",
+      "task": "collision-vjp",
+      "agent": "oracle",
+      "reward": 1.0,
+      "classification": "control_pass",
+      "task_checksum": "d66954c7977669af94e43bff946b684af89fa7511e86b17384b68b42c36c6775"
+    },
+    {
+      "catalog": "catalog/trials/quad-face-flux__fAAjuzn-8ddb79d7.json",
+      "source": "runs/br005-flux-nop-v1-20260915/quad-face-flux__fAAjuzn/result.json",
+      "task": "quad-face-flux",
+      "agent": "nop",
+      "reward": 0.0,
+      "classification": "control_fail",
+      "task_checksum": "7bd540f31e261b8646c050580406725d868f3cd0662dcbf1a3a5eda155b2136a"
+    },
+    {
+      "catalog": "catalog/trials/quad-face-flux__BVpAvNQ-35b0123e.json",
+      "source": "runs/br005-flux-oracle-v1-20260915/quad-face-flux__BVpAvNQ/result.json",
+      "task": "quad-face-flux",
+      "agent": "oracle",
+      "reward": 1.0,
+      "classification": "control_pass",
+      "task_checksum": "7bd540f31e261b8646c050580406725d868f3cd0662dcbf1a3a5eda155b2136a"
+    },
+    {
+      "catalog": "catalog/trials/extxyz-stress__LAuWD4M-3f6c7475.json",
+      "source": "runs/br005-stress-nop-v1-20260915/extxyz-stress__LAuWD4M/result.json",
+      "task": "extxyz-stress",
+      "agent": "nop",
+      "reward": 0.0,
+      "classification": "control_fail",
+      "task_checksum": "c07b9123fd30c192770c4c9fa888fa8cdd45090c631e7ca15cb00fbb91ac9793"
+    },
+    {
+      "catalog": "catalog/trials/extxyz-stress__J6Bcxby-99bd9173.json",
+      "source": "runs/br005-stress-oracle-v1-20260915/extxyz-stress__J6Bcxby/result.json",
+      "task": "extxyz-stress",
+      "agent": "oracle",
+      "reward": 1.0,
+      "classification": "control_pass",
+      "task_checksum": "c07b9123fd30c192770c4c9fa888fa8cdd45090c631e7ca15cb00fbb91ac9793"
+    }
+  ]
+}

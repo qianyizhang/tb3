@@ -3,12 +3,13 @@
   "id": "clipper-polytree",
   "title": "Clipper2 horizontal joins and PolyTree hierarchy",
   "hypothesis": "Three interacting horizontal-join state errors corrupt nested polygon hierarchy while ordinary polygons appear plausible.",
-  "why_hard": "Horizontal collection, ordering, containment and traversal interact, but Terra completed this historical repair and passed the semantic verifier. Observed evidence does not justify Sol trials.",
-  "status": "calibration",
+  "why_hard": "Horizontal joins, contour geometry and ownership interact. Terra passed the original reference-assisted task, but in BR-005 it reconstructs ownership while leaving horizontal ring geometry wrong. The reference-removed condition has one independently verified normal model failure; repeatability is unmeasured.",
+  "status": "prototyping",
   "tags": [
     "geometry",
     "rust",
-    "polygon-clipping"
+    "polygon-clipping",
+    "brainstorm-round-005"
   ],
   "sources": [
     {
@@ -24,8 +25,11 @@
     "docs/evidence/clipper-pilot-freeze.json",
     "docs/evidence/clipper-trial-summary.json",
     "docs/evidence/clipper-terra-verifier.txt",
-    "catalog/analyses/clipper-calibration.md"
+    "catalog/analyses/clipper-calibration.md",
+    "docs/research-rounds/BR-005-results.md",
+    "docs/evidence/br005-round-summary.json",
+    "docs/evidence/br005-clipper-failure.json"
   ],
-  "next_action": "Retain frozen passing geometry snapshot for calibration; next research step is barycentric full-interface reference reproduction, not Sol/Opus trials.",
-  "notes": "Completed Docker/Harbor Terra/high reward1 with no exception in494.711s, after same-snapshot oracle1/nop0. Pre-trial order-sensitive grading and repeated-endpoint normalization defects were corrected. One superseded oracle cancellation remains excluded; initial launch-review rejection occurred before model execution."
+  "next_action": "Retain the original passing condition and BR-005 reference-removed failure separately. Scope any repeatability or refinement study explicitly; no additional model run is scheduled by BR-005.",
+  "notes": "Completed Docker/Harbor Terra/high reward1 with no exception in494.711s, after same-snapshot oracle1/nop0. Pre-trial order-sensitive grading and repeated-endpoint normalization defects were corrected. One superseded oracle cancellation remains excluded; initial launch-review rejection occurred before model execution. BR-005: Terra/high completes normally in 513.989s and fails holes5 without the bundled C++ reference. Author replay and independent rectangular-cell topology confirm four roots/one hole instead of three roots/two holes. One reviewed genuine failure, not a repeatable rate or isolated hint effect."
 }

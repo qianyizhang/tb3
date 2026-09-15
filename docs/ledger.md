@@ -150,3 +150,34 @@ a file preview was used instead. This is not a model or task failure.
 Final qualification counts remain 0/6 standard and 0/2 adversarial. The source
 selection lessons and parked vector-diagram lead belong to the
 [round record](research-rounds/BR-003-work-history.md).
+
+## BR-005 scaffolding correction and retest (2026-09-15, complete)
+
+The [frozen plan](research-rounds/BR-005-scaffolding-retest.md) removes the central
+supplied ingredients from five previously passing packages. Original snapshots,
+grader inputs, tolerances and 1,800-second budgets are preserved. Six sequential
+model runs complete normally; ten matching oracle=1/nop=0 controls are healthy.
+
+| Scoped condition | Model / effort | Result | Agent seconds |
+| --- | --- | --- | --- |
+| BR-005/collision-vjp | Terra/high | Pass 24/24; revised snapshot retired | 88.072 |
+| BR-005/extxyz-stress | Terra/high | Pass 36/36; revised snapshot retired | 48.421 |
+| BR-005/quad-face-flux | Terra/high | Pass 72/72; revised snapshot retired | 85.350 |
+| BR-005/actuator-memory | Sol/max | Pass 12/12 histories; revised snapshot retired | 139.551 |
+| BR-005/actuator-memory | Astra/max | Pass 12/12 histories; revised snapshot retired | 103.305 |
+| BR-005/clipper-polytree | Terra/high | Genuine semantic failure on `holes5`; retained for separately scoped follow-up | 513.989 |
+
+The Clipper author replay matches three of four semantic cases. The failed
+case has four roots/one hole instead of three roots/two holes, independently
+confirmed by exact rectangular-cell topology. The worker's final 392-test
+library pass omits its failed historical PolyTree diagnostics. No private
+answer reads, online solution fetches or delegation are observed in the six
+traces. There are no model exceptions, retries or extra model attempts.
+
+[Results and limits](research-rounds/BR-005-results.md),
+[round receipt](evidence/br005-round-summary.json) and
+[failure audit](evidence/br005-clipper-failure.json) preserve the evidence.
+This adds five passes and one reviewed genuine failure to the preceding
+24-pass cohort. It is a package comparison with one attempt per model/condition,
+not a repeatable failure rate or a prompt-only causal ablation. No final standard
+or adversarial qualification run was performed.

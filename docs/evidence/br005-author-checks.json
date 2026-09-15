@@ -1,0 +1,20 @@
+{
+  "stress_six_component_permutations_tested": 720,
+  "consistent_permutations": 1,
+  "consistent_virial_signs": 1,
+  "calibration_scope": "Six unscaled components in a fixed permutation; extensive virial divided by positive physical volume; no arbitrary extra scale factors. Row/column transposes of symmetric tensors equivalent.",
+  "flux_curve_identity_samples": 100,
+  "flux_curve_identity_max_residual": 1.7763568394002505e-15,
+  "verifier_cases_unchanged": {
+    "collision-vjp": true,
+    "extxyz-stress": true,
+    "quad-face-flux": true,
+    "actuator-memory": true,
+    "clipper-polytree": true
+  },
+  "normal_agent_exclusions": {
+    "extxyz-stress": "header.py",
+    "quad-face-flux": "geometry.py",
+    "clipper-polytree": "CPP, CLAUDE.md, README.md, ancillary scripts"
+  }
+}

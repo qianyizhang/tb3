@@ -9,11 +9,12 @@
     "non-security",
     "system-identification",
     "interactive",
-    "stateful"
+    "stateful",
+    "brainstorm-round-005"
   ],
   "hypothesis": "An agent fits increasing sweeps without obtaining or integrating reversal/dwell evidence that distinguishes static, backlash and lag mechanisms.",
   "why_hard": "Identifying a fixed device requires informative observations and state preservation. Both tested models requested a revealing reversal and solved this snapshot.",
-  "next_action": "Retired after matching Sol/max and Astra/max passes, 12/12 hidden histories each; retain measurements and frozen service.",
+  "next_action": "Original and BR-005 revised snapshots retired after passes. Preserve both conditions and return selection to failure-backed candidates; do not force hardness.",
   "sources": [
     {
       "url": "https://chatgpt.com/c/6aa74ac6-4190-83ee-9eaf-603e1ae6ab9e",
@@ -28,7 +29,9 @@
     "docs/evidence/br002-actuator-freeze.json",
     "docs/evidence/br002-actuator-summary.json",
     "docs/evidence/br002-actuator-sol-inspection.json",
-    "docs/evidence/br002-actuator-astra-inspection.json"
+    "docs/evidence/br002-actuator-astra-inspection.json",
+    "docs/research-rounds/BR-005-results.md",
+    "docs/evidence/br005-round-summary.json"
   ],
-  "notes": "BR-002/D03: two healthy natural-task passes; H-D03 unsupported. Both infer play/backlash radius 0.173 and reset state per prediction call. Sol records 3 probe calls, Astra 14; every recorded observation is reproduced. No supplied-log/rule ablation is triggered. BR-001 clamped-instrument evidence remains unchanged."
+  "notes": "BR-002/D03: two healthy natural-task passes; H-D03 unsupported. Both infer play/backlash radius 0.173 and reset state per prediction call. Sol records 3 probe calls, Astra 14; every recorded observation is reproduced. No supplied-log/rule ablation is triggered. BR-001 clamped-instrument evidence remains unchanged. BR-005: supplied solution ingredients removed; gpt-5.6-sol/max passes in 139.551s, gpt-6-astra/max passes in 103.305s. Revised condition remains a passing calibration."
 }
