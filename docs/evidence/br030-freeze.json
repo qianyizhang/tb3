@@ -1,0 +1,36 @@
+{
+  "round": "BR-030",
+  "pretrial": true,
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "agent_timeout_sec": 1800,
+  "tasks": [
+    {
+      "task": "coronary-cpr",
+      "task_path": "runs/br030-vessel-geometry/tasks/coronary-cpr",
+      "files": {
+        "environment/DATA-LICENSE.txt": "7a3bcd40f7b57fe240d475a3b896f5f1c524a43d50a8b0bb7201c5f1e93d52d0",
+        "environment/Dockerfile": "e97a43c0d82de41a63b5a51558dcaa3eaf87610570f9a3237b72522dbee653f6",
+        "environment/SOURCE_NOTICE.md": "c0d5c28cc04e6f66a32ba7259f3c3666fb0d2dffece1e70af51af38340f0d3c5",
+        "environment/data/editable_region.nii.gz": "02fe621bf816238eb197c66210fb51253e885781138203ce1301babea9e9f4d6",
+        "environment/data/image.nii.gz": "cb57cf4b0d40d89976359fc5c831cfb003f16f24eaf5c31ad457d00da8c85432",
+        "environment/data/proposed_mask.nii.gz": "5f7036f84e8688c70ead0800684c72fc9b13759278a224bc4f7b4dd51289a011",
+        "environment/data/request.json": "1d63d98bf1b6e506ee34b2f8afd718bd971a588c095a81e9cb9e7a1108dbd6b7",
+        "instruction.md": "2b8b5d7f41c1c31f1e841e795a857b41f8a95434bca385ff5c7ce9056c61b7bb",
+        "solution/centerline.npy": "7af11b2e8d3401c25aab6d4a6a3d5d48d21058bd41359bd172d515339a1ec588",
+        "solution/corrected_mask.nii.gz": "49f88dd5b1e78e4cb9df7e8fe191a21052b63d408b395df0eb41253dee12be6d",
+        "solution/cpr.npz": "2915606ab967a62e8b2e4fd47d2057f63f1aab1f85a2c1f1ff55b8a2280a3551",
+        "solution/solve.sh": "94216acc53976e5d273f4bc6559b0e6f062d3db65d4d105ebbb30c35796b8858",
+        "solution/vessels.ply": "ed48aeab7b62f522a5c07cd04fefc98991ef99f9f09dd9debf5eca0949cbc403",
+        "task.toml": "04991be81d36e1b3baa050089d7751a8c9edad9063a26ac5809482eab7424107",
+        "tests/Dockerfile": "98a6af299f20525113b82349a25b65233cc2c35c078ae64c4c605add2ffdec5b",
+        "tests/reference.npz": "837ccda884c775e58558ce6110e8a41902c1fcc985e7f6fbc11ad80e1259a3a5",
+        "tests/score_geometry.py": "90f918e75d242fa065fcf950c6172006e9f398d1742dcd7e7c609362cd8c9b4e",
+        "tests/test.sh": "c4229b5114d0293ceb197f8d2ae1d4fd42ddb6e8be1ac859ccd9999c732335d3"
+      }
+    }
+  ],
+  "source_prediction_sha256": "763ad08523bb8423c4ba995d38476a2aa5001a2c2afef623c4e6fecd095d0ce9",
+  "validation_sha256": "905b84f801bd467ec72ac0d8132f02559f47fea0ff44cd2adf7ddd0034a07f80",
+  "claim_scope": "One development case. Stage feasibility and model diagnostic; no clinical accuracy or held-out model benchmark claim."
+}

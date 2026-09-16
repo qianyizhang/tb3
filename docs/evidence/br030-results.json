@@ -1,0 +1,533 @@
+{
+  "round": "BR-030",
+  "task": "coronary-cpr",
+  "freeze_sha256": "eda2e99f7ec3ab1fc476f9829702a30868e71bd8a79dbf4019acec0ff78515c2",
+  "previous_br026_freeze_sha256": "563b6336e756ca1cfc37a86ffb7646012b346333efae591b38300939436ba60e",
+  "frozen_bytes_unchanged": true,
+  "model_trials": 1,
+  "docker_controls": 2,
+  "rows": [
+    {
+      "phase": "oracle",
+      "result_path": "runs/br030-coronary-cpr-oracle-v1-20260916/coronary-cpr__KMnZdLE/result.json",
+      "task_checksum": "44dbf1bed3d74f74406f1624570304db305da7a1c677b3267bc8c8bb067978eb",
+      "reward": 1,
+      "exception": null,
+      "started_at": "2026-09-16T10:51:00.045860Z",
+      "finished_at": "2026-09-16T10:51:57.374490Z",
+      "metrics": {
+        "reward": 1,
+        "stages": {
+          "repair": true,
+          "trace": true,
+          "cpr": true,
+          "mesh": true
+        },
+        "checks": {
+          "mask_format": true,
+          "preservation": true,
+          "repair_overlap": true,
+          "repair_connection": true,
+          "repair_no_far_addition": true,
+          "trace_geometry": true,
+          "trace_in_mask": true,
+          "cpr_coordinates": true,
+          "cpr_source_intensities": true,
+          "mesh_geometry": true
+        },
+        "metrics": {
+          "local_dice": 1.0,
+          "local_recall": 1.0,
+          "far_added_mm3": 0.0,
+          "changed_voxels": 222,
+          "centerline_p95_mm": 7.574809505984766e-06,
+          "reference_coverage_0p8mm": 1.0,
+          "length_mm": 161.3939666748047,
+          "endpoint_errors_mm": [
+            0.0,
+            0.0
+          ],
+          "cpr_max_coordinate_error_mm": 0.00012631812049903116,
+          "cpr_HU_p99_error": 0.0016326904296875,
+          "mesh_surface_p95_mm": 3.814697265625e-06,
+          "mesh_review_surface_p95_mm": 3.814697265625e-06,
+          "mesh_volume_mm3": 2398.161782864457,
+          "mesh_mask_volume_ratio": 0.9779424925606051,
+          "mesh_watertight": true
+        },
+        "errors": {},
+        "limits": {
+          "local_dice": 0.8,
+          "local_recall": 0.8,
+          "far_added_mm3": 1.5,
+          "centerline_p95_mm": 0.8,
+          "reference_coverage_0p8mm": 0.95,
+          "length_relative_error": 0.1,
+          "endpoint_mm": 1.0,
+          "cpr_coordinate_error_mm": 0.02,
+          "cpr_HU_p99_error": 0.2,
+          "mesh_surface_p95_mm": 0.65
+        }
+      },
+      "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "agent_seconds": 0.181501
+    },
+    {
+      "phase": "nop",
+      "result_path": "runs/br030-coronary-cpr-nop-v1-20260916/coronary-cpr__KU7gn5t/result.json",
+      "task_checksum": "44dbf1bed3d74f74406f1624570304db305da7a1c677b3267bc8c8bb067978eb",
+      "reward": 0,
+      "exception": null,
+      "started_at": "2026-09-16T10:51:57.746538Z",
+      "finished_at": "2026-09-16T10:52:24.372278Z",
+      "metrics": {
+        "reward": 0,
+        "stages": {
+          "repair": false,
+          "trace": false,
+          "cpr": false,
+          "mesh": false
+        },
+        "checks": {
+          "mask_format": false,
+          "trace_geometry": false,
+          "cpr_coordinates": false,
+          "mesh_geometry": false
+        },
+        "metrics": {},
+        "errors": {
+          "repair": "No such file or no access: '/app/answer/corrected_mask.nii.gz'",
+          "trace": "[Errno 2] No such file or directory: '/app/answer/centerline.npy'",
+          "cpr": "",
+          "mesh": ""
+        },
+        "limits": {
+          "local_dice": 0.8,
+          "local_recall": 0.8,
+          "far_added_mm3": 1.5,
+          "centerline_p95_mm": 0.8,
+          "reference_coverage_0p8mm": 0.95,
+          "length_relative_error": 0.1,
+          "endpoint_mm": 1.0,
+          "cpr_coordinate_error_mm": 0.02,
+          "cpr_HU_p99_error": 0.2,
+          "mesh_surface_p95_mm": 0.65
+        }
+      },
+      "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "agent_seconds": 9e-05
+    },
+    {
+      "phase": "terra-high",
+      "result_path": "runs/br030-coronary-cpr-terra-high-v1-20260916/coronary-cpr__qQLEAkL/result.json",
+      "task_checksum": "44dbf1bed3d74f74406f1624570304db305da7a1c677b3267bc8c8bb067978eb",
+      "reward": 0,
+      "exception": null,
+      "started_at": "2026-09-16T10:52:24.759286Z",
+      "finished_at": "2026-09-16T11:01:12.348665Z",
+      "metrics": {
+        "reward": 0,
+        "stages": {
+          "repair": true,
+          "trace": true,
+          "cpr": false,
+          "mesh": true
+        },
+        "checks": {
+          "mask_format": true,
+          "preservation": true,
+          "repair_overlap": true,
+          "repair_connection": true,
+          "repair_no_far_addition": true,
+          "trace_geometry": true,
+          "trace_in_mask": true,
+          "cpr_coordinates": false,
+          "cpr_source_intensities": true,
+          "mesh_geometry": true
+        },
+        "metrics": {
+          "local_dice": 0.9448123620309051,
+          "local_recall": 0.9106382978723404,
+          "far_added_mm3": 0.0,
+          "changed_voxels": 103,
+          "centerline_p95_mm": 0.49959907561658334,
+          "reference_coverage_0p8mm": 1.0,
+          "length_mm": 175.9177551358793,
+          "endpoint_errors_mm": [
+            0.0,
+            0.0
+          ],
+          "cpr_max_coordinate_error_mm": 8.529281560667253e-06,
+          "cpr_HU_p99_error": 0.001617431640625,
+          "mesh_surface_p95_mm": 3.814697265625e-06,
+          "mesh_review_surface_p95_mm": 3.814697265625e-06,
+          "mesh_volume_mm3": 2392.1790497292423,
+          "mesh_mask_volume_ratio": 0.9779110327096853,
+          "mesh_watertight": true
+        },
+        "errors": {},
+        "limits": {
+          "local_dice": 0.8,
+          "local_recall": 0.8,
+          "far_added_mm3": 1.5,
+          "centerline_p95_mm": 0.8,
+          "reference_coverage_0p8mm": 0.95,
+          "length_relative_error": 0.1,
+          "endpoint_mm": 1.0,
+          "cpr_coordinate_error_mm": 0.02,
+          "cpr_HU_p99_error": 0.2,
+          "mesh_surface_p95_mm": 0.65
+        }
+      },
+      "agent_result": {
+        "n_input_tokens": 1003675,
+        "n_cache_tokens": 928768,
+        "n_output_tokens": 19648,
+        "cost_usd": 0.5713436,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "agent_seconds": 464.141901,
+      "artifact_replay_matches": true,
+      "artifact_sha256": {
+        "centerline.npy": "b0a3dfd3dc3e08d696ca7f53916c79a4797e368b32d608965c9c5adc9c4362e1",
+        "corrected_mask.nii.gz": "8c9adb361e0b69aef6d979ddbe9142d3f59739c5ec36ee62207938d8e6e3ccd5",
+        "cpr.npz": "1bc04e90323804171b4d251d752d6a2482a31d444ad10086e081362e9709f72f",
+        "vessels.ply": "e1f7bb1dc5788729580b5f9dea6fa0e0133c705ab15db0e0658481a42bcb51de"
+      },
+      "trace_audit": {
+        "session_sha256": {
+          "runs/br030-coronary-cpr-terra-high-v1-20260916/coronary-cpr__qQLEAkL/agent/sessions/2026/09/16/rollout-2026-09-16T10-52-59-01a0a9d9-3676-7fc3-a4c7-23308239a083.jsonl": "7bc9d5a74f14241c947000c05d8ed927680d67ab98307a1613753d37893c86fe"
+        },
+        "contexts": [
+          {
+            "model": "gpt-5.6-terra",
+            "effort": "high"
+          }
+        ],
+        "tool_batches": 34,
+        "image_view_batches": 3,
+        "external_source_retrieval_observed": false,
+        "review": "Read native tool-call trajectory and final artifacts. Agent inspects CTA views and HU values, identifies a ridge between existing components, adds a 0.9-mm envelope above 100 HU around its selected ridge, skeleton-traces the named route, resamples, transports frames and meshes the mask. No source-answer retrieval or private reference access was observed. This is trace evidence, not provider-side identity attestation.",
+        "failure_mechanism": "arc_mm retains the cumulative grid of the pre-resampling skeleton. Interpolation cuts polyline corners, so the final saved polyline is shorter; arc_mm is not recomputed after resampling.",
+        "limits": "Image use was observed, but no matched image-removed model trial was run. The public source and training overlap were disclosed."
+      }
+    }
+  ],
+  "author_geometry": {
+    "route_length_mm": 161.5037769831773,
+    "samples": 325,
+    "cpr_shape": [
+      8,
+      325,
+      65
+    ],
+    "mesh_vertices": 36188,
+    "mesh_faces": 72368,
+    "mesh_watertight": true,
+    "mesh_volume_mm3": 2398.162038167318,
+    "mask_volume_mm3": 2452.2523574829106,
+    "frame_max_orthogonality_error": 1.2576745200831851e-16,
+    "source_centerline_coverage": 1.0,
+    "round": "BR-030",
+    "input_crop_shape": [
+      366,
+      319,
+      205
+    ],
+    "crop_origin_ijk": [
+      82,
+      162,
+      0
+    ],
+    "source_prediction_sha256": "763ad08523bb8423c4ba995d38476a2aa5001a2c2afef623c4e6fecd095d0ce9",
+    "natural_gap_start_mm": 131.09720168696182,
+    "natural_gap_end_mm": 136.08188616175124,
+    "missing_sample_span_mm": 4.486216027310462,
+    "gap_sampling_estimate_mm": 4.984684474789423,
+    "reference_centerline_missing_sample_HU": [
+      143.39734497070313,
+      162.92372131347656,
+      195.9904052734375
+    ],
+    "review_background_HU_p10_p50_p90": [
+      -126.0,
+      -66.0,
+      49.0
+    ],
+    "before_components": 3,
+    "after_components": 2,
+    "gap_anchor_components_before": [
+      1,
+      3
+    ],
+    "gap_anchor_components_after": [
+      1,
+      1
+    ],
+    "oracle_added_voxels": 205,
+    "oracle_removed_voxels": 17,
+    "edits_outside_review": 0,
+    "oracle_provenance": "Reference-assisted local replacement and released reference centerline; this establishes artifact feasibility, not independent agent performance.",
+    "reference_dependence": "Released centerlines and surfaces are derived from segmentation; they are not independent expert anatomy annotations.",
+    "clinical_scope": "Geometric review of contrast-filled lumen, not validated stenosis/plaque diagnosis. Only scan-level disease descriptor supplied."
+  },
+  "image_baseline": {
+    "score": {
+      "reward": 1,
+      "stages": {
+        "repair": true,
+        "trace": true,
+        "cpr": true,
+        "mesh": true
+      },
+      "checks": {
+        "mask_format": true,
+        "preservation": true,
+        "repair_overlap": true,
+        "repair_connection": true,
+        "repair_no_far_addition": true,
+        "trace_geometry": true,
+        "trace_in_mask": true,
+        "cpr_coordinates": true,
+        "cpr_source_intensities": true,
+        "mesh_geometry": true
+      },
+      "metrics": {
+        "local_dice": 0.9514648010494097,
+        "local_recall": 0.9259574468085107,
+        "far_added_mm3": 0.0,
+        "changed_voxels": 125,
+        "centerline_p95_mm": 0.4423898569796134,
+        "reference_coverage_0p8mm": 1.0,
+        "length_mm": 160.38914489746094,
+        "endpoint_errors_mm": [
+          0.0,
+          3.814697265625e-06
+        ],
+        "cpr_max_coordinate_error_mm": 0.00011592000126910422,
+        "cpr_HU_p99_error": 0.001617431640625,
+        "mesh_surface_p95_mm": 3.814697265625e-06,
+        "mesh_review_surface_p95_mm": 3.814697265625e-06,
+        "mesh_volume_mm3": 2393.76576224857,
+        "mesh_mask_volume_ratio": 0.9779348126595798,
+        "mesh_watertight": true
+      },
+      "errors": {},
+      "limits": {
+        "local_dice": 0.8,
+        "local_recall": 0.8,
+        "far_added_mm3": 1.5,
+        "centerline_p95_mm": 0.8,
+        "reference_coverage_0p8mm": 0.95,
+        "length_relative_error": 0.1,
+        "endpoint_mm": 1.0,
+        "cpr_coordinate_error_mm": 0.02,
+        "cpr_HU_p99_error": 0.2,
+        "mesh_surface_p95_mm": 0.65
+      }
+    },
+    "receipt": {
+      "route_length_mm": 160.45629961598354,
+      "samples": 322,
+      "cpr_shape": [
+        8,
+        322,
+        65
+      ],
+      "mesh_vertices": 36156,
+      "mesh_faces": 72304,
+      "mesh_watertight": true,
+      "mesh_volume_mm3": 2393.7660156091056,
+      "mask_volume_mm3": 2447.7764072418217,
+      "frame_max_orthogonality_error": 1.3877787807814457e-16,
+      "source_centerline_coverage": 1.0,
+      "seconds": 6.46211087499978,
+      "added_voxels": 125,
+      "parameters": {
+        "HU_threshold": 120,
+        "outside_mask_cost_multiplier": 4,
+        "repair_radius_mm": 0.85,
+        "mediality_offset_mm": 0.2
+      },
+      "input_sha256": {
+        "editable_region.nii.gz": "02fe621bf816238eb197c66210fb51253e885781138203ce1301babea9e9f4d6",
+        "image.nii.gz": "cb57cf4b0d40d89976359fc5c831cfb003f16f24eaf5c31ad457d00da8c85432",
+        "proposed_mask.nii.gz": "5f7036f84e8688c70ead0800684c72fc9b13759278a224bc4f7b4dd51289a011",
+        "request.json": "1d63d98bf1b6e506ee34b2f8afd718bd971a588c095a81e9cb9e7a1108dbd6b7"
+      },
+      "provenance": "Fixed algorithm, public inputs only at execution; designed after author reference review, no claim of blinded baseline development."
+    }
+  },
+  "mask_only_baseline": {
+    "score": {
+      "reward": 1,
+      "stages": {
+        "repair": true,
+        "trace": true,
+        "cpr": true,
+        "mesh": true
+      },
+      "checks": {
+        "mask_format": true,
+        "preservation": true,
+        "repair_overlap": true,
+        "repair_connection": true,
+        "repair_no_far_addition": true,
+        "trace_geometry": true,
+        "trace_in_mask": true,
+        "cpr_coordinates": true,
+        "cpr_source_intensities": true,
+        "mesh_geometry": true
+      },
+      "metrics": {
+        "local_dice": 0.8996683250414593,
+        "local_recall": 0.9234042553191489,
+        "far_added_mm3": 0.5683746337890625,
+        "changed_voxels": 250,
+        "centerline_p95_mm": 0.5009192931997278,
+        "reference_coverage_0p8mm": 1.0,
+        "length_mm": 160.25733947753906,
+        "endpoint_errors_mm": [
+          0.0,
+          3.814697265625e-06
+        ],
+        "cpr_max_coordinate_error_mm": 0.00012623968907360763,
+        "cpr_HU_p99_error": 0.001617431640625,
+        "mesh_surface_p95_mm": 3.814697265625e-06,
+        "mesh_review_surface_p95_mm": 3.814697265625e-06,
+        "mesh_volume_mm3": 2402.6999010234417,
+        "mesh_mask_volume_ratio": 0.9780362687419892,
+        "mesh_watertight": true
+      },
+      "errors": {},
+      "limits": {
+        "local_dice": 0.8,
+        "local_recall": 0.8,
+        "far_added_mm3": 1.5,
+        "centerline_p95_mm": 0.8,
+        "reference_coverage_0p8mm": 0.95,
+        "length_relative_error": 0.1,
+        "endpoint_mm": 1.0,
+        "cpr_coordinate_error_mm": 0.02,
+        "cpr_HU_p99_error": 0.2,
+        "mesh_surface_p95_mm": 0.65
+      }
+    },
+    "receipt": {
+      "route_length_mm": 160.32163653547053,
+      "samples": 322,
+      "cpr_shape": [
+        8,
+        322,
+        65
+      ],
+      "mesh_vertices": 36248,
+      "mesh_faces": 72488,
+      "mesh_watertight": true,
+      "mesh_volume_mm3": 2402.7001543839774,
+      "mask_volume_mm3": 2456.657260894776,
+      "frame_max_orthogonality_error": 1.3481799904973071e-16,
+      "source_centerline_coverage": 1.0,
+      "seconds": 6.765810874996532,
+      "added_voxels": 250,
+      "mask_only_repair_trace": true,
+      "parameters": {
+        "HU_threshold": 120,
+        "outside_mask_cost_multiplier": 4,
+        "repair_radius_mm": 0.85,
+        "mediality_offset_mm": 0.2
+      },
+      "input_sha256": {
+        "editable_region.nii.gz": "02fe621bf816238eb197c66210fb51253e885781138203ce1301babea9e9f4d6",
+        "image.nii.gz": "cb57cf4b0d40d89976359fc5c831cfb003f16f24eaf5c31ad457d00da8c85432",
+        "proposed_mask.nii.gz": "5f7036f84e8688c70ead0800684c72fc9b13759278a224bc4f7b4dd51289a011",
+        "request.json": "1d63d98bf1b6e506ee34b2f8afd718bd971a588c095a81e9cb9e7a1108dbd6b7"
+      },
+      "provenance": "Fixed algorithm, public inputs only at execution; designed after author reference review, no claim of blinded baseline development."
+    }
+  },
+  "post_outcome_arc_correction": {
+    "intervention": {
+      "kind": "post-outcome single-field intervention, not a new model trial",
+      "original_arc_end_mm": 184.80925341171147,
+      "actual_saved_centerline_length_mm": 175.91775513587936,
+      "max_arc_error_mm": 8.891498275832106,
+      "median_arc_error_mm": 3.6792478347380637,
+      "cp_coordinate_and_HU_arrays_changed": false,
+      "geometry_or_mask_changed": false,
+      "original_cpr_sha256": "1bc04e90323804171b4d251d752d6a2482a31d444ad10086e081362e9709f72f",
+      "corrected_cpr_sha256": "bcbedc50e12d485fecdbf9734d241ad5fc9f17cbfb89bad2052af86f0dec9e32"
+    },
+    "score": {
+      "reward": 1,
+      "stages": {
+        "repair": true,
+        "trace": true,
+        "cpr": true,
+        "mesh": true
+      },
+      "checks": {
+        "mask_format": true,
+        "preservation": true,
+        "repair_overlap": true,
+        "repair_connection": true,
+        "repair_no_far_addition": true,
+        "trace_geometry": true,
+        "trace_in_mask": true,
+        "cpr_coordinates": true,
+        "cpr_source_intensities": true,
+        "mesh_geometry": true
+      },
+      "metrics": {
+        "local_dice": 0.9448123620309051,
+        "local_recall": 0.9106382978723404,
+        "far_added_mm3": 0.0,
+        "changed_voxels": 103,
+        "centerline_p95_mm": 0.49959907561658334,
+        "reference_coverage_0p8mm": 1.0,
+        "length_mm": 175.9177551358793,
+        "endpoint_errors_mm": [
+          0.0,
+          0.0
+        ],
+        "cpr_max_coordinate_error_mm": 8.529281554332114e-06,
+        "cpr_HU_p99_error": 0.001617431640625,
+        "mesh_surface_p95_mm": 3.814697265625e-06,
+        "mesh_review_surface_p95_mm": 3.814697265625e-06,
+        "mesh_volume_mm3": 2392.1790497292423,
+        "mesh_mask_volume_ratio": 0.9779110327096853,
+        "mesh_watertight": true
+      },
+      "errors": {},
+      "limits": {
+        "local_dice": 0.8,
+        "local_recall": 0.8,
+        "far_added_mm3": 1.5,
+        "centerline_p95_mm": 0.8,
+        "reference_coverage_0p8mm": 0.95,
+        "length_relative_error": 0.1,
+        "endpoint_mm": 1.0,
+        "cpr_coordinate_error_mm": 0.02,
+        "cpr_HU_p99_error": 0.2,
+        "mesh_surface_p95_mm": 0.65
+      }
+    }
+  },
+  "conclusion": "A natural coronary segmentation error and a useful larger workflow are established. The single Terra trial passes anatomy repair, tracing and meshing and fails CPR distance-axis consistency only; one-field author correction passes. Both fixed author baselines pass, including geometry-only repair/trace. Do not claim a hard anatomical discrimination task, clinical failure or general model capability limit.",
+  "clinical_qualification": "One training-split case; no independent expert adjudication of the old MRA disagreement and no lesion-specific diagnostic ground truth. Retain geometry workflow and narrow software-consistency miss; do not promote as an anatomical reasoning failure."
+}

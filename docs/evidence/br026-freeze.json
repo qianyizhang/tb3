@@ -1,0 +1,932 @@
+{
+  "round": "BR-026",
+  "limits": {
+    "affine_tolerance": 1e-05,
+    "centerline_tolerance_mm": 0.45,
+    "centerline_coverage": 0.95,
+    "branch_recall": 0.8,
+    "local_dice": 0.75,
+    "local_recall": 0.75,
+    "collateral_mm3": 2.0,
+    "far_added_mm3": 1.0,
+    "surface_tolerance_mm": 0.6
+  },
+  "tasks": [
+    {
+      "task": "vessel-v01",
+      "task_path": "runs/br026-vessel-repair/tasks/vessel-v01",
+      "shape": [
+        187,
+        132,
+        53
+      ],
+      "spacing_mm": [
+        0.296875,
+        0.296875,
+        0.5999962091445923
+      ],
+      "source": "007",
+      "generation": {
+        "kind": "synthetic_spherical_gap",
+        "source": "007",
+        "gap_radius_mm": 1.8,
+        "repair_score_radius_mm": 3.0,
+        "center_ijk": [
+          66,
+          76,
+          15
+        ],
+        "deleted_voxels": 200,
+        "deleted_mm3": 10.576105053769425,
+        "source_signal": {
+          "vessel_median": 242.49756982689723,
+          "background_median": 71.00396617781371,
+          "vessel_p10": 173.89869249332696,
+          "background_p90": 105.00546100270003
+        }
+      },
+      "branches": [
+        {
+          "label": 8,
+          "voxels": 863,
+          "path_voxels": 33
+        },
+        {
+          "label": 9,
+          "voxels": 970,
+          "path_voxels": 37
+        }
+      ],
+      "controls": {
+        "reference": {
+          "outside_edit_changed_voxels": 0,
+          "collateral_deleted_mm3": 0.0,
+          "collateral_added_mm3": 0.0,
+          "far_added_mm3": 0.0,
+          "local_dice": 1.0,
+          "local_recall": 1.0,
+          "branches": [
+            {
+              "label": 8,
+              "local_connection": true,
+              "centerline_length_mm": 15.018300117498901,
+              "centerline_coverage": 1.0,
+              "branch_recall": 1.0
+            },
+            {
+              "label": 9,
+              "local_connection": true,
+              "centerline_length_mm": 14.772910665582675,
+              "centerline_coverage": 1.0,
+              "branch_recall": 1.0
+            }
+          ],
+          "absent_branches": [],
+          "whole_mask_dice_diagnostic": 1.0,
+          "checks": {
+            "outside_edit_preserved": true,
+            "collateral_deleted": true,
+            "collateral_added": true,
+            "no_remote_foreground": true,
+            "local_dice": true,
+            "local_recall": true,
+            "branch_0_connection": true,
+            "branch_0_centerline": true,
+            "branch_0_recall": true,
+            "branch_1_connection": true,
+            "branch_1_centerline": true,
+            "branch_1_recall": true
+          },
+          "reward": 1
+        },
+        "unchanged_delivered": {
+          "outside_edit_changed_voxels": 0,
+          "collateral_deleted_mm3": 0.0,
+          "collateral_added_mm3": 0.0,
+          "far_added_mm3": 0.0,
+          "local_dice": 0.6376811594202898,
+          "local_recall": 0.46808510638297873,
+          "branches": [
+            {
+              "label": 8,
+              "local_connection": false,
+              "centerline_length_mm": 15.018300117498901,
+              "centerline_coverage": 0.8061906932483666,
+              "branch_recall": 0.7682502896871379
+            },
+            {
+              "label": 9,
+              "local_connection": true,
+              "centerline_length_mm": 14.772910665582675,
+              "centerline_coverage": 1.0,
+              "branch_recall": 1.0
+            }
+          ],
+          "absent_branches": [],
+          "whole_mask_dice_diagnostic": 0.9984509813033443,
+          "checks": {
+            "outside_edit_preserved": true,
+            "collateral_deleted": true,
+            "collateral_added": true,
+            "no_remote_foreground": true,
+            "local_dice": false,
+            "local_recall": false,
+            "branch_0_connection": false,
+            "branch_0_centerline": false,
+            "branch_0_recall": false,
+            "branch_1_connection": true,
+            "branch_1_centerline": true,
+            "branch_1_recall": true
+          },
+          "reward": 0
+        },
+        "erase_review_region": {
+          "outside_edit_changed_voxels": 0,
+          "collateral_deleted_mm3": 1987.0386175021995,
+          "collateral_added_mm3": 0.0,
+          "far_added_mm3": 0.0,
+          "local_dice": 0.0,
+          "local_recall": 0.0,
+          "branches": [
+            {
+              "label": 8,
+              "local_connection": false,
+              "centerline_length_mm": 15.018300117498901,
+              "centerline_coverage": 0.0,
+              "branch_recall": 0.0
+            },
+            {
+              "label": 9,
+              "local_connection": false,
+              "centerline_length_mm": 14.772910665582675,
+              "centerline_coverage": 0.0,
+              "branch_recall": 0.0
+            }
+          ],
+          "absent_branches": [],
+          "whole_mask_dice_diagnostic": 0.5845975350802303,
+          "checks": {
+            "outside_edit_preserved": true,
+            "collateral_deleted": false,
+            "collateral_added": true,
+            "no_remote_foreground": true,
+            "local_dice": false,
+            "local_recall": false,
+            "branch_0_connection": false,
+            "branch_0_centerline": false,
+            "branch_0_recall": false,
+            "branch_1_connection": false,
+            "branch_1_centerline": false,
+            "branch_1_recall": false
+          },
+          "reward": 0
+        },
+        "broad_closing": {
+          "outside_edit_changed_voxels": 0,
+          "collateral_deleted_mm3": 0.0,
+          "collateral_added_mm3": 307.8175375899591,
+          "far_added_mm3": 168.74175613289117,
+          "local_dice": 0.9115151515151515,
+          "local_recall": 1.0,
+          "branches": [
+            {
+              "label": 8,
+              "local_connection": true,
+              "centerline_length_mm": 15.018300117498901,
+              "centerline_coverage": 1.0,
+              "branch_recall": 1.0
+            },
+            {
+              "label": 9,
+              "local_connection": true,
+              "centerline_length_mm": 14.772910665582675,
+              "centerline_coverage": 1.0,
+              "branch_recall": 1.0
+            }
+          ],
+          "absent_branches": [],
+          "whole_mask_dice_diagnostic": 0.9564079048577008,
+          "checks": {
+            "outside_edit_preserved": true,
+            "collateral_deleted": true,
+            "collateral_added": false,
+            "no_remote_foreground": false,
+            "local_dice": true,
+            "local_recall": true,
+            "branch_0_connection": true,
+            "branch_0_centerline": true,
+            "branch_0_recall": true,
+            "branch_1_connection": true,
+            "branch_1_centerline": true,
+            "branch_1_recall": true
+          },
+          "reward": 0
+        },
+        "remove_pcoms": {
+          "outside_edit_changed_voxels": 0,
+          "collateral_deleted_mm3": 77.04692531671026,
+          "collateral_added_mm3": 0.0,
+          "far_added_mm3": 0.0,
+          "local_dice": 0.0,
+          "local_recall": 0.0,
+          "branches": [
+            {
+              "label": 8,
+              "local_connection": false,
+              "centerline_length_mm": 15.018300117498901,
+              "centerline_coverage": 0.04362909387469858,
+              "branch_recall": 0.0
+            },
+            {
+              "label": 9,
+              "local_connection": false,
+              "centerline_length_mm": 14.772910665582675,
+              "centerline_coverage": 0.02841990050800548,
+              "branch_recall": 0.0
+            }
+          ],
+          "absent_branches": [],
+          "whole_mask_dice_diagnostic": 0.9856213867164518,
+          "checks": {
+            "outside_edit_preserved": true,
+            "collateral_deleted": false,
+            "collateral_added": true,
+            "no_remote_foreground": true,
+            "local_dice": false,
+            "local_recall": false,
+            "branch_0_connection": false,
+            "branch_0_centerline": false,
+            "branch_0_recall": false,
+            "branch_1_connection": false,
+            "branch_1_centerline": false,
+            "branch_1_recall": false
+          },
+          "reward": 0
+        },
+        "one_voxel_centerline_repair": {
+          "outside_edit_changed_voxels": 0,
+          "collateral_deleted_mm3": 0.0,
+          "collateral_added_mm3": 0.0,
+          "far_added_mm3": 0.0,
+          "local_dice": 0.6595365418894831,
+          "local_recall": 0.4920212765957447,
+          "branches": [
+            {
+              "label": 8,
+              "local_connection": true,
+              "centerline_length_mm": 15.018300117498901,
+              "centerline_coverage": 1.0,
+              "branch_recall": 0.7786790266512167
+            },
+            {
+              "label": 9,
+              "local_connection": true,
+              "centerline_length_mm": 14.772910665582675,
+              "centerline_coverage": 1.0,
+              "branch_recall": 1.0
+            }
+          ],
+          "absent_branches": [],
+          "whole_mask_dice_diagnostic": 0.9985207902542537,
+          "checks": {
+            "outside_edit_preserved": true,
+            "collateral_deleted": true,
+            "collateral_added": true,
+            "no_remote_foreground": true,
+            "local_dice": false,
+            "local_recall": false,
+            "branch_0_connection": true,
+            "branch_0_centerline": true,
+            "branch_0_recall": false,
+            "branch_1_connection": true,
+            "branch_1_centerline": true,
+            "branch_1_recall": true
+          },
+          "reward": 0
+        },
+        "repair_plus_other_branch_deletion": {
+          "outside_edit_changed_voxels": 0,
+          "collateral_deleted_mm3": 51.29410951078171,
+          "collateral_added_mm3": 0.0,
+          "far_added_mm3": 0.0,
+          "local_dice": 1.0,
+          "local_recall": 1.0,
+          "branches": [
+            {
+              "label": 8,
+              "local_connection": true,
+              "centerline_length_mm": 15.018300117498901,
+              "centerline_coverage": 1.0,
+              "branch_recall": 1.0
+            },
+            {
+              "label": 9,
+              "local_connection": false,
+              "centerline_length_mm": 14.772910665582675,
+              "centerline_coverage": 0.02841990050800548,
+              "branch_recall": 0.0
+            }
+          ],
+          "absent_branches": [],
+          "whole_mask_dice_diagnostic": 0.9924421866234495,
+          "checks": {
+            "outside_edit_preserved": true,
+            "collateral_deleted": false,
+            "collateral_added": true,
+            "no_remote_foreground": true,
+            "local_dice": true,
+            "local_recall": true,
+            "branch_0_connection": true,
+            "branch_0_centerline": true,
+            "branch_0_recall": true,
+            "branch_1_connection": false,
+            "branch_1_centerline": false,
+            "branch_1_recall": false
+          },
+          "reward": 0
+        },
+        "nonidentical_boundary_repair": {
+          "outside_edit_changed_voxels": 0,
+          "collateral_deleted_mm3": 0.0,
+          "collateral_added_mm3": 0.0,
+          "far_added_mm3": 0.0,
+          "local_dice": 0.9824086603518268,
+          "local_recall": 0.9654255319148937,
+          "branches": [
+            {
+              "label": 8,
+              "local_connection": true,
+              "centerline_length_mm": 15.018300117498901,
+              "centerline_coverage": 1.0,
+              "branch_recall": 0.984936268829664
+            },
+            {
+              "label": 9,
+              "local_connection": true,
+              "centerline_length_mm": 14.772910665582675,
+              "centerline_coverage": 1.0,
+              "branch_recall": 1.0
+            }
+          ],
+          "absent_branches": [],
+          "whole_mask_dice_diagnostic": 0.9998994594009327,
+          "checks": {
+            "outside_edit_preserved": true,
+            "collateral_deleted": true,
+            "collateral_added": true,
+            "no_remote_foreground": true,
+            "local_dice": true,
+            "local_recall": true,
+            "branch_0_connection": true,
+            "branch_0_centerline": true,
+            "branch_0_recall": true,
+            "branch_1_connection": true,
+            "branch_1_centerline": true,
+            "branch_1_recall": true
+          },
+          "reward": 1
+        }
+      },
+      "public_image_bytes": 1342816,
+      "public_mask_bytes": 27933,
+      "format_controls": {
+        "wrong_affine": {
+          "reward": 0,
+          "reason": "affine differs"
+        },
+        "nonbinary": {
+          "reward": 0,
+          "reason": "binary values 0 and 1 required"
+        },
+        "missing_output": {
+          "reward": 0,
+          "reason": "FileNotFoundError: No such file or no access: '/Users/zhangqy/pkgs/tb3/runs/br026-vessel-repair/nonexistent-answer.nii.gz'"
+        }
+      },
+      "files": {
+        "environment/DATA-LICENSE.txt": "6b527078226cc70d90f6938b55002961e8b311aa57fb720e0d4cc8f180919690",
+        "environment/Dockerfile": "37ac4237f07a20c4927fdcc5782dd01f4248b093e4c56e54b61e1d4f34486d59",
+        "environment/SOURCE_NOTICE.md": "affe67de55c83a4da981dba0c64f606e8a32c07b5ce34632143fe077efd20b4e",
+        "environment/data/editable_region.nii.gz": "562d967518c0aa907c457db9c350435223202601444f6166914a59e0cf005ebb",
+        "environment/data/image.nii.gz": "924b9ad77dec9537180281e3a77e69c734edf2c9744a1e597f25dfa396f83b52",
+        "environment/data/proposed_mask.nii.gz": "e1db615d696ac4d6c022ce14aee963bc78e57a3b162ec99a3cd8f7230bfed253",
+        "instruction.md": "f305b410fe814d75bab9a8e4e97636f9d247be7fb0caf2c6c1f86e499297d11e",
+        "solution/reference.nii.gz": "b8c21f42484470bae2a5f93550b3c923b2e2bf318485db24f3cc73fc222e41f0",
+        "solution/solve.sh": "935396918abf3fc59f2b30ba6b0ffaa49e213b609caeda7ff0aa6d9c90833d4c",
+        "task.toml": "892040b83183e3e6c3fbcffb0ef3216f750062c91920000f61c875bebeec1c09",
+        "tests/Dockerfile": "ea4825ddf73b09a1832c528f212728b3dd788d87ccc7ae46de0e3519b7d83ef7",
+        "tests/score.py": "f40ca7f796a633eff4c80478171cd4074b876c190d6e296369979ca1e1080828",
+        "tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+        "tests/truth.npz": "18d619fd23587bd4b4fe0f46cfdafa9de0f07d5253f6058c4c2d35909d5a6afe"
+      },
+      "public_input_files": [
+        "editable_region.nii.gz",
+        "image.nii.gz",
+        "proposed_mask.nii.gz"
+      ]
+    },
+    {
+      "task": "vessel-v02",
+      "task_path": "runs/br026-vessel-repair/tasks/vessel-v02",
+      "shape": [
+        191,
+        141,
+        58
+      ],
+      "spacing_mm": [
+        0.296875,
+        0.296875,
+        0.5999979376792908
+      ],
+      "source": "012",
+      "generation": {
+        "kind": "unchanged_reference",
+        "source": "012"
+      },
+      "branches": [
+        {
+          "label": 9,
+          "voxels": 1425,
+          "path_voxels": 27
+        }
+      ],
+      "controls": {
+        "reference": {
+          "outside_edit_changed_voxels": 0,
+          "collateral_deleted_mm3": 0.0,
+          "collateral_added_mm3": 0.0,
+          "far_added_mm3": 0.0,
+          "branches": [
+            {
+              "label": 9,
+              "local_connection": true,
+              "centerline_length_mm": 11.561011943294261,
+              "centerline_coverage": 1.0,
+              "branch_recall": 1.0
+            }
+          ],
+          "absent_branches": [
+            {
+              "label": 8,
+              "unsupported_local_connection": false
+            }
+          ],
+          "whole_mask_dice_diagnostic": 1.0,
+          "checks": {
+            "outside_edit_preserved": true,
+            "collateral_deleted": true,
+            "collateral_added": true,
+            "no_remote_foreground": true,
+            "branch_0_connection": true,
+            "branch_0_centerline": true,
+            "branch_0_recall": true,
+            "absent_0_preserved": true
+          },
+          "reward": 1
+        },
+        "unchanged_delivered": {
+          "outside_edit_changed_voxels": 0,
+          "collateral_deleted_mm3": 0.0,
+          "collateral_added_mm3": 0.0,
+          "far_added_mm3": 0.0,
+          "branches": [
+            {
+              "label": 9,
+              "local_connection": true,
+              "centerline_length_mm": 11.561011943294261,
+              "centerline_coverage": 1.0,
+              "branch_recall": 1.0
+            }
+          ],
+          "absent_branches": [
+            {
+              "label": 8,
+              "unsupported_local_connection": false
+            }
+          ],
+          "whole_mask_dice_diagnostic": 1.0,
+          "checks": {
+            "outside_edit_preserved": true,
+            "collateral_deleted": true,
+            "collateral_added": true,
+            "no_remote_foreground": true,
+            "branch_0_connection": true,
+            "branch_0_centerline": true,
+            "branch_0_recall": true,
+            "absent_0_preserved": true
+          },
+          "reward": 1
+        },
+        "erase_review_region": {
+          "outside_edit_changed_voxels": 0,
+          "collateral_deleted_mm3": 3074.6941191214137,
+          "collateral_added_mm3": 0.0,
+          "far_added_mm3": 0.0,
+          "branches": [
+            {
+              "label": 9,
+              "local_connection": false,
+              "centerline_length_mm": 11.561011943294261,
+              "centerline_coverage": 0.0,
+              "branch_recall": 0.0
+            }
+          ],
+          "absent_branches": [
+            {
+              "label": 8,
+              "unsupported_local_connection": false
+            }
+          ],
+          "whole_mask_dice_diagnostic": 0.19894191557368016,
+          "checks": {
+            "outside_edit_preserved": true,
+            "collateral_deleted": false,
+            "collateral_added": true,
+            "no_remote_foreground": true,
+            "branch_0_connection": false,
+            "branch_0_centerline": false,
+            "branch_0_recall": false,
+            "absent_0_preserved": true
+          },
+          "reward": 0
+        },
+        "broad_closing": {
+          "outside_edit_changed_voxels": 0,
+          "collateral_deleted_mm3": 0.0,
+          "collateral_added_mm3": 454.8267081481026,
+          "far_added_mm3": 194.12496751676372,
+          "branches": [
+            {
+              "label": 9,
+              "local_connection": true,
+              "centerline_length_mm": 11.561011943294261,
+              "centerline_coverage": 1.0,
+              "branch_recall": 1.0
+            }
+          ],
+          "absent_branches": [
+            {
+              "label": 8,
+              "unsupported_local_connection": false
+            }
+          ],
+          "whole_mask_dice_diagnostic": 0.938268415046401,
+          "checks": {
+            "outside_edit_preserved": true,
+            "collateral_deleted": true,
+            "collateral_added": false,
+            "no_remote_foreground": false,
+            "branch_0_connection": true,
+            "branch_0_centerline": true,
+            "branch_0_recall": true,
+            "absent_0_preserved": true
+          },
+          "reward": 0
+        },
+        "remove_pcoms": {
+          "outside_edit_changed_voxels": 0,
+          "collateral_deleted_mm3": 75.3549655983079,
+          "collateral_added_mm3": 0.0,
+          "far_added_mm3": 0.0,
+          "branches": [
+            {
+              "label": 9,
+              "local_connection": false,
+              "centerline_length_mm": 11.561011943294261,
+              "centerline_coverage": 0.03099727146918276,
+              "branch_recall": 0.0
+            }
+          ],
+          "absent_branches": [
+            {
+              "label": 8,
+              "unsupported_local_connection": false
+            }
+          ],
+          "whole_mask_dice_diagnostic": 0.9889793740284448,
+          "checks": {
+            "outside_edit_preserved": true,
+            "collateral_deleted": false,
+            "collateral_added": true,
+            "no_remote_foreground": true,
+            "branch_0_connection": false,
+            "branch_0_centerline": false,
+            "branch_0_recall": false,
+            "absent_0_preserved": true
+          },
+          "reward": 0
+        },
+        "one_voxel_absent_bridge": {
+          "outside_edit_changed_voxels": 0,
+          "collateral_deleted_mm3": 0.0,
+          "collateral_added_mm3": 1.1104942298698006,
+          "far_added_mm3": 1.0047328746441053,
+          "branches": [
+            {
+              "label": 9,
+              "local_connection": true,
+              "centerline_length_mm": 11.561011943294261,
+              "centerline_coverage": 1.0,
+              "branch_recall": 1.0
+            }
+          ],
+          "absent_branches": [
+            {
+              "label": 8,
+              "unsupported_local_connection": true
+            }
+          ],
+          "whole_mask_dice_diagnostic": 0.9998393869169171,
+          "checks": {
+            "outside_edit_preserved": true,
+            "collateral_deleted": true,
+            "collateral_added": true,
+            "no_remote_foreground": false,
+            "branch_0_connection": true,
+            "branch_0_centerline": true,
+            "branch_0_recall": true,
+            "absent_0_preserved": false
+          },
+          "reward": 0
+        }
+      },
+      "public_image_bytes": 1598873,
+      "public_mask_bytes": 28287,
+      "format_controls": {
+        "wrong_affine": {
+          "reward": 0,
+          "reason": "affine differs"
+        },
+        "nonbinary": {
+          "reward": 0,
+          "reason": "binary values 0 and 1 required"
+        },
+        "missing_output": {
+          "reward": 0,
+          "reason": "FileNotFoundError: No such file or no access: '/Users/zhangqy/pkgs/tb3/runs/br026-vessel-repair/nonexistent-answer.nii.gz'"
+        }
+      },
+      "files": {
+        "environment/DATA-LICENSE.txt": "6b527078226cc70d90f6938b55002961e8b311aa57fb720e0d4cc8f180919690",
+        "environment/Dockerfile": "37ac4237f07a20c4927fdcc5782dd01f4248b093e4c56e54b61e1d4f34486d59",
+        "environment/SOURCE_NOTICE.md": "affe67de55c83a4da981dba0c64f606e8a32c07b5ce34632143fe077efd20b4e",
+        "environment/data/editable_region.nii.gz": "af6b0474a0659908315031613a016eb595653e5a8381dbb89cc7da49bf69aff5",
+        "environment/data/image.nii.gz": "0ebd21a5de8b9fd433d7080ae0a90a836a6716689343064aa8a4d1d8a45d0cea",
+        "environment/data/proposed_mask.nii.gz": "ca64373fef18fa19f616283ad3b8563ab823b8f569d6b784c6ea14bc7347bef0",
+        "instruction.md": "f305b410fe814d75bab9a8e4e97636f9d247be7fb0caf2c6c1f86e499297d11e",
+        "solution/reference.nii.gz": "ca64373fef18fa19f616283ad3b8563ab823b8f569d6b784c6ea14bc7347bef0",
+        "solution/solve.sh": "935396918abf3fc59f2b30ba6b0ffaa49e213b609caeda7ff0aa6d9c90833d4c",
+        "task.toml": "e8549c9bcb441ed2441a77619a7f4334db6d485951e8994c673709d9c0f604e3",
+        "tests/Dockerfile": "ea4825ddf73b09a1832c528f212728b3dd788d87ccc7ae46de0e3519b7d83ef7",
+        "tests/score.py": "f40ca7f796a633eff4c80478171cd4074b876c190d6e296369979ca1e1080828",
+        "tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+        "tests/truth.npz": "59c836b2c4c1529554d7be245ed137e8488c661c4b4b60780f4a6772b8094263"
+      },
+      "public_input_files": [
+        "editable_region.nii.gz",
+        "image.nii.gz",
+        "proposed_mask.nii.gz"
+      ]
+    }
+  ],
+  "author_baselines": [
+    {
+      "task": "vessel-v01",
+      "mode": "mask",
+      "grade": {
+        "outside_edit_changed_voxels": 0,
+        "collateral_deleted_mm3": 0.0,
+        "collateral_added_mm3": 0.31728315161308274,
+        "far_added_mm3": 0.0,
+        "local_dice": 0.7181208053691275,
+        "local_recall": 0.5691489361702128,
+        "branches": [
+          {
+            "label": 8,
+            "local_connection": false,
+            "centerline_length_mm": 15.018300117498901,
+            "centerline_coverage": 0.9161333876581034,
+            "branch_recall": 0.8122827346465817
+          },
+          {
+            "label": 9,
+            "local_connection": true,
+            "centerline_length_mm": 14.772910665582675,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          }
+        ],
+        "absent_branches": [],
+        "whole_mask_dice_diagnostic": 0.9986528754142021,
+        "checks": {
+          "outside_edit_preserved": true,
+          "collateral_deleted": true,
+          "collateral_added": true,
+          "no_remote_foreground": true,
+          "local_dice": false,
+          "local_recall": false,
+          "branch_0_connection": false,
+          "branch_0_centerline": false,
+          "branch_0_recall": true,
+          "branch_1_connection": true,
+          "branch_1_centerline": true,
+          "branch_1_recall": true
+        },
+        "reward": 0
+      },
+      "answer_sha256": "06079939e461686aa54ab17d39e95382c0e84eb61db7eee41ac03b67d8ab2652",
+      "details": {
+        "large_components": 1,
+        "skeleton_endpoints": 2,
+        "detector": "skeleton",
+        "candidate_pairs": [
+          {
+            "separation_mm": 4.979527557366916,
+            "centre_ijk": [
+              64.5,
+              77.0,
+              16.0
+            ],
+            "radius_mm": 3.489763778683458,
+            "intensity_threshold": null,
+            "added_voxels": 50
+          }
+        ],
+        "mode": "mask",
+        "seconds": 1.9958951670014358
+      }
+    },
+    {
+      "task": "vessel-v01",
+      "mode": "image",
+      "grade": {
+        "outside_edit_changed_voxels": 0,
+        "collateral_deleted_mm3": 0.0,
+        "collateral_added_mm3": 1.2162520811834838,
+        "far_added_mm3": 0.0,
+        "local_dice": 0.9249692496924969,
+        "local_recall": 1.0,
+        "branches": [
+          {
+            "label": 8,
+            "local_connection": true,
+            "centerline_length_mm": 15.018300117498901,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          },
+          {
+            "label": 9,
+            "local_connection": true,
+            "centerline_length_mm": 14.772910665582675,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          }
+        ],
+        "absent_branches": [],
+        "whole_mask_dice_diagnostic": 0.9993508400438956,
+        "checks": {
+          "outside_edit_preserved": true,
+          "collateral_deleted": true,
+          "collateral_added": true,
+          "no_remote_foreground": true,
+          "local_dice": true,
+          "local_recall": true,
+          "branch_0_connection": true,
+          "branch_0_centerline": true,
+          "branch_0_recall": true,
+          "branch_1_connection": true,
+          "branch_1_centerline": true,
+          "branch_1_recall": true
+        },
+        "reward": 1
+      },
+      "answer_sha256": "8ef264c14f54c9545a64f4f9fbdec17833d2911e8d263b312ecdbdc7ff07b5b8",
+      "details": {
+        "large_components": 1,
+        "skeleton_endpoints": 2,
+        "detector": "skeleton",
+        "candidate_pairs": [
+          {
+            "separation_mm": 4.979527557366916,
+            "centre_ijk": [
+              64.5,
+              77.0,
+              16.0
+            ],
+            "radius_mm": 3.489763778683458,
+            "intensity_threshold": 146.997594286222,
+            "added_voxels": 284
+          }
+        ],
+        "mode": "image",
+        "seconds": 0.08412233399940305
+      }
+    },
+    {
+      "task": "vessel-v02",
+      "mode": "mask",
+      "grade": {
+        "outside_edit_changed_voxels": 0,
+        "collateral_deleted_mm3": 0.0,
+        "collateral_added_mm3": 0.0,
+        "far_added_mm3": 0.0,
+        "branches": [
+          {
+            "label": 9,
+            "local_connection": true,
+            "centerline_length_mm": 11.561011943294261,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          }
+        ],
+        "absent_branches": [
+          {
+            "label": 8,
+            "unsupported_local_connection": false
+          }
+        ],
+        "whole_mask_dice_diagnostic": 1.0,
+        "checks": {
+          "outside_edit_preserved": true,
+          "collateral_deleted": true,
+          "collateral_added": true,
+          "no_remote_foreground": true,
+          "branch_0_connection": true,
+          "branch_0_centerline": true,
+          "branch_0_recall": true,
+          "absent_0_preserved": true
+        },
+        "reward": 1
+      },
+      "answer_sha256": "9d2d660d60d68c3ad693568db30a25ea059e5919b5867d6e5fdee5fa7f1d21bc",
+      "details": {
+        "large_components": 1,
+        "skeleton_endpoints": 3,
+        "detector": "skeleton",
+        "candidate_pairs": [],
+        "mode": "mask",
+        "seconds": 0.09296354199977941
+      }
+    },
+    {
+      "task": "vessel-v02",
+      "mode": "image",
+      "grade": {
+        "outside_edit_changed_voxels": 0,
+        "collateral_deleted_mm3": 0.0,
+        "collateral_added_mm3": 0.0,
+        "far_added_mm3": 0.0,
+        "branches": [
+          {
+            "label": 9,
+            "local_connection": true,
+            "centerline_length_mm": 11.561011943294261,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          }
+        ],
+        "absent_branches": [
+          {
+            "label": 8,
+            "unsupported_local_connection": false
+          }
+        ],
+        "whole_mask_dice_diagnostic": 1.0,
+        "checks": {
+          "outside_edit_preserved": true,
+          "collateral_deleted": true,
+          "collateral_added": true,
+          "no_remote_foreground": true,
+          "branch_0_connection": true,
+          "branch_0_centerline": true,
+          "branch_0_recall": true,
+          "absent_0_preserved": true
+        },
+        "reward": 1
+      },
+      "answer_sha256": "9d2d660d60d68c3ad693568db30a25ea059e5919b5867d6e5fdee5fa7f1d21bc",
+      "details": {
+        "large_components": 1,
+        "skeleton_endpoints": 3,
+        "detector": "skeleton",
+        "candidate_pairs": [],
+        "mode": "image",
+        "seconds": 0.09349366700189421
+      }
+    }
+  ],
+  "model_trials_before_freeze": 0,
+  "authoring_files": {
+    "probes/vessel-repair/authoring/baseline.py": "854974aa3c7fbce11964ead617d4e5f268c98dc97238de7cf7b8beba379ffbd7",
+    "probes/vessel-repair/authoring/build.py": "9b7f473a4da824db789580ea579df0f654328f9be087feca9a87731a11bf4582",
+    "probes/vessel-repair/authoring/freeze.py": "38beb5bac3bd744caaded300a4abe0d69788471744e11ffca48f2e9b07b1caee",
+    "probes/vessel-repair/authoring/instruction.md": "f305b410fe814d75bab9a8e4e97636f9d247be7fb0caf2c6c1f86e499297d11e",
+    "probes/vessel-repair/authoring/present.py": "74567f06e2653d024202be4af8243bfefb5d75f7bee570d227c97780933c0780",
+    "probes/vessel-repair/authoring/run_trials.py": "9467549cbf8ed7090a8f46763f5ebe85ad0493866692053b3760e3f5e71c55c6",
+    "probes/vessel-repair/authoring/score.py": "f40ca7f796a633eff4c80478171cd4074b876c190d6e296369979ca1e1080828"
+  },
+  "native_image_review": "Native axial, coronal and sagittal gap sections inspected; source-scaled intensities preserved exactly.",
+  "source_status": "Synthetic gap and unchanged reference; no natural segmentation model prediction.",
+  "clinical_status": "Engineering annotation-backed pilot, not independent expert clinical adjudication.",
+  "threshold_status": "Development-case calibration before model runs; not a held-out clinical tolerance study."
+}

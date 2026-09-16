@@ -1,0 +1,1039 @@
+{
+  "schema_version": 1,
+  "round_id": "BR-025",
+  "captured_on": "2026-09-16",
+  "status": "curation_complete_task_design_proposed",
+  "source_request": {
+    "kind": "user_pasted_brainstorm",
+    "title": "Repair a vessel segmentation connectivity",
+    "earlier_session_id": null,
+    "earlier_message_id": null,
+    "retrieval_gap": "Earlier session was referenced but not identified or retrieved."
+  },
+  "local_model_trials": 0,
+  "inference_runs": 0,
+  "admitted_defect_fixtures": 0,
+  "archives": [
+    {
+      "url": "https://zenodo.org/records/15692630",
+      "key": "TopCoW2024_Data_Release.zip",
+      "bytes": 10512833650,
+      "published_md5": "d248a932166316c6c906644b22296d6c",
+      "full_archive_downloaded": false
+    },
+    {
+      "url": "https://zenodo.org/records/17358162",
+      "key": "CoW_Centerline_Data.zip",
+      "bytes": 373088743,
+      "published_md5": "8e414a6cd50e85ef4a8f68e37fb25fc3",
+      "full_archive_downloaded": false
+    }
+  ],
+  "selection_method": "Screen first 12 MRA edge annotations; select four distinct patients spanning right-only, bilateral, neither, and left-only Pcom annotation states. No scan selected for model failure.",
+  "screened_mra_annotations": [
+    {
+      "id": "topcow_mr_001",
+      "edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 0,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 0,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 1
+        }
+      },
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_001.yml",
+      "sha256": "45bf3fdaa81e77709ca0340ba08c531a583325dbe00f3992a1c930ce73a4c60a"
+    },
+    {
+      "id": "topcow_mr_002",
+      "edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 0,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 0,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 1
+        }
+      },
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_002.yml",
+      "sha256": "45bf3fdaa81e77709ca0340ba08c531a583325dbe00f3992a1c930ce73a4c60a"
+    },
+    {
+      "id": "topcow_mr_003",
+      "edges": {
+        "anterior": {
+          "L-A1": 0,
+          "Acom": 1,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 1,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 1
+        }
+      },
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_003.yml",
+      "sha256": "343cfecbf67daf52dc2fb061c085d7b77b9eaff85eedf941376557f41f7b05f4"
+    },
+    {
+      "id": "topcow_mr_004",
+      "edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 1,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 0,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 1
+        }
+      },
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_004.yml",
+      "sha256": "a61be9933cf092092cfd22a59ddbb3ac019c039e1a42b643826d0d88157d392a"
+    },
+    {
+      "id": "topcow_mr_005",
+      "edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 1,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 0,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 1
+        }
+      },
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_005.yml",
+      "sha256": "a61be9933cf092092cfd22a59ddbb3ac019c039e1a42b643826d0d88157d392a"
+    },
+    {
+      "id": "topcow_mr_006",
+      "edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 1,
+          "3rd-A2": 1,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 0,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 1
+        }
+      },
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_006.yml",
+      "sha256": "75f679ffdf2b5efd733c85db84c82853a6a713f91f2ba688fcc40d9c472827f0"
+    },
+    {
+      "id": "topcow_mr_007",
+      "edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 0,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 1,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 1
+        }
+      },
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_007.yml",
+      "sha256": "8e2e66e31019619ec6a3fdab946d8baece36ff783d4cc8a22f4eaf92d3ba3fee"
+    },
+    {
+      "id": "topcow_mr_008",
+      "edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 1,
+          "3rd-A2": 1,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 1,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 1
+        }
+      },
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_008.yml",
+      "sha256": "d7c5f8cae4faca67cd41202b0164da92796bdb0547787a33fec014268fe89cde"
+    },
+    {
+      "id": "topcow_mr_009",
+      "edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 1,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 0,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 0
+        }
+      },
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_009.yml",
+      "sha256": "f6d71518c795b675cbb3cd778a417ece21747fe60770e7c786d202cec7fadc64"
+    },
+    {
+      "id": "topcow_mr_010",
+      "edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 1,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 0,
+          "L-P1": 1,
+          "R-P1": 0,
+          "R-Pcom": 1
+        }
+      },
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_010.yml",
+      "sha256": "26230b37560012beee6284712726ff8c4e4f5d640d6db154133df3131d3a176f"
+    },
+    {
+      "id": "topcow_mr_011",
+      "edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 1,
+          "3rd-A2": 1,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 1,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 1
+        }
+      },
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_011.yml",
+      "sha256": "d7c5f8cae4faca67cd41202b0164da92796bdb0547787a33fec014268fe89cde"
+    },
+    {
+      "id": "topcow_mr_012",
+      "edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 1,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 1,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 0
+        }
+      },
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_012.yml",
+      "sha256": "7822c8478093b0492ed69e5851af482883bf46aab086b9635a8fddbb3ebd924d"
+    }
+  ],
+  "selected_files_count": 30,
+  "selected_files_bytes": 211857192,
+  "selected_files": [
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/License.txt",
+      "archive_member": "TopCoW2024_Data_Release/License.txt",
+      "bytes": 876,
+      "sha256": "6b527078226cc70d90f6938b55002961e8b311aa57fb720e0d4cc8f180919690",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/License.txt"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/README.txt",
+      "archive_member": "TopCoW2024_Data_Release/README.txt",
+      "bytes": 5330,
+      "sha256": "bb14e6adb16e83aa7c56ac212459376672cd8866c4b1dbbd90ca389f4a2c034d",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/README.txt"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_004.yml",
+      "archive_member": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_004.yml",
+      "bytes": 141,
+      "sha256": "a61be9933cf092092cfd22a59ddbb3ac019c039e1a42b643826d0d88157d392a",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_004.yml"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_007.yml",
+      "archive_member": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_007.yml",
+      "bytes": 141,
+      "sha256": "8e2e66e31019619ec6a3fdab946d8baece36ff783d4cc8a22f4eaf92d3ba3fee",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_007.yml"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_009.yml",
+      "archive_member": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_009.yml",
+      "bytes": 141,
+      "sha256": "f6d71518c795b675cbb3cd778a417ece21747fe60770e7c786d202cec7fadc64",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_009.yml"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_012.yml",
+      "archive_member": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_012.yml",
+      "bytes": 141,
+      "sha256": "7822c8478093b0492ed69e5851af482883bf46aab086b9635a8fddbb3ebd924d",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_012.yml"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_004.yml",
+      "archive_member": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_004.yml",
+      "bytes": 141,
+      "sha256": "a61be9933cf092092cfd22a59ddbb3ac019c039e1a42b643826d0d88157d392a",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_004.yml"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_007.yml",
+      "archive_member": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_007.yml",
+      "bytes": 141,
+      "sha256": "8e2e66e31019619ec6a3fdab946d8baece36ff783d4cc8a22f4eaf92d3ba3fee",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_007.yml"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_009.yml",
+      "archive_member": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_009.yml",
+      "bytes": 141,
+      "sha256": "f6d71518c795b675cbb3cd778a417ece21747fe60770e7c786d202cec7fadc64",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_009.yml"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_012.yml",
+      "archive_member": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_012.yml",
+      "bytes": 141,
+      "sha256": "7822c8478093b0492ed69e5851af482883bf46aab086b9635a8fddbb3ebd924d",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_mr_012.yml"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_004.nii.gz",
+      "archive_member": "TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_004.nii.gz",
+      "bytes": 287616,
+      "sha256": "0dc501f93a078434a84560be816e735eb7eabb44d934860c170598a794d0585e",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_004.nii.gz"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_007.nii.gz",
+      "archive_member": "TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_007.nii.gz",
+      "bytes": 269094,
+      "sha256": "cfdc68cef5f0f65a96c3ff66ee5acff99730b7dd2eb9022345c30ec9d33c5eb4",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_007.nii.gz"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_009.nii.gz",
+      "archive_member": "TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_009.nii.gz",
+      "bytes": 271960,
+      "sha256": "6f43e527ccbf1cd9021a9bc1b29a43f7f97181bccc34ee29ff409e15c7b46213",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_009.nii.gz"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_012.nii.gz",
+      "archive_member": "TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_012.nii.gz",
+      "bytes": 243364,
+      "sha256": "c11fc152ec8a293d2dc9547db8b06c1616177253a7be4183946e402e23440db3",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_012.nii.gz"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/imagesTr/topcow_mr_004_0000.nii.gz",
+      "archive_member": "TopCoW2024_Data_Release/imagesTr/topcow_mr_004_0000.nii.gz",
+      "bytes": 57554550,
+      "sha256": "110c463d05b1632cd7d2562db4f53a76b49377a70be5586085c89af1668a6ef7",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/imagesTr/topcow_mr_004_0000.nii.gz"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/imagesTr/topcow_mr_007_0000.nii.gz",
+      "archive_member": "TopCoW2024_Data_Release/imagesTr/topcow_mr_007_0000.nii.gz",
+      "bytes": 51533699,
+      "sha256": "51c967d85e6017331b30dfd4f95502f2489342d8d9bf27c871dc8dd15467bbd2",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/imagesTr/topcow_mr_007_0000.nii.gz"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/imagesTr/topcow_mr_009_0000.nii.gz",
+      "archive_member": "TopCoW2024_Data_Release/imagesTr/topcow_mr_009_0000.nii.gz",
+      "bytes": 52107936,
+      "sha256": "7c44c3da7ab28582e1a69d2e20f52488b51fde6ea4968c9996b984752f1625e9",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/imagesTr/topcow_mr_009_0000.nii.gz"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/imagesTr/topcow_mr_012_0000.nii.gz",
+      "archive_member": "TopCoW2024_Data_Release/imagesTr/topcow_mr_012_0000.nii.gz",
+      "bytes": 49347570,
+      "sha256": "1aa532b6c76e0fdeba85eebed58951ef355e03aca26425755b69df3505341044",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/imagesTr/topcow_mr_012_0000.nii.gz"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_mr_004.txt",
+      "archive_member": "TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_mr_004.txt",
+      "bytes": 78,
+      "sha256": "a11d0da817d023fae821571e5a7ce600b9493da5fdc68865628aa2ec2cef702e",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_mr_004.txt"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_mr_007.txt",
+      "archive_member": "TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_mr_007.txt",
+      "bytes": 79,
+      "sha256": "d12d0377bbb69666d04cdc5648943479b661d49382f44d7813fb3f1479d99228",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_mr_007.txt"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_mr_009.txt",
+      "archive_member": "TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_mr_009.txt",
+      "bytes": 79,
+      "sha256": "cb26ed66277292a9d05389af2dd643544e3548f841906ffcd3a5c29db564665c",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_mr_009.txt"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_mr_012.txt",
+      "archive_member": "TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_mr_012.txt",
+      "bytes": 78,
+      "sha256": "b3fe19796f5e52c931689989439581de827ad5d7f31b28ffdcf149157272d59c",
+      "zip_crc32_verified": true,
+      "local_path": "TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_mr_012.txt"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/17358162/files/CoW_Centerline_Data.zip/container/CoW_Centerline_Data/cow_graphs/topcow_mr_004.vtp",
+      "archive_member": "CoW_Centerline_Data/cow_graphs/topcow_mr_004.vtp",
+      "bytes": 48151,
+      "sha256": "accff67036650ecfcff127b1d9f5db6ba037ad082c3eaa3ee04c9f9d693a3114",
+      "zip_crc32_verified": true,
+      "local_path": "CoW_Centerline_Data/cow_graphs/topcow_mr_004.vtp"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/17358162/files/CoW_Centerline_Data.zip/container/CoW_Centerline_Data/cow_graphs/topcow_mr_007.vtp",
+      "archive_member": "CoW_Centerline_Data/cow_graphs/topcow_mr_007.vtp",
+      "bytes": 52819,
+      "sha256": "d9a1db5e43602097f6a5eaa3ce4cdf5a43ce57bbd8f46156b2298ecc5e34778a",
+      "zip_crc32_verified": true,
+      "local_path": "CoW_Centerline_Data/cow_graphs/topcow_mr_007.vtp"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/17358162/files/CoW_Centerline_Data.zip/container/CoW_Centerline_Data/cow_graphs/topcow_mr_009.vtp",
+      "archive_member": "CoW_Centerline_Data/cow_graphs/topcow_mr_009.vtp",
+      "bytes": 43647,
+      "sha256": "926f8185e47649882179df3259f9c3d71d7600bfd455a9616d3e4b583c864d18",
+      "zip_crc32_verified": true,
+      "local_path": "CoW_Centerline_Data/cow_graphs/topcow_mr_009.vtp"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/17358162/files/CoW_Centerline_Data.zip/container/CoW_Centerline_Data/cow_graphs/topcow_mr_012.vtp",
+      "archive_member": "CoW_Centerline_Data/cow_graphs/topcow_mr_012.vtp",
+      "bytes": 47271,
+      "sha256": "21d1f4baf61b30fb4faf943a204cdd5ec8536ef8410c8374fb869e12b3f7b976",
+      "zip_crc32_verified": true,
+      "local_path": "CoW_Centerline_Data/cow_graphs/topcow_mr_012.vtp"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/17358162/files/CoW_Centerline_Data.zip/container/CoW_Centerline_Data/cow_nodes/topcow_mr_004.json",
+      "archive_member": "CoW_Centerline_Data/cow_nodes/topcow_mr_004.json",
+      "bytes": 11900,
+      "sha256": "4fcc620e67952f9b9edc6fac01535a0c3140bcc78e16385a7ddba17aa7ab4bc7",
+      "zip_crc32_verified": true,
+      "local_path": "CoW_Centerline_Data/cow_nodes/topcow_mr_004.json"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/17358162/files/CoW_Centerline_Data.zip/container/CoW_Centerline_Data/cow_nodes/topcow_mr_007.json",
+      "archive_member": "CoW_Centerline_Data/cow_nodes/topcow_mr_007.json",
+      "bytes": 10413,
+      "sha256": "5e32e3f2b02ee7e665994a48095b408eb4334b107df5e3d0cbd207249e405319",
+      "zip_crc32_verified": true,
+      "local_path": "CoW_Centerline_Data/cow_nodes/topcow_mr_007.json"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/17358162/files/CoW_Centerline_Data.zip/container/CoW_Centerline_Data/cow_nodes/topcow_mr_009.json",
+      "archive_member": "CoW_Centerline_Data/cow_nodes/topcow_mr_009.json",
+      "bytes": 8644,
+      "sha256": "e74d9cce2fa332acfa081583a613d49b0ed268a2b7ba270402124f4f57e0308c",
+      "zip_crc32_verified": true,
+      "local_path": "CoW_Centerline_Data/cow_nodes/topcow_mr_009.json"
+    },
+    {
+      "source_url": "https://zenodo.org/api/records/17358162/files/CoW_Centerline_Data.zip/container/CoW_Centerline_Data/cow_nodes/topcow_mr_012.json",
+      "archive_member": "CoW_Centerline_Data/cow_nodes/topcow_mr_012.json",
+      "bytes": 10910,
+      "sha256": "d83a18e736b0e152a48d7a4d626fec9e0c0ea7476b95df0c312ed45996f8c6c4",
+      "zip_crc32_verified": true,
+      "local_path": "CoW_Centerline_Data/cow_nodes/topcow_mr_012.json"
+    }
+  ],
+  "sample_inspection": [
+    {
+      "id": "topcow_mr_004",
+      "shape": [
+        500,
+        607,
+        200
+      ],
+      "spacing_mm": [
+        0.2968749701976776,
+        0.296875,
+        0.6000019907951355
+      ],
+      "orientation": [
+        "L",
+        "P",
+        "S"
+      ],
+      "image_mask_shape_match": true,
+      "image_mask_affine_max_difference": 0.0,
+      "affine": [
+        [
+          -0.2930806279182434,
+          0.023580707609653473,
+          0.08289919793605804,
+          54.20162582397461
+        ],
+        [
+          -0.03053913824260235,
+          -0.2908637821674347,
+          -0.10306194424629211,
+          91.34696197509766
+        ],
+        [
+          0.03613671287894249,
+          -0.05456170439720154,
+          0.5852421522140503,
+          -67.4969711303711
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "label_voxel_counts": {
+        "0": 60645995,
+        "1": 4658,
+        "2": 3768,
+        "3": 3537,
+        "4": 10464,
+        "5": 2700,
+        "6": 10891,
+        "7": 2930,
+        "8": 447,
+        "10": 1579,
+        "11": 5854,
+        "12": 7177
+      },
+      "pcoms": {
+        "right": {
+          "label": 8,
+          "voxel_count": 447,
+          "components_26": 1,
+          "touches_expected_parent_labels_26": {
+            "4": true,
+            "2": true
+          }
+        },
+        "left": {
+          "label": 9,
+          "voxel_count": 0,
+          "components_26": 0,
+          "touches_expected_parent_labels_26": {
+            "6": false,
+            "3": false
+          }
+        }
+      },
+      "mra_edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 1,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 0,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 1
+        }
+      },
+      "cta_edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 1,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 0,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 1
+        }
+      },
+      "paired_modality_edge_annotations_agree": true,
+      "graph_node_alignment_screen": {
+        "id": "topcow_mr_004",
+        "node_occurrences": 42,
+        "distance_to_foreground_voxel_centers_mm": {
+          "as_stored": {
+            "median": 0.2248819855979956,
+            "p95": 0.3172988888141995,
+            "max": 0.3207848676348526
+          },
+          "flip_xy": {
+            "median": 9.747238544202144,
+            "p95": 24.392654732711453,
+            "max": 35.556394992007036
+          }
+        }
+      },
+      "admission_status": "source_candidate_only"
+    },
+    {
+      "id": "topcow_mr_007",
+      "shape": [
+        490,
+        561,
+        200
+      ],
+      "spacing_mm": [
+        0.296875,
+        0.296875,
+        0.5999962091445923
+      ],
+      "orientation": [
+        "L",
+        "P",
+        "S"
+      ],
+      "image_mask_shape_match": true,
+      "image_mask_affine_max_difference": 0.0,
+      "affine": [
+        [
+          -0.29614853858947754,
+          -0.00930684246122837,
+          -0.03749537840485573,
+          80.45947265625
+        ],
+        [
+          0.010754113085567951,
+          -0.29576417803764343,
+          -0.047080446034669876,
+          73.45358276367188
+        ],
+        [
+          -0.017752811312675476,
+          -0.02391020581126213,
+          0.5969698429107666,
+          -104.3568344116211
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "label_voxel_counts": {
+        "0": 54904197,
+        "1": 5326,
+        "2": 4374,
+        "3": 4444,
+        "4": 19688,
+        "5": 2689,
+        "6": 20576,
+        "7": 3679,
+        "8": 863,
+        "9": 970,
+        "11": 5881,
+        "12": 5313
+      },
+      "pcoms": {
+        "right": {
+          "label": 8,
+          "voxel_count": 863,
+          "components_26": 1,
+          "touches_expected_parent_labels_26": {
+            "4": true,
+            "2": true
+          }
+        },
+        "left": {
+          "label": 9,
+          "voxel_count": 970,
+          "components_26": 1,
+          "touches_expected_parent_labels_26": {
+            "6": true,
+            "3": true
+          }
+        }
+      },
+      "mra_edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 0,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 1,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 1
+        }
+      },
+      "cta_edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 0,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 1,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 1
+        }
+      },
+      "paired_modality_edge_annotations_agree": true,
+      "graph_node_alignment_screen": {
+        "id": "topcow_mr_007",
+        "node_occurrences": 36,
+        "distance_to_foreground_voxel_centers_mm": {
+          "as_stored": {
+            "median": 0.1770512051938632,
+            "p95": 0.30179287230101975,
+            "max": 0.3346004495356624
+          },
+          "flip_xy": {
+            "median": 7.476585448934202,
+            "p95": 22.252652824838805,
+            "max": 33.83133164581131
+          }
+        }
+      },
+      "admission_status": "source_candidate_only"
+    },
+    {
+      "id": "topcow_mr_009",
+      "shape": [
+        500,
+        586,
+        194
+      ],
+      "spacing_mm": [
+        0.2968750298023224,
+        0.296875,
+        0.5999988913536072
+      ],
+      "orientation": [
+        "L",
+        "P",
+        "S"
+      ],
+      "image_mask_shape_match": true,
+      "image_mask_affine_max_difference": 0.0,
+      "affine": [
+        [
+          -0.2928446829319,
+          -0.04848012328147888,
+          0.010393361561000347,
+          84.6999740600586
+        ],
+        [
+          0.04804234579205513,
+          -0.2922953963279724,
+          -0.03991794213652611,
+          54.66866683959961
+        ],
+        [
+          0.008288612589240074,
+          -0.018650759011507034,
+          0.5985793471336365,
+          -69.0599594116211
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "label_voxel_counts": {
+        "0": 56784667,
+        "1": 2975,
+        "2": 640,
+        "3": 3005,
+        "4": 18899,
+        "5": 2126,
+        "6": 18640,
+        "7": 2091,
+        "10": 123,
+        "11": 3416,
+        "12": 5418
+      },
+      "pcoms": {
+        "right": {
+          "label": 8,
+          "voxel_count": 0,
+          "components_26": 0,
+          "touches_expected_parent_labels_26": {
+            "4": false,
+            "2": false
+          }
+        },
+        "left": {
+          "label": 9,
+          "voxel_count": 0,
+          "components_26": 0,
+          "touches_expected_parent_labels_26": {
+            "6": false,
+            "3": false
+          }
+        }
+      },
+      "mra_edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 1,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 0,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 0
+        }
+      },
+      "cta_edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 1,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 0,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 0
+        }
+      },
+      "paired_modality_edge_annotations_agree": true,
+      "graph_node_alignment_screen": {
+        "id": "topcow_mr_009",
+        "node_occurrences": 30,
+        "distance_to_foreground_voxel_centers_mm": {
+          "as_stored": {
+            "median": 0.2125048258908323,
+            "p95": 0.32215654839102503,
+            "max": 0.32863714148778594
+          },
+          "flip_xy": {
+            "median": 2.3528419978243127,
+            "p95": 17.721151394888565,
+            "max": 31.27793490439685
+          }
+        }
+      },
+      "admission_status": "source_candidate_only"
+    },
+    {
+      "id": "topcow_mr_012",
+      "shape": [
+        469,
+        611,
+        174
+      ],
+      "spacing_mm": [
+        0.296875,
+        0.296875,
+        0.5999979376792908
+      ],
+      "orientation": [
+        "L",
+        "P",
+        "S"
+      ],
+      "image_mask_shape_match": true,
+      "image_mask_affine_max_difference": 0.0,
+      "affine": [
+        [
+          -0.29426711797714233,
+          -0.039263613522052765,
+          2.235166496333818e-09,
+          87.70555114746094
+        ],
+        [
+          0.03750768303871155,
+          -0.28110700845718384,
+          -0.17742420732975006,
+          82.41767120361328
+        ],
+        [
+          0.011610566638410091,
+          -0.08701714873313904,
+          0.5731650590896606,
+          -71.19561004638672
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "label_voxel_counts": {
+        "0": 49789873,
+        "1": 3700,
+        "2": 3804,
+        "3": 3244,
+        "4": 21655,
+        "5": 2770,
+        "6": 18879,
+        "7": 3049,
+        "9": 1425,
+        "10": 426,
+        "11": 6857,
+        "12": 5584
+      },
+      "pcoms": {
+        "right": {
+          "label": 8,
+          "voxel_count": 0,
+          "components_26": 0,
+          "touches_expected_parent_labels_26": {
+            "4": false,
+            "2": false
+          }
+        },
+        "left": {
+          "label": 9,
+          "voxel_count": 1425,
+          "components_26": 1,
+          "touches_expected_parent_labels_26": {
+            "6": true,
+            "3": true
+          }
+        }
+      },
+      "mra_edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 1,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 1,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 0
+        }
+      },
+      "cta_edges": {
+        "anterior": {
+          "L-A1": 1,
+          "Acom": 1,
+          "3rd-A2": 0,
+          "R-A1": 1
+        },
+        "posterior": {
+          "L-Pcom": 1,
+          "L-P1": 1,
+          "R-P1": 1,
+          "R-Pcom": 0
+        }
+      },
+      "paired_modality_edge_annotations_agree": true,
+      "graph_node_alignment_screen": {
+        "id": "topcow_mr_012",
+        "node_occurrences": 38,
+        "distance_to_foreground_voxel_centers_mm": {
+          "as_stored": {
+            "median": 0.17335833755756425,
+            "p95": 0.28651236279361114,
+            "max": 0.3053202890206527
+          },
+          "flip_xy": {
+            "median": 14.162960066877917,
+            "p95": 31.971063119180915,
+            "max": 40.59456876593577
+          }
+        }
+      },
+      "admission_status": "source_candidate_only"
+    }
+  ],
+  "visual_screen": {
+    "path": "runs/br025-vessel-curation/source-screen.png",
+    "kind": "axial_MRA_maximum_intensity_projections_and_reference_overlays",
+    "reviewed": true,
+    "limits": "Projection screen only. No native 3-D clinical adjudication; no paired CTA image review; no prediction defect reviewed."
+  },
+  "limitations": [
+    "No real faulty prediction was obtained or generated.",
+    "No admitted binary defect from the published test-case figures.",
+    "Reference labels and derived graphs are not independent anatomical truth.",
+    "Absent annotations do not independently establish congenital absence.",
+    "Only graph node coordinates were checked spatially, not all VTP edges.",
+    "All selected cases are public training subjects; image reasoning and unseen generalization cannot be inferred from source retrieval.",
+    "No numerical verifier thresholds frozen; no oracle/nop or agent trials.",
+    "Release terms require attribution and restrict commercial use; suitability for benchmark redistribution remains unresolved."
+  ],
+  "artifacts": {
+    "proposal": "docs/research-rounds/BR-025-vessel-connectivity.md",
+    "candidate": "catalog/ideas/vessel-connectivity-repair.json",
+    "raw_directory": "runs/br025-vessel-curation"
+  },
+  "verification_notes": [
+    "Selected file sizes and ZIP CRCs verified during download; every selected SHA-256 reread and verified when writing receipt.",
+    "NIfTI native shape and affine equality and allowed label values verified.",
+    "26-connectivity and expected-neighbor checks are reference-mask technical checks, not independent clinical adjudication.",
+    "An initial nibabel matrix-multiply node screen emitted runtime warnings; the coordinate calculation was repeated with explicit einsum and finite-value assertions, without warnings."
+  ]
+}

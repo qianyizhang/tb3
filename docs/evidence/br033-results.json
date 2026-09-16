@@ -1,0 +1,1627 @@
+{
+  "round": "BR-033",
+  "date": "2026-09-16",
+  "status": "completed airway development pilot; TopBrain model unavailable",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "freeze_sha256": "d44adf4e098c1d54b1f567af765f63d2ba480a810349225f6ee2dfbd5f66e3c8",
+  "freeze_unchanged": true,
+  "cases": [
+    {
+      "id": "A01",
+      "source_patient": "1",
+      "source_gap_id": 26,
+      "intact_control": false,
+      "shape": [
+        54,
+        54,
+        73
+      ],
+      "crop_lo": [
+        178,
+        236,
+        313
+      ],
+      "reference_route_length_mm": 28.419553859691455,
+      "proposed_core_coverage": 0.16161616161616163,
+      "source_prediction_sha256": "2d85539f0d6d1fe7f00faefa6c2feaad20b45f6fa0ae677ab554a71fbacdf709"
+    },
+    {
+      "id": "A03",
+      "source_patient": "1",
+      "source_gap_id": 26,
+      "intact_control": true,
+      "shape": [
+        54,
+        54,
+        73
+      ],
+      "crop_lo": [
+        178,
+        236,
+        313
+      ],
+      "reference_route_length_mm": 14.857149684881897,
+      "proposed_core_coverage": 1.0,
+      "source_prediction_sha256": "2d85539f0d6d1fe7f00faefa6c2feaad20b45f6fa0ae677ab554a71fbacdf709"
+    },
+    {
+      "id": "A04",
+      "source_patient": "10",
+      "source_gap_id": 43,
+      "intact_control": false,
+      "shape": [
+        53,
+        52,
+        30
+      ],
+      "crop_lo": [
+        319,
+        283,
+        87
+      ],
+      "reference_route_length_mm": 21.391375651241784,
+      "proposed_core_coverage": 0.5833333333333334,
+      "source_prediction_sha256": "e814319d0cdddccf1bbb31adbbb1645b38e67a590128f06ca9cf5f596c15c762"
+    },
+    {
+      "id": "A02",
+      "source_patient": "10",
+      "source_gap_id": 43,
+      "intact_control": true,
+      "shape": [
+        53,
+        52,
+        30
+      ],
+      "crop_lo": [
+        319,
+        283,
+        87
+      ],
+      "reference_route_length_mm": 16.53588153091709,
+      "proposed_core_coverage": 1.0,
+      "source_prediction_sha256": "e814319d0cdddccf1bbb31adbbb1645b38e67a590128f06ca9cf5f596c15c762"
+    }
+  ],
+  "admitted_cases": [
+    "A01",
+    "A02",
+    "A03"
+  ],
+  "excluded_case": "A04: repair grading sensitive to reference boundary; no coding-agent trial",
+  "source_patients_screened": [
+    "10",
+    "1",
+    "11"
+  ],
+  "trials": {
+    "oracle": {
+      "job": "runs/br033-airway-cpr-oracle-v1-20260916",
+      "trial": "airway-route-cpr__EaPretc",
+      "task_checksum": "9cb3f8b3c92d688b59bea64d6debac631859eda7834f947d80137dfe772e7c00",
+      "reward": 1.0,
+      "exception": null,
+      "started_at": "2026-09-16T13:32:38.660838Z",
+      "finished_at": "2026-09-16T13:33:05.765012Z",
+      "agent_execution": {
+        "started_at": "2026-09-16T13:32:41.242280Z",
+        "finished_at": "2026-09-16T13:32:41.406993Z"
+      },
+      "metrics": {
+        "reward": 1,
+        "anatomy_pass": true,
+        "CPR_pass": true,
+        "cases": {
+          "A01": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 415,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.17885790861054954,
+              "reference_coverage": 1.0,
+              "length_mm": 28.30664564338826,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 5.695433295429594e-14,
+              "cpr_HU_p99_error": 0.005615234375,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A02": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.6420560165262578,
+              "reference_coverage": 1.0,
+              "length_mm": 16.537906760687033,
+              "endpoint_error_mm": 1.5382156253533292e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.000937044620513916,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A03": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.39947337258758064,
+              "reference_coverage": 1.0,
+              "length_mm": 14.83960312791559,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.005964487791061401,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          }
+        },
+        "limits": {
+          "core_coverage": 0.8,
+          "new_voxels_far_from_reference_mm3": 1.0,
+          "far_distance_mm": 0.8,
+          "route_p95_mm": 1.2,
+          "reference_coverage": 0.9,
+          "endpoint_error_mm": 1.0,
+          "route_length_relative_error": 0.2,
+          "CPR_coordinate_error_mm": 0.02,
+          "CPR_HU_p99_error": 0.2,
+          "CPR_arc_error_mm": 0.1,
+          "intact_max_changed_voxels": 0
+        }
+      }
+    },
+    "nop": {
+      "job": "runs/br033-airway-cpr-nop-v1-20260916",
+      "trial": "airway-route-cpr__XkmqhTj",
+      "task_checksum": "9cb3f8b3c92d688b59bea64d6debac631859eda7834f947d80137dfe772e7c00",
+      "reward": 0.0,
+      "exception": null,
+      "started_at": "2026-09-16T13:33:06.021408Z",
+      "finished_at": "2026-09-16T13:33:32.380514Z",
+      "agent_execution": {
+        "started_at": "2026-09-16T13:33:08.373698Z",
+        "finished_at": "2026-09-16T13:33:08.373792Z"
+      },
+      "metrics": {
+        "reward": 0,
+        "anatomy_pass": false,
+        "CPR_pass": false,
+        "cases": {
+          "A01": {
+            "anatomy": false,
+            "CPR": false,
+            "checks": {},
+            "metrics": {},
+            "errors": {
+              "mask": "No such file or no access: '/app/answer/A01/corrected_mask.nii.gz'",
+              "route": "[Errno 2] No such file or directory: '/app/answer/A01/centerline.npy'",
+              "CPR": ""
+            }
+          },
+          "A02": {
+            "anatomy": false,
+            "CPR": false,
+            "checks": {},
+            "metrics": {},
+            "errors": {
+              "mask": "No such file or no access: '/app/answer/A02/corrected_mask.nii.gz'",
+              "route": "[Errno 2] No such file or directory: '/app/answer/A02/centerline.npy'",
+              "CPR": ""
+            }
+          },
+          "A03": {
+            "anatomy": false,
+            "CPR": false,
+            "checks": {},
+            "metrics": {},
+            "errors": {
+              "mask": "No such file or no access: '/app/answer/A03/corrected_mask.nii.gz'",
+              "route": "[Errno 2] No such file or directory: '/app/answer/A03/centerline.npy'",
+              "CPR": ""
+            }
+          }
+        },
+        "limits": {
+          "core_coverage": 0.8,
+          "new_voxels_far_from_reference_mm3": 1.0,
+          "far_distance_mm": 0.8,
+          "route_p95_mm": 1.2,
+          "reference_coverage": 0.9,
+          "endpoint_error_mm": 1.0,
+          "route_length_relative_error": 0.2,
+          "CPR_coordinate_error_mm": 0.02,
+          "CPR_HU_p99_error": 0.2,
+          "CPR_arc_error_mm": 0.1,
+          "intact_max_changed_voxels": 0
+        }
+      }
+    },
+    "terra-high": {
+      "job": "runs/br033-airway-cpr-terra-high-v1-20260916",
+      "trial": "airway-route-cpr__rJDn6xz",
+      "task_checksum": "9cb3f8b3c92d688b59bea64d6debac631859eda7834f947d80137dfe772e7c00",
+      "reward": 1.0,
+      "exception": null,
+      "started_at": "2026-09-16T13:33:32.685678Z",
+      "finished_at": "2026-09-16T13:40:39.295155Z",
+      "agent_execution": {
+        "started_at": "2026-09-16T13:34:43.311263Z",
+        "finished_at": "2026-09-16T13:40:13.605802Z"
+      },
+      "metrics": {
+        "reward": 1,
+        "anatomy_pass": true,
+        "CPR_pass": true,
+        "cases": {
+          "A01": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 578,
+              "core_coverage": 0.8747474747474747,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.4491458846981582,
+              "reference_coverage": 1.0,
+              "length_mm": 29.671620241200714,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 5.684785957944772e-13,
+              "cpr_HU_p99_error": 0.005699107236739987,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A02": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.7013164316768329,
+              "reference_coverage": 1.0,
+              "length_mm": 17.12107369287505,
+              "endpoint_error_mm": 1.5382156253533292e-06,
+              "cpr_coordinate_error_mm": 1.4210854715202004e-14,
+              "cpr_HU_p99_error": 0.0007757394509195594,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A03": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.40596638511871386,
+              "reference_coverage": 1.0,
+              "length_mm": 15.124814611710192,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 5.684341886080802e-14,
+              "cpr_HU_p99_error": 0.006037200549172326,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          }
+        },
+        "limits": {
+          "core_coverage": 0.8,
+          "new_voxels_far_from_reference_mm3": 1.0,
+          "far_distance_mm": 0.8,
+          "route_p95_mm": 1.2,
+          "reference_coverage": 0.9,
+          "endpoint_error_mm": 1.0,
+          "route_length_relative_error": 0.2,
+          "CPR_coordinate_error_mm": 0.02,
+          "CPR_HU_p99_error": 0.2,
+          "CPR_arc_error_mm": 0.1,
+          "intact_max_changed_voxels": 0
+        }
+      }
+    }
+  },
+  "local_controls": {
+    "cases": [
+      "A01",
+      "A02",
+      "A03"
+    ],
+    "excluded": {
+      "A04": "Input-legal repair contrast is boundary-sensitive; not admitted to a coding-agent trial"
+    },
+    "controls": {
+      "oracle": {
+        "reward": 1,
+        "anatomy_pass": true,
+        "CPR_pass": true,
+        "cases": {
+          "A01": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 415,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.17885790861054954,
+              "reference_coverage": 1.0,
+              "length_mm": 28.30664564338826,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 5.695433295429594e-14,
+              "cpr_HU_p99_error": 0.005615234375,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A02": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.6420560165262578,
+              "reference_coverage": 1.0,
+              "length_mm": 16.537906760687033,
+              "endpoint_error_mm": 1.5382156253533292e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.000937044620513916,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A03": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.39947337258758064,
+              "reference_coverage": 1.0,
+              "length_mm": 14.83960312791559,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.005964487791061401,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          }
+        },
+        "limits": {
+          "core_coverage": 0.8,
+          "new_voxels_far_from_reference_mm3": 1.0,
+          "far_distance_mm": 0.8,
+          "route_p95_mm": 1.2,
+          "reference_coverage": 0.9,
+          "endpoint_error_mm": 1.0,
+          "route_length_relative_error": 0.2,
+          "CPR_coordinate_error_mm": 0.02,
+          "CPR_HU_p99_error": 0.2,
+          "CPR_arc_error_mm": 0.1,
+          "intact_max_changed_voxels": 0
+        }
+      },
+      "image-baseline-v2": {
+        "reward": 1,
+        "anatomy_pass": true,
+        "CPR_pass": true,
+        "cases": {
+          "A01": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 593,
+              "core_coverage": 0.8626262626262626,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.8967027424312409,
+              "reference_coverage": 0.991304347826087,
+              "length_mm": 28.570061475191693,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 6.355287432313019e-14,
+              "cpr_HU_p99_error": 0.0055694580078125,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A02": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.6420560165262578,
+              "reference_coverage": 1.0,
+              "length_mm": 16.537906760687033,
+              "endpoint_error_mm": 1.5382156253533292e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.000937044620513916,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A03": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.39947337258758064,
+              "reference_coverage": 1.0,
+              "length_mm": 14.83960312791559,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.005964487791061401,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          }
+        },
+        "limits": {
+          "core_coverage": 0.8,
+          "new_voxels_far_from_reference_mm3": 1.0,
+          "far_distance_mm": 0.8,
+          "route_p95_mm": 1.2,
+          "reference_coverage": 0.9,
+          "endpoint_error_mm": 1.0,
+          "route_length_relative_error": 0.2,
+          "CPR_coordinate_error_mm": 0.02,
+          "CPR_HU_p99_error": 0.2,
+          "CPR_arc_error_mm": 0.1,
+          "intact_max_changed_voxels": 0
+        }
+      },
+      "mask-only-baseline": {
+        "reward": 0,
+        "anatomy_pass": false,
+        "CPR_pass": true,
+        "cases": {
+          "A01": {
+            "anatomy": false,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": false,
+              "lumen_core": false,
+              "no_false_addition": false,
+              "intact_preserved": true,
+              "route_geometry": false,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 159,
+              "core_coverage": 0.2202020202020202,
+              "far_added_mm3": 22.691017012390148,
+              "route_p95_mm": 9.833111206806656,
+              "reference_coverage": 0.5739130434782609,
+              "length_mm": 49.88142642869354,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 5.728578676879116e-14,
+              "cpr_HU_p99_error": 0.0053691864013671875,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A02": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.6420560165262578,
+              "reference_coverage": 1.0,
+              "length_mm": 16.537906760687033,
+              "endpoint_error_mm": 1.5382156253533292e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.000937044620513916,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A03": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.39947337258758064,
+              "reference_coverage": 1.0,
+              "length_mm": 14.83960312791559,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.005964487791061401,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          }
+        },
+        "limits": {
+          "core_coverage": 0.8,
+          "new_voxels_far_from_reference_mm3": 1.0,
+          "far_distance_mm": 0.8,
+          "route_p95_mm": 1.2,
+          "reference_coverage": 0.9,
+          "endpoint_error_mm": 1.0,
+          "route_length_relative_error": 0.2,
+          "CPR_coordinate_error_mm": 0.02,
+          "CPR_HU_p99_error": 0.2,
+          "CPR_arc_error_mm": 0.1,
+          "intact_max_changed_voxels": 0
+        }
+      },
+      "unchanged_mask": {
+        "reward": 0,
+        "anatomy_pass": false,
+        "CPR_pass": true,
+        "cases": {
+          "A01": {
+            "anatomy": false,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": false,
+              "lumen_core": false,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": false,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 0.16161616161616163,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.17885790861054954,
+              "reference_coverage": 1.0,
+              "length_mm": 28.30664564338826,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 5.695433295429594e-14,
+              "cpr_HU_p99_error": 0.005615234375,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A02": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.6420560165262578,
+              "reference_coverage": 1.0,
+              "length_mm": 16.537906760687033,
+              "endpoint_error_mm": 1.5382156253533292e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.000937044620513916,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A03": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.39947337258758064,
+              "reference_coverage": 1.0,
+              "length_mm": 14.83960312791559,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.005964487791061401,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          }
+        },
+        "limits": {
+          "core_coverage": 0.8,
+          "new_voxels_far_from_reference_mm3": 1.0,
+          "far_distance_mm": 0.8,
+          "route_p95_mm": 1.2,
+          "reference_coverage": 0.9,
+          "endpoint_error_mm": 1.0,
+          "route_length_relative_error": 0.2,
+          "CPR_coordinate_error_mm": 0.02,
+          "CPR_HU_p99_error": 0.2,
+          "CPR_arc_error_mm": 0.1,
+          "intact_max_changed_voxels": 0
+        }
+      },
+      "edit_intact": {
+        "reward": 0,
+        "anatomy_pass": false,
+        "CPR_pass": true,
+        "cases": {
+          "A01": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 415,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.17885790861054954,
+              "reference_coverage": 1.0,
+              "length_mm": 28.30664564338826,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 5.695433295429594e-14,
+              "cpr_HU_p99_error": 0.005615234375,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A02": {
+            "anatomy": false,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": false,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 1,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.6177612659227849,
+              "route_p95_mm": 0.6420560165262578,
+              "reference_coverage": 1.0,
+              "length_mm": 16.537906760687033,
+              "endpoint_error_mm": 1.5382156253533292e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.000937044620513916,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A03": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.39947337258758064,
+              "reference_coverage": 1.0,
+              "length_mm": 14.83960312791559,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.005964487791061401,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          }
+        },
+        "limits": {
+          "core_coverage": 0.8,
+          "new_voxels_far_from_reference_mm3": 1.0,
+          "far_distance_mm": 0.8,
+          "route_p95_mm": 1.2,
+          "reference_coverage": 0.9,
+          "endpoint_error_mm": 1.0,
+          "route_length_relative_error": 0.2,
+          "CPR_coordinate_error_mm": 0.02,
+          "CPR_HU_p99_error": 0.2,
+          "CPR_arc_error_mm": 0.1,
+          "intact_max_changed_voxels": 0
+        }
+      },
+      "fabricated_HU": {
+        "reward": 0,
+        "anatomy_pass": true,
+        "CPR_pass": false,
+        "cases": {
+          "A01": {
+            "anatomy": true,
+            "CPR": false,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": false
+            },
+            "metrics": {
+              "changed_voxels": 415,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.17885790861054954,
+              "reference_coverage": 1.0,
+              "length_mm": 28.30664564338826,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 5.695433295429594e-14,
+              "cpr_HU_p99_error": 10.0050048828125,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A02": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.6420560165262578,
+              "reference_coverage": 1.0,
+              "length_mm": 16.537906760687033,
+              "endpoint_error_mm": 1.5382156253533292e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.000937044620513916,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A03": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.39947337258758064,
+              "reference_coverage": 1.0,
+              "length_mm": 14.83960312791559,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.005964487791061401,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          }
+        },
+        "limits": {
+          "core_coverage": 0.8,
+          "new_voxels_far_from_reference_mm3": 1.0,
+          "far_distance_mm": 0.8,
+          "route_p95_mm": 1.2,
+          "reference_coverage": 0.9,
+          "endpoint_error_mm": 1.0,
+          "route_length_relative_error": 0.2,
+          "CPR_coordinate_error_mm": 0.02,
+          "CPR_HU_p99_error": 0.2,
+          "CPR_arc_error_mm": 0.1,
+          "intact_max_changed_voxels": 0
+        }
+      },
+      "wrong_arc": {
+        "reward": 0,
+        "anatomy_pass": true,
+        "CPR_pass": false,
+        "cases": {
+          "A01": {
+            "anatomy": true,
+            "CPR": false,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": false
+            },
+            "metrics": {
+              "changed_voxels": 415,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.17885790861054954,
+              "reference_coverage": 1.0,
+              "length_mm": 28.30664564338826,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 5.695433295429594e-14,
+              "cpr_HU_p99_error": 0.005615234375,
+              "cpr_arc_error_mm": 5.661329128677647
+            },
+            "errors": {}
+          },
+          "A02": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.6420560165262578,
+              "reference_coverage": 1.0,
+              "length_mm": 16.537906760687033,
+              "endpoint_error_mm": 1.5382156253533292e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.000937044620513916,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A03": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.39947337258758064,
+              "reference_coverage": 1.0,
+              "length_mm": 14.83960312791559,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.005964487791061401,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          }
+        },
+        "limits": {
+          "core_coverage": 0.8,
+          "new_voxels_far_from_reference_mm3": 1.0,
+          "far_distance_mm": 0.8,
+          "route_p95_mm": 1.2,
+          "reference_coverage": 0.9,
+          "endpoint_error_mm": 1.0,
+          "route_length_relative_error": 0.2,
+          "CPR_coordinate_error_mm": 0.02,
+          "CPR_HU_p99_error": 0.2,
+          "CPR_arc_error_mm": 0.1,
+          "intact_max_changed_voxels": 0
+        }
+      },
+      "wrong_route": {
+        "reward": 0,
+        "anatomy_pass": false,
+        "CPR_pass": false,
+        "cases": {
+          "A01": {
+            "anatomy": false,
+            "CPR": false,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": false,
+              "route_in_mask": true,
+              "CPR": false
+            },
+            "metrics": {
+              "changed_voxels": 415,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.17885790861054954,
+              "reference_coverage": 1.0,
+              "length_mm": 28.306645643388258,
+              "endpoint_error_mm": 26.454542750647047,
+              "cpr_coordinate_error_mm": 35.03354023195405,
+              "cpr_HU_p99_error": 0.005615234375,
+              "cpr_arc_error_mm": 0.07870533981562566
+            },
+            "errors": {}
+          },
+          "A02": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.6420560165262578,
+              "reference_coverage": 1.0,
+              "length_mm": 16.537906760687033,
+              "endpoint_error_mm": 1.5382156253533292e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.000937044620513916,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A03": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.39947337258758064,
+              "reference_coverage": 1.0,
+              "length_mm": 14.83960312791559,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.005964487791061401,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          }
+        },
+        "limits": {
+          "core_coverage": 0.8,
+          "new_voxels_far_from_reference_mm3": 1.0,
+          "far_distance_mm": 0.8,
+          "route_p95_mm": 1.2,
+          "reference_coverage": 0.9,
+          "endpoint_error_mm": 1.0,
+          "route_length_relative_error": 0.2,
+          "CPR_coordinate_error_mm": 0.02,
+          "CPR_HU_p99_error": 0.2,
+          "CPR_arc_error_mm": 0.1,
+          "intact_max_changed_voxels": 0
+        }
+      },
+      "outside_edit": {
+        "reward": 0,
+        "anatomy_pass": false,
+        "CPR_pass": true,
+        "cases": {
+          "A01": {
+            "anatomy": false,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": false,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 416,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.23392801043701184,
+              "route_p95_mm": 0.17885790861054954,
+              "reference_coverage": 1.0,
+              "length_mm": 28.30664564338826,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 5.695433295429594e-14,
+              "cpr_HU_p99_error": 0.005615234375,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A02": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.6420560165262578,
+              "reference_coverage": 1.0,
+              "length_mm": 16.537906760687033,
+              "endpoint_error_mm": 1.5382156253533292e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.000937044620513916,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A03": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.39947337258758064,
+              "reference_coverage": 1.0,
+              "length_mm": 14.83960312791559,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.005964487791061401,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          }
+        },
+        "limits": {
+          "core_coverage": 0.8,
+          "new_voxels_far_from_reference_mm3": 1.0,
+          "far_distance_mm": 0.8,
+          "route_p95_mm": 1.2,
+          "reference_coverage": 0.9,
+          "endpoint_error_mm": 1.0,
+          "route_length_relative_error": 0.2,
+          "CPR_coordinate_error_mm": 0.02,
+          "CPR_HU_p99_error": 0.2,
+          "CPR_arc_error_mm": 0.1,
+          "intact_max_changed_voxels": 0
+        }
+      }
+    },
+    "baseline_development": "v2 thickens to 2 mm and uses -400 HU after v1 underfilled the lumen. Author reference-assisted development; no blinded or generalization claim. v3/v4 and excluded A04 retained."
+  },
+  "additional_geometric_controls": {
+    "timing": "authored after freeze and trial dispatch; thresholds unchanged",
+    "results": {
+      "nearest_component": {
+        "reward": 0,
+        "anatomy_pass": false,
+        "CPR_pass": true,
+        "cases": {
+          "A01": {
+            "anatomy": false,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": false,
+              "lumen_core": false,
+              "no_false_addition": false,
+              "intact_preserved": true,
+              "route_geometry": false,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 619,
+              "core_coverage": 0.24848484848484848,
+              "far_added_mm3": 95.44262825830083,
+              "route_p95_mm": 8.578203524726709,
+              "reference_coverage": 0.591304347826087,
+              "length_mm": 47.933275757867115,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 6.355287432313019e-14,
+              "cpr_HU_p99_error": 0.0055904388427734375,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A02": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.6420560165262578,
+              "reference_coverage": 1.0,
+              "length_mm": 16.537906760687033,
+              "endpoint_error_mm": 1.5382156253533292e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.000937044620513916,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A03": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.39947337258758064,
+              "reference_coverage": 1.0,
+              "length_mm": 14.83960312791559,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.005964487791061401,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          }
+        },
+        "limits": {
+          "core_coverage": 0.8,
+          "new_voxels_far_from_reference_mm3": 1.0,
+          "far_distance_mm": 0.8,
+          "route_p95_mm": 1.2,
+          "reference_coverage": 0.9,
+          "endpoint_error_mm": 1.0,
+          "route_length_relative_error": 0.2,
+          "CPR_coordinate_error_mm": 0.02,
+          "CPR_HU_p99_error": 0.2,
+          "CPR_arc_error_mm": 0.1,
+          "intact_max_changed_voxels": 0
+        }
+      },
+      "straight_anchors": {
+        "reward": 0,
+        "anatomy_pass": false,
+        "CPR_pass": true,
+        "cases": {
+          "A01": {
+            "anatomy": false,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": false,
+              "no_false_addition": false,
+              "intact_preserved": true,
+              "route_geometry": false,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 860,
+              "core_coverage": 0.7373737373737373,
+              "far_added_mm3": 29.47492931506349,
+              "route_p95_mm": 2.1784547634193188,
+              "reference_coverage": 0.7391304347826086,
+              "length_mm": 28.359454321388185,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 6.394884621840902e-14,
+              "cpr_HU_p99_error": 0.005468904972076416,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A02": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.6420560165262578,
+              "reference_coverage": 1.0,
+              "length_mm": 16.537906760687033,
+              "endpoint_error_mm": 1.5382156253533292e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.000937044620513916,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          },
+          "A03": {
+            "anatomy": true,
+            "CPR": true,
+            "checks": {
+              "format": true,
+              "preservation": true,
+              "connection": true,
+              "lumen_core": true,
+              "no_false_addition": true,
+              "intact_preserved": true,
+              "route_geometry": true,
+              "route_in_mask": true,
+              "CPR": true
+            },
+            "metrics": {
+              "changed_voxels": 0,
+              "core_coverage": 1.0,
+              "far_added_mm3": 0.0,
+              "route_p95_mm": 0.39947337258758064,
+              "reference_coverage": 1.0,
+              "length_mm": 14.83960312791559,
+              "endpoint_error_mm": 7.62939453125e-06,
+              "cpr_coordinate_error_mm": 0.0,
+              "cpr_HU_p99_error": 0.005964487791061401,
+              "cpr_arc_error_mm": 0.0
+            },
+            "errors": {}
+          }
+        },
+        "limits": {
+          "core_coverage": 0.8,
+          "new_voxels_far_from_reference_mm3": 1.0,
+          "far_distance_mm": 0.8,
+          "route_p95_mm": 1.2,
+          "reference_coverage": 0.9,
+          "endpoint_error_mm": 1.0,
+          "route_length_relative_error": 0.2,
+          "CPR_coordinate_error_mm": 0.02,
+          "CPR_HU_p99_error": 0.2,
+          "CPR_arc_error_mm": 0.1,
+          "intact_max_changed_voxels": 0
+        }
+      }
+    }
+  },
+  "trace_audit": {
+    "completed_shell_commands": 14,
+    "network_or_private_reference_command_matches": [],
+    "scope": "Review of recorded shell commands. No external ground-truth retrieval or private reference access observed; this does not establish absence from pretraining."
+  },
+  "viewer": "runs/br033-airway-routing/viewer-terra/index.html",
+  "viewer_provenance": {
+    "A01": {
+      "unchanged_trial_files": {
+        "corrected_mask.nii.gz": "71861b1a5a748763f8be508959400b17e648f14fca84ef0612a56062d7212a22",
+        "centerline.npy": "e63cfaab6e6c0d70f4e34b10920be3aa60c420704e11e6dde3097291db9898b7",
+        "cpr.npz": "64aae4557fd6ac8d9b841980b58db2931a5cca8c3d4e9479a553293f6c96fed5"
+      },
+      "author_derived_mesh": {
+        "sha256": "c5366c4aef6c9f6215c8f870b3e00b337742ffef0a1362e8f48de1a9bfe06f12",
+        "watertight": true,
+        "winding_consistent": true,
+        "faces": 13018,
+        "volume_mm3": 1635.595407974283
+      }
+    },
+    "A02": {
+      "unchanged_trial_files": {
+        "corrected_mask.nii.gz": "e113bdfc84789ecd7ecc5f977c0b4caa2648ab7bdb6477f4b4458fae5a495051",
+        "centerline.npy": "7e68060999fdc0451a188919ed14485f1511547c8146e901c62478f468dce079",
+        "cpr.npz": "97670e260493383b75726cfe8337f6c70b30ffe9b39c718e1fb9ce05a7485413"
+      },
+      "author_derived_mesh": {
+        "sha256": "622e67c83cc7e3a60836da45521aaabfc20981078dae41cadf2335f8f5f1c796",
+        "watertight": true,
+        "winding_consistent": true,
+        "faces": 6440,
+        "volume_mm3": 1680.2334231517343
+      }
+    },
+    "A03": {
+      "unchanged_trial_files": {
+        "corrected_mask.nii.gz": "070077cfb7fceb3077b34df93f18d780d53aed50cb223968c9550a380a20b36a",
+        "centerline.npy": "8cfb10dcb1bdc3018d4b87c676eb4bc628622e71935cc9b7ba5316ece0558560",
+        "cpr.npz": "994f476ecca43e993cb069f5122f0d988ea0636f88e2aa1fb02dab8b54290f6b"
+      },
+      "author_derived_mesh": {
+        "sha256": "57edb1df5370624e3098fda196fac618607c185d175272ed1fcdd71cb792a2bd",
+        "watertight": true,
+        "winding_consistent": true,
+        "faces": 11782,
+        "volume_mm3": 1502.6170810412757
+      }
+    }
+  },
+  "limitations": [
+    "One admitted real gap, two intact-route controls, two patients. No expert-adjudicated absent branch or obstruction.",
+    "A01 and A03 share source crop and are correlated.",
+    "Reference-assisted case selection and baseline tuning; all intermediate baselines retained.",
+    "Binary airway labels do not provide named bronchial identity or diagnostic targets.",
+    "Model passed normally. This is a passed development fixture, not a demonstrated hard agent benchmark.",
+    "TopBrain official checkpoints unavailable after repeated 504/timeouts; no brain model run.",
+    "Browser file-URL policy blocked UI preview. Numeric, asset, mesh and JavaScript syntax checks passed.",
+    "User review: A02/A03 are not genuinely intact-airway controls. Both preserve an isolated fragment with an unrepaired parent connection."
+  ],
+  "posttrial_user_review": {
+    "audit": "docs/evidence/br033-scope-audit.json",
+    "finding": "A02/A03 anchors are internally connected inside detached fragments; parent gaps remain. Inadequate negative controls for whole-airway repair-versus-preservation.",
+    "original_rewards_and_artifacts_unchanged": true
+  }
+}

@@ -108,6 +108,62 @@ reviews own the observations. [Submission status](submission.md) is separate.
 
 The latest cardiac extension is **BR-029 (2026-09-16): [Dynamic heart modeling](research-rounds/BR-029-dynamic-heart-modeling.md)**. The user requested a larger beating-heart task with realistic strain. A working biventricular workbench now uses STRAUS material-motion references, 47,186 tetrahedra, regional strain and four calibrated ultrasound videos. The coupled tissue fit reduces radial strain error from 16.67 to 6.79 pp, but neither video method passes all provisional targets. [Results and whole-heart task scope](research-rounds/BR-029-dynamic-heart-results.md) · [Reference/control metrics](evidence/br029-dynamic-heart-results.json) · [Tissue metrics](evidence/br029-dynamic-heart-tissue-results.json) · [Integrity](evidence/br029-dynamic-heart-integrity.json). No provider trial or clinical validation is claimed.
 
+## Completed vessel and airway follow-ups
+
+- **BR-025 (2026-09-16): [Vessel connectivity repair](research-rounds/BR-025-vessel-connectivity.md).**
+  User-pasted brainstorm requesting a meaningful image-guided repair task and
+  ground-truth source curation. Four public TopCoW MRA source candidates span
+  right-only, bilateral, absent, and left-only Pcom annotations; native masks,
+  paired edge annotations, and graph-node geometry technically checked.
+  [Curation receipt](evidence/br025-curation.json). No admitted faulty
+  prediction, clinical case adjudication, or model trial. Binary/multiclass
+  evidence and commercial-use terms remain explicit boundaries.
+
+- **BR-026 (2026-09-16): [Vessel repair feasibility experiment](research-rounds/BR-026-vessel-repair-experiment.md).**
+  Authorized continuation of the vessel BR-025 curation; a separate cardiac
+  session also used BR-025, so both historical source records are preserved.
+  Two frozen tasks: a synthetic Pcom gap and an unchanged asymmetric mask.
+  Twenty author observations and four Docker controls checked. Fresh Terra/high
+  passes the gap (198/200 voxels, no collateral edits) and fails unchanged-mask
+  preservation (244 additions beside L-ACA; absent Pcom preserved). The image
+  baseline passes both. Gap retained as calibration; reference disagreement
+  held for adjudication, without an anatomical-failure claim.
+  [Results](research-rounds/BR-026-results.md) · [Freeze](evidence/br026-freeze.json).
+
+- **BR-030 (2026-09-16): [Vessel repair to diagnostic geometry](research-rounds/BR-030-vessel-diagnostic-geometry.md).**
+  User requested adjudication, real prediction errors and a larger tracing/CPR/mesh
+  workflow. [Completed results](research-rounds/BR-030-results.md): a real CAS-Net
+  coronary R-PDA gap is admitted despite 94.14% global Dice. Terra/high passes
+  repair, tracing and mesh, but its CPR distance axis overstates the saved line
+  by 8.89 mm. Correcting that field alone passes; the original failure remains.
+  Both image-guided and geometry-only author baselines pass, so anatomical
+  discrimination difficulty is unestablished. Three linked local viewers and
+  matched Docker controls are complete. The previous MRA disagreement remains
+  held for expert adjudication. [Freeze](evidence/br030-freeze.json) ·
+  [Evidence](evidence/br030-results.json).
+
+- **BR-033 (2026-09-16): [Brain-vessel and airway difficulty](research-rounds/BR-033-brain-vessel-airway-difficulty.md).**
+  [Completed airway pilot](research-rounds/BR-033-results.md): three patients
+  screened; one natural omission and two internal-fragment controls admitted.
+  Geometric shortcuts fail; the image-guided baseline and Terra/high pass
+  anatomy and rotated CPR. Source CT, corrected masks and derived meshes are
+  retained in a local viewer. The initial TopBrain model download failed with
+  HTTP 504s. No hard agent failure or
+  absent-branch adjudication is claimed. User review exposed that A02/A03 still
+  have obvious parent gaps; their local route passes do not establish repaired
+  airway trees. [Scope correction](evidence/br033-scope-audit.json).
+  [Evidence](evidence/br033-results.json).
+  The user subsequently approved [resuming TopBrain](research-rounds/BR-033-brain-resumption.md).
+  The model layer was recovered and verified; five MRA predictions were screened.
+  A geometry-only baseline restores one tiny R-SCA gap and exports an 85.6 mm
+  parent-to-target route, rotated CPR and a connected mesh. Two annotated
+  third-artery variants remain correctly attached. No clean hard case was
+  admitted and no brain coding-agent trial was run.
+
+The user requested closeout after the brain screen. The [site chapter](../site/index.html#vessels)
+consolidates this branch’s findings and the airway scope correction. No additional
+research or trial is queued. The separate cardiac BR-025 retains its original ID.
+
 ## How to read the record
 
 BR-001 was assigned retrospectively to the six original pilots. BR-002 came from

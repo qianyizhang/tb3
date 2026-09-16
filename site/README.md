@@ -1,6 +1,6 @@
 # Interview report
 
-`index.html` contains the overview and five studies in one portable page. All
+`index.html` contains the overview and six studies in one portable page. All
 figures, styling, and guided image controls are embedded. Open it directly in a
 browser; it also works under a GitHub project-site prefix. Evidence links open
 GitHub. The published page never requests local scans.
@@ -101,3 +101,32 @@ that authored payload deliberately requires the retained BR-028 report:
 python3 scripts/import_registration_figures.py
 python3 scripts/build_site.py
 ```
+
+## Vessel and airway session
+
+The **Vessels & airways** chapter (`index.html#vessels`) closes the vessel
+BR-025/026/030/033 series. It distinguishes the disputed preservation score,
+coronary CPR distance-axis failure, airway control-selection flaw and brain
+calibration without a coding-agent trial. The original freezes and results
+remain unchanged. BR-025 also names a separate cardiac round; this chapter
+covers only the vessel branch.
+
+The portable report embeds the exact airway/brain review figures plus eight
+brain CPR rotations with linked source cross-sections. It needs no local arrays.
+`vessel-provenance.json` records attribution, source terms, display geometry
+and hashes. Intentional refresh uses retained evidence, never new inference:
+
+```sh
+python3 scripts/import_vessel_figures.py
+python3 scripts/build_site.py
+```
+
+The full local viewers retain mesh rotation, native planes and artifact links:
+
+- [Coronary image baseline](../runs/br030-vessel-geometry/viewer-image-baseline/index.html)
+- [Airway Terra output and remaining-gap warnings](../runs/br033-airway-routing/viewer-terra/index.html)
+- [Brain author calibration](../runs/br033-brain-routing/viewer-brain/index.html)
+
+These links require this workspace. Native arrays, source archives, model
+weights and raw agent sessions stay local. This closeout adds an authored local
+report; it does not deploy it or resolve commercial dataset redistribution.

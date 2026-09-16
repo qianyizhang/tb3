@@ -1,0 +1,518 @@
+{
+  "round": "BR-033",
+  "phase": "brain resumption",
+  "source": "https://zenodo.org/records/21959166",
+  "acquisition_complete": true,
+  "layer_bytes": 763634344,
+  "layer_sha256": "e085598729f2486a82c9a046b24d4dc24394ec28bf0b6b8a61fb4f95d835fc91",
+  "layer_sha256_verified": true,
+  "extracted_files": 314,
+  "inference_status": "completed",
+  "coding_agent_trial_completed": false,
+  "reference_parent_audit": "runs/br033-brain-routing/reference-parent-audit.json",
+  "source_manifest_sha256": "a8df85f8561d93670397fd67a7af9a75ab344646cfdfba2d8d37e72f796aa9f8",
+  "scope": "Development screening; public training cases, no official ensemble replication or clinical adjudication.",
+  "status": "completed bounded five-scan development screen; no hard case admitted",
+  "cases": [
+    "004",
+    "007",
+    "012",
+    "006",
+    "011"
+  ],
+  "prediction_provenance": {
+    "method": "Official TA36 ResEncM/plain-conv single released component, fold 4",
+    "model_directory": "resEncM_ceW_bg0.75_max1.5_diff_cluster_noMirror_bs2_ps80_192_128_allLR1e-2_clsBalSamp_degree0.75_noTopcowPretrain_ep1000_DS3",
+    "checkpoint_sha256": "64371519d5d9374f60f132f27dd0f6b212bd2f70ac47f6c81ebd84031e78013d",
+    "official_three_model_ensemble": false,
+    "official_postprocessing": false,
+    "reference_used_for_inference": false,
+    "synthetic_errors": false,
+    "source_manifest_sha256": "a8df85f8561d93670397fd67a7af9a75ab344646cfdfba2d8d37e72f796aa9f8",
+    "device": "mps",
+    "precision": "float32 network; released predictor accumulation",
+    "tile_step_size": 0.5,
+    "gaussian_blending": true,
+    "checkpoint_mirroring_axes": null,
+    "environment": {
+      "torch": "2.10.0",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "dynamic-network-architectures": "0.3.1"
+    },
+    "training_overlap": "Public development scans; no unseen-patient generalization claim.",
+    "rows": [
+      {
+        "case": "004",
+        "input_sha256": "110c463d05b1632cd7d2562db4f53a76b49377a70be5586085c89af1668a6ef7",
+        "output_sha256": "0ce03f0dd17c09356c1bb9ed41f064f2240886b2c2601aa3c6311404a08b9537",
+        "shape": [
+          500,
+          607,
+          200
+        ],
+        "seconds": 168.31,
+        "labels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10,
+          11,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36
+        ]
+      },
+      {
+        "case": "007",
+        "input_sha256": "51c967d85e6017331b30dfd4f95502f2489342d8d9bf27c871dc8dd15467bbd2",
+        "output_sha256": "0f377a9186ace2cf13844dcd6a1f4ec6caabc82419ff230e53b5d7ae23cf7dee",
+        "shape": [
+          490,
+          561,
+          200
+        ],
+        "seconds": 139.41,
+        "labels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36
+        ]
+      },
+      {
+        "case": "012",
+        "input_sha256": "1aa532b6c76e0fdeba85eebed58951ef355e03aca26425755b69df3505341044",
+        "output_sha256": "84274b9fa139905f78729771bdb1df52620d8c733cee26a80bb2fe84308977d1",
+        "shape": [
+          469,
+          611,
+          174
+        ],
+        "seconds": 141.15,
+        "labels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          32,
+          33,
+          34,
+          35,
+          36
+        ]
+      },
+      {
+        "case": "006",
+        "input_sha256": "6178324725c61238bf6c509c6cd04f7f936dbe77a8afaad87cc5cdab7bbdf38b",
+        "output_sha256": "73431c5a2b3bda06223fd4576d1ef0ddf3c942af49e15011814cde7040280047",
+        "shape": [
+          429,
+          507,
+          139
+        ],
+        "seconds": 71.0,
+        "labels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10,
+          11,
+          12,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          33,
+          34,
+          35
+        ]
+      },
+      {
+        "case": "011",
+        "input_sha256": "83b75503296976254291e267f685fa4930a9ed553f9b8486772213859bc49359",
+        "output_sha256": "6a508d8e33182962c9bad91d63598b7b34c5dff3572e022d9393e95d605811e8",
+        "shape": [
+          470,
+          581,
+          153
+        ],
+        "seconds": 96.66,
+        "labels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          29,
+          30,
+          32,
+          33,
+          34,
+          35,
+          36
+        ]
+      }
+    ]
+  },
+  "class_dice_summary": [
+    {
+      "case": "topcow_mr_004",
+      "mean_present_label_dice": 0.9388113898617939,
+      "minimum_present_label_dice": 0.8316955721724152
+    },
+    {
+      "case": "topcow_mr_006",
+      "mean_present_label_dice": 0.9160969612191247,
+      "minimum_present_label_dice": 0.8420091324200913
+    },
+    {
+      "case": "topcow_mr_007",
+      "mean_present_label_dice": 0.9439674183892287,
+      "minimum_present_label_dice": 0.8701754385964913
+    },
+    {
+      "case": "topcow_mr_011",
+      "mean_present_label_dice": 0.9421818601734475,
+      "minimum_present_label_dice": 0.8685037913815424
+    },
+    {
+      "case": "topcow_mr_012",
+      "mean_present_label_dice": 0.9447070302296163,
+      "minimum_present_label_dice": 0.8703517587939699
+    }
+  ],
+  "targeted_variant_acquisition": [
+    {
+      "case": "006",
+      "url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/imagesTr/topcow_mr_006_0000.nii.gz",
+      "member": "TopBrain_Data_Release_Batches1n2nTA36_081726/imagesTr_topbrain/topcow_mr_006_0000.nii.gz",
+      "bytes": 27829675,
+      "crc32": 3401681493,
+      "sha256": "6178324725c61238bf6c509c6cd04f7f936dbe77a8afaad87cc5cdab7bbdf38b",
+      "matches_topbrain_size_crc": true,
+      "selection": "Reference inventory shows third-A2/third-A3 anatomy; targeted development selection."
+    },
+    {
+      "case": "011",
+      "url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/imagesTr/topcow_mr_011_0000.nii.gz",
+      "member": "TopBrain_Data_Release_Batches1n2nTA36_081726/imagesTr_topbrain/topcow_mr_011_0000.nii.gz",
+      "bytes": 39074687,
+      "crc32": 680375786,
+      "sha256": "83b75503296976254291e267f685fa4930a9ed553f9b8486772213859bc49359",
+      "matches_topbrain_size_crc": true,
+      "selection": "Reference inventory shows third-A2/third-A3 anatomy; targeted development selection."
+    }
+  ],
+  "variant_parent_attachment": {
+    "006": {
+      "reference": {
+        "third_a2_voxels": 1572,
+        "third_a3_voxels": 843,
+        "left_a3_voxels": 0,
+        "third_a2_connected_to_right_ica_fraction": 1.0,
+        "third_a3_connected_to_right_ica_fraction": 1.0
+      },
+      "prediction": {
+        "third_a2_voxels": 1496,
+        "third_a3_voxels": 820,
+        "left_a3_voxels": 0,
+        "third_a2_connected_to_right_ica_fraction": 1.0,
+        "third_a3_connected_to_right_ica_fraction": 1.0
+      }
+    },
+    "011": {
+      "reference": {
+        "third_a2_voxels": 1248,
+        "third_a3_voxels": 1517,
+        "left_a3_voxels": 0,
+        "third_a2_connected_to_right_ica_fraction": 1.0,
+        "third_a3_connected_to_right_ica_fraction": 1.0
+      },
+      "prediction": {
+        "third_a2_voxels": 1159,
+        "third_a3_voxels": 1510,
+        "left_a3_voxels": 0,
+        "third_a2_connected_to_right_ica_fraction": 1.0,
+        "third_a3_connected_to_right_ica_fraction": 1.0
+      }
+    }
+  },
+  "rejected_contact_candidates": [
+    {
+      "case": "004",
+      "labels": [
+        3,
+        26
+      ],
+      "reference": {
+        "contact_voxels_6": 0,
+        "contact_voxels_26": 8
+      },
+      "prediction": {
+        "contact_voxels_6": 4,
+        "contact_voxels_26": 20
+      }
+    },
+    {
+      "case": "007",
+      "labels": [
+        2,
+        25
+      ],
+      "reference": {
+        "contact_voxels_6": 0,
+        "contact_voxels_26": 1
+      },
+      "prediction": {
+        "contact_voxels_6": 2,
+        "contact_voxels_26": 2
+      }
+    },
+    {
+      "case": "011",
+      "labels": [
+        3,
+        26
+      ],
+      "reference": {
+        "contact_voxels_6": 0,
+        "contact_voxels_26": 13
+      },
+      "prediction": {
+        "contact_voxels_6": 1,
+        "contact_voxels_26": 18
+      }
+    }
+  ],
+  "calibration": {
+    "case": "004",
+    "target": "R-SCA",
+    "parent": "BA",
+    "author_baseline": true,
+    "coding_agent_trial": false,
+    "export_version": 3,
+    "image_halo_mm": 6,
+    "all_cpr_samples_inside_source_crop": true,
+    "repair_uses_image": false,
+    "repair_uses_reference": false,
+    "selection_uses_reference": true,
+    "nearest_center_distance_mm": 0.9388011334271354,
+    "voxels_added": 2,
+    "voxels_removed": 0,
+    "added_reference_labels": {
+      "0": 1,
+      "25": 1
+    },
+    "parent_to_target_connected_before": false,
+    "parent_to_target_connected_after": true,
+    "source_native_bridge_ijk": [
+      [
+        189,
+        306,
+        79
+      ],
+      [
+        190,
+        306,
+        79
+      ],
+      [
+        191,
+        307,
+        79
+      ],
+      [
+        192,
+        307,
+        79
+      ]
+    ],
+    "anchors_native_ijk": [
+      [
+        264,
+        254,
+        60
+      ],
+      [
+        212,
+        333,
+        96
+      ]
+    ],
+    "crop_lo": [
+      160,
+      219,
+      40
+    ],
+    "crop_hi": [
+      297,
+      367,
+      127
+    ],
+    "route_length_mm": 85.56673239982031,
+    "route_to_reference_p95_mm": 0.2983055056620218,
+    "route_to_reference_max_mm": 0.44943565772668753,
+    "mesh_watertight": true,
+    "mesh_components": 1,
+    "source_prediction_sha256": "0ce03f0dd17c09356c1bb9ed41f064f2240886b2c2601aa3c6311404a08b9537",
+    "reference_sha256": "fa906a53d87dff59787b7556b1210231732d22a79423e23c555ccf1335c1037d",
+    "disposition": "Geometry-only connectivity calibration; not admitted as evidence of difficult anatomical reasoning.",
+    "scope": "Repairs only this named parent-to-target route. No claim that the entire brain segmentation is corrected."
+  },
+  "calibration_validation": {
+    "source_mra_trilinear_max_absolute_error": 0.0001016978987991024,
+    "float32_comparison_tolerance": 0.000607369331806106,
+    "cpr_source_samples": 140352,
+    "cpr_all_samples_inside_native_image": true,
+    "arc_and_rotated_offsets_valid": true,
+    "full_volume_changes": 2,
+    "changed_only_background_to_right_sca": true,
+    "bridge_rounding_independent_of_crop_origin": true,
+    "mesh_watertight": true,
+    "mesh_components": 1,
+    "embedded_atlases_checked": 17,
+    "javascript_syntax_pass": true,
+    "prediction_hashes_checked": 5,
+    "interactive_browser_test": false,
+    "browser_note": "Prior local-file navigation was blocked; no alternate browser path used."
+  },
+  "hard_cases_admitted": 0,
+  "new_task_frozen": false,
+  "coding_agent_trials": 0,
+  "hypothesis_status": "Untested: no clean hard error/control set admitted in this bounded screen.",
+  "viewer": "runs/br033-brain-routing/viewer-brain/index.html",
+  "limitations": [
+    "Five public training scans, with targeted anatomy selection; no held-out evaluation.",
+    "Single released ResEncM component, not official three-model ensemble.",
+    "Reference comparison and author inspection, not clinical adjudication.",
+    "Interior-disagreement screen is not exhaustive for thin vessels.",
+    "Geometry repair retains one reference-background added voxel."
+  ],
+  "runtime_evidence_sha256": {
+    "ta36-source-manifest.json": "a8df85f8561d93670397fd67a7af9a75ab344646cfdfba2d8d37e72f796aa9f8",
+    "predictions-resencm-v1/reference-screen.json": "0aadce75afe802833bf56202ac0d4d56bc40e8a3a2e4aad98b7c624e24c2ca55",
+    "predictions-resencm-v1/prediction-receipt.json": "5bb9637afbfc6bdbeb2e82beb1860c7f99710f03a3992d2309d98fee954d696f",
+    "gap-calibration/metrics.json": "f8b4fa2246fdb7f72538306612834525973c24d17479640cc856bc21bd3fadaa",
+    "calibration-validation.json": "e45c25149edb0b15b8743da32e8f78c7afa1b90556e2a02bd9d1d69b1c89958c"
+  }
+}

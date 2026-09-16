@@ -1,0 +1,128 @@
+{
+  "trigger": "User browser comments: A02 and A03 still show obvious disconnected airways",
+  "finding": "Both control routes lie wholly inside detached fragments. The frozen endpoint-to-endpoint checks pass while parent connections remain unrepaired.",
+  "cases": [
+    {
+      "case": "A01",
+      "before": {
+        "components": 7,
+        "anchor_components": [
+          1,
+          4
+        ],
+        "anchor_component_voxels": [
+          6018,
+          348
+        ],
+        "anchors_connected": false,
+        "anchors_in_largest_component": [
+          true,
+          false
+        ]
+      },
+      "after": {
+        "components": 6,
+        "anchor_components": [
+          1,
+          1
+        ],
+        "anchor_component_voxels": [
+          6944,
+          6944
+        ],
+        "anchors_connected": true,
+        "anchors_in_largest_component": [
+          true,
+          true
+        ]
+      },
+      "added": 578,
+      "removed": 0
+    },
+    {
+      "case": "A02",
+      "before": {
+        "components": 2,
+        "anchor_components": [
+          2,
+          2
+        ],
+        "anchor_component_voxels": [
+          89,
+          89
+        ],
+        "anchors_connected": true,
+        "anchors_in_largest_component": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "components": 2,
+        "anchor_components": [
+          2,
+          2
+        ],
+        "anchor_component_voxels": [
+          89,
+          89
+        ],
+        "anchors_connected": true,
+        "anchors_in_largest_component": [
+          false,
+          false
+        ]
+      },
+      "added": 0,
+      "removed": 0
+    },
+    {
+      "case": "A03",
+      "before": {
+        "components": 7,
+        "anchor_components": [
+          4,
+          4
+        ],
+        "anchor_component_voxels": [
+          348,
+          348
+        ],
+        "anchors_connected": true,
+        "anchors_in_largest_component": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "components": 7,
+        "anchor_components": [
+          4,
+          4
+        ],
+        "anchor_component_voxels": [
+          348,
+          348
+        ],
+        "anchors_connected": true,
+        "anchors_in_largest_component": [
+          false,
+          false
+        ]
+      },
+      "added": 0,
+      "removed": 0
+    }
+  ],
+  "frozen_task_unchanged": true,
+  "trial_outputs_unchanged": true,
+  "A01_A03_identical_input_image_mask_and_affine": true,
+  "interpretation": "Control-selection and presentation flaw. The original model follows the narrow task and retains its pass. These are not clinically intact-airway or true-absence controls.",
+  "viewer_changes": [
+    "Explicit parent-gap warnings for A02/A03",
+    "Highlight actual A01 added voxels and new surface",
+    "Input/output switches the 3D mesh",
+    "Hide output route on original mesh",
+    "Show anchor locations and connected-component audit"
+  ]
+}

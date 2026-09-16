@@ -1,0 +1,387 @@
+{
+  "analytic_checks": {
+    "oblique_affine_linear_HU_field": true,
+    "RAS_voxel_round_trip": true,
+    "quarter_turns_on_straight_vessel": true,
+    "curved_frame_orthonormal": true,
+    "frame_no_sign_flips": true,
+    "reflected_affine_mesh_positive_closed": true
+  },
+  "controls": {
+    "oracle": {
+      "reward": 1,
+      "stages": {
+        "repair": true,
+        "trace": true,
+        "cpr": true,
+        "mesh": true
+      },
+      "checks": {
+        "mask_format": true,
+        "preservation": true,
+        "repair_overlap": true,
+        "repair_connection": true,
+        "repair_no_far_addition": true,
+        "trace_geometry": true,
+        "trace_in_mask": true,
+        "cpr_coordinates": true,
+        "cpr_source_intensities": true,
+        "mesh_geometry": true
+      },
+      "metrics": {
+        "local_dice": 1.0,
+        "local_recall": 1.0,
+        "far_added_mm3": 0.0,
+        "changed_voxels": 222,
+        "centerline_p95_mm": 7.574809505984766e-06,
+        "reference_coverage_0p8mm": 1.0,
+        "length_mm": 161.3939666748047,
+        "endpoint_errors_mm": [
+          0.0,
+          0.0
+        ],
+        "cpr_max_coordinate_error_mm": 0.00012631812049903116,
+        "cpr_HU_p99_error": 0.0016326904296875,
+        "mesh_surface_p95_mm": 3.814697265625e-06,
+        "mesh_review_surface_p95_mm": 3.814697265625e-06,
+        "mesh_volume_mm3": 2398.161782864457,
+        "mesh_mask_volume_ratio": 0.9779424925606051,
+        "mesh_watertight": true
+      },
+      "errors": {},
+      "limits": {
+        "local_dice": 0.8,
+        "local_recall": 0.8,
+        "far_added_mm3": 1.5,
+        "centerline_p95_mm": 0.8,
+        "reference_coverage_0p8mm": 0.95,
+        "length_relative_error": 0.1,
+        "endpoint_mm": 1.0,
+        "cpr_coordinate_error_mm": 0.02,
+        "cpr_HU_p99_error": 0.2,
+        "mesh_surface_p95_mm": 0.65
+      }
+    },
+    "unrepaired": {
+      "reward": 0,
+      "stages": {
+        "repair": false,
+        "trace": false,
+        "cpr": true,
+        "mesh": false
+      },
+      "checks": {
+        "mask_format": true,
+        "preservation": true,
+        "repair_overlap": true,
+        "repair_connection": false,
+        "repair_no_far_addition": true,
+        "trace_geometry": true,
+        "trace_in_mask": false,
+        "cpr_coordinates": true,
+        "cpr_source_intensities": true,
+        "mesh_geometry": false
+      },
+      "metrics": {
+        "local_dice": 0.8973172987974098,
+        "local_recall": 0.825531914893617,
+        "far_added_mm3": 0.0,
+        "changed_voxels": 0,
+        "centerline_p95_mm": 7.574809505984766e-06,
+        "reference_coverage_0p8mm": 1.0,
+        "length_mm": 161.3939666748047,
+        "endpoint_errors_mm": [
+          0.0,
+          0.0
+        ],
+        "cpr_max_coordinate_error_mm": 0.00012631812049903116,
+        "cpr_HU_p99_error": 0.0016326904296875,
+        "mesh_surface_p95_mm": 3.814697265625e-06,
+        "mesh_review_surface_p95_mm": 1.5095836929516,
+        "mesh_volume_mm3": 2398.161782864457,
+        "mesh_mask_volume_ratio": 0.9832982717671244,
+        "mesh_watertight": true
+      },
+      "errors": {},
+      "limits": {
+        "local_dice": 0.8,
+        "local_recall": 0.8,
+        "far_added_mm3": 1.5,
+        "centerline_p95_mm": 0.8,
+        "reference_coverage_0p8mm": 0.95,
+        "length_relative_error": 0.1,
+        "endpoint_mm": 1.0,
+        "cpr_coordinate_error_mm": 0.02,
+        "cpr_HU_p99_error": 0.2,
+        "mesh_surface_p95_mm": 0.65
+      }
+    },
+    "reversed_route": {
+      "reward": 0,
+      "stages": {
+        "repair": true,
+        "trace": false,
+        "cpr": false,
+        "mesh": true
+      },
+      "checks": {
+        "mask_format": true,
+        "preservation": true,
+        "repair_overlap": true,
+        "repair_connection": true,
+        "repair_no_far_addition": true,
+        "trace_geometry": false,
+        "trace_in_mask": true,
+        "cpr_coordinates": false,
+        "cpr_source_intensities": true,
+        "mesh_geometry": true
+      },
+      "metrics": {
+        "local_dice": 1.0,
+        "local_recall": 1.0,
+        "far_added_mm3": 0.0,
+        "changed_voxels": 222,
+        "centerline_p95_mm": 7.574809505984766e-06,
+        "reference_coverage_0p8mm": 1.0,
+        "length_mm": 161.39398193359375,
+        "endpoint_errors_mm": [
+          63.73145655790926,
+          63.73145655790926
+        ],
+        "cpr_max_coordinate_error_mm": 84.58346747099756,
+        "cpr_HU_p99_error": 0.0016326904296875,
+        "mesh_surface_p95_mm": 3.814697265625e-06,
+        "mesh_review_surface_p95_mm": 3.814697265625e-06,
+        "mesh_volume_mm3": 2398.161782864457,
+        "mesh_mask_volume_ratio": 0.9779424925606051,
+        "mesh_watertight": true
+      },
+      "errors": {},
+      "limits": {
+        "local_dice": 0.8,
+        "local_recall": 0.8,
+        "far_added_mm3": 1.5,
+        "centerline_p95_mm": 0.8,
+        "reference_coverage_0p8mm": 0.95,
+        "length_relative_error": 0.1,
+        "endpoint_mm": 1.0,
+        "cpr_coordinate_error_mm": 0.02,
+        "cpr_HU_p99_error": 0.2,
+        "mesh_surface_p95_mm": 0.65
+      }
+    },
+    "fabricated_HU": {
+      "reward": 0,
+      "stages": {
+        "repair": true,
+        "trace": true,
+        "cpr": false,
+        "mesh": true
+      },
+      "checks": {
+        "mask_format": true,
+        "preservation": true,
+        "repair_overlap": true,
+        "repair_connection": true,
+        "repair_no_far_addition": true,
+        "trace_geometry": true,
+        "trace_in_mask": true,
+        "cpr_coordinates": true,
+        "cpr_source_intensities": false,
+        "mesh_geometry": true
+      },
+      "metrics": {
+        "local_dice": 1.0,
+        "local_recall": 1.0,
+        "far_added_mm3": 0.0,
+        "changed_voxels": 222,
+        "centerline_p95_mm": 7.574809505984766e-06,
+        "reference_coverage_0p8mm": 1.0,
+        "length_mm": 161.3939666748047,
+        "endpoint_errors_mm": [
+          0.0,
+          0.0
+        ],
+        "cpr_max_coordinate_error_mm": 0.00012631812049903116,
+        "cpr_HU_p99_error": 10.001266479492188,
+        "mesh_surface_p95_mm": 3.814697265625e-06,
+        "mesh_review_surface_p95_mm": 3.814697265625e-06,
+        "mesh_volume_mm3": 2398.161782864457,
+        "mesh_mask_volume_ratio": 0.9779424925606051,
+        "mesh_watertight": true
+      },
+      "errors": {},
+      "limits": {
+        "local_dice": 0.8,
+        "local_recall": 0.8,
+        "far_added_mm3": 1.5,
+        "centerline_p95_mm": 0.8,
+        "reference_coverage_0p8mm": 0.95,
+        "length_relative_error": 0.1,
+        "endpoint_mm": 1.0,
+        "cpr_coordinate_error_mm": 0.02,
+        "cpr_HU_p99_error": 0.2,
+        "mesh_surface_p95_mm": 0.65
+      }
+    },
+    "mirrored_mesh": {
+      "reward": 0,
+      "stages": {
+        "repair": true,
+        "trace": true,
+        "cpr": true,
+        "mesh": false
+      },
+      "checks": {
+        "mask_format": true,
+        "preservation": true,
+        "repair_overlap": true,
+        "repair_connection": true,
+        "repair_no_far_addition": true,
+        "trace_geometry": true,
+        "trace_in_mask": true,
+        "cpr_coordinates": true,
+        "cpr_source_intensities": true,
+        "mesh_geometry": false
+      },
+      "metrics": {
+        "local_dice": 1.0,
+        "local_recall": 1.0,
+        "far_added_mm3": 0.0,
+        "changed_voxels": 222,
+        "centerline_p95_mm": 7.574809505984766e-06,
+        "reference_coverage_0p8mm": 1.0,
+        "length_mm": 161.3939666748047,
+        "endpoint_errors_mm": [
+          0.0,
+          0.0
+        ],
+        "cpr_max_coordinate_error_mm": 0.00012631812049903116,
+        "cpr_HU_p99_error": 0.0016326904296875
+      },
+      "errors": {
+        "mesh": "missing review-region surface"
+      },
+      "limits": {
+        "local_dice": 0.8,
+        "local_recall": 0.8,
+        "far_added_mm3": 1.5,
+        "centerline_p95_mm": 0.8,
+        "reference_coverage_0p8mm": 0.95,
+        "length_relative_error": 0.1,
+        "endpoint_mm": 1.0,
+        "cpr_coordinate_error_mm": 0.02,
+        "cpr_HU_p99_error": 0.2,
+        "mesh_surface_p95_mm": 0.65
+      }
+    },
+    "broken_mesh": {
+      "reward": 0,
+      "stages": {
+        "repair": true,
+        "trace": true,
+        "cpr": true,
+        "mesh": false
+      },
+      "checks": {
+        "mask_format": true,
+        "preservation": true,
+        "repair_overlap": true,
+        "repair_connection": true,
+        "repair_no_far_addition": true,
+        "trace_geometry": true,
+        "trace_in_mask": true,
+        "cpr_coordinates": true,
+        "cpr_source_intensities": true,
+        "mesh_geometry": false
+      },
+      "metrics": {
+        "local_dice": 1.0,
+        "local_recall": 1.0,
+        "far_added_mm3": 0.0,
+        "changed_voxels": 222,
+        "centerline_p95_mm": 7.574809505984766e-06,
+        "reference_coverage_0p8mm": 1.0,
+        "length_mm": 161.3939666748047,
+        "endpoint_errors_mm": [
+          0.0,
+          0.0
+        ],
+        "cpr_max_coordinate_error_mm": 0.00012631812049903116,
+        "cpr_HU_p99_error": 0.0016326904296875,
+        "mesh_surface_p95_mm": 3.814697265625e-06,
+        "mesh_review_surface_p95_mm": 1.5111894290466983,
+        "mesh_volume_mm3": 2385.195738473469,
+        "mesh_mask_volume_ratio": 0.9726550904091003,
+        "mesh_watertight": true
+      },
+      "errors": {},
+      "limits": {
+        "local_dice": 0.8,
+        "local_recall": 0.8,
+        "far_added_mm3": 1.5,
+        "centerline_p95_mm": 0.8,
+        "reference_coverage_0p8mm": 0.95,
+        "length_relative_error": 0.1,
+        "endpoint_mm": 1.0,
+        "cpr_coordinate_error_mm": 0.02,
+        "cpr_HU_p99_error": 0.2,
+        "mesh_surface_p95_mm": 0.65
+      }
+    },
+    "collateral_edit": {
+      "reward": 0,
+      "stages": {
+        "repair": false,
+        "trace": true,
+        "cpr": true,
+        "mesh": true
+      },
+      "checks": {
+        "mask_format": true,
+        "preservation": false,
+        "repair_overlap": true,
+        "repair_connection": true,
+        "repair_no_far_addition": true,
+        "trace_geometry": true,
+        "trace_in_mask": true,
+        "cpr_coordinates": true,
+        "cpr_source_intensities": true,
+        "mesh_geometry": true
+      },
+      "metrics": {
+        "local_dice": 1.0,
+        "local_recall": 1.0,
+        "far_added_mm3": 0.0,
+        "changed_voxels": 223,
+        "centerline_p95_mm": 7.574809505984766e-06,
+        "reference_coverage_0p8mm": 1.0,
+        "length_mm": 161.3939666748047,
+        "endpoint_errors_mm": [
+          0.0,
+          0.0
+        ],
+        "cpr_max_coordinate_error_mm": 0.00012631812049903116,
+        "cpr_HU_p99_error": 0.0016326904296875,
+        "mesh_surface_p95_mm": 3.814697265625e-06,
+        "mesh_review_surface_p95_mm": 3.814697265625e-06,
+        "mesh_volume_mm3": 2398.161782864457,
+        "mesh_mask_volume_ratio": 0.9779141603621938,
+        "mesh_watertight": true
+      },
+      "errors": {},
+      "limits": {
+        "local_dice": 0.8,
+        "local_recall": 0.8,
+        "far_added_mm3": 1.5,
+        "centerline_p95_mm": 0.8,
+        "reference_coverage_0p8mm": 0.95,
+        "length_relative_error": 0.1,
+        "endpoint_mm": 1.0,
+        "cpr_coordinate_error_mm": 0.02,
+        "cpr_HU_p99_error": 0.2,
+        "mesh_surface_p95_mm": 0.65
+      }
+    }
+  }
+}

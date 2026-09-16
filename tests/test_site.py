@@ -1,11 +1,13 @@
 """Publication regressions: portable assets, valid routes and a reproducible bundle."""
 import importlib.util
+import base64
 import hashlib
 import io
 import json
 from html.parser import HTMLParser
 from pathlib import Path
 import sys
+import struct
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -112,6 +114,37 @@ class PublicationTests(unittest.TestCase):
                     self.assertLessEqual(offset,case['center'][d])
                     self.assertLess(case['center'][d],offset+width)
                     self.assertLessEqual(offset+width,case['shape'][d])
+
+    def test_vessel_figures_preserve_audited_scope_and_source_geometry(self):
+        figures=json.loads((ROOT/'site/vessel-figures.json').read_text())
+        brain=figures['brain']
+        receipt=json.loads((ROOT/'docs/evidence/br033-brain-resumption.json').read_text())
+        scope=json.loads((ROOT/'docs/evidence/br033-scope-audit.json').read_text())
+        self.assertEqual(brain['metrics'],receipt['calibration'])
+        self.assertFalse(brain['agent_trial'])
+        self.assertEqual(brain['metrics']['added_reference_labels'],{'0':1,'25':1})
+        self.assertEqual(figures['airway'],scope['cases'])
+        for case in figures['airway'][1:]:
+            self.assertEqual(case['added'],0)
+            self.assertEqual(case['after']['anchors_in_largest_component'],[False,False])
+        self.assertEqual(brain['angles_deg'],list(range(0,360,45)))
+        self.assertTrue(all(a<b for a,b in zip(brain['arc'],brain['arc'][1:])))
+        self.assertAlmostEqual(brain['arc'][-1],brain['metrics']['route_length_mm'])
+        self.assertTrue(0<=brain['initial']<len(brain['arc']))
+        def png_size(uri):
+            self.assertTrue(uri.startswith('data:image/png;base64,'))
+            raw=base64.b64decode(uri.split(',',1)[1],validate=True)
+            self.assertEqual(raw[:8],b'\x89PNG\r\n\x1a\n')
+            return struct.unpack('>II',raw[16:24])
+        for key in ['cpr','cprBefore','cprAfter','cprChanges']:
+            self.assertEqual(png_size(brain[key]),(len(brain['arc']),8*51))
+        self.assertEqual(png_size(brain['sections']),(51,len(brain['arc'])*51))
+        self.assertEqual(png_size(figures['figures']['brain']),(2100,1200))
+        self.assertEqual(png_size(figures['figures']['airway']),(2100,900))
+        provenance=json.loads((ROOT/'site/vessel-provenance.json').read_text())
+        for path,digest in provenance['evidence'].items():
+            if not path.startswith('runs/'):
+                self.assertEqual(hashlib.sha256((ROOT/path).read_bytes()).hexdigest(),digest,path)
 
 
 class LocalReportTests(unittest.TestCase):

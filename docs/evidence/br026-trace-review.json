@@ -1,0 +1,43 @@
+{
+  "round": "BR-026",
+  "review_method": "Author read native session tool calls, recorded command outputs and delivered artifacts after grading; this is an evidence review, not an independent clinical review.",
+  "reviews": [
+    {
+      "task": "vessel-v01",
+      "session_sha256s": [
+        "14c36cbba93f84610d4534a09eadabfb86dd8b9206eff908cf6ce32146b639cb"
+      ],
+      "source_retrieval_observation": "No external source-answer retrieval or private verifier/reference access observed in the retained trajectory.",
+      "observations": [
+        "Inspected native-grid MRA maximum-intensity projections, axial montages and three-axis details with mask overlays.",
+        "Computed intensity-thresholded unmasked components and checked distinct three-dimensional contacts with existing vessel segments.",
+        "Selected the image-supported component containing crop voxel (66, 76, 15), using image intensity >=165 and the public editable region; added 198 voxels.",
+        "Artifact replay establishes that all 198 additions recover authored deletions, with zero unrelated additions or deletions.",
+        "The trace contains 14 shell-command batches and 8 image-viewing batches. No author baseline, source labels or graph nodes were present in the agent input."
+      ],
+      "limits": [
+        "No image-removal or shuffled-image counterfactual was run; observed image use does not establish that the image was necessary.",
+        "Public source disclosure and possible prior knowledge remain; no provider-side identity attestation is claimed."
+      ]
+    },
+    {
+      "task": "vessel-v02",
+      "session_sha256s": [
+        "420be02e053ec3426e35a12827f0b297d10f58e3966ffeac2641f72c0994118c"
+      ],
+      "source_retrieval_observation": "No external source-answer retrieval or private verifier/reference access observed in the retained trajectory.",
+      "observations": [
+        "Inspected native MRA projections, axial slices, skeleton views and three-axis details using 13 image-viewing batches and 24 shell-command batches.",
+        "Found no nearby candidate skeleton endpoint pairs, then examined unmasked bright structures, low-signal mask regions and three-dimensional contacts.",
+        "Selected the unmasked image component above intensity 160 containing crop voxel (97, 31, 35), and added all 244 component voxels.",
+        "Agent-created visualization code initially failed on a standard-library filename collision and missing optional matplotlib; it recovered using Pillow. A later array sorting error was also repaired. The attempt completed normally.",
+        "The output preserves the absent right Pcom and the present left Pcom. It fails only the collateral-addition and distant-foreground limits.",
+        "Post-outcome source-label review finds the added component contacts only label 12 (L-ACA); this is not evidence that the agent invented the absent Pcom."
+      ],
+      "limits": [
+        "The added region follows visible signal not included in the reference. No expert review establishes whether it is an anatomical false connection, a true unlabelled structure or an annotation-scope mismatch.",
+        "Retain the frozen score failure, but exclude it from claims of clinically confirmed anatomical reasoning failure."
+      ]
+    }
+  ]
+}

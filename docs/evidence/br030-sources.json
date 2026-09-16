@@ -1,0 +1,585 @@
+{
+  "round": "BR-030",
+  "checked_date": "2026-09-16",
+  "primary_sources": [
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13496301/",
+      "role": "TopCoW annotation scope, paired acquisition context, topology motivation"
+    },
+    {
+      "url": "https://zenodo.org/records/15692630",
+      "role": "TopCoW paired CTA/MRA images and labels"
+    },
+    {
+      "url": "https://github.com/claim-berlin/TopCoW_2024_MRA_winning_solution",
+      "role": "CLAIM implementation; one fold and ground-truth ROI crop used locally, not its full challenge ensemble"
+    },
+    {
+      "url": "https://arxiv.org/abs/2608.30404",
+      "role": "ImageCAS-X preprint; annotation protocol, benchmark, source anonymisation statement"
+    },
+    {
+      "url": "https://zenodo.org/records/21887809",
+      "role": "ImageCAS-X labels, named centerline graphs, meshes, split files, descriptors and CAS-Net weights; record declares CC BY 4.0"
+    },
+    {
+      "url": "https://www.kaggle.com/datasets/xiaoweixumedicalai/imagecas",
+      "role": "Original CTA; listing declares Apache 2.0"
+    },
+    {
+      "url": "https://github.com/kitbransby/ImageCAS-X",
+      "role": "Pinned full-volume CAS-Net inference and LPS centerline coordinate convention"
+    }
+  ],
+  "download_manifests": {
+    "source-manifest.json": [
+      {
+        "path": "runs/br030-vessel-geometry/sources/topcow_claim_models/topcow-claim-models/dataset_fingerprint.json",
+        "url": "https://zenodo.org/api/records/14191592/files/topcow_claim_models.zip/container/topcow_claim_models/topcow-claim-models/dataset_fingerprint.json",
+        "bytes": 128308,
+        "sha256": "d038389521d391e6e12eff0572e791d40fca9985ec76c88ed609901854519478",
+        "zip_crc32_verified": true
+      },
+      {
+        "path": "runs/br030-vessel-geometry/sources/topcow_claim_models/topcow-claim-models/plans.json",
+        "url": "https://zenodo.org/api/records/14191592/files/topcow_claim_models.zip/container/topcow_claim_models/topcow-claim-models/plans.json",
+        "bytes": 9818,
+        "sha256": "5a929b927c9cf6682c113ea3a5bdf6eb27bf206dad9de0251f2811ddedf6ffce",
+        "zip_crc32_verified": true
+      },
+      {
+        "path": "runs/br030-vessel-geometry/sources/topcow_claim_models/topcow-claim-models/dataset.json",
+        "url": "https://zenodo.org/api/records/14191592/files/topcow_claim_models.zip/container/topcow_claim_models/topcow-claim-models/dataset.json",
+        "bytes": 414,
+        "sha256": "6e08cc08c84791bb7684bd2673d8239019ae5ffa5bbd731420ba45974c8824ec",
+        "zip_crc32_verified": true
+      },
+      {
+        "path": "runs/br030-vessel-geometry/sources/topcow_claim_models/topcow-claim-models/fold_0/checkpoint_final.pth",
+        "url": "https://zenodo.org/api/records/14191592/files/topcow_claim_models.zip/container/topcow_claim_models/topcow-claim-models/fold_0/checkpoint_final.pth",
+        "bytes": 501218486,
+        "sha256": "ff9ae8c0aac0c02eff170479b7b8d99eca8d3c8cf13b1e6ce5a4d882500b24c4",
+        "zip_crc32_verified": true
+      },
+      {
+        "path": "runs/br030-vessel-geometry/sources/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_012.yml",
+        "url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_012.yml",
+        "bytes": 141,
+        "sha256": "7822c8478093b0492ed69e5851af482883bf46aab086b9635a8fddbb3ebd924d",
+        "zip_crc32_verified": true
+      },
+      {
+        "path": "runs/br030-vessel-geometry/sources/TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_ct_012.nii.gz",
+        "url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_ct_012.nii.gz",
+        "bytes": 143046,
+        "sha256": "6b4aa178208959458d83384ebf32d2675beb167845c0f16e2ff572d5f4f7c08e",
+        "zip_crc32_verified": true
+      },
+      {
+        "path": "runs/br030-vessel-geometry/sources/TopCoW2024_Data_Release/imagesTr/topcow_ct_012_0000.nii.gz",
+        "url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/imagesTr/topcow_ct_012_0000.nii.gz",
+        "bytes": 37109398,
+        "sha256": "fb7ce816c4dcff765179a2154b74d63fef7db649525fcfa4e26e0a583224ca70",
+        "zip_crc32_verified": true
+      },
+      {
+        "path": "runs/br030-vessel-geometry/sources/TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_ct_012.txt",
+        "url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_ct_012.txt",
+        "bytes": 76,
+        "sha256": "78e3f1eb95dc0e5c398897392921fd2e8d810fc0d919142d3f5687497c2686a5",
+        "zip_crc32_verified": true
+      },
+      {
+        "path": "runs/br030-vessel-geometry/sources/CoW_Centerline_Data/cow_nodes/topcow_ct_012.json",
+        "url": "https://zenodo.org/api/records/17358162/files/CoW_Centerline_Data.zip/container/CoW_Centerline_Data/cow_nodes/topcow_ct_012.json",
+        "bytes": 10747,
+        "sha256": "13ff56e7ba010a541f44ce454cdcd509acfd8b9d0f7260373412371cbc2b9257",
+        "zip_crc32_verified": true
+      }
+    ],
+    "coronary-reference-manifest.json": [
+      {
+        "source_url": "https://zenodo.org/api/records/21887809/files/ImageCAS-X_dataset.zip/content",
+        "member": "ImageCAS-X_dataset/centerlines/1.coronary_left_centerline.vtk",
+        "path": "runs/br030-vessel-geometry/sources/coronary/ImageCAS-X_dataset/centerlines/1.coronary_left_centerline.vtk",
+        "bytes": 34825,
+        "sha256": "52b716b57a3d93c66e72accac8a8a53cf494ce5428ca4a426920e43ec2d7fc64",
+        "zip_crc32_verified": true
+      },
+      {
+        "source_url": "https://zenodo.org/api/records/21887809/files/ImageCAS-X_dataset.zip/content",
+        "member": "ImageCAS-X_dataset/centerlines/1.coronary_right_centerline.vtk",
+        "path": "runs/br030-vessel-geometry/sources/coronary/ImageCAS-X_dataset/centerlines/1.coronary_right_centerline.vtk",
+        "bytes": 20852,
+        "sha256": "f197b05eac9b739b2c542b3f3b03cdf3f7ff3ceaa677ce344f0e5dc71e2e15cb",
+        "zip_crc32_verified": true
+      },
+      {
+        "source_url": "https://zenodo.org/api/records/21887809/files/ImageCAS-X_dataset.zip/content",
+        "member": "ImageCAS-X_dataset/surfaces/1.coronary_surface.vtk",
+        "path": "runs/br030-vessel-geometry/sources/coronary/ImageCAS-X_dataset/surfaces/1.coronary_surface.vtk",
+        "bytes": 4892206,
+        "sha256": "ef42951f4d6e7701d1302f0513ae109449ecb6d23de2106aaa9fc798bdd4b462",
+        "zip_crc32_verified": true
+      },
+      {
+        "source_url": "https://zenodo.org/api/records/21887809/files/ImageCAS-X_dataset.zip/content",
+        "member": "ImageCAS-X_dataset/filelist/train.txt",
+        "path": "runs/br030-vessel-geometry/sources/coronary/ImageCAS-X_dataset/filelist/train.txt",
+        "bytes": 2183,
+        "sha256": "59e94c99e4209a0a9f5d20d9904825f42f7e45fddcbb77851bb40689c90db481",
+        "zip_crc32_verified": true
+      },
+      {
+        "source_url": "https://zenodo.org/api/records/21887809/files/ImageCAS-X_dataset.zip/content",
+        "member": "ImageCAS-X_dataset/filelist/val.txt",
+        "path": "runs/br030-vessel-geometry/sources/coronary/ImageCAS-X_dataset/filelist/val.txt",
+        "bytes": 311,
+        "sha256": "8c3aff5d62ad607b52d9904b782606217f2188038cd9b318888c6282b5a373ab",
+        "zip_crc32_verified": true
+      },
+      {
+        "source_url": "https://zenodo.org/api/records/21887809/files/ImageCAS-X_dataset.zip/content",
+        "member": "ImageCAS-X_dataset/filelist/test.txt",
+        "path": "runs/br030-vessel-geometry/sources/coronary/ImageCAS-X_dataset/filelist/test.txt",
+        "bytes": 622,
+        "sha256": "451e8ba262a0e1b7f301b8855c52bc787b879375d1f3ed973c74c8851ebd6b05",
+        "zip_crc32_verified": true
+      },
+      {
+        "source_url": "https://zenodo.org/api/records/21887809/files/ImageCAS-X_dataset.zip/content",
+        "member": "ImageCAS-X_dataset/filelist/exclude.txt",
+        "path": "runs/br030-vessel-geometry/sources/coronary/ImageCAS-X_dataset/filelist/exclude.txt",
+        "bytes": 777,
+        "sha256": "2dcff7ee38cad09c19603025cbc2824c63d17839048bd5aba71adfd7c4ac3cc6",
+        "zip_crc32_verified": true
+      },
+      {
+        "source_url": "https://zenodo.org/api/records/21887809/files/ImageCAS-X_dataset.zip/content",
+        "member": "ImageCAS-X_dataset/Descriptors.xlsx",
+        "path": "runs/br030-vessel-geometry/sources/coronary/ImageCAS-X_dataset/Descriptors.xlsx",
+        "bytes": 26317,
+        "sha256": "966d8b198e60e974fbb5a4ea57559479437c3c780fecd05590a397332b72ea34",
+        "zip_crc32_verified": true
+      },
+      {
+        "source_url": "https://zenodo.org/api/records/21887809/files/ImageCAS-X_dataset.zip/content",
+        "member": "ImageCAS-X_dataset/segmentations/1.coronary.nii.gz",
+        "path": "runs/br030-vessel-geometry/sources/coronary/ImageCAS-X_dataset/segmentations/1.coronary.nii.gz",
+        "bytes": 85387,
+        "sha256": "48fc4523a9e5cc704b2a453ab7771023d7ba2d9c3ad8096f4259bbec0f1b73b8",
+        "zip_crc32_verified": true
+      }
+    ],
+    "coronary-weight-manifest.json": {
+      "url": "https://zenodo.org/api/records/21887809/files/pretrained_weights.zip/content",
+      "member": "pretrained_weights/cas_net.pt",
+      "bytes": 27258067,
+      "sha256": "f3e280b74e2f3c32ac122996100694fb7d1357f3aa2e582e5e6bb7461f90d6c1",
+      "zip_crc32_verified": true
+    },
+    "sources/coronary/original/scan-manifest.json": {
+      "downloaded_prefix_bytes": 96469051,
+      "files": [
+        {
+          "source_url": "https://www.kaggle.com/api/v1/datasets/download/xiaoweixumedicalai/imagecas/1-200.z01",
+          "outer_member": "1-200.z01",
+          "inner_member": "1-200/1.img.nii.gz",
+          "path": "runs/br030-vessel-geometry/sources/coronary/original/1.img.nii.gz",
+          "bytes": 95770776,
+          "sha256": "c020b1244ac6c841924e27c3f5c328e6cf1eefb70bc14d3b725959ed99b656ff",
+          "inner_zip_crc32_verified": true
+        },
+        {
+          "source_url": "https://www.kaggle.com/api/v1/datasets/download/xiaoweixumedicalai/imagecas/1-200.z01",
+          "outer_member": "1-200.z01",
+          "inner_member": "1-200/1.label.nii.gz",
+          "path": "runs/br030-vessel-geometry/sources/coronary/original/1.label.nii.gz",
+          "bytes": 2590448,
+          "sha256": "afd992bf8855ebc42dcec721bd7695878bdc137efc8a9f965a7937ed85f159c7",
+          "inner_zip_crc32_verified": true
+        }
+      ]
+    }
+  },
+  "claim_prediction_receipt": {
+    "method": "CLAIM 2024 ResEncM, fold_0 checkpoint_final, public ROI plus 10-voxel halo",
+    "full_challenge_pipeline": false,
+    "mirroring": false,
+    "synthetic_mask_edits": false,
+    "checkpoint_sha256": "ff9ae8c0aac0c02eff170479b7b8d99eca8d3c8cf13b1e6ce5a4d882500b24c4",
+    "torch": "2.10.0",
+    "device": "mps",
+    "source_commit": "e7ae1d33cbae407b6ab42cd1063b55f4ff0f82a5",
+    "training_overlap": "Source TopCoW cases participated in the released training collection; per-fold membership not established. No unseen-test claim.",
+    "rows": [
+      {
+        "source": "004",
+        "input_sha256": "110c463d05b1632cd7d2562db4f53a76b49377a70be5586085c89af1668a6ef7",
+        "roi_origin_ijk": [
+          152,
+          151,
+          82
+        ],
+        "roi_shape": [
+          188,
+          146,
+          55
+        ],
+        "seconds": 3.1016283329954604,
+        "output": "runs/br030-vessel-geometry/predictions/mra-004-labels.nii.gz",
+        "output_sha256": "acc50e5438900ad5d3fb0175c97ad575f29067e0e98dca247e9b284a0c111847",
+        "unique_labels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "source": "007",
+        "input_sha256": "51c967d85e6017331b30dfd4f95502f2489342d8d9bf27c871dc8dd15467bbd2",
+        "roi_origin_ijk": [
+          148,
+          142,
+          92
+        ],
+        "roi_shape": [
+          187,
+          132,
+          53
+        ],
+        "seconds": 1.7609416669947677,
+        "output": "runs/br030-vessel-geometry/predictions/mra-007-labels.nii.gz",
+        "output_sha256": "bded739a75b141390f2cc2aae3874b09cbc25140932ec3d391e24ad74c7a6eec",
+        "unique_labels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12
+        ]
+      },
+      {
+        "source": "009",
+        "input_sha256": "7c44c3da7ab28582e1a69d2e20f52488b51fde6ea4968c9996b984752f1625e9",
+        "roi_origin_ijk": [
+          162,
+          134,
+          91
+        ],
+        "roi_shape": [
+          168,
+          138,
+          55
+        ],
+        "seconds": 1.265726249999716,
+        "output": "runs/br030-vessel-geometry/predictions/mra-009-labels.nii.gz",
+        "output_sha256": "9832930a2d80a799c418e1b881be56eb914433bed99b5c4f0e82044b10e8dfc0",
+        "unique_labels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "source": "012",
+        "input_sha256": "1aa532b6c76e0fdeba85eebed58951ef355e03aca26425755b69df3505341044",
+        "roi_origin_ijk": [
+          138,
+          148,
+          72
+        ],
+        "roi_shape": [
+          191,
+          141,
+          58
+        ],
+        "seconds": 1.895356000000902,
+        "output": "runs/br030-vessel-geometry/predictions/mra-012-labels.nii.gz",
+        "output_sha256": "5fd1fd0b78c12f7817ac5e47a7ba3b727f764430b7338a97fea67a9ad4aa3903",
+        "unique_labels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          9,
+          10,
+          11,
+          12
+        ]
+      }
+    ]
+  },
+  "coronary_prediction_receipt": {
+    "source": "ImageCAS case 1",
+    "input_sha256": "c020b1244ac6c841924e27c3f5c328e6cf1eefb70bc14d3b725959ed99b656ff",
+    "output": "runs/br030-vessel-geometry/predictions/coronary-1-casnet.nii.gz",
+    "output_sha256": "763ad08523bb8423c4ba995d38476a2aa5001a2c2afef623c4e6fecd095d0ce9",
+    "checkpoint_sha256": "f3e280b74e2f3c32ac122996100694fb7d1357f3aa2e582e5e6bb7461f90d6c1",
+    "seconds": 191.35562733400002,
+    "source_commit": "dbc7343187adf45ca9306dc3460eebc70f92b204",
+    "device": "mps",
+    "torch": "2.10.0",
+    "full_volume_input": true,
+    "preprocessing": {
+      "spacing_mm": 0.5,
+      "HU_clip": [
+        -200,
+        1000
+      ],
+      "normalised_range": [
+        0,
+        1
+      ]
+    },
+    "patch_size": [
+      128,
+      160,
+      160
+    ],
+    "overlap": 0.5,
+    "weighting": "gaussian",
+    "mirror_TTA_axes": [
+      "X",
+      "Y"
+    ],
+    "inference_batch_size": 1,
+    "postprocessing": "published argmax then >=100-voxel connected components",
+    "synthetic_mask_edits": false,
+    "training_overlap": "Case 1 is in the released train split; this is a development source, not a held-out accuracy estimate."
+  },
+  "mra_screen": {
+    "method": "single-fold cropped CLAIM development predictions; branch local binary checks",
+    "cases": [
+      {
+        "case": "004",
+        "binary_dice": 0.91816375319003,
+        "branches": [
+          {
+            "label": 8,
+            "reference_present": true,
+            "reference_voxels": 447,
+            "predicted_label_voxels": 401,
+            "binary_recall": 0.7941834451901566,
+            "skeleton_coverage_0p45mm": 1.0,
+            "max_skeleton_distance_mm": 0.0,
+            "skeleton_points": 41,
+            "largest_local_component_skeleton_fraction": 1.0
+          },
+          {
+            "label": 9,
+            "reference_present": false
+          },
+          {
+            "label": 10,
+            "reference_present": true,
+            "reference_voxels": 1579,
+            "predicted_label_voxels": 1466,
+            "binary_recall": 0.9132362254591514,
+            "skeleton_coverage_0p45mm": 1.0,
+            "max_skeleton_distance_mm": 0.0,
+            "skeleton_points": 29,
+            "largest_local_component_skeleton_fraction": 1.0
+          }
+        ]
+      },
+      {
+        "case": "007",
+        "binary_dice": 0.9642625492398474,
+        "branches": [
+          {
+            "label": 8,
+            "reference_present": true,
+            "reference_voxels": 863,
+            "predicted_label_voxels": 782,
+            "binary_recall": 0.8760139049826188,
+            "skeleton_coverage_0p45mm": 1.0,
+            "max_skeleton_distance_mm": 0.0,
+            "skeleton_points": 31,
+            "largest_local_component_skeleton_fraction": 1.0
+          },
+          {
+            "label": 9,
+            "reference_present": true,
+            "reference_voxels": 970,
+            "predicted_label_voxels": 904,
+            "binary_recall": 0.9134020618556701,
+            "skeleton_coverage_0p45mm": 1.0,
+            "max_skeleton_distance_mm": 0.0,
+            "skeleton_points": 34,
+            "largest_local_component_skeleton_fraction": 1.0
+          },
+          {
+            "label": 10,
+            "reference_present": false
+          }
+        ]
+      },
+      {
+        "case": "009",
+        "binary_dice": 0.9638390297470384,
+        "branches": [
+          {
+            "label": 8,
+            "reference_present": false
+          },
+          {
+            "label": 9,
+            "reference_present": false
+          },
+          {
+            "label": 10,
+            "reference_present": true,
+            "reference_voxels": 123,
+            "predicted_label_voxels": 110,
+            "binary_recall": 0.8780487804878049,
+            "skeleton_coverage_0p45mm": 1.0,
+            "max_skeleton_distance_mm": 0.0,
+            "skeleton_points": 1,
+            "largest_local_component_skeleton_fraction": 1.0
+          }
+        ]
+      },
+      {
+        "case": "012",
+        "binary_dice": 0.9418092684088796,
+        "branches": [
+          {
+            "label": 8,
+            "reference_present": false
+          },
+          {
+            "label": 9,
+            "reference_present": true,
+            "reference_voxels": 1425,
+            "predicted_label_voxels": 1361,
+            "binary_recall": 0.9221052631578948,
+            "skeleton_coverage_0p45mm": 1.0,
+            "max_skeleton_distance_mm": 0.0,
+            "skeleton_points": 21,
+            "largest_local_component_skeleton_fraction": 1.0
+          },
+          {
+            "label": 10,
+            "reference_present": true,
+            "reference_voxels": 426,
+            "predicted_label_voxels": 415,
+            "binary_recall": 0.9154929577464789,
+            "skeleton_coverage_0p45mm": 1.0,
+            "max_skeleton_distance_mm": 0.0,
+            "skeleton_points": 13,
+            "largest_local_component_skeleton_fraction": 1.0
+          }
+        ]
+      }
+    ]
+  },
+  "coronary_screen": {
+    "dice": 0.9413786303839545,
+    "routes": [
+      {
+        "name": "LM-LAD",
+        "length_mm": 157.70886795987255,
+        "predicted_coverage": 1.0,
+        "reference_coverage": 1.0,
+        "gaps": []
+      },
+      {
+        "name": "LM-LCx",
+        "length_mm": 95.130514638629,
+        "predicted_coverage": 0.953125,
+        "reference_coverage": 1.0,
+        "gaps": [
+          {
+            "start_mm": 91.14599046528328,
+            "end_mm": 95.130514638629,
+            "length_mm": 4.482589695013932,
+            "mid_ras": [
+              -53.86057977031047,
+              140.5835175041959,
+              72.84904727380575
+            ],
+            "terminal": true
+          }
+        ]
+      },
+      {
+        "name": "RCA-RPDA",
+        "length_mm": 161.5037769831773,
+        "predicted_coverage": 0.9692307692307692,
+        "reference_coverage": 1.0,
+        "gaps": [
+          {
+            "start_mm": 131.09720168696182,
+            "end_mm": 136.08188616175124,
+            "length_mm": 4.984684474789423,
+            "mid_ras": [
+              -23.24529057460036,
+              176.1031639511294,
+              60.71575839132392
+            ],
+            "terminal": false
+          }
+        ]
+      },
+      {
+        "name": "RCA-RPLA",
+        "length_mm": 180.70654941672606,
+        "predicted_coverage": 1.0,
+        "reference_coverage": 1.0,
+        "gaps": []
+      }
+    ]
+  },
+  "source_case": {
+    "id": "1",
+    "split": "train",
+    "image_quality": 4,
+    "image_quality_label": "excellent",
+    "dominance": "right",
+    "disease_descriptor": "yes (scan-level only)",
+    "CTA_and_mask_grid_match": true,
+    "centerline_coordinate_source": "LPS mm; explicitly converted to NIfTI RAS mm"
+  },
+  "limitations": [
+    "Only one reference annotation set per patient was found in the downloaded ZIP inventory. A second-rater comparison is reported in the paper, but those separate masks were not located in the release.",
+    "Released centerlines are skeletonized and smoothed from corrected masks; surfaces are also mask-derived. They provide geometry checks, not independent anatomical votes.",
+    "Case 1 is a training-split development example. No held-out accuracy estimate.",
+    "Four MRA predictions had full skeleton coverage of the seven present communicating-artery labels inspected. No small-branch natural gap was admitted from that screen.",
+    "CAS-Net inference used native MPS with CPU fallback for adaptive_max_pool3d; full volume, weights, patching, mirroring and postprocessing retained. Batch size set to one."
+  ],
+  "infrastructure_events": [
+    "Initial CLAIM load required allowlisting NumPy scalar metadata under Torch safe loading; no model prediction was emitted before correction.",
+    "Initial coronary inference hit an unsupported MPS pooling operation; rerun used the documented CPU fallback and completed in 191.36 seconds.",
+    "Initial trial authorization review rejected possible medical-data disclosure. The public anonymized source and empty NIfTI text metadata were verified; review then approved the same trial command. No model trial began before approval.",
+    "Author image baseline initially passed a NumPy array where MCP expects tuple sampling; type correction preceded its first output/score and did not change algorithm parameters."
+  ]
+}

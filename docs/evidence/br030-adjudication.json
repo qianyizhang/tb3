@@ -1,0 +1,137 @@
+{
+  "kind": "engineering paired-image review; no expert adjudication",
+  "landmarks": 16,
+  "registration": "one rigid least-squares fit of unique one-to-one shared boundary/bifurcation landmarks; all used, no outlier rejection",
+  "mra_to_ct_ras_matrix": [
+    [
+      0.9863927774303406,
+      -0.1594780251563912,
+      -0.039950571028162137,
+      -12.21341995028229
+    ],
+    [
+      0.1636150904417057,
+      0.9284199057353313,
+      0.3335664563683701,
+      225.57528694798305
+    ],
+    [
+      -0.016105614332004345,
+      -0.33556405964676395,
+      0.9418797009493161,
+      -149.58049950973137
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "landmark_residual_mm": {
+    "median": 0.7111545890210198,
+    "p95": 1.2203365008894256,
+    "max": 1.3615058072639845
+  },
+  "landmark_rows": [
+    {
+      "label": "1",
+      "name": "BA bifurcation",
+      "residual_mm": 1.3615058072639845
+    },
+    {
+      "label": "1",
+      "name": "R-PCA boundary",
+      "residual_mm": 0.8295489732507463
+    },
+    {
+      "label": "3",
+      "name": "Pcom bifurcation",
+      "residual_mm": 0.7140735044777791
+    },
+    {
+      "label": "3",
+      "name": "Pcom boundary",
+      "residual_mm": 0.5688072454606963
+    },
+    {
+      "label": "4",
+      "name": "ICA bifurcation",
+      "residual_mm": 0.37434263917145466
+    },
+    {
+      "label": "4",
+      "name": "ACA boundary",
+      "residual_mm": 0.9323366903108237
+    },
+    {
+      "label": "4",
+      "name": "MCA boundary",
+      "residual_mm": 0.31335292547002996
+    },
+    {
+      "label": "6",
+      "name": "Pcom bifurcation",
+      "residual_mm": 0.28060869755096324
+    },
+    {
+      "label": "6",
+      "name": "Pcom boundary",
+      "residual_mm": 0.7858184034735957
+    },
+    {
+      "label": "6",
+      "name": "ICA bifurcation",
+      "residual_mm": 0.5894952579267224
+    },
+    {
+      "label": "6",
+      "name": "ACA boundary",
+      "residual_mm": 0.848651318551041
+    },
+    {
+      "label": "6",
+      "name": "MCA boundary",
+      "residual_mm": 0.7082356735642605
+    },
+    {
+      "label": "10",
+      "name": "R-ACA boundary",
+      "residual_mm": 0.7192464782244952
+    },
+    {
+      "label": "10",
+      "name": "L-ACA boundary",
+      "residual_mm": 0.6666635264147959
+    },
+    {
+      "label": "11",
+      "name": "Acom bifurcation",
+      "residual_mm": 1.1732800654312394
+    },
+    {
+      "label": "12",
+      "name": "Acom bifurcation",
+      "residual_mm": 0.5007787542024277
+    }
+  ],
+  "mra_addition_centroid_ras_mm": [
+    11.358630159695474,
+    21.773262358896556,
+    -22.683080358995642
+  ],
+  "approximate_ct_centroid_ras_mm": [
+    -3.5755040684454844,
+    240.08214570078374,
+    -178.43449448046883
+  ],
+  "added_voxels": 244,
+  "source_label_contact": "12 = L-ACA only",
+  "frozen_score_disposition": "Preserve original mask-preservation failure; exclude from clinically confirmed topology failure claims.",
+  "clinical_disposition": "Unresolved. A neuroradiologist must decide true unlabeled vessel, annotation scope mismatch, or false connection. Registration residual and differing modalities preclude automatic relabeling.",
+  "review_question": "At the marked L-ACA-adjacent structure, is the 244-voxel addition true lumen within intended annotation scope, a real out-of-scope vessel, or a false connection? Review native CTA/MRA and source masks independently.",
+  "source_annotation_scope": "TopCoW labels 13 CoW components within a specified ROI, not every visible intracranial artery. Source reports expert consensus for uncertain labels.",
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13496301/",
+  "supplement_retrieval": "PMC supplementary annotation appendix returned a browser verification page; no inaccessible protocol detail inferred.",
+  "expert_contact": "No external messages sent."
+}

@@ -1,0 +1,582 @@
+{
+  "round": "BR-026",
+  "freeze_sha256": "563b6336e756ca1cfc37a86ffb7646012b346333efae591b38300939436ba60e",
+  "frozen_task_files_unchanged": true,
+  "author_baselines": [
+    {
+      "task": "vessel-v01",
+      "mode": "mask",
+      "grade": {
+        "outside_edit_changed_voxels": 0,
+        "collateral_deleted_mm3": 0.0,
+        "collateral_added_mm3": 0.31728315161308274,
+        "far_added_mm3": 0.0,
+        "local_dice": 0.7181208053691275,
+        "local_recall": 0.5691489361702128,
+        "branches": [
+          {
+            "label": 8,
+            "local_connection": false,
+            "centerline_length_mm": 15.018300117498901,
+            "centerline_coverage": 0.9161333876581034,
+            "branch_recall": 0.8122827346465817
+          },
+          {
+            "label": 9,
+            "local_connection": true,
+            "centerline_length_mm": 14.772910665582675,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          }
+        ],
+        "absent_branches": [],
+        "whole_mask_dice_diagnostic": 0.9986528754142021,
+        "checks": {
+          "outside_edit_preserved": true,
+          "collateral_deleted": true,
+          "collateral_added": true,
+          "no_remote_foreground": true,
+          "local_dice": false,
+          "local_recall": false,
+          "branch_0_connection": false,
+          "branch_0_centerline": false,
+          "branch_0_recall": true,
+          "branch_1_connection": true,
+          "branch_1_centerline": true,
+          "branch_1_recall": true
+        },
+        "reward": 0
+      },
+      "answer_sha256": "06079939e461686aa54ab17d39e95382c0e84eb61db7eee41ac03b67d8ab2652",
+      "details": {
+        "large_components": 1,
+        "skeleton_endpoints": 2,
+        "detector": "skeleton",
+        "candidate_pairs": [
+          {
+            "separation_mm": 4.979527557366916,
+            "centre_ijk": [
+              64.5,
+              77.0,
+              16.0
+            ],
+            "radius_mm": 3.489763778683458,
+            "intensity_threshold": null,
+            "added_voxels": 50
+          }
+        ],
+        "mode": "mask",
+        "seconds": 1.9958951670014358
+      }
+    },
+    {
+      "task": "vessel-v01",
+      "mode": "image",
+      "grade": {
+        "outside_edit_changed_voxels": 0,
+        "collateral_deleted_mm3": 0.0,
+        "collateral_added_mm3": 1.2162520811834838,
+        "far_added_mm3": 0.0,
+        "local_dice": 0.9249692496924969,
+        "local_recall": 1.0,
+        "branches": [
+          {
+            "label": 8,
+            "local_connection": true,
+            "centerline_length_mm": 15.018300117498901,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          },
+          {
+            "label": 9,
+            "local_connection": true,
+            "centerline_length_mm": 14.772910665582675,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          }
+        ],
+        "absent_branches": [],
+        "whole_mask_dice_diagnostic": 0.9993508400438956,
+        "checks": {
+          "outside_edit_preserved": true,
+          "collateral_deleted": true,
+          "collateral_added": true,
+          "no_remote_foreground": true,
+          "local_dice": true,
+          "local_recall": true,
+          "branch_0_connection": true,
+          "branch_0_centerline": true,
+          "branch_0_recall": true,
+          "branch_1_connection": true,
+          "branch_1_centerline": true,
+          "branch_1_recall": true
+        },
+        "reward": 1
+      },
+      "answer_sha256": "8ef264c14f54c9545a64f4f9fbdec17833d2911e8d263b312ecdbdc7ff07b5b8",
+      "details": {
+        "large_components": 1,
+        "skeleton_endpoints": 2,
+        "detector": "skeleton",
+        "candidate_pairs": [
+          {
+            "separation_mm": 4.979527557366916,
+            "centre_ijk": [
+              64.5,
+              77.0,
+              16.0
+            ],
+            "radius_mm": 3.489763778683458,
+            "intensity_threshold": 146.997594286222,
+            "added_voxels": 284
+          }
+        ],
+        "mode": "image",
+        "seconds": 0.08412233399940305
+      }
+    },
+    {
+      "task": "vessel-v02",
+      "mode": "mask",
+      "grade": {
+        "outside_edit_changed_voxels": 0,
+        "collateral_deleted_mm3": 0.0,
+        "collateral_added_mm3": 0.0,
+        "far_added_mm3": 0.0,
+        "branches": [
+          {
+            "label": 9,
+            "local_connection": true,
+            "centerline_length_mm": 11.561011943294261,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          }
+        ],
+        "absent_branches": [
+          {
+            "label": 8,
+            "unsupported_local_connection": false
+          }
+        ],
+        "whole_mask_dice_diagnostic": 1.0,
+        "checks": {
+          "outside_edit_preserved": true,
+          "collateral_deleted": true,
+          "collateral_added": true,
+          "no_remote_foreground": true,
+          "branch_0_connection": true,
+          "branch_0_centerline": true,
+          "branch_0_recall": true,
+          "absent_0_preserved": true
+        },
+        "reward": 1
+      },
+      "answer_sha256": "9d2d660d60d68c3ad693568db30a25ea059e5919b5867d6e5fdee5fa7f1d21bc",
+      "details": {
+        "large_components": 1,
+        "skeleton_endpoints": 3,
+        "detector": "skeleton",
+        "candidate_pairs": [],
+        "mode": "mask",
+        "seconds": 0.09296354199977941
+      }
+    },
+    {
+      "task": "vessel-v02",
+      "mode": "image",
+      "grade": {
+        "outside_edit_changed_voxels": 0,
+        "collateral_deleted_mm3": 0.0,
+        "collateral_added_mm3": 0.0,
+        "far_added_mm3": 0.0,
+        "branches": [
+          {
+            "label": 9,
+            "local_connection": true,
+            "centerline_length_mm": 11.561011943294261,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          }
+        ],
+        "absent_branches": [
+          {
+            "label": 8,
+            "unsupported_local_connection": false
+          }
+        ],
+        "whole_mask_dice_diagnostic": 1.0,
+        "checks": {
+          "outside_edit_preserved": true,
+          "collateral_deleted": true,
+          "collateral_added": true,
+          "no_remote_foreground": true,
+          "branch_0_connection": true,
+          "branch_0_centerline": true,
+          "branch_0_recall": true,
+          "absent_0_preserved": true
+        },
+        "reward": 1
+      },
+      "answer_sha256": "9d2d660d60d68c3ad693568db30a25ea059e5919b5867d6e5fdee5fa7f1d21bc",
+      "details": {
+        "large_components": 1,
+        "skeleton_endpoints": 3,
+        "detector": "skeleton",
+        "candidate_pairs": [],
+        "mode": "image",
+        "seconds": 0.09349366700189421
+      }
+    }
+  ],
+  "rows": [
+    {
+      "task": "vessel-v01",
+      "phase": "oracle",
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br026-vessel-v01-oracle-v1-20260916/vessel-v01__F4ajd4F/result.json",
+      "result_sha256": "6140d52a05de61806ee7ef5b7dbd575038ea183e47e7258d1b744d2a5bdabde7",
+      "task_checksum": "61e218233439b551dda3fdefe00ccd0fcb9260236aa00d0caf6d9ed761b26ccf",
+      "reward": 1.0,
+      "started_at": "2026-09-16T09:27:08.025356Z",
+      "finished_at": "2026-09-16T09:28:23.664197Z",
+      "agent_seconds": 0.15992,
+      "total_seconds": 75.638841,
+      "output_tokens": null,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "outside_edit_changed_voxels": 0,
+        "collateral_deleted_mm3": 0.0,
+        "collateral_added_mm3": 0.0,
+        "far_added_mm3": 0.0,
+        "local_dice": 1.0,
+        "local_recall": 1.0,
+        "branches": [
+          {
+            "label": 8,
+            "local_connection": true,
+            "centerline_length_mm": 15.018300117498901,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          },
+          {
+            "label": 9,
+            "local_connection": true,
+            "centerline_length_mm": 14.772910665582675,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          }
+        ],
+        "absent_branches": [],
+        "whole_mask_dice_diagnostic": 1.0,
+        "checks": {
+          "outside_edit_preserved": true,
+          "collateral_deleted": true,
+          "collateral_added": true,
+          "no_remote_foreground": true,
+          "local_dice": true,
+          "local_recall": true,
+          "branch_0_connection": true,
+          "branch_0_centerline": true,
+          "branch_0_recall": true,
+          "branch_1_connection": true,
+          "branch_1_centerline": true,
+          "branch_1_recall": true
+        },
+        "reward": 1
+      },
+      "artifact_replay_matches": true,
+      "answer_path": "runs/br026-vessel-v01-oracle-v1-20260916/vessel-v01__F4ajd4F/artifacts/app/answer/corrected_mask.nii.gz",
+      "answer_sha256": "b8c21f42484470bae2a5f93550b3c923b2e2bf318485db24f3cc73fc222e41f0",
+      "changed_voxels": 200,
+      "added_voxels": 200,
+      "deleted_voxels": 0,
+      "recovered_synthetic_gap_voxels": 200,
+      "synthetic_gap_voxels": 200
+    },
+    {
+      "task": "vessel-v01",
+      "phase": "nop",
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br026-vessel-v01-nop-v1-20260916/vessel-v01__2mbRBmV/result.json",
+      "result_sha256": "d9623c19e12620399eec46f8983c809ac9f6e271730e44193fe8f4398746dacd",
+      "task_checksum": "61e218233439b551dda3fdefe00ccd0fcb9260236aa00d0caf6d9ed761b26ccf",
+      "reward": 0.0,
+      "started_at": "2026-09-16T09:28:23.914978Z",
+      "finished_at": "2026-09-16T09:28:50.275234Z",
+      "agent_seconds": 9.2e-05,
+      "total_seconds": 26.360256,
+      "output_tokens": null,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "reward": 0,
+        "reason": "FileNotFoundError: No such file or no access: '/app/answer/corrected_mask.nii.gz'"
+      },
+      "artifact_replay_matches": true
+    },
+    {
+      "task": "vessel-v01",
+      "phase": "terra-high",
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br026-vessel-v01-terra-high-v1-20260916/vessel-v01__c6dKGRX/result.json",
+      "result_sha256": "8599eb677543d8a7fb34e5fb681c75a2b35217f7b305f2bf7356586c693f89fe",
+      "task_checksum": "61e218233439b551dda3fdefe00ccd0fcb9260236aa00d0caf6d9ed761b26ccf",
+      "reward": 1.0,
+      "started_at": "2026-09-16T09:28:50.552331Z",
+      "finished_at": "2026-09-16T09:34:51.370459Z",
+      "agent_seconds": 300.813302,
+      "total_seconds": 360.818128,
+      "output_tokens": 11805,
+      "input_tokens": 614482,
+      "cached_input_tokens": 542592,
+      "estimated_cost_usd": 0.3939584,
+      "agent_version": "0.154.0",
+      "grade": {
+        "outside_edit_changed_voxels": 0,
+        "collateral_deleted_mm3": 0.0,
+        "collateral_added_mm3": 0.0,
+        "far_added_mm3": 0.0,
+        "local_dice": 0.9973333333333333,
+        "local_recall": 0.9946808510638298,
+        "branches": [
+          {
+            "label": 8,
+            "local_connection": true,
+            "centerline_length_mm": 15.018300117498901,
+            "centerline_coverage": 1.0,
+            "branch_recall": 0.9976825028968713
+          },
+          {
+            "label": 9,
+            "local_connection": true,
+            "centerline_length_mm": 14.772910665582675,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          }
+        ],
+        "absent_branches": [],
+        "whole_mask_dice_diagnostic": 0.9999845335313041,
+        "checks": {
+          "outside_edit_preserved": true,
+          "collateral_deleted": true,
+          "collateral_added": true,
+          "no_remote_foreground": true,
+          "local_dice": true,
+          "local_recall": true,
+          "branch_0_connection": true,
+          "branch_0_centerline": true,
+          "branch_0_recall": true,
+          "branch_1_connection": true,
+          "branch_1_centerline": true,
+          "branch_1_recall": true
+        },
+        "reward": 1
+      },
+      "artifact_replay_matches": true,
+      "answer_path": "runs/br026-vessel-v01-terra-high-v1-20260916/vessel-v01__c6dKGRX/artifacts/app/answer/corrected_mask.nii.gz",
+      "answer_sha256": "470358c139499ded6a59de45414c6a3d3c892d8bbf54fc982237d06b16a9683a",
+      "changed_voxels": 198,
+      "added_voxels": 198,
+      "deleted_voxels": 0,
+      "recovered_synthetic_gap_voxels": 198,
+      "synthetic_gap_voxels": 200,
+      "requested_model": "openai/gpt-5.6-terra",
+      "requested_effort": "high",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-terra",
+          "effort": "high"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br026-vessel-v01-terra-high-v1-20260916/vessel-v01__c6dKGRX/agent/sessions/2026/09/16/rollout-2026-09-16T09-29-26-01a0a98c-b6b7-7d21-855f-43b74a0ad735.jsonl",
+          "sha256": "14c36cbba93f84610d4534a09eadabfb86dd8b9206eff908cf6ce32146b639cb"
+        }
+      ],
+      "frozen_instruction_seen": true,
+      "runtime_matches_request": true,
+      "source_retrieval_audit": "No external source-answer retrieval or private verifier/reference access observed in the retained trajectory.",
+      "trace_audit_path": "docs/evidence/br026-trace-audit.json"
+    },
+    {
+      "task": "vessel-v02",
+      "phase": "oracle",
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br026-vessel-v02-oracle-v1-20260916/vessel-v02__4W9rFmS/result.json",
+      "result_sha256": "b46d21bcbc9880c2fca961e71b2338e0323ad796301f54b82c713644abd1875b",
+      "task_checksum": "88c18e0e15fe62e9c57082c3eafd309d28f3634213461c1cb5a4e5e2f1317cab",
+      "reward": 1.0,
+      "started_at": "2026-09-16T09:34:51.844752Z",
+      "finished_at": "2026-09-16T09:35:18.764414Z",
+      "agent_seconds": 0.155696,
+      "total_seconds": 26.919662,
+      "output_tokens": null,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "outside_edit_changed_voxels": 0,
+        "collateral_deleted_mm3": 0.0,
+        "collateral_added_mm3": 0.0,
+        "far_added_mm3": 0.0,
+        "branches": [
+          {
+            "label": 9,
+            "local_connection": true,
+            "centerline_length_mm": 11.561011943294261,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          }
+        ],
+        "absent_branches": [
+          {
+            "label": 8,
+            "unsupported_local_connection": false
+          }
+        ],
+        "whole_mask_dice_diagnostic": 1.0,
+        "checks": {
+          "outside_edit_preserved": true,
+          "collateral_deleted": true,
+          "collateral_added": true,
+          "no_remote_foreground": true,
+          "branch_0_connection": true,
+          "branch_0_centerline": true,
+          "branch_0_recall": true,
+          "absent_0_preserved": true
+        },
+        "reward": 1
+      },
+      "artifact_replay_matches": true,
+      "answer_path": "runs/br026-vessel-v02-oracle-v1-20260916/vessel-v02__4W9rFmS/artifacts/app/answer/corrected_mask.nii.gz",
+      "answer_sha256": "ca64373fef18fa19f616283ad3b8563ab823b8f569d6b784c6ea14bc7347bef0",
+      "changed_voxels": 0,
+      "added_voxels": 0,
+      "deleted_voxels": 0,
+      "recovered_synthetic_gap_voxels": 0,
+      "synthetic_gap_voxels": 0
+    },
+    {
+      "task": "vessel-v02",
+      "phase": "nop",
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br026-vessel-v02-nop-v1-20260916/vessel-v02__FzyfMiA/result.json",
+      "result_sha256": "213127f5c3d6b8f97193f1e106feed8dba1f5d9a42ff116af97053e882a7a570",
+      "task_checksum": "88c18e0e15fe62e9c57082c3eafd309d28f3634213461c1cb5a4e5e2f1317cab",
+      "reward": 0.0,
+      "started_at": "2026-09-16T09:35:19.013507Z",
+      "finished_at": "2026-09-16T09:35:45.337326Z",
+      "agent_seconds": 9.3e-05,
+      "total_seconds": 26.323819,
+      "output_tokens": null,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "estimated_cost_usd": null,
+      "agent_version": "1.0.0",
+      "grade": {
+        "reward": 0,
+        "reason": "FileNotFoundError: No such file or no access: '/app/answer/corrected_mask.nii.gz'"
+      },
+      "artifact_replay_matches": true
+    },
+    {
+      "task": "vessel-v02",
+      "phase": "terra-high",
+      "execution": "completed",
+      "exception_type": null,
+      "result_path": "runs/br026-vessel-v02-terra-high-v1-20260916/vessel-v02__86Naqao/result.json",
+      "result_sha256": "51c59944a12d9bbf653b64ecc03c86defe7d5f4e0b705849483336bc696fc4b1",
+      "task_checksum": "88c18e0e15fe62e9c57082c3eafd309d28f3634213461c1cb5a4e5e2f1317cab",
+      "reward": 0.0,
+      "started_at": "2026-09-16T09:35:45.621537Z",
+      "finished_at": "2026-09-16T09:47:34.545392Z",
+      "agent_seconds": 646.151668,
+      "total_seconds": 708.923855,
+      "output_tokens": 22111,
+      "input_tokens": 2756116,
+      "cached_input_tokens": 2604416,
+      "estimated_cost_usd": 1.0896152,
+      "agent_version": "0.154.0",
+      "grade": {
+        "outside_edit_changed_voxels": 0,
+        "collateral_deleted_mm3": 0.0,
+        "collateral_added_mm3": 12.902885337534826,
+        "far_added_mm3": 9.306999259861186,
+        "branches": [
+          {
+            "label": 9,
+            "local_connection": true,
+            "centerline_length_mm": 11.561011943294261,
+            "centerline_coverage": 1.0,
+            "branch_recall": 1.0
+          }
+        ],
+        "absent_branches": [
+          {
+            "label": 8,
+            "unsupported_local_connection": false
+          }
+        ],
+        "whole_mask_dice_diagnostic": 0.9981370063830437,
+        "checks": {
+          "outside_edit_preserved": true,
+          "collateral_deleted": true,
+          "collateral_added": false,
+          "no_remote_foreground": false,
+          "branch_0_connection": true,
+          "branch_0_centerline": true,
+          "branch_0_recall": true,
+          "absent_0_preserved": true
+        },
+        "reward": 0
+      },
+      "artifact_replay_matches": true,
+      "answer_path": "runs/br026-vessel-v02-terra-high-v1-20260916/vessel-v02__86Naqao/artifacts/app/answer/corrected_mask.nii.gz",
+      "answer_sha256": "65f785fdb04a6888121b47ce914b968f3ad774c0b180219c339fb4bd70b2b71b",
+      "changed_voxels": 244,
+      "added_voxels": 244,
+      "deleted_voxels": 0,
+      "recovered_synthetic_gap_voxels": 0,
+      "synthetic_gap_voxels": 0,
+      "requested_model": "openai/gpt-5.6-terra",
+      "requested_effort": "high",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-terra",
+          "effort": "high"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br026-vessel-v02-terra-high-v1-20260916/vessel-v02__86Naqao/agent/sessions/2026/09/16/rollout-2026-09-16T09-36-24-01a0a993-15e9-7053-bb3d-c4454c9233e4.jsonl",
+          "sha256": "420be02e053ec3426e35a12827f0b297d10f58e3966ffeac2641f72c0994118c"
+        }
+      ],
+      "frozen_instruction_seen": true,
+      "runtime_matches_request": true,
+      "source_retrieval_audit": "No external source-answer retrieval or private verifier/reference access observed in the retained trajectory.",
+      "trace_audit_path": "docs/evidence/br026-trace-audit.json"
+    }
+  ],
+  "limitations": [
+    "Two source patients and one fresh agent attempt per condition.",
+    "Synthetic local deletion plus unchanged reference; no natural segmentation model error tested.",
+    "Public training-source images; source retrieval can confound image-reasoning claims.",
+    "Engineering annotation and threshold calibration, not independent clinical adjudication.",
+    "One task result cannot establish broad vessel-repair capability or failure rates.",
+    "Trace model labels are runtime provenance, not provider-side attestation.",
+    "Real false-bridge repair is not tested by these two agent tasks."
+  ]
+}

@@ -4,8 +4,9 @@
 
 This archive preserves completed research and subsequent authorized follow-ups.
 Historical “active”, “next action” and “pending” wording records its capture
-state, not an instruction to resume work. The final report includes completed
-BR-013–017 outcomes; BR-018 preparation has no model result in this update.
+state, not an instruction to resume work. The final report includes the anatomy studies through BR-017, the registration
+follow-ups and the completed vessel/airway series described below. Other
+concurrent research branches retain separate ownership.
 Original snapshots and evidence retain their stable paths and meanings.
 
 ## Current experiment reports
@@ -38,6 +39,30 @@ source CT improves Sol substantially; the user accepts the remaining worst
 case visually. The [adjudication](evidence/br028-adjudication.json) is separate
 from the preserved numerical failure. Earlier anatomy selections and the
 sibling submission are unchanged. No further trial is scheduled.
+
+## Vessel and airway session closeout
+
+The [Vessels & airways chapter](../site/index.html#vessels) owns the synthesis
+of vessel BR-025, BR-026, BR-030 and BR-033. This branch ends with working repair,
+route, rotated CPR and mesh exports; it does not establish a clean hard test
+of anatomical discrimination. No further trial is queued.
+
+| Stage | Retained result and qualification |
+| --- | --- |
+| Source curation | [Vessel BR-025](research-rounds/BR-025-vessel-connectivity.md): TopCoW images, labels and related graph references. The separate cardiac BR-025 record keeps its historical ID. |
+| Two MRA tasks | [BR-026](research-rounds/BR-026-results.md): synthetic repair passes; unchanged-mask preservation fails with unresolved reference disagreement. |
+| Coronary workflow | [BR-030](research-rounds/BR-030-results.md): real gap repaired, tracing and mesh pass; only CPR distance-axis metadata fails. Both author methods pass. |
+| Airway controls | [BR-033](research-rounds/BR-033-results.md): frozen route/CPR pass, followed by the [scope audit](evidence/br033-scope-audit.json). A02/A03 still have parent gaps and are not intact controls. |
+| Brain resumption | [Five-scan screen](research-rounds/BR-033-brain-resumption.md): checkpoint recovered, no clean hard case admitted. Two-voxel geometric calibration has one reference-background addition; no brain coding-agent trial. |
+
+[Figure provenance](../site/vessel-provenance.json) records exact retained
+PNG/CPR atlas reuse and source terms. [Local viewer links](../site/README.md#vessel-and-airway-session)
+require the retained workspace; the portable chapter needs no native arrays.
+Cleanup consolidates navigation and closes this branch's active-work framing.
+Original predictions, freezes, raw traces and earlier viewer versions remain
+untouched under their retained paths. The [closeout receipt](evidence/vessel-report-closeout.json)
+records the bounded cleanup and 82 matching frozen files. This is a local commit,
+not a deployment.
 
 ## Historical case-32 result
 

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "vessel-connectivity-repair",
+  "title": "Repair one communicating-artery connection from MRA evidence",
+  "status": "parked",
+  "tags": [
+    "brainstorm-round-025",
+    "medical-imaging",
+    "segmentation",
+    "topology",
+    "non-security",
+    "brainstorm-round-026"
+  ],
+  "hypothesis": "Given one small MRA region and a proposed vessel mask, an agent can use image evidence to repair a broken or false connection while preserving an annotated asymmetric or incomplete Circle of Willis configuration.",
+  "why_hard": "Not established. The synthetic gap passes with Terra/high and an ordinary image-guided baseline. The unchanged-case Terra output fails preservation, but follows visible signal omitted from the reference near L-ACA; clinical/anatomical adjudication is unresolved. Published TopCoW errors do not transfer automatically to this binary-mask task.",
+  "next_action": "Bounded feasibility experiment complete; no trial queued. Retain V01 as calibration and hold V02 as a reference disagreement. Any future promotion requires independent review of the added L-ACA-adjacent structure and a separately admitted natural segmentation-model error with reproducible prediction provenance.",
+  "sources": [
+    {
+      "url": "https://arxiv.org/abs/2312.17670",
+      "note": "User-pasted brainstorm citation. Earlier brainstorm session and message IDs were not supplied or retrieved. Historical topology failures motivate screening, not an agent failure claim."
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13496301/",
+      "note": "Updated TopCoW paper; binary/multiclass distinction, annotation protocol, and hypoplastic-vessel handling."
+    },
+    {
+      "url": "https://zenodo.org/records/15692630",
+      "note": "Public paired CTA/MRA image and mask reference source. Four MRA source candidates downloaded and technically checked."
+    },
+    {
+      "url": "https://zenodo.org/records/17358162",
+      "note": "Matching curated centerline graph and node source. Derived from TopCoW masks, not independent anatomical truth."
+    },
+    {
+      "url": "https://zenodo.org/records/15665435",
+      "note": "Potential author-side prediction route through released segmentation containers; not executed."
+    }
+  ],
+  "evidence": [
+    "docs/research-rounds/BR-025-vessel-connectivity.md",
+    "docs/evidence/br025-curation.json",
+    "docs/research-rounds/BR-026-vessel-repair-experiment.md",
+    "docs/research-rounds/BR-026-results.md",
+    "docs/evidence/br026-freeze.json",
+    "docs/evidence/br026-results.json",
+    "docs/evidence/br026-trace-audit.json",
+    "docs/evidence/br026-trace-review.json",
+    "docs/evidence/br026-discrepancy-review.json"
+  ],
+  "notes": "BR-025 curated four technically checked TopCoW MRA references (004, 007, 009, 012); 30 selected files, 211.86 MB, CRC/SHA-256 checked. BR-026 froze a 200-voxel synthetic right-Pcom gap in 007 and unchanged left-only Pcom case 012. Twenty author control observations and four matched Docker oracle/nop controls pass expectations. Two fresh Terra/high runs complete normally on identical frozen bytes: V01 passes in 300.813 s, restores 198/200 voxels, 100% centerline coverage, no collateral edits. V02 fails in 646.152 s after 244 additions (12.903 mm3), but preserves the absent right Pcom and existing branch routes. Added structure contacts only source L-ACA, follows visible signal and lacks independent expert adjudication; retain score failure without claiming a confirmed anatomical reasoning error. Public-input image baseline passes both. Artifact replays match and runtime model/effort metadata agree; no source-answer retrieval observed. No natural prediction error, true false-bridge repair, independent clinical validation or general capability estimate. No retry, Sol escalation, publication or submission promotion."
+}
