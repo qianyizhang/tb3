@@ -146,6 +146,34 @@ class PublicationTests(unittest.TestCase):
             if not path.startswith('runs/'):
                 self.assertEqual(hashlib.sha256((ROOT/path).read_bytes()).hexdigest(),digest,path)
 
+    def test_cardiac_presentation_preserves_independent_mechanics_results(self):
+        figures=json.loads((ROOT/'site/cardiac-figures.json').read_text())
+        evidence=json.loads((ROOT/'docs/evidence/br035-segmentation-mechanics-results.json').read_text())
+        trials={t['condition']:t for t in evidence['trials'] if t['phase']=='sol-xhigh'}
+        self.assertEqual(set(figures['conditions']),{'masks','masks-images'})
+        for name,shown in figures['conditions'].items():
+            grade=trials[name]['grade']
+            for key in ('geometry','material','construction_gates','limits'):
+                self.assertEqual(shown[key],grade[key])
+            self.assertEqual(shown['clinical'],evidence['replays'][name]['grade'])
+            self.assertEqual(shown['mesh_quality'],evidence['posthoc_mesh_quality'][name])
+            self.assertTrue(all(shown['construction_gates'].values()))
+            self.assertFalse(shown['material']['pass_'])
+            self.assertGreater(shown['material']['strain_mae_pp'][2],shown['limits']['strain_mae_pp'])
+            self.assertFalse(shown['clinical']['cavity_function']['myocardial_strain_validated'])
+            material=shown['material']
+            self.assertEqual(set(material['region_coverage']),set(map(str,material['regions'])))
+            for field in ('predicted_regional_engineering_pct','reference_regional_engineering_pct'):
+                self.assertEqual(len(material[field]),30)
+                self.assertTrue(all(len(frame)==len(material['regions']) for frame in material[field]))
+                self.assertTrue(all(len(row)==3 for frame in material[field] for row in frame))
+        provenance=json.loads((ROOT/'site/cardiac-provenance.json').read_text())
+        figure=base64.b64decode(figures['figure'].split(',',1)[1],validate=True)
+        self.assertEqual(hashlib.sha256(figure).hexdigest(),provenance['evidence']['runs/br035-segmentation-mechanics/review/function-comparison.png'])
+        for path,digest in provenance['evidence'].items():
+            if not path.startswith('runs/'):
+                self.assertEqual(hashlib.sha256((ROOT/path).read_bytes()).hexdigest(),digest,path)
+
 
 class LocalReportTests(unittest.TestCase):
     def test_missing_or_incomplete_arrays_leave_portable_report_available(self):

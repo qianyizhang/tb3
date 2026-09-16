@@ -1,0 +1,62 @@
+{
+  "kind": "author_screen_integrity_receipt_not_independent_model_trial",
+  "date": "2026-09-16",
+  "base_git_commit": "3b022a1f21331dbaccb34a80fce710d94b18c30f",
+  "public_inputs": {
+    "one_anchor": {
+      "video_frames": 120,
+      "masks": 4,
+      "manifest_sha256": "ff05a31919f6ee79856ed52efb94aef2ef448f3d6258762fa922296aafa81de2",
+      "all_members_hash_verified": true,
+      "unexpected_files": []
+    },
+    "two_anchors": {
+      "video_frames": 120,
+      "masks": 8,
+      "manifest_sha256": "e88e1ac346489d19bf24a66b0218768240c9436f83b29c6d75d57fffffab7cf6",
+      "all_members_hash_verified": true,
+      "unexpected_files": []
+    }
+  },
+  "code_sha256": {
+    "probes/cardiac-reconstruction/authoring/video_difficulty/refine.py": "b3c5a95ccf343e4806130a99c0eed2467e3a0b00c8a54ad1a738bf7cc409ba19",
+    "probes/cardiac-reconstruction/authoring/video_difficulty/build_viewer.py": "767f8e47d9a03c59538ab88dfa9d59aa099f5adfd0de2a7a38c68723aa4fe149",
+    "probes/cardiac-reconstruction/authoring/video_difficulty/evaluate.py": "891b712da7ecfb6f670fe01d45b82893d6751b82059d3278d034eac2eceb57e6",
+    "probes/cardiac-reconstruction/authoring/video_difficulty/solve.py": "4ef091ef8d775621d2f97b46b8153f83a5b28d1c159b98e8b640d23a9067bb07",
+    "probes/cardiac-reconstruction/authoring/video_difficulty/prepare.py": "cefe7ff67a75308e9af3845bdac993b22e55e24d7039c4aa721bc8a82fa6dc24",
+    "probes/cardiac-reconstruction/authoring/video_difficulty/viewer.html": "8fcf6ce6af28ec7099428036d3edd325c8feacef874218707a761cf35ed237f6",
+    "probes/cardiac-reconstruction/authoring/pilot.py": "164d9eef2c6481ab433371b6a663c2244a3af7fa2008df4bcb6ddff28c9ade95"
+  },
+  "results_sha256": {
+    "evaluation-v1": "8ad69cf42fdccf8a9a0b13177775958e8b7433a097395e58b5d24088b48e3ea1",
+    "evaluation-v2": "f6c09a5241f2e9a9780e5aaaf745d45ceed4a1133e08657585c62c2fc318f65a"
+  },
+  "refinement_receipt": {
+    "kind": "development_informed_public_input_author_method",
+    "script_sha256": "b3c5a95ccf343e4806130a99c0eed2467e3a0b00c8a54ad1a738bf7cc409ba19",
+    "input_manifest_sha256": "ff05a31919f6ee79856ed52efb94aef2ef448f3d6258762fa922296aafa81de2",
+    "prior_prediction_sha256": "7adedf9b821fcab534ce867a7cef9a69acb2b8bb4848e94623dac6fa7df2b9be",
+    "parameters": {
+      "seed_fraction": 0.6,
+      "exterior_band_px": 15,
+      "crop_padding_px": 20,
+      "iterations": 5,
+      "rng_seed": 27
+    },
+    "prediction": {
+      "sha256": "39a24dfec8c6355071a568bffb75953f7a20103f910cc0ac5364891473641e04",
+      "ef_percent": 65.34340832803676,
+      "max_volume_frame_1based": 2,
+      "min_volume_frame_1based": 20
+    },
+    "elapsed_seconds": 27.744522417000553
+  },
+  "environment": {
+    "python": "3.12.13",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "pillow": "11.3.0",
+    "opencv-python-headless": "4.12.0.88"
+  },
+  "solver_isolation": "Source-reviewed public-input-only file access, not OS-isolated or a blind provider trial. The author previously inspected this patient."
+}

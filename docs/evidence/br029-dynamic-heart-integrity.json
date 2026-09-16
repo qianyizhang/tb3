@@ -1,0 +1,116 @@
+{
+  "kind": "local_author_mechanics_screen_integrity",
+  "date": "2026-09-16",
+  "base_git_commit": "3b022a1f21331dbaccb34a80fce710d94b18c30f",
+  "source_cases": [
+    {
+      "case": "patient01_healthy",
+      "files": 90,
+      "bytes": 619548780,
+      "manifest_sha256": "4a7601a513cc82b50ba46765a6a2acd7b1bd95767b04e90ce98cd4e5c2b93ab1",
+      "file_sizes_and_sha256_verified": true
+    },
+    {
+      "case": "patient04_lbbb",
+      "files": 30,
+      "bytes": 38070990,
+      "manifest_sha256": "82ed7ea43c901db2ad2f985a44c65229d4598c82ebcfe1e107231e3653a654c8",
+      "file_sizes_and_sha256_verified": true
+    }
+  ],
+  "reference_mesh_sha256": "dc0295ecbae29d5130c038df56f00460439d282153ec0fa1608ee2e3c5bb66b1",
+  "reference_mesh_bytes": 2467373,
+  "source_label_erratum": "The original patient04 download-manifest source string says patient01; item IDs, file URLs, folder inventory and paths identify patient04_lbbb. Corrected attribution is recorded here; raw manifests are preserved.",
+  "public_input": {
+    "files": 123,
+    "video_frames": 120,
+    "manifest_sha256": "0a9686a5b56c036462a7fa635518fafa17e58e94e210e466acdf22782d0b8889",
+    "all_hashes_verified": true,
+    "later_meshes_present": false
+  },
+  "current_results": {
+    "reference_and_controls": "analysis-v2/results.json",
+    "tissue_fit": "tissue-analysis-v3/results.json"
+  },
+  "superseded": [
+    "analysis-v1: missing directional basis was not masked",
+    "tissue-analysis-v2: same evaluator source-axis issue",
+    "tissue-fit-v1: incomplete linear-solver convergence"
+  ],
+  "analytic_checks": {
+    "rigid_strain_max_abs": 2.220446049250313e-16,
+    "rigid_J_error": 1.1102230246251565e-16,
+    "affine_engineering_error": 0.0,
+    "affine_green_lagrange_error": 0.0,
+    "volume_preserving_J_error": 1.1102230246251565e-16,
+    "identity_gradient_error": 0.0,
+    "superposed_rotation_strain_error": 5.551115123125783e-17
+  },
+  "jacobian_derivative_finite_difference_error": 1.3337209114894222e-10,
+  "code_sha256": {
+    "probes/cardiac-reconstruction/authoring/dynamic_heart/README.md": "a9272b6dcc38cffb6eb8c976da0dfd10214203d912257f1eb9e0b7e3166cffd6",
+    "probes/cardiac-reconstruction/authoring/dynamic_heart/TASK.md": "3bc87f05d8a08f0aa126d16c02e145249a1b871ce705eb35919f1c98117fd85c",
+    "probes/cardiac-reconstruction/authoring/dynamic_heart/analyze.py": "2a3bfd7101fd172a10d3b92ca876b34d0cdaba1f44ea1f523afa8a0b0f47cf0a",
+    "probes/cardiac-reconstruction/authoring/dynamic_heart/build_workbench.py": "745829632f0b5d334c2b30328178961967f722e2b176bf902744ccffe2a703f0",
+    "probes/cardiac-reconstruction/authoring/dynamic_heart/evaluate_tissue.py": "4414abb6a3fd3761def567bd88796617010009a133672b36456b5202ed48a169",
+    "probes/cardiac-reconstruction/authoring/dynamic_heart/export_model.py": "0161a25647b796ccc6f71e2859e4f1c89c33576eaaae041bedaf922f173abc0c",
+    "probes/cardiac-reconstruction/authoring/dynamic_heart/fetch_straus.py": "aca7990d8de48db6ba0ca136ccc1b6efb84853454bf42a197412f6a6dc934791",
+    "probes/cardiac-reconstruction/authoring/dynamic_heart/fit_tissue.py": "c1f78a66ce4495073027900f6699a4ab7eab1cb67545b54b5eef6e6373e5db4b",
+    "probes/cardiac-reconstruction/authoring/dynamic_heart/fit_video.py": "8a7dd72e4160024d47ff80983bb015feb3b2f9812cc3af5263528c49c8bd3fb1",
+    "probes/cardiac-reconstruction/authoring/dynamic_heart/make_figure.py": "df406a91f1e05b82aa8e26d6dcb2bd9df0a350b8e9ddad7f3665b7bdfda26135",
+    "probes/cardiac-reconstruction/authoring/dynamic_heart/mechanics.py": "b6b775861f02feff7cf1ec30e38fe6460c2d6fda5fc3bd26eb16bb10d436c8bb",
+    "probes/cardiac-reconstruction/authoring/dynamic_heart/prepare_video.py": "acce03f4c2a256b403cdd89559779fdd398b149f41d804bc707f1be8fcdb9bf9",
+    "probes/cardiac-reconstruction/authoring/dynamic_heart/workbench.html": "ed4a527d00a61736ecfbbd797ab301193b3c1af246f41ccc7c736bb9c8aa9bfa"
+  },
+  "final_results_sha256": {
+    "analysis-v2/results.json": "cc1da908f5aa8172eedd18aabf72f6915ae398ff13ec06b71d3fe8d05f23deae",
+    "tissue-analysis-v3/results.json": "2401da9c2d3a637935153ccf6fe2c7f0db81c3c2c87c3f6bf8a2c0d2aa42d43b"
+  },
+  "all_87_tissue_linear_solves_converged": true,
+  "provider_trial": false,
+  "clinical_validation": false,
+  "source_assets_redistributed": false,
+  "exported_model": {
+    "metadata": {
+      "kind": "author_video_fitted_material_model",
+      "coordinates": "mm, canonical source anatomical frame",
+      "units": {
+        "F": "dimensionless",
+        "E": "dimensionless",
+        "engineering": "dimensionless",
+        "J": "ratio"
+      },
+      "reference_frame_1based": 1,
+      "frame_duration_seconds": null,
+      "direction_order": [
+        "longitudinal",
+        "circumferential",
+        "radial"
+      ],
+      "status": "Development kinematic fit; does not pass all provisional accuracy targets; not a force-balanced electromechanical model",
+      "source_model_sha256": "285d814709ccb37d4d0cd0678211bf6af525dea10175294da63d3f3b873b8e98"
+    },
+    "sha256": "2af4dce6e931d5a4026be2ca4445421bba3877f3baf23268906e5e59afb192a0",
+    "bytes": 102669559
+  },
+  "browser_checks": {
+    "playback": true,
+    "phase_scrubbing": true,
+    "cutaway": true,
+    "region_selection": true,
+    "strain_definition_switch": true,
+    "model_comparison": true,
+    "unrelated_case_video_hidden": true,
+    "errors_seen": []
+  },
+  "regional_material_point_rmse_mm": {
+    "video_affine": {
+      "lv_labelled_vertices": 2.3138769455768124,
+      "rv_or_unassigned_vertices": 5.277452907356443
+    },
+    "tissue_fit": {
+      "lv_labelled_vertices": 1.666993676857901,
+      "rv_or_unassigned_vertices": 6.100309671296213
+    }
+  }
+}

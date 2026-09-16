@@ -1,0 +1,1190 @@
+{
+  "round": "BR-031",
+  "status": "completed L0/L1; L1V awaiting explicit approval",
+  "remaining_action": {
+    "recorded_at": "2026-09-16T11:56:48.406306+00:00",
+    "status": "awaiting fresh explicit user approval",
+    "action": "run_trial.py l1v sol-xhigh",
+    "attempted_launches": 2,
+    "model_job_created": false,
+    "reasons": [
+      "Automatic approval review cited AGENTS.md new-user-request requirement.",
+      "After the current user request and AGENTS.md were rechecked, automatic approval review still treated the authorization as untrusted quoted transcript content."
+    ],
+    "ready": {
+      "task_frozen": true,
+      "oracle_reward": 1,
+      "nop_reward": 0,
+      "native_volume_roundtrip_verified": true,
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "max_agent_seconds": 1800
+    },
+    "handling": "No workaround or indirect launch. Fresh explicit user approval requested; complete unaffected reports."
+  },
+  "source": "One STRAUS simulated healthy cycle; prior author exposure; no independent clinical data",
+  "user_source_context": "Hierarchy pasted by user from another chat. That chat was not identified or opened; no additional provenance is inferred.",
+  "wrappers": {
+    "controls_harbor": "0.18.0",
+    "models_harbor": "0.14.0",
+    "verifier": "identical separate-container frozen task files within each condition"
+  },
+  "trials": [
+    {
+      "stage": "l0",
+      "phase": "nop",
+      "result_path": "runs/br031-cardiac-l0-nop-v1-20260916/cardiac-l0__D4h6HLw/result.json",
+      "result_sha256": "3c8c875e0f07926701db34eb5107e5f41d3e96fcf517b5fc0d3b4237b6e09968",
+      "task_checksum": "60b280dbe9a24cecdaeff875581b055ad5468b2da3bce19c529f73d5d5410e7f",
+      "freeze_sha256": "9d070c1e4876162efc4713b94125a75cbe17f825a7a96bbcdfb47ad7c2db92b8",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "total_seconds": 27.312426,
+      "agent_seconds": 9.1e-05,
+      "grade": {
+        "source": {
+          "pass_": false,
+          "reason": "FileNotFoundError: [Errno 2] No such file or directory: '/app/answer/fields.npz'"
+        },
+        "analytic": {
+          "pass_": false,
+          "reason": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmp0vz34c6s/fields.npz'",
+          "exit_code": 2
+        },
+        "reward": 0
+      },
+      "artifacts": {},
+      "usage": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null
+      }
+    },
+    {
+      "stage": "l0",
+      "phase": "oracle",
+      "result_path": "runs/br031-cardiac-l0-oracle-v1-20260916/cardiac-l0__7nyqd8D/result.json",
+      "result_sha256": "4a59abcecc744dd6b33fb7c500b2feee21ac9a652bde00aec49d1e5f63d6ac86",
+      "task_checksum": "60b280dbe9a24cecdaeff875581b055ad5468b2da3bce19c529f73d5d5410e7f",
+      "freeze_sha256": "9d070c1e4876162efc4713b94125a75cbe17f825a7a96bbcdfb47ad7c2db92b8",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "total_seconds": 235.58139,
+      "agent_seconds": 5.039849,
+      "grade": {
+        "source": {
+          "pass_": true,
+          "max_absolute_errors": {
+            "F": 5.134781488891349e-15,
+            "E": 3.3861802251067274e-15,
+            "J": 2.220446049250313e-15,
+            "engineering": 3.3306690738754696e-15
+          }
+        },
+        "analytic": {
+          "pass_": true,
+          "max_absolute_errors": {
+            "F": 0.0,
+            "E": 1.1102230246251565e-16,
+            "J": 4.440892098500626e-16,
+            "engineering": 0.0
+          },
+          "exit_code": 0
+        },
+        "reward": 1
+      },
+      "artifacts": {
+        "fields.npz": "f04ff6e9c20582ed4c4cb9ae0c47f681bb7773057e0f854751c979f0a78ccf5b",
+        "solve.py": "260bb2c8260e6ebed24aaa289c6f5b8a4608efa09918917d9ad69aa437cfa805"
+      },
+      "usage": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null
+      },
+      "independent_replay_matches": true
+    },
+    {
+      "stage": "l0",
+      "phase": "terra-high",
+      "result_path": "runs/br031-cardiac-l0-terra-high-v1-20260916/cardiac-l0__newvKfk/result.json",
+      "result_sha256": "0cc66bd6149a6eb01d6230605aed2ae0182ee52ed4fdc4226a4fa80be9824868",
+      "task_checksum": "60b280dbe9a24cecdaeff875581b055ad5468b2da3bce19c529f73d5d5410e7f",
+      "freeze_sha256": "9d070c1e4876162efc4713b94125a75cbe17f825a7a96bbcdfb47ad7c2db92b8",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "total_seconds": 142.814922,
+      "agent_seconds": 81.092586,
+      "grade": {
+        "source": {
+          "pass_": true,
+          "max_absolute_errors": {
+            "F": 0.0,
+            "E": 0.0,
+            "J": 1.7763568394002505e-15,
+            "engineering": 4.440892098500626e-16
+          }
+        },
+        "analytic": {
+          "pass_": true,
+          "max_absolute_errors": {
+            "F": 0.0,
+            "E": 0.0,
+            "J": 4.440892098500626e-16,
+            "engineering": 0.0
+          },
+          "exit_code": 0
+        },
+        "reward": 1
+      },
+      "artifacts": {
+        "__pycache__/solve.cpython-312.pyc": "092e9c65b1c92fe072bb25d262ccdce72c0da19c75e7fe73bb19d69de5310ed8",
+        "fields.npz": "fb5cae9789321d36a272ff941f5ab2cea1b0f401cde2ce33d522ec4264e7e75a",
+        "method.md": "83bd83f31eb41fd9090f85fee245a2bdf4dcbe2974004f752822a1c0fece80f0",
+        "solve.py": "528489504e8b20134baa28a0e34de981c9184c319eb3df97bb54cafe0c322620"
+      },
+      "usage": {
+        "n_input_tokens": 81975,
+        "n_cache_tokens": 69376,
+        "n_output_tokens": 3457,
+        "cost_usd": 0.0805572
+      },
+      "independent_replay_matches": true,
+      "requested_model": "gpt-5.6-terra",
+      "requested_effort": "high",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-terra",
+          "effort": "high"
+        }
+      ],
+      "frozen_instruction_seen": true,
+      "session_files": [
+        {
+          "path": "runs/br031-cardiac-l0-terra-high-v1-20260916/cardiac-l0__newvKfk/agent/sessions/2026/09/16/rollout-2026-09-16T11-16-29-01a0a9ee-b7b9-7cb0-93e1-3ccbb36c5e94.jsonl",
+          "sha256": "f79adc3961ac17b24b3db6dc0c2d042f508aab746cea2035bbff4b2ddb806243"
+        }
+      ],
+      "tool_call_counts": {},
+      "external_or_delegation_command_candidates": 0,
+      "runtime_matches_request": true
+    },
+    {
+      "stage": "l1",
+      "phase": "nop",
+      "result_path": "runs/br031-cardiac-l1-nop-v1-20260916/cardiac-l1__33mRFKQ/result.json",
+      "result_sha256": "08aa28ca74b1922de961efc5d9b7aa7a963ab74707abab5024b73cb74e054c7c",
+      "task_checksum": "7d51aa5dc248eb08f871b05aef0d3ce01343dd4f9a5339213168aec86373941c",
+      "freeze_sha256": "9a3c6a5eb4c4108cc4647ef700725ad6fbdbdba7ed770c579842097ecd16efc3",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "total_seconds": 26.1206,
+      "agent_seconds": 9e-05,
+      "grade": {
+        "reward": 0,
+        "reason": "FileNotFoundError: [Errno 2] No such file or directory: '/app/answer/prediction.npz'"
+      },
+      "artifacts": {},
+      "usage": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null
+      }
+    },
+    {
+      "stage": "l1",
+      "phase": "oracle",
+      "result_path": "runs/br031-cardiac-l1-oracle-v1-20260916/cardiac-l1__x5qFNVE/result.json",
+      "result_sha256": "b35b3c9832e5365838a9b5815a225703880b3f9d24d8afb214a748e4f921424f",
+      "task_checksum": "7d51aa5dc248eb08f871b05aef0d3ce01343dd4f9a5339213168aec86373941c",
+      "freeze_sha256": "9a3c6a5eb4c4108cc4647ef700725ad6fbdbdba7ed770c579842097ecd16efc3",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "total_seconds": 30.933427,
+      "agent_seconds": 0.17622,
+      "grade": {
+        "reward": 1,
+        "deformation_pass": true,
+        "mechanics_pass": true,
+        "complete_pass": true,
+        "geometry_gates": {
+          "observed": true,
+          "unseen": true,
+          "surface": true,
+          "tissue_volume": true,
+          "material_motion": true,
+          "topology": true
+        },
+        "mechanics_gates": {
+          "strain": true,
+          "regional_peak": true,
+          "regional_timing": true
+        },
+        "metrics": {
+          "observed_dice_mean": 1.0,
+          "unseen_dice_mean": 1.0,
+          "plane_dice_mean": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "plane_dice_min": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface_sample_mean_mm": 0.0,
+          "surface_sample_p95_mm": 0.0,
+          "tissue_volume_error_pct": 0.0,
+          "material_rmse_mm": 0.0,
+          "lv_material_rmse_mm": 0.0,
+          "rv_unassigned_material_rmse_mm": 0.0,
+          "material_error_p95_mm": 0.0,
+          "strain_mae_pp": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "regional_peak_mae_pp": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "regional_timing_mean_frames": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "inverted_elements": 0,
+          "J_min": 0.616700573853556,
+          "J_max": 1.5016968102301287,
+          "initial_max_mm": 0.0
+        },
+        "limits": {
+          "observed_dice": 0.9,
+          "unseen_dice": 0.85,
+          "surface_mean_mm": 2.0,
+          "surface_p95_mm": 5.0,
+          "tissue_volume_error_pct": 5.0,
+          "material_rmse_mm": 2.0,
+          "strain_mae_pp": 5.0,
+          "peak_mae_pp": 5.0,
+          "timing_mean_frames": 2.0
+        }
+      },
+      "artifacts": {
+        "prediction.npz": "27dbfb739fbb832e734fbde7fc4f076c09f5e99e9678386c40b039a0d76fb662"
+      },
+      "usage": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null
+      },
+      "independent_replay_matches": true
+    },
+    {
+      "stage": "l1",
+      "phase": "sol-xhigh",
+      "result_path": "runs/br031-cardiac-l1-sol-xhigh-v1-20260916/cardiac-l1__PrzVoqh/result.json",
+      "result_sha256": "8ca7d5f6a03c33b949db0cde9cf2fdb68a6ac2b49a896817bf67c15a664e7fec",
+      "task_checksum": "7d51aa5dc248eb08f871b05aef0d3ce01343dd4f9a5339213168aec86373941c",
+      "freeze_sha256": "9a3c6a5eb4c4108cc4647ef700725ad6fbdbdba7ed770c579842097ecd16efc3",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "total_seconds": 1063.507898,
+      "agent_seconds": 998.000471,
+      "grade": {
+        "reward": 0,
+        "deformation_pass": false,
+        "mechanics_pass": false,
+        "complete_pass": false,
+        "geometry_gates": {
+          "observed": false,
+          "unseen": true,
+          "surface": true,
+          "tissue_volume": true,
+          "material_motion": false,
+          "topology": true
+        },
+        "mechanics_gates": {
+          "strain": false,
+          "regional_peak": false,
+          "regional_timing": true
+        },
+        "metrics": {
+          "observed_dice_mean": 0.884247248860211,
+          "unseen_dice_mean": 0.8812903020202902,
+          "plane_dice_mean": [
+            0.890132892373599,
+            0.9191674882708983,
+            0.8607174628186696,
+            0.8669711519776772,
+            0.9082490298785805,
+            0.9032112974486398,
+            0.8305868476021926,
+            0.8831140331517481
+          ],
+          "plane_dice_min": [
+            0.8489834293101423,
+            0.8497678229991805,
+            0.8131253362022592,
+            0.7923890063424948,
+            0.8484772212433929,
+            0.8287055667337357,
+            0.7353179424868368,
+            0.8297959742571546
+          ],
+          "surface_sample_mean_mm": 1.3227712708012023,
+          "surface_sample_p95_mm": 3.129527392355144,
+          "tissue_volume_error_pct": 0.9365449772410802,
+          "material_rmse_mm": 3.6588393799014054,
+          "lv_material_rmse_mm": 1.7727072439813152,
+          "rv_unassigned_material_rmse_mm": 5.422238181530362,
+          "material_error_p95_mm": 8.247325972329685,
+          "strain_mae_pp": [
+            3.428914532983445,
+            3.9715555419540456,
+            5.391039329875563
+          ],
+          "regional_peak_mae_pp": [
+            3.712373365355492,
+            4.351962361101481,
+            9.311488133693429
+          ],
+          "regional_timing_mean_frames": [
+            1.1176470588235294,
+            1.411764705882353,
+            0.7647058823529411
+          ],
+          "inverted_elements": 0,
+          "J_min": 0.5918169795425027,
+          "J_max": 1.3664897937743758,
+          "initial_max_mm": 0.0
+        },
+        "limits": {
+          "observed_dice": 0.9,
+          "unseen_dice": 0.85,
+          "surface_mean_mm": 2.0,
+          "surface_p95_mm": 5.0,
+          "tissue_volume_error_pct": 5.0,
+          "material_rmse_mm": 2.0,
+          "strain_mae_pp": 5.0,
+          "peak_mae_pp": 5.0,
+          "timing_mean_frames": 2.0
+        }
+      },
+      "artifacts": {
+        "__pycache__/solve.cpython-312.pyc": "b6ad941b6ec9774ad7accc91357830c148c05c72a87afea1be3ca9dd09c12680",
+        "method.md": "19e5836a8b7ce40d04695b489b82b71053f391ba814cb417a2bcb1288ff7206f",
+        "prediction.npz": "b6c49b59219d641848676f3a6d0445e050f744546583b7aa798645705c9128eb",
+        "solve.py": "24dd30d77b92313d358201df674ca2128dfe04d98cd315531e311b65ec275322"
+      },
+      "usage": {
+        "n_input_tokens": 2341359,
+        "n_cache_tokens": 2249088,
+        "n_output_tokens": 38058,
+        "cost_usd": 2.0298792
+      },
+      "independent_replay_matches": true,
+      "requested_model": "gpt-5.6-sol",
+      "requested_effort": "xhigh",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "frozen_instruction_seen": true,
+      "session_files": [
+        {
+          "path": "runs/br031-cardiac-l1-sol-xhigh-v1-20260916/cardiac-l1__PrzVoqh/agent/sessions/2026/09/16/rollout-2026-09-16T11-35-08-01a0a9ff-cd34-7030-845b-7205525ceca6.jsonl",
+          "sha256": "c1263070407c8f7dc21fa4239600d0c84f3741f520c0f61c494be54de14f2cfe"
+        }
+      ],
+      "tool_call_counts": {
+        "wait": 1
+      },
+      "external_or_delegation_command_candidates": 0,
+      "runtime_matches_request": true
+    },
+    {
+      "stage": "l1",
+      "phase": "terra-high",
+      "result_path": "runs/br031-cardiac-l1-terra-high-v1-20260916/cardiac-l1__Qr4D8z3/result.json",
+      "result_sha256": "e73a4ca90139ef13cbafa9877fac541244f66e4a431815149ce2bb948b882b9e",
+      "task_checksum": "7d51aa5dc248eb08f871b05aef0d3ce01343dd4f9a5339213168aec86373941c",
+      "freeze_sha256": "9a3c6a5eb4c4108cc4647ef700725ad6fbdbdba7ed770c579842097ecd16efc3",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "total_seconds": 875.395233,
+      "agent_seconds": 811.75989,
+      "grade": {
+        "reward": 0,
+        "deformation_pass": false,
+        "mechanics_pass": false,
+        "complete_pass": false,
+        "geometry_gates": {
+          "observed": false,
+          "unseen": false,
+          "surface": false,
+          "tissue_volume": true,
+          "material_motion": false,
+          "topology": true
+        },
+        "mechanics_gates": {
+          "strain": false,
+          "regional_peak": false,
+          "regional_timing": false
+        },
+        "metrics": {
+          "observed_dice_mean": 0.8227749539869629,
+          "unseen_dice_mean": 0.7706834291993834,
+          "plane_dice_mean": [
+            0.8067275194114247,
+            0.8633352392706247,
+            0.818680269421873,
+            0.8023567878439289,
+            0.7792448506362061,
+            0.8168745913573596,
+            0.7213498735745337,
+            0.765264401229434
+          ],
+          "plane_dice_min": [
+            0.5719701756603058,
+            0.6884185773074663,
+            0.6739430147058824,
+            0.5932700993676604,
+            0.6045999173667539,
+            0.6190476190476191,
+            0.48269781794137095,
+            0.5670905787697897
+          ],
+          "surface_sample_mean_mm": 1.8061258343392885,
+          "surface_sample_p95_mm": 5.224265394591341,
+          "tissue_volume_error_pct": 1.9725455171571447,
+          "material_rmse_mm": 4.909629202412904,
+          "lv_material_rmse_mm": 4.241721680288416,
+          "rv_unassigned_material_rmse_mm": 5.801607381324377,
+          "material_error_p95_mm": 10.602494050286982,
+          "strain_mae_pp": [
+            5.519158023014919,
+            8.661443285272084,
+            12.8731156957736
+          ],
+          "regional_peak_mae_pp": [
+            5.9299127546881945,
+            7.315356795457092,
+            25.55532423956462
+          ],
+          "regional_timing_mean_frames": [
+            5.823529411764706,
+            5.823529411764706,
+            4.117647058823529
+          ],
+          "inverted_elements": 0,
+          "J_min": 0.0041296267903563255,
+          "J_max": 2.0255227156086635,
+          "initial_max_mm": 0.0
+        },
+        "limits": {
+          "observed_dice": 0.9,
+          "unseen_dice": 0.85,
+          "surface_mean_mm": 2.0,
+          "surface_p95_mm": 5.0,
+          "tissue_volume_error_pct": 5.0,
+          "material_rmse_mm": 2.0,
+          "strain_mae_pp": 5.0,
+          "peak_mae_pp": 5.0,
+          "timing_mean_frames": 2.0
+        }
+      },
+      "artifacts": {
+        "check_f01.png": "0acb22d46e1ed848224ecc2fec865721a133d2166fe1453da5e64fa2e46be3d1",
+        "check_f10.png": "9e502467e6d63f29c7887f9f433f42c3c90c9d9aa150c02b6aaeeba0b088ffcc",
+        "check_f15.png": "29e89bab25cfa5c6c1398dede6bf9247b25a4eaec16772533ca12a165fb85044",
+        "contact.png": "daef5a28b698c9452f4dfb35cc7e0cef427c999c104d691ed7641ed1df3acdda",
+        "diagnostics.npz": "c552513be5bbefe71bd8a5dc5a64c48638f7c43bd1e7334158dc09c7a0b90621",
+        "finalcheck.png": "906e7926a8efbc7a4553c3f0fe377105cf318ccc95bb5ac9aad16ac1a55792cb",
+        "flow.png": "8051a3a5c4505625912dc10a7c5d24498e1c9a22e93fe4906e40df6ec4956060",
+        "latest.log": "5b85d7ec9acc7dbf45425f4f4dfe1edae66fcfe37668606c2d5d3b01d03e506e",
+        "mask0.png": "81effb31df641ca83b4177942e2fcac5d9f666bb0ee8cbe56a2c7086d4cda8e2",
+        "mask1.png": "9a104302f23f419870739d6cdcaaa45b3ab4125feb8afc0341c40cc8639853f3",
+        "mask2.png": "02b6913a57869cee61f4f1f90b9de64f77731ed967165c0d0d4ab3aaa1111e5f",
+        "method.md": "c567fe419678b3822f86f1b1414d14ff3c3f6c128ab91d40459553037db1423c",
+        "over0.png": "088ed4b18a63c19c74c9c486439a62a2ffe222ad5505200f23cd9e917316dcfe",
+        "over1.png": "96f3bfddd31aaee5dadd2b3af68e2b862e272a5f4d1436fcc13a3b6f3d41195f",
+        "over2.png": "b3d92bea82a102788044f978b42e4dc7d8d6540df1d4d02340d8ab862d77df14",
+        "prediction.npz": "814e6c18e7625e3c4d8f6cd2870645e7278f0927cd8aeeb60f8bc0deb8ad0ae8",
+        "run.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "run2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "solve.py": "0a231ef3fba030345bbdfc79b15207033daa8b3cc9a513eef31ef8cd81619c05"
+      },
+      "usage": {
+        "n_input_tokens": 1824518,
+        "n_cache_tokens": 1719936,
+        "n_output_tokens": 25224,
+        "cost_usd": 0.8558391999999999
+      },
+      "independent_replay_matches": true,
+      "requested_model": "gpt-5.6-terra",
+      "requested_effort": "high",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-terra",
+          "effort": "high"
+        }
+      ],
+      "frozen_instruction_seen": true,
+      "session_files": [
+        {
+          "path": "runs/br031-cardiac-l1-terra-high-v1-20260916/cardiac-l1__Qr4D8z3/agent/sessions/2026/09/16/rollout-2026-09-16T11-19-24-01a0a9f1-6621-75b3-9cfe-e6d5f1505683.jsonl",
+          "sha256": "2edf3fb46280fcde4566c89e22985383c1e58959362b1969fa794e58d52b6260"
+        }
+      ],
+      "tool_call_counts": {},
+      "external_or_delegation_command_candidates": 0,
+      "runtime_matches_request": true
+    },
+    {
+      "stage": "l1v",
+      "phase": "nop",
+      "result_path": "runs/br031-cardiac-l1v-nop-v1-20260916/cardiac-l1v__wsMDUBq/result.json",
+      "result_sha256": "5670b15767817e501be82cb5f706b21f1ffbe802c3ec02e1e50c4e920bc662a9",
+      "task_checksum": "182cfbaead5cb0b8986f65c47aff1bc6da5ce1b2c88d477fa7d11dac8645fa8f",
+      "freeze_sha256": "d740229c7b9c384c7ca507ffe50d8a8218b9de7c6bcdb4f0020745b221402942",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "total_seconds": 24.846121,
+      "agent_seconds": 0.000105,
+      "grade": {
+        "reward": 0,
+        "reason": "FileNotFoundError: [Errno 2] No such file or directory: '/app/answer/prediction.npz'"
+      },
+      "artifacts": {},
+      "usage": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null
+      }
+    },
+    {
+      "stage": "l1v",
+      "phase": "oracle",
+      "result_path": "runs/br031-cardiac-l1v-oracle-v1-20260916/cardiac-l1v__bAUSrWC/result.json",
+      "result_sha256": "e3bfa2708155bf5a8d148c152e01a83ca7b6feccc82f3b2b5c3248a0ea4e8dc1",
+      "task_checksum": "182cfbaead5cb0b8986f65c47aff1bc6da5ce1b2c88d477fa7d11dac8645fa8f",
+      "freeze_sha256": "d740229c7b9c384c7ca507ffe50d8a8218b9de7c6bcdb4f0020745b221402942",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "total_seconds": 31.593003,
+      "agent_seconds": 0.176298,
+      "grade": {
+        "reward": 1,
+        "deformation_pass": true,
+        "mechanics_pass": true,
+        "complete_pass": true,
+        "geometry_gates": {
+          "observed": true,
+          "unseen": true,
+          "surface": true,
+          "tissue_volume": true,
+          "material_motion": true,
+          "topology": true
+        },
+        "mechanics_gates": {
+          "strain": true,
+          "regional_peak": true,
+          "regional_timing": true
+        },
+        "metrics": {
+          "observed_dice_mean": 1.0,
+          "unseen_dice_mean": 1.0,
+          "plane_dice_mean": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "plane_dice_min": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "surface_sample_mean_mm": 0.0,
+          "surface_sample_p95_mm": 0.0,
+          "tissue_volume_error_pct": 0.0,
+          "material_rmse_mm": 0.0,
+          "lv_material_rmse_mm": 0.0,
+          "rv_unassigned_material_rmse_mm": 0.0,
+          "material_error_p95_mm": 0.0,
+          "strain_mae_pp": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "regional_peak_mae_pp": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "regional_timing_mean_frames": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "inverted_elements": 0,
+          "J_min": 0.616700573853556,
+          "J_max": 1.5016968102301287,
+          "initial_max_mm": 0.0
+        },
+        "limits": {
+          "observed_dice": 0.9,
+          "unseen_dice": 0.85,
+          "surface_mean_mm": 2.0,
+          "surface_p95_mm": 5.0,
+          "tissue_volume_error_pct": 5.0,
+          "material_rmse_mm": 2.0,
+          "strain_mae_pp": 5.0,
+          "peak_mae_pp": 5.0,
+          "timing_mean_frames": 2.0
+        }
+      },
+      "artifacts": {
+        "prediction.npz": "27dbfb739fbb832e734fbde7fc4f076c09f5e99e9678386c40b039a0d76fb662"
+      },
+      "usage": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null
+      },
+      "independent_replay_matches": true
+    }
+  ],
+  "image_audits": [
+    {
+      "path": "runs/br031-cardiac-levels/l1-sol-xhigh-image-audit.json",
+      "sha256": "831dfa7304653918e1c9a2e9075729677fe0733bc666468aee00ce4eb6924732",
+      "stage": "l1",
+      "image_id": "sha256:217d7b31f98fab72e42214d81a8a67a2d27637407098f2f7fee5a2d7fcb0a2de",
+      "allowed_files": 122
+    },
+    {
+      "path": "runs/br031-cardiac-levels/l1-terra-high-image-audit.json",
+      "sha256": "27ee10f349e2fd96f8d4321042b081150bb3953119c77e431358b81f88b04d35",
+      "stage": "l1",
+      "image_id": "sha256:b80c5600a8b5178eb2080b4042a80f14b88f25faa8a88fc688f2b939a64c6f62",
+      "allowed_files": 122
+    }
+  ],
+  "observation_coverage": {
+    "definition": "Initial material vertices within 1.5 mm of a supplied plane and its image field of view; geometric proximity, not proof of usable image correspondence.",
+    "total_vertices": 11370,
+    "vertices_near_any_plane": 1636,
+    "fraction_near_any": 0.14388742304309587,
+    "vertices_near_each_plane": [
+      402,
+      321,
+      481,
+      483
+    ],
+    "LV": {
+      "vertices": 6934,
+      "fraction_near_any": 0.16483991923853475
+    },
+    "RV_unassigned": {
+      "vertices": 4436,
+      "fraction_near_any": 0.11113615870153291
+    }
+  },
+  "volume_input_check": {
+    "frames_1based": [
+      1,
+      11,
+      20,
+      30
+    ],
+    "planes": 4,
+    "pixel_max_absolute_error": 0,
+    "volume_to_png_geometry_and_intensity_match": true,
+    "volume_files": 30
+  },
+  "section_checks": {
+    "rigid_pose_invariant": true,
+    "analytical_tetra_interior": true,
+    "analytical_tetra_exterior": true,
+    "local_matmul_warning": "macOS matmul raised warnings on finite inputs; direct einsum matched dot results exactly, all result values finite"
+  },
+  "original_author_baselines": {
+    "oracle": {
+      "reward": 1,
+      "deformation_pass": true,
+      "mechanics_pass": true,
+      "complete_pass": true,
+      "geometry_gates": {
+        "observed": true,
+        "unseen": true,
+        "surface": true,
+        "tissue_volume": true,
+        "material_motion": true,
+        "topology": true
+      },
+      "mechanics_gates": {
+        "strain": true,
+        "regional_peak": true,
+        "regional_timing": true
+      },
+      "metrics": {
+        "observed_dice_mean": 1.0,
+        "unseen_dice_mean": 1.0,
+        "plane_dice_mean": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "plane_dice_min": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "surface_sample_mean_mm": 0.0,
+        "surface_sample_p95_mm": 0.0,
+        "tissue_volume_error_pct": 0.0,
+        "material_rmse_mm": 0.0,
+        "lv_material_rmse_mm": 0.0,
+        "rv_unassigned_material_rmse_mm": 0.0,
+        "material_error_p95_mm": 0.0,
+        "strain_mae_pp": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "regional_peak_mae_pp": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "regional_timing_mean_frames": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "inverted_elements": 0,
+        "J_min": 0.616700573853556,
+        "J_max": 1.5016968102301287,
+        "initial_max_mm": 0.0
+      },
+      "limits": {
+        "observed_dice": 0.9,
+        "unseen_dice": 0.85,
+        "surface_mean_mm": 2.0,
+        "surface_p95_mm": 5.0,
+        "tissue_volume_error_pct": 5.0,
+        "material_rmse_mm": 2.0,
+        "strain_mae_pp": 5.0,
+        "peak_mae_pp": 5.0,
+        "timing_mean_frames": 2.0
+      }
+    },
+    "affine": {
+      "reward": 0,
+      "deformation_pass": false,
+      "mechanics_pass": false,
+      "complete_pass": false,
+      "geometry_gates": {
+        "observed": false,
+        "unseen": false,
+        "surface": true,
+        "tissue_volume": false,
+        "material_motion": false,
+        "topology": true
+      },
+      "mechanics_gates": {
+        "strain": false,
+        "regional_peak": false,
+        "regional_timing": false
+      },
+      "metrics": {
+        "observed_dice_mean": 0.8321981852229267,
+        "unseen_dice_mean": 0.8324442993014223,
+        "plane_dice_mean": [
+          0.847903470889976,
+          0.8766819646131018,
+          0.8063918790910267,
+          0.7978154262976016,
+          0.872770513418947,
+          0.8668616581568155,
+          0.7896915517273853,
+          0.8004534739025417
+        ],
+        "plane_dice_min": [
+          0.708895245879308,
+          0.7669724770642202,
+          0.6440838564491295,
+          0.6378565254969749,
+          0.7569905762397652,
+          0.7314800434850132,
+          0.6373809523809524,
+          0.6484574016416643
+        ],
+        "surface_sample_mean_mm": 1.4995089108964426,
+        "surface_sample_p95_mm": 4.152346787864151,
+        "tissue_volume_error_pct": 11.90627440823719,
+        "material_rmse_mm": 3.7591765721127537,
+        "lv_material_rmse_mm": 2.3138769455768124,
+        "rv_unassigned_material_rmse_mm": 5.277452907356443,
+        "material_error_p95_mm": 7.977338109168164,
+        "strain_mae_pp": [
+          2.562618842241552,
+          3.528392969783578,
+          16.672138861247245
+        ],
+        "regional_peak_mae_pp": [
+          3.2077165846681273,
+          3.164987190204409,
+          30.019912843636813
+        ],
+        "regional_timing_mean_frames": [
+          0.17647058823529413,
+          1.0,
+          17.41176470588235
+        ],
+        "inverted_elements": 0,
+        "J_min": 0.6529991031663295,
+        "J_max": 1.0537847292212987,
+        "initial_max_mm": 3.552713678800501e-15
+      },
+      "limits": {
+        "observed_dice": 0.9,
+        "unseen_dice": 0.85,
+        "surface_mean_mm": 2.0,
+        "surface_p95_mm": 5.0,
+        "tissue_volume_error_pct": 5.0,
+        "material_rmse_mm": 2.0,
+        "strain_mae_pp": 5.0,
+        "peak_mae_pp": 5.0,
+        "timing_mean_frames": 2.0
+      }
+    },
+    "tissue": {
+      "reward": 0,
+      "deformation_pass": false,
+      "mechanics_pass": false,
+      "complete_pass": false,
+      "geometry_gates": {
+        "observed": false,
+        "unseen": true,
+        "surface": true,
+        "tissue_volume": true,
+        "material_motion": false,
+        "topology": true
+      },
+      "mechanics_gates": {
+        "strain": false,
+        "regional_peak": false,
+        "regional_timing": true
+      },
+      "metrics": {
+        "observed_dice_mean": 0.8795946924995485,
+        "unseen_dice_mean": 0.888242530693681,
+        "plane_dice_mean": [
+          0.8810077227574605,
+          0.92864883314145,
+          0.8808207908203508,
+          0.8279014232789333,
+          0.9200985206111784,
+          0.9003964074777916,
+          0.8388097923238441,
+          0.8936654023619099
+        ],
+        "plane_dice_min": [
+          0.8435981615233092,
+          0.9024,
+          0.8215394497377154,
+          0.7812134735947296,
+          0.8712669970771382,
+          0.8141638666322047,
+          0.7372667675239536,
+          0.8597820937944103
+        ],
+        "surface_sample_mean_mm": 1.3058445595899264,
+        "surface_sample_p95_mm": 3.4431224283930204,
+        "tissue_volume_error_pct": 1.352577005638151,
+        "material_rmse_mm": 4.026615385554083,
+        "lv_material_rmse_mm": 1.666993676857901,
+        "rv_unassigned_material_rmse_mm": 6.100309671296213,
+        "material_error_p95_mm": 9.40317054383468,
+        "strain_mae_pp": [
+          4.936190701030112,
+          5.96521626637918,
+          6.7889630643926795
+        ],
+        "regional_peak_mae_pp": [
+          3.839938192443648,
+          4.966082767581437,
+          8.066922848529934
+        ],
+        "regional_timing_mean_frames": [
+          1.0,
+          0.7647058823529411,
+          0.47058823529411764
+        ],
+        "inverted_elements": 0,
+        "J_min": 0.29769011652774535,
+        "J_max": 1.5089736893247525,
+        "initial_max_mm": 0.0
+      },
+      "limits": {
+        "observed_dice": 0.9,
+        "unseen_dice": 0.85,
+        "surface_mean_mm": 2.0,
+        "surface_p95_mm": 5.0,
+        "tissue_volume_error_pct": 5.0,
+        "material_rmse_mm": 2.0,
+        "strain_mae_pp": 5.0,
+        "peak_mae_pp": 5.0,
+        "timing_mean_frames": 2.0
+      }
+    },
+    "static": {
+      "reward": 0,
+      "deformation_pass": false,
+      "mechanics_pass": false,
+      "complete_pass": false,
+      "geometry_gates": {
+        "observed": false,
+        "unseen": false,
+        "surface": false,
+        "tissue_volume": true,
+        "material_motion": false,
+        "topology": true
+      },
+      "mechanics_gates": {
+        "strain": false,
+        "regional_peak": false,
+        "regional_timing": false
+      },
+      "metrics": {
+        "observed_dice_mean": 0.7319860834288361,
+        "unseen_dice_mean": 0.7328989237746506,
+        "plane_dice_mean": [
+          0.7764311768712481,
+          0.7223169550232806,
+          0.7128131134012449,
+          0.7163830884195712,
+          0.7525978035293035,
+          0.7207190507632614,
+          0.7013333471900012,
+          0.7569454936160367
+        ],
+        "plane_dice_min": [
+          0.5261595547309833,
+          0.46038172353961826,
+          0.4934459009109087,
+          0.4703683342495877,
+          0.4909622541201489,
+          0.48769574944071586,
+          0.4655513977547876,
+          0.5975422427035331
+        ],
+        "surface_sample_mean_mm": 2.030473296626567,
+        "surface_sample_p95_mm": 6.610664713263554,
+        "tissue_volume_error_pct": 1.8725289841923103,
+        "material_rmse_mm": 6.185621513644682,
+        "lv_material_rmse_mm": 5.520796586709527,
+        "rv_unassigned_material_rmse_mm": 7.101213697770133,
+        "material_error_p95_mm": 13.030789816051168,
+        "strain_mae_pp": [
+          4.112136655580822,
+          6.48502626430278,
+          11.266339057659085
+        ],
+        "regional_peak_mae_pp": [
+          10.379668868933573,
+          14.018138260876615,
+          32.45804217138723
+        ],
+        "regional_timing_mean_frames": [
+          8.647058823529411,
+          10.705882352941176,
+          10.352941176470589
+        ],
+        "inverted_elements": 0,
+        "J_min": 1.0,
+        "J_max": 1.0,
+        "initial_max_mm": 0.0
+      },
+      "limits": {
+        "observed_dice": 0.9,
+        "unseen_dice": 0.85,
+        "surface_mean_mm": 2.0,
+        "surface_p95_mm": 5.0,
+        "tissue_volume_error_pct": 5.0,
+        "material_rmse_mm": 2.0,
+        "strain_mae_pp": 5.0,
+        "peak_mae_pp": 5.0,
+        "timing_mean_frames": 2.0
+      }
+    },
+    "nop": {
+      "reward": 0,
+      "reason": "FileNotFoundError: [Errno 2] No such file or directory: '/Users/zhangqy/pkgs/tb3/runs/br031-cardiac-levels/absent.npz'"
+    }
+  },
+  "small_surface_preserving_control": {
+    "reward": 1,
+    "deformation_pass": true,
+    "mechanics_pass": true,
+    "complete_pass": true,
+    "geometry_gates": {
+      "observed": true,
+      "unseen": true,
+      "surface": true,
+      "tissue_volume": true,
+      "material_motion": true,
+      "topology": true
+    },
+    "mechanics_gates": {
+      "strain": true,
+      "regional_peak": true,
+      "regional_timing": true
+    },
+    "metrics": {
+      "observed_dice_mean": 0.9999899052845417,
+      "unseen_dice_mean": 0.9999854241838422,
+      "plane_dice_mean": [
+        0.9999924482706539,
+        1.0,
+        0.9999850841621121,
+        0.9999820887054003,
+        1.0,
+        0.9999853549989021,
+        0.9999770745842327,
+        0.9999792671522338
+      ],
+      "plane_dice_min": [
+        0.9997734481196194,
+        1.0,
+        0.9997702205882353,
+        0.9997892962494732,
+        1.0,
+        0.9998459405330458,
+        0.9998815025476953,
+        0.9998657537924553
+      ],
+      "surface_sample_mean_mm": 0.0,
+      "surface_sample_p95_mm": 0.0,
+      "tissue_volume_error_pct": 6.698345581905112e-13,
+      "material_rmse_mm": 0.06569153370137511,
+      "lv_material_rmse_mm": 0.07630822343439723,
+      "rv_unassigned_material_rmse_mm": 0.044259112183625236,
+      "material_error_p95_mm": 0.15678859131203218,
+      "strain_mae_pp": [
+        1.6241295731929488,
+        1.677913044500454,
+        1.8091331071232817
+      ],
+      "regional_peak_mae_pp": [
+        0.1376301804454942,
+        0.14665348515891108,
+        0.08921946737146162
+      ],
+      "regional_timing_mean_frames": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "inverted_elements": 0,
+      "J_min": 0.15006262265371584,
+      "J_max": 1.6447143341827344,
+      "initial_max_mm": 0.0
+    },
+    "limits": {
+      "observed_dice": 0.9,
+      "unseen_dice": 0.85,
+      "surface_mean_mm": 2.0,
+      "surface_p95_mm": 5.0,
+      "tissue_volume_error_pct": 5.0,
+      "material_rmse_mm": 2.0,
+      "strain_mae_pp": 5.0,
+      "peak_mae_pp": 5.0,
+      "timing_mean_frames": 2.0
+    },
+    "amplitude_mm": 0.1627197265625,
+    "construction": "Known-reference control: perturb only interior material vertices with fixed random directions and smooth cycle amplitude; choose amplitude only to keep J>0.15, no fitting to score thresholds."
+  },
+  "code_sha256": {
+    "probes/cardiac-reconstruction/authoring/levels/README.md": "f1ef8357ff66fe1a574a02880e49d1e8b046e2a7a9e9769071ae0fdbacb4975c",
+    "probes/cardiac-reconstruction/authoring/levels/audit_image.py": "4ab3d996107171215ea6722798a3af913016ffd0a8db56936045972af84715c4",
+    "probes/cardiac-reconstruction/authoring/levels/build_review.py": "e23e1e7e752bac7e875f5a9693e7fc928849991b707c4309ebbb53e1938fec2f",
+    "probes/cardiac-reconstruction/authoring/levels/collect.py": "9c92774a9a040a1d37a76ea9022c04ee73291e37c9b1c05781b3f8d700f1f986",
+    "probes/cardiac-reconstruction/authoring/levels/figure.py": "22651068240726ade72eba8bf4a4f7b37ec9dde67ead6ef145686621c1b2a76d",
+    "probes/cardiac-reconstruction/authoring/levels/kinematics.py": "6ab578fe3f7de61a599ee3769cefdbc9c857564f5c68678e4c59f8a181c0cb66",
+    "probes/cardiac-reconstruction/authoring/levels/oracle_l0.py": "260bb2c8260e6ebed24aaa289c6f5b8a4608efa09918917d9ad69aa437cfa805",
+    "probes/cardiac-reconstruction/authoring/levels/package.py": "b6e72495e732328707c172367e93ed09bc6910463320daee42954b871b8bb8db",
+    "probes/cardiac-reconstruction/authoring/levels/run_trial.py": "10c23bef61dc598327b581efd0e94e2e86959a2d7657abe728a4e06980cc5e56",
+    "probes/cardiac-reconstruction/authoring/levels/score_l0.py": "96bf9f93b96477962b7663ef191b70387943fb5bb5c657fdc7ac4927b4779bf0",
+    "probes/cardiac-reconstruction/authoring/levels/score_l1.py": "3e96fb5775d97854167021eee9c9e740c22975afe594d57b05586444e4f3e51d",
+    "probes/cardiac-reconstruction/authoring/levels/summarize.py": "d6ac2025a1d21f1205496085b8f779c9ca58a899294bb90a0291dd29f086702d"
+  },
+  "frozen_tasks": {
+    "l0": "9d070c1e4876162efc4713b94125a75cbe17f825a7a96bbcdfb47ad7c2db92b8",
+    "l1": "9a3c6a5eb4c4108cc4647ef700725ad6fbdbdba7ed770c579842097ecd16efc3",
+    "l1v": "d740229c7b9c384c7ca507ffe50d8a8218b9de7c6bcdb4f0020745b221402942"
+  },
+  "protocols": {
+    "docs/research-rounds/BR-031-cardiac-agent-levels.md": "c9d9fc85c34ca40fd9e26da75c883b8b7644fd434b420cb54783a9f5973a5a6c",
+    "docs/research-rounds/BR-031-volume-contrast.md": "1952c4a18640767318b3bcd90e759f5ab74a62e0926e57a349a6ef91ebd9f4f2"
+  },
+  "limits": [
+    "One model attempt per condition; no success-rate estimate or general frontier claim.",
+    "L1 has sparse observation and unknown unobserved motion; oracle pass is not proof of identifiability.",
+    "In L1V the formerly withheld planes are inside the added volume, so their score is not unseen-view generalization.",
+    "Positive Jacobians and accurate total tissue volume do not establish valid local mechanics or force balance.",
+    "No stage 2-4 trial or cavity/EF, blood-flow or diagnostic claim.",
+    "Runtime trace model names do not independently establish provider-side identity or pretraining exposure."
+  ]
+}

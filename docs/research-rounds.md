@@ -106,7 +106,64 @@ reviews own the observations. [Submission status](submission.md) is separate.
   retire this full-source condition as a hard-task candidate.
   [Session synthesis](research-registration-session.md) · [Adjudication](evidence/br028-adjudication.json).
 
-The latest cardiac extension is **BR-029 (2026-09-16): [Dynamic heart modeling](research-rounds/BR-029-dynamic-heart-modeling.md)**. The user requested a larger beating-heart task with realistic strain. A working biventricular workbench now uses STRAUS material-motion references, 47,186 tetrahedra, regional strain and four calibrated ultrasound videos. The coupled tissue fit reduces radial strain error from 16.67 to 6.79 pp, but neither video method passes all provisional targets. [Results and whole-heart task scope](research-rounds/BR-029-dynamic-heart-results.md) · [Reference/control metrics](evidence/br029-dynamic-heart-results.json) · [Tissue metrics](evidence/br029-dynamic-heart-tissue-results.json) · [Integrity](evidence/br029-dynamic-heart-integrity.json). No provider trial or clinical validation is claimed.
+## Completed cardiac modeling follow-ups
+
+The [Dynamic heart chapter](../site/index.html#cardiac) and
+[session index](research-cardiac-session.md) close this branch. Eight fresh model
+attempts, author controls and unchanged-code replays remain separate evidence.
+No further trial is queued; historical protocols and scores are unchanged.
+
+- **BR-025 (2026-09-16): [Cardiac video to dynamic geometry](research-rounds/BR-025-cardiac-reconstruction.md).** Ground-truth curation and one-patient author pilot complete. Verified native FeEcho4D images/contours/meshes; one/two/four/eight contour-view reconstruction reaches mean withheld Dice 0.874/0.929/0.937/0.950. EF alone misses large volume errors. Clean-contour LV recovery is plausible but not demonstrated hard; exact 3D, video-only, four chambers, valves, flow and diagnosis retain separate source/validation requirements. No model trials or publication. [Metrics](evidence/br025-pilot-results.json) · [Source audit](evidence/br025-source-audit.json).
+
+- **BR-027 (2026-09-16): [Cardiac motion from one annotated frame](research-rounds/BR-027-cardiac-video-difficulty.md).** User requested increased difficulty after viewing the clean-contour pilot. Four calibrated videos now supply only one anchor frame. Ordinary tracking fails at unchanged gates (Dice 0.887, volume error 29.16%, EF error 21.60 pp); a stronger intensity refinement recovers EF but fails shape. Two-anchor tracking and the original all-frame contour control pass. Retain the one-anchor candidate with explicit input-legal solution/model-qualification gaps. [Metrics](evidence/br027-cardiac-results.json) · [Input and code integrity](evidence/br027-cardiac-integrity.json).
+
+- **BR-029 (2026-09-16): [Dynamic heart modeling](research-rounds/BR-029-dynamic-heart-modeling.md)**. The user requested a larger beating-heart task with realistic strain. A working biventricular workbench now uses STRAUS material-motion references, 47,186 tetrahedra, regional strain and four calibrated ultrasound videos. The coupled tissue fit reduces radial strain error from 16.67 to 6.79 pp, but neither video method passes all provisional targets. [Results and whole-heart task scope](research-rounds/BR-029-dynamic-heart-results.md) · [Reference/control metrics](evidence/br029-dynamic-heart-results.json) · [Tissue metrics](evidence/br029-dynamic-heart-tissue-results.json) · [Integrity](evidence/br029-dynamic-heart-integrity.json). No provider trial or clinical validation is claimed.
+
+- **BR-031 (2026-09-16): [Cardiac agent capability levels](research-rounds/BR-031-cardiac-agent-levels.md).**
+  [Current results](research-rounds/BR-031-cardiac-agent-results.md): Terra/high
+  passes supplied-motion mechanics; fresh four-view Terra/high and Sol/xhigh
+  reconstructions miss complete acceptance. Sol reaches 1.77 mm LV material
+  error but 5.42 mm RV/unassigned error, with independent strain/geometry scores.
+  Six matched controls pass. The approved full-volume Sol comparison also
+  completes normally: image overlap improves slightly, but material RMSE is
+  4.45 mm and radial strain error 8.49 pp. [Final evidence](evidence/br031-cardiac-agent-results.json).
+
+- **BR-032 (2026-09-16): [Real ultrasound without reconstruction truth](research-rounds/BR-032-real-echo-case.md).**
+  User requested a real-scan case alongside the approved BR-031 volume contrast,
+  explicitly raising public-data training exposure. An official EchoSlicer scan
+  is selected by archive order. [Completed case](research-rounds/BR-032-real-echo-results.md):
+  Sol produces a fitted cavity animation, but its saved executable reuses fixed
+  visual measurements and retains identical motion on repeated still images.
+  Public training exposure and anatomical accuracy remain unknown.
+
+- **BR-034 (2026-09-16): [Clinical LV adaptation and functional assessment](research-rounds/BR-034-pathological-echo.md).**
+  The user rejected BR-032 scan quality and requested a useful pathological
+  case plus Sol adaptation/diagnosis. Ten clinical exams were screened; a
+  clearer mildly reduced-function case and a second hidden patient were
+  selected, with a supplementary hidden preserved-function control. One
+  Sol/xhigh attempt completed normally and produced a reusable image-driven
+  tracker. Exact rerun, static-input and phase-shift checks passed, but all
+  three clinical cases failed frozen EF and functional-severity criteria:
+  EF errors were 23.30, 25.94 and 30.49 percentage points despite mean surface
+  errors below 3 mm. [Results](research-rounds/BR-034-results.md) and
+  [evidence](evidence/br034-clinical-adaptation-results.json) separate adaptation
+  from clinical validity; etiology and material strain remain unvalidated.
+
+- **BR-035 (2026-09-16): [Segmentation supplied, geometry and mechanics separated](research-rounds/BR-035-segmentation-mechanics.md).**
+  The user approved a paired Sol test of full-cycle myocardial masks alone
+  versus identical masks plus ultrasound. Both tasks and a clinical cavity-mask
+  transfer are frozen before either trial. Sol constructs its own volumetric
+  mesh; independent material probes avoid reliance on source vertex IDs.
+  Geometry/field calculation and resemblance to reference mechanics are scored
+  separately, with an explicit identical-shape/different-strain control.
+  Both fresh Sol/xhigh attempts completed normally and passed construction/
+  tensor-calculation checks. Radial strain errors remained 7.37/5.45 pp, above
+  the 5 pp target; other material gates passed. Unchanged clinical replays
+  preserve mask-derived EF at 45.33% and correctly decline myocardial-strain
+  interpretation of a cavity. Posthoc review finds six nonmanifold boundary
+  edges in each model. [Results](research-rounds/BR-035-results.md) and
+  [evidence](evidence/br035-segmentation-mechanics-results.json) separate the
+  frozen reward, material agreement, and additional mesh-quality limitations.
 
 ## Completed vessel and airway follow-ups
 

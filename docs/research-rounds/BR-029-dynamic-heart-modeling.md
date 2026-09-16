@@ -1,0 +1,37 @@
+# BR-029 — Dynamic heart modeling
+
+Status: first working prototype and corrected author screen completed, 2026-09-16. [Results and larger-task disposition](BR-029-dynamic-heart-results.md). The plan below was recorded before its corresponding experiments; this is not an admitted benchmark or clinical model.
+
+The user asked to extend the cardiac task to “dynamic heart modeling,” a beating heart with realistic strain, and to “go big” in task `01a0a967-f33c-70a0-b661-d8919246b13b`. This explicitly expands the earlier short-horizon scope. Preserve BR-025/027 cardiac evidence and BR-028 registration ownership. This round owns this file, explicitly named `br029-dynamic-heart-*` evidence, `probes/cardiac-reconstruction/authoring/dynamic_heart/`, and ignored `runs/br029-dynamic-heart/`.
+
+## Expanded objective
+
+Recover one deforming myocardial body from a cardiac cycle, with persistent material coordinates, a cavity, changing wall thickness, directional strain, twist and a volume curve. An arbitrary sequence of individually plausible cavity surfaces is insufficient. The intended longer-term target is four coupled chambers and valves, with hemodynamics evaluated only when corresponding pressure/flow evidence exists.
+
+## First executable milestone
+
+1. Audit a public STRAUS synthetic sequence and its volumetric reference meshes. Establish topology, physical coordinates, material correspondence and available anatomical directions before treating them as strain truth. This simulation source complements, rather than validates, the real fetal FeEcho4D contour task.
+2. Build a local interactive beating-heart workbench with source-derived motion, selectable directional strain, chamber/tissue volumes, a cutaway and temporal controls. Clearly identify reference playback, fitted models and simulated scenarios.
+3. Compute finite-strain tensors from deformation gradients. Verify rigid translation/rotation give zero strain, known affine deformations give the expected tensor, and reference-frame strain vanishes. Report engineering stretch strain separately from Green-Lagrange tensor components.
+4. Test controls that distinguish realistic mechanics from an appealing animation: static geometry, global scaling and an image/shape-driven low-dimensional deformation fit. Freeze controls before interpreting scores. Report mesh inversion, tissue-volume change, motion/strain errors and image/geometry agreement separately. Do not invent clinical strain cutoffs or promote synthetic reference motion to measured patient physiology.
+5. Produce a larger task contract and staged acceptance criteria. Admission gates for source geometry/strain and a blind reconstruction trial remain separate from a working viewer or an author-fit result. Retain raw files, hashes and scripts; no publication or modification of the closed interview report.
+
+Primary starting references: [Multimodality STRAUS](https://humanheart-project.creatis.insa-lyon.fr/multimodalityStraus.html), [four-chamber CT mesh cohort](https://zenodo.org/records/3890034), and the [EACVI/ASE deformation definitions](https://academic.oup.com/ehjcimaging/article/16/1/1/2403449). Public access does not by itself establish redistribution permission.
+
+## Source-audited experimental specification
+
+Patient01_healthy supplies 30 meshes with identical 11,370 point / 47,186 tetrahedron topology. RefMeshP1 supplies AHA 0–17 and radial/longitudinal/circumferential directions. A single rigid transform maps its coordinates to the first ultrasound mesh within 0.0077 mm. The tissue geometry includes both ventricles; AHA 0 lacks directional axes, so directional strain is reported only for AHA 1–17. The reference tissue volume changes by about 6% through the cycle, so an arbitrary strict 1% incompressibility gate would reject the source itself. This is simulation reference motion, not measured human strain.
+
+Before new reconstruction scores: extract four calibrated fixed planes (three long-axis orientations and one short-axis) from the healthy ultrasound. Supply the first volumetric mesh and its regional coordinates, then fit a globally affine deforming body from consecutive image optical flow. Keep all later meshes private. Compare it with static, globally scaled, and affine fits using known material correspondences; the latter two are privileged representation controls, not legal video solvers. Fit one static pose at the source-audit step only; do not remove motion errors through per-frame alignment during scoring.
+
+Measure full-mesh material point RMSE, per-element directional engineering strain MAE, regional peak strain/timing differences, Jacobian range/inversions and relative tissue volume error. Provisional development targets, fixed before these reconstruction outcomes: motion RMSE <=2 mm, each directional strain MAE <=5 percentage points, each direction's mean regional peak error <=5 points, and zero inverted tetrahedra. These are numerical research targets, not clinical normal ranges or admitted benchmark cutoffs. Validate all against the source and independent analytic mechanics checks; preserve failed controls.
+
+The LBBB case is a separate source-reference playback for regional mechanics comparison; no unseen-case generalization claim follows from it. Physical frame timing is not yet verified, so curves use cycle phase and no clinical strain rate in s^-1 is reported. Chamber EF requires an audited cavity/valve-plane partition; myocardial tissue volume is not blood-pool volume.
+
+## Development-informed tissue fit
+
+After the first completed screen, the video affine model had 3.76 mm material RMSE and 16.67 pp radial strain MAE. Even the privileged best affine fit had 17.02 pp radial strain MAE. This motivates a non-affine tissue fit: retain exactly the same image observations, solve all material vertex displacements with neighboring-node smoothness, and penalize finite Jacobian deviations from 1. Use fixed group-normalized scales of 0.75 mm for image observations, 0.30 for edge displacement gradients and 0.15 for Jacobian deviations; three Gauss-Newton steps per frame, CG max 300 / rtol 1e-5, and backtracking against J<=0.05. These are author modeling assumptions selected after the affine screen, not learned physiology. Record convergence and inversions. Do not tune against hidden strain results or call this a force-balanced active-fiber electromechanical simulation.
+
+The first tissue execution preserved positive elements but exhausted the CG iteration limit on most linear solves. Its raw output and exact executed source remain in `tissue-fit-v1/`. Before evaluating its hidden strain errors, rerun the unchanged objective with a larger numerical iteration allowance of 2,000, keeping tolerance, observations and regularization fixed. This addresses solver convergence, not task difficulty; retain the original nonconvergence as such.
+
+The source-frame-zero audit then identified positive-AHA tetrahedra with an undefined directional basis. The first analysis included these as zero-length directions, which is not a strain observation. Preserve `analysis-v1/` and `tissue-analysis-v2/` plus their executed source as superseded evaluation artifacts. Exclude cells lacking complete normalized directions from directional averages in the corrected evaluation, retain them for geometry/Jacobian checks, report coverage, and assert supported reference-frame strain vanishes. This correction changes the evaluator's handling of missing source data; predictions, regularization and provisional targets remain unchanged.

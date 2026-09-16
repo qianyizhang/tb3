@@ -1,6 +1,6 @@
 # Interview report
 
-`index.html` contains the overview and six studies in one portable page. All
+`index.html` contains the overview and seven studies in one portable page. All
 figures, styling, and guided image controls are embedded. Open it directly in a
 browser; it also works under a GitHub project-site prefix. Evidence links open
 GitHub. The published page never requests local scans.
@@ -130,3 +130,26 @@ The full local viewers retain mesh rotation, native planes and artifact links:
 These links require this workspace. Native arrays, source archives, model
 weights and raw agent sessions stay local. This closeout adds an authored local
 report; it does not deploy it or resolve commercial dataset redistribution.
+
+## Cardiac modeling session
+
+The **Dynamic heart** chapter (`index.html#cardiac`) closes cardiac BR-025/027/
+029/031/032/034/035. It separates author prototypes, eight fresh model attempts
+and unchanged-code replays. The final supplied-segmentation comparison passes
+construction but misses local radial-strain targets; the earlier clinical
+tracker underestimates EF. No clinical strain or etiologic diagnosis is validated.
+
+The chapter embeds the exact scientific comparison figure and source-derived
+regional engineering-strain curves. Region and direction controls work offline.
+`cardiac-provenance.json` records definitions and exact evidence hashes. The
+normal build requires only tracked inputs; intentional figure refresh uses:
+
+```sh
+python3 scripts/import_cardiac_figures.py
+python3 scripts/build_site.py
+```
+
+The [session index](../docs/research-cardiac-session.md) links the original
+protocols, results and local 3D labs. Full meshes, ultrasound, raw traces and
+runtime viewers remain local. This presentation does not alter frozen task or
+authoring bytes, queue another trial, or publish to the hosted site.

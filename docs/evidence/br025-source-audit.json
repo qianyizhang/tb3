@@ -1,0 +1,125 @@
+{
+  "round": "BR-025",
+  "checked_on": "2026-09-16",
+  "source_url": "https://zenodo.org/records/21322299",
+  "source_archive_size_bytes": 11423073355,
+  "full_archive_md5_verified": false,
+  "prefix_sha256": "e3176b77fa34123ca95b114ebcfefd720dd5c445cbdb1a6ddb5dac2c5ac4a1ae",
+  "partial_index_sha256": "5f27c0922ccfaa0c76102276cd7c7d492c7bb7d397b7c789d34ef91fa2a3c759",
+  "extracted_members": 2251,
+  "member_crcs_checked_on_extraction": true,
+  "member_sha256_rechecked": true,
+  "native_counts": {
+    "image_png": 1110,
+    "mask_png": 1110,
+    "mesh_obj": 30,
+    "config": 1
+  },
+  "source_config": "patient = Patient001\n\n[condition]\ndiagnosis = healthy\n\n[spacing]\nx_mm = 0.089950\ny_mm = 0.089950\nz_mm = 0.500000\n\n[temporal]\nnum_frames = 30\nED_time = 2\nES_time = 17\n",
+  "phase_indexing": "Pilot treats ED_time=2 and ES_time=17 as one-based filename frames. Config does not explicitly declare index base; this is unresolved and must not be used as an exact expert frame-selection gate.",
+  "image_shape_hw": [
+    464,
+    485
+  ],
+  "labels": {
+    "background": 0,
+    "lv_cavity": 127,
+    "myocardium": 255
+  },
+  "radial_angles_status": "Assumed 0..180 degrees inclusive at 5 degree increments from source convention; no per-plane transform file audited",
+  "duplicate_direction_mirror_dice": {
+    "mean": 0.9326335368938236,
+    "min": 0.878407170670781,
+    "max": 0.9591573516766982
+  },
+  "native_mesh": {
+    "vertices": 1002,
+    "faces": 2000,
+    "fixed_face_connectivity": true,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "coordinate_min": [
+      -0.90365124,
+      -0.43269338,
+      -0.34324233
+    ],
+    "coordinate_max": [
+      0.36019541,
+      0.43267898,
+      0.34999479
+    ],
+    "physical_transform_audited": false,
+    "cavity_surface_partition_audited": false,
+    "whole_mesh_volume_is_ef_oracle": false,
+    "cross_section_inspection": "At x=-0.5,-0.2,0.0,0.2, two closed section loops were observed, consistent with a myocardial shell; not a single capped blood-pool surface"
+  },
+  "github_example_rejected_for_voxel_volume": {
+    "case": "FeEcho4D_017",
+    "shape": [
+      256,
+      256,
+      256
+    ],
+    "labels": [
+      0,
+      100,
+      200
+    ],
+    "affine": "identity",
+    "reason": "Sparse radial slice embedding; unobserved zeros are not background annotations"
+  },
+  "straus_patient01_us_inventory": {
+    "image": {
+      "item_count": 89,
+      "first_items": [
+        {
+          "_id": "587f5b9fe1af3f30a2981192",
+          "name": "usfrm00.mhd",
+          "size": 321
+        },
+        {
+          "_id": "587f5b9fe1af3f30a2981195",
+          "name": "usfrm00.raw",
+          "size": 19382272
+        },
+        {
+          "_id": "587f5ba0e1af3f30a2981198",
+          "name": "usfrm01.mhd",
+          "size": 321
+        }
+      ],
+      "metadata_sha256": "055caf22ec5cae208cd943a949104185ba25d30b87ac05db99963d1fc359a467",
+      "data_downloaded": false
+    },
+    "mesh": {
+      "item_count": 30,
+      "first_items": [
+        {
+          "_id": "587f5bbee1af3f30a298129e",
+          "name": "usmesh00.vtk",
+          "size": 1269033
+        },
+        {
+          "_id": "587f5bc0e1af3f30a29812a1",
+          "name": "usmesh01.vtk",
+          "size": 1269033
+        },
+        {
+          "_id": "587f5bc1e1af3f30a29812a4",
+          "name": "usmesh02.vtk",
+          "size": 1269033
+        }
+      ],
+      "metadata_sha256": "cf0d912270eb182608f8cdb6a2568c1c6bfaf9c27dc20ebf26f0ba65bbe0de12",
+      "data_downloaded": false
+    }
+  },
+  "access_and_reuse": {
+    "public_native_sample_downloaded": true,
+    "publication_or_redistribution_performed": false,
+    "feecho_project_terms": "Non-commercial research stated; exact redistribution license unresolved",
+    "gated_mitea_mvseg_echonet_mimic_access_requested": false
+  },
+  "pilot_results_sha256": "a7fe35162ae56cc9adc179785db0cdb3fe242397088a9582eccd9c2152f4f577",
+  "raw_manifest": "runs/br025-cardiac/source/native/extraction-manifest.json"
+}

@@ -64,6 +64,24 @@ untouched under their retained paths. The [closeout receipt](evidence/vessel-rep
 records the bounded cleanup and 82 matching frozen files. This is a local commit,
 not a deployment.
 
+## Cardiac modeling session closeout
+
+The [Dynamic heart chapter](../site/index.html#cardiac) and
+[session index](research-cardiac-session.md) consolidate cardiac BR-025/027/029/
+031/032/034/035. Eight fresh model attempts are separate from author controls
+and executable replays. Supplied segmentations enable moving mesh construction
+and correct strain calculation; local radial error and mesh quality remain
+limiting. Clinical tracking underestimates EF, while all-phase masks preserve
+the function they already encode. No etiologic diagnosis or clinical myocardial
+strain accuracy is established.
+
+The [final comparison](research-rounds/BR-035-results.md),
+[clinical results](research-rounds/BR-034-results.md) and
+[figure provenance](../site/cardiac-provenance.json) retain the evidence and its
+limits. The [closeout receipt](evidence/cardiac-report-closeout.json) records
+unchanged source/evidence bytes. This branch is complete; no further trial is
+queued. Original freezes, predictions and runtime labs remain in place.
+
 ## Historical case-32 result
 
 The following records explain the first selected package. They preserve its

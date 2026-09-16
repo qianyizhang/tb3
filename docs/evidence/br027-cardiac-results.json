@@ -1,0 +1,404 @@
+{
+  "kind": "author_development_screen_not_model_trial",
+  "geometry": {
+    "shape_hw": [
+      464,
+      485
+    ],
+    "frame_count": 30,
+    "anchor_frames_1based": [
+      2
+    ],
+    "view_angles_degrees": [
+      0,
+      45,
+      90,
+      135
+    ],
+    "rotation_axis_x_px": 242.0,
+    "origin_y_px": 184.5,
+    "origin_basis": "midpoint of anchor frame 2 cavity on view 0 rotation axis",
+    "in_plane_spacing_mm": 0.08995,
+    "source_convention": "radial planes of a STIC volume",
+    "mesh_coordinates": "x=r*sin(phi)*cos(theta), y=r*cos(phi), z=r*sin(phi)*sin(theta); image y increases down"
+  },
+  "frames": 30,
+  "source_record": "https://zenodo.org/records/21322299",
+  "source_patient": "Patient001",
+  "heldout_planes_1based": [
+    3,
+    8,
+    12,
+    17,
+    21,
+    26,
+    30,
+    35
+  ],
+  "derived_reference_is_independent_3d_truth": false,
+  "ef_definition": "100*(1-min(V)/max(V)); no source clinical phase-index assumption",
+  "receipts": {
+    "one-anchor-v1": {
+      "kind": "public_input_author_baseline_not_model_trial",
+      "input_manifest_sha256": "ff05a31919f6ee79856ed52efb94aef2ef448f3d6258762fa922296aafa81de2",
+      "script_sha256": "4ef091ef8d775621d2f97b46b8153f83a5b28d1c159b98e8b640d23a9067bb07",
+      "anchors_1based": [
+        2
+      ],
+      "opencv": "4.12.0",
+      "flow": "DIS medium preset; consecutive target-to-source backward warp; signed-distance fields",
+      "predictions": {
+        "control": {
+          "sha256": "e33ed85f830575c0c28ca4bf8008e2f45c2d1bf3dbf56b800738d84ecda1aa8a",
+          "ef_percent": 0.0,
+          "max_volume_frame_1based": 1,
+          "min_volume_frame_1based": 1
+        },
+        "dis": {
+          "sha256": "7adedf9b821fcab534ce867a7cef9a69acb2b8bb4848e94623dac6fa7df2b9be",
+          "ef_percent": 42.419135089161685,
+          "max_volume_frame_1based": 30,
+          "min_volume_frame_1based": 19
+        }
+      },
+      "elapsed_seconds": 4.176937666998128
+    },
+    "two-anchors-v1": {
+      "kind": "public_input_author_baseline_not_model_trial",
+      "input_manifest_sha256": "e88e1ac346489d19bf24a66b0218768240c9436f83b29c6d75d57fffffab7cf6",
+      "script_sha256": "4ef091ef8d775621d2f97b46b8153f83a5b28d1c159b98e8b640d23a9067bb07",
+      "anchors_1based": [
+        2,
+        17
+      ],
+      "opencv": "4.12.0",
+      "flow": "DIS medium preset; consecutive target-to-source backward warp; signed-distance fields",
+      "predictions": {
+        "control": {
+          "sha256": "fddf4ccf3a5f1bc68317d6428c534c396ead2c3c5a0e2821d3d8b42cd1f7d7d1",
+          "ef_percent": 64.28056623403747,
+          "max_volume_frame_1based": 1,
+          "min_volume_frame_1based": 17
+        },
+        "dis": {
+          "sha256": "870c8157824b563bb2a7a03a99a18667e9d463f69a7ef911f86d44691e0bcabd",
+          "ef_percent": 64.84579522435021,
+          "max_volume_frame_1based": 2,
+          "min_volume_frame_1based": 19
+        }
+      },
+      "elapsed_seconds": 4.407643541999278
+    },
+    "extra": {
+      "sha256": "39a24dfec8c6355071a568bffb75953f7a20103f910cc0ac5364891473641e04",
+      "path": "runs/br027-cardiac/one-anchor-refined-v1/refined-mesh.npz"
+    }
+  },
+  "stats": {
+    "one_control": {
+      "heldout_dice": {
+        "mean": 0.8246291119856504,
+        "min": 0.6075895875591616,
+        "p05": 0.6582419919955854,
+        "p95": 0.958962202624593,
+        "max": 0.9733194989994812
+      },
+      "heldout_hd95_mm": {
+        "mean": 1.6046307676157416,
+        "min": 0.26985000000000003,
+        "p05": 0.5224891955143556,
+        "p95": 2.946997659871109,
+        "max": 3.6804717767925457
+      },
+      "unsupplied_input_frame_dice": {
+        "mean": 0.8306109517198929,
+        "min": 0.6147138100523228,
+        "p05": 0.6590005746525616,
+        "p95": 0.9855728992808375,
+        "max": 0.9900944177571641
+      },
+      "unsupplied_input_frame_count": 116,
+      "ef_percent": 0.0,
+      "ef_error_vs_dense_reference_pp": 64.02085188301515,
+      "volume_curve_mape_vs_dense_percent": 78.21088858984908,
+      "max_volume_frame_1based": 1,
+      "min_volume_frame_1based": 1,
+      "min_volume_ml": 0.9148313282662822,
+      "max_volume_ml": 0.9148313282662822,
+      "topology": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "degenerate_triangles": 0,
+        "positive_volumes": true
+      },
+      "gates": {
+        "dice": false,
+        "hd95": false,
+        "volume": false,
+        "ef": false,
+        "topology": true
+      },
+      "pass": false
+    },
+    "one_dis": {
+      "heldout_dice": {
+        "mean": 0.8874301144914746,
+        "min": 0.7330848184649952,
+        "p05": 0.7950508402238317,
+        "p95": 0.9586258289994602,
+        "max": 0.9730516232683621
+      },
+      "heldout_hd95_mm": {
+        "mean": 1.1144350107616232,
+        "min": 0.3598,
+        "p05": 0.5244941229413348,
+        "p95": 1.7943118315855806,
+        "max": 2.3404291684432583
+      },
+      "unsupplied_input_frame_dice": {
+        "mean": 0.8970604340475073,
+        "min": 0.7328128696475041,
+        "p05": 0.7918098879780235,
+        "p95": 0.9773983137051078,
+        "max": 0.9846119945646186
+      },
+      "unsupplied_input_frame_count": 116,
+      "ef_percent": 42.419135089161685,
+      "ef_error_vs_dense_reference_pp": 21.60171679385347,
+      "volume_curve_mape_vs_dense_percent": 29.16009297606632,
+      "max_volume_frame_1based": 30,
+      "min_volume_frame_1based": 19,
+      "min_volume_ml": 0.5340562827856655,
+      "max_volume_ml": 0.9274891643476189,
+      "topology": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "degenerate_triangles": 0,
+        "positive_volumes": true
+      },
+      "gates": {
+        "dice": false,
+        "hd95": false,
+        "volume": false,
+        "ef": false,
+        "topology": true
+      },
+      "pass": false
+    },
+    "two_control": {
+      "heldout_dice": {
+        "mean": 0.8889688611696892,
+        "min": 0.6492982923211501,
+        "p05": 0.7218546135100293,
+        "p95": 0.9648698345250023,
+        "max": 0.97911886186324
+      },
+      "heldout_hd95_mm": {
+        "mean": 1.0385643365005508,
+        "min": 0.26985000000000003,
+        "p05": 0.4022686291522122,
+        "p95": 2.3559096057788063,
+        "max": 3.182565127082341
+      },
+      "unsupplied_input_frame_dice": {
+        "mean": 0.9001607374152886,
+        "min": 0.6354175202818979,
+        "p05": 0.7058516254373716,
+        "p95": 0.9794229206944592,
+        "max": 0.9884559473249152
+      },
+      "unsupplied_input_frame_count": 112,
+      "ef_percent": 64.28056623403747,
+      "ef_error_vs_dense_reference_pp": 0.25971435102231055,
+      "volume_curve_mape_vs_dense_percent": 18.41887382652031,
+      "max_volume_frame_1based": 1,
+      "min_volume_frame_1based": 17,
+      "min_volume_ml": 0.32677257037035007,
+      "max_volume_ml": 0.9148313282662822,
+      "topology": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "degenerate_triangles": 0,
+        "positive_volumes": true
+      },
+      "gates": {
+        "dice": false,
+        "hd95": false,
+        "volume": false,
+        "ef": true,
+        "topology": true
+      },
+      "pass": false
+    },
+    "two_dis": {
+      "heldout_dice": {
+        "mean": 0.919587234122216,
+        "min": 0.8022910250175609,
+        "p05": 0.845182166607803,
+        "p95": 0.9636740248493398,
+        "max": 0.9717862422545843
+      },
+      "heldout_hd95_mm": {
+        "mean": 0.8411676505156161,
+        "min": 0.26985000000000003,
+        "p05": 0.44975,
+        "p95": 1.5733187544701517,
+        "max": 2.2487500000000002
+      },
+      "unsupplied_input_frame_dice": {
+        "mean": 0.9368189166238226,
+        "min": 0.8253466146183874,
+        "p05": 0.8822923787745744,
+        "p95": 0.979596649395062,
+        "max": 0.9847807144931745
+      },
+      "unsupplied_input_frame_count": 112,
+      "ef_percent": 64.84579522435021,
+      "ef_error_vs_dense_reference_pp": 0.8249433413350573,
+      "volume_curve_mape_vs_dense_percent": 7.8153228523893965,
+      "max_volume_frame_1based": 2,
+      "min_volume_frame_1based": 19,
+      "min_volume_ml": 0.3216016784905258,
+      "max_volume_ml": 0.9148313282662822,
+      "topology": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "degenerate_triangles": 0,
+        "positive_volumes": true
+      },
+      "gates": {
+        "dice": true,
+        "hd95": true,
+        "volume": true,
+        "ef": true,
+        "topology": true
+      },
+      "pass": true
+    },
+    "one_refined": {
+      "heldout_dice": {
+        "mean": 0.8693557108433806,
+        "min": 0.6935240422626321,
+        "p05": 0.790996344869319,
+        "p95": 0.9346947903952936,
+        "max": 0.9675312627555753
+      },
+      "heldout_hd95_mm": {
+        "mean": 1.6361634348439762,
+        "min": 0.4022686291522122,
+        "p05": 0.8288043233351577,
+        "p95": 2.9085682228768794,
+        "max": 3.6932103852724425
+      },
+      "unsupplied_input_frame_dice": {
+        "mean": 0.8672229284755113,
+        "min": 0.6118312514730144,
+        "p05": 0.7913588860569887,
+        "p95": 0.930912121327633,
+        "max": 0.9618128719825515
+      },
+      "unsupplied_input_frame_count": 116,
+      "ef_percent": 65.34340832803676,
+      "ef_error_vs_dense_reference_pp": 1.322556445021604,
+      "volume_curve_mape_vs_dense_percent": 7.702239943756889,
+      "max_volume_frame_1based": 2,
+      "min_volume_frame_1based": 20,
+      "min_volume_ml": 0.3170493579244431,
+      "max_volume_ml": 0.9148313282662822,
+      "topology": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "degenerate_triangles": 0,
+        "positive_volumes": true
+      },
+      "gates": {
+        "dice": false,
+        "hd95": false,
+        "volume": true,
+        "ef": true,
+        "topology": true
+      },
+      "pass": false
+    },
+    "clean": {
+      "heldout_dice": {
+        "mean": 0.936873482355853,
+        "min": 0.8144312677467846,
+        "p05": 0.8863119543049167,
+        "p95": 0.970955954733843,
+        "max": 0.9825658992325659
+      },
+      "heldout_hd95_mm": {
+        "mean": 0.6231846931763015,
+        "min": 0.1799,
+        "p05": 0.26985000000000003,
+        "p95": 1.1126200530729256,
+        "max": 1.6191
+      },
+      "unsupplied_input_frame_dice": null,
+      "unsupplied_input_frame_count": 0,
+      "ef_percent": 65.29192571104747,
+      "ef_error_vs_dense_reference_pp": 1.2710738280323142,
+      "volume_curve_mape_vs_dense_percent": 2.3052210102302864,
+      "max_volume_frame_1based": 3,
+      "min_volume_frame_1based": 19,
+      "min_volume_ml": 0.3201289537471558,
+      "max_volume_ml": 0.9223472068257379,
+      "topology": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "degenerate_triangles": 0,
+        "positive_volumes": true
+      },
+      "gates": {
+        "dice": true,
+        "hd95": true,
+        "volume": true,
+        "ef": true,
+        "topology": true
+      },
+      "pass": true
+    },
+    "dense": {
+      "heldout_dice": {
+        "mean": 0.9953144479695086,
+        "min": 0.9908814589665653,
+        "p05": 0.9924040017950652,
+        "p95": 0.9972011594142202,
+        "max": 0.9978755520769274
+      },
+      "heldout_hd95_mm": {
+        "mean": 0.09989472665438012,
+        "min": 0.08995,
+        "p05": 0.08995,
+        "p95": 0.1799,
+        "max": 0.32431933722798584
+      },
+      "unsupplied_input_frame_dice": null,
+      "unsupplied_input_frame_count": 0,
+      "ef_percent": 64.02085188301515,
+      "ef_error_vs_dense_reference_pp": 0.0,
+      "volume_curve_mape_vs_dense_percent": 0.0,
+      "max_volume_frame_1based": 3,
+      "min_volume_frame_1based": 17,
+      "min_volume_ml": 0.31917150487615786,
+      "max_volume_ml": 0.8871013394713622,
+      "topology": {
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "degenerate_triangles": 0,
+        "positive_volumes": true
+      },
+      "gates": {
+        "dice": true,
+        "hd95": true,
+        "volume": true,
+        "ef": true,
+        "topology": true
+      },
+      "pass": true
+    }
+  },
+  "script_sha256": "891b712da7ecfb6f670fe01d45b82893d6751b82059d3278d034eac2eceb57e6",
+  "elapsed_seconds": 17.351545833000273
+}
