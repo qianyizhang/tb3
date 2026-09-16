@@ -1,0 +1,48 @@
+{
+  "round": "BR-028",
+  "summary": "Adding the full source CT improves Sol\u2019s result from 12.73 / 32.20 mm to 2.60 / 6.41 mm RMS / maximum. The new attempt finishes normally, but one landmark still exceeds the unchanged 5 mm maximum.",
+  "findings": [
+    "The old input was a complete 2D source slice plus a full 3D target, not just the small patches shown in the report. The new task adds the actual full source CT while keeping every previous public data file and all reference answers unchanged.",
+    "Sol uses the added source volume explicitly. It first tries full-volume Demons registration, then switches to broad matching of actual 3D patches and local refinement after observing disagreement between global fields. The broad search covers all eight reference destinations.",
+    "The two large previous errors improve: q02 falls from 14.78 to 1.89 mm, and q04 from 32.20 to 1.41 mm. Seven final points lie within 2.2 mm. q06 remains ambiguous and ends 6.41 mm away.",
+    "Two earlier Diffeomorphic Demons candidates placed q06 within tolerance (1.02 and 2.40 mm), but those complete fields failed badly elsewhere. Sol selected a different local fit for q06. Extra information and multiple candidate estimates did not make final selection reliable."
+  ],
+  "conclusion": "The full-source attempt is substantially more accurate, but still fails the maximum-error gate. This one matched case does not isolate a causal depth effect: the fresh agent also chose a broader and different matching strategy. The retained 2D author method already passes, so the original source slice was not intrinsically insufficient.",
+  "current_model": {
+    "execution": "completed",
+    "grade": {
+      "reward": 0,
+      "rms_mm": 2.6037232955903775,
+      "max_mm": 6.411513081948768,
+      "per_point_mm": [
+        2.180596248735653,
+        1.8907670401189,
+        0.7516648189186339,
+        1.4080127840328787,
+        0.7483314773547837,
+        6.411513081948768,
+        1.209338662244772,
+        0.4769696007084651
+      ]
+    },
+    "agent_seconds": 893.399038,
+    "runtime_contexts": [
+      {
+        "model": "gpt-5.6-sol",
+        "effort": "xhigh"
+      }
+    ],
+    "result_path": "runs/br028-deform-patient3-source3d-sol-xhigh-v1-20260916/deform-patient3-source3d__3tbVdMW/result.json",
+    "result_sha256": "86f07adcd88e4e7f19cbd18938b237fd23156fe944e0e30d3a634dcf87fb87cc"
+  },
+  "candidate_arrays_count": 5,
+  "private_labels_used": "Independent final and candidate-state grading only; no model feedback or new optimization.",
+  "evidence": {
+    "runs/br028-registration-3d-source/stage-analysis.json": "1ee25cb44ebd6fd61b1d4e2c36fb4f91ccc9c3027f115aa1429f482c6602eabc",
+    "runs/br028-registration-3d-source/freeze.json": "7085a655521cee5df0ca658a46299701fe9c3c239df38c9dad8c357967cc9dd0",
+    "runs/br028-registration-3d-source/author-audit.json": "4399ed54da81e5497d0ed8e45e2f1c2c3160c75cc4310c3efa8a4fe224c7b2ad",
+    "runs/br028-registration-3d-source/sampling-check.json": "ba73b5e375e10123478d547f2ff59ee004db55b2ce9251c9005d0fadc0cfc0d8",
+    "runs/br028-registration-3d-source/results.json": "89a74bb32ef98a1c437572b43a64feb7b1c38b8d09d45aceb93a248892fa1e21",
+    "runs/br028-registration-3d-source/bench-audit.json": "b44f45181ba328e286cb967a2ec94076895c872ef3e172a1610d04fa5f1bdf8e"
+  }
+}

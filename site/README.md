@@ -1,6 +1,6 @@
 # Interview report
 
-`index.html` contains the overview and four studies in one portable page. All
+`index.html` contains the overview and five studies in one portable page. All
 figures, styling, and guided image controls are embedded. Open it directly in a
 browser; it also works under a GitHub project-site prefix. Evidence links open
 GitHub. The published page never requests local scans.
@@ -87,3 +87,17 @@ staging. Frozen tasks, source scans, and original model images stay unchanged.
 
 The full native scan arrays remain local. Publishing this report does not
 publish them. Local edits alone do not update the hosted page.
+
+## Registration session
+
+The Registration chapter covers BR-019–024 and BR-028, including the later
+user acceptance of q06 alongside the unchanged numerical result. It reuses
+actual CT panels with query and plane controls, without loading native scans.
+`registration-provenance.json` records source attribution and exact hashes.
+The standard build needs only the tracked `registration-figures.json`; refreshing
+that authored payload deliberately requires the retained BR-028 report:
+
+```sh
+python3 scripts/import_registration_figures.py
+python3 scripts/build_site.py
+```

@@ -15,6 +15,7 @@ CHAPTERS = {
     'anatomy': 'Organ identity',
     'absorption': 'Tissue ownership',
     'aneurysm': 'Aneurysm localization',
+    'registration': 'Registration',
 }
 
 
@@ -23,10 +24,14 @@ def load_chapters(local_scans=None):
     css = (ROOT / 'site/report.css').read_text()
     viewer = (ROOT / 'site/aneurysm.js').read_text()
     figures = (ROOT / 'site/aneurysm-figures.json').read_text()
+    registration = (ROOT / 'site/registration-figures.json').read_text()
+    registration_viewer = (ROOT / 'site/registration.js').read_text()
     for key, chapter in chapters.items():
         chapter = chapter.replace('<link rel="stylesheet" href="../report.css">', '<style data-report-theme>' + css + '</style>')
         chapter = chapter.replace('__SCAN_FIGURES__', figures)
         chapter = chapter.replace('<script src="../aneurysm.js"></script>', '<script>' + viewer + '</script>')
+        chapter = chapter.replace('__REGISTRATION_FIGURES__', registration)
+        chapter = chapter.replace('<script src="../registration.js"></script>', '<script>' + registration_viewer + '</script>')
         if local_scans is not None:
             config = json.dumps(local_scans).replace('<', '\\u003c')
             chapter = chapter.replace('<script id="local-scans" type="application/json">null</script>', '<script id="local-scans" type="application/json">' + config + '</script>')
@@ -109,7 +114,7 @@ def main():
     if args.check:
         if not output.exists() or output.read_text()!=text:
             raise SystemExit('site/index.html is stale: run python3 scripts/build_site.py')
-        print('Five bundled chapters match their tracked sources.')
+        print(f'{len(CHAPTERS)} bundled chapters match their tracked sources.')
     else:
         output.write_text(text)
         print(f'Built site/index.html ({len(text.encode()):,} bytes); no runtime assets required.')

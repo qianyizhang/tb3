@@ -1,0 +1,182 @@
+{
+  "round": "BR-019",
+  "tasks": [
+    {
+      "task": "cardiac-r01",
+      "task_path": "runs/br019-registration/tasks/cardiac-r01",
+      "public_geometry": {
+        "shape": [
+          192,
+          192
+        ],
+        "spacing_xy_mm": [
+          0.9,
+          0.9
+        ],
+        "coordinates": "LPS millimetres; +x left, +y posterior, +z superior",
+        "intensity": "8-bit, round(255*clip((trilinear_HU+150)/500,0,1)); no slab or projection"
+      },
+      "source_ct_sha256": "d3d805bf674b1b89a863529088aabac48eecf8702d5038361d8fc40de29b578b",
+      "controls": {
+        "oracle": {
+          "reward": 1,
+          "rms_mm": 0.0,
+          "max_mm": 0.0,
+          "centre_mm": 0.0,
+          "normal_deg": 0.0
+        },
+        "nop": {
+          "reward": 0,
+          "reason": "'slice_to_lps'"
+        },
+        "translate_2mm": {
+          "reward": 1,
+          "rms_mm": 1.9999999999999991,
+          "max_mm": 2.0,
+          "centre_mm": 2.0,
+          "normal_deg": 0.0
+        },
+        "translate_8mm": {
+          "reward": 0,
+          "rms_mm": 7.999999999999999,
+          "max_mm": 8.0,
+          "centre_mm": 8.0,
+          "normal_deg": 0.0
+        },
+        "ras_lps": {
+          "reward": 0,
+          "rms_mm": 405.49202732079607,
+          "max_mm": 585.5996837400423,
+          "centre_mm": 376.4387521805449,
+          "normal_deg": 62.63958584086809
+        },
+        "scale": {
+          "reward": 0,
+          "reason": "rigid axes"
+        },
+        "mirrored_columns": {
+          "reward": 0,
+          "rms_mm": 114.60000000000001,
+          "max_mm": 171.90000000000006,
+          "centre_mm": 1.4210854715202004e-14,
+          "normal_deg": 180.0
+        }
+      },
+      "files": {
+        "environment/DATA-LICENSE.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+        "environment/Dockerfile": "161a8cb3f8f2c8aeebed4ec9674c924b575b4564999fe70491faf082b3217a2a",
+        "environment/SOURCE_NOTICE.md": "4df10592e614d37f850d82484058ac0f723a17ea9fdb22a5cfdb0c3f80f3c117",
+        "environment/data/image.json": "7038777b31767eb41816b0191f3cc38cd37c81b1abd0c4697bb69aaa455b952f",
+        "environment/data/target.npy": "4dff767a9968a964a414c70c8fb215649f3aced098eacc15c77271668f0e7e0f",
+        "environment/data/target.png": "9b999e10c8f41db6dcc7de47e30ede67982be7aa8d2b359b25754b4cd0267a06",
+        "environment/data/volume.npz": "b80cf66dc2c14c39126b9359ca08362149c12470d178b2b1fcccf1e1ec1a4df8",
+        "environment/reslice.py": "1e1a229b495cae3c1dd3f8503804501334c782abb23c42162cf981803683fd12",
+        "instruction.md": "d955ae96b8b5cfdb37ac1aec5351177967c1ed01322208e60e53ac53a54a29e3",
+        "solution/pose.json": "bc826661d4720964881d30d48a1cb328790399c52f7874b080b1f1465ac0c65f",
+        "solution/solve.sh": "593cf7b168e259c2b05780307233068ede15fcb7f4aeb37d119dc849a3069032",
+        "task.toml": "db201a00b2f5bd377888bc2576551ff5a2b50e9465e563d5ba90b71c5796b9e4",
+        "tests/Dockerfile": "453c62e4e57565b352fe6a13e9af7b4e5330c939d9229e4f2cff4b8da2d24ae4",
+        "tests/score.py": "ef380b58495346a5970fb7020ac7425efa00aadc04c62bdeed0d9c4ffcfc6e44",
+        "tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+        "tests/truth.json": "31df01ad50e37c874841ab337e399b8e2e12a324eb24878014c2688aa198086c"
+      }
+    },
+    {
+      "task": "cardiac-r02",
+      "task_path": "runs/br019-registration/tasks/cardiac-r02",
+      "public_geometry": {
+        "shape": [
+          128,
+          128
+        ],
+        "spacing_xy_mm": [
+          0.9,
+          0.9
+        ],
+        "coordinates": "LPS millimetres; +x left, +y posterior, +z superior",
+        "intensity": "8-bit, round(255*clip((trilinear_HU+150)/500,0,1)); no slab or projection"
+      },
+      "source_ct_sha256": "d3d805bf674b1b89a863529088aabac48eecf8702d5038361d8fc40de29b578b",
+      "controls": {
+        "oracle": {
+          "reward": 1,
+          "rms_mm": 0.0,
+          "max_mm": 0.0,
+          "centre_mm": 0.0,
+          "normal_deg": 0.0
+        },
+        "nop": {
+          "reward": 0,
+          "reason": "'slice_to_lps'"
+        },
+        "translate_2mm": {
+          "reward": 1,
+          "rms_mm": 2.0,
+          "max_mm": 2.000000000000007,
+          "centre_mm": 2.0,
+          "normal_deg": 0.0
+        },
+        "translate_8mm": {
+          "reward": 0,
+          "rms_mm": 8.0,
+          "max_mm": 8.000000000000007,
+          "centre_mm": 8.0,
+          "normal_deg": 0.0
+        },
+        "ras_lps": {
+          "reward": 0,
+          "rms_mm": 372.7832296477865,
+          "max_mm": 497.93473066212783,
+          "centre_mm": 359.0590428126043,
+          "normal_deg": 62.63958584086809
+        },
+        "scale": {
+          "reward": 0,
+          "reason": "rigid axes"
+        },
+        "mirrored_columns": {
+          "reward": 0,
+          "rms_mm": 76.2,
+          "max_mm": 114.30000000000005,
+          "centre_mm": 1.139086659085919e-13,
+          "normal_deg": 180.0
+        }
+      },
+      "files": {
+        "environment/DATA-LICENSE.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+        "environment/Dockerfile": "161a8cb3f8f2c8aeebed4ec9674c924b575b4564999fe70491faf082b3217a2a",
+        "environment/SOURCE_NOTICE.md": "4df10592e614d37f850d82484058ac0f723a17ea9fdb22a5cfdb0c3f80f3c117",
+        "environment/data/image.json": "0b35f64c801d9c1ba1edbd426f0e8bcadd10e8db70ff95e81e3ee58f4f10cf3d",
+        "environment/data/target.npy": "5df1c1c70c65fe792931ebfcc23cdd0ccc1341e7f3880b4385fc13f91893baed",
+        "environment/data/target.png": "5b4ed076dcdc92c413c12fae40cef972364432b84bdb7f29ba973765138e0754",
+        "environment/data/volume.npz": "b80cf66dc2c14c39126b9359ca08362149c12470d178b2b1fcccf1e1ec1a4df8",
+        "environment/reslice.py": "1e1a229b495cae3c1dd3f8503804501334c782abb23c42162cf981803683fd12",
+        "instruction.md": "d955ae96b8b5cfdb37ac1aec5351177967c1ed01322208e60e53ac53a54a29e3",
+        "solution/pose.json": "3ded6cccb6d0db42e9c3b21387b86f525e3220236b54beca9c361de1980e9640",
+        "solution/solve.sh": "593cf7b168e259c2b05780307233068ede15fcb7f4aeb37d119dc849a3069032",
+        "task.toml": "b25b89c65ef28b6517ab082d8864f08d155f37222b0c1ba5c90f31b134630d0f",
+        "tests/Dockerfile": "453c62e4e57565b352fe6a13e9af7b4e5330c939d9229e4f2cff4b8da2d24ae4",
+        "tests/score.py": "ef380b58495346a5970fb7020ac7425efa00aadc04c62bdeed0d9c4ffcfc6e44",
+        "tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+        "tests/truth.json": "2f7e26687df26499599e2f15015513359c8d5b59bad0896e668a1802eabc33d9"
+      }
+    }
+  ],
+  "author_baseline_scores": {
+    "cardiac-r01": {
+      "reward": 1,
+      "rms_mm": 0.0004313230553851698,
+      "max_mm": 0.0006074084219120065,
+      "centre_mm": 0.0003276470619930251,
+      "normal_deg": 0.00020587455200218784
+    },
+    "cardiac-r02": {
+      "reward": 1,
+      "rms_mm": 0.0005592408473716869,
+      "max_mm": 0.0010815006837040372,
+      "centre_mm": 0.0002689642041567707,
+      "normal_deg": 0.0007351224118233509
+    }
+  },
+  "admission": "Public-input baseline passes both; 7 geometric controls per condition pass; independent trilinear check and public payload audit pass; no clinical standard-plane claim."
+}

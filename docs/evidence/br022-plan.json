@@ -1,0 +1,59 @@
+{
+  "round": "BR-022",
+  "fixed_at": "2026-09-16T06:41:23.711743+00:00",
+  "protocol_path": "docs/research-rounds/BR-022-registration-failure-analysis.md",
+  "protocol_sha256": "c932f184d80e8d1b41d99d03a7c37c7baf10fb07c8456667c17d083f7329ed83",
+  "original_freeze_sha256": "8845458395438557e08091e91c230100d9a492a69828214adbe73d4ebfae316c",
+  "task": {
+    "task": "deform-2d",
+    "task_path": "runs/br021-deformable/tasks/deform-2d",
+    "files": {
+      "environment/Dockerfile": "fd792889cc2e2cee5c58e48ca7383407f9c2e93ae88f43bcf55deb8546f6b047",
+      "environment/SOURCE_NOTICE.md": "b7c96918219203e92a69fc3771fea19aa503e69a42fa91c8038514d1a72130fa",
+      "environment/data/queries.json": "1efcef33b921e0476875a09fde5cb8ef1c896483c5415bcbd1bce0cdb9e7311b",
+      "environment/data/view.json": "f006bb8fb8a69d3b508a84ba69f328d4e44b173bc93b3301cc1ad9d54a63a4ed",
+      "environment/data/view.npy": "b84b5dbb6ccab00bb64554bfb1aa94f0b896778e4c86be8433461a88864aae52",
+      "environment/data/view.png": "60e1b69d2af72d296d06484b0495b21d3fdc10ef150e6aa4ec3472b5fb8f685a",
+      "environment/data/volume.npz": "5e3b9590eb5a3f9d2ab4e3a3c301ad467ba3f42513a18d00b80f8aa2d8dbccf0",
+      "instruction.md": "c863702093b6468dc679dc269227f949843bd162271b3e9be8f74bb6606d331b",
+      "solution/points.json": "c5a653473bf6ba6e7080a4ef0f76349376215c4fa38ea922f971dd6b898c846e",
+      "solution/solve.sh": "a17c6d5a27cf1b9786cd1a88632e9ea2ebc31457cbc733198000f1d8884b0fbd",
+      "task.toml": "8a7f7ea0e4878d48be0d23d38f8d6b32a9fd021cadb09e74717485aa9fae9197",
+      "tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+      "tests/score.py": "18b18c5d4d54e7ee54258ca56ef8f0d3b11ce1c8e0af4063273694a0923af2ee",
+      "tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+      "tests/truth.json": "a357c278daa0c9d5cd984333cae4f5ab99894178232e87b7dd11b323d854a695"
+    }
+  },
+  "new_model_attempts": 2,
+  "solver_primary_seed": 17,
+  "solver_sensitivity_seeds": [
+    41,
+    73
+  ],
+  "compositions": [
+    "original",
+    "direct_bspline"
+  ],
+  "search_bounds_mm": [
+    9,
+    30
+  ],
+  "secondary_composition": "residual_bspline_on_affine_resampled_image",
+  "baseline_patch_models": [
+    "translation",
+    "affine"
+  ],
+  "baseline_context_schedules": [
+    [
+      8,
+      8,
+      8
+    ],
+    [
+      25,
+      16,
+      10
+    ]
+  ]
+}

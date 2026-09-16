@@ -1,0 +1,58 @@
+{
+  "round": "BR-024",
+  "kind": "posthoc author diagnostics, not another solver or model attempt",
+  "private_labels_used": "Only to compute geometric coverage and errors after fixed public-input execution.",
+  "patient2_view1": {
+    "all_manual_targets_inside_initial_axis_aligned_35mm_search_box": true,
+    "max_abs_world_displacement_mm": 21.250000000000014,
+    "q02_stages": [
+      {
+        "half_width_mm": 25,
+        "loss": 0.04177372195956775,
+        "error_mm": 13.977064309748332
+      },
+      {
+        "half_width_mm": 16,
+        "loss": 0.036616507224307954,
+        "error_mm": 14.466870206869915
+      },
+      {
+        "half_width_mm": 10,
+        "loss": 0.05344171404072916,
+        "error_mm": 15.47996380985569
+      }
+    ],
+    "q02_neighborhood_nodes": 27,
+    "q02_baseline_neighborhood_distance_mm": 1.105609488623125,
+    "q02_neighborhood_prediction_error_mm": 14.97550380541832,
+    "q02_action": "keep_consistent_baseline",
+    "interpretation": "The broad initial box contains the manual match, but the first local fit is already wrong. Neighborhood agreement does not reject it: surrounding estimates support nearly the same wrong location. This is evidence against treating smooth displacement agreement as sufficient correspondence validation."
+  },
+  "patient2_view2": {
+    "final_author_grade": {
+      "reward": 0,
+      "rms_mm": 2.914731630837192,
+      "max_mm": 5.0012684663573275,
+      "per_point_mm": [
+        4.363642068697728,
+        1.296951184535288,
+        0.6534051542436482,
+        3.568337662168355,
+        0.8108990592120298,
+        5.0012684663573275,
+        2.648182631502391,
+        1.1826844829468552
+      ]
+    },
+    "max_threshold_excess_mm": 0.001268466357327469,
+    "interpretation": "Near pass, but held under the unchanged exact admission gate. This tiny margin does not establish substantive anatomical difficulty or unsolvability."
+  },
+  "receipts": {
+    "runs/br024-harder-registration/feasibility.json": "258222326dd5baf3a2e32891e2161462a125e2ca4f69299b3aaed3f95bf6c8c1",
+    "runs/br024-harder-registration/translation-feasibility.json": "bc372e7d8d7edba334ccbd8fb3b738f6155bd91d69cc9f6569442ed0d49701cb",
+    "runs/br024-harder-registration/neighborhood-feasibility.json": "8ccca9ac2d0895987ea9cbfa6c675967bd5fe772e23a37c38219bb86c166790f",
+    "runs/br024-harder-registration/neighborhood-plan.json": "89ad332cd3a716a52749e23737d72d08571e535f2dca2bb78df185a7df10fbc9",
+    "runs/br024-harder-registration/candidates/patient2-view1/baseline/points.log.json": "2da6e57b66da65de3e26b707f0679db11f1450cfe45dc3cb3528261848b431ce",
+    "runs/br024-harder-registration/candidates/patient2-view1/neighborhood/neighborhood.log.json": "ad25ec2588ca4130ca66c60ac25717fc1e0fa52ff0ab02612729de02ad5a941e"
+  }
+}

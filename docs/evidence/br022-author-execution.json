@@ -1,0 +1,76 @@
+{
+  "round": "BR-022",
+  "image_audit": {
+    "python": "3.12.14 (main, Aug 31 2026, 23:48:05) [GCC 12.2.0]",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "SimpleITK": "2.5.2",
+    "app_files": {
+      "/app/SOURCE_NOTICE.md": "b7c96918219203e92a69fc3771fea19aa503e69a42fa91c8038514d1a72130fa",
+      "/app/data/view.png": "60e1b69d2af72d296d06484b0495b21d3fdc10ef150e6aa4ec3472b5fb8f685a",
+      "/app/data/volume.npz": "5e3b9590eb5a3f9d2ab4e3a3c301ad467ba3f42513a18d00b80f8aa2d8dbccf0",
+      "/app/data/view.npy": "b84b5dbb6ccab00bb64554bfb1aa94f0b896778e4c86be8433461a88864aae52",
+      "/app/data/queries.json": "1efcef33b921e0476875a09fde5cb8ef1c896483c5415bcbd1bce0cdb9e7311b",
+      "/app/data/view.json": "f006bb8fb8a69d3b508a84ba69f328d4e44b173bc93b3301cc1ad9d54a63a4ed"
+    },
+    "answer_empty": true,
+    "private_paths": {
+      "/tests": false,
+      "/solution": false,
+      "/verifier": false,
+      "/state": false,
+      "/recovered": false
+    }
+  },
+  "public_payload_matches_original_freeze": true,
+  "network_mode": "none",
+  "cpu_limit": 4,
+  "memory_limit": "4g",
+  "solver_private_label_mounts": false,
+  "solver_code_files": {
+    "probes/registration-deformation/authoring/br022_baseline_ablation.py": "d1e2be993b38587bf07349aa97d4c719cb01f924077241c5cec52115c766928d",
+    "probes/registration-deformation/authoring/br022_analyze.py": "c205aeb68dd39cce24c59bbb3310720adcc0b240144ab976ac93dff663945214",
+    "probes/registration-deformation/authoring/br022_recover.py": "844b5cbcc149aae1af8028dc609f9e6e588d36740017ba11ee6dc3400187459e",
+    "probes/registration-deformation/authoring/br022_counterfactual.py": "339be27550f23529585604320fb7841547acd3caf8a35d93849329e7dad0f659",
+    "probes/registration-deformation/authoring/br022_run_trials.py": "f0568b72a5b9d1e2895763f448d5472d38f6816e4d000144aa3f1d69a164f96c",
+    "probes/registration-deformation/authoring/br022_replay.py": "226e0f15d5a0ebf0a142002a93d4478a8427fb4ef13cce6b6df7cf29957d73ca",
+    "runs/br022-registration-postmortem/recovered/reg.py": "fc0bda67afce05047f464b1ee9a8d5ecba61285a31f02be17b61697a3c7e051f",
+    "runs/br022-registration-postmortem/recovered/reg2d.py": "7839f18a5b4da9b8e493fd61215b1e48f1a51e0b0f82c5ce3db2e2b408796ec9"
+  },
+  "raw_logs": {
+    "runs/br022-registration-postmortem/br022-deform-2d-oracle-v1-20260916.log": "b306c536a16d571bd267e9e042908ea5854407ce8ac12a146ca95e839876bad8",
+    "runs/br022-registration-postmortem/replay-image-lookup.log": "451ee264d7def5d155d9c6c462b7afa345f8090f593a17afe43dbfe7edbea290",
+    "runs/br022-registration-postmortem/ablations.log": "fab669c913cf924eba439313f5a7b24de1d3bab8bf92d48c8752ea179fed78f2",
+    "runs/br022-registration-postmortem/br022-deform-2d-nop-v1-20260916.log": "61fdac8f1c8f60b55d48a1a58ed88c506bad3bbe473dbf3f10d4c4b4c37515ad",
+    "runs/br022-registration-postmortem/br022-deform-2d-terra-high-r2-v1-20260916.log": "5f811ee519df7057f3c8438aba87b5f56cabc8091183e80659c4da9edf5b1a9f",
+    "runs/br022-registration-postmortem/replay.log": "5278f854bde0c42e2095e42ad7939229b33c65b13ab4abac621ae176dd0e918e",
+    "runs/br022-registration-postmortem/br022-deform-2d-terra-high-r3-v1-20260916.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/br022-registration-postmortem/counterfactuals.log": "081ae33b16685838740efd46c1a09f3f70d031e13b90b9279599e963844067dd"
+  },
+  "execution_groups": {
+    "replay": {
+      "script": "br022_replay.py",
+      "read_only_mounts": [
+        "recovered/reg.py",
+        "recovered/reg2d.py"
+      ],
+      "output": "replay"
+    },
+    "counterfactuals": {
+      "script": "br022_counterfactual.py",
+      "read_only_mounts": [
+        "recovered",
+        "replay"
+      ],
+      "output": "counterfactuals"
+    },
+    "baseline_ablations": {
+      "script": "br022_baseline_ablation.py",
+      "read_only_mounts": [
+        "baseline_patches.py"
+      ],
+      "output": "ablations"
+    }
+  },
+  "analysis_boundary": "br022_analyze.py runs offline with private labels after solver outputs; its diagnostics are not admissible solver solutions."
+}

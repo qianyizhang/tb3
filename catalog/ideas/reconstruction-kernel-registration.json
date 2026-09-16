@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "id": "reconstruction-kernel-registration",
+  "title": "Recover an oblique CT plane across real reconstruction kernels",
+  "status": "rejected",
+  "tags": ["brainstorm-round-020", "medical-imaging", "registration", "geometry", "non-security"],
+  "hypothesis": "A target from a genuinely different CT reconstruction kernel removes exact pixel equality and may increase registration difficulty without changing geometry tolerance or tool access.",
+  "why_hard": "Not established: fresh Terra/high passes in 272 seconds at 0.0356 mm RMS versus 3 mm tolerance. The unchanged public-input author solver with 512 starts also recovers the cross-kernel target to 0.034 mm RMS. Initial 64-start misses affect both cross-kernel and matched same-kernel targets, so they do not isolate a reconstruction effect.",
+  "next_action": "Retire this snapshot. Preserve the trace and source/geometry audit. Real cross-acquisition or modality successors need independent correspondence truth and an adequate transform model; none was run here.",
+  "sources": [
+    {"url": "codex://threads/01a0a845-7c2d-7992-a662-24d52831af90", "note": "User accepted the proposed different-reconstruction pilot with go ahead on 2026-09-16; exact source-message ID not exposed."},
+    {"url": "https://www.cancerimagingarchive.net/collection/nlst/", "note": "Public CC BY 4.0 NLST DICOM source; selected genuine B30f/B50f reconstruction pair."},
+    {"url": "https://doi.org/10.1002/mp.17028", "note": "Paired NLST reconstruction-kernel research motivates source screening, not an LLM failure claim."}
+  ],
+  "evidence": [
+    "docs/research-rounds/BR-020-reconstruction-registration.md",
+    "docs/research-rounds/BR-020-results.md",
+    "docs/evidence/br020-freeze.json",
+    "docs/evidence/br020-author-audit.json",
+    "docs/evidence/br020-results.json",
+    "probes/registration-reconstruction/authoring/README.md"
+  ],
+  "notes": "One public patient, one author-selected cardiac-region plane. Matching frame, acquisition number, exposure settings and 139 slice positions; acquisition timestamps removed. Not an expert-certified diagnostic plane. Native kernel differences, no hidden geometry/second CT/author solver in agent inputs, ordinary numerical tools allowed. Fresh one-attempt Terra/high pass with oracle 1 / nop 0, zero retries, normal completion. Own SciPy registration implementation; no downloaded registration package or pretrained model observed. Raw evidence remains local; BR019 freezes and separate submission untouched."
+}

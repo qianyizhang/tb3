@@ -1,0 +1,168 @@
+{
+  "round": "BR-019",
+  "checks": {
+    "source_ct_matches_retained_receipt": true,
+    "source_mask_matches_retained_receipt": true,
+    "task_snapshot_membership_and_hashes_unchanged": true,
+    "empty_png_metadata": true,
+    "public_npz_keys": [
+      "hu",
+      "voxel_to_lps"
+    ],
+    "numpy_target_matches_png": true,
+    "forward_interpolation_independent_check_samples": 204,
+    "author_geometric_controls": 14,
+    "extra_boundary_and_malformed_checks": [
+      {
+        "task": "cardiac-r01",
+        "checks": {
+          "translation_2.99": {
+            "reward": 1,
+            "rms_mm": 2.989999999999994,
+            "max_mm": 2.990000000000009,
+            "centre_mm": 2.989999999999995,
+            "normal_deg": 0.0
+          },
+          "translation_3.01": {
+            "reward": 0,
+            "rms_mm": 3.0100000000000056,
+            "max_mm": 3.0100000000000193,
+            "centre_mm": 3.010000000000005,
+            "normal_deg": 0.0
+          },
+          "nan": {
+            "reward": 0,
+            "reason": "finite 4x4 required"
+          },
+          "empty": {
+            "reward": 0,
+            "reason": "'slice_to_lps'"
+          },
+          "shape": {
+            "reward": 0,
+            "reason": "finite 4x4 required"
+          },
+          "reflection": {
+            "reward": 0,
+            "reason": "right handed frame"
+          }
+        }
+      },
+      {
+        "task": "cardiac-r02",
+        "checks": {
+          "translation_2.99": {
+            "reward": 1,
+            "rms_mm": 2.9900000000000024,
+            "max_mm": 2.990000000000009,
+            "centre_mm": 2.990000000000002,
+            "normal_deg": 0.0
+          },
+          "translation_3.01": {
+            "reward": 0,
+            "rms_mm": 3.0099999999999985,
+            "max_mm": 3.010000000000005,
+            "centre_mm": 3.009999999999998,
+            "normal_deg": 0.0
+          },
+          "nan": {
+            "reward": 0,
+            "reason": "finite 4x4 required"
+          },
+          "empty": {
+            "reward": 0,
+            "reason": "'slice_to_lps'"
+          },
+          "shape": {
+            "reward": 0,
+            "reason": "finite 4x4 required"
+          },
+          "reflection": {
+            "reward": 0,
+            "reason": "right handed frame"
+          }
+        }
+      }
+    ]
+  },
+  "baseline_reads": [
+    "volume.npz",
+    "target.npy",
+    "image.json"
+  ],
+  "author_baseline_limitation": "Algorithm written with task-design knowledge; public-input-only execution is distinct from blind discovery.",
+  "local_source_screen": "runs/br019-registration/author/source-screen.png",
+  "author_code_sha256": {
+    "build.py": "bde833910f2a69a509b71ee2859501fb67a6c60a90d3ff78f2f0fc257bf143d8",
+    "collect.py": "172b9b13075c33b290b4f89f5f20c49ea9237d6e1a9af4b40e932a7a0884acd8",
+    "baseline.py": "57775ae6e768f13a82fd5ef77e34a55cd89579fc94611cb3a3da998703eafc29",
+    "present.py": "22fe101f55245f89cbff9bb94596179e7321b17da47c8843a06ab9e9ecf650ad",
+    "reslice.py": "1e1a229b495cae3c1dd3f8503804501334c782abb23c42162cf981803683fd12",
+    "run_trials.py": "fbe30375e405c79c0ecd9f5270b41c460e703fdfc31312c3b94d08c732fa4e27",
+    "score.py": "ef380b58495346a5970fb7020ac7425efa00aadc04c62bdeed0d9c4ffcfc6e44"
+  },
+  "payload_audit": "Only environment/data, reslice.py, notice and license copied into agent image; tests and solution are separate contexts.",
+  "linux_public_only_baseline": {
+    "image_id": "sha256:993f9ca9affe301fdd0ae46b2592e7fae0f197f9e40af0b250053704b9deec84",
+    "container_id": "deb5f65bd19fb2fe3d5d1ffe604a6b2cecdef65b6e95987d35e5b27189269d14",
+    "copied_in": [
+      "baseline.py"
+    ],
+    "inputs": "same frozen public R01 environment only",
+    "network": "none for this deterministic author control only; model retains public network",
+    "metrics": {
+      "public_data": "/app/data",
+      "starts": 64,
+      "seconds": 4.514775751999878,
+      "ncc": 0.9999919295315838,
+      "pixel_rmse_255": 0.22011937205019894,
+      "initialization": "volume physical centre, cube rotation group and independent random rotations",
+      "coarse_best_ncc": 0.9629581401219471,
+      "medium_best_ncc": 0.993033286082264
+    },
+    "grade": {
+      "reward": 1,
+      "rms_mm": 0.0004313257647473394,
+      "max_mm": 0.0006075704440524745,
+      "centre_mm": 0.0003277567312577542,
+      "normal_deg": 0.00020567440807132655
+    },
+    "answer_sha256": "77e7f751f158773a41db2ce538383ced9cce9230db0fe66bc1ace3708e2b2c4e"
+  },
+  "delegated_runtime_review": {
+    "supervisor": "registration_bench child agent; no solver hints or extra task messages",
+    "agent_image_inventory": [
+      "/app/answer",
+      "/app/DATA-LICENSE.txt",
+      "/app/SOURCE_NOTICE.md",
+      "/app/reslice.py",
+      "/app/data/volume.npz",
+      "/app/data/target.npy",
+      "/app/data/target.png",
+      "/app/data/image.json"
+    ],
+    "absent_paths": [
+      "/tests",
+      "/solution",
+      "/app/tests",
+      "/app/solution",
+      "/app/truth.json",
+      "/app/pose.json"
+    ],
+    "conditions": {
+      "cardiac-r01": {
+        "image": "cardiac-r01__7yueb55-main",
+        "trajectory_steps": 46,
+        "approach": "Six-DOF intensity/edge search, in-volume centre pruning, silhouette match, least-squares refinement",
+        "private_or_author_access_observed": false
+      },
+      "cardiac-r02": {
+        "image": "cardiac-r02__r7t7hng-main",
+        "trajectory_steps": 20,
+        "approach": "100000 random poses, retain 30, refine top 4, voxel-to-LPS conversion",
+        "private_or_author_access_observed": false
+      }
+    },
+    "limitation": "Read-only image inventory and retained trajectory review; not provider-side attestation or proof about unobservable activity."
+  }
+}

@@ -1,0 +1,275 @@
+{
+  "round": "BR-024",
+  "case": 3,
+  "image": "sha256:6cfcfe8be82710149c56e3142d597605ca413b96384541d1e810ea2b7bf99216",
+  "image_audit": {
+    "files": {
+      "/app/SOURCE_NOTICE.md": "b7c96918219203e92a69fc3771fea19aa503e69a42fa91c8038514d1a72130fa",
+      "/app/data/view.png": "a97932081236b2c3690bbed3e0469c0fd4f365c4c783dfe8c71b55e3534229e9",
+      "/app/data/volume.npz": "dfcf344bc9550ddd32ab5352277b2398e8ea3ccf883003fe9d921fe7ed946838",
+      "/app/data/view.npy": "f2c99e1cd54a1deda644388ffe414bdd94b596564a4af77546117eccc9f48032",
+      "/app/data/queries.json": "394862024ac1694504e9c1cab39b2ab6ea3a0f5c7624683c7ec84ce5506efe80",
+      "/app/data/view.json": "3454989d86544bc5cbdd1937a60ce83eb3e961f667fa4e9bc9b66e00e48c52cf"
+    },
+    "initial_answers": [],
+    "private_paths": {
+      "/tests": false,
+      "/solution": false,
+      "/app/truth.json": false,
+      "/app/baseline.py": false,
+      "/app/data/reference_volume.npz": false
+    },
+    "numpy_version": "2.2.6"
+  },
+  "public_files_match": true,
+  "network": "none",
+  "private_labels_mounted": false,
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "--cpus",
+    "4",
+    "--memory",
+    "4g",
+    "-v",
+    "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/author/patient3:/output",
+    "-v",
+    "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+    "-v",
+    "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/br022_baseline_ablation.py:/runner.py:ro",
+    "sha256:6cfcfe8be82710149c56e3142d597605ca413b96384541d1e810ea2b7bf99216",
+    "python",
+    "/runner.py",
+    "--data",
+    "/app/data",
+    "--out",
+    "/output/points.json",
+    "--kind",
+    "2d",
+    "--model",
+    "translation",
+    "--context",
+    "multiscale"
+  ],
+  "grade": {
+    "reward": 1,
+    "rms_mm": 2.1328979359146905,
+    "max_mm": 3.4161131491425327,
+    "per_point_mm": [
+      2.5309849405210323,
+      2.295680827383528,
+      0.18835650864201528,
+      2.3099176501967422,
+      2.4832784600194713,
+      3.4161131491425327,
+      0.5036744730118952,
+      1.1209848136033598
+    ]
+  },
+  "answer_path": "runs/br024-harder-registration/author/patient3/points.json",
+  "answer_sha256": "dd291765d29e2657ef0e86cbe5f5623df615c9204237209dc2e50e13330b7697",
+  "preparation": {
+    "round": "BR-024",
+    "case": 3,
+    "candidate": "patient3-view1",
+    "task": "deform-harder-patient3",
+    "task_path": "runs/br024-harder-registration/tasks/deform-harder-patient3",
+    "baseline_method": "translation",
+    "baseline_answer_path": "runs/br024-harder-registration/candidates/patient3-view1/translation/points.json",
+    "baseline_grade": {
+      "reward": 1,
+      "rms_mm": 2.1328979359146905,
+      "max_mm": 3.4161131491425327,
+      "per_point_mm": [
+        2.5309849405210323,
+        2.295680827383528,
+        0.18835650864201528,
+        2.3099176501967422,
+        2.4832784600194713,
+        3.4161131491425327,
+        0.5036744730118952,
+        1.1209848136033598
+      ]
+    },
+    "interpolation_max_hu_difference": 2.9927982268418418e-05,
+    "controls": {
+      "oracle": {
+        "reward": 1,
+        "rms_mm": 0.0,
+        "max_mm": 0.0,
+        "per_point_mm": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "tolerated": {
+        "reward": 1,
+        "rms_mm": 2.0,
+        "max_mm": 2.0,
+        "per_point_mm": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ]
+      },
+      "rms_boundary_fail": {
+        "reward": 0,
+        "rms_mm": 3.0099999999999927,
+        "max_mm": 3.010000000000005,
+        "per_point_mm": [
+          3.009999999999991,
+          3.009999999999991,
+          3.009999999999991,
+          3.010000000000005,
+          3.009999999999991,
+          3.009999999999991,
+          3.009999999999991,
+          3.009999999999991
+        ]
+      },
+      "large_shift": {
+        "reward": 0,
+        "rms_mm": 8.0,
+        "max_mm": 8.0,
+        "per_point_mm": [
+          8.0,
+          8.0,
+          8.0,
+          8.0,
+          8.0,
+          8.0,
+          8.0,
+          8.0
+        ]
+      },
+      "nop": {
+        "reward": 0,
+        "reason": "'query_ids'"
+      },
+      "shuffled": {
+        "reward": 0,
+        "rms_mm": 109.60639807967416,
+        "max_mm": 170.75,
+        "per_point_mm": [
+          78.96399495972832,
+          85.11646432976407,
+          73.61088574388981,
+          170.75,
+          170.75,
+          73.61088574388981,
+          85.11646432976407,
+          78.96399495972832
+        ]
+      },
+      "single_outlier": {
+        "reward": 0,
+        "rms_mm": 1.7713024868722984,
+        "max_mm": 5.009999999999991,
+        "per_point_mm": [
+          5.009999999999991,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "preparation": {
+      "name": "patient3-view1",
+      "case": 3,
+      "rank": 1,
+      "source_indices": [
+        19,
+        21,
+        46,
+        53,
+        55,
+        72,
+        73,
+        96
+      ],
+      "shape": [
+        121,
+        189
+      ],
+      "best_rigid": {
+        "rms_mm": 8.713130499558769,
+        "mean_mm": 8.219837312404852,
+        "p90_mm": 12.40097663878082,
+        "max_mm": 12.562553239939515,
+        "per_point_mm": [
+          7.4449667283341485,
+          12.331729523998524,
+          6.481313207241682,
+          8.604767082203608,
+          3.8580691581988282,
+          12.562553239939515,
+          5.458459718353991,
+          9.016839840968526
+        ]
+      },
+      "best_affine": {
+        "rms_mm": 5.465373977311804,
+        "mean_mm": 5.118246818263742,
+        "p90_mm": 7.4418881415002565,
+        "max_mm": 7.8173716431887215,
+        "per_point_mm": [
+          7.8173716431887215,
+          7.2809666407766285,
+          2.872582225104475,
+          4.349888913491104,
+          1.9381955957696686,
+          6.235788853165581,
+          5.678476265576419,
+          4.772704409037331
+        ]
+      },
+      "identity": {
+        "rms_mm": 11.212720021849522,
+        "mean_mm": 10.037138886542117,
+        "p90_mm": 15.318227118259202,
+        "max_mm": 18.498310733685926,
+        "per_point_mm": [
+          8.838834764831844,
+          13.668455984226357,
+          4.1846829124374025,
+          2.1505813167606567,
+          8.707897327903588,
+          18.498310733685926,
+          10.293013912271986,
+          13.955334140219179
+        ]
+      },
+      "off_plane_mm": [
+        0.0,
+        0.24695919857831955,
+        0.30869899822290453,
+        0.0,
+        0.12347959928917723,
+        0.0,
+        0.30869899822290453,
+        0.30869899822290453
+      ],
+      "public_path": "runs/br024-harder-registration/candidates/patient3-view1/public",
+      "truth_path": "runs/br024-harder-registration/candidates/patient3-view1/truth.json"
+    },
+    "author_visibility_review": "Actual source/manual-target panels inspected; all eight have visible vessel/airway structure. No expert clinical or unique-correspondence certification."
+  }
+}

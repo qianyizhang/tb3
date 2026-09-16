@@ -1,0 +1,232 @@
+{
+  "round": "BR-024",
+  "summary": "One new patient defeated Sol/xhigh: 12.73 mm RMS / 32.20 mm maximum after a normal 21m 53s attempt. The same case passes an isolated public-input author method at 2.13 / 3.42 mm.",
+  "findings": [
+    "Six fixed oblique views from two unused patients have stronger nonuniform deformation than the earlier case. All six defeat the unchanged local-affine author matcher; a previously specified translation-only method qualifies patient 3 / view 1.",
+    "Sol uses preinstalled SimpleITK rigid and B-spline registration, neighborhood correlation, denser meshes and edge checks, followed by its own local patch searches. No external installation, download or annotation lookup is observed. The model finishes normally and three landmarks exceed 5mm.",
+    "For final q04, the correct position needs 32.50 mm of displacement along one local axis, while the agent permits only \u00b17 mm. Its best possible local translation remains 25.50 mm away. Final q02 is reachable within 5 mm, but the selected match remains 14.78 mm wrong.",
+    "Patient 2 is not model-tested. Neighborhood consistency can reinforce a wrong match: 27 nearby fits support nearly the same 15 mm error. Another view nearly passes author feasibility but misses the frozen maximum by 0.00127 mm; this tiny difference does not establish substantive difficulty."
+  ],
+  "conclusion": "Retain patient3-view1 as a concrete Sol failure candidate. One selected attempt does not establish reliable difficulty. Stronger deformation, passing task feasibility and a model miss are three separate findings; all screened outcomes remain available below.",
+  "model": {
+    "execution": "completed",
+    "grade": {
+      "reward": 0,
+      "rms_mm": 12.731273502678357,
+      "max_mm": 32.20322654641923,
+      "per_point_mm": [
+        1.402961154130805,
+        14.779665084162096,
+        1.989019859126598,
+        32.20322654641923,
+        0.845340168216318,
+        5.820566982691629,
+        0.2927456233660858,
+        0.7697402159170378
+      ]
+    },
+    "agent_seconds": 1313.083906,
+    "runtime_contexts": [
+      {
+        "model": "gpt-5.6-sol",
+        "effort": "xhigh"
+      }
+    ],
+    "result_path": "runs/br024-deform-harder-patient3-sol-xhigh-v1-20260916/deform-harder-patient3__NJq7SQn/result.json",
+    "result_sha256": "4db1e33e63e8d2a30f3a3e08ad8c84e9bbb18cf96d936fa19ff5a26a45c16847"
+  },
+  "stage_count": 17,
+  "all_captured_named_transform_states_fail": true,
+  "local_search_diagnostics": [
+    {
+      "script": "/tmp/localopt.py",
+      "code_evidence": {
+        "sha256": "abcb25e73ffe1865e8ea7d1d61f061f202ab1fc21cacebca4506280d00ccd446",
+        "bytes": 1792,
+        "object_path": "runs/br024-harder-registration/captured-agent-artifacts-patient3/objects/abcb25e73ffe1865e8ea7d1d61f061f202ab1fc21cacebca4506280d00ccd446"
+      },
+      "base_transform": "res_cc5_5.tfm",
+      "query_bounds": [
+        {
+          "query_id": "q01",
+          "manual_displacement_in_local_axes_mm": [
+            0.6348918780550838,
+            0.008511866153166271,
+            -1.03744840590585
+          ],
+          "distance_to_permitted_translation_cube_mm": 0.0,
+          "can_reach_5mm_tolerance": true
+        },
+        {
+          "query_id": "q02",
+          "manual_displacement_in_local_axes_mm": [
+            9.843315935590775,
+            16.56268725560103,
+            -2.3324984657510917
+          ],
+          "distance_to_permitted_translation_cube_mm": 9.976443908428434,
+          "can_reach_5mm_tolerance": false
+        },
+        {
+          "query_id": "q03",
+          "manual_displacement_in_local_axes_mm": [
+            2.9836459407545517,
+            -2.6433539460901887,
+            0.7981287472218385
+          ],
+          "distance_to_permitted_translation_cube_mm": 0.0,
+          "can_reach_5mm_tolerance": true
+        },
+        {
+          "query_id": "q04",
+          "manual_displacement_in_local_axes_mm": [
+            1.8782067231415982,
+            3.8844624748123575,
+            22.881290634034627
+          ],
+          "distance_to_permitted_translation_cube_mm": 15.881290634034627,
+          "can_reach_5mm_tolerance": false
+        },
+        {
+          "query_id": "q05",
+          "manual_displacement_in_local_axes_mm": [
+            -0.442365404402807,
+            -0.16232292195821238,
+            0.4526849502895277
+          ],
+          "distance_to_permitted_translation_cube_mm": 0.0,
+          "can_reach_5mm_tolerance": true
+        },
+        {
+          "query_id": "q06",
+          "manual_displacement_in_local_axes_mm": [
+            -1.849372488774386,
+            -4.882510943700342,
+            -0.9292442076732286
+          ],
+          "distance_to_permitted_translation_cube_mm": 0.0,
+          "can_reach_5mm_tolerance": true
+        },
+        {
+          "query_id": "q07",
+          "manual_displacement_in_local_axes_mm": [
+            -0.24214276801105145,
+            0.47616374364191033,
+            0.12887328827548586
+          ],
+          "distance_to_permitted_translation_cube_mm": 0.0,
+          "can_reach_5mm_tolerance": true
+        },
+        {
+          "query_id": "q08",
+          "manual_displacement_in_local_axes_mm": [
+            0.49039802169305596,
+            2.0014080750566032,
+            -1.6048983701593558
+          ],
+          "distance_to_permitted_translation_cube_mm": 0.0,
+          "can_reach_5mm_tolerance": true
+        }
+      ]
+    },
+    {
+      "script": "/tmp/localopt7.py",
+      "code_evidence": {
+        "sha256": "9ce9737a91d9371e01d1a6bd15d7615fdd1a6c2d83f24cbe322fdcbee38066f6",
+        "bytes": 1790,
+        "object_path": "runs/br024-harder-registration/captured-agent-artifacts-patient3/objects/9ce9737a91d9371e01d1a6bd15d7615fdd1a6c2d83f24cbe322fdcbee38066f6"
+      },
+      "base_transform": "bs_corr_7.tfm",
+      "query_bounds": [
+        {
+          "query_id": "q01",
+          "manual_displacement_in_local_axes_mm": [
+            0.9047053212929204,
+            0.7569073444581951,
+            -2.814518338197485
+          ],
+          "distance_to_permitted_translation_cube_mm": 0.0,
+          "can_reach_5mm_tolerance": true
+        },
+        {
+          "query_id": "q02",
+          "manual_displacement_in_local_axes_mm": [
+            9.197750395694303,
+            6.583851078462598,
+            -9.292796944139562
+          ],
+          "distance_to_permitted_translation_cube_mm": 3.176007655663031,
+          "can_reach_5mm_tolerance": true
+        },
+        {
+          "query_id": "q03",
+          "manual_displacement_in_local_axes_mm": [
+            2.348734673724097,
+            -1.4067873163393094,
+            -1.1894753701609921
+          ],
+          "distance_to_permitted_translation_cube_mm": 0.0,
+          "can_reach_5mm_tolerance": true
+        },
+        {
+          "query_id": "q04",
+          "manual_displacement_in_local_axes_mm": [
+            0.4291339794862123,
+            -3.784086401559508,
+            32.50458941407365
+          ],
+          "distance_to_permitted_translation_cube_mm": 25.50458941407365,
+          "can_reach_5mm_tolerance": false
+        },
+        {
+          "query_id": "q05",
+          "manual_displacement_in_local_axes_mm": [
+            -0.49633716871046357,
+            -0.21793848829175325,
+            0.9152604353875172
+          ],
+          "distance_to_permitted_translation_cube_mm": 0.0,
+          "can_reach_5mm_tolerance": true
+        },
+        {
+          "query_id": "q06",
+          "manual_displacement_in_local_axes_mm": [
+            -1.627857662699892,
+            -4.25447181412159,
+            -2.4267574166606476
+          ],
+          "distance_to_permitted_translation_cube_mm": 0.0,
+          "can_reach_5mm_tolerance": true
+        },
+        {
+          "query_id": "q07",
+          "manual_displacement_in_local_axes_mm": [
+            0.38401943091081253,
+            0.43214795620700713,
+            -0.2301946603320888
+          ],
+          "distance_to_permitted_translation_cube_mm": 0.0,
+          "can_reach_5mm_tolerance": true
+        },
+        {
+          "query_id": "q08",
+          "manual_displacement_in_local_axes_mm": [
+            -0.14101086600240098,
+            0.01271830446325897,
+            -0.9958779499251832
+          ],
+          "distance_to_permitted_translation_cube_mm": 0.0,
+          "can_reach_5mm_tolerance": true
+        }
+      ]
+    }
+  ],
+  "interpretation_limit": "Saved-stage comparisons are observational, not independent randomized component ablations. Search exclusion is a mathematical bound conditional on the selected transform and local search code.",
+  "evidence": {
+    "runs/br024-harder-registration/stage-analysis.json": "66fc6dc427c8adacfc6b35e96dbab5f182199e4de8a03cfa1703bfa081045af4",
+    "runs/br024-harder-registration/curation-analysis.json": "f8024fad245a8c078f301ab2935fff3f594da420752b40d59f303a703c370085",
+    "runs/br024-harder-registration/freezes/patient3.json": "d40a51e6bc841806750deef6aa1307a87e51c056d4478cab83dd58c406fcb3a6",
+    "runs/br024-harder-registration/results.json": "a7818fcb6e3f85d34586932588ca96bd8c8301f568bec0865af276483ab29a77",
+    "runs/br024-harder-registration/bench-audit-patient3.json": "c29ffe837f2eee9490dbe4fd20ae053d156032f0e63886d9022f7a05efb7a9d9"
+  }
+}

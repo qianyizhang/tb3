@@ -1,0 +1,188 @@
+{
+  "round": "BR-028",
+  "image": "sha256:a551064e2c1bdf59449a2f58e010172e0c40d64a95abb4cc864fc2e17a6484d9",
+  "public_files_match": true,
+  "image_audit": {
+    "files": {
+      "/app/SOURCE_NOTICE.md": "b7c96918219203e92a69fc3771fea19aa503e69a42fa91c8038514d1a72130fa",
+      "/app/data/view.png": "a97932081236b2c3690bbed3e0469c0fd4f365c4c783dfe8c71b55e3534229e9",
+      "/app/data/volume.npz": "dfcf344bc9550ddd32ab5352277b2398e8ea3ccf883003fe9d921fe7ed946838",
+      "/app/data/view.npy": "f2c99e1cd54a1deda644388ffe414bdd94b596564a4af77546117eccc9f48032",
+      "/app/data/queries.json": "394862024ac1694504e9c1cab39b2ab6ea3a0f5c7624683c7ec84ce5506efe80",
+      "/app/data/reference_volume.npz": "9a3acc47cbbfd576b68e444582c55b8647c5d40dd0971fdf20398e9981aca517",
+      "/app/data/view.json": "3454989d86544bc5cbdd1937a60ce83eb3e961f667fa4e9bc9b66e00e48c52cf"
+    },
+    "answers": [],
+    "private_exists": {
+      "/tests": false,
+      "/solution": false,
+      "/verifier": false,
+      "/author": false,
+      "/baseline.py": false,
+      "/app/truth.json": false
+    },
+    "source_npz_members": [
+      "hu",
+      "voxel_to_world"
+    ]
+  },
+  "preparation": {
+    "round": "BR-028",
+    "task": "deform-patient3-source3d",
+    "task_path": "runs/br028-registration-3d-source/tasks/deform-patient3-source3d",
+    "plan_sha256": "5b93e0af890c35f410843547ac0fb9cee334800773b9fc63031e35bd4f35fd0f",
+    "old_public_files_and_private_evaluation_unchanged": true,
+    "source_shape": [
+      192,
+      192,
+      208
+    ],
+    "source_spacing_mm": [
+      1.75,
+      1.25,
+      1.75
+    ],
+    "source_nifti_sha256": "f8d19275ee45736e84611e9558799a0c3946a9008c4a27a447fdadecf9bce950",
+    "reference_volume_sha256": "9a3acc47cbbfd576b68e444582c55b8647c5d40dd0971fdf20398e9981aca517",
+    "independent_interpolation_samples": 22869,
+    "max_hu_difference": 3.051470753234753e-05,
+    "query_world_mm": [
+      [
+        211.75,
+        113.75,
+        157.5
+      ],
+      [
+        281.71863430789364,
+        82.43169249274607,
+        157.264757309202
+      ],
+      [
+        211.78920711513302,
+        82.58538438406742,
+        166.54405336349748
+      ],
+      [
+        80.5,
+        113.75,
+        175.0
+      ],
+      [
+        246.76568284605318,
+        157.53415375362698,
+        140.117621345399
+      ],
+      [
+        220.5,
+        170.0,
+        140.0
+      ],
+      [
+        220.53920711513302,
+        138.83538438406742,
+        149.0440533634975
+      ],
+      [
+        229.28920711513302,
+        195.08538438406742,
+        131.5440533634975
+      ]
+    ]
+  },
+  "author_rows": [
+    {
+      "method": "2d-translation",
+      "grade": {
+        "reward": 1,
+        "rms_mm": 2.1328979359146905,
+        "max_mm": 3.4161131491425327,
+        "per_point_mm": [
+          2.5309849405210323,
+          2.295680827383528,
+          0.18835650864201528,
+          2.3099176501967422,
+          2.4832784600194713,
+          3.4161131491425327,
+          0.5036744730118952,
+          1.1209848136033598
+        ]
+      },
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--cpus",
+        "4",
+        "--memory",
+        "4g",
+        "-v",
+        "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+        "-v",
+        "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/br022_baseline_ablation.py:/runner.py:ro",
+        "-v",
+        "/Users/zhangqy/pkgs/tb3/runs/br028-registration-3d-source/author/2d-translation:/output",
+        "sha256:a551064e2c1bdf59449a2f58e010172e0c40d64a95abb4cc864fc2e17a6484d9",
+        "python",
+        "/runner.py",
+        "--data",
+        "/app/data",
+        "--out",
+        "/output/points.json",
+        "--kind",
+        "2d",
+        "--model",
+        "translation",
+        "--context",
+        "multiscale"
+      ],
+      "network": "none",
+      "private_labels_mounted": false,
+      "answer_path": "runs/br028-registration-3d-source/author/2d-translation/points.json",
+      "answer_sha256": "dd291765d29e2657ef0e86cbe5f5623df615c9204237209dc2e50e13330b7697"
+    },
+    {
+      "method": "3d-affine",
+      "grade": {
+        "reward": 0,
+        "rms_mm": 7.402935925135629,
+        "max_mm": 19.459296451071978,
+        "per_point_mm": [
+          1.35103069009812,
+          2.1590581452673794,
+          0.7921296700270517,
+          1.7827851988502936,
+          19.459296451071978,
+          6.73830396809824,
+          1.9133149703000187,
+          0.6366640408686863
+        ]
+      },
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--cpus",
+        "4",
+        "--memory",
+        "4g",
+        "-v",
+        "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+        "-v",
+        "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/br028_baseline_3d.py:/runner.py:ro",
+        "-v",
+        "/Users/zhangqy/pkgs/tb3/runs/br028-registration-3d-source/author/3d-affine:/output",
+        "sha256:a551064e2c1bdf59449a2f58e010172e0c40d64a95abb4cc864fc2e17a6484d9",
+        "python",
+        "/runner.py"
+      ],
+      "network": "none",
+      "private_labels_mounted": false,
+      "answer_path": "runs/br028-registration-3d-source/author/3d-affine/points.json",
+      "answer_sha256": "02df537d48d2adb118adb27a18e2bf5865d3d1d7f1629f4d7a421bb868fd6191"
+    }
+  ]
+}

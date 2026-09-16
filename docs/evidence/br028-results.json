@@ -1,0 +1,950 @@
+{
+  "round": "BR-028",
+  "plan_sha256": "5b93e0af890c35f410843547ac0fb9cee334800773b9fc63031e35bd4f35fd0f",
+  "freeze_sha256": "7085a655521cee5df0ca658a46299701fe9c3c239df38c9dad8c357967cc9dd0",
+  "contrast": "Added source3D; same 2D inputs, query locations, destination CT, private answers, tolerance and resources.",
+  "matched_prior_inputs_and_evaluation": true,
+  "prior_task_files_and_receipts_unchanged": true,
+  "changed_existing_task_files": [
+    "instruction.md",
+    "task.toml"
+  ],
+  "added_task_files": [
+    "environment/data/reference_volume.npz"
+  ],
+  "author_audit": {
+    "round": "BR-028",
+    "image": "sha256:a551064e2c1bdf59449a2f58e010172e0c40d64a95abb4cc864fc2e17a6484d9",
+    "public_files_match": true,
+    "image_audit": {
+      "files": {
+        "/app/SOURCE_NOTICE.md": "b7c96918219203e92a69fc3771fea19aa503e69a42fa91c8038514d1a72130fa",
+        "/app/data/view.png": "a97932081236b2c3690bbed3e0469c0fd4f365c4c783dfe8c71b55e3534229e9",
+        "/app/data/volume.npz": "dfcf344bc9550ddd32ab5352277b2398e8ea3ccf883003fe9d921fe7ed946838",
+        "/app/data/view.npy": "f2c99e1cd54a1deda644388ffe414bdd94b596564a4af77546117eccc9f48032",
+        "/app/data/queries.json": "394862024ac1694504e9c1cab39b2ab6ea3a0f5c7624683c7ec84ce5506efe80",
+        "/app/data/reference_volume.npz": "9a3acc47cbbfd576b68e444582c55b8647c5d40dd0971fdf20398e9981aca517",
+        "/app/data/view.json": "3454989d86544bc5cbdd1937a60ce83eb3e961f667fa4e9bc9b66e00e48c52cf"
+      },
+      "answers": [],
+      "private_exists": {
+        "/tests": false,
+        "/solution": false,
+        "/verifier": false,
+        "/author": false,
+        "/baseline.py": false,
+        "/app/truth.json": false
+      },
+      "source_npz_members": [
+        "hu",
+        "voxel_to_world"
+      ]
+    },
+    "preparation": {
+      "round": "BR-028",
+      "task": "deform-patient3-source3d",
+      "task_path": "runs/br028-registration-3d-source/tasks/deform-patient3-source3d",
+      "plan_sha256": "5b93e0af890c35f410843547ac0fb9cee334800773b9fc63031e35bd4f35fd0f",
+      "old_public_files_and_private_evaluation_unchanged": true,
+      "source_shape": [
+        192,
+        192,
+        208
+      ],
+      "source_spacing_mm": [
+        1.75,
+        1.25,
+        1.75
+      ],
+      "source_nifti_sha256": "f8d19275ee45736e84611e9558799a0c3946a9008c4a27a447fdadecf9bce950",
+      "reference_volume_sha256": "9a3acc47cbbfd576b68e444582c55b8647c5d40dd0971fdf20398e9981aca517",
+      "independent_interpolation_samples": 22869,
+      "max_hu_difference": 3.051470753234753e-05,
+      "query_world_mm": [
+        [
+          211.75,
+          113.75,
+          157.5
+        ],
+        [
+          281.71863430789364,
+          82.43169249274607,
+          157.264757309202
+        ],
+        [
+          211.78920711513302,
+          82.58538438406742,
+          166.54405336349748
+        ],
+        [
+          80.5,
+          113.75,
+          175.0
+        ],
+        [
+          246.76568284605318,
+          157.53415375362698,
+          140.117621345399
+        ],
+        [
+          220.5,
+          170.0,
+          140.0
+        ],
+        [
+          220.53920711513302,
+          138.83538438406742,
+          149.0440533634975
+        ],
+        [
+          229.28920711513302,
+          195.08538438406742,
+          131.5440533634975
+        ]
+      ]
+    },
+    "author_rows": [
+      {
+        "method": "2d-translation",
+        "grade": {
+          "reward": 1,
+          "rms_mm": 2.1328979359146905,
+          "max_mm": 3.4161131491425327,
+          "per_point_mm": [
+            2.5309849405210323,
+            2.295680827383528,
+            0.18835650864201528,
+            2.3099176501967422,
+            2.4832784600194713,
+            3.4161131491425327,
+            0.5036744730118952,
+            1.1209848136033598
+          ]
+        },
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--network",
+          "none",
+          "--cpus",
+          "4",
+          "--memory",
+          "4g",
+          "-v",
+          "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+          "-v",
+          "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/br022_baseline_ablation.py:/runner.py:ro",
+          "-v",
+          "/Users/zhangqy/pkgs/tb3/runs/br028-registration-3d-source/author/2d-translation:/output",
+          "sha256:a551064e2c1bdf59449a2f58e010172e0c40d64a95abb4cc864fc2e17a6484d9",
+          "python",
+          "/runner.py",
+          "--data",
+          "/app/data",
+          "--out",
+          "/output/points.json",
+          "--kind",
+          "2d",
+          "--model",
+          "translation",
+          "--context",
+          "multiscale"
+        ],
+        "network": "none",
+        "private_labels_mounted": false,
+        "answer_path": "runs/br028-registration-3d-source/author/2d-translation/points.json",
+        "answer_sha256": "dd291765d29e2657ef0e86cbe5f5623df615c9204237209dc2e50e13330b7697"
+      },
+      {
+        "method": "3d-affine",
+        "grade": {
+          "reward": 0,
+          "rms_mm": 7.402935925135629,
+          "max_mm": 19.459296451071978,
+          "per_point_mm": [
+            1.35103069009812,
+            2.1590581452673794,
+            0.7921296700270517,
+            1.7827851988502936,
+            19.459296451071978,
+            6.73830396809824,
+            1.9133149703000187,
+            0.6366640408686863
+          ]
+        },
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--network",
+          "none",
+          "--cpus",
+          "4",
+          "--memory",
+          "4g",
+          "-v",
+          "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+          "-v",
+          "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/br028_baseline_3d.py:/runner.py:ro",
+          "-v",
+          "/Users/zhangqy/pkgs/tb3/runs/br028-registration-3d-source/author/3d-affine:/output",
+          "sha256:a551064e2c1bdf59449a2f58e010172e0c40d64a95abb4cc864fc2e17a6484d9",
+          "python",
+          "/runner.py"
+        ],
+        "network": "none",
+        "private_labels_mounted": false,
+        "answer_path": "runs/br028-registration-3d-source/author/3d-affine/points.json",
+        "answer_sha256": "02df537d48d2adb118adb27a18e2bf5865d3d1d7f1629f4d7a421bb868fd6191"
+      }
+    ]
+  },
+  "sampling_check": {
+    "round": "BR-028",
+    "finite_coordinates": true,
+    "samples": 22869,
+    "einsum_independent_max_hu_difference": 3.051470753234753e-05,
+    "note": "Separate einsum calculation verifies source sampling despite host NumPy matmul floating-point warning flags during preparation."
+  },
+  "prior_2d_attempt": {
+    "task": "deform-harder-patient3",
+    "phase": "sol-xhigh",
+    "result_path": "runs/br024-deform-harder-patient3-sol-xhigh-v1-20260916/deform-harder-patient3__NJq7SQn/result.json",
+    "result_sha256": "4db1e33e63e8d2a30f3a3e08ad8c84e9bbb18cf96d936fa19ff5a26a45c16847",
+    "task_checksum": "dd61be47045a26e5101c9f657ff5cca1bf9baf19eb942f7721fb159f6a6f1718",
+    "execution": "completed",
+    "exception_type": null,
+    "reward": 0.0,
+    "grade": {
+      "reward": 0,
+      "rms_mm": 12.731273502678357,
+      "max_mm": 32.20322654641923,
+      "per_point_mm": [
+        1.402961154130805,
+        14.779665084162096,
+        1.989019859126598,
+        32.20322654641923,
+        0.845340168216318,
+        5.820566982691629,
+        0.2927456233660858,
+        0.7697402159170378
+      ]
+    },
+    "independent_replay_matches": true,
+    "started_at": "2026-09-16T08:43:14.895586Z",
+    "finished_at": "2026-09-16T09:06:04.566163Z",
+    "agent_seconds": 1313.083906,
+    "total_seconds": 1369.670577,
+    "input_tokens": 3359925,
+    "cached_input_tokens": 3263616,
+    "output_tokens": 35747,
+    "estimated_cost_usd": 2.4056224,
+    "answer_path": "runs/br024-deform-harder-patient3-sol-xhigh-v1-20260916/deform-harder-patient3__NJq7SQn/artifacts/app/answer/points.json",
+    "answer_sha256": "98659ba58d06a9b160f2c99b1390305feed9cc7d0f841dccd9d4d86415d03082",
+    "grade_sha256": "25816297356fc702b92e18f1f812d8b5b085d7edff62cad484bc4cb0fbb0764b",
+    "requested_model": "openai/gpt-5.6-sol",
+    "requested_effort": "xhigh",
+    "runtime_contexts": [
+      {
+        "model": "gpt-5.6-sol",
+        "effort": "xhigh"
+      }
+    ],
+    "session_files": [
+      {
+        "path": "runs/br024-deform-harder-patient3-sol-xhigh-v1-20260916/deform-harder-patient3__NJq7SQn/agent/sessions/2026/09/16/rollout-2026-09-16T08-43-48-01a0a962-f05e-7131-b973-2bf96675a22e.jsonl",
+        "sha256": "0bc095245d79201d868ab777d4ddbf20a439e2e775cb8d2f66459d9438cf5261"
+      }
+    ],
+    "frozen_instruction_seen": true,
+    "runtime_matches_request": true
+  },
+  "prospective_rows": [
+    {
+      "task": "deform-patient3-source3d",
+      "phase": "oracle",
+      "result_path": "runs/br028-deform-patient3-source3d-oracle-v1-20260916/deform-patient3-source3d__gD9fbSR/result.json",
+      "result_sha256": "1ce99f4eee5deac0213ff793e73a4689ff744f25dce19718c86b7db54d177ca7",
+      "task_checksum": "5c52549254eea4aeba3f3bbd1fd563a619e409a899cc65df1b7e98b3b2a9f887",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "grade": {
+        "reward": 1,
+        "rms_mm": 0.0,
+        "max_mm": 0.0,
+        "per_point_mm": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "independent_replay_matches": true,
+      "started_at": "2026-09-16T09:44:26.179431Z",
+      "finished_at": "2026-09-16T09:44:50.730551Z",
+      "agent_seconds": 0.163171,
+      "total_seconds": 24.55112,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "answer_path": "runs/br028-deform-patient3-source3d-oracle-v1-20260916/deform-patient3-source3d__gD9fbSR/artifacts/app/answer/points.json",
+      "answer_sha256": "a810eb2be91a45a4020903e5643a8d3351f62d321885155098e3011dc43c5a4f",
+      "grade_sha256": "d9d3980972c7fb30ccb7dbd46c9722ab7211bb848ddffb04b6a4865e832fbfc6"
+    },
+    {
+      "task": "deform-patient3-source3d",
+      "phase": "nop",
+      "result_path": "runs/br028-deform-patient3-source3d-nop-v1-20260916/deform-patient3-source3d__XQHbPy6/result.json",
+      "result_sha256": "17efc68f023a5bd38f651facb1772a8e34561625611a4a9f7cbc188d45bfef17",
+      "task_checksum": "5c52549254eea4aeba3f3bbd1fd563a619e409a899cc65df1b7e98b3b2a9f887",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "grade": {
+        "reward": 0,
+        "reason": "'query_ids'"
+      },
+      "independent_replay_matches": true,
+      "started_at": "2026-09-16T09:44:51.002289Z",
+      "finished_at": "2026-09-16T09:45:15.369963Z",
+      "agent_seconds": 0.000105,
+      "total_seconds": 24.367674,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "grade_sha256": "bf09bdb9df7254e2b12c1284f9ec2b64311ea995fc2bdcc7970c960032f08b39"
+    },
+    {
+      "task": "deform-patient3-source3d",
+      "phase": "sol-xhigh",
+      "result_path": "runs/br028-deform-patient3-source3d-sol-xhigh-v1-20260916/deform-patient3-source3d__3tbVdMW/result.json",
+      "result_sha256": "86f07adcd88e4e7f19cbd18938b237fd23156fe944e0e30d3a634dcf87fb87cc",
+      "task_checksum": "5c52549254eea4aeba3f3bbd1fd563a619e409a899cc65df1b7e98b3b2a9f887",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "grade": {
+        "reward": 0,
+        "rms_mm": 2.6037232955903775,
+        "max_mm": 6.411513081948768,
+        "per_point_mm": [
+          2.180596248735653,
+          1.8907670401189,
+          0.7516648189186339,
+          1.4080127840328787,
+          0.7483314773547837,
+          6.411513081948768,
+          1.209338662244772,
+          0.4769696007084651
+        ]
+      },
+      "independent_replay_matches": true,
+      "started_at": "2026-09-16T09:45:15.646804Z",
+      "finished_at": "2026-09-16T10:01:06.886018Z",
+      "agent_seconds": 893.399038,
+      "total_seconds": 951.239214,
+      "input_tokens": 1553487,
+      "cached_input_tokens": 1482368,
+      "output_tokens": 26364,
+      "estimated_cost_usd": 1.4047032000000002,
+      "answer_path": "runs/br028-deform-patient3-source3d-sol-xhigh-v1-20260916/deform-patient3-source3d__3tbVdMW/artifacts/app/answer/points.json",
+      "answer_sha256": "368be1c28b8b7b2e1a943c53bf273dd51464097935964d62211873ce7435baef",
+      "grade_sha256": "fde65f4a72a82abb59c20a73a556a2eb727ca325912407d82b2463c27191874d",
+      "requested_model": "openai/gpt-5.6-sol",
+      "requested_effort": "xhigh",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br028-deform-patient3-source3d-sol-xhigh-v1-20260916/deform-patient3-source3d__3tbVdMW/agent/sessions/2026/09/16/rollout-2026-09-16T09-45-50-01a0a99b-baec-7ae3-aa1f-47b427177e67.jsonl",
+          "sha256": "97e8004dc4b2bf108e7e54e21bd4b4d2995ebd812c975b859bb257a2722d8cfa"
+        }
+      ],
+      "frozen_instruction_seen": true,
+      "runtime_matches_request": true
+    }
+  ],
+  "bench_audit": {
+    "round": "BR-028",
+    "case": 3,
+    "status": "completed_normal_failure",
+    "plan_sha256": "5b93e0af890c35f410843547ac0fb9cee334800773b9fc63031e35bd4f35fd0f",
+    "protocol_sha256": "6afd21a78880729f402902328d9c658c4f4dd6a59fdcfef74c3797560233bd49",
+    "freeze_sha256": "7085a655521cee5df0ca658a46299701fe9c3c239df38c9dad8c357967cc9dd0",
+    "replications": {
+      "sol-xhigh": {
+        "image_audit": {
+          "app_file_sha256": {
+            "/app/SOURCE_NOTICE.md": "b7c96918219203e92a69fc3771fea19aa503e69a42fa91c8038514d1a72130fa",
+            "/app/data/view.png": "a97932081236b2c3690bbed3e0469c0fd4f365c4c783dfe8c71b55e3534229e9",
+            "/app/data/volume.npz": "dfcf344bc9550ddd32ab5352277b2398e8ea3ccf883003fe9d921fe7ed946838",
+            "/app/data/view.npy": "f2c99e1cd54a1deda644388ffe414bdd94b596564a4af77546117eccc9f48032",
+            "/app/data/queries.json": "394862024ac1694504e9c1cab39b2ab6ea3a0f5c7624683c7ec84ce5506efe80",
+            "/app/data/reference_volume.npz": "9a3acc47cbbfd576b68e444582c55b8647c5d40dd0971fdf20398e9981aca517",
+            "/app/data/view.json": "3454989d86544bc5cbdd1937a60ce83eb3e961f667fa4e9bc9b66e00e48c52cf"
+          },
+          "initial_answer_entries": [],
+          "private_path_exists": {
+            "/tests": false,
+            "/solution": false,
+            "/app/tests": false,
+            "/app/solution": false,
+            "/app/truth.json": false,
+            "/app/baseline.py": false,
+            "/app/authoring": false,
+            "/app/points.json": false
+          },
+          "npz_members_shapes": {
+            "/app/data/volume.npz": {
+              "hu": [
+                192,
+                192,
+                208
+              ],
+              "voxel_to_world": [
+                4,
+                4
+              ]
+            },
+            "/app/data/reference_volume.npz": {
+              "hu": [
+                192,
+                192,
+                208
+              ],
+              "voxel_to_world": [
+                4,
+                4
+              ]
+            }
+          },
+          "checked_at": "2026-09-16T09:45:38.868876+00:00",
+          "image_ref": "deform-patient3-source3d__3tbvdmw-main",
+          "image_id": "sha256:d0ee5af209ee5931f9cb7f1c0fa5fd5e6fd5cc6d28884e826ba0886c112884df",
+          "retained_tag": "tb3-br028-patient3-source3d-sol-initial:20260916",
+          "inspection": "Separate disposable read-only no-network container from immutable initial image, no host mounts.",
+          "public_files_match_plan": true,
+          "public_file_count": 7,
+          "source_exhale_volume_intentionally_present": true,
+          "retained_tag_rechecked_after_completion": true
+        },
+        "status": "completed_normal_failure",
+        "result": {
+          "result_path": "runs/br028-deform-patient3-source3d-sol-xhigh-v1-20260916/deform-patient3-source3d__3tbVdMW/result.json",
+          "result_sha256": "86f07adcd88e4e7f19cbd18938b237fd23156fe944e0e30d3a634dcf87fb87cc",
+          "task_checksum": "5c52549254eea4aeba3f3bbd1fd563a619e409a899cc65df1b7e98b3b2a9f887",
+          "reward": 0.0,
+          "exception_info": null,
+          "started_at": "2026-09-16T09:45:15.646804Z",
+          "finished_at": "2026-09-16T10:01:06.886018Z",
+          "trial_seconds": 951.239214,
+          "agent_execution_seconds": 893.399038,
+          "agent_info": {
+            "name": "codex",
+            "version": "0.154.0",
+            "model_info": {
+              "name": "gpt-5.6-sol",
+              "provider": "openai"
+            }
+          },
+          "configured_model": "openai/gpt-5.6-sol",
+          "configured_reasoning_effort": "xhigh",
+          "n_attempts": 1,
+          "max_retries": 0,
+          "usage": {
+            "n_input_tokens": 1553487,
+            "n_cache_tokens": 1482368,
+            "n_output_tokens": 26364,
+            "cost_usd": 1.4047032000000002
+          },
+          "metrics_path": "runs/br028-deform-patient3-source3d-sol-xhigh-v1-20260916/deform-patient3-source3d__3tbVdMW/verifier/metrics.json",
+          "metrics_sha256": "fde65f4a72a82abb59c20a73a556a2eb727ca325912407d82b2463c27191874d",
+          "metrics": {
+            "reward": 0,
+            "rms_mm": 2.6037232955903775,
+            "max_mm": 6.411513081948768,
+            "per_point_mm": [
+              2.180596248735653,
+              1.8907670401189,
+              0.7516648189186339,
+              1.4080127840328787,
+              0.7483314773547837,
+              6.411513081948768,
+              1.209338662244772,
+              0.4769696007084651
+            ]
+          },
+          "answer_path": "runs/br028-deform-patient3-source3d-sol-xhigh-v1-20260916/deform-patient3-source3d__3tbVdMW/artifacts/app/answer/points.json",
+          "answer_sha256": "368be1c28b8b7b2e1a943c53bf273dd51464097935964d62211873ce7435baef"
+        },
+        "frozen_task_membership_unchanged": true,
+        "completed_at": "2026-09-16T10:01:06.886018Z",
+        "independent_regrade": {
+          "scored_after_model_completion": true,
+          "query_order_correct": true,
+          "finite_8x3_points": true,
+          "reward": 0,
+          "rms_mm": 2.6037232955903775,
+          "max_mm": 6.411513081948768,
+          "per_point_mm": [
+            2.180596248735653,
+            1.8907670401189,
+            0.7516648189186339,
+            1.4080127840328787,
+            0.7483314773547837,
+            6.411513081948768,
+            1.209338662244772,
+            0.4769696007084651
+          ],
+          "rms_tolerance_mm": 3.0,
+          "max_tolerance_mm": 5.0,
+          "exact_match_to_verifier_metrics": true,
+          "exceeding_max_tolerance": [
+            "q06"
+          ],
+          "grader_feedback_sent_to_model": false
+        },
+        "trajectory_audit": {
+          "trajectory_path": "runs/br028-deform-patient3-source3d-sol-xhigh-v1-20260916/deform-patient3-source3d__3tbVdMW/agent/trajectory.json",
+          "trajectory_sha256": "cdc59b910f6b3b8c3d472c2d79cc3f45d9fd150786aab9597cf66fb89a2b94dc",
+          "session_id": "01a0a99b-baec-7ae3-aa1f-47b427177e67",
+          "raw_session_path": "runs/br028-deform-patient3-source3d-sol-xhigh-v1-20260916/deform-patient3-source3d__3tbVdMW/agent/sessions/2026/09/16/rollout-2026-09-16T09-45-50-01a0a99b-baec-7ae3-aa1f-47b427177e67.jsonl",
+          "raw_session_sha256": "97e8004dc4b2bf108e7e54e21bd4b4d2995ebd812c975b859bb257a2722d8cfa",
+          "codex_log_path": "runs/br028-deform-patient3-source3d-sol-xhigh-v1-20260916/deform-patient3-source3d__3tbVdMW/agent/codex.txt",
+          "codex_log_sha256": "1f39992c35532ccea65701e8284a7c6c15789b7802f182bd0a3a36982e0c8003",
+          "runtime_turn_contexts": [
+            {
+              "model": "gpt-5.6-sol",
+              "effort": "xhigh",
+              "cwd": "/app"
+            }
+          ],
+          "step_count": 49,
+          "user_message_count": 2,
+          "frozen_prompt_step": 5,
+          "frozen_prompt_present": true,
+          "other_user_message": "Generic recommended-plugin list and /app environment context only.",
+          "task_bearing_followups": 0,
+          "private_or_prior_attempt_mentions": [],
+          "network_command_hits": [],
+          "annotation_or_answer_lookup_observed": false,
+          "downloaded_packages_or_weights_observed": false,
+          "external_network_use_observed": false,
+          "full_source_ct_used": true,
+          "full_source_ct_use_evidence": "register_work.py, local_ncc.py, refine_local.py, refine_sensitivity.py and refine_rigid.py load /app/data/reference_volume.npz; executed full 3D registration and local source-to-target 3D patch matching.",
+          "preinstalled_registration_library": "SimpleITK 2.5.2 explicitly executes DiffeomorphicDemons and FastSymmetricForcesDemons registration. An ANTS-neighborhood-correlation B-spline check executes after optimizer repair but returns identity at the eight queries.",
+          "own_numerical_solver": true,
+          "own_numerical_tooling": "NumPy; SciPy FFT 3D normalized cross-correlation, interpolation and Powell optimization for local translation/affine/rigid/similarity fits; Pillow comparison panels.",
+          "external_software_probes": "Checks for antsRegistration and elastix executables and SimpleITK Elastix availability, plus cv2/skimage/torch availability. No installation observed.",
+          "viewed_images": [
+            "/tmp/view_annot.png",
+            "/tmp/montage_plane_1.png",
+            "/tmp/montage_plane_5.png",
+            "/tmp/montage_normal_1.png",
+            "/tmp/montage_normal_5.png",
+            "/tmp/focus_q01.png",
+            "/tmp/focus_q04.png",
+            "/tmp/focus_q05.png",
+            "/tmp/focus_q06.png"
+          ],
+          "nonzero_exploratory_command_exits": [
+            {
+              "item_id": "item_5",
+              "exit_code": 127
+            },
+            {
+              "item_id": "item_22",
+              "exit_code": 1
+            },
+            {
+              "item_id": "item_21",
+              "exit_code": 1
+            }
+          ],
+          "exploratory_error_scope": "The free command was unavailable (exit 127); two multiresolution LBFGSB B-spline runs raised optimizer scale/parameter dimension errors. Sol switched to LBFGS2 within the same attempt. No harness exception, timeout or automatic retry.",
+          "completion": "Voluntary normal finalization after 893.399038 seconds; finite ordered output; no hidden-verifier feedback.",
+          "reasoning_visibility": "55 retained reasoning entries have encrypted content and empty summaries; analysis relies on executed source, printed outputs, visible commentary and image tool calls."
+        },
+        "method": {
+          "initialization": "Computes source world/voxel coordinates from public queries.json, view.json and source voxel_to_world. Full-volume Demons starts from zero displacement. Final local search starts from nominal public source coordinates, not a global-registration transform.",
+          "global_3d_registration": {
+            "stages": [
+              "dd12: DiffeomorphicDemons, smoothing 1.2",
+              "fsf12: FastSymmetricForcesDemons, smoothing 1.2",
+              "dd08: DiffeomorphicDemons, smoothing 0.8",
+              "ddh12: DiffeomorphicDemons, smoothing 1.2 and histogram matching"
+            ],
+            "pyramid": [
+              {
+                "shrink": 4,
+                "sigma_mm": 2,
+                "iterations": 80
+              },
+              {
+                "shrink": 2,
+                "sigma_mm": 1,
+                "iterations": 60
+              },
+              {
+                "shrink": 1,
+                "sigma_mm": 0,
+                "iterations": 45
+              }
+            ],
+            "bspline_check": "Cubic B-spline initialized with approximately 50 mm mesh spacing, scale factors 1/2/4, ANTS neighborhood correlation radius 4, 12 percent random sampling seed 20260916, shrink factors 4/2/1. Repaired LBFGS2 run finishes in 213.13 s but prints zero displacement for all queries; not the final chosen solution."
+          },
+          "coarse_3d_patch_search": {
+            "script": "/app/local_ncc.py",
+            "voxel_half_widths": [
+              [
+                3,
+                4,
+                3
+              ],
+              [
+                5,
+                7,
+                5
+              ],
+              [
+                7,
+                10,
+                7
+              ]
+            ],
+            "voxel_full_widths": [
+              [
+                7,
+                9,
+                7
+              ],
+              [
+                11,
+                15,
+                11
+              ],
+              [
+                15,
+                21,
+                15
+              ]
+            ],
+            "relative_search_voxels": {
+              "low": [
+                -22,
+                -24,
+                -12
+              ],
+              "high": [
+                12,
+                16,
+                18
+              ]
+            },
+            "intensity_clip_hu": [
+              -1000,
+              400
+            ],
+            "objective": "3D normalized cross-correlation; top five positive local maxima after size-5 maximum filtering per point and patch size.",
+            "source_center": "Fractional source voxel coordinate retained for the coarse search.",
+            "rank_evidence": "codex.txt item_12 retains all candidate ranks, scores and coordinates."
+          },
+          "local_refinement": {
+            "script": "/app/refine_local.py",
+            "initial_displacement_voxels": [
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                2,
+                4,
+                -7
+              ],
+              [
+                2,
+                1,
+                -1
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                -1,
+                -4,
+                4
+              ],
+              [
+                0,
+                -11,
+                8
+              ],
+              [
+                0,
+                -3,
+                6
+              ],
+              [
+                -2,
+                -8,
+                6
+              ]
+            ],
+            "spherical_radii_mm": [
+              9,
+              13.5,
+              18
+            ],
+            "sampling_mm": 1.5,
+            "optimizer": "SciPy Powell",
+            "translation_bounds_mm": [
+              -5,
+              5
+            ],
+            "comparison": "Translation versus local 12-parameter affine. Gaussian spatial/source-intensity weighted NCC and affine departure penalty 0.08."
+          },
+          "stability_checks": {
+            "script": "/app/refine_sensitivity.py",
+            "radius_mm": 13.5,
+            "translation_bounds_mm": [
+              -12,
+              12
+            ],
+            "affine_penalties": [
+              0.08,
+              0.3,
+              1.0
+            ],
+            "weightings": [
+              "uniform Gaussian",
+              "bright",
+              "vessel"
+            ],
+            "q06_initial_candidates_mm": [
+              [
+                220.5,
+                156.25,
+                154.0
+              ],
+              [
+                218.75,
+                161.25,
+                150.5
+              ]
+            ],
+            "source_coordinate_sensitivity": "Repeats checks after rounding derived source voxel coordinates to nearest voxel centers, using only public geometry.",
+            "source_center_rounding_distances_mm": [
+              0.0,
+              0.24695919857834334,
+              0.30869899822290814,
+              0.0,
+              0.12347959928917362,
+              0.0,
+              0.3086989982228811,
+              0.3086989982229003
+            ],
+            "additional_check": "refine_rigid.py uses rounded source centers and Powell rigid/similarity fits at radii 9,13.5,18 mm, translation bounds +/-12 mm, rotation-vector bounds +/-0.35 rad; similarity log-scale bounds +/-0.22."
+          },
+          "visual_review": "Views the annotated planar reference, plane/normal source-vs-local-vs-Demons montages, and focused three-plane q01/q04/q05/q06 comparisons.",
+          "final_selection": "Manually writes eight world coordinates to one decimal after comparing local variants. No executable final aggregation/selection rule is recorded. q06 [219.3,162.3,150.2] matches the rounded local rigid 13.5 mm result [219.283,162.312,150.173]. Visible commentary states rigid/similarity fits resolved q06 at its lower boundary candidate.",
+          "cleanup": "After schema/order/finite/in-volume checks, the model deletes its eight /app work scripts. They were already captured independently without feedback."
+        },
+        "captured_artifacts": {
+          "index_path": "runs/br028-registration-3d-source/captured-agent-artifacts/index.json",
+          "index_sha256": "808108bd92bd96831f08231661469f8f6e1412799014fbd97890e73fa0f2981d",
+          "snapshot_count": 38,
+          "unique_object_count": 32,
+          "captured_path_count": 28,
+          "named_displacement_field_count": 4,
+          "named_tfm_count": 1,
+          "captured_file_names": [
+            "/tmp/view_annot.png",
+            "/app/register_work.py",
+            "/tmp/dd12_points.npy",
+            "/tmp/dd12.mha",
+            "/tmp/fsf12.mha",
+            "/tmp/fsf12_points.npy",
+            "/tmp/ddh12.mha",
+            "/tmp/dd08.mha",
+            "/tmp/dd08_points.npy",
+            "/tmp/ddh12_points.npy",
+            "/app/local_ncc.py",
+            "/app/make_montage.py",
+            "/tmp/montage_plane_1.png",
+            "/tmp/montage_normal_5.png",
+            "/tmp/montage_plane_5.png",
+            "/tmp/montage_normal_1.png",
+            "/app/refine_local.py",
+            "/app/focus_montage.py",
+            "/tmp/focus_q05.png",
+            "/tmp/focus_q01.png",
+            "/tmp/focus_q06.png",
+            "/tmp/focus_q04.png",
+            "/app/bspline_work.py",
+            "/tmp/bs50.tfm",
+            "/tmp/bs50_points.npy",
+            "/app/refine_sensitivity.py",
+            "/app/refine_rigid.py",
+            "/app/answer/points.json"
+          ],
+          "all_object_sha256_match": true,
+          "stages_with_printed_points": "Raw codex.txt/trajectory/session retain all stage coordinates, NCC candidate ranks, local scores, singular values and final selection.",
+          "audit_solver_execution": "No new solver/intervention was run; independent scoring of submitted points only."
+        },
+        "interpretation": {
+          "observed": "Normal failure caused by the maximum-error criterion at q06 (6.4115 mm); RMS criterion passes and all seven other points meet the per-point threshold. The full source CT was directly used.",
+          "failure_mechanism_inference": "The visible process indicates a local anatomical correspondence ambiguity at q06 that persisted despite agreement among several image-similarity fits. No query-order or general coordinate-system error is observed. Identifying a definitive anatomical cause requires separate posthoc analysis.",
+          "selection_limits": "Internal reasoning is encrypted; the audit does not claim complete reconstruction of visual/semantic decisions or an end-to-end replay."
+        }
+      }
+    },
+    "controls": {
+      "oracle": {
+        "result_path": "runs/br028-deform-patient3-source3d-oracle-v1-20260916/deform-patient3-source3d__gD9fbSR/result.json",
+        "result_sha256": "1ce99f4eee5deac0213ff793e73a4689ff744f25dce19718c86b7db54d177ca7",
+        "task_checksum": "5c52549254eea4aeba3f3bbd1fd563a619e409a899cc65df1b7e98b3b2a9f887",
+        "reward": 1.0,
+        "exception_info": null,
+        "started_at": "2026-09-16T09:44:26.179431Z",
+        "finished_at": "2026-09-16T09:44:50.730551Z",
+        "trial_seconds": 24.55112,
+        "agent_execution_seconds": 0.163171,
+        "agent_info": {
+          "name": "oracle",
+          "version": "1.0.0",
+          "model_info": null
+        },
+        "configured_model": null,
+        "configured_reasoning_effort": null,
+        "n_attempts": 1,
+        "max_retries": 0,
+        "usage": {
+          "n_input_tokens": null,
+          "n_cache_tokens": null,
+          "n_output_tokens": null,
+          "cost_usd": null
+        },
+        "metrics_path": "runs/br028-deform-patient3-source3d-oracle-v1-20260916/deform-patient3-source3d__gD9fbSR/verifier/metrics.json",
+        "metrics_sha256": "d9d3980972c7fb30ccb7dbd46c9722ab7211bb848ddffb04b6a4865e832fbfc6",
+        "metrics": {
+          "reward": 1,
+          "rms_mm": 0.0,
+          "max_mm": 0.0,
+          "per_point_mm": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "answer_path": "runs/br028-deform-patient3-source3d-oracle-v1-20260916/deform-patient3-source3d__gD9fbSR/artifacts/app/answer/points.json",
+        "answer_sha256": "a810eb2be91a45a4020903e5643a8d3351f62d321885155098e3011dc43c5a4f"
+      },
+      "nop": {
+        "result_path": "runs/br028-deform-patient3-source3d-nop-v1-20260916/deform-patient3-source3d__XQHbPy6/result.json",
+        "result_sha256": "17efc68f023a5bd38f651facb1772a8e34561625611a4a9f7cbc188d45bfef17",
+        "task_checksum": "5c52549254eea4aeba3f3bbd1fd563a619e409a899cc65df1b7e98b3b2a9f887",
+        "reward": 0.0,
+        "exception_info": null,
+        "started_at": "2026-09-16T09:44:51.002289Z",
+        "finished_at": "2026-09-16T09:45:15.369963Z",
+        "trial_seconds": 24.367674,
+        "agent_execution_seconds": 0.000105,
+        "agent_info": {
+          "name": "nop",
+          "version": "1.0.0",
+          "model_info": null
+        },
+        "configured_model": null,
+        "configured_reasoning_effort": null,
+        "n_attempts": 1,
+        "max_retries": 0,
+        "usage": {
+          "n_input_tokens": null,
+          "n_cache_tokens": null,
+          "n_output_tokens": null,
+          "cost_usd": null
+        },
+        "metrics_path": "runs/br028-deform-patient3-source3d-nop-v1-20260916/deform-patient3-source3d__XQHbPy6/verifier/metrics.json",
+        "metrics_sha256": "bf09bdb9df7254e2b12c1284f9ec2b64311ea995fc2bdcc7970c960032f08b39",
+        "metrics": {
+          "reward": 0,
+          "reason": "'query_ids'"
+        }
+      }
+    },
+    "completed_at": "2026-09-16T10:06:50.029261+00:00",
+    "runner_exit_code": 0,
+    "root_plan_sha256": "5b93e0af890c35f410843547ac0fb9cee334800773b9fc63031e35bd4f35fd0f",
+    "task_freeze_sha256": "7085a655521cee5df0ca658a46299701fe9c3c239df38c9dad8c357967cc9dd0",
+    "common_task_checksum": "5c52549254eea4aeba3f3bbd1fd563a619e409a899cc65df1b7e98b3b2a9f887",
+    "all_task_checksums_match": true,
+    "plan_protocol_freeze_and_task_membership_unchanged": true,
+    "parent_task_membership_unchanged": true,
+    "prior_result_hashes_unchanged": {
+      "runs/br024-harder-registration/freezes/patient3.json": true,
+      "docs/evidence/br024-results.json": true,
+      "docs/evidence/br024-stage-analysis.json": true,
+      "docs/evidence/br024-approach-analysis.json": true
+    },
+    "fresh_session_distinct_from_prior_attempts": true,
+    "supervision": {
+      "predeclared_case_model_attempts": 1,
+      "sequence": [
+        "oracle",
+        "nop",
+        "sol-xhigh"
+      ],
+      "automatic_retries": 0,
+      "task_bearing_hints_or_followups_sent": 0,
+      "prior_solver_answers_or_findings_supplied": false,
+      "old_evidence_modified": false,
+      "model_interventions": 0,
+      "additional_model_trials_launched": false
+    },
+    "runtime": {
+      "oracle_nop_harbor": "0.18.0",
+      "model_harbor": "0.14.0",
+      "agent_timeout_seconds": 1800,
+      "network_mode": "public",
+      "cpus": 4,
+      "memory_mb": 4096
+    },
+    "outcome_scope": "One fresh Sol/xhigh attempt on patient3/view1 with the full source CT added to the preserved 2D-input task. Descriptive paired contrast with BR024, not an isolated causal estimate of the effect of 3D input.",
+    "limitations": [
+      "One case and one model attempt in each input condition; no reliability or clinical accuracy estimate.",
+      "Public source annotations are downloadable; no annotation access is observed, but trace evidence cannot exclude training contamination.",
+      "Runtime model/effort labels are recorded, not independent provider-identity proof.",
+      "No packet capture was performed; network findings describe the visible tool trace.",
+      "Artifact snapshots are periodic/non-atomic; raw sessions preserve code edits and outputs but encrypted internal reasoning is unavailable.",
+      "Image audit covers the actual initial /app payload and named forbidden private paths, plus intended source and target NPZ membership; it is not a general security audit.",
+      "Initial-image inspection and host-side artifact capture provided no feedback to the model."
+    ]
+  },
+  "bench_audit_sha256": "b44f45181ba328e286cb967a2ec94076895c872ef3e172a1610d04fa5f1bdf8e",
+  "limitations": [
+    "One fresh attempt per condition cannot isolate source-depth effects from strategy and model variability.",
+    "The source volume is genuinely new information; repeated copies of the original plane are not equivalent.",
+    "Public source annotations leave potential training contamination despite isolated inputs and trace audit.",
+    "Sparse engineering landmark tolerances do not establish dense-field or clinical validity."
+  ]
+}

@@ -1,5 +1,6 @@
 """Publication regressions: portable assets, valid routes and a reproducible bundle."""
 import importlib.util
+import hashlib
 import io
 import json
 from html.parser import HTMLParser
@@ -73,6 +74,27 @@ class PublicationTests(unittest.TestCase):
         local=site.load_chapters({'base':'/local-data/','cases':['R02']})['aneurysm']
         self.assertIn('"cases": ["R02"]',local)
         self.assertIn('data-explore class="primary" hidden',chapter)
+
+    def test_registration_retains_numeric_result_beside_user_acceptance(self):
+        figures=json.loads((ROOT/'site/registration-figures.json').read_text())
+        adjudication=json.loads((ROOT/'docs/evidence/br028-adjudication.json').read_text())
+        result=figures['methods']['Sol / full 3D source']['grade']
+        self.assertEqual(result['reward'],0)
+        self.assertGreater(result['max_mm'],adjudication['frozen_result']['max_tolerance_mm'])
+        self.assertEqual(result['max_mm'],adjudication['frozen_result']['max_mm'])
+        self.assertEqual(figures['ids'][result['per_point_mm'].index(result['max_mm'])],'q06')
+        self.assertIn('Accept the full-source result',adjudication['decision'])
+        self.assertEqual(len(figures['ids']),8)
+        self.assertEqual(set(figures['source']),{'Original oblique plane','Dataset XY','Dataset XZ','Dataset YZ'})
+        for plane in figures['source']:
+            self.assertEqual(len(figures['source'][plane]),8)
+            self.assertEqual(len(figures['manual'][plane]),8)
+            for method in figures['methods'].values():
+                self.assertEqual(len(method['images'][plane]),8)
+        provenance=json.loads((ROOT/'site/registration-provenance.json').read_text())
+        for path,digest in provenance['evidence'].items():
+            if not path.startswith('runs/'):
+                self.assertEqual(hashlib.sha256((ROOT/path).read_bytes()).hexdigest(),digest,path)
 
     def test_guided_views_keep_native_geometry_and_reference_mapping(self):
         figures=json.loads((ROOT/'site/aneurysm-figures.json').read_text())['cases']

@@ -34,6 +34,80 @@ reviews own the observations. [Submission status](submission.md) is separate.
 | BR-017 | 2026-09-15 | [Absorbed anatomy](research-rounds/BR-017-absorbed-anatomy.md): whole/partial pancreatic inclusion, unchanged control and focused scope | Complete; one synthetic detection miss and three passes | [Results](research-rounds/BR-017-results.md) · [Trace analysis](research-rounds/BR-017-traces.md): Sol missed a 21 mL partial inclusion in a 13-mask audit (404 s / 10,593 output tokens). Whole absorption, unchanged control and identical-data two-mask audit passed. Four single trials; eight matched Docker controls. |
 
 
+## User-requested registration follow-ups
+
+- **BR-019 (2026-09-16): [Oblique CT slice registration](research-rounds/BR-019-slice-registration.md).**
+  New request to recover a landmark-oriented slice pose with physical tolerance.
+  [Completed results](research-rounds/BR-019-results.md): full and partial views
+  both pass Terra/high (0.000477 / 0.000586 mm RMS; 576 / 116 s). Four matched
+  Docker controls and both public-input author baselines pass. Both conditions
+  retired. [Freeze](evidence/br019-freeze.json). Clinical standard-plane
+  adjudication and cross-acquisition/cross-modality stages remain separate.
+
+- **BR-020 (2026-09-16): [Registration across CT reconstructions](research-rounds/BR-020-reconstruction-registration.md).**
+  User-authorized follow-up to BR-019: genuine different reconstruction kernels
+  from one CT acquisition, with preserved physical tolerance and tool access.
+  [Completed results](research-rounds/BR-020-results.md): Terra/high passes in
+  272 s, 0.0356 mm RMS / 0.0498 mm maximum, with matched oracle/nop controls.
+  Public-input author solver also passes. Snapshot retired; cross-acquisition
+  and cross-modality conditions remain untested.
+
+- **BR-021 (2026-09-16): [Anatomical deformation](research-rounds/BR-021-anatomical-deformation.md).**
+  User requested morphology changes and selected both 2D-to-3D and paired 3D
+  registration. [Completed results](research-rounds/BR-021-results.md): paired
+  3D passed Terra/high (1.91 mm RMS); single-view 2D-to-3D failed normally
+  (12.64 mm RMS / 23.80 mm maximum). Same eight manual correspondences, healthy
+  oracle/nop controls, passing isolated author baselines. The 2D trace includes
+  a transform-composition defect and wrong local matches; retain this failure
+  candidate without claiming general difficulty. Retire the 3D snapshot.
+  [Freeze](evidence/br021-freeze.json).
+
+- **BR-022 (2026-09-16): [Registration failure analysis](research-rounds/BR-022-registration-failure-analysis.md).**
+  [Completed results](research-rounds/BR-022-results.md): exact replay confirms
+  the original composition bug, but its minimal repair still fails (12.41 mm
+  RMS). Search geometry excludes q04; small-patch similarity favors wrong
+  q01/q06 matches. Larger context rescues both author patch models. The two
+  fresh Terra/high repeats split: fail (24.91 mm RMS), pass (2.02 mm RMS).
+  Retire this snapshot as a reliable-difficulty candidate; retain its mixed
+  outcomes and controlled failure analysis. Original evidence is preserved.
+  [Plan](evidence/br022-plan.json) · [Evidence](evidence/br022-results.json).
+
+- **BR-023 (2026-09-16): [Sol registration strategy](research-rounds/BR-023-sol-registration.md).**
+  [Completed results](research-rounds/BR-023-results.md): fresh Sol/xhigh passes
+  at 1.563 mm RMS / 3.667 mm maximum in 873 s. Exact final-stage replay plus four
+  frozen interventions show that restoring either earlier q04 start causes
+  failure; a single final patch size or stopping before final refinement still
+  passes. Neighborhood-informed search/initialization matters conditionally;
+  upstream contributions are not separately isolated. Snapshot remains retired,
+  with original evidence preserved. [Plan](evidence/br023-plan.json) ·
+  [Component plan](evidence/br023-component-plan.json) · [Evidence](evidence/br023-results.json).
+
+- **BR-024 (2026-09-16): [Harder registration patients](research-rounds/BR-024-harder-registration.md).**
+  User requested more challenging cases for Sol. A frozen screen retained six
+  views from two unused respiratory CT patients. [Curation results](research-rounds/BR-024-results.md):
+  patient 3 / view 1 passes an isolated public-input author method (2.13 / 3.42 mm)
+  but the fresh Sol/xhigh attempt fails normally (12.73 / 32.20 mm, 1,313 s).
+  Retain this single-attempt failure candidate: fitted deformation selects wrong
+  correspondences, and final local bounds exclude the worst target.
+  Patient 2 remains unadmitted after three fixed author
+  methods; one view nearly passes but exceeds the unchanged maximum tolerance.
+  Original task snapshots and all screened outcomes are retained.
+
+- **BR-028 (2026-09-16): [Full source CT for registration](research-rounds/BR-028-registration-3d-source.md).**
+  User requested the 3D-input counterpart of the failing BR-024 case. Fixed
+  contrast adds the full exhale CT while retaining the same 2D view, query
+  pixels, inhale volume, answers and tolerance. [Completed results](research-rounds/BR-028-results.md):
+  the fresh Sol/xhigh attempt improves from 12.73 / 32.20 mm to 2.60 / 6.41 mm,
+  but q06 alone still exceeds the 5 mm maximum. Normal completion in 893 s,
+  matched oracle/nop controls, isolated author feasibility and confirmed use
+  of full source CT. One attempt per condition; information and strategy
+  effects remain confounded. No further trial is scheduled. Later user visual
+  adjudication accepts q06 as good enough; retain the numerical failure but
+  retire this full-source condition as a hard-task candidate.
+  [Session synthesis](research-registration-session.md) · [Adjudication](evidence/br028-adjudication.json).
+
+The latest cardiac extension is **BR-029 (2026-09-16): [Dynamic heart modeling](research-rounds/BR-029-dynamic-heart-modeling.md)**. The user requested a larger beating-heart task with realistic strain. A working biventricular workbench now uses STRAUS material-motion references, 47,186 tetrahedra, regional strain and four calibrated ultrasound videos. The coupled tissue fit reduces radial strain error from 16.67 to 6.79 pp, but neither video method passes all provisional targets. [Results and whole-heart task scope](research-rounds/BR-029-dynamic-heart-results.md) · [Reference/control metrics](evidence/br029-dynamic-heart-results.json) · [Tissue metrics](evidence/br029-dynamic-heart-tissue-results.json) · [Integrity](evidence/br029-dynamic-heart-integrity.json). No provider trial or clinical validation is claimed.
+
 ## How to read the record
 
 BR-001 was assigned retrospectively to the six original pilots. BR-002 came from

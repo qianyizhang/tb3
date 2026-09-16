@@ -1,0 +1,269 @@
+{
+  "round": "BR-020",
+  "baseline_results": {
+    "cross-baseline": {
+      "grade": {
+        "reward": 0,
+        "rms_mm": 60.86715093662212,
+        "max_mm": 141.05050040636772,
+        "centre_mm": 29.885427320246677,
+        "normal_deg": 54.49128403724759
+      },
+      "public_data": "runs/br020-registration/tasks/recon-r03/environment/data",
+      "starts": 64,
+      "seconds": 5.714846500000931,
+      "ncc": 0.6751728503526634,
+      "pixel_rmse_255": 40.77465785818477,
+      "initialization": "volume physical centre, cube rotation group and independent random rotations",
+      "coarse_best_ncc": 0.8030459416605339,
+      "medium_best_ncc": 0.7616361488017818,
+      "answer_sha256": "c7c03fafc216e7fad1944fe044cc1fbf87d654bb46fe6195fead9ce91c11fab3"
+    },
+    "matched-baseline": {
+      "grade": {
+        "reward": 0,
+        "rms_mm": 61.03114849126001,
+        "max_mm": 141.48412666716231,
+        "centre_mm": 29.682454016043014,
+        "normal_deg": 54.838292902478486
+      },
+      "public_data": "runs/br020-registration/author/matched-data",
+      "starts": 64,
+      "seconds": 5.858244334000119,
+      "ncc": 0.7208702515402133,
+      "pixel_rmse_255": 36.609454963312295,
+      "initialization": "volume physical centre, cube rotation group and independent random rotations",
+      "coarse_best_ncc": 0.8040687626689246,
+      "medium_best_ncc": 0.7638896751197612,
+      "answer_sha256": "71f4f3eb98f4f1a1606a76df598563939a0eb7254dd6ebfa5a8f98b65acec597"
+    },
+    "cross-baseline-512": {
+      "grade": {
+        "reward": 1,
+        "rms_mm": 0.03430564050097672,
+        "max_mm": 0.04814137381031868,
+        "centre_mm": 0.031202606575455226,
+        "normal_deg": 0.012135745885381598
+      },
+      "public_data": "runs/br020-registration/tasks/recon-r03/environment/data",
+      "starts": 512,
+      "seconds": 26.364348499999323,
+      "ncc": 0.9635228555200447,
+      "pixel_rmse_255": 13.74866472795779,
+      "initialization": "volume physical centre, cube rotation group and independent random rotations",
+      "coarse_best_ncc": 0.9715978838839292,
+      "medium_best_ncc": 0.9867588548922049,
+      "answer_sha256": "7aec68660f2ebbe19400ada85c3e56f0eb16b556b41b47d4ab4a9a14739e20b7"
+    },
+    "matched-baseline-512": {
+      "grade": {
+        "reward": 1,
+        "rms_mm": 0.000237615524705447,
+        "max_mm": 0.00037492089381872156,
+        "centre_mm": 0.00021037899674909943,
+        "normal_deg": 9.109408726125897e-05
+      },
+      "public_data": "runs/br020-registration/author/matched-data",
+      "starts": 512,
+      "seconds": 26.255520875000002,
+      "ncc": 0.9999898909919767,
+      "pixel_rmse_255": 0.21658884299884404,
+      "initialization": "volume physical centre, cube rotation group and independent random rotations",
+      "coarse_best_ncc": 0.974525991055604,
+      "medium_best_ncc": 0.9912909076124508,
+      "answer_sha256": "71a176e60b959d326bdafd320fa2aa61ca62e9d4942f2350fc26eb53a97d41eb"
+    },
+    "isolated-baseline": {
+      "grade": {
+        "reward": 1,
+        "rms_mm": 0.031112543923780944,
+        "max_mm": 0.043967924764554474,
+        "centre_mm": 0.027897220581041465,
+        "normal_deg": 0.010280664635332283
+      },
+      "public_data": "/app/data",
+      "starts": 512,
+      "seconds": 24.407181762000164,
+      "ncc": 0.963522369633818,
+      "pixel_rmse_255": 13.748797024567407,
+      "initialization": "volume physical centre, cube rotation group and independent random rotations",
+      "coarse_best_ncc": 0.9715933427960345,
+      "medium_best_ncc": 0.9867588549873636,
+      "answer_sha256": "4890f2d18fc63995667852c40e6ded4977e8a57982b80707d7785d133903139e"
+    }
+  },
+  "isolated_baseline_container": {
+    "image_sha": "sha256:0abf3ac202ac233c3e4ce15ccc48146432cbaad8cad99eb6334bdf626a174a05",
+    "network": "none",
+    "mounts": [],
+    "exit_code": 0
+  },
+  "source_audit": {
+    "series": {
+      "B30f": {
+        "series_uid": "1.2.840.113654.2.55.239171605522909239517180961798868660180",
+        "shape": [
+          512,
+          512,
+          139
+        ],
+        "voxel_to_lps": [
+          [
+            0.6953125,
+            0.0,
+            0.0,
+            -170.65234
+          ],
+          [
+            0.0,
+            0.6953125,
+            0.0,
+            -346.65234
+          ],
+          [
+            0.0,
+            0.0,
+            2.0,
+            -323.9
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "kernel": "B30f",
+        "fields": {
+          "PatientID": "120547",
+          "StudyInstanceUID": "1.2.840.113654.2.55.213371100918832011919486333490278447415",
+          "FrameOfReferenceUID": "1.2.840.113654.2.55.260887570597281570554907681980848144453",
+          "AcquisitionNumber": "2",
+          "KVP": "120",
+          "ExposureTime": "500",
+          "XRayTubeCurrent": "120",
+          "Exposure": "30",
+          "GantryDetectorTilt": "0",
+          "SliceThickness": "2",
+          "ReconstructionDiameter": "356"
+        },
+        "missing_time_fields": [
+          "AcquisitionDate",
+          "AcquisitionTime",
+          "SeriesTime"
+        ]
+      },
+      "B50f": {
+        "series_uid": "1.2.840.113654.2.55.85646041831478784820085978073099583442",
+        "shape": [
+          512,
+          512,
+          139
+        ],
+        "voxel_to_lps": [
+          [
+            0.6953125,
+            0.0,
+            0.0,
+            -170.65234
+          ],
+          [
+            0.0,
+            0.6953125,
+            0.0,
+            -346.65234
+          ],
+          [
+            0.0,
+            0.0,
+            2.0,
+            -323.9
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "kernel": "B50f",
+        "fields": {
+          "PatientID": "120547",
+          "StudyInstanceUID": "1.2.840.113654.2.55.213371100918832011919486333490278447415",
+          "FrameOfReferenceUID": "1.2.840.113654.2.55.260887570597281570554907681980848144453",
+          "AcquisitionNumber": "2",
+          "KVP": "120",
+          "ExposureTime": "500",
+          "XRayTubeCurrent": "120",
+          "Exposure": "30",
+          "GantryDetectorTilt": "0",
+          "SliceThickness": "2",
+          "ReconstructionDiameter": "356"
+        },
+        "missing_time_fields": [
+          "AcquisitionDate",
+          "AcquisitionTime",
+          "SeriesTime"
+        ]
+      }
+    },
+    "slice_positions_equal": 139,
+    "unblurred_hu_rmse": 68.05954191344861,
+    "blurred_hu_rmse": 9.205400192097288,
+    "blurred_hu_correlation": 0.9998397675655437,
+    "acquisition_evidence": "Same patient, study, frame, acquisition number, exposure fields and every slice coordinate; different B30f/B50f kernels.",
+    "limitation": "Acquisition date/time are removed. Common projection acquisition is strongly supported, not independently proven from raw projection identifiers."
+  },
+  "generation": {
+    "apex_estimate_lps": [
+      50.45703499999999,
+      -220.80077749999998,
+      -271.9
+    ],
+    "base_estimate_lps": [
+      -0.9960900000000095,
+      -183.94921499999998,
+      -211.89999999999998
+    ],
+    "clinical_status": "Author visual estimates; not expert-certified cardiac plane",
+    "crop_lo_ijk": [
+      64,
+      64,
+      0
+    ],
+    "crop_hi_ijk": [
+      448,
+      416,
+      128
+    ],
+    "independent_interpolation_samples": 204,
+    "all_target_points_inside_volume": true,
+    "true_pose_pixel_rmse": 13.76226962038481,
+    "true_pose_identical_pixel_fraction": 0.4446343315972222,
+    "true_pose_pixel_correlation": 0.9634509965266216,
+    "true_pose_foreground_pixel_rmse": 18.011492512425654
+  },
+  "source_receipt_sha256": "bd28ac00404e85107f71886396404353d391fe8a83151873cd50529cfc3174f3",
+  "baseline_solver_sha256": "57775ae6e768f13a82fd5ef77e34a55cd89579fc94611cb3a3da998703eafc29",
+  "author_code_sha256": {
+    "build.py": "c56144c217f0a822b85a903b9675105a02bf061d2af237ca8c493f045f710cbe",
+    "fetch_source.py": "57fcbf86bb56710aa58bd3c3cc4a0314072922af9c02db4e12f6b3cc77b6a152",
+    "freeze.py": "395314537c7dc1bff8b0ea2cea54bad981f9ea5f93855fbdeec9de30d80474c9",
+    "inspect_source.py": "2f81cff16d66d0a97920d12218af00d84438de212f7a4eeac8e5b469ce996eb2",
+    "run_trials.py": "ee9dc7252fa5fc4497a0c23ba5487adead35ab2ec46c6706b567bb6c3b2e6560"
+  },
+  "agent_environment_files": [
+    "DATA-LICENSE.txt",
+    "Dockerfile",
+    "SOURCE_NOTICE.md",
+    "data/image.json",
+    "data/target.npy",
+    "data/target.png",
+    "data/volume.npz",
+    "reslice.py"
+  ],
+  "target_metadata_stripped": true,
+  "all_pixels_inside_public_volume_rechecked": true,
+  "baseline_limitation": "Author-selected method and adaptive start-count increase; public-input execution is not blind method discovery.",
+  "clinical_limitation": "Engineering registration pilot with author visual landmark estimates, not certified diagnostic cardiac view."
+}

@@ -28,6 +28,17 @@ establish repeatable difficulty or clinical performance.
 author screening and curation, without model trials. In particular, BR-010
 paused promotion of the earlier kidney-boundary cases.
 
+## Registration session follow-up
+
+The user resumed research in BR-019–024 and BR-028. The
+[registration chapter](../site/index.html#registration) and
+[session synthesis](research-registration-session.md) explain the progression
+from rigid slice recovery to respiratory correspondence. Adding the full
+source CT improves Sol substantially; the user accepts the remaining worst
+case visually. The [adjudication](evidence/br028-adjudication.json) is separate
+from the preserved numerical failure. Earlier anatomy selections and the
+sibling submission are unchanged. No further trial is scheduled.
+
 ## Historical case-32 result
 
 The following records explain the first selected package. They preserve its

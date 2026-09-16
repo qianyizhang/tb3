@@ -1,0 +1,50 @@
+{
+  "round": "BR-028",
+  "fixed_at": "2026-09-16T09:41:59.885970+00:00",
+  "protocol_path": "docs/research-rounds/BR-028-registration-3d-source.md",
+  "protocol_sha256": "6afd21a78880729f402902328d9c658c4f4dd6a59fdcfef74c3797560233bd49",
+  "parent_task": {
+    "task": "deform-harder-patient3",
+    "task_path": "runs/br024-harder-registration/tasks/deform-harder-patient3",
+    "files": {
+      "environment/Dockerfile": "fd792889cc2e2cee5c58e48ca7383407f9c2e93ae88f43bcf55deb8546f6b047",
+      "environment/SOURCE_NOTICE.md": "b7c96918219203e92a69fc3771fea19aa503e69a42fa91c8038514d1a72130fa",
+      "environment/data/queries.json": "394862024ac1694504e9c1cab39b2ab6ea3a0f5c7624683c7ec84ce5506efe80",
+      "environment/data/view.json": "3454989d86544bc5cbdd1937a60ce83eb3e961f667fa4e9bc9b66e00e48c52cf",
+      "environment/data/view.npy": "f2c99e1cd54a1deda644388ffe414bdd94b596564a4af77546117eccc9f48032",
+      "environment/data/view.png": "a97932081236b2c3690bbed3e0469c0fd4f365c4c783dfe8c71b55e3534229e9",
+      "environment/data/volume.npz": "dfcf344bc9550ddd32ab5352277b2398e8ea3ccf883003fe9d921fe7ed946838",
+      "instruction.md": "c863702093b6468dc679dc269227f949843bd162271b3e9be8f74bb6606d331b",
+      "solution/points.json": "a810eb2be91a45a4020903e5643a8d3351f62d321885155098e3011dc43c5a4f",
+      "solution/solve.sh": "a17c6d5a27cf1b9786cd1a88632e9ea2ebc31457cbc733198000f1d8884b0fbd",
+      "task.toml": "e416ab08bd527bed602e6e51fd5bf20ed3d9bcfbba7c279fc788afa6a0aed397",
+      "tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+      "tests/score.py": "18b18c5d4d54e7ee54258ca56ef8f0d3b11ce1c8e0af4063273694a0923af2ee",
+      "tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+      "tests/truth.json": "439360a834dc91a0e538ec0ea4565378ffd3d2bbbf7c17e9dd94377b39fb7c91"
+    }
+  },
+  "prior_receipts": {
+    "runs/br024-harder-registration/freezes/patient3.json": "d40a51e6bc841806750deef6aa1307a87e51c056d4478cab83dd58c406fcb3a6",
+    "docs/evidence/br024-results.json": "a7818fcb6e3f85d34586932588ca96bd8c8301f568bec0865af276483ab29a77",
+    "docs/evidence/br024-stage-analysis.json": "66fc6dc427c8adacfc6b35e96dbab5f182199e4de8a03cfa1703bfa081045af4",
+    "docs/evidence/br024-approach-analysis.json": "fd143f55d8a4e04414d2c7ab92ff54cdc8eb5ec2a45311d28db03ac55dac5956"
+  },
+  "source_file": {
+    "member": "LungCT/imagesTr/LungCT_0003_0000.nii.gz",
+    "bytes": 7707080,
+    "sha256": "f8d19275ee45736e84611e9558799a0c3946a9008c4a27a447fdadecf9bce950"
+  },
+  "code_sha256": {
+    "probes/registration-deformation/authoring/baseline_patches.py": "6df5c6078ca5acd169a024b9c0263ec70a315bc13dcee51fa6bab8e96859ef5a",
+    "probes/registration-deformation/authoring/br022_baseline_ablation.py": "d1e2be993b38587bf07349aa97d4c719cb01f924077241c5cec52115c766928d",
+    "probes/registration-deformation/authoring/br028_baseline_3d.py": "2f3e8180303313d8de11e5b9b3742d4159583b332aa5328decb595134bd26968",
+    "probes/registration-deformation/authoring/br028_prepare.py": "f6cfcb5ae9cb83d8af521a69915221c2cd64e87bc9d7191bb95351271106257a"
+  },
+  "model": "openai/gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "agent_timeout_seconds": 1800,
+  "max_model_attempts": 1,
+  "max_retries": 0,
+  "contrast": "Add full source CT; keep existing 2D inputs, source query positions, target, answers, grader and limits."
+}

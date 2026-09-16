@@ -1,0 +1,256 @@
+{
+  "round": "BR-019",
+  "freeze_sha256": "19f5b5b2320b5550c00151ec39c90832d117a184f06dc9515c3669c76f0aa4ec",
+  "frozen_task_files_unchanged": true,
+  "author_public_input_baselines": {
+    "cardiac-r01": {
+      "grade": {
+        "reward": 1,
+        "rms_mm": 0.0004313230553851698,
+        "max_mm": 0.0006074084219120065,
+        "centre_mm": 0.0003276470619930251,
+        "normal_deg": 0.00020587455200218784
+      },
+      "public_data": "runs/br019-registration/tasks/cardiac-r01/environment/data",
+      "starts": 64,
+      "seconds": 4.615518209000584,
+      "ncc": 0.9999919295328046,
+      "pixel_rmse_255": 0.2201193554387633,
+      "initialization": "volume physical centre, cube rotation group and independent random rotations",
+      "coarse_best_ncc": 0.9629890848246353,
+      "medium_best_ncc": 0.993031585660442,
+      "answer_sha256": "ecace7b886de2515c63a8948daefbea974432ed6df613cbd15e4fcf3287c30f1",
+      "solver_sha256": "57775ae6e768f13a82fd5ef77e34a55cd89579fc94611cb3a3da998703eafc29"
+    },
+    "cardiac-r02": {
+      "grade": {
+        "reward": 1,
+        "rms_mm": 0.0005592408473716869,
+        "max_mm": 0.0010815006837040372,
+        "centre_mm": 0.0002689642041567707,
+        "normal_deg": 0.0007351224118233509
+      },
+      "public_data": "runs/br019-registration/tasks/cardiac-r02/environment/data",
+      "starts": 64,
+      "seconds": 3.5937920409996877,
+      "ncc": 0.9999880214529202,
+      "pixel_rmse_255": 0.24923835886469262,
+      "initialization": "volume physical centre, cube rotation group and independent random rotations",
+      "coarse_best_ncc": 0.9716815850457801,
+      "medium_best_ncc": 0.9943906902211734,
+      "answer_sha256": "03a9149f73ef9c64cd891c6965fceff0269fd8c2659d7f234ca5523a6b1b5fe0",
+      "solver_sha256": "57775ae6e768f13a82fd5ef77e34a55cd89579fc94611cb3a3da998703eafc29"
+    }
+  },
+  "rows": [
+    {
+      "task": "cardiac-r01",
+      "phase": "oracle",
+      "result_path": "runs/br019-cardiac-r01-oracle-v1-20260916/cardiac-r01__naT6ugZ/result.json",
+      "result_sha256": "0813545c9b6f349d21bcaa936945637407f04140f979a7c8df213d3da1e8021e",
+      "task_checksum": "9288ae6ff3b277e88b3383afa5024e8c978162cb73883bf5793db0dd46291389",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "started_at": "2026-09-16T03:43:20.786000Z",
+      "finished_at": "2026-09-16T03:44:02.265904Z",
+      "agent_seconds": 0.167902,
+      "total_seconds": 41.479904,
+      "agent_version": "1.0.0",
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "grade": {
+        "reward": 1,
+        "rms_mm": 0.0,
+        "max_mm": 0.0,
+        "centre_mm": 0.0,
+        "normal_deg": 0.0
+      },
+      "grade_sha256": "62f6370a6ea8c0b4505295aff58483b52c72a1a78df8bd6acc106a112c579248",
+      "independent_replay_matches": true,
+      "answer_path": "runs/br019-cardiac-r01-oracle-v1-20260916/cardiac-r01__naT6ugZ/artifacts/app/answer/pose.json",
+      "answer_sha256": "bc826661d4720964881d30d48a1cb328790399c52f7874b080b1f1465ac0c65f"
+    },
+    {
+      "task": "cardiac-r01",
+      "phase": "nop",
+      "result_path": "runs/br019-cardiac-r01-nop-v1-20260916/cardiac-r01__KtMi5sx/result.json",
+      "result_sha256": "09e06edf1a332c9043ae8b5a63c754eca0dc8ce6395ae01ab82d0c76d47c433e",
+      "task_checksum": "9288ae6ff3b277e88b3383afa5024e8c978162cb73883bf5793db0dd46291389",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "started_at": "2026-09-16T03:44:02.526345Z",
+      "finished_at": "2026-09-16T03:44:27.625806Z",
+      "agent_seconds": 9.6e-05,
+      "total_seconds": 25.099461,
+      "agent_version": "1.0.0",
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "grade": {
+        "reward": 0,
+        "reason": "'slice_to_lps'"
+      },
+      "grade_sha256": "599756d8d190cff0b8a10b3a745be55492d9b55ee28808930bc5c81f096c9f41",
+      "independent_replay_matches": true
+    },
+    {
+      "task": "cardiac-r01",
+      "phase": "terra-high",
+      "result_path": "runs/br019-cardiac-r01-terra-high-v1-20260916/cardiac-r01__7yuEb55/result.json",
+      "result_sha256": "e3b74ebcaae9feeeb1c7c0ceec0678f4d5d396748808b61591bdff414654f90e",
+      "task_checksum": "9288ae6ff3b277e88b3383afa5024e8c978162cb73883bf5793db0dd46291389",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "started_at": "2026-09-16T03:44:27.941443Z",
+      "finished_at": "2026-09-16T03:55:01.113554Z",
+      "agent_seconds": 575.770015,
+      "total_seconds": 633.172111,
+      "agent_version": "0.154.0",
+      "input_tokens": 1061696,
+      "cached_input_tokens": 998016,
+      "output_tokens": 16202,
+      "estimated_cost_usd": 0.5213872,
+      "grade": {
+        "reward": 1,
+        "rms_mm": 0.0004770594910783693,
+        "max_mm": 0.0007442100175388374,
+        "centre_mm": 0.0003219695341817771,
+        "normal_deg": 0.0003058071326523564
+      },
+      "grade_sha256": "b498494a5785ed765daad4069249c3a4998d3c7048ee5f00fab2749dcf637847",
+      "independent_replay_matches": true,
+      "answer_path": "runs/br019-cardiac-r01-terra-high-v1-20260916/cardiac-r01__7yuEb55/artifacts/app/answer/pose.json",
+      "answer_sha256": "d3984e69b1f8ca88c2a6c02184ae17600845bffe21397942e0ca50d78d4765a5",
+      "requested_model": "openai/gpt-5.6-terra",
+      "requested_effort": "high",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-terra",
+          "effort": "high"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br019-cardiac-r01-terra-high-v1-20260916/cardiac-r01__7yuEb55/agent/sessions/2026/09/16/rollout-2026-09-16T03-45-02-01a0a851-67f2-7660-a24c-5d4c4d24d28a.jsonl",
+          "sha256": "d9cab21e4ed4f9a3fa8f6369ab278f235e6faadf114a59f72c4512675cd62897"
+        }
+      ],
+      "frozen_instruction_seen": true,
+      "runtime_matches_request": true
+    },
+    {
+      "task": "cardiac-r02",
+      "phase": "oracle",
+      "result_path": "runs/br019-cardiac-r02-oracle-v1-20260916/cardiac-r02__QRBDaq5/result.json",
+      "result_sha256": "9e5f26e8a65247da08466b237ef285810af23f34fa59fc5a6aff5c81b84f0aef",
+      "task_checksum": "58c8f832c820294b3c6bf1aae286f99b7b7d14305bf4fa2a637918f83a5ed4e6",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "started_at": "2026-09-16T03:55:19.105523Z",
+      "finished_at": "2026-09-16T03:55:44.628187Z",
+      "agent_seconds": 0.154594,
+      "total_seconds": 25.522664,
+      "agent_version": "1.0.0",
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "grade": {
+        "reward": 1,
+        "rms_mm": 0.0,
+        "max_mm": 0.0,
+        "centre_mm": 0.0,
+        "normal_deg": 0.0
+      },
+      "grade_sha256": "62f6370a6ea8c0b4505295aff58483b52c72a1a78df8bd6acc106a112c579248",
+      "independent_replay_matches": true,
+      "answer_path": "runs/br019-cardiac-r02-oracle-v1-20260916/cardiac-r02__QRBDaq5/artifacts/app/answer/pose.json",
+      "answer_sha256": "3ded6cccb6d0db42e9c3b21387b86f525e3220236b54beca9c361de1980e9640"
+    },
+    {
+      "task": "cardiac-r02",
+      "phase": "nop",
+      "result_path": "runs/br019-cardiac-r02-nop-v1-20260916/cardiac-r02__FKh7VAn/result.json",
+      "result_sha256": "bea0def3c54ebe05143c8ad6d10c4906048b46e3e379fe5641a792c76d40f7cb",
+      "task_checksum": "58c8f832c820294b3c6bf1aae286f99b7b7d14305bf4fa2a637918f83a5ed4e6",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "started_at": "2026-09-16T03:55:44.901781Z",
+      "finished_at": "2026-09-16T03:56:09.943768Z",
+      "agent_seconds": 9.8e-05,
+      "total_seconds": 25.041987,
+      "agent_version": "1.0.0",
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "grade": {
+        "reward": 0,
+        "reason": "'slice_to_lps'"
+      },
+      "grade_sha256": "599756d8d190cff0b8a10b3a745be55492d9b55ee28808930bc5c81f096c9f41",
+      "independent_replay_matches": true
+    },
+    {
+      "task": "cardiac-r02",
+      "phase": "terra-high",
+      "result_path": "runs/br019-cardiac-r02-terra-high-v1-20260916/cardiac-r02__r7T7HNg/result.json",
+      "result_sha256": "c96601ea8ee9047da3067f19888999a9a6b2f1cd74e0681523c7076ded86c7ba",
+      "task_checksum": "58c8f832c820294b3c6bf1aae286f99b7b7d14305bf4fa2a637918f83a5ed4e6",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "started_at": "2026-09-16T03:56:10.179860Z",
+      "finished_at": "2026-09-16T03:59:02.161001Z",
+      "agent_seconds": 115.598063,
+      "total_seconds": 171.981141,
+      "agent_version": "0.154.0",
+      "input_tokens": 215922,
+      "cached_input_tokens": 196864,
+      "output_tokens": 4389,
+      "estimated_cost_usd": 0.1301568,
+      "grade": {
+        "reward": 1,
+        "rms_mm": 0.000586490847434264,
+        "max_mm": 0.001162846244481922,
+        "centre_mm": 0.0003203872413466594,
+        "normal_deg": 0.0007356893744259582
+      },
+      "grade_sha256": "32957cd41945794b2c3499a93d5318f0fa5b0b2835de8c52913a60bf36dce447",
+      "independent_replay_matches": true,
+      "answer_path": "runs/br019-cardiac-r02-terra-high-v1-20260916/cardiac-r02__r7T7HNg/artifacts/app/answer/pose.json",
+      "answer_sha256": "848402cae738d8b5a03ae4c4d6866861effe08d0debe9e1e6739c00402d218ba",
+      "requested_model": "openai/gpt-5.6-terra",
+      "requested_effort": "high",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-terra",
+          "effort": "high"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br019-cardiac-r02-terra-high-v1-20260916/cardiac-r02__r7T7HNg/agent/sessions/2026/09/16/rollout-2026-09-16T03-56-44-01a0a85c-1d8f-76c3-9469-73f771703432.jsonl",
+          "sha256": "adac1dc9ac33374ca4d4765a4dfd15e956529a6e1437c28d843f20594c327cd3"
+        }
+      ],
+      "frozen_instruction_seen": true,
+      "runtime_matches_request": true
+    }
+  ],
+  "limitations": [
+    "One source patient and two correlated views; one model attempt per condition.",
+    "Synthetic same-acquisition sections preserve exact texture and interpolation structure.",
+    "Apex-side heuristic is not expert clinical plane annotation; tolerances are engineering choices.",
+    "Runtime/model labels are trace-consistent evidence, not provider-side attestation.",
+    "No cross-acquisition, cross-modality or final-submission difficulty claim."
+  ]
+}

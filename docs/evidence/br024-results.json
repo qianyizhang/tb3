@@ -1,0 +1,2262 @@
+{
+  "round": "BR-024",
+  "plan_sha256": "f5fa4fe4632eabddc5d743676e3063607d81d6c864c196b8af66f41c9e400a73",
+  "protocol_sha256": "34e7e3a691087a4b5a379052c754735d8f39291194b50ad77f35677e69c91879",
+  "screen_sha256": "203390523b8288bfdd43ba9626dae986ce12f371ccc3ce17fb1cb2bde55ba0d1",
+  "prior_results_and_br021_task_files_unchanged": true,
+  "translation_rescue_plan_sha256": "d38ce2866653f64c4c50538cb1864bf14448f487b1d9b87fd0a273724a288cd3",
+  "neighborhood_rescue_plan_sha256": "89ad332cd3a716a52749e23737d72d08571e535f2dca2bb78df185a7df10fbc9",
+  "cases": [
+    {
+      "case": 3,
+      "freeze_sha256": "d40a51e6bc841806750deef6aa1307a87e51c056d4478cab83dd58c406fcb3a6",
+      "task": {
+        "task": "deform-harder-patient3",
+        "task_path": "runs/br024-harder-registration/tasks/deform-harder-patient3",
+        "files": {
+          "environment/Dockerfile": "fd792889cc2e2cee5c58e48ca7383407f9c2e93ae88f43bcf55deb8546f6b047",
+          "environment/SOURCE_NOTICE.md": "b7c96918219203e92a69fc3771fea19aa503e69a42fa91c8038514d1a72130fa",
+          "environment/data/queries.json": "394862024ac1694504e9c1cab39b2ab6ea3a0f5c7624683c7ec84ce5506efe80",
+          "environment/data/view.json": "3454989d86544bc5cbdd1937a60ce83eb3e961f667fa4e9bc9b66e00e48c52cf",
+          "environment/data/view.npy": "f2c99e1cd54a1deda644388ffe414bdd94b596564a4af77546117eccc9f48032",
+          "environment/data/view.png": "a97932081236b2c3690bbed3e0469c0fd4f365c4c783dfe8c71b55e3534229e9",
+          "environment/data/volume.npz": "dfcf344bc9550ddd32ab5352277b2398e8ea3ccf883003fe9d921fe7ed946838",
+          "instruction.md": "c863702093b6468dc679dc269227f949843bd162271b3e9be8f74bb6606d331b",
+          "solution/points.json": "a810eb2be91a45a4020903e5643a8d3351f62d321885155098e3011dc43c5a4f",
+          "solution/solve.sh": "a17c6d5a27cf1b9786cd1a88632e9ea2ebc31457cbc733198000f1d8884b0fbd",
+          "task.toml": "e416ab08bd527bed602e6e51fd5bf20ed3d9bcfbba7c279fc788afa6a0aed397",
+          "tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+          "tests/score.py": "18b18c5d4d54e7ee54258ca56ef8f0d3b11ce1c8e0af4063273694a0923af2ee",
+          "tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+          "tests/truth.json": "439360a834dc91a0e538ec0ea4565378ffd3d2bbbf7c17e9dd94377b39fb7c91"
+        }
+      },
+      "author_audit": {
+        "round": "BR-024",
+        "case": 3,
+        "image": "sha256:6cfcfe8be82710149c56e3142d597605ca413b96384541d1e810ea2b7bf99216",
+        "image_audit": {
+          "files": {
+            "/app/SOURCE_NOTICE.md": "b7c96918219203e92a69fc3771fea19aa503e69a42fa91c8038514d1a72130fa",
+            "/app/data/view.png": "a97932081236b2c3690bbed3e0469c0fd4f365c4c783dfe8c71b55e3534229e9",
+            "/app/data/volume.npz": "dfcf344bc9550ddd32ab5352277b2398e8ea3ccf883003fe9d921fe7ed946838",
+            "/app/data/view.npy": "f2c99e1cd54a1deda644388ffe414bdd94b596564a4af77546117eccc9f48032",
+            "/app/data/queries.json": "394862024ac1694504e9c1cab39b2ab6ea3a0f5c7624683c7ec84ce5506efe80",
+            "/app/data/view.json": "3454989d86544bc5cbdd1937a60ce83eb3e961f667fa4e9bc9b66e00e48c52cf"
+          },
+          "initial_answers": [],
+          "private_paths": {
+            "/tests": false,
+            "/solution": false,
+            "/app/truth.json": false,
+            "/app/baseline.py": false,
+            "/app/data/reference_volume.npz": false
+          },
+          "numpy_version": "2.2.6"
+        },
+        "public_files_match": true,
+        "network": "none",
+        "private_labels_mounted": false,
+        "command": [
+          "docker",
+          "run",
+          "--rm",
+          "--network",
+          "none",
+          "--cpus",
+          "4",
+          "--memory",
+          "4g",
+          "-v",
+          "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/author/patient3:/output",
+          "-v",
+          "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+          "-v",
+          "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/br022_baseline_ablation.py:/runner.py:ro",
+          "sha256:6cfcfe8be82710149c56e3142d597605ca413b96384541d1e810ea2b7bf99216",
+          "python",
+          "/runner.py",
+          "--data",
+          "/app/data",
+          "--out",
+          "/output/points.json",
+          "--kind",
+          "2d",
+          "--model",
+          "translation",
+          "--context",
+          "multiscale"
+        ],
+        "grade": {
+          "reward": 1,
+          "rms_mm": 2.1328979359146905,
+          "max_mm": 3.4161131491425327,
+          "per_point_mm": [
+            2.5309849405210323,
+            2.295680827383528,
+            0.18835650864201528,
+            2.3099176501967422,
+            2.4832784600194713,
+            3.4161131491425327,
+            0.5036744730118952,
+            1.1209848136033598
+          ]
+        },
+        "answer_path": "runs/br024-harder-registration/author/patient3/points.json",
+        "answer_sha256": "dd291765d29e2657ef0e86cbe5f5623df615c9204237209dc2e50e13330b7697",
+        "preparation": {
+          "round": "BR-024",
+          "case": 3,
+          "candidate": "patient3-view1",
+          "task": "deform-harder-patient3",
+          "task_path": "runs/br024-harder-registration/tasks/deform-harder-patient3",
+          "baseline_method": "translation",
+          "baseline_answer_path": "runs/br024-harder-registration/candidates/patient3-view1/translation/points.json",
+          "baseline_grade": {
+            "reward": 1,
+            "rms_mm": 2.1328979359146905,
+            "max_mm": 3.4161131491425327,
+            "per_point_mm": [
+              2.5309849405210323,
+              2.295680827383528,
+              0.18835650864201528,
+              2.3099176501967422,
+              2.4832784600194713,
+              3.4161131491425327,
+              0.5036744730118952,
+              1.1209848136033598
+            ]
+          },
+          "interpolation_max_hu_difference": 2.9927982268418418e-05,
+          "controls": {
+            "oracle": {
+              "reward": 1,
+              "rms_mm": 0.0,
+              "max_mm": 0.0,
+              "per_point_mm": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "tolerated": {
+              "reward": 1,
+              "rms_mm": 2.0,
+              "max_mm": 2.0,
+              "per_point_mm": [
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0
+              ]
+            },
+            "rms_boundary_fail": {
+              "reward": 0,
+              "rms_mm": 3.0099999999999927,
+              "max_mm": 3.010000000000005,
+              "per_point_mm": [
+                3.009999999999991,
+                3.009999999999991,
+                3.009999999999991,
+                3.010000000000005,
+                3.009999999999991,
+                3.009999999999991,
+                3.009999999999991,
+                3.009999999999991
+              ]
+            },
+            "large_shift": {
+              "reward": 0,
+              "rms_mm": 8.0,
+              "max_mm": 8.0,
+              "per_point_mm": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+              ]
+            },
+            "nop": {
+              "reward": 0,
+              "reason": "'query_ids'"
+            },
+            "shuffled": {
+              "reward": 0,
+              "rms_mm": 109.60639807967416,
+              "max_mm": 170.75,
+              "per_point_mm": [
+                78.96399495972832,
+                85.11646432976407,
+                73.61088574388981,
+                170.75,
+                170.75,
+                73.61088574388981,
+                85.11646432976407,
+                78.96399495972832
+              ]
+            },
+            "single_outlier": {
+              "reward": 0,
+              "rms_mm": 1.7713024868722984,
+              "max_mm": 5.009999999999991,
+              "per_point_mm": [
+                5.009999999999991,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "preparation": {
+            "name": "patient3-view1",
+            "case": 3,
+            "rank": 1,
+            "source_indices": [
+              19,
+              21,
+              46,
+              53,
+              55,
+              72,
+              73,
+              96
+            ],
+            "shape": [
+              121,
+              189
+            ],
+            "best_rigid": {
+              "rms_mm": 8.713130499558769,
+              "mean_mm": 8.219837312404852,
+              "p90_mm": 12.40097663878082,
+              "max_mm": 12.562553239939515,
+              "per_point_mm": [
+                7.4449667283341485,
+                12.331729523998524,
+                6.481313207241682,
+                8.604767082203608,
+                3.8580691581988282,
+                12.562553239939515,
+                5.458459718353991,
+                9.016839840968526
+              ]
+            },
+            "best_affine": {
+              "rms_mm": 5.465373977311804,
+              "mean_mm": 5.118246818263742,
+              "p90_mm": 7.4418881415002565,
+              "max_mm": 7.8173716431887215,
+              "per_point_mm": [
+                7.8173716431887215,
+                7.2809666407766285,
+                2.872582225104475,
+                4.349888913491104,
+                1.9381955957696686,
+                6.235788853165581,
+                5.678476265576419,
+                4.772704409037331
+              ]
+            },
+            "identity": {
+              "rms_mm": 11.212720021849522,
+              "mean_mm": 10.037138886542117,
+              "p90_mm": 15.318227118259202,
+              "max_mm": 18.498310733685926,
+              "per_point_mm": [
+                8.838834764831844,
+                13.668455984226357,
+                4.1846829124374025,
+                2.1505813167606567,
+                8.707897327903588,
+                18.498310733685926,
+                10.293013912271986,
+                13.955334140219179
+              ]
+            },
+            "off_plane_mm": [
+              0.0,
+              0.24695919857831955,
+              0.30869899822290453,
+              0.0,
+              0.12347959928917723,
+              0.0,
+              0.30869899822290453,
+              0.30869899822290453
+            ],
+            "public_path": "runs/br024-harder-registration/candidates/patient3-view1/public",
+            "truth_path": "runs/br024-harder-registration/candidates/patient3-view1/truth.json"
+          },
+          "author_visibility_review": "Actual source/manual-target panels inspected; all eight have visible vessel/airway structure. No expert clinical or unique-correspondence certification."
+        }
+      },
+      "bench_audit_path": "runs/br024-harder-registration/bench-audit-patient3.json",
+      "bench_audit_sha256": "c29ffe837f2eee9490dbe4fd20ae053d156032f0e63886d9022f7a05efb7a9d9",
+      "bench_audit": {
+        "round": "BR-024",
+        "case": 3,
+        "status": "completed_normal_failure",
+        "plan_sha256": "f5fa4fe4632eabddc5d743676e3063607d81d6c864c196b8af66f41c9e400a73",
+        "protocol_sha256": "34e7e3a691087a4b5a379052c754735d8f39291194b50ad77f35677e69c91879",
+        "freeze_sha256": "d40a51e6bc841806750deef6aa1307a87e51c056d4478cab83dd58c406fcb3a6",
+        "replications": {
+          "sol-xhigh": {
+            "image_audit": {
+              "app_file_sha256": {
+                "/app/SOURCE_NOTICE.md": "b7c96918219203e92a69fc3771fea19aa503e69a42fa91c8038514d1a72130fa",
+                "/app/data/view.png": "a97932081236b2c3690bbed3e0469c0fd4f365c4c783dfe8c71b55e3534229e9",
+                "/app/data/volume.npz": "dfcf344bc9550ddd32ab5352277b2398e8ea3ccf883003fe9d921fe7ed946838",
+                "/app/data/view.npy": "f2c99e1cd54a1deda644388ffe414bdd94b596564a4af77546117eccc9f48032",
+                "/app/data/queries.json": "394862024ac1694504e9c1cab39b2ab6ea3a0f5c7624683c7ec84ce5506efe80",
+                "/app/data/view.json": "3454989d86544bc5cbdd1937a60ce83eb3e961f667fa4e9bc9b66e00e48c52cf"
+              },
+              "initial_answer_entries": [],
+              "private_path_exists": {
+                "/tests": false,
+                "/solution": false,
+                "/app/tests": false,
+                "/app/solution": false,
+                "/app/truth.json": false,
+                "/app/baseline.py": false,
+                "/app/authoring": false,
+                "/app/points.json": false,
+                "/app/data/reference_volume.npz": false
+              },
+              "npz_members_shapes": {
+                "/app/data/volume.npz": {
+                  "hu": [
+                    192,
+                    192,
+                    208
+                  ],
+                  "voxel_to_world": [
+                    4,
+                    4
+                  ]
+                }
+              },
+              "checked_at": "2026-09-16T08:43:35.621925+00:00",
+              "image_ref": "deform-harder-patient3__njq7sqn-main",
+              "image_id": "sha256:bac149730f90eef03f365ec03ffd7f230166615db0317c0893f9f9d1d14dd12f",
+              "retained_tag": "tb3-br024-patient3-sol-initial:20260916",
+              "inspection": "Separate disposable read-only no-network container from immutable initial image, no host mounts.",
+              "public_files_match_plan": true,
+              "source_exhale_volume_absent": true
+            },
+            "status": "completed_normal_failure",
+            "result": {
+              "result_path": "runs/br024-deform-harder-patient3-sol-xhigh-v1-20260916/deform-harder-patient3__NJq7SQn/result.json",
+              "result_sha256": "4db1e33e63e8d2a30f3a3e08ad8c84e9bbb18cf96d936fa19ff5a26a45c16847",
+              "task_checksum": "dd61be47045a26e5101c9f657ff5cca1bf9baf19eb942f7721fb159f6a6f1718",
+              "reward": 0.0,
+              "exception_info": null,
+              "started_at": "2026-09-16T08:43:14.895586Z",
+              "finished_at": "2026-09-16T09:06:04.566163Z",
+              "trial_seconds": 1369.670577,
+              "agent_execution_seconds": 1313.083906,
+              "agent_info": {
+                "name": "codex",
+                "version": "0.154.0",
+                "model_info": {
+                  "name": "gpt-5.6-sol",
+                  "provider": "openai"
+                }
+              },
+              "configured_model": "openai/gpt-5.6-sol",
+              "configured_reasoning_effort": "xhigh",
+              "n_attempts": 1,
+              "max_retries": 0,
+              "usage": {
+                "n_input_tokens": 3359925,
+                "n_cache_tokens": 3263616,
+                "n_output_tokens": 35747,
+                "cost_usd": 2.4056224
+              },
+              "metrics_path": "runs/br024-deform-harder-patient3-sol-xhigh-v1-20260916/deform-harder-patient3__NJq7SQn/verifier/metrics.json",
+              "metrics_sha256": "25816297356fc702b92e18f1f812d8b5b085d7edff62cad484bc4cb0fbb0764b",
+              "metrics": {
+                "reward": 0,
+                "rms_mm": 12.731273502678357,
+                "max_mm": 32.20322654641923,
+                "per_point_mm": [
+                  1.402961154130805,
+                  14.779665084162096,
+                  1.989019859126598,
+                  32.20322654641923,
+                  0.845340168216318,
+                  5.820566982691629,
+                  0.2927456233660858,
+                  0.7697402159170378
+                ]
+              },
+              "answer_path": "runs/br024-deform-harder-patient3-sol-xhigh-v1-20260916/deform-harder-patient3__NJq7SQn/artifacts/app/answer/points.json",
+              "answer_sha256": "98659ba58d06a9b160f2c99b1390305feed9cc7d0f841dccd9d4d86415d03082"
+            },
+            "frozen_task_membership_unchanged": true,
+            "completed_at": "2026-09-16T09:10:27.654160+00:00",
+            "independent_regrade": {
+              "performed_after_model_finalization": true,
+              "method": "Independent NumPy Euclidean point errors in world millimetres, RMS and maximum; separate from executing the task scorer.",
+              "answer_path": "runs/br024-deform-harder-patient3-sol-xhigh-v1-20260916/deform-harder-patient3__NJq7SQn/artifacts/app/answer/points.json",
+              "answer_sha256": "98659ba58d06a9b160f2c99b1390305feed9cc7d0f841dccd9d4d86415d03082",
+              "truth_path": "runs/br024-harder-registration/tasks/deform-harder-patient3/tests/truth.json",
+              "truth_sha256": "439360a834dc91a0e538ec0ea4565378ffd3d2bbbf7c17e9dd94377b39fb7c91",
+              "labels_supplied_to_model": false,
+              "reward": 0,
+              "rms_mm": 12.731273502678357,
+              "max_mm": 32.20322654641923,
+              "per_point_mm": [
+                1.402961154130805,
+                14.779665084162096,
+                1.989019859126598,
+                32.20322654641923,
+                0.845340168216318,
+                5.820566982691629,
+                0.2927456233660858,
+                0.7697402159170378
+              ],
+              "rms_tolerance_mm": 3.0,
+              "max_tolerance_mm": 5.0,
+              "matches_verifier_exactly": true,
+              "max_absolute_metric_difference_mm": 0.0,
+              "over_max_tolerance_ids": [
+                "q02",
+                "q04",
+                "q06"
+              ]
+            },
+            "trajectory_audit": {
+              "trajectory_path": "runs/br024-deform-harder-patient3-sol-xhigh-v1-20260916/deform-harder-patient3__NJq7SQn/agent/trajectory.json",
+              "trajectory_sha256": "6b556bccfa706205af9ea179048042986e7057b5d9c81829ef0834a3fff58859",
+              "session_id": "01a0a962-f05e-7131-b973-2bf96675a22e",
+              "raw_session_path": "runs/br024-deform-harder-patient3-sol-xhigh-v1-20260916/deform-harder-patient3__NJq7SQn/agent/sessions/2026/09/16/rollout-2026-09-16T08-43-48-01a0a962-f05e-7131-b973-2bf96675a22e.jsonl",
+              "raw_session_sha256": "0bc095245d79201d868ab777d4ddbf20a439e2e775cb8d2f66459d9438cf5261",
+              "codex_log_path": "runs/br024-deform-harder-patient3-sol-xhigh-v1-20260916/deform-harder-patient3__NJq7SQn/agent/codex.txt",
+              "codex_log_sha256": "6a0ed5723eef037cbf442e72629d270ecdc414636ef100020d5994e9b83d9c3f",
+              "runtime_turn_contexts": [
+                {
+                  "model": "gpt-5.6-sol",
+                  "effort": "xhigh",
+                  "cwd": "/app"
+                }
+              ],
+              "step_count": 77,
+              "user_message_count": 2,
+              "frozen_prompt_step": 5,
+              "frozen_prompt_present": true,
+              "other_user_message": "Generic recommended-plugin list and /app environment context only.",
+              "task_bearing_followups": 0,
+              "private_or_prior_attempt_mentions": [],
+              "network_command_hits": [],
+              "annotation_or_answer_lookup_observed": false,
+              "downloaded_packages_or_weights_observed": false,
+              "external_network_use_observed": false,
+              "preinstalled_registration_library": "SimpleITK2.5.2 explicitly executes rigid Euler3D registration, cubic B-spline registration, ANTS neighborhood-correlation refinement and gradient-magnitude correlation refinement.",
+              "own_numerical_solver": true,
+              "own_numerical_tooling": "NumPy and SciPy interpolation, multiscale patch NCC, differential-evolution local translation optimization; Pillow panels and MPR/MIP image checks.",
+              "external_software_probes": "torch availability checked; not installed, no installation/download observed.",
+              "viewed_images": [
+                "/app/data/view.png",
+                "/tmp/view_annot.png",
+                "/tmp/nom_montage.png",
+                "/tmp/rigid_compare.png",
+                "/tmp/query_patches.png",
+                "/tmp/bs_compare.png",
+                "/tmp/refine_compare.png",
+                "/tmp/fine_patches.png",
+                "/tmp/q02q04contrast.png",
+                "/tmp/mpr_all.png",
+                "/tmp/local_compare.png",
+                "/tmp/q02q04_mpr.png",
+                "/tmp/dense_compare.png",
+                "/tmp/uncertain.png",
+                "/tmp/edge_compare.png"
+              ],
+              "nonzero_exploratory_command_exits": [
+                {
+                  "item_id": "item_2",
+                  "exit_code": 1
+                },
+                {
+                  "item_id": "item_9",
+                  "exit_code": 1
+                },
+                {
+                  "item_id": "item_11",
+                  "exit_code": 1
+                },
+                {
+                  "item_id": "item_13",
+                  "exit_code": 1
+                },
+                {
+                  "item_id": "item_18",
+                  "exit_code": 1
+                }
+              ],
+              "exploratory_error_scope": "Plot color error; repeated slab initially too thin for smoothing; LBFGSB parameter-count issue during multiscale transform adaptation; composite transform serialization error. The model repaired these within the same attempt. No infrastructure exception or automatic model retry.",
+              "completion": "Voluntary normal finalization after1313.083906s, valid finite output, no timeout and no hidden-verifier feedback.",
+              "reasoning_visibility": "Retained reasoning entries have empty summaries and encrypted content. Reconstruction uses executed source, printed outputs, visible commentary and image tool calls."
+            },
+            "method": {
+              "summary": "Thin-slab 2D-to-volume rigid alignment followed by multiple SimpleITK B-spline fits; compared warped anatomical patches, neighborhood-correlation refinements and orthogonal MIP views. Added custom local3D translation around the warped patch surfaces. Chose denser corr7 for most points with point-specific local radius choices, and gradient-based edge7 for q03.",
+              "rigid_stage": {
+                "event": "item_6",
+                "script": "/tmp/regtest.py",
+                "fixed_image": "Source2D view repeated5 times, 1.5mm slab spacing, nominal world frame.",
+                "transform": "Euler3D, centered on image center",
+                "initial_normal_offsets_mm": [
+                  -30,
+                  -20,
+                  -10,
+                  0,
+                  10,
+                  20,
+                  30
+                ],
+                "metric": "Correlation, random50% sampling seed42",
+                "optimization": "GradientDescentLineSearch; shrink4/2/1 and physical smoothing2/1/0",
+                "selected_initialization_offset_mm": -10,
+                "retained_transform": "/tmp/rigid_-10.tfm"
+              },
+              "bspline_stage": {
+                "events": [
+                  "item_9",
+                  "item_15",
+                  "item_16",
+                  "item_35",
+                  "item_36"
+                ],
+                "scripts": [
+                  "/tmp/bspline.py",
+                  "/tmp/bspline_dense.py",
+                  "/tmp/show_bs.py",
+                  "/tmp/show_dense.py"
+                ],
+                "fixed_image": "HU clipped[-1000,300], repeated5-slice slab at1mm; mask sourceHU<-100.",
+                "moving_initial_transform": "rigid_-10.tfm",
+                "composition": "Output world point = rigid(bspline(nominal_source_world)); SetMovingInitialTransform(rigid) during fitting.",
+                "mesh_tests": {
+                  "correlation": [
+                    [
+                      3,
+                      2,
+                      1
+                    ],
+                    [
+                      5,
+                      4,
+                      1
+                    ],
+                    [
+                      7,
+                      6,
+                      1
+                    ],
+                    [
+                      9,
+                      7,
+                      1
+                    ]
+                  ],
+                  "Mattes_mutual_information_50_bins": [
+                    [
+                      3,
+                      2,
+                      1
+                    ],
+                    [
+                      5,
+                      4,
+                      1
+                    ]
+                  ]
+                },
+                "sampling": "70% random seed33",
+                "optimizer": "LBFGSB,100 iterations maximum; multi-resolution4/2/1",
+                "source_of_most_final_points": "bs_corr_7.tfm"
+              },
+              "neighborhood_correlation_stage": {
+                "events": [
+                  "item_18",
+                  "item_20",
+                  "item_22",
+                  "item_24"
+                ],
+                "script": "/tmp/refine.py",
+                "initialization": "bs_corr_5.tfm plus moving initial rigid",
+                "metric": "SimpleITK ANTSNeighborhoodCorrelation radii3/5/8",
+                "optimizer": "LBFGSB, all pixels, shrink2/1; reduced gradient tolerance after zero-iteration first pass.",
+                "role": "Exploratory res_cc5 warped-patch baseline; not the final base used by seven selected points."
+              },
+              "local_translation_stage": {
+                "events": [
+                  "item_30",
+                  "item_37"
+                ],
+                "scripts": [
+                  "/tmp/localopt.py",
+                  "/tmp/localopt7.py"
+                ],
+                "base_surfaces": [
+                  "rigid(res_cc5(source patch))",
+                  "rigid(bs_corr_7(source patch))"
+                ],
+                "coordinates": "Orthonormal tangent/normal frame estimated by finite differences of the warped surface at each query.",
+                "translation_limits_mm": [
+                  -7,
+                  7
+                ],
+                "objective": "NCC of clipped[-1000,300] source patch and sampled inhale values across the warped surface plus constant3D shift.",
+                "radii_pixels_first_stage": [
+                  5,
+                  8,
+                  11
+                ],
+                "radii_pixels_final_stage": [
+                  8,
+                  11
+                ],
+                "sample_spacing_mm": 1.25,
+                "final_patch_samples_per_axis": [
+                  17,
+                  23
+                ],
+                "source_outer_sample_full_spans_mm": [
+                  20,
+                  27.5
+                ],
+                "optimizer": "SciPy differential_evolution, seed=radius, tol=.05, polish=True; final stage popsize6,maxiter25.",
+                "stability_checks": "Compared radii, base-vs-refined NCC, warped patch panels, HU at points, and orthogonal MIP images. Some DE results have worse NCC than zero shift; alternatives remained visible to the model."
+              },
+              "edge_stage": {
+                "events": [
+                  "item_41",
+                  "item_42",
+                  "item_44"
+                ],
+                "script": "/tmp/edge_refine.py",
+                "initialization": "bs_corr_7.tfm plus moving initial rigid",
+                "objective": "SimpleITK correlation of smoothed gradient magnitudes, sampled70% seed12; LBFGSB70 iterations",
+                "role": "Selected for q03 only; other points use localopt7 outputs."
+              },
+              "final_selection": {
+                "provenance": {
+                  "q01": {
+                    "source_event": "item_37",
+                    "source_script": "localopt7.py",
+                    "patch_radius_pixels": 11,
+                    "base_transform": "bs_corr_7.tfm composed with rigid_-10.tfm",
+                    "rounded_world_mm": [
+                      211.42,
+                      111.63,
+                      167.3
+                    ]
+                  },
+                  "q02": {
+                    "source_event": "item_37",
+                    "source_script": "localopt7.py",
+                    "patch_radius_pixels": 11,
+                    "base_transform": "bs_corr_7.tfm composed with rigid_-10.tfm",
+                    "rounded_world_mm": [
+                      281.03,
+                      80.55,
+                      157.51
+                    ]
+                  },
+                  "q03": {
+                    "source_event": "item_42",
+                    "source_transform": "bs_edge7.tfm composed with rigid_-10.tfm",
+                    "rounded_world_mm": [
+                      214.17,
+                      84.88,
+                      163.27
+                    ]
+                  },
+                  "q04": {
+                    "source_event": "item_37",
+                    "source_script": "localopt7.py",
+                    "patch_radius_pixels": 8,
+                    "base_transform": "bs_corr_7.tfm composed with rigid_-10.tfm",
+                    "rounded_world_mm": [
+                      95.04,
+                      93.09,
+                      154.66
+                    ]
+                  },
+                  "q05": {
+                    "source_event": "item_37",
+                    "source_script": "localopt7.py",
+                    "patch_radius_pixels": 11,
+                    "base_transform": "bs_corr_7.tfm composed with rigid_-10.tfm",
+                    "rounded_world_mm": [
+                      245.36,
+                      151.99,
+                      146.43
+                    ]
+                  },
+                  "q06": {
+                    "source_event": "item_37",
+                    "source_script": "localopt7.py",
+                    "patch_radius_pixels": 8,
+                    "base_transform": "bs_corr_7.tfm composed with rigid_-10.tfm",
+                    "rounded_world_mm": [
+                      219.7,
+                      161.91,
+                      151.28
+                    ]
+                  },
+                  "q07": {
+                    "source_event": "item_37",
+                    "source_script": "localopt7.py",
+                    "patch_radius_pixels": 11,
+                    "base_transform": "bs_corr_7.tfm composed with rigid_-10.tfm",
+                    "rounded_world_mm": [
+                      220.68,
+                      137.27,
+                      159.27
+                    ]
+                  },
+                  "q08": {
+                    "source_event": "item_37",
+                    "source_script": "localopt7.py",
+                    "patch_radius_pixels": 11,
+                    "base_transform": "bs_corr_7.tfm composed with rigid_-10.tfm",
+                    "rounded_world_mm": [
+                      225.95,
+                      186.32,
+                      142.49
+                    ]
+                  }
+                },
+                "all_rows_match_named_printed_outputs": true,
+                "world_rounding_mm": 0.01,
+                "selection_author": "Sol model only, after its own quantitative and visual checks; no supervising selection/hints.",
+                "final_validation": "Eight query IDs/order, finite8x3 coordinates, and within-volume voxel bounds. No hidden geometric feedback.",
+                "limitation": "Different radii/stages were selected per landmark. Visible commentary describes the two ambiguous landmarks as resolved, but does not expose a complete deterministic selection rule; encrypted reasoning is unavailable."
+              },
+              "relevant_stage_outputs": {
+                "rigid_candidates": "item_6",
+                "B_spline_query_points": "item_16",
+                "neighborhood_query_points": "item_24",
+                "patch_shift_comparisons": "item_26",
+                "local_translation_res_cc5": "item_30",
+                "dense_query_points": "item_36",
+                "local_translation_corr7": "item_37",
+                "edge_query_points": "item_42",
+                "final_local_NCC_comparison": "item_44",
+                "submitted_points_validation": "item_47"
+              }
+            },
+            "captured_artifacts": {
+              "index_path": "runs/br024-harder-registration/captured-agent-artifacts-patient3/index.json",
+              "index_sha256": "59317f174a3f88a738f5d241b82fefb03049b492a212196ed7ffcb2a3fb70602",
+              "snapshot_count": 187,
+              "unique_object_count": 56,
+              "captured_path_count": 53,
+              "named_tfm_count": 17,
+              "captured_file_names": [
+                "/tmp/inh_nom_+00.png",
+                "/tmp/inh_nom_+10.png",
+                "/tmp/inh_nom_+30.png",
+                "/tmp/inh_nom_-10.png",
+                "/tmp/inh_nom_-20.png",
+                "/tmp/inh_nom_+20.png",
+                "/tmp/inh_nom_-30.png",
+                "/tmp/nom_montage.png",
+                "/tmp/view_annot.png",
+                "/tmp/regtest.py",
+                "/tmp/rigid_compare.png",
+                "/tmp/tgt_rigid.npy",
+                "/tmp/query_patches.png",
+                "/tmp/rigid_+20.tfm",
+                "/tmp/rigid_+30.tfm",
+                "/tmp/rigid_+00.tfm",
+                "/tmp/rigid_-30.tfm",
+                "/tmp/rigid_+10.tfm",
+                "/tmp/rigid_-10.tfm",
+                "/tmp/rigid_-20.tfm",
+                "/tmp/bspline.py",
+                "/tmp/bs_corr_3.tfm",
+                "/tmp/bs_mi_3.tfm",
+                "/tmp/bs_corr_5.tfm",
+                "/tmp/bs_corr_3.hdf",
+                "/tmp/bs_mi_5.tfm",
+                "/tmp/show_bs.py",
+                "/tmp/bs_compare.png",
+                "/tmp/refine.py",
+                "/tmp/res_cc3_5.tfm",
+                "/tmp/res_cc8_5.tfm",
+                "/tmp/res_cc5_5.tfm",
+                "/tmp/show_refine.py",
+                "/tmp/refine_compare.png",
+                "/tmp/fine_patches.png",
+                "/tmp/q02q04contrast.png",
+                "/tmp/mpr_all.png",
+                "/tmp/mpr.py",
+                "/tmp/localopt.py",
+                "/tmp/local_compare.png",
+                "/tmp/q02q04_mpr.png",
+                "/tmp/bspline_dense.py",
+                "/tmp/bs_corr_9.tfm",
+                "/tmp/bs_corr_7.tfm",
+                "/tmp/show_dense.py",
+                "/tmp/dense_compare.png",
+                "/tmp/localopt7.py",
+                "/tmp/uncertain.png",
+                "/tmp/edge_refine.py",
+                "/tmp/bs_edge7.tfm",
+                "/tmp/edge_compare.png",
+                "/tmp/show_edge.py",
+                "/app/answer/points.json"
+              ],
+              "stages_with_printed_points": "Raw codex.txt/trajectory/session retain all named stage outputs and candidate scores.",
+              "incomplete_artifact": "/tmp/bs_corr_3.hdf records a failed composite serialization and must not be treated as a complete transform.",
+              "audit_solver_execution": "None: only independent scoring of final submitted points; parent owns subsequent stage diagnostics."
+            },
+            "interpretation": {
+              "observed": [
+                "q02=14.779665084162096mm, q04=32.20322654641923mm and q06=5.820566982691629mm exceed5mm. Five other landmarks meet the pointwise threshold.",
+                "The model saw instability among patch/grid choices for q02/q04, then visibly stated that dense fitting resolved them. Their final large errors contradict that confidence.",
+                "Final q02/q04/q06 derive from the dense corr7 warped-patch local-search family.",
+                "The declared and executed world-coordinate conversion is consistent across points; no uniform coordinate/order conversion fault was observed.",
+                "No direct label access, prior-solver hints or external annotation lookup was observed."
+              ],
+              "inference": "Selected incorrect local anatomical correspondences or a wrong deformation basin are plausible mechanisms. More flexible deformation and local correlation did not ensure the correct match in this attempt.",
+              "limitation": "The audit does not isolate cause or quantify component effects. One curated patient/attempt supports a task-specific completed miss, not reliable population difficulty or a controlled Sol-versus-Terra comparison."
+            }
+          }
+        },
+        "controls": {
+          "oracle": {
+            "result_path": "runs/br024-deform-harder-patient3-oracle-v1-20260916/deform-harder-patient3__fKbuLuF/result.json",
+            "result_sha256": "99f940aa22dbf7ff823e4b937e718d90586b137417f5ea9a332f552f7bd3f6e5",
+            "task_checksum": "dd61be47045a26e5101c9f657ff5cca1bf9baf19eb942f7721fb159f6a6f1718",
+            "reward": 1.0,
+            "exception_info": null,
+            "started_at": "2026-09-16T08:42:25.454659Z",
+            "finished_at": "2026-09-16T08:42:50.047428Z",
+            "trial_seconds": 24.592769,
+            "agent_execution_seconds": 0.159356,
+            "agent_info": {
+              "name": "oracle",
+              "version": "1.0.0",
+              "model_info": null
+            },
+            "configured_model": null,
+            "configured_reasoning_effort": null,
+            "n_attempts": 1,
+            "max_retries": 0,
+            "usage": {
+              "n_input_tokens": null,
+              "n_cache_tokens": null,
+              "n_output_tokens": null,
+              "cost_usd": null
+            },
+            "metrics_path": "runs/br024-deform-harder-patient3-oracle-v1-20260916/deform-harder-patient3__fKbuLuF/verifier/metrics.json",
+            "metrics_sha256": "d9d3980972c7fb30ccb7dbd46c9722ab7211bb848ddffb04b6a4865e832fbfc6",
+            "metrics": {
+              "reward": 1,
+              "rms_mm": 0.0,
+              "max_mm": 0.0,
+              "per_point_mm": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "answer_path": "runs/br024-deform-harder-patient3-oracle-v1-20260916/deform-harder-patient3__fKbuLuF/artifacts/app/answer/points.json",
+            "answer_sha256": "a810eb2be91a45a4020903e5643a8d3351f62d321885155098e3011dc43c5a4f"
+          },
+          "nop": {
+            "result_path": "runs/br024-deform-harder-patient3-nop-v1-20260916/deform-harder-patient3__gwYD9GL/result.json",
+            "result_sha256": "6e0d138be2b079e51ab5fb409a1283dbb1ab2caa2afbfaaf4d9394e5e095b49e",
+            "task_checksum": "dd61be47045a26e5101c9f657ff5cca1bf9baf19eb942f7721fb159f6a6f1718",
+            "reward": 0.0,
+            "exception_info": null,
+            "started_at": "2026-09-16T08:42:50.308885Z",
+            "finished_at": "2026-09-16T08:43:14.613035Z",
+            "trial_seconds": 24.30415,
+            "agent_execution_seconds": 9.8e-05,
+            "agent_info": {
+              "name": "nop",
+              "version": "1.0.0",
+              "model_info": null
+            },
+            "configured_model": null,
+            "configured_reasoning_effort": null,
+            "n_attempts": 1,
+            "max_retries": 0,
+            "usage": {
+              "n_input_tokens": null,
+              "n_cache_tokens": null,
+              "n_output_tokens": null,
+              "cost_usd": null
+            },
+            "metrics_path": "runs/br024-deform-harder-patient3-nop-v1-20260916/deform-harder-patient3__gwYD9GL/verifier/metrics.json",
+            "metrics_sha256": "bf09bdb9df7254e2b12c1284f9ec2b64311ea995fc2bdcc7970c960032f08b39",
+            "metrics": {
+              "reward": 0,
+              "reason": "'query_ids'"
+            }
+          }
+        },
+        "completed_at": "2026-09-16T09:10:27.654160+00:00",
+        "runner_exit_code": 0,
+        "root_plan_sha256": "f5fa4fe4632eabddc5d743676e3063607d81d6c864c196b8af66f41c9e400a73",
+        "task_freeze_sha256": "d40a51e6bc841806750deef6aa1307a87e51c056d4478cab83dd58c406fcb3a6",
+        "common_task_checksum": "dd61be47045a26e5101c9f657ff5cca1bf9baf19eb942f7721fb159f6a6f1718",
+        "all_task_checksums_match": true,
+        "plan_protocol_freeze_and_task_membership_unchanged": true,
+        "prior_result_hashes_unchanged": true,
+        "fresh_session_distinct_from_prior_attempts": true,
+        "supervision": {
+          "predeclared_case_model_attempts": 1,
+          "sequence": [
+            "oracle",
+            "nop",
+            "sol-xhigh"
+          ],
+          "automatic_retries": 0,
+          "task_bearing_hints_or_followups_sent": 0,
+          "prior_solver_answers_or_findings_supplied": false,
+          "old_evidence_modified": false,
+          "model_interventions": 0,
+          "patient2_trial_launched": false
+        },
+        "runtime": {
+          "oracle_nop_harbor": "0.18.0",
+          "model_harbor": "0.14.0",
+          "agent_timeout_seconds": 1800,
+          "network_mode": "public",
+          "cpus": 4,
+          "memory_mb": 4096
+        },
+        "outcome_scope": "Exactly one fresh Sol/xhigh attempt on admitted patient3, completed normal failure; patient2 was not launched.",
+        "limitations": [
+          "One annotation-curated patient/view and eight landmarks; no population-difficulty or clinical-validation claim.",
+          "Initial image and frozen prompt checks support public-input isolation; prior code, answers, author feasibility results and hints were not supplied.",
+          "Explicit use of the preinstalled SimpleITK registration library is part of this attempt; it must not be reported as only basic numerical-tool use.",
+          "No package/weight download, public annotation lookup or external network use was observed in retained model commands; no independent packet capture.",
+          "Source annotations are publicly downloadable, and trace inspection cannot exclude training contamination.",
+          "Runtime labels establish configured/reported Sol/xhigh, not independent backend provenance.",
+          "Encrypted reasoning is unavailable; final point provenance is exact but the complete model selection rationale is not recoverable.",
+          "Periodic read-only snapshots are non-atomic and may miss short-lived files; raw trace preserves commands and printed outputs.",
+          "No additional model trial, model feedback, solver correction or component intervention was performed by this audit."
+        ]
+      }
+    }
+  ],
+  "prospective_rows": [
+    {
+      "task": "deform-harder-patient3",
+      "phase": "oracle",
+      "result_path": "runs/br024-deform-harder-patient3-oracle-v1-20260916/deform-harder-patient3__fKbuLuF/result.json",
+      "result_sha256": "99f940aa22dbf7ff823e4b937e718d90586b137417f5ea9a332f552f7bd3f6e5",
+      "task_checksum": "dd61be47045a26e5101c9f657ff5cca1bf9baf19eb942f7721fb159f6a6f1718",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 1.0,
+      "grade": {
+        "reward": 1,
+        "rms_mm": 0.0,
+        "max_mm": 0.0,
+        "per_point_mm": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "independent_replay_matches": true,
+      "started_at": "2026-09-16T08:42:25.454659Z",
+      "finished_at": "2026-09-16T08:42:50.047428Z",
+      "agent_seconds": 0.159356,
+      "total_seconds": 24.592769,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "answer_path": "runs/br024-deform-harder-patient3-oracle-v1-20260916/deform-harder-patient3__fKbuLuF/artifacts/app/answer/points.json",
+      "answer_sha256": "a810eb2be91a45a4020903e5643a8d3351f62d321885155098e3011dc43c5a4f",
+      "grade_sha256": "d9d3980972c7fb30ccb7dbd46c9722ab7211bb848ddffb04b6a4865e832fbfc6"
+    },
+    {
+      "task": "deform-harder-patient3",
+      "phase": "nop",
+      "result_path": "runs/br024-deform-harder-patient3-nop-v1-20260916/deform-harder-patient3__gwYD9GL/result.json",
+      "result_sha256": "6e0d138be2b079e51ab5fb409a1283dbb1ab2caa2afbfaaf4d9394e5e095b49e",
+      "task_checksum": "dd61be47045a26e5101c9f657ff5cca1bf9baf19eb942f7721fb159f6a6f1718",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "grade": {
+        "reward": 0,
+        "reason": "'query_ids'"
+      },
+      "independent_replay_matches": true,
+      "started_at": "2026-09-16T08:42:50.308885Z",
+      "finished_at": "2026-09-16T08:43:14.613035Z",
+      "agent_seconds": 9.8e-05,
+      "total_seconds": 24.30415,
+      "input_tokens": null,
+      "cached_input_tokens": null,
+      "output_tokens": null,
+      "estimated_cost_usd": null,
+      "grade_sha256": "bf09bdb9df7254e2b12c1284f9ec2b64311ea995fc2bdcc7970c960032f08b39"
+    },
+    {
+      "task": "deform-harder-patient3",
+      "phase": "sol-xhigh",
+      "result_path": "runs/br024-deform-harder-patient3-sol-xhigh-v1-20260916/deform-harder-patient3__NJq7SQn/result.json",
+      "result_sha256": "4db1e33e63e8d2a30f3a3e08ad8c84e9bbb18cf96d936fa19ff5a26a45c16847",
+      "task_checksum": "dd61be47045a26e5101c9f657ff5cca1bf9baf19eb942f7721fb159f6a6f1718",
+      "execution": "completed",
+      "exception_type": null,
+      "reward": 0.0,
+      "grade": {
+        "reward": 0,
+        "rms_mm": 12.731273502678357,
+        "max_mm": 32.20322654641923,
+        "per_point_mm": [
+          1.402961154130805,
+          14.779665084162096,
+          1.989019859126598,
+          32.20322654641923,
+          0.845340168216318,
+          5.820566982691629,
+          0.2927456233660858,
+          0.7697402159170378
+        ]
+      },
+      "independent_replay_matches": true,
+      "started_at": "2026-09-16T08:43:14.895586Z",
+      "finished_at": "2026-09-16T09:06:04.566163Z",
+      "agent_seconds": 1313.083906,
+      "total_seconds": 1369.670577,
+      "input_tokens": 3359925,
+      "cached_input_tokens": 3263616,
+      "output_tokens": 35747,
+      "estimated_cost_usd": 2.4056224,
+      "answer_path": "runs/br024-deform-harder-patient3-sol-xhigh-v1-20260916/deform-harder-patient3__NJq7SQn/artifacts/app/answer/points.json",
+      "answer_sha256": "98659ba58d06a9b160f2c99b1390305feed9cc7d0f841dccd9d4d86415d03082",
+      "grade_sha256": "25816297356fc702b92e18f1f812d8b5b085d7edff62cad484bc4cb0fbb0764b",
+      "requested_model": "openai/gpt-5.6-sol",
+      "requested_effort": "xhigh",
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "session_files": [
+        {
+          "path": "runs/br024-deform-harder-patient3-sol-xhigh-v1-20260916/deform-harder-patient3__NJq7SQn/agent/sessions/2026/09/16/rollout-2026-09-16T08-43-48-01a0a962-f05e-7131-b973-2bf96675a22e.jsonl",
+          "sha256": "0bc095245d79201d868ab777d4ddbf20a439e2e775cb8d2f66459d9438cf5261"
+        }
+      ],
+      "frozen_instruction_seen": true,
+      "runtime_matches_request": true
+    }
+  ],
+  "curation": [
+    {
+      "candidate": {
+        "name": "patient2-view1",
+        "case": 2,
+        "rank": 1,
+        "source_indices": [
+          22,
+          50,
+          52,
+          55,
+          57,
+          67,
+          73,
+          81
+        ],
+        "shape": [
+          172,
+          185
+        ],
+        "best_rigid": {
+          "rms_mm": 11.50461385489299,
+          "mean_mm": 10.476357636061001,
+          "p90_mm": 16.433826524186454,
+          "max_mm": 19.98465579018363,
+          "per_point_mm": [
+            14.912042553044808,
+            19.98465579018363,
+            5.966276242992609,
+            9.980927392197108,
+            5.204300041044383,
+            8.676806623262436,
+            6.595751156466822,
+            12.490101289296216
+          ]
+        },
+        "best_affine": {
+          "rms_mm": 10.332882113210086,
+          "mean_mm": 9.648898934400693,
+          "p90_mm": 13.55473029356737,
+          "max_mm": 17.992221549079023,
+          "per_point_mm": [
+            17.992221549079023,
+            10.754176026730683,
+            6.533342336095828,
+            8.989188915401485,
+            5.323067568224007,
+            8.066821311025512,
+            7.879425441729484,
+            11.652948326919521
+          ]
+        },
+        "identity": {
+          "rms_mm": 17.993450829334193,
+          "mean_mm": 17.754593929591724,
+          "p90_mm": 21.542219803077046,
+          "max_mm": 21.888924139847532,
+          "per_point_mm": [
+            21.888924139847532,
+            17.879271206151266,
+            21.39363223017541,
+            17.65290344390973,
+            13.435856446206818,
+            16.485005332097572,
+            13.889499770541297,
+            19.411658867804164
+          ]
+        },
+        "off_plane_mm": [
+          0.0,
+          0.3332600560840885,
+          2.842170943040401e-14,
+          0.0,
+          0.3332600560840904,
+          0.27771671340340376,
+          0.2221733707227276,
+          0.0
+        ],
+        "public_path": "runs/br024-harder-registration/candidates/patient2-view1/public",
+        "truth_path": "runs/br024-harder-registration/candidates/patient2-view1/truth.json"
+      },
+      "methods": {
+        "baseline": {
+          "name": "patient2-view1",
+          "case": 2,
+          "rank": 1,
+          "grade": {
+            "reward": 0,
+            "rms_mm": 5.81593203076022,
+            "max_mm": 15.479963809855688,
+            "per_point_mm": [
+              3.163687119442491,
+              15.479963809855688,
+              1.2709094913342953,
+              0.6599257523212902,
+              2.641397826585031,
+              1.4866380961165837,
+              0.8856986116740895,
+              2.9899961664922463
+            ]
+          },
+          "elapsed_seconds": 4.310312986373901,
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus",
+            "4",
+            "--memory",
+            "4g",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view1/public:/app/data:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view1/baseline:/output",
+            "sha256:dd4a6f96b30342bd15fedb795dc9371d0ddd15b03e7e2eadef843e41325a3014",
+            "python",
+            "/baseline.py",
+            "--data",
+            "/app/data",
+            "--out",
+            "/output/points.json",
+            "--kind",
+            "2d"
+          ],
+          "private_labels_mounted": false,
+          "answer_path": "runs/br024-harder-registration/candidates/patient2-view1/baseline/points.json",
+          "answer_sha256": "8cf0bfa3b614e67a5cd99b2ae32184359ab8d62920ca465e8d3cb4045136b697"
+        },
+        "translation": {
+          "name": "patient2-view1",
+          "case": 2,
+          "rank": 1,
+          "grade": {
+            "reward": 0,
+            "rms_mm": 7.140570200539963,
+            "max_mm": 16.6485254031913,
+            "per_point_mm": [
+              2.980355536729713,
+              8.190646062672041,
+              6.493926539187527,
+              1.8214849344264543,
+              2.8460720472342578,
+              16.6485254031913,
+              0.3449600318178751,
+              1.0253435406835456
+            ]
+          },
+          "elapsed_seconds": 2.317561149597168,
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus",
+            "4",
+            "--memory",
+            "4g",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view1/public:/app/data:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/br022_baseline_ablation.py:/runner.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view1/translation:/output",
+            "sha256:dd4a6f96b30342bd15fedb795dc9371d0ddd15b03e7e2eadef843e41325a3014",
+            "python",
+            "/runner.py",
+            "--data",
+            "/app/data",
+            "--out",
+            "/output/points.json",
+            "--kind",
+            "2d",
+            "--model",
+            "translation",
+            "--context",
+            "multiscale"
+          ],
+          "private_labels_mounted": false,
+          "answer_path": "runs/br024-harder-registration/candidates/patient2-view1/translation/points.json",
+          "answer_sha256": "4fab63638c1adeff6eea6ab5e50f306b07e7d655241780aac265dbc31472af18"
+        },
+        "neighborhood": {
+          "name": "patient2-view1",
+          "case": 2,
+          "rank": 1,
+          "grade": {
+            "reward": 0,
+            "rms_mm": 6.65757673919237,
+            "max_mm": 15.479963809855688,
+            "per_point_mm": [
+              3.163687119442491,
+              15.479963809855688,
+              1.2709094913342953,
+              0.6599257523212902,
+              2.641397826585031,
+              1.4866380961165837,
+              0.8856986116740895,
+              9.639822523788455
+            ]
+          },
+          "elapsed_seconds": 88.92112898826599,
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus",
+            "4",
+            "--memory",
+            "4g",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view1/public:/app/data:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view1/neighborhood:/output",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/br024_neighborhood.py:/runner.py:ro",
+            "sha256:dd4a6f96b30342bd15fedb795dc9371d0ddd15b03e7e2eadef843e41325a3014",
+            "python",
+            "/runner.py"
+          ],
+          "private_labels_mounted": false,
+          "answer_path": "runs/br024-harder-registration/candidates/patient2-view1/neighborhood/points.json",
+          "answer_sha256": "06b755d66286c522eb57f734093e9a57e34e2370cd6709dac35e0b694274f7a3"
+        }
+      },
+      "admitted": false
+    },
+    {
+      "candidate": {
+        "name": "patient2-view2",
+        "case": 2,
+        "rank": 2,
+        "source_indices": [
+          3,
+          9,
+          31,
+          35,
+          58,
+          71,
+          77,
+          91
+        ],
+        "shape": [
+          165,
+          174
+        ],
+        "best_rigid": {
+          "rms_mm": 9.353086004528613,
+          "mean_mm": 8.567185141067426,
+          "p90_mm": 13.639056038555092,
+          "max_mm": 16.4600309090791,
+          "per_point_mm": [
+            9.166739360799912,
+            5.413583486225379,
+            6.001298908227217,
+            12.430066808330517,
+            7.7602017180144545,
+            16.4600309090791,
+            6.3318990166078715,
+            4.973660921254964
+          ]
+        },
+        "best_affine": {
+          "rms_mm": 8.762593087248938,
+          "mean_mm": 8.539929382199809,
+          "p90_mm": 11.127121398771713,
+          "max_mm": 11.139093420838492,
+          "per_point_mm": [
+            10.213012470891181,
+            7.0678446847981435,
+            8.86071295828253,
+            11.139093420838492,
+            6.534498505571707,
+            11.121990532171665,
+            7.548907511260188,
+            5.833374973784559
+          ]
+        },
+        "identity": {
+          "rms_mm": 14.893633287415128,
+          "mean_mm": 14.49551353510165,
+          "p90_mm": 18.017745698971503,
+          "max_mm": 18.21743670223668,
+          "per_point_mm": [
+            16.19606433674552,
+            7.7014609003746815,
+            16.62265020987929,
+            17.932163840429286,
+            18.21743670223668,
+            15.431299362010964,
+            11.519006033508273,
+            12.34402689562851
+          ]
+        },
+        "off_plane_mm": [
+          0.0,
+          0.0,
+          0.0,
+          2.842170943040401e-14,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "public_path": "runs/br024-harder-registration/candidates/patient2-view2/public",
+        "truth_path": "runs/br024-harder-registration/candidates/patient2-view2/truth.json"
+      },
+      "methods": {
+        "baseline": {
+          "name": "patient2-view2",
+          "case": 2,
+          "rank": 2,
+          "grade": {
+            "reward": 0,
+            "rms_mm": 13.203429537260698,
+            "max_mm": 27.434307861085742,
+            "per_point_mm": [
+              1.6510651269415377,
+              27.434307861085742,
+              0.6534051542436482,
+              24.59203840279685,
+              0.8108990592120298,
+              5.0012684663573275,
+              2.648182631502391,
+              1.1826844829468552
+            ]
+          },
+          "elapsed_seconds": 3.97792387008667,
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus",
+            "4",
+            "--memory",
+            "4g",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view2/public:/app/data:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view2/baseline:/output",
+            "sha256:dd4a6f96b30342bd15fedb795dc9371d0ddd15b03e7e2eadef843e41325a3014",
+            "python",
+            "/baseline.py",
+            "--data",
+            "/app/data",
+            "--out",
+            "/output/points.json",
+            "--kind",
+            "2d"
+          ],
+          "private_labels_mounted": false,
+          "answer_path": "runs/br024-harder-registration/candidates/patient2-view2/baseline/points.json",
+          "answer_sha256": "e789541ae7f16bf3e8e53f319848f90ee9c630e9f841ef7573a30aedc5a1084c"
+        },
+        "translation": {
+          "name": "patient2-view2",
+          "case": 2,
+          "rank": 2,
+          "grade": {
+            "reward": 0,
+            "rms_mm": 14.845694849099019,
+            "max_mm": 35.213839061797884,
+            "per_point_mm": [
+              0.943297593296728,
+              5.045948491582569,
+              3.694581095020022,
+              13.488012176488468,
+              16.378184829859396,
+              35.213839061797884,
+              5.544673857848051,
+              1.4921889858104633
+            ]
+          },
+          "elapsed_seconds": 2.331120014190674,
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus",
+            "4",
+            "--memory",
+            "4g",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view2/public:/app/data:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/br022_baseline_ablation.py:/runner.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view2/translation:/output",
+            "sha256:dd4a6f96b30342bd15fedb795dc9371d0ddd15b03e7e2eadef843e41325a3014",
+            "python",
+            "/runner.py",
+            "--data",
+            "/app/data",
+            "--out",
+            "/output/points.json",
+            "--kind",
+            "2d",
+            "--model",
+            "translation",
+            "--context",
+            "multiscale"
+          ],
+          "private_labels_mounted": false,
+          "answer_path": "runs/br024-harder-registration/candidates/patient2-view2/translation/points.json",
+          "answer_sha256": "c93892adee35645b193bcd273f3a97ad8a3eb04ea305b70da3ad13b0576fe52a"
+        },
+        "neighborhood": {
+          "name": "patient2-view2",
+          "case": 2,
+          "rank": 2,
+          "grade": {
+            "reward": 0,
+            "rms_mm": 2.914731630837192,
+            "max_mm": 5.0012684663573275,
+            "per_point_mm": [
+              4.363642068697728,
+              1.296951184535288,
+              0.6534051542436482,
+              3.568337662168355,
+              0.8108990592120298,
+              5.0012684663573275,
+              2.648182631502391,
+              1.1826844829468552
+            ]
+          },
+          "elapsed_seconds": 92.67316508293152,
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus",
+            "4",
+            "--memory",
+            "4g",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view2/public:/app/data:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view2/neighborhood:/output",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/br024_neighborhood.py:/runner.py:ro",
+            "sha256:dd4a6f96b30342bd15fedb795dc9371d0ddd15b03e7e2eadef843e41325a3014",
+            "python",
+            "/runner.py"
+          ],
+          "private_labels_mounted": false,
+          "answer_path": "runs/br024-harder-registration/candidates/patient2-view2/neighborhood/points.json",
+          "answer_sha256": "f2bfefd80a4a7f4b83f2f4c8605e98945b2293eca4eed769e196c21912b67955"
+        }
+      },
+      "admitted": false
+    },
+    {
+      "candidate": {
+        "name": "patient2-view3",
+        "case": 2,
+        "rank": 3,
+        "source_indices": [
+          22,
+          30,
+          38,
+          46,
+          54,
+          69,
+          87,
+          90
+        ],
+        "shape": [
+          125,
+          209
+        ],
+        "best_rigid": {
+          "rms_mm": 13.089061988992016,
+          "mean_mm": 11.99426901009722,
+          "p90_mm": 18.334200996062517,
+          "max_mm": 22.453465171580923,
+          "per_point_mm": [
+            16.568802063697486,
+            5.569157172870469,
+            12.619268271108709,
+            7.024947420899865,
+            22.453465171580923,
+            7.265804279757497,
+            12.743244366695778,
+            11.70946333416704
+          ]
+        },
+        "best_affine": {
+          "rms_mm": 8.711230772361123,
+          "mean_mm": 7.415457906814623,
+          "p90_mm": 11.602449301646404,
+          "max_mm": 17.52050325872417,
+          "per_point_mm": [
+            17.52050325872417,
+            3.9406109035948083,
+            7.439689865843685,
+            2.043927274132465,
+            3.0329498865989057,
+            8.898521687121969,
+            9.066140462898792,
+            7.381319915602195
+          ]
+        },
+        "identity": {
+          "rms_mm": 18.672355542647615,
+          "mean_mm": 18.397576630241513,
+          "p90_mm": 21.495110682874977,
+          "max_mm": 21.888924139847532,
+          "per_point_mm": [
+            21.888924139847532,
+            13.921907475375214,
+            21.215132933620815,
+            19.15407395731081,
+            15.862692079215323,
+            13.64218383009298,
+            21.326333487029597,
+            20.169365139439837
+          ]
+        },
+        "off_plane_mm": [
+          0.0,
+          0.22457020808727818,
+          0.3368553121309316,
+          0.3368553121309044,
+          3.1776437161565096e-14,
+          0.22457020808727818,
+          0.0,
+          0.3368553121309044
+        ],
+        "public_path": "runs/br024-harder-registration/candidates/patient2-view3/public",
+        "truth_path": "runs/br024-harder-registration/candidates/patient2-view3/truth.json"
+      },
+      "methods": {
+        "baseline": {
+          "name": "patient2-view3",
+          "case": 2,
+          "rank": 3,
+          "grade": {
+            "reward": 0,
+            "rms_mm": 20.31602262983522,
+            "max_mm": 41.66601842621953,
+            "per_point_mm": [
+              36.481866838178256,
+              14.826093024903663,
+              41.66601842621953,
+              0.8802885929949404,
+              2.6785026742139517,
+              0.8113112848759433,
+              2.5104166743709455,
+              0.46879380267568055
+            ]
+          },
+          "elapsed_seconds": 4.1772143840789795,
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus",
+            "4",
+            "--memory",
+            "4g",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view3/public:/app/data:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view3/baseline:/output",
+            "sha256:dd4a6f96b30342bd15fedb795dc9371d0ddd15b03e7e2eadef843e41325a3014",
+            "python",
+            "/baseline.py",
+            "--data",
+            "/app/data",
+            "--out",
+            "/output/points.json",
+            "--kind",
+            "2d"
+          ],
+          "private_labels_mounted": false,
+          "answer_path": "runs/br024-harder-registration/candidates/patient2-view3/baseline/points.json",
+          "answer_sha256": "1f3458fb380b8fcbf7b42b85eb99b9f33288fab5da85405e3b4cf792c14c68ab"
+        },
+        "translation": {
+          "name": "patient2-view3",
+          "case": 2,
+          "rank": 3,
+          "grade": {
+            "reward": 0,
+            "rms_mm": 22.898609290255177,
+            "max_mm": 46.314912903412335,
+            "per_point_mm": [
+              39.26128702035117,
+              11.736620902621715,
+              18.381186150506597,
+              1.5330043511199378,
+              5.228370691923728,
+              1.5219974834659373,
+              46.314912903412335,
+              0.7949404966353799
+            ]
+          },
+          "elapsed_seconds": 2.3150508403778076,
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus",
+            "4",
+            "--memory",
+            "4g",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view3/public:/app/data:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/br022_baseline_ablation.py:/runner.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view3/translation:/output",
+            "sha256:dd4a6f96b30342bd15fedb795dc9371d0ddd15b03e7e2eadef843e41325a3014",
+            "python",
+            "/runner.py",
+            "--data",
+            "/app/data",
+            "--out",
+            "/output/points.json",
+            "--kind",
+            "2d",
+            "--model",
+            "translation",
+            "--context",
+            "multiscale"
+          ],
+          "private_labels_mounted": false,
+          "answer_path": "runs/br024-harder-registration/candidates/patient2-view3/translation/points.json",
+          "answer_sha256": "bcd97604fd1f45e09ce79dbc338a00816e3f99536621d5e2f0fe2d3c74e84f73"
+        },
+        "neighborhood": {
+          "name": "patient2-view3",
+          "case": 2,
+          "rank": 3,
+          "grade": {
+            "reward": 0,
+            "rms_mm": 8.27898004950296,
+            "max_mm": 14.331389190563547,
+            "per_point_mm": [
+              11.088559355015432,
+              14.331389190563547,
+              13.859975515357624,
+              0.8802885929949404,
+              2.6785026742139517,
+              0.8113112848759433,
+              4.365892930433272,
+              0.46879380267568055
+            ]
+          },
+          "elapsed_seconds": 74.41812205314636,
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus",
+            "4",
+            "--memory",
+            "4g",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view3/public:/app/data:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient2-view3/neighborhood:/output",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/br024_neighborhood.py:/runner.py:ro",
+            "sha256:dd4a6f96b30342bd15fedb795dc9371d0ddd15b03e7e2eadef843e41325a3014",
+            "python",
+            "/runner.py"
+          ],
+          "private_labels_mounted": false,
+          "answer_path": "runs/br024-harder-registration/candidates/patient2-view3/neighborhood/points.json",
+          "answer_sha256": "e1a4aeb5eb8bac364b188eff4b73f2a611d3a8455dfc697a246e3724a54ea210"
+        }
+      },
+      "admitted": false
+    },
+    {
+      "candidate": {
+        "name": "patient3-view1",
+        "case": 3,
+        "rank": 1,
+        "source_indices": [
+          19,
+          21,
+          46,
+          53,
+          55,
+          72,
+          73,
+          96
+        ],
+        "shape": [
+          121,
+          189
+        ],
+        "best_rigid": {
+          "rms_mm": 8.713130499558769,
+          "mean_mm": 8.219837312404852,
+          "p90_mm": 12.40097663878082,
+          "max_mm": 12.562553239939515,
+          "per_point_mm": [
+            7.4449667283341485,
+            12.331729523998524,
+            6.481313207241682,
+            8.604767082203608,
+            3.8580691581988282,
+            12.562553239939515,
+            5.458459718353991,
+            9.016839840968526
+          ]
+        },
+        "best_affine": {
+          "rms_mm": 5.465373977311804,
+          "mean_mm": 5.118246818263742,
+          "p90_mm": 7.4418881415002565,
+          "max_mm": 7.8173716431887215,
+          "per_point_mm": [
+            7.8173716431887215,
+            7.2809666407766285,
+            2.872582225104475,
+            4.349888913491104,
+            1.9381955957696686,
+            6.235788853165581,
+            5.678476265576419,
+            4.772704409037331
+          ]
+        },
+        "identity": {
+          "rms_mm": 11.212720021849522,
+          "mean_mm": 10.037138886542117,
+          "p90_mm": 15.318227118259202,
+          "max_mm": 18.498310733685926,
+          "per_point_mm": [
+            8.838834764831844,
+            13.668455984226357,
+            4.1846829124374025,
+            2.1505813167606567,
+            8.707897327903588,
+            18.498310733685926,
+            10.293013912271986,
+            13.955334140219179
+          ]
+        },
+        "off_plane_mm": [
+          0.0,
+          0.24695919857831955,
+          0.30869899822290453,
+          0.0,
+          0.12347959928917723,
+          0.0,
+          0.30869899822290453,
+          0.30869899822290453
+        ],
+        "public_path": "runs/br024-harder-registration/candidates/patient3-view1/public",
+        "truth_path": "runs/br024-harder-registration/candidates/patient3-view1/truth.json"
+      },
+      "methods": {
+        "baseline": {
+          "name": "patient3-view1",
+          "case": 3,
+          "rank": 1,
+          "grade": {
+            "reward": 0,
+            "rms_mm": 2.659836046621594,
+            "max_mm": 6.180343657089669,
+            "per_point_mm": [
+              2.3424286719082343,
+              2.242318399600493,
+              0.654438989423881,
+              1.827198277284362,
+              1.0005265306249573,
+              6.180343657089669,
+              1.3327092133743523,
+              1.1584902373698083
+            ]
+          },
+          "elapsed_seconds": 3.912797212600708,
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus",
+            "4",
+            "--memory",
+            "4g",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient3-view1/public:/app/data:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient3-view1/baseline:/output",
+            "sha256:dd4a6f96b30342bd15fedb795dc9371d0ddd15b03e7e2eadef843e41325a3014",
+            "python",
+            "/baseline.py",
+            "--data",
+            "/app/data",
+            "--out",
+            "/output/points.json",
+            "--kind",
+            "2d"
+          ],
+          "private_labels_mounted": false,
+          "answer_path": "runs/br024-harder-registration/candidates/patient3-view1/baseline/points.json",
+          "answer_sha256": "23b5708a1abd5c27da7e4771219d60154092c055ca62d7e9280fb9ffc2c1a145"
+        },
+        "translation": {
+          "name": "patient3-view1",
+          "case": 3,
+          "rank": 1,
+          "grade": {
+            "reward": 1,
+            "rms_mm": 2.1328979359146905,
+            "max_mm": 3.4161131491425327,
+            "per_point_mm": [
+              2.5309849405210323,
+              2.295680827383528,
+              0.18835650864201528,
+              2.3099176501967422,
+              2.4832784600194713,
+              3.4161131491425327,
+              0.5036744730118952,
+              1.1209848136033598
+            ]
+          },
+          "elapsed_seconds": 2.311110258102417,
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus",
+            "4",
+            "--memory",
+            "4g",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient3-view1/public:/app/data:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/br022_baseline_ablation.py:/runner.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient3-view1/translation:/output",
+            "sha256:dd4a6f96b30342bd15fedb795dc9371d0ddd15b03e7e2eadef843e41325a3014",
+            "python",
+            "/runner.py",
+            "--data",
+            "/app/data",
+            "--out",
+            "/output/points.json",
+            "--kind",
+            "2d",
+            "--model",
+            "translation",
+            "--context",
+            "multiscale"
+          ],
+          "private_labels_mounted": false,
+          "answer_path": "runs/br024-harder-registration/candidates/patient3-view1/translation/points.json",
+          "answer_sha256": "dd291765d29e2657ef0e86cbe5f5623df615c9204237209dc2e50e13330b7697"
+        }
+      },
+      "admitted": true
+    },
+    {
+      "candidate": {
+        "name": "patient3-view2",
+        "case": 3,
+        "rank": 2,
+        "source_indices": [
+          3,
+          17,
+          19,
+          35,
+          47,
+          65,
+          86,
+          98
+        ],
+        "shape": [
+          131,
+          191
+        ],
+        "best_rigid": {
+          "rms_mm": 5.773929801178052,
+          "mean_mm": 5.2602659248733215,
+          "p90_mm": 8.716577332072594,
+          "max_mm": 8.775578256520278,
+          "per_point_mm": [
+            7.039949556532902,
+            2.5781056626168417,
+            8.691291221595016,
+            4.323161057903527,
+            3.781428274973804,
+            8.775578256520278,
+            2.669677257701936,
+            4.2229361111422685
+          ]
+        },
+        "best_affine": {
+          "rms_mm": 4.948619305378672,
+          "mean_mm": 4.616457746688771,
+          "p90_mm": 6.93831933332317,
+          "max_mm": 7.856974097262301,
+          "per_point_mm": [
+            4.264328943717615,
+            3.876555133823751,
+            7.856974097262301,
+            4.719365469340077,
+            3.9483963120295407,
+            6.544610148777829,
+            1.4634178195483263,
+            4.258014049010731
+          ]
+        },
+        "identity": {
+          "rms_mm": 11.398349350813103,
+          "mean_mm": 10.493474772391288,
+          "p90_mm": 14.62657431851144,
+          "max_mm": 21.739443701345547,
+          "per_point_mm": [
+            21.739443701345547,
+            6.349212549600147,
+            8.612460202138184,
+            8.584548252571501,
+            9.150236953349252,
+            8.923284148787374,
+            11.578201725868253,
+            9.01041064547005
+          ]
+        },
+        "off_plane_mm": [
+          0.18191390501482882,
+          0.0,
+          0.24255187335310727,
+          0.18191390501484342,
+          0.2728708575222399,
+          0.0,
+          0.33350882586051506,
+          0.0
+        ],
+        "public_path": "runs/br024-harder-registration/candidates/patient3-view2/public",
+        "truth_path": "runs/br024-harder-registration/candidates/patient3-view2/truth.json"
+      },
+      "methods": {
+        "baseline": {
+          "name": "patient3-view2",
+          "case": 3,
+          "rank": 2,
+          "grade": {
+            "reward": 0,
+            "rms_mm": 12.863645187935399,
+            "max_mm": 34.93052338914374,
+            "per_point_mm": [
+              1.3054747333728893,
+              2.052890986697154,
+              1.2154094414100776,
+              9.639582946269744,
+              0.8470967519954243,
+              34.93052338914374,
+              1.005625823620786,
+              1.264600551097352
+            ]
+          },
+          "elapsed_seconds": 4.348333120346069,
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus",
+            "4",
+            "--memory",
+            "4g",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient3-view2/public:/app/data:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient3-view2/baseline:/output",
+            "sha256:dd4a6f96b30342bd15fedb795dc9371d0ddd15b03e7e2eadef843e41325a3014",
+            "python",
+            "/baseline.py",
+            "--data",
+            "/app/data",
+            "--out",
+            "/output/points.json",
+            "--kind",
+            "2d"
+          ],
+          "private_labels_mounted": false,
+          "answer_path": "runs/br024-harder-registration/candidates/patient3-view2/baseline/points.json",
+          "answer_sha256": "75145cdd58df6827d956985aec765998a97cd7ee6a8c0f764b4646d6818c5d9b"
+        }
+      },
+      "admitted": false
+    },
+    {
+      "candidate": {
+        "name": "patient3-view3",
+        "case": 3,
+        "rank": 3,
+        "source_indices": [
+          3,
+          17,
+          19,
+          35,
+          47,
+          65,
+          87,
+          98
+        ],
+        "shape": [
+          131,
+          191
+        ],
+        "best_rigid": {
+          "rms_mm": 5.696072363211382,
+          "mean_mm": 5.058648218833919,
+          "p90_mm": 8.5826009402824,
+          "max_mm": 8.673658789846069,
+          "per_point_mm": [
+            7.262176273741591,
+            2.814023344484803,
+            8.543576147612256,
+            4.271416726170601,
+            4.1528393179967455,
+            8.673658789846069,
+            0.979410797486607,
+            3.7720843533326747
+          ]
+        },
+        "best_affine": {
+          "rms_mm": 4.94780083339858,
+          "mean_mm": 4.60441891395746,
+          "p90_mm": 7.0445824719518715,
+          "max_mm": 7.870383838332421,
+          "per_point_mm": [
+            4.220152032508772,
+            3.6878684859501694,
+            7.870383838332421,
+            4.472542381908759,
+            4.199037998925457,
+            6.690667600645922,
+            1.454963195012828,
+            4.239735778375347
+          ]
+        },
+        "identity": {
+          "rms_mm": 10.86050707786755,
+          "mean_mm": 9.742105940764342,
+          "p90_mm": 13.017449679553435,
+          "max_mm": 21.910328614605486,
+          "per_point_mm": [
+            21.910328614605486,
+            6.399731086251419,
+            8.601144531572402,
+            8.672676021757283,
+            9.206215850245416,
+            8.923284148787374,
+            5.129571132170798,
+            9.093896140724558
+          ]
+        },
+        "off_plane_mm": [
+          0.0,
+          0.08487772336240636,
+          0.2546331700872613,
+          0.08487772336242591,
+          0.3395108934496839,
+          0.0,
+          0.0,
+          0.08487772336243883
+        ],
+        "public_path": "runs/br024-harder-registration/candidates/patient3-view3/public",
+        "truth_path": "runs/br024-harder-registration/candidates/patient3-view3/truth.json"
+      },
+      "methods": {
+        "baseline": {
+          "name": "patient3-view3",
+          "case": 3,
+          "rank": 3,
+          "grade": {
+            "reward": 0,
+            "rms_mm": 14.166563247929927,
+            "max_mm": 34.95075376558209,
+            "per_point_mm": [
+              1.346909178430264,
+              2.073380006916614,
+              1.623146733775153,
+              11.026029722547404,
+              0.8477262490418173,
+              34.95075376558209,
+              15.832169866102424,
+              1.5098599491740117
+            ]
+          },
+          "elapsed_seconds": 4.280058145523071,
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus",
+            "4",
+            "--memory",
+            "4g",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient3-view3/public:/app/data:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/probes/registration-deformation/authoring/baseline_patches.py:/baseline.py:ro",
+            "-v",
+            "/Users/zhangqy/pkgs/tb3/runs/br024-harder-registration/candidates/patient3-view3/baseline:/output",
+            "sha256:dd4a6f96b30342bd15fedb795dc9371d0ddd15b03e7e2eadef843e41325a3014",
+            "python",
+            "/baseline.py",
+            "--data",
+            "/app/data",
+            "--out",
+            "/output/points.json",
+            "--kind",
+            "2d"
+          ],
+          "private_labels_mounted": false,
+          "answer_path": "runs/br024-harder-registration/candidates/patient3-view3/baseline/points.json",
+          "answer_sha256": "c64d9094a31c8d839ce4ee859daea80c6200074ea5ba4d6d12b69ae0cc2c80c6"
+        }
+      },
+      "admitted": false
+    }
+  ],
+  "limitations": [
+    "Cases deliberately selected using manual labels for nonuniform deformation; this is not unbiased held-out sampling.",
+    "One fresh attempt per admitted patient cannot establish reliable difficulty or model rankings.",
+    "Public annotations leave possible training contamination; runtime and trace audits cannot exclude it.",
+    "A failed author method on an unadmitted view is not evidence of a Sol failure.",
+    "Eight sparse landmarks and engineering tolerances do not certify dense or clinical registration validity."
+  ]
+}

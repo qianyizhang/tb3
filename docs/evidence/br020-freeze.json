@@ -1,0 +1,99 @@
+{
+  "round": "BR-020",
+  "tasks": [
+    {
+      "task": "recon-r03",
+      "task_path": "runs/br020-registration/tasks/recon-r03",
+      "public_geometry": {
+        "shape": [
+          192,
+          192
+        ],
+        "spacing_xy_mm": [
+          0.9,
+          0.9
+        ],
+        "coordinates": "LPS millimetres; +x left, +y posterior, +z superior",
+        "intensity": "8-bit round(255*clip((trilinear_HU+150)/500,0,1)); thin plane from a different reconstruction kernel",
+        "volume_kernel": "B30f",
+        "target_kernel": "B50f"
+      },
+      "controls": {
+        "oracle": {
+          "reward": 1,
+          "rms_mm": 0.0,
+          "max_mm": 0.0,
+          "centre_mm": 0.0,
+          "normal_deg": 0.0
+        },
+        "nop": {
+          "reward": 0,
+          "reason": "'slice_to_lps'"
+        },
+        "translate_2mm": {
+          "reward": 1,
+          "rms_mm": 2.0,
+          "max_mm": 2.0,
+          "centre_mm": 2.0,
+          "normal_deg": 0.0
+        },
+        "translate_8mm": {
+          "reward": 0,
+          "rms_mm": 8.0,
+          "max_mm": 8.0,
+          "centre_mm": 8.0,
+          "normal_deg": 0.0
+        },
+        "boundary_2.99": {
+          "reward": 1,
+          "rms_mm": 2.989999999999997,
+          "max_mm": 2.990000000000009,
+          "centre_mm": 2.989999999999995,
+          "normal_deg": 0.0
+        },
+        "boundary_3.01": {
+          "reward": 0,
+          "rms_mm": 3.0100000000000073,
+          "max_mm": 3.0100000000000193,
+          "centre_mm": 3.010000000000005,
+          "normal_deg": 0.0
+        },
+        "ras_lps": {
+          "reward": 0,
+          "rms_mm": 411.98711723359577,
+          "max_mm": 554.0991058836014,
+          "centre_mm": 388.7086431405122,
+          "normal_deg": 99.29628714187696
+        },
+        "scale": {
+          "reward": 0,
+          "reason": "rigid axes"
+        },
+        "reflection": {
+          "reward": 0,
+          "reason": "right handed frame"
+        }
+      },
+      "files": {
+        "environment/DATA-LICENSE.txt": "dd08aea98cbc59d258ad2e41c5eef19ff4a44f8201e4a5e80d8d9fab973d542f",
+        "environment/Dockerfile": "161a8cb3f8f2c8aeebed4ec9674c924b575b4564999fe70491faf082b3217a2a",
+        "environment/SOURCE_NOTICE.md": "10d4837d708a7680d844dbd2a91a4b7848cbb2e5d62283fc1ed0ba328012b285",
+        "environment/data/image.json": "30b1183d65d4c5a997ed9f920823fd7ae6bd9594bf80cde2b6be69db3cb41cdf",
+        "environment/data/target.npy": "b3c84c5310281b3d11b90252700df1f26af1649bc9668b62d2d87cd2cfa08726",
+        "environment/data/target.png": "b14d1fa0fa459e212052ad997a435995fc59d31f6f32446440f01035241f783d",
+        "environment/data/volume.npz": "1966ccb8779db97af7c1b15e1cbaee05c7aaebe890e63a3b2b55af38f32951f2",
+        "environment/reslice.py": "1e1a229b495cae3c1dd3f8503804501334c782abb23c42162cf981803683fd12",
+        "instruction.md": "7dfe0ebf5348462845de3d06a621ee9f3fa91016ff481b9d555003fc7c4b14fb",
+        "solution/pose.json": "af94a7f947fa24b5c993b41af720b8617055a0eb9b190a734129070b49233b10",
+        "solution/solve.sh": "593cf7b168e259c2b05780307233068ede15fcb7f4aeb37d119dc849a3069032",
+        "task.toml": "a3855f945d2e7281cb40a2d09928fa6296157d93aa42ecbe2ac915990b8b167c",
+        "tests/Dockerfile": "453c62e4e57565b352fe6a13e9af7b4e5330c939d9229e4f2cff4b8da2d24ae4",
+        "tests/score.py": "ef380b58495346a5970fb7020ac7425efa00aadc04c62bdeed0d9c4ffcfc6e44",
+        "tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+        "tests/truth.json": "9460cf8dac7c07a92c8928eeffa399bbfc5ab761a52ca31bb80637d699ded802"
+      }
+    }
+  ],
+  "frozen_at": "2026-09-16T04:37:06.531175+00:00",
+  "author_audit_sha256": "cbeecd41c2e4c158ac9222d22ae4e85bbe887b0cedf63433dcb52489b06614d0"
+}
