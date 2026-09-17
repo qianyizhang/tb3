@@ -2,7 +2,8 @@
 ## 4D Lung CT · Respiratory Motion Alignment · BR-028
 
 > **Research Round:** [`BR-028`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-028-registration-3d-source.md) · [`BR-028 Results`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-028-results.md)  
-> **Source Scan:** Paired 4D Lung CT from DIR-Lab respiratory cohort (exhale phase to inhale phase).  
+> **Task Card:** [`med_reg_br028_respiratory.json`](task_cards/med_reg_br028_respiratory.json)  
+> **Source Scan:** Paired 4D Lung CT from DIR-Lab respiratory cohort (Patient 3, exhale phase T00 to inhale phase T50).  
 > **Task Formulation:** Given eight discrete anatomical query landmarks (q01–q08) identified on the exhale phase, compute their exact non-rigid 3D coordinates in the full inhale phase.  
 > **Key Comparison:** 2D Oblique Source Slice (BR-024) vs. Full 3D Volumetric Source (BR-028).
 
@@ -102,5 +103,6 @@ An expert visual audit of the 3D CT volumes revealed that:
 
 - [← 02. Vascular Aneurysm 3D Detection](02-aneurysms.md)
 - [04. Tubular Geometry, Centerlines & CPR →](04-vessels-cpr.md)
+- **Task Card:** [`site_med/task_cards/med_reg_br028_respiratory.json`](task_cards/med_reg_br028_respiratory.json)
 - **Direct Round Links:** [`docs/research-rounds/BR-028-registration-3d-source.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-028-registration-3d-source.md) · [`docs/research-rounds/BR-028-results.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-028-results.md)
 - **Evidence Files:** [`site/registration-figures.json`](file:///Users/zhangqy/pkgs/tb3/site/registration-figures.json)

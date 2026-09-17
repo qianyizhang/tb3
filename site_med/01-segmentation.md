@@ -2,7 +2,8 @@
 ## Abdominal CT · 3D Voxel Tensors · BR-017
 
 > **Research Round:** [`BR-017`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-017-absorbed-anatomy.md) · [`BR-017 Results`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-017-results.md) · [`BR-017 Traces`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-017-traces.md)  
-> **Source Scan:** Abdominal CT from TotalSegmentator cohort (`s0014`, spacing 1.5 × 1.5 × 1.5 mm).  
+> **Task Card:** [`med_seg_br017_absorption.json`](task_cards/med_seg_br017_absorption.json)  
+> **Source Scan:** Abdominal CT from TotalSegmentator cohort (`s1233` / Case 28, spacing 1.5 × 1.5 × 1.5 mm).  
 > **Task Formulation:** 13 organ masks are supplied. 21.04 mL of pancreatic head tissue has been deliberately absorbed into the duodenum mask. Both organ labels remain present and connected. Detect the tissue absorption defect and return the physical LPS centroid of the misplaced tissue.
 
 ---
@@ -132,5 +133,6 @@ timeline
 
 - [← Overview](README.md)
 - [02. Vascular Aneurysm 3D Detection →](02-aneurysms.md)
+- **Task Card:** [`site_med/task_cards/med_seg_br017_absorption.json`](task_cards/med_seg_br017_absorption.json)
 - **Direct Round Links:** [`docs/research-rounds/BR-017-absorbed-anatomy.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-017-absorbed-anatomy.md) · [`docs/research-rounds/BR-017-results.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-017-results.md)
 - **Evidence Files:** [`docs/evidence/br017-absorption.json`](file:///Users/zhangqy/pkgs/tb3/docs/evidence/)

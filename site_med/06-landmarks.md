@@ -2,6 +2,7 @@
 ## Spine CT (VerSe) & Brain MRI (AFIDs) · 3D Fiducials · BR-040
 
 > **Research Rounds:** [`BR-040`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-040-sol-landmarks.md) · [`BR-040 Results`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-040-results.md) · [`BR-039 CT Landmarks`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-039-ct-landmarks.md) · [`BR-038 Volume Landmarks`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-038-volume-landmarks.md) · [`BR-036 Semantic Landmarks`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-036-semantic-landmarks.md)  
+> **Task Card:** [`med_lnd_br040_landmarks_fov.json`](task_cards/med_lnd_br040_landmarks_fov.json)  
 > **Source Scans:** Whole-body/thoracic spine CT (VerSe `sub-verse823`) and Brain T1 MRI (AFIDs SNSX `sub-C001`, OpenNeuro `ds004470`).  
 > **Task Formulation:** Return exact physical 3D coordinates for 26 vertebral centroids (C1–L6) and 32 brain fiducials, or correctly flag requested targets as `OUT_OF_FOV` when they lie outside cropped scans.  
 > **Core Discoveries:** Sol achieved 0 false presence detections on cropped CT scans (resisting hallucination); autonomous MNI atlas registration doubled MRI landmark precision (from 3/32 to 14/32 within 3 mm).
@@ -88,5 +89,6 @@ We evaluated Terra (GPT-4o / high reasoning) and Sol (Claude 3.7 Sonnet / xhigh 
 
 - [← 05. 4D Heart Biomechanics & Strain](05-cardiac-mechanics.md)
 - [Master Evidence, Provenance & Reference Index →](references.md)
+- **Task Card:** [`site_med/task_cards/med_lnd_br040_landmarks_fov.json`](task_cards/med_lnd_br040_landmarks_fov.json)
 - **Direct Round Links:** [`docs/research-rounds/BR-040-sol-landmarks.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-040-sol-landmarks.md) · [`docs/research-rounds/BR-040-results.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-040-results.md)
 - **Evidence Files:** [`docs/evidence/br040-source-audit.json`](file:///Users/zhangqy/pkgs/tb3/docs/evidence/br040-source-audit.json) · [`site/landmark-figures.json`](file:///Users/zhangqy/pkgs/tb3/site/landmark-figures.json)

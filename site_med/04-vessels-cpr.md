@@ -2,7 +2,8 @@
 ## Brain MRA & Chest CT · Vessels & Airways · BR-030 / BR-033
 
 > **Research Rounds:** [`BR-030`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-030-vessel-diagnostic-geometry.md) · [`BR-030 Results`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-030-results.md) · [`BR-033`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-033-brain-vessel-airway-difficulty.md) · [`BR-033 Results`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-033-results.md)  
-> **Source Cohorts:** Coronary CTA (ASOCA), Brain TOF-MRA (Circle of Willis), and Chest CT (AeroPath airway tree).  
+> **Task Card:** [`med_tub_br030_br033_cpr_geometry.json`](task_cards/med_tub_br030_br033_cpr_geometry.json)  
+> **Source Cohorts:** Coronary CTA (ImageCAS / ASOCA), Brain TOF-MRA (Circle of Willis), and Chest CT (AeroPath airway tree).  
 > **Key Benchmark Traps:** The 8.89 mm CPR Distance-Axis Indexing Bug and the Airway Tree Segmentation Loophole.
 
 ---
@@ -99,5 +100,6 @@ In round `BR-033`, Sol was evaluated on repairing broken bronchial airway segmen
 
 - [← 03. Deformable 3D Image Registration](03-registration.md)
 - [05. 4D Heart Biomechanics & Strain →](05-cardiac-mechanics.md)
+- **Task Card:** [`site_med/task_cards/med_tub_br030_br033_cpr_geometry.json`](task_cards/med_tub_br030_br033_cpr_geometry.json)
 - **Direct Round Links:** [`docs/research-rounds/BR-030-vessel-diagnostic-geometry.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-030-vessel-diagnostic-geometry.md) · [`docs/research-rounds/BR-030-results.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-030-results.md) · [`docs/research-rounds/BR-033-results.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-033-results.md)
 - **Evidence Files:** [`site/vessel-figures.json`](file:///Users/zhangqy/pkgs/tb3/site/vessel-figures.json)

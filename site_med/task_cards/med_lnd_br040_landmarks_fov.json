@@ -1,0 +1,107 @@
+{
+  "task_id": "MED-LND-BR040-LANDMARKS-FOV",
+  "task_name": "3D Anatomical Landmarks & Out-of-Field-of-View Rejection",
+  "domain": "Domain 06: 3D Anatomical Landmarks & Out-of-FOV Rejection",
+  "clinical_objective": "Accurately predict 3D physical coordinates for 26 vertebral centroids (C1\u2013L6) on spine CT and 32 brain fiducials on MRI, while strictly rejecting targets outside the field-of-view (OUT_OF_FOV) without hallucinating.",
+  "research_round": {
+    "round_id": "BR-040",
+    "title": "Sol/xhigh CT and MRI landmark comparison",
+    "document_path": "docs/research-rounds/BR-040-sol-landmarks.md",
+    "results_path": "docs/research-rounds/BR-040-results.md",
+    "evidence_path": "docs/evidence/br040-source-audit.json"
+  },
+  "input_data": {
+    "datasets": [
+      {
+        "name": "VerSe Vertebral Segmentation Benchmark",
+        "citation": "Sekuboyina et al., Medical Image Analysis 2021. DOI: 10.1016/j.media.2021.102166",
+        "subject": "sub-verse823",
+        "full_scan_shape": [
+          512,
+          512,
+          1214
+        ],
+        "cropped_scan_shape": [
+          512,
+          512,
+          480
+        ],
+        "voxel_spacing_mm": [
+          0.8,
+          0.8,
+          1.25
+        ],
+        "targets_requested": 26
+      },
+      {
+        "name": "AFIDs SNSX Brain MRI Cohort",
+        "citation": "Lau et al., Scientific Data 2020. DOI: 10.1038/s41597-020-00629-8. OpenNeuro ds004470",
+        "subject": "sub-C001",
+        "dimensions": [
+          256,
+          256,
+          176
+        ],
+        "voxel_spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "targets_requested": 32
+      }
+    ]
+  },
+  "ground_truth": {
+    "gt_source": "VerSe manual segmentation centroids and AFIDs 3-rater consensus fiducials",
+    "full_ct_visible": 24,
+    "full_ct_absent": 2,
+    "cropped_ct_visible": 13,
+    "cropped_ct_outside_fov": 11,
+    "cropped_ct_absent": 2,
+    "mri_visible": 32
+  },
+  "task_instruction_prompt": "For each requested landmark, return its fractional native voxel coordinate [i, j, k] and status: 'OBSERVED', 'OUT_OF_FOV', or 'ABSENT'. Explicitly label outside estimates; do not claim an unavailable target is observed inside the scan.",
+  "output_contract": {
+    "expected_file": "landmarks.json",
+    "format": "JSON array of landmark predictions",
+    "coordinate_convention": "Native zero-indexed fractional voxel indices [i, j, k] explicitly tagged 'voxel_ijk_zero_based'"
+  },
+  "evaluation_rubric": {
+    "metric": "Euclidean 3D distance transformed by affine linear matrix: ||A * (v_pred - v_gt)||",
+    "tolerances": {
+      "ct_spine_mm": 5.0,
+      "mri_brain_mm": 3.0
+    },
+    "hallucination_penalty": "Claiming an OUT_OF_FOV target is OBSERVED inside the scan is penalized as a critical hallucination error"
+  },
+  "empirical_results": {
+    "cropped_spine_ct": {
+      "terra_high": {
+        "points_within_5mm": "1 / 13",
+        "mean_error_mm": 20.85,
+        "hallucinations": "1 / 11 outside targets falsely detected inside (T4 predicted 2.14 mm from true T5)"
+      },
+      "sol_xhigh": {
+        "points_within_5mm": "4 / 12",
+        "mean_error_mm": 7.44,
+        "hallucinations": "0 / 11 outside targets falsely detected (Zero hallucinations)"
+      }
+    },
+    "brain_mri_afids": {
+      "terra_high": {
+        "points_within_3mm": "3 / 32",
+        "mean_error_mm": 9.4,
+        "strategy": "Direct image inspection without atlas"
+      },
+      "sol_xhigh": {
+        "points_within_3mm": "14 / 32",
+        "mean_error_mm": 3.87,
+        "strategy": "Autonomous retrieval of MNI152 template and affine atlas registration"
+      }
+    }
+  },
+  "known_failure_modes_and_traps": {
+    "trap_name": "Wrong-Level Surgical Hallucination vs. Autonomous Atlas Orchestration",
+    "description": "On cropped CT, Terra detected real bone but miscounted vertebral levels (predicting T4 on the T5 vertebral body). Sol correctly abstained. On MRI, Sol autonomously downloaded the MNI brain atlas to double accuracy within 3 mm."
+  }
+}

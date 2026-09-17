@@ -1,0 +1,83 @@
+{
+  "task_id": "MED-TUB-BR030-BR033-CPR-GEOMETRY",
+  "task_name": "Tubular Centerline Routing & 360-Degree Curved Planar Reformations",
+  "domain": "Domain 04: Tubular Geometry, Centerlines & CPR",
+  "clinical_objective": "Repair severed blood vessel and airway segmentation masks, trace ordered 3D centerline paths, and generate 360-degree rotated Curved Planar Reformations (CPRs) with calibrated distance axes.",
+  "research_round": {
+    "round_id": "BR-030 / BR-033",
+    "title": "Vessel repair to diagnostic geometry & Brain vessel airway difficulty",
+    "document_path": "docs/research-rounds/BR-030-vessel-diagnostic-geometry.md",
+    "results_path": "docs/research-rounds/BR-030-results.md",
+    "evidence_path": "site/vessel-figures.json"
+  },
+  "input_data": {
+    "dataset_name": "ImageCAS / ASOCA Coronary CTA & AeroPath Airway CT",
+    "source_cases": [
+      {
+        "case_id": "Coronary_Case_1",
+        "modality": "Contrast-Enhanced Coronary CTA",
+        "dimensions": [
+          256,
+          256,
+          180
+        ],
+        "voxel_spacing_mm": [
+          0.45,
+          0.45,
+          0.7
+        ],
+        "defect": "Synthetic 200-voxel (8 mm) gap in right coronary artery (RCA)",
+        "anchors": [
+          "RCA ostium",
+          "Distal R-PDA"
+        ]
+      },
+      {
+        "case_id": "Airway_Case_A01_A03",
+        "modality": "Chest CT",
+        "defect": "Segmental disconnections in peripheral airway tree from AeroPath"
+      }
+    ]
+  },
+  "ground_truth": {
+    "gt_source": "ImageCAS-X reference masks, expert centerlines, and calibrated CPR stacks",
+    "gt_centerline_length_mm": 104.08,
+    "gt_frenet_frame": "Continuous orthogonal normal vectors sampled at 0.5 mm arc steps"
+  },
+  "task_instruction_prompt": "Repair the vessel mask disconnection within the review sphere while preserving all voxels outside. Extract an ordered centerline from ostium to distal anchor in RAS mm. Generate 8 rotated CPR planes (0 to 315 degrees in 45-degree steps), preserving original HU values, source coordinates, and a physical distance axis. Export a watertight surface mesh.",
+  "output_contract": {
+    "expected_artifacts": [
+      "repaired_mask.nii.gz (Binary volume preserving exterior voxels)",
+      "centerline.json (Ordered array of [x, y, z] points in RAS mm)",
+      "cpr_planes.npz (8 2D arrays with HU, coordinate mapping, and distance axis)",
+      "vessel_surface.obj (Watertight closed triangular surface mesh)"
+    ]
+  },
+  "evaluation_rubric": {
+    "connectivity_check": "Single connected component from start to end anchor",
+    "preservation_check": "No more than 10 extraneous voxels added outside review sphere",
+    "cpr_axis_consistency": "Max discrepancy between CPR horizontal axis and true cumulative physical arc length <= 1.0 mm"
+  },
+  "empirical_results": {
+    "coronary_cpr_br030": {
+      "model": "Terra (GPT-4o / high)",
+      "wall_time": "8m 12s",
+      "tokens": 11200,
+      "cost_usd": 0.72,
+      "mask_repair": "198 / 200 voxels restored",
+      "mesh_validity": "Closed watertight mesh generated",
+      "cpr_outcome": "FAILED AUTOMATED CHECK by 8.89 mm due to distance-axis bug (indexed raw voxel steps rather than cumulative physical millimeters)"
+    },
+    "airway_repair_br033": {
+      "model": "Sol (Claude 3.7 Sonnet / xhigh)",
+      "wall_time": "12m 40s",
+      "tokens": 16800,
+      "cost_usd": 1.82,
+      "benchmark_outcome": "PASSED AUTOMATED GATES despite peripheral airway fragments remaining completely disconnected from the central trachea (Evaluation Loophole)"
+    }
+  },
+  "known_failure_modes_and_traps": {
+    "trap_name": "The CPR Distance-Axis Bug & The Airway Fragment Loophole",
+    "description": "In BR-030, a perfect anatomical reconstruction failed because the verifier compared raw pixel coordinates against anisotropic millimeter spacing. In BR-033, the verifier checked sub-routes within isolated fragments, awarding passing scores while the main bronchial tree remained broken."
+  }
+}

@@ -32,14 +32,14 @@ flowchart LR
 
 This showcase synthesizes agent capabilities across six distinct clinical imaging domains:
 
-| # | Task Domain | Scan Modality & Anatomy | Primary Agent Challenge | Benchmark Outcome | Document |
+| # | Task Domain | Scan Modality & Anatomy | Primary Agent Challenge | Benchmark Outcome | Task Card & Spec |
 | :---: | :--- | :--- | :--- | :--- | :---: |
-| **01** | **Organ Segmentation & Tissue Auditing** | Abdominal CT (13 Organs) | Detect 21 mL of pancreatic head absorbed into duodenum | Missed in 13-organ sweep; Located within 1.2 mm when focused | [Read Domain 1 →](01-segmentation.md) |
-| **02** | **Vascular Aneurysm 3D Detection** | Brain TOF-MRA (Circle of Willis) | Autonomous search for 3–5 mm arterial bulges | 1 miss, 1 located within 1 mm, 1 source-assisted clearance | [Read Domain 2 →](02-aneurysms.md) |
-| **03** | **Deformable 3D Image Registration** | Paired 4D Lung CT (Breathing) | Non-rigid alignment between exhale and inhale | 2D source fails (12.7 mm); 3D source succeeds (2.6 mm RMS) | [Read Domain 3 →](03-registration.md) |
-| **04** | **Tubular Geometry & Curved Reformations** | Brain MRA & Chest CT (Vessels / Airways) | Repair disconnected masks, centerline trace, 360° CPR | Uncovered 8.89 mm CPR unit bug and airway tree loophole | [Read Domain 4 →](04-vessels-cpr.md) |
-| **05** | **4D Heart Biomechanics & Strain** | 4D Echocardiography (30 Phases) | Dynamic myocardium mesh & AHA 17-segment strain | Surface Dice 0.946 hid 7.37 pp radial strain error; EF undercall | [Read Domain 5 →](05-cardiac-mechanics.md) |
-| **06** | **3D Landmarks & Out-of-FOV Rejection** | Spine CT (C1–L6) & Brain MRI | Locate 3D centers; reject targets outside cropped scan | 0 false detections on cropped CT; Atlas doubled MRI accuracy | [Read Domain 6 →](06-landmarks.md) |
+| **01** | **Organ Segmentation & Tissue Auditing** | Abdominal CT (13 Organs) | Detect 21 mL of pancreatic head absorbed into duodenum | Missed in 13-organ sweep; Located within 1.2 mm when focused | [Read Domain 1 →](01-segmentation.md)<br>[`med_seg_br017_absorption.json`](task_cards/med_seg_br017_absorption.json) |
+| **02** | **Vascular Aneurysm 3D Detection** | Brain TOF-MRA (Circle of Willis) | Autonomous search for 3–5 mm arterial bulges | 1 miss, 1 located within 1 mm, 1 source-assisted clearance | [Read Domain 2 →](02-aneurysms.md)<br>[`med_vas_br016_aneurysm.json`](task_cards/med_vas_br016_aneurysm.json) |
+| **03** | **Deformable 3D Image Registration** | Paired 4D Lung CT (Breathing) | Non-rigid alignment between exhale and inhale | 2D source fails (12.7 mm); 3D source succeeds (2.6 mm RMS) | [Read Domain 3 →](03-registration.md)<br>[`med_reg_br028_respiratory.json`](task_cards/med_reg_br028_respiratory.json) |
+| **04** | **Tubular Geometry & Curved Reformations** | Brain MRA & Chest CT (Vessels / Airways) | Repair disconnected masks, centerline trace, 360° CPR | Uncovered 8.89 mm CPR unit bug and airway tree loophole | [Read Domain 4 →](04-vessels-cpr.md)<br>[`med_tub_br030_br033_cpr_geometry.json`](task_cards/med_tub_br030_br033_cpr_geometry.json) |
+| **05** | **4D Heart Biomechanics & Strain** | 4D Echocardiography (30 Phases) | Dynamic myocardium mesh & AHA 17-segment strain | Surface Dice 0.946 hid 7.37 pp radial strain error; EF undercall | [Read Domain 5 →](05-cardiac-mechanics.md)<br>[`med_bio_br035_cardiac_strain.json`](task_cards/med_bio_br035_cardiac_strain.json) |
+| **06** | **3D Landmarks & Out-of-FOV Rejection** | Spine CT (C1–L6) & Brain MRI | Locate 3D centers; reject targets outside cropped scan | 0 false detections on cropped CT; Atlas doubled MRI accuracy | [Read Domain 6 →](06-landmarks.md)<br>[`med_lnd_br040_landmarks_fov.json`](task_cards/med_lnd_br040_landmarks_fov.json) |
 
 ---
 

@@ -2,7 +2,8 @@
 ## 4D Echocardiography · 30 Cardiac Phases · BR-035
 
 > **Research Rounds:** [`BR-035`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-035-segmentation-mechanics.md) · [`BR-035 Results`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-035-results.md) · [`BR-032 Real Echo Case`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-032-real-echo-case.md) · [`BR-032 Results`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-032-real-echo-results.md)  
-> **Source Scan:** Dynamic 4D Echocardiography volume sequence (30 frames across full cardiac cycle).  
+> **Task Card:** [`med_bio_br035_cardiac_strain.json`](task_cards/med_bio_br035_cardiac_strain.json)  
+> **Source Scan:** Dynamic 4D Echocardiography volume sequence (30 frames across full cardiac cycle; STRAUS finite-element simulation cohort).  
 > **Task Formulation:** Reconstruct dynamic 3D left-ventricular myocardium surface meshes across 30 phases, track wall motion, and compute volume-weighted engineering strain tensors across the AHA 17-segment cardiac model.  
 > **Core Discovery:** Surface mesh agreement (Dice 0.946) concealed severe internal radial strain errors (7.37 percentage points); real clinical echo tracking underestimated Ejection Fraction by 23–30 percentage points.
 
@@ -94,5 +95,6 @@ Evaluating Sol's biomechanical reconstruction across 30 phases:
 
 - [← 04. Tubular Geometry, Centerlines & CPR](04-vessels-cpr.md)
 - [06. 3D Landmarks & Out-of-FOV Rejection →](06-landmarks.md)
+- **Task Card:** [`site_med/task_cards/med_bio_br035_cardiac_strain.json`](task_cards/med_bio_br035_cardiac_strain.json)
 - **Direct Round Links:** [`docs/research-rounds/BR-035-segmentation-mechanics.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-035-segmentation-mechanics.md) · [`docs/research-rounds/BR-035-results.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-035-results.md) · [`docs/research-rounds/BR-032-real-echo-results.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-032-real-echo-results.md)
 - **Evidence Files:** [`site/cardiac-figures.json`](file:///Users/zhangqy/pkgs/tb3/site/cardiac-figures.json)

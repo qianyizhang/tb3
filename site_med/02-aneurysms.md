@@ -2,9 +2,10 @@
 ## Brain TOF-MRA · Circle of Willis · BR-016
 
 > **Research Round:** [`BR-016`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-016-aneurysm-localization.md) · [`BR-016 Results`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-016-results.md)  
-> **Source Scan:** Brain TOF-MRA from OpenNeuro dataset `ds003949` (CC0 public release).  
+> **Task Card:** [`med_vas_br016_aneurysm.json`](task_cards/med_vas_br016_aneurysm.json)  
+> **Source Scan:** Brain TOF-MRA from OpenNeuro dataset `ds003949` (CC0 public release, cases `sub-001`, `sub-002`, `sub-003`).  
 > **Task Formulation:** Given a full 3D Time-of-Flight MRA scan, autonomously search the cerebral vascular tree and report exactly one physical 3D coordinate per detected aneurysm, or return an empty list `[]` if the scan is normal.  
-> **Evaluation Metric:** 1 mm spatial tolerance around annotated reference region.
+> **Evaluation Metric:** 1 mm spatial tolerance around annotated reference region; zero false positives on healthy scans.
 
 ---
 
@@ -98,5 +99,6 @@ We evaluated Sol (Claude 3.7 Sonnet) across three representative cases under ide
 
 - [← 01. Organ Segmentation & Tissue Auditing](01-segmentation.md)
 - [03. Deformable 3D Image Registration →](03-registration.md)
+- **Task Card:** [`site_med/task_cards/med_vas_br016_aneurysm.json`](task_cards/med_vas_br016_aneurysm.json)
 - **Direct Round Links:** [`docs/research-rounds/BR-016-aneurysm-localization.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-016-aneurysm-localization.md) · [`docs/research-rounds/BR-016-results.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-016-results.md)
 - **Evidence Files:** [`site/aneurysm-figures.json`](file:///Users/zhangqy/pkgs/tb3/site/aneurysm-figures.json) · [`site/provenance.json`](file:///Users/zhangqy/pkgs/tb3/site/provenance.json)

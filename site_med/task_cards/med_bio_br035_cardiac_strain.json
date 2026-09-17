@@ -1,0 +1,103 @@
+{
+  "task_id": "MED-BIO-BR035-CARDIAC-STRAIN",
+  "task_name": "4D Left-Ventricular Biomechanical Mesh Tracking & Myocardial Strain",
+  "domain": "Domain 05: 4D Heart Biomechanics & Myocardial Strain",
+  "clinical_objective": "Reconstruct moving 3D left-ventricular myocardium surface meshes across 30 cardiac phases and compute volume-weighted engineering strain tensors across the AHA 17-segment model.",
+  "research_round": {
+    "round_id": "BR-035 / BR-032",
+    "title": "Segmentation mechanics & Real clinical echocardiography case",
+    "document_path": "docs/research-rounds/BR-035-segmentation-mechanics.md",
+    "results_path": "docs/research-rounds/BR-035-results.md",
+    "evidence_path": "site/cardiac-figures.json"
+  },
+  "input_data": {
+    "dataset_name": "STRAUS Simulation Cohort & Clinical 3D Echocardiography",
+    "dataset_citation": "Human Heart Project, CREATIS, INSA Lyon. Dynamic cardiac biomechanics finite element model.",
+    "file_artifacts": [
+      {
+        "file_name": "segmentations_30phases.npz",
+        "description": "30 complete 3D binary myocardial-wall segmentations across the full cardiac cycle",
+        "dimensions": [
+          128,
+          128,
+          128
+        ],
+        "voxel_spacing_mm": [
+          1.5,
+          1.5,
+          1.5
+        ]
+      },
+      {
+        "file_name": "ultrasound_30phases.npz",
+        "description": "Registered 3D B-mode echocardiography intensity volumes (optional multi-modal condition)"
+      }
+    ]
+  },
+  "ground_truth": {
+    "gt_source": "STRAUS continuum finite element simulation ground-truth material points and displacement tensors",
+    "clinical_ground_truth": {
+      "end_diastolic_volume_ml": 142.5,
+      "end_systolic_volume_ml": 61.2,
+      "ejection_fraction_pct": 57.1,
+      "peak_strains": {
+        "longitudinal_pct": -18.4,
+        "circumferential_pct": -21.6,
+        "radial_pct": 44.8
+      }
+    }
+  },
+  "task_instruction_prompt": "Construct moving 3D tetrahedral meshes from 30 phase masks. Compute the continuous deformation gradient F and Green-Lagrange strain tensor E. Report cavity volume curves, Ejection Fraction, and volume-weighted engineering strains across the 17 AHA segments.",
+  "output_contract": {
+    "expected_artifacts": [
+      "dynamic_mesh.npz (Vertices and tetrahedral connectivity for 30 phases)",
+      "cardiac_report.json (Volume curve, EF %, and 30x17x3 regional strain tensor array)"
+    ]
+  },
+  "evaluation_rubric": {
+    "mesh_quality": "Zero inverted elements (det(F) > 0 across all elements)",
+    "volume_conservation": "Cavity and tissue volume error <= 5.0%",
+    "strain_tolerances": {
+      "longitudinal_mae_pp": 3.0,
+      "circumferential_mae_pp": 3.0,
+      "radial_mae_pp": 4.0
+    }
+  },
+  "empirical_results": {
+    "sol_masks_alone": {
+      "model": "Sol (Claude 3.7 Sonnet / xhigh)",
+      "wall_time": "21.55 min",
+      "surface_dice": 0.946,
+      "ef_computed_pct": 56.1,
+      "strain_errors_mae": {
+        "longitudinal_pp": 2.87,
+        "circumferential_pp": 3.51,
+        "radial_pp": 7.37
+      },
+      "outcome": "MESH PASS / RADIAL STRAIN MISS (Overshot radial strain by 7.37 pp)"
+    },
+    "sol_masks_plus_ultrasound": {
+      "model": "Sol (Claude 3.7 Sonnet / xhigh)",
+      "wall_time": "13.26 min",
+      "surface_dice": 0.933,
+      "ef_computed_pct": 57.0,
+      "strain_errors_mae": {
+        "longitudinal_pp": 2.9,
+        "circumferential_pp": 3.22,
+        "radial_pp": 5.45
+      },
+      "outcome": "MESH PASS / RADIAL STRAIN MISS (Overshot radial strain by 5.45 pp)"
+    },
+    "clinical_echo_tracking_br032": {
+      "description": "Hospital 3D ultrasound tracking tool",
+      "surface_distance_error_mm": 2.8,
+      "ef_measured_pct": 31.5,
+      "true_ef_pct": 58.0,
+      "outcome": "CATASTROPHIC CLINICAL UNDERESTIMATION (Simulated severe heart failure due to boundary error propagation)"
+    }
+  },
+  "known_failure_modes_and_traps": {
+    "trap_name": "The Cylinder Twist Paradox",
+    "description": "Surface overlap (Dice 0.946) does not guarantee accurate material mechanics. The agent matched moving surface boundaries by twisting and shearing internal elements, leading to a 7.37 pp error in radial wall thickening. Biomechanics require material-level ground truth."
+  }
+}

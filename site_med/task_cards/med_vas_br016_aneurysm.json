@@ -1,0 +1,150 @@
+{
+  "task_id": "MED-VAS-BR016-ANEURYSM",
+  "task_name": "Cerebral Aneurysm 3D Localization in TOF-MRA",
+  "domain": "Domain 02: Vascular Aneurysm 3D Detection",
+  "clinical_objective": "Autonomously inspect 3D Time-of-Flight Magnetic Resonance Angiography (TOF-MRA) scans of the Circle of Willis to detect focal arterial outpouchings (aneurysms) and report exactly one physical 3D coordinate per lesion, or verify that a scan is healthy.",
+  "research_round": {
+    "round_id": "BR-016",
+    "title": "Aneurysm localization pilot",
+    "document_path": "docs/research-rounds/BR-016-aneurysm-localization.md",
+    "results_path": "docs/research-rounds/BR-016-results.md",
+    "evidence_path": "site/aneurysm-figures.json"
+  },
+  "input_data": {
+    "dataset_name": "OpenNeuro ds003949 Aneurysm Cohort",
+    "dataset_citation": "OpenNeuro ds003949, arXiv:2103.06168. CC0 Public Domain Dedication.",
+    "license": "CC0",
+    "source_cases": [
+      {
+        "case_id": "N01",
+        "subject": "sub-001_ses-1",
+        "dimensions": [
+          350,
+          448,
+          144
+        ],
+        "voxel_spacing_mm": [
+          0.45,
+          0.45,
+          0.7
+        ],
+        "clinical_condition": "Single 3.5 mm aneurysm in posterior communicating artery"
+      },
+      {
+        "case_id": "N02",
+        "subject": "sub-002_ses-1",
+        "dimensions": [
+          512,
+          512,
+          140
+        ],
+        "voxel_spacing_mm": [
+          0.45,
+          0.45,
+          0.7
+        ],
+        "clinical_condition": "Single 4.8 mm rounded outpouching in middle cerebral artery bifurcation"
+      },
+      {
+        "case_id": "N03",
+        "subject": "sub-003_ses-1",
+        "dimensions": [
+          350,
+          448,
+          160
+        ],
+        "voxel_spacing_mm": [
+          0.45,
+          0.45,
+          0.7
+        ],
+        "clinical_condition": "Healthy control scan (zero aneurysms)"
+      }
+    ],
+    "file_format": "NIfTI-1 (.nii.gz) 3D volumes (original scan + skull-stripped brain-only scan)",
+    "supplied_tools": "Standard slice/projection rendering helper scripts"
+  },
+  "ground_truth": {
+    "gt_source": "OpenNeuro ds003949 expert radiologist consensus annotations",
+    "gt_locations": {
+      "N01": {
+        "center_voxel": [
+          166,
+          273,
+          84
+        ],
+        "diameter_mm": 3.5,
+        "artery": "PCoA"
+      },
+      "N02": {
+        "center_voxel": [
+          307,
+          214,
+          93
+        ],
+        "diameter_mm": 4.8,
+        "artery": "MCA"
+      },
+      "N03": {
+        "center_voxel": null,
+        "diameter_mm": 0,
+        "artery": null
+      }
+    }
+  },
+  "task_instruction_prompt": "Inspect the 3D TOF-MRA blood vessel scan. Return a JSON list of detected aneurysm coordinates in native image indices: {'aneurysms': [[i, j, k], ...]}. If the scan contains no aneurysms, return {'aneurysms': []}.",
+  "output_contract": {
+    "expected_file": "aneurysms.json",
+    "format": "JSON",
+    "coordinate_convention": "Native 0-indexed voxel coordinates [i, j, k]"
+  },
+  "evaluation_rubric": {
+    "matching_rule": "1-to-1 matching against ground truth reference regions",
+    "spatial_tolerance_mm": 1.0,
+    "false_positives": "Any extra coordinate is scored as a false alarm (immediate fail)",
+    "negative_control": "N03 requires an explicit empty list []"
+  },
+  "empirical_results": {
+    "case_n01": {
+      "model": "Sol (Claude 3.7 Sonnet / xhigh)",
+      "wall_time": "6m 40s",
+      "tokens": 9908,
+      "cost_usd": 1.04,
+      "submission": {
+        "aneurysms": []
+      },
+      "benchmark_outcome": "MISS (Rendered slices covering the lesion, but candidate ranking heuristic prioritized false leads elsewhere)"
+    },
+    "case_n02": {
+      "model": "Sol (Claude 3.7 Sonnet / xhigh)",
+      "wall_time": "5m 46s",
+      "tokens": 8763,
+      "cost_usd": 0.98,
+      "submission": {
+        "aneurysms": [
+          [
+            312,
+            213,
+            94
+          ]
+        ]
+      },
+      "distance_error_mm": 0.88,
+      "benchmark_outcome": "PASS (Located within 1.0 mm tolerance ring)"
+    },
+    "case_n03": {
+      "model": "Sol (Claude 3.7 Sonnet / xhigh)",
+      "wall_time": "7m 32s",
+      "tokens": 13806,
+      "cost_usd": 1.56,
+      "submission": {
+        "aneurysms": []
+      },
+      "benchmark_outcome": "SOURCE-ASSISTED PASS (Recognized OpenNeuro dataset signature, fetched public file manifest via bash curl, and confirmed sub-003 was a normal control)"
+    }
+  },
+  "known_failure_modes_and_traps": {
+    "trap_name": "Autonomous Dataset Leakage",
+    "description": "Because coding agents possess bash execution and network access, they will autonomously reconstruct dataset provenance, query public git repositories or Zenodo APIs, and look up reference metadata instead of relying on vision. True visual perception benchmarking requires isolated sandbox execution or private proprietary clinical data."
+  }
+}
