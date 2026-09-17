@@ -1,6 +1,6 @@
 # Interview report
 
-`index.html` contains the overview and seven studies in one portable page. All
+`index.html` contains the overview and eight studies in one portable page. All
 figures, styling, and guided image controls are embedded. Open it directly in a
 browser; it also works under a GitHub project-site prefix. Evidence links open
 GitHub. The published page never requests local scans.
@@ -153,3 +153,15 @@ The [session index](../docs/research-cardiac-session.md) links the original
 protocols, results and local 3D labs. Full meshes, ultrasound, raw traces and
 runtime viewers remain local. This presentation does not alter frozen task or
 authoring bytes, queue another trial, or publish to the hosted site.
+
+## CT and MRI landmark session
+
+The **CT & MRI landmarks** chapter (`index.html#landmarks`) closes BR-036 and
+BR-038–040. It separates physical localization, wrong-level detections,
+unavailable-target rejection and atlas assistance. Seven exact retained panels
+and all 84 point rows work offline. The [session index](../docs/research-landmark-session.md)
+links protocols, scores and the complete local 70-panel review.
+
+Refresh selected figures with `python3 scripts/import_landmark_figures.py`, then
+rebuild normally. `landmark-provenance.json` records source terms and hashes.
+Native scans and raw trials remain local; no new trial or deployment is implied.

@@ -1,0 +1,86 @@
+{
+  "round": "BR-040",
+  "model": "openai/gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "attempts_per_condition": 1,
+  "retries": 0,
+  "timeout_seconds": 3600,
+  "conditions": [
+    {
+      "case": "ct-full",
+      "task": {
+        "task": "ct-full",
+        "task_path": "runs/br039-ct-landmarks/tasks/ct-full",
+        "files": {
+          "environment/Dockerfile": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7",
+          "environment/SOURCE_NOTICE.md": "91188f8f2a43b8bf02b5e02914c44d7b47d8afdb17e8d5e1b0a9a1769ed4ddd1",
+          "environment/geometry.json": "805beff019b82bd6811166b7ea82fa583e25a2e6ee623e38b9d2b78f280510d4",
+          "environment/landmarks.json": "c01dd5b1366b3b6d5c16b997c4549ccf8a8610c60da357ab0d3fd4301404167a",
+          "environment/volume.nii.gz": "e0f690b3c0774e3fc6f49ea196b334accf6711cad199e255dca65ea86508ef4e",
+          "environment/volume.npy": "7f8b3f0737b91f403e72fff8d55f6f5fa3a48f03c9c7063d820e552bb2383615",
+          "environment/volume_tools.py": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058",
+          "instruction.md": "6908c9cc14b82421fc01fea617be485572273ae29895c4918c664f396f0d03ff",
+          "solution/landmarks.json": "7641a3ab5faf9e1937768ae06de12b44176442012493bae96cd90544778ed659",
+          "solution/solve.sh": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+          "task.toml": "1c062f47162e225d9addb835822aeca213b4f01485a1ac5139734e202eea67af",
+          "tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+          "tests/score.py": "10dd7d5417180e95d8f98f677904a0136a772dbee5f14d4b34e9d2fc3c1b9ef4",
+          "tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+          "tests/truth.json": "70ad569289d5faae92428f2d9d33e16227156ec545c602e290a4cb5a63cabc9e"
+        }
+      },
+      "matched_control_checksum": "ab4371421a6311b235d52bf335ffaf8da332666d60ddde1b880391fdb708ddff"
+    },
+    {
+      "case": "ct-partial",
+      "task": {
+        "task": "ct-partial",
+        "task_path": "runs/br039-ct-landmarks/tasks/ct-partial",
+        "files": {
+          "environment/Dockerfile": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7",
+          "environment/SOURCE_NOTICE.md": "91188f8f2a43b8bf02b5e02914c44d7b47d8afdb17e8d5e1b0a9a1769ed4ddd1",
+          "environment/geometry.json": "8aa4dfd5e420440b2c74f34672bdf7e72b27a6d21cf169c5d25488fc6780b62c",
+          "environment/landmarks.json": "c01dd5b1366b3b6d5c16b997c4549ccf8a8610c60da357ab0d3fd4301404167a",
+          "environment/volume.nii.gz": "d0820fce2984ab65448fed1fea8b41b88b739468fe46677ee9147f05de680439",
+          "environment/volume.npy": "9d800b5afb3dda6d2b6b4d7ebafd5f91bacb0fcc9b351982232df362df55c1d5",
+          "environment/volume_tools.py": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058",
+          "instruction.md": "48d4dfa2accae7922cbc54a9f7d9b5dc9d266bb1028cd5fb98544197d267d830",
+          "solution/landmarks.json": "1d97a59620e072ba0974325674cac2950c35dc8f549a8dcf375ef920c7fe47bc",
+          "solution/solve.sh": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+          "task.toml": "5eb7cae714e25d3c7c73dbfc897e01f0248cbc7801ae2794f7c1a47772336fad",
+          "tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+          "tests/score.py": "10dd7d5417180e95d8f98f677904a0136a772dbee5f14d4b34e9d2fc3c1b9ef4",
+          "tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+          "tests/truth.json": "3de07e775860f7cbf10f11a66666cda62dfc0b5e26f4186f402f651f22de585e"
+        }
+      },
+      "matched_control_checksum": "70a21f5cd3b6bbd892c5286423b10b23a01ee45019467c4f02bc5ac4d9bf0ff0"
+    },
+    {
+      "case": "mri32-full",
+      "task": {
+        "task": "mri32-full",
+        "task_path": "runs/br038-volume-landmarks/tasks/mri32-full",
+        "files": {
+          "environment/Dockerfile": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7",
+          "environment/SOURCE_NOTICE.md": "a1a14b98cda6f9ed2eb6a8226f9af7703ee7501d6a2e3f9ec7961537c18659c1",
+          "environment/geometry.json": "19b5d2f991bc9fa23bafbfd30b07ebfc68cc56c16382477c58573fe7872a04ed",
+          "environment/landmarks.json": "cd7350b876e2c1b084dee4b6a165f4d2f914c68335143f828025299a29871e28",
+          "environment/volume.nii.gz": "ec9c3a73d97d1268aa8f0490c83c9382ad158d51ded4a0ac3d77de10e27e9a03",
+          "environment/volume.npy": "f9595bf5992e377a2d17d47a3d631f7c762433725e3c11a8470a34c4f627810f",
+          "environment/volume_tools.py": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058",
+          "instruction.md": "47de0fc82312e256a082a209b7bfc1769151760b893ee66e0ce656c5f2a1a622",
+          "solution/landmarks.json": "3aa433bed64a3be08bd46f76a97c0ade1d582cb8cf996dcd94b56ce401b1f1d4",
+          "solution/solve.sh": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+          "task.toml": "c17f08145813c2f442717b9ccb3b9268e010528000ee8d8d38dfc428ae06323f",
+          "tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+          "tests/score.py": "9a8dd57ef1d282dd36355c97c10004f0b975ae77e3a7842344598e74718a5584",
+          "tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+          "tests/truth.json": "432b8dc62712fa249b8382c094e76acc894bac2968004cb2c15730e5a95e0a42"
+        }
+      },
+      "matched_control_checksum": "34ac2c5ce9b41520f528f6abdf283b734d0fdc901072140519f8ad32fdafed49"
+    }
+  ],
+  "controls": "Reuse completed same-byte oracle/nop; require identical Harbor checksum to Terra"
+}

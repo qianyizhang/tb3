@@ -1,0 +1,1579 @@
+{
+  "round": "BR-040",
+  "comparison": "Sol/xhigh versus Terra/high; identical frozen tasks, model and effort both differ",
+  "trials": [
+    {
+      "case": "ct-full",
+      "model_setting": "terra-high",
+      "result_path": "runs/br039-ct-full-terra-high-v1-20260917/ct-full__UvZqJrf/result.json",
+      "task_checksum": "ab4371421a6311b235d52bf335ffaf8da332666d60ddde1b880391fdb708ddff",
+      "exception": null,
+      "agent_info": {
+        "name": "codex",
+        "version": "0.154.0",
+        "model_info": {
+          "name": "gpt-5.6-terra",
+          "provider": "openai"
+        }
+      },
+      "reward": {
+        "reward": 0.0
+      },
+      "agent_seconds": 597.243176,
+      "score": {
+        "contract_valid": true,
+        "reward": 0,
+        "requested": 26,
+        "counts": {
+          "observed": 24,
+          "out_of_fov": 0,
+          "absent": 2
+        },
+        "hallucinated": {
+          "out_of_fov": 0,
+          "absent": 0
+        },
+        "hallucination_rate": 0.0,
+        "correct_rejections": {
+          "out_of_fov": 0,
+          "absent": 2
+        },
+        "uncertain_rejections": {
+          "out_of_fov": 0,
+          "absent": 0
+        },
+        "confusion": {
+          "observed->observed": 24,
+          "absent->absent": 2
+        },
+        "missed_visible": 0,
+        "localized_visible": 24,
+        "success_counts_mm": {
+          "5": 2,
+          "10": 7,
+          "20": 9
+        },
+        "errors_mm": {
+          "C1": 31.387995436261257,
+          "C2": 29.413203842581318,
+          "C3": 24.805871291680507,
+          "C4": 27.390410817732096,
+          "C5": 30.417199970181986,
+          "C6": 35.54509505499699,
+          "C7": 43.22887690766,
+          "T1": 46.42833883065918,
+          "T2": 43.959897590508064,
+          "T3": 43.93447478022934,
+          "T4": 41.528810745614,
+          "T5": 37.61931534123851,
+          "T6": 33.508938641216965,
+          "T7": 29.471860265743313,
+          "T8": 24.18412662341405,
+          "T9": 18.875911993627458,
+          "T10": 11.817149677648628,
+          "T11": 7.018510675564314,
+          "T12": 4.959291105411122,
+          "L1": 5.190670885056785,
+          "L2": 4.772840807654759,
+          "L3": 5.330652807170936,
+          "L4": 5.9380830285307065,
+          "L5": 7.84216991117808
+        },
+        "mean_localized_error_mm": 24.773737376315015,
+        "extrapolation_errors_mm": {},
+        "rows": {
+          "C1": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              255,
+              250,
+              1150
+            ],
+            "error_mm": 31.387995436261257
+          },
+          "C2": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              255,
+              270,
+              1122
+            ],
+            "error_mm": 29.413203842581318
+          },
+          "C3": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              255,
+              260,
+              1096
+            ],
+            "error_mm": 24.805871291680507
+          },
+          "C4": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              255,
+              248,
+              1070
+            ],
+            "error_mm": 27.390410817732096
+          },
+          "C5": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              255,
+              235,
+              1044
+            ],
+            "error_mm": 30.417199970181986
+          },
+          "C6": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              257,
+              216,
+              1018
+            ],
+            "error_mm": 35.54509505499699
+          },
+          "C7": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              265,
+              192,
+              990
+            ],
+            "error_mm": 43.22887690766
+          },
+          "T1": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              264,
+              178,
+              960
+            ],
+            "error_mm": 46.42833883065918
+          },
+          "T2": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              264,
+              170,
+              934
+            ],
+            "error_mm": 43.959897590508064
+          },
+          "T3": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              264,
+              155,
+              908
+            ],
+            "error_mm": 43.93447478022934
+          },
+          "T4": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              260,
+              150,
+              882
+            ],
+            "error_mm": 41.528810745614
+          },
+          "T5": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              260,
+              155,
+              856
+            ],
+            "error_mm": 37.61931534123851
+          },
+          "T6": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              260,
+              155,
+              830
+            ],
+            "error_mm": 33.508938641216965
+          },
+          "T7": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              260,
+              150,
+              804
+            ],
+            "error_mm": 29.471860265743313
+          },
+          "T8": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              260,
+              150,
+              778
+            ],
+            "error_mm": 24.18412662341405
+          },
+          "T9": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              260,
+              155,
+              752
+            ],
+            "error_mm": 18.875911993627458
+          },
+          "T10": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              260,
+              165,
+              726
+            ],
+            "error_mm": 11.817149677648628
+          },
+          "T11": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              260,
+              170,
+              700
+            ],
+            "error_mm": 7.018510675564314
+          },
+          "T12": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              258,
+              175,
+              675
+            ],
+            "error_mm": 4.959291105411122
+          },
+          "L1": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              255,
+              180,
+              630
+            ],
+            "error_mm": 5.190670885056785
+          },
+          "L2": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              255,
+              190,
+              580
+            ],
+            "error_mm": 4.772840807654759
+          },
+          "L3": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              255,
+              195,
+              530
+            ],
+            "error_mm": 5.330652807170936
+          },
+          "L4": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              255,
+              195,
+              480
+            ],
+            "error_mm": 5.9380830285307065
+          },
+          "L5": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              255,
+              200,
+              426
+            ],
+            "error_mm": 7.84216991117808
+          },
+          "T13": {
+            "truth_status": "absent",
+            "predicted_status": "absent",
+            "predicted_ijk": null
+          },
+          "L6": {
+            "truth_status": "absent",
+            "predicted_status": "absent",
+            "predicted_ijk": null
+          }
+        }
+      },
+      "answer_path": "runs/br039-ct-full-terra-high-v1-20260917/ct-full__UvZqJrf/artifacts/app/answer/landmarks.json",
+      "host_replay_exact": true,
+      "world_rescore_max_difference_mm": 9.85878045867139e-14,
+      "success_counts_mm": {
+        "5": 2,
+        "10": 7,
+        "20": 9
+      },
+      "trace_audit": {
+        "actual_model_settings": [
+          [
+            "gpt-5.6-terra",
+            "high"
+          ]
+        ],
+        "actual_input_image_blocks": 17,
+        "raw_session_sha256": {
+          "runs/br039-ct-full-terra-high-v1-20260917/ct-full__UvZqJrf/agent/sessions/2026/09/17/rollout-2026-09-17T03-00-08-01a0ad4e-a995-7023-a9f8-620848e91587.jsonl": "b07a8527c728cf33860a1918027bd677ec4080b84b1999c5ddc618f5a5d20782"
+        },
+        "network_command_candidates": [],
+        "coordinate_check_called": true,
+        "provided_viewer_called": true,
+        "tool_calls": 40
+      }
+    },
+    {
+      "case": "ct-full",
+      "model_setting": "sol-xhigh",
+      "result_path": "runs/br040-ct-full-sol-xhigh-v1-20260917/ct-full__uk7tsH3/result.json",
+      "task_checksum": "ab4371421a6311b235d52bf335ffaf8da332666d60ddde1b880391fdb708ddff",
+      "exception": null,
+      "agent_info": {
+        "name": "codex",
+        "version": "0.154.0",
+        "model_info": {
+          "name": "gpt-5.6-sol",
+          "provider": "openai"
+        }
+      },
+      "reward": {
+        "reward": 0.0
+      },
+      "agent_seconds": 645.421125,
+      "score": {
+        "contract_valid": true,
+        "reward": 0,
+        "requested": 26,
+        "counts": {
+          "observed": 24,
+          "out_of_fov": 0,
+          "absent": 2
+        },
+        "hallucinated": {
+          "out_of_fov": 0,
+          "absent": 0
+        },
+        "hallucination_rate": 0.0,
+        "correct_rejections": {
+          "out_of_fov": 0,
+          "absent": 2
+        },
+        "uncertain_rejections": {
+          "out_of_fov": 0,
+          "absent": 0
+        },
+        "confusion": {
+          "observed->observed": 24,
+          "absent->absent": 2
+        },
+        "missed_visible": 0,
+        "localized_visible": 24,
+        "success_counts_mm": {
+          "5": 1,
+          "10": 13,
+          "20": 23
+        },
+        "errors_mm": {
+          "C1": 5.146313105084041,
+          "C2": 6.3303767222546625,
+          "C3": 20.56260296361378,
+          "C4": 19.965032302635535,
+          "C5": 15.819879690188577,
+          "C6": 11.537671949880448,
+          "C7": 6.235645234435603,
+          "T1": 6.377417977803107,
+          "T2": 8.818363463494816,
+          "T3": 12.749081903768456,
+          "T4": 13.813837550031426,
+          "T5": 14.690580167709046,
+          "T6": 15.35804708282202,
+          "T7": 15.137706115853677,
+          "T8": 12.71434492362673,
+          "T9": 10.845205269985726,
+          "T10": 6.667908482293213,
+          "T11": 5.7266847197356245,
+          "T12": 7.043457868023953,
+          "L1": 7.057440235714023,
+          "L2": 9.159055650129233,
+          "L3": 5.177991283526397,
+          "L4": 2.9358851904787056,
+          "L5": 5.832360224710638
+        },
+        "mean_localized_error_mm": 10.237620419908309,
+        "extrapolation_errors_mm": {},
+        "rows": {
+          "C1": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              261,
+              270,
+              1188
+            ],
+            "error_mm": 5.146313105084041
+          },
+          "C2": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              263,
+              283,
+              1170
+            ],
+            "error_mm": 6.3303767222546625
+          },
+          "C3": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              263,
+              284,
+              1155
+            ],
+            "error_mm": 20.56260296361378
+          },
+          "C4": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              260,
+              276,
+              1130
+            ],
+            "error_mm": 19.965032302635535
+          },
+          "C5": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              255,
+              263,
+              1101
+            ],
+            "error_mm": 15.819879690188577
+          },
+          "C6": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              260,
+              252,
+              1073
+            ],
+            "error_mm": 11.537671949880448
+          },
+          "C7": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              264,
+              235,
+              1045
+            ],
+            "error_mm": 6.235645234435603
+          },
+          "T1": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              265,
+              205,
+              1011
+            ],
+            "error_mm": 6.377417977803107
+          },
+          "T2": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              269,
+              189,
+              980
+            ],
+            "error_mm": 8.818363463494816
+          },
+          "T3": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              267,
+              172,
+              950
+            ],
+            "error_mm": 12.749081903768456
+          },
+          "T4": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              265,
+              162,
+              920
+            ],
+            "error_mm": 13.813837550031426
+          },
+          "T5": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              263,
+              157,
+              889
+            ],
+            "error_mm": 14.690580167709046
+          },
+          "T6": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              266,
+              156,
+              856
+            ],
+            "error_mm": 15.35804708282202
+          },
+          "T7": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              266,
+              156,
+              825
+            ],
+            "error_mm": 15.137706115853677
+          },
+          "T8": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              262,
+              157,
+              795
+            ],
+            "error_mm": 12.71434492362673
+          },
+          "T9": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              261,
+              160,
+              764
+            ],
+            "error_mm": 10.845205269985726
+          },
+          "T10": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              261,
+              163,
+              733
+            ],
+            "error_mm": 6.667908482293213
+          },
+          "T11": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              260,
+              170,
+              702
+            ],
+            "error_mm": 5.7266847197356245
+          },
+          "T12": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              261,
+              180,
+              661
+            ],
+            "error_mm": 7.043457868023953
+          },
+          "L1": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              257,
+              190,
+              617
+            ],
+            "error_mm": 7.057440235714023
+          },
+          "L2": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              266,
+              201,
+              570
+            ],
+            "error_mm": 9.159055650129233
+          },
+          "L3": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              258,
+              204,
+              523
+            ],
+            "error_mm": 5.177991283526397
+          },
+          "L4": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              253,
+              206,
+              477
+            ],
+            "error_mm": 2.9358851904787056
+          },
+          "L5": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              251,
+              193,
+              426
+            ],
+            "error_mm": 5.832360224710638
+          },
+          "T13": {
+            "truth_status": "absent",
+            "predicted_status": "absent",
+            "predicted_ijk": null
+          },
+          "L6": {
+            "truth_status": "absent",
+            "predicted_status": "absent",
+            "predicted_ijk": null
+          }
+        }
+      },
+      "answer_path": "runs/br040-ct-full-sol-xhigh-v1-20260917/ct-full__uk7tsH3/artifacts/app/answer/landmarks.json",
+      "host_replay_exact": true,
+      "world_rescore_max_difference_mm": 9.50350909079134e-14,
+      "success_counts_mm": {
+        "5": 1,
+        "10": 13,
+        "20": 23
+      },
+      "trace_audit": {
+        "actual_model_settings": [
+          [
+            "gpt-5.6-sol",
+            "xhigh"
+          ]
+        ],
+        "actual_input_image_blocks": 23,
+        "raw_session_sha256": {
+          "runs/br040-ct-full-sol-xhigh-v1-20260917/ct-full__uk7tsH3/agent/sessions/2026/09/17/rollout-2026-09-17T03-31-56-01a0ad6b-c46c-72e0-a00d-81e7dfe90ec2.jsonl": "bfa535739e0283a9d39ca3b5442436b6c3fd76c296d45920769360057fabe024"
+        },
+        "network_command_candidates": [],
+        "coordinate_check_called": true,
+        "provided_viewer_called": true,
+        "tool_calls": 35
+      },
+      "configured_model": "openai/gpt-5.6-sol",
+      "configured_effort": "xhigh"
+    },
+    {
+      "case": "ct-partial",
+      "model_setting": "terra-high",
+      "result_path": "runs/br039-ct-partial-terra-high-v1-20260917/ct-partial__DeU639y/result.json",
+      "task_checksum": "70a21f5cd3b6bbd892c5286423b10b23a01ee45019467c4f02bc5ac4d9bf0ff0",
+      "exception": null,
+      "agent_info": {
+        "name": "codex",
+        "version": "0.154.0",
+        "model_info": {
+          "name": "gpt-5.6-terra",
+          "provider": "openai"
+        }
+      },
+      "reward": {
+        "reward": 0.0
+      },
+      "agent_seconds": 458.780003,
+      "score": {
+        "contract_valid": true,
+        "reward": 0,
+        "requested": 26,
+        "counts": {
+          "observed": 13,
+          "out_of_fov": 11,
+          "absent": 2
+        },
+        "hallucinated": {
+          "out_of_fov": 1,
+          "absent": 0
+        },
+        "hallucination_rate": 0.07692307692307693,
+        "correct_rejections": {
+          "out_of_fov": 10,
+          "absent": 2
+        },
+        "uncertain_rejections": {
+          "out_of_fov": 0,
+          "absent": 0
+        },
+        "confusion": {
+          "out_of_fov->out_of_fov": 10,
+          "out_of_fov->observed": 1,
+          "observed->observed": 13,
+          "absent->absent": 2
+        },
+        "missed_visible": 0,
+        "localized_visible": 13,
+        "success_counts_mm": {
+          "5": 1,
+          "10": 2,
+          "20": 5
+        },
+        "errors_mm": {
+          "T5": 25.070585950000215,
+          "T6": 28.298445187280176,
+          "T7": 30.49077707276235,
+          "T8": 30.76484952759684,
+          "T9": 30.52329593881977,
+          "T10": 28.19158605702495,
+          "T11": 26.371371414469913,
+          "T12": 20.721113593736977,
+          "L1": 16.986117139323802,
+          "L2": 11.818566892009535,
+          "L3": 4.985808483634516,
+          "L4": 5.732244527906831,
+          "L5": 11.045169760326344
+        },
+        "mean_localized_error_mm": 20.846148580376322,
+        "extrapolation_errors_mm": {},
+        "rows": {
+          "C1": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "C2": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "C3": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "C4": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "C5": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "C6": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "C7": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "T1": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "T2": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "T3": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "T4": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              269.8,
+              154.6,
+              906.1
+            ]
+          },
+          "T5": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              265.9,
+              155.7,
+              873.2
+            ],
+            "error_mm": 25.070585950000215
+          },
+          "T6": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              266.2,
+              156.5,
+              837.2
+            ],
+            "error_mm": 28.298445187280176
+          },
+          "T7": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              265.4,
+              158.4,
+              803.0
+            ],
+            "error_mm": 30.49077707276235
+          },
+          "T8": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              264.1,
+              162.7,
+              768.9
+            ],
+            "error_mm": 30.76484952759684
+          },
+          "T9": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              261.8,
+              166.0,
+              735.6
+            ],
+            "error_mm": 30.52329593881977
+          },
+          "T10": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              259.4,
+              173.2,
+              704.1
+            ],
+            "error_mm": 28.19158605702495
+          },
+          "T11": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              256.6,
+              175.5,
+              672.6
+            ],
+            "error_mm": 26.371371414469913
+          },
+          "T12": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              254.6,
+              180.6,
+              639.2
+            ],
+            "error_mm": 20.721113593736977
+          },
+          "L1": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              257.7,
+              191.2,
+              601.9
+            ],
+            "error_mm": 16.986117139323802
+          },
+          "L2": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              256.4,
+              198.1,
+              562.2
+            ],
+            "error_mm": 11.818566892009535
+          },
+          "L3": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              254.4,
+              198.5,
+              523.9
+            ],
+            "error_mm": 4.985808483634516
+          },
+          "L4": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              251.8,
+              199.8,
+              487.2
+            ],
+            "error_mm": 5.732244527906831
+          },
+          "L5": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              248.5,
+              198.7,
+              449.2
+            ],
+            "error_mm": 11.045169760326344
+          },
+          "T13": {
+            "truth_status": "absent",
+            "predicted_status": "absent",
+            "predicted_ijk": null
+          },
+          "L6": {
+            "truth_status": "absent",
+            "predicted_status": "absent",
+            "predicted_ijk": null
+          }
+        }
+      },
+      "answer_path": "runs/br039-ct-partial-terra-high-v1-20260917/ct-partial__DeU639y/artifacts/app/answer/landmarks.json",
+      "host_replay_exact": true,
+      "world_rescore_max_difference_mm": 2.0961010704922955e-13,
+      "success_counts_mm": {
+        "5": 1,
+        "10": 2,
+        "20": 5
+      },
+      "trace_audit": {
+        "actual_model_settings": [
+          [
+            "gpt-5.6-terra",
+            "high"
+          ]
+        ],
+        "actual_input_image_blocks": 10,
+        "raw_session_sha256": {
+          "runs/br039-ct-partial-terra-high-v1-20260917/ct-partial__DeU639y/agent/sessions/2026/09/17/rollout-2026-09-17T02-58-49-01a0ad4d-73ab-7232-baec-00ac00209daa.jsonl": "027731522496a1cdc49ac82bd774bbe6a256ae5b510018d91d39b19f8cc05e0a"
+        },
+        "network_command_candidates": [],
+        "coordinate_check_called": true,
+        "provided_viewer_called": true,
+        "tool_calls": 31
+      }
+    },
+    {
+      "case": "ct-partial",
+      "model_setting": "sol-xhigh",
+      "result_path": "runs/br040-ct-partial-sol-xhigh-v1-20260917/ct-partial__53TnzeA/result.json",
+      "task_checksum": "70a21f5cd3b6bbd892c5286423b10b23a01ee45019467c4f02bc5ac4d9bf0ff0",
+      "exception": null,
+      "agent_info": {
+        "name": "codex",
+        "version": "0.154.0",
+        "model_info": {
+          "name": "gpt-5.6-sol",
+          "provider": "openai"
+        }
+      },
+      "reward": {
+        "reward": 0.0
+      },
+      "agent_seconds": 745.543318,
+      "score": {
+        "contract_valid": true,
+        "reward": 0,
+        "requested": 26,
+        "counts": {
+          "observed": 13,
+          "out_of_fov": 11,
+          "absent": 2
+        },
+        "hallucinated": {
+          "out_of_fov": 0,
+          "absent": 0
+        },
+        "hallucination_rate": 0.0,
+        "correct_rejections": {
+          "out_of_fov": 11,
+          "absent": 1
+        },
+        "uncertain_rejections": {
+          "out_of_fov": 0,
+          "absent": 1
+        },
+        "confusion": {
+          "out_of_fov->out_of_fov": 11,
+          "observed->out_of_fov": 1,
+          "observed->observed": 12,
+          "absent->uncertain": 1,
+          "absent->absent": 1
+        },
+        "missed_visible": 1,
+        "localized_visible": 12,
+        "success_counts_mm": {
+          "5": 4,
+          "10": 8,
+          "20": 12
+        },
+        "errors_mm": {
+          "T6": 12.897355887364368,
+          "T7": 5.622446113670493,
+          "T8": 3.5378464936853162,
+          "T9": 3.8928417102068367,
+          "T10": 6.802140030680622,
+          "T11": 12.117051455596691,
+          "T12": 11.823584681795019,
+          "L1": 10.572139084132875,
+          "L2": 9.890029880644375,
+          "L3": 5.31826176352766,
+          "L4": 2.542311282220186,
+          "L5": 4.3055560036534315
+        },
+        "mean_localized_error_mm": 7.443463698931489,
+        "extrapolation_errors_mm": {},
+        "rows": {
+          "C1": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "C2": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "C3": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "C4": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "C5": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "C6": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "C7": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "T1": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "T2": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "T3": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "T4": {
+            "truth_status": "out_of_fov",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "T5": {
+            "truth_status": "observed",
+            "predicted_status": "out_of_fov",
+            "predicted_ijk": null
+          },
+          "T6": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              269.0,
+              157.0,
+              894.0
+            ],
+            "error_mm": 12.897355887364368
+          },
+          "T7": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              268.5,
+              147.5,
+              853.0
+            ],
+            "error_mm": 5.622446113670493
+          },
+          "T8": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              269.0,
+              148.0,
+              813.0
+            ],
+            "error_mm": 3.5378464936853162
+          },
+          "T9": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              265.0,
+              155.5,
+              773.0
+            ],
+            "error_mm": 3.8928417102068367
+          },
+          "T10": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              260.5,
+              163.5,
+              733.0
+            ],
+            "error_mm": 6.802140030680622
+          },
+          "T11": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              258.5,
+              173.0,
+              693.0
+            ],
+            "error_mm": 12.117051455596691
+          },
+          "T12": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              257.5,
+              172.5,
+              652.0
+            ],
+            "error_mm": 11.823584681795019
+          },
+          "L1": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              258.5,
+              184.5,
+              610.0
+            ],
+            "error_mm": 10.572139084132875
+          },
+          "L2": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              261.5,
+              200.5,
+              566.0
+            ],
+            "error_mm": 9.890029880644375
+          },
+          "L3": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              257.0,
+              205.5,
+              523.0
+            ],
+            "error_mm": 5.31826176352766
+          },
+          "L4": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              253.0,
+              206.0,
+              478.0
+            ],
+            "error_mm": 2.542311282220186
+          },
+          "L5": {
+            "truth_status": "observed",
+            "predicted_status": "observed",
+            "predicted_ijk": [
+              251.5,
+              200.0,
+              432.0
+            ],
+            "error_mm": 4.3055560036534315
+          },
+          "T13": {
+            "truth_status": "absent",
+            "predicted_status": "uncertain",
+            "predicted_ijk": null
+          },
+          "L6": {
+            "truth_status": "absent",
+            "predicted_status": "absent",
+            "predicted_ijk": null
+          }
+        }
+      },
+      "answer_path": "runs/br040-ct-partial-sol-xhigh-v1-20260917/ct-partial__53TnzeA/artifacts/app/answer/landmarks.json",
+      "host_replay_exact": true,
+      "world_rescore_max_difference_mm": 1.0658141036401503e-13,
+      "success_counts_mm": {
+        "5": 4,
+        "10": 8,
+        "20": 12
+      },
+      "trace_audit": {
+        "actual_model_settings": [
+          [
+            "gpt-5.6-sol",
+            "xhigh"
+          ]
+        ],
+        "actual_input_image_blocks": 14,
+        "raw_session_sha256": {
+          "runs/br040-ct-partial-sol-xhigh-v1-20260917/ct-partial__53TnzeA/agent/sessions/2026/09/17/rollout-2026-09-17T03-44-39-01a0ad77-6b6d-76e2-a0a1-5ae6c5bcb90d.jsonl": "901bcb9c32db041f38a14d0eb9369d51af39e62196899caee35e2b146ebf1e52"
+        },
+        "network_command_candidates": [],
+        "coordinate_check_called": true,
+        "provided_viewer_called": true,
+        "tool_calls": 29
+      },
+      "configured_model": "openai/gpt-5.6-sol",
+      "configured_effort": "xhigh"
+    },
+    {
+      "case": "mri32-full",
+      "model_setting": "terra-high",
+      "result_path": "runs/br038-mri32-full-terra-high-v1-20260917/mri32-full__q5PAj85/result.json",
+      "task_checksum": "34ac2c5ce9b41520f528f6abdf283b734d0fdc901072140519f8ad32fdafed49",
+      "exception": null,
+      "agent_info": {
+        "name": "codex",
+        "version": "0.154.0",
+        "model_info": {
+          "name": "gpt-5.6-terra",
+          "provider": "openai"
+        }
+      },
+      "reward": {
+        "reward": 0.0
+      },
+      "agent_seconds": 264.6801,
+      "score": {
+        "reward": 0,
+        "accepted": {
+          "1": true,
+          "2": false,
+          "3": false,
+          "4": false,
+          "5": false,
+          "6": false,
+          "7": false,
+          "8": false,
+          "9": false,
+          "10": false,
+          "11": false,
+          "12": false,
+          "13": false,
+          "14": false,
+          "15": false,
+          "16": false,
+          "17": false,
+          "18": false,
+          "19": false,
+          "20": true,
+          "21": true,
+          "22": false,
+          "23": false,
+          "24": false,
+          "25": false,
+          "26": false,
+          "27": false,
+          "28": false,
+          "29": false,
+          "30": false,
+          "31": false,
+          "32": false
+        },
+        "accepted_count": 3,
+        "total": 32,
+        "errors_mm": {
+          "1": 0.7164036544741117,
+          "2": 4.7687990965160925,
+          "3": 5.540768481668285,
+          "4": 4.416797779763572,
+          "5": 8.259830244618637,
+          "6": 8.591972628412899,
+          "7": 7.496326123722225,
+          "8": 7.763833794836344,
+          "9": 5.952885442657462,
+          "10": 4.2944318998835795,
+          "11": 4.907765342620161,
+          "12": 5.345224558567549,
+          "13": 5.325400443633542,
+          "14": 7.365847982601061,
+          "15": 16.67986142605783,
+          "16": 17.26808121813138,
+          "17": 11.657903412107,
+          "18": 12.839470933887405,
+          "19": 23.86590112007579,
+          "20": 1.5551706103483045,
+          "21": 2.6162415919628983,
+          "22": 5.9392862953150525,
+          "23": 5.75691485270897,
+          "24": 3.912486570439454,
+          "25": 11.260994869449373,
+          "26": 12.32177024625653,
+          "27": 8.480663923753319,
+          "28": 10.26953259397962,
+          "29": 28.23523504015175,
+          "30": 27.41202358525995,
+          "31": 10.04060116156386,
+          "32": 10.015333754960933
+        },
+        "mean_mm": 9.402305021262029,
+        "max_mm": 28.23523504015175,
+        "contract_valid": true
+      },
+      "answer_path": "runs/br038-mri32-full-terra-high-v1-20260917/mri32-full__q5PAj85/artifacts/app/answer/landmarks.json",
+      "host_replay_exact": true,
+      "world_rescore_max_difference_mm": 1.0658141036401503e-14,
+      "success_counts_mm": {
+        "3": 3,
+        "5": 8,
+        "10": 20
+      },
+      "trace_audit": {
+        "actual_model_settings": [
+          [
+            "gpt-5.6-terra",
+            "high"
+          ]
+        ],
+        "actual_input_image_blocks": 36,
+        "raw_session_sha256": {
+          "runs/br038-mri32-full-terra-high-v1-20260917/mri32-full__q5PAj85/agent/sessions/2026/09/17/rollout-2026-09-17T02-18-31-01a0ad28-8fcc-7f80-abfe-3859235c6840.jsonl": "75d50cdbf76816b2aa7ed3f4d7fe0d2061ba7a4d9c6854f32aa16d6a997f2f62"
+        },
+        "network_command_candidates": [],
+        "coordinate_check_called": true,
+        "provided_viewer_called": true,
+        "tool_calls": 15
+      }
+    },
+    {
+      "case": "mri32-full",
+      "model_setting": "sol-xhigh",
+      "result_path": "runs/br040-mri32-full-sol-xhigh-v1-20260917/mri32-full__QjMqoBN/result.json",
+      "task_checksum": "34ac2c5ce9b41520f528f6abdf283b734d0fdc901072140519f8ad32fdafed49",
+      "exception": null,
+      "agent_info": {
+        "name": "codex",
+        "version": "0.154.0",
+        "model_info": {
+          "name": "gpt-5.6-sol",
+          "provider": "openai"
+        }
+      },
+      "reward": {
+        "reward": 0.0
+      },
+      "agent_seconds": 2008.976295,
+      "score": {
+        "reward": 0,
+        "accepted": {
+          "1": false,
+          "2": true,
+          "3": true,
+          "4": false,
+          "5": false,
+          "6": false,
+          "7": true,
+          "8": false,
+          "9": true,
+          "10": false,
+          "11": false,
+          "12": false,
+          "13": false,
+          "14": true,
+          "15": false,
+          "16": false,
+          "17": false,
+          "18": false,
+          "19": false,
+          "20": true,
+          "21": true,
+          "22": true,
+          "23": true,
+          "24": true,
+          "25": true,
+          "26": true,
+          "27": false,
+          "28": false,
+          "29": false,
+          "30": false,
+          "31": true,
+          "32": true
+        },
+        "accepted_count": 14,
+        "total": 32,
+        "errors_mm": {
+          "1": 8.806810193365596,
+          "2": 2.300554252151627,
+          "3": 0.945582182723371,
+          "4": 3.3652666584886473,
+          "5": 5.102531350979055,
+          "6": 3.9941393390954616,
+          "7": 1.8442617014182592,
+          "8": 3.9971091935453273,
+          "9": 1.5966290253696902,
+          "10": 4.674836067960477,
+          "11": 5.297285230018975,
+          "12": 4.999529253407946,
+          "13": 4.9886410272141175,
+          "14": 0.7981224199577411,
+          "15": 7.743308592648385,
+          "16": 6.364277317132445,
+          "17": 5.621946502133023,
+          "18": 4.67757446206721,
+          "19": 4.058025244810751,
+          "20": 0.8344728468220068,
+          "21": 1.1679748880485685,
+          "22": 2.2725865082750842,
+          "23": 1.3270701739343753,
+          "24": 1.6011722850542196,
+          "25": 2.4460961345008587,
+          "26": 1.9637383973289568,
+          "27": 6.614352083954072,
+          "28": 9.48894110662786,
+          "29": 3.670849104206462,
+          "30": 6.213494491540985,
+          "31": 2.261732903890839,
+          "32": 2.849271237462448
+        },
+        "mean_mm": 3.871505693004214,
+        "max_mm": 9.48894110662786,
+        "contract_valid": true
+      },
+      "answer_path": "runs/br040-mri32-full-sol-xhigh-v1-20260917/mri32-full__QjMqoBN/artifacts/app/answer/landmarks.json",
+      "host_replay_exact": true,
+      "world_rescore_max_difference_mm": 7.993605777301127e-15,
+      "success_counts_mm": {
+        "3": 14,
+        "5": 23,
+        "10": 32
+      },
+      "trace_audit": {
+        "actual_model_settings": [
+          [
+            "gpt-5.6-sol",
+            "xhigh"
+          ]
+        ],
+        "actual_input_image_blocks": 72,
+        "raw_session_sha256": {
+          "runs/br040-mri32-full-sol-xhigh-v1-20260917/mri32-full__QjMqoBN/agent/sessions/2026/09/17/rollout-2026-09-17T03-31-52-01a0ad6b-b46a-7123-8076-a62c3bf5c773.jsonl": "c0ec068eb14b4edefa3ec621e05c1986e7512c855d256195e2d90a7f8697ca23"
+        },
+        "network_command_candidates": [
+          "{'input': 'const r = await tools.web__run({search_query:[{q:\"AFIDs 32 anatomical fiducials protocol MRI GitHub landmarks fcsv template\"},{q:\"AFIDs protocol 32 points AC PC infracollicular sulcus mesencephalic sulcus PDF\"}],\"response_length\":\"long\"}); text(JSON.stringify(r));\\n'}",
+          "{'input': 'const r = await tools.web__run({open:[{ref_id:\"turn0search2\"}],\"response_length\":\"long\"}); text(JSON.stringify(r));\\n'}",
+          "{'input': 'const r = await tools.web__run({click:[{ref_id:\"turn1view0\",\"id\":44}],\"response_length\":\"medium\"}); text(JSON.stringify(r));\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"curl -L --fail --silent https://raw.githubusercontent.com/afids/afids-protocol/master/docs/afids_protocol/human_protocol.md | sed -n \\'1,260p\\'\",\"workdir\":\"/app\",\"yield_time_ms\":10000,\"max_output_tokens\":30000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"mkdir -p /app/afids_ref && for f in 01_AC 02_PC 03_ICS 04_PMJ 05_SIPF 06_RSLMS 07_LSLMS 08_RILMS 09_LILMS 10_CUL 11_IMS 12_RMB 13_LMB 14_PG 15_RLVAC 16_LLVAC 17_RLVPC 18_LLVPC 19_Genu 20_SPLE 21_RALTH 22_LALTH 23_RSAMTH 24_LSAMTH 25_RIAMTH 26_LIAMTH 27_RIGO 28_LIGO 29_RVOH 30_LVOH 31_ROSF 32_LOSF; do curl -L --fail --silent \\\\\"https://raw.githubusercontent.com/afids/afids-protocol/master/docs/img/human/${f}.png\\\\\" -o \\\\\"/app/afids_ref/${f}.png\\\\\" || true; done\\\\nfind /app/afids_ref -type f -printf \\'%f %s\\\\\\\\n\\'\",\"workdir\":\"/app\",\"yield_time_ms\":30000,\"max_output_tokens\":5000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"curl -L --fail --silent https://raw.githubusercontent.com/afids/afids-protocol/master/docs/assets/human_templates.json\",\"workdir\":\"/app\",\"yield_time_ms\":10000,\"max_output_tokens\":10000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"git clone --depth 1 https://github.com/afids/afids-data.git /tmp/afids-data >/tmp/afids_clone.log 2>&1 || { sed -n \\'1,120p\\' /tmp/afids_clone.log; exit 1; }\\\\nfind /tmp/afids-data -type f | head -100\",\"workdir\":\"/app\",\"yield_time_ms\":30000,\"max_output_tokens\":10000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"curl -L --fail https://github.com/afids/afids-data/archive/refs/heads/master.zip -o /tmp/afids-data.zip && unzip -q /tmp/afids-data.zip -d /tmp && find /tmp/afids-data-master -type f | head -120\",\"workdir\":\"/app\",\"yield_time_ms\":30000,\"max_output_tokens\":15000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"curl -L --fail --silent https://github.com/afids/tpl-MNI152NLin2009cAsym/archive/refs/heads/master.zip -o /tmp/tpl.zip || curl -L --fail --silent https://github.com/afids/tpl-MNI152NLin2009cAsym/archive/refs/heads/main.zip -o /tmp/tpl.zip\\\\nrm -rf /tmp/tpl_mni && mkdir /tmp/tpl_mni && python -m zipfile -e /tmp/tpl.zip /tmp/tpl_mni\\\\nfind /tmp/tpl_mni -type f -printf \\'%p %s\\\\\\\\n\\' | head -150\",\"workdir\":\"/app\",\"yield_time_ms\":30000,\"max_output_tokens\":20000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"curl -L --fail --silent https://github.com/afids/tpl-MNI152NLin2009cAsym/archive/refs/heads/main.zip -o /tmp/tpl_casym.zip\\\\nmkdir -p /tmp/tpl_casym\\\\npython -m zipfile -e /tmp/tpl_casym.zip /tmp/tpl_casym\\\\nfind /tmp/tpl_casym -type f -printf \\'%p %s\\\\\\\\n\\' | head -150\",\"workdir\":\"/app\",\"yield_time_ms\":30000,\"max_output_tokens\":20000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"curl -L --fail https://github.com/afids/tpl-MNI152NLin2009cAsym/archive/refs/heads/master.zip -o /tmp/tpl_casym.zip\\\\nmkdir -p /tmp/tpl_casym\\\\npython -m zipfile -e /tmp/tpl_casym.zip /tmp/tpl_casym\\\\nfind /tmp/tpl_casym -type f -printf \\'%p %s\\\\\\\\n\\' | head -150\",\"workdir\":\"/app\",\"yield_time_ms\":30000,\"max_output_tokens\":20000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"python -m pip install --quiet SimpleITK templateflow\",\"workdir\":\"/app\",\"yield_time_ms\":30000,\"max_output_tokens\":5000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"python - <<\\'PY\\'\\\\nfrom templateflow.api import get\\\\nprint(get(\\'MNI152NLin2009cAsym\\', resolution=1, suffix=\\'T1w\\'))\\\\nPY\",\"workdir\":\"/app\",\"yield_time_ms\":30000,\"max_output_tokens\":5000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"which python\\\\npython -V\\\\npython -m pip show SimpleITK templateflow || true\\\\npip -V\\\\npython3.12 -m pip show SimpleITK templateflow || true\",\"workdir\":\"/app\",\"yield_time_ms\":10000,\"max_output_tokens\":10000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"python -m pip install templateflow\",\"workdir\":\"/app\",\"yield_time_ms\":30000,\"max_output_tokens\":10000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"ls -la /usr/local/lib/python3.12/site-packages | rg templateflow\\\\nfind /usr/local/lib/python3.12/site-packages -maxdepth 2 -iname \\'*templateflow*\\' -print\",\"workdir\":\"/app\",\"yield_time_ms\":10000,\"max_output_tokens\":5000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"python - <<\\'PY\\'\\\\nimport sys, os\\\\nprint(sys.path)\\\\nprint(os.listdir(\\'/usr/local/lib/python3.12/site-packages/templateflow\\'))\\\\nPY\",\"workdir\":\"/app\",\"yield_time_ms\":10000,\"max_output_tokens\":5000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"python -c \\\\\"import templateflow; print(templateflow.__version__)\\\\\"\",\"workdir\":\"/app\",\"yield_time_ms\":10000,\"max_output_tokens\":5000}); text(r.output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"python - <<\\'PY\\'\\\\nfrom templateflow.api import get\\\\nprint(get(\\'MNI152NLin2009cAsym\\', resolution=1, suffix=\\'T1w\\'))\\\\nPY\",\"workdir\":\"/app\",\"yield_time_ms\":30000,\"max_output_tokens\":5000}); text(r.output);\\n'}",
+          "{'input': 'let{output,...rest}=await tools.exec_command({cmd:\"python - <<\\'PY\\'\\\\nimport nibabel as nib, numpy as np\\\\nfrom templateflow.api import get\\\\np=get(\\'MNI152NLin2009cAsym\\',resolution=1,suffix=\\'T1w\\')[-1]\\\\nn=nib.load(str(p));print(p,n.shape);print(n.affine)\\\\npts=np.loadtxt(\\'/tmp/tpl_casym/tpl-MNI152NLin2009cAsym-master/tpl-MNI152NLin2009cAsym_res-01_desc-groundtruth_afids.fcsv\\',delimiter=\\',\\',comments=\\'#\\',usecols=(1,2,3))\\\\nvox=nib.affines.apply_affine(np.linalg.inv(n.affine),pts)\\\\nfor i,v in enumerate(vox,1):print(i,pts[i-1],v)\\\\nPY\",\"workdir\":\"/app\",\"yield_time_ms\":10000,\"max_output_tokens\":10000});text(rest);text(output);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"python - <<\\'PY\\'\\\\nimport SimpleITK as s\\\\nfor p in [\\'/app/volume.nii.gz\\',\\'/root/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-01_T1w.nii.gz\\']:\\\\n im=s.ReadImage(p,s.sitkFloat32);print(p,im.GetSize(),im.GetSpacing(),im.GetOrigin(),im.GetDirection())\\\\nPY\",\"workdir\":\"/app\",\"yield_time_ms\":10000,\"max_output_tokens\":5000}); text(r.output);\\n'}",
+          "{'input': 'const patch = \"*** Begin Patch\\\\n*** Add File: /app/register_template.py\\\\n+\\\\\"\\\\\"\\\\\"Affine-register a general MNI template for landmark search-neighborhood proposals.\\\\\"\\\\\"\\\\\"\\\\n+from pathlib import Path\\\\n+import csv\\\\n+\\\\n+import numpy as np\\\\n+import nibabel as nib\\\\n+import SimpleITK as sitk\\\\n+from templateflow.api import get\\\\n+\\\\n+\\\\n+TARGET = \\\\\"/app/volume.nii.gz\\\\\"\\\\n+TEMPLATE = str(get(\\\\\"MNI152NLin2009cAsym\\\\\", resolution=1, suffix=\\\\\"T1w\\\\\")[-1])\\\\n+FCSV = \\\\\"/tmp/tpl_casym/tpl-MNI152NLin2009cAsym-master/tpl-MNI152NLin2009cAsym_res-01_desc-groundtruth_afids.fcsv\\\\\"\\\\n+\\\\n+\\\\n+def metric_setup(reg, pct, seed):\\\\n+    reg.SetMetricAsMattesMutualInformation(numberOfHistogramBins=48)\\\\n+    reg.SetMetricSamplingStrategy(reg.RANDOM)\\\\n+    reg.SetMetricSamplingPercentage(pct, seed)\\\\n+    reg.SetInterpolator(sitk.sitkLinear)\\\\n+    reg.SetShrinkFactorsPerLevel([8, 4, 2, 1])\\\\n+    reg.SetSmoothingSigmasPerLevel([3, 2, 1, 0])\\\\n+    reg.SmoothingSigmasAreSpecifiedInPhysicalUnitsOn()\\\\n+\\\\n+\\\\n+def main():\\\\n+    fixed = sitk.ReadImage(TARGET, sitk.sitkFloat32)\\\\n+    moving = sitk.ReadImage(TEMPLATE, sitk.sitkFloat32)\\\\n+    # SITK physical coordinates are LPS. Anchor the initialization on the\\\\n+    # subject-visible AC, avoiding a head/neck center-of-mass bias.\\\\n+    fixed_ac = np.array([-0.0, -21.56, -26.60])\\\\n+    moving_ac = np.array([0.2048614, -2.7228808, -4.8810528])\\\\n+    rigid0 = sitk.Euler3DTransform()\\\\n+    rigid0.SetCenter(fixed_ac.tolist())\\\\n+    rigid0.SetTranslation((moving_ac - fixed_ac).tolist())\\\\n+\\\\n+    reg = sitk.ImageRegistrationMethod()\\\\n+    metric_setup(reg, 0.04, 1701)\\\\n+    reg.SetOptimizerAsRegularStepGradientDescent(\\\\n+        learningRate=1.5, minStep=0.0005, numberOfIterations=250,\\\\n+        gradientMagnitudeTolerance=1e-7,\\\\n+    )\\\\n+    reg.SetOptimizerScalesFromPhysicalShift()\\\\n+    reg.SetInitialTransform(rigid0, inPlace=False)\\\\n+    rigid = reg.Execute(fixed, moving)\\\\n+    print(\\\\\"rigid\\\\\", reg.GetMetricValue(), reg.GetOptimizerStopConditionDescription())\\\\n+\\\\n+    rr = rigid.GetNthTransform(0) if isinstance(rigid, sitk.CompositeTransform) else rigid\\\\n+    aff0 = sitk.AffineTransform(3)\\\\n+    aff0.SetCenter(rr.GetCenter())\\\\n+    aff0.SetMatrix(rr.GetMatrix())\\\\n+    aff0.SetTranslation(rr.GetTranslation())\\\\n+    reg2 = sitk.ImageRegistrationMethod()\\\\n+    metric_setup(reg2, 0.06, 1702)\\\\n+    reg2.SetOptimizerAsGradientDescent(\\\\n+        learningRate=0.5, numberOfIterations=350,\\\\n+        convergenceMinimumValue=1e-7, convergenceWindowSize=15,\\\\n+    )\\\\n+    reg2.SetOptimizerScalesFromPhysicalShift()\\\\n+    reg2.SetInitialTransform(aff0, inPlace=False)\\\\n+    affine = reg2.Execute(fixed, moving)\\\\n+    aa = affine.GetNthTransform(0) if isinstance(affine, sitk.CompositeTransform) else affine\\\\n+    print(\\\\\"affine\\\\\", reg2.GetMetricValue(), reg2.GetOptimizerStopConditionDescription())\\\\n+    print(\\\\\"matrix\\\\\", aa.GetMatrix(), \\\\\"translation\\\\\", aa.GetTranslation(), \\\\\"center\\\\\", aa.GetCenter())\\\\n+    sitk.WriteTransform(aa, \\\\\"/app/mni_to_subject_search_inverse.tfm\\\\\")\\\\n+\\\\n+    inv = aa.GetInverse()  # moving/template physical LPS -> fixed/subject LPS\\\\n+    ni = nib.load(TARGET)\\\\n+    inv_vox = np.linalg.inv(ni.affine)\\\\n+    points = []\\\\n+    with open(FCSV, newline=\\\\\"\\\\\") as f:\\\\n+        for row in csv.reader(line for line in f if not line.startswith(\\\\\"#\\\\\")):\\\\n+            ras = np.array([float(row[1]), float(row[2]), float(row[3])])\\\\n+            lps = [-ras[0], -ras[1], ras[2]]\\\\n+            fixed_lps = np.array(inv.TransformPoint(lps))\\\\n+            fixed_ras = [-fixed_lps[0], -fixed_lps[1], fixed_lps[2]]\\\\n+            ijk = nib.affines.apply_affine(inv_vox, fixed_ras)\\\\n+            points.append((row[11], row[12], *ijk))\\\\n+    with open(\\\\\"/app/mni_affine_proposals.tsv\\\\\", \\\\\"w\\\\\") as f:\\\\n+        f.write(\\\\\"key\\\\\\\\tdesc\\\\\\\\ti\\\\\\\\tj\\\\\\\\tk\\\\\\\\n\\\\\")\\\\n+        for x in points:\\\\n+            f.write(\\\\\"\\\\\\\\t\\\\\".join([x[0], x[1], *(f\\\\\"{q:.3f}\\\\\" for q in x[2:])]) + \\\\\"\\\\\\\\n\\\\\")\\\\n+    print(Path(\\\\\"/app/mni_affine_proposals.tsv\\\\\").read_text())\\\\n+\\\\n+\\\\n+if __name__ == \\\\\"__main__\\\\\":\\\\n+    main()\\\\n*** End Patch\";\\nconst result = await tools.apply_patch(patch);\\ntext(result);\\n'}",
+          "{'input': 'const r = await tools.exec_command({cmd:\"python - <<\\'PY\\'\\\\nimport nibabel as nib,numpy as np\\\\np=\\'/root/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-01_T1w.nii.gz\\'\\\\na=np.asanyarray(nib.load(p).dataobj);print(a.min(),a.max(),np.percentile(a[a>0],[1,50,99]))\\\\nPY\\\\npython /app/montage.py 0 93 94 95 96 97 98 99 --volume /root/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-01_T1w.nii.gz --crop 90 145 50 95 --window 0 8000 --cols 4 --out /app/template_midline.png\",\"workdir\":\"/app\",\"yield_time_ms\":10000,\"max_output_tokens\":2000}); text(r.output); const im=await tools.view_image({path:\"/app/template_midline.png\",detail:\"original\"}); image(im.image_url);\\n'}",
+          "{'input': 'const patch = \"*** Begin Patch\\\\n*** Add File: /app/bspline_refine.py\\\\n+\\\\\"\\\\\"\\\\\"Nonlinear template alignment used only as an independent QC proposal source.\\\\\"\\\\\"\\\\\"\\\\n+import csv\\\\n+\\\\n+import nibabel as nib\\\\n+import numpy as np\\\\n+from scipy.optimize import least_squares\\\\n+import SimpleITK as sitk\\\\n+from templateflow.api import get\\\\n+\\\\n+\\\\n+fixed_path = \\\\\"/app/volume.nii.gz\\\\\"\\\\n+moving_path = str(get(\\\\\"MNI152NLin2009cAsym\\\\\", resolution=1, suffix=\\\\\"T1w\\\\\")[-1])\\\\n+fcsv = \\\\\"/tmp/tpl_casym/tpl-MNI152NLin2009cAsym-master/tpl-MNI152NLin2009cAsym_res-01_desc-groundtruth_afids.fcsv\\\\\"\\\\n+\\\\n+fixed = sitk.ReadImage(fixed_path, sitk.sitkFloat32)\\\\n+moving = sitk.ReadImage(moving_path, sitk.sitkFloat32)\\\\n+affine = sitk.ReadTransform(\\\\\"/app/mni_to_subject_search_inverse.tfm\\\\\")\\\\n+\\\\n+physical = [fixed.GetSize()[i] * fixed.GetSpacing()[i] for i in range(3)]\\\\n+mesh = [max(1, int(q / 35 + .5)) for q in physical]\\\\n+bs0 = sitk.BSplineTransformInitializer(fixed, mesh, order=3)\\\\n+reg = sitk.ImageRegistrationMethod()\\\\n+reg.SetMetricAsMattesMutualInformation(40)\\\\n+reg.SetMetricSamplingStrategy(reg.RANDOM)\\\\n+reg.SetMetricSamplingPercentage(0.035, 7021)\\\\n+reg.SetInterpolator(sitk.sitkLinear)\\\\n+reg.SetMovingInitialTransform(affine)\\\\n+reg.SetInitialTransformAsBSpline(bs0, inPlace=False, scaleFactors=[1, 2, 3])\\\\n+reg.SetShrinkFactorsPerLevel([4, 2, 1])\\\\n+reg.SetSmoothingSigmasPerLevel([2, 1, 0])\\\\n+reg.SmoothingSigmasAreSpecifiedInPhysicalUnitsOn()\\\\n+reg.SetOptimizerAsLBFGSB(\\\\n+    gradientConvergenceTolerance=1e-5, numberOfIterations=45,\\\\n+    maximumNumberOfCorrections=5, maximumNumberOfFunctionEvaluations=300,\\\\n+    costFunctionConvergenceFactor=1e7,\\\\n+)\\\\n+bs = reg.Execute(fixed, moving)\\\\n+print(\\\\\"bspline\\\\\", reg.GetMetricValue(), reg.GetOptimizerStopConditionDescription(), \\\\\"mesh\\\\\", mesh)\\\\n+sitk.WriteTransform(bs, \\\\\"/app/subject_bspline_to_mni.tfm\\\\\")\\\\n+\\\\n+# Order: optimized deformation first, then the moving initial affine.\\\\n+composite = sitk.CompositeTransform(3)\\\\n+composite.AddTransform(affine)\\\\n+composite.AddTransform(bs)\\\\n+\\\\n+target_ni = nib.load(fixed_path)\\\\n+target_inv = np.linalg.inv(target_ni.affine)\\\\n+\\\\n+def ras_to_lps(p):\\\\n+    return np.array([-p[0], -p[1], p[2]], float)\\\\n+\\\\n+def lps_to_ras(p):\\\\n+    return np.array([-p[0], -p[1], p[2]], float)\\\\n+\\\\n+rows = []\\\\n+with open(fcsv) as f:\\\\n+    for row in csv.reader(line for line in f if not line.startswith(\\\\\"#\\\\\")):\\\\n+        moving_point = ras_to_lps(np.array(row[1:4], float))\\\\n+        x0 = np.array(affine.GetInverse().TransformPoint(moving_point.tolist()))\\\\n+        sol = least_squares(\\\\n+            lambda x: np.array(composite.TransformPoint(x.tolist())) - moving_point,\\\\n+            x0, max_nfev=60, xtol=1e-7, ftol=1e-7, gtol=1e-7,\\\\n+        )\\\\n+        ijk = nib.affines.apply_affine(target_inv, lps_to_ras(sol.x))\\\\n+        rows.append((row[11], row[12], *ijk, np.linalg.norm(sol.fun)))\\\\n+with open(\\\\\"/app/mni_bspline_proposals.tsv\\\\\", \\\\\"w\\\\\") as f:\\\\n+    f.write(\\\\\"key\\\\\\\\tdesc\\\\\\\\ti\\\\\\\\tj\\\\\\\\tk\\\\\\\\troot_err_mm\\\\\\\\n\\\\\")\\\\n+    for x in rows:\\\\n+        f.write(\\\\\"\\\\\\\\t\\\\\".join([x[0], x[1], *(f\\\\\"{q:.3f}\\\\\" for q in x[2:])]) + \\\\\"\\\\\\\\n\\\\\")\\\\n+print(open(\\\\\"/app/mni_bspline_proposals.tsv\\\\\").read())\\\\n*** End Patch\";\\nconst result = await tools.apply_patch(patch);\\ntext(result);\\n'}"
+        ],
+        "coordinate_check_called": true,
+        "provided_viewer_called": true,
+        "tool_calls": 104
+      },
+      "configured_model": "openai/gpt-5.6-sol",
+      "configured_effort": "xhigh"
+    }
+  ],
+  "limitations": [
+    "One CT subject (paired full/partial) and one MRI subject. One attempt per condition per model.",
+    "MRI full task has no unavailable targets; no MRI hallucination rate is measured.",
+    "Partial CT lacks the upper enumeration anchor; absence and FOV classifications follow full-source convention."
+  ]
+}

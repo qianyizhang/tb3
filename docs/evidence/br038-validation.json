@@ -1,0 +1,241 @@
+{
+  "checks": [
+    {
+      "case": "ct-full",
+      "shape": [
+        512,
+        512,
+        107
+      ],
+      "points": 4,
+      "controls": {
+        "oracle": {
+          "reward": 1,
+          "accepted": {
+            "chin": true,
+            "mand_r": true,
+            "mand_l": true,
+            "odont_proc": true
+          },
+          "accepted_count": 4,
+          "total": 4,
+          "errors_mm": {
+            "chin": 0.0,
+            "mand_r": 0.0,
+            "mand_l": 0.0,
+            "odont_proc": 0.0
+          },
+          "mean_mm": 0.0,
+          "max_mm": 0.0,
+          "contract_valid": true
+        },
+        "wrong_space_tag": {
+          "reward": 0,
+          "contract_valid": false,
+          "invalid": "Expected tagged native zero-based voxel triples for exactly all named points"
+        },
+        "world_as_voxels": {
+          "reward": 0,
+          "contract_valid": false,
+          "invalid": "Expected tagged native zero-based voxel triples for exactly all named points"
+        },
+        "empty": {
+          "reward": 0,
+          "contract_valid": false,
+          "invalid": "Expected tagged native zero-based voxel triples for exactly all named points"
+        },
+        "axis_swap": {
+          "reward": 0,
+          "contract_valid": false,
+          "invalid": "Expected tagged native zero-based voxel triples for exactly all named points"
+        }
+      },
+      "reference_conversion": "Independent SimpleITK LPS physical -> continuous native voxel index; cross-checked against nibabel RAS affine",
+      "input_original_nifti_sha256": "d423062c82934bf5cd3e148fafd6c509a2e089bfb0b0549247446a72b3580ca1",
+      "native_array_exact": true
+    },
+    {
+      "case": "mri32-full",
+      "shape": [
+        224,
+        342,
+        342
+      ],
+      "points": 32,
+      "controls": {
+        "oracle": {
+          "reward": 1,
+          "accepted": {
+            "1": true,
+            "2": true,
+            "3": true,
+            "4": true,
+            "5": true,
+            "6": true,
+            "7": true,
+            "8": true,
+            "9": true,
+            "10": true,
+            "11": true,
+            "12": true,
+            "13": true,
+            "14": true,
+            "15": true,
+            "16": true,
+            "17": true,
+            "18": true,
+            "19": true,
+            "20": true,
+            "21": true,
+            "22": true,
+            "23": true,
+            "24": true,
+            "25": true,
+            "26": true,
+            "27": true,
+            "28": true,
+            "29": true,
+            "30": true,
+            "31": true,
+            "32": true
+          },
+          "accepted_count": 32,
+          "total": 32,
+          "errors_mm": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "4": 0.0,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.0,
+            "8": 0.0,
+            "9": 0.0,
+            "10": 0.0,
+            "11": 0.0,
+            "12": 0.0,
+            "13": 0.0,
+            "14": 0.0,
+            "15": 0.0,
+            "16": 0.0,
+            "17": 0.0,
+            "18": 0.0,
+            "19": 0.0,
+            "20": 0.0,
+            "21": 0.0,
+            "22": 0.0,
+            "23": 0.0,
+            "24": 0.0,
+            "25": 0.0,
+            "26": 0.0,
+            "27": 0.0,
+            "28": 0.0,
+            "29": 0.0,
+            "30": 0.0,
+            "31": 0.0,
+            "32": 0.0
+          },
+          "mean_mm": 0.0,
+          "max_mm": 0.0,
+          "contract_valid": true
+        },
+        "wrong_space_tag": {
+          "reward": 0,
+          "contract_valid": false,
+          "invalid": "Expected tagged native zero-based voxel triples for exactly all named points"
+        },
+        "world_as_voxels": {
+          "reward": 0,
+          "contract_valid": false,
+          "invalid": "Expected tagged native zero-based voxel triples for exactly all named points"
+        },
+        "empty": {
+          "reward": 0,
+          "contract_valid": false,
+          "invalid": "Expected tagged native zero-based voxel triples for exactly all named points"
+        },
+        "axis_swap": {
+          "reward": 0,
+          "accepted": {
+            "1": false,
+            "2": false,
+            "3": false,
+            "4": false,
+            "5": false,
+            "6": false,
+            "7": false,
+            "8": false,
+            "9": false,
+            "10": false,
+            "11": false,
+            "12": false,
+            "13": false,
+            "14": false,
+            "15": false,
+            "16": false,
+            "17": false,
+            "18": false,
+            "19": false,
+            "20": false,
+            "21": false,
+            "22": false,
+            "23": false,
+            "24": false,
+            "25": false,
+            "26": false,
+            "27": false,
+            "28": false,
+            "29": false,
+            "30": false,
+            "31": false,
+            "32": false
+          },
+          "accepted_count": 0,
+          "total": 32,
+          "errors_mm": {
+            "1": 57.541054456425954,
+            "2": 53.364534548331875,
+            "3": 40.94326697366311,
+            "4": 28.460166714788638,
+            "5": 46.985192782792204,
+            "6": 26.991538603893506,
+            "7": 62.58513556143876,
+            "8": 16.345790864296227,
+            "9": 44.85861240136805,
+            "10": 51.12947095837177,
+            "11": 44.35123393893173,
+            "12": 42.07700449359972,
+            "13": 47.543380319036274,
+            "14": 54.78100729986736,
+            "15": 66.67485379915458,
+            "16": 110.47823193341547,
+            "17": 55.53097727708335,
+            "18": 112.88346250998947,
+            "19": 67.12078892929114,
+            "20": 60.318822214061285,
+            "21": 29.938520731411803,
+            "22": 81.75247314999208,
+            "23": 10.408407007886849,
+            "24": 63.49029665223347,
+            "25": 8.256692456469512,
+            "26": 55.833286084881934,
+            "27": 25.07210931763408,
+            "28": 87.35040766998108,
+            "29": 22.5849325671637,
+            "30": 83.02118848253457,
+            "31": 30.482238187229253,
+            "32": 65.39578661781223
+          },
+          "mean_mm": 51.70471454703222,
+          "max_mm": 112.88346250998947,
+          "contract_valid": true
+        }
+      },
+      "reference_conversion": "Independent SimpleITK LPS physical -> continuous native voxel index; cross-checked against nibabel RAS affine",
+      "input_original_nifti_sha256": "ec9c3a73d97d1268aa8f0490c83c9382ad158d51ded4a0ac3d77de10e27e9a03",
+      "native_array_exact": true
+    }
+  ],
+  "renderer_asymmetric_ramp_test": "all pixels in all three native planes verified",
+  "trial_plan": "Two fresh Terra/high attempts, full CT four points and full MRI 32 points. 3600 seconds each; matched oracle/nop, zero retries. Same 5/3 mm tolerances. Different output representation and viewer scaffolding, so not an isolated ablation."
+}

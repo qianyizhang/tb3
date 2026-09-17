@@ -1,0 +1,47 @@
+{
+  "round": "BR-039",
+  "request": "Expand CT landmarks and assess invented detections when requested landmarks exceed available anatomy",
+  "selected_source": "https://github.com/anjany/verse",
+  "subject": "823",
+  "source_centroids_sha256": "71f0d225a54a2b5aaed152b1fe95568017a0229d77796a09f083654843ee3b46",
+  "source_ct_receipt": {
+    "url": "https://s3.bonescreen.de/public/VerSe-complete/dataset-verse20training.zip",
+    "member": "dataset-01training/rawdata/sub-verse823/sub-verse823_dir-iso_ct.nii.gz",
+    "archive_etag": "\"0519cf129d449e22fe11cbe1a849a527-21\"",
+    "bytes": 681843743,
+    "sha256": "7e0cf8f31a4e2d597b6bae2b9996e61b8b158e0ab0d44bf250144fac9b062d71",
+    "zip_crc_verified": true,
+    "license": "CC-BY-SA-4.0"
+  },
+  "source_annotation_direction": [
+    "L",
+    "A",
+    "S"
+  ],
+  "queries": 26,
+  "full_counts": {
+    "observed": 24,
+    "out_of_fov": 0,
+    "absent": 2
+  },
+  "partial_counts": {
+    "observed": 13,
+    "out_of_fov": 11,
+    "absent": 2
+  },
+  "crop_native_k_half_open": [
+    0,
+    920
+  ],
+  "nearest_gt_to_crop_boundary_mm": 7.490130615234407,
+  "absence_evidence": "VerSe source supplement subject 823: 7/12/5/5 and 24 presacral levels. T13/L6 absent under source convention; not inferred solely from missing annotations.",
+  "rejected_candidate": {
+    "name": "MedPelvis3D v3 case600001",
+    "url": "https://zenodo.org/records/21757686",
+    "md5": "fab2715b8061cc970e9f051b503de3d2",
+    "license": "CC-BY-4.0",
+    "reason": "Documented CSV LPS-to-NIfTI mapping produced anatomically incorrect overlays; did not guess a correction",
+    "audit_image": "runs/br039-ct-landmarks/source/audit.png",
+    "model_trials": 0
+  }
+}

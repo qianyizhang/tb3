@@ -1,0 +1,326 @@
+{
+  "cases": [
+    {
+      "case": "ct-C001",
+      "source": "PDDCA 1.4.1, 0522c0001; https://www.imagenglab.com/newsite/pddca/ ; Sharp et al. Public-domain dataset; retain attribution.",
+      "shape": [
+        512,
+        512,
+        107
+      ],
+      "affine": [
+        [
+          -1.1200000047683716,
+          0.0,
+          0.0,
+          286.7200012207031
+        ],
+        [
+          0.0,
+          -1.1200000047683716,
+          0.0,
+          286.7200012207031
+        ],
+        [
+          0.0,
+          0.0,
+          3.0,
+          61.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "points_ras_mm": {
+        "chin": [
+          -7.16592,
+          116.932,
+          223.0
+        ],
+        "mand_r": [
+          41.6039,
+          41.1211,
+          289.0
+        ],
+        "mand_l": [
+          -51.5899,
+          41.6039,
+          292.0
+        ],
+        "odont_proc": [
+          -5.39975,
+          32.4642,
+          259.0
+        ]
+      },
+      "points_voxel": {
+        "chin": [
+          262.39814282990295,
+          151.59642901592412,
+          54.0
+        ],
+        "mand_r": [
+          218.8536608724353,
+          219.28473229917148,
+          76.0
+        ],
+        "mand_l": [
+          302.0624105181762,
+          218.8536608724353,
+          77.0
+        ],
+        "odont_proc": [
+          260.8212053366167,
+          227.01410726626386,
+          66.0
+        ]
+      },
+      "tolerance_mm": 5.0,
+      "controls": {
+        "oracle": {
+          "reward": 1,
+          "errors_mm": {
+            "chin": 0.0,
+            "mand_r": 0.0,
+            "mand_l": 0.0,
+            "odont_proc": 0.0
+          },
+          "mean_mm": 0.0,
+          "max_mm": 0.0,
+          "within_3mm": 4,
+          "within_5mm": 4
+        },
+        "empty": {
+          "reward": 0,
+          "invalid": "Expected exactly the requested named finite RAS-mm triples"
+        },
+        "shift20mm": {
+          "reward": 0,
+          "errors_mm": {
+            "chin": 20.0,
+            "mand_r": 20.0,
+            "mand_l": 20.0,
+            "odont_proc": 20.0
+          },
+          "mean_mm": 20.0,
+          "max_mm": 20.0,
+          "within_3mm": 0,
+          "within_5mm": 0
+        },
+        "nonfinite": {
+          "reward": 0,
+          "invalid": "Expected exactly the requested named finite RAS-mm triples"
+        }
+      }
+    },
+    {
+      "case": "mri-C001",
+      "source": "AFIDs SNSX, ds004470 sub-C001; Taha et al. 2023; https://doi.org/10.18112/openneuro.ds004470 ; CC BY 4.0. Source Git revision 53f2c2caecf346b620971a5dd4672ca538441ede.",
+      "shape": [
+        224,
+        342,
+        342
+      ],
+      "affine": [
+        [
+          0.7000045776367188,
+          0.0,
+          -0.0,
+          -78.05101013183594
+        ],
+        [
+          0.0,
+          0.7017543911933899,
+          -0.0,
+          -104.04400634765625
+        ],
+        [
+          0.0,
+          0.0,
+          0.7017543911933899,
+          -138.1844482421875
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "points_ras_mm": {
+        "AC": [
+          0.604027666666667,
+          17.9622333333333,
+          -18.5943666666667
+        ],
+        "PC": [
+          -0.192418333333333,
+          -8.27689666666667,
+          -22.3497333333333
+        ],
+        "infracollicular_sulcus": [
+          -0.724202666666667,
+          -19.5578,
+          -31.6769666666667
+        ],
+        "pontomesencephalic_junction": [
+          -0.859867,
+          -8.27600333333333,
+          -40.6508666666667
+        ],
+        "right_mammillary_body": [
+          1.97893333333333,
+          8.36705666666667,
+          -28.1644
+        ],
+        "left_mammillary_body": [
+          -1.84155,
+          8.17794333333333,
+          -28.1243
+        ],
+        "genu": [
+          1.97961,
+          49.5474,
+          -10.433
+        ],
+        "splenium": [
+          0.238346333333333,
+          -18.3611666666667,
+          -16.9943333333333
+        ]
+      },
+      "points_voxel": {
+        "AC": [
+          112.36360491248416,
+          173.85889025006045,
+          170.41586497542
+        ],
+        "PC": [
+          111.22583235292622,
+          136.46813027864337,
+          165.0644675152911
+        ],
+        "infracollicular_sulcus": [
+          110.46614541612263,
+          120.39284314841359,
+          151.77316011431898
+        ],
+        "pontomesencephalic_junction": [
+          110.27234049303006,
+          136.46940327863388,
+          138.98535270959556
+        ],
+        "right_mammillary_body": [
+          114.32774302042121,
+          160.18576360193325,
+          156.77856757702585
+        ],
+        "left_mammillary_body": [
+          108.86994537825201,
+          159.91627710394107,
+          156.8357100766001
+        ],
+        "genu": [
+          114.32870968076642,
+          218.86775241471835,
+          182.0458123887702
+        ],
+        "splenium": [
+          111.84120642393725,
+          122.09804563570879,
+          172.69591245843242
+        ]
+      },
+      "tolerance_mm": 3.0,
+      "controls": {
+        "oracle": {
+          "reward": 1,
+          "errors_mm": {
+            "AC": 0.0,
+            "PC": 0.0,
+            "infracollicular_sulcus": 0.0,
+            "pontomesencephalic_junction": 0.0,
+            "right_mammillary_body": 0.0,
+            "left_mammillary_body": 0.0,
+            "genu": 0.0,
+            "splenium": 0.0
+          },
+          "mean_mm": 0.0,
+          "max_mm": 0.0,
+          "within_3mm": 8,
+          "within_5mm": 8
+        },
+        "empty": {
+          "reward": 0,
+          "invalid": "Expected exactly the requested named finite RAS-mm triples"
+        },
+        "shift20mm": {
+          "reward": 0,
+          "errors_mm": {
+            "AC": 20.0,
+            "PC": 20.0,
+            "infracollicular_sulcus": 20.0,
+            "pontomesencephalic_junction": 20.0,
+            "right_mammillary_body": 20.0,
+            "left_mammillary_body": 20.0,
+            "genu": 20.0,
+            "splenium": 20.0
+          },
+          "mean_mm": 20.0,
+          "max_mm": 20.0,
+          "within_3mm": 0,
+          "within_5mm": 0
+        },
+        "nonfinite": {
+          "reward": 0,
+          "invalid": "Expected exactly the requested named finite RAS-mm triples"
+        }
+      }
+    }
+  ],
+  "mri_rater_uncertainty": {
+    "AC": {
+      "max_rater_distance_to_mean_mm": 0.3019082390904007
+    },
+    "PC": {
+      "max_rater_distance_to_mean_mm": 0.8693821021996025
+    },
+    "infracollicular_sulcus": {
+      "max_rater_distance_to_mean_mm": 1.4349400228309934
+    },
+    "pontomesencephalic_junction": {
+      "max_rater_distance_to_mean_mm": 0.9716820135129385
+    },
+    "right_mammillary_body": {
+      "max_rater_distance_to_mean_mm": 0.30766475644044294
+    },
+    "left_mammillary_body": {
+      "max_rater_distance_to_mean_mm": 0.2969023145937267
+    },
+    "genu": {
+      "max_rater_distance_to_mean_mm": 0.8595005666664803
+    },
+    "splenium": {
+      "max_rater_distance_to_mean_mm": 1.5397965692262736
+    }
+  },
+  "selection": "First source-order case for each modality; landmark subset fixed by clear textual definitions. Occipital CT landmark excluded because source definition depends on illustration. No outcome-based selection.",
+  "source_sha256": {
+    "protocol-tree.json": "0a90fb85163944d97e47d8ca27d4c73978b44f20e8ef5f656ed1fdec1687c968",
+    "mri-tree.json": "c8719ef07aa06e3089c541c107391e01b280c56ea412e6f24be6e7dc37149574",
+    "mri-rater2.fcsv": "3391db6709a736a6681bf1f8d5b67b51b02355bd97f73e42b51848aa02f3a7f8",
+    "pddca.odt": "182eee40d68a63efea6f3aada73725f3f1c05d0156bc53aaef1c0f1be5d6241d",
+    "mri-pointer.txt": "0fecdef819f2b6360be0fae1b1fcfd927711da0b3f37af56155976f18daee489",
+    "ct-C001.nii.gz": "d423062c82934bf5cd3e148fafd6c509a2e089bfb0b0549247446a72b3580ca1",
+    "mri-rater3.fcsv": "4b0a9ce4c0fd0668b96f209285cfc921ee8937b706e151cb17223e25f5db0891",
+    "PDDCA-1.4.1_part1.zip": "5b47b94f1e6aaad0a10c694906bd40ee8bcfc701e6d3bcbe3f12005815b721ef",
+    "mri-rater1.fcsv": "e0786e6db19f01b2290c1ee99269b90f3eaff5628bb931a0a6abd93b4723c045",
+    "mri-C001.nii.gz": "4569c5e45fa61362ebde1e214fee1e5385978000d298c8da82f99f10e4b23688",
+    "mri-C001.fcsv": "d617ebb0ae555772844919b35e4c1fe19e25dbe38b322f13e7b65795bbe958d7",
+    "0522c0001/img.nrrd": "cabcbbc97e05318e6091716dc2ad472380ccb6988bb644594ece87e3ddad89f6",
+    "0522c0001/Landmarks_0001.fcsv": "8ad3a9f27e41856dc6f8134355ef84a25c8a8e09ced3ac59bc3e1f6c81a34b39"
+  }
+}

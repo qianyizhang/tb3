@@ -221,6 +221,25 @@ The user requested closeout after the brain screen. The [site chapter](../site/i
 consolidates this branch’s findings and the airway scope correction. No additional
 research or trial is queued. The separate cardiac BR-025 retains its original ID.
 
+- **BR-036 (2026-09-17): [Semantic landmark localization](research-rounds/BR-036-semantic-landmarks.md).**
+  User-authorized CT/MRI capability pilot with manual point ground truth.
+  [Completed results](research-rounds/BR-036-results.md): full CT 1/4, full MRI
+  0/8, cropped 32-point MRI 0/32, cropped CT 2/4 query rules met. Four normal
+  Terra/high completions and eight healthy controls. Cropped CT correctly marks
+  2/2 outside targets; cropped MRI marks none of seven.
+  [Interpretation](research-rounds/BR-036-traces.md): precision and coordinate-anchoring
+  concerns; two subjects, no hard-benchmark or clinical-validation claim.
+
+- **BR-038 (2026-09-17): [Full-volume 3D landmark coordinate audit](research-rounds/BR-038-volume-landmarks.md).**
+  User questioned poor localization and requested unambiguous volume-to-3D outputs.
+  Independent old-input/coordinate audit passes; new complete CT and 32-point MRI
+  tasks use native zero-based voxel output plus a checked coordinate viewer.
+  [Completed retest](research-rounds/BR-038-results.md): full CT 2/4 at 5 mm,
+  full MRI 3/32 at 3 mm. Both use the checked viewer and pass the voxel contract;
+  four controls and independent physical rescoring agree.
+  [Interpretation](research-rounds/BR-038-traces.md): no evaluator-wide frame
+  mismatch found; large subject-localization errors remain.
+
 ## How to read the record
 
 BR-001 was assigned retrospectively to the six original pilots. BR-002 came from
@@ -235,3 +254,11 @@ not additional local model trials. Keep their denominators separate.
 
 The former [round template](archive/operations.md#historical-round-template)
 is retained for reference. No new round or trial is authorized by this register.
+
+## BR-039 — Expanded CT landmarks and unavailable targets
+
+New user-requested follow-up to BR-038 on 2026-09-17: expand CT beyond four landmarks and measure hallucinations when the query set exceeds the scan coverage. [Plan and sources](research-rounds/BR-039-ct-landmarks.md). [Completed results](research-rounds/BR-039-results.md): 26 requests per CT; no invented T13/L6, one outside-target false detection in the partial scan; localization remains weak.
+
+## BR-040 — Sol/xhigh CT and MRI landmarks
+
+User-requested model comparison on unchanged BR-039 full/partial CT and BR-038 full MRI, 2026-09-17. [Plan](research-rounds/BR-040-sol-landmarks.md). Three fresh Sol/xhigh attempts, same-byte controls retained; no retries. [Completed results](research-rounds/BR-040-results.md): full CT 1/24 at 5 mm, partial CT 4/13 at 5 mm with zero false unavailable detections, MRI 14/32 at 3 mm with allowed generic atlas assistance.

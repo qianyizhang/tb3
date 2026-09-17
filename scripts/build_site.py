@@ -18,6 +18,7 @@ CHAPTERS = {
     'registration': 'Registration',
     'vessels': 'Vessels & airways',
     'cardiac': 'Dynamic heart',
+    'landmarks': 'CT & MRI landmarks',
 }
 
 
@@ -32,6 +33,8 @@ def load_chapters(local_scans=None):
     vessel_viewer = (ROOT / 'site/vessels.js').read_text()
     cardiac = (ROOT / 'site/cardiac-figures.json').read_text()
     cardiac_viewer = (ROOT / 'site/cardiac.js').read_text()
+    landmarks = (ROOT / 'site/landmark-figures.json').read_text()
+    landmark_viewer = (ROOT / 'site/landmarks.js').read_text()
     for key, chapter in chapters.items():
         chapter = chapter.replace('<link rel="stylesheet" href="../report.css">', '<style data-report-theme>' + css + '</style>')
         chapter = chapter.replace('__SCAN_FIGURES__', figures)
@@ -42,6 +45,8 @@ def load_chapters(local_scans=None):
         chapter = chapter.replace('<script src="../vessels.js"></script>', '<script>' + vessel_viewer + '</script>')
         chapter = chapter.replace('__CARDIAC_FIGURES__', cardiac)
         chapter = chapter.replace('<script src="../cardiac.js"></script>', '<script>' + cardiac_viewer + '</script>')
+        chapter = chapter.replace('__LANDMARK_FIGURES__', landmarks)
+        chapter = chapter.replace('<script src="../landmarks.js"></script>', '<script>' + landmark_viewer + '</script>')
         if local_scans is not None:
             config = json.dumps(local_scans).replace('<', '\\u003c')
             chapter = chapter.replace('<script id="local-scans" type="application/json">null</script>', '<script id="local-scans" type="application/json">' + config + '</script>')

@@ -1,0 +1,65 @@
+{
+  "round": "BR-036",
+  "trials": [
+    {
+      "case": "ct-C001",
+      "runtime_model": {
+        "name": "gpt-5.6-terra",
+        "provider": "openai"
+      },
+      "configured_effort": "high",
+      "tool_call_count": 34,
+      "web_calls": [],
+      "trajectory_sha256": "a17d7b0294c3873e2225e14ef0d9d2ccf2d94252a02d1ec8a5107d4001b85014",
+      "source_exposure_review": "No web calls observed; recorded shell commands separately reviewed for retrieval."
+    },
+    {
+      "case": "mri-C001",
+      "runtime_model": {
+        "name": "gpt-5.6-terra",
+        "provider": "openai"
+      },
+      "configured_effort": "high",
+      "tool_call_count": 28,
+      "web_calls": [],
+      "trajectory_sha256": "9e03e386748462959acd28c5a02fa932cbabca70869ac9c48dde17bd4c7de450",
+      "source_exposure_review": "No web calls observed; recorded shell commands separately reviewed for retrieval."
+    },
+    {
+      "case": "mri32-crop",
+      "runtime_model": {
+        "name": "gpt-5.6-terra",
+        "provider": "openai"
+      },
+      "configured_effort": "high",
+      "tool_call_count": 27,
+      "web_calls": [
+        {
+          "input": "const r = await tools.web__run({\"search_query\":[{\"q\":\"AFID anatomical fiducials MNI coordinates AC PC pineal mammillary body csv\"}],\"response_length\":\"medium\"});text(r.content.map(x=>x.text||\"\").join(\"\\n\"));\n"
+        },
+        {
+          "input": "const r = await tools.web__run({\"search_query\":[{\"q\":\"AFID anatomical fiducials MNI coordinates AC PC pineal mammillary body csv\"}],\"response_length\":\"medium\"});text(JSON.stringify(r));\n"
+        }
+      ],
+      "trajectory_sha256": "36ca7151474c39f417dec48ec78005e7ec0fdc2e288ce19327f4006f864d5854",
+      "source_exposure_review": "General AFIDs/MNI-coordinate search returned protocol and dataset documentation; no observed subject-specific annotation retrieval."
+    },
+    {
+      "case": "ct-crop",
+      "runtime_model": {
+        "name": "gpt-5.6-terra",
+        "provider": "openai"
+      },
+      "configured_effort": "high",
+      "tool_call_count": 15,
+      "web_calls": [],
+      "trajectory_sha256": "580907ba4a6c35e8188a3f6bb4476997f9adedae691fc780776a8ec366e9e132",
+      "source_exposure_review": "No web calls observed; recorded shell commands separately reviewed for retrieval."
+    }
+  ],
+  "interpretation": {
+    "ct_full": "Predictions fall near named structures. Left condyle error is dominated by a 6 mm inferior shift; chin also has a lateral offset. No gross LPS/RAS sign inversion.",
+    "mri32_crop": "Submitted AC=[0,0,0] and PC=[0,-24,0]. Public commentary assumes AC-PC alignment. All 32 predictions were inside and called observed. Subject-space source AC is [0.604,17.962,-18.594]; native reference overlays and derivative metadata support the supplied frame. This suggests inappropriate coordinate anchoring, not proof of a single causal mechanism.",
+    "mri_full": "No observed web lookup. Errors persist with full volume and eight queries. No causal comparison to 32/crop because query set and attempt differ."
+  }
+}

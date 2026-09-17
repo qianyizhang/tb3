@@ -1,0 +1,41 @@
+{
+  "round": "BR-040",
+  "case": "mri32-full",
+  "archives": {
+    "tpl_casym.zip": {
+      "sha256": "a5cbb97793da4f3aae7be7935228532f7fd1031d4b0d6f40f3ea1584653ce075",
+      "entries": 15,
+      "fcsv_entries": [
+        "tpl-MNI152NLin2009cAsym-master/raters/tpl-MNI152NLin2009cAsym_res-01_desc-rater01_afids.fcsv",
+        "tpl-MNI152NLin2009cAsym-master/raters/tpl-MNI152NLin2009cAsym_res-01_desc-rater02_afids.fcsv",
+        "tpl-MNI152NLin2009cAsym-master/raters/tpl-MNI152NLin2009cAsym_res-01_desc-rater03_afids.fcsv",
+        "tpl-MNI152NLin2009cAsym-master/raters/tpl-MNI152NLin2009cAsym_res-01_desc-rater04_afids.fcsv",
+        "tpl-MNI152NLin2009cAsym-master/tpl-MNI152NLin2009cAsym_res-01_desc-groundtruth_afids.fcsv"
+      ],
+      "subject_metadata_mentions": {},
+      "source": "Copied read-only from active Sol MRI container after model download; no model inputs changed"
+    },
+    "afids-data.zip": {
+      "sha256": "79f04b23750fd7229687044c41ce6281b85ccf6bcd6b38b8dd30e325cb2ac0dd",
+      "entries": 37,
+      "fcsv_entries": [],
+      "subject_metadata_mentions": {
+        "afids-data-main/.gitmodules": {
+          "ds004470": 2
+        },
+        "afids-data-main/README.md": {
+          "ds004470": 1
+        }
+      },
+      "source": "Copied read-only from active Sol MRI container after model download; no model inputs changed"
+    }
+  },
+  "interpretation": "Protocol illustrations and labelled generic MNI template were consulted. The afids-data archive contained dataset-index metadata including the SNSX URL, but no FCSV files or C001 mentions. The separate template archive contained MNI template/rater points, not source-subject annotations. Final preserved command review found no target-subject annotation retrieval. This is atlas-assisted agent performance under the existing general-reference allowance, not unaided visual localization.",
+  "allowed_by_frozen_instruction": "General anatomical references/software are allowed; source-subject labels, prior solutions and case-specific annotation retrieval are not.",
+  "registration": "Generic template affine registration produced landmark proposals. B-spline refinement first failed with an optimizer parameter-size error; a subsequent run ended with exit 143 and no proposal files were reported. The model then completed manual final checks and submitted normally.",
+  "raw_session_sha256": {
+    "runs/br040-mri32-full-sol-xhigh-v1-20260917/mri32-full__QjMqoBN/agent/sessions/2026/09/17/rollout-2026-09-17T03-31-52-01a0ad6b-b46a-7123-8076-a62c3bf5c773.jsonl": "c0ec068eb14b4edefa3ec621e05c1986e7512c855d256195e2d90a7f8697ca23"
+  },
+  "actual_image_blocks": 72,
+  "image_count_note": "Includes subject views and general reference/template images; not 72 unique subject scans."
+}

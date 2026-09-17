@@ -1,0 +1,22 @@
+"""Write concise results with source-bound interpretation and per-point diagnostics."""
+from pathlib import Path
+import json,numpy as np
+ROOT=Path(__file__).resolve().parents[4];B=ROOT/'runs/br039-ct-landmarks';r=json.loads((B/'results.json').read_text())
+models=[x for x in r['trials'] if x['phase']=='terra-high'];assert len(models)==2
+lines=['# BR-039 — Expanded CT landmark results','','The previous CT pilot contained four landmarks because it reused the small PDDCA subset. This fresh test requests 26 named vertebral centres from full 3D CT intensity arrays, with available and unavailable targets mixed. Source: VerSe subject 823, original native geometry and losslessly preserved intensities.','', '| Input | Requested | Visible / outside / absent | ≤5 / ≤10 / ≤20 mm | Invented outside | Invented absent | Correct rejection outside / absent |','|---|---:|---|---|---|---|---|']
+diag={}
+for x in models:
+ s=x['score'];assert s['contract_valid'] and not x['exception'];c=s['counts'];h=s['hallucinated'];q=s['correct_rejections'];v=s['success_counts_mm']
+ lines.append(f"| {x['case']} | 26 | {c['observed']} / {c['out_of_fov']} / {c['absent']} | {v['5']} / {v['10']} / {v['20']} of {c['observed']} | {h['out_of_fov']} / {c['out_of_fov']} | {h['absent']} / {c['absent']} | {q['out_of_fov']} / {q['absent']} |")
+ truth=json.loads((B/'tasks'/x['case']/'tests/truth.json').read_text());linear=np.array(truth['linear_voxel_to_mm']);out={}
+ for key,row in s['rows'].items():
+  if row['predicted_status']=='observed':
+   p=np.array(row['predicted_ijk']);near=sorted((float(np.linalg.norm(linear@(p-np.array(v)))),k) for k,v in truth['source_ijk'].items())
+   out[key]={'nearest_source_centroid':near[0][1],'nearest_distance_mm':near[0][0],'named_target_error_mm':row.get('error_mm'),'reference_status':row['truth_status']}
+ diag[x['case']]=out
+ lines+=[]
+lines+=['','Each localization numerator uses all visible targets as its denominator, including missed targets. A 0/0 outside cell means that condition had no outside targets, not an estimated zero population rate. Absent targets are T13 and L6 under the published source numbering convention.','']
+for x in models:
+ s=x['score'];lines+=[f"## {x['case']}", '',f"Normal completion in {x.get('agent_seconds',0):.1f} seconds. Mean error among returned visible points: {s['mean_localized_error_mm']:.3f} mm. Visible omissions: {s['missed_visible']}. Uncertain negatives: {s['uncertain_rejections']}.",'',f"Status confusion: `{s['confusion']}`.",'', 'Invented observed detections: '+(', '.join(k for k,v in s['rows'].items() if v['truth_status']!='observed' and v['predicted_status']=='observed') or 'none')+'.','']
+lines+=['## Validity and limits','','- Same frozen bytes for reference, no-op and Terra within each condition; reference reward 1 and no-op 0 in both. Terra/high, one attempt per condition, no retries.','- Source centroid directions match the CT; C2–L5 points lie in the matching private source bone labels. C1 is the centre of the atlas ring. SimpleITK and nibabel agree; all rendered axes pass an asymmetric-array check.','- Host score replay matches the container score exactly. Independent voxel→world distance calculations agree to numerical precision.','- Source and partial scans share native geometry; the partial scan contains all voxels k=0:920. The nearest reference centre is 7.49 mm from its boundary.','- One subject and two correlated conditions. T13/L6 classification follows the source convention. Missing cranial context in the partial scan can make enumeration uncertain; uncertainty is not hallucination.','- The richer 57-point MedPelvis source was rejected before trials after its documented coordinate mapping failed anatomy overlays. No heuristic repair or model-failure claim was made from it.','', '## Artifacts','', '- [Curation and protocol](BR-039-ct-landmarks.md)','- [Results JSON](../evidence/br039-results.json)','- [Curation evidence](../evidence/br039-curation.json)','- [Frozen task manifest](../evidence/br039-freeze.json)','- [Validation controls](../evidence/br039-validation.json)','- Local generated review: `runs/br039-ct-landmarks/review/index.html`','- Per-point nearest-reference diagnostics: `runs/br039-ct-landmarks/nearest-reference.json`. A nearest-neighbour match is a descriptive diagnostic, not an alternative score.','']
+(ROOT/'docs/research-rounds/BR-039-results.md').write_text('\n'.join(lines));(B/'nearest-reference.json').write_text(json.dumps(diag,indent=2)+'\n')

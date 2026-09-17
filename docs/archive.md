@@ -210,3 +210,11 @@ integrity checks, not additional task trials or submission qualification.
 ## Earlier boundary-audit presentation
 
 [Four BR-004 Sol cases](../site/index.html#boundaries) explains three reviewed misses and one source hold, with retained images and later dispositions. [Shared interactive-series page](../site/index.html#boundaries). Case 32 is ruled out as too nitpicky; case 61 has a clearly labeled omission-plane comparison.
+
+## Semantic CT/MRI landmarks — BR-036 and BR-038–040
+
+The [site chapter](../site/index.html#landmarks) consolidates the volume/coordinate
+audit, expanded CT unavailable-target experiment and matched Sol/xhigh comparison.
+The [session index](research-landmark-session.md) retains all protocols, scores,
+source audits and local reproduction paths. Original evidence remains unchanged;
+this closeout queues no further trial.
