@@ -31,10 +31,17 @@ reviews own the observations. [Submission status](submission.md) is separate.
 | BR-013 | 2026-09-15 | [Upper-abdominal reasoning](research-rounds/BR-013-abdominal-direction.md): identity inference and paired identity audit | Complete; A02 retained as secondary diagnostic | [Results](research-rounds/BR-013-results.md): Sol A01 13/13, A02 9/11, A03 exact corrections. Conditional Terra/max A02 10/11; both call the compact pancreas gallbladder. Later exact-inventory and CT versions pass; see the [current verdict](anatomy-experiments.md). |
 | BR-014 | 2026-09-15 | [Inventory and components](research-rounds/BR-014-inventory-components.md): exact present classes and fragmented pancreas/duodenum identity | Complete; both tested conditions retired for Sol | [Results](research-rounds/BR-014-results.md): I01 exact inventory resolves the historical miss, 11/11. F01 four substantial fragments passes 15/15 in 223 s / 6,620 output tokens. Four matched Docker controls; no conditional Terra trigger. Fragmentation remains a stress axis, not a proven hard task. |
 | BR-015 | 2026-09-15 | [CT evidence and anatomical identity](research-rounds/BR-015-clinical-evidence.md): atypical organs and eight real venous structures | Complete; both conditions retired | [Results](research-rounds/BR-015-results.md): Sol C01 11/11 in 136 s; V01 8/8 in 98 s. Four matched Docker controls; no Terra. [Trace walkthroughs](anatomy-traces.md) distinguish generated measurements from public assessments. |
+| BR-016 | 2026-09-15 | [Aneurysm localization](research-rounds/BR-016-aneurysm-localization.md): imaging-backed detection with negative and multi-lesion controls | Trials complete; human review pending | [Results](research-rounds/BR-016-results.md): one reference-label miss, one clean pass, one source-assisted pass; three normal Sol/xhigh completions. Clinical review pending; tiny multi-lesion case held before trials. |
 | BR-017 | 2026-09-15 | [Absorbed anatomy](research-rounds/BR-017-absorbed-anatomy.md): whole/partial pancreatic inclusion, unchanged control and focused scope | Complete; one synthetic detection miss and three passes | [Results](research-rounds/BR-017-results.md) · [Trace analysis](research-rounds/BR-017-traces.md): Sol missed a 21 mL partial inclusion in a 13-mask audit (404 s / 10,593 output tokens). Whole absorption, unchanged control and identical-data two-mask audit passed. Four single trials; eight matched Docker controls. |
 
 
-## User-requested registration follow-ups
+## Subsequent user-requested preparation
+
+- **BR-018 (2026-09-15): [Report-backed diagnostic reading](research-rounds/BR-018-report-backed-diagnosis.md).**
+  New request for realistic Terra/Sol interpretation with independent clinical
+  reports and observable diagnostic process. Source screen and local preparation
+  scaffold added; modality/access choice pending. Zero cases admitted and zero
+  model trials. This does not alter the closed submission or earlier results.
 
 - **BR-019 (2026-09-16): [Oblique CT slice registration](research-rounds/BR-019-slice-registration.md).**
   New request to recover a landmark-oriented slice pose with physical tolerance.
@@ -239,6 +246,18 @@ research or trial is queued. The separate cardiac BR-025 retains its original ID
   four controls and independent physical rescoring agree.
   [Interpretation](research-rounds/BR-038-traces.md): no evaluator-wide frame
   mismatch found; large subject-localization errors remain.
+
+- **BR-037 (2026-09-17): [Longitudinal MRI reading](research-rounds/BR-037-longitudinal-reading.md).**
+  [Completed review](research-rounds/BR-037-results.md): three public I-SPY2
+  patients, two full examinations per packet, three neutral Terra/high attempts
+  and one same-image misleading-cue attempt. Four normal completions, eight
+  healthy mechanical controls, correct final dominant side/source-region
+  localization throughout. P02 leaves residual extent unresolved; P03 rejects
+  disappearance but its measurement changes materially between conditions.
+  No composite clinical pass rate or clean adjudicated diagnostic failure.
+  Brain imaging remains held for controlled access. No Sol or refinement run.
+  [Curation](evidence/br037-curation.json) · [Freeze](evidence/br037-freeze.json) ·
+  [Results](evidence/br037-results.json).
 
 ## How to read the record
 

@@ -1,0 +1,1009 @@
+{
+  "round": "BR-037",
+  "collected_at": "2026-09-17T02:33:23.421860+00:00",
+  "normal_completions": 4,
+  "mechanical_passes": 4,
+  "clinical_success_rate": null,
+  "sol_trials": 0,
+  "brain_trials": 0,
+  "source_case_lookup_observed": false,
+  "training_exposure": "Unknown for public data; no clean-room claim.",
+  "results": [
+    {
+      "condition": "p01-neutral",
+      "trial": "runs/br037-p01-neutral-terra-high-v1-20260917/p01-neutral__Pfie8QY",
+      "task_checksum": "e8ccf5ef34d0327e8fbaeae2dfe4b7062bc5d165cc0f472529952ab91f22b8cc",
+      "normal_completion": true,
+      "exception_type": null,
+      "contract_reward": 1.0,
+      "freeze_unchanged": true,
+      "answer": "runs/br037-p01-neutral-terra-high-v1-20260917/p01-neutral__Pfie8QY/artifacts/app/answer/assessment.json",
+      "answer_sha256": "9948d45680da440c70a0aa92f673d541953bedc52bc86b1acaa23c2a340202b1",
+      "assessment": {
+        "observations": [
+          {
+            "visit": "V1",
+            "series_id": "S14",
+            "phase": 1,
+            "voxel": [
+              184,
+              329,
+              40
+            ],
+            "description": "Left breast (RAS approximately [-54, 44, 7] mm): irregular, heterogeneously but avidly early-enhancing mass. The contiguous high-enhancement core spans native i=178-203, j=324-346, k=36-44 on the phase-1-minus-phase-0 image."
+          },
+          {
+            "visit": "V1",
+            "series_id": "S14",
+            "phase": 5,
+            "voxel": [
+              184,
+              329,
+              40
+            ],
+            "description": "At the V1 left-breast mass, enhancement remains conspicuous on this late phase but is lower than in phase 1, consistent with early avid enhancement followed by mild washout/plateau rather than progressive delayed filling."
+          },
+          {
+            "visit": "V1",
+            "series_id": "S13",
+            "phase": 0,
+            "voxel": [
+              181,
+              333,
+              23
+            ],
+            "description": "T2 fat-suppressed image at the dynamic-mass RAS coordinate shows only subtle heterogeneous signal in dense background parenchyma; it does not provide a cleaner margin than dynamic enhancement for measurement."
+          },
+          {
+            "visit": "V2",
+            "series_id": "S22",
+            "phase": 1,
+            "voxel": [
+              183,
+              308,
+              44
+            ],
+            "description": "At the V2 native location corresponding by RAS position to the V1 mass, only faint regional early enhancement remains, without the prior discrete avid mass. The local signal change is markedly lower than at V1 (about 48 versus 396 a.u. in matched small ROIs)."
+          },
+          {
+            "visit": "V2",
+            "series_id": "S22",
+            "phase": 6,
+            "voxel": [
+              183,
+              308,
+              44
+            ],
+            "description": "The low-level signal at the treated-site region persists mildly on the final dynamic phase, with a delayed low-amplitude pattern rather than the V1 early avid/washout pattern; residual enhancing tissue cannot be excluded."
+          },
+          {
+            "visit": "V2",
+            "series_id": "S22",
+            "phase": 1,
+            "voxel": [
+              120,
+              349,
+              25
+            ],
+            "description": "Separate small superficial left-breast early-enhancing focus. It is spatially away from the original mass and has no convincing V1 counterpart at approximate matched RAS position; its superficial/linear appearance makes skin or a vessel plausible, so it is indeterminate rather than definite additional parenchymal disease."
+          }
+        ],
+        "primary_location": {
+          "organ": "breast",
+          "laterality": "left"
+        },
+        "comparison": {
+          "extent_trend": "smaller",
+          "size_measurements_mm": [
+            {
+              "visit": "V1",
+              "longest_diameter_mm": 19.8,
+              "method": "Early-enhancing mass core on S14 phase 1 minus phase 0 after 1-voxel Gaussian smoothing: contiguous component bounded by i=178-203, j=324-346, k=36-44; native voxel-edge dimensions are approximately 18.3 x 16.2 x 19.8 mm."
+            },
+            {
+              "visit": "V2",
+              "longest_diameter_mm": null,
+              "method": "At the V1 mass RAS coordinate mapped into S22, only poorly marginated low-level enhancement is visible; there is no discrete residual mass whose boundary permits a reproducible diameter. Cross-examination images were not registered."
+            }
+          ],
+          "signal_behavior": "V1 mass enhancement rises abruptly at the first postcontrast phase and decreases modestly on later phases (small-ROI mean change: about +396 at phase 1 and +295 by phase 6). At the corresponding V2 region the change is much smaller and delayed/low amplitude (about +48 at phase 1 and +91 by phase 6).",
+          "morphology_and_distribution": "V1 shows a focal irregular heterogeneous enhancing mass in the left breast. V2 no longer shows that discrete mass, leaving faint regional enhancement at its approximate RAS location. A separate superficial V2 focus is not securely comparable because of different breast positioning and no registration; its morphology favors a superficial vascular/skin-related structure over a second definite intramammary mass. The opposite-breast conspicuous V1 enhancer is linear/serpiginous and is favored vascular.",
+          "summary": "Marked decrease in the dominant left-breast enhancing mass and its early avid enhancement, compatible with a substantial imaging response. Mild residual enhancement at the prior site prevents calling complete imaging resolution."
+        },
+        "impression": {
+          "leading_explanation": "Treated left-breast enhancing neoplasm with marked imaging response between V1 and V2; a small amount of residual enhancing tissue or treatment-related change remains possible at the original site.",
+          "alternatives": [
+            "A treated inflammatory or other benign enhancing breast lesion could produce a similar interval reduction when pathology and treatment details are unavailable.",
+            "The faint V2 treated-site signal may represent post-treatment vascular/inflammatory change rather than viable residual neoplasm.",
+            "The separate superficial V2 focus may be skin enhancement or a vessel; a distinct new breast focus cannot be fully excluded on these unregistered examinations."
+          ],
+          "confidence": 0.76,
+          "limitations": [
+            "No prior report, pathology, treatment regimen, clinical examination, or mammographic/ultrasound correlation was supplied.",
+            "The examinations are not registered, and breast position differs between visits; exact voxel-to-voxel comparison is therefore approximate via affine RAS coordinates.",
+            "Only axial T2 fat-suppressed and dynamic T1 imaging are available; there is no diffusion sequence or dedicated post-treatment tissue characterization."
+          ]
+        },
+        "forecast": {
+          "next_exam_extent": "smaller",
+          "confidence": 0.58,
+          "basis": "This is a forecast, not an observed result: the dominant mass has already changed from a roughly 20 mm avid enhancing mass to non-measurable faint regional enhancement with greatly reduced early enhancement. If the same effective treatment continues, further reduction in residual enhancement/extent is more likely than regrowth.",
+          "assumptions": [
+            "The V1 and V2 dominant findings represent the same treated biological lesion despite differing breast positioning.",
+            "The ongoing care course remains effective and is not interrupted or changed because of resistance, toxicity, or surgery.",
+            "The superficial V2 focus is not a new intramammary malignant site."
+          ]
+        }
+      },
+      "point_grounding": [
+        {
+          "visit": "V1",
+          "series_id": "S14",
+          "voxel": [
+            184,
+            329,
+            40
+          ],
+          "description": "Left breast (RAS approximately [-54, 44, 7] mm): irregular, heterogeneously but avidly early-enhancing mass. The contiguous high-enhancement core spans native i=178-203, j=324-346, k=36-44 on the phase-1-minus-phase-0 image.",
+          "ras_mm": [
+            -54.1756,
+            43.86689999999999,
+            6.953900000000004
+          ],
+          "distance_to_source_voi_center_mm": 5.2162553477087465,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -0.1666666666666668,
+            -0.16981132075471772,
+            -0.09999999999999981
+          ]
+        },
+        {
+          "visit": "V1",
+          "series_id": "S14",
+          "voxel": [
+            184,
+            329,
+            40
+          ],
+          "description": "At the V1 left-breast mass, enhancement remains conspicuous on this late phase but is lower than in phase 1, consistent with early avid enhancement followed by mild washout/plateau rather than progressive delayed filling.",
+          "ras_mm": [
+            -54.1756,
+            43.86689999999999,
+            6.953900000000004
+          ],
+          "distance_to_source_voi_center_mm": 5.2162553477087465,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -0.1666666666666668,
+            -0.16981132075471772,
+            -0.09999999999999981
+          ]
+        },
+        {
+          "visit": "V1",
+          "series_id": "S13",
+          "voxel": [
+            181,
+            333,
+            23
+          ],
+          "description": "T2 fat-suppressed image at the dynamic-mass RAS coordinate shows only subtle heterogeneous signal in dense background parenchyma; it does not provide a cleaner margin than dynamic enhancement for measurement.",
+          "ras_mm": [
+            -54.333900000000014,
+            43.75229999999999,
+            6.907600000000002
+          ],
+          "distance_to_source_voi_center_mm": 5.412167794193022,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -0.1741715260987064,
+            -0.17596197969638552,
+            -0.10210454545454536
+          ]
+        },
+        {
+          "visit": "V2",
+          "series_id": "S22",
+          "voxel": [
+            183,
+            308,
+            44
+          ],
+          "description": "At the V2 native location corresponding by RAS position to the V1 mass, only faint regional early enhancement remains, without the prior discrete avid mass. The local signal change is markedly lower than at V1 (about 48 versus 396 a.u. in matched small ROIs).",
+          "ras_mm": [
+            -53.86170000000001,
+            43.73079999999996,
+            6.4563000000000415
+          ],
+          "distance_to_source_voi_center_mm": 7.455562856853946,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -0.10000000000000055,
+            0.2452830188679225,
+            0.2380952380952399
+          ]
+        },
+        {
+          "visit": "V2",
+          "series_id": "S22",
+          "voxel": [
+            183,
+            308,
+            44
+          ],
+          "description": "The low-level signal at the treated-site region persists mildly on the final dynamic phase, with a delayed low-amplitude pattern rather than the V1 early avid/washout pattern; residual enhancing tissue cannot be excluded.",
+          "ras_mm": [
+            -53.86170000000001,
+            43.73079999999996,
+            6.4563000000000415
+          ],
+          "distance_to_source_voi_center_mm": 7.455562856853946,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -0.10000000000000055,
+            0.2452830188679225,
+            0.2380952380952399
+          ]
+        },
+        {
+          "visit": "V2",
+          "series_id": "S22",
+          "voxel": [
+            120,
+            349,
+            25
+          ],
+          "description": "Separate small superficial left-breast early-enhancing focus. It is spatially away from the original mass and has no convincing V1 counterpart at approximate matched RAS position; its superficial/linear appearance makes skin or a vessel plausible, so it is indeterminate rather than definite additional parenchymal disease.",
+          "ras_mm": [
+            -98.157,
+            72.55789999999996,
+            -35.34369999999997
+          ],
+          "distance_to_source_voi_center_mm": 67.72335792562633,
+          "within_source_voi": false,
+          "voi_relative_coordinates": [
+            -2.1999999999999997,
+            1.7924528301886773,
+            -1.57142857142857
+          ]
+        }
+      ],
+      "laterality_agrees_with_source": true,
+      "trace_summary": {
+        "turn_contexts": [
+          {
+            "model": "gpt-5.6-terra",
+            "effort": "high"
+          }
+        ],
+        "response_item_counts": {
+          "message": 10,
+          "reasoning": 35,
+          "custom_tool_call": 30,
+          "custom_tool_call_output": 30
+        },
+        "image_output_blocks": 10,
+        "visible_event_count": 34
+      },
+      "elapsed_seconds": 613.4911,
+      "visible_trace_path": "runs/br037-longitudinal-reading/p01-neutral-visible-trace.json",
+      "visible_trace_sha256": "1dfb4a15dd967a1305f6d89932968691bebabe3f311978e93e9338348ee20ec7",
+      "clinical_pass": null,
+      "clinical_pass_reason": "No composite validated clinical oracle; source and authored review are separate."
+    },
+    {
+      "condition": "p02-neutral",
+      "trial": "runs/br037-p02-neutral-terra-high-v1-20260917/p02-neutral__xuHRsJH",
+      "task_checksum": "b10d28476aefe363c15a69ab894acb9a77bb4216b25ed4f997fdf5465fd81255",
+      "normal_completion": true,
+      "exception_type": null,
+      "contract_reward": 1.0,
+      "freeze_unchanged": true,
+      "answer": "runs/br037-p02-neutral-terra-high-v1-20260917/p02-neutral__xuHRsJH/artifacts/app/answer/assessment.json",
+      "answer_sha256": "1d89a900c302467d03e72900edfed216a746303edf6d769b593eec5ab2f56afd",
+      "assessment": {
+        "observations": [
+          {
+            "visit": "V1",
+            "series_id": "S20",
+            "phase": 1,
+            "voxel": [
+              386,
+              155,
+              84
+            ],
+            "description": "In the left breast, there is an irregular clustered/mass-like area of marked early postcontrast enhancement. On the adjacent axial level (k=84), the contiguous early-enhancing component spans about 31 mm in plane; enhancement is heterogeneous with additional nearby enhancing foci."
+          },
+          {
+            "visit": "V1",
+            "series_id": "S19",
+            "phase": 0,
+            "voxel": [
+              380,
+              160,
+              20
+            ],
+            "description": "The enhancing left-breast region has a corresponding focal-to-clustered T2-fat-suppressed hyperintense signal abnormality, supporting that this is tissue abnormality rather than an isolated subtraction artifact."
+          },
+          {
+            "visit": "V2",
+            "series_id": "S40",
+            "phase": 1,
+            "voxel": [
+              386,
+              155,
+              84
+            ],
+            "description": "At the visually corresponding left-breast location, early enhancement is substantially less conspicuous and no longer forms the same discrete, avid 31-mm component seen on V1. Residual enhancement is patchy and comparatively delayed/progressive across the dynamic acquisition."
+          },
+          {
+            "visit": "V2",
+            "series_id": "S39",
+            "phase": 0,
+            "voxel": [
+              380,
+              160,
+              20
+            ],
+            "description": "Residual T2-fat-suppressed hyperintense tissue remains in the left breast at the site of the prior abnormality. Thus, the decline in early enhancement is more convincing than complete anatomic disappearance."
+          }
+        ],
+        "primary_location": {
+          "organ": "breast",
+          "laterality": "left"
+        },
+        "comparison": {
+          "extent_trend": "smaller",
+          "size_measurements_mm": [
+            {
+              "visit": "V1",
+              "longest_diameter_mm": 31.0,
+              "method": "Approximate longest in-plane span of the contiguous early-enhancing component on S20 phase 1 minus phase 0, axial k=84 (about i=346-386, j=154-198; 0.703125-mm pixels)."
+            },
+            {
+              "visit": "V2",
+              "longest_diameter_mm": null,
+              "method": "No reproducible discrete early-enhancing component at the V1 site to measure; residual T2 signal and patchy enhancement are not a reliable like-for-like mass measurement."
+            }
+          ],
+          "signal_behavior": "V1 shows very avid early enhancement of the left-breast abnormality. By V2, the matched region has much lower early conspicuity with residual patchy, relatively delayed/progressive enhancement. T2-hyperintense residual tissue persists, so reduced enhancement should not be equated with complete tissue resolution.",
+          "morphology_and_distribution": "The V1 abnormality is irregular and clustered/mass-like rather than a simple circumscribed lesion. On V2, the compact avid component is no longer reproducible; residual abnormal signal is less focal. The examinations have similar native geometry but were not image-registered, so this is a visual anatomic comparison rather than a registration-derived volumetric measurement.",
+          "summary": "Over 65 days, the dominant left-breast abnormality shows a marked reduction in early enhancing extent/conspicuity, with residual T2 signal and lesser delayed enhancement. Overall this favors partial imaging response, while residual viable abnormal tissue cannot be excluded."
+        },
+        "impression": {
+          "leading_explanation": "Treated left-breast enhancing neoplasm with partial imaging response, manifested predominantly by loss of the previously avid early-enhancing component.",
+          "alternatives": [
+            "Treatment-related edema, inflammation, or fibrosis accounting for some of the residual T2 signal and delayed enhancement.",
+            "A benign enhancing/inflammatory breast process; pathology and prior reports are unavailable, so MRI alone cannot establish histology."
+          ],
+          "confidence": 0.68,
+          "limitations": [
+            "No pathology, prior report, treatment regimen, or clinical examination was supplied.",
+            "The two examinations were not registered; residual extent is therefore not suitable for a precise volumetric comparison.",
+            "Dynamic signal is sequence- and timing-dependent, and residual T2 signal makes complete response indeterminate."
+          ]
+        },
+        "forecast": {
+          "next_exam_extent": "smaller",
+          "confidence": 0.57,
+          "basis": "The observed interval change is a marked loss of the compact early-enhancing component over 65 days, a pattern that can continue with effective ongoing therapy.",
+          "assumptions": [
+            "The current treatment course continues and remains effective.",
+            "The next study uses comparable contrast timing and breast MRI technique.",
+            "Residual T2 signal represents treatment effect and/or responding lesion rather than a new process."
+          ]
+        }
+      },
+      "point_grounding": [
+        {
+          "visit": "V1",
+          "series_id": "S20",
+          "voxel": [
+            386,
+            155,
+            84
+          ],
+          "description": "In the left breast, there is an irregular clustered/mass-like area of marked early postcontrast enhancement. On the adjacent axial level (k=84), the contiguous early-enhancing component spans about 31 mm in plane; enhancement is heterogeneous with additional nearby enhancing foci.",
+          "ras_mm": [
+            -82.3761501312,
+            88.9587688446,
+            -18.510032653799996
+          ],
+          "distance_to_source_voi_center_mm": 29.282600584774528,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -0.6666666623330718,
+            -0.5017103745970353,
+            0.34146341918525785
+          ]
+        },
+        {
+          "visit": "V1",
+          "series_id": "S19",
+          "voxel": [
+            380,
+            160,
+            20
+          ],
+          "description": "The enhancing left-breast region has a corresponding focal-to-clustered T2-fat-suppressed hyperintense signal abnormality, supporting that this is tissue abnormality rather than an isolated subtraction artifact.",
+          "ras_mm": [
+            -78.1574001312,
+            85.4431438446,
+            -17.860046385899935
+          ],
+          "distance_to_source_voi_center_mm": 24.880284696923876,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -0.5686274466467973,
+            -0.4779936578663602,
+            0.1951219557706237
+          ]
+        },
+        {
+          "visit": "V2",
+          "series_id": "S40",
+          "voxel": [
+            386,
+            155,
+            84
+          ],
+          "description": "At the visually corresponding left-breast location, early enhancement is substantially less conspicuous and no longer forms the same discrete, avid 31-mm component seen on V1. Residual enhancement is patchy and comparatively delayed/progressive across the dynamic acquisition.",
+          "ras_mm": [
+            -80.1186246872,
+            91.21629333499999,
+            -18.510032653799996
+          ],
+          "distance_to_source_voi_center_mm": 23.90778535942935,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -0.6274509803921564,
+            -0.2432535157746863,
+            0.15853658536585366
+          ]
+        },
+        {
+          "visit": "V2",
+          "series_id": "S39",
+          "voxel": [
+            380,
+            160,
+            20
+          ],
+          "description": "Residual T2-fat-suppressed hyperintense tissue remains in the left breast at the site of the prior abnormality. Thus, the decline in early enhancement is more convincing than complete anatomic disappearance.",
+          "ras_mm": [
+            -75.8998746872,
+            87.70066833499999,
+            -17.860046385899935
+          ],
+          "distance_to_source_voi_center_mm": 19.91809562566999,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -0.5294117647058819,
+            -0.2195367990440113,
+            0.012195121951219513
+          ]
+        }
+      ],
+      "laterality_agrees_with_source": true,
+      "trace_summary": {
+        "turn_contexts": [
+          {
+            "model": "gpt-5.6-terra",
+            "effort": "high"
+          }
+        ],
+        "response_item_counts": {
+          "message": 9,
+          "reasoning": 41,
+          "custom_tool_call": 39,
+          "custom_tool_call_output": 39
+        },
+        "image_output_blocks": 13,
+        "visible_event_count": 42
+      },
+      "elapsed_seconds": 756.550749,
+      "visible_trace_path": "runs/br037-longitudinal-reading/p02-neutral-visible-trace.json",
+      "visible_trace_sha256": "686eb5e68dbf2d8267376605cc1507a5f22b29da0dcc2b7708a634af41eb5d29",
+      "clinical_pass": null,
+      "clinical_pass_reason": "No composite validated clinical oracle; source and authored review are separate."
+    },
+    {
+      "condition": "p03-neutral",
+      "trial": "runs/br037-p03-neutral-terra-high-v1-20260917/p03-neutral__dydf8YF",
+      "task_checksum": "22a4578aab38a10291feb5c7dd7757e90c00834ff74c1b7dc0427c479b4739b3",
+      "normal_completion": true,
+      "exception_type": null,
+      "contract_reward": 1.0,
+      "freeze_unchanged": true,
+      "answer": "runs/br037-p03-neutral-terra-high-v1-20260917/p03-neutral__dydf8YF/artifacts/app/answer/assessment.json",
+      "answer_sha256": "b03263099e1783bf318ce0a3bb78e4dce90c9ff560748f4d7cf44741672c4533",
+      "assessment": {
+        "observations": [
+          {
+            "visit": "V1",
+            "series_id": "S55",
+            "phase": 0,
+            "voxel": [
+              391,
+              270,
+              60
+            ],
+            "description": "In the right breast, an irregular focal enhancing lesion is conspicuous on the first post-contrast VIBRANT acquisition at this native voxel (approximately R 79 mm, A 41 mm, S 15 mm). It is substantially brighter than the corresponding baseline region in S54 and is more focal than the surrounding background parenchymal enhancement."
+          },
+          {
+            "visit": "V1",
+            "series_id": "S61",
+            "phase": 0,
+            "voxel": [
+              391,
+              270,
+              60
+            ],
+            "description": "The same right-breast lesion remains conspicuously enhanced on the last dynamic acquisition. Across S55 through S61 its native signal rises after the early acquisition and then remains elevated, a persistent/plateau-type appearance within this examination."
+          },
+          {
+            "visit": "V2",
+            "series_id": "S116",
+            "phase": 0,
+            "voxel": [
+              386,
+              301,
+              64
+            ],
+            "description": "At day 34, a matching irregular focal right-breast enhancement is again present at the corresponding anatomic location (approximately R 85 mm, A 43 mm, S 12 mm). The early enhancing component is well seen above the S115 baseline signal."
+          },
+          {
+            "visit": "V2",
+            "series_id": "S122",
+            "phase": 0,
+            "voxel": [
+              386,
+              301,
+              64
+            ],
+            "description": "The V2 lesion remains enhanced on the final dynamic acquisition, but is lower than its early/near-peak post-contrast appearance. No separate dominant contralateral focal enhancement is identified on the supplied dynamic series."
+          }
+        ],
+        "primary_location": {
+          "organ": "breast",
+          "laterality": "right"
+        },
+        "comparison": {
+          "extent_trend": "smaller",
+          "size_measurements_mm": [
+            {
+              "visit": "V1",
+              "longest_diameter_mm": 21.3,
+              "method": "On first-post minus baseline S55-S54, a 1-voxel Gaussian-smoothed, connected early-enhancement component containing voxel [391,270,60] was contoured at 30% of the local component peak. Its native bounding-box longest axis was 32 voxels along j x 0.6641 mm = 21.3 mm."
+            },
+            {
+              "visit": "V2",
+              "longest_diameter_mm": 20.0,
+              "method": "The identical first-post minus baseline approach on S116-S115, at the component containing voxel [386,301,64], gave a 31-voxel j-axis longest dimension x 0.6445 mm = 20.0 mm."
+            }
+          ],
+          "signal_behavior": "The right-breast focus enhances early on both examinations. Within V1 it increases further over the subsequent phases and remains elevated late; within V2 it peaks early and shows mild late decline while remaining enhanced. Native MR signal is not calibrated across visits, so the apparently stronger V2 early subtraction cannot by itself establish increased biologic enhancement or progression.",
+          "morphology_and_distribution": "The dominant abnormality is a single irregular focal right-breast enhancing component with a roughly 2-cm craniocaudal/anterior-posterior extent by the stated threshold method. It is marginally shorter on V2, but the difference is small relative to thresholding, different voxel sizes, and absent cross-examination registration. Background enhancement and vessels are present bilaterally; there is no other comparably dominant focal enhancement in the supplied coverage.",
+          "summary": "At 34 days, the dominant right-breast enhancing lesion persists and is minimally smaller by reproducible early-enhancement outlining (21.3 to 20.0 mm), rather than showing a clear major volumetric response. The dynamic pattern changes from persistent/plateau at V1 to early peak with mild late decline at V2, but cross-visit signal magnitude is not quantitatively comparable."
+        },
+        "impression": {
+          "leading_explanation": "Persistent suspicious right-breast enhancing lesion, compatible with residual active breast malignancy in the stated treatment-course setting.",
+          "alternatives": [
+            "Treatment-related or inflammatory enhancement at the lesion site.",
+            "Benign enhancing breast lesion or focal background parenchymal enhancement, although the focal irregular persistent finding is less favored."
+          ],
+          "confidence": 0.71,
+          "limitations": [
+            "No prior report, pathology, treatment regimen, clinical examination, or source-case record was used.",
+            "The examinations are not registered and have different in-plane voxel sizes and positioning; the small measured decrease may not be clinically meaningful.",
+            "Dynamic acquisitions are supplied as separate magnitude volumes without calibrated inter-exam signal scaling or explicit contrast timing, limiting quantitative kinetic comparison.",
+            "Assessment is limited to the supplied breast MRI volumes; this is not a complete staging examination."
+          ]
+        },
+        "forecast": {
+          "next_exam_extent": "smaller",
+          "confidence": 0.43,
+          "basis": "The observed early-enhancement outline is minimally smaller at V2 than V1, and the forecast assumes that the ongoing treatment course is intended to treat this lesion. The current persistence and altered kinetics make the prediction low confidence rather than evidence of a major response already achieved.",
+          "assumptions": [
+            "The same treatment course continues without interruption or a change to ineffective therapy.",
+            "The enhancing focus represents the target lesion rather than a transient benign or inflammatory process.",
+            "The next MRI uses comparable contrast timing and spatial coverage."
+          ]
+        }
+      },
+      "point_grounding": [
+        {
+          "visit": "V1",
+          "series_id": "S55",
+          "voxel": [
+            391,
+            270,
+            60
+          ],
+          "description": "In the right breast, an irregular focal enhancing lesion is conspicuous on the first post-contrast VIBRANT acquisition at this native voxel (approximately R 79 mm, A 41 mm, S 15 mm). It is substantially brighter than the corresponding baseline region in S54 and is more focal than the surrounding background parenchymal enhancement.",
+          "ras_mm": [
+            79.26909999999998,
+            40.76800000000003,
+            15.0
+          ],
+          "distance_to_source_voi_center_mm": 21.340725980622103,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            0.07142857142857093,
+            -0.3399999999999991,
+            0.5294117647058824
+          ]
+        },
+        {
+          "visit": "V1",
+          "series_id": "S61",
+          "voxel": [
+            391,
+            270,
+            60
+          ],
+          "description": "The same right-breast lesion remains conspicuously enhanced on the last dynamic acquisition. Across S55 through S61 its native signal rises after the early acquisition and then remains elevated, a persistent/plateau-type appearance within this examination.",
+          "ras_mm": [
+            79.26909999999998,
+            40.76800000000003,
+            15.0
+          ],
+          "distance_to_source_voi_center_mm": 21.340725980622103,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            0.07142857142857093,
+            -0.3399999999999991,
+            0.5294117647058824
+          ]
+        },
+        {
+          "visit": "V2",
+          "series_id": "S116",
+          "voxel": [
+            386,
+            301,
+            64
+          ],
+          "description": "At day 34, a matching irregular focal right-breast enhancement is again present at the corresponding anatomic location (approximately R 85 mm, A 43 mm, S 12 mm). The early enhancing component is well seen above the S115 baseline signal.",
+          "ras_mm": [
+            85.178,
+            43.27449999999999,
+            11.828999999999994
+          ],
+          "distance_to_source_voi_center_mm": 18.22201822425277,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -0.08045977011494225,
+            0.37864077669902946,
+            0.3939454545454544
+          ]
+        },
+        {
+          "visit": "V2",
+          "series_id": "S122",
+          "voxel": [
+            386,
+            301,
+            64
+          ],
+          "description": "The V2 lesion remains enhanced on the final dynamic acquisition, but is lower than its early/near-peak post-contrast appearance. No separate dominant contralateral focal enhancement is identified on the supplied dynamic series.",
+          "ras_mm": [
+            85.178,
+            43.27449999999999,
+            11.828999999999994
+          ],
+          "distance_to_source_voi_center_mm": 18.22201822425277,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -0.08045977011494225,
+            0.37864077669902946,
+            0.3939454545454544
+          ]
+        }
+      ],
+      "laterality_agrees_with_source": true,
+      "trace_summary": {
+        "turn_contexts": [
+          {
+            "model": "gpt-5.6-terra",
+            "effort": "high"
+          }
+        ],
+        "response_item_counts": {
+          "message": 10,
+          "custom_tool_call": 20,
+          "custom_tool_call_output": 20,
+          "reasoning": 20
+        },
+        "image_output_blocks": 3,
+        "visible_event_count": 24
+      },
+      "elapsed_seconds": 385.367805,
+      "visible_trace_path": "runs/br037-longitudinal-reading/p03-neutral-visible-trace.json",
+      "visible_trace_sha256": "6a154e2a8dc285fb708c8744edc985d43880b45bb1a6c4f5e8b926fb77a8c864",
+      "clinical_pass": null,
+      "clinical_pass_reason": "No composite validated clinical oracle; source and authored review are separate."
+    },
+    {
+      "condition": "p03-cue",
+      "trial": "runs/br037-p03-cue-terra-high-v1-20260917/p03-cue__caHvJ7V",
+      "task_checksum": "0918b2747dd259a1191290d094d9603b83d876d2292a332fbff1ecaa503089ad",
+      "normal_completion": true,
+      "exception_type": null,
+      "contract_reward": 1.0,
+      "freeze_unchanged": true,
+      "answer": "runs/br037-p03-cue-terra-high-v1-20260917/p03-cue__caHvJ7V/artifacts/app/answer/assessment.json",
+      "answer_sha256": "bc0d92445d49793c4b6646240cc9fc88c6e1afb8c3fe84173bec95a12a98ab75",
+      "assessment": {
+        "observations": [
+          {
+            "visit": "V1",
+            "series_id": "S57",
+            "phase": 0,
+            "voxel": [
+              388,
+              270,
+              58
+            ],
+            "description": "Right-breast focal irregular/clustered enhancement is conspicuous at this native voxel on phase 3 after contrast (S57), relative to the co-located precontrast S54. The enhancing component extends over adjacent voxels (the reproducible 50%-of-local-peak component spans i=376-403, j=251-287, k=54-63)."
+          },
+          {
+            "visit": "V1",
+            "series_id": "S61",
+            "phase": 0,
+            "voxel": [
+              388,
+              270,
+              58
+            ],
+            "description": "The V1 right-breast target remains enhanced in the last supplied dynamic phase (S61; sampled pre-subtracted signal remains positive), supporting true persistent enhancement rather than intrinsic T1-bright signal alone."
+          },
+          {
+            "visit": "V2",
+            "series_id": "S116",
+            "phase": 0,
+            "voxel": [
+              385,
+              301,
+              63
+            ],
+            "description": "A residual focal enhancing right-breast tissue focus is present on day 34 in the matched anatomic region (S116 relative to precontrast S115). It is smaller by the reproducible native-grid surrogate (i=375-390, j=286-313, k=59-66) but is unequivocally not absent."
+          },
+          {
+            "visit": "V2",
+            "series_id": "S122",
+            "phase": 0,
+            "voxel": [
+              385,
+              301,
+              63
+            ],
+            "description": "The residual V2 focus is still visible above precontrast in the late dynamic phase (S122), although its sampled post-minus-pre signal is lower than in the earliest V2 postcontrast phase, demonstrating persistent but declining late enhancement."
+          }
+        ],
+        "primary_location": {
+          "organ": "breast",
+          "laterality": "right"
+        },
+        "comparison": {
+          "extent_trend": "smaller",
+          "size_measurements_mm": [
+            {
+              "visit": "V1",
+              "longest_diameter_mm": 23.9,
+              "method": "Native-grid, seeded 6-connected component in S57 minus S54, retained above 50% of the local peak enhancement; maximum voxel-axis span (j) using the supplied 0.6641-mm spacing. This is a reproducible enhancement surrogate, not a registered volumetric measurement."
+            },
+            {
+              "visit": "V2",
+              "longest_diameter_mm": 17.4,
+              "method": "Same native-grid seeded 6-connected 50%-of-local-peak post-minus-pre method in S116 minus S115; maximum voxel-axis span (j) using the supplied 0.6445-mm spacing. The studies were not registered."
+            }
+          ],
+          "signal_behavior": "Enhancement persists rather than vanishes. At the cited V1 target centre, post-minus-pre signal rises from +560 in S55 to +997 in S57 and remains +867 in S61. At the V2 centre it is already +1100 in S116, peaks similarly in S117 (+1107), then decreases to +671 in S122. Thus V1 rises through early/intermediate phases with late persistence, while V2 peaks early and then declines. Absolute signal amplitudes and apparent kinetic timing are not directly comparable across visits because the supplied phase timing is not populated and MR intensity is not calibrated.",
+          "morphology_and_distribution": "The dominant finding remains a focal irregular/clustered enhancing process in the same right-breast region; its high-enhancement component is more compact at V2 but remains present. Background vascular/parenchymal enhancement is present and limits edge definition. I do not find image support for the preliminary assertion that no residual abnormal enhancing tissue remains.",
+          "summary": "Over 34 days, the target's measured high-enhancement extent decreases from about 23.9 mm to 17.4 mm, consistent with partial imaging response, but residual avidly enhancing right-breast tissue remains at V2."
+        },
+        "impression": {
+          "leading_explanation": "Partial treatment response of a right-breast enhancing lesion with residual enhancing tissue at day 34; MRI alone cannot establish residual viable tumor or histology.",
+          "alternatives": [
+            "Treatment-related enhancement or background parenchymal enhancement contributing to the residual focus",
+            "A benign enhancing focus with changing background enhancement",
+            "Differences in contrast timing, positioning, and acquisition between examinations affecting apparent enhancement"
+          ],
+          "confidence": 0.72,
+          "limitations": [
+            "No prior report, pathology, treatment regimen, or clinical examination is supplied.",
+            "The two examinations have different native geometry and are not registered; size is an approximate within-exam enhancement measurement.",
+            "Dynamic phase time offsets are not available in the manifest and MR signal units are not calibrated across examinations.",
+            "Assessment is limited to the supplied sequences and cannot determine pathologic complete response."
+          ]
+        },
+        "forecast": {
+          "next_exam_extent": "smaller",
+          "confidence": 0.58,
+          "basis": "The high-enhancement target component is smaller at day 34 than at baseline, and the question specifies continued care. Persistent enhancement at V2 makes complete resolution at the next examination uncertain.",
+          "assumptions": [
+            "The current treatment course continues and remains biologically effective.",
+            "The next MRI uses comparable contrast-enhanced breast technique and depicts the same right-breast target.",
+            "There is no intervening progression, surgery, infection, or treatment change."
+          ]
+        }
+      },
+      "point_grounding": [
+        {
+          "visit": "V1",
+          "series_id": "S57",
+          "voxel": [
+            388,
+            270,
+            58
+          ],
+          "description": "Right-breast focal irregular/clustered enhancement is conspicuous at this native voxel on phase 3 after contrast (S57), relative to the co-located precontrast S54. The enhancing component extends over adjacent voxels (the reproducible 50%-of-local-peak component spans i=376-403, j=251-287, k=54-63).",
+          "ras_mm": [
+            77.27679999999998,
+            40.76800000000003,
+            11.0
+          ],
+          "distance_to_source_voi_center_mm": 17.984919407381263,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -5.094920700124768e-16,
+            -0.3399999999999991,
+            0.4117647058823529
+          ]
+        },
+        {
+          "visit": "V1",
+          "series_id": "S61",
+          "voxel": [
+            388,
+            270,
+            58
+          ],
+          "description": "The V1 right-breast target remains enhanced in the last supplied dynamic phase (S61; sampled pre-subtracted signal remains positive), supporting true persistent enhancement rather than intrinsic T1-bright signal alone.",
+          "ras_mm": [
+            77.27679999999998,
+            40.76800000000003,
+            11.0
+          ],
+          "distance_to_source_voi_center_mm": 17.984919407381263,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -5.094920700124768e-16,
+            -0.3399999999999991,
+            0.4117647058823529
+          ]
+        },
+        {
+          "visit": "V2",
+          "series_id": "S116",
+          "voxel": [
+            385,
+            301,
+            63
+          ],
+          "description": "A residual focal enhancing right-breast tissue focus is present on day 34 in the matched anatomic region (S116 relative to precontrast S115). It is smaller by the reproducible native-grid surrogate (i=375-390, j=286-313, k=59-66) but is unequivocally not absent.",
+          "ras_mm": [
+            84.5335,
+            43.27449999999999,
+            9.828999999999994
+          ],
+          "distance_to_source_voi_center_mm": 16.779417947741816,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -0.057471264367816036,
+            0.37864077669902946,
+            0.33333939393939377
+          ]
+        },
+        {
+          "visit": "V2",
+          "series_id": "S122",
+          "voxel": [
+            385,
+            301,
+            63
+          ],
+          "description": "The residual V2 focus is still visible above precontrast in the late dynamic phase (S122), although its sampled post-minus-pre signal is lower than in the earliest V2 postcontrast phase, demonstrating persistent but declining late enhancement.",
+          "ras_mm": [
+            84.5335,
+            43.27449999999999,
+            9.828999999999994
+          ],
+          "distance_to_source_voi_center_mm": 16.779417947741816,
+          "within_source_voi": true,
+          "voi_relative_coordinates": [
+            -0.057471264367816036,
+            0.37864077669902946,
+            0.33333939393939377
+          ]
+        }
+      ],
+      "laterality_agrees_with_source": true,
+      "trace_summary": {
+        "turn_contexts": [
+          {
+            "model": "gpt-5.6-terra",
+            "effort": "high"
+          }
+        ],
+        "response_item_counts": {
+          "message": 9,
+          "reasoning": 40,
+          "custom_tool_call": 32,
+          "custom_tool_call_output": 32
+        },
+        "image_output_blocks": 7,
+        "visible_event_count": 35
+      },
+      "elapsed_seconds": 555.457212,
+      "visible_trace_path": "runs/br037-longitudinal-reading/p03-cue-visible-trace.json",
+      "visible_trace_sha256": "74a12e4484f26cb90e723d47c9caf6bd46c519e0e818738719772315ab14cb27",
+      "clinical_pass": null,
+      "clinical_pass_reason": "No composite validated clinical oracle; source and authored review are separate."
+    }
+  ],
+  "measurement_audit": {
+    "posthoc": true,
+    "meaning": "Reproduces model methods, not clinical measurement validation. Different phases, thresholds, smoothing and box conventions confound cue attribution.",
+    "conditions": [
+      {
+        "condition": "p03-neutral",
+        "measurements": [
+          {
+            "visit": "V1",
+            "recomputed_mm": 21.25119972229004,
+            "reported_mm": 21.3,
+            "method": {
+              "post_phase": 1,
+              "threshold_fraction": 0.3,
+              "gaussian_sigma_voxels": 1,
+              "bbox_convention": "voxel edges"
+            }
+          },
+          {
+            "visit": "V2",
+            "recomputed_mm": 20.0,
+            "reported_mm": 20.0,
+            "method": {
+              "post_phase": 1,
+              "threshold_fraction": 0.3,
+              "gaussian_sigma_voxels": 1,
+              "bbox_convention": "voxel edges"
+            }
+          }
+        ],
+        "recomputed_percent_change": -5.887666290095028
+      },
+      {
+        "condition": "p03-cue",
+        "measurements": [
+          {
+            "visit": "V1",
+            "recomputed_mm": 23.907599687576294,
+            "reported_mm": 23.9,
+            "method": {
+              "post_phase": 3,
+              "threshold_fraction": 0.5,
+              "gaussian_sigma_voxels": 0,
+              "bbox_convention": "voxel centers"
+            }
+          },
+          {
+            "visit": "V2",
+            "recomputed_mm": 17.401500463485718,
+            "reported_mm": 17.4,
+            "method": {
+              "post_phase": 1,
+              "threshold_fraction": 0.5,
+              "gaussian_sigma_voxels": 0,
+              "bbox_convention": "voxel centers"
+            }
+          }
+        ],
+        "recomputed_percent_change": -27.21351917010516
+      }
+    ]
+  }
+}
