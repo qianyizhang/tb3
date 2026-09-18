@@ -1,6 +1,6 @@
 # Medical showcase: editorial evidence workspace
 
-Status: six content chapters and five guided tours complete; index synthesis and legacy HTML refresh deferred.
+Status: six content chapters and six guided tours complete; index synthesis and legacy HTML refresh deferred.
 User direction, 2026-09-18: focus on content, structure and flow; additional
 research, evidence and drawings may be collected or rebuilt locally. The eventual
 publication destination is the user's Astro blog. No migration is performed here.

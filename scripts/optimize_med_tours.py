@@ -2,7 +2,7 @@
 """Create lossless WebP frames and gzip data for the player; preserve authoring files."""
 from pathlib import Path
 import gzip,hashlib,json
-from PIL import Image,ImageChops
+from PIL import Image
 ROOT=Path(__file__).resolve().parents[1]/'site_med/tours';OUT=ROOT/'web';OUT.mkdir(exist_ok=True)
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
@@ -12,7 +12,7 @@ def main():
    q=OUT/(p.name+'.gz');q.write_bytes(gzip.compress(p.read_bytes(),compresslevel=9,mtime=0));assert gzip.decompress(q.read_bytes())==p.read_bytes();manifest['json'][p.stem]=q.name
   elif p.suffix=='.png':
    q=OUT/(p.stem+'.webp');im=Image.open(p);im.save(q,format='WEBP',lossless=True,method=6,exact=True)
-   assert ImageChops.difference(im.convert('RGB'),Image.open(q).convert('RGB')).getbbox() is None
+   assert im.convert('RGBA').tobytes()==Image.open(q).convert('RGBA').tobytes()
    manifest['images'][p.name]=q.name
   else:continue
   manifest['source_bytes']+=p.stat().st_size;manifest['served_bytes']+=q.stat().st_size

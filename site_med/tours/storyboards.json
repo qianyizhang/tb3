@@ -3,7 +3,7 @@
     "title": "Same scan. Different label.",
     "subtitle": "Can an agent find tissue assigned to the wrong organ?",
     "duration": 32,
-    "source": "BR-017 \u00b7 TotalSegmentator \u00b7 CC BY 4.0 \u00b7 One attempt per condition",
+    "source": "BR-017 · TotalSegmentator · CC BY 4.0 · One attempt per condition",
     "steps": [
       {
         "at": 0,
@@ -31,7 +31,7 @@
     "title": "Follow the vessel. Unfold the view.",
     "subtitle": "From a real segmentation gap to a linked curved CT image",
     "duration": 36,
-    "source": "BR-030 \u00b7 ImageCAS / ImageCAS-X \u00b7 Source license details in README",
+    "source": "BR-030 · ImageCAS / ImageCAS-X · Source license details in README",
     "steps": [
       {
         "at": 0,
@@ -57,9 +57,9 @@
   },
   "cardiac": {
     "title": "A moving shape is only part of the answer.",
-    "subtitle": "Supplied masks \u2192 Sol's mesh \u2192 independently checked tissue motion",
+    "subtitle": "Supplied masks → Sol's mesh → independently checked tissue motion",
     "duration": 40,
-    "source": "BR-035 \u00b7 STRAUS simulation \u00b7 Masks-only Sol condition \u00b7 Original surface triangles",
+    "source": "BR-035 · STRAUS simulation · Masks-only Sol condition · Original surface triangles",
     "steps": [
       {
         "at": 0,
@@ -92,7 +92,7 @@
     "title": "Find the same point after a breath.",
     "subtitle": "A local match can beat a complicated registration workflow",
     "duration": 32,
-    "source": "BR-028 \u00b7 Learn2Reg LungCT \u00b7 CC BY 4.0 \u00b7 One attempt per condition",
+    "source": "BR-028 · Learn2Reg LungCT · CC BY 4.0 · One attempt per condition",
     "steps": [
       {
         "at": 0,
@@ -120,7 +120,7 @@
     "title": "Outside the scan, or overlooked?",
     "subtitle": "Naming a vertebra also means knowing what the image can show",
     "duration": 32,
-    "source": "BR-040 \u00b7 VerSe-derived CT \u00b7 CC BY-SA 4.0 \u00b7 One subject, paired views",
+    "source": "BR-040 · VerSe-derived CT · CC BY-SA 4.0 · One subject, paired views",
     "steps": [
       {
         "at": 0,
@@ -141,6 +141,39 @@
         "at": 24,
         "title": "But do not miss what remains visible",
         "caption": "T5 is inside the cropped scan. Sol also marked it outside, missing a visible target. Correct abstention and complete coverage must be checked separately."
+      }
+    ]
+  },
+  "aneurysm": {
+    "title": "Find the bulge. Check the branches.",
+    "subtitle": "A general agent searches a 3D brain vessel scan",
+    "duration": 40,
+    "source": "BR-016 · OpenNeuro ds003949 · CC0 · Three selected cases, one attempt each",
+    "steps": [
+      {
+        "at": 0,
+        "title": "A small finding in a large search space",
+        "caption": "Flowing blood appears bright in this vessel scan. This full-volume projection overlaps many branches; the agent received the entire 3D image."
+      },
+      {
+        "at": 8,
+        "title": "Check a candidate in three planes",
+        "caption": "These native slices pass through the successful N02 neighborhood. The guided crop was made afterward for readers; it was not supplied to the agent."
+      },
+      {
+        "at": 16,
+        "title": "Compare the point with the reference",
+        "caption": "Gold is the weak source label. Teal is Sol’s submitted point [312,213,94]. It passed coarse localization; the label is not an exact lesion boundary."
+      },
+      {
+        "at": 24,
+        "title": "A second scan, a missed finding",
+        "caption": "On N01, Sol inspected slices and computed shape filters, then returned an empty list. Gold reveals the missed reference region. More computation did not ensure detection."
+      },
+      {
+        "at": 32,
+        "title": "Three outcomes, different evidence",
+        "caption": "N02 was localized; N01 was missed. N03’s correct empty answer followed public source identification. That allowed lookup makes it a source-assisted result."
       }
     ]
   }

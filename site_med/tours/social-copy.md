@@ -30,3 +30,9 @@ Learn2Reg LungCT 1.11, Hering, Murphy and van Ginneken, CC BY 4.0: https://doi.o
 For a cropped spine CT, Sol correctly reported that T4 was outside the scan. It also rejected T5, whose reference center remained visible. Correct abstention and complete localization are different requirements. This comparison uses one subject’s paired full/cropped views; Terra/high and Sol/xhigh differ in both model and reasoning effort.
 
 VerSe-derived CT illustration, CC BY-SA 4.0; retain this attribution and license when sharing the derivative. Source notice and case-specific provenance are included in the local reproduction guide. Markers are projected; scoring used 3D distances. Experiment BR-040.
+
+## Find the bulge — aneurysm localization
+
+A general agent localized one finding, missed another, and answered a negative scan after identifying its public source. Follow real native slices, reveal the weak reference label, and compare the accepted output point. The guided crops were made afterward for readers.
+
+BR-016; Lausanne TOF-MRA cohort, OpenNeuro ds003949, Di Noto et al., CC0. Three selected cases, one Sol/xhigh attempt each. Weak labels support coarse localization, not precise boundaries or a clinical accuracy estimate. N03 was source-assisted through allowed lookup.

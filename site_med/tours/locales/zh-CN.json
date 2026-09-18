@@ -145,6 +145,39 @@
           "caption": "T5 位于裁剪图内，但 Sol 同样报告超出视野，漏掉了可见目标。正确拒绝与完整覆盖需要分别检查。"
         }
       ]
+    },
+    "aneurysm": {
+      "title": "找到膨出，再检查分支。",
+      "subtitle": "通用智能体如何搜索三维脑血管影像",
+      "duration": 40,
+      "source": "BR-016 · OpenNeuro ds003949 · CC0 · 3 个选定病例，各尝试 1 次",
+      "steps": [
+        {
+          "at": 0,
+          "title": "大范围搜索中的小目标",
+          "caption": "血流在磁共振血管影像中呈亮色。全体积投影把许多分支叠在一起；智能体拿到的是完整三维影像。"
+        },
+        {
+          "at": 8,
+          "title": "从三个切面检查候选",
+          "caption": "这些原生切片穿过成功定位的 N02 邻域。导览裁剪是事后为读者制作的，并非智能体收到的输入。"
+        },
+        {
+          "at": 16,
+          "title": "比较输出点与参考区域",
+          "caption": "金色是数据源的弱标注，青色是 Sol 输出的坐标 [312,213,94]。粗定位通过，但弱标注不代表精确病灶边界。"
+        },
+        {
+          "at": 24,
+          "title": "另一份影像，漏掉一个目标",
+          "caption": "在 N01 中，Sol 浏览切片、计算形态特征，最终却返回空列表。金色显示漏掉的参考区域。更多计算并不保证检出。"
+        },
+        {
+          "at": 32,
+          "title": "三种结果，三种证据",
+          "caption": "N02 定位成功，N01 漏检。N03 在识别公开数据源后正确返回空列表。任务允许检索，因此该结果属于来源辅助。"
+        }
+      ]
     }
   },
   "labels": {
@@ -294,6 +327,32 @@
     ],
     "Earlier Sol": "较早的 Sol 尝试",
     "Final Sol": "Sol 最终结果",
-    "Gold: reference / boundary · Magenta: Terra point": "金色：参考 / 边界 · 紫色：Terra 定位点"
+    "Gold: reference / boundary · Magenta: Terra point": "金色：参考 / 边界 · 紫色：Terra 定位点",
+    "Whole-volume projection": "全体积投影",
+    "Bright vessels overlap in this view.": "此视图中的明亮血管互相重叠。",
+    "Find a candidate, then inspect depth.": "先找到候选，再检查深度。",
+    "Gold box: guided neighborhood": "金框：导览邻域",
+    "Native slices · no projection": "原生切片 · 无投影",
+    "Gold: weak source label": "金色：数据源弱标注",
+    "Teal: submitted point": "青色：提交的坐标点",
+    "Point shown only on its own slice": "仅在坐标点所在切片显示标记",
+    "Accepted: [312, 213, 94]": "通过：[312, 213, 94]",
+    "Coarse localization, not a precise boundary": "粗定位，并非精确边界",
+    "Sol returned: []": "Sol 返回：[]",
+    "One reference finding missed": "漏掉 1 个参考目标",
+    "Guided crop revealed after the trial": "裁剪区域为试验后导览展示",
+    "N02 · Localized": "N02 · 定位成功",
+    "N01 · Missed": "N01 · 漏检",
+    "N03 · Source-assisted": "N03 · 来源辅助",
+    "Point matched the weak reference region.": "坐标点匹配弱参考区域。",
+    "Empty answer despite a positive reference.": "参考有目标，输出却为空。",
+    "Empty answer after matching the public dataset.": "匹配公开数据集后返回空列表。",
+    "Three cases are not a clinical accuracy estimate.": "三个病例不构成临床准确率估计。",
+    "Sagittal · i": "矢状面 · i",
+    "Coronal · j": "冠状面 · j",
+    "Axial · k": "轴向面 · k",
+    "Approximately 32 mm native crops": "约 32 毫米原生裁剪",
+    "N02 · full input extent": "N02 · 完整输入范围",
+    "Reference-centered reader guide": "以参考区域为中心的读者导览"
   }
 }

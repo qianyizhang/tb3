@@ -53,6 +53,22 @@ def main():
     assert crop['targets']['T4']['reference']['status']=='out_of_fov'
     assert crop['targets']['T5']['reference']['status']=='observed'
     assert all(crop['targets'][k]['predictions']['sol-xhigh']['status']=='out_of_fov' for k in ['T4','T5'])
+    a=read(TOURS/'data/aneurysm.json');cases=a['cases']
+    assert set(cases)=={'N01','N02','N03'}
+    assert cases['N02']['answer']==[[312,213,94]] and cases['N02']['accepted_prediction']
+    assert not cases['N01']['grade']['passed'] and cases['N01']['answer']==[]
+    assert cases['N03']['source_assisted'] and cases['N03']['answer']==[]
+    for name in ['N01','N02']:
+        c=cases[name];lo,hi=c['crop_bounds']
+        for p in c['planes']:
+            axis=p['axis'];axes=p['axes'];frames=p['frames']
+            assert [f['index'] for f in frames]==list(range(c['reference_center'][axis]-12,c['reference_center'][axis]+13))
+            assert abs(p['aspect']-(hi[axes[0]]-lo[axes[0]])*c['spacing'][axes[0]]/((hi[axes[1]]-lo[axes[1]])*c['spacing'][axes[1]]))<1e-9
+            assert sum(f['mask_voxels'] for f in frames)==c['reference_voxels']
+            if c['answer']:
+                point=c['answer'][0]
+                assert p['point_uv']==[(point[axes[0]]-lo[axes[0]]+.5)/(hi[axes[0]]-lo[axes[0]]),1-(point[axes[1]]-lo[axes[1]]+.5)/(hi[axes[1]]-lo[axes[1]])]
+    for filename in a['image_files']:assert (TOURS/'data'/filename).is_file()
     for path in TOURS.glob('*.md'):
         for target in re.findall(r'\]\(([^)]+)\)',path.read_text()):
             if not target.startswith(('http:','https:','#')):assert (path.parent/target.split('#')[0]).exists(), (path,target)

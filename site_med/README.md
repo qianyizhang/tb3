@@ -29,7 +29,7 @@ a separate editorial pass. This page is navigation, not that synthesis.
 | `tours/validation.json`, `tours/compression-report.json` | Latest local media verification receipts | Local, ignored |
 | `css/`, `js/`, `data/` | Earlier HTML presentation; `data/segmentation_assets.js` also supplies retained figure bytes | Existing files retained |
 
-The articles, task cards and five guided tours are the current editorial version.
+The articles, task cards and six guided tours are the current editorial version.
 The older `scripts/build_site_med.py` HTML builder has not been brought into line
 with it. Its generated prose is not a source of current claims. The obsolete
 Markdown and task-card generators have been removed so they cannot overwrite the

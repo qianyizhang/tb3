@@ -5,7 +5,7 @@ Run `scripts/med-media --help` from the repository. The tool renders frames from
 ## Edit copy, translate, change pacing
 
 - **English:** edit `site_med/tours/storyboards.json` for titles, subtitles and scene captions. `locales/en.json` holds editable English in-frame labels; a config can also override `labels`.
-- **Chinese:** edit `site_med/tours/locales/zh-CN.json`. It contains all five stories plus fixed and dynamic in-frame labels. English dataset names and attribution may remain in footers. The surrounding prototype controls are primarily English.
+- **Chinese:** edit `site_med/tours/locales/zh-CN.json`. It contains all six stories plus fixed and dynamic in-frame labels. English dataset names and attribution may remain in footers. The surrounding prototype controls are primarily English.
 - **Other languages:** copy the locale JSON, keep the same tour/scene identities, and use `--locale=YOUR-FILE-STEM`. The renderer wraps Chinese text by character and English by word. Review the generated stills after translating; longer text can require shortening or layout changes.
 - **Timing:** set scene lengths in a config’s `durations` array, or use `--duration-scale`. Visual events stay mapped to their authored scenes; changing a caption’s reading time does not move the label-reveal or final result into the wrong scene.
 - **One-off edits:** put `title`, `subtitle` or scene `title` / `caption` in `overrides`, without rewriting the English master. Do not reorder/delete scenes without updating their renderer.
@@ -64,12 +64,13 @@ Refresh web derivatives after changing source presentation data:
 .venv-br030/bin/python scripts/optimize_med_tours.py
 ```
 
-The five-tour data bundle fell from 38.06 MB to 14.87 MB in this build, a 60.9% reduction, without changing decoded data. The player fetches only the selected tour’s JSON and images. Most bytes are the full cardiac geometry; this is still a local prototype, and an Astro component should defer that fetch until requested.
+The six-tour data bundle falls from 38.81 MB to 15.54 MB, a 60.0% reduction, without changing decoded data. The player fetches only the selected tour’s JSON and images. Most bytes are the full cardiac geometry; this is still a local prototype, and an Astro component should defer that fetch until requested.
 
 ## Extend and reproduce
 
 - `scripts/prepare_med_tours.py`: original segmentation, vessel and cardiac derivatives.
 - `scripts/prepare_med_tours_extra.py`: retained registration crops and frozen full/cropped spine inputs.
+- `scripts/prepare_med_tours_aneurysm.py`: native TOF-MRA slices, original weak labels and retained BR-016 answers.
 - `scripts/optimize_med_tours.py`: verified lossless web derivatives.
 - `site_med/tours/tour.js`: deterministic geometry and image rendering, interaction and scene mapping.
 - `scripts/export_med_tours.cjs`: configuration, isolated browser, captions, encoding, music and manifests.

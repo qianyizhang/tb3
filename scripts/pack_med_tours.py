@@ -16,5 +16,6 @@ def main():
  with zipfile.ZipFile(E/'social-pack.zip','w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
   for p in sorted(set(files)):assert p.is_file(),p;z.write(p,p.relative_to(T))
   z.write(ROOT/'runs/br039-ct-landmarks/tasks/ct-full/environment/SOURCE_NOTICE.md','licenses/VerSe-SOURCE_NOTICE.md')
- print('Packed',len(set(files))+1,'files;',round((E/'social-pack.zip').stat().st_size/1e6,2),'MB')
+  z.write(ROOT/'runs/br016-aneurysm/tasks/aneurysm-n02-v2/environment/SOURCE_NOTICE.md','licenses/OpenNeuro-ds003949-SOURCE_NOTICE.md')
+ print('Packed',len(set(files))+2,'files;',round((E/'social-pack.zip').stat().st_size/1e6,2),'MB')
 if __name__=='__main__':main()

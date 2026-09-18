@@ -19,6 +19,8 @@ flowchart LR
     C --> D["One coordinate per finding, or an empty list"]
 ```
 
+[Explore the guided tour](tours/index.html?tour=aneurysm) · [Landscape video](tours/exports/aneurysm-landscape.mp4) · [Portrait video](tours/exports/aneurysm-portrait.mp4). Pause to inspect three native planes and toggle the weak reference label.
+
 ## Why this work matters
 
 Localization is an early step toward reviewing a possible vascular abnormality. This task stops at pointing to a source-annotated finding; it does not estimate rupture risk or decide treatment.
