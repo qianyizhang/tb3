@@ -1,94 +1,76 @@
-# Domain 06: 3D Anatomical Landmarks & Out-of-FOV Rejection
-## Spine CT (VerSe) & Brain MRI (AFIDs) · 3D Fiducials · BR-040
+# Find the landmark—and know when it is outside the scan
 
-> **Research Rounds:** [`BR-040`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-040-sol-landmarks.md) · [`BR-040 Results`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-040-results.md) · [`BR-039 CT Landmarks`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-039-ct-landmarks.md) · [`BR-038 Volume Landmarks`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-038-volume-landmarks.md) · [`BR-036 Semantic Landmarks`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-036-semantic-landmarks.md)  
-> **Task Card:** [`med_lnd_br040_landmarks_fov.json`](task_cards/med_lnd_br040_landmarks_fov.json)  
-> **Source Scans:** Whole-body/thoracic spine CT (VerSe `sub-verse823`) and Brain T1 MRI (AFIDs SNSX `sub-C001`, OpenNeuro `ds004470`).  
-> **Task Formulation:** Return exact physical 3D coordinates for 26 vertebral centroids (C1–L6) and 32 brain fiducials, or correctly flag requested targets as `OUT_OF_FOV` when they lie outside cropped scans.  
-> **Core Discoveries:** Sol achieved 0 false presence detections on cropped CT scans (resisting hallucination); autonomous MNI atlas registration doubled MRI landmark precision (from 3/32 to 14/32 within 3 mm).
+**Anatomical localization · BR-040 · about 4 minutes**
 
----
+**Guided illustration:** [interactive tour](tours/index.html?tour=landmarks) · [landscape video](tours/exports/landmarks-landscape.mp4) · [portrait video](tours/exports/landmarks-portrait.mp4). [Sources and reproduction](tours/README.md).
 
-## 1. Clinical Context & Task Formulation
+“Mark the center of this vertebra” sounds like a coordinate task. First, however, the agent must recognize the anatomy, assign the correct name, and decide whether the requested structure is visible at all.
 
-Anatomical landmarks (fiducials) are standardized, physically reproducible 3D points in the human body—such as the center of vertebral bodies, the anterior and posterior commissures of the brain, or specific cranial nerve junctions.
+**Sol combined image inspection with external anatomical guidance and atlas registration.** It placed more brain landmarks within the tested tolerances than Terra, while a cropped spine case showed both appropriate abstention and a missed visible target.
 
-```
-Full Spine Anatomy (C1 to L6)             Cropped Clinical CT (Thoracic Only)
-+------------------------------------+   +------------------------------------+
-| C1 - C7  (Cervical Spine)          |   | [OUT OF FOV] - Must not predict!   |
-+------------------------------------+   +------------------------------------+
-| T1 - T12 (Thoracic Spine)          |   | T1 - T12 (Visible Anatomy)         |
-+------------------------------------+   +------------------------------------+
-| L1 - L6  (Lumbar Spine)            |   | [OUT OF FOV] - Must not predict!   |
-+------------------------------------+   +------------------------------------+
-```
+## See the task
 
-### Why this matters clinically
-1. **Robotic Spine Surgery:** Before pedicle screws are driven into vertebrae, surgical navigation systems register patient CT scans to physical landmarks. Placing a point on the wrong vertebral level (e.g. confusing T4 with T5) leads to wrong-level spinal surgery.
-2. **Out-of-Field-of-View (FOV) Rejection:** In real clinical practice, scans are often tightly collimated to minimize radiation. A robust AI must recognize when an requested anatomical level is outside the scan, rather than hallucinating a coordinate inside the scan volume.
+![Cropped CT comparison for requested T4, which lies outside the source field of view](assets/landmark-t4.png)
+
+*A cropped scan can contain real bone while excluding the requested level. This retained comparison shows why recognizing a structure and naming it correctly are separate tasks. Markers are projected into image planes; the scoring distance is fully 3D. VerSe-derived illustration, CC BY-SA 4.0. [Figure provenance](assets/manifest.json).*
 
 ```mermaid
 flowchart LR
-    A["Volumetric Scan<br>(Spine CT or Brain MRI)"] --> B["Global Anatomical Orientation<br>(Identify Spatial Axes & Atlases)"]
-    B --> C["Affine Atlas Alignment<br>(MNI Template / VerSe Centroids)"]
-    C --> D{"Target In FOV?"}
-    D -->|"Inside Scan"| E["Local Intensity Centroid Refinement<br>(Physical LPS Coordinate)"]
-    D -->|"Outside Scan"| F["Explicit OUT_OF_FOV Rejection<br>(Resist Hallucination)"]
+    A["Scan + named anatomical targets"] --> B["Orient the anatomy and identify each target"]
+    B --> C{"Is the target available?"}
+    C -->|"Yes"| D["Return its 3D coordinate"]
+    C -->|"Outside scan or absent"| E["Report the appropriate status"]
 ```
 
----
+## Why this work matters
 
-## 2. Quantitative Benchmark Results: Terra vs. Sol
+Named landmarks help align scans and check anatomical correspondence. A point near the wrong vertebra is still wrong, even if it sits neatly inside bone. Cropped images also require recognizing what the scan cannot show.
 
-We evaluated Terra (GPT-4o / high reasoning) and Sol (Claude 3.7 Sonnet / xhigh reasoning) across matched CT and MRI conditions:
+Human readers use anatomical definitions and multiple image planes. Software can transfer landmarks from a labeled reference brain, or **atlas**, after registering it to a new scan. The AFIDs protocol formalizes 32 brain landmarks and provides placement guidance. Its validation supports millimetric human placement in its study setting; it is not a matched human score on this experiment. [AFIDs study](https://pubmed.ncbi.nlm.nih.gov/31175816/) · [Placement protocol](https://afids.github.io/afids-protocol/afids_protocol/human_protocol.html)
 
-| Input Condition | Evaluated Targets | Model | Points Within 3 mm | Points Within 5 mm | Points Within 10 mm | Mean 3D Error | False Out-of-FOV Detections |
-| :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Full Spine CT** | 24 visible (C1–L5) | Terra / high | — | 2 / 24 | 7 / 24 | 24.77 mm | 0 / 2 absent |
-| **Full Spine CT** | 24 visible (C1–L5) | Sol / xhigh | — | 1 / 24 | **13 / 24** | **10.24 mm** | 0 / 2 absent |
-| **Cropped Spine CT** | 13 visible (T1–T12) | Terra / high | — | 1 / 13 | 2 / 13 | 20.85 mm | **1 / 11 outside** (Hallucination) |
-| **Cropped Spine CT** | 13 visible (T1–T12) | Sol / xhigh | — | **4 / 12** | **8 / 12** | **7.44 mm** | **0 / 11 outside** (Zero Hallucination) |
-| **Brain MRI (AFIDs)** | 32 fiducials | Terra / high | 3 / 32 | 8 / 32 | 20 / 32 | 9.40 mm | Not tested |
-| **Brain MRI (AFIDs)** | 32 fiducials | Sol / xhigh | **14 / 32** | **23 / 32** | **32 / 32** | **3.87 mm** | Not tested |
+## What the agent received and returned
 
----
+The three conditions used a full VerSe spine CT, a crop of that same CT, and an AFIDs brain MRI. Each supplied a 3D array, named targets, and an explicit coordinate convention. Spine requests included outside-scan targets and genuinely absent levels under the source numbering system; all 32 MRI targets were visible.
 
-## 3. Case Studies: Hallucination Resistance & Atlas Orchestration
+The answer is a list of landmarks, each with a status and, where observed, a native zero-based voxel coordinate. Physical distance is then computed using image geometry. The CT experiment had **24 visible targets** in the full scan and **13** in the crop. [Frozen comparison](../docs/research-rounds/BR-040-results.md)
 
-### Case 1: Terra's Wrong-Level Hallucination on Cropped CT
-- On the cropped spine CT scan, the C1–C7 cervical vertebrae and upper thoracic vertebrae are completely outside the scan field.
-- When asked to locate target `T4`, Terra predicted a point inside the scan. 
-- Clinical verification showed that Terra's predicted `T4` coordinate was located **2.14 mm away from the true T5 vertebral body**! Terra detected real bone anatomy, but miscounted the vertebral levels because it lacked a cranial anchor, committing a classic wrong-level surgical error.
-- **Sol's Performance:** Sol correctly abstained, returning zero false presence detections on all 11 out-of-FOV targets.
+## How Sol worked
 
-### Case 2: Sol's Autonomous Atlas Orchestration on Brain MRI
-- Facing the 32 brain fiducials task, Sol recognized that direct visual localization on an unaligned T1 scan would fail fine surgical tolerances.
-- **Autonomous agent strategy:**
-  1. Sol downloaded the official AFIDs protocol documentation and anatomical illustrations.
-  2. Sol fetched a standardized MNI152 brain template with pre-annotated fiducials.
-  3. Sol registered the subject's MRI to the MNI template using a 12-parameter affine transformation.
-  4. Sol projected the fiducials into patient space and refined coordinates using local gradient checks.
-- **Result:** Landmark accuracy doubled from **3/32 to 14/32 within 3 mm**, and 100% of landmarks (32/32) landed within 10 mm.
+**Brain MRI: obtain a useful reference, then adapt it.** Sol consulted AFIDs illustrations and downloaded a labeled generic MNI brain template. It used affine registration—a global rotation, translation, scaling and shear—to transfer the atlas into the subject's space, followed by manual review. A more flexible B-spline refinement failed and was subsequently terminated without saved proposal files; the agent still completed normally.
 
----
+This is allowed atlas-assisted performance. The preserved source audit found no target-subject annotation retrieval. It demonstrates orchestration of established resources rather than unaided visual localization. [Source-use audit](../docs/evidence/br040-source-audit.json)
 
-## 4. Key Takeaways & Evaluation Principles
+**Cropped CT: abstain without losing sight of coverage.** Sol made no observed claims for the 11 outside-scan targets. But it missed the visible T5 center. Correct abstention and complete localization therefore need separate reporting.
 
-> [!TIP]
-> **Lesson 1: The Out-of-FOV Hallucination Dilemma**  
-> In medical AI, predicting that an absent anatomical structure is present inside a scan (*false presence*) is far more dangerous than failing to locate a present structure. Benchmark designs must include deliberately cropped scans to test whether agents have the confidence to declare `OUT_OF_FOV` rather than hallucinating coordinates on nearby anatomy.
+![Cropped CT review for visible T5, missed by Sol](assets/landmark-t5.png)
 
-> [!IMPORTANT]
-> **Lesson 2: Explicit Physical Coordinate Contracts**  
-> Medical scans feature complex affine orientation matrices (`RAS`, `LPS`, oblique tilts, non-isotropic spacing). Verifiers must explicitly require coordinates in native voxel indices (`voxel_ijk_zero_based`) or physical millimeters (`LPS_mm`) to prevent coordinate format misunderstandings from masquerading as perceptual failures.
+*The visible-target counterexample complements the outside-scan example above. A quiet answer can avoid false detections while still omitting real anatomy. VerSe-derived illustration, CC BY-SA 4.0.*
 
----
+## What worked, and what it cost
 
-## Navigation & References
+| Condition | Terra/high | Sol/xhigh |
+| --- | --- | --- |
+| Full CT: within 5 mm | 2/24 | 1/24 |
+| Full CT: within 10 mm | 7/24 | 13/24 |
+| Cropped CT: within 5 mm | 1/13 | 4/13 |
+| Cropped CT: outside targets falsely located | 1/11 | 0/11 |
+| Brain MRI: within 3 mm | 3/32 | 14/32 |
+| Brain MRI: within 10 mm | 20/32 | 32/32 |
 
-- [← 05. 4D Heart Biomechanics & Strain](05-cardiac-mechanics.md)
-- [Master Evidence, Provenance & Reference Index →](references.md)
-- **Task Card:** [`site_med/task_cards/med_lnd_br040_landmarks_fov.json`](task_cards/med_lnd_br040_landmarks_fov.json)
-- **Direct Round Links:** [`docs/research-rounds/BR-040-sol-landmarks.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-040-sol-landmarks.md) · [`docs/research-rounds/BR-040-results.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-040-results.md)
-- **Evidence Files:** [`docs/evidence/br040-source-audit.json`](file:///Users/zhangqy/pkgs/tb3/docs/evidence/br040-source-audit.json) · [`site/landmark-figures.json`](file:///Users/zhangqy/pkgs/tb3/site/landmark-figures.json)
+The MRI mean error was **9.40 mm** for Terra and **3.87 mm** for Sol. Sol's cropped-CT mean was **7.44 mm over 12 returned visible points**; success counts still use all 13 reference targets, including the miss. [Measured results](../docs/evidence/br040-results.json)
+
+The MRI attempts used about **4.4 agent minutes for Terra** and **33.5 for Sol**. Atlas retrieval, registration and unsuccessful refinement belong to Sol's workflow cost. Better localization came with more work here, but both model and reasoning setting changed. We cannot isolate the atlas's contribution or call this a universal efficiency tradeoff.
+
+## How the task became more informative
+
+Full volumes retained the spatial context needed for localization. A correlated cropped view added a different requirement: determine when a requested target was unavailable, rather than forcing a coordinate for every name.
+
+Both agents received the same frozen task bytes within each condition. There was one attempt per model and condition, on one CT subject and one MRI subject. The distinctive capability is combining anatomical references, computation and explicit availability judgments; surgical readiness and population performance remain untested.
+
+## Inspect or reproduce
+
+- [Task summary](task_cards/med_lnd_br040_landmarks_fov.json), [comparison report](../docs/research-rounds/BR-040-results.md), and [configuration audit](../docs/evidence/br040-config-audit.json).
+- [Scoring and local report guide](../probes/semantic-landmarks/authoring/br040/README.md); all-point tables and review panels remain in the retained comparison.
+- Full source volumes and raw sessions are local-only. [Source, license and reproduction guide](references.md).
+
+[← Cardiac reconstruction](05-cardiac-mechanics.md) · [Sources and reproduction →](references.md)

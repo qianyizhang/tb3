@@ -1,13 +1,17 @@
 PYTHON ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 
-.PHONY: check hygiene test artifacts hooks site
-check: hygiene test
+.PHONY: check hygiene test artifacts hooks site med-check
+check: hygiene test med-check
 
 hygiene:
 	$(PYTHON) scripts/check_hygiene.py
 
 test:
 	$(PYTHON) -m unittest discover -s tests -p 'test_*.py' -v
+
+# Portable medical chapters and source-linked figures; no native runtime data.
+med-check:
+	$(PYTHON) scripts/check_site_med.py
 
 # Reopen the report and native scan explorer; no model trials or downloads.
 site:

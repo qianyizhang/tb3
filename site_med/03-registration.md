@@ -1,108 +1,73 @@
-# Domain 03: Deformable 3D Image Registration
-## 4D Lung CT · Respiratory Motion Alignment · BR-028
+# Find the same anatomical point after a breath
 
-> **Research Round:** [`BR-028`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-028-registration-3d-source.md) · [`BR-028 Results`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-028-results.md)  
-> **Task Card:** [`med_reg_br028_respiratory.json`](task_cards/med_reg_br028_respiratory.json)  
-> **Source Scan:** Paired 4D Lung CT from DIR-Lab respiratory cohort (Patient 3, exhale phase T00 to inhale phase T50).  
-> **Task Formulation:** Given eight discrete anatomical query landmarks (q01–q08) identified on the exhale phase, compute their exact non-rigid 3D coordinates in the full inhale phase.  
-> **Key Comparison:** 2D Oblique Source Slice (BR-024) vs. Full 3D Volumetric Source (BR-028).
+**Matching lung CT scans · BR-028 · about 4 minutes**
 
----
+**Guided illustration:** [interactive tour](tours/index.html?tour=registration) · [landscape video](tours/exports/registration-landscape.mp4) · [portrait video](tours/exports/registration-portrait.mp4). [Sources and reproduction](tours/README.md).
 
-## 1. Clinical Context & Task Formulation
+Take two chest scans at different breathing phases. The lungs change shape, so the same branch junction no longer sits at the same image coordinates. Image registration is the process of finding that correspondence.
 
-During normal respiration, human lungs expand and contract non-rigidly. The diaphragm moves superiorly/inferiorly by up to 30 mm, pushing the lower lung lobes and causing complex local sliding along the chest wall.
+**With both scans available in 3D, Sol substantially improved its eight-point match by moving from unsuccessful whole-volume registration to a custom local search.** One point still missed the frozen distance threshold; the user later accepted its appearance on review.
 
-```
-       Exhale Phase (Source)                       Inhale Phase (Target)
-      .-----------------------.                  .---------------------------.
-     /    q01 (Bifurcation)    \                /      q01' (Shifted)             |     o                     |    Breathing  |      o                       |
-    |                           |   =========>  |                              |
-    |            q06            |   Motion      |                  q06'        |
-    |             o             |               |                   o          |
-     \_______(Diaphragm)_______/                 \___________(Diaphragm)______/
-```
+## See the task
 
-### Why this matters clinically
-In lung cancer radiation therapy (Stereotactic Body Radiation Therapy, SBRT), radiation beams deliver lethal doses to tumors. Because the tumor moves with respiration, clinicians must map tissue motion from 4D CT scans. An error of 5 mm in deformable registration can deliver full-dose radiation to healthy lung or spinal cord tissue while missing the tumor margin.
+| Source point | Target reference | Agent's final target |
+| --- | --- | --- |
+| ![Source CT neighborhood at query q04](assets/registration-q04-source.png) | ![Target CT centered on the manual q04 correspondence](assets/registration-q04-reference.png) | ![Target CT centered on Sol's full-source q04 prediction](assets/registration-q04-agent.png) |
 
-### The 2D vs. 3D Information Gap
-Lung motion is fundamentally three-dimensional: tissue slides into and out of standard axial planes. 
-- In round **BR-024**, the agent was provided only a single **2D oblique source slice** centered on the query point, plus the full 3D target volume.
-- In round **BR-028**, the agent was provided the **complete 3D source volume**, giving it access to out-of-plane bronchial geometry and vessel branching structures.
+*Three review crops for q04 in the same dataset plane. Each is centered on its own point, so visual similarity alone does not measure displacement. The final 3D point error is 1.408 mm. These are author review views, not necessarily the agent's exact working patches. Learn2Reg LungCT, CC BY 4.0. [Figure provenance](assets/manifest.json).*
 
 ```mermaid
 flowchart LR
-    A["Source Exhale CT<br>+ Query Landmarks (q01-q08)"] --> B["Global Affine Initialization<br>(Rigid Thoracic Alignment)"]
-    B --> C["Local 3D Block Matching<br>(Normalized Cross-Correlation)"]
-    C --> D["Thin-Plate Spline Smoothing<br>(Deformable Field Regularization)"]
-    D --> E["Predicted Inhale Locations<br>(RMS: 2.60 mm)"]
+    A["Source CT + marked query"] --> C["Match local anatomy despite breathing"]
+    B["Target CT"] --> C
+    C --> D["Corresponding target coordinate"]
 ```
 
----
+## Why this work matters
 
-## 2. Quantitative Results & The 3D Depth Advantage
+Matching anatomy across scans helps compare positions and measurements when a body moves. Respiratory imaging is one setting where a simple global shift is insufficient. This experiment evaluates eight sparse correspondences, not an entire deformation field or a treatment plan.
 
-Evaluating Sol across the eight query landmarks demonstrated the massive impact of input completeness:
+Conventional approaches include manually marking matching features and using registration software to align image intensities. The experiment retained an author-built translation matcher that already passed from the original 2D source view: **2.133 mm RMS**, with a **3.416 mm** worst point. It establishes a feasible solution route, not a blinded human-performance score. [Baseline and protocol](../docs/research-rounds/BR-028-results.md)
 
-| Landmark ID | Anatomical Feature Description | Sol 2D Source (BR-024) | Sol Full 3D Source (BR-028) | Improvement | Frozen Gate (<= 5.0 mm) |
-| :---: | :--- | :---: | :---: | :---: | :---: |
-| **q01** | Primary carina / upper trachea | 1.84 mm | 1.25 mm | -0.59 mm | **PASS** |
-| **q02** | Right upper lobe bronchus | **14.22 mm** | **1.86 mm** | **-12.36 mm** | **PASS** |
-| **q03** | Left mainstem bronchial branch | 3.12 mm | 2.14 mm | -0.98 mm | **PASS** |
-| **q04** | Medial segmental lower bifurcation | **21.50 mm** | **3.08 mm** | **-18.42 mm** | **PASS** |
-| **q05** | Left lower lobe lateral vessel | 4.88 mm | 2.42 mm | -2.46 mm | **PASS** |
-| **q06** | Segmental bifurcation ridge | **8.15 mm** | **6.41 mm** | -1.74 mm | **VISUAL PASS** |
-| **q07** | Subsegmental peripheral bronchus | 5.20 mm | 1.95 mm | -3.25 mm | **PASS** |
-| **q08** | Posterior basilar branch | 6.40 mm | 1.70 mm | -4.70 mm | **PASS** |
-| **OVERALL** | **Root Mean Square (RMS) Distance** | **12.70 mm** | **2.60 mm** | **-10.10 mm** | **PASSED** |
+## What the agent received and returned
 
----
+The data come from **Learn2Reg LungCT 1.11**. The earlier task supplied one complete oblique source slice, eight query pixels with plane geometry, and the full 3D target CT. BR-028 added the full source CT while preserving those inputs and the reference answers.
 
-## 3. The Clinical Adjudication of Landmark q06
+The output is eight corresponding target positions in physical millimeters. For example, Sol's final q06 position was **[219.3, 162.3, 150.2] mm**. Success required an RMS distance of at most **3 mm** and no individual error above **5 mm**. RMS summarizes all eight errors while giving larger misses more weight.
 
-Under the frozen automated benchmark specification, every landmark was required to achieve an error $\le 5.0	ext{ mm}$. Landmark `q06` scored **6.41 mm**, technically triggering an automated failure.
+## How Sol changed approach
 
-```
-       Manual Ground Truth                Sol Registered Point
-             (q06)                             (q06_pred)
-               \                                   /
-                \                                 /
-   ==============V===============================V==============
-   Bronchial Bifurcation Ridge (Same Continuous Anatomical Structure)
-   <---------------------- 6.41 mm Offset --------------------->
-```
+| Stage | What it did | What the saved artifacts show |
+| --- | --- | --- |
+| Try established registration tools | Loaded both 3D scans into SimpleITK; compared several smooth deformation fields | Four saved Demons candidates and a B-spline candidate failed when scored afterward |
+| Broaden local search | Searched actual 3D source patches over a broad target neighborhood using normalized cross-correlation | The search region contained all eight reference destinations |
+| Refine and compare | Used local translation/affine fits, different patch sizes, and image checks | Recovered the two large earlier misses, but retained a weaker q06 estimate |
+| Write the answer | Selected and rounded final coordinates after comparisons | No single saved executable rule fully captures that final selection |
 
-### Radiologic Panel Review
-An expert visual audit of the 3D CT volumes revealed that:
-1. Both the manual reference marker and Sol's predicted coordinate sit squarely on the **identical anatomical bronchial bifurcation ridge**.
-2. The manual marker was placed toward the anterior lip of the ridge, whereas Sol placed its coordinate along the central crest.
-3. On lung CT scans, manual inter-observer variability between expert radiologists routinely ranges between **1.5 mm and 4.0 mm** on fuzzy bifurcations.
-4. **Adjudication Verdict:** *Visually Accepted*. The 6.41 mm offset represents spatial ridge ambiguity, not an anatomical tracking failure.
+Cross-correlation asks whether local intensity patterns match; the agent built this search after the library methods disagreed. Earlier fields contained better q06 estimates but were wrong elsewhere. Computing candidate answers and choosing which to trust were distinct parts of the work. [Saved-stage analysis](../docs/evidence/br028-stage-analysis.json)
 
----
+## What worked, and what it cost
 
-## 4. What Worked vs. What Failed
+| Same eight targets | RMS error | Worst point | Frozen result |
+| --- | ---: | ---: | --- |
+| Earlier Sol attempt: 2D source | 12.731 mm | 32.203 mm | Fail |
+| Sol with full 3D source | 2.604 mm | 6.412 mm | Fail: q06 only |
+| Retained author 2D matcher | 2.133 mm | 3.416 mm | Pass |
 
-| Strategy / Setup | What Worked | What Failed |
-| :--- | :--- | :--- |
-| **2D Source Only (BR-024)** | Accurate on rigid cranial landmarks (q01) where out-of-plane motion was minimal. | Catastrophic failures on lower lobes (q02 at 14.2 mm, q04 at 21.5 mm) where respiratory sliding moved tissue out of the 2D slice. |
-| **Full 3D Source (BR-028)** | 3D block matching tracked vascular branches through volume depth, cutting overall RMS from 12.7 mm to 2.6 mm. | Rigid distance cutoffs (5.0 mm gate) penalize valid placements along continuous anatomical structures (q06). |
+The enriched attempt completed in **14m 53s**, with **26,364 output tokens** and an estimated cost of **$1.405**. The expensive unsuccessful searches remain part of that runtime. The agent recovered through an alternative method, but the fixed conventional baseline shows that this fixture did not require such a long workflow. These are not matched runtime measurements on identical implementations. [Measured receipt](../docs/evidence/br028-results.json)
 
----
+The other seven final points were within 2.2 mm. Later, the user judged q06 visually good enough. That is a separate review outcome: it does not replace the frozen score or constitute an independent clinical panel. [Adjudication record](../docs/evidence/br028-adjudication.json)
 
-## 5. Key Takeaway & Evaluation Principle
+## How the task was refined
 
-> [!TIP]
-> **Quantitative Distance Gates vs. Qualitative Anatomical Reality**  
-> Purely numerical distance thresholds in medical image benchmarks can misclassify clinically acceptable registrations as failures. A point 6.4 mm away on the correct bronchial ridge is clinically valid; a point 4.5 mm away inside the wrong adjacent vessel is a dangerous error. Medical benchmark design must combine automated distance metrics with visual radiological verification.
+The change added useful source depth; it did not make the task harder. The original slice and passing author method remained available. This made the comparison fairer to an agent that wanted to reason over 3D anatomy.
 
----
+Both input information and the chosen strategy changed across fresh attempts. The improvement therefore cannot be assigned entirely to depth. What is directly demonstrated is a successful shift toward local matching, with a remaining candidate-selection problem.
 
-## Navigation & References
+## Inspect or reproduce
 
-- [← 02. Vascular Aneurysm 3D Detection](02-aneurysms.md)
-- [04. Tubular Geometry, Centerlines & CPR →](04-vessels-cpr.md)
-- **Task Card:** [`site_med/task_cards/med_reg_br028_respiratory.json`](task_cards/med_reg_br028_respiratory.json)
-- **Direct Round Links:** [`docs/research-rounds/BR-028-registration-3d-source.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-028-registration-3d-source.md) · [`docs/research-rounds/BR-028-results.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-028-results.md)
-- **Evidence Files:** [`site/registration-figures.json`](file:///Users/zhangqy/pkgs/tb3/site/registration-figures.json)
+- [Task summary](task_cards/med_reg_br028_respiratory.json), [frozen protocol](../docs/research-rounds/BR-028-registration-3d-source.md), and [complete result](../docs/research-rounds/BR-028-results.md).
+- [Rebuild guide](../probes/registration-deformation/authoring/br028_README.md) links scoring, captured intermediate states, and review rendering.
+- The full local comparison is `runs/br028-registration-3d-source/review/index.html`. [Source and availability guide](references.md).
+
+[← Aneurysm search](02-aneurysms.md) · [Next: repair and unfold a vessel →](04-vessels-cpr.md)

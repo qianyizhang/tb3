@@ -1,138 +1,81 @@
-# Domain 01: Organ Segmentation & Tissue Ownership Auditing
-## Abdominal CT · 3D Voxel Tensors · BR-017
+# Did this organ label swallow part of its neighbor?
 
-> **Research Round:** [`BR-017`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-017-absorbed-anatomy.md) · [`BR-017 Results`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-017-results.md) · [`BR-017 Traces`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-017-traces.md)  
-> **Task Card:** [`med_seg_br017_absorption.json`](task_cards/med_seg_br017_absorption.json)  
-> **Source Scan:** Abdominal CT from TotalSegmentator cohort (`s1233` / Case 28, spacing 1.5 × 1.5 × 1.5 mm).  
-> **Task Formulation:** 13 organ masks are supplied. 21.04 mL of pancreatic head tissue has been deliberately absorbed into the duodenum mask. Both organ labels remain present and connected. Detect the tissue absorption defect and return the physical LPS centroid of the misplaced tissue.
+**Auditing organ segmentations · BR-017 · about 4 minutes**
 
----
+**Guided illustration:** [interactive tour](tours/index.html?tour=segmentation) · [landscape video](tours/exports/segmentation-landscape.mp4) · [portrait video](tours/exports/segmentation-portrait.mp4). [Sources and reproduction](tours/README.md).
 
-## 1. Clinical Context & Task Formulation
+A CT scan is a stack of images through the body. A segmentation adds a label to each small volume element, or voxel: liver, pancreas, bowel, and so on. Here, the scan is unchanged, but part of the pancreas has been assigned to the neighboring duodenum—the first section of the small intestine.
 
-In human abdominal anatomy, the C-shaped loop of the duodenum cradles the head of the pancreas. Both organs share similar soft-tissue radiodensities on non-contrast CT (typically 30–50 Hounsfield Units, HU). 
+Can a general coding agent find that mistake, explain which tissue belongs elsewhere, and point to it?
 
-```
-+--------------------------------------------------------------------+
-|  Duodenum C-Loop                                                  |
-|  [=== Bowel Wall ===]  <--- Shared soft-tissue interface           |
-|  ( 21.04 mL stolen )   <--- Mistakenly absorbed into duodenum mask |
-|  [=== Pancreas Head =]                                             |
-+--------------------------------------------------------------------+
-```
+**Sol missed the partial error in a broad audit, then found it in a fresh run focused on the two affected organs.** The supplied data were the same. This chapter follows what changed in the inspection.
 
-### Why this matters clinically
-During oncologic surgery (such as the Whipple procedure for pancreatic adenocarcinoma), surgical resection planes must accurately segregate pancreatic parenchyma from the duodenal wall. If automated surgical planning tools mistake 21 mL of pancreatic tissue for bowel wall, resection margins will be compromised.
+## See the task
 
-### The "Plausible Envelope" Trap
-Standard automated segmentation checks evaluate **volume preservation** and **surface Dice coefficient**. In this trial:
-- All 13 organ masks are present and topologically connected (Euler characteristic = 1).
-- The duodenum volume is slightly larger and the pancreas slightly smaller, but both sit comfortably within normal adult biological variations.
-- To detect the error, an agent cannot rely on global contours; it must inspect the **internal radiodensity distribution (HU)** and local morphology at the organ boundary.
+| Original labels | After tissue reassignment |
+| --- | --- |
+| ![Axial CT with original pancreas and duodenum label overlays](assets/segmentation-before.png) | ![The same CT plane with pancreatic tissue reassigned to the duodenum label](assets/segmentation-after.png) |
+
+*Salmon outlines mark pancreas; blue outlines mark duodenum. Identical CT pixels, different ownership labels. These are author-created before/after illustrations, not images supplied to the agent in this form. The overlay change represents 21.04 mL across the full 3D region; this plane shows only one cross-section. TotalSegmentator source, CC BY 4.0. [Figure provenance](assets/manifest.json).*
 
 ```mermaid
 flowchart LR
-    A["Raw CT Volume<br>+ 13 Organ Masks"] --> B["Agent Voxel Audit<br>(HU Histogram & Interface Morphology)"]
-    B --> C["Connected Component Analysis<br>(Flag Volume >= 5.0 mL)"]
-    C --> D["Physical LPS Centroid<br>([-14.2, -18.5, 42.1] mm)"]
+    A["CT scan + 13 named organ masks"] --> B["Inspect tissue assigned to each organ"]
+    B --> C["Report the host mask, included organ, and one point"]
 ```
 
----
+## Why this work matters
 
-## 2. Agent Execution Traces & Code Analysis
+Organ masks support volume measurement and planning. A neatly drawn boundary can still assign tissue to the wrong organ, affecting what a downstream measurement represents. This experiment asks whether an agent can audit an existing segmentation; it does not ask it to create the segmentation or make a treatment decision.
 
-We tested Sol (Claude 3.7 Sonnet) under two experimental setups on the identical patient scan:
-1. **Condition M02 (Broad Audit):** The agent was given the unconstrained instruction to inspect all 13 organ masks across the entire abdomen.
-2. **Condition F01 (Focused Audit):** The agent's prompt narrowed attention to the interacting pair: pancreas and duodenum.
+The conventional workflow combines automated segmentation with visual review and correction. Specialized systems are strong at the first step: the original TotalSegmentator paper reported test-set Dice overlap of **0.943** across 104 structures (1 means identical segmented regions). That is context for segmentation quality, not a score on this tissue-ownership audit. [Wasserthal et al.](https://arxiv.org/abs/2208.05868)
 
-### Empirical Performance Comparison
+## What the agent received and returned
 
-| Trial Condition | Scope & Prompt | Wall Time | Prompt / Gen Tokens | Est. API Cost | Quantitative Result | Benchmark Status |
-| :--- | :--- | :---: | :---: | :---: | :--- | :---: |
-| **M02 (Broad Audit)** | Full 13 organ sweep | 6m 44s | 182k / 10,593 | $1.04 | Flagged 0 defects | **Miss** |
-| **F01 (Focused Audit)** | Pancreas + Duodenum pair | 5m 51s | 151k / 11,940 | $0.91 | Centroid match within 1.2 mm | **Pass** |
+The case is TotalSegmentator **s1233**. Sol received proposed organ names, existing masks, full CT and rendering helpers. The controlled edit moved **21.04 mL** of source-pancreas tissue into the duodenum label while preserving the original CT and aggregate foreground. All 13 names remained present.
 
-### What Worked vs. What Failed
+The requested answer was small: report inclusions of at least **5 mL**, naming the host object and included organ, with one physical point near the included tissue. It did not require an exact contour or centroid.
 
-| Dimension | What Worked (F01 Focused) | What Failed (M02 Broad) |
-| :--- | :--- | :--- |
-| **Attention Allocation** | Dedicated all token reasoning budget to the shared interface between the two organs. | Diluted budget evenly across liver, spleen, kidneys, gallbladder, etc. |
-| **Algorithm Strategy** | Applied HU density thresholding (+20 to +60 HU) specifically to the boundary zone. | Computed global surface mesh roughness metrics, which were dominated by normal organ curvature. |
-| **Spatial Output** | Identified the 21.04 mL transferred component and calculated its physical LPS centroid to within 1.2 mm. | Reported "all organ envelopes appear plausible and anatomically contiguous." |
+The focused run actually returned:
 
-### Agent Code Walkthrough
-In condition F01, Sol autonomously authored the following Python verification pipeline:
-
-```python
-import numpy as np
-import nibabel as nib
-from scipy.ndimage import label, center_of_mass
-
-def audit_tissue_boundary(ct_path, duodenum_mask_path, pancreas_mask_path, affine):
-    ct = nib.load(ct_path).get_fdata()
-    duo = nib.load(duodenum_mask_path).get_fdata() > 0
-    panc = nib.load(pancreas_mask_path).get_fdata() > 0
-    
-    # Analyze parenchymal density inside duodenum mask
-    # Pancreatic head tissue exhibits homogeneous 35-50 HU compared to fluid/air duodenal lumen
-    parenchyma_candidate = duo & (ct >= 32) & (ct <= 52)
-    
-    # Isolate connected components adjacent to the pancreas boundary
-    labeled_comps, num_features = label(parenchyma_candidate)
-    voxel_vol_ml = np.abs(np.linalg.det(affine[:3, :3])) / 1000.0
-    
-    for comp_id in range(1, num_features + 1):
-        comp = (labeled_comps == comp_id)
-        vol_ml = np.sum(comp) * voxel_vol_ml
-        if vol_ml >= 5.0:  # Significance threshold
-            centroid_vox = center_of_mass(comp)
-            centroid_lps = affine[:3, :3] @ centroid_vox + affine[:3, 3]
-            return {
-                "object_id": "duodenum",
-                "included_label": "pancreas",
-                "volume_ml": float(vol_ml),
-                "point_lps_mm": centroid_lps.tolist()
-            }
+```json
+{"findings": [{"object_id": "o327", "included_label": "pancreas", "point_lps_mm": [-22.9, -199.9, 324.7]}]}
 ```
 
----
+Here `o327` identifies the supplied duodenum object. The three numbers locate a point in the scan's physical coordinate system. [Recorded answers and scoring](../docs/evidence/br017-results.json)
 
-## 3. Task Progression & Evolution
+## How Sol investigated
 
-The tissue auditing benchmark evolved through four iterative phases to isolate perceptual failure from scaffolding noise:
+| Stage | Broad audit | Focused audit |
+| --- | --- | --- |
+| Establish the layout | Numerical screen across the supplied organs | Geometry of the pancreas–duodenum pair |
+| Inspect suspicious anatomy | Targeted three-plane views of that pair, followed by the remaining organs | Rotated 3D views and finer sheets through their interface |
+| Decide | Accepted the local appearance; returned no findings | Continued inspection after the global shapes looked plausible; identified included pancreatic tissue |
+| Deliver | Empty findings list | Correct host/class pair and an accepted interior point |
 
-```mermaid
-timeline
-    title Task Progression: From Identity to Tissue Ownership
-    BR-004 : Single-Organ Semantic ID : Agent easily matched labeled masks to names
-    BR-013 : 11 Unlabeled Masks : Agent confused pancreas with gallbladder without CT
-    BR-015 : Multi-Modal CT Context : Radiodensity + vascular anchors restored perfect 11/11
-    BR-017 : Absorption Audit : Plausible outer shapes, 21 mL stolen tissue (Final Benchmark)
-```
+Both runs combined code-based measurements with image inspection. The broad run did look at the affected pair: the difference cannot be reduced to “one saw it, one did not.” The traces support a difference in how the inspection developed, without isolating its cause. [Trace walkthrough](../docs/research-rounds/BR-017-traces.md)
 
-1. **Phase 1 ([`BR-004`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-004-single-patient-benchmark.md)): Single-Organ Semantic Identity**  
-   Presented agents with individual organ masks. Sol scored 100% using simple spatial bounding boxes.
-2. **Phase 2 ([`BR-013`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-013-results.md)): Unlabeled Masks (11 Masks, 13 Candidates)**  
-   Presented 11 unlabeled masks without CT context. Both Sol and Terra confused pancreas with gallbladder due to absence of gallbladder masks in the source scan.
-3. **Phase 3 ([`BR-015`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-015-results.md)): CT Evidence & Vascular Anchors**  
-   Added raw CT radiodensity (HU) and vascular landmarks (portal vein, inferior vena cava). Sol scored a perfect 11/11, proving that multi-modal image evidence resolves organ naming easily.
-4. **Phase 4 ([`BR-017`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-017-results.md)): Tissue Absorption Audit (Final Benchmark)**  
-   The definitive challenge: CT is unchanged, both organ labels remain present and connected, but 21 mL of tissue is stolen. Isolates internal tissue ownership from external organ naming.
+## What worked, and what it cost
 
----
+| Condition | Outcome | Agent time | Output tokens | Estimated API cost |
+| --- | --- | ---: | ---: | ---: |
+| Broad partial-error audit | Miss | 6m 44s | 10,593 | $1.011 |
+| Focused audit, same data | Pass | 5m 51s | 12,009 | $0.932 |
+| Whole pancreas absorbed | Pass | 5m 49s | 15,102 | $1.120 |
+| Unchanged labels | Pass: no false finding | 7m 33s | 11,864 | $1.260 |
 
-## 4. Key Takeaway & Evaluation Principle
+Agent time excludes setup and verification; cost is the harness estimate. Each condition had one fresh Sol/xhigh attempt. The focused run used less time but more output tokens than the broad run, so this is not a general efficiency result. [Results](../docs/research-rounds/BR-017-results.md)
 
-> [!WARNING]
-> **The "Plausible Envelope" Evaluation Trap**  
-> Benchmarks that evaluate segmentation exclusively through global metrics (Dice similarity coefficient, 95% Hausdorff distance) are blind to internal tissue theft. An algorithm or agent can produce a smooth, visually plausible organ boundary that encloses tumor or neighboring organs while passing automated volume checks. Benchmark designs must force agents to audit radiometric and histological voxel distributions along interfaces.
+## How the task became a useful challenge
 
----
+Whole absorption removes the separate pancreas label, providing an obvious clue. Partial absorption retains that label and a plausible neighboring shape. The unchanged control checks over-reporting; the focused follow-up checks whether directing attention to the affected pair enables success.
 
-## Navigation & References
+This produces a useful capability boundary: the agent could identify the inclusion, but did not do so reliably across these two scopes. The focused pass is suggestive, not proof that attention alone caused the difference. Source contour accuracy and performance across patients were not established.
 
-- [← Overview](README.md)
-- [02. Vascular Aneurysm 3D Detection →](02-aneurysms.md)
-- **Task Card:** [`site_med/task_cards/med_seg_br017_absorption.json`](task_cards/med_seg_br017_absorption.json)
-- **Direct Round Links:** [`docs/research-rounds/BR-017-absorbed-anatomy.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-017-absorbed-anatomy.md) · [`docs/research-rounds/BR-017-results.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-017-results.md)
-- **Evidence Files:** [`docs/evidence/br017-absorption.json`](file:///Users/zhangqy/pkgs/tb3/docs/evidence/)
+## Inspect or reproduce
+
+- [Task summary](task_cards/med_seg_br017_absorption.json), [frozen protocol](../docs/research-rounds/BR-017-absorbed-anatomy.md), and [scored results](../docs/evidence/br017-results.json).
+- [Rebuild guide](../probes/revisions/br017/authoring/README.md): retained sources and commands for before/after figures and trace presentation.
+- The full local report is `runs/br017-absorption/review/index.html`; native arrays and raw sessions are local-only. [Availability and reproduction levels](references.md).
+
+[Next: searching for an aneurysm →](02-aneurysms.md)

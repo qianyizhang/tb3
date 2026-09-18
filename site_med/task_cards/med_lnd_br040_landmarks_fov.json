@@ -1,107 +1,507 @@
 {
+  "schema_version": 2,
+  "kind": "editorial task summary",
+  "authority": "The linked frozen protocol and scorer own the executable contract; this card is a source-backed reading aid.",
   "task_id": "MED-LND-BR040-LANDMARKS-FOV",
-  "task_name": "3D Anatomical Landmarks & Out-of-Field-of-View Rejection",
-  "domain": "Domain 06: 3D Anatomical Landmarks & Out-of-FOV Rejection",
-  "clinical_objective": "Accurately predict 3D physical coordinates for 26 vertebral centroids (C1\u2013L6) on spine CT and 32 brain fiducials on MRI, while strictly rejecting targets outside the field-of-view (OUT_OF_FOV) without hallucinating.",
-  "research_round": {
-    "round_id": "BR-040",
-    "title": "Sol/xhigh CT and MRI landmark comparison",
-    "document_path": "docs/research-rounds/BR-040-sol-landmarks.md",
-    "results_path": "docs/research-rounds/BR-040-results.md",
-    "evidence_path": "docs/evidence/br040-source-audit.json"
-  },
-  "input_data": {
+  "title": "Locate named anatomy and identify unavailable targets",
+  "chapter": "06-landmarks.md",
+  "rounds": [
+    "BR-038",
+    "BR-039",
+    "BR-040"
+  ],
+  "inputs": {
     "datasets": [
-      {
-        "name": "VerSe Vertebral Segmentation Benchmark",
-        "citation": "Sekuboyina et al., Medical Image Analysis 2021. DOI: 10.1016/j.media.2021.102166",
-        "subject": "sub-verse823",
-        "full_scan_shape": [
-          512,
-          512,
-          1214
-        ],
-        "cropped_scan_shape": [
-          512,
-          512,
-          480
-        ],
-        "voxel_spacing_mm": [
-          0.8,
-          0.8,
-          1.25
-        ],
-        "targets_requested": 26
-      },
-      {
-        "name": "AFIDs SNSX Brain MRI Cohort",
-        "citation": "Lau et al., Scientific Data 2020. DOI: 10.1038/s41597-020-00629-8. OpenNeuro ds004470",
-        "subject": "sub-C001",
-        "dimensions": [
-          256,
-          256,
-          176
-        ],
-        "voxel_spacing_mm": [
-          1.0,
-          1.0,
-          1.0
-        ],
-        "targets_requested": 32
-      }
-    ]
+      "VerSe sub-verse823 CT, full and cropped",
+      "AFIDs SNSX sub-C001 MRI, OpenNeuro ds004470"
+    ],
+    "supplied": "3D array, named targets and coordinate convention"
   },
-  "ground_truth": {
-    "gt_source": "VerSe manual segmentation centroids and AFIDs 3-rater consensus fiducials",
-    "full_ct_visible": 24,
-    "full_ct_absent": 2,
-    "cropped_ct_visible": 13,
-    "cropped_ct_outside_fov": 11,
-    "cropped_ct_absent": 2,
-    "mri_visible": 32
-  },
-  "task_instruction_prompt": "For each requested landmark, return its fractional native voxel coordinate [i, j, k] and status: 'OBSERVED', 'OUT_OF_FOV', or 'ABSENT'. Explicitly label outside estimates; do not claim an unavailable target is observed inside the scan.",
-  "output_contract": {
-    "expected_file": "landmarks.json",
-    "format": "JSON array of landmark predictions",
-    "coordinate_convention": "Native zero-indexed fractional voxel indices [i, j, k] explicitly tagged 'voxel_ijk_zero_based'"
-  },
-  "evaluation_rubric": {
-    "metric": "Euclidean 3D distance transformed by affine linear matrix: ||A * (v_pred - v_gt)||",
-    "tolerances": {
-      "ct_spine_mm": 5.0,
-      "mri_brain_mm": 3.0
+  "output": "landmarks.json: status and native zero-based voxel coordinates for observed targets",
+  "evaluation": "Physical localization errors from image affine; CT summaries at 5/10/20 mm and MRI at 3/5/10 mm; availability judgments scored separately.",
+  "limitations": [
+    "Model and reasoning setting both differ.",
+    "CT localization denominators include every visible target; mean error can exclude unreturned points.",
+    "Sol MRI uses a generic labeled atlas; target-subject annotation retrieval was not observed.",
+    "One CT subject with correlated full/crop conditions and one MRI subject; one attempt per model/condition."
+  ],
+  "measurements": [
+    {
+      "label": "ct-full terra-high: case",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/0/case",
+      "value": "ct-full"
     },
-    "hallucination_penalty": "Claiming an OUT_OF_FOV target is OBSERVED inside the scan is penalized as a critical hallucination error"
-  },
-  "empirical_results": {
-    "cropped_spine_ct": {
-      "terra_high": {
-        "points_within_5mm": "1 / 13",
-        "mean_error_mm": 20.85,
-        "hallucinations": "1 / 11 outside targets falsely detected inside (T4 predicted 2.14 mm from true T5)"
-      },
-      "sol_xhigh": {
-        "points_within_5mm": "4 / 12",
-        "mean_error_mm": 7.44,
-        "hallucinations": "0 / 11 outside targets falsely detected (Zero hallucinations)"
+    {
+      "label": "ct-full terra-high: model_setting",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/0/model_setting",
+      "value": "terra-high"
+    },
+    {
+      "label": "ct-full terra-high: agent_seconds",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/0/agent_seconds",
+      "value": 597.243176
+    },
+    {
+      "label": "ct-full terra-high: score/reward",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/0/score/reward",
+      "value": 0
+    },
+    {
+      "label": "ct-full terra-high: score/counts",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/0/score/counts",
+      "value": {
+        "observed": 24,
+        "out_of_fov": 0,
+        "absent": 2
       }
     },
-    "brain_mri_afids": {
-      "terra_high": {
-        "points_within_3mm": "3 / 32",
-        "mean_error_mm": 9.4,
-        "strategy": "Direct image inspection without atlas"
-      },
-      "sol_xhigh": {
-        "points_within_3mm": "14 / 32",
-        "mean_error_mm": 3.87,
-        "strategy": "Autonomous retrieval of MNI152 template and affine atlas registration"
+    {
+      "label": "ct-full terra-high: score/hallucinated",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/0/score/hallucinated",
+      "value": {
+        "out_of_fov": 0,
+        "absent": 0
+      }
+    },
+    {
+      "label": "ct-full terra-high: score/correct_rejections",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/0/score/correct_rejections",
+      "value": {
+        "out_of_fov": 0,
+        "absent": 2
+      }
+    },
+    {
+      "label": "ct-full terra-high: score/uncertain_rejections",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/0/score/uncertain_rejections",
+      "value": {
+        "out_of_fov": 0,
+        "absent": 0
+      }
+    },
+    {
+      "label": "ct-full terra-high: score/missed_visible",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/0/score/missed_visible",
+      "value": 0
+    },
+    {
+      "label": "ct-full terra-high: score/localized_visible",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/0/score/localized_visible",
+      "value": 24
+    },
+    {
+      "label": "ct-full terra-high: score/mean_localized_error_mm",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/0/score/mean_localized_error_mm",
+      "value": 24.773737376315015
+    },
+    {
+      "label": "ct-full terra-high: success_counts_mm",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/0/success_counts_mm",
+      "value": {
+        "5": 2,
+        "10": 7,
+        "20": 9
+      }
+    },
+    {
+      "label": "ct-full sol-xhigh: case",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/1/case",
+      "value": "ct-full"
+    },
+    {
+      "label": "ct-full sol-xhigh: model_setting",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/1/model_setting",
+      "value": "sol-xhigh"
+    },
+    {
+      "label": "ct-full sol-xhigh: agent_seconds",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/1/agent_seconds",
+      "value": 645.421125
+    },
+    {
+      "label": "ct-full sol-xhigh: score/reward",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/1/score/reward",
+      "value": 0
+    },
+    {
+      "label": "ct-full sol-xhigh: score/counts",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/1/score/counts",
+      "value": {
+        "observed": 24,
+        "out_of_fov": 0,
+        "absent": 2
+      }
+    },
+    {
+      "label": "ct-full sol-xhigh: score/hallucinated",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/1/score/hallucinated",
+      "value": {
+        "out_of_fov": 0,
+        "absent": 0
+      }
+    },
+    {
+      "label": "ct-full sol-xhigh: score/correct_rejections",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/1/score/correct_rejections",
+      "value": {
+        "out_of_fov": 0,
+        "absent": 2
+      }
+    },
+    {
+      "label": "ct-full sol-xhigh: score/uncertain_rejections",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/1/score/uncertain_rejections",
+      "value": {
+        "out_of_fov": 0,
+        "absent": 0
+      }
+    },
+    {
+      "label": "ct-full sol-xhigh: score/missed_visible",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/1/score/missed_visible",
+      "value": 0
+    },
+    {
+      "label": "ct-full sol-xhigh: score/localized_visible",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/1/score/localized_visible",
+      "value": 24
+    },
+    {
+      "label": "ct-full sol-xhigh: score/mean_localized_error_mm",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/1/score/mean_localized_error_mm",
+      "value": 10.237620419908309
+    },
+    {
+      "label": "ct-full sol-xhigh: success_counts_mm",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/1/success_counts_mm",
+      "value": {
+        "5": 1,
+        "10": 13,
+        "20": 23
+      }
+    },
+    {
+      "label": "ct-partial terra-high: case",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/2/case",
+      "value": "ct-partial"
+    },
+    {
+      "label": "ct-partial terra-high: model_setting",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/2/model_setting",
+      "value": "terra-high"
+    },
+    {
+      "label": "ct-partial terra-high: agent_seconds",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/2/agent_seconds",
+      "value": 458.780003
+    },
+    {
+      "label": "ct-partial terra-high: score/reward",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/2/score/reward",
+      "value": 0
+    },
+    {
+      "label": "ct-partial terra-high: score/counts",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/2/score/counts",
+      "value": {
+        "observed": 13,
+        "out_of_fov": 11,
+        "absent": 2
+      }
+    },
+    {
+      "label": "ct-partial terra-high: score/hallucinated",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/2/score/hallucinated",
+      "value": {
+        "out_of_fov": 1,
+        "absent": 0
+      }
+    },
+    {
+      "label": "ct-partial terra-high: score/correct_rejections",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/2/score/correct_rejections",
+      "value": {
+        "out_of_fov": 10,
+        "absent": 2
+      }
+    },
+    {
+      "label": "ct-partial terra-high: score/uncertain_rejections",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/2/score/uncertain_rejections",
+      "value": {
+        "out_of_fov": 0,
+        "absent": 0
+      }
+    },
+    {
+      "label": "ct-partial terra-high: score/missed_visible",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/2/score/missed_visible",
+      "value": 0
+    },
+    {
+      "label": "ct-partial terra-high: score/localized_visible",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/2/score/localized_visible",
+      "value": 13
+    },
+    {
+      "label": "ct-partial terra-high: score/mean_localized_error_mm",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/2/score/mean_localized_error_mm",
+      "value": 20.846148580376322
+    },
+    {
+      "label": "ct-partial terra-high: success_counts_mm",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/2/success_counts_mm",
+      "value": {
+        "5": 1,
+        "10": 2,
+        "20": 5
+      }
+    },
+    {
+      "label": "ct-partial sol-xhigh: case",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/3/case",
+      "value": "ct-partial"
+    },
+    {
+      "label": "ct-partial sol-xhigh: model_setting",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/3/model_setting",
+      "value": "sol-xhigh"
+    },
+    {
+      "label": "ct-partial sol-xhigh: agent_seconds",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/3/agent_seconds",
+      "value": 745.543318
+    },
+    {
+      "label": "ct-partial sol-xhigh: score/reward",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/3/score/reward",
+      "value": 0
+    },
+    {
+      "label": "ct-partial sol-xhigh: score/counts",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/3/score/counts",
+      "value": {
+        "observed": 13,
+        "out_of_fov": 11,
+        "absent": 2
+      }
+    },
+    {
+      "label": "ct-partial sol-xhigh: score/hallucinated",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/3/score/hallucinated",
+      "value": {
+        "out_of_fov": 0,
+        "absent": 0
+      }
+    },
+    {
+      "label": "ct-partial sol-xhigh: score/correct_rejections",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/3/score/correct_rejections",
+      "value": {
+        "out_of_fov": 11,
+        "absent": 1
+      }
+    },
+    {
+      "label": "ct-partial sol-xhigh: score/uncertain_rejections",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/3/score/uncertain_rejections",
+      "value": {
+        "out_of_fov": 0,
+        "absent": 1
+      }
+    },
+    {
+      "label": "ct-partial sol-xhigh: score/missed_visible",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/3/score/missed_visible",
+      "value": 1
+    },
+    {
+      "label": "ct-partial sol-xhigh: score/localized_visible",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/3/score/localized_visible",
+      "value": 12
+    },
+    {
+      "label": "ct-partial sol-xhigh: score/mean_localized_error_mm",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/3/score/mean_localized_error_mm",
+      "value": 7.443463698931489
+    },
+    {
+      "label": "ct-partial sol-xhigh: success_counts_mm",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/3/success_counts_mm",
+      "value": {
+        "5": 4,
+        "10": 8,
+        "20": 12
+      }
+    },
+    {
+      "label": "mri32-full terra-high: case",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/4/case",
+      "value": "mri32-full"
+    },
+    {
+      "label": "mri32-full terra-high: model_setting",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/4/model_setting",
+      "value": "terra-high"
+    },
+    {
+      "label": "mri32-full terra-high: agent_seconds",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/4/agent_seconds",
+      "value": 264.6801
+    },
+    {
+      "label": "mri32-full terra-high: score/reward",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/4/score/reward",
+      "value": 0
+    },
+    {
+      "label": "mri32-full terra-high: score/accepted_count",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/4/score/accepted_count",
+      "value": 3
+    },
+    {
+      "label": "mri32-full terra-high: score/total",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/4/score/total",
+      "value": 32
+    },
+    {
+      "label": "mri32-full terra-high: score/mean_mm",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/4/score/mean_mm",
+      "value": 9.402305021262029
+    },
+    {
+      "label": "mri32-full terra-high: score/max_mm",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/4/score/max_mm",
+      "value": 28.23523504015175
+    },
+    {
+      "label": "mri32-full terra-high: success_counts_mm",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/4/success_counts_mm",
+      "value": {
+        "3": 3,
+        "5": 8,
+        "10": 20
+      }
+    },
+    {
+      "label": "mri32-full sol-xhigh: case",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/5/case",
+      "value": "mri32-full"
+    },
+    {
+      "label": "mri32-full sol-xhigh: model_setting",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/5/model_setting",
+      "value": "sol-xhigh"
+    },
+    {
+      "label": "mri32-full sol-xhigh: agent_seconds",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/5/agent_seconds",
+      "value": 2008.976295
+    },
+    {
+      "label": "mri32-full sol-xhigh: score/reward",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/5/score/reward",
+      "value": 0
+    },
+    {
+      "label": "mri32-full sol-xhigh: score/accepted_count",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/5/score/accepted_count",
+      "value": 14
+    },
+    {
+      "label": "mri32-full sol-xhigh: score/total",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/5/score/total",
+      "value": 32
+    },
+    {
+      "label": "mri32-full sol-xhigh: score/mean_mm",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/5/score/mean_mm",
+      "value": 3.871505693004214
+    },
+    {
+      "label": "mri32-full sol-xhigh: score/max_mm",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/5/score/max_mm",
+      "value": 9.48894110662786
+    },
+    {
+      "label": "mri32-full sol-xhigh: success_counts_mm",
+      "source": "docs/evidence/br040-results.json",
+      "pointer": "/trials/5/success_counts_mm",
+      "value": {
+        "3": 14,
+        "5": 23,
+        "10": 32
       }
     }
-  },
-  "known_failure_modes_and_traps": {
-    "trap_name": "Wrong-Level Surgical Hallucination vs. Autonomous Atlas Orchestration",
-    "description": "On cropped CT, Terra detected real bone but miscounted vertebral levels (predicting T4 on the T5 vertebral body). Sol correctly abstained. On MRI, Sol autonomously downloaded the MNI brain atlas to double accuracy within 3 mm."
+  ],
+  "protocol": "docs/research-rounds/BR-040-sol-landmarks.md",
+  "reproduction": "probes/semantic-landmarks/authoring/br040/README.md",
+  "source_hashes": {
+    "docs/evidence/br040-results.json": "dc9c8da07ad0948e8813f74188f87776c872e5619b2a1cf38019897731d1887b"
   }
 }

@@ -1,3 +1,8 @@
+# Original showcase brief
+
+Historical user request; see [current decisions](README.md) and the
+[package guide](../README.md) for the implemented scope.
+
 can you build a simplified '/Users/zhangqy/pkgs/tb3/site' to '/Users/zhangqy/pkgs/tb3/site_med'
   the goal is to serve different audience, it's more about showcasing the "solving medical CV task in agent era" (or some more elegant/cachy title) than curating hard task.                           
   so the index page should summarize the tasks and results and overview, with some interpretations and insights

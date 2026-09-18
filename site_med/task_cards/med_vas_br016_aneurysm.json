@@ -1,126 +1,133 @@
 {
+  "schema_version": 2,
+  "kind": "editorial task summary",
+  "authority": "The linked frozen protocol and scorer own the executable contract; this card is a source-backed reading aid.",
   "task_id": "MED-VAS-BR016-ANEURYSM",
-  "task_name": "Cerebral Aneurysm 3D Localization in TOF-MRA",
-  "domain": "Domain 02: Vascular Aneurysm 3D Detection",
-  "clinical_objective": "Autonomously inspect 3D Time-of-Flight Magnetic Resonance Angiography (TOF-MRA) scans of the Circle of Willis to detect focal arterial outpouchings (aneurysms) and report exactly one physical 3D coordinate per lesion, or verify that a scan is healthy.",
-  "research_round": {
-    "round_id": "BR-016",
-    "title": "Aneurysm localization pilot",
-    "document_path": "docs/research-rounds/BR-016-aneurysm-localization.md",
-    "results_path": "docs/research-rounds/BR-016-results.md",
-    "evidence_path": "site/aneurysm-figures.json"
-  },
-  "input_data": {
-    "dataset_name": "OpenNeuro ds003949 Aneurysm Cohort",
-    "dataset_citation": "OpenNeuro ds003949, arXiv:2103.06168. CC0 Public Domain Dedication.",
-    "license": "CC0",
-    "source_cases": [
-      {
-        "case_id": "N01",
-        "subject": "sub-001_ses-1",
-        "dimensions": [
-          350,
-          448,
-          144
-        ],
-        "voxel_spacing_mm": [
-          0.45,
-          0.45,
-          0.7
-        ],
-        "clinical_condition": "Single 3.5 mm aneurysm in posterior communicating artery"
-      },
-      {
-        "case_id": "N02",
-        "subject": "sub-002_ses-1",
-        "dimensions": [
-          512,
-          512,
-          140
-        ],
-        "voxel_spacing_mm": [
-          0.45,
-          0.45,
-          0.7
-        ],
-        "clinical_condition": "Single 4.8 mm rounded outpouching in middle cerebral artery bifurcation"
-      },
-      {
-        "case_id": "N03",
-        "subject": "sub-003_ses-1",
-        "dimensions": [
-          350,
-          448,
-          160
-        ],
-        "voxel_spacing_mm": [
-          0.45,
-          0.45,
-          0.7
-        ],
-        "clinical_condition": "Healthy control scan (zero aneurysms)"
-      }
-    ],
-    "file_format": "NIfTI-1 (.nii.gz) 3D volumes (original scan + skull-stripped brain-only scan)",
-    "supplied_tools": "Standard slice/projection rendering helper scripts"
-  },
-  "ground_truth": {
-    "gt_source": "OpenNeuro ds003949 expert radiologist consensus annotations",
-    "gt_locations": {
-      "N01": {
-        "center_voxel": [
-          166,
-          273,
-          84
-        ],
-        "diameter_mm": 3.5,
-        "artery": "PCoA"
-      },
-      "N02": {
-        "center_voxel": [
-          307,
-          214,
-          93
-        ],
-        "diameter_mm": 4.8,
-        "artery": "MCA"
-      },
-      "N03": {
-        "center_voxel": null,
-        "diameter_mm": 0,
-        "artery": null
-      }
-    }
-  },
-  "task_instruction_prompt": "Inspect the 3D TOF-MRA blood vessel scan. Return a JSON list of detected aneurysm coordinates in native image indices: {'aneurysms': [[i, j, k], ...]}. If the scan contains no aneurysms, return {'aneurysms': []}.",
-  "output_contract": {
-    "expected_file": "aneurysms.json",
-    "format": "JSON",
-    "coordinate_convention": "Native 0-indexed voxel coordinates [i, j, k]"
-  },
-  "evaluation_rubric": {
-    "matching_rule": "1-to-1 matching against ground truth reference regions",
-    "spatial_tolerance_mm": 1.0,
-    "false_positives": "Any extra coordinate is scored as a false alarm (immediate fail)",
-    "negative_control": "N03 requires an explicit empty list []"
-  },
-  "empirical_results": {
-    "case_n01": {
-      "model": "Sol (Claude 3.7 Sonnet / xhigh)",
-      "wall_time": "6m 40s",
-      "tokens": 9908,
-      "cost_usd": 1.04,
-      "submission": {
-        "aneurysms": []
-      },
-      "benchmark_outcome": "MISS (Rendered slices covering the lesion, but candidate ranking heuristic prioritized false leads elsewhere)"
+  "title": "Localize aneurysm reference regions",
+  "chapter": "02-aneurysms.md",
+  "rounds": [
+    "BR-016"
+  ],
+  "inputs": {
+    "dataset": "OpenNeuro ds003949",
+    "subjects": {
+      "N01": "sub-013",
+      "N02": "sub-022",
+      "N03": "sub-000"
     },
-    "case_n02": {
-      "model": "Sol (Claude 3.7 Sonnet / xhigh)",
-      "wall_time": "5m 46s",
-      "tokens": 8763,
-      "cost_usd": 0.98,
-      "submission": {
+    "supplied": "Original and skull-stripped native volumes, metadata and rendering helper"
+  },
+  "output": "answer.json: aneurysms list of native zero-based voxel [i,j,k] coordinates; empty list for no findings",
+  "evaluation": "One-to-one point matching against weak reference regions plus 1 mm Euclidean tolerance; no missing or extra findings.",
+  "limitations": [
+    "Weak regions support coarse localization, not exact boundaries or center accuracy.",
+    "N03 is source-assisted; allowed public lookup occurred before the final answer.",
+    "Selected three-case pilot, one attempt per case; no clinical accuracy estimate."
+  ],
+  "measurements": [
+    {
+      "label": "aneurysm-n01-v2: task",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/2/task",
+      "value": "aneurysm-n01-v2"
+    },
+    {
+      "label": "aneurysm-n01-v2: requested_model",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/2/requested_model",
+      "value": "openai/gpt-5.6-sol"
+    },
+    {
+      "label": "aneurysm-n01-v2: requested_effort",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/2/requested_effort",
+      "value": "xhigh"
+    },
+    {
+      "label": "aneurysm-n01-v2: reward",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/2/reward",
+      "value": 0.0
+    },
+    {
+      "label": "aneurysm-n01-v2: agent_seconds",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/2/agent_seconds",
+      "value": 400.386539
+    },
+    {
+      "label": "aneurysm-n01-v2: output_tokens",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/2/output_tokens",
+      "value": 9908
+    },
+    {
+      "label": "aneurysm-n01-v2: estimated_cost_usd",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/2/estimated_cost_usd",
+      "value": 1.0388967999999998
+    },
+    {
+      "label": "aneurysm-n01-v2: answer",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/2/answer",
+      "value": {
+        "aneurysms": []
+      }
+    },
+    {
+      "label": "aneurysm-n01-v2: capability_evidence",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/2/capability_evidence",
+      "value": "no_source_lookup_observed"
+    },
+    {
+      "label": "aneurysm-n02-v2: task",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/6/task",
+      "value": "aneurysm-n02-v2"
+    },
+    {
+      "label": "aneurysm-n02-v2: requested_model",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/6/requested_model",
+      "value": "openai/gpt-5.6-sol"
+    },
+    {
+      "label": "aneurysm-n02-v2: requested_effort",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/6/requested_effort",
+      "value": "xhigh"
+    },
+    {
+      "label": "aneurysm-n02-v2: reward",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/6/reward",
+      "value": 1.0
+    },
+    {
+      "label": "aneurysm-n02-v2: agent_seconds",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/6/agent_seconds",
+      "value": 345.935499
+    },
+    {
+      "label": "aneurysm-n02-v2: output_tokens",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/6/output_tokens",
+      "value": 8763
+    },
+    {
+      "label": "aneurysm-n02-v2: estimated_cost_usd",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/6/estimated_cost_usd",
+      "value": 0.9836928
+    },
+    {
+      "label": "aneurysm-n02-v2: answer",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/6/answer",
+      "value": {
         "aneurysms": [
           [
             312,
@@ -128,23 +135,74 @@
             94
           ]
         ]
-      },
-      "distance_error_mm": 0.88,
-      "benchmark_outcome": "PASS (Located within 1.0 mm tolerance ring)"
+      }
     },
-    "case_n03": {
-      "model": "Sol (Claude 3.7 Sonnet / xhigh)",
-      "wall_time": "7m 32s",
-      "tokens": 13806,
-      "cost_usd": 1.56,
-      "submission": {
+    {
+      "label": "aneurysm-n02-v2: capability_evidence",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/6/capability_evidence",
+      "value": "no_source_lookup_observed"
+    },
+    {
+      "label": "aneurysm-n03-v2: task",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/9/task",
+      "value": "aneurysm-n03-v2"
+    },
+    {
+      "label": "aneurysm-n03-v2: requested_model",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/9/requested_model",
+      "value": "openai/gpt-5.6-sol"
+    },
+    {
+      "label": "aneurysm-n03-v2: requested_effort",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/9/requested_effort",
+      "value": "xhigh"
+    },
+    {
+      "label": "aneurysm-n03-v2: reward",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/9/reward",
+      "value": 1.0
+    },
+    {
+      "label": "aneurysm-n03-v2: agent_seconds",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/9/agent_seconds",
+      "value": 452.237089
+    },
+    {
+      "label": "aneurysm-n03-v2: output_tokens",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/9/output_tokens",
+      "value": 13806
+    },
+    {
+      "label": "aneurysm-n03-v2: estimated_cost_usd",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/9/estimated_cost_usd",
+      "value": 1.5613359999999998
+    },
+    {
+      "label": "aneurysm-n03-v2: answer",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/9/answer",
+      "value": {
         "aneurysms": []
-      },
-      "benchmark_outcome": "SOURCE-ASSISTED PASS (Recognized OpenNeuro dataset signature, fetched public file manifest via bash curl, and confirmed sub-003 was a normal control)"
+      }
+    },
+    {
+      "label": "aneurysm-n03-v2: capability_evidence",
+      "source": "docs/evidence/br016-results.json",
+      "pointer": "/rows/9/capability_evidence",
+      "value": "source_assisted"
     }
-  },
-  "known_failure_modes_and_traps": {
-    "trap_name": "Autonomous Dataset Leakage",
-    "description": "Because coding agents possess bash execution and network access, they will autonomously reconstruct dataset provenance, query public git repositories or Zenodo APIs, and look up reference metadata instead of relying on vision. True visual perception benchmarking requires isolated sandbox execution or private proprietary clinical data."
+  ],
+  "protocol": "docs/research-rounds/BR-016-aneurysm-localization.md",
+  "reproduction": "probes/revisions/br016/README.md",
+  "source_hashes": {
+    "docs/evidence/br016-results.json": "68b4c654a5f12079d2ea0b23b139bc5d127a7052aa41523fdc5e139ff1dbce17"
   }
 }

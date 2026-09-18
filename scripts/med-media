@@ -1,0 +1,9 @@
+#!/bin/sh
+# Repository-local reusable media CLI. No dependency downloads.
+set -eu
+MED_ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+cd "$MED_ROOT"
+if [ -z "${NODE_PATH:-}" ] && [ -d "$HOME/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules" ]; then
+  export NODE_PATH="$HOME/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules"
+fi
+exec node scripts/export_med_tours.cjs "$@"

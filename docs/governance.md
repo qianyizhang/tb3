@@ -13,6 +13,8 @@ outputs out of commits. It does not delete files or move frozen task inputs.
 | `probes/<id>/environment`, `tests`, `solution` | Task and verifier inputs, including vendored source, licenses, locks and required archives; track after review. |
 | `probes/<id>/authoring` | Provenance, reviews and concise controls; track. |
 | `site/` publication, authored chapters and provenance | Authored interview presentation, including attributed embedded illustration; track. |
+| `site_med/` chapters, task cards, static figures, editorial records and tour source | Authored medical presentation; track. Binary chapter figures require exact digest/reason entries. |
+| `site_med/tours/data/`, `web/`, `exports/`, `validation.json`, `compression-report.json` | Rebuildable local presentation data, media and run receipts; ignored, preserve locally. |
 | `docs/` and `docs/evidence/` | Source-linked research, decisions, frozen plans and concise evidence; track, retaining historical failures. |
 | `catalog/ideas`, `reviews`, `analyses` | Authored candidate decisions and append-only reviews; track. |
 | `catalog/trials` | Allowlisted imports from raw evidence; track deliberately after review. |

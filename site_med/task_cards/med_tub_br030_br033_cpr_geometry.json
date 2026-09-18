@@ -1,83 +1,117 @@
 {
+  "schema_version": 2,
+  "kind": "editorial task summary",
+  "authority": "The linked frozen protocol and scorer own the executable contract; this card is a source-backed reading aid.",
   "task_id": "MED-TUB-BR030-BR033-CPR-GEOMETRY",
-  "task_name": "Tubular Centerline Routing & 360-Degree Curved Planar Reformations",
-  "domain": "Domain 04: Tubular Geometry, Centerlines & CPR",
-  "clinical_objective": "Repair severed blood vessel and airway segmentation masks, trace ordered 3D centerline paths, and generate 360-degree rotated Curved Planar Reformations (CPRs) with calibrated distance axes.",
-  "research_round": {
-    "round_id": "BR-030 / BR-033",
-    "title": "Vessel repair to diagnostic geometry & Brain vessel airway difficulty",
-    "document_path": "docs/research-rounds/BR-030-vessel-diagnostic-geometry.md",
-    "results_path": "docs/research-rounds/BR-030-results.md",
-    "evidence_path": "site/vessel-figures.json"
+  "title": "Repair and inspect a coronary route",
+  "chapter": "04-vessels-cpr.md",
+  "rounds": [
+    "BR-030",
+    "BR-033"
+  ],
+  "inputs": {
+    "dataset": "ImageCAS case 1 and ImageCAS-X references; AeroPath supporting contrast",
+    "supplied": "CTA crop, unedited CAS-Net prediction, 8 mm review sphere and two route anchors",
+    "intervention": "Natural internal prediction gap; no injected coronary defect"
   },
-  "input_data": {
-    "dataset_name": "ImageCAS / ASOCA Coronary CTA & AeroPath Airway CT",
-    "source_cases": [
-      {
-        "case_id": "Coronary_Case_1",
-        "modality": "Contrast-Enhanced Coronary CTA",
-        "dimensions": [
-          256,
-          256,
-          180
-        ],
-        "voxel_spacing_mm": [
-          0.45,
-          0.45,
-          0.7
-        ],
-        "defect": "Synthetic 200-voxel (8 mm) gap in right coronary artery (RCA)",
-        "anchors": [
-          "RCA ostium",
-          "Distal R-PDA"
-        ]
-      },
-      {
-        "case_id": "Airway_Case_A01_A03",
-        "modality": "Chest CT",
-        "defect": "Segmental disconnections in peripheral airway tree from AeroPath"
-      }
-    ]
-  },
-  "ground_truth": {
-    "gt_source": "ImageCAS-X reference masks, expert centerlines, and calibrated CPR stacks",
-    "gt_centerline_length_mm": 104.08,
-    "gt_frenet_frame": "Continuous orthogonal normal vectors sampled at 0.5 mm arc steps"
-  },
-  "task_instruction_prompt": "Repair the vessel mask disconnection within the review sphere while preserving all voxels outside. Extract an ordered centerline from ostium to distal anchor in RAS mm. Generate 8 rotated CPR planes (0 to 315 degrees in 45-degree steps), preserving original HU values, source coordinates, and a physical distance axis. Export a watertight surface mesh.",
-  "output_contract": {
-    "expected_artifacts": [
-      "repaired_mask.nii.gz (Binary volume preserving exterior voxels)",
-      "centerline.json (Ordered array of [x, y, z] points in RAS mm)",
-      "cpr_planes.npz (8 2D arrays with HU, coordinate mapping, and distance axis)",
-      "vessel_surface.obj (Watertight closed triangular surface mesh)"
-    ]
-  },
-  "evaluation_rubric": {
-    "connectivity_check": "Single connected component from start to end anchor",
-    "preservation_check": "No more than 10 extraneous voxels added outside review sphere",
-    "cpr_axis_consistency": "Max discrepancy between CPR horizontal axis and true cumulative physical arc length <= 1.0 mm"
-  },
-  "empirical_results": {
-    "coronary_cpr_br030": {
-      "model": "Terra (GPT-4o / high)",
-      "wall_time": "8m 12s",
-      "tokens": 11200,
-      "cost_usd": 0.72,
-      "mask_repair": "198 / 200 voxels restored",
-      "mesh_validity": "Closed watertight mesh generated",
-      "cpr_outcome": "FAILED AUTOMATED CHECK by 8.89 mm due to distance-axis bug (indexed raw voxel steps rather than cumulative physical millimeters)"
+  "output": "Corrected mask, RAS-mm centerline, eight rotated CPR planes with sampling coordinates and distance axis, closed surface mesh",
+  "evaluation": "Frozen repair, preservation, trace, CPR source/axis and surface checks; exact tolerances remain in the linked task and result receipt.",
+  "limitations": [
+    "ImageCAS case 1 is training-split development data.",
+    "Distance-axis failure is in original agent output; author correction is not a model retry.",
+    "Airway local-route success does not establish parent-tree repair for A02/A03."
+  ],
+  "measurements": [
+    {
+      "label": "phase",
+      "source": "docs/evidence/br030-results.json",
+      "pointer": "/rows/2/phase",
+      "value": "terra-high"
     },
-    "airway_repair_br033": {
-      "model": "Sol (Claude 3.7 Sonnet / xhigh)",
-      "wall_time": "12m 40s",
-      "tokens": 16800,
-      "cost_usd": 1.82,
-      "benchmark_outcome": "PASSED AUTOMATED GATES despite peripheral airway fragments remaining completely disconnected from the central trachea (Evaluation Loophole)"
+    {
+      "label": "metrics",
+      "source": "docs/evidence/br030-results.json",
+      "pointer": "/rows/2/metrics",
+      "value": {
+        "reward": 0,
+        "stages": {
+          "repair": true,
+          "trace": true,
+          "cpr": false,
+          "mesh": true
+        },
+        "checks": {
+          "mask_format": true,
+          "preservation": true,
+          "repair_overlap": true,
+          "repair_connection": true,
+          "repair_no_far_addition": true,
+          "trace_geometry": true,
+          "trace_in_mask": true,
+          "cpr_coordinates": false,
+          "cpr_source_intensities": true,
+          "mesh_geometry": true
+        },
+        "metrics": {
+          "local_dice": 0.9448123620309051,
+          "local_recall": 0.9106382978723404,
+          "far_added_mm3": 0.0,
+          "changed_voxels": 103,
+          "centerline_p95_mm": 0.49959907561658334,
+          "reference_coverage_0p8mm": 1.0,
+          "length_mm": 175.9177551358793,
+          "endpoint_errors_mm": [
+            0.0,
+            0.0
+          ],
+          "cpr_max_coordinate_error_mm": 8.529281560667253e-06,
+          "cpr_HU_p99_error": 0.001617431640625,
+          "mesh_surface_p95_mm": 3.814697265625e-06,
+          "mesh_review_surface_p95_mm": 3.814697265625e-06,
+          "mesh_volume_mm3": 2392.1790497292423,
+          "mesh_mask_volume_ratio": 0.9779110327096853,
+          "mesh_watertight": true
+        },
+        "errors": {},
+        "limits": {
+          "local_dice": 0.8,
+          "local_recall": 0.8,
+          "far_added_mm3": 1.5,
+          "centerline_p95_mm": 0.8,
+          "reference_coverage_0p8mm": 0.95,
+          "length_relative_error": 0.1,
+          "endpoint_mm": 1.0,
+          "cpr_coordinate_error_mm": 0.02,
+          "cpr_HU_p99_error": 0.2,
+          "mesh_surface_p95_mm": 0.65
+        }
+      }
+    },
+    {
+      "label": "agent_seconds",
+      "source": "docs/evidence/br030-results.json",
+      "pointer": "/rows/2/agent_seconds",
+      "value": 464.141901
+    },
+    {
+      "label": "agent_result",
+      "source": "docs/evidence/br030-results.json",
+      "pointer": "/rows/2/agent_result",
+      "value": {
+        "n_input_tokens": 1003675,
+        "n_cache_tokens": 928768,
+        "n_output_tokens": 19648,
+        "cost_usd": 0.5713436,
+        "rollout_details": null,
+        "metadata": null
+      }
     }
-  },
-  "known_failure_modes_and_traps": {
-    "trap_name": "The CPR Distance-Axis Bug & The Airway Fragment Loophole",
-    "description": "In BR-030, a perfect anatomical reconstruction failed because the verifier compared raw pixel coordinates against anisotropic millimeter spacing. In BR-033, the verifier checked sub-routes within isolated fragments, awarding passing scores while the main bronchial tree remained broken."
+  ],
+  "timing_note": "Receipt agent_seconds is 464.141901; raw execution timestamps give 464.141901 seconds. The historical prose says 484.14 seconds. Chapter reports rounded full-job time instead.",
+  "protocol": "docs/research-rounds/BR-030-vessel-diagnostic-geometry.md",
+  "reproduction": "probes/vessel-geometry/README.md",
+  "supporting_report": "docs/research-rounds/BR-033-results.md",
+  "source_hashes": {
+    "docs/evidence/br030-results.json": "503917f47d34ea6272e45247abe31b91e32f7e0405f30bd4d8a6e4d194ce8baa"
   }
 }

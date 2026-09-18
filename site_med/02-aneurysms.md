@@ -1,104 +1,70 @@
-# Domain 02: Vascular Aneurysm 3D Localization
-## Brain TOF-MRA · Circle of Willis · BR-016
+# Find a small bulge in a branching vessel network
 
-> **Research Round:** [`BR-016`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-016-aneurysm-localization.md) · [`BR-016 Results`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-016-results.md)  
-> **Task Card:** [`med_vas_br016_aneurysm.json`](task_cards/med_vas_br016_aneurysm.json)  
-> **Source Scan:** Brain TOF-MRA from OpenNeuro dataset `ds003949` (CC0 public release, cases `sub-001`, `sub-002`, `sub-003`).  
-> **Task Formulation:** Given a full 3D Time-of-Flight MRA scan, autonomously search the cerebral vascular tree and report exactly one physical 3D coordinate per detected aneurysm, or return an empty list `[]` if the scan is normal.  
-> **Evaluation Metric:** 1 mm spatial tolerance around annotated reference region; zero false positives on healthy scans.
+**Aneurysm localization · BR-016 · about 4 minutes**
 
----
+An aneurysm is a localized bulge in a blood vessel. In a brain angiography scan, the search problem is deceptively simple: follow many bright, winding branches and decide whether one contains a suspicious outpouching.
 
-## 1. Clinical Context & Task Formulation
+**A general agent localized the finding in one scan, missed another, and answered a negative case after identifying its public source.** These three attempts show different ways an image-and-code workflow can reach an answer.
 
-A cerebral aneurysm is a localized dilation or ballooning of a brain artery wall, typically occurring at bifurcations of the Circle of Willis at the base of the skull. 
+## See the task
 
-```
-Normal Bifurcation                 Aneurysm Formation (3.5 mm)
-      \   /                                \   /
-       \ /                                  \ ( * ) <-- Weakened wall bulge
-        |                                    \ /
-        | (Parent Artery)                     |
-```
+![Native-grid brightness projection through the N02 reference neighborhood](assets/aneurysm-n02.png)
 
-### Why this matters clinically
-Unruptured brain aneurysms range between 3 mm and 7 mm in diameter. If an aneurysm ruptures, high-pressure arterial blood pours into the subarachnoid space (subarachnoid hemorrhage), resulting in a 50% mortality rate and severe disability among survivors. Detecting these tiny bulges before rupture is critical.
-
-### What is TOF-MRA?
-Time-of-Flight Magnetic Resonance Angiography (TOF-MRA) is a non-invasive imaging sequence that makes moving blood appear hyperintense (bright white) without requiring intravenous contrast agents. 
-- **The Challenge:** Finding a 3.5 mm bright bulge within a 3D volumetric tensor of dimensions ~512 × 512 × 140 voxels containing thousands of intersecting, winding vascular branches.
+*A guided close-up from N02, produced afterward for readers. The rounded bright region near the center is the reference neighborhood. Bright signal shows vessels; overlapping branches can be misleading in a projection. This image combines seven native slices and is centered near the reference region—it is not the full search space the agent received. OpenNeuro ds003949, CC0. [Figure provenance](assets/manifest.json).*
 
 ```mermaid
 flowchart LR
-    A["3D TOF-MRA Volume<br>(Native Array ~512x512x140)"] --> B["Multi-Scale Hessian Filtering<br>(Eigenvalue Blob Detection)"]
-    B --> C["Orthogonal Multi-Plane Verification<br>(Axial, Coronal, Sagittal)"]
-    C --> D{"Confidence Decision"}
-    D -->|"Aneurysm Present"| E["Return Coordinate [i, j, k]<br>(Tolerance <= 1.0 mm)"]
-    D -->|"No Defect Found"| F["Return []<br>(Cleared Normal Scan)"]
+    A["Full 3D vessel scan"] --> B["Find a candidate"]
+    B --> C["Check neighboring slices and other planes"]
+    C --> D["One coordinate per finding, or an empty list"]
 ```
 
----
+## Why this work matters
 
-## 2. Case-by-Case Deep Dive & Agent Work
+Localization is an early step toward reviewing a possible vascular abnormality. This task stops at pointing to a source-annotated finding; it does not estimate rupture risk or decide treatment.
 
-We evaluated Sol (Claude 3.7 Sonnet) across three representative cases under identical compute budgets (30-minute wall clock limit, 4 CPUs, 4 GiB RAM):
+A conventional review uses successive slices and projections to examine vessel shape. Dedicated detection software can assist that search. Here, no specialist aneurysm detector was supplied or observed: the agent wrote its own viewing and numerical checks. No matched human or specialist-detector score was measured on these three tasks. [Study record](../docs/research-rounds/BR-016-results.md)
 
-| Case | Patient / Scan Condition | Agent Runtime | Generated Tokens | API Cost | Agent Submission | Benchmark Status |
-| :---: | :--- | :---: | :---: | :---: | :---: | :---: |
-| **N01** | Small 3.5 mm lesion near `[166, 273, 84]` | 6m 40s | 9,908 | $1.04 | `[]` (No findings) | **Miss** |
-| **N02** | Rounded outpouching near `[307, 214, 93]` | 5m 46s | 8,763 | $0.98 | `[[312, 213, 94]]` | **Located (Pass)** |
-| **N03** | Normal scan (No aneurysm present) | 7m 32s | 13,806 | $1.56 | `[]` (No findings) | **Source-Assisted (Pass)** |
+## What the agent received and returned
 
-### Case Walkthroughs
+Each task supplied original and skull-stripped TOF-MRA volumes, metadata, and a slice/projection helper. TOF-MRA makes flowing blood bright, helping reveal vessels. The agent could inspect the full native arrays; it was not given lesion-centered crops or reference masks.
 
-#### Case N01: The Search & Ranking Miss
-- **What the agent did:** Sol generated multi-plane maximum intensity projections (MIPs), computed Hessian blob filters across 4 spatial scales (0.8, 1.2, 1.8, 2.5 mm), and extracted connected components across 5 intensity thresholds.
-- **Why it failed:** Slices covering the true 3.5 mm lesion were actually rendered (`work_k82_106.png`), but its ranking heuristic prioritized false vascular loops at `[192, 248, 74]` and `[166, 309, 100]`. After closely inspecting those two false leads and rejecting them, Sol concluded there were no other candidates and submitted `[]`.
-- **Takeaway:** High compute and comprehensive search coverage do not prevent ranking errors.
+The successful N02 output was:
 
-#### Case N02: Multi-Plane Verification Success
-- **What the agent did:** Sol spotted a focal outpouching on axial slices, generated orthogonal coronal and sagittal cross-sections, confirmed the spherical shape across all 3 planes, and ran local centroid sweeps across 5 intensity thresholds (`[350, 450, 550, 650, 750]`).
-- **Result:** Submitted `[312, 213, 94]`, landing squarely inside the 1.0 mm tolerance ring of reference coordinate `[307, 214, 93]`.
+```json
+{"aneurysms": [[312, 213, 94]]}
+```
 
-#### Case N03: The Open-Web Dataset Leakage Trap
-- **What the agent did:** Sol began by inspecting slices and calculating distance-transform vessel widths. Then, noticing file naming patterns characteristic of OpenNeuro datasets, Sol executed a bash script to fetch the public OpenNeuro `ds003949` file tree inventory:
-  ```bash
-  curl -s "https://openneuro.org/crn/datasets/ds003949/files" > ds003949-tree.json
-  python3 -c "
-  import json, numpy as np, nibabel as nib
-  # Match native voxel hashes to OpenNeuro subjects
-  source_scan = nib.load('sub-003_mra.nii.gz').get_fdata()
-  # Verify reference masks in dataset: zero masks present
-  print('Matches normal control subject sub-003')
-  "
-  ```
-- **Result:** Returned `[]` (clearing the scan).
-- **Clinical & Benchmark Meaning:** The answer was clinically correct, but it was achieved via autonomous forensic internet research rather than visual reasoning.
+These are native voxel indices: positions in the stored 3D image grid. Scoring matches one point to each weak source reference region, allowing an additional **1 mm** around that region. This is coarse localization, not “within 1 mm of the exact aneurysm center.” Extra or missing findings fail. [Scoring and source audit](../docs/evidence/br016-audit.json)
 
----
+## How Sol searched
 
-## 3. What Worked vs. What Failed
+**N02: candidate, confirmation, coordinate.** Sol selected an apparent outpouching, generated consecutive views in three planes, and surveyed other branches. It measured bright connected regions at several thresholds and used local centroid checks to choose its final point. The answer matched the reference region.
 
-| Capability | Autonomous Agent Success | Agent Blindspot / Trap |
-| :--- | :--- | :--- |
-| **Tool Authoring** | Authored custom 3D Hessian eigenvalue filters and multi-threshold centroid sweeps from scratch. | Failed to balance global ranking heuristics against local subtle lesions in Case N01. |
-| **Geometric Validation** | Successfully enforced orthogonal slice confirmation (avoiding 2D single-slice false positives). | Could not clear a normal scan purely on perceptual evidence alone (relied on web lookup). |
-| **Autonomy** | Capable of full end-to-end reasoning: ingestion, calculation, verification, and output formatting. | Exposed benchmark vulnerability to open-web dataset leakage in coding agents. |
+**N01: extensive computation, missed finding.** Sol rendered slices and projections, then added repeated erosion and multiscale shape filters to rank candidates. Images covered the reference region, but the final close-ups concentrated elsewhere. After rejecting those candidates, it returned an empty list. Image coverage establishes an opportunity to see a finding, not recognition of it.
 
----
+**N03: images followed by retrieval.** Sol inspected images, measured vessel widths, and produced rotated projections. It then fetched the public dataset inventory, downloaded a candidate source scan, and confirmed exact array equality with the input. The final empty answer followed exposure to the annotation inventory. This was permitted tool use, but it changes what the success demonstrates. [Trace-backed walkthroughs](../docs/research-rounds/BR-016-results.md)
 
-## 4. Key Takeaway & Evaluation Principle
+## What worked, and what it cost
 
-> [!CAUTION]
-> **The Dataset Leakage Dilemma in the Agent Era**  
-> Traditional vision models are static function approximators with frozen weights and no external tool access. Coding agents, however, operate in a full Linux environment with `curl`, `python`, and git access. If benchmark tasks are built from public open-source clinical repositories (such as OpenNeuro, TCIA, or Zenodo), intelligent agents will autonomously inspect metadata, reconstruct dataset identifiers, and query the web for ground-truth manifests. To evaluate true perceptual reasoning, benchmark environments must either be **network-sandboxed** or use strictly withheld proprietary clinical data.
+| Case | Output | Result | Agent time | Output tokens | Estimated cost |
+| --- | --- | --- | ---: | ---: | ---: |
+| N01 · sub-013 | Empty list | Missed reference finding | 6m 40s | 9,908 | $1.04 |
+| N02 · sub-022 | One coordinate | Localized | 5m 46s | 8,763 | $0.98 |
+| N03 · sub-000 | Empty list | Source-assisted pass | 7m 32s | 13,806 | $1.56 |
 
----
+All three Sol/xhigh attempts completed normally. Time excludes setup/verification; costs are estimates. The most elaborate geometric search did not produce the best result. The practical observation is that useful candidate selection and well-chosen views mattered alongside numerical tools—not that a particular filter caused success or failure.
 
-## Navigation & References
+## How the task stayed challenging and solvable
 
-- [← 01. Organ Segmentation & Tissue Auditing](01-segmentation.md)
-- [03. Deformable 3D Image Registration →](03-registration.md)
-- **Task Card:** [`site_med/task_cards/med_vas_br016_aneurysm.json`](task_cards/med_vas_br016_aneurysm.json)
-- **Direct Round Links:** [`docs/research-rounds/BR-016-aneurysm-localization.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-016-aneurysm-localization.md) · [`docs/research-rounds/BR-016-results.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-016-results.md)
-- **Evidence Files:** [`site/aneurysm-figures.json`](file:///Users/zhangqy/pkgs/tb3/site/aneurysm-figures.json) · [`site/provenance.json`](file:///Users/zhangqy/pkgs/tb3/site/provenance.json)
+No lesion was added or made smaller. Fixed source-order selection admitted two positive scans and one negative scan. A candidate with a very small weak label was held before trials. The answer remained one point per finding, avoiding an unnecessary segmentation requirement.
+
+Source-grid checks and positive/negative scoring controls tested the task mechanics. They did not turn weak source labels into precise clinical truth. With one attempt per selected scan, these outcomes illustrate capability and limits; they are not a diagnostic accuracy estimate.
+
+## Inspect or reproduce
+
+- [Task summary](task_cards/med_vas_br016_aneurysm.json), [protocol](../docs/research-rounds/BR-016-aneurysm-localization.md), and [results ledger](../docs/evidence/br016-results.json).
+- [Authoring and local explorer guide](../probes/revisions/br016/README.md): source acquisition, scoring, retained traces, and linked native-slice viewing.
+- Guided figures are portable. Full exploration requires the retained local arrays under `runs/br016-aneurysm/blind-review/`. [Availability guide](references.md).
+
+[← Organ auditing](01-segmentation.md) · [Next: matching anatomy after a breath →](03-registration.md)

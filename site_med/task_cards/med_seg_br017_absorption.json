@@ -1,181 +1,273 @@
 {
+  "schema_version": 2,
+  "kind": "editorial task summary",
+  "authority": "The linked frozen protocol and scorer own the executable contract; this card is a source-backed reading aid.",
   "task_id": "MED-SEG-BR017-ABSORPTION",
-  "task_name": "Pancreatic Tissue Ownership & Duodenal Absorption Auditing",
-  "domain": "Domain 01: Organ Segmentation & Tissue Ownership Auditing",
-  "clinical_objective": "Audit 13 abdominal organ segmentation masks to detect whether soft-tissue parenchyma from one organ has been mistakenly absorbed into an adjacent organ mask, and return the physical LPS centroid of the misplaced tissue.",
-  "research_round": {
-    "round_id": "BR-017",
-    "title": "Substantial anatomy absorbed into an adjacent label",
-    "document_path": "docs/research-rounds/BR-017-absorbed-anatomy.md",
-    "results_path": "docs/research-rounds/BR-017-results.md",
-    "evidence_path": "docs/evidence/br017-absorption.json"
+  "title": "Audit tissue assigned to the wrong organ",
+  "chapter": "01-segmentation.md",
+  "rounds": [
+    "BR-017"
+  ],
+  "inputs": {
+    "dataset": "TotalSegmentator s1233",
+    "supplied": "Existing organ masks, proposed names, full CT and rendering helpers",
+    "intervention": "21.04 mL partial pancreas-to-duodenum transfer; unchanged CT and aggregate foreground"
   },
-  "input_data": {
-    "dataset_name": "TotalSegmentator Abdominal CT Cohort",
-    "dataset_citation": "Wasserthal et al., Radiology: Artificial Intelligence 2023. DOI: 10.1148/ryai.230024",
-    "license": "CC BY 4.0",
-    "source_subject_id": "s1233 (TotalSegmentator Case 28)",
-    "file_artifacts": [
-      {
-        "file_name": "ct.nii.gz",
-        "description": "Full abdominal CT volumetric tensor in native physical LPS coordinates",
-        "dimensions": [
-          320,
-          320,
-          480
-        ],
-        "voxel_spacing_mm": [
-          1.5,
-          1.5,
-          1.5
-        ],
-        "intensity_units": "Hounsfield Units (HU)",
-        "intensity_range": [
-          -1024,
-          1850
-        ]
-      },
-      {
-        "file_name": "organ_masks.nii.gz",
-        "description": "13 3D binary masks (liver, spleen, kidneys, pancreas, duodenum, aorta, IVC, etc.) with 21.04 mL pancreatic tissue merged into duodenum mask",
-        "dimensions": [
-          320,
-          320,
-          480
-        ],
-        "voxel_spacing_mm": [
-          1.5,
-          1.5,
-          1.5
-        ],
-        "data_type": "uint8 label volume"
-      }
-    ],
-    "supplied_metadata": {
-      "affine_matrix": "4x4 NIfTI affine mapping voxel index (i,j,k) to LPS physical space in millimeters",
-      "label_dictionary": {
-        "1": "spleen",
-        "2": "kidney_right",
-        "3": "kidney_left",
-        "4": "gallbladder",
-        "5": "liver",
-        "6": "stomach",
-        "7": "aorta",
-        "8": "inferior_vena_cava",
-        "9": "portal_vein",
-        "10": "pancreas",
-        "11": "duodenum",
-        "12": "adrenal_right",
-        "13": "adrenal_left"
-      }
-    }
-  },
-  "ground_truth": {
-    "gt_source": "TotalSegmentator ground-truth anatomical segmentations independently verified against multi-reader pancreas study (PMC12701807)",
-    "gt_defect_specification": {
-      "defect_type": "Synthetic tissue transfer (pancreatic head parenchymal absorption)",
-      "transferred_volume_ml": 21.04,
-      "donor_organ": "pancreas",
-      "recipient_organ": "duodenum",
-      "remaining_donor_volume_ml": 48.6,
-      "transferred_connected_component": "Single 26-connected component (>98% contiguous)",
-      "true_lps_centroid_mm": [
-        -14.2,
-        -18.5,
-        42.1
-      ]
-    }
-  },
-  "task_instruction_prompt": "Audit substantial inclusion of another organ inside a proposed labeled mask. Report only findings, each with the host object ID, the included anatomical class, and one physical LPS point within that tissue. Treat ordinary thin boundary differences as outside scope; target errors are at least 5 mL. If no defect is found, return an empty findings list.",
-  "output_contract": {
-    "expected_file": "findings.json",
-    "format": "JSON",
-    "schema": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "object_id",
-          "included_label",
-          "point_lps_mm"
-        ],
-        "properties": {
-          "object_id": {
-            "type": "string",
-            "enum": [
-              "duodenum",
-              "pancreas",
-              "..."
+  "output": "answer.json: findings list with object_id, included_label and point_lps_mm",
+  "evaluation": "Inclusions at least 5 mL; exact host/class pairs; point within 3 mm of an included-region voxel center; missing, extra and duplicate findings fail.",
+  "limitations": [
+    "One attempt per condition. Focused follow-up is a scope hint, not an isolated causal attention test.",
+    "Source contour accuracy and clinical performance were not established."
+  ],
+  "measurements": [
+    {
+      "label": "abdomen-f01: task",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/2/task",
+      "value": "abdomen-f01"
+    },
+    {
+      "label": "abdomen-f01: requested_model",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/2/requested_model",
+      "value": "openai/gpt-5.6-sol"
+    },
+    {
+      "label": "abdomen-f01: requested_effort",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/2/requested_effort",
+      "value": "xhigh"
+    },
+    {
+      "label": "abdomen-f01: reward",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/2/reward",
+      "value": 1.0
+    },
+    {
+      "label": "abdomen-f01: agent_seconds",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/2/agent_seconds",
+      "value": 351.1765
+    },
+    {
+      "label": "abdomen-f01: total_seconds",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/2/total_seconds",
+      "value": 420.669977
+    },
+    {
+      "label": "abdomen-f01: output_tokens",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/2/output_tokens",
+      "value": 12009
+    },
+    {
+      "label": "abdomen-f01: estimated_cost_usd",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/2/estimated_cost_usd",
+      "value": 0.9318464
+    },
+    {
+      "label": "abdomen-f01: answer",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/2/answer",
+      "value": {
+        "findings": [
+          {
+            "object_id": "o327",
+            "included_label": "pancreas",
+            "point_lps_mm": [
+              -22.9,
+              -199.9,
+              324.7
             ]
-          },
-          "included_label": {
-            "type": "string",
-            "enum": [
-              "pancreas",
-              "duodenum",
-              "..."
-            ]
-          },
-          "point_lps_mm": {
-            "type": "array",
-            "items": {
-              "type": "number"
-            },
-            "minItems": 3,
-            "maxItems": 3
           }
-        }
+        ]
       }
     },
-    "coordinate_convention": "Physical LPS (Left, Posterior, Superior) millimeters"
-  },
-  "evaluation_rubric": {
-    "classification_gate": "Exact match for host object ('duodenum') and transferred class ('pancreas')",
-    "spatial_tolerance_mm": 3.0,
-    "minimum_defect_volume_ml": 5.0,
-    "false_positive_penalty": "Any extra reported finding outside true defect causes immediate task failure",
-    "oracle_control": "Injected ground-truth centroid scores 100% (Pass)",
-    "noop_control": "Empty submission passes negative control N01 but fails defect condition M02"
-  },
-  "empirical_results": {
-    "broad_sweep_condition_m02": {
-      "model": "Sol (Claude 3.7 Sonnet / xhigh)",
-      "prompt_scope": "Unconstrained 13-organ abdominal audit",
-      "wall_time_seconds": 404,
-      "tokens": {
-        "input": 182000,
-        "output": 10593
-      },
-      "estimated_cost_usd": 1.04,
-      "submission": [],
-      "benchmark_outcome": "MISS (Diluted attention across 13 organs failed to detect tissue theft)"
+    {
+      "label": "abdomen-m01: task",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/5/task",
+      "value": "abdomen-m01"
     },
-    "focused_pair_condition_f01": {
-      "model": "Sol (Claude 3.7 Sonnet / xhigh)",
-      "prompt_scope": "Focused on pancreas and duodenum boundary interface",
-      "wall_time_seconds": 351,
-      "tokens": {
-        "input": 151000,
-        "output": 11940
-      },
-      "estimated_cost_usd": 0.91,
-      "submission": [
-        {
-          "object_id": "duodenum",
-          "included_label": "pancreas",
-          "point_lps_mm": [
-            -13.8,
-            -19.1,
-            41.5
-          ]
-        }
-      ],
-      "centroid_distance_error_mm": 1.18,
-      "benchmark_outcome": "PASS (Located within 1.2 mm physical tolerance)"
+    {
+      "label": "abdomen-m01: requested_model",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/5/requested_model",
+      "value": "openai/gpt-5.6-sol"
+    },
+    {
+      "label": "abdomen-m01: requested_effort",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/5/requested_effort",
+      "value": "xhigh"
+    },
+    {
+      "label": "abdomen-m01: reward",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/5/reward",
+      "value": 1.0
+    },
+    {
+      "label": "abdomen-m01: agent_seconds",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/5/agent_seconds",
+      "value": 348.733369
+    },
+    {
+      "label": "abdomen-m01: total_seconds",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/5/total_seconds",
+      "value": 412.322715
+    },
+    {
+      "label": "abdomen-m01: output_tokens",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/5/output_tokens",
+      "value": 15102
+    },
+    {
+      "label": "abdomen-m01: estimated_cost_usd",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/5/estimated_cost_usd",
+      "value": 1.120188
+    },
+    {
+      "label": "abdomen-m01: answer",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/5/answer",
+      "value": {
+        "findings": [
+          {
+            "object_id": "o327",
+            "included_label": "pancreas",
+            "point_lps_mm": [
+              23.611,
+              -195.389,
+              369.7
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "abdomen-m02: task",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/8/task",
+      "value": "abdomen-m02"
+    },
+    {
+      "label": "abdomen-m02: requested_model",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/8/requested_model",
+      "value": "openai/gpt-5.6-sol"
+    },
+    {
+      "label": "abdomen-m02: requested_effort",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/8/requested_effort",
+      "value": "xhigh"
+    },
+    {
+      "label": "abdomen-m02: reward",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/8/reward",
+      "value": 0.0
+    },
+    {
+      "label": "abdomen-m02: agent_seconds",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/8/agent_seconds",
+      "value": 404.393577
+    },
+    {
+      "label": "abdomen-m02: total_seconds",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/8/total_seconds",
+      "value": 468.526632
+    },
+    {
+      "label": "abdomen-m02: output_tokens",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/8/output_tokens",
+      "value": 10593
+    },
+    {
+      "label": "abdomen-m02: estimated_cost_usd",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/8/estimated_cost_usd",
+      "value": 1.0113136
+    },
+    {
+      "label": "abdomen-m02: answer",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/8/answer",
+      "value": {
+        "findings": []
+      }
+    },
+    {
+      "label": "abdomen-n01: task",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/11/task",
+      "value": "abdomen-n01"
+    },
+    {
+      "label": "abdomen-n01: requested_model",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/11/requested_model",
+      "value": "openai/gpt-5.6-sol"
+    },
+    {
+      "label": "abdomen-n01: requested_effort",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/11/requested_effort",
+      "value": "xhigh"
+    },
+    {
+      "label": "abdomen-n01: reward",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/11/reward",
+      "value": 1.0
+    },
+    {
+      "label": "abdomen-n01: agent_seconds",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/11/agent_seconds",
+      "value": 453.391182
+    },
+    {
+      "label": "abdomen-n01: total_seconds",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/11/total_seconds",
+      "value": 517.292075
+    },
+    {
+      "label": "abdomen-n01: output_tokens",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/11/output_tokens",
+      "value": 11864
+    },
+    {
+      "label": "abdomen-n01: estimated_cost_usd",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/11/estimated_cost_usd",
+      "value": 1.2604296
+    },
+    {
+      "label": "abdomen-n01: answer",
+      "source": "docs/evidence/br017-results.json",
+      "pointer": "/rows/11/answer",
+      "value": {
+        "findings": []
+      }
     }
-  },
-  "known_failure_modes_and_traps": {
-    "trap_name": "The Plausible Envelope Trap",
-    "description": "Standard segmentation metrics (Dice, Hausdorff) evaluate external surface boundaries. When 21 mL of pancreatic parenchyma is swallowed by the duodenum mask, the outer contours remain plausible and contiguous. Agents relying on mesh surface roughness fail; successful agents must inspect voxel-level radiodensity (HU) distributions along the interface."
+  ],
+  "protocol": "docs/research-rounds/BR-017-absorbed-anatomy.md",
+  "reproduction": "probes/revisions/br017/authoring/README.md",
+  "source_hashes": {
+    "docs/evidence/br017-results.json": "1c021354010798acb1961c19d42be628ffd0745dedff5057c33f0b7fe2817a49"
   }
 }

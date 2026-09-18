@@ -1,107 +1,80 @@
 {
+  "schema_version": 2,
+  "kind": "editorial task summary",
+  "authority": "The linked frozen protocol and scorer own the executable contract; this card is a source-backed reading aid.",
   "task_id": "MED-REG-BR028-RESPIRATORY",
-  "task_name": "Deformable 3D Image Registration Under Respiratory Motion",
-  "domain": "Domain 03: Deformable 3D Image Registration",
-  "clinical_objective": "Map non-rigid anatomical respiratory deformation between exhale and inhale phases of 4D thoracic CT scans, tracking eight discrete bronchial and vascular landmarks.",
-  "research_round": {
-    "round_id": "BR-028",
-    "title": "Add source depth to the failing registration case",
-    "document_path": "docs/research-rounds/BR-028-registration-3d-source.md",
-    "results_path": "docs/research-rounds/BR-028-results.md",
-    "evidence_path": "site/registration-figures.json"
+  "title": "Match eight points between breathing-phase CTs",
+  "chapter": "03-registration.md",
+  "rounds": [
+    "BR-024",
+    "BR-028"
+  ],
+  "inputs": {
+    "dataset": "Learn2Reg LungCT 1.11",
+    "supplied": "Original oblique source slice, query pixels and plane geometry, full target CT; BR-028 adds full source CT"
   },
-  "input_data": {
-    "dataset_name": "DIR-Lab 4D-CT Respiratory Cohort",
-    "dataset_citation": "Castillo et al., Phys. Med. Biol. 2009. DOI: 10.1088/0031-9155/54/7/003",
-    "source_patient_id": "Patient 3 / Case 3",
-    "file_artifacts": [
-      {
-        "file_name": "reference_volume.npz",
-        "description": "Full 3D exhale thoracic CT acquisition (T00 phase) with HU array and 4x4 voxel-to-world affine",
-        "dimensions": [
-          256,
-          256,
-          106
-        ],
-        "voxel_spacing_mm": [
-          0.97,
-          0.97,
-          2.5
-        ]
-      },
-      {
-        "file_name": "destination_volume.npz",
-        "description": "Full 3D inhale thoracic CT acquisition (T50 phase) with HU array and 4x4 voxel-to-world affine",
-        "dimensions": [
-          256,
-          256,
-          106
-        ],
-        "voxel_spacing_mm": [
-          0.97,
-          0.97,
-          2.5
-        ]
-      },
-      {
-        "file_name": "query_landmarks.json",
-        "description": "Eight discrete query landmark positions (q01 to q08) annotated on the exhale source volume"
-      }
-    ]
-  },
-  "ground_truth": {
-    "gt_source": "DIR-Lab expert radiologist manual consensus landmark coordinates in target inhale volume",
-    "landmarks_tested": [
-      "q01 (Tracheal carina)",
-      "q02 (RUL bronchus)",
-      "q03 (LMS bronchus)",
-      "q04 (Medial segmental bifurcation)",
-      "q05 (LLL lateral vessel)",
-      "q06 (Segmental bifurcation ridge)",
-      "q07 (Subsegmental bronchus)",
-      "q08 (Posterior basilar branch)"
-    ]
-  },
-  "task_instruction_prompt": "Given the source exhale CT volume, the destination inhale CT volume, and 8 query landmark coordinates, compute the exact 3D non-rigid physical coordinates of the 8 landmarks in the destination inhale CT.",
-  "output_contract": {
-    "expected_file": "registered_landmarks.json",
-    "format": "JSON array of 8 coordinates in destination physical LPS coordinates [x, y, z] in mm"
-  },
-  "evaluation_rubric": {
-    "metric": "Target Registration Error (TRE) in Euclidean millimeters: ||p_pred - p_gt||",
-    "automated_gate": "Each point must achieve TRE <= 5.0 mm; overall RMS <= 3.0 mm",
-    "visual_adjudication": "Qualitative radiological review on structural bifurcations"
-  },
-  "empirical_results": {
-    "condition_2d_source_br024": {
-      "input_scope": "Single 2D oblique source slice + 3D target volume",
-      "rms_error_mm": 12.7,
-      "maximum_error_mm": 32.2,
-      "benchmark_outcome": "FAILED (Out-of-plane respiratory sliding made tracking mathematically under-determined)"
+  "output": "Eight corresponding target-world coordinates, in millimeters",
+  "evaluation": "RMS distance <=3 mm and maximum distance <=5 mm.",
+  "limitations": [
+    "Frozen failure remains separate from later user visual acceptance of q06.",
+    "One fresh attempt per condition changes information and strategy; it does not isolate a causal depth benefit.",
+    "Sparse correspondences do not validate a dense deformation field."
+  ],
+  "measurements": [
+    {
+      "label": "requested_model",
+      "source": "docs/evidence/br028-results.json",
+      "pointer": "/prospective_rows/2/requested_model",
+      "value": "openai/gpt-5.6-sol"
     },
-    "condition_3d_source_br028": {
-      "input_scope": "Full 3D source exhale CT + 3D target inhale CT",
-      "model": "Sol (Claude 3.7 Sonnet / xhigh)",
-      "wall_time": "14m 53s",
-      "tokens": 19420,
-      "cost_usd": 2.15,
-      "rms_error_mm": 2.6,
-      "maximum_error_mm": 6.41,
-      "per_point_errors_mm": {
-        "q01": 1.25,
-        "q02": 1.86,
-        "q03": 2.14,
-        "q04": 3.08,
-        "q05": 2.42,
-        "q06": 6.41,
-        "q07": 1.95,
-        "q08": 1.7
-      },
-      "benchmark_outcome": "PASSED with Expert Visual Adjudication (q06 sat squarely on the identical anatomical bifurcation ridge)"
+    {
+      "label": "requested_effort",
+      "source": "docs/evidence/br028-results.json",
+      "pointer": "/prospective_rows/2/requested_effort",
+      "value": "xhigh"
+    },
+    {
+      "label": "grade",
+      "source": "docs/evidence/br028-results.json",
+      "pointer": "/prospective_rows/2/grade",
+      "value": {
+        "reward": 0,
+        "rms_mm": 2.6037232955903775,
+        "max_mm": 6.411513081948768,
+        "per_point_mm": [
+          2.180596248735653,
+          1.8907670401189,
+          0.7516648189186339,
+          1.4080127840328787,
+          0.7483314773547837,
+          6.411513081948768,
+          1.209338662244772,
+          0.4769696007084651
+        ]
+      }
+    },
+    {
+      "label": "agent_seconds",
+      "source": "docs/evidence/br028-results.json",
+      "pointer": "/prospective_rows/2/agent_seconds",
+      "value": 893.399038
+    },
+    {
+      "label": "output_tokens",
+      "source": "docs/evidence/br028-results.json",
+      "pointer": "/prospective_rows/2/output_tokens",
+      "value": 26364
+    },
+    {
+      "label": "estimated_cost_usd",
+      "source": "docs/evidence/br028-results.json",
+      "pointer": "/prospective_rows/2/estimated_cost_usd",
+      "value": 1.4047032000000002
     }
-  },
-  "known_failure_modes_and_traps": {
-    "trap_name": "Rigid Numerical Distance Gate Failure",
-    "description": "Landmark q06 scored 6.41 mm, exceeding the 5.0 mm automated cutoff. However, radiological visual review proved both manual truth and Sol's coordinate sat on the exact same anatomical bifurcation ridge. Rigid distance gates without visual inspection discard clinically valid alignments."
+  ],
+  "protocol": "docs/research-rounds/BR-028-registration-3d-source.md",
+  "reproduction": "probes/registration-deformation/authoring/br028_README.md",
+  "source_hashes": {
+    "docs/evidence/br028-results.json": "89a74bb32ef98a1c437572b43a64feb7b1c38b8d09d45aceb93a248892fa1e21"
   }
 }

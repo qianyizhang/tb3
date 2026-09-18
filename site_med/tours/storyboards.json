@@ -1,0 +1,147 @@
+{
+  "segmentation": {
+    "title": "Same scan. Different label.",
+    "subtitle": "Can an agent find tissue assigned to the wrong organ?",
+    "duration": 32,
+    "source": "BR-017 \u00b7 TotalSegmentator \u00b7 CC BY 4.0 \u00b7 One attempt per condition",
+    "steps": [
+      {
+        "at": 0,
+        "title": "Start with the anatomy",
+        "caption": "Salmon outlines the pancreas. Blue outlines the neighboring duodenum. These are views through the same 3D CT."
+      },
+      {
+        "at": 8,
+        "title": "Change ownership, not anatomy",
+        "caption": "The CT does not change. A controlled label edit assigns 21.04 mL of pancreas tissue to the duodenum."
+      },
+      {
+        "at": 16,
+        "title": "Follow the transferred region",
+        "caption": "Yellow reveals the reassigned tissue across real scan planes. This is an annotation error, not tissue moving inside the body."
+      },
+      {
+        "at": 24,
+        "title": "The same data, a different audit",
+        "caption": "Sol missed it in the broad audit. A fresh, focused audit found the correct organ and an accepted point. One run per scope."
+      }
+    ]
+  },
+  "vessels": {
+    "title": "Follow the vessel. Unfold the view.",
+    "subtitle": "From a real segmentation gap to a linked curved CT image",
+    "duration": 36,
+    "source": "BR-030 \u00b7 ImageCAS / ImageCAS-X \u00b7 Source license details in README",
+    "steps": [
+      {
+        "at": 0,
+        "title": "A missing connection",
+        "caption": "A released segmentation model left an internal coronary gap. The task supplied a review region and two route endpoints."
+      },
+      {
+        "at": 8,
+        "title": "A local repair",
+        "caption": "Terra added 103 voxels and preserved the surrounding mask. Magenta marks its additions; the bright route follows the saved centerline."
+      },
+      {
+        "at": 16,
+        "title": "Build the curved view",
+        "caption": "A moving section follows the real 3D path. Linked CT samples form the flat CPR ribbon. The patient anatomy is not being stretched."
+      },
+      {
+        "at": 28,
+        "title": "Images right, distance labels wrong",
+        "caption": "Repair, tracing and mesh checks passed. The original distance axis was 8.89 mm too long. An author metadata correction fixed it; the original trial still failed."
+      }
+    ]
+  },
+  "cardiac": {
+    "title": "A moving shape is only part of the answer.",
+    "subtitle": "Supplied masks \u2192 Sol's mesh \u2192 independently checked tissue motion",
+    "duration": 40,
+    "source": "BR-035 \u00b7 STRAUS simulation \u00b7 Masks-only Sol condition \u00b7 Original surface triangles",
+    "steps": [
+      {
+        "at": 0,
+        "title": "Build from 30 supplied masks",
+        "caption": "Sol received heart-wall masks through a full simulated cycle. It built its own moving mesh; source vertex identities were withheld."
+      },
+      {
+        "at": 8,
+        "title": "The shape follows the cycle",
+        "caption": "Reference and reconstruction use the same phase and spatial scale. Mean mask overlap was 0.9461. Construction checks passed."
+      },
+      {
+        "at": 16,
+        "title": "Track the same material",
+        "caption": "The markers start at matched material positions and follow their two trajectories. They are shown through the surfaces for inspection, not selected for large errors."
+      },
+      {
+        "at": 24,
+        "title": "Check more than the silhouette",
+        "caption": "Local radial-strain error was 7.37 percentage points, above the separate 5-point research target. The example regional curve is a different, averaged measurement."
+      },
+      {
+        "at": 32,
+        "title": "Why shape cannot determine all motion",
+        "caption": "Conceptual example: a cylinder can keep the same outside shape while material twists inside it. This illustrates ambiguity, not the agent's proven error mechanism."
+      }
+    ]
+  },
+  "registration": {
+    "title": "Find the same point after a breath.",
+    "subtitle": "A local match can beat a complicated registration workflow",
+    "duration": 32,
+    "source": "BR-028 \u00b7 Learn2Reg LungCT \u00b7 CC BY 4.0 \u00b7 One attempt per condition",
+    "steps": [
+      {
+        "at": 0,
+        "title": "Follow an anatomical landmark",
+        "caption": "The source and target CTs show different breathing phases. Sol must locate the same eight points after the anatomy has moved."
+      },
+      {
+        "at": 8,
+        "title": "Compare the local neighborhoods",
+        "caption": "Source, reference and final prediction are centered independently. These review crops help inspect anatomy; their visual alignment is not a distance measurement."
+      },
+      {
+        "at": 16,
+        "title": "See the recovery point by point",
+        "caption": "With the full source CT, Sol switched from failed whole-volume methods to local matching. RMS error fell from 12.73 to 2.60 mm across fresh attempts."
+      },
+      {
+        "at": 24,
+        "title": "One point still breaks the rule",
+        "caption": "The largest error was q06 at 6.41 mm, beyond the 5 mm limit. Later visual acceptance did not change the frozen failure. The retained author baseline passed."
+      }
+    ]
+  },
+  "landmarks": {
+    "title": "Outside the scan, or overlooked?",
+    "subtitle": "Naming a vertebra also means knowing what the image can show",
+    "duration": 32,
+    "source": "BR-040 \u00b7 VerSe-derived CT \u00b7 CC BY-SA 4.0 \u00b7 One subject, paired views",
+    "steps": [
+      {
+        "at": 0,
+        "title": "Start with a named target",
+        "caption": "The task asks for named vertebral centers. A point inside real bone can still be wrong if it belongs to the wrong level."
+      },
+      {
+        "at": 8,
+        "title": "Remove the upper context",
+        "caption": "The actual cropped input ends below the T4 center. The gold line marks its boundary in the full scan; the gray area was not supplied in the cropped task."
+      },
+      {
+        "at": 16,
+        "title": "Abstain when the target is unavailable",
+        "caption": "For T4, Terra returned a point inside the crop. Sol reported out of field of view. The reference T4 center is outside the supplied volume."
+      },
+      {
+        "at": 24,
+        "title": "But do not miss what remains visible",
+        "caption": "T5 is inside the cropped scan. Sol also marked it outside, missing a visible target. Correct abstention and complete coverage must be checked separately."
+      }
+    ]
+  }
+}

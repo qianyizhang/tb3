@@ -1,105 +1,91 @@
-# Domain 04: Tubular Geometry, Centerlines & CPR
-## Brain MRA & Chest CT · Vessels & Airways · BR-030 / BR-033
+# Repair a vessel, then unfold it for inspection
 
-> **Research Rounds:** [`BR-030`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-030-vessel-diagnostic-geometry.md) · [`BR-030 Results`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-030-results.md) · [`BR-033`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-033-brain-vessel-airway-difficulty.md) · [`BR-033 Results`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-033-results.md)  
-> **Task Card:** [`med_tub_br030_br033_cpr_geometry.json`](task_cards/med_tub_br030_br033_cpr_geometry.json)  
-> **Source Cohorts:** Coronary CTA (ImageCAS / ASOCA), Brain TOF-MRA (Circle of Willis), and Chest CT (AeroPath airway tree).  
-> **Key Benchmark Traps:** The 8.89 mm CPR Distance-Axis Indexing Bug and the Airway Tree Segmentation Loophole.
+**Vessel repair and curved views · BR-030, with an airway contrast · about 4 minutes**
 
----
+**Guided illustration:** [interactive tour](tours/index.html?tour=vessels) · [landscape video](tours/exports/vessels-landscape.mp4) · [portrait video](tours/exports/vessels-portrait.mp4). [Sources and reproduction](tours/README.md).
 
-## 1. Clinical Context & Task Formulation
+Coronary arteries supply the heart muscle. A vessel winds through many image slices. To inspect its length, software can follow its centerline and sample a curved plane through it. The resulting image looks like an unfolded ribbon: a curved planar reformation, or **CPR**.
 
-Blood vessels (coronaries, cerebral arteries) and bronchial airways travel along twisting, non-planar paths through 3D organs. Standard 2D axial CT/MRI slices intersect these vessels obliquely, showing only distorted oval cross-sections and obscuring longitudinal lumen narrowing (stenosis).
+**Terra repaired a real coronary-mask gap, traced the requested branch, and produced curved images and a closed mesh.** Its remaining failure was small but concrete: the distance labels described an earlier version of the line, not the line it saved.
 
-```
-3D Twisted Vessel in Body            Curved Planar Reformation (CPR)
-     _                               ===================================
-    ( )                              Basilar -> R-SCA Unrolled Ribbon
-     \ \       Unrolling 3D Curve    | Wall | Lumen (Blood) | Wall |
-      ) )     ===================>   ===================================
-     / /                             (Inspect stenosis along continuous axis)
-    (_/
-```
-
-### What is a Curved Planar Reformation (CPR)?
-A Curved Planar Reformation extracts the 3D centerline of a tubular organ and "unrolls" the surrounding volumetric image into a continuous flat 2D longitudinal ribbon. 
-- By rotating the cutting plane **360° around the centerline** (e.g. in 45° steps), clinicians can inspect every degree of the vessel wall to detect soft plaque, calcified lesions, and lumen narrowing.
-- Generating a clinically valid CPR requires computing an **ordered 3D curve**, extracting **orthogonal normal vectors** along the curve, and mapping physical arc distances in millimeters.
+## See the task
 
 ```mermaid
 flowchart LR
-    A["Volumetric Scan + Broken Mask<br>(Coronary CTA / Brain MRA)"] --> B["Intensity-Guided Geodesic Repair<br>(Dijkstra Shortest Path in Lumen)"]
-    B --> C["B-Spline Centerline Extraction<br>(Continuous 3D Frenet-Serret Frame)"]
-    C --> D["Orthogonal 360° Resampling<br>(Curved Ribbon + 10x10 mm Cross-Sections)"]
-    D --> E["Clinical Deliverable<br>(Repaired Mask + 3D Mesh + 8 Rotated CPRs)"]
+    A["CT + vessel mask with a gap"] --> B["Repair inside the review region"]
+    B --> C["Trace from vessel origin to endpoint"]
+    C --> D["Sample eight rotated curved views"]
+    C --> E["Export the vessel surface"]
 ```
 
----
+*Conceptual workflow, not a patient image. The input already includes a predicted mask and route anchors. The agent must turn these into mutually consistent outputs.*
 
-## 2. Two Classic Evaluation Traps in Medical AI
+![A curved coronary CT plane displayed as a horizontal strip, with the bright lumen running along it](assets/coronary-cpr.png)
 
-This domain exposed two subtle benchmark design flaws that show how automated metrics can deceive evaluators:
+*One retained CPR preview from the author-corrected Terra package. The bright band is the contrast-filled vessel interior; the image follows the saved centerline. The correction changed distance metadata, not the underlying sampled CT values. This enlarged preview is not a uniform physical-scale measurement image. ImageCAS / ImageCAS-X source; [provenance](assets/manifest.json).*
 
-### Trap 1: The CPR Distance-Axis Bug (BR-030)
-In round `BR-030`, Terra was tasked with repairing a right coronary artery (RCA) disconnection, extracting the centerline, and generating rotated CPRs:
+## Why this work matters
 
-```
-Voxel Step Axis (0, 1, 2, ..., N)               -> Centerline Length: 95.19 mm
-Physical Distance Axis (0.0, 0.45, ..., mm)     -> Centerline Length: 104.08 mm
-Difference / Offset:                             ===> 8.89 mm Discrepancy!
-```
+Following a vessel in a curved view helps a reviewer examine its interior and surrounding tissue along its length. CPR is an established visualization technique, rather than a new diagnostic method introduced by the agent. [Kanitsar et al.](https://www.cg.tuwien.ac.at/research/publications/2002/kanitsar-2002-CPRX/)
 
-- **What happened:** Terra restored 198 of 200 severed voxels and generated visually flawless CPR ribbons.
-- **The verifier error:** The automated benchmark script compared the CPR's horizontal distance axis against reference arrays by indexing **raw voxel count** instead of **cumulative physical arc length** (taking into account anisotropic voxel spacing: 0.45 × 0.45 × 0.70 mm).
-- **Outcome:** A clinically perfect vessel restoration failed the automated benchmark gate due to an 8.89 mm indexing mismatch between pixels and millimeters.
+The conventional workflow uses a segmented vessel, a centerline, and image-resampling software, with review of the chosen route. Here the question is whether a general agent can assemble and check that workflow. No plaque, stenosis severity, or blood-flow diagnosis was scored.
 
-### Trap 2: The Airway Tree Evaluation Loophole (BR-033)
-In round `BR-033`, Sol was evaluated on repairing broken bronchial airway segmentations from the AeroPath chest CT cohort:
+## What the agent received and returned
 
-```
-[Trachea / Main Bronchus]
-          |
-        [GAP]  <--- Severe disconnection from parent tree
-          |
-    (Isolated Fragment)  <--- Benchmark checked route inside THIS piece only!
-          |
-    [Peripheral Branch]  ===> Benchmark AWARDED 100% PASSING SCORE!
-```
+The anchor case is **ImageCAS case 1**, with ImageCAS-X references. A released CAS-Net checkpoint produced a real internal gap of approximately **5 mm** despite **94.14% whole-mask Dice overlap**. The author supplied an unchanged crop of that prediction, the CT, an 8 mm review sphere, and route endpoints. The error was not injected.
 
-- **What happened:** Across test cases A02 and A03, Sol made zero edits to the masks. The peripheral airways remained visibly detached from the trachea and main stem bronchus.
-- **The benchmark loophole:** The verifier tested route connectivity only between selected endpoints *inside the peripheral fragment itself*, rather than checking whether the fragment re-connected to the root of the tracheobronchial tree!
-- **Outcome:** The agent received a passing score for a completely broken airway segmentation.
+Four outputs were required:
 
----
+| Output | What a reader should expect |
+| --- | --- |
+| Corrected mask | Reconnect the local gap; preserve every voxel outside the editable sphere |
+| Centerline | An ordered path in physical millimeters along the requested coronary branch |
+| Eight CPR planes | CT intensity values, source coordinates, and matching distances along the path |
+| Surface mesh | A closed 3D boundary containing both coronary trees |
 
-## 3. Empirical Results Across Rounds
+The case belongs to the source training split. It is a development example, not held-out population performance. [Curation and task record](../docs/research-rounds/BR-030-results.md)
 
-| Research Round | Target Anatomy | Model | Intervention / Task | Quantitative Result | Clinical & Benchmark Interpretation |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **[`BR-026`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-026-results.md)** | MRA Circle of Willis | Terra / high | Repair 200-voxel synthetic gap | 198/200 voxels restored | **Gap Repaired**; preservation failed due to 244 false additions beside L-ACA. |
-| **[`BR-030`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-030-results.md)** | Coronary CTA (RCA) | Terra / high | Restore RCA gap & export CPRs | CPR generated | **Failed automated verifier** due to 8.89 mm pixel-vs-millimeter axis bug. |
-| **[`BR-033`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-033-results.md)** | AeroPath Chest CT | Sol / xhigh | Repair airway tree disconnections | Passed sub-routes | **Passed automated test** despite airway fragments remaining detached from trachea. |
-| **[`BR-033`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-033-results.md)** | Brain MRA (Basilar-SCA) | Author Calibration | Add 2 bridge voxels; 360° CPR | 85.57 mm route; 0.29 mm p95 error | **Gold standard reference:** Watertight surface and smooth centerline. |
+## How Terra assembled the workflow
 
----
+The retained trace shows image inspection and CT-intensity checks. Terra added **103 voxels**, preserved the surrounding mask, and produced a centerline with **100% reference coverage within 0.8 mm**. The mesh passed the frozen surface checks.
 
-## 4. Key Takeaways & Evaluation Principles
+For CPR, it resampled the centerline but retained distances computed along the original voxel skeleton. Resampling cuts corners, shortening the saved line. Its image samples matched the saved geometry; its distance metadata did not:
 
-> [!WARNING]
-> **Lesson 1: Physical Unit Invariance in Tool Evaluation**  
-> Verifiers evaluating spatial agent deliverables must establish strict physical coordinate contracts. A metric that measures array indices rather than physical millimeters will penalize correct models that adjust for anisotropic voxel spacing.
+| Quantity | Length |
+| --- | ---: |
+| Saved distance axis, from the earlier skeleton | 184.809 mm |
+| Actual cumulative length of the saved line | 175.918 mm |
+| Inconsistency | **8.891 mm** |
 
-> [!IMPORTANT]
-> **Lesson 2: Global Tree Topology vs. Local Edge Preservation**  
-> Tubular anatomical structures (blood vessels, airways, bile ducts) operate as connected vascular and respiratory trees. Evaluating connectivity using localized endpoint pairs allows disconnected fragments to pass. Automated benchmarks must enforce **global rooted tree connectivity** back to the principal trunk.
+An author correction to the distance array alone made the same package pass the unchanged verifier. This isolates the failure to output consistency; it does not convert the original attempt into a model pass. [Result and diagnostic correction](../docs/evidence/br030-results.json)
 
----
+## What worked, and what it cost
 
-## Navigation & References
+| Method | Repair | Trace | CPR | Mesh |
+| --- | --- | --- | --- | --- |
+| Image-guided author baseline | Pass | Pass | Pass | Pass |
+| Geometry-only repair/trace baseline | Pass | Pass | Pass | Pass |
+| Terra/high, original output | Pass | Pass | Distance-axis failure | Pass |
+| Author-corrected copy | Unchanged | Unchanged | Pass | Unchanged |
 
-- [← 03. Deformable 3D Image Registration](03-registration.md)
-- [05. 4D Heart Biomechanics & Strain →](05-cardiac-mechanics.md)
-- **Task Card:** [`site_med/task_cards/med_tub_br030_br033_cpr_geometry.json`](task_cards/med_tub_br030_br033_cpr_geometry.json)
-- **Direct Round Links:** [`docs/research-rounds/BR-030-vessel-diagnostic-geometry.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-030-vessel-diagnostic-geometry.md) · [`docs/research-rounds/BR-030-results.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-030-results.md) · [`docs/research-rounds/BR-033-results.md`](file:///Users/zhangqy/pkgs/tb3/docs/research-rounds/BR-033-results.md)
-- **Evidence Files:** [`site/vessel-figures.json`](file:///Users/zhangqy/pkgs/tb3/site/vessel-figures.json)
+The agent job took about **9 minutes including setup and verification**. The fixed image-guided author method ran locally in **6.46 seconds**, after its development. These measure different work: one includes tool construction and investigation; the other executes an existing algorithm. Both author baselines were developed with source knowledge, though execution used delivered inputs.
+
+Image guidance improved baseline local Dice from **0.900 to 0.951**, but geometry alone still passed. This case demonstrates workflow assembly better than difficult anatomical discrimination. [Full comparison](../docs/research-rounds/BR-030-results.md)
+
+## How the task was refined: an airway contrast
+
+BR-033 moved to airway gaps where tested geometric shortcuts chose a poor connection. An image-guided baseline and Terra both passed. Terra restored the requested A01 connection with **578 added voxels**.
+
+![Airway input and output review showing an actual repair and two still-detached control fragments](assets/airway-controls.png)
+
+*Retained author review of Terra's airway outputs. A01 is repaired; A02 and A03 remain detached from their parent trees. Their requested endpoints were already connected inside those fragments, and both masks stayed unchanged. AeroPath source; attribution and recorded terms are in the [asset manifest](assets/manifest.json).*
+
+That exposes a scope limit, not disobedience: the agent satisfied the requested local routes. A useful whole-tree repair task needs a whole-tree connection requirement. The contrast makes the agent's capability more precise—image-guided local repair worked, while broad anatomical completeness was not established. [Airway audit](../docs/research-rounds/BR-033-results.md)
+
+## Inspect or reproduce
+
+- [Task summary](task_cards/med_tub_br030_br033_cpr_geometry.json) and [coronary rebuild guide](../probes/vessel-geometry/README.md), including frozen inputs, scoring and local viewers.
+- [Airway implementation and reproduction](../probes/airway-routing/authoring/README.md).
+- The original failure and corrected copy remain distinct. Full meshes, CT arrays and trial files require local runtime material. [Availability guide](references.md).
+
+[← Matching scans](03-registration.md) · [Next: reconstruct a moving heart →](05-cardiac-mechanics.md)
