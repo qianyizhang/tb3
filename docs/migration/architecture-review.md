@@ -1,6 +1,10 @@
 # Architecture review: finish the native medical workbench
 
 Reviewed 2026-09-20 against commit `02b9287db9c701bb4f9aa93cb81122ad7acaca60`.
+The subsequent [minimal implementation plan](native-workbench-plan.md) narrows
+the proposed architecture and separates everyday usage from temporary migration
+work. Its four decisions are confirmed; the findings below remain the review
+record, not a requirement to build every abstraction suggested here.
 The requested standard is a coherent fresh design with no compatibility shims.
 This review changes documentation only. Its reproductions used temporary fixtures
 or an in-memory copy of the record graph; no actual scientific verdict changed.
