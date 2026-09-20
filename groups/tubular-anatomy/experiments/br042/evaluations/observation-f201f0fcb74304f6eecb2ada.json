@@ -1,0 +1,995 @@
+{
+  "schema_version": 1,
+  "id": "observation-f201f0fcb74304f6eecb2ada",
+  "job": "br042-all-vessels-astra-xhigh-v4-2h-attempt1",
+  "trial_name": "all-vessels__WjMQM7j",
+  "task_id": "all-vessels-image-only-v4-2h",
+  "agent": "codex",
+  "model": "openai/gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "agent_version": "0.155.1",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "execution_error",
+  "reward": 0.0,
+  "started_at": "2026-09-20T09:17:59.755332Z",
+  "finished_at": "2026-09-20T11:21:50.816846Z",
+  "timing": {
+    "total": 7431.062,
+    "setup": 203.945,
+    "agent": 7200.281,
+    "verifier": 12.536
+  },
+  "usage": {
+    "n_input_tokens": 13444164.0,
+    "n_cache_tokens": 12960256.0,
+    "n_output_tokens": 92951.0
+  },
+  "cases": [],
+  "exception_type": "AgentTimeoutError",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/result.json",
+      "sha256": "920a3e302198104d4d8efd8c4a081215d0d2fd4e8a46fa8ceeeb6eae03fc1fe8"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/verifier/test-stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/agent/trajectory.json",
+      "sha256": "0b0a26b3f481027a26f2b2d368365d163c3fc81dfbeb0f4a59b134379e91150c"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/config.cpython-312.pyc",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/__pycache__/config.cpython-312.pyc",
+      "sha256": "d0e77783e3185973202f040796df202b2fd9fcf79bf53e4b6fc7ce9a98c4b232"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/inspect.cpython-312.pyc",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/__pycache__/inspect.cpython-312.pyc",
+      "sha256": "a91d7823c2938ed6d1506e22537039c966fc79a91431b4808d64fd6f3f07d54d"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/major_trace.cpython-312.pyc",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/__pycache__/major_trace.cpython-312.pyc",
+      "sha256": "e6a4ae4280e0a50d39be7611ea7118100f5112e183fe9b71ce8f1c8d17f64ca2"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/prepare.cpython-312.pyc",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/__pycache__/prepare.cpython-312.pyc",
+      "sha256": "fa939732bcc1135f0387b88fd80740ffac4f0f73271f84300d649aa6f40587b0"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/pulmonary_vesselness.cpython-312.pyc",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/__pycache__/pulmonary_vesselness.cpython-312.pyc",
+      "sha256": "b60ee0558f6ba146bcfa8e37602a286799153ca5cfbd4b2d3d3ad1d7e2623b33"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/render_slices.cpython-312.pyc",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/__pycache__/render_slices.cpython-312.pyc",
+      "sha256": "196affc97a015c1d4ecc17f67099405cc657584dd77f1c356dd94ff081503ef8"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/section_trace.cpython-312.pyc",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/__pycache__/section_trace.cpython-312.pyc",
+      "sha256": "72d81fcd1d0b9fb7930a3cea24eff696a80dac1dc9fdf0b3a9bd21d7c5c6e207"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/trace.cpython-312.pyc",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/__pycache__/trace.cpython-312.pyc",
+      "sha256": "a0277f3f744168fbe96cde27826744c12a8db69e4bd8e0f5a8581d1c2405e2bf"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/validate.cpython-312.pyc",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/__pycache__/validate.cpython-312.pyc",
+      "sha256": "655f26fec3ec5842dda128a710d42dbd54ae29645670b342aceb3c99c880ecd4"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/vesselness.cpython-312.pyc",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/__pycache__/vesselness.cpython-312.pyc",
+      "sha256": "19a498b1697547856397e64d2175f9025c6aadd0c30587bc0ae2a189f4c265a2"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/write_report.cpython-312.pyc",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/__pycache__/write_report.cpython-312.pyc",
+      "sha256": "749b056ce093c175d5858913794a4ec28bd195a88fe75f3555c87cd1af94a925"
+    },
+    {
+      "label": "Submitted artifact: answer/centerlines.json",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/centerlines.json",
+      "sha256": "794444a3e706b80e39db93aa5dcd1e3b7c3dae402ea505ec9b68e8e84cd12e46"
+    },
+    {
+      "label": "Submitted artifact: answer/checkpoint/centerlines.json",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/checkpoint/centerlines.json",
+      "sha256": "595b932a28620f0768bd09747c31c73816fdc86753c226ac0f462340ff083d6f"
+    },
+    {
+      "label": "Submitted artifact: answer/checkpoint/method.md",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/checkpoint/method.md",
+      "sha256": "ce72c4df2d1f1da1fac4dbc3691d91ab939853ead9cc5e92312dc00f64e12011"
+    },
+    {
+      "label": "Submitted artifact: answer/config.py",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/config.py",
+      "sha256": "08b53439edbcfb0b7514c6cfc2db5d0ed8033244cc506bdc6aa970acc087e932"
+    },
+    {
+      "label": "Submitted artifact: answer/inventory.csv",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/inventory.csv",
+      "sha256": "1333f25f39e7442c1048351f05417ae9f4192dc3a9c3e8bebe068753b0c66f2f"
+    },
+    {
+      "label": "Submitted artifact: answer/major_trace.py",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/major_trace.py",
+      "sha256": "51ae5c609f461ea6114d5dc83860683d3907e458dfcb8685df421078956be652"
+    },
+    {
+      "label": "Submitted artifact: answer/method.md",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/method.md",
+      "sha256": "f517bba9befc6572739989a66e4d163bfdd714fb958359f3ef1f75f3dbc15e9e"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/aorta_ascending.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/aorta_ascending.npy",
+      "sha256": "93dc21fa3858c0a1b8a04e428408e283632a43290716d00d711b35360b07b6cb"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/aorta_descending.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/aorta_descending.npy",
+      "sha256": "af8833a7a4cfd9240d88e579a2bfa4acb0a8e8156f379a43e1afb5d49811ee74"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/conus.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/conus.npy",
+      "sha256": "5b4e555833eb7a5ef53a0b426476ef3f5fcf1a6fe18629ec898cb6cc3d16d8bd"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/coronary_sinus.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/coronary_sinus.npy",
+      "sha256": "94db3a0af662b86bd139a1b450f7db9cec130b40a08ce21dbe1d373e4664c89b"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/diagonal1_early.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/diagonal1_early.npy",
+      "sha256": "27ab0f1a77f41cb77741a60344f20264121ffa452dd797d3eb30ef491c37091c"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/diagonal2.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/diagonal2.npy",
+      "sha256": "57343adeb4a3e2aade0b25397ee95412c24ace1d2eafa18203df1644057f4b3a"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/diagonal2_superior.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/diagonal2_superior.npy",
+      "sha256": "aab03fd1c7a005fb56b1c92b375b0409d823714548541213dc190f921e2129af"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/ivc.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/ivc.npy",
+      "sha256": "c10f6a91cdb442a97e231ac2e88724994d27b88c85298556cc6163d1a5f7c17f"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lad.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lad.npy",
+      "sha256": "69ffc871f0d244425d5a3744302efbac50406fa106ac611392ca8a9c3319168d"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lad_apical_lateral.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lad_apical_lateral.npy",
+      "sha256": "8b078ff543118e95fcfe0a719c93c2c21999be22a5e68fec50190b08c9c38cf3"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lad_apical_lv.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lad_apical_lv.npy",
+      "sha256": "2c27bb981c02d11eb783aa19328dc12ba8e106eaa303e841c3910b8927f066ba"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lad_septal1.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lad_septal1.npy",
+      "sha256": "676e0c8b5400db32924676600a8746cdd99c78ba70579a66ab9781d0dab7ca59"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lad_small_anterior.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lad_small_anterior.npy",
+      "sha256": "a0fbcfc1aa183f5b2d84689ae4cc7a958e4fee73a9e8671833c4538ce2a1d745"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lcx.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lcx.npy",
+      "sha256": "50df567168775905cbd37bee2626078421f2a8f6cc695eb50d92dcca732830d1"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_a10.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_a10.npy",
+      "sha256": "e330862d1c781bca9f2ee59907b9cd118ad8ea3b48b6f2e46086d3d15c16faf1"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_a1a2.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_a1a2.npy",
+      "sha256": "a3c5fbd2277460ca6a95fbfc90b2e655e1ea533b5818e83779bc9bf099b83636"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_a2_posterior.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_a2_posterior.npy",
+      "sha256": "3fc95863b0fbfcc35cce7a232d44893a280d0d327b08d01e8b0183fb55f62a8f"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_a3.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_a3.npy",
+      "sha256": "ac61d7bb44bcb162cddbdcd3f2634e0b015432eb349a579f85d2a58d4cece401"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_a4.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_a4.npy",
+      "sha256": "6f869ab87038fe63caa3abcbf14ea6556e29e965a307831a26c8868b970ade61"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_a5.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_a5.npy",
+      "sha256": "be807a7a329d997669196325d5bb1a4148f9fa5ac5d499e6f261820e2bda67f5"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_a6.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_a6.npy",
+      "sha256": "abae60f952ff012d6fa2e002023fa5b3c926fb6cdc9e2a09e1e30bfcc71f05fd"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_a6_lateral.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_a6_lateral.npy",
+      "sha256": "4512ad5f6021b0efc6ec0478a136022f674f17cd3b61eb2d7a7f9e08208939c0"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_a6_posterior.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_a6_posterior.npy",
+      "sha256": "4bb96eab51aed419a7e15e0d0b193f1573f2b601d00cd10208cd9ee30d940794"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_a8.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_a8.npy",
+      "sha256": "faa932adbd54cf2c851591859e86950821064032b77577b07c0848fb85582445"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_a9.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_a9.npy",
+      "sha256": "cdbea24a13f7f84d5bf849e0caf4a7e694dd72197aca5fb2f053da0845bd66eb"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_lower_pa.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_lower_pa.npy",
+      "sha256": "080d9341e8e0b5e234a6dfcc5b89ae5fc875299f27c983fe8eed342339acae76"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_upper_pa.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_upper_pa.npy",
+      "sha256": "77caf40747a9ceaec295555478ee2e8a0a2e21886bda3989033954b88a53ce2f"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_v6.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_v6.npy",
+      "sha256": "5c0d8c5ab2c83d3b5807594d2ac84debcdec95d0649e7b7adbd4481c63ede4a5"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/left_v6_posterior.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/left_v6_posterior.npy",
+      "sha256": "fdd011815649a9f2557a1d3a2b8891eed420e3aa4b62c5540e04089ba84df80d"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lingular_pa.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lingular_pa.npy",
+      "sha256": "778efd14b1a6a3746e25e6f0c92335e712df7bb2cd3a1035b1a0c799ab4f9f22"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lingular_vein.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lingular_vein.npy",
+      "sha256": "905679f15c460cb0cb417a681244dc186f0a686ecf734b3032a282c139d5116c"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lingular_vein_lateral.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lingular_vein_lateral.npy",
+      "sha256": "3634e7d38f93ef089de29d1880aeb616479745b33b6484139ab2b3b460f12df3"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lipv.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lipv.npy",
+      "sha256": "806dde783a13802bb91a954942aa959b66bbf179d377d6c8c587190d9b5feae3"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lipv_anterior_basal.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lipv_anterior_basal.npy",
+      "sha256": "905cf8a9807b63b62ad4e5351103b958b1d270cef9feb290f5453798a8279fba"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lipv_basal.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lipv_basal.npy",
+      "sha256": "be8d26a82c1e9658afb67fde2d69d7d690508dce10bf2f1639ff9e99fc88a74f"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lm.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lm.npy",
+      "sha256": "57df0208ca846336ddd9aff859ed3299106f28d56373e008279b178369b7d0c5"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lpa.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lpa.npy",
+      "sha256": "63e4e54c69a589a63d779daab47551194c52aaaf2f1931e25b38ac6f8203a586"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lspv.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lspv.npy",
+      "sha256": "09b3b46b5df9f938c92f0d3ab3c4ac7c3b0bcc17a5c14c2ddb6a52ad75ed4256"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lspv_anterior.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lspv_anterior.npy",
+      "sha256": "db153c5fcf10323358fbcc50fc00e9b429da79f81118b789f57cba6e5584d6b6"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lspv_anterior_superior.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lspv_anterior_superior.npy",
+      "sha256": "783b35daa2be68054673ab74341a2a042c8ae9ad03bb3fcf8b244fc18477eb70"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/lspv_apicoposterior.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/lspv_apicoposterior.npy",
+      "sha256": "d545296b34cbab9addac952930abdf39084e3c8222e0014c59f29655db2677b6"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/om1.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/om1.npy",
+      "sha256": "bf697220048993e9738cff3dd1fc7bf3c9fe0817e721da22c42a748dfaa3c04a"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/posterior_lv_vein.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/posterior_lv_vein.npy",
+      "sha256": "d39e9b32f02c772706f365d52a0df1b43b2de92828b964b394a598d9c7635ae2"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/pulmonary_trunk.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/pulmonary_trunk.npy",
+      "sha256": "885c768fdd19d15000df698fb5a2b0fcc5cfb041a9cb7f448fd6c8ed96baf805"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/rca.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/rca.npy",
+      "sha256": "a67d4f8edabfa5314ad60a0c6a30789a54d2a185b8df6e78da351b2a67ae4fed"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/rca_atrial1.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/rca_atrial1.npy",
+      "sha256": "7d1378367799cc2dc3efdec893ea6370c342283fafc6ee8b95880002c1fb4480"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/rca_proximal_conal.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/rca_proximal_conal.npy",
+      "sha256": "e04898a9e8a142e26ce02550ec77e100c13e169f171d22b0f00c3dd3b13b7d39"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/rca_rv1.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/rca_rv1.npy",
+      "sha256": "9a9681f00edf66a65859f1adba8be7af04c204513200a7245090205808ec7cb7"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/rca_rv_inferior.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/rca_rv_inferior.npy",
+      "sha256": "feb066ad6bba2eb4177a689d545fc4155b646f38f6556a7de88eea159329801c"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/right_a1.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/right_a1.npy",
+      "sha256": "721ec43392978ff983b32fae08c4043a06535185ba1019b3f17aed48fa40ecb4"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/right_a2.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/right_a2.npy",
+      "sha256": "1cd44d5c1bc9184265d301f9aeb9893b607c8a9f0ec5e58b14ca781d421d3c45"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/right_a3.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/right_a3.npy",
+      "sha256": "92576b6fac8c3d240c915e0252eeb0c2d5454d24568f9fafad7962c472243717"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/right_a6.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/right_a6.npy",
+      "sha256": "09919a303aede98101725a31d4e1ec2e25f766f34114dc9e89b5f5dee01d8730"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/right_a6_lateral.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/right_a6_lateral.npy",
+      "sha256": "4ce62c91260b18ea1dbb37705fdebc7ffc21fba7f246856aec6b2c4b7a8d7431"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/right_a6_posterior.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/right_a6_posterior.npy",
+      "sha256": "d9272408ade131fd0471eee0f11365a3128fcc1996935b606bf1e99b57e43c69"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/right_lower_pa.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/right_lower_pa.npy",
+      "sha256": "17bbc4dd682e2d1a4f3f75893cc70e8b74f11fd8fe5a52d053d42153010b37c3"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/right_middle_pa.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/right_middle_pa.npy",
+      "sha256": "e3a28344b55926d86e0f5d0e88d33a1b092250339a0ea13d1b61503baa91b548"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/right_middle_vein.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/right_middle_vein.npy",
+      "sha256": "1cf502517550cb9c9fa3735c4839ffe794f6055aa40bff424bb5a58dd976bfb8"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/right_upper_pa.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/right_upper_pa.npy",
+      "sha256": "2e9d5c6b178f2d071197507b7f37571fd19c0a92f0f17c9feec552f9e84c74a6"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/right_v6.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/right_v6.npy",
+      "sha256": "3340bb1fe067659e48bd25f2d026c4e568c28f96c5512617458cb0ba50f97d7d"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/ripv.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/ripv.npy",
+      "sha256": "c4ed8e2bef549f5688df6c4af25d30c00cb9812813e204a748bb7383aa990e18"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/ripv_basal.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/ripv_basal.npy",
+      "sha256": "b1b84c3c455db551df8d888926967d0ac74d71d79a19d42e7a1435cab8871e87"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/ripv_lateral.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/ripv_lateral.npy",
+      "sha256": "2b3f42449bbbbd93309c36855501a4fae1dd4f1134012da5bf633d0287d517fc"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/rpa.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/rpa.npy",
+      "sha256": "89517520d998a77f511c55d8fb7c791c01ed744eb6bde2f1dbe47a9e1dce3320"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/rpda.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/rpda.npy",
+      "sha256": "0604c20be43ef2f506cb169915cbf57e4d46812dc10d4c2afdcd97497f913687"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/rpda_ventricular.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/rpda_ventricular.npy",
+      "sha256": "ea74d822ac5118f738cf2e7e2db400705cdaf95c96c9559b4fd86eae6f8f42ae"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/rpla.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/rpla.npy",
+      "sha256": "bd383c9f6d3fb99b25469a24df52069a7abf120bf99f52a03ac4898f4ea2f79f"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/rspv.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/rspv.npy",
+      "sha256": "31ea8fb4ef2b53ae21e4aa4022e5981eac2838c95b598ec28fdc9de6d9127ab9"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/rspv_anterior.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/rspv_anterior.npy",
+      "sha256": "f444bf30c14b90e73cbd75cd8df8bfbbfd8c24c5c50f4c1a61357dcce99b215d"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/rspv_upper.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/rspv_upper.npy",
+      "sha256": "2479d280b3a6395eaa4d82a5de0897725b95f93e3d166aa8c55d0ab94612b893"
+    },
+    {
+      "label": "Submitted artifact: answer/paths/svc.npy",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/paths/svc.npy",
+      "sha256": "aaf3689ad0216f96e84fd2349ca115c8e732a1d922a81184a1b93d4ac2fb605f"
+    },
+    {
+      "label": "Submitted artifact: answer/prepare.py",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/prepare.py",
+      "sha256": "ae2520c7f18a441ffa6cd8690ebff6037656a53bf4ef9ebb1f82dcb33e0b21c1"
+    },
+    {
+      "label": "Submitted artifact: answer/pulmonary_vesselness.py",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/pulmonary_vesselness.py",
+      "sha256": "027d1a9f6a3c493d606e8d7713951ae747bfe422a02f1a5268305462977101ba"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/a6_cross_sag.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/a6_cross_sag.png",
+      "sha256": "a23f7910afea196f11bd3d44bdd8745c40b49fe1f8c15c16e8f773744d809cad"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/diagonal_origin.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/diagonal_origin.png",
+      "sha256": "cabe142d06f0b642a5a3637657eb172d6ef3c195e30ab61a1348ddeacba51b8b"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/ivc_smooth.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/ivc_smooth.png",
+      "sha256": "894841a227e5491f4f9ea9310e980d392d5d822a8bc34794608b3f052e3b0c46"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/lad_branch_contact_cor.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/lad_branch_contact_cor.png",
+      "sha256": "35127165847c44c45beb76b2abc68214c4fc8d5a870d33bca6d5119c6207129a"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/lad_branch_contact_native.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/lad_branch_contact_native.png",
+      "sha256": "7d4e0260e0135558cce181a3171e08db3501ecf4e4fc4ada286228ddba310588"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/left_a6_crossing.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/left_a6_crossing.png",
+      "sha256": "acb006b633eecbd3f51405c914021441db848e999fb7f535558113dc9ca4fa66"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/lm_branch_review.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/lm_branch_review.png",
+      "sha256": "b8ebd974eb02f0104e64b4662bed24e22139cfa6636a9d9ed842e078e7fee8e9"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/om_distal_native.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/om_distal_native.png",
+      "sha256": "915c2d4446b6e6d786dc704a28129086a42be7c5e3132eeae2b16863166a7268"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_aorta_ascending.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_aorta_ascending.png",
+      "sha256": "090dccc432bffc1a02377698f9030762ec8b70886454476a0cd05130446211bd"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_aorta_descending.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_aorta_descending.png",
+      "sha256": "97e09ca96f8b94264839e0272eaf103411f50de64bdf607b58f239cea73830dc"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_conus.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_conus.png",
+      "sha256": "1e5249685b44da702bc8d5f1ef863a5acd572588190c7e4b20fc7b9e4884e7e4"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_coronary_sinus.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_coronary_sinus.png",
+      "sha256": "d89d0af94a9e48f14e1c3110b29860aad8a0a93f3b51fc67ba4615e9d6093216"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_diagonal1_early.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_diagonal1_early.png",
+      "sha256": "2f55d3ecbbf5d9e80033e1d3788b67902d3a205d2adb4c3f18b8edba84abd4a5"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_diagonal2.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_diagonal2.png",
+      "sha256": "0bef34f254a15878bc5279f113b17aec5d59121bdea5115a6a4b97a55852462c"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_diagonal2_superior.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_diagonal2_superior.png",
+      "sha256": "69fc2fd13a2e8d2f921acc738286fff7ec6260306830240c4407822bbf69b8e8"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_ivc.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_ivc.png",
+      "sha256": "e123ef1d229c940ecdcedacc4d29669da59136347974a40a1521fd80b088d092"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lad.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lad.png",
+      "sha256": "6f61977456e549f8cf5fafe494b83f4fccddda7752fdd84c0c9d4b3b2c13f145"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lad_apical_lateral.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lad_apical_lateral.png",
+      "sha256": "36ebaf9061889e070a411b86b5fcc87bc9d6b2209e69976ca269cf4bf7eb3e73"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lad_apical_lv.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lad_apical_lv.png",
+      "sha256": "b19635b68b0dee9f6999d4be2dcedbc204d2af4624a53d3860cfc795041ebd36"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lad_septal1.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lad_septal1.png",
+      "sha256": "e5206ed0c8ea4fd78b2a9bb1b6f65f2cab1aae166db6a48dae81a68fb2c805a0"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lad_small_anterior.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lad_small_anterior.png",
+      "sha256": "88105f5be6f5018b59b61abc39cb3d5c64273da1d8a2b72a978d0a0ad7db1735"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lcx.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lcx.png",
+      "sha256": "b57b1fdae315ff17df00ad407f6fa4342c1718bff7905c2f238d2d0678eb3b0c"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_a10.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_a10.png",
+      "sha256": "ad5fa4deaedd9119f694c7810b2e4ddebb23a574fac4839c4fabe841d56e1b0b"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_a1a2.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_a1a2.png",
+      "sha256": "2cc65a0ea3038efd06ab25484a675e39abfb397ddf47a694cc1089163af4dcfc"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_a2_posterior.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_a2_posterior.png",
+      "sha256": "36cb257179e4a9eba3643ccc2949d494b4304e7f006b37a213599b6468bec0d9"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_a3.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_a3.png",
+      "sha256": "b26f354cad5fefae9535354eda386131d50925d77a7ec445676519e37ec6db96"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_a4.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_a4.png",
+      "sha256": "6fc8dbf77814065ae3135da7315ddcd00f57d8430f8ff49c1c0a6f731e6ee656"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_a5.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_a5.png",
+      "sha256": "ecbcce0d572c343d4d99dbe2a248342005aa5b50e04750efc65574e6e821df51"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_a6.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_a6.png",
+      "sha256": "95eba16341accac0244970d61c5ac036940c2ac92552fbfc0619e61e973c60b2"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_a6_lateral.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_a6_lateral.png",
+      "sha256": "313b23063ca6d0e50cc22afe49f586934b5d8bf5506154ae835c93c706888c00"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_a6_posterior.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_a6_posterior.png",
+      "sha256": "11547ff913ae523c8dfee58aff27d972f73417d4716bff5204c6b89c1883e17e"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_a8.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_a8.png",
+      "sha256": "31c06bab41e8528b66254ceb147c0d6d9ca4c0af2ff113fa814a51a2152fcec5"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_a9.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_a9.png",
+      "sha256": "c7a436160117b361d543606fdb8e71b49a6e151de62d1956804901b0af33b28e"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_lower_pa.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_lower_pa.png",
+      "sha256": "b79236695e598b2ca9cc3bf674e135a957cb5ae9a482fa49ce1043a8ae1eb298"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_upper_pa.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_upper_pa.png",
+      "sha256": "43bacc757b2111ee8df933dce5f18e82faf9be3609bcff76f27de7a8700bf476"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_v6.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_v6.png",
+      "sha256": "764e292faa0c5200ccec48dd52d566cc60b8dbb16088572b7a77f0325500f69c"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_left_v6_posterior.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_left_v6_posterior.png",
+      "sha256": "8d631cad11c206671234a10658fa69f3ffdc80abf39a2af4d1981245114c29e5"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lingular_pa.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lingular_pa.png",
+      "sha256": "a88e859fb9d247790b875e1578f2b1f4f8220a2a8951e75c20ac17c9f62b9745"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lingular_vein.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lingular_vein.png",
+      "sha256": "1e61bfcd47b0ed7c6fa5b3e88c3cecd010e3c3f7f4ba1d40a4936795aa289d9e"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lingular_vein_lateral.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lingular_vein_lateral.png",
+      "sha256": "30dc2c2e6b5271322836ed1db0cb7f7a5180323362533f95b771fbef359321fe"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lipv.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lipv.png",
+      "sha256": "053cfc3935ea5e79f1841d6abaa5a94fd3285d78c31a903c3f1c875fbd98fe65"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lipv_anterior_basal.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lipv_anterior_basal.png",
+      "sha256": "9af4f7d3f2306038f89c58439a0de3aed9a3bafb862812845f6440bc44bbdbe7"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lipv_basal.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lipv_basal.png",
+      "sha256": "ba8378fbf0f2101a4bce0d5d68e1fd6246d6d17ec63e3a21df6a2daf91ee8ab9"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lm.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lm.png",
+      "sha256": "b4980abe1de91c48676f064e5a64da0b7f8d6f2a948dade7d4acf14e32c26a9b"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lpa.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lpa.png",
+      "sha256": "3a324ff335d690b9520c85ecd0f04e602628f6c3e102103137b8de9814c5161e"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lspv.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lspv.png",
+      "sha256": "6236900e4b26a2a2cb40e38ceb369ed0eae6f4984f7e2127a93d70a64a9759dd"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lspv_anterior.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lspv_anterior.png",
+      "sha256": "404b58faa704e28263c3c1d02c8ca30c40c7fc54201a7cf55dd499c088ea4949"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lspv_anterior_superior.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lspv_anterior_superior.png",
+      "sha256": "1f36f747f9a1290b86faa8e8682552d23578671a0d7de20d0cc279e58fbe1e96"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_lspv_apicoposterior.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_lspv_apicoposterior.png",
+      "sha256": "6b0f4a6a0e0e0326b2049a319a4194035e818f6cdfe5d3718606e17d26506947"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_om1.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_om1.png",
+      "sha256": "e6d3132a8137acbdd881401562bc1e99555d848ad8ea4309083417660a2a8717"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_posterior_lv_vein.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_posterior_lv_vein.png",
+      "sha256": "e950a9bde74dad226320ed63dc5f8a2b951ab681739aab9c67cee45bb7549068"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_pulmonary_trunk.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_pulmonary_trunk.png",
+      "sha256": "1ad47f907e197df0455847f014b007c26cd46d2cf92acdc9a50255935d858273"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_rca.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_rca.png",
+      "sha256": "1ab9bfb526d29ad4279275ab11b50a685ae63afefd4656dd35b7c129cc1f139e"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_rca_atrial1.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_rca_atrial1.png",
+      "sha256": "84ae4d824409785ab9327f8365e1877c6e891eafeef8f4ffaafcf8c850dbcfc3"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_rca_proximal_conal.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_rca_proximal_conal.png",
+      "sha256": "30b0c5c5d937587f2251ba16ad59a99d4f2b221944c7e5b4825c386fffa1683d"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_rca_rv1.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_rca_rv1.png",
+      "sha256": "5f8252232ee2c0b51e9026b31c0b98f1d82e2daa63a83c883168d6153008f0f0"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_rca_rv_inferior.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_rca_rv_inferior.png",
+      "sha256": "242f67874300f4bcfc9c847abbd6d0a04812fa5880513a63d2bd3bc442a6fc67"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_right_a1.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_right_a1.png",
+      "sha256": "7bffbcd141670542e9cc074d47b740cd4eb0658ef8a432d664de1a9ea44bddf7"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_right_a2.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_right_a2.png",
+      "sha256": "6120e11903b60c893e985539ca34fac2cc194ff2442ff784d34184adcb7b816c"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_right_a3.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_right_a3.png",
+      "sha256": "ef1ff77d5778e8c0c1863ee628ef0f1e6a17b8cefcab39f4c280cf1613260e9a"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_right_a6.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_right_a6.png",
+      "sha256": "bce3fb84f0c77125b5a94fe74bf2c8baffb3c501e6d4dfba79096ec9548838eb"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_right_a6_lateral.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_right_a6_lateral.png",
+      "sha256": "6cec60259a3f6747912e8d632dbb9538b4eab43958b670344750c7de4fe4c319"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_right_a6_posterior.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_right_a6_posterior.png",
+      "sha256": "627034f270d523c7504acb288b46ef2a66a90019ea6d8172e96b6b449d86dcce"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_right_lower_pa.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_right_lower_pa.png",
+      "sha256": "00f2d15eb830b711548c9ba2060a55974c9cb617659be230310b8ecd11e77135"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_right_middle_pa.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_right_middle_pa.png",
+      "sha256": "91ae04425b148b785be79686c8f3a2629e1464a62875bc1372260c65102d6ee7"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_right_middle_vein.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_right_middle_vein.png",
+      "sha256": "a4760f8f37401515c34ff0dc0cda9d82e60ca3376ccf9ac76545272825dd0593"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_right_upper_pa.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_right_upper_pa.png",
+      "sha256": "c3d8f8522b193e8bbe87054137eb8b928dd4176f564a5aa1044e8e9889aa92b9"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_right_v6.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_right_v6.png",
+      "sha256": "0933a82aacfe7f3cec8c08f423335c56438c91364c7b17c0bada386531ca01ef"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_ripv.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_ripv.png",
+      "sha256": "85d2362415e7954d814015ddaa9031baa0f53530169b40139003bfc27a1bd171"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_ripv_basal.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_ripv_basal.png",
+      "sha256": "62dfd7cfcae4f367afef184a945b1cc2a7ec8e9dc440c928ace5b3d1fdc13fa9"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_ripv_lateral.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_ripv_lateral.png",
+      "sha256": "402d486dd3724dcd37458938c71099bc2e4ff6779a18ae484daa5c7b5eceb042"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_rpa.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_rpa.png",
+      "sha256": "60e26377b7d531950bb5529e0ff1c3dbede602beac9625debd3d1931115a68ef"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_rpda.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_rpda.png",
+      "sha256": "e35e520d3b4e864bb293a0962005b611f1f2aa16d5e002933bc043a221674529"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_rpda_ventricular.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_rpda_ventricular.png",
+      "sha256": "d92801473dc40ed2b0f8b7220549a56e5d18d496918be81170f3c9d5a9a755dd"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_rpla.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_rpla.png",
+      "sha256": "ce21be88fe36fe8eddf8ac0ad0a8fa3bfd9ab7a6a5799be71bcc8b2dfe45bd3c"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_rspv.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_rspv.png",
+      "sha256": "336081df0b6e72f3eb05f2f7e0b2ee637e801d522b0313f319dec259677d452b"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_rspv_anterior.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_rspv_anterior.png",
+      "sha256": "9d7feea3f35f39b6cdce7534cfd0c1f6e3451c747692ff74a97fae1bc677ace9"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_rspv_upper.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_rspv_upper.png",
+      "sha256": "123fe727a242f26f83eca1b1adbe3faeceb17b2878eda77b5785fdeb0e310a20"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/review_svc.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/review_svc.png",
+      "sha256": "7a8d99b0c1040d94b9b26c2a5cadee5c9306cc791477ad53283681bdd91d640d"
+    },
+    {
+      "label": "Submitted artifact: answer/qa/rpla_cross.png",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/qa/rpla_cross.png",
+      "sha256": "0aecdbb0b3e9626024cae790370802e5dc20c392931c4c04331a5cce2926c76a"
+    },
+    {
+      "label": "Submitted artifact: answer/reference_metrics.json",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/reference_metrics.json",
+      "sha256": "81c7e245a2d8dec13650d16e00adfa4ecf3848872acda64bfcad753b3a41b88c"
+    },
+    {
+      "label": "Submitted artifact: answer/reproducibility.json",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/reproducibility.json",
+      "sha256": "e25cea112263060659e6654613340da41c1d2c17e1b0edb3a6f80b9140a27dd6"
+    },
+    {
+      "label": "Submitted artifact: answer/reproduction.log",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/reproduction.log",
+      "sha256": "6c9f913744aa5727f6d6388ab7fc41616d0a74ae58809e9ef17e6eb32ec03246"
+    },
+    {
+      "label": "Submitted artifact: answer/run.sh",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/run.sh",
+      "sha256": "7ccd7be02eef77804e9964c214ca1b837a44b35cd15225f46613400e657a31b1"
+    },
+    {
+      "label": "Submitted artifact: answer/section_trace.py",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/section_trace.py",
+      "sha256": "28058d9e082787826405dc0239141607a34484eb723b05156d0fc0095034df82"
+    },
+    {
+      "label": "Submitted artifact: answer/source_metadata.json",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/source_metadata.json",
+      "sha256": "3e9bf2e3f10263a34af1360b225dec9ed988a29b396dbf80062620f32b00fbf2"
+    },
+    {
+      "label": "Submitted artifact: answer/specs.json",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/specs.json",
+      "sha256": "a6590d4b04fa6bf6207928822a4f0a5b1e9ae105b449c9456229b26d58644589"
+    },
+    {
+      "label": "Submitted artifact: answer/trace.py",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/trace.py",
+      "sha256": "13380d24cddf5af022b7cccb4387d3c8b41516c6fd83d54cee9119e742b13d9e"
+    },
+    {
+      "label": "Submitted artifact: answer/validate.py",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/validate.py",
+      "sha256": "9a1717fc2b11c96db0325104cf54fad02ae51155971b9ba174a726c6b69955d5"
+    },
+    {
+      "label": "Submitted artifact: answer/validation.json",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/validation.json",
+      "sha256": "86114404e5e3d6a5bfed84ee0bce6c08460e5699a36d3660551ac7e8ed7ea750"
+    },
+    {
+      "label": "Submitted artifact: answer/vesselness.py",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/vesselness.py",
+      "sha256": "dd5c277f70b838a7738f9b5aa21c801cdc8c334b6dc4154a68317ec573744b70"
+    },
+    {
+      "label": "Submitted artifact: answer/write_report.py",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/artifacts/app/answer/write_report.py",
+      "sha256": "88c4771b14eb14f489ff815815af24faca2e270b3b32abd6ecd0e65ee53de6d8"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/lock.json",
+      "sha256": "88570cbc8261910f4e22268878cf459e446ab17b8d0f05ba649f7b421c9c431a"
+    }
+  ],
+  "task_checksum": "92d04de6573f325a27a26ddbce24e311e45f3c2c23053b7bfd568ee9124ada6a",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br042-all-vessels-astra-xhigh-v4-2h-attempt1/all-vessels__WjMQM7j/result.json",
+  "source_sha256": "920a3e302198104d4d8efd8c4a081215d0d2fd4e8a46fa8ceeeb6eae03fc1fe8",
+  "evidence_sha256": "5fd3030d33f2a767400d7dda685a55e994d489a7c20d7724a7ddfef7b5ba666f",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-da47f4051e58e7e85a372af7",
+  "group_id": "tubular-anatomy",
+  "experiment_id": "tubular-anatomy-br042",
+  "collected_at": "2026-09-20T11:36:59.493178+00:00",
+  "task_digest": null,
+  "freeze_checksum_verified": false,
+  "depends_on": [
+    "attempt-da47f4051e58e7e85a372af7"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

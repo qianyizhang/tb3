@@ -19,6 +19,17 @@
       "path": "docs/research-rounds/BR-043-medical-next-tasks.md"
     }
   ],
-  "depends_on": [],
-  "decision_provenance": "Assistant proposal; user requested explanation, not trial selection."
+  "depends_on": [
+    "br042-v4-2h-independent-review"
+  ],
+  "decision_provenance": "Assistant proposal; user requested explanation, not trial selection.",
+  "observations": [
+    {
+      "actor": "assistant",
+      "source": "codex://threads/01a0bc95-2598-7810-809e-9c8b6c0969c3",
+      "date": "2026-09-20",
+      "finding": "Two-hour V4 xhigh timed out with 94.1% geometric and 74.8% correctly labeled length coverage. D1 identity improved; D2 candidate was explicitly noticed but unresolved, GT OM1 missed, GT OM2 partially traced as OM1, and PDA taxonomy disputes persist. Longer runtime and broader output did not establish clinical completeness or exceed completed V3 medium coverage.",
+      "review": "groups/tubular-anatomy/experiments/br042/reviews/v4-2h.md"
+    }
+  ]
 }
