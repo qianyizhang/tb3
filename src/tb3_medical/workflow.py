@@ -63,10 +63,6 @@ def new(root, group, key, title):
         (task / name).write_text(
             '#!/bin/sh\nset -eu\necho "Implement the verifier/oracle before qualification" >&2\nexit 1\n'
         )
-    group_path = Path(root) / owner["record_path"]
-    group_record = c.read(group_path)
-    group_record["experiment_ids"] = [*group_record.get("experiment_ids", []), key]
-    c.atomic_write(group_path, group_record)
     return row
 
 
@@ -246,25 +242,41 @@ def collect(root, experiment, sources, binding=None):
             current_binding.get("task_digest")
             and current_binding.get("checksum") == imported["task_checksum"]
         )
-        proof = current_binding["task_digest"] + current_binding["checksum"] if verified else ""
-        key = (
-            "observation-"
-            + hashlib.sha256((identity + imported["evidence_sha256"] + proof).encode()).hexdigest()[
-                :24
-            ]
-        )
-        if key in rows:
-            results.append(rows[key])
-            continue
         execution, outcome = result_state(imported)
         if owned and imported["classification"] == "incomplete":
             terminal = receipt.get("execution_state")
             if terminal in {"interrupted", "error", "completed"}:
                 execution = terminal
+        proof = current_binding["task_digest"] + current_binding["checksum"] if verified else ""
+        latest = c.execution_observations(rows).get(identity)
+        if latest and all(
+            latest.get(field) == value
+            for field, value in {
+                "source_result": imported["source_result"],
+                "evidence_sha256": imported["evidence_sha256"],
+                "freeze_checksum_verified": verified,
+                "task_digest": current_binding.get("task_digest") if verified else None,
+                "execution_state": execution,
+                "outcome": outcome,
+                "partial": imported["classification"] == "incomplete",
+            }.items()
+        ):
+            results.append(latest)
+            continue
+        # Repeated identical collection is idempotent, but A -> B -> A is a new
+        # observation. Include its predecessor so old bytes cannot hide a return.
+        predecessor = latest["id"] if latest else ""
+        key = (
+            "observation-"
+            + hashlib.sha256(
+                (identity + imported["evidence_sha256"] + proof + predecessor).encode()
+            ).hexdigest()[:24]
+        )
         row = {
             **imported,
             "schema_version": 2,
             "kind": "evaluation",
+            "evaluation_kind": "result",
             "id": key,
             "attempt_id": identity,
             "experiment_id": experiment,
@@ -283,22 +295,40 @@ def collect(root, experiment, sources, binding=None):
     return results
 
 
-def check_controls(root, digest):
+def check_controls(root, digest, *, pending_review=None):
+    rows = c.projection(root, pending_review=pending_review)
     available = set()
-    for row in c.load(root).values():
+    unavailable = []
+    blocked = []
+    for row in c.execution_observations(rows).values():
+        if row.get("task_digest") != digest or row.get("agent") not in {"oracle", "nop"}:
+            continue
+        owner = rows[rows[row["attempt_id"]]["experiment_id"]]
+        state = owner["current"]
+        if state["assessment"] in {"needs_review", "invalidated"}:
+            blocked.append(
+                f"{row['attempt_id']} (owner {owner['id']}, {state['assessment']}): "
+                + state.get("assessment_reason", "Owner assessment requires a usable scoped review")
+            )
+            continue
         if (
-            row["kind"] == "evaluation"
-            and row.get("task_digest") == digest
-            and row.get("freeze_checksum_verified")
+            row.get("freeze_checksum_verified")
             and row["execution_state"] == "completed"
-            and row.get("agent") in {"oracle", "nop"}
+            and not row.get("partial")
             and row["outcome"] == ("pass" if row["agent"] == "oracle" else "fail")
         ):
-            c.verify_inputs(root, row.get("evidence", []))
+            try:
+                c.verify_inputs(root, row.get("evidence", []))
+            except c.MedicalError as exc:
+                unavailable.append(str(exc))
+                continue
             available.add(row["agent"])
     if not {"oracle", "nop"}.issubset(available):
         raise c.MedicalError(
-            "Verified runs require oracle pass and no-op fail on this task; use --diagnostic for exploration"
+            "Verified runs require current oracle pass and no-op fail on this task from "
+            "experiments without unresolved review flags; use --diagnostic for exploration"
+            + (". Blocked controls: " + "; ".join(blocked) if blocked else "")
+            + (". Unavailable evidence: " + "; ".join(unavailable) if unavailable else "")
         )
 
 
@@ -430,6 +460,7 @@ def run(
             {
                 "schema_version": 2,
                 "kind": "evaluation",
+                "evaluation_kind": "execution",
                 "id": key,
                 "attempt_id": identity,
                 "experiment_id": experiment,
@@ -446,33 +477,32 @@ def run(
     return receipt
 
 
-def qualify_attempt(root, experiment, identity):
+def qualify_attempt(root, experiment, identity, *, pending_review=None):
     """Reassess a diagnostic attempt using existing exact inputs and controls.
 
     This establishes local control eligibility, not current submission approval.
     """
-    rows = c.load(root)
+    rows = c.projection(root, pending_review=pending_review)
     attempt = rows[identity]
     if attempt["kind"] != "attempt" or attempt["experiment_id"] != experiment:
         raise c.MedicalError("Select an attempt from the reviewed experiment")
+    if rows[experiment]["current"]["assessment"] in {"needs_review", "invalidated"}:
+        raise c.MedicalError("Resolve the experiment issue in a usable scoped review first")
     if not attempt.get("freeze_id"):
         raise c.MedicalError("This historical attempt has no verified task binding")
     frozen = rows[attempt["freeze_id"]]
     restore_freeze(root, frozen)
-    check_controls(root, frozen["task_digest"])
-    observations = [
-        r
-        for r in rows.values()
-        if r["kind"] == "evaluation"
-        and r["attempt_id"] == identity
-        and r["execution_state"] == "completed"
-        and r["outcome"] in {"pass", "fail"}
-        and r.get("task_digest") == frozen["task_digest"]
-        and r.get("freeze_checksum_verified")
-    ]
-    if not observations:
+    check_controls(root, frozen["task_digest"], pending_review=pending_review)
+    selected = c.execution_observations(rows).get(identity)
+    if not (
+        selected
+        and selected["execution_state"] == "completed"
+        and selected["outcome"] in {"pass", "fail"}
+        and not selected.get("partial")
+        and selected.get("task_digest") == frozen["task_digest"]
+        and selected.get("freeze_checksum_verified")
+    ):
         raise c.MedicalError("No normally completed scoring observation bound to that exact task")
-    selected = max(observations, key=lambda r: r.get("collected_at", ""))
     c.verify_inputs(root, selected.get("evidence", []))
     return {
         "attempt_id": identity,

@@ -19,6 +19,9 @@ python3.12 /fresh/destination/replay.py
 The [MRI recipe](../exports/recipes/landmarks-mri-v2.json) includes task files,
 source notices, two saved model outputs, oracle output and standalone replay code.
 Its replay needs neither the source checkout nor NumPy, Docker, network or inference.
+Package verification checks the declared executable bits on POSIX systems as
+well as the exact file inventory and content hashes; other platforms explicitly
+report that executable modes were not checked.
 The [implementation receipt](migration/native-closeout.md) records its verified
 scope. The package retains a historical mutable Docker tag, so saved-output replay
 is not proof of a rebuilt execution environment.

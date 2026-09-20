@@ -211,6 +211,12 @@ def lookup(root, key):
 
 
 def experiment_ids(row, rows):
+    if row["kind"] == "group":
+        return sorted(
+            r["id"]
+            for r in rows.values()
+            if r["kind"] == "experiment" and r["group_id"] == row["id"]
+        )
     if row["kind"] == "experiment":
         return [row["id"]]
     if row.get("experiment_id"):
@@ -218,8 +224,41 @@ def experiment_ids(row, rows):
     return row.get("experiment_ids", [])
 
 
-def projection(root):
+def execution_observations(rows):
+    """Latest execution/result per attempt, before any eligibility filtering.
+
+    Untyped imported Harbor observations remain supported. Evaluations owned by
+    another experiment and explicit replay/trace kinds do not describe execution.
+    """
+    latest = {}
+    for row in sorted(rows.values(), key=lambda r: (r.get("collected_at", ""), r["id"])):
+        if row["kind"] != "evaluation" or row.get("evaluation_kind") not in {
+            None,
+            "execution",
+            "result",
+        }:
+            continue
+        attempt = rows.get(row["attempt_id"], {})
+        if row.get("evaluation_kind") is None:
+            imported_result = all(
+                row.get(field)
+                for field in ("source_result", "source_classification", "evidence_sha256")
+            )
+            launcher_receipt = attempt.get("execution_path") and any(
+                entry.get("path") == attempt["execution_path"] for entry in row.get("evidence", [])
+            )
+            if not (imported_result or launcher_receipt):
+                continue
+        if row["experiment_id"] == attempt.get("experiment_id"):
+            latest[row["attempt_id"]] = row
+    return latest
+
+
+def projection(root, *, pending_review=None):
     rows = load(root)
+    if pending_review is not None:
+        rows[pending_review["id"]] = pending_review
+    latest_observations = execution_observations(rows)
     reviews = sorted(
         (r for r in rows.values() if r["kind"] == "review"),
         key=lambda r: (r.get("created_at", ""), r["id"]),
@@ -264,16 +303,8 @@ def projection(root):
                 if decision["target_id"] == row["id"] and decision["accepted"]:
                     state.update(idea_state=decision["idea_state"], latest_decision=decision["id"])
         elif row["kind"] == "attempt":
-            observations = sorted(
-                (
-                    r
-                    for r in rows.values()
-                    if r["kind"] == "evaluation" and r["attempt_id"] == row["id"]
-                ),
-                key=lambda r: (r.get("collected_at", ""), r["id"]),
-            )
-            if observations:
-                last = observations[-1]
+            last = latest_observations.get(row["id"])
+            if last:
                 state.update(
                     execution_state=last["execution_state"],
                     outcome=last["outcome"],
@@ -300,7 +331,14 @@ def projection(root):
         states[row["id"]]["attention"] = any(
             f["attention"] for f in states[row["id"]]["review_flags"]
         )
-    return {key: {**row, "current": states[key]} for key, row in rows.items()}
+    return {
+        key: {
+            **row,
+            **({"experiment_ids": experiment_ids(row, rows)} if row["kind"] == "group" else {}),
+            "current": states[key],
+        }
+        for key, row in rows.items()
+    }
 
 
 def validate(root):
@@ -311,7 +349,7 @@ def validate(root):
             for field in ("group_id", "experiment_id", "attempt_id", "target_id", "freeze_id")
             if row.get(field)
         ]
-        refs += [("experiment_id", key) for key in row.get("experiment_ids", [])]
+        refs += [("experiment_id", key) for key in experiment_ids(row, rows)]
         refs += [("issue_id", key) for key in row.get("resolves", [])]
         for field, key in refs:
             if key not in rows:
@@ -424,11 +462,29 @@ def issue(root, targets, reason, paths, actor):
 
 
 def review(
-    root, experiment, assessment, reason, scope, paths, actor, resolves=(), eligible_attempts=()
+    root,
+    experiment,
+    assessment,
+    reason,
+    scope,
+    paths,
+    actor,
+    resolves=(),
+    eligible_attempts=(),
+    *,
+    qualify_attempts=(),
 ):
     owner = lookup(root, experiment)
     if owner["kind"] != "experiment" or not reason or not scope:
         raise MedicalError("Review an experiment's stated conclusions with reason and scope")
+    if assessment == "not_assessed" and projection(root)[experiment]["current"]["assessment"] in {
+        "needs_review",
+        "invalidated",
+    }:
+        raise MedicalError(
+            "An adverse assessment cannot be reset to not_assessed; record a usable scoped "
+            "reassessment and resolve outstanding issues first"
+        )
     for key in resolves:
         issue_row = lookup(root, key)
         if issue_row["kind"] != "issue" or experiment not in issue_row["experiment_ids"]:
@@ -449,5 +505,15 @@ def review(
         "evidence": [evidence(root, p) for p in paths],
     }
     validate_record(event, experiment)
+    if qualify_attempts:
+        if assessment != "usable":
+            raise MedicalError("Attempt qualification requires a usable scoped review")
+        from .workflow import qualify_attempt
+
+        # Check the proposed resolution before publishing any optimistic state.
+        event["eligible_attempts"].extend(
+            qualify_attempt(root, experiment, identity, pending_review=event)
+            for identity in qualify_attempts
+        )
     write_new(destination(root, owner, "reviews") / (event["id"] + ".json"), event)
     return event

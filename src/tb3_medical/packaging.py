@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -160,9 +161,15 @@ def verify(destination):
     if actual != expected:
         raise c.MedicalError("Package inventory differs: " + ", ".join(sorted(actual ^ expected)))
     for entry in manifest["files"]:
-        if c.sha(c.inside(dest, entry["destination"])) != entry["sha256"]:
+        target = c.inside(dest, entry["destination"])
+        if c.sha(target) != entry["sha256"]:
             raise c.MedicalError("Package input changed: " + entry["destination"])
+        # POSIX execute bits carry the declared runnable-file contract. Windows
+        # chmod does not preserve these bits, so never claim to verify them there.
+        if os.name == "posix" and target.stat().st_mode & 0o111 != entry.get("mode", 0o644) & 0o111:
+            raise c.MedicalError("Package executable mode changed: " + entry["destination"])
     return {
         "verified_files": len(manifest["files"]),
         "submission_status": manifest["submission_status"],
+        "executable_modes": "verified (POSIX)" if os.name == "posix" else "not checked (non-POSIX)",
     }

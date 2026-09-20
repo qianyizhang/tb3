@@ -64,12 +64,31 @@ an oracle pass and expected no-op failure for the exact task, and an assessment
 other than `needs_review` or `invalidated`. These local checks do not certify
 submission eligibility. Diagnostic origin remains visible after reassessment.
 
+Control reuse also respects the supplying experiment's review state, including
+reuse by a different experiment with identical task bytes. A questioned or
+invalidated supplier needs explicit scoped reassessment before its controls become
+eligible again. A neutral reset cannot clear an adverse assessment. Never-assessed
+controls remain eligible when their current execution evidence and exact task
+binding satisfy the checks.
+
+The latest execution/result observation governs an attempt. A later incomplete,
+erroneous or unbound observation does not fall back to an earlier passing result;
+a separate valid control attempt may still satisfy the requirement. Saved-output
+replays and comparative/trace reviews are separate observations. An operational
+launcher failure retains its receipt and returns a nonzero CLI exit status; a
+normally completed model attempt may have a failing scorer outcome without being
+an operational command failure.
+
 ## Collect and inspect
 
 `med collect EXPERIMENT RESULT.json ...` imports externally launched Harbor
 outputs or collects after interruption. Repeated collection preserves attempt
 identity and appends changed observations. Partial results and execution errors
 remain distinct from scorer failure.
+
+Collecting the unchanged latest result is a no-op. If the result changes and later
+returns to earlier bytes, collection appends that return as a new observation;
+the older observation remains intact.
 
 ```sh
 uv run med show my-study
@@ -98,6 +117,11 @@ To reassess a diagnostic attempt against later controls, add
 `--qualify-attempt ATTEMPT_ID` to a review. It checks the selected task binding,
 unchanged inputs, completed scoring and matching controls. Reuse for submission
 still depends on the target's requirements.
+
+You may resolve an issue and qualify an attempt in the same scoped `usable`
+review. The command checks the proposed resolution in memory and publishes the
+review only if every requested qualification succeeds. It does not briefly expose
+an optimistic usable assessment on failure.
 
 Continue with [reproduction and presentation](reproduce.md) for saved-output replay,
 views and media, or [exports and submission](submission.md) for a fresh package.

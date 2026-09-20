@@ -181,9 +181,6 @@ def main(argv=None):
         elif command == "issue":
             result = c.issue(root, args.targets, args.reason, args.evidence, args.actor)
         elif command == "review":
-            eligible = [
-                w.qualify_attempt(root, args.experiment, key) for key in args.qualify_attempt
-            ]
             result = c.review(
                 root,
                 args.experiment,
@@ -193,7 +190,7 @@ def main(argv=None):
                 args.evidence,
                 args.actor,
                 args.resolves,
-                eligible,
+                qualify_attempts=args.qualify_attempt,
             )
         elif command == "prepare":
             result = w.prepare(root, args.experiment, args.case, args.execute)
@@ -243,6 +240,8 @@ def main(argv=None):
                 print(f"Open http://127.0.0.1:{args.port}/", flush=True)
                 serve(output, args.port)
         print(json.dumps(result, indent=2, allow_nan=False))
+        if command == "run" and result.get("execution_state") in {"error", "interrupted"}:
+            return 1
         return 0
     except (
         c.MedicalError,
