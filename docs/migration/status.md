@@ -1,6 +1,11 @@
 # tb3-medical migration completion record
 
-The authorized migration is implemented. The [design record](tb3-medical.md)
+The follow-up [architecture review](architecture-review.md) qualifies this
+closeout: the index/archive/presentation foundation is delivered, but existing
+experiments are not yet fully converted to a native design without shims. It
+records reproduced contract defects and the remaining engineering milestones.
+
+The first migration pass is implemented. The [design record](tb3-medical.md)
 retains the agreed decisions; [workflow](../workflow.md) is the current interface.
 The local directory and GitHub remote name are unchanged because existing work
 uses them. No remote publication, new model trial, runtime installation or raw
