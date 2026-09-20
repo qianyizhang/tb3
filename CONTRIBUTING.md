@@ -1,31 +1,27 @@
-# Maintaining the research archive
+# Working on tb3-medical
 
-Research is closed. Start with the [final report](site/index.html) or
-[reproduction guide](docs/reproduce.md). For corrections, read [artifact governance](docs/governance.md) and
-[submission requirements](docs/requirements.md). The workshop is a research
-workspace; passing repository CI does not establish task difficulty or readiness.
+Use Python 3.12, Git and Make for portable checks; they require no Harbor, Docker,
+credentials or downloads. Start with [the workflow](docs/workflow.md) and
+[artifact ownership](docs/governance.md). The approved [migration design](docs/migration/tb3-medical.md)
+records the architectural decisions.
 
-Python 3.12, Git, and Make are sufficient for repository checks. No Harbor,
-Docker, model credentials, or Python package installation is required.
-
-```bash
-make artifacts       # read-only local inventory
-# Review and stage only the intended paths with git add.
-make check           # staged artifact gate plus offline unit tests
-make hooks           # install the repository-local pre-commit gate once
+```sh
+python3.12 scripts/med list --kind group
+python3.12 scripts/med list 'landmark'
+python3.12 scripts/med show anatomical-landmarks-br040
+python3.12 scripts/med validate
+make check PYTHON=python3.12
 ```
 
-`make` uses `.venv/bin/python` when present, otherwise `python3`. Override with
-`make check PYTHON=/path/to/python3.12`. The hook checks staged artifacts only;
-run the full test suite before committing tooling changes. Hook installation
-refuses to replace a different configured hooks directory.
+Inspect status and other tasks before editing. Stage explicit paths and use
+focused Conventional Commits. `make check` includes the staged artifact gate,
+offline tests and portable presentation checks. A dirty experiment owned by
+another task must not be staged to make your checks pass. Validate the intended
+Git tree independently before closeout. `make hooks` installs the local staged
+artifact gate and refuses to overwrite another configured hooks directory.
 
-Use focused semantic commits such as `chore(hygiene): ...`, `ci: ...`,
-`feat(probes): ...`, or `docs(research): ...`. Keep probe implementation and
-measured research outcomes reviewable. Avoid `git add .` in a shared checkout.
-
-GitHub Actions runs `make check` on pushes and pull requests, with monthly
-Dependabot updates for action versions. A newly cloned repository must run
-`make hooks` to enable its local hook. The configured remote is `https://github.com/qianyizhang/tb3.git`. Local
-verification does not establish hosted CI status; this closeout does not push
-changes or change GitHub repository settings.
+The CLI distinguishes inspection from actions. Only `run` launches a trial;
+`prepare --execute` runs a declared authoring command. Neither is part of CI.
+New experiments start disabled until inputs, reference validity, licensing,
+independent scoring and controls are reviewed. Packages are drafts until the
+then-current target requirements are explicitly checked.

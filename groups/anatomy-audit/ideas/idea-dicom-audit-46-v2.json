@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "kind": "idea",
+  "id": "idea-dicom-audit-46-v2",
+  "group_id": "anatomy-audit",
+  "title": "Anatomical annotation audit: case-46, corrected scope",
+  "question": "Accept the remaining requested masks without false-positive findings; the original Terra raw pass was source-held.",
+  "disposition": "parked",
+  "prior_findings": "Sol returned a credible additional source-heart finding, producing raw reward 0 on the scoped clean control. This is a source-label hold, not evidence of model difficulty.",
+  "next_action": "Park case 46 for source adjudication. Preserve v2 and its raw grade; do not change the frozen key after seeing this answer, count it as a genuine model failure, or launch a retry. A future corrected version requires a separately declared truth decision.",
+  "reopen_when": "Park case 46 for source adjudication. Preserve v2 and its raw grade; do not change the frozen key after seeing this answer, count it as a genuine model failure, or launch a retry. A future corrected version requires a separately declared truth decision.",
+  "sources": [
+    {
+      "url": "codex://threads/01a0a248-241a-76b0-8ecf-15e259df9734",
+      "note": "User requests one trial per task and resource benchmarking."
+    }
+  ],
+  "depends_on": [],
+  "historical_source": {
+    "path": "catalog/ideas/dicom-audit-46-v2.json",
+    "commit": "51f3b1224d2069fe931ac28b06fd2ccf38c497ab",
+    "sha256": "a569e2eb452ce924f86d48c2f254b4adcc246ea7a168cb82e5a6ff59abd890f6"
+  },
+  "decision_provenance": "Imported authored catalog state; no new user approval inferred."
+}

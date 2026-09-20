@@ -1,54 +1,47 @@
-# Repository work
+# tb3-medical collaboration
 
-## Research closeout
+Read CONTRIBUTING.md and docs/governance.md. The closed interview investigation
+is historical; authorized medical capability research is the current purpose.
+Informative successes, source research, visual explanations and qualified partial
+studies are useful. Submission difficulty gates apply only when promoting a task.
+Do not launch trials, install runtimes or publish as a side effect of maintenance.
+Do not pursue security research or resume the archived security work.
 
-The investigation is closed for interview presentation. `site/index.html` owns
-the final synthesis; `docs/archive.md` indexes retained evidence. The clean
-submission is maintained in a separate sibling workspace described in
-`docs/submission.md`. Historical selection priorities and next actions are not
-an active queue. Do not launch new research or trials without a new user request.
-Preserve frozen task/evidence bytes and active submission ownership. The authored
-interview report is intentionally tracked; generated runtime reports stay local.
+## Ownership and daily work
 
+- Inspect Git status and active task ownership first. Preserve concurrent probe,
+  freeze, runtime and result writers. Stage explicit paths; make focused commits.
+- Start with `python3.12 scripts/med list QUERY`. Groups own their questions,
+  ideas, decisions, methods, experiments, findings and presentation. Read the
+  group's AGENTS.md. Shared code belongs in src/tb3_medical and presentation.
+- Capture substantive discussion findings and useful explanations in a concise
+  existing idea card or a new stable ID. Retain source task links, prior findings,
+  visual references, decisions and reopening conditions. Append decisions with
+  the actual actor; an assistant recommendation is not a user decision. Search
+  before repeating research. The historical round register remains provenance.
+- Preserve frozen task bytes, original outcomes and evidence hashes. A partial
+  attempt, timeout, infrastructure failure or bad reference is not a model failure.
+  Append new observations, evaluations and reviews; never rewrite a score to fit
+  a corrected conclusion. Use dependency links so issues flag affected findings,
+  ideas, stories and exports. Correcting code does not reinstate evidence.
+- Agents may invalidate reproduced technical defects with retained proof.
+  Clinical/reference disputes stay under review pending appropriate adjudication.
+  Do not infer population or causal claims from one exploratory comparison.
+- Historical probes are replay adapters and retained snapshots. Do not execute
+  their authoring modules on import; some mutate artifacts. New work uses group
+  experiments and the common CLI. No model run is implied by an idea or plan.
 
-## Scope if research is explicitly resumed
+## Reproduction, exports and checks
 
-- Stay away from security tasks. Do not pursue vulnerability discovery,
-  exploitation, authentication/authorization, sandbox escape or protocol attacks;
-  do not resume the stopped security research. Preserve its historical evidence.
-- Seek **hard but less complex, short-horizon tasks**: one conceptual crux,
-  a small deliverable and fast, independent verification. Diversify field and
-  task type. Do not manufacture difficulty through long workflows, setup cost,
-  arbitrary restrictions or shorter reasoning time.
-- Start new selection from **benchmark-backed failures**, not just plausible
-  difficult bugs. `docs/research-benchmark-backed.md` owns the historical shortlist;
-  the bounded round in `docs/research-short-horizon.md` is complete. Inspect
-  task-level results, normal completion, verifier failures and task digests.
-  Prefer a compact crux already missed with ample reasoning time; distinguish
-  published external results from this workshop's local trial ledger.
-  Published tasks are calibration references, not original submissions.
-  A source bug, oracle fault, agent crash or timeout is not a genuine Terra
-  failure. Final submission gates remain separately owned by requirements.md.
-- Keep recurring brainstorms in `docs/research-rounds.md`: assign stable round
-  IDs, retain source-message provenance and retrieval gaps, and link candidate
-  cards to their round. Separate proposed experiments from completed outcomes;
-  a later discussion in the same conversation may be a new round.
+Keep raw runs, credentials, environments, generated reports and media local.
+Track concise allowlisted records and required fixtures/licenses. Record missing
+artifacts explicitly. Dockerfiles alone do not prove recovery or replay.
+The existing sibling submission has separate ownership (docs/submission.md).
+Build new exports into fresh destinations; draft packaging is not qualification.
+After explicit handoff an export is independently maintained, with deliberate
+backports. Do not rename this checkout or touch remote settings without a request.
 
-## Artifact ownership and checks
-
-Read [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/governance.md](docs/governance.md)
-for artifact ownership and checks. `docs/requirements.md` owns final submission
-requirements; repository hygiene does not certify a benchmark task.
-
-- Inspect Git status before editing or staging. Concurrent experiment tasks may
-  own probe sources, freezes, catalog imports, and ledgers. Stage explicit paths
-  or hunks; preserve their unfinished changes.
-- Preserve historical evidence and task snapshots. Do not rewrite freezes to
-  match today's tree, classify infrastructure errors as model failures, or
-  replace authored reviews with generated catalog data.
-- Keep raw runs, credentials, environments, compiler outputs, and reports local.
-  Retain source fixtures and licenses required by Docker/verifier inputs.
-- Run `make check` with Python 3.12 before committing changes to workshop tooling.
-  The artifact gate reads the Git index: stage your intended changes first.
-- Use focused Conventional Commits. Do not launch trials, install Harbor,
-  publish artifacts, or delete evidence as a side effect of hygiene work.
+Run `make check PYTHON=python3.12` after staging intended changes and before
+committing tooling. The artifact gate reads the Git index. Check a clean staged
+or committed tree when unrelated changes are present. Never delete raw evidence
+or regenerate historical freezes as part of hygiene.

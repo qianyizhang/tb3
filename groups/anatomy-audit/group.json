@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "kind": "group",
+  "id": "anatomy-audit",
+  "title": "Anatomy audit",
+  "question": "How do agents recognize anatomical identity, omissions and tissue assigned to the wrong label?",
+  "tags": [
+    "anatomy-audit",
+    "medical"
+  ],
+  "links": [
+    {
+      "label": "Retained implementation: dicom-anatomy-audit",
+      "path": "probes/dicom-anatomy-audit"
+    },
+    {
+      "label": "Retained implementation: dicom-label-audit",
+      "path": "probes/dicom-label-audit"
+    },
+    {
+      "label": "Retained implementation: dicom-triplanar-svg",
+      "path": "probes/dicom-triplanar-svg"
+    },
+    {
+      "label": "Retained implementation: mr-frame-association",
+      "path": "probes/mr-frame-association"
+    }
+  ],
+  "insight": "Supplied-mask auditing differs from segmentation from scratch. Inventory and image context can change an outcome; broad and focused audits are separate conditions.",
+  "story": "presentation/story.md",
+  "depends_on": []
+}
