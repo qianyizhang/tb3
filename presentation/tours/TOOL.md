@@ -1,6 +1,6 @@
 # Reusable medical media tool
 
-Run `scripts/med-media --help` from the repository. The tool renders frames from retained data; it does not screen-record a live browser or require hand-timed clicks. One renderer produces the interactive view and video.
+Run `npm run media -- --help` from the repository. The tool renders frames from retained data; it does not screen-record a live browser or require hand-timed clicks. One renderer produces the interactive view and video.
 
 ## Edit copy, translate, change pacing
 
@@ -12,19 +12,19 @@ Run `scripts/med-media --help` from the repository. The tool renders frames from
 
 ```sh
 # Refresh every English tour with compact settings.
-scripts/med-media
+npm run media --
 
 # Preview new copy in still frames first.
-scripts/med-media --stills-only --only=registration
+npm run media -- --stills-only --only=registration
 
 # Chinese, custom copy and 9/11/10/12-second scenes (42 seconds total).
-scripts/med-media --config=presentation/tours/presets/example-edit.json
+npm run media -- --config=presentation/tours/presets/example-edit.json
 
 # Independently export the Chinese edition of any other tour.
-scripts/med-media --locale=zh-CN --only=cardiac --output=presentation/tours/exports/chinese-cardiac
+npm run media -- --locale=zh-CN --only=cardiac --output=presentation/tours/exports/chinese-cardiac
 
 # Slow all scenes by 25% in a separate variant.
-scripts/med-media --only=vessels --duration-scale=1.25 --output=presentation/tours/exports/slower-vessels
+npm run media -- --only=vessels --duration-scale=1.25 --output=presentation/tours/exports/slower-vessels
 ```
 
 `resolved-storyboards.json` records the actual copy and timing used for an export. WebVTT/SRT captions use those same timestamps, including millisecond precision. A locale can be switched in the interactive player without regenerating data.
@@ -34,7 +34,7 @@ scripts/med-media --only=vessels --duration-scale=1.25 --output=presentation/tou
 Choose a local audio file you want to use. No music is downloaded or selected automatically.
 
 ```sh
-scripts/med-media --only=segmentation \
+npm run media -- --only=segmentation \
   --music=/absolute/path/to/music.wav --music-volume=0.12 \
   --output=presentation/tours/exports/music-version
 ```
@@ -50,8 +50,8 @@ The track loops to cover the movie, is trimmed at the movie end, and fades in/ou
 | `web-av1` | SVT-AV1, preset 6, CRF 32, 24 fps, WebM | WebP quality 88 | Optional web variant; test the destination’s accepted formats |
 
 ```sh
-scripts/med-media --preset=master --only=landmarks --output=runs/med-media-master
-scripts/med-media --preset=web-av1 --only=segmentation
+npm run media -- --preset=master --only=landmarks --output=runs/med-media-master
+npm run media -- --preset=web-av1 --only=segmentation
 ```
 
 No preset reduces spatial resolution or removes source cardiac surface triangles. Video and shareable JPEG stills are lossy presentation derivatives. The interactive player instead uses **lossless WebP** scan frames and gzip-compressed JSON; decoded pixels/JSON are checked against the authoring data. Original PNGs and JSON remain under `data/` for reproduction.
@@ -61,21 +61,24 @@ The compact experiment re-encoded the original 32-second segmentation landscape 
 Refresh web derivatives after changing source presentation data:
 
 ```sh
-.venv-br030/bin/python scripts/optimize_med_tours.py
+.venv/bin/med media optimize
 ```
 
 The six-tour data bundle falls from 38.81 MB to 15.54 MB, a 60.0% reduction, without changing decoded data. The player fetches only the selected tour’s JSON and images. Most bytes are the full cardiac geometry; this is still a local prototype, and an Astro component should defer that fetch until requested.
 
 ## Extend and reproduce
 
-- `scripts/prepare_med_tours.py`: original segmentation, vessel and cardiac derivatives.
-- `scripts/prepare_med_tours_extra.py`: retained registration crops and frozen full/cropped spine inputs.
-- `scripts/prepare_med_tours_aneurysm.py`: native TOF-MRA slices, original weak labels and retained BR-016 answers.
-- `scripts/optimize_med_tours.py`: verified lossless web derivatives.
-- `presentation/tours/tour.js`: deterministic geometry and image rendering, interaction and scene mapping.
-- `scripts/export_med_tours.cjs`: configuration, isolated browser, captions, encoding, music and manifests.
-- `scripts/pack_med_tours.py`: compact media-only ZIP with current attribution and documentation.
+- `tb3_medical.media`: restore the retained derived snapshot, check scientific display invariants, optimize lossless web assets.
+- `presentation/tours/inputs.json`: exact canonical inputs, restored under `.local/inputs/tours/`.
+- `scripts/export_med_tours.cjs`: browser rendering, captions, encoding, music and manifests, using declared Playwright dependencies.
+- `docs/migration/retired-interfaces.json`: recovery locators for historical raw derivation programs. They are not runtime dependencies.
 
-Add a storyboard, a source-derived data JSON and its renderer; register it in the player. Keep novel scientific claims linked to retained receipts, and keep conceptual images labeled. Native arrays, task snapshots and model outputs stay untouched.
+Setup: `uv sync --locked --extra imaging`, `npm ci`, and
+`npx playwright install chromium`. Install FFmpeg separately when producing video.
+Use `med media prepare` after restoring the listed input files, then `med media check`.
+`TOUR_BROWSER` is an optional explicit browser executable; otherwise Playwright's
+installed Chromium is used. No personal Codex cache is consulted.
 
-The CLI discovers the already-installed bundled Playwright package through `NODE_PATH`; it defaults to macOS Chrome and the `ffmpeg` command on PATH. Override `TOUR_BROWSER`, `FFMPEG` or `NODE_PATH` for another machine. It does not install dependencies. Serve the interactive folder with the command in [README.md](README.md).
+The older social ZIP and raw-data preprocessing commands are retired. Existing
+outputs remain local; selected video/still outputs can be shared with these source
+notices and their renderer manifest. Nothing is published automatically.

@@ -1,17 +1,12 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "kind": "export",
   "id": "export-7a69e371e28e72c937a43453",
-  "depends_on": [
-    "landmarks-br040-mri32-full-terra-high",
-    "landmarks-br040-mri32-full-sol-xhigh"
-  ],
-  "recipe": "exports/recipes/landmarks-mri-exact.json",
+  "recipe": "exports/history/landmarks-mri-exact.json",
   "manifest_sha256": "7a69e371e28e72c937a4345321efb28f47c17893a50287656abde80c45b2bd53",
-  "qualification": "draft",
   "evidence": [
     {
-      "path": "exports/recipes/landmarks-mri-exact.json",
+      "path": "exports/history/landmarks-mri-exact.json",
       "sha256": "6c94f685c809a4b28eddedbb7c8794043052f4df6f33ac07b0d9b2abc7d6b536"
     }
   ],
@@ -20,5 +15,9 @@
     "Image digest and independently restored dependency artifacts",
     "Fresh qualifying model trials if required by the selected profile",
     "Independent off-machine backup verification"
-  ]
+  ],
+  "experiment_ids": [
+    "anatomical-landmarks-br040"
+  ],
+  "submission_status": "draft"
 }

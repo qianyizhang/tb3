@@ -1,15 +1,10 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "kind": "finding",
   "id": "anatomy-audit-current-synthesis",
   "group_id": "anatomy-audit",
   "title": "Anatomy audit \u2014 current evidence",
   "claim": "Supplied-mask auditing differs from segmentation from scratch. Inventory and image context can change an outcome; broad and focused audits are separate conditions.",
-  "validity": "qualified",
-  "depends_on": [
-    "anatomy-audit-br017",
-    "dataset-anatomy"
-  ],
   "evidence": [
     {
       "path": "docs/evidence/br017-results.json",
@@ -24,5 +19,17 @@
       "label": "Authored synthesis",
       "path": "groups/anatomy-audit/presentation/story.md"
     }
+  ],
+  "experiment_ids": [
+    "anatomy-audit-br003",
+    "anatomy-audit-br004",
+    "anatomy-audit-br010",
+    "anatomy-audit-br011",
+    "anatomy-audit-br012",
+    "anatomy-audit-br013",
+    "anatomy-audit-br014",
+    "anatomy-audit-br015",
+    "anatomy-audit-br017",
+    "anatomy-audit-mr-frame-association"
   ]
 }

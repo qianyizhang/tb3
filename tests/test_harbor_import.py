@@ -1,15 +1,14 @@
 """Evidence-boundary tests using synthetic Harbor runs, never real credentials."""
+
 from __future__ import annotations
 
 import copy
 import json
 from pathlib import Path
-import sys
 import tempfile
 import unittest
 from unittest.mock import patch
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from tb3_medical import harbor as core
 
 
@@ -37,9 +36,18 @@ class HarborImportTests(unittest.TestCase):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(value), encoding="utf-8")
 
-    def fixture(self, name="trial", *, job=None, reward=0, agent="codex",
-                cases=DEFAULT, artifact=DEFAULT, checksum=TASK_CHECKSUM,
-                overrides=None):
+    def fixture(
+        self,
+        name="trial",
+        *,
+        job=None,
+        reward=0,
+        agent="codex",
+        cases=DEFAULT,
+        artifact=DEFAULT,
+        checksum=TASK_CHECKSUM,
+        overrides=None,
+    ):
         """Return an individual result, with no dependency on a real run tree."""
         source = self.runs / (job or name) / name / "result.json"
         result = {
@@ -67,13 +75,17 @@ class HarborImportTests(unittest.TestCase):
         self.write_json(source, result)
         self.write_json(source.parent.parent / "lock.json", {"harbor": {"version": "0.14.0"}})
         if cases is DEFAULT:
-            cases = {"passed": ["baseline"], "failures": []} if reward == 1 else {
-                "passed": ["baseline"], "failures": ["nested-case: observed result differs"]
-            }
+            cases = (
+                {"passed": ["baseline"], "failures": []}
+                if reward == 1
+                else {"passed": ["baseline"], "failures": ["nested-case: observed result differs"]}
+            )
         stdout = source.parent / "verifier" / "test-stdout.txt"
         stdout.parent.mkdir(parents=True, exist_ok=True)
         if cases is not None:
-            stdout.write_text(cases if isinstance(cases, str) else json.dumps(cases), encoding="utf-8")
+            stdout.write_text(
+                cases if isinstance(cases, str) else json.dumps(cases), encoding="utf-8"
+            )
         if artifact is DEFAULT:
             artifact = str(reward)
         if artifact is not None:
@@ -96,13 +108,21 @@ class HarborImportTests(unittest.TestCase):
 
     def test_execution_error_and_incomplete_take_precedence_over_contradictions(self):
         for name, overrides, expected in (
-            ("error", {"exception_info": {"exception_type": "AgentTimeoutError"}}, "execution_error"),
+            (
+                "error",
+                {"exception_info": {"exception_type": "AgentTimeoutError"}},
+                "execution_error",
+            ),
             ("incomplete", {"finished_at": None}, "incomplete"),
         ):
             with self.subTest(name=name):
-                source = self.fixture(name, reward=1, artifact=0,
-                                      cases={"passed": [], "failures": ["case: mismatch"]},
-                                      overrides=overrides)
+                source = self.fixture(
+                    name,
+                    reward=1,
+                    artifact=0,
+                    cases={"passed": [], "failures": ["case: mismatch"]},
+                    overrides=overrides,
+                )
                 self.assertEqual(core.import_trial(self.root, source)["classification"], expected)
 
     def test_disabled_multistep_and_missing_execution_are_not_model_outcomes(self):
@@ -115,7 +135,9 @@ class HarborImportTests(unittest.TestCase):
             ("invalid-agent", {"config": {"agent": {"name": {"unexpected": "object"}}}}),
         ):
             with self.subTest(name=name):
-                row = core.import_trial(self.root, self.fixture(name, reward=1, overrides=overrides))
+                row = core.import_trial(
+                    self.root, self.fixture(name, reward=1, overrides=overrides)
+                )
                 self.assertEqual(row["classification"], "unknown")
 
     def test_nonbinary_nonfinite_and_boolean_rewards_are_unknown(self):
@@ -127,12 +149,16 @@ class HarborImportTests(unittest.TestCase):
     def test_reward_artifact_disagreement_and_invalid_text_are_unknown(self):
         for index, artifact in enumerate((0, "invalid", "nan")):
             with self.subTest(artifact=artifact):
-                row = core.import_trial(self.root, self.fixture(f"artifact-{index}", reward=1, artifact=artifact))
+                row = core.import_trial(
+                    self.root, self.fixture(f"artifact-{index}", reward=1, artifact=artifact)
+                )
                 self.assertEqual(row["classification"], "unknown")
                 self.assertTrue(row["warnings"])
 
     def test_snapshot_checksum_never_falls_back_to_result_hash(self):
-        for index, checksum in enumerate((None, "", "not-a-checksum", {"value": TASK_CHECKSUM}, True)):
+        for index, checksum in enumerate(
+            (None, "", "not-a-checksum", {"value": TASK_CHECKSUM}, True)
+        ):
             with self.subTest(checksum=checksum):
                 row = self.imported(self.fixture(f"snapshot-{index}", checksum=checksum))
                 self.assertIsNone(row["task_checksum"])
@@ -152,19 +178,35 @@ class HarborImportTests(unittest.TestCase):
 
     def test_private_config_environment_trajectory_and_exception_text_are_not_exported(self):
         canary = "PRIVATE_CANARY_NEVER_EXPORT"
-        source = self.fixture(overrides={
-            "config": {
-                "agent": {"name": "codex", "model_name": "openai/test", "kwargs": {
-                    "reasoning_effort": "high", "api_key": canary, "instructions": canary,
-                }},
-                "environment": {"type": "docker", "env": {"AUTH_TOKEN": canary}},
-                "auth": canary,
-            },
-            "exception_info": {"exception_type": "SetupError", "exception_message": canary, "traceback": canary},
-            "agent_result": {"n_input_tokens": 1, "metadata": {"secret": canary}},
-        })
-        self.write_json(source.parent / "agent" / "trajectory.json", {"messages": [{"content": canary}]})
-        self.write_json(source.parent.parent / "lock.json", {"harbor": {"version": "0.14.0"}, "env": canary})
+        source = self.fixture(
+            overrides={
+                "config": {
+                    "agent": {
+                        "name": "codex",
+                        "model_name": "openai/test",
+                        "kwargs": {
+                            "reasoning_effort": "high",
+                            "api_key": canary,
+                            "instructions": canary,
+                        },
+                    },
+                    "environment": {"type": "docker", "env": {"AUTH_TOKEN": canary}},
+                    "auth": canary,
+                },
+                "exception_info": {
+                    "exception_type": "SetupError",
+                    "exception_message": canary,
+                    "traceback": canary,
+                },
+                "agent_result": {"n_input_tokens": 1, "metadata": {"secret": canary}},
+            }
+        )
+        self.write_json(
+            source.parent / "agent" / "trajectory.json", {"messages": [{"content": canary}]}
+        )
+        self.write_json(
+            source.parent.parent / "lock.json", {"harbor": {"version": "0.14.0"}, "env": canary}
+        )
         row = core.import_trial(self.root, source)
         self.assertNotIn(canary, json.dumps(row))
         self.assertEqual(row["exception_type"], "SetupError")
@@ -172,32 +214,48 @@ class HarborImportTests(unittest.TestCase):
 
     def test_raw_verifier_details_and_free_text_metadata_are_not_exported(self):
         canary = "PRIVATE_DETAIL_CANARY"
-        source = self.fixture(cases={"passed": ["baseline"], "failures": [
-            f"case-a: Authorization: Bearer {canary}",
-            {"name": "case-b", "error": {"traceback": canary}},
-        ]}, overrides={
-            "config": {
-                "agent": {"name": "codex", "model_name": {"secret": canary},
-                          "kwargs": {"reasoning_effort": f"free text {canary}"}},
-                "environment": {"type": {"secret": canary}},
+        source = self.fixture(
+            cases={
+                "passed": ["baseline"],
+                "failures": [
+                    f"case-a: Authorization: Bearer {canary}",
+                    {"name": "case-b", "error": {"traceback": canary}},
+                ],
             },
-            "agent_info": {"version": f"version details {canary}"},
-        })
+            overrides={
+                "config": {
+                    "agent": {
+                        "name": "codex",
+                        "model_name": {"secret": canary},
+                        "kwargs": {"reasoning_effort": f"free text {canary}"},
+                    },
+                    "environment": {"type": {"secret": canary}},
+                },
+                "agent_info": {"version": f"version details {canary}"},
+            },
+        )
         row = core.import_trial(self.root, source)
         self.assertNotIn(canary, json.dumps(row))
         self.assertEqual({case["name"] for case in row["cases"]}, {"baseline", "case-a", "case-b"})
         self.assertTrue(all(not case.get("detail") for case in row["cases"]))
 
     def test_case_parser_supports_one_json_summary_inside_log_output(self):
-        source = self.fixture(cases='setup log\n{"passed":["clean"],"failures":["edge: mismatch"]}\nteardown\n')
+        source = self.fixture(
+            cases='setup log\n{"passed":["clean"],"failures":["edge: mismatch"]}\nteardown\n'
+        )
         row = core.import_trial(self.root, source)
-        self.assertEqual([(case["name"], case["status"]) for case in row["cases"]],
-                         [("clean", "passed"), ("edge", "failed")])
+        self.assertEqual(
+            [(case["name"], case["status"]) for case in row["cases"]],
+            [("clean", "passed"), ("edge", "failed")],
+        )
 
     def test_case_parser_does_not_merge_multiple_or_contradictory_summaries(self):
         for name, cases in (
             ("duplicate-case", {"passed": ["same"], "failures": ["same: mismatch"]}),
-            ("multiple-reports", '{"passed":["a"],"failures":[]}\n{"passed":[],"failures":["b: mismatch"]}'),
+            (
+                "multiple-reports",
+                '{"passed":["a"],"failures":[]}\n{"passed":[],"failures":["b: mismatch"]}',
+            ),
             ("unsupported", '{"successful": 10, "failed": 0}'),
         ):
             with self.subTest(name=name):
@@ -212,7 +270,7 @@ class HarborImportTests(unittest.TestCase):
         artifact = source.parent / "artifacts" / "app" / "solution.py"
         artifact.parent.mkdir(parents=True)
         artifact.symlink_to(outside)
-        with self.assertRaises(core.CatalogError):
+        with self.assertRaises(core.HarborError):
             core.import_trial(self.root, source)
 
     def test_source_and_stdout_changes_during_import_are_rejected(self):
@@ -228,5 +286,5 @@ class HarborImportTests(unittest.TestCase):
                     return parsed
 
                 with patch.object(core, "parse_cases", side_effect=change_after_parse):
-                    with self.assertRaises(core.CatalogError):
+                    with self.assertRaises(core.HarborError):
                         core.import_trial(self.root, source)

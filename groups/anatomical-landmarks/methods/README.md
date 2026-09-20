@@ -1,3 +1,10 @@
-# Task methods
+# Maintained methods
 
-Historical implementations are linked from group.json and retain their original paths and bytes. New reusable preparation, scoring and viewer adapters belong here. Declare commands in a new experiment record and freeze the resulting task before execution; no legacy script is an implicit default.
+The native CT/MRI implementation is `tb3_medical.landmarks`, with pure-Python
+scorers in `score_ct` and `score_mri`. BR-040 declares three cases and its exact
+input manifest. Use `med prepare`, `med replay` and `med view`; see
+[the workflow](../../../docs/workflow.md).
+
+Original task/scorer sources linked by group.json remain historical evidence.
+Do not import their authoring scripts into the active package or rewrite frozen
+bytes to match a new implementation.

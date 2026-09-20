@@ -1,11 +1,9 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "kind": "review",
   "id": "legacy-review-c425a3ca83775651cc72",
   "group_id": "anatomy-audit",
-  "target_id": "observation-a55b80db85c726857e45edd3",
   "created_at": "2026-09-15T04:03:25.731321+00:00",
-  "validity": "under_review",
   "historical_verdict": "pending",
   "reason": "Normal completion, matched oracle=1/nop=0 controls and independent re-score. The model reported liver plus heart. Its heart witness is 90.8513 mm from the planted inferior omission; the raw grade has an extra liver label and an invalid heart witness. Both reported voxel regions are unchanged from the original source: liver [63,80,110] is background at 70 HU in both arrays; heart [38,67,154] is heart at 54 HU in both. The trace explicitly inspects an internal liver gap and a detached superior heart component. Their clinical interpretation is not settled by the planted-error map. Author image review does not justify dismissing both source findings as model errors.",
   "failure_mode": "unadjudicated_source_findings_and_unlocated_planted_omission",
@@ -23,5 +21,8 @@
   ],
   "resolves": [],
   "historical_source": "catalog/reviews/dicom-audit-61__ihBKTbE-979592c9/20260915T040325731324Z-f70059c9.json",
-  "historical_source_sha256": "06c66889c767bcad95024f99044a9541d4f818c0de023ae9d08b63da7d961332"
+  "historical_source_sha256": "06c66889c767bcad95024f99044a9541d4f818c0de023ae9d08b63da7d961332",
+  "experiment_id": "anatomy-audit-br004",
+  "assessment": "needs_review",
+  "scope": "Retained assessment of observation-a55b80db85c726857e45edd3; Normal completion, matched oracle=1/nop=0 controls and independent re-score. The model reported liver plus heart. Its heart witness is 90.8513 mm from the planted inferior omission; the raw grade has an extra liver label and an invalid heart witness. Both reported voxel regions are unchanged from the original source: liver [63,80,110] is background at 70 HU in both arrays; heart [38,67,154] is heart at 54 HU in both. The trace explicitly inspects an internal liver gap and a detached superior heart component. Their clinical interpretation is not settled by the planted-error map. Author image review does not justify dismissing both source findings as model errors."
 }

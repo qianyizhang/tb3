@@ -1,0 +1,33 @@
++++
+schema_version = 2
+kind = "idea"
+id = "idea-dicom-audit-32"
+group_id = "anatomy-audit"
+title = "Anatomical annotation audit: case-32"
+next_action = "Retain the frozen cross-model miss. Use the four-task Sol follow-up to choose a separately frozen resource-reduction contrast; one attempt per model does not establish a failure probability."
+decision_provenance = "Imported authored catalog state; no new user approval inferred."
+idea_state = "exploring"
+
+[[sources]]
+url = "codex://threads/01a0a248-241a-76b0-8ecf-15e259df9734"
+note = "User requests one trial per task and resource benchmarking."
+
+[historical_source]
+path = "catalog/ideas/dicom-audit-32.json"
+commit = "51f3b1224d2069fe931ac28b06fd2ccf38c497ab"
+sha256 = "197420810998e26fb3f01783158a3c28769f3c3f207559df2cd03240f5207471"
++++
+
+# Anatomical annotation audit: case-32
+
+## Question
+
+A single patient can expose a localized anatomical annotation reasoning gap without the cost of reviewing the full eight-patient batch.
+
+## Prior findings
+
+Two normally completed, reviewed misses on identical task bytes: Terra/max and Sol/xhigh both returned an explicit empty report and missed the controlled 63-voxel kidney extension. Sol used 12.60 agent minutes, 20,930 output tokens and estimated USD 2.072; the prior Terra row used 10.21 minutes, 23,713 output tokens and estimated USD 0.857.
+
+## Reopen when
+
+Retain the frozen cross-model miss. Use the four-task Sol follow-up to choose a separately frozen resource-reduction contrast; one attempt per model does not establish a failure probability.

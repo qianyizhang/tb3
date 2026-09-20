@@ -6,14 +6,15 @@ reviews and visual explanations together. Capability learning is primary;
 submission qualification is a separate promotion step.
 
 ```sh
-python3.12 scripts/med present --serve --local-media
+uv sync --locked
+uv run med present --serve --local-media
 # Open http://127.0.0.1:8765
 ```
 
 The read-only index searches prior work and decisions. It includes portable
 stories and figures; existing local data enables guided image and geometry tours.
-A clean checkout needs only Python 3.12. No command above downloads data or runs
-a model. To create a portable static build: `python3.12 scripts/med present`.
+Set up a clean checkout with Python 3.12 and `uv sync --locked`. No command above downloads data or runs
+a model. To create a portable static build: `uv run med present`.
 
 | Group | Question |
 | --- | --- |
@@ -26,14 +27,14 @@ a model. To create a portable static build: `python3.12 scripts/med present`.
 | [Longitudinal reading](groups/longitudinal-reading/README.md) | Can it compare visits with reproducible measurements and qualified interpretation? |
 
 ```sh
-python3.12 scripts/med list 'atlas'
-python3.12 scripts/med show anatomical-landmarks-br040
-python3.12 scripts/med validate
-make check PYTHON=python3.12
+uv run med list 'atlas'
+uv run med show anatomical-landmarks-br040
+uv run med check
+make check
 ```
 
 Read [the workflow](docs/workflow.md) for idea capture, decisions, scaffolding,
-freeze/plan/run/collect, validity issues and clean exports. [Contribution rules](CONTRIBUTING.md)
+automatic run receipts, collection, scoped review and clean exports. [Contribution rules](CONTRIBUTING.md)
 cover concurrent ownership and milestone checks. Findings are source-linked and
 qualified; historical success is not clinical readiness or a new task's score.
 

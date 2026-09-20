@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tb3-medical"
+version = "0.2.0"
+description = "A local medical research workbench"
+requires-python = ">=3.12"
+dependencies = ["tomli-w>=1.2,<2"]
+
+[project.optional-dependencies]
+imaging = ["numpy>=2", "pillow>=11"]
+
+[project.scripts]
+med = "tb3_medical.cli:main"
+
+[dependency-groups]
+dev = ["ruff>=0.12"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tb3_medical"]
+
+[tool.ruff]
+exclude = ["tests/test_br042_v4_readiness.py"]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]

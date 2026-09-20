@@ -1,29 +1,33 @@
-# Reproduce medical work
+# Reproduce selected work
 
-Start with the [workflow](workflow.md) and the experiment record returned by
-`python3.12 scripts/med show ID`. Historical protocols and task hashes are retained
-as evidence. An experiment's availability, replay status and scientific validity
-are different properties; a Dockerfile alone establishes none of them.
+The [daily workflow](workflow.md) documents installed commands and dependency setup.
+All 38 retained experiments have canonical records. The [migration inventory](migration/native-experiment-inventory.md)
+states which operations are maintained and where recovery gaps remain.
 
-The [landmark MRI recipe](../exports/recipes/landmarks-mri-v2.json) selects exact
-frozen task files, source notice, saved outputs and a standalone Python replay.
-Build it with `python3.12 scripts/med export exports/recipes/landmarks-mri-v2.json
-/fresh/destination`, then run `python3.12 replay.py` inside that destination. Missing
-artifacts are listed with their expected digests in the recipe. The replay checks
-saved model/oracle outputs and an empty control, without Docker, source checkout,
-network or new inference. It does not certify current submission requirements.
+For `anatomical-landmarks-br040`, the input manifest declares exact saved CT/MRI
+tasks, truth and outputs. `med prepare` restores a selected task, `med replay`
+rescores saved answers, and `med view` draws native planes. Six saved outputs
+reproduce every retained metric exactly. This establishes saved-output replay,
+not fresh Docker execution or repeatable model behavior.
 
-All other historical medical experiments are indexed with their original
-protocols, receipts and explicit recovery gaps. Inspect the record before running
-old authoring scripts: some prepare inputs or overwrite a working task directory.
-Never regenerate a historical freeze to match current code.
+The [MRI package recipe](../exports/recipes/landmarks-mri-v2.json) selects frozen
+task files, source notices, two saved model outputs, oracle output and standalone
+replay code. `med export` writes a fresh independent directory. Inside it, run
+`python3.12 replay.py`, then verify with `med verify-package /path/to/package`.
+No source checkout, NumPy, Docker, network or inference is needed for this replay.
+The Docker image is still a historical mutable tag; dependency artifacts and
+current submission requirements need separate assessment before promotion.
 
-`make site PYTHON=python3.12` opens the current local presentation server. Guided
-tours use local derived data; portable stories keep static images and attribution.
-`python3.12 scripts/med assets` verifies 17 exact retained assets.
-`scripts/med-media --help` describes media rendering; it never starts model trials.
+Other historical methods remain preserved source evidence under `probes/` and
+linked protocols. Their old authoring runners are not supported daily interfaces.
+The active BR-042 owner retains its exact runtime and closeout path until cutover.
+New studies use group-owned task files and the installed common runner.
 
-Original nonmedical reproduction workflows are historical, available through
-[the recovery manifest](../archive/README.md). A local Git bundle and an ignored
-archive copy provide same-disk recovery. Independent off-machine backup remains
-unverified. No ignored raw run or environment is deleted by this migration.
+Tour regeneration restores retained derived inputs, then renders/optimizes them;
+it does not claim to reconstruct every original raw dataset derivation. Scientific
+source provenance remains in the retained snapshot. Static stories and 17 figures
+are portable. `med check --assets` checks their exact extraction when needed.
+
+Independent off-machine backup remains unverified. This migration does not delete
+ignored raw runs or environments, certify clinical correctness, or promote a
+package to submission-ready.

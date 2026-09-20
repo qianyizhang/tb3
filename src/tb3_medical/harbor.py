@@ -1,4 +1,5 @@
 """Import allowlisted Harbor evidence without changing raw files."""
+
 from __future__ import annotations
 
 import datetime as dt
@@ -10,7 +11,7 @@ import re
 from typing import Any
 
 
-class CatalogError(ValueError):
+class HarborError(ValueError):
     pass
 
 
@@ -29,7 +30,7 @@ def digest_json(value: Any) -> str:
 def workspace_path(root: Path, value: str | Path) -> Path:
     path = (root / value).resolve()
     if not path.is_relative_to(root.resolve()):
-        raise CatalogError("path must stay inside the workspace")
+        raise HarborError("path must stay inside the workspace")
     return path
 
 
@@ -41,7 +42,7 @@ def read_json(path: Path) -> Any:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeError, ValueError) as exc:
-        raise CatalogError(f"cannot read JSON: {path.name} ({type(exc).__name__})") from exc
+        raise HarborError(f"cannot read JSON: {path.name} ({type(exc).__name__})") from exc
 
 
 def obj(value: Any) -> dict:
@@ -49,12 +50,21 @@ def obj(value: Any) -> dict:
 
 
 def number(value: Any) -> float | None:
-    return float(value) if isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value) else None
+    return (
+        float(value)
+        if isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+        else None
+    )
 
 
 def machine_label(value: Any) -> str | None:
     """Machine labels only; nested objects and free-text messages are not exported."""
-    return value if isinstance(value, str) and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.:/+\[\]-]{0,199}", value) else None
+    return (
+        value
+        if isinstance(value, str)
+        and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.:/+\[\]-]{0,199}", value)
+        else None
+    )
 
 
 def checksum(value: Any) -> str | None:
@@ -64,7 +74,10 @@ def checksum(value: Any) -> str | None:
 def seconds(phase: Any) -> float | None:
     phase = obj(phase)
     try:
-        start, end = (dt.datetime.fromisoformat(phase[k].replace("Z", "+00:00")) for k in ("started_at", "finished_at"))
+        start, end = (
+            dt.datetime.fromisoformat(phase[k].replace("Z", "+00:00"))
+            for k in ("started_at", "finished_at")
+        )
         elapsed = (end - start).total_seconds()
         return round(elapsed, 3) if elapsed >= 0 else None
     except (KeyError, AttributeError, TypeError, ValueError):
@@ -107,25 +120,34 @@ def parse_cases(path: Path) -> tuple[list[dict], list[str]]:
                 documents.append(json.loads(line))
             except ValueError:
                 continue
-    recognized = [d for d in documents if isinstance(d, dict) and isinstance(d.get("passed"), list) and isinstance(d.get("failures"), list)]
+    recognized = [
+        d
+        for d in documents
+        if isinstance(d, dict)
+        and isinstance(d.get("passed"), list)
+        and isinstance(d.get("failures"), list)
+    ]
     if len(recognized) != 1:
-        return [], ["Verifier output has no single supported JSON case summary; inspect raw evidence."]
+        return [], [
+            "Verifier output has no single supported JSON case summary; inspect raw evidence."
+        ]
     report = recognized[0]
     cases = []
     for status, key in (("passed", "passed"), ("failed", "failures")):
         for item in report[key]:
             if isinstance(item, str):
                 # Cache probe encodes failure name and explanation in one string.
-                name, sep, detail = item.partition(": ") if status == "failed" else (item, "", "")
+                name = item.partition(": ")[0] if status == "failed" else item
             elif isinstance(item, dict):
                 name = item.get("name") or item.get("case") or item.get("test")
-                detail = item.get("detail") or item.get("error") or item.get("message") or ""
             else:
                 continue
             if machine_label(name):
                 cases.append({"name": name, "status": status, "detail": ""})
             else:
-                return [], ["Verifier case names are not supported machine labels; inspect raw evidence."]
+                return [], [
+                    "Verifier case names are not supported machine labels; inspect raw evidence."
+                ]
     names = [c["name"] for c in cases]
     if len(names) != len(set(names)):
         return [], ["Duplicate or contradictory verifier case names; inspect raw evidence."]
@@ -141,7 +163,7 @@ def import_trial(root: Path, source: Path) -> dict:
     before = sha256(source)
     result = read_json(source)
     if not isinstance(result, dict) or "config" not in result or "task_name" not in result:
-        raise CatalogError("not a Harbor individual trial result")
+        raise HarborError("not a Harbor individual trial result")
     config = obj(result.get("config"))
     agent = obj(config.get("agent"))
     info = obj(result.get("agent_info"))
@@ -150,7 +172,11 @@ def import_trial(root: Path, source: Path) -> dict:
     stdout_hash = sha256(stdout) if stdout.is_file() else None
     cases, warnings = parse_cases(stdout)
     evidence = [evidence_file(root, source, "Trial result (raw, local)")]
-    for name, label in (("verifier/test-stdout.txt", "Verifier cases"), ("verifier/reward.txt", "Reward artifact"), ("agent/trajectory.json", "Agent trajectory (raw, local)")):
+    for name, label in (
+        ("verifier/test-stdout.txt", "Verifier cases"),
+        ("verifier/reward.txt", "Reward artifact"),
+        ("agent/trajectory.json", "Agent trajectory (raw, local)"),
+    ):
         path = trial_dir / name
         if path.is_file():
             evidence.append(evidence_file(root, path, label))
@@ -158,7 +184,11 @@ def import_trial(root: Path, source: Path) -> dict:
     if artifacts.is_dir():
         for path in sorted(artifacts.rglob("*")):
             if path.is_file():
-                evidence.append(evidence_file(root, path, "Submitted artifact: " + path.relative_to(artifacts).as_posix()))
+                evidence.append(
+                    evidence_file(
+                        root, path, "Submitted artifact: " + path.relative_to(artifacts).as_posix()
+                    )
+                )
     lock = job_dir / "lock.json"
     version = None
     if lock.is_file():
@@ -166,12 +196,18 @@ def import_trial(root: Path, source: Path) -> dict:
         evidence.append(evidence_file(root, lock, "Harbor lock (raw, local)"))
     source_relative = relative(root, source)
     trial_name = str(result.get("trial_name") or trial_dir.name)
-    identifier = re.sub(r"[^A-Za-z0-9_.-]", "-", trial_name) + "-" + hashlib.sha256(source_relative.encode()).hexdigest()[:8]
+    identifier = (
+        re.sub(r"[^A-Za-z0-9_.-]", "-", trial_name)
+        + "-"
+        + hashlib.sha256(source_relative.encode()).hexdigest()[:8]
+    )
     task_id = (machine_label(result["task_name"]) or "unknown").rsplit("/", 1)[-1]
     reward = number(obj(obj(result.get("verifier_result")).get("rewards")).get("reward"))
     classification = classify(result)
     if result.get("step_results"):
-        warnings.append("Multi-step trial requires explicit analysis; top-level reward is not classified.")
+        warnings.append(
+            "Multi-step trial requires explicit analysis; top-level reward is not classified."
+        )
     if reward == 1 and any(c["status"] == "failed" for c in cases):
         warnings.append("Reward 1 contradicts explicit failed cases; review verifier integrity.")
         if classification not in ("execution_error", "incomplete"):
@@ -187,29 +223,60 @@ def import_trial(root: Path, source: Path) -> dict:
         except (UnicodeError, ValueError):
             artifact_reward = None
         if artifact_reward != reward:
-            warnings.append("Reward artifact disagrees with the trial result; inspect verifier integrity.")
+            warnings.append(
+                "Reward artifact disagrees with the trial result; inspect verifier integrity."
+            )
             if classification not in ("execution_error", "incomplete"):
                 classification = "unknown"
     if not checksum(result.get("task_checksum")):
-        warnings.append("Historical Harbor task checksum is missing; snapshot comparison is unavailable.")
-    if before != sha256(source) or stdout_hash != (sha256(stdout) if stdout.is_file() else None) or not evidence_matches(root, evidence):
-        raise CatalogError("trial evidence changed while being imported; retry collection")
+        warnings.append(
+            "Historical Harbor task checksum is missing; snapshot comparison is unavailable."
+        )
+    if (
+        before != sha256(source)
+        or stdout_hash != (sha256(stdout) if stdout.is_file() else None)
+        or not evidence_matches(root, evidence)
+    ):
+        raise HarborError("trial evidence changed while being imported; retry collection")
     usage = obj(result.get("agent_result"))
     return {
-        "schema_version": 1, "id": identifier, "job": job_dir.name, "trial_name": trial_name,
-        "task_id": task_id, "agent": machine_label(agent.get("name")) or machine_label(info.get("name")),
-        "model": machine_label(agent.get("model_name")), "reasoning_effort": machine_label(obj(agent.get("kwargs")).get("reasoning_effort")),
-        "agent_version": machine_label(info.get("version")), "backend": machine_label(obj(config.get("environment")).get("type")),
-        "harbor_version": machine_label(version), "execution_mode": "harbor", "classification": classification,
-        "reward": reward, "started_at": result.get("started_at"), "finished_at": result.get("finished_at"),
-        "timing": {"total": seconds(result), "setup": seconds(result.get("agent_setup")),
-                   "agent": seconds(result.get("agent_execution")), "verifier": seconds(result.get("verifier"))},
-        "usage": {key: number(usage.get(key)) for key in ("n_input_tokens", "n_cache_tokens", "n_output_tokens")},
-        "cases": cases, "exception_type": machine_label(obj(result.get("exception_info")).get("exception_type")),
-        "evidence": evidence, "task_checksum": checksum(result.get("task_checksum")), "task_sha256": None,
-        "checksum_kind": "harbor.task_checksum", "warnings": warnings,
-        "source_result": source_relative, "source_sha256": before,
-        "evidence_sha256": digest_json(evidence), "qualifying_final_trial": False,
+        "schema_version": 1,
+        "id": identifier,
+        "job": job_dir.name,
+        "trial_name": trial_name,
+        "task_id": task_id,
+        "agent": machine_label(agent.get("name")) or machine_label(info.get("name")),
+        "model": machine_label(agent.get("model_name")),
+        "reasoning_effort": machine_label(obj(agent.get("kwargs")).get("reasoning_effort")),
+        "agent_version": machine_label(info.get("version")),
+        "backend": machine_label(obj(config.get("environment")).get("type")),
+        "harbor_version": machine_label(version),
+        "execution_mode": "harbor",
+        "classification": classification,
+        "reward": reward,
+        "started_at": result.get("started_at"),
+        "finished_at": result.get("finished_at"),
+        "timing": {
+            "total": seconds(result),
+            "setup": seconds(result.get("agent_setup")),
+            "agent": seconds(result.get("agent_execution")),
+            "verifier": seconds(result.get("verifier")),
+        },
+        "usage": {
+            key: number(usage.get(key))
+            for key in ("n_input_tokens", "n_cache_tokens", "n_output_tokens")
+        },
+        "cases": cases,
+        "exception_type": machine_label(obj(result.get("exception_info")).get("exception_type")),
+        "evidence": evidence,
+        "task_checksum": checksum(result.get("task_checksum")),
+        "task_sha256": None,
+        "checksum_kind": "harbor.task_checksum",
+        "warnings": warnings,
+        "source_result": source_relative,
+        "source_sha256": before,
+        "evidence_sha256": digest_json(evidence),
+        "qualifying_final_trial": False,
     }
 
 
@@ -219,7 +286,6 @@ def evidence_matches(root: Path, evidence: list[dict]) -> bool:
             path = workspace_path(root, item["path"])
             if not path.is_file() or sha256(path) != item["sha256"]:
                 return False
-        except (OSError, KeyError, CatalogError):
+        except (OSError, KeyError, HarborError):
             return False
     return True
-

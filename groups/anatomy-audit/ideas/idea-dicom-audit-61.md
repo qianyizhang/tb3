@@ -1,0 +1,33 @@
++++
+schema_version = 2
+kind = "idea"
+id = "idea-dicom-audit-61"
+group_id = "anatomy-audit"
+title = "Anatomical annotation audit: case-61"
+next_action = "Adjudicate the original liver gap and detached heart component before any anatomical-accuracy claim; preserve this frozen observation without rerunning."
+decision_provenance = "Imported authored catalog state; no new user approval inferred."
+idea_state = "parked"
+
+[[sources]]
+url = "codex://threads/01a0a248-241a-76b0-8ecf-15e259df9734"
+note = "User requests one trial per task and resource benchmarking."
+
+[historical_source]
+path = "catalog/ideas/dicom-audit-61.json"
+commit = "51f3b1224d2069fe931ac28b06fd2ccf38c497ab"
+sha256 = "6203c9bd84b52b7c5c5a8f36f66d3214627c37670d63d34c2cd5c892e4745198"
++++
+
+# Anatomical annotation audit: case-61
+
+## Question
+
+A single patient can expose a localized anatomical annotation reasoning gap without the cost of reviewing the full eight-patient batch.
+
+## Prior findings
+
+One completed Terra/max raw miss used 19.89 agent minutes and 48633 output tokens. The submitted regions raise source-label questions, so this does not yet establish an unambiguous task failure.
+
+## Reopen when
+
+Adjudicate the original liver gap and detached heart component before any anatomical-accuracy claim; preserve this frozen observation without rerunning.

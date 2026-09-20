@@ -1,15 +1,10 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "kind": "finding",
   "id": "lesion-localization-current-synthesis",
   "group_id": "lesion-localization",
   "title": "Lesion localization \u2014 current evidence",
   "claim": "Weak lesion regions support bounded localization checks, not exact clinical boundaries. Source-assisted negative answers remain a separate evidence condition.",
-  "validity": "qualified",
-  "depends_on": [
-    "lesion-localization-br016",
-    "dataset-openneuro"
-  ],
   "evidence": [
     {
       "path": "docs/evidence/br016-results.json",
@@ -24,5 +19,8 @@
       "label": "Authored synthesis",
       "path": "groups/lesion-localization/presentation/story.md"
     }
+  ],
+  "experiment_ids": [
+    "lesion-localization-br016"
   ]
 }

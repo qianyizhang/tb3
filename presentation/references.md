@@ -40,29 +40,24 @@ The light literature pass is recorded in [local source notes](editorial/external
 | Read | Markdown chapters, standalone figures, diagram sources and captions | Nothing for static reading; Mermaid rendering depends on the reader |
 | Inspect provenance | [Asset manifest](assets.json), [evidence inventory](editorial/evidence-map.json), source-linked task cards | Referenced original evidence remains in the workshop repository |
 | Check a recorded score | Scorers, frozen-design records and concise receipts in the repository | Actual submitted artifacts where retained only under ignored `runs/` |
-| Rebuild scientific views | Authoring scripts and source/derivation records | Native arrays, runtime artifacts and the recorded Python environments |
+| Rebuild scientific views | Native landmark method and retained tour input manifest | Native arrays, runtime artifacts and the recorded Python environments |
 | Run a new attempt | Owning protocol, task hashes and command documentation | Source data, frozen task, Docker/harness, model access and a new output directory |
 
 Recomputing a saved score and reproducing the exact text of a fresh model response are different goals. Use the frozen version for comparisons, preserve earlier outputs, and record the new runtime configuration. Detailed requirements vary by experiment; follow its guide rather than a generic install command.
 
-## Rebuild the portable content assets
+## Check and present the retained assets
 
-From the workshop repository root:
+`uv run med check --assets` verifies the exact source extraction of the retained
+figures. `uv run med present` builds the current read-only index, source-linked
+stories and portable figures. These operations make no model calls and do not
+change source scans or frozen tasks.
 
-```sh
-python3.12 scripts/med assets --write
-python3.12 scripts/med assets
-python3.12 scripts/check_medical.py
-```
+Native landmark review views use the selected case's input manifest. Other tour
+views restore the retained derived snapshot with `med media prepare`. Raw dataset
+derivation programs are historical evidence, with Git recovery locators in
+`docs/migration/retired-interfaces.json`; no relocation fallback remains active.
 
-The exporter decodes exact retained PNGs and extracts Mermaid blocks from the chapters. It makes no model calls, edits no source scan, and changes no frozen experiment. The coronary preview is copied from the retained local viewer; after export, its pinned copy can be checked without restoring the scan.
-
-The Markdown and task cards are directly authored. The old hardcoded prose/card generators have been retired. The HTML builder is unchanged legacy presentation code and does not consume this content version; it must be adapted in the later presentation phase.
-
-## Moving this material to Astro
-
-Move the chapters, `assets/`, task summaries, and selected evidence with their attribution. Resolve chapter links as blog routes and repository evidence links against an explicit source revision or copied evidence bundle. The current `../docs/` and `../probes/` links intentionally work within this workshop; they need that migration mapping.
-
-Editable diagrams live under `assets/diagrams/`. The retained scientific images are independent of the current HTML/CSS. Original interactive viewers and arrays remain available locally for a later interaction pass; these static exports do not replace full native-volume exploration.
-
-The overview's synthesis, current limitations and outlook will be developed with the user next. See the [editorial decisions](editorial/README.md).
+For publication elsewhere, copy the authored stories, figures, source attribution
+and selected receipts. Resolve links against explicit destination routes and
+source revisions. The existing static builder already consumes group-owned
+content. Package exports remain drafts until their target requirements are assessed.

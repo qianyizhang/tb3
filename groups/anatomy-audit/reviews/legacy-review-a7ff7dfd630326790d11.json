@@ -1,11 +1,9 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "kind": "review",
   "id": "legacy-review-a7ff7dfd630326790d11",
   "group_id": "anatomy-audit",
-  "target_id": "observation-475842c3049a2a5569045572",
   "created_at": "2026-09-15T04:31:52.335917+00:00",
-  "validity": "qualified",
   "historical_verdict": "genuine_failure",
   "reason": "Normal completion, deliberate validated empty report, matched oracle=1/nop=0 controls and independent re-score. Exactly kidney_left is missing, with no extras or localization-only error. Author-reviewed source/task/CT overlays show a connected local extension into adjacent fat and muscle. The controlled change adds 63 voxels, retaining Dice 0.993572. Changed centers extend up to 9 mm from the original mask centers; 44 are more than 3 mm away. The source labels those voxels as background (43) or iliopsoas (20). Geometry and author CT review support a local planted-error miss; no independent specialist certification is claimed. No alternate source defect was alleged in the final report.",
   "failure_mode": "small_connected_kidney_extension_missed",
@@ -23,5 +21,8 @@
   ],
   "resolves": [],
   "historical_source": "catalog/reviews/dicom-audit-32__Txe4eHJ-7ecc5611/20260915T043152335919Z-b40e2093.json",
-  "historical_source_sha256": "4b180a1098055a53ef3c91b34bd6b49317d0e041ec40287fe41972a62f2a0164"
+  "historical_source_sha256": "4b180a1098055a53ef3c91b34bd6b49317d0e041ec40287fe41972a62f2a0164",
+  "experiment_id": "anatomy-audit-br004",
+  "assessment": "usable",
+  "scope": "Retained assessment of observation-475842c3049a2a5569045572; Normal completion, deliberate validated empty report, matched oracle=1/nop=0 controls and independent re-score. Exactly kidney_left is missing, with no extras or localization-only error. Author-reviewed source/task/CT overlays show a connected local extension into adjacent fat and muscle. The controlled change adds 63 voxels, retaining Dice 0.993572. Changed centers extend up to 9 mm from the original mask centers; 44 are more than 3 mm away. The source labels those voxels as background (43) or iliopsoas (20). Geometry and author CT review support a local planted-error miss; no independent specialist certification is claimed. No alternate source defect was alleged in the final report."
 }

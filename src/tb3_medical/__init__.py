@@ -1,3 +1,3 @@
-"""Medical experiment records, execution and portable evidence packages."""
+"""The native tb3-medical workbench."""
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

@@ -1,15 +1,10 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "kind": "finding",
   "id": "cardiac-motion-current-synthesis",
   "group_id": "cardiac-motion",
   "title": "Cardiac motion \u2014 current evidence",
   "claim": "Synthetic material truth, supplied masks and clinical cavity references answer different questions. Similar surface geometry does not establish accurate volume, EF or strain.",
-  "validity": "qualified",
-  "depends_on": [
-    "cardiac-motion-br035",
-    "dataset-cardiac"
-  ],
   "evidence": [
     {
       "path": "docs/evidence/br035-segmentation-mechanics-results.json",
@@ -24,5 +19,14 @@
       "label": "Authored synthesis",
       "path": "groups/cardiac-motion/presentation/story.md"
     }
+  ],
+  "experiment_ids": [
+    "cardiac-motion-br025",
+    "cardiac-motion-br027",
+    "cardiac-motion-br029",
+    "cardiac-motion-br031",
+    "cardiac-motion-br032",
+    "cardiac-motion-br034",
+    "cardiac-motion-br035"
   ]
 }

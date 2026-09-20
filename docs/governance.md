@@ -13,18 +13,18 @@ records the agreed scope; [workflow](workflow.md) explains the supported interfa
 | presentation/ | Shared read-only renderer, media tools and portable publication support. |
 | exports/ | Pinned recipes and lineage records. Generated destinations have explicit ownership; never overwrite them. |
 | probes/ and docs/evidence/ | Retained medical task/source snapshots and concise historical receipts. Original bytes stay immutable. |
-| docs/research-rounds/ | Historical protocols/outcomes and active writers' handoffs. Round numbers are aliases, not globally unique experiment IDs. |
+| docs/research-rounds/ | Historical protocols/outcomes and active writers' handoffs. Round numbers are historical provenance, not lookup aliases. |
 | archive/README.md and manifest.json | Recovery locators, exact hashes and retirement reasons. Payload under archive/legacy/ is ignored. |
-| runs/, jobs/, .cache/, .venv*/ | Local raw outputs, credentials, environments and caches. Do not delete as cleanup. |
+| runs/, jobs/, .local/, .cache/, .venv*/ | Local raw outputs, credentials, environments and caches. Do not delete as cleanup. |
 | presentation/tours/data/, web/, exports/ | Local derived media; retain source provenance and static fallbacks in Git. |
 
 Attempts identify executions. Evaluations identify observations or replays.
-Reviews qualify evidence; they do not alter original scores. Findings carry
-explicit dependencies, as do ideas, group stories and export records. Confirmed
-technical issues invalidate their targets and flag dependents for review;
-reference disputes stay under review. A missing local artifact is an availability
-problem, distinct from scientific validity. Independent recovery/replay must be
-shown before declaring a historical experiment reproducible.
+Reviews assess experiment conclusions; they do not alter original scores. Groups,
+findings and exports cite experiments directly. An unresolved issue flags that
+experiment and its summaries for review, retaining the affected run list.
+Acknowledged withdrawal and narrower reassessment remain explicit historical
+events. Missing local inputs are an operation-specific availability issue, not a
+scientific verdict. Reads use stored state and timestamps, never a live audit.
 
 The Git-index artifact gate rejects runtime roots, credentials by filename,
 compiler output, symlinks, submodules and unresolved merges. First-party JSON and

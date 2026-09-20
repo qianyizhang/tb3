@@ -1,0 +1,33 @@
++++
+schema_version = 2
+kind = "idea"
+id = "idea-dicom-audit-83"
+group_id = "anatomy-audit"
+title = "Anatomical annotation audit: case-83"
+next_action = "Retain as a cross-model failure-backed alternate; prioritize case 32 for the lower observed Sol time, output and estimated cost. Any viewer contrast must be separately frozen."
+decision_provenance = "Imported authored catalog state; no new user approval inferred."
+idea_state = "exploring"
+
+[[sources]]
+url = "codex://threads/01a0a248-241a-76b0-8ecf-15e259df9734"
+note = "User requests one trial per task and resource benchmarking."
+
+[historical_source]
+path = "catalog/ideas/dicom-audit-83.json"
+commit = "51f3b1224d2069fe931ac28b06fd2ccf38c497ab"
+sha256 = "f1e01da84f4aabffe4acda904180710076d49b8d9cbdf95a7c03310710cd2bdd"
++++
+
+# Anatomical annotation audit: case-83
+
+## Question
+
+A single patient can expose a localized anatomical annotation reasoning gap without the cost of reviewing the full eight-patient batch.
+
+## Prior findings
+
+Reviewed Terra/max and Sol/xhigh misses on identical task bytes: both omitted the planted kidney-pole defect from their final reports. Sol used 16.61 agent minutes, 30,292 output tokens and estimated USD 3.092, despite receiving multi-plane images.
+
+## Reopen when
+
+Retain as a cross-model failure-backed alternate; prioritize case 32 for the lower observed Sol time, output and estimated cost. Any viewer contrast must be separately frozen.

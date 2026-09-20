@@ -11,7 +11,7 @@ Do not pursue security research or resume the archived security work.
 
 - Inspect Git status and active task ownership first. Preserve concurrent probe,
   freeze, runtime and result writers. Stage explicit paths; make focused commits.
-- Start with `python3.12 scripts/med list QUERY`. Groups own their questions,
+- Start with `uv run med list QUERY`. Groups own their questions,
   ideas, decisions, methods, experiments, findings and presentation. Read the
   group's AGENTS.md. Shared code belongs in src/tb3_medical and presentation.
 - Capture substantive discussion findings and useful explanations in a concise

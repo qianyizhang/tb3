@@ -1,27 +1,22 @@
 # Working on tb3-medical
 
-Use Python 3.12, Git and Make for portable checks; they require no Harbor, Docker,
-credentials or downloads. Start with [the workflow](docs/workflow.md) and
-[artifact ownership](docs/governance.md). The approved [migration design](docs/migration/tb3-medical.md)
-records the architectural decisions.
+Use Python 3.12 and `uv sync --locked`, then `make check`. The installed `med`
+command is the supported interface. Start with [the daily workflow](docs/workflow.md)
+and [artifact ownership](docs/governance.md).
 
-```sh
-python3.12 scripts/med list --kind group
-python3.12 scripts/med list 'landmark'
-python3.12 scripts/med show anatomical-landmarks-br040
-python3.12 scripts/med validate
-make check PYTHON=python3.12
-```
+Inspect Git status and concurrent task ownership before editing. Stage explicit
+paths and use focused Conventional Commits. `make check` includes the staged
+artifact gate, offline regressions, metadata/story checks and formatting. It does
+not run models, Docker, media rendering or whole-dataset integrity scans. Another
+task's dirty experiment must not be staged to make your checks pass.
 
-Inspect status and other tasks before editing. Stage explicit paths and use
-focused Conventional Commits. `make check` includes the staged artifact gate,
-offline tests and portable presentation checks. A dirty experiment owned by
-another task must not be staged to make your checks pass. Validate the intended
-Git tree independently before closeout. `make hooks` installs the local staged
-artifact gate and refuses to overwrite another configured hooks directory.
+Author compact experiment TOML plus scientific Markdown; generated receipts carry
+execution details. Use normal package imports. No import-path mutation, legacy
+fallback reader, machine-cache dependency or migration command belongs in daily
+usage. Optional imaging and media dependencies have their own declared setup.
 
-The CLI distinguishes inspection from actions. Only `run` launches a trial;
-`prepare --execute` runs a declared authoring command. Neither is part of CI.
-New experiments start disabled until inputs, reference validity, licensing,
-independent scoring and controls are reviewed. Packages are drafts until the
-then-current target requirements are explicitly checked.
+Diagnostics may run before controls. Claims require scoped assessment; current
+submission qualification is separately owned. Preserve historical scores and
+frozen bytes. `make hooks` installs the staged artifact gate without overwriting
+another hook directory. The [accepted design](docs/migration/native-workbench-plan.md)
+records the minimal validation boundary.

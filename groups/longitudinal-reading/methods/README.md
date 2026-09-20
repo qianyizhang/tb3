@@ -1,3 +1,10 @@
-# Task methods
+# Maintained methods
 
-Historical implementations are linked from group.json and retain their original paths and bytes. New reusable preparation, scoring and viewer adapters belong here. Declare commands in a new experiment record and freeze the resulting task before execution; no legacy script is an implicit default.
+This family currently retains historical source methods and authored views.
+No legacy preparation/launch script is an implicit daily interface. New work
+uses a compact experiment config, protocol and task files with the installed
+`med` runner. Promote a reusable helper only when an actual study needs it.
+
+Original task/scorer sources linked by group.json remain historical evidence.
+Do not import their authoring scripts into the active package or rewrite frozen
+bytes to match a new implementation.

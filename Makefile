@@ -1,21 +1,21 @@
 PYTHON ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 
 .PHONY: check hygiene test artifacts hooks site med-check
-check: hygiene test med-check
+check: hygiene test med-check style
 
 hygiene:
-	$(PYTHON) scripts/check_hygiene.py
+	$(PYTHON) -m tb3_medical.hygiene
 
 test:
 	$(PYTHON) -m unittest discover -s tests -p 'test_*.py' -v
 
 # Portable medical chapters and source-linked figures; no native runtime data.
 med-check:
-	$(PYTHON) scripts/check_medical.py
+	$(PYTHON) -m tb3_medical.cli check
 
 # Open the read-only medical index and available local tours.
 site:
-	$(PYTHON) scripts/med present --serve --local-media
+	$(PYTHON) -m tb3_medical.cli present --serve --local-media
 
 # Inventory only: never delete ignored runs, caches, or frozen inputs.
 artifacts:
@@ -28,3 +28,7 @@ hooks:
 	  echo "Existing hooksPath=$$existing; integrate .githooks/pre-commit manually." >&2; exit 1; \
 	fi
 	git config --local core.hooksPath .githooks
+
+style:
+	$(PYTHON) -m ruff check src tests
+	$(PYTHON) -m ruff format --check src tests

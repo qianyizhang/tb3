@@ -1,17 +1,22 @@
 # Medical presentation
 
-Groups own their authored story, source-linked card, figures and figure sources.
-This directory owns the shared index/player, references, exact export manifest
-and historical-path relocation map. Run `python3.12 scripts/med present --serve
---local-media`; omit `--local-media` for a portable static build.
+Groups own authored stories, source-linked cards, figures and source notices.
+This directory owns the shared index and interactive tour renderer. Run
+`uv run med present --serve`; add `--local-media` after restoring tour inputs.
 
-The local player uses existing derived arrays; missing data does not cause scans
-to download or models to run. All seven stories have portable prose. Six retain
-scientific figures and guided tours. Longitudinal reading is explicitly exploratory.
-Use `python3.12 scripts/med assets` to verify exact figure derivation. `scripts/med-media`
-is the media export entry point; see [its tool guide](tours/TOOL.md).
+All seven stories have portable prose. Six retain scientific figures and guided
+tours; longitudinal reading remains exploratory. `med check --assets` verifies
+17 exact figure extractions when needed. `med media prepare` restores the retained
+derived tour snapshot from its canonical input manifest, and `med media check`
+checks its display invariants. Missing local inputs never trigger downloads.
 
-Original figure-source bytes and attribution are retained under group ownership.
-relocations.json resolves historical paths without rewriting hash-bound source
-receipts. Tour data and movies are ignored, with static figures in Git. The old
-interview publication remains recoverable through archive/manifest.json.
+The CLI and frontend consume the same status vocabulary. Group stories display
+current experiment review flags beside the authored historical synthesis. Runtime
+reads do not hash every evidence file, poll jobs or use pathname relocation maps.
+Historical source locators remain provenance, not fallback file resolution.
+
+Use [the media guide](tours/TOOL.md) for declared rendering dependencies and
+`npm run media -- --help` for video/still options. Generated arrays and videos stay
+local; static figures remain in Git. The old interview is recoverable through
+`archive/manifest.json`. Literature context is recorded in
+[the editorial source notes](editorial/external-source-notes.md).
