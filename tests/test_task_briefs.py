@@ -20,17 +20,6 @@ class TaskBriefTests(unittest.TestCase):
         shutil.copytree(source, self.root / "presentation/task-explorer")
         self.catalog = "collection/catalog.json"
 
-    def scaffold(self, key="example"):
-        return briefs.new(
-            self.root,
-            key,
-            "Inspect a scan",
-            "A project",
-            "Imaging",
-            "group/" + key + ".md",
-            self.catalog,
-        )
-
     def test_native_cli_build_and_check_use_explicit_workspace(self):
         (self.root / "workbench.toml").write_text('name = "fixture"\n')
         self.scaffold()
@@ -50,6 +39,17 @@ class TaskBriefTests(unittest.TestCase):
             self.assertEqual(code, 0)
             self.assertEqual(json.loads(output.getvalue())["briefs"], 1)
         self.assertTrue((self.root / "runs/task-explorer/index.html").is_file())
+
+    def scaffold(self, key="example"):
+        return briefs.new(
+            self.root,
+            key,
+            "Inspect a scan",
+            "A project",
+            "Imaging",
+            "group/" + key + ".md",
+            self.catalog,
+        )
 
     def test_scaffold_is_proposed_and_preserves_other_briefs(self):
         self.scaffold()

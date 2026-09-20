@@ -100,7 +100,7 @@ Actor: **user**. Source: current task; response **“all your rec”**.
 ## Implemented artifacts
 
 - [Canonical rulebook](../presentation/task-explorer/RULEBOOK.md) and [Markdown template](../presentation/task-explorer/brief-template.md).
-- [Collection metadata](medical-agent-repository-survey/catalog.json), nine authored Markdown briefs and [source inventory](medical-agent-repository-survey/inventory.json).
+- [Collection metadata](medical-agent-repository-survey/catalog.json), 160 authored Markdown briefs and [source inventory](medical-agent-repository-survey/inventory.json).
 - `med brief new|build|check` supports proposed-brief scaffolding and standalone HTML output without running experiments.
 - [Reusable skill source](../skills/author-task-brief/SKILL.md), installed into the user's Codex skills directory.
 - [Internal vessel example](../groups/tubular-anatomy/presentation/briefs/br030.md) now has delivered CT and supplied-helper views, plus a separate post-run output reveal. Local media is source-derived; frozen tasks and outcomes are unchanged.
@@ -114,9 +114,10 @@ Actor: **user**. Source: current task; response **“all your rec”**.
 rows, 13 branch packages, 48 Full-release definitions, 7 packaged Lite definitions
 and 40 Lite segmentation case IDs. These overlap and are not additive unique tasks.
 
-ABRA generated YAMLs and most patient case inventories still need materialization.
-Most indexed definitions need authored briefs; the complete Full-release definition
-inventory is now imported. Nine curated figures illustrate five external repositories.
+All 284 imported entries now link to shared authored briefs. ABRA generated YAMLs
+and most externally packaged patient case inventories still need materialization.
+Six briefs have native/source-derived visual examples, covering five external
+repositories and the internal BR-030 task.
 
 ## Sample acquisition — 2026-09-21
 
@@ -142,3 +143,29 @@ builds, proposed-only scaffolding and preservation of existing files. Browser
 checks cover navigation, catalogue selection, deep links, assistance conditions,
 input/helper/reference reveals, search and mobile layout. Repository checks do
 not certify external references, clinical validity or benchmark reproduction.
+
+## Catalogue readability refactor — 2026-09-21
+
+Actor: **user** flagged repeated “Task at a glance” badges, duplicate task previews
+and redundant family/definition/condition/case fields, and requested concise,
+meaningful context. Actor: **assistant** implemented the following presentation
+choices in response; these are implementation decisions, not a new user vote.
+
+- List each task explanation once. Repeated cases appear beneath their shared
+  task; HealthAgentBench therefore has 15 task rows instead of 54 source rows.
+- Use Overview, Requirements, optional Example and Sources. Remove the duplicate
+  catalogue preview, universal availability badge and summaries that restate titles.
+  Keep technical identifiers and source revisions in expandable provenance.
+- Show case-specific facts only when sourced. The nine trial-matching manifests
+  contain 301–451 candidate trials; Case 29 contains 407. Patient vignettes were
+  not retrieved, so case IDs do not acquire invented clinical descriptions.
+- Correct the trial-matching scoring explanation from inspected code: passing
+  requires full recall among the first 50 predictions; precision/F1 are diagnostic.
+  This does not enforce the prompt's stricter requirement to exclude all ineligible trials.
+- Preserve all 284 source links, assistance conditions and legacy URLs. Distinguish
+  an illustrated case from the selected case when their IDs differ.
+
+Receipts: [context sources](medical-agent-repository-survey/catalogue-context-sources.json)
+and [refactor validation](../docs/evidence/task-explorer-catalogue-refactor-2026-09-21.json).
+Reopen when reader feedback reveals remaining duplication or when actual case
+inputs become available to support more useful case differences.

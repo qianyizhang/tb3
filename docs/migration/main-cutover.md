@@ -31,6 +31,9 @@ script was run by this cutover.
 
 ## Concurrent work and local artifacts
 
+The completed trace audit is retained byte-for-byte, with a canonical source-linked
+observation and its appended idea-card finding. It carries no new scorer verdict.
+
 The Task Explorer source collection and BR-043 explanation follow-up are absorbed
 with their ownership and decision provenance. Its commands use `med brief
 new|build|check`; the normal native check validates its catalogue. Two discussion

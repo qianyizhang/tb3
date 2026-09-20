@@ -111,3 +111,15 @@ Check rendered input/helper/reveal states, condition switching, navigation and
 mobile layout after renderer changes. Offline checks cover source resolution,
 stable identities and build safety. They do not certify anatomical correctness,
 reference quality or reproduction of an external benchmark.
+
+The optional browser regression check uses an existing Playwright installation
+and Chrome; it does not install dependencies or retrieve external data:
+
+```sh
+node tests/task_explorer_ui.cjs runs/task-explorer/index.html runs/task-explorer/qa.json
+```
+
+Set `PLAYWRIGHT_MODULE` to the module path when it is outside the normal Node
+lookup path. `TASK_EXPLORER_SCREENSHOTS` optionally selects a local screenshot
+directory. The check covers every imported source link and assistance condition,
+case differences, legacy routes, reference reveals, search and narrow layouts.

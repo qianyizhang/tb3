@@ -16,6 +16,10 @@ idea_state = "exploring"
 label = "Proposal and visual explanation links"
 path = "docs/research-rounds/BR-043-medical-next-tasks.md"
 
+[[links]]
+label = "Completed continuation trace and candidate audit"
+path = "groups/tubular-anatomy/experiments/br042-v4-6h/resume1/trace-audit.md"
+
 [[observations]]
 actor = "assistant"
 source = "codex://threads/01a0bc95-2598-7810-809e-9c8b6c0969c3"
@@ -28,6 +32,14 @@ date = "2026-09-20"
 actor = "user"
 source = "codex://threads/01a0bc95-2598-7810-809e-9c8b6c0969c3"
 text = "Authorized a fresh Astra/xhigh six-hour attempt after reviewing two-hour timeout output, with babysitting every 20–30 minutes. New br042-v4-6h preserves clinical scope and evaluation and changes only timing/identifier; no case-specific feedback to solver."
+
+[[observations]]
+date = "2026-09-21"
+actor = "assistant"
+source = "codex://threads/01a0c006-0f8c-78a1-8ab1-2f5868f21ee4"
+finding = "Resumed V4 leaves all 15 prior coronary extraction specifications unchanged. Exact candidate-filter replay shows D2 retained as candidate 3 (87.8% reference coverage at 1 mm) but withheld as possible tissue; OM1 signal is discarded by component-size and 2.2-mm parent-gap gates. Lower vesselness alone still discards OM1 through an oversized component. This separates acceptance, filtering and downstream numbering failures; GT-imposed performance cap is not demonstrated. PDA identity remains under review. Resume token totals are cumulative, so incremental usage must be reported separately."
+review = "groups/tubular-anatomy/experiments/br042-v4-6h/resume1/trace-audit.md"
+next_action = "Assistant recommends candidate ledger, graph-path decomposition, targeted rejection review and separate reference adjudication before fresh controlled trials. No new trial authorized or launched."
 +++
 
 # Name coronary branches from supplied geometry

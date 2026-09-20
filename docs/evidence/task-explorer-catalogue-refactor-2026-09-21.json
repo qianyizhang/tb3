@@ -1,0 +1,81 @@
+{
+  "observed_on": "2026-09-21",
+  "source_task": "codex://threads/01a0bef4-b72c-7241-bb59-f5ca11d4db09",
+  "scope": "Refactor catalogue presentation to explain each task once, with meaningful case context and optional technical provenance.",
+  "user_feedback": [
+    "Universal Task at a glance badges communicate no differences.",
+    "The catalogue preview duplicates the shared task explanation.",
+    "Family, definition, condition and case ID repeat words without useful context."
+  ],
+  "implementation_actor": "assistant",
+  "changes": [
+    "One list row per shared brief; cases live beneath the shared task.",
+    "Overview, Requirements, optional Example and Sources replace duplicated catalogue/detail paths.",
+    "Case-specific facts are sourced; clinical descriptions are not inferred from IDs.",
+    "Technical IDs and coverage revisions are expandable.",
+    "Tasks without images omit the redundant pseudo-visual tab.",
+    "Legacy source links, condition selection and back/reload behavior remain supported."
+  ],
+  "coverage": {
+    "shared_briefs": 160,
+    "source_records": 284,
+    "imported_case_records": 79,
+    "repositories": 7,
+    "healthagentbench_task_rows": 15,
+    "healthagentbench_source_records": 54
+  },
+  "case_context": {
+    "trial_pool_counts": {
+      "6": 416,
+      "8": 426,
+      "19": 301,
+      "26": 375,
+      "27": 451,
+      "29": 407,
+      "35": 363,
+      "45": 343,
+      "75": 422
+    },
+    "receipt": "discussions/medical-agent-repository-survey/catalogue-context-sources.json",
+    "patient_notes": "Not retrieved; upstream endpoints returned HTTP 403 and HTTP 406.",
+    "scorer_correction": "Inspected Case 29 scorer passes on recall@50 >= 1; precision/F1 are diagnostic, not pass gates."
+  },
+  "validation": {
+    "browser_script": "tests/task_explorer_ui.cjs",
+    "browser_result": {
+      "briefs": 160,
+      "sourceRecords": 284,
+      "conditions": 379,
+      "nativeImagesDecoded": 12,
+      "groupedTaskList": "pass",
+      "caseDifferences": "pass",
+      "legacyLinksAndBack": "pass",
+      "collapsedProvenance": "pass",
+      "search": "pass",
+      "referenceReveal": "pass",
+      "mobile": "pass",
+      "pageErrors": [],
+      "remoteRequests": []
+    },
+    "screenshots_inspected": [
+      "1010px desktop",
+      "390px mobile"
+    ],
+    "repository_check": {
+      "command": "make check PYTHON=python3.12",
+      "tree": "isolated export of staged Git index",
+      "result": "pass",
+      "tests_run": 48,
+      "tests_passed": 47,
+      "tests_skipped": 1,
+      "skip_reason": "Optional local imaging runtime unavailable in clean export",
+      "portable_media_note": "Ignored native media correctly report missing in the clean export. The active local build embeds all 12 referenced images, verified by browser decoding."
+    }
+  },
+  "limits": [
+    "Shared brief coverage is complete for the imported inventory, not every generated or externally hosted case.",
+    "Six briefs have native/source-derived visual examples.",
+    "Case-level clinical inputs are not available for most imported case records.",
+    "No external benchmark or model trial was run; source code inspection does not constitute scorer replay."
+  ]
+}

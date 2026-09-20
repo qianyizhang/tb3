@@ -162,7 +162,21 @@
     "browser": {
       "experiment_search": "br042-v4-6h displays Closed / Not assessed",
       "resumed_review": "Completed resumed continuation link visible",
-      "observation_search": "completed_resumed_continuation yields one canonical evaluation, with frozen scorer outcome Fail"
+      "observation_search": "completed_resumed_continuation yields one canonical evaluation, with frozen scorer outcome Fail",
+      "task_explorer": "Native CLI build opens; selecting clinical trial matching and Case 29 shows 407 candidate trials and its source manifest."
+    },
+    "native_task_explorer_check": {
+      "tests_run": 44,
+      "skipped": 1,
+      "result": "passed",
+      "catalogue_links": 284,
+      "briefs": 160,
+      "conditions": 379,
+      "missing_media_behavior": "Explicit in portable checkout; original checkout retains local visuals."
+    },
+    "staged_mri_draft_package": {
+      "verified_files": 25,
+      "submission_status": "draft"
     }
   },
   "local_absorption": {
@@ -191,5 +205,42 @@
     "actor": "user",
     "source": "codex://threads/01a0c002-3428-7311-8dec-1c05b815cdb2",
     "decision": "Absorb the completed experiment and prior pivot/refactor into one clean main branch."
+  },
+  "handoff_commit": "9c935575dbc4814f4cdab9a074a77ad5c255fd67",
+  "concurrent_tasks_finished": [
+    "01a0bef4-b72c-7241-bb59-f5ca11d4db09",
+    "01a0c006-0f8c-78a1-8ab1-2f5868f21ee4"
+  ],
+  "trace_audit": {
+    "canonical_id": "br042-resume1-trace-gt-audit",
+    "source_path": "groups/tubular-anatomy/experiments/br042-v4-6h/resume1/trace-audit.json",
+    "sha256": "47d5de9c1f4df4db48d331ee1c65df59c3fca937fc2ac33e62a3c90deb53401f",
+    "original_retained_unchanged": true,
+    "outcome": "no_verdict",
+    "new_trial": false
+  },
+  "handoff_preservation": {
+    "files": 200,
+    "byte_identical": 187,
+    "adapted_paths": [
+      "discussions/medical-agent-repository-survey-2026-09-20.json",
+      "discussions/task-brief-format.json",
+      "discussions/task-brief-format.md",
+      "docs/migration/native-workbench-plan.md",
+      "docs/status-vocabulary.md",
+      "groups/tubular-anatomy/ideas/coronary-branch-identity.json",
+      "presentation/README.md",
+      "presentation/task-explorer/RULEBOOK.md",
+      "scripts/check_medical.py",
+      "skills/author-task-brief/SKILL.md",
+      "src/tb3_medical/cli.py",
+      "src/tb3_medical/task_briefs.py",
+      "tests/test_task_briefs.py"
+    ],
+    "task_briefs_python_ast_unchanged": true,
+    "protected_byte_identical": 1026,
+    "protected_append_only": [
+      "docs/research-rounds/BR-043-medical-next-tasks.md"
+    ]
   }
 }
