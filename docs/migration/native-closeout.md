@@ -67,3 +67,15 @@ Only the selected landmark method has fresh saved-output equivalence proof.
 Historical Docker tags/dependency artifacts, other old methods' ignored inputs,
 independent off-machine backup and current TB3 qualification remain separate work
 when needed. These limits do not create a blanket review queue.
+
+## Final cleanup
+
+Milestone commit `7177822` retains the completed one-time conversion source.
+It is removed from the final active tree, along with the superseded exact-export
+recipe and its bytecode-producing replay helper. Historical recipes remain frozen
+under `exports/history`; active recipes have explicit origins. No migration-only
+command, relocation reader, import-path mutation or personal dependency cache
+remains in the daily package, tests or media launcher.
+
+The native worktree is clean after the final cleanup commit. Integration into the
+original checkout remains deferred solely to preserve the active BR-042 closeout.
