@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "method": "Two fresh destinations outside checkout; frozen file hashes verified and original scorer imported only from isolated task",
+  "package_manifest_sha256": "7a69e371e28e72c937a4345321efb28f47c17893a50287656abde80c45b2bd53",
+  "deterministic_payload_and_manifest": true,
+  "files": 25,
+  "results": {
+    "scope": "Saved-output replay, including saved oracle and synthetic empty-output control; no new Docker/model trial",
+    "results": {
+      "oracle": {
+        "reward": 1,
+        "accepted_count": 32,
+        "total": 32,
+        "mean_mm": 0.0
+      },
+      "terra-high": {
+        "reward": 0,
+        "accepted_count": 3,
+        "total": 32,
+        "mean_mm": 9.402305021262029
+      },
+      "sol-xhigh": {
+        "reward": 0,
+        "accepted_count": 14,
+        "total": 32,
+        "mean_mm": 3.871505693004214
+      },
+      "empty-output-control": {
+        "reward": 0
+      }
+    }
+  },
+  "limits": [
+    "No new model or Docker run",
+    "Historical image tag not independently restored or digest pinned",
+    "Same machine; no off-machine backup verification"
+  ]
+}

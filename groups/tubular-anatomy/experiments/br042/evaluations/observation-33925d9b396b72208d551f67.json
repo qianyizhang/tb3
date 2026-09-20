@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "id": "observation-33925d9b396b72208d551f67",
+  "job": "br042-all-vessels-astra-medium-v3-20260920",
+  "trial_name": "all-vessels__CVEfmxC",
+  "task_id": "all-vessels-image-only-v3",
+  "agent": "codex",
+  "model": "openai/gpt-6-astra",
+  "reasoning_effort": "medium",
+  "agent_version": "unknown",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "execution_error",
+  "reward": null,
+  "started_at": "2026-09-20T04:33:03.313160Z",
+  "finished_at": "2026-09-20T04:34:53.610241Z",
+  "timing": {
+    "total": 110.297,
+    "setup": 97.89,
+    "agent": null,
+    "verifier": null
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": "NonZeroAgentExitCodeError",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920/all-vessels__CVEfmxC/result.json",
+      "sha256": "e695e5e3fb90e6fa75cad221ba634c98da9c9a14f9bc31856da5ca4d29cebb36"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920/lock.json",
+      "sha256": "e130502eda15ffbf63f88faafbbede0f79e62497f413365630f52121655e7733"
+    }
+  ],
+  "task_checksum": "4fa292360f2e6e8b65019c0c09b98f08914ac4f67a94cfa1be5e3167d235ec4d",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "No verifier case output is available."
+  ],
+  "source_result": "runs/br042-all-vessels-astra-medium-v3-20260920/all-vessels__CVEfmxC/result.json",
+  "source_sha256": "e695e5e3fb90e6fa75cad221ba634c98da9c9a14f9bc31856da5ca4d29cebb36",
+  "evidence_sha256": "c5b94b026d0392adfc7a543b6aa8036195a3f398b2ec0940109ce39a586dca6b",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-1dd74e7559c5a69628d6ecc2",
+  "group_id": "tubular-anatomy",
+  "experiment_id": "tubular-anatomy-br042",
+  "collected_at": "2026-09-20T09:49:57.168536+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-1dd74e7559c5a69628d6ecc2"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

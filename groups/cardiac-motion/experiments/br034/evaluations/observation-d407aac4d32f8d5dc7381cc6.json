@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "id": "observation-d407aac4d32f8d5dc7381cc6",
+  "job": "br034-pathological-echo-nop-v1-20260916",
+  "trial_name": "cardiac-adaptation__q7CXqag",
+  "task_id": "cardiac-adaptation",
+  "agent": "nop",
+  "model": null,
+  "reasoning_effort": null,
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "harbor_version": "0.18.0",
+  "execution_mode": "harbor",
+  "classification": "control_fail",
+  "reward": 0.0,
+  "started_at": "2026-09-16T13:47:08.407146Z",
+  "finished_at": "2026-09-16T13:47:33.065947Z",
+  "timing": {
+    "total": 24.659,
+    "setup": 0.0,
+    "agent": 0.0,
+    "verifier": 12.323
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br034-pathological-echo-nop-v1-20260916/cardiac-adaptation__q7CXqag/result.json",
+      "sha256": "4609fcbfd324166eade55993ba9a6eeac5efb0f5ab5104fa42b37740280d4af7"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br034-pathological-echo-nop-v1-20260916/cardiac-adaptation__q7CXqag/verifier/test-stdout.txt",
+      "sha256": "906eae5f22791f75047abaf1a0d557dfc4a6ae232e9ec1dc228ce2d9e6b4bbdb"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br034-pathological-echo-nop-v1-20260916/cardiac-adaptation__q7CXqag/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br034-pathological-echo-nop-v1-20260916/lock.json",
+      "sha256": "c22678e19af291c29d4a0cf212525dcddefbb4bfb05fb93d1e6ffeb7362b605a"
+    }
+  ],
+  "task_checksum": "157ec8c44a64edbbe84ac0c10597d9291af6e11a7826147a3fd8457c657c2a0d",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br034-pathological-echo-nop-v1-20260916/cardiac-adaptation__q7CXqag/result.json",
+  "source_sha256": "4609fcbfd324166eade55993ba9a6eeac5efb0f5ab5104fa42b37740280d4af7",
+  "evidence_sha256": "beb497087e2a495af7d83abec07a5d466e964fffbd96011d8b0d804f039d467b",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-03af88ca35f1eff75229d5ce",
+  "group_id": "cardiac-motion",
+  "experiment_id": "cardiac-motion-br034",
+  "collected_at": "2026-09-20T09:49:52.787019+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-03af88ca35f1eff75229d5ce"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

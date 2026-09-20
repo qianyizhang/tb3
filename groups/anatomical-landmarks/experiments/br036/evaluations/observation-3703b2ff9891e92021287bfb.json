@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "observation-3703b2ff9891e92021287bfb",
+  "job": "br036-mri32-crop-oracle-v1-20260917",
+  "trial_name": "mri32-crop__gaRzSYa",
+  "task_id": "semantic-mri32-crop",
+  "agent": "oracle",
+  "model": null,
+  "reasoning_effort": null,
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "harbor_version": "0.18.0",
+  "execution_mode": "harbor",
+  "classification": "control_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-17T01:49:27.206549Z",
+  "finished_at": "2026-09-17T01:49:52.150379Z",
+  "timing": {
+    "total": 24.944,
+    "setup": 0.0,
+    "agent": 0.159,
+    "verifier": 12.198
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br036-mri32-crop-oracle-v1-20260917/mri32-crop__gaRzSYa/result.json",
+      "sha256": "949a214b17c74cf8cc2b78a87dcdac1b1bc4e2ecca3013b68329e2a23aaf3faf"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br036-mri32-crop-oracle-v1-20260917/mri32-crop__gaRzSYa/verifier/test-stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br036-mri32-crop-oracle-v1-20260917/mri32-crop__gaRzSYa/verifier/reward.txt",
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "label": "Submitted artifact: answer/landmarks.json",
+      "path": "runs/br036-mri32-crop-oracle-v1-20260917/mri32-crop__gaRzSYa/artifacts/app/answer/landmarks.json",
+      "sha256": "b01950026f40e8ea934cb6f34db383949404601a8182ff8dceb651faaf212d5f"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br036-mri32-crop-oracle-v1-20260917/lock.json",
+      "sha256": "9b315e002b7ee287fabc3dbaaec0b104d91067d2d80c450cdec3802eee453be8"
+    }
+  ],
+  "task_checksum": "ca6c7c56e9164ec0f6fe2f516109ad0b67c0b91e92370219f2a69cf1b7610d68",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br036-mri32-crop-oracle-v1-20260917/mri32-crop__gaRzSYa/result.json",
+  "source_sha256": "949a214b17c74cf8cc2b78a87dcdac1b1bc4e2ecca3013b68329e2a23aaf3faf",
+  "evidence_sha256": "d4f681d806a66d6ac524d587a6a80ada48599b0650bd7b9b2f0a2c5e54a49d0a",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-50a9049bb89f8fb61829ee75",
+  "group_id": "anatomical-landmarks",
+  "experiment_id": "anatomical-landmarks-br036",
+  "collected_at": "2026-09-20T09:49:54.618927+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-50a9049bb89f8fb61829ee75"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

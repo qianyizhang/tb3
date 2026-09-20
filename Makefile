@@ -11,11 +11,11 @@ test:
 
 # Portable medical chapters and source-linked figures; no native runtime data.
 med-check:
-	$(PYTHON) scripts/check_site_med.py
+	$(PYTHON) scripts/check_medical.py
 
-# Reopen the report and native scan explorer; no model trials or downloads.
+# Open the read-only medical index and available local tours.
 site:
-	$(PYTHON) scripts/serve_site.py --open
+	$(PYTHON) scripts/med present --serve --local-media
 
 # Inventory only: never delete ignored runs, caches, or frozen inputs.
 artifacts:

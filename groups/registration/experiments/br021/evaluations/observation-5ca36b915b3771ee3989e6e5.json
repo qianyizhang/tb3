@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "observation-5ca36b915b3771ee3989e6e5",
+  "job": "br021-deform-3d-terra-high-v1-20260916",
+  "trial_name": "deform-3d__EVkujnp",
+  "task_id": "deform-3d",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-16T05:26:14.144473Z",
+  "finished_at": "2026-09-16T05:35:25.729392Z",
+  "timing": {
+    "total": 551.585,
+    "setup": 30.139,
+    "agent": 495.952,
+    "verifier": 12.126
+  },
+  "usage": {
+    "n_input_tokens": 702611.0,
+    "n_cache_tokens": 638720.0,
+    "n_output_tokens": 13323.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br021-deform-3d-terra-high-v1-20260916/deform-3d__EVkujnp/result.json",
+      "sha256": "60c3528e3818c51e9daaf1abfe6bb7fb9d9d185a90993b6b47aaf7484d071f98"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br021-deform-3d-terra-high-v1-20260916/deform-3d__EVkujnp/verifier/test-stdout.txt",
+      "sha256": "75dc2c46d6358896c89ce9a08154df7d8be5d358d1c74092c9489b4b4486d368"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br021-deform-3d-terra-high-v1-20260916/deform-3d__EVkujnp/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br021-deform-3d-terra-high-v1-20260916/deform-3d__EVkujnp/agent/trajectory.json",
+      "sha256": "5fe7f814a200df71c0693309da005bdbf6f66497bfc61ceee451328c47d340dc"
+    },
+    {
+      "label": "Submitted artifact: answer/points.json",
+      "path": "runs/br021-deform-3d-terra-high-v1-20260916/deform-3d__EVkujnp/artifacts/app/answer/points.json",
+      "sha256": "b4ce90591800f71c3b5d1c5c429de850a7c34dd425b468200edc5e16786df51f"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br021-deform-3d-terra-high-v1-20260916/lock.json",
+      "sha256": "3e13375ac0baded190a42cf37287d0f0e44bb87c0b449f710d2591e1dbedccbf"
+    }
+  ],
+  "task_checksum": "8887d251df1cae4887533c2d913b69c20010e73b906a61e2fcdde00a3cc3b0c1",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br021-deform-3d-terra-high-v1-20260916/deform-3d__EVkujnp/result.json",
+  "source_sha256": "60c3528e3818c51e9daaf1abfe6bb7fb9d9d185a90993b6b47aaf7484d071f98",
+  "evidence_sha256": "bc94286a3d9787010cabe5193ba6e3f64b6d74fe342c75aa32d526dee11ab2ae",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-5af3d73771442887ac80460a",
+  "group_id": "registration",
+  "experiment_id": "registration-br021",
+  "collected_at": "2026-09-20T09:49:50.664539+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-5af3d73771442887ac80460a"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

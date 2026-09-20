@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "observation-fbbd486757f8ec8012481100",
+  "job": "br040-ct-partial-sol-xhigh-v1-20260917",
+  "trial_name": "ct-partial__53TnzeA",
+  "task_id": "expanded-landmarks-ct-partial",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_failure_candidate",
+  "reward": 0.0,
+  "started_at": "2026-09-17T03:43:58.387564Z",
+  "finished_at": "2026-09-17T03:57:29.103579Z",
+  "timing": {
+    "total": 810.716,
+    "setup": 30.518,
+    "agent": 745.543,
+    "verifier": 12.991
+  },
+  "usage": {
+    "n_input_tokens": 1374100.0,
+    "n_cache_tokens": 1297920.0,
+    "n_output_tokens": 25980.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br040-ct-partial-sol-xhigh-v1-20260917/ct-partial__53TnzeA/result.json",
+      "sha256": "753aefd9bd72ed349c8cf7cce3ee4dd6c8c99354c4db22542b4c4c88e5ec8b9f"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br040-ct-partial-sol-xhigh-v1-20260917/ct-partial__53TnzeA/verifier/test-stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br040-ct-partial-sol-xhigh-v1-20260917/ct-partial__53TnzeA/verifier/reward.txt",
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br040-ct-partial-sol-xhigh-v1-20260917/ct-partial__53TnzeA/agent/trajectory.json",
+      "sha256": "5d8b459c7309c551f326b6995e9e9dc50973a2b9b74ec43f94cc386ef969b48f"
+    },
+    {
+      "label": "Submitted artifact: answer/landmarks.json",
+      "path": "runs/br040-ct-partial-sol-xhigh-v1-20260917/ct-partial__53TnzeA/artifacts/app/answer/landmarks.json",
+      "sha256": "15e6393fd685bf04f5ad5aaa170c8dd58daaef393c005bc4a3564bc2bf602c22"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br040-ct-partial-sol-xhigh-v1-20260917/lock.json",
+      "sha256": "10976fdcaaff45f1579a79c09735031c474864d107fc171e55c99fa60acdec40"
+    }
+  ],
+  "task_checksum": "70a21f5cd3b6bbd892c5286423b10b23a01ee45019467c4f02bc5ac4d9bf0ff0",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br040-ct-partial-sol-xhigh-v1-20260917/ct-partial__53TnzeA/result.json",
+  "source_sha256": "753aefd9bd72ed349c8cf7cce3ee4dd6c8c99354c4db22542b4c4c88e5ec8b9f",
+  "evidence_sha256": "a48a0945e23085b712caeea3c53ce95a9806096391a529eed366ea457f89adb4",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-fa326c40eb125e7ca1b28f60",
+  "group_id": "anatomical-landmarks",
+  "experiment_id": "anatomical-landmarks-br040",
+  "collected_at": "2026-09-20T09:49:56.571702+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-fa326c40eb125e7ca1b28f60"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

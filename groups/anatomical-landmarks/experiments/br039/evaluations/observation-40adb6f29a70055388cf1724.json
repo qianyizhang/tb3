@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "observation-40adb6f29a70055388cf1724",
+  "job": "br039-ct-full-oracle-v1-20260917",
+  "trial_name": "ct-full__e8it67i",
+  "task_id": "expanded-landmarks-ct-full",
+  "agent": "oracle",
+  "model": null,
+  "reasoning_effort": null,
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "harbor_version": "0.18.0",
+  "execution_mode": "harbor",
+  "classification": "control_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-17T02:56:51.570662Z",
+  "finished_at": "2026-09-17T02:57:43.090114Z",
+  "timing": {
+    "total": 51.519,
+    "setup": 0.0,
+    "agent": 0.169,
+    "verifier": 12.367
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br039-ct-full-oracle-v1-20260917/ct-full__e8it67i/result.json",
+      "sha256": "501e93092c5cd2165e9ef99f07c05857a6db44b70de6a0171bf50d84c33ba12b"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br039-ct-full-oracle-v1-20260917/ct-full__e8it67i/verifier/test-stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br039-ct-full-oracle-v1-20260917/ct-full__e8it67i/verifier/reward.txt",
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "label": "Submitted artifact: answer/landmarks.json",
+      "path": "runs/br039-ct-full-oracle-v1-20260917/ct-full__e8it67i/artifacts/app/answer/landmarks.json",
+      "sha256": "7641a3ab5faf9e1937768ae06de12b44176442012493bae96cd90544778ed659"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br039-ct-full-oracle-v1-20260917/lock.json",
+      "sha256": "2a88afb0f12a720c1aa56941f05b40b4a5b402b2a172c3a1a0c247895bb9bec1"
+    }
+  ],
+  "task_checksum": "ab4371421a6311b235d52bf335ffaf8da332666d60ddde1b880391fdb708ddff",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br039-ct-full-oracle-v1-20260917/ct-full__e8it67i/result.json",
+  "source_sha256": "501e93092c5cd2165e9ef99f07c05857a6db44b70de6a0171bf50d84c33ba12b",
+  "evidence_sha256": "a208b61367a4d30429db30c803a6f39f1d54dbdba16075cefb0737b1e4b4bddb",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-b082b6a1c74ba5b133aa89e4",
+  "group_id": "anatomical-landmarks",
+  "experiment_id": "anatomical-landmarks-br039",
+  "collected_at": "2026-09-20T09:49:56.092052+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-b082b6a1c74ba5b133aa89e4"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

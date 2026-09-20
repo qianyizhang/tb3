@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "observation-ab6fddb961a8a1e3468c777f",
+  "job": "br004-anatomy-terra-max-v1-20260915",
+  "trial_name": "dicom-anatomy-audit__cZPMKGf",
+  "task_id": "dicom-anatomy-audit",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "max",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "execution_error",
+  "reward": 0.0,
+  "started_at": "2026-09-15T00:16:02.981748Z",
+  "finished_at": "2026-09-15T00:46:58.826552Z",
+  "timing": {
+    "total": 1855.845,
+    "setup": 29.531,
+    "agent": 1800.112,
+    "verifier": 12.201
+  },
+  "usage": {
+    "n_input_tokens": 9790131.0,
+    "n_cache_tokens": 9348096.0,
+    "n_output_tokens": 53501.0
+  },
+  "cases": [],
+  "exception_type": "AgentTimeoutError",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br004-anatomy-terra-max-v1-20260915/dicom-anatomy-audit__cZPMKGf/result.json",
+      "sha256": "e39936b27c879c4d5fc7111accc7b6e3d3b6d88214710b1769c6228e68bf58e9"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br004-anatomy-terra-max-v1-20260915/dicom-anatomy-audit__cZPMKGf/verifier/test-stdout.txt",
+      "sha256": "ae5d2917e7f58d6f359bcf14856f39bf11eacabf1bf08ce16044fe7a7fbde2fa"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br004-anatomy-terra-max-v1-20260915/dicom-anatomy-audit__cZPMKGf/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br004-anatomy-terra-max-v1-20260915/dicom-anatomy-audit__cZPMKGf/agent/trajectory.json",
+      "sha256": "1f3dfc0bcbe9d3f199940c67950b12b1f290f38a09879de378fd070d7e6dbfb6"
+    },
+    {
+      "label": "Submitted artifact: answer/findings.json",
+      "path": "runs/br004-anatomy-terra-max-v1-20260915/dicom-anatomy-audit__cZPMKGf/artifacts/app/answer/findings.json",
+      "sha256": "a18219ad99f332d721c0b803f2aff041789d29327bcf469be419138abd15bac0"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br004-anatomy-terra-max-v1-20260915/lock.json",
+      "sha256": "a1f9b65d8775c8d304fa9b15a48649ca53369acc32f726ca66b88b6780d556a1"
+    }
+  ],
+  "task_checksum": "59495ca0fc6045a2e9d153567d095a0d9a88c5a404c0385f0d12144d8a1ca278",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br004-anatomy-terra-max-v1-20260915/dicom-anatomy-audit__cZPMKGf/result.json",
+  "source_sha256": "e39936b27c879c4d5fc7111accc7b6e3d3b6d88214710b1769c6228e68bf58e9",
+  "evidence_sha256": "1c834944ec2afe17539a5c0afd8db133bca1274b414e4f47a4bedfa3a1b84725",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-506aa819a7b80c4640ff8dc1",
+  "group_id": "anatomy-audit",
+  "experiment_id": "anatomy-audit-br004",
+  "collected_at": "2026-09-20T09:49:47.855076+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-506aa819a7b80c4640ff8dc1"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

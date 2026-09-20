@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "id": "observation-3fc9daed8d078c36e65f94c8",
+  "job": "br041-named-rca-terra-high-v1-20260919",
+  "trial_name": "named-rca__FfwnqBT",
+  "task_id": "named-rca-image-only",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "agent_version": "0.155.1",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_failure_candidate",
+  "reward": 0.0,
+  "started_at": "2026-09-19T00:15:52.198554Z",
+  "finished_at": "2026-09-19T00:31:48.271048Z",
+  "timing": {
+    "total": 956.072,
+    "setup": 84.334,
+    "agent": 843.804,
+    "verifier": 13.224
+  },
+  "usage": {
+    "n_input_tokens": 2696304.0,
+    "n_cache_tokens": 2575488.0,
+    "n_output_tokens": 26627.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br041-named-rca-terra-high-v1-20260919/named-rca__FfwnqBT/result.json",
+      "sha256": "3ce914e6c911686edaf3633f397dba8a137f5b41ebd37caefb8b81b021d5d7e4"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br041-named-rca-terra-high-v1-20260919/named-rca__FfwnqBT/verifier/test-stdout.txt",
+      "sha256": "b9d2397c2b1b96d2e5506de981b985463b8de35477a6b03d3bad2369b42cda3b"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br041-named-rca-terra-high-v1-20260919/named-rca__FfwnqBT/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br041-named-rca-terra-high-v1-20260919/named-rca__FfwnqBT/agent/trajectory.json",
+      "sha256": "00fb6bf11720d427d0233c2d41894284ecb89384222ef1a8ef5c28a06665a155"
+    },
+    {
+      "label": "Submitted artifact: answer/centerline.npy",
+      "path": "runs/br041-named-rca-terra-high-v1-20260919/named-rca__FfwnqBT/artifacts/app/answer/centerline.npy",
+      "sha256": "12bd6806b0b1c1a6aed378b340fb62d229a7c031e213ee8c6fe22b2de763089f"
+    },
+    {
+      "label": "Submitted artifact: answer/method.md",
+      "path": "runs/br041-named-rca-terra-high-v1-20260919/named-rca__FfwnqBT/artifacts/app/answer/method.md",
+      "sha256": "ea0c0d0976bb01ccfd5754c5ec462b710f6ded44c25077306059cbf9113145d5"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br041-named-rca-terra-high-v1-20260919/lock.json",
+      "sha256": "df6e65225cac76b57a2ae02f621aec9ec750ec2810ac8dee41557d5ec67c384d"
+    }
+  ],
+  "task_checksum": "58a08cb2dedf187436bc5336fddeb3833585567bae7349651a29a716716f2ef7",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br041-named-rca-terra-high-v1-20260919/named-rca__FfwnqBT/result.json",
+  "source_sha256": "3ce914e6c911686edaf3633f397dba8a137f5b41ebd37caefb8b81b021d5d7e4",
+  "evidence_sha256": "994f4e1e70525da63edfc554dec7287db69692f113e943b20976e576827ec7db",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-f903e1e53aa165b9cc1f6161",
+  "group_id": "tubular-anatomy",
+  "experiment_id": "tubular-anatomy-br041",
+  "collected_at": "2026-09-20T09:49:56.950219+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-f903e1e53aa165b9cc1f6161"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

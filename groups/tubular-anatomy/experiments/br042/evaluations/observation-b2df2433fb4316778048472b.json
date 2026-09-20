@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "observation-b2df2433fb4316778048472b",
+  "job": "br042-all-coronary-oracle-v1-20260920",
+  "trial_name": "all-coronary__vwkgdBL",
+  "task_id": "all-coronary-image-only",
+  "agent": "oracle",
+  "model": null,
+  "reasoning_effort": null,
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "harbor_version": "0.18.0",
+  "execution_mode": "harbor",
+  "classification": "control_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-20T02:19:44.520296Z",
+  "finished_at": "2026-09-20T02:20:12.755366Z",
+  "timing": {
+    "total": 28.235,
+    "setup": 0.0,
+    "agent": 0.153,
+    "verifier": 13.27
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br042-all-coronary-oracle-v1-20260920/all-coronary__vwkgdBL/result.json",
+      "sha256": "df5abc0ba482a5733fed7931821fcce7b9df79cc0790b60404a1231df5d925d9"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br042-all-coronary-oracle-v1-20260920/all-coronary__vwkgdBL/verifier/test-stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br042-all-coronary-oracle-v1-20260920/all-coronary__vwkgdBL/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Submitted artifact: answer/centerlines.json",
+      "path": "runs/br042-all-coronary-oracle-v1-20260920/all-coronary__vwkgdBL/artifacts/app/answer/centerlines.json",
+      "sha256": "80ea4e0027c88c4b7d3e2c5e1330d1862b8dfc755b6c392d2e457c37818446a0"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br042-all-coronary-oracle-v1-20260920/lock.json",
+      "sha256": "9a4556b0dc2eb42aeb6fcdefd527c4359a1c0a6c4ce22ea9a54de924f2dd000c"
+    }
+  ],
+  "task_checksum": "446f1c994e8c3b1a0cdad364c19c7a0243fb8f870521fd2a8da4a4d212e16d34",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br042-all-coronary-oracle-v1-20260920/all-coronary__vwkgdBL/result.json",
+  "source_sha256": "df5abc0ba482a5733fed7931821fcce7b9df79cc0790b60404a1231df5d925d9",
+  "evidence_sha256": "b4b1e9d992fe8ca65863494d5a9b909b4d15b2db323b84c2b257a7269ce4bccb",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-cb69e76e9ef6d0a7bf4b0528",
+  "group_id": "tubular-anatomy",
+  "experiment_id": "tubular-anatomy-br042",
+  "collected_at": "2026-09-20T09:49:57.053001+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-cb69e76e9ef6d0a7bf4b0528"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

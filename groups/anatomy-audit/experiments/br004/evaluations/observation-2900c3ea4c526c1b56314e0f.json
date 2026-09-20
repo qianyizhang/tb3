@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "observation-2900c3ea4c526c1b56314e0f",
+  "job": "br004-single-46-oracle-v1-20260915",
+  "trial_name": "dicom-audit-46__MZ4v9Kr",
+  "task_id": "dicom-audit-46",
+  "agent": "oracle",
+  "model": null,
+  "reasoning_effort": null,
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "harbor_version": "0.18.0",
+  "execution_mode": "harbor",
+  "classification": "control_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-15T03:04:22.805106Z",
+  "finished_at": "2026-09-15T03:04:53.826231Z",
+  "timing": {
+    "total": 31.021,
+    "setup": 0.0,
+    "agent": 0.284,
+    "verifier": 14.448
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br004-single-46-oracle-v1-20260915/dicom-audit-46__MZ4v9Kr/result.json",
+      "sha256": "74715c334b426314244b3fdf431379622c790c5931504735b6fa6bfee84c0d3c"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br004-single-46-oracle-v1-20260915/dicom-audit-46__MZ4v9Kr/verifier/test-stdout.txt",
+      "sha256": "5d60881126286ed13370eee9638e1920f0d867ee6825bc4db593ca65efe06a0b"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br004-single-46-oracle-v1-20260915/dicom-audit-46__MZ4v9Kr/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Submitted artifact: answer/findings.json",
+      "path": "runs/br004-single-46-oracle-v1-20260915/dicom-audit-46__MZ4v9Kr/artifacts/app/answer/findings.json",
+      "sha256": "5fddaf8a4bb19e575bc16438e7effabe52c2e61874ef88e6ffce3f75e6dd44b8"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br004-single-46-oracle-v1-20260915/lock.json",
+      "sha256": "3ade48a32f002e1d531df0a80d88b3b97eba038a5d8ebce662e8f6de52469f86"
+    }
+  ],
+  "task_checksum": "ad71157ae4588c731f1f677098a878b32722278cf82db046d3bbaaab4c913bcb",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br004-single-46-oracle-v1-20260915/dicom-audit-46__MZ4v9Kr/result.json",
+  "source_sha256": "74715c334b426314244b3fdf431379622c790c5931504735b6fa6bfee84c0d3c",
+  "evidence_sha256": "5c7970c268180d3ba708578a050b2dab97ced9145dc0e68e2e88f3baaf227a7c",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-10e5cf51581c9c400a724aec",
+  "group_id": "anatomy-audit",
+  "experiment_id": "anatomy-audit-br004",
+  "collected_at": "2026-09-20T09:49:48.046818+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-10e5cf51581c9c400a724aec"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

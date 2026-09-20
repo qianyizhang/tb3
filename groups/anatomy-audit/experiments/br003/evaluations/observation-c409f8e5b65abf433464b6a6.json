@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "id": "observation-c409f8e5b65abf433464b6a6",
+  "job": "br003-audit-terra-high-v1-20260915",
+  "trial_name": "dicom-label-audit__PRbFdXR",
+  "task_id": "dicom-label-audit",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-14T17:39:59.775681Z",
+  "finished_at": "2026-09-14T17:45:52.048799Z",
+  "timing": {
+    "total": 352.273,
+    "setup": 32.456,
+    "agent": 293.135,
+    "verifier": 13.364
+  },
+  "usage": {
+    "n_input_tokens": 425365.0,
+    "n_cache_tokens": 381952.0,
+    "n_output_tokens": 14630.0
+  },
+  "cases": [
+    {
+      "name": "packet-41",
+      "status": "passed",
+      "detail": ""
+    },
+    {
+      "name": "packet-73",
+      "status": "passed",
+      "detail": ""
+    },
+    {
+      "name": "packet-28",
+      "status": "passed",
+      "detail": ""
+    },
+    {
+      "name": "packet-56",
+      "status": "passed",
+      "detail": ""
+    },
+    {
+      "name": "packet-92",
+      "status": "passed",
+      "detail": ""
+    }
+  ],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/result.json",
+      "sha256": "4056087524856857aa4d3ce91288c89f6263509d20f28d86eb3f21cd3b8688a7"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/verifier/test-stdout.txt",
+      "sha256": "91c1f5465674de72b11a965565c4c3c5a8eca6da7d1f6f9f0038807b14797db7"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/agent/trajectory.json",
+      "sha256": "10fe86499598705c5fe2007d43576304a77d3ccbf3238f66d84832f578cc1f82"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/auditor.cpython-312.pyc",
+      "path": "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/artifacts/app/answer/__pycache__/auditor.cpython-312.pyc",
+      "sha256": "b0e08be3e91a8115559d140d6801230e7cbb45a5b52e7694fc4222ce0a184801"
+    },
+    {
+      "label": "Submitted artifact: answer/auditor.py",
+      "path": "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/artifacts/app/answer/auditor.py",
+      "sha256": "40e7566b0829460c4864c72f91b1ed995faa54a23329a8a9fd3031a641263416"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br003-audit-terra-high-v1-20260915/lock.json",
+      "sha256": "817bbcc63c75addd158c7fa51eb75f94531e3d0614b9f044bf8d00764fcc7b5a"
+    }
+  ],
+  "task_checksum": "688bb007af4d35407b80ba8282ffed33f3814f2dea24e9ee959d331535f63e64",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [],
+  "source_result": "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/result.json",
+  "source_sha256": "4056087524856857aa4d3ce91288c89f6263509d20f28d86eb3f21cd3b8688a7",
+  "evidence_sha256": "5174e95a205eb7fc86be02e6f587cc3007d259b1405ca6eef520117cb50d2ac4",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-257b4abcc15716dbf9a4d142",
+  "group_id": "anatomy-audit",
+  "experiment_id": "anatomy-audit-br003",
+  "collected_at": "2026-09-20T09:49:47.751997+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-257b4abcc15716dbf9a4d142"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

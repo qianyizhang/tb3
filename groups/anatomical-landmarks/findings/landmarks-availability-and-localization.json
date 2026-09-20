@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "kind": "finding",
+  "id": "landmarks-availability-and-localization",
+  "group_id": "anatomical-landmarks",
+  "title": "Availability judgments and localization need separate endpoints",
+  "claim": "Sol made no observed claims for cropped outside-scan targets, yet missed visible T5. Its MRI accuracy improved with atlas assistance; model and reasoning effort also changed.",
+  "validity": "qualified",
+  "depends_on": [
+    "landmarks-br040-ct-full-terra-high",
+    "landmarks-br040-ct-full-sol-xhigh",
+    "landmarks-br040-ct-partial-terra-high",
+    "landmarks-br040-ct-partial-sol-xhigh",
+    "landmarks-br040-mri32-full-terra-high",
+    "landmarks-br040-mri32-full-sol-xhigh"
+  ],
+  "evidence": [
+    {
+      "path": "docs/evidence/br040-results.json",
+      "sha256": "dc9c8da07ad0948e8813f74188f87776c872e5619b2a1cf38019897731d1887b"
+    },
+    {
+      "path": "docs/evidence/br040-source-audit.json",
+      "sha256": "74937bc75d4b24afc10e0489b2f661b12457f01410cd6732811b8313722700f5"
+    }
+  ],
+  "limitations": [
+    "One CT subject with correlated full/crop views and one MRI subject.",
+    "Not surgical readiness, population performance or a causal estimate of atlas assistance."
+  ]
+}

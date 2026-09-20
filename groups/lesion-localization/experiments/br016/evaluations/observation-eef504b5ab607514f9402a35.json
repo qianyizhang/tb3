@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "observation-eef504b5ab607514f9402a35",
+  "job": "br016-aneurysm-n02-v2-sol-xhigh-v1-20260915",
+  "trial_name": "aneurysm-n02-v2__aSMqVvc",
+  "task_id": "aneurysm-n02-v2",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-15T12:08:54.663388Z",
+  "finished_at": "2026-09-15T12:15:38.908346Z",
+  "timing": {
+    "total": 404.245,
+    "setup": 32.274,
+    "agent": 345.935,
+    "verifier": 12.189
+  },
+  "usage": {
+    "n_input_tokens": 1099977.0,
+    "n_cache_tokens": 997632.0,
+    "n_output_tokens": 8763.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br016-aneurysm-n02-v2-sol-xhigh-v1-20260915/aneurysm-n02-v2__aSMqVvc/result.json",
+      "sha256": "267239b861a6b6f94e0a5393006e72bc5f690d406045ccc7d98196b01150a833"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br016-aneurysm-n02-v2-sol-xhigh-v1-20260915/aneurysm-n02-v2__aSMqVvc/verifier/test-stdout.txt",
+      "sha256": "4f82770ebd6d4825ac83942c5cccf390a1b7b313e7d4e6a2f03f7c4ce47faac7"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br016-aneurysm-n02-v2-sol-xhigh-v1-20260915/aneurysm-n02-v2__aSMqVvc/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br016-aneurysm-n02-v2-sol-xhigh-v1-20260915/aneurysm-n02-v2__aSMqVvc/agent/trajectory.json",
+      "sha256": "8aefadd1df3841ff5e91022e00fba1fdc38cc057a0bc94fae506d25da5ecba2b"
+    },
+    {
+      "label": "Submitted artifact: answer/answer.json",
+      "path": "runs/br016-aneurysm-n02-v2-sol-xhigh-v1-20260915/aneurysm-n02-v2__aSMqVvc/artifacts/app/answer/answer.json",
+      "sha256": "133fc673bf03a414a9c894741adc741a6c218640263b9053540fa634e0d993b9"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br016-aneurysm-n02-v2-sol-xhigh-v1-20260915/lock.json",
+      "sha256": "e0a1d1b38ba701fa03132585b50c90ed793cfcd7bb71c15836d82950952fe24e"
+    }
+  ],
+  "task_checksum": "4452590627a0e89c6ec6b2ead69ca9103bb91b79f9534268aa717609be6bd9b3",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br016-aneurysm-n02-v2-sol-xhigh-v1-20260915/aneurysm-n02-v2__aSMqVvc/result.json",
+  "source_sha256": "267239b861a6b6f94e0a5393006e72bc5f690d406045ccc7d98196b01150a833",
+  "evidence_sha256": "7003547bdec0aac64da8cda12ba16a037c0ec3cfa7b26f52ad2cd1fc7a279fe7",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-00cd581b46d800f8b78b2c02",
+  "group_id": "lesion-localization",
+  "experiment_id": "lesion-localization-br016",
+  "collected_at": "2026-09-20T09:49:49.576141+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-00cd581b46d800f8b78b2c02"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

@@ -1,99 +1,29 @@
-# Inspect and reproduce
+# Reproduce medical work
 
-[Final report](../site/index.html) · [Research archive](archive.md) · [Submission](submission.md)
+Start with the [workflow](workflow.md) and the experiment record returned by
+`python3.12 scripts/med show ID`. Historical protocols and task hashes are retained
+as evidence. An experiment's availability, replay status and scientific validity
+are different properties; a Dockerfile alone establishes none of them.
 
-## Read or publish
+The [landmark MRI recipe](../exports/recipes/landmarks-mri-exact.json) selects exact
+frozen task files, source notice, saved outputs and a standalone Python replay.
+Build it with `python3.12 scripts/med export exports/recipes/landmarks-mri-exact.json
+/fresh/destination`, then run `python3.12 replay.py` inside that destination. Missing
+artifacts are listed with their expected digests in the recipe. The replay checks
+saved model/oracle outputs and an empty control, without Docker, source checkout,
+network or new inference. It does not certify current submission requirements.
 
-The overview and four studies are bundled in `site/index.html`. Open it directly
-for offline reading, guided scan figures, and interactive comparisons.
+All other historical medical experiments are indexed with their original
+protocols, receipts and explicit recovery gaps. Inspect the record before running
+old authoring scripts: some prepare inputs or overwrite a working task directory.
+Never regenerate a historical freeze to match current code.
 
-For the full local scan explorer, double-click `site/Open local report.command`
-or run:
+`make site PYTHON=python3.12` opens the current local presentation server. Guided
+tours use local derived data; portable stories keep static images and attribution.
+`python3.12 scripts/med assets` verifies 17 exact retained assets.
+`scripts/med-media --help` describes media rendering; it never starts model trials.
 
-```sh
-make site
-```
-
-The report opens at **http://127.0.0.1:8768/**. Choose **Explore full scan** in the
-aneurysm chapter to use linked slice sliders, zoom, contrast, original/brain-only
-images, and reference markers. Keep the terminal open; Ctrl+C stops it. Reopen
-with the same command whenever you want to return.
-
-The guided figures work without `runs/`. Full exploration reads the six retained
-arrays under `runs/br016-aneurysm/blind-review/R01` through `R03`; restore those
-folders when moving to another machine. No trials, downloads, or package
-installation run when opening the report. Written evidence links open GitHub.
-
-## Edit and validate the presentation
-
-```sh
-python3 scripts/build_site.py
-python3 scripts/build_site.py --check
-```
-
-The builder reads tracked chapters, shared styling, viewer code, and guided-figure data under `site/`. It neither launches
-trials nor changes frozen evidence. [Publishing instructions](../site/README.md)
-cover the included GitHub Pages workflow and the one-time repository setting.
-[Presentation provenance](../site/provenance.json) identifies the reused sources.
-
-## Original local viewers
-
-Original generated reports and full-resolution viewers remain unchanged under
-`runs/`. Their authoring records explain reconstruction:
-[anatomy](../probes/revisions/anatomy-history/authoring/README.md),
-[absorption](../probes/revisions/br017/authoring/README.md),
-[aneurysm](../probes/revisions/br016/README.md).
-These are optional research-archive tools, independent of the published page.
-
-## Repository checks
-
-Python 3.12, Git and Make are sufficient; Docker and model credentials are not
-needed. From the repository root:
-
-```sh
-make check PYTHON=python3.12
-```
-
-The artifact gate reads the **Git index**. In a clone it checks committed inputs;
-for a change, stage only the intended paths first. Tests exercise workshop
-classification, provenance and tooling. They do not run model trials or certify
-TB3 difficulty. See [contributing](../CONTRIBUTING.md).
-
-## Inspect the trial catalog
-
-```sh
-python3 scripts/tb3_catalog.py list --task dicom-audit-32
-python3 scripts/tb3_catalog.py report
-python3 scripts/tb3_catalog.py serve
-```
-
-The last command serves the generated catalog locally. Its detailed behavior is
-in the [catalog reference](catalog.md). Do not run `sync` merely to view the
-archive: it imports raw results and writes catalog records.
-
-A fresh clone contains summaries, authored reviews and task inputs, but no raw
-`runs/` directory. The catalog will explicitly mark missing local evidence;
-that is an availability limitation, not a newly observed model outcome.
-
-## Re-execute an experiment
-
-This is optional future work, outside research closeout. Use the exact owning
-round protocol, freeze, dependency locks and command receipts from the
-[archive](archive.md). [Historical setup](setup.md) documents the machine used,
-including local network settings; those are not portable defaults. Do not
-substitute present task bytes or harness defaults for a recorded snapshot.
-
-For the final task, follow the clean submission's own commands and evaluation
-status described in [the handoff](submission.md).
-
-## Restore local evidence
-
-Keep a copy of the whole workspace, including ignored `runs/`, when moving to
-another machine. Restore raw files under their original repository-relative
-paths before inspecting hash-bound reviews. The local closeout snapshot under
-`runs/archive-closeout/` preserves pre-cleanup authored files and a SHA-256
-inventory; it is a same-disk recovery copy, not an off-machine backup.
-
-Raw runs, environments and caches were retained during cleanup because the
-submission work was active. No remote backup, data deletion or GitHub archive
-operation is implied by this research closeout.
+Original nonmedical reproduction workflows are historical, available through
+[the recovery manifest](../archive/README.md). A local Git bundle and an ignored
+archive copy provide same-disk recovery. Independent off-machine backup remains
+unverified. No ignored raw run or environment is deleted by this migration.

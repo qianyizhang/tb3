@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "observation-f02b723e229b45db97983b90",
+  "job": "br038-mri32-full-terra-high-v1-20260917",
+  "trial_name": "mri32-full__q5PAj85",
+  "task_id": "volume-landmarks-mri32-full",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_failure_candidate",
+  "reward": 0.0,
+  "started_at": "2026-09-17T02:17:37.998719Z",
+  "finished_at": "2026-09-17T02:23:19.080030Z",
+  "timing": {
+    "total": 341.081,
+    "setup": 48.593,
+    "agent": 264.68,
+    "verifier": 12.31
+  },
+  "usage": {
+    "n_input_tokens": 755436.0,
+    "n_cache_tokens": 674048.0,
+    "n_output_tokens": 9572.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br038-mri32-full-terra-high-v1-20260917/mri32-full__q5PAj85/result.json",
+      "sha256": "22dd200804b72099fa3936f50da2a6cbfeb2204180a426ced8046fd11a05cd62"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br038-mri32-full-terra-high-v1-20260917/mri32-full__q5PAj85/verifier/test-stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br038-mri32-full-terra-high-v1-20260917/mri32-full__q5PAj85/verifier/reward.txt",
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br038-mri32-full-terra-high-v1-20260917/mri32-full__q5PAj85/agent/trajectory.json",
+      "sha256": "d608aa3b61f0a34bdcb91b7a90c4ff21f1f8a4cb64f7be16fb51a2e623463707"
+    },
+    {
+      "label": "Submitted artifact: answer/landmarks.json",
+      "path": "runs/br038-mri32-full-terra-high-v1-20260917/mri32-full__q5PAj85/artifacts/app/answer/landmarks.json",
+      "sha256": "a0c32abb87387541ef2d27886d191094266b119f3e7dbebdf363405840626116"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br038-mri32-full-terra-high-v1-20260917/lock.json",
+      "sha256": "582c5e8b7a7daa2cf839d002565f6082bd17452ea25e7514ab8fb594757d0c05"
+    }
+  ],
+  "task_checksum": "34ac2c5ce9b41520f528f6abdf283b734d0fdc901072140519f8ad32fdafed49",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br038-mri32-full-terra-high-v1-20260917/mri32-full__q5PAj85/result.json",
+  "source_sha256": "22dd200804b72099fa3936f50da2a6cbfeb2204180a426ced8046fd11a05cd62",
+  "evidence_sha256": "8e9db011ca4271ff0fcc4140d848aab603a4d2b031c962e539a3bea97107e51c",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-3bd0c23138df59bc288d0451",
+  "group_id": "anatomical-landmarks",
+  "experiment_id": "anatomical-landmarks-br038",
+  "collected_at": "2026-09-20T09:49:55.934537+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-3bd0c23138df59bc288d0451"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

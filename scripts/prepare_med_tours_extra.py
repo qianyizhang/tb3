@@ -5,7 +5,7 @@ import json,re,base64,hashlib
 import numpy as np
 from scipy.ndimage import map_coordinates
 from PIL import Image
-ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'site_med/tours/data';sources={}
+ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'presentation/tours/data';sources={}
 def src(name):
  p=ROOT/name;sources[name]=hashlib.sha256(p.read_bytes()).hexdigest();return p
 def read(name):return json.loads(src(name).read_text())

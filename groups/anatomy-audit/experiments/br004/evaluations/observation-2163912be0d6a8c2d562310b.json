@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "observation-2163912be0d6a8c2d562310b",
+  "job": "br004-anatomy-oracle-v1-20260915",
+  "trial_name": "dicom-anatomy-audit__XDmMQoQ",
+  "task_id": "dicom-anatomy-audit",
+  "agent": "oracle",
+  "model": null,
+  "reasoning_effort": null,
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "harbor_version": "0.18.0",
+  "execution_mode": "harbor",
+  "classification": "control_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-15T00:12:45.581687Z",
+  "finished_at": "2026-09-15T00:13:25.919704Z",
+  "timing": {
+    "total": 40.338,
+    "setup": 0.0,
+    "agent": 0.152,
+    "verifier": 12.264
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br004-anatomy-oracle-v1-20260915/dicom-anatomy-audit__XDmMQoQ/result.json",
+      "sha256": "68614af72fd6948756d1fd11dde2b18b1132c203cfeabf213b677fabccd8e2ec"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br004-anatomy-oracle-v1-20260915/dicom-anatomy-audit__XDmMQoQ/verifier/test-stdout.txt",
+      "sha256": "a58940a760a33276c3294102122c70d599e04510c62659558fe2df845cf8420c"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br004-anatomy-oracle-v1-20260915/dicom-anatomy-audit__XDmMQoQ/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Submitted artifact: answer/findings.json",
+      "path": "runs/br004-anatomy-oracle-v1-20260915/dicom-anatomy-audit__XDmMQoQ/artifacts/app/answer/findings.json",
+      "sha256": "ce8c8757369ccbfba7e85f24f32e9cdd9974969d8b02f2d8d742848852a73d93"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br004-anatomy-oracle-v1-20260915/lock.json",
+      "sha256": "5770883540acecdb27087ec36eb9c47de12bce78925cc466726e04d4d03ab432"
+    }
+  ],
+  "task_checksum": "59495ca0fc6045a2e9d153567d095a0d9a88c5a404c0385f0d12144d8a1ca278",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br004-anatomy-oracle-v1-20260915/dicom-anatomy-audit__XDmMQoQ/result.json",
+  "source_sha256": "68614af72fd6948756d1fd11dde2b18b1132c203cfeabf213b677fabccd8e2ec",
+  "evidence_sha256": "0a589f3bda3fe15cbc058d52be31a1c12888f3bd60f2b094dfc74e3be2f91ad6",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-5fef2dc086830a273e889ff7",
+  "group_id": "anatomy-audit",
+  "experiment_id": "anatomy-audit-br004",
+  "collected_at": "2026-09-20T09:49:47.825110+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-5fef2dc086830a273e889ff7"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

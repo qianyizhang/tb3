@@ -1,0 +1,29 @@
+{
+  "scope": "Completed BR-025/027/029/031/032/034/035 cardiac series. Presentation closeout, no new experiments.",
+  "sources": [
+    {
+      "name": "Multimodality STRAUS",
+      "url": "https://humanheart-project.creatis.insa-lyon.fr/multimodalityStraus.html",
+      "role": "Synthetic ultrasound and known electromechanical reference motion. Not measured human strain."
+    },
+    {
+      "name": "EchoXFlow",
+      "url": "https://huggingface.co/datasets/Ahus-AIM/EchoXFlow",
+      "role": "Clinical LV cavity surfaces and ultrasound. Source surfaces have annotation/model uncertainty; no material-strain truth."
+    }
+  ],
+  "figure_method": "Exact retained author-generated BR-035 scientific PNG; no image editing or anatomical image synthesis. Interactive regional curves are copied exactly from the independently scored material records.",
+  "curve_definition": "Volume-weighted regional engineering strain on source anatomical axes, over covered reference tissue. These are distinct from minimum principal Green-Lagrange E colors in the local 3D viewer and are not clinical GLS.",
+  "limits": "Aggregate measurements and an authored scientific plot only. No source ultrasound, native arrays, patient identifiers, model weights, raw sessions or full meshes are embedded. Dataset redistribution terms are not broadened by this report. Public training exposure remains unknown.",
+  "refresh": "python3 scripts/import_cardiac_figures.py; python3 scripts/build_site.py",
+  "evidence": {
+    "docs/evidence/br035-segmentation-mechanics-results.json": "12806e221bc93b8400dbe2d950e67ed89b6f2fb396ba7e76b2833fa42e00fed2",
+    "runs/br035-segmentation-mechanics/review/function-comparison.png": "907ec7d3f83c23e0be11ad6b0ab762fe639a37f898b54adb69de7fc9e069f57b",
+    "site/cardiac-figures.json": "89ee922c8ac2ff66e88398371aa320ef7ce1668fee17af08668ffc99e3124bf4",
+    "docs/research-rounds/BR-035-results.md": "d87d63f0a65ca4424feec6716b8be55390cc72a0f021d6688c9052d42d34bc52",
+    "docs/research-rounds/BR-035-segmentation-mechanics.md": "d36a2652ac2170583d2cd9d088833d04e4ce449475c04e916d0620568d65ea3b",
+    "docs/research-rounds/BR-031-cardiac-agent-results.md": "11a0c0af5ec11723a76670421063815206ab81d7f0a647c2929a5aa5330cc00f",
+    "docs/research-rounds/BR-032-real-echo-results.md": "41ad496cc5e3780a46895f9f28c3f400a62628d020f403efbc2c60e968587cc4",
+    "docs/research-rounds/BR-034-results.md": "59992d48561779ed126a7fafc4ae31a14f56afe68034cd84511a3516f7a310fd"
+  }
+}

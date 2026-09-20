@@ -101,7 +101,7 @@ def freeze(root, experiment):
            "experiment_id": exp["id"], "created_at": c.now(), "task_digest": digest,
            "digest_kind": "sha256-canonical-path-sha256-map-v1", "files": files,
            "source_path": exp["task_path"], "snapshot_path": str(snapshot.relative_to(root)),
-           "depends_on": [], "evidence": [c.evidence(root, str(task.relative_to(root) / p)) for p in files]}
+           "depends_on": [], "evidence": [c.evidence(root, str(snapshot.relative_to(root) / p)) for p in files]}
     c.write_new(c.destination(root, exp, "experiments") / Path(exp["record_path"]).parent.name / "freezes" / (key + ".json"), row)
     return row
 
@@ -135,7 +135,7 @@ def plan(root, frozen, agent, model=None, effort=None):
     return row
 
 
-def collect(root, experiment, sources, task_digest=None):
+def collect(root, experiment, sources, task_digest=None, expected_checksum=None):
     exp = c.lookup(root, experiment)
     result = []
     for source in sources:
@@ -155,7 +155,9 @@ def collect(root, experiment, sources, task_digest=None):
         if observation not in current:
             row = {**imported, "kind": "evaluation", "id": observation, "attempt_id": identity,
                    "group_id": exp["group_id"], "experiment_id": exp["id"], "collected_at": c.now(),
-                   "task_digest": task_digest, "depends_on": [identity], "validity": "unreviewed",
+                   "task_digest": task_digest if expected_checksum and imported["task_checksum"] == expected_checksum else None,
+                   "freeze_checksum_verified": bool(expected_checksum and imported["task_checksum"] == expected_checksum),
+                   "depends_on": [identity], "validity": "unreviewed",
                    "completeness": "partial" if imported["classification"] == "incomplete" else "observed"}
             c.write_new(Path(root) / Path(exp["record_path"]).parent / "evaluations" / (observation + ".json"), row)
             result.append(row)
@@ -168,6 +170,7 @@ def check_controls(root, plan_record):
     rows = c.projection(root).values()
     available = {r.get("agent") for r in rows if r["kind"] == "evaluation"
                  and r.get("task_digest") == plan_record["task_digest"]
+                 and r.get("freeze_checksum_verified")
                  and r.get("classification") in {"control_pass", "control_fail"}
                  and r.get("reward") == (1 if r.get("agent") == "oracle" else 0)
                  and r["current"]["validity"] not in {"invalidated", "under_review", "superseded"}
@@ -182,8 +185,12 @@ def run(root, planned, executable):
         raise c.MedicalError("Select a plan record")
     f = c.lookup(root, p["freeze_id"])
     snapshot = restore_freeze(root, f)
+    current = c.projection(root)[p["id"]]["current"]
+    if current["validity"] in {"under_review", "invalidated", "superseded"}:
+        raise c.MedicalError("Plan or frozen evidence requires review before execution")
     if p["agent"] == "codex":
         check_controls(root, p)
+    checksum = harbor_checksum(executable, snapshot)
     # A plan is single use even after an error/interruption. Retry is a new explicit plan.
     out = Path(root) / "runs/medical" / p["id"]
     out.mkdir(parents=True, exist_ok=False)
@@ -210,6 +217,18 @@ def run(root, planned, executable):
         receipt["frozen_payload_unchanged"] = task_files(snapshot) == f["files"]
         c.atomic_write(out / "execution.json", receipt)
     sources = [str(x.relative_to(root)) for x in sorted((out / "job").glob("*/result.json"))]
-    receipt["collected"] = [r["id"] for r in collect(root, p["experiment_id"], sources, p["task_digest"])]
+    receipt["collected"] = [r["id"] for r in collect(root, p["experiment_id"], sources,
+        p["task_digest"] if receipt["frozen_payload_unchanged"] else None, checksum)]
     c.atomic_write(out / "execution.json", receipt)
     return receipt
+
+
+def harbor_checksum(executable, snapshot):
+    """Use the selected Harbor runtime's exact checksum algorithm, not our tree digest."""
+    resolved = Path(shutil.which(executable) or executable).absolute()
+    python = resolved.parent / "python"
+    if not python.is_file():
+        raise c.MedicalError("Select a Harbor executable with its adjacent Python runtime")
+    result = subprocess.check_output([str(python), "-c", "import sys; from dirhash import dirhash; print(dirhash(sys.argv[1], 'sha256'))", str(snapshot)], text=True).strip()
+    if not harbor.checksum(result): raise c.MedicalError("Unable to establish Harbor task checksum")
+    return result

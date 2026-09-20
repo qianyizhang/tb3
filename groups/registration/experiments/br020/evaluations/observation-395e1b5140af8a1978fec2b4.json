@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "observation-395e1b5140af8a1978fec2b4",
+  "job": "br020-recon-r03-terra-high-v1-20260916",
+  "trial_name": "recon-r03__RCHQD68",
+  "task_id": "recon-r03",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-16T04:38:41.100974Z",
+  "finished_at": "2026-09-16T04:44:09.070115Z",
+  "timing": {
+    "total": 327.969,
+    "setup": 30.487,
+    "agent": 272.416,
+    "verifier": 12.031
+  },
+  "usage": {
+    "n_input_tokens": 486783.0,
+    "n_cache_tokens": 455424.0,
+    "n_output_tokens": 8066.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br020-recon-r03-terra-high-v1-20260916/recon-r03__RCHQD68/result.json",
+      "sha256": "c97d9fef4b60ebba72a9a525f2f056f95b6b2589aa8d3f6f6358e2f54d720304"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br020-recon-r03-terra-high-v1-20260916/recon-r03__RCHQD68/verifier/test-stdout.txt",
+      "sha256": "af54be099e4639f8501d6bca2943e5f046030aa560f63d6ac7efa3c60fb0918b"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br020-recon-r03-terra-high-v1-20260916/recon-r03__RCHQD68/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br020-recon-r03-terra-high-v1-20260916/recon-r03__RCHQD68/agent/trajectory.json",
+      "sha256": "3a09729c9079ed7bed82aea3e0d49e7803026f6452f2e25ef1edb5799f7e48d2"
+    },
+    {
+      "label": "Submitted artifact: answer/pose.json",
+      "path": "runs/br020-recon-r03-terra-high-v1-20260916/recon-r03__RCHQD68/artifacts/app/answer/pose.json",
+      "sha256": "89f62ae97458cb41ab020dddcd067cf7a3f7d70f1efa7970a9b4b8c6f2cb348d"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br020-recon-r03-terra-high-v1-20260916/lock.json",
+      "sha256": "0e8a19983182bd4629a00e095546a96d9a79d6a81b46fe07a8f5214b2225f57b"
+    }
+  ],
+  "task_checksum": "ab3bc5e74b8fc08989947aeffc9ad5eb6f6ece6d0f7d116b5619e33aa589a6b0",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br020-recon-r03-terra-high-v1-20260916/recon-r03__RCHQD68/result.json",
+  "source_sha256": "c97d9fef4b60ebba72a9a525f2f056f95b6b2589aa8d3f6f6358e2f54d720304",
+  "evidence_sha256": "68ff15a8286327d520db0e351038e0b2eea6dc17fab9177bff8a1adbf0cdd0ae",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-b279dad1367a0106ff24e379",
+  "group_id": "registration",
+  "experiment_id": "registration-br020",
+  "collected_at": "2026-09-20T09:49:50.457000+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-b279dad1367a0106ff24e379"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

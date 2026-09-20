@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "observation-1e2ca793027173826f7706b3",
+  "job": "br036-ct-C001-terra-high-v1-20260917",
+  "trial_name": "ct-C001__UcLT9uD",
+  "task_id": "semantic-ct-C001",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_failure_candidate",
+  "reward": 0.0,
+  "started_at": "2026-09-17T01:43:25.404544Z",
+  "finished_at": "2026-09-17T01:49:46.024413Z",
+  "timing": {
+    "total": 380.62,
+    "setup": 31.069,
+    "agent": 323.045,
+    "verifier": 12.084
+  },
+  "usage": {
+    "n_input_tokens": 1727959.0,
+    "n_cache_tokens": 1622528.0,
+    "n_output_tokens": 10321.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br036-ct-C001-terra-high-v1-20260917/ct-C001__UcLT9uD/result.json",
+      "sha256": "fa09fa40e90132b59a642fc70456a268a02f1c464335a93e89ce3cae7cf905bb"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br036-ct-C001-terra-high-v1-20260917/ct-C001__UcLT9uD/verifier/test-stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br036-ct-C001-terra-high-v1-20260917/ct-C001__UcLT9uD/verifier/reward.txt",
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br036-ct-C001-terra-high-v1-20260917/ct-C001__UcLT9uD/agent/trajectory.json",
+      "sha256": "a17d7b0294c3873e2225e14ef0d9d2ccf2d94252a02d1ec8a5107d4001b85014"
+    },
+    {
+      "label": "Submitted artifact: answer/landmarks.json",
+      "path": "runs/br036-ct-C001-terra-high-v1-20260917/ct-C001__UcLT9uD/artifacts/app/answer/landmarks.json",
+      "sha256": "762ba5838839de538239c1c287a838a503d89715194b44e62df83480b248c2ed"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br036-ct-C001-terra-high-v1-20260917/lock.json",
+      "sha256": "2c62e526f96826d52ab0e7785ac95a78c9a0eccb8274f845faa1ae3939e5f1ec"
+    }
+  ],
+  "task_checksum": "975889c20f5da68be47d14513e8e7cfc76ff48caeca8524aec7b2b9e8f71e0cb",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br036-ct-C001-terra-high-v1-20260917/ct-C001__UcLT9uD/result.json",
+  "source_sha256": "fa09fa40e90132b59a642fc70456a268a02f1c464335a93e89ce3cae7cf905bb",
+  "evidence_sha256": "8209c27eb7ac71dada48fe0272f939d6124a25745b3da6fbd11fbd92a36c4229",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-87b49e96d28bae08e4d24e4a",
+  "group_id": "anatomical-landmarks",
+  "experiment_id": "anatomical-landmarks-br036",
+  "collected_at": "2026-09-20T09:49:54.153758+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-87b49e96d28bae08e4d24e4a"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

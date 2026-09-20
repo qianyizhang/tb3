@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "observation-4dc59ed66fda98e14bb53687",
+  "job": "br038-mri32-full-oracle-v1-20260917",
+  "trial_name": "mri32-full__U2jbqCF",
+  "task_id": "volume-landmarks-mri32-full",
+  "agent": "oracle",
+  "model": null,
+  "reasoning_effort": null,
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "harbor_version": "0.18.0",
+  "execution_mode": "harbor",
+  "classification": "control_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-17T02:16:39.994984Z",
+  "finished_at": "2026-09-17T02:17:09.502950Z",
+  "timing": {
+    "total": 29.508,
+    "setup": 0.0,
+    "agent": 0.221,
+    "verifier": 13.279
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br038-mri32-full-oracle-v1-20260917/mri32-full__U2jbqCF/result.json",
+      "sha256": "152face6424a0f7f8cee9fb13f5ed17571215626f780d98a0eb4216911c0513c"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br038-mri32-full-oracle-v1-20260917/mri32-full__U2jbqCF/verifier/test-stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br038-mri32-full-oracle-v1-20260917/mri32-full__U2jbqCF/verifier/reward.txt",
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "label": "Submitted artifact: answer/landmarks.json",
+      "path": "runs/br038-mri32-full-oracle-v1-20260917/mri32-full__U2jbqCF/artifacts/app/answer/landmarks.json",
+      "sha256": "3aa433bed64a3be08bd46f76a97c0ade1d582cb8cf996dcd94b56ce401b1f1d4"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br038-mri32-full-oracle-v1-20260917/lock.json",
+      "sha256": "cd7e4ed5c548c9b678c98ce979e59f373edeea4c814bf4246dc7b654e196f831"
+    }
+  ],
+  "task_checksum": "34ac2c5ce9b41520f528f6abdf283b734d0fdc901072140519f8ad32fdafed49",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br038-mri32-full-oracle-v1-20260917/mri32-full__U2jbqCF/result.json",
+  "source_sha256": "152face6424a0f7f8cee9fb13f5ed17571215626f780d98a0eb4216911c0513c",
+  "evidence_sha256": "58eaa6a22b8b6b33162b25cf3c93d4357cdee06b6868f0939d47f8dea599380a",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-70c3ca8f4878c0d7b0c34583",
+  "group_id": "anatomical-landmarks",
+  "experiment_id": "anatomical-landmarks-br038",
+  "collected_at": "2026-09-20T09:49:55.850226+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-70c3ca8f4878c0d7b0c34583"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

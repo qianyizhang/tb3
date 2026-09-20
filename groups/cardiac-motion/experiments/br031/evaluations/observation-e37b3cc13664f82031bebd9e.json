@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "observation-e37b3cc13664f82031bebd9e",
+  "job": "br031-cardiac-l1v-oracle-v1-20260916",
+  "trial_name": "cardiac-l1v__bAUSrWC",
+  "task_id": "cardiac-l1v",
+  "agent": "oracle",
+  "model": null,
+  "reasoning_effort": null,
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "harbor_version": "0.18.0",
+  "execution_mode": "harbor",
+  "classification": "control_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-16T11:30:51.654140Z",
+  "finished_at": "2026-09-16T11:31:23.247143Z",
+  "timing": {
+    "total": 31.593,
+    "setup": 0.0,
+    "agent": 0.176,
+    "verifier": 16.959
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br031-cardiac-l1v-oracle-v1-20260916/cardiac-l1v__bAUSrWC/result.json",
+      "sha256": "e3bfa2708155bf5a8d148c152e01a83ca7b6feccc82f3b2b5c3248a0ea4e8dc1"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br031-cardiac-l1v-oracle-v1-20260916/cardiac-l1v__bAUSrWC/verifier/test-stdout.txt",
+      "sha256": "74d933c7a82a0464da80108baac7352deb456c906143e8934f00cf743967c3c4"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br031-cardiac-l1v-oracle-v1-20260916/cardiac-l1v__bAUSrWC/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Submitted artifact: answer/prediction.npz",
+      "path": "runs/br031-cardiac-l1v-oracle-v1-20260916/cardiac-l1v__bAUSrWC/artifacts/app/answer/prediction.npz",
+      "sha256": "27dbfb739fbb832e734fbde7fc4f076c09f5e99e9678386c40b039a0d76fb662"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br031-cardiac-l1v-oracle-v1-20260916/lock.json",
+      "sha256": "c7baac8cd1bdd491ec2490407f0a1f351e50d1794e06445145130cc45b4921a8"
+    }
+  ],
+  "task_checksum": "182cfbaead5cb0b8986f65c47aff1bc6da5ce1b2c88d477fa7d11dac8645fa8f",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br031-cardiac-l1v-oracle-v1-20260916/cardiac-l1v__bAUSrWC/result.json",
+  "source_sha256": "e3bfa2708155bf5a8d148c152e01a83ca7b6feccc82f3b2b5c3248a0ea4e8dc1",
+  "evidence_sha256": "7059f199794329de0a5c2b973e75d5c49801046af0355bee0818a779fbe423ec",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-5e302c2ebcbce97dd49f4e06",
+  "group_id": "cardiac-motion",
+  "experiment_id": "cardiac-motion-br031",
+  "collected_at": "2026-09-20T09:49:52.347331+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-5e302c2ebcbce97dd49f4e06"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

@@ -1,58 +1,49 @@
-# Finding a hard task
+# tb3-medical
 
-An interview take-home investigation using coding agents to design compact,
-independently verifiable benchmark tasks—and revise the claim when better
-evidence arrives.
-
-**[Read the complete report](site/index.html)** · **[Publish with GitHub Pages](site/README.md)**
-
-One tracked page contains the overview and all four studies, including figures,
-interactive comparisons and trace walkthroughs. Open `site/index.html` directly,
-or use the local launcher below. Guided figures need no runtime files; full scan exploration uses the retained local arrays.
-
-## Reading order
-
-| Study | Main finding |
-| --- | --- |
-| [Boundary errors](site/index.html#boundaries) | Three reviewed misses and one source hold; case 32 ruled out as too nitpicky; case 61 explained with a labeled omission plane. |
-| [Organ identity](site/index.html#anatomy) | A compact-pancreas miss resolves when context is added. |
-| [Tissue ownership](site/index.html#absorption) | Broad partial-inclusion audit misses; a focused audit of identical data passes. |
-| [Aneurysm localization](site/index.html#aneurysm) | One reference-label miss, one localization, one source-assisted negative answer. |
-
-No robust, repeatable Sol-failure task is established. The report preserves
-individual outcomes, task-validity limits and later reassessments.
-
-## Repository layout
-
-- `site/`: the complete publication, editable chapters and source-image provenance.
-- `docs/`: protocols, decisions, evidence receipts and the [archive index](docs/archive.md).
-- `catalog/`: retained candidate reviews and trial summaries.
-- `probes/`: task implementations, verifiers and frozen revisions.
-- `scripts/`, `tests/`, `configs/`: workshop tooling and checks.
-- `runs/`, `jobs/`: ignored local execution evidence and full-resolution viewers.
-
-See [reproduction](docs/reproduce.md), [historical submission handoff](docs/submission.md),
-and [the original assignment](docs/task.md).
-
-## Reopen locally or publish
+A research workbench for understanding what agents can do with medical images.
+Semantic groups keep questions, decisions, data sources, experiments, evidence
+reviews and visual explanations together. Capability learning is primary;
+submission qualification is a separate promotion step.
 
 ```sh
-make site
+python3.12 scripts/med present --serve --local-media
+# Open http://127.0.0.1:8765
 ```
 
-This opens `http://127.0.0.1:8768/`. You can also double-click
-`site/Open local report.command`. In the aneurysm chapter, choose **Explore full
-scan** for slice sliders, zoom, contrast, and reference markers. Keep the terminal
-open while exploring; Ctrl+C stops it. Run the same command to return later.
-See the [local viewing guide](site/README.md) for scan restoration and controls.
+The read-only index searches prior work and decisions. It includes portable
+stories and figures; existing local data enables guided image and geometry tours.
+A clean checkout needs only Python 3.12. No command above downloads data or runs
+a model. To create a portable static build: `python3.12 scripts/med present`.
 
-For GitHub Pages, select **GitHub Actions** in repository **Settings → Pages**,
-then push `main`. The included workflow publishes only the bundled report.
-Expected URL after successful deployment: `https://qianyizhang.github.io/tb3/`.
+| Group | Question |
+| --- | --- |
+| [Anatomy audit](groups/anatomy-audit/README.md) | Does the anatomy match the segmentation and its labels? |
+| [Lesion localization](groups/lesion-localization/README.md) | Can the agent find a focal abnormality and justify it spatially? |
+| [Registration](groups/registration/README.md) | Which correspondences survive motion and changed context? |
+| [Tubular anatomy](groups/tubular-anatomy/README.md) | Can it recover connected paths, identify branches and construct curved views? |
+| [Cardiac motion](groups/cardiac-motion/README.md) | Can geometry and motion support independently checked mechanical estimates? |
+| [Anatomical landmarks](groups/anatomical-landmarks/README.md) | Can it name, localize and abstain on unavailable anatomy? |
+| [Longitudinal reading](groups/longitudinal-reading/README.md) | Can it compare visits with reproducible measurements and qualified interpretation? |
 
-## Maintenance
+```sh
+python3.12 scripts/med list 'atlas'
+python3.12 scripts/med show anatomical-landmarks-br040
+python3.12 scripts/med validate
+make check PYTHON=python3.12
+```
 
-Edit `site/content/`, then run `python3 scripts/build_site.py`.
-Check the bundle with `python3 scripts/build_site.py --check` and the repository
-with `make check` using Python 3.12. See [contributing](CONTRIBUTING.md).
-Research is closed; historical proposals are not an active queue.
+Read [the workflow](docs/workflow.md) for idea capture, decisions, scaffolding,
+freeze/plan/run/collect, validity issues and clean exports. [Contribution rules](CONTRIBUTING.md)
+cover concurrent ownership and milestone checks. Findings are source-linked and
+qualified; historical success is not clinical readiness or a new task's score.
+
+[Exact MRI export recipe](exports/recipes/landmarks-mri-exact.json) demonstrates
+independent saved-output replay. It requires selected local artifacts with
+recorded hashes. It emits a draft into a fresh destination; the separately owned
+[existing submission](docs/submission.md) is never overwritten.
+
+Early nonmedical work and superseded interfaces are recoverable through the
+[archive](archive/README.md). Retained medical probes and round documents keep
+original bytes and provenance; new work belongs in groups. Runtime runs and
+external environments stay local. The local directory and remote repository
+name remain unchanged while concurrent work depends on them.

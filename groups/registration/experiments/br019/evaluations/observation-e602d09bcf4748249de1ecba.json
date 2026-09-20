@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "observation-e602d09bcf4748249de1ecba",
+  "job": "br019-cardiac-r01-terra-high-v1-20260916",
+  "trial_name": "cardiac-r01__7yuEb55",
+  "task_id": "cardiac-r01",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-16T03:44:27.941443Z",
+  "finished_at": "2026-09-16T03:55:01.113554Z",
+  "timing": {
+    "total": 633.172,
+    "setup": 31.015,
+    "agent": 575.77,
+    "verifier": 12.137
+  },
+  "usage": {
+    "n_input_tokens": 1061696.0,
+    "n_cache_tokens": 998016.0,
+    "n_output_tokens": 16202.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br019-cardiac-r01-terra-high-v1-20260916/cardiac-r01__7yuEb55/result.json",
+      "sha256": "e3b74ebcaae9feeeb1c7c0ceec0678f4d5d396748808b61591bdff414654f90e"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br019-cardiac-r01-terra-high-v1-20260916/cardiac-r01__7yuEb55/verifier/test-stdout.txt",
+      "sha256": "a5fdaf475689f8a204c16971fbda63889ff232b0d5580f69c2194d849881eb5f"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br019-cardiac-r01-terra-high-v1-20260916/cardiac-r01__7yuEb55/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br019-cardiac-r01-terra-high-v1-20260916/cardiac-r01__7yuEb55/agent/trajectory.json",
+      "sha256": "85ce8a8769840872dd919a9d7e59765d2e1a373b9a5589ebacdfb658f50d8812"
+    },
+    {
+      "label": "Submitted artifact: answer/pose.json",
+      "path": "runs/br019-cardiac-r01-terra-high-v1-20260916/cardiac-r01__7yuEb55/artifacts/app/answer/pose.json",
+      "sha256": "d3984e69b1f8ca88c2a6c02184ae17600845bffe21397942e0ca50d78d4765a5"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br019-cardiac-r01-terra-high-v1-20260916/lock.json",
+      "sha256": "0a052e1137c006a11c29041537005efc051347f459878fed798ae2084a36f778"
+    }
+  ],
+  "task_checksum": "9288ae6ff3b277e88b3383afa5024e8c978162cb73883bf5793db0dd46291389",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br019-cardiac-r01-terra-high-v1-20260916/cardiac-r01__7yuEb55/result.json",
+  "source_sha256": "e3b74ebcaae9feeeb1c7c0ceec0678f4d5d396748808b61591bdff414654f90e",
+  "evidence_sha256": "63a6701e7bbcf1370c252b7c8cae4f2e1de02ac5e60a91b90759aacf86917dc8",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-0b9d524174a3e1a9e4bb4901",
+  "group_id": "registration",
+  "experiment_id": "registration-br019",
+  "collected_at": "2026-09-20T09:49:50.261473+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-0b9d524174a3e1a9e4bb4901"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

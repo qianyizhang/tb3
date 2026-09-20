@@ -2,7 +2,7 @@
 """Package current English compact media, attribution and reproducibility metadata."""
 import hashlib,json,zipfile
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];T=ROOT/'site_med/tours';E=T/'exports'
+ROOT=Path(__file__).resolve().parents[1];T=ROOT/'presentation/tours';E=T/'exports'
 def main():
  manifest=json.loads((E/'manifest.json').read_text());files=[]
  for item in manifest['videos']:

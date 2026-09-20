@@ -1,0 +1,484 @@
+{
+  "schema_version": 1,
+  "id": "observation-0bd14d3ce4ec23a4da8ab5d9",
+  "job": "br032-real-echo-sol-xhigh-v1-20260916",
+  "trial_name": "cardiac-real__f4ubmjE",
+  "task_id": "cardiac-real",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-16T12:45:26.733896Z",
+  "finished_at": "2026-09-16T12:57:22.808489Z",
+  "timing": {
+    "total": 716.075,
+    "setup": 31.857,
+    "agent": 657.061,
+    "verifier": 13.574
+  },
+  "usage": {
+    "n_input_tokens": 1449078.0,
+    "n_cache_tokens": 1358720.0,
+    "n_output_tokens": 31113.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/result.json",
+      "sha256": "caae3fe3065c33c728d879726254107eb4338fe0e0e621bea50aa724cc8250b0"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/verifier/test-stdout.txt",
+      "sha256": "39144ab20e72ef1841b247190611cc28ba6986c176e7988dcf7cd9a8581fcca5"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/agent/trajectory.json",
+      "sha256": "0d60ac85483c9065002ceb7f77619b82ff86757ac51847ce84777ada386551af"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/solve.cpython-312.pyc",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/__pycache__/solve.cpython-312.pyc",
+      "sha256": "117c08ff6960ccab351efc12ca1aef183545a79f3e9db61b1ace77e56b339ea8"
+    },
+    {
+      "label": "Submitted artifact: answer/method.md",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/method.md",
+      "sha256": "4d29855bc5bbe85c94ce1a5d5099b7871dc4ffb2b3f9abae1a67af99c74dca15"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/contact_view_0.jpg",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/contact_view_0.jpg",
+      "sha256": "629e54d597e121b4cf51f25479649ea8608e311a0ba14b73551607fa81f411ca"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/contact_view_1.jpg",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/contact_view_1.jpg",
+      "sha256": "26d83b1574adac87bbb629533303554b3092228ef85a9cd329f2730a3b33a6b0"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/contact_view_2.jpg",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/contact_view_2.jpg",
+      "sha256": "adcf1ec79e069e02a833ace4cdb3aab3ac088d53e3f4d6d9cb0a71fdd8d5731b"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/contact_view_3.jpg",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/contact_view_3.jpg",
+      "sha256": "547e5846e0e6600588bc6214bc0cc2e177bd2a59893ae8f8fde8cce40d7068f4"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_01.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_01.png",
+      "sha256": "ae432ffb0469baa5741be35654cc2dea39835fe8c41e313158afc62304fda065"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_02.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_02.png",
+      "sha256": "8dd4250a12b3e2439970532ffdffd6334cd085b6da4564885436538c46c88c31"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_03.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_03.png",
+      "sha256": "c4139fa01748abaeec2b88f1a0199f92c5c9caf64a82cc76a9ca44d1c6edc074"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_04.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_04.png",
+      "sha256": "0a4a9c0390ab481356685de1952c30930c224ecb13fe958b1e1cb6de9f9bd7c3"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_05.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_05.png",
+      "sha256": "b568c4549d64aa4b37bd0f4c2ee47c09b0d07264cdcebc0ab906e9969e628421"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_06.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_06.png",
+      "sha256": "1ad615843704ef5c5513efb0d3247b9076b197c9fc4fea431a5eb88f332a03af"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_07.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_07.png",
+      "sha256": "7430aa2f903e23d784e5ac6f940fbb689c9ec350df60ed0e57897ef86f49eb26"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_08.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_08.png",
+      "sha256": "870e0b795ddec7a3d44fb73a800c271fefd0262d4e1a7c1d7b195778c2c554e4"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_09.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_09.png",
+      "sha256": "5916316287afd2f32466645ca16cbd511a7128da2041df596ec3abd91bc8ca81"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_10.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_10.png",
+      "sha256": "bafa94642e19aa60b23aa7276583bcfdfe96b1056e5a06aacae2ccb0e3f4f172"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_11.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_11.png",
+      "sha256": "8c0b9fb4711f80bf80d1f18c871afeb61891a44d6e9a7661984342e317c66187"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_12.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_12.png",
+      "sha256": "f1caf86ff8fe76e93e0958ace74d6007c2871e2d41aa41b22c66e2fb9d067922"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_13.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_13.png",
+      "sha256": "35c46b3dd6cae843ca4e2ffca20284d5eaf72f2bb35905385ec17870cae10b58"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_14.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_14.png",
+      "sha256": "af332518f81cc8b3e68ccfc21e12318b52770e5e57167b66922306a45e9bf814"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_15.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_15.png",
+      "sha256": "8e9a127e95a9b1675ef0a7d9fdce43126d5fca8813d1855201e680f749090760"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_16.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_16.png",
+      "sha256": "8a3a74e815dd6879cc151614d4e9581cd683909132ee63743bc5d1d320867ff8"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_17.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_17.png",
+      "sha256": "6b703383c6bca50d955c1878f7b6ffd6f21dd13d97a36c896ce4e404113f75f0"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_0/frame_18.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_0/frame_18.png",
+      "sha256": "8c9f78a385de7c62a6dc315104c59f78e3fd50e0d2d494194838f540cfa98704"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_01.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_01.png",
+      "sha256": "b783f18ef68feb10a9493bce163531c433dfed0ca9ce7e56279808265202df80"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_02.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_02.png",
+      "sha256": "3dc795d013b31974f24f2bc88fcf044d62dd0cf7b1d02870b5113ca876c04995"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_03.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_03.png",
+      "sha256": "97e713ae359362e342f28eae3e6d44e67cc65654dce8fa0450b692e88172b29e"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_04.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_04.png",
+      "sha256": "dbff6606e1cbacc78f9fbe364b83e9c7645eef1bf13822663eb4801571548151"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_05.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_05.png",
+      "sha256": "d0ee46155e2ae5c869315a2d4af5a80fddc1cbf02c2bb48277bc4f4066045127"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_06.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_06.png",
+      "sha256": "175ee73fa7393ba57012bd9131d148fd9e8258652f11cd89d5864f7cc04454bb"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_07.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_07.png",
+      "sha256": "6201901aa4bbad829e35646d1a1015c063ca74b963037f227d0f4f4629495d1c"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_08.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_08.png",
+      "sha256": "cbc52e405ff970a7ef772518e1057f388850cf37f56a52cf0c419b0197d3b2ad"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_09.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_09.png",
+      "sha256": "63cad097d4b60706cfdd4cbef3f9d7aa61d40ebc49a3bb6a55608a73618f5a19"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_10.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_10.png",
+      "sha256": "1439e7d95e6a1c3fd8dde864bcb8c08cac616d6f94f222cd17cfa50b27ece340"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_11.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_11.png",
+      "sha256": "3f801facb0a3ab05a16f9203f6962d9066f86ea2fcf57046d2f9c3284b14e179"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_12.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_12.png",
+      "sha256": "abf0fe0a2bd43fa419cc915ce69e9befa4dfa3cacbd5c1e654e4288b67bc6665"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_13.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_13.png",
+      "sha256": "5704e43a8081f1a5b8c0e9b5d444e721a0b52d08dd6ba32a69dafd4bd5a365b9"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_14.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_14.png",
+      "sha256": "b86fab254fb3886c5cbe431ca0ba53db18c1bcabe0b6d21571a98f4886c76913"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_15.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_15.png",
+      "sha256": "c98b181d2e413e3cda8966634a9aa39fc1d7075a599b988fe5fe455ed0f0d316"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_16.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_16.png",
+      "sha256": "ee5a06152bd61cb4cf600b8d223aa6265499971264a6788fdc5cf88f01cda3f8"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_17.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_17.png",
+      "sha256": "74eeb482659866b9abf867795d876d8dc78780b7fc889b73a34ccf34a95158fb"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_1/frame_18.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_1/frame_18.png",
+      "sha256": "d38bfe083be1596968e4ad771eb77e5e54ae743acb0d990fe550bbc62256cb1f"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_01.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_01.png",
+      "sha256": "e0412ac6fe71a8ce3efec0213c2704553cd55ff58ca96f2912c24cb2ce02609e"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_02.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_02.png",
+      "sha256": "34e74d07b9d40a9dcabe3f41bea1e455889885a4aba84c420a6efe03c31b6f1f"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_03.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_03.png",
+      "sha256": "215d752a2438168e105df983e7ce009f24d39db3a420699831110222a964ce36"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_04.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_04.png",
+      "sha256": "9fcf4da71be42210f7e78497775097add26a1829074dd34981556aad07637cc3"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_05.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_05.png",
+      "sha256": "3fdefee215bc4f0e2f0eb447135cfc2c409a8372eb1050c23d8bfcad6fbabdc3"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_06.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_06.png",
+      "sha256": "7e94c06564c15327070e2bfb169024c5cd58c06be47ce25dd104247478de9179"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_07.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_07.png",
+      "sha256": "c730488e543e282e82a39096a4bb9a296a678a0fe7d563f42eda8371f9c22881"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_08.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_08.png",
+      "sha256": "b835b4d3d8214aa846c22918f189c9662e10b66b97264b8a17df313351ed7176"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_09.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_09.png",
+      "sha256": "347a0b08fe8ee7fec6002e0d8f2975b4ba0d3b38c812f862b40170d7c62c73b4"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_10.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_10.png",
+      "sha256": "09d49e85f6e743fd5d2af9d195d2e54fcb5ef8c024a109873af2b7c49c59502d"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_11.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_11.png",
+      "sha256": "6ea90ff357e9d22a710ee2cd73b495e74eb45d7a86522698b189fef9244d1f39"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_12.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_12.png",
+      "sha256": "065e398c1c74f641b535dd3e4d89328288be3d707b79d39ee637fb663507bdb5"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_13.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_13.png",
+      "sha256": "b506cc76854baf499a9bce93b79f826c1e6ccdf0c7fad16ff7d0f79a1a0d7ed0"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_14.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_14.png",
+      "sha256": "54a9243f9f8fdb299c520ba77d87495a53bb3e2f3598b15f2760c582358a6f5d"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_15.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_15.png",
+      "sha256": "8ac01c47df70919272503916a6edfc8b1968876db775935513532f2208634355"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_16.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_16.png",
+      "sha256": "a0af2e7117c7684477bb6308b76bb398dad31fe17c6fd391c335916a7406d67a"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_17.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_17.png",
+      "sha256": "e3215d26d66667a5c143c87182abbd3050aa126aac858a3e782855fb6228a6a8"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_2/frame_18.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_2/frame_18.png",
+      "sha256": "0cdffd32978a044217d5baf26ae24ca6f081a28e958f9ab526763ce55e9f0cee"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_01.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_01.png",
+      "sha256": "f3415abacd0db1d64d2d822ec2d3d173c560a39129f3717c2bfe3f8766972dbe"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_02.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_02.png",
+      "sha256": "43ba662c7cf02963d7a28ed2a983590d10a2ec3a3f99a53dc62bedbe16da057f"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_03.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_03.png",
+      "sha256": "6ce71c1f134ce33973a750dd23a35633d3102d4a8257d9ba75d9095306aa157f"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_04.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_04.png",
+      "sha256": "4dc1c81e57b42cfe721651e8d2ea97a3f26bd9adb7827bec8fac194193482fa2"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_05.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_05.png",
+      "sha256": "671cae49520a5847bb109eb6747e0e37d2eb3b2b9d86da9d519a7376c2926893"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_06.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_06.png",
+      "sha256": "a5e83cfe1cbf811319790544eafe26dd24c62d6a5b1515e339dbd93248a7bb6a"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_07.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_07.png",
+      "sha256": "ce347c1ab9cb1d298ff5e248e38ba1c2fc2aa9573a4a0529baf37481aec17477"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_08.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_08.png",
+      "sha256": "ca264e826045005bed497d770c861ae2036cc7e36edcd23ec196cbaa5874996e"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_09.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_09.png",
+      "sha256": "65de844eda85d84e8aed5061d984be69bbcd477f815d1ce4eb603e1b9115d7d3"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_10.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_10.png",
+      "sha256": "2cbce5ac57242eef808919e1f175f8a442c6e8136f853860f2ae8aca4589fe84"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_11.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_11.png",
+      "sha256": "1bdedbdbf00615856883fe038b669072c1d4d5fb6b1081c3b3a00f62cdf07f1a"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_12.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_12.png",
+      "sha256": "90882d23b58ecb79ec60c7f0f4bed06dd9836136190972971e230fdd9b624def"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_13.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_13.png",
+      "sha256": "a7ac7756fda7e0e9f65f2127b07fd5ee18e351df31378dc80a0df10c9b2a09fc"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_14.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_14.png",
+      "sha256": "ff640b3a6f11441d13d94ea07164858db9af6786bb193b78999e51b5a6b9d065"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_15.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_15.png",
+      "sha256": "997fb5bd8feb64577b9c7ff09b0a6904c3c93ae16a6e2755adb91311d36be6b9"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_16.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_16.png",
+      "sha256": "118467cc1217b531714e88889aaaa528b2ed50c6ef4ac595f5968cb71ff62284"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_17.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_17.png",
+      "sha256": "ce1d695fcecb45dfee4baaaa5797e28b43d555dd0ce15f883e9e478277224015"
+    },
+    {
+      "label": "Submitted artifact: answer/overlays/view_3/frame_18.png",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/overlays/view_3/frame_18.png",
+      "sha256": "458cdf19123d9f433755943adbbc8098efb9f67ce371c2e5a542a8ea6c3d7f46"
+    },
+    {
+      "label": "Submitted artifact: answer/prediction.npz",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/prediction.npz",
+      "sha256": "8364e393e2a7247d73c2e329f68dfa0f79cf35bdfe36f3cd99caece0bb2b447a"
+    },
+    {
+      "label": "Submitted artifact: answer/solve.py",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/solve.py",
+      "sha256": "b891d1bf75901a29a5a44a1dda4f60eee5ef263e700bc24bc5f4df8f46c71ee0"
+    },
+    {
+      "label": "Submitted artifact: answer/summary.json",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/summary.json",
+      "sha256": "41d3d1fdbc771c2c99e8dbd4e1d4814501ca931ee4c82b9baab8f44daf391bdb"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br032-real-echo-sol-xhigh-v1-20260916/lock.json",
+      "sha256": "d8c52ed64da8e1739c4d8330877dab1c3b405cf4d9757dff762afcaa0dfab7c4"
+    }
+  ],
+  "task_checksum": "07e614e9bb09cf8dd02278e021636dd1b24ebdc15544684d26f30d6816f80a4f",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/result.json",
+  "source_sha256": "caae3fe3065c33c728d879726254107eb4338fe0e0e621bea50aa724cc8250b0",
+  "evidence_sha256": "6b03ce3fd7ede76bbec4eaa655d15aec3b9c4c19f57ffc288357075cd208f2db",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-dad8855317c98d786cedc49d",
+  "group_id": "cardiac-motion",
+  "experiment_id": "cardiac-motion-br032",
+  "collected_at": "2026-09-20T09:49:52.589501+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-dad8855317c98d786cedc49d"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

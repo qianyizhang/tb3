@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "observation-f87366f20c157ae50a9fbee6",
+  "job": "br015-abdomen-v01-oracle-v1-20260915",
+  "trial_name": "abdomen-v01__svtikDb",
+  "task_id": "abdomen-v01",
+  "agent": "oracle",
+  "model": null,
+  "reasoning_effort": null,
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "harbor_version": "0.18.0",
+  "execution_mode": "harbor",
+  "classification": "control_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-15T11:47:03.003666Z",
+  "finished_at": "2026-09-15T11:47:29.778634Z",
+  "timing": {
+    "total": 26.775,
+    "setup": 0.0,
+    "agent": 0.163,
+    "verifier": 12.395
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br015-abdomen-v01-oracle-v1-20260915/abdomen-v01__svtikDb/result.json",
+      "sha256": "5eb8761b7a0fd59129ea90703b985d7e70d9ac49547cb4756c3996a0f01a85a8"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br015-abdomen-v01-oracle-v1-20260915/abdomen-v01__svtikDb/verifier/test-stdout.txt",
+      "sha256": "fed85c4cdf65a12981bdeb37aeca131efe6579a603143fb2a9e61cda52077dff"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br015-abdomen-v01-oracle-v1-20260915/abdomen-v01__svtikDb/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Submitted artifact: answer/answer.json",
+      "path": "runs/br015-abdomen-v01-oracle-v1-20260915/abdomen-v01__svtikDb/artifacts/app/answer/answer.json",
+      "sha256": "76f48bdc948dbfd35f0fe27f8721e97cf7492c5209b1e9f51c281fc9a9b94b36"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br015-abdomen-v01-oracle-v1-20260915/lock.json",
+      "sha256": "c43f877a4e0fd45bba9082293c82b5ea2e162d8b0744698520e016a4bddbffb4"
+    }
+  ],
+  "task_checksum": "8b1841207b6af3d1da6310ad015e1a2f79060c04f218845237525e62a1bdecba",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br015-abdomen-v01-oracle-v1-20260915/abdomen-v01__svtikDb/result.json",
+  "source_sha256": "5eb8761b7a0fd59129ea90703b985d7e70d9ac49547cb4756c3996a0f01a85a8",
+  "evidence_sha256": "951dbc6979eb74e0ed69145ed86194cc2cd0d242f6e6a35f23a328c14dd1dba8",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-89265932b65550ed5eb219e3",
+  "group_id": "anatomy-audit",
+  "experiment_id": "anatomy-audit-br015",
+  "collected_at": "2026-09-20T09:49:49.292590+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-89265932b65550ed5eb219e3"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "id": "observation-243bf0fb989f28d8c3806ffb",
+  "job": "br031-cardiac-l0-terra-high-v1-20260916",
+  "trial_name": "cardiac-l0__newvKfk",
+  "task_id": "cardiac-l0",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-16T11:15:53.930281Z",
+  "finished_at": "2026-09-16T11:18:16.745203Z",
+  "timing": {
+    "total": 142.815,
+    "setup": 31.251,
+    "agent": 81.093,
+    "verifier": 15.141
+  },
+  "usage": {
+    "n_input_tokens": 81975.0,
+    "n_cache_tokens": 69376.0,
+    "n_output_tokens": 3457.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br031-cardiac-l0-terra-high-v1-20260916/cardiac-l0__newvKfk/result.json",
+      "sha256": "0cc66bd6149a6eb01d6230605aed2ae0182ee52ed4fdc4226a4fa80be9824868"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br031-cardiac-l0-terra-high-v1-20260916/cardiac-l0__newvKfk/verifier/test-stdout.txt",
+      "sha256": "84d979d372c31950cf354d9f81d37aa913af3b7da4d2b9d3450ede09b12f38ce"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br031-cardiac-l0-terra-high-v1-20260916/cardiac-l0__newvKfk/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br031-cardiac-l0-terra-high-v1-20260916/cardiac-l0__newvKfk/agent/trajectory.json",
+      "sha256": "93a5d165135a3f9e4dbf24c58b908a15b82572f6486bb8305f751748d0c92b75"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/solve.cpython-312.pyc",
+      "path": "runs/br031-cardiac-l0-terra-high-v1-20260916/cardiac-l0__newvKfk/artifacts/app/answer/__pycache__/solve.cpython-312.pyc",
+      "sha256": "092e9c65b1c92fe072bb25d262ccdce72c0da19c75e7fe73bb19d69de5310ed8"
+    },
+    {
+      "label": "Submitted artifact: answer/fields.npz",
+      "path": "runs/br031-cardiac-l0-terra-high-v1-20260916/cardiac-l0__newvKfk/artifacts/app/answer/fields.npz",
+      "sha256": "fb5cae9789321d36a272ff941f5ab2cea1b0f401cde2ce33d522ec4264e7e75a"
+    },
+    {
+      "label": "Submitted artifact: answer/method.md",
+      "path": "runs/br031-cardiac-l0-terra-high-v1-20260916/cardiac-l0__newvKfk/artifacts/app/answer/method.md",
+      "sha256": "83bd83f31eb41fd9090f85fee245a2bdf4dcbe2974004f752822a1c0fece80f0"
+    },
+    {
+      "label": "Submitted artifact: answer/solve.py",
+      "path": "runs/br031-cardiac-l0-terra-high-v1-20260916/cardiac-l0__newvKfk/artifacts/app/answer/solve.py",
+      "sha256": "528489504e8b20134baa28a0e34de981c9184c319eb3df97bb54cafe0c322620"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br031-cardiac-l0-terra-high-v1-20260916/lock.json",
+      "sha256": "59b9768210926885af49a5f4a49d34f6de613fe2653e8aac33b26ece73a273b5"
+    }
+  ],
+  "task_checksum": "60b280dbe9a24cecdaeff875581b055ad5468b2da3bce19c529f73d5d5410e7f",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br031-cardiac-l0-terra-high-v1-20260916/cardiac-l0__newvKfk/result.json",
+  "source_sha256": "0cc66bd6149a6eb01d6230605aed2ae0182ee52ed4fdc4226a4fa80be9824868",
+  "evidence_sha256": "b65e3c541e77712e7317a7dce480f20fabcac2bc1f814a858a63bdfacf49b418",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-39cc09b3fff6058262a713c1",
+  "group_id": "cardiac-motion",
+  "experiment_id": "cardiac-motion-br031",
+  "collected_at": "2026-09-20T09:49:52.039657+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-39cc09b3fff6058262a713c1"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

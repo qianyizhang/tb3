@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "id": "observation-743ec093f9f914ecc146639e",
+  "job": "br016-aneurysm-n01-oracle-v1-20260915",
+  "trial_name": "aneurysm-n01__5MfwERG",
+  "task_id": "aneurysm-n01",
+  "agent": "oracle",
+  "model": null,
+  "reasoning_effort": null,
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "harbor_version": "0.18.0",
+  "execution_mode": "harbor",
+  "classification": "execution_error",
+  "reward": null,
+  "started_at": "2026-09-15T11:56:05.458046Z",
+  "finished_at": "2026-09-15T11:56:19.394079Z",
+  "timing": {
+    "total": 13.936,
+    "setup": 0.0,
+    "agent": 0.169,
+    "verifier": 0.0
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": "FileNotFoundError",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br016-aneurysm-n01-oracle-v1-20260915/aneurysm-n01__5MfwERG/result.json",
+      "sha256": "dd6348a361e0a03bf947dbe4c80bae6f11053b73321259c07a06c704966e264f"
+    },
+    {
+      "label": "Submitted artifact: answer/answer.json",
+      "path": "runs/br016-aneurysm-n01-oracle-v1-20260915/aneurysm-n01__5MfwERG/artifacts/app/answer/answer.json",
+      "sha256": "d0f46e8f9f3b3b601ef6e9b1778a7882a3e14ed6469ce064ff849db8d89d9eed"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br016-aneurysm-n01-oracle-v1-20260915/lock.json",
+      "sha256": "c75d54f354c97636184ad361bf7f8effab0775334e1b18a6caec6775791953e6"
+    }
+  ],
+  "task_checksum": "a6b4d744b5a4c85ce0d931f3ef592d1bf6c29c2f6ce8a42739ded90bf59f8823",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "No verifier case output is available."
+  ],
+  "source_result": "runs/br016-aneurysm-n01-oracle-v1-20260915/aneurysm-n01__5MfwERG/result.json",
+  "source_sha256": "dd6348a361e0a03bf947dbe4c80bae6f11053b73321259c07a06c704966e264f",
+  "evidence_sha256": "e7740ede418b70abb3ad6e5923f5f2a915190d90b37f5ec3700d7fe232daf27b",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-0c145494d23f773f8f37a08a",
+  "group_id": "lesion-localization",
+  "experiment_id": "lesion-localization-br016",
+  "collected_at": "2026-09-20T09:49:49.350199+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-0c145494d23f773f8f37a08a"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

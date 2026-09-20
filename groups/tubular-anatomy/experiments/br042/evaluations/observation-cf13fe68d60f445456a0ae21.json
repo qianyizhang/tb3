@@ -1,0 +1,654 @@
+{
+  "schema_version": 1,
+  "id": "observation-cf13fe68d60f445456a0ae21",
+  "job": "br042-all-vessels-astra-medium-v3-20260920-setup-recovery1",
+  "trial_name": "all-vessels__tvkf3rA",
+  "task_id": "all-vessels-image-only-v3",
+  "agent": "codex",
+  "model": "openai/gpt-6-astra",
+  "reasoning_effort": "medium",
+  "agent_version": "0.155.1",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_failure_candidate",
+  "reward": 0.0,
+  "started_at": "2026-09-20T04:38:42.157094Z",
+  "finished_at": "2026-09-20T05:26:49.405434Z",
+  "timing": {
+    "total": 2887.248,
+    "setup": 67.066,
+    "agent": 2794.146,
+    "verifier": 12.417
+  },
+  "usage": {
+    "n_input_tokens": 9236374.0,
+    "n_cache_tokens": 9021824.0,
+    "n_output_tokens": 78669.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/result.json",
+      "sha256": "1b325b80a482b6cdb1b1cce530ec9d17ee66047221bc11a9d3d0f70ca3d24dae"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/verifier/test-stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/agent/trajectory.json",
+      "sha256": "adddf9b7d9251baf37cb9aaf6a226bb3d232f66ad40c8f96cfd5bf8d79fb6e81"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/inspect.cpython-312.pyc",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/__pycache__/inspect.cpython-312.pyc",
+      "sha256": "83903e28e5e5186112a62d1184df0f79ae0facf5ace5d979197b1d9ce11de39d"
+    },
+    {
+      "label": "Submitted artifact: answer/__pycache__/trace_utils.cpython-312.pyc",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/__pycache__/trace_utils.cpython-312.pyc",
+      "sha256": "169a0bf5e970a76e6100c669bedd85f655406811f1121e081fae02a95afcc530"
+    },
+    {
+      "label": "Submitted artifact: answer/build_coronaries.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/build_coronaries.py",
+      "sha256": "3538efec63fd6af653c257a6f1756e380a6ee20830ccbc3c2cf2c322d8c1b5f7"
+    },
+    {
+      "label": "Submitted artifact: answer/candidates.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/candidates.py",
+      "sha256": "3a8ed94e5dd4fd04e505bfa46b0acc686c4b580c8466af5af69878b5ddccfe47"
+    },
+    {
+      "label": "Submitted artifact: answer/cardiac_veins.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/cardiac_veins.py",
+      "sha256": "4492d9a71090a19fcad81a5b414381c34b59b06f98b09393e38eecc7c0aebca5"
+    },
+    {
+      "label": "Submitted artifact: answer/centerlines.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/centerlines.json",
+      "sha256": "09c7db103b3a79e6a4d294120a397fa6de7b060b1b6facac1836e81072cccc18"
+    },
+    {
+      "label": "Submitted artifact: answer/check_sections.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/check_sections.py",
+      "sha256": "9485f1bcbc85583af5fe92da3716d4fa709c32a97f1abe51adec5ed10f8135e1"
+    },
+    {
+      "label": "Submitted artifact: answer/compute.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/compute.json",
+      "sha256": "b637c3757552c423e585cb6fa891340616f949d4ed814778e97bb1949d5be374"
+    },
+    {
+      "label": "Submitted artifact: answer/coronary_projections.png",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/coronary_projections.png",
+      "sha256": "a42f2b22202f89aac241029bf3e6815070a5a8e2d38f9e80e57f86bd420b49f9"
+    },
+    {
+      "label": "Submitted artifact: answer/coronary_review.png",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/coronary_review.png",
+      "sha256": "7f5aeafcca6e1c8aa57a5f4768bfad63a8fd29d573372c69447c26e80c0ab141"
+    },
+    {
+      "label": "Submitted artifact: answer/discovered_paths_voxel.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/discovered_paths_voxel.json",
+      "sha256": "d3b8f5581e87854434d89cc6216ed476c3c617efca017fb7008950d9c1469d1a"
+    },
+    {
+      "label": "Submitted artifact: answer/evaluation.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/evaluation.json",
+      "sha256": "00c899cb95ef2165202ead5ca04a8e88aabff9fcf2109e2305bb194e558d0c2a"
+    },
+    {
+      "label": "Submitted artifact: answer/extend.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/extend.py",
+      "sha256": "32b5539805b2bd936293d9bbccb88ccbc61a1b4f14f0cce1fa64839cf1d088fa"
+    },
+    {
+      "label": "Submitted artifact: answer/extend_low.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/extend_low.py",
+      "sha256": "ad5aa9fe983ee2644112a1c94a5c9764b0401a4b69b1492afd8c251b13adaaae"
+    },
+    {
+      "label": "Submitted artifact: answer/extract.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/extract.py",
+      "sha256": "59307a1235d76acfa9177861f716080eefe9321f076b3a6daea29868f08847bc"
+    },
+    {
+      "label": "Submitted artifact: answer/finalize.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/finalize.py",
+      "sha256": "9e3b36d2946765bdcce0570d81866994b2fd241154f58602981aaa275e1adf61"
+    },
+    {
+      "label": "Submitted artifact: answer/inventory.csv",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/inventory.csv",
+      "sha256": "67d60888d9328b7c0538f7b95421d2b9b7a6f3553969b167cdae1c30e48bf78e"
+    },
+    {
+      "label": "Submitted artifact: answer/major_vessels.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/major_vessels.py",
+      "sha256": "3c1538e0cc79b8ac1f41690c0d711fa16de44696844c887664178f2e638057a6"
+    },
+    {
+      "label": "Submitted artifact: answer/make_review.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/make_review.py",
+      "sha256": "3c837ea6d14ef3150e90cbc35d164c1d2fa06b5088011233c1d5e9581a74f674"
+    },
+    {
+      "label": "Submitted artifact: answer/method.md",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/method.md",
+      "sha256": "d7fa6e348affdbed49ae5ac8f191c4bcf0b4cc242ac719e0412f153c8382c811"
+    },
+    {
+      "label": "Submitted artifact: answer/ortho.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/ortho.py",
+      "sha256": "e7ce2cca4e724954d5d4af9108fd016ec5f286c5aa4b303b403a3acc50fb3589"
+    },
+    {
+      "label": "Submitted artifact: answer/provenance.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/provenance.json",
+      "sha256": "f06bc1a06fbba9bc0a6f4aedde4993010215ce3643a2d589b9f9da9fa20e9936"
+    },
+    {
+      "label": "Submitted artifact: answer/refine_major.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/refine_major.py",
+      "sha256": "261835b2f870e2c5a21a56635f85ddaaaddb99b0a2622d219d35a9324526fd41"
+    },
+    {
+      "label": "Submitted artifact: answer/render.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/render.py",
+      "sha256": "f6558ec4c7037205e729dba801ba95868bca45c7197c17c6efb413e329123244"
+    },
+    {
+      "label": "Submitted artifact: answer/reproduce.log",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/reproduce.log",
+      "sha256": "2cb73476b1a767e9a78628d6bf1481a7c9edbc0e95ab7e9d9bd90053cd869a56"
+    },
+    {
+      "label": "Submitted artifact: answer/segment.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/segment.py",
+      "sha256": "9708e8582c249e2530dd39239c2ffb1c013d7622cdc1ba8e5679de6ade1818b9"
+    },
+    {
+      "label": "Submitted artifact: answer/trace_utils.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/trace_utils.py",
+      "sha256": "0e9bd5ab939b67641bfef59d3974c830c0d81d4c60eb611342267e1a0e78b963"
+    },
+    {
+      "label": "Submitted artifact: answer/tree.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/tree.py",
+      "sha256": "916d870de0320716d46b4e572cca98a8180485604a2d6d11347837da796f98ca"
+    },
+    {
+      "label": "Submitted artifact: answer/tree_extended.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/tree_extended.py",
+      "sha256": "8fb320fbe153b9b64b07c726550496cc378a25af76857d9466ac1e62a1d1e577"
+    },
+    {
+      "label": "Submitted artifact: answer/tree_low.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/tree_low.py",
+      "sha256": "0d6d31d5b8f41c1b21983631e1795d636ca0e3bd408f849f15c8a0a274d7453b"
+    },
+    {
+      "label": "Submitted artifact: answer/tree_lung.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/tree_lung.py",
+      "sha256": "68902335dbcaceb87c5972e0c3eb19517639aab9729257066ebe3cca97310e44"
+    },
+    {
+      "label": "Submitted artifact: answer/validation.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/validation.json",
+      "sha256": "304ca4cd7dab61233f1dc6e76e0ed7d6916baa7fa09ff28e70b15d3f05d013a8"
+    },
+    {
+      "label": "Submitted artifact: answer/vesselness.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/vesselness.py",
+      "sha256": "b3746a17ac7fa29920f22c9961ab713dc1d3b1b5e447f56b6802407be0275619"
+    },
+    {
+      "label": "Submitted artifact: answer/view_scan.py",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/view_scan.py",
+      "sha256": "d462b8e66150aefee0fcae72bd19dbed054406d13e25e9ae7559af19f868515c"
+    },
+    {
+      "label": "Submitted artifact: answer/work/anterior.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/anterior.jpg",
+      "sha256": "33bad5669f5a6d3eda25290947ef650f4c0d543bb9c822565d9d084d96f95f5b"
+    },
+    {
+      "label": "Submitted artifact: answer/work/aortic_root.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/aortic_root.jpg",
+      "sha256": "07901a048164f900f668b235be64e62042ac89a8ca9cc4dd5db1a9bbf1ba409c"
+    },
+    {
+      "label": "Submitted artifact: answer/work/axials.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/axials.jpg",
+      "sha256": "ed54ae80c6ebfc01749078ea0d7be7a04f86f4767cf1f52bb4b835b27eb6e6a8"
+    },
+    {
+      "label": "Submitted artifact: answer/work/branches_review.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/branches_review.jpg",
+      "sha256": "8ffbaec9e76f6daec8956075f28ec203d3f2a0e44c2232a47f0821a523efaef3"
+    },
+    {
+      "label": "Submitted artifact: answer/work/cardiac_veins.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/cardiac_veins.json",
+      "sha256": "e71cac38bed310b3ed5642d39b6192acf931b2df4afab01794f68c81420a87ef"
+    },
+    {
+      "label": "Submitted artifact: answer/work/cardiac_veins_review.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/cardiac_veins_review.jpg",
+      "sha256": "f4ead83f3a4ccffef562c610e86cfee8dea5ce7857398aed7d80607cfcdb27f0"
+    },
+    {
+      "label": "Submitted artifact: answer/work/cava_inferior.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/cava_inferior.jpg",
+      "sha256": "4921ea6a310e5db5a451822d6a72eda3a117966930f2e654a3a26572cb670269"
+    },
+    {
+      "label": "Submitted artifact: answer/work/circumflex.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/circumflex.jpg",
+      "sha256": "6756e7b8a7dcabab04ea97f8ad04805ce840caa2e51f3f0b0d10420169f566bd"
+    },
+    {
+      "label": "Submitted artifact: answer/work/coronaries.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/coronaries.json",
+      "sha256": "bb62f5682005742f7954ed5186025447254324cb6c99288198c6652f83e6a64d"
+    },
+    {
+      "label": "Submitted artifact: answer/work/d1_ant.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/d1_ant.jpg",
+      "sha256": "0b16cdaa55dbba69a2e7b4818c85ae45d4a88b62666d0f88c390e3e2acbe5d0f"
+    },
+    {
+      "label": "Submitted artifact: answer/work/d1_tail.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/d1_tail.jpg",
+      "sha256": "7361e54120fcbd04e98837ebfd3a3adc8cd8353fb7021fecc63aeda6c12246e0"
+    },
+    {
+      "label": "Submitted artifact: answer/work/d1_tail2.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/d1_tail2.jpg",
+      "sha256": "d87e0babb62cc4834d92d4b9e83332835017eef60f50c8cff72c05544dbaf691"
+    },
+    {
+      "label": "Submitted artifact: answer/work/d1dist.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/d1dist.jpg",
+      "sha256": "d35fcbe4a69bdd4623b71a08f4f08e78c5ea1fc2f32617900b7cb27bee5b70d2"
+    },
+    {
+      "label": "Submitted artifact: answer/work/detail.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/detail.jpg",
+      "sha256": "7b2f15df080eab1686d395f5da88e46c8f708f2a8ba8cd9d42eecedfa75f48fd"
+    },
+    {
+      "label": "Submitted artifact: answer/work/diag.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/diag.jpg",
+      "sha256": "2f159ca951e9c0583b350613cc7a6d0ebc2d9062906274f984afa724f1f25845"
+    },
+    {
+      "label": "Submitted artifact: answer/work/distal.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/distal.jpg",
+      "sha256": "66e0e4f0725a4e94ce4cb7688b6cb27dbc0f8f2e519263ad6e1b1e2a52afa9b1"
+    },
+    {
+      "label": "Submitted artifact: answer/work/fixed_review.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/fixed_review.jpg",
+      "sha256": "b0dc70679275f218831b1e7e9c7584ae7cee8f1a68f69116b362ec358ee563c0"
+    },
+    {
+      "label": "Submitted artifact: answer/work/great_vessels.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/great_vessels.jpg",
+      "sha256": "ec11f1c2673374557dbd35692855b4f1599037729e47a2cd12ec402bee8811aa"
+    },
+    {
+      "label": "Submitted artifact: answer/work/inferior.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/inferior.jpg",
+      "sha256": "aaac8fcbb59620ee1697419983dc64be016e536134e68fe58ee1a4406b6092f3"
+    },
+    {
+      "label": "Submitted artifact: answer/work/inferior_aorta.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/inferior_aorta.jpg",
+      "sha256": "460d7d3852f2bb6cd8dcde7197bb76bb4877463fd574a7f3c5434560f9fc21e6"
+    },
+    {
+      "label": "Submitted artifact: answer/work/ivc.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/ivc.jpg",
+      "sha256": "18741b5f5e5b80ad231a4ffd60a5641ee28594aa0e2d5b3538961dcc2a77bc91"
+    },
+    {
+      "label": "Submitted artifact: answer/work/lad.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/lad.jpg",
+      "sha256": "4359f805f4375bb1136db0f219dab3cc8ee01e77a9015f7844f1a9bd685f4efd"
+    },
+    {
+      "label": "Submitted artifact: answer/work/lateral_tail.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/lateral_tail.jpg",
+      "sha256": "a8515001010d8175d82ff54d9ab0622e5ad5874e5935f052c77788e806df9a56"
+    },
+    {
+      "label": "Submitted artifact: answer/work/lcx_branch.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/lcx_branch.jpg",
+      "sha256": "5454806526c349c525236e960b4c7ca2820566e418f7dd284a9ab5d4c5c3418b"
+    },
+    {
+      "label": "Submitted artifact: answer/work/lcx_distal.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/lcx_distal.jpg",
+      "sha256": "735f8294a44aa0da27cd50b8c048c721d3637b11671a8985c0c812ec36ab174a"
+    },
+    {
+      "label": "Submitted artifact: answer/work/left_hilum.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/left_hilum.jpg",
+      "sha256": "8f481e8918588286023787a6e8a7d15b07ccaf466bea2ea4a9c94859d644ff4f"
+    },
+    {
+      "label": "Submitted artifact: answer/work/left_origin.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/left_origin.jpg",
+      "sha256": "5c15dbb0699299b66020ae97219be88ccdb3437e6c368b0702877236db147b8a"
+    },
+    {
+      "label": "Submitted artifact: answer/work/lipv_tree11.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/lipv_tree11.jpg",
+      "sha256": "ebb79a6d41ba423e841f04b78a7942a759a013f8a7f3e7af397171442c378799"
+    },
+    {
+      "label": "Submitted artifact: answer/work/lipv_tree11.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/lipv_tree11.json",
+      "sha256": "8329c2f26a6537c8754230793bbf9f6a310ecb8c017750b98248ef732506deb8"
+    },
+    {
+      "label": "Submitted artifact: answer/work/lipv_tree2.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/lipv_tree2.jpg",
+      "sha256": "42ad30bcb26756b7c4848480ea6d427efbe914c128b072863eb0ada1d7d55e05"
+    },
+    {
+      "label": "Submitted artifact: answer/work/lipv_tree2.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/lipv_tree2.json",
+      "sha256": "1b9c4311fe5d60b97b3610d4b66a6f47238df52e5c443de9d4d30f35e153dece"
+    },
+    {
+      "label": "Submitted artifact: answer/work/lipv_tree2.txt",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/lipv_tree2.txt",
+      "sha256": "3e02796a868fe08cf3660df9e8eaa5a3c57877f1ef41e3e76780789f0abb66fb"
+    },
+    {
+      "label": "Submitted artifact: answer/work/lm_origin.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/lm_origin.jpg",
+      "sha256": "38490ee95996029c1e4153890af01e72f83dfc141b0b6882e72ca6c724763384"
+    },
+    {
+      "label": "Submitted artifact: answer/work/lobar_review.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/lobar_review.jpg",
+      "sha256": "3801d9e69e6eaf8e0034e33b11d4dca03db5d4d7f6ce4ad5ac0a7feb64f20fd6"
+    },
+    {
+      "label": "Submitted artifact: answer/work/low_left.txt",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/low_left.txt",
+      "sha256": "b2716551daef3e7477d4ee8fb1934422fed410525e43509aae3a4a5d08d7df0f"
+    },
+    {
+      "label": "Submitted artifact: answer/work/low_right.txt",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/low_right.txt",
+      "sha256": "af4e637e24486069a5c3c15b3d477980d9d7b9226a4e631823fbcc789b567b28"
+    },
+    {
+      "label": "Submitted artifact: answer/work/lspv_ant_distal.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/lspv_ant_distal.jpg",
+      "sha256": "1f4993f8f66411da71c49fa407e1db88f2ea6b250872c2e5d7afd4916afbf88f"
+    },
+    {
+      "label": "Submitted artifact: answer/work/lspv_map.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/lspv_map.jpg",
+      "sha256": "efd2f6e6e827742342cd39c07cea0a6d5925ed67e1f85aa759839490352273a7"
+    },
+    {
+      "label": "Submitted artifact: answer/work/lul_connector.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/lul_connector.json",
+      "sha256": "f55f0aaf7686c966dc453858854b7c191d4df32c28d8461abc3002c2e1daf546"
+    },
+    {
+      "label": "Submitted artifact: answer/work/major.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/major.json",
+      "sha256": "83e9d85e2bfea7954ce1e6627a514facf7d7ddf748851f98bdaf2026057cf895"
+    },
+    {
+      "label": "Submitted artifact: answer/work/major_refined.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/major_refined.json",
+      "sha256": "fde265eefac492a9cb51d8dd116c810465a0f1ae062dcc5375b3b66c8f3930e0"
+    },
+    {
+      "label": "Submitted artifact: answer/work/major_review.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/major_review.jpg",
+      "sha256": "5a6f4c3af68acdaa1ee39296b131b5b8ddb8fea4571e0dc05943323d39373e42"
+    },
+    {
+      "label": "Submitted artifact: answer/work/pa_sag.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/pa_sag.jpg",
+      "sha256": "1196d6a70d7483fa961d4fb3f89bee7441a8f5430d2c495c4b2e4c9b3412136a"
+    },
+    {
+      "label": "Submitted artifact: answer/work/pda_origin.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/pda_origin.jpg",
+      "sha256": "c18727c55cc5b83ec66302af29207a9a887fae9425a76232f3cc38a78bae3b65"
+    },
+    {
+      "label": "Submitted artifact: answer/work/pre_recompute.sha256",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/pre_recompute.sha256",
+      "sha256": "4aa682ea2af57563363a747244a9eed8f5ca6307e60062fed1fc14c6917a5e64"
+    },
+    {
+      "label": "Submitted artifact: answer/work/rca.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/rca.jpg",
+      "sha256": "bdbe2029b3543f8b3c134f16ce680a11a3735f87b27efe6e0aa8a619c18b0522"
+    },
+    {
+      "label": "Submitted artifact: answer/work/rca_origin.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/rca_origin.jpg",
+      "sha256": "075582296ba08622b889c101f135f1526607dae6e48f2a985f9cc724f0e0fbea"
+    },
+    {
+      "label": "Submitted artifact: answer/work/recompute.log",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/recompute.log",
+      "sha256": "2cb73476b1a767e9a78628d6bf1481a7c9edbc0e95ab7e9d9bd90053cd869a56"
+    },
+    {
+      "label": "Submitted artifact: answer/work/right_hilum.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/right_hilum.jpg",
+      "sha256": "19166fdf3e40dfd5502f34396c6a73968c2a915400ea6f78bd89afd6dd777cb0"
+    },
+    {
+      "label": "Submitted artifact: answer/work/ripv_tree1.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/ripv_tree1.jpg",
+      "sha256": "c154537e5596482c1c9a1d897fcc7d4bf5a96d5f2794cbb6d7e6ce675e2ddeb2"
+    },
+    {
+      "label": "Submitted artifact: answer/work/ripv_tree1.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/ripv_tree1.json",
+      "sha256": "f6c383fef401231c2957df5f554a48b799a64ad42471c8aab45e6ca87c1c8df0"
+    },
+    {
+      "label": "Submitted artifact: answer/work/rpa_upper_map.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/rpa_upper_map.jpg",
+      "sha256": "ebec842cab616e4886c56491b30da9c0e4497c738c1b31caf16e778191b3eedb"
+    },
+    {
+      "label": "Submitted artifact: answer/work/small_review.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/small_review.jpg",
+      "sha256": "898e795ae4ae5350e819baf352bcf0780b2204b469e10ef3f94b3c4e1fcdbcda"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree1.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree1.jpg",
+      "sha256": "41e814e786ffacb869ab5a2fbff8f2d8d0cc3000ab269fd9d1c6a07810c5f08d"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree1.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree1.json",
+      "sha256": "e03bafec2103f7442e178391135b1e6b0515a23d4d99ebc68b71a49e70d73e64"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree10455.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree10455.jpg",
+      "sha256": "c5da36bfdd4f82e099b728c916e66ba118a46ee9f601bf24dc853e06dd15b9a5"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree10455.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree10455.json",
+      "sha256": "bd381896362a08b8068fc05267eec5586c7216fb9aa9b37103a7256d5b0518ca"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree11858.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree11858.jpg",
+      "sha256": "fac97e5be45d2eb36854304469c27da3996cb6d27fa08f77d1752621c2ed96d3"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree11858.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree11858.json",
+      "sha256": "ccee1061712833339aa23d22aa11523f162b1da8641415fffb893d59d26415f3"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree15.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree15.jpg",
+      "sha256": "9f2b79c0e9916933517c7f8f326b50646a2cb4f35c53baca46bee745f4f1fe13"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree15.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree15.json",
+      "sha256": "8e6333de3e566c0a40815fd7a9621abd3bdf04b7661b9e74f4b33c14c2dc9784"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree166.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree166.jpg",
+      "sha256": "49de2e3d71285b4fbed2ce6b97ca9807a90d925dad150ee9f156688930dd4d78"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree166.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree166.json",
+      "sha256": "4f313b1caf62bb912dec2079128d7f686f7485067ce5532a3c6e8989f6922203"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree1855.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree1855.jpg",
+      "sha256": "95c84a6179b4499c62718da61456045f80dfbbe6199103ffed197146f310600e"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree1855.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree1855.json",
+      "sha256": "04dcabcbfec42f0bd9bac7b15129961e7878410c56b660d717686671df35ced9"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree198.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree198.jpg",
+      "sha256": "15aeaaab831110b31e7ab11ec395984783e06b614f8b04a451be450a24073c5c"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree198.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree198.json",
+      "sha256": "1dda8306553155cba5720ce028b8f6ae5c1d965d6ee4dfdccb8043cb906ac76a"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree27796.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree27796.jpg",
+      "sha256": "4c0c690a62d164caa5b295247dc9b326e276b87ec4310735fc587b5f10463e0b"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree27796.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree27796.json",
+      "sha256": "2593d5e9ff8ed7c3bdb4b04d2a3cb156d4d82b82e1851526a2eb88390d223ff7"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree492.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree492.jpg",
+      "sha256": "00d1e85870b076cabefa6f6bb550c7b02d449ad0d96f418ea5a192d8dd6eca5f"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree492.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree492.json",
+      "sha256": "74dc6d0a3d59fe29fe45cecadb11424677e5dc8b288462d2f40a5f0b26984dfa"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree5301.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree5301.jpg",
+      "sha256": "3d7a6219dd61afd42d87e9711f797c113cb8161199ab99d717cf0ec11775328f"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree5301.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree5301.json",
+      "sha256": "47ff5dd7ff2c59ffdb4f7280859a36cf2551889de50463b7f73cf84cec168669"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree9.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree9.jpg",
+      "sha256": "f2fe8a30c5b4321b757e496b9387c239323aca2eb575b1447aebbd4b0dc735e0"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree9.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree9.json",
+      "sha256": "15ad5e844d74ec8f7fdf54a638c58f626e37820e3afda7a698d4fe6f624c185d"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree9484.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree9484.jpg",
+      "sha256": "efaa864b7cb3355c269bbbc86a5c53a472bfcd56b4466ab4d0617d4dbad36d40"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree9484.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree9484.json",
+      "sha256": "6fd6827387a2faa5fa89a622ab7c82c8358dcae7227eecdbb48d7fe6eb50997b"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree9855.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree9855.jpg",
+      "sha256": "884362f929e789f0c9e62f9b2b6fcafe620b3ef3000f8961f51bdbaf1ce54ed6"
+    },
+    {
+      "label": "Submitted artifact: answer/work/tree9855.json",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/tree9855.json",
+      "sha256": "659f83e8aa8892865343bc5e1acdcca546e234eb4c04f89f99765b1b32c3bdb6"
+    },
+    {
+      "label": "Submitted artifact: answer/work/veins_cor.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/veins_cor.jpg",
+      "sha256": "64b6cb406a8b68351d1b9d15c13f19831946f23c0b014035d37d5642d00b22e7"
+    },
+    {
+      "label": "Submitted artifact: answer/work/veins_review.jpg",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/artifacts/app/answer/work/veins_review.jpg",
+      "sha256": "3d4d160ac38bc8717e2bb5ef543d8ac3733055c5075a8386b8f8c5795a384d7b"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/lock.json",
+      "sha256": "0463293b1fd895a6b85ed40e40afe31c92bd696282c534794976ef2f58511c02"
+    }
+  ],
+  "task_checksum": "4fa292360f2e6e8b65019c0c09b98f08914ac4f67a94cfa1be5e3167d235ec4d",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br042-all-vessels-astra-medium-v3-20260920-setup-recovery1/all-vessels__tvkf3rA/result.json",
+  "source_sha256": "1b325b80a482b6cdb1b1cce530ec9d17ee66047221bc11a9d3d0f70ca3d24dae",
+  "evidence_sha256": "043c92ee8c89c3cfa2fa9a26fc245fe475fbb05138ba1be0a174a62b4a4a157f",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-7f88a589d1f43906bcc34dde",
+  "group_id": "tubular-anatomy",
+  "experiment_id": "tubular-anatomy-br042",
+  "collected_at": "2026-09-20T09:49:57.267308+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-7f88a589d1f43906bcc34dde"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

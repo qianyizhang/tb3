@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "observation-a259936e53598fd4291b75b1",
+  "job": "br026-vessel-v01-terra-high-v1-20260916",
+  "trial_name": "vessel-v01__c6dKGRX",
+  "task_id": "vessel-v01",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "high",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-16T09:28:50.552331Z",
+  "finished_at": "2026-09-16T09:34:51.370459Z",
+  "timing": {
+    "total": 360.818,
+    "setup": 32.408,
+    "agent": 300.813,
+    "verifier": 13.42
+  },
+  "usage": {
+    "n_input_tokens": 614482.0,
+    "n_cache_tokens": 542592.0,
+    "n_output_tokens": 11805.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br026-vessel-v01-terra-high-v1-20260916/vessel-v01__c6dKGRX/result.json",
+      "sha256": "8599eb677543d8a7fb34e5fb681c75a2b35217f7b305f2bf7356586c693f89fe"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br026-vessel-v01-terra-high-v1-20260916/vessel-v01__c6dKGRX/verifier/test-stdout.txt",
+      "sha256": "a1d1cdc13734dff8d04f9737e651b38006957057c0e6df7f6dc6351b0055ada0"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br026-vessel-v01-terra-high-v1-20260916/vessel-v01__c6dKGRX/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br026-vessel-v01-terra-high-v1-20260916/vessel-v01__c6dKGRX/agent/trajectory.json",
+      "sha256": "3dee2e5483d3cbe51f99b8db61738aeafcd65ce736565e0126b0a435a002a1b3"
+    },
+    {
+      "label": "Submitted artifact: answer/corrected_mask.nii.gz",
+      "path": "runs/br026-vessel-v01-terra-high-v1-20260916/vessel-v01__c6dKGRX/artifacts/app/answer/corrected_mask.nii.gz",
+      "sha256": "470358c139499ded6a59de45414c6a3d3c892d8bbf54fc982237d06b16a9683a"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br026-vessel-v01-terra-high-v1-20260916/lock.json",
+      "sha256": "e4f60ca76e436661315641d84c7fb1f41f88bb90669f85d6b526a7f2803f705f"
+    }
+  ],
+  "task_checksum": "61e218233439b551dda3fdefe00ccd0fcb9260236aa00d0caf6d9ed761b26ccf",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br026-vessel-v01-terra-high-v1-20260916/vessel-v01__c6dKGRX/result.json",
+  "source_sha256": "8599eb677543d8a7fb34e5fb681c75a2b35217f7b305f2bf7356586c693f89fe",
+  "evidence_sha256": "8ea6d6bf079de79308cdfbf142c9f6de52e4f8191544c6e4f7bbd854c3c62954",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-f8d0949272d3df46a38d68b3",
+  "group_id": "tubular-anatomy",
+  "experiment_id": "tubular-anatomy-br026",
+  "collected_at": "2026-09-20T09:49:51.212967+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-f8d0949272d3df46a38d68b3"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

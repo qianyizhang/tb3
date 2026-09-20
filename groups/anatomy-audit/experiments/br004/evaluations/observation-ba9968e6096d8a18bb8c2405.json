@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "observation-ba9968e6096d8a18bb8c2405",
+  "job": "br004-single-46-terra-max-v1-20260915",
+  "trial_name": "dicom-audit-46__wem5Z8X",
+  "task_id": "dicom-audit-46",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-terra",
+  "reasoning_effort": "max",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-15T03:05:23.407006Z",
+  "finished_at": "2026-09-15T03:18:49.555884Z",
+  "timing": {
+    "total": 806.149,
+    "setup": 41.412,
+    "agent": 734.108,
+    "verifier": 14.137
+  },
+  "usage": {
+    "n_input_tokens": 4529420.0,
+    "n_cache_tokens": 4341760.0,
+    "n_output_tokens": 26836.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br004-single-46-terra-max-v1-20260915/dicom-audit-46__wem5Z8X/result.json",
+      "sha256": "739ad2327702156c2dba55535fbaad8d2a525fd982d15b26ff58deb5924ad904"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br004-single-46-terra-max-v1-20260915/dicom-audit-46__wem5Z8X/verifier/test-stdout.txt",
+      "sha256": "5d60881126286ed13370eee9638e1920f0d867ee6825bc4db593ca65efe06a0b"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br004-single-46-terra-max-v1-20260915/dicom-audit-46__wem5Z8X/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br004-single-46-terra-max-v1-20260915/dicom-audit-46__wem5Z8X/agent/trajectory.json",
+      "sha256": "63b8e5a35aa77b25341d22127696137ffbcf8f269ef9849796ce4c3f9786c030"
+    },
+    {
+      "label": "Submitted artifact: answer/findings.json",
+      "path": "runs/br004-single-46-terra-max-v1-20260915/dicom-audit-46__wem5Z8X/artifacts/app/answer/findings.json",
+      "sha256": "5fddaf8a4bb19e575bc16438e7effabe52c2e61874ef88e6ffce3f75e6dd44b8"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br004-single-46-terra-max-v1-20260915/lock.json",
+      "sha256": "9a027e5b959cd09bdca69e38b542fea25442f2cb45449b1ad79685246c7379e0"
+    }
+  ],
+  "task_checksum": "ad71157ae4588c731f1f677098a878b32722278cf82db046d3bbaaab4c913bcb",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br004-single-46-terra-max-v1-20260915/dicom-audit-46__wem5Z8X/result.json",
+  "source_sha256": "739ad2327702156c2dba55535fbaad8d2a525fd982d15b26ff58deb5924ad904",
+  "evidence_sha256": "61e06b6aa8bef257f1e4ed7e199b174bf86e06afff304114067a7ffbb3cfbc6a",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-796c0934296d2114472fa23a",
+  "group_id": "anatomy-audit",
+  "experiment_id": "anatomy-audit-br004",
+  "collected_at": "2026-09-20T09:49:48.077963+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-796c0934296d2114472fa23a"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

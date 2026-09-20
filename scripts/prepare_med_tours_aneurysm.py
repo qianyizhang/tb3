@@ -9,7 +9,7 @@ import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'site_med/tours/data'
+OUT = ROOT / 'presentation/tours/data'
 BASE = 'runs/br016-aneurysm'
 sources = {}
 

@@ -94,11 +94,12 @@ class MedicalTests(unittest.TestCase):
         c.atomic_write(self.root / c.lookup(self.root, "study")["record_path"], exp)
         frozen = w.freeze(self.root, "study")
         planned = w.plan(self.root, frozen["id"], "oracle")
-        with patch.object(w.subprocess, "run", return_value=subprocess.CompletedProcess([], 9)):
+        with patch.object(w, "harbor_checksum", return_value="a" * 64), patch.object(w.subprocess, "run", return_value=subprocess.CompletedProcess([], 9)):
             receipt = w.run(self.root, planned["id"], "fake-harbor")
         self.assertEqual(receipt["state"], "execution_error")
         self.assertTrue(receipt["frozen_payload_unchanged"])
-        with self.assertRaises(FileExistsError): w.run(self.root, planned["id"], "fake-harbor")
+        with patch.object(w, "harbor_checksum", return_value="a" * 64), self.assertRaises(FileExistsError):
+            w.run(self.root, planned["id"], "fake-harbor")
 
     def test_symlink_and_absolute_paths_rejected(self):
         (self.root / "link").symlink_to("proof.txt")

@@ -1,0 +1,7 @@
+flowchart LR
+    A["30 frames of heart-wall masks"] --> B["Build a mesh and move its vertices"]
+    U["Optional matching ultrasound"] --> B
+    B --> C["Check the reconstructed shape"]
+    B --> D["Calculate local stretch and thickening"]
+    C --> E["Compare with supplied boundaries"]
+    D --> F["Compare with private material-motion truth"]

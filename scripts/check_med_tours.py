@@ -3,9 +3,13 @@
 import argparse, hashlib, json, math, re, shutil, subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-TOURS=ROOT/'site_med/tours'
+TOURS=ROOT/'presentation/tours'
 def read(path): return json.loads(path.read_text())
-def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
+def sha(path):
+    if not path.exists() and path.is_relative_to(ROOT):
+        relocations=read(ROOT/'presentation/relocations.json')['paths']
+        path=ROOT/relocations.get(path.relative_to(ROOT).as_posix(), path.relative_to(ROOT).as_posix())
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 def finite(values):
     if isinstance(values,list): return all(finite(v) for v in values)
     return isinstance(values,(int,float)) and math.isfinite(values)

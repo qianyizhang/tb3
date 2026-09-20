@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "review",
+  "id": "legacy-review-c425a3ca83775651cc72",
+  "group_id": "anatomy-audit",
+  "target_id": "observation-a55b80db85c726857e45edd3",
+  "created_at": "2026-09-15T04:03:25.731321+00:00",
+  "validity": "under_review",
+  "historical_verdict": "pending",
+  "reason": "Normal completion, matched oracle=1/nop=0 controls and independent re-score. The model reported liver plus heart. Its heart witness is 90.8513 mm from the planted inferior omission; the raw grade has an extra liver label and an invalid heart witness. Both reported voxel regions are unchanged from the original source: liver [63,80,110] is background at 70 HU in both arrays; heart [38,67,154] is heart at 54 HU in both. The trace explicitly inspects an internal liver gap and a detached superior heart component. Their clinical interpretation is not settled by the planted-error map. Author image review does not justify dismissing both source findings as model errors.",
+  "failure_mode": "unadjudicated_source_findings_and_unlocated_planted_omission",
+  "next_action": "Exclude from genuine overall task-failure counts pending source adjudication. Retain the raw miss, unlocated planted omission and resource measurement separately; do not alter this freeze or rerun it.",
+  "actor": "historical authored review",
+  "evidence": [
+    {
+      "path": "docs/evidence/br004-single-case-61-review.json",
+      "sha256": "90fa8051a3e0a705b86d1769a46ace73dfa3ac7121474e18858f44d9bd9cb9c6"
+    },
+    {
+      "path": "docs/evidence/br004-single-patient-freeze.json",
+      "sha256": "3a59e052d0972371eca41d8995ed50ac2867f5bbedd87a6e6483d8cf0b7c01bd"
+    }
+  ],
+  "resolves": [],
+  "historical_source": "catalog/reviews/dicom-audit-61__ihBKTbE-979592c9/20260915T040325731324Z-f70059c9.json",
+  "historical_source_sha256": "06c66889c767bcad95024f99044a9541d4f818c0de023ae9d08b63da7d961332"
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "observation-f60d47ae65f808281dcc9e92",
+  "job": "br016-aneurysm-n01-v2-nop-v1-20260915",
+  "trial_name": "aneurysm-n01-v2__NTtJnA4",
+  "task_id": "aneurysm-n01-v2",
+  "agent": "nop",
+  "model": null,
+  "reasoning_effort": null,
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "harbor_version": "0.18.0",
+  "execution_mode": "harbor",
+  "classification": "control_fail",
+  "reward": 0.0,
+  "started_at": "2026-09-15T11:59:09.074459Z",
+  "finished_at": "2026-09-15T11:59:38.879111Z",
+  "timing": {
+    "total": 29.805,
+    "setup": 0.0,
+    "agent": 0.0,
+    "verifier": 14.222
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br016-aneurysm-n01-v2-nop-v1-20260915/aneurysm-n01-v2__NTtJnA4/result.json",
+      "sha256": "f48953aca9c8fa6f2f0f2a7ce6471327399bfeb9ce79d958e8f2f21c6e6f6368"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br016-aneurysm-n01-v2-nop-v1-20260915/aneurysm-n01-v2__NTtJnA4/verifier/test-stdout.txt",
+      "sha256": "513afd38b973a747e0cca27abe3e82ef6a26fc62ead79868acc0adfed0b391c0"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br016-aneurysm-n01-v2-nop-v1-20260915/aneurysm-n01-v2__NTtJnA4/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Submitted artifact: answer/answer.json",
+      "path": "runs/br016-aneurysm-n01-v2-nop-v1-20260915/aneurysm-n01-v2__NTtJnA4/artifacts/app/answer/answer.json",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br016-aneurysm-n01-v2-nop-v1-20260915/lock.json",
+      "sha256": "a5e79f1a28743f0aee188a6b4cd1eec98ec53b6315a3dc86cbce31b117fd7da9"
+    }
+  ],
+  "task_checksum": "54f212ea8ff46dea5229f6c75f240ab9912c4629a1567899346221910cc8fc5b",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br016-aneurysm-n01-v2-nop-v1-20260915/aneurysm-n01-v2__NTtJnA4/result.json",
+  "source_sha256": "f48953aca9c8fa6f2f0f2a7ce6471327399bfeb9ce79d958e8f2f21c6e6f6368",
+  "evidence_sha256": "360ca4a2115bc9ea0fd257b54962bc8c90a3f6569d909a26a3c0df20976069a8",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-77cecb670db8c34d63e8a691",
+  "group_id": "lesion-localization",
+  "experiment_id": "lesion-localization-br016",
+  "collected_at": "2026-09-20T09:49:49.378961+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-77cecb670db8c34d63e8a691"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

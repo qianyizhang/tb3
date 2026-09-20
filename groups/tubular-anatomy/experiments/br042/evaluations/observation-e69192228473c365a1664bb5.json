@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "observation-e69192228473c365a1664bb5",
+  "job": "br042-all-vessels-oracle-v4-2h-attempt1",
+  "trial_name": "all-vessels__EAKitJu",
+  "task_id": "all-vessels-image-only-v4-2h",
+  "agent": "oracle",
+  "model": null,
+  "reasoning_effort": null,
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "harbor_version": "0.18.0",
+  "execution_mode": "harbor",
+  "classification": "control_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-20T09:17:09.395437Z",
+  "finished_at": "2026-09-20T09:17:34.289831Z",
+  "timing": {
+    "total": 24.894,
+    "setup": 0.0,
+    "agent": 0.153,
+    "verifier": 12.321
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br042-all-vessels-oracle-v4-2h-attempt1/all-vessels__EAKitJu/result.json",
+      "sha256": "7694f5ac1bcee2e7167e03d82d86420347f6ed969d6e1fc2be5fb9894da976c0"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br042-all-vessels-oracle-v4-2h-attempt1/all-vessels__EAKitJu/verifier/test-stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br042-all-vessels-oracle-v4-2h-attempt1/all-vessels__EAKitJu/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Submitted artifact: answer/centerlines.json",
+      "path": "runs/br042-all-vessels-oracle-v4-2h-attempt1/all-vessels__EAKitJu/artifacts/app/answer/centerlines.json",
+      "sha256": "79119ad74b9c2b9e79e8c845370aba082fd9e322285e673d5d78cac176f89c29"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br042-all-vessels-oracle-v4-2h-attempt1/lock.json",
+      "sha256": "ba62d68647f7fe75b49832f2c84b243b2e46bdd6217008f35652ee4d2356eff8"
+    }
+  ],
+  "task_checksum": "92d04de6573f325a27a26ddbce24e311e45f3c2c23053b7bfd568ee9124ada6a",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br042-all-vessels-oracle-v4-2h-attempt1/all-vessels__EAKitJu/result.json",
+  "source_sha256": "7694f5ac1bcee2e7167e03d82d86420347f6ed969d6e1fc2be5fb9894da976c0",
+  "evidence_sha256": "539ca87911a37cda18bda4bcab2c59c2db9d58847ab2dc40c4edff8834254551",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-9e3c2cad20899db25955a11d",
+  "group_id": "tubular-anatomy",
+  "experiment_id": "tubular-anatomy-br042",
+  "collected_at": "2026-09-20T09:49:58.042630+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-9e3c2cad20899db25955a11d"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

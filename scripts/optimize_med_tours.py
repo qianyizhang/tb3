@@ -3,7 +3,7 @@
 from pathlib import Path
 import gzip,hashlib,json
 from PIL import Image
-ROOT=Path(__file__).resolve().parents[1]/'site_med/tours';OUT=ROOT/'web';OUT.mkdir(exist_ok=True)
+ROOT=Path(__file__).resolve().parents[1]/'presentation/tours';OUT=ROOT/'web';OUT.mkdir(exist_ok=True)
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  manifest={'json':{},'images':{},'files':{},'source_bytes':0,'served_bytes':0,'method':'Lossless WebP pixels; gzip level 9 exact JSON bytes; original authoring data retained.'}

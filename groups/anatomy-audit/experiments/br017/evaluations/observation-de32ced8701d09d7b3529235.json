@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "observation-de32ced8701d09d7b3529235",
+  "job": "br017-abdomen-f01-sol-xhigh-v1-20260915",
+  "trial_name": "abdomen-f01__dmBoEbU",
+  "task_id": "abdomen-f01",
+  "agent": "codex",
+  "model": "openai/gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "agent_version": "0.154.0",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "classification": "model_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-15T12:59:32.616289Z",
+  "finished_at": "2026-09-15T13:06:33.286266Z",
+  "timing": {
+    "total": 420.67,
+    "setup": 43.709,
+    "agent": 351.176,
+    "verifier": 12.126
+  },
+  "usage": {
+    "n_input_tokens": 947867.0,
+    "n_cache_tokens": 861056.0,
+    "n_output_tokens": 12009.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br017-abdomen-f01-sol-xhigh-v1-20260915/abdomen-f01__dmBoEbU/result.json",
+      "sha256": "5079a454b78b7c68e8f6b88459da6f34e01f4b6a8a579bead34d604b8c0e9c2b"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br017-abdomen-f01-sol-xhigh-v1-20260915/abdomen-f01__dmBoEbU/verifier/test-stdout.txt",
+      "sha256": "4a3d26560d57afd595cd4c2f87b7f5c55ea30f20702ea11103864d982cbc4762"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br017-abdomen-f01-sol-xhigh-v1-20260915/abdomen-f01__dmBoEbU/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": "runs/br017-abdomen-f01-sol-xhigh-v1-20260915/abdomen-f01__dmBoEbU/agent/trajectory.json",
+      "sha256": "84e9c099c43574991d5dd9aec0005828ad10275b4097c006e1ceabec3a6ba27f"
+    },
+    {
+      "label": "Submitted artifact: answer/answer.json",
+      "path": "runs/br017-abdomen-f01-sol-xhigh-v1-20260915/abdomen-f01__dmBoEbU/artifacts/app/answer/answer.json",
+      "sha256": "e7b673adeee501320c936d9fb0adc16063e6eea9353fe66679537ea7b50a37c4"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br017-abdomen-f01-sol-xhigh-v1-20260915/lock.json",
+      "sha256": "3be47da111d860fe96f51891cebd23605fceb2748c39c38bcde828604ffbdb41"
+    }
+  ],
+  "task_checksum": "bf3e97e2b87af0164bb5a49b9f29638e8a7b24c0060700c0ea4376d2c4aae869",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br017-abdomen-f01-sol-xhigh-v1-20260915/abdomen-f01__dmBoEbU/result.json",
+  "source_sha256": "5079a454b78b7c68e8f6b88459da6f34e01f4b6a8a579bead34d604b8c0e9c2b",
+  "evidence_sha256": "9f3fcfeb7fe2430506d526cdaabb61115da9cb9d97bdec2c15e5089786567eee",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-20e53fbc99820adcf8b72861",
+  "group_id": "anatomy-audit",
+  "experiment_id": "anatomy-audit-br017",
+  "collected_at": "2026-09-20T09:49:49.835709+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-20e53fbc99820adcf8b72861"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}

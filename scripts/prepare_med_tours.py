@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Prepare source-derived geometry and image sequences for three guided tours.
 
-Uses the existing .venv-br030 environment. Writes only site_med/tours/data.
+Uses the existing .venv-br030 environment. Writes only presentation/tours/data.
 No task rebuilds, model calls, or writes to retained experiments.
 """
 from pathlib import Path
@@ -13,7 +13,7 @@ from scipy.spatial import cKDTree
 from skimage.measure import marching_cubes
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'site_med/tours/data'
+OUT=ROOT/'presentation/tours/data'
 SOURCES={}
 def source(relative):
     p=ROOT/relative
@@ -144,6 +144,6 @@ def cardiac():
 def main():
     OUT.mkdir(parents=True,exist_ok=True)
     segment();vessel();cardiac()
-    save('provenance.json',{'sources':SOURCES,'source_path_base':'repository root','output_path_base':'site_med/tours/data','derivation_script':'scripts/prepare_med_tours.py','scope':'Derived presentation assets only. Fixed historical scores retained. No new model inference.','terms':{'segmentation':'TotalSegmentator CC BY 4.0','vessels':'Source declarations: ImageCAS Apache 2.0, ImageCAS-X CC BY 4.0. Retain original source receipt.','cardiac':'STRAUS simulation-derived previews; not real patient motion. Source terms are not broadened.','reference_records':['docs/evidence/br030-sources.json','site/cardiac-provenance.json','probes/revisions/br017/authoring/README.md']},'outputs':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(OUT.iterdir()) if p.name!='provenance.json' and p.is_file()}})
+    save('provenance.json',{'sources':SOURCES,'source_path_base':'repository root','output_path_base':'presentation/tours/data','derivation_script':'scripts/prepare_med_tours.py','scope':'Derived presentation assets only. Fixed historical scores retained. No new model inference.','terms':{'segmentation':'TotalSegmentator CC BY 4.0','vessels':'Source declarations: ImageCAS Apache 2.0, ImageCAS-X CC BY 4.0. Retain original source receipt.','cardiac':'STRAUS simulation-derived previews; not real patient motion. Source terms are not broadened.','reference_records':['docs/evidence/br030-sources.json','groups/cardiac-motion/presentation/sources/cardiac-provenance.json','probes/revisions/br017/authoring/README.md']},'outputs':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(OUT.iterdir()) if p.name!='provenance.json' and p.is_file()}})
 
 if __name__=='__main__':main()

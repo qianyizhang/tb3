@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "observation-64a103cda8860ec3f5ace406",
+  "job": "br028-deform-patient3-source3d-oracle-v1-20260916",
+  "trial_name": "deform-patient3-source3d__gD9fbSR",
+  "task_id": "deform-patient3-source3d",
+  "agent": "oracle",
+  "model": null,
+  "reasoning_effort": null,
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "harbor_version": "0.18.0",
+  "execution_mode": "harbor",
+  "classification": "control_pass",
+  "reward": 1.0,
+  "started_at": "2026-09-16T09:44:26.179431Z",
+  "finished_at": "2026-09-16T09:44:50.730551Z",
+  "timing": {
+    "total": 24.551,
+    "setup": 0.0,
+    "agent": 0.163,
+    "verifier": 12.216
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br028-deform-patient3-source3d-oracle-v1-20260916/deform-patient3-source3d__gD9fbSR/result.json",
+      "sha256": "1ce99f4eee5deac0213ff793e73a4689ff744f25dce19718c86b7db54d177ca7"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br028-deform-patient3-source3d-oracle-v1-20260916/deform-patient3-source3d__gD9fbSR/verifier/test-stdout.txt",
+      "sha256": "43bb2a89ae611aa12bdb80843a39d5b6bb69b94f252721b96c6aa9cde8744113"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br028-deform-patient3-source3d-oracle-v1-20260916/deform-patient3-source3d__gD9fbSR/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Submitted artifact: answer/points.json",
+      "path": "runs/br028-deform-patient3-source3d-oracle-v1-20260916/deform-patient3-source3d__gD9fbSR/artifacts/app/answer/points.json",
+      "sha256": "a810eb2be91a45a4020903e5643a8d3351f62d321885155098e3011dc43c5a4f"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br028-deform-patient3-source3d-oracle-v1-20260916/lock.json",
+      "sha256": "370eaf0c019e3ed7bf8ca3b6494437c0c83d07b8a96fa3f12c15d58385814f44"
+    }
+  ],
+  "task_checksum": "5c52549254eea4aeba3f3bbd1fd563a619e409a899cc65df1b7e98b3b2a9f887",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br028-deform-patient3-source3d-oracle-v1-20260916/deform-patient3-source3d__gD9fbSR/result.json",
+  "source_sha256": "1ce99f4eee5deac0213ff793e73a4689ff744f25dce19718c86b7db54d177ca7",
+  "evidence_sha256": "125b814db1a49c5a401066c0b786c4d0933f5931bba1a4a56c0e35dbe98af468",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-e1817bab8ca455e46465a904",
+  "group_id": "registration",
+  "experiment_id": "registration-br028",
+  "collected_at": "2026-09-20T09:49:51.426160+00:00",
+  "task_digest": null,
+  "depends_on": [
+    "attempt-e1817bab8ca455e46465a904"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}
