@@ -12,10 +12,11 @@ Finding submission candidates is an optional later step, not the research goal.
 | Design a useful medical question, curate references and interpret evidence | [Research design](research-design.md) |
 | Understand ownership, preserved evidence and what belongs in Git | [Governance](governance.md) |
 | Restore selected inputs, replay saved outputs, build views and media | [Reproduction and presentation](reproduce.md) |
+| Explain an internal or external task and build the Task Explorer | [Task Brief rulebook](../presentation/task-explorer/RULEBOOK.md) |
 | Interpret badges, assessments and the attention queue | [Status vocabulary](status-vocabulary.md) |
 | Export a research draft or hand work to a submission owner | [Exports and submission](submission.md) |
 | Find earlier results or recover retired material | [Historical records](archive/README.md) |
-| Understand the pivot, accepted decisions and pending cutover | [Migration record](migration/README.md) |
+| Understand the pivot, accepted decisions and completed cutover | [Migration record](migration/README.md) |
 
 [Contribution rules](../CONTRIBUTING.md) cover development checks. The installed
 `med` command is the supported interface; `med --help` and `med COMMAND --help`

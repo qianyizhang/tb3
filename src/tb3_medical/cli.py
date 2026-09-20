@@ -13,6 +13,22 @@ def main(argv=None):
     parser = argparse.ArgumentParser(prog="med", description=__doc__)
     parser.add_argument("--root", type=Path, help="Workspace containing workbench.toml")
     sub = parser.add_subparsers(dest="command", required=True)
+    p = sub.add_parser("brief", help="Author or render task explanations; never launches a trial")
+    brief_sub = p.add_subparsers(dest="brief_command", required=True)
+    for action in ("new", "build", "check"):
+        b = brief_sub.add_parser(action)
+        b.add_argument(
+            "--catalog", default="discussions/medical-agent-repository-survey/catalog.json"
+        )
+        if action == "new":
+            b.add_argument("id")
+            b.add_argument("--title", required=True)
+            b.add_argument("--repository", required=True)
+            b.add_argument("--family", required=True)
+            b.add_argument("--repository-id", help="Optional source-inventory repository ID")
+            b.add_argument("--destination", required=True)
+        elif action == "build":
+            b.add_argument("--output", type=Path, default=Path("runs/task-explorer/index.html"))
     p = sub.add_parser("list")
     p.add_argument("query", nargs="?", default="")
     p.add_argument("--kind", choices=sorted(c.KINDS))
@@ -129,8 +145,31 @@ def main(argv=None):
             from .presentation import check, assets
 
             result = check(root)
+            from . import task_briefs
+
+            if (root / task_briefs.DEFAULT_CATALOG).is_file():
+                result["task_briefs"] = task_briefs.check(root)
             if args.assets:
                 result.update(assets(root))
+        elif command == "brief":
+            from . import task_briefs
+
+            if args.brief_command == "new":
+                result = task_briefs.new(
+                    root,
+                    args.id,
+                    args.title,
+                    args.repository,
+                    args.family,
+                    args.destination,
+                    args.catalog,
+                    args.repository_id,
+                )
+            elif args.brief_command == "build":
+                output = args.output if args.output.is_absolute() else root / args.output
+                result = task_briefs.build(root, output, args.catalog)
+            else:
+                result = task_briefs.check(root, args.catalog)
         elif command == "new":
             result = w.new(root, args.group, args.id, args.title)
         elif command == "idea":

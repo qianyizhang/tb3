@@ -1,5 +1,8 @@
 # Retained experiment coverage
 
+This is the native-implementation snapshot. BR-042 subsequently completed; its
+[main cutover](main-cutover.md) and current experiment config supersede the active-owner row below.
+
 Snapshot from the native migration on 2026-09-20; later owner activity is not
 automatically reflected here. See the [integration boundary](README.md#integration-boundary).
 

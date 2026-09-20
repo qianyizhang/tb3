@@ -148,5 +148,48 @@
     }
   ],
   "frozen_evidence_changed": false,
-  "new_model_runs": 0
+  "new_model_runs": 0,
+  "verification": {
+    "native_merge_make_check": {
+      "tests_run": 38,
+      "skipped": 1,
+      "result": "passed",
+      "environment": "existing native-workbench Python 3.12 environment"
+    },
+    "protected_pre_cutover_files": 1027,
+    "frozen_br042_task_files": 12,
+    "completed_br042_evidence_hashes": 5,
+    "browser": {
+      "experiment_search": "br042-v4-6h displays Closed / Not assessed",
+      "resumed_review": "Completed resumed continuation link visible",
+      "observation_search": "completed_resumed_continuation yields one canonical evaluation, with frozen scorer outcome Fail"
+    }
+  },
+  "local_absorption": {
+    "staged_files": 1091,
+    "bytes": 2911738971,
+    "all_staged_hashes_verified": true,
+    "existing_destination_conflicts": 0,
+    "source_worktree": "/Users/zhangqy/.codex/worktrees/native-medical-workbench/tb3",
+    "staging_directory": "runs/native-cutover-20260921/payload",
+    "scope": [
+      ".local/inputs",
+      ".local/tasks",
+      ".local/export-mri",
+      ".local/views",
+      "archive/legacy"
+    ],
+    "excluded": [
+      "environments",
+      "package caches",
+      "generated site",
+      "dist"
+    ],
+    "independent_backup": false
+  },
+  "user_request": {
+    "actor": "user",
+    "source": "codex://threads/01a0c002-3428-7311-8dec-1c05b815cdb2",
+    "decision": "Absorb the completed experiment and prior pivot/refactor into one clean main branch."
+  }
 }

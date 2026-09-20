@@ -1,0 +1,599 @@
+{
+  "schema_version": 1,
+  "observed_on": "2026-09-21",
+  "source_task": "codex://threads/01a0bef4-b72c-7241-bb59-f5ca11d4db09",
+  "user_authorization": "Search and download necessary data samples for the Task Explorer. No model trials requested.",
+  "summary": {
+    "new_sample_bytes": 88417980,
+    "downloaded_files": 17,
+    "reused_bytes": 37252444,
+    "new_native_figures": 9,
+    "repositories_with_native_examples": [
+      "abra",
+      "imaging101",
+      "automedbench",
+      "bcer",
+      "rexmle"
+    ]
+  },
+  "downloads": [
+    {
+      "path": "runs/task-brief-samples/imaging101/tasks/ct_sparse_view/data/ground_truth.npz",
+      "hf_path": "tasks/ct_sparse_view/data/ground_truth.npz",
+      "task": "ct_sparse_view",
+      "size": 524556,
+      "sha256": "2c1855ec6eb3a20329a6333f9c0fd5a3072fe2320bca580a4ba017fd194344a6",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_sparse_view/data/ground_truth.npz",
+      "verified": true,
+      "bytes": 524556,
+      "downloaded_on": "2026-09-21",
+      "role": "reference",
+      "license": "MIT",
+      "verification": "published asset manifest SHA-256 and size"
+    },
+    {
+      "path": "runs/task-brief-samples/imaging101/tasks/ct_sparse_view/data/meta_data.json",
+      "hf_path": "tasks/ct_sparse_view/data/meta_data.json",
+      "task": "ct_sparse_view",
+      "size": 207,
+      "sha256": "64007c88de7fd9186b0b59910af2053ee722bdd87e805aaf436a17e7d7b57588",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_sparse_view/data/meta_data.json",
+      "verified": true,
+      "bytes": 207,
+      "downloaded_on": "2026-09-21",
+      "role": "task data",
+      "license": "MIT",
+      "verification": "published asset manifest SHA-256 and size"
+    },
+    {
+      "path": "runs/task-brief-samples/imaging101/tasks/ct_sparse_view/data/raw_data.npz",
+      "hf_path": "tasks/ct_sparse_view/data/raw_data.npz",
+      "task": "ct_sparse_view",
+      "size": 432814,
+      "sha256": "ce0c8f3180962440c1f4032e29ac3477870211884c7c1303533a313fa91d87e6",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_sparse_view/data/raw_data.npz",
+      "verified": true,
+      "bytes": 432814,
+      "downloaded_on": "2026-09-21",
+      "role": "task data",
+      "license": "MIT",
+      "verification": "published asset manifest SHA-256 and size"
+    },
+    {
+      "path": "runs/task-brief-samples/imaging101/tasks/ct_sparse_view/evaluation/reference_outputs/reconstructions.npz",
+      "hf_path": "tasks/ct_sparse_view/evaluation/reference_outputs/reconstructions.npz",
+      "task": "ct_sparse_view",
+      "size": 1576290,
+      "sha256": "c6aaf36c128253d872d70a5dc6925fc3da7365f9e20ac6c0d056ceb334ad0bf7",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_sparse_view/evaluation/reference_outputs/reconstructions.npz",
+      "verified": true,
+      "bytes": 1576290,
+      "downloaded_on": "2026-09-21",
+      "role": "reference",
+      "license": "MIT",
+      "verification": "published asset manifest SHA-256 and size"
+    },
+    {
+      "path": "runs/task-brief-samples/abra/ct.zip",
+      "url": "https://services.cancerimagingarchive.net/nbia-api/services/v4/getImage?SeriesInstanceUID=1.3.6.1.4.1.14519.5.2.1.6279.6001.170706757615202213033480003264",
+      "bytes": 36104899,
+      "sha256": "a780bd9438313d98e1b86302c6ed64a9c7d9941f6c418ac93054ec2628b9bb3b",
+      "downloaded_on": "2026-09-21",
+      "role": "input",
+      "license": "CC BY 3.0 plus TCIA usage terms",
+      "case_id": "LIDC-IDRI-0003",
+      "verification": "ZIP CRC checks, then DICOM referenced UID and geometry alignment"
+    },
+    {
+      "path": "runs/task-brief-samples/abra/seg.zip",
+      "url": "https://services.cancerimagingarchive.net/nbia-api/services/v4/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.89502.1553284149.555761",
+      "bytes": 4127,
+      "sha256": "5198f6646297c2675ca4b8c5d0d2195efdea3fedcae7ff4aa01f757a64dc51eb",
+      "downloaded_on": "2026-09-21",
+      "role": "reference",
+      "license": "CC BY 3.0 plus TCIA usage terms",
+      "case_id": "LIDC-IDRI-0003",
+      "verification": "ZIP CRC checks, then DICOM referenced UID and geometry alignment"
+    },
+    {
+      "path": "runs/task-brief-samples/automed/ct.nii.gz",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Lite-release/resolve/8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5/benchmarks/AutoMedBench-segmentation/data/TSG_multi-organ/public/TSG_00000001/ct.nii.gz",
+      "bytes": 36883676,
+      "sha256": "4632d9141096aeabeff324f75802adf4b7c7a53330b5f00bd17beb2fedb5551c",
+      "downloaded_on": "2026-09-21",
+      "license": "CC BY 4.0 (dataset) / MIT (code and guidance)",
+      "case_id": "TSG_00000001",
+      "role": "input",
+      "verification": "published Hugging Face LFS SHA-256 and size",
+      "published_sha256": "4632d9141096aeabeff324f75802adf4b7c7a53330b5f00bd17beb2fedb5551c"
+    },
+    {
+      "path": "runs/task-brief-samples/automed/kidney_right.nii.gz",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Lite-release/resolve/8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5/benchmarks/AutoMedBench-segmentation/data/TSG_multi-organ/private/masks/TSG_00000001/kidney_right.nii.gz",
+      "bytes": 172700,
+      "sha256": "e8b8a9a8fa43a7033f1f548889fa467ab1ea9191d584892e076897c9a1d22e51",
+      "downloaded_on": "2026-09-21",
+      "license": "CC BY 4.0 (dataset) / MIT (code and guidance)",
+      "case_id": "TSG_00000001",
+      "role": "reference",
+      "verification": "published Hugging Face LFS SHA-256 and size",
+      "published_sha256": "e8b8a9a8fa43a7033f1f548889fa467ab1ea9191d584892e076897c9a1d22e51"
+    },
+    {
+      "path": "runs/task-brief-samples/automed/spleen.nii.gz",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Lite-release/resolve/8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5/benchmarks/AutoMedBench-segmentation/data/TSG_multi-organ/private/masks/TSG_00000001/spleen.nii.gz",
+      "bytes": 172728,
+      "sha256": "d10ae1c4bf17212578bf35b60dd5bf0df78052f383e3a15fda1788fa00f3d80a",
+      "downloaded_on": "2026-09-21",
+      "license": "CC BY 4.0 (dataset) / MIT (code and guidance)",
+      "case_id": "TSG_00000001",
+      "role": "reference",
+      "verification": "published Hugging Face LFS SHA-256 and size",
+      "published_sha256": "d10ae1c4bf17212578bf35b60dd5bf0df78052f383e3a15fda1788fa00f3d80a"
+    },
+    {
+      "path": "runs/task-brief-samples/automed/aorta.nii.gz",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Lite-release/resolve/8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5/benchmarks/AutoMedBench-segmentation/data/TSG_multi-organ/private/masks/TSG_00000001/aorta.nii.gz",
+      "bytes": 171540,
+      "sha256": "58e4dc93a249401692a356ec5cb5d46dde12bcb0f1dd257562025f367c4b1fa7",
+      "downloaded_on": "2026-09-21",
+      "license": "CC BY 4.0 (dataset) / MIT (code and guidance)",
+      "case_id": "TSG_00000001",
+      "role": "reference",
+      "verification": "published Hugging Face LFS SHA-256 and size",
+      "published_sha256": "58e4dc93a249401692a356ec5cb5d46dde12bcb0f1dd257562025f367c4b1fa7"
+    },
+    {
+      "path": "runs/task-brief-samples/automed/ground_truth.csv",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Lite-release/resolve/8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5/benchmarks/AutoMedBench-segmentation/data/TSG_multi-organ/private/ground_truth.csv",
+      "bytes": 965,
+      "sha256": "efb1402ca25a31a93d9fa04b3779d788464bd9db6420e2c9d0669745a0a758f1",
+      "downloaded_on": "2026-09-21",
+      "license": "CC BY 4.0 (dataset) / MIT (code and guidance)",
+      "case_id": "TSG_00000001",
+      "role": "reference"
+    },
+    {
+      "path": "runs/task-brief-samples/automed/kidney_left.nii.gz",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Lite-release/resolve/8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5/benchmarks/AutoMedBench-segmentation/data/TSG_multi-organ/private/masks/TSG_00000001/kidney_left.nii.gz",
+      "bytes": 176292,
+      "sha256": "50367216cf73a8a4a3b038bdbdebf091bcfef9aec2744c59975164a7deac0524",
+      "downloaded_on": "2026-09-21",
+      "license": "CC BY 4.0 (dataset) / MIT (code and guidance)",
+      "case_id": "TSG_00000001",
+      "role": "reference",
+      "verification": "published Hugging Face LFS SHA-256 and size",
+      "published_sha256": "50367216cf73a8a4a3b038bdbdebf091bcfef9aec2744c59975164a7deac0524"
+    },
+    {
+      "path": "runs/task-brief-samples/automed/liver.nii.gz",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Lite-release/resolve/8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5/benchmarks/AutoMedBench-segmentation/data/TSG_multi-organ/private/masks/TSG_00000001/liver.nii.gz",
+      "bytes": 210242,
+      "sha256": "7caa984622a878ae9b4a712e55129032723593dbba4342da2714888b6baebc8a",
+      "downloaded_on": "2026-09-21",
+      "license": "CC BY 4.0 (dataset) / MIT (code and guidance)",
+      "case_id": "TSG_00000001",
+      "role": "reference",
+      "verification": "published Hugging Face LFS SHA-256 and size",
+      "published_sha256": "7caa984622a878ae9b4a712e55129032723593dbba4342da2714888b6baebc8a"
+    },
+    {
+      "path": "runs/task-brief-samples/automed/lite_s1.md",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Lite-release/resolve/8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5/benchmarks/AutoMedBench-segmentation/eval_seg/tsg-multiorgan-seg-task/lite_s1.md",
+      "bytes": 1913,
+      "sha256": "f944efe83f4d9baaa78f2969e5861747647675bca901474903aae87de87b0bab",
+      "downloaded_on": "2026-09-21",
+      "license": "CC BY 4.0 (dataset) / MIT (code and guidance)",
+      "case_id": "TSG_00000001",
+      "role": "supplied guidance"
+    },
+    {
+      "path": "runs/task-brief-samples/bcer/10001_1000001_adc.mha",
+      "url": "https://zenodo.org/api/records/6624726/files/picai_public_images_fold0.zip/container/10001/10001_1000001_adc.mha",
+      "bytes": 448361,
+      "sha256": "890de579e15d0daf06a76a5351e2bf6e2cb2bc4eb7144029b0c7f13758289783",
+      "zip_crc32_verified": true,
+      "case_id": "10001_1000001",
+      "downloaded_on": "2026-09-21",
+      "role": "representative compatible input",
+      "license": "CC BY-NC 4.0",
+      "verification": "Zenodo archive member size and CRC32"
+    },
+    {
+      "path": "runs/task-brief-samples/bcer/10001_1000001_t2w.mha",
+      "url": "https://zenodo.org/api/records/6624726/files/picai_public_images_fold0.zip/container/10001/10001_1000001_t2w.mha",
+      "bytes": 11306227,
+      "sha256": "92099e209995a24c2b1a9ba366a5994c499715c5575fdcd82be0d89f1392564c",
+      "zip_crc32_verified": true,
+      "case_id": "10001_1000001",
+      "downloaded_on": "2026-09-21",
+      "role": "representative compatible input",
+      "license": "CC BY-NC 4.0",
+      "verification": "Zenodo archive member size and CRC32"
+    },
+    {
+      "path": "runs/task-brief-samples/bcer/10001_1000001_hbv.mha",
+      "url": "https://zenodo.org/api/records/6624726/files/picai_public_images_fold0.zip/container/10001/10001_1000001_hbv.mha",
+      "bytes": 230443,
+      "sha256": "7c1ae10ed71eecf1be4d809fde6172784e8f79cdbfd1c4cf0069ece292fe322e",
+      "zip_crc32_verified": true,
+      "case_id": "10001_1000001",
+      "downloaded_on": "2026-09-21",
+      "role": "representative compatible input",
+      "license": "CC BY-NC 4.0",
+      "verification": "Zenodo archive member size and CRC32"
+    }
+  ],
+  "reused_sources": [
+    {
+      "path": "runs/br030-vessel-geometry/sources/TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_ct_012.nii.gz",
+      "url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_ct_012.nii.gz",
+      "bytes": 143046,
+      "sha256": "6b4aa178208959458d83384ebf32d2675beb167845c0f16e2ff572d5f4f7c08e",
+      "zip_crc32_verified": true,
+      "rechecked_on": "2026-09-21",
+      "role": "supplied training label",
+      "license": "OpenData Swiss: source attribution; commercial use requires owner permission",
+      "reused_without_download": true
+    },
+    {
+      "path": "runs/br030-vessel-geometry/sources/TopCoW2024_Data_Release/imagesTr/topcow_ct_012_0000.nii.gz",
+      "url": "https://zenodo.org/api/records/15692630/files/TopCoW2024_Data_Release.zip/container/TopCoW2024_Data_Release/imagesTr/topcow_ct_012_0000.nii.gz",
+      "bytes": 37109398,
+      "sha256": "fb7ce816c4dcff765179a2154b74d63fef7db649525fcfa4e26e0a583224ca70",
+      "zip_crc32_verified": true,
+      "rechecked_on": "2026-09-21",
+      "role": "upstream training input",
+      "license": "OpenData Swiss: source attribution; commercial use requires owner permission",
+      "reused_without_download": true
+    }
+  ],
+  "figures": [
+    {
+      "path": "presentation/tours/data/task-briefs/imaging101-input.png",
+      "sha256": "9332aada63bac65f4763d47f56b9b43f4dab4269007e307ea856a6158e596403",
+      "role": "input",
+      "shape": [
+        256,
+        30
+      ],
+      "synthetic": true
+    },
+    {
+      "path": "presentation/tours/data/task-briefs/imaging101-reference.png",
+      "sha256": "262c5f50ab13aff7733b1393179f04a80300885fc5cd26de2e3f867d9fb7003b",
+      "role": "reference and published algorithm outputs",
+      "window": [
+        0,
+        1
+      ],
+      "model_run": false
+    },
+    {
+      "path": "presentation/tours/data/task-briefs/abra-input.png",
+      "sha256": "21e1b41c7273c1238bf5af78caee880e942c2580891c6b4f3af2fe223a726fdb",
+      "case_id": "LIDC-IDRI-0003",
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.170706757615202213033480003264",
+      "sop_instance_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.278060129457684716345173481758",
+      "slice_index_ascending_z_zero_based": 66,
+      "position_lps_mm": [
+        -228.800003,
+        -210.0,
+        -214.0
+      ],
+      "segment_label": "Nodule 1 - Annotation 12",
+      "selected_frame": 4,
+      "selection": "largest area of this source annotation, post hoc reader selection",
+      "window_width": 1500,
+      "window_center": -600,
+      "reference_pixels": 629,
+      "reference_scope": "one source DICOM SEG annotation; not a regenerated ABRA consensus task",
+      "alignment_checks": [
+        "source SOP UID",
+        "series UID",
+        "image position",
+        "orientation",
+        "pixel spacing"
+      ],
+      "role": "input, no contour or target crop"
+    },
+    {
+      "path": "presentation/tours/data/task-briefs/abra-reference.png",
+      "sha256": "eb83f875392c6aff0e89b3eb6b79581b9458f157e40c44960d4786af019b2a59",
+      "case_id": "LIDC-IDRI-0003",
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.170706757615202213033480003264",
+      "sop_instance_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.278060129457684716345173481758",
+      "slice_index_ascending_z_zero_based": 66,
+      "position_lps_mm": [
+        -228.800003,
+        -210.0,
+        -214.0
+      ],
+      "segment_label": "Nodule 1 - Annotation 12",
+      "selected_frame": 4,
+      "selection": "largest area of this source annotation, post hoc reader selection",
+      "window_width": 1500,
+      "window_center": -600,
+      "reference_pixels": 629,
+      "reference_scope": "one source DICOM SEG annotation; not a regenerated ABRA consensus task",
+      "alignment_checks": [
+        "source SOP UID",
+        "series UID",
+        "image position",
+        "orientation",
+        "pixel spacing"
+      ],
+      "role": "reference",
+      "crop_xyxy": [
+        313,
+        292,
+        424,
+        403
+      ]
+    },
+    {
+      "path": "presentation/tours/data/task-briefs/automed-tsg-input.png",
+      "sha256": "ea1cd3236fb1a83b8d373d7014a089c47cdc676b91e87ae623d5c1b9f4a56c2d",
+      "case_id": "TSG_00000001",
+      "upstream_id": "s1366",
+      "plane": "coronal",
+      "y_index": 164,
+      "selection": "post hoc plane selected using the two kidney references",
+      "window_hu": [
+        -160,
+        240
+      ],
+      "orientation": "RAS+ array; R increases rightward, S upward",
+      "shape": [
+        333,
+        333,
+        336
+      ],
+      "shown_classes": [
+        "kidney_left",
+        "kidney_right",
+        "liver",
+        "spleen",
+        "aorta"
+      ],
+      "scope": "five reference masks from the 117-class task; 78 classes present in source case",
+      "role": "input",
+      "agent_prediction": false
+    },
+    {
+      "path": "presentation/tours/data/task-briefs/automed-tsg-reference.png",
+      "sha256": "1dc38ae869bac1ba011f38f71435bd311dc21ea76064a86496ff4f1050d43e68",
+      "case_id": "TSG_00000001",
+      "upstream_id": "s1366",
+      "plane": "coronal",
+      "y_index": 164,
+      "selection": "post hoc plane selected using the two kidney references",
+      "window_hu": [
+        -160,
+        240
+      ],
+      "orientation": "RAS+ array; R increases rightward, S upward",
+      "shape": [
+        333,
+        333,
+        336
+      ],
+      "shown_classes": [
+        "kidney_left",
+        "kidney_right",
+        "liver",
+        "spleen",
+        "aorta"
+      ],
+      "scope": "five reference masks from the 117-class task; 78 classes present in source case",
+      "role": "reference",
+      "agent_prediction": false
+    },
+    {
+      "path": "presentation/tours/data/task-briefs/rexmle-input.png",
+      "sha256": "8bfd809a307b905e96dd141ca5d43d481bed4a31756c39258852e31653c586d8",
+      "case_id": "topcow_ct_012",
+      "release": "TopCoW2024_Data_Release",
+      "plane": "axial",
+      "z_indices": [
+        102,
+        112,
+        122
+      ],
+      "orientation": "canonical RAS+; R increases rightward, A upward",
+      "selection": "middle plane maximizes reference cross-section; adjacent planes at +/- 5 mm",
+      "window_hu": [
+        0,
+        600
+      ],
+      "scope": "upstream training example; membership in the prepared ReX-MLE split not verified",
+      "role": "input"
+    },
+    {
+      "path": "presentation/tours/data/task-briefs/rexmle-helpers.png",
+      "sha256": "04dda6671ab50dcb954f91b013670e099e5f374913bcc920a43d7b27d7486c57",
+      "case_id": "topcow_ct_012",
+      "release": "TopCoW2024_Data_Release",
+      "plane": "axial",
+      "z_indices": [
+        102,
+        112,
+        122
+      ],
+      "orientation": "canonical RAS+; R increases rightward, A upward",
+      "selection": "middle plane maximizes reference cross-section; adjacent planes at +/- 5 mm",
+      "window_hu": [
+        0,
+        600
+      ],
+      "scope": "upstream training example; membership in the prepared ReX-MLE split not verified",
+      "role": "helpers"
+    },
+    {
+      "path": "presentation/tours/data/task-briefs/bcer-input.png",
+      "sha256": "f701bbf6d555ccb2fbf34bf611f89ee71ee60f7536cc4ff9756ccf3922ccf600",
+      "role": "representative compatible input",
+      "case_id": "10001_1000001",
+      "selection": "T2 volume center, corresponding physical point in other sequences",
+      "modalities": [
+        {
+          "modality": "t2w",
+          "size_xyz": [
+            640,
+            640,
+            21
+          ],
+          "spacing_xyz_mm": [
+            0.30000001192093,
+            0.30000001192093,
+            3.6000000778884846
+          ],
+          "origin_lps_mm": [
+            -119.80861242576,
+            -65.872387498812,
+            -38.779758120899
+          ],
+          "direction": [
+            0.9996148108062515,
+            -1.6670999975453016e-11,
+            -0.02775301815627119,
+            0.00043710598429775216,
+            0.999875963366245,
+            0.01574378673580096,
+            0.027749575765060076,
+            -0.015749853409600077,
+            0.9994908219500744
+          ],
+          "slice_index": 10,
+          "display_percentiles": [
+            1,
+            99.5
+          ],
+          "display_range": [
+            16.0,
+            815.0
+          ],
+          "nifti_path": "runs/task-brief-samples/bcer/prepared/10001/T2w.nii.gz",
+          "nifti_sha256": "c1f777431d22a015da6279f6fa9237efa880f132c03666887b2373cb81756b3f"
+        },
+        {
+          "modality": "adc",
+          "size_xyz": [
+            120,
+            128,
+            21
+          ],
+          "spacing_xyz_mm": [
+            2.0,
+            2.0,
+            3.6000000778885344
+          ],
+          "origin_lps_mm": [
+            -143.79936407135,
+            -97.878905054263,
+            -38.941752584377
+          ],
+          "direction": [
+            0.9996148108062515,
+            -1.6670999975453016e-11,
+            -0.02775301815627119,
+            0.00043710598429775216,
+            0.999875963366245,
+            0.01574378673580096,
+            0.027749575765060076,
+            -0.015749853409600077,
+            0.9994908219500744
+          ],
+          "slice_index": 10,
+          "display_percentiles": [
+            1,
+            99.5
+          ],
+          "display_range": [
+            0.0,
+            1916.0
+          ],
+          "nifti_path": "runs/task-brief-samples/bcer/prepared/10001/ADC.nii.gz",
+          "nifti_sha256": "b4ac7d921fb5d35e7b3e8de5fea2f4dc5313428438fd649411025ee422868c0d"
+        },
+        {
+          "modality": "hbv",
+          "size_xyz": [
+            120,
+            128,
+            21
+          ],
+          "spacing_xyz_mm": [
+            2.0,
+            2.0,
+            3.6000000778885344
+          ],
+          "origin_lps_mm": [
+            -143.79936407135,
+            -97.878905054263,
+            -38.941752584377
+          ],
+          "direction": [
+            0.9996148108062515,
+            -1.6670999975453016e-11,
+            -0.02775301815627119,
+            0.00043710598429775216,
+            0.999875963366245,
+            0.01574378673580096,
+            0.027749575765060076,
+            -0.015749853409600077,
+            0.9994908219500744
+          ],
+          "slice_index": 10,
+          "display_percentiles": [
+            1,
+            99.5
+          ],
+          "display_range": [
+            0.0,
+            57.0
+          ],
+          "nifti_path": "runs/task-brief-samples/bcer/prepared/10001/DWI_bhigh.nii.gz",
+          "nifti_sha256": "9dc9e3dbc59310c61481f91883aa2161890fd032b832dadce059db5aa7439c49"
+        }
+      ]
+    }
+  ],
+  "access_checks": [
+    {
+      "dataset": "ibrahimhamamci/CT-RATE",
+      "hf_revision": "deeca4d89e9f978d4d1bccd88a55071ddbb146bb",
+      "gated": "auto",
+      "authentication_used": false,
+      "url": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE/resolve/deeca4d89e9f978d4d1bccd88a55071ddbb146bb/dataset/valid_fixed/valid_16/valid_16_a/valid_16_a_1.nii.gz",
+      "status": 401,
+      "reason": "Access to dataset ibrahimhamamci/CT-RATE is restricted. You must have access to it and be authenticated to access it. Please log in.",
+      "affects": [
+        "healthagentbench CT example",
+        "RadAgent CT-RATE workflows"
+      ],
+      "scope": "Exact HEAD request was for HealthAgentBench valid_16_a_1; RadAgent access was assessed from dataset metadata and its downloader."
+    }
+  ],
+  "prepared_inputs": [
+    {
+      "path": "runs/task-brief-samples/bcer/cases_manifest.jsonl",
+      "sha256": "0ca3ed5f28f1d90761f92efdba9c06b2a11806c838c34a29431117807e46d20d",
+      "role": "locally authored representative manifest, not a published BCER run",
+      "source_case": "PI-CAI 10001_1000001",
+      "model_run": false
+    }
+  ],
+  "limitations": [
+    "Native figures are curated examples, not full benchmark case coverage.",
+    "Reader-selected planes and crops may use reference information; they are disclosed and do not redefine solver inputs.",
+    "ABRA uses one source annotation; consensus tasks and the viewer were not regenerated.",
+    "BCER has compatible representative inputs but no actual processing outputs.",
+    "TopCoW example belongs to the upstream training release; prepared ReX-MLE split membership is unverified.",
+    "Only five AutoMedBench reference masks were fetched; the full segmentation target has 117 possible classes.",
+    "CT-RATE requires accepted dataset access and authentication; no credentials were inspected.",
+    "No model trial, runtime installation, Docker deployment or publication occurred."
+  ],
+  "render_command": ".venv-br030/bin/python discussions/medical-agent-repository-survey/render_samples.py",
+  "renderer_sha256": "9138fe67c9c62ad0b8c07412cf230eb9e9065a110428a8a185817f3497bf6b16"
+}

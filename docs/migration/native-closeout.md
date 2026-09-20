@@ -49,7 +49,11 @@ and standalone verification requiring a workspace. All were fixed and regression
 tested. A further shared-attempt comparison case was fixed and covered. Bounded
 independent re-review found no remaining actionable findings in those fixes.
 
-## Cutover and retained limits
+## Original cutover boundary and retained limits
+
+The main-branch integration described below was completed on 2026-09-21; see
+[the final cutover](main-cutover.md). The following paragraphs retain the original
+implementation handoff and its reason for deferral.
 
 The original `/Users/zhangqy/pkgs/tb3` checkout remains at its owner's branch.
 BR-042's six-hour recovery runner still invokes the old launcher when collecting
@@ -78,4 +82,5 @@ command, relocation reader, import-path mutation or personal dependency cache
 remains in the daily package, tests or media launcher.
 
 The native worktree is clean after the final cleanup commit. Integration into the
-original checkout remains deferred solely to preserve the active BR-042 closeout.
+original checkout was deferred at that milestone to preserve the active BR-042
+closeout. That deferral is now resolved by the [main cutover](main-cutover.md).

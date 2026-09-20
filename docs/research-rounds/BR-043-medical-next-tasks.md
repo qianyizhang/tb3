@@ -193,3 +193,19 @@ or service errors; primary-paper search excerpts and accessible author/PMC
 pages supported this screen. Dataset bytes, current access entitlements and
 revised-label downloads were not validated. No benchmark difficulty or clinical
 validity is certified by this proposal.
+
+## Visual explanation follow-up, 2026-09-20
+
+The user requested actual data or symbolic drawings to understand each task,
+its expected outcome and why it is challenging. The explanation uses schematic
+coronary ordering, longitudinal lesion comparison, vertebral numbering and
+pulmonary-clot examples, with retained BR-034 echo and BR-037 MRI figures.
+Schematic anatomy and example answers are not new patient data or trial results.
+
+The newer [BR-042 branch review](BR-042-v3-branch-review.md), inspected during
+this explanation, strengthens the small-branch discovery/numbering interpretation
+for D2 and OM1/OM2 while retaining unresolved PDA identity and taxonomy questions.
+It does not establish incorrect reference labels. C01 should therefore use
+adjudicated naming conventions; a simplified supplied-tree task is a diagnostic
+test of identity, not already demonstrated to be hard. No new trial is authorized
+by the explanation request.

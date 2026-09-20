@@ -1,0 +1,373 @@
+{
+  "status": "Design preview; not an exhaustive task catalogue or adopted content contract",
+  "retrieved_on": "2026-09-21",
+  "source_task": "codex://threads/01a0bef4-b72c-7241-bb59-f5ca11d4db09",
+  "prior_task": "codex://threads/01a0b406-c06d-7a10-9816-e13087069178",
+  "scope": "Seven external repository anchors, assistance variants, and one internal format example. Descriptions paraphrase inspected primary sources; difficulty explanations are assistant interpretations.",
+  "entries": [
+    {
+      "id": "healthagentbench",
+      "repo": "HealthAgentBench",
+      "category": "Interpretation",
+      "title": "Decide which findings are present in a chest CT",
+      "tag": "A list of answers",
+      "goal": "Inspect one 3D scan and answer yes or no for every requested abnormality.",
+      "value": "Finding specific abnormalities is one component of reading a chest CT. This task scores labels, not a complete clinical report.",
+      "raw": "One non-contrast chest CT volume (NIfTI).",
+      "helpers": "A scan-specific list of 4\u201312 findings to assess; no lesion coordinates are specified in the inspected prompt.",
+      "tools": "Terminal, internet and installable libraries. Published patient labels/reports must not be looked up.",
+      "spec": "Use the supplied volume; answer every listed finding within one hour.",
+      "output": "predictions.txt: one exact label name and yes/no answer per line.",
+      "score": "All requested labels must match for binary reward 1. Per-label diagnostics do not change that reward.",
+      "challenge": "The label list narrows what to assess, but the agent must choose how to inspect the volume. One wrong finding loses the task reward.",
+      "gap": "A permitted representative CT and slice sequence are needed to show anatomical difficulty.",
+      "stages": [
+        "3D chest CT",
+        "Inspect requested findings",
+        "Yes / no per label"
+      ],
+      "variants": [
+        {
+          "name": "Published CT task",
+          "helper": "Requested-label list",
+          "remaining": "Inspect the volume and classify every requested finding."
+        }
+      ],
+      "families": "Also: CXR correction, pathology and other healthcare terminal tasks. This preview only inspects the CT example.",
+      "sources": [
+        [
+          "Exact task prompt",
+          "https://github.com/microsoft/HealthAgentBench/blob/main/tasks/ct_abnormality_valid_16_a_1/instruction.md"
+        ],
+        [
+          "Evaluator",
+          "https://github.com/microsoft/HealthAgentBench/blob/main/tasks/ct_abnormality_valid_16_a_1/tests/harbor_evaluator.py"
+        ]
+      ]
+    },
+    {
+      "id": "abra",
+      "repo": "ABRA",
+      "category": "Viewer operation",
+      "title": "Outline a lung nodule inside an imaging viewer",
+      "tag": "Perception + tool use",
+      "goal": "Navigate to a CT slice and draw a circle or polygon around the requested lung nodule.",
+      "value": "An outline localizes a finding for review and measurement. A correct tool call alone does not establish that the lesion was outlined correctly.",
+      "raw": "LIDC-IDRI chest CT in the OHIF / Orthanc viewer.",
+      "helpers": "The ordinary task names a slice and specifies a lung window. The oracle variant offers reference-derived contours through a tool.",
+      "tools": "Viewer navigation, image retrieval, windowing and annotation tools; oracle tasks add query_pathology_model.",
+      "spec": "Select the specified slice, apply the lung window and place a segmentation annotation. The inspected ordinary single-slice task permits 15 turns.",
+      "output": "An annotation attached to the correct study and slice.",
+      "score": "This generator specifies IoU \u2265 0.5 against a reference polygon. The overall benchmark separately combines planning, execution and outcome.",
+      "challenge": "Ordinary annotation still requires visual boundary judgment. The oracle variant supplies that boundary and emphasizes transferring it correctly into the viewer.",
+      "gap": "A real slice with the input hint, agent annotation and reference toggle would reveal the perceptual challenge.",
+      "stages": [
+        "CT + slice hint",
+        "Navigate and outline",
+        "Viewer annotation"
+      ],
+      "variants": [
+        {
+          "name": "Slice hint",
+          "helper": "Slice number + lung window",
+          "remaining": "Identify the nodule boundary and place the annotation."
+        },
+        {
+          "name": "Oracle contour",
+          "helper": "Reference-derived contour via pathology tool",
+          "remaining": "Retrieve and transfer the supplied contour to the right slice."
+        }
+      ],
+      "families": "Viewer control \u00b7 metadata QA \u00b7 vision probes \u00b7 annotation \u00b7 oracle annotation \u00b7 longitudinal lesion tasks \u00b7 BI-RADS \u00b7 oracle BI-RADS.",
+      "sources": [
+        [
+          "Ordinary annotation generator",
+          "https://github.com/Luab/ABRA/blob/main/scripts/task_generators/tier3.py"
+        ],
+        [
+          "Oracle generator",
+          "https://github.com/Luab/ABRA/blob/main/scripts/task_generators/tier3_oracle.py"
+        ],
+        [
+          "Task suite and scoring",
+          "https://github.com/Luab/ABRA/blob/main/README.md"
+        ]
+      ]
+    },
+    {
+      "id": "bcer",
+      "repo": "BCER",
+      "category": "Workflow execution",
+      "title": "Complete a prostate MRI processing workflow",
+      "tag": "A chain of artifacts",
+      "goal": "Identify sequences, align them, segment the prostate, detect candidates, extract features and write a report.",
+      "value": "This assembles intermediate imaging products that can support review. The inspected contract measures workflow and artifact validity.",
+      "raw": "Prostate MRI: T2-weighted plus ADC and/or high-b-value diffusion imaging.",
+      "helpers": "A case manifest, task contract and typed artifact references organize the supplied case.",
+      "tools": "A predefined collection of MRI processing tools, with controller variants and bounded recovery.",
+      "spec": "Run the six required stages and retain their required artifacts.",
+      "output": "Prostate mask, lesion-candidate JSON, feature table and report JSON.",
+      "score": "Required-stage success plus checks such as nonempty masks, matching geometry and valid candidate JSON. These checks do not independently establish diagnostic accuracy.",
+      "challenge": "A wrong sequence, spatial mismatch or broken artifact dependency can derail a later stage. This differs from recognizing anatomy without specialist tools.",
+      "gap": "The public suite template requires local dataset paths. A recorded case is needed for a visual before/after demonstration.",
+      "stages": [
+        "MRI + case manifest",
+        "Six processing stages",
+        "Mask + candidates + report"
+      ],
+      "variants": [
+        {
+          "name": "Full prostate workflow",
+          "helper": "Typed tools + case references",
+          "remaining": "Choose valid calls, preserve artifact relationships and complete all stages."
+        }
+      ],
+      "families": "Also: short denoising, brain segmentation, reconstruction, registration, and full brain/cardiac workflows.",
+      "sources": [
+        [
+          "Task contracts",
+          "https://github.com/Albertlongzi/BCER/blob/main/configs/tasks_registry.json"
+        ],
+        [
+          "Public suite template",
+          "https://github.com/Albertlongzi/BCER/blob/main/benchmark/benchmark_suite.template.json"
+        ],
+        [
+          "Metrics",
+          "https://github.com/Albertlongzi/BCER/blob/main/docs/METRICS.md"
+        ]
+      ]
+    },
+    {
+      "id": "automedbench",
+      "repo": "AutoMedBench",
+      "category": "ML workflow",
+      "title": "Build a kidney and tumor segmentation pipeline",
+      "tag": "Plan \u2192 validate \u2192 submit",
+      "goal": "Select and run a model to label kidneys and kidney lesions in CT, then submit predictions.",
+      "value": "Separating organs and lesions can support measurement and review. Here the agent is evaluated on constructing the research pipeline.",
+      "raw": "Abdominal CT inputs; the inspected task config uses ct.nii.gz.",
+      "helpers": "Tier-specific skills. Lite includes a concrete KiTS19 checkpoint and inspection example; Standard supplies search and model-comparison guidance.",
+      "tools": "GPU/network agent environment; a separate evaluator compares submitted outputs with held-out references.",
+      "spec": "Plan, set up, validate, infer and submit. The inspected kidney config sets a 3,600-second time budget.",
+      "output": "Kidney/tumor segmentation predictions plus the required staged workflow artifacts; exact submission details belong to the domain branch.",
+      "score": "Segmentation Dice plus process scoring. S1\u2013S3 use rubric judgments; S4\u2013S5 check completion/format deterministically.",
+      "challenge": "Knowing a plausible model is only the start: loading weights, mapping labels, checking preprocessing and producing valid predictions all matter.",
+      "gap": "A representative input/output case and a pinned branch-specific submission specification remain to be curated.",
+      "stages": [
+        "CT + tier guidance",
+        "Plan, set up, validate, infer",
+        "Segmentation + submission"
+      ],
+      "variants": [
+        {
+          "name": "Lite guidance",
+          "helper": "Concrete checkpoint + example loading code",
+          "remaining": "Make the supplied model work correctly on the task."
+        },
+        {
+          "name": "Standard guidance",
+          "helper": "Model search + comparison guidance",
+          "remaining": "Select a suitable model and build a working inference pipeline."
+        }
+      ],
+      "families": "Segmentation \u00b7 enhancement \u00b7 VQA \u00b7 reporting \u00b7 detection \u00b7 classification; the full packaged release also lists synthesis. Published coverage differs by release.",
+      "sources": [
+        [
+          "Kidney task config",
+          "https://github.com/AutoMedBench/AutoMedBench/blob/eval_seg/eval_seg/kidney-seg-task/config.yaml"
+        ],
+        [
+          "Lite assistance",
+          "https://github.com/AutoMedBench/AutoMedBench/blob/eval_seg/eval_seg/kidney-seg-task/lite_s1.md"
+        ],
+        [
+          "Standard assistance",
+          "https://github.com/AutoMedBench/AutoMedBench/blob/eval_seg/eval_seg/kidney-seg-task/standard_s1.md"
+        ],
+        [
+          "Task gallery",
+          "https://github.com/AutoMedBench/AutoMedBench/blob/main/docs/task-gallery.md"
+        ]
+      ]
+    },
+    {
+      "id": "imaging101",
+      "repo": "Imaging-101 / Inverse-101",
+      "category": "Reconstruction",
+      "title": "Reconstruct an image from sparse CT projections",
+      "tag": "Measurements \u2192 image",
+      "goal": "Recover a 256 \u00d7 256 synthetic phantom from noisy measurements at 30 projection angles.",
+      "value": "Sparse acquisition illustrates the tradeoff between fewer measurements and reconstruction artifacts. This example uses a mathematical phantom, not patient anatomy.",
+      "raw": "A sparse sinogram of 256 detectors \u00d7 30 angles, plus projection angles and acquisition metadata.",
+      "helpers": "README method hints at L1; an approach document at L2; approach and software design at L3.",
+      "tools": "A coding environment with task dependencies. Function mode and planning mode assess different capabilities.",
+      "spec": "For end-to-end evaluation, implement the reconstruction pipeline and produce output/reconstruction.npy.",
+      "output": "A reconstructed image array. Input and reference data have explicit dimensions in the task README.",
+      "score": "End-to-end quality uses reference-image metrics such as NCC/NRMSE. Function tests and plan judgments are separate evaluation modes.",
+      "challenge": "Only 30 of 180 angular samples are used in the stated problem. Supplied plans reduce algorithm-design work; they do not add measurement angles.",
+      "gap": "The README lists full projections and ground truth among task assets. Solver-visible file selection needs checking before asserting what is withheld.",
+      "stages": [
+        "30 noisy projection angles",
+        "Implement inverse reconstruction",
+        "256 \u00d7 256 image"
+      ],
+      "variants": [
+        {
+          "name": "L1 \u00b7 README",
+          "helper": "Task description + data + requirements",
+          "remaining": "Design the algorithm and software, then implement."
+        },
+        {
+          "name": "L2 \u00b7 + approach",
+          "helper": "A proposed algorithmic approach",
+          "remaining": "Design the software and implement the approach."
+        },
+        {
+          "name": "L3 \u00b7 + design",
+          "helper": "Approach + software design",
+          "remaining": "Implement the supplied design."
+        }
+      ],
+      "families": "Also: MRI reconstruction and parameter mapping, PET, ultrasound and other scientific inverse problems. Not all 57 tasks are medical.",
+      "sources": [
+        [
+          "Sparse-view CT task",
+          "https://github.com/AI4ImagingLab/imaging-101-release/blob/main/tasks/ct_sparse_view/README.md"
+        ],
+        [
+          "Evaluation modes and assistance",
+          "https://github.com/AI4ImagingLab/imaging-101-release/blob/main/README.md"
+        ],
+        [
+          "Assistance staging code",
+          "https://github.com/AI4ImagingLab/imaging-101-release/blob/main/evaluation_harness/runner.py"
+        ]
+      ]
+    },
+    {
+      "id": "radagent",
+      "repo": "RadAgent",
+      "category": "Interpretation",
+      "title": "Write a chest CT report using specialist tools",
+      "tag": "Tools \u2192 findings \u2192 report",
+      "goal": "Inspect a chest CT through specialist tools and assemble a report with an inspectable interaction trace.",
+      "value": "The intended product summarizes imaging findings for a reader. Report quality and tool usage need separate evaluation.",
+      "raw": "A chest CT scan, such as a CT-RATE case.",
+      "helpers": "Trained specialist backends can supply draft reports, disease predictions, organ/effusion segmentations and selected slices.",
+      "tools": "CT and slice VQA, report generation, disease classification, segmentation, slice selection and windowing.",
+      "spec": "Given an image path, orchestrate tool calls and return a generated report. This is a system inference example, not a standalone frozen benchmark prompt.",
+      "output": "Final report plus streamed JSON interaction trace; batch mode saves trajectories and failures.",
+      "score": "The project evaluates report and pathology-label performance. RadChest-CT lacks reference reports and therefore uses classification-based evaluation.",
+      "challenge": "The agent must reconcile several specialist outputs. Its capability depends partly on those models and checkpoints.",
+      "gap": "A licensed case with its actual tool outputs and final report is needed to illustrate a specific failure or success.",
+      "stages": [
+        "Chest CT",
+        "Consult and reconcile tools",
+        "Report + interaction trace"
+      ],
+      "variants": [
+        {
+          "name": "Tool-assisted report",
+          "helper": "Specialist model outputs and image-processing tools",
+          "remaining": "Choose tools, reconcile findings and compose the final report."
+        }
+      ],
+      "families": "Report generation \u00b7 CT-RATE multiple-choice VQA \u00b7 tool ablations. This anchor covers reporting only.",
+      "sources": [
+        [
+          "System and tools",
+          "https://github.com/eth-medical-ai-lab/rad-agent/blob/main/README.md"
+        ],
+        [
+          "Single-case inference interface",
+          "https://github.com/eth-medical-ai-lab/rad-agent/blob/main/minimal_inference/README.md"
+        ]
+      ]
+    },
+    {
+      "id": "rexmle",
+      "repo": "ReX-MLE",
+      "category": "ML workflow",
+      "title": "Learn to label the brain\u2019s arterial ring in CTA",
+      "tag": "Train \u2192 predict \u2192 submit",
+      "goal": "Build a segmentation model that assigns anatomical vessel classes in Circle of Willis CT angiography.",
+      "value": "Named vessel maps help describe cerebrovascular anatomy. This task tests medical ML engineering across training and unseen predictions.",
+      "raw": "Labeled training CTA volumes and test CTA volumes.",
+      "helpers": "Training segmentation labels, the challenge description and submission conventions. Test labels are withheld.",
+      "tools": "An ML engineering environment for preparing data, training models and producing competition submissions.",
+      "spec": "For TopCoW track 1 task 1, predict multiple vessel classes in the input image geometry.",
+      "output": "submission.csv linking patient IDs to integer-label NIfTI masks in predictions/.",
+      "score": "The task description names mean Dice as its primary metric. A separate audit of the actual grader is still needed before exact replay.",
+      "challenge": "The agent must develop a pipeline that generalizes beyond training examples; this is much larger work than inspecting one supplied scan.",
+      "gap": "The description has approximate split counts. Use the pinned prepared split and grader for exact comparisons; no trial was run for this survey.",
+      "stages": [
+        "Training CTAs + labels",
+        "Build and train a model",
+        "Masks for test CTAs"
+      ],
+      "variants": [
+        {
+          "name": "Competition workflow",
+          "helper": "Labeled training cases + task definition",
+          "remaining": "Develop, train, validate and submit a generalizing model."
+        }
+      ],
+      "families": "Also: stroke, pancreas, dental, cell/pathology, enhancement and other vessel challenges; 20 challenge tasks in the inspected tree.",
+      "sources": [
+        [
+          "TopCoW task description",
+          "https://github.com/rajpurkarlab/ReX-MLE/blob/main/rex-mle/rexmle/challenges/topcow-track1-task1/description.md"
+        ],
+        [
+          "Challenge catalogue",
+          "https://github.com/rajpurkarlab/ReX-MLE/tree/main/rex-mle/rexmle/challenges"
+        ]
+      ]
+    },
+    {
+      "id": "ours",
+      "repo": "Our work \u00b7 BR-030",
+      "category": "Geometry",
+      "title": "Repair a vessel gap and unfold the route",
+      "tag": "Existing internal reference",
+      "goal": "Reconnect a local coronary-mask gap, trace the requested branch and produce consistent curved views and a surface.",
+      "value": "A curved planar reformation unfolds a winding vessel for inspection. This task does not score stenosis or a diagnosis.",
+      "raw": "An ImageCAS CT angiography crop.",
+      "helpers": "A supplied CAS-Net prediction, an 8 mm editable review sphere and two route anchors. The gap is a natural prediction defect.",
+      "tools": "Agent-authored processing code; reference and scoring are retained separately.",
+      "spec": "Repair inside the review region while preserving the mask outside it; keep coordinates, sampled intensities and path distances consistent.",
+      "output": "Corrected mask, centerline in physical mm, eight curved CT planes with coordinates/distances, and a closed mesh.",
+      "score": "Frozen repair, preservation, trace, curved-view and mesh checks. Geometry-only and image-guided author methods both passed this fixture.",
+      "challenge": "The mask, review sphere and endpoints remove much of the search problem. Consistency across outputs remains a real requirement.",
+      "gap": "Existing native tours and scientific figures can be reused. A brief should separate the supplied helpers from the post-run result reveal.",
+      "stages": [
+        "CTA + mask + anchors",
+        "Repair, trace and resample",
+        "Mask + route + views + mesh"
+      ],
+      "variants": [
+        {
+          "name": "Published supplied-helper condition",
+          "helper": "Predicted mask + editable sphere + route anchors",
+          "remaining": "Repair and produce mutually consistent geometric outputs."
+        }
+      ],
+      "families": "An internal example showing that the same brief format can sit before an existing results story.",
+      "sources": [
+        [
+          "Current task card",
+          "groups/tubular-anatomy/presentation/card.json"
+        ],
+        [
+          "Existing illustrated story",
+          "groups/tubular-anatomy/presentation/story.md"
+        ],
+        [
+          "Frozen protocol context",
+          "docs/research-rounds/BR-030-vessel-diagnostic-geometry.md"
+        ]
+      ]
+    }
+  ]
+}

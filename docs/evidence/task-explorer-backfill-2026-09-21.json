@@ -1,0 +1,92 @@
+{
+  "observed_on": "2026-09-21",
+  "source_task": "codex://threads/01a0bef4-b72c-7241-bb59-f5ca11d4db09",
+  "scope": "Backfill Task at a glance for every currently imported external catalogue entry; retain the existing internal example.",
+  "decision": {
+    "actor": "user",
+    "request": "we should backfill all task at a glance for task catalogue of different groups"
+  },
+  "coverage": {
+    "briefs_total": 160,
+    "external_entries_total": 284,
+    "repositories": [
+      {
+        "id": "healthagentbench",
+        "entries": 54,
+        "linked_entries": 54,
+        "shared_briefs": 15
+      },
+      {
+        "id": "abra",
+        "entries": 8,
+        "linked_entries": 8,
+        "shared_briefs": 6
+      },
+      {
+        "id": "bcer",
+        "entries": 9,
+        "linked_entries": 9,
+        "shared_briefs": 9
+      },
+      {
+        "id": "automedbench",
+        "entries": 133,
+        "linked_entries": 133,
+        "shared_briefs": 50
+      },
+      {
+        "id": "imaging101",
+        "entries": 58,
+        "linked_entries": 58,
+        "shared_briefs": 58
+      },
+      {
+        "id": "radagent",
+        "entries": 2,
+        "linked_entries": 2,
+        "shared_briefs": 2
+      },
+      {
+        "id": "rexmle",
+        "entries": 20,
+        "linked_entries": 20,
+        "shared_briefs": 19
+      }
+    ],
+    "native_visual_briefs": 6
+  },
+  "source_receipt": "discussions/medical-agent-repository-survey/backfill-sources.json",
+  "validation": {
+    "briefs": 160,
+    "entries": 284,
+    "conditions": 379,
+    "nativeImagesDecoded": 12,
+    "repositoryGroups": 8,
+    "selectedEntryNavigation": "pass",
+    "legacyDeepLinks": "pass",
+    "caseContext": "pass",
+    "backNavigation": "pass",
+    "inputFirstAndReveal": "pass",
+    "search": "pass",
+    "mobile": "pass",
+    "pageErrors": [],
+    "remoteRequests": [],
+    "repository_check": {
+      "command": "make check PYTHON=python3.12",
+      "tree": "isolated export of staged Git index",
+      "result": "pass",
+      "tests_run": 48,
+      "tests_passed": 47,
+      "tests_skipped": 1,
+      "skip_reason": "Optional local imaging runtime unavailable in clean export",
+      "portable_media_note": "Ignored native media correctly report missing in the clean export; the active local build has no missing referenced media."
+    },
+    "browser_script_local": "runs/task-explorer/check-backfill.cjs"
+  },
+  "limits": [
+    "Coverage refers to the imported catalogue, not every generated or externally hosted benchmark case.",
+    "Six briefs have local native/source-derived visuals; the others explicitly show contract descriptions and missing sample views.",
+    "Related AutoMedBench gallery, branch and Lite listings keep their source identity; where a Full-release explanation is shared, exact data/recipe/metric equivalence is not asserted.",
+    "No external benchmark, model training or inference was run. Task descriptions and inspected configuration/scorer code support the briefs; not every external grader was replayed."
+  ]
+}

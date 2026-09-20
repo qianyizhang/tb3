@@ -12,6 +12,7 @@ later closeouts before treating an older plan or review as the current state.
 | [Minimal workbench plan](native-workbench-plan.md) | Accepted simplification and behavior decisions. |
 | [Native implementation closeout](native-closeout.md) | Delivered code, replay/export checks, review fixes and remaining limits at `7177822` / `f5b2ced`. |
 | [Experiment coverage](native-experiment-inventory.md) | Dated operation support and recovery gaps; consult experiment configs for later changes. |
+| [Main cutover](main-cutover.md) | Completed experiment absorption, canonical Task Explorer integration and main-branch consolidation. |
 | [Documentation audit](documentation-audit.md) | Consolidation of current guides and retirement of obsolete guidance. |
 
 Baseline/source inventories, import/conversion reconciliations, preservation checks
@@ -22,15 +23,9 @@ and helpers; [archive recovery](../../archive/README.md) explains inspecting Git
 
 ## Integration boundary
 
-At the documentation audit, `codex/native-medical-workbench` contains the native
-implementation while `main` has later BR-042 records and unrelated discussion edits.
-The original checkout's experiment owner has used the old closeout launcher.
-Do not infer that a stored running observation is a live process or that a completed
-worktree means cutover is complete.
-
-Before integration, inspect the owner's latest status and commits, let it finish
-using the old launcher, and reconcile new records into the canonical format while
-preserving stable IDs, frozen bytes and original observations. Preserve the ongoing
-BR-043 proposals, repository-survey notes and vocabulary work in the original
-checkout. Then integrate deliberately and run the normal checks. This documentation
-change does not merge branches, resume experiments or reinstall runtimes.
+The native implementation, documentation audit and completed BR-042 continuation
+are consolidated on `main`. [The cutover receipt](main-cutover.md) records the
+source commits, metadata conversion, concurrent Task Explorer handoff and checks.
+The original task/scorer bytes, runtime artifacts and scientific observations
+remain preserved. New work uses the installed `med` interface; the old launcher
+is retired, and retained one-shot adapters are historical sources only.

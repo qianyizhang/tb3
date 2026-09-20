@@ -20,3 +20,12 @@ Use [the media guide](tours/TOOL.md) for declared rendering dependencies and
 local; static figures remain in Git. The old interview is recoverable through
 `archive/manifest.json`. Literature context is recorded in
 [the editorial source notes](editorial/external-source-notes.md).
+
+## Task Briefs and the external survey
+
+The [Task Brief rulebook](task-explorer/RULEBOOK.md) defines compact explanations
+with explicit assistance and input-first visuals. The source survey lives under
+`discussions/medical-agent-repository-survey/`; internal briefs stay with groups.
+Build the standalone explorer with `med brief build`, check it with
+`med brief check`, or scaffold a proposed brief with `med brief new --help`.
+These commands use the installed native CLI and never launch a trial.
