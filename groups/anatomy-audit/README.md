@@ -7,3 +7,5 @@ Supplied-mask auditing differs from segmentation from scratch. Inventory and ima
 Use `python3 scripts/med list --group anatomy-audit` from the repository root. The group owns the current research entry point; original protocols and frozen evidence remain at their recorded paths.
 
 [Capability story](presentation/story.md) · [Working contract](AGENTS.md)
+
+[Data sources](sources.json) · [Retained examples](examples/README.md) · [Methods](methods/README.md)

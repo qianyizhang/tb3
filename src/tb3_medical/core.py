@@ -136,11 +136,11 @@ def projection(root):
                      key=lambda r: (r.get("created_at", ""), r["id"]))
     # Missing or changed review proof cannot resolve an issue or reinstate a claim.
     reviews = [r for r in reviews if r.get("evidence") and not any(evidence_state(r))]
-    resolved = {i for r in reviews for i in r.get("resolves", [])}
+    resolved = {(i, r["target_id"]) for r in reviews for i in r.get("resolves", [])}
     direct = {}
     for r in reviews:
         direct[r["target_id"]] = r
-    issues = [r for r in records.values() if r["kind"] == "issue" and r["id"] not in resolved]
+    issues = [r for r in records.values() if r["kind"] == "issue"]
     states = {}
     visiting = set()
 
@@ -156,7 +156,7 @@ def projection(root):
         verdict = direct.get(key, {}).get("validity", r.get("validity", "unreviewed"))
         blockers = []
         for issue in issues:
-            if key in issue["targets"]:
+            if key in issue["targets"] and (issue["id"], key) not in resolved:
                 blockers.append(issue["id"])
                 if issue["impact"] == "confirmed":
                     verdict = "invalidated"
@@ -259,7 +259,7 @@ def issue(root, targets, impact, reason, paths, actor):
     if not rows or not reason or not paths or impact not in {"suspected", "confirmed"}:
         raise MedicalError("Issue requires targets, impact, reason and existing evidence")
     row = {"schema_version": 1, "kind": "issue", "id": uid("issue"),
-           "group_id": rows[0]["group_id"], "targets": [r["id"] for r in rows],
+           "group_id": rows[0].get("group_id", rows[0]["id"]), "targets": [r["id"] for r in rows],
            "impact": impact, "reason": reason, "actor": actor, "created_at": now(),
            "evidence": [evidence(root, p) for p in paths]}
     write_new(destination(root, rows[0], "reviews") / (row["id"] + ".json"), row)
@@ -272,10 +272,10 @@ def review(root, target, verdict, reason, paths, actor, resolves=()):
         raise MedicalError("Review requires validity, reason and evidence")
     for key in resolves:
         i = lookup(root, key)
-        if i["kind"] != "issue" or i["targets"] != [r["id"]]:
-            raise MedicalError("Resolve a single-target issue with a review of that target")
+        if i["kind"] != "issue" or r["id"] not in i["targets"]:
+            raise MedicalError("Resolve an issue with a review of one of its affected targets")
     row = {"schema_version": 1, "kind": "review", "id": uid("review"),
-           "group_id": r["group_id"], "target_id": r["id"], "validity": verdict,
+           "group_id": r.get("group_id", r["id"]), "target_id": r["id"], "validity": verdict,
            "reason": reason, "actor": actor, "created_at": now(), "resolves": list(resolves),
            "evidence": [evidence(root, p) for p in paths]}
     write_new(destination(root, r, "reviews") / (row["id"] + ".json"), row)

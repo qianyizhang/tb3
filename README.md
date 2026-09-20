@@ -37,7 +37,7 @@ freeze/plan/run/collect, validity issues and clean exports. [Contribution rules]
 cover concurrent ownership and milestone checks. Findings are source-linked and
 qualified; historical success is not clinical readiness or a new task's score.
 
-[Exact MRI export recipe](exports/recipes/landmarks-mri-exact.json) demonstrates
+[MRI export recipe](exports/recipes/landmarks-mri-v2.json) demonstrates
 independent saved-output replay. It requires selected local artifacts with
 recorded hashes. It emits a draft into a fresh destination; the separately owned
 [existing submission](docs/submission.md) is never overwritten.

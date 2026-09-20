@@ -132,6 +132,10 @@ def present(root, output, local_media=False):
     if output == root or root.is_relative_to(output): raise c.MedicalError("Output cannot contain the source checkout")
     marker = output / ".tb3-medical-site"
     if output.exists() and not marker.exists() and any(output.iterdir()): raise c.MedicalError("Refusing a nonempty unowned output directory")
+    if marker.exists():
+        # This is an explicitly marked disposable build. Rebuild the whole inventory
+        # so a portable build cannot retain media from a prior local build.
+        shutil.rmtree(output)
     output.mkdir(parents=True, exist_ok=True); marker.write_text("Generated read-only medical presentation\n")
     rows = c.projection(root); groups = [r for r in rows.values() if r["kind"] == "group"]
     for name in ("index.html", "app.js", "style.css"):

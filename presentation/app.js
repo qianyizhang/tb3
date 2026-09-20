@@ -5,7 +5,7 @@ let rows=[];
 function status(r){return r.current.need_fix?'needs review / fix':r.completeness==='partial'?'partial':r.current.execution?.state||r.current.disposition||r.disposition||r.classification||r.current.validity;}
 function show(){
  const words=$('#search').value.toLowerCase().split(/\s+/).filter(Boolean),group=$('#group').value,kind=$('#kind').value,state=$('#status').value;
- const filtered=rows.filter(r=>(!group||r.group_id===group||r.id===group)&&(!kind||(kind==='overview'?['idea','experiment','finding'].includes(r.kind):r.kind===kind))&&words.every(w=>JSON.stringify(r).toLowerCase().includes(w))&&(!state||(state==='need_fix'?r.current.need_fix:state==='partial'?r.completeness==='partial':state==='missing_local'?r.current.availability===state:r.current.validity===state)));
+ const filtered=rows.filter(r=>(!group||r.group_id===group||r.id===group)&&(!kind||(kind==='overview'?['idea','experiment','finding'].includes(r.kind):r.kind===kind))&&words.every(w=>JSON.stringify(r).toLowerCase().includes(w))&&(!state||(state==='need_fix'?r.current.need_fix:state==='partial'?(r.completeness==='partial'||r.current.completeness==='partial'):state==='missing_local'?r.current.availability===state:r.current.validity===state)));
  $('#records').replaceChildren();$('#count').textContent=`${filtered.length} of ${rows.length} records`;$('#empty').hidden=filtered.length>0;
  for(const r of filtered){
   const d=el('details',undefined,'record'),s=el('summary');d.id=r.id;s.append(el('span',r.kind,'type'),el('span',r.title||r.question||r.id,'record-title'),el('span',status(r),'badge'+(r.current.need_fix?' alert':'')));d.append(s);

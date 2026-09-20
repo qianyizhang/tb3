@@ -1,5 +1,6 @@
 """Deterministic explicit-file packages; never overwrite a handed-off repository."""
 import json
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -12,6 +13,8 @@ def export(root, recipe_path, destination):
     if recipe.get("schema_version") != 1 or recipe.get("mode") not in {"exact", "adapted"}:
         raise c.MedicalError("Expected a v1 exact/adapted export recipe")
     commit = recipe["source_commit"]
+    if not re.fullmatch(r"[0-9a-f]{40}", commit):
+        raise c.MedicalError("Pin source_commit to a full immutable Git commit SHA")
     subprocess.run(["git", "cat-file", "-e", commit + "^{commit}"], cwd=root, check=True, capture_output=True)
     if recipe.get("qualification") != "draft":
         raise c.MedicalError("This exporter emits drafts; current submission gates need a separate review")
@@ -80,6 +83,21 @@ def verify(destination):
     manifest = c.read(dest / "manifest.json")
     if (dest / "INCOMPLETE").exists():
         raise c.MedicalError("Package is marked INCOMPLETE")
+    if c.sha(c.inside(dest, "recipe.json")) != manifest["recipe_sha256"]:
+        raise c.MedicalError("Package recipe changed")
+    recipe = c.read(dest / "recipe.json")
+    pinned = ("files", "source_commit", "qualification", "remaining_gates", "mode", "target_profile", "depends_on")
+    if any(recipe[key] != manifest[key] for key in pinned) or recipe.get("changes", []) != manifest["changes"]:
+        raise c.MedicalError("Package manifest differs from the pinned recipe")
+    expected = {"recipe.json", "manifest.json", *(e["destination"] for e in manifest["files"])}
+    actual = set()
+    for p in dest.rglob("*"):
+        rel = p.relative_to(dest)
+        if rel.parts[0] == ".git": continue
+        if p.is_symlink(): raise c.MedicalError("Package contains a symlink: " + str(rel))
+        if p.is_file(): actual.add(rel.as_posix())
+    if actual != expected:
+        raise c.MedicalError("Package inventory differs: " + ", ".join(sorted(actual ^ expected)))
     for entry in manifest["files"]:
         p = c.inside(dest, entry["destination"])
         if not p.is_file() or c.sha(p) != entry["sha256"]:

@@ -9,7 +9,7 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from tb3_medical import core as c, workflow as w, packaging
+from tb3_medical import core as c, workflow as w, packaging, presentation
 
 
 class MedicalTests(unittest.TestCase):
@@ -57,6 +57,117 @@ class MedicalTests(unittest.TestCase):
         self.assertEqual(c.projection(self.root)["e"]["current"]["validity"], "qualified")
         (self.root / "correction.txt").write_text("Different evidence")
         self.assertEqual(c.projection(self.root)["e"]["current"]["validity"], "invalidated")
+
+    def test_multi_target_issue_resolves_each_target_independently(self):
+        self.add("evaluation", "a"); self.add("evaluation", "b")
+        issue = c.issue(self.root, ["a", "b"], "confirmed", "Shared defect", ["proof.txt"], "assistant")
+        c.review(self.root, "a", "qualified", "A replay fixed", ["proof.txt"], "assistant", [issue["id"]])
+        rows = c.projection(self.root)
+        self.assertEqual(rows["a"]["current"]["validity"], "qualified")
+        self.assertEqual(rows["b"]["current"]["validity"], "invalidated")
+        c.review(self.root, "b", "qualified", "B replay fixed", ["proof.txt"], "assistant", [issue["id"]])
+        self.assertEqual(c.projection(self.root)["b"]["current"]["validity"], "qualified")
+
+    def enabled_study(self):
+        exp = w.new(self.root, "g", "study", "Study"); exp["execution_enabled"] = True
+        c.atomic_write(self.root / c.lookup(self.root, "study")["record_path"], exp)
+        return w.freeze(self.root, "study")
+
+    def fake_harbor(self, argv, **kwargs):
+        config_path = Path(argv[-1]); config = c.read(config_path)
+        agent = config["agents"][0]["name"]
+        phase = {"started_at": "2026-09-20T00:00:00Z", "finished_at": "2026-09-20T00:00:01Z"}
+        trial = config_path.parent / "job/trial/result.json"
+        c.write_new(trial, {**phase, "task_name": "task", "trial_name": "trial", "task_checksum": "a" * 64,
+                           "config": {"agent": config["agents"][0]}, "agent_execution": phase,
+                           "verifier": phase, "exception_info": None,
+                           "verifier_result": {"rewards": {"reward": 1 if agent == "oracle" else 0}}})
+        return subprocess.CompletedProcess(argv, 0)
+
+    def test_controls_and_model_plan_use_one_exact_frozen_condition(self):
+        frozen = self.enabled_study()
+        model = w.plan(self.root, frozen["id"], "codex", "test/model", "high")
+        with patch.object(w, "harbor_checksum", return_value="a" * 64), patch.object(w.subprocess, "run", side_effect=self.fake_harbor) as launch:
+            with self.assertRaises(c.MedicalError): w.run(self.root, model["id"], "fake-harbor")
+            self.assertFalse(launch.called)
+            for agent in ("oracle", "nop"):
+                planned = w.plan(self.root, frozen["id"], agent)
+                self.assertEqual(w.run(self.root, planned["id"], "fake-harbor")["state"], "completed")
+            receipt = w.run(self.root, model["id"], "fake-harbor")
+            self.assertEqual(len(receipt["collected"]), 1)
+        row = c.lookup(self.root, receipt["collected"][0])
+        self.assertTrue(row["freeze_checksum_verified"])
+        self.assertEqual(row["classification"], "model_failure_candidate")
+        self.assertEqual(sum(r["kind"] == "attempt" for r in c.load(self.root).values()), 3)
+
+    def test_experiment_revocation_and_invalidation_block_preexisting_plan(self):
+        frozen = self.enabled_study(); planned = w.plan(self.root, frozen["id"], "oracle")
+        # Retained immutable freezes made by the earlier interface lack this edge.
+        freeze_path = self.root / c.lookup(self.root, frozen["id"])["record_path"]
+        original = c.read(freeze_path); original["depends_on"] = []; c.atomic_write(freeze_path, original)
+        path = self.root / c.lookup(self.root, "study")["record_path"]; exp = c.read(path)
+        exp["execution_enabled"] = False; c.atomic_write(path, exp)
+        with patch.object(w.subprocess, "run") as launch:
+            with self.assertRaisesRegex(c.MedicalError, "disabled"): w.run(self.root, planned["id"], "fake")
+            exp["execution_enabled"] = True; c.atomic_write(path, exp)
+            c.issue(self.root, ["study"], "confirmed", "Defect reproduced", ["proof.txt"], "assistant")
+            with self.assertRaisesRegex(c.MedicalError, "review"): w.run(self.root, planned["id"], "fake")
+            self.assertFalse(launch.called)
+
+    def test_interrupted_execution_collects_into_original_attempt(self):
+        frozen = self.enabled_study(); planned = w.plan(self.root, frozen["id"], "oracle")
+        def interrupted(argv, **kwargs):
+            self.fake_harbor(argv, **kwargs)
+            raise KeyboardInterrupt()
+        with patch.object(w, "harbor_checksum", return_value="a" * 64), patch.object(w.subprocess, "run", side_effect=interrupted):
+            with self.assertRaises(KeyboardInterrupt): w.run(self.root, planned["id"], "fake-harbor")
+        source = "runs/medical/" + planned["id"] + "/job/trial/result.json"
+        row = w.collect(self.root, "study", [source])[0]
+        self.assertEqual(row["attempt_id"], "attempt-" + planned["id"])
+        self.assertTrue(row["freeze_checksum_verified"])
+        self.assertEqual(sum(r["kind"] == "attempt" for r in c.load(self.root).values()), 1)
+        self.assertEqual(c.projection(self.root)[row["attempt_id"]]["current"]["execution"]["state"], "interrupted")
+        self.assertEqual(w.collect(self.root, "study", [source])[0]["id"], row["id"])
+
+    def test_collection_during_execution_appends_later_binding_without_duplicate_attempt(self):
+        frozen = self.enabled_study(); planned = w.plan(self.root, frozen["id"], "oracle"); early = []
+        def collect_while_running(argv, **kwargs):
+            result = self.fake_harbor(argv, **kwargs)
+            source = str((Path(argv[-1]).parent / "job/trial/result.json").relative_to(self.root))
+            early.append(w.collect(self.root, "study", [source])[0])
+            return result
+        with patch.object(w, "harbor_checksum", return_value="a" * 64), patch.object(w.subprocess, "run", side_effect=collect_while_running):
+            receipt = w.run(self.root, planned["id"], "fake")
+        final = c.lookup(self.root, receipt["collected"][0])
+        self.assertFalse(early[0]["freeze_checksum_verified"])
+        self.assertTrue(final["freeze_checksum_verified"])
+        self.assertNotEqual(early[0]["id"], final["id"])
+        self.assertEqual(early[0]["attempt_id"], final["attempt_id"])
+
+    def test_batch_collection_does_not_transfer_managed_identity_or_binding(self):
+        frozen = self.enabled_study(); planned = w.plan(self.root, frozen["id"], "oracle")
+        with patch.object(w, "harbor_checksum", return_value="a" * 64), patch.object(w.subprocess, "run", side_effect=self.fake_harbor):
+            w.run(self.root, planned["id"], "fake")
+        managed = "runs/medical/" + planned["id"] + "/job/trial/result.json"
+        independent = "runs/independent/trial/result.json"
+        c.write_new(self.root / independent, c.read(self.root / managed))
+        first, second = w.collect(self.root, "study", [managed, independent])
+        self.assertNotEqual(first["attempt_id"], second["attempt_id"])
+        self.assertTrue(first["freeze_checksum_verified"])
+        self.assertFalse(second["freeze_checksum_verified"])
+
+    def test_portable_rebuild_removes_previous_local_media(self):
+        (self.root / "presentation/tours/data").mkdir(parents=True)
+        for name in ("index.html", "app.js", "style.css"): (self.root / "presentation" / name).write_text("fixture")
+        (self.root / "presentation/tours/data/native-local.bin").write_bytes(b"local array")
+        (self.root / "groups/g/presentation").mkdir()
+        (self.root / "groups/g/presentation/story.md").write_text("# A portable story")
+        group = c.read(self.root / "groups/g/g.json"); group["title"] = "Group"; c.atomic_write(self.root / "groups/g/g.json", group)
+        out = self.root / ".cache/site"
+        presentation.present(self.root, out, True)
+        self.assertTrue((out / "presentation/tours/data/native-local.bin").exists())
+        presentation.present(self.root, out, False)
+        self.assertFalse((out / "presentation/tours/data/native-local.bin").exists())
 
     def test_missing_local_evidence_is_availability_not_failure(self):
         evidence = c.evidence(self.root, "proof.txt")
@@ -129,6 +240,17 @@ class MedicalTests(unittest.TestCase):
         c.write_new(self.root / "recipe.json", recipe)
         packaging.export(self.root, "recipe.json", self.root / "package")
         self.assertEqual(packaging.verify(self.root / "package")["verified_files"], 1)
+        path = self.root / "package/manifest.json"; original_manifest = c.read(path)
+        altered = {**original_manifest, "qualification": "submission-ready", "remaining_gates": []}; c.atomic_write(path, altered)
+        with self.assertRaisesRegex(c.MedicalError, "pinned recipe"): packaging.verify(self.root / "package")
+        c.atomic_write(path, original_manifest)
+        (self.root / "package/unlisted-runtime.json").write_text('{}')
+        with self.assertRaisesRegex(c.MedicalError, "inventory"): packaging.verify(self.root / "package")
+        (self.root / "package/unlisted-runtime.json").unlink()
+        (self.root / "package/recipe.json").write_text('{}')
+        with self.assertRaisesRegex(c.MedicalError, "recipe changed"): packaging.verify(self.root / "package")
+        moving = {**recipe, "source_commit": "HEAD"}; c.write_new(self.root / "moving.json", moving)
+        with self.assertRaisesRegex(c.MedicalError, "immutable"): packaging.export(self.root, "moving.json", self.root / "moving")
         with self.assertRaises(c.MedicalError): packaging.export(self.root, "recipe.json", self.root / "package")
         (self.root / "proof.txt").unlink()
         with self.assertRaisesRegex(c.MedicalError, "Restore required artifacts"):

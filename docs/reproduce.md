@@ -5,9 +5,9 @@ Start with the [workflow](workflow.md) and the experiment record returned by
 as evidence. An experiment's availability, replay status and scientific validity
 are different properties; a Dockerfile alone establishes none of them.
 
-The [landmark MRI recipe](../exports/recipes/landmarks-mri-exact.json) selects exact
+The [landmark MRI recipe](../exports/recipes/landmarks-mri-v2.json) selects exact
 frozen task files, source notice, saved outputs and a standalone Python replay.
-Build it with `python3.12 scripts/med export exports/recipes/landmarks-mri-exact.json
+Build it with `python3.12 scripts/med export exports/recipes/landmarks-mri-v2.json
 /fresh/destination`, then run `python3.12 replay.py` inside that destination. Missing
 artifacts are listed with their expected digests in the recipe. The replay checks
 saved model/oracle outputs and an empty control, without Docker, source checkout,

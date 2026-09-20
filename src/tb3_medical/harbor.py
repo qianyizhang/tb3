@@ -1,28 +1,17 @@
-"""Import allowlisted Harbor evidence and maintain separate analyst records."""
+"""Import allowlisted Harbor evidence without changing raw files."""
 from __future__ import annotations
 
 import datetime as dt
 import hashlib
 import json
 import math
-import os
 from pathlib import Path
 import re
-import tempfile
 from typing import Any
-import uuid
-
-
-STATUSES = ("idea", "screening", "prototyping", "calibration", "rejected", "parked")
-VERDICTS = ("genuine_failure", "task_defect", "verifier_defect", "infrastructure", "mirrored", "pending")
 
 
 class CatalogError(ValueError):
     pass
-
-
-def now() -> str:
-    return dt.datetime.now(dt.timezone.utc).isoformat()
 
 
 def sha256(path: Path) -> str:
@@ -53,24 +42,6 @@ def read_json(path: Path) -> Any:
         return json.loads(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeError, ValueError) as exc:
         raise CatalogError(f"cannot read JSON: {path.name} ({type(exc).__name__})") from exc
-
-
-def write_json(path: Path, value: Any) -> bool:
-    """Atomic replacement; an unchanged sync does not touch timestamps."""
-    text = json.dumps(value, indent=2, sort_keys=True, ensure_ascii=False, allow_nan=False) + "\n"
-    if path.exists() and path.read_text(encoding="utf-8") == text:
-        return False
-    path.parent.mkdir(parents=True, exist_ok=True)
-    name = None
-    try:
-        with tempfile.NamedTemporaryFile("w", dir=path.parent, encoding="utf-8", delete=False) as stream:
-            name = stream.name
-            stream.write(text)
-        os.replace(name, path)
-    finally:
-        if name and os.path.exists(name):
-            os.unlink(name)
-    return True
 
 
 def obj(value: Any) -> dict:
@@ -222,7 +193,7 @@ def import_trial(root: Path, source: Path) -> dict:
     if not checksum(result.get("task_checksum")):
         warnings.append("Historical Harbor task checksum is missing; snapshot comparison is unavailable.")
     if before != sha256(source) or stdout_hash != (sha256(stdout) if stdout.is_file() else None) or not evidence_matches(root, evidence):
-        raise CatalogError("trial evidence changed while being imported; retry sync")
+        raise CatalogError("trial evidence changed while being imported; retry collection")
     usage = obj(result.get("agent_result"))
     return {
         "schema_version": 1, "id": identifier, "job": job_dir.name, "trial_name": trial_name,
@@ -240,7 +211,6 @@ def import_trial(root: Path, source: Path) -> dict:
         "source_result": source_relative, "source_sha256": before,
         "evidence_sha256": digest_json(evidence), "qualifying_final_trial": False,
     }
-
 
 
 def evidence_matches(root: Path, evidence: list[dict]) -> bool:

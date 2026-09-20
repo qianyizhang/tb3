@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "recipe": "exports/recipes/landmarks-mri-v2.json",
+  "mode": "adapted packaging launcher; frozen task/scorer/answers unchanged",
+  "deterministic_manifest_sha256": "4926ba4faad3e3bd3cc21338d54662ebc47c7cf787f2933f5f6b521aabf2600c",
+  "rebuilds": 2,
+  "isolated_replay": {
+    "scope": "Saved-output replay, including saved oracle and synthetic empty-output control; no new Docker/model trial",
+    "results": {
+      "oracle": {
+        "reward": 1,
+        "accepted_count": 32,
+        "total": 32,
+        "mean_mm": 0.0
+      },
+      "terra-high": {
+        "reward": 0,
+        "accepted_count": 3,
+        "total": 32,
+        "mean_mm": 9.402305021262029
+      },
+      "sol-xhigh": {
+        "reward": 0,
+        "accepted_count": 14,
+        "total": 32,
+        "mean_mm": 3.871505693004214
+      },
+      "empty-output-control": {
+        "reward": 0
+      }
+    }
+  },
+  "post_replay_inventory_unchanged": true,
+  "docker_or_model_executed": false
+}

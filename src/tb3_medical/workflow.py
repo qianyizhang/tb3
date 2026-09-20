@@ -101,7 +101,7 @@ def freeze(root, experiment):
            "experiment_id": exp["id"], "created_at": c.now(), "task_digest": digest,
            "digest_kind": "sha256-canonical-path-sha256-map-v1", "files": files,
            "source_path": exp["task_path"], "snapshot_path": str(snapshot.relative_to(root)),
-           "depends_on": [], "evidence": [c.evidence(root, str(snapshot.relative_to(root) / p)) for p in files]}
+           "depends_on": [exp["id"]], "evidence": [c.evidence(root, str(snapshot.relative_to(root) / p)) for p in files]}
     c.write_new(c.destination(root, exp, "experiments") / Path(exp["record_path"]).parent.name / "freezes" / (key + ".json"), row)
     return row
 
@@ -138,14 +138,31 @@ def plan(root, frozen, agent, model=None, effort=None):
 def collect(root, experiment, sources, task_digest=None, expected_checksum=None, attempt_id=None):
     exp = c.lookup(root, experiment)
     result = []
+    original_binding = (task_digest, expected_checksum, attempt_id)
     for source in sources:
+        task_digest, expected_checksum, attempt_id = original_binding
         src = c.inside(root, source)
         imported = harbor.import_trial(Path(root), src)
         current = c.load(root)
+        # Recover plan identity/binding from our execution receipt after interruption.
+        owned = next((r for r in current.values() if r["kind"] == "attempt" and r.get("source_execution")
+                      and src.is_relative_to(c.inside(root, r["source_execution"]).parent / "job")), None)
+        if owned:
+            attempt_id = owned["id"]
+            execution = c.read(c.inside(root, owned["source_execution"]))
+            planned = current[owned["plan_id"]]
+            frozen = current[planned["freeze_id"]]
+            if execution.get("frozen_payload_unchanged") and task_files(c.inside(root, frozen["snapshot_path"])) == frozen["files"]:
+                expected_checksum = execution.get("harbor_task_checksum")
+                task_digest = frozen["task_digest"]
+            else:
+                expected_checksum, task_digest = None, None
         prior = next((r for r in current.values() if r["kind"] == "evaluation" and r.get("source_result") == imported["source_result"]), None)
         identity = prior["attempt_id"] if prior else attempt_id or "attempt-" + hashlib.sha256(imported["source_result"].encode()).hexdigest()[:24]
         # Collection snapshots may change as an interrupted trial gains evidence; identity does not.
-        observation = "observation-" + hashlib.sha256((identity + imported["evidence_sha256"]).encode()).hexdigest()[:24]
+        verified = bool(task_digest and expected_checksum and imported["task_checksum"] == expected_checksum)
+        binding = "|" + task_digest + "|" + expected_checksum if verified else ""
+        observation = "observation-" + hashlib.sha256((identity + imported["evidence_sha256"] + binding).encode()).hexdigest()[:24]
         if identity not in current:
             attempt = {"schema_version": 1, "kind": "attempt", "id": identity,
                        "group_id": exp["group_id"], "experiment_id": exp["id"],
@@ -156,8 +173,8 @@ def collect(root, experiment, sources, task_digest=None, expected_checksum=None,
         if observation not in current:
             row = {**imported, "kind": "evaluation", "id": observation, "attempt_id": identity,
                    "group_id": exp["group_id"], "experiment_id": exp["id"], "collected_at": c.now(),
-                   "task_digest": task_digest if expected_checksum and imported["task_checksum"] == expected_checksum else None,
-                   "freeze_checksum_verified": bool(expected_checksum and imported["task_checksum"] == expected_checksum),
+                   "task_digest": task_digest if verified else None,
+                   "freeze_checksum_verified": verified,
                    "depends_on": [identity], "validity": "unreviewed",
                    "completeness": "partial" if imported["classification"] == "incomplete" else "observed"}
             c.write_new(Path(root) / Path(exp["record_path"]).parent / "evaluations" / (observation + ".json"), row)
@@ -184,10 +201,15 @@ def run(root, planned, executable):
     p = c.lookup(root, planned)
     if p["kind"] != "plan":
         raise c.MedicalError("Select a plan record")
+    if not p.get("freeze_id"):
+        raise c.MedicalError("This plan is externally owned; use its recorded handoff")
+    exp = c.lookup(root, p["experiment_id"])
+    if not exp.get("execution_enabled"):
+        raise c.MedicalError("Experiment execution is disabled")
     f = c.lookup(root, p["freeze_id"])
     snapshot = restore_freeze(root, f)
-    current = c.projection(root)[p["id"]]["current"]
-    if current["validity"] in {"under_review", "invalidated", "superseded"}:
+    projected = c.projection(root)
+    if any(projected[key]["current"]["validity"] in {"under_review", "invalidated", "superseded"} for key in (p["id"], exp["id"])):
         raise c.MedicalError("Plan or frozen evidence requires review before execution")
     if p["agent"] == "codex":
         check_controls(root, p)
@@ -195,7 +217,7 @@ def run(root, planned, executable):
     # A plan is single use even after an error/interruption. Retry is a new explicit plan.
     out = Path(root) / "runs/medical" / p["id"]
     out.mkdir(parents=True, exist_ok=False)
-    receipt = {"plan_id": p["id"], "state": "running", "started_at": c.now()}
+    receipt = {"plan_id": p["id"], "state": "running", "started_at": c.now(), "harbor_task_checksum": checksum}
     c.write_new(out / "execution.json", receipt)
     attempt = {"schema_version": 1, "kind": "attempt", "id": "attempt-" + p["id"],
                "group_id": p["group_id"], "experiment_id": p["experiment_id"], "plan_id": p["id"],

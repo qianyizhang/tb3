@@ -1,4 +1,9 @@
-# Proposal: migrate the workshop to tb3-medical
+# Design record: migration to tb3-medical
+
+Implementation began after explicit authorization on 2026-09-20. See
+[the completion and verification record](status.md) for delivered changes,
+commits and remaining operational limits. The investigation narrative below
+is retained as the decision record; its baseline counts and future tense are historical.
 
 Status: seven design decisions locked through the user interview on 2026-09-20;
 see the decision record below. No migration executed. Direction: a medical

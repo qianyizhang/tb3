@@ -53,7 +53,8 @@ suspected for unresolved clinical/reference disputes.
 
 `review TARGET qualified --reason TEXT --evidence PATH --actor NAME --resolves
 ISSUE` appends a reassessment. Original rewards remain unchanged. Resolution
-requires existing matching proof and a review of the affected target; changed or
+requires existing matching proof and a review of the affected target. Multi-target
+issues are resolved separately for each affected target; changed or
 missing review evidence reopens the issue. A fix alone does not reinstate results.
 
 ## Presentation and clean export
