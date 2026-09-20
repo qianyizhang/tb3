@@ -54,6 +54,15 @@ or existing submission checkout are changed, and no push or publication occurs.
 
 ## Verification
 
+The combined tree passes `make check PYTHON=python3.12`: 44 tests (43 passed,
+one existing optional SciPy-dependent skip), 2,036 indexed files, metadata, 153
+source measurements and Ruff checks. The original checkout now reads 571 records
+across 38 experiments, with all 284 catalogue entries linked and six illustrated
+briefs available without missing local media. All six saved CT/MRI replay metric
+dictionaries still match exactly after local-input absorption; the copied MRI
+draft package verifies all 25 files. Browser interaction verified the closed
+BR-042 record, resumed observation and Task Explorer case selection.
+
 The machine-readable [cutover receipt](main-cutover.json) records source hashes,
 canonical mappings, local-copy accounting and final check results. Checks use an
 existing Python 3.12 environment: automatic approval review rejected creation of
