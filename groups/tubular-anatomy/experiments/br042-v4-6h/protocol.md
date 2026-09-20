@@ -1,5 +1,7 @@
 # BR-042 V4 six-hour Astra/xhigh follow-up
 
+This study is closed. The launch instructions below describe the original execution and are retained as historical protocol. Its one-shot adapters depend on the retired pre-cutover CLI; they are not supported launch commands. Read [the completed continuation](resume1/review.md) and use the [current workflow](../../../../docs/workflow.md) for new work.
+
 User authorized one fresh attempt on 2026-09-20, then requested babysitting every
 20–30 minutes. Use 30-minute reports. Source task:
 codex://threads/01a0bc95-2598-7810-809e-9c8b6c0969c3.
