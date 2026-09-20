@@ -46,3 +46,20 @@ GT coverage. The unchanged scorer uses category-mean and per-category coverage
 gates; extension/precision diagnostics do not create new pass gates. Reference
 identity disagreements remain under review. The two-hour review provides context
 only to the author and is not solver input.
+
+## Setup interruption and bounded recovery
+
+The first job's package installation received Debian HTTP 503 through the proxy;
+its result has null agent_execution, agent_result and verifier_result. It is
+retained as infrastructure failure, not a model performance attempt. A disposable
+container reproduces the same apt update/install step before any replacement.
+The assistant interpreted the user's request to run the model and babysit as
+permission for one bounded pre-agent setup recovery; this is an explicit
+exception to the initial operational no-replacement rule, not a user-authored
+policy change. No inference retry is permitted.
+
+`recover_setup.py --run` permits one fresh job, attempt2, only after proving
+attempt1 never entered agent execution and original controls/bytes still match.
+It writes a separate setup-recovery-events.jsonl and separate job directory;
+attempt1 and its journal remain unchanged. All solver inputs and the six-hour
+allowance remain unchanged. If this recovery also fails, stop and report.

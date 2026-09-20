@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "id": "observation-0aabaefc4571b80e80f8b745",
+  "job": "br042-all-vessels-nop-v4-6h-attempt1",
+  "trial_name": "all-vessels__qacmmrv",
+  "task_id": "all-vessels-image-only-v4-6h",
+  "agent": "nop",
+  "model": null,
+  "reasoning_effort": null,
+  "agent_version": "1.0.0",
+  "backend": "docker",
+  "harbor_version": "0.18.0",
+  "execution_mode": "harbor",
+  "classification": "control_fail",
+  "reward": 0.0,
+  "started_at": "2026-09-20T11:59:30.234486Z",
+  "finished_at": "2026-09-20T11:59:54.948416Z",
+  "timing": {
+    "total": 24.714,
+    "setup": 0.0,
+    "agent": 0.0,
+    "verifier": 12.284
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": "runs/br042-all-vessels-nop-v4-6h-attempt1/all-vessels__qacmmrv/result.json",
+      "sha256": "b7af0e60831ef86115f2b7c463b39cf2287a1ae377fd90d0175cc59f84952ba6"
+    },
+    {
+      "label": "Verifier cases",
+      "path": "runs/br042-all-vessels-nop-v4-6h-attempt1/all-vessels__qacmmrv/verifier/test-stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "Reward artifact",
+      "path": "runs/br042-all-vessels-nop-v4-6h-attempt1/all-vessels__qacmmrv/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": "runs/br042-all-vessels-nop-v4-6h-attempt1/lock.json",
+      "sha256": "dd59421183d21b78086a860f280c5e0c5834831427811027b2e61cb1cd9a1fe0"
+    }
+  ],
+  "task_checksum": "b6a049fe48703adab35153a0fc5500d3f62ec9818f5ec4778a63b5832cd964b8",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": "runs/br042-all-vessels-nop-v4-6h-attempt1/all-vessels__qacmmrv/result.json",
+  "source_sha256": "b7af0e60831ef86115f2b7c463b39cf2287a1ae377fd90d0175cc59f84952ba6",
+  "evidence_sha256": "837eea174e01ee6df735a8dd3d3283911a616cb2bd89826fbf470f8edcd7640c",
+  "qualifying_final_trial": false,
+  "kind": "evaluation",
+  "attempt_id": "attempt-8b96fa7dd53bd625ca2dc072",
+  "group_id": "tubular-anatomy",
+  "experiment_id": "br042-v4-6h",
+  "collected_at": "2026-09-20T11:59:55.110280+00:00",
+  "task_digest": null,
+  "freeze_checksum_verified": false,
+  "depends_on": [
+    "attempt-8b96fa7dd53bd625ca2dc072"
+  ],
+  "validity": "unreviewed",
+  "completeness": "observed"
+}
