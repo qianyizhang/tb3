@@ -29,6 +29,7 @@ def main(argv=None):
     p = sub.add_parser("export"); p.add_argument("recipe"); p.add_argument("destination", type=Path)
     p = sub.add_parser("verify-package"); p.add_argument("destination", type=Path)
     p = sub.add_parser("assets"); p.add_argument("--write", action="store_true")
+    p = sub.add_parser("restore-legacy"); p.add_argument("prefix"); p.add_argument("--destination", type=Path, required=True)
     args = parser.parse_args(argv); root = args.root.resolve(); cmd = args.command
     try:
         if cmd == "list":
@@ -59,6 +60,9 @@ def main(argv=None):
         elif cmd == "assets":
             from .presentation import assets
             result = assets(root, args.write)
+        elif cmd == "restore-legacy":
+            from .archive import restore
+            result = restore(root, args.prefix, args.destination)
         elif cmd == "present":
             from .presentation import present, serve
             out = args.output if args.output.is_absolute() else root / args.output

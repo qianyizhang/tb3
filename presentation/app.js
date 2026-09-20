@@ -2,7 +2,7 @@
 const $=s=>document.querySelector(s), el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const params=new URLSearchParams(location.search);
 let rows=[];
-function status(r){return r.current.need_fix?'needs review / fix':r.completeness==='partial'?'partial':r.current.disposition||r.disposition||r.classification||r.current.validity;}
+function status(r){return r.current.need_fix?'needs review / fix':r.completeness==='partial'?'partial':r.current.execution?.state||r.current.disposition||r.disposition||r.classification||r.current.validity;}
 function show(){
  const words=$('#search').value.toLowerCase().split(/\s+/).filter(Boolean),group=$('#group').value,kind=$('#kind').value,state=$('#status').value;
  const filtered=rows.filter(r=>(!group||r.group_id===group||r.id===group)&&(!kind||(kind==='overview'?['idea','experiment','finding'].includes(r.kind):r.kind===kind))&&words.every(w=>JSON.stringify(r).toLowerCase().includes(w))&&(!state||(state==='need_fix'?r.current.need_fix:state==='partial'?r.completeness==='partial':state==='missing_local'?r.current.availability===state:r.current.validity===state)));

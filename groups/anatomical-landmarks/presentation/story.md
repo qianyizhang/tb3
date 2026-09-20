@@ -69,7 +69,7 @@ Both agents received the same frozen task bytes within each condition. There was
 
 ## Inspect or reproduce
 
-- [Task summary](../../../site_med/task_cards/med_lnd_br040_landmarks_fov.json), [comparison report](../../../docs/research-rounds/BR-040-results.md), and [configuration audit](../../../docs/evidence/br040-config-audit.json).
+- [Task summary](card.json), [comparison report](../../../docs/research-rounds/BR-040-results.md), and [configuration audit](../../../docs/evidence/br040-config-audit.json).
 - [Scoring and local report guide](../../../probes/semantic-landmarks/authoring/br040/README.md); all-point tables and review panels remain in the retained comparison.
 - Full source volumes and raw sessions are local-only. [Source, license and reproduction guide](../../../presentation/references.md).
 

@@ -84,7 +84,7 @@ That exposes a scope limit, not disobedience: the agent satisfied the requested 
 
 ## Inspect or reproduce
 
-- [Task summary](../../../site_med/task_cards/med_tub_br030_br033_cpr_geometry.json) and [coronary rebuild guide](../../../probes/vessel-geometry/README.md), including frozen inputs, scoring and local viewers.
+- [Task summary](card.json) and [coronary rebuild guide](../../../probes/vessel-geometry/README.md), including frozen inputs, scoring and local viewers.
 - [Airway implementation and reproduction](../../../probes/airway-routing/authoring/README.md).
 - The original failure and corrected copy remain distinct. Full meshes, CT arrays and trial files require local runtime material. [Availability guide](../../../presentation/references.md).
 

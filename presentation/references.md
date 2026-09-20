@@ -13,7 +13,7 @@ The six chapters describe selected completed experiments. This page separates th
 | [Cardiac reconstruction](../groups/cardiac-motion/presentation/story.md) | [BR-035 result](../docs/research-rounds/BR-035-results.md) | [Protocol](../docs/research-rounds/BR-035-segmentation-mechanics.md) | [Mesh construction, scoring and replay](../probes/cardiac-reconstruction/authoring/segmentation_mechanics/README.md) |
 | [Anatomical landmarks](../groups/anatomical-landmarks/presentation/story.md) | [BR-040 comparison](../docs/research-rounds/BR-040-results.md), [source-use audit](../docs/evidence/br040-source-audit.json) | [Protocol](../docs/research-rounds/BR-040-sol-landmarks.md) | [Same-task comparison and overlays](../probes/semantic-landmarks/authoring/br040/README.md) |
 
-The [task cards](../site_med/task_cards) are editorial summaries, not executable specifications. Each measurement contains a source file and JSON pointer; original protocols, frozen task files and scorers remain authoritative. Reported Sol/Terra names refer to the recorded model configurations, not Claude or GPT-4o aliases.
+The [task cards](../groups) are editorial summaries, not executable specifications. Each measurement contains a source file and JSON pointer; original protocols, frozen task files and scorers remain authoritative. Reported Sol/Terra names refer to the recorded model configurations, not Claude or GPT-4o aliases.
 
 ## Public sources and modest comparison context
 
@@ -31,14 +31,14 @@ The [task cards](../site_med/task_cards) are editorial summaries, not executable
 | [AFIDs SNSX](https://openneuro.org/datasets/ds004470), [AFIDs framework study](https://pubmed.ncbi.nlm.nih.gov/31175816/), [placement protocol](https://afids.github.io/afids-protocol/afids_protocol/human_protocol.html) | Brain fiducials and conventional human/atlas workflow | Protocol validation is contextual; it is not a matched human-versus-agent trial here. MRI assistance and model/effort differences stay explicit. |
 | [NHLBI heart-failure overview](https://www.nhlbi.nih.gov/health/heart-failure) | Keep the clinical interpretation bounded | Diagnosis uses more than a reconstructed EF number. |
 
-The light literature pass is recorded in [local source notes](../site_med/editorial/external-source-notes.md). It adds context, not a cross-dataset leaderboard. No new human evaluation or agent trial was run for these chapters.
+The light literature pass is recorded in [local source notes](editorial/external-source-notes.md). It adds context, not a cross-dataset leaderboard. No new human evaluation or agent trial was run for these chapters.
 
 ## What is available locally
 
 | Layer | Included here | What additionally needs restoration |
 | --- | --- | --- |
 | Read | Markdown chapters, standalone figures, diagram sources and captions | Nothing for static reading; Mermaid rendering depends on the reader |
-| Inspect provenance | [Asset manifest](assets.json), [evidence inventory](../site_med/editorial/evidence-map.json), source-linked task cards | Referenced original evidence remains in the workshop repository |
+| Inspect provenance | [Asset manifest](assets.json), [evidence inventory](editorial/evidence-map.json), source-linked task cards | Referenced original evidence remains in the workshop repository |
 | Check a recorded score | Scorers, frozen-design records and concise receipts in the repository | Actual submitted artifacts where retained only under ignored `runs/` |
 | Rebuild scientific views | Authoring scripts and source/derivation records | Native arrays, runtime artifacts and the recorded Python environments |
 | Run a new attempt | Owning protocol, task hashes and command documentation | Source data, frozen task, Docker/harness, model access and a new output directory |
@@ -50,9 +50,9 @@ Recomputing a saved score and reproducing the exact text of a fresh model respon
 From the workshop repository root:
 
 ```sh
-python3 scripts/prepare_site_med_assets.py
-python3 scripts/prepare_site_med_assets.py --check
-python3 scripts/check_site_med.py
+python3.12 scripts/med assets --write
+python3.12 scripts/med assets
+python3.12 scripts/check_medical.py
 ```
 
 The exporter decodes exact retained PNGs and extracts Mermaid blocks from the chapters. It makes no model calls, edits no source scan, and changes no frozen experiment. The coronary preview is copied from the retained local viewer; after export, its pinned copy can be checked without restoring the scan.
@@ -65,4 +65,4 @@ Move the chapters, `assets/`, task summaries, and selected evidence with their a
 
 Editable diagrams live under `assets/diagrams/`. The retained scientific images are independent of the current HTML/CSS. Original interactive viewers and arrays remain available locally for a later interaction pass; these static exports do not replace full native-volume exploration.
 
-The overview's synthesis, current limitations and outlook will be developed with the user next. See the [editorial decisions](../site_med/editorial/README.md).
+The overview's synthesis, current limitations and outlook will be developed with the user next. See the [editorial decisions](editorial/README.md).

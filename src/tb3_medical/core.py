@@ -175,6 +175,16 @@ def projection(root):
                        "need_fix": bool(blockers or changed), "missing_evidence": missing,
                        "changed_evidence": changed,
                        "availability": "missing_local" if missing else "available"}
+        if r["kind"] in {"plan", "attempt"}:
+            receipt_path = r.get("source_execution")
+            if not receipt_path and r["kind"] == "plan":
+                receipt_path = "runs/medical/" + r["id"] + "/execution.json"
+            if receipt_path and inside(root, receipt_path).is_file():
+                receipt = read(inside(root, receipt_path))
+                states[key]["execution"] = {k: receipt[k] for k in ("state", "started_at", "finished_at", "exit_code", "error_type", "frozen_payload_unchanged") if k in receipt}
+                states[key]["completeness"] = "partial" if receipt.get("state") != "completed" else "completed"
+            elif r["kind"] == "plan":
+                states[key]["execution"] = {"state": r.get("planned_state", "pending")}
         return states[key]
 
     for key in records:
@@ -192,7 +202,7 @@ def validate(root):
     rows = projection(root)
     errors = []
     for key, row in rows.items():
-        for field in ("group_id", "experiment_id", "target_id"):
+        for field in ("group_id", "experiment_id", "target_id", "attempt_id", "freeze_id", "plan_id"):
             if row.get(field) and row[field] not in rows:
                 errors.append(f"{key}: missing {field} {row[field]}")
         for dep in row.get("targets", []) + row.get("resolves", []):

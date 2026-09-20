@@ -65,7 +65,7 @@ Source-grid checks and positive/negative scoring controls tested the task mechan
 
 ## Inspect or reproduce
 
-- [Task summary](../../../site_med/task_cards/med_vas_br016_aneurysm.json), [protocol](../../../docs/research-rounds/BR-016-aneurysm-localization.md), and [results ledger](../../../docs/evidence/br016-results.json).
+- [Task summary](card.json), [protocol](../../../docs/research-rounds/BR-016-aneurysm-localization.md), and [results ledger](../../../docs/evidence/br016-results.json).
 - [Authoring and local explorer guide](../../../probes/revisions/br016/README.md): source acquisition, scoring, retained traces, and linked native-slice viewing.
 - Guided figures are portable. Full exploration requires the retained local arrays under `runs/br016-aneurysm/blind-review/`. [Availability guide](../../../presentation/references.md).
 

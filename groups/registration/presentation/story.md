@@ -66,7 +66,7 @@ Both input information and the chosen strategy changed across fresh attempts. Th
 
 ## Inspect or reproduce
 
-- [Task summary](../../../site_med/task_cards/med_reg_br028_respiratory.json), [frozen protocol](../../../docs/research-rounds/BR-028-registration-3d-source.md), and [complete result](../../../docs/research-rounds/BR-028-results.md).
+- [Task summary](card.json), [frozen protocol](../../../docs/research-rounds/BR-028-registration-3d-source.md), and [complete result](../../../docs/research-rounds/BR-028-results.md).
 - [Rebuild guide](../../../probes/registration-deformation/authoring/br028_README.md) links scoring, captured intermediate states, and review rendering.
 - The full local comparison is `runs/br028-registration-3d-source/review/index.html`. [Source and availability guide](../../../presentation/references.md).
 

@@ -74,7 +74,7 @@ This produces a useful capability boundary: the agent could identify the inclusi
 
 ## Inspect or reproduce
 
-- [Task summary](../../../site_med/task_cards/med_seg_br017_absorption.json), [frozen protocol](../../../docs/research-rounds/BR-017-absorbed-anatomy.md), and [scored results](../../../docs/evidence/br017-results.json).
+- [Task summary](card.json), [frozen protocol](../../../docs/research-rounds/BR-017-absorbed-anatomy.md), and [scored results](../../../docs/evidence/br017-results.json).
 - [Rebuild guide](../../../probes/revisions/br017/authoring/README.md): retained sources and commands for before/after figures and trace presentation.
 - The full local report is `runs/br017-absorption/review/index.html`; native arrays and raw sessions are local-only. [Availability and reproduction levels](../../../presentation/references.md).
 

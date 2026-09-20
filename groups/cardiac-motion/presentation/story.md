@@ -76,7 +76,7 @@ As a separate transfer check, the unchanged executables preserved geometry on a 
 
 ## Inspect or reproduce
 
-- [Task summary](../../../site_med/task_cards/med_bio_br035_cardiac_strain.json), [results](../../../docs/research-rounds/BR-035-results.md), and [independent measurements](../../../docs/evidence/br035-segmentation-mechanics-results.json).
+- [Task summary](card.json), [results](../../../docs/research-rounds/BR-035-results.md), and [independent measurements](../../../docs/evidence/br035-segmentation-mechanics-results.json).
 - [Reconstruction, scoring and replay guide](../../../probes/cardiac-reconstruction/authoring/segmentation_mechanics/README.md).
 - Full ultrasound, moving meshes and local viewers require retained runtime assets. The separate [raw-image reconstruction study](../../../docs/research-rounds/BR-032-real-echo-results.md) had no reference clinical EF and should not be merged into this accuracy table. [Availability guide](../../../presentation/references.md).
 

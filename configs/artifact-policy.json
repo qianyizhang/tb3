@@ -39,51 +39,8 @@
     "target",
     "CMakeFiles"
   ],
-  "vendor_roots": [
-    "probes/ninja-dyndep/environment/ninja-src/",
-    "probes/ninja-dyndep/tests/ninja-src/",
-    "probes/clipper-polytree/environment/clipper2-src/",
-    "probes/sqlite-exists/environment/sqlite/",
-    "probes/revisions/br005/clipper-polytree/environment/clipper2-src/",
-    "probes/revisions/br007/clipper-polytree/environment/clipper2-src"
-  ],
+  "vendor_roots": [],
   "retained_artifacts": {
-    "probes/sqlite-exists/environment/sqlite/sqlite3.c": {
-      "sha256": "c94657c2a08ed5f3f61a25f0018eb2f64ec42fd053da26d741db9e52e6ffaa77",
-      "reason": "Pinned SQLite 3.53.0 task source; see probes/sqlite-exists/README.md."
-    },
-    "probes/sqlite-exists/environment/sqlite/shell.c": {
-      "sha256": "ab228173dbd661b5511a799ef147f9c2dbd319d54b329cebaa2b4d1663fbfc86",
-      "reason": "Pinned SQLite shell used by the task build; see probes/sqlite-exists/README.md."
-    },
-    "probes/sqlite-exists/tests/shell.c": {
-      "sha256": "111cc21192f149ad5521b199a02b577020505c8211152e70961be8907e84011a",
-      "reason": "Separate verifier shell fixture; see probes/sqlite-exists/authoring/review.md."
-    },
-    "probes/clipper-polytree/tests/clipper2-src.tar": {
-      "sha256": "bd1ca4b1b89055475eff8e4558d4234fc29f9966389a176d4f35770e3480caf7",
-      "reason": "Docker ADD input for the isolated verifier; see probes/clipper-polytree/authoring/provenance.md."
-    },
-    "probes/score-sounding-events/environment/images/fragment_04.png": {
-      "sha256": "049e5bcabd8907208f8719a878c09f0544d952f39b63cd8d0a59df08e8930309",
-      "reason": "Original score raster required as visible task input; rendered and independently transcribed, see probes/score-sounding-events/authoring/notes.md."
-    },
-    "probes/score-sounding-events/environment/images/fragment_01.png": {
-      "sha256": "ff4a3166d662209fc0423fd980498ca0e71f708aae413f363495684dc857c5ab",
-      "reason": "Original score raster required as visible task input; rendered and independently transcribed, see probes/score-sounding-events/authoring/notes.md."
-    },
-    "probes/score-sounding-events/environment/images/fragment_02.png": {
-      "sha256": "537ebf614197cc8ffee76adf2612285c49352d5652b5c0fafa151b376a5dbca3",
-      "reason": "Original score raster required as visible task input; rendered and independently transcribed, see probes/score-sounding-events/authoring/notes.md."
-    },
-    "probes/score-sounding-events/environment/images/fragment_03.png": {
-      "sha256": "a59185857f2f0e1853ff3f9a9c7fc5ec9d4a00366f14cd5d873903d95aa453bb",
-      "reason": "Original score raster required as visible task input; rendered and independently transcribed, see probes/score-sounding-events/authoring/notes.md."
-    },
-    "probes/pdf-table-lineage/environment/survey.pdf": {
-      "sha256": "a4258af1fa1e008f282d402e43dc92d49c5a65d4ff4b850b602099714190ebce",
-      "reason": "Original synthetic PDF required by H01; source and layout checked, see probes/pdf-table-lineage/authoring/notes.md."
-    },
     "probes/dicom-triplanar-svg/environment/data.tar.gz": {
       "sha256": "5f0d0ced8131181c009410c40b78a52de0c49d551bfd7152fcd49dc829108918",
       "reason": "Required derived DICOM fixture or independently computed verifier mask truth for BR-003; source license, transformations and exact provenance in docs/evidence/br003-medical-source.json and the probe authoring/notes.md."
@@ -104,10 +61,6 @@
       "sha256": "3c439a7e4b6108b772a45d4d13da6e178bbb8ee0c048836dd5155270b2075d3e",
       "reason": "Required derived DICOM fixture or independently computed verifier mask truth for BR-003; source license, transformations and exact provenance in docs/evidence/br003-medical-source.json and the probe authoring/notes.md."
     },
-    "probes/revisions/br005/clipper-polytree/tests/clipper2-src.tar": {
-      "sha256": "bd1ca4b1b89055475eff8e4558d4234fc29f9966389a176d4f35770e3480caf7",
-      "reason": "Unchanged separate-verifier archive for BR-005 reference-removal comparison; see docs/research-rounds/BR-005-scaffolding-retest.md and original Clipper provenance."
-    },
     "probes/dicom-anatomy-audit/environment/data.tar.gz": {
       "sha256": "08399e333bbe180e34c1fa8105b98dcff8f2c1fd3061cf56c4e7e63631711798",
       "reason": "Licensed derived eight-patient CT/SEG task input. See probes/dicom-anatomy-audit/authoring/notes.md and docs/evidence/br004-anatomy-source-provenance.json."
@@ -115,10 +68,6 @@
     "probes/dicom-anatomy-audit/tests/regions.npz": {
       "sha256": "dda0706a3be5efce324d1ab16ddff82f5add52704ee71b7591d10833adf3ecd1",
       "reason": "Private discrepancy coordinates for deterministic spatial-witness grading. See probes/dicom-anatomy-audit/authoring/notes.md."
-    },
-    "probes/revisions/br007/clipper-polytree/tests/source.tar.gz": {
-      "sha256": "f4aee46272cecc283dd75a281cb4f7d7d1289f43faabff85b98f1519127066f1",
-      "reason": "Stripped licensed Rust source and manifest snapshot for the BR-007 separate verifier; no working C++ reference. See probes/revisions/br007/clipper-polytree/authoring/notes.md."
     },
     "probes/revisions/br004-single/tasks/dicom-audit-74/environment/data.tar.gz": {
       "sha256": "198d6991bd76bfc7332d0c50b9737649b38ab027c67ff89d0142ff01b859b6d7",
@@ -199,74 +148,6 @@
     "probes/revisions/br004-sol/tasks/dicom-audit-61-v2/tests/regions.npz": {
       "sha256": "a16676bf59455054ec99dbd6d8cf333b65b456bee892854fdbbaba5b3df7bc38",
       "reason": "Required unchanged patient fixture or spatial evidence for the corrected-scope audit; see docs/evidence/br004-sol-freeze.json."
-    },
-    "site/index.html": {
-      "sha256": "965af5141254f7dfeee213505b23d30a63a33848e0cfcfdf7b846a8201568c07",
-      "reason": "Authored portable research report with attributed exact landmark illustrations; see site/README.md and site/landmark-provenance.json."
-    },
-    "site/content/anatomy.html": {
-      "sha256": "c463da59cadfe50d354f98a7e2848a4f1fb9eb602952fbcfc47471779615a626",
-      "reason": "Authored interview publication with embedded attributed figures; see site/README.md and site/provenance.json. No raw runs or native arrays."
-    },
-    "site/content/absorption.html": {
-      "sha256": "d991fa28833e58001eb7dd5326a42b7e6752fc7915b23c0204d47ab3f48f5c28",
-      "reason": "Authored interview publication with embedded attributed figures; see site/README.md and site/provenance.json. No raw runs or native arrays."
-    },
-    "site/content/boundaries.html": {
-      "sha256": "152fdc107e1cab92c76d6640eb2891ef4c0d163b5936f4a333a833f9f1c5986e",
-      "reason": "Authored interview publication with embedded attributed figures; see site/README.md and site/provenance.json. No raw runs or native arrays."
-    },
-    "site/registration-figures.json": {
-      "sha256": "b7635e63e55dd09defd330308763c95d774b6809f1fc03dd9cee24be69bd00b1",
-      "reason": "Authored portable report with attributed derived CT figures; see site/README.md, site/provenance.json and site/registration-provenance.json. No raw sessions or native arrays."
-    },
-    "site/landmark-figures.json": {
-      "sha256": "8b3921b75ce415f735fc5ef1efd21f1ba1fe62a26f2ab95f0a1a87674b03f312",
-      "reason": "Authored portable research report with attributed exact landmark illustrations; see site/README.md and site/landmark-provenance.json."
-    },
-    "site_med/assets/segmentation-before.png": {
-      "sha256": "9ef6deb3f9bb09f199bceda58d44e4dfd9f873a5ff0d45a36059e159ac5d6d94",
-      "reason": "Authored medical chapter illustration; exact retained export with attribution, terms and source provenance in site_med/assets/manifest.json. Axial CT with before-reassignment organ labels; CT is unchanged. One plane through a 3D transfer."
-    },
-    "site_med/assets/segmentation-after.png": {
-      "sha256": "6a61aaaa936e0f04fc90f59d88675b2bbb2fee671ea72ecce1c8c2715bac48c3",
-      "reason": "Authored medical chapter illustration; exact retained export with attribution, terms and source provenance in site_med/assets/manifest.json. Axial CT with after-reassignment organ labels; CT is unchanged. One plane through a 3D transfer."
-    },
-    "site_med/assets/aneurysm-n02.png": {
-      "sha256": "528fee357013157769d2fd6bd0b660ccddd425f0f7dd7c208458f83f0eea6c74",
-      "reason": "Authored medical chapter illustration; exact retained export with attribution, terms and source provenance in site_med/assets/manifest.json. N02 reference-centered seven-slice brightness projection; overlapping vessels can obscure 3D shape."
-    },
-    "site_med/assets/registration-q04-source.png": {
-      "sha256": "6795634e26d813f731e681e75c68dbc9d8273cb361c40b3da0347c99487f95f2",
-      "reason": "Authored medical chapter illustration; exact retained export with attribution, terms and source provenance in site_med/assets/manifest.json. q04 source neighborhood, centered on its own coordinate in the dataset XY plane. Not a shared-center displacement view."
-    },
-    "site_med/assets/registration-q04-reference.png": {
-      "sha256": "12ced1b1a6070574b46952edb5b8a96cfe3da79c16f0d6471ead7048c7b0c29d",
-      "reason": "Authored medical chapter illustration; exact retained export with attribution, terms and source provenance in site_med/assets/manifest.json. q04 reference neighborhood, centered on its own coordinate in the dataset XY plane. Not a shared-center displacement view."
-    },
-    "site_med/assets/registration-q04-agent.png": {
-      "sha256": "56b7107a1a02b6730e3ad460384907295ede40b36496deed0636e228feb803e4",
-      "reason": "Authored medical chapter illustration; exact retained export with attribution, terms and source provenance in site_med/assets/manifest.json. q04 agent neighborhood, centered on its own coordinate in the dataset XY plane. Not a shared-center displacement view."
-    },
-    "site_med/assets/airway-controls.png": {
-      "sha256": "46ca3f1edd6ba65c6592482ad69c78283c46c55145186aeadfa8b8a80004bd5e",
-      "reason": "Authored medical chapter illustration; exact retained export with attribution, terms and source provenance in site_med/assets/manifest.json. Terra airway outputs: A01 repaired; A02/A03 preserve internally connected fragments that remain detached from parent trees."
-    },
-    "site_med/assets/coronary-cpr.png": {
-      "sha256": "f7017e754b0365d8dbe91e0a78614c050ab9d7b4a7820a7861111e8f570a2bb3",
-      "reason": "Authored medical chapter illustration; exact retained export with attribution, terms and source provenance in site_med/assets/manifest.json. Coronary CPR preview from the corrected package. Underlying sampled CT values are unchanged by the arc_mm correction; preview is not a uniform physical-scale display."
-    },
-    "site_med/assets/cardiac-comparison.png": {
-      "sha256": "907ec7d3f83c23e0be11ad6b0ab762fe639a37f898b54adb69de7fc9e069f57b",
-      "reason": "Authored medical chapter illustration; exact retained export with attribution, terms and source provenance in site_med/assets/manifest.json. Left: synthetic wall volume; middle: separate clinical cavity transfer; right: synthetic engineering-strain error. Nearly overlapping curves reflect explicit volume matching."
-    },
-    "site_med/assets/landmark-t4.png": {
-      "sha256": "dd2d36ba353bee69e59b7aa716cbe7f41d6af6cc96d437c933c45dc4eccffe3c",
-      "reason": "Authored medical chapter illustration; exact retained export with attribution, terms and source provenance in site_med/assets/manifest.json. Cropped CT T4 comparison. T4 is outside the scan; T5 is visible and missed by Sol. Markers are projected; scores use 3D distances."
-    },
-    "site_med/assets/landmark-t5.png": {
-      "sha256": "b60dd56860ee9ad7df41b07d9ded391c4d9cc535b312a4fb71226e85bbee9b3b",
-      "reason": "Authored medical chapter illustration; exact retained export with attribution, terms and source provenance in site_med/assets/manifest.json. Cropped CT T5 comparison. T4 is outside the scan; T5 is visible and missed by Sol. Markers are projected; scores use 3D distances."
     },
     "groups/registration/presentation/sources/registration-figures.json": {
       "sha256": "b7635e63e55dd09defd330308763c95d774b6809f1fc03dd9cee24be69bd00b1",

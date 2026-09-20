@@ -135,16 +135,17 @@ def plan(root, frozen, agent, model=None, effort=None):
     return row
 
 
-def collect(root, experiment, sources, task_digest=None, expected_checksum=None):
+def collect(root, experiment, sources, task_digest=None, expected_checksum=None, attempt_id=None):
     exp = c.lookup(root, experiment)
     result = []
     for source in sources:
         src = c.inside(root, source)
         imported = harbor.import_trial(Path(root), src)
-        identity = "attempt-" + hashlib.sha256(imported["source_result"].encode()).hexdigest()[:24]
+        current = c.load(root)
+        prior = next((r for r in current.values() if r["kind"] == "evaluation" and r.get("source_result") == imported["source_result"]), None)
+        identity = prior["attempt_id"] if prior else attempt_id or "attempt-" + hashlib.sha256(imported["source_result"].encode()).hexdigest()[:24]
         # Collection snapshots may change as an interrupted trial gains evidence; identity does not.
         observation = "observation-" + hashlib.sha256((identity + imported["evidence_sha256"]).encode()).hexdigest()[:24]
-        current = c.load(root)
         if identity not in current:
             attempt = {"schema_version": 1, "kind": "attempt", "id": identity,
                        "group_id": exp["group_id"], "experiment_id": exp["id"],
@@ -196,6 +197,11 @@ def run(root, planned, executable):
     out.mkdir(parents=True, exist_ok=False)
     receipt = {"plan_id": p["id"], "state": "running", "started_at": c.now()}
     c.write_new(out / "execution.json", receipt)
+    attempt = {"schema_version": 1, "kind": "attempt", "id": "attempt-" + p["id"],
+               "group_id": p["group_id"], "experiment_id": p["experiment_id"], "plan_id": p["id"],
+               "source_execution": str((out / "execution.json").relative_to(root)), "depends_on": [p["id"]]}
+    exp = c.lookup(root, p["experiment_id"])
+    c.write_new(Path(root) / Path(exp["record_path"]).parent / "attempts" / (attempt["id"] + ".json"), attempt)
     agent = {"name": p["agent"], "env": {}, "kwargs": {}}
     if p.get("model"):
         agent["model_name"] = p["model"]
@@ -218,7 +224,7 @@ def run(root, planned, executable):
         c.atomic_write(out / "execution.json", receipt)
     sources = [str(x.relative_to(root)) for x in sorted((out / "job").glob("*/result.json"))]
     receipt["collected"] = [r["id"] for r in collect(root, p["experiment_id"], sources,
-        p["task_digest"] if receipt["frozen_payload_unchanged"] else None, checksum)]
+        p["task_digest"] if receipt["frozen_payload_unchanged"] else None, checksum, attempt["id"])]
     c.atomic_write(out / "execution.json", receipt)
     return receipt
 
