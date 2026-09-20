@@ -69,3 +69,42 @@ Reopen documentation maintenance when a supported command or ownership boundary
 changes, when the original checkout completes cutover, or when new maintained
 methods change reproduction coverage. New research belongs to a group rather than
 another shared candidate queue.
+
+## Follow-up: canonical research history
+
+The user pointed out that indexing loose “Historical session closeout” pages did
+not give them a canonical home. On 2026-09-21, this follow-up establishes
+`groups/<group>/history/<scope>-<topic>.md` for dated research narratives. Each
+group README links its history; the shared historical index is navigation only.
+Repository implementation closeouts remain in `docs/migration/`. No redirect
+pages or runtime path aliases are retained.
+
+| Former path under `docs/` | Canonical path |
+| --- | --- |
+| `anatomy-experiments.md` | [groups/anatomy-audit/history/br013-br017-summary.md](../../groups/anatomy-audit/history/br013-br017-summary.md) |
+| `anatomy-traces.md` | [groups/anatomy-audit/history/br013-br017-traces.md](../../groups/anatomy-audit/history/br013-br017-traces.md) |
+| `research-cardiac-session.md` | [groups/cardiac-motion/history/br025-br035-closeout.md](../../groups/cardiac-motion/history/br025-br035-closeout.md) |
+| `research-registration-session.md` | [groups/registration/history/br019-br028-synthesis.md](../../groups/registration/history/br019-br028-synthesis.md) |
+| `research-landmark-session.md` | [groups/anatomical-landmarks/history/br036-br040-closeout.md](../../groups/anatomical-landmarks/history/br036-br040-closeout.md) |
+
+The source tree before this follow-up is `3f4d79f8967f5ab3d7874a07eaaabed0a1c59071`.
+Moved narrative bodies change only in relative Markdown link destinations. Current
+indexes and dataset citations point directly to their new locations. Three dataset
+source digests still cited pre-notice report versions after the first docs pass;
+they now identify the moved navigation editions. Exact original report bytes and
+their former hashes are retained at `f5b2ced` in the archive manifest, including
+the registration publication's historical citation. No old receipt was rewritten.
+
+Frozen/source records under `probes/`, `docs/evidence/` and `docs/research-rounds/`
+remain byte-identical. Old paths inside those records describe their recorded Git
+context and use explicit archive recovery; they are not compatibility interfaces.
+
+Follow-up verification: all five old paths are absent; report text is unchanged
+when only Markdown destinations are normalized; 180 links resolve or retain their
+exact historical target. The 29 existing local/archive gaps in the reports were
+not converted into new claims of availability. All five original Git/archive
+snapshots and three current/original dataset citations match their hashes. All
+1,029 protected source files and the original checkout's dirty files are unchanged.
+`make check PYTHON=python3.12` passes with the project environment active: 38 tests
+run, one optional imaging skip, 562 records and 153 source-measurement checks,
+plus staged artifact policy and Ruff. The staged diff has no whitespace errors.

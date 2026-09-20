@@ -27,6 +27,7 @@ describe its arguments. The executable status definitions live in
 | Location | Purpose |
 | --- | --- |
 | `groups/<group>/` | Current research: question, ideas and decisions, methods, experiments, findings and presentation. Start with its README and AGENTS.md. |
+| `groups/<group>/history/` | Canonical home for dated session closeouts, cross-experiment retrospectives and trace walkthroughs; linked from the group README. |
 | `datasets/`, `discussions/` | Shared source discovery and discussion provenance; exact inputs and solver visibility belong to the experiment. |
 | `src/tb3_medical/`, `tests/`, `configs/` | Common implementation, regressions and artifact policy. |
 | `presentation/` | Shared read-only index and media renderer; groups own their scientific stories. |
@@ -38,6 +39,7 @@ describe its arguments. The executable status definitions live in
 
 Find medical work through the [seven groups](../README.md), not a new global
 round or candidate queue. New shared guidance belongs in an existing guide;
-group-specific explanations belong with the group. Record implementation decisions
-in the migration history only when they concern that migration. Keep dated source
+group-specific explanations belong with the group. Put completed session narratives
+and retrospectives in `groups/<group>/history/<scope>-<topic>.md`, not loose in
+`docs/`. Record implementation decisions in the migration history only when they concern that migration. Keep dated source
 records intact and link to them instead of copying their verdicts into another index.

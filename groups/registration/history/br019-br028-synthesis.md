@@ -1,18 +1,18 @@
 # Registration: from exact slice recovery to anatomical correspondence
 
-> Historical session synthesis. Use [Registration](../groups/registration/README.md)
+> Historical session synthesis. Use [Registration](../README.md)
 > for current questions and presentation. Frozen results and later visual assessment
-> remain distinct; old site/run links need [historical context](archive/README.md).
+> remain distinct; old site/run links need [historical context](../../../docs/archive/README.md).
 
 Session synthesis, 16 September 2026. Covers BR-019–024 and BR-028; no new
-model trial was run for this report. [Interactive chapter](../site/index.html#registration).
+model trial was run for this report. [Interactive chapter](../../../site/index.html#registration).
 
 **The full-source 3D result is accepted on the user's visual review.** The user
 inspected q06, the worst-scoring point, and adjudicated it “good enough.” Retire
 BR-028 as a hard-task candidate for this intended use. Its frozen numerical
 result remains 2.604 mm RMS / 6.412 mm maximum: a failure under the original
 3 mm RMS / 5 mm maximum gate. These are two different judgments, both retained
-in the [adjudication record](evidence/br028-adjudication.json). We have not moved
+in the [adjudication record](../../../docs/evidence/br028-adjudication.json). We have not moved
 the reference, changed a tolerance, rescored the trial, or claimed clinical
 validation. The earlier BR-024 2D-input failure remains a separate condition.
 
@@ -20,13 +20,13 @@ validation. The earlier BR-024 2D-input failure remains a separate condition.
 
 | Round | Question and observed result | What we learned |
 | --- | --- | --- |
-| [BR-019](research-rounds/BR-019-results.md) | Recover an oblique plane from its originating CT. Full and cropped views both pass Terra/high, below 0.002 mm maximum. | Exact resampling texture makes this a numerical inverse problem; it does not require understanding a clinical standard view. |
-| [BR-020](research-rounds/BR-020-results.md) | Different B30f/B50f reconstruction kernels. Terra passes at 0.036 / 0.050 mm RMS/max. | Intensity mismatch alone did not make this selected case difficult; broad multistart search and multiscale correlation suffice. Denoising alone was not isolated as the cause. |
-| [BR-021](research-rounds/BR-021-results.md) | Real inhale/exhale deformation. Terra passes paired 3D (1.91 / 4.22 mm) and fails single-view 2D-to-3D (12.64 / 23.80 mm). | Nonuniform anatomical motion changes the task from a single plane pose to sparse correspondence. One failure includes a composition bug. |
-| [BR-022](research-rounds/BR-022-results.md) | Replay and investigate that failure; two fresh Terra repeats fail and pass. | Fixing the bug alone does not rescue it. Restricted searches and false image matches also matter; the original snapshot is not reliably difficult. |
-| [BR-023](research-rounds/BR-023-results.md) | Fresh Sol/xhigh on the same 2D case passes (1.56 / 3.67 mm). | Conditional component tests show its revised q04 initialization matters; a more flexible final transform is unnecessary. |
-| [BR-024](research-rounds/BR-024-results.md) | Screen harder respiratory cases. One admitted new patient fails Sol (12.73 / 32.20 mm) despite a passing public-input author method. | Its q04 refinement is trapped near a wrong global estimate; the correct location lies outside the final search. The other screened patient is held, with no model trial. |
-| [BR-028](research-rounds/BR-028-results.md) | Add the full source CT to that exact case. Sol reaches 2.60 / 6.41 mm; seven points are within 2.2 mm. | A broad search using real 3D patches recovers the two large errors. The user accepts the remaining worst case visually. |
+| [BR-019](../../../docs/research-rounds/BR-019-results.md) | Recover an oblique plane from its originating CT. Full and cropped views both pass Terra/high, below 0.002 mm maximum. | Exact resampling texture makes this a numerical inverse problem; it does not require understanding a clinical standard view. |
+| [BR-020](../../../docs/research-rounds/BR-020-results.md) | Different B30f/B50f reconstruction kernels. Terra passes at 0.036 / 0.050 mm RMS/max. | Intensity mismatch alone did not make this selected case difficult; broad multistart search and multiscale correlation suffice. Denoising alone was not isolated as the cause. |
+| [BR-021](../../../docs/research-rounds/BR-021-results.md) | Real inhale/exhale deformation. Terra passes paired 3D (1.91 / 4.22 mm) and fails single-view 2D-to-3D (12.64 / 23.80 mm). | Nonuniform anatomical motion changes the task from a single plane pose to sparse correspondence. One failure includes a composition bug. |
+| [BR-022](../../../docs/research-rounds/BR-022-results.md) | Replay and investigate that failure; two fresh Terra repeats fail and pass. | Fixing the bug alone does not rescue it. Restricted searches and false image matches also matter; the original snapshot is not reliably difficult. |
+| [BR-023](../../../docs/research-rounds/BR-023-results.md) | Fresh Sol/xhigh on the same 2D case passes (1.56 / 3.67 mm). | Conditional component tests show its revised q04 initialization matters; a more flexible final transform is unnecessary. |
+| [BR-024](../../../docs/research-rounds/BR-024-results.md) | Screen harder respiratory cases. One admitted new patient fails Sol (12.73 / 32.20 mm) despite a passing public-input author method. | Its q04 refinement is trapped near a wrong global estimate; the correct location lies outside the final search. The other screened patient is held, with no model trial. |
+| [BR-028](../../../docs/research-rounds/BR-028-results.md) | Add the full source CT to that exact case. Sol reaches 2.60 / 6.41 mm; seven points are within 2.2 mm. | A broad search using real 3D patches recovers the two large errors. The user accepts the remaining worst case visually. |
 
 The original idea concerned landmark-oriented cardiac sections. The completed
 deformation experiments use public lung vessel/airway correspondences across
@@ -99,7 +99,7 @@ At trace step 19, the new search's top q02 candidate is the same at all three
 patch sizes, about **2.15 mm** from the reference. q04's top candidates are
 about **2.44, 2.44 and 3.02 mm** away. These distances use printed coordinates
 rounded to 0.1 mm and are approximate. All 120 printed candidates are retained
-in the [new diagnostic receipt](evidence/br028-formulation-analysis.json), not
+in the [new diagnostic receipt](../../../docs/evidence/br028-formulation-analysis.json), not
 just these favorable examples.
 
 Sol then compares local translation, affine, rigid and similarity fits, patch
@@ -151,15 +151,15 @@ introduced in this synthesis.
 
 ## Evidence and reproducibility
 
-- [BR-024 trial and trace audit](evidence/br024-results.json),
-  [search geometry and saved stages](evidence/br024-stage-analysis.json).
-- [BR-028 trial and trace audit](evidence/br028-results.json),
-  [saved candidate scores](evidence/br028-stage-analysis.json),
-  [formulation analysis](evidence/br028-formulation-analysis.json),
-  [user adjudication](evidence/br028-adjudication.json).
-- [Read-only analysis script](../probes/registration-deformation/authoring/br028_formulation.py)
+- [BR-024 trial and trace audit](../../../docs/evidence/br024-results.json),
+  [search geometry and saved stages](../../../docs/evidence/br024-stage-analysis.json).
+- [BR-028 trial and trace audit](../../../docs/evidence/br028-results.json),
+  [saved candidate scores](../../../docs/evidence/br028-stage-analysis.json),
+  [formulation analysis](../../../docs/evidence/br028-formulation-analysis.json),
+  [user adjudication](../../../docs/evidence/br028-adjudication.json).
+- [Read-only analysis script](../../../probes/registration-deformation/authoring/br028_formulation.py)
   extracts recorded candidates; it executes no solver.
-- [Publication provenance](../site/registration-provenance.json) records the
+- [Publication provenance](../../../site/registration-provenance.json) records the
   reused CT figure payload and source evidence hashes. Native arrays and raw
   sessions remain local; the self-contained report embeds derived images only.
 

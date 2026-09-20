@@ -9,6 +9,7 @@ The [workflow](workflow.md) explains the supported interface.
 | Location | Authority and treatment |
 | --- | --- |
 | groups/ | Semantic ownership: ideas, decisions, methods, experiments, findings, presentation. Small source records are tracked. |
+| groups/<group>/history/ | Dated research closeouts, retrospectives and trace accounts. Current findings and presentation remain separate; narrative navigation may be maintained without changing scientific outcomes. |
 | datasets/ and discussions/ | Source discovery, access/recovery gaps, recurring-discussion provenance. No implicit dataset downloads or trial authorization. |
 | src/tb3_medical/, scripts/, tests/, configs/ | Common interfaces, adapters, executable checks and artifact policy. |
 | presentation/ | Shared read-only renderer, media tools and portable publication support. |

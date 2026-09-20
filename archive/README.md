@@ -7,7 +7,9 @@ SHA-256, `source_commit`, reason and ignored `local_copy`. Most entries come fro
 `pre-tb3-medical-2026-09-20` at `51f3b1224d2069fe931ac28b06fd2ccf38c497ab`.
 Later documentation retirements name their own commit; use the entry's origin.
 The original manifest covered 1,791 retired tracked files and six navigation
-originals; five obsolete documentation originals were added during the docs audit.
+originals. Documentation cleanup added five obsolete guide originals and five
+medical session-report originals. The latter preserve old citations; maintained
+narratives now live in their [owning groups](../docs/archive/README.md#group-research-history).
 
 Retired scope includes nonmedical probe families, the old catalog, original
 assignment and interview site, and superseded guidance. Retained medical evidence

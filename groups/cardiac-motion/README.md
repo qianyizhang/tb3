@@ -9,3 +9,11 @@ Use `uv run med list --group cardiac-motion` from the repository root. The group
 [Capability story](presentation/story.md) · [Working contract](AGENTS.md)
 
 [Data sources](sources.json) · [Retained examples](examples/README.md) · [Methods](methods/README.md)
+
+## Research history
+
+Dated session conclusions and trace accounts live in `history/`. They retain
+their original findings and limits; current assessments belong to the experiment
+and group findings, and current presentation belongs to the capability story.
+
+- [BR-025–035 session closeout](history/br025-br035-closeout.md)

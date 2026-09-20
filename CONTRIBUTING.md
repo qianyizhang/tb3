@@ -16,8 +16,9 @@ execution details. Use normal package imports. No import-path mutation, legacy
 fallback reader, machine-cache dependency or migration command belongs in daily
 usage. Optional imaging and media dependencies have their own declared setup in
 [reproduction](docs/reproduce.md) and the linked media guide. Keep shared guidance
-in the current docs hub, group-specific explanations with their group, and dated
-source records in the historical index; do not create another global research queue.
+in the current docs hub and group-specific explanations with their group. Dated
+session closeouts and retrospectives live in `groups/<group>/history/`, linked from
+the group README and shared historical index; do not create another global research queue.
 
 Diagnostics may run before controls. Claims require scoped assessment; current
 submission qualification is separately owned. Preserve historical scores and

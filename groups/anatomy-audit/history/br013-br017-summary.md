@@ -1,12 +1,12 @@
 # Anatomy experiments — results, trace analysis and current verdict
 
 > Historical synthesis. For current questions, assessments and presentation, use
-> [Anatomy audit](../groups/anatomy-audit/README.md). “Current” below describes
-> the original session; old report/run links need [historical context](archive/README.md).
+> [Anatomy audit](../README.md). “Current” below describes
+> the original session; old report/run links need [historical context](../../../docs/archive/README.md).
 
-[**Open the earlier-trial presentation**](../runs/anatomy-history-presentation/index.html) ·
-[Per-trial trace analysis](anatomy-traces.md) ·
-[Absorbed-tissue experiment](research-rounds/BR-017-results.md)
+[**Open the earlier-trial presentation**](../../../runs/anatomy-history-presentation/index.html) ·
+[Per-trial trace analysis](br013-br017-traces.md) ·
+[Absorbed-tissue experiment](../../../docs/research-rounds/BR-017-results.md)
 
 **BR-017 M02 remains the strongest failure-backed lead in this anatomy series.**
 The earlier BR-013 A02 identity miss is a compact secondary diagnostic, weakened
@@ -73,7 +73,7 @@ mechanism or establish a general anatomical deficit.
   or graph algorithm; none appears in the commands.
 
 The presentation provides a walkthrough for every trial, exact returned images,
-pseudocode and public excerpts. Its [trace index](evidence/anatomy-trace-index.json)
+pseudocode and public excerpts. Its [trace index](../../../docs/evidence/anatomy-trace-index.json)
 verifies 103 step anchors and result/trajectory/answer hashes. The 113 files in
 the earlier frozen manifests are unchanged. One unmanifested local Python
 bytecode cache is recorded separately and retained.
@@ -102,10 +102,10 @@ inference model or new training was invoked in the observed tools.
 
 BR-010/011/012 contain reassessment, baseline screens and source curation; they
 add no model trials. BR-016 is a separate aneurysm experiment with its own
-[report](research-rounds/BR-016-results.md) and verdict. Historical protocols,
+[report](../../../docs/research-rounds/BR-016-results.md) and verdict. Historical protocols,
 source fixtures, raw runs and frozen grades remain preserved.
 
-[BR-013 results](research-rounds/BR-013-results.md) ·
-[BR-014 results](research-rounds/BR-014-results.md) ·
-[BR-015 results](research-rounds/BR-015-results.md) ·
-[Rebuild this presentation](../probes/revisions/anatomy-history/authoring/README.md)
+[BR-013 results](../../../docs/research-rounds/BR-013-results.md) ·
+[BR-014 results](../../../docs/research-rounds/BR-014-results.md) ·
+[BR-015 results](../../../docs/research-rounds/BR-015-results.md) ·
+[Rebuild this presentation](../../../probes/revisions/anatomy-history/authoring/README.md)

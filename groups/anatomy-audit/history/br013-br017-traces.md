@@ -1,14 +1,14 @@
 # Anatomy identity experiments — trace walkthroughs
 
 > Retained trace walkthroughs. Current research lives in
-> [Anatomy audit](../groups/anatomy-audit/README.md). Local report links require
-> retained artifacts; see [historical context](archive/README.md).
+> [Anatomy audit](../README.md). Local report links require
+> retained artifacts; see [historical context](../../../docs/archive/README.md).
 
-[Presentation and current verdict](anatomy-experiments.md) · [Offline visual report](../runs/anatomy-history-presentation/index.html)
+[Presentation and current verdict](br013-br017-summary.md) · [Offline visual report](../../../runs/anatomy-history-presentation/index.html)
 
 High-level reconstruction from executed commands, returned images, public progress messages and final artifacts. Pseudocode summarizes observable work. Interpretations are hypotheses, not access to hidden reasoning.
 
-Seven Sol/xhigh trials and one conditional Terra/max trial from BR-013/014/015. Images below are decoded from the exact returned payloads. The [trace index](evidence/anatomy-trace-index.json) records hashes and step anchors. No additional model trials were run for this retrospective.
+Seven Sol/xhigh trials and one conditional Terra/max trial from BR-013/014/015. Images below are decoded from the exact returned payloads. The [trace index](../../../docs/evidence/anatomy-trace-index.json) records hashes and step anchors. No additional model trials were run for this retrospective.
 
 ## Shared approach
 
@@ -60,7 +60,7 @@ validate all 13 IDs and unique labels
 
 **Tool recovery.** No failed command was recorded.
 
-[Actual returned image](../runs/anatomy-history-presentation/a01.png) · [Raw trajectory](../runs/br013-abdomen-a01-sol-xhigh-v1-20260915/abdomen-a01__mdEFsR5/agent/trajectory.json)
+[Actual returned image](../../../runs/anatomy-history-presentation/a01.png) · [Raw trajectory](../../../runs/br013-abdomen-a01-sol-xhigh-v1-20260915/abdomen-a01__mdEFsR5/agent/trajectory.json)
 
 ## BR-013 · A02 / Sol/xhigh — Atypical anonymous organs
 
@@ -99,7 +99,7 @@ label compact pancreas as gallbladder → 9/11 correct
 
 **Tool recovery.** The session completed normally after the missing SciPy import, but the intended distance calculation was abandoned. No timeout or malformed-answer failure occurred.
 
-[Actual returned image](../runs/anatomy-history-presentation/a02.png) · [Raw trajectory](../runs/br013-abdomen-a02-sol-xhigh-v1-20260915/abdomen-a02__zemQR6P/agent/trajectory.json)
+[Actual returned image](../../../runs/anatomy-history-presentation/a02.png) · [Raw trajectory](../../../runs/br013-abdomen-a02-sol-xhigh-v1-20260915/abdomen-a02__zemQR6P/agent/trajectory.json)
 
 ## BR-013 · A02 / Terra/max — Terra on the same case
 
@@ -137,7 +137,7 @@ validate complete mapping → 10/11 correct
 
 **Tool recovery.** No nonzero shell exit was recorded. An initial answer patch did not match the starter formatting; a corrected patch succeeded.
 
-[Actual returned image](../runs/anatomy-history-presentation/terra.png) · [Raw trajectory](../runs/br013-abdomen-a02-terra-max-v1-20260915/abdomen-a02__JJc4VpZ/agent/trajectory.json)
+[Actual returned image](../../../runs/anatomy-history-presentation/terra.png) · [Raw trajectory](../../../runs/br013-abdomen-a02-terra-max-v1-20260915/abdomen-a02__JJc4VpZ/agent/trajectory.json)
 
 ## BR-013 · A03 / Sol/xhigh — Misleading proposed names
 
@@ -175,7 +175,7 @@ leave all other assignments unchanged
 
 **Tool recovery.** A formatting mismatch required a second answer patch. The missing xxd utility was replaced with od; final validation succeeded.
 
-[Actual returned image](../runs/anatomy-history-presentation/a03.png) · [Raw trajectory](../runs/br013-abdomen-a03-sol-xhigh-v1-20260915/abdomen-a03__eywYzqa/agent/trajectory.json)
+[Actual returned image](../../../runs/anatomy-history-presentation/a03.png) · [Raw trajectory](../../../runs/br013-abdomen-a03-sol-xhigh-v1-20260915/abdomen-a03__eywYzqa/agent/trajectory.json)
 
 ## BR-014 · I01 / Sol/xhigh — Exact class inventory
 
@@ -213,7 +213,7 @@ check every object ↔ one distinct listed class
 
 **Tool recovery.** An answer-patch formatting mismatch was corrected. No failed shell command was recorded.
 
-[Actual returned image](../runs/anatomy-history-presentation/inventory.png) · [Raw trajectory](../runs/br014-abdomen-i01-sol-xhigh-v1-20260915/abdomen-i01__ByXzTRu/agent/trajectory.json)
+[Actual returned image](../../../runs/anatomy-history-presentation/inventory.png) · [Raw trajectory](../../../runs/br014-abdomen-i01-sol-xhigh-v1-20260915/abdomen-i01__ByXzTRu/agent/trajectory.json)
 
 ## BR-014 · F01 / Sol/xhigh — Fragmented pancreas and duodenum
 
@@ -252,7 +252,7 @@ label all 15 objects, allowing repeated classes
 
 **Tool recovery.** The unavailable SciPy operation was replaced by working NumPy code. No unrecovered tool failure determined the outcome.
 
-[Actual returned image](../runs/anatomy-history-presentation/fragments.png) · [Raw trajectory](../runs/br014-abdomen-f01-sol-xhigh-v1-20260915/abdomen-f01__9nEFduz/agent/trajectory.json)
+[Actual returned image](../../../runs/anatomy-history-presentation/fragments.png) · [Raw trajectory](../../../runs/br014-abdomen-f01-sol-xhigh-v1-20260915/abdomen-f01__9nEFduz/agent/trajectory.json)
 
 ## BR-015 · C01 / Sol/xhigh — Add the source CT
 
@@ -290,7 +290,7 @@ assign all 11 objects correctly
 
 **Tool recovery.** The intensity computation succeeded without SciPy. The failed negative-position coronal command was left unrepeated; other returned views supported normal completion.
 
-[Actual returned image](../runs/anatomy-history-presentation/ct.png) · [Raw trajectory](../runs/br015-abdomen-c01-sol-xhigh-v1-20260915/abdomen-c01__ytrARUt/agent/trajectory.json)
+[Actual returned image](../../../runs/anatomy-history-presentation/ct.png) · [Raw trajectory](../../../runs/br015-abdomen-c01-sol-xhigh-v1-20260915/abdomen-c01__ytrARUt/agent/trajectory.json)
 
 ## BR-015 · V01 / Sol/xhigh — Eight abdominal veins
 
@@ -328,5 +328,5 @@ validate eight unique IDs and eight unique names
 
 **Tool recovery.** An initial answer patch missed the starter formatting. After unavailable xxd, the file was inspected with sed and the corrected patch validated successfully.
 
-[Actual returned image](../runs/anatomy-history-presentation/veins.png) · [Raw trajectory](../runs/br015-abdomen-v01-sol-xhigh-v1-20260915/abdomen-v01__NKBATMu/agent/trajectory.json)
+[Actual returned image](../../../runs/anatomy-history-presentation/veins.png) · [Raw trajectory](../../../runs/br015-abdomen-v01-sol-xhigh-v1-20260915/abdomen-v01__NKBATMu/agent/trajectory.json)
 
