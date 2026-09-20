@@ -1,0 +1,79 @@
+# Separate individual cells in microscopy
+
+Develop and apply a prediction method to separate individual cells in microscopy.
+
+## Value
+
+These spatial labels make structures or abnormalities available for quantitative analysis and review. They do not by themselves establish a diagnosis.
+
+## Given
+
+### Original data
+
+Microscopy images from multiple acquisition modalities.
+
+### Supplied helpers
+
+Limited labeled training masks and a larger unlabeled collection. These are training aids; held-out targets remain evaluation references.
+
+### Callable tools
+
+A medical ML development environment; dependency installation, training and inference resources are task-specific and were not exercised in this survey.
+
+### Reference-only material
+
+Evaluation targets are references, not extra solver inputs. Local filesystem visibility has not been audited by running this external task.
+
+## Task specification
+
+Develop the learning/inference pipeline using the allowed training partition, then submit predictions for every required evaluation case. Preserve case IDs, label taxonomy and image geometry.
+
+## Expected output
+
+An instance mask with a separate integer ID for each cell, in the source image coordinates.
+
+## Evaluation
+
+Instance-level F1 after matching predicted and reference cells at IoU 0.5. This statement describes the published task; no new score or equivalence with the original challenge grader is claimed.
+
+## Visual explanation
+
+### Workflow
+
+- Microscopy images from multiple acquisition modalities
+- Develop and apply a prediction pipeline
+- An instance mask with a separate integer ID for each cell, in the source image coordinates
+
+### Input
+
+**Contract view; native sample not yet illustrated.** Microscopy images from multiple acquisition modalities.
+
+### Supplied helpers
+
+**Given material, not an answer reveal.** Limited labeled training masks and a larger unlabeled collection. These are training aids; held-out targets remain evaluation references.
+
+### Reference or output
+
+**Expected artifact, not an actual prediction.** An instance mask with a separate integer ID for each cell, in the source image coordinates.
+
+## Conditions
+
+| Condition | Supplied help | Work remaining |
+|---|---|---|
+| Competition workflow | Limited labeled training masks and a larger unlabeled collection. | Prepare data, train or adapt a model, validate and produce the final submission. |
+
+## Difficulty
+
+Touching cells must be split correctly across very different imaging appearances.
+
+## Sources
+
+- [Pinned challenge description](https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/neurips-cellseg/description.md)
+
+## Coverage
+
+A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.
+
+## Gaps
+
+The challenge description was inspected; its local ReX-MLE data-preparation and grading adapters were not replayed. Native example views are not yet attached to this definition.

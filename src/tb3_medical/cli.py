@@ -30,6 +30,18 @@ def main(argv=None):
     p = sub.add_parser("verify-package"); p.add_argument("destination", type=Path)
     p = sub.add_parser("assets"); p.add_argument("--write", action="store_true")
     p = sub.add_parser("restore-legacy"); p.add_argument("prefix"); p.add_argument("--destination", type=Path, required=True)
+    p = sub.add_parser("brief", help="Author or render task explanations; never launches a trial")
+    brief_sub = p.add_subparsers(dest="brief_command", required=True)
+    for action in ("new", "build", "check"):
+        b = brief_sub.add_parser(action)
+        b.add_argument("--catalog", default="discussions/medical-agent-repository-survey/catalog.json")
+        if action == "new":
+            b.add_argument("id"); b.add_argument("--title", required=True)
+            b.add_argument("--repository", required=True); b.add_argument("--family", required=True)
+            b.add_argument("--repository-id", help="Optional source-inventory repository ID")
+            b.add_argument("--destination", required=True)
+        elif action == "build":
+            b.add_argument("--output", type=Path, default=Path("runs/task-explorer/index.html"))
     args = parser.parse_args(argv); root = args.root.resolve(); cmd = args.command
     try:
         if cmd == "list":
@@ -63,6 +75,15 @@ def main(argv=None):
         elif cmd == "restore-legacy":
             from .archive import restore
             result = restore(root, args.prefix, args.destination)
+        elif cmd == "brief":
+            from . import task_briefs
+            if args.brief_command == "new":
+                result = task_briefs.new(root, args.id, args.title, args.repository, args.family, args.destination, args.catalog, args.repository_id)
+            elif args.brief_command == "build":
+                out = args.output if args.output.is_absolute() else root / args.output
+                result = task_briefs.build(root, out, args.catalog)
+            else:
+                result = task_briefs.check(root, args.catalog)
         elif cmd == "present":
             from .presentation import present, serve
             out = args.output if args.output.is_absolute() else root / args.output

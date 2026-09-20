@@ -39,6 +39,35 @@ semantic groups, source-linked idea capture, recommendations distinct from user
 decisions, preserved frozen evidence, independent submission ownership, no active
 compatibility shims, and protected concurrent work.
 
+## Shared vocabulary
+
+Adopt the site discussion's [vocabulary catalogue](../../src/tb3_medical/vocabulary.json)
+and [usage guide](../status-vocabulary.md) as the status authority. The catalogue
+is package data consumed directly by the CLI and included in the existing static
+frontend build. Remove the old independent definitions at cutover. Use ordinary
+lookups; do not add generated enums, a schema system or another configuration layer.
+
+The confirmed presentation rules also constrain the refactor:
+
+- Status axes apply in their named contexts, not as required fields on every item.
+  Experiments primarily show progress and assessment of their conclusions.
+- Neutral absence of assessment creates no review obligation. The attention queue
+  contains concrete unresolved issues or explicit requests with a pending action.
+- Reuse authored assessments with clear scope and supporting evidence. A positive
+  label must not be manufactured from an import, completion or scorer pass.
+- An acknowledged withdrawal can remain in history without occupying the queue.
+  Ordinary editing does not require individual approval records for every artifact.
+- Historical provenance, replacement links, partial collection, diagnostic purpose
+  and scoped replay receipts remain separate from experiment assessment.
+- Running and availability observations show their recorded time. Reading the
+  index does not poll processes or inspect all inputs. Unknown historical progress
+  is left unspecified rather than silently converted to closed or active.
+
+Three remaining behavior choices are being clarified: the main assessment after
+a partial withdrawal and reassessment, later use of an eligible diagnostic attempt,
+and explicit inclusion of flagged evidence in draft research exports. They do not
+reopen the vocabulary or add a new status axis.
+
 ## Everyday authoring and operation
 
 A group keeps its ideas/decisions, methods, sources, experiments and presentation

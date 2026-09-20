@@ -1,0 +1,611 @@
+{
+  "schema_version": 1,
+  "kind": "evaluation",
+  "id": "br042-resume1-trace-gt-audit",
+  "experiment_id": "br042-v4-6h",
+  "group_id": "tubular-anatomy",
+  "classification": "posthoc_trace_and_reference_sensitivity",
+  "depends_on": [
+    "br042-resume1-independent-review",
+    "br042-v4-6h-saved-output-review"
+  ],
+  "source": "codex://threads/01a0c006-0f8c-78a1-8ab1-2f5868f21ee4",
+  "frozen_bytes_verified": true,
+  "exact_verifier_agreement": true,
+  "saved_image_cache_matches_native_CTA": true,
+  "coronary_metrics_unchanged": true,
+  "changes": {
+    "old_courses": 60,
+    "new_courses": 64,
+    "byte_equivalent_course_objects": [
+      "lm",
+      "lad",
+      "lcx",
+      "d1",
+      "d2",
+      "r_pda",
+      "r_pla",
+      "rca_acute_marginal",
+      "rca_atrial",
+      "lad_medial_apical",
+      "lad_lateral_apical",
+      "lad_septal_proximal",
+      "rca_inferior_rv",
+      "om1",
+      "ascending_aorta",
+      "descending_aorta",
+      "aortic_root",
+      "pulmonary_trunk",
+      "right_pulmonary_artery",
+      "left_pulmonary_artery",
+      "svc",
+      "right_interlobar_pa",
+      "left_anterior_basal_pa",
+      "left_lateral_basal_pa",
+      "left_posterior_basal_pa",
+      "lspv",
+      "lspv_superior",
+      "lspv_lingula",
+      "rspv",
+      "right_upper_pa_anterior",
+      "rspv_apical",
+      "ripv",
+      "ripv_lateral",
+      "ripv_superior",
+      "ripv_posterior",
+      "lipv",
+      "lipv_superior",
+      "lipv_lateral",
+      "lipv_posterior",
+      "right_upper_lobar_pa",
+      "left_lingular_pa",
+      "rspv_upper",
+      "rspv_anterior_venous",
+      "lspv_inferior_lingular",
+      "coronary_sinus",
+      "middle_cardiac_vein",
+      "ivc",
+      "left_upper_anterior_pa",
+      "great_cardiac_vein",
+      "middle_cardiac_vein_distal",
+      "right_internal_thoracic",
+      "left_internal_thoracic",
+      "left_superior_segmental_pa_lateral"
+    ],
+    "previous_coronary_ids": [
+      "lm",
+      "lad",
+      "lcx",
+      "d1",
+      "d2",
+      "rca",
+      "r_pda",
+      "r_pla",
+      "rca_acute_marginal",
+      "rca_atrial",
+      "lad_medial_apical",
+      "lad_lateral_apical",
+      "lad_septal_proximal",
+      "rca_inferior_rv",
+      "om1"
+    ],
+    "unchanged_coronary_specs": [
+      "lm",
+      "lad",
+      "lcx",
+      "d1",
+      "d2",
+      "rca",
+      "r_pda",
+      "r_pla",
+      "rca_acute_marginal",
+      "rca_atrial",
+      "lad_medial_apical",
+      "lad_lateral_apical",
+      "lad_septal_proximal",
+      "rca_inferior_rv",
+      "om1"
+    ],
+    "changed_coronary_course_objects": [
+      "rca"
+    ],
+    "old_rca_points": 303,
+    "new_rca_points": 304,
+    "renamed_id": {
+      "from": "right_upper_pa_posterior",
+      "to": "right_upper_pa_apical"
+    },
+    "net_added_courses": 4,
+    "added_anatomical_courses": [
+      "right_upper_pa_posterior",
+      "right_upper_pa_posterior_dorsal",
+      "right_lower_superior_segmental_pa",
+      "rca_superior_atrial"
+    ]
+  },
+  "tokens": {
+    "initial": {
+      "records": 142,
+      "record_sum": {
+        "input_tokens": 16314264,
+        "cached_input_tokens": 15630720,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 116001,
+        "reasoning_output_tokens": 68248,
+        "total_tokens": 16430265
+      },
+      "custom_exec_calls": 141
+    },
+    "resume": {
+      "records": 36,
+      "record_sum": {
+        "input_tokens": 3993137,
+        "cached_input_tokens": 3854464,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 33747,
+        "reasoning_output_tokens": 11837,
+        "total_tokens": 4026884
+      },
+      "custom_exec_calls": 34
+    },
+    "terminal_cumulative": {
+      "input_tokens": 19831491,
+      "cached_input_tokens": 19020672,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 135129,
+      "reasoning_output_tokens": 80085,
+      "total_tokens": 19966620
+    },
+    "terminal_delta_resume": {
+      "input_tokens": 3768744,
+      "cached_input_tokens": 3634432,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 26304,
+      "reasoning_output_tokens": 11837,
+      "total_tokens": 3795048
+    }
+  },
+  "compactions": [
+    {
+      "line": 768,
+      "timestamp": "2026-09-20T12:57:03.384Z",
+      "phase": "initial"
+    },
+    {
+      "line": 1407,
+      "timestamp": "2026-09-20T16:55:14.476Z",
+      "phase": "resume"
+    }
+  ],
+  "branches": {
+    "LM": {
+      "reference_mm": 8.295005303758952,
+      "missed_geometry_mm": 2.0669526997364063,
+      "wrong_label_mm": 2.7480971056456047,
+      "candidate_point_coverage_1mm": 0.0,
+      "center_HU_percentiles_10_50_90": [
+        374.61354064941406,
+        388.05694580078125,
+        403.4159271240234
+      ],
+      "vesselness_percentiles_10_50_90": [
+        0.5210894644260406,
+        0.7388468980789185,
+        0.8079440295696259
+      ],
+      "reference_center_passing_low_threshold": 1.0,
+      "matched_courses": {
+        "lm": 3.479955498376942,
+        "lad": 0.5995545664318923,
+        "lcx": 2.148542539213712
+      }
+    },
+    "LAD": {
+      "reference_mm": 152.53267579441206,
+      "missed_geometry_mm": 4.283633712624923,
+      "wrong_label_mm": 5.377549485696678,
+      "candidate_point_coverage_1mm": 0.0,
+      "center_HU_percentiles_10_50_90": [
+        213.2855987548828,
+        296.1864776611328,
+        391.1841613769531
+      ],
+      "vesselness_percentiles_10_50_90": [
+        0.44340546131134034,
+        0.6480858027935028,
+        0.7791229248046876
+      ],
+      "reference_center_passing_low_threshold": 1.0,
+      "matched_courses": {
+        "lad": 142.87149259609046,
+        "d1": 1.980770462281456,
+        "d2": 1.2297982076154248,
+        "lad_septal_proximal": 2.166980815799796
+      }
+    },
+    "LCx": {
+      "reference_mm": 89.63540942850298,
+      "missed_geometry_mm": 0.8238523324845943,
+      "wrong_label_mm": 0.6462057515093462,
+      "candidate_point_coverage_1mm": 0.0,
+      "center_HU_percentiles_10_50_90": [
+        147.37464904785156,
+        272.0129699707031,
+        361.7154846191406
+      ],
+      "vesselness_percentiles_10_50_90": [
+        0.1277705281972885,
+        0.4067421853542328,
+        0.7305652499198914
+      ],
+      "reference_center_passing_low_threshold": 1.0,
+      "matched_courses": {
+        "lcx": 88.16535134450902,
+        "om1": 0.6462057515093462
+      }
+    },
+    "D1": {
+      "reference_mm": 72.35432107611341,
+      "missed_geometry_mm": 0.30389806888564547,
+      "wrong_label_mm": 0.0,
+      "candidate_point_coverage_1mm": 0.0,
+      "center_HU_percentiles_10_50_90": [
+        231.95558166503906,
+        269.9084167480469,
+        352.0176696777344
+      ],
+      "vesselness_percentiles_10_50_90": [
+        0.21788020431995392,
+        0.4240109622478485,
+        0.7406827807426453
+      ],
+      "reference_center_passing_low_threshold": 1.0,
+      "matched_courses": {
+        "d1": 72.05042300722775
+      }
+    },
+    "D2": {
+      "reference_mm": 14.112174076589547,
+      "missed_geometry_mm": 13.672037765917146,
+      "wrong_label_mm": 0.4401363106724029,
+      "candidate_point_coverage_1mm": 0.8783264171382619,
+      "center_HU_percentiles_10_50_90": [
+        159.55946655273436,
+        194.4917449951172,
+        268.84287719726564
+      ],
+      "vesselness_percentiles_10_50_90": [
+        0.05839392393827438,
+        0.2645002603530884,
+        0.4590030133724213
+      ],
+      "reference_center_passing_low_threshold": 1.0,
+      "matched_courses": {
+        "lad": 0.4401363106724029
+      },
+      "nearest_candidate_components": [
+        {
+          "candidate_id": "3",
+          "points": 87,
+          "coverage_1mm": 0.8783264171382619,
+          "min_distance_mm": 0.09435610027917797
+        },
+        {
+          "candidate_id": "8",
+          "points": 7,
+          "coverage_1mm": 0.0,
+          "min_distance_mm": 3.0257377728449724
+        },
+        {
+          "candidate_id": "0",
+          "points": 1387,
+          "coverage_1mm": 0.0,
+          "min_distance_mm": 18.583597641312828
+        }
+      ]
+    },
+    "OM1": {
+      "reference_mm": 11.449793986080811,
+      "missed_geometry_mm": 11.449793986080811,
+      "wrong_label_mm": 0.0,
+      "candidate_point_coverage_1mm": 0.0,
+      "center_HU_percentiles_10_50_90": [
+        103.55176544189453,
+        120.78733825683594,
+        141.8978485107422
+      ],
+      "vesselness_percentiles_10_50_90": [
+        0.0033498005010187625,
+        0.028993753716349602,
+        0.09663255661725997
+      ],
+      "reference_center_passing_low_threshold": 0.5711003482052489,
+      "matched_courses": {},
+      "nearest_candidate_components": [
+        {
+          "candidate_id": "0",
+          "points": 1387,
+          "coverage_1mm": 0.0,
+          "min_distance_mm": 1.7532197783724761
+        },
+        {
+          "candidate_id": "3",
+          "points": 87,
+          "coverage_1mm": 0.0,
+          "min_distance_mm": 13.782883852064298
+        },
+        {
+          "candidate_id": "8",
+          "points": 7,
+          "coverage_1mm": 0.0,
+          "min_distance_mm": 27.492289818733504
+        }
+      ]
+    },
+    "OM2": {
+      "reference_mm": 14.133014572343647,
+      "missed_geometry_mm": 6.054084014239619,
+      "wrong_label_mm": 8.07893055810403,
+      "candidate_point_coverage_1mm": 0.0,
+      "center_HU_percentiles_10_50_90": [
+        87.03505096435546,
+        151.33482360839844,
+        235.54391479492193
+      ],
+      "vesselness_percentiles_10_50_90": [
+        0.013049216754734517,
+        0.1347983181476593,
+        0.3547136783599856
+      ],
+      "reference_center_passing_low_threshold": 0.8188015065963979,
+      "matched_courses": {
+        "om1": 8.07893055810403
+      },
+      "nearest_candidate_components": [
+        {
+          "candidate_id": "13",
+          "points": 6,
+          "coverage_1mm": 0.0,
+          "min_distance_mm": 1.2364235350434412
+        },
+        {
+          "candidate_id": "12",
+          "points": 6,
+          "coverage_1mm": 0.0,
+          "min_distance_mm": 2.755971285241738
+        },
+        {
+          "candidate_id": "0",
+          "points": 1387,
+          "coverage_1mm": 0.0,
+          "min_distance_mm": 5.135857929552269
+        }
+      ]
+    },
+    "RCA": {
+      "reference_mm": 132.50800818275667,
+      "missed_geometry_mm": 0.0,
+      "wrong_label_mm": 9.420426464167203,
+      "candidate_point_coverage_1mm": 0.0,
+      "center_HU_percentiles_10_50_90": [
+        344.6810607910156,
+        398.449462890625,
+        449.46434326171874
+      ],
+      "vesselness_percentiles_10_50_90": [
+        0.6658676624298095,
+        0.7541609406471252,
+        0.823124635219574
+      ],
+      "reference_center_passing_low_threshold": 1.0,
+      "matched_courses": {
+        "rca": 123.08758171858946,
+        "r_pda": 2.5115410736995165,
+        "rca_acute_marginal": 1.2169003387755493,
+        "rca_atrial": 1.4416720624100579,
+        "rca_inferior_rv": 4.2503129892820795
+      }
+    },
+    "R-PDA": {
+      "reference_mm": 46.07378115203864,
+      "missed_geometry_mm": 0.0,
+      "wrong_label_mm": 14.045835528752162,
+      "candidate_point_coverage_1mm": 0.0,
+      "center_HU_percentiles_10_50_90": [
+        131.23655700683594,
+        168.77953338623047,
+        228.4068603515625
+      ],
+      "vesselness_percentiles_10_50_90": [
+        0.059099797159433365,
+        0.18698208779096603,
+        0.38282355666160583
+      ],
+      "reference_center_passing_low_threshold": 1.0,
+      "matched_courses": {
+        "r_pda": 32.02794562328648,
+        "rca_inferior_rv": 14.045835528752162
+      }
+    },
+    "R-PLA": {
+      "reference_mm": 51.25809872731147,
+      "missed_geometry_mm": 0.0,
+      "wrong_label_mm": 0.4907195305991623,
+      "candidate_point_coverage_1mm": 0.0,
+      "center_HU_percentiles_10_50_90": [
+        194.06669006347656,
+        298.25909423828125,
+        412.4398193359375
+      ],
+      "vesselness_percentiles_10_50_90": [
+        0.30097060799598696,
+        0.6893787980079651,
+        0.8001232028007507
+      ],
+      "reference_center_passing_low_threshold": 1.0,
+      "matched_courses": {
+        "r_pda": 0.4907195305991623,
+        "r_pla": 50.76737919671231
+      }
+    },
+    "Other": {
+      "reference_mm": 53.885621058012404,
+      "missed_geometry_mm": 0.20948692841033198,
+      "wrong_label_mm": 53.676134129602076,
+      "candidate_point_coverage_1mm": 0.0,
+      "center_HU_percentiles_10_50_90": [
+        113.62627258300782,
+        183.7506866455078,
+        309.8501342773438
+      ],
+      "vesselness_percentiles_10_50_90": [
+        0.024214613437652587,
+        0.22051110863685608,
+        0.619638466835022
+      ],
+      "reference_center_passing_low_threshold": 0.9829557546161714,
+      "matched_courses": {
+        "d2": 53.676134129602076
+      }
+    }
+  },
+  "counterfactuals": {
+    "downstream_numbering_only": {
+      "geometry": {
+        "length_weighted_recall_1mm": 0.9398615597964165,
+        "macro_recall_1mm": 0.7552982785395549,
+        "length_weighted_recall_2mm": 0.9576722945367168,
+        "macro_recall_2mm": 0.8089753142206008
+      },
+      "labeled": {
+        "length_weighted_recall_1mm": 0.8885353067173367,
+        "macro_recall_1mm": 0.6834373518889415,
+        "length_weighted_recall_2mm": 0.8988597722020659,
+        "macro_recall_2mm": 0.6943228620501327
+      },
+      "geometry_pass": false,
+      "labeled_pass": false
+    },
+    "numbering_plus_disputed_inferior_rv_as_pda": {
+      "geometry": {
+        "length_weighted_recall_1mm": 0.9398615597964165,
+        "macro_recall_1mm": 0.7552982785395549,
+        "length_weighted_recall_2mm": 0.9576722945367168,
+        "macro_recall_2mm": 0.8089753142206008
+      },
+      "labeled": {
+        "length_weighted_recall_1mm": 0.9102700818764051,
+        "macro_recall_1mm": 0.7111514684005396,
+        "length_weighted_recall_2mm": 0.9205945473611343,
+        "macro_recall_2mm": 0.7220369785617308
+      },
+      "geometry_pass": false,
+      "labeled_pass": false
+    }
+  },
+  "fixed_geometry_label_upper_bound": {
+    "length_weighted_recall_1mm": 0.9398615597964165,
+    "macro_recall_1mm": 0.7552982785395549,
+    "length_weighted_recall_2mm": 0.9576722945367168,
+    "macro_recall_2mm": 0.8089753142206008
+  },
+  "reference_self_score": {
+    "format_valid": true,
+    "geometry": {
+      "length_weighted_recall_1mm": 1.0,
+      "macro_recall_1mm": 1.0,
+      "length_weighted_recall_2mm": 1.0,
+      "macro_recall_2mm": 1.0
+    },
+    "labeled": {
+      "length_weighted_recall_1mm": 1.0,
+      "macro_recall_1mm": 1.0,
+      "length_weighted_recall_2mm": 1.0,
+      "macro_recall_2mm": 1.0
+    },
+    "geometry_pass": true,
+    "labeled_pass": true
+  },
+  "reference_exclusion_sensitivity": {
+    "exclude_PDA": {
+      "geometry_macro_1mm": 0.7308281063935105,
+      "labeled_macro_1mm": 0.5254918436729479,
+      "all_remaining_geometry_at_least_80_percent": false
+    },
+    "exclude_PDA_and_LM": {
+      "geometry_macro_1mm": 0.7286068287922488,
+      "labeled_macro_1mm": 0.5372660258435382,
+      "all_remaining_geometry_at_least_80_percent": false
+    }
+  },
+  "matching_sensitivity": {
+    "official_labeled_1mm": 0.7929744236945052,
+    "any_same_label_within_1mm_diagnostic": 0.8150209850794835,
+    "length_lost_to_nearest_correspondence_mm": 14.247323605680076
+  },
+  "limitations": [
+    "Candidate distances are to unordered retained skeleton voxels, not continuous or anatomically adjudicated vessels.",
+    "Threshold rates sample the reference center, not an entire lumen or the full discovery algorithm.",
+    "Relabeling and reference-exclusion counterfactuals use ground truth after the run; they are not corrected scores.",
+    "Raw response-usage records and terminal cumulative usage differ; neither is a billing receipt.",
+    "No model trial or clinical reference adjudication was performed."
+  ],
+  "evidence": [
+    {
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-6h-resume1/all-vessels__cr5kdch/agent/sessions/2026/09/20/rollout-2026-09-20T12-06-18-01a0beb5-c558-7ec2-b58b-d92f1e6818f2.jsonl",
+      "sha256": "0ed481ba46e4a8792d0c4eb61edb573374aa0af595c7feb82a5c5e87344cf147"
+    },
+    {
+      "path": "runs/br042-all-vessels-v4-6h-resume1/restore/answer/centerlines.json",
+      "sha256": "502b5ab41f69898d4f8c57fd26ff07f114306c7d97300789698028888008b391"
+    },
+    {
+      "path": "runs/br042-all-vessels-v4-6h-resume1/restore/answer/vessels.json",
+      "sha256": "16e414f481c5f46170a290692237fc3b5c238c2b1e27ce9e36e4fce2df738493"
+    },
+    {
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-6h-resume1/all-vessels__cr5kdch/artifacts/app/answer/centerlines.json",
+      "sha256": "b88be6300213139ef6126d49988500b99d389378642dbe477abaf481c96994dd"
+    },
+    {
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-6h-resume1/all-vessels__cr5kdch/artifacts/app/answer/vessels.json",
+      "sha256": "0fea761f2dfa8856ab0a715a8e54753e668133fa656778eab5cf6a2b8ce75c1b"
+    },
+    {
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-6h-resume1/all-vessels__cr5kdch/artifacts/app/answer/method.md",
+      "sha256": "fda769913ed23b7174b44e886ca3f14e0599c912836da391222df90ae01d2831"
+    },
+    {
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-6h-resume1/all-vessels__cr5kdch/artifacts/app/answer/candidate_review.py",
+      "sha256": "6d9b27c2ff32a8262c7a090204b9ac603ba3a7636c7acef77207f43c78694c91"
+    },
+    {
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-6h-resume1/all-vessels__cr5kdch/artifacts/app/work/low_candidates.npz",
+      "sha256": "cb07ad76134e714287f1fd634b0ea5bba6cec33ef6c541826815ff774f727f2a"
+    },
+    {
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-6h-resume1/all-vessels__cr5kdch/artifacts/app/work/vesselness.npz",
+      "sha256": "b9a5f6d21e25326578ed4b79178feba532cadc2484e51e40ffb2a09ec857f9ab"
+    },
+    {
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-6h-resume1/all-vessels__cr5kdch/artifacts/app/work/paths.npz",
+      "sha256": "0e62f22613ed6851fba16f6ba845e57168c46eedc8aec3c1a6f173893c4bd955"
+    },
+    {
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-6h-resume1/all-vessels__cr5kdch/artifacts/app/work/image.npy",
+      "sha256": "d701418d06dfcd2c99db90b4590515a6eb1fe97d11be373ea5d55ad9e10c2e6b"
+    },
+    {
+      "path": "runs/br042-all-vessels-v4-6h/tasks/all-vessels/tests/reference.json",
+      "sha256": "80ea4e0027c88c4b7d3e2c5e1330d1862b8dfc755b6c392d2e457c37818446a0"
+    },
+    {
+      "path": "runs/br042-all-vessels-v4-6h/tasks/all-vessels/tests/score.py",
+      "sha256": "99d3791b320519828fe9895141f8fce5d588ff855e29b684fc99027979f4d1b0"
+    },
+    {
+      "path": "runs/br042-all-vessels-astra-xhigh-v4-6h-resume1/all-vessels__cr5kdch/verifier/metrics.json",
+      "sha256": "480721ca54bb73477b98cba9421c2de44a3ec0e2c16b30617501f0cea480ca15"
+    }
+  ]
+}

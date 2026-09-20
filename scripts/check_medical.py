@@ -5,5 +5,7 @@ import json
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
 from tb3_medical.presentation import check
+from tb3_medical.task_briefs import check as check_briefs
 if __name__ == '__main__':
-    print(json.dumps(check(Path(__file__).resolve().parents[1]), indent=2))
+    root = Path(__file__).resolve().parents[1]
+    print(json.dumps({**check(root), "task_briefs": check_briefs(root)}, indent=2))

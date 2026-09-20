@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "kind": "source_survey_receipt",
+  "id": "medical-agent-repository-survey-2026-09-20",
+  "retrieved_on": "2026-09-20",
+  "actor": "assistant",
+  "source_task": "codex://threads/01a0bef4-b72c-7241-bb59-f5ca11d4db09",
+  "report": "docs/medical-agent-repository-survey-2026-09-20.md",
+  "selected_project_count": 28,
+  "method": "Broad web discovery followed by primary repository/project/paper reading and selected GitHub API source inspections. No external runtime, dataset download, inference, clinical adjudication or reproduction.",
+  "limitations": [
+    "Git blob IDs identify selected files, not pinned whole-repository reproductions.",
+    "Last-push and license-detection fields are GitHub API metadata at retrieval, not maintenance or legal conclusions.",
+    "Unidentified code is a limited search result, not proof that no release exists elsewhere.",
+    "Cross-project headline performance is not directly comparable."
+  ],
+  "inventory": [
+    {
+      "name": "HealthAgentBench",
+      "repo": "microsoft/HealthAgentBench",
+      "url": "https://github.com/microsoft/HealthAgentBench",
+      "category": "close_benchmark",
+      "observation": "Public tasks and selected CT verifier inspected."
+    },
+    {
+      "name": "ABRA",
+      "repo": "Luab/ABRA",
+      "url": "https://github.com/Luab/ABRA",
+      "category": "close_benchmark",
+      "observation": "Public source/scoring trees and aggregate scorer inspected."
+    },
+    {
+      "name": "BCER",
+      "repo": "Albertlongzi/BCER",
+      "url": "https://github.com/Albertlongzi/BCER",
+      "category": "close_runtime",
+      "observation": "Metric definitions and runner validators inspected; no data bundled."
+    },
+    {
+      "name": "AutoMedBench",
+      "repo": "AutoMedBench/AutoMedBench",
+      "url": "https://github.com/AutoMedBench/AutoMedBench",
+      "category": "close_benchmark",
+      "observation": "README, project site and linked release descriptions inspected; domain branches not replayed."
+    },
+    {
+      "name": "Imaging-101",
+      "repo": "AI4ImagingLab/imaging-101-release",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release",
+      "category": "close_benchmark",
+      "observation": "README and task tree inspected; external assets not downloaded."
+    },
+    {
+      "name": "RadAgent",
+      "repo": "eth-medical-ai-lab/rad-agent",
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent",
+      "category": "close_agent",
+      "observation": "Agent/tool/evaluation tree and README inspected; root LICENSE absent from returned tree despite MIT badge."
+    },
+    {
+      "name": "ReX-MLE",
+      "repo": "rajpurkarlab/ReX-MLE",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE",
+      "category": "adjacent_benchmark",
+      "observation": "README and primary MIDL paper inspected; challenge datasets not downloaded."
+    },
+    {
+      "name": "MedRAX",
+      "repo": "bowang-lab/MedRAX",
+      "url": "https://github.com/bowang-lab/MedRAX",
+      "category": "specialist_agent",
+      "observation": "README and benchmark description inspected."
+    },
+    {
+      "name": "MMedAgent",
+      "repo": "Wangyixinxin/MMedAgent",
+      "url": "https://github.com/Wangyixinxin/MMedAgent",
+      "category": "specialist_agent",
+      "observation": "Tool table and README inspected."
+    },
+    {
+      "name": "MedSAM-Agent",
+      "repo": "CUHK-AIM-Group/MedSAM-Agent",
+      "url": "https://github.com/CUHK-AIM-Group/MedSAM-Agent",
+      "category": "specialist_agent",
+      "observation": "README marks base code/model released and trajectory/training datasets pending."
+    },
+    {
+      "name": "MedSegAgent",
+      "repo": "uni-medical/MedSegAgent",
+      "url": "https://github.com/uni-medical/MedSegAgent",
+      "category": "specialist_agent",
+      "observation": "README and visible source/skill tree inspected."
+    },
+    {
+      "name": "Cardiac Agent",
+      "repo": "plantain-herb/Cardiac-Agent",
+      "url": "https://github.com/plantain-herb/Cardiac-Agent",
+      "category": "specialist_agent",
+      "observation": "README and weight/data links inspected; linked large assets not downloaded."
+    },
+    {
+      "name": "EchoAgent",
+      "repo": "DeepRCL/EchoAgent",
+      "url": "https://github.com/DeepRCL/EchoAgent",
+      "category": "specialist_agent",
+      "observation": "README and full license text read; measurement checkpoints external."
+    },
+    {
+      "name": "ScienceAgentBench",
+      "repo": "OSU-NLP-Group/ScienceAgentBench",
+      "url": "https://github.com/OSU-NLP-Group/ScienceAgentBench",
+      "category": "adjacent_benchmark",
+      "observation": "README including 2026-04-30 verified-release announcement inspected."
+    },
+    {
+      "name": "Biomni",
+      "repo": "snap-stanford/Biomni",
+      "url": "https://github.com/snap-stanford/Biomni",
+      "category": "adjacent_agent",
+      "observation": "README and environment/component license notes inspected."
+    },
+    {
+      "name": "MedAgentBench",
+      "repo": "stanfordmlgroup/MedAgentBench",
+      "url": "https://github.com/stanfordmlgroup/MedAgentBench",
+      "category": "adjacent_benchmark",
+      "observation": "Repository and official project description inspected."
+    },
+    {
+      "name": "M3D",
+      "repo": "BAAI-DCAI/M3D",
+      "url": "https://github.com/BAAI-DCAI/M3D",
+      "category": "component_or_baseline",
+      "observation": "README covers eight tasks and separate Radiopaedia content restrictions."
+    },
+    {
+      "name": "Voxel",
+      "repo": "dalcalab/voxel",
+      "url": "https://github.com/dalcalab/voxel",
+      "category": "component_or_baseline",
+      "observation": "Library README inspected; full VoxelPrompt agent release not verified."
+    },
+    {
+      "name": "Slicer agent for surgical planning",
+      "repo": "puxuntu/Slicer_agent_for_surgical_planning",
+      "url": "https://github.com/puxuntu/Slicer_agent_for_surgical_planning",
+      "category": "component_or_baseline",
+      "observation": "README and NA-MIC project page inspected; former Slicer_agent URL redirects here."
+    },
+    {
+      "name": "ImageCAS-X",
+      "repo": "kitbransby/ImageCAS-X",
+      "url": "https://github.com/kitbransby/ImageCAS-X",
+      "category": "component_or_baseline",
+      "observation": "Dataset/centerline/branch-label description inspected."
+    },
+    {
+      "name": "HeuristicCLLabeling",
+      "repo": "fdenz/HeuristicCLLabeling",
+      "url": "https://github.com/fdenz/HeuristicCLLabeling",
+      "category": "component_or_baseline",
+      "observation": "README and source/example tree inspected; algorithm not executed."
+    },
+    {
+      "name": "L2R",
+      "repo": "MDL-UzL/L2R",
+      "url": "https://github.com/MDL-UzL/L2R",
+      "category": "component_or_baseline",
+      "observation": "Official Learn2Reg site, repository README and tree inspected; guessed Learn2Reg repository path was incorrect."
+    },
+    {
+      "name": "VMTK",
+      "repo": "vmtk/vmtk",
+      "url": "https://github.com/vmtk/vmtk",
+      "category": "component_or_baseline",
+      "observation": "README, official documentation and Slicer extension inspected."
+    },
+    {
+      "name": "TotalSegmentator",
+      "repo": "wasserth/TotalSegmentator",
+      "url": "https://github.com/wasserth/TotalSegmentator",
+      "category": "component_or_baseline",
+      "observation": "Repository scope inspected; no per-model licensing or performance audit."
+    },
+    {
+      "name": "MONAI",
+      "repo": "Project-MONAI/MONAI",
+      "url": "https://github.com/Project-MONAI/MONAI",
+      "category": "component_or_baseline",
+      "observation": "Repository README inspected."
+    },
+    {
+      "name": "MedOpenClaw",
+      "repo": "JakobShen/MedOpenClaw",
+      "url": "https://github.com/JakobShen/MedOpenClaw",
+      "category": "release_gap",
+      "observation": "Official website code link leads to a built website repository; no runnable runtime identified."
+    },
+    {
+      "name": "AMID",
+      "repo": "CUHK-AIM-Group/AMID",
+      "url": "https://github.com/CUHK-AIM-Group/AMID",
+      "category": "release_gap",
+      "observation": "README and root tree confirm system source still pending; solution reports available."
+    },
+    {
+      "name": "SpatialMed",
+      "repo": null,
+      "url": "https://huyquoctrinh.github.io/SpatialMed/",
+      "category": "release_gap",
+      "observation": "Official project page code link says Coming Soon; dataset link present; indexed counts differ by version."
+    }
+  ],
+  "repository_snapshots": [
+    {
+      "repo": "microsoft/HealthAgentBench",
+      "url": "https://github.com/microsoft/HealthAgentBench",
+      "default_branch": "main",
+      "last_push_utc": "2026-09-19T00:36:22Z",
+      "archived": false,
+      "github_detected_license": "MIT"
+    },
+    {
+      "repo": "Luab/ABRA",
+      "url": "https://github.com/Luab/ABRA",
+      "default_branch": "main",
+      "last_push_utc": "2026-07-18T17:11:33Z",
+      "archived": false,
+      "github_detected_license": "MIT"
+    },
+    {
+      "repo": "Albertlongzi/BCER",
+      "url": "https://github.com/Albertlongzi/BCER",
+      "default_branch": "main",
+      "last_push_utc": "2026-07-30T16:14:22Z",
+      "archived": false,
+      "github_detected_license": "MIT"
+    },
+    {
+      "repo": "AutoMedBench/AutoMedBench",
+      "url": "https://github.com/AutoMedBench/AutoMedBench",
+      "default_branch": "main",
+      "last_push_utc": "2026-07-09T13:03:35Z",
+      "archived": false,
+      "github_detected_license": "MIT"
+    },
+    {
+      "repo": "AI4ImagingLab/imaging-101-release",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release",
+      "default_branch": "main",
+      "last_push_utc": "2026-08-30T04:57:19Z",
+      "archived": false,
+      "github_detected_license": "MIT"
+    },
+    {
+      "repo": "eth-medical-ai-lab/rad-agent",
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent",
+      "default_branch": "main",
+      "last_push_utc": "2026-06-03T07:32:16Z",
+      "archived": false,
+      "github_detected_license": null
+    },
+    {
+      "repo": "rajpurkarlab/ReX-MLE",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE",
+      "default_branch": "main",
+      "last_push_utc": "2026-07-19T00:55:28Z",
+      "archived": false,
+      "github_detected_license": null
+    },
+    {
+      "repo": "bowang-lab/MedRAX",
+      "url": "https://github.com/bowang-lab/MedRAX",
+      "default_branch": "main",
+      "last_push_utc": "2025-10-31T00:31:34Z",
+      "archived": false,
+      "github_detected_license": "Apache-2.0"
+    },
+    {
+      "repo": "Wangyixinxin/MMedAgent",
+      "url": "https://github.com/Wangyixinxin/MMedAgent",
+      "default_branch": "main",
+      "last_push_utc": "2026-03-18T07:16:08Z",
+      "archived": false,
+      "github_detected_license": null
+    },
+    {
+      "repo": "CUHK-AIM-Group/MedSAM-Agent",
+      "url": "https://github.com/CUHK-AIM-Group/MedSAM-Agent",
+      "default_branch": "main",
+      "last_push_utc": "2026-02-05T07:12:21Z",
+      "archived": false,
+      "github_detected_license": null
+    },
+    {
+      "repo": "plantain-herb/Cardiac-Agent",
+      "url": "https://github.com/plantain-herb/Cardiac-Agent",
+      "default_branch": "main",
+      "last_push_utc": "2026-09-02T02:53:07Z",
+      "archived": false,
+      "github_detected_license": null
+    },
+    {
+      "repo": "DeepRCL/EchoAgent",
+      "url": "https://github.com/DeepRCL/EchoAgent",
+      "default_branch": "main",
+      "last_push_utc": "2026-08-22T17:59:42Z",
+      "archived": false,
+      "github_detected_license": "NOASSERTION"
+    },
+    {
+      "repo": "uni-medical/MedSegAgent",
+      "url": "https://github.com/uni-medical/MedSegAgent",
+      "default_branch": "main",
+      "last_push_utc": "2026-09-09T03:54:12Z",
+      "archived": false,
+      "github_detected_license": "Apache-2.0"
+    },
+    {
+      "repo": "JakobShen/MedOpenClaw",
+      "url": "https://github.com/JakobShen/MedOpenClaw",
+      "default_branch": "main",
+      "last_push_utc": "2026-06-01T15:49:31Z",
+      "archived": false,
+      "github_detected_license": null
+    },
+    {
+      "repo": "CUHK-AIM-Group/AMID",
+      "url": "https://github.com/CUHK-AIM-Group/AMID",
+      "default_branch": "main",
+      "last_push_utc": "2026-07-14T03:02:11Z",
+      "archived": false,
+      "github_detected_license": null
+    }
+  ],
+  "selected_file_inspections": [
+    {
+      "url": "https://github.com/microsoft/HealthAgentBench/blob/main/tasks/ct_abnormality_valid_16_a_1/tests/harbor_evaluator.py",
+      "git_blob_sha": "c3b27b46111145f2cb9a01eaeefc0b82e8151108",
+      "observation": "Binary all-retained-label success, with detailed metrics retained."
+    },
+    {
+      "url": "https://github.com/microsoft/HealthAgentBench/blob/main/tasks/ct_abnormality_valid_16_a_1/tests/verify.py",
+      "git_blob_sha": "e6b413a4e57548d8477cae46677016703dea85a0",
+      "observation": "Entry point resolves predictions, hidden gold and verifier logs."
+    },
+    {
+      "url": "https://github.com/Luab/ABRA/blob/main/src/scoring/base_scorer.py",
+      "git_blob_sha": "0b5278e65196c5e4e93d70f68949d1ccca892503",
+      "observation": "20/30/50 weighted planning/execution/outcome."
+    },
+    {
+      "url": "https://github.com/Albertlongzi/BCER/blob/main/docs/METRICS.md",
+      "observation": "Task contract completion, required artifacts, recovery and halt metrics; no blob identifier retained."
+    },
+    {
+      "url": "https://github.com/Albertlongzi/BCER/blob/main/benchmark/benchmark_runner.py",
+      "observation": "Read validator definitions/search context for artifact checks; not a full runner audit."
+    },
+    {
+      "url": "https://github.com/CUHK-AIM-Group/AMID/blob/main/README.md",
+      "git_blob_sha": "a992e49e9e02e31bffc88a096c88c1a27a721b5d",
+      "observation": "Source-code release unchecked; reports released."
+    },
+    {
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/main/README.md",
+      "git_blob_sha": "57f4b901b593d089b05f45f680cda8405f2e4303",
+      "observation": "Real inference/tool/agent setup available; complex data/weight dependencies."
+    },
+    {
+      "url": "https://github.com/DeepRCL/EchoAgent/blob/main/LICENSE",
+      "observation": "Noncommercial academic/education terms and redistribution restrictions."
+    }
+  ],
+  "supplementary_primary_sources": [
+    "https://microsoft.github.io/HealthAgentBench/",
+    "https://arxiv.org/abs/2605.11224",
+    "https://automedbench.github.io/",
+    "https://arxiv.org/abs/2607.10789",
+    "https://proceedings.mlr.press/v315/kenia26a.html",
+    "https://jakobshen.github.io/MedOpenClaw/",
+    "https://arxiv.org/html/2603.24649v2",
+    "https://rad-agent.github.io/",
+    "https://learn2reg.grand-challenge.org/",
+    "https://projectweek.na-mic.org/PW45_2026_Boston/Projects/InteractiveWorkflowReplayAndStepBackNavigationForSlicerAgent/"
+  ],
+  "discovery_only_sources": [
+    "https://github.com/Nanboy-Ronan/awesome-medical-imaging-agents"
+  ]
+}

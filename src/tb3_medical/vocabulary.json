@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "purpose": "Authoritative codes, display labels and meanings for workbench status. Applicability is limited to the named contexts; these are not mandatory fields on every record.",
+  "axes": {
+    "idea_state": {
+      "applies_to": "Ideas only; reflects an accepted disposition, not an assistant recommendation.",
+      "values": {
+        "exploring": {"label": "Exploring", "definition": "The question is being considered; no decision to pursue an experiment has been made."},
+        "selected": {"label": "Selected", "definition": "The idea has been chosen for pursuit. This does not itself authorize a model run."},
+        "parked": {"label": "Parked", "definition": "Pursuit is deferred; a reason or reopening condition explains when to reconsider."},
+        "dropped": {"label": "Dropped", "definition": "The idea is not being pursued for a recorded reason. Its prior findings remain searchable."}
+      }
+    },
+    "experiment_stage": {
+      "applies_to": "Experiments only; describes work progress, not scientific merit.",
+      "values": {
+        "draft": {"label": "Draft", "definition": "The experiment is being specified or prepared; active investigation has not started."},
+        "active": {"label": "Active", "definition": "Investigation, execution or analysis is ongoing. No individual run is implied to be currently executing."},
+        "parked": {"label": "Parked", "definition": "Work is deliberately paused with a recorded reason or reopening condition."},
+        "closed": {"label": "Closed", "definition": "No further work is currently planned within this experiment's scope. Its result may be positive, negative, inconclusive or later invalidated."}
+      }
+    },
+    "execution_state": {
+      "applies_to": "An execution plan or attempt; always interpreted at its recorded observation time.",
+      "values": {
+        "planned": {"label": "Planned", "definition": "A run is specified but has not started. It is not necessarily scheduled or authorized."},
+        "running": {"label": "Running", "definition": "Execution was observed to have started and no terminal state was yet recorded. Show the observation time."},
+        "completed": {"label": "Completed", "definition": "Execution finished normally. The task may still have failed its scorer or have no usable verdict."},
+        "interrupted": {"label": "Interrupted", "definition": "Execution was stopped before normal completion. Preserve any partial outputs."},
+        "error": {"label": "Execution error", "definition": "A launcher, environment, agent or verifier error prevented normal completion. This is not a model task failure."}
+      }
+    },
+    "outcome": {
+      "applies_to": "A scoring observation of an attempt; role, metrics, scorer revision and raw reward remain separate facts.",
+      "values": {
+        "pass": {"label": "Pass", "definition": "The recorded scorer judged the submitted output to meet its declared task criterion. This does not establish that the scorer or reference is valid."},
+        "fail": {"label": "Fail", "definition": "The recorded scorer judged the submitted output not to meet its declared task criterion. This alone is not an established capability failure."},
+        "no_verdict": {"label": "No verdict", "definition": "No interpretable task verdict is available. Preserve the reason and any measurements, including partial collection, execution error or an unsupported result format."}
+      }
+    },
+    "assessment": {
+      "applies_to": "The experiment's stated conclusions. Published summaries and exports inherit relevant review flags; raw receipts, ideas and decisions do not each require an assessment.",
+      "values": {
+        "not_assessed": {"label": "Not assessed", "definition": "No explicit assessment of the recorded conclusions is available. This is neutral and does not create review work by itself."},
+        "usable": {"label": "Usable with stated limits", "definition": "An explicit assessment finds that the retained evidence supports the recorded conclusions within their stated scope and limitations. This does not certify model success, clinical correctness or submission readiness."},
+        "needs_review": {"label": "Needs review", "definition": "A concrete unresolved issue or explicit review request requires assessment or reassessment. State the reason and the affected experiments or runs."},
+        "invalidated": {"label": "Invalidated", "definition": "A recorded assessment withdraws a conclusion because an established defect defeats its supporting basis. Preserve the original outcomes and identify the affected scope; unaffected observations are not erased."}
+      }
+    },
+    "local_availability": {
+      "applies_to": "The specific artifact set needed for an operation, at its last check; never a global evidence verdict.",
+      "values": {
+        "not_checked": {"label": "Not checked locally", "definition": "Local availability of the selected inputs has not been checked or is not known. Reading the index does not trigger an integrity audit."},
+        "available": {"label": "Available locally", "definition": "The selected required files were present at the recorded check. This alone does not establish integrity, replay success or scientific validity."},
+        "missing": {"label": "Missing locally", "definition": "Some selected required files were absent at the recorded check. Show the missing inputs and any known recovery location; do not invalidate the conclusion automatically."}
+      }
+    },
+    "submission_status": {
+      "applies_to": "An export or submission candidate only. These labels do not imply that submission has occurred.",
+      "values": {
+        "draft": {"label": "Draft submission", "definition": "The package has not been explicitly checked against all applicable requirements of its named submission profile."},
+        "ready": {"label": "Submission-ready", "definition": "An explicit assessment records that the exact package meets the named, dated submission profile. It does not certify unrelated packages or later task changes."}
+      }
+    }
+  },
+  "context_badges": {
+    "historical": {"label": "Historical", "definition": "Retained prior work, rather than a claim of a maintained runnable implementation. Historical evidence may still support usable conclusions."},
+    "partial": {"label": "Partial evidence", "definition": "Only part of the expected output was captured at this observation. This can coexist with a running, completed, interrupted or errored attempt; it does not infer execution state."},
+    "diagnostic": {"label": "Diagnostic", "definition": "An explicitly exploratory attempt whose results do not automatically support benchmark qualification. Missing controls and other limitations must remain visible."},
+    "replay_verified": {"label": "Saved-output replay verified", "definition": "A retained receipt demonstrates rescoring specified saved outputs with specified inputs and scorer, under the recorded comparison criterion. Name the covered cases and date."},
+    "rerun_verified": {"label": "Execution reproduced", "definition": "A retained receipt demonstrates a new execution of the specified task and setup. It does not promise identical future model outputs or coverage of other cases."},
+    "control_expected": {"label": "Control as expected", "definition": "The control's observed verdict matches its declared expected behavior, such as oracle pass or no-op fail."},
+    "control_unexpected": {"label": "Unexpected control result", "definition": "The control's observed verdict differs from its declared expectation and warrants investigation before relying on that control."}
+  },
+  "display_rules": {
+    "experiment_primary": ["experiment_stage", "assessment"],
+    "idea_primary": ["idea_state"],
+    "attempt_primary": ["execution_state", "outcome"],
+    "attention_queue": "Show unresolved issues or explicit review requests with a pending action, grouped by experiment. Not assessed, historical, completed, failed or missing locally do not independently create queue entries. An acknowledged invalidation with no pending action need not remain in the queue.",
+    "missing_value": "Use an axis's neutral unknown value only where the axis applies. Otherwise omit the badge; never default every record to an evidence assessment.",
+    "recommendations": "An assistant recommendation is distinct from an accepted decision and does not overwrite the user's disposition.",
+    "review_event": "Reviewed describes an event with an author, scope, reason and evidence links. It is not itself a positive verdict.",
+    "reproduction": "Display a scoped verification receipt when one exists. Absence of a verification receipt does not itself create a review task. Avoid a global reproducible badge.",
+    "presentation": "Show contextual badges and their explanations in relevant details. The frontend and CLI must consume this vocabulary rather than maintain independent definitions."
+  }
+}
