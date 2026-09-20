@@ -44,12 +44,12 @@ The obsolete staged `scripts/check_medical.py` change is integrated into `med ch
 Local landmark inputs, prepared task copies, the verified MRI draft package,
 review figures and retained tour inputs are copied from the migration worktree
 into the original checkout without overwriting differing files. Each copied file
-is hash-verified. Both worktrees' original local runs and environments remain
-intact. These same-disk copies do not establish independent backup.
+is hash-verified. At the initial cutover, both worktrees' original local runs and environments
+remained intact. These same-disk copies do not establish independent backup.
 
-The migration branch is absorbed and retired. The former migration checkout is
+The migration branch is absorbed and retired. The former migration checkout was initially
 retained detached at the consolidated commit to preserve its local environments
-and artifacts; it is not another development branch. No remote settings, history
+and artifacts; the follow-up below completes its removal. No remote settings, history
 or existing submission checkout are changed, and no push or publication occurs.
 
 ## Verification
@@ -72,3 +72,24 @@ runtime or dependencies were installed.
 The inherited replay/export proof remains scoped to its recorded selected
 landmark cases. Integration verification does not certify new model behavior,
 clinical correctness, all historical recovery paths or submission readiness.
+
+## Worktree removal follow-up
+
+Later on 2026-09-21, the user explicitly requested removal of the fully absorbed
+worktree. Its detached head (`d258eb6`) was verified as an ancestor of `main`,
+with no uncommitted source changes. All 5,102 ignored files (3,105,056,049 bytes,
+plus preserved symlink targets) were matched to hash-verified copies in this
+checkout before the old worktree was removed. Only the main checkout remains
+registered with Git.
+
+Previously unabsorbed generated files, logs, caches and the original environment
+are retained under `runs/native-cutover-20260921/worktree-residual`; the local
+`worktree-removal-manifest.json` maps every original file to its preserved copy.
+The existing Python environment was also relocated to `.venv-medical`, with
+launcher and editable-source paths updated. `.venv-medical/bin/med` resolves
+this checkout, its imports and Ruff work, and the preserved Playwright package
+loads from `node_modules`. No dependencies were installed. The original runtime
+snapshot remains unchanged for provenance.
+
+The active Task Explorer follow-up was allowed to finish before removing the
+old environment path. Its source changes retain their separate ownership.

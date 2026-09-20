@@ -311,5 +311,31 @@
     ]
   },
   "integration_commit": "3528f80520a8f9a37de18e419d175341a122ce18",
-  "status": "completed"
+  "status": "completed",
+  "worktree_removal": {
+    "date": "2026-09-21",
+    "actor": "user",
+    "source": "codex://threads/01a0c002-3428-7311-8dec-1c05b815cdb2",
+    "decision": "Remove the other worktree after verifying full absorption.",
+    "removed_worktree": "/Users/zhangqy/.codex/worktrees/native-medical-workbench/tb3",
+    "absorbed_head": "d258eb68e12ad92067dab33648d8647d56fb98f9",
+    "remaining_worktrees": 1,
+    "remaining_local_branch": "main",
+    "ignored_files_verified": 5102,
+    "ignored_file_bytes_preserved": 3105056049,
+    "preservation_manifest": "runs/native-cutover-20260921/worktree-removal-manifest.json",
+    "preservation_manifest_sha256": "daa55ae647530c864d8013601819cd50309751462bf102640c70d2681b81d3bc",
+    "residual_snapshot": "runs/native-cutover-20260921/worktree-residual",
+    "relocated_environment": ".venv-medical",
+    "environment_relocation_receipt": "runs/native-cutover-20260921/environment-relocation.json",
+    "runtime_smoke_checks": [
+      "med list Task Brief",
+      "import tb3_medical, tomli_w, numpy, PIL",
+      "ruff --version",
+      "Playwright package import"
+    ],
+    "dependencies_installed": false,
+    "raw_evidence_deleted": false,
+    "status": "completed"
+  }
 }
