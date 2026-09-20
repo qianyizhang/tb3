@@ -1,0 +1,298 @@
+{
+  "observed_on": "2026-09-21",
+  "source_task": "codex://threads/01a0bef4-b72c-7241-bb59-f5ca11d4db09",
+  "request_actor": "user",
+  "implementation_actor": "assistant",
+  "scope": "Audit and consolidate repeated task navigation across all seven imported repositories.",
+  "method": "Review retained source-backed briefs; consolidate shared workflow with dataset/target/modality/taxonomy variants. Group but preserve different transformations, scientific methods, required stage chains or deliverables.",
+  "repositories": [
+    {
+      "repository": "abra",
+      "authored_variants": 6,
+      "task_entries": 6
+    },
+    {
+      "repository": "automedbench",
+      "authored_variants": 50,
+      "task_entries": 10
+    },
+    {
+      "repository": "bcer",
+      "authored_variants": 9,
+      "task_entries": 9
+    },
+    {
+      "repository": "healthagentbench",
+      "authored_variants": 15,
+      "task_entries": 7
+    },
+    {
+      "repository": "imaging101",
+      "authored_variants": 58,
+      "task_entries": 58
+    },
+    {
+      "repository": "ours",
+      "authored_variants": 1,
+      "task_entries": 1
+    },
+    {
+      "repository": "radagent",
+      "authored_variants": 2,
+      "task_entries": 2
+    },
+    {
+      "repository": "rexmle",
+      "authored_variants": 19,
+      "task_entries": 13
+    }
+  ],
+  "families": [
+    {
+      "id": "hab-disease-prediction",
+      "title": "Predict first disease diagnosis",
+      "variant_ids": [
+        "healthagentbench-predict-acutemi",
+        "healthagentbench-predict-celiac",
+        "healthagentbench-predict-hyperlipidemia",
+        "healthagentbench-predict-hypertension",
+        "healthagentbench-predict-lupus",
+        "healthagentbench-predict-pancan"
+      ],
+      "source_briefs_sha256": "3832f028b011aa50e1fd48d06f3c9bdbcd57470049dd2fcc17a45dc74fc825c8"
+    },
+    {
+      "id": "hab-record-quality",
+      "title": "Find errors in health records",
+      "variant_ids": [
+        "healthagentbench-quality-combined",
+        "healthagentbench-quality-demographic-conflict",
+        "healthagentbench-quality-impossible-value",
+        "healthagentbench-quality-inconsistency"
+      ],
+      "source_briefs_sha256": "d56e4217c72df585bd37ccf312c3f8164d33fd3ce4229d40ae44f2fada4c34fc"
+    },
+    {
+      "id": "automed-classification",
+      "title": "Classify a medical image",
+      "variant_ids": [
+        "automedbench-full-braintumor-cls-task",
+        "automedbench-full-chest-xray-pneumonia-cls-task",
+        "automedbench-full-crc-histology-cls-task",
+        "automedbench-full-patchcamelyon-cls-task",
+        "automedbench-full-skin-lesion-cls-task"
+      ],
+      "source_briefs_sha256": "80970b7162baa894bcc733aa503ff3b8719eaf8cb77c49dbb013565b24519677"
+    },
+    {
+      "id": "automed-detection",
+      "title": "Locate findings with bounding boxes",
+      "variant_ids": [
+        "automedbench-full-bccd-det-task",
+        "automedbench-full-dentex-det-task",
+        "automedbench-full-grazpedwri-det-task",
+        "automedbench-full-vindr-cxr-det-task"
+      ],
+      "source_briefs_sha256": "6b52ce7d86ff3e7cb08f27a84b320b069bc7648224b0135e4f8f2e58298544e6"
+    },
+    {
+      "id": "automed-segmentation",
+      "title": "Segment organs or lesions",
+      "variant_ids": [
+        "automedbench",
+        "automedbench-tsg",
+        "automedbench-full-aeropath-seg-task",
+        "automedbench-full-colon-seg-task",
+        "automedbench-full-feta-seg-task",
+        "automedbench-full-heart-seg-task",
+        "automedbench-full-hepaticvessel-seg-task",
+        "automedbench-full-kidney-seg-task",
+        "automedbench-full-liver-seg-task",
+        "automedbench-full-pancreas-oar-seg-task",
+        "automedbench-full-pancreas-seg-task",
+        "automedbench-full-panther-t1-seg-task",
+        "automedbench-full-panther-t2-seg-task",
+        "automedbench-full-prostate-seg-task",
+        "automedbench-full-spleen-seg-task",
+        "automedbench-full-tsg-multiorgan-seg-task"
+      ],
+      "source_briefs_sha256": "b5ddcbd51e918f9d9d49b77ef5cec5770bf0b9b2985b17a3d6c17f30bd3f06a1"
+    },
+    {
+      "id": "automed-denoising",
+      "title": "Remove image noise",
+      "variant_ids": [
+        "automedbench-full-deeplesion-denoising-task",
+        "automedbench-full-ldct-denoising-task",
+        "automedbench-full-lidc-idri-denoising-task"
+      ],
+      "source_briefs_sha256": "2257dd68ea90cb2a8bc3786242e57026bcd99b812d16450397b69400ae2898e9"
+    },
+    {
+      "id": "automed-super-resolution",
+      "title": "Increase image resolution",
+      "variant_ids": [
+        "automedbench-full-brats-t1c-sr-task",
+        "automedbench-full-ixi-t1-sr-task",
+        "automedbench-full-mri-sr-task",
+        "automedbench-full-nih-cxr-sr-task"
+      ],
+      "source_briefs_sha256": "a1f40b79309fed0bd4c4a3ac9b91d8fe7a9e1ec02239f0e0a7cbc1dc78f68b8a"
+    },
+    {
+      "id": "automed-volume-restoration",
+      "title": "Restore a degraded CT volume",
+      "variant_ids": [
+        "automedbench-full-ctorg-ctsr-task",
+        "automedbench-full-msd-pancreas-ctsr-task",
+        "automedbench-full-totalsegmentator-ctsr-task"
+      ],
+      "source_briefs_sha256": "992dda6d76ce5715ee8f33bc5d9a3ce81ac63a1b16584f85d5847c1f7a573589"
+    },
+    {
+      "id": "automed-synthesis",
+      "title": "Generate CT from MRI",
+      "variant_ids": [
+        "automedbench-full-synthrad2025-mrct-task"
+      ],
+      "source_briefs_sha256": "0ff4b127c1dfa492f06dc98baf8a935efc9043cfa8d44dfcfc66ed148d45f8e4"
+    },
+    {
+      "id": "automed-reports",
+      "title": "Write a chest X-ray report",
+      "variant_ids": [
+        "automedbench-full-chexpert-plus-cxr-task",
+        "automedbench-full-iu-xray-report-task",
+        "automedbench-full-mimic-cxr-report-task"
+      ],
+      "source_briefs_sha256": "aaf48f92442fa85380ebc933fa30cb9f9c1ae5121b1dc4f46d90936eed192863"
+    },
+    {
+      "id": "automed-captions",
+      "title": "Caption a pathology image",
+      "variant_ids": [
+        "automedbench-full-pathology-caption-100-task",
+        "automedbench-full-pathology-caption-500-task"
+      ],
+      "source_briefs_sha256": "c4e149b3c34ba349729cc0a93baea22cc833a437c3163c0194deda980acbb1b3"
+    },
+    {
+      "id": "automed-vqa",
+      "title": "Answer questions about medical images",
+      "variant_ids": [
+        "automedbench-full-medframeqa-task",
+        "automedbench-full-medxpertqa-mm-task",
+        "automedbench-full-pathvqa-task",
+        "automedbench-full-slake-task",
+        "automedbench-full-vqa-kvasir-task",
+        "automedbench-full-vqa-mmmu-medical-task",
+        "automedbench-full-vqa-omnimedvqa-task",
+        "automedbench-full-vqa-pmc-vqa-task",
+        "automedbench-full-vqa-rad-task"
+      ],
+      "source_briefs_sha256": "e607ef6ec5c8d5aee5b643629be5aeb7b8ee3c4b31383ea6e0d4a9bbd2c479d9"
+    },
+    {
+      "id": "rex-topcow-segmentation",
+      "title": "Label the Circle of Willis",
+      "variant_ids": [
+        "rexmle",
+        "rexmle-topcow-track2-task1"
+      ],
+      "source_briefs_sha256": "0792724c68f52a16443dbf38d05ac023062abda2cfeff7af36f847328e28927a"
+    },
+    {
+      "id": "rex-topcow-localization",
+      "title": "Locate the Circle of Willis",
+      "variant_ids": [
+        "rexmle-topcow-track1-task2",
+        "rexmle-topcow-track2-task2"
+      ],
+      "source_briefs_sha256": "fd5e1c73753ff90bc35a7d0a3aae3a3bd7e76b157777d29d20589b933d616123"
+    },
+    {
+      "id": "rex-topcow-connections",
+      "title": "Classify arterial connections",
+      "variant_ids": [
+        "rexmle-topcow-track1-task3",
+        "rexmle-topcow-track2-task3"
+      ],
+      "source_briefs_sha256": "2eb5791bc817c9016f6e8f725fd71147e8019308658af38fb04c2c8f06d5a596"
+    },
+    {
+      "id": "rex-topbrain",
+      "title": "Label brain arteries",
+      "variant_ids": [
+        "rexmle-topbrain-track1",
+        "rexmle-topbrain-track2"
+      ],
+      "source_briefs_sha256": "8165d18fd57cdf89380e3187a1d78748755c3dd660352b3bcf7a496ebf2f00b9"
+    },
+    {
+      "id": "rex-panther",
+      "title": "Segment pancreatic tumors on MRI",
+      "variant_ids": [
+        "rexmle-panther-task1",
+        "rexmle-panther-task2"
+      ],
+      "source_briefs_sha256": "d10dae909b7a09116f062d57934cc27b3783159b4fd72b01e376fa9c15a4d5f6"
+    },
+    {
+      "id": "rex-puma-nuclei",
+      "title": "Locate and classify nuclei",
+      "variant_ids": [
+        "rexmle-puma-track1-task2",
+        "rexmle-puma-track2-task2"
+      ],
+      "source_briefs_sha256": "39ab5c00457dd145e00845d3acbdc5d63abcef4e41c3eb41926ee89949df300a"
+    }
+  ],
+  "invariants": [
+    "160 authored briefs and 284 source records retained.",
+    "379 assistance conditions remain accessible.",
+    "Variant selection changes its inputs, helpers, output, evaluation and exact source together.",
+    "Compatible assistance tiers survive variant switches; incompatible tiers reset to the selected variant default.",
+    "Release differences remain visible. Consolidation is not executable or scoring equivalence.",
+    "Six briefs with native/source-derived media remain; absent media are not borrowed from another variant."
+  ],
+  "validation": {
+    "browser_script": "tests/task_explorer_ui.cjs",
+    "browser_result": {
+      "briefs": 160,
+      "taskFamilies": 106,
+      "sourceRecords": 284,
+      "conditions": 379,
+      "nativeImagesDecoded": 12,
+      "groupedTaskList": "pass",
+      "datasetVariants": "pass",
+      "caseDifferences": "pass",
+      "legacyLinksAndBack": "pass",
+      "collapsedProvenance": "pass",
+      "search": "pass",
+      "referenceReveal": "pass",
+      "mobile": "pass",
+      "pageErrors": [],
+      "remoteRequests": []
+    },
+    "repository_check": {
+      "command": "make check PYTHON=python3.12",
+      "runtime": "Existing native-workbench Python 3.12 environment; no installation",
+      "result": "pass",
+      "tests_run": 44,
+      "tests_passed": 43,
+      "tests_skipped": 1,
+      "skip_reason": "Optional local imaging runtime unavailable",
+      "formatting": "Ruff lint and format checks pass",
+      "media": "6 illustrated briefs; no missing referenced local media"
+    },
+    "visual_review": [
+      "AutoMedBench classification with five dataset variants at 1010px",
+      "HealthAgentBench disease prediction with six targets at 1010px",
+      "Narrow 390px layout"
+    ]
+  },
+  "limits": [
+    "The audit uses already retained source-backed briefs; no refreshed upstream inventory or benchmark execution was performed.",
+    "Grouping different datasets in one workflow does not establish equal task difficulty or comparable scores."
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "observed_on": "2026-09-21",
+  "source_task": "codex://threads/01a0bef4-b72c-7241-bb59-f5ca11d4db09",
+  "request_actor": "user",
+  "implementation_actor": "assistant",
+  "scope": "Add immediate visual explanations to every authored task variant, using original conceptual SVG where no native example has been curated.",
+  "coverage": {
+    "authored_variants": 160,
+    "conceptual_drawings": 154,
+    "drawing_types": 59,
+    "source_derived_examples": 6
+  },
+  "authoring": {
+    "metadata": "discussions/medical-agent-repository-survey/catalog.json",
+    "renderer": "presentation/task-explorer/illustrations.js",
+    "basis": "Each retained source-backed Task Brief; ODT dimensional metadata rechecked in pinned README.",
+    "labels": [
+      "Conceptual illustration",
+      "Drawn, not a dataset sample"
+    ],
+    "geometry": "Original deterministic SVG, not source pixels, clinical annotation, model output or evaluation truth."
+  },
+  "sample_attempt": {
+    "task": "imaging101-ssnp-odt",
+    "readme": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/ssnp_odt/README.md",
+    "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ssnp_odt/data/raw_data.npz",
+    "max_bytes": 25000000,
+    "result": "HTTP 404; no sample acquired",
+    "source_dimensions": {
+      "views": 8,
+      "volume_zyx": [
+        308,
+        256,
+        256
+      ]
+    }
+  },
+  "validation": {
+    "browser_result": {
+      "briefs": 160,
+      "taskFamilies": 106,
+      "sourceRecords": 284,
+      "conditions": 379,
+      "nativeImagesDecoded": 12,
+      "conceptualIllustrations": 154,
+      "diagramTypes": 59,
+      "sourcePreviews": 6,
+      "groupedTaskList": "pass",
+      "datasetVariants": "pass",
+      "caseDifferences": "pass",
+      "legacyLinksAndBack": "pass",
+      "collapsedProvenance": "pass",
+      "search": "pass",
+      "referenceReveal": "pass",
+      "mobile": "pass",
+      "pageErrors": [],
+      "remoteRequests": []
+    },
+    "repository_check": {
+      "command": "make check PYTHON=python3.12",
+      "result": "pass",
+      "tests_run": 44,
+      "tests_passed": 43,
+      "tests_skipped": 1,
+      "skip_reason": "Optional local imaging runtime unavailable",
+      "lint_and_format": "pass",
+      "native_media": "No missing referenced local media"
+    },
+    "visual_checks": [
+      "Optical amplitude/phase and volume",
+      "Prediction cutoff and probability output",
+      "Binary and separate organ/lesion masks",
+      "Trial documents and eligible identifiers",
+      "Image classification taxonomy",
+      "Desktop and narrow layouts",
+      "Breast MRI pre/post contrast and structured assessment fields",
+      "Binary aortic tree",
+      "Spectral image cube with wavelength axis",
+      "Two-camera deflectometry and lens geometry"
+    ],
+    "independent_review": {
+      "navigation": "Three reproduced findings fixed; read-only re-review found no remaining actionable issue.",
+      "visual_semantics": "Four reported issues fixed; read-only re-review found no remaining concrete defect.",
+      "checks_added": [
+        "Search-selected route survives reload",
+        "Variant switching under narrow search stays visible",
+        "Restored routes clear incompatible search",
+        "Native previews retain selection captions",
+        "Keyboard tab navigation and selector focus"
+      ]
+    }
+  },
+  "limits": [
+    "Conceptual pictures do not close native-image or reference-evidence gaps.",
+    "Generic geometric anatomy is stylized, not an anatomically validated reconstruction.",
+    "No simulated or real model improvement is measured by these drawings.",
+    "No benchmark execution, runtime installation or publication."
+  ]
+}

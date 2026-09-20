@@ -23,7 +23,8 @@ const assert=require('assert/strict');
       await page.waitForFunction(({id,section})=>document.querySelector('.task-detail')?.dataset.brief===id && document.querySelector(`[data-tab="${section}"][aria-selected="true"]`),{id,section});
     };
     // Every imported source record survives its old URL and keeps its source identity.
-    let records=0,conditions=0,images=0;
+    let records=0,conditions=0,images=0,drawings=0,sourcePreviews=0;
+    const diagramTypes=new Set();
     for(const repo of data.inventory.repositories) for(const item of repo.items){
       await go(`${repo.id}/task/${encodeURIComponent(item.id)}/${item.condition_index||0}/sources`,item.brief_id,'sources');
       await page.waitForFunction(id=>document.querySelector('.provenance code')?.textContent===id,item.id);
@@ -34,10 +35,25 @@ const assert=require('assert/strict');
     for(const e of data.entries){
       for(let n=0;n<e.variants.length;n++){
         await go(`${e.id}/${n}/brief`,e.id);
+        if(e.task_family && data.entries.filter(x=>x.task_family===e.task_family).length>1){
+          assert.equal(await page.locator('#task-variant').inputValue(),e.id,'Deep links select the exact dataset/target variant');
+          assert.equal(await page.locator('.detail-heading h2').innerText(),data.task_families[e.task_family].title);
+        }
         if(e.variants.length>1){
           await page.waitForFunction(n=>document.querySelector('[data-condition][aria-pressed=true]')?.dataset.condition===String(n),n);
         }
         conditions++;
+      }
+      if(e.illustration){
+        assert.equal(await page.locator('.task-picture.conceptual svg').count(),2,'Input and output must be drawn in the overview');
+        assert.ok((await page.locator('.task-picture figcaption').innerText()).includes('not a dataset sample'));
+        assert.ok((await page.locator('.task-picture').innerText()).includes(e.illustration.output));
+        drawings++;diagramTypes.add(e.illustration.kind);
+      }else{
+        assert.equal(await page.locator('.native-preview img').count(),1,'Existing source images should be visible in the overview');
+        await page.locator('.native-preview img').evaluate(e=>e.decode());
+        assert.equal(await page.locator('.native-input').innerHTML(),e.visuals.input,'Preview preserves the authored caption, including reference-based view selection');
+        sourcePreviews++;
       }
       if(Object.values(e.visuals).some(x=>/<img\b/.test(x))){
         await page.locator('[data-tab="examples"]').click();
@@ -55,7 +71,7 @@ const assert=require('assert/strict');
     const clinical='healthagentbench-trial-matching',case29='clinical_trial_matching_task_29';
     await go(`healthagentbench/task/${case29}/0/catalogue`,clinical);
     await page.waitForFunction(id=>document.querySelector(`[data-entry="${id}"][aria-pressed=true]`),case29);
-    assert.equal(await page.locator('[data-definition]').count(),15,'Cases should not be repeated task rows');
+    assert.equal(await page.locator('[data-definition]').count(),7,'Repeated disease/quality variants share one task entry');
     assert.equal(await page.locator('[data-entry]').count(),9);
     assert.equal(await page.locator('[data-definition="healthagentbench-trial-matching"]').count(),1);
     assert.equal(await page.locator('#task-picker').count(),0);
@@ -85,6 +101,63 @@ const assert=require('assert/strict');
     await page.locator('[data-definition]').click();
     assert.equal(await page.locator('[data-entry]').count(),9,'The complete case set stays reachable');
     await page.locator('#search').fill('');
+    // Related datasets share a task entry, but switching retains the exact output and tier.
+    await go('automedbench-full-braintumor-cls-task/1/overview','automedbench-full-braintumor-cls-task');
+    assert.equal(await page.locator('[data-definition]').count(),10,'AutoMedBench should have ten task families');
+    assert.equal(await page.locator('[data-task="automed-classification"]').count(),1);
+    assert.equal(await page.locator('#task-variant option').count(),5);
+    await page.locator('#task-variant').selectOption('automedbench-full-chest-xray-pneumonia-cls-task');
+    assert.ok((await page.locator('.deliverable').innerText()).includes('normal, pneumonia'));
+    assert.ok(!(await page.locator('.deliverable').innerText()).includes('meningioma'));
+    assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'),'true');
+    await page.goBack();
+    await page.waitForFunction(()=>document.querySelector('#task-variant')?.value==='automedbench-full-braintumor-cls-task');
+    assert.ok((await page.locator('.deliverable').innerText()).includes('meningioma'));
+    await page.locator('#search').fill('classification');
+    assert.equal(await page.locator('[data-definition]').count(),1,'Family titles are searchable');
+    await page.locator('#search').fill('');
+    await go('healthagentbench-predict-hypertension/0/overview','healthagentbench-predict-hypertension');
+    assert.equal(await page.locator('#task-variant option').count(),6);
+    assert.equal(await page.locator('[data-task="hab-disease-prediction"]').count(),1);
+    // Search selection, explicit variant changes and restored routes must agree.
+    await page.locator('#search').fill('celiac');
+    assert.equal(await page.locator('.task-detail').getAttribute('data-brief'),'healthagentbench-predict-celiac');
+    assert.ok(page.url().endsWith('#healthagentbench-predict-celiac/0/overview'));
+    await page.reload();
+    assert.equal(await page.locator('.task-detail').getAttribute('data-brief'),'healthagentbench-predict-celiac');
+    await go('automedbench-full-chest-xray-pneumonia-cls-task/1/overview','automedbench-full-chest-xray-pneumonia-cls-task');
+    await page.locator('#search').fill('pneumonia');
+    await page.locator('#task-variant').selectOption('automedbench-full-braintumor-cls-task');
+    assert.equal(await page.locator('#search').inputValue(),'');
+    assert.equal(await page.locator('.task-detail').getAttribute('data-brief'),'automedbench-full-braintumor-cls-task');
+    assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'),'true');
+    await page.goBack();
+    await page.waitForFunction(()=>document.querySelector('#task-variant')?.value==='automedbench-full-chest-xray-pneumonia-cls-task');
+    await page.locator('#search').fill('pneumonia');
+    await go('abra-birads/0/overview','abra-birads');
+    assert.equal(await page.locator('#search').inputValue(),'','An explicit route remains visible under an incompatible search');
+    // Keyboard tabs and selectors keep focus after the detail DOM is replaced.
+    await page.locator('#tab-overview').focus();
+    await page.keyboard.press('ArrowRight');
+    assert.equal(await page.locator('#tab-requirements').getAttribute('aria-selected'),'true');
+    assert.equal(await page.evaluate(()=>document.activeElement.id),'tab-requirements');
+    await page.keyboard.press('End');
+    assert.equal(await page.evaluate(()=>document.activeElement.id),'tab-sources');
+    await page.locator('#source-picker').selectOption({index:1});
+    assert.equal(await page.evaluate(()=>document.activeElement.id),'source-picker');
+    await page.locator('#tab-overview').click();
+    await page.locator('[data-condition="1"]').click();
+    assert.equal(await page.evaluate(()=>document.activeElement.dataset.condition),'1');
+    // Unmerged workflows remain separate under collapsible navigation groups.
+    await go('bcer-short-denoise/0/overview','bcer-short-denoise');
+    const processing=page.locator('[data-family="bcer/Single processing steps"]');
+    assert.equal(await processing.getAttribute('open'),'');
+    await processing.locator('summary').click();
+    await page.locator('[data-tab="requirements"]').click();
+    assert.equal(await processing.getAttribute('open'),null,'Group collapse survives detail rerender');
+    await processing.locator('summary').click();
+    await processing.locator('[data-definition="bcer-short-superres"]').click();
+    assert.equal(await page.locator('.task-detail').getAttribute('data-brief'),'bcer-short-superres');
     await go('abra/catalogue/oracle_annotation','abra');
     assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'),'true');
     await page.locator('[data-tab="examples"]').click();await page.locator('[data-visual="answer"]').click();
@@ -93,12 +166,19 @@ const assert=require('assert/strict');
     assert.equal(await page.locator('[data-visible-role]').getAttribute('data-visible-role'),'input');
     await go('automedbench/task/lite-case-TSG_00000040/0/examples','automedbench-tsg','examples');
     assert.ok((await page.locator('.scope-note').innerText()).includes('TSG_00000001'));
+    if(process.env.TASK_EXPLORER_SCREENSHOTS){
+      for(const [id,name] of [['automedbench-full-braintumor-cls-task','automed-families'],['healthagentbench-predict-hypertension','health-families']]){
+        await go(`${id}/0/overview`,id);
+        await page.screenshot({path:resolve(process.env.TASK_EXPLORER_SCREENSHOTS,name+'.png'),fullPage:true});
+      }
+    }
     // The same legacy case link remains readable at the comment's viewport and on mobile.
     for(const width of [1010,390]){
       await page.setViewportSize({width,height:width===390?844:1324});
       for(const [hash,id,section] of [
         [`healthagentbench/task/${case29}/0/catalogue`,clinical,'overview'],
         ['automedbench-full-tsg-multiorgan-seg-task/1/brief','automedbench-full-tsg-multiorgan-seg-task','overview'],
+        ['imaging101-ssnp-odt/0/overview','imaging101-ssnp-odt','overview'],
         ['bcer/0/examples','bcer','examples'],
         ['rexmle/0/sources','rexmle','sources']]){
         await go(hash,id,section);
@@ -110,7 +190,7 @@ const assert=require('assert/strict');
       }
     }
     assert.deepEqual(errors,[]);assert.deepEqual(requests,[]);
-    const result={briefs:data.entries.length,sourceRecords:records,conditions,nativeImagesDecoded:images,groupedTaskList:'pass',caseDifferences:'pass',legacyLinksAndBack:'pass',collapsedProvenance:'pass',search:'pass',referenceReveal:'pass',mobile:'pass',pageErrors:errors,remoteRequests:requests};
+    const result={briefs:data.entries.length,taskFamilies:new Set(data.entries.map(e=>e.task_family||e.id)).size,sourceRecords:records,conditions,nativeImagesDecoded:images,conceptualIllustrations:drawings,diagramTypes:diagramTypes.size,sourcePreviews,groupedTaskList:'pass',datasetVariants:'pass',caseDifferences:'pass',legacyLinksAndBack:'pass',collapsedProvenance:'pass',search:'pass',referenceReveal:'pass',mobile:'pass',pageErrors:errors,remoteRequests:requests};
     if(process.argv[3]){const p=resolve(process.argv[3]);fs.mkdirSync(dirname(p),{recursive:true});fs.writeFileSync(p,JSON.stringify(result,null,2)+'\n')}
     console.log(JSON.stringify(result));
   } finally {await browser.close()}

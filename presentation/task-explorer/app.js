@@ -13,12 +13,39 @@ const itemsFor = e => (repoInventory(e.id)?.items || []).filter(i => i.brief_id 
 const htmlField = (e, key) => e.html?.[key] || `<p>${esc(e[key])}</p>`;
 const textMatch = (value, query) => JSON.stringify(value).toLowerCase().includes(query);
 const itemMatch = (i, query) => textMatch([i.id,i.title,i.family,i.definition,i.condition,i.case_context?.label,i.case_context?.facts],query);
-const briefMatch = (e, query) => textMatch([e.title,e.goal,e.raw,e.helpers,e.output,e.repo],query) || itemsFor(e).some(i => itemMatch(i,query));
+const briefMatch = (e, query) => textMatch([e.title,e.nav_group,e.nav_label,DATA.task_families?.[e.task_family]?.title,e.goal,e.raw,e.helpers,e.output,e.repo],query) || itemsFor(e).some(i => itemMatch(i,query));
 const hasExample = e => Object.values(e.visuals).some(s => /<img\b/.test(s));
 const isCase = i => i.kind === 'case';
 const compareItems = (a,b) => a.id.localeCompare(b.id,undefined,{numeric:true});
 const currentItem = () => itemsFor(byId.get(selected)).find(i => i.id === selectedItem);
 let selected = entries[0].id, selectedItem = '', condition = 0, tab = 'overview', visual = 'input';
+const familyState = new Map(), listScroll = new Map();
+const familyKey = e => groupId(e)+'/'+e.nav_group;
+function revealFamily() {
+  const e=byId.get(selected);
+  if(e.nav_group) familyState.set(familyKey(e),true);
+}
+
+const familyConfig = e => DATA.task_families?.[e.task_family];
+const familyMembers = e => e.task_family ? groupEntries(e).filter(x=>x.task_family===e.task_family) : [e];
+function taskUnits(list) {
+  const units=new Map();
+  for(const e of list) {
+    const id=e.task_family || e.id;
+    if(!units.has(id)) units.set(id,{id,entry:e,members:[],title:familyConfig(e)?.title || e.nav_label || e.title});
+    const unit=units.get(id);unit.members.push(e);
+    if(e.id===selected) unit.entry=e;
+  }
+  return [...units.values()];
+}
+function chooseVariant(id) {
+  const previous=byId.get(selected),next=byId.get(id),name=previous.variants[condition].name;
+  selected=id;selectedItem='';visual='input';
+  condition=Math.max(0,next.variants.findIndex(v=>v.name===name));
+  clearIncompatibleSearch(next);
+  if(tab==='examples' && !hasExample(next)) tab='overview';
+  revealFamily();saveRoute();render();el('task-variant')?.focus();
+}
 
 function compactLabel(i, e) {
   if (i.case_context?.label) return i.case_context.label;
@@ -68,17 +95,21 @@ function route() {
     requested = parts[1]; tab = canonicalTab(parts[2]);
   }
   const e = byId.get(selected), n = Number(requested);
+  clearIncompatibleSearch(e);
   if (requested !== undefined && Number.isInteger(n)) condition = Math.max(0,Math.min(n,e.variants.length-1));
   if (!['overview','requirements','examples','sources'].includes(tab) || (tab === 'examples' && !hasExample(e))) tab = 'overview';
-  visual = 'input'; render();
+  visual = 'input'; revealFamily(); render();
 }
-function saveRoute() {
+function clearIncompatibleSearch(e) {
+  if (!briefMatch(e,el('search').value.trim().toLowerCase())) el('search').value='';
+}
+function saveRoute(replace=false) {
   const e = byId.get(selected), item = currentItem();
   const path = item ? `${groupId(e)}/task/${encodeURIComponent(item.id)}/${condition}/${tab}` : `${selected}/${condition}/${tab}`;
-  history.pushState(null,'','#'+path);
+  history[replace?'replaceState':'pushState'](null,'','#'+path);
 }
 function chooseDefinition(id) {
-  selected=id; selectedItem=''; condition=0; tab='overview'; visual='input'; saveRoute(); render();
+  selected=id; selectedItem=''; condition=0; tab='overview'; visual='input'; revealFamily(); saveRoute(); render();
 }
 function chooseGroup(id) {
   const first = groupEntries(byId.get(id)).find(e => briefMatch(e,el('search').value.trim().toLowerCase()));
@@ -87,18 +118,45 @@ function chooseGroup(id) {
 function navigation() {
   const query=el('search').value.trim().toLowerCase(), active=groupId(byId.get(selected));
   const matches=groups.filter(g=>groupEntries(g).some(e=>briefMatch(e,query)));
-  el('nav').innerHTML=matches.map(g=>`<button class="navitem" data-group="${esc(g.id)}" aria-current="${active===groupId(g)}"><strong>${esc(g.repo)}</strong><small>${repoInventory(g.id)?groupEntries(g).length+' task briefs':'Internal example'}</small></button>`).join('') || '<p class="empty">No matching tasks.</p>';
+  el('nav').innerHTML=matches.map(g=>{
+    const count=taskUnits(groupEntries(g)).length,variants=groupEntries(g).length;
+    const caption=repoInventory(g.id)?`${count} tasks${count===variants?'':` · ${variants} variants`}`:'Internal example';
+    return `<button class="navitem" data-group="${esc(g.id)}" aria-current="${active===groupId(g)}"><strong>${esc(g.repo)}</strong><small>${caption}</small></button>`;
+  }).join('') || '<p class="empty">No matching tasks.</p>';
   el('nav').querySelectorAll('[data-group]').forEach(b=>b.onclick=()=>chooseGroup(b.dataset.group));
 }
 function taskList(e, matches) {
-  return `<nav class="task-list" aria-label="Tasks in this repository"><div class="list-heading">${el('search').value.trim()?'Matching tasks':'Tasks'} <span>${matches.length}</span></div>${matches.map(x=>{
-    const items=itemsFor(x),cases=items.filter(isCase),tags=[];
-    if (edition(x)) tags.push(edition(x));
-    if (cases.length) tags.push(cases.length+(cases.length===1?' case':' cases'));
-    if (hasExample(x)) tags.push('Illustrated');
-    return `<button class="task-item" data-definition="${esc(x.id)}" aria-pressed="${x.id===selected}"><strong>${esc(x.title)}</strong>${tags.length?`<small>${tags.map(esc).join(' · ')}</small>`:''}</button>`;
-  }).join('') || '<p class="empty">No tasks match this search in this repository.</p>'}</nav>`;
+  const searching=Boolean(el('search').value.trim()),units=taskUnits(matches);
+  const families=new Map();
+  for(const unit of taskUnits(groupEntries(e))) if(unit.entry.nav_group) {
+    const name=unit.entry.nav_group;
+    if(!families.has(name)) families.set(name,[]);
+    families.get(name).push(unit);
+  }
+  const item=unit=>{
+    const x=unit.entry,memberCount=familyMembers(x).length,tags=[];
+    const cases=itemsFor(x).filter(isCase);
+    if(memberCount>1) tags.push(memberCount+' variants');
+    else {
+      if(edition(x)) tags.push(edition(x));
+      if(cases.length) tags.push(cases.length+(cases.length===1?' case':' cases'));
+    }
+    if(unit.members.some(hasExample)) tags.push('Image example');
+    return `<button class="task-item" data-definition="${esc(x.id)}" data-task="${esc(unit.id)}" aria-pressed="${unit.members.some(y=>y.id===selected)}"><strong>${esc(unit.title)}</strong>${tags.length?`<small>${tags.map(esc).join(' · ')}</small>`:''}</button>`;
+  };
+  const seen=new Set(),rows=[];
+  for(const unit of units) {
+    const x=unit.entry,family=families.get(x.nav_group);
+    if(!family || family.length<2) {rows.push(item(unit));continue;}
+    if(seen.has(x.nav_group)) continue;
+    seen.add(x.nav_group);
+    const children=units.filter(y=>y.entry.nav_group===x.nav_group),key=familyKey(x);
+    const open=searching || (familyState.get(key) ?? children.some(y=>y.members.some(z=>z.id===selected)));
+    rows.push(`<details class="task-family" data-family="${esc(key)}" ${open?'open':''}><summary><span>${esc(x.nav_group)}</span><small>${children.length}</small></summary><div class="family-tasks">${children.map(item).join('')}</div></details>`);
+  }
+  return `<nav class="task-list" data-repository="${esc(groupId(e))}" aria-label="Tasks in this repository"><div class="list-heading">${searching?'Matching tasks':'Tasks'} <span>${units.length}</span></div>${rows.join('') || '<p class="empty">No tasks match this search in this repository.</p>'}</nav>`;
 }
+
 function coverage(e) {
   const inv=repoInventory(e.id);
   return inv?`<details class="coverage"><summary>Coverage &amp; source revisions</summary><p>${esc(inv.coverage)}</p><p class="fine">${inv.items.length} indexed source records · observed ${esc(inv.observed_on)} · revision <code>${esc(inv.commit)}</code>. Records include repeated cases and overlapping releases.</p></details>`:'';
@@ -121,9 +179,17 @@ function assistance(e) {
   const v=e.variants[condition];
   return `<section class="assistance"><h3>Assistance condition</h3><div class="variants">${e.variants.map((x,i)=>`<button class="variant" data-condition="${i}" aria-pressed="${i===condition}">${esc(x.name)}</button>`).join('')}</div><div class="condition"><p><strong>Given</strong>${esc(v.helper)}</p><p><strong>Remaining work</strong>${esc(v.remaining)}</p></div></section>`;
 }
+function taskPicture(e) {
+  const d=e.illustration;
+  if(d) return `<figure class="task-picture conceptual" data-illustration="${esc(d.kind)}"><figcaption><span class="drawing-label">Conceptual illustration</span><span>Drawn, not a dataset sample</span></figcaption><div class="picture-pair"><section><h4>Input</h4>${taskArt(e)}<p>${esc(d.input)}</p></section><div class="picture-arrow" aria-hidden="true">→</div><section><h4>Expected output</h4>${taskArt(e,true)}<p>${esc(d.output)}</p></section></div><p class="picture-caption">${esc(d.caption)}</p></figure>`;
+  const illustrated=e.example_case_id?itemsFor(e).find(i=>i.id===e.example_case_id):null;
+  const exampleLabel=illustrated?' · '+compactLabel(illustrated,e):'';
+  return /<img\b/.test(e.visuals.input)?`<figure class="task-picture native-preview"><figcaption><span class="drawing-label">Source-derived example${esc(exampleLabel)}</span><button class="text-button" data-example-open>Inspect example →</button></figcaption><div class="native-input">${e.visuals.input}</div></figure>`:'';
+}
+
 function overview(e) {
   const help=e.variants.length<2?box('Supplied help',htmlField(e,'helpers'),'helper'):'';
-  return `<div class="task-context"><h3>Why it matters</h3>${htmlField(e,'value')}</div><div class="overview-contract">${box('Input',htmlField(e,'raw'))}${help}${box('Deliverable',htmlField(e,'output'),'deliverable')}</div>${assistance(e)}<section class="difficulty"><h3>What makes it difficult</h3>${htmlField(e,'challenge')}</section>${caseSelector(e)}`;
+  return `<div class="task-context"><h3>Why it matters</h3>${htmlField(e,'value')}</div>${taskPicture(e)}<div class="overview-contract">${box('Input',htmlField(e,'raw'))}${help}${box('Deliverable',htmlField(e,'output'),'deliverable')}</div>${assistance(e)}<section class="difficulty"><h3>What makes it difficult</h3>${htmlField(e,'challenge')}</section>${caseSelector(e)}`;
 }
 function requirements(e) {
   return `<div class="requirements">${box('Task rules',htmlField(e,'spec'))}${box('Environment & callable tools',htmlField(e,'tools'))}${box('How success is checked',htmlField(e,'score'))}${box('Reference-only material',htmlField(e,'reference'))}</div>`;
@@ -150,9 +216,13 @@ function taskDetail(e) {
   const normalized=s=>s.toLowerCase().replace(/^(build and run a pipeline to |develop and apply a prediction method to |implement a computational method to )/,'').replace(/[.]+$/,'');
   const summary=normalized(e.goal)===normalized(e.title)?'':htmlField(e,'goal');
   const body=tab==='requirements'?requirements(e):tab==='examples'?examples(e):tab==='sources'?sourceDetails(e):overview(e);
-  return `<article class="task-detail" data-brief="${esc(e.id)}"><div class="detail-heading">${edition(e)?`<span class="edition">${esc(edition(e))}</span>`:''}${e.proposed?'<span class="draft">Proposed</span>':''}<h2>${esc(e.title)}</h2>${summary?`<div class="task-goal">${summary}</div>`:''}</div>${sourceScope(e)}<div class="tabs" role="tablist" aria-label="Task sections">${tabs.map(([id,label])=>`<button id="tab-${id}" data-tab="${id}" role="tab" aria-selected="${tab===id}" aria-controls="task-panel">${label}</button>`).join('')}</div><section id="task-panel" role="tabpanel" aria-labelledby="tab-${tab}">${body}</section></article>`;
+  const family=familyConfig(e),members=familyMembers(e);
+  const variantPicker=members.length>1?`<label class="task-variant-picker" for="task-variant">${esc(family.selector)}<select id="task-variant">${members.map(x=>`<option value="${esc(x.id)}" ${x.id===selected?'selected':''}>${esc(x.nav_label||x.title)}</option>`).join('')}</select></label>`:'';
+  return `<article class="task-detail" data-brief="${esc(e.id)}"><div class="detail-heading">${e.proposed?'<span class="draft">Proposed</span>':''}<h2>${esc(members.length>1?family.title:e.title)}</h2>${variantPicker}${edition(e)?`<span class="edition">${esc(edition(e))}</span>`:''}${summary?`<div class="task-goal">${summary}</div>`:''}</div>${sourceScope(e)}<div class="tabs" role="tablist" aria-label="Task sections">${tabs.map(([id,label])=>`<button id="tab-${id}" data-tab="${id}" role="tab" tabindex="${tab===id?0:-1}" aria-selected="${tab===id}" aria-controls="task-panel">${label}</button>`).join('')}</div><section id="task-panel" role="tabpanel" tabindex="0" aria-labelledby="tab-${tab}">${body}</section></article>`;
 }
 function render() {
+  const previousList=el('main').querySelector('.task-list');
+  if(previousList) listScroll.set(previousList.dataset.repository,previousList.scrollTop);
   navigation();
   const e=byId.get(selected),group=repoEntry(e),inv=repoInventory(e.id),query=el('search').value.trim().toLowerCase();
   const matches=groupEntries(e).filter(x=>briefMatch(x,query));
@@ -160,28 +230,49 @@ function render() {
   const intro=DATA.repository_contexts?.[groupId(e)];
   document.title=group.repo+' · Task Explorer';
   el('main').innerHTML=`<div class="repository-heading"><h1>${esc(group.repo)}</h1>${intro?`<p>${esc(intro)}</p>`:''}</div>${inv?`<div class="catalogue-workspace">${taskList(e,matches)}${visible?taskDetail(e):'<div class="empty task-detail">Choose a matching task from the list.</div>'}</div>`:taskDetail(e)}${coverage(e)}`;
+  const currentList=el('main').querySelector('.task-list');
+  if(currentList) {
+    currentList.scrollTop=listScroll.get(groupId(e)) || 0;
+    const active=currentList.querySelector('.task-item[aria-pressed=true]');
+    if(active?.getClientRects().length) {
+      const bounds=currentList.getBoundingClientRect(),row=active.getBoundingClientRect();
+      if(row.top<bounds.top) currentList.scrollTop+=row.top-bounds.top;
+      else if(row.bottom>bounds.bottom) currentList.scrollTop+=row.bottom-bounds.bottom;
+    }
+  }
+  el('main').querySelectorAll('[data-family]').forEach(d=>d.ontoggle=()=>{
+    if(d.isConnected && !el('search').value.trim()) familyState.set(d.dataset.family,d.open);
+  });
   el('main').querySelectorAll('[data-definition]').forEach(b=>b.onclick=()=>{chooseDefinition(b.dataset.definition);el('main').querySelector('.task-detail')?.scrollIntoView({block:'nearest'})});
   el('main').querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;saveRoute();render();el('tab-'+tab)?.focus()});
+  const tabs=[...el('main').querySelectorAll('[role="tab"]')];
+  tabs.forEach((button,index)=>button.onkeydown=event=>{
+    const target={ArrowRight:(index+1)%tabs.length,ArrowLeft:(index+tabs.length-1)%tabs.length,Home:0,End:tabs.length-1}[event.key];
+    if(target!==undefined){event.preventDefault();tabs[target].click()}
+  });
+  el('main').querySelectorAll('[data-example-open]').forEach(b=>b.onclick=()=>{tab='examples';saveRoute();render();el('tab-examples')?.focus()});
   el('main').querySelectorAll('[data-entry]').forEach(b=>b.onclick=()=>{selectItem(b.dataset.entry);saveRoute();render();el('main').querySelector(`[data-entry="${CSS.escape(selectedItem)}"]`)?.focus()});
   el('main').querySelectorAll('[data-condition]').forEach(b=>b.onclick=()=>{
     condition=Number(b.dataset.condition);visual='input';
     const linked=itemsFor(e).filter(i=>(i.condition_index||0)===condition);
     if (currentItem() && (currentItem().condition_index||0)!==condition) selectedItem=linked.length===1?linked[0].id:'';
-    saveRoute();render();
+    saveRoute();render();el('main').querySelector(`[data-condition="${condition}"]`)?.focus();
   });
   el('main').querySelectorAll('[data-visual]').forEach(b=>b.onclick=()=>{visual=b.dataset.visual;render();el('main').querySelector(`[data-visual="${visual}"]`).focus()});
+  const variantPicker=el('task-variant');
+  if(variantPicker) variantPicker.onchange=()=>chooseVariant(variantPicker.value);
   const picker=el('source-picker');
-  if (picker) picker.onchange=()=>{if(picker.value)selectItem(picker.value);else{selectedItem='';condition=0;visual='input'}saveRoute();render()};
+  if (picker) picker.onchange=()=>{if(picker.value)selectItem(picker.value);else{selectedItem='';condition=0;visual='input'}saveRoute();render();el('source-picker')?.focus()};
 }
 el('search').oninput=()=>{
   const e=byId.get(selected),query=el('search').value.trim().toLowerCase();
   if (!briefMatch(e,query)) {
     const first=groupEntries(e).find(x=>briefMatch(x,query));
-    if(first){selected=first.id;selectedItem='';condition=0;tab='overview';visual='input'}
+    if(first){selected=first.id;selectedItem='';condition=0;tab='overview';visual='input';revealFamily();saveRoute(true)}
   }
   render();
 };
 el('format').onclick=()=>el('rules').showModal();el('close').onclick=()=>el('rules').close();
 window.onhashchange=route;window.onpopstate=route;
-document.querySelector('.navnote').innerHTML=`${inventory.length} repositories · ${entries.length} task briefs<br>Repeated cases share one explanation.`;
+document.querySelector('.navnote').innerHTML=`${inventory.length} repositories · ${taskUnits(entries).length} tasks · ${entries.length} variants<br>Related variants share one task entry.`;
 route();

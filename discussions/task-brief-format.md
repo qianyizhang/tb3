@@ -169,3 +169,88 @@ Receipts: [context sources](medical-agent-repository-survey/catalogue-context-so
 and [refactor validation](../docs/evidence/task-explorer-catalogue-refactor-2026-09-21.json).
 Reopen when reader feedback reveals remaining duplication or when actual case
 inputs become available to support more useful case differences.
+
+## Task-family audit — 2026-09-21
+
+Actor: **user** requested grouping of repeated HealthAgentBench entries, then
+asked for a full audit after noticing the same issue in AutoMedBench.
+Actor: **assistant** audited the retained task briefs and consolidated navigation
+by shared workflow, with an explicit dataset/target selector.
+
+| Repository | Before | Task entries after audit | Decision |
+| --- | ---: | ---: | --- |
+| HealthAgentBench | 15 | 7 | Six disease targets share prediction; four error categories share record-quality checking. Three image tasks remain distinct. |
+| AutoMedBench | 50 | 10 | Dataset/target variants share classification, detection, segmentation, denoising, super-resolution, CT-volume restoration, MRI-to-CT synthesis, report generation, captioning or visual question answering. |
+| ReX-MLE | 19 | 13 | Combine CT/MR variants of the same target, diagnostic/radiotherapy pancreas MRI, and nucleus-label taxonomies. Keep segmentation, localization and connection classification separate. |
+| ABRA | 6 | 6 | Viewer state, metadata, perception, annotation, comparison and assessment request different work. Group related entries without merging them. |
+| BCER | 9 | 9 | Required tool/stage chains differ. Group single steps, focused workflows and complete workflows. |
+| Imaging-101 | 58 | 58 | Different measurement models, reconstruction methods or scientific outputs remain separate; organize by imaging/scientific domain. |
+| RadAgent | 2 | 2 | Full reporting and multiple-choice answering have different deliverables. |
+
+This is consolidation of reader-facing task entries, not removal of source tasks
+or a claim of identical benchmarks. All 160 authored briefs, 284 source records
+and 379 assistance conditions remain reachable. Together with the internal example,
+there are 106 task entries. Per-variant outputs, model guidance, metrics and release
+scope stay explicit; CT/MR localization adapter differences remain in Sources.
+
+The AutoMedBench audit keeps 3 denoising variants, 4 super-resolution variants and
+3 CT-volume-restoration variants in separate task families. Segmentation groups
+16 variants without treating an organ mask, separate organ/lesion masks, and a
+117-label map as identical contracts. Full, Lite and domain-branch material keep
+their release identity. No task packages, frozen evidence or external scores changed.
+
+Validation is retained in [the family audit receipt](medical-agent-repository-survey/task-family-audit.json).
+Reopen a merge when it hides a meaningful workflow/assistance distinction; retain
+exact source links and variant-specific requirements when adding future datasets.
+
+## Visual explanation coverage — 2026-09-21
+
+Actor: **user** requested more visual illustrations and explicitly authorized
+original drawings/figurative SVG when real data could not be downloaded.
+Actor: **assistant** added pictures directly to Overview: six existing source-derived
+examples and 154 conceptual input/output drawings, covering every authored variant.
+
+Drawings use task-specific representations: sampled frequency lines, projection
+rays, complex optical fields, slice stacks, spatial masks, bounding boxes, cell
+identities, spectral curves, record tables and history cutoffs. Dataset selectors
+retain their specific labels and output requirements. Separate organ/lesion masks,
+binary targets and multiple-class maps have distinct output sketches. Prediction
+shows one probability per test row, not an invented longitudinal risk curve.
+
+The optical-tomography README was reread at its pinned revision: it documents eight
+complex-field views and a 308 × 256 × 256 reconstruction volume. A bounded request
+for its documented raw NPZ path returned HTTP 404. The schematic uses those source
+dimensions but its textures and geometry are original drawings. No new native
+sample was acquired in this pass; the other diagrams do not imply that their
+upstream datasets are universally unavailable.
+
+Conceptual figures are explicitly marked as drawings, not dataset samples. They
+explain structure and requested transformations without reporting a measurement,
+model prediction or clinical finding. Native-data coverage remains six briefs.
+The [visual coverage receipt](medical-agent-repository-survey/illustration-coverage.json)
+records scope and validation. Reopen individual drawings when real source samples
+become available or when a task contract changes the illustrated output.
+
+## Independent review and cleanup — 2026-09-21
+
+Actor: **user** requested a final independent review, fixes and a focused commit.
+Two read-only assistant reviewers separately checked navigation/build behavior and
+illustration semantics, then inspected the corrections. Both reported their
+identified issues resolved, with no remaining actionable finding in their scope.
+
+- Search-driven selection now updates the URL. Explicit variant changes and
+  restored links clear incompatible filters, so the selected task stays visible.
+- Native Overview images retain their full authored selection captions. Readers
+  can see when reference annotations were used to choose a plane.
+- Explicit anatomical subjects replace task-ID guessing. Breast MRI, knee MRI,
+  chest CT, tissue and airway drawings now reflect their actual task inputs.
+- Aortic segmentation retains a branching binary tree. Spectral snapshot imaging
+  shows a wavelength cube; deflectometry shows fringe views and lens parameters.
+- SVG geometry lives in its own embedded script. Keyboard tabs and selector focus
+  remain usable across detail updates.
+
+The offline browser matrix passes all 160 variants, 284 source records and 379
+conditions, including search/history, retained captions, keyboard navigation and
+narrow layouts. Four corrected illustrations were visually inspected. Conceptual
+coverage remains 154 variants, now using 59 drawing types; native coverage is six.
+No trial, runtime installation or publication was part of this maintenance.

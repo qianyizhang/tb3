@@ -45,6 +45,7 @@ imported identifiers, authored briefs and available media are distinct coverage 
   answers and actual predictions appear only after an explicit reader reveal.
 - Use a native/source-derived example when available. Identify any post-hoc crop,
   selected plane or camera, especially when it reduces the localization problem.
+  Keep that selection caption beside the image in Overview as well as Example.
 - Label reference, illustrative output and actual agent prediction separately.
   Preserve orientation/physical aspect; avoid caliper claims on explanatory layouts.
 - Describe why assistance makes the task easier and what remains difficult.
@@ -55,6 +56,21 @@ imported identifiers, authored briefs and available media are distinct coverage 
   separate actions. When the user requests sample acquisition, fetch bounded
   individual cases, retain source terms and checksums, and label exact task cases
   versus representative examples. Downloading inputs does not authorize model runs.
+- The user explicitly requested original SVG illustrations when real examples are
+  unavailable. Put a meaningful input/output picture directly in Overview. Use
+  source images where curated; otherwise label the figure “Conceptual illustration”
+  and “Drawn, not a dataset sample.” A drawing closes an explanation gap, not a
+  native-data or anatomical-validation gap.
+- The collection's `illustration` metadata selects an authored drawing type and
+  concise visual labels/caption. Use an explicit `subject` for anatomical drawings;
+  never infer anatomy from substrings in a task ID. Without a specified subject,
+  use a neutral image sketch. Keep drawings tied to the brief's actual deliverable:
+  one probability is not a time curve, a binary mask is not a multiclass map,
+  and an organ/lesion pair is not one undifferentiated segmentation. Do not fabricate
+  measured improvements, patient findings, clinical thresholds or reference answers.
+  Geometry and textures are stylized. Cite the task source for any numerical dimensions.
+  `illustrations.js` owns the SVG geometry; the builder embeds it alongside the
+  navigation renderer in the standalone HTML.
 
 ## Small authoring surface
 
@@ -70,12 +86,24 @@ imported identifiers, authored briefs and available media are distinct coverage 
   Put repeated cases beneath their task, with short labels and only sourced differences
   (for example candidate-pool size). Never infer a clinical description from a case ID.
   Selecting a case must retain its source and condition across reload/back navigation.
+- Consolidate repeated workflows into one task-family entry when their differences
+  are datasets, targets, modalities or label taxonomies. `task_families` owns the
+  shared navigation title and selector label; each brief's `task_family` links to it.
+  `nav_label` gives the concise variant name. Changing the variant loads its exact
+  input, helpers, output, scoring and source; it does not assert executable equivalence.
+  Preserve release labels and compatible assistance selection. Keep fundamentally
+  different transformations or deliverables separate, even in the same anatomy.
+- Use `nav_group` for collapsible subject/workflow sections containing distinct
+  tasks, such as MRI methods. Do not merge their scientific methods merely because
+  they share an input modality. Search opens matching sections; deep links select
+  the exact variant. Source identities and historical briefs remain intact.
 - Show one task explanation with Overview, Requirements, optional Example and Sources
   sections. Do not repeat it in a separate catalogue preview, or mark every record with
   a universal availability badge. Omit summaries that only restate their title.
 - Keep family/definition IDs, source conditions, counts and revisions in expandable
   provenance. Surface details that change the reader's understanding of the selected
-  task. Missing examples do not need a repeated pseudo-visual made from the input text.
+  task. Missing examples do not need a repeated pseudo-visual made from the input text;
+  authored geometric drawings should show the actual transformation or output structure.
 - The optional `Cases` brief section explains what varies between cases and which
   inputs have actually been imported. Inventory `case_context` facts are specific to
   one source record and carry their own source URL. Repository introductions remain

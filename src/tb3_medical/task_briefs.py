@@ -226,7 +226,10 @@ def build(root, output, catalog=DEFAULT_CATALOG):
     )
     document = (
         document.replace("__STYLE__", (base / "style.css").read_text())
-        .replace("__APP__", (base / "app.js").read_text())
+        .replace(
+            "__APP__",
+            "\n".join((base / name).read_text() for name in ("illustrations.js", "app.js")),
+        )
         .replace("__DATA__", payload)
     )
     output.parent.mkdir(parents=True, exist_ok=True)
