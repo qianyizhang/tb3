@@ -301,6 +301,10 @@ User authorized generic spec clarification without case hints, separate geometry
 
 [V3 results](research-rounds/BR-042-v3-results.md): Sol/xhigh completed with 26.2% geometry / 19.4% correctly labeled length coverage; Astra/medium completed with 95.5% / 79.3%. Neither passed the macro/per-category gates. Astra/xhigh timed out after transport interruptions at one hour; its 91.8% / 68.3% saved-output scores are diagnostic, not a completed model-quality result. Two pre-model setup exclusions are retained; no started model attempt was rerun. All-vessel outputs remain available in the local source-CTA review.
 
+### BR-042 V4 — Bounded all-vessel task, ready for Astra/xhigh
+
+User approved generic category clarification, bounded peripheral workload and checkpoint/final-review timing. [Prepared plan and launch command](research-rounds/BR-042-v4-plan.md). Same CTA, private GT and evaluator as V3; new prompt/version freeze; offline controls and launch safeguards pass. One fresh Astra/xhigh attempt remains **not started, awaiting user go-ahead**. Prior task bytes and scores are preserved. [Post-hoc branch review](research-rounds/BR-042-v3-branch-review.md) stays author-side and is not exposed to the model.
+
 ## BR-043 — Proposed next medical tests, 2026-09-20
 
 User requested proposals based on prior work. [Ranked candidate cards and source screen](research-rounds/BR-043-medical-next-tasks.md): coronary identity with supplied geometry; new-lesion detection across MRI visits; end-systolic echo measurement; variant vertebral numbering; adjudicated breast residual extent; exploratory pulmonary embolus localization. Local completed failures, published benchmark evidence and unqualified source leads are distinguished. Source-access/reference gaps remain explicit. Proposal only: no new fixtures, downloads, trials or publication; previous evidence and active experiment changes preserved.
