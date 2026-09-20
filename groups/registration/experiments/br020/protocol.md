@@ -6,5 +6,5 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-020-reconstruction-registration](../../../../../docs/research-rounds/BR-020-reconstruction-registration.md)
-- [BR-020-results](../../../../../docs/research-rounds/BR-020-results.md)
+- [BR-020-reconstruction-registration](../../../../docs/research-rounds/BR-020-reconstruction-registration.md)
+- [BR-020-results](../../../../docs/research-rounds/BR-020-results.md)

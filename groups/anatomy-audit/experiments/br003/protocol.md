@@ -6,4 +6,4 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-003-work-history](../../../../../docs/research-rounds/BR-003-work-history.md)
+- [BR-003-work-history](../../../../docs/research-rounds/BR-003-work-history.md)

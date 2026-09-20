@@ -4,9 +4,9 @@ kind = "idea"
 id = "idea-registration-source-depth"
 group_id = "registration"
 title = "Transfer respiratory landmarks with both CT volumes available"
-next_action = "Retain as accepted calibration with the unchanged automated result and explicit user adjudication; no further trial scheduled."
-decision_provenance = "Imported authored catalog state; no new user approval inferred."
-idea_state = "exploring"
+next_action = "Parked after completed calibration; no follow-up trial is scheduled. Retain original evidence and reopen only under the conditions below."
+decision_provenance = "User accepted the parking recommendation on 2026-09-21 in codex://threads/01a0c040-3777-7b72-b932-6e6b118304a2; decision decision-355202e8c86445c6. Historical outcomes remain unchanged."
+idea_state = "parked"
 
 [[sources]]
 url = "codex://threads/01a0a845-7c2d-7992-a662-24d52831af90"
@@ -34,4 +34,8 @@ The full-source condition is accepted by the user on visual review of q06 and re
 
 ## Reopen when
 
-Retain as accepted calibration with the unchanged automated result and explicit user adjudication; no further trial scheduled.
+Reopen if independent review revises the q06 correspondence or a new unused respiratory pair with verified landmarks supports a matched source-depth comparison. Freeze physical gates, reference provenance and an input-legal author baseline before any separately authorized trial.
+
+## Current disposition
+
+The full-source respiratory registration calibration is complete and was accepted by the user on visual review; no follow-up trial is scheduled. Preserve the unchanged numerical failure and its separate practical acceptance. The user accepted parking on 2026-09-21 in [the refinement task](codex://threads/01a0c040-3777-7b72-b932-6e6b118304a2). This does not close the broader scientific question.

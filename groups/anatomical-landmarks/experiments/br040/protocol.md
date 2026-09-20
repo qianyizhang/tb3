@@ -6,6 +6,6 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-040-results](../../../../../docs/research-rounds/BR-040-results.md)
-- [BR-040-sol-landmarks](../../../../../docs/research-rounds/BR-040-sol-landmarks.md)
-- [Independent MRI replay receipt](../../../../../docs/migration/recovery-check.json)
+- [BR-040-results](../../../../docs/research-rounds/BR-040-results.md)
+- [BR-040-sol-landmarks](../../../../docs/research-rounds/BR-040-sol-landmarks.md)
+- [Independent MRI replay receipt](../../../../docs/migration/recovery-check.json)

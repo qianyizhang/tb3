@@ -6,5 +6,5 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-037-longitudinal-reading](../../../../../docs/research-rounds/BR-037-longitudinal-reading.md)
-- [BR-037-results](../../../../../docs/research-rounds/BR-037-results.md)
+- [BR-037-longitudinal-reading](../../../../docs/research-rounds/BR-037-longitudinal-reading.md)
+- [BR-037-results](../../../../docs/research-rounds/BR-037-results.md)

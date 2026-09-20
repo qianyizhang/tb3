@@ -6,5 +6,5 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-014-inventory-components](../../../../../docs/research-rounds/BR-014-inventory-components.md)
-- [BR-014-results](../../../../../docs/research-rounds/BR-014-results.md)
+- [BR-014-inventory-components](../../../../docs/research-rounds/BR-014-inventory-components.md)
+- [BR-014-results](../../../../docs/research-rounds/BR-014-results.md)

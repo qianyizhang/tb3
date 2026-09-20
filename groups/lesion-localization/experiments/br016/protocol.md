@@ -6,5 +6,5 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-016-aneurysm-localization](../../../../../docs/research-rounds/BR-016-aneurysm-localization.md)
-- [BR-016-results](../../../../../docs/research-rounds/BR-016-results.md)
+- [BR-016-aneurysm-localization](../../../../docs/research-rounds/BR-016-aneurysm-localization.md)
+- [BR-016-results](../../../../docs/research-rounds/BR-016-results.md)

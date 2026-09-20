@@ -6,5 +6,5 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-029-dynamic-heart-modeling](../../../../../docs/research-rounds/BR-029-dynamic-heart-modeling.md)
-- [BR-029-dynamic-heart-results](../../../../../docs/research-rounds/BR-029-dynamic-heart-results.md)
+- [BR-029-dynamic-heart-modeling](../../../../docs/research-rounds/BR-029-dynamic-heart-modeling.md)
+- [BR-029-dynamic-heart-results](../../../../docs/research-rounds/BR-029-dynamic-heart-results.md)

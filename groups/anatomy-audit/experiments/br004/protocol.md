@@ -6,6 +6,6 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-004-dicom-annotation-revisit](../../../../../docs/research-rounds/BR-004-dicom-annotation-revisit.md)
-- [BR-004-single-patient-benchmark](../../../../../docs/research-rounds/BR-004-single-patient-benchmark.md)
-- [BR-004-sol-followup](../../../../../docs/research-rounds/BR-004-sol-followup.md)
+- [BR-004-dicom-annotation-revisit](../../../../docs/research-rounds/BR-004-dicom-annotation-revisit.md)
+- [BR-004-single-patient-benchmark](../../../../docs/research-rounds/BR-004-single-patient-benchmark.md)
+- [BR-004-sol-followup](../../../../docs/research-rounds/BR-004-sol-followup.md)

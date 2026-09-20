@@ -6,6 +6,6 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-032-real-echo-case](../../../../../docs/research-rounds/BR-032-real-echo-case.md)
-- [BR-032-real-echo-results](../../../../../docs/research-rounds/BR-032-real-echo-results.md)
-- [BR-032-source-notes](../../../../../docs/research-rounds/BR-032-source-notes.md)
+- [BR-032-real-echo-case](../../../../docs/research-rounds/BR-032-real-echo-case.md)
+- [BR-032-real-echo-results](../../../../docs/research-rounds/BR-032-real-echo-results.md)
+- [BR-032-source-notes](../../../../docs/research-rounds/BR-032-source-notes.md)

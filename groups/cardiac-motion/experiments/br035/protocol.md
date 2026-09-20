@@ -6,5 +6,5 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-035-results](../../../../../docs/research-rounds/BR-035-results.md)
-- [BR-035-segmentation-mechanics](../../../../../docs/research-rounds/BR-035-segmentation-mechanics.md)
+- [BR-035-results](../../../../docs/research-rounds/BR-035-results.md)
+- [BR-035-segmentation-mechanics](../../../../docs/research-rounds/BR-035-segmentation-mechanics.md)

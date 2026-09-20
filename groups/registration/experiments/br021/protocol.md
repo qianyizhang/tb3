@@ -6,5 +6,5 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-021-anatomical-deformation](../../../../../docs/research-rounds/BR-021-anatomical-deformation.md)
-- [BR-021-results](../../../../../docs/research-rounds/BR-021-results.md)
+- [BR-021-anatomical-deformation](../../../../docs/research-rounds/BR-021-anatomical-deformation.md)
+- [BR-021-results](../../../../docs/research-rounds/BR-021-results.md)

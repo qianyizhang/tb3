@@ -3,16 +3,26 @@
   "kind": "finding",
   "id": "lesion-localization-current-synthesis",
   "group_id": "lesion-localization",
-  "title": "Lesion localization \u2014 current evidence",
-  "claim": "Weak lesion regions support bounded localization checks, not exact clinical boundaries. Source-assisted negative answers remain a separate evidence condition.",
+  "title": "Localization and source-assisted exclusion are distinct outcomes",
+  "claim": "In BR-016, three normally completed Sol/xhigh attempts localized the weak aneurysm reference in N02, missed the positive N01 finding, and correctly returned no findings for N03 after identifying the public source scan and consulting its annotation inventory. The negative-case success is source-assisted; it cannot be counted as independent image-only exclusion.",
   "evidence": [
     {
       "path": "docs/evidence/br016-results.json",
       "sha256": "68b4c654a5f12079d2ea0b23b139bc5d127a7052aa41523fdc5e139ff1dbce17"
+    },
+    {
+      "path": "docs/evidence/br016-audit.json",
+      "sha256": "044502b49e1c8eae1eaebe31a39c9090b813bd9bfafe01eff29df13278105ca7"
+    },
+    {
+      "path": "docs/research-rounds/BR-016-results.md",
+      "sha256": "df4f59bd75d5712389d57858119671386ffbe0ff8c86001b5300dbebfb2b7370"
     }
   ],
   "limitations": [
-    "Read the group story and protocol for case, assistance, reference and measurement limitations. Historical evidence is not submission qualification."
+    "Inputs were full original and skull-stripped TOF-MRA volumes, metadata and a viewing helper; lesion-centered crops and private reference masks were not supplied.",
+    "The point-matching tolerance is the weak reference region plus 1 mm, not an exact clinical center or contour guarantee.",
+    "Three selected scans and one attempt per scan support case-specific workflow observations, not sensitivity, specificity or population accuracy. Public-data pretraining exposure is unknown."
   ],
   "links": [
     {

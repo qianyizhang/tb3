@@ -4,9 +4,9 @@ kind = "idea"
 id = "idea-mr-frame-association"
 group_id = "anatomy-audit"
 title = "Canonical multiframe acquisition reconstruction"
-next_action = "Retired after a clean Terra/high pass. Preserve the frozen calibration task; return selection to the benchmark-backed shortlist."
-decision_provenance = "Imported authored catalog state; no new user approval inferred."
-idea_state = "exploring"
+next_action = "Parked after completed calibration; no follow-up trial is scheduled. Retain original evidence and reopen only under the conditions below."
+decision_provenance = "User accepted the parking recommendation on 2026-09-21 in codex://threads/01a0c040-3777-7b72-b932-6e6b118304a2; decision decision-19be29c5ff684715. Historical outcomes remain unchanged."
+idea_state = "parked"
 
 [[sources]]
 url = "https://swescience.github.io/task-matrix/gradient/"
@@ -34,4 +34,8 @@ Physical and acquisition coordinates need independent canonical ordering; source
 
 ## Reopen when
 
-Retired after a clean Terra/high pass. Preserve the frozen calibration task; return selection to the benchmark-backed shortlist.
+Reopen if a concrete equivalent DICOM encoding exposes a reproduced association defect, or a new source-backed acquisition variant needs independent calibration. First define the invariant and a passing input-legal control; any new model trial needs separate authorization.
+
+## Current disposition
+
+The completed MR frame-association calibration passed cleanly with Terra/high; no follow-up trial is scheduled. Preserve the frozen task and observed outcome. The user accepted parking on 2026-09-21 in [the refinement task](codex://threads/01a0c040-3777-7b72-b932-6e6b118304a2). This does not close the broader scientific question.

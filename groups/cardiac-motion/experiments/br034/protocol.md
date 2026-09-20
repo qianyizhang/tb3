@@ -6,6 +6,6 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-034-pathological-echo](../../../../../docs/research-rounds/BR-034-pathological-echo.md)
-- [BR-034-preserved-control-amendment](../../../../../docs/research-rounds/BR-034-preserved-control-amendment.md)
-- [BR-034-results](../../../../../docs/research-rounds/BR-034-results.md)
+- [BR-034-pathological-echo](../../../../docs/research-rounds/BR-034-pathological-echo.md)
+- [BR-034-preserved-control-amendment](../../../../docs/research-rounds/BR-034-preserved-control-amendment.md)
+- [BR-034-results](../../../../docs/research-rounds/BR-034-results.md)

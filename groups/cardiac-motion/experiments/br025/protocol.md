@@ -6,4 +6,4 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-025-cardiac-reconstruction](../../../../../docs/research-rounds/BR-025-cardiac-reconstruction.md)
+- [BR-025-cardiac-reconstruction](../../../../docs/research-rounds/BR-025-cardiac-reconstruction.md)

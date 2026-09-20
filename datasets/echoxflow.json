@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-echoxflow",
+  "title": "EchoXFlow clinical echo and LV endocardial surfaces",
+  "version_note": "BR-034 September 2026 review inspected source code commit b782e0a4e3dbaadf3c88fa572710bf4254d86143 and catalog SHA-256 2b0e80f83f8743f5babde82a3d8ded8ec4d607a1889a1b8b8cd204342116f83d. Exact selected recordings and native/reconstruction hashes remain in BR-034/035 receipts.",
+  "terms_note": "The retained source review records CC BY-NC-SA 4.0. Clinical assets remain local; confirm the selected release and all conditions before reuse or redistribution. No current permission refresh is implied.",
+  "reference_note": "Clinical B-mode volumes have operator-created or adjusted LV endocardial surfaces. These are geometric/function references with observer/software uncertainty, not independent material trajectories or etiologic diagnosis. BR-034 supplies the initial surface; BR-035 supplies all-phase cavity masks that already encode EF.",
+  "access_note": "BR-032 inspected the card without acquiring examinations; subsequent BR-034 acquired selected archives and BR-035 reused a clinical sequence. Whole TAR hashes matched publisher LFS hashes, but the publisher array-hash serialization was not reproduced.",
+  "evidence": [
+    {
+      "path": "docs/research-rounds/BR-034-pathological-echo.md",
+      "sha256": "8dec99af34de7fd7274869a769dbe450496c0796772ef44240de0c381a2a6136"
+    },
+    {
+      "path": "docs/evidence/br034-clinical-adaptation-results.json",
+      "sha256": "252f9c3da79e7117324eaef96c6551bd4d05ea3c100cf3548c84937a110d70bc"
+    },
+    {
+      "path": "docs/evidence/br035-segmentation-mechanics-results.json",
+      "sha256": "12806e221bc93b8400dbe2d950e67ed89b6f2fb396ba7e76b2833fa42e00fed2"
+    }
+  ],
+  "links": [
+    {
+      "label": "Clinical source selection and terms",
+      "path": "docs/research-rounds/BR-034-pathological-echo.md"
+    },
+    {
+      "label": "Clinical adaptation receipt",
+      "path": "docs/evidence/br034-clinical-adaptation-results.json"
+    },
+    {
+      "label": "Official dataset",
+      "path": "https://huggingface.co/datasets/Ahus-AIM/EchoXFlow"
+    }
+  ]
+}

@@ -3,16 +3,35 @@
   "kind": "finding",
   "id": "registration-current-synthesis",
   "group_id": "registration",
-  "title": "Registration \u2014 current evidence",
-  "claim": "Keep frozen physical-error scores alongside later visual adjudication. A public-input author method is feasibility evidence, not a human benchmark.",
+  "title": "Source-depth improvement retains a frozen point-error miss",
+  "claim": "On the same eight respiratory CT correspondences, BR-028 added the full source CT and Sol improved from BR-024’s 12.731 mm RMS / 32.203 mm maximum error to 2.604 / 6.412 mm. The unchanged frozen score still fails at q06; the user separately accepted its appearance on visual review. A retained input-legal author matcher passed using the earlier 2D source condition at 2.133 / 3.416 mm.",
   "evidence": [
+    {
+      "path": "docs/evidence/br024-results.json",
+      "sha256": "a7818fcb6e3f85d34586932588ca96bd8c8301f568bec0865af276483ab29a77"
+    },
     {
       "path": "docs/evidence/br028-results.json",
       "sha256": "89a74bb32ef98a1c437572b43a64feb7b1c38b8d09d45aceb93a248892fa1e21"
+    },
+    {
+      "path": "docs/evidence/br028-stage-analysis.json",
+      "sha256": "1ee25cb44ebd6fd61b1d4e2c36fb4f91ccc9c3027f115aa1429f482c6602eabc"
+    },
+    {
+      "path": "docs/evidence/br028-adjudication.json",
+      "sha256": "0925009d9d598081f256f6f4693034cefcb77f3ca8f50d07d53cb9a0eac03264"
+    },
+    {
+      "path": "docs/evidence/br028-author-audit.json",
+      "sha256": "4399ed54da81e5497d0ed8e45e2f1c2c3160c75cc4310c3efa8a4fe224c7b2ad"
     }
   ],
   "limitations": [
-    "Read the group story and protocol for case, assistance, reference and measurement limitations. Historical evidence is not submission qualification."
+    "BR-028 supplies both full 3D CT volumes in addition to the earlier oblique slice and query geometry; the target and reference answers remain unchanged.",
+    "Input context and the solver’s chosen strategy both changed across fresh attempts, so the improvement is not a causal estimate of source depth.",
+    "The author matcher demonstrates feasibility, not blinded human performance. User visual acceptance is not independent clinical adjudication and does not replace the 3 mm RMS / 5 mm maximum gates.",
+    "The full-source solver recovered through broad 3D patch search after global fields failed, but no single saved executable rule captures all final candidate selections."
   ],
   "links": [
     {

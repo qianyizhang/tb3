@@ -6,5 +6,5 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-030-results](../../../../../docs/research-rounds/BR-030-results.md)
-- [BR-030-vessel-diagnostic-geometry](../../../../../docs/research-rounds/BR-030-vessel-diagnostic-geometry.md)
+- [BR-030-results](../../../../docs/research-rounds/BR-030-results.md)
+- [BR-030-vessel-diagnostic-geometry](../../../../docs/research-rounds/BR-030-vessel-diagnostic-geometry.md)

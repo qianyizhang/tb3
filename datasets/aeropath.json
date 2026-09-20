@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-aeropath",
+  "title": "AeroPath airway CT and annotations",
+  "version_note": "BR-033 historical source review, 2026-09-16: mirror revision 6d0f831ca22bf57918aba3980ae475c94d45b997; selected CT, airway and lung files were checked against published LFS SHA-256 digests.",
+  "terms_note": "The retained license.md says CC BY 4.0, while the Hugging Face card says MIT. Preserve both declarations; neither the card nor the code repository alone resolves dataset redistribution terms. This is the 2026-09-16 observation, not a current license check.",
+  "reference_note": "Manually refined airway/lung masks are separate from official Raidionics model predictions. Reference omissions can occur; binary masks do not establish named bronchi or biopsy-target truth. BR-033 parent-gap concerns are retained in its results.",
+  "access_note": "Selected files and model outputs remain local, with exact hashes in the source receipt. No downloads, current-access verification or publication clearance were performed for this index.",
+  "evidence": [
+    {
+      "path": "docs/evidence/br033-source-audit.json",
+      "sha256": "8c1607d37554eadf288e4eed9d79b49ce9577f2ee2f26e1d589e55343ca2994a"
+    },
+    {
+      "path": "docs/research-rounds/BR-033-results.md",
+      "sha256": "9522ed008fd375d3d57459339652f2e181c049bbe29dc0d22e42b6759b34a0fb"
+    }
+  ],
+  "links": [
+    {
+      "label": "Pinned source audit",
+      "path": "docs/evidence/br033-source-audit.json"
+    },
+    {
+      "label": "Reference and control limitations",
+      "path": "docs/research-rounds/BR-033-results.md"
+    },
+    {
+      "label": "Official AeroPath repository",
+      "path": "https://github.com/raidionics/AeroPath"
+    },
+    {
+      "label": "Pinned data mirror",
+      "path": "https://huggingface.co/datasets/andreped/AeroPath/tree/6d0f831ca22bf57918aba3980ae475c94d45b997"
+    }
+  ]
+}

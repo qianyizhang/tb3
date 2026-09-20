@@ -6,5 +6,5 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-015-clinical-evidence](../../../../../docs/research-rounds/BR-015-clinical-evidence.md)
-- [BR-015-results](../../../../../docs/research-rounds/BR-015-results.md)
+- [BR-015-clinical-evidence](../../../../docs/research-rounds/BR-015-clinical-evidence.md)
+- [BR-015-results](../../../../docs/research-rounds/BR-015-results.md)

@@ -6,5 +6,5 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-028-registration-3d-source](../../../../../docs/research-rounds/BR-028-registration-3d-source.md)
-- [BR-028-results](../../../../../docs/research-rounds/BR-028-results.md)
+- [BR-028-registration-3d-source](../../../../docs/research-rounds/BR-028-registration-3d-source.md)
+- [BR-028-results](../../../../docs/research-rounds/BR-028-results.md)

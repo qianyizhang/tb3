@@ -3,16 +3,31 @@
   "kind": "finding",
   "id": "cardiac-motion-current-synthesis",
   "group_id": "cardiac-motion",
-  "title": "Cardiac motion \u2014 current evidence",
-  "claim": "Synthetic material truth, supplied masks and clinical cavity references answer different questions. Similar surface geometry does not establish accurate volume, EF or strain.",
+  "title": "Mesh construction succeeds while material and clinical accuracy remain limited",
+  "claim": "In BR-035, both Sol/xhigh conditions reconstructed moving meshes from 30 supplied STRAUS wall masks and passed construction and independently checked field calculations. Radial strain error remained 7.37 pp with masks alone and 5.45 pp with matching ultrasound, above the separate 5 pp radial-strain target. In BR-034, image-driven clinical tracking responded to altered inputs but underestimated reference EF by 23–30 pp across three selected scans. The BR-035 clinical cavity-mask replay instead preserved the already encoded volume curve.",
   "evidence": [
     {
       "path": "docs/evidence/br035-segmentation-mechanics-results.json",
       "sha256": "12806e221bc93b8400dbe2d950e67ed89b6f2fb396ba7e76b2833fa42e00fed2"
+    },
+    {
+      "path": "docs/evidence/br034-clinical-adaptation-results.json",
+      "sha256": "252f9c3da79e7117324eaef96c6551bd4d05ea3c100cf3548c84937a110d70bc"
+    },
+    {
+      "path": "docs/research-rounds/BR-035-results.md",
+      "sha256": "d87d63f0a65ca4424feec6716b8be55390cc72a0f021d6688c9052d42d34bc52"
+    },
+    {
+      "path": "docs/research-rounds/BR-034-results.md",
+      "sha256": "59992d48561779ed126a7fafc4ae31a14f56afe68034cd84511a3516f7a310fd"
     }
   ],
   "limitations": [
-    "Read the group story and protocol for case, assistance, reference and measurement limitations. Historical evidence is not submission qualification."
+    "One fresh attempt per BR-035 condition on one synthetic case; mask occupancy does not uniquely determine material correspondence, and lower radial error with ultrasound is not a controlled causal benefit.",
+    "Construction reward does not require matching the simulator’s strain. Both submitted meshes had six nonmanifold boundary edges outside the frozen construction checks.",
+    "Clinical cavity masks encode EF and contain no myocardial-wall material truth; the 0.0249 pp EF error in replay demonstrates geometry preservation, not independent functional discovery.",
+    "BR-034 supplied an initial reference surface and uses operator/software-derived later surfaces without independent cardiologist adjudication. Earlier FeEcho4D author pilots, STRAUS simulation and raw-image EchoSlicer reconstruction answer different questions."
   ],
   "links": [
     {

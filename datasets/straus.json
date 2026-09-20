@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-straus",
+  "title": "Multimodality STRAUS simulated ultrasound and material motion",
+  "version_note": "BR-029 integrity review dated 2026-09-16 verifies retained patient01_healthy image/mesh and patient04_lbbb mesh manifests. BR-035 reuses the audited 30-frame healthy simulation; exact task transformations remain experiment-specific.",
+  "terms_note": "Public Girder access was recorded in the September 2026 source review, but public downloading did not establish redistribution permission. Source assets were kept local; no current license determination is added.",
+  "reference_note": "Simulator meshes have persistent topology and material identities, unlike clinical image-derived contours. Directional strain excludes elements without valid source directions. Synthetic truth is not measured patient strain; matching masks alone does not uniquely determine material motion.",
+  "access_note": "Healthy ultrasound and meshes and the separate LBBB mesh sequence were retained and hash-verified in BR-029. The BR-025 inventory-only note predates those acquisitions and remains historical.",
+  "evidence": [
+    {
+      "path": "docs/evidence/br029-dynamic-heart-integrity.json",
+      "sha256": "ac357b31f1ea261507f6edc4ca74c26d0926d9c1d4a1eb701b96e360e65b3524"
+    },
+    {
+      "path": "docs/research-rounds/BR-029-dynamic-heart-modeling.md",
+      "sha256": "35cca70aacc1b3e7a01737939c4094980f1f31a48239ac4d1b0fda11f8aab2ae"
+    },
+    {
+      "path": "docs/evidence/br035-segmentation-mechanics-results.json",
+      "sha256": "12806e221bc93b8400dbe2d950e67ed89b6f2fb396ba7e76b2833fa42e00fed2"
+    }
+  ],
+  "links": [
+    {
+      "label": "Source integrity and errata",
+      "path": "docs/evidence/br029-dynamic-heart-integrity.json"
+    },
+    {
+      "label": "Material-reference audit",
+      "path": "docs/research-rounds/BR-029-dynamic-heart-modeling.md"
+    },
+    {
+      "label": "Source project",
+      "path": "https://humanheart-project.creatis.insa-lyon.fr/multimodalityStraus.html"
+    }
+  ]
+}

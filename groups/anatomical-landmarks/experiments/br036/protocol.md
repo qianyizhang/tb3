@@ -6,6 +6,6 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-036-results](../../../../../docs/research-rounds/BR-036-results.md)
-- [BR-036-semantic-landmarks](../../../../../docs/research-rounds/BR-036-semantic-landmarks.md)
-- [BR-036-traces](../../../../../docs/research-rounds/BR-036-traces.md)
+- [BR-036-results](../../../../docs/research-rounds/BR-036-results.md)
+- [BR-036-semantic-landmarks](../../../../docs/research-rounds/BR-036-semantic-landmarks.md)
+- [BR-036-traces](../../../../docs/research-rounds/BR-036-traces.md)

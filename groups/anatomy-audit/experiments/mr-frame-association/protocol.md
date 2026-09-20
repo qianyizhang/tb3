@@ -6,4 +6,4 @@
 
 ## Retained protocol and observations
 
-- [Frozen task](../../../../../probes/mr-frame-association/instruction.md)
+- [Frozen task](../../../../probes/mr-frame-association/instruction.md)

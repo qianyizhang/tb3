@@ -6,4 +6,4 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-027-cardiac-video-difficulty](../../../../../docs/research-rounds/BR-027-cardiac-video-difficulty.md)
+- [BR-027-cardiac-video-difficulty](../../../../docs/research-rounds/BR-027-cardiac-video-difficulty.md)

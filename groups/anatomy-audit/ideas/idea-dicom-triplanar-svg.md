@@ -4,9 +4,9 @@ kind = "idea"
 id = "idea-dicom-triplanar-svg"
 group_id = "anatomy-audit"
 title = "DICOM patient-coordinate triplanar SVG"
-next_action = "Retired after one healthy Terra/high pass; preserve evidence and return to source selection."
-decision_provenance = "Imported authored catalog state; no new user approval inferred."
-idea_state = "exploring"
+next_action = "Parked after completed calibration; no follow-up trial is scheduled. Retain original evidence and reopen only under the conditions below."
+decision_provenance = "User accepted the parking recommendation on 2026-09-21 in codex://threads/01a0c040-3777-7b72-b932-6e6b118304a2; decision decision-fd16fb33e2fc44ca. Historical outcomes remain unchanged."
+idea_state = "parked"
 
 [[sources]]
 url = "codex://threads/01a0a0cf-3d4b-7f00-a47f-4133211cb483"
@@ -38,4 +38,8 @@ Requires a correct physical affine and source-reference mapping. Terra achieved 
 
 ## Reopen when
 
-Retired after one healthy Terra/high pass; preserve evidence and return to source selection.
+Reopen if a newly curated oblique acquisition or sparse SEG source-reference variant exposes a reproduced geometry or frame-association defect. Audit its physical-coordinate oracle and input-legal control before proposing a separately authorized trial.
+
+## Current disposition
+
+The completed patient-coordinate triplanar SVG calibration passed with Terra/high, including Dice 1.0 on all 72 retained label/view comparisons; no follow-up trial is scheduled. Preserve the frozen task and observed outcome. The user accepted parking on 2026-09-21 in [the refinement task](codex://threads/01a0c040-3777-7b72-b932-6e6b118304a2). This does not close the broader scientific question.

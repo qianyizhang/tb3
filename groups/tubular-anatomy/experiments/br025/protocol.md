@@ -6,4 +6,4 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-025-vessel-connectivity](../../../../../docs/research-rounds/BR-025-vessel-connectivity.md)
+- [BR-025-vessel-connectivity](../../../../docs/research-rounds/BR-025-vessel-connectivity.md)

@@ -3,16 +3,26 @@
   "kind": "finding",
   "id": "anatomy-audit-current-synthesis",
   "group_id": "anatomy-audit",
-  "title": "Anatomy audit \u2014 current evidence",
-  "claim": "Supplied-mask auditing differs from segmentation from scratch. Inventory and image context can change an outcome; broad and focused audits are separate conditions.",
+  "title": "A focused audit found tissue missed in the broad audit",
+  "claim": "In BR-017, Sol/xhigh missed a 21.04 mL pancreas-to-duodenum tissue reassignment during a broad 13-organ audit, then identified the correct host, included organ and interior point in a fresh pair-focused audit of the same data. Separate whole-absorption and unchanged-label conditions passed. This establishes a supplied-mask auditing capability with a scope-dependent miss on this fixture.",
   "evidence": [
     {
       "path": "docs/evidence/br017-results.json",
       "sha256": "1c021354010798acb1961c19d42be628ffd0745dedff5057c33f0b7fe2817a49"
+    },
+    {
+      "path": "docs/research-rounds/BR-017-traces.md",
+      "sha256": "2a29c2a85c996119bf2a651f50d179e17c34e0220cd291154433ba1a5758160f"
+    },
+    {
+      "path": "docs/research-rounds/BR-017-absorbed-anatomy.md",
+      "sha256": "035cf6e54452c0379220e4f92d2939ddc852e7f8fe93ee9ed970335325dc1949"
     }
   ],
   "limitations": [
-    "Read the group story and protocol for case, assistance, reference and measurement limitations. Historical evidence is not submission qualification."
+    "Each condition has one fresh attempt on one public case; the focused pass does not establish that attention alone caused the difference.",
+    "The agent received full CT, masks, proposed organ names and rendering helpers; this is an audit of supplied segmentations, not segmentation from scratch.",
+    "The controlled edit and its scoring point do not establish source contour accuracy or clinical diagnostic performance. Earlier calibration experiments remain dependencies for review propagation, not additional replications of BR-017."
   ],
   "links": [
     {

@@ -6,4 +6,4 @@ Unfinished report-backed reading scaffold archived under probes/diagnostic-readi
 
 ## Retained protocol and observations
 
-- [BR-018-report-backed-diagnosis](../../../../../docs/research-rounds/BR-018-report-backed-diagnosis.md)
+- [BR-018-report-backed-diagnosis](../../../../docs/research-rounds/BR-018-report-backed-diagnosis.md)

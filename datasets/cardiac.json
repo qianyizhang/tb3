@@ -2,8 +2,8 @@
   "schema_version": 2,
   "kind": "dataset",
   "id": "dataset-cardiac",
-  "title": "Cardiac reference sources",
-  "version_note": "Exact per-experiment bytes and reference version are in the source receipts. The cited report has navigation-only edits; its original path and digest are retained in archive/manifest.json.",
+  "title": "Cardiac source overview and series closeout",
+  "version_note": "Historical series overview. Individually navigable source records distinguish FeEcho4D fitted references, STRAUS simulation, EchoSlicer images without reconstruction truth and EchoXFlow clinical surfaces. Exact task bytes remain in experiment receipts.",
   "terms_note": "Preserve recorded source terms; access and redistribution require source-specific review.",
   "evidence": [
     {
@@ -15,6 +15,22 @@
     {
       "label": "Source authority",
       "path": "groups/cardiac-motion/history/br025-br035-closeout.md"
+    },
+    {
+      "label": "FeEcho4D annotations and fitted meshes",
+      "path": "datasets/feecho4d.json"
+    },
+    {
+      "label": "STRAUS simulated material motion",
+      "path": "datasets/straus.json"
+    },
+    {
+      "label": "EchoSlicer real images without reconstruction truth",
+      "path": "datasets/echoslicer.json"
+    },
+    {
+      "label": "EchoXFlow clinical surface references",
+      "path": "datasets/echoxflow.json"
     }
   ]
 }

@@ -6,6 +6,6 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-017-absorbed-anatomy](../../../../../docs/research-rounds/BR-017-absorbed-anatomy.md)
-- [BR-017-results](../../../../../docs/research-rounds/BR-017-results.md)
-- [BR-017-traces](../../../../../docs/research-rounds/BR-017-traces.md)
+- [BR-017-absorbed-anatomy](../../../../docs/research-rounds/BR-017-absorbed-anatomy.md)
+- [BR-017-results](../../../../docs/research-rounds/BR-017-results.md)
+- [BR-017-traces](../../../../docs/research-rounds/BR-017-traces.md)

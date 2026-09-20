@@ -6,5 +6,5 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-039-ct-landmarks](../../../../../docs/research-rounds/BR-039-ct-landmarks.md)
-- [BR-039-results](../../../../../docs/research-rounds/BR-039-results.md)
+- [BR-039-ct-landmarks](../../../../docs/research-rounds/BR-039-ct-landmarks.md)
+- [BR-039-results](../../../../docs/research-rounds/BR-039-results.md)

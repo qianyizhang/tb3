@@ -6,5 +6,5 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-013-abdominal-direction](../../../../../docs/research-rounds/BR-013-abdominal-direction.md)
-- [BR-013-results](../../../../../docs/research-rounds/BR-013-results.md)
+- [BR-013-abdominal-direction](../../../../docs/research-rounds/BR-013-abdominal-direction.md)
+- [BR-013-results](../../../../docs/research-rounds/BR-013-results.md)

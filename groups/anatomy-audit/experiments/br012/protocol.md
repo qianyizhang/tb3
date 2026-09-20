@@ -6,4 +6,4 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-012-anatomy-curation](../../../../../docs/research-rounds/BR-012-anatomy-curation.md)
+- [BR-012-anatomy-curation](../../../../docs/research-rounds/BR-012-anatomy-curation.md)

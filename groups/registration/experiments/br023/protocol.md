@@ -6,6 +6,6 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-023-component-plan](../../../../../docs/research-rounds/BR-023-component-plan.md)
-- [BR-023-results](../../../../../docs/research-rounds/BR-023-results.md)
-- [BR-023-sol-registration](../../../../../docs/research-rounds/BR-023-sol-registration.md)
+- [BR-023-component-plan](../../../../docs/research-rounds/BR-023-component-plan.md)
+- [BR-023-results](../../../../docs/research-rounds/BR-023-results.md)
+- [BR-023-sol-registration](../../../../docs/research-rounds/BR-023-sol-registration.md)

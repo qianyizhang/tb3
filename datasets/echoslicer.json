@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-echoslicer",
+  "title": "EchoSlicer real volunteer 3D echo",
+  "version_note": "BR-032 source review on 2026-09-16 inspected code commit 78f7085104492d5229b1bb96b7748ad9d950e53d and the release dated 2025-11-19. The selected dataset/A_0.dcm SHA-256 is retained in source notes; 18 native phases were decoded.",
+  "terms_note": "Historical review established public downloading, not redistribution permission. Original scan and case outputs stay local. No current license or access check was performed.",
+  "reference_note": "Recorded volunteer images have no paired reference reconstruction or clinical EF oracle in this case. Supplied calibrated planes are geometric slices, not expert-certified standard views; a fitted animation is not anatomical accuracy evidence.",
+  "access_note": "Only the selected archive member was retrieved through byte ranges for BR-032. Source DICOM and original metadata stayed outside the solver package; public pretraining exposure remains unknown.",
+  "evidence": [
+    {
+      "path": "docs/research-rounds/BR-032-source-notes.md",
+      "sha256": "8ee424f9b38ec5daac7c252ff3b324c7c7ede5d4ef7a3c44d43ae3527f0857a0"
+    },
+    {
+      "path": "docs/research-rounds/BR-032-real-echo-case.md",
+      "sha256": "160a8d359ee71917694b0bea29ed098229b576fb24451512519893fc953a9a01"
+    },
+    {
+      "path": "docs/evidence/br032-real-echo-results.json",
+      "sha256": "48973ce75ce6105b1ec8396142f4afdfd16225aac41890495af1e3e8ec040a93"
+    }
+  ],
+  "links": [
+    {
+      "label": "Source and contamination notes",
+      "path": "docs/research-rounds/BR-032-source-notes.md"
+    },
+    {
+      "label": "Retained descriptive result",
+      "path": "docs/evidence/br032-real-echo-results.json"
+    },
+    {
+      "label": "Official repository",
+      "path": "https://github.com/echonet/3d-echo"
+    }
+  ]
+}

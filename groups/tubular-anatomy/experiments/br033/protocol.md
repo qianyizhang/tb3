@@ -6,6 +6,6 @@ Historical index; protocols own case/condition/revision boundaries. No model att
 
 ## Retained protocol and observations
 
-- [BR-033-brain-resumption](../../../../../docs/research-rounds/BR-033-brain-resumption.md)
-- [BR-033-brain-vessel-airway-difficulty](../../../../../docs/research-rounds/BR-033-brain-vessel-airway-difficulty.md)
-- [BR-033-results](../../../../../docs/research-rounds/BR-033-results.md)
+- [BR-033-brain-resumption](../../../../docs/research-rounds/BR-033-brain-resumption.md)
+- [BR-033-brain-vessel-airway-difficulty](../../../../docs/research-rounds/BR-033-brain-vessel-airway-difficulty.md)
+- [BR-033-results](../../../../docs/research-rounds/BR-033-results.md)
