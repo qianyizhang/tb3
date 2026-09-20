@@ -1,0 +1,85 @@
+{
+  "round": "BR-042",
+  "source": "https://github.com/kitbransby/ImageCAS-X",
+  "source_record": "https://zenodo.org/records/21887809",
+  "case": 1,
+  "shape": [
+    512,
+    512,
+    275
+  ],
+  "affine": [
+    [
+      -0.376953125,
+      0.0,
+      0.0,
+      61.3115234375
+    ],
+    [
+      -0.0,
+      0.376953125,
+      0.0,
+      66.1884765625
+    ],
+    [
+      0.0,
+      -0.0,
+      0.5,
+      39.45000076293945
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "mask_affine_matches": true,
+  "trees": {
+    "left": {
+      "points": 857,
+      "polylines": 13,
+      "labels": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        14
+      ],
+      "all_points_inside_native_CTA": true
+    },
+    "right": {
+      "points": 500,
+      "polylines": 5,
+      "labels": [
+        9,
+        10,
+        11
+      ],
+      "all_points_inside_native_CTA": true
+    }
+  },
+  "labeled_reference_lengths_mm": {
+    "LM": 8.295005303758952,
+    "LAD": 152.53267579441206,
+    "LCx": 89.63540942850298,
+    "D1": 72.35432107611341,
+    "D2": 14.112174076589547,
+    "OM1": 11.449793986080811,
+    "OM2": 14.133014572343647,
+    "RCA": 132.50800818275667,
+    "R-PDA": 46.07378115203864,
+    "R-PLA": 51.25809872731147,
+    "Other": 53.885621058012404
+  },
+  "sources": {
+    "runs/br030-vessel-geometry/sources/coronary/original/1.img.nii.gz": "c020b1244ac6c841924e27c3f5c328e6cf1eefb70bc14d3b725959ed99b656ff",
+    "runs/br030-vessel-geometry/sources/coronary/ImageCAS-X_dataset/segmentations/1.coronary.nii.gz": "48fc4523a9e5cc704b2a453ab7771023d7ba2d9c3ad8096f4259bbec0f1b73b8",
+    "runs/br030-vessel-geometry/sources/coronary/ImageCAS-X_dataset/centerlines/1.coronary_left_centerline.vtk": "52b716b57a3d93c66e72accac8a8a53cf494ce5428ca4a426920e43ec2d7fc64",
+    "runs/br030-vessel-geometry/sources/coronary/ImageCAS-X_dataset/centerlines/1.coronary_right_centerline.vtk": "f197b05eac9b739b2c542b3f3b03cdf3f7ff3ceaa677ce344f0e5dc71e2e15cb"
+  },
+  "scope": "Both coronary trees only. No complete thoracic vessel or clinical relevance GT. Segment labels and centerlines are dataset references, not independent expert adjudication. Full native CTA replaces prior author-selected crop."
+}

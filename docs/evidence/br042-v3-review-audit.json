@@ -1,0 +1,2797 @@
+{
+  "frozen_tasks": {
+    "br041-freeze.json": {
+      "tasks_checked": 1,
+      "unchanged": true
+    },
+    "br042-freeze.json": {
+      "tasks_checked": 1,
+      "unchanged": true
+    },
+    "br042-v2-freeze.json": {
+      "tasks_checked": 1,
+      "unchanged": true
+    },
+    "br042-v3-freeze.json": {
+      "tasks_checked": 1,
+      "unchanged": true
+    }
+  },
+  "same_task_checksum": true,
+  "normal_model_completions": [
+    "sol-xhigh",
+    "astra-medium"
+  ],
+  "interrupted_model_attempts": [
+    "astra-xhigh"
+  ],
+  "setup_exclusions": [
+    "astra-medium-setup-failed",
+    "astra-xhigh-setup-failed"
+  ],
+  "models": [
+    {
+      "phase": "sol-xhigh",
+      "answer_sha256": "ace1f28bfcc8b5b14f568c9d2901854222814b06145963ae4124f812d85d7f55",
+      "verifier_replay_matches": true,
+      "dense_distance_agreement": true,
+      "method_md_present": true,
+      "extraction_code_present": true,
+      "runtime_contexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "xhigh"
+        }
+      ],
+      "transport_message_count": 0
+    },
+    {
+      "phase": "astra-medium",
+      "answer_sha256": "09c7db103b3a79e6a4d294120a397fa6de7b060b1b6facac1836e81072cccc18",
+      "verifier_replay_matches": true,
+      "dense_distance_agreement": true,
+      "method_md_present": true,
+      "extraction_code_present": true,
+      "runtime_contexts": [
+        {
+          "model": "gpt-6-astra",
+          "effort": "medium"
+        }
+      ],
+      "transport_message_count": 0
+    },
+    {
+      "phase": "astra-xhigh",
+      "answer_sha256": "24e4a2100e03f3e7fe2388549c34926dc036a6bc4b36eb0430513c3c922d00cb",
+      "verifier_replay_matches": true,
+      "dense_distance_agreement": true,
+      "method_md_present": false,
+      "extraction_code_present": true,
+      "runtime_contexts": [
+        {
+          "model": "gpt-6-astra",
+          "effort": "xhigh"
+        }
+      ],
+      "transport_message_count": 7
+    }
+  ],
+  "source_access_review": {
+    "astra_xhigh_candidate": "False positive: requests is a local dictionary of route endpoints; requests.items() performs no network access.",
+    "scope": "Limited command trace scan; no case annotation retrieval observed. Not a provider identity or training-overlap attestation."
+  },
+  "native_coordinate_diagnostics": [
+    {
+      "phase": "sol-xhigh",
+      "per_polyline": [
+        {
+          "id": "LM",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 374.72821044921875,
+          "p10_HU": 345.51947021484375,
+          "voxel_min": [
+            238.0,
+            310.0,
+            150.0
+          ],
+          "voxel_max": [
+            249.0,
+            313.0000000000001,
+            157.0
+          ]
+        },
+        {
+          "id": "LAD",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 382.08428955078125,
+          "p10_HU": 310.17108154296875,
+          "voxel_min": [
+            248.27301283153508,
+            310.0,
+            51.0
+          ],
+          "voxel_max": [
+            409.0,
+            395.00000000000006,
+            150.0
+          ]
+        },
+        {
+          "id": "LCx",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 345.0244445800781,
+          "p10_HU": 282.1660461425781,
+          "voxel_min": [
+            249.0,
+            245.0,
+            94.0
+          ],
+          "voxel_max": [
+            406.0,
+            316.1092586089255,
+            152.98927273480732
+          ]
+        },
+        {
+          "id": "D1",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 339.19354248046875,
+          "p10_HU": 310.54620361328125,
+          "voxel_min": [
+            274.0,
+            314.14059655812895,
+            101.552960314649
+          ],
+          "voxel_max": [
+            359.0,
+            417.00000000000006,
+            121.9455923648768
+          ]
+        },
+        {
+          "id": "D2",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 355.3507385253906,
+          "p10_HU": 321.7705993652344,
+          "voxel_min": [
+            316.0,
+            331.0,
+            66.0
+          ],
+          "voxel_max": [
+            385.0,
+            421.00000000000006,
+            90.0
+          ]
+        },
+        {
+          "id": "OM1",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 356.033935546875,
+          "p10_HU": 307.1182556152344,
+          "voxel_min": [
+            325.0,
+            254.0,
+            91.0
+          ],
+          "voxel_max": [
+            406.9990628956366,
+            410.00000000000006,
+            147.97720819909483
+          ]
+        },
+        {
+          "id": "OM2",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 329.5327453613281,
+          "p10_HU": 279.302490234375,
+          "voxel_min": [
+            392.0,
+            314.000440743367,
+            82.0
+          ],
+          "voxel_max": [
+            422.00000000000006,
+            393.00000000000006,
+            116.0
+          ]
+        },
+        {
+          "id": "R_PDA",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 344.564453125,
+          "p10_HU": 286.8070983886719,
+          "voxel_min": [
+            248.0,
+            288.0,
+            47.0
+          ],
+          "voxel_max": [
+            364.0,
+            372.00000000000006,
+            76.99874226562613
+          ]
+        },
+        {
+          "id": "R_PLA",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 359.6654052734375,
+          "p10_HU": 312.1828918457031,
+          "voxel_min": [
+            245.0,
+            223.0,
+            70.00000000000003
+          ],
+          "voxel_max": [
+            284.0,
+            268.0,
+            85.0
+          ]
+        },
+        {
+          "id": "RCA",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 379.2911682128906,
+          "p10_HU": 310.5440673828125,
+          "voxel_min": [
+            109.14550385743006,
+            242.0,
+            43.0
+          ],
+          "voxel_max": [
+            269.0,
+            397.00000000000006,
+            161.0
+          ]
+        },
+        {
+          "id": "right_pulmonary_artery",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 372.0,
+          "p10_HU": 317.1949768066406,
+          "voxel_min": [
+            107.07925126858368,
+            237.70971075737305,
+            144.0
+          ],
+          "voxel_max": [
+            252.66512883994508,
+            284.0,
+            160.00000000000006
+          ]
+        },
+        {
+          "id": "left_pulmonary_artery",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 354.61077880859375,
+          "p10_HU": 318.41064453125,
+          "voxel_min": [
+            211.0,
+            278.0515300283982,
+            160.0
+          ],
+          "voxel_max": [
+            296.0,
+            284.33909195719497,
+            170.7744749568017
+          ]
+        },
+        {
+          "id": "ascending_aorta",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 391.2477722167969,
+          "p10_HU": 366.58453369140625,
+          "voxel_min": [
+            132.00675789448542,
+            285.0,
+            135.0
+          ],
+          "voxel_max": [
+            178.0,
+            317.9914183023019,
+            274.0
+          ]
+        },
+        {
+          "id": "descending_thoracic_aorta",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 363.67828369140625,
+          "p10_HU": 333.893798828125,
+          "voxel_min": [
+            240.0,
+            80.02000252139189,
+            100.0
+          ],
+          "voxel_max": [
+            250.0,
+            135.0,
+            274.0
+          ]
+        },
+        {
+          "id": "main_pulmonary_artery",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 383.8178405761719,
+          "p10_HU": 357.73529052734375,
+          "voxel_min": [
+            205.14897670540878,
+            284.0,
+            130.0
+          ],
+          "voxel_max": [
+            220.0,
+            340.00000000000006,
+            160.0
+          ]
+        },
+        {
+          "id": "superior_vena_cava",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 283.02130126953125,
+          "p10_HU": 213.5645294189453,
+          "voxel_min": [
+            69.0574461678303,
+            260.0,
+            150.0
+          ],
+          "voxel_max": [
+            91.99434036820098,
+            275.0,
+            270.0
+          ]
+        }
+      ],
+      "note": "Source support diagnostics only. Bright intensity is not proof of vessel identity; no new expert adjudication."
+    },
+    {
+      "phase": "astra-medium",
+      "per_polyline": [
+        {
+          "id": "LM",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 400.36407470703125,
+          "p10_HU": 375.2202453613281,
+          "voxel_min": [
+            221.99999917098447,
+            283.0000001658031,
+            166.0000004741211
+          ],
+          "voxel_max": [
+            249.00000082901556,
+            293.844611150259,
+            169.8405624741211
+          ]
+        },
+        {
+          "id": "LAD",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 297.8949279785156,
+          "p10_HU": 211.64559936523438,
+          "voxel_min": [
+            249.00000082901556,
+            282.4054593989638,
+            24.193572474121098
+          ],
+          "voxel_max": [
+            393.7383764559586,
+            453.7943794404145,
+            176.9999964741211
+          ]
+        },
+        {
+          "id": "D1",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 287.9200439453125,
+          "p10_HU": 230.20785522460938,
+          "voxel_min": [
+            266.42351734715027,
+            267.013641119171,
+            113.3130584741211
+          ],
+          "voxel_max": [
+            405.85037579274615,
+            292.7827655958549,
+            172.0810044741211
+          ]
+        },
+        {
+          "id": "D2_proximal",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 261.9190368652344,
+          "p10_HU": 153.2788848876953,
+          "voxel_min": [
+            343.9187815129534,
+            340.00648870466324,
+            135.0000004741211
+          ],
+          "voxel_max": [
+            387.4168450984456,
+            402.0000004974094,
+            171.92744047412108
+          ]
+        },
+        {
+          "id": "D2_lateral",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 106.75495147705078,
+          "p10_HU": 80.11274719238281,
+          "voxel_min": [
+            387.00000016580316,
+            378.0000004974094,
+            110.0000004741211
+          ],
+          "voxel_max": [
+            427.9999998341969,
+            402.0000004974094,
+            135.0000004741211
+          ]
+        },
+        {
+          "id": "D2_anterior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 161.66688537597656,
+          "p10_HU": 146.70999145507812,
+          "voxel_min": [
+            385.00000082901556,
+            402.0000004974094,
+            133.0000004741211
+          ],
+          "voxel_max": [
+            387.00000016580316,
+            411.9999998341969,
+            135.0000004741211
+          ]
+        },
+        {
+          "id": "LCx",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 281.56280517578125,
+          "p10_HU": 148.1023406982422,
+          "voxel_min": [
+            248.44001873575132,
+            189.9999991709845,
+            66.0000004741211
+          ],
+          "voxel_max": [
+            310.6990303834197,
+            283.0000001658031,
+            169.0000004741211
+          ]
+        },
+        {
+          "id": "OM1",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 143.925048828125,
+          "p10_HU": 88.86119079589844,
+          "voxel_min": [
+            298.340565388601,
+            188.01888016580313,
+            89.33407447412108
+          ],
+          "voxel_max": [
+            329.00000082901556,
+            191.1343550673575,
+            103.7999244741211
+          ]
+        },
+        {
+          "id": "LAD_septal_1",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 186.22927856445312,
+          "p10_HU": 152.3694610595703,
+          "voxel_min": [
+            289.7145061139896,
+            297.5769876891192,
+            160.0000004741211
+          ],
+          "voxel_max": [
+            294.99999883937824,
+            312.0000011606218,
+            173.5259804741211
+          ]
+        },
+        {
+          "id": "RCA",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 395.36431884765625,
+          "p10_HU": 344.0308837890625,
+          "voxel_min": [
+            109.05637521243524,
+            291.0000001658031,
+            43.034976474121095
+          ],
+          "voxel_max": [
+            217.00000082901556,
+            396.9958451398964,
+            137.9999864741211
+          ]
+        },
+        {
+          "id": "R_PLA",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 252.60037231445312,
+          "p10_HU": 118.9493179321289,
+          "voxel_min": [
+            217.00000082901556,
+            241.0000087875648,
+            39.33454447412109
+          ],
+          "voxel_max": [
+            355.00000016580316,
+            291.0000001658031,
+            52.9998284741211
+          ]
+        },
+        {
+          "id": "R_PDA",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 149.5860595703125,
+          "p10_HU": 104.56373596191406,
+          "voxel_min": [
+            217.00000082901556,
+            286.33162130569946,
+            24.000000474121094
+          ],
+          "voxel_max": [
+            354.00000049740936,
+            397.9999991709845,
+            46.000000474121094
+          ]
+        },
+        {
+          "id": "R_PDA_ventricular",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 167.91441345214844,
+          "p10_HU": 137.39212036132812,
+          "voxel_min": [
+            247.38048646632126,
+            289.00000082901556,
+            32.000000474121094
+          ],
+          "voxel_max": [
+            300.9999995025907,
+            314.00000049740936,
+            39.9892484741211
+          ]
+        },
+        {
+          "id": "R_acute_marginal",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 203.3990478515625,
+          "p10_HU": 108.96979522705078,
+          "voxel_min": [
+            121.56854101554404,
+            393.7464649948187,
+            57.02378847412109
+          ],
+          "voxel_max": [
+            188.9999995025907,
+            451.66023875647676,
+            89.99938647412108
+          ]
+        },
+        {
+          "id": "R_proximal_RV",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 195.94869995117188,
+          "p10_HU": 114.36634826660156,
+          "voxel_min": [
+            165.99999917098447,
+            363.9999998341969,
+            124.0000004741211
+          ],
+          "voxel_max": [
+            167.88686773056995,
+            389.2409207046632,
+            135.1226044741211
+          ]
+        },
+        {
+          "id": "R_conus",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 151.72494506835938,
+          "p10_HU": 103.59662628173828,
+          "voxel_min": [
+            179.9999998341969,
+            380.08853869430055,
+            134.9298564741211
+          ],
+          "voxel_max": [
+            193.75204393782386,
+            386.0000004974094,
+            154.0000004741211
+          ]
+        },
+        {
+          "id": "R_inferior_RV",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 178.23529052734375,
+          "p10_HU": 147.2574005126953,
+          "voxel_min": [
+            192.01115904663214,
+            313.82305276683945,
+            37.000000474121094
+          ],
+          "voxel_max": [
+            219.9999998341969,
+            317.9999991709845,
+            43.00264847412109
+          ]
+        },
+        {
+          "id": "ascending_aorta",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 0.9953703703703703,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 4.7412106596311787e-07,
+          "median_HU": 388.7539367675781,
+          "p10_HU": 361.8106689453125,
+          "voxel_min": [
+            138.01051108808292,
+            284.4629831295337,
+            125.0000004741211
+          ],
+          "voxel_max": [
+            208.17232232124354,
+            317.2829630673575,
+            274.00000047412107
+          ]
+        },
+        {
+          "id": "descending_aorta",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 0.9976019184652278,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 4.7412106596311787e-07,
+          "median_HU": 371.716796875,
+          "p10_HU": 334.9087219238281,
+          "voxel_min": [
+            161.97583303626945,
+            77.37523183419691,
+            4.741210943848273e-07
+          ],
+          "voxel_max": [
+            255.07803772020728,
+            212.20487941968912,
+            274.00000047412107
+          ]
+        },
+        {
+          "id": "pulmonary_trunk",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 233.8356475830078,
+          "p10_HU": 177.05519104003906,
+          "voxel_min": [
+            214.419178611399,
+            258.2101512953368,
+            168.9558484741211
+          ],
+          "voxel_max": [
+            265.4827690777202,
+            356.2008497409326,
+            227.0487784741211
+          ]
+        },
+        {
+          "id": "right_PA",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 312.681640625,
+          "p10_HU": 187.04652404785156,
+          "voxel_min": [
+            62.39135817616581,
+            221.10087941968914,
+            190.2041884741211
+          ],
+          "voxel_max": [
+            217.9738725803109,
+            258.2101512953368,
+            227.0487784741211
+          ]
+        },
+        {
+          "id": "left_PA",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 337.2942810058594,
+          "p10_HU": 313.1942443847656,
+          "voxel_min": [
+            214.419178611399,
+            191.3695487668394,
+            226.09767047412112
+          ],
+          "voxel_max": [
+            288.479599253886,
+            258.2101512953368,
+            250.4123644741211
+          ]
+        },
+        {
+          "id": "right_superior_PV",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 404.2900085449219,
+          "p10_HU": 372.2419128417969,
+          "voxel_min": [
+            54.99999883937825,
+            222.66624646632124,
+            163.00142247412109
+          ],
+          "voxel_max": [
+            125.30510640414508,
+            255.0734297202073,
+            189.00000047412107
+          ]
+        },
+        {
+          "id": "right_superior_PV_superior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 459.0381774902344,
+          "p10_HU": 387.0000305175781,
+          "voxel_min": [
+            46.40686408290156,
+            254.1830511088083,
+            189.00000047412107
+          ],
+          "voxel_max": [
+            56.0143530777202,
+            257.95309811398965,
+            225.7471704741211
+          ]
+        },
+        {
+          "id": "right_superior_PV_anterior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 442.6861877441406,
+          "p10_HU": 420.0843200683594,
+          "voxel_min": [
+            5.924119709844547,
+            254.98217699481864,
+            189.00000047412107
+          ],
+          "voxel_max": [
+            54.99999883937825,
+            306.3398305492228,
+            198.75956647412107
+          ]
+        },
+        {
+          "id": "right_inferior_PV",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 316.6543273925781,
+          "p10_HU": 288.1676940917969,
+          "voxel_min": [
+            1.1606217640292016e-06,
+            174.519305119171,
+            118.3770804741211
+          ],
+          "voxel_max": [
+            127.30259614507773,
+            189.05911030051817,
+            127.4078484741211
+          ]
+        },
+        {
+          "id": "right_inferior_PV_superior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 393.3237609863281,
+          "p10_HU": 332.2034606933594,
+          "voxel_min": [
+            40.000001160621764,
+            169.00000082901556,
+            121.28765847412109
+          ],
+          "voxel_max": [
+            119.96410014507774,
+            187.7567308601037,
+            161.0000004741211
+          ]
+        },
+        {
+          "id": "left_inferior_PV",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 370.24969482421875,
+          "p10_HU": 336.7845764160156,
+          "voxel_min": [
+            228.35630143005181,
+            144.30241541968917,
+            146.22043247412108
+          ],
+          "voxel_max": [
+            301.94554412435235,
+            165.253845388601,
+            158.0263264741211
+          ]
+        },
+        {
+          "id": "left_inferior_PV_lateral",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 362.31640625,
+          "p10_HU": 339.2843017578125,
+          "voxel_min": [
+            322.7463001865285,
+            144.99990532642488,
+            112.0000004741211
+          ],
+          "voxel_max": [
+            393.00000082901556,
+            162.00000049740936,
+            141.5131404741211
+          ]
+        },
+        {
+          "id": "left_inferior_PV_posterior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 372.5035400390625,
+          "p10_HU": 342.824951171875,
+          "voxel_min": [
+            301.94554412435235,
+            134.99999883937824,
+            141.5787324741211
+          ],
+          "voxel_max": [
+            373.99999917098444,
+            144.99998225906734,
+            155.0000004741211
+          ]
+        },
+        {
+          "id": "left_superior_PV",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 392.17791748046875,
+          "p10_HU": 373.9683532714844,
+          "voxel_min": [
+            234.91183535751298,
+            190.20221794818656,
+            188.27006047412107
+          ],
+          "voxel_max": [
+            308.37756667357513,
+            221.49524940932645,
+            206.9217004741211
+          ]
+        },
+        {
+          "id": "left_superior_PV_superior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 383.8283386230469,
+          "p10_HU": 304.17327880859375,
+          "voxel_min": [
+            308.2608598549223,
+            217.5046736580311,
+            206.9217004741211
+          ],
+          "voxel_max": [
+            320.92364385492226,
+            226.66473832124353,
+            220.33246647412108
+          ]
+        },
+        {
+          "id": "left_superior_PV_anterior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 437.8524475097656,
+          "p10_HU": 415.4125061035156,
+          "voxel_min": [
+            307.36203722279794,
+            221.49524940932645,
+            206.9217004741211
+          ],
+          "voxel_max": [
+            369.00000082901556,
+            314.00000049740936,
+            219.00000047412107
+          ]
+        },
+        {
+          "id": "left_lower_lobar_PA",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 309.9447937011719,
+          "p10_HU": 234.46847534179688,
+          "voxel_min": [
+            276.31315282901556,
+            83.90251556476687,
+            131.0446444741211
+          ],
+          "voxel_max": [
+            314.7986143834197,
+            195.61214789637307,
+            249.48664647412107
+          ]
+        },
+        {
+          "id": "left_upper_lobar_PA",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 0.9772727272727273,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 4.7412106596311787e-07,
+          "median_HU": 426.51043701171875,
+          "p10_HU": 326.97650146484375,
+          "voxel_min": [
+            286.926713865285,
+            201.4080621761658,
+            249.4526624741211
+          ],
+          "voxel_max": [
+            302.9400205595855,
+            211.4866362694301,
+            274.00000047412107
+          ]
+        },
+        {
+          "id": "right_lower_lobar_PA",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 165.14190673828125,
+          "p10_HU": 138.5911407470703,
+          "voxel_min": [
+            1.1606217640292016e-06,
+            196.53858934715032,
+            159.1573524741211
+          ],
+          "voxel_max": [
+            62.39135817616581,
+            223.69499506735758,
+            190.2041884741211
+          ]
+        },
+        {
+          "id": "right_upper_lobar_PA",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 0.9935897435897436,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 4.7412106596311787e-07,
+          "median_HU": 400.90081787109375,
+          "p10_HU": 338.7310791015625,
+          "voxel_min": [
+            22.365606963730585,
+            221.36423577202078,
+            202.26316447412108
+          ],
+          "voxel_max": [
+            102.4510021968912,
+            282.44939589637306,
+            274.00000047412107
+          ]
+        },
+        {
+          "id": "SVC",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 0.9935897435897436,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 4.7412106596311787e-07,
+          "median_HU": 182.29306030273438,
+          "p10_HU": 116.00952911376953,
+          "voxel_min": [
+            73.39385086010363,
+            260.21505044559586,
+            155.5773704741211
+          ],
+          "voxel_max": [
+            98.11786926424871,
+            274.676028849741,
+            274.00000047412107
+          ]
+        },
+        {
+          "id": "LSPV_anterior_superior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 270.883056640625,
+          "p10_HU": 233.04835510253906,
+          "voxel_min": [
+            369.00000082901556,
+            314.00000049740936,
+            219.00000047412107
+          ],
+          "voxel_max": [
+            378.00000049740936,
+            322.00000049740936,
+            236.00000047412107
+          ]
+        },
+        {
+          "id": "LSPV_anterior_medial",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 429.1917724609375,
+          "p10_HU": 350.2201232910156,
+          "voxel_min": [
+            326.99999883937824,
+            314.00000049740936,
+            217.00000047412107
+          ],
+          "voxel_max": [
+            369.00000082901556,
+            405.9999991709845,
+            219.00000047412107
+          ]
+        },
+        {
+          "id": "LSPV_anterior_lateral",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 419.49151611328125,
+          "p10_HU": 335.60198974609375,
+          "voxel_min": [
+            367.9694774715026,
+            317.50108567875645,
+            198.00000047412107
+          ],
+          "voxel_max": [
+            382.8906802072539,
+            380.9999995025907,
+            218.00024447412108
+          ]
+        },
+        {
+          "id": "LSPV_anterior_lateral_terminal",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 265.2835693359375,
+          "p10_HU": 255.42135620117188,
+          "voxel_min": [
+            379.9999998341969,
+            380.9999995025907,
+            197.00415847412108
+          ],
+          "voxel_max": [
+            380.99999950259064,
+            390.9999988393783,
+            198.00000047412107
+          ]
+        },
+        {
+          "id": "LSPV_anterior_lateral_inferior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 272.999755859375,
+          "p10_HU": 221.16477966308594,
+          "voxel_min": [
+            378.00000049740936,
+            380.9999995025907,
+            193.00000047412107
+          ],
+          "voxel_max": [
+            379.9999998341969,
+            384.0000011606218,
+            198.00000047412107
+          ]
+        },
+        {
+          "id": "RIPV_superior_lateral",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 406.0,
+          "p10_HU": 365.2602844238281,
+          "voxel_min": [
+            1.0000008290155336,
+            164.9999995025907,
+            157.0724924741211
+          ],
+          "voxel_max": [
+            40.000001160621764,
+            170.90260609326424,
+            161.0000004741211
+          ]
+        },
+        {
+          "id": "RIPV_superior_posterior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 443.227294921875,
+          "p10_HU": 405.2474670410156,
+          "voxel_min": [
+            14.599909305699498,
+            101.99999917098444,
+            161.0000004741211
+          ],
+          "voxel_max": [
+            40.000001160621764,
+            169.00000082901556,
+            187.00000047412107
+          ]
+        },
+        {
+          "id": "LIPV_superior_lateral_superior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 456.7384033203125,
+          "p10_HU": 340.22064208984375,
+          "voxel_min": [
+            373.99999917098444,
+            98.00000049740936,
+            155.0000004741211
+          ],
+          "voxel_max": [
+            398.99999883937824,
+            134.99999883937824,
+            182.00000047412107
+          ]
+        },
+        {
+          "id": "LIPV_superior_lateral_stem",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 366.435302734375,
+          "p10_HU": 351.130126953125,
+          "voxel_min": [
+            373.99999917098444,
+            131.9999998341969,
+            151.6032064741211
+          ],
+          "voxel_max": [
+            385.00000082901556,
+            135.83680049740934,
+            155.0000004741211
+          ]
+        },
+        {
+          "id": "LIPV_superior_lateral_lateral",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 357.733154296875,
+          "p10_HU": 326.10186767578125,
+          "voxel_min": [
+            385.00000082901556,
+            131.9999998341969,
+            146.0000004741211
+          ],
+          "voxel_max": [
+            443.00000016580316,
+            140.9520253678757,
+            152.0000004741211
+          ]
+        },
+        {
+          "id": "LIPV_superior_lateral_posterior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 323.3965759277344,
+          "p10_HU": 291.1465148925781,
+          "voxel_min": [
+            385.00000082901556,
+            90.00000049740936,
+            152.0000004741211
+          ],
+          "voxel_max": [
+            416.00000116062176,
+            131.9999998341969,
+            155.9993484741211
+          ]
+        },
+        {
+          "id": "LIPV_posterior_basal_stem",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 392.2358703613281,
+          "p10_HU": 366.318359375,
+          "voxel_min": [
+            308.0525660518135,
+            115.9999998341969,
+            140.0979004741211
+          ],
+          "voxel_max": [
+            331.00000016580316,
+            142.40140717098444,
+            144.1526964741211
+          ]
+        },
+        {
+          "id": "LIPV_posterior_basal_superior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 344.1007995605469,
+          "p10_HU": 321.3421325683594,
+          "voxel_min": [
+            331.00000016580316,
+            62.999998839378236,
+            141.0000004741211
+          ],
+          "voxel_max": [
+            370.00000049740936,
+            115.9999998341969,
+            153.0000004741211
+          ]
+        },
+        {
+          "id": "LIPV_posterior_basal_inferior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 393.5655212402344,
+          "p10_HU": 277.8185729980469,
+          "voxel_min": [
+            331.00000016580316,
+            78.99999883937824,
+            116.0000004741211
+          ],
+          "voxel_max": [
+            368.00000116062176,
+            115.9999998341969,
+            141.0000004741211
+          ]
+        },
+        {
+          "id": "LIPV_lateral_basal_posterior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 297.2637634277344,
+          "p10_HU": 276.59698486328125,
+          "voxel_min": [
+            393.00000082901556,
+            140.9999995025907,
+            110.0000004741211
+          ],
+          "voxel_max": [
+            425.00000082901556,
+            162.00000049740936,
+            112.99312847412111
+          ]
+        },
+        {
+          "id": "LIPV_lateral_basal_lateral",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 362.8049011230469,
+          "p10_HU": 336.257568359375,
+          "voxel_min": [
+            393.00000082901556,
+            162.00000049740936,
+            110.0000004741211
+          ],
+          "voxel_max": [
+            405.99999917098444,
+            170.00000049740936,
+            112.0000004741211
+          ]
+        },
+        {
+          "id": "LUL_PA_anterior_stem",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 363.98455810546875,
+          "p10_HU": 317.1783752441406,
+          "voxel_min": [
+            285.39765902590676,
+            207.32849326424872,
+            240.5540244741211
+          ],
+          "voxel_max": [
+            334.99999883937824,
+            278.99999883937824,
+            249.9983424741211
+          ]
+        },
+        {
+          "id": "LUL_PA_anterior_lateral",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 471.636962890625,
+          "p10_HU": 409.82781982421875,
+          "voxel_min": [
+            334.99999883937824,
+            275.0007747979275,
+            244.00000047412107
+          ],
+          "voxel_max": [
+            377.00000082901556,
+            282.00000049740936,
+            268.00000047412107
+          ]
+        },
+        {
+          "id": "LUL_PA_anterior_lateral_terminal",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 287.8157043457031,
+          "p10_HU": 237.87713623046875,
+          "voxel_min": [
+            377.00000082901556,
+            282.00000049740936,
+            266.00000047412107
+          ],
+          "voxel_max": [
+            386.00000049740936,
+            286.99999883937824,
+            268.00000047412107
+          ]
+        },
+        {
+          "id": "LUL_PA_anterior_superior_terminal",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 266.60894775390625,
+          "p10_HU": 249.93966674804688,
+          "voxel_min": [
+            377.00000082901556,
+            282.00000049740936,
+            268.00000047412107
+          ],
+          "voxel_max": [
+            379.9999998341969,
+            283.0000001658031,
+            273.00000047412107
+          ]
+        },
+        {
+          "id": "LUL_PA_anterior_medial_stem",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 433.8773193359375,
+          "p10_HU": 411.30908203125,
+          "voxel_min": [
+            334.99999883937824,
+            278.99999883937824,
+            236.00000047412107
+          ],
+          "voxel_max": [
+            341.4297213678757,
+            341.9999991709845,
+            244.00000047412107
+          ]
+        },
+        {
+          "id": "LUL_PA_anterior_medial",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 425.3722229003906,
+          "p10_HU": 407.1141052246094,
+          "voxel_min": [
+            315.9999998341969,
+            341.9999991709845,
+            236.00000047412107
+          ],
+          "voxel_max": [
+            340.99999950259064,
+            371.0000001658031,
+            238.00000047412107
+          ]
+        },
+        {
+          "id": "LUL_PA_anterior_anterior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 390.1898498535156,
+          "p10_HU": 338.9828796386719,
+          "voxel_min": [
+            340.99999950259064,
+            341.9999991709845,
+            214.00000047412107
+          ],
+          "voxel_max": [
+            348.95993086010367,
+            381.9999991709845,
+            236.00000047412107
+          ]
+        },
+        {
+          "id": "great_cardiac_vein",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 136.35914611816406,
+          "p10_HU": 113.7885971069336,
+          "voxel_min": [
+            280.0979045803109,
+            209.00000082901556,
+            148.0000004741211
+          ],
+          "voxel_max": [
+            307.9792465906736,
+            278.53005977202076,
+            165.0000004741211
+          ]
+        },
+        {
+          "id": "coronary_sinus",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 143.10586547851562,
+          "p10_HU": 115.48504638671875,
+          "voxel_min": [
+            210.00000049740933,
+            180.9999995025907,
+            63.6380664741211
+          ],
+          "voxel_max": [
+            307.00000016580316,
+            283.0000001658031,
+            148.0000004741211
+          ]
+        },
+        {
+          "id": "middle_cardiac_vein",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 166.11146545410156,
+          "p10_HU": 132.2467041015625,
+          "voxel_min": [
+            220.6416525595855,
+            246.7787856580311,
+            40.96777247412109
+          ],
+          "voxel_max": [
+            236.69598026943007,
+            278.3693023834197,
+            66.80596447412108
+          ]
+        },
+        {
+          "id": "posterior_LV_vein",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 153.04840087890625,
+          "p10_HU": 113.96809387207031,
+          "voxel_min": [
+            232.05441376165805,
+            219.55861869430055,
+            45.000000474121094
+          ],
+          "voxel_max": [
+            305.00000082901556,
+            233.34748169948188,
+            65.85529047412109
+          ]
+        }
+      ],
+      "note": "Source support diagnostics only. Bright intensity is not proof of vessel identity; no new expert adjudication."
+    },
+    {
+      "phase": "astra-xhigh",
+      "per_polyline": [
+        {
+          "id": "lm",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 398.2049560546875,
+          "p10_HU": 371.4893493652344,
+          "voxel_min": [
+            219.439707357513,
+            281.8941040414508,
+            164.0138584741211
+          ],
+          "voxel_max": [
+            266.6548352331606,
+            292.4829007253886,
+            172.74663847412108
+          ]
+        },
+        {
+          "id": "lad",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 293.796875,
+          "p10_HU": 202.84933471679688,
+          "voxel_min": [
+            266.6548352331606,
+            283.68188601036275,
+            24.582058474121098
+          ],
+          "voxel_max": [
+            393.2431212435233,
+            453.5101902590673,
+            178.5097784741211
+          ]
+        },
+        {
+          "id": "lcx",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 298.349853515625,
+          "p10_HU": 171.37399291992188,
+          "voxel_min": [
+            247.66653264248708,
+            190.00885968911916,
+            81.4433984741211
+          ],
+          "voxel_max": [
+            298.88640248704667,
+            283.16147647668396,
+            169.7203784741211
+          ]
+        },
+        {
+          "id": "ramus",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 281.45709228515625,
+          "p10_HU": 230.61509704589844,
+          "voxel_min": [
+            266.6548352331606,
+            266.47032953367875,
+            111.77187847412108
+          ],
+          "voxel_max": [
+            410.54946404145085,
+            292.29139150259067,
+            171.76507847412108
+          ]
+        },
+        {
+          "id": "d1",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 197.48355102539062,
+          "p10_HU": 120.08484649658203,
+          "voxel_min": [
+            344.0466064248705,
+            340.21804020725386,
+            119.0718984741211
+          ],
+          "voxel_max": [
+            418.45453181347153,
+            402.06761367875646,
+            172.2757184741211
+          ]
+        },
+        {
+          "id": "septal1",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 205.13125610351562,
+          "p10_HU": 158.6262969970703,
+          "voxel_min": [
+            289.241250984456,
+            297.16587025906733,
+            161.0523384741211
+          ],
+          "voxel_max": [
+            294.9569483937824,
+            310.60032580310883,
+            174.59135847412108
+          ]
+        },
+        {
+          "id": "rca",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 401.3320617675781,
+          "p10_HU": 343.5126953125,
+          "voxel_min": [
+            109.52033740932643,
+            292.4385450777203,
+            43.8986784741211
+          ],
+          "voxel_max": [
+            215.58180062176166,
+            396.27421430051817,
+            137.7361784741211
+          ]
+        },
+        {
+          "id": "rpda",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 164.55609130859375,
+          "p10_HU": 120.96992492675781,
+          "voxel_min": [
+            215.58180062176166,
+            285.4300874611399,
+            32.310918474121095
+          ],
+          "voxel_max": [
+            300.6463825906736,
+            313.9125413471503,
+            45.99539847412109
+          ]
+        },
+        {
+          "id": "rpla",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 287.4251403808594,
+          "p10_HU": 141.50894165039062,
+          "voxel_min": [
+            215.58180062176166,
+            241.12335834196892,
+            40.00489847412109
+          ],
+          "voxel_max": [
+            331.4150358549223,
+            292.4385450777203,
+            52.753058474121104
+          ]
+        },
+        {
+          "id": "acute_marginal",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 244.05520629882812,
+          "p10_HU": 172.0098876953125,
+          "voxel_min": [
+            122.02852393782385,
+            393.1040323316062,
+            71.29999847412108
+          ],
+          "voxel_max": [
+            169.6756153367876,
+            439.7076518134715,
+            89.92581847412109
+          ]
+        },
+        {
+          "id": "rv_inferior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 174.46739196777344,
+          "p10_HU": 130.4326171875,
+          "voxel_min": [
+            191.93445720207256,
+            313.38515481865284,
+            36.585678474121096
+          ],
+          "voxel_max": [
+            220.60391046632125,
+            317.90728207253886,
+            43.8986784741211
+          ]
+        },
+        {
+          "id": "pda_septal",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 141.58920288085938,
+          "p10_HU": 123.3694076538086,
+          "voxel_min": [
+            248.65715979274614,
+            290.0304207253886,
+            34.02431847412109
+          ],
+          "voxel_max": [
+            264.66092683937825,
+            306.5461081865285,
+            37.71961847412109
+          ]
+        },
+        {
+          "id": "lad_apical",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 132.46900939941406,
+          "p10_HU": 123.91841125488281,
+          "voxel_min": [
+            368.55450777202077,
+            409.38223668393783,
+            23.015158474121094
+          ],
+          "voxel_max": [
+            372.6105823834197,
+            412.46097492227983,
+            24.8248984741211
+          ]
+        },
+        {
+          "id": "d1_superior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 171.30078125,
+          "p10_HU": 125.31925201416016,
+          "voxel_min": [
+            386.0762089119171,
+            400.5552240414508,
+            133.0171784741211
+          ],
+          "voxel_max": [
+            388.2816555440414,
+            407.46693222797927,
+            138.7260784741211
+          ]
+        },
+        {
+          "id": "right_conus",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 266.39630126953125,
+          "p10_HU": 111.16698455810547,
+          "voxel_min": [
+            190.4895825906736,
+            380.2320339896374,
+            134.5701984741211
+          ],
+          "voxel_max": [
+            193.27284642487047,
+            381.01592455958547,
+            145.8771384741211
+          ]
+        },
+        {
+          "id": "right_atrial",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 217.65809631347656,
+          "p10_HU": 190.1043243408203,
+          "voxel_min": [
+            164.18519792746116,
+            372.4515705699483,
+            125.01569847412108
+          ],
+          "voxel_max": [
+            167.6575660103627,
+            389.7646516062177,
+            135.5415584741211
+          ]
+        },
+        {
+          "id": "pulmonary_trunk",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 214.5779571533203,
+          "p10_HU": 174.584716796875,
+          "voxel_min": [
+            219.21965347150262,
+            255.20760290155442,
+            160.18063847412108
+          ],
+          "voxel_max": [
+            281.684714611399,
+            386.88302010362696,
+            222.29441847412107
+          ]
+        },
+        {
+          "id": "rpa",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 298.9036865234375,
+          "p10_HU": 160.6365203857422,
+          "voxel_min": [
+            49.00334341968913,
+            221.33187896373056,
+            194.61783847412107
+          ],
+          "voxel_max": [
+            222.81651979274613,
+            255.20760290155442,
+            220.11245847412107
+          ]
+        },
+        {
+          "id": "rpa_interlobar",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 185.99331665039062,
+          "p10_HU": 99.06329345703125,
+          "voxel_min": [
+            0.23051523316064504,
+            207.57717139896374,
+            161.3815384741211
+          ],
+          "voxel_max": [
+            49.07420103626944,
+            226.0082959585493,
+            206.5496784741211
+          ]
+        },
+        {
+          "id": "lpa",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 346.8172607421875,
+          "p10_HU": 304.7897644042969,
+          "voxel_min": [
+            222.81651979274613,
+            187.92074860103628,
+            220.11245847412107
+          ],
+          "voxel_max": [
+            285.9915631088083,
+            255.3669065284974,
+            238.27737847412112
+          ]
+        },
+        {
+          "id": "lpa_interlobar",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 330.9298095703125,
+          "p10_HU": 237.9675750732422,
+          "voxel_min": [
+            272.3334458031088,
+            121.2261960621762,
+            171.0428984741211
+          ],
+          "voxel_max": [
+            324.28677554404146,
+            191.9017740932643,
+            229.07733847412112
+          ]
+        },
+        {
+          "id": "lspv",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 388.9302978515625,
+          "p10_HU": 336.54327392578125,
+          "voxel_min": [
+            227.03189803108808,
+            189.4518938860104,
+            196.4444384741211
+          ],
+          "voxel_max": [
+            319.1154959585492,
+            221.50919544041454,
+            211.46653847412108
+          ]
+        },
+        {
+          "id": "lipv",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 371.6855773925781,
+          "p10_HU": 331.3145446777344,
+          "voxel_min": [
+            235.22530404145078,
+            137.3237413471503,
+            139.71941847412108
+          ],
+          "voxel_max": [
+            348.6165645595855,
+            156.90553948186528,
+            156.09029847412108
+          ]
+        },
+        {
+          "id": "lipv_lateral",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 363.89691162109375,
+          "p10_HU": 327.0947265625,
+          "voxel_min": [
+            348.6165645595855,
+            132.4703792746114,
+            147.6833584741211
+          ],
+          "voxel_max": [
+            431.97655792746116,
+            143.6139398963731,
+            154.6187784741211
+          ]
+        },
+        {
+          "id": "rspv",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 401.06890869140625,
+          "p10_HU": 366.92474365234375,
+          "voxel_min": [
+            34.664133471502595,
+            221.26401906735754,
+            154.16541847412108
+          ],
+          "voxel_max": [
+            119.72911336787567,
+            256.9942972020725,
+            216.3016384741211
+          ]
+        },
+        {
+          "id": "rspv_middle",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 418.66680908203125,
+          "p10_HU": 374.1090087890625,
+          "voxel_min": [
+            0.41666569948188226,
+            217.33175295336787,
+            145.3944784741211
+          ],
+          "voxel_max": [
+            76.58645471502592,
+            264.5622408290156,
+            154.2515784741211
+          ]
+        },
+        {
+          "id": "ripv",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 339.1493225097656,
+          "p10_HU": 308.383056640625,
+          "voxel_min": [
+            2.1492949222798075,
+            127.37717305699482,
+            96.0914984741211
+          ],
+          "voxel_max": [
+            120.12597968911919,
+            185.80998217616582,
+            120.6438984741211
+          ]
+        },
+        {
+          "id": "ripv_superior",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 394.222412109375,
+          "p10_HU": 270.4437255859375,
+          "voxel_min": [
+            0.7579548186528484,
+            164.931736373057,
+            118.4159384741211
+          ],
+          "voxel_max": [
+            88.23180186528498,
+            182.93113616580308,
+            161.18815847412108
+          ]
+        },
+        {
+          "id": "svc",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 172.87355041503906,
+          "p10_HU": 115.29450988769531,
+          "voxel_min": [
+            72.12184124352333,
+            264.3246516062176,
+            148.6587784741211
+          ],
+          "voxel_max": [
+            103.14328455958551,
+            275.31158797927463,
+            273.0697784741211
+          ]
+        },
+        {
+          "id": "ascending_aorta",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 386.91204833984375,
+          "p10_HU": 360.6260070800781,
+          "voxel_min": [
+            133.00519378238343,
+            287.11194113989643,
+            127.22479847412109
+          ],
+          "voxel_max": [
+            211.15435357512956,
+            316.1007179274611,
+            273.7735384741211
+          ]
+        },
+        {
+          "id": "descending_aorta",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 371.0841369628906,
+          "p10_HU": 336.6439208984375,
+          "voxel_min": [
+            162.72034735751296,
+            77.42557761658034,
+            0.23323847412109444
+          ],
+          "voxel_max": [
+            255.0207361658031,
+            212.01509720207252,
+            273.7790184741211
+          ]
+        },
+        {
+          "id": "coronary_sinus",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 140.7518310546875,
+          "p10_HU": 110.36279296875,
+          "voxel_min": [
+            221.23475813471504,
+            180.60580725388604,
+            55.3612184741211
+          ],
+          "voxel_max": [
+            294.8700675647668,
+            256.8252841450778,
+            120.59971847412109
+          ]
+        },
+        {
+          "id": "posterior_lv_vein",
+          "inside_native_image_fraction": 1.0,
+          "strict_inside_fraction": 1.0,
+          "boundary_tolerance_voxels": 1e-05,
+          "maximum_outside_voxels": 0.0,
+          "median_HU": 162.9185791015625,
+          "p10_HU": 122.37252044677734,
+          "voxel_min": [
+            232.87501181347153,
+            219.50292476683939,
+            29.892798474121093
+          ],
+          "voxel_max": [
+            428.43975212435237,
+            365.88926922279796,
+            66.47811847412109
+          ]
+        }
+      ],
+      "note": "Source support diagnostics only. Bright intensity is not proof of vessel identity; no new expert adjudication."
+    }
+  ],
+  "match_attribution": [
+    {
+      "phase": "sol-xhigh",
+      "reference_category_to_submitted_courses": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [
+          {
+            "id": "left_pulmonary_artery",
+            "vessel_name": "left pulmonary artery",
+            "matched_reference_mm": 12.366884622343315,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              0
+            ]
+          }
+        ],
+        "5": [],
+        "6": [],
+        "7": [],
+        "9": [
+          {
+            "id": "RCA",
+            "vessel_name": "right coronary artery",
+            "matched_reference_mm": 125.57898458268615,
+            "correctly_labeled_mm": 125.57898458268615,
+            "submitted_labels": [
+              9
+            ]
+          }
+        ],
+        "10": [
+          {
+            "id": "RCA",
+            "vessel_name": "right coronary artery",
+            "matched_reference_mm": 0.6244064511641834,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              9
+            ]
+          }
+        ],
+        "11": [
+          {
+            "id": "RCA",
+            "vessel_name": "right coronary artery",
+            "matched_reference_mm": 30.83916439891712,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              9
+            ]
+          }
+        ],
+        "14": []
+      }
+    },
+    {
+      "phase": "astra-medium",
+      "reference_category_to_submitted_courses": {
+        "1": [
+          {
+            "id": "LM",
+            "vessel_name": "Left main coronary artery",
+            "matched_reference_mm": 7.358310443973599,
+            "correctly_labeled_mm": 7.358310443973599,
+            "submitted_labels": [
+              1
+            ]
+          },
+          {
+            "id": "LCx",
+            "vessel_name": "Left circumflex artery",
+            "matched_reference_mm": 0.7393756689602358,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              3
+            ]
+          },
+          {
+            "id": "LAD",
+            "vessel_name": "Left anterior descending artery",
+            "matched_reference_mm": 0.19731919082511876,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              2
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "LAD",
+            "vessel_name": "Left anterior descending artery",
+            "matched_reference_mm": 150.58284116553384,
+            "correctly_labeled_mm": 150.58284116553384,
+            "submitted_labels": [
+              2
+            ]
+          },
+          {
+            "id": "D1",
+            "vessel_name": "First diagonal artery (early lateral branch)",
+            "matched_reference_mm": 0.9900734260753972,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              4
+            ]
+          },
+          {
+            "id": "D2_proximal",
+            "vessel_name": "Second diagonal artery, common stem",
+            "matched_reference_mm": 0.9597612028028341,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              5
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "LCx",
+            "vessel_name": "Left circumflex artery",
+            "matched_reference_mm": 89.44294483644813,
+            "correctly_labeled_mm": 89.44294483644813,
+            "submitted_labels": [
+              3
+            ]
+          }
+        ],
+        "4": [
+          {
+            "id": "D1",
+            "vessel_name": "First diagonal artery (early lateral branch)",
+            "matched_reference_mm": 72.35432107611341,
+            "correctly_labeled_mm": 72.35432107611341,
+            "submitted_labels": [
+              4
+            ]
+          }
+        ],
+        "5": [
+          {
+            "id": "LAD",
+            "vessel_name": "Left anterior descending artery",
+            "matched_reference_mm": 0.4401363106724029,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              2
+            ]
+          }
+        ],
+        "6": [],
+        "7": [
+          {
+            "id": "OM1",
+            "vessel_name": "First obtuse marginal artery, small distal lateral branch",
+            "matched_reference_mm": 13.565047340984272,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              6
+            ]
+          },
+          {
+            "id": "LCx",
+            "vessel_name": "Left circumflex artery",
+            "matched_reference_mm": 0.5679672313593755,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              3
+            ]
+          }
+        ],
+        "9": [
+          {
+            "id": "RCA",
+            "vessel_name": "Right coronary artery",
+            "matched_reference_mm": 131.27490950381846,
+            "correctly_labeled_mm": 131.27490950381846,
+            "submitted_labels": [
+              9
+            ]
+          },
+          {
+            "id": "R_PDA",
+            "vessel_name": "Right posterior descending artery",
+            "matched_reference_mm": 0.6263615521881803,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              10
+            ]
+          },
+          {
+            "id": "R_inferior_RV",
+            "vessel_name": "Inferior right ventricular branch of the right coronary artery",
+            "matched_reference_mm": 0.6067371267500211,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              0
+            ]
+          }
+        ],
+        "10": [
+          {
+            "id": "R_PDA_ventricular",
+            "vessel_name": "Inferior left ventricular branch of the right posterior descending artery",
+            "matched_reference_mm": 19.49527288910075,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              0
+            ]
+          },
+          {
+            "id": "R_inferior_RV",
+            "vessel_name": "Inferior right ventricular branch of the right coronary artery",
+            "matched_reference_mm": 11.75209813184183,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              0
+            ]
+          },
+          {
+            "id": "R_PDA",
+            "vessel_name": "Right posterior descending artery",
+            "matched_reference_mm": 10.766800573985078,
+            "correctly_labeled_mm": 10.766800573985078,
+            "submitted_labels": [
+              10
+            ]
+          }
+        ],
+        "11": [
+          {
+            "id": "R_PLA",
+            "vessel_name": "Right posterolateral artery",
+            "matched_reference_mm": 50.76737919671231,
+            "correctly_labeled_mm": 50.76737919671231,
+            "submitted_labels": [
+              11
+            ]
+          },
+          {
+            "id": "R_PDA",
+            "vessel_name": "Right posterior descending artery",
+            "matched_reference_mm": 0.4907195305991623,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              10
+            ]
+          }
+        ],
+        "14": [
+          {
+            "id": "D2_proximal",
+            "vessel_name": "Second diagonal artery, common stem",
+            "matched_reference_mm": 37.26097007403317,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              5
+            ]
+          },
+          {
+            "id": "D2_lateral",
+            "vessel_name": "Second diagonal artery, lateral division",
+            "matched_reference_mm": 16.62465098397925,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              5
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "phase": "astra-xhigh",
+      "reference_category_to_submitted_courses": {
+        "1": [
+          {
+            "id": "lm",
+            "vessel_name": "Left main coronary artery",
+            "matched_reference_mm": 6.892834336077297,
+            "correctly_labeled_mm": 6.892834336077297,
+            "submitted_labels": [
+              1
+            ]
+          },
+          {
+            "id": "lcx",
+            "vessel_name": "Left circumflex coronary artery",
+            "matched_reference_mm": 1.4021709676816556,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              3
+            ]
+          }
+        ],
+        "2": [
+          {
+            "id": "lad",
+            "vessel_name": "Left anterior descending coronary artery",
+            "matched_reference_mm": 144.1839348147657,
+            "correctly_labeled_mm": 144.1839348147657,
+            "submitted_labels": [
+              2
+            ]
+          },
+          {
+            "id": "lm",
+            "vessel_name": "Left main coronary artery",
+            "matched_reference_mm": 7.264485322598199,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              1
+            ]
+          },
+          {
+            "id": "d1",
+            "vessel_name": "First diagonal artery",
+            "matched_reference_mm": 0.7327276636841983,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              4
+            ]
+          },
+          {
+            "id": "ramus",
+            "vessel_name": "Ramus intermedius artery",
+            "matched_reference_mm": 0.35152799336395274,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              8
+            ]
+          }
+        ],
+        "3": [
+          {
+            "id": "lcx",
+            "vessel_name": "Left circumflex coronary artery",
+            "matched_reference_mm": 77.66492553754156,
+            "correctly_labeled_mm": 77.66492553754156,
+            "submitted_labels": [
+              3
+            ]
+          }
+        ],
+        "4": [
+          {
+            "id": "ramus",
+            "vessel_name": "Ramus intermedius artery",
+            "matched_reference_mm": 72.35432107611341,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              8
+            ]
+          }
+        ],
+        "5": [
+          {
+            "id": "lad",
+            "vessel_name": "Left anterior descending coronary artery",
+            "matched_reference_mm": 0.6522708803025594,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              2
+            ]
+          }
+        ],
+        "6": [],
+        "7": [
+          {
+            "id": "lcx",
+            "vessel_name": "Left circumflex coronary artery",
+            "matched_reference_mm": 0.9709964512295007,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              3
+            ]
+          }
+        ],
+        "9": [
+          {
+            "id": "rca",
+            "vessel_name": "Right coronary artery",
+            "matched_reference_mm": 130.11040267561776,
+            "correctly_labeled_mm": 130.11040267561776,
+            "submitted_labels": [
+              9
+            ]
+          },
+          {
+            "id": "rv_inferior",
+            "vessel_name": "Inferior right ventricular branch of right coronary artery",
+            "matched_reference_mm": 1.441553998058303,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              0
+            ]
+          },
+          {
+            "id": "rpda",
+            "vessel_name": "Right posterior descending artery",
+            "matched_reference_mm": 0.9560515090805856,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              10
+            ]
+          }
+        ],
+        "10": [
+          {
+            "id": "rpda",
+            "vessel_name": "Right posterior descending artery",
+            "matched_reference_mm": 31.247968982746645,
+            "correctly_labeled_mm": 31.247968982746645,
+            "submitted_labels": [
+              10
+            ]
+          },
+          {
+            "id": "rv_inferior",
+            "vessel_name": "Inferior right ventricular branch of right coronary artery",
+            "matched_reference_mm": 12.536681238220574,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              0
+            ]
+          }
+        ],
+        "11": [
+          {
+            "id": "rpla",
+            "vessel_name": "Right posterolateral artery",
+            "matched_reference_mm": 51.094525550445084,
+            "correctly_labeled_mm": 51.094525550445084,
+            "submitted_labels": [
+              11
+            ]
+          },
+          {
+            "id": "rpda",
+            "vessel_name": "Right posterior descending artery",
+            "matched_reference_mm": 0.16357317686638742,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              10
+            ]
+          }
+        ],
+        "14": [
+          {
+            "id": "d1",
+            "vessel_name": "First diagonal artery",
+            "matched_reference_mm": 51.97004800920411,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              4
+            ]
+          },
+          {
+            "id": "d1_superior",
+            "vessel_name": "Superior terminal division of first diagonal artery",
+            "matched_reference_mm": 1.4103677619523007,
+            "correctly_labeled_mm": 0.0,
+            "submitted_labels": [
+              4
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "controls": {
+    "oracle": {
+      "format_valid": true,
+      "geometry_pass": true,
+      "labeled_pass": true
+    },
+    "swapped_labels": {
+      "format_valid": true,
+      "geometry_pass": true,
+      "labeled_pass": false
+    },
+    "all_zero_labels": {
+      "format_valid": true,
+      "geometry_pass": true,
+      "labeled_pass": false
+    },
+    "missing_left": {
+      "format_valid": true,
+      "geometry_pass": false,
+      "labeled_pass": false
+    },
+    "missing_small_branch": {
+      "format_valid": true,
+      "geometry_pass": false,
+      "labeled_pass": false
+    },
+    "shifted": {
+      "format_valid": true,
+      "geometry_pass": false,
+      "labeled_pass": false
+    },
+    "extension": {
+      "format_valid": true,
+      "geometry_pass": true,
+      "labeled_pass": true
+    },
+    "extra_unscored": {
+      "format_valid": true,
+      "geometry_pass": true,
+      "labeled_pass": true
+    },
+    "duplicate_alternative": {
+      "format_valid": false,
+      "geometry_pass": false,
+      "labeled_pass": false
+    }
+  },
+  "python_syntax_check": "passed",
+  "git_diff_whitespace_check": "passed",
+  "viewer_checks": {
+    "all_three_models": true,
+    "partial_timeout_label_verified_in_browser": true,
+    "partial_inventory_csv_link": true,
+    "native_overlay_and_rotation_inspected": true,
+    "vessel_selection_and_slice_jump_verified": true,
+    "reference_toggle_verified": true,
+    "download_hashes_match_original": true
+  }
+}

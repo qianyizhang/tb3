@@ -281,3 +281,26 @@ New user-requested follow-up to BR-038 on 2026-09-17: expand CT beyond four land
 ## BR-040 — Sol/xhigh CT and MRI landmarks
 
 User-requested model comparison on unchanged BR-039 full/partial CT and BR-038 full MRI, 2026-09-17. [Plan](research-rounds/BR-040-sol-landmarks.md). Three fresh Sol/xhigh attempts, same-byte controls retained; no retries. [Completed results](research-rounds/BR-040-results.md): full CT 1/24 at 5 mm, partial CT 4/13 at 5 mm with zero false unavailable detections, MRI 14/32 at 3 mm with allowed generic atlas assistance.
+
+## BR-041 — Image-only named coronary tracing
+
+User-requested resumption, 2026-09-19: generate centerlines from image input. [Predeclared pilot](research-rounds/BR-041-image-only-centerline.md) removes the BR-030 mask and supplied endpoints, and tests one named RCA → R-PDA route with Terra/high.
+[Completed result](research-rounds/BR-041-results.md): normal Terra/high completion, valid output but 0% reference coverage within 2 mm; same-byte controls and independent replay pass. One public development case, not an all-vessel or clinical estimate.
+S01 follow-up, “try with sol xhigh”: [completed comparison](research-rounds/BR-041-sol-results.md), same frozen image-only task. Sol reaches 80.6% coverage but follows R-PLA instead of R-PDA; diagnostic agreement with the alternative branch is 98.6% at 1 mm.
+A01 follow-up, “let Astra-xhigh have a try”: [completed comparison](research-rounds/BR-041-astra-results.md), unchanged task. Astra covers 100% of R-PDA within 1 mm but continues ~15 mm beyond the reference; frozen failure is an extent disagreement, not a demonstrated wrong-branch failure.
+
+## BR-042 — All-coronary discovery and labeling, 2026-09-20
+
+User resumed image-to-centerline research: verify sample GT, then try Astra/medium on all relevant vessels with labels. [Scope, GT audit and prospective plan](research-rounds/BR-042-all-coronary.md). GT supports both annotated coronary trees, not every clinically relevant thoracic vessel. One new full-CTA attempt; preserve BR-041 and submission ownership.
+
+BR-042 V2 completed: [All-vessel results](research-rounds/BR-042-results.md). Astra/medium produced 27 named paths in 27m 56s; coronary geometric coverage 87.0%, mean labeled coverage 51.6%. Sixteen noncoronary paths retained for human review; extension-tolerant coverage gate not met.
+
+### BR-042 V3 — Disambiguated spec, three fresh model settings
+
+User authorized generic spec clarification without case hints, separate geometry/label analytics, and one-hour attempts for Sol/xhigh, Astra/medium and Astra/xhigh. [Prospective plan](research-rounds/BR-042-v3-comparison.md). Same full CTA/private reference; new frozen prompt/evaluator; isolated sequential jobs and no retries. Previous bytes/outcomes retained.
+
+[V3 results](research-rounds/BR-042-v3-results.md): Sol/xhigh completed with 26.2% geometry / 19.4% correctly labeled length coverage; Astra/medium completed with 95.5% / 79.3%. Neither passed the macro/per-category gates. Astra/xhigh timed out after transport interruptions at one hour; its 91.8% / 68.3% saved-output scores are diagnostic, not a completed model-quality result. Two pre-model setup exclusions are retained; no started model attempt was rerun. All-vessel outputs remain available in the local source-CTA review.
+
+## BR-043 — Proposed next medical tests, 2026-09-20
+
+User requested proposals based on prior work. [Ranked candidate cards and source screen](research-rounds/BR-043-medical-next-tasks.md): coronary identity with supplied geometry; new-lesion detection across MRI visits; end-systolic echo measurement; variant vertebral numbering; adjudicated breast residual extent; exploratory pulmonary embolus localization. Local completed failures, published benchmark evidence and unqualified source leads are distinguished. Source-access/reference gaps remain explicit. Proposal only: no new fixtures, downloads, trials or publication; previous evidence and active experiment changes preserved.

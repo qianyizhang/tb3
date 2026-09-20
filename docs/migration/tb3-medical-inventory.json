@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "kind": "migration investigation snapshot",
+  "captured_at": "2026-09-20T08:29:20.898373+00:00",
+  "head": "70aaea059f3463fc3193cd83f1ec3fd8a4d5166f",
+  "branch": "main",
+  "method": "git ls-files; Path.stat on working files; parse current catalog JSON. Counts exclude untracked work; byte totals are not Git object or disk-allocation sizes.",
+  "tracked_file_count": 2784,
+  "tracked_working_tree_bytes": 155327684,
+  "top_level_tracked_counts": {
+    ".gitattributes": 1,
+    ".githooks": 1,
+    ".github": 3,
+    ".gitignore": 1,
+    "AGENTS.md": 1,
+    "CONTRIBUTING.md": 1,
+    "Makefile": 1,
+    "README.md": 1,
+    "catalog": 353,
+    "configs": 6,
+    "docs": 434,
+    "probes": 1862,
+    "scripts": 27,
+    "site": 29,
+    "site_med": 56,
+    "tests": 7
+  },
+  "probe_directories": [
+    {
+      "path": "probes/actuator-memory",
+      "tracked_files": 22,
+      "working_tree_bytes": 21968,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/airway-routing",
+      "tracked_files": 15,
+      "working_tree_bytes": 74781,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/brain-routing",
+      "tracked_files": 18,
+      "working_tree_bytes": 67511,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/cache-invalidation",
+      "tracked_files": 22,
+      "working_tree_bytes": 29119,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/cardiac-reconstruction",
+      "tracked_files": 82,
+      "working_tree_bytes": 416823,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/chat-round-recovery",
+      "tracked_files": 18,
+      "working_tree_bytes": 91542,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/clamped-instrument",
+      "tracked_files": 22,
+      "working_tree_bytes": 25393,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/clipper-polytree",
+      "tracked_files": 177,
+      "working_tree_bytes": 7154638,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/collision-vjp",
+      "tracked_files": 17,
+      "working_tree_bytes": 50723,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/diagnostic-reading",
+      "tracked_files": 5,
+      "working_tree_bytes": 19263,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/dicom-anatomy-audit",
+      "tracked_files": 23,
+      "working_tree_bytes": 33705284,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/dicom-label-audit",
+      "tracked_files": 19,
+      "working_tree_bytes": 4772316,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/dicom-triplanar-svg",
+      "tracked_files": 23,
+      "working_tree_bytes": 3579336,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/dremel-assembly",
+      "tracked_files": 11,
+      "working_tree_bytes": 31059,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/extxyz-stress",
+      "tracked_files": 18,
+      "working_tree_bytes": 51668,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/homology-basis",
+      "tracked_files": 11,
+      "working_tree_bytes": 16711,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/longitudinal-reading",
+      "tracked_files": 23,
+      "working_tree_bytes": 60342,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/moving-frame-velocity",
+      "tracked_files": 18,
+      "working_tree_bytes": 153655,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/mr-frame-association",
+      "tracked_files": 17,
+      "working_tree_bytes": 609709,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/ninja-dyndep",
+      "tracked_files": 338,
+      "working_tree_bytes": 2125539,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/pdf-table-lineage",
+      "tracked_files": 16,
+      "working_tree_bytes": 43073,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/quad-face-flux",
+      "tracked_files": 18,
+      "working_tree_bytes": 349641,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/registration",
+      "tracked_files": 8,
+      "working_tree_bytes": 36126,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/registration-deformation",
+      "tracked_files": 61,
+      "working_tree_bytes": 261044,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/registration-reconstruction",
+      "tracked_files": 8,
+      "working_tree_bytes": 37281,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/revisions",
+      "tracked_files": 438,
+      "working_tree_bytes": 51705049,
+      "proposed_disposition": "review_mixed_revisions",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/rf-wave-compose",
+      "tracked_files": 17,
+      "working_tree_bytes": 940064,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/score-sounding-events",
+      "tracked_files": 27,
+      "working_tree_bytes": 273409,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/semantic-landmarks",
+      "tracked_files": 36,
+      "working_tree_bytes": 122556,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/spectral-projector",
+      "tracked_files": 17,
+      "working_tree_bytes": 215879,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/sqlite-exists",
+      "tracked_files": 21,
+      "working_tree_bytes": 13248112,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/vessel-geometry",
+      "tracked_files": 19,
+      "working_tree_bytes": 96760,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/vessel-repair",
+      "tracked_files": 11,
+      "working_tree_bytes": 51920,
+      "proposed_disposition": "retain_medical_then_classify_by_group",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/xiangqi-budget-player",
+      "tracked_files": 84,
+      "working_tree_bytes": 273641,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/xiangqi-game-kernel",
+      "tracked_files": 88,
+      "working_tree_bytes": 308109,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    },
+    {
+      "path": "probes/xiangqi-server-throughput",
+      "tracked_files": 94,
+      "working_tree_bytes": 345281,
+      "proposed_disposition": "archive_nonmedical",
+      "scope_note": "Directory-level proposal only; not an executable deletion manifest."
+    }
+  ],
+  "catalog": {
+    "trials": 151,
+    "ideas": 168,
+    "reviews": 16,
+    "latest_trial_started_at": "2026-09-15T06:08:39.808361Z",
+    "nonmedical_trial_records": 101,
+    "task_counts": {
+      "dicom-label-audit": 3,
+      "dicom-triplanar-svg": 3,
+      "sqlite-exists": 4,
+      "score-sounding-events": 6,
+      "dicom-audit-32": 6,
+      "dicom-audit-83": 6,
+      "dicom-audit-74": 3,
+      "collision-vjp": 6,
+      "xiangqi-budget-player": 4,
+      "dicom-audit-46": 3,
+      "ninja-dyndep": 5,
+      "homology-basis": 3,
+      "clamped-instrument": 3,
+      "clipper-polytree": 11,
+      "dicom-audit-28": 3,
+      "dicom-audit-46-v2": 3,
+      "cache-invalidation": 7,
+      "xiangqi-server-throughput": 6,
+      "dicom-anatomy-audit": 3,
+      "extxyz-stress": 6,
+      "mr-frame-association": 5,
+      "dremel-assembly": 3,
+      "dicom-audit-95": 3,
+      "actuator-memory": 10,
+      "chat-round-recovery": 3,
+      "rf-wave-compose": 4,
+      "pdf-table-lineage": 3,
+      "xiangqi-game-kernel": 4,
+      "dicom-audit-19": 3,
+      "quad-face-flux": 6,
+      "spectral-projector": 3,
+      "dicom-audit-61": 3,
+      "moving-frame-velocity": 4,
+      "dicom-audit-61-v2": 3
+    }
+  },
+  "nonmedical_probe_candidates": {
+    "directories": 20,
+    "tracked_files": 1056,
+    "working_tree_bytes": 25749224
+  },
+  "approximate_local_disk_usage": {
+    "source": "du -sh; rounded allocated sizes at survey time",
+    "git": "199M",
+    "runs": "41G",
+    "cache": "2.2G",
+    "probes": "127M",
+    "site": "22M",
+    "site_med": "93M"
+  },
+  "observed_concurrent_work": [
+    "docs/research-rounds.md",
+    "docs/evidence/br041-*",
+    "docs/evidence/br042-*",
+    "docs/research-rounds/BR-041-*",
+    "docs/research-rounds/BR-042-*",
+    "docs/research-rounds/BR-043-*",
+    "probes/vessel-geometry/authoring/br041/",
+    "probes/vessel-geometry/authoring/br042/",
+    "probes/vessel-geometry/authoring/br042_v3/"
+  ],
+  "limitations": [
+    "No new trial, download, migration, staging, deletion, or Git history rewrite performed.",
+    "Archive candidates require dependency closure and recovery verification before untracking.",
+    "Current file layouts and active-writer status may change after this snapshot.",
+    "Dataset availability and usage terms were not reverified.",
+    "No complete byte-level inventory of ignored runtime evidence was attempted."
+  ]
+}

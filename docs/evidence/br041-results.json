@@ -1,0 +1,260 @@
+{
+  "round": "BR-041",
+  "frozen_bytes_verified": true,
+  "same_task_checksum": true,
+  "runs": [
+    {
+      "phase": "oracle",
+      "result_path": "runs/br041-named-rca-oracle-v1-20260919/named-rca__wLZatHJ/result.json",
+      "exception": null,
+      "task_checksum": "58a08cb2dedf187436bc5336fddeb3833585567bae7349651a29a716716f2ef7",
+      "reward": {
+        "reward": 1.0
+      },
+      "agent_execution": {
+        "started_at": "2026-09-19T00:15:01.119078Z",
+        "finished_at": "2026-09-19T00:15:01.271219Z"
+      },
+      "score": {
+        "reward": 1,
+        "checks": {
+          "format": true,
+          "sampling": true,
+          "distance": true,
+          "coverage": true,
+          "endpoints": true,
+          "length": true
+        },
+        "metrics": {
+          "p95_distance_mm": 0.0,
+          "coverage_within_1mm": 1.0,
+          "coverage_within_2mm": 1.0,
+          "endpoint_errors_mm": [
+            0.0,
+            0.0
+          ],
+          "length_mm": 161.39397555996757,
+          "length_relative_error": 0.0,
+          "max_step_mm": 0.49846844747894314
+        },
+        "error": null
+      },
+      "replay": {
+        "reward": 1,
+        "checks": {
+          "format": true,
+          "sampling": true,
+          "distance": true,
+          "coverage": true,
+          "endpoints": true,
+          "length": true
+        },
+        "metrics": {
+          "p95_distance_mm": 0.0,
+          "coverage_within_1mm": 1.0,
+          "coverage_within_2mm": 1.0,
+          "endpoint_errors_mm": [
+            0.0,
+            0.0
+          ],
+          "length_mm": 161.39397555996757,
+          "length_relative_error": 0.0,
+          "max_step_mm": 0.49846844747894314
+        },
+        "error": null
+      },
+      "independent": {
+        "p95_distance_mm": 0.0,
+        "coverage_within_1mm": 1.0,
+        "coverage_within_2mm": 1.0
+      },
+      "answer_path": "runs/br041-named-rca-oracle-v1-20260919/named-rca__wLZatHJ/artifacts/app/answer"
+    },
+    {
+      "phase": "nop",
+      "result_path": "runs/br041-named-rca-nop-v1-20260919/named-rca__mVkHFpV/result.json",
+      "exception": null,
+      "task_checksum": "58a08cb2dedf187436bc5336fddeb3833585567bae7349651a29a716716f2ef7",
+      "reward": {
+        "reward": 0.0
+      },
+      "agent_execution": {
+        "started_at": "2026-09-19T00:15:27.925254Z",
+        "finished_at": "2026-09-19T00:15:27.925341Z"
+      },
+      "score": {
+        "reward": 0,
+        "checks": {
+          "format": false
+        },
+        "metrics": {},
+        "error": "[Errno 2] No such file or directory: '/app/answer/centerline.npy'"
+      }
+    },
+    {
+      "phase": "terra-high",
+      "result_path": "runs/br041-named-rca-terra-high-v1-20260919/named-rca__FfwnqBT/result.json",
+      "exception": null,
+      "task_checksum": "58a08cb2dedf187436bc5336fddeb3833585567bae7349651a29a716716f2ef7",
+      "reward": {
+        "reward": 0.0
+      },
+      "agent_execution": {
+        "started_at": "2026-09-19T00:17:18.884177Z",
+        "finished_at": "2026-09-19T00:31:22.688262Z"
+      },
+      "score": {
+        "reward": 0,
+        "checks": {
+          "format": true,
+          "sampling": true,
+          "distance": false,
+          "coverage": false,
+          "endpoints": false,
+          "length": false
+        },
+        "metrics": {
+          "p95_distance_mm": 31.410766334967477,
+          "coverage_within_1mm": 0.0,
+          "coverage_within_2mm": 0.0,
+          "endpoint_errors_mm": [
+            17.732769837186954,
+            50.233721397502585
+          ],
+          "length_mm": 93.29835111934437,
+          "length_relative_error": 0.42192172418060037,
+          "max_step_mm": 0.5938508359201103
+        },
+        "error": null
+      },
+      "replay": {
+        "reward": 0,
+        "checks": {
+          "format": true,
+          "sampling": true,
+          "distance": false,
+          "coverage": false,
+          "endpoints": false,
+          "length": false
+        },
+        "metrics": {
+          "p95_distance_mm": 31.410766334967477,
+          "coverage_within_1mm": 0.0,
+          "coverage_within_2mm": 0.0,
+          "endpoint_errors_mm": [
+            17.732769837186954,
+            50.233721397502585
+          ],
+          "length_mm": 93.29835111934437,
+          "length_relative_error": 0.42192172418060037,
+          "max_step_mm": 0.5938508359201103
+        },
+        "error": null
+      },
+      "independent": {
+        "p95_distance_mm": 31.41076633496748,
+        "coverage_within_1mm": 0.0,
+        "coverage_within_2mm": 0.0
+      },
+      "answer_path": "runs/br041-named-rca-terra-high-v1-20260919/named-rca__FfwnqBT/artifacts/app/answer"
+    }
+  ],
+  "local_controls": {
+    "oracle": {
+      "reward": 1,
+      "checks": {
+        "format": true,
+        "sampling": true,
+        "distance": true,
+        "coverage": true,
+        "endpoints": true,
+        "length": true
+      },
+      "metrics": {
+        "p95_distance_mm": 0.0,
+        "coverage_within_1mm": 1.0,
+        "coverage_within_2mm": 1.0,
+        "endpoint_errors_mm": [
+          0.0,
+          0.0
+        ],
+        "length_mm": 161.39397555996757,
+        "length_relative_error": 0.0,
+        "max_step_mm": 0.49846844747894314
+      },
+      "error": null
+    },
+    "reverse": {
+      "reward": 0,
+      "checks": {
+        "format": true,
+        "sampling": true,
+        "distance": true,
+        "coverage": true,
+        "endpoints": false,
+        "length": true
+      },
+      "metrics": {
+        "p95_distance_mm": 0.0,
+        "coverage_within_1mm": 1.0,
+        "coverage_within_2mm": 1.0,
+        "endpoint_errors_mm": [
+          63.73145655790926,
+          63.73145655790926
+        ],
+        "length_mm": 161.39397555996757,
+        "length_relative_error": 0.0,
+        "max_step_mm": 0.49846844747894314
+      },
+      "error": null
+    },
+    "shift": {
+      "reward": 0,
+      "checks": {
+        "format": true,
+        "sampling": true,
+        "distance": false,
+        "coverage": false,
+        "endpoints": false,
+        "length": true
+      },
+      "metrics": {
+        "p95_distance_mm": 17.042793169735603,
+        "coverage_within_1mm": 0.0,
+        "coverage_within_2mm": 0.0,
+        "endpoint_errors_mm": [
+          17.320508075688775,
+          17.320508075688775
+        ],
+        "length_mm": 161.3939755599676,
+        "length_relative_error": 2.220446049250313e-16,
+        "max_step_mm": 0.49846844747894314
+      },
+      "error": null
+    },
+    "straight": {
+      "reward": 0,
+      "checks": {
+        "format": true,
+        "sampling": true,
+        "distance": false,
+        "coverage": false,
+        "endpoints": true,
+        "length": false
+      },
+      "metrics": {
+        "p95_distance_mm": 27.161484879759147,
+        "coverage_within_1mm": 0.018461538461538463,
+        "coverage_within_2mm": 0.03076923076923077,
+        "endpoint_errors_mm": [
+          0.0,
+          0.0
+        ],
+        "length_mm": 63.73145655790926,
+        "length_relative_error": 0.6051187391797708,
+        "max_step_mm": 0.19670202641331141
+      },
+      "error": null
+    }
+  }
+}

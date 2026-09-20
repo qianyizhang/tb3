@@ -1,0 +1,32 @@
+{
+  "context": {
+    "model": "gpt-5.6-sol",
+    "effort": "xhigh"
+  },
+  "session_path": "runs/br041-named-rca-sol-xhigh-v1-20260919/named-rca__J54GxH2/agent/sessions/2026/09/19/rollout-2026-09-19T00-36-47-01a0b718-2458-7e73-9b3f-4ca65c345573.jsonl",
+  "view_image_calls": 13,
+  "network_command_candidates": [],
+  "branch_diagnostic": {
+    "R-PDA": {
+      "p95_distance_mm": 20.441321757112437,
+      "coverage_within_1mm": 0.8061538461538461,
+      "output_fraction_within_1mm": 0.7245179063360881,
+      "endpoint_errors_mm": [
+        3.0761410911897604,
+        20.97105034660259
+      ]
+    },
+    "R-PLA": {
+      "p95_distance_mm": 0.3509088401700571,
+      "coverage_within_1mm": 0.9862258953168044,
+      "output_fraction_within_1mm": 0.9862258953168044,
+      "endpoint_errors_mm": [
+        3.0761410911897604,
+        3.2313728265378305
+      ]
+    }
+  },
+  "branch_label_source": "runs/br030-vessel-geometry/imagecas-x-source/evaluate.py:258",
+  "reference_source": "runs/br030-vessel-geometry/sources/coronary/ImageCAS-X_dataset/centerlines/1.coronary_right_centerline.vtk",
+  "interpretation": "Post-outcome diagnostic only, not a changed score: the output follows released R-PLA rather than requested R-PDA. No new clinical adjudication."
+}
