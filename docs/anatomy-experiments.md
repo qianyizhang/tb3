@@ -1,5 +1,9 @@
 # Anatomy experiments — results, trace analysis and current verdict
 
+> Historical synthesis. For current questions, assessments and presentation, use
+> [Anatomy audit](../groups/anatomy-audit/README.md). “Current” below describes
+> the original session; old report/run links need [historical context](archive/README.md).
+
 [**Open the earlier-trial presentation**](../runs/anatomy-history-presentation/index.html) ·
 [Per-trial trace analysis](anatomy-traces.md) ·
 [Absorbed-tissue experiment](research-rounds/BR-017-results.md)

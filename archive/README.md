@@ -1,30 +1,58 @@
-# Before tb3-medical
+# Recovering retired material
 
-The [manifest](manifest.json) retains exact hashes and recovery locations for
-1,791 retired tracked files plus six original navigation documents. The snapshot
-is `pre-tb3-medical-2026-09-20` at
-`51f3b1224d2069fe931ac28b06fd2ccf38c497ab`. A verified local Git bundle lives at
-`.cache/migration/pre-tb3-medical.bundle`. It contains tracked history, not ignored
-raw runs. Existing raw runs and environments were left in place.
+[Historical navigation](../docs/archive/README.md) · [Current workbench](../README.md)
 
-Retired scope includes 20 nonmedical probe families, their early nonmedical
-revisions/receipts, the unfinished BR-018 scaffold, the old catalog and old site
-interfaces. Medical records, source assets, stories and relevant reviews moved
-to semantic groups; original medical freezes remain byte-identical. The original
-interview presentation can be recovered as a historical publication.
+The [manifest](manifest.json) records each retired file's `original_path`, exact
+SHA-256, `source_commit`, reason and ignored `local_copy`. Most entries come from
+`pre-tb3-medical-2026-09-20` at `51f3b1224d2069fe931ac28b06fd2ccf38c497ab`.
+Later documentation retirements name their own commit; use the entry's origin.
+The original manifest covered 1,791 retired tracked files and six navigation
+originals; five obsolete documentation originals were added during the docs audit.
+
+Retired scope includes nonmedical probe families, the old catalog, original
+assignment and interview site, and superseded guidance. Retained medical evidence
+stays at its original paths. Restoring files does not execute them or establish
+that their historical environments can be reproduced.
+
+## Inspect or recover with Git
+
+The former `scripts/med restore-legacy` command was removed with the old interface.
+Use ordinary Git from this checkout. For example, inspect the original requirements:
 
 ```sh
-python3.12 scripts/med restore-legacy probes/homology-basis --destination /tmp/homology-history
-python3.12 scripts/med restore-legacy site --destination /tmp/interview-history
+git show f5b2ced2d85e13e325bf535d444b574fedd9dd39:docs/requirements.md
 ```
 
-Recovery uses verified ignored copies under `archive/legacy/pre-medical` or exact
-Git blobs. It refuses an existing destination and never executes restored code.
-In a shallow clone, fetch the snapshot/history first or import the verified bundle.
-A complete historical environment may have additional dependencies described in
-the restored source. Historical reproduction is not promised by file recovery.
+For an exact file copy, create a fresh temporary directory and compare its digest
+with the matching manifest entry:
 
-This operation removed active tracking, not history. The bundle and archive are
-same-disk recovery copies, **not an independently verified backup**. Large medical
-artifacts need their recorded hashes/source locators and selected export recipes;
-external artifact storage remains an explicit operational gap.
+```sh
+history_dir=$(mktemp -d /tmp/tb3-history.XXXXXX)
+git show f5b2ced2d85e13e325bf535d444b574fedd9dd39:docs/requirements.md > "$history_dir/requirements.md"
+shasum -a 256 "$history_dir/requirements.md"
+```
+
+To inspect an earlier publication with its original relative paths intact:
+
+```sh
+history_dir=$(mktemp -d /tmp/tb3-publication.XXXXXX)
+git archive pre-tb3-medical-2026-09-20 site | tar -x -C "$history_dir"
+```
+
+Use the original `source_commit` and path for other scopes. Verify selected file
+hashes against the manifest before relying on the recovered bytes. Do not overlay
+recovered files on the active checkout or run old authoring scripts as a repair.
+
+## When history or local artifacts are missing
+
+A shallow clone may not contain the named commits. Obtain that history from its
+owner or use the recorded Git bundle in a separate recovery repository. The
+pre-pivot bundle is `.cache/migration/pre-tb3-medical.bundle`; it contains tracked
+history only, and does not include later native-workbench/doc commits. An entry's
+ignored `local_copy`, if available, is another exact-byte recovery source; verify
+its recorded hash. [Retired native interfaces](../docs/migration/retired-interfaces.json)
+also retain Git locators.
+
+These same-disk copies are recovery conveniences, not independently verified
+backup. Ignored scans, raw runs and environments need their own recorded recovery
+sources. No history rewrite, raw-evidence deletion or remote publication is implied.

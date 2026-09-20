@@ -1,33 +1,81 @@
-# Reproduce selected work
+# Reproduction and presentation
 
-The [daily workflow](workflow.md) documents installed commands and dependency setup.
-All 38 retained experiments have canonical records. The [migration inventory](migration/native-experiment-inventory.md)
-states which operations are maintained and where recovery gaps remain.
+Set up the installed package through the [workflow](workflow.md). Supported
+operations depend on the selected experiment. Canonical metadata does not imply
+that every historical task can be rerun. The dated
+[coverage inventory](migration/native-experiment-inventory.md) records migration
+support; the experiment's current config and input manifest define actual inputs.
 
-For `anatomical-landmarks-br040`, the input manifest declares exact saved CT/MRI
-tasks, truth and outputs. `med prepare` restores a selected task, `med replay`
-rescores saved answers, and `med view` draws native planes. Six saved outputs
-reproduce every retained metric exactly. This establishes saved-output replay,
+## Saved CT/MRI output replay
+
+The maintained BR-040 landmark method supports three cases: `ct-full`, `ct-partial`
+and `mri32-full`. Restore the exact local inputs named in its
+[input manifest](../groups/anatomical-landmarks/experiments/br040/inputs.json).
+Source locators explain provenance; the CLI does not search old directories as a
+fallback or download missing data.
+
+```sh
+uv run med prepare anatomical-landmarks-br040 --case ct-partial
+uv run med prepare anatomical-landmarks-br040 --case ct-partial --execute
+uv run med replay anatomical-landmarks-br040 --case ct-partial
+```
+
+`prepare` previews unless `--execute` is supplied. `replay` rescores saved answers
+and appends a scoring observation for the same attempt, including its comparison
+criterion. It writes a receipt; it is not a new execution. The
+[native implementation closeout](migration/native-closeout.md) records exact
+agreement for six retained CT/MRI outputs. That proof covers saved-output scoring,
 not fresh Docker execution or repeatable model behavior.
 
-The [MRI package recipe](../exports/recipes/landmarks-mri-v2.json) selects frozen
-task files, source notices, two saved model outputs, oracle output and standalone
-replay code. `med export` writes a fresh independent directory. Inside it, run
-`python3.12 replay.py`, then verify with `med verify-package /path/to/package`.
-No source checkout, NumPy, Docker, network or inference is needed for this replay.
-The Docker image is still a historical mutable tag; dependency artifacts and
-current submission requirements need separate assessment before promotion.
+For a native-plane review image, install the optional imaging dependencies:
 
-Other historical methods remain preserved source evidence under `probes/` and
-linked protocols. Their old authoring runners are not supported daily interfaces.
-The active BR-042 owner retains its exact runtime and closeout path until cutover.
-New studies use group-owned task files and the installed common runner.
+```sh
+uv sync --locked --extra imaging
+.venv/bin/med view anatomical-landmarks-br040 --case ct-partial
+```
 
-Tour regeneration restores retained derived inputs, then renders/optimizes them;
-it does not claim to reconstruct every original raw dataset derivation. Scientific
-source provenance remains in the retained snapshot. Static stories and 17 figures
-are portable. `med check --assets` checks their exact extraction when needed.
+Use [exports and submission](submission.md) to build and verify the standalone
+MRI replay package. Other historical methods remain source evidence under
+`probes/` and their linked protocols. Their old authoring runners are not supported
+daily commands; importing some of them can mutate artifacts.
 
-Independent off-machine backup remains unverified. This migration does not delete
-ignored raw runs or environments, certify clinical correctness, or promote a
-package to submission-ready.
+## Portable stories and local tours
+
+```sh
+uv run med present
+uv run med present --serve
+uv run med check --assets
+```
+
+`present` writes the portable index to `.local/site/`; `--serve` starts a local
+server at `http://127.0.0.1:8765`. It does not publish. Group stories and retained
+figures work without raw scans. `check --assets` additionally verifies selected
+figure extraction inputs when those are available.
+
+For guided tours, first restore the exact derived inputs in
+[presentation/tours/inputs.json](../presentation/tours/inputs.json), then run:
+
+```sh
+uv run med media prepare
+uv run med media check
+uv run med present --serve --local-media
+```
+
+This restores and checks the retained derived snapshot, not every original raw
+scan preprocessing step. Missing inputs produce an operation-specific error.
+After installing the imaging extra, `.venv/bin/med media optimize` generates
+lossless player assets. Optional still/video rendering uses the separately declared
+Node/Playwright setup, with FFmpeg for video, in the
+[media guide](../presentation/tours/TOOL.md). No personal dependency cache is required.
+
+## Recovery boundaries
+
+Historical files may refer to `site/`, `site_med/`, `catalog/` or retired scripts.
+Use [archive recovery](../archive/README.md) to inspect their original context;
+use the commands above for the current presentation. Do not run an old generator
+to repair a historical link.
+
+Raw runs, environments and generated media remain local. Missing input files,
+mutable historical Docker tags, dataset access/licensing and independent backup
+are separate recovery concerns. A successful file restore or saved-output replay
+does not establish clinical validity or submission readiness.

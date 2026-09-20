@@ -1,5 +1,9 @@
 # Historical findings and experiment ledger
 
+> Historical ledger, not the current work queue. Start with the
+> [medical groups](../README.md) and [documentation](README.md). The old report,
+> catalog and probe links below use [archive recovery](../archive/README.md).
+
 **Archived research record.** Outcomes and IDs are retained. “Active” and “next”
 below describe the original work, not a current queue. Read the
 [final report](../site/index.html) for the conclusion and the [archive](archive.md)

@@ -1,5 +1,9 @@
 # Cardiac modeling session closeout
 
+> Historical session closeout. Use [Cardiac motion](../groups/cardiac-motion/README.md)
+> for current research and presentation, and [reproduction](reproduce.md) for
+> supported commands. Old site links and launchers below are retained provenance.
+
 The [Dynamic heart chapter](../site/index.html#cardiac) is the presentation of
 this completed series. The final finding is bounded: **Sol can construct a
 segmentation-driven 4D mesh and calculate its strain, while correct local tissue

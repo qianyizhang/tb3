@@ -1,5 +1,8 @@
 # Retained experiment coverage
 
+Snapshot from the native migration on 2026-09-20; later owner activity is not
+automatically reflected here. See the [integration boundary](README.md#integration-boundary).
+
 All 38 experiments retain their stable IDs, observations and source links. This is
 an explicit support inventory, not a claim that every historical run is rebuildable.
 

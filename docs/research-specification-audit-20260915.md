@@ -1,5 +1,9 @@
 # Specification and scaffolding audit — 2026-09-15
 
+> Dated cross-domain source audit. Its counts and judgments describe the recorded
+> snapshots. Applicable lessons are consolidated in [research design](research-design.md);
+> removed catalog/probe sources use [archive recovery](../archive/README.md).
+
 **Yes: several task packages supply the central solution ingredient. This is a recurring authoring problem, although a precise specification is not itself answer leakage.** The audit covers all **20 unique locally trialed task snapshots**, represented by **24 completed passes**: 16 Terra/high, four Sol/max and four Astra/max. Two infrastructure-only model attempts are excluded. Published benchmark trials and unrun candidate cards are outside this denominator.
 
 My conservative assessment is **five clear central-recipe/reference handoffs, seven substantially directed tasks, and eight tasks whose main reasoning remains to be done**. These are qualitative judgments about the supplied package, not measured causal effects or new model outcomes. In particular, the seven directed tasks should not be reported as seven additional leaks. Some guidance is necessary to define a fair, deterministic task.

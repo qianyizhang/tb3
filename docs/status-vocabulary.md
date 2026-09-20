@@ -49,7 +49,11 @@ the index does not inspect every raw artifact or certify a live process. A stale
 running observation must show its timestamp. Reproduction badges name the task,
 cases and receipt they cover.
 
-## Existing-label conversion
+## Historical conversion reference
+
+For day-to-day fields and labels, use the catalogue and usage rules above. The
+following table is retained to interpret pre-native records, not to prescribe
+additional authoring fields.
 
 This table is a one-time migration guide, not runtime aliases or a fallback reader.
 Preserve historical source bytes and attribution. Reuse existing review evidence

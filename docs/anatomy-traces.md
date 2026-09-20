@@ -1,5 +1,9 @@
 # Anatomy identity experiments — trace walkthroughs
 
+> Retained trace walkthroughs. Current research lives in
+> [Anatomy audit](../groups/anatomy-audit/README.md). Local report links require
+> retained artifacts; see [historical context](archive/README.md).
+
 [Presentation and current verdict](anatomy-experiments.md) · [Offline visual report](../runs/anatomy-history-presentation/index.html)
 
 High-level reconstruction from executed commands, returned images, public progress messages and final artifacts. Pseudocode summarizes observable work. Interpretations are hypotheses, not access to hidden reasoning.

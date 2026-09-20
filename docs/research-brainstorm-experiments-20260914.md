@@ -1,5 +1,9 @@
 # Sequential experiments from Brainstorm New Tasks
 
+> Dated mixed-domain pilot record. Its frozen protocol and outcomes are preserved
+> as history; use [research design](research-design.md) and the [workflow](workflow.md)
+> for new medical studies. Old assignment gates do not govern current research.
+
 Requested 2026-09-14. Reference: ChatGPT conversation
 `6aa74ac6-4190-83ee-9eaf-603e1ae6ab9e`, “Brainstorm New Tasks”. Four full
 specifications and the two reserve overviews were retrieved; the cached final

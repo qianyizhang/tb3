@@ -1,6 +1,8 @@
 # Architecture review: finish the native medical workbench
 
 Reviewed 2026-09-20 against commit `02b9287db9c701bb4f9aa93cb81122ad7acaca60`.
+This is a dated defect record. The later [native closeout](native-closeout.md)
+records fixes and verification; use [current documentation](../README.md) for usage.
 The subsequent [minimal implementation plan](native-workbench-plan.md) narrows
 the proposed architecture and separates everyday usage from temporary migration
 work. Its four decisions are confirmed; the findings below remain the review

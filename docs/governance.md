@@ -2,8 +2,9 @@
 
 The medical workbench is active for user-authorized work. The original interview
 and selection queue are historical. The [existing submission](submission.md)
-remains independently owned. The [migration design](migration/tb3-medical.md)
-records the agreed scope; [workflow](workflow.md) explains the supported interface.
+remains independently owned. Start with [current documentation](README.md);
+[migration history](migration/README.md) records the pivot and integration boundary.
+The [workflow](workflow.md) explains the supported interface.
 
 | Location | Authority and treatment |
 | --- | --- |
@@ -16,7 +17,7 @@ records the agreed scope; [workflow](workflow.md) explains the supported interfa
 | docs/research-rounds/ | Historical protocols/outcomes and active writers' handoffs. Round numbers are historical provenance, not lookup aliases. |
 | archive/README.md and manifest.json | Recovery locators, exact hashes and retirement reasons. Payload under archive/legacy/ is ignored. |
 | runs/, jobs/, .local/, .cache/, .venv*/ | Local raw outputs, credentials, environments and caches. Do not delete as cleanup. |
-| presentation/tours/data/, web/, exports/ | Local derived media; retain source provenance and static fallbacks in Git. |
+| presentation/tours/data/, presentation/tours/web/, presentation/tours/exports/ | Local derived media; retain source provenance and static fallbacks in Git. |
 
 Attempts identify executions. Evaluations identify observations or replays.
 Reviews assess experiment conclusions; they do not alter original scores. Groups,

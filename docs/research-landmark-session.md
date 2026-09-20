@@ -1,5 +1,9 @@
 # Semantic landmark session — completed
 
+> Historical session closeout. Use [Anatomical landmarks](../groups/anatomical-landmarks/README.md)
+> for current research and [reproduction](reproduce.md) for native replay/views.
+> The old site/import commands below are retired; do not run them for a refresh.
+
 [Portable report](../site/index.html#landmarks) synthesizes the user-requested
 CT/MRI experiments. Eleven normal model attempts: eight Terra/high and three
 Sol/xhigh. The final comparison improves broader-distance localization but does

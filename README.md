@@ -33,7 +33,8 @@ uv run med check
 make check
 ```
 
-Read [the workflow](docs/workflow.md) for idea capture, decisions, scaffolding,
+Start with [the documentation index](docs/README.md). Read
+[the workflow](docs/workflow.md) for idea capture, decisions, scaffolding,
 automatic run receipts, collection, scoped review and clean exports. [Contribution rules](CONTRIBUTING.md)
 cover concurrent ownership and milestone checks. Findings are source-linked and
 qualified; historical success is not clinical readiness or a new task's score.

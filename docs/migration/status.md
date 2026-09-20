@@ -1,9 +1,10 @@
-# tb3-medical migration completion record
+# First-pass migration completion record
 
-The follow-up [architecture review](architecture-review.md) qualifies this
-closeout: the index/archive/presentation foundation is delivered, but existing
-experiments are not yet fully converted to a native design without shims. It
-records reproduced contract defects and the remaining engineering milestones.
+Historical closeout of the index/archive foundation, before the native refactor.
+The [architecture review](architecture-review.md) identified its remaining defects;
+the later [native closeout](native-closeout.md) records their fixes and conversion.
+Counts, commands and limitations below describe that first pass. Use the
+[migration index](README.md) for reading order and the integration boundary.
 
 The first migration pass is implemented. The [design record](tb3-medical.md)
 retains the agreed decisions; [workflow](../workflow.md) is the current interface.

@@ -1,6 +1,8 @@
 # Native workbench: minimal authoring and validation plan
 
-Status: decisions confirmed by the user, 2026-09-20. Implementation is recorded in native-closeout.md. The plan narrows the architecture proposed in the
+Status: decisions confirmed by the user, 2026-09-20. Implementation is recorded in
+[the native closeout](native-closeout.md); the [migration index](README.md) separates
+delivered work from original-checkout integration. The plan narrows the architecture proposed in the
 [review](architecture-review.md); the reproduced bugs remain valid findings.
 
 ## Design budget

@@ -1,8 +1,9 @@
 # Design record: migration to tb3-medical
 
-Implementation began after explicit authorization on 2026-09-20. See
-[the completion and verification record](status.md) for delivered changes,
-commits and remaining operational limits. The investigation narrative below
+Implementation began after explicit authorization on 2026-09-20. The
+[first-pass closeout](status.md) records the initial foundation; the later
+[native implementation closeout](native-closeout.md) records the installed workflow.
+See the [migration index](README.md) for their order and remaining integration boundary. The investigation narrative below
 is retained as the decision record; its baseline counts and future tense are historical.
 
 Status: seven design decisions locked through the user interview on 2026-09-20;

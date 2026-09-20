@@ -1,74 +1,55 @@
-# Historical case-32 submission handoff
+# Exports and submission ownership
 
-[Current report](../site/index.html) · [Research archive](archive.md)
+Medical capability research is the active purpose of this repository. Exporting
+selected work produces a research draft; submission qualification is a separate
+assessment against a named, dated target profile. The closed interview's trial
+matrix and failure-first selection rules are not gates on ordinary research.
 
-**Selection superseded.** BR-010 paused promotion of the micro-boundary cases
-over unresolved task-validity concerns. The later anatomy retrospective favors
-BR-017 M02, with scope and repeatability caveats. This document preserves the
-original package handoff; it does not endorse case 32 as the current lead.
-[Reassessment](research-rounds/BR-010-mask-only-anatomy.md) ·
-[Current anatomy verdict](anatomy-experiments.md#candidate-verdict).
+## Build an independent research draft
 
-## Task selected at the initial closeout
+Recipes select immutable Git bytes or explicit local artifacts with hashes. Restore
+only the selected inputs and choose a destination that does not already exist:
 
-**Case 32: anatomical annotation audit.** Inspect one CT/segmentation pair,
-review eleven labels, and return a JSON report with spatial witnesses for errors.
-The controlled left-kidney extension adds 63 voxels while retaining 0.993572
-Dice overlap with the source mask.
+```sh
+uv run med export exports/recipes/landmarks-mri-v2.json /fresh/destination
+uv run med verify-package /fresh/destination
+python3.12 /fresh/destination/replay.py
+```
 
-- [Original task instruction](../probes/revisions/br004-single/tasks/dicom-audit-32/instruction.md)
-- [Frozen eight-task screen](evidence/br004-single-patient-freeze.json)
-- [Terra review](evidence/br004-single-case-32-review.json)
-- [Sol review](evidence/br004-sol-case-32-review.json)
-- [Cross-model analysis and selection rationale](../catalog/analyses/br004-sol-followup.md)
+The [MRI recipe](../exports/recipes/landmarks-mri-v2.json) includes task files,
+source notices, two saved model outputs, oracle output and standalone replay code.
+Its replay needs neither the source checkout nor NumPy, Docker, network or inference.
+The [implementation receipt](migration/native-closeout.md) records its verified
+scope. The package retains a historical mutable Docker tag, so saved-output replay
+is not proof of a rebuilt execution environment.
 
-The same original task bytes produced one normally completed Terra/max miss and
-one Sol/xhigh miss. These are development-selected observations. They are not
-three independent qualifying failures per required model.
+Flagged evidence can be included in a research draft only with `--include-flagged`;
+its reasons and scope travel with the package. Every export begins as a draft.
+A successful export, verification or control run does not promote it automatically.
 
-## Clean submission
+## Qualification and handoff
 
-A separate task owns the clean package at **`../dicom-anatomy-audit`** (a sibling
-repository/workspace). Its `README.md`, `EVALUATION.md` when available, and
-`evidence/` own package-specific commands, results and packaging differences.
-This path is a local handoff, not a published GitHub URL or a directory included
-in this workshop clone.
+Before claiming submission readiness, check the target's then-current task format,
+licenses/access, authorship requirements, runtime/profile and required trials.
+Record what was checked and what remains incomplete in the destination package.
+The [2026-09-12 requirements snapshot](archive/README.md#retired-guidance-and-recovery) is historical reference,
+not a current upstream specification. This documentation audit did not refresh
+external submission requirements.
 
-At the final handoff on 2026-09-15, the clean repository was committed at
-`77a3544` (42 files, approximately 6 MB), with `README.md` and `EVALUATION.md`
-as entry points. No remote or publication was created.
+During preparation, the recipe and lineage record belong here. After an explicit
+handoff, the destination is independently maintained; later fixes require deliberate
+backports rather than automatic synchronization. Never overwrite an existing export.
 
-The submission owner reported:
+The existing `dicom-anatomy-audit` sibling repository has separate ownership.
+Its README, evaluation records and evidence own package-specific commands, current
+selection and qualification. It is not included in this clone, and a sibling path
+must be resolved from the owner's checkout, not assumed relative to a Codex worktree.
 
-- 22/22 unchanged upstream Linux static checks;
-- independent source-edit, decoded-SEG and ground-truth reconstruction;
-- 76 grading controls and pilot replays;
-- matched Docker oracle = 1 / nop = 0;
-- 22/22 static checks and 76/76 controls from a clean staged Git archive.
-
-Its task checksum is
-`9fe26c9b1ec697d3a01972597854ada56ba47f40dfa78e1313baf184599ae9ec`.
-Portable receipts are in that repository's `evidence/{static,local-checks,
-controls,clean-archive,package-manifest,pilot-results}.json`. These are
-handoff-reported checks; the workshop did not rerun them. The new package records
-its metadata/canary/reviewer-material delta separately from the original task.
-
-No new Sol or adversarial trial had launched at handoff. The original Terra/Sol
-pilots remain the only model observations in the clean package. Consult its
-`EVALUATION.md` for any later changes; this workshop's pilot table stays frozen.
-
-## Assignment status boundary
-
-The [original assignment](task.md) requests static/rubric/build/control checks,
-three Sol/xhigh trials, three Opus/max trials, and one adversarial trial per
-standard configuration. The workshop's pilot work alone does not complete that
-matrix. The [requirements record](requirements.md) preserves the inspected
-upstream rules and their pinned version.
-
-The submission owner reported unavailable Claude credentials during preparation.
-No missing run should be presented as a failure or a waived requirement.
-Interview explanations are explicitly AI-assisted; any difference from upstream
-human-authorship requirements belongs in the clean package's evaluation status.
-
-No new experiment, publication or qualification run is part of this archive
-cleanup. The workshop and submission have separate ownership and evidence.
+The former contents of this page were a dated **case-32 handoff**, already superseded
+by later anatomical work. Exact original bytes and recovery locations are retained
+as `docs/submission.md` at commit
+`f5b2ced2d85e13e325bf535d444b574fedd9dd39` in the
+[archive manifest](../archive/manifest.json). See [recovery instructions](../archive/README.md).
+Those reported checks and package commits are not a verified current status of the
+sibling repository. Current medical findings belong to the
+[anatomy-audit group](../groups/anatomy-audit/README.md).

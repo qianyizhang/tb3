@@ -1,5 +1,9 @@
 # Registration: from exact slice recovery to anatomical correspondence
 
+> Historical session synthesis. Use [Registration](../groups/registration/README.md)
+> for current questions and presentation. Frozen results and later visual assessment
+> remain distinct; old site/run links need [historical context](archive/README.md).
+
 Session synthesis, 16 September 2026. Covers BR-019–024 and BR-028; no new
 model trial was run for this report. [Interactive chapter](../site/index.html#registration).
 
