@@ -74,6 +74,9 @@ Only 30 of 180 angular samples are used in the stated problem. Supplied plans re
 
 ## Sources
 
+- [Preview image notices](../../../presentation/task-explorer/assets/NOTICES.md)
+- [Preview image manifest](../../../presentation/task-explorer/assets/manifest.json)
+
 - [Sparse-view CT task](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_sparse_view/README.md)
 - [Evaluation modes and assistance](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md)
 - [Assistance staging code](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/runner.py)
@@ -87,5 +90,7 @@ Only 30 of 180 angular samples are used in the stated problem. Supplied plans re
 Also: MRI reconstruction and parameter mapping, PET, ultrasound and other scientific inverse problems. The inspected tree has 58 task directories; not all are medical.
 
 ## Gaps
+
+The two Imaging-101 PNGs remain optional local previews. The pinned asset manifest declares MIT, but its full copyright and permission notice has not been recovered; these two files are not retained in Git.
 
 The README lists full projections and ground truth among task assets. Solver-visible staging still needs checking before asserting what is withheld.

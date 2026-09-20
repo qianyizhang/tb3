@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "purpose": "Implementation closeout for accepted R01-R11; separate from the retained baseline sweep receipt",
+  "source_task": "codex://threads/01a0c040-3777-7b72-b932-6e6b118304a2",
+  "actor": "assistant",
+  "authorization": {
+    "actor": "user",
+    "response": "all your rec",
+    "scope": "Four interview recommendations and the full maintenance refinement pass"
+  },
+  "implemented": [
+    "Reviewed-control and latest-execution gating, append-only recollection, prospective qualification",
+    "Operational CLI exit status and derived group membership",
+    "POSIX export executable-mode checks",
+    "Protocol links and rendered chapter links",
+    "Portable exact-text source readers, focus, navigation state and latest-request tour selection",
+    "Nine notice-complete previews with per-source restrictions",
+    "Six bounded finding summaries, six dataset records, three parked ideas and one scoped BR-042 issue",
+    "Offline regressions, portable browser checks and changed-input CI"
+  ],
+  "clean_index_checks": {
+    "method": "git checkout-index into fresh temporary directories; initialize and stage that exact snapshot; use existing Python 3.12 with PYTHONPATH pointing to snapshot/src",
+    "command": "make check PYTHON=python3.12",
+    "core_commit": {
+      "commit": "3b06918",
+      "tests_run": 65,
+      "passed": 64,
+      "skipped": 1,
+      "exit_code": 0
+    },
+    "research_commit": {
+      "commit": "1a56267",
+      "tests_run": 65,
+      "passed": 64,
+      "skipped": 1,
+      "exit_code": 0
+    },
+    "complete_implementation": {
+      "tests_run": 70,
+      "passed": 69,
+      "skipped": 1,
+      "skip_reason": "Optional local imaging runtime",
+      "exit_code": 0,
+      "records": 582,
+      "groups": 7,
+      "experiments": 38,
+      "source_measurements": 153,
+      "protocols_checked": 38,
+      "lint": "pass",
+      "format": "pass"
+    }
+  },
+  "clean_snapshot_browser_checks": {
+    "command": "make presentation-check PYTHON=python3.12",
+    "runtime": "Existing Playwright and installed Chrome; ephemeral loopback HTTP; no installs or raw imaging files",
+    "exit_code": 0,
+    "workbench": {
+      "groups": 7,
+      "chapterLinks": 10,
+      "filterReloadAndBack": "pass",
+      "selectedRecord": "pass",
+      "multipleRecordClose": "pass",
+      "explorerRoundTrip": "pass",
+      "mobile": "pass",
+      "pageErrors": [],
+      "remoteRequests": []
+    },
+    "explorer": {
+      "briefs": 160,
+      "taskFamilies": 106,
+      "sourceRecords": 284,
+      "conditions": 379,
+      "nativeImagesDecoded": 10,
+      "conceptualIllustrations": 154,
+      "diagramTypes": 59,
+      "sourcePreviews": 5,
+      "localSources": 9,
+      "sourceReader": "pass",
+      "keyboardFocus": "pass",
+      "groupedTaskList": "pass",
+      "datasetVariants": "pass",
+      "caseDifferences": "pass",
+      "legacyLinksAndBack": "pass",
+      "collapsedProvenance": "pass",
+      "search": "pass",
+      "referenceReveal": "pass",
+      "mobile": "pass",
+      "pageErrors": [],
+      "remoteRequests": []
+    },
+    "tour_state": "Deferred fetch checks passed for latest selection, stale/current errors, locale ordering and the most recently requested tour",
+    "visual_inspection": "Desktop and 390 px mobile workbench screenshots inspected; no clipping or nested disclosure layout defect",
+    "ci": "Workflow added; remote CI was not run or published"
+  },
+  "independent_review": {
+    "core": "Neutral reset could bypass an invalidation; fixed and rechecked. No outstanding finding.",
+    "research": "Corrected BR-030 distance-axis wording, radial-strain target wording and unresolved source diameter units. No outstanding finding.",
+    "presentation": "Fixed closing-unselected-card URL loss and notice Back focus; covered by final browser suite. All nine preview bytes/hashes and usage restrictions checked."
+  },
+  "retained_preview_assets": {
+    "count": 9,
+    "total_bytes": 1863492,
+    "manifest": "presentation/task-explorer/assets/manifest.json",
+    "notices": "presentation/task-explorer/assets/NOTICES.md",
+    "optional_missing": [
+      "presentation/tours/data/task-briefs/imaging101-input.png",
+      "presentation/tours/data/task-briefs/imaging101-reference.png"
+    ],
+    "reason": "Complete Imaging101 source copyright/license notice has not been recovered"
+  },
+  "preserved_concurrent_files": {
+    "groups/tubular-anatomy/README.md": "ea46f8baac3d01e49140f3f3bb75b50c94223eceb909f372ed34faa374c6452e",
+    "groups/tubular-anatomy/ideas/coronary-branch-identity.md": "54457d6cdc4909a4c5365ecf8b4f5ec5615f0da5b75ab5d6367dc8b90f52bf84",
+    "groups/tubular-anatomy/presentation/br042/qa.cjs": "5fb1bcec835d4d2d0cae3aa0c2681a233c6f6ba78faa07844cb0347ea43a95e8",
+    "groups/tubular-anatomy/presentation/br042/build.py": "ec2fc4d32bf80bee6f2b069984adeb2c2eb3b47c9ed5b02ad791f0a1d509fbfa",
+    "groups/tubular-anatomy/presentation/br042/index.html": "5d71c7b088de9bef84ab7d4475596505bedde893091a4317254928532d8342c3",
+    "groups/tubular-anatomy/presentation/br042/report.md": "0fcb68b13c1f57fef52591b8e3daa45eedc203691247372d426511ef24305682",
+    "groups/tubular-anatomy/presentation/br042/README.md": "0249e93bcca937b30177f2d8b8645f1ea2d899a7f552e3473274257cb3e698d0",
+    "groups/tubular-anatomy/presentation/br042/style.css": "83317a2210dcb60978709f4adc83825f4a2bb168ab13423e80ef9ff518061b18",
+    "groups/tubular-anatomy/presentation/br042/app.js": "e0130cdf5becf8239683a80d27e13f438170d28038bf595c9e26782e8d959d23"
+  },
+  "verified_implementation_sha256": {
+    ".github/workflows/presentation.yml": "9492264446289cda79bda90dd7775826b8172b5fff20305d997cca682d010a4c",
+    "Makefile": "8d4a8cff504a84fbd4311c8e70f68220edb8c9f7d417bc029eb6c5bfd87c972c",
+    "configs/artifact-policy.json": "c4f631a0ea363020dc243aadb00cac49d53bad4e6c40687b81813aa6c1921187",
+    "discussions/medical-agent-repository-survey/briefs/abra.md": "e125c545825b864d0b64f64e9ac4898539b8a31a82d9f6547083bdbbb7e81e68",
+    "discussions/medical-agent-repository-survey/briefs/automedbench-tsg.md": "7319dd0981d971dd3f92dfa6b4b3f8315bac38a8b0a4557fc87cee1ad6211865",
+    "discussions/medical-agent-repository-survey/briefs/bcer.md": "27af10eb421a7c8db4f5ab4439863b08571d365990671cf42bfb1b42657d6b96",
+    "discussions/medical-agent-repository-survey/briefs/imaging101.md": "78075bd1f34d3d725453da0f428c05378ca1f50fd67a6a714cce82c974c3e75a",
+    "discussions/medical-agent-repository-survey/briefs/rexmle.md": "6ebb7f126a404b2b85574080e50714c111456ab0db5ae8b6e2b796832ad9ed8d",
+    "groups/tubular-anatomy/presentation/briefs/br030.md": "f2d757aedf18e60690e7f3e97976a6fdc91ec21c64a1a408395b51013df94fee",
+    "presentation/app.js": "67364b5d54cd9cb4c5524815e56681d3a5a5ec4946f64ce27f39bb9b4465876d",
+    "presentation/index.html": "a219f08406e2bac7b9ac2bbf545509f57617b4af0f3a2508bbe8be6905b8fdb9",
+    "presentation/style.css": "1f0fab7ddfaaec6eb481c76e4ddd2cfa5226ec343309fc25fbfedd9b6b9c81c6",
+    "presentation/task-explorer/app.js": "8c6f281493ff1a31e9d26a78d32628bf8cefc7fe05eda51679418c12aae86548",
+    "presentation/task-explorer/assets/Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "presentation/task-explorer/assets/NOTICES.md": "72fb425bc01639bb8525909e56c93ad1449c04c5e69d7a6f3486d5104a632592",
+    "presentation/task-explorer/assets/abra-input.png": "21e1b41c7273c1238bf5af78caee880e942c2580891c6b4f3af2fe223a726fdb",
+    "presentation/task-explorer/assets/abra-reference.png": "eb83f875392c6aff0e89b3eb6b79581b9458f157e40c44960d4786af019b2a59",
+    "presentation/task-explorer/assets/automed-tsg-input.png": "ea1cd3236fb1a83b8d373d7014a089c47cdc676b91e87ae623d5c1b9f4a56c2d",
+    "presentation/task-explorer/assets/automed-tsg-reference.png": "1dc38ae869bac1ba011f38f71435bd311dc21ea76064a86496ff4f1050d43e68",
+    "presentation/task-explorer/assets/bcer-input.png": "f701bbf6d555ccb2fbf34bf611f89ee71ee60f7536cc4ff9756ccf3922ccf600",
+    "presentation/task-explorer/assets/br030-helpers.png": "69df62220e653d6e71272ec1c07a1f03b1850f7362892b689810aa9782d020f6",
+    "presentation/task-explorer/assets/br030-input.png": "ff2e2cd9eb4552f6601bf6119b667678e9638da08f9a0fb274d65812c21ad45b",
+    "presentation/task-explorer/assets/manifest.json": "a1bdb363ae1e2109561442229d1b5cab36f5e372a9dcad29106ad964f82e8a86",
+    "presentation/task-explorer/assets/rexmle-helpers.png": "04dda6671ab50dcb954f91b013670e099e5f374913bcc920a43d7b27d7486c57",
+    "presentation/task-explorer/assets/rexmle-input.png": "8bfd809a307b905e96dd141ca5d43d481bed4a31756c39258852e31653c586d8",
+    "presentation/task-explorer/style.css": "6eaa2d79f4c53b3ffd4d7046f6f761841f7ef34f3a83c00d377428766a9fb645",
+    "presentation/tours/tour.js": "b57ba6ea732fc6c8621f4ae81541046c6a31a6146f62876726a6e0e47ab0a98e",
+    "src/tb3_medical/cli.py": "6d47f29d23358053430f91aaad20340a1a2b2cebbd23ca9fffc91279274015b6",
+    "src/tb3_medical/core.py": "ae599e4df7fd6c5c18dd4cef18a810002317b62c87459431683b4c56cd322582",
+    "src/tb3_medical/packaging.py": "898fc42ae1c60892d0f50fdd60aeef0a1125ccc3b8591c578ec9a7fe0894fb1e",
+    "src/tb3_medical/presentation.py": "0c58102008d3bdaa7646f5af858ffb298e2f2369cdceb9e8613147a7bcf5ec66",
+    "src/tb3_medical/task_briefs.py": "1006865c9793361f440ff7e80e8bc1543eb7fdf1edc3e6835066a670b35b52a4",
+    "src/tb3_medical/workflow.py": "295fc487c6324ffda173831c91ea537672a92e6133c9ae7a1a467acfa8450d0a",
+    "tests/task_explorer_ui.cjs": "76f5c1d1261f0f405caa3c0df8b1b31d2802abdf7d4d517bf9b0f538a82a8d96",
+    "tests/test_presentation_refinements.py": "fcd22ce3c829376562ad0893ea4722c8f5ac977f238e7881fc526bfadae16bbf",
+    "tests/test_task_briefs.py": "468cb24d7fa681d9e018740e292dbaac6888d5e5664a698e3df63bc6ca84eab1",
+    "tests/test_workflow_refinements.py": "db656791520de6e8271a6e2f613e4cdb6953148d19dedc278413d136d073ac5e",
+    "tests/tour_state.cjs": "3127146a91e25fd777172d1763317e433baffaef7617b9387d9cde7092d9615d",
+    "tests/workbench_ui.cjs": "446c1ab12518d243e67f393828019eb3d80b4564c535777aaa4b1e37d783c2f1"
+  },
+  "limits": [
+    "Temporary core regressions use mocked launchers; no real model or Harbor runs.",
+    "No raw-run integrity sweep, clinical adjudication, score change or evidence reinstatement.",
+    "Frozen tasks and retained results were not modified.",
+    "No runtime installation, dataset download or publication.",
+    "The original proposal receipt remains an unchanged baseline; this file records subsequent implementation."
+  ]
+}

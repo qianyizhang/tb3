@@ -46,7 +46,7 @@ This generator specifies IoU ≥ 0.5 against a reference polygon. The overall be
 
 ### Input
 
-![Native CT slice](../../../presentation/tours/data/task-briefs/abra-input.png)
+![Native CT slice](../../../presentation/task-explorer/assets/abra-input.png)
 
 LIDC-IDRI-0003, slice 66 (zero-based ascending patient-z), from ABRA’s study manifest. Lung window: width 1500, center −600 HU. This reader-selected slice maximizes one annotation’s area; the full volume has 140 slices.
 
@@ -56,7 +56,7 @@ Ordinary task: slice number and window settings, without an outline. Oracle task
 
 ### Reference or output
 
-![Released annotation and reader-only crop](../../../presentation/tours/data/task-briefs/abra-reference.png)
+![Released annotation and reader-only crop](../../../presentation/task-explorer/assets/abra-reference.png)
 
 Gold: source DICOM SEG “Nodule 1 — Annotation 12”, aligned by referenced image UID and geometry. Right: post-hoc enlargement chosen using the annotation. This is one source annotation, not a regenerated consensus polygon or agent prediction. LIDC-IDRI / TCIA, CC BY 3.0.
 
@@ -72,6 +72,9 @@ Gold: source DICOM SEG “Nodule 1 — Annotation 12”, aligned by referenced i
 Ordinary annotation still requires visual boundary judgment. The oracle variant supplies that boundary and emphasizes transferring it correctly into the viewer.
 
 ## Sources
+
+- [Preview image notices](../../../presentation/task-explorer/assets/NOTICES.md)
+- [Preview image manifest](../../../presentation/task-explorer/assets/manifest.json)
 
 - [Ordinary annotation generator](https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier3.py)
 - [Oracle generator](https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier3_oracle.py)

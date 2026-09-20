@@ -49,8 +49,31 @@ uv run med check --assets
 
 `present` writes the portable index to `.local/site/`; `--serve` starts a local
 server at `http://127.0.0.1:8765`. It does not publish. Group stories and retained
-figures work without raw scans. `check --assets` additionally verifies selected
+figures work without raw scans. The index includes the Task Explorer, with a
+return link to the workbench. `med brief build` still creates an independent
+single-file Explorer. Selected small text sources can be inspected within its
+Sources panel; omitted local inputs remain explicitly unavailable. Retained
+preview images carry their own source notices and usage restrictions.
+
+Index filters and the selected record are retained in the URL. Chapter navigation
+opens the rendered chapters, including heading fragments. `check --assets` additionally verifies selected
 figure extraction inputs when those are available.
+
+For presentation changes, use the optional browser regression command after
+setting up the declared Node/Playwright dependencies in the [media guide](../presentation/tours/TOOL.md):
+
+```sh
+make presentation-check
+# With Playwright's bundled Chromium instead of installed Chrome:
+PLAYWRIGHT_CHANNEL=chromium make presentation-check
+```
+
+This builds a fresh portable view under `.local/presentation-check/` and checks
+chapter links, source navigation, URL history, keyboard focus, mobile layout and
+tour selection ordering. It needs no scans, inference or media rendering. Missing
+optional previews are tested as explicit unavailable states. The separate
+presentation CI workflow provisions its declared browser and runs the same checks
+for changes to presentation inputs; the ordinary `make check` remains Python-only.
 
 For guided tours, first restore the exact derived inputs in
 [presentation/tours/inputs.json](../presentation/tours/inputs.json), then run:

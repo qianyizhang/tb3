@@ -1,6 +1,8 @@
 """Offline authoring/build checks; no native images or external tasks required."""
 
 from contextlib import redirect_stdout
+import base64
+import hashlib
 import io
 import json
 from pathlib import Path
@@ -127,6 +129,60 @@ class TaskBriefTests(unittest.TestCase):
         path.write_text(json.dumps(data))
         with self.assertRaises(c.MedicalError):
             briefs.check(self.root, self.catalog)
+
+    def test_sources_are_exact_bounded_deduplicated_and_not_recursive(self):
+        self.scaffold()
+        self.scaffold("second")
+        exact = b"# Protocol\r\n\r\nSee [private input](../runs/private.txt).\r\n"
+        (self.root / "group/protocol.md").write_bytes(exact)
+        (self.root / "group/large.txt").write_bytes(b"x" * (briefs.SOURCE_MAX_BYTES + 1))
+        (self.root / "group/binary.json").write_bytes(b"\xff")
+        (self.root / "group/script.py").write_text("PRIVATE_SCRIPT")
+        (self.root / "runs").mkdir()
+        (self.root / "runs/private.txt").write_text("PRIVATE_RUNTIME")
+        for key in ("example", "second"):
+            p = self.root / f"group/{key}.md"
+            p.write_text(
+                p.read_text().replace(
+                    "Link the task prompt, relevant scorer, data/figure attribution and supporting evidence.",
+                    "[Protocol](protocol.md)\n[Large](large.txt)\n[Binary](binary.json)\n"
+                    "[Script](script.py)\n[Runtime](../runs/private.txt)",
+                )
+            )
+        data = briefs.load(self.root, self.catalog)
+        sources = data["local_sources"]
+        self.assertEqual(len(sources), 5)
+        source = sources["group/protocol.md"]
+        self.assertEqual(base64.b64decode(source["base64"]), exact)
+        self.assertEqual(source["content"], exact.decode())
+        self.assertEqual(source["sha256"], hashlib.sha256(exact).hexdigest())
+        for path in ("group/large.txt", "group/binary.json", "group/script.py", "runs/private.txt"):
+            self.assertIn("unavailable", sources[path])
+        target = self.root / "output/index.html"
+        briefs.build(self.root, target, self.catalog)
+        self.assertNotIn("PRIVATE_RUNTIME", target.read_text())
+        self.assertNotIn("PRIVATE_SCRIPT", target.read_text())
+        self.assertNotIn('"presentation_context":', target.read_text())
+        context = {"home_url": "../index.html", "home_label": "Evidence", "story_urls": {}}
+        result = briefs.build(self.root, target, self.catalog, presentation_context=context)
+        self.assertTrue(result["integrated"])
+        self.assertIn('"home_url": "../index.html"', target.read_text())
+
+    def test_source_bundle_combined_limit_and_link_escape(self):
+        entries = [{"sources": []}]
+        for i in range(5):
+            path = self.root / f"source-{i}.txt"
+            path.write_bytes(bytes([65 + i]) * briefs.SOURCE_MAX_BYTES)
+            entries[0]["sources"].append(["Source", path.name])
+        with self.assertRaisesRegex(c.MedicalError, "256 KiB combined limit"):
+            briefs.source_bundle(self.root, entries)
+        entries[0]["sources"].pop()
+        sources = briefs.source_bundle(self.root, entries)
+        self.assertEqual(
+            sum(s.get("bytes", 0) for s in sources.values()), briefs.SOURCE_TOTAL_BYTES
+        )
+        with self.assertRaisesRegex(c.MedicalError, "escapes repository"):
+            briefs.local_path(self.root, self.root / "brief.md", "../outside.md")
 
     def test_catalogue_coverage_condition_and_repository_are_checked(self):
         self.scaffold()

@@ -1,0 +1,67 @@
+name: Portable presentation checks
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'presentation/**'
+      - 'groups/**'
+      - 'datasets/**'
+      - 'configs/**'
+      - 'workbench.toml'
+      - 'docs/evidence/**'
+      - 'docs/research-rounds/**'
+      - 'exports/records/**'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - 'discussions/**'
+      - 'tests/**'
+      - 'package*.json'
+      - 'Makefile'
+      - '.github/workflows/presentation.yml'
+  push:
+    paths:
+      - 'src/**'
+      - 'presentation/**'
+      - 'groups/**'
+      - 'datasets/**'
+      - 'configs/**'
+      - 'workbench.toml'
+      - 'docs/evidence/**'
+      - 'docs/research-rounds/**'
+      - 'exports/records/**'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - 'discussions/**'
+      - 'tests/**'
+      - 'package*.json'
+      - 'Makefile'
+      - '.github/workflows/presentation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: presentation-checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  presentation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PLAYWRIGHT_CHANNEL: chromium
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --locked
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Check portable navigation, sources and interaction
+        run: make presentation-check

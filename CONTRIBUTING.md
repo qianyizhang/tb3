@@ -27,3 +27,10 @@ another hook directory. The [accepted design](docs/migration/native-workbench-pl
 records the minimal validation boundary. With the project environment active,
 `make check PYTHON=python3.12` uses the installed package and Python 3.12;
 `make check` otherwise selects `.venv/bin/python` when present.
+
+For presentation changes, also run `make presentation-check` using the declared
+existing Node/Playwright environment. It builds a portable site and exercises
+navigation, sources, keyboard/mobile behavior and deferred tour loads without
+raw scans or media generation. Set `PLAYWRIGHT_CHANNEL=chromium` for the bundled
+browser; installed Chrome is the local default. A separate changed-input CI job
+runs this command. See [reproduction](docs/reproduce.md) for its coverage boundary.

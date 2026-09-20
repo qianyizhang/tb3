@@ -46,7 +46,7 @@ Required-stage success plus checks such as nonempty masks, matching geometry and
 
 ### Input
 
-![Three native PI-CAI MRI sequences](../../../presentation/tours/data/task-briefs/bcer-input.png)
+![Three native PI-CAI MRI sequences](../../../presentation/task-explorer/assets/bcer-input.png)
 
 PI-CAI 10001_1000001: T2 anatomy, ADC diffusion map and high-b diffusion image. Different resolution and contrast illustrate sequence identification and alignment. Nearest native planes to one physical point, not a registration result.
 
@@ -69,6 +69,9 @@ No BCER run was launched. Mask, candidates, feature table and report would be ge
 A wrong sequence, spatial mismatch or broken artifact dependency can derail a later stage. This differs from recognizing anatomy without specialist tools.
 
 ## Sources
+
+- [Preview image notices](../../../presentation/task-explorer/assets/NOTICES.md)
+- [Preview image manifest](../../../presentation/task-explorer/assets/manifest.json)
 
 - [Task contracts](https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/configs/tasks_registry.json)
 - [Public suite template](https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/benchmark/benchmark_suite.template.json)

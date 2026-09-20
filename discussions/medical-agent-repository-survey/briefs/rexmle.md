@@ -46,13 +46,13 @@ The task description names mean Dice as its primary metric. A separate audit of 
 
 ### Input
 
-![TopCoW training CTA planes](../../../presentation/tours/data/task-briefs/rexmle-input.png)
+![TopCoW training CTA planes](../../../presentation/task-explorer/assets/rexmle-input.png)
 
 TopCoW 2024 CT 012, reused from our retained download and rechecked against its hashes. Source volume is braincase-cropped. Planes are 5 mm apart; middle plane selected post hoc from training labels. Right increases rightward, anterior upward.
 
 ### Supplied helpers
 
-![Supplied training vessel labels](../../../presentation/tours/data/task-briefs/rexmle-helpers.png)
+![Supplied training vessel labels](../../../presentation/task-explorer/assets/rexmle-helpers.png)
 
 Colors distinguish source vessel classes. Training labels help learn anatomy; they do not answer held-out cases. This is the named upstream dataset, but membership in ReX-MLE’s prepared split is unverified.
 
@@ -72,6 +72,9 @@ The agent must develop a pipeline that generalizes beyond training examples; thi
 
 ## Sources
 
+- [Preview image notices](../../../presentation/task-explorer/assets/NOTICES.md)
+- [Preview image manifest](../../../presentation/task-explorer/assets/manifest.json)
+
 - [TopCoW task description](https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track1-task1/description.md)
 - [Challenge catalogue](https://github.com/rajpurkarlab/ReX-MLE/tree/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges)
 
@@ -85,4 +88,4 @@ Also: stroke, pancreas, dental, cell/pathology, enhancement and other vessel cha
 
 ## Gaps
 
-Native upstream example is available. Prepared split and grader still need inspection for exact replay. TopCoW requires source attribution and permission for commercial use; this local survey is not a dataset redistribution or benchmark run.
+Native upstream example is available. Prepared split and grader still need inspection for exact replay. TopCoW requires source attribution and permission for commercial use; the retained derived PNG previews preserve those restrictions. Raw data are not bundled, and no benchmark run is represented.

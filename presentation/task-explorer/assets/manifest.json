@@ -1,0 +1,464 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-09-21",
+  "source_task": "codex://threads/01a0c040-3777-7b72-b932-6e6b118304a2",
+  "scope": "Exact existing PNG previews only; no raw scans or new model results. Original receipts remain unchanged.",
+  "notice": "presentation/task-explorer/assets/NOTICES.md",
+  "assets": [
+    {
+      "path": "presentation/task-explorer/assets/abra-input.png",
+      "sha256": "21e1b41c7273c1238bf5af78caee880e942c2580891c6b4f3af2fe223a726fdb",
+      "bytes": 195539,
+      "original_path": "presentation/tours/data/task-briefs/abra-input.png",
+      "attribution": "Armato III et al. (2015), LIDC-IDRI; Fedorov et al. (2018), DICOM-LIDC-IDRI-Nodules; The Cancer Imaging Archive",
+      "terms": "CC BY 3.0 and TCIA data usage requirements",
+      "sources": [
+        "https://doi.org/10.7937/K9/TCIA.2015.LO9QL9SX",
+        "https://doi.org/10.7937/TCIA.2018.h7umfurq",
+        "https://creativecommons.org/licenses/by/3.0/",
+        "https://www.cancerimagingarchive.net/data-usage-policies-and-restrictions/"
+      ],
+      "derivation": {
+        "case_id": "LIDC-IDRI-0003",
+        "series_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.170706757615202213033480003264",
+        "sop_instance_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.278060129457684716345173481758",
+        "slice_index_ascending_z_zero_based": 66,
+        "position_lps_mm": [
+          -228.800003,
+          -210.0,
+          -214.0
+        ],
+        "segment_label": "Nodule 1 - Annotation 12",
+        "selected_frame": 4,
+        "selection": "largest area of this source annotation, post hoc reader selection",
+        "window_width": 1500,
+        "window_center": -600,
+        "reference_pixels": 629,
+        "reference_scope": "one source DICOM SEG annotation; not a regenerated ABRA consensus task",
+        "alignment_checks": [
+          "source SOP UID",
+          "series UID",
+          "image position",
+          "orientation",
+          "pixel spacing"
+        ],
+        "role": "input, no contour or target crop"
+      },
+      "provenance": "discussions/medical-agent-repository-survey/samples.json"
+    },
+    {
+      "path": "presentation/task-explorer/assets/abra-reference.png",
+      "sha256": "eb83f875392c6aff0e89b3eb6b79581b9458f157e40c44960d4786af019b2a59",
+      "bytes": 210429,
+      "original_path": "presentation/tours/data/task-briefs/abra-reference.png",
+      "attribution": "Armato III et al. (2015), LIDC-IDRI; Fedorov et al. (2018), DICOM-LIDC-IDRI-Nodules; The Cancer Imaging Archive",
+      "terms": "CC BY 3.0 and TCIA data usage requirements",
+      "sources": [
+        "https://doi.org/10.7937/K9/TCIA.2015.LO9QL9SX",
+        "https://doi.org/10.7937/TCIA.2018.h7umfurq",
+        "https://creativecommons.org/licenses/by/3.0/",
+        "https://www.cancerimagingarchive.net/data-usage-policies-and-restrictions/"
+      ],
+      "derivation": {
+        "case_id": "LIDC-IDRI-0003",
+        "series_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.170706757615202213033480003264",
+        "sop_instance_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.278060129457684716345173481758",
+        "slice_index_ascending_z_zero_based": 66,
+        "position_lps_mm": [
+          -228.800003,
+          -210.0,
+          -214.0
+        ],
+        "segment_label": "Nodule 1 - Annotation 12",
+        "selected_frame": 4,
+        "selection": "largest area of this source annotation, post hoc reader selection",
+        "window_width": 1500,
+        "window_center": -600,
+        "reference_pixels": 629,
+        "reference_scope": "one source DICOM SEG annotation; not a regenerated ABRA consensus task",
+        "alignment_checks": [
+          "source SOP UID",
+          "series UID",
+          "image position",
+          "orientation",
+          "pixel spacing"
+        ],
+        "role": "reference",
+        "crop_xyxy": [
+          313,
+          292,
+          424,
+          403
+        ]
+      },
+      "provenance": "discussions/medical-agent-repository-survey/samples.json"
+    },
+    {
+      "path": "presentation/task-explorer/assets/automed-tsg-input.png",
+      "sha256": "ea1cd3236fb1a83b8d373d7014a089c47cdc676b91e87ae623d5c1b9f4a56c2d",
+      "bytes": 140482,
+      "original_path": "presentation/tours/data/task-briefs/automed-tsg-input.png",
+      "attribution": "AutoMedBench Lite release contributors; TotalSegmentator CT-Lite contributors; Wasserthal et al., TotalSegmentator",
+      "terms": "CC BY 4.0",
+      "sources": [
+        "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Lite-release/blob/8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5/DATA_CARD.md",
+        "https://huggingface.co/datasets/YongchengYAO/TotalSegmentator-CT-Lite",
+        "https://doi.org/10.1148/ryai.230024",
+        "https://creativecommons.org/licenses/by/4.0/"
+      ],
+      "derivation": {
+        "case_id": "TSG_00000001",
+        "upstream_id": "s1366",
+        "plane": "coronal",
+        "y_index": 164,
+        "selection": "post hoc plane selected using the two kidney references",
+        "window_hu": [
+          -160,
+          240
+        ],
+        "orientation": "RAS+ array; R increases rightward, S upward",
+        "shape": [
+          333,
+          333,
+          336
+        ],
+        "shown_classes": [
+          "kidney_left",
+          "kidney_right",
+          "liver",
+          "spleen",
+          "aorta"
+        ],
+        "scope": "five reference masks from the 117-class task; 78 classes present in source case",
+        "role": "input",
+        "agent_prediction": false
+      },
+      "provenance": "discussions/medical-agent-repository-survey/samples.json"
+    },
+    {
+      "path": "presentation/task-explorer/assets/automed-tsg-reference.png",
+      "sha256": "1dc38ae869bac1ba011f38f71435bd311dc21ea76064a86496ff4f1050d43e68",
+      "bytes": 151867,
+      "original_path": "presentation/tours/data/task-briefs/automed-tsg-reference.png",
+      "attribution": "AutoMedBench Lite release contributors; TotalSegmentator CT-Lite contributors; Wasserthal et al., TotalSegmentator",
+      "terms": "CC BY 4.0",
+      "sources": [
+        "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Lite-release/blob/8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5/DATA_CARD.md",
+        "https://huggingface.co/datasets/YongchengYAO/TotalSegmentator-CT-Lite",
+        "https://doi.org/10.1148/ryai.230024",
+        "https://creativecommons.org/licenses/by/4.0/"
+      ],
+      "derivation": {
+        "case_id": "TSG_00000001",
+        "upstream_id": "s1366",
+        "plane": "coronal",
+        "y_index": 164,
+        "selection": "post hoc plane selected using the two kidney references",
+        "window_hu": [
+          -160,
+          240
+        ],
+        "orientation": "RAS+ array; R increases rightward, S upward",
+        "shape": [
+          333,
+          333,
+          336
+        ],
+        "shown_classes": [
+          "kidney_left",
+          "kidney_right",
+          "liver",
+          "spleen",
+          "aorta"
+        ],
+        "scope": "five reference masks from the 117-class task; 78 classes present in source case",
+        "role": "reference",
+        "agent_prediction": false
+      },
+      "provenance": "discussions/medical-agent-repository-survey/samples.json"
+    },
+    {
+      "path": "presentation/task-explorer/assets/rexmle-input.png",
+      "sha256": "8bfd809a307b905e96dd141ca5d43d481bed4a31756c39258852e31653c586d8",
+      "bytes": 264228,
+      "original_path": "presentation/tours/data/task-briefs/rexmle-input.png",
+      "attribution": "TopCoW Challenge Organizers; Yang et al., Benchmarking the CoW with the TopCoW Challenge",
+      "terms": "OpenData Swiss: open use with source attribution; commercial use requires data-owner permission",
+      "sources": [
+        "https://doi.org/10.5281/zenodo.15692630",
+        "https://arxiv.org/abs/2312.17670",
+        "https://opendata.swiss/en/terms-of-use"
+      ],
+      "derivation": {
+        "case_id": "topcow_ct_012",
+        "release": "TopCoW2024_Data_Release",
+        "plane": "axial",
+        "z_indices": [
+          102,
+          112,
+          122
+        ],
+        "orientation": "canonical RAS+; R increases rightward, A upward",
+        "selection": "middle plane maximizes reference cross-section; adjacent planes at +/- 5 mm",
+        "window_hu": [
+          0,
+          600
+        ],
+        "scope": "upstream training example; membership in the prepared ReX-MLE split not verified",
+        "role": "input"
+      },
+      "provenance": "discussions/medical-agent-repository-survey/samples.json"
+    },
+    {
+      "path": "presentation/task-explorer/assets/rexmle-helpers.png",
+      "sha256": "04dda6671ab50dcb954f91b013670e099e5f374913bcc920a43d7b27d7486c57",
+      "bytes": 273770,
+      "original_path": "presentation/tours/data/task-briefs/rexmle-helpers.png",
+      "attribution": "TopCoW Challenge Organizers; Yang et al., Benchmarking the CoW with the TopCoW Challenge",
+      "terms": "OpenData Swiss: open use with source attribution; commercial use requires data-owner permission",
+      "sources": [
+        "https://doi.org/10.5281/zenodo.15692630",
+        "https://arxiv.org/abs/2312.17670",
+        "https://opendata.swiss/en/terms-of-use"
+      ],
+      "derivation": {
+        "case_id": "topcow_ct_012",
+        "release": "TopCoW2024_Data_Release",
+        "plane": "axial",
+        "z_indices": [
+          102,
+          112,
+          122
+        ],
+        "orientation": "canonical RAS+; R increases rightward, A upward",
+        "selection": "middle plane maximizes reference cross-section; adjacent planes at +/- 5 mm",
+        "window_hu": [
+          0,
+          600
+        ],
+        "scope": "upstream training example; membership in the prepared ReX-MLE split not verified",
+        "role": "helpers"
+      },
+      "provenance": "discussions/medical-agent-repository-survey/samples.json"
+    },
+    {
+      "path": "presentation/task-explorer/assets/bcer-input.png",
+      "sha256": "f701bbf6d555ccb2fbf34bf611f89ee71ee60f7536cc4ff9756ccf3922ccf600",
+      "bytes": 273280,
+      "original_path": "presentation/tours/data/task-briefs/bcer-input.png",
+      "attribution": "Saha, Twilt, Bosma, van Ginneken, Yakar, Elschot, Veltman, Fütterer, de Rooij and Huisman; PI-CAI public training and development dataset",
+      "terms": "CC BY-NC 4.0; noncommercial use only",
+      "sources": [
+        "https://doi.org/10.5281/zenodo.6624726",
+        "https://creativecommons.org/licenses/by-nc/4.0/"
+      ],
+      "derivation": {
+        "role": "representative compatible input",
+        "case_id": "10001_1000001",
+        "selection": "T2 volume center, corresponding physical point in other sequences",
+        "modalities": [
+          {
+            "modality": "t2w",
+            "size_xyz": [
+              640,
+              640,
+              21
+            ],
+            "spacing_xyz_mm": [
+              0.30000001192093,
+              0.30000001192093,
+              3.6000000778884846
+            ],
+            "origin_lps_mm": [
+              -119.80861242576,
+              -65.872387498812,
+              -38.779758120899
+            ],
+            "direction": [
+              0.9996148108062515,
+              -1.6670999975453016e-11,
+              -0.02775301815627119,
+              0.00043710598429775216,
+              0.999875963366245,
+              0.01574378673580096,
+              0.027749575765060076,
+              -0.015749853409600077,
+              0.9994908219500744
+            ],
+            "slice_index": 10,
+            "display_percentiles": [
+              1,
+              99.5
+            ],
+            "display_range": [
+              16.0,
+              815.0
+            ],
+            "nifti_path": "runs/task-brief-samples/bcer/prepared/10001/T2w.nii.gz",
+            "nifti_sha256": "c1f777431d22a015da6279f6fa9237efa880f132c03666887b2373cb81756b3f"
+          },
+          {
+            "modality": "adc",
+            "size_xyz": [
+              120,
+              128,
+              21
+            ],
+            "spacing_xyz_mm": [
+              2.0,
+              2.0,
+              3.6000000778885344
+            ],
+            "origin_lps_mm": [
+              -143.79936407135,
+              -97.878905054263,
+              -38.941752584377
+            ],
+            "direction": [
+              0.9996148108062515,
+              -1.6670999975453016e-11,
+              -0.02775301815627119,
+              0.00043710598429775216,
+              0.999875963366245,
+              0.01574378673580096,
+              0.027749575765060076,
+              -0.015749853409600077,
+              0.9994908219500744
+            ],
+            "slice_index": 10,
+            "display_percentiles": [
+              1,
+              99.5
+            ],
+            "display_range": [
+              0.0,
+              1916.0
+            ],
+            "nifti_path": "runs/task-brief-samples/bcer/prepared/10001/ADC.nii.gz",
+            "nifti_sha256": "b4ac7d921fb5d35e7b3e8de5fea2f4dc5313428438fd649411025ee422868c0d"
+          },
+          {
+            "modality": "hbv",
+            "size_xyz": [
+              120,
+              128,
+              21
+            ],
+            "spacing_xyz_mm": [
+              2.0,
+              2.0,
+              3.6000000778885344
+            ],
+            "origin_lps_mm": [
+              -143.79936407135,
+              -97.878905054263,
+              -38.941752584377
+            ],
+            "direction": [
+              0.9996148108062515,
+              -1.6670999975453016e-11,
+              -0.02775301815627119,
+              0.00043710598429775216,
+              0.999875963366245,
+              0.01574378673580096,
+              0.027749575765060076,
+              -0.015749853409600077,
+              0.9994908219500744
+            ],
+            "slice_index": 10,
+            "display_percentiles": [
+              1,
+              99.5
+            ],
+            "display_range": [
+              0.0,
+              57.0
+            ],
+            "nifti_path": "runs/task-brief-samples/bcer/prepared/10001/DWI_bhigh.nii.gz",
+            "nifti_sha256": "9dc9e3dbc59310c61481f91883aa2161890fd032b832dadce059db5aa7439c49"
+          }
+        ]
+      },
+      "provenance": "discussions/medical-agent-repository-survey/samples.json"
+    },
+    {
+      "path": "presentation/task-explorer/assets/br030-input.png",
+      "sha256": "ff2e2cd9eb4552f6601bf6119b667678e9638da08f9a0fb274d65812c21ad45b",
+      "bytes": 174553,
+      "original_path": "presentation/tours/data/task-briefs/br030-input.png",
+      "attribution": "Xiaowei Xu and collaborators, ImageCAS; Bransby et al., ImageCAS-X",
+      "terms": "ImageCAS CTA: Apache 2.0; ImageCAS-X source declarations: CC BY 4.0; code MIT (not redistributed here)",
+      "sources": [
+        "https://www.kaggle.com/datasets/xiaoweixumedicalai/imagecas",
+        "https://arxiv.org/abs/2211.01607",
+        "https://doi.org/10.5281/zenodo.21887809",
+        "https://arxiv.org/abs/2608.30404",
+        "https://www.apache.org/licenses/LICENSE-2.0",
+        "https://creativecommons.org/licenses/by/4.0/"
+      ],
+      "derivation": {
+        "derivation": "Coronal native slice through supplied review marker; HU window -100 to 700; display resampling preserves physical aspect. No scoring reference or agent output read.",
+        "helpers": "Green is the supplied mask on this plane; gold is the 8 mm editable sphere cross-section at its center plane; blue start/end landmarks are projected and may be outside this plane.",
+        "qualification": "Reader-selected view of a full 3D crop. A single plane does not demonstrate complete route connectivity or task difficulty."
+      },
+      "provenance": "groups/tubular-anatomy/presentation/briefs/br030-visuals.json"
+    },
+    {
+      "path": "presentation/task-explorer/assets/br030-helpers.png",
+      "sha256": "69df62220e653d6e71272ec1c07a1f03b1850f7362892b689810aa9782d020f6",
+      "bytes": 179344,
+      "original_path": "presentation/tours/data/task-briefs/br030-helpers.png",
+      "attribution": "Xiaowei Xu and collaborators, ImageCAS; Bransby et al., ImageCAS-X",
+      "terms": "ImageCAS CTA: Apache 2.0; ImageCAS-X source declarations: CC BY 4.0; code MIT (not redistributed here)",
+      "sources": [
+        "https://www.kaggle.com/datasets/xiaoweixumedicalai/imagecas",
+        "https://arxiv.org/abs/2211.01607",
+        "https://doi.org/10.5281/zenodo.21887809",
+        "https://arxiv.org/abs/2608.30404",
+        "https://www.apache.org/licenses/LICENSE-2.0",
+        "https://creativecommons.org/licenses/by/4.0/"
+      ],
+      "derivation": {
+        "derivation": "Coronal native slice through supplied review marker; HU window -100 to 700; display resampling preserves physical aspect. No scoring reference or agent output read.",
+        "helpers": "Green is the supplied mask on this plane; gold is the 8 mm editable sphere cross-section at its center plane; blue start/end landmarks are projected and may be outside this plane.",
+        "qualification": "Reader-selected view of a full 3D crop. A single plane does not demonstrate complete route connectivity or task difficulty."
+      },
+      "provenance": "groups/tubular-anatomy/presentation/briefs/br030-visuals.json"
+    }
+  ],
+  "optional_local_only": [
+    {
+      "path": "presentation/tours/data/task-briefs/imaging101-input.png",
+      "sha256": "9332aada63bac65f4763d47f56b9b43f4dab4269007e307ea856a6158e596403",
+      "role": "input",
+      "shape": [
+        256,
+        30
+      ],
+      "synthetic": true,
+      "bytes": 144854,
+      "reason": "Pinned asset metadata declares MIT, but the complete copyright and permission notice has not been recovered. Keep optional; no tracked copy."
+    },
+    {
+      "path": "presentation/tours/data/task-briefs/imaging101-reference.png",
+      "sha256": "262c5f50ab13aff7733b1393179f04a80300885fc5cd26de2e3f867d9fb7003b",
+      "role": "reference and published algorithm outputs",
+      "window": [
+        0,
+        1
+      ],
+      "model_run": false,
+      "bytes": 197395,
+      "reason": "Pinned asset metadata declares MIT, but the complete copyright and permission notice has not been recovered. Keep optional; no tracked copy."
+    }
+  ],
+  "license_texts": [
+    {
+      "path": "presentation/task-explorer/assets/Apache-2.0.txt",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358,
+      "retrieved_on": "2026-09-21"
+    }
+  ]
+}

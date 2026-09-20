@@ -1,6 +1,8 @@
 """Small Markdown task briefs and an offline, read-only explorer."""
 
 import base64
+from fnmatch import fnmatch
+import hashlib
 import json
 import mimetypes
 from pathlib import Path
@@ -12,6 +14,8 @@ from .presentation import markdown
 
 DEFAULT_CATALOG = "discussions/medical-agent-repository-survey/catalog.json"
 MARKER = "<!-- tb3-task-explorer: generated -->"
+SOURCE_MAX_BYTES = 64 * 1024
+SOURCE_TOTAL_BYTES = 256 * 1024
 FIELDS = {
     "value": "Value",
     "raw": "Given/Original data",
@@ -103,6 +107,58 @@ def render_text(root, source, body, missing):
     return markdown(body, link)
 
 
+def source_bundle(root, entries):
+    """Package only directly cited small text files, never their dependencies."""
+    root = Path(root).resolve()
+    policy_path = root / "configs/artifact-policy.json"
+    policy = c.read(policy_path) if policy_path.is_file() else {}
+    local_roots = {"runs", "jobs", ".local", ".cache", "node_modules", "archive/legacy"}
+    local_roots.update(policy.get("local_roots", []))
+    blocked = [".venv*", ".env", ".env.*", *policy.get("blocked_components", [])]
+    sources, total = {}, 0
+    for entry in entries:
+        for _, target in entry["sources"]:
+            if urlsplit(target).scheme or target in sources:
+                continue
+            path = c.inside(root, target)
+            reason = ""
+            if any(path.is_relative_to(root / p) for p in local_roots) or any(
+                fnmatch(part, pattern)
+                for part in path.relative_to(root).parts
+                for pattern in blocked
+            ):
+                reason = "Local runtime material is not included."
+            elif not path.is_file():
+                reason = "Directories are not included."
+            elif path.suffix.lower() not in {".md", ".json", ".txt"}:
+                reason = "Only Markdown, JSON and plain-text sources are included."
+            elif path.stat().st_size > SOURCE_MAX_BYTES:
+                reason = "Source exceeds the 64 KiB per-file limit."
+            elif total + path.stat().st_size > SOURCE_TOTAL_BYTES:
+                raise c.MedicalError(
+                    "Task Explorer sources exceed the 256 KiB combined limit at "
+                    + target
+                    + "; reduce the explicitly cited source scope."
+                )
+            if reason:
+                sources[target] = {"unavailable": reason}
+                continue
+            raw = path.read_bytes()
+            try:
+                content = raw.decode("utf-8")
+            except UnicodeDecodeError:
+                sources[target] = {"unavailable": "Source is not UTF-8 text."}
+                continue
+            total += len(raw)
+            sources[target] = {
+                "sha256": hashlib.sha256(raw).hexdigest(),
+                "bytes": len(raw),
+                "content": content,
+                "base64": base64.b64encode(raw).decode(),
+            }
+    return sources
+
+
 def load(root, catalog=DEFAULT_CATALOG):
     root = Path(root).resolve()
     path = c.inside(root, str(catalog))
@@ -187,7 +243,12 @@ def load(root, catalog=DEFAULT_CATALOG):
                 index = item.get("condition_index", 0)
                 if type(index) is not int or not 0 <= index < len(entry["variants"]):
                     raise c.MedicalError("Invalid inventory condition: " + item["id"])
-    return {**data, "entries": out, "inventory": inventory}
+    return {
+        **data,
+        "entries": out,
+        "inventory": inventory,
+        "local_sources": source_bundle(root, out),
+    }
 
 
 def check(root, catalog=DEFAULT_CATALOG):
@@ -210,10 +271,12 @@ def check(root, catalog=DEFAULT_CATALOG):
     }
 
 
-def build(root, output, catalog=DEFAULT_CATALOG):
+def build(root, output, catalog=DEFAULT_CATALOG, *, presentation_context=None):
     root = Path(root).resolve()
     output = Path(output).resolve()
     data = load(root, catalog)
+    if presentation_context:
+        data["presentation_context"] = presentation_context
     base = root / "presentation/task-explorer"
     if output.exists() and MARKER not in output.read_text()[:200]:
         raise c.MedicalError("Refusing to overwrite an unowned file: " + str(output))
@@ -236,7 +299,13 @@ def build(root, output, catalog=DEFAULT_CATALOG):
     temporary = output.with_suffix(output.suffix + ".tmp")
     temporary.write_text(MARKER + "\n" + document)
     temporary.replace(output)
-    return {"output": str(output), "briefs": len(data["entries"]), "standalone": True}
+    return {
+        "output": str(output),
+        "briefs": len(data["entries"]),
+        "standalone": True,
+        "integrated": bool(presentation_context),
+        "embedded_sources": sum("sha256" in s for s in data["local_sources"].values()),
+    }
 
 
 def new(

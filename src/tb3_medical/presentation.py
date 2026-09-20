@@ -53,6 +53,32 @@ def assets(root, write=False):
     return {"verified_assets": count, "written": write}
 
 
+def check_links(root, source):
+    """Check maintained prose links; retained runtime locators may be unavailable."""
+    for target in re.findall(r"!?\[[^\]]*\]\(([^)]+)\)", source.read_text()):
+        parsed = urlsplit(target)
+        if parsed.scheme or not parsed.path:
+            continue
+        path = (source.parent / unquote(parsed.path)).resolve()
+        if not path.is_relative_to(Path(root).resolve()):
+            raise c.MedicalError(f"Prose link escapes repository: {source}: {target}")
+        relative = path.relative_to(Path(root).resolve()).as_posix()
+        if relative.startswith(
+            (
+                "runs/",
+                "jobs/",
+                ".cache/",
+                ".local/",
+                "presentation/tours/data/",
+                "presentation/tours/web/",
+                "presentation/tours/exports/",
+            )
+        ):
+            continue
+        if not path.exists():
+            raise c.MedicalError(f"Missing portable prose link: {source}: {relative}")
+
+
 def check(root):
     stats = c.validate(root)
     rows = c.load(root)
@@ -62,28 +88,7 @@ def check(root):
         story = c.inside(root, str(directory / "story.md"))
         if not story.is_file():
             raise c.MedicalError("Missing group story: " + group["id"])
-        for target in re.findall(r"!?\[[^\]]*\]\(([^)]+)\)", story.read_text()):
-            parsed = urlsplit(target)
-            if parsed.scheme or not parsed.path:
-                continue
-            p = (story.parent / unquote(parsed.path)).resolve()
-            if not p.is_relative_to(Path(root).resolve()):
-                raise c.MedicalError("Story link escapes repository")
-            relative = p.relative_to(Path(root).resolve()).as_posix()
-            if relative.startswith(
-                (
-                    "runs/",
-                    "jobs/",
-                    ".cache/",
-                    ".local/",
-                    "presentation/tours/data/",
-                    "presentation/tours/web/",
-                    "presentation/tours/exports/",
-                )
-            ):
-                continue
-            if not p.exists():
-                raise c.MedicalError(f"Missing portable story link: {relative}")
+        check_links(root, story)
         card_path = Path(root) / directory / "card.json"
         if card_path.is_file():
             card = c.read(card_path)
@@ -99,7 +104,10 @@ def check(root):
                 ):
                     raise c.MedicalError("Source measurement mismatch: " + measurement["label"])
                 measurements += 1
-    return {**stats, "source_measurements": measurements}
+    protocols = list(Path(root).glob("groups/*/experiments/*/protocol.md"))
+    for protocol in protocols:
+        check_links(root, protocol)
+    return {**stats, "source_measurements": measurements, "protocols_checked": len(protocols)}
 
 
 def markdown(text, link):
@@ -134,6 +142,7 @@ def markdown(text, link):
     lines = text.splitlines()
     out = []
     i = 0
+    heading_ids = set()
     while i < len(lines):
         line = lines[i]
         if line.startswith("```"):
@@ -153,7 +162,14 @@ def markdown(text, link):
                 out.append("</details>")
         elif re.match(r"^#{1,6} ", line):
             level = len(line) - len(line.lstrip("#"))
-            out.append(f"<h{level}>" + inline(line[level + 1 :]) + f"</h{level}>")
+            title = line[level + 1 :]
+            slug = re.sub(r"[^\w\s-]", "", title.lower()).replace(" ", "-") or "section"
+            identifier, suffix = slug, 0
+            while identifier in heading_ids:
+                suffix += 1
+                identifier = f"{slug}-{suffix}"
+            heading_ids.add(identifier)
+            out.append(f'<h{level} id="{identifier}">' + inline(title) + f"</h{level}>")
         elif line.startswith("|"):
             table = []
             while i < len(lines) and lines[i].startswith("|"):
@@ -205,6 +221,12 @@ def present(root, output, local_media=False):
     marker.write_text("Generated read-only medical presentation\n")
     rows = c.projection(root)
     groups = [r for r in rows.values() if r["kind"] == "group"]
+    story_pages = {
+        str(Path(group["record_path"]).parent / "presentation/story.md"): "stories/"
+        + group["id"]
+        + ".html"
+        for group in groups
+    }
     for name in ("index.html", "app.js", "style.css"):
         shutil.copy2(root / "presentation" / name, output / name)
     copied = set()
@@ -219,6 +241,12 @@ def present(root, output, local_media=False):
         if not src.is_relative_to(root) or not src.is_file():
             return None
         rel = src.relative_to(root).as_posix()
+        if rel in story_pages:
+            return (
+                os.path.relpath(output / story_pages[rel], page_output.parent)
+                + ("?" + parsed.query if parsed.query else "")
+                + ("#" + parsed.fragment if parsed.fragment else "")
+            )
         local = rel.startswith(
             (
                 "runs/",
@@ -273,6 +301,7 @@ def present(root, output, local_media=False):
                 c.VOCABULARY["axes"]["assessment"]["values"][f["assessment"]]["label"]
                 + ": "
                 + f["experiment_id"]
+                + (" — " + f["reason"] if f.get("reason") else "")
                 for f in flags
             )
             if flags
@@ -303,15 +332,35 @@ def present(root, output, local_media=False):
                 "__pycache__", "validation.json", "compression-report.json", "*.zip"
             ),
         )
+    # Imported locally because the brief renderer reuses this module's Markdown renderer.
+    from . import task_briefs
+
+    explorer = None
+    if (root / task_briefs.DEFAULT_CATALOG).is_file():
+        explorer = task_briefs.build(
+            root,
+            output / "task-explorer/index.html",
+            presentation_context={
+                "home_url": "../index.html",
+                "home_label": "Medical workbench",
+                "story_urls": {path: "../" + url for path, url in story_pages.items()},
+            },
+        )
     c.atomic_write(
         output / "records.json",
-        {"records": list(rows.values()), "local_media": local_media, "vocabulary": c.VOCABULARY},
+        {
+            "records": list(rows.values()),
+            "local_media": local_media,
+            "vocabulary": c.VOCABULARY,
+            "task_explorer_url": "task-explorer/index.html" if explorer else None,
+        },
     )
     return {
         "output": str(output),
         "groups": len(groups),
         "records": len(rows),
         "local_media": local_media,
+        "task_explorer": explorer,
     }
 
 

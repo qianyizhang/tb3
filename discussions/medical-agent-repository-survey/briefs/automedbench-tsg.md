@@ -46,7 +46,7 @@ The config specifies mean Dice over classes with nonempty reference masks per pa
 
 ### Input
 
-![Actual AutoMedBench packaged CT input](../../../presentation/tours/data/task-briefs/automed-tsg-input.png)
+![Actual AutoMedBench packaged CT input](../../../presentation/task-explorer/assets/automed-tsg-input.png)
 
 Native 1.5 mm CT, coronal plane 164; window −160 to 240 HU. This plane was selected post hoc using kidney references. One plane of a 333 × 333 × 336 volume; right increases rightward, superior upward.
 
@@ -56,7 +56,7 @@ Model and label-remapping guidance are supplied; this patient's reference masks 
 
 ### Reference or output
 
-![Five released reference organ masks](../../../presentation/tours/data/task-briefs/automed-tsg-reference.png)
+![Five released reference organ masks](../../../presentation/task-explorer/assets/automed-tsg-reference.png)
 
 Five downloaded references: both kidneys, liver, spleen and aorta. The release lists 78 classes present in this case, out of 117 possible. A partial illustration, not a complete reference set or agent prediction. TotalSegmentator via AutoMedBench Lite; CC BY 4.0.
 
@@ -71,6 +71,9 @@ Five downloaded references: both kidneys, liver, spleen and aorta. The release l
 A plausible mask can fail if class numbers or geometry are wrong. The task requires much more output coverage than the five structures shown.
 
 ## Sources
+
+- [Preview image notices](../../../presentation/task-explorer/assets/NOTICES.md)
+- [Preview image manifest](../../../presentation/task-explorer/assets/manifest.json)
 
 - [Pinned config and label map](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Lite-release/blob/8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5/benchmarks/AutoMedBench-segmentation/eval_seg/tsg-multiorgan-seg-task/config.yaml)
 - [Lite supplied guidance](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Lite-release/blob/8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5/benchmarks/AutoMedBench-segmentation/eval_seg/tsg-multiorgan-seg-task/lite_s1.md)

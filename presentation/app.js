@@ -6,8 +6,32 @@ const element = (tag, text, cls) => {
   if (cls) node.className = cls;
   return node;
 };
-const params = new URLSearchParams(location.search);
-let rows = [], vocabulary;
+let rows = [], vocabulary, selectedRecord = '', loadingRoute = false;
+const filterKeys = {search:'q', group:'group', kind:'kind', status:'status'};
+function writeRoute(push=false) {
+  if (loadingRoute) return;
+  const url = new URL(location.href);
+  for (const [id,key] of Object.entries(filterKeys)) {
+    const value = $('#' + id).value;
+    if (id === 'kind' ? value !== 'overview' : value !== '') url.searchParams.set(key,value);
+    else url.searchParams.delete(key);
+  }
+  if (selectedRecord) url.searchParams.set('record',selectedRecord);
+  else url.searchParams.delete('record');
+  if (url.href !== location.href) history[push ? 'pushState' : 'replaceState'](null,'',url);
+}
+function readRoute() {
+  loadingRoute = true;
+  const params = new URLSearchParams(location.search);
+  for (const [id,key] of Object.entries(filterKeys)) {
+    const control = $('#' + id), value = params.get(key) ?? (id === 'kind' ? 'overview' : '');
+    control.value = value;
+    if (control.tagName === 'SELECT' && control.selectedIndex === -1) control.value = id === 'kind' ? 'overview' : '';
+  }
+  selectedRecord = params.get('record') || '';
+  show();
+  loadingRoute = false;
+}
 function badge(axis, code) {
   const term = vocabulary.axes[axis]?.values[code];
   if (!term) return null;
@@ -56,6 +80,11 @@ function show() {
     summary.append(element('span', row.kind, 'type'), element('span', row.title || row.id, 'record-title'), statusBadges);
     if (row.current.attention) summary.classList.add('alert');
     detail.append(summary);
+    summary.addEventListener('click', () => {
+      if (!detail.open) selectedRecord = row.id;
+      else if (selectedRecord === row.id) selectedRecord = '';
+      writeRoute(true);
+    });
     detail.addEventListener('toggle', () => {
       if (!detail.open || detail.dataset.loaded) return;
       detail.dataset.loaded = '1';
@@ -94,6 +123,7 @@ function show() {
       body.append(raw); detail.append(body);
     });
     $('#records').append(detail);
+    if (row.id === selectedRecord) detail.open = true;
   }
 }
 fetch('records.json').then(response => {
@@ -101,6 +131,10 @@ fetch('records.json').then(response => {
   return response.json();
 }).then(data => {
   rows = data.records; vocabulary = data.vocabulary;
+  if (data.task_explorer_url) {
+    $('#task-explorer-link').href = data.task_explorer_url;
+    $('#task-explorer-entry').hidden = false;
+  }
   const groups = rows.filter(row => row.kind === 'group');
   groups.forEach((group, index) => {
     const anchor = element('a', undefined, 'group-card'); anchor.href = group.story_url;
@@ -116,10 +150,12 @@ fetch('records.json').then(response => {
     }
     $('#status').append(optgroup);
   }
-  $('#search').value = params.get('q') || '';
-  if (params.has('kind')) $('#kind').value = params.get('kind');
-  if (params.has('group')) $('#group').value = params.get('group');
-  show();
+  readRoute();
+  window.addEventListener('popstate',readRoute);
 }).catch(error => { $('#records').textContent = 'Could not load the workbench: ' + error; });
 $('#filters').addEventListener('submit', event => event.preventDefault());
-for (const id of ['search', 'group', 'kind', 'status']) $('#' + id).addEventListener('input', show);
+for (const id of ['search', 'group', 'kind', 'status']) $('#' + id).addEventListener('input', () => {
+  selectedRecord = '';
+  writeRoute(id !== 'search');
+  show();
+});

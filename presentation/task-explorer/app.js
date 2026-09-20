@@ -18,7 +18,7 @@ const hasExample = e => Object.values(e.visuals).some(s => /<img\b/.test(s));
 const isCase = i => i.kind === 'case';
 const compareItems = (a,b) => a.id.localeCompare(b.id,undefined,{numeric:true});
 const currentItem = () => itemsFor(byId.get(selected)).find(i => i.id === selectedItem);
-let selected = entries[0].id, selectedItem = '', condition = 0, tab = 'overview', visual = 'input';
+let selected = entries[0].id, selectedItem = '', condition = 0, tab = 'overview', visual = 'input', selectedSource = '';
 const familyState = new Map(), listScroll = new Map();
 const familyKey = e => groupId(e)+'/'+e.nav_group;
 function revealFamily() {
@@ -40,7 +40,7 @@ function taskUnits(list) {
 }
 function chooseVariant(id) {
   const previous=byId.get(selected),next=byId.get(id),name=previous.variants[condition].name;
-  selected=id;selectedItem='';visual='input';
+  selected=id;selectedItem='';selectedSource='';visual='input';
   condition=Math.max(0,next.variants.findIndex(v=>v.name===name));
   clearIncompatibleSearch(next);
   if(tab==='examples' && !hasExample(next)) tab='overview';
@@ -77,13 +77,14 @@ function box(label, body, klass='') {
 function selectItem(id) {
   const item = repoInventory(selected)?.items.find(i => i.id === id);
   if (!item) return;
-  selected = item.brief_id; selectedItem = item.id; condition = item.condition_index || 0; visual = 'input';
+  selected = item.brief_id; selectedItem = item.id; selectedSource = ''; condition = item.condition_index || 0; visual = 'input';
 }
 function canonicalTab(value) {
   return ({brief:'overview',catalogue:'overview',contract:'requirements'})[value] || value || 'overview';
 }
 function route() {
-  const parts = location.hash.slice(1).split('/');
+  const [path,query=''] = location.hash.slice(1).split('?'), previousSource=selectedSource;
+  const parts = path.split('/');
   selected = byId.has(parts[0]) ? parts[0] : entries[0].id;
   selectedItem = ''; condition = 0;
   let requested;
@@ -98,7 +99,11 @@ function route() {
   clearIncompatibleSearch(e);
   if (requested !== undefined && Number.isInteger(n)) condition = Math.max(0,Math.min(n,e.variants.length-1));
   if (!['overview','requirements','examples','sources'].includes(tab) || (tab === 'examples' && !hasExample(e))) tab = 'overview';
+  const requestedSource=new URLSearchParams(query).get('source');
+  selectedSource=tab==='sources' && e.sources.some(([,path])=>DATA.local_sources?.[path]?.sha256===requestedSource)?requestedSource:'';
   visual = 'input'; revealFamily(); render();
+  if(selectedSource) el('source-heading')?.focus();
+  else if(previousSource) document.querySelector(`[data-source="${CSS.escape(previousSource)}"], [data-notice="${CSS.escape(previousSource)}"]`)?.focus();
 }
 function clearIncompatibleSearch(e) {
   if (!briefMatch(e,el('search').value.trim().toLowerCase())) el('search').value='';
@@ -106,14 +111,16 @@ function clearIncompatibleSearch(e) {
 function saveRoute(replace=false) {
   const e = byId.get(selected), item = currentItem();
   const path = item ? `${groupId(e)}/task/${encodeURIComponent(item.id)}/${condition}/${tab}` : `${selected}/${condition}/${tab}`;
-  history[replace?'replaceState':'pushState'](null,'','#'+path);
+  history[replace?'replaceState':'pushState'](null,'','#'+path+(selectedSource && tab==='sources'?'?source='+selectedSource:''));
 }
 function chooseDefinition(id) {
-  selected=id; selectedItem=''; condition=0; tab='overview'; visual='input'; revealFamily(); saveRoute(); render();
+  selected=id; selectedItem=''; selectedSource=''; condition=0; tab='overview'; visual='input'; revealFamily(); saveRoute(); render();
+  document.querySelector(`[data-definition="${CSS.escape(id)}"]`)?.focus();
 }
 function chooseGroup(id) {
   const first = groupEntries(byId.get(id)).find(e => briefMatch(e,el('search').value.trim().toLowerCase()));
   chooseDefinition(first?.id || id);
+  document.querySelector(`[data-group="${CSS.escape(id)}"]`)?.focus();
 }
 function navigation() {
   const query=el('search').value.trim().toLowerCase(), active=groupId(byId.get(selected));
@@ -184,7 +191,12 @@ function taskPicture(e) {
   if(d) return `<figure class="task-picture conceptual" data-illustration="${esc(d.kind)}"><figcaption><span class="drawing-label">Conceptual illustration</span><span>Drawn, not a dataset sample</span></figcaption><div class="picture-pair"><section><h4>Input</h4>${taskArt(e)}<p>${esc(d.input)}</p></section><div class="picture-arrow" aria-hidden="true">→</div><section><h4>Expected output</h4>${taskArt(e,true)}<p>${esc(d.output)}</p></section></div><p class="picture-caption">${esc(d.caption)}</p></figure>`;
   const illustrated=e.example_case_id?itemsFor(e).find(i=>i.id===e.example_case_id):null;
   const exampleLabel=illustrated?' · '+compactLabel(illustrated,e):'';
-  return /<img\b/.test(e.visuals.input)?`<figure class="task-picture native-preview"><figcaption><span class="drawing-label">Source-derived example${esc(exampleLabel)}</span><button class="text-button" data-example-open>Inspect example →</button></figcaption><div class="native-input">${e.visuals.input}</div></figure>`:'';
+  return /<img\b/.test(e.visuals.input)?`<figure class="task-picture native-preview"><figcaption><span class="drawing-label">Source-derived example${esc(exampleLabel)}</span><button class="text-button" data-example-open>Inspect example →</button></figcaption><div class="native-input">${e.visuals.input}</div>${imageNotice(e)}</figure>`:e.missing_media?.length?`<div class="preview-unavailable">${e.visuals.input}${imageNotice(e)}</div>`:'';
+}
+function imageNotice(e) {
+  const notice=e.sources.find(([label])=>label==='Preview image notices');
+  const source=notice && DATA.local_sources?.[notice[1]];
+  return source?.sha256?`<p class="fine"><button class="text-button" data-notice="${source.sha256}">Image attribution, terms and derivation</button></p>`:'';
 }
 
 function overview(e) {
@@ -200,14 +212,25 @@ function examples(e) {
     const illustrated=itemsFor(e).find(i=>i.id===e.example_case_id);
     exampleNote=`<p class="scope-note">Illustrated example: ${esc(illustrated?compactLabel(illustrated,e):e.example_case_id)}. The selected case has no local image preview.</p>`;
   }
-  return `${exampleNote}<div class="variants" aria-label="Visual reveal"><button class="variant" data-visual="input" aria-pressed="${visual==='input'}">Input</button><button class="variant" data-visual="helpers" aria-pressed="${visual==='helpers'}">Supplied helpers</button><button class="variant" data-visual="answer" aria-pressed="${visual==='answer'}">Reveal reference / output</button></div><div class="visual-content" data-visible-role="${visual}">${e.visuals[visual]}</div>`;
+  return `${exampleNote}<div class="variants" aria-label="Visual reveal"><button class="variant" data-visual="input" aria-pressed="${visual==='input'}">Input</button><button class="variant" data-visual="helpers" aria-pressed="${visual==='helpers'}">Supplied helpers</button><button class="variant" data-visual="answer" aria-pressed="${visual==='answer'}">Reveal reference / output</button></div><div class="visual-content" data-visible-role="${visual}">${e.visuals[visual]}</div>${imageNotice(e)}`;
 }
 function sourceDetails(e) {
   const items=itemsFor(e),item=currentItem();
   const chooser=items.length>1?`<label class="source-picker">Source record<select id="source-picker"><option value="">Shared definition sources</option>${items.map(i=>`<option value="${esc(i.id)}" ${i.id===selectedItem?'selected':''}>${esc(compactLabel(i,e))}</option>`).join('')}</select></label>`:'';
   const active=item || (items.length===1?items[0]:null);
   const provenance=active?`<details class="provenance"><summary>Technical identifiers</summary><dl><dt>Source ID</dt><dd><code>${esc(active.id)}</code></dd><dt>Definition ID</dt><dd><code>${esc(active.definition)}</code></dd><dt>Source condition</dt><dd>${esc(active.condition)}</dd></dl></details>`:'';
-  return `${chooser}${active?`<div class="selected-source">${sourceLink(active.url,'Open selected source ↗')}${active.brief_scope_note?`<p class="fine">${esc(active.brief_scope_note)}</p>`:''}${provenance}</div>`:''}<h3>Definition references</h3>${e.sources.map(([label,url])=>/^https?:/.test(url)?`<div class="source">${sourceLink(url,label+' ↗')}</div>`:`<div class="source">${esc(label)}<small>${esc(url)}</small></div>`).join('')}<details class="source-limits"><summary>Evidence &amp; remaining gaps</summary>${htmlField(e,'families')}${htmlField(e,'gap')}</details>`;
+  const references=e.sources.map(([label,url])=>{
+    if(/^https?:/.test(url)) return `<div class="source">${sourceLink(url,label+' ↗')}</div>`;
+    const source=DATA.local_sources?.[url],story=DATA.presentation_context?.story_urls?.[url];
+    return `<div class="source">${source?.sha256?`<button class="text-button" data-source="${source.sha256}">${esc(label)}</button>`:esc(label)}${story?` · <a href="${esc(story)}">Read illustrated story →</a>`:''}<small>${esc(url)}</small>${source?.sha256?'':`<small>Unavailable in this copy: ${esc(source?.unavailable || 'This source is not included.')}</small>`}</div>`;
+  }).join('');
+  const sourceEntry=e.sources.find(([,url])=>DATA.local_sources?.[url]?.sha256===selectedSource);
+  let reader='';
+  if(sourceEntry){
+    const [label,path]=sourceEntry,source=DATA.local_sources[path];
+    reader=`<section class="source-reader" aria-labelledby="source-heading"><div class="source-actions"><button class="quiet" id="source-close">Back to references</button><a id="source-download" href="data:application/octet-stream;base64,${source.base64}" download="${esc(path.split('/').at(-1))}">Download original</a></div><h3 id="source-heading" tabindex="-1">${esc(label)}</h3><p class="fine">Exact source copy · ${source.bytes.toLocaleString()} bytes<br>SHA-256 <code>${source.sha256}</code></p><pre id="source-content" tabindex="0"></pre></section>`;
+  }
+  return `${reader}${chooser}${active?`<div class="selected-source">${sourceLink(active.url,'Open selected source ↗')}${active.brief_scope_note?`<p class="fine">${esc(active.brief_scope_note)}</p>`:''}${provenance}</div>`:''}<h3>Definition references</h3>${references}<details class="source-limits"><summary>Evidence &amp; remaining gaps</summary>${htmlField(e,'families')}${htmlField(e,'gap')}</details>`;
 }
 function taskDetail(e) {
   const tabs=[['overview','Overview'],['requirements','Requirements']];
@@ -230,6 +253,8 @@ function render() {
   const intro=DATA.repository_contexts?.[groupId(e)];
   document.title=group.repo+' · Task Explorer';
   el('main').innerHTML=`<div class="repository-heading"><h1>${esc(group.repo)}</h1>${intro?`<p>${esc(intro)}</p>`:''}</div>${inv?`<div class="catalogue-workspace">${taskList(e,matches)}${visible?taskDetail(e):'<div class="empty task-detail">Choose a matching task from the list.</div>'}</div>`:taskDetail(e)}${coverage(e)}`;
+  // Text insertion preserves leading LF and CRLF that the HTML parser normalizes.
+  if(el('source-content')) el('source-content').textContent=Object.values(DATA.local_sources).find(s=>s.sha256===selectedSource).content;
   const currentList=el('main').querySelector('.task-list');
   if(currentList) {
     currentList.scrollTop=listScroll.get(groupId(e)) || 0;
@@ -244,7 +269,10 @@ function render() {
     if(d.isConnected && !el('search').value.trim()) familyState.set(d.dataset.family,d.open);
   });
   el('main').querySelectorAll('[data-definition]').forEach(b=>b.onclick=()=>{chooseDefinition(b.dataset.definition);el('main').querySelector('.task-detail')?.scrollIntoView({block:'nearest'})});
-  el('main').querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;saveRoute();render();el('tab-'+tab)?.focus()});
+  el('main').querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;selectedSource='';saveRoute();render();el('tab-'+tab)?.focus()});
+  el('main').querySelectorAll('[data-source]').forEach(b=>b.onclick=()=>{selectedSource=b.dataset.source;saveRoute();render();el('source-heading')?.focus()});
+  el('main').querySelectorAll('[data-notice]').forEach(b=>b.onclick=()=>{tab='sources';selectedSource=b.dataset.notice;saveRoute();render();el('source-heading')?.focus()});
+  if(el('source-close')) el('source-close').onclick=()=>{const previous=selectedSource;selectedSource='';saveRoute();render();document.querySelector(`[data-source="${CSS.escape(previous)}"]`)?.focus()};
   const tabs=[...el('main').querySelectorAll('[role="tab"]')];
   tabs.forEach((button,index)=>button.onkeydown=event=>{
     const target={ArrowRight:(index+1)%tabs.length,ArrowLeft:(index+tabs.length-1)%tabs.length,Home:0,End:tabs.length-1}[event.key];
@@ -273,6 +301,12 @@ el('search').oninput=()=>{
   render();
 };
 el('format').onclick=()=>el('rules').showModal();el('close').onclick=()=>el('rules').close();
-window.onhashchange=route;window.onpopstate=route;
+// Back/forward between these hash routes emits hashchange as well as popstate.
+// Render once so the second event cannot discard the focus restored by route().
+window.onhashchange=route;
 document.querySelector('.navnote').innerHTML=`${inventory.length} repositories · ${taskUnits(entries).length} tasks · ${entries.length} variants<br>Related variants share one task entry.`;
+if(DATA.presentation_context?.home_url){
+  const link=document.createElement('a');link.id='workbench-home';link.href=DATA.presentation_context.home_url;link.textContent=DATA.presentation_context.home_label || 'Experiment evidence';
+  document.querySelector('header>div:last-child').prepend(link);
+}
 route();

@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "purpose": "Bounded proposal-sweep evidence; not a medical evaluation or implementation closeout",
+  "baseline_commit": "a3c9be8383e28ded7b1ff3f30890f3964d80814f",
+  "source_task": "codex://threads/01a0c040-3777-7b72-b932-6e6b118304a2",
+  "actor": "assistant",
+  "baseline_checks": {
+    "command": "uv run --no-sync make check PYTHON=python3.12",
+    "exit_code": 0,
+    "tests_run": 44,
+    "passed": 43,
+    "skipped": 1,
+    "skip_reason": "Optional local imaging runtime",
+    "index_files": 2039,
+    "records": 571,
+    "groups": 7,
+    "experiments": 38,
+    "source_measurements": 153,
+    "lint": "passed",
+    "format": "passed"
+  },
+  "navigation": {
+    "current_guides": {
+      "documents": 26,
+      "relative_links": 104,
+      "missing": 0
+    },
+    "experiment_protocols": {
+      "relative_links": 87,
+      "missing": 85,
+      "affected_files": 37,
+      "cause": "Five parent ascents rather than four in migrated protocol wrappers"
+    },
+    "rendered_stories": {
+      "groups": 7,
+      "chapter_navigation_links_to_raw_markdown": 10,
+      "immediate_missing_html_targets": 0
+    }
+  },
+  "core_temporary_probes": {
+    "schema_version": 1,
+    "scope": "Read-only proposal sweep of common Python workflow and packaging",
+    "repository": "/Users/zhangqy/pkgs/tb3",
+    "baseline_commit": "a3c9be8",
+    "probes": "Existing .venv/bin/python; TemporaryDirectory workspaces; unittest.mock patches for Harbor checksum and subprocess launcher; no real trials, Docker, installs or repository edits",
+    "findings": [
+      {
+        "id": "control-review-state",
+        "priority": "P1",
+        "trigger": "Study A has verified oracle-pass and nop-fail observations. An issue is recorded against its oracle attempt, giving study A needs_review. Study B has identical task bytes and no issue of its own. Run B without diagnostic.",
+        "expected": "The questioned control must not authorize nondiagnostic reuse; require replacement evidence or scoped reassessment.",
+        "observed": {
+          "control_owner_assessment": "needs_review",
+          "other_nondiagnostic_launch": "completed"
+        },
+        "anchors": [
+          "src/tb3_medical/workflow.py:286-301",
+          "src/tb3_medical/workflow.py:351-355"
+        ],
+        "interpretation": "Cross-experiment exact-task control reuse is workspace-wide, but the run gate only considers the target experiment assessment. The control selector does not inspect issues, assessments or affected attempts. This does not demonstrate that a real experiment has used an invalid control."
+      },
+      {
+        "id": "stale-control-observation",
+        "priority": "P2",
+        "trigger": "A completed oracle result is collected, its raw result gains metadata, and it is collected again with unchanged exact-task binding. The old observation remains immutable and the newer observation verifies successfully.",
+        "expected": "Select the current valid eligible control observation while retaining historical observations; do not let a superseded raw hash veto the newer valid collection.",
+        "observed": {
+          "fresh_verified": true,
+          "check_controls": "Changed input: .local/attempts/attempt-e353b5e1694f4e1d/job/trial/result.json"
+        },
+        "anchors": [
+          "src/tb3_medical/workflow.py:288-298",
+          "src/tb3_medical/workflow.py:250-281"
+        ]
+      },
+      {
+        "id": "launcher-error-exit",
+        "priority": "P2",
+        "trigger": "Mocked Harbor launcher returns 17 and writes no trial result; invoke CLI run --agent oracle.",
+        "expected": "Retain the error receipt and return a nonzero operational CLI exit status. A completed model scoring failure should remain a separate outcome.",
+        "observed": {
+          "cli_exit": 0,
+          "execution_state": "error",
+          "launcher_exit_code": 17,
+          "collected": []
+        },
+        "anchors": [
+          "src/tb3_medical/workflow.py:413-416",
+          "src/tb3_medical/workflow.py:444-446",
+          "src/tb3_medical/cli.py:245-246"
+        ]
+      },
+      {
+        "id": "concurrent-new-membership",
+        "priority": "P2",
+        "trigger": "Two concurrent calls to new() create distinct experiments in one group. A barrier immediately before atomic_write(group.json) makes both use their previously read membership lists.",
+        "expected": "The group retains both new experiment IDs or one caller receives an explicit retryable conflict.",
+        "observed": {
+          "group_members": [
+            "study",
+            "two"
+          ],
+          "all_experiments": [
+            "one",
+            "study",
+            "two"
+          ],
+          "validation": {
+            "records": 4,
+            "groups": 1,
+            "experiments": 3
+          }
+        },
+        "anchors": [
+          "src/tb3_medical/workflow.py:66-69",
+          "src/tb3_medical/core.py:285-301",
+          "src/tb3_medical/core.py:306-328"
+        ],
+        "interpretation": "Atomic replacement prevents torn writes but not lost read-modify-write updates. Missing membership can also omit group-level review flags. No existing record was deleted by this probe."
+      },
+      {
+        "id": "package-mode-verification",
+        "priority": "P2",
+        "trigger": "Export a temporary Git fixture with recipe mode 0755, then change the packaged script to 0644 and verify it.",
+        "expected": "Package verification reports the declared executable mode changed.",
+        "observed": {
+          "declared_mode": "0o755",
+          "actual_mode": "0o644",
+          "verification": {
+            "verified_files": 1,
+            "submission_status": "draft"
+          }
+        },
+        "anchors": [
+          "src/tb3_medical/packaging.py:94-95",
+          "src/tb3_medical/packaging.py:162-168"
+        ],
+        "interpretation": "The recipe already declares and the exporter applies modes, so checking that executable contract adds no new metadata system. Verification currently checks inventory and content only."
+      }
+    ],
+    "already_sound": [
+      "Small installed package and normal imports; inspection consumes explicit metadata locations rather than task payload JSON.",
+      "Immutable append-only observations and issue/review events; assistant recommendations do not overwrite accepted decisions.",
+      "Exact task snapshots and content checks; diagnostic and controlled execution remain separate.",
+      "Importer distinguishes execution errors, partial results, scorer outcomes and contradictory verifier evidence.",
+      "Exports use explicit Git/artifact origins, original recipe bytes, fresh destinations and incomplete markers.",
+      "Fast offline baseline checks reported by parent: 44 tests with one optional imaging skip; no real trials required."
+    ]
+  },
+  "task_explorer_existing_browser_suite": {
+    "briefs": 160,
+    "taskFamilies": 106,
+    "sourceRecords": 284,
+    "conditions": 379,
+    "nativeImagesDecoded": 12,
+    "conceptualIllustrations": 154,
+    "diagramTypes": 59,
+    "sourcePreviews": 6,
+    "groupedTaskList": "pass",
+    "datasetVariants": "pass",
+    "caseDifferences": "pass",
+    "legacyLinksAndBack": "pass",
+    "collapsedProvenance": "pass",
+    "search": "pass",
+    "referenceReveal": "pass",
+    "mobile": "pass",
+    "pageErrors": [],
+    "remoteRequests": []
+  },
+  "additional_presentation_probes": [
+    {
+      "id": "local-provenance",
+      "observed": "13 local references across eight briefs are plain paths; internal vessel Sources has five rows and zero links",
+      "source": "presentation/task-explorer/app.js:210; src/tb3_medical/task_briefs.py:142"
+    },
+    {
+      "id": "keyboard-navigation-focus",
+      "method": "Offline Chrome interaction",
+      "trigger": "Focus a repository or task button and activate with Enter",
+      "observed": "document.activeElement is BODY after rendering",
+      "source": "presentation/task-explorer/app.js:121,232,246"
+    },
+    {
+      "id": "tour-selection-race",
+      "method": "Execute unchanged production select() with deferred load promises",
+      "trigger": "Select vessels, then cardiac; resolve cardiac, then vessels",
+      "expected": "cardiac remains selected",
+      "observed": "vessels becomes selected",
+      "source": "presentation/tours/tour.js:119"
+    },
+    {
+      "id": "task-card-source-hashes",
+      "observed": "All six current cards have matching recorded source hashes",
+      "limitation": "Normal narrative checks compare selected values rather than enforcing the stored digest"
+    }
+  ],
+  "limits": [
+    "Core launches were mocked; no real model, Harbor or Docker execution.",
+    "No evidence that existing real studies exercised the reproduced control or concurrency defects.",
+    "No raw-run integrity sweep or clinical adjudication.",
+    "No runtime installation, download, publication or scientific artifact modification.",
+    "Existing tubular README, idea and BR-042 showcase work was preserved."
+  ],
+  "decision": "Assistant recommendations only; implementation not performed"
+}
