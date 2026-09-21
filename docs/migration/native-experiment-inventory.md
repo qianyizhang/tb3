@@ -1,5 +1,9 @@
 # Retained experiment coverage
 
+For the maintained operation checklist and group-owned backfill lists, use
+[experiment support and verification](../reproduce.md#experiment-support-and-verification).
+This dated inventory is retained as migration evidence.
+
 This is the native-implementation snapshot. BR-042 subsequently completed; its
 [main cutover](main-cutover.md) and current experiment config supersede the active-owner row below.
 

@@ -49,6 +49,10 @@ the index does not inspect every raw artifact or certify a live process. A stale
 running observation must show its timestamp. Reproduction badges name the task,
 cases and receipt they cover.
 
+The [experiment support and verification checklist](reproduce.md#experiment-support-and-verification)
+tracks operation support and scoped proof independently. It is not another
+experiment-stage ladder or a replacement for these status codes.
+
 ## Historical conversion reference
 
 For day-to-day fields and labels, use the catalogue and usage rules above. The

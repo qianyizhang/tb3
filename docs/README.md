@@ -11,7 +11,7 @@ Finding submission candidates is an optional later step, not the research goal.
 | Set up, find work, capture an idea, author/run a study, collect and review results | [Daily workflow](workflow.md) |
 | Design a useful medical question, curate references and interpret evidence | [Research design](research-design.md) |
 | Understand ownership, preserved evidence and what belongs in Git | [Governance](governance.md) |
-| Restore selected inputs, replay saved outputs, build views and media | [Reproduction and presentation](reproduce.md) |
+| Track experiment support/backfill, restore inputs, replay outputs, build views and media | [Reproduction and presentation](reproduce.md) |
 | Explain an internal or external task and build the Task Explorer | [Task Brief rulebook](../presentation/task-explorer/RULEBOOK.md) |
 | Interpret badges, assessments and the attention queue | [Status vocabulary](status-vocabulary.md) |
 | Export a research draft or hand work to a submission owner | [Exports and submission](submission.md) |
