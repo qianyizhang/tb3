@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "scope": "same-platform frozen execution environment",
+  "platform": "linux/arm64",
+  "codex_version": "0.155.1",
+  "source_runtime": {
+    "original_tag": "tb3-dental-runtime:v1",
+    "portable_tag": "tb3-ct-organ-runtime-source:v1",
+    "identity": "sha256:3de5f01c3d98a0ed47c9c6ac2ef202807e2761e0ece826d0b514c994f033f107"
+  },
+  "frozen_images": {
+    "runtime": "sha256:3de5f01c3d98a0ed47c9c6ac2ef202807e2761e0ece826d0b514c994f033f107",
+    "transport": "sha256:4fcf1615f13b7d4db3d844ef88df180ec6451a094a643539372110315bb492c7",
+    "solver": "sha256:e7f0c11c5c8991896e1f9058fc6f5a6943808dea5c3077e471a946d3f6cce52d",
+    "evaluator": "sha256:7a95e6314831399cbfb057dfbe7b34e363bba21863c116a25401b6b9e94ea833"
+  },
+  "scientific_versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "nibabel": "5.3.2",
+    "skimage": "0.25.2",
+    "Pillow": "11.3.0"
+  },
+  "forbidden_modules_absent": [
+    "totalsegmentator",
+    "nnunet",
+    "nnunetv2"
+  ],
+  "transfer_note": "The Docker archive is local evidence, not tracked in Git. Transfer it with a sender-computed SHA-256, load it on a linux/arm64 Docker host, and verify these image identities before use."
+}

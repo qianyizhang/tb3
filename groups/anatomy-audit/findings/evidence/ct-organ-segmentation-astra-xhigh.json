@@ -1,0 +1,488 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-21T12:03:19.925150+00:00",
+  "experiment_id": "ct-organ-segmentation-astra-xhigh",
+  "attempt_id": "attempt-2668797075454e54",
+  "observation_id": "observation-ff9228909099a9e931e82443",
+  "task_digest": "fcf7827f7100d1ca54be84f6bc14fb320d27ca546fd5352ac45cb40b04110ab6",
+  "review_actor": "assistant",
+  "execution_state": "completed",
+  "exception": null,
+  "retry_count": 0,
+  "metrics": {
+    "valid": true,
+    "reason": null,
+    "semantic_macro_dice": 0.7380252177599974,
+    "matched_macro_dice": 0.7380252177599974,
+    "semantic_geometry_gap": 0.0,
+    "identity_accuracy": 1.0,
+    "identity_correct_matches": 10,
+    "identity_assessable_matches": 10,
+    "foreground_dice": 0.9010758427889359,
+    "foreground_precision": 0.9104269478757882,
+    "foreground_recall": 0.8919148774125577,
+    "foreground_gt_voxels": 630244,
+    "foreground_prediction_voxels": 617429,
+    "foreground_false_positive_voxels": 55305,
+    "foreground_false_negative_voxels": 68120,
+    "per_label": [
+      {
+        "id": 1,
+        "name": "spleen",
+        "gt_voxels": 33273,
+        "prediction_voxels": 29968,
+        "intersection": 28700,
+        "dice": 0.9076390316408659
+      },
+      {
+        "id": 2,
+        "name": "kidney_right",
+        "gt_voxels": 32882,
+        "prediction_voxels": 29312,
+        "intersection": 24798,
+        "dice": 0.7974402675499245
+      },
+      {
+        "id": 3,
+        "name": "kidney_left",
+        "gt_voxels": 35513,
+        "prediction_voxels": 31273,
+        "intersection": 27222,
+        "dice": 0.8152007905848531
+      },
+      {
+        "id": 4,
+        "name": "gallbladder",
+        "gt_voxels": 9211,
+        "prediction_voxels": 5407,
+        "intersection": 4876,
+        "dice": 0.6671227254070324
+      },
+      {
+        "id": 5,
+        "name": "liver",
+        "gt_voxels": 456706,
+        "prediction_voxels": 461240,
+        "intersection": 425422,
+        "dice": 0.9268998394241056
+      },
+      {
+        "id": 6,
+        "name": "stomach",
+        "gt_voxels": 25117,
+        "prediction_voxels": 27132,
+        "intersection": 20409,
+        "dice": 0.781220693219009
+      },
+      {
+        "id": 7,
+        "name": "pancreas",
+        "gt_voxels": 17606,
+        "prediction_voxels": 15119,
+        "intersection": 11911,
+        "dice": 0.7279449961802903
+      },
+      {
+        "id": 8,
+        "name": "adrenal_gland_right",
+        "gt_voxels": 1534,
+        "prediction_voxels": 611,
+        "intersection": 416,
+        "dice": 0.3878787878787879
+      },
+      {
+        "id": 9,
+        "name": "adrenal_gland_left",
+        "gt_voxels": 1907,
+        "prediction_voxels": 1085,
+        "intersection": 908,
+        "dice": 0.606951871657754
+      },
+      {
+        "id": 10,
+        "name": "duodenum",
+        "gt_voxels": 16552,
+        "prediction_voxels": 16891,
+        "intersection": 12741,
+        "dice": 0.7619531740573513
+      }
+    ],
+    "matched_pairs": [
+      {
+        "gt_id": 1,
+        "gt_name": "spleen",
+        "prediction_id": 1,
+        "prediction_name": "spleen",
+        "intersection": 28700,
+        "dice": 0.9076390316408659,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 2,
+        "gt_name": "kidney_right",
+        "prediction_id": 2,
+        "prediction_name": "kidney_right",
+        "intersection": 24798,
+        "dice": 0.7974402675499245,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 3,
+        "gt_name": "kidney_left",
+        "prediction_id": 3,
+        "prediction_name": "kidney_left",
+        "intersection": 27222,
+        "dice": 0.8152007905848531,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 4,
+        "gt_name": "gallbladder",
+        "prediction_id": 4,
+        "prediction_name": "gallbladder",
+        "intersection": 4876,
+        "dice": 0.6671227254070324,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 5,
+        "gt_name": "liver",
+        "prediction_id": 5,
+        "prediction_name": "liver",
+        "intersection": 425422,
+        "dice": 0.9268998394241056,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 6,
+        "gt_name": "stomach",
+        "prediction_id": 6,
+        "prediction_name": "stomach",
+        "intersection": 20409,
+        "dice": 0.781220693219009,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 7,
+        "gt_name": "pancreas",
+        "prediction_id": 7,
+        "prediction_name": "pancreas",
+        "intersection": 11911,
+        "dice": 0.7279449961802903,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 8,
+        "gt_name": "adrenal_gland_right",
+        "prediction_id": 8,
+        "prediction_name": "adrenal_gland_right",
+        "intersection": 416,
+        "dice": 0.3878787878787879,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 9,
+        "gt_name": "adrenal_gland_left",
+        "prediction_id": 9,
+        "prediction_name": "adrenal_gland_left",
+        "intersection": 908,
+        "dice": 0.606951871657754,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 10,
+        "gt_name": "duodenum",
+        "prediction_id": 10,
+        "prediction_name": "duodenum",
+        "intersection": 12741,
+        "dice": 0.7619531740573513,
+        "identity_correct": true
+      }
+    ]
+  },
+  "independent_replay": {
+    "all_original_fields_exactly_equal": true,
+    "new_model_execution": false,
+    "original_scores_changed": false
+  },
+  "native_controls": [
+    {
+      "attempt_id": "attempt-9a50f054986d4a90",
+      "agent": "oracle",
+      "reward": 1.0
+    },
+    {
+      "attempt_id": "attempt-994cdfcae2c64acd",
+      "agent": "nop",
+      "reward": 0.0
+    }
+  ],
+  "timing_seconds": {
+    "total": 1307.91,
+    "setup": 0.168,
+    "agent": 1264.346,
+    "verifier": 19.669
+  },
+  "usage": {
+    "n_input_tokens": 2468203.0,
+    "n_cache_tokens": 2375424.0,
+    "n_output_tokens": 33537.0
+  },
+  "cost_usd": null,
+  "scope_limits": [
+    "One selected public CT case; no population or ranking claim.",
+    "Published reference plus author QC, not independent clinical contour adjudication.",
+    "Identity matching is conditional on geometric overlap and does not establish exact voxel semantics.",
+    "No clinical pass threshold; retain native unclassified continuous outcome.",
+    "Input token counts include cache; operator and preparation effort are separate.",
+    "Fresh preparation and scoring verified on this machine; upstream archive redownload and independent-machine image transfer untested.",
+    "Original evaluator-only bytecode retained in frozen task; absent from solver; future controls fixed."
+  ],
+  "evidence": [
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/result.json",
+      "sha256": "bc4b8ea45d3f1b9c7e27009d04091743bf1f065abc42feb8d91fc53984c5c0b9",
+      "bytes": 3809
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/verifier/metrics.json",
+      "sha256": "dcf3da32a342a2d1a12ba34dcd12417876398105d6f73afbb72bbe0b0a3e64d4",
+      "bytes": 4591
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/agent/trajectory.json",
+      "sha256": "d341ae65c6287022ced0f6e2fe6037a0e882feb1ce325bb75906b83025587720",
+      "bytes": 26556987
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/agent/codex.txt",
+      "sha256": "670a76539f9a9f0b1fc25cac97c312a7773f293dec6d081df20ad2b419f4f1f8",
+      "bytes": 113058
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/artifacts/app/answer/method.md",
+      "sha256": "9378b8fc5a9a1ee207bd4355c85cba33f91819a68e5b984638c5e63adb8dc5b3",
+      "bytes": 4319
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-xhigh/model-transport.log",
+      "sha256": "57d0b5ed4fca0f8cc49ad9519b1930f508922fb241c49bc71f6fa714c79286b5",
+      "bytes": 6559
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-xhigh/independent-replay.json",
+      "sha256": "dcf3da32a342a2d1a12ba34dcd12417876398105d6f73afbb72bbe0b0a3e64d4",
+      "bytes": 4591
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-xhigh/preparation-receipt.json",
+      "sha256": "f143a9fa625722de651175e1a89b93066e83b44d48e0b7fee5535bbbbfb6eff3",
+      "bytes": 11257
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-xhigh/scorer-controls.json",
+      "sha256": "5ecbecab4fc9e00f98d34f095d65e90c57926248ff34dcfb2a540f0e02a98997",
+      "bytes": 29748
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-xhigh/isolation-preflight.json",
+      "sha256": "32b963feb6938eb9a0c31640514a30211cff915b8245757cfbc7e501dead4b49",
+      "bytes": 1845
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-xhigh/live-isolation.json",
+      "sha256": "8bc95648ed9728122bffa5298b6456229cec19e93328dd35d1a49ee11dbf802f",
+      "bytes": 1100
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-xhigh/parent-independent-review.json",
+      "sha256": "364b92c06ff1be0f58cbab12ff51c0b989b8249fec00cf31659c4dca03c41ad6",
+      "bytes": 2132
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-xhigh/authoring-reproduction.json",
+      "sha256": "39b3f077dfb236911ac564f98e30048583f2f2dcb7efafb101a72ec57491f73e",
+      "bytes": 2375
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-xhigh/review/organ-dice.png",
+      "sha256": "a097cb8d5e2a3021a8325574026abfb5f0386db483efc4bcce2ee549a777f593",
+      "bytes": 62008
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-xhigh/review/organ-contours.png",
+      "sha256": "5dd5a1e46d4d453794871654f8aa9c9ce8a88298cefcef2a9ee6b35a2a9eb9c4",
+      "bytes": 246817
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-xhigh/review/render-selection.json",
+      "sha256": "2a2e13a6e03774844dfa1e7343ba313dfd55481d65533ca9e83da5e554aa4b07",
+      "bytes": 1891
+    },
+    {
+      "path": "groups/anatomy-audit/experiments/ct-organ-segmentation-astra-xhigh/authoring/score.py",
+      "sha256": "9c9c81ac67f73a9ebd3fcd9d4ef0cfbf041512b3bc2da8602075fbad5ae285a2",
+      "bytes": 7772
+    },
+    {
+      "path": "groups/anatomy-audit/experiments/ct-organ-segmentation-astra-xhigh/authoring/render_review.py",
+      "sha256": "378f516bf0353d7cfe1ec15b6c7b3546fd5f500b7d8b39621a8f605dda4a1b65",
+      "bytes": 5704
+    },
+    {
+      "path": "groups/anatomy-audit/experiments/ct-organ-segmentation-astra-xhigh/source/selected-source-manifest.json",
+      "sha256": "6b654998c846d4bd72098e76e2b80dbe9ce0c77929b0719711fa10aae8b4d0b5",
+      "bytes": 3630
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/artifacts/app/answer/masks/01.nii.gz",
+      "sha256": "0f942ad43692a774afac6f4538d4881ad6c2b6a96ef29fa6cfdf1fe8d08ee89b",
+      "bytes": 128863
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/artifacts/app/answer/masks/02.nii.gz",
+      "sha256": "e06dbe9a74ba31cac067b0594020e14593d44edd8e25c938d1fd10b1a5caa325",
+      "bytes": 130908
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/artifacts/app/answer/masks/03.nii.gz",
+      "sha256": "ab8d0d53a2d60d237d8f9193840e322e6e8dec0548d66edb954a3fb4073dbd68",
+      "bytes": 131289
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/artifacts/app/answer/masks/04.nii.gz",
+      "sha256": "573c226e0865626656e7d92866465c57bf3136405951b0bb8137c5497d113a0f",
+      "bytes": 124899
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/artifacts/app/answer/masks/05.nii.gz",
+      "sha256": "4616c2f48ea2f67720ba79708693ba8cc6e0d705bf67949da8994bae791b03f8",
+      "bytes": 170116
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/artifacts/app/answer/masks/06.nii.gz",
+      "sha256": "0c50aba7925953c60e5e5d061895dd64aa41c79634914f16af52e04fd8017d6c",
+      "bytes": 131167
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/artifacts/app/answer/masks/07.nii.gz",
+      "sha256": "126131a26714cc1f879e7ac1ece58632fba278e9b9771f05b466b1eb1337a345",
+      "bytes": 128752
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/artifacts/app/answer/masks/08.nii.gz",
+      "sha256": "feb80e1564547d79ed5fa5e59612d3cfe5cbeadd6056acae95e8e85e7808fce7",
+      "bytes": 123556
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/artifacts/app/answer/masks/09.nii.gz",
+      "sha256": "224662ba3b82264def8bd7204a5cee915861227497b01dd37d31707b8d10622a",
+      "bytes": 123902
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/artifacts/app/answer/masks/10.nii.gz",
+      "sha256": "7a314e834d1170712d0a6b505540f25960378f97d741939439c0d85416adbd3c",
+      "bytes": 128750
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-xhigh/trace-review.json",
+      "sha256": "6ca6993055372c05e7701c22c786929c991f3023dc8f4e911b079e6a310f765f",
+      "bytes": 5064
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-xhigh/trace-review.md",
+      "sha256": "cc425288bbdbcfb27b5d6248e2cdd15ac050e4ba3d07ad4f891b4d6fab78591c",
+      "bytes": 7354
+    },
+    {
+      "path": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/agent/sessions/2026/09/21/rollout-2026-09-21T11-30-17-01a0c3bb-26d3-76d0-9412-b9cfe821f873.jsonl",
+      "sha256": "ab321a7b6cfa451d8cc581aebd8d7eb90387aeed7cbbee157d88389aeac6660b",
+      "bytes": 26953677
+    }
+  ],
+  "trace_audit": {
+    "condition": {
+      "model": "openai/gpt-6-astra",
+      "reasoning_effort": "xhigh",
+      "classification": "foundation-model reasoning with ordinary local scientific tools; no additional pretrained segmenter observed",
+      "local_libraries_used": [
+        "numpy",
+        "nibabel",
+        "scipy",
+        "scikit-image",
+        "Pillow"
+      ],
+      "pretrained_segmenter_or_weight_observed": false,
+      "external_retrieval_tool_call_observed": false,
+      "reference_mask_or_scorer_call_observed": false
+    },
+    "tool_trace": {
+      "top_level_exec_calls": 43,
+      "nested_exec_command_calls": 42,
+      "nested_view_image_calls": 37,
+      "unique_viewed_png_paths": 36,
+      "nested_write_stdin_calls": 2,
+      "nested_clock_calls": 1,
+      "failed_local_commands": 0,
+      "image_evidence_boundary": "image observations are input_image blocks in the rollout/trajectory; CLI stdout omits the pixels"
+    },
+    "method_observed": {
+      "manual_axial_polygon_contours": true,
+      "multiplanar_ct_rendering": true,
+      "signed_distance_interpolation": true,
+      "gaussian_boundary_smoothing_voxels": [
+        0.5,
+        0.65
+      ],
+      "outer_band_hu_thresholds": {
+        "spleen": -5,
+        "kidney_right": -15,
+        "kidney_left": -15,
+        "liver": -5,
+        "pancreas": -30,
+        "adrenal_gland_right": -30,
+        "adrenal_gland_left": -30
+      },
+      "largest_component_retained": true,
+      "manual_interface_edits": [
+        "liver dome contours",
+        "liver minus gallbladder",
+        "liver minus stomach",
+        "gastric cardia contours",
+        "right adrenal contours",
+        "left adrenal contours",
+        "localized venous course subtracted from pancreas"
+      ]
+    },
+    "claim_boundaries": [
+      "No post-review kidney contour write was observed; final kidney boundary handling was the -15 HU outer-band trim.",
+      "A suspected low-attenuation renal focus was inspected, but no explicit internal cyst subtraction was observed and the algorithm preserves the mask interior.",
+      "The final code keeps exactly the largest component although an earlier code comment described keeping every substantial component; the submitted method matches the final behavior.",
+      "The general axial review image was generated before the liver-dome correction, and the last adrenal/stomach edits were followed by structural validation rather than fresh final overlays.",
+      "The transport log plus trace support no retrieval, but allowed model-domain transport is not absolute proof that the service channel could never convey external information.",
+      "The internal validator proves file and grid properties, not anatomical accuracy."
+    ],
+    "transport": {
+      "records": 85,
+      "first_utc": "2026-09-21T11:30:16.358732+00:00",
+      "last_utc": "2026-09-21T11:51:20.225862+00:00",
+      "targets": [
+        {
+          "target": "chatgpt.com:443",
+          "allowed": true,
+          "count": 59
+        },
+        {
+          "target": "ab.chatgpt.com:443",
+          "allowed": false,
+          "count": 22
+        },
+        {
+          "target": "sdmntprsouthcentralus.oaiusercontent.com:443",
+          "allowed": false,
+          "count": 4
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "id": "ct-organ-segmentation-astra-xhigh-finding",
+  "group_id": "anatomy-audit",
+  "title": "CT alone: ten organ identities, uneven contour accuracy",
+  "claim": "One Astra/xhigh attempt produced ten organ masks from CT alone with semantic and matched macro Dice 0.7380 and all ten matched labels agreeing. Contour accuracy ranged from 0.3879 for the right adrenal to 0.9269 for liver.",
+  "experiment_ids": [
+    "ct-organ-segmentation-astra-xhigh"
+  ],
+  "evidence": [
+    {
+      "path": "groups/anatomy-audit/findings/evidence/ct-organ-segmentation-astra-xhigh.json",
+      "sha256": "702a6a77353e2e2b81e8a666ae5b6d668cc8ecbc8e3fe546cd7f38eb186bcb32"
+    }
+  ],
+  "limitations": [
+    "One selected public CT case; no population or ranking claim.",
+    "Published reference plus author QC, not independent clinical contour adjudication.",
+    "Identity matching is conditional on geometric overlap and does not establish exact voxel semantics.",
+    "No clinical pass threshold; retain native unclassified continuous outcome.",
+    "Input token counts include cache; operator and preparation effort are separate.",
+    "Fresh preparation and scoring verified on this machine; upstream archive redownload and independent-machine image transfer untested.",
+    "Original evaluator-only bytecode retained in frozen task; absent from solver; future controls fixed."
+  ],
+  "links": [
+    {
+      "label": "Result and interpretation",
+      "path": "groups/anatomy-audit/findings/ct-organ-segmentation-astra-xhigh.md"
+    },
+    {
+      "label": "Protocol and reproduction",
+      "path": "groups/anatomy-audit/experiments/ct-organ-segmentation-astra-xhigh/protocol.md"
+    }
+  ]
+}
