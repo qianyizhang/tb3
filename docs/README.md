@@ -13,6 +13,7 @@ Finding submission candidates is an optional later step, not the research goal.
 | Understand ownership, preserved evidence and what belongs in Git | [Governance](governance.md) |
 | Track experiment support/backfill, restore inputs, replay outputs, build views and media | [Reproduction and presentation](reproduce.md) |
 | Explain an internal or external task and build the Task Explorer | [Task Brief rulebook](../presentation/task-explorer/RULEBOOK.md) |
+| Add LiteMedSAM / a SAM segmentation tool to an experiment | [Segmentation tool rulebook](segmentation-tools.md) |
 | Interpret badges, assessments and the attention queue | [Status vocabulary](status-vocabulary.md) |
 | Export a research draft or hand work to a submission owner | [Exports and submission](submission.md) |
 | Find earlier results or recover retired material | [Historical records](archive/README.md) |

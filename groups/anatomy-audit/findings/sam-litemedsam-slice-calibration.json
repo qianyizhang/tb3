@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "id": "sam-litemedsam-slice-calibration-finding",
+  "group_id": "anatomy-audit",
+  "title": "LiteMedSAM leads a narrow CT box-prompt calibration on Mac",
+  "claim": "On 18 reference-selected organ-slice pairs from one CT, LiteMedSAM MPS mean Dice was 0.8334/0.8524 for tighter/wider boxes, versus SAM2 MPS 0.7745/0.5165 and SAM2 CPU 0.7905/0.5593. This establishes local feasibility and conditional mask quality, not autonomous or volumetric performance.",
+  "experiment_ids": [
+    "sam-litemedsam-slice-calibration"
+  ],
+  "evidence": [
+    {
+      "path": "groups/anatomy-audit/findings/evidence/sam-litemedsam-slice-calibration.json",
+      "sha256": "334a5d9c1c0d49ae12b15c7d4435b09ad702e06734032294e98bdf1babc5f1fd"
+    }
+  ],
+  "limitations": [
+    "One known public CT; three correlated slices for each of six organs.",
+    "Reference-derived slice selection and box localization; training overlap unverified.",
+    "No agent interaction, 3D propagation, clinical validation or unseen-data generalization claim.",
+    "SAM2 CPU and MPS differ materially; backend-specific results retained. LiteMedSAM parity checked on four predictions only.",
+    "Warm timings exclude startup; sampled Metal allocation is not a true total peak memory measure."
+  ],
+  "links": [
+    {
+      "label": "Results and interpretation",
+      "path": "groups/anatomy-audit/findings/sam-litemedsam-slice-calibration.md"
+    },
+    {
+      "label": "Protocol",
+      "path": "groups/anatomy-audit/experiments/sam-litemedsam-slice-calibration/protocol.md"
+    }
+  ]
+}

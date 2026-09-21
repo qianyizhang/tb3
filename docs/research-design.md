@@ -55,6 +55,9 @@ the frozen outcome. Record concrete defects and scoped reassessments through the
 a conclusion. Explain successes and limitations together in the group finding
 and story, with links to the supporting experiment and a static visual fallback.
 
+For colored image overlays, supply a visible legend with the same colors and line
+styles as the overlays; label the reference, prediction and prompt separately.
+
 These guidelines retain lessons from the dated
 [specification/scaffolding audit](research-specification-audit-20260915.md) and
 [archived source-screening method](archive/README.md#retired-guidance-and-recovery), while

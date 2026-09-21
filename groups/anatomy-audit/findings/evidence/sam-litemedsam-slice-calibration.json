@@ -1,0 +1,514 @@
+{
+  "scope": "One CT, six organs, three reference-selected slices per organ; oracle box calibration",
+  "provenance": {
+    "source_task": "codex://threads/01a0c423-5d0a-7ee3-97b4-66939a8c9e20",
+    "weights": [
+      {
+        "name": "sam2.1_hiera_small.pt",
+        "url": "https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_small.pt",
+        "bytes": 184416285,
+        "sha256": "6d1aa6f30de5c92224f8172114de081d104bbd23dd9dc5c58996f0cad5dc4d38"
+      },
+      {
+        "name": "lite_medsam.pth",
+        "url": "https://drive.google.com/uc?id=18Zed-TUTsmr2zc5CHUWd5Tu13nb6vq6z",
+        "bytes": 39370479,
+        "sha256": "79d8c9dca6db4d69d3f905579e5250af05e859fff9c1f543e89a513c3028ce76"
+      }
+    ],
+    "repos": [
+      {
+        "name": "sam2",
+        "commit": "2b90b9f5ceec907a1c18123530e92e794ad901a4",
+        "tracked_diff": "",
+        "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      {
+        "name": "LiteMedSAM",
+        "commit": "b0fab476e54e631dd412b25e0db9fdf2a2b0f54c",
+        "tracked_diff": "",
+        "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      }
+    ],
+    "requirements_sha256": "73352e861f2d008e20cf27b1546c8010cd30f48721e2ced12cec75d393b1e405"
+  },
+  "aggregates": {
+    "sam2-mps": {
+      "count": 36,
+      "load_seconds": 11.60778391599888,
+      "warmup_seconds": 16.790051124997262,
+      "process_peak_rss_mib": 828.203125,
+      "encode_median_ms": 134.53779149858747,
+      "prompt_median_ms": 14.548458999342984,
+      "driver_memory_max_observed_mib": 2822.21875,
+      "tight": {
+        "mean_dice": 0.7745125804950884,
+        "median_dice": 0.8260745977289139,
+        "mean_hd95_mm": 13.27315174150833
+      },
+      "loose": {
+        "mean_dice": 0.5164836421990279,
+        "median_dice": 0.5044023902731622,
+        "mean_hd95_mm": 26.19251209295937
+      }
+    },
+    "lite-mps": {
+      "count": 36,
+      "load_seconds": 4.57384858399746,
+      "warmup_seconds": 5.251615791996301,
+      "process_peak_rss_mib": 537.296875,
+      "encode_median_ms": 42.45456200078479,
+      "prompt_median_ms": 12.27627100161044,
+      "driver_memory_max_observed_mib": 1139.859375,
+      "tight": {
+        "mean_dice": 0.8334325428952764,
+        "median_dice": 0.9216818184418749,
+        "mean_hd95_mm": 6.3978067299380905
+      },
+      "loose": {
+        "mean_dice": 0.8523816599262672,
+        "median_dice": 0.9288453159041394,
+        "mean_hd95_mm": 7.212047978671448
+      }
+    },
+    "sam2-cpu-subset": {
+      "count": 4,
+      "load_seconds": 2.3138676669987035,
+      "warmup_seconds": 2.5096377919981023,
+      "process_peak_rss_mib": 1476.796875,
+      "encode_median_ms": 2009.4936245004646,
+      "prompt_median_ms": 46.931750002841,
+      "driver_memory_max_observed_mib": 0.0,
+      "tight": {
+        "mean_dice": 0.88197077138137,
+        "median_dice": 0.88197077138137,
+        "mean_hd95_mm": 13.167261889578034
+      },
+      "loose": {
+        "mean_dice": 0.6921331480136523,
+        "median_dice": 0.6921331480136523,
+        "mean_hd95_mm": 27.799237763267936
+      }
+    },
+    "lite-cpu-subset": {
+      "count": 4,
+      "load_seconds": 1.9497734999968088,
+      "warmup_seconds": 0.32446325000637444,
+      "process_peak_rss_mib": 875.828125,
+      "encode_median_ms": 208.01245799884782,
+      "prompt_median_ms": 15.097021005203715,
+      "driver_memory_max_observed_mib": 0.0,
+      "tight": {
+        "mean_dice": 0.9439295465735642,
+        "median_dice": 0.9439295465735642,
+        "mean_hd95_mm": 3.8146304534492654
+      },
+      "loose": {
+        "mean_dice": 0.9262563619916829,
+        "median_dice": 0.9262563619916829,
+        "mean_hd95_mm": 4.677050983124842
+      }
+    },
+    "sam2-cpu": {
+      "count": 36,
+      "load_seconds": 1.7313700000013341,
+      "warmup_seconds": 1.9683883329998935,
+      "process_peak_rss_mib": 1474.640625,
+      "encode_median_ms": 1791.762437500438,
+      "prompt_median_ms": 42.27514599915594,
+      "driver_memory_max_observed_mib": 0.0,
+      "tight": {
+        "mean_dice": 0.7904792295330471,
+        "median_dice": 0.8315187919743044,
+        "mean_hd95_mm": 12.29151945041966
+      },
+      "loose": {
+        "mean_dice": 0.559310638495343,
+        "median_dice": 0.581220800594606,
+        "mean_hd95_mm": 23.84374480891107
+      }
+    }
+  },
+  "per_organ": [
+    {
+      "organ": "liver",
+      "sam2_tight": 0.8940391242067625,
+      "sam2_loose": 0.7974684261702413,
+      "lite_tight": 0.9600895594263111,
+      "lite_loose": 0.9671691155040163
+    },
+    {
+      "organ": "kidney_right",
+      "sam2_tight": 0.8545720938469197,
+      "sam2_loose": 0.6717266929002861,
+      "lite_tight": 0.9616506027835818,
+      "lite_loose": 0.9633910475408217
+    },
+    {
+      "organ": "gallbladder",
+      "sam2_tight": 0.7545259553826303,
+      "sam2_loose": 0.5140483920669267,
+      "lite_tight": 0.8602812187577276,
+      "lite_loose": 0.8054215592664825
+    },
+    {
+      "organ": "pancreas",
+      "sam2_tight": 0.8007619696713162,
+      "sam2_loose": 0.4798384083937874,
+      "lite_tight": 0.8863671203493317,
+      "lite_loose": 0.9141712278031212
+    },
+    {
+      "organ": "adrenal_gland_right",
+      "sam2_tight": 0.7768379920269618,
+      "sam2_loose": 0.25528768830294224,
+      "lite_tight": 0.8711641422396571,
+      "lite_loose": 0.8580091044649737
+    },
+    {
+      "organ": "duodenum",
+      "sam2_tight": 0.56633834783594,
+      "sam2_loose": 0.38053224535998437,
+      "lite_tight": 0.4610426138150485,
+      "lite_loose": 0.6061279049781879
+    }
+  ],
+  "parity": [
+    {
+      "model": "sam2",
+      "id": "liver_q25",
+      "condition": "tight",
+      "differing_pixels": 294,
+      "cpu_mps_mask_dice": 0.967143495753241
+    },
+    {
+      "model": "sam2",
+      "id": "liver_q25",
+      "condition": "loose",
+      "differing_pixels": 6594,
+      "cpu_mps_mask_dice": 0.0539454806312769
+    },
+    {
+      "model": "sam2",
+      "id": "liver_q50",
+      "condition": "tight",
+      "differing_pixels": 515,
+      "cpu_mps_mask_dice": 0.9708033335223085
+    },
+    {
+      "model": "sam2",
+      "id": "liver_q50",
+      "condition": "loose",
+      "differing_pixels": 312,
+      "cpu_mps_mask_dice": 0.9854775646993111
+    },
+    {
+      "model": "sam2",
+      "id": "liver_q75",
+      "condition": "tight",
+      "differing_pixels": 106,
+      "cpu_mps_mask_dice": 0.9925582701488346
+    },
+    {
+      "model": "sam2",
+      "id": "liver_q75",
+      "condition": "loose",
+      "differing_pixels": 621,
+      "cpu_mps_mask_dice": 0.963758389261745
+    },
+    {
+      "model": "sam2",
+      "id": "kidney_right_q25",
+      "condition": "tight",
+      "differing_pixels": 22,
+      "cpu_mps_mask_dice": 0.987750556792873
+    },
+    {
+      "model": "sam2",
+      "id": "kidney_right_q25",
+      "condition": "loose",
+      "differing_pixels": 378,
+      "cpu_mps_mask_dice": 0.8384615384615385
+    },
+    {
+      "model": "sam2",
+      "id": "kidney_right_q50",
+      "condition": "tight",
+      "differing_pixels": 235,
+      "cpu_mps_mask_dice": 0.8894117647058823
+    },
+    {
+      "model": "sam2",
+      "id": "kidney_right_q50",
+      "condition": "loose",
+      "differing_pixels": 489,
+      "cpu_mps_mask_dice": 0.8574759545322064
+    },
+    {
+      "model": "sam2",
+      "id": "kidney_right_q75",
+      "condition": "tight",
+      "differing_pixels": 46,
+      "cpu_mps_mask_dice": 0.9765784114052953
+    },
+    {
+      "model": "sam2",
+      "id": "kidney_right_q75",
+      "condition": "loose",
+      "differing_pixels": 329,
+      "cpu_mps_mask_dice": 0.8890387858347386
+    },
+    {
+      "model": "sam2",
+      "id": "gallbladder_q25",
+      "condition": "tight",
+      "differing_pixels": 35,
+      "cpu_mps_mask_dice": 0.9711934156378601
+    },
+    {
+      "model": "sam2",
+      "id": "gallbladder_q25",
+      "condition": "loose",
+      "differing_pixels": 197,
+      "cpu_mps_mask_dice": 0.9152688172043011
+    },
+    {
+      "model": "sam2",
+      "id": "gallbladder_q50",
+      "condition": "tight",
+      "differing_pixels": 62,
+      "cpu_mps_mask_dice": 0.9625603864734299
+    },
+    {
+      "model": "sam2",
+      "id": "gallbladder_q50",
+      "condition": "loose",
+      "differing_pixels": 1404,
+      "cpu_mps_mask_dice": 0.539672131147541
+    },
+    {
+      "model": "sam2",
+      "id": "gallbladder_q75",
+      "condition": "tight",
+      "differing_pixels": 79,
+      "cpu_mps_mask_dice": 0.9645898700134469
+    },
+    {
+      "model": "sam2",
+      "id": "gallbladder_q75",
+      "condition": "loose",
+      "differing_pixels": 393,
+      "cpu_mps_mask_dice": 0.8739980763065085
+    },
+    {
+      "model": "sam2",
+      "id": "pancreas_q25",
+      "condition": "tight",
+      "differing_pixels": 27,
+      "cpu_mps_mask_dice": 0.9704918032786886
+    },
+    {
+      "model": "sam2",
+      "id": "pancreas_q25",
+      "condition": "loose",
+      "differing_pixels": 104,
+      "cpu_mps_mask_dice": 0.9357231149567367
+    },
+    {
+      "model": "sam2",
+      "id": "pancreas_q50",
+      "condition": "tight",
+      "differing_pixels": 30,
+      "cpu_mps_mask_dice": 0.9653579676674365
+    },
+    {
+      "model": "sam2",
+      "id": "pancreas_q50",
+      "condition": "loose",
+      "differing_pixels": 345,
+      "cpu_mps_mask_dice": 0.8351648351648352
+    },
+    {
+      "model": "sam2",
+      "id": "pancreas_q75",
+      "condition": "tight",
+      "differing_pixels": 32,
+      "cpu_mps_mask_dice": 0.9745222929936306
+    },
+    {
+      "model": "sam2",
+      "id": "pancreas_q75",
+      "condition": "loose",
+      "differing_pixels": 97,
+      "cpu_mps_mask_dice": 0.9607446377984622
+    },
+    {
+      "model": "sam2",
+      "id": "adrenal_gland_right_q25",
+      "condition": "tight",
+      "differing_pixels": 31,
+      "cpu_mps_mask_dice": 0.9177718832891246
+    },
+    {
+      "model": "sam2",
+      "id": "adrenal_gland_right_q25",
+      "condition": "loose",
+      "differing_pixels": 79,
+      "cpu_mps_mask_dice": 0.9044740024183797
+    },
+    {
+      "model": "sam2",
+      "id": "adrenal_gland_right_q50",
+      "condition": "tight",
+      "differing_pixels": 11,
+      "cpu_mps_mask_dice": 0.9737470167064439
+    },
+    {
+      "model": "sam2",
+      "id": "adrenal_gland_right_q50",
+      "condition": "loose",
+      "differing_pixels": 91,
+      "cpu_mps_mask_dice": 0.5380710659898477
+    },
+    {
+      "model": "sam2",
+      "id": "adrenal_gland_right_q75",
+      "condition": "tight",
+      "differing_pixels": 15,
+      "cpu_mps_mask_dice": 0.9361702127659575
+    },
+    {
+      "model": "sam2",
+      "id": "adrenal_gland_right_q75",
+      "condition": "loose",
+      "differing_pixels": 221,
+      "cpu_mps_mask_dice": 0.5571142284569138
+    },
+    {
+      "model": "sam2",
+      "id": "duodenum_q25",
+      "condition": "tight",
+      "differing_pixels": 24,
+      "cpu_mps_mask_dice": 0.9830747531734838
+    },
+    {
+      "model": "sam2",
+      "id": "duodenum_q25",
+      "condition": "loose",
+      "differing_pixels": 560,
+      "cpu_mps_mask_dice": 0.7907324364723468
+    },
+    {
+      "model": "sam2",
+      "id": "duodenum_q50",
+      "condition": "tight",
+      "differing_pixels": 52,
+      "cpu_mps_mask_dice": 0.969732246798603
+    },
+    {
+      "model": "sam2",
+      "id": "duodenum_q50",
+      "condition": "loose",
+      "differing_pixels": 105,
+      "cpu_mps_mask_dice": 0.9536014140521432
+    },
+    {
+      "model": "sam2",
+      "id": "duodenum_q75",
+      "condition": "tight",
+      "differing_pixels": 97,
+      "cpu_mps_mask_dice": 0.9309608540925267
+    },
+    {
+      "model": "sam2",
+      "id": "duodenum_q75",
+      "condition": "loose",
+      "differing_pixels": 144,
+      "cpu_mps_mask_dice": 0.9555829734731647
+    },
+    {
+      "model": "lite",
+      "id": "liver_q50",
+      "condition": "tight",
+      "differing_pixels": 0,
+      "cpu_mps_mask_dice": 1.0
+    },
+    {
+      "model": "lite",
+      "id": "liver_q50",
+      "condition": "loose",
+      "differing_pixels": 0,
+      "cpu_mps_mask_dice": 1.0
+    },
+    {
+      "model": "lite",
+      "id": "adrenal_gland_right_q50",
+      "condition": "tight",
+      "differing_pixels": 0,
+      "cpu_mps_mask_dice": 1.0
+    },
+    {
+      "model": "lite",
+      "id": "adrenal_gland_right_q50",
+      "condition": "loose",
+      "differing_pixels": 0,
+      "cpu_mps_mask_dice": 1.0
+    }
+  ],
+  "controls": {
+    "exact_mask_dice": 1.0,
+    "empty_mask_dice": 0.0,
+    "independent_mask_replays": 116,
+    "filled_box_mean_dice": {
+      "tight": 0.5260478481059616,
+      "loose": 0.3090499206346456
+    }
+  },
+  "files": {
+    "sam2-mps": {
+      "receipt_sha256": "b7d4be5ba3fabf1e2ab3f3477747f01ca44d00eb858d694453e8cedd85aa5348",
+      "masks_sha256": "5b8051d0bcb8140093ffbd20d82ad0810fbdce4126049c4bf3cad0680369c1c1"
+    },
+    "lite-mps": {
+      "receipt_sha256": "dd5083a290c033d8de95a6d77d6c7bb03b8ea26cf2eaf4c00b86d5e8198b8834",
+      "masks_sha256": "ebcdc8934d59dbd54f7a96ba24b08d0a7db8cb2ae56b6f2daa0d38fb23c5821b"
+    },
+    "sam2-cpu-subset": {
+      "receipt_sha256": "e57d9c1ac42653a94572324fe14d82755ad3d19b93eaf3e8711606a87ee39a67",
+      "masks_sha256": "b5a3ab3061f99290a49ecfa3a59b4550141ed57cd3b1677cd65295cbea189a39"
+    },
+    "lite-cpu-subset": {
+      "receipt_sha256": "5198378de0e82f4fdb114f3ce847bd2c5dc610c4ade81e28e77a188d8019125c",
+      "masks_sha256": "c24d3c93f432bf56f37a5f104d425ea40156b9dae427bc8eeaf9a107e984fbd1"
+    },
+    "sam2-cpu": {
+      "receipt_sha256": "bd085c21154f61056e94656698e13e0b4e3fb8a2fcb94b1bbe7084aef6db7042",
+      "masks_sha256": "9183f32dae5e8462d0911761749d4e13d73b17e27c467916cf531a3afec0bdee"
+    }
+  },
+  "schema_version": 1,
+  "created_at": "2026-09-21T14:02:48.208167+00:00",
+  "experiment_id": "sam-litemedsam-slice-calibration",
+  "actor": "assistant",
+  "status": "completed",
+  "host": {
+    "chip": "Apple M5 Pro",
+    "unified_memory_gib": 64,
+    "macos": "26.6.2"
+  },
+  "source_hashes": {
+    "ct.nii.gz": "5352376d8fd9c0ab582a7fca1443f28762a66b9782d59c645b976771587c0cfc",
+    "segmentations/kidney_right.nii.gz": "8ca7e6696b90cb1e7e39b14e5c8f7e92c59b9344bff8fd368009751335abc8b5",
+    "segmentations/gallbladder.nii.gz": "c5dd1e8886ed87d29dac8225acbac49dfc308c0ead9116690c818e49b1addcc7",
+    "segmentations/liver.nii.gz": "0e37697cde4bf2f6042fa89d338cfbe71d85b4b44e42801840be5612c4785980",
+    "segmentations/pancreas.nii.gz": "9f11083652d059e85514d419c90124911953dbbce2018ccc549eaa2c73b0968b",
+    "segmentations/adrenal_gland_right.nii.gz": "a8dd37f4c58abf4c8c35b7ef2e120f145dca2eeae093a533745bf911efb5b8e1",
+    "segmentations/duodenum.nii.gz": "057f1c54ad413a3291e5750c9cdfee74a06cbe0c9d7b8ac42bb90f3b742e9063"
+  },
+  "sample_manifest_sha256": "64bccb641cf6af62c5b26c1a9a261138976cb1475223242cfcfe48a1d115679b",
+  "bench_script_sha256": "d4ea0543c39aa51711bbf424c0a60544a9ba46159a022f3ef8ab63be1780e03f",
+  "analysis_script_sha256": "df91cd9611b8bbf04c932bd8daa8db601db6a6c03dbe4604c1c860ad5c536b71",
+  "local_root": ".local/sam-lite-bench-20260921",
+  "no_general_agent_run": true,
+  "no_subagents": true
+}

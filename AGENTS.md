@@ -14,6 +14,9 @@ Do not pursue security research or resume the archived security work.
 - Start with `uv run med list QUERY`. Groups own their questions,
   ideas, decisions, methods, experiments, findings and presentation. Read the
   group's AGENTS.md. Shared code belongs in src/tb3_medical and presentation.
+- For requests to use a seg tool, SAM or LiteMedSAM, start with
+  [the segmentation rulebook](docs/segmentation-tools.md) and its solver skill.
+  Colored overlays need legends with matching colors and line styles.
 - Capture substantive discussion findings and useful explanations in a concise
   existing idea card or a new stable ID. Retain source task links, prior findings,
   visual references, decisions and reopening conditions. Append decisions with
