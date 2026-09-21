@@ -1,0 +1,414 @@
+{
+  "schema_version": 1,
+  "experiment_id": "registration-br028",
+  "group_id": "registration",
+  "purpose": "Research reproduction; original outcomes and unresolved reference issues remain unchanged.",
+  "created_on": "2026-09-21",
+  "cases": {
+    "deform-patient3-source3d": {
+      "task": "cases/deform-patient3-source3d/task",
+      "evaluator": "cases/deform-patient3-source3d/task/tests/evaluate.py",
+      "historical_task": "runs/br028-registration-3d-source/tasks/deform-patient3-source3d",
+      "original_files": [
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "fd792889cc2e2cee5c58e48ca7383407f9c2e93ae88f43bcf55deb8546f6b047"
+        },
+        {
+          "path": "environment/SOURCE_NOTICE.md",
+          "sha256": "b7c96918219203e92a69fc3771fea19aa503e69a42fa91c8038514d1a72130fa"
+        },
+        {
+          "path": "environment/data/queries.json",
+          "sha256": "394862024ac1694504e9c1cab39b2ab6ea3a0f5c7624683c7ec84ce5506efe80"
+        },
+        {
+          "path": "environment/data/reference_volume.npz",
+          "sha256": "9a3acc47cbbfd576b68e444582c55b8647c5d40dd0971fdf20398e9981aca517"
+        },
+        {
+          "path": "environment/data/view.json",
+          "sha256": "3454989d86544bc5cbdd1937a60ce83eb3e961f667fa4e9bc9b66e00e48c52cf"
+        },
+        {
+          "path": "environment/data/view.npy",
+          "sha256": "f2c99e1cd54a1deda644388ffe414bdd94b596564a4af77546117eccc9f48032"
+        },
+        {
+          "path": "environment/data/view.png",
+          "sha256": "a97932081236b2c3690bbed3e0469c0fd4f365c4c783dfe8c71b55e3534229e9"
+        },
+        {
+          "path": "environment/data/volume.npz",
+          "sha256": "dfcf344bc9550ddd32ab5352277b2398e8ea3ccf883003fe9d921fe7ed946838"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "6b2e7ee8f5e21afc994cc868988257bdf7365d5f82c86a8f7932090642639287"
+        },
+        {
+          "path": "solution/points.json",
+          "sha256": "a810eb2be91a45a4020903e5643a8d3351f62d321885155098e3011dc43c5a4f"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "a17c6d5a27cf1b9786cd1a88632e9ea2ebc31457cbc733198000f1d8884b0fbd"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "6b1568ca0cfb9528aa3f9ef8fe4454f5fcc5e72f665f96be3ea60e86d7b8905c"
+        },
+        {
+          "path": "tests/Dockerfile",
+          "sha256": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f"
+        },
+        {
+          "path": "tests/score.py",
+          "sha256": "18b18c5d4d54e7ee54258ca56ef8f0d3b11ce1c8e0af4063273694a0923af2ee"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7"
+        },
+        {
+          "path": "tests/truth.json",
+          "sha256": "439360a834dc91a0e538ec0ea4565378ffd3d2bbbf7c17e9dd94377b39fb7c91"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged."
+      ],
+      "timeout_sec": 900,
+      "controls": {
+        "oracle": {
+          "answer": "cases/deform-patient3-source3d/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/deform-patient3-source3d/nop",
+          "reward": 0
+        }
+      },
+      "observations": [
+        {
+          "attempt_id": "attempt-1b3e33b1343fbe8760eaa5fe",
+          "source_evaluation": "observation-f5dec3801d7a43617e28d5fd",
+          "answer": "saved/attempt-1b3e33b1343fbe8760eaa5fe/answer",
+          "expected": "saved/attempt-1b3e33b1343fbe8760eaa5fe/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-e1817bab8ca455e46465a904",
+          "source_evaluation": "observation-64a103cda8860ec3f5ace406",
+          "answer": "saved/attempt-e1817bab8ca455e46465a904/answer",
+          "expected": "saved/attempt-e1817bab8ca455e46465a904/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        }
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "cases/deform-patient3-source3d/task/environment/Dockerfile",
+      "source": "groups/registration/experiments/br028/reproduction/cases/deform-patient3-source3d/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "fd792889cc2e2cee5c58e48ca7383407f9c2e93ae88f43bcf55deb8546f6b047",
+      "size": 207,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/environment/SOURCE_NOTICE.md",
+      "source": "groups/registration/experiments/br028/reproduction/cases/deform-patient3-source3d/task/environment/SOURCE_NOTICE.md",
+      "origin": "git",
+      "sha256": "b7c96918219203e92a69fc3771fea19aa503e69a42fa91c8038514d1a72130fa",
+      "size": 680,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/environment/data/queries.json",
+      "source": "groups/registration/experiments/br028/reproduction/cases/deform-patient3-source3d/task/environment/data/queries.json",
+      "origin": "git",
+      "sha256": "394862024ac1694504e9c1cab39b2ab6ea3a0f5c7624683c7ec84ce5506efe80",
+      "size": 610,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/environment/data/reference_volume.npz",
+      "source": ".local/inputs/reproduction/registration-br028/cases/deform-patient3-source3d/task/environment/data/reference_volume.npz",
+      "origin": "artifact",
+      "sha256": "9a3acc47cbbfd576b68e444582c55b8647c5d40dd0971fdf20398e9981aca517",
+      "size": 6897616,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/environment/data/view.json",
+      "source": "groups/registration/experiments/br028/reproduction/cases/deform-patient3-source3d/task/environment/data/view.json",
+      "origin": "git",
+      "sha256": "3454989d86544bc5cbdd1937a60ce83eb3e961f667fa4e9bc9b66e00e48c52cf",
+      "size": 638,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/environment/data/view.npy",
+      "source": ".local/inputs/reproduction/registration-br028/cases/deform-patient3-source3d/task/environment/data/view.npy",
+      "origin": "artifact",
+      "sha256": "f2c99e1cd54a1deda644388ffe414bdd94b596564a4af77546117eccc9f48032",
+      "size": 91604,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/environment/data/view.png",
+      "source": ".local/inputs/reproduction/registration-br028/cases/deform-patient3-source3d/task/environment/data/view.png",
+      "origin": "artifact",
+      "sha256": "a97932081236b2c3690bbed3e0469c0fd4f365c4c783dfe8c71b55e3534229e9",
+      "size": 15333,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/environment/data/volume.npz",
+      "source": ".local/inputs/reproduction/registration-br028/cases/deform-patient3-source3d/task/environment/data/volume.npz",
+      "origin": "artifact",
+      "sha256": "dfcf344bc9550ddd32ab5352277b2398e8ea3ccf883003fe9d921fe7ed946838",
+      "size": 11081636,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/instruction.md",
+      "source": "groups/registration/experiments/br028/reproduction/cases/deform-patient3-source3d/task/instruction.md",
+      "origin": "git",
+      "sha256": "6b2e7ee8f5e21afc994cc868988257bdf7365d5f82c86a8f7932090642639287",
+      "size": 2866,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/solution/points.json",
+      "source": "groups/registration/experiments/br028/reproduction/cases/deform-patient3-source3d/task/solution/points.json",
+      "origin": "git",
+      "sha256": "a810eb2be91a45a4020903e5643a8d3351f62d321885155098e3011dc43c5a4f",
+      "size": 558,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/solution/solve.sh",
+      "source": "groups/registration/experiments/br028/reproduction/cases/deform-patient3-source3d/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "a17c6d5a27cf1b9786cd1a88632e9ea2ebc31457cbc733198000f1d8884b0fbd",
+      "size": 88,
+      "mode": 493,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/task.toml",
+      "source": "groups/registration/experiments/br028/reproduction/cases/deform-patient3-source3d/task/task.toml",
+      "origin": "git",
+      "sha256": "6b1568ca0cfb9528aa3f9ef8fe4454f5fcc5e72f665f96be3ea60e86d7b8905c",
+      "size": 560,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/tests/Dockerfile",
+      "source": "groups/registration/experiments/br028/reproduction/cases/deform-patient3-source3d/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+      "size": 184,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/tests/score.py",
+      "source": "groups/registration/experiments/br028/reproduction/cases/deform-patient3-source3d/task/tests/score.py",
+      "origin": "git",
+      "sha256": "18b18c5d4d54e7ee54258ca56ef8f0d3b11ce1c8e0af4063273694a0923af2ee",
+      "size": 1660,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/tests/test.sh",
+      "source": "groups/registration/experiments/br028/reproduction/cases/deform-patient3-source3d/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+      "size": 44,
+      "mode": 493,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/tests/truth.json",
+      "source": "groups/registration/experiments/br028/reproduction/cases/deform-patient3-source3d/task/tests/truth.json",
+      "origin": "git",
+      "sha256": "439360a834dc91a0e538ec0ea4565378ffd3d2bbbf7c17e9dd94377b39fb7c91",
+      "size": 612,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/task/tests/evaluate.py",
+      "source": "groups/registration/experiments/br028/reproduction/cases/deform-patient3-source3d/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "f28ffa36392ff2d6afb6f84226cac5c50ac9fce57ccf87816b5f9d7ed9a7a7b1",
+      "size": 608,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "task"
+    },
+    {
+      "path": "cases/deform-patient3-source3d/oracle/points.json",
+      "source": "groups/registration/experiments/br028/reproduction/cases/deform-patient3-source3d/oracle/points.json",
+      "origin": "git",
+      "sha256": "a810eb2be91a45a4020903e5643a8d3351f62d321885155098e3011dc43c5a4f",
+      "size": 558,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "control"
+    },
+    {
+      "path": "saved/attempt-1b3e33b1343fbe8760eaa5fe/answer/points.json",
+      "source": ".local/inputs/reproduction/registration-br028/saved/attempt-1b3e33b1343fbe8760eaa5fe/answer/points.json",
+      "origin": "artifact",
+      "sha256": "368be1c28b8b7b2e1a943c53bf273dd51464097935964d62211873ce7435baef",
+      "size": 352,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-1b3e33b1343fbe8760eaa5fe/expected.json",
+      "source": ".local/inputs/reproduction/registration-br028/saved/attempt-1b3e33b1343fbe8760eaa5fe/expected.json",
+      "origin": "artifact",
+      "sha256": "fde65f4a72a82abb59c20a73a556a2eb727ca325912407d82b2463c27191874d",
+      "size": 291,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-e1817bab8ca455e46465a904/answer/points.json",
+      "source": ".local/inputs/reproduction/registration-br028/saved/attempt-e1817bab8ca455e46465a904/answer/points.json",
+      "origin": "artifact",
+      "sha256": "a810eb2be91a45a4020903e5643a8d3351f62d321885155098e3011dc43c5a4f",
+      "size": 558,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-e1817bab8ca455e46465a904/expected.json",
+      "source": ".local/inputs/reproduction/registration-br028/saved/attempt-e1817bab8ca455e46465a904/expected.json",
+      "origin": "artifact",
+      "sha256": "d9d3980972c7fb30ccb7dbd46c9722ab7211bb848ddffb04b6a4865e832fbfc6",
+      "size": 148,
+      "mode": 420,
+      "case": "deform-patient3-source3d",
+      "role": "saved_output"
+    },
+    {
+      "path": "requirements-evaluation.txt",
+      "source": "groups/registration/experiments/br028/reproduction/requirements-evaluation.txt",
+      "origin": "git",
+      "sha256": "4b81b6b6a549771115529e6900b9589835cdbfff0c6acf179aef53d283b744d5",
+      "size": 27,
+      "mode": 420,
+      "case": null,
+      "role": "task"
+    },
+    {
+      "source": "groups/registration/experiments/br028/reproduction/source-records.json",
+      "path": "source-records.json",
+      "size": 1303,
+      "sha256": "e9b9edfefc29452672bd8c4080cfa07b63fe16b0fad9a4bb085cf421f5bbdfe8",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/registration/experiments/br028/reproduction/provenance/BR-028-registration-3d-source.md",
+      "path": "provenance/BR-028-registration-3d-source.md",
+      "size": 3669,
+      "sha256": "688af133f2d457b981a304b4d2a21ca6745196c3545adb3b67ccecd93192047e",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/registration/experiments/br028/reproduction/provenance/BR-028-results.md",
+      "path": "provenance/BR-028-results.md",
+      "size": 10059,
+      "sha256": "778be70c9971e2d3b4e210f3c2ad70e7c50c3efd020e08477fc29954f34d9fad",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/registration/experiments/br028/reproduction/historical-protocol.md",
+      "path": "historical-protocol.md",
+      "size": 478,
+      "sha256": "a407f27f1eb5b5df72a18e0bd1b9eb4f42f12cfbacfc8da07870ae585e8ee7a5",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/registration/experiments/br028/reproduction/acquisition.md",
+      "path": "acquisition.md",
+      "size": 1651,
+      "sha256": "84899752c1499dcd0fe1511947db7ea307b57351dd30327878262a6418e831c2",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/registration/experiments/br028/reproduction/README.md",
+      "path": "README.md",
+      "size": 2779,
+      "sha256": "5ca32ef2d946909407e60161dd4a11123e88e3fd3ec4301ff6234590f2857023",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    }
+  ],
+  "excluded_attempts": [
+    {
+      "attempt_id": "attempt-d1bd89c6c5af348bc86c7dc8",
+      "reason": "No saved answer/structured verifier pair; retain original execution state; fresh controls cover oracle/nop separately.",
+      "source_evaluation": "observation-8f3965497c40d720f4fc60da"
+    }
+  ],
+  "review_notice": "Consult the canonical experiment assessment before scientific reuse. Technical replay is not clinical adjudication."
+}

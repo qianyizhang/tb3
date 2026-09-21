@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "group_id": "cardiac-motion",
+  "registry": "datasets/README.md",
+  "selection_note": "Sources are development references with experiment-specific exposure and terms. See linked source receipts, not a blanket permission to redistribute.",
+  "dataset_ids": [
+    "dataset-cardiac",
+    "dataset-feecho4d",
+    "dataset-straus",
+    "dataset-echoslicer",
+    "dataset-echoxflow"
+  ],
+  "records": [
+    {
+      "schema_version": 2,
+      "kind": "dataset",
+      "id": "dataset-cardiac",
+      "title": "Cardiac source overview and series closeout",
+      "version_note": "Historical series overview. Individually navigable source records distinguish FeEcho4D fitted references, STRAUS simulation, EchoSlicer images without reconstruction truth and EchoXFlow clinical surfaces. Exact task bytes remain in experiment receipts.",
+      "terms_note": "Preserve recorded source terms; access and redistribution require source-specific review.",
+      "evidence": [
+        {
+          "path": "groups/cardiac-motion/history/br025-br035-closeout.md",
+          "sha256": "41e20056d95a30c0130045e567f11162bd111636d5ce1297c59b2632e0b13df6"
+        }
+      ],
+      "links": [
+        {
+          "label": "Source authority",
+          "path": "groups/cardiac-motion/history/br025-br035-closeout.md"
+        },
+        {
+          "label": "FeEcho4D annotations and fitted meshes",
+          "path": "datasets/feecho4d.json"
+        },
+        {
+          "label": "STRAUS simulated material motion",
+          "path": "datasets/straus.json"
+        },
+        {
+          "label": "EchoSlicer real images without reconstruction truth",
+          "path": "datasets/echoslicer.json"
+        },
+        {
+          "label": "EchoXFlow clinical surface references",
+          "path": "datasets/echoxflow.json"
+        }
+      ]
+    },
+    {
+      "schema_version": 2,
+      "kind": "dataset",
+      "id": "dataset-feecho4d",
+      "title": "FeEcho4D fetal echo annotations and fitted meshes",
+      "version_note": "BR-025 source audit checked on 2026-09-16, native Zenodo record 21322299, Patient001: 30 frames and 37 radial planes. Partial archive retrieval verified extracted member CRCs and SHA-256; full archive MD5 was not verified.",
+      "terms_note": "On 2026-09-16 the project stated non-commercial research use; precise downstream redistribution permission remained unresolved. No current permission or access refresh is implied.",
+      "reference_note": "Real fetal STIC with annotated/propagated LV cavity and myocardium contours and fitted meshes. Sparse radial embedding zeros are unobserved, not annotated background. Physical mesh transform, cavity partition and ED/ES index base remained unaudited; whole mesh volume is not an EF oracle.",
+      "access_note": "Native Patient001 was retained locally for author calibration. The source receipt separately records gated alternatives that were not requested; this record does not grant or request their access.",
+      "evidence": [
+        {
+          "path": "docs/evidence/br025-source-audit.json",
+          "sha256": "028087eae7b14c2d31d1bf9cbe6abbbee4159ae2c79fb6a4a20173ec887c03a9"
+        },
+        {
+          "path": "docs/research-rounds/BR-025-cardiac-reconstruction.md",
+          "sha256": "73531682d570f19bdcc656cbaf140c3d8a43b2f234bd64c2b0a4fba82787e158"
+        }
+      ],
+      "links": [
+        {
+          "label": "Native source audit",
+          "path": "docs/evidence/br025-source-audit.json"
+        },
+        {
+          "label": "Reference and terms review",
+          "path": "docs/research-rounds/BR-025-cardiac-reconstruction.md"
+        },
+        {
+          "label": "Project source",
+          "path": "https://feecho4d.github.io/Website/"
+        },
+        {
+          "label": "Native release",
+          "path": "https://zenodo.org/records/21322299"
+        }
+      ]
+    },
+    {
+      "schema_version": 2,
+      "kind": "dataset",
+      "id": "dataset-straus",
+      "title": "Multimodality STRAUS simulated ultrasound and material motion",
+      "version_note": "BR-029 integrity review dated 2026-09-16 verifies retained patient01_healthy image/mesh and patient04_lbbb mesh manifests. BR-035 reuses the audited 30-frame healthy simulation; exact task transformations remain experiment-specific.",
+      "terms_note": "Public Girder access was recorded in the September 2026 source review, but public downloading did not establish redistribution permission. Source assets were kept local; no current license determination is added.",
+      "reference_note": "Simulator meshes have persistent topology and material identities, unlike clinical image-derived contours. Directional strain excludes elements without valid source directions. Synthetic truth is not measured patient strain; matching masks alone does not uniquely determine material motion.",
+      "access_note": "Healthy ultrasound and meshes and the separate LBBB mesh sequence were retained and hash-verified in BR-029. The BR-025 inventory-only note predates those acquisitions and remains historical.",
+      "evidence": [
+        {
+          "path": "docs/evidence/br029-dynamic-heart-integrity.json",
+          "sha256": "ac357b31f1ea261507f6edc4ca74c26d0926d9c1d4a1eb701b96e360e65b3524"
+        },
+        {
+          "path": "docs/research-rounds/BR-029-dynamic-heart-modeling.md",
+          "sha256": "35cca70aacc1b3e7a01737939c4094980f1f31a48239ac4d1b0fda11f8aab2ae"
+        },
+        {
+          "path": "docs/evidence/br035-segmentation-mechanics-results.json",
+          "sha256": "12806e221bc93b8400dbe2d950e67ed89b6f2fb396ba7e76b2833fa42e00fed2"
+        }
+      ],
+      "links": [
+        {
+          "label": "Source integrity and errata",
+          "path": "docs/evidence/br029-dynamic-heart-integrity.json"
+        },
+        {
+          "label": "Material-reference audit",
+          "path": "docs/research-rounds/BR-029-dynamic-heart-modeling.md"
+        },
+        {
+          "label": "Source project",
+          "path": "https://humanheart-project.creatis.insa-lyon.fr/multimodalityStraus.html"
+        }
+      ]
+    },
+    {
+      "schema_version": 2,
+      "kind": "dataset",
+      "id": "dataset-echoslicer",
+      "title": "EchoSlicer real volunteer 3D echo",
+      "version_note": "BR-032 source review on 2026-09-16 inspected code commit 78f7085104492d5229b1bb96b7748ad9d950e53d and the release dated 2025-11-19. The selected dataset/A_0.dcm SHA-256 is retained in source notes; 18 native phases were decoded.",
+      "terms_note": "Historical review established public downloading, not redistribution permission. Original scan and case outputs stay local. No current license or access check was performed.",
+      "reference_note": "Recorded volunteer images have no paired reference reconstruction or clinical EF oracle in this case. Supplied calibrated planes are geometric slices, not expert-certified standard views; a fitted animation is not anatomical accuracy evidence.",
+      "access_note": "Only the selected archive member was retrieved through byte ranges for BR-032. Source DICOM and original metadata stayed outside the solver package; public pretraining exposure remains unknown.",
+      "evidence": [
+        {
+          "path": "docs/research-rounds/BR-032-source-notes.md",
+          "sha256": "8ee424f9b38ec5daac7c252ff3b324c7c7ede5d4ef7a3c44d43ae3527f0857a0"
+        },
+        {
+          "path": "docs/research-rounds/BR-032-real-echo-case.md",
+          "sha256": "160a8d359ee71917694b0bea29ed098229b576fb24451512519893fc953a9a01"
+        },
+        {
+          "path": "docs/evidence/br032-real-echo-results.json",
+          "sha256": "48973ce75ce6105b1ec8396142f4afdfd16225aac41890495af1e3e8ec040a93"
+        }
+      ],
+      "links": [
+        {
+          "label": "Source and contamination notes",
+          "path": "docs/research-rounds/BR-032-source-notes.md"
+        },
+        {
+          "label": "Retained descriptive result",
+          "path": "docs/evidence/br032-real-echo-results.json"
+        },
+        {
+          "label": "Official repository",
+          "path": "https://github.com/echonet/3d-echo"
+        }
+      ]
+    },
+    {
+      "schema_version": 2,
+      "kind": "dataset",
+      "id": "dataset-echoxflow",
+      "title": "EchoXFlow clinical echo and LV endocardial surfaces",
+      "version_note": "BR-034 September 2026 review inspected source code commit b782e0a4e3dbaadf3c88fa572710bf4254d86143 and catalog SHA-256 2b0e80f83f8743f5babde82a3d8ded8ec4d607a1889a1b8b8cd204342116f83d. Exact selected recordings and native/reconstruction hashes remain in BR-034/035 receipts.",
+      "terms_note": "The retained source review records CC BY-NC-SA 4.0. Clinical assets remain local; confirm the selected release and all conditions before reuse or redistribution. No current permission refresh is implied.",
+      "reference_note": "Clinical B-mode volumes have operator-created or adjusted LV endocardial surfaces. These are geometric/function references with observer/software uncertainty, not independent material trajectories or etiologic diagnosis. BR-034 supplies the initial surface; BR-035 supplies all-phase cavity masks that already encode EF.",
+      "access_note": "BR-032 inspected the card without acquiring examinations; subsequent BR-034 acquired selected archives and BR-035 reused a clinical sequence. Whole TAR hashes matched publisher LFS hashes, but the publisher array-hash serialization was not reproduced.",
+      "evidence": [
+        {
+          "path": "docs/research-rounds/BR-034-pathological-echo.md",
+          "sha256": "8dec99af34de7fd7274869a769dbe450496c0796772ef44240de0c381a2a6136"
+        },
+        {
+          "path": "docs/evidence/br034-clinical-adaptation-results.json",
+          "sha256": "252f9c3da79e7117324eaef96c6551bd4d05ea3c100cf3548c84937a110d70bc"
+        },
+        {
+          "path": "docs/evidence/br035-segmentation-mechanics-results.json",
+          "sha256": "12806e221bc93b8400dbe2d950e67ed89b6f2fb396ba7e76b2833fa42e00fed2"
+        }
+      ],
+      "links": [
+        {
+          "label": "Clinical source selection and terms",
+          "path": "docs/research-rounds/BR-034-pathological-echo.md"
+        },
+        {
+          "label": "Clinical adaptation receipt",
+          "path": "docs/evidence/br034-clinical-adaptation-results.json"
+        },
+        {
+          "label": "Official dataset",
+          "path": "https://huggingface.co/datasets/Ahus-AIM/EchoXFlow"
+        }
+      ]
+    }
+  ],
+  "locator_scope": "Repository-relative paths are historical provenance, not package dependencies; input recovery uses this package manifest."
+}

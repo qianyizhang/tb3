@@ -1,0 +1,1647 @@
+{
+  "schema_version": 1,
+  "experiment_id": "anatomy-audit-br017",
+  "group_id": "anatomy-audit",
+  "purpose": "Research reproduction; original outcomes and unresolved reference issues remain unchanged.",
+  "created_on": "2026-09-21",
+  "cases": {
+    "abdomen-f01": {
+      "task": "cases/abdomen-f01/task",
+      "evaluator": "cases/abdomen-f01/task/tests/evaluate.py",
+      "historical_task": "runs/br017-absorption/tasks/abdomen-f01",
+      "original_files": [
+        {
+          "path": "environment/DATA-LICENSE.txt",
+          "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+        },
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "3c574a43a031121ee85e52fb93b986d1045db308a8551fe527998ad2ee9fadd7"
+        },
+        {
+          "path": "environment/LABEL-LICENSE.txt",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "environment/SOURCE_NOTICE.md",
+          "sha256": "1d3f2328269a126e53b8c14341e9cd971420b3fbaa550ed1103955d2f78a6626"
+        },
+        {
+          "path": "environment/answer.json",
+          "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75"
+        },
+        {
+          "path": "environment/data.tar.gz",
+          "sha256": "7224b1d03d5847c77576aca361913cf87145d4aa40c4321acb5bfeedc589439e"
+        },
+        {
+          "path": "environment/inspect_ct.py",
+          "sha256": "c61e15ba95a592724d28943a8c2d402a7086888fbb5ccd7672327bfb11f5eb5b"
+        },
+        {
+          "path": "environment/inspect_scene.py",
+          "sha256": "0d8207392712d01de0f217471951d92dd71749726a8d875d8057e49762f78bba"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "e7e393820a6dc0d3603a01aa73514f7150fd13fe5ff4be06af01cbb4278c0cf9"
+        },
+        {
+          "path": "solution/answer.json",
+          "sha256": "ed00d68b31bd2d83896e79c52e4fd9ccc4ffc6a5a2e36c43042702609f181c19"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "0b244745b700b2a6856e68f7236bc18e3a476c8c588a27c84d1838da637a86c4"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "f36b105e4bc68a7a806161ebd688cb76c736f00ea544e285ebb86a6f499b1966"
+        },
+        {
+          "path": "tests/Dockerfile",
+          "sha256": "453c62e4e57565b352fe6a13e9af7b4e5330c939d9229e4f2cff4b8da2d24ae4"
+        },
+        {
+          "path": "tests/expected.json",
+          "sha256": "7a616abf9efb613ee5d03e76d62476b77efaf27bcbfae6f3d3e3940a6ef184be"
+        },
+        {
+          "path": "tests/region-0.npz",
+          "sha256": "dc5d05806a81f6d7efca53a209be39d0544a1ed27d9f3fabed65f0e5017d473d"
+        },
+        {
+          "path": "tests/scoring.py",
+          "sha256": "d9d4763c15c8475ec73d050146b65712084b2031dacdfe2983397051680a264f"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3"
+        },
+        {
+          "path": "tests/verifier.py",
+          "sha256": "d8a9993beaf2890ee1b12620e5f8dd43f1e693182aad4acfac59a6639ee1de40"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged."
+      ],
+      "timeout_sec": 900,
+      "controls": {
+        "oracle": {
+          "answer": "cases/abdomen-f01/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/abdomen-f01/nop",
+          "reward": 0
+        }
+      },
+      "observations": [
+        {
+          "attempt_id": "attempt-5a2ec098eb20f3c3cf7396f6",
+          "source_evaluation": "observation-76c68405029731616e90bebe",
+          "answer": "saved/attempt-5a2ec098eb20f3c3cf7396f6/answer",
+          "expected": "saved/attempt-5a2ec098eb20f3c3cf7396f6/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-20e53fbc99820adcf8b72861",
+          "source_evaluation": "observation-de32ced8701d09d7b3529235",
+          "answer": "saved/attempt-20e53fbc99820adcf8b72861/answer",
+          "expected": "saved/attempt-20e53fbc99820adcf8b72861/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-c1bf06f24de0887b8c0185b1",
+          "source_evaluation": "observation-354d17538ee694e6da02220d",
+          "answer": "saved/attempt-c1bf06f24de0887b8c0185b1/answer",
+          "expected": "saved/attempt-c1bf06f24de0887b8c0185b1/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        }
+      ]
+    },
+    "abdomen-m01": {
+      "task": "cases/abdomen-m01/task",
+      "evaluator": "cases/abdomen-m01/task/tests/evaluate.py",
+      "historical_task": "runs/br017-absorption/tasks/abdomen-m01",
+      "original_files": [
+        {
+          "path": "environment/DATA-LICENSE.txt",
+          "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+        },
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "3c574a43a031121ee85e52fb93b986d1045db308a8551fe527998ad2ee9fadd7"
+        },
+        {
+          "path": "environment/LABEL-LICENSE.txt",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "environment/SOURCE_NOTICE.md",
+          "sha256": "1d3f2328269a126e53b8c14341e9cd971420b3fbaa550ed1103955d2f78a6626"
+        },
+        {
+          "path": "environment/answer.json",
+          "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75"
+        },
+        {
+          "path": "environment/data.tar.gz",
+          "sha256": "5cc0934121abfa538ebba5b3ca19a36e1bee8f356f699a5a2175495612177840"
+        },
+        {
+          "path": "environment/inspect_ct.py",
+          "sha256": "c61e15ba95a592724d28943a8c2d402a7086888fbb5ccd7672327bfb11f5eb5b"
+        },
+        {
+          "path": "environment/inspect_scene.py",
+          "sha256": "0d8207392712d01de0f217471951d92dd71749726a8d875d8057e49762f78bba"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "0c610a6d402e166db4c21207a0a50ceef255ee0915dd86dc6dc19e6f769c3a84"
+        },
+        {
+          "path": "solution/answer.json",
+          "sha256": "3a62852b08c57557397f68ce4e15b701a258aae5e1f65694c40fa966e73675b5"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "0b244745b700b2a6856e68f7236bc18e3a476c8c588a27c84d1838da637a86c4"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "ef0ef673e005a83d2eb29bf6b6e5c9dbc19c0ed92d18c3346e2bd120dc16ccf5"
+        },
+        {
+          "path": "tests/Dockerfile",
+          "sha256": "453c62e4e57565b352fe6a13e9af7b4e5330c939d9229e4f2cff4b8da2d24ae4"
+        },
+        {
+          "path": "tests/expected.json",
+          "sha256": "edd6e3681d8c3766d37519cc63ef1cec92724b3ea7c9d86492e9e6967fa32e04"
+        },
+        {
+          "path": "tests/region-0.npz",
+          "sha256": "6a9afd4d60c0337bbf88ca1b47e6ef98d63926e2b792c64b6d74ab1642f86ed8"
+        },
+        {
+          "path": "tests/scoring.py",
+          "sha256": "d9d4763c15c8475ec73d050146b65712084b2031dacdfe2983397051680a264f"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3"
+        },
+        {
+          "path": "tests/verifier.py",
+          "sha256": "d8a9993beaf2890ee1b12620e5f8dd43f1e693182aad4acfac59a6639ee1de40"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged."
+      ],
+      "timeout_sec": 900,
+      "controls": {
+        "oracle": {
+          "answer": "cases/abdomen-m01/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/abdomen-m01/nop",
+          "reward": 0
+        }
+      },
+      "observations": [
+        {
+          "attempt_id": "attempt-067b5dc6d6e74826ef84f012",
+          "source_evaluation": "observation-d532f2c2f9b8ae421fea1e43",
+          "answer": "saved/attempt-067b5dc6d6e74826ef84f012/answer",
+          "expected": "saved/attempt-067b5dc6d6e74826ef84f012/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-4608895cd963ee4a861a10d1",
+          "source_evaluation": "observation-79d08b807051591fe1292cca",
+          "answer": "saved/attempt-4608895cd963ee4a861a10d1/answer",
+          "expected": "saved/attempt-4608895cd963ee4a861a10d1/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-61fcd5aed315ac04f8fbc37d",
+          "source_evaluation": "observation-46aa68d4a20d5aba8c4abbd0",
+          "answer": "saved/attempt-61fcd5aed315ac04f8fbc37d/answer",
+          "expected": "saved/attempt-61fcd5aed315ac04f8fbc37d/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        }
+      ]
+    },
+    "abdomen-m02": {
+      "task": "cases/abdomen-m02/task",
+      "evaluator": "cases/abdomen-m02/task/tests/evaluate.py",
+      "historical_task": "runs/br017-absorption/tasks/abdomen-m02",
+      "original_files": [
+        {
+          "path": "environment/DATA-LICENSE.txt",
+          "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+        },
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "3c574a43a031121ee85e52fb93b986d1045db308a8551fe527998ad2ee9fadd7"
+        },
+        {
+          "path": "environment/LABEL-LICENSE.txt",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "environment/SOURCE_NOTICE.md",
+          "sha256": "1d3f2328269a126e53b8c14341e9cd971420b3fbaa550ed1103955d2f78a6626"
+        },
+        {
+          "path": "environment/answer.json",
+          "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75"
+        },
+        {
+          "path": "environment/data.tar.gz",
+          "sha256": "7224b1d03d5847c77576aca361913cf87145d4aa40c4321acb5bfeedc589439e"
+        },
+        {
+          "path": "environment/inspect_ct.py",
+          "sha256": "c61e15ba95a592724d28943a8c2d402a7086888fbb5ccd7672327bfb11f5eb5b"
+        },
+        {
+          "path": "environment/inspect_scene.py",
+          "sha256": "0d8207392712d01de0f217471951d92dd71749726a8d875d8057e49762f78bba"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "0c610a6d402e166db4c21207a0a50ceef255ee0915dd86dc6dc19e6f769c3a84"
+        },
+        {
+          "path": "solution/answer.json",
+          "sha256": "ed00d68b31bd2d83896e79c52e4fd9ccc4ffc6a5a2e36c43042702609f181c19"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "0b244745b700b2a6856e68f7236bc18e3a476c8c588a27c84d1838da637a86c4"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "d63838aa8a6c109ed4fd78ac4b14a37eeff92295138b8ea74df59c388f96edc9"
+        },
+        {
+          "path": "tests/Dockerfile",
+          "sha256": "453c62e4e57565b352fe6a13e9af7b4e5330c939d9229e4f2cff4b8da2d24ae4"
+        },
+        {
+          "path": "tests/expected.json",
+          "sha256": "7a616abf9efb613ee5d03e76d62476b77efaf27bcbfae6f3d3e3940a6ef184be"
+        },
+        {
+          "path": "tests/region-0.npz",
+          "sha256": "dc5d05806a81f6d7efca53a209be39d0544a1ed27d9f3fabed65f0e5017d473d"
+        },
+        {
+          "path": "tests/scoring.py",
+          "sha256": "d9d4763c15c8475ec73d050146b65712084b2031dacdfe2983397051680a264f"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3"
+        },
+        {
+          "path": "tests/verifier.py",
+          "sha256": "d8a9993beaf2890ee1b12620e5f8dd43f1e693182aad4acfac59a6639ee1de40"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged."
+      ],
+      "timeout_sec": 900,
+      "controls": {
+        "oracle": {
+          "answer": "cases/abdomen-m02/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/abdomen-m02/nop",
+          "reward": 0
+        }
+      },
+      "observations": [
+        {
+          "attempt_id": "attempt-8106441e4d3063b2f36e31b3",
+          "source_evaluation": "observation-32abddfe0ad9cacb89596e66",
+          "answer": "saved/attempt-8106441e4d3063b2f36e31b3/answer",
+          "expected": "saved/attempt-8106441e4d3063b2f36e31b3/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-910718c5e1b1700f475c0939",
+          "source_evaluation": "observation-e5222a48a3b31534b1cd85c0",
+          "answer": "saved/attempt-910718c5e1b1700f475c0939/answer",
+          "expected": "saved/attempt-910718c5e1b1700f475c0939/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-e851bbe029b1291164c913fb",
+          "source_evaluation": "observation-79e87dd996afe29cf65f8333",
+          "answer": "saved/attempt-e851bbe029b1291164c913fb/answer",
+          "expected": "saved/attempt-e851bbe029b1291164c913fb/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        }
+      ]
+    },
+    "abdomen-n01": {
+      "task": "cases/abdomen-n01/task",
+      "evaluator": "cases/abdomen-n01/task/tests/evaluate.py",
+      "historical_task": "runs/br017-absorption/tasks/abdomen-n01",
+      "original_files": [
+        {
+          "path": "environment/DATA-LICENSE.txt",
+          "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+        },
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "3c574a43a031121ee85e52fb93b986d1045db308a8551fe527998ad2ee9fadd7"
+        },
+        {
+          "path": "environment/LABEL-LICENSE.txt",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "path": "environment/SOURCE_NOTICE.md",
+          "sha256": "1d3f2328269a126e53b8c14341e9cd971420b3fbaa550ed1103955d2f78a6626"
+        },
+        {
+          "path": "environment/answer.json",
+          "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75"
+        },
+        {
+          "path": "environment/data.tar.gz",
+          "sha256": "c82d1b7e21190e431ff47a086b43dc9a04f029de5457d0cc21d2e1de1b0374af"
+        },
+        {
+          "path": "environment/inspect_ct.py",
+          "sha256": "c61e15ba95a592724d28943a8c2d402a7086888fbb5ccd7672327bfb11f5eb5b"
+        },
+        {
+          "path": "environment/inspect_scene.py",
+          "sha256": "0d8207392712d01de0f217471951d92dd71749726a8d875d8057e49762f78bba"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "0c610a6d402e166db4c21207a0a50ceef255ee0915dd86dc6dc19e6f769c3a84"
+        },
+        {
+          "path": "solution/answer.json",
+          "sha256": "8aa973100a15bf817985395637131e838cf84e427be4792583def923f020f5fa"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "0b244745b700b2a6856e68f7236bc18e3a476c8c588a27c84d1838da637a86c4"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "cdcc5e168b28b77db53662bb4bc1162486b665adba499b3c37e173461a174579"
+        },
+        {
+          "path": "tests/Dockerfile",
+          "sha256": "453c62e4e57565b352fe6a13e9af7b4e5330c939d9229e4f2cff4b8da2d24ae4"
+        },
+        {
+          "path": "tests/expected.json",
+          "sha256": "abddf836f7a453b2cd90a5f2a32b7298c9484a8ffea9670ce09ca1ac59cee9af"
+        },
+        {
+          "path": "tests/scoring.py",
+          "sha256": "d9d4763c15c8475ec73d050146b65712084b2031dacdfe2983397051680a264f"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3"
+        },
+        {
+          "path": "tests/verifier.py",
+          "sha256": "d8a9993beaf2890ee1b12620e5f8dd43f1e693182aad4acfac59a6639ee1de40"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged."
+      ],
+      "timeout_sec": 900,
+      "controls": {
+        "oracle": {
+          "answer": "cases/abdomen-n01/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/abdomen-n01/nop",
+          "reward": 0
+        }
+      },
+      "observations": [
+        {
+          "attempt_id": "attempt-afb81e725ae851de6bb50576",
+          "source_evaluation": "observation-5921011b046fb4d3f952ea66",
+          "answer": "saved/attempt-afb81e725ae851de6bb50576/answer",
+          "expected": "saved/attempt-afb81e725ae851de6bb50576/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-d314e16860b9dc8dd2869eb0",
+          "source_evaluation": "observation-4d981c1a8298ab8acf383986",
+          "answer": "saved/attempt-d314e16860b9dc8dd2869eb0/answer",
+          "expected": "saved/attempt-d314e16860b9dc8dd2869eb0/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-c79d1ff0fc83cd9f289848ea",
+          "source_evaluation": "observation-87f66a19909876d1580d1d1b",
+          "answer": "saved/attempt-c79d1ff0fc83cd9f289848ea/answer",
+          "expected": "saved/attempt-c79d1ff0fc83cd9f289848ea/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        }
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "cases/abdomen-f01/task/environment/DATA-LICENSE.txt",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/environment/DATA-LICENSE.txt",
+      "origin": "git",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "size": 18657,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/environment/Dockerfile",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "3c574a43a031121ee85e52fb93b986d1045db308a8551fe527998ad2ee9fadd7",
+      "size": 265,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/environment/LABEL-LICENSE.txt",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/environment/LABEL-LICENSE.txt",
+      "origin": "git",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "size": 11357,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/environment/SOURCE_NOTICE.md",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/environment/SOURCE_NOTICE.md",
+      "origin": "git",
+      "sha256": "1d3f2328269a126e53b8c14341e9cd971420b3fbaa550ed1103955d2f78a6626",
+      "size": 525,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/environment/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/environment/answer.json",
+      "origin": "git",
+      "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "size": 23,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/environment/data.tar.gz",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/cases/abdomen-f01/task/environment/data.tar.gz",
+      "origin": "artifact",
+      "sha256": "7224b1d03d5847c77576aca361913cf87145d4aa40c4321acb5bfeedc589439e",
+      "size": 24435060,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/environment/inspect_ct.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/environment/inspect_ct.py",
+      "origin": "git",
+      "sha256": "c61e15ba95a592724d28943a8c2d402a7086888fbb5ccd7672327bfb11f5eb5b",
+      "size": 4559,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/environment/inspect_scene.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/environment/inspect_scene.py",
+      "origin": "git",
+      "sha256": "0d8207392712d01de0f217471951d92dd71749726a8d875d8057e49762f78bba",
+      "size": 4365,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/instruction.md",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/instruction.md",
+      "origin": "git",
+      "sha256": "e7e393820a6dc0d3603a01aa73514f7150fd13fe5ff4be06af01cbb4278c0cf9",
+      "size": 3544,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/solution/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/solution/answer.json",
+      "origin": "git",
+      "sha256": "ed00d68b31bd2d83896e79c52e4fd9ccc4ffc6a5a2e36c43042702609f181c19",
+      "size": 205,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/solution/solve.sh",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "0b244745b700b2a6856e68f7236bc18e3a476c8c588a27c84d1838da637a86c4",
+      "size": 67,
+      "mode": 493,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/task.toml",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/task.toml",
+      "origin": "git",
+      "sha256": "f36b105e4bc68a7a806161ebd688cb76c736f00ea544e285ebb86a6f499b1966",
+      "size": 600,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/tests/Dockerfile",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "453c62e4e57565b352fe6a13e9af7b4e5330c939d9229e4f2cff4b8da2d24ae4",
+      "size": 228,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/tests/expected.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/tests/expected.json",
+      "origin": "git",
+      "sha256": "7a616abf9efb613ee5d03e76d62476b77efaf27bcbfae6f3d3e3940a6ef184be",
+      "size": 943,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/tests/region-0.npz",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/cases/abdomen-f01/task/tests/region-0.npz",
+      "origin": "artifact",
+      "sha256": "dc5d05806a81f6d7efca53a209be39d0544a1ed27d9f3fabed65f0e5017d473d",
+      "size": 7819,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/tests/scoring.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/tests/scoring.py",
+      "origin": "git",
+      "sha256": "d9d4763c15c8475ec73d050146b65712084b2031dacdfe2983397051680a264f",
+      "size": 3017,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/tests/test.sh",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3",
+      "size": 47,
+      "mode": 493,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/tests/verifier.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/tests/verifier.py",
+      "origin": "git",
+      "sha256": "d8a9993beaf2890ee1b12620e5f8dd43f1e693182aad4acfac59a6639ee1de40",
+      "size": 585,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/task/tests/evaluate.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "0138b527f63fff33554a99b5948d3a950032bbd58e7386a248ab41ecbad5f274",
+      "size": 644,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-f01/oracle/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/oracle/answer.json",
+      "origin": "git",
+      "sha256": "ed00d68b31bd2d83896e79c52e4fd9ccc4ffc6a5a2e36c43042702609f181c19",
+      "size": 205,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "control"
+    },
+    {
+      "path": "cases/abdomen-f01/nop/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-f01/nop/answer.json",
+      "origin": "git",
+      "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "size": 23,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "control"
+    },
+    {
+      "path": "saved/attempt-5a2ec098eb20f3c3cf7396f6/answer/answer.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-5a2ec098eb20f3c3cf7396f6/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "ed00d68b31bd2d83896e79c52e4fd9ccc4ffc6a5a2e36c43042702609f181c19",
+      "size": 205,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-5a2ec098eb20f3c3cf7396f6/expected.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-5a2ec098eb20f3c3cf7396f6/expected.json",
+      "origin": "artifact",
+      "sha256": "5a554a88b6d1956eb3efa126a150082a7b9ad7a7974c3848ef71a7409b0b7da5",
+      "size": 413,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-20e53fbc99820adcf8b72861/answer/answer.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-20e53fbc99820adcf8b72861/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "e7b673adeee501320c936d9fb0adc16063e6eea9353fe66679537ea7b50a37c4",
+      "size": 100,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-20e53fbc99820adcf8b72861/expected.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-20e53fbc99820adcf8b72861/expected.json",
+      "origin": "artifact",
+      "sha256": "299fbf6b511b9023db78ddeac45ead4e08f3da3bc799d29b524e1a679b035bea",
+      "size": 430,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-c1bf06f24de0887b8c0185b1/answer/answer.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-c1bf06f24de0887b8c0185b1/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "size": 23,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-c1bf06f24de0887b8c0185b1/expected.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-c1bf06f24de0887b8c0185b1/expected.json",
+      "origin": "artifact",
+      "sha256": "6ebad87210f9395bcddc9c4b9f0748f992cf04bc689e6a8702cb74704c23bee7",
+      "size": 121,
+      "mode": 420,
+      "case": "abdomen-f01",
+      "role": "saved_output"
+    },
+    {
+      "path": "cases/abdomen-m01/task/environment/DATA-LICENSE.txt",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/environment/DATA-LICENSE.txt",
+      "origin": "git",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "size": 18657,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/environment/Dockerfile",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "3c574a43a031121ee85e52fb93b986d1045db308a8551fe527998ad2ee9fadd7",
+      "size": 265,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/environment/LABEL-LICENSE.txt",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/environment/LABEL-LICENSE.txt",
+      "origin": "git",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "size": 11357,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/environment/SOURCE_NOTICE.md",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/environment/SOURCE_NOTICE.md",
+      "origin": "git",
+      "sha256": "1d3f2328269a126e53b8c14341e9cd971420b3fbaa550ed1103955d2f78a6626",
+      "size": 525,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/environment/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/environment/answer.json",
+      "origin": "git",
+      "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "size": 23,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/environment/data.tar.gz",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/cases/abdomen-m01/task/environment/data.tar.gz",
+      "origin": "artifact",
+      "sha256": "5cc0934121abfa538ebba5b3ca19a36e1bee8f356f699a5a2175495612177840",
+      "size": 24342529,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/environment/inspect_ct.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/environment/inspect_ct.py",
+      "origin": "git",
+      "sha256": "c61e15ba95a592724d28943a8c2d402a7086888fbb5ccd7672327bfb11f5eb5b",
+      "size": 4559,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/environment/inspect_scene.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/environment/inspect_scene.py",
+      "origin": "git",
+      "sha256": "0d8207392712d01de0f217471951d92dd71749726a8d875d8057e49762f78bba",
+      "size": 4365,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/instruction.md",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/instruction.md",
+      "origin": "git",
+      "sha256": "0c610a6d402e166db4c21207a0a50ceef255ee0915dd86dc6dc19e6f769c3a84",
+      "size": 3376,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/solution/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/solution/answer.json",
+      "origin": "git",
+      "sha256": "3a62852b08c57557397f68ce4e15b701a258aae5e1f65694c40fa966e73675b5",
+      "size": 205,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/solution/solve.sh",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "0b244745b700b2a6856e68f7236bc18e3a476c8c588a27c84d1838da637a86c4",
+      "size": 67,
+      "mode": 493,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/task.toml",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/task.toml",
+      "origin": "git",
+      "sha256": "ef0ef673e005a83d2eb29bf6b6e5c9dbc19c0ed92d18c3346e2bd120dc16ccf5",
+      "size": 568,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/tests/Dockerfile",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "453c62e4e57565b352fe6a13e9af7b4e5330c939d9229e4f2cff4b8da2d24ae4",
+      "size": 228,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/tests/expected.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/tests/expected.json",
+      "origin": "git",
+      "sha256": "edd6e3681d8c3766d37519cc63ef1cec92724b3ea7c9d86492e9e6967fa32e04",
+      "size": 919,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/tests/region-0.npz",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/cases/abdomen-m01/task/tests/region-0.npz",
+      "origin": "artifact",
+      "sha256": "6a9afd4d60c0337bbf88ca1b47e6ef98d63926e2b792c64b6d74ab1642f86ed8",
+      "size": 17617,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/tests/scoring.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/tests/scoring.py",
+      "origin": "git",
+      "sha256": "d9d4763c15c8475ec73d050146b65712084b2031dacdfe2983397051680a264f",
+      "size": 3017,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/tests/test.sh",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3",
+      "size": 47,
+      "mode": 493,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/tests/verifier.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/tests/verifier.py",
+      "origin": "git",
+      "sha256": "d8a9993beaf2890ee1b12620e5f8dd43f1e693182aad4acfac59a6639ee1de40",
+      "size": 585,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/task/tests/evaluate.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "0138b527f63fff33554a99b5948d3a950032bbd58e7386a248ab41ecbad5f274",
+      "size": 644,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m01/oracle/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/oracle/answer.json",
+      "origin": "git",
+      "sha256": "3a62852b08c57557397f68ce4e15b701a258aae5e1f65694c40fa966e73675b5",
+      "size": 205,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "control"
+    },
+    {
+      "path": "cases/abdomen-m01/nop/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m01/nop/answer.json",
+      "origin": "git",
+      "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "size": 23,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "control"
+    },
+    {
+      "path": "saved/attempt-067b5dc6d6e74826ef84f012/answer/answer.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-067b5dc6d6e74826ef84f012/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "size": 23,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-067b5dc6d6e74826ef84f012/expected.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-067b5dc6d6e74826ef84f012/expected.json",
+      "origin": "artifact",
+      "sha256": "9c433dcab80a9767bee5aa7a5dbe9b25abd1831faad2a5896b9b77e57405e68b",
+      "size": 121,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-4608895cd963ee4a861a10d1/answer/answer.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-4608895cd963ee4a861a10d1/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "bf88c59e6a263f2bfbe1d8884b128d41f85e9454f8a57a858d8baf2dd04fbdb4",
+      "size": 103,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-4608895cd963ee4a861a10d1/expected.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-4608895cd963ee4a861a10d1/expected.json",
+      "origin": "artifact",
+      "sha256": "8021a6961509216f03165685a3685b35c5302fc0056c4ec64d8f706652538ba3",
+      "size": 431,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-61fcd5aed315ac04f8fbc37d/answer/answer.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-61fcd5aed315ac04f8fbc37d/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "3a62852b08c57557397f68ce4e15b701a258aae5e1f65694c40fa966e73675b5",
+      "size": 205,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-61fcd5aed315ac04f8fbc37d/expected.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-61fcd5aed315ac04f8fbc37d/expected.json",
+      "origin": "artifact",
+      "sha256": "b1306e3b1c289d38b812d3bed4a009c2164e787441c928e354a671d4cdeba72c",
+      "size": 413,
+      "mode": 420,
+      "case": "abdomen-m01",
+      "role": "saved_output"
+    },
+    {
+      "path": "cases/abdomen-m02/task/environment/DATA-LICENSE.txt",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/environment/DATA-LICENSE.txt",
+      "origin": "git",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "size": 18657,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/environment/Dockerfile",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "3c574a43a031121ee85e52fb93b986d1045db308a8551fe527998ad2ee9fadd7",
+      "size": 265,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/environment/LABEL-LICENSE.txt",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/environment/LABEL-LICENSE.txt",
+      "origin": "git",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "size": 11357,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/environment/SOURCE_NOTICE.md",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/environment/SOURCE_NOTICE.md",
+      "origin": "git",
+      "sha256": "1d3f2328269a126e53b8c14341e9cd971420b3fbaa550ed1103955d2f78a6626",
+      "size": 525,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/environment/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/environment/answer.json",
+      "origin": "git",
+      "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "size": 23,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/environment/data.tar.gz",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/cases/abdomen-m02/task/environment/data.tar.gz",
+      "origin": "artifact",
+      "sha256": "7224b1d03d5847c77576aca361913cf87145d4aa40c4321acb5bfeedc589439e",
+      "size": 24435060,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/environment/inspect_ct.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/environment/inspect_ct.py",
+      "origin": "git",
+      "sha256": "c61e15ba95a592724d28943a8c2d402a7086888fbb5ccd7672327bfb11f5eb5b",
+      "size": 4559,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/environment/inspect_scene.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/environment/inspect_scene.py",
+      "origin": "git",
+      "sha256": "0d8207392712d01de0f217471951d92dd71749726a8d875d8057e49762f78bba",
+      "size": 4365,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/instruction.md",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/instruction.md",
+      "origin": "git",
+      "sha256": "0c610a6d402e166db4c21207a0a50ceef255ee0915dd86dc6dc19e6f769c3a84",
+      "size": 3376,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/solution/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/solution/answer.json",
+      "origin": "git",
+      "sha256": "ed00d68b31bd2d83896e79c52e4fd9ccc4ffc6a5a2e36c43042702609f181c19",
+      "size": 205,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/solution/solve.sh",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "0b244745b700b2a6856e68f7236bc18e3a476c8c588a27c84d1838da637a86c4",
+      "size": 67,
+      "mode": 493,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/task.toml",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/task.toml",
+      "origin": "git",
+      "sha256": "d63838aa8a6c109ed4fd78ac4b14a37eeff92295138b8ea74df59c388f96edc9",
+      "size": 568,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/tests/Dockerfile",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "453c62e4e57565b352fe6a13e9af7b4e5330c939d9229e4f2cff4b8da2d24ae4",
+      "size": 228,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/tests/expected.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/tests/expected.json",
+      "origin": "git",
+      "sha256": "7a616abf9efb613ee5d03e76d62476b77efaf27bcbfae6f3d3e3940a6ef184be",
+      "size": 943,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/tests/region-0.npz",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/cases/abdomen-m02/task/tests/region-0.npz",
+      "origin": "artifact",
+      "sha256": "dc5d05806a81f6d7efca53a209be39d0544a1ed27d9f3fabed65f0e5017d473d",
+      "size": 7819,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/tests/scoring.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/tests/scoring.py",
+      "origin": "git",
+      "sha256": "d9d4763c15c8475ec73d050146b65712084b2031dacdfe2983397051680a264f",
+      "size": 3017,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/tests/test.sh",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3",
+      "size": 47,
+      "mode": 493,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/tests/verifier.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/tests/verifier.py",
+      "origin": "git",
+      "sha256": "d8a9993beaf2890ee1b12620e5f8dd43f1e693182aad4acfac59a6639ee1de40",
+      "size": 585,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/task/tests/evaluate.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "0138b527f63fff33554a99b5948d3a950032bbd58e7386a248ab41ecbad5f274",
+      "size": 644,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-m02/oracle/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/oracle/answer.json",
+      "origin": "git",
+      "sha256": "ed00d68b31bd2d83896e79c52e4fd9ccc4ffc6a5a2e36c43042702609f181c19",
+      "size": 205,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "control"
+    },
+    {
+      "path": "cases/abdomen-m02/nop/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-m02/nop/answer.json",
+      "origin": "git",
+      "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "size": 23,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "control"
+    },
+    {
+      "path": "saved/attempt-8106441e4d3063b2f36e31b3/answer/answer.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-8106441e4d3063b2f36e31b3/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "9ba8071ce819632d6b70ddc2d9e13da3b5d20201af51595badc4aaf1647bd878",
+      "size": 16,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-8106441e4d3063b2f36e31b3/expected.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-8106441e4d3063b2f36e31b3/expected.json",
+      "origin": "artifact",
+      "sha256": "9e818382e6679e74f37fde1f2b89080713a69cd2cb34a52dd4206ef153ba00d2",
+      "size": 319,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-910718c5e1b1700f475c0939/answer/answer.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-910718c5e1b1700f475c0939/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "ed00d68b31bd2d83896e79c52e4fd9ccc4ffc6a5a2e36c43042702609f181c19",
+      "size": 205,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-910718c5e1b1700f475c0939/expected.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-910718c5e1b1700f475c0939/expected.json",
+      "origin": "artifact",
+      "sha256": "0bfccb2f0734db54f073efd382fa062e371b6f4f5cf0bd50e3ed0218d2d467f4",
+      "size": 414,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-e851bbe029b1291164c913fb/answer/answer.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-e851bbe029b1291164c913fb/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "size": 23,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-e851bbe029b1291164c913fb/expected.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-e851bbe029b1291164c913fb/expected.json",
+      "origin": "artifact",
+      "sha256": "6b2d99fffdc7b67a1251d741a81d10d0bf6d93a275b337de70f0b408ae69d765",
+      "size": 121,
+      "mode": 420,
+      "case": "abdomen-m02",
+      "role": "saved_output"
+    },
+    {
+      "path": "cases/abdomen-n01/task/environment/DATA-LICENSE.txt",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/environment/DATA-LICENSE.txt",
+      "origin": "git",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "size": 18657,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/environment/Dockerfile",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "3c574a43a031121ee85e52fb93b986d1045db308a8551fe527998ad2ee9fadd7",
+      "size": 265,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/environment/LABEL-LICENSE.txt",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/environment/LABEL-LICENSE.txt",
+      "origin": "git",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "size": 11357,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/environment/SOURCE_NOTICE.md",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/environment/SOURCE_NOTICE.md",
+      "origin": "git",
+      "sha256": "1d3f2328269a126e53b8c14341e9cd971420b3fbaa550ed1103955d2f78a6626",
+      "size": 525,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/environment/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/environment/answer.json",
+      "origin": "git",
+      "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "size": 23,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/environment/data.tar.gz",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/cases/abdomen-n01/task/environment/data.tar.gz",
+      "origin": "artifact",
+      "sha256": "c82d1b7e21190e431ff47a086b43dc9a04f029de5457d0cc21d2e1de1b0374af",
+      "size": 24427920,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/environment/inspect_ct.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/environment/inspect_ct.py",
+      "origin": "git",
+      "sha256": "c61e15ba95a592724d28943a8c2d402a7086888fbb5ccd7672327bfb11f5eb5b",
+      "size": 4559,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/environment/inspect_scene.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/environment/inspect_scene.py",
+      "origin": "git",
+      "sha256": "0d8207392712d01de0f217471951d92dd71749726a8d875d8057e49762f78bba",
+      "size": 4365,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/instruction.md",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/instruction.md",
+      "origin": "git",
+      "sha256": "0c610a6d402e166db4c21207a0a50ceef255ee0915dd86dc6dc19e6f769c3a84",
+      "size": 3376,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/solution/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/solution/answer.json",
+      "origin": "git",
+      "sha256": "8aa973100a15bf817985395637131e838cf84e427be4792583def923f020f5fa",
+      "size": 21,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/solution/solve.sh",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "0b244745b700b2a6856e68f7236bc18e3a476c8c588a27c84d1838da637a86c4",
+      "size": 67,
+      "mode": 493,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/task.toml",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/task.toml",
+      "origin": "git",
+      "sha256": "cdcc5e168b28b77db53662bb4bc1162486b665adba499b3c37e173461a174579",
+      "size": 568,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/tests/Dockerfile",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "453c62e4e57565b352fe6a13e9af7b4e5330c939d9229e4f2cff4b8da2d24ae4",
+      "size": 228,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/tests/expected.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/tests/expected.json",
+      "origin": "git",
+      "sha256": "abddf836f7a453b2cd90a5f2a32b7298c9484a8ffea9670ce09ca1ac59cee9af",
+      "size": 715,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/tests/scoring.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/tests/scoring.py",
+      "origin": "git",
+      "sha256": "d9d4763c15c8475ec73d050146b65712084b2031dacdfe2983397051680a264f",
+      "size": 3017,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/tests/test.sh",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3",
+      "size": 47,
+      "mode": 493,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/tests/verifier.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/tests/verifier.py",
+      "origin": "git",
+      "sha256": "d8a9993beaf2890ee1b12620e5f8dd43f1e693182aad4acfac59a6639ee1de40",
+      "size": 585,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/task/tests/evaluate.py",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "0138b527f63fff33554a99b5948d3a950032bbd58e7386a248ab41ecbad5f274",
+      "size": 644,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/abdomen-n01/oracle/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/oracle/answer.json",
+      "origin": "git",
+      "sha256": "8aa973100a15bf817985395637131e838cf84e427be4792583def923f020f5fa",
+      "size": 21,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "control"
+    },
+    {
+      "path": "cases/abdomen-n01/nop/answer.json",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/cases/abdomen-n01/nop/answer.json",
+      "origin": "git",
+      "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "size": 23,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "control"
+    },
+    {
+      "path": "saved/attempt-afb81e725ae851de6bb50576/answer/answer.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-afb81e725ae851de6bb50576/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "9ba8071ce819632d6b70ddc2d9e13da3b5d20201af51595badc4aaf1647bd878",
+      "size": 16,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-afb81e725ae851de6bb50576/expected.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-afb81e725ae851de6bb50576/expected.json",
+      "origin": "artifact",
+      "sha256": "b93186142ff2a82307da2b639e86409c914f532f14b19df4ea58862d89e3e8f7",
+      "size": 269,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-d314e16860b9dc8dd2869eb0/answer/answer.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-d314e16860b9dc8dd2869eb0/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "6171b84b064f977883f87922e72f37e7b40aa43b1bcfc7012036b08a0e3a6f75",
+      "size": 23,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-d314e16860b9dc8dd2869eb0/expected.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-d314e16860b9dc8dd2869eb0/expected.json",
+      "origin": "artifact",
+      "sha256": "31917a841a9ca912dd7ad3090b5a8f3975facff1c87968b07f986797e94ac00f",
+      "size": 121,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-c79d1ff0fc83cd9f289848ea/answer/answer.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-c79d1ff0fc83cd9f289848ea/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "8aa973100a15bf817985395637131e838cf84e427be4792583def923f020f5fa",
+      "size": 21,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-c79d1ff0fc83cd9f289848ea/expected.json",
+      "source": ".local/inputs/reproduction/anatomy-audit-br017/saved/attempt-c79d1ff0fc83cd9f289848ea/expected.json",
+      "origin": "artifact",
+      "sha256": "95e594574046dda8a5bd3401669eebb7e7460b703c10a0cc5e7adaf47652eb94",
+      "size": 269,
+      "mode": 420,
+      "case": "abdomen-n01",
+      "role": "saved_output"
+    },
+    {
+      "path": "requirements-evaluation.txt",
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/requirements-evaluation.txt",
+      "origin": "git",
+      "sha256": "4b81b6b6a549771115529e6900b9589835cdbfff0c6acf179aef53d283b744d5",
+      "size": 27,
+      "mode": 420,
+      "case": null,
+      "role": "task"
+    },
+    {
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/source-records.json",
+      "path": "source-records.json",
+      "size": 1306,
+      "sha256": "675d1bfb37f5d6a71d0e10ef844f176d4ce199b054111d4aa5b90d56dc9696f0",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/provenance/BR-017-absorbed-anatomy.md",
+      "path": "provenance/BR-017-absorbed-anatomy.md",
+      "size": 7779,
+      "sha256": "4d2b46aabc5979d311b21e8f0d02fe243ee2707715552718592fcd6338fb2e16",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/provenance/BR-017-results.md",
+      "path": "provenance/BR-017-results.md",
+      "size": 7813,
+      "sha256": "48e7b50908b476e79a5d738d1fdd17055100ca6ea999c72bd478e0802a7bee3a",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/provenance/BR-017-traces.md",
+      "path": "provenance/BR-017-traces.md",
+      "size": 13167,
+      "sha256": "b8a9d2dd8396ac7302d602d3962ea173f532a5a6de7caa8d13d19f8690d8fa2f",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/historical-protocol.md",
+      "path": "historical-protocol.md",
+      "size": 511,
+      "sha256": "ae2696e2c49dabc64159e4e487dfe8cf273051c41979acf0b4aa392937850a0d",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/acquisition.md",
+      "path": "acquisition.md",
+      "size": 1553,
+      "sha256": "a06f83d975fc7f03d1c1c4036e133a28e98237849dc9cb9e8ba7632508453336",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/anatomy-audit/experiments/br017/reproduction/README.md",
+      "path": "README.md",
+      "size": 2780,
+      "sha256": "c131b631660bc040931b7dc385340cc454a07978916d05373164813326164f27",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    }
+  ],
+  "excluded_attempts": [],
+  "review_notice": "Consult the canonical experiment assessment before scientific reuse. Technical replay is not clinical adjudication."
+}

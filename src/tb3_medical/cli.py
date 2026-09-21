@@ -79,6 +79,20 @@ def main(argv=None):
     p.add_argument("experiment")
     p.add_argument("--case")
     p.add_argument("--execute", action="store_true")
+    p.add_argument(
+        "--input-root", type=Path, help="Prepared input bundle; checked against exact hashes"
+    )
+    p = sub.add_parser("bundle", help="Build a self-contained experiment handoff; no execution")
+    p.add_argument("experiment")
+    p.add_argument("destination", type=Path)
+    p.add_argument("--case")
+    p.add_argument("--input-root", type=Path)
+    p.add_argument("--include-flagged", action="store_true")
+    p = sub.add_parser("evaluate", help="Score a new answer using the selected prepared task")
+    p.add_argument("experiment")
+    p.add_argument("--case", required=True)
+    p.add_argument("--answer", type=Path, required=True)
+    p.add_argument("--python", default=sys.executable)
     p = sub.add_parser("run")
     p.add_argument("experiment")
     p.add_argument("--case")
@@ -94,6 +108,7 @@ def main(argv=None):
     p = sub.add_parser("replay")
     p.add_argument("experiment")
     p.add_argument("--case")
+    p.add_argument("--python", default=sys.executable)
     p = sub.add_parser("view")
     p.add_argument("experiment")
     p.add_argument("--case", required=True)
@@ -114,7 +129,16 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         if args.command == "verify-package":
-            print(json.dumps(packaging.verify(args.destination), indent=2))
+            from . import task_package
+
+            manifest = c.read(args.destination / "manifest.json")
+            if manifest.get("experiment_id") and manifest.get("cases"):
+                if (args.destination / "INCOMPLETE").exists():
+                    raise c.MedicalError("Package preparation is incomplete")
+                result = task_package.verify(args.destination, manifest)
+            else:
+                result = packaging.verify(args.destination)
+            print(json.dumps(result, indent=2))
             return 0
         root = c.workspace(args.root)
         command = args.command
@@ -193,7 +217,37 @@ def main(argv=None):
                 qualify_attempts=args.qualify_attempt,
             )
         elif command == "prepare":
-            result = w.prepare(root, args.experiment, args.case, args.execute)
+            result = w.prepare(
+                root, args.experiment, args.case, args.execute, input_root=args.input_root
+            )
+        elif command == "bundle":
+            result = w.bundle(
+                root,
+                args.experiment,
+                args.destination,
+                case=args.case,
+                input_root=args.input_root,
+                include_flagged=args.include_flagged,
+            )
+        elif command == "evaluate":
+            from . import task_package
+
+            experiment = c.lookup(root, args.experiment)
+            if experiment.get("method") == "landmarks":
+                from . import landmarks, score_ct, score_mri
+
+                inputs = landmarks.case_inputs(root, experiment, args.case)
+                truth = next(e for e in inputs["files"] if e["destination"] == "tests/truth.json")
+                c.verify_inputs(root, [truth])
+                scorer = score_mri if inputs["scorer"] == "mri" else score_ct
+                result = scorer.score(
+                    c.read(args.answer / "landmarks.json"), c.read(c.inside(root, truth["path"]))
+                )
+            else:
+                bundle = root / ".local/reproduction" / args.experiment / args.case
+                result = task_package.evaluate(
+                    bundle, c.read(bundle / "manifest.json"), args.case, args.answer, args.python
+                )
         elif command == "run":
             result = w.run(
                 root,
@@ -212,15 +266,41 @@ def main(argv=None):
             from . import landmarks
 
             experiment = c.lookup(root, args.experiment)
-            if experiment.get("method") != "landmarks":
+            if experiment.get("method") == "task_package":
+                from . import task_package
+
+                cases = [args.case] if args.case else [t["id"] for t in experiment["tasks"]]
+                outputs = []
+                for case in cases:
+                    bundle = root / ".local/reproduction" / args.experiment / case
+                    manifest = c.read(bundle / "manifest.json")
+                    if command == "view":
+                        outputs.append(
+                            task_package.inspect(
+                                bundle,
+                                manifest,
+                                case,
+                                args.output
+                                or root / ".local/views" / f"{args.experiment}-{case}.html",
+                            )
+                        )
+                    else:
+                        outputs.append(
+                            w.replay_package(root, experiment, bundle, manifest, case, args.python)
+                        )
+                result = {"cases": outputs}
+                if command == "replay":
+                    result["all_match"] = all(o["all_match"] for o in outputs)
+            elif experiment.get("method") != "landmarks":
                 raise c.MedicalError(
                     "No maintained replay/view method is declared for this experiment"
                 )
-            result = (
-                landmarks.replay(root, experiment, args.case)
-                if command == "replay"
-                else landmarks.view(root, experiment, args.case, args.output)
-            )
+            else:
+                result = (
+                    landmarks.replay(root, experiment, args.case)
+                    if command == "replay"
+                    else landmarks.view(root, experiment, args.case, args.output)
+                )
         elif command == "media":
             from . import media
 
@@ -242,6 +322,8 @@ def main(argv=None):
         print(json.dumps(result, indent=2, allow_nan=False))
         if command == "run" and result.get("execution_state") in {"error", "interrupted"}:
             return 1
+        if command == "replay" and not result.get("all_match", True):
+            return 1
         return 0
     except (
         c.MedicalError,
@@ -249,7 +331,7 @@ def main(argv=None):
         OSError,
         ValueError,
         KeyError,
-        subprocess.CalledProcessError,
+        subprocess.SubprocessError,
     ) as exc:
         print(f"med: {exc}", file=sys.stderr)
         return 1

@@ -1,0 +1,1286 @@
+{
+  "schema_version": 1,
+  "experiment_id": "lesion-localization-br016",
+  "group_id": "lesion-localization",
+  "purpose": "Research reproduction; original outcomes and unresolved reference issues remain unchanged.",
+  "created_on": "2026-09-21",
+  "cases": {
+    "aneurysm-n01": {
+      "task": "cases/aneurysm-n01/task",
+      "evaluator": "cases/aneurysm-n01/task/tests/evaluate.py",
+      "historical_task": "runs/br016-aneurysm/tasks/aneurysm-n01",
+      "original_files": [
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "2dcdb9f7fcce03ecc6b36f3bfe9303102e17e2d7ab0ae20c3b0829cd29177b01"
+        },
+        {
+          "path": "environment/SOURCE_NOTICE.md",
+          "sha256": "961c9d508af677ad4d569301fe064b22d5db77aad340f6bee1a7c6016549bdea"
+        },
+        {
+          "path": "environment/answer.json",
+          "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+        },
+        {
+          "path": "environment/data.tar.gz",
+          "sha256": "481b7ab2b403ef055ec12eb724818fef5a5fe1dfae25468b09eae073cac7b08b"
+        },
+        {
+          "path": "environment/inspect_mra.py",
+          "sha256": "090b5d0df7b8e7ea26f680fe178189e4173d40ebad9b2cd69073eb877bfb5e71"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "944154dc29b3fad8ec60c5c9c23d53e3dcf121b0510a4be9ffa37d42c3ee2077"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "b8d4954f3e3ef237d2d8741a77b300ed4576d5fd7abf22770450eb801346ef1d"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "5f7c2db5d43025333c339ec9d791e2b52b7adb85e63f21a203c52338b8d07a08"
+        },
+        {
+          "path": "tests/expected.json",
+          "sha256": "47e0fb3c9dcfd409757dca1f21906e952e8ad5d5cf2602547bf36e1764962cc8"
+        },
+        {
+          "path": "tests/scoring.py",
+          "sha256": "40e8f216752523836922c97924d5e5f9439f1d1bf0f27b7c32d27233c3b54d6e"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3"
+        },
+        {
+          "path": "tests/verifier.py",
+          "sha256": "0967732bce22d5f768f88ff758293f640b7a9f6a0aef8eedcbcd60ecc020fe12"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged.",
+        "Backfilled missing separate-verifier Dockerfile using the v2 dependency-free scoring container; original scorer and test.sh remain unchanged."
+      ],
+      "timeout_sec": 900,
+      "controls": {
+        "oracle": {
+          "answer": "cases/aneurysm-n01/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/aneurysm-n01/nop",
+          "reward": 0
+        }
+      },
+      "observations": []
+    },
+    "aneurysm-n01-v2": {
+      "task": "cases/aneurysm-n01-v2/task",
+      "evaluator": "cases/aneurysm-n01-v2/task/tests/evaluate.py",
+      "historical_task": "runs/br016-aneurysm/tasks/aneurysm-n01-v2",
+      "original_files": [
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "2dcdb9f7fcce03ecc6b36f3bfe9303102e17e2d7ab0ae20c3b0829cd29177b01"
+        },
+        {
+          "path": "environment/SOURCE_NOTICE.md",
+          "sha256": "961c9d508af677ad4d569301fe064b22d5db77aad340f6bee1a7c6016549bdea"
+        },
+        {
+          "path": "environment/answer.json",
+          "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+        },
+        {
+          "path": "environment/data.tar.gz",
+          "sha256": "481b7ab2b403ef055ec12eb724818fef5a5fe1dfae25468b09eae073cac7b08b"
+        },
+        {
+          "path": "environment/inspect_mra.py",
+          "sha256": "090b5d0df7b8e7ea26f680fe178189e4173d40ebad9b2cd69073eb877bfb5e71"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "944154dc29b3fad8ec60c5c9c23d53e3dcf121b0510a4be9ffa37d42c3ee2077"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "b8d4954f3e3ef237d2d8741a77b300ed4576d5fd7abf22770450eb801346ef1d"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "a6194b76e7b7f755eccc22c21a96f0abb0eaa6d7ca6d9f0f2fd0433c4e702510"
+        },
+        {
+          "path": "tests/Dockerfile",
+          "sha256": "881761e1b6c4d7bcb5bc14dd55795fee3b84919f0da21dc96a0a3a5372c1c3f2"
+        },
+        {
+          "path": "tests/expected.json",
+          "sha256": "47e0fb3c9dcfd409757dca1f21906e952e8ad5d5cf2602547bf36e1764962cc8"
+        },
+        {
+          "path": "tests/scoring.py",
+          "sha256": "40e8f216752523836922c97924d5e5f9439f1d1bf0f27b7c32d27233c3b54d6e"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3"
+        },
+        {
+          "path": "tests/verifier.py",
+          "sha256": "0967732bce22d5f768f88ff758293f640b7a9f6a0aef8eedcbcd60ecc020fe12"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged."
+      ],
+      "timeout_sec": 900,
+      "controls": {
+        "oracle": {
+          "answer": "cases/aneurysm-n01-v2/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/aneurysm-n01-v2/nop",
+          "reward": 0
+        }
+      },
+      "observations": [
+        {
+          "attempt_id": "attempt-d8ff6fe39d99a1425550be62",
+          "source_evaluation": "observation-6f07ba2e6a493f0c42b151c5",
+          "answer": "saved/attempt-d8ff6fe39d99a1425550be62/answer",
+          "expected": "saved/attempt-d8ff6fe39d99a1425550be62/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-4af886eebbe8d0bf19353ea2",
+          "source_evaluation": "observation-bd9d0426ed6dbc993a51fe39",
+          "answer": "saved/attempt-4af886eebbe8d0bf19353ea2/answer",
+          "expected": "saved/attempt-4af886eebbe8d0bf19353ea2/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-77cecb670db8c34d63e8a691",
+          "source_evaluation": "observation-f60d47ae65f808281dcc9e92",
+          "answer": "saved/attempt-77cecb670db8c34d63e8a691/answer",
+          "expected": "saved/attempt-77cecb670db8c34d63e8a691/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        }
+      ]
+    },
+    "aneurysm-n02-v2": {
+      "task": "cases/aneurysm-n02-v2/task",
+      "evaluator": "cases/aneurysm-n02-v2/task/tests/evaluate.py",
+      "historical_task": "runs/br016-aneurysm/tasks/aneurysm-n02-v2",
+      "original_files": [
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "2dcdb9f7fcce03ecc6b36f3bfe9303102e17e2d7ab0ae20c3b0829cd29177b01"
+        },
+        {
+          "path": "environment/SOURCE_NOTICE.md",
+          "sha256": "961c9d508af677ad4d569301fe064b22d5db77aad340f6bee1a7c6016549bdea"
+        },
+        {
+          "path": "environment/answer.json",
+          "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+        },
+        {
+          "path": "environment/data.tar.gz",
+          "sha256": "9eccff8d482701333004144343d163c9ad219df6418a794755fa134960f62ad3"
+        },
+        {
+          "path": "environment/inspect_mra.py",
+          "sha256": "090b5d0df7b8e7ea26f680fe178189e4173d40ebad9b2cd69073eb877bfb5e71"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "944154dc29b3fad8ec60c5c9c23d53e3dcf121b0510a4be9ffa37d42c3ee2077"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "db800301cf9198fcdf8c4991d7e359c0ba773d728df3c2fd602f738ad995e870"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "e95da88cea3ce2aab9c5e0ac28b04c51eda9c62597bf594f777693d520701383"
+        },
+        {
+          "path": "tests/Dockerfile",
+          "sha256": "881761e1b6c4d7bcb5bc14dd55795fee3b84919f0da21dc96a0a3a5372c1c3f2"
+        },
+        {
+          "path": "tests/expected.json",
+          "sha256": "1ce35a6b5e920563719ac01c0db23a7d3f732b6ee91a64f727bc63cf7428528c"
+        },
+        {
+          "path": "tests/scoring.py",
+          "sha256": "40e8f216752523836922c97924d5e5f9439f1d1bf0f27b7c32d27233c3b54d6e"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3"
+        },
+        {
+          "path": "tests/verifier.py",
+          "sha256": "0967732bce22d5f768f88ff758293f640b7a9f6a0aef8eedcbcd60ecc020fe12"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged."
+      ],
+      "timeout_sec": 900,
+      "controls": {
+        "oracle": {
+          "answer": "cases/aneurysm-n02-v2/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/aneurysm-n02-v2/nop",
+          "reward": 0
+        }
+      },
+      "observations": [
+        {
+          "attempt_id": "attempt-00cd581b46d800f8b78b2c02",
+          "source_evaluation": "observation-eef504b5ab607514f9402a35",
+          "answer": "saved/attempt-00cd581b46d800f8b78b2c02/answer",
+          "expected": "saved/attempt-00cd581b46d800f8b78b2c02/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-4214c4f632d2167e127eaaa7",
+          "source_evaluation": "observation-7e5d14f26b0eb01e87435737",
+          "answer": "saved/attempt-4214c4f632d2167e127eaaa7/answer",
+          "expected": "saved/attempt-4214c4f632d2167e127eaaa7/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-89a72cbb9b6eed627beb8bc3",
+          "source_evaluation": "observation-d1b5dbafb4a977b0bf336b13",
+          "answer": "saved/attempt-89a72cbb9b6eed627beb8bc3/answer",
+          "expected": "saved/attempt-89a72cbb9b6eed627beb8bc3/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        }
+      ]
+    },
+    "aneurysm-n03-v2": {
+      "task": "cases/aneurysm-n03-v2/task",
+      "evaluator": "cases/aneurysm-n03-v2/task/tests/evaluate.py",
+      "historical_task": "runs/br016-aneurysm/tasks/aneurysm-n03-v2",
+      "original_files": [
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "2dcdb9f7fcce03ecc6b36f3bfe9303102e17e2d7ab0ae20c3b0829cd29177b01"
+        },
+        {
+          "path": "environment/SOURCE_NOTICE.md",
+          "sha256": "961c9d508af677ad4d569301fe064b22d5db77aad340f6bee1a7c6016549bdea"
+        },
+        {
+          "path": "environment/answer.json",
+          "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+        },
+        {
+          "path": "environment/data.tar.gz",
+          "sha256": "5db16ec9d5abcc4d232dece785e2ce2c67fef96686043f2495875597a9ea1ea3"
+        },
+        {
+          "path": "environment/inspect_mra.py",
+          "sha256": "090b5d0df7b8e7ea26f680fe178189e4173d40ebad9b2cd69073eb877bfb5e71"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "944154dc29b3fad8ec60c5c9c23d53e3dcf121b0510a4be9ffa37d42c3ee2077"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "34cd7c8b26afa35fe017e22c94fac0a2befd65609bd0ef6919a44c565bdc8824"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "b89ed848fd04cd713a789024c9ae8042ec4be74e8aa2d8d00b3f6aa34a1e2fe1"
+        },
+        {
+          "path": "tests/Dockerfile",
+          "sha256": "881761e1b6c4d7bcb5bc14dd55795fee3b84919f0da21dc96a0a3a5372c1c3f2"
+        },
+        {
+          "path": "tests/expected.json",
+          "sha256": "0853325fab28c3fd8a32b899d0cb7c680f06e3dd55965fb188341a3317f1985a"
+        },
+        {
+          "path": "tests/scoring.py",
+          "sha256": "40e8f216752523836922c97924d5e5f9439f1d1bf0f27b7c32d27233c3b54d6e"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3"
+        },
+        {
+          "path": "tests/verifier.py",
+          "sha256": "0967732bce22d5f768f88ff758293f640b7a9f6a0aef8eedcbcd60ecc020fe12"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged."
+      ],
+      "timeout_sec": 900,
+      "controls": {
+        "oracle": {
+          "answer": "cases/aneurysm-n03-v2/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/aneurysm-n03-v2/nop",
+          "reward": 0
+        }
+      },
+      "observations": [
+        {
+          "attempt_id": "attempt-00300e7168d0bf97c88665ab",
+          "source_evaluation": "observation-f010506c865f61af9ea22bd1",
+          "answer": "saved/attempt-00300e7168d0bf97c88665ab/answer",
+          "expected": "saved/attempt-00300e7168d0bf97c88665ab/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-31d3a8526e1664a800b5946f",
+          "source_evaluation": "observation-e639c5c08df735d551381096",
+          "answer": "saved/attempt-31d3a8526e1664a800b5946f/answer",
+          "expected": "saved/attempt-31d3a8526e1664a800b5946f/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-11a0165705f1214aca15b2dc",
+          "source_evaluation": "observation-62861c5eaa8d2333a9d4b2ed",
+          "answer": "saved/attempt-11a0165705f1214aca15b2dc/answer",
+          "expected": "saved/attempt-11a0165705f1214aca15b2dc/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        }
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "cases/aneurysm-n01/task/environment/Dockerfile",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "2dcdb9f7fcce03ecc6b36f3bfe9303102e17e2d7ab0ae20c3b0829cd29177b01",
+      "size": 214,
+      "mode": 420,
+      "case": "aneurysm-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01/task/environment/SOURCE_NOTICE.md",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/task/environment/SOURCE_NOTICE.md",
+      "origin": "git",
+      "sha256": "961c9d508af677ad4d569301fe064b22d5db77aad340f6bee1a7c6016549bdea",
+      "size": 286,
+      "mode": 420,
+      "case": "aneurysm-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01/task/environment/answer.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/task/environment/answer.json",
+      "origin": "git",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "size": 3,
+      "mode": 420,
+      "case": "aneurysm-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01/task/environment/data.tar.gz",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/cases/aneurysm-n01/task/environment/data.tar.gz",
+      "origin": "artifact",
+      "sha256": "481b7ab2b403ef055ec12eb724818fef5a5fe1dfae25468b09eae073cac7b08b",
+      "size": 43465913,
+      "mode": 420,
+      "case": "aneurysm-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01/task/environment/inspect_mra.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/task/environment/inspect_mra.py",
+      "origin": "git",
+      "sha256": "090b5d0df7b8e7ea26f680fe178189e4173d40ebad9b2cd69073eb877bfb5e71",
+      "size": 3159,
+      "mode": 420,
+      "case": "aneurysm-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01/task/instruction.md",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/task/instruction.md",
+      "origin": "git",
+      "sha256": "944154dc29b3fad8ec60c5c9c23d53e3dcf121b0510a4be9ffa37d42c3ee2077",
+      "size": 2562,
+      "mode": 420,
+      "case": "aneurysm-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01/task/solution/solve.sh",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "b8d4954f3e3ef237d2d8741a77b300ed4576d5fd7abf22770450eb801346ef1d",
+      "size": 125,
+      "mode": 493,
+      "case": "aneurysm-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01/task/task.toml",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/task/task.toml",
+      "origin": "git",
+      "sha256": "5f7c2db5d43025333c339ec9d791e2b52b7adb85e63f21a203c52338b8d07a08",
+      "size": 555,
+      "mode": 420,
+      "case": "aneurysm-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01/task/tests/expected.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/task/tests/expected.json",
+      "origin": "git",
+      "sha256": "47e0fb3c9dcfd409757dca1f21906e952e8ad5d5cf2602547bf36e1764962cc8",
+      "size": 39088,
+      "mode": 420,
+      "case": "aneurysm-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01/task/tests/scoring.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/task/tests/scoring.py",
+      "origin": "git",
+      "sha256": "40e8f216752523836922c97924d5e5f9439f1d1bf0f27b7c32d27233c3b54d6e",
+      "size": 1798,
+      "mode": 420,
+      "case": "aneurysm-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01/task/tests/test.sh",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3",
+      "size": 47,
+      "mode": 493,
+      "case": "aneurysm-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01/task/tests/verifier.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/task/tests/verifier.py",
+      "origin": "git",
+      "sha256": "0967732bce22d5f768f88ff758293f640b7a9f6a0aef8eedcbcd60ecc020fe12",
+      "size": 539,
+      "mode": 420,
+      "case": "aneurysm-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01/task/tests/evaluate.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "d5c3753fddbad78eb04bc71f83af2f1956e9a3d41b9a21317120310828a60243",
+      "size": 638,
+      "mode": 420,
+      "case": "aneurysm-n01",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01/oracle/answer.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/oracle/answer.json",
+      "origin": "git",
+      "sha256": "d52df0814e189b28467296910b01b9eca45423f686c043b0a6aeea31564c8710",
+      "size": 74,
+      "mode": 420,
+      "case": "aneurysm-n01",
+      "role": "control"
+    },
+    {
+      "path": "cases/aneurysm-n01/nop/answer.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/nop/answer.json",
+      "origin": "git",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "size": 3,
+      "mode": 420,
+      "case": "aneurysm-n01",
+      "role": "control"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/task/environment/Dockerfile",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "2dcdb9f7fcce03ecc6b36f3bfe9303102e17e2d7ab0ae20c3b0829cd29177b01",
+      "size": 214,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/task/environment/SOURCE_NOTICE.md",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/task/environment/SOURCE_NOTICE.md",
+      "origin": "git",
+      "sha256": "961c9d508af677ad4d569301fe064b22d5db77aad340f6bee1a7c6016549bdea",
+      "size": 286,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/task/environment/answer.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/task/environment/answer.json",
+      "origin": "git",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "size": 3,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/task/environment/data.tar.gz",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/cases/aneurysm-n01-v2/task/environment/data.tar.gz",
+      "origin": "artifact",
+      "sha256": "481b7ab2b403ef055ec12eb724818fef5a5fe1dfae25468b09eae073cac7b08b",
+      "size": 43465913,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/task/environment/inspect_mra.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/task/environment/inspect_mra.py",
+      "origin": "git",
+      "sha256": "090b5d0df7b8e7ea26f680fe178189e4173d40ebad9b2cd69073eb877bfb5e71",
+      "size": 3159,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/task/instruction.md",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/task/instruction.md",
+      "origin": "git",
+      "sha256": "944154dc29b3fad8ec60c5c9c23d53e3dcf121b0510a4be9ffa37d42c3ee2077",
+      "size": 2562,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/task/solution/solve.sh",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "b8d4954f3e3ef237d2d8741a77b300ed4576d5fd7abf22770450eb801346ef1d",
+      "size": 125,
+      "mode": 493,
+      "case": "aneurysm-n01-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/task/task.toml",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/task/task.toml",
+      "origin": "git",
+      "sha256": "a6194b76e7b7f755eccc22c21a96f0abb0eaa6d7ca6d9f0f2fd0433c4e702510",
+      "size": 558,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/task/tests/Dockerfile",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "881761e1b6c4d7bcb5bc14dd55795fee3b84919f0da21dc96a0a3a5372c1c3f2",
+      "size": 201,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/task/tests/expected.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/task/tests/expected.json",
+      "origin": "git",
+      "sha256": "47e0fb3c9dcfd409757dca1f21906e952e8ad5d5cf2602547bf36e1764962cc8",
+      "size": 39088,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/task/tests/scoring.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/task/tests/scoring.py",
+      "origin": "git",
+      "sha256": "40e8f216752523836922c97924d5e5f9439f1d1bf0f27b7c32d27233c3b54d6e",
+      "size": 1798,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/task/tests/test.sh",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3",
+      "size": 47,
+      "mode": 493,
+      "case": "aneurysm-n01-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/task/tests/verifier.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/task/tests/verifier.py",
+      "origin": "git",
+      "sha256": "0967732bce22d5f768f88ff758293f640b7a9f6a0aef8eedcbcd60ecc020fe12",
+      "size": 539,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/task/tests/evaluate.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "d5c3753fddbad78eb04bc71f83af2f1956e9a3d41b9a21317120310828a60243",
+      "size": 638,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/oracle/answer.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/oracle/answer.json",
+      "origin": "git",
+      "sha256": "d52df0814e189b28467296910b01b9eca45423f686c043b0a6aeea31564c8710",
+      "size": 74,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "control"
+    },
+    {
+      "path": "cases/aneurysm-n01-v2/nop/answer.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01-v2/nop/answer.json",
+      "origin": "git",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "size": 3,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "control"
+    },
+    {
+      "path": "saved/attempt-d8ff6fe39d99a1425550be62/answer/answer.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-d8ff6fe39d99a1425550be62/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "d0f46e8f9f3b3b601ef6e9b1778a7882a3e14ed6469ce064ff849db8d89d9eed",
+      "size": 38,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-d8ff6fe39d99a1425550be62/expected.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-d8ff6fe39d99a1425550be62/expected.json",
+      "origin": "artifact",
+      "sha256": "e1bb5249ee21d581f2e46f53aa26899aa1307edfe312689968de54be84db3fb0",
+      "size": 246,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-4af886eebbe8d0bf19353ea2/answer/answer.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-4af886eebbe8d0bf19353ea2/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "e8e1b7c40bae90da3ad623835061180852a13c91649dafdd860fef2590d857f9",
+      "size": 18,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-4af886eebbe8d0bf19353ea2/expected.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-4af886eebbe8d0bf19353ea2/expected.json",
+      "origin": "artifact",
+      "sha256": "efd90a9abf6f21aa40778fdbbf56f818cd90fa438e0753c8dfa3daf145e9080e",
+      "size": 137,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-77cecb670db8c34d63e8a691/answer/answer.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-77cecb670db8c34d63e8a691/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "size": 3,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-77cecb670db8c34d63e8a691/expected.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-77cecb670db8c34d63e8a691/expected.json",
+      "origin": "artifact",
+      "sha256": "2ed55e1be5bb96d8a7221f30b3519143a271d953c9c76cf75d267f6a76ededf5",
+      "size": 108,
+      "mode": 420,
+      "case": "aneurysm-n01-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/task/environment/Dockerfile",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "2dcdb9f7fcce03ecc6b36f3bfe9303102e17e2d7ab0ae20c3b0829cd29177b01",
+      "size": 214,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/task/environment/SOURCE_NOTICE.md",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/task/environment/SOURCE_NOTICE.md",
+      "origin": "git",
+      "sha256": "961c9d508af677ad4d569301fe064b22d5db77aad340f6bee1a7c6016549bdea",
+      "size": 286,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/task/environment/answer.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/task/environment/answer.json",
+      "origin": "git",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "size": 3,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/task/environment/data.tar.gz",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/cases/aneurysm-n02-v2/task/environment/data.tar.gz",
+      "origin": "artifact",
+      "sha256": "9eccff8d482701333004144343d163c9ad219df6418a794755fa134960f62ad3",
+      "size": 40961171,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/task/environment/inspect_mra.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/task/environment/inspect_mra.py",
+      "origin": "git",
+      "sha256": "090b5d0df7b8e7ea26f680fe178189e4173d40ebad9b2cd69073eb877bfb5e71",
+      "size": 3159,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/task/instruction.md",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/task/instruction.md",
+      "origin": "git",
+      "sha256": "944154dc29b3fad8ec60c5c9c23d53e3dcf121b0510a4be9ffa37d42c3ee2077",
+      "size": 2562,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/task/solution/solve.sh",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "db800301cf9198fcdf8c4991d7e359c0ba773d728df3c2fd602f738ad995e870",
+      "size": 125,
+      "mode": 493,
+      "case": "aneurysm-n02-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/task/task.toml",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/task/task.toml",
+      "origin": "git",
+      "sha256": "e95da88cea3ce2aab9c5e0ac28b04c51eda9c62597bf594f777693d520701383",
+      "size": 558,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/task/tests/Dockerfile",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "881761e1b6c4d7bcb5bc14dd55795fee3b84919f0da21dc96a0a3a5372c1c3f2",
+      "size": 201,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/task/tests/expected.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/task/tests/expected.json",
+      "origin": "git",
+      "sha256": "1ce35a6b5e920563719ac01c0db23a7d3f732b6ee91a64f727bc63cf7428528c",
+      "size": 130660,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/task/tests/scoring.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/task/tests/scoring.py",
+      "origin": "git",
+      "sha256": "40e8f216752523836922c97924d5e5f9439f1d1bf0f27b7c32d27233c3b54d6e",
+      "size": 1798,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/task/tests/test.sh",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3",
+      "size": 47,
+      "mode": 493,
+      "case": "aneurysm-n02-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/task/tests/verifier.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/task/tests/verifier.py",
+      "origin": "git",
+      "sha256": "0967732bce22d5f768f88ff758293f640b7a9f6a0aef8eedcbcd60ecc020fe12",
+      "size": 539,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/task/tests/evaluate.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "d5c3753fddbad78eb04bc71f83af2f1956e9a3d41b9a21317120310828a60243",
+      "size": 638,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/oracle/answer.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/oracle/answer.json",
+      "origin": "git",
+      "sha256": "8fcfe079e487c7192f880dca16e19a0659e5c70906d7af11b6759e7f7b1868e8",
+      "size": 74,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "control"
+    },
+    {
+      "path": "cases/aneurysm-n02-v2/nop/answer.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n02-v2/nop/answer.json",
+      "origin": "git",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "size": 3,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "control"
+    },
+    {
+      "path": "saved/attempt-00cd581b46d800f8b78b2c02/answer/answer.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-00cd581b46d800f8b78b2c02/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "133fc673bf03a414a9c894741adc741a6c218640263b9053540fa634e0d993b9",
+      "size": 32,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-00cd581b46d800f8b78b2c02/expected.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-00cd581b46d800f8b78b2c02/expected.json",
+      "origin": "artifact",
+      "sha256": "937407108514b47bf0911a23a9752e0619a550201960986758d3b01c21f6249c",
+      "size": 241,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-4214c4f632d2167e127eaaa7/answer/answer.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-4214c4f632d2167e127eaaa7/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "0942745e5e4522e9d11f8a94219b0ea4128cfe6ba4fd14da096cff6636cbbab6",
+      "size": 38,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-4214c4f632d2167e127eaaa7/expected.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-4214c4f632d2167e127eaaa7/expected.json",
+      "origin": "artifact",
+      "sha256": "4ce0a0125da7b622218986a78dd8f135f4d3c162ce7c92372c64d4f6697c06b2",
+      "size": 247,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-89a72cbb9b6eed627beb8bc3/answer/answer.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-89a72cbb9b6eed627beb8bc3/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "size": 3,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-89a72cbb9b6eed627beb8bc3/expected.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-89a72cbb9b6eed627beb8bc3/expected.json",
+      "origin": "artifact",
+      "sha256": "76cc2bed30108c9f085ebe84650869006b422cd7754ab08232506e38360a69ae",
+      "size": 108,
+      "mode": 420,
+      "case": "aneurysm-n02-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/task/environment/Dockerfile",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "2dcdb9f7fcce03ecc6b36f3bfe9303102e17e2d7ab0ae20c3b0829cd29177b01",
+      "size": 214,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/task/environment/SOURCE_NOTICE.md",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/task/environment/SOURCE_NOTICE.md",
+      "origin": "git",
+      "sha256": "961c9d508af677ad4d569301fe064b22d5db77aad340f6bee1a7c6016549bdea",
+      "size": 286,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/task/environment/answer.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/task/environment/answer.json",
+      "origin": "git",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "size": 3,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/task/environment/data.tar.gz",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/cases/aneurysm-n03-v2/task/environment/data.tar.gz",
+      "origin": "artifact",
+      "sha256": "5db16ec9d5abcc4d232dece785e2ce2c67fef96686043f2495875597a9ea1ea3",
+      "size": 42781783,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/task/environment/inspect_mra.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/task/environment/inspect_mra.py",
+      "origin": "git",
+      "sha256": "090b5d0df7b8e7ea26f680fe178189e4173d40ebad9b2cd69073eb877bfb5e71",
+      "size": 3159,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/task/instruction.md",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/task/instruction.md",
+      "origin": "git",
+      "sha256": "944154dc29b3fad8ec60c5c9c23d53e3dcf121b0510a4be9ffa37d42c3ee2077",
+      "size": 2562,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/task/solution/solve.sh",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "34cd7c8b26afa35fe017e22c94fac0a2befd65609bd0ef6919a44c565bdc8824",
+      "size": 105,
+      "mode": 493,
+      "case": "aneurysm-n03-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/task/task.toml",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/task/task.toml",
+      "origin": "git",
+      "sha256": "b89ed848fd04cd713a789024c9ae8042ec4be74e8aa2d8d00b3f6aa34a1e2fe1",
+      "size": 558,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/task/tests/Dockerfile",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "881761e1b6c4d7bcb5bc14dd55795fee3b84919f0da21dc96a0a3a5372c1c3f2",
+      "size": 201,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/task/tests/expected.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/task/tests/expected.json",
+      "origin": "git",
+      "sha256": "0853325fab28c3fd8a32b899d0cb7c680f06e3dd55965fb188341a3317f1985a",
+      "size": 64,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/task/tests/scoring.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/task/tests/scoring.py",
+      "origin": "git",
+      "sha256": "40e8f216752523836922c97924d5e5f9439f1d1bf0f27b7c32d27233c3b54d6e",
+      "size": 1798,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/task/tests/test.sh",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "ebc07a4baaa5449e5c706f83388de770a2922d71ae0fb8f96e493f939ff9d1c3",
+      "size": 47,
+      "mode": 493,
+      "case": "aneurysm-n03-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/task/tests/verifier.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/task/tests/verifier.py",
+      "origin": "git",
+      "sha256": "0967732bce22d5f768f88ff758293f640b7a9f6a0aef8eedcbcd60ecc020fe12",
+      "size": 539,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/task/tests/evaluate.py",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "d5c3753fddbad78eb04bc71f83af2f1956e9a3d41b9a21317120310828a60243",
+      "size": 638,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/oracle/answer.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/oracle/answer.json",
+      "origin": "git",
+      "sha256": "4670f2ca1c1e7915bbe7fb841f5c7caeb119e5f269ec1425c8d41cebf114d4f3",
+      "size": 22,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "control"
+    },
+    {
+      "path": "cases/aneurysm-n03-v2/nop/answer.json",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n03-v2/nop/answer.json",
+      "origin": "git",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "size": 3,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "control"
+    },
+    {
+      "path": "saved/attempt-00300e7168d0bf97c88665ab/answer/answer.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-00300e7168d0bf97c88665ab/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "size": 3,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-00300e7168d0bf97c88665ab/expected.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-00300e7168d0bf97c88665ab/expected.json",
+      "origin": "artifact",
+      "sha256": "54f36a6fcacc2ebdde78af64db3a2a41e0df515a2442c64f15b31345571fe9f2",
+      "size": 108,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-31d3a8526e1664a800b5946f/answer/answer.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-31d3a8526e1664a800b5946f/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "e8e1b7c40bae90da3ad623835061180852a13c91649dafdd860fef2590d857f9",
+      "size": 18,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-31d3a8526e1664a800b5946f/expected.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-31d3a8526e1664a800b5946f/expected.json",
+      "origin": "artifact",
+      "sha256": "d9987237ef4c6754a04d12fd80e8ba321a873b37f6ece4d23484fac10babfcfd",
+      "size": 136,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-11a0165705f1214aca15b2dc/answer/answer.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-11a0165705f1214aca15b2dc/answer/answer.json",
+      "origin": "artifact",
+      "sha256": "e8e1b7c40bae90da3ad623835061180852a13c91649dafdd860fef2590d857f9",
+      "size": 18,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-11a0165705f1214aca15b2dc/expected.json",
+      "source": ".local/inputs/reproduction/lesion-localization-br016/saved/attempt-11a0165705f1214aca15b2dc/expected.json",
+      "origin": "artifact",
+      "sha256": "d950d92ae0ea3d7bfd1b04e85dd89f280ab68a9ee4bbd35154303702a822a2f1",
+      "size": 137,
+      "mode": 420,
+      "case": "aneurysm-n03-v2",
+      "role": "saved_output"
+    },
+    {
+      "path": "requirements-evaluation.txt",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/requirements-evaluation.txt",
+      "origin": "git",
+      "sha256": "4b81b6b6a549771115529e6900b9589835cdbfff0c6acf179aef53d283b744d5",
+      "size": 27,
+      "mode": 420,
+      "case": null,
+      "role": "task"
+    },
+    {
+      "path": "cases/aneurysm-n01/task/tests/Dockerfile",
+      "source": "groups/lesion-localization/experiments/br016/reproduction/cases/aneurysm-n01/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "881761e1b6c4d7bcb5bc14dd55795fee3b84919f0da21dc96a0a3a5372c1c3f2",
+      "size": 201,
+      "mode": 420,
+      "case": "aneurysm-n01",
+      "role": "task"
+    },
+    {
+      "source": "groups/lesion-localization/experiments/br016/reproduction/source-records.json",
+      "path": "source-records.json",
+      "size": 1213,
+      "sha256": "94acbbd61a0ce85278882a96fd5ce6bcd284361b502803e0eadfdcabb5a6679d",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/lesion-localization/experiments/br016/reproduction/provenance/BR-016-aneurysm-localization.md",
+      "path": "provenance/BR-016-aneurysm-localization.md",
+      "size": 6050,
+      "sha256": "ef4b73f8059553f0b25b0d3f4c5a0398f779b5d44810658f3109ebc042decc7c",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/lesion-localization/experiments/br016/reproduction/provenance/BR-016-results.md",
+      "path": "provenance/BR-016-results.md",
+      "size": 10476,
+      "sha256": "81d4e89f6fbb432d5ad9c1fd263ce62e2a3014bb8793945473eb36c607da2933",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/lesion-localization/experiments/br016/reproduction/historical-protocol.md",
+      "path": "historical-protocol.md",
+      "size": 463,
+      "sha256": "c96c417ab528a183e96a6d83674ae58fd6d7a8c45d1ad30d6aebdc1fdf7236cc",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/lesion-localization/experiments/br016/reproduction/acquisition.md",
+      "path": "acquisition.md",
+      "size": 1572,
+      "sha256": "a90c191c52198faffc68fc28c09e9f339e08d2f89bcdd8941ecaa54ecb612bb9",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/lesion-localization/experiments/br016/reproduction/README.md",
+      "path": "README.md",
+      "size": 2786,
+      "sha256": "27722a7a2e1c2300bd581ff4b7365ff29b3f22cb2e31dd8c70369327bf547f86",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    }
+  ],
+  "excluded_attempts": [
+    {
+      "attempt_id": "attempt-0c145494d23f773f8f37a08a",
+      "reason": "No saved answer/structured verifier pair; retain original execution state; fresh controls cover oracle/nop separately.",
+      "source_evaluation": "observation-743ec093f9f914ecc146639e"
+    }
+  ],
+  "review_notice": "Consult the canonical experiment assessment before scientific reuse. Technical replay is not clinical adjudication."
+}

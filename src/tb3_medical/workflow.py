@@ -100,13 +100,35 @@ def task_validate(root, experiment, case=None):
     return exp, spec, task, task_files(task)
 
 
-def prepare(root, experiment, case=None, execute=False):
+def prepare(root, experiment, case=None, execute=False, *, input_root=None, output=None):
     exp = c.lookup(root, experiment)
     spec = task_spec(exp, case)
     if exp.get("method") == "landmarks":
         from .landmarks import prepare_case
 
+        if input_root is not None or output is not None:
+            raise c.MedicalError(
+                "Use med bundle with --input-root for a portable landmark recovery; native prepare uses its declared landmark inputs"
+            )
         return prepare_case(root, exp, spec, execute)
+    if exp.get("method") == "task_package":
+        from . import task_package
+
+        destination = output or Path(root) / ".local/reproduction" / experiment / spec["id"]
+        if not execute:
+            manifest = c.read(c.inside(root, exp["reproduction_manifest"]))
+            selected = [e for e in manifest["files"] if e.get("case") in (None, spec["id"])]
+            return {
+                "case": spec["id"],
+                "destination": str(destination),
+                "executed": False,
+                "files": len(selected),
+                "bytes": sum(e["size"] for e in selected),
+                "acquisition": str(Path(exp["reproduction_manifest"]).parent / "acquisition.md"),
+            }
+        return task_package.materialize(
+            root, exp["reproduction_manifest"], destination, case=spec["id"], input_root=input_root
+        )
     command = exp.get("prepare_command", [])
     if execute:
         if not command or not all(isinstance(x, str) for x in command):
@@ -510,3 +532,81 @@ def qualify_attempt(root, experiment, identity, *, pending_review=None):
         "task_digest": frozen["task_digest"],
         "scope": "Local exact-task controls verified; target submission rules still apply.",
     }
+
+
+def bundle(root, experiment_id, destination, *, case=None, input_root=None, include_flagged=False):
+    """Freeze a research handoff and retain its review state and lineage."""
+    from . import task_package
+
+    experiment = c.lookup(root, experiment_id)
+    state = c.projection(root)[experiment_id]["current"]
+    flagged = state.get("assessment") in {"needs_review", "invalidated"}
+    if flagged and not include_flagged:
+        raise c.MedicalError(
+            "Selected evidence needs review; use --include-flagged for a research handoff"
+        )
+    result = task_package.materialize(
+        root,
+        experiment["reproduction_manifest"],
+        destination,
+        case=case,
+        input_root=input_root,
+        assessments={experiment_id: state},
+    )
+    digest = c.sha(Path(result["destination"]) / "manifest.json")
+    row = {
+        "schema_version": 2,
+        "kind": "export",
+        "id": "export-" + digest[:24],
+        "experiment_ids": [experiment_id],
+        "recipe": experiment["reproduction_manifest"],
+        "manifest_sha256": digest,
+        "submission_status": "draft",
+        "review_flags_at_export": {experiment_id: state} if flagged else {},
+        "evidence": [c.evidence(root, experiment["reproduction_manifest"])],
+        "scope": "Prepared-input reproduction bundle; no submission qualification.",
+    }
+    target = Path(root) / "exports/records" / (row["id"] + ".json")
+    if not target.exists():
+        c.write_new(target, row)
+    return {**result, "record": row["id"], "source_assessments": {experiment_id: state}}
+
+
+def replay_package(root, experiment, package_root, manifest, case, python):
+    """Append replay observations without changing historical execution outcomes."""
+    from . import task_package
+
+    result = task_package.replay(package_root, manifest, case, python)
+    records = c.load(root)
+    recipe = experiment["reproduction_manifest"]
+    for item in result["replays"]:
+        source = records[item["source_evaluation"]]
+        signature = json.dumps([c.sha(Path(package_root) / "manifest.json"), item], sort_keys=True)
+        key = "replay-" + hashlib.sha256(signature.encode()).hexdigest()[:24]
+        row = {
+            "schema_version": 2,
+            "kind": "evaluation",
+            "id": key,
+            "group_id": experiment["group_id"],
+            "experiment_id": experiment["id"],
+            "attempt_id": item["attempt_id"],
+            "source_evaluation": item["source_evaluation"],
+            "evaluation_kind": "saved_output_replay",
+            "case": item["case"],
+            "execution_state": source["execution_state"],
+            "outcome": source["outcome"],
+            "collected_at": c.now(),
+            "metrics": item["metrics"],
+            "replay_matches": item["matches"],
+            "exact_match": item["exact_match"],
+            "evidence": [c.evidence(root, recipe)],
+            "package_manifest_sha256": c.sha(Path(package_root) / "manifest.json"),
+            "scope": result["scope"] + "; same attempt, no new model execution or qualification.",
+        }
+        target = (
+            Path(root) / Path(experiment["record_path"]).parent / "evaluations" / (key + ".json")
+        )
+        if not target.exists():
+            c.write_new(target, row)
+        item["id"] = key
+    return result

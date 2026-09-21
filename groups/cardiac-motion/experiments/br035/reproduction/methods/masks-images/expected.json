@@ -1,0 +1,127 @@
+{
+  "grade": {
+    "reward": 1,
+    "construction_gates": {
+      "mask_fit": true,
+      "volume": true,
+      "positive_elements": true,
+      "field_calculation": true
+    },
+    "geometry": {
+      "vertices": 40569,
+      "tetrahedra": 216870,
+      "mean_mask_dice": 0.9805843726379422,
+      "min_frame_mask_dice": 0.9761784085149519,
+      "per_frame_mask_dice": [
+        1.0,
+        0.9858204291368655,
+        0.9838941335601634,
+        0.9815357970893042,
+        0.979712099445894,
+        0.9800241538009596,
+        0.979744799093269,
+        0.9789505127949816,
+        0.9786925764936504,
+        0.9767441860465116,
+        0.9764958306919589,
+        0.9761784085149519,
+        0.976747496796849,
+        0.9769901323067393,
+        0.9790272564060715,
+        0.9800047477311323,
+        0.9804715563973614,
+        0.9794845911762959
+      ],
+      "volume_ml": [
+        121.989375,
+        121.8206250887664,
+        121.26037489200355,
+        120.73724992696785,
+        114.87487507984147,
+        103.37962492606852,
+        92.31637524161974,
+        84.80699995438894,
+        79.03574996415277,
+        73.48724996035412,
+        69.23812507043387,
+        66.69000009018332,
+        71.16862500881217,
+        76.26487498734849,
+        82.82250002573208,
+        92.28600001495853,
+        103.28174998269704,
+        113.146875027348
+      ],
+      "mask_volume_ml": [
+        121.989375,
+        121.820625,
+        121.260375,
+        120.73725,
+        114.874875,
+        103.379625,
+        92.316375,
+        84.807,
+        79.03575,
+        73.48725,
+        69.238125,
+        66.69,
+        71.168625,
+        76.264875,
+        82.8225,
+        92.286,
+        103.28175,
+        113.146875
+      ],
+      "mean_volume_error_pct": 6.290991493172903e-08,
+      "inverted_elements": 0,
+      "J_min": 0.03755763918351488,
+      "J_max": 1.1229243352713745,
+      "J_percentiles": [
+        0.26188547730476824,
+        0.4069304355821364,
+        0.8043362523907946,
+        1.0113576219752225,
+        1.0410229754646285
+      ],
+      "field_max_abs_error": {
+        "F": 5.960464477539063e-08,
+        "E": 6.22253077953161e-08,
+        "J": 1.8848419758299428e-07
+      }
+    },
+    "limits": {
+      "mask_dice": 0.9,
+      "volume_error_pct": 5.0,
+      "field_abs_error": 0.0001,
+      "coverage": 0.95,
+      "motion_rmse_mm": 2.0,
+      "strain_mae_pp": 5.0,
+      "peak_mae_pp": 5.0,
+      "timing_frames": 2.0
+    },
+    "mask_semantics": "lv_cavity",
+    "cavity_function": {
+      "ef_pct": 45.33130439418734,
+      "mask_ef_pct": 45.33130446811454,
+      "ef_error_pp": 7.392719680865412e-08,
+      "ef_geometry_check_pass": true,
+      "myocardial_strain_validated": false,
+      "clinical_surface_reference_ef_pct": 45.3063839477923,
+      "clinical_surface_ef_error_pp": 0.024920446395043427
+    }
+  },
+  "assessment": {
+    "mask_semantics": "lv_cavity",
+    "myocardial_strain_supported": false,
+    "limitations": [
+      "The segmentations contain no material identities or tracked landmarks; fixed vertex indices encode an inferred, non-unique correspondence.",
+      "Signed-distance registration and smoothness regularization impose a motion prior and do not establish true tissue motion.",
+      "Ultrasound intensity, when present, is used only as a weak texture cue; it is neither blood velocity nor a reference deformation.",
+      "No epicardial/endocardial labels, AHA regions, fibre directions, or constitutive/equilibrium model are supplied.",
+      "Timestamps in seconds are absent, so no strain rate in s^-1 is reported.",
+      "Boundary accuracy is limited by voxel-centre sampling and the native voxel-cell representation.",
+      "A cavity alone has no myocardial wall or epicardium, so its F/E fields are only a parameterization of cavity geometry."
+    ],
+    "finding": "The cavity deformation supports geometric volume/EF checks only; its mathematical strain must not be interpreted as myocardial strain."
+  }
+}

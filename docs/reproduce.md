@@ -43,40 +43,105 @@ finding references; all seven groups have stories. Attempt records are not prese
 for every historical entry. The group lists below enumerate every experiment and
 separate retained evidence from maintained methods and scoped proof.
 
-| Group-owned checklist | Experiments | First suggested reusable scope |
+| Group-owned checklist | Experiments | Maintained core scope |
 | --- | ---: | --- |
 | [Anatomical landmarks](../groups/anatomical-landmarks/methods/README.md) | 4 | BR-040: retain the verified CT/MRI replay baseline; distinguish frozen-task restoration from upstream preparation |
 | [Anatomy audit](../groups/anatomy-audit/methods/README.md) | 10 | BR-017: broad/pair-focused supplied-mask audit |
-| [Cardiac motion](../groups/cardiac-motion/methods/README.md) | 7 | BR-035: supplied-mask construction and strain checks; BR-034 clinical tracking is separate |
+| [Cardiac motion](../groups/cardiac-motion/methods/README.md) | 7 | BR-034 clinical tracking and BR-035 supplied-mask construction; seven submitted-program transfers |
 | [Lesion localization](../groups/lesion-localization/methods/README.md) | 1 | BR-016: saved localization scoring with source-assisted negative case identified |
 | [Longitudinal reading](../groups/longitudinal-reading/methods/README.md) | 2 | BR-037: mechanical report contract and separately identified measurement audit |
 | [Registration](../groups/registration/methods/README.md) | 7 | BR-024/028: paired physical-error scoring; preserve separate visual adjudication |
 | [Tubular anatomy](../groups/tubular-anatomy/methods/README.md) | 7 | BR-041/042: saved geometry scoring and existing review receipts; preserve identity disputes |
 
-The reusable scopes are assistant recommendations, not newly selected scientific
-studies. The user requested consolidation and gradual backfill in
-[the source discussion](../discussions/experiment-support-backfill-2026-09-21.md).
-The first backfill enumerates existing evidence, support, proof and concrete gaps.
-It does not infer that all eight items are required for every historical experiment.
+The user accepted the eleven core records listed above, including the separate
+BR-042 six-hour continuation. The other 27 entries retain evidence and explicit
+backfill boundaries. This does not silently designate every historical pilot as a
+maintained method. The [verification receipt](evidence/experiment-support-backfill-20260921.json)
+enumerates all 38, input hashes, controls, replay counts and the remaining scope.
 
-Work one selected scope at a time:
+The accepted reproduction criterion is that another agent can prepare the inputs
+and environment, execute the task, and evaluate its outputs. LLM outputs may vary.
+Exact prepared data bundles are supported; upstream download instructions are also
+acceptable when accompanied by working preprocessing and sanity checks. A URL
+alone does not restore task-specific annotations or frozen fixtures.
 
-1. Inspect existing receipts and recover the exact inputs for the intended operation.
-   Record concrete missing items; do not reconstruct unknown historical settings.
-2. Extract only the preparation/scoring helpers that will actually be reused.
-   Compare saved outputs first and append proof without changing old scores.
-3. Add inspection or export support when the intended use requires it. Reuse shared
-   collection and presentation instead of porting duplicate historical runners.
-4. Verify fresh execution only when separately authorized and the runtime and
-   applicable controls are ready. Recovery, replay and documentation do not require
-   a new model run.
+## Reproduce the maintained core experiments
 
-In the owning methods page, check off a bounded deliverable only with a source or
-receipt and its scope/date. Keep missing, not checked, unsupported, and deliberately
-historical work explicit in prose. Update that page when support changes; append
-new observations rather than rewriting dated proof. Reopen historical-only recipes
-when an actual reuse need selects them. No blanket conversion, new status system,
-automatic background campaign or extra approval queue is introduced.
+Each selected experiment declares a `reproduction_manifest` in `experiment.toml`.
+It inventories every runtime input with origin, size, executable mode and SHA-256.
+Small instructions, task definitions, scorers, notices and protocols are tracked;
+large inputs and saved answers travel in the complete prepared bundle. No command
+imports historical authoring scripts or searches an author's old run directories.
+
+```sh
+# Preview and restore a selected task at its configured execution path.
+uv run med prepare registration-br024 --case deform-harder-patient3
+uv run med prepare registration-br024 --case deform-harder-patient3 --execute
+uv run med replay registration-br024 --case deform-harder-patient3
+uv run med evaluate registration-br024 --case deform-harder-patient3 --answer /path/to/NEW-answer
+uv run med view registration-br024 --case deform-harder-patient3
+
+# Fresh handoff; review flags remain embedded in the manifest and export record.
+uv run med bundle registration-br024 /path/to/NEW-bundle
+uv run med verify-package /path/to/NEW-bundle
+# Recover large artifacts from a transferred bundle rather than a machine cache.
+uv run med bundle registration-br024 /path/to/ANOTHER-bundle --input-root /path/to/NEW-bundle
+```
+
+For flagged experiments, add `--include-flagged` to create a labeled research
+handoff. It does not reassess the scientific evidence. Packages start as draft
+research exports and retain lineage records under `exports/records/`. Hashes in
+the verification receipt identify the checked bundles; verify those manifest hashes
+after transfer as well as running the file check.
+
+Inside a complete bundle, no workbench checkout is needed:
+
+```sh
+python3.12 reproduce.py verify
+python3.12 -m venv .venv-reproduction
+.venv-reproduction/bin/python -m pip install -r requirements-evaluation.txt
+.venv-reproduction/bin/python reproduce.py replay --output /tmp/NEW-replay.json
+python3.12 reproduce.py container-controls --output /tmp/NEW-controls.json
+.venv-reproduction/bin/python reproduce.py evaluate --case CASE --answer /path/to/NEW-answer
+```
+
+`container-controls` requires running Docker and builds the supplied solver and
+private verifier environments. It runs oracle/no-op controls with separated
+mounts and no network during execution. Docker build may acquire the base image
+and pinned Python packages. The source Dockerfiles retain their historical base
+tag; receipts record the actual tested image IDs. Other platforms and future base
+image resolution require the same checks. `requirements-evaluation.txt` supports
+host scoring; Dockerfiles own the solver runtime dependencies.
+
+Saved-output replay compares metric names, types and values (numeric absolute and
+relative tolerance 1e-8, excluding explicitly named timing fields). `med replay`
+appends observations for the same historical attempts. `med evaluate` scores an
+explicit new answer and prints metrics; use `med collect` to retain an actual trial.
+A scorer error, runtime failure and a negative task result remain distinct.
+
+BR-034 and BR-035 also provide `reproduce.py method-replay`. By default it scores
+retained transfer outputs. Adding `--work-dir /path/to/NEW-outputs` executes the
+frozen submitted programs on the declared variants in Docker, then scores the new
+outputs. This is deterministic method execution with no model call. Each package's
+README lists commands, data access/terms, historical exclusions and comparison
+criteria. BR-035 clinical transfers have cavity references, not material-strain truth.
+
+For a fresh stochastic model trial, follow the package's Harbor 0.18.0 invocation
+and choose an explicit model and reasoning effort. The workbench's `med run` and
+`med collect` remain the common launch/collection path. A nondiagnostic model run
+requires the existing bound-control gates; portable Docker checks do not silently
+satisfy those qualification gates. This backfill ran no new model trials.
+
+The ten new family recipes support task/inventory inspection via `med view`.
+This is not a new raw-image viewer or regeneration of every historical figure.
+The existing group stories and BR-040 native CT/MRI viewer remain available.
+
+Checked local handoffs are under `runs/support-backfill-20260921/final/`, one
+complete directory per experiment ID. Copy the entire directory, including private
+evaluator assets only to the evaluator/author. A solver receives only its task
+environment and instructions. A Git clone alone deliberately omits large data;
+`acquisition.md` describes the prepared-bundle route and retained upstream sources.
+No public data distribution or independent-machine verification is implied.
 
 ## Saved CT/MRI output replay
 
@@ -97,7 +162,7 @@ and appends a scoring observation for the same attempt, including its comparison
 criterion. It writes a receipt; it is not a new execution. The
 [native implementation closeout](migration/native-closeout.md) records exact
 agreement for six retained CT/MRI outputs. That proof covers saved-output scoring,
-not fresh Docker execution or repeatable model behavior.
+not repeatable model behavior. The newer core-support receipt separately records fresh Docker controls.
 
 For a native-plane review image, install the optional imaging dependencies:
 
@@ -107,7 +172,9 @@ uv sync --locked --extra imaging
 ```
 
 Use [exports and submission](submission.md) to build and verify the standalone
-MRI replay package. Other historical methods remain source evidence under
+MRI replay package, or `med bundle` for all three landmark cases. Native landmark
+`prepare`/`view` retain their existing input manifest; transferred landmark bundles
+can run standalone without restoring those native viewer inputs. Other historical methods remain source evidence under
 `probes/` and their linked protocols. Their old authoring runners are not supported
 daily commands; importing some of them can mutate artifacts.
 
@@ -174,3 +241,8 @@ Raw runs, environments and generated media remain local. Missing input files,
 mutable historical Docker tags, dataset access/licensing and independent backup
 are separate recovery concerns. A successful file restore or saved-output replay
 does not establish clinical validity or submission readiness.
+
+The verified handoff index is `runs/support-backfill-20260921/HANDOFF.md`.
+It selects the corrected BR-040 bundle under `final-corrected/`; the earlier
+pre-commit draft remains local but is superseded. Exact bundle paths and hashes
+are recorded in the verification receipt.

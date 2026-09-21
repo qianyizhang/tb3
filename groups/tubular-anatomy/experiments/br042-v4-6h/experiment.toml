@@ -3,13 +3,13 @@ kind = "experiment"
 id = "br042-v4-6h"
 group_id = "tubular-anatomy"
 title = "BR-042 V4 six-hour Astra/xhigh follow-up"
-task_path = "runs/br042-all-vessels-v4-6h/tasks/all-vessels"
-prepare_command = []
 notes = "Completed follow-up, including a transport-interrupted execution and its resumed continuation. Original protocols, adapter sources, task/scorer bytes and outcomes are retained as historical evidence. New execution requires an explicitly selected new study and authorization."
 historical = false
 assessment = "not_assessed"
 experiment_stage = "closed"
 protocol = "protocol.md"
+reproduction_manifest = "groups/tubular-anatomy/experiments/br042-v4-6h/reproduction/manifest.json"
+method = "task_package"
 
 [[links]]
 label = "Six-hour protocol"
@@ -30,3 +30,7 @@ path = "groups/tubular-anatomy/experiments/br042-v4-6h/evaluations/completed-res
 [[links]]
 label = "Trace, candidate filtering and interpretation"
 path = "groups/tubular-anatomy/experiments/br042-v4-6h/resume1/trace-audit.md"
+
+[[tasks]]
+id = "all-vessels-v4-6h"
+task_path = ".local/reproduction/br042-v4-6h/all-vessels-v4-6h/cases/all-vessels-v4-6h/task"

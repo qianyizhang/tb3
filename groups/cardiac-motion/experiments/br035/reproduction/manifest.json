@@ -1,0 +1,1021 @@
+{
+  "schema_version": 1,
+  "experiment_id": "cardiac-motion-br035",
+  "group_id": "cardiac-motion",
+  "purpose": "Research reproduction; original outcomes and unresolved reference issues remain unchanged.",
+  "created_on": "2026-09-21",
+  "cases": {
+    "cardiac-masks": {
+      "task": "cases/cardiac-masks/task",
+      "evaluator": "cases/cardiac-masks/task/tests/evaluate.py",
+      "historical_task": "runs/br035-segmentation-mechanics/tasks/cardiac-masks",
+      "original_files": [
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "973d4c12cb54a42bd262550012615f20700e020f75e8a2310f7fbfb59dfb972a"
+        },
+        {
+          "path": "environment/data/geometry.json",
+          "sha256": "ee48e5a996a8814ca73e0616f15b8946884e3e1004d11c631931af6eb6e3ebc2"
+        },
+        {
+          "path": "environment/data/masks.npz",
+          "sha256": "28009e101c4f3737e4a17badaa73052e8c82118e221398b41d1ee12669b51cbe"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "78cfeaa60810b76f1d848923d4296d55c10b7fe697b323132b317365d1128205"
+        },
+        {
+          "path": "solution/prediction.npz",
+          "sha256": "4805e53335fead2deaac812b1d3e5507db9529e0f2afec54bebc02123a1e5619"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "040de410bdabccc98993f18e9e26fbc13357a29c479ceaf6544ba4931d33fa48"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "ba56438316c6535ab4af71f31b0c39f7d662de659545d13e1f609cafdefcef2f"
+        },
+        {
+          "path": "tests/Dockerfile",
+          "sha256": "f41e8df03dbcf911db76a1871a9794aa61acea3225e7bf03b7da2b0005c4d8c2"
+        },
+        {
+          "path": "tests/data/geometry.json",
+          "sha256": "ee48e5a996a8814ca73e0616f15b8946884e3e1004d11c631931af6eb6e3ebc2"
+        },
+        {
+          "path": "tests/data/masks.npz",
+          "sha256": "28009e101c4f3737e4a17badaa73052e8c82118e221398b41d1ee12669b51cbe"
+        },
+        {
+          "path": "tests/geometry.py",
+          "sha256": "314aa3a0d567d7295581d36a6e7f8e5683a395321d9b338b9b840c17e7441ef2"
+        },
+        {
+          "path": "tests/score.py",
+          "sha256": "bff2d4353220f67aa4e9aa21e37983c8e2486d5e353e347f60e8873704468628"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7"
+        },
+        {
+          "path": "tests/truth.npz",
+          "sha256": "ea673d4fd788304b3da899d2f5fa10d88e360814d21ff7c84053ece041d6a244"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged."
+      ],
+      "timeout_sec": 1800,
+      "controls": {
+        "oracle": {
+          "answer": "cases/cardiac-masks/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/cardiac-masks/nop",
+          "reward": 0
+        }
+      },
+      "observations": [
+        {
+          "attempt_id": "attempt-c73a7ef0c267fd9eb63eb652",
+          "source_evaluation": "observation-8ad2baa90a439a4e1980f6fb",
+          "answer": "saved/attempt-c73a7ef0c267fd9eb63eb652/answer",
+          "expected": "saved/attempt-c73a7ef0c267fd9eb63eb652/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-14feda971498e86c23928ae0",
+          "source_evaluation": "observation-d3a531c25e1c857a200ccfd3",
+          "answer": "saved/attempt-14feda971498e86c23928ae0/answer",
+          "expected": "saved/attempt-14feda971498e86c23928ae0/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        }
+      ]
+    },
+    "cardiac-masks-images": {
+      "task": "cases/cardiac-masks-images/task",
+      "evaluator": "cases/cardiac-masks-images/task/tests/evaluate.py",
+      "historical_task": "runs/br035-segmentation-mechanics/tasks/cardiac-masks-images",
+      "original_files": [
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "973d4c12cb54a42bd262550012615f20700e020f75e8a2310f7fbfb59dfb972a"
+        },
+        {
+          "path": "environment/data/geometry.json",
+          "sha256": "ee48e5a996a8814ca73e0616f15b8946884e3e1004d11c631931af6eb6e3ebc2"
+        },
+        {
+          "path": "environment/data/images.npy",
+          "sha256": "e5facbcd2abb130bf7dbe0e52bcdd3613b9cf32d75f968fda9851cd4256b8777"
+        },
+        {
+          "path": "environment/data/masks.npz",
+          "sha256": "28009e101c4f3737e4a17badaa73052e8c82118e221398b41d1ee12669b51cbe"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "ddff791c6ea7a3e57bb9d54a40ee62a57a67bb4f4992511b539428baadc28d49"
+        },
+        {
+          "path": "solution/prediction.npz",
+          "sha256": "4805e53335fead2deaac812b1d3e5507db9529e0f2afec54bebc02123a1e5619"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "040de410bdabccc98993f18e9e26fbc13357a29c479ceaf6544ba4931d33fa48"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "5aa90c1250579e70089c3c7021011d3ec2150d37f13298236546f3442b09e7c4"
+        },
+        {
+          "path": "tests/Dockerfile",
+          "sha256": "f41e8df03dbcf911db76a1871a9794aa61acea3225e7bf03b7da2b0005c4d8c2"
+        },
+        {
+          "path": "tests/data/geometry.json",
+          "sha256": "ee48e5a996a8814ca73e0616f15b8946884e3e1004d11c631931af6eb6e3ebc2"
+        },
+        {
+          "path": "tests/data/masks.npz",
+          "sha256": "28009e101c4f3737e4a17badaa73052e8c82118e221398b41d1ee12669b51cbe"
+        },
+        {
+          "path": "tests/geometry.py",
+          "sha256": "314aa3a0d567d7295581d36a6e7f8e5683a395321d9b338b9b840c17e7441ef2"
+        },
+        {
+          "path": "tests/score.py",
+          "sha256": "bff2d4353220f67aa4e9aa21e37983c8e2486d5e353e347f60e8873704468628"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7"
+        },
+        {
+          "path": "tests/truth.npz",
+          "sha256": "ea673d4fd788304b3da899d2f5fa10d88e360814d21ff7c84053ece041d6a244"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged."
+      ],
+      "timeout_sec": 1800,
+      "controls": {
+        "oracle": {
+          "answer": "cases/cardiac-masks-images/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/cardiac-masks-images/nop",
+          "reward": 0
+        }
+      },
+      "observations": [
+        {
+          "attempt_id": "attempt-fb9e01e19f28f2dc5575df6a",
+          "source_evaluation": "observation-7ec037c2dd3d4449ecfb2a7b",
+          "answer": "saved/attempt-fb9e01e19f28f2dc5575df6a/answer",
+          "expected": "saved/attempt-fb9e01e19f28f2dc5575df6a/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-08b7535ebbdd7d77d926891e",
+          "source_evaluation": "observation-2a0711821e7f17f2baa2973a",
+          "answer": "saved/attempt-08b7535ebbdd7d77d926891e/answer",
+          "expected": "saved/attempt-08b7535ebbdd7d77d926891e/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        }
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "cases/cardiac-masks/task/environment/Dockerfile",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "973d4c12cb54a42bd262550012615f20700e020f75e8a2310f7fbfb59dfb972a",
+      "size": 231,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/task/environment/data/geometry.json",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks/task/environment/data/geometry.json",
+      "origin": "git",
+      "sha256": "ee48e5a996a8814ca73e0616f15b8946884e3e1004d11c631931af6eb6e3ebc2",
+      "size": 1133,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/task/environment/data/masks.npz",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/cases/cardiac-masks/task/environment/data/masks.npz",
+      "origin": "artifact",
+      "sha256": "28009e101c4f3737e4a17badaa73052e8c82118e221398b41d1ee12669b51cbe",
+      "size": 340558,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/task/instruction.md",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks/task/instruction.md",
+      "origin": "git",
+      "sha256": "78cfeaa60810b76f1d848923d4296d55c10b7fe697b323132b317365d1128205",
+      "size": 4751,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/task/solution/prediction.npz",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/cases/cardiac-masks/task/solution/prediction.npz",
+      "origin": "artifact",
+      "sha256": "4805e53335fead2deaac812b1d3e5507db9529e0f2afec54bebc02123a1e5619",
+      "size": 183149410,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/task/solution/solve.sh",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "040de410bdabccc98993f18e9e26fbc13357a29c479ceaf6544ba4931d33fa48",
+      "size": 73,
+      "mode": 493,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/task/task.toml",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks/task/task.toml",
+      "origin": "git",
+      "sha256": "ba56438316c6535ab4af71f31b0c39f7d662de659545d13e1f609cafdefcef2f",
+      "size": 555,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/task/tests/Dockerfile",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "f41e8df03dbcf911db76a1871a9794aa61acea3225e7bf03b7da2b0005c4d8c2",
+      "size": 326,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/task/tests/data/geometry.json",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks/task/tests/data/geometry.json",
+      "origin": "git",
+      "sha256": "ee48e5a996a8814ca73e0616f15b8946884e3e1004d11c631931af6eb6e3ebc2",
+      "size": 1133,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/task/tests/data/masks.npz",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/cases/cardiac-masks/task/tests/data/masks.npz",
+      "origin": "artifact",
+      "sha256": "28009e101c4f3737e4a17badaa73052e8c82118e221398b41d1ee12669b51cbe",
+      "size": 340558,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/task/tests/geometry.py",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks/task/tests/geometry.py",
+      "origin": "git",
+      "sha256": "314aa3a0d567d7295581d36a6e7f8e5683a395321d9b338b9b840c17e7441ef2",
+      "size": 4126,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/task/tests/score.py",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks/task/tests/score.py",
+      "origin": "git",
+      "sha256": "bff2d4353220f67aa4e9aa21e37983c8e2486d5e353e347f60e8873704468628",
+      "size": 6470,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/task/tests/test.sh",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+      "size": 44,
+      "mode": 493,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/task/tests/truth.npz",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/cases/cardiac-masks/task/tests/truth.npz",
+      "origin": "artifact",
+      "sha256": "ea673d4fd788304b3da899d2f5fa10d88e360814d21ff7c84053ece041d6a244",
+      "size": 10872001,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/task/tests/evaluate.py",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "8707529c801807b89456fa84415ae628f636a915864c0a56f03a156681b39a7b",
+      "size": 611,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks/oracle/prediction.npz",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/cases/cardiac-masks/oracle/prediction.npz",
+      "origin": "artifact",
+      "sha256": "4805e53335fead2deaac812b1d3e5507db9529e0f2afec54bebc02123a1e5619",
+      "size": 183149410,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "control"
+    },
+    {
+      "path": "saved/attempt-c73a7ef0c267fd9eb63eb652/answer/prediction.npz",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-c73a7ef0c267fd9eb63eb652/answer/prediction.npz",
+      "origin": "artifact",
+      "sha256": "65490f7ad2cf9038fe35cf44870034b771de692c5f38fe860192092a5af3e2c5",
+      "size": 320224696,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-c73a7ef0c267fd9eb63eb652/expected.json",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-c73a7ef0c267fd9eb63eb652/expected.json",
+      "origin": "artifact",
+      "sha256": "2cad09d3950684a4448910d35f7162b2ed501ee9d26a4c495d278822fae4ffe5",
+      "size": 119168,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-14feda971498e86c23928ae0/answer/prediction.npz",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-14feda971498e86c23928ae0/answer/prediction.npz",
+      "origin": "artifact",
+      "sha256": "4805e53335fead2deaac812b1d3e5507db9529e0f2afec54bebc02123a1e5619",
+      "size": 183149410,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-14feda971498e86c23928ae0/expected.json",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-14feda971498e86c23928ae0/expected.json",
+      "origin": "artifact",
+      "sha256": "6c7ed8fed9dd6c627e163d736012529831e1ba373a03939ff121eac668416ebf",
+      "size": 118246,
+      "mode": 420,
+      "case": "cardiac-masks",
+      "role": "saved_output"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/environment/Dockerfile",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks-images/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "973d4c12cb54a42bd262550012615f20700e020f75e8a2310f7fbfb59dfb972a",
+      "size": 231,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/environment/data/geometry.json",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks-images/task/environment/data/geometry.json",
+      "origin": "git",
+      "sha256": "ee48e5a996a8814ca73e0616f15b8946884e3e1004d11c631931af6eb6e3ebc2",
+      "size": 1133,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/environment/data/images.npy",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/cases/cardiac-masks-images/task/environment/data/images.npy",
+      "origin": "artifact",
+      "sha256": "e5facbcd2abb130bf7dbe0e52bcdd3613b9cf32d75f968fda9851cd4256b8777",
+      "size": 71053328,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/environment/data/masks.npz",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/cases/cardiac-masks-images/task/environment/data/masks.npz",
+      "origin": "artifact",
+      "sha256": "28009e101c4f3737e4a17badaa73052e8c82118e221398b41d1ee12669b51cbe",
+      "size": 340558,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/instruction.md",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks-images/task/instruction.md",
+      "origin": "git",
+      "sha256": "ddff791c6ea7a3e57bb9d54a40ee62a57a67bb4f4992511b539428baadc28d49",
+      "size": 4718,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/solution/prediction.npz",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/cases/cardiac-masks-images/task/solution/prediction.npz",
+      "origin": "artifact",
+      "sha256": "4805e53335fead2deaac812b1d3e5507db9529e0f2afec54bebc02123a1e5619",
+      "size": 183149410,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/solution/solve.sh",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks-images/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "040de410bdabccc98993f18e9e26fbc13357a29c479ceaf6544ba4931d33fa48",
+      "size": 73,
+      "mode": 493,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/task.toml",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks-images/task/task.toml",
+      "origin": "git",
+      "sha256": "5aa90c1250579e70089c3c7021011d3ec2150d37f13298236546f3442b09e7c4",
+      "size": 562,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/tests/Dockerfile",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks-images/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "f41e8df03dbcf911db76a1871a9794aa61acea3225e7bf03b7da2b0005c4d8c2",
+      "size": 326,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/tests/data/geometry.json",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks-images/task/tests/data/geometry.json",
+      "origin": "git",
+      "sha256": "ee48e5a996a8814ca73e0616f15b8946884e3e1004d11c631931af6eb6e3ebc2",
+      "size": 1133,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/tests/data/masks.npz",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/cases/cardiac-masks-images/task/tests/data/masks.npz",
+      "origin": "artifact",
+      "sha256": "28009e101c4f3737e4a17badaa73052e8c82118e221398b41d1ee12669b51cbe",
+      "size": 340558,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/tests/geometry.py",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks-images/task/tests/geometry.py",
+      "origin": "git",
+      "sha256": "314aa3a0d567d7295581d36a6e7f8e5683a395321d9b338b9b840c17e7441ef2",
+      "size": 4126,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/tests/score.py",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks-images/task/tests/score.py",
+      "origin": "git",
+      "sha256": "bff2d4353220f67aa4e9aa21e37983c8e2486d5e353e347f60e8873704468628",
+      "size": 6470,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/tests/test.sh",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks-images/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+      "size": 44,
+      "mode": 493,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/tests/truth.npz",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/cases/cardiac-masks-images/task/tests/truth.npz",
+      "origin": "artifact",
+      "sha256": "ea673d4fd788304b3da899d2f5fa10d88e360814d21ff7c84053ece041d6a244",
+      "size": 10872001,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/task/tests/evaluate.py",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks-images/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "8707529c801807b89456fa84415ae628f636a915864c0a56f03a156681b39a7b",
+      "size": 611,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "task"
+    },
+    {
+      "path": "cases/cardiac-masks-images/oracle/prediction.npz",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/cases/cardiac-masks-images/oracle/prediction.npz",
+      "origin": "artifact",
+      "sha256": "4805e53335fead2deaac812b1d3e5507db9529e0f2afec54bebc02123a1e5619",
+      "size": 183149410,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "control"
+    },
+    {
+      "path": "saved/attempt-fb9e01e19f28f2dc5575df6a/answer/prediction.npz",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-fb9e01e19f28f2dc5575df6a/answer/prediction.npz",
+      "origin": "artifact",
+      "sha256": "5fe8ec5300f9d04259b5d36706ef96f9606edb0fbffb8a22f5829a142a1bf0e8",
+      "size": 334309500,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-fb9e01e19f28f2dc5575df6a/expected.json",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-fb9e01e19f28f2dc5575df6a/expected.json",
+      "origin": "artifact",
+      "sha256": "5fdb1b8e1495f39e2e6a787007e12073374ea52420e652985ffb80d8a38518df",
+      "size": 119164,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-08b7535ebbdd7d77d926891e/answer/prediction.npz",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-08b7535ebbdd7d77d926891e/answer/prediction.npz",
+      "origin": "artifact",
+      "sha256": "4805e53335fead2deaac812b1d3e5507db9529e0f2afec54bebc02123a1e5619",
+      "size": 183149410,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-08b7535ebbdd7d77d926891e/expected.json",
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-08b7535ebbdd7d77d926891e/expected.json",
+      "origin": "artifact",
+      "sha256": "6c7ed8fed9dd6c627e163d736012529831e1ba373a03939ff121eac668416ebf",
+      "size": 118246,
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "role": "saved_output"
+    },
+    {
+      "path": "requirements-evaluation.txt",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/requirements-evaluation.txt",
+      "origin": "git",
+      "sha256": "4b81b6b6a549771115529e6900b9589835cdbfff0c6acf179aef53d283b744d5",
+      "size": 27,
+      "mode": 420,
+      "case": null,
+      "role": "task"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-c73a7ef0c267fd9eb63eb652/answer/assessment.json",
+      "path": "saved/attempt-c73a7ef0c267fd9eb63eb652/answer/assessment.json",
+      "size": 782,
+      "sha256": "b5684b8bb65e5b415afb215c61d5558853d05c4afe01836325074f3240802b24",
+      "mode": 420,
+      "case": "cardiac-masks",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-c73a7ef0c267fd9eb63eb652/answer/method.md",
+      "path": "saved/attempt-c73a7ef0c267fd9eb63eb652/answer/method.md",
+      "size": 3375,
+      "sha256": "512bec06f5615b0ac3eb5c2d5ea76438bc4a3d0950e8d079bd09145f8ac2b24c",
+      "mode": 420,
+      "case": "cardiac-masks",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-c73a7ef0c267fd9eb63eb652/answer/solve.py",
+      "path": "saved/attempt-c73a7ef0c267fd9eb63eb652/answer/solve.py",
+      "size": 24136,
+      "sha256": "f004bdf277cf1e0ad60211e8915648a1ca53391df66f83ddda7efbecafadf703",
+      "mode": 420,
+      "case": "cardiac-masks",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/methods/masks/input/geometry.json",
+      "path": "methods/masks/input/geometry.json",
+      "size": 1392,
+      "sha256": "3cec5af497e8e5a582453d059632f6a20b9a231dbf0646a65b87aefaf2d21c47",
+      "mode": 420,
+      "case": "cardiac-masks",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/methods/masks/input/masks.npz",
+      "path": "methods/masks/input/masks.npz",
+      "size": 47563,
+      "sha256": "d35001173c670cf04096b075a6d53ab5ee3499846b20d43eb270169129f4cb9a",
+      "mode": 420,
+      "case": "cardiac-masks",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/methods/masks/saved/assessment.json",
+      "path": "methods/masks/saved/assessment.json",
+      "size": 890,
+      "sha256": "4b1ca1bacca1c236eafe463c50df1320b217ada72467243df6947f1266a236ea",
+      "mode": 420,
+      "case": "cardiac-masks",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/methods/masks/saved/method.md",
+      "path": "methods/masks/saved/method.md",
+      "size": 3376,
+      "sha256": "3716dc927321e459e421724107fcd4e1725ce5214eca39c80e0dd04c740a4ff7",
+      "mode": 420,
+      "case": "cardiac-masks",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/methods/masks/saved/prediction.npz",
+      "path": "methods/masks/saved/prediction.npz",
+      "size": 146599319,
+      "sha256": "14f2af915364867b8b115b13e87ee789973d756c28bfe56061fb8bf19b10b673",
+      "mode": 420,
+      "case": "cardiac-masks",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/methods/masks/historical-receipt.json",
+      "path": "methods/masks/historical-receipt.json",
+      "size": 4923,
+      "sha256": "7c97efc50c10a6322f6a488a080c9283cfafe45dfac21a16d3b3e010fc07efeb",
+      "mode": 420,
+      "case": "cardiac-masks",
+      "origin": "git",
+      "role": "method_replay"
+    },
+    {
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/methods/masks/preparation.json",
+      "path": "methods/masks/preparation.json",
+      "size": 1353,
+      "sha256": "9ee250884763f0aa062a6ad1ac5cec1d97d0046f1c281c663ce2f9b07587c62a",
+      "mode": 420,
+      "case": "cardiac-masks",
+      "origin": "git",
+      "role": "method_replay"
+    },
+    {
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/methods/masks/expected.json",
+      "path": "methods/masks/expected.json",
+      "size": 3799,
+      "sha256": "74e2359633b76138c60bb0a2e9c6c2fd66ef9983c998e40c0b8bc8ff1ea27f19",
+      "mode": 420,
+      "case": "cardiac-masks",
+      "origin": "git",
+      "role": "method_replay"
+    },
+    {
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/methods/masks/evaluate.py",
+      "path": "methods/masks/evaluate.py",
+      "size": 841,
+      "sha256": "324c29d85d85a24830508199873f83f07b3c70ee5c2aced2e80f995dc7fec822",
+      "mode": 420,
+      "case": "cardiac-masks",
+      "origin": "git",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-fb9e01e19f28f2dc5575df6a/answer/assessment.json",
+      "path": "saved/attempt-fb9e01e19f28f2dc5575df6a/answer/assessment.json",
+      "size": 983,
+      "sha256": "19731c7d31e46dd3674d380d52f2e6ee787aacf1670fed85339ec648818927ac",
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-fb9e01e19f28f2dc5575df6a/answer/method.md",
+      "path": "saved/attempt-fb9e01e19f28f2dc5575df6a/answer/method.md",
+      "size": 3256,
+      "sha256": "01dd2b3ac350e71bc6734f977f7b3d6f7bdbacdc648c4080256798c12ba7adfa",
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-fb9e01e19f28f2dc5575df6a/answer/solve.py",
+      "path": "saved/attempt-fb9e01e19f28f2dc5575df6a/answer/solve.py",
+      "size": 26208,
+      "sha256": "08ca88e193a987b130f5ca6ea46e943188754fad31d14cb6c9f8213d4bc6d7b8",
+      "mode": 493,
+      "case": "cardiac-masks-images",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/methods/masks-images/input/geometry.json",
+      "path": "methods/masks-images/input/geometry.json",
+      "size": 1392,
+      "sha256": "3cec5af497e8e5a582453d059632f6a20b9a231dbf0646a65b87aefaf2d21c47",
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/methods/masks-images/input/images.npy",
+      "path": "methods/masks-images/input/images.npy",
+      "size": 22453328,
+      "sha256": "a89abb3922128f69724bf90c8e751c62a8d5cb56d9dc82c6b8304c56514a4de2",
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/methods/masks-images/input/masks.npz",
+      "path": "methods/masks-images/input/masks.npz",
+      "size": 47563,
+      "sha256": "d35001173c670cf04096b075a6d53ab5ee3499846b20d43eb270169129f4cb9a",
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/methods/masks-images/saved/assessment.json",
+      "path": "methods/masks-images/saved/assessment.json",
+      "size": 1091,
+      "sha256": "30dbd3d5e56e4768c707eb77eac8f66d8f04412d8043435b86c5dd736f35f925",
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/methods/masks-images/saved/method.md",
+      "path": "methods/masks-images/saved/method.md",
+      "size": 3212,
+      "sha256": "56614cc5bc5c9c1fe362af282400e720c8bf484d37e7bf2616880abff368f00e",
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": ".local/inputs/reproduction/cardiac-motion-br035/methods/masks-images/saved/prediction.npz",
+      "path": "methods/masks-images/saved/prediction.npz",
+      "size": 149296927,
+      "sha256": "8fb514a4a4f96124e923cedff117d198f499f1ff2daa75c2e51ff4c2f3df55ab",
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "origin": "artifact",
+      "role": "method_replay"
+    },
+    {
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/methods/masks-images/historical-receipt.json",
+      "path": "methods/masks-images/historical-receipt.json",
+      "size": 5226,
+      "sha256": "3ebfe9c562c0af785fd73fe70780933bbf2b5a1441acc1860486fc64c9edbd3e",
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "origin": "git",
+      "role": "method_replay"
+    },
+    {
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/methods/masks-images/preparation.json",
+      "path": "methods/masks-images/preparation.json",
+      "size": 1353,
+      "sha256": "9ee250884763f0aa062a6ad1ac5cec1d97d0046f1c281c663ce2f9b07587c62a",
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "origin": "git",
+      "role": "method_replay"
+    },
+    {
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/methods/masks-images/expected.json",
+      "path": "methods/masks-images/expected.json",
+      "size": 4001,
+      "sha256": "4337d936af9727640ba0a8f5b11184e701cecb69538f3daceb329b65d3e0ef09",
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "origin": "git",
+      "role": "method_replay"
+    },
+    {
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/methods/masks-images/evaluate.py",
+      "path": "methods/masks-images/evaluate.py",
+      "size": 841,
+      "sha256": "324c29d85d85a24830508199873f83f07b3c70ee5c2aced2e80f995dc7fec822",
+      "mode": 420,
+      "case": "cardiac-masks-images",
+      "origin": "git",
+      "role": "method_replay"
+    },
+    {
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/source-records.json",
+      "path": "source-records.json",
+      "size": 10672,
+      "sha256": "c67e284db34cde821d4c35a2accf1fcc4fb406fd637cab4a785187dce8454fe9",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/provenance/BR-035-results.md",
+      "path": "provenance/BR-035-results.md",
+      "size": 10407,
+      "sha256": "f970d2e12e457dec57ffc23042b8f274e826f3327e9280e19ca35ad6259d39fd",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/provenance/BR-035-segmentation-mechanics.md",
+      "path": "provenance/BR-035-segmentation-mechanics.md",
+      "size": 4817,
+      "sha256": "1555ed52b0f6ddf5264079c8daa4e6c4427c58c014a809d7bec851d4e082ef52",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/historical-protocol.md",
+      "path": "historical-protocol.md",
+      "size": 492,
+      "sha256": "c95799e135e86e35ebea45c07aef44bbcd611272692dc034cd2debe306f01c20",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/acquisition.md",
+      "path": "acquisition.md",
+      "size": 1758,
+      "sha256": "f8a78b9ae36738ca31d4206b8795aeb8968a39c0844cf73833691e1747dd76fa",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/README.md",
+      "path": "README.md",
+      "size": 3899,
+      "sha256": "79d277adc9fe96d97e163c6581193ad4bb0fa5edf8c29f1c5b9649f9c4b2a6f4",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "path": "methods/masks/score.py",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/methods/masks/score.py",
+      "origin": "git",
+      "role": "method_replay",
+      "case": "cardiac-masks",
+      "mode": 420,
+      "size": 6470,
+      "sha256": "bff2d4353220f67aa4e9aa21e37983c8e2486d5e353e347f60e8873704468628"
+    },
+    {
+      "path": "methods/masks/geometry.py",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/methods/masks/geometry.py",
+      "origin": "git",
+      "role": "method_replay",
+      "case": "cardiac-masks",
+      "mode": 420,
+      "size": 4126,
+      "sha256": "314aa3a0d567d7295581d36a6e7f8e5683a395321d9b338b9b840c17e7441ef2"
+    },
+    {
+      "path": "methods/masks-images/score.py",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/methods/masks-images/score.py",
+      "origin": "git",
+      "role": "method_replay",
+      "case": "cardiac-masks-images",
+      "mode": 420,
+      "size": 6470,
+      "sha256": "bff2d4353220f67aa4e9aa21e37983c8e2486d5e353e347f60e8873704468628"
+    },
+    {
+      "path": "methods/masks-images/geometry.py",
+      "source": "groups/cardiac-motion/experiments/br035/reproduction/methods/masks-images/geometry.py",
+      "origin": "git",
+      "role": "method_replay",
+      "case": "cardiac-masks-images",
+      "mode": 420,
+      "size": 4126,
+      "sha256": "314aa3a0d567d7295581d36a6e7f8e5683a395321d9b338b9b840c17e7441ef2"
+    }
+  ],
+  "excluded_attempts": [
+    {
+      "attempt_id": "attempt-d74ebf0f15027a1836151f3d",
+      "reason": "No saved answer/structured verifier pair; retain original execution state; fresh controls cover oracle/nop separately.",
+      "source_evaluation": "observation-04f9ffcf91963ac50ee38212"
+    },
+    {
+      "attempt_id": "attempt-c4b2e63e2d26f0c4a9a275cc",
+      "reason": "No saved answer/structured verifier pair; retain original execution state; fresh controls cover oracle/nop separately.",
+      "source_evaluation": "observation-378e5030d24cd83681ee7ec5"
+    }
+  ],
+  "review_notice": "Consult the canonical experiment assessment before scientific reuse. Technical replay is not clinical adjudication.",
+  "method_replays": {
+    "masks": {
+      "case": "cardiac-masks",
+      "input": "methods/masks/input",
+      "program": "saved/attempt-c73a7ef0c267fd9eb63eb652/answer",
+      "saved": "methods/masks/saved",
+      "expected": "methods/masks/expected.json",
+      "evaluator": "methods/masks/evaluate.py",
+      "environment": "cases/cardiac-masks/task/environment",
+      "historical_receipt": "runs/br035-segmentation-mechanics/replays/masks/receipt.json",
+      "source_attempt": "attempt-c73a7ef0c267fd9eb63eb652",
+      "timeout_sec": 300
+    },
+    "masks-images": {
+      "case": "cardiac-masks-images",
+      "input": "methods/masks-images/input",
+      "program": "saved/attempt-fb9e01e19f28f2dc5575df6a/answer",
+      "saved": "methods/masks-images/saved",
+      "expected": "methods/masks-images/expected.json",
+      "evaluator": "methods/masks-images/evaluate.py",
+      "environment": "cases/cardiac-masks-images/task/environment",
+      "historical_receipt": "runs/br035-segmentation-mechanics/replays/masks-images/receipt.json",
+      "source_attempt": "attempt-fb9e01e19f28f2dc5575df6a",
+      "timeout_sec": 300
+    }
+  },
+  "adaptations": [
+    "Added portable deterministic submitted-program transfers with exact prepared inputs, frozen scorer and separate clinical/synthetic truth boundaries. Original replay infrastructure failures remain in source evidence."
+  ]
+}

@@ -1,0 +1,436 @@
+{
+  "schema_version": 1,
+  "experiment_id": "tubular-anatomy-br041",
+  "group_id": "tubular-anatomy",
+  "purpose": "Research reproduction; original outcomes and unresolved reference issues remain unchanged.",
+  "created_on": "2026-09-21",
+  "cases": {
+    "named-rca": {
+      "task": "cases/named-rca/task",
+      "evaluator": "cases/named-rca/task/tests/evaluate.py",
+      "historical_task": "runs/br041-image-only-centerline/tasks/named-rca",
+      "original_files": [
+        {
+          "path": "environment/DATA-LICENSE.txt",
+          "sha256": "7a3bcd40f7b57fe240d475a3b896f5f1c524a43d50a8b0bb7201c5f1e93d52d0"
+        },
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "e97a43c0d82de41a63b5a51558dcaa3eaf87610570f9a3237b72522dbee653f6"
+        },
+        {
+          "path": "environment/SOURCE_NOTICE.md",
+          "sha256": "521330ff80982b5fcaa452f1069b7b3ecdcce3ec08443025afe3699c37d9d893"
+        },
+        {
+          "path": "environment/data/image.nii.gz",
+          "sha256": "cb57cf4b0d40d89976359fc5c831cfb003f16f24eaf5c31ad457d00da8c85432"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "f4321ac5f48e3046d52c63d1861599bbc5bcdf4089996d9ef894e699dc8537c7"
+        },
+        {
+          "path": "solution/centerline.npy",
+          "sha256": "639969be67beb96c563e8136c31162913d10bb60f1922fc9cbf872cdebcba802"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "1b7227f675655ee6d0aaeade830dcef02afedf68287ced9b23eb3890539fe5be"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "c0797f1fe429906e03b17250553245cc1eefb4c93ccad05b5462ff588b1bfbd4"
+        },
+        {
+          "path": "tests/Dockerfile",
+          "sha256": "98a6af299f20525113b82349a25b65233cc2c35c078ae64c4c605add2ffdec5b"
+        },
+        {
+          "path": "tests/reference.npy",
+          "sha256": "639969be67beb96c563e8136c31162913d10bb60f1922fc9cbf872cdebcba802"
+        },
+        {
+          "path": "tests/score.py",
+          "sha256": "1fa11db2a074d89dedc89a67a79de8cd910aa2db7b36587ddd875b8851d5d20f"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged."
+      ],
+      "timeout_sec": 900,
+      "controls": {
+        "oracle": {
+          "answer": "cases/named-rca/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/named-rca/nop",
+          "reward": 0
+        }
+      },
+      "observations": [
+        {
+          "attempt_id": "attempt-be0b4444601addab5192fa34",
+          "source_evaluation": "observation-ea35c872c8633acd01523169",
+          "answer": "saved/attempt-be0b4444601addab5192fa34/answer",
+          "expected": "saved/attempt-be0b4444601addab5192fa34/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-f903e1e53aa165b9cc1f6161",
+          "source_evaluation": "observation-3fc9daed8d078c36e65f94c8",
+          "answer": "saved/attempt-f903e1e53aa165b9cc1f6161/answer",
+          "expected": "saved/attempt-f903e1e53aa165b9cc1f6161/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-49fd24441a854db93e181717",
+          "source_evaluation": "observation-d64f935a288ada33263c77a6",
+          "answer": "saved/attempt-49fd24441a854db93e181717/answer",
+          "expected": "saved/attempt-49fd24441a854db93e181717/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-3cf2f433dfeb859a7d68ae44",
+          "source_evaluation": "observation-9562bde1c2cbe1eead2c0afb",
+          "answer": "saved/attempt-3cf2f433dfeb859a7d68ae44/answer",
+          "expected": "saved/attempt-3cf2f433dfeb859a7d68ae44/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        }
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "cases/named-rca/task/environment/DATA-LICENSE.txt",
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/cases/named-rca/task/environment/DATA-LICENSE.txt",
+      "origin": "git",
+      "sha256": "7a3bcd40f7b57fe240d475a3b896f5f1c524a43d50a8b0bb7201c5f1e93d52d0",
+      "size": 1411,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "task"
+    },
+    {
+      "path": "cases/named-rca/task/environment/Dockerfile",
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/cases/named-rca/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "e97a43c0d82de41a63b5a51558dcaa3eaf87610570f9a3237b72522dbee653f6",
+      "size": 259,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "task"
+    },
+    {
+      "path": "cases/named-rca/task/environment/SOURCE_NOTICE.md",
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/cases/named-rca/task/environment/SOURCE_NOTICE.md",
+      "origin": "git",
+      "sha256": "521330ff80982b5fcaa452f1069b7b3ecdcce3ec08443025afe3699c37d9d893",
+      "size": 425,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "task"
+    },
+    {
+      "path": "cases/named-rca/task/environment/data/image.nii.gz",
+      "source": ".local/inputs/reproduction/tubular-anatomy-br041/cases/named-rca/task/environment/data/image.nii.gz",
+      "origin": "artifact",
+      "sha256": "cb57cf4b0d40d89976359fc5c831cfb003f16f24eaf5c31ad457d00da8c85432",
+      "size": 30804791,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "task"
+    },
+    {
+      "path": "cases/named-rca/task/instruction.md",
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/cases/named-rca/task/instruction.md",
+      "origin": "git",
+      "sha256": "f4321ac5f48e3046d52c63d1861599bbc5bcdf4089996d9ef894e699dc8537c7",
+      "size": 1619,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "task"
+    },
+    {
+      "path": "cases/named-rca/task/solution/centerline.npy",
+      "source": ".local/inputs/reproduction/tubular-anatomy-br041/cases/named-rca/task/solution/centerline.npy",
+      "origin": "artifact",
+      "sha256": "639969be67beb96c563e8136c31162913d10bb60f1922fc9cbf872cdebcba802",
+      "size": 7928,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "task"
+    },
+    {
+      "path": "cases/named-rca/task/solution/solve.sh",
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/cases/named-rca/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "1b7227f675655ee6d0aaeade830dcef02afedf68287ced9b23eb3890539fe5be",
+      "size": 80,
+      "mode": 493,
+      "case": "named-rca",
+      "role": "task"
+    },
+    {
+      "path": "cases/named-rca/task/task.toml",
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/cases/named-rca/task/task.toml",
+      "origin": "git",
+      "sha256": "c0797f1fe429906e03b17250553245cc1eefb4c93ccad05b5462ff588b1bfbd4",
+      "size": 619,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "task"
+    },
+    {
+      "path": "cases/named-rca/task/tests/Dockerfile",
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/cases/named-rca/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "98a6af299f20525113b82349a25b65233cc2c35c078ae64c4c605add2ffdec5b",
+      "size": 309,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "task"
+    },
+    {
+      "path": "cases/named-rca/task/tests/reference.npy",
+      "source": ".local/inputs/reproduction/tubular-anatomy-br041/cases/named-rca/task/tests/reference.npy",
+      "origin": "artifact",
+      "sha256": "639969be67beb96c563e8136c31162913d10bb60f1922fc9cbf872cdebcba802",
+      "size": 7928,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "task"
+    },
+    {
+      "path": "cases/named-rca/task/tests/score.py",
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/cases/named-rca/task/tests/score.py",
+      "origin": "git",
+      "sha256": "1fa11db2a074d89dedc89a67a79de8cd910aa2db7b36587ddd875b8851d5d20f",
+      "size": 1845,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "task"
+    },
+    {
+      "path": "cases/named-rca/task/tests/test.sh",
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/cases/named-rca/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+      "size": 44,
+      "mode": 493,
+      "case": "named-rca",
+      "role": "task"
+    },
+    {
+      "path": "cases/named-rca/task/tests/evaluate.py",
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/cases/named-rca/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "52bda753acecff8f2d9507e15e7adc56bf55b1ed381d2e360572f888b1c0a2ed",
+      "size": 585,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "task"
+    },
+    {
+      "path": "cases/named-rca/oracle/centerline.npy",
+      "source": ".local/inputs/reproduction/tubular-anatomy-br041/cases/named-rca/oracle/centerline.npy",
+      "origin": "artifact",
+      "sha256": "639969be67beb96c563e8136c31162913d10bb60f1922fc9cbf872cdebcba802",
+      "size": 7928,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "control"
+    },
+    {
+      "path": "saved/attempt-be0b4444601addab5192fa34/answer/centerline.npy",
+      "source": ".local/inputs/reproduction/tubular-anatomy-br041/saved/attempt-be0b4444601addab5192fa34/answer/centerline.npy",
+      "origin": "artifact",
+      "sha256": "639969be67beb96c563e8136c31162913d10bb60f1922fc9cbf872cdebcba802",
+      "size": 7928,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-be0b4444601addab5192fa34/expected.json",
+      "source": ".local/inputs/reproduction/tubular-anatomy-br041/saved/attempt-be0b4444601addab5192fa34/expected.json",
+      "origin": "artifact",
+      "sha256": "718561095af7ae62013bd1209b3edce606fefeccd567d3a6ff24da8069fca864",
+      "size": 460,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-f903e1e53aa165b9cc1f6161/answer/centerline.npy",
+      "source": ".local/inputs/reproduction/tubular-anatomy-br041/saved/attempt-f903e1e53aa165b9cc1f6161/answer/centerline.npy",
+      "origin": "artifact",
+      "sha256": "12bd6806b0b1c1a6aed378b340fb62d229a7c031e213ee8c6fe22b2de763089f",
+      "size": 4856,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-f903e1e53aa165b9cc1f6161/expected.json",
+      "source": ".local/inputs/reproduction/tubular-anatomy-br041/saved/attempt-f903e1e53aa165b9cc1f6161/expected.json",
+      "origin": "artifact",
+      "sha256": "b9d2397c2b1b96d2e5506de981b985463b8de35477a6b03d3bad2369b42cda3b",
+      "size": 523,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-49fd24441a854db93e181717/answer/centerline.npy",
+      "source": ".local/inputs/reproduction/tubular-anatomy-br041/saved/attempt-49fd24441a854db93e181717/answer/centerline.npy",
+      "origin": "artifact",
+      "sha256": "0e46f25884c987d477e0a26600fc9219083949f96cfff6838595327a22d054d9",
+      "size": 8840,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-49fd24441a854db93e181717/expected.json",
+      "source": ".local/inputs/reproduction/tubular-anatomy-br041/saved/attempt-49fd24441a854db93e181717/expected.json",
+      "origin": "artifact",
+      "sha256": "f38d44a7b1d021433ccd378cebabe814a15d3b65201e2751446d7b075a5845f6",
+      "size": 552,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-3cf2f433dfeb859a7d68ae44/answer/centerline.npy",
+      "source": ".local/inputs/reproduction/tubular-anatomy-br041/saved/attempt-3cf2f433dfeb859a7d68ae44/answer/centerline.npy",
+      "origin": "artifact",
+      "sha256": "de7e16beed8e989aecdf694b2e32ead6ed58d354cee12e96e1fd041aa1269bc4",
+      "size": 8792,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-3cf2f433dfeb859a7d68ae44/expected.json",
+      "source": ".local/inputs/reproduction/tubular-anatomy-br041/saved/attempt-3cf2f433dfeb859a7d68ae44/expected.json",
+      "origin": "artifact",
+      "sha256": "57ca19113226b9c46190d48e8ca290cda0c85e2ba5560de57d35b0a84afcdd49",
+      "size": 522,
+      "mode": 420,
+      "case": "named-rca",
+      "role": "saved_output"
+    },
+    {
+      "path": "requirements-evaluation.txt",
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/requirements-evaluation.txt",
+      "origin": "git",
+      "sha256": "4b81b6b6a549771115529e6900b9589835cdbfff0c6acf179aef53d283b744d5",
+      "size": 27,
+      "mode": 420,
+      "case": null,
+      "role": "task"
+    },
+    {
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/source-records.json",
+      "path": "source-records.json",
+      "size": 5473,
+      "sha256": "7c486bef5db6aa692a9e94a45a66566beee13673eee2cd3f5298f1f453bb360f",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/provenance/BR-041-astra-results.md",
+      "path": "provenance/BR-041-astra-results.md",
+      "size": 5018,
+      "sha256": "2421319d388dd6cc5159d0f6b17a9852c1c71102b57a2d01e036eac2e93eeeb1",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/provenance/BR-041-image-only-centerline.md",
+      "path": "provenance/BR-041-image-only-centerline.md",
+      "size": 6485,
+      "sha256": "029e99b1069ba238cd8bc7c242d52ea1322ff2932e6c786d044dd40276eeaeba",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/provenance/BR-041-results.md",
+      "path": "provenance/BR-041-results.md",
+      "size": 4930,
+      "sha256": "d8e32285c4860f11f96bfb04c7bd94652ec4641f9c94de00c0f5a12902466c6d",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/provenance/BR-041-sol-results.md",
+      "path": "provenance/BR-041-sol-results.md",
+      "size": 4162,
+      "sha256": "5a709295b8d9c8a6b264732b99d9303aa175415a5e88c0fb4a6a5aca288158ae",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/historical-protocol.md",
+      "path": "historical-protocol.md",
+      "size": 582,
+      "sha256": "03a8b401f8a6c35175c6050997e441b9d424d098245b7274502dab19989870c1",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/acquisition.md",
+      "path": "acquisition.md",
+      "size": 1796,
+      "sha256": "231e627f663a2320cd24cf432ccf2369d0f82f41a8089826c30deb0beb4d9ab2",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/tubular-anatomy/experiments/br041/reproduction/README.md",
+      "path": "README.md",
+      "size": 2782,
+      "sha256": "4c0c35debc573b25b2e0a85f372b3d5fa11995c2074071895e6f3b677a553705",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    }
+  ],
+  "excluded_attempts": [
+    {
+      "attempt_id": "attempt-46ba8cad5c4707f24753f3ac",
+      "reason": "No saved answer/structured verifier pair; retain original execution state; fresh controls cover oracle/nop separately.",
+      "source_evaluation": "observation-ad3522869a3cf24b29e8c2c3"
+    }
+  ],
+  "review_notice": "Consult the canonical experiment assessment before scientific reuse. Technical replay is not clinical adjudication."
+}

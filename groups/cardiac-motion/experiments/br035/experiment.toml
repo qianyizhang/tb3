@@ -9,6 +9,8 @@ historical_ids = [
 historical = true
 assessment = "not_assessed"
 protocol = "protocol.md"
+reproduction_manifest = "groups/cardiac-motion/experiments/br035/reproduction/manifest.json"
+method = "task_package"
 
 [[links]]
 label = "BR-035-results"
@@ -21,3 +23,11 @@ path = "docs/research-rounds/BR-035-segmentation-mechanics.md"
 [[evidence]]
 path = "docs/evidence/br035-segmentation-mechanics-results.json"
 sha256 = "12806e221bc93b8400dbe2d950e67ed89b6f2fb396ba7e76b2833fa42e00fed2"
+
+[[tasks]]
+id = "cardiac-masks"
+task_path = ".local/reproduction/cardiac-motion-br035/cardiac-masks/cases/cardiac-masks/task"
+
+[[tasks]]
+id = "cardiac-masks-images"
+task_path = ".local/reproduction/cardiac-motion-br035/cardiac-masks-images/cases/cardiac-masks-images/task"

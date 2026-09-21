@@ -1,0 +1,4290 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-21T05:53:34.485991+00:00",
+  "source_task": "codex://threads/01a0c205-b14e-7e71-9609-c753c1fe24ac",
+  "criterion": "A receiving agent can recover exact prepared inputs, build the environment, execute and evaluate. LLM outputs may be stochastic.",
+  "scope": "All 38 canonical experiment records reconciled; 11 selected core records have maintained reproduction bundles. No new model trials.",
+  "environment": {
+    "host": "macOS-26.6.2-arm64-arm-64bit",
+    "architecture": "arm64",
+    "python": "3.12.13",
+    "host_evaluator": "Python 3.12.13; numpy 2.2.6; scipy 1.15.3",
+    "harbor_available": "0.18.0",
+    "docker": "Existing Colima arm64 runtime; image IDs recorded per control; network disabled during control and method execution."
+  },
+  "summary": {
+    "experiments_reconciled": 38,
+    "source_hashes_verified": 187,
+    "maintained_records": 11,
+    "task_variants": 26,
+    "saved_output_pairs": 61,
+    "fresh_oracle_noop_controls": 52,
+    "fresh_submitted_program_transfers": 7,
+    "bundle_files": 1559,
+    "bundle_bytes": 7059575323,
+    "historical_task_file_hashes_unchanged": 723
+  },
+  "verification_boundary": [
+    "Fresh selected-input materialization; all transferred bundle files verified by size, hash and executable mode.",
+    "Each bundle recovered outside the checkout using only copied declared Git sources and --input-root; scoring used the declared existing evaluator environment on this same machine. No access to historical run paths is required by the portable operations.",
+    "61 saved task-output comparisons and seven saved transfer-output comparisons match; seven frozen submitted programs reexecuted and produced exactly matching scientific metrics. No byte-identity promise for runtime logs or NPZ archive metadata.",
+    "26 oracle and 26 no-op Docker controls produced their expected rewards. These are separate from Harbor attempt-bound qualification controls.",
+    "723 original task file hashes remain unchanged. Two new BR-024 native replay observations exercise append-only collection.",
+    "Original Dockerfiles retain base tags; tested image IDs are pinned in this receipt, not a claim that future base tags or another architecture are identical.",
+    "Inspection covers task text/input inventory and existing group stories; raw viewer regeneration remains outside this core recipe backfill.",
+    "Raw/prepared data stay outside Git. Complete local bundles are usable handoffs, not public data releases or remote availability guarantees."
+  ],
+  "implementation_corrections": [
+    {
+      "issue": "New BR-042 path adapter initially passed a prediction path rather than its answer directory.",
+      "resolution": "Fixed new adapters; affected controls and replays passed. Historical scorers and model outcomes unchanged."
+    },
+    {
+      "issue": "Earliest BR-016 n01 snapshot lacked a verifier Dockerfile.",
+      "resolution": "New recipe adds the verified v2 dependency/runtime Dockerfile; original scorer, test.sh and historical source snapshot preserved."
+    },
+    {
+      "issue": "A generated provenance JSON copy initially had a Markdown header.",
+      "resolution": "Restored valid source JSON, rebuilt the landmark bundle into a fresh destination and repeated outside-checkout verification and scoring. Superseded pre-commit draft bundle retained locally at runs/support-backfill-20260921/final/anatomical-landmarks-br040; use the corrected receipt path."
+    }
+  ],
+  "experiments": [
+    {
+      "experiment_id": "anatomical-landmarks-br036",
+      "group_id": "anatomical-landmarks",
+      "record": "groups/anatomical-landmarks/experiments/br036/experiment.toml",
+      "protocol": "groups/anatomical-landmarks/experiments/br036/protocol.md",
+      "protocol_sha256": "5f0f0e632bc390c0437801fb615c40e26a05e96eac7d7a4d281fd88e8deaa93b",
+      "finding_ids": [
+        "landmarks-availability-and-localization"
+      ],
+      "attempt_records": 12,
+      "evaluation_records": 12,
+      "sources": [
+        {
+          "path": "docs/evidence/br036-ct-source-inventory.json",
+          "sha256": "0065f2ca4b33fd9bfa844882d37e273a48bfa1311113aa3cfd0405e105cc8b04",
+          "observed_sha256": "0065f2ca4b33fd9bfa844882d37e273a48bfa1311113aa3cfd0405e105cc8b04",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br036-curation.json",
+          "sha256": "5b5a4ae53c68ac6a4a3f7d4ef5ee7616ab4f30570a0ea9538d40681bab6fc4fd",
+          "observed_sha256": "5b5a4ae53c68ac6a4a3f7d4ef5ee7616ab4f30570a0ea9538d40681bab6fc4fd",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br036-distance-sensitivity.json",
+          "sha256": "153750f9916a564813b9157c5ab6a3cb4e7c2aa5fe9b988ec1281855dec24c25",
+          "observed_sha256": "153750f9916a564813b9157c5ab6a3cb4e7c2aa5fe9b988ec1281855dec24c25",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br036-expanded-curation.json",
+          "sha256": "da26ea0f852baf7c654a99428872e4f602269308a4ef821f0870f298d517bbfe",
+          "observed_sha256": "da26ea0f852baf7c654a99428872e4f602269308a4ef821f0870f298d517bbfe",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br036-expanded-freeze.json",
+          "sha256": "7ee579c67fc26c97ea9757cab03ebe71fc41ffa762d03576c0b0a12548545c3c",
+          "observed_sha256": "7ee579c67fc26c97ea9757cab03ebe71fc41ffa762d03576c0b0a12548545c3c",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br036-freeze.json",
+          "sha256": "e57669d0c3e8ef52aff6b7cc8f2c75c9daa8ee9339a134ce24352475d8392b7b",
+          "observed_sha256": "e57669d0c3e8ef52aff6b7cc8f2c75c9daa8ee9339a134ce24352475d8392b7b",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br036-results.json",
+          "sha256": "425bae1b73e2c5803ae450a940bf424e60e78790d65cbe27664b723ff54bb32c",
+          "observed_sha256": "425bae1b73e2c5803ae450a940bf424e60e78790d65cbe27664b723ff54bb32c",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br036-trace-review.json",
+          "sha256": "ffba25a4bf994c545c763b8afdd2a461f16af3576ce9fbc11086eb3de25c601e",
+          "observed_sha256": "ffba25a4bf994c545c763b8afdd2a461f16af3576ce9fbc11086eb3de25c601e",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br036-visibility-controls.json",
+          "sha256": "606595f2bfba5c85f095354563d2b08a694621a7a9b8caa66f3c03ee9168ba32",
+          "observed_sha256": "606595f2bfba5c85f095354563d2b08a694621a7a9b8caa66f3c03ee9168ba32",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "anatomical-landmarks-br038",
+      "group_id": "anatomical-landmarks",
+      "record": "groups/anatomical-landmarks/experiments/br038/experiment.toml",
+      "protocol": "groups/anatomical-landmarks/experiments/br038/protocol.md",
+      "protocol_sha256": "f5f807909d199e12ec8ef49d226cede749b0a4cfd653781493be984affb62e00",
+      "finding_ids": [
+        "landmarks-availability-and-localization"
+      ],
+      "attempt_records": 6,
+      "evaluation_records": 6,
+      "sources": [
+        {
+          "path": "docs/evidence/br038-freeze.json",
+          "sha256": "fc3e479c742019e26630f54687be1b5ffa281a7acf3397d578daa55c64f1c774",
+          "observed_sha256": "fc3e479c742019e26630f54687be1b5ffa281a7acf3397d578daa55c64f1c774",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br038-mri-overlap.json",
+          "sha256": "77ee9481adba18b968605d91c8ff5228c613edaa50e90614f4377c05344a51e2",
+          "observed_sha256": "77ee9481adba18b968605d91c8ff5228c613edaa50e90614f4377c05344a51e2",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br038-original-audit.json",
+          "sha256": "012aeec2111b2fac18dfe2e90626d5078048c018baefee6af3b8b00903912133",
+          "observed_sha256": "012aeec2111b2fac18dfe2e90626d5078048c018baefee6af3b8b00903912133",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br038-original-image-payloads.json",
+          "sha256": "58dbfd640dcfc3644237241a3ad855dda2184f5b68a6537e18285a0d1366c792",
+          "observed_sha256": "58dbfd640dcfc3644237241a3ad855dda2184f5b68a6537e18285a0d1366c792",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br038-results.json",
+          "sha256": "fc5d78297040ae1c89383ffc09309095739a08b9f85de7ed50304a4c3a634527",
+          "observed_sha256": "fc5d78297040ae1c89383ffc09309095739a08b9f85de7ed50304a4c3a634527",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br038-validation.json",
+          "sha256": "b5160d661388401effa5181a90680f2f9f0dd1baaae4a555ccc5df5cc3669030",
+          "observed_sha256": "b5160d661388401effa5181a90680f2f9f0dd1baaae4a555ccc5df5cc3669030",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "anatomical-landmarks-br039",
+      "group_id": "anatomical-landmarks",
+      "record": "groups/anatomical-landmarks/experiments/br039/experiment.toml",
+      "protocol": "groups/anatomical-landmarks/experiments/br039/protocol.md",
+      "protocol_sha256": "7768376e64ec7e79b4f0383f22c9a4a9de86081fe91f5e271ab55c147fa05a0c",
+      "finding_ids": [
+        "landmarks-availability-and-localization"
+      ],
+      "attempt_records": 6,
+      "evaluation_records": 6,
+      "sources": [
+        {
+          "path": "docs/evidence/br039-curation.json",
+          "sha256": "76adf5f784c8f9d7ef5ffadffd070085123674eb719f13be1477a6bbf0869a3d",
+          "observed_sha256": "76adf5f784c8f9d7ef5ffadffd070085123674eb719f13be1477a6bbf0869a3d",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br039-freeze.json",
+          "sha256": "be1d522ecf221e0c2294a362a579488df616f431650293851c42cc633a968727",
+          "observed_sha256": "be1d522ecf221e0c2294a362a579488df616f431650293851c42cc633a968727",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br039-results.json",
+          "sha256": "802fd6de4d2a2195e76552f90b4344b19de39eb2551117e461969b49ab41ebc1",
+          "observed_sha256": "802fd6de4d2a2195e76552f90b4344b19de39eb2551117e461969b49ab41ebc1",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br039-trace-review.json",
+          "sha256": "80bdbfcd76182c34a379edbf8e54317ed92d017efad090bf7999b208d55c9453",
+          "observed_sha256": "80bdbfcd76182c34a379edbf8e54317ed92d017efad090bf7999b208d55c9453",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br039-validation.json",
+          "sha256": "f1a614edf86f28bd99d3fe4c5a7240bfc04e2423df9d9a22dfdb6b4e6b58db8c",
+          "observed_sha256": "f1a614edf86f28bd99d3fe4c5a7240bfc04e2423df9d9a22dfdb6b4e6b58db8c",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "anatomical-landmarks-br040",
+      "group_id": "anatomical-landmarks",
+      "record": "groups/anatomical-landmarks/experiments/br040/experiment.toml",
+      "protocol": "groups/anatomical-landmarks/experiments/br040/protocol.md",
+      "protocol_sha256": "608ed284a6e99e543c72db441d35cdded5c39d24d0e2d83d77847b45480b1957",
+      "finding_ids": [
+        "landmarks-availability-and-localization"
+      ],
+      "attempt_records": 3,
+      "evaluation_records": 15,
+      "sources": [
+        {
+          "path": "docs/evidence/br040-config-audit.json",
+          "sha256": "4cb553ff218950a7bad9ca03ea1197c75243462e36f8466883c38083a73b2036",
+          "observed_sha256": "4cb553ff218950a7bad9ca03ea1197c75243462e36f8466883c38083a73b2036",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br040-ct-diagnostic.json",
+          "sha256": "c678c23dbc93b942d1dbd1ee660ebaf186390254db7b2b0685c2314f2082f937",
+          "observed_sha256": "c678c23dbc93b942d1dbd1ee660ebaf186390254db7b2b0685c2314f2082f937",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br040-plan.json",
+          "sha256": "6ed5f71d9e8c8f1e3d94aded67a45622f2c275ddb7b2183149db14c39a545e17",
+          "observed_sha256": "6ed5f71d9e8c8f1e3d94aded67a45622f2c275ddb7b2183149db14c39a545e17",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br040-results.json",
+          "sha256": "dc9c8da07ad0948e8813f74188f87776c872e5619b2a1cf38019897731d1887b",
+          "observed_sha256": "dc9c8da07ad0948e8813f74188f87776c872e5619b2a1cf38019897731d1887b",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br040-source-audit.json",
+          "sha256": "74937bc75d4b24afc10e0489b2f661b12457f01410cd6732811b8313722700f5",
+          "observed_sha256": "74937bc75d4b24afc10e0489b2f661b12457f01410cd6732811b8313722700f5",
+          "matches": true
+        }
+      ],
+      "support_scope": "maintained selected recipe",
+      "package": {
+        "experiment": "anatomical-landmarks-br040",
+        "bundle": "runs/support-backfill-20260921/final-corrected/anatomical-landmarks-br040",
+        "bundle_manifest_sha256": "32bef181f64996d883575cec81630de47c107ef69988216563120c67c17d7ff0",
+        "recipe": "groups/anatomical-landmarks/experiments/br040/reproduction/manifest.json",
+        "recipe_sha256": "c2b82be72488da3627a89b566ebffc0f67740e79a7074255d73f548a8a3e4890",
+        "runner_sha256": "46ffff1756eb169581d6e8c93469e8feef6ff1b71129aa7012cc5c5c30c3e40e",
+        "files": 72,
+        "bytes": 1970955382,
+        "cases": [
+          "ct-full",
+          "ct-partial",
+          "mri32-full"
+        ],
+        "saved_replays": 6,
+        "method_transfers": [],
+        "original_task_files_unchanged": 45,
+        "checks": [
+          {
+            "operation": "verify",
+            "receipt": "runs/support-backfill-20260921/anatomical-landmarks-br040-corrected-independent-verify.json",
+            "sha256": "09153639baf97966ab9f8ef865bf01f24dd7ff60de2120a2b9495c85c72ddfb8"
+          },
+          {
+            "operation": "replay",
+            "receipt": "runs/support-backfill-20260921/anatomical-landmarks-br040-corrected-independent-replay.json",
+            "sha256": "a452d29a876e330ccbf2679ca42a6898636b9b11deb20058eaf23386ba3dec87"
+          }
+        ],
+        "export_record": "export-32bef181f64996d883575cec"
+      },
+      "saved_output_verification": [
+        {
+          "case": "ct-full",
+          "attempt_id": "attempt-401a1f3ae78768630da4d284",
+          "source_evaluation": "landmarks-br040-ct-full-terra-high",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "72e1b83b3302a6c6a7278a4ee611275e9d00179fcd0e4c7c797e93d0a027be4e"
+        },
+        {
+          "case": "ct-full",
+          "attempt_id": "attempt-dcc9b18ee674dd5dcb99be00",
+          "source_evaluation": "landmarks-br040-ct-full-sol-xhigh",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "9c10c1ef3e55cf8721c79ad76003bdb559be5121953e35c76d63780daec9f306"
+        },
+        {
+          "case": "ct-partial",
+          "attempt_id": "attempt-824eaf2afb12f840a722b998",
+          "source_evaluation": "landmarks-br040-ct-partial-terra-high",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "b709b1c11cbfaa82cbc44854a6aec48a33bf526f04a46a731ff36343254019cb"
+        },
+        {
+          "case": "ct-partial",
+          "attempt_id": "attempt-fa326c40eb125e7ca1b28f60",
+          "source_evaluation": "landmarks-br040-ct-partial-sol-xhigh",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "550674182708d86f05770e4cbb1de0b94be63469ff33b466a9064f4320d82164"
+        },
+        {
+          "case": "mri32-full",
+          "attempt_id": "attempt-3bd0c23138df59bc288d0451",
+          "source_evaluation": "landmarks-br040-mri32-full-terra-high",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "0463510748e706da5561e4b708ed989114250c0a1ad2186afda8bdfdbedc8bb9"
+        },
+        {
+          "case": "mri32-full",
+          "attempt_id": "attempt-cd5a1ec8b5694e739bc3c409",
+          "source_evaluation": "landmarks-br040-mri32-full-sol-xhigh",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "33820fdf16181efab5ac654a59930a2a2dfeabb21fb23b2bff0de64c38c08fbd"
+        }
+      ],
+      "container_verification": {
+        "receipt": "runs/support-backfill-20260921/anatomical-landmarks-br040-container-controls.json",
+        "sha256": "1006efd74e1028ac4656e20bbecd0b559dabb8de71261f5e517501c44555c40f",
+        "manifest_sha256": "c81b37edf53d98c1d56ea82591c627997d5435da310494bb3b4f15b9352d449d",
+        "runner_sha256": "05498fea90cd94f3aa9a4e66a7fa21e6c3a67a150939a965eae13567cdd0d9dc",
+        "scope": "Fresh Docker oracle/no-op execution; no model attempt",
+        "controls": [
+          {
+            "case": "ct-full",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:4393ece4017032e1e46ddce47625b6635b5333a6b506596a376abdc09e528aca",
+              "verifier": "sha256:eebab2461e2b3afa2e8596cc69b5ced6115c722e48f676e1e0961eb0575cbdd3"
+            }
+          },
+          {
+            "case": "ct-full",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:4393ece4017032e1e46ddce47625b6635b5333a6b506596a376abdc09e528aca",
+              "verifier": "sha256:eebab2461e2b3afa2e8596cc69b5ced6115c722e48f676e1e0961eb0575cbdd3"
+            }
+          },
+          {
+            "case": "ct-partial",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:a0b6acbab8d09c004b5db07799f50392225addb3c33e3fa18fddffcd565f3d4f",
+              "verifier": "sha256:22f4fb964f97936a57b858fa6939fa0487a43054e8bcfaf51c1668a62985da46"
+            }
+          },
+          {
+            "case": "ct-partial",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:a0b6acbab8d09c004b5db07799f50392225addb3c33e3fa18fddffcd565f3d4f",
+              "verifier": "sha256:22f4fb964f97936a57b858fa6939fa0487a43054e8bcfaf51c1668a62985da46"
+            }
+          },
+          {
+            "case": "mri32-full",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:e9eef6761c317058ce4690bdade4a004ee1d7dc0c4710f815f3e1fd4a1c69438",
+              "verifier": "sha256:08b386b81bd1c3696d4365afa56a1eed808cb77c12515500df327f65c43453ba"
+            }
+          },
+          {
+            "case": "mri32-full",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:e9eef6761c317058ce4690bdade4a004ee1d7dc0c4710f815f3e1fd4a1c69438",
+              "verifier": "sha256:08b386b81bd1c3696d4365afa56a1eed808cb77c12515500df327f65c43453ba"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "experiment_id": "anatomy-audit-br003",
+      "group_id": "anatomy-audit",
+      "record": "groups/anatomy-audit/experiments/br003/experiment.toml",
+      "protocol": "groups/anatomy-audit/experiments/br003/protocol.md",
+      "protocol_sha256": "04cffd13d22531aaf705c798ecd9b236242c4e6229764f55f11c1d8a37b9bc40",
+      "finding_ids": [
+        "anatomy-audit-current-synthesis"
+      ],
+      "attempt_records": 6,
+      "evaluation_records": 6,
+      "sources": [
+        {
+          "path": "docs/evidence/br003-svg-author-controls.json",
+          "sha256": "dd6082ad730698e4d01d1312a3e22468f9da7ba641ac8587cfc9b372784229cb",
+          "observed_sha256": "dd6082ad730698e4d01d1312a3e22468f9da7ba641ac8587cfc9b372784229cb",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br003-audit-author-controls.json",
+          "sha256": "909da354a59d0cdedf9a7097dae9c9a0836311bbb7cac64a89130a22a3fbf2fa",
+          "observed_sha256": "909da354a59d0cdedf9a7097dae9c9a0836311bbb7cac64a89130a22a3fbf2fa",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br003-medical-source.json",
+          "sha256": "cf71397c0956bd23b37711a8dd7cfe525737f4ebcb898c28ebd0062dac0d352a",
+          "observed_sha256": "cf71397c0956bd23b37711a8dd7cfe525737f4ebcb898c28ebd0062dac0d352a",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br003-source-audit.json",
+          "sha256": "5c1ec63c28d7a3dcd8c81951e736d5a58037bc3623946e73bc06fa8b3cccc5c8",
+          "observed_sha256": "5c1ec63c28d7a3dcd8c81951e736d5a58037bc3623946e73bc06fa8b3cccc5c8",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br003-auditor-freeze.json",
+          "sha256": "d8d7192c51d542d14a85dc2dcd19e5ef708b352dce030d8d4b94fcb2b079a18d",
+          "observed_sha256": "d8d7192c51d542d14a85dc2dcd19e5ef708b352dce030d8d4b94fcb2b079a18d",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br003-svg-provenance-audit.json",
+          "sha256": "0ac33ece6914fd7fbbbbc9dff12c3fa34a2c11fa7489df5a4a34119a4012808d",
+          "observed_sha256": "0ac33ece6914fd7fbbbbc9dff12c3fa34a2c11fa7489df5a4a34119a4012808d",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "anatomy-audit-br004",
+      "group_id": "anatomy-audit",
+      "record": "groups/anatomy-audit/experiments/br004/experiment.toml",
+      "protocol": "groups/anatomy-audit/experiments/br004/protocol.md",
+      "protocol_sha256": "66c4de38d4257af3b05705c039880dac5f9718651ff773b106d259a636a22a13",
+      "finding_ids": [
+        "anatomy-audit-current-synthesis"
+      ],
+      "attempt_records": 39,
+      "evaluation_records": 39,
+      "sources": [
+        {
+          "path": "docs/evidence/br004-anatomy-audit-v1-freeze.json",
+          "sha256": "f0c772e8b6651d3c4e8257a8b3e2e55054002643789e8d4c31e35ad81bd131ec",
+          "observed_sha256": "f0c772e8b6651d3c4e8257a8b3e2e55054002643789e8d4c31e35ad81bd131ec",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-anatomy-author-controls.json",
+          "sha256": "767806f57ed64df7920e8a917c463ec18fe991858a7a7d48db5481b0279cd9d7",
+          "observed_sha256": "767806f57ed64df7920e8a917c463ec18fe991858a7a7d48db5481b0279cd9d7",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-anatomy-round-summary.json",
+          "sha256": "24f900e877ebf2104b9aca46c48b295442f101161bd7b5c3202f5719782b7387",
+          "observed_sha256": "24f900e877ebf2104b9aca46c48b295442f101161bd7b5c3202f5719782b7387",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-anatomy-saved-baseline.json",
+          "sha256": "2b25f6adfa7f3d7dd425f9627a28238cdaaf6903fb4598e48a6007578b039070",
+          "observed_sha256": "2b25f6adfa7f3d7dd425f9627a28238cdaaf6903fb4598e48a6007578b039070",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-anatomy-source-provenance.json",
+          "sha256": "f4d6014d24a22c6c136ab236360d1e5e60e1e437591ad560435c8e4f8854f438",
+          "observed_sha256": "f4d6014d24a22c6c136ab236360d1e5e60e1e437591ad560435c8e4f8854f438",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-anatomy-terra-trace-summary.json",
+          "sha256": "98400348abcac5b9edc0c9f8aa5bfdf74ced5c125a2562eb3f981f5de9cda085",
+          "observed_sha256": "98400348abcac5b9edc0c9f8aa5bfdf74ced5c125a2562eb3f981f5de9cda085",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-saved-auditor-check.json",
+          "sha256": "ed776f9a5d51ce77e2993a903fbc60d0ed5a0f61260a8b3d9d954756dfae2e8f",
+          "observed_sha256": "ed776f9a5d51ce77e2993a903fbc60d0ed5a0f61260a8b3d9d954756dfae2e8f",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-single-case-32-review.json",
+          "sha256": "707ab41e7dd04d735259e676d41648adf114d9fb7fcfd46492e3e4a44a7a0e96",
+          "observed_sha256": "707ab41e7dd04d735259e676d41648adf114d9fb7fcfd46492e3e4a44a7a0e96",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-single-case-61-review.json",
+          "sha256": "90fa8051a3e0a705b86d1769a46ace73dfa3ac7121474e18858f44d9bd9cb9c6",
+          "observed_sha256": "90fa8051a3e0a705b86d1769a46ace73dfa3ac7121474e18858f44d9bd9cb9c6",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-single-case-83-review.json",
+          "sha256": "3729613296cf3e921451f3a1ff0b08d95072814637c249e7d37fbb8bc8a1116f",
+          "observed_sha256": "3729613296cf3e921451f3a1ff0b08d95072814637c249e7d37fbb8bc8a1116f",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-single-metric-contract.json",
+          "sha256": "8adabdbe78796b19fc5c99b71c3d301a466f3e5dedc079d909d3b1483804aa34",
+          "observed_sha256": "8adabdbe78796b19fc5c99b71c3d301a466f3e5dedc079d909d3b1483804aa34",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-single-patient-freeze.json",
+          "sha256": "3a59e052d0972371eca41d8995ed50ac2867f5bbedd87a6e6483d8cf0b7c01bd",
+          "observed_sha256": "3a59e052d0972371eca41d8995ed50ac2867f5bbedd87a6e6483d8cf0b7c01bd",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-single-patient-reviews.json",
+          "sha256": "da3be70f383a0e389a4898abe6eaaaeeb9fbfbd8990cbf27fbd0309a4e8d3e3d",
+          "observed_sha256": "da3be70f383a0e389a4898abe6eaaaeeb9fbfbd8990cbf27fbd0309a4e8d3e3d",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-single-patient-summary.json",
+          "sha256": "eab9aabcddde6d26c4cdbde193be178a82937f822d16c46df9b577bc5be0021d",
+          "observed_sha256": "eab9aabcddde6d26c4cdbde193be178a82937f822d16c46df9b577bc5be0021d",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-sol-author-controls.json",
+          "sha256": "9524b4bbcc32a1249a9234e82ddc6dd2b31440238bc35926dfdde30c9bc41119",
+          "observed_sha256": "9524b4bbcc32a1249a9234e82ddc6dd2b31440238bc35926dfdde30c9bc41119",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-sol-case-32-review.json",
+          "sha256": "5e3324c398355289e57e2fa176327b69f286435f01e62de495278d660b37bb9d",
+          "observed_sha256": "5e3324c398355289e57e2fa176327b69f286435f01e62de495278d660b37bb9d",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-sol-case-46-review.json",
+          "sha256": "33dc9f1c080cd7749b99d53e48152514e890aef56409395cbfb7a17fb4555b87",
+          "observed_sha256": "33dc9f1c080cd7749b99d53e48152514e890aef56409395cbfb7a17fb4555b87",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-sol-case-61-review.json",
+          "sha256": "28375a577bada9ce0cd84293a0d036b145b16e69facfecb8c902fcf058573b61",
+          "observed_sha256": "28375a577bada9ce0cd84293a0d036b145b16e69facfecb8c902fcf058573b61",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-sol-case-83-review.json",
+          "sha256": "173929a63c6df44509809da65b01b7db006c9c0e7b63778ce7621faf4c610bee",
+          "observed_sha256": "173929a63c6df44509809da65b01b7db006c9c0e7b63778ce7621faf4c610bee",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-sol-freeze.json",
+          "sha256": "d28c40ca3c93896ad6abb4696bb71821a141bfaf0729e43349c6d88a9dae888b",
+          "observed_sha256": "d28c40ca3c93896ad6abb4696bb71821a141bfaf0729e43349c6d88a9dae888b",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-sol-reviews.json",
+          "sha256": "cfcdc127874d069836aa47ad536cb882f141d2db7e3fdd682a44235fb901dfa2",
+          "observed_sha256": "cfcdc127874d069836aa47ad536cb882f141d2db7e3fdd682a44235fb901dfa2",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-sol-scope-review.json",
+          "sha256": "ac765b0402e577cc27f62bb34ea97c39f9e1315090a30a5f3da3964fbff65918",
+          "observed_sha256": "ac765b0402e577cc27f62bb34ea97c39f9e1315090a30a5f3da3964fbff65918",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br004-sol-summary.json",
+          "sha256": "8522b0f12131ac2a027d881866216eb192027c30370796a6f1d8eee6f1e6f34a",
+          "observed_sha256": "8522b0f12131ac2a027d881866216eb192027c30370796a6f1d8eee6f1e6f34a",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "anatomy-audit-br010",
+      "group_id": "anatomy-audit",
+      "record": "groups/anatomy-audit/experiments/br010/experiment.toml",
+      "protocol": "groups/anatomy-audit/experiments/br010/protocol.md",
+      "protocol_sha256": "eab5a23827493b33197a38c94217426f0c1937ca2682ee96345049b43e960e26",
+      "finding_ids": [
+        "anatomy-audit-current-synthesis"
+      ],
+      "attempt_records": 0,
+      "evaluation_records": 0,
+      "sources": [
+        {
+          "path": "docs/evidence/br010-mask-reasoning-audit.json",
+          "sha256": "1ff9d57e9e2f8eb8f443346935058ca7da051be47c45b94fb0461567a54ea103",
+          "observed_sha256": "1ff9d57e9e2f8eb8f443346935058ca7da051be47c45b94fb0461567a54ea103",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "anatomy-audit-br011",
+      "group_id": "anatomy-audit",
+      "record": "groups/anatomy-audit/experiments/br011/experiment.toml",
+      "protocol": "groups/anatomy-audit/experiments/br011/protocol.md",
+      "protocol_sha256": "d690b27e373e54375ff9f3e47fb0171a3ea9d661f403d0d07932af17632cede7",
+      "finding_ids": [
+        "anatomy-audit-current-synthesis"
+      ],
+      "attempt_records": 0,
+      "evaluation_records": 0,
+      "sources": [
+        {
+          "path": "docs/evidence/br011-author-screen.json",
+          "sha256": "2437cfda866c842d8604163ca287feef7b4293f6ba6482f01ea7558cde2e60b3",
+          "observed_sha256": "2437cfda866c842d8604163ca287feef7b4293f6ba6482f01ea7558cde2e60b3",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br011-grader-controls.json",
+          "sha256": "453169ab11de9f3638fece96a6b29bd64f6e1c9c2c69070cb1b78d99da859fcb",
+          "observed_sha256": "453169ab11de9f3638fece96a6b29bd64f6e1c9c2c69070cb1b78d99da859fcb",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "anatomy-audit-br012",
+      "group_id": "anatomy-audit",
+      "record": "groups/anatomy-audit/experiments/br012/experiment.toml",
+      "protocol": "groups/anatomy-audit/experiments/br012/protocol.md",
+      "protocol_sha256": "25556b9f782ad7968c7a3a4ca2427a5795d966974b5b0dc87603e5a81513dfec",
+      "finding_ids": [
+        "anatomy-audit-current-synthesis"
+      ],
+      "attempt_records": 0,
+      "evaluation_records": 0,
+      "sources": [
+        {
+          "path": "docs/evidence/br012-curation.json",
+          "sha256": "7033415344646973c69fa799d183bcfbf0ef519b588e3f65e9c778f3fab8b536",
+          "observed_sha256": "7033415344646973c69fa799d183bcfbf0ef519b588e3f65e9c778f3fab8b536",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "anatomy-audit-br013",
+      "group_id": "anatomy-audit",
+      "record": "groups/anatomy-audit/experiments/br013/experiment.toml",
+      "protocol": "groups/anatomy-audit/experiments/br013/protocol.md",
+      "protocol_sha256": "a6cc5f776c5a864b5e7aa9a01d4f7868acabced22522a84d724c13aedd3e2134",
+      "finding_ids": [
+        "anatomy-audit-current-synthesis"
+      ],
+      "attempt_records": 10,
+      "evaluation_records": 10,
+      "sources": [
+        {
+          "path": "docs/evidence/br013-abdominal-screen.json",
+          "sha256": "62a003313ef22dcce3471d4553917e5a43e980c0616c54fdf8c0b5c79e725065",
+          "observed_sha256": "62a003313ef22dcce3471d4553917e5a43e980c0616c54fdf8c0b5c79e725065",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br013-freeze.json",
+          "sha256": "1fccba1ef4b6df009cdbf2a46f92bc95f5569c2d339ebf7819c5901d6c07cc9c",
+          "observed_sha256": "1fccba1ef4b6df009cdbf2a46f92bc95f5569c2d339ebf7819c5901d6c07cc9c",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br013-original-mask-screen.json",
+          "sha256": "bba5e81d7201334ef68a1ef136b8daabea41d1fe78d45dfccb6504b230e5c5b9",
+          "observed_sha256": "bba5e81d7201334ef68a1ef136b8daabea41d1fe78d45dfccb6504b230e5c5b9",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br013-results.json",
+          "sha256": "460f5ec547247620204d7baeb25748d5c507707ed85b59947d697a415345748f",
+          "observed_sha256": "460f5ec547247620204d7baeb25748d5c507707ed85b59947d697a415345748f",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br013-reviews.json",
+          "sha256": "4794c77b420f9a66e026186c3e67adfe1eeaaa124468e33ad0922135d8bd0049",
+          "observed_sha256": "4794c77b420f9a66e026186c3e67adfe1eeaaa124468e33ad0922135d8bd0049",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br013-source-review.json",
+          "sha256": "dce98efd2a2e8aacbe5baadc1ddb9e4b8ab2be381b3d6980f045e3fc81ede624",
+          "observed_sha256": "dce98efd2a2e8aacbe5baadc1ddb9e4b8ab2be381b3d6980f045e3fc81ede624",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "anatomy-audit-br014",
+      "group_id": "anatomy-audit",
+      "record": "groups/anatomy-audit/experiments/br014/experiment.toml",
+      "protocol": "groups/anatomy-audit/experiments/br014/protocol.md",
+      "protocol_sha256": "5266e4c42ce6a14a7ca18a084d10a479bb29565919c6f04d3141504f0d34807c",
+      "finding_ids": [
+        "anatomy-audit-current-synthesis"
+      ],
+      "attempt_records": 6,
+      "evaluation_records": 6,
+      "sources": [
+        {
+          "path": "docs/evidence/br014-abdomen-f01-freeze.json",
+          "sha256": "7334fa9be694a457eb85b10833725a4d821d008621b75111a5d2d23434d2a28a",
+          "observed_sha256": "7334fa9be694a457eb85b10833725a4d821d008621b75111a5d2d23434d2a28a",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br014-abdomen-i01-freeze.json",
+          "sha256": "313b34f111a1de4e7a317f8bb805d32ccba268532a8bc086317107faa0102c02",
+          "observed_sha256": "313b34f111a1de4e7a317f8bb805d32ccba268532a8bc086317107faa0102c02",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br014-component-screen.json",
+          "sha256": "e6c9898091a5621c11c196883132a47087ef4aa9e7b063ddee692c85d718e667",
+          "observed_sha256": "e6c9898091a5621c11c196883132a47087ef4aa9e7b063ddee692c85d718e667",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br014-results.json",
+          "sha256": "b7ef7a8d8eafbaeffeca91ac7f11c6bd5cfd34b3c2d46deb7610300c67c4c5da",
+          "observed_sha256": "b7ef7a8d8eafbaeffeca91ac7f11c6bd5cfd34b3c2d46deb7610300c67c4c5da",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br014-reviews.json",
+          "sha256": "4e0dedb30c2ff650dc08ef99fed35dd703eb0ad440744605ebcd59d5c7bf1548",
+          "observed_sha256": "4e0dedb30c2ff650dc08ef99fed35dd703eb0ad440744605ebcd59d5c7bf1548",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "anatomy-audit-br015",
+      "group_id": "anatomy-audit",
+      "record": "groups/anatomy-audit/experiments/br015/experiment.toml",
+      "protocol": "groups/anatomy-audit/experiments/br015/protocol.md",
+      "protocol_sha256": "3ef0496b77be579b7bd72585a179086f3d10351475000a4d1de03f2435ba2be6",
+      "finding_ids": [
+        "anatomy-audit-current-synthesis"
+      ],
+      "attempt_records": 6,
+      "evaluation_records": 6,
+      "sources": [
+        {
+          "path": "docs/evidence/br015-abdomen-c01-freeze.json",
+          "sha256": "86a6b99a11d6453831384abfb1b7be84595d5b88cfc341c2221a4ba4ef28d98d",
+          "observed_sha256": "86a6b99a11d6453831384abfb1b7be84595d5b88cfc341c2221a4ba4ef28d98d",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br015-abdomen-v01-freeze.json",
+          "sha256": "5d48863d947ec8f3b7fd9bc34faf4d712c9920d4907dd44a84f9244329a2ee56",
+          "observed_sha256": "5d48863d947ec8f3b7fd9bc34faf4d712c9920d4907dd44a84f9244329a2ee56",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br015-results.json",
+          "sha256": "cb7580f4f29ea9eab69ea8a651a1c08247037ddc6c9673d7f4a14a3a6d4b2970",
+          "observed_sha256": "cb7580f4f29ea9eab69ea8a651a1c08247037ddc6c9673d7f4a14a3a6d4b2970",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br015-reviews.json",
+          "sha256": "f8aeb8108b4c7ece88629007a23842b57207c70675715028b4397462d7acc7c0",
+          "observed_sha256": "f8aeb8108b4c7ece88629007a23842b57207c70675715028b4397462d7acc7c0",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "anatomy-audit-br017",
+      "group_id": "anatomy-audit",
+      "record": "groups/anatomy-audit/experiments/br017/experiment.toml",
+      "protocol": "groups/anatomy-audit/experiments/br017/protocol.md",
+      "protocol_sha256": "be4236df1ca52f6d95cce60cbe4e90c3351532a951c9e59d3893436a7dac8303",
+      "finding_ids": [
+        "anatomy-audit-current-synthesis"
+      ],
+      "attempt_records": 12,
+      "evaluation_records": 12,
+      "sources": [
+        {
+          "path": "docs/evidence/br017-abdomen-f01-freeze.json",
+          "sha256": "a0ff7df4f9afbb4ed55ab82cb48191af7faa31a2673db4e1a4d4505376e05487",
+          "observed_sha256": "a0ff7df4f9afbb4ed55ab82cb48191af7faa31a2673db4e1a4d4505376e05487",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br017-abdomen-m01-freeze.json",
+          "sha256": "4910cb06c6e4eb0684a0679ff0bc4a830aa758b6a75738c03617ff94e520d980",
+          "observed_sha256": "4910cb06c6e4eb0684a0679ff0bc4a830aa758b6a75738c03617ff94e520d980",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br017-abdomen-m02-freeze.json",
+          "sha256": "b43c872900d0437637ada6582f74856be4fb965a629039f900aa7369c3978677",
+          "observed_sha256": "b43c872900d0437637ada6582f74856be4fb965a629039f900aa7369c3978677",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br017-abdomen-n01-freeze.json",
+          "sha256": "beaf0e5d8c9e0dc2e933f57fb1c770f620079165be08fb04a8f02214b977b733",
+          "observed_sha256": "beaf0e5d8c9e0dc2e933f57fb1c770f620079165be08fb04a8f02214b977b733",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br017-audit.json",
+          "sha256": "e178e84ba4eeea849efe4abd2e9cc555013e4658766a4be75e46e1169251d4ec",
+          "observed_sha256": "e178e84ba4eeea849efe4abd2e9cc555013e4658766a4be75e46e1169251d4ec",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br017-m02-review.json",
+          "sha256": "33abce7f0d182a022a252e121c968323f9ad345050d0c83ff5132345d06978bf",
+          "observed_sha256": "33abce7f0d182a022a252e121c968323f9ad345050d0c83ff5132345d06978bf",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br017-results.json",
+          "sha256": "1c021354010798acb1961c19d42be628ffd0745dedff5057c33f0b7fe2817a49",
+          "observed_sha256": "1c021354010798acb1961c19d42be628ffd0745dedff5057c33f0b7fe2817a49",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br017-reviews.json",
+          "sha256": "529dc43b1966aabd7372232bb0b9c297207bd4ee3c9e22592d17cb7dbceac681",
+          "observed_sha256": "529dc43b1966aabd7372232bb0b9c297207bd4ee3c9e22592d17cb7dbceac681",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br017-screen.json",
+          "sha256": "73732a5900187449b66454cbc7ceb73e03aa696dff607c19404ca4e599bae784",
+          "observed_sha256": "73732a5900187449b66454cbc7ceb73e03aa696dff607c19404ca4e599bae784",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br017-trace-index.json",
+          "sha256": "b512bf57a2c55a8d779564236ece3f853d6d5027d66381ec7c7a4faccca887d8",
+          "observed_sha256": "b512bf57a2c55a8d779564236ece3f853d6d5027d66381ec7c7a4faccca887d8",
+          "matches": true
+        }
+      ],
+      "support_scope": "maintained selected recipe",
+      "package": {
+        "experiment": "anatomy-audit-br017",
+        "bundle": "runs/support-backfill-20260921/final/anatomy-audit-br017",
+        "bundle_manifest_sha256": "4e4e06c3ce26f69ef68dcd869819a4112294e9c31b620f1cf27f03f7f9c9a9d3",
+        "recipe": "groups/anatomy-audit/experiments/br017/reproduction/manifest.json",
+        "recipe_sha256": "dd798c894af87e39533f897f19ef08dfe6d0c369427dbc3ede4b5fc67312358b",
+        "runner_sha256": "46ffff1756eb169581d6e8c93469e8feef6ff1b71129aa7012cc5c5c30c3e40e",
+        "files": 116,
+        "bytes": 97937454,
+        "cases": [
+          "abdomen-f01",
+          "abdomen-m01",
+          "abdomen-m02",
+          "abdomen-n01"
+        ],
+        "saved_replays": 12,
+        "method_transfers": [],
+        "original_task_files_unchanged": 71,
+        "checks": [
+          {
+            "operation": "verify",
+            "receipt": "runs/support-backfill-20260921/anatomy-audit-br017-independent-verify.json",
+            "sha256": "46405693dd9f92eebacda510aed14f867a70295d0575bcde901e8b5c02570f27"
+          },
+          {
+            "operation": "replay",
+            "receipt": "runs/support-backfill-20260921/anatomy-audit-br017-independent-replay.json",
+            "sha256": "87b48f3d9d2de2b82c538fe6b751c158ce2ef91e7fb2213f37018b060730ac01"
+          }
+        ],
+        "export_record": "export-4e4e06c3ce26f69ef68dcd86"
+      },
+      "saved_output_verification": [
+        {
+          "case": "abdomen-f01",
+          "attempt_id": "attempt-5a2ec098eb20f3c3cf7396f6",
+          "source_evaluation": "observation-76c68405029731616e90bebe",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "3882e7882d6966c32aaffdbe094734a45bb45badca1ce2a3c87713ec31e382ce"
+        },
+        {
+          "case": "abdomen-f01",
+          "attempt_id": "attempt-20e53fbc99820adcf8b72861",
+          "source_evaluation": "observation-de32ced8701d09d7b3529235",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "29b129660caefab52c0836b73a256ef10fb5a98aa087973b326146f24069849c"
+        },
+        {
+          "case": "abdomen-f01",
+          "attempt_id": "attempt-c1bf06f24de0887b8c0185b1",
+          "source_evaluation": "observation-354d17538ee694e6da02220d",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "31088bd3f09a81333b94e59f4f0ad00524d31f0625a19e4686fecb62c271fcfe"
+        },
+        {
+          "case": "abdomen-m01",
+          "attempt_id": "attempt-067b5dc6d6e74826ef84f012",
+          "source_evaluation": "observation-d532f2c2f9b8ae421fea1e43",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "31088bd3f09a81333b94e59f4f0ad00524d31f0625a19e4686fecb62c271fcfe"
+        },
+        {
+          "case": "abdomen-m01",
+          "attempt_id": "attempt-4608895cd963ee4a861a10d1",
+          "source_evaluation": "observation-79d08b807051591fe1292cca",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "7067da39d10b5c3a62ece93669cc34f7d0ec3ce7b1937ebe4e10adec901a2188"
+        },
+        {
+          "case": "abdomen-m01",
+          "attempt_id": "attempt-61fcd5aed315ac04f8fbc37d",
+          "source_evaluation": "observation-46aa68d4a20d5aba8c4abbd0",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "3882e7882d6966c32aaffdbe094734a45bb45badca1ce2a3c87713ec31e382ce"
+        },
+        {
+          "case": "abdomen-m02",
+          "attempt_id": "attempt-8106441e4d3063b2f36e31b3",
+          "source_evaluation": "observation-32abddfe0ad9cacb89596e66",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "086aebdcb93c28938d466b51952b6053b85b6c3132f75a97da171a26f539de4b"
+        },
+        {
+          "case": "abdomen-m02",
+          "attempt_id": "attempt-910718c5e1b1700f475c0939",
+          "source_evaluation": "observation-e5222a48a3b31534b1cd85c0",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "3882e7882d6966c32aaffdbe094734a45bb45badca1ce2a3c87713ec31e382ce"
+        },
+        {
+          "case": "abdomen-m02",
+          "attempt_id": "attempt-e851bbe029b1291164c913fb",
+          "source_evaluation": "observation-79e87dd996afe29cf65f8333",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "31088bd3f09a81333b94e59f4f0ad00524d31f0625a19e4686fecb62c271fcfe"
+        },
+        {
+          "case": "abdomen-n01",
+          "attempt_id": "attempt-afb81e725ae851de6bb50576",
+          "source_evaluation": "observation-5921011b046fb4d3f952ea66",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "1d4a36042804dec38fbbdf5a25da2f861f97db4ebfd06a3862e07da8d8e86916"
+        },
+        {
+          "case": "abdomen-n01",
+          "attempt_id": "attempt-d314e16860b9dc8dd2869eb0",
+          "source_evaluation": "observation-4d981c1a8298ab8acf383986",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "31088bd3f09a81333b94e59f4f0ad00524d31f0625a19e4686fecb62c271fcfe"
+        },
+        {
+          "case": "abdomen-n01",
+          "attempt_id": "attempt-c79d1ff0fc83cd9f289848ea",
+          "source_evaluation": "observation-87f66a19909876d1580d1d1b",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "1d4a36042804dec38fbbdf5a25da2f861f97db4ebfd06a3862e07da8d8e86916"
+        }
+      ],
+      "container_verification": {
+        "receipt": "runs/support-backfill-20260921/anatomy-audit-br017-container-controls.json",
+        "sha256": "0e318f05e3b6cb9d3757b067d4c252d36925a0f1b1e1dabb693e1433b896b6d6",
+        "manifest_sha256": "55772c9537797701dcf14a2833c20a673d5c3b369ed954366caf8d41a9b2402d",
+        "runner_sha256": "05498fea90cd94f3aa9a4e66a7fa21e6c3a67a150939a965eae13567cdd0d9dc",
+        "scope": "Fresh Docker oracle/no-op execution; no model attempt",
+        "controls": [
+          {
+            "case": "abdomen-f01",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:c06ecc3fca9a284f4287aa03a0e37ae8f254e118a812f0dd420e2dab6a6fbe96",
+              "verifier": "sha256:0f7c389b73b13726137c47d6f0cbdc9a9f9ec738d57324b68a0b880db1300720"
+            }
+          },
+          {
+            "case": "abdomen-f01",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:c06ecc3fca9a284f4287aa03a0e37ae8f254e118a812f0dd420e2dab6a6fbe96",
+              "verifier": "sha256:0f7c389b73b13726137c47d6f0cbdc9a9f9ec738d57324b68a0b880db1300720"
+            }
+          },
+          {
+            "case": "abdomen-m01",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:a52a3b16019431b2accd85dc4d4e9532301b77cbd55f9a882219ca06d30ebb68",
+              "verifier": "sha256:202518759ce2aea3528b1e7f2204e508ea9dc66959cf0b881b90a95c8a801242"
+            }
+          },
+          {
+            "case": "abdomen-m01",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:a52a3b16019431b2accd85dc4d4e9532301b77cbd55f9a882219ca06d30ebb68",
+              "verifier": "sha256:202518759ce2aea3528b1e7f2204e508ea9dc66959cf0b881b90a95c8a801242"
+            }
+          },
+          {
+            "case": "abdomen-m02",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:268f7505ec547d0a6ca3ab53a00d60aed21a13b47dbd628f0939c4744fed8f9f",
+              "verifier": "sha256:ecfc9fdc653a79b0e39fc4377983eba974765c8f8f3cb0078c2b0040f8f4eab1"
+            }
+          },
+          {
+            "case": "abdomen-m02",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:268f7505ec547d0a6ca3ab53a00d60aed21a13b47dbd628f0939c4744fed8f9f",
+              "verifier": "sha256:ecfc9fdc653a79b0e39fc4377983eba974765c8f8f3cb0078c2b0040f8f4eab1"
+            }
+          },
+          {
+            "case": "abdomen-n01",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:2a4b99efd30a90b814e6b634ed691c180b62d9fbc41bf7c31e34ada3534cf8e7",
+              "verifier": "sha256:d8156bfdf972398446af010fd36edf50e5449b44aff743900457474ee4dc687d"
+            }
+          },
+          {
+            "case": "abdomen-n01",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:2a4b99efd30a90b814e6b634ed691c180b62d9fbc41bf7c31e34ada3534cf8e7",
+              "verifier": "sha256:d8156bfdf972398446af010fd36edf50e5449b44aff743900457474ee4dc687d"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "experiment_id": "anatomy-audit-mr-frame-association",
+      "group_id": "anatomy-audit",
+      "record": "groups/anatomy-audit/experiments/mr-frame-association/experiment.toml",
+      "protocol": "groups/anatomy-audit/experiments/mr-frame-association/protocol.md",
+      "protocol_sha256": "26f6e758f1a43394fb2ec347a2dfb0e4953ce46f44b7bcf4fd5db37b3d3ff75a",
+      "finding_ids": [
+        "anatomy-audit-current-synthesis"
+      ],
+      "attempt_records": 5,
+      "evaluation_records": 5,
+      "sources": [],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "br042-v4-6h",
+      "group_id": "tubular-anatomy",
+      "record": "groups/tubular-anatomy/experiments/br042-v4-6h/experiment.toml",
+      "protocol": "groups/tubular-anatomy/experiments/br042-v4-6h/protocol.md",
+      "protocol_sha256": "e49d101c4e0360036855ab4c8e7df1cfa8c78e59645a497e173f97fcaeac5a5a",
+      "finding_ids": [
+        "tubular-anatomy-current-synthesis"
+      ],
+      "attempt_records": 5,
+      "evaluation_records": 8,
+      "sources": [],
+      "support_scope": "maintained selected recipe",
+      "package": {
+        "experiment": "br042-v4-6h",
+        "bundle": "runs/support-backfill-20260921/final/br042-v4-6h",
+        "bundle_manifest_sha256": "9bbcd1b4b1b5f484cb7227d54395088161dbe7ea8be950413b32c745705bbef7",
+        "recipe": "groups/tubular-anatomy/experiments/br042-v4-6h/reproduction/manifest.json",
+        "recipe_sha256": "1c7b070e7b0dc5f241e031d853af7ceb4235345fde256f7322c541eae9986328",
+        "runner_sha256": "46ffff1756eb169581d6e8c93469e8feef6ff1b71129aa7012cc5c5c30c3e40e",
+        "files": 28,
+        "bytes": 96813521,
+        "cases": [
+          "all-vessels-v4-6h"
+        ],
+        "saved_replays": 3,
+        "method_transfers": [],
+        "original_task_files_unchanged": 12,
+        "checks": [
+          {
+            "operation": "verify",
+            "receipt": "runs/support-backfill-20260921/br042-v4-6h-independent-verify.json",
+            "sha256": "3af7259f44a2a2498b6555a667c7593faf1c39243ad4f4a5c312d35638642dbd"
+          },
+          {
+            "operation": "replay",
+            "receipt": "runs/support-backfill-20260921/br042-v4-6h-independent-replay.json",
+            "sha256": "c1b5200ef35380d62826dfca45acf7622a9c8fcbbcd5cf35362e99215553f4bd"
+          }
+        ],
+        "export_record": "export-9bbcd1b4b1b5f484cb7227d5"
+      },
+      "saved_output_verification": [
+        {
+          "case": "all-vessels-v4-6h",
+          "attempt_id": "attempt-efc0c2309c0753440d73b5aa",
+          "source_evaluation": "observation-6f4710f1639729e4ff5edc29",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "d5ddcf47b84485bf892fadd7bf73cd405d7b9a94203da58d03d6de0a2c047a84"
+        },
+        {
+          "case": "all-vessels-v4-6h",
+          "attempt_id": "attempt-28515356de5ce4cfbc389740",
+          "source_evaluation": "observation-0527235d30eb28a072942fdd",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "e2dc4d45c427fe7449b2ca7e8d4d943d76af9f20e4f8b92aed5f2326022bcc63"
+        },
+        {
+          "case": "all-vessels-v4-6h",
+          "attempt_id": "attempt-f4be0b4de8a9208df7d31290",
+          "source_evaluation": "observation-d814314aceb7eae8504dc1cd",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "32ba56c3995f4e606a91ef06830e564e210f72c7ac5f5c82048b5d458a2ed29c"
+        }
+      ],
+      "container_verification": {
+        "receipt": "runs/support-backfill-20260921/br042-v4-6h-container-controls.json",
+        "sha256": "5dfa6f171d7f099877e249324bd0d48fd2c8b4ef28de67653e8e77fdda88b873",
+        "manifest_sha256": "9376ab531236ac7c57eca6466f21052a7d3b0505df4c69f90fec424fb6834800",
+        "runner_sha256": "05498fea90cd94f3aa9a4e66a7fa21e6c3a67a150939a965eae13567cdd0d9dc",
+        "scope": "Fresh Docker oracle/no-op execution; no model attempt",
+        "controls": [
+          {
+            "case": "all-vessels-v4-6h",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:e4df27e8f4374930325b7520f3775a399ef2199ab582c8431e2a7b2d4840d509",
+              "verifier": "sha256:aa1a33a5c98e6ee9b587f2c946e5400ff10b3a369d955b1d5af907a4e47e4e32"
+            }
+          },
+          {
+            "case": "all-vessels-v4-6h",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:e4df27e8f4374930325b7520f3775a399ef2199ab582c8431e2a7b2d4840d509",
+              "verifier": "sha256:aa1a33a5c98e6ee9b587f2c946e5400ff10b3a369d955b1d5af907a4e47e4e32"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "experiment_id": "cardiac-motion-br025",
+      "group_id": "cardiac-motion",
+      "record": "groups/cardiac-motion/experiments/br025/experiment.toml",
+      "protocol": "groups/cardiac-motion/experiments/br025/protocol.md",
+      "protocol_sha256": "1d37ff02006a8ff8df52786a24592d828e128dd66de523d6c68deeac3870b96b",
+      "finding_ids": [
+        "cardiac-motion-current-synthesis"
+      ],
+      "attempt_records": 0,
+      "evaluation_records": 0,
+      "sources": [
+        {
+          "path": "docs/evidence/br025-source-audit.json",
+          "sha256": "028087eae7b14c2d31d1bf9cbe6abbbee4159ae2c79fb6a4a20173ec887c03a9",
+          "observed_sha256": "028087eae7b14c2d31d1bf9cbe6abbbee4159ae2c79fb6a4a20173ec887c03a9",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br025-pilot-results.json",
+          "sha256": "a7fe35162ae56cc9adc179785db0cdb3fe242397088a9582eccd9c2152f4f577",
+          "observed_sha256": "a7fe35162ae56cc9adc179785db0cdb3fe242397088a9582eccd9c2152f4f577",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "cardiac-motion-br027",
+      "group_id": "cardiac-motion",
+      "record": "groups/cardiac-motion/experiments/br027/experiment.toml",
+      "protocol": "groups/cardiac-motion/experiments/br027/protocol.md",
+      "protocol_sha256": "a6ffd99165953deb86828a93a067efb47f9d073888d10cfe625e056b6d64c9b1",
+      "finding_ids": [
+        "cardiac-motion-current-synthesis"
+      ],
+      "attempt_records": 0,
+      "evaluation_records": 0,
+      "sources": [
+        {
+          "path": "docs/evidence/br027-cardiac-integrity.json",
+          "sha256": "158f87a3295dc7deb11a9b7bc6ef4f07d10d4aef29a74aa6c8a4b2342582ea8a",
+          "observed_sha256": "158f87a3295dc7deb11a9b7bc6ef4f07d10d4aef29a74aa6c8a4b2342582ea8a",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br027-cardiac-results.json",
+          "sha256": "f6c09a5241f2e9a9780e5aaaf745d45ceed4a1133e08657585c62c2fc318f65a",
+          "observed_sha256": "f6c09a5241f2e9a9780e5aaaf745d45ceed4a1133e08657585c62c2fc318f65a",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "cardiac-motion-br029",
+      "group_id": "cardiac-motion",
+      "record": "groups/cardiac-motion/experiments/br029/experiment.toml",
+      "protocol": "groups/cardiac-motion/experiments/br029/protocol.md",
+      "protocol_sha256": "80f13b58272fcd02a3a4e69cb4026c22ec468ba5014e4a61c29c85b1358868e9",
+      "finding_ids": [
+        "cardiac-motion-current-synthesis"
+      ],
+      "attempt_records": 0,
+      "evaluation_records": 0,
+      "sources": [
+        {
+          "path": "docs/evidence/br029-dynamic-heart-integrity.json",
+          "sha256": "ac357b31f1ea261507f6edc4ca74c26d0926d9c1d4a1eb701b96e360e65b3524",
+          "observed_sha256": "ac357b31f1ea261507f6edc4ca74c26d0926d9c1d4a1eb701b96e360e65b3524",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br029-dynamic-heart-results.json",
+          "sha256": "cc1da908f5aa8172eedd18aabf72f6915ae398ff13ec06b71d3fe8d05f23deae",
+          "observed_sha256": "cc1da908f5aa8172eedd18aabf72f6915ae398ff13ec06b71d3fe8d05f23deae",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br029-dynamic-heart-tissue-results.json",
+          "sha256": "2401da9c2d3a637935153ccf6fe2c7f0db81c3c2c87c3f6bf8a2c0d2aa42d43b",
+          "observed_sha256": "2401da9c2d3a637935153ccf6fe2c7f0db81c3c2c87c3f6bf8a2c0d2aa42d43b",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "cardiac-motion-br031",
+      "group_id": "cardiac-motion",
+      "record": "groups/cardiac-motion/experiments/br031/experiment.toml",
+      "protocol": "groups/cardiac-motion/experiments/br031/protocol.md",
+      "protocol_sha256": "20aed2d0172c5be5ade64a303b8ef2bd58030934de1619be58630494e4452705",
+      "finding_ids": [
+        "cardiac-motion-current-synthesis"
+      ],
+      "attempt_records": 10,
+      "evaluation_records": 10,
+      "sources": [
+        {
+          "path": "docs/evidence/br031-cardiac-agent-results-pending-approval.json",
+          "sha256": "228e56a963ed69c4c9db54b913273fb0d82604af771239a6946a4c2121db0601",
+          "observed_sha256": "228e56a963ed69c4c9db54b913273fb0d82604af771239a6946a4c2121db0601",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br031-cardiac-agent-results.json",
+          "sha256": "dfbf5e672ebfeeeef0ce7c0c83e4bef386dc5f5cf26d41d3b9c5b6dd3c9dd1a7",
+          "observed_sha256": "dfbf5e672ebfeeeef0ce7c0c83e4bef386dc5f5cf26d41d3b9c5b6dd3c9dd1a7",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "cardiac-motion-br032",
+      "group_id": "cardiac-motion",
+      "record": "groups/cardiac-motion/experiments/br032/experiment.toml",
+      "protocol": "groups/cardiac-motion/experiments/br032/protocol.md",
+      "protocol_sha256": "ec3d4d92a9eedc9141c06a1deb0a2058b7216ccabb443c1e980d980177e63702",
+      "finding_ids": [
+        "cardiac-motion-current-synthesis"
+      ],
+      "attempt_records": 3,
+      "evaluation_records": 3,
+      "sources": [
+        {
+          "path": "docs/evidence/br032-real-echo-results.json",
+          "sha256": "48973ce75ce6105b1ec8396142f4afdfd16225aac41890495af1e3e8ec040a93",
+          "observed_sha256": "48973ce75ce6105b1ec8396142f4afdfd16225aac41890495af1e3e8ec040a93",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "cardiac-motion-br034",
+      "group_id": "cardiac-motion",
+      "record": "groups/cardiac-motion/experiments/br034/experiment.toml",
+      "protocol": "groups/cardiac-motion/experiments/br034/protocol.md",
+      "protocol_sha256": "44a9b26531a8e561b1383289bc6f3540e4be01dce32a6590cd7dd337dd846248",
+      "finding_ids": [
+        "cardiac-motion-current-synthesis"
+      ],
+      "attempt_records": 3,
+      "evaluation_records": 3,
+      "sources": [
+        {
+          "path": "docs/evidence/br034-clinical-adaptation-results.json",
+          "sha256": "252f9c3da79e7117324eaef96c6551bd4d05ea3c100cf3548c84937a110d70bc",
+          "observed_sha256": "252f9c3da79e7117324eaef96c6551bd4d05ea3c100cf3548c84937a110d70bc",
+          "matches": true
+        }
+      ],
+      "support_scope": "maintained selected recipe",
+      "package": {
+        "experiment": "cardiac-motion-br034",
+        "bundle": "runs/support-backfill-20260921/final/cardiac-motion-br034",
+        "bundle_manifest_sha256": "4599e46122d0e422d513e6c9d4dd147f763ee4d9fc3ad4f2de4b3ac08a52ed66",
+        "recipe": "groups/cardiac-motion/experiments/br034/reproduction/manifest.json",
+        "recipe_sha256": "97b5cd956929e0eae5a91bfb8e2ac713dbf76547867a4a58efe65ab3d4a96d83",
+        "runner_sha256": "46ffff1756eb169581d6e8c93469e8feef6ff1b71129aa7012cc5c5c30c3e40e",
+        "files": 596,
+        "bytes": 188339493,
+        "cases": [
+          "cardiac-adaptation"
+        ],
+        "saved_replays": 2,
+        "method_transfers": [
+          "original",
+          "patient",
+          "preserved",
+          "static",
+          "shift"
+        ],
+        "original_task_files_unchanged": 70,
+        "checks": [
+          {
+            "operation": "verify",
+            "receipt": "runs/support-backfill-20260921/cardiac-motion-br034-independent-verify.json",
+            "sha256": "0b9e9a3c6021b56c8c0d1dc03527e0badc1bcc429a87083ad7c4ea3fe0501bad"
+          },
+          {
+            "operation": "replay",
+            "receipt": "runs/support-backfill-20260921/cardiac-motion-br034-independent-replay.json",
+            "sha256": "516bae796a4155793bb4133eb1ad52af91232a0b3d3f0e8ea70a475c4ac63702"
+          },
+          {
+            "operation": "method-replay",
+            "receipt": "runs/support-backfill-20260921/cardiac-motion-br034-independent-method-replay.json",
+            "sha256": "9f8f21263cf732949241946720bff3bd280b8792cc8bee00106f5a0310432c5f"
+          }
+        ],
+        "export_record": "export-4599e46122d0e422d513e6c9"
+      },
+      "saved_output_verification": [
+        {
+          "case": "cardiac-adaptation",
+          "attempt_id": "attempt-f679a28a5f8b5a4a72f3e0b7",
+          "source_evaluation": "observation-599d31471ff5591a1b23f5f7",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "bbd05b7df4644ba8210870c62377f3689149126a4842e7ffd4d048f2672c749f"
+        },
+        {
+          "case": "cardiac-adaptation",
+          "attempt_id": "attempt-6b21a9a7f0bb2138fcedf09a",
+          "source_evaluation": "observation-a9f746aa0bcb6f5907321b4d",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "b7df7416dc2633b8a07c35d1aad95f4187667506614bd072842bcaa8a3e96c0e"
+        }
+      ],
+      "container_verification": {
+        "receipt": "runs/support-backfill-20260921/cardiac-motion-br034-container-controls.json",
+        "sha256": "cabaa24d452abe53eebeb6568f62e9ababd4446d9657f06bdb494e55b648e424",
+        "manifest_sha256": "1cba4481b1165278b1ba209ba0df11c4eba494b7920a0fffd70838b8028d8107",
+        "runner_sha256": "05498fea90cd94f3aa9a4e66a7fa21e6c3a67a150939a965eae13567cdd0d9dc",
+        "scope": "Fresh Docker oracle/no-op execution; no model attempt",
+        "controls": [
+          {
+            "case": "cardiac-adaptation",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:106ab003ac81b201d73cb15c5686a7fac2d8648ba45507b3cf277b4819d86929",
+              "verifier": "sha256:9e9fccfa4fe53ba08fbc7ce404942372936f0d1ab4f6a797301328aa6123ff3f"
+            }
+          },
+          {
+            "case": "cardiac-adaptation",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:106ab003ac81b201d73cb15c5686a7fac2d8648ba45507b3cf277b4819d86929",
+              "verifier": "sha256:9e9fccfa4fe53ba08fbc7ce404942372936f0d1ab4f6a797301328aa6123ff3f"
+            }
+          }
+        ]
+      },
+      "fresh_method_verification": {
+        "receipt": "runs/support-backfill-20260921/cardiac-motion-br034-method-fresh.json",
+        "sha256": "fa92d3057755b651f40031ff87c1e6c697a2b460ab2658113d3b186245bc5761",
+        "manifest_sha256": "303af79d015d303a8c0e700ce496c7526e28a73c01123563b84c3a59dfba75f1",
+        "runner_sha256": "5fb36aefe0b142ee6e60eba39d9d40386e72d019ba02cb7eccb0fa38bfd2bef5",
+        "scope": "Fresh frozen submitted-program execution",
+        "methods": [
+          {
+            "method": "original",
+            "source_attempt": "attempt-6b21a9a7f0bb2138fcedf09a",
+            "matches": true,
+            "exact_match": true,
+            "metrics": {
+              "ef_pct": 22.010610708075262,
+              "volume_ml": [
+                121.86426055025872,
+                124.33138148302201,
+                125.78562888336641,
+                123.16847561882393,
+                118.05463265722013,
+                112.26394890938296,
+                107.67909796540259,
+                103.65822286353679,
+                101.25582411880454,
+                98.67250325302442,
+                98.09944378314435,
+                99.9796128684495,
+                102.14069863754912,
+                105.0530421089594,
+                107.93502091988871,
+                112.9980055594764,
+                118.97801164711224,
+                124.3425519499851
+              ],
+              "motion_rms_mm": 3.3002009881053533,
+              "grade": {
+                "format_valid": true,
+                "surface_mean_mm": 1.8904049658317765,
+                "surface_p95_mm": 6.897216676210377,
+                "per_frame_surface_mean_mm": [
+                  0.0,
+                  0.7069769839055511,
+                  0.8747696901274267,
+                  1.0843891443330291,
+                  1.1657798013417378,
+                  1.4837069079319871,
+                  1.9420960616087688,
+                  2.0855984209265053,
+                  2.265039402303213,
+                  2.5990679946469717,
+                  3.0054134921073867,
+                  3.4763773354029435,
+                  3.1692168933683735,
+                  2.851982737069379,
+                  2.426248489931821,
+                  1.9699588253732054,
+                  1.5818798985258065,
+                  1.3387873060678745
+                ],
+                "volume_ml": [
+                  121.86426055025872,
+                  124.33138148302201,
+                  125.78562888336641,
+                  123.16847561882393,
+                  118.05463265722013,
+                  112.26394890938296,
+                  107.67909796540259,
+                  103.65822286353679,
+                  101.25582411880454,
+                  98.67250325302442,
+                  98.09944378314435,
+                  99.9796128684495,
+                  102.14069863754912,
+                  105.0530421089594,
+                  107.93502091988871,
+                  112.9980055594764,
+                  118.97801164711224,
+                  124.3425519499851
+                ],
+                "reference_volume_ml": [
+                  121.86426055025872,
+                  121.58337543503816,
+                  121.23903130606129,
+                  120.73080588801038,
+                  114.78782115819082,
+                  103.23008764717056,
+                  92.43976857741958,
+                  84.82265577183162,
+                  78.83694133391568,
+                  73.51722300526609,
+                  69.40156974749594,
+                  66.65197077022053,
+                  71.15689530076025,
+                  76.41548065354395,
+                  82.84715071007982,
+                  92.32318625662165,
+                  103.26477003926833,
+                  113.30322904706995
+                ],
+                "ef_pct": 22.010610708075262,
+                "reference_ef_pct": 45.3063839477923,
+                "ef_error_pp": 23.295773239717036,
+                "mean_volume_error_pct": 20.6099802259049,
+                "edv_error_pct": 3.217816540634127,
+                "esv_error_pct": 47.18161016024189,
+                "declared_functional_class": "severely_reduced",
+                "reference_functional_class": "mildly_reduced_or_borderline",
+                "diagnostic_class_matches": false,
+                "diagnosis_consistent_with_own_ef": true,
+                "per_frame_surface_p95_mm": [
+                  0.0,
+                  1.636765969723849,
+                  2.28769951187018,
+                  2.6350067320631205,
+                  2.935037007935893,
+                  3.140517289582176,
+                  3.3269592820208858,
+                  3.8576860226931085,
+                  4.551924099168607,
+                  5.5377507890217945,
+                  6.364626096334444,
+                  6.897216676210377,
+                  6.416478945660657,
+                  5.794292045820895,
+                  4.912054410601064,
+                  3.7993141870226075,
+                  3.3189440155934498,
+                  3.237192175988888
+                ],
+                "gates": {
+                  "surface_mean": true,
+                  "surface_p95": false,
+                  "ef": false,
+                  "edv": true,
+                  "esv": false
+                },
+                "reward": 0
+              },
+              "original_volume_mae_ml": 0.0,
+              "original_surface_mean_mm": 0.0,
+              "original_coordinate_max_abs_mm": 0.0
+            },
+            "solver_image": "sha256:81a9aac69ef4d28143dbee84ee9f96c417f25da644f6645d43f2126a1723a633",
+            "output_sha256": {
+              "method.md": "2665a335a8bf4cc6d0dd8db9c2dda9621b8ccb37c29cca2d95982c525246fa6e",
+              "overlays/all_frames_xy.png": "59a32000d20b1e2e3b9fa11b0eb3b6ea7a3fb87801ed2acdb21b3bd023534ead",
+              "overlays/all_frames_xz.png": "9397e210cc4383a1651699654b30157d63715a8bd197fbcf08db3063c85e87b2",
+              "overlays/all_frames_yz.png": "fc5c75068f13f866bf417037276e7060eeade89f96448b5ee9e3ba9c4f67a912",
+              "overlays/ed_es_orthogonal.png": "6a6a3de753a0ca5ed421d4346cd2ff8b586e93747199136e27438a4bcfa6ac8b",
+              "overlays/volume_curve.png": "4121d4de3c3ce9bdde37c6599b2c321eb13ccd0b54d53bca25bce859aaf5995a",
+              "prediction.npz": "b94b65977b84f2d759f9feef5c550a179f2888501b9041a3d5464b8c8c142bde",
+              "qc_metrics.json": "0ac66abe37021fa290d7d61faa06b508f80531145730055268dc8ad88f6d3f0c",
+              "summary.json": "5a98d7ba540dbbff5e90a2e0155a2dd67117aae469ba1c37777866d389fa0126"
+            }
+          },
+          {
+            "method": "patient",
+            "source_attempt": "attempt-6b21a9a7f0bb2138fcedf09a",
+            "matches": true,
+            "exact_match": true,
+            "metrics": {
+              "ef_pct": 21.68172891338879,
+              "volume_ml": [
+                77.16006157202158,
+                78.48662606398102,
+                77.88150629176938,
+                77.13553091833765,
+                76.70114063252299,
+                75.78127965153821,
+                74.59771839618158,
+                73.29538378584985,
+                71.63646998732777,
+                70.0633808604552,
+                68.65053612760302,
+                67.17116183026009,
+                66.01566931270789,
+                64.9000636582102,
+                64.12589175844235,
+                63.73397811423501,
+                63.94379075642935,
+                64.55655721529293,
+                65.42003402117822,
+                66.50066756741484,
+                67.05190604762765,
+                67.71040609889788,
+                68.24125461168684,
+                69.26863193114043,
+                70.51184880977453,
+                71.66387976025008,
+                72.98050965032108,
+                74.629870555977,
+                75.78555432251528,
+                76.70478623897702,
+                77.35854102982012,
+                77.67479522899927,
+                78.2399882815416,
+                79.34329237955056,
+                81.37817297288443
+              ],
+              "motion_rms_mm": 3.082892318000308,
+              "grade": {
+                "format_valid": true,
+                "surface_mean_mm": 1.8496250022934162,
+                "surface_p95_mm": 5.9909779423613605,
+                "per_frame_surface_mean_mm": [
+                  0.0,
+                  0.5303075928031298,
+                  0.6739031316577934,
+                  0.8140780722314016,
+                  0.9626664396682966,
+                  1.1451433855418802,
+                  1.3613018625000357,
+                  1.5324789203022464,
+                  1.657415041430823,
+                  1.8575076988022168,
+                  2.207478896275407,
+                  2.546650647537023,
+                  2.753158120859959,
+                  2.79223628579864,
+                  2.8553338657764273,
+                  2.955534537881228,
+                  2.8903820069609227,
+                  2.871990396969329,
+                  2.8729622424342685,
+                  2.81063357600013,
+                  2.6554634488960764,
+                  2.5698310473679125,
+                  2.543738878762988,
+                  2.4731645682881993,
+                  2.325216450347066,
+                  2.1518550689894718,
+                  1.887006091114191,
+                  1.5352425824077918,
+                  1.3106541266951626,
+                  1.3223480804366698,
+                  1.366384818897036,
+                  1.240568572611635,
+                  1.0531182689954721,
+                  1.0144892333888296,
+                  1.1966311216399121
+                ],
+                "volume_ml": [
+                  77.16006157202158,
+                  78.48662606398102,
+                  77.88150629176938,
+                  77.13553091833765,
+                  76.70114063252299,
+                  75.78127965153821,
+                  74.59771839618158,
+                  73.29538378584985,
+                  71.63646998732777,
+                  70.0633808604552,
+                  68.65053612760302,
+                  67.17116183026009,
+                  66.01566931270789,
+                  64.9000636582102,
+                  64.12589175844235,
+                  63.73397811423501,
+                  63.94379075642935,
+                  64.55655721529293,
+                  65.42003402117822,
+                  66.50066756741484,
+                  67.05190604762765,
+                  67.71040609889788,
+                  68.24125461168684,
+                  69.26863193114043,
+                  70.51184880977453,
+                  71.66387976025008,
+                  72.98050965032108,
+                  74.629870555977,
+                  75.78555432251528,
+                  76.70478623897702,
+                  77.35854102982012,
+                  77.67479522899927,
+                  78.2399882815416,
+                  79.34329237955056,
+                  81.37817297288443
+                ],
+                "reference_volume_ml": [
+                  77.16006157202158,
+                  74.85156809844442,
+                  72.593745963693,
+                  70.66679680839403,
+                  68.81642835683797,
+                  66.07730394425859,
+                  62.795291388603296,
+                  59.78456046875246,
+                  57.02488776571995,
+                  53.84080993116591,
+                  49.89798798598825,
+                  46.15026374603345,
+                  43.74788410852708,
+                  42.52021169531189,
+                  41.46664219228904,
+                  40.415554622614856,
+                  41.05063328366892,
+                  41.73238071151243,
+                  42.498528775655,
+                  43.754221213290236,
+                  45.18457056029442,
+                  46.19381300389357,
+                  46.9182025391424,
+                  48.358902405988026,
+                  50.50380639072987,
+                  52.83048617629929,
+                  56.13297364497817,
+                  60.784066777446306,
+                  64.40802170987935,
+                  65.1925552484419,
+                  65.23722903091294,
+                  67.08732621710324,
+                  70.45539964511437,
+                  73.62171863732992,
+                  75.94604812116395
+                ],
+                "ef_pct": 21.68172891338879,
+                "reference_ef_pct": 47.621147781367725,
+                "ef_error_pp": 25.939418867978937,
+                "mean_volume_error_pct": 30.495708962864853,
+                "edv_error_pct": 5.46670300013388,
+                "esv_error_pct": 57.696655927052745,
+                "declared_functional_class": "severely_reduced",
+                "reference_functional_class": "mildly_reduced_or_borderline",
+                "diagnostic_class_matches": false,
+                "diagnosis_consistent_with_own_ef": true,
+                "per_frame_surface_p95_mm": [
+                  0.0,
+                  0.8686956818442741,
+                  1.200802993073237,
+                  1.5741294692597743,
+                  1.9227529355230895,
+                  2.269501108892487,
+                  2.711511791851464,
+                  3.060915192072179,
+                  3.3440737443406925,
+                  3.7119363934801988,
+                  4.347952571111438,
+                  5.010337190929351,
+                  5.536310517604745,
+                  5.710661301650115,
+                  5.8471701522906185,
+                  5.9909779423613605,
+                  5.950358744170372,
+                  5.927733556739551,
+                  5.8683583487458355,
+                  5.651759627077084,
+                  5.394469721105638,
+                  5.256387711648388,
+                  5.1027196395510375,
+                  4.870494206086289,
+                  4.578624193112323,
+                  4.299542902516018,
+                  3.8027607424092915,
+                  3.130100916439594,
+                  2.8151146863720644,
+                  2.9990114528099245,
+                  3.1639291034395463,
+                  2.8920779602098827,
+                  2.541972361335517,
+                  2.413347201742053,
+                  2.721119198599564
+                ],
+                "gates": {
+                  "surface_mean": true,
+                  "surface_p95": true,
+                  "ef": false,
+                  "edv": true,
+                  "esv": false
+                },
+                "reward": 0
+              }
+            },
+            "solver_image": "sha256:9872729d026e3181a96103409adcb3eb760cd6645d76456c375a24385dcf6ecc",
+            "output_sha256": {
+              "method.md": "6ea22018d4e0756a6b81c86b9cad2011c818aef74b3456053a5842b11820be04",
+              "overlays/all_frames_xy.png": "5e66f2ee1c119c1dfc1259b75d0af4cd0827b2ca8ae7fc65086dd0d3a7ceffe8",
+              "overlays/all_frames_xz.png": "d449784991e9e044976e9fd509bebde4122e07122f7e1a2485b5a467390125b4",
+              "overlays/all_frames_yz.png": "a1726e7f8dd921a8c2c845f78a856cc767fac85bf79822981a478e8613ce40be",
+              "overlays/ed_es_orthogonal.png": "de217578c828a8a0b6304b3bb78965792c747f62a161ad8ddcd12ae191eb8b5a",
+              "overlays/volume_curve.png": "2461d6bb6e91b5f2f58d7586a687531e4c71bf7c2ae4c04900b4e24a21aee779",
+              "prediction.npz": "2740b9ac946ee05249cd37bd4f64b244b50cc4a8122f8015eb57d690c9b778c1",
+              "qc_metrics.json": "48ce925453bab1b14bb6016507ee7136dfb020c40c80660b676ba1ad334e2179",
+              "summary.json": "3cfb8a2e4b3e03ce7550eeb8b01050c00c40a2ac3adf7569fbac7c58c523fd48"
+            }
+          },
+          {
+            "method": "preserved",
+            "source_attempt": "attempt-6b21a9a7f0bb2138fcedf09a",
+            "matches": true,
+            "exact_match": true,
+            "metrics": {
+              "ef_pct": 29.802552832964004,
+              "volume_ml": [
+                104.10097570029029,
+                103.95232621024427,
+                103.08927590733565,
+                102.41898349216527,
+                101.72038678049397,
+                101.29106409422614,
+                99.86990830405328,
+                98.55573946539367,
+                96.82024990815832,
+                94.88732027349796,
+                92.74628001250497,
+                90.49314660963275,
+                88.27400636814814,
+                86.11506992322005,
+                84.59639782033058,
+                82.93471588626839,
+                81.30170766147911,
+                79.58445968993618,
+                78.02762169427612,
+                76.61411278412709,
+                75.43791016178025,
+                74.29569374525894,
+                73.45137066577892,
+                73.10202726180843,
+                73.07622741758026,
+                73.20024616899,
+                73.36048125852814,
+                73.5111647891228,
+                73.80603287939735,
+                74.71254982197655,
+                76.51636083827897,
+                78.59064050609108,
+                81.32404463072338,
+                83.8812098426269,
+                86.0571786184599,
+                87.7879873997857,
+                89.09638031956756,
+                90.07042581079143,
+                90.70043979012318,
+                91.065014097377,
+                91.41827732187971,
+                91.82048033138264,
+                92.10940082123236,
+                93.04038732852554,
+                95.06159186597039,
+                97.95433973210798,
+                100.27376057736754,
+                101.67324492141508
+              ],
+              "motion_rms_mm": 3.5091821573879285,
+              "grade": {
+                "format_valid": true,
+                "surface_mean_mm": 2.243580732373461,
+                "surface_p95_mm": 7.965228921897386,
+                "per_frame_surface_mean_mm": [
+                  0.0,
+                  0.3713712413726284,
+                  0.4250032370819502,
+                  0.4676116943672463,
+                  0.5046025121584032,
+                  0.5762316506711737,
+                  0.6811675401757454,
+                  0.8056452328062372,
+                  0.8933225911707732,
+                  1.030770945807546,
+                  1.2431522631629137,
+                  1.515042304613898,
+                  1.8657497796179154,
+                  2.2498054753031345,
+                  2.5913392190804667,
+                  2.786261469628641,
+                  2.915540445536886,
+                  3.0227991998501054,
+                  3.153200081706074,
+                  3.3603584367566213,
+                  3.604587628967816,
+                  3.8016739189145032,
+                  3.892831419650287,
+                  3.8843812987572424,
+                  3.8425621577072575,
+                  3.7921577572087695,
+                  3.7236706424386226,
+                  3.753307815530754,
+                  3.7462257015253453,
+                  3.750455826140924,
+                  3.6857401795462468,
+                  3.458139460218115,
+                  3.187753737774135,
+                  2.898497125674754,
+                  2.624256477837588,
+                  2.377342260978975,
+                  2.1983717984493696,
+                  2.1177113627966624,
+                  2.095815526497212,
+                  2.065498698703353,
+                  2.019353292092917,
+                  1.9698553279342599,
+                  1.899046722867817,
+                  1.7923405008684667,
+                  1.6074564205819235,
+                  1.3744937514333648,
+                  1.1387430995775711,
+                  0.9306299223835256
+                ],
+                "volume_ml": [
+                  104.10097570029029,
+                  103.95232621024427,
+                  103.08927590733565,
+                  102.41898349216527,
+                  101.72038678049397,
+                  101.29106409422614,
+                  99.86990830405328,
+                  98.55573946539367,
+                  96.82024990815832,
+                  94.88732027349796,
+                  92.74628001250497,
+                  90.49314660963275,
+                  88.27400636814814,
+                  86.11506992322005,
+                  84.59639782033058,
+                  82.93471588626839,
+                  81.30170766147911,
+                  79.58445968993618,
+                  78.02762169427612,
+                  76.61411278412709,
+                  75.43791016178025,
+                  74.29569374525894,
+                  73.45137066577892,
+                  73.10202726180843,
+                  73.07622741758026,
+                  73.20024616899,
+                  73.36048125852814,
+                  73.5111647891228,
+                  73.80603287939735,
+                  74.71254982197655,
+                  76.51636083827897,
+                  78.59064050609108,
+                  81.32404463072338,
+                  83.8812098426269,
+                  86.0571786184599,
+                  87.7879873997857,
+                  89.09638031956756,
+                  90.07042581079143,
+                  90.70043979012318,
+                  91.065014097377,
+                  91.41827732187971,
+                  91.82048033138264,
+                  92.10940082123236,
+                  93.04038732852554,
+                  95.06159186597039,
+                  97.95433973210798,
+                  100.27376057736754,
+                  101.67324492141508
+                ],
+                "reference_volume_ml": [
+                  104.10097570029029,
+                  102.8496204384692,
+                  101.43160182177637,
+                  99.9983325194271,
+                  98.80304629772378,
+                  96.89571399090144,
+                  93.96202120252757,
+                  90.90486007929123,
+                  87.88003798356962,
+                  84.08732233387845,
+                  79.46483458866656,
+                  74.55202889344602,
+                  69.30917269473989,
+                  64.19843472484878,
+                  60.12119698567705,
+                  56.99428675920109,
+                  54.46984696501729,
+                  52.264053808191015,
+                  50.127890046532414,
+                  47.64229145477268,
+                  44.903544995076295,
+                  42.60815120683721,
+                  41.42573116254139,
+                  41.336140933411095,
+                  41.6936657580274,
+                  42.14461129371966,
+                  42.71443540409284,
+                  42.50378326906205,
+                  42.665659180703926,
+                  43.351338477226285,
+                  45.27538613846219,
+                  48.50640082808594,
+                  52.53646291366417,
+                  56.653054219621716,
+                  60.506684989339426,
+                  64.01787951968659,
+                  66.8442005948305,
+                  68.59443752088923,
+                  69.48490042245207,
+                  70.09213453547844,
+                  70.70539224720206,
+                  71.43041205717545,
+                  72.47643931101418,
+                  74.63234321230323,
+                  78.68825350422676,
+                  84.06158898051027,
+                  89.58451564809882,
+                  95.82409069515322
+                ],
+                "ef_pct": 29.802552832964004,
+                "reference_ef_pct": 60.2922636840417,
+                "ef_error_pp": 30.489710851077696,
+                "mean_volume_error_pct": 37.35263546657685,
+                "edv_error_pct": 0.0,
+                "esv_error_pct": 76.78531611187329,
+                "declared_functional_class": "severely_reduced",
+                "reference_functional_class": "preserved",
+                "diagnostic_class_matches": false,
+                "diagnosis_consistent_with_own_ef": true,
+                "per_frame_surface_p95_mm": [
+                  0.0,
+                  0.6880590215534075,
+                  0.7946254807025934,
+                  0.8396799223748213,
+                  0.8710305943483249,
+                  0.9566132402768143,
+                  1.1115745783423558,
+                  1.3765975632215284,
+                  1.6085214887664194,
+                  1.9541937792069983,
+                  2.377670544591678,
+                  2.9690545203790344,
+                  3.6863378703945404,
+                  4.699007680213641,
+                  5.786351886257305,
+                  6.286302142914373,
+                  6.324261499754156,
+                  6.359054829345728,
+                  6.685452032826506,
+                  7.195778054734516,
+                  7.5564496787652295,
+                  7.830210653753222,
+                  7.941839086753019,
+                  7.965228921897386,
+                  7.912738876654491,
+                  7.865420515573641,
+                  7.867747616656502,
+                  7.84841014798972,
+                  7.604317357020356,
+                  7.3063398269016835,
+                  7.054658791031642,
+                  6.5788567860557166,
+                  6.093495974143311,
+                  5.503767329706084,
+                  4.933057883738629,
+                  4.373298281602775,
+                  4.123225736751992,
+                  4.021839881714994,
+                  3.995409134540813,
+                  3.9326846000163673,
+                  3.871770461417215,
+                  3.770411022578476,
+                  3.722258524632009,
+                  3.5776513323210515,
+                  3.2952634126765346,
+                  2.8473444311174796,
+                  2.383752732171963,
+                  2.098760374198266
+                ],
+                "gates": {
+                  "surface_mean": true,
+                  "surface_p95": false,
+                  "ef": false,
+                  "edv": true,
+                  "esv": false
+                },
+                "reward": 0
+              }
+            },
+            "solver_image": "sha256:d70fff24dc4c42295076b868c81a3c4abd94dbe97fc7fd0fa20f1d20e9ee3eaf",
+            "output_sha256": {
+              "method.md": "d9740493586c7e9ee51eb52beac56015bb20ec76b213c0fde6adda4b8780fb47",
+              "overlays/all_frames_xy.png": "6d0b2afd18843bf6077ddfeb1a1ce8cc0e13711257ee4c023b0bc6fd1d4adca5",
+              "overlays/all_frames_xz.png": "7a452b0832a7e05d56a881576e75169cbb5beca096e15b60be725809938af752",
+              "overlays/all_frames_yz.png": "0d3253a0411bc109b0b1adebcc7b328686367f1f4b726fc25341dd642e5a773a",
+              "overlays/ed_es_orthogonal.png": "b32f76c1c7689cb32b2c857a6cae1ea5bdc5d7b21ac67da2e37eb45895e65eb7",
+              "overlays/volume_curve.png": "b356e953c05ba385f6ea1a4e457bb8a935ab84ac28e88d78bbad4ecba1b0da74",
+              "prediction.npz": "7164c1613b642603073d8f0b13942ebbde360e304c6d816c64494359cffcc54a",
+              "qc_metrics.json": "a44ecfbfcd42008ebcff5a130cee28edcf73ed9543d6db8d8274246171a77ff8",
+              "summary.json": "fec0385620aae7a3e307ab3a2c2d86dcc897492f52919c01b33a4019ee5f9a7a"
+            }
+          },
+          {
+            "method": "static",
+            "source_attempt": "attempt-6b21a9a7f0bb2138fcedf09a",
+            "matches": true,
+            "exact_match": true,
+            "metrics": {
+              "ef_pct": 0.0,
+              "volume_ml": [
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872,
+                121.86426055025872
+              ],
+              "motion_rms_mm": 0.0,
+              "original_volume_mae_ml": 11.535462088643044,
+              "original_surface_mean_mm": 1.7633760303534909,
+              "original_coordinate_max_abs_mm": 9.998732731988031,
+              "input_response_pass": true
+            },
+            "solver_image": "sha256:1b3d8a60671b4f7b92191c5e23fd6d6cac3393418036e33f7788d962efe0f01c",
+            "output_sha256": {
+              "method.md": "b904fc70dfd401f6f0d6c7125809215083decac29f9a302be3049c71cc143669",
+              "overlays/all_frames_xy.png": "7cb66504a3bd8b46c097ff21fe1c5a5cc5778bf9cd81306428d1df8c8f376da4",
+              "overlays/all_frames_xz.png": "ad8d22dfe2bca809ad5f47bf36de2ef71147f54fe40499642efb98227fa4876d",
+              "overlays/all_frames_yz.png": "37b54264ccb2cbd16b23f05132b44782354b1e1d021bad4b2a06f877167b90a9",
+              "overlays/ed_es_orthogonal.png": "096bf240c505800ccf0e827a6a1b62eb36f51ffabeb4c542f5b740fd5d6c4fc6",
+              "overlays/volume_curve.png": "96d691adb57ebeafb07728430f246d42ae7c2ea9613a95652a4e30e0788b763d",
+              "prediction.npz": "954e19017d42879ef94cfa9be77963471240f5000c79c3f28d326468575581af",
+              "qc_metrics.json": "111369ada3d4a71e35961b4cf7336a0f672f064451971d3277d3ca396255cf8f",
+              "summary.json": "43063d17064c9acbc29ef93b92ad2316429132fa2ba13892bd9eb4f1aca41690"
+            }
+          },
+          {
+            "method": "shift",
+            "source_attempt": "attempt-6b21a9a7f0bb2138fcedf09a",
+            "matches": true,
+            "exact_match": true,
+            "metrics": {
+              "ef_pct": 22.010610708075262,
+              "volume_ml": [
+                105.0530421089594,
+                107.93502091988871,
+                112.9980055594764,
+                118.97801164711224,
+                124.3425519499851,
+                121.86426055025872,
+                124.33138148302201,
+                125.78562888336641,
+                123.16847561882393,
+                118.05463265722013,
+                112.26394890938296,
+                107.67909796540259,
+                103.65822286353679,
+                101.25582411880454,
+                98.67250325302442,
+                98.09944378314435,
+                99.9796128684495,
+                102.14069863754912
+              ],
+              "motion_rms_mm": 2.7622440685283505,
+              "original_volume_mae_ml": 0.0,
+              "original_surface_mean_mm": 0.0,
+              "original_coordinate_max_abs_mm": 0.0,
+              "input_response_pass": true
+            },
+            "solver_image": "sha256:80bf66279fe04a782d0e929b93f3baa130f6c8013c4bdfe5e040194e4d4e799f",
+            "output_sha256": {
+              "method.md": "114a4f82fb6390faa2cbe1690808556f894e68f2a83ca2a88aa66cdefa2b6a54",
+              "overlays/all_frames_xy.png": "9df94530bf1d54200909c85c69d690bd54161268c8d50b793f945d99283b42d7",
+              "overlays/all_frames_xz.png": "c7ce85446142736c28a26cc57ba29da68e000e92e8958dbf8ce3ad2018ddfd4f",
+              "overlays/all_frames_yz.png": "3d2c48aa276d7415b4cc46b81eb93684802878ab814817b680917c3cc6875fcd",
+              "overlays/ed_es_orthogonal.png": "112bce41d0677bdd59665f74155eb0657c08a3dfd5eb5682540c8ec6844c6413",
+              "overlays/volume_curve.png": "3dca681e65c211877eb69895405d6441054849ceda6cfd16071a1e3f66d3a46a",
+              "prediction.npz": "e7ab5243c04df944f8e269134217d8aa572b91b2f557b11840b4f0565cf43464",
+              "qc_metrics.json": "a46b6afc64dc5448e855ef814748ca4346dba198277576036261e526365d96f8",
+              "summary.json": "46acb6b72c2d55bfa4f6529a0d3e140fbec60d785bcf5dbc9dde1678805d1274"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "experiment_id": "cardiac-motion-br035",
+      "group_id": "cardiac-motion",
+      "record": "groups/cardiac-motion/experiments/br035/experiment.toml",
+      "protocol": "groups/cardiac-motion/experiments/br035/protocol.md",
+      "protocol_sha256": "af3d2bd52c21d122d8aadebef192b9b5d994b5ce5ea6b7ca37c41f4f28076f8b",
+      "finding_ids": [
+        "cardiac-motion-current-synthesis"
+      ],
+      "attempt_records": 6,
+      "evaluation_records": 6,
+      "sources": [
+        {
+          "path": "docs/evidence/br035-segmentation-mechanics-results.json",
+          "sha256": "12806e221bc93b8400dbe2d950e67ed89b6f2fb396ba7e76b2833fa42e00fed2",
+          "observed_sha256": "12806e221bc93b8400dbe2d950e67ed89b6f2fb396ba7e76b2833fa42e00fed2",
+          "matches": true
+        }
+      ],
+      "support_scope": "maintained selected recipe",
+      "package": {
+        "experiment": "cardiac-motion-br035",
+        "bundle": "runs/support-backfill-20260921/final/cardiac-motion-br035",
+        "bundle_manifest_sha256": "71cf064fea4c0b1ba20918d11cdff3dcb48835056a37e8a70f545d5999c5c285",
+        "recipe": "groups/cardiac-motion/experiments/br035/reproduction/manifest.json",
+        "recipe_sha256": "5aa1452f8e45c6eaa754928db169f0687ba80c9e8057d4a853047e824f6c4b5f",
+        "runner_sha256": "46ffff1756eb169581d6e8c93469e8feef6ff1b71129aa7012cc5c5c30c3e40e",
+        "files": 78,
+        "bytes": 2166720389,
+        "cases": [
+          "cardiac-masks",
+          "cardiac-masks-images"
+        ],
+        "saved_replays": 4,
+        "method_transfers": [
+          "masks",
+          "masks-images"
+        ],
+        "original_task_files_unchanged": 29,
+        "checks": [
+          {
+            "operation": "verify",
+            "receipt": "runs/support-backfill-20260921/cardiac-motion-br035-independent-verify.json",
+            "sha256": "2bc82e125a431c560d3bad627e9bf0215eb4ac617376a021f953bb9177da8c41"
+          },
+          {
+            "operation": "replay",
+            "receipt": "runs/support-backfill-20260921/cardiac-motion-br035-independent-replay.json",
+            "sha256": "56e4d8fc2747569836f6d201488e72fa35829369e1669d136e24d794720730a2"
+          },
+          {
+            "operation": "method-replay",
+            "receipt": "runs/support-backfill-20260921/cardiac-motion-br035-independent-method-replay.json",
+            "sha256": "90a6c3575493f55ce0d118c69d2ddb52fb961106416d4f2362ac8b590e00d9a9"
+          }
+        ],
+        "export_record": "export-71cf064fea4c0b1ba20918d1"
+      },
+      "saved_output_verification": [
+        {
+          "case": "cardiac-masks",
+          "attempt_id": "attempt-c73a7ef0c267fd9eb63eb652",
+          "source_evaluation": "observation-8ad2baa90a439a4e1980f6fb",
+          "matches": true,
+          "exact_match": false,
+          "metrics_sha256": "26897afd8f282fa6ac857ee9f35f3a14829eaaedb266100aaf789e9b9892d1ba"
+        },
+        {
+          "case": "cardiac-masks",
+          "attempt_id": "attempt-14feda971498e86c23928ae0",
+          "source_evaluation": "observation-d3a531c25e1c857a200ccfd3",
+          "matches": true,
+          "exact_match": false,
+          "metrics_sha256": "31815958cda1b2938804deafdcc27a94b91228ce235041944c3f1a192900c804"
+        },
+        {
+          "case": "cardiac-masks-images",
+          "attempt_id": "attempt-fb9e01e19f28f2dc5575df6a",
+          "source_evaluation": "observation-7ec037c2dd3d4449ecfb2a7b",
+          "matches": true,
+          "exact_match": false,
+          "metrics_sha256": "50ca0f09ea2762cff27e75a623e13ffd0b1cac3a3b879061eb494402e5451120"
+        },
+        {
+          "case": "cardiac-masks-images",
+          "attempt_id": "attempt-08b7535ebbdd7d77d926891e",
+          "source_evaluation": "observation-2a0711821e7f17f2baa2973a",
+          "matches": true,
+          "exact_match": false,
+          "metrics_sha256": "31815958cda1b2938804deafdcc27a94b91228ce235041944c3f1a192900c804"
+        }
+      ],
+      "container_verification": {
+        "receipt": "runs/support-backfill-20260921/cardiac-motion-br035-container-controls.json",
+        "sha256": "cf948b7eb042507d8ee444dd87bed306bc7eacb4923cfd821bef7a424966e69c",
+        "manifest_sha256": "909da9f2365dcf34f9b6c7f7731c943eafb4584825f3732cf7e8b5a9f05031b8",
+        "runner_sha256": "8d4544586808f5fbb2611896be6783203f0e64e1f11730e4d11a62e910d8becf",
+        "scope": "Fresh Docker oracle/no-op execution; no model attempt",
+        "controls": [
+          {
+            "case": "cardiac-masks",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:1ff0bd0c45630334c13b75281868889796ca09fbf194ee0d3314a7f909843334",
+              "verifier": "sha256:8e4d2258a4070f1f08b37bfa02865ea658ee9e3500e5091a3cb823fe1aef4ba7"
+            }
+          },
+          {
+            "case": "cardiac-masks",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:1ff0bd0c45630334c13b75281868889796ca09fbf194ee0d3314a7f909843334",
+              "verifier": "sha256:8e4d2258a4070f1f08b37bfa02865ea658ee9e3500e5091a3cb823fe1aef4ba7"
+            }
+          },
+          {
+            "case": "cardiac-masks-images",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:90366d87e59e10619b1b4e99ce04dfd8438a1e4ed83d79f988f89d7e50f35b63",
+              "verifier": "sha256:61515a7f77f78076716d92a5da5f34438b18e1583a9298209ea07727a72be773"
+            }
+          },
+          {
+            "case": "cardiac-masks-images",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:90366d87e59e10619b1b4e99ce04dfd8438a1e4ed83d79f988f89d7e50f35b63",
+              "verifier": "sha256:61515a7f77f78076716d92a5da5f34438b18e1583a9298209ea07727a72be773"
+            }
+          }
+        ]
+      },
+      "fresh_method_verification": {
+        "receipt": "runs/support-backfill-20260921/cardiac-motion-br035-method-fresh.json",
+        "sha256": "a1a31d03c1266531573e2034a9bbfa41d86dcb3b57902d0aeac4c682eecb096e",
+        "manifest_sha256": "d724379f085ab42529899875561184b0f6e1b5210d4791ddbab8a66736d38984",
+        "runner_sha256": "5fb36aefe0b142ee6e60eba39d9d40386e72d019ba02cb7eccb0fa38bfd2bef5",
+        "scope": "Fresh frozen submitted-program execution",
+        "methods": [
+          {
+            "method": "masks",
+            "source_attempt": "attempt-c73a7ef0c267fd9eb63eb652",
+            "matches": true,
+            "exact_match": true,
+            "metrics": {
+              "grade": {
+                "reward": 1,
+                "construction_gates": {
+                  "mask_fit": true,
+                  "volume": true,
+                  "positive_elements": true,
+                  "field_calculation": true
+                },
+                "geometry": {
+                  "vertices": 40569,
+                  "tetrahedra": 180725,
+                  "mean_mask_dice": 0.9807058947408334,
+                  "min_frame_mask_dice": 0.9728702788965727,
+                  "per_frame_mask_dice": [
+                    1.0,
+                    0.9863843503390018,
+                    0.9840721283148228,
+                    0.9833384499455778,
+                    0.9802144292398175,
+                    0.9805917082558633,
+                    0.9811182669789227,
+                    0.9809518122648833,
+                    0.9796022763603811,
+                    0.9761544458201495,
+                    0.9740440155004753,
+                    0.9728702788965727,
+                    0.9738990129081245,
+                    0.9765445211541866,
+                    0.9796467757066525,
+                    0.9811175900707405,
+                    0.9817795918367347,
+                    0.9803764517420905
+                  ],
+                  "volume_ml": [
+                    121.989375,
+                    121.82062495344,
+                    121.26037503930296,
+                    120.73725010516583,
+                    114.87487510479288,
+                    103.3796249957888,
+                    92.31637502305897,
+                    84.80699991057232,
+                    79.03575001258551,
+                    73.48725011081258,
+                    69.23812495026685,
+                    66.6900000418157,
+                    71.16862500796361,
+                    76.2648750609355,
+                    82.82249995265971,
+                    92.28599992722397,
+                    103.2817499045856,
+                    113.14687510951465
+                  ],
+                  "mask_volume_ml": [
+                    121.989375,
+                    121.820625,
+                    121.260375,
+                    120.73725,
+                    114.874875,
+                    103.379625,
+                    92.316375,
+                    84.807,
+                    79.03575,
+                    73.48725,
+                    69.238125,
+                    66.69,
+                    71.168625,
+                    76.264875,
+                    82.8225,
+                    92.286,
+                    103.28175,
+                    113.146875
+                  ],
+                  "mean_volume_error_pct": 6.116583659318862e-08,
+                  "inverted_elements": 0,
+                  "J_min": 0.05858037853347872,
+                  "J_max": 1.1961587921252599,
+                  "J_percentiles": [
+                    0.19740419201385762,
+                    0.3729446869230139,
+                    0.8118200664416038,
+                    1.0128926241934917,
+                    1.0499729921691938
+                  ],
+                  "field_max_abs_error": {
+                    "F": 5.960464477539063e-08,
+                    "E": 1.4901140987788608e-08,
+                    "J": 5.960433968610346e-08
+                  }
+                },
+                "limits": {
+                  "mask_dice": 0.9,
+                  "volume_error_pct": 5.0,
+                  "field_abs_error": 0.0001,
+                  "coverage": 0.95,
+                  "motion_rmse_mm": 2.0,
+                  "strain_mae_pp": 5.0,
+                  "peak_mae_pp": 5.0,
+                  "timing_frames": 2.0
+                },
+                "mask_semantics": "lv_cavity",
+                "cavity_function": {
+                  "ef_pct": 45.331304433836394,
+                  "mask_ef_pct": 45.33130446811454,
+                  "ef_error_pp": 3.4278144767085905e-08,
+                  "ef_geometry_check_pass": true,
+                  "myocardial_strain_validated": false,
+                  "clinical_surface_reference_ef_pct": 45.3063839477923,
+                  "clinical_surface_ef_error_pp": 0.02492048604409547
+                }
+              },
+              "assessment": {
+                "mask_semantics": "lv_cavity",
+                "myocardial_strain_supported": false,
+                "limitations": [
+                  "Masks contain no material identities or tracked landmarks; tangential motion and torsion are not identifiable from boundaries alone.",
+                  "The inferred map is a smooth signed-distance registration hypothesis, not measured tissue correspondence.",
+                  "Voxel-cell boundaries are stair-stepped at the supplied sampling resolution.",
+                  "No strain rate is reported because physical phase duration is unavailable.",
+                  "No AHA labels are supplied, so no anatomical regional or directional interpretation is asserted.",
+                  "A cavity has no epicardium or myocardial tissue domain; its computed deformation is only a geometric map for volume/EF checks."
+                ],
+                "finding": "The cavity supports geometric volume/deformation checks only; the mathematical strain field is not myocardial strain."
+              }
+            },
+            "solver_image": "sha256:ca12960a8e6ce3a38fe030804021f8db2c520947260554838043a5e3e2a906e7",
+            "output_sha256": {
+              "assessment.json": "4b1ca1bacca1c236eafe463c50df1320b217ada72467243df6947f1266a236ea",
+              "method.md": "3716dc927321e459e421724107fcd4e1725ce5214eca39c80e0dd04c740a4ff7",
+              "prediction.npz": "14f2af915364867b8b115b13e87ee789973d756c28bfe56061fb8bf19b10b673"
+            }
+          },
+          {
+            "method": "masks-images",
+            "source_attempt": "attempt-fb9e01e19f28f2dc5575df6a",
+            "matches": true,
+            "exact_match": true,
+            "metrics": {
+              "grade": {
+                "reward": 1,
+                "construction_gates": {
+                  "mask_fit": true,
+                  "volume": true,
+                  "positive_elements": true,
+                  "field_calculation": true
+                },
+                "geometry": {
+                  "vertices": 40569,
+                  "tetrahedra": 216870,
+                  "mean_mask_dice": 0.9805843726379422,
+                  "min_frame_mask_dice": 0.9761784085149519,
+                  "per_frame_mask_dice": [
+                    1.0,
+                    0.9858204291368655,
+                    0.9838941335601634,
+                    0.9815357970893042,
+                    0.979712099445894,
+                    0.9800241538009596,
+                    0.979744799093269,
+                    0.9789505127949816,
+                    0.9786925764936504,
+                    0.9767441860465116,
+                    0.9764958306919589,
+                    0.9761784085149519,
+                    0.976747496796849,
+                    0.9769901323067393,
+                    0.9790272564060715,
+                    0.9800047477311323,
+                    0.9804715563973614,
+                    0.9794845911762959
+                  ],
+                  "volume_ml": [
+                    121.989375,
+                    121.8206250887664,
+                    121.26037489200355,
+                    120.73724992696785,
+                    114.87487507984147,
+                    103.37962492606852,
+                    92.31637524161974,
+                    84.80699995438894,
+                    79.03574996415277,
+                    73.48724996035412,
+                    69.23812507043387,
+                    66.69000009018332,
+                    71.16862500881217,
+                    76.26487498734849,
+                    82.82250002573208,
+                    92.28600001495853,
+                    103.28174998269704,
+                    113.146875027348
+                  ],
+                  "mask_volume_ml": [
+                    121.989375,
+                    121.820625,
+                    121.260375,
+                    120.73725,
+                    114.874875,
+                    103.379625,
+                    92.316375,
+                    84.807,
+                    79.03575,
+                    73.48725,
+                    69.238125,
+                    66.69,
+                    71.168625,
+                    76.264875,
+                    82.8225,
+                    92.286,
+                    103.28175,
+                    113.146875
+                  ],
+                  "mean_volume_error_pct": 6.290991493172903e-08,
+                  "inverted_elements": 0,
+                  "J_min": 0.03755763918351488,
+                  "J_max": 1.1229243352713745,
+                  "J_percentiles": [
+                    0.26188547730476824,
+                    0.4069304355821364,
+                    0.8043362523907946,
+                    1.0113576219752225,
+                    1.0410229754646285
+                  ],
+                  "field_max_abs_error": {
+                    "F": 5.960464477539063e-08,
+                    "E": 6.22253077953161e-08,
+                    "J": 1.8848419758299428e-07
+                  }
+                },
+                "limits": {
+                  "mask_dice": 0.9,
+                  "volume_error_pct": 5.0,
+                  "field_abs_error": 0.0001,
+                  "coverage": 0.95,
+                  "motion_rmse_mm": 2.0,
+                  "strain_mae_pp": 5.0,
+                  "peak_mae_pp": 5.0,
+                  "timing_frames": 2.0
+                },
+                "mask_semantics": "lv_cavity",
+                "cavity_function": {
+                  "ef_pct": 45.33130439418734,
+                  "mask_ef_pct": 45.33130446811454,
+                  "ef_error_pp": 7.392719680865412e-08,
+                  "ef_geometry_check_pass": true,
+                  "myocardial_strain_validated": false,
+                  "clinical_surface_reference_ef_pct": 45.3063839477923,
+                  "clinical_surface_ef_error_pp": 0.024920446395043427
+                }
+              },
+              "assessment": {
+                "mask_semantics": "lv_cavity",
+                "myocardial_strain_supported": false,
+                "limitations": [
+                  "The segmentations contain no material identities or tracked landmarks; fixed vertex indices encode an inferred, non-unique correspondence.",
+                  "Signed-distance registration and smoothness regularization impose a motion prior and do not establish true tissue motion.",
+                  "Ultrasound intensity, when present, is used only as a weak texture cue; it is neither blood velocity nor a reference deformation.",
+                  "No epicardial/endocardial labels, AHA regions, fibre directions, or constitutive/equilibrium model are supplied.",
+                  "Timestamps in seconds are absent, so no strain rate in s^-1 is reported.",
+                  "Boundary accuracy is limited by voxel-centre sampling and the native voxel-cell representation.",
+                  "A cavity alone has no myocardial wall or epicardium, so its F/E fields are only a parameterization of cavity geometry."
+                ],
+                "finding": "The cavity deformation supports geometric volume/EF checks only; its mathematical strain must not be interpreted as myocardial strain."
+              }
+            },
+            "solver_image": "sha256:5ec554f032967b5486f559ec61adbb4704fa2934ef0addb0544bf90d50417fba",
+            "output_sha256": {
+              "assessment.json": "30dbd3d5e56e4768c707eb77eac8f66d8f04412d8043435b86c5dd736f35f925",
+              "method.md": "56614cc5bc5c9c1fe362af282400e720c8bf484d37e7bf2616880abff368f00e",
+              "prediction.npz": "8fb514a4a4f96124e923cedff117d198f499f1ff2daa75c2e51ff4c2f3df55ab"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "experiment_id": "lesion-localization-br016",
+      "group_id": "lesion-localization",
+      "record": "groups/lesion-localization/experiments/br016/experiment.toml",
+      "protocol": "groups/lesion-localization/experiments/br016/protocol.md",
+      "protocol_sha256": "9cd6f7a3e68d484f95ce55308f30690f47e8dba9e9d3ff67a802278a3182b70f",
+      "finding_ids": [
+        "lesion-localization-current-synthesis"
+      ],
+      "attempt_records": 10,
+      "evaluation_records": 10,
+      "sources": [
+        {
+          "path": "docs/evidence/br016-aneurysm-n01-freeze.json",
+          "sha256": "986a53f51360274f640dfc3b0c47d3dff3a45afdf07510c2b681bc49cac19dbc",
+          "observed_sha256": "986a53f51360274f640dfc3b0c47d3dff3a45afdf07510c2b681bc49cac19dbc",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br016-aneurysm-n01-v2-freeze.json",
+          "sha256": "6040ec9b04532b3942d7a54ab5124f586c5e13f767f8fffd7dcb5b5ee2ee4487",
+          "observed_sha256": "6040ec9b04532b3942d7a54ab5124f586c5e13f767f8fffd7dcb5b5ee2ee4487",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br016-aneurysm-n02-freeze.json",
+          "sha256": "a353861b388be4782cfafefc937199aa0d36a80ed8c039ceb8ba70ff98ec11f6",
+          "observed_sha256": "a353861b388be4782cfafefc937199aa0d36a80ed8c039ceb8ba70ff98ec11f6",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br016-aneurysm-n02-v2-freeze.json",
+          "sha256": "b35a028fba1b0e8e7464406e67a05c574ee32058659eabe2beef2f7238ba8168",
+          "observed_sha256": "b35a028fba1b0e8e7464406e67a05c574ee32058659eabe2beef2f7238ba8168",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br016-aneurysm-n03-freeze.json",
+          "sha256": "94b4e5c8176ebd9df5679338ede611ca2f71cfdcc29fe61bfa935da1c9692b36",
+          "observed_sha256": "94b4e5c8176ebd9df5679338ede611ca2f71cfdcc29fe61bfa935da1c9692b36",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br016-aneurysm-n03-v2-freeze.json",
+          "sha256": "4776bd3fb2ce09b431c46ed3dfeecb9bfc9482ad15d53fdad6819bcf279951d0",
+          "observed_sha256": "4776bd3fb2ce09b431c46ed3dfeecb9bfc9482ad15d53fdad6819bcf279951d0",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br016-audit.json",
+          "sha256": "044502b49e1c8eae1eaebe31a39c9090b813bd9bfafe01eff29df13278105ca7",
+          "observed_sha256": "044502b49e1c8eae1eaebe31a39c9090b813bd9bfafe01eff29df13278105ca7",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br016-curation.json",
+          "sha256": "5432ddcf42ef5184fec5e0d2aa7d8df1d4e7162e5ad33bb0a16e8b5ab5a8da58",
+          "observed_sha256": "5432ddcf42ef5184fec5e0d2aa7d8df1d4e7162e5ad33bb0a16e8b5ab5a8da58",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br016-guided-review.json",
+          "sha256": "43da3ad8b383442d403255fcc72b097b2b825b457562bfb5a1bce4afdfaac54f",
+          "observed_sha256": "43da3ad8b383442d403255fcc72b097b2b825b457562bfb5a1bce4afdfaac54f",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br016-negative-controls.json",
+          "sha256": "8cd198b9fa70e392eb3fe56e8fd6215940ca92f89fcf73c56ab31a049aaf55e0",
+          "observed_sha256": "8cd198b9fa70e392eb3fe56e8fd6215940ca92f89fcf73c56ab31a049aaf55e0",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br016-results.json",
+          "sha256": "68b4c654a5f12079d2ea0b23b139bc5d127a7052aa41523fdc5e139ff1dbce17",
+          "observed_sha256": "68b4c654a5f12079d2ea0b23b139bc5d127a7052aa41523fdc5e139ff1dbce17",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br016-trace-reviews.json",
+          "sha256": "446ada36cbc4e7a0fa935b8035bf010f0b1a2208b2fefc1f1d0bc718f7592b31",
+          "observed_sha256": "446ada36cbc4e7a0fa935b8035bf010f0b1a2208b2fefc1f1d0bc718f7592b31",
+          "matches": true
+        }
+      ],
+      "support_scope": "maintained selected recipe",
+      "package": {
+        "experiment": "lesion-localization-br016",
+        "bundle": "runs/support-backfill-20260921/final/lesion-localization-br016",
+        "bundle_manifest_sha256": "fc45c0a1b577813657be4b9a3dca316b773035dc027c697c044c551b30e14cf8",
+        "recipe": "groups/lesion-localization/experiments/br016/reproduction/manifest.json",
+        "recipe_sha256": "dbc86fbd70e0322165e667cb473a07729ed731ef3989cba5eeffa8cb41e84237",
+        "runner_sha256": "46ffff1756eb169581d6e8c93469e8feef6ff1b71129aa7012cc5c5c30c3e40e",
+        "files": 90,
+        "bytes": 170974732,
+        "cases": [
+          "aneurysm-n01",
+          "aneurysm-n01-v2",
+          "aneurysm-n02-v2",
+          "aneurysm-n03-v2"
+        ],
+        "saved_replays": 9,
+        "method_transfers": [],
+        "original_task_files_unchanged": 51,
+        "checks": [
+          {
+            "operation": "verify",
+            "receipt": "runs/support-backfill-20260921/lesion-localization-br016-independent-verify.json",
+            "sha256": "c136a2b3024f4ed8a142b01177d7bc6d41fec246de8662ea3eac52a655b9c840"
+          },
+          {
+            "operation": "replay",
+            "receipt": "runs/support-backfill-20260921/lesion-localization-br016-independent-replay.json",
+            "sha256": "2bc99e543ea3be5a4da57a34ea2ff46f56743c72f75f7661988f864f381af64a"
+          }
+        ],
+        "export_record": "export-fc45c0a1b577813657be4b9a"
+      },
+      "saved_output_verification": [
+        {
+          "case": "aneurysm-n01-v2",
+          "attempt_id": "attempt-d8ff6fe39d99a1425550be62",
+          "source_evaluation": "observation-6f07ba2e6a493f0c42b151c5",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "4a9cb5c6d671132d942db6a03dc257a30a875d697ef511b9b6b8b544d061ded3"
+        },
+        {
+          "case": "aneurysm-n01-v2",
+          "attempt_id": "attempt-4af886eebbe8d0bf19353ea2",
+          "source_evaluation": "observation-bd9d0426ed6dbc993a51fe39",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "e111129a2799785464bd08e64c2955aaabce2f87c8ca4bdd3bc1008d85f3a961"
+        },
+        {
+          "case": "aneurysm-n01-v2",
+          "attempt_id": "attempt-77cecb670db8c34d63e8a691",
+          "source_evaluation": "observation-f60d47ae65f808281dcc9e92",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "ec0cbb34d3d75e34bfea62fb8f9181b807adcefa6a66b3b726fe3c6e879e3a09"
+        },
+        {
+          "case": "aneurysm-n02-v2",
+          "attempt_id": "attempt-00cd581b46d800f8b78b2c02",
+          "source_evaluation": "observation-eef504b5ab607514f9402a35",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "2b11103d45fcdcba8351778b8e9cbf0d0bea1249a4232acdb866fa786dae4b68"
+        },
+        {
+          "case": "aneurysm-n02-v2",
+          "attempt_id": "attempt-4214c4f632d2167e127eaaa7",
+          "source_evaluation": "observation-7e5d14f26b0eb01e87435737",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "708f2d301b8884d993e33af651a4084f3a55acf8b5488407931712096ada5e41"
+        },
+        {
+          "case": "aneurysm-n02-v2",
+          "attempt_id": "attempt-89a72cbb9b6eed627beb8bc3",
+          "source_evaluation": "observation-d1b5dbafb4a977b0bf336b13",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "ec0cbb34d3d75e34bfea62fb8f9181b807adcefa6a66b3b726fe3c6e879e3a09"
+        },
+        {
+          "case": "aneurysm-n03-v2",
+          "attempt_id": "attempt-00300e7168d0bf97c88665ab",
+          "source_evaluation": "observation-f010506c865f61af9ea22bd1",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "ec0cbb34d3d75e34bfea62fb8f9181b807adcefa6a66b3b726fe3c6e879e3a09"
+        },
+        {
+          "case": "aneurysm-n03-v2",
+          "attempt_id": "attempt-31d3a8526e1664a800b5946f",
+          "source_evaluation": "observation-e639c5c08df735d551381096",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "56fd1ced75df46c21c032ce3c90fa0d969d4a94c3e9e72608033aee1de2b72e9"
+        },
+        {
+          "case": "aneurysm-n03-v2",
+          "attempt_id": "attempt-11a0165705f1214aca15b2dc",
+          "source_evaluation": "observation-62861c5eaa8d2333a9d4b2ed",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "56fd1ced75df46c21c032ce3c90fa0d969d4a94c3e9e72608033aee1de2b72e9"
+        }
+      ],
+      "container_verification": {
+        "receipt": "runs/support-backfill-20260921/lesion-localization-br016-container-controls-followup.json",
+        "sha256": "0b983bb79d1fdb3fa407052ec29ed3e1770d2e30beb96c5eaec9a5dbd2d5cd4d",
+        "manifest_sha256": "7f3bad237a08a5f08b9e47dfc88969aeb026a1d90234dd0508ede2663735f281",
+        "runner_sha256": "c48e6fc088748f4d274ba0b32024adaea46db61b72623658a2ae5c814a4370fc",
+        "scope": "Fresh Docker oracle/no-op execution; no model attempt",
+        "controls": [
+          {
+            "case": "aneurysm-n01",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:a3e633fd4b1f040ab920106d756da1ca38bfd58118b7e2760c80c32a67865cd4",
+              "verifier": "sha256:57b464e424c7eedacc5a84678624d134115cf274e516d7924266d0925c4b9e1e"
+            }
+          },
+          {
+            "case": "aneurysm-n01",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:a3e633fd4b1f040ab920106d756da1ca38bfd58118b7e2760c80c32a67865cd4",
+              "verifier": "sha256:57b464e424c7eedacc5a84678624d134115cf274e516d7924266d0925c4b9e1e"
+            }
+          },
+          {
+            "case": "aneurysm-n01-v2",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:0bb996a76f230964fab7960044dc88b53dcb184a899c7626161d98b9497506a5",
+              "verifier": "sha256:003fafd361dea08549340dd58ece3a1c2633e3300a418d1359f33d806fcb58c2"
+            }
+          },
+          {
+            "case": "aneurysm-n01-v2",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:0bb996a76f230964fab7960044dc88b53dcb184a899c7626161d98b9497506a5",
+              "verifier": "sha256:003fafd361dea08549340dd58ece3a1c2633e3300a418d1359f33d806fcb58c2"
+            }
+          },
+          {
+            "case": "aneurysm-n02-v2",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:4d03b95fe000bf7e8d7b0630737240f37530a16f60f01a2819a3836be05cbe79",
+              "verifier": "sha256:962a7606f77dc8beeaa915bf29abf596c3e26f0ab84e1270e1df9bb2db4efa6b"
+            }
+          },
+          {
+            "case": "aneurysm-n02-v2",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:4d03b95fe000bf7e8d7b0630737240f37530a16f60f01a2819a3836be05cbe79",
+              "verifier": "sha256:962a7606f77dc8beeaa915bf29abf596c3e26f0ab84e1270e1df9bb2db4efa6b"
+            }
+          },
+          {
+            "case": "aneurysm-n03-v2",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:329cc4d66d1c69e5e03b872aac2a1305568e786a797a14b450e03099b40e6207",
+              "verifier": "sha256:c7390d2ab2e8605950bf69b884db97b7dd7e26e5aac7e3b01756c3fdfee44b78"
+            }
+          },
+          {
+            "case": "aneurysm-n03-v2",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:329cc4d66d1c69e5e03b872aac2a1305568e786a797a14b450e03099b40e6207",
+              "verifier": "sha256:c7390d2ab2e8605950bf69b884db97b7dd7e26e5aac7e3b01756c3fdfee44b78"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "experiment_id": "longitudinal-reading-br018",
+      "group_id": "longitudinal-reading",
+      "record": "groups/longitudinal-reading/experiments/br018/experiment.toml",
+      "protocol": "groups/longitudinal-reading/experiments/br018/protocol.md",
+      "protocol_sha256": "8caa51a5a23748c1502c91b11005f20d679ccf078e6f5750a55d6c1290bac026",
+      "finding_ids": [
+        "longitudinal-reading-current-synthesis"
+      ],
+      "attempt_records": 0,
+      "evaluation_records": 0,
+      "sources": [],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "longitudinal-reading-br037",
+      "group_id": "longitudinal-reading",
+      "record": "groups/longitudinal-reading/experiments/br037/experiment.toml",
+      "protocol": "groups/longitudinal-reading/experiments/br037/protocol.md",
+      "protocol_sha256": "762aea45bfcdb1d1ae4e2c01a78141380fb6b2da0618655722c6c9a3a5652e91",
+      "finding_ids": [
+        "longitudinal-reading-current-synthesis"
+      ],
+      "attempt_records": 12,
+      "evaluation_records": 12,
+      "sources": [
+        {
+          "path": "docs/evidence/br037-curation.json",
+          "sha256": "eab3c15f8826a6a0c09021527a1dcf2b4a0cadd3adffb570df53f2ea6257c0b3",
+          "observed_sha256": "eab3c15f8826a6a0c09021527a1dcf2b4a0cadd3adffb570df53f2ea6257c0b3",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br037-freeze.json",
+          "sha256": "42f18bdc5ccfa61409983c6c933394d5d5a87ad09ca732786fd1dc47867bdd2d",
+          "observed_sha256": "42f18bdc5ccfa61409983c6c933394d5d5a87ad09ca732786fd1dc47867bdd2d",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br037-results.json",
+          "sha256": "7f00ad8f48c3ce256ae345397a28abe53d15b631852e63d0901da1b2b40b1fad",
+          "observed_sha256": "7f00ad8f48c3ce256ae345397a28abe53d15b631852e63d0901da1b2b40b1fad",
+          "matches": true
+        }
+      ],
+      "support_scope": "maintained selected recipe",
+      "package": {
+        "experiment": "longitudinal-reading-br037",
+        "bundle": "runs/support-backfill-20260921/final/longitudinal-reading-br037",
+        "bundle_manifest_sha256": "3cf3c3ee1bf9802acc4a148e3b05109b7439ea7639ecbbc083bf678d29c1be7a",
+        "recipe": "groups/longitudinal-reading/experiments/br037/reproduction/manifest.json",
+        "recipe_sha256": "49875dc481b62aa50b64136b58ef010a3bfec72663c9ae93c1bd72b884efbe26",
+        "runner_sha256": "46ffff1756eb169581d6e8c93469e8feef6ff1b71129aa7012cc5c5c30c3e40e",
+        "files": 398,
+        "bytes": 1921398653,
+        "cases": [
+          "p01-neutral",
+          "p02-neutral",
+          "p03-cue",
+          "p03-neutral"
+        ],
+        "saved_replays": 8,
+        "method_transfers": [],
+        "original_task_files_unchanged": 354,
+        "checks": [
+          {
+            "operation": "verify",
+            "receipt": "runs/support-backfill-20260921/longitudinal-reading-br037-independent-verify.json",
+            "sha256": "fb2cd1771366921d7a369e2774eff29c4b648a2e0b29e1d9465c24b322bf7f8c"
+          },
+          {
+            "operation": "replay",
+            "receipt": "runs/support-backfill-20260921/longitudinal-reading-br037-independent-replay.json",
+            "sha256": "c8b63d443c291d5a6d66ef071e890a76a4782d82b71c90beced0fecfd4613ec1"
+          }
+        ],
+        "export_record": "export-3cf3c3ee1bf9802acc4a148e"
+      },
+      "saved_output_verification": [
+        {
+          "case": "p01-neutral",
+          "attempt_id": "attempt-cca5d279a85b6b94de657b08",
+          "source_evaluation": "observation-31ce8f572f4022bbde1a258f",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "e190f8c9bd9e9470f09ab6b833533f4ed7e357f21a2b259bd3d52987ec887d78"
+        },
+        {
+          "case": "p01-neutral",
+          "attempt_id": "attempt-3a475823585227b5be8bf929",
+          "source_evaluation": "observation-a7d0532eb25931b08085cef0",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "e190f8c9bd9e9470f09ab6b833533f4ed7e357f21a2b259bd3d52987ec887d78"
+        },
+        {
+          "case": "p02-neutral",
+          "attempt_id": "attempt-9d641b234e095912a4ce6a1e",
+          "source_evaluation": "observation-60cc2848a8b7acb8a2bac368",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "e190f8c9bd9e9470f09ab6b833533f4ed7e357f21a2b259bd3d52987ec887d78"
+        },
+        {
+          "case": "p02-neutral",
+          "attempt_id": "attempt-e34b8e6142067965a81400aa",
+          "source_evaluation": "observation-e9a6a7e7f21e09b9973c3b6a",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "e190f8c9bd9e9470f09ab6b833533f4ed7e357f21a2b259bd3d52987ec887d78"
+        },
+        {
+          "case": "p03-cue",
+          "attempt_id": "attempt-7898cf81ae4585a9c377af67",
+          "source_evaluation": "observation-b339c0e8a033b3a7896ae367",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "e190f8c9bd9e9470f09ab6b833533f4ed7e357f21a2b259bd3d52987ec887d78"
+        },
+        {
+          "case": "p03-cue",
+          "attempt_id": "attempt-eb520340ef928714fb45ef3a",
+          "source_evaluation": "observation-d1b5dcfabf6bc95e18f37405",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "e190f8c9bd9e9470f09ab6b833533f4ed7e357f21a2b259bd3d52987ec887d78"
+        },
+        {
+          "case": "p03-neutral",
+          "attempt_id": "attempt-7133e5e55b00a1cd42906752",
+          "source_evaluation": "observation-f25cd34710aba3078c9a48fb",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "e190f8c9bd9e9470f09ab6b833533f4ed7e357f21a2b259bd3d52987ec887d78"
+        },
+        {
+          "case": "p03-neutral",
+          "attempt_id": "attempt-6c8ee6d062c12e5b435afa42",
+          "source_evaluation": "observation-4c737449d650410066a2e122",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "e190f8c9bd9e9470f09ab6b833533f4ed7e357f21a2b259bd3d52987ec887d78"
+        }
+      ],
+      "container_verification": {
+        "receipt": "runs/support-backfill-20260921/longitudinal-reading-br037-container-controls-followup.json",
+        "sha256": "da3c71f497627ba68871c20316faa21b156f823ffc3bbf954be11092eb3c3cb7",
+        "manifest_sha256": "dce5fd26bff0c4300cdb1c73568f36e4a92cdf5185da03e39f8127ce4c800fda",
+        "runner_sha256": "c48e6fc088748f4d274ba0b32024adaea46db61b72623658a2ae5c814a4370fc",
+        "scope": "Fresh Docker oracle/no-op execution; no model attempt",
+        "controls": [
+          {
+            "case": "p01-neutral",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:a7f2700804c37e452bebbd87b4cd4eac9565ac1f4e184b57637ae6bb560f52f4",
+              "verifier": "sha256:23cddf41d0d7119a3cc41e74c4bd63e7701b36835ea9cb1a2687c0fdcb39ddfb"
+            }
+          },
+          {
+            "case": "p01-neutral",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:a7f2700804c37e452bebbd87b4cd4eac9565ac1f4e184b57637ae6bb560f52f4",
+              "verifier": "sha256:23cddf41d0d7119a3cc41e74c4bd63e7701b36835ea9cb1a2687c0fdcb39ddfb"
+            }
+          },
+          {
+            "case": "p02-neutral",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:f2ef36b6dff1bb115d1a9f948644b0ac0e1f1f54d2d57f45743b92035b72e7f9",
+              "verifier": "sha256:6839e75e5edb3597ca2d6d4975600bfe969c5641e9a5b35de3eb39525fc38606"
+            }
+          },
+          {
+            "case": "p02-neutral",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:f2ef36b6dff1bb115d1a9f948644b0ac0e1f1f54d2d57f45743b92035b72e7f9",
+              "verifier": "sha256:6839e75e5edb3597ca2d6d4975600bfe969c5641e9a5b35de3eb39525fc38606"
+            }
+          },
+          {
+            "case": "p03-cue",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:381be7cf92befd597f81bc73e24ebd61ab67349b66da2b814e57eff82d2151cc",
+              "verifier": "sha256:83219d750d9b3218e0eeaf771c5ef61258dae4cd84f8437db926773f51144faf"
+            }
+          },
+          {
+            "case": "p03-cue",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:381be7cf92befd597f81bc73e24ebd61ab67349b66da2b814e57eff82d2151cc",
+              "verifier": "sha256:83219d750d9b3218e0eeaf771c5ef61258dae4cd84f8437db926773f51144faf"
+            }
+          },
+          {
+            "case": "p03-neutral",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:e9f3e8350961d32abcb0d9f055be0a1513cf9561445215dd740c216ef0158c81",
+              "verifier": "sha256:e93fc601a40f1672a9c9f7c6f6d87538afb3124d8cd7855801ec54cd49ba8f7f"
+            }
+          },
+          {
+            "case": "p03-neutral",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:e9f3e8350961d32abcb0d9f055be0a1513cf9561445215dd740c216ef0158c81",
+              "verifier": "sha256:e93fc601a40f1672a9c9f7c6f6d87538afb3124d8cd7855801ec54cd49ba8f7f"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "experiment_id": "registration-br019",
+      "group_id": "registration",
+      "record": "groups/registration/experiments/br019/experiment.toml",
+      "protocol": "groups/registration/experiments/br019/protocol.md",
+      "protocol_sha256": "f28f51a99e48eb275e9c9eb33a088b5870417e029f72f772781f190ead33bb86",
+      "finding_ids": [
+        "registration-current-synthesis"
+      ],
+      "attempt_records": 6,
+      "evaluation_records": 6,
+      "sources": [
+        {
+          "path": "docs/evidence/br019-author-audit.json",
+          "sha256": "41543f4987286ba468f6bb38efbf7fffb4f2deb3f85fe7f2d955e69c87c44faa",
+          "observed_sha256": "41543f4987286ba468f6bb38efbf7fffb4f2deb3f85fe7f2d955e69c87c44faa",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br019-freeze.json",
+          "sha256": "19f5b5b2320b5550c00151ec39c90832d117a184f06dc9515c3669c76f0aa4ec",
+          "observed_sha256": "19f5b5b2320b5550c00151ec39c90832d117a184f06dc9515c3669c76f0aa4ec",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br019-results.json",
+          "sha256": "53575fa3aa629dfde1a1ab9b15a1afd605116a9fed13fbe586504d80f8a20267",
+          "observed_sha256": "53575fa3aa629dfde1a1ab9b15a1afd605116a9fed13fbe586504d80f8a20267",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "registration-br020",
+      "group_id": "registration",
+      "record": "groups/registration/experiments/br020/experiment.toml",
+      "protocol": "groups/registration/experiments/br020/protocol.md",
+      "protocol_sha256": "aa1a05df06d32261cc34bf345ba3d2796083fe612266740d0ff385250ae8dced",
+      "finding_ids": [
+        "registration-current-synthesis"
+      ],
+      "attempt_records": 3,
+      "evaluation_records": 3,
+      "sources": [
+        {
+          "path": "docs/evidence/br020-author-audit.json",
+          "sha256": "cbeecd41c2e4c158ac9222d22ae4e85bbe887b0cedf63433dcb52489b06614d0",
+          "observed_sha256": "cbeecd41c2e4c158ac9222d22ae4e85bbe887b0cedf63433dcb52489b06614d0",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br020-freeze.json",
+          "sha256": "c16454ea895eef6887ae99ffa27b29cfe2bedffcefb8a259c5994514c83e1001",
+          "observed_sha256": "c16454ea895eef6887ae99ffa27b29cfe2bedffcefb8a259c5994514c83e1001",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br020-results.json",
+          "sha256": "73ba36452d6c8cecc11f5ad727f0a4272b23c95caf773bfa38a17007469e2ad8",
+          "observed_sha256": "73ba36452d6c8cecc11f5ad727f0a4272b23c95caf773bfa38a17007469e2ad8",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "registration-br021",
+      "group_id": "registration",
+      "record": "groups/registration/experiments/br021/experiment.toml",
+      "protocol": "groups/registration/experiments/br021/protocol.md",
+      "protocol_sha256": "c8c11dd9624374c1c62f391039d8b6cfd0a5cde71e755bbfc48998be9077571f",
+      "finding_ids": [
+        "registration-current-synthesis"
+      ],
+      "attempt_records": 6,
+      "evaluation_records": 6,
+      "sources": [
+        {
+          "path": "docs/evidence/br021-author-audit.json",
+          "sha256": "84e230c050db48a0b2110011f4805116ed7494a43836849f4faa8153577c2554",
+          "observed_sha256": "84e230c050db48a0b2110011f4805116ed7494a43836849f4faa8153577c2554",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br021-freeze.json",
+          "sha256": "8845458395438557e08091e91c230100d9a492a69828214adbe73d4ebfae316c",
+          "observed_sha256": "8845458395438557e08091e91c230100d9a492a69828214adbe73d4ebfae316c",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br021-results.json",
+          "sha256": "aab6d177db9e20878eb345050e73b41f68b721749b795d7add6d887306b4428f",
+          "observed_sha256": "aab6d177db9e20878eb345050e73b41f68b721749b795d7add6d887306b4428f",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "registration-br022",
+      "group_id": "registration",
+      "record": "groups/registration/experiments/br022/experiment.toml",
+      "protocol": "groups/registration/experiments/br022/protocol.md",
+      "protocol_sha256": "67d16a983105986417ed24f02dcac21cd0acf28d0205bf51fd4f201a80aab66d",
+      "finding_ids": [
+        "registration-current-synthesis"
+      ],
+      "attempt_records": 4,
+      "evaluation_records": 4,
+      "sources": [
+        {
+          "path": "docs/evidence/br022-author-execution.json",
+          "sha256": "4a82a4b1d16dfc218a85718d61e71ac54e82a028c6262021b373fbb6215c03fc",
+          "observed_sha256": "4a82a4b1d16dfc218a85718d61e71ac54e82a028c6262021b373fbb6215c03fc",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br022-plan.json",
+          "sha256": "ee0982dbe9d0ef4ab1c727ffdac05cbf1ee1ca7c53b33244fe589e6864e98388",
+          "observed_sha256": "ee0982dbe9d0ef4ab1c727ffdac05cbf1ee1ca7c53b33244fe589e6864e98388",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br022-results.json",
+          "sha256": "e96e861e970e8c47323dbde61a59a178a7c723eb80fedfbc8d4ac355c36818c6",
+          "observed_sha256": "e96e861e970e8c47323dbde61a59a178a7c723eb80fedfbc8d4ac355c36818c6",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br022-solver-analysis.json",
+          "sha256": "bccb967318c0e916f396ada033dc9a9a69e80f2e72816f068a1178b35e0d96aa",
+          "observed_sha256": "bccb967318c0e916f396ada033dc9a9a69e80f2e72816f068a1178b35e0d96aa",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "registration-br023",
+      "group_id": "registration",
+      "record": "groups/registration/experiments/br023/experiment.toml",
+      "protocol": "groups/registration/experiments/br023/protocol.md",
+      "protocol_sha256": "367da2ee26903b00c004b91a703af86f5be3d666fcf2544b8506983da99f5be0",
+      "finding_ids": [
+        "registration-current-synthesis"
+      ],
+      "attempt_records": 3,
+      "evaluation_records": 3,
+      "sources": [
+        {
+          "path": "docs/evidence/br023-component-analysis.json",
+          "sha256": "328c38988ff8a52f1bd149939a9d540abe579d863ff586cfaecd3b5fc24aa708",
+          "observed_sha256": "328c38988ff8a52f1bd149939a9d540abe579d863ff586cfaecd3b5fc24aa708",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br023-component-plan.json",
+          "sha256": "23e8822b27b47e45f3ee0658a55aff4b05f568b692befa70a34f1323489802ac",
+          "observed_sha256": "23e8822b27b47e45f3ee0658a55aff4b05f568b692befa70a34f1323489802ac",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br023-plan.json",
+          "sha256": "29580cad2f6ca6b3f1495cdd173e016b30d94f16d9af8ef34c51110dc6d5df33",
+          "observed_sha256": "29580cad2f6ca6b3f1495cdd173e016b30d94f16d9af8ef34c51110dc6d5df33",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br023-results.json",
+          "sha256": "5039f0045b1448fb26853a1fb8f8cb674a7667869853659c79356b0bcc776803",
+          "observed_sha256": "5039f0045b1448fb26853a1fb8f8cb674a7667869853659c79356b0bcc776803",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "registration-br024",
+      "group_id": "registration",
+      "record": "groups/registration/experiments/br024/experiment.toml",
+      "protocol": "groups/registration/experiments/br024/protocol.md",
+      "protocol_sha256": "7f357c4387e89bdb95f9f22f822dd693605bbdc476f6ee5026b6c2b9b42a0caa",
+      "finding_ids": [
+        "registration-current-synthesis"
+      ],
+      "attempt_records": 3,
+      "evaluation_records": 5,
+      "sources": [
+        {
+          "path": "docs/evidence/br024-approach-analysis.json",
+          "sha256": "fd143f55d8a4e04414d2c7ab92ff54cdc8eb5ec2a45311d28db03ac55dac5956",
+          "observed_sha256": "fd143f55d8a4e04414d2c7ab92ff54cdc8eb5ec2a45311d28db03ac55dac5956",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br024-curation-analysis.json",
+          "sha256": "f8024fad245a8c078f301ab2935fff3f594da420752b40d59f303a703c370085",
+          "observed_sha256": "f8024fad245a8c078f301ab2935fff3f594da420752b40d59f303a703c370085",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br024-neighborhood-plan.json",
+          "sha256": "89ad332cd3a716a52749e23737d72d08571e535f2dca2bb78df185a7df10fbc9",
+          "observed_sha256": "89ad332cd3a716a52749e23737d72d08571e535f2dca2bb78df185a7df10fbc9",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br024-patient3-author-audit.json",
+          "sha256": "affdce9f9ee22b627b25425ca74835af16477105be077065063cccbfe53ebc96",
+          "observed_sha256": "affdce9f9ee22b627b25425ca74835af16477105be077065063cccbfe53ebc96",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br024-patient3-freeze.json",
+          "sha256": "d40a51e6bc841806750deef6aa1307a87e51c056d4478cab83dd58c406fcb3a6",
+          "observed_sha256": "d40a51e6bc841806750deef6aa1307a87e51c056d4478cab83dd58c406fcb3a6",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br024-plan.json",
+          "sha256": "f5fa4fe4632eabddc5d743676e3063607d81d6c864c196b8af66f41c9e400a73",
+          "observed_sha256": "f5fa4fe4632eabddc5d743676e3063607d81d6c864c196b8af66f41c9e400a73",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br024-rescue-plan.json",
+          "sha256": "d38ce2866653f64c4c50538cb1864bf14448f487b1d9b87fd0a273724a288cd3",
+          "observed_sha256": "d38ce2866653f64c4c50538cb1864bf14448f487b1d9b87fd0a273724a288cd3",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br024-results.json",
+          "sha256": "a7818fcb6e3f85d34586932588ca96bd8c8301f568bec0865af276483ab29a77",
+          "observed_sha256": "a7818fcb6e3f85d34586932588ca96bd8c8301f568bec0865af276483ab29a77",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br024-screen.json",
+          "sha256": "203390523b8288bfdd43ba9626dae986ce12f371ccc3ce17fb1cb2bde55ba0d1",
+          "observed_sha256": "203390523b8288bfdd43ba9626dae986ce12f371ccc3ce17fb1cb2bde55ba0d1",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br024-stage-analysis.json",
+          "sha256": "66fc6dc427c8adacfc6b35e96dbab5f182199e4de8a03cfa1703bfa081045af4",
+          "observed_sha256": "66fc6dc427c8adacfc6b35e96dbab5f182199e4de8a03cfa1703bfa081045af4",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br024-validation.json",
+          "sha256": "6e1c5face2681292ac191fd9f390d22925bd23b83619fd093aef899ada5375db",
+          "observed_sha256": "6e1c5face2681292ac191fd9f390d22925bd23b83619fd093aef899ada5375db",
+          "matches": true
+        }
+      ],
+      "support_scope": "maintained selected recipe",
+      "package": {
+        "experiment": "registration-br024",
+        "bundle": "runs/support-backfill-20260921/final/registration-br024",
+        "bundle_manifest_sha256": "055a1258a4009918611cb14a8fa5fafaf7810576296e0571e77314b166340014",
+        "recipe": "groups/registration/experiments/br024/reproduction/manifest.json",
+        "recipe_sha256": "841266b8e4d883b02502b497ceadece78e825c60ce6ff67e389c6a8112ee30d3",
+        "runner_sha256": "46ffff1756eb169581d6e8c93469e8feef6ff1b71129aa7012cc5c5c30c3e40e",
+        "files": 31,
+        "bytes": 11253314,
+        "cases": [
+          "deform-harder-patient3"
+        ],
+        "saved_replays": 2,
+        "method_transfers": [],
+        "original_task_files_unchanged": 15,
+        "checks": [
+          {
+            "operation": "verify",
+            "receipt": "runs/support-backfill-20260921/registration-br024-independent-verify.json",
+            "sha256": "5ed6d48bc346acc92ed300fc3f7f2fa51ebd2691f61ecae4309f0b18070d997f"
+          },
+          {
+            "operation": "replay",
+            "receipt": "runs/support-backfill-20260921/registration-br024-independent-replay.json",
+            "sha256": "f54d582854358d50c46ba3fb5d368b7ecfb78819cc6bce596179faa01d4272bb"
+          }
+        ],
+        "export_record": "export-055a1258a4009918611cb14a"
+      },
+      "saved_output_verification": [
+        {
+          "case": "deform-harder-patient3",
+          "attempt_id": "attempt-620b884beb4657471b02ee05",
+          "source_evaluation": "observation-97b430986346be57be6ceea4",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "ee7abbba45fe3ade5babe6d9e95aacc61bda6d9c2cb80bba0e6cdd5f54db87f2"
+        },
+        {
+          "case": "deform-harder-patient3",
+          "attempt_id": "attempt-1e5130b60751ce07865b6531",
+          "source_evaluation": "observation-8a63afa23ead4df2c0f299df",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "25eb22747d1acfe0477c20b48f6348133f921fd9421ae5cf727a3d3e816abfa3"
+        }
+      ],
+      "container_verification": {
+        "receipt": "runs/support-backfill-20260921/registration-br024-container-controls-followup.json",
+        "sha256": "06f28fce362ebc36b3c02e852ea395f3ba084faba2eb2d7426849c633f63b9ec",
+        "manifest_sha256": "3d8bfd2e0d23c5780272df951bdda0ccc8dc675b68fe1972cf8f3291413ffee1",
+        "runner_sha256": "c48e6fc088748f4d274ba0b32024adaea46db61b72623658a2ae5c814a4370fc",
+        "scope": "Fresh Docker oracle/no-op execution; no model attempt",
+        "controls": [
+          {
+            "case": "deform-harder-patient3",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:555800e44bad2786158014f1cad90c65b08e008b34e6fda364f91fb90ab42fbd",
+              "verifier": "sha256:3b17a85bf7c94c2676d4cd0b4c6274ae72f8c70230a843a0537ea91f694703f8"
+            }
+          },
+          {
+            "case": "deform-harder-patient3",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:555800e44bad2786158014f1cad90c65b08e008b34e6fda364f91fb90ab42fbd",
+              "verifier": "sha256:3b17a85bf7c94c2676d4cd0b4c6274ae72f8c70230a843a0537ea91f694703f8"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "experiment_id": "registration-br028",
+      "group_id": "registration",
+      "record": "groups/registration/experiments/br028/experiment.toml",
+      "protocol": "groups/registration/experiments/br028/protocol.md",
+      "protocol_sha256": "d4e66fe6cfa6aa86889187b81f160498134365f970312602eaaad48b6ce54b82",
+      "finding_ids": [
+        "registration-current-synthesis"
+      ],
+      "attempt_records": 3,
+      "evaluation_records": 3,
+      "sources": [
+        {
+          "path": "docs/evidence/br028-adjudication.json",
+          "sha256": "0925009d9d598081f256f6f4693034cefcb77f3ca8f50d07d53cb9a0eac03264",
+          "observed_sha256": "0925009d9d598081f256f6f4693034cefcb77f3ca8f50d07d53cb9a0eac03264",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br028-approach-analysis.json",
+          "sha256": "bff2928498320ea832717745aa85ec2b0868bfc1bea0da031478bb5a9973fcd3",
+          "observed_sha256": "bff2928498320ea832717745aa85ec2b0868bfc1bea0da031478bb5a9973fcd3",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br028-author-audit.json",
+          "sha256": "4399ed54da81e5497d0ed8e45e2f1c2c3160c75cc4310c3efa8a4fe224c7b2ad",
+          "observed_sha256": "4399ed54da81e5497d0ed8e45e2f1c2c3160c75cc4310c3efa8a4fe224c7b2ad",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br028-formulation-analysis.json",
+          "sha256": "6ed5ca361585ec1f0a3e501d9c6dd88aa1d58fac0a39673cb57ca02c47a8496a",
+          "observed_sha256": "6ed5ca361585ec1f0a3e501d9c6dd88aa1d58fac0a39673cb57ca02c47a8496a",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br028-freeze.json",
+          "sha256": "7085a655521cee5df0ca658a46299701fe9c3c239df38c9dad8c357967cc9dd0",
+          "observed_sha256": "7085a655521cee5df0ca658a46299701fe9c3c239df38c9dad8c357967cc9dd0",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br028-plan.json",
+          "sha256": "5b93e0af890c35f410843547ac0fb9cee334800773b9fc63031e35bd4f35fd0f",
+          "observed_sha256": "5b93e0af890c35f410843547ac0fb9cee334800773b9fc63031e35bd4f35fd0f",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br028-results.json",
+          "sha256": "89a74bb32ef98a1c437572b43a64feb7b1c38b8d09d45aceb93a248892fa1e21",
+          "observed_sha256": "89a74bb32ef98a1c437572b43a64feb7b1c38b8d09d45aceb93a248892fa1e21",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br028-stage-analysis.json",
+          "sha256": "1ee25cb44ebd6fd61b1d4e2c36fb4f91ccc9c3027f115aa1429f482c6602eabc",
+          "observed_sha256": "1ee25cb44ebd6fd61b1d4e2c36fb4f91ccc9c3027f115aa1429f482c6602eabc",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br028-validation.json",
+          "sha256": "7a5e6038af7cc88b454786495b0f4b377700c3fd1b2de152443a98925a8809ac",
+          "observed_sha256": "7a5e6038af7cc88b454786495b0f4b377700c3fd1b2de152443a98925a8809ac",
+          "matches": true
+        }
+      ],
+      "support_scope": "maintained selected recipe",
+      "package": {
+        "experiment": "registration-br028",
+        "bundle": "runs/support-backfill-20260921/final/registration-br028",
+        "bundle_manifest_sha256": "2e81e480b8a9fb5d437af855b4b5e8450219f6a101d12bb88b2f9c111d4453c1",
+        "recipe": "groups/registration/experiments/br028/reproduction/manifest.json",
+        "recipe_sha256": "95a6a95c0d6dbf78a52f890c3ea85e1599dae211f6e7534b0fb97f6d4f3a9c8d",
+        "runner_sha256": "46ffff1756eb169581d6e8c93469e8feef6ff1b71129aa7012cc5c5c30c3e40e",
+        "files": 30,
+        "bytes": 18143450,
+        "cases": [
+          "deform-patient3-source3d"
+        ],
+        "saved_replays": 2,
+        "method_transfers": [],
+        "original_task_files_unchanged": 16,
+        "checks": [
+          {
+            "operation": "verify",
+            "receipt": "runs/support-backfill-20260921/registration-br028-independent-verify.json",
+            "sha256": "51b0e9d837e5ac84bbc3d28f8fbed258555b0b48f839a967e20d1af961508d2e"
+          },
+          {
+            "operation": "replay",
+            "receipt": "runs/support-backfill-20260921/registration-br028-independent-replay.json",
+            "sha256": "2fb3aae1a8bf52e5f4ca557e968d3d1dd443873891effa81c6ad5fcaf30d3aab"
+          }
+        ],
+        "export_record": "export-2e81e480b8a9fb5d437af855"
+      },
+      "saved_output_verification": [
+        {
+          "case": "deform-patient3-source3d",
+          "attempt_id": "attempt-1b3e33b1343fbe8760eaa5fe",
+          "source_evaluation": "observation-f5dec3801d7a43617e28d5fd",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "e92f8baa39f1773d77c0a240ce2bfe8cae97cf4acd3d2230dda59b1f674f81be"
+        },
+        {
+          "case": "deform-patient3-source3d",
+          "attempt_id": "attempt-e1817bab8ca455e46465a904",
+          "source_evaluation": "observation-64a103cda8860ec3f5ace406",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "25eb22747d1acfe0477c20b48f6348133f921fd9421ae5cf727a3d3e816abfa3"
+        }
+      ],
+      "container_verification": {
+        "receipt": "runs/support-backfill-20260921/registration-br028-container-controls-followup.json",
+        "sha256": "52c69798a5cbd39185620a5d81fc35744ba7dc779321d8658d984f0f5a2508d1",
+        "manifest_sha256": "db3a3f6fe03f555de8d487cc90a1685776c02ae5a91aa657aee3138b7899910e",
+        "runner_sha256": "c48e6fc088748f4d274ba0b32024adaea46db61b72623658a2ae5c814a4370fc",
+        "scope": "Fresh Docker oracle/no-op execution; no model attempt",
+        "controls": [
+          {
+            "case": "deform-patient3-source3d",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:9072cfa7b7ea453b1e98362c82bcfff0c72070782b959f8120c68006c6fed8cf",
+              "verifier": "sha256:e2cf0c34412364c951f5177b4172dde7df2564ce3f2fbc8e4d8054d3130aabb3"
+            }
+          },
+          {
+            "case": "deform-patient3-source3d",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:9072cfa7b7ea453b1e98362c82bcfff0c72070782b959f8120c68006c6fed8cf",
+              "verifier": "sha256:e2cf0c34412364c951f5177b4172dde7df2564ce3f2fbc8e4d8054d3130aabb3"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "experiment_id": "tubular-anatomy-br025",
+      "group_id": "tubular-anatomy",
+      "record": "groups/tubular-anatomy/experiments/br025/experiment.toml",
+      "protocol": "groups/tubular-anatomy/experiments/br025/protocol.md",
+      "protocol_sha256": "3dd320a940d3d9f0169e16bf90f5ee5e27fb084b6eb567c076a9b1f2278b90e6",
+      "finding_ids": [
+        "tubular-anatomy-current-synthesis"
+      ],
+      "attempt_records": 0,
+      "evaluation_records": 0,
+      "sources": [
+        {
+          "path": "docs/evidence/br025-curation.json",
+          "sha256": "409dbebedc698353fe6c24580c469957ae8286660bee9751a87dd307849fc02a",
+          "observed_sha256": "409dbebedc698353fe6c24580c469957ae8286660bee9751a87dd307849fc02a",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "tubular-anatomy-br026",
+      "group_id": "tubular-anatomy",
+      "record": "groups/tubular-anatomy/experiments/br026/experiment.toml",
+      "protocol": "groups/tubular-anatomy/experiments/br026/protocol.md",
+      "protocol_sha256": "27bb7f05c0f440cb98afef86069e3a68c2712eec7d5f106d19bc67aee9df7fef",
+      "finding_ids": [
+        "tubular-anatomy-current-synthesis"
+      ],
+      "attempt_records": 6,
+      "evaluation_records": 6,
+      "sources": [
+        {
+          "path": "docs/evidence/br026-discrepancy-review.json",
+          "sha256": "033ed914130a523d0cb07e531578a66af8ad334587e7a2880cb595a43ad5fb8f",
+          "observed_sha256": "033ed914130a523d0cb07e531578a66af8ad334587e7a2880cb595a43ad5fb8f",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br026-freeze.json",
+          "sha256": "563b6336e756ca1cfc37a86ffb7646012b346333efae591b38300939436ba60e",
+          "observed_sha256": "563b6336e756ca1cfc37a86ffb7646012b346333efae591b38300939436ba60e",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br026-results.json",
+          "sha256": "d0d3c22811b7ebdf8be039fe4083dc844780653be3df056fb15189dd04d644e6",
+          "observed_sha256": "d0d3c22811b7ebdf8be039fe4083dc844780653be3df056fb15189dd04d644e6",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br026-trace-audit.json",
+          "sha256": "aaf5fc40499cbe8c422d676df873be4fd3e97bfd35719385fc1882b01d5234b8",
+          "observed_sha256": "aaf5fc40499cbe8c422d676df873be4fd3e97bfd35719385fc1882b01d5234b8",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br026-trace-review.json",
+          "sha256": "5ef32352fab11d9968f089da544fd07771fda73712bdfa12d4d86f92ec839add",
+          "observed_sha256": "5ef32352fab11d9968f089da544fd07771fda73712bdfa12d4d86f92ec839add",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "tubular-anatomy-br030",
+      "group_id": "tubular-anatomy",
+      "record": "groups/tubular-anatomy/experiments/br030/experiment.toml",
+      "protocol": "groups/tubular-anatomy/experiments/br030/protocol.md",
+      "protocol_sha256": "5420e39d1120c2bd94dda0295136ca3f1bcded4fc40b9d3372a4744209dbba7d",
+      "finding_ids": [
+        "tubular-anatomy-current-synthesis"
+      ],
+      "attempt_records": 3,
+      "evaluation_records": 3,
+      "sources": [
+        {
+          "path": "docs/evidence/br030-adjudication.json",
+          "sha256": "f6ba5092a6a55438ac01a45176bdb16aab2e950ce30955bf598d64ebc35a01ac",
+          "observed_sha256": "f6ba5092a6a55438ac01a45176bdb16aab2e950ce30955bf598d64ebc35a01ac",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br030-freeze.json",
+          "sha256": "eda2e99f7ec3ab1fc476f9829702a30868e71bd8a79dbf4019acec0ff78515c2",
+          "observed_sha256": "eda2e99f7ec3ab1fc476f9829702a30868e71bd8a79dbf4019acec0ff78515c2",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br030-results.json",
+          "sha256": "503917f47d34ea6272e45247abe31b91e32f7e0405f30bd4d8a6e4d194ce8baa",
+          "observed_sha256": "503917f47d34ea6272e45247abe31b91e32f7e0405f30bd4d8a6e4d194ce8baa",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br030-sources.json",
+          "sha256": "4b7ff0b6d3e640a683e9a3023188b613e06f8fdbc135ccdae8b34ba91360052a",
+          "observed_sha256": "4b7ff0b6d3e640a683e9a3023188b613e06f8fdbc135ccdae8b34ba91360052a",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br030-validation.json",
+          "sha256": "905b84f801bd467ec72ac0d8132f02559f47fea0ff44cd2adf7ddd0034a07f80",
+          "observed_sha256": "905b84f801bd467ec72ac0d8132f02559f47fea0ff44cd2adf7ddd0034a07f80",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br030-viewer-validation.json",
+          "sha256": "73e1b8bd461bd8750735e9de4f3a496d6477b57f2a692bbfa30b36aaec63e924",
+          "observed_sha256": "73e1b8bd461bd8750735e9de4f3a496d6477b57f2a692bbfa30b36aaec63e924",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "tubular-anatomy-br033",
+      "group_id": "tubular-anatomy",
+      "record": "groups/tubular-anatomy/experiments/br033/experiment.toml",
+      "protocol": "groups/tubular-anatomy/experiments/br033/protocol.md",
+      "protocol_sha256": "43ff802bb44b4cb0940446aa3cad80257680bc32878ec2db712f1ade723fc5d2",
+      "finding_ids": [
+        "tubular-anatomy-current-synthesis"
+      ],
+      "attempt_records": 3,
+      "evaluation_records": 3,
+      "sources": [
+        {
+          "path": "docs/evidence/br033-brain-resumption.json",
+          "sha256": "c4c6f6888ccb80e97dca4789f743b41ad6f7072137e78351965b170bd4a3e213",
+          "observed_sha256": "c4c6f6888ccb80e97dca4789f743b41ad6f7072137e78351965b170bd4a3e213",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br033-freeze.json",
+          "sha256": "d44adf4e098c1d54b1f567af765f63d2ba480a810349225f6ee2dfbd5f66e3c8",
+          "observed_sha256": "d44adf4e098c1d54b1f567af765f63d2ba480a810349225f6ee2dfbd5f66e3c8",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br033-results.json",
+          "sha256": "7747d60a45eb10a2e7fd1e672d5b9b885cebedcd5449fcb3f2c2141d0a6e43a0",
+          "observed_sha256": "7747d60a45eb10a2e7fd1e672d5b9b885cebedcd5449fcb3f2c2141d0a6e43a0",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br033-scope-audit.json",
+          "sha256": "d1e0e0056821fc780cd9bfc56183629c0099e0c97e35a2e78e9012ae36db2265",
+          "observed_sha256": "d1e0e0056821fc780cd9bfc56183629c0099e0c97e35a2e78e9012ae36db2265",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br033-source-audit.json",
+          "sha256": "8c1607d37554eadf288e4eed9d79b49ce9577f2ee2f26e1d589e55343ca2994a",
+          "observed_sha256": "8c1607d37554eadf288e4eed9d79b49ce9577f2ee2f26e1d589e55343ca2994a",
+          "matches": true
+        }
+      ],
+      "support_scope": "historical record; execution recipe not selected"
+    },
+    {
+      "experiment_id": "tubular-anatomy-br041",
+      "group_id": "tubular-anatomy",
+      "record": "groups/tubular-anatomy/experiments/br041/experiment.toml",
+      "protocol": "groups/tubular-anatomy/experiments/br041/protocol.md",
+      "protocol_sha256": "738b1c4dfb42aaba7d0466657705777e624f1122866d84cff681d2274a415dd2",
+      "finding_ids": [
+        "tubular-anatomy-current-synthesis"
+      ],
+      "attempt_records": 5,
+      "evaluation_records": 5,
+      "sources": [
+        {
+          "path": "docs/evidence/br041-astra-audit.json",
+          "sha256": "4bea3e42b6417773b2e7975df5b2c71a611be77ed75f1494740e7efa42fbbbeb",
+          "observed_sha256": "4bea3e42b6417773b2e7975df5b2c71a611be77ed75f1494740e7efa42fbbbeb",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br041-astra-plan.json",
+          "sha256": "e0cd582c2c6e140deb0bf97b433bcbae0dfc12f94423fb4bd7c677296a85f3f4",
+          "observed_sha256": "e0cd582c2c6e140deb0bf97b433bcbae0dfc12f94423fb4bd7c677296a85f3f4",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br041-astra-results.json",
+          "sha256": "ab7f1eea2927d64bc1930f34fdb2c5b5adf853939796906411656697f7fcb237",
+          "observed_sha256": "ab7f1eea2927d64bc1930f34fdb2c5b5adf853939796906411656697f7fcb237",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br041-audit.json",
+          "sha256": "90fbc40eadeb024186ff9a5015b356b7c089376935ada26397f2f2326b8cf622",
+          "observed_sha256": "90fbc40eadeb024186ff9a5015b356b7c089376935ada26397f2f2326b8cf622",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br041-freeze.json",
+          "sha256": "fb34323cc1ce6520ef4e38aa734e22b509a8661fe5cd2e8b55bd6aec8fc1e241",
+          "observed_sha256": "fb34323cc1ce6520ef4e38aa734e22b509a8661fe5cd2e8b55bd6aec8fc1e241",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br041-results.json",
+          "sha256": "31448125011d7cdf4af47b7d68fea6c9d632a6303107c745a649f712fb51f8c6",
+          "observed_sha256": "31448125011d7cdf4af47b7d68fea6c9d632a6303107c745a649f712fb51f8c6",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br041-sol-audit.json",
+          "sha256": "0fe037fb3f485b1f69d9d236cdf5a319c75d7e4c11a138f081a1989c348818a7",
+          "observed_sha256": "0fe037fb3f485b1f69d9d236cdf5a319c75d7e4c11a138f081a1989c348818a7",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br041-sol-plan.json",
+          "sha256": "d7a2400ae0dbd1d5285ea07798aef6fe6896ceee01cfe4ba47e3c223b5ac2e37",
+          "observed_sha256": "d7a2400ae0dbd1d5285ea07798aef6fe6896ceee01cfe4ba47e3c223b5ac2e37",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br041-sol-results.json",
+          "sha256": "80495838057751a481ca37fc58d740fea1b258a03e2e978f04cff6212556ab0e",
+          "observed_sha256": "80495838057751a481ca37fc58d740fea1b258a03e2e978f04cff6212556ab0e",
+          "matches": true
+        }
+      ],
+      "support_scope": "maintained selected recipe",
+      "package": {
+        "experiment": "tubular-anatomy-br041",
+        "bundle": "runs/support-backfill-20260921/final/tubular-anatomy-br041",
+        "bundle_manifest_sha256": "e88d8c977de6ce7b4a83c7d45266d80000c5bfe80885b809307928e4e78cc491",
+        "recipe": "groups/tubular-anatomy/experiments/br041/reproduction/manifest.json",
+        "recipe_sha256": "1189e1cebe9265f61b509de1c50f73efcbfae53a4543d099880f4738ac19b4d9",
+        "runner_sha256": "46ffff1756eb169581d6e8c93469e8feef6ff1b71129aa7012cc5c5c30c3e40e",
+        "files": 32,
+        "bytes": 30925572,
+        "cases": [
+          "named-rca"
+        ],
+        "saved_replays": 4,
+        "method_transfers": [],
+        "original_task_files_unchanged": 12,
+        "checks": [
+          {
+            "operation": "verify",
+            "receipt": "runs/support-backfill-20260921/tubular-anatomy-br041-independent-verify.json",
+            "sha256": "09ce522d818b762057ecf41bf1f8e03eca4a941db99a1eb3d0e302227435c99b"
+          },
+          {
+            "operation": "replay",
+            "receipt": "runs/support-backfill-20260921/tubular-anatomy-br041-independent-replay.json",
+            "sha256": "64ab59cd317281685a247f5cacba79d461fff4d1f57f4541d4b229676f11a62c"
+          }
+        ],
+        "export_record": "export-e88d8c977de6ce7b4a83c7d4"
+      },
+      "saved_output_verification": [
+        {
+          "case": "named-rca",
+          "attempt_id": "attempt-be0b4444601addab5192fa34",
+          "source_evaluation": "observation-ea35c872c8633acd01523169",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "297c6df26309995f76ec2d09f962c83e6c62191a9065e00ea1af8566e9767190"
+        },
+        {
+          "case": "named-rca",
+          "attempt_id": "attempt-f903e1e53aa165b9cc1f6161",
+          "source_evaluation": "observation-3fc9daed8d078c36e65f94c8",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "a18edfd3c956f5a5312e4c58cbd057c22bf6e00b058003d98c79652f4d42cb07"
+        },
+        {
+          "case": "named-rca",
+          "attempt_id": "attempt-49fd24441a854db93e181717",
+          "source_evaluation": "observation-d64f935a288ada33263c77a6",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "769956d4ac88a17641b9e13fcf0070ae5f61e23ca07ae02227e5bddb5f56a339"
+        },
+        {
+          "case": "named-rca",
+          "attempt_id": "attempt-3cf2f433dfeb859a7d68ae44",
+          "source_evaluation": "observation-9562bde1c2cbe1eead2c0afb",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "b530497e8e45a67588ba11222108c98d11f2f2f670b7a9f735f70250ff19ac2a"
+        }
+      ],
+      "container_verification": {
+        "receipt": "runs/support-backfill-20260921/tubular-anatomy-br041-container-controls-followup.json",
+        "sha256": "d10a8ba622893826b51c10fd497fb4a739564286cc731b80b774fab1626da2d8",
+        "manifest_sha256": "ecb1898021bee03aafd6cbcaedeefb5b0a11859c56eec4360001d311c1302a33",
+        "runner_sha256": "c48e6fc088748f4d274ba0b32024adaea46db61b72623658a2ae5c814a4370fc",
+        "scope": "Fresh Docker oracle/no-op execution; no model attempt",
+        "controls": [
+          {
+            "case": "named-rca",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:b8575dfd9481fba4f73ab3240812d738ecbba53479bd1419d51714096a7d56e0",
+              "verifier": "sha256:fe74a1cb18668b0905c500162525a1eb85a7497e1c4cf64cf06ff2f2eb5af5f9"
+            }
+          },
+          {
+            "case": "named-rca",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:b8575dfd9481fba4f73ab3240812d738ecbba53479bd1419d51714096a7d56e0",
+              "verifier": "sha256:fe74a1cb18668b0905c500162525a1eb85a7497e1c4cf64cf06ff2f2eb5af5f9"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "experiment_id": "tubular-anatomy-br042",
+      "group_id": "tubular-anatomy",
+      "record": "groups/tubular-anatomy/experiments/br042/experiment.toml",
+      "protocol": "groups/tubular-anatomy/experiments/br042/protocol.md",
+      "protocol_sha256": "3e99a4ff152f34a16b0b814cbe6ab486d2ccfcd5d7eab8df7b2950f0eed9f235",
+      "finding_ids": [
+        "tubular-anatomy-current-synthesis"
+      ],
+      "attempt_records": 15,
+      "evaluation_records": 16,
+      "sources": [
+        {
+          "path": "docs/evidence/br042-freeze.json",
+          "sha256": "283176b16e2c36a38b5884f175865f3d28bee6315d334a64e7cb2dac9e8c3c40",
+          "observed_sha256": "283176b16e2c36a38b5884f175865f3d28bee6315d334a64e7cb2dac9e8c3c40",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br042-gt-audit.json",
+          "sha256": "1195b13f1c103b7e4998757bd2e548806b0f7c1a0b6d1fa6106a86e8fa4739e1",
+          "observed_sha256": "1195b13f1c103b7e4998757bd2e548806b0f7c1a0b6d1fa6106a86e8fa4739e1",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br042-v2-freeze.json",
+          "sha256": "a2144cd4daf28904dfb9fe23ce40647a77dadf43db4ee393cddfea9c8ab0c1b6",
+          "observed_sha256": "a2144cd4daf28904dfb9fe23ce40647a77dadf43db4ee393cddfea9c8ab0c1b6",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br042-v2-gt-audit.json",
+          "sha256": "1195b13f1c103b7e4998757bd2e548806b0f7c1a0b6d1fa6106a86e8fa4739e1",
+          "observed_sha256": "1195b13f1c103b7e4998757bd2e548806b0f7c1a0b6d1fa6106a86e8fa4739e1",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br042-v2-results.json",
+          "sha256": "ab0d97ec7cec1173d604331623ba3eca8cd12a5d166e25908b7e291360395db0",
+          "observed_sha256": "ab0d97ec7cec1173d604331623ba3eca8cd12a5d166e25908b7e291360395db0",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br042-v3-branch-audit.json",
+          "sha256": "877d417d51d0bfbbc02aa61d51cb8ca2461d62a48f0c54f9557f3e9a72bc9908",
+          "observed_sha256": "877d417d51d0bfbbc02aa61d51cb8ca2461d62a48f0c54f9557f3e9a72bc9908",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br042-v3-freeze.json",
+          "sha256": "d7a64d3983164e62854d72c13efa231cb71fb7d10b294da43d2e01fc8a2a8465",
+          "observed_sha256": "d7a64d3983164e62854d72c13efa231cb71fb7d10b294da43d2e01fc8a2a8465",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br042-v3-input-audit.json",
+          "sha256": "6d79aa831f3171264a0e358caa6e86e43866984071dca367284e45f0b288817f",
+          "observed_sha256": "6d79aa831f3171264a0e358caa6e86e43866984071dca367284e45f0b288817f",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br042-v3-results.json",
+          "sha256": "fbea0f1d4f435b0b4a4722db4e5d09c66490712f4c7b71c7aa825f7db4afad1b",
+          "observed_sha256": "fbea0f1d4f435b0b4a4722db4e5d09c66490712f4c7b71c7aa825f7db4afad1b",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br042-v3-review-audit.json",
+          "sha256": "d5e5034cbda603bcab12a1f3aa780442a135f14784b677f497d4c032b25e77f7",
+          "observed_sha256": "d5e5034cbda603bcab12a1f3aa780442a135f14784b677f497d4c032b25e77f7",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br042-v4-2h-freeze.json",
+          "sha256": "4b211f00b26cafcf27ab94dcdc6f8e5d7e23edefbaede6e1224e51698f2e46f1",
+          "observed_sha256": "4b211f00b26cafcf27ab94dcdc6f8e5d7e23edefbaede6e1224e51698f2e46f1",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br042-v4-2h-input-audit.json",
+          "sha256": "8e288828614174d006f5c3c7b64a64032e22d557ecbc8c0322e014a5132992f8",
+          "observed_sha256": "8e288828614174d006f5c3c7b64a64032e22d557ecbc8c0322e014a5132992f8",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br042-v4-freeze.json",
+          "sha256": "f8f1a5517889c050fa9cf51bd2aef33ce2797386250b1f2e9ff5f10553f5ebe6",
+          "observed_sha256": "f8f1a5517889c050fa9cf51bd2aef33ce2797386250b1f2e9ff5f10553f5ebe6",
+          "matches": true
+        },
+        {
+          "path": "docs/evidence/br042-v4-input-audit.json",
+          "sha256": "2813ed855eb82c1733ebe80fef92425327614fdc4d6b945e65963e498b9e15e0",
+          "observed_sha256": "2813ed855eb82c1733ebe80fef92425327614fdc4d6b945e65963e498b9e15e0",
+          "matches": true
+        }
+      ],
+      "support_scope": "maintained selected recipe",
+      "package": {
+        "experiment": "tubular-anatomy-br042",
+        "bundle": "runs/support-backfill-20260921/final/tubular-anatomy-br042",
+        "bundle_manifest_sha256": "6b67800cdcb4a88f64b34d0f8c0afdb1111adf3343f048b90c66f8b12b5c1741",
+        "recipe": "groups/tubular-anatomy/experiments/br042/reproduction/manifest.json",
+        "recipe_sha256": "fa3a2c514dd328e775d40c58391bc3383b3f8c28b514bab0b1b77da6d0e56d78",
+        "runner_sha256": "46ffff1756eb169581d6e8c93469e8feef6ff1b71129aa7012cc5c5c30c3e40e",
+        "files": 88,
+        "bytes": 386113363,
+        "cases": [
+          "all-coronary-v1",
+          "all-vessels-v2",
+          "all-vessels-v3",
+          "all-vessels-v4-2h"
+        ],
+        "saved_replays": 9,
+        "method_transfers": [],
+        "original_task_files_unchanged": 48,
+        "checks": [
+          {
+            "operation": "verify",
+            "receipt": "runs/support-backfill-20260921/tubular-anatomy-br042-independent-verify.json",
+            "sha256": "ece74a6fe6f4bd4ce1cb4f9dcc7f9deb5b109952e20bf5fd6081b44c6c074c37"
+          },
+          {
+            "operation": "replay",
+            "receipt": "runs/support-backfill-20260921/tubular-anatomy-br042-independent-replay.json",
+            "sha256": "d16e956db206f239a0d547eec8394167274a3d7f5ff8c57ee3378b7a01d2e423"
+          }
+        ],
+        "export_record": "export-6b67800cdcb4a88f64b34d0f"
+      },
+      "saved_output_verification": [
+        {
+          "case": "all-coronary-v1",
+          "attempt_id": "attempt-cb69e76e9ef6d0a7bf4b0528",
+          "source_evaluation": "observation-b2df2433fb4316778048472b",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "e6b2edc9ecd9ff57bf81a36a0667193efedc7fc3125dd1179a089eaf48a21256"
+        },
+        {
+          "case": "all-vessels-v2",
+          "attempt_id": "attempt-0b2d3c3790d2912aadaf1498",
+          "source_evaluation": "observation-2dce09b7d7869f3b2df2599e",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "05d49b60674f7962c1f2f170ac59d89e3538a43c2bf50e617a10dbf805025a4a"
+        },
+        {
+          "case": "all-vessels-v2",
+          "attempt_id": "attempt-e33d1206501e8417d08bfb44",
+          "source_evaluation": "observation-54ef4791d4fba6ae3dfe0676",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "9a17ae02370bb1f1e78cd343d4c2e5df8757ff229bb717d3e028a7a05d94a74d"
+        },
+        {
+          "case": "all-vessels-v3",
+          "attempt_id": "attempt-53715b74826df2d43b97bbaf",
+          "source_evaluation": "observation-6b6e424afa899d0667cba042",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "5e666ecf8e4c62c008953624cb6b6ab9091f9e7c4175e8c8d3b63315efe69966"
+        },
+        {
+          "case": "all-vessels-v3",
+          "attempt_id": "attempt-7f88a589d1f43906bcc34dde",
+          "source_evaluation": "observation-cf13fe68d60f445456a0ae21",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "fd88cdff869d7760b9884a3547b6cef979373cb6303c06b1b4a68588196285f6"
+        },
+        {
+          "case": "all-vessels-v3",
+          "attempt_id": "attempt-1b05f9e0479e6219f7e82621",
+          "source_evaluation": "observation-371a11b4b0bea779a49bf075",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "ea6a1e5080c02670f14f8aa14823f61f7d2f9996880c9bf4272781a9042c5841"
+        },
+        {
+          "case": "all-vessels-v3",
+          "attempt_id": "attempt-6dcc0595b077eb9f61c1cf8e",
+          "source_evaluation": "observation-49c2eb15b1f2583bf95b8ef0",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "32ba56c3995f4e606a91ef06830e564e210f72c7ac5f5c82048b5d458a2ed29c"
+        },
+        {
+          "case": "all-vessels-v4-2h",
+          "attempt_id": "attempt-9e3c2cad20899db25955a11d",
+          "source_evaluation": "observation-e69192228473c365a1664bb5",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "32ba56c3995f4e606a91ef06830e564e210f72c7ac5f5c82048b5d458a2ed29c"
+        },
+        {
+          "case": "all-vessels-v4-2h",
+          "attempt_id": "attempt-da47f4051e58e7e85a372af7",
+          "source_evaluation": "observation-f201f0fcb74304f6eecb2ada",
+          "matches": true,
+          "exact_match": true,
+          "metrics_sha256": "275aa5e85ec6e36edd3996643055d61a69d941f5c4b9da96040c5adff4fbcfbc"
+        }
+      ],
+      "container_verification": {
+        "receipt": "runs/support-backfill-20260921/tubular-anatomy-br042-container-controls-followup.json",
+        "sha256": "76014eb1b5c284c486ed4112e9f420ca68ec55ebbdce630a9d9a668c6db940e6",
+        "manifest_sha256": "0073c17236f186bd73ebf30cc49bab81ba4d23b00de8c14078acb60388c7f7cc",
+        "runner_sha256": "c48e6fc088748f4d274ba0b32024adaea46db61b72623658a2ae5c814a4370fc",
+        "scope": "Fresh Docker oracle/no-op execution; no model attempt",
+        "controls": [
+          {
+            "case": "all-coronary-v1",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:a2a375cf0ceb2e37025736e2dd08a7d11d3d818c0a5dd5cfd1076d0b26b3dcae",
+              "verifier": "sha256:d4240c14e4e0eaf47beebbb23c66ab2d615366bbe8c5d158ef86e323055a8515"
+            }
+          },
+          {
+            "case": "all-coronary-v1",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:a2a375cf0ceb2e37025736e2dd08a7d11d3d818c0a5dd5cfd1076d0b26b3dcae",
+              "verifier": "sha256:d4240c14e4e0eaf47beebbb23c66ab2d615366bbe8c5d158ef86e323055a8515"
+            }
+          },
+          {
+            "case": "all-vessels-v2",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:8bf7d3afa14713020de1813d85f276ce9905bf4373a16e68ac8d50fb9fa679ef",
+              "verifier": "sha256:adca4cc5efbe35eb033339b239a184a3fe91a8c514476351225fbc77e8034482"
+            }
+          },
+          {
+            "case": "all-vessels-v2",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:8bf7d3afa14713020de1813d85f276ce9905bf4373a16e68ac8d50fb9fa679ef",
+              "verifier": "sha256:adca4cc5efbe35eb033339b239a184a3fe91a8c514476351225fbc77e8034482"
+            }
+          },
+          {
+            "case": "all-vessels-v3",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:e561fcabdf5f935fb6ea2212efb08504c7f5b0eccec2568cc12b088937751cee",
+              "verifier": "sha256:9bc7946a16c57a37ef211410b5837f9f8a2f939b64508c46b664986017cb4e59"
+            }
+          },
+          {
+            "case": "all-vessels-v3",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:e561fcabdf5f935fb6ea2212efb08504c7f5b0eccec2568cc12b088937751cee",
+              "verifier": "sha256:9bc7946a16c57a37ef211410b5837f9f8a2f939b64508c46b664986017cb4e59"
+            }
+          },
+          {
+            "case": "all-vessels-v4-2h",
+            "role": "oracle",
+            "reward": 1.0,
+            "expected": 1,
+            "images": {
+              "solver": "sha256:f9ac76c8b4c036e66000bf0641d6e0658ee46db8eced9956d6c63ab6a183ea19",
+              "verifier": "sha256:b17427a6113b41e6010f66f6ef4b5c537b687e0f4c30563964a45341dade21e9"
+            }
+          },
+          {
+            "case": "all-vessels-v4-2h",
+            "role": "nop",
+            "reward": 0.0,
+            "expected": 0,
+            "images": {
+              "solver": "sha256:f9ac76c8b4c036e66000bf0641d6e0658ee46db8eced9956d6c63ab6a183ea19",
+              "verifier": "sha256:b17427a6113b41e6010f66f6ef4b5c537b687e0f4c30563964a45341dade21e9"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "inspection_verification": {
+    "receipt": "runs/support-backfill-20260921/inspection-check.json",
+    "sha256": "9882ab1ac5c813f94483ff77dc4404d57e477315d982c88932d57b2b88f05c4b",
+    "scope": "Generated and checked 26 task/inventory HTML artifacts; no native medical-image geometry claim",
+    "cases": 26
+  }
+}

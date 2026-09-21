@@ -1,0 +1,147 @@
+{
+  "condition": "masks",
+  "seconds": 40.66349541700038,
+  "exit_code": 0,
+  "timeout": false,
+  "submitted_files_sha256": {
+    "method.md": "512bec06f5615b0ac3eb5c2d5ea76438bc4a3d0950e8d079bd09145f8ac2b24c",
+    "assessment.json": "b5684b8bb65e5b415afb215c61d5558853d05c4afe01836325074f3240802b24",
+    "prediction.npz": "65490f7ad2cf9038fe35cf44870034b771de692c5f38fe860192092a5af3e2c5",
+    "solve.py": "f004bdf277cf1e0ad60211e8915648a1ca53391df66f83ddda7efbecafadf703",
+    "__pycache__/solve.cpython-312.pyc": "c0bf7dd02ac11c3f8b17b7cb491a04a3a6510a3c4b3489add9e3e76e2a939cb1"
+  },
+  "input_files_sha256": {
+    "geometry.json": "3cec5af497e8e5a582453d059632f6a20b9a231dbf0646a65b87aefaf2d21c47",
+    "masks.npz": "d35001173c670cf04096b075a6d53ab5ee3499846b20d43eb270169129f4cb9a"
+  },
+  "image": "br035-replay-masks:v1",
+  "grade": {
+    "reward": 1,
+    "construction_gates": {
+      "mask_fit": true,
+      "volume": true,
+      "positive_elements": true,
+      "field_calculation": true
+    },
+    "geometry": {
+      "vertices": 40569,
+      "tetrahedra": 180725,
+      "mean_mask_dice": 0.9807058947408334,
+      "min_frame_mask_dice": 0.9728702788965727,
+      "per_frame_mask_dice": [
+        1.0,
+        0.9863843503390018,
+        0.9840721283148228,
+        0.9833384499455778,
+        0.9802144292398175,
+        0.9805917082558633,
+        0.9811182669789227,
+        0.9809518122648833,
+        0.9796022763603811,
+        0.9761544458201495,
+        0.9740440155004753,
+        0.9728702788965727,
+        0.9738990129081245,
+        0.9765445211541866,
+        0.9796467757066525,
+        0.9811175900707405,
+        0.9817795918367347,
+        0.9803764517420905
+      ],
+      "volume_ml": [
+        121.989375,
+        121.82062495344,
+        121.26037503930296,
+        120.73725010516583,
+        114.87487510479288,
+        103.3796249957888,
+        92.31637502305897,
+        84.80699991057232,
+        79.03575001258551,
+        73.48725011081258,
+        69.23812495026685,
+        66.6900000418157,
+        71.16862500796361,
+        76.2648750609355,
+        82.82249995265971,
+        92.28599992722397,
+        103.2817499045856,
+        113.14687510951465
+      ],
+      "mask_volume_ml": [
+        121.989375,
+        121.820625,
+        121.260375,
+        120.73725,
+        114.874875,
+        103.379625,
+        92.316375,
+        84.807,
+        79.03575,
+        73.48725,
+        69.238125,
+        66.69,
+        71.168625,
+        76.264875,
+        82.8225,
+        92.286,
+        103.28175,
+        113.146875
+      ],
+      "mean_volume_error_pct": 6.116583659318862e-08,
+      "inverted_elements": 0,
+      "J_min": 0.05858037853347872,
+      "J_max": 1.1961587921252599,
+      "J_percentiles": [
+        0.19740419201385762,
+        0.3729446869230139,
+        0.8118200664416038,
+        1.0128926241934917,
+        1.0499729921691938
+      ],
+      "field_max_abs_error": {
+        "F": 5.960464477539063e-08,
+        "E": 1.4901140987788608e-08,
+        "J": 5.960433968610346e-08
+      }
+    },
+    "limits": {
+      "mask_dice": 0.9,
+      "volume_error_pct": 5.0,
+      "field_abs_error": 0.0001,
+      "coverage": 0.95,
+      "motion_rmse_mm": 2.0,
+      "strain_mae_pp": 5.0,
+      "peak_mae_pp": 5.0,
+      "timing_frames": 2.0
+    },
+    "mask_semantics": "lv_cavity",
+    "cavity_function": {
+      "ef_pct": 45.331304433836394,
+      "mask_ef_pct": 45.33130446811454,
+      "ef_error_pp": 3.4278144767085905e-08,
+      "ef_geometry_check_pass": true,
+      "myocardial_strain_validated": false,
+      "clinical_surface_reference_ef_pct": 45.3063839477923,
+      "clinical_surface_ef_error_pp": 0.02492048604409547
+    }
+  },
+  "assessment": {
+    "mask_semantics": "lv_cavity",
+    "myocardial_strain_supported": false,
+    "limitations": [
+      "Masks contain no material identities or tracked landmarks; tangential motion and torsion are not identifiable from boundaries alone.",
+      "The inferred map is a smooth signed-distance registration hypothesis, not measured tissue correspondence.",
+      "Voxel-cell boundaries are stair-stepped at the supplied sampling resolution.",
+      "No strain rate is reported because physical phase duration is unavailable.",
+      "No AHA labels are supplied, so no anatomical regional or directional interpretation is asserted.",
+      "A cavity has no epicardium or myocardial tissue domain; its computed deformation is only a geometric map for volume/EF checks."
+    ],
+    "finding": "The cavity supports geometric volume/deformation checks only; the mathematical strain field is not myocardial strain."
+  },
+  "output_files_sha256": {
+    "method.md": "3716dc927321e459e421724107fcd4e1725ce5214eca39c80e0dd04c740a4ff7",
+    "assessment.json": "4b1ca1bacca1c236eafe463c50df1320b217ada72467243df6947f1266a236ea",
+    "prediction.npz": "14f2af915364867b8b115b13e87ee789973d756c28bfe56061fb8bf19b10b673"
+  }
+}

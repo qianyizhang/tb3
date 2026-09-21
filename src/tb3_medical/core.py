@@ -343,6 +343,7 @@ def projection(root, *, pending_review=None):
 
 def validate(root):
     rows = load(root)
+    reproduction_cases = 0
     for row in rows.values():
         refs = [
             (field, row[field])
@@ -363,10 +364,15 @@ def validate(root):
             }.get(field)
             if expected and rows[key]["kind"] != expected:
                 raise MedicalError(f"{row['id']}: {field} must reference {expected}")
+        if row["kind"] == "experiment" and row.get("reproduction_manifest"):
+            from .task_package import validate_metadata
+
+            reproduction_cases += validate_metadata(root, row, rows)
     return {
         "records": len(rows),
         "groups": sum(r["kind"] == "group" for r in rows.values()),
         "experiments": sum(r["kind"] == "experiment" for r in rows.values()),
+        "reproduction_cases": reproduction_cases,
         "artifact_checks": "not performed; verify selected inputs when running, replaying or exporting",
     }
 

@@ -1,51 +1,76 @@
 # Experiment support and verification — Anatomical landmarks
 
-This is the group's current coverage and gradual backfill list, using the
-[canonical checklist](../../../docs/reproduce.md#experiment-support-and-verification).
-Baseline: 2026-09-21. Support is read from current configs/code; proof below is
-linked retained evidence, not a new raw-input audit or trial.
+This is the canonical group-owned coverage list, using the
+[shared capability checklist](../../../docs/reproduce.md#experiment-support-and-verification).
+The user accepted the selected core backfill on 2026-09-21: another agent must be
+able to recover data, prepare an environment, execute and score; stochastic model
+outputs may differ. [Decision and scope](../../../discussions/experiment-support-backfill-2026-09-21.md).
 
-## Retained experiments
+## Explicit experiment list
 
-Attempts / evaluations count canonical files owned by this experiment, not all
-cross-experiment dependencies, model trials or independent repetitions. Evaluations
-may include controls, replay or review. Zero means no imported attempt records;
-it does not erase an author pilot in a linked source.
+Counts are canonical attempt/evaluation records, including controls and replays;
+they are not counts of independent model runs. A zero-record entry may retain an
+author pilot in its source. The [verification receipt](../../../docs/evidence/experiment-support-backfill-20260921.json)
+checks the 38 experiment records and 187 source hashes across the workbench.
 
-| Experiment and protocol | Attempts / evaluations | Current support boundary |
+| Experiment and protocol | Attempts / evaluations | Maintained reproduction scope |
 | --- | ---: | --- |
-| [anatomical-landmarks-br036](../experiments/br036/experiment.toml) · [protocol](../experiments/br036/protocol.md) | 12 / 12 | Historical source/protocol; no maintained family preparation or replay method declared. |
-| [anatomical-landmarks-br038](../experiments/br038/experiment.toml) · [protocol](../experiments/br038/protocol.md) | 6 / 6 | Historical source/protocol; no maintained family preparation or replay method declared. |
-| [anatomical-landmarks-br039](../experiments/br039/experiment.toml) · [protocol](../experiments/br039/protocol.md) | 6 / 6 | Historical source/protocol; no maintained family preparation or replay method declared. |
-| [anatomical-landmarks-br040](../experiments/br040/experiment.toml) · [protocol](../experiments/br040/protocol.md) | 3 / 15 | Maintained CT/MRI preparation, scoring replay and native-plane view; proof scoped below. |
+| [anatomical-landmarks-br036](../experiments/br036/experiment.toml) · [protocol](../experiments/br036/protocol.md) | 12 / 12 | Historical source/protocol; no maintained execution recipe selected. |
+| [anatomical-landmarks-br038](../experiments/br038/experiment.toml) · [protocol](../experiments/br038/protocol.md) | 6 / 6 | Historical source/protocol; no maintained execution recipe selected. |
+| [anatomical-landmarks-br039](../experiments/br039/experiment.toml) · [protocol](../experiments/br039/protocol.md) | 6 / 6 | Historical source/protocol; no maintained execution recipe selected. |
+| [anatomical-landmarks-br040](../experiments/br040/experiment.toml) · [protocol](../experiments/br040/protocol.md) | 3 / 15 | [Recipe](../experiments/br040/reproduction/README.md): 3 task variants, 6 saved-output pairs. |
 
-## Operation coverage
+## Core capability checklist
 
-| Checklist item | Support and scoped verification evidence |
-| --- | --- |
-| 1. Evidence and interpretation | All entries above have canonical records and protocols and are referenced by the group finding. Counts are metadata, not independent replications; source-only entries remain explicit. |
-| 2. Input and environment recovery | BR-040 has an exact [input manifest](../experiments/br040/inputs.json); selected local copies were hash-verified at [main cutover](../../../docs/migration/main-cutover.md). Historical Docker image recovery remains unverified; other landmark entries do not inherit this proof. |
-| 3. Task preparation | `med prepare anatomical-landmarks-br040 --case CASE` previews; `--execute` restores selected frozen task files through `tb3_medical.landmarks`. This does not rebuild scans from upstream data. [Native closeout](../../../docs/migration/native-closeout.md) records CT-partial preparation. |
-| 4. Execution and collection | The [shared runner and Harbor collector](../../../docs/workflow.md#collect-and-inspect) are maintained. Imported record counts are listed above. This does not verify fresh execution or every historical result format. |
-| 5. Saved-output scoring replay | `med replay anatomical-landmarks-br040` covers ct-full, ct-partial and mri32-full, Terra/high and Sol/xhigh. Six exact metric matches are recorded in [main-cutover.json](../../../docs/migration/main-cutover.json) and the experiment evaluations. No fresh replay was run for this checklist. |
-| 6. Inspection and derived artifacts | [Story](../presentation/story.md), retained figures/tour and native-plane `med view` are supported. The [native closeout](../../../docs/migration/native-closeout.md) records a CT-partial review image; optional imaging inputs/dependencies are still required. |
-| 7. Portable export | The [MRI recipe](../../../exports/recipes/landmarks-mri-v2.json) has [two fresh-destination rebuilds and isolated saved-answer replay proof](../../../docs/migration/recovery-v2-check.json). Scope is one MRI task on the same machine, not every case or a fresh model runtime. |
-| 8. Fresh execution verification | Fresh Docker/model execution of the native recipe is unverified. Saved oracle/empty-output scoring in the MRI package is not a fresh runtime control execution. |
+Each checked item applies only to the recipe/cases above, not every historical
+experiment. Runtime proof is in the shared receipt and its per-experiment entries.
+Scientific assessments, clinical disputes and old scores remain separate.
 
-## Next bounded backfill
+- [x] Evidence and interpretation: canonical protocols, attempt/observation links,
+  group findings and all experiment-level source hashes reconciled.
+- [x] Inputs/environment: complete prepared bundles, file size/SHA-256/mode checks,
+  source records and declared Docker/pinned Python requirements.
+- [x] Preparation: fresh materialization, plus recovery from transferred data in an
+  isolated directory without historical author paths. This restores prepared
+  fixtures; it does not regenerate every fixture from upstream raw datasets.
+- [x] Execution/collection: selected frozen task definitions use the shared
+  launcher/collector; portable Docker oracle/no-op execution is checked. No LLM
+  trial was launched as part of this backfill.
+- [x] Saved-output scoring: frozen scorers invoked through maintained adapters;
+  metric comparison excludes only declared timing fields and uses 1e-8 numeric
+  absolute/relative tolerance. Original outcomes are unchanged.
+- [x] Inspection: portable task instructions/input inventory and existing group
+  stories. This does not claim new native-image viewers or regeneration of every
+  historical figure. Landmarks retain their existing native CT/MRI viewer.
+- [x] Export: fresh complete handoff, concrete review flags/lineage, and recovery
+  plus scoring outside the checkout on this machine. Other-machine proof remains
+  to be established by the receiver.
+- [x] Fresh execution: oracle/no-op controls for every listed variant. Where listed,
+  frozen submitted-program transfer execution is separately checked. Fresh
+  stochastic model reruns remain an intentional, unperformed operation.
 
-Suggested scope (assistant recommendation): **BR-040 CT/MRI saved-output replay**. Keep the three BR-040 cases as the maintained baseline. BR-036/038/039 remain linked historical comparisons; extend native coverage only for a selected reuse need.
+## Commands and retained limits
 
-- [x] Enumerate every canonical experiment, its protocol, imported record counts and current support boundary (2026-09-21, metadata inspection).
-- [x] Separate shared collection/presentation from family preparation/replay and link retained proof where identified (2026-09-21).
-- [ ] Separate frozen-task restoration from upstream scan preparation; record runtime recovery before any fresh execution.
-- [x] BR-040 names the maintained method, three-case input manifest and exact saved-metric criterion; six retained replay observations and the main-cutover receipt provide scoped proof (2026-09-21 cutover).
-- [x] Selected CT-partial view and standalone MRI replay export have retained proof linked above; other views/packages remain outside that proof.
-- [ ] If fresh execution is selected and authorized, record its new attempt and runtime proof separately from saved-output replay.
+Use the experiment ID and a case from its manifest:
 
-The [source discussion](../../../discussions/experiment-support-backfill-2026-09-21.md)
-records the user's consolidation/backfill request and the assistant's terminology
-and scope recommendations. These checkboxes do not change experiment progress,
-scientific assessment, historical scores or permission to launch a trial. Update
-this list when a scoped deliverable is verified; retain dated receipts and missing
-input details rather than silently upgrading family-wide coverage.
+```sh
+uv run med prepare EXPERIMENT --case CASE --execute
+uv run med replay EXPERIMENT --case CASE
+uv run med bundle EXPERIMENT /path/to/NEW-bundle --include-flagged
+uv run med verify-package /path/to/NEW-bundle
+```
+
+A receiver runs `reproduce.py verify`, `replay`, `container-controls` and `evaluate`
+from the bundle. Read its README for declared dependencies and fresh model launch
+commands. Copy the whole bundle; a source URL or Git clone alone does not include
+large prepared fixtures. Local checked bundles are under
+`runs/support-backfill-20260921/final/EXPERIMENT/`.
+
+The unselected historical entries above are the remaining backfill list. Reopen a
+specific recipe when reused; preserve its original configuration/outcomes and
+record actual missing inputs. No historical-only entry is silently marked runnable.
+
+The verified handoff index is `runs/support-backfill-20260921/HANDOFF.md`.
+It selects the corrected BR-040 bundle under `final-corrected/`; the earlier
+pre-commit draft remains local but is superseded. Exact bundle paths and hashes
+are recorded in the verification receipt.

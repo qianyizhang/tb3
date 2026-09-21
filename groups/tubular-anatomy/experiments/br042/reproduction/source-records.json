@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "group_id": "tubular-anatomy",
+  "registry": "datasets/README.md",
+  "selection_note": "Sources are development references with experiment-specific exposure and terms. See linked source receipts, not a blanket permission to redistribute.",
+  "dataset_ids": [
+    "dataset-imagecas",
+    "dataset-topcow",
+    "dataset-aeropath"
+  ],
+  "records": [
+    {
+      "schema_version": 2,
+      "kind": "dataset",
+      "id": "dataset-imagecas",
+      "title": "ImageCAS and ImageCAS-X",
+      "version_note": "Exact per-experiment bytes and reference version are in the source receipts.",
+      "terms_note": "Preserve recorded source terms; access and redistribution require source-specific review.",
+      "evidence": [
+        {
+          "path": "docs/evidence/br030-sources.json",
+          "sha256": "4b7ff0b6d3e640a683e9a3023188b613e06f8fdbc135ccdae8b34ba91360052a"
+        }
+      ],
+      "links": [
+        {
+          "label": "Source authority",
+          "path": "docs/evidence/br030-sources.json"
+        }
+      ]
+    },
+    {
+      "schema_version": 2,
+      "kind": "dataset",
+      "id": "dataset-topcow",
+      "title": "TopCoW images, masks and derived centerline graphs",
+      "version_note": "TopCoW training release 15692630 and graph release 17358162, as curated on 2026-09-16 in BR-025; exact selected files, CRC checks and hashes remain in the curation receipt.",
+      "terms_note": "Historical terms recorded in BR-025 on 2026-09-16: TopCoW requires attribution and owner permission for commercial use; derived graphs are CC BY-NC. These observations are not a current redistribution clearance.",
+      "reference_note": "TopCoW masks cover named Circle of Willis components within the source annotation scope. Centerline graphs derive from those masks, so they are not a second independent anatomical truth. The retained 244-voxel BR-026 addition dispute is clinically unresolved.",
+      "access_note": "Selected source images, masks and graph members were retained locally. This source index does not acquire data or establish current access; recheck exact terms and availability when selecting a release for reuse.",
+      "evidence": [
+        {
+          "path": "docs/evidence/br025-curation.json",
+          "sha256": "409dbebedc698353fe6c24580c469957ae8286660bee9751a87dd307849fc02a"
+        },
+        {
+          "path": "docs/research-rounds/BR-025-vessel-connectivity.md",
+          "sha256": "812590fdaa32bf74055c2b8342bf74e439fe06348b541d6daf1eddbe1b0fe227"
+        },
+        {
+          "path": "docs/evidence/br030-adjudication.json",
+          "sha256": "f6ba5092a6a55438ac01a45176bdb16aab2e950ce30955bf598d64ebc35a01ac"
+        }
+      ],
+      "links": [
+        {
+          "label": "Source curation receipt",
+          "path": "docs/evidence/br025-curation.json"
+        },
+        {
+          "label": "Source terms and reference scope",
+          "path": "docs/research-rounds/BR-025-vessel-connectivity.md"
+        },
+        {
+          "label": "TopCoW release",
+          "path": "https://zenodo.org/records/15692630"
+        },
+        {
+          "label": "Derived graph release",
+          "path": "https://zenodo.org/records/17358162"
+        }
+      ]
+    },
+    {
+      "schema_version": 2,
+      "kind": "dataset",
+      "id": "dataset-aeropath",
+      "title": "AeroPath airway CT and annotations",
+      "version_note": "BR-033 historical source review, 2026-09-16: mirror revision 6d0f831ca22bf57918aba3980ae475c94d45b997; selected CT, airway and lung files were checked against published LFS SHA-256 digests.",
+      "terms_note": "The retained license.md says CC BY 4.0, while the Hugging Face card says MIT. Preserve both declarations; neither the card nor the code repository alone resolves dataset redistribution terms. This is the 2026-09-16 observation, not a current license check.",
+      "reference_note": "Manually refined airway/lung masks are separate from official Raidionics model predictions. Reference omissions can occur; binary masks do not establish named bronchi or biopsy-target truth. BR-033 parent-gap concerns are retained in its results.",
+      "access_note": "Selected files and model outputs remain local, with exact hashes in the source receipt. No downloads, current-access verification or publication clearance were performed for this index.",
+      "evidence": [
+        {
+          "path": "docs/evidence/br033-source-audit.json",
+          "sha256": "8c1607d37554eadf288e4eed9d79b49ce9577f2ee2f26e1d589e55343ca2994a"
+        },
+        {
+          "path": "docs/research-rounds/BR-033-results.md",
+          "sha256": "9522ed008fd375d3d57459339652f2e181c049bbe29dc0d22e42b6759b34a0fb"
+        }
+      ],
+      "links": [
+        {
+          "label": "Pinned source audit",
+          "path": "docs/evidence/br033-source-audit.json"
+        },
+        {
+          "label": "Reference and control limitations",
+          "path": "docs/research-rounds/BR-033-results.md"
+        },
+        {
+          "label": "Official AeroPath repository",
+          "path": "https://github.com/raidionics/AeroPath"
+        },
+        {
+          "label": "Pinned data mirror",
+          "path": "https://huggingface.co/datasets/andreped/AeroPath/tree/6d0f831ca22bf57918aba3980ae475c94d45b997"
+        }
+      ]
+    }
+  ],
+  "locator_scope": "Repository-relative paths are historical provenance, not package dependencies; input recovery uses this package manifest."
+}

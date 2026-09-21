@@ -1,0 +1,22 @@
+artifacts = ["/app/answer"]
+[task]
+name = "terminal-bench/cardiac-masks-images"
+description = "Construct a deforming mesh from supplied cardiac segmentations"
+authors = [{name = "Research pilot"}]
+[metadata]
+author_name = "Research pilot"
+author_email = "probe@example.invalid"
+category = "Data Science"
+tags = ["cardiac", "clinical-echo", "adaptation"]
+[verifier]
+timeout_sec = 600.0
+environment_mode = "separate"
+[agent]
+timeout_sec = 1800.0
+[environment]
+build_timeout_sec = 600.0
+cpus = 4
+memory_mb = 8192
+storage_mb = 16384
+gpus = 0
+network_mode = "public"

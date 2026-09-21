@@ -1,0 +1,1026 @@
+{
+  "schema_version": 1,
+  "experiment_id": "anatomical-landmarks-br040",
+  "group_id": "anatomical-landmarks",
+  "purpose": "Research reproduction; original outcomes and unresolved reference issues remain unchanged.",
+  "created_on": "2026-09-21",
+  "cases": {
+    "ct-full": {
+      "task": "cases/ct-full/task",
+      "evaluator": "cases/ct-full/task/tests/evaluate.py",
+      "historical_task": ".local/inputs/landmarks/ct-full/task",
+      "original_files": [
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7"
+        },
+        {
+          "path": "environment/SOURCE_NOTICE.md",
+          "sha256": "91188f8f2a43b8bf02b5e02914c44d7b47d8afdb17e8d5e1b0a9a1769ed4ddd1"
+        },
+        {
+          "path": "environment/geometry.json",
+          "sha256": "805beff019b82bd6811166b7ea82fa583e25a2e6ee623e38b9d2b78f280510d4"
+        },
+        {
+          "path": "environment/landmarks.json",
+          "sha256": "c01dd5b1366b3b6d5c16b997c4549ccf8a8610c60da357ab0d3fd4301404167a"
+        },
+        {
+          "path": "environment/volume.nii.gz",
+          "sha256": "e0f690b3c0774e3fc6f49ea196b334accf6711cad199e255dca65ea86508ef4e"
+        },
+        {
+          "path": "environment/volume.npy",
+          "sha256": "7f8b3f0737b91f403e72fff8d55f6f5fa3a48f03c9c7063d820e552bb2383615"
+        },
+        {
+          "path": "environment/volume_tools.py",
+          "sha256": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "6908c9cc14b82421fc01fea617be485572273ae29895c4918c664f396f0d03ff"
+        },
+        {
+          "path": "solution/landmarks.json",
+          "sha256": "7641a3ab5faf9e1937768ae06de12b44176442012493bae96cd90544778ed659"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "1c062f47162e225d9addb835822aeca213b4f01485a1ac5139734e202eea67af"
+        },
+        {
+          "path": "tests/Dockerfile",
+          "sha256": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f"
+        },
+        {
+          "path": "tests/score.py",
+          "sha256": "10dd7d5417180e95d8f98f677904a0136a772dbee5f14d4b34e9d2fc3c1b9ef4"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7"
+        },
+        {
+          "path": "tests/truth.json",
+          "sha256": "70ad569289d5faae92428f2d9d33e16227156ec545c602e290a4cb5a63cabc9e"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged."
+      ],
+      "timeout_sec": 900,
+      "controls": {
+        "oracle": {
+          "answer": "cases/ct-full/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/ct-full/nop",
+          "reward": 0
+        }
+      },
+      "observations": [
+        {
+          "attempt_id": "attempt-401a1f3ae78768630da4d284",
+          "source_evaluation": "landmarks-br040-ct-full-terra-high",
+          "answer": "saved/attempt-401a1f3ae78768630da4d284/answer",
+          "expected": "saved/attempt-401a1f3ae78768630da4d284/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-dcc9b18ee674dd5dcb99be00",
+          "source_evaluation": "landmarks-br040-ct-full-sol-xhigh",
+          "answer": "saved/attempt-dcc9b18ee674dd5dcb99be00/answer",
+          "expected": "saved/attempt-dcc9b18ee674dd5dcb99be00/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        }
+      ]
+    },
+    "ct-partial": {
+      "task": "cases/ct-partial/task",
+      "evaluator": "cases/ct-partial/task/tests/evaluate.py",
+      "historical_task": ".local/inputs/landmarks/ct-partial/task",
+      "original_files": [
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7"
+        },
+        {
+          "path": "environment/SOURCE_NOTICE.md",
+          "sha256": "91188f8f2a43b8bf02b5e02914c44d7b47d8afdb17e8d5e1b0a9a1769ed4ddd1"
+        },
+        {
+          "path": "environment/geometry.json",
+          "sha256": "8aa4dfd5e420440b2c74f34672bdf7e72b27a6d21cf169c5d25488fc6780b62c"
+        },
+        {
+          "path": "environment/landmarks.json",
+          "sha256": "c01dd5b1366b3b6d5c16b997c4549ccf8a8610c60da357ab0d3fd4301404167a"
+        },
+        {
+          "path": "environment/volume.nii.gz",
+          "sha256": "d0820fce2984ab65448fed1fea8b41b88b739468fe46677ee9147f05de680439"
+        },
+        {
+          "path": "environment/volume.npy",
+          "sha256": "9d800b5afb3dda6d2b6b4d7ebafd5f91bacb0fcc9b351982232df362df55c1d5"
+        },
+        {
+          "path": "environment/volume_tools.py",
+          "sha256": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "48d4dfa2accae7922cbc54a9f7d9b5dc9d266bb1028cd5fb98544197d267d830"
+        },
+        {
+          "path": "solution/landmarks.json",
+          "sha256": "1d97a59620e072ba0974325674cac2950c35dc8f549a8dcf375ef920c7fe47bc"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "5eb7cae714e25d3c7c73dbfc897e01f0248cbc7801ae2794f7c1a47772336fad"
+        },
+        {
+          "path": "tests/Dockerfile",
+          "sha256": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f"
+        },
+        {
+          "path": "tests/score.py",
+          "sha256": "10dd7d5417180e95d8f98f677904a0136a772dbee5f14d4b34e9d2fc3c1b9ef4"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7"
+        },
+        {
+          "path": "tests/truth.json",
+          "sha256": "3de07e775860f7cbf10f11a66666cda62dfc0b5e26f4186f402f651f22de585e"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged."
+      ],
+      "timeout_sec": 900,
+      "controls": {
+        "oracle": {
+          "answer": "cases/ct-partial/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/ct-partial/nop",
+          "reward": 0
+        }
+      },
+      "observations": [
+        {
+          "attempt_id": "attempt-824eaf2afb12f840a722b998",
+          "source_evaluation": "landmarks-br040-ct-partial-terra-high",
+          "answer": "saved/attempt-824eaf2afb12f840a722b998/answer",
+          "expected": "saved/attempt-824eaf2afb12f840a722b998/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-fa326c40eb125e7ca1b28f60",
+          "source_evaluation": "landmarks-br040-ct-partial-sol-xhigh",
+          "answer": "saved/attempt-fa326c40eb125e7ca1b28f60/answer",
+          "expected": "saved/attempt-fa326c40eb125e7ca1b28f60/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        }
+      ]
+    },
+    "mri32-full": {
+      "task": "cases/mri32-full/task",
+      "evaluator": "cases/mri32-full/task/tests/evaluate.py",
+      "historical_task": ".local/inputs/landmarks/mri32-full/task",
+      "original_files": [
+        {
+          "path": "environment/Dockerfile",
+          "sha256": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7"
+        },
+        {
+          "path": "environment/SOURCE_NOTICE.md",
+          "sha256": "a1a14b98cda6f9ed2eb6a8226f9af7703ee7501d6a2e3f9ec7961537c18659c1"
+        },
+        {
+          "path": "environment/geometry.json",
+          "sha256": "19b5d2f991bc9fa23bafbfd30b07ebfc68cc56c16382477c58573fe7872a04ed"
+        },
+        {
+          "path": "environment/landmarks.json",
+          "sha256": "cd7350b876e2c1b084dee4b6a165f4d2f914c68335143f828025299a29871e28"
+        },
+        {
+          "path": "environment/volume.nii.gz",
+          "sha256": "ec9c3a73d97d1268aa8f0490c83c9382ad158d51ded4a0ac3d77de10e27e9a03"
+        },
+        {
+          "path": "environment/volume.npy",
+          "sha256": "f9595bf5992e377a2d17d47a3d631f7c762433725e3c11a8470a34c4f627810f"
+        },
+        {
+          "path": "environment/volume_tools.py",
+          "sha256": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058"
+        },
+        {
+          "path": "instruction.md",
+          "sha256": "47de0fc82312e256a082a209b7bfc1769151760b893ee66e0ce656c5f2a1a622"
+        },
+        {
+          "path": "solution/landmarks.json",
+          "sha256": "3aa433bed64a3be08bd46f76a97c0ade1d582cb8cf996dcd94b56ce401b1f1d4"
+        },
+        {
+          "path": "solution/solve.sh",
+          "sha256": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7"
+        },
+        {
+          "path": "task.toml",
+          "sha256": "c17f08145813c2f442717b9ccb3b9268e010528000ee8d8d38dfc428ae06323f"
+        },
+        {
+          "path": "tests/Dockerfile",
+          "sha256": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f"
+        },
+        {
+          "path": "tests/score.py",
+          "sha256": "9a8dd57ef1d282dd36355c97c10004f0b975ae77e3a7842344598e74718a5584"
+        },
+        {
+          "path": "tests/test.sh",
+          "sha256": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7"
+        },
+        {
+          "path": "tests/truth.json",
+          "sha256": "432b8dc62712fa249b8382c094e76acc894bac2968004cb2c15730e5a95e0a42"
+        }
+      ],
+      "adaptations": [
+        "Added tests/evaluate.py for portable answer-directory evaluation; original task/scorer bytes unchanged."
+      ],
+      "timeout_sec": 900,
+      "controls": {
+        "oracle": {
+          "answer": "cases/mri32-full/oracle",
+          "reward": 1
+        },
+        "nop": {
+          "answer": "cases/mri32-full/nop",
+          "reward": 0
+        }
+      },
+      "observations": [
+        {
+          "attempt_id": "attempt-3bd0c23138df59bc288d0451",
+          "source_evaluation": "landmarks-br040-mri32-full-terra-high",
+          "answer": "saved/attempt-3bd0c23138df59bc288d0451/answer",
+          "expected": "saved/attempt-3bd0c23138df59bc288d0451/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        },
+        {
+          "attempt_id": "attempt-cd5a1ec8b5694e739bc3c409",
+          "source_evaluation": "landmarks-br040-mri32-full-sol-xhigh",
+          "answer": "saved/attempt-cd5a1ec8b5694e739bc3c409/answer",
+          "expected": "saved/attempt-cd5a1ec8b5694e739bc3c409/expected.json",
+          "excluded_fields": [
+            "grading_seconds"
+          ]
+        }
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "cases/ct-full/task/environment/Dockerfile",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7",
+      "size": 274,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/environment/SOURCE_NOTICE.md",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/environment/SOURCE_NOTICE.md",
+      "origin": "git",
+      "sha256": "91188f8f2a43b8bf02b5e02914c44d7b47d8afdb17e8d5e1b0a9a1769ed4ddd1",
+      "size": 408,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/environment/geometry.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/environment/geometry.json",
+      "origin": "git",
+      "sha256": "805beff019b82bd6811166b7ea82fa583e25a2e6ee623e38b9d2b78f280510d4",
+      "size": 1005,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/environment/landmarks.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/environment/landmarks.json",
+      "origin": "git",
+      "sha256": "c01dd5b1366b3b6d5c16b997c4549ccf8a8610c60da357ab0d3fd4301404167a",
+      "size": 4040,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/environment/volume.nii.gz",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/cases/ct-full/task/environment/volume.nii.gz",
+      "origin": "artifact",
+      "sha256": "e0f690b3c0774e3fc6f49ea196b334accf6711cad199e255dca65ea86508ef4e",
+      "size": 433196377,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/environment/volume.npy",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/cases/ct-full/task/environment/volume.npy",
+      "origin": "artifact",
+      "sha256": "7f8b3f0737b91f403e72fff8d55f6f5fa3a48f03c9c7063d820e552bb2383615",
+      "size": 636485760,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/environment/volume_tools.py",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/environment/volume_tools.py",
+      "origin": "git",
+      "sha256": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058",
+      "size": 3121,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/instruction.md",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/instruction.md",
+      "origin": "git",
+      "sha256": "6908c9cc14b82421fc01fea617be485572273ae29895c4918c664f396f0d03ff",
+      "size": 2759,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/solution/landmarks.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/solution/landmarks.json",
+      "origin": "git",
+      "sha256": "7641a3ab5faf9e1937768ae06de12b44176442012493bae96cd90544778ed659",
+      "size": 2933,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/solution/solve.sh",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+      "size": 94,
+      "mode": 493,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/task.toml",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/task.toml",
+      "origin": "git",
+      "sha256": "1c062f47162e225d9addb835822aeca213b4f01485a1ac5139734e202eea67af",
+      "size": 556,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/tests/Dockerfile",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+      "size": 184,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/tests/score.py",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/tests/score.py",
+      "origin": "git",
+      "sha256": "10dd7d5417180e95d8f98f677904a0136a772dbee5f14d4b34e9d2fc3c1b9ef4",
+      "size": 3248,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/tests/test.sh",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+      "size": 44,
+      "mode": 493,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/tests/truth.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/tests/truth.json",
+      "origin": "git",
+      "sha256": "70ad569289d5faae92428f2d9d33e16227156ec545c602e290a4cb5a63cabc9e",
+      "size": 4661,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/task/tests/evaluate.py",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "0fd045235bc634602d5252f36619db8a255785e74ba2ffb9cd0ceaf09ba47c24",
+      "size": 611,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-full/oracle/landmarks.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/oracle/landmarks.json",
+      "origin": "git",
+      "sha256": "7641a3ab5faf9e1937768ae06de12b44176442012493bae96cd90544778ed659",
+      "size": 2933,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "control"
+    },
+    {
+      "path": "saved/attempt-401a1f3ae78768630da4d284/answer/landmarks.json",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-401a1f3ae78768630da4d284/answer/landmarks.json",
+      "origin": "artifact",
+      "sha256": "7bea533ac1782c273a220890680fdb6ac66b80f8de14973a5f096ee0be813621",
+      "size": 1257,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-401a1f3ae78768630da4d284/expected.json",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-401a1f3ae78768630da4d284/expected.json",
+      "origin": "artifact",
+      "sha256": "e70b60b958066f5746fe618d2ad4e2dd330bfcc631923971ddbfbd8b97393151",
+      "size": 6405,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-dcc9b18ee674dd5dcb99be00/answer/landmarks.json",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-dcc9b18ee674dd5dcb99be00/answer/landmarks.json",
+      "origin": "artifact",
+      "sha256": "648f1895605382e35e45257123af9fb8e6fb380d1a79cc4dba264f4db71ce110",
+      "size": 1259,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-dcc9b18ee674dd5dcb99be00/expected.json",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-dcc9b18ee674dd5dcb99be00/expected.json",
+      "origin": "artifact",
+      "sha256": "529820b57ca677701ce69d2b8234c0e4c5efcdd326823a32277a171d3be40c4b",
+      "size": 6421,
+      "mode": 420,
+      "case": "ct-full",
+      "role": "saved_output"
+    },
+    {
+      "path": "cases/ct-partial/task/environment/Dockerfile",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7",
+      "size": 274,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/environment/SOURCE_NOTICE.md",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/environment/SOURCE_NOTICE.md",
+      "origin": "git",
+      "sha256": "91188f8f2a43b8bf02b5e02914c44d7b47d8afdb17e8d5e1b0a9a1769ed4ddd1",
+      "size": 408,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/environment/geometry.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/environment/geometry.json",
+      "origin": "git",
+      "sha256": "8aa4dfd5e420440b2c74f34672bdf7e72b27a6d21cf169c5d25488fc6780b62c",
+      "size": 1004,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/environment/landmarks.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/environment/landmarks.json",
+      "origin": "git",
+      "sha256": "c01dd5b1366b3b6d5c16b997c4549ccf8a8610c60da357ab0d3fd4301404167a",
+      "size": 4040,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/environment/volume.nii.gz",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/cases/ct-partial/task/environment/volume.nii.gz",
+      "origin": "artifact",
+      "sha256": "d0820fce2984ab65448fed1fea8b41b88b739468fe46677ee9147f05de680439",
+      "size": 332820651,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/environment/volume.npy",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/cases/ct-partial/task/environment/volume.npy",
+      "origin": "artifact",
+      "sha256": "9d800b5afb3dda6d2b6b4d7ebafd5f91bacb0fcc9b351982232df362df55c1d5",
+      "size": 482345088,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/environment/volume_tools.py",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/environment/volume_tools.py",
+      "origin": "git",
+      "sha256": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058",
+      "size": 3121,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/instruction.md",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/instruction.md",
+      "origin": "git",
+      "sha256": "48d4dfa2accae7922cbc54a9f7d9b5dc9d266bb1028cd5fb98544197d267d830",
+      "size": 2757,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/solution/landmarks.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/solution/landmarks.json",
+      "origin": "git",
+      "sha256": "1d97a59620e072ba0974325674cac2950c35dc8f549a8dcf375ef920c7fe47bc",
+      "size": 2408,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/solution/solve.sh",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+      "size": 94,
+      "mode": 493,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/task.toml",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/task.toml",
+      "origin": "git",
+      "sha256": "5eb7cae714e25d3c7c73dbfc897e01f0248cbc7801ae2794f7c1a47772336fad",
+      "size": 559,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/tests/Dockerfile",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+      "size": 184,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/tests/score.py",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/tests/score.py",
+      "origin": "git",
+      "sha256": "10dd7d5417180e95d8f98f677904a0136a772dbee5f14d4b34e9d2fc3c1b9ef4",
+      "size": 3248,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/tests/test.sh",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+      "size": 44,
+      "mode": 493,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/tests/truth.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/tests/truth.json",
+      "origin": "git",
+      "sha256": "3de07e775860f7cbf10f11a66666cda62dfc0b5e26f4186f402f651f22de585e",
+      "size": 4681,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/task/tests/evaluate.py",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "0fd045235bc634602d5252f36619db8a255785e74ba2ffb9cd0ceaf09ba47c24",
+      "size": 611,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "task"
+    },
+    {
+      "path": "cases/ct-partial/oracle/landmarks.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/oracle/landmarks.json",
+      "origin": "git",
+      "sha256": "1d97a59620e072ba0974325674cac2950c35dc8f549a8dcf375ef920c7fe47bc",
+      "size": 2408,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "control"
+    },
+    {
+      "path": "saved/attempt-824eaf2afb12f840a722b998/answer/landmarks.json",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-824eaf2afb12f840a722b998/answer/landmarks.json",
+      "origin": "artifact",
+      "sha256": "3e7ab43535874c35152d1830af7b55dedb73ebfc52d7726de5331f3a5636cdfe",
+      "size": 1265,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-824eaf2afb12f840a722b998/expected.json",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-824eaf2afb12f840a722b998/expected.json",
+      "origin": "artifact",
+      "sha256": "2b99324b6fd48aafc0a1efda77adfb6980d77b7d7ca362b52c1e33424b86800d",
+      "size": 5456,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-fa326c40eb125e7ca1b28f60/answer/landmarks.json",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-fa326c40eb125e7ca1b28f60/answer/landmarks.json",
+      "origin": "artifact",
+      "sha256": "15e6393fd685bf04f5ad5aaa170c8dd58daaef393c005bc4a3564bc2bf602c22",
+      "size": 1242,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-fa326c40eb125e7ca1b28f60/expected.json",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-fa326c40eb125e7ca1b28f60/expected.json",
+      "origin": "artifact",
+      "sha256": "ecfb66d1a887d16c18335e976dd1ee6777ce59074412b34ec142a7c1f72bfe0d",
+      "size": 5309,
+      "mode": 420,
+      "case": "ct-partial",
+      "role": "saved_output"
+    },
+    {
+      "path": "cases/mri32-full/task/environment/Dockerfile",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/environment/Dockerfile",
+      "origin": "git",
+      "sha256": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7",
+      "size": 274,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/environment/SOURCE_NOTICE.md",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/environment/SOURCE_NOTICE.md",
+      "origin": "git",
+      "sha256": "a1a14b98cda6f9ed2eb6a8226f9af7703ee7501d6a2e3f9ec7961537c18659c1",
+      "size": 256,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/environment/geometry.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/environment/geometry.json",
+      "origin": "git",
+      "sha256": "19b5d2f991bc9fa23bafbfd30b07ebfc68cc56c16382477c58573fe7872a04ed",
+      "size": 1110,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/environment/landmarks.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/environment/landmarks.json",
+      "origin": "git",
+      "sha256": "cd7350b876e2c1b084dee4b6a165f4d2f914c68335143f828025299a29871e28",
+      "size": 7429,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/environment/volume.nii.gz",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/cases/mri32-full/task/environment/volume.nii.gz",
+      "origin": "artifact",
+      "sha256": "ec9c3a73d97d1268aa8f0490c83c9382ad158d51ded4a0ac3d77de10e27e9a03",
+      "size": 33554708,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/environment/volume.npy",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/cases/mri32-full/task/environment/volume.npy",
+      "origin": "artifact",
+      "sha256": "f9595bf5992e377a2d17d47a3d631f7c762433725e3c11a8470a34c4f627810f",
+      "size": 52400000,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/environment/volume_tools.py",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/environment/volume_tools.py",
+      "origin": "git",
+      "sha256": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058",
+      "size": 3121,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/instruction.md",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/instruction.md",
+      "origin": "git",
+      "sha256": "47de0fc82312e256a082a209b7bfc1769151760b893ee66e0ce656c5f2a1a622",
+      "size": 2234,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/solution/landmarks.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/solution/landmarks.json",
+      "origin": "git",
+      "sha256": "3aa433bed64a3be08bd46f76a97c0ade1d582cb8cf996dcd94b56ce401b1f1d4",
+      "size": 3087,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/solution/solve.sh",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/solution/solve.sh",
+      "origin": "git",
+      "sha256": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+      "size": 94,
+      "mode": 493,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/task.toml",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/task.toml",
+      "origin": "git",
+      "sha256": "c17f08145813c2f442717b9ccb3b9268e010528000ee8d8d38dfc428ae06323f",
+      "size": 557,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/tests/Dockerfile",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/tests/Dockerfile",
+      "origin": "git",
+      "sha256": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+      "size": 184,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/tests/score.py",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/tests/score.py",
+      "origin": "git",
+      "sha256": "9a8dd57ef1d282dd36355c97c10004f0b975ae77e3a7842344598e74718a5584",
+      "size": 1667,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/tests/test.sh",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/tests/test.sh",
+      "origin": "git",
+      "sha256": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+      "size": 44,
+      "mode": 493,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/tests/truth.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/tests/truth.json",
+      "origin": "git",
+      "sha256": "432b8dc62712fa249b8382c094e76acc894bac2968004cb2c15730e5a95e0a42",
+      "size": 3336,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/task/tests/evaluate.py",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/tests/evaluate.py",
+      "origin": "git",
+      "sha256": "0fd045235bc634602d5252f36619db8a255785e74ba2ffb9cd0ceaf09ba47c24",
+      "size": 611,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "task"
+    },
+    {
+      "path": "cases/mri32-full/oracle/landmarks.json",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/oracle/landmarks.json",
+      "origin": "git",
+      "sha256": "3aa433bed64a3be08bd46f76a97c0ade1d582cb8cf996dcd94b56ce401b1f1d4",
+      "size": 3087,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "control"
+    },
+    {
+      "path": "saved/attempt-3bd0c23138df59bc288d0451/answer/landmarks.json",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-3bd0c23138df59bc288d0451/answer/landmarks.json",
+      "origin": "artifact",
+      "sha256": "a0c32abb87387541ef2d27886d191094266b119f3e7dbebdf363405840626116",
+      "size": 633,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-3bd0c23138df59bc288d0451/expected.json",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-3bd0c23138df59bc288d0451/expected.json",
+      "origin": "artifact",
+      "sha256": "29811c63f527597a7760b22020c0bdb8ec9645f8042d9bc6bff9741974015191",
+      "size": 1643,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-cd5a1ec8b5694e739bc3c409/answer/landmarks.json",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-cd5a1ec8b5694e739bc3c409/answer/landmarks.json",
+      "origin": "artifact",
+      "sha256": "a0b57be7aa1716769c5f957a23ed5d903c37a64f48d543088bdb8a468bda7947",
+      "size": 825,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "saved_output"
+    },
+    {
+      "path": "saved/attempt-cd5a1ec8b5694e739bc3c409/expected.json",
+      "source": ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-cd5a1ec8b5694e739bc3c409/expected.json",
+      "origin": "artifact",
+      "sha256": "4b8e8a2e172b26942881b17d9457cd0fdc5d14c0e113977cf9b6189cf38a9c41",
+      "size": 1638,
+      "mode": 420,
+      "case": "mri32-full",
+      "role": "saved_output"
+    },
+    {
+      "path": "requirements-evaluation.txt",
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/requirements-evaluation.txt",
+      "origin": "git",
+      "sha256": "4b81b6b6a549771115529e6900b9589835cdbfff0c6acf179aef53d283b744d5",
+      "size": 27,
+      "mode": 420,
+      "case": null,
+      "role": "task"
+    },
+    {
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/source-records.json",
+      "path": "source-records.json",
+      "size": 1844,
+      "sha256": "5cc3124127a1b46423efe2f335021c47f4890165c162b94bf047b111bd86577a",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/provenance/BR-040-results.md",
+      "path": "provenance/BR-040-results.md",
+      "size": 3882,
+      "sha256": "2df21f3b77f46bfb82f65f9ad013d76f6359b2dd66a48f5595ed971bd8e44331",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/provenance/BR-040-sol-landmarks.md",
+      "path": "provenance/BR-040-sol-landmarks.md",
+      "size": 1719,
+      "sha256": "f5be0bc1e54f053cf39fdd821a5cdfcf610fd21f4ab6e7a8b3d8d7f65ec6cfd3",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/provenance/recovery-check.json",
+      "path": "provenance/recovery-check.json",
+      "size": 1126,
+      "sha256": "757b82bb375389862a6d209ebe5eed84d8f11d85b5c59bd54f4d1079b9d28285",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/historical-protocol.md",
+      "path": "historical-protocol.md",
+      "size": 525,
+      "sha256": "42c1caf31fb65d8599546cb995982f5e97dcc4c4efad1dd72c74fa9eadae7a1c",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/acquisition.md",
+      "path": "acquisition.md",
+      "size": 1659,
+      "sha256": "3a561e9822f099fe827d601ac7645c1c6684722f5aa5518a6d905b9f8fdf6716",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    },
+    {
+      "source": "groups/anatomical-landmarks/experiments/br040/reproduction/README.md",
+      "path": "README.md",
+      "size": 2787,
+      "sha256": "bec325bb1c52600bf31c745e68ee8f56f41a4023df67c5f6e613016d9bdfd7e7",
+      "mode": 420,
+      "case": null,
+      "origin": "git",
+      "role": "instructions"
+    }
+  ],
+  "excluded_attempts": [],
+  "review_notice": "Consult the canonical experiment assessment before scientific reuse. Technical replay is not clinical adjudication."
+}
