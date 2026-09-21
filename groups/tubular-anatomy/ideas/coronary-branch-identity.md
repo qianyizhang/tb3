@@ -40,6 +40,17 @@ source = "codex://threads/01a0c006-0f8c-78a1-8ab1-2f5868f21ee4"
 finding = "Resumed V4 leaves all 15 prior coronary extraction specifications unchanged. Exact candidate-filter replay shows D2 retained as candidate 3 (87.8% reference coverage at 1 mm) but withheld as possible tissue; OM1 signal is discarded by component-size and 2.2-mm parent-gap gates. Lower vesselness alone still discards OM1 through an oversized component. This separates acceptance, filtering and downstream numbering failures; GT-imposed performance cap is not demonstrated. PDA identity remains under review. Resume token totals are cumulative, so incremental usage must be reported separately."
 review = "groups/tubular-anatomy/experiments/br042-v4-6h/resume1/trace-audit.md"
 next_action = "Assistant recommends candidate ledger, graph-path decomposition, targeted rejection review and separate reference adjudication before fresh controlled trials. No new trial authorized or launched."
+[[links]]
+label = "BR-042 final technical report and interactive showcase"
+path = "groups/tubular-anatomy/presentation/br042/README.md"
+
+[[observations]]
+date = "2026-09-21"
+actor = "assistant"
+source = "codex://threads/01a0c006-0f8c-78a1-8ab1-2f5868f21ee4"
+finding = "User requested a final showcase for technical ML/research readers. The retrospective consolidates six fresh BR-042 attempts and seven saved outputs with a common-scorer comparison, explicit partial-run states, native CTA overlay controls, candidate-filter diagnostics and static report. It separates coronary score from broad-vessel inventory and does not infer general model ranking, compute-scaling causality or a GT-imposed cap. Original artifacts and scores are preserved."
+review = "groups/tubular-anatomy/presentation/br042/README.md"
+
 +++
 
 # Name coronary branches from supplied geometry
