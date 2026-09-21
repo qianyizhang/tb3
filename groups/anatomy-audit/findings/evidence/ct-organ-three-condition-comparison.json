@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-21T13:39:02.407223+00:00",
+  "actor": "assistant parent",
+  "task_digest": "fcf7827f7100d1ca54be84f6bc14fb320d27ca546fd5352ac45cb40b04110ab6",
+  "status": "complete",
+  "all_three_replays_match_original_verifier": true,
+  "all_individual_receipt_file_hashes_verified": true,
+  "conditions": [
+    {
+      "condition": "astra-xhigh",
+      "experiment_id": "ct-organ-segmentation-astra-xhigh",
+      "attempt_id": "attempt-2668797075454e54",
+      "observation_id": "observation-ff9228909099a9e931e82443",
+      "task_digest": "fcf7827f7100d1ca54be84f6bc14fb320d27ca546fd5352ac45cb40b04110ab6",
+      "semantic_macro_dice": 0.7380252177599974,
+      "matched_macro_dice": 0.7380252177599974,
+      "identity_correct_matches": 10,
+      "identity_assessable_matches": 10,
+      "foreground_dice": 0.9010758427889359,
+      "per_label_dice": {
+        "spleen": 0.9076390316408659,
+        "kidney_right": 0.7974402675499245,
+        "kidney_left": 0.8152007905848531,
+        "gallbladder": 0.6671227254070324,
+        "liver": 0.9268998394241056,
+        "stomach": 0.781220693219009,
+        "pancreas": 0.7279449961802903,
+        "adrenal_gland_right": 0.3878787878787879,
+        "adrenal_gland_left": 0.606951871657754,
+        "duodenum": 0.7619531740573513
+      },
+      "timing_seconds": {
+        "total": 1307.91,
+        "setup": 0.168,
+        "agent": 1264.346,
+        "verifier": 19.669
+      },
+      "usage": {
+        "n_input_tokens": 2468203.0,
+        "n_cache_tokens": 2375424.0,
+        "n_output_tokens": 33537.0
+      }
+    },
+    {
+      "condition": "astra-medium",
+      "experiment_id": "ct-organ-segmentation-astra-medium",
+      "attempt_id": "attempt-6979f136149c4e17",
+      "observation_id": "observation-c50b69462ae652183ed860c2",
+      "task_digest": "fcf7827f7100d1ca54be84f6bc14fb320d27ca546fd5352ac45cb40b04110ab6",
+      "semantic_macro_dice": 0.7341910610035614,
+      "matched_macro_dice": 0.7341910610035614,
+      "identity_correct_matches": 10,
+      "identity_assessable_matches": 10,
+      "foreground_dice": 0.8990585235175931,
+      "per_label_dice": {
+        "spleen": 0.9291700544124085,
+        "kidney_right": 0.8890456109040141,
+        "kidney_left": 0.8971201423250125,
+        "gallbladder": 0.7613464886825305,
+        "liver": 0.9220482395876376,
+        "stomach": 0.6640905515849947,
+        "pancreas": 0.7032367086962173,
+        "adrenal_gland_right": 0.3114979386165827,
+        "adrenal_gland_left": 0.5632786885245902,
+        "duodenum": 0.701076186701625
+      },
+      "timing_seconds": {
+        "agent": 1289.3456,
+        "total": 1360.188943,
+        "verifier": 41.888436
+      },
+      "usage": {
+        "input_tokens": 3603190,
+        "cached_input_tokens": 3471488,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 29126,
+        "reasoning_output_tokens": 10017,
+        "total_tokens": 3632316
+      }
+    },
+    {
+      "condition": "sol-xhigh",
+      "experiment_id": "ct-organ-segmentation-sol-xhigh",
+      "attempt_id": "attempt-7b643e5d3c7e4994",
+      "observation_id": "observation-0393f691b695cd73b7b358b6",
+      "task_digest": "fcf7827f7100d1ca54be84f6bc14fb320d27ca546fd5352ac45cb40b04110ab6",
+      "semantic_macro_dice": 0.3290735583760016,
+      "matched_macro_dice": 0.34878362293689624,
+      "identity_correct_matches": 6,
+      "identity_assessable_matches": 9,
+      "foreground_dice": 0.7030839531703412,
+      "per_label_dice": {
+        "spleen": 0.778652031473133,
+        "kidney_right": 0.6755512407513643,
+        "kidney_left": 0.7647414528258004,
+        "gallbladder": 0.011350420988975206,
+        "liver": 0.8053661895121926,
+        "stomach": 0.0733507080729739,
+        "pancreas": 0.028724409448818898,
+        "adrenal_gland_right": 0.15299913068675747,
+        "adrenal_gland_left": 0.0,
+        "duodenum": 0.0
+      },
+      "timing_seconds": {
+        "agent": 1872.730206,
+        "total": 1937.633641,
+        "verifier": 39.257873
+      },
+      "usage": {
+        "input_tokens": 7214819,
+        "cached_input_tokens": 7056128,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 47773,
+        "reasoning_output_tokens": 23524,
+        "total_tokens": 7262592
+      }
+    }
+  ],
+  "medium_minus_xhigh_macro_dice": -0.003834156756436058,
+  "render_manifest": {
+    "task": ".local/freezes/fcf7827f7100d1ca54be84f6bc14fb320d27ca546fd5352ac45cb40b04110ab6/task",
+    "conditions": [
+      {
+        "title": "Astra / xhigh",
+        "masks": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/artifacts/app/answer/masks",
+        "metrics": ".local/attempts/attempt-2668797075454e54/job/task__uW2TAwB/verifier/metrics.json"
+      },
+      {
+        "title": "Astra / medium",
+        "masks": ".local/attempts/attempt-6979f136149c4e17/job/task__oAtf7Dx/artifacts/app/answer/masks",
+        "metrics": ".local/attempts/attempt-6979f136149c4e17/job/task__oAtf7Dx/verifier/metrics.json"
+      },
+      {
+        "title": "Sol / xhigh",
+        "masks": ".local/attempts/attempt-7b643e5d3c7e4994/job/task__V5jGCFs/artifacts/app/answer/masks",
+        "metrics": ".local/attempts/attempt-7b643e5d3c7e4994/job/task__V5jGCFs/verifier/metrics.json"
+      }
+    ]
+  },
+  "individual_evidence": [
+    {
+      "path": "groups/anatomy-audit/findings/evidence/ct-organ-segmentation-astra-xhigh.json",
+      "sha256": "702a6a77353e2e2b81e8a666ae5b6d668cc8ecbc8e3fe546cd7f38eb186bcb32"
+    },
+    {
+      "path": "groups/anatomy-audit/findings/evidence/ct-organ-segmentation-astra-medium.json",
+      "sha256": "581a15de48252a3136e0769ad2b876cc44dfe31728b6db2d4a7154ccb5497dbc"
+    },
+    {
+      "path": "groups/anatomy-audit/findings/evidence/ct-organ-segmentation-sol-xhigh.json",
+      "sha256": "0665788189f33178125597c0f95c2f1d873bd004cac0ed1337128255cdbb581b"
+    }
+  ],
+  "derived_artifacts": [
+    {
+      "path": ".local/ct-organ-comparison/review/organ-dice-comparison.png",
+      "sha256": "8a1dd94a3eb7a260842fe82086678fe82bff66c29322aa2fa2a28e6ec66b5f4f"
+    },
+    {
+      "path": ".local/ct-organ-comparison/review/organ-contours-comparison-1.png",
+      "sha256": "146617d164cce609a5f9df87298a091ff00dfe63fdf4ffcb07f81ff919bbb3f1"
+    },
+    {
+      "path": ".local/ct-organ-comparison/review/organ-contours-comparison-2.png",
+      "sha256": "5d265f34576307cb22429de2e39c7d069a590c113dd1f34b043f843b6d3906e2"
+    },
+    {
+      "path": ".local/ct-organ-comparison/review/render-selection.json",
+      "sha256": "faa891fc16e4a1f63f07e7afa760b7b476f9e6ec65404fa836e28656adf4c000"
+    },
+    {
+      "path": "groups/anatomy-audit/methods/ct-organ-three-condition-comparison/render_comparison.py",
+      "sha256": "969a443c10174b5f65d2bd7c629f7b0fa11ebe70d1d436d062dce44941843fbe"
+    },
+    {
+      "path": ".local/ct-organ-comparison/setup-failure-1.json",
+      "sha256": "6527502225fa422501c0abdbd11861b80b9031421b765b5f13f1d7f6b826271f"
+    },
+    {
+      "path": ".local/ct-organ-comparison/setup-failure-2.json",
+      "sha256": "3f6a891f5d9ff99d00fdecc9e46eb8ce889d390b083ba04561a95536503fabbb"
+    }
+  ],
+  "render_review": "All three final images visually inspected; same slice/window/crop within row; slices chosen by maximum GT area and crops include GT and all three outputs.",
+  "excluded_derived_artifact": {
+    "path": ".local/ct-organ-comparison/sol-xhigh/review/organ-dice.png",
+    "reason": "Inherited single-condition renderer hardcodes Astra title/no-swaps caption; never used in comparison. Correct shared chart supersedes it. Original file retained; raw scores unchanged."
+  },
+  "limits": [
+    "One selected public case; one fresh attempt per model/effort condition.",
+    "No run-to-run variance estimate; no general ranking or causal effort conclusion.",
+    "Human-reviewed research reference with author QC; no independent clinical adjudication.",
+    "All scores are frozen continuous results, not clinical pass/fail verdicts.",
+    "No extra runs, model retries, time extensions or feedback were supplied."
+  ]
+}

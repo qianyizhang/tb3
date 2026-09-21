@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "id": "ct-organ-three-condition-comparison-finding",
+  "group_id": "anatomy-audit",
+  "title": "CT-only segmentation: Astra efforts close, Sol localization weaker",
+  "claim": "On one identical frozen CT-only task, fresh Astra/xhigh, Astra/medium and Sol/xhigh attempts completed with semantic macro Dice0.73803,0.73419 and0.32907. Both Astra runs preserve10 matched identities. All frozen scores independently replay exactly; geometry and effort differences remain descriptive.",
+  "experiment_ids": [
+    "ct-organ-segmentation-astra-xhigh",
+    "ct-organ-segmentation-astra-medium",
+    "ct-organ-segmentation-sol-xhigh"
+  ],
+  "evidence": [
+    {
+      "path": "groups/anatomy-audit/findings/evidence/ct-organ-three-condition-comparison.json",
+      "sha256": "4bb6de3ef3c5cab95082ddb952ff1480a2ef0a5f93ada8b769490a65b658df2e"
+    }
+  ],
+  "limitations": [
+    "One public case and one attempt per condition; no population ranking or causal reasoning-effort effect.",
+    "GT is a reviewed research reference, not independent clinical adjudication.",
+    "No clinical pass threshold; retain native continuous unclassified outcomes.",
+    "Identity assignment is conditional on geometric overlap.",
+    "Token counts accumulate across calls; operator effort separate.",
+    "No observed retrieval does not rule out training exposure or opaque model-service traffic."
+  ],
+  "links": [
+    {
+      "label": "Comparison, methodology and visuals",
+      "path": "groups/anatomy-audit/findings/ct-organ-three-condition-comparison.md"
+    },
+    {
+      "label": "Prespecified protocol",
+      "path": "groups/anatomy-audit/methods/ct-organ-three-condition-comparison/protocol.md"
+    }
+  ]
+}

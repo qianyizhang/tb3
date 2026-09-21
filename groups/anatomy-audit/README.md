@@ -10,6 +10,10 @@ Use `uv run med list --group anatomy-audit` from the repository root. The group 
 
 [Data sources](sources.json) · [Retained examples](examples/README.md) · [Methods](methods/README.md)
 
+[CT-only organ segmentation comparison](findings/ct-organ-three-condition-comparison.md):
+three fresh model/effort conditions, per-organ results, trace methodology and
+matched-plane visuals. This is distinct from supplied-mask identity auditing.
+
 ## Research history
 
 Dated session conclusions and trace accounts live in `history/`. They retain

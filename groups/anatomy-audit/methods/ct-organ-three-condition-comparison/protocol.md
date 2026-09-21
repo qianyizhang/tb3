@@ -45,13 +45,19 @@ next-condition quota without creating a dispatch marker:
   --check-only
 ```
 
-Then start the bounded sequential operator once:
+Then start the bounded sequential operator once in a persistent foreground tool
+session, retaining its session ID and PID for supervision:
 
 ```sh
-nohup .venv/bin/python \
-  groups/anatomy-audit/methods/ct-organ-three-condition-comparison/run_comparison.py \
-  > .local/ct-organ-comparison/operator-console.log 2>&1 &
+.venv/bin/python -I \
+  groups/anatomy-audit/methods/ct-organ-three-condition-comparison/run_comparison.py
 ```
+
+The desktop tool's background-shell wrapper exited before dispatch during setup;
+that failed invocation is retained in `.local/ct-organ-comparison/setup-failure-2.json`.
+A prior filename collision with Python's `operator` module is retained separately
+as `setup-failure-1.json`. Neither created a model attempt. Do not rerun this
+completed comparison: dispatch markers and the terminal ledger are authoritative.
 
 The operator writes `.local/ct-organ-comparison/operator-state.json` plus one
 subdirectory per condition. It refuses active `task__` containers, verifies the
@@ -93,3 +99,6 @@ overlap identity assignment, foreground precision/recall, every per-organ Dice,
 wall time and retained token counts. Keep trace/method differences descriptive.
 One case and one attempt per condition cannot establish general ranking or
 clinical performance.
+
+The [completed result](../../findings/ct-organ-three-condition-comparison.md)
+includes all three exact score replays, trace comparison, accounting and figures.

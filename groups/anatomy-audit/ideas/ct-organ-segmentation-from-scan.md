@@ -109,3 +109,20 @@ and component cleanup were used, but systematic CT-edge fitting was absent.
 With final polygons held fixed, reconstructed macro Dice is 0.71414 before cleanup,
 0.71430 after smoothing, 0.73624 after HU trimming/hole filling, and 0.73803 final.
 These are post-hoc numerical stages, not a chronological reasoning trajectory.
+
+## Three-condition finding — assistant interpretation, 2026-09-21
+
+The [authorized comparison is complete](../findings/ct-organ-three-condition-comparison.md).
+All three fresh attempts completed normally; independent replay matches each
+original verifier output exactly. Semantic macro Dice is 0.73803 Astra/xhigh,
+0.73419 Astra/medium and 0.32907 Sol/xhigh. Both Astra runs preserve ten matched
+identities, with persistent adrenal contour weaknesses. Sol has major central-
+organ localization errors; optimal relabeling only raises its score to 0.34878.
+Medium improves spleen, kidneys and gallbladder but worsens the other six organs;
+the nearly equal mean does not establish effort equivalence or a stable ranking.
+
+All three use visual polygons and shape interpolation, with morphology/intensity
+cleanup. Sol's duodenum instead uses manually placed ellipsoids with no intensity
+constraint. Structural validity and connected masks did not ensure localization.
+The two new runs received no earlier answer, analysis or reference information.
+No further cases, repetitions, retries or model dispatch are authorized here.
