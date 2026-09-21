@@ -169,3 +169,11 @@ provisioning inside that task. Future trials must retain the tool condition and
 separate agent-selected prompts from reference-box calibration. Existing frozen
 agent tasks and original calibration bytes remain unchanged. New overlay copies
 have matching-color legends; this is a presentation revision, not new evidence.
+
+The user subsequently clarified that skill discovery must describe execution
+inside the solver environment, rather than requests to set up an experiment.
+The skill now advertises mask creation/refinement directly, without requiring SAM
+to be named in the task. Author setup guidance and the Mac runtime locator remain
+in the rulebook. This wording revision leaves the inference adapter and recorded
+smoke-test results unchanged; the prior receipt's skill digest identifies its
+original tested revision.

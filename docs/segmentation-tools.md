@@ -7,6 +7,10 @@ requested model choice. This setup preference does not authorize a new agent tri
 The [solver skill](../src/tb3_medical/skills/litemedsam/SKILL.md) is the canonical
 source for the executable adapter, image/box contract and coordinate cautions.
 A copy is installed at `~/.codex/skills/litemedsam`; refresh it after source edits.
+The skill describes task execution so a solver can select it whenever masks are
+needed, without the task naming SAM. Experiment setup and tool provisioning belong
+in this rulebook; machine-specific runtime paths stay here rather than in the
+portable solver skill.
 
 ## On this Mac
 

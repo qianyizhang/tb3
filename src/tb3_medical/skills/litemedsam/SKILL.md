@@ -1,21 +1,22 @@
 ---
 name: litemedsam
-description: Use LiteMedSAM for box-prompted medical image segmentation when the user asks for a seg tool, SAM assistance, or LiteMedSAM in an experiment.
+description: Create or refine medical-image segmentation masks with the environment's LiteMedSAM tool, using image inspection, bounding-box prompts, and mask review.
 ---
 
 # LiteMedSAM
 
 Turn an inspected medical image and explicit boxes into candidate binary masks.
 The agent supplies localization and semantic identity; this model supplies contours.
-Follow the experiment's tool-access rules and requested scope.
+Use this capability when completing a task that needs segmentation masks, even
+if the task does not explicitly name LiteMedSAM. Follow the task's tool-access
+rules and requested scope.
 
 ## Run
 
 Use the bundled `scripts/segment.py` with Python 3.12. It launches the provisioned
 runtime automatically. `LITEMEDSAM_ROOT` names a directory containing
 `.venv/bin/python`, `vendor/LiteMedSAM/`, and `weights/lite_medsam.pth`.
-The default is `/opt/litemedsam`. On the tb3 Mac, the existing runtime is
-`/Users/zhangqy/pkgs/tb3/.local/sam-lite-bench-20260921`.
+The default is `/opt/litemedsam`; use the runtime location supplied by the environment.
 
 ```sh
 python3 /path/to/litemedsam/scripts/segment.py \
@@ -30,8 +31,8 @@ or RGB PNG; output is `masks.npy` (N,H,W boolean), individual binary PNGs, and
 Multiple boxes on one image reuse its embedding. Output directories must be new.
 The script verifies the pinned checkpoint before loading it.
 
-On Apple Silicon use `--device mps` when available. Containerized Linux on this
-Mac uses `--device cpu`; Docker cannot access the host's MPS backend. Device
+On Apple Silicon use `--device mps` when available. Linux containers use
+`--device cpu`; Docker cannot access the host's MPS backend. Device
 failure stops the call rather than silently substituting another backend.
 
 ## Image and prompt contract
@@ -56,7 +57,3 @@ Save the image/box provenance and masks. For colored overlays, include a visible
 legend with swatches or line samples in the **exact overlay colors**. Match line
 styles too; label reference, prediction and prompt separately, including when a
 reference is unavailable. Do not rely on color names in a prose caption alone.
-
-For tb3 experiment setup, the author-facing rulebook is `docs/segmentation-tools.md`
-in the workbench. Only this skill folder belongs in the solver environment;
-research findings and evaluator materials stay with the author.
