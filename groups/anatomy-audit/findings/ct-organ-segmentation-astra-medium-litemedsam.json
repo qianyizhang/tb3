@@ -1,0 +1,39 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "id": "ct-organ-segmentation-astra-medium-litemedsam-finding",
+  "group_id": "anatomy-audit",
+  "title": "LiteMedSAM improves mean CT overlap, with three organ regressions",
+  "claim": "On one fixed CT case, a fresh Astra/medium plus LiteMedSAM condition achieved macro Dice0.75697 versus0.73419 for standalone Astra/medium, improving seven organs and worsening three. All frozen scores replay exactly. Active tool use did not remove localization and small-organ errors.",
+  "experiment_ids": [
+    "ct-organ-segmentation-astra-medium-litemedsam",
+    "ct-organ-segmentation-astra-medium",
+    "ct-organ-segmentation-astra-xhigh",
+    "ct-organ-segmentation-sol-xhigh"
+  ],
+  "evidence": [
+    {
+      "path": "groups/anatomy-audit/findings/evidence/ct-organ-segmentation-astra-medium-litemedsam.json",
+      "sha256": "bbc1772563cec39ec1ad320d38f3020cf346006ec6c31b2deb8c810ab3e82cab"
+    }
+  ],
+  "limitations": [
+    "Single case and one attempt per condition; no general ranking or causal tool effect.",
+    "Skill/runtime/weights together change the intervention and task digest.",
+    "Same public CT was used for prior oracle-box calibration, withheld from this agent; model training overlap unknown.",
+    "Research GT not independent clinical adjudication.",
+    "Boundary-distance and prompt-coverage metrics are post-hoc diagnostics, not changed frozen scores.",
+    "Correct matched names are conditional on geometry.",
+    "No observed external retrieval does not exclude training exposure or opaque service traffic."
+  ],
+  "links": [
+    {
+      "label": "Full method, pseudocode, diagram and comparison",
+      "path": "groups/anatomy-audit/findings/ct-organ-segmentation-astra-medium-litemedsam.md"
+    },
+    {
+      "label": "Protocol",
+      "path": "groups/anatomy-audit/experiments/ct-organ-segmentation-astra-medium-litemedsam/protocol.md"
+    }
+  ]
+}

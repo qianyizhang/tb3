@@ -140,3 +140,17 @@ Original freezes and results remain unchanged. This opens only one bounded new
 attempt, not a general benchmark campaign. Interpretation must separate actual
 tool use, localization/identity and contour changes, and retain the unknown
 training-overlap and single-case limitations.
+
+## Tool-enabled result — assistant interpretation, 2026-09-21 UTC
+
+The [authorized LiteMedSAM condition](../findings/ct-organ-segmentation-astra-medium-litemedsam.md)
+completed normally in 17m 28s. Independent replay confirms macro Dice 0.75697
+versus 0.73419 for standalone Astra/medium; seven organs improve and three worsen.
+The agent actively used the skill and made 670 box-mask predictions through the
+canonical adapter and a CPU batch adaptation. Stomach/kidneys improved, while
+gallbladder/pancreas/right adrenal regressed. Post-hoc prompt coverage identifies
+incomplete localization, especially right adrenal; morphology still appears in
+final cleanup and does not guarantee aligned boundaries. This supports an
+organ-dependent benefit in one composite tool/skill condition, not a general
+causal advantage. The original three runs and all scores remain frozen. The
+one authorized follow-up is complete; no additional trial is implied.

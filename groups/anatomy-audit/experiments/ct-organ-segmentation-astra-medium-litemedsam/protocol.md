@@ -1,5 +1,7 @@
 # Astra medium with LiteMedSAM: CT organ segmentation
 
+Completed once on 2026-09-21 UTC. [Frozen result, trace method and comparison](../../findings/ct-organ-segmentation-astra-medium-litemedsam.md).
+
 The user explicitly requested one fresh Astra/medium attempt with the LiteMedSAM
 skill enabled, following the [local calibration task](codex://threads/01a0c423-5d0a-7ee3-97b4-66939a8c9e20).
 Authorization and supervision belong to

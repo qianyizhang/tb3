@@ -1,0 +1,676 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "created_at": "2026-09-21T16:18:45.396241+00:00",
+  "actor": "assistant parent",
+  "experiment_id": "ct-organ-segmentation-astra-medium-litemedsam",
+  "attempt_id": "attempt-bc57d5f3973843bc",
+  "observation_id": "observation-be2bb0239b822234e38e2d86",
+  "task_digest": "669d0880fa05c172ca1b658fce844a5c86e552d91ce2fce1e06659bb9e2808cb",
+  "all_verifier_fields_replay_exactly": true,
+  "all_885_native_evidence_hashes_verified": true,
+  "metrics": {
+    "valid": true,
+    "reason": null,
+    "semantic_macro_dice": 0.7569715595743973,
+    "matched_macro_dice": 0.7569715595743973,
+    "semantic_geometry_gap": 0.0,
+    "identity_accuracy": 1.0,
+    "identity_correct_matches": 10,
+    "identity_assessable_matches": 10,
+    "foreground_dice": 0.9255491714053748,
+    "foreground_precision": 0.9620041696478393,
+    "foreground_recall": 0.8917562087064692,
+    "foreground_gt_voxels": 630244,
+    "foreground_prediction_voxels": 584222,
+    "foreground_false_positive_voxels": 22198,
+    "foreground_false_negative_voxels": 68220,
+    "per_label": [
+      {
+        "id": 1,
+        "name": "spleen",
+        "gt_voxels": 33273,
+        "prediction_voxels": 32908,
+        "intersection": 31129,
+        "dice": 0.9407231682809265
+      },
+      {
+        "id": 2,
+        "name": "kidney_right",
+        "gt_voxels": 32882,
+        "prediction_voxels": 33058,
+        "intersection": 31640,
+        "dice": 0.9596602972399151
+      },
+      {
+        "id": 3,
+        "name": "kidney_left",
+        "gt_voxels": 35513,
+        "prediction_voxels": 35254,
+        "intersection": 33514,
+        "dice": 0.9471646388853562
+      },
+      {
+        "id": 4,
+        "name": "gallbladder",
+        "gt_voxels": 9211,
+        "prediction_voxels": 5056,
+        "intersection": 4411,
+        "dice": 0.6183500385505012
+      },
+      {
+        "id": 5,
+        "name": "liver",
+        "gt_voxels": 456706,
+        "prediction_voxels": 420541,
+        "intersection": 412780,
+        "dice": 0.9410804482659958
+      },
+      {
+        "id": 6,
+        "name": "stomach",
+        "gt_voxels": 25117,
+        "prediction_voxels": 23838,
+        "intersection": 21739,
+        "dice": 0.8881217444591972
+      },
+      {
+        "id": 7,
+        "name": "pancreas",
+        "gt_voxels": 17606,
+        "prediction_voxels": 12519,
+        "intersection": 9609,
+        "dice": 0.6379419087136929
+      },
+      {
+        "id": 8,
+        "name": "adrenal_gland_right",
+        "gt_voxels": 1534,
+        "prediction_voxels": 668,
+        "intersection": 216,
+        "dice": 0.19618528610354224
+      },
+      {
+        "id": 9,
+        "name": "adrenal_gland_left",
+        "gt_voxels": 1907,
+        "prediction_voxels": 2163,
+        "intersection": 1350,
+        "dice": 0.6633906633906634
+      },
+      {
+        "id": 10,
+        "name": "duodenum",
+        "gt_voxels": 16552,
+        "prediction_voxels": 18396,
+        "intersection": 13579,
+        "dice": 0.7770974018541834
+      }
+    ],
+    "matched_pairs": [
+      {
+        "gt_id": 1,
+        "gt_name": "spleen",
+        "prediction_id": 1,
+        "prediction_name": "spleen",
+        "intersection": 31129,
+        "dice": 0.9407231682809265,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 2,
+        "gt_name": "kidney_right",
+        "prediction_id": 2,
+        "prediction_name": "kidney_right",
+        "intersection": 31640,
+        "dice": 0.9596602972399151,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 3,
+        "gt_name": "kidney_left",
+        "prediction_id": 3,
+        "prediction_name": "kidney_left",
+        "intersection": 33514,
+        "dice": 0.9471646388853562,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 4,
+        "gt_name": "gallbladder",
+        "prediction_id": 4,
+        "prediction_name": "gallbladder",
+        "intersection": 4411,
+        "dice": 0.6183500385505012,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 5,
+        "gt_name": "liver",
+        "prediction_id": 5,
+        "prediction_name": "liver",
+        "intersection": 412780,
+        "dice": 0.9410804482659958,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 6,
+        "gt_name": "stomach",
+        "prediction_id": 6,
+        "prediction_name": "stomach",
+        "intersection": 21739,
+        "dice": 0.8881217444591972,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 7,
+        "gt_name": "pancreas",
+        "prediction_id": 7,
+        "prediction_name": "pancreas",
+        "intersection": 9609,
+        "dice": 0.6379419087136929,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 8,
+        "gt_name": "adrenal_gland_right",
+        "prediction_id": 8,
+        "prediction_name": "adrenal_gland_right",
+        "intersection": 216,
+        "dice": 0.19618528610354224,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 9,
+        "gt_name": "adrenal_gland_left",
+        "prediction_id": 9,
+        "prediction_name": "adrenal_gland_left",
+        "intersection": 1350,
+        "dice": 0.6633906633906634,
+        "identity_correct": true
+      },
+      {
+        "gt_id": 10,
+        "gt_name": "duodenum",
+        "prediction_id": 10,
+        "prediction_name": "duodenum",
+        "intersection": 13579,
+        "dice": 0.7770974018541834,
+        "identity_correct": true
+      }
+    ]
+  },
+  "analysis": {
+    "exact_replay_all_fields": true,
+    "agent_seconds": 1048.011955,
+    "total_trial_seconds": 1092.221096,
+    "token_usage": {
+      "input_tokens": 3790358,
+      "cached_input_tokens": 3660416,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 26885,
+      "reasoning_output_tokens": 10796,
+      "total_tokens": 3817243
+    },
+    "outer_exec_calls": 47,
+    "nested_tools": {
+      "exec_command": 47,
+      "view_image": 39,
+      "write_stdin": 5,
+      "clock__curr_time": 2
+    },
+    "shell_failures": [
+      {
+        "index": 3,
+        "exit_code": 1
+      },
+      {
+        "index": 26,
+        "exit_code": 1
+      },
+      {
+        "index": 29,
+        "exit_code": 1
+      }
+    ],
+    "batches": [
+      {
+        "name": "adrenal",
+        "images": 49,
+        "boxes": 75,
+        "logged_image_loops": 49,
+        "loop_seconds": 67.28,
+        "crop": [
+          90,
+          100,
+          190,
+          200
+        ],
+        "provenance_sha256": "f048cf450352c61772acba701e1e72dac585cf4d6b8b171214a76b3459aed20e"
+      },
+      {
+        "name": "adrenal_fix",
+        "images": 10,
+        "boxes": 10,
+        "logged_image_loops": 10,
+        "loop_seconds": 4.48,
+        "crop": [
+          140,
+          110,
+          200,
+          170
+        ],
+        "provenance_sha256": "bfcf5b59f9d926d2a32e4b67538bd0907fa763ad4176fb7498ce91727c0cdfe3"
+      },
+      {
+        "name": "adrenal_fix_test",
+        "images": 2,
+        "boxes": 2,
+        "logged_image_loops": 2,
+        "loop_seconds": 0.9299999999999999,
+        "crop": [
+          140,
+          110,
+          200,
+          170
+        ],
+        "provenance_sha256": "85730273e11a4e2279795c37f2912db3694afbe6204b894c1d10caaa4a4e03b9"
+      },
+      {
+        "name": "adrenal_test",
+        "images": 5,
+        "boxes": 7,
+        "logged_image_loops": 5,
+        "loop_seconds": 2.32,
+        "crop": [
+          90,
+          100,
+          190,
+          200
+        ],
+        "provenance_sha256": "5ba97bd8e5ad828afbb95ea1d1e2b47920caac8bb7773b2f6b5946fd47fb667b"
+      },
+      {
+        "name": "duo_bridge",
+        "images": 13,
+        "boxes": 13,
+        "logged_image_loops": 13,
+        "loop_seconds": 5.78,
+        "crop": [
+          90,
+          65,
+          190,
+          165
+        ],
+        "provenance_sha256": "3c344729b4953e4bbe6ab3cbe602684090456f79466de9c6e36f1c9339c4fa21"
+      },
+      {
+        "name": "duo_bridge_test",
+        "images": 3,
+        "boxes": 3,
+        "logged_image_loops": 3,
+        "loop_seconds": 1.3599999999999999,
+        "crop": [
+          90,
+          65,
+          190,
+          165
+        ],
+        "provenance_sha256": "20b99ad52557175d0e5119066d8467569834b4e85671fc0cd2d1ddfc981bd354"
+      },
+      {
+        "name": "duo_gap",
+        "images": 5,
+        "boxes": 5,
+        "logged_image_loops": 5,
+        "loop_seconds": 2.24,
+        "crop": [
+          90,
+          65,
+          190,
+          165
+        ],
+        "provenance_sha256": "b25eb59b511cfd09d11d8a4513953b0ff396d8b502f925f02f08cbffeef96631"
+      },
+      {
+        "name": "gb",
+        "images": 23,
+        "boxes": 23,
+        "logged_image_loops": 23,
+        "loop_seconds": 36.980000000000004,
+        "crop": [
+          155,
+          50,
+          245,
+          140
+        ],
+        "provenance_sha256": "f8af5c0b2434efd558a773a7d6a9f395d8774e9057d8f48304ce59253f315efa"
+      },
+      {
+        "name": "gb_test",
+        "images": 5,
+        "boxes": 5,
+        "logged_image_loops": 5,
+        "loop_seconds": 2.25,
+        "crop": [
+          155,
+          50,
+          245,
+          140
+        ],
+        "provenance_sha256": "7811cfdc88b490838f064467c1d8bbe5274b48b2f421aea059a3cad7d861b4f0"
+      },
+      {
+        "name": "large",
+        "images": 133,
+        "boxes": 277,
+        "logged_image_loops": 133,
+        "loop_seconds": 65.24,
+        "crop": null,
+        "provenance_sha256": "9bb6abec3a88dbca28d60358a44b6cfae12509fa87295d49dc97438d497847c7"
+      },
+      {
+        "name": "liver_tip",
+        "images": 13,
+        "boxes": 13,
+        "logged_image_loops": 13,
+        "loop_seconds": 15.03,
+        "crop": null,
+        "provenance_sha256": "4c29dd24c3fd58ad8b03c80cbcf2310df35dc794049638bed35d5f9c3be4d40d"
+      },
+      {
+        "name": "small",
+        "images": 105,
+        "boxes": 212,
+        "logged_image_loops": 105,
+        "loop_seconds": 110.39,
+        "crop": [
+          75,
+          60,
+          225,
+          210
+        ],
+        "provenance_sha256": "212c0d572d395a3cdda04c63cec9e7a3e69c1176ed4eadc0d7bbc3ed05eda279"
+      },
+      {
+        "name": "small_test",
+        "images": 8,
+        "boxes": 17,
+        "logged_image_loops": 8,
+        "loop_seconds": 3.85,
+        "crop": null,
+        "provenance_sha256": "cbbf26a871de09cb7d41e0ae1a16997a8eea680bbd0ce985931b406465728d1d"
+      }
+    ],
+    "canonical_adapter_calls": 2,
+    "canonical_box_masks": 8,
+    "batch_images": 374,
+    "batch_box_masks": 662,
+    "batch_image_loop_seconds": 318.13,
+    "loop_timing_scope": "Sum of rounded logged per-image loops including preprocessing, encode/decode and save; excludes model setup/import. May overlap wall time; not pure inference latency.",
+    "per_organ": [
+      {
+        "id": 1,
+        "name": "spleen",
+        "baseline_dice": 0.9291700544124085,
+        "tool_dice": 0.9407231682809265,
+        "delta_dice": 0.011553113868517983,
+        "baseline_surface_dice_3mm": 0.9607502287282708,
+        "baseline_mean_boundary_distance_mm": 1.0807959611683828,
+        "tool_surface_dice_3mm": 0.9380871050384287,
+        "tool_mean_boundary_distance_mm": 1.3134714149789573
+      },
+      {
+        "id": 2,
+        "name": "kidney_right",
+        "baseline_dice": 0.8890456109040141,
+        "tool_dice": 0.9596602972399151,
+        "delta_dice": 0.07061468633590096,
+        "baseline_surface_dice_3mm": 0.8555993690851735,
+        "baseline_mean_boundary_distance_mm": 1.774924288569762,
+        "tool_surface_dice_3mm": 1.0,
+        "tool_mean_boundary_distance_mm": 0.5551726830814149
+      },
+      {
+        "id": 3,
+        "name": "kidney_left",
+        "baseline_dice": 0.8971201423250125,
+        "tool_dice": 0.9471646388853562,
+        "delta_dice": 0.05004449656034371,
+        "baseline_surface_dice_3mm": 0.8878882428024394,
+        "baseline_mean_boundary_distance_mm": 1.4544646108920158,
+        "tool_surface_dice_3mm": 0.9864058355437666,
+        "tool_mean_boundary_distance_mm": 0.7410249980081621
+      },
+      {
+        "id": 4,
+        "name": "gallbladder",
+        "baseline_dice": 0.7613464886825305,
+        "tool_dice": 0.6183500385505012,
+        "delta_dice": -0.14299645013202933,
+        "baseline_surface_dice_3mm": 0.7929533678756476,
+        "baseline_mean_boundary_distance_mm": 2.159471895397076,
+        "tool_surface_dice_3mm": 0.6940850277264325,
+        "tool_mean_boundary_distance_mm": 3.406206566417865
+      },
+      {
+        "id": 5,
+        "name": "liver",
+        "baseline_dice": 0.9220482395876376,
+        "tool_dice": 0.9410804482659958,
+        "delta_dice": 0.019032208678358198,
+        "baseline_surface_dice_3mm": 0.7322520080746482,
+        "baseline_mean_boundary_distance_mm": 2.6811122920625636,
+        "tool_surface_dice_3mm": 0.8626738262425995,
+        "tool_mean_boundary_distance_mm": 2.172925593124869
+      },
+      {
+        "id": 6,
+        "name": "stomach",
+        "baseline_dice": 0.6640905515849947,
+        "tool_dice": 0.8881217444591972,
+        "delta_dice": 0.22403119287420248,
+        "baseline_surface_dice_3mm": 0.528129829984544,
+        "baseline_mean_boundary_distance_mm": 4.049036346430013,
+        "tool_surface_dice_3mm": 0.9023392333007204,
+        "tool_mean_boundary_distance_mm": 1.334304040133923
+      },
+      {
+        "id": 7,
+        "name": "pancreas",
+        "baseline_dice": 0.7032367086962173,
+        "tool_dice": 0.6379419087136929,
+        "delta_dice": -0.06529479998252441,
+        "baseline_surface_dice_3mm": 0.7723938049089757,
+        "baseline_mean_boundary_distance_mm": 2.0720062638583365,
+        "tool_surface_dice_3mm": 0.6955691367456074,
+        "tool_mean_boundary_distance_mm": 2.99225292016128
+      },
+      {
+        "id": 8,
+        "name": "adrenal_gland_right",
+        "baseline_dice": 0.3114979386165827,
+        "tool_dice": 0.19618528610354224,
+        "delta_dice": -0.11531265251304046,
+        "baseline_surface_dice_3mm": 0.5015552099533437,
+        "baseline_mean_boundary_distance_mm": 4.427151158954903,
+        "tool_surface_dice_3mm": 0.3424283765347885,
+        "tool_mean_boundary_distance_mm": 8.204936771135815
+      },
+      {
+        "id": 9,
+        "name": "adrenal_gland_left",
+        "baseline_dice": 0.5632786885245902,
+        "tool_dice": 0.6633906633906634,
+        "delta_dice": 0.10011197486607326,
+        "baseline_surface_dice_3mm": 0.7177739920499716,
+        "baseline_mean_boundary_distance_mm": 2.9017728214792093,
+        "tool_surface_dice_3mm": 0.7504672897196262,
+        "tool_mean_boundary_distance_mm": 2.9814235825355793
+      },
+      {
+        "id": 10,
+        "name": "duodenum",
+        "baseline_dice": 0.701076186701625,
+        "tool_dice": 0.7770974018541834,
+        "delta_dice": 0.07602121515255844,
+        "baseline_surface_dice_3mm": 0.7000695088044485,
+        "baseline_mean_boundary_distance_mm": 2.969838779509436,
+        "tool_surface_dice_3mm": 0.8197031891379855,
+        "tool_mean_boundary_distance_mm": 2.672261643714907
+      }
+    ],
+    "surface_metric_scope": "Post-hoc diagnostic only: unweighted 6-neighbour boundary voxel centres on native 1.5mm grid; combined bidirectional nearest-boundary distances, tolerance3mm. Frozen Dice unchanged.",
+    "transport_counts": {
+      "chatgpt.com:443 allowed=True": 62,
+      "sdmntprsouthcentralus.oaiusercontent.com:443 allowed=False": 4,
+      "ab.chatgpt.com:443 allowed=False": 18
+    },
+    "prompt_coverage_diagnostic": {
+      "1": {
+        "fraction_gt_within_agent_box_union": 0.9874372614432122,
+        "scope": "Diagnostic union of prompts from batches used for final assembly, before terminal-slice trimming; LiteMedSAM is not hard-constrained to the rectangle."
+      },
+      "2": {
+        "fraction_gt_within_agent_box_union": 0.9907548202664072,
+        "scope": "Diagnostic union of prompts from batches used for final assembly, before terminal-slice trimming; LiteMedSAM is not hard-constrained to the rectangle."
+      },
+      "3": {
+        "fraction_gt_within_agent_box_union": 0.9846816658688368,
+        "scope": "Diagnostic union of prompts from batches used for final assembly, before terminal-slice trimming; LiteMedSAM is not hard-constrained to the rectangle."
+      },
+      "4": {
+        "fraction_gt_within_agent_box_union": 0.6570404950602541,
+        "scope": "Diagnostic union of prompts from batches used for final assembly, before terminal-slice trimming; LiteMedSAM is not hard-constrained to the rectangle."
+      },
+      "5": {
+        "fraction_gt_within_agent_box_union": 0.9447281183080581,
+        "scope": "Diagnostic union of prompts from batches used for final assembly, before terminal-slice trimming; LiteMedSAM is not hard-constrained to the rectangle."
+      },
+      "6": {
+        "fraction_gt_within_agent_box_union": 0.9698212366126527,
+        "scope": "Diagnostic union of prompts from batches used for final assembly, before terminal-slice trimming; LiteMedSAM is not hard-constrained to the rectangle."
+      },
+      "7": {
+        "fraction_gt_within_agent_box_union": 0.8171078041576735,
+        "scope": "Diagnostic union of prompts from batches used for final assembly, before terminal-slice trimming; LiteMedSAM is not hard-constrained to the rectangle."
+      },
+      "8": {
+        "fraction_gt_within_agent_box_union": 0.23663624511082137,
+        "scope": "Diagnostic union of prompts from batches used for final assembly, before terminal-slice trimming; LiteMedSAM is not hard-constrained to the rectangle."
+      },
+      "9": {
+        "fraction_gt_within_agent_box_union": 0.9066596748820136,
+        "scope": "Diagnostic union of prompts from batches used for final assembly, before terminal-slice trimming; LiteMedSAM is not hard-constrained to the rectangle."
+      },
+      "10": {
+        "fraction_gt_within_agent_box_union": 0.9615152247462543,
+        "scope": "Diagnostic union of prompts from batches used for final assembly, before terminal-slice trimming; LiteMedSAM is not hard-constrained to the rectangle."
+      }
+    }
+  },
+  "images_visually_reviewed": [
+    "per-organ-dice.png",
+    "selected-boundaries.png",
+    "remaining-boundaries.png"
+  ],
+  "trace_review": "All47 outer calls and47 shell command records reviewed; only exec_command/view_image/write_stdin/clock calls. Canonical receipts and all13 batch provenance script/weight/job/mask bindings verified. No observed reference access or external retrieval.",
+  "files": [
+    {
+      "path": ".local/ct-organ-segmentation-astra-medium-litemedsam/independent-replay.json",
+      "sha256": "06e2042e1066081d492754a033f70aedd1d9bcb87f75823b87c97ade64b233ea"
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-medium-litemedsam/analysis.json",
+      "sha256": "96eab192c515d7cfab2216c4a8d3c38d1e56b855bceaf81046be2e7fed402fad"
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-medium-litemedsam/trace-commands.json",
+      "sha256": "9b62cd24d25728167489d3d1d2c62ffe74dccc8d54694b7fe7a79baac36901b3"
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-medium-litemedsam/trace-outer-calls.json",
+      "sha256": "e01545f116cbd5bc360fb0423093b2b718ddb7aafc4a2f1a6ad5fc905d9f95b5"
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-medium-litemedsam/astra-medium-litemedsam/live-isolation.json",
+      "sha256": "0496e03e2bab2ccc29fc501e45e78c265bd3e2a765d41221b946121ab41c215c"
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-medium-litemedsam/astra-medium-litemedsam/model-transport.log",
+      "sha256": "a3902802685639b0ebe2f7599e053a53d7bc902e5031e2dde9ffba2c3adb1847"
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-medium-litemedsam/astra-medium-litemedsam/operator-state.json",
+      "sha256": "174a3089d4a842fcab24f475b01eb490ae612cb019388f8029ff3e0511230384"
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-medium-litemedsam/controls-review.json",
+      "sha256": "eb79b1b65bcde2af5236dc7511b22aaece5a3f7069894ab0d4875dbd54e8c40e"
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-medium-litemedsam/packet-review.json",
+      "sha256": "28045581eedd15fd9cad3a590613804e4672dfe9cdbd8ab4eac9b1dae4825601"
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-medium-litemedsam/supervision.json",
+      "sha256": "ad9afec0f72e840d99c09f68bb168deec1d4ff1a5d052ab282c369d1d1f0043b"
+    },
+    {
+      "path": ".local/attempts/attempt-bc57d5f3973843bc/job/task__WhR5ASN/result.json",
+      "sha256": "6929be390679d012f00a7ef52778f2bf6b9980e4b728c02140d94d321098e27f"
+    },
+    {
+      "path": ".local/attempts/attempt-bc57d5f3973843bc/job/task__WhR5ASN/verifier/metrics.json",
+      "sha256": "06e2042e1066081d492754a033f70aedd1d9bcb87f75823b87c97ade64b233ea"
+    },
+    {
+      "path": ".local/attempts/attempt-bc57d5f3973843bc/job/task__WhR5ASN/agent/codex.txt",
+      "sha256": "def701da980d39cf28e35eebff3352b6a7b6a785d417409ed66d2c145943bd8a"
+    },
+    {
+      "path": ".local/attempts/attempt-bc57d5f3973843bc/job/task__WhR5ASN/agent/trajectory.json",
+      "sha256": "cc1cad651edca8cecea3e02de7b032e29d33b3423c4703a24073983117f42ff5"
+    },
+    {
+      "path": ".local/attempts/attempt-bc57d5f3973843bc/job/task__WhR5ASN/agent/sessions/2026/09/21/rollout-2026-09-21T15-34-20-01a0c49a-974b-7802-9fb1-70bbef133fe4.jsonl",
+      "sha256": "8eefb838f7a4d2852a370c6985d69e1caeb5c3f610a4986a530e2924f1d5c420"
+    },
+    {
+      "path": ".local/attempts/attempt-bc57d5f3973843bc/job/task__WhR5ASN/artifacts/app/answer/method.md",
+      "sha256": "a4740b08e3ab6eb7a4f3c048f0020fed7b0ec48dd06e58248c679f9d3d8fa00b"
+    },
+    {
+      "path": ".local/attempts/attempt-bc57d5f3973843bc/job/task__WhR5ASN/artifacts/app/work/batch.py",
+      "sha256": "12b814411d21a8c9516bc7eedcc2be9b62e68bc1563640a01cf25e8ef6e517c0"
+    },
+    {
+      "path": ".local/attempts/attempt-bc57d5f3973843bc/job/task__WhR5ASN/artifacts/app/work/batch_crop.py",
+      "sha256": "720e5f12915bc0598c9b3f6534558252b3a00f03df5ca0d8d62c0cf90a80cc5e"
+    },
+    {
+      "path": ".local/attempts/attempt-bc57d5f3973843bc/job/task__WhR5ASN/artifacts/app/work/assemble.py",
+      "sha256": "92b1ed8d3805129cf4d95725a4c54fa4193c90826de97e25b6eb1dc52f6b326d"
+    },
+    {
+      "path": "groups/anatomy-audit/findings/evidence/ct-organ-three-condition-comparison.json",
+      "sha256": "4bb6de3ef3c5cab95082ddb952ff1480a2ef0a5f93ada8b769490a65b658df2e"
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-medium-litemedsam/review/per-organ-dice.png",
+      "sha256": "65d480caeaf8caf82d3a8f1d137226c4f35595896134aaa3d1874a312d960f4e"
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-medium-litemedsam/review/slice-selection.json",
+      "sha256": "93486d6d93aea30d4ee3305ce2f7ed48ed58869d01877aafef9a59274c7d7924"
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-medium-litemedsam/review/selected-boundaries.png",
+      "sha256": "9fe8005f0524a9e5e11caac9fec0c3a6ccd82d6dc81a15ccab04ee8d62e929c9"
+    },
+    {
+      "path": ".local/ct-organ-segmentation-astra-medium-litemedsam/review/remaining-boundaries.png",
+      "sha256": "48ea10a4b96737af3a4ec118550ebf8ccb987c3b90c9d12d30b7a4df8f107f0d"
+    }
+  ]
+}
