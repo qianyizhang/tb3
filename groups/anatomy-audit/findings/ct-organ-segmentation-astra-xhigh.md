@@ -60,6 +60,10 @@ interpolation, mild smoothing, local intensity-based boundary trimming and
 multi-plane refinement. Submitted scripts and trace review are retained separately
 from the score; source masks were not supplied to the solver.
 
+A subsequent [trace and numerical-method analysis](ct-organ-methodology-astra-xhigh.md)
+provides pseudocode, a pipeline diagram and a reconstructed adrenal example; it
+reproduces all ten final masks exactly without changing this frozen result.
+
 The full trace contains 37 image-view calls over 36 unique images and 42 local
 commands, all successful. No external retrieval, additional pretrained segmenter,
 reference-mask access or scorer call was observed. All 59 allowed transport

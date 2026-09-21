@@ -91,3 +91,21 @@ equal 0.7380; all ten matched identities agree with the names. This supports
 segmentation and naming from CT alone on this case. Contours remain uneven,
 especially adrenals (0.3879 right, 0.6070 left), versus liver 0.9269 and spleen
 0.9076. The bounded study is complete; no additional model run is implied.
+
+## Method analysis and comparison authorization — 2026-09-21
+
+The user subsequently requested a trace explanation and two fresh conditions:
+Sol/xhigh and Astra/medium. This explicitly opens the
+[fixed three-condition comparison](../methods/ct-organ-three-condition-comparison/protocol.md),
+using the original frozen task, unchanged reference and scorer, sequential runs,
+the same per-attempt limits and no feedback or prior solution supplied to solvers.
+The prior Astra/xhigh result remains frozen. One case and one attempt per condition
+will support a descriptive comparison rather than a general model ranking.
+
+[Assistant methodology analysis](../findings/ct-organ-methodology-astra-xhigh.md)
+reconstructed all ten original masks voxel-exactly. The dominant construction is
+visually drawn sparse polygons plus signed-distance interpolation. Hole filling
+and component cleanup were used, but systematic CT-edge fitting was absent.
+With final polygons held fixed, reconstructed macro Dice is 0.71414 before cleanup,
+0.71430 after smoothing, 0.73624 after HU trimming/hole filling, and 0.73803 final.
+These are post-hoc numerical stages, not a chronological reasoning trajectory.
