@@ -126,3 +126,17 @@ cleanup. Sol's duodenum instead uses manually placed ellipsoids with no intensit
 constraint. Structural validity and connected masks did not ensure localization.
 The two new runs received no earlier answer, analysis or reference information.
 No further cases, repetitions, retries or model dispatch are authorized here.
+
+## Tool-enabled follow-up authorized — user, 2026-09-21
+
+After the completed three-condition comparison, the user requested one fresh
+Astra/medium attempt with the LiteMedSAM skill enabled, citing the
+[tool calibration task](codex://threads/01a0c423-5d0a-7ee3-97b4-66939a8c9e20).
+The [separate experiment](../experiments/ct-organ-segmentation-astra-medium-litemedsam/protocol.md)
+holds CT, taxonomy, reference and scoring fixed while adding the canonical skill
+and a pinned CPU segmenter. All agent prompts must come from CT inspection;
+calibration reference boxes, selected slices and prior answers stay private.
+Original freezes and results remain unchanged. This opens only one bounded new
+attempt, not a general benchmark campaign. Interpretation must separate actual
+tool use, localization/identity and contour changes, and retain the unknown
+training-overlap and single-case limitations.
