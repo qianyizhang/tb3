@@ -14,6 +14,14 @@ Use `uv run med list --group anatomy-audit` from the repository root. The group 
 three fresh model/effort conditions, per-organ results, trace methodology and
 matched-plane visuals. This is distinct from supplied-mask identity auditing.
 
+[Dental CBCT pilot](ideas/dental-cbct-agent-pilot.md): completed CT-only attempts,
+[orientation and trace audit](findings/dental-trace-root-causes.md),
+[annotated-example comparison](findings/dental-reference-example-comparison.md),
+and [pulp/canal failure mechanisms](findings/dental-fine-structure-failure-analysis.md).
+The [STS reference audit](findings/dental-sts-gt-audit.md) records why the inspected
+mirror masks were rejected for unmodified anatomical scoring. Original outcomes
+and unresolved clinical/reference questions are retained.
+
 ## Research history
 
 Dated session conclusions and trace accounts live in `history/`. They retain

@@ -1,0 +1,987 @@
+{
+  "source_task": "codex://threads/01a0c3e5-6fb0-7321-a930-a7251047e7ad",
+  "observed_at": "2026-09-21T16:11:44.570412+00:00",
+  "scope": "post-hoc author diagnosis, no inference or changed submissions",
+  "target": "F_002",
+  "example": "F_008",
+  "attempt_id": "attempt-36ee0d66d0a64d55",
+  "status": "measured mechanisms; pulp annotation semantics remain under review",
+  "pulp_fixed_rule_tests": {
+    "example_true_teeth_all32": {
+      "fixed_rule": "smoothed CT <1250 AND distance inside individual tooth >2 voxels (0.6 mm)",
+      "score": {
+        "gt": 30931,
+        "pred": 28475,
+        "tp": 24015,
+        "dice": 0.8085041914958085,
+        "precision": 0.8433713784021071,
+        "recall": 0.7764055478322718
+      },
+      "gt_pulp_intensity_quantiles": {
+        "0": -65.25109019355966,
+        "10": 455.19248941280506,
+        "25": 675.0970247379239,
+        "50": 967.3871570477849,
+        "75": 1219.7999946435145,
+        "90": 1406.8304862508658,
+        "100": 2028.9165380780157
+      },
+      "gt_pulp_above_intensity_cut": 6903,
+      "gt_pulp_outside_tooth_mask": 0,
+      "gt_pulp_in_mask_but_depth_rejected": 16,
+      "gt_pulp_in_depth_but_intensity_rejected": 6900
+    },
+    "example_true_teeth_target22_ids": {
+      "fixed_rule": "smoothed CT <1250 AND distance inside individual tooth >2 voxels (0.6 mm)",
+      "score": {
+        "gt": 18278,
+        "pred": 16196,
+        "tp": 13194,
+        "dice": 0.7654464233915415,
+        "precision": 0.8146455915040751,
+        "recall": 0.7218514060619324
+      },
+      "gt_pulp_intensity_quantiles": {
+        "0": 23.08995929532073,
+        "10": 537.196149947519,
+        "25": 781.3078243974475,
+        "50": 1035.642154056341,
+        "75": 1276.2402814832667,
+        "90": 1456.4924668179578,
+        "100": 2028.9165380780157
+      },
+      "gt_pulp_above_intensity_cut": 5084,
+      "gt_pulp_outside_tooth_mask": 0,
+      "gt_pulp_in_mask_but_depth_rejected": 2,
+      "gt_pulp_in_depth_but_intensity_rejected": 5082
+    },
+    "target_true_teeth": {
+      "fixed_rule": "smoothed CT <1250 AND distance inside individual tooth >2 voxels (0.6 mm)",
+      "score": {
+        "gt": 12242,
+        "pred": 34873,
+        "tp": 7038,
+        "dice": 0.2987583572110793,
+        "precision": 0.20181802540647492,
+        "recall": 0.5749060611011273
+      },
+      "gt_pulp_intensity_quantiles": {
+        "0": -944.390354745131,
+        "10": 342.3011478703463,
+        "25": 807.0025561145873,
+        "50": 1155.149758535846,
+        "75": 1482.1460720901512,
+        "90": 2032.5222205481293,
+        "100": 3220.0
+      },
+      "gt_pulp_above_intensity_cut": 5202,
+      "gt_pulp_outside_tooth_mask": 0,
+      "gt_pulp_in_mask_but_depth_rejected": 12,
+      "gt_pulp_in_depth_but_intensity_rejected": 5192
+    },
+    "target_predicted_teeth": {
+      "fixed_rule": "smoothed CT <1250 AND distance inside individual tooth >2 voxels (0.6 mm)",
+      "score": {
+        "gt": 12242,
+        "pred": 31324,
+        "tp": 6245,
+        "dice": 0.2866914566404995,
+        "precision": 0.19936789682032946,
+        "recall": 0.5101290638784512
+      },
+      "gt_pulp_intensity_quantiles": {
+        "0": -944.390354745131,
+        "10": 342.3011478703463,
+        "25": 807.0025561145873,
+        "50": 1155.149758535846,
+        "75": 1482.1460720901512,
+        "90": 2032.5222205481293,
+        "100": 3220.0
+      },
+      "gt_pulp_above_intensity_cut": 5202,
+      "gt_pulp_outside_tooth_mask": 579,
+      "gt_pulp_in_mask_but_depth_rejected": 426,
+      "gt_pulp_in_depth_but_intensity_rejected": 4992
+    }
+  },
+  "pulp_saved_stages": {
+    "atlas2.npy": {
+      "gt": 12242,
+      "pred": 16016,
+      "tp": 5583,
+      "dice": 0.3951447377733739,
+      "precision": 0.3485889110889111,
+      "recall": 0.4560529325273648
+    },
+    "teeth_pulp.npy": {
+      "gt": 12242,
+      "pred": 23451,
+      "tp": 5648,
+      "dice": 0.3164766200655591,
+      "precision": 0.24084260799113044,
+      "recall": 0.4613625224636497
+    },
+    "teeth_pulp_final.npy": {
+      "gt": 12242,
+      "pred": 16020,
+      "tp": 5147,
+      "dice": 0.36423466138277544,
+      "precision": 0.32128589263420726,
+      "recall": 0.42043783695474596
+    },
+    "final.npy": {
+      "gt": 12242,
+      "pred": 16020,
+      "tp": 5147,
+      "dice": 0.36423466138277544,
+      "precision": 0.32128589263420726,
+      "recall": 0.42043783695474596
+    }
+  },
+  "saturated_pulp": [
+    {
+      "label": 115,
+      "gt_voxels": 20,
+      "raw_CT_above3000": 4,
+      "raw_CT_at_scan_max": 3,
+      "raw_CT_median": 2325.7881014458403,
+      "example_raw_CT_median": 713.94460300986,
+      "example_raw_CT_max": 1806.7280747275558
+    },
+    {
+      "label": 116,
+      "gt_voxels": 858,
+      "raw_CT_above3000": 838,
+      "raw_CT_at_scan_max": 827,
+      "raw_CT_median": 3220.0,
+      "example_raw_CT_median": 792.4649714582254,
+      "example_raw_CT_max": 1688.697457187338
+    },
+    {
+      "label": 131,
+      "gt_voxels": 333,
+      "raw_CT_above3000": 331,
+      "raw_CT_at_scan_max": 328,
+      "raw_CT_median": 3220.0,
+      "example_raw_CT_median": 1358.6118318629992,
+      "example_raw_CT_max": 1870.7446808510635
+    }
+  ],
+  "prior_clipping": [
+    {
+      "tooth": 14,
+      "allowed_distance_mm": 1.05,
+      "prior_xy_shift_voxels": [
+        7.016804950065136,
+        1.9250088153074785,
+        0.0
+      ],
+      "removed_pulp_voxels": 5247,
+      "removed_true_pulp_voxels": 440,
+      "saved_stage_difference_exactly_reproduced": true
+    },
+    {
+      "tooth": 44,
+      "allowed_distance_mm": 1.05,
+      "prior_xy_shift_voxels": [
+        2.0,
+        -3.0,
+        0.0
+      ],
+      "removed_pulp_voxels": 2288,
+      "removed_true_pulp_voxels": 240,
+      "saved_stage_difference_exactly_reproduced": true
+    }
+  ],
+  "canal_diagnostics": [
+    {
+      "label": 3,
+      "final": {
+        "gt": 22624,
+        "pred": 11042,
+        "tp": 2586,
+        "dice": 0.15362680449117805,
+        "precision": 0.23419670349574354,
+        "recall": 0.1143033946251768
+      },
+      "paint_radius_mm": 1.14,
+      "path_to_gt_voxel_center_mm": {
+        "0": 0.028873630875032405,
+        "10": 0.14039171534939002,
+        "25": 0.2609685670620165,
+        "50": 0.5940612563612255,
+        "75": 1.7775808257010528,
+        "90": 2.775634602799268,
+        "100": 3.1242205084194956
+      },
+      "path_samples_inside_gt_fraction": 0.198,
+      "gt_voxel_to_path_mm": {
+        "0": 0.028873630875032405,
+        "10": 1.0379377623529888,
+        "25": 1.696753190127963,
+        "50": 2.5743101315733314,
+        "75": 3.5786403727339984,
+        "90": 4.4671676542238306,
+        "100": 6.264482658541474
+      },
+      "saved_stages": {
+        "atlas2": {
+          "gt": 22624,
+          "pred": 17762,
+          "tp": 4094,
+          "dice": 0.20274352498390533,
+          "precision": 0.23049206170476297,
+          "recall": 0.18095827439886847
+        },
+        "jawatlas": {
+          "gt": 22624,
+          "pred": 24854,
+          "tp": 4731,
+          "dice": 0.19929230380386706,
+          "precision": 0.19035165365735898,
+          "recall": 0.20911421499292787
+        },
+        "canals0": {
+          "gt": 22624,
+          "pred": 10927,
+          "tp": 2449,
+          "dice": 0.14598670680456619,
+          "precision": 0.22412373020957263,
+          "recall": 0.1082478783592645
+        },
+        "canals1": {
+          "gt": 22624,
+          "pred": 11042,
+          "tp": 2586,
+          "dice": 0.15362680449117805,
+          "precision": 0.23419670349574354,
+          "recall": 0.1143033946251768
+        },
+        "final": {
+          "gt": 22624,
+          "pred": 11042,
+          "tp": 2586,
+          "dice": 0.15362680449117805,
+          "precision": 0.23419670349574354,
+          "recall": 0.1143033946251768
+        }
+      },
+      "misses_outside_unclipped_tube": 19917,
+      "misses_from_clipping_inside_tube": 109,
+      "misses_from_other_canal_priority": 12,
+      "misses_from_final_assembly": 0,
+      "unclipped_tube_score": {
+        "gt": 22624,
+        "pred": 11686,
+        "tp": 2707,
+        "dice": 0.15779656076945497,
+        "precision": 0.23164470306349477,
+        "recall": 0.1196516973125884
+      },
+      "fixed_radius_expansion_diagnostics": [
+        {
+          "extra_radius_mm": 0.3,
+          "unclipped": {
+            "gt": 22624,
+            "pred": 18678,
+            "tp": 4183,
+            "dice": 0.2025567769115297,
+            "precision": 0.22395331405932112,
+            "recall": 0.18489214992927863
+          }
+        },
+        {
+          "extra_radius_mm": 0.6,
+          "unclipped": {
+            "gt": 22624,
+            "pred": 27358,
+            "tp": 5915,
+            "dice": 0.2366852066744028,
+            "precision": 0.2162073250968638,
+            "recall": 0.2614480198019802
+          }
+        },
+        {
+          "extra_radius_mm": 1.2,
+          "unclipped": {
+            "gt": 22624,
+            "pred": 50101,
+            "tp": 9788,
+            "dice": 0.26917841182536956,
+            "precision": 0.19536536196882298,
+            "recall": 0.43263790664780766
+          }
+        }
+      ],
+      "one_axis_gt_translation_sensitivity": [
+        {
+          "offset_mm": 0.3,
+          "mean_dice": 0.9004596888260256,
+          "min_dice": 0.8890116690240453,
+          "max_dice": 0.9081506364922206
+        },
+        {
+          "offset_mm": 0.6,
+          "mean_dice": 0.8037482319660536,
+          "min_dice": 0.78125,
+          "max_dice": 0.8186439179632249
+        },
+        {
+          "offset_mm": 0.8999999999999999,
+          "mean_dice": 0.7088342762847714,
+          "min_dice": 0.6749469589816125,
+          "max_dice": 0.7309052333804809
+        }
+      ],
+      "prediction_labels_at_gt": {
+        "0": 469,
+        "1": 19534,
+        "3": 2586,
+        "103": 35
+      }
+    },
+    {
+      "label": 4,
+      "final": {
+        "gt": 20072,
+        "pred": 9720,
+        "tp": 3563,
+        "dice": 0.23919172932330826,
+        "precision": 0.3665637860082305,
+        "recall": 0.17751096054204862
+      },
+      "paint_radius_mm": 1.08,
+      "path_to_gt_voxel_center_mm": {
+        "0": 0.04134801580114035,
+        "10": 0.11347704356465553,
+        "25": 0.1510869848552167,
+        "50": 0.7117991774079685,
+        "75": 1.4898621784787243,
+        "90": 1.8766731322067138,
+        "100": 3.436746395150706
+      },
+      "path_samples_inside_gt_fraction": 0.43621399176954734,
+      "gt_voxel_to_path_mm": {
+        "0": 0.04134801580114035,
+        "10": 0.7465979723126694,
+        "25": 1.2410541335696135,
+        "50": 2.1001361385557082,
+        "75": 3.187895823873637,
+        "90": 3.9961628288811135,
+        "100": 5.264751818241581
+      },
+      "saved_stages": {
+        "atlas2": {
+          "gt": 20072,
+          "pred": 13002,
+          "tp": 681,
+          "dice": 0.04118038338271754,
+          "precision": 0.05237655745269958,
+          "recall": 0.03392785970506178
+        },
+        "jawatlas": {
+          "gt": 20072,
+          "pred": 11539,
+          "tp": 1516,
+          "dice": 0.09591597861503907,
+          "precision": 0.1313805355750065,
+          "recall": 0.07552809884416102
+        },
+        "canals0": {
+          "gt": 20072,
+          "pred": 7580,
+          "tp": 984,
+          "dice": 0.07117025893244612,
+          "precision": 0.12981530343007916,
+          "recall": 0.04902351534475887
+        },
+        "canals1": {
+          "gt": 20072,
+          "pred": 9720,
+          "tp": 3563,
+          "dice": 0.23919172932330826,
+          "precision": 0.3665637860082305,
+          "recall": 0.17751096054204862
+        },
+        "final": {
+          "gt": 20072,
+          "pred": 9720,
+          "tp": 3563,
+          "dice": 0.23919172932330826,
+          "precision": 0.3665637860082305,
+          "recall": 0.17751096054204862
+        }
+      },
+      "misses_outside_unclipped_tube": 16106,
+      "misses_from_clipping_inside_tube": 403,
+      "misses_from_other_canal_priority": 0,
+      "misses_from_final_assembly": 0,
+      "unclipped_tube_score": {
+        "gt": 20072,
+        "pred": 10275,
+        "tp": 3966,
+        "dice": 0.2613767423468547,
+        "precision": 0.385985401459854,
+        "recall": 0.1975886807493025
+      },
+      "fixed_radius_expansion_diagnostics": [
+        {
+          "extra_radius_mm": 0.3,
+          "unclipped": {
+            "gt": 20072,
+            "pred": 16756,
+            "tp": 5871,
+            "dice": 0.31883349625285107,
+            "precision": 0.35038195273334927,
+            "recall": 0.29249701076125945
+          }
+        },
+        {
+          "extra_radius_mm": 0.6,
+          "unclipped": {
+            "gt": 20072,
+            "pred": 25039,
+            "tp": 7735,
+            "dice": 0.34293187914255946,
+            "precision": 0.3089180877830584,
+            "recall": 0.3853626943005181
+          }
+        },
+        {
+          "extra_radius_mm": 1.2,
+          "unclipped": {
+            "gt": 20072,
+            "pred": 46622,
+            "tp": 10866,
+            "dice": 0.32584640297478035,
+            "precision": 0.2330659345373429,
+            "recall": 0.5413511359107214
+          }
+        }
+      ],
+      "one_axis_gt_translation_sensitivity": [
+        {
+          "offset_mm": 0.3,
+          "mean_dice": 0.8997940746645409,
+          "min_dice": 0.8862096452770027,
+          "max_dice": 0.907632522917497
+        },
+        {
+          "offset_mm": 0.6,
+          "mean_dice": 0.8003354590142155,
+          "min_dice": 0.773415703467517,
+          "max_dice": 0.8158130729374252
+        },
+        {
+          "offset_mm": 0.8999999999999999,
+          "mean_dice": 0.7024378902617245,
+          "min_dice": 0.6630131526504583,
+          "max_dice": 0.7249900358708649
+        }
+      ],
+      "prediction_labels_at_gt": {
+        "0": 1750,
+        "1": 14759,
+        "4": 3563
+      }
+    },
+    {
+      "label": 103,
+      "final": {
+        "gt": 725,
+        "pred": 183,
+        "tp": 139,
+        "dice": 0.30616740088105726,
+        "precision": 0.7595628415300546,
+        "recall": 0.1917241379310345
+      },
+      "paint_radius_mm": 0.435,
+      "path_to_gt_voxel_center_mm": {
+        "0": 0.04490612933389744,
+        "10": 0.1017296996615594,
+        "25": 0.11851265776794463,
+        "50": 0.14866877143518936,
+        "75": 0.18973970717267818,
+        "90": 0.6953408435733528,
+        "100": 1.2238936864109695
+      },
+      "path_samples_inside_gt_fraction": 0.8392857142857143,
+      "gt_voxel_to_path_mm": {
+        "0": 0.04490612933389744,
+        "10": 0.30806185510658357,
+        "25": 0.513932088174076,
+        "50": 0.77374041569774,
+        "75": 1.1026229598723147,
+        "90": 1.4427780283294513,
+        "100": 2.081176608580965
+      },
+      "saved_stages": {
+        "atlas2": {
+          "gt": 725,
+          "pred": 588,
+          "tp": 230,
+          "dice": 0.3503427265803503,
+          "precision": 0.391156462585034,
+          "recall": 0.31724137931034485
+        },
+        "jawatlas": {
+          "gt": 725,
+          "pred": 435,
+          "tp": 69,
+          "dice": 0.11896551724137931,
+          "precision": 0.15862068965517243,
+          "recall": 0.09517241379310344
+        },
+        "canals0": {
+          "gt": 725,
+          "pred": 0,
+          "tp": 0,
+          "dice": 0.0,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "canals1": {
+          "gt": 725,
+          "pred": 183,
+          "tp": 139,
+          "dice": 0.30616740088105726,
+          "precision": 0.7595628415300546,
+          "recall": 0.1917241379310345
+        },
+        "final": {
+          "gt": 725,
+          "pred": 183,
+          "tp": 139,
+          "dice": 0.30616740088105726,
+          "precision": 0.7595628415300546,
+          "recall": 0.1917241379310345
+        }
+      },
+      "misses_outside_unclipped_tube": 586,
+      "misses_from_clipping_inside_tube": 0,
+      "misses_from_other_canal_priority": 0,
+      "misses_from_final_assembly": 0,
+      "unclipped_tube_score": {
+        "gt": 725,
+        "pred": 183,
+        "tp": 139,
+        "dice": 0.30616740088105726,
+        "precision": 0.7595628415300546,
+        "recall": 0.1917241379310345
+      },
+      "fixed_radius_expansion_diagnostics": [
+        {
+          "extra_radius_mm": 0.3,
+          "unclipped": {
+            "gt": 725,
+            "pred": 547,
+            "tp": 329,
+            "dice": 0.5172955974842768,
+            "precision": 0.6014625228519196,
+            "recall": 0.45379310344827584
+          }
+        },
+        {
+          "extra_radius_mm": 0.6,
+          "unclipped": {
+            "gt": 725,
+            "pred": 1141,
+            "tp": 512,
+            "dice": 0.5487674169346195,
+            "precision": 0.44872918492550395,
+            "recall": 0.7062068965517241
+          }
+        },
+        {
+          "extra_radius_mm": 1.2,
+          "unclipped": {
+            "gt": 725,
+            "pred": 3072,
+            "tp": 690,
+            "dice": 0.36344482486173296,
+            "precision": 0.224609375,
+            "recall": 0.9517241379310345
+          }
+        }
+      ],
+      "one_axis_gt_translation_sensitivity": [
+        {
+          "offset_mm": 0.3,
+          "mean_dice": 0.8027586206896552,
+          "min_dice": 0.776551724137931,
+          "max_dice": 0.8455172413793104
+        },
+        {
+          "offset_mm": 0.6,
+          "mean_dice": 0.6285057471264367,
+          "min_dice": 0.5668965517241379,
+          "max_dice": 0.7213793103448276
+        },
+        {
+          "offset_mm": 0.8999999999999999,
+          "mean_dice": 0.4804597701149425,
+          "min_dice": 0.3903448275862069,
+          "max_dice": 0.6151724137931035
+        }
+      ],
+      "prediction_labels_at_gt": {
+        "1": 585,
+        "3": 1,
+        "103": 139
+      }
+    },
+    {
+      "label": 104,
+      "final": {
+        "gt": 789,
+        "pred": 149,
+        "tp": 0,
+        "dice": 0.0,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "paint_radius_mm": 0.435,
+      "path_to_gt_voxel_center_mm": {
+        "0": 0.5149635502520329,
+        "10": 0.6200897156468717,
+        "25": 0.8399792836223172,
+        "50": 1.7788086791071147,
+        "75": 1.8855497453063848,
+        "90": 2.0380191248064596,
+        "100": 2.0916366418178596
+      },
+      "path_samples_inside_gt_fraction": 0.0,
+      "gt_voxel_to_path_mm": {
+        "0": 0.5149635502520329,
+        "10": 1.2721281104316708,
+        "25": 1.7849671818848343,
+        "50": 2.3870461773189255,
+        "75": 3.0276628177408664,
+        "90": 3.5488660279922937,
+        "100": 4.558163399522391
+      },
+      "saved_stages": {
+        "atlas2": {
+          "gt": 789,
+          "pred": 112,
+          "tp": 0,
+          "dice": 0.0,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "jawatlas": {
+          "gt": 789,
+          "pred": 226,
+          "tp": 0,
+          "dice": 0.0,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "canals0": {
+          "gt": 789,
+          "pred": 0,
+          "tp": 0,
+          "dice": 0.0,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "canals1": {
+          "gt": 789,
+          "pred": 149,
+          "tp": 0,
+          "dice": 0.0,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "final": {
+          "gt": 789,
+          "pred": 149,
+          "tp": 0,
+          "dice": 0.0,
+          "precision": 0.0,
+          "recall": 0.0
+        }
+      },
+      "misses_outside_unclipped_tube": 789,
+      "misses_from_clipping_inside_tube": 0,
+      "misses_from_other_canal_priority": 0,
+      "misses_from_final_assembly": 0,
+      "unclipped_tube_score": {
+        "gt": 789,
+        "pred": 149,
+        "tp": 0,
+        "dice": 0.0,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "fixed_radius_expansion_diagnostics": [
+        {
+          "extra_radius_mm": 0.3,
+          "unclipped": {
+            "gt": 789,
+            "pred": 448,
+            "tp": 8,
+            "dice": 0.012934518997574777,
+            "precision": 0.017857142857142856,
+            "recall": 0.010139416983523447
+          }
+        },
+        {
+          "extra_radius_mm": 0.6,
+          "unclipped": {
+            "gt": 789,
+            "pred": 951,
+            "tp": 43,
+            "dice": 0.04942528735632184,
+            "precision": 0.0452155625657203,
+            "recall": 0.05449936628643853
+          }
+        },
+        {
+          "extra_radius_mm": 1.2,
+          "unclipped": {
+            "gt": 789,
+            "pred": 2590,
+            "tp": 165,
+            "dice": 0.09766203018644569,
+            "precision": 0.0637065637065637,
+            "recall": 0.20912547528517111
+          }
+        }
+      ],
+      "one_axis_gt_translation_sensitivity": [
+        {
+          "offset_mm": 0.3,
+          "mean_dice": 0.8111533586818758,
+          "min_dice": 0.7921419518377694,
+          "max_dice": 0.826362484157161
+        },
+        {
+          "offset_mm": 0.6,
+          "mean_dice": 0.6294888043937473,
+          "min_dice": 0.5931558935361216,
+          "max_dice": 0.6590621039290241
+        },
+        {
+          "offset_mm": 0.8999999999999999,
+          "mean_dice": 0.46683565694972534,
+          "min_dice": 0.4207858048162231,
+          "max_dice": 0.5133079847908745
+        }
+      ],
+      "prediction_labels_at_gt": {
+        "0": 26,
+        "1": 763
+      }
+    },
+    {
+      "label": 105,
+      "final": {
+        "gt": 358,
+        "pred": 175,
+        "tp": 20,
+        "dice": 0.075046904315197,
+        "precision": 0.11428571428571428,
+        "recall": 0.055865921787709494
+      },
+      "paint_radius_mm": 0.48,
+      "path_to_gt_voxel_center_mm": {
+        "0": 0.17207094318032798,
+        "10": 0.22078143392661073,
+        "25": 0.27294375351776334,
+        "50": 0.46033961142198243,
+        "75": 0.668396658816712,
+        "90": 0.7807084804044974,
+        "100": 0.8495810313215075
+      },
+      "path_samples_inside_gt_fraction": 0.0,
+      "gt_voxel_to_path_mm": {
+        "0": 0.17207094318032798,
+        "10": 0.5304206687907312,
+        "25": 0.7694797452398012,
+        "50": 1.0989725338631722,
+        "75": 1.5443263401309006,
+        "90": 7.025468149112115,
+        "100": 8.53193882805316
+      },
+      "saved_stages": {
+        "atlas2": {
+          "gt": 358,
+          "pred": 1031,
+          "tp": 210,
+          "dice": 0.3023758099352052,
+          "precision": 0.20368574199806014,
+          "recall": 0.5865921787709497
+        },
+        "jawatlas": {
+          "gt": 358,
+          "pred": 576,
+          "tp": 4,
+          "dice": 0.008565310492505354,
+          "precision": 0.006944444444444444,
+          "recall": 0.0111731843575419
+        },
+        "canals0": {
+          "gt": 358,
+          "pred": 0,
+          "tp": 0,
+          "dice": 0.0,
+          "precision": 0,
+          "recall": 0.0
+        },
+        "canals1": {
+          "gt": 358,
+          "pred": 175,
+          "tp": 20,
+          "dice": 0.075046904315197,
+          "precision": 0.11428571428571428,
+          "recall": 0.055865921787709494
+        },
+        "final": {
+          "gt": 358,
+          "pred": 175,
+          "tp": 20,
+          "dice": 0.075046904315197,
+          "precision": 0.11428571428571428,
+          "recall": 0.055865921787709494
+        }
+      },
+      "misses_outside_unclipped_tube": 328,
+      "misses_from_clipping_inside_tube": 10,
+      "misses_from_other_canal_priority": 0,
+      "misses_from_final_assembly": 0,
+      "unclipped_tube_score": {
+        "gt": 358,
+        "pred": 241,
+        "tp": 30,
+        "dice": 0.1001669449081803,
+        "precision": 0.12448132780082988,
+        "recall": 0.08379888268156424
+      },
+      "fixed_radius_expansion_diagnostics": [
+        {
+          "extra_radius_mm": 0.3,
+          "unclipped": {
+            "gt": 358,
+            "pred": 644,
+            "tp": 89,
+            "dice": 0.17764471057884232,
+            "precision": 0.13819875776397517,
+            "recall": 0.24860335195530725
+          }
+        },
+        {
+          "extra_radius_mm": 0.6,
+          "unclipped": {
+            "gt": 358,
+            "pred": 1301,
+            "tp": 166,
+            "dice": 0.2001205545509343,
+            "precision": 0.12759415833973867,
+            "recall": 0.46368715083798884
+          }
+        },
+        {
+          "extra_radius_mm": 1.2,
+          "unclipped": {
+            "gt": 358,
+            "pred": 3374,
+            "tp": 268,
+            "dice": 0.14362272240085744,
+            "precision": 0.07943094250148192,
+            "recall": 0.7486033519553073
+          }
+        }
+      ],
+      "one_axis_gt_translation_sensitivity": [
+        {
+          "offset_mm": 0.3,
+          "mean_dice": 0.6880819366852887,
+          "min_dice": 0.6089385474860335,
+          "max_dice": 0.7374301675977654
+        },
+        {
+          "offset_mm": 0.6,
+          "mean_dice": 0.42458100558659223,
+          "min_dice": 0.3268156424581006,
+          "max_dice": 0.48044692737430167
+        },
+        {
+          "offset_mm": 0.8999999999999999,
+          "mean_dice": 0.22160148975791435,
+          "min_dice": 0.13128491620111732,
+          "max_dice": 0.27932960893854747
+        }
+      ],
+      "prediction_labels_at_gt": {
+        "1": 338,
+        "105": 20
+      }
+    }
+  ],
+  "diagnostic_excluding116_131": {
+    "gt": 11051,
+    "pred": 13609,
+    "tp": 5147,
+    "dice": 0.41743714517437147
+  },
+  "gt_lingual_components": [
+    {
+      "voxels": 289,
+      "centroid_native": [
+        213.94117647058823,
+        103.13148788927336,
+        191.33910034602076
+      ]
+    },
+    {
+      "voxels": 69,
+      "centroid_native": [
+        215.18840579710144,
+        93.21739130434783,
+        227.71014492753622
+      ]
+    }
+  ],
+  "input_sha256": {
+    ".local/dental-f002-reference-v2-astra-medium/task/environment/data/ct.nii.gz": "0befbd78e68879830a6b3941895bd5f6f079be48867435aa9bdd7e86285681fe",
+    ".local/dental-f002-reference-v2-astra-medium/task/tests/reference.nii.gz": "d2f4e602b0598f73e5acb51c1de2f41bcfe999c526510ba145ec0e08e8fafee4",
+    ".local/dental-f002-reference-v2-astra-medium/task/environment/reference/ct.nii.gz": "1879ba509f9be3f9b8d3fcfbdb61f333a251a9af63bbe3743a07338beb5c53f1",
+    ".local/dental-f002-reference-v2-astra-medium/task/environment/reference/segmentation.nii.gz": "81c4e5b1e504e3d58f038598882db42e68fce381e72e32b58ad5819a3297f454",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/answer/segmentation.nii.gz": "dc9a554505f76f8dab6c1369f1c41921becebe598118303215bd79eb7372b3a0",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/final.npy": "40e6ec17bc825664f9dff5e08395827aabc7f496a139fabefd98d1bdd2867c92",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/target.npy": "a469cee73a31e8283e6f74d98ff2dc8e45037de02edfb420275ec2ce53f58ffd",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/ref.npy": "ec9e624085a311b3a55466c4314ed51807a7d2171a88e3e9c4ac92bbe37166ff",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/teeth2.npy": "e7db18781a64fd33eba66e2cac61de7ea6e6a74d0080be9edeb93b85cd718263",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/atlas2.npy": "11f103f9f0a232f6a4912286e83ce8c871ff01ff5125452f98687d1478be5327",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/teeth_pulp.npy": "27330f197e3b7fdedfd20c6cb0a93aa0c88eea615040e2c5869ac313c9876b1b",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/teeth_pulp_final.npy": "73ef31b7a46ebfef7c9ba0be8dbca200bd67fb236ccabd4e0105669ebcdd4cfe",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/jawatlas.npy": "b472a96eca0ac21123c03abe332771e5ca691a21498f92b1eee83df010113b94",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canals0.npy": "6962997c3fb486e6ec77d3d5395303eb6bbd145025192a2f0d3c9c3a918e18a4",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canals1.npy": "e5d462795afb6ea4512ae78086a2648e69c4169579a8f4373beea16917632559",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/jaws1.npy": "7db03e97ffc7eb1309314bdb2f2f73f14a3aaec3de2b584b5eb23da729d508fb",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/final_canal_path3.npy": "df178a7e4f979c7026af319047c53a07e8fc50181bbd4a86fa6e266998c22ea5",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/final_canal_path4.npy": "5392f58353ed3831938c5e083db32b14bef1f770407150ddd20f0e404d13f07e",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/final_canal_path103.npy": "a534c01857f3045b345852c44ed4827bae8c59d0d4c5b7b8ec1894ca08b868ba",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/final_canal_path104.npy": "f72dabc58361b1d8a748f1cc46399e10de7bb1ad8d92bc67f71c9e352f261b9f",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/final_canal_path105.npy": "ab2a3f44a320b473ef9ae2b661dd3f7dba0fee7a49366330d93cc127e21f661f",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/pulps.py": "b562b18f79401b0f404525a4bd2cd11af775fe54287b1f7adfd59f40ee77cfd2",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/assemble.py": "b5ed15c4d39b383147c1d784b23350096c04460ca2aaa2f41ac7d0031051d882",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canals_refine.py": "c553a28bc52c416bd9362f16f80eed6c3f6bcb3d2ad077abf8fc9b3a8c74fde8",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/pulp_calibrate.py": "1f50219d00380c71e8baaeefff59848816d4a496c6584e6b3db7491bd2b1b883",
+    ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/register2.py": "de81502867afc8fbbe70ccf685cc255ceb695ebd24bde97c34ae9fa2d50a430f"
+  },
+  "local_figures": {
+    "mechanisms.png": "45006c02d47b9fd3dd6c26b3e30b0c0f40e9eea13c44679fa306013fccf7e76c",
+    "canal-sections.png": "beb3e16be163e80e397c3e92f2376425e8af0c4dcab495687f8b32b5801bdbe0",
+    "pulp-label-contents.png": "a757720b34f65000d3cafacf7696b05b69d39af169327736e2ce24b5039e86f7"
+  },
+  "report_sha256": "d6715f304ad33ba7adf526bd572f7ba84ba96536e04849590e042a034f14c8dc",
+  "limitations": [
+    "Target-GT-dependent diagnostic, not a blind result or clinical adjudication.",
+    "Path distances are to GT voxel centers, not a clinically adjudicated centerline.",
+    "Fixed-rule tests hold cutoffs constant but use true reference or target tooth masks; those oracle inputs were unavailable for the target solver.",
+    "Hypothetical expansions and translations are sensitivity tests only; original masks/scores are unchanged."
+  ],
+  "original_scores_preserved": true
+}

@@ -1,0 +1,838 @@
+{
+  "schema_version": 1,
+  "kind": "diagnostic_trace_audit",
+  "created_at": "2026-09-21T12:33:30.259305+00:00",
+  "actor": "assistant",
+  "source_task": "codex://threads/01a0c3e5-6fb0-7321-a930-a7251047e7ad",
+  "prior_task": "codex://threads/01a0c25e-4b08-7552-8379-90a2b50ad40f",
+  "experiment_ids": [
+    "dental-ct-only-astra-medium",
+    "dental-f018-astra-xhigh",
+    "dental-f002-astra-medium"
+  ],
+  "original_scores_unchanged": true,
+  "original_source_files_verified_unchanged": true,
+  "new_model_runs": 0,
+  "clinical_reference_adjudication": "pending",
+  "metric_replay": "Every original per-label Dice and foreground Dice exactly matched; macro within 1e-12.",
+  "diagnostic_scope": "Fixed anatomical L/R label permutation, category means, one-to-one whole-tooth maximum-Dice matching with unmatched zeros, and F002 reference-overlap counts at pulp gates. No spatial transform or submitted output modification.",
+  "runs": [
+    {
+      "name": "F018 medium",
+      "experiment_id": "dental-ct-only-astra-medium",
+      "attempt_id": "attempt-21af29aaf8034aa6",
+      "original_macro": 0.03939428260226072,
+      "fixed_lr_diagnostic_macro": 0.6924568797470245,
+      "foreground_dice": 0.9686094250785693,
+      "active_labels_original": 70,
+      "active_labels_lr_diagnostic": 68,
+      "exec_calls": 35,
+      "view_image_call_expressions": 36,
+      "traceback_outputs": 0,
+      "axis_codes": [
+        "L",
+        "P",
+        "I"
+      ],
+      "affine": [
+        [
+          -0.30000001192092896,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.30000001192092896,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.30000001192092896,
+          78.9000015258789
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "groups": {
+        "Jawbones": {
+          "original_mean": 0.8611106454870429,
+          "lr_diagnostic_mean": 0.8611106454870429,
+          "active_lr_labels": 2
+        },
+        "Sinuses": {
+          "original_mean": 0.0,
+          "lr_diagnostic_mean": 0.7255767300366514,
+          "active_lr_labels": 2
+        },
+        "Airway": {
+          "original_mean": 0.9769340939526586,
+          "lr_diagnostic_mean": 0.9769340939526586,
+          "active_lr_labels": 1
+        },
+        "Teeth": {
+          "original_mean": 6.1354121553342e-05,
+          "lr_diagnostic_mean": 0.8059319134344262,
+          "active_lr_labels": 29
+        },
+        "Pulps": {
+          "original_mean": 0.0,
+          "lr_diagnostic_mean": 0.6600153799384796,
+          "active_lr_labels": 29
+        },
+        "Main canals": {
+          "original_mean": 0.0,
+          "lr_diagnostic_mean": 0.18384184819922678,
+          "active_lr_labels": 2
+        },
+        "Small canals": {
+          "original_mean": 0.018867924528301886,
+          "lr_diagnostic_mean": 0.018867924528301886,
+          "active_lr_labels": 3
+        },
+        "Restorations": {
+          "original_mean": null,
+          "lr_diagnostic_mean": null,
+          "active_lr_labels": 0
+        }
+      },
+      "restoration_union_dice": null,
+      "whole_tooth_assignment_diagnostic": {
+        "mean_dice_including_unmatched": 0.8199197571662834,
+        "gt_objects": 29,
+        "predicted_objects": 29,
+        "matched": [
+          [
+            11,
+            21,
+            0.7938109826738409
+          ],
+          [
+            12,
+            22,
+            0.807316403030184
+          ],
+          [
+            13,
+            23,
+            0.8343771904040518
+          ],
+          [
+            14,
+            24,
+            0.8388571428571429
+          ],
+          [
+            15,
+            25,
+            0.8462186093772681
+          ],
+          [
+            16,
+            26,
+            0.8700177000572258
+          ],
+          [
+            17,
+            27,
+            0.8731387730792138
+          ],
+          [
+            21,
+            11,
+            0.7600345161205972
+          ],
+          [
+            22,
+            12,
+            0.8029410461974575
+          ],
+          [
+            23,
+            13,
+            0.8044954921575892
+          ],
+          [
+            24,
+            14,
+            0.8231446540880503
+          ],
+          [
+            25,
+            15,
+            0.8471279024939948
+          ],
+          [
+            26,
+            16,
+            0.8616432855347868
+          ],
+          [
+            27,
+            17,
+            0.8764209629314018
+          ],
+          [
+            31,
+            41,
+            0.7663355985363304
+          ],
+          [
+            32,
+            42,
+            0.82524041877872
+          ],
+          [
+            33,
+            43,
+            0.8391526318878
+          ],
+          [
+            34,
+            44,
+            0.8712574850299402
+          ],
+          [
+            35,
+            45,
+            0.8556205407722693
+          ],
+          [
+            36,
+            46,
+            0.8097528814221527
+          ],
+          [
+            37,
+            47,
+            0.8084401787676753
+          ],
+          [
+            38,
+            48,
+            0.6866657942946872
+          ],
+          [
+            41,
+            31,
+            0.7609982845442975
+          ],
+          [
+            42,
+            32,
+            0.8261310414755444
+          ],
+          [
+            43,
+            33,
+            0.829449006109867
+          ],
+          [
+            44,
+            34,
+            0.8346391489903816
+          ],
+          [
+            45,
+            35,
+            0.8331290492032919
+          ],
+          [
+            46,
+            36,
+            0.7931968549237702
+          ],
+          [
+            47,
+            37,
+            0.7981193820826843
+          ]
+        ]
+      }
+    },
+    {
+      "name": "F018 xhigh",
+      "experiment_id": "dental-f018-astra-xhigh",
+      "attempt_id": "attempt-68d5acdeb63f4262",
+      "original_macro": 0.04476606495195108,
+      "fixed_lr_diagnostic_macro": 0.7034199768915217,
+      "foreground_dice": 0.9707541550463445,
+      "active_labels_original": 70,
+      "active_labels_lr_diagnostic": 68,
+      "exec_calls": 56,
+      "view_image_call_expressions": 72,
+      "traceback_outputs": 1,
+      "axis_codes": [
+        "L",
+        "P",
+        "I"
+      ],
+      "affine": [
+        [
+          -0.30000001192092896,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.30000001192092896,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.30000001192092896,
+          78.9000015258789
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "groups": {
+        "Jawbones": {
+          "original_mean": 0.8476685820415439,
+          "lr_diagnostic_mean": 0.8476685820415439,
+          "active_lr_labels": 2
+        },
+        "Sinuses": {
+          "original_mean": 0.0,
+          "lr_diagnostic_mean": 0.9331231324354978,
+          "active_lr_labels": 2
+        },
+        "Airway": {
+          "original_mean": 0.9733525310283456,
+          "lr_diagnostic_mean": 0.9733525310283456,
+          "active_lr_labels": 1
+        },
+        "Teeth": {
+          "original_mean": 0.0004293352334864868,
+          "lr_diagnostic_mean": 0.81245865259041,
+          "active_lr_labels": 29
+        },
+        "Pulps": {
+          "original_mean": 0.0,
+          "lr_diagnostic_mean": 0.6354365938585795,
+          "active_lr_labels": 29
+        },
+        "Main canals": {
+          "original_mean": 0.0,
+          "lr_diagnostic_mean": 0.42830276354989927,
+          "active_lr_labels": 2
+        },
+        "Small canals": {
+          "original_mean": 0.1506849315068493,
+          "lr_diagnostic_mean": 0.1506849315068493,
+          "active_lr_labels": 3
+        },
+        "Restorations": {
+          "original_mean": null,
+          "lr_diagnostic_mean": null,
+          "active_lr_labels": 0
+        }
+      },
+      "restoration_union_dice": null,
+      "whole_tooth_assignment_diagnostic": {
+        "mean_dice_including_unmatched": 0.8234021505603795,
+        "gt_objects": 29,
+        "predicted_objects": 29,
+        "matched": [
+          [
+            11,
+            21,
+            0.7769116101757044
+          ],
+          [
+            12,
+            22,
+            0.7978777357312838
+          ],
+          [
+            13,
+            23,
+            0.8046181944686033
+          ],
+          [
+            14,
+            24,
+            0.7996009413690781
+          ],
+          [
+            15,
+            25,
+            0.7672670543185364
+          ],
+          [
+            16,
+            26,
+            0.8060330765176801
+          ],
+          [
+            17,
+            27,
+            0.8720414338487813
+          ],
+          [
+            21,
+            11,
+            0.7519944673598933
+          ],
+          [
+            22,
+            12,
+            0.7145066011180272
+          ],
+          [
+            23,
+            13,
+            0.7440713251267198
+          ],
+          [
+            24,
+            14,
+            0.8274195814018823
+          ],
+          [
+            25,
+            15,
+            0.8339750044423384
+          ],
+          [
+            26,
+            16,
+            0.8163541465300599
+          ],
+          [
+            27,
+            17,
+            0.8441733262903198
+          ],
+          [
+            31,
+            41,
+            0.8415100805300131
+          ],
+          [
+            32,
+            42,
+            0.7841966637401229
+          ],
+          [
+            33,
+            43,
+            0.8519861413262428
+          ],
+          [
+            34,
+            44,
+            0.8850823529411764
+          ],
+          [
+            35,
+            45,
+            0.8535400766237292
+          ],
+          [
+            36,
+            46,
+            0.8834482668376493
+          ],
+          [
+            37,
+            47,
+            0.9147009650560328
+          ],
+          [
+            38,
+            48,
+            0.8495837904110473
+          ],
+          [
+            41,
+            31,
+            0.8031026252983293
+          ],
+          [
+            42,
+            32,
+            0.7746204748929545
+          ],
+          [
+            43,
+            33,
+            0.8139791970252751
+          ],
+          [
+            44,
+            34,
+            0.8595758564437194
+          ],
+          [
+            45,
+            35,
+            0.8819960744661869
+          ],
+          [
+            46,
+            36,
+            0.8817289423685877
+          ],
+          [
+            47,
+            37,
+            0.8427663595910289
+          ]
+        ]
+      }
+    },
+    {
+      "name": "F002 medium",
+      "experiment_id": "dental-f002-astra-medium",
+      "attempt_id": "attempt-4338cd3dae024fc8",
+      "original_macro": 0.049640876454439764,
+      "fixed_lr_diagnostic_macro": 0.46337892361349287,
+      "foreground_dice": 0.8744514676096975,
+      "active_labels_original": 62,
+      "active_labels_lr_diagnostic": 57,
+      "exec_calls": 37,
+      "view_image_call_expressions": 21,
+      "traceback_outputs": 0,
+      "axis_codes": [
+        "L",
+        "P",
+        "S"
+      ],
+      "affine": [
+        [
+          -0.30000001192092896,
+          0.0,
+          0.0,
+          -0.0
+        ],
+        [
+          0.0,
+          -0.30000001192092896,
+          0.0,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.30000001192092896,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "groups": {
+        "Jawbones": {
+          "original_mean": 0.795780271173425,
+          "lr_diagnostic_mean": 0.795780271173425,
+          "active_lr_labels": 2
+        },
+        "Sinuses": {
+          "original_mean": 0.0,
+          "lr_diagnostic_mean": 0.7719193252587297,
+          "active_lr_labels": 2
+        },
+        "Airway": {
+          "original_mean": 0.9240405645832549,
+          "lr_diagnostic_mean": 0.9240405645832549,
+          "active_lr_labels": 1
+        },
+        "Teeth": {
+          "original_mean": 0.0007671901990118975,
+          "lr_diagnostic_mean": 0.7248572027480488,
+          "active_lr_labels": 22
+        },
+        "Pulps": {
+          "original_mean": 0.0,
+          "lr_diagnostic_mean": 0.26651577044520897,
+          "active_lr_labels": 22
+        },
+        "Main canals": {
+          "original_mean": 0.0,
+          "lr_diagnostic_mean": 0.0,
+          "active_lr_labels": 2
+        },
+        "Small canals": {
+          "original_mean": 0.0,
+          "lr_diagnostic_mean": 0.0,
+          "active_lr_labels": 3
+        },
+        "Restorations": {
+          "original_mean": 0.1809844927566211,
+          "lr_diagnostic_mean": 0.1809844927566211,
+          "active_lr_labels": 3
+        }
+      },
+      "restoration_union_dice": 0.6442903383823346,
+      "whole_tooth_assignment_diagnostic": {
+        "mean_dice_including_unmatched": 0.7388889341778736,
+        "gt_objects": 22,
+        "predicted_objects": 21,
+        "matched": [
+          [
+            11,
+            21,
+            0.7901149050607122
+          ],
+          [
+            12,
+            22,
+            0.7621995978680625
+          ],
+          [
+            13,
+            23,
+            0.8529505328455543
+          ],
+          [
+            14,
+            24,
+            0.7667342799188641
+          ],
+          [
+            15,
+            25,
+            0.41841088526793213
+          ],
+          [
+            16,
+            26,
+            0.8884857214081933
+          ],
+          [
+            21,
+            11,
+            0.806954561582935
+          ],
+          [
+            22,
+            12,
+            0.8136831406428662
+          ],
+          [
+            23,
+            13,
+            0.8271947144592953
+          ],
+          [
+            24,
+            14,
+            0.8213954829013197
+          ],
+          [
+            26,
+            16,
+            0.896660216341134
+          ],
+          [
+            27,
+            17,
+            0.8265406440262854
+          ],
+          [
+            31,
+            41,
+            0.8578053983860495
+          ],
+          [
+            32,
+            42,
+            0.8302407221664995
+          ],
+          [
+            33,
+            43,
+            0.8571960132890365
+          ],
+          [
+            34,
+            44,
+            0.4985458377239199
+          ],
+          [
+            41,
+            31,
+            0.8006732387593172
+          ],
+          [
+            42,
+            32,
+            0.8248954599761051
+          ],
+          [
+            43,
+            33,
+            0.8691190706679575
+          ],
+          [
+            44,
+            34,
+            0.7549231070898345
+          ],
+          [
+            45,
+            35,
+            0.4908330215313446
+          ]
+        ]
+      }
+    }
+  ],
+  "f002_pulp_gate_counts": {
+    "gt_pulp": 12242,
+    "inside_corresponding_tooth_envelope": 10728,
+    "after_distance_gate": 10433,
+    "after_intensity_gate": 4074,
+    "after_slice_gate": 3795,
+    "final_correct_overlap": 3746
+  },
+  "primary_sources": [
+    {
+      "url": "https://ditto.ing.unimore.it/toothfairy3/",
+      "role": "Publisher orientation convention"
+    },
+    {
+      "url": "https://ditto.ing.unimore.it/static/toothfairy3/fix_orientation.py",
+      "role": "Inspected source; never executed",
+      "local_path": ".local/dental-trace-audit-20260921/sources/fix_orientation.py",
+      "sha256": "29a83029b1687e08e70731878075e3be5ca2868b5b43447762775cd3b8a539ad"
+    },
+    {
+      "url": "https://nipy.org/nibabel/coordinate_systems.html",
+      "role": "Affine RAS+ convention"
+    },
+    {
+      "url": "https://federicobolelli.it/media/publications/pdfs/2026MICCAI_TF3.pdf",
+      "role": "Expert annotation and trained baseline context; different evaluation condition"
+    }
+  ],
+  "source_hashes": {
+    ".local/dental-ct-only-astra-medium/task/environment/data/ct.nii.gz": "5da6864589b6f3f50116fbcc6a79a149a17a030eab71e9a62b1a635b3c2af208",
+    ".local/dental-ct-only-astra-medium/task/tests/reference.nii.gz": "88c9cb6acd74c2eaa7a8c89b17633eac02d3d43906b110d19eb12d94778cc21d",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/answer/segmentation.nii.gz": "d11c128767c223c115994e296ce1b5ca1192c0e86be98dfca66047fabacae305",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/verifier/metrics.json": "ed4145437c8bde69b0b1617e91e184ce0127304a9aa9e6ccbf13aae0dcdd0acd",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/agent/sessions/2026/09/21/rollout-2026-09-21T08-59-14-01a0c330-db4e-7132-a3ce-0ab6fbac73c5.jsonl": "48ffaeb5eba383c6bc18eb81b79889f0418d9d248e8c755a393520d9489ffb69",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/answer/method.md": "4d0d68c5841e79f67d7872db7b65c18ce373490cebfaa6776c9277473448bd29",
+    ".local/dental-ct-only-astra-medium/task/instruction.md": "1ec3476918209cf063344e04b48ca2c174fafb267255104d79ccd45cde1f1e5a",
+    ".local/dental-ct-only-astra-medium/task/tests/score.py": "e6951af421cbd0d1d8503c3aec7493f435817cdc7e5d98c8bcc2494ae5ad7eea",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/crops.py": "a79b41803427ac280e60d3a84be62a59a7e4fd7c39d443c083aa92b55e13c3ab",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/overlay.py": "ef13c69fd10168f6d980fc05dfc8d90268f13db071c04cb84f825ab25ec9ecc7",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/canal_overlay.py": "91ee4237cbace5e96293baba83c4266231bac86efc800209bdcbb29d46d91290",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/refine.py": "f321feaa682e40453fb020766afb8b81b2cb7ebb171fa70e2d18d6353f1e0226",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/nervepano.py": "77c5cf4cfa574455b9aff4cd5826c03f65ce091f86e0fbac1a151cc9695ceda7",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/finalize.py": "4f3d89013baa390435dc68a0d4d4fb2ba6d4fbfcfd171243af7b0e4eb6dc4d6d",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/view.py": "357c83b24bf3c928de8331a33793f51335cff01a8476b396bce2beb13bdaae85",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/detail.py": "3f32420e18ca6ad9741e47bd3a42303cd396a0c28f95bf198ee560b5eb9481e7",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/vesselview.py": "77a67ee5e321db0ad4944013ae5a3d95b8ae84c825a56a7827805d6da7085705",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/side.py": "1c032ea1400a7a078e2a7b75f681392e0dc5286cbd7ce160312c5b7aa53393bc",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/teeth.py": "a982e21c49a0c243ae90b8c3dbd60b0cb0a09608cd7003c31b07190de78a79dd",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/canalviews.py": "114ecb36e908ca850f8dc66c9b0b4730386e15f6add176b955d719601fa88010",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/canals.py": "69832af2e12d424214379ba0463d8ba49e46feb162951f539ad41718183f6721",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/vessel.py": "7157b9f5eea967203d46e5d3e74ebfd73f0c02480c31ecbe6edb20f5e029d32f",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/base.py": "e2966d31a8a7002bbfee3c5fbe1ab16b5f879f459e9012363d2f314a751092c5",
+    ".local/attempts/attempt-21af29aaf8034aa6/job/task__g7iAZDR/artifacts/app/work/pano.py": "a517ac0f919de2e29f0c64d54472d72cc49771876ee7ab3ee7abdf291cc94533",
+    ".local/dental-f018-astra-xhigh/task/environment/data/ct.nii.gz": "5da6864589b6f3f50116fbcc6a79a149a17a030eab71e9a62b1a635b3c2af208",
+    ".local/dental-f018-astra-xhigh/task/tests/reference.nii.gz": "88c9cb6acd74c2eaa7a8c89b17633eac02d3d43906b110d19eb12d94778cc21d",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/answer/segmentation.nii.gz": "ce6b07e0367a889bf42c3ecce3d4a969d0580891c497a747b15e6241e2959dc8",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/verifier/metrics.json": "850122a4068d584e6b0c700b2d12f2e151596486c736d05c05856d459486699c",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/agent/sessions/2026/09/21/rollout-2026-09-21T10-49-36-01a0c395-e9a7-7530-a9bf-4dd832c1ed77.jsonl": "2d956364a464d40c68d556d70d2f41c7e053ac509639f3ad4ad40093bd7dd634",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/answer/method.md": "33b3686249dd0f88f0472fb5c52ae68ccc2b44b12cfad7091c756ee51c2f8f88",
+    ".local/dental-f018-astra-xhigh/task/instruction.md": "1ec3476918209cf063344e04b48ca2c174fafb267255104d79ccd45cde1f1e5a",
+    ".local/dental-f018-astra-xhigh/task/tests/score.py": "e6951af421cbd0d1d8503c3aec7493f435817cdc7e5d98c8bcc2494ae5ad7eea",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/tooth_paths.py": "ca2a0c7c4c0285715e8cbdfa995dbac7af9737d95932c96bdab297ad20ed4d38",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_canals.py": "e63a9f2495118dd8a9541d81d37efdfc64967467077cfe2e823a438c9d521a42",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/tooth_paths_initial.py": "478679d1f4fedea09d338531f1ff3e2587a3bb315d4d769aa17f93d26d81edee",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/lingual_views.py": "7fe014a33a419106694d8cd6662d19432bfc27cb32b8afcf82be054cd015c2b0",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/compose.py": "db7b53936cff2778368cdbfb1fc22d49ae94175b4242d00a2a8dcd194b12d583",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_teeth_gradient.py": "162806ec5f7e182b5601d7c16cc45586b1678852c9e0187f3301de39aa593ace",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_pulp_v1.py": "d4b715a0df3d2f526655e195ac02c46e5bea96282b0a1779c9067932f59f49c9",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_base.py": "ab8a0db0e0012d268da74bf21b425c7fd79ff6cd42050d199ea66e6faacf2b8b",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_teeth3d.py": "f521ee67673bd92826efd1e7df8d25060f8f506c066adc81fd9c477d4a7b7b57",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/final_cleanup.py": "7392fb184fc6e46d39678d399c0a76250b3831b2587a35fc801e3b59f7f32a07",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/path_views.py": "a9108b6e46c8d7515143a995efbb927e5dac7098a5c5e68b5143ba93bf546f4c",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_pulp.py": "5cc2238a4d48853829d6e9f62d93a8a7a2870069a76fb24e08c7882373a0ab57",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_teeth3d_v1.py": "9b815442ca42e450815765f95e14dbfd4b8873658796768022dcb0c8033e3424",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/render_ct.py": "1d3c8220957af50b1725b70c622c1f0c93650297b36dd4bf1d9fa6897b24591a",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/sinus_test.py": "da74daf784676476dd0da601d5ffa3118ca11c991506d60d844026f854761220",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/foramen_views.py": "549fca51bf23c7a5cb388c07f57def9eaca4188f8f529bf30a23f1fd02ada422",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/components.py": "e057cba884e827aeba0ed0b7e0168ed8e2f88fa1551d3bb9c5884bbc9b97ea1a",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/panorama.py": "e11d3692bf62368dcb49f6653aaa75999931f93563f9b558a17de81cbcc2872b",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/mental_views.py": "40aeae6a0fbe49c0c0a9cf59f0a6393b95a40a26f85b3c53a0f76f0bd3a8da98",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canal_candidates.py": "86ad56f553c96980e6451b578ba63b73ad948540dbe1033d697ec2d15fda26b6",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canal_views.py": "b4bfd1fa783673f693115532c80e5f42d745290e427a966447fdf9673e0ba11c",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_teeth.py": "dd6433f194040eaddb80e3ceeb9fa04054a06ef0d74a9dc517f1f8c11d5fd470",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/views.py": "75049ec208d27f983f82f4d768611557f9e79bf0a410c2c39d1c8dff415d84b5",
+    ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_lingual.py": "3f9209f8b34a4ba63ff3e07d9ba26e9fa36e9d01513e5612be7754cd8ed739f0",
+    ".local/dental-f002-astra-medium/task/environment/data/ct.nii.gz": "0befbd78e68879830a6b3941895bd5f6f079be48867435aa9bdd7e86285681fe",
+    ".local/dental-f002-astra-medium/task/tests/reference.nii.gz": "d2f4e602b0598f73e5acb51c1de2f41bcfe999c526510ba145ec0e08e8fafee4",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/answer/segmentation.nii.gz": "43d73e754560c7531654b69c24fdceb01767b1eac20e0c8f829b3c0125aed3e3",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/verifier/metrics.json": "e1b56364d344cd69a9a7dc3f01091f2fe4f8079f21812a0ac7f4423be9fa1d36",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/agent/sessions/2026/09/21/rollout-2026-09-21T11-57-38-01a0c3d4-3270-7763-85ab-3bb9043ba081.jsonl": "486a601240b47778589e1c340b60416bf4b1e751bb86ea13a19de1671e38a093",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/answer/method.md": "5db7f3dfeaab3e3491912ad0f1b7aa8919512b3469f99019a657929830c87dea",
+    ".local/dental-f002-astra-medium/task/instruction.md": "1ec3476918209cf063344e04b48ca2c174fafb267255104d79ccd45cde1f1e5a",
+    ".local/dental-f002-astra-medium/task/tests/score.py": "e6951af421cbd0d1d8503c3aec7493f435817cdc7e5d98c8bcc2494ae5ad7eea",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/save.py": "66a9e778f55f0cecb38fa5aee49bc8268b942842aa6e45090cb6c42517437288",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/overlay.py": "c373a38f805eab8c67456325be99808ea8cc500b19252dc2b156b341fb5fe0f1",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/pulp.py": "190886e81daaf35590d1da11fae8a4a7737c111e0db317b713a6afd370b862de",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/refine.py": "3453b98b697da2e05de86964ad85a05982cb52a211008157f4e32b82bc2d46c7",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/view.py": "e60d11d124828b76141be7ddde7cce34c0f76a8cbc1b47a775f2b45645027585",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/ramus_fill.py": "e997e833287994a91812ade58aa08fa03693e1a4a0c22c88742e9ab2474b9906",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/detail.py": "11c694a30bb7d2fa334fd9f4264fd83c9210d44f250595e6c0db38d9f8b9ee59",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/teeth_v1.py": "2bf71ca3925df0de22cb7c0c676be01c5b915e0801176c20924abb272a3c0b71",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/teeth.py": "d11d902289750a459652c2a165d5f40ee3f3ad200449198ef0b70a4dbe1e662a",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/segment.py": "47ee4b0d4905feb5e650cda7f46afac44753181edc6cf8f1071b0858c2932819",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/toothcheck.py": "888ac09b6d6a8a754dd9cab6e9419fc20e847e16d08dffa7b1fa54fdcaeb1680",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/finish.py": "ad811bbd07e11e18d7fd1557021a6a4f6a043f2732ff95bf6d1644a672ce96ad"
+  },
+  "supplemental_input_hashes": {
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/ct.npy": "362e46aaea695bca674d47cdef3ff637fc136a0a51357a11f08fdc39f04800ee",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/refined.npy": "5733627832ffd0c92a19aa80b8dd2f7d875f20d8fb1ae1f83e21938dd4f65d0a",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/work/pulp.py": "190886e81daaf35590d1da11fae8a4a7737c111e0db317b713a6afd370b862de",
+    ".local/dental-f002-astra-medium/task/tests/reference.nii.gz": "d2f4e602b0598f73e5acb51c1de2f41bcfe999c526510ba145ec0e08e8fafee4",
+    ".local/attempts/attempt-4338cd3dae024fc8/job/task__UYKc23A/artifacts/app/answer/segmentation.nii.gz": "43d73e754560c7531654b69c24fdceb01767b1eac20e0c8f829b3c0125aed3e3"
+  },
+  "generated_artifacts": {
+    ".local/dental-trace-audit-20260921/analysis/f018-identity.png": "97e76f5274e41253910e829f7dc7cc7fc58fb6d53fc3799371eefa47c209717a",
+    ".local/dental-trace-audit-20260921/analysis/audit.json": "28f2f66ad5d035a51154fd5b3d2dcb050eb49fe170e05c62a91938b7789dd428",
+    ".local/dental-trace-audit-20260921/analysis/dental-ct-only-astra-medium-trace-index.json": "940308b3a94011e2f90ff5f67d84dbdaaacd30c0376588fab0c4219dda64e1ed",
+    ".local/dental-trace-audit-20260921/analysis/f002-pulp-gates.json": "bfc8d3ca40e58f979dcd02673743121ed664c25618eca42b169b8f499aea23f8",
+    ".local/dental-trace-audit-20260921/analysis/dental-f002-astra-medium-trace-index.json": "2c8a0b414ef2c8fa31e4e293a78c0c32fc7d37bce1453e3d60a4a1ed980f1b51",
+    ".local/dental-trace-audit-20260921/analysis/residual-by-structure.png": "7644c546ba068a4a91d36cda9f64b3d8cf20618f6a4bc42dd53b3038f8987305",
+    ".local/dental-trace-audit-20260921/analysis/dental-f018-astra-xhigh-trace-index.json": "b3d95baa1e05d1706bd1da9e782f39182d87c6f9f0f98421c9e564f76da99be1",
+    ".local/dental-trace-audit-20260921/analysis/f002-restorations.png": "05ec20a31fb184cc6c4ddf27b60a36ec92277b482ed03b6bfa1ac1e95c1e9fb4",
+    ".local/dental-trace-audit-20260921/analysis/f018-canal-residuals.png": "8da5545393d4ca84f30ea9a087485fddb3ffcd62d6a377f35f152e87ae421f04"
+  },
+  "author_scripts": {
+    "groups/anatomy-audit/methods/dental-trace-audit/pulp_gates.py": "85269ef98f4b4c8fb4cf1e55f5da18a298bbaa4bee8b3ef69d65811074eefc16",
+    "groups/anatomy-audit/methods/dental-trace-audit/analyze.py": "98ace192ae6619f3dbc05fc03880cc26d3645710fb7b9ab0345def114e401cfb"
+  },
+  "verification": [
+    "Numerical checks executed in existing .venv-br037; no install",
+    "Four generated figures visually inspected",
+    "Scoped ruff check passed"
+  ],
+  "limitations": [
+    "Two cases; one attempt per condition",
+    "No clinical adjudication of orientation, restoration semantics or precise borders",
+    "Source conversion script is not proof of a safe automatic repair",
+    "Post-hoc diagnostics cannot replace original outcomes",
+    "Inspection and code account omit hidden model reasoning"
+  ]
+}

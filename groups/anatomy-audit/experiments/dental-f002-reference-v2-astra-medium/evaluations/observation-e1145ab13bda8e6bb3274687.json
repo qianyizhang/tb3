@@ -1,0 +1,673 @@
+{
+  "schema_version": 2,
+  "id": "observation-e1145ab13bda8e6bb3274687",
+  "job": "job",
+  "trial_name": "task__5aAvbpS",
+  "task_id": "task",
+  "agent": "codex",
+  "model": "openai/gpt-6-astra",
+  "reasoning_effort": "medium",
+  "agent_version": "0.155.1",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "reward": 0.5011694411686644,
+  "started_at": "2026-09-21T14:20:32.268234Z",
+  "finished_at": "2026-09-21T15:10:34.834197Z",
+  "timing": {
+    "total": 3002.566,
+    "setup": 0.189,
+    "agent": 2944.227,
+    "verifier": 26.61
+  },
+  "usage": {
+    "n_input_tokens": 6623560.0,
+    "n_cache_tokens": 6400000.0,
+    "n_output_tokens": 67173.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/result.json",
+      "sha256": "6267afed8ea752f4312524743bd9e5b985b530635b38cd0fb28e95e68f203ffd"
+    },
+    {
+      "label": "Verifier cases",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/verifier/test-stdout.txt",
+      "sha256": "fc59f8c102aca6d2ef5d4c7309bd87f75e1da387731aa3589dde263244b0cc51"
+    },
+    {
+      "label": "Reward artifact",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/verifier/reward.txt",
+      "sha256": "2c50584b8097f3000304321ae7bca154c4a3b1f9dd52428304d62c48b18f12ab"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/agent/trajectory.json",
+      "sha256": "77b3d3b720f8ad79e833874d54cec42935f50bba65b0bb9c78a76d2ca51d188b"
+    },
+    {
+      "label": "Submitted artifact: answer/method.md",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/answer/method.md",
+      "sha256": "bd9f7832b8ce97d12c884ba075b1aec3321d35d4203ade5aa0fed20a1c127050"
+    },
+    {
+      "label": "Submitted artifact: answer/segmentation.nii.gz",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/answer/segmentation.nii.gz",
+      "sha256": "dc9a554505f76f8dab6c1369f1c41921becebe598118303215bd79eb7372b3a0"
+    },
+    {
+      "label": "Submitted artifact: work/__pycache__/inspect.cpython-312.pyc",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/__pycache__/inspect.cpython-312.pyc",
+      "sha256": "5ae48153b04830fd750699191817662b5ab757f36e7a4e2e688f0bf24077f8f6"
+    },
+    {
+      "label": "Submitted artifact: work/affine.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/affine.log",
+      "sha256": "7176eb1e03cf53b13fcc695db9da5699ec94244fb947c446d7e6b7311e0ae279"
+    },
+    {
+      "label": "Submitted artifact: work/affine.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/affine.npy",
+      "sha256": "1045123a4a869f763a141a6e41a23b564222faa49e11f8d72695e1aef2e0f893"
+    },
+    {
+      "label": "Submitted artifact: work/affine.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/affine.py",
+      "sha256": "4550dbc8f9d89ec1bca222d3400b1dbc9f8196874c23598496d69698bdd2eb93"
+    },
+    {
+      "label": "Submitted artifact: work/affine_matrix.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/affine_matrix.npy",
+      "sha256": "a93ecf65b0403e9605aaf4e642fe6d6ab40d38186169d1c7b818ecbb52e7cc69"
+    },
+    {
+      "label": "Submitted artifact: work/air.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/air.log",
+      "sha256": "0718c8eacb363aeacff0bd8e3390ab937250974385e239248402ac93e874aeaa"
+    },
+    {
+      "label": "Submitted artifact: work/air.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/air.py",
+      "sha256": "0d63f7dc2efd3e8ae1601718f8ff8d8d1d11973ec28613b4b43324d32e274650"
+    },
+    {
+      "label": "Submitted artifact: work/air0.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/air0.npy",
+      "sha256": "a92e8915e5156898049e8de33db953e052ac2da25a808c5c0ce7be1a199ecd99"
+    },
+    {
+      "label": "Submitted artifact: work/air1.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/air1.npy",
+      "sha256": "47ed03e26eefa020a65030b3da74e905f46e873109f131b8d497f889340962d1"
+    },
+    {
+      "label": "Submitted artifact: work/assemble.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/assemble.log",
+      "sha256": "f83fd9916a64999db24d38a3fdae36a0cfff1da595a202519e1d931b8f8916d8"
+    },
+    {
+      "label": "Submitted artifact: work/assemble.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/assemble.py",
+      "sha256": "b5ed15c4d39b383147c1d784b23350096c04460ca2aaa2f41ac7d0031051d882"
+    },
+    {
+      "label": "Submitted artifact: work/atlas.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/atlas.npy",
+      "sha256": "93673b4b6ffe612475f717a58eb5835405dc4f65da3550a2a38680d1d559b13e"
+    },
+    {
+      "label": "Submitted artifact: work/atlas2.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/atlas2.npy",
+      "sha256": "11f103f9f0a232f6a4912286e83ce8c871ff01ff5125452f98687d1478be5327"
+    },
+    {
+      "label": "Submitted artifact: work/bonecc.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/bonecc.log",
+      "sha256": "4b0999338d6b9630074d0631772cb5d3de28bd3e28cf3216ce395ba14d33b787"
+    },
+    {
+      "label": "Submitted artifact: work/bonecc.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/bonecc.png",
+      "sha256": "ebc33768e0fbcd51de2ae02666aeddf29a86fd5de95532253318a4dbf8ffcf4f"
+    },
+    {
+      "label": "Submitted artifact: work/bonecc.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/bonecc.py",
+      "sha256": "828db7f4207b015552d1e6915afe66e244bbd1f9fb298f7f2c4e2b3f496939af"
+    },
+    {
+      "label": "Submitted artifact: work/canal_path3.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canal_path3.npy",
+      "sha256": "c36595701d05d0263d6d1410102c5c5997b4101787783e237c8a0e19cc6a825f"
+    },
+    {
+      "label": "Submitted artifact: work/canal_path4.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canal_path4.npy",
+      "sha256": "176fc9c21c0f7455cb35877b816e08bef9387bcc2834a11d6af761d5fff13171"
+    },
+    {
+      "label": "Submitted artifact: work/canalcompare.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canalcompare.png",
+      "sha256": "f7eb2d2c885e77a2dff8b9fa21d061d3d92b5ddb5815f61af257eab7aca8174d"
+    },
+    {
+      "label": "Submitted artifact: work/canalcompare.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canalcompare.py",
+      "sha256": "373555094920e12af6756b2b37eadcb5096def970ddac0d07d0d00d72d16a1d9"
+    },
+    {
+      "label": "Submitted artifact: work/canalcross.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canalcross.py",
+      "sha256": "51e26f45eba0a3288313469bded80c6bc7c1d9993eaaf1b7658584b80e3d0355"
+    },
+    {
+      "label": "Submitted artifact: work/canalcross0.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canalcross0.png",
+      "sha256": "98301d3342f38a89b12903cd98017117f4e992cd9e23198b92beb4de0ac801e0"
+    },
+    {
+      "label": "Submitted artifact: work/canalcross1.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canalcross1.png",
+      "sha256": "124dcf9c4f25e6e2c2f92943fc32ea27f63d24b74ea16b8f5cd0981ba4f38263"
+    },
+    {
+      "label": "Submitted artifact: work/canals.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canals.log",
+      "sha256": "14d1d08a4db2f7ada5bde13fbfb2f978fcc4b46d623169a7227ee0054a1204a5"
+    },
+    {
+      "label": "Submitted artifact: work/canals.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canals.py",
+      "sha256": "831c4670878fcc2e32505b7c08341894aac7f0a067f12542e8543d1d81cad900"
+    },
+    {
+      "label": "Submitted artifact: work/canals0.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canals0.npy",
+      "sha256": "6962997c3fb486e6ec77d3d5395303eb6bbd145025192a2f0d3c9c3a918e18a4"
+    },
+    {
+      "label": "Submitted artifact: work/canals1.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canals1.npy",
+      "sha256": "e5d462795afb6ea4512ae78086a2648e69c4169579a8f4373beea16917632559"
+    },
+    {
+      "label": "Submitted artifact: work/canals_refine.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canals_refine.log",
+      "sha256": "9dad30fb87b6eed8f1aadae3f09698b28dbac3a48d1ef33563c3e4ad22cc76e4"
+    },
+    {
+      "label": "Submitted artifact: work/canals_refine.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canals_refine.py",
+      "sha256": "c553a28bc52c416bd9362f16f80eed6c3f6bcb3d2ad077abf8fc9b3a8c74fde8"
+    },
+    {
+      "label": "Submitted artifact: work/canalview.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canalview.py",
+      "sha256": "8f6ad139fdcf1a16648b25021613bd979f1969dbb2f34a5819f8eb6800552442"
+    },
+    {
+      "label": "Submitted artifact: work/canalview0.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canalview0.png",
+      "sha256": "cb6cf91e17081be1fac960fdd230bd0022ee61add43be4648b067905efcf0f10"
+    },
+    {
+      "label": "Submitted artifact: work/canalview1.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/canalview1.png",
+      "sha256": "055211bfc0e0294ef1ee3e327df5d2293daa694f15f5c9fe4c72fd4fc22a0877"
+    },
+    {
+      "label": "Submitted artifact: work/combined1.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/combined1.npy",
+      "sha256": "02dd9757ab92e82bccc9200528afbd329bacc4c29cdc51e7b74601097745e839"
+    },
+    {
+      "label": "Submitted artifact: work/detail.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/detail.py",
+      "sha256": "b613232918c9e4814951492e4f339abf2aef10720932ac5a208b0d491a255efc"
+    },
+    {
+      "label": "Submitted artifact: work/disp2.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/disp2.npy",
+      "sha256": "4c72e2c4f0e4b876c65cfefcc02bff750da6f6d2062c45101d4d54b42e18f010"
+    },
+    {
+      "label": "Submitted artifact: work/disp4.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/disp4.npy",
+      "sha256": "262e27b7a1486219382edb58ea66745e66046dc59405f34baf2e8f7ea6648796"
+    },
+    {
+      "label": "Submitted artifact: work/disp_v2_2.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/disp_v2_2.npy",
+      "sha256": "4b7bf95847e431fe72e8c7ff0a9cf6dc4187bb7701af414262f5120592e4af48"
+    },
+    {
+      "label": "Submitted artifact: work/disp_v2_4.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/disp_v2_4.npy",
+      "sha256": "0aa46d8855e6ce6b49ac3de49ea603275f85bfd3db206119b566c598a4d8886e"
+    },
+    {
+      "label": "Submitted artifact: work/final.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/final.npy",
+      "sha256": "40e6ec17bc825664f9dff5e08395827aabc7f496a139fabefd98d1bdd2867c92"
+    },
+    {
+      "label": "Submitted artifact: work/final_canal_path103.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/final_canal_path103.npy",
+      "sha256": "a534c01857f3045b345852c44ed4827bae8c59d0d4c5b7b8ec1894ca08b868ba"
+    },
+    {
+      "label": "Submitted artifact: work/final_canal_path104.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/final_canal_path104.npy",
+      "sha256": "f72dabc58361b1d8a748f1cc46399e10de7bb1ad8d92bc67f71c9e352f261b9f"
+    },
+    {
+      "label": "Submitted artifact: work/final_canal_path105.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/final_canal_path105.npy",
+      "sha256": "ab2a3f44a320b473ef9ae2b661dd3f7dba0fee7a49366330d93cc127e21f661f"
+    },
+    {
+      "label": "Submitted artifact: work/final_canal_path3.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/final_canal_path3.npy",
+      "sha256": "df178a7e4f979c7026af319047c53a07e8fc50181bbd4a86fa6e266998c22ea5"
+    },
+    {
+      "label": "Submitted artifact: work/final_canal_path4.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/final_canal_path4.npy",
+      "sha256": "5392f58353ed3831938c5e083db32b14bef1f770407150ddd20f0e404d13f07e"
+    },
+    {
+      "label": "Submitted artifact: work/final_orthogonal.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/final_orthogonal.png",
+      "sha256": "5d6dd574f67f4945d85a206c7f1f0ce32cc35dac90649f8478575a5f85e66658"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/finalcheck.py",
+      "sha256": "a2147c55c072a7f83240b25778f2d709b2cb3a87cd732477717af3e5ef8fa5f5"
+    },
+    {
+      "label": "Submitted artifact: work/jaw_register.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/jaw_register.log",
+      "sha256": "9aa29eece36971cd0e66df8464cab6362f1903035b8f412e72a247085607c0bb"
+    },
+    {
+      "label": "Submitted artifact: work/jaw_register.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/jaw_register.py",
+      "sha256": "103b71c22eac695e3aea6d27d191cb8fca722ef7f294a42d4fcecfc7a4808181"
+    },
+    {
+      "label": "Submitted artifact: work/jawatlas.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/jawatlas.npy",
+      "sha256": "b472a96eca0ac21123c03abe332771e5ca691a21498f92b1eee83df010113b94"
+    },
+    {
+      "label": "Submitted artifact: work/jawdisp2.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/jawdisp2.npy",
+      "sha256": "f76624a3b84f43ee40ec8b5a35ad671aa48b4e06d66f76812830f402eb726b23"
+    },
+    {
+      "label": "Submitted artifact: work/jawdisp4.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/jawdisp4.npy",
+      "sha256": "6c20d73aa2b1265dda0fad1472fdcfc6a26a5810e969b0defaef2e4cda26333a"
+    },
+    {
+      "label": "Submitted artifact: work/jaws.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/jaws.log",
+      "sha256": "03f60d8db3f781b2f7f0ae445853fc8330125c46d37a600495853484fcdc6ee1"
+    },
+    {
+      "label": "Submitted artifact: work/jaws.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/jaws.py",
+      "sha256": "a8ded87cd5e844f40549e2979a288430da71294aa68e7768d9738d140e929e99"
+    },
+    {
+      "label": "Submitted artifact: work/jaws0.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/jaws0.npy",
+      "sha256": "04c9c700a969d2972540006fe5f19292ce37941ba0f335a58debd476a124de7b"
+    },
+    {
+      "label": "Submitted artifact: work/jaws1.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/jaws1.npy",
+      "sha256": "7db03e97ffc7eb1309314bdb2f2f73f14a3aaec3de2b584b5eb23da729d508fb"
+    },
+    {
+      "label": "Submitted artifact: work/lower.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/lower.png",
+      "sha256": "11801e0bce1e8f338bed65cd5e698984c2440e519d71f36dfea301abf704258f"
+    },
+    {
+      "label": "Submitted artifact: work/mand_center0.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/mand_center0.npy",
+      "sha256": "e88e613a096b15a08a8b55f7875c22587d9392b4d84374bbc0fadafc70b87b30"
+    },
+    {
+      "label": "Submitted artifact: work/mand_center1.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/mand_center1.npy",
+      "sha256": "f068f6356b0a87599fa77dc3aabab2dcebeebbffdbc7e68b5b1183b58e325415"
+    },
+    {
+      "label": "Submitted artifact: work/mentalview.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/mentalview.py",
+      "sha256": "86633d5f48fd39b54c6187a1ad52bb432241bfdb15dba543b8ef3f5bab738692"
+    },
+    {
+      "label": "Submitted artifact: work/mentalview0.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/mentalview0.png",
+      "sha256": "acae8d718ac4053d1cee9a7e129e6fbc4cd6b504de550d99b6d7fb1f1c80adc8"
+    },
+    {
+      "label": "Submitted artifact: work/mentalview1.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/mentalview1.png",
+      "sha256": "447522923bb1b03629d1ca41ecc2332bd7300f7a3aa42c34d4e96e67f19e2257"
+    },
+    {
+      "label": "Submitted artifact: work/overlay.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/overlay.png",
+      "sha256": "15c89ca2cb2e830a42112775021a45f955c64cd1916b252232dbb6b84f734c37"
+    },
+    {
+      "label": "Submitted artifact: work/overlay.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/overlay.py",
+      "sha256": "73946c08dc0e5dc8731e6021c3699372fcf1c37a3bf4acddde26c6b29605ecf4"
+    },
+    {
+      "label": "Submitted artifact: work/pano.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/pano.png",
+      "sha256": "6c20ad2e2077dde04f3156951b885977164deb93f3a90a2f7f8c859fe3404fab"
+    },
+    {
+      "label": "Submitted artifact: work/pano.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/pano.py",
+      "sha256": "5bb3a420e1dc2f37275a1742f0dd34e624ea71ff98c43e59aebd8a792e5253dd"
+    },
+    {
+      "label": "Submitted artifact: work/postdetail.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/postdetail.png",
+      "sha256": "12c1fe8925140954d857e90f3f0d741f21d4b0650b52a72126cfbc3d1eb49cd1"
+    },
+    {
+      "label": "Submitted artifact: work/postdetail.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/postdetail.py",
+      "sha256": "dd17daa256202f89214c02a09df165d9d9b28ce40b9cfd627690c310439b895f"
+    },
+    {
+      "label": "Submitted artifact: work/pulp_calibrate.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/pulp_calibrate.py",
+      "sha256": "1f50219d00380c71e8baaeefff59848816d4a496c6584e6b3db7491bd2b1b883"
+    },
+    {
+      "label": "Submitted artifact: work/pulp_geometry_cal.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/pulp_geometry_cal.log",
+      "sha256": "f4981515cc2a19a2d258e7b895d281f71b134db29dcf0e867939dadffa5449f4"
+    },
+    {
+      "label": "Submitted artifact: work/pulp_geometry_cal.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/pulp_geometry_cal.py",
+      "sha256": "d4de5015aab507ee56aa25ed770741b7e030d70e2a5727fb2c2e659f282cd1c8"
+    },
+    {
+      "label": "Submitted artifact: work/pulps.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/pulps.log",
+      "sha256": "13049f0f42c1a07b8f914c3bb78463742464d24d342141ba1f7d3341a4257721"
+    },
+    {
+      "label": "Submitted artifact: work/pulps.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/pulps.py",
+      "sha256": "b562b18f79401b0f404525a4bd2cd11af775fe54287b1f7adfd59f40ee77cfd2"
+    },
+    {
+      "label": "Submitted artifact: work/ref.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/ref.npy",
+      "sha256": "ec9e624085a311b3a55466c4314ed51807a7d2171a88e3e9c4ac92bbe37166ff"
+    },
+    {
+      "label": "Submitted artifact: work/ref_axis0.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/ref_axis0.png",
+      "sha256": "274b7489e605dab2725bfe06ee1a6c4f1f611f62c3daffc814a2267301d3e5c3"
+    },
+    {
+      "label": "Submitted artifact: work/ref_axis1.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/ref_axis1.png",
+      "sha256": "66b9c624585953d6239433e5d947c45183642fea0c0f44bc0118fdaba5170345"
+    },
+    {
+      "label": "Submitted artifact: work/ref_axis2.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/ref_axis2.png",
+      "sha256": "84c0d51fd915e971df865ddf0b6010d0f9428463591b28b9c43782b89f3fcf93"
+    },
+    {
+      "label": "Submitted artifact: work/refine.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/refine.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "Submitted artifact: work/refine_jaws_air.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/refine_jaws_air.py",
+      "sha256": "bb09057ea046fbce318af8342b9c172a4d209245edf13b5f074f7f308257bd69"
+    },
+    {
+      "label": "Submitted artifact: work/refine_teeth.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/refine_teeth.log",
+      "sha256": "b54aa76b38cd82302d2143c4f00342c998f4b1181cb160fe268b836ac2207c1e"
+    },
+    {
+      "label": "Submitted artifact: work/refine_teeth.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/refine_teeth.py",
+      "sha256": "3fcc58358cf75b773417e5c03d2e0db3cf8b66da8795cbc5e99d25d89ca02442"
+    },
+    {
+      "label": "Submitted artifact: work/refsinus.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/refsinus.png",
+      "sha256": "2c38939070b54c44ac974234838081fe552afda85e1a3e6ad8dec5f684bda1c9"
+    },
+    {
+      "label": "Submitted artifact: work/register.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/register.log",
+      "sha256": "307c9eea4cb4893f164622711d6fa164e071fafc0ab5f0ea7f5054494f59219a"
+    },
+    {
+      "label": "Submitted artifact: work/register.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/register.py",
+      "sha256": "9f0b2ed72cb26b3cd698c5137977a3b9b3c6d56bbf099e83f9cdbe50f5b8f893"
+    },
+    {
+      "label": "Submitted artifact: work/register2.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/register2.log",
+      "sha256": "e44304e20c289bf8498e15a16c5cc827f6c35b98aa6338c884ca7e10eb62a87a"
+    },
+    {
+      "label": "Submitted artifact: work/register2.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/register2.py",
+      "sha256": "de81502867afc8fbbe70ccf685cc255ceb695ebd24bde97c34ae9fa2d50a430f"
+    },
+    {
+      "label": "Submitted artifact: work/repair_marrow.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/repair_marrow.py",
+      "sha256": "3353e61f8216cc3f6c85a988705e32e24a7072666a39f504abf210b262926941"
+    },
+    {
+      "label": "Submitted artifact: work/restorations.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/restorations.log",
+      "sha256": "b8edd8d3d2ddbca73895dc3ffcdbff2e30d6700dc13fb748f202f7a5aa4e5c63"
+    },
+    {
+      "label": "Submitted artifact: work/restorations.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/restorations.py",
+      "sha256": "995f29e5b445fb780ed4132ab216177888fc2f2cd3f661491cea9bdb3e6bb602"
+    },
+    {
+      "label": "Submitted artifact: work/restorations0.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/restorations0.npy",
+      "sha256": "fecb67218ded8d227a08fb1b4353349441982581197edfb961b2f723ecf10183"
+    },
+    {
+      "label": "Submitted artifact: work/showvol.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/showvol.py",
+      "sha256": "81e36e01433288f13e998af1417649ef7a8fcc0abef25e35aef6b42ccc7743ae"
+    },
+    {
+      "label": "Submitted artifact: work/sinusdetail.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/sinusdetail.png",
+      "sha256": "bbe2a0e1981776253fe954ce6835a6e98a77a4222e8d46088b26468b704dc55a"
+    },
+    {
+      "label": "Submitted artifact: work/sinusdetail.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/sinusdetail.py",
+      "sha256": "b648139631e2e041f0f4e7531135c0b71ca2a673efde7d715afcb21724dc4c01"
+    },
+    {
+      "label": "Submitted artifact: work/slices.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/slices.png",
+      "sha256": "e0001225b43c1f5c2d515bfe9abd4b02c7954386d1b67087f7eaaa961f0bc95d"
+    },
+    {
+      "label": "Submitted artifact: work/slices.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/slices.py",
+      "sha256": "6d73aa5fe2b73ecc3b1e5981d2f4d04567af23883747805a97f348eb6c9c3adb"
+    },
+    {
+      "label": "Submitted artifact: work/smallcanalview.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/smallcanalview.png",
+      "sha256": "05c84dc6b2d2150f14ecd873ec117e17b2e1f7c2ba2d3f1d6463f4f3e0a52eb7"
+    },
+    {
+      "label": "Submitted artifact: work/smallcanalview.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/smallcanalview.py",
+      "sha256": "617f3d5b03f92cf8f4f5b4c5a72edd5375ca380691eab90bd674914a4db4034c"
+    },
+    {
+      "label": "Submitted artifact: work/stats.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/stats.py",
+      "sha256": "0b3dfe47da45537dcb6ff439b0503375b42944fb55e4c32bdf5e6fca32661fde"
+    },
+    {
+      "label": "Submitted artifact: work/target.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/target.npy",
+      "sha256": "a469cee73a31e8283e6f74d98ff2dc8e45037de02edfb420275ec2ce53f58ffd"
+    },
+    {
+      "label": "Submitted artifact: work/target_axis0.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/target_axis0.png",
+      "sha256": "290b1393f39b889db23abf6cc1f6c596d71a19a3de7613a295293b4ff129a961"
+    },
+    {
+      "label": "Submitted artifact: work/target_axis1.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/target_axis1.png",
+      "sha256": "83eca502d827944d85c26d2cb6bc1e1532242515b656efe94c621c2e84c0fe2e"
+    },
+    {
+      "label": "Submitted artifact: work/target_axis2.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/target_axis2.png",
+      "sha256": "45693c1c1fa1fee2066da0990a7ea5b4a19afcd54e56902583b35dc46be1bcf7"
+    },
+    {
+      "label": "Submitted artifact: work/teeth.log",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/teeth.log",
+      "sha256": "44b1ab76a2288430d7e6e488a7945f8ccab84f85e56d8278f9c35ff7169b63bd"
+    },
+    {
+      "label": "Submitted artifact: work/teeth.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/teeth.py",
+      "sha256": "cb92bbb7611740fc95a77210e3d093f9713e9855a23f393d62fd479a3ed60b1c"
+    },
+    {
+      "label": "Submitted artifact: work/teeth0.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/teeth0.npy",
+      "sha256": "393d2a23157a745cfa4bb994e2baea5def6cb03684615a8a5e67e5bf315b9a5d"
+    },
+    {
+      "label": "Submitted artifact: work/teeth1.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/teeth1.npy",
+      "sha256": "201fa71ecf0343224d64bba4bfdee5e8be7bbf949fc9f0435018e94df040cd99"
+    },
+    {
+      "label": "Submitted artifact: work/teeth2.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/teeth2.npy",
+      "sha256": "e7db18781a64fd33eba66e2cac61de7ea6e6a74d0080be9edeb93b85cd718263"
+    },
+    {
+      "label": "Submitted artifact: work/teeth_pulp.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/teeth_pulp.npy",
+      "sha256": "27330f197e3b7fdedfd20c6cb0a93aa0c88eea615040e2c5869ac313c9876b1b"
+    },
+    {
+      "label": "Submitted artifact: work/teeth_pulp_final.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/teeth_pulp_final.npy",
+      "sha256": "73ef31b7a46ebfef7c9ba0be8dbca200bd67fb236ccabd4e0105669ebcdd4cfe"
+    },
+    {
+      "label": "Submitted artifact: work/tooth38detail.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/tooth38detail.png",
+      "sha256": "91ed3ea19e2f515b86b50d80fb203be6f810a72cbcfa601d7022c02e023bf072"
+    },
+    {
+      "label": "Submitted artifact: work/tooth38detail.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/tooth38detail.py",
+      "sha256": "82812e1edb9e2da2baa9c1f64144e497df0be6e7837beb840191e0fde571507f"
+    },
+    {
+      "label": "Submitted artifact: work/tooth_priors.npy",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/tooth_priors.npy",
+      "sha256": "673b9ca6b0a95b7a40640b547bf012f93232814c54175d97e396971aa5d027b4"
+    },
+    {
+      "label": "Submitted artifact: work/toothview.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/toothview.py",
+      "sha256": "a26b0c4caf9ad2b974018884361a2ee938646c0a7b69e2ceb7cb26092b499359"
+    },
+    {
+      "label": "Submitted artifact: work/toothview_lower.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/toothview_lower.png",
+      "sha256": "77a6e9f1f4fa456cfb9be34fd8d5a8a352391478e5d5d21a0837077a1644eddb"
+    },
+    {
+      "label": "Submitted artifact: work/toothview_upper.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/toothview_upper.png",
+      "sha256": "d30ddb47b8a95dae7da6c55d8bb590b40b85a3ab7e675b8dc513c71966e3640a"
+    },
+    {
+      "label": "Submitted artifact: work/upper.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/upper.png",
+      "sha256": "e1088937bbb25b748879a2b862d2d0abb17c09a39492a1f41802ba441b14af48"
+    },
+    {
+      "label": "Submitted artifact: work/upper14detail.png",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/upper14detail.png",
+      "sha256": "b5809d58b56169308bc14543c1fd327c0dbedc635258c4f4f6fc5d8b40e4b0ad"
+    },
+    {
+      "label": "Submitted artifact: work/upper14detail.py",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/artifacts/app/work/upper14detail.py",
+      "sha256": "7edc68278aa07c4f75bde69a3016cf6fed0d9535f9aa9ba0d3b9d41a4fdb4236"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": ".local/attempts/attempt-36ee0d66d0a64d55/job/lock.json",
+      "sha256": "ed14078d32b4643eccbe2c909ce37d0d61c589efee353abb959b8407c23103b3"
+    }
+  ],
+  "task_checksum": "ee24fcdfc36673ae8707a8389ed4473558d20e2de58b9b4331a2e32f7ffb5a01",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": ".local/attempts/attempt-36ee0d66d0a64d55/job/task__5aAvbpS/result.json",
+  "source_sha256": "6267afed8ea752f4312524743bd9e5b985b530635b38cd0fb28e95e68f203ffd",
+  "evidence_sha256": "a659bc7e4f97c45711c9c645604be31dfabdf58943084469dded5a96b7a9698d",
+  "kind": "evaluation",
+  "evaluation_kind": "result",
+  "attempt_id": "attempt-36ee0d66d0a64d55",
+  "experiment_id": "dental-f002-reference-v2-astra-medium",
+  "group_id": "anatomy-audit",
+  "collected_at": "2026-09-21T15:10:37.069274+00:00",
+  "execution_state": "completed",
+  "outcome": "no_verdict",
+  "partial": false,
+  "task_digest": "9e80a4d4aab324e700cfd4ffcc3bddf938c104d78d29a2a745db5a2828bd6159",
+  "freeze_checksum_verified": true,
+  "source_classification": "unknown"
+}

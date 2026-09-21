@@ -1,0 +1,713 @@
+{
+  "schema_version": 2,
+  "id": "observation-658e478f3dbdaba3f1cd9e23",
+  "job": "job",
+  "trial_name": "task__BmhTdQt",
+  "task_id": "task",
+  "agent": "codex",
+  "model": "openai/gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "agent_version": "0.155.1",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "reward": 0.04476606495195109,
+  "started_at": "2026-09-21T10:49:34.330679Z",
+  "finished_at": "2026-09-21T11:21:42.663316Z",
+  "timing": {
+    "total": 1928.333,
+    "setup": 0.17,
+    "agent": 1881.671,
+    "verifier": 19.436
+  },
+  "usage": {
+    "n_input_tokens": 5253123.0,
+    "n_cache_tokens": 5085568.0,
+    "n_output_tokens": 54975.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/result.json",
+      "sha256": "43c9900b79c7190d935101d0fec1767d0cf284038e2fee717656ad992b87bd52"
+    },
+    {
+      "label": "Verifier cases",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/verifier/test-stdout.txt",
+      "sha256": "ef396c85ebf31bdef3adcb06b05b49c2abcf63d2625e65bda0c0be1ff6dd1bbe"
+    },
+    {
+      "label": "Reward artifact",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/verifier/reward.txt",
+      "sha256": "5e4f57ea0c00183cacdeca27cb268b894d533a6f276c28ff078f7e063ea13d86"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/agent/trajectory.json",
+      "sha256": "a599978a81dc90c10624ec2db42f3672747c289364839e5e88f2f8581d7c5ab5"
+    },
+    {
+      "label": "Submitted artifact: answer/method.md",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/answer/method.md",
+      "sha256": "33b3686249dd0f88f0472fb5c52ae68ccc2b44b12cfad7091c756ee51c2f8f88"
+    },
+    {
+      "label": "Submitted artifact: answer/segmentation.nii.gz",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/answer/segmentation.nii.gz",
+      "sha256": "ce6b07e0367a889bf42c3ecce3d4a969d0580891c497a747b15e6241e2959dc8"
+    },
+    {
+      "label": "Submitted artifact: work/__pycache__/inspect.cpython-312.pyc",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/__pycache__/inspect.cpython-312.pyc",
+      "sha256": "bb21fbeee10e04e3987a99eb875bc240e3db4b3b59e23b3185c356bf03ff9f7b"
+    },
+    {
+      "label": "Submitted artifact: work/__pycache__/path_views.cpython-312.pyc",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/__pycache__/path_views.cpython-312.pyc",
+      "sha256": "258388253ee6d443f2b65b92d16e3cd6b1aecb63b8e116ceff6ddc98b0e91f25"
+    },
+    {
+      "label": "Submitted artifact: work/__pycache__/tooth_paths.cpython-312.pyc",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/__pycache__/tooth_paths.cpython-312.pyc",
+      "sha256": "504494d00bd0be06190317171cfc07c33242973a9201d3dc7618db809162ad39"
+    },
+    {
+      "label": "Submitted artifact: work/__pycache__/views.cpython-312.pyc",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/__pycache__/views.cpython-312.pyc",
+      "sha256": "f9600c7173cf58ecdb8945c0b8dd92b7de0844ca8ef515e9b651a3e8557945ff"
+    },
+    {
+      "label": "Submitted artifact: work/axial.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/axial.jpg",
+      "sha256": "957f88d9ec59aa901e4f6d16021413c8634a5234650d7b04c1e8a72b6660a121"
+    },
+    {
+      "label": "Submitted artifact: work/base.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/base.npy",
+      "sha256": "0df0c780ddf1e3f520aef2200025d0b95298d5cfe7e449aa1593e5f10ea1605e"
+    },
+    {
+      "label": "Submitted artifact: work/base_ax.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/base_ax.jpg",
+      "sha256": "5b26b2c9192d35c20cf888e6e2759e7b59a209a031ab9473c6f67e5f56b03426"
+    },
+    {
+      "label": "Submitted artifact: work/base_sag.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/base_sag.jpg",
+      "sha256": "92d0be2b8619eef3001e6b2ad41bfa4c268a67b84716862a79e4a654b331bdf9"
+    },
+    {
+      "label": "Submitted artifact: work/canal_ax.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canal_ax.jpg",
+      "sha256": "4d09e1743e0523aebadb524d115597cabadcd5fec58b327a4c2a3b2fd70f230a"
+    },
+    {
+      "label": "Submitted artifact: work/canal_candidates.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canal_candidates.py",
+      "sha256": "86ad56f553c96980e6451b578ba63b73ad948540dbe1033d697ec2d15fda26b6"
+    },
+    {
+      "label": "Submitted artifact: work/canal_cor.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canal_cor.jpg",
+      "sha256": "5528a00403944a535aa04f17be2baf62d352a1c76b52765404be26fc44cf8b4e"
+    },
+    {
+      "label": "Submitted artifact: work/canal_l_cor.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canal_l_cor.jpg",
+      "sha256": "4f8f9ce5662cbb9892eb08b4ccb5551410cdb86bbe73f6516437fd60fb8b3211"
+    },
+    {
+      "label": "Submitted artifact: work/canal_l_ramus.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canal_l_ramus.jpg",
+      "sha256": "618d6fc17926ef5b82d62d171c22060555cd6ebb58ff6eb4956c6c9009dbd7c5"
+    },
+    {
+      "label": "Submitted artifact: work/canal_path_3.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canal_path_3.npy",
+      "sha256": "5264ca537feef62718d116f7fdc236b3ea2d0afe1f002979ec2dee9c39ae0835"
+    },
+    {
+      "label": "Submitted artifact: work/canal_path_4.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canal_path_4.npy",
+      "sha256": "7ea7a5d6d7a72fcecccac126265509b2d17672a64e3c6b9c764e894c281da3d9"
+    },
+    {
+      "label": "Submitted artifact: work/canal_r_cor.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canal_r_cor.jpg",
+      "sha256": "a9bad741e2ae4595a70d657f3ee3e1974b32916bea40edfb73a1545814616c32"
+    },
+    {
+      "label": "Submitted artifact: work/canal_r_ramus.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canal_r_ramus.jpg",
+      "sha256": "89cdb7229d6ed9e9b173af558d3a0abae02c959b71695266a832ffa8d7f6cbf6"
+    },
+    {
+      "label": "Submitted artifact: work/canal_right_ax_grid.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canal_right_ax_grid.jpg",
+      "sha256": "8dbd7e02dd44d2a206eb6dd53d36fedbd52f2821ba262a2c2a1fa8ad5e19da0c"
+    },
+    {
+      "label": "Submitted artifact: work/canal_views.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canal_views.py",
+      "sha256": "b4bfd1fa783673f693115532c80e5f42d745290e427a966447fdf9673e0ba11c"
+    },
+    {
+      "label": "Submitted artifact: work/canals.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canals.npy",
+      "sha256": "eef347ee4d5691ffe1c3ee8f396fa3d04d4c0e2652a69e37036a944dcb4161ed"
+    },
+    {
+      "label": "Submitted artifact: work/canals_ax.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canals_ax.jpg",
+      "sha256": "3f4a07c95bba73511cc438aaa5d2aa5a45773cc4af40f9f61f8bc120210fbff0"
+    },
+    {
+      "label": "Submitted artifact: work/canals_cor.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/canals_cor.jpg",
+      "sha256": "19595cd6082a0998ad48c4de41cbd41b307fa84243fe10ecb3a3b9dbfa903729"
+    },
+    {
+      "label": "Submitted artifact: work/cc500.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/cc500.npy",
+      "sha256": "1409c9af0fd1aae09bccbb63085c97c47237565d67d06e52773ca23286b4c6c6"
+    },
+    {
+      "label": "Submitted artifact: work/center_left.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/center_left.npy",
+      "sha256": "306ce673d7fbd024c86d7a804e98be0e6ee4e4057af195a186468c22f46bcf4a"
+    },
+    {
+      "label": "Submitted artifact: work/center_right.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/center_right.npy",
+      "sha256": "8e7d4cfae7fd9f2600a8ca9255a0c51ceeb4d073b52d0376bd82b4dada2063ff"
+    },
+    {
+      "label": "Submitted artifact: work/components.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/components.py",
+      "sha256": "e057cba884e827aeba0ed0b7e0168ed8e2f88fa1551d3bb9c5884bbc9b97ea1a"
+    },
+    {
+      "label": "Submitted artifact: work/compose.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/compose.py",
+      "sha256": "db7b53936cff2778368cdbfb1fc22d49ae94175b4242d00a2a8dcd194b12d583"
+    },
+    {
+      "label": "Submitted artifact: work/coronal.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/coronal.jpg",
+      "sha256": "7e0f2c8d215babc99a91ed0f60cda31a7fc883514eee41fe3edfda4c8673e284"
+    },
+    {
+      "label": "Submitted artifact: work/ct.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/ct.npy",
+      "sha256": "7d1ab0c8a6525b03be8716f3de238a93f481d4a651250c55cf095fa40bd45fed"
+    },
+    {
+      "label": "Submitted artifact: work/delivery_crowns.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/delivery_crowns.jpg",
+      "sha256": "f2961bf39324485bb7c255b99bb4b87f1ce74e7ea511094878d2011bdaa2def9"
+    },
+    {
+      "label": "Submitted artifact: work/density_ax.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/density_ax.jpg",
+      "sha256": "c34997d14103bc123acee832893254e5fd3827ecb03a25b6d0e965726b533e99"
+    },
+    {
+      "label": "Submitted artifact: work/density_sag.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/density_sag.jpg",
+      "sha256": "5e54c60e3c1513d1e1274d2e9c850afbd5c17ff6d455a565cdc1693349a927e3"
+    },
+    {
+      "label": "Submitted artifact: work/final.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/final.npy",
+      "sha256": "54805903a96152046fccbfe4a45887885d2f32559690b9b7b0a913aaff639e9b"
+    },
+    {
+      "label": "Submitted artifact: work/final_ax.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/final_ax.jpg",
+      "sha256": "ea7a196c1bd32c2476431210f9ff9c92b34e3b55f6d355eb6547af7f60e91ae8"
+    },
+    {
+      "label": "Submitted artifact: work/final_cleanup.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/final_cleanup.py",
+      "sha256": "7392fb184fc6e46d39678d399c0a76250b3831b2587a35fc801e3b59f7f32a07"
+    },
+    {
+      "label": "Submitted artifact: work/final_cor.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/final_cor.jpg",
+      "sha256": "33758eb4e74ec19ca9f5e893291fe77e20bb0b46eac5ae4294c565ad0bd58fbf"
+    },
+    {
+      "label": "Submitted artifact: work/final_sag.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/final_sag.jpg",
+      "sha256": "729185bd67be7b20d2d9a6700097a74ac723884c5f6bc161916e4012a9285805"
+    },
+    {
+      "label": "Submitted artifact: work/final_sinus.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/final_sinus.jpg",
+      "sha256": "c89ab8da5077585d05f3e2729d632eec52d86b70dc58ed274f803839bcfea389"
+    },
+    {
+      "label": "Submitted artifact: work/foramen_left.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/foramen_left.jpg",
+      "sha256": "2976d73f82b8b304558f2dee6378b9c99c44235fba3b012a3f26a3e31dc794d3"
+    },
+    {
+      "label": "Submitted artifact: work/foramen_right.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/foramen_right.jpg",
+      "sha256": "7a2fbb52e4a2b8fae0f3477c3e99c36ea0b72d747975f3a59ef4f05e7b6ad6e3"
+    },
+    {
+      "label": "Submitted artifact: work/foramen_views.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/foramen_views.py",
+      "sha256": "549fca51bf23c7a5cb388c07f57def9eaca4188f8f529bf30a23f1fd02ada422"
+    },
+    {
+      "label": "Submitted artifact: work/l_detail.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/l_detail.jpg",
+      "sha256": "acc4babebbe3b36037090cd6eb0a560689721d40633b7a0394c71ebe07eb0197"
+    },
+    {
+      "label": "Submitted artifact: work/l_roots.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/l_roots.jpg",
+      "sha256": "1eee00a4adb18273d6730f56421715f02da0013bb68c9ea31b445530b9e744ac"
+    },
+    {
+      "label": "Submitted artifact: work/label_counts.json",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/label_counts.json",
+      "sha256": "1b1ad2f6b288861dcbe0dfb2d4ca632020360ea13e670f203bd827f7100d24e1"
+    },
+    {
+      "label": "Submitted artifact: work/lcanal_y105.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/lcanal_y105.png",
+      "sha256": "2a24a3cdeecee284dab9158a2d66489e8baffbfca2d161844fe09edd6e72fe21"
+    },
+    {
+      "label": "Submitted artifact: work/lcanal_y120.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/lcanal_y120.png",
+      "sha256": "c851d0b71be28f7c8061bba5ec6e155e46b3bed59bda4dd1b205e40f76176f26"
+    },
+    {
+      "label": "Submitted artifact: work/lcanal_y150.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/lcanal_y150.png",
+      "sha256": "23c367caf80ae2cfa55e0d98cfcedceadd357e31b0754956696a266c75f865f1"
+    },
+    {
+      "label": "Submitted artifact: work/lcanal_y180.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/lcanal_y180.png",
+      "sha256": "0faa6bf2d38c6818beaa3f29bafb3c143afeae601ed8ed7ed97f5d5c8f7fa641"
+    },
+    {
+      "label": "Submitted artifact: work/lcanal_y210.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/lcanal_y210.png",
+      "sha256": "97b4e0192ba0f6b2b65508eaf3c8a2073a5a82844b361b9fd1d5ed8729dad561"
+    },
+    {
+      "label": "Submitted artifact: work/lcanal_y230.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/lcanal_y230.png",
+      "sha256": "afbc851a97f998cf145c7bad8215a19855fe41ad4af85d7027e42ccd926c0e64"
+    },
+    {
+      "label": "Submitted artifact: work/left_lower_grid.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/left_lower_grid.jpg",
+      "sha256": "63dc198790d3e1bc101cb7587e57d047aa4b6a72da5f554cc5d194f48681c90f"
+    },
+    {
+      "label": "Submitted artifact: work/left_upper_grid.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/left_upper_grid.jpg",
+      "sha256": "95c9190440679c6fc40554b2dc6a480655f78b6a9aa160f7d48fb70a00f9e5e2"
+    },
+    {
+      "label": "Submitted artifact: work/lingual.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/lingual.npy",
+      "sha256": "22f2d646a250335535856f56e03a087eceb2c6d26ee3cd9e9dd9f70c60148f3f"
+    },
+    {
+      "label": "Submitted artifact: work/lingual_detail.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/lingual_detail.jpg",
+      "sha256": "a87e6fdadedd9e6d73dbb43e97bd160dd42239f16a13135edeab0e8774ecc050"
+    },
+    {
+      "label": "Submitted artifact: work/lingual_inferior.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/lingual_inferior.jpg",
+      "sha256": "17c5afc093da2d45ac1e58a51f3511d8df37ef8d021acbe5c5a412c9217a5c0d"
+    },
+    {
+      "label": "Submitted artifact: work/lingual_surface.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/lingual_surface.jpg",
+      "sha256": "e1ce05b7f9422bad3fe35b7d18a608ced63d0eba72b3cdd84843d34d67bd88e4"
+    },
+    {
+      "label": "Submitted artifact: work/lingual_surface.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/lingual_surface.npy",
+      "sha256": "e86361595bcc4f6a8d4d67e302e5ef3e8d5bcf07672dd43bc1779f40beb20938"
+    },
+    {
+      "label": "Submitted artifact: work/lingual_views.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/lingual_views.py",
+      "sha256": "7fe014a33a419106694d8cd6662d19432bfc27cb32b8afcf82be054cd015c2b0"
+    },
+    {
+      "label": "Submitted artifact: work/lower.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/lower.jpg",
+      "sha256": "744806fec187262bac6c84c1a669c43597c085eef3c1086e3098bd32a690b5cd"
+    },
+    {
+      "label": "Submitted artifact: work/medial_left.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/medial_left.npy",
+      "sha256": "9a790ba6c8379ef8b5884bb1c7be4009a38d1aac6643193907a7413cd3d49872"
+    },
+    {
+      "label": "Submitted artifact: work/medial_right.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/medial_right.npy",
+      "sha256": "05e70b3a10d3d4a8d7a3980a370e68d1f1e0927796f0e28dfad311e2778f389d"
+    },
+    {
+      "label": "Submitted artifact: work/mental_left.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/mental_left.jpg",
+      "sha256": "6469057fbd0d113d68f36be53c1340cf39a05f6a3271ff08555f0a5bdf00eebb"
+    },
+    {
+      "label": "Submitted artifact: work/mental_right.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/mental_right.jpg",
+      "sha256": "379310ea1d1451df538530ff839ae70351054c74ca4e09450a50146ce5ef9ef7"
+    },
+    {
+      "label": "Submitted artifact: work/mental_views.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/mental_views.py",
+      "sha256": "40aeae6a0fbe49c0c0a9cf59f0a6393b95a40a26f85b3c53a0f76f0bd3a8da98"
+    },
+    {
+      "label": "Submitted artifact: work/palate_cor.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/palate_cor.jpg",
+      "sha256": "b8c988524fbdbb79e76ddc7ff3ba1c7aa44b4d28c10a84d1b3b83d4f3ee4cd18"
+    },
+    {
+      "label": "Submitted artifact: work/palate_sag.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/palate_sag.jpg",
+      "sha256": "830315d5f4c34fabec8cb4551d936b4d6350aa6cdc395a3f558b338563f96ea9"
+    },
+    {
+      "label": "Submitted artifact: work/pano_left.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/pano_left.jpg",
+      "sha256": "fc0f89509e339c34bda4cd8e7517637dd30017f7e4277144143e7cc8c4c7784a"
+    },
+    {
+      "label": "Submitted artifact: work/pano_right.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/pano_right.jpg",
+      "sha256": "d50487e8f0a206e2a49fdc00d0bc490256b9784c2c4e02bf991c7ef9d7b3ac56"
+    },
+    {
+      "label": "Submitted artifact: work/panorama.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/panorama.py",
+      "sha256": "e11d3692bf62368dcb49f6653aaa75999931f93563f9b558a17de81cbcc2872b"
+    },
+    {
+      "label": "Submitted artifact: work/path_views.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/path_views.py",
+      "sha256": "a9108b6e46c8d7515143a995efbb927e5dac7098a5c5e68b5143ba93bf546f4c"
+    },
+    {
+      "label": "Submitted artifact: work/pulp.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/pulp.npy",
+      "sha256": "1fc4b4db1035a074c755d1a4a6cf98b88ce649c11898b056ebf58ab71edab177"
+    },
+    {
+      "label": "Submitted artifact: work/pulp_ax.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/pulp_ax.jpg",
+      "sha256": "a875bdfcfb75e6f3c6bccfefd2c176ed07656deeefd8b08192521258fc16108c"
+    },
+    {
+      "label": "Submitted artifact: work/pulp_refined.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/pulp_refined.npy",
+      "sha256": "71ecf970abed65d6061b34809db7537cf4cbefeb1a97ffe9c4b9cfa69caef47c"
+    },
+    {
+      "label": "Submitted artifact: work/pulp_sag.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/pulp_sag.jpg",
+      "sha256": "274cb72664f479d8490cade66386068837e840d3908c64b8879688d4bf9fe67f"
+    },
+    {
+      "label": "Submitted artifact: work/rcanal_y105.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/rcanal_y105.png",
+      "sha256": "c341df2ff6d8e1b005fa2677a2815b4954528635b1a881bd6c3f2b91c4686bf1"
+    },
+    {
+      "label": "Submitted artifact: work/rcanal_y120.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/rcanal_y120.png",
+      "sha256": "49a0e37c8b56d153d3b568c00fb7d5db1f95f09f3402381c872a3224cc37ebae"
+    },
+    {
+      "label": "Submitted artifact: work/rcanal_y135.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/rcanal_y135.png",
+      "sha256": "7bf1d239e110789849d245a841b9b54ceb46ab608dcfac79b5c0d74aee78437f"
+    },
+    {
+      "label": "Submitted artifact: work/rcanal_y150.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/rcanal_y150.png",
+      "sha256": "134d6db9e175dd749f7e2b23d987829eb2f0dae1723bcc428435829f77aace2c"
+    },
+    {
+      "label": "Submitted artifact: work/rcanal_y165.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/rcanal_y165.png",
+      "sha256": "7bcd60bb52cd3e523d2636cebb763609546d704bd8d7096271ed77f0b01266e1"
+    },
+    {
+      "label": "Submitted artifact: work/rcanal_y180.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/rcanal_y180.png",
+      "sha256": "e6be2730d21af842380b6315b9d24abbd3fe968e6be00a30f63f1443e98c6ddb"
+    },
+    {
+      "label": "Submitted artifact: work/rcanal_y195.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/rcanal_y195.png",
+      "sha256": "c02bd1aef5c657115fe80942f9df5c8e503f209212fd0a608b25445dc3b72fca"
+    },
+    {
+      "label": "Submitted artifact: work/rcanal_y210.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/rcanal_y210.png",
+      "sha256": "43242f27b7d039c32008103a8f83ea443edac7e70fe7e590ab1e7b20a2d0b7cd"
+    },
+    {
+      "label": "Submitted artifact: work/rcanal_y230.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/rcanal_y230.png",
+      "sha256": "35b48abbe2c9ef336e89a645c95e11197e660d111e3ea10a8395c39447dd5eda"
+    },
+    {
+      "label": "Submitted artifact: work/rcanal_y90.png",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/rcanal_y90.png",
+      "sha256": "9ad510598557d148e6dfeb0511c01923243e71d7850bff4f9ced188a9ce3fb86"
+    },
+    {
+      "label": "Submitted artifact: work/refined_ax.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/refined_ax.jpg",
+      "sha256": "b5056576e23697b207dfc0f0de2b802684c15f54d91ffe6a54a270c3f11899e0"
+    },
+    {
+      "label": "Submitted artifact: work/refined_sag.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/refined_sag.jpg",
+      "sha256": "9c4e48d7e870c5281f57c082279aef9c65689fec260d78e0e3a60e6f713b37b6"
+    },
+    {
+      "label": "Submitted artifact: work/render_ct.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/render_ct.py",
+      "sha256": "1d3c8220957af50b1725b70c622c1f0c93650297b36dd4bf1d9fa6897b24591a"
+    },
+    {
+      "label": "Submitted artifact: work/right_lower_grid.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/right_lower_grid.jpg",
+      "sha256": "3470a98e5269585c74e70a79885faeb7f797adfabb4ea80d205af67f92076b20"
+    },
+    {
+      "label": "Submitted artifact: work/right_upper_grid.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/right_upper_grid.jpg",
+      "sha256": "2912881e3a7a662a37af3dbc8887999127b2d2d12ee9cd0b9e830ee701827ce1"
+    },
+    {
+      "label": "Submitted artifact: work/sagittal.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/sagittal.jpg",
+      "sha256": "74298d00c8cc5ceb42bdf98e7218a289c3d5156b0ab3af06abbb717d2644dd75"
+    },
+    {
+      "label": "Submitted artifact: work/segment_base.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_base.py",
+      "sha256": "ab8a0db0e0012d268da74bf21b425c7fd79ff6cd42050d199ea66e6faacf2b8b"
+    },
+    {
+      "label": "Submitted artifact: work/segment_canals.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_canals.py",
+      "sha256": "e63a9f2495118dd8a9541d81d37efdfc64967467077cfe2e823a438c9d521a42"
+    },
+    {
+      "label": "Submitted artifact: work/segment_lingual.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_lingual.py",
+      "sha256": "3f9209f8b34a4ba63ff3e07d9ba26e9fa36e9d01513e5612be7754cd8ed739f0"
+    },
+    {
+      "label": "Submitted artifact: work/segment_pulp.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_pulp.py",
+      "sha256": "5cc2238a4d48853829d6e9f62d93a8a7a2870069a76fb24e08c7882373a0ab57"
+    },
+    {
+      "label": "Submitted artifact: work/segment_pulp_v1.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_pulp_v1.py",
+      "sha256": "d4b715a0df3d2f526655e195ac02c46e5bea96282b0a1779c9067932f59f49c9"
+    },
+    {
+      "label": "Submitted artifact: work/segment_teeth.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_teeth.py",
+      "sha256": "dd6433f194040eaddb80e3ceeb9fa04054a06ef0d74a9dc517f1f8c11d5fd470"
+    },
+    {
+      "label": "Submitted artifact: work/segment_teeth3d.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_teeth3d.py",
+      "sha256": "f521ee67673bd92826efd1e7df8d25060f8f506c066adc81fd9c477d4a7b7b57"
+    },
+    {
+      "label": "Submitted artifact: work/segment_teeth3d_v1.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_teeth3d_v1.py",
+      "sha256": "9b815442ca42e450815765f95e14dbfd4b8873658796768022dcb0c8033e3424"
+    },
+    {
+      "label": "Submitted artifact: work/segment_teeth_gradient.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/segment_teeth_gradient.py",
+      "sha256": "162806ec5f7e182b5601d7c16cc45586b1678852c9e0187f3301de39aa593ace"
+    },
+    {
+      "label": "Submitted artifact: work/sinus0.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/sinus0.npy",
+      "sha256": "fc7376402c54184ceffe4675fe7e8ab6d00fc1b8c884532c4a4d944f7ff56aac"
+    },
+    {
+      "label": "Submitted artifact: work/sinus250.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/sinus250.jpg",
+      "sha256": "0edf414380fe77ce52ddf82fe86affe69239697e5fbd4da04222c2f45e14dc42"
+    },
+    {
+      "label": "Submitted artifact: work/sinus250.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/sinus250.npy",
+      "sha256": "d69d440606c6befbf8cb9ae378da282eb1570d2d50e10df7fde276a16484f248"
+    },
+    {
+      "label": "Submitted artifact: work/sinus450.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/sinus450.npy",
+      "sha256": "2914194b8ed12e8f20c8343577485b2d1b7c8617e88c35a60b3bfc9eb7020cf8"
+    },
+    {
+      "label": "Submitted artifact: work/sinus_test.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/sinus_test.py",
+      "sha256": "da74daf784676476dd0da601d5ffa3118ca11c991506d60d844026f854761220"
+    },
+    {
+      "label": "Submitted artifact: work/smooth.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/smooth.npy",
+      "sha256": "0a094ef2815e5fc33df6e1e7de979e623241de57ca1bccf351154a985900e206"
+    },
+    {
+      "label": "Submitted artifact: work/symphysis_ax.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/symphysis_ax.jpg",
+      "sha256": "c881dad77c87280cf5cf33ee0508c722cb5ad33548714695201f9632668e9532"
+    },
+    {
+      "label": "Submitted artifact: work/symphysis_sag.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/symphysis_sag.jpg",
+      "sha256": "a73e74a1a955e3c60599a28ecd3fce5e3500b919649ed954cd44604f6a1440c6"
+    },
+    {
+      "label": "Submitted artifact: work/t3d_ax.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/t3d_ax.jpg",
+      "sha256": "c7fbcb381c628644618fa1e54f6468bc6189bc4f83bcd56bef3d71c5e96ae5e6"
+    },
+    {
+      "label": "Submitted artifact: work/t3d_sag.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/t3d_sag.jpg",
+      "sha256": "e1e1a7de478159229be1db73bfa0ecf05de149d690ed52808683f77e5af99d3f"
+    },
+    {
+      "label": "Submitted artifact: work/teeth.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/teeth.npy",
+      "sha256": "5f7915ca5241613e354ae25fcd1a8c7a3073eb9bdaf7acca533d0211b4ca7c22"
+    },
+    {
+      "label": "Submitted artifact: work/teeth3d.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/teeth3d.npy",
+      "sha256": "ac8451f616bf1d608017b259ce744debff4250625f7000af22872127fcaf2a7c"
+    },
+    {
+      "label": "Submitted artifact: work/teeth3d_refined.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/teeth3d_refined.npy",
+      "sha256": "4c9aec437894c69373be4a68d61acec27215fb1592d1d794af8351cb8136000b"
+    },
+    {
+      "label": "Submitted artifact: work/teeth_density.npy",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/teeth_density.npy",
+      "sha256": "75a8964da9b26a61cf6011f775ffbcabac952f0f60a777c385d13a0705724a6b"
+    },
+    {
+      "label": "Submitted artifact: work/teeth_lower.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/teeth_lower.jpg",
+      "sha256": "fa8df57057966d5733acc1b352455d6361bf79d4056ee431f67912bbec4ec280"
+    },
+    {
+      "label": "Submitted artifact: work/teeth_sags.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/teeth_sags.jpg",
+      "sha256": "b954409b8ba547007808cc7733c7ea3d855774a3741b3675cf566a40d8b0c983"
+    },
+    {
+      "label": "Submitted artifact: work/teeth_upper.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/teeth_upper.jpg",
+      "sha256": "3b9282c745b8e622c99e196e311ec8d7844aae714637c628cc55e7c4c18c3091"
+    },
+    {
+      "label": "Submitted artifact: work/tooth_paths.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/tooth_paths.py",
+      "sha256": "ca2a0c7c4c0285715e8cbdfa995dbac7af9737d95932c96bdab297ad20ed4d38"
+    },
+    {
+      "label": "Submitted artifact: work/tooth_paths_initial.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/tooth_paths_initial.py",
+      "sha256": "478679d1f4fedea09d338531f1ff3e2587a3bb315d4d769aa17f93d26d81edee"
+    },
+    {
+      "label": "Submitted artifact: work/tooth_sags.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/tooth_sags.jpg",
+      "sha256": "5e7892bead7ae4bafd2b41ff2618b535c78e82721fa19ea1157c708a7c4f9b06"
+    },
+    {
+      "label": "Submitted artifact: work/u_detail.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/u_detail.jpg",
+      "sha256": "7358822db27e69d6a199b25c9ef40cb32316289ae5d34136c3e7d7cc79ea94a5"
+    },
+    {
+      "label": "Submitted artifact: work/u_roots.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/u_roots.jpg",
+      "sha256": "f375ed5dac6447fdee9c34e16fbe3b614fdb842a5c25d8d45c3a82cffd806c52"
+    },
+    {
+      "label": "Submitted artifact: work/upper.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/upper.jpg",
+      "sha256": "734d74d21cc9ec23a6f246f4ca5d6e317e66552b05365b1c4f73d8708d94d8e5"
+    },
+    {
+      "label": "Submitted artifact: work/views.py",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/views.py",
+      "sha256": "75049ec208d27f983f82f4d768611557f9e79bf0a410c2c39d1c8dff415d84b5"
+    },
+    {
+      "label": "Submitted artifact: work/wisdom_grid.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/wisdom_grid.jpg",
+      "sha256": "1402a8812fc9af89942da60e08c208e04645bacb70d95cb54c21a44e51ab9d1b"
+    },
+    {
+      "label": "Submitted artifact: work/wisdom_sag.jpg",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/artifacts/app/work/wisdom_sag.jpg",
+      "sha256": "17dcfd1ae20f8f73c62701daa2c56ac40f697edf5625b8bcb567ccdef52f9f83"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": ".local/attempts/attempt-68d5acdeb63f4262/job/lock.json",
+      "sha256": "8d6b58ac867ca4ca8763d33264d2c7d6551191907a679e329251a87529ef984b"
+    }
+  ],
+  "task_checksum": "cf0bdd708347914bb509ca417f1e892428d253eea409752cb466732c2f59374f",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": ".local/attempts/attempt-68d5acdeb63f4262/job/task__BmhTdQt/result.json",
+  "source_sha256": "43c9900b79c7190d935101d0fec1767d0cf284038e2fee717656ad992b87bd52",
+  "evidence_sha256": "345260433b41b65482eba847f6c2925b2842044ab883f60c90050b3d4ae3f4a3",
+  "kind": "evaluation",
+  "evaluation_kind": "result",
+  "attempt_id": "attempt-68d5acdeb63f4262",
+  "experiment_id": "dental-f018-astra-xhigh",
+  "group_id": "anatomy-audit",
+  "collected_at": "2026-09-21T11:21:43.853921+00:00",
+  "execution_state": "completed",
+  "outcome": "no_verdict",
+  "partial": false,
+  "task_digest": "5b82cd7964f6102486b1e4503e4c3e11611d21f75f164b536d32ba249d2bf928",
+  "freeze_checksum_verified": true,
+  "source_classification": "unknown"
+}
