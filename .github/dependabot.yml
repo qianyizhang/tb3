@@ -4,11 +4,31 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    groups:
+      github-actions:
+        patterns:
+          - '*'
   - package-ecosystem: uv
     directory: /
     schedule:
       interval: weekly
+    # The root pyproject.toml and uv.lock are the maintained environment.
+    # Experiment and reproduction locks are immutable evidence.
+    exclude-paths:
+      - 'archive/**'
+      - 'configs/**'
+      - 'groups/**'
+      - 'probes/**'
+      - 'runs/**'
+    groups:
+      python-dependencies:
+        patterns:
+          - '*'
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
+    groups:
+      node-dependencies:
+        patterns:
+          - '*'
