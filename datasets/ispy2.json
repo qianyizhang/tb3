@@ -2,7 +2,7 @@
   "schema_version": 2,
   "kind": "dataset",
   "id": "dataset-ispy2",
-  "title": "I-SPY2 serial MRI",
+  "title": "I-SPY2 longitudinal breast MRI",
   "version_note": "Exact per-experiment bytes and reference version are in the source receipts.",
   "terms_note": "Preserve recorded source terms; access and redistribution require source-specific review.",
   "evidence": [
@@ -15,6 +15,156 @@
     {
       "label": "Source authority",
       "path": "docs/evidence/br037-curation.json"
+    }
+  ],
+  "summary": "Serial breast MRI with treatment-response reference records.",
+  "modality": "MRI",
+  "sample_unit": "One patient with repeated examinations",
+  "image_description": "Selected DCE/DWI series across visits.",
+  "annotation_description": "Source lesion/functional-volume and clinical reference records.",
+  "reference_note": "Functional tumor volume and longest diameter are different measures. Reader views do not establish a new diagnosis.",
+  "sample_sets": [
+    {
+      "label": "Selected breast cases",
+      "sample_ids": [
+        "ISPY2-102011",
+        "ISPY2-111344",
+        "ISPY2-100899"
+      ],
+      "role": "used",
+      "note": "P01/P02/P03 aliases; cue/no-cue conditions of P03 reuse the same images.",
+      "receipt": {
+        "path": "docs/evidence/br037-curation.json",
+        "sha256": "eab3c15f8826a6a0c09021527a1dcf2b4a0cadd3adffb570df53f2ea6257c0b3",
+        "pointer": "/cases"
+      }
+    }
+  ],
+  "experiment_ids": [
+    "longitudinal-reading-br037"
+  ],
+  "brief_ids": [
+    "tb3-longitudinal-mri"
+  ],
+  "documentation_gaps": [],
+  "example_brief": "tb3-longitudinal-mri",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/ispy2-p01-1.json",
+        "sha256": "22ee2548b8a3fe81149fda943bebd8a449310be780892e99c051886f655d4e34",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/ispy2-p01-2.json",
+        "sha256": "62da18588cca9d3812d81d5635cb35dc8bee9f0b9e71779669896bd0c81dc339",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/ispy2-p01-3.json",
+        "sha256": "7828f8b55362326b360790c2fadfc42784d571307e329a85afad0ff745968a3e",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/ispy2-p02-1.json",
+        "sha256": "6d712c283a3f12ecdd943a18a8d373a5cea66016d6f330858ac7493de9f0e271",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/ispy2-p02-2.json",
+        "sha256": "19f6a5730eb01ff88283103031f7ef255c6d658741ab74efac38d8767bc13295",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/ispy2-p02-3.json",
+        "sha256": "044e1d589b09d8a25d0b0ba96f3e466b02ff13ae62bc306d6bd96ecdc8b8a3d7",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/ispy2-p02-4.json",
+        "sha256": "ca517bf26829bb699db7dccd8534104a00996d747e3465dc1b65f1f0f7f2cf15",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/ispy2-p02-5.json",
+        "sha256": "52f8b799bafe7f1f33d96667348965b9ba2196cec41651196506152357ce134d",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/ispy2-p02-6.json",
+        "sha256": "45d3a2e0c9ba0196af734283f3264e55f7d69eb10ce65f8479c7add7ec46dfc3",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/ispy2-p03-1.json",
+        "sha256": "460e638c4d323874eef46c6152e3b94cebf467439237d8efa2f1e85f54debbbd",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/ispy2-p03-2.json",
+        "sha256": "5d765015e8829ccfaf34cd6f41c566af46923fa8d06bf5a3db58133b240b3a55",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/ispy2-p03-3.json",
+        "sha256": "d48218d65013987c1ba9bc04dff86b3b559e9dd4e29e5f1d3905ac40d77f1683",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/ispy2-p03-4.json",
+        "sha256": "475a3614637776396136cdc1af2af6425dce271ca9f54243ad35360e58339df0",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
     }
   ]
 }

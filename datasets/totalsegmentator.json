@@ -1,0 +1,225 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-totalsegmentator",
+  "title": "TotalSegmentator CT and organ masks",
+  "links": [
+    {
+      "label": "Original source",
+      "path": "https://zenodo.org/records/10047263"
+    }
+  ],
+  "summary": "CT volumes paired with anatomical labels, reused for label audits, organ segmentation and geometric registration.",
+  "modality": "CT",
+  "sample_unit": "One source CT examination",
+  "image_description": "CT intensities in a physical 3D grid.",
+  "annotation_description": "Separate organ masks; task builders may hide, merge or relabel them.",
+  "reference_note": "Source labels are anatomical references, not disease diagnoses. Altered task masks and whole-organ identity judgments must remain distinct from original source masks.",
+  "sample_sets": [
+    {
+      "label": "Thoracic prototype",
+      "sample_ids": [
+        "s1245"
+      ],
+      "role": "used",
+      "note": "One source patient; several correlated derived tasks.",
+      "receipt": {
+        "path": "docs/evidence/br003-medical-source.json",
+        "sha256": "cf71397c0956bd23b37711a8dd7cfe525737f4ebcb898c28ebd0062dac0d352a",
+        "pointer": ""
+      }
+    },
+    {
+      "label": "Anatomy cohort",
+      "sample_ids": [
+        "s1127",
+        "s1233",
+        "s1336",
+        "s0885",
+        "s0915",
+        "s0965",
+        "s0629",
+        "s0344"
+      ],
+      "role": "used",
+      "note": "Eight source patients. Case numbers in experiments are aliases, not additional patients.",
+      "receipt": {
+        "path": "datasets/receipts/totalsegmentator-anatomy.json",
+        "sha256": "a52686e72382a89b8674ad91d3de4ed22f247056569a768ced6d0e1f2d59b097",
+        "pointer": ""
+      }
+    },
+    {
+      "label": "CT-only segmentation",
+      "sample_ids": [
+        "s1233"
+      ],
+      "role": "used",
+      "note": "Ten selected organs; also reused for tool calibration. Same patient appears in the anatomy cohort.",
+      "receipt": {
+        "path": "groups/anatomy-audit/experiments/ct-organ-segmentation-astra-xhigh/source/selected-source-manifest.json",
+        "sha256": "6b654998c846d4bd72098e76e2b80dbe9ce0c77929b0719711fa10aae8b4d0b5",
+        "pointer": ""
+      }
+    },
+    {
+      "label": "External task example",
+      "sample_ids": [
+        "s1366 / TSG_00000001"
+      ],
+      "role": "illustration",
+      "note": "AutoMedBench alias; five masks displayed from a larger task taxonomy. Prepared training example, not a held-out clinical result.",
+      "receipt": {
+        "path": "presentation/external-tasks/samples.json",
+        "sha256": "6d2038c3123b7fcd6a26420f0d3cd5aa05d46349c9ec7b265d49a89466ad0130",
+        "pointer": "/downloads/6"
+      }
+    }
+  ],
+  "experiment_ids": [
+    "anatomy-audit-br003",
+    "anatomy-audit-br004",
+    "anatomy-audit-br010",
+    "anatomy-audit-br011",
+    "anatomy-audit-br012",
+    "anatomy-audit-br013",
+    "anatomy-audit-br014",
+    "anatomy-audit-br015",
+    "anatomy-audit-br017",
+    "ct-organ-segmentation-astra-medium",
+    "ct-organ-segmentation-astra-medium-litemedsam",
+    "ct-organ-segmentation-astra-xhigh",
+    "ct-organ-segmentation-sol-xhigh",
+    "sam-litemedsam-slice-calibration",
+    "registration-br019"
+  ],
+  "brief_ids": [
+    "tb3-label-audit",
+    "tb3-mixed-tissue-audit",
+    "tb3-supplied-object-identity",
+    "tb3-unlabeled-anatomy-prototype",
+    "tb3-ct-organ-segmentation",
+    "tb3-segmentation-calibration",
+    "tb3-history-sourcing",
+    "tb3-mask-reasoning-study",
+    "tb3-anatomy-curation",
+    "tb3-oblique-pose",
+    "automedbench-tsg",
+    "automedbench-full-tsg-multiorgan-seg-task"
+  ],
+  "documentation_gaps": [],
+  "example_brief": "tb3-ct-organ-segmentation",
+  "version_note": "Native TotalSegmentator v2.0.1, Zenodo 10047263. The external example uses pinned AutoMedBench-Lite release 8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5.",
+  "terms_note": "Native image data: CC BY 4.0; label license in the selected-source receipt: Apache-2.0. Preserve the separate AutoMedBench packaging attribution.",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/totalsegmentator-anatomy.json",
+        "sha256": "a52686e72382a89b8674ad91d3de4ed22f247056569a768ced6d0e1f2d59b097",
+        "pointer": "/cases/0/receipt/files"
+      },
+      "path_field": "member",
+      "local_root": "runs/br004-v1/source"
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/totalsegmentator-anatomy.json",
+        "sha256": "a52686e72382a89b8674ad91d3de4ed22f247056569a768ced6d0e1f2d59b097",
+        "pointer": "/cases/1/receipt/files"
+      },
+      "path_field": "member",
+      "local_root": "runs/br004-v1/source"
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/totalsegmentator-anatomy.json",
+        "sha256": "a52686e72382a89b8674ad91d3de4ed22f247056569a768ced6d0e1f2d59b097",
+        "pointer": "/cases/2/receipt/files"
+      },
+      "path_field": "member",
+      "local_root": "runs/br004-v1/source"
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/totalsegmentator-anatomy.json",
+        "sha256": "a52686e72382a89b8674ad91d3de4ed22f247056569a768ced6d0e1f2d59b097",
+        "pointer": "/cases/3/receipt/files"
+      },
+      "path_field": "member",
+      "local_root": "runs/br004-v1/source"
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/totalsegmentator-anatomy.json",
+        "sha256": "a52686e72382a89b8674ad91d3de4ed22f247056569a768ced6d0e1f2d59b097",
+        "pointer": "/cases/4/receipt/files"
+      },
+      "path_field": "member",
+      "local_root": "runs/br004-v1/source"
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/totalsegmentator-anatomy.json",
+        "sha256": "a52686e72382a89b8674ad91d3de4ed22f247056569a768ced6d0e1f2d59b097",
+        "pointer": "/cases/5/receipt/files"
+      },
+      "path_field": "member",
+      "local_root": "runs/br004-v1/source"
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/totalsegmentator-anatomy.json",
+        "sha256": "a52686e72382a89b8674ad91d3de4ed22f247056569a768ced6d0e1f2d59b097",
+        "pointer": "/cases/6/receipt/files"
+      },
+      "path_field": "member",
+      "local_root": "runs/br004-v1/source"
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/totalsegmentator-anatomy.json",
+        "sha256": "a52686e72382a89b8674ad91d3de4ed22f247056569a768ced6d0e1f2d59b097",
+        "pointer": "/cases/7/receipt/files"
+      },
+      "path_field": "member",
+      "local_root": "runs/br004-v1/source"
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/totalsegmentator-s1245.json",
+        "sha256": "1ee7a1a20113729c94e6dcdd2a68de3d8e07bb4aea9165666b77fbe08738f1df",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "groups/anatomy-audit/experiments/ct-organ-segmentation-astra-xhigh/source/selected-source-manifest.json",
+        "sha256": "6b654998c846d4bd72098e76e2b80dbe9ce0c77929b0719711fa10aae8b4d0b5",
+        "pointer": "/files"
+      },
+      "path_field": "archive_member",
+      "local_root": "runs/br004-v1/source"
+    },
+    {
+      "receipt": {
+        "path": "presentation/external-tasks/samples.json",
+        "sha256": "6d2038c3123b7fcd6a26420f0d3cd5aa05d46349c9ec7b265d49a89466ad0130",
+        "pointer": "/downloads"
+      },
+      "path_field": "path",
+      "local_root": "",
+      "indices": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ]
+    }
+  ]
+}

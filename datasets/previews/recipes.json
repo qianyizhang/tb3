@@ -1,0 +1,874 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "dataset_id": "dataset-lidc-idri",
+      "kind": "copy",
+      "sample_id": "LIDC-IDRI-0003",
+      "status": "paired",
+      "summary": "Frozen source-derived example.",
+      "reference_note": "Lung CT and one released DICOM SEG annotation. The source-derived caption identifies the reference-selected frame and reader-only crop. Gold outline = source annotation; not a regenerated ABRA consensus task.",
+      "sources": [
+        {
+          "path": "presentation/tours/data/task-briefs/abra-input.png",
+          "sha256": "21e1b41c7273c1238bf5af78caee880e942c2580891c6b4f3af2fe223a726fdb"
+        },
+        {
+          "path": "presentation/tours/data/task-briefs/abra-reference.png",
+          "sha256": "eb83f875392c6aff0e89b3eb6b79581b9458f157e40c44960d4786af019b2a59"
+        }
+      ],
+      "panels": [
+        {
+          "role": "input",
+          "source": "presentation/tours/data/task-briefs/abra-input.png",
+          "caption": "Lung CT and one released DICOM SEG annotation. The source-derived caption identifies the reference-selected frame and reader-only crop. Gold outline = source annotation; not a regenerated ABRA consensus task."
+        },
+        {
+          "role": "reference",
+          "source": "presentation/tours/data/task-briefs/abra-reference.png",
+          "caption": "Lung CT and one released DICOM SEG annotation. The source-derived caption identifies the reference-selected frame and reader-only crop. Gold outline = source annotation; not a regenerated ABRA consensus task. Reference view; no new agent result."
+        }
+      ]
+    },
+    {
+      "dataset_id": "dataset-totalsegmentator",
+      "kind": "copy",
+      "sample_id": "s1366 / TSG_00000001",
+      "status": "paired",
+      "summary": "Frozen source-derived example.",
+      "reference_note": "Source CT in canonical RAS; coronal plane chosen using the kidney references. Five named organ contours with matching colors; this example illustrates five of the available classes.",
+      "sources": [
+        {
+          "path": "presentation/tours/data/task-briefs/automed-tsg-input.png",
+          "sha256": "ea1cd3236fb1a83b8d373d7014a089c47cdc676b91e87ae623d5c1b9f4a56c2d"
+        },
+        {
+          "path": "presentation/tours/data/task-briefs/automed-tsg-reference.png",
+          "sha256": "1dc38ae869bac1ba011f38f71435bd311dc21ea76064a86496ff4f1050d43e68"
+        }
+      ],
+      "panels": [
+        {
+          "role": "input",
+          "source": "presentation/tours/data/task-briefs/automed-tsg-input.png",
+          "caption": "Source CT in canonical RAS; coronal plane chosen using the kidney references. Five named organ contours with matching colors; this example illustrates five of the available classes."
+        },
+        {
+          "role": "reference",
+          "source": "presentation/tours/data/task-briefs/automed-tsg-reference.png",
+          "caption": "Source CT in canonical RAS; coronal plane chosen using the kidney references. Five named organ contours with matching colors; this example illustrates five of the available classes. Reference view; no new agent result."
+        }
+      ]
+    },
+    {
+      "dataset_id": "dataset-topcow",
+      "kind": "copy",
+      "sample_id": "topcow_ct_012",
+      "status": "paired",
+      "summary": "Frozen source-derived example.",
+      "reference_note": "The released mask is ground-truth/reference material for this dataset illustration. Individual tasks may supply it as a helper; it is not a prediction.",
+      "sources": [
+        {
+          "path": "presentation/tours/data/task-briefs/rexmle-input.png",
+          "sha256": "8bfd809a307b905e96dd141ca5d43d481bed4a31756c39258852e31653c586d8"
+        },
+        {
+          "path": "presentation/tours/data/task-briefs/rexmle-helpers.png",
+          "sha256": "04dda6671ab50dcb954f91b013670e099e5f374913bcc920a43d7b27d7486c57"
+        }
+      ],
+      "panels": [
+        {
+          "role": "input",
+          "source": "presentation/tours/data/task-briefs/rexmle-input.png",
+          "caption": "Three source CT angiography planes selected from the Circle of Willis annotation; full source captions and color legend retained."
+        },
+        {
+          "role": "reference",
+          "source": "presentation/tours/data/task-briefs/rexmle-helpers.png",
+          "caption": "Three source CT angiography planes selected from the Circle of Willis annotation; full source captions and color legend retained. The released mask is ground-truth/reference material for this dataset illustration. Individual tasks may supply it as a helper; it is not a prediction. Filled overlay legend (80% opacity): light blue (#aec7e8) = source class 1; orange (#ff7f0e) = source class 2; light orange (#ffbb78) = source class 3; green (#2ca02c) = source class 4; light green (#98df8a) = source class 5; red (#d62728) = source class 6; light red (#ff9896) = source class 7; light purple (#c5b0d5) = source class 9; light brown (#c49c94) = source class 11; pink (#e377c2) = source class 12. These are numeric source class IDs; the snapshot does not assign additional anatomical names."
+        }
+      ]
+    },
+    {
+      "dataset_id": "dataset-imaging101",
+      "kind": "copy",
+      "sample_id": "ct_sparse_view / phantom 0",
+      "status": "paired",
+      "summary": "Frozen source-derived example.",
+      "reference_note": "Actual sparse sinogram and the known numerical phantom. The reference figure separately labels published FBP and TV reconstructions; these are not ground truth or new model results.",
+      "sources": [
+        {
+          "path": "presentation/tours/data/task-briefs/imaging101-input.png",
+          "sha256": "9332aada63bac65f4763d47f56b9b43f4dab4269007e307ea856a6158e596403"
+        },
+        {
+          "path": "presentation/tours/data/task-briefs/imaging101-reference.png",
+          "sha256": "262c5f50ab13aff7733b1393179f04a80300885fc5cd26de2e3f867d9fb7003b"
+        }
+      ],
+      "panels": [
+        {
+          "role": "input",
+          "source": "presentation/tours/data/task-briefs/imaging101-input.png",
+          "caption": "Actual sparse sinogram and the known numerical phantom. The reference figure separately labels published FBP and TV reconstructions; these are not ground truth or new model results."
+        },
+        {
+          "role": "reference",
+          "source": "presentation/tours/data/task-briefs/imaging101-reference.png",
+          "caption": "Actual sparse sinogram and the known numerical phantom. The reference figure separately labels published FBP and TV reconstructions; these are not ground truth or new model results. Reference view; no new agent result."
+        }
+      ]
+    },
+    {
+      "dataset_id": "dataset-picai",
+      "kind": "copy",
+      "sample_id": "10001_1000001",
+      "status": "input-only",
+      "summary": "Frozen source-derived example.",
+      "reference_note": "No paired lesion GT was retained for this representative example. No processing output is invented.",
+      "sources": [
+        {
+          "path": "presentation/tours/data/task-briefs/bcer-input.png",
+          "sha256": "f701bbf6d555ccb2fbf34bf611f89ee71ee60f7536cc4ff9756ccf3922ccf600"
+        }
+      ],
+      "panels": [
+        {
+          "role": "input",
+          "source": "presentation/tours/data/task-briefs/bcer-input.png",
+          "caption": "Source T2-weighted, ADC and high-b-value MRI images. The original caption records independent view selection; no lesion annotation or processing target was acquired."
+        }
+      ]
+    },
+    {
+      "dataset_id": "dataset-resect",
+      "kind": "copy",
+      "sample_id": "Case2",
+      "status": "paired",
+      "summary": "MRI and intraoperative ultrasound with matched reference landmarks.",
+      "reference_note": "Gold markers in the retained figure indicate the same source landmark. Tumor masks are anatomical context, not correspondence truth.",
+      "sources": [
+        {
+          "path": "groups/registration/presentation/figures/resect-sample/case2-input.png",
+          "sha256": "df8f95b8f2b91f117181fc0036a954db3940c458cf368cec517d1ecffd020066"
+        },
+        {
+          "path": "groups/registration/presentation/figures/resect-sample/case2-landmark-reference.png",
+          "sha256": "062f5a0c931635fda397b0d9f82fb5c7c3c168c327a07f9b0bb9bc15443f724e"
+        },
+        {
+          "path": "groups/registration/presentation/sources/resect-sample.json",
+          "sha256": "de9ab0bdd1981ecfd10200b84bfb6f21a946ee1de5ac44bcd95fbb4f17c412fa"
+        }
+      ],
+      "panels": [
+        {
+          "role": "input",
+          "source": "groups/registration/presentation/figures/resect-sample/case2-input.png",
+          "caption": "Case2. Top: FLAIR; bottom: ultrasound. Columns are native array axes 0, 1 and 2, resampled for display. Each 18 mm-radius crop is centered using an evaluator-only landmark; this is a reader view, not a solver input."
+        },
+        {
+          "role": "reference",
+          "source": "groups/registration/presentation/figures/resect-sample/case2-landmark-reference.png",
+          "caption": "Case2. Top: FLAIR; bottom: ultrasound. Columns are native array axes 0, 1 and 2, resampled for display. Each 18 mm-radius crop is centered using an evaluator-only landmark; this is a reader view, not a solver input. Gold crosshairs = published pair 13 (zero-based index 12): MRI [19.918, 76.773, 63.580] mm; US [19.290, 79.958, 57.191] mm. Initial separation 7.17 mm."
+        }
+      ]
+    },
+    {
+      "dataset_id": "dataset-longitudinal-ct",
+      "kind": "copy",
+      "sample_id": "0a09c8844b / 02522a2b27 / 06eb133bbf",
+      "status": "paired",
+      "summary": "Three retained visit pairs with their manual reference masks.",
+      "reference_note": "Each paired view follows its own original source caption; the panels are selected using lesion references, not a blinded search.",
+      "sources": [
+        {
+          "path": ".local/longitudinal-ct-review/review/input.png",
+          "sha256": "4092dc21a433dc5ea62927c9c70f2a8e3b6badbb37c74d9a43a85eb39e7917b4"
+        },
+        {
+          "path": ".local/longitudinal-ct-review/review/reference.png",
+          "sha256": "eaafabab702fc33c96e66e9d3b31d34d4f416945ea75680cdaffaa7e728ef1c1"
+        },
+        {
+          "path": "groups/longitudinal-reading/examples/longitudinal-ct-review-20260922.json",
+          "sha256": "f98c77d343a1b2432c256e92a852a80be4b63af8227abed09c2ef80e1df94c82"
+        }
+      ],
+      "panels": [
+        {
+          "role": "input",
+          "source": ".local/longitudinal-ct-review/review/input.png",
+          "caption": "Frozen three-case source review. Original labels, lesion-centered crops and color legend are retained; no agent output."
+        },
+        {
+          "role": "reference",
+          "source": ".local/longitudinal-ct-review/review/reference.png",
+          "caption": "Frozen three-case source review. Original labels, lesion-centered crops and color legend are retained; no agent output."
+        }
+      ]
+    },
+    {
+      "dataset_id": "dataset-aeropath",
+      "kind": "mask",
+      "sample_id": "case 1",
+      "status": "paired",
+      "summary": "Native image with a source-annotation reveal.",
+      "reference_note": "Gold = source airway label. The snapshot is an annotation example, not evidence of an airway repair.",
+      "sources": [
+        {
+          "path": "runs/br033-brain-routing/airway-access/data/1/1_CT_HR.nii.gz",
+          "sha256": "802851ae2272eca4b79de14586538a421891c5244f2135ce877170f9c0f85f6e"
+        },
+        {
+          "path": "runs/br033-brain-routing/airway-access/data/1/1_CT_HR_label_airways.nii.gz",
+          "sha256": "135271cd761f852571cc644ad4c85323764fc83fbf4d097b7d5444a0e7366bcd"
+        }
+      ],
+      "image": "runs/br033-brain-routing/airway-access/data/1/1_CT_HR.nii.gz",
+      "masks": [
+        {
+          "path": "runs/br033-brain-routing/airway-access/data/1/1_CT_HR_label_airways.nii.gz",
+          "label": "Airway annotation",
+          "color": "#ffd166"
+        }
+      ],
+      "window": [
+        -1350,
+        150
+      ],
+      "selection": "Each orthogonal plane is selected at the largest reference foreground area on that axis, after inspecting the reference."
+    },
+    {
+      "dataset_id": "dataset-sts3d",
+      "kind": "mask",
+      "sample_id": "ROI_L_001",
+      "status": "paired",
+      "summary": "Native image with a source-annotation reveal.",
+      "reference_note": "Disputed mirror mask: the prior audit found uniform labeled planes and no per-tooth FDI truth. Gold shows exactly the retained nonzero values; do not treat these as valid scoring GT.",
+      "sources": [
+        {
+          "path": "runs/dental-sts-gt-audit-20260921/source/ROI/Labeled/Image/ROI_L_001.nii.gz",
+          "sha256": "b8e6359c1e540ba8e8c1c0f605b73b1038a959d3def7fd401f3e0028dfaebeb1"
+        },
+        {
+          "path": "runs/dental-sts-gt-audit-20260921/source/ROI/Labeled/Mask/ROI_L_001.nii.gz",
+          "sha256": "eb7f78aa973893b04829e83551fde7f71e258c94c1d352774ccc74b01f759219"
+        }
+      ],
+      "image": "runs/dental-sts-gt-audit-20260921/source/ROI/Labeled/Image/ROI_L_001.nii.gz",
+      "masks": [
+        {
+          "path": "runs/dental-sts-gt-audit-20260921/source/ROI/Labeled/Mask/ROI_L_001.nii.gz",
+          "label": "Disputed nonzero mask values",
+          "color": "#ffd166"
+        }
+      ],
+      "window": [
+        -500,
+        2500
+      ],
+      "selection": "Each orthogonal plane is selected at the largest reference foreground area on that axis, after inspecting the reference."
+    },
+    {
+      "dataset_id": "dataset-toothfairy3",
+      "kind": "mask",
+      "sample_id": "ToothFairy3F_018",
+      "status": "paired",
+      "summary": "Native image with a source-annotation reveal.",
+      "reference_note": "Stored source labels are shown as grouped foreground with explicit colors. This does not resolve the recorded laterality dispute.",
+      "sources": [
+        {
+          "path": ".local/dental-followups-20260921/source/ToothFairy3F_018_0000.nii.gz",
+          "sha256": "e59d844424230e6c8e5c4617c9e94b2b24ea06dae7cf69e6352d13b1b64a8271"
+        },
+        {
+          "path": ".local/dental-followups-20260921/source/ToothFairy3F_018.nii.gz",
+          "sha256": "7e5c596d3b1ee24e912a0c22e2a9b1313343fefdbb079b06c10a77ff9882bd34"
+        }
+      ],
+      "image": ".local/dental-followups-20260921/source/ToothFairy3F_018_0000.nii.gz",
+      "masks": [
+        {
+          "path": ".local/dental-followups-20260921/source/ToothFairy3F_018.nii.gz",
+          "label": "Jawbone labels 1\u20132",
+          "values": [
+            1,
+            2
+          ],
+          "color": "#58d4df"
+        },
+        {
+          "path": ".local/dental-followups-20260921/source/ToothFairy3F_018.nii.gz",
+          "label": "Canal labels 3\u20134",
+          "values": [
+            3,
+            4
+          ],
+          "color": "#ed789c"
+        },
+        {
+          "path": ".local/dental-followups-20260921/source/ToothFairy3F_018.nii.gz",
+          "label": "Tooth labels 11\u201348",
+          "values": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "color": "#ffd166"
+        }
+      ],
+      "window": [
+        -500,
+        2500
+      ],
+      "selection": "Each orthogonal plane is selected at the largest reference foreground area on that axis, after inspecting the reference."
+    },
+    {
+      "dataset_id": "dataset-topbrain",
+      "kind": "mask",
+      "sample_id": "topcow_mr_004 \u00b7 v2 TopAneu36",
+      "status": "paired",
+      "summary": "Native image with a source-annotation reveal.",
+      "reference_note": "Gold collapses nonzero vessel classes into foreground for an anatomical overview. Expanded source vessel labels are reference annotations, not completed model output.",
+      "sources": [
+        {
+          "path": "runs/br033-brain-routing/sources/TopBrain_Data_Release_Batches1n2nTA36_081726/imagesTr_topbrain/topcow_mr_004_0000.nii.gz",
+          "sha256": "110c463d05b1632cd7d2562db4f53a76b49377a70be5586085c89af1668a6ef7"
+        },
+        {
+          "path": "runs/br033-brain-routing/sources/TopBrain_Data_Release_Batches1n2nTA36_081726/labelsTr_topbrain_v2_topaneu36class/topcow_mr_004.nii.gz",
+          "sha256": "fa906a53d87dff59787b7556b1210231732d22a79423e23c555ccf1335c1037d"
+        }
+      ],
+      "image": "runs/br033-brain-routing/sources/TopBrain_Data_Release_Batches1n2nTA36_081726/imagesTr_topbrain/topcow_mr_004_0000.nii.gz",
+      "masks": [
+        {
+          "path": "runs/br033-brain-routing/sources/TopBrain_Data_Release_Batches1n2nTA36_081726/labelsTr_topbrain_v2_topaneu36class/topcow_mr_004.nii.gz",
+          "label": "Source reference foreground",
+          "color": "#ffd166"
+        }
+      ],
+      "window": null,
+      "selection": "Each orthogonal plane is selected at the largest reference foreground area on that axis, after inspecting the reference."
+    },
+    {
+      "dataset_id": "dataset-openneuro",
+      "kind": "mask",
+      "sample_id": "sub-013 / ses-20101220",
+      "status": "paired",
+      "summary": "Native image with a source-annotation reveal.",
+      "reference_note": "Gold = released lesion-region annotation. This source supports bounded lesion localization, not a claim of exact clinical boundary truth.",
+      "sources": [
+        {
+          "path": "runs/br016-aneurysm/source/sub-013_ses-20101220_angio.nii.gz",
+          "sha256": "d253b9205124fdfa472dc0b7a3e448b0aca2f272f3bef81a34f9ba22bbb0d897"
+        },
+        {
+          "path": "runs/br016-aneurysm/source/sub-013_ses-20101220_desc-Lesion_1_mask.nii.gz",
+          "sha256": "9e490b641e83b240e0838ba1f3eb14af61d369726a88e8f12ce2298cef38e6be"
+        }
+      ],
+      "image": "runs/br016-aneurysm/source/sub-013_ses-20101220_angio.nii.gz",
+      "masks": [
+        {
+          "path": "runs/br016-aneurysm/source/sub-013_ses-20101220_desc-Lesion_1_mask.nii.gz",
+          "label": "Source reference foreground",
+          "color": "#ffd166"
+        }
+      ],
+      "window": null,
+      "selection": "Each orthogonal plane is selected at the largest reference foreground area on that axis, after inspecting the reference."
+    },
+    {
+      "dataset_id": "dataset-imagecas",
+      "kind": "mask",
+      "sample_id": "ImageCAS case 1",
+      "status": "paired",
+      "summary": "Native image with a source-annotation reveal.",
+      "reference_note": "Gold = original binary coronary reference mask. Named centerlines are a separate ImageCAS-X annotation layer; this snapshot does not relabel or score them.",
+      "sources": [
+        {
+          "path": "runs/br030-vessel-geometry/sources/coronary/original/1.img.nii.gz",
+          "sha256": "c020b1244ac6c841924e27c3f5c328e6cf1eefb70bc14d3b725959ed99b656ff"
+        },
+        {
+          "path": "runs/br030-vessel-geometry/sources/coronary/original/1.label.nii.gz",
+          "sha256": "afd992bf8855ebc42dcec721bd7695878bdc137efc8a9f965a7937ed85f159c7"
+        }
+      ],
+      "image": "runs/br030-vessel-geometry/sources/coronary/original/1.img.nii.gz",
+      "masks": [
+        {
+          "path": "runs/br030-vessel-geometry/sources/coronary/original/1.label.nii.gz",
+          "label": "Coronary reference mask",
+          "color": "#ffd166"
+        }
+      ],
+      "window": [
+        -150,
+        650
+      ],
+      "selection": "Each orthogonal plane is selected at the largest reference foreground area on that axis, after inspecting the reference."
+    },
+    {
+      "dataset_id": "dataset-medpelvis3d",
+      "kind": "mask",
+      "sample_id": "600001",
+      "status": "paired",
+      "summary": "Retained pelvic CT and the source landmark table.",
+      "reference_note": "The published CSV-to-image mapping failed the prior anatomical audit. The table remains visible as disputed reference material; no corrected alignment is guessed.",
+      "sources": [
+        {
+          "path": "runs/br039-ct-landmarks/source/case/600001/600001.nii.gz",
+          "sha256": "9889566162b8ab205679e557006c97c74698653368ae994e0fad6ffd18d5e272"
+        },
+        {
+          "path": "runs/br039-ct-landmarks/source/case/600001/600001-Table-XYZ.CSV",
+          "sha256": "93b99328aa01752d7a1ab339290e0000f49ff72457291a73343329b9af85ee22"
+        },
+        {
+          "path": "docs/evidence/br039-curation.json",
+          "sha256": "76adf5f784c8f9d7ef5ffadffd070085123674eb719f13be1477a6bbf0869a3d"
+        }
+      ],
+      "image": "runs/br039-ct-landmarks/source/case/600001/600001.nii.gz",
+      "table": "runs/br039-ct-landmarks/source/case/600001/600001-Table-XYZ.CSV",
+      "window": [
+        -200,
+        1400
+      ],
+      "selection": "Central orthogonal planes selected without the disputed landmark coordinates."
+    },
+    {
+      "dataset_id": "dataset-afids",
+      "kind": "points",
+      "sample_id": "sub-C001 \u00b7 BR-038 corrected native volume",
+      "status": "paired",
+      "summary": "Source image planes through selected landmark references.",
+      "reference_note": "Gold crosses = retained AFIDs target points in the corrected BR-038 volume. The initial derivative and coordinate correction remain separate historical artifacts.",
+      "sources": [
+        {
+          "path": "runs/br038-volume-landmarks/tasks/mri32-full/environment/volume.nii.gz",
+          "sha256": "ec9c3a73d97d1268aa8f0490c83c9382ad158d51ded4a0ac3d77de10e27e9a03"
+        },
+        {
+          "path": "runs/br038-volume-landmarks/tasks/mri32-full/tests/truth.json",
+          "sha256": "432b8dc62712fa249b8382c094e76acc894bac2968004cb2c15730e5a95e0a42"
+        }
+      ],
+      "image": "runs/br038-volume-landmarks/tasks/mri32-full/environment/volume.nii.gz",
+      "points": "runs/br038-volume-landmarks/tasks/mri32-full/tests/truth.json",
+      "format": "truth",
+      "point_key": "points_ijk",
+      "selected": [
+        0,
+        1,
+        3
+      ],
+      "window": null,
+      "selection": "Three example landmarks; each image is selected through that point.",
+      "point_titles": [
+        "AC",
+        "PC",
+        "Infracollicular sulcus",
+        "Pontomedullary junction"
+      ]
+    },
+    {
+      "dataset_id": "dataset-pddca",
+      "kind": "points",
+      "sample_id": "0522c0001",
+      "status": "paired",
+      "summary": "Source image planes through selected landmark references.",
+      "reference_note": "Gold crosses = named source FCSV landmarks, interpreted as declared RAS coordinates.",
+      "sources": [
+        {
+          "path": "runs/br036-semantic-landmarks/source/ct-C001.nii.gz",
+          "sha256": "d423062c82934bf5cd3e148fafd6c509a2e089bfb0b0549247446a72b3580ca1"
+        },
+        {
+          "path": "runs/br036-semantic-landmarks/source/0522c0001/Landmarks_0001.fcsv",
+          "sha256": "8ad3a9f27e41856dc6f8134355ef84a25c8a8e09ced3ac59bc3e1f6c81a34b39"
+        }
+      ],
+      "image": "runs/br036-semantic-landmarks/source/ct-C001.nii.gz",
+      "points": "runs/br036-semantic-landmarks/source/0522c0001/Landmarks_0001.fcsv",
+      "format": "fcsv",
+      "point_key": null,
+      "selected": [
+        0,
+        1,
+        2
+      ],
+      "window": [
+        -200,
+        1400
+      ],
+      "selection": "Three example landmarks; each image is selected through that point."
+    },
+    {
+      "dataset_id": "dataset-verse",
+      "kind": "points",
+      "sample_id": "sub-verse823",
+      "status": "paired",
+      "summary": "Source image planes through selected landmark references.",
+      "reference_note": "Gold crosses = selected source vertebral centroids. Absence of extra levels T13/L6 follows the separate source convention, not this three-point view.",
+      "sources": [
+        {
+          "path": "runs/br039-ct-landmarks/source/verse/ct.nii.gz",
+          "sha256": "7e0cf8f31a4e2d597b6bae2b9996e61b8b158e0ab0d44bf250144fac9b062d71"
+        },
+        {
+          "path": "runs/br039-ct-landmarks/tasks/ct-full/tests/truth.json",
+          "sha256": "70ad569289d5faae92428f2d9d33e16227156ec545c602e290a4cb5a63cabc9e"
+        }
+      ],
+      "image": "runs/br039-ct-landmarks/source/verse/ct.nii.gz",
+      "points": "runs/br039-ct-landmarks/tasks/ct-full/tests/truth.json",
+      "format": "truth",
+      "point_key": "source_ijk",
+      "selected": [
+        1,
+        11,
+        20
+      ],
+      "window": [
+        -200,
+        1400
+      ],
+      "selection": "Three example landmarks; each image is selected through that point."
+    },
+    {
+      "dataset_id": "dataset-learn2reg",
+      "kind": "learn2reg",
+      "sample_id": "LungCT_0001",
+      "status": "paired",
+      "summary": "Two respiratory phases with a matched landmark.",
+      "reference_note": "The same row indexes a correspondence in both visits. A selected pair illustrates the reference; it does not measure whole-volume registration.",
+      "sources": [
+        {
+          "path": "runs/br021-deformable/source/LungCT/imagesTr/LungCT_0001_0000.nii.gz",
+          "sha256": "be10f3a2c48092f4208298fd3334b5fb7128d8c3366a5335730d0ffbba59be62"
+        },
+        {
+          "path": "runs/br021-deformable/source/LungCT/imagesTr/LungCT_0001_0001.nii.gz",
+          "sha256": "1320d222a6ae156f8ad3681ddda85b57c8ab6bf2537730e110bb68459486a86d"
+        },
+        {
+          "path": "runs/br021-deformable/source/LungCT/landmarksTr/LungCT_0001_0000.csv",
+          "sha256": "0bcf7814ea29d09798adf46dbd1bae8318890f8515ce21ec5107a8cbdf1a5f2b"
+        },
+        {
+          "path": "runs/br021-deformable/source/LungCT/landmarksTr/LungCT_0001_0001.csv",
+          "sha256": "498668b5df6b7c3855b8989892c447006d0850959f12ae6fb0eb4bb8dadfd98c"
+        }
+      ],
+      "images": [
+        "runs/br021-deformable/source/LungCT/imagesTr/LungCT_0001_0000.nii.gz",
+        "runs/br021-deformable/source/LungCT/imagesTr/LungCT_0001_0001.nii.gz"
+      ],
+      "points": [
+        "runs/br021-deformable/source/LungCT/landmarksTr/LungCT_0001_0000.csv",
+        "runs/br021-deformable/source/LungCT/landmarksTr/LungCT_0001_0001.csv"
+      ]
+    },
+    {
+      "dataset_id": "dataset-afids-atlas",
+      "kind": "atlas",
+      "sample_id": "tpl-MNI152NLin2009cAsym_res-01",
+      "status": "reference-only",
+      "summary": "Actual retained atlas points; the MRI image is unavailable.",
+      "reference_note": "Reference-only snapshot. This is a generic atlas helper, not the target patient or its ground truth.",
+      "sources": [
+        {
+          "path": "runs/br040-sol-landmarks/source-audit/tpl_casym.zip",
+          "sha256": "a5cbb97793da4f3aae7be7935228532f7fd1031d4b0d6f40f3ea1584653ce075"
+        },
+        {
+          "path": "docs/evidence/br040-source-audit.json",
+          "sha256": "74937bc75d4b24afc10e0489b2f661b12457f01410cd6732811b8313722700f5"
+        }
+      ],
+      "archive": "runs/br040-sol-landmarks/source-audit/tpl_casym.zip",
+      "member": "tpl-MNI152NLin2009cAsym-master/tpl-MNI152NLin2009cAsym_res-01_desc-groundtruth_afids.fcsv"
+    },
+    {
+      "dataset_id": "dataset-feecho4d",
+      "kind": "feecho",
+      "sample_id": "Patient001 \u00b7 time002",
+      "status": "paired",
+      "summary": "Retained fetal ultrasound planes and supplied masks.",
+      "reference_note": "Nonzero mask values are grouped for illustration. Unobserved space is not background; cavity partition and mesh physical transforms remain unresolved.",
+      "sources": [
+        {
+          "path": "runs/br025-cardiac/source/native/Patient001/mask/Patient001_slice018time002.png",
+          "sha256": "71d23407bd0391b47368cff72f41de7bcdc20fb2da91a347a0b2304849194d65"
+        },
+        {
+          "path": "runs/br025-cardiac/source/native/Patient001/mask/Patient001_slice028time002.png",
+          "sha256": "91e9c01b5bfad22cc063eeada24dc9052a3f99d35c0a74f0c03f7e266cfc295f"
+        },
+        {
+          "path": "runs/br025-cardiac/source/native/Patient001/mask/Patient001_slice016time002.png",
+          "sha256": "6d6f363ecbc185c599b4256bfc9527594a1cb28b178d99b335c44c5754db7a35"
+        },
+        {
+          "path": "runs/br025-cardiac/source/native/Patient001/image/Patient001_slice018time002.png",
+          "sha256": "3faccff65f7fa68d9fd6526f068930f525dc203cba88040e15dca01ec9280f42"
+        },
+        {
+          "path": "runs/br025-cardiac/source/native/Patient001/image/Patient001_slice028time002.png",
+          "sha256": "2c9458f544cc821ede90d1c8178f09646f07db74a0b8611f494db4e48b0f17ad"
+        },
+        {
+          "path": "runs/br025-cardiac/source/native/Patient001/image/Patient001_slice016time002.png",
+          "sha256": "40d7367874e545d78c980dbd1765fd7632eecc4661a5d177612bcae5a7a1a2aa"
+        },
+        {
+          "path": "runs/br025-cardiac/source/native/Patient001/Patient001_info.cfg",
+          "sha256": "328fcf9af1f7368845c7c8532fb1da87c5c0a1a7124da1ce0b247f083680fdc0"
+        }
+      ],
+      "base": "runs/br025-cardiac/source/native/Patient001",
+      "selected_masks": [
+        "runs/br025-cardiac/source/native/Patient001/mask/Patient001_slice018time002.png",
+        "runs/br025-cardiac/source/native/Patient001/mask/Patient001_slice028time002.png",
+        "runs/br025-cardiac/source/native/Patient001/mask/Patient001_slice016time002.png"
+      ]
+    },
+    {
+      "dataset_id": "dataset-echoslicer",
+      "kind": "echo-review",
+      "sample_id": "selected volunteer sequence \u00b7 frame 0",
+      "status": "input-only",
+      "summary": "Three sections from the retained acquired 3D ultrasound.",
+      "reference_note": "No paired anatomical ground-truth surface was available for this volunteer sequence. Calibrated review planes are geometric references, not anatomy GT.",
+      "sources": [
+        {
+          "path": "runs/br032-real-echo/review-slices.npz",
+          "sha256": "516f0720b4342c591c5f13fe980cbe26ea615479ff9ba9d2a71ee0f722a1ce42"
+        },
+        {
+          "path": "runs/br032-real-echo/plane-preview.json",
+          "sha256": "3091684f27913777466b9deb06388085a53ecf99bbcd26965b77a07af401f913"
+        },
+        {
+          "path": "runs/br032-real-echo/source/source-receipt.json",
+          "sha256": "0a753395e6e61401d4612874659458dba75b13580874b12ef23c0da55216be55"
+        },
+        {
+          "path": "probes/cardiac-reconstruction/authoring/real_echo/prepare.py",
+          "sha256": "db263aaeed51bc7d26b092c18f3839300ac59f3283140e4623c0a243fd1ed4e2"
+        }
+      ],
+      "npz": "runs/br032-real-echo/review-slices.npz",
+      "selection": "Retained calibrated Cartesian review planes, sampled from the polar source volume; first acquired frame, long_0, long_90 and short_85. Pixel spacing is 0.75 mm.",
+      "geometry": "runs/br032-real-echo/plane-preview.json"
+    },
+    {
+      "dataset_id": "dataset-echoxflow",
+      "kind": "echo",
+      "sample_id": "exam_5daf5517464ccc62 / recording_8aef1d9a69fc3bae",
+      "status": "paired",
+      "summary": "Acquired cardiac ultrasound and operator-derived cavity surfaces.",
+      "reference_note": "The surface is a clinical cavity reference; it does not establish myocardial material motion or strain.",
+      "sources": [
+        {
+          "path": "runs/br034-pathological-echo/curation/ef45-v2/input/volumes.npy",
+          "sha256": "82a6296db511b836789ff44aa60efcdba4e204cd0a843a853d27dfd7a5d682e7"
+        },
+        {
+          "path": "runs/br034-pathological-echo/curation/ef45-v2/input/geometry.json",
+          "sha256": "c5a678cddf8bca18d880025ca627c59a410492c9c6966d305c275aec60ce6198"
+        },
+        {
+          "path": "runs/br034-pathological-echo/curation/ef45-v2/reference.npz",
+          "sha256": "0d86b83b4695e317f1772f84fdd5a6fd43d1fc14debe90d572db0ba4a5084997"
+        },
+        {
+          "path": "runs/br034-pathological-echo/curation/ef45-v2/preparation.json",
+          "sha256": "bd2912efe97a9440c8fbbe73d1cdd398158d50cbfd5fd19acfa2d976c07c2a0b"
+        }
+      ],
+      "npy": "runs/br034-pathological-echo/curation/ef45-v2/input/volumes.npy",
+      "geometry": "runs/br034-pathological-echo/curation/ef45-v2/input/geometry.json",
+      "reference": "runs/br034-pathological-echo/curation/ef45-v2/reference.npz",
+      "selection": "First selected phase after Cartesian resampling; central orthogonal sections."
+    },
+    {
+      "dataset_id": "dataset-nlst",
+      "kind": "nlst",
+      "sample_id": "BR-020 B30f / B50f matched examination",
+      "status": "paired",
+      "summary": "Same examination reconstructed with two kernels.",
+      "reference_note": "Paired reconstruction agreement supports a geometric correspondence task. It is not a manual anatomical label.",
+      "sources": [
+        {
+          "path": "runs/br020-registration/source/B30f.npz",
+          "sha256": "e6a22e8296c9635b9c92ec9282245210c2255e674737cc05071015b35ca48cb6"
+        },
+        {
+          "path": "runs/br020-registration/source/B50f.npz",
+          "sha256": "33c6fbb78626277b62ff1d171ddda4713ab7a8e4ad2119f92e5c434405891328"
+        },
+        {
+          "path": "datasets/receipts/nlst-pair.json",
+          "sha256": "055271e8037db293bc6442c36e09cb15fd776d658c4d37a66703615036efc04b"
+        }
+      ],
+      "input": "runs/br020-registration/source/B30f.npz",
+      "reference": "runs/br020-registration/source/B50f.npz"
+    },
+    {
+      "dataset_id": "dataset-straus",
+      "kind": "straus",
+      "sample_id": "patient01_healthy",
+      "status": "paired",
+      "summary": "Synthetic cardiac ultrasound and persistent material-node truth.",
+      "reference_note": "Simulator node identities provide material correspondence; selected nodal plots do not certify patient anatomy. Source ultrasound views use an intensity color map (purple = lower, yellow = higher); these colors are not anatomical labels.",
+      "sources": [
+        {
+          "path": "runs/br029-dynamic-heart/public-video/view_0/frame_01.png",
+          "sha256": "08e79e002ed92c002934c31aff16a7ba559cac3842127a8e8e41619fe5e3f49d"
+        },
+        {
+          "path": "runs/br029-dynamic-heart/public-video/view_0/frame_10.png",
+          "sha256": "f35674576f4fcc176688b398261058bfd890abb96ba69f4722e3c628a2dac00e"
+        },
+        {
+          "path": "runs/br029-dynamic-heart/public-video/view_0/frame_20.png",
+          "sha256": "3ffd863a0329bff5868ea9cbd9a182ea8b987a816fdcd8ccb54c292b74ad832e"
+        },
+        {
+          "path": "runs/br029-dynamic-heart/analysis-v2/healthy_reference.npz",
+          "sha256": "c2476764cf1819d32fd7392b768ac119c01a75f406780a6ad707bafdd1c97737"
+        },
+        {
+          "path": "runs/br029-dynamic-heart/public-video/geometry.json",
+          "sha256": "0c8df33c3891f456033dccc21e50fc1f7f4caaa857429d18c06fd62a87d85440"
+        }
+      ],
+      "images": "runs/br029-dynamic-heart/public-video/view_0",
+      "reference": "runs/br029-dynamic-heart/analysis-v2/healthy_reference.npz"
+    },
+    {
+      "dataset_id": "dataset-synthetic-mr",
+      "kind": "synthetic",
+      "sample_id": "public-00-encoding-0",
+      "status": "paired",
+      "summary": "Actual encoded pixel frames and the stored canonical reference.",
+      "reference_note": "These are small asymmetric importer fixtures, not medical images. The expected canonical acquisition is exact under the declared profile.",
+      "sources": [
+        {
+          "path": "probes/mr-frame-association/environment/examples.json",
+          "sha256": "24691dbd8066dbb6ce8ec6a4caa8e92bf29ce924c24ab5df1a1b336f362ff4a9"
+        }
+      ],
+      "source": "probes/mr-frame-association/environment/examples.json"
+    },
+    {
+      "dataset_id": "dataset-ispy2",
+      "kind": "ispy2",
+      "sample_id": "ISPY2-102011 / P01",
+      "status": "paired",
+      "summary": "Source visit images with source clinical and functional measurements.",
+      "reference_note": "Clinical reference values describe the case across visits. FTV and diameter are distinct; no pixelwise tumor-mask GT is asserted.",
+      "sources": [
+        {
+          "path": "runs/br037-longitudinal-reading/prepared/P01/V1_S14.nii.gz",
+          "sha256": "34e0faa17d3538b833e558f61433e775fd96e5209746396ed49dd444b0b89cc0"
+        },
+        {
+          "path": "runs/br037-longitudinal-reading/prepared/P01/V2_S22.nii.gz",
+          "sha256": "59c46bf79feee8959c12c3953f83562632078989cf9b9d826f15d8ae6dde5f2c"
+        },
+        {
+          "path": "docs/evidence/br037-curation.json",
+          "sha256": "eab3c15f8826a6a0c09021527a1dcf2b4a0cadd3adffb570df53f2ea6257c0b3"
+        },
+        {
+          "path": "runs/br037-longitudinal-reading/prepared/P01/manifest.json",
+          "sha256": "fbbcdb9e9194eb8b5651e739cea96f123f1c0999f1238d3cf22a277e875c8893"
+        }
+      ],
+      "images": [
+        "runs/br037-longitudinal-reading/prepared/P01/V1_S14.nii.gz",
+        "runs/br037-longitudinal-reading/prepared/P01/V2_S22.nii.gz"
+      ],
+      "reference": "docs/evidence/br037-curation.json",
+      "frame": 1
+    },
+    {
+      "dataset_id": "dataset-ct-rate",
+      "kind": "metadata",
+      "sample_id": "valid_16_a_1",
+      "status": "unavailable",
+      "summary": "Frozen source-screen record; no acquired imaging sample.",
+      "reference_note": "No local image or paired report GT was acquired. This is the frozen access-check receipt, not a sample image.",
+      "sources": [
+        {
+          "path": "presentation/external-tasks/samples.json",
+          "sha256": "6d2038c3123b7fcd6a26420f0d3cd5aa05d46349c9ec7b265d49a89466ad0130"
+        }
+      ],
+      "source": "presentation/external-tasks/samples.json",
+      "pointer": "/access_checks",
+      "selection": "No local image or paired report GT was acquired. This is the frozen access-check receipt, not a sample image."
+    },
+    {
+      "dataset_id": "dataset-acrin-brain",
+      "kind": "metadata",
+      "sample_id": "shortlist IDs 2 / 3 / 5",
+      "status": "unavailable",
+      "summary": "Frozen source-screen record; no acquired imaging sample.",
+      "reference_note": "Only metadata were retained. Imaging access and subject-to-DICOM linkage were unresolved; no image/GT pair is claimed.",
+      "sources": [
+        {
+          "path": "docs/evidence/br037-curation.json",
+          "sha256": "eab3c15f8826a6a0c09021527a1dcf2b4a0cadd3adffb570df53f2ea6257c0b3"
+        }
+      ],
+      "source": "docs/evidence/br037-curation.json",
+      "pointer": "/brain_status",
+      "selection": "Only metadata were retained. Imaging access and subject-to-DICOM linkage were unresolved; no image/GT pair is claimed."
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-medpelvis3d",
+  "title": "MedPelvis3D source screen",
+  "links": [],
+  "summary": "A downloaded pelvic CT candidate was rejected during landmark-coordinate review.",
+  "modality": "CT",
+  "sample_unit": "One candidate CT",
+  "image_description": "Pelvic CT used in a source alignment screen.",
+  "annotation_description": "Published landmark CSV.",
+  "reference_note": "The documented coordinate conversion produced incorrect overlays; no guessed correction or model trial was accepted.",
+  "sample_sets": [
+    {
+      "label": "Rejected candidate",
+      "sample_ids": [
+        "case600001"
+      ],
+      "role": "screened",
+      "note": "A source-quality hold, not a scored model case.",
+      "receipt": {
+        "path": "docs/evidence/br039-curation.json",
+        "sha256": "76adf5f784c8f9d7ef5ffadffd070085123674eb719f13be1477a6bbf0869a3d",
+        "pointer": "/rejected_candidate"
+      }
+    }
+  ],
+  "experiment_ids": [],
+  "brief_ids": [],
+  "documentation_gaps": [
+    "Coordinate/reference mapping remains unresolved."
+  ],
+  "version_note": "The linked pinned receipts identify the selected release and files; this is not a current upstream availability check.",
+  "terms_note": "Receipt records v3 Zenodo 21757686, CC BY 4.0.",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/medpelvis3d-archive.json",
+        "sha256": "ea92ffb7de6a2147074bc65fa647d1aa25ec101b5ee0b3e7a19cab08ab1ab97b",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    }
+  ]
+}

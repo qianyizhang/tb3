@@ -2,10 +2,10 @@
   "schema_version": 2,
   "kind": "dataset",
   "id": "dataset-topcow",
-  "title": "TopCoW images, masks and derived centerline graphs",
+  "title": "TopCoW cerebral vessels",
   "version_note": "TopCoW training release 15692630 and graph release 17358162, as curated on 2026-09-16 in BR-025; exact selected files, CRC checks and hashes remain in the curation receipt.",
   "terms_note": "Historical terms recorded in BR-025 on 2026-09-16: TopCoW requires attribution and owner permission for commercial use; derived graphs are CC BY-NC. These observations are not a current redistribution clearance.",
-  "reference_note": "TopCoW masks cover named Circle of Willis components within the source annotation scope. Centerline graphs derive from those masks, so they are not a second independent anatomical truth. The retained 244-voxel BR-026 addition dispute is clinically unresolved.",
+  "reference_note": "Derived graphs are not independent anatomical truth. Annotation extent and unresolved added voxels limit repair interpretation.",
   "access_note": "Selected source images, masks and graph members were retained locally. This source index does not acquire data or establish current access; recheck exact terms and availability when selecting a release for reuse.",
   "evidence": [
     {
@@ -37,6 +37,103 @@
     {
       "label": "Derived graph release",
       "path": "https://zenodo.org/records/17358162"
+    }
+  ],
+  "summary": "Angiographic scans, component masks and graphs for vessel topology and repair studies.",
+  "modality": "MRA + CTA",
+  "sample_unit": "One source angiographic examination",
+  "image_description": "Original MRA or CT angiography.",
+  "annotation_description": "Named Circle of Willis masks, edge annotations and mask-derived graphs.",
+  "sample_sets": [
+    {
+      "label": "Curated MRA",
+      "sample_ids": [
+        "topcow_mr_004",
+        "topcow_mr_007",
+        "topcow_mr_009",
+        "topcow_mr_012"
+      ],
+      "role": "curated",
+      "note": "Four MRA cases with reference masks and edge/graph metadata; only experiment-specific subsets were trialled.",
+      "receipt": {
+        "path": "docs/evidence/br025-curation.json",
+        "sha256": "409dbebedc698353fe6c24580c469957ae8286660bee9751a87dd307849fc02a",
+        "pointer": ""
+      }
+    },
+    {
+      "label": "External training example",
+      "sample_ids": [
+        "topcow_ct_012"
+      ],
+      "role": "illustration",
+      "note": "Upstream training sample; ReX-MLE prepared split membership was not verified.",
+      "receipt": {
+        "path": "presentation/external-tasks/samples.json",
+        "sha256": "6d2038c3123b7fcd6a26420f0d3cd5aa05d46349c9ec7b265d49a89466ad0130",
+        "pointer": "/reused_sources"
+      }
+    },
+    {
+      "label": "Additional TopBrain development images",
+      "sample_ids": [
+        "topcow_mr_006",
+        "topcow_mr_011"
+      ],
+      "role": "screened",
+      "note": "TopCoW images reused with TopBrain labels in the resumed five-scan screen. Size and CRC matched the TopBrain members; selection used reference third-A2/A3 anatomy.",
+      "receipt": {
+        "path": "docs/evidence/br033-brain-resumption.json",
+        "sha256": "c4c6f6888ccb80e97dca4789f743b41ad6f7072137e78351965b170bd4a3e213",
+        "pointer": "/targeted_variant_acquisition"
+      }
+    }
+  ],
+  "experiment_ids": [
+    "tubular-anatomy-br025",
+    "tubular-anatomy-br026",
+    "tubular-anatomy-br030",
+    "tubular-anatomy-br033"
+  ],
+  "brief_ids": [
+    "tb3-vessel-source-screen",
+    "tb3-vessel-connection-repair",
+    "ours",
+    "rexmle",
+    "rexmle-topcow-track2-task1",
+    "rexmle-topcow-track1-task2",
+    "rexmle-topcow-track1-task3",
+    "tb3-topbrain-screen"
+  ],
+  "documentation_gaps": [],
+  "example_brief": "rexmle",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "presentation/external-tasks/samples.json",
+        "sha256": "6d2038c3123b7fcd6a26420f0d3cd5aa05d46349c9ec7b265d49a89466ad0130",
+        "pointer": "/reused_sources"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "docs/evidence/br025-curation.json",
+        "sha256": "409dbebedc698353fe6c24580c469957ae8286660bee9751a87dd307849fc02a",
+        "pointer": "/selected_files"
+      },
+      "path_field": "local_path",
+      "local_root": "runs/br025-vessel-curation"
+    },
+    {
+      "receipt": {
+        "path": "docs/evidence/br033-brain-resumption.json",
+        "sha256": "c4c6f6888ccb80e97dca4789f743b41ad6f7072137e78351965b170bd4a3e213",
+        "pointer": "/targeted_variant_acquisition"
+      },
+      "path_field": "member",
+      "local_root": "runs/br033-brain-routing/sources"
     }
   ]
 }

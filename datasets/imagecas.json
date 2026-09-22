@@ -2,7 +2,7 @@
   "schema_version": 2,
   "kind": "dataset",
   "id": "dataset-imagecas",
-  "title": "ImageCAS and ImageCAS-X",
+  "title": "ImageCAS and ImageCAS-X coronary CTA",
   "version_note": "Exact per-experiment bytes and reference version are in the source receipts.",
   "terms_note": "Preserve recorded source terms; access and redistribution require source-specific review.",
   "evidence": [
@@ -15,6 +15,60 @@
     {
       "label": "Source authority",
       "path": "docs/evidence/br030-sources.json"
+    }
+  ],
+  "summary": "Coronary CT angiography with masks and named centerline references.",
+  "modality": "CTA",
+  "sample_unit": "One coronary CT examination",
+  "image_description": "Contrast-enhanced CT of the coronary arteries.",
+  "annotation_description": "Source masks and named centerlines, converted explicitly from LPS to RAS where required.",
+  "reference_note": "Reference identities and extent are not infallible. Geometry and correct labels are scored separately. Case 1 is a released training case.",
+  "sample_sets": [
+    {
+      "label": "Coronary development case",
+      "sample_ids": [
+        "1"
+      ],
+      "role": "used",
+      "note": "BR-030, BR-041 and BR-042 reuse one CTA; task revisions and model runs do not increase patient count.",
+      "receipt": {
+        "path": "docs/evidence/br030-sources.json",
+        "sha256": "4b7ff0b6d3e640a683e9a3023188b613e06f8fdbc135ccdae8b34ba91360052a",
+        "pointer": "/source_case"
+      }
+    }
+  ],
+  "experiment_ids": [
+    "tubular-anatomy-br030",
+    "tubular-anatomy-br041",
+    "tubular-anatomy-br042",
+    "br042-v4-6h"
+  ],
+  "brief_ids": [
+    "ours",
+    "tb3-named-coronary",
+    "tb3-coronary-inventory"
+  ],
+  "documentation_gaps": [],
+  "example_brief": "tb3-coronary-inventory",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "docs/evidence/br030-sources.json",
+        "sha256": "4b7ff0b6d3e640a683e9a3023188b613e06f8fdbc135ccdae8b34ba91360052a",
+        "pointer": "/download_manifests/coronary-reference-manifest.json"
+      },
+      "path_field": "path",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "docs/evidence/br030-sources.json",
+        "sha256": "4b7ff0b6d3e640a683e9a3023188b613e06f8fdbc135ccdae8b34ba91360052a",
+        "pointer": "/download_manifests/sources~1coronary~1original~1scan-manifest.json/files"
+      },
+      "path_field": "path",
+      "local_root": ""
     }
   ]
 }

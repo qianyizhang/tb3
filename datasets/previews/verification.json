@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-22",
+  "scope": "Frozen dataset sample and source-reference explanations; no model inference or clinical adjudication.",
+  "catalog_sha256": "92cff4ecfefe5c06c9bab426c6be66f476c24de70502eba57a3c3d59e5f6c86f",
+  "coverage": {
+    "paired": 23,
+    "input-only": 2,
+    "reference-only": 1,
+    "unavailable": 2
+  },
+  "png_panels": 48,
+  "text_panels": 4,
+  "checks": {
+    "clean_staged_make_check": "passed",
+    "python_tests": 118,
+    "browser": {
+      "datasets": 28,
+      "sample_sets": 46,
+      "experiments": 59,
+      "errors": [],
+      "external_requests": [],
+      "mobile": "passed",
+      "navigation": "passed",
+      "reveal": "passed",
+      "frozen_snapshots": 28,
+      "image_decode": "all rendered sample and reference images passed",
+      "enlargement": "zoom and keyboard dismissal passed"
+    },
+    "source_inputs": "all recipe SHA-256 values checked before rendering",
+    "native_geometry": "image/mask grids checked; landmarks transformed through source affine; polar ultrasound uses retained calibrated planes",
+    "review": "contact sheets and corrected EchoSlicer/I-SPY2 figures inspected; source selection and reference qualifications retained"
+  },
+  "raw_evidence": {
+    "browser": ".local/dataset-explorer/qa.json",
+    "staged_checks": ".local/dataset-snapshot-check.log"
+  },
+  "limits": [
+    "Paired artifacts do not imply clinically valid reference annotations.",
+    "PI-CAI and EchoSlicer have no paired acquired anatomical GT here.",
+    "The generic atlas image was not retained; only its actual reference points are shown.",
+    "CT-RATE and ACRIN imaging were not acquired; their source-screen records remain visible."
+  ]
+}

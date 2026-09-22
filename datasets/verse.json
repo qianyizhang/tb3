@@ -2,9 +2,9 @@
   "schema_version": 2,
   "kind": "dataset",
   "id": "dataset-verse",
-  "title": "VerSe CT landmarks",
+  "title": "VerSe vertebral CT",
   "version_note": "Exact per-experiment bytes and reference version are in the source receipts.",
-  "terms_note": "Preserve recorded source terms; access and redistribution require source-specific review.",
+  "terms_note": "VerSe source receipt: CC BY-SA 4.0.",
   "evidence": [
     {
       "path": "docs/evidence/br039-freeze.json",
@@ -15,6 +15,59 @@
     {
       "label": "Source authority",
       "path": "docs/evidence/br039-freeze.json"
+    }
+  ],
+  "summary": "CT and vertebral centroids used to test localization and honest absence handling.",
+  "modality": "CT",
+  "sample_unit": "One spine CT",
+  "image_description": "Full CT and a derived partial-field-of-view crop.",
+  "annotation_description": "Centroids and source vertebral-count conventions.",
+  "reference_note": "Missing labels alone do not establish anatomical absence. Full/cropped tasks are correlated views of the same source.",
+  "sample_sets": [
+    {
+      "label": "Selected spine CT",
+      "sample_ids": [
+        "sub-verse823"
+      ],
+      "role": "used",
+      "note": "Full and partial tasks retain the same subject; T13/L6 absence comes from source supplement.",
+      "receipt": {
+        "path": "docs/evidence/br039-curation.json",
+        "sha256": "76adf5f784c8f9d7ef5ffadffd070085123674eb719f13be1477a6bbf0869a3d",
+        "pointer": ""
+      }
+    },
+    {
+      "label": "Rejected pelvis candidate",
+      "sample_ids": [
+        "case600001 (MedPelvis3D)"
+      ],
+      "role": "screened",
+      "note": "Separate source, rejected due to inconsistent coordinate mapping; see dedicated record.",
+      "receipt": {
+        "path": "docs/evidence/br039-curation.json",
+        "sha256": "76adf5f784c8f9d7ef5ffadffd070085123674eb719f13be1477a6bbf0869a3d",
+        "pointer": "/rejected_candidate"
+      }
+    }
+  ],
+  "experiment_ids": [
+    "anatomical-landmarks-br039",
+    "anatomical-landmarks-br040"
+  ],
+  "brief_ids": [
+    "tb3-named-landmarks"
+  ],
+  "documentation_gaps": [],
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/verse-files.json",
+        "sha256": "bf99b481da381f83d9cc11a5d028703c8e440165c3bb679adf5fa1b8673eb177",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
     }
   ]
 }

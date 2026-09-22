@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from . import core as c
-from . import task_catalog
+from . import dataset_previews, datasets, task_catalog
 from .presentation import markdown
 
 DEFAULT_CATALOG = task_catalog.DEFAULT_CATALOG
@@ -258,11 +258,20 @@ def load(root, catalog=DEFAULT_CATALOG):
                 index = item.get("condition_index", 0)
                 if type(index) is not int or not 0 <= index < len(entry["variants"]):
                     raise c.MedicalError("Invalid inventory condition: " + item["id"])
+    dataset_data = datasets.load(
+        root, out, require_coverage=data.get("require_dataset_coverage", False)
+    )
+    dataset_data["previews"] = dataset_previews.load(
+        root,
+        {row["id"] for row in dataset_data["records"]},
+        required=data.get("require_dataset_previews", False),
+    )
     return {
         **data,
         "entries": out,
         "inventory": inventory,
         "local_sources": source_bundle(root, out),
+        "datasets": dataset_data,
         "experiment_count": experiment_count,
     }
 
@@ -289,6 +298,18 @@ def check(root, catalog=DEFAULT_CATALOG):
             bool(e.get("illustration")) or "<img " in e["visuals"]["input"] for e in data["entries"]
         ),
         "missing_media": sorted({p for x in data["entries"] for p in x["missing_media"]}),
+        "dataset_snapshots": {
+            "documented": len(data["datasets"]["previews"]),
+            "paired": sum(
+                row["status"] == "paired" for row in data["datasets"]["previews"].values()
+            ),
+            "missing_media": sorted(
+                panel["path"]
+                for row in data["datasets"]["previews"].values()
+                for panel in row["panels"]
+                if not panel["available"]
+            ),
+        },
     }
 
 
@@ -309,12 +330,21 @@ def build(root, output, catalog=DEFAULT_CATALOG, *, presentation_context=None):
         .replace("&", "\\u0026")
     )
     document = (
-        document.replace("__STYLE__", (base / "style.css").read_text())
+        document.replace(
+            "__STYLE__",
+            (base / "style.css").read_text() + "\n" + (base / "datasets.css").read_text(),
+        )
         .replace(
             "__APP__",
             "\n".join(
                 (base / name).read_text()
-                for name in ("illustrations.js", "scene-models.js", "scenes.js", "app.js")
+                for name in (
+                    "illustrations.js",
+                    "scene-models.js",
+                    "scenes.js",
+                    "datasets.js",
+                    "app.js",
+                )
             ),
         )
         .replace("__DATA__", payload)

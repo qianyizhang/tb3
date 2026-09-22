@@ -1,0 +1,125 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-toothfairy3",
+  "title": "ToothFairy3 dental CBCT",
+  "links": [
+    {
+      "label": "Original source",
+      "path": "https://github.com/AImageLab-zip/ToothFairy/tree/65b7f93796ac8f61046585dd5a52964b09890d0f/ToothFairy3"
+    }
+  ],
+  "summary": "Dental CBCT with tooth identities, pulp, canals and surrounding structures.",
+  "modality": "CBCT",
+  "sample_unit": "One dental 3D scan",
+  "image_description": "Cone-beam CT with source-specific direction metadata.",
+  "annotation_description": "Numbered tooth/pulp labels and anatomical structures in a shared grid.",
+  "reference_note": "The source warns of inaccurate NIfTI directions. Clinical laterality and label defects remain under review; diagnostic swaps do not replace frozen scores.",
+  "sample_sets": [
+    {
+      "label": "Trial targets",
+      "sample_ids": [
+        "F_002",
+        "F_018"
+      ],
+      "role": "used",
+      "note": "Archive CT/label bytes retained; the original F018 viewer export differs in orientation metadata.",
+      "receipt": {
+        "path": "datasets/receipts/toothfairy3-targets.json",
+        "sha256": "c033757b998a7eb15cfdc063f326e5e649d9f9da985436d8d281a7b9da964314",
+        "pointer": ""
+      }
+    },
+    {
+      "label": "Supplied annotated example",
+      "sample_ids": [
+        "ToothFairy3F_008"
+      ],
+      "role": "helper",
+      "note": "A separate example supplied in reference-assisted conditions; it is not a blinded test case.",
+      "receipt": {
+        "path": "datasets/receipts/toothfairy3-example.json",
+        "sha256": "44ad238b2b8b95e199c5219e3baacdaac470c49e65739612912008a74b94c1d3",
+        "pointer": ""
+      }
+    },
+    {
+      "label": "Superseded example",
+      "sample_ids": [
+        "F_031"
+      ],
+      "role": "screened",
+      "note": "Prepared before F008 selection; never count as an additional independent trial.",
+      "receipt": {
+        "path": "groups/anatomy-audit/findings/evidence/dental-reference-example-comparison.json",
+        "sha256": "2fd2aca4b4822a679c5851f59c1532e216321c2082777769ff1ba42f128155bc",
+        "pointer": ""
+      }
+    },
+    {
+      "label": "Reference-example source screen",
+      "sample_ids": [
+        "F_008",
+        "F_010",
+        "F_031",
+        "F_051"
+      ],
+      "role": "screened",
+      "note": "Four extracted CT candidates; F008 was selected as the supplied example. Screening is not an independent model trial.",
+      "receipt": {
+        "path": "datasets/receipts/toothfairy3-screen.json",
+        "sha256": "1ea71f950cb58d82fb5e05c6d6a9a1a7a29ac57d295fb82bea6cf17b0267cc57",
+        "pointer": ""
+      }
+    }
+  ],
+  "experiment_ids": [
+    "dental-ct-only-astra-medium",
+    "dental-f002-astra-medium",
+    "dental-f002-contract-v2-astra-medium",
+    "dental-f002-reference-v2-astra-medium",
+    "dental-f018-astra-xhigh",
+    "dental-f018-contract-v3-astra-medium",
+    "dental-f018-reference-v3-astra-medium"
+  ],
+  "brief_ids": [
+    "tb3-dental-original",
+    "tb3-dental-v2",
+    "tb3-dental-v3"
+  ],
+  "documentation_gaps": [
+    "Original F018 viewer-export provenance is separate from archive bytes. Acquisition laterality remains unresolved."
+  ],
+  "example_brief": "tb3-dental-v3",
+  "version_note": "Local archive dataset.json release string 12/05/2025; June P-case update not verified. Source contract audit pins Git 65b7f93796ac8f61046585dd5a52964b09890d0f.",
+  "terms_note": "Archive declares CC BY-SA 4.0; retain attribution and source correction caveats.",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/toothfairy3-targets.json",
+        "sha256": "c033757b998a7eb15cfdc063f326e5e649d9f9da985436d8d281a7b9da964314",
+        "pointer": "/receipt/files"
+      },
+      "path_field": "output",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/toothfairy3-screen.json",
+        "sha256": "1ea71f950cb58d82fb5e05c6d6a9a1a7a29ac57d295fb82bea6cf17b0267cc57",
+        "pointer": "/files"
+      },
+      "path_field": "output",
+      "local_root": ""
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/toothfairy3-example-label.json",
+        "sha256": "93a76f6fa9070ca6313c4bd4662e9125efb62269bff976bf4be9b8bd37e7ed45",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    }
+  ]
+}

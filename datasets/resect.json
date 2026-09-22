@@ -5,7 +5,7 @@
   "title": "RESECT MRI and intraoperative ultrasound",
   "version_note": "Current landing pages and the pinned re-host identify RESECT as DOI 10.11582/2017.00004, while the 2017 dataset article's data-access section cites 10.11582/2016.00003. Three cases were acquired on 2026-09-22 from the MedOtter/RESECT-SEG re-host pinned at e86fb37dd93f7a9c64e48952f71410af59b04b9b; exact selected-file hashes are in the linked sample manifest.",
   "terms_note": "Original RESECT images and landmarks are reported as CC BY 4.0. RESECT-SEG masks are CC BY-NC-SA 4.0, so the combined bounded sample is treated under CC BY-NC-SA 4.0. Retain both citations and recheck source terms before redistribution.",
-  "reference_note": "MNI tag files provide paired MRI and ultrasound world coordinates in millimetres. RESECT-SEG tumor masks are separate contextual annotations, not registration ground truth.",
+  "reference_note": "Tag pairs are registration references. Tumor masks describe context and do not replace corresponding points.",
   "access_note": "The legacy NIRD landing page was unreliable during acquisition. Raw volumes remain local; the pinned re-host supplied bounded individual files. This record does not establish continuing access.",
   "links": [
     {
@@ -27,6 +27,66 @@
     {
       "label": "Pinned community re-host",
       "path": "https://huggingface.co/datasets/MedOtter/RESECT-SEG/tree/e86fb37dd93f7a9c64e48952f71410af59b04b9b"
+    }
+  ],
+  "summary": "Paired MRI and ultrasound make cross-modality point correspondence inspectable.",
+  "modality": "MRI + ultrasound",
+  "sample_unit": "One paired pre-resection examination",
+  "image_description": "FLAIR MRI and 3D ultrasound before resection.",
+  "annotation_description": "Paired MNI tag coordinates; separate tumor context masks.",
+  "sample_sets": [
+    {
+      "label": "Curated paired cases",
+      "sample_ids": [
+        "Case1",
+        "Case2",
+        "Case3"
+      ],
+      "role": "curated",
+      "note": "Three source cases, with source hashes, physical geometry and reader-selected planes.",
+      "receipt": {
+        "path": "groups/registration/presentation/sources/resect-sample.json",
+        "sha256": "de9ab0bdd1981ecfd10200b84bfb6f21a946ee1de5ac44bcd95fbb4f17c412fa",
+        "pointer": ""
+      }
+    }
+  ],
+  "experiment_ids": [
+    "resect-point-audit-astra-medium"
+  ],
+  "brief_ids": [
+    "resect-mri-us-correspondence",
+    "tb3-resect-point-pilot"
+  ],
+  "documentation_gaps": [],
+  "example_brief": "resect-mri-us-correspondence",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "groups/registration/presentation/sources/resect-sample.json",
+        "sha256": "de9ab0bdd1981ecfd10200b84bfb6f21a946ee1de5ac44bcd95fbb4f17c412fa",
+        "pointer": "/cases/0/source_files"
+      },
+      "path_field": "name",
+      "local_root": ".local/datasets/resect-sample/e86fb37/Case1"
+    },
+    {
+      "receipt": {
+        "path": "groups/registration/presentation/sources/resect-sample.json",
+        "sha256": "de9ab0bdd1981ecfd10200b84bfb6f21a946ee1de5ac44bcd95fbb4f17c412fa",
+        "pointer": "/cases/1/source_files"
+      },
+      "path_field": "name",
+      "local_root": ".local/datasets/resect-sample/e86fb37/Case2"
+    },
+    {
+      "receipt": {
+        "path": "groups/registration/presentation/sources/resect-sample.json",
+        "sha256": "de9ab0bdd1981ecfd10200b84bfb6f21a946ee1de5ac44bcd95fbb4f17c412fa",
+        "pointer": "/cases/2/source_files"
+      },
+      "path_field": "name",
+      "local_root": ".local/datasets/resect-sample/e86fb37/Case3"
     }
   ]
 }

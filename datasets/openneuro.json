@@ -2,7 +2,7 @@
   "schema_version": 2,
   "kind": "dataset",
   "id": "dataset-openneuro",
-  "title": "OpenNeuro aneurysm localization",
+  "title": "OpenNeuro ds003949 aneurysm MRI",
   "version_note": "Exact per-experiment bytes and reference version are in the source receipts.",
   "terms_note": "Preserve recorded source terms; access and redistribution require source-specific review.",
   "evidence": [
@@ -15,6 +15,82 @@
     {
       "label": "Source authority",
       "path": "docs/research-rounds/BR-016-aneurysm-localization.md"
+    }
+  ],
+  "summary": "Angiographic MRI with lesion regions for bounded localization.",
+  "modality": "MRA",
+  "sample_unit": "One subject examination",
+  "image_description": "Whole and brain-extracted vascular MRI.",
+  "annotation_description": "Released lesion regions and cohort control labels.",
+  "reference_note": "Weak lesion regions support localization, not exact clinical boundaries. The source-assisted negative answer is not unaided detection evidence.",
+  "sample_sets": [
+    {
+      "label": "Admitted positives",
+      "sample_ids": [
+        "sub-013",
+        "sub-022"
+      ],
+      "role": "used",
+      "note": "Two positive subjects, N01/N02.",
+      "receipt": {
+        "path": "docs/evidence/br016-curation.json",
+        "sha256": "5432ddcf42ef5184fec5e0d2aa7d8df1d4e7162e5ad33bb0a16e8b5ab5a8da58",
+        "pointer": "/admitted"
+      }
+    },
+    {
+      "label": "Control",
+      "sample_ids": [
+        "sub-000"
+      ],
+      "role": "used",
+      "note": "N03; source exposure is documented separately.",
+      "receipt": {
+        "path": "docs/evidence/br016-curation.json",
+        "sha256": "5432ddcf42ef5184fec5e0d2aa7d8df1d4e7162e5ad33bb0a16e8b5ab5a8da58",
+        "pointer": "/negative"
+      }
+    },
+    {
+      "label": "Held candidate",
+      "sample_ids": [
+        "sub-062"
+      ],
+      "role": "screened",
+      "note": "Very small released lesion held for sufficiency review; no trial.",
+      "receipt": {
+        "path": "docs/evidence/br016-curation.json",
+        "sha256": "5432ddcf42ef5184fec5e0d2aa7d8df1d4e7162e5ad33bb0a16e8b5ab5a8da58",
+        "pointer": "/held"
+      }
+    }
+  ],
+  "experiment_ids": [
+    "lesion-localization-br016"
+  ],
+  "brief_ids": [
+    "tb3-aneurysm-localization"
+  ],
+  "documentation_gaps": [],
+  "example_brief": "tb3-aneurysm-localization",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/openneuro-selected.json",
+        "sha256": "dd3ab626e3cd4c17c14efce6a668898a161f97dfa8c6a5475c179a7f4a66f821",
+        "pointer": "/receipt/files"
+      },
+      "path_field": "file",
+      "local_root": "runs/br016-aneurysm/source"
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/openneuro-raw.json",
+        "sha256": "95f730d666741af9df280d842239f84975cacaf843256689d5166a06b5e05f98",
+        "pointer": "/receipt"
+      },
+      "path_field": "file",
+      "local_root": "runs/br016-aneurysm/source"
     }
   ]
 }

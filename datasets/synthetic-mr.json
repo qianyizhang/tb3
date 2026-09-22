@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-synthetic-mr",
+  "title": "Synthetic MR frame-association fixtures",
+  "links": [],
+  "summary": "Authored metadata and pixel arrays test an importer without patient data.",
+  "modality": "Synthetic MR metadata",
+  "sample_unit": "One canonical acquisition with alternative encodings",
+  "image_description": "Asymmetric generated int16 arrays and reconstruction metadata.",
+  "annotation_description": "Canonical pre-serialization acquisition is the exact reference.",
+  "reference_note": "Fixtures implement a declared metadata profile, not complete clinical Enhanced MR objects.",
+  "sample_sets": [
+    {
+      "label": "Authored acquisition family",
+      "sample_ids": [
+        "12 private acquisitions \u00d7 3 encodings",
+        "2 public acquisitions \u00d7 2 encodings"
+      ],
+      "role": "synthetic",
+      "note": "Thirty-six private fixtures and four public inputs; generated encodings are correlated.",
+      "receipt": {
+        "path": "probes/mr-frame-association/authoring/notes.md",
+        "sha256": "20704bd1fb82bd120826cd178e9c748aecc2d174ff27504ebb635e3626a86ee4",
+        "pointer": ""
+      }
+    }
+  ],
+  "experiment_ids": [
+    "anatomy-audit-mr-frame-association"
+  ],
+  "brief_ids": [
+    "tb3-mri-importer"
+  ],
+  "documentation_gaps": [],
+  "example_brief": "tb3-mri-importer",
+  "version_note": "The linked pinned receipts identify the selected release and files; this is not a current upstream availability check.",
+  "terms_note": "Source-specific terms in retained receipts; recheck before reuse or redistribution.",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/synthetic-mr-fixtures.json",
+        "sha256": "08bf97214ad095346b97212b676e433220ab8cb8efd81347a0c5ce139c9e9d46",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    }
+  ]
+}

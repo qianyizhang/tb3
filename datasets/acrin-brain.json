@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-acrin-brain",
+  "title": "ACRIN-DSC-MR-Brain metadata screen",
+  "links": [],
+  "summary": "Open clinical metadata was screened while imaging remained controlled.",
+  "modality": "MRI metadata",
+  "sample_unit": "One clinical reference row",
+  "image_description": "No acquired imaging sample in this screen.",
+  "annotation_description": "Reader outcome tables only.",
+  "reference_note": "Metadata shortlisting is not an admitted image-grounded evaluation.",
+  "sample_sets": [
+    {
+      "label": "Metadata-only shortlist",
+      "sample_ids": [
+        "2",
+        "3",
+        "5"
+      ],
+      "role": "metadata-only",
+      "note": "Source cn-to-DICOM linkage and image completeness not admitted.",
+      "receipt": {
+        "path": "docs/evidence/br037-curation.json",
+        "sha256": "eab3c15f8826a6a0c09021527a1dcf2b4a0cadd3adffb570df53f2ea6257c0b3",
+        "pointer": "/brain_status"
+      }
+    }
+  ],
+  "experiment_ids": [],
+  "brief_ids": [],
+  "documentation_gaps": [
+    "Controlled images were not acquired; subject-to-image mapping unresolved."
+  ],
+  "version_note": "The linked pinned receipts identify the selected release and files; this is not a current upstream availability check.",
+  "terms_note": "Source-specific terms in retained receipts; recheck before reuse or redistribution.",
+  "native_payload_expected": false
+}

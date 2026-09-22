@@ -1,0 +1,77 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-pddca",
+  "title": "PDDCA head and neck CT landmarks",
+  "links": [],
+  "summary": "Head and neck CT paired with named anatomical points.",
+  "modality": "CT",
+  "sample_unit": "One CT examination",
+  "image_description": "Head/neck CT in a physical coordinate frame.",
+  "annotation_description": "Named landmark coordinates from the retained source protocol.",
+  "reference_note": "Only the selected landmark subset is scored; unavailable targets and coordinate conventions are explicit.",
+  "sample_sets": [
+    {
+      "label": "Selected CT",
+      "sample_ids": [
+        "0522c0001"
+      ],
+      "role": "used",
+      "note": "ct-C001 alias; BR-036/038 use this case.",
+      "receipt": {
+        "path": "docs/evidence/br036-curation.json",
+        "sha256": "5b5a4ae53c68ac6a4a3f7d4ef5ee7616ab4f30570a0ea9538d40681bab6fc4fd",
+        "pointer": "/cases/0"
+      }
+    },
+    {
+      "label": "Source catalogue screen",
+      "sample_ids": [
+        "0522c0001",
+        "0522c0002",
+        "0522c0003",
+        "0522c0009",
+        "0522c0013",
+        "0522c0014",
+        "0522c0017",
+        "0522c0057",
+        "0522c0070",
+        "0522c0077",
+        "0522c0079",
+        "0522c0081",
+        "0522c0125",
+        "0522c0132",
+        "0522c0147",
+        "0522c0149"
+      ],
+      "role": "metadata-only",
+      "note": "Listed candidates are not additional acquired/scored CTs.",
+      "receipt": {
+        "path": "docs/evidence/br036-ct-source-inventory.json",
+        "sha256": "0065f2ca4b33fd9bfa844882d37e273a48bfa1311113aa3cfd0405e105cc8b04",
+        "pointer": ""
+      }
+    }
+  ],
+  "experiment_ids": [
+    "anatomical-landmarks-br036",
+    "anatomical-landmarks-br038"
+  ],
+  "brief_ids": [
+    "tb3-named-landmarks"
+  ],
+  "documentation_gaps": [],
+  "version_note": "The linked pinned receipts identify the selected release and files; this is not a current upstream availability check.",
+  "terms_note": "Retained curation describes PDDCA 1.4.1 as public-domain data; preserve source attribution and check release terms.",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/pddca-files.json",
+        "sha256": "b4a72eea7f9618fbdad60c913680f18e41526a0d06a125c0ceb0d25e7bfbace3",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
+    }
+  ]
+}

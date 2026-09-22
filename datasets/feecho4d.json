@@ -2,10 +2,10 @@
   "schema_version": 2,
   "kind": "dataset",
   "id": "dataset-feecho4d",
-  "title": "FeEcho4D fetal echo annotations and fitted meshes",
+  "title": "FeEcho4D fetal ultrasound",
   "version_note": "BR-025 source audit checked on 2026-09-16, native Zenodo record 21322299, Patient001: 30 frames and 37 radial planes. Partial archive retrieval verified extracted member CRCs and SHA-256; full archive MD5 was not verified.",
   "terms_note": "On 2026-09-16 the project stated non-commercial research use; precise downstream redistribution permission remained unresolved. No current permission or access refresh is implied.",
-  "reference_note": "Real fetal STIC with annotated/propagated LV cavity and myocardium contours and fitted meshes. Sparse radial embedding zeros are unobserved, not annotated background. Physical mesh transform, cavity partition and ED/ES index base remained unaudited; whole mesh volume is not an EF oracle.",
+  "reference_note": "Sparse unobserved regions are not background. Mesh physical transform, cavity partition and phase index base remain unresolved.",
   "access_note": "Native Patient001 was retained locally for author calibration. The source receipt separately records gated alternatives that were not requested; this record does not grant or request their access.",
   "evidence": [
     {
@@ -33,6 +33,45 @@
     {
       "label": "Native release",
       "path": "https://zenodo.org/records/21322299"
+    }
+  ],
+  "summary": "Fetal ultrasound planes with contours and fitted meshes.",
+  "modality": "Ultrasound",
+  "sample_unit": "One fetal STIC sequence",
+  "image_description": "Thirty phases and radial source planes.",
+  "annotation_description": "Cavity/myocardium contours and fitted meshes.",
+  "sample_sets": [
+    {
+      "label": "Native sequence",
+      "sample_ids": [
+        "Patient001"
+      ],
+      "role": "curated",
+      "note": "Thirty phases; 37 radial planes; selected members checked, full archive MD5 not verified.",
+      "receipt": {
+        "path": "docs/evidence/br025-source-audit.json",
+        "sha256": "028087eae7b14c2d31d1bf9cbe6abbbee4159ae2c79fb6a4a20173ec887c03a9",
+        "pointer": ""
+      }
+    }
+  ],
+  "experiment_ids": [
+    "cardiac-motion-br025"
+  ],
+  "brief_ids": [
+    "tb3-cardiac-contour-feasibility"
+  ],
+  "documentation_gaps": [],
+  "example_brief": "tb3-cardiac-contour-feasibility",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/feecho4d-members.json",
+        "sha256": "1af472b1aea598fdeb327ff3f063158f9c128915b5a2e7147c74e519be936025",
+        "pointer": "/members"
+      },
+      "path_field": "local_path",
+      "local_root": "runs/br025-cardiac/source/native"
     }
   ]
 }

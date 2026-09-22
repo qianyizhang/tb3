@@ -1,0 +1,42 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-ct-rate",
+  "title": "CT-RATE access screen",
+  "links": [],
+  "summary": "A report-backed CT source considered for future reading tasks.",
+  "modality": "CT + reports",
+  "sample_unit": "No acquired sample",
+  "image_description": "Access-check metadata only.",
+  "annotation_description": "Clinical reports are distinct from automatically extracted labels.",
+  "reference_note": "An access denial or proposed protocol is not a model trial. No local CT-RATE sample is claimed.",
+  "sample_sets": [
+    {
+      "label": "Access check",
+      "sample_ids": [
+        "valid_16_a_1"
+      ],
+      "role": "not-acquired",
+      "note": "Unauthenticated request returned 401 in the retained external receipt.",
+      "receipt": {
+        "path": "presentation/external-tasks/samples.json",
+        "sha256": "6d2038c3123b7fcd6a26420f0d3cd5aa05d46349c9ec7b265d49a89466ad0130",
+        "pointer": "/access_checks"
+      }
+    }
+  ],
+  "experiment_ids": [
+    "longitudinal-reading-br018"
+  ],
+  "brief_ids": [
+    "tb3-report-backed-reading",
+    "healthagentbench",
+    "radagent"
+  ],
+  "documentation_gaps": [
+    "No authorized acquired CT-RATE imaging in the audited receipts."
+  ],
+  "version_note": "The linked pinned receipts identify the selected release and files; this is not a current upstream availability check.",
+  "terms_note": "Source-specific terms in retained receipts; recheck before reuse or redistribution.",
+  "native_payload_expected": false
+}

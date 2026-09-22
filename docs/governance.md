@@ -10,7 +10,7 @@ The [workflow](workflow.md) explains the supported interface.
 | --- | --- |
 | groups/ | Semantic ownership: ideas, decisions, methods, experiments, findings, presentation. Small source records are tracked. |
 | groups/<group>/history/ | Dated research closeouts, retrospectives and trace accounts. Current findings and presentation remain separate; narrative navigation may be maintained without changing scientific outcomes. |
-| datasets/ | Source discovery and access/recovery gaps; no implicit downloads or trial authorization. |
+| datasets/ | Source explanations, selected samples, pinned receipts, task links and access/recovery gaps; no implicit downloads or trial authorization. See [dataset contracts](../datasets/README.md). |
 | discussions/ | Local notes and artifacts are ignored by default. Exact exceptions retain important design histories and stable records under records/. Maintained Task Explorer content lives in presentation/external-tasks/. |
 | src/tb3_medical/, scripts/, tests/, configs/ | Common interfaces, adapters, executable checks and artifact policy. |
 | presentation/ | Shared read-only renderer, media tools and portable publication support. |

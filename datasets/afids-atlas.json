@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-afids-atlas",
+  "title": "AFIDs generic MNI atlas references",
+  "summary": "Generic brain atlas landmarks and index metadata consulted during the BR-040 MRI landmark trial.",
+  "modality": "MRI atlas + landmark tables",
+  "sample_unit": "One generic MNI atlas, distinct from the target patient",
+  "image_description": "MNI152NLin2009cAsym T1 template retrieved by the agent through TemplateFlow for affine registration. The retained archive contains an image pointer; the actual template image is not retained here.",
+  "annotation_description": "Four rater FCSV sets and one generic-template groundtruth point set; the separate AFIDs index archive contains dataset URLs but no subject FCSV files.",
+  "reference_note": "Allowed atlas assistance produced proposals followed by manual review. Generic-template points are not the target patient's ground truth. The preserved source audit found no target-subject label retrieval.",
+  "version_note": "Historical BR-040 archives are pinned by SHA-256. They identify the generic MNI152NLin2009cAsym template and AFIDs index; the runtime image has no retained SHA-256 and remains an explicit recovery gap.",
+  "terms_note": "The retained template LICENSE requires preservation of its copyright notice. The index has a separate LICENSE.md. Inspect those exact terms before redistribution; current upstream terms were not checked.",
+  "links": [
+    {
+      "label": "Contemporaneous source and assistance audit",
+      "path": "docs/evidence/br040-source-audit.json"
+    },
+    {
+      "label": "Preserved trial results and commands",
+      "path": "docs/evidence/br040-results.json"
+    }
+  ],
+  "sample_sets": [
+    {
+      "label": "Generic template and points used as help",
+      "sample_ids": [
+        "tpl-MNI152NLin2009cAsym_res-01"
+      ],
+      "role": "helper",
+      "note": "Generic template reference used in the mri32-full Sol trial. Five FCSV sets are retained inside tpl_casym.zip; the template image itself is not retained.",
+      "receipt": {
+        "path": "docs/evidence/br040-source-audit.json",
+        "sha256": "74937bc75d4b24afc10e0489b2f661b12457f01410cd6732811b8313722700f5",
+        "pointer": "/archives/tpl_casym.zip"
+      }
+    },
+    {
+      "label": "Consulted source index",
+      "sample_ids": [
+        "afids-data-main"
+      ],
+      "role": "metadata-only",
+      "note": "Dataset index and protocol metadata consulted by the same trial; no target-subject FCSV files or C001 mentions were present in this archive.",
+      "receipt": {
+        "path": "docs/evidence/br040-source-audit.json",
+        "sha256": "74937bc75d4b24afc10e0489b2f661b12457f01410cd6732811b8313722700f5",
+        "pointer": "/archives/afids-data.zip"
+      }
+    }
+  ],
+  "experiment_ids": [
+    "anatomical-landmarks-br040"
+  ],
+  "brief_ids": [
+    "tb3-named-landmarks"
+  ],
+  "documentation_gaps": [
+    "The trial used this TemplateFlow image for affine registration, but its image bytes and a SHA-256 receipt were not retained in the audited workspace. The archive NIfTI entry is only a git-annex pointer (expected MD5 6c64ebf985fe30d93e49a4baa41b9278, 13685075 bytes); verifying the archive does not verify the downloaded template image."
+  ],
+  "unverified_payloads": [
+    {
+      "sample_id": "tpl-MNI152NLin2009cAsym_res-01_T1w",
+      "original_runtime_path": "/root/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-01_T1w.nii.gz",
+      "note": "The trial used this TemplateFlow image for affine registration, but its image bytes and a SHA-256 receipt were not retained in the audited workspace. The archive NIfTI entry is only a git-annex pointer (expected MD5 6c64ebf985fe30d93e49a4baa41b9278, 13685075 bytes); verifying the archive does not verify the downloaded template image.",
+      "receipt": {
+        "path": "docs/evidence/br040-results.json",
+        "sha256": "dc9c8da07ad0948e8813f74188f87776c872e5619b2a1cf38019897731d1887b",
+        "pointer": ""
+      }
+    }
+  ],
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/afids-atlas-archives.json",
+        "sha256": "a3a8f4ebae2745aca0f7832b48d78ddc31d40a34bcdda889c6c591fed1a86181",
+        "pointer": "/files"
+      },
+      "path_field": "path"
+    }
+  ]
+}

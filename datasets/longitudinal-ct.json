@@ -22,5 +22,81 @@
       "label": "Second test case: source-driven selection and GT review",
       "path": "groups/longitudinal-reading/examples/longitudinal-ct-case02-selection.md"
     }
+  ],
+  "summary": "Paired CT scans with lesion labels and links across visits.",
+  "modality": "CT",
+  "sample_unit": "One patient with baseline and follow-up",
+  "image_description": "Two whole CT examinations separated in time.",
+  "annotation_description": "Lesion masks, per-visit metadata and cross-visit links.",
+  "reference_note": "Label presence, correspondence and clinical malignancy are different claims. Uncertain links, defacing and coordinate conventions remain explicit.",
+  "sample_sets": [
+    {
+      "label": "First acquired pairs",
+      "sample_ids": [
+        "0a09c8844b",
+        "02522a2b27",
+        "06eb133bbf",
+        "0777d5c17d"
+      ],
+      "role": "curated",
+      "note": "0a09c8844b is the first repeated development case; other pairs were reviewed, not all trialled.",
+      "receipt": {
+        "path": "groups/longitudinal-reading/examples/longitudinal-ct-review-20260922.json",
+        "sha256": "f98c77d343a1b2432c256e92a852a80be4b63af8227abed09c2ef80e1df94c82",
+        "pointer": ""
+      }
+    },
+    {
+      "label": "Second trial pair",
+      "sample_ids": [
+        "bcbe3365e6"
+      ],
+      "role": "used",
+      "note": "Seven selected members; persistence and new-lesion diagnostic.",
+      "receipt": {
+        "path": "datasets/receipts/longitudinal-ct-case02.json",
+        "sha256": "87c92dc0c4f224e130a98d1900f7ef9ff98c62a4abf012cde8300efa3f716ccb",
+        "pointer": ""
+      }
+    }
+  ],
+  "experiment_ids": [
+    "longitudinal-ct-case02-astra-medium",
+    "longitudinal-ct-context-inference-astra-medium",
+    "longitudinal-ct-context-supplied-astra-medium",
+    "longitudinal-ct-curation-astra-medium",
+    "longitudinal-ct-image-only-astra-medium",
+    "longitudinal-ct-image-only-sol-xhigh",
+    "longitudinal-ct-localized-astra-medium",
+    "longitudinal-ct-v2-astra-medium"
+  ],
+  "brief_ids": [
+    "tb3-longitudinal-ct-original",
+    "tb3-longitudinal-ct-revised",
+    "tb3-longitudinal-ct-candidates",
+    "tb3-localized-candidate-recognition",
+    "tb3-ct-context-inference"
+  ],
+  "documentation_gaps": [],
+  "example_brief": "tb3-longitudinal-ct-original",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "groups/longitudinal-reading/examples/longitudinal-ct-review-20260922.json",
+        "sha256": "f98c77d343a1b2432c256e92a852a80be4b63af8227abed09c2ef80e1df94c82",
+        "pointer": "/files"
+      },
+      "path_field": "member",
+      "local_root": ".local/longitudinal-ct-review/raw"
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/longitudinal-ct-case02.json",
+        "sha256": "87c92dc0c4f224e130a98d1900f7ef9ff98c62a4abf012cde8300efa3f716ccb",
+        "pointer": "/receipt/files"
+      },
+      "path_field": "member",
+      "local_root": ".local/longitudinal-ct-case02/raw"
+    }
   ]
 }

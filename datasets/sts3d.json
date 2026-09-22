@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-sts3d",
+  "title": "STS-3D-Tooth mirror audit",
+  "links": [
+    {
+      "label": "Original source",
+      "path": "https://huggingface.co/datasets/MedOtter/STS-3D-Tooth/tree/2d1fdf36e225261de5d60830579c0ca16fd499f5"
+    }
+  ],
+  "summary": "Three acquired dental samples retained as a negative source-quality finding.",
+  "modality": "CBCT",
+  "sample_unit": "One ROI scan and paired mask",
+  "image_description": "Cropped dental intensity volume.",
+  "annotation_description": "Mirror-provided binary labels.",
+  "reference_note": "Inspected masks did not support per-tooth FDI scoring; the audit found technical/reference problems. These are source audits, not model failures.",
+  "sample_sets": [
+    {
+      "label": "Audited mirror cases",
+      "sample_ids": [
+        "ROI_L_001",
+        "ROI_L_002",
+        "ROI_L_003"
+      ],
+      "role": "screened",
+      "note": "No model trial; retain original bytes and rejection evidence.",
+      "receipt": {
+        "path": "groups/anatomy-audit/findings/evidence/dental-sts-gt-audit.json",
+        "sha256": "5163cb4aacad43e2fce79aa259ac68b2bd80fca6faff640a73b7086ba1cb54d1",
+        "pointer": ""
+      }
+    }
+  ],
+  "experiment_ids": [],
+  "brief_ids": [],
+  "documentation_gaps": [
+    "Not usable as-is for anatomical scoring."
+  ],
+  "version_note": "The linked pinned receipts identify the selected release and files; this is not a current upstream availability check.",
+  "terms_note": "Mirror declared CC BY 4.0; source authority and label semantics need resolution before reuse.",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "groups/anatomy-audit/findings/evidence/dental-sts-gt-audit.json",
+        "sha256": "5163cb4aacad43e2fce79aa259ac68b2bd80fca6faff640a73b7086ba1cb54d1",
+        "pointer": "/download/files"
+      },
+      "path_field": "path",
+      "local_root": "runs/dental-sts-gt-audit-20260921"
+    }
+  ]
+}

@@ -2,10 +2,10 @@
   "schema_version": 2,
   "kind": "dataset",
   "id": "dataset-aeropath",
-  "title": "AeroPath airway CT and annotations",
+  "title": "AeroPath airway CT",
   "version_note": "BR-033 historical source review, 2026-09-16: mirror revision 6d0f831ca22bf57918aba3980ae475c94d45b997; selected CT, airway and lung files were checked against published LFS SHA-256 digests.",
   "terms_note": "The retained license.md says CC BY 4.0, while the Hugging Face card says MIT. Preserve both declarations; neither the card nor the code repository alone resolves dataset redistribution terms. This is the 2026-09-16 observation, not a current license check.",
-  "reference_note": "Manually refined airway/lung masks are separate from official Raidionics model predictions. Reference omissions can occur; binary masks do not establish named bronchi or biopsy-target truth. BR-033 parent-gap concerns are retained in its results.",
+  "reference_note": "Reference omissions and parent-gap concerns remain explicit. Binary masks do not identify named bronchi or biopsy targets.",
   "access_note": "Selected files and model outputs remain local, with exact hashes in the source receipt. No downloads, current-access verification or publication clearance were performed for this index.",
   "evidence": [
     {
@@ -33,6 +33,47 @@
     {
       "label": "Pinned data mirror",
       "path": "https://huggingface.co/datasets/andreped/AeroPath/tree/6d0f831ca22bf57918aba3980ae475c94d45b997"
+    }
+  ],
+  "summary": "Chest CT with airway/lung references and separately generated model predictions.",
+  "modality": "CT",
+  "sample_unit": "One CT examination",
+  "image_description": "High-resolution chest CT.",
+  "annotation_description": "Airway and lung labels; predictions are separate derived artifacts.",
+  "sample_sets": [
+    {
+      "label": "Acquired airway cases",
+      "sample_ids": [
+        "1",
+        "10",
+        "11"
+      ],
+      "role": "curated",
+      "note": "Three source CT/airway/lung pairs. Trial admission is experiment-specific.",
+      "receipt": {
+        "path": "docs/evidence/br033-source-audit.json",
+        "sha256": "8c1607d37554eadf288e4eed9d79b49ce9577f2ee2f26e1d589e55343ca2994a",
+        "pointer": "/aeropath/dataset_files"
+      }
+    }
+  ],
+  "experiment_ids": [
+    "tubular-anatomy-br033"
+  ],
+  "brief_ids": [
+    "tb3-airway-repair"
+  ],
+  "documentation_gaps": [],
+  "example_brief": "tb3-airway-repair",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "docs/evidence/br033-source-audit.json",
+        "sha256": "8c1607d37554eadf288e4eed9d79b49ce9577f2ee2f26e1d589e55343ca2994a",
+        "pointer": "/aeropath/dataset_files"
+      },
+      "path_field": "path",
+      "local_root": "runs/br033-brain-routing/airway-access"
     }
   ]
 }

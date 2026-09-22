@@ -32,3 +32,7 @@ it offers capability and repository views plus a supporting-research filter.
 Build the standalone explorer with `med brief build`, check it with
 `med brief check`, or scaffold a proposed brief with `med brief new --help`.
 These commands use the installed native CLI and never launch a trial.
+
+The explorer also has [dataset learning pages](../datasets/README.md): a searchable
+source index, selected sample provenance, input/reference explanations and links
+back to the tasks. Dataset pages are included in standalone and integrated builds.

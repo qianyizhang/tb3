@@ -2,10 +2,10 @@
   "schema_version": 2,
   "kind": "dataset",
   "id": "dataset-echoxflow",
-  "title": "EchoXFlow clinical echo and LV endocardial surfaces",
+  "title": "EchoXFlow clinical cardiac ultrasound",
   "version_note": "BR-034 September 2026 review inspected source code commit b782e0a4e3dbaadf3c88fa572710bf4254d86143 and catalog SHA-256 2b0e80f83f8743f5babde82a3d8ded8ec4d607a1889a1b8b8cd204342116f83d. Exact selected recordings and native/reconstruction hashes remain in BR-034/035 receipts.",
   "terms_note": "The retained source review records CC BY-NC-SA 4.0. Clinical assets remain local; confirm the selected release and all conditions before reuse or redistribution. No current permission refresh is implied.",
-  "reference_note": "Clinical B-mode volumes have operator-created or adjusted LV endocardial surfaces. These are geometric/function references with observer/software uncertainty, not independent material trajectories or etiologic diagnosis. BR-034 supplies the initial surface; BR-035 supplies all-phase cavity masks that already encode EF.",
+  "reference_note": "Surfaces support geometric/function comparison with observer uncertainty. They are not material trajectories or etiologic diagnosis truth.",
   "access_note": "BR-032 inspected the card without acquiring examinations; subsequent BR-034 acquired selected archives and BR-035 reused a clinical sequence. Whole TAR hashes matched publisher LFS hashes, but the publisher array-hash serialization was not reproduced.",
   "evidence": [
     {
@@ -33,6 +33,100 @@
     {
       "label": "Official dataset",
       "path": "https://huggingface.co/datasets/Ahus-AIM/EchoXFlow"
+    }
+  ],
+  "summary": "Clinical B-mode recordings paired with LV cavity surface reconstructions.",
+  "modality": "Ultrasound",
+  "sample_unit": "One clinical recording",
+  "image_description": "Native 3D B-mode frames with timestamps.",
+  "annotation_description": "Operator-created or adjusted LV endocardial surfaces.",
+  "sample_sets": [
+    {
+      "label": "Selected recordings",
+      "sample_ids": [
+        "recording_8aef1d9a69fc3bae",
+        "recording_096b622cc35c6401",
+        "recording_020bed77ed11234b"
+      ],
+      "role": "used",
+      "note": "Primary, hidden transfer and preserved-function source selections.",
+      "receipt": {
+        "path": "docs/evidence/br034-clinical-adaptation-results.json",
+        "sha256": "252f9c3da79e7117324eaef96c6551bd4d05ea3c100cf3548c84937a110d70bc",
+        "pointer": ""
+      }
+    },
+    {
+      "label": "Source surface screen",
+      "sample_ids": [
+        "recording_605d040ea4669ae7.zarr",
+        "recording_d19a6676f2e44417.zarr",
+        "recording_38070b9d2ea39201.zarr",
+        "recording_546db2ff863f3d6a.zarr",
+        "recording_020bed77ed11234b.zarr",
+        "recording_eebeac6f50d2b70d.zarr",
+        "recording_096b622cc35c6401.zarr",
+        "recording_fed6435d46abf848.zarr",
+        "recording_183ca0861839a680.zarr",
+        "recording_8aef1d9a69fc3bae.zarr",
+        "recording_5dfce0e6687b9ef4.zarr",
+        "recording_f686a2429b11016a.zarr",
+        "recording_10a6bfbe326a9f8e.zarr",
+        "recording_b6b62bfae6d63f81.zarr",
+        "recording_49e91cd472d0051d.zarr",
+        "recording_df6e772a418749b4.zarr",
+        "recording_1ea1f6b27e0ff8f5.zarr",
+        "recording_cff7e3da2fffb117.zarr",
+        "recording_91212f289d6b8b5d.zarr",
+        "recording_b0b5f00fb62cc71c.zarr"
+      ],
+      "role": "screened",
+      "note": "Screened reference surfaces do not imply all native image sequences were acquired.",
+      "receipt": {
+        "path": "docs/evidence/br034-clinical-adaptation-results.json",
+        "sha256": "252f9c3da79e7117324eaef96c6551bd4d05ea3c100cf3548c84937a110d70bc",
+        "pointer": "/screened_cases"
+      }
+    },
+    {
+      "label": "Acquired recording archives",
+      "sample_ids": [
+        "exam_15c32cdd27634da1",
+        "exam_2a7bdab4857947fe",
+        "exam_5bed28e510bd10f0",
+        "exam_5daf5517464ccc62",
+        "exam_8d864b48907a4e1c",
+        "exam_c383e57200b6d5a0",
+        "exam_db46c47fa1efeb4a",
+        "exam_dddb6f0e5c2e0785",
+        "exam_e5a6d66f08c54361"
+      ],
+      "role": "curated",
+      "note": "Nine retained native archives. The wider twenty-record screen includes reference/metadata-only observations.",
+      "receipt": {
+        "path": "datasets/receipts/echoxflow-archives.json",
+        "sha256": "7f888b105e72eb1fe1f96d596574f09545a40f0c0bb6092ea86e72d353b22e9a",
+        "pointer": ""
+      }
+    }
+  ],
+  "experiment_ids": [
+    "cardiac-motion-br034"
+  ],
+  "brief_ids": [
+    "tb3-clinical-cavity-adaptation"
+  ],
+  "documentation_gaps": [],
+  "example_brief": "tb3-clinical-cavity-adaptation",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/echoxflow-archives.json",
+        "sha256": "7f888b105e72eb1fe1f96d596574f09545a40f0c0bb6092ea86e72d353b22e9a",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
     }
   ]
 }

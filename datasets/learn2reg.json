@@ -2,9 +2,9 @@
   "schema_version": 2,
   "kind": "dataset",
   "id": "dataset-learn2reg",
-  "title": "Learn2Reg LungCT",
-  "version_note": "Exact per-experiment bytes and reference version are in the source receipts. The cited report has navigation-only edits; its original path and digest are retained in archive/manifest.json.",
-  "terms_note": "Preserve recorded source terms; access and redistribution require source-specific review.",
+  "title": "Learn2Reg LungCT respiratory pairs",
+  "version_note": "Learn2Reg LungCT 1.11; retained source attribution in the registration synthesis.",
+  "terms_note": "Source receipt records CC BY 4.0 with original DOI 10.5281/zenodo.3835682.",
   "evidence": [
     {
       "path": "groups/registration/history/br019-br028-synthesis.md",
@@ -15,6 +15,53 @@
     {
       "label": "Source authority",
       "path": "groups/registration/history/br019-br028-synthesis.md"
+    }
+  ],
+  "summary": "Inspiration and expiration CT with correspondence landmarks.",
+  "modality": "CT",
+  "sample_unit": "One respiratory CT pair",
+  "image_description": "Two CT volumes from different breathing states.",
+  "annotation_description": "Manual correspondence points plus experiment-defined derived queries.",
+  "reference_note": "Real respiratory motion is distinct from resampling a rigid plane. Views derived from one pair are not independent patients.",
+  "sample_sets": [
+    {
+      "label": "Respiratory pairs",
+      "sample_ids": [
+        "patient1",
+        "patient2",
+        "patient3"
+      ],
+      "role": "used",
+      "note": "Patient1 initial study; patient2 screened and held; patient3 admitted for later source-depth comparison. Exact query and task revisions remain in freezes.",
+      "receipt": {
+        "path": "groups/registration/history/br019-br028-synthesis.md",
+        "sha256": "b9bf47bff923e701ffe5b87b4e6851651edf6ed35a92d178eae6761af485ffa8",
+        "pointer": ""
+      }
+    }
+  ],
+  "experiment_ids": [
+    "registration-br021",
+    "registration-br022",
+    "registration-br023",
+    "registration-br024",
+    "registration-br028"
+  ],
+  "brief_ids": [
+    "tb3-respiratory-correspondence",
+    "tb3-registration-analysis"
+  ],
+  "documentation_gaps": [],
+  "example_brief": "tb3-respiratory-correspondence",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/learn2reg-files.json",
+        "sha256": "dda307121e3476cb9f9266b21b6d49fdc3f1e163d0b79c92585f38d7f81a0ece",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
     }
   ]
 }

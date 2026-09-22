@@ -3,8 +3,8 @@
   "kind": "dataset",
   "id": "dataset-afids",
   "title": "AFIDs MRI landmarks",
-  "version_note": "Exact per-experiment bytes and reference version are in the source receipts.",
-  "terms_note": "Preserve recorded source terms; access and redistribution require source-specific review.",
+  "version_note": "AFIDs SNSX ds004470; source Git 53f2c2caecf346b620971a5dd4672ca538441ede.",
+  "terms_note": "CC BY 4.0 as recorded in the source curation.",
   "evidence": [
     {
       "path": "docs/evidence/br038-freeze.json",
@@ -15,6 +15,47 @@
     {
       "label": "Source authority",
       "path": "docs/evidence/br038-freeze.json"
+    }
+  ],
+  "summary": "Brain MRI with repeated human landmark annotations.",
+  "modality": "MRI",
+  "sample_unit": "One MRI plus rater point sets",
+  "image_description": "T1-weighted MRI, including original and task-prepared coordinates.",
+  "annotation_description": "Named AFIDs points; selected and expanded target sets use the same patient.",
+  "reference_note": "Rater uncertainty and LPS/RAS conversion are part of the reference contract; a point mean is not exact anatomical truth.",
+  "sample_sets": [
+    {
+      "label": "Selected MRI",
+      "sample_ids": [
+        "sub-C001"
+      ],
+      "role": "used",
+      "note": "mri-C001 alias, OpenNeuro ds004470. Original-source and coordinate correction receipts remain separate.",
+      "receipt": {
+        "path": "docs/evidence/br036-curation.json",
+        "sha256": "5b5a4ae53c68ac6a4a3f7d4ef5ee7616ab4f30570a0ea9538d40681bab6fc4fd",
+        "pointer": "/cases/1"
+      }
+    }
+  ],
+  "experiment_ids": [
+    "anatomical-landmarks-br036",
+    "anatomical-landmarks-br038",
+    "anatomical-landmarks-br040"
+  ],
+  "brief_ids": [
+    "tb3-named-landmarks"
+  ],
+  "documentation_gaps": [],
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/afids-files.json",
+        "sha256": "c1198588da131e1dc469426be7e3aaf5d532d57f35a5274bca9a5360d4228980",
+        "pointer": "/files"
+      },
+      "path_field": "path",
+      "local_root": ""
     }
   ]
 }

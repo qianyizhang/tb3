@@ -1,0 +1,64 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-nlst",
+  "title": "NLST paired CT reconstructions",
+  "links": [
+    {
+      "label": "Original collection",
+      "path": "https://www.cancerimagingarchive.net/collection/nlst/"
+    }
+  ],
+  "summary": "Two reconstruction kernels of one chest CT acquisition support a controlled pose-recovery task.",
+  "modality": "CT",
+  "sample_unit": "One matched examination, two reconstructions",
+  "image_description": "B30f and B50f CT volumes, matched on geometry and acquisition metadata.",
+  "annotation_description": "Author-selected plane pose derived from source geometry.",
+  "reference_note": "The known transform tests geometric recovery. It is not a clinical landmark or cross-acquisition registration reference.",
+  "sample_sets": [
+    {
+      "label": "Kernel pair",
+      "sample_ids": [
+        "120547"
+      ],
+      "role": "used",
+      "note": "139 matching slice positions; common projection acquisition is supported but not independently proven.",
+      "receipt": {
+        "path": "datasets/receipts/nlst-pair.json",
+        "sha256": "055271e8037db293bc6442c36e09cb15fd776d658c4d37a66703615036efc04b",
+        "pointer": ""
+      }
+    }
+  ],
+  "experiment_ids": [
+    "registration-br020"
+  ],
+  "brief_ids": [
+    "tb3-oblique-pose"
+  ],
+  "documentation_gaps": [
+    "Projection IDs were not available to independently establish a common projection acquisition."
+  ],
+  "version_note": "The linked pinned receipts identify the selected release and files; this is not a current upstream availability check.",
+  "terms_note": "Source receipt records CC BY 4.0. Preserve NLST/TCIA attribution; recheck terms for reuse.",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/nlst-pair.json",
+        "sha256": "055271e8037db293bc6442c36e09cb15fd776d658c4d37a66703615036efc04b",
+        "pointer": "/receipt/series/0/files"
+      },
+      "path_field": "path",
+      "local_root": "runs/br020-registration/source"
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/nlst-pair.json",
+        "sha256": "055271e8037db293bc6442c36e09cb15fd776d658c4d37a66703615036efc04b",
+        "pointer": "/receipt/series/1/files"
+      },
+      "path_field": "path",
+      "local_root": "runs/br020-registration/source"
+    }
+  ]
+}

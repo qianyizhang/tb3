@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "kind": "discussion",
+  "id": "discussion-datasets-first-class",
+  "title": "Datasets as first-class documented sources and explorer pages",
+  "source": "codex://threads/01a0c891-fc9a-76a2-9220-453adec7f396",
+  "user_request": "Verify correct and complete documentation of used samples under datasets/ and add Task Explorer dataset subpages with visual explanations.",
+  "implementation_actor": "assistant",
+  "scope": "Registered medical experiments, retained source screens and acquired external explorer examples; no trials or acquisition.",
+  "links": [
+    {
+      "label": "Dataset contract and source index",
+      "path": "datasets/README.md"
+    },
+    {
+      "label": "Source/sample audit and limits",
+      "path": "datasets/audits/2026-09-22.md"
+    },
+    {
+      "label": "Machine-readable audit",
+      "path": "datasets/audits/2026-09-22.json"
+    },
+    {
+      "label": "Frozen sample/reference snapshot contract",
+      "path": "datasets/previews/README.md"
+    }
+  ],
+  "followup_request": "Each dataset should have a viewer or frozen snapshot illustrating an actual data sample and its ground truth.",
+  "followup_actor": "user",
+  "snapshot_findings": [
+    "All 28 sources receive a snapshot record; 23 sample/reference pairs, two input-only sources, one reference-only atlas and two unacquired metadata screens remain distinct.",
+    "Disputed annotations, paired reconstructions, simulator truth and clinical measurements retain different reference qualifications.",
+    "The main dataset view leads with the frozen sample and an explicit reference reveal; source bytes, selections, captions and hashes stay inspectable."
+  ]
+}

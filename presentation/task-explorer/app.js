@@ -90,6 +90,8 @@ function canonicalTab(value) {
   return ({brief:'overview',catalogue:'overview',contract:'requirements'})[value] || value || 'overview';
 }
 function route() {
+  if (/^#datasets(?:\/|$)/.test(location.hash)) { renderDatasets(); return; }
+  datasetMode(false);
   const [path,query=''] = location.hash.slice(1).split('?'), previousSource=selectedSource;
   const parts = path.split('/');
   selected = byId.has(parts[0]) ? parts[0] : entries[0].id;
@@ -279,7 +281,7 @@ function taskDetail(e) {
   const family=familyConfig(e),members=familyMembers(e);
   const variantPicker=members.length>1?`<label class="task-variant-picker" for="task-variant">${esc(family.selector)}<select id="task-variant">${members.map(x=>`<option value="${esc(x.id)}" ${x.id===selected?'selected':''}>${esc(x.nav_label||x.title)}</option>`).join('')}</select></label>`:'';
   const provenance=`<p class="task-provenance">${esc(e.repo)}${e.owner_group?' · Research owner: '+esc(e.owner_group):''}<br>${esc(categoryInfo(e.category).title)} · ${esc(taxonomy.roles?.[e.role] || 'Agent task')} · ${esc(taxonomy.agent_work?.[e.agent_work] || '')}${e.operations?.length?' · Also: '+e.operations.map(op=>esc(categoryInfo(op).title)).join(', '):''}</p>`;
-  return `<article class="task-detail" data-brief="${esc(e.id)}"><div class="detail-heading">${provenance}${e.proposed?'<span class="draft">Proposed</span>':''}<h2>${esc(members.length>1?family.title:e.title)}</h2>${variantPicker}${edition(e)?`<span class="edition">${esc(edition(e))}</span>`:''}${summary?`<div class="task-goal">${summary}</div>`:''}</div>${sourceScope(e)}<div class="tabs" role="tablist" aria-label="Task sections">${tabs.map(([id,label])=>`<button id="tab-${id}" data-tab="${id}" role="tab" tabindex="${tab===id?0:-1}" aria-selected="${tab===id}" aria-controls="task-panel">${label}</button>`).join('')}</div><section id="task-panel" role="tabpanel" tabindex="0" aria-labelledby="tab-${tab}">${body}</section></article>`;
+  return `<article class="task-detail" data-brief="${esc(e.id)}"><div class="detail-heading">${provenance}${e.proposed?'<span class="draft">Proposed</span>':''}<h2>${esc(members.length>1?family.title:e.title)}</h2>${variantPicker}${edition(e)?`<span class="edition">${esc(edition(e))}</span>`:''}${summary?`<div class="task-goal">${summary}</div>`:''}</div>${sourceScope(e)}${datasetLinks(e)}<div class="tabs" role="tablist" aria-label="Task sections">${tabs.map(([id,label])=>`<button id="tab-${id}" data-tab="${id}" role="tab" tabindex="${tab===id?0:-1}" aria-selected="${tab===id}" aria-controls="task-panel">${label}</button>`).join('')}</div><section id="task-panel" role="tabpanel" tabindex="0" aria-labelledby="tab-${tab}">${body}</section></article>`;
 }
 let disposeTaskScene=()=>{};
 function render() {
@@ -364,4 +366,6 @@ if(DATA.presentation_context?.home_url){
   const link=document.createElement('a');link.id='workbench-home';link.href=DATA.presentation_context.home_url;link.textContent=DATA.presentation_context.home_label || 'Experiment evidence';
   document.querySelector('header>div:last-child').prepend(link);
 }
+const datasetsLink=document.createElement('a');datasetsLink.id='datasets-home';datasetsLink.href='#datasets';datasetsLink.textContent='Datasets';
+document.querySelector('header>div:last-child').prepend(datasetsLink);
 route();

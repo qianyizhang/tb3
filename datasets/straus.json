@@ -2,10 +2,10 @@
   "schema_version": 2,
   "kind": "dataset",
   "id": "dataset-straus",
-  "title": "Multimodality STRAUS simulated ultrasound and material motion",
+  "title": "STRAUS simulated cardiac motion",
   "version_note": "BR-029 integrity review dated 2026-09-16 verifies retained patient01_healthy image/mesh and patient04_lbbb mesh manifests. BR-035 reuses the audited 30-frame healthy simulation; exact task transformations remain experiment-specific.",
   "terms_note": "Public Girder access was recorded in the September 2026 source review, but public downloading did not establish redistribution permission. Source assets were kept local; no current license determination is added.",
-  "reference_note": "Simulator meshes have persistent topology and material identities, unlike clinical image-derived contours. Directional strain excludes elements without valid source directions. Synthetic truth is not measured patient strain; matching masks alone does not uniquely determine material motion.",
+  "reference_note": "Material motion truth is simulator truth, not measured patient strain. Similar cavity shape does not establish material tracking.",
   "access_note": "Healthy ultrasound and meshes and the separate LBBB mesh sequence were retained and hash-verified in BR-029. The BR-025 inventory-only note predates those acquisitions and remains historical.",
   "evidence": [
     {
@@ -33,6 +33,63 @@
     {
       "label": "Source project",
       "path": "https://humanheart-project.creatis.insa-lyon.fr/multimodalityStraus.html"
+    }
+  ],
+  "summary": "Simulated ultrasound and persistent material meshes allow controlled motion checks.",
+  "modality": "Simulated ultrasound",
+  "sample_unit": "One simulated heart sequence",
+  "image_description": "Synthetic ultrasound over time.",
+  "annotation_description": "Meshes with persistent material identity and directional data.",
+  "sample_sets": [
+    {
+      "label": "Retained simulations",
+      "sample_ids": [
+        "patient01_healthy",
+        "patient04_lbbb"
+      ],
+      "role": "synthetic",
+      "note": "Healthy images/meshes and LBBB mesh source; BR-035 reuses the healthy simulation.",
+      "receipt": {
+        "path": "docs/evidence/br029-dynamic-heart-integrity.json",
+        "sha256": "ac357b31f1ea261507f6edc4ca74c26d0926d9c1d4a1eb701b96e360e65b3524",
+        "pointer": "/source_cases"
+      }
+    }
+  ],
+  "experiment_ids": [
+    "cardiac-motion-br025",
+    "cardiac-motion-br027",
+    "cardiac-motion-br029",
+    "cardiac-motion-br031",
+    "cardiac-motion-br035"
+  ],
+  "brief_ids": [
+    "tb3-cardiac-contour-feasibility",
+    "tb3-cardiac-anchor-feasibility",
+    "tb3-cardiac-material-feasibility",
+    "tb3-cardiac-material-motion",
+    "tb3-mask-to-mechanics"
+  ],
+  "documentation_gaps": [],
+  "example_brief": "tb3-cardiac-material-motion",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/straus-patient01_healthy.json",
+        "sha256": "f57f95de623bfbeeed68743c15999f2a9668ed94c1ceff1ce194de940b401c27",
+        "pointer": "/receipt/files"
+      },
+      "path_field": "path",
+      "local_root": "runs/br029-dynamic-heart/source/patient01_healthy"
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/straus-patient04_lbbb.json",
+        "sha256": "285af282e27c948e2e7567bc37ce1ed965c464760e58be9c622b48cd85458f0a",
+        "pointer": "/receipt/files"
+      },
+      "path_field": "path",
+      "local_root": "runs/br029-dynamic-heart/source/patient04_lbbb"
     }
   ]
 }
