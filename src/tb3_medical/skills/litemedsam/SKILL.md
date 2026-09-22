@@ -1,6 +1,8 @@
 ---
 name: litemedsam
 description: Create or refine medical-image segmentation masks with the environment's LiteMedSAM tool, using image inspection, bounding-box prompts, and mask review.
+metadata:
+  version: "1.1.0"
 ---
 
 # LiteMedSAM
@@ -57,3 +59,12 @@ Save the image/box provenance and masks. For colored overlays, include a visible
 legend with swatches or line samples in the **exact overlay colors**. Match line
 styles too; label reference, prediction and prompt separately, including when a
 reference is unavailable. Do not rely on color names in a prose caption alone.
+
+## Close out the skill invocation
+
+The invoked version is the `metadata.version` loaded from this `SKILL.md`. Near
+closeout, read only **Active lessons** in
+[references/feedback-ledger.md](references/feedback-ledger.md). Append one History
+entry only for material reusable feedback, recording that invoked version.
+Do not log routine success or delay the requested deliverable. If the canonical
+ledger is not writable or in scope, surface a compact suggested entry instead.

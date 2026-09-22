@@ -1,6 +1,8 @@
 ---
 name: author-task-brief
 description: Create concise, source-backed task explanations and browsable task catalogues with explicit inputs, helper artifacts, outputs and visual reveals. Use for explaining existing tasks or drafting proposed tasks.
+metadata:
+  version: "1.1.0"
 ---
 
 # Author a Task Brief
@@ -51,3 +53,12 @@ Aim for a 60–90 second first read, then optional detail. Keep the executable t
 specification and scorer separately authoritative; reader reveals must not become
 solver inputs. Validate the rendered navigation and input/helper/reveal states,
 and use the repository's relevant offline checks after tooling changes.
+
+## Close out the skill invocation
+
+The invoked version is the `metadata.version` loaded from this `SKILL.md`. Near
+closeout, read only **Active lessons** in
+[references/feedback-ledger.md](references/feedback-ledger.md). Append one History
+entry only for material reusable feedback, recording that invoked version.
+Do not log routine success or delay the requested deliverable. If the canonical
+ledger is not writable or in scope, surface a compact suggested entry instead.

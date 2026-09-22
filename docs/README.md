@@ -13,6 +13,8 @@ Finding submission candidates is an optional later step, not the research goal.
 | Understand ownership, preserved evidence and what belongs in Git | [Governance](governance.md) |
 | Track experiment support/backfill, restore inputs, replay outputs, build views and media | [Reproduction and presentation](reproduce.md) |
 | Explain an internal or external task and build the Task Explorer | [Task Brief rulebook](../presentation/task-explorer/RULEBOOK.md) |
+| Explain results, traces, failures or multi-run comparisons from pinned evidence | [Evidence explanation workflow](evidence-explanations.md) |
+| Choose and construct concise conceptual, quantitative and source-derived visuals | [Visual explanation rulebook](visual-explanations.md) |
 | Add LiteMedSAM / a SAM segmentation tool to an experiment | [Segmentation tool rulebook](segmentation-tools.md) |
 | Interpret badges, assessments and the attention queue | [Status vocabulary](status-vocabulary.md) |
 | Export a research draft or hand work to a submission owner | [Exports and submission](submission.md) |
@@ -32,6 +34,7 @@ describe its arguments. The executable status definitions live in
 | `groups/<group>/history/` | Canonical home for dated session closeouts, cross-experiment retrospectives and trace walkthroughs; linked from the group README. |
 | `datasets/`, `discussions/` | Shared source discovery and discussion provenance; exact inputs and solver visibility belong to the experiment. |
 | `src/tb3_medical/`, `tests/`, `configs/` | Common implementation, regressions and artifact policy. |
+| `skills/`, `src/tb3_medical/skills/` | Canonical user-facing skills; installed copies are mirrors. See [skill lifecycle](skill-lifecycle.md). |
 | `presentation/` | Shared read-only index and media renderer; groups own their scientific stories. |
 | `exports/recipes/`, `exports/records/` | Selected-input recipes and export lineage. Generated packages have a fresh destination. |
 | `docs/` | Shared current guides plus clearly indexed historical records. |

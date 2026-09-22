@@ -124,6 +124,8 @@ review only if every requested qualification succeeds. It does not briefly expos
 an optimistic usable assessment on failure.
 
 Continue with [reproduction and presentation](reproduce.md) for saved-output replay,
-views and media, or [exports and submission](submission.md) for a fresh package.
+views and media, use the [evidence explanation workflow](evidence-explanations.md)
+for a pinned result/GT/trace explanation, or continue to
+[exports and submission](submission.md) for a fresh package.
 For code/docs changes, follow [contribution checks](../CONTRIBUTING.md). Neither
 routine validation nor documenting a proposal authorizes an experiment.

@@ -29,10 +29,30 @@ def main(argv=None):
             b.add_argument("--destination", required=True)
         elif action == "build":
             b.add_argument("--output", type=Path, default=Path("runs/task-explorer/index.html"))
+    p = sub.add_parser(
+        "evidence",
+        help="Collect and validate model-free evidence inventories for agent-authored explanations",
+    )
+    evidence_sub = p.add_subparsers(dest="evidence_command", required=True)
+    e = evidence_sub.add_parser("collect", help="Collect a structured evidence inventory")
+    e.add_argument("targets", nargs="+")
+    e.add_argument("--output", type=Path)
+    e = evidence_sub.add_parser("check", help="Verify a saved evidence inventory")
+    e.add_argument("manifest", type=Path)
+    e = evidence_sub.add_parser("build", help="Render a factual Markdown index from an inventory")
+    e.add_argument("manifest", type=Path)
+    e.add_argument("--output", type=Path, required=True)
+    e = evidence_sub.add_parser("new", help="Scaffold a first-class analysis finding")
+    e.add_argument("group")
+    e.add_argument("id")
+    e.add_argument("targets", nargs="+")
+    e.add_argument("--title", required=True)
+    e.add_argument("--analysis-kind", choices=sorted(c.ANALYSIS_KINDS), required=True)
     p = sub.add_parser("list")
     p.add_argument("query", nargs="?", default="")
     p.add_argument("--kind", choices=sorted(c.KINDS))
     p.add_argument("--group")
+    p.add_argument("--analysis-kind", choices=sorted(c.ANALYSIS_KINDS))
     p.add_argument("--json", action="store_true")
     p = sub.add_parser("show")
     p.add_argument("id")
@@ -148,6 +168,7 @@ def main(argv=None):
                 for r in c.projection(root).values()
                 if (not args.kind or r["kind"] == args.kind)
                 and (not args.group or r.get("group_id", r["id"]) == args.group)
+                and (not args.analysis_kind or r.get("analysis_kind") == args.analysis_kind)
                 and all(word in json.dumps(r).lower() for word in args.query.lower().split())
             ]
             if not args.json:
@@ -194,6 +215,31 @@ def main(argv=None):
                 result = task_briefs.build(root, output, args.catalog)
             else:
                 result = task_briefs.check(root, args.catalog)
+        elif command == "evidence":
+            from . import evidence
+
+            if args.evidence_command == "collect":
+                result = evidence.collect(root, args.targets)
+                if args.output:
+                    output = args.output if args.output.is_absolute() else root / args.output
+                    evidence.write_manifest(output, result)
+                    result = {"output": str(output), **evidence.summary(result)}
+            elif args.evidence_command == "check":
+                manifest = args.manifest if args.manifest.is_absolute() else root / args.manifest
+                result = evidence.check(root, manifest)
+            elif args.evidence_command == "build":
+                manifest = args.manifest if args.manifest.is_absolute() else root / args.manifest
+                output = args.output if args.output.is_absolute() else root / args.output
+                result = evidence.build(root, manifest, output)
+            else:
+                result = evidence.new(
+                    root,
+                    args.group,
+                    args.id,
+                    args.title,
+                    args.analysis_kind,
+                    args.targets,
+                )
         elif command == "new":
             result = w.new(root, args.group, args.id, args.title)
         elif command == "idea":

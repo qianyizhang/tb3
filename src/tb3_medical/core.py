@@ -38,6 +38,13 @@ KINDS = {
     "plan",
     "freeze",
 }
+ANALYSIS_KINDS = {
+    "result",
+    "comparison",
+    "trace_analysis",
+    "audit",
+    "synthesis",
+}
 VOCABULARY = json.loads(files("tb3_medical").joinpath("vocabulary.json").read_text())
 RECORD_GLOBS = (
     "groups/*/group.json",
@@ -184,6 +191,8 @@ def validate_record(row, path):
             raise MedicalError(f"{key}: unknown {axis}: {row[axis]}")
     if kind == "review" and (not row["reason"] or not row["scope"]):
         raise MedicalError(f"{key}: review needs reason and scope")
+    if kind == "finding" and row.get("analysis_kind") not in {None, *ANALYSIS_KINDS}:
+        raise MedicalError(f"{key}: unknown analysis_kind: {row['analysis_kind']}")
 
 
 def record_paths(root):
