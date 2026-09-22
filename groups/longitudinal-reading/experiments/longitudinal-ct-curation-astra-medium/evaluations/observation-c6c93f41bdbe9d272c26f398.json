@@ -1,0 +1,693 @@
+{
+  "schema_version": 2,
+  "id": "observation-c6c93f41bdbe9d272c26f398",
+  "job": "job",
+  "trial_name": "task__JFBJtBe",
+  "task_id": "task",
+  "agent": "codex",
+  "model": "openai/gpt-6-astra",
+  "reasoning_effort": "medium",
+  "agent_version": "0.155.1",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "reward": 1.0,
+  "started_at": "2026-09-22T05:25:22.137959Z",
+  "finished_at": "2026-09-22T05:48:42.071252Z",
+  "timing": {
+    "total": 1399.933,
+    "setup": 0.348,
+    "agent": 1270.522,
+    "verifier": 97.236
+  },
+  "usage": {
+    "n_input_tokens": 5125332.0,
+    "n_cache_tokens": 4837248.0,
+    "n_output_tokens": 24852.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/result.json",
+      "sha256": "cd15d205698aac104c3e9a0dd3d8ddb02d775c926ecc4a1023a990e4294eaf97"
+    },
+    {
+      "label": "Verifier cases",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/verifier/test-stdout.txt",
+      "sha256": "72e4e0a155f71e8c52ad32bf1350eb946f67e71291bcd76f7dd216cf4a2ca18b"
+    },
+    {
+      "label": "Reward artifact",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/agent/trajectory.json",
+      "sha256": "c8dda448e8d739fa9b57050ca6b1ed38ad01a7f22c3689112de36949b12b6612"
+    },
+    {
+      "label": "Submitted artifact: answer/baseline_instances.nii.gz",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/answer/baseline_instances.nii.gz",
+      "sha256": "6d3f550fa8a7d44f9ef9905f2c28a258269d7823148609c8c27f11eb6ee977e2"
+    },
+    {
+      "label": "Submitted artifact: answer/candidates.json",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/answer/candidates.json",
+      "sha256": "d0e0ba1b3d5a08f920b210279545a55ebf7534a125b85d43e18085ff97bff6a3"
+    },
+    {
+      "label": "Submitted artifact: answer/events.json",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/answer/events.json",
+      "sha256": "25495d99b81b2e626d53e689d6a2744fdccf9d3b75ec474c978a58cd63668bc3"
+    },
+    {
+      "label": "Submitted artifact: answer/followup_instances.nii.gz",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/answer/followup_instances.nii.gz",
+      "sha256": "94940d5af1561b6b99faed5c5ba001b9b97828d13acca5020827fd1dd626d38c"
+    },
+    {
+      "label": "Submitted artifact: answer/report.md",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/answer/report.md",
+      "sha256": "6cb326fd3fd343b6e62abe8f0ef15550a0dbf85bb60a7b564a5395c3655bbc25"
+    },
+    {
+      "label": "Submitted artifact: work/b_abdomen.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_abdomen.jpg",
+      "sha256": "50219bfc2f86683402d6892c78a060ea010ea28c803a1c58cda0e3f3cce3a2ce"
+    },
+    {
+      "label": "Submitted artifact: work/b_anterior_liver.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_anterior_liver.jpg",
+      "sha256": "fcda840e04603133341c2dc8605a9ab7e59c4ba6bc8c3e11e5cd61eb72ccd490"
+    },
+    {
+      "label": "Submitted artifact: work/b_anterior_liver_mpr.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_anterior_liver_mpr.jpg",
+      "sha256": "d1039557c959119fe043de78f5ffba842a66460ab6907280b5e950af570019a4"
+    },
+    {
+      "label": "Submitted artifact: work/b_anterior_liver_sag.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_anterior_liver_sag.jpg",
+      "sha256": "b80edbb28a84c8fd3303afac55d4dd03dc5301f8bc9df192626db7f446f6a9f0"
+    },
+    {
+      "label": "Submitted artifact: work/b_ax_000.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_ax_000.jpg",
+      "sha256": "275788bc7d728be65bd4df65d1df74e7be2bba719680136ac81e5c72676b7881"
+    },
+    {
+      "label": "Submitted artifact: work/b_ax_180.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_ax_180.jpg",
+      "sha256": "3c610708238c2551ac27459b0e8fd96a675e48dc2c2defac8c61acaf77fd62b4"
+    },
+    {
+      "label": "Submitted artifact: work/b_ax_360.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_ax_360.jpg",
+      "sha256": "b163f9c879ffaf8db466463d116632c074804866d4b560e5e859a5316fc7738c"
+    },
+    {
+      "label": "Submitted artifact: work/b_ax_540.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_ax_540.jpg",
+      "sha256": "53f64f9fab4572b1a6d22cbdd6f1b0b6cf4bd540ea295a61593a14626b2fb4b8"
+    },
+    {
+      "label": "Submitted artifact: work/b_bone_cor.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_bone_cor.jpg",
+      "sha256": "34d419396a37a95a2a3c6cc346b165da995cffc7b794eb5da4e1b8a80142b328"
+    },
+    {
+      "label": "Submitted artifact: work/b_bone_sag.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_bone_sag.jpg",
+      "sha256": "3cfc4121ea3444d2d7182dee0c2be90a09ba8a214fa1603ac693ae587b9f96ae"
+    },
+    {
+      "label": "Submitted artifact: work/b_boundary_grid.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_boundary_grid.jpg",
+      "sha256": "dd0933eb847217bed4fcf42b9e7c5af3cff4b22e049ff474267e8a2b6a012e74"
+    },
+    {
+      "label": "Submitted artifact: work/b_cor.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_cor.jpg",
+      "sha256": "0b28bddfc76c3c8d9110e258515f63997c146d8761eccd9360d1cdb6e7447906"
+    },
+    {
+      "label": "Submitted artifact: work/b_groin.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_groin.jpg",
+      "sha256": "7eeb45e0a02ef1c2b4e76f94db428f0f60c8b5af2659952b6b5a1a58ee90e4f1"
+    },
+    {
+      "label": "Submitted artifact: work/b_groin_detail.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_groin_detail.jpg",
+      "sha256": "2769cc1635cdc3f621f9d9e5b479ebf65680e5f28eaac9285260b90ed97c8ac8"
+    },
+    {
+      "label": "Submitted artifact: work/b_liver.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_liver.jpg",
+      "sha256": "68c604d1c31366a7de2e5ba46003a909708055b60b0f84f1dac1ab4e1cd47c60"
+    },
+    {
+      "label": "Submitted artifact: work/b_liver_ax.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_liver_ax.jpg",
+      "sha256": "4f4dd34eca45e43f5848ef371962fbc74f2514d416378933834939aee411f505"
+    },
+    {
+      "label": "Submitted artifact: work/b_liver_cor.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_liver_cor.jpg",
+      "sha256": "409de9ea9d99dfe3e502ff58d659bc24766429999c0e69cd9d90d15fb33f3aa0"
+    },
+    {
+      "label": "Submitted artifact: work/b_liver_detail.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_liver_detail.jpg",
+      "sha256": "9b2e892e031ba26fce69bdcc80c567b6e935b53497006a8c8764e6c06541be20"
+    },
+    {
+      "label": "Submitted artifact: work/b_liver_detail2.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_liver_detail2.jpg",
+      "sha256": "cba01fb5161c8d57972d391f51899fea78cd611d3fff1ea9d22775c14f0c3f53"
+    },
+    {
+      "label": "Submitted artifact: work/b_liver_mpr_narrow.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_liver_mpr_narrow.jpg",
+      "sha256": "baa51a3e8319e60e58b37bc581d6fc749ab4a332d80a7ab3843b2c6c3e83aee9"
+    },
+    {
+      "label": "Submitted artifact: work/b_liver_narrow.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_liver_narrow.jpg",
+      "sha256": "bb0c2f29bbeb18ada111ed60350d9884c161c1375045990df9761043c4bd78be"
+    },
+    {
+      "label": "Submitted artifact: work/b_liver_overlay.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_liver_overlay.jpg",
+      "sha256": "01fa354fe56ece40f3bc4748adf3cd3bff11fedbc3e007bc5678bddcc1361bdd"
+    },
+    {
+      "label": "Submitted artifact: work/b_liver_smooth.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_liver_smooth.jpg",
+      "sha256": "bfe7b668990e6bd6e0d7dc734ba7acd4d94124e26eee81ae61f52cc2e14706ef"
+    },
+    {
+      "label": "Submitted artifact: work/b_lung.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_lung.jpg",
+      "sha256": "548b4bcd05002102b0615515a7720acc5e5eba10047cb75fd727145d3e5478e0"
+    },
+    {
+      "label": "Submitted artifact: work/b_lung_focus.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_lung_focus.jpg",
+      "sha256": "7fdf32a4a5ce0e24527394eba6cd0d127f6fa7a574de701ca57c30b8447718ad"
+    },
+    {
+      "label": "Submitted artifact: work/b_lung_low.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_lung_low.jpg",
+      "sha256": "7676a8d33263d816aec57aeb73dd3ce6a637303412e371b5a095443c0232b13f"
+    },
+    {
+      "label": "Submitted artifact: work/b_lung_mid.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_lung_mid.jpg",
+      "sha256": "c3f431ccb39060aef1650eced0b240cd46532c34eb6419fac4c36f6cedad3e64"
+    },
+    {
+      "label": "Submitted artifact: work/b_lung_top.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_lung_top.jpg",
+      "sha256": "60ed41328aded58499dfc50f358c068642da1641139b3b8b093a18607658ca04"
+    },
+    {
+      "label": "Submitted artifact: work/b_mass_cor.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_mass_cor.jpg",
+      "sha256": "13e02eafa15c21b087d4c7f8548703b8dd7aa093c055b6ca369ec638162013e3"
+    },
+    {
+      "label": "Submitted artifact: work/b_mass_keys.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_mass_keys.jpg",
+      "sha256": "921fb5b50be1bda2438b6be02ea539997025e445d8cecf53eef39317e2e158ad"
+    },
+    {
+      "label": "Submitted artifact: work/b_neck.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_neck.jpg",
+      "sha256": "08c2f096ea8c4b07da3482770d6b966e2482e6ef840cd93d26f73f2e468d585b"
+    },
+    {
+      "label": "Submitted artifact: work/b_pelvis.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_pelvis.jpg",
+      "sha256": "8d9e7ffd94ee4477f804e4bed4b7296156e9cb36eaec58dc60a758e172de1e78"
+    },
+    {
+      "label": "Submitted artifact: work/b_plaque_boundary.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_plaque_boundary.jpg",
+      "sha256": "fc296153fee608f8bf5acf642375e7ee7270d75f44170431f7747dcd84c48760"
+    },
+    {
+      "label": "Submitted artifact: work/b_plaque_grid.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_plaque_grid.jpg",
+      "sha256": "d7d9eff22a349d7d4981c668508534e056145317c7881e9f5e2599ac551200fc"
+    },
+    {
+      "label": "Submitted artifact: work/b_plaque_overlay.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_plaque_overlay.jpg",
+      "sha256": "4d90987a0e40269f2a63c0b9c2ee1e50e883b0f34962d0b20adafd502b264f6c"
+    },
+    {
+      "label": "Submitted artifact: work/b_primary_boundary.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_primary_boundary.jpg",
+      "sha256": "a2b20cd098fb4cf5a5308886728f8bf318b0a877b5fb43266af5cf79fd901066"
+    },
+    {
+      "label": "Submitted artifact: work/b_satellite_search.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_satellite_search.jpg",
+      "sha256": "fa9dba2e5ce923eca16548c74b3352303a1e5f2c76cad354322832990331228b"
+    },
+    {
+      "label": "Submitted artifact: work/b_spine.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_spine.jpg",
+      "sha256": "b35f886cb71ec22e60efffef676cc52618e29db209f46336d075c6ca844918cf"
+    },
+    {
+      "label": "Submitted artifact: work/b_thigh.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_thigh.jpg",
+      "sha256": "7ec4373fc26fea004a9edbcd2c89a57027faafbaceeb955bc37723800aa4f4df"
+    },
+    {
+      "label": "Submitted artifact: work/b_thigh_ant.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_thigh_ant.jpg",
+      "sha256": "f3a8e7e4e0a8f496d464491dd4f6677a7e31e0f7e70f5a9ab87694c9f49cd2fb"
+    },
+    {
+      "label": "Submitted artifact: work/b_thyroid.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/b_thyroid.jpg",
+      "sha256": "1a5364ed0f2b4e1efdbfc9398e3972dcd438738212019691b34a1c5fb95ed8c2"
+    },
+    {
+      "label": "Submitted artifact: work/baseline.npy",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/baseline.npy",
+      "sha256": "9d483d71c266c3376b0dacffa630ccdb714c80c35434dc6642fdc0fcdb2b8a73"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_mask.npy",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/baseline_mask.npy",
+      "sha256": "96d2deb9e614631e741914fdb596772a2862dcc920b9f0dd998fd723b17b9b0f"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_smooth.npy",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/baseline_smooth.npy",
+      "sha256": "cb9cbba6a60c85c2cd40e8eb3cffe0d62d5eb268f854f085aed744f5aacc59c2"
+    },
+    {
+      "label": "Submitted artifact: work/detail.py",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/detail.py",
+      "sha256": "7906b05ad6fb8c2e53752c5577dbfe2be5c3e1635a42339b9f206a7edc8e3186"
+    },
+    {
+      "label": "Submitted artifact: work/f_abdomen.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_abdomen.jpg",
+      "sha256": "e355d4616458ecd055459b8b3b1b5aeec67df6d655aa08c276461e6db087d3be"
+    },
+    {
+      "label": "Submitted artifact: work/f_ax_000.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_ax_000.jpg",
+      "sha256": "d91583d00c1bfb839fa1822e5925b27f0fc46fd9d346a64f5d6b5d0fa7719e92"
+    },
+    {
+      "label": "Submitted artifact: work/f_ax_180.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_ax_180.jpg",
+      "sha256": "429d9a37e1b131eaa1571ebc59c117933cd0c6d7a601fdcf593972a6b9d103f3"
+    },
+    {
+      "label": "Submitted artifact: work/f_ax_360.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_ax_360.jpg",
+      "sha256": "4ce1d00d8bf8ae87c74feb0fe7eaadc98ff140387189e687d8814712a814daf4"
+    },
+    {
+      "label": "Submitted artifact: work/f_ax_540.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_ax_540.jpg",
+      "sha256": "47972c767ffcd0144fb4cb3de17ff27a790f1cc8a943e8b314e8882cc0669860"
+    },
+    {
+      "label": "Submitted artifact: work/f_ax_720.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_ax_720.jpg",
+      "sha256": "ed8056d49ef9f42a568ba5508ecdd09287d762440e6d5dbde98d83a361b3ee64"
+    },
+    {
+      "label": "Submitted artifact: work/f_bone_cor.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_bone_cor.jpg",
+      "sha256": "e21ababf789dba8f86fae3f0574fb280d1de20db10d462eaf8af5c1474a0c3dd"
+    },
+    {
+      "label": "Submitted artifact: work/f_bone_sag.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_bone_sag.jpg",
+      "sha256": "34ae027a1b9226a628cad7060cce7d9e4b8bcf52ed6cd2d4fb153c5b84104fea"
+    },
+    {
+      "label": "Submitted artifact: work/f_boundary_grid.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_boundary_grid.jpg",
+      "sha256": "1b8e4d1dbad3006a992cc55b8772fa323357194e7924577e3ad5e1613cd1c029"
+    },
+    {
+      "label": "Submitted artifact: work/f_cor.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_cor.jpg",
+      "sha256": "f12b92c19c105378e36534e6cf3d864cec3641bb8adb7431ffc0df0c51eccd2e"
+    },
+    {
+      "label": "Submitted artifact: work/f_foci_cor_true.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_foci_cor_true.jpg",
+      "sha256": "cfb2fbf4afcd17ca25117d61f63bf76f1d6b7b0da4b1d78df2c2e5444357b8dc"
+    },
+    {
+      "label": "Submitted artifact: work/f_foci_sag.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_foci_sag.jpg",
+      "sha256": "d645225d355cc667aaacd72d40d208f8e4da1a853af41a9781f0f28571ef667f"
+    },
+    {
+      "label": "Submitted artifact: work/f_foci_sag_true.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_foci_sag_true.jpg",
+      "sha256": "f9b1d703034f4b45ba2e4c630b0525ed9891ed0086558d892f4a26a2fd64db19"
+    },
+    {
+      "label": "Submitted artifact: work/f_foci_sequence.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_foci_sequence.jpg",
+      "sha256": "70df934c5df5ceb6069af517487837d99ae781b93a52b7c9837163ef2e33c64a"
+    },
+    {
+      "label": "Submitted artifact: work/f_foci_sequence2.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_foci_sequence2.jpg",
+      "sha256": "a519dae2ca7002957a718d31f16f305561951522849121b60704e4bc6efc5534"
+    },
+    {
+      "label": "Submitted artifact: work/f_groin.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_groin.jpg",
+      "sha256": "5ea31403c33ed1f4365de0f81439107bcc4da35a06989af28210aa12d0bd31fc"
+    },
+    {
+      "label": "Submitted artifact: work/f_groin_detail.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_groin_detail.jpg",
+      "sha256": "c5254c090c3e949f433227fe85d929d5e1c9fee628fc8ec74d8f056747addec2"
+    },
+    {
+      "label": "Submitted artifact: work/f_liver.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_liver.jpg",
+      "sha256": "e740c210a39b7aa36a6c143958ed562c729704d3e4ffb3f52d1e88dc16d71a71"
+    },
+    {
+      "label": "Submitted artifact: work/f_liver_cor.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_liver_cor.jpg",
+      "sha256": "fa427574d7ce4566aaa6605d1ed8b192e49f983483c2c2707540a7c116878bee"
+    },
+    {
+      "label": "Submitted artifact: work/f_liver_detail.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_liver_detail.jpg",
+      "sha256": "e6bde49eda2c7bea0bf49b559bfbbe160406740848430ba2d3b253cdbbf5566a"
+    },
+    {
+      "label": "Submitted artifact: work/f_liver_detail2.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_liver_detail2.jpg",
+      "sha256": "f210ba85cbabd912812efdfb0077c737128ede5f99bd7a501133b7b300a8e2bd"
+    },
+    {
+      "label": "Submitted artifact: work/f_liver_foci.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_liver_foci.jpg",
+      "sha256": "c1abc62a2180106a772df6433c21135d14b6f22c51b5d6f5dc5aa3d441cf557b"
+    },
+    {
+      "label": "Submitted artifact: work/f_liver_overlay.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_liver_overlay.jpg",
+      "sha256": "f161b91736817f26b8162bc41db09361bbc336b28e8bfd651be1b524cefcd439"
+    },
+    {
+      "label": "Submitted artifact: work/f_liver_smooth.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_liver_smooth.jpg",
+      "sha256": "e9ee796f5e184644d910b7ca472b217dfbb9961457afb79bc8d813a60fb1d097"
+    },
+    {
+      "label": "Submitted artifact: work/f_lung.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_lung.jpg",
+      "sha256": "af91bb3ae6128a60d8ab23c725161b2c43b3039cbfd685b6b43a4b1918e35e20"
+    },
+    {
+      "label": "Submitted artifact: work/f_lung_focus.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_lung_focus.jpg",
+      "sha256": "ae8733a63bc18ea8c1a376ec1bea9511a0c4028699ca0a68a9704d41a20a04c9"
+    },
+    {
+      "label": "Submitted artifact: work/f_lung_low.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_lung_low.jpg",
+      "sha256": "9473b21f25cc7bbfd57836c2619046aebf1dd9b861386e35256ede677a2c497d"
+    },
+    {
+      "label": "Submitted artifact: work/f_lung_mid.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_lung_mid.jpg",
+      "sha256": "c68d7d185d5e35aff1397b4d2e05105cb96264bc401c1a354e31baf6d86366b8"
+    },
+    {
+      "label": "Submitted artifact: work/f_lung_top.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_lung_top.jpg",
+      "sha256": "c9ae7337f52af7914ae30d00814a79f4bed8194406582d449750590c57a7b25c"
+    },
+    {
+      "label": "Submitted artifact: work/f_neck.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_neck.jpg",
+      "sha256": "9b60921ef80a4c0396c9bfaa4a26fced5cb3d5af01d6ca2ddf1d2d366656fbd5"
+    },
+    {
+      "label": "Submitted artifact: work/f_pelvis.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_pelvis.jpg",
+      "sha256": "1c64afff2a5c97714570ac451315749a264b3861bfac02058f466fa713c8f26c"
+    },
+    {
+      "label": "Submitted artifact: work/f_plaque_boundary.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_plaque_boundary.jpg",
+      "sha256": "9a7234b311ac34d5a94cb6babf1c656b89dd5cc0991f21a1438eec98c40c7912"
+    },
+    {
+      "label": "Submitted artifact: work/f_plaque_detail_final.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_plaque_detail_final.jpg",
+      "sha256": "c77d1a036ea92988c7daa36306276cee2a56e7fa25abb7c0bf186395372a0043"
+    },
+    {
+      "label": "Submitted artifact: work/f_plaque_grid.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_plaque_grid.jpg",
+      "sha256": "e5c6091bc173371b5b075845030e4d7ed5e11df799c6fe5c6b57deb4877e8f16"
+    },
+    {
+      "label": "Submitted artifact: work/f_plaque_overlay.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_plaque_overlay.jpg",
+      "sha256": "760c05a63ac67868a0050478bed1ff822d08ebd2028952b28aefdd03b10e8d01"
+    },
+    {
+      "label": "Submitted artifact: work/f_primary_boundary.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_primary_boundary.jpg",
+      "sha256": "44b8b0a945f086ce615925f852710687dd4920dcc64400a3036b790a416e7ac5"
+    },
+    {
+      "label": "Submitted artifact: work/f_satellite.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_satellite.jpg",
+      "sha256": "31e7d513f7a7a4eb4b8bf2b8da8ec7c3d84c76fdd897ea06c9632030dcea9126"
+    },
+    {
+      "label": "Submitted artifact: work/f_spine.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_spine.jpg",
+      "sha256": "797c68219c73c853863b967efa64a1b73cd9df767b509a2ac84d46b61bf0d56f"
+    },
+    {
+      "label": "Submitted artifact: work/f_thigh.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_thigh.jpg",
+      "sha256": "d7ed47526a811f12b760913a23fd978d05061e54abcf48ad0b43fef1de719ba5"
+    },
+    {
+      "label": "Submitted artifact: work/f_thigh_ant.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_thigh_ant.jpg",
+      "sha256": "ce62cf2823b826e9374f51529d55404b363cf1d42998b7ba485e91db3715a192"
+    },
+    {
+      "label": "Submitted artifact: work/f_thyroid.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_thyroid.jpg",
+      "sha256": "806c4196370975c2b27aaa62766ac449f87acc751216a94dbcc8acb4ff423f03"
+    },
+    {
+      "label": "Submitted artifact: work/f_thyroid2.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/f_thyroid2.jpg",
+      "sha256": "beeaed942a5ae9969bb68d0763c18ce868a23b0fed5334ae90c443cd2cf85793"
+    },
+    {
+      "label": "Submitted artifact: work/finalize.py",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/finalize.py",
+      "sha256": "1d8ecde391ee906065fdf2752b28506c64854116d9d5b8bf92a6a8a5212096dd"
+    },
+    {
+      "label": "Submitted artifact: work/followup.npy",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/followup.npy",
+      "sha256": "a958e842706e6d168c35f8a51d1bc93d4d271882a8d21d79663b37934546b7d9"
+    },
+    {
+      "label": "Submitted artifact: work/followup_mask.npy",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/followup_mask.npy",
+      "sha256": "58f3cf14181346ac9747ffe94b1c723d0e114574036eecf1fbeec6575074cd02"
+    },
+    {
+      "label": "Submitted artifact: work/followup_smooth.npy",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/followup_smooth.npy",
+      "sha256": "c0ef1ee16e4aca4b7deb98a28ccdae9063512876ce21d51eac73e5a429d084b1"
+    },
+    {
+      "label": "Submitted artifact: work/measurements.json",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/measurements.json",
+      "sha256": "442f8951df62c51c65ba75edafe4289d2165c310266542c6d5dcbaefd33dee60"
+    },
+    {
+      "label": "Submitted artifact: work/mpr.py",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/mpr.py",
+      "sha256": "54a11f12447603d5119befbf5b75043c1627629b906fc345ac66a1754d7931af"
+    },
+    {
+      "label": "Submitted artifact: work/overlay.py",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/overlay.py",
+      "sha256": "f18792962c9bc3bc85cce46d0280ec9bff10e95080c1a38205fa7f154975e184"
+    },
+    {
+      "label": "Submitted artifact: work/segment.py",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/segment.py",
+      "sha256": "00fc1da2b7858d9152815bcf0800238aab62f7f085542b8bb001cc37fe5c3714"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/baseline_000.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/baseline_000.jpg",
+      "sha256": "de9ffffe850862d9fcacecc5bf3374475c7e61d7e4e31b4136bd1e208f898eae"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/baseline_075.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/baseline_075.jpg",
+      "sha256": "45e346b9a945b8f0185d7f3c5b337e9d774ca3deb71f1b941c490140d9cd69f8"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/baseline_150.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/baseline_150.jpg",
+      "sha256": "40f942e4a7286812bb174539bd6d995839157205f703e9c019da7de5ddafcb46"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/baseline_225.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/baseline_225.jpg",
+      "sha256": "18037040368f13dfda97d35a3e139ab911f8b7f87819a5343354a3b8e22e2236"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/baseline_300.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/baseline_300.jpg",
+      "sha256": "5b8008450d15b70c1a1a08da922c56ce5f77d6ec19536d9b7745e447482fd5f8"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/baseline_375.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/baseline_375.jpg",
+      "sha256": "f98934e48e5dc8af835f105022e9cb07d473af76097f7099d548afab216be82e"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/baseline_450.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/baseline_450.jpg",
+      "sha256": "b628fa3cc7c5f3f906059abc4b950793e474615eefbdaedc59f70de06eb6101a"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/baseline_525.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/baseline_525.jpg",
+      "sha256": "2756e72a7b7664fdf10bdc06028e459f9993a247f0374c7ffd974c6c26d5360d"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/baseline_600.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/baseline_600.jpg",
+      "sha256": "1adb44fe4520b3d8b842660f8e2863d56d0fa3cf172daf0edc8e34bc1a6ca1b6"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/followup_000.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/followup_000.jpg",
+      "sha256": "07646c8d9e17524b8a5d4b891f194f63ef1061cb44d17bf985e6354423691a5d"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/followup_075.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/followup_075.jpg",
+      "sha256": "0b39b24bf4f6af09434285a8bfb778fef6f41c3a0aa38f62a70eaa93d81f7245"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/followup_150.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/followup_150.jpg",
+      "sha256": "d1c04e3e49569b344c942495008f6623d7b8e16889fb979f5c5fedcd1d952db9"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/followup_225.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/followup_225.jpg",
+      "sha256": "e605b1e25ee86a78284228b877b38e8cb4b1a03ff48384beff992a67e8e9197c"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/followup_300.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/followup_300.jpg",
+      "sha256": "2bcb0bec5f6e562c6b4b2edf7694ecff6bd162720b8af8ddf2218ca44fe3e902"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/followup_375.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/followup_375.jpg",
+      "sha256": "390b221bc04e2222aa5b51f7744fda59d866a78ca0ef1e53135ed29996bc3986"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/followup_450.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/followup_450.jpg",
+      "sha256": "1d48f9e8f2949af9eb478fc3e360c5bbbfcaca6618267d255ca77c1e89f91d0e"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/followup_525.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/followup_525.jpg",
+      "sha256": "ad51bbcc5d3f8c3741727f796022992c2a143447f8585240c68988c6882ae12a"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/followup_600.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/followup_600.jpg",
+      "sha256": "9eb9b9188350d2b675fcd1259b861792e1f897399dcb62483839df13c7322cae"
+    },
+    {
+      "label": "Submitted artifact: work/sweep/followup_675.jpg",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep/followup_675.jpg",
+      "sha256": "814641bd21e64d00e0946ae26eddeeb6dddff19ecbd174c623e7d7c8ae5488b4"
+    },
+    {
+      "label": "Submitted artifact: work/sweep.py",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep.py",
+      "sha256": "f0844f4f79679c730e78507cf1191dd1987de1f467df044983eb9c9a88871675"
+    },
+    {
+      "label": "Submitted artifact: work/validate.py",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/validate.py",
+      "sha256": "73af6b8b598fdc080cfebe2056788d3a712396a472f36aa97cf864a30d71e6da"
+    },
+    {
+      "label": "Submitted artifact: work/validation.json",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/validation.json",
+      "sha256": "c11333be33284b17e9890a04565f1f9ab7d647d5fd18b60bfce04debb61206b5"
+    },
+    {
+      "label": "Submitted artifact: work/view.py",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/view.py",
+      "sha256": "edc9e3b5552876eeb37d584f14ef181164fc07287ab3846d1bc622a501e6c617"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": ".local/attempts/attempt-e5fda20ed65a41b4/job/lock.json",
+      "sha256": "326fa5c7a5ae7ed9b86abbee7a0537cdd7d53ec10dc8d6006f594e49d1ad9889"
+    }
+  ],
+  "task_checksum": "1c6e2f7ab81df3e8625f7fc9a7d4e218d206b0f06e2b18ed4fa07c37eea4605f",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/result.json",
+  "source_sha256": "cd15d205698aac104c3e9a0dd3d8ddb02d775c926ecc4a1023a990e4294eaf97",
+  "evidence_sha256": "e9a3eb9ff71d3116dd395e2513936fe55b5a1de703bc22b6a65c354afd9903d2",
+  "kind": "evaluation",
+  "evaluation_kind": "result",
+  "attempt_id": "attempt-e5fda20ed65a41b4",
+  "experiment_id": "longitudinal-ct-curation-astra-medium",
+  "group_id": "longitudinal-reading",
+  "collected_at": "2026-09-22T05:48:44.312563+00:00",
+  "execution_state": "completed",
+  "outcome": "pass",
+  "partial": false,
+  "task_digest": "7b4b2740a45157383bccd77af41ccf5635deb94c0bcc2b00fa3f07f952f681cb",
+  "freeze_checksum_verified": true,
+  "source_classification": "model_pass"
+}

@@ -198,3 +198,42 @@ recommendation: retain explicit broad context as a condition and, if selected,
 separate coverage-controlled review from localized candidate judgment with
 explicit context use. Individual clinical reports and malignancy adjudication
 remain unavailable. No additional trial follows from this recommendation.
+
+## User-selected comprehensive candidate inventory — 2026-09-22
+
+Decision `decision-4d11c9538adb4521`, actor=user: explicitly curate and link all
+plausible tumor candidates of every size, add a meaningful oncologic-review goal,
+and run one fresh Astra-medium attempt. The assistant selected the goal of a
+comprehensive longitudinal inventory for disease-burden and lesion-evolution
+review. Keep the latest case and verified broad context fixed; withhold locations,
+counts, anatomy distribution, event mix and previous outputs. The
+[predeclared design](../methods/longitudinal-ct-curation-v1/protocol.md) changes
+the goal, inclusion threshold, exhaustive-review wording and structured candidate
+uncertainty together. It is an endpoint-only exploratory comparison, not a causal
+test of a single phrase.
+
+Source annotation is exhaustive for lesions deemed malignant, without a minimum
+size; plausible-candidate curation deliberately includes additional uncertainty.
+Retain every candidate mask and event, record a separate tumor probability, and
+score all-candidate recovery/unmatched burden separately from the >=0.5 probable
+subset's localization/mask agreement. The latter does not reinterpret events or
+adjudicate clinical malignancy. The scientific scorer and original frozen scores
+remain unchanged; an extra private wrapper checks the new sidecar contract.
+
+The selected attempt completed normally in 21m11s with valid outputs and exact
+saved-score replay. Five candidates yield 3/22 reference matches plus two
+unmatched benign-favored thigh instances (`p_tumor=0.2`). The >=0.5 subset retains
+3/22 with no unmatched instances. GT14 was gained and GT13 lost; no <=1 mL target
+was recovered (0/11). Links remain 1/7; exact events fall from 2/15 to 1/15 because
+the recovered GT14 event is unresolved. A report exclusion at follow-up native
+(125,208,528) lies inside GT13 and explicitly calls it vascular. This is a
+recognition disagreement relative to source GT, without clinical adjudication.
+
+The trace contains 111 requested image observations, including all 19 second-pass
+slab montages; generated views intersect every GT region, but sampled/downsampled
+views and maximum-intensity slabs do not establish attention or conspicuity.
+The inclusion policy is demonstrably used, while overall recovery remains
+unchanged. Assistant interpretation: stronger goal/inclusion wording did not
+resolve the bottleneck in this single bundled intervention. A blinded
+native-resolution candidate/mimic recognition control would now be informative;
+no additional run is implied. [Comparison, attribution and native GT panels](../findings/longitudinal-ct-curation-comparison.md).

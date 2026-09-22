@@ -1,0 +1,3937 @@
+{
+  "schema_version": 1,
+  "comparison_classification": "endpoint_only",
+  "conditions": [
+    {
+      "condition": "image_only",
+      "attempt_id": "attempt-92800845745342f4",
+      "task_digest": "e12f6fc10c83c8dfb2bc4ca3bd4cfffc90811bdb7249ad8ddedcf55655b1083a",
+      "detection": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 19,
+        "precision": 1.0,
+        "recall": 0.13636363636363635,
+        "f1": 0.24
+      },
+      "per_visit_detection": {
+        "baseline": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.14285714285714285,
+          "f1": 0.25,
+          "gt_count": 7,
+          "prediction_count": 1,
+          "criterion": "prediction centroid in reference mask or within 3 mm of a labeled voxel center; one-to-one assignment",
+          "mean_centroid_distance_mm": 3.1917500440431477,
+          "mean_centroid_to_reference_mm": 0.0
+        },
+        "followup": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 13,
+          "precision": 1.0,
+          "recall": 0.13333333333333333,
+          "f1": 0.23529411764705882,
+          "gt_count": 15,
+          "prediction_count": 2,
+          "criterion": "prediction centroid in reference mask or within 3 mm of a labeled voxel center; one-to-one assignment",
+          "mean_centroid_distance_mm": 3.4861679566702355,
+          "mean_centroid_to_reference_mm": 0.0
+        }
+      },
+      "segmentation": {
+        "baseline": {
+          "foreground_dice": 0.7990998480635266,
+          "foreground_precision": 0.8385476204801156,
+          "foreground_recall": 0.763196802102727,
+          "gt_macro_dice": 0.1241858310092577,
+          "detected_only_macro_dice": 0.8693008170648039,
+          "detection_anchored_gt_macro_dice": 0.1241858310092577
+        },
+        "followup": {
+          "foreground_dice": 0.8913400236127509,
+          "foreground_precision": 0.8594823513339671,
+          "foreground_recall": 0.9256502841448986,
+          "gt_macro_dice": 0.09938944273989841,
+          "detected_only_macro_dice": 0.7454208205492381,
+          "detection_anchored_gt_macro_dice": 0.09938944273989841
+        }
+      },
+      "gt_macro_dice": 0.10727920264378547,
+      "association": {
+        "links_end_to_end": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.14285714285714285,
+          "f1": 0.25
+        },
+        "links_conditional_on_detection": {
+          "eligible_gt_edges": 1,
+          "total_gt_edges": 7,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "events_end_to_end": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 13,
+          "precision": 1.0,
+          "recall": 0.13333333333333333,
+          "f1": 0.23529411764705882
+        },
+        "events_conditional_on_detection": {
+          "eligible_gt_groups": 2,
+          "total_gt_groups": 15,
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "event_classes": {
+          "persistent": {
+            "reference_groups": 7,
+            "prediction_groups": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 6,
+            "precision": 1.0,
+            "recall": 0.14285714285714285,
+            "f1": 0.25
+          },
+          "merging": {
+            "reference_groups": 0,
+            "prediction_groups": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "disappearing": {
+            "reference_groups": 0,
+            "prediction_groups": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "newly_appearing": {
+            "reference_groups": 8,
+            "prediction_groups": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 7,
+            "precision": 1.0,
+            "recall": 0.125,
+            "f1": 0.2222222222222222
+          }
+        },
+        "unresolved_groups": 0,
+        "mapped_predictions": [
+          {
+            "event": "persistent",
+            "baseline_ids": [
+              4
+            ],
+            "followup_ids": [
+              4
+            ]
+          },
+          {
+            "event": "newly_appearing",
+            "baseline_ids": [],
+            "followup_ids": [
+              13
+            ]
+          }
+        ]
+      },
+      "size_strata": [
+        {
+          "stratum": "<=1 mL",
+          "gt_count": 11,
+          "localized": 0,
+          "recall": 0.0,
+          "gt_macro_dice": 0.0,
+          "foreground_coverage_mean": 0.004578155657292348
+        },
+        {
+          "stratum": ">1 to 10 mL",
+          "gt_count": 9,
+          "localized": 1,
+          "recall": 0.1111111111111111,
+          "gt_macro_dice": 0.06431372549019608,
+          "foreground_coverage_mean": 0.06892537835052003
+        },
+        {
+          "stratum": ">10 mL",
+          "gt_count": 2,
+          "localized": 2,
+          "recall": 1.0,
+          "gt_macro_dice": 0.8906594643757577,
+          "foreground_coverage_mean": 0.9366936661419036
+        }
+      ]
+    },
+    {
+      "condition": "context_supplied",
+      "attempt_id": "attempt-81ee755346d04be7",
+      "task_digest": "ffdf321ba2637b46484309d8ec2c39fdffd5234b99e3152842c245a25a149215",
+      "detection": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 19,
+        "precision": 1.0,
+        "recall": 0.13636363636363635,
+        "f1": 0.24
+      },
+      "per_visit_detection": {
+        "baseline": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.14285714285714285,
+          "f1": 0.25,
+          "gt_count": 7,
+          "prediction_count": 1,
+          "criterion": "prediction centroid in reference mask or within 3 mm of a labeled voxel center; one-to-one assignment",
+          "mean_centroid_distance_mm": 3.8013766141651844,
+          "mean_centroid_to_reference_mm": 0.0
+        },
+        "followup": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 13,
+          "precision": 1.0,
+          "recall": 0.13333333333333333,
+          "f1": 0.23529411764705882,
+          "gt_count": 15,
+          "prediction_count": 2,
+          "criterion": "prediction centroid in reference mask or within 3 mm of a labeled voxel center; one-to-one assignment",
+          "mean_centroid_distance_mm": 2.7358555335752843,
+          "mean_centroid_to_reference_mm": 0.0
+        }
+      },
+      "segmentation": {
+        "baseline": {
+          "foreground_dice": 0.7395221411448591,
+          "foreground_precision": 0.712548860348241,
+          "foreground_recall": 0.7686178950826854,
+          "gt_macro_dice": 0.11411417514877564,
+          "detected_only_macro_dice": 0.7987992260414295,
+          "detection_anchored_gt_macro_dice": 0.11411417514877564
+        },
+        "followup": {
+          "foreground_dice": 0.8759704098728144,
+          "foreground_precision": 0.8441257226665757,
+          "foreground_recall": 0.9103119769986697,
+          "gt_macro_dice": 0.10872787841114376,
+          "detected_only_macro_dice": 0.8154590880835781,
+          "detection_anchored_gt_macro_dice": 0.10872787841114376
+        }
+      },
+      "gt_macro_dice": 0.11044170010039026,
+      "association": {
+        "links_end_to_end": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.14285714285714285,
+          "f1": 0.25
+        },
+        "links_conditional_on_detection": {
+          "eligible_gt_edges": 1,
+          "total_gt_edges": 7,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "events_end_to_end": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 13,
+          "precision": 1.0,
+          "recall": 0.13333333333333333,
+          "f1": 0.23529411764705882
+        },
+        "events_conditional_on_detection": {
+          "eligible_gt_groups": 2,
+          "total_gt_groups": 15,
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "event_classes": {
+          "persistent": {
+            "reference_groups": 7,
+            "prediction_groups": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 6,
+            "precision": 1.0,
+            "recall": 0.14285714285714285,
+            "f1": 0.25
+          },
+          "merging": {
+            "reference_groups": 0,
+            "prediction_groups": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "disappearing": {
+            "reference_groups": 0,
+            "prediction_groups": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "newly_appearing": {
+            "reference_groups": 8,
+            "prediction_groups": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 7,
+            "precision": 1.0,
+            "recall": 0.125,
+            "f1": 0.2222222222222222
+          }
+        },
+        "unresolved_groups": 0,
+        "mapped_predictions": [
+          {
+            "event": "persistent",
+            "baseline_ids": [
+              4
+            ],
+            "followup_ids": [
+              4
+            ]
+          },
+          {
+            "event": "newly_appearing",
+            "baseline_ids": [],
+            "followup_ids": [
+              13
+            ]
+          }
+        ]
+      },
+      "size_strata": [
+        {
+          "stratum": "<=1 mL",
+          "gt_count": 11,
+          "localized": 0,
+          "recall": 0.0,
+          "gt_macro_dice": 0.0,
+          "foreground_coverage_mean": 0.0
+        },
+        {
+          "stratum": ">1 to 10 mL",
+          "gt_count": 9,
+          "localized": 1,
+          "recall": 0.1111111111111111,
+          "gt_macro_dice": 0.0816451810926949,
+          "foreground_coverage_mean": 0.08563281824871229
+        },
+        {
+          "stratum": ">10 mL",
+          "gt_count": 2,
+          "localized": 2,
+          "recall": 1.0,
+          "gt_macro_dice": 0.8474553861871659,
+          "foreground_coverage_mean": 0.9311747824740624
+        }
+      ]
+    },
+    {
+      "condition": "comprehensive_curation",
+      "attempt_id": "attempt-e5fda20ed65a41b4",
+      "task_digest": "7b4b2740a45157383bccd77af41ccf5635deb94c0bcc2b00fa3f07f952f681cb",
+      "detection": {
+        "tp": 3,
+        "fp": 2,
+        "fn": 19,
+        "precision": 0.6,
+        "recall": 0.13636363636363635,
+        "f1": 0.2222222222222222
+      },
+      "per_visit_detection": {
+        "baseline": {
+          "tp": 1,
+          "fp": 1,
+          "fn": 6,
+          "precision": 0.5,
+          "recall": 0.14285714285714285,
+          "f1": 0.2222222222222222,
+          "gt_count": 7,
+          "prediction_count": 2,
+          "criterion": "prediction centroid in reference mask or within 3 mm of a labeled voxel center; one-to-one assignment",
+          "mean_centroid_distance_mm": 8.952790262793664,
+          "mean_centroid_to_reference_mm": 0.0
+        },
+        "followup": {
+          "tp": 2,
+          "fp": 1,
+          "fn": 13,
+          "precision": 0.6666666666666666,
+          "recall": 0.13333333333333333,
+          "f1": 0.2222222222222222,
+          "gt_count": 15,
+          "prediction_count": 3,
+          "criterion": "prediction centroid in reference mask or within 3 mm of a labeled voxel center; one-to-one assignment",
+          "mean_centroid_distance_mm": 1.8347605806252416,
+          "mean_centroid_to_reference_mm": 0.0
+        }
+      },
+      "segmentation": {
+        "baseline": {
+          "foreground_dice": 0.6294132917964693,
+          "foreground_precision": 0.5202417566697661,
+          "foreground_recall": 0.796572116964188,
+          "gt_macro_dice": 0.10533175484137243,
+          "detected_only_macro_dice": 0.737322283889607,
+          "detection_anchored_gt_macro_dice": 0.10533175484137243
+        },
+        "followup": {
+          "foreground_dice": 0.8696933979509167,
+          "foreground_precision": 0.8315882497706781,
+          "foreground_recall": 0.9114583652625965,
+          "gt_macro_dice": 0.10552305714048778,
+          "detected_only_macro_dice": 0.7914229285536584,
+          "detection_anchored_gt_macro_dice": 0.10552305714048778
+        }
+      },
+      "gt_macro_dice": 0.1054621882271329,
+      "association": {
+        "links_end_to_end": {
+          "tp": 1,
+          "fp": 1,
+          "fn": 6,
+          "precision": 0.5,
+          "recall": 0.14285714285714285,
+          "f1": 0.2222222222222222
+        },
+        "links_conditional_on_detection": {
+          "eligible_gt_edges": 1,
+          "total_gt_edges": 7,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "events_end_to_end": {
+          "tp": 1,
+          "fp": 2,
+          "fn": 14,
+          "precision": 0.3333333333333333,
+          "recall": 0.06666666666666667,
+          "f1": 0.1111111111111111
+        },
+        "events_conditional_on_detection": {
+          "eligible_gt_groups": 2,
+          "total_gt_groups": 15,
+          "tp": 1,
+          "fp": 1,
+          "fn": 1,
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5
+        },
+        "event_classes": {
+          "persistent": {
+            "reference_groups": 7,
+            "prediction_groups": 2,
+            "tp": 1,
+            "fp": 1,
+            "fn": 6,
+            "precision": 0.5,
+            "recall": 0.14285714285714285,
+            "f1": 0.2222222222222222
+          },
+          "merging": {
+            "reference_groups": 0,
+            "prediction_groups": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "disappearing": {
+            "reference_groups": 0,
+            "prediction_groups": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "newly_appearing": {
+            "reference_groups": 8,
+            "prediction_groups": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 8,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "unresolved_groups": 1,
+        "mapped_predictions": [
+          {
+            "event": "persistent",
+            "baseline_ids": [
+              4
+            ],
+            "followup_ids": [
+              4
+            ]
+          },
+          {
+            "event": "persistent",
+            "baseline_ids": [
+              "unmatched_0_2"
+            ],
+            "followup_ids": [
+              "unmatched_1_3"
+            ]
+          },
+          {
+            "event": "unresolved",
+            "baseline_ids": [],
+            "followup_ids": [
+              14
+            ]
+          }
+        ]
+      },
+      "size_strata": [
+        {
+          "stratum": "<=1 mL",
+          "gt_count": 11,
+          "localized": 0,
+          "recall": 0.0,
+          "gt_macro_dice": 0.0,
+          "foreground_coverage_mean": 0.0
+        },
+        {
+          "stratum": ">1 to 10 mL",
+          "gt_count": 9,
+          "localized": 1,
+          "recall": 0.1111111111111111,
+          "gt_macro_dice": 0.07460420733029711,
+          "foreground_coverage_mean": 0.07103095079046982
+        },
+        {
+          "stratum": ">10 mL",
+          "gt_count": 2,
+          "localized": 2,
+          "recall": 1.0,
+          "gt_macro_dice": 0.8243651375121248,
+          "foreground_coverage_mean": 0.9492520649689344
+        }
+      ]
+    }
+  ],
+  "per_reference_transitions": [
+    {
+      "visit": "baseline",
+      "gt_id": 1,
+      "voxels": 3119,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 5.9490203857421875,
+      "anatomy": "Lymph node",
+      "source_event": "UNCHANGED",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 2,
+      "voxels": 515,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.9822845458984375,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 3,
+      "voxels": 529,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 1.0089874267578125,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 4,
+      "voxels": 30890,
+      "detection_prediction_id": 1,
+      "detected_dice": 0.737322283889607,
+      "best_one_to_one_dice": 0.737322283889607,
+      "volume_ml": 58.917999267578125,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": ">10 mL",
+      "foreground_coverage": 0.9418582065393332,
+      "prior_context_detected": true,
+      "transition": "retained",
+      "candidate_assessment": {
+        "id": 1,
+        "p_tumor": 0.9,
+        "reason": "Ill-defined rounded low-attenuation mass in posterior right hepatic lobe, visible over successive slices and anatomically corresponding to the much more conspicuous follow-up mass. Tumor favored; heterogeneous liver attenuation and noise make the boundary uncertain."
+      }
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 5,
+      "voxels": 716,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 1.36566162109375,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 6,
+      "voxels": 508,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.96893310546875,
+      "anatomy": "Lymph node",
+      "source_event": "UNCHANGED",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 7,
+      "voxels": 247,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.4711151123046875,
+      "anatomy": "Skeleton",
+      "source_event": "UNCHANGED",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "followup",
+      "gt_id": 1,
+      "voxels": 2275,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 5.424022674560547,
+      "anatomy": "Lymph node",
+      "source_event": "UNCHANGED",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "followup",
+      "gt_id": 2,
+      "voxels": 345,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.8225440979003906,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "followup",
+      "gt_id": 3,
+      "voxels": 370,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.8821487426757812,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "followup",
+      "gt_id": 4,
+      "voxels": 154749,
+      "detection_prediction_id": 1,
+      "detected_dice": 0.9114079911346427,
+      "best_one_to_one_dice": 0.9114079911346427,
+      "volume_ml": 368.95036697387695,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": ">10 mL",
+      "foreground_coverage": 0.9566459233985357,
+      "prior_context_detected": true,
+      "transition": "retained",
+      "candidate_assessment": {
+        "id": 1,
+        "p_tumor": 0.98,
+        "reason": "Large rounded/lobulated heterogeneous low-attenuation posterior right hepatic mass, enlarged at the location of the baseline lesion. Tumor strongly favored."
+      }
+    },
+    {
+      "visit": "followup",
+      "gt_id": 5,
+      "voxels": 629,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 1.4996528625488281,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "followup",
+      "gt_id": 6,
+      "voxels": 152,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.362396240234375,
+      "anatomy": "Lymph node",
+      "source_event": "UNCHANGED",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "followup",
+      "gt_id": 7,
+      "voxels": 62,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.14781951904296875,
+      "anatomy": "Skeleton",
+      "source_event": "UNCHANGED",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "followup",
+      "gt_id": 8,
+      "voxels": 705,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 1.6808509826660156,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "followup",
+      "gt_id": 9,
+      "voxels": 357,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.8511543273925781,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "followup",
+      "gt_id": 10,
+      "voxels": 399,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.9512901306152344,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "followup",
+      "gt_id": 11,
+      "voxels": 474,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 1.1301040649414062,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "followup",
+      "gt_id": 12,
+      "voxels": 139,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.3314018249511719,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "followup",
+      "gt_id": 13,
+      "voxels": 1208,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 2.880096435546875,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": true,
+      "transition": "lost",
+      "candidate_assessment": null
+    },
+    {
+      "visit": "followup",
+      "gt_id": 14,
+      "voxels": 998,
+      "detection_prediction_id": 2,
+      "detected_dice": 0.6714378659726741,
+      "best_one_to_one_dice": 0.6714378659726741,
+      "volume_ml": 2.3794174194335938,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.6392785571142284,
+      "prior_context_detected": false,
+      "transition": "gained",
+      "candidate_assessment": {
+        "id": 2,
+        "p_tumor": 0.7,
+        "reason": "Separate small rounded low-attenuation hepatic focus anteromedial to the inferior part of the dominant mass, present on consecutive slices without definite branching vascular continuity. Tumor favored, with cyst or vascular partial-volume appearance as alternatives. Baseline visibility is uncertain."
+      }
+    },
+    {
+      "visit": "followup",
+      "gt_id": 15,
+      "voxels": 259,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.6175041198730469,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0,
+      "prior_context_detected": false,
+      "transition": "still_missed",
+      "candidate_assessment": null
+    }
+  ],
+  "unmatched_candidates": [
+    {
+      "visit": "baseline",
+      "id": 2,
+      "p_tumor": 0.2,
+      "reason": "Focal plaque-like cutaneous/subcutaneous thickening in anterior right mid-thigh, with skin retraction and deeper strands. Scar or chronic inflammatory change favored, but a superficial tumor component cannot be confidently excluded. Retained despite benign-favored appearance."
+    },
+    {
+      "visit": "followup",
+      "id": 3,
+      "p_tumor": 0.2,
+      "reason": "Persistent focal anterior right mid-thigh cutaneous/subcutaneous plaque with retraction and reticular extensions. Scar or chronic inflammation favored, but tumor remains plausible; no individual surgical history is assumed."
+    }
+  ],
+  "probable_tumor_subset": {
+    "threshold": 0.5,
+    "visits": {
+      "baseline": {
+        "valid": true,
+        "ids": [
+          1
+        ],
+        "gt_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "mapping": {
+          "1": 4
+        },
+        "detection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.14285714285714285,
+          "f1": 0.25,
+          "gt_count": 7,
+          "prediction_count": 1,
+          "criterion": "prediction centroid in reference mask or within 3 mm of a labeled voxel center; one-to-one assignment",
+          "mean_centroid_distance_mm": 8.952790262793664,
+          "mean_centroid_to_reference_mm": 0.0
+        },
+        "segmentation": {
+          "foreground_dice": 0.6881918819188192,
+          "foreground_precision": 0.6057716332139585,
+          "foreground_recall": 0.796572116964188,
+          "gt_macro_dice": 0.10533175484137243,
+          "detected_only_macro_dice": 0.737322283889607,
+          "detection_anchored_gt_macro_dice": 0.10533175484137243
+        },
+        "overlap_detection_sensitivity": {
+          "0.1": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 6,
+            "precision": 1.0,
+            "recall": 0.14285714285714285,
+            "f1": 0.25
+          },
+          "0.25": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 6,
+            "precision": 1.0,
+            "recall": 0.14285714285714285,
+            "f1": 0.25
+          },
+          "0.5": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 6,
+            "precision": 1.0,
+            "recall": 0.14285714285714285,
+            "f1": 0.25
+          }
+        },
+        "per_gt": [
+          {
+            "gt_id": 1,
+            "voxels": 3119,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 2,
+            "voxels": 515,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 3,
+            "voxels": 529,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 4,
+            "voxels": 30890,
+            "detection_prediction_id": 1,
+            "detected_dice": 0.737322283889607,
+            "best_one_to_one_dice": 0.737322283889607
+          },
+          {
+            "gt_id": 5,
+            "voxels": 716,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 6,
+            "voxels": 508,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 7,
+            "voxels": 247,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          }
+        ],
+        "matched_pairs": [
+          {
+            "gt_id": 4,
+            "prediction_id": 1,
+            "dice": 0.737322283889607,
+            "iou": 0.5839354527938343,
+            "centroid_mm": [
+              82.3749622615974,
+              140.37883890647123,
+              -1137.5843674523194
+            ],
+            "centroid_distance_mm": 8.952790262793664
+          }
+        ]
+      },
+      "followup": {
+        "valid": true,
+        "ids": [
+          1,
+          2
+        ],
+        "gt_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "mapping": {
+          "1": 4,
+          "2": 14
+        },
+        "detection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 13,
+          "precision": 1.0,
+          "recall": 0.13333333333333333,
+          "f1": 0.23529411764705882,
+          "gt_count": 15,
+          "prediction_count": 2,
+          "criterion": "prediction centroid in reference mask or within 3 mm of a labeled voxel center; one-to-one assignment",
+          "mean_centroid_distance_mm": 1.8347605806252416,
+          "mean_centroid_to_reference_mm": 0.0
+        },
+        "segmentation": {
+          "foreground_dice": 0.8908982505969661,
+          "foreground_precision": 0.8712452387928509,
+          "foreground_recall": 0.9114583652625965,
+          "gt_macro_dice": 0.10552305714048778,
+          "detected_only_macro_dice": 0.7914229285536584,
+          "detection_anchored_gt_macro_dice": 0.10552305714048778
+        },
+        "overlap_detection_sensitivity": {
+          "0.1": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 13,
+            "precision": 1.0,
+            "recall": 0.13333333333333333,
+            "f1": 0.23529411764705882
+          },
+          "0.25": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 13,
+            "precision": 1.0,
+            "recall": 0.13333333333333333,
+            "f1": 0.23529411764705882
+          },
+          "0.5": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 13,
+            "precision": 1.0,
+            "recall": 0.13333333333333333,
+            "f1": 0.23529411764705882
+          }
+        },
+        "per_gt": [
+          {
+            "gt_id": 1,
+            "voxels": 2275,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 2,
+            "voxels": 345,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 3,
+            "voxels": 370,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 4,
+            "voxels": 154749,
+            "detection_prediction_id": 1,
+            "detected_dice": 0.9114079911346427,
+            "best_one_to_one_dice": 0.9114079911346427
+          },
+          {
+            "gt_id": 5,
+            "voxels": 629,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 6,
+            "voxels": 152,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 7,
+            "voxels": 62,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 8,
+            "voxels": 705,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 9,
+            "voxels": 357,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 10,
+            "voxels": 399,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 11,
+            "voxels": 474,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 12,
+            "voxels": 139,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 13,
+            "voxels": 1208,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 14,
+            "voxels": 998,
+            "detection_prediction_id": 2,
+            "detected_dice": 0.6714378659726741,
+            "best_one_to_one_dice": 0.6714378659726741
+          },
+          {
+            "gt_id": 15,
+            "voxels": 259,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          }
+        ],
+        "matched_pairs": [
+          {
+            "gt_id": 4,
+            "prediction_id": 1,
+            "dice": 0.9114079911346427,
+            "iou": 0.8372356068318063,
+            "centroid_mm": [
+              91.56353413635068,
+              179.46681369535924,
+              1025.6573795933243
+            ],
+            "centroid_distance_mm": 1.8006578438703855
+          },
+          {
+            "gt_id": 14,
+            "prediction_id": 2,
+            "dice": 0.6714378659726741,
+            "iou": 0.5053868756121449,
+            "centroid_mm": [
+              69.12305049860854,
+              205.1302252435065,
+              988.8589981447124
+            ],
+            "centroid_distance_mm": 1.8688633173800977
+          }
+        ]
+      }
+    },
+    "detection_micro": {
+      "tp": 3,
+      "fp": 0,
+      "fn": 19,
+      "precision": 1.0,
+      "recall": 0.13636363636363635,
+      "f1": 0.24
+    },
+    "segmentation_gt_macro_dice": 0.1054621882271329,
+    "association": "not filtered or reinterpreted; see all-candidate primary endpoints"
+  },
+  "confounders": [
+    "New goal, exhaustive-review wording, all-size inclusion and structured uncertainty are bundled.",
+    "One new run per condition; stochastic variation and prompt intervention cannot be separated.",
+    "GT covers expert-deemed malignant lesions, whereas the new output deliberately includes indeterminate candidates.",
+    "Reference agreement is not clinical adjudication; GT used unavailable individual clinical reports."
+  ],
+  "source_hashes": {
+    ".local/longitudinal-ct-case02/analysis/evidence.json": "e65f368e97f588baac9b183e1ba465efa31a519b2e4824811dfaa92b193cdfcc",
+    ".local/longitudinal-ct-context-v1/supplied/analysis/evidence.json": "5d01456f7179f561a4130e768fecab125048bf22d42eeb6bb0e072bee99b0e5e",
+    ".local/longitudinal-ct-curation-v1/analysis/evidence.json": "2b7b78d497ac628b26c21f89f71c80ec680c39c1af663fda01ab5dddaf299db0"
+  },
+  "execution_audit": {
+    "condition": "case02-comprehensive-curation",
+    "attempt_id": "attempt-e5fda20ed65a41b4",
+    "task_digest": "7b4b2740a45157383bccd77af41ccf5635deb94c0bcc2b00fa3f07f952f681cb",
+    "agent_seconds": 1270.52165,
+    "trial_seconds": 1399.933293,
+    "usage": {
+      "n_input_tokens": 5125332,
+      "n_cache_tokens": 4837248,
+      "n_output_tokens": 24852,
+      "cost_usd": null,
+      "rollout_details": null,
+      "metadata": null
+    },
+    "native_execution": {
+      "attempt_id": "attempt-e5fda20ed65a41b4",
+      "execution_state": "completed",
+      "started_at": "2026-09-22T05:25:21.829159+00:00",
+      "harbor_task_checksum": "1c6e2f7ab81df3e8625f7fc9a7d4e218d206b0f06e2b18ed4fa07c37eea4605f",
+      "exit_code": 0,
+      "finished_at": "2026-09-22T05:48:42.386236+00:00",
+      "frozen_payload_unchanged": true
+    },
+    "exception_info": null,
+    "trajectory_step_count": 62,
+    "outer_tool_call_count": 47,
+    "image_observation_blocks": 111,
+    "image_count_method": "input_image blocks in retained trajectory observation content; montages count as one block",
+    "frozen_instruction_verbatim_delivered": true,
+    "source_specific_strings_in_tool_requests": {
+      "bcbe3365e6": false,
+      "fdat.uni-tuebingen.de": false,
+      "Longitudinal-CT": false,
+      "/tests/reference": false,
+      "/solution/reference": false
+    },
+    "source_specific_strings_in_initial_prompt": {
+      "bcbe3365e6": false,
+      "fdat.uni-tuebingen.de": false,
+      "Longitudinal-CT": false,
+      "liver": false,
+      "lymph node": false,
+      "melanoma": true
+    },
+    "proxy_allowed": {
+      "chatgpt.com:443": 64
+    },
+    "proxy_blocked": {
+      "sdmntprsouthcentralus.oaiusercontent.com:443": 4,
+      "ab.chatgpt.com:443": 22
+    },
+    "live_isolation_passed": true,
+    "artifacts": {
+      "result.json": "cd15d205698aac104c3e9a0dd3d8ddb02d775c926ecc4a1023a990e4294eaf97",
+      "agent/trajectory.json": "c8dda448e8d739fa9b57050ca6b1ed38ad01a7f22c3689112de36949b12b6612",
+      "agent/codex.txt": "8f5aad505c14f8fc86644ed93f889a65386d8a603a3f1a2a50c90020fd41c287",
+      "verifier/metrics.json": "b6cb4372c63c5d18fbe36f476842f57a755140fd94219c0f5b17941bd5b3f26c"
+    },
+    "limits": "Observed requests supplement enforced isolation; absence of source strings alone does not prove absence of source assistance. No estimate of clinical validity or unseen prior training."
+  },
+  "independent_replay_exact": true,
+  "trace_details": {
+    "attempt_id": "attempt-e5fda20ed65a41b4",
+    "literal_view_image_requests": [
+      {
+        "call_id": "call_CHbBngkUMic6EUkoJs9pvisA",
+        "path": "/app/work/b_cor.jpg"
+      },
+      {
+        "call_id": "call_CHbBngkUMic6EUkoJs9pvisA",
+        "path": "/app/work/f_cor.jpg"
+      },
+      {
+        "call_id": "call_ox0jVr5mEr7M8snvuNLb1QKR",
+        "path": "/app/work/b_ax_000.jpg"
+      },
+      {
+        "call_id": "call_dPqwv7ENfvCYkCSQQZY77qSt",
+        "path": "/app/work/b_ax_180.jpg"
+      },
+      {
+        "call_id": "call_dPqwv7ENfvCYkCSQQZY77qSt",
+        "path": "/app/work/b_ax_360.jpg"
+      },
+      {
+        "call_id": "call_dPqwv7ENfvCYkCSQQZY77qSt",
+        "path": "/app/work/b_ax_540.jpg"
+      },
+      {
+        "call_id": "call_7OrqnyNDqcfCbT783YgdzGd0",
+        "path": "/app/work/f_ax_000.jpg"
+      },
+      {
+        "call_id": "call_7OrqnyNDqcfCbT783YgdzGd0",
+        "path": "/app/work/f_ax_180.jpg"
+      },
+      {
+        "call_id": "call_OlX7ZSxMcUg37aKa0aScZ440",
+        "path": "/app/work/f_ax_360.jpg"
+      },
+      {
+        "call_id": "call_OlX7ZSxMcUg37aKa0aScZ440",
+        "path": "/app/work/f_ax_540.jpg"
+      },
+      {
+        "call_id": "call_OlX7ZSxMcUg37aKa0aScZ440",
+        "path": "/app/work/f_ax_720.jpg"
+      },
+      {
+        "call_id": "call_h0aX0Xm5LQxCzIcKp61kqwdS",
+        "path": "/app/work/b_liver.jpg"
+      },
+      {
+        "call_id": "call_h0aX0Xm5LQxCzIcKp61kqwdS",
+        "path": "/app/work/f_liver.jpg"
+      },
+      {
+        "call_id": "call_VC6s3nlsYmh8FzJ0Yh1WSTur",
+        "path": "/app/work/b_lung.jpg"
+      },
+      {
+        "call_id": "call_VC6s3nlsYmh8FzJ0Yh1WSTur",
+        "path": "/app/work/f_lung.jpg"
+      },
+      {
+        "call_id": "call_EyzvVgPCsyvUIWcgJSk6hYOv",
+        "path": "/app/work/b_liver_detail.jpg"
+      },
+      {
+        "call_id": "call_EyzvVgPCsyvUIWcgJSk6hYOv",
+        "path": "/app/work/f_liver_detail.jpg"
+      },
+      {
+        "call_id": "call_QVQbFAlIQnJNIQITCMGQj5I6",
+        "path": "/app/work/b_liver_detail2.jpg"
+      },
+      {
+        "call_id": "call_QVQbFAlIQnJNIQITCMGQj5I6",
+        "path": "/app/work/f_liver_detail2.jpg"
+      },
+      {
+        "call_id": "call_hgbPSrckcljiphvDCF5iTsFh",
+        "path": "/app/work/b_liver_cor.jpg"
+      },
+      {
+        "call_id": "call_hgbPSrckcljiphvDCF5iTsFh",
+        "path": "/app/work/f_liver_cor.jpg"
+      },
+      {
+        "call_id": "call_hgbPSrckcljiphvDCF5iTsFh",
+        "path": "/app/work/b_liver_ax.jpg"
+      },
+      {
+        "call_id": "call_pUitFJatMwbdG0lguPZAZXKk",
+        "path": "/app/work/b_lung_low.jpg"
+      },
+      {
+        "call_id": "call_pUitFJatMwbdG0lguPZAZXKk",
+        "path": "/app/work/b_lung_mid.jpg"
+      },
+      {
+        "call_id": "call_QCUTNvy4vZExkJs9uvsAYo8O",
+        "path": "/app/work/b_lung_top.jpg"
+      },
+      {
+        "call_id": "call_QCUTNvy4vZExkJs9uvsAYo8O",
+        "path": "/app/work/f_lung_low.jpg"
+      },
+      {
+        "call_id": "call_QCUTNvy4vZExkJs9uvsAYo8O",
+        "path": "/app/work/f_lung_mid.jpg"
+      },
+      {
+        "call_id": "call_ilyGzAlKXsMoCqjeqoL6MpIP",
+        "path": "/app/work/f_lung_top.jpg"
+      },
+      {
+        "call_id": "call_ilyGzAlKXsMoCqjeqoL6MpIP",
+        "path": "/app/work/b_groin.jpg"
+      },
+      {
+        "call_id": "call_ilyGzAlKXsMoCqjeqoL6MpIP",
+        "path": "/app/work/f_groin.jpg"
+      },
+      {
+        "call_id": "call_QGYNap56kRfZCJLUT1TcumRZ",
+        "path": "/app/work/b_thigh.jpg"
+      },
+      {
+        "call_id": "call_QGYNap56kRfZCJLUT1TcumRZ",
+        "path": "/app/work/f_thigh.jpg"
+      },
+      {
+        "call_id": "call_QGYNap56kRfZCJLUT1TcumRZ",
+        "path": "/app/work/b_pelvis.jpg"
+      },
+      {
+        "call_id": "call_QGYNap56kRfZCJLUT1TcumRZ",
+        "path": "/app/work/b_abdomen.jpg"
+      },
+      {
+        "call_id": "call_1LLvhCqz5XV2S5NrpkcyqCe7",
+        "path": "/app/work/f_pelvis.jpg"
+      },
+      {
+        "call_id": "call_1LLvhCqz5XV2S5NrpkcyqCe7",
+        "path": "/app/work/f_abdomen.jpg"
+      },
+      {
+        "call_id": "call_1LLvhCqz5XV2S5NrpkcyqCe7",
+        "path": "/app/work/b_thigh_ant.jpg"
+      },
+      {
+        "call_id": "call_1LLvhCqz5XV2S5NrpkcyqCe7",
+        "path": "/app/work/f_thigh_ant.jpg"
+      },
+      {
+        "call_id": "call_rRyPLU4ZRYK44UB8H51VbFNZ",
+        "path": "/app/work/b_neck.jpg"
+      },
+      {
+        "call_id": "call_rRyPLU4ZRYK44UB8H51VbFNZ",
+        "path": "/app/work/f_neck.jpg"
+      },
+      {
+        "call_id": "call_rRyPLU4ZRYK44UB8H51VbFNZ",
+        "path": "/app/work/b_groin_detail.jpg"
+      },
+      {
+        "call_id": "call_rRyPLU4ZRYK44UB8H51VbFNZ",
+        "path": "/app/work/f_groin_detail.jpg"
+      },
+      {
+        "call_id": "call_gnLUfKwE5dfXcMgtkk9OIgYk",
+        "path": "/app/work/b_thyroid.jpg"
+      },
+      {
+        "call_id": "call_gnLUfKwE5dfXcMgtkk9OIgYk",
+        "path": "/app/work/f_thyroid.jpg"
+      },
+      {
+        "call_id": "call_gnLUfKwE5dfXcMgtkk9OIgYk",
+        "path": "/app/work/f_liver_foci.jpg"
+      },
+      {
+        "call_id": "call_gnLUfKwE5dfXcMgtkk9OIgYk",
+        "path": "/app/work/b_bone_sag.jpg"
+      },
+      {
+        "call_id": "call_gnLUfKwE5dfXcMgtkk9OIgYk",
+        "path": "/app/work/f_bone_sag.jpg"
+      },
+      {
+        "call_id": "call_rcainfsL4u8fUbG61hhQR5qU",
+        "path": "/app/work/b_liver_smooth.jpg"
+      },
+      {
+        "call_id": "call_rcainfsL4u8fUbG61hhQR5qU",
+        "path": "/app/work/f_liver_smooth.jpg"
+      },
+      {
+        "call_id": "call_3X6293FYLMUHteJPkqRo4PZ5",
+        "path": "/app/work/f_foci_sequence.jpg"
+      },
+      {
+        "call_id": "call_3X6293FYLMUHteJPkqRo4PZ5",
+        "path": "/app/work/f_foci_sequence2.jpg"
+      },
+      {
+        "call_id": "call_3X6293FYLMUHteJPkqRo4PZ5",
+        "path": "/app/work/f_foci_sag.jpg"
+      },
+      {
+        "call_id": "call_3X6293FYLMUHteJPkqRo4PZ5",
+        "path": "/app/work/f_thyroid2.jpg"
+      },
+      {
+        "call_id": "call_GWDtXDNdp6y54uxioLmCCaoE",
+        "path": "/app/work/f_foci_cor_true.jpg"
+      },
+      {
+        "call_id": "call_GWDtXDNdp6y54uxioLmCCaoE",
+        "path": "/app/work/f_foci_sag_true.jpg"
+      },
+      {
+        "call_id": "call_GWDtXDNdp6y54uxioLmCCaoE",
+        "path": "/app/work/b_mass_cor.jpg"
+      },
+      {
+        "call_id": "call_qBDwQr2iwyfrtD0rG9aZvfLY",
+        "path": "/app/work/b_satellite_search.jpg"
+      },
+      {
+        "call_id": "call_qBDwQr2iwyfrtD0rG9aZvfLY",
+        "path": "/app/work/f_satellite.jpg"
+      },
+      {
+        "call_id": "call_3NmdS5z9l1Y8hlfEvgifScoc",
+        "path": "/app/work/b_primary_boundary.jpg"
+      },
+      {
+        "call_id": "call_3NmdS5z9l1Y8hlfEvgifScoc",
+        "path": "/app/work/f_primary_boundary.jpg"
+      },
+      {
+        "call_id": "call_qBGHCeicyFVhGNfgprwvDnIv",
+        "path": "/app/work/b_boundary_grid.jpg"
+      },
+      {
+        "call_id": "call_qBGHCeicyFVhGNfgprwvDnIv",
+        "path": "/app/work/f_boundary_grid.jpg"
+      },
+      {
+        "call_id": "call_qBGHCeicyFVhGNfgprwvDnIv",
+        "path": "/app/work/b_plaque_boundary.jpg"
+      },
+      {
+        "call_id": "call_qBGHCeicyFVhGNfgprwvDnIv",
+        "path": "/app/work/f_plaque_boundary.jpg"
+      },
+      {
+        "call_id": "call_qoYWNLecHNibt060ilWBI7Dw",
+        "path": "/app/work/b_liver_narrow.jpg"
+      },
+      {
+        "call_id": "call_qoYWNLecHNibt060ilWBI7Dw",
+        "path": "/app/work/b_liver_mpr_narrow.jpg"
+      },
+      {
+        "call_id": "call_YwTUHOTHf5RkPoMnsI0fIbvW",
+        "path": "/app/work/b_plaque_grid.jpg"
+      },
+      {
+        "call_id": "call_YwTUHOTHf5RkPoMnsI0fIbvW",
+        "path": "/app/work/f_plaque_grid.jpg"
+      },
+      {
+        "call_id": "call_YwTUHOTHf5RkPoMnsI0fIbvW",
+        "path": "/app/work/b_mass_keys.jpg"
+      },
+      {
+        "call_id": "call_lSNiJV3UXy9ZkU95SZZCGY81",
+        "path": "/app/work/b_liver_overlay.jpg"
+      },
+      {
+        "call_id": "call_lSNiJV3UXy9ZkU95SZZCGY81",
+        "path": "/app/work/f_liver_overlay.jpg"
+      },
+      {
+        "call_id": "call_lSNiJV3UXy9ZkU95SZZCGY81",
+        "path": "/app/work/b_plaque_overlay.jpg"
+      },
+      {
+        "call_id": "call_lSNiJV3UXy9ZkU95SZZCGY81",
+        "path": "/app/work/f_plaque_overlay.jpg"
+      },
+      {
+        "call_id": "call_nkQTMmDJO38gcddfOPMrVGc4",
+        "path": "/app/work/b_spine.jpg"
+      },
+      {
+        "call_id": "call_nkQTMmDJO38gcddfOPMrVGc4",
+        "path": "/app/work/f_spine.jpg"
+      },
+      {
+        "call_id": "call_C1IcuPm60Go60gwanVgtVL7W",
+        "path": "/app/work/b_lung_focus.jpg"
+      },
+      {
+        "call_id": "call_C1IcuPm60Go60gwanVgtVL7W",
+        "path": "/app/work/f_lung_focus.jpg"
+      },
+      {
+        "call_id": "call_J10GpN88H5huuijxJgHW9wRa",
+        "path": "/app/work/sweep/baseline_000.jpg"
+      },
+      {
+        "call_id": "call_J10GpN88H5huuijxJgHW9wRa",
+        "path": "/app/work/sweep/baseline_075.jpg"
+      },
+      {
+        "call_id": "call_J10GpN88H5huuijxJgHW9wRa",
+        "path": "/app/work/sweep/baseline_150.jpg"
+      },
+      {
+        "call_id": "call_1xavfqlApoZVKSTc9BvCw74x",
+        "path": "/app/work/sweep/baseline_225.jpg"
+      },
+      {
+        "call_id": "call_1xavfqlApoZVKSTc9BvCw74x",
+        "path": "/app/work/sweep/baseline_300.jpg"
+      },
+      {
+        "call_id": "call_1xavfqlApoZVKSTc9BvCw74x",
+        "path": "/app/work/sweep/baseline_375.jpg"
+      },
+      {
+        "call_id": "call_gNq4HA2VQlnZ0xZENMdnrtN6",
+        "path": "/app/work/b_anterior_liver.jpg"
+      },
+      {
+        "call_id": "call_gNq4HA2VQlnZ0xZENMdnrtN6",
+        "path": "/app/work/b_anterior_liver_mpr.jpg"
+      },
+      {
+        "call_id": "call_gNq4HA2VQlnZ0xZENMdnrtN6",
+        "path": "/app/work/b_anterior_liver_sag.jpg"
+      },
+      {
+        "call_id": "call_7d9oMthjEiUs8yBTjTjdfyQV",
+        "path": "/app/work/sweep/baseline_450.jpg"
+      },
+      {
+        "call_id": "call_7d9oMthjEiUs8yBTjTjdfyQV",
+        "path": "/app/work/sweep/baseline_525.jpg"
+      },
+      {
+        "call_id": "call_7d9oMthjEiUs8yBTjTjdfyQV",
+        "path": "/app/work/sweep/baseline_600.jpg"
+      },
+      {
+        "call_id": "call_7d9oMthjEiUs8yBTjTjdfyQV",
+        "path": "/app/work/sweep/followup_000.jpg"
+      },
+      {
+        "call_id": "call_Gm9Tocimd14n5bsBA8INkiyL",
+        "path": "/app/work/sweep/followup_075.jpg"
+      },
+      {
+        "call_id": "call_Gm9Tocimd14n5bsBA8INkiyL",
+        "path": "/app/work/sweep/followup_150.jpg"
+      },
+      {
+        "call_id": "call_Gm9Tocimd14n5bsBA8INkiyL",
+        "path": "/app/work/sweep/followup_225.jpg"
+      },
+      {
+        "call_id": "call_Gm9Tocimd14n5bsBA8INkiyL",
+        "path": "/app/work/sweep/followup_300.jpg"
+      },
+      {
+        "call_id": "call_veVyLWRpYgObn6CimPXvXpou",
+        "path": "/app/work/sweep/followup_375.jpg"
+      },
+      {
+        "call_id": "call_veVyLWRpYgObn6CimPXvXpou",
+        "path": "/app/work/sweep/followup_450.jpg"
+      },
+      {
+        "call_id": "call_veVyLWRpYgObn6CimPXvXpou",
+        "path": "/app/work/sweep/followup_525.jpg"
+      },
+      {
+        "call_id": "call_2GkUBnifLf4mYqnEw20O092f",
+        "path": "/app/work/sweep/followup_600.jpg"
+      },
+      {
+        "call_id": "call_2GkUBnifLf4mYqnEw20O092f",
+        "path": "/app/work/sweep/followup_675.jpg"
+      },
+      {
+        "call_id": "call_ie4MNW06lJKGlIIZuUqJd8xD",
+        "path": "/app/work/b_plaque_overlay.jpg"
+      },
+      {
+        "call_id": "call_ie4MNW06lJKGlIIZuUqJd8xD",
+        "path": "/app/work/f_plaque_overlay.jpg"
+      },
+      {
+        "call_id": "call_ie4MNW06lJKGlIIZuUqJd8xD",
+        "path": "/app/work/b_bone_cor.jpg"
+      },
+      {
+        "call_id": "call_ie4MNW06lJKGlIIZuUqJd8xD",
+        "path": "/app/work/f_bone_cor.jpg"
+      },
+      {
+        "call_id": "call_DNU6Ag8DGb3Xq23gbqASD48Z",
+        "path": "/app/work/f_plaque_detail_final.jpg"
+      },
+      {
+        "call_id": "call_DNU6Ag8DGb3Xq23gbqASD48Z",
+        "path": "/app/work/b_liver_overlay.jpg"
+      },
+      {
+        "call_id": "call_DNU6Ag8DGb3Xq23gbqASD48Z",
+        "path": "/app/work/f_liver_overlay.jpg"
+      },
+      {
+        "call_id": "call_9qzNqM8eLLG9kcZ4WOpK3whR",
+        "path": "/app/work/b_plaque_overlay.jpg"
+      },
+      {
+        "call_id": "call_9qzNqM8eLLG9kcZ4WOpK3whR",
+        "path": "/app/work/f_plaque_overlay.jpg"
+      },
+      {
+        "call_id": "call_BQ8ORSfsJKbWTOPlFNtMNr9y",
+        "path": "/app/work/f_plaque_overlay.jpg"
+      },
+      {
+        "call_id": "call_jtmFSkagir522HKhdtLXEUiH",
+        "path": "/app/work/b_liver_overlay.jpg"
+      },
+      {
+        "call_id": "call_jtmFSkagir522HKhdtLXEUiH",
+        "path": "/app/work/f_liver_overlay.jpg"
+      }
+    ],
+    "request_count": 111,
+    "expected_sweep_views": [
+      "/app/work/sweep/baseline_000.jpg",
+      "/app/work/sweep/baseline_075.jpg",
+      "/app/work/sweep/baseline_150.jpg",
+      "/app/work/sweep/baseline_225.jpg",
+      "/app/work/sweep/baseline_300.jpg",
+      "/app/work/sweep/baseline_375.jpg",
+      "/app/work/sweep/baseline_450.jpg",
+      "/app/work/sweep/baseline_525.jpg",
+      "/app/work/sweep/baseline_600.jpg",
+      "/app/work/sweep/followup_000.jpg",
+      "/app/work/sweep/followup_075.jpg",
+      "/app/work/sweep/followup_150.jpg",
+      "/app/work/sweep/followup_225.jpg",
+      "/app/work/sweep/followup_300.jpg",
+      "/app/work/sweep/followup_375.jpg",
+      "/app/work/sweep/followup_450.jpg",
+      "/app/work/sweep/followup_525.jpg",
+      "/app/work/sweep/followup_600.jpg",
+      "/app/work/sweep/followup_675.jpg"
+    ],
+    "all_sweep_views_requested": true,
+    "bone_sagittal_views_requested": {
+      "baseline": true,
+      "followup": true
+    },
+    "coordinate_checks": [
+      {
+        "visit": "baseline",
+        "reported_exclusion_native_ijk": [
+          190,
+          190,
+          214
+        ],
+        "gt_label_at_point": 0,
+        "nearest_gt_label": 1,
+        "nearest_gt_voxel_distance_mm": 89.932617054946
+      },
+      {
+        "visit": "baseline",
+        "reported_exclusion_native_ijk": [
+          350,
+          277,
+          452
+        ],
+        "gt_label_at_point": 0,
+        "nearest_gt_label": 4,
+        "nearest_gt_voxel_distance_mm": 149.42731844791686
+      },
+      {
+        "visit": "baseline",
+        "reported_exclusion_native_ijk": [
+          150,
+          250,
+          422
+        ],
+        "gt_label_at_point": 0,
+        "nearest_gt_label": 4,
+        "nearest_gt_voxel_distance_mm": 32.18985978151981
+      },
+      {
+        "visit": "followup",
+        "reported_exclusion_native_ijk": [
+          173,
+          174,
+          378
+        ],
+        "gt_label_at_point": 0,
+        "nearest_gt_label": 1,
+        "nearest_gt_voxel_distance_mm": 84.61152106581179
+      },
+      {
+        "visit": "followup",
+        "reported_exclusion_native_ijk": [
+          334,
+          247,
+          566
+        ],
+        "gt_label_at_point": 0,
+        "nearest_gt_label": 15,
+        "nearest_gt_voxel_distance_mm": 118.11162963766127
+      },
+      {
+        "visit": "followup",
+        "reported_exclusion_native_ijk": [
+          125,
+          208,
+          528
+        ],
+        "gt_label_at_point": 13,
+        "nearest_gt_label": 13,
+        "nearest_gt_voxel_distance_mm": 0.0
+      }
+    ],
+    "sources": {
+      ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/agent/trajectory.json": "c8dda448e8d739fa9b57050ca6b1ed38ad01a7f22c3689112de36949b12b6612",
+      ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/answer/report.md": "6cb326fd3fd343b6e62abe8f0ef15550a0dbf85bb60a7b564a5395c3655bbc25",
+      ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/work/sweep.py": "f0844f4f79679c730e78507cf1191dd1987de1f467df044983eb9c9a88871675"
+    },
+    "limits": "Tool requests support image delivery, not attention or target visibility. Coordinate checks establish source-reference disagreement, not clinical adjudication. All exclusions other than the vascular hepatic point lie outside GT and must not be attributed to GT misses."
+  },
+  "generated_coverage_summary": [
+    {
+      "visit": "baseline",
+      "gt_id": 1,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/b_cor.jpg",
+          "native_indices_intersecting_gt": [
+            220,
+            240
+          ],
+          "reference_voxels_on_generated_planes": 90
+        },
+        {
+          "item_id": "item_4",
+          "plane": "ax",
+          "output": "/app/work/b_ax_180.jpg",
+          "native_indices_intersecting_gt": [
+            258,
+            264,
+            270
+          ],
+          "reference_voxels_on_generated_planes": 488
+        },
+        {
+          "item_id": "item_16",
+          "plane": "ax",
+          "output": "/app/work/b_pelvis.jpg",
+          "native_indices_intersecting_gt": [
+            256,
+            260,
+            264,
+            268
+          ],
+          "reference_voxels_on_generated_planes": 801
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/b_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            220,
+            230,
+            240
+          ],
+          "reference_voxels_on_generated_planes": 290
+        }
+      ]
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 2,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/b_cor.jpg",
+          "native_indices_intersecting_gt": [
+            200
+          ],
+          "reference_voxels_on_generated_planes": 71
+        },
+        {
+          "item_id": "item_4",
+          "plane": "ax",
+          "output": "/app/work/b_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            402
+          ],
+          "reference_voxels_on_generated_planes": 63
+        },
+        {
+          "item_id": "item_8",
+          "plane": "ax",
+          "output": "/app/work/b_liver_detail.jpg",
+          "native_indices_intersecting_gt": [
+            402,
+            405
+          ],
+          "reference_voxels_on_generated_planes": 163
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/b_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            200
+          ],
+          "reference_voxels_on_generated_planes": 71
+        },
+        {
+          "item_id": "item_36",
+          "plane": "ax",
+          "output": "/app/work/b_anterior_liver.jpg",
+          "native_indices_intersecting_gt": [
+            402,
+            405
+          ],
+          "reference_voxels_on_generated_planes": 163
+        }
+      ]
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 3,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/b_cor.jpg",
+          "native_indices_intersecting_gt": [
+            260
+          ],
+          "reference_voxels_on_generated_planes": 56
+        },
+        {
+          "item_id": "item_4",
+          "plane": "ax",
+          "output": "/app/work/b_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            384
+          ],
+          "reference_voxels_on_generated_planes": 103
+        },
+        {
+          "item_id": "item_7",
+          "plane": "ax",
+          "output": "/app/work/b_liver.jpg",
+          "native_indices_intersecting_gt": [
+            380,
+            383
+          ],
+          "reference_voxels_on_generated_planes": 184
+        },
+        {
+          "item_id": "item_16",
+          "plane": "ax",
+          "output": "/app/work/b_abdomen.jpg",
+          "native_indices_intersecting_gt": [
+            380,
+            384
+          ],
+          "reference_voxels_on_generated_planes": 164
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/b_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            260
+          ],
+          "reference_voxels_on_generated_planes": 56
+        }
+      ]
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 4,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/b_cor.jpg",
+          "native_indices_intersecting_gt": [
+            280,
+            300,
+            320
+          ],
+          "reference_voxels_on_generated_planes": 1566
+        },
+        {
+          "item_id": "item_4",
+          "plane": "ax",
+          "output": "/app/work/b_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            426,
+            432,
+            438,
+            444
+          ],
+          "reference_voxels_on_generated_planes": 5122
+        },
+        {
+          "item_id": "item_7",
+          "plane": "ax",
+          "output": "/app/work/b_liver.jpg",
+          "native_indices_intersecting_gt": [
+            422,
+            425,
+            428,
+            431,
+            434,
+            437,
+            440,
+            443,
+            446
+          ],
+          "reference_voxels_on_generated_planes": 10308
+        },
+        {
+          "item_id": "item_7",
+          "plane": "ax",
+          "output": "/app/work/b_lung.jpg",
+          "native_indices_intersecting_gt": [
+            422,
+            424,
+            426,
+            428,
+            430,
+            432,
+            434,
+            436,
+            438,
+            440,
+            442,
+            444,
+            446
+          ],
+          "reference_voxels_on_generated_planes": 15426
+        },
+        {
+          "item_id": "item_8",
+          "plane": "ax",
+          "output": "/app/work/b_liver_detail.jpg",
+          "native_indices_intersecting_gt": [
+            423,
+            426,
+            429,
+            432,
+            435,
+            438,
+            441,
+            444,
+            447
+          ],
+          "reference_voxels_on_generated_planes": 10391
+        },
+        {
+          "item_id": "item_9",
+          "plane": "ax",
+          "output": "/app/work/b_liver_detail2.jpg",
+          "native_indices_intersecting_gt": [
+            424,
+            428,
+            432,
+            436,
+            440,
+            444
+          ],
+          "reference_voxels_on_generated_planes": 7747
+        },
+        {
+          "item_id": "item_11",
+          "plane": "cor",
+          "output": "/app/work/b_liver_cor.jpg",
+          "native_indices_intersecting_gt": [
+            270,
+            290
+          ],
+          "reference_voxels_on_generated_planes": 1020
+        },
+        {
+          "item_id": "item_11",
+          "plane": "ax",
+          "output": "/app/work/b_liver_ax.jpg",
+          "native_indices_intersecting_gt": [
+            430,
+            440
+          ],
+          "reference_voxels_on_generated_planes": 2949
+        },
+        {
+          "item_id": "item_12",
+          "plane": "ax",
+          "output": "/app/work/b_lung_low.jpg",
+          "native_indices_intersecting_gt": [
+            438,
+            440,
+            442,
+            444,
+            446
+          ],
+          "reference_voxels_on_generated_planes": 5492
+        },
+        {
+          "item_id": "item_23",
+          "plane": "cor",
+          "output": "/app/work/b_mass_cor.jpg",
+          "native_indices_intersecting_gt": [
+            275,
+            290
+          ],
+          "reference_voxels_on_generated_planes": 1253
+        },
+        {
+          "item_id": "item_24",
+          "plane": "ax",
+          "output": "/app/work/b_satellite_search.jpg",
+          "native_indices_intersecting_gt": [
+            424,
+            426,
+            428
+          ],
+          "reference_voxels_on_generated_planes": 671
+        },
+        {
+          "item_id": "item_24",
+          "plane": "ax",
+          "output": "/app/work/b_primary_boundary.jpg",
+          "native_indices_intersecting_gt": [
+            422,
+            424,
+            426,
+            428,
+            430,
+            432,
+            434,
+            436,
+            438,
+            440,
+            442,
+            444,
+            446
+          ],
+          "reference_voxels_on_generated_planes": 15426
+        },
+        {
+          "item_id": "item_25",
+          "plane": "ax",
+          "output": "/app/work/b_boundary_grid.jpg",
+          "native_indices_intersecting_gt": [
+            426,
+            432,
+            438,
+            444
+          ],
+          "reference_voxels_on_generated_planes": 5122
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/b_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            270,
+            280,
+            290,
+            300,
+            310,
+            320
+          ],
+          "reference_voxels_on_generated_planes": 3109
+        },
+        {
+          "item_id": "item_36",
+          "plane": "ax",
+          "output": "/app/work/b_anterior_liver.jpg",
+          "native_indices_intersecting_gt": [
+            423,
+            426,
+            429,
+            432,
+            435
+          ],
+          "reference_voxels_on_generated_planes": 2326
+        }
+      ]
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 5,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/b_cor.jpg",
+          "native_indices_intersecting_gt": [
+            280
+          ],
+          "reference_voxels_on_generated_planes": 60
+        },
+        {
+          "item_id": "item_4",
+          "plane": "ax",
+          "output": "/app/work/b_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            402
+          ],
+          "reference_voxels_on_generated_planes": 148
+        },
+        {
+          "item_id": "item_7",
+          "plane": "ax",
+          "output": "/app/work/b_liver.jpg",
+          "native_indices_intersecting_gt": [
+            401,
+            404
+          ],
+          "reference_voxels_on_generated_planes": 276
+        },
+        {
+          "item_id": "item_8",
+          "plane": "ax",
+          "output": "/app/work/b_liver_detail.jpg",
+          "native_indices_intersecting_gt": [
+            399,
+            402
+          ],
+          "reference_voxels_on_generated_planes": 214
+        },
+        {
+          "item_id": "item_11",
+          "plane": "cor",
+          "output": "/app/work/b_liver_cor.jpg",
+          "native_indices_intersecting_gt": [
+            290
+          ],
+          "reference_voxels_on_generated_planes": 7
+        },
+        {
+          "item_id": "item_16",
+          "plane": "ax",
+          "output": "/app/work/b_abdomen.jpg",
+          "native_indices_intersecting_gt": [
+            400
+          ],
+          "reference_voxels_on_generated_planes": 119
+        },
+        {
+          "item_id": "item_24",
+          "plane": "ax",
+          "output": "/app/work/b_satellite_search.jpg",
+          "native_indices_intersecting_gt": [
+            402,
+            404
+          ],
+          "reference_voxels_on_generated_planes": 219
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/b_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            280,
+            290
+          ],
+          "reference_voxels_on_generated_planes": 67
+        },
+        {
+          "item_id": "item_36",
+          "plane": "ax",
+          "output": "/app/work/b_anterior_liver.jpg",
+          "native_indices_intersecting_gt": [
+            399,
+            402
+          ],
+          "reference_voxels_on_generated_planes": 214
+        }
+      ]
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 6,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/b_cor.jpg",
+          "native_indices_intersecting_gt": [
+            260
+          ],
+          "reference_voxels_on_generated_planes": 47
+        },
+        {
+          "item_id": "item_4",
+          "plane": "ax",
+          "output": "/app/work/b_ax_180.jpg",
+          "native_indices_intersecting_gt": [
+            270,
+            276
+          ],
+          "reference_voxels_on_generated_planes": 96
+        },
+        {
+          "item_id": "item_16",
+          "plane": "ax",
+          "output": "/app/work/b_pelvis.jpg",
+          "native_indices_intersecting_gt": [
+            272,
+            276
+          ],
+          "reference_voxels_on_generated_planes": 121
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/b_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            260
+          ],
+          "reference_voxels_on_generated_planes": 47
+        }
+      ]
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 7,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/b_cor.jpg",
+          "native_indices_intersecting_gt": [
+            260
+          ],
+          "reference_voxels_on_generated_planes": 8
+        },
+        {
+          "item_id": "item_4",
+          "plane": "ax",
+          "output": "/app/work/b_ax_540.jpg",
+          "native_indices_intersecting_gt": [
+            564
+          ],
+          "reference_voxels_on_generated_planes": 71
+        },
+        {
+          "item_id": "item_18",
+          "plane": "sag",
+          "output": "/app/work/b_bone_sag.jpg",
+          "native_indices_intersecting_gt": [
+            255,
+            265
+          ],
+          "reference_voxels_on_generated_planes": 21
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/b_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            260
+          ],
+          "reference_voxels_on_generated_planes": 8
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 1,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/f_cor.jpg",
+          "native_indices_intersecting_gt": [
+            200
+          ],
+          "reference_voxels_on_generated_planes": 166
+        },
+        {
+          "item_id": "item_6",
+          "plane": "ax",
+          "output": "/app/work/f_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            414,
+            420
+          ],
+          "reference_voxels_on_generated_planes": 397
+        },
+        {
+          "item_id": "item_16",
+          "plane": "ax",
+          "output": "/app/work/f_pelvis.jpg",
+          "native_indices_intersecting_gt": [
+            414,
+            418,
+            422
+          ],
+          "reference_voxels_on_generated_planes": 536
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/f_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            200,
+            210
+          ],
+          "reference_voxels_on_generated_planes": 187
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 2,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/f_cor.jpg",
+          "native_indices_intersecting_gt": [
+            160
+          ],
+          "reference_voxels_on_generated_planes": 2
+        },
+        {
+          "item_id": "item_8",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail.jpg",
+          "native_indices_intersecting_gt": [
+            524
+          ],
+          "reference_voxels_on_generated_planes": 97
+        },
+        {
+          "item_id": "item_9",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail2.jpg",
+          "native_indices_intersecting_gt": [
+            524,
+            526
+          ],
+          "reference_voxels_on_generated_planes": 169
+        },
+        {
+          "item_id": "item_16",
+          "plane": "ax",
+          "output": "/app/work/f_abdomen.jpg",
+          "native_indices_intersecting_gt": [
+            526
+          ],
+          "reference_voxels_on_generated_planes": 72
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/f_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            160,
+            170
+          ],
+          "reference_voxels_on_generated_planes": 15
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 3,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_6",
+          "plane": "ax",
+          "output": "/app/work/f_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            504
+          ],
+          "reference_voxels_on_generated_planes": 128
+        },
+        {
+          "item_id": "item_7",
+          "plane": "ax",
+          "output": "/app/work/f_liver.jpg",
+          "native_indices_intersecting_gt": [
+            504
+          ],
+          "reference_voxels_on_generated_planes": 128
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/f_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            230
+          ],
+          "reference_voxels_on_generated_planes": 33
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 4,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/f_cor.jpg",
+          "native_indices_intersecting_gt": [
+            220,
+            240,
+            260,
+            280,
+            300
+          ],
+          "reference_voxels_on_generated_planes": 7834
+        },
+        {
+          "item_id": "item_6",
+          "plane": "ax",
+          "output": "/app/work/f_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            534
+          ],
+          "reference_voxels_on_generated_planes": 1594
+        },
+        {
+          "item_id": "item_6",
+          "plane": "ax",
+          "output": "/app/work/f_ax_540.jpg",
+          "native_indices_intersecting_gt": [
+            540,
+            546,
+            552,
+            558,
+            564,
+            570
+          ],
+          "reference_voxels_on_generated_planes": 24387
+        },
+        {
+          "item_id": "item_7",
+          "plane": "ax",
+          "output": "/app/work/f_liver.jpg",
+          "native_indices_intersecting_gt": [
+            534,
+            537,
+            540,
+            543,
+            546,
+            549,
+            552,
+            555,
+            558,
+            561,
+            564,
+            567,
+            570
+          ],
+          "reference_voxels_on_generated_planes": 51360
+        },
+        {
+          "item_id": "item_7",
+          "plane": "ax",
+          "output": "/app/work/f_lung.jpg",
+          "native_indices_intersecting_gt": [
+            545,
+            547,
+            549,
+            551,
+            553,
+            555,
+            557,
+            559,
+            561,
+            563,
+            565,
+            567,
+            569,
+            571
+          ],
+          "reference_voxels_on_generated_planes": 60348
+        },
+        {
+          "item_id": "item_8",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail.jpg",
+          "native_indices_intersecting_gt": [
+            533,
+            536,
+            539,
+            542,
+            545,
+            548,
+            551,
+            554,
+            557,
+            560,
+            563,
+            566,
+            569
+          ],
+          "reference_voxels_on_generated_planes": 51849
+        },
+        {
+          "item_id": "item_9",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail2.jpg",
+          "native_indices_intersecting_gt": [
+            532,
+            534,
+            536,
+            538,
+            540,
+            542,
+            544,
+            546
+          ],
+          "reference_voxels_on_generated_planes": 24787
+        },
+        {
+          "item_id": "item_11",
+          "plane": "cor",
+          "output": "/app/work/f_liver_cor.jpg",
+          "native_indices_intersecting_gt": [
+            230,
+            250,
+            270
+          ],
+          "reference_voxels_on_generated_planes": 6364
+        },
+        {
+          "item_id": "item_13",
+          "plane": "ax",
+          "output": "/app/work/f_lung_low.jpg",
+          "native_indices_intersecting_gt": [
+            550,
+            552,
+            554,
+            556,
+            558,
+            560,
+            562,
+            564,
+            566,
+            568,
+            570
+          ],
+          "reference_voxels_on_generated_planes": 46752
+        },
+        {
+          "item_id": "item_19",
+          "plane": "ax",
+          "output": "/app/work/f_liver_foci.jpg",
+          "native_indices_intersecting_gt": [
+            532,
+            536,
+            540
+          ],
+          "reference_voxels_on_generated_planes": 5778
+        },
+        {
+          "item_id": "item_21",
+          "plane": "ax",
+          "output": "/app/work/f_foci_sequence.jpg",
+          "native_indices_intersecting_gt": [
+            532,
+            533,
+            534,
+            535,
+            536,
+            537,
+            538,
+            539,
+            540,
+            541
+          ],
+          "reference_voxels_on_generated_planes": 19489
+        },
+        {
+          "item_id": "item_21",
+          "plane": "ax",
+          "output": "/app/work/f_foci_sequence2.jpg",
+          "native_indices_intersecting_gt": [
+            542,
+            543,
+            544,
+            545,
+            546,
+            547,
+            548,
+            549,
+            550,
+            551,
+            552,
+            553,
+            554,
+            555,
+            556,
+            557
+          ],
+          "reference_voxels_on_generated_planes": 71234
+        },
+        {
+          "item_id": "item_23",
+          "plane": "cor",
+          "output": "/app/work/f_foci_cor_true.jpg",
+          "native_indices_intersecting_gt": [
+            215,
+            225,
+            235
+          ],
+          "reference_voxels_on_generated_planes": 1957
+        },
+        {
+          "item_id": "item_23",
+          "plane": "sag",
+          "output": "/app/work/f_foci_sag_true.jpg",
+          "native_indices_intersecting_gt": [
+            130,
+            145,
+            180,
+            190
+          ],
+          "reference_voxels_on_generated_planes": 3689
+        },
+        {
+          "item_id": "item_24",
+          "plane": "ax",
+          "output": "/app/work/f_satellite.jpg",
+          "native_indices_intersecting_gt": [
+            533,
+            534,
+            535,
+            536,
+            537,
+            538,
+            539,
+            540,
+            541,
+            542
+          ],
+          "reference_voxels_on_generated_planes": 1353
+        },
+        {
+          "item_id": "item_24",
+          "plane": "ax",
+          "output": "/app/work/f_primary_boundary.jpg",
+          "native_indices_intersecting_gt": [
+            532,
+            534,
+            536,
+            538,
+            540,
+            542,
+            544,
+            546,
+            548,
+            550,
+            552,
+            554,
+            556,
+            558,
+            560,
+            562,
+            564,
+            566,
+            568,
+            570
+          ],
+          "reference_voxels_on_generated_planes": 77329
+        },
+        {
+          "item_id": "item_25",
+          "plane": "ax",
+          "output": "/app/work/f_boundary_grid.jpg",
+          "native_indices_intersecting_gt": [
+            534,
+            540,
+            548,
+            556,
+            564,
+            568
+          ],
+          "reference_voxels_on_generated_planes": 22031
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/f_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            220,
+            230,
+            240,
+            250,
+            260,
+            270,
+            280,
+            290,
+            300,
+            310
+          ],
+          "reference_voxels_on_generated_planes": 15420
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 5,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/f_cor.jpg",
+          "native_indices_intersecting_gt": [
+            260
+          ],
+          "reference_voxels_on_generated_planes": 34
+        },
+        {
+          "item_id": "item_6",
+          "plane": "ax",
+          "output": "/app/work/f_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            522
+          ],
+          "reference_voxels_on_generated_planes": 66
+        },
+        {
+          "item_id": "item_7",
+          "plane": "ax",
+          "output": "/app/work/f_liver.jpg",
+          "native_indices_intersecting_gt": [
+            522,
+            525
+          ],
+          "reference_voxels_on_generated_planes": 214
+        },
+        {
+          "item_id": "item_8",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail.jpg",
+          "native_indices_intersecting_gt": [
+            524,
+            527
+          ],
+          "reference_voxels_on_generated_planes": 181
+        },
+        {
+          "item_id": "item_9",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail2.jpg",
+          "native_indices_intersecting_gt": [
+            524,
+            526
+          ],
+          "reference_voxels_on_generated_planes": 258
+        },
+        {
+          "item_id": "item_11",
+          "plane": "cor",
+          "output": "/app/work/f_liver_cor.jpg",
+          "native_indices_intersecting_gt": [
+            250
+          ],
+          "reference_voxels_on_generated_planes": 41
+        },
+        {
+          "item_id": "item_16",
+          "plane": "ax",
+          "output": "/app/work/f_abdomen.jpg",
+          "native_indices_intersecting_gt": [
+            522,
+            526
+          ],
+          "reference_voxels_on_generated_planes": 168
+        },
+        {
+          "item_id": "item_21",
+          "plane": "ax",
+          "output": "/app/work/f_foci_sequence.jpg",
+          "native_indices_intersecting_gt": [
+            526,
+            527
+          ],
+          "reference_voxels_on_generated_planes": 127
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/f_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            250,
+            260
+          ],
+          "reference_voxels_on_generated_planes": 75
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 6,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_16",
+          "plane": "ax",
+          "output": "/app/work/f_pelvis.jpg",
+          "native_indices_intersecting_gt": [
+            422
+          ],
+          "reference_voxels_on_generated_planes": 35
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/f_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            230
+          ],
+          "reference_voxels_on_generated_planes": 27
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 7,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_18",
+          "plane": "sag",
+          "output": "/app/work/f_bone_sag.jpg",
+          "native_indices_intersecting_gt": [
+            255
+          ],
+          "reference_voxels_on_generated_planes": 10
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 8,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/f_cor.jpg",
+          "native_indices_intersecting_gt": [
+            320
+          ],
+          "reference_voxels_on_generated_planes": 75
+        },
+        {
+          "item_id": "item_6",
+          "plane": "ax",
+          "output": "/app/work/f_ax_540.jpg",
+          "native_indices_intersecting_gt": [
+            540
+          ],
+          "reference_voxels_on_generated_planes": 119
+        },
+        {
+          "item_id": "item_7",
+          "plane": "ax",
+          "output": "/app/work/f_liver.jpg",
+          "native_indices_intersecting_gt": [
+            537,
+            540
+          ],
+          "reference_voxels_on_generated_planes": 247
+        },
+        {
+          "item_id": "item_8",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail.jpg",
+          "native_indices_intersecting_gt": [
+            536,
+            539,
+            542
+          ],
+          "reference_voxels_on_generated_planes": 247
+        },
+        {
+          "item_id": "item_9",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail2.jpg",
+          "native_indices_intersecting_gt": [
+            536,
+            538,
+            540,
+            542
+          ],
+          "reference_voxels_on_generated_planes": 367
+        },
+        {
+          "item_id": "item_24",
+          "plane": "ax",
+          "output": "/app/work/f_primary_boundary.jpg",
+          "native_indices_intersecting_gt": [
+            538
+          ],
+          "reference_voxels_on_generated_planes": 2
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/f_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            320
+          ],
+          "reference_voxels_on_generated_planes": 75
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 9,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/f_cor.jpg",
+          "native_indices_intersecting_gt": [
+            180
+          ],
+          "reference_voxels_on_generated_planes": 23
+        },
+        {
+          "item_id": "item_6",
+          "plane": "ax",
+          "output": "/app/work/f_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            534
+          ],
+          "reference_voxels_on_generated_planes": 4
+        },
+        {
+          "item_id": "item_8",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail.jpg",
+          "native_indices_intersecting_gt": [
+            536,
+            539
+          ],
+          "reference_voxels_on_generated_planes": 113
+        },
+        {
+          "item_id": "item_9",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail2.jpg",
+          "native_indices_intersecting_gt": [
+            534,
+            536,
+            538
+          ],
+          "reference_voxels_on_generated_planes": 186
+        },
+        {
+          "item_id": "item_21",
+          "plane": "ax",
+          "output": "/app/work/f_foci_sequence.jpg",
+          "native_indices_intersecting_gt": [
+            534,
+            535,
+            536,
+            537,
+            538,
+            539
+          ],
+          "reference_voxels_on_generated_planes": 357
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/f_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            180
+          ],
+          "reference_voxels_on_generated_planes": 23
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 10,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/f_cor.jpg",
+          "native_indices_intersecting_gt": [
+            240
+          ],
+          "reference_voxels_on_generated_planes": 42
+        },
+        {
+          "item_id": "item_6",
+          "plane": "ax",
+          "output": "/app/work/f_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            522
+          ],
+          "reference_voxels_on_generated_planes": 35
+        },
+        {
+          "item_id": "item_7",
+          "plane": "ax",
+          "output": "/app/work/f_liver.jpg",
+          "native_indices_intersecting_gt": [
+            519,
+            522
+          ],
+          "reference_voxels_on_generated_planes": 140
+        },
+        {
+          "item_id": "item_8",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail.jpg",
+          "native_indices_intersecting_gt": [
+            518,
+            521
+          ],
+          "reference_voxels_on_generated_planes": 140
+        },
+        {
+          "item_id": "item_16",
+          "plane": "ax",
+          "output": "/app/work/f_abdomen.jpg",
+          "native_indices_intersecting_gt": [
+            518,
+            522
+          ],
+          "reference_voxels_on_generated_planes": 104
+        },
+        {
+          "item_id": "item_23",
+          "plane": "cor",
+          "output": "/app/work/f_foci_cor_true.jpg",
+          "native_indices_intersecting_gt": [
+            235
+          ],
+          "reference_voxels_on_generated_planes": 28
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/f_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            240
+          ],
+          "reference_voxels_on_generated_planes": 42
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 11,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/f_cor.jpg",
+          "native_indices_intersecting_gt": [
+            200
+          ],
+          "reference_voxels_on_generated_planes": 16
+        },
+        {
+          "item_id": "item_6",
+          "plane": "ax",
+          "output": "/app/work/f_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            522
+          ],
+          "reference_voxels_on_generated_planes": 102
+        },
+        {
+          "item_id": "item_7",
+          "plane": "ax",
+          "output": "/app/work/f_liver.jpg",
+          "native_indices_intersecting_gt": [
+            522
+          ],
+          "reference_voxels_on_generated_planes": 102
+        },
+        {
+          "item_id": "item_8",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail.jpg",
+          "native_indices_intersecting_gt": [
+            521,
+            524
+          ],
+          "reference_voxels_on_generated_planes": 204
+        },
+        {
+          "item_id": "item_9",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail2.jpg",
+          "native_indices_intersecting_gt": [
+            524
+          ],
+          "reference_voxels_on_generated_planes": 163
+        },
+        {
+          "item_id": "item_11",
+          "plane": "cor",
+          "output": "/app/work/f_liver_cor.jpg",
+          "native_indices_intersecting_gt": [
+            210
+          ],
+          "reference_voxels_on_generated_planes": 26
+        },
+        {
+          "item_id": "item_16",
+          "plane": "ax",
+          "output": "/app/work/f_abdomen.jpg",
+          "native_indices_intersecting_gt": [
+            522
+          ],
+          "reference_voxels_on_generated_planes": 102
+        },
+        {
+          "item_id": "item_18",
+          "plane": "sag",
+          "output": "/app/work/f_bone_sag.jpg",
+          "native_indices_intersecting_gt": [
+            225,
+            235
+          ],
+          "reference_voxels_on_generated_planes": 45
+        },
+        {
+          "item_id": "item_23",
+          "plane": "cor",
+          "output": "/app/work/f_foci_cor_true.jpg",
+          "native_indices_intersecting_gt": [
+            205
+          ],
+          "reference_voxels_on_generated_planes": 38
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/f_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            200,
+            210
+          ],
+          "reference_voxels_on_generated_planes": 42
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 12,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/f_cor.jpg",
+          "native_indices_intersecting_gt": [
+            220
+          ],
+          "reference_voxels_on_generated_planes": 17
+        },
+        {
+          "item_id": "item_6",
+          "plane": "ax",
+          "output": "/app/work/f_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            534
+          ],
+          "reference_voxels_on_generated_planes": 42
+        },
+        {
+          "item_id": "item_7",
+          "plane": "ax",
+          "output": "/app/work/f_liver.jpg",
+          "native_indices_intersecting_gt": [
+            534
+          ],
+          "reference_voxels_on_generated_planes": 42
+        },
+        {
+          "item_id": "item_8",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail.jpg",
+          "native_indices_intersecting_gt": [
+            533
+          ],
+          "reference_voxels_on_generated_planes": 62
+        },
+        {
+          "item_id": "item_9",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail2.jpg",
+          "native_indices_intersecting_gt": [
+            532,
+            534
+          ],
+          "reference_voxels_on_generated_planes": 77
+        },
+        {
+          "item_id": "item_19",
+          "plane": "ax",
+          "output": "/app/work/f_liver_foci.jpg",
+          "native_indices_intersecting_gt": [
+            532
+          ],
+          "reference_voxels_on_generated_planes": 35
+        },
+        {
+          "item_id": "item_21",
+          "plane": "ax",
+          "output": "/app/work/f_foci_sequence.jpg",
+          "native_indices_intersecting_gt": [
+            532,
+            533,
+            534
+          ],
+          "reference_voxels_on_generated_planes": 139
+        },
+        {
+          "item_id": "item_23",
+          "plane": "cor",
+          "output": "/app/work/f_foci_cor_true.jpg",
+          "native_indices_intersecting_gt": [
+            215
+          ],
+          "reference_voxels_on_generated_planes": 17
+        },
+        {
+          "item_id": "item_24",
+          "plane": "ax",
+          "output": "/app/work/f_primary_boundary.jpg",
+          "native_indices_intersecting_gt": [
+            532,
+            534
+          ],
+          "reference_voxels_on_generated_planes": 77
+        },
+        {
+          "item_id": "item_25",
+          "plane": "ax",
+          "output": "/app/work/f_boundary_grid.jpg",
+          "native_indices_intersecting_gt": [
+            534
+          ],
+          "reference_voxels_on_generated_planes": 42
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/f_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            220
+          ],
+          "reference_voxels_on_generated_planes": 17
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 13,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/f_cor.jpg",
+          "native_indices_intersecting_gt": [
+            200
+          ],
+          "reference_voxels_on_generated_planes": 56
+        },
+        {
+          "item_id": "item_6",
+          "plane": "ax",
+          "output": "/app/work/f_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            528
+          ],
+          "reference_voxels_on_generated_planes": 254
+        },
+        {
+          "item_id": "item_7",
+          "plane": "ax",
+          "output": "/app/work/f_liver.jpg",
+          "native_indices_intersecting_gt": [
+            525,
+            528,
+            531
+          ],
+          "reference_voxels_on_generated_planes": 364
+        },
+        {
+          "item_id": "item_8",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail.jpg",
+          "native_indices_intersecting_gt": [
+            527,
+            530
+          ],
+          "reference_voxels_on_generated_planes": 460
+        },
+        {
+          "item_id": "item_9",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail2.jpg",
+          "native_indices_intersecting_gt": [
+            526,
+            528,
+            530,
+            532
+          ],
+          "reference_voxels_on_generated_planes": 582
+        },
+        {
+          "item_id": "item_11",
+          "plane": "cor",
+          "output": "/app/work/f_liver_cor.jpg",
+          "native_indices_intersecting_gt": [
+            210
+          ],
+          "reference_voxels_on_generated_planes": 73
+        },
+        {
+          "item_id": "item_16",
+          "plane": "ax",
+          "output": "/app/work/f_abdomen.jpg",
+          "native_indices_intersecting_gt": [
+            526
+          ],
+          "reference_voxels_on_generated_planes": 106
+        },
+        {
+          "item_id": "item_19",
+          "plane": "ax",
+          "output": "/app/work/f_liver_foci.jpg",
+          "native_indices_intersecting_gt": [
+            528,
+            532
+          ],
+          "reference_voxels_on_generated_planes": 268
+        },
+        {
+          "item_id": "item_21",
+          "plane": "ax",
+          "output": "/app/work/f_foci_sequence.jpg",
+          "native_indices_intersecting_gt": [
+            526,
+            527,
+            528,
+            529,
+            530,
+            531,
+            532
+          ],
+          "reference_voxels_on_generated_planes": 1189
+        },
+        {
+          "item_id": "item_23",
+          "plane": "cor",
+          "output": "/app/work/f_foci_cor_true.jpg",
+          "native_indices_intersecting_gt": [
+            205,
+            215
+          ],
+          "reference_voxels_on_generated_planes": 105
+        },
+        {
+          "item_id": "item_23",
+          "plane": "sag",
+          "output": "/app/work/f_foci_sag_true.jpg",
+          "native_indices_intersecting_gt": [
+            130
+          ],
+          "reference_voxels_on_generated_planes": 26
+        },
+        {
+          "item_id": "item_24",
+          "plane": "ax",
+          "output": "/app/work/f_primary_boundary.jpg",
+          "native_indices_intersecting_gt": [
+            530,
+            532
+          ],
+          "reference_voxels_on_generated_planes": 206
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/f_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            200,
+            210
+          ],
+          "reference_voxels_on_generated_planes": 129
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 14,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_3",
+          "plane": "cor",
+          "output": "/app/work/f_cor.jpg",
+          "native_indices_intersecting_gt": [
+            240
+          ],
+          "reference_voxels_on_generated_planes": 58
+        },
+        {
+          "item_id": "item_6",
+          "plane": "ax",
+          "output": "/app/work/f_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            534
+          ],
+          "reference_voxels_on_generated_planes": 84
+        },
+        {
+          "item_id": "item_6",
+          "plane": "ax",
+          "output": "/app/work/f_ax_540.jpg",
+          "native_indices_intersecting_gt": [
+            540
+          ],
+          "reference_voxels_on_generated_planes": 17
+        },
+        {
+          "item_id": "item_7",
+          "plane": "ax",
+          "output": "/app/work/f_liver.jpg",
+          "native_indices_intersecting_gt": [
+            534,
+            537,
+            540
+          ],
+          "reference_voxels_on_generated_planes": 310
+        },
+        {
+          "item_id": "item_8",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail.jpg",
+          "native_indices_intersecting_gt": [
+            533,
+            536,
+            539
+          ],
+          "reference_voxels_on_generated_planes": 344
+        },
+        {
+          "item_id": "item_9",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail2.jpg",
+          "native_indices_intersecting_gt": [
+            534,
+            536,
+            538,
+            540
+          ],
+          "reference_voxels_on_generated_planes": 500
+        },
+        {
+          "item_id": "item_11",
+          "plane": "cor",
+          "output": "/app/work/f_liver_cor.jpg",
+          "native_indices_intersecting_gt": [
+            230
+          ],
+          "reference_voxels_on_generated_planes": 53
+        },
+        {
+          "item_id": "item_19",
+          "plane": "ax",
+          "output": "/app/work/f_liver_foci.jpg",
+          "native_indices_intersecting_gt": [
+            536,
+            540
+          ],
+          "reference_voxels_on_generated_planes": 210
+        },
+        {
+          "item_id": "item_21",
+          "plane": "ax",
+          "output": "/app/work/f_foci_sequence.jpg",
+          "native_indices_intersecting_gt": [
+            533,
+            534,
+            535,
+            536,
+            537,
+            538,
+            539,
+            540
+          ],
+          "reference_voxels_on_generated_planes": 998
+        },
+        {
+          "item_id": "item_23",
+          "plane": "cor",
+          "output": "/app/work/f_foci_cor_true.jpg",
+          "native_indices_intersecting_gt": [
+            235
+          ],
+          "reference_voxels_on_generated_planes": 90
+        },
+        {
+          "item_id": "item_23",
+          "plane": "sag",
+          "output": "/app/work/f_foci_sag_true.jpg",
+          "native_indices_intersecting_gt": [
+            180,
+            190
+          ],
+          "reference_voxels_on_generated_planes": 112
+        },
+        {
+          "item_id": "item_24",
+          "plane": "ax",
+          "output": "/app/work/f_satellite.jpg",
+          "native_indices_intersecting_gt": [
+            533,
+            534,
+            535,
+            536,
+            537,
+            538,
+            539,
+            540
+          ],
+          "reference_voxels_on_generated_planes": 998
+        },
+        {
+          "item_id": "item_24",
+          "plane": "ax",
+          "output": "/app/work/f_primary_boundary.jpg",
+          "native_indices_intersecting_gt": [
+            534,
+            536,
+            538,
+            540
+          ],
+          "reference_voxels_on_generated_planes": 500
+        },
+        {
+          "item_id": "item_25",
+          "plane": "ax",
+          "output": "/app/work/f_boundary_grid.jpg",
+          "native_indices_intersecting_gt": [
+            534,
+            540
+          ],
+          "reference_voxels_on_generated_planes": 101
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/f_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            230,
+            240
+          ],
+          "reference_voxels_on_generated_planes": 111
+        }
+      ]
+    },
+    {
+      "visit": "followup",
+      "gt_id": 15,
+      "generated_view_intersections": [
+        {
+          "item_id": "item_6",
+          "plane": "ax",
+          "output": "/app/work/f_ax_360.jpg",
+          "native_indices_intersecting_gt": [
+            534
+          ],
+          "reference_voxels_on_generated_planes": 107
+        },
+        {
+          "item_id": "item_8",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail.jpg",
+          "native_indices_intersecting_gt": [
+            533
+          ],
+          "reference_voxels_on_generated_planes": 90
+        },
+        {
+          "item_id": "item_9",
+          "plane": "ax",
+          "output": "/app/work/f_liver_detail2.jpg",
+          "native_indices_intersecting_gt": [
+            534
+          ],
+          "reference_voxels_on_generated_planes": 107
+        },
+        {
+          "item_id": "item_18",
+          "plane": "sag",
+          "output": "/app/work/f_bone_sag.jpg",
+          "native_indices_intersecting_gt": [
+            285
+          ],
+          "reference_voxels_on_generated_planes": 22
+        },
+        {
+          "item_id": "item_33",
+          "plane": "cor",
+          "output": "/app/work/f_bone_cor.jpg",
+          "native_indices_intersecting_gt": [
+            170
+          ],
+          "reference_voxels_on_generated_planes": 24
+        }
+      ]
+    }
+  ],
+  "figure": {
+    "figure": ".local/longitudinal-ct-curation-v1/analysis/curation-comparison.png",
+    "sha256": "ff171657b0409137956c2e9549b9319a51e723d2ea44fa02e66e4f28f7bdd80b",
+    "selection": "GT2 at both visits revisits the prior explicit rejection; then gains and losses when present, otherwise still-missed targets. Author-selected, not representative sampling.",
+    "panels": [
+      {
+        "visit": "baseline",
+        "gt_id": 2,
+        "native_k": 404,
+        "crop_center_ij": [
+          191.88333333333333,
+          199.44166666666666
+        ],
+        "crop_mm": 55.0,
+        "window_hu": [
+          0,
+          150
+        ],
+        "transition": "still_missed",
+        "candidate_assessment": null
+      },
+      {
+        "visit": "followup",
+        "gt_id": 2,
+        "native_k": 525,
+        "crop_center_ij": [
+          181.5897435897436,
+          165.36752136752136
+        ],
+        "crop_mm": 55.0,
+        "window_hu": [
+          0,
+          150
+        ],
+        "transition": "still_missed",
+        "candidate_assessment": null
+      },
+      {
+        "visit": "followup",
+        "gt_id": 14,
+        "native_k": 537,
+        "crop_center_ij": [
+          185.57416267942583,
+          235.04784688995215
+        ],
+        "crop_mm": 55.0,
+        "window_hu": [
+          0,
+          150
+        ],
+        "transition": "gained",
+        "candidate_assessment": {
+          "id": 2,
+          "p_tumor": 0.7,
+          "reason": "Separate small rounded low-attenuation hepatic focus anteromedial to the inferior part of the dominant mass, present on consecutive slices without definite branching vascular continuity. Tumor favored, with cyst or vascular partial-volume appearance as alternatives. Baseline visibility is uncertain."
+        }
+      },
+      {
+        "visit": "followup",
+        "gt_id": 13,
+        "native_k": 527,
+        "crop_center_ij": [
+          123.36781609195403,
+          205.72413793103448
+        ],
+        "crop_mm": 55.0,
+        "window_hu": [
+          0,
+          150
+        ],
+        "transition": "lost",
+        "candidate_assessment": null
+      }
+    ],
+    "sources": {
+      ".local/freezes/7b4b2740a45157383bccd77af41ccf5635deb94c0bcc2b00fa3f07f952f681cb/task/environment/data/baseline.nii.gz": "01389bb85db149faec37d64209dbc78caa18aeba3ad91aeb3c410b1c023494ad",
+      ".local/freezes/7b4b2740a45157383bccd77af41ccf5635deb94c0bcc2b00fa3f07f952f681cb/task/tests/reference/baseline_instances.nii.gz": "698fb1f3e8ad7989045e59827001b2457f9fe82021b09c286d741ceef2d8dbc4",
+      ".local/attempts/attempt-81ee755346d04be7/job/task__5btJU8Q/artifacts/app/answer/baseline_instances.nii.gz": "1d3a845a373a79f993bbc620e7705d0af93139d5f55305adf443cdaa83942085",
+      ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/answer/baseline_instances.nii.gz": "6d3f550fa8a7d44f9ef9905f2c28a258269d7823148609c8c27f11eb6ee977e2",
+      ".local/freezes/7b4b2740a45157383bccd77af41ccf5635deb94c0bcc2b00fa3f07f952f681cb/task/environment/data/followup.nii.gz": "11fca9d904d0171a3e474a07b285cbb8c5917c3f83d3792a3a6182553ec4a385",
+      ".local/freezes/7b4b2740a45157383bccd77af41ccf5635deb94c0bcc2b00fa3f07f952f681cb/task/tests/reference/followup_instances.nii.gz": "c04f8d651d3cad5760dd305a3388744edf0a7b9c2f7f66b4f3748d0c073e27e6",
+      ".local/attempts/attempt-81ee755346d04be7/job/task__5btJU8Q/artifacts/app/answer/followup_instances.nii.gz": "b171a473008c8c0285b1c939c468f8118f43efe68c267b8017b7c6f5213a80ae",
+      ".local/attempts/attempt-e5fda20ed65a41b4/job/task__JFBJtBe/artifacts/app/answer/followup_instances.nii.gz": "94940d5af1561b6b99faed5c5ba001b9b97828d13acca5020827fd1dd626d38c"
+    },
+    "limits": "Contour absence at one plane is illustrated; 3D detection is determined separately by the frozen scorer. Probability shown only for a strictly matched candidate. No clinical adjudication."
+  },
+  "figure_visually_inspected": true,
+  "invoked_skill_version": "1.0.0",
+  "review_id": "review-c623ccd6a955467e",
+  "local_evidence": [
+    {
+      "path": ".local/longitudinal-ct-curation-v1/analysis/evidence.json",
+      "sha256": "2b7b78d497ac628b26c21f89f71c80ec680c39c1af663fda01ab5dddaf299db0"
+    },
+    {
+      "path": ".local/longitudinal-ct-curation-v1/trace-review.json",
+      "sha256": "0ee40fccbea6d7bd23f92046b78c02c0595e3b167f06c0222c92c0f567818b4d"
+    },
+    {
+      "path": ".local/longitudinal-ct-curation-v1/trace-details.json",
+      "sha256": "648709dcef554e9b205e1547d6031de15c407d4186c70bed0bf01402d4188b1b"
+    },
+    {
+      "path": ".local/longitudinal-ct-curation-v1/analysis/curation-comparison.json",
+      "sha256": "fe2bcd92420ef4eb8c908492a365260e80ae630bc3699febd3da6964d11af1ca"
+    },
+    {
+      "path": ".local/longitudinal-ct-curation-v1/task-files.json",
+      "sha256": "d89ad7f3a8681d48edc2ce628f5da55255a4e2bafde4a4503a556f84aaffa6ae"
+    }
+  ]
+}

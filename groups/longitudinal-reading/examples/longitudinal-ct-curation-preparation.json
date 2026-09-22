@@ -1,0 +1,70 @@
+{
+  "experiment_id": "longitudinal-ct-curation-astra-medium",
+  "decision_id": "decision-4d11c9538adb4521",
+  "source_task_digest": "ffdf321ba2637b46484309d8ec2c39fdffd5234b99e3152842c245a25a149215",
+  "source_manifest_verified": true,
+  "instruction_sha256": "1b485d597e0cc82a4160a92dc81bfcb19ccf1b48298c85e4451402b535710c12",
+  "context_block_sha256": "89bd2d28ae6d3c91261282d8c2a7e84c33d336c594ca534154e7f5486c0f32cf",
+  "scientific_scorer_sha256": "c5dcbe1208592b5eeac93d06d80be571f1cab038d730edb289e736892fa145a6",
+  "candidate_wrapper_sha256": "edeac0be82edf9c1929ca50018b3513bed829ad498e35bda62896808b442d4fa",
+  "input_hashes": {
+    "environment/data/baseline.nii.gz": "01389bb85db149faec37d64209dbc78caa18aeba3ad91aeb3c410b1c023494ad",
+    "environment/data/followup.nii.gz": "11fca9d904d0171a3e474a07b285cbb8c5917c3f83d3792a3a6182553ec4a385"
+  },
+  "same_solver_image": "sha256:ae155277f6c3fb6231a82855fd15ff3d4b96089d307a03015f2fbbcb34095600",
+  "comparison_classification": "endpoint_only",
+  "sources": [
+    "https://www.nature.com/articles/s41597-026-07466-y",
+    "https://fdat.uni-tuebingen.de/records/qe950-g4h94"
+  ],
+  "task_digest": "7b4b2740a45157383bccd77af41ccf5635deb94c0bcc2b00fa3f07f952f681cb",
+  "images": {
+    "solver": "sha256:ae155277f6c3fb6231a82855fd15ff3d4b96089d307a03015f2fbbcb34095600",
+    "evaluator": "sha256:e4fe82ed4dbba16a110b6e981047fa3fa5a70377846e3bc6a444446cb633b2bb",
+    "runtime": "sha256:3de5f01c3d98a0ed47c9c6ac2ef202807e2761e0ece826d0b514c994f033f107",
+    "transport": "sha256:a2a21e4e45448a01dd1b97b3a5017643dea882953485c99b3fb0aceab777376f"
+  },
+  "controls": [
+    {
+      "attempt_id": "attempt-dc8f5dde4a224c2d",
+      "contract_valid": true,
+      "candidate_contract_valid": true,
+      "completed": true,
+      "frozen_payload_unchanged": true
+    },
+    {
+      "attempt_id": "attempt-6e16a5953cf8404d",
+      "contract_valid": false,
+      "candidate_contract_valid": false,
+      "completed": true,
+      "frozen_payload_unchanged": true
+    }
+  ],
+  "data_network_preflight_passed": true,
+  "live_solver_isolation_passed": true,
+  "synthetic_contract_check": {
+    "synthetic_only": true,
+    "low_probability_retained_in_primary": true,
+    "subset_threshold_inclusive": true,
+    "primary_events_unchanged": true,
+    "missing_sidecar_fails_contract_but_retains_original_metrics": true
+  },
+  "candidate_validation_smoke": {
+    "valid_low_probability_candidate_accepted": true,
+    "malformed_cases": {
+      "missing ID": "rejected",
+      "duplicate ID": "rejected",
+      "nonfinite probability": "rejected",
+      "boolean probability": "rejected",
+      "missing reason": "rejected"
+    }
+  },
+  "protocol_sha256": "33bdd2f7e3ee0f428932cb0c5a857ba73434634fb6d83f0f0b3915d3e9692b99",
+  "model_attempt_id": "attempt-e5fda20ed65a41b4",
+  "private_reference_hashes_unchanged": {
+    "tests/reference/baseline_instances.nii.gz": true,
+    "tests/reference/events.json": true,
+    "tests/reference/followup_instances.nii.gz": true,
+    "tests/reference/report.md": true
+  }
+}

@@ -33,3 +33,12 @@ new lesions; the revised image-only contract is retained.
 [Second-case Astra result](findings/longitudinal-ct-case02-astra-medium.md):
 3/22 instances and 2/15 exact events despite foreground Dice 0.799/0.891;
 one reported vessel exclusion falls inside a missed new reference lesion.
+
+[Clinical-context study](findings/longitudinal-ct-context-hypothesis.md): supplying
+verified broad context recovers the same three instances; explicit recognition
+disagreement and incomplete rendered coverage remain distinct explanations.
+
+[Comprehensive curation](findings/longitudinal-ct-curation-comparison.md): an explicit
+all-size inventory goal and permissive candidate policy retain additional
+uncertainty, but recovery stays 3/22. One target is gained and another rejected
+as vascular; exact events fall to 1/15 because the gained target is unresolved.

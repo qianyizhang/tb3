@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "analysis_kind": "comparison",
+  "id": "longitudinal-ct-curation-comparison",
+  "group_id": "longitudinal-reading",
+  "title": "Comprehensive curation changes selected lesions but not 3/22 recovery",
+  "claim": "An explicit all-size plausible-candidate inventory goal was followed for an uncertain benign-favored finding, but the fresh Astra-medium run still localized 3/22 GT instances: it gained follow-up GT14 and lost GT13, explicitly rejected as vascular. Two unmatched low-probability candidates were added. Links remained 1/7 and exact events fell from 2/15 to 1/15 because the newly recovered GT14 event was unresolved. No <=1 mL reference instance was recovered; frozen scientific scores replay exactly.",
+  "experiment_ids": [
+    "longitudinal-ct-case02-astra-medium",
+    "longitudinal-ct-context-supplied-astra-medium",
+    "longitudinal-ct-curation-astra-medium"
+  ],
+  "evidence": [
+    {
+      "path": "groups/longitudinal-reading/findings/evidence/longitudinal-ct-curation-comparison.json",
+      "sha256": "95e82327d73abbd234437944615e5c538731748a961c149d96e9c86ecea0b4ff"
+    },
+    {
+      "path": "groups/longitudinal-reading/findings/evidence/longitudinal-ct-curation-results.json",
+      "sha256": "62d12173ce0600a413fb5ab561bd4076321189dfe8eafe011c08e2563a7b2e9e"
+    }
+  ],
+  "limitations": [
+    "New goal, exhaustive-review wording, all-size inclusion and structured uncertainty are bundled.",
+    "One new run per condition; stochastic variation and prompt intervention cannot be separated.",
+    "GT covers expert-deemed malignant lesions, whereas the new output deliberately includes indeterminate candidates.",
+    "Reference agreement is not clinical adjudication; GT used unavailable individual clinical reports.",
+    "Candidate probabilities are subjective; the >=0.5 subset assesses reference agreement, not clinical calibration.",
+    "A permitted unresolved event is contract-valid but does not match a definite GT event. Exact event agreement does not evaluate the clinical appropriateness of abstention.",
+    "Generated or requested planes do not prove attention or adequate target conspicuity; all-size instructions do not guarantee exhaustive search.",
+    "Original frozen tasks, scores, masks and references are unchanged. No second curation trial or localized follow-up was launched."
+  ],
+  "links": [
+    {
+      "label": "Analysis report",
+      "path": "groups/longitudinal-reading/findings/longitudinal-ct-curation-comparison.md"
+    },
+    {
+      "label": "Exact solver instructions",
+      "path": "groups/longitudinal-reading/methods/longitudinal-ct-curation-v1/instruction.md"
+    },
+    {
+      "label": "Predeclared design",
+      "path": "groups/longitudinal-reading/methods/longitudinal-ct-curation-v1/protocol.md"
+    },
+    {
+      "label": "Preparation and control receipt",
+      "path": "groups/longitudinal-reading/examples/longitudinal-ct-curation-preparation.json"
+    }
+  ]
+}
