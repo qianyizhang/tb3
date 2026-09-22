@@ -1,0 +1,790 @@
+{
+  "recorded_at": "2026-09-21T18:40:15.451722+00:00",
+  "source_task": "codex://threads/01a0c3e5-6fb0-7321-a930-a7251047e7ad",
+  "target": "F_018",
+  "example": "F_008",
+  "contract_version": "v3",
+  "model": "openai/gpt-6-astra",
+  "effort": "medium",
+  "attempt_limit_per_condition": 1,
+  "inference_retries": 0,
+  "agent_limit_seconds": 7200,
+  "experiments": [
+    {
+      "id": "dental-f018-contract-v3-astra-medium",
+      "attempt_id": "attempt-3baf235736e24536",
+      "task_digest": "7e2f4e2456e2ae23effe56d11d2765fc92019ac9e032f89f93e3a84ed15df5a3",
+      "valid": true,
+      "independent_replay_identical": true,
+      "missing_evidence": [],
+      "exception": null,
+      "macro_dice": 0.7108394368230797,
+      "groups": {
+        "jawbones": {
+          "macro_dice": 0.8332885318630214,
+          "active_labels": 2,
+          "pooled_geometry_dice": 0.8951198469559999
+        },
+        "sinuses": {
+          "macro_dice": 0.9204222236444186,
+          "active_labels": 2,
+          "pooled_geometry_dice": 0.9228129788793391
+        },
+        "pharynx": {
+          "macro_dice": 0.9639541364834465,
+          "active_labels": 1,
+          "pooled_geometry_dice": 0.9639541364834465
+        },
+        "tooth_tissue": {
+          "macro_dice": 0.7740573612630508,
+          "active_labels": 29,
+          "pooled_geometry_dice": 0.785934241053643
+        },
+        "pulp": {
+          "macro_dice": 0.698865289778893,
+          "active_labels": 29,
+          "pooled_geometry_dice": 0.6796731358529111
+        },
+        "inferior_alveolar_canals": {
+          "macro_dice": 0.36062047672152486,
+          "active_labels": 2,
+          "pooled_geometry_dice": 0.3607421108682249
+        },
+        "small_canals": {
+          "macro_dice": 0.14323607427055704,
+          "active_labels": 3,
+          "pooled_geometry_dice": 0.08901098901098901
+        },
+        "restoration_subtypes_under_review": {
+          "macro_dice": null,
+          "active_labels": 0,
+          "pooled_geometry_dice": null
+        }
+      },
+      "tooth_geometry_and_identity": {
+        "geometry_mean_dice_with_unmatched_zero": 0.7852346677793105,
+        "gt_object_count": 29,
+        "predicted_object_count": 29,
+        "assignment": "one-to-one maximum total Dice of tooth+pulp unions",
+        "detection_threshold_dice": 0.5,
+        "detected_objects": 29,
+        "detection_recall": 1.0,
+        "detection_precision": 1.0,
+        "fdi_correct_among_detected": 1.0,
+        "correctly_identified_gt_recall": 1.0
+      },
+      "canal_surface_metrics": {
+        "3": {
+          "status": "measured",
+          "assd_mm": 1.0055710737026322,
+          "hd95_mm": 4.080441314762797
+        },
+        "4": {
+          "status": "measured",
+          "assd_mm": 1.0269640899803107,
+          "hd95_mm": 3.0886891650295754
+        },
+        "103": {
+          "status": "measured",
+          "assd_mm": 2.696126991135798,
+          "hd95_mm": 5.307542014789003
+        },
+        "104": {
+          "status": "measured",
+          "assd_mm": 2.1820238788687543,
+          "hd95_mm": 3.6249139361195044
+        },
+        "105": {
+          "status": "measured",
+          "assd_mm": 1.446735292447292,
+          "hd95_mm": 7.876642527546625
+        }
+      },
+      "usage": {
+        "agent_seconds": 1428.145405,
+        "n_input_tokens": 3565250,
+        "n_cache_tokens": 3446528,
+        "n_output_tokens": 36510,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null,
+        "uncached_input_tokens": 118722
+      },
+      "access_review": {
+        "reviewed_at": "2026-09-21T17:45:20.937712+00:00",
+        "attempt_id": "attempt-3baf235736e24536",
+        "state": "terminal_reviewed",
+        "outcome": "completed_valid_segmentation_descriptive_scores",
+        "independent_replay_identical": true,
+        "visible_access_review": "All 47 completed command events scanned; no external data, withheld reference, prior task output or repository access candidates. Allowed transport connections only chatgpt.com; other recorded hosts denied. No upload/image error event observed. Encrypted payload/pretraining unadjudicated.",
+        "original_scores_unchanged": true,
+        "clinical_and_annotation_limits_retained": true,
+        "next_authorized_condition_may_proceed": true
+      }
+    },
+    {
+      "id": "dental-f018-reference-v3-astra-medium",
+      "attempt_id": "attempt-72c26b83987d4409",
+      "task_digest": "644bc79845303c290ec5f093972f4ff0b31be064a75b1f28d69f51cfd66c7e40",
+      "valid": true,
+      "independent_replay_identical": true,
+      "missing_evidence": [],
+      "exception": null,
+      "macro_dice": 0.8239514896549232,
+      "groups": {
+        "jawbones": {
+          "macro_dice": 0.8583458889348897,
+          "active_labels": 2,
+          "pooled_geometry_dice": 0.8925616495857767
+        },
+        "sinuses": {
+          "macro_dice": 0.9478933362658667,
+          "active_labels": 2,
+          "pooled_geometry_dice": 0.9528192353971839
+        },
+        "pharynx": {
+          "macro_dice": 0.9770962117609764,
+          "active_labels": 1,
+          "pooled_geometry_dice": 0.9770962117609764
+        },
+        "tooth_tissue": {
+          "macro_dice": 0.9177086825771794,
+          "active_labels": 29,
+          "pooled_geometry_dice": 0.9223259634609196
+        },
+        "pulp": {
+          "macro_dice": 0.8038662617036795,
+          "active_labels": 29,
+          "pooled_geometry_dice": 0.8144216516042653
+        },
+        "inferior_alveolar_canals": {
+          "macro_dice": 0.4788175768014051,
+          "active_labels": 2,
+          "pooled_geometry_dice": 0.4820532391947333
+        },
+        "small_canals": {
+          "macro_dice": 0.18527269887485978,
+          "active_labels": 3,
+          "pooled_geometry_dice": 0.16324324324324324
+        },
+        "restoration_subtypes_under_review": {
+          "macro_dice": null,
+          "active_labels": 0,
+          "pooled_geometry_dice": null
+        }
+      },
+      "tooth_geometry_and_identity": {
+        "geometry_mean_dice_with_unmatched_zero": 0.9261270785404299,
+        "gt_object_count": 29,
+        "predicted_object_count": 29,
+        "assignment": "one-to-one maximum total Dice of tooth+pulp unions",
+        "detection_threshold_dice": 0.5,
+        "detected_objects": 29,
+        "detection_recall": 1.0,
+        "detection_precision": 1.0,
+        "fdi_correct_among_detected": 1.0,
+        "correctly_identified_gt_recall": 1.0
+      },
+      "canal_surface_metrics": {
+        "3": {
+          "status": "measured",
+          "assd_mm": 0.7986359561321494,
+          "hd95_mm": 3.944170965595746
+        },
+        "4": {
+          "status": "measured",
+          "assd_mm": 1.1361532835340065,
+          "hd95_mm": 7.3220896147389265
+        },
+        "103": {
+          "status": "measured",
+          "assd_mm": 2.105602575968618,
+          "hd95_mm": 4.7096069309019555
+        },
+        "104": {
+          "status": "measured",
+          "assd_mm": 8.644101644822504,
+          "hd95_mm": 12.264451993805176
+        },
+        "105": {
+          "status": "measured",
+          "assd_mm": 1.4891667363423324,
+          "hd95_mm": 7.650588002416352
+        }
+      },
+      "usage": {
+        "agent_seconds": 1738.729927,
+        "n_input_tokens": 4698543,
+        "n_cache_tokens": 4560256,
+        "n_output_tokens": 46941,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null,
+        "uncached_input_tokens": 138287
+      },
+      "access_review": {
+        "reviewed_at": "2026-09-21T18:32:26.884801+00:00",
+        "attempt_id": "attempt-72c26b83987d4409",
+        "state": "terminal_reviewed",
+        "outcome": "completed_valid_segmentation_descriptive_scores",
+        "independent_replay_identical": true,
+        "visible_access_review": "Reviewed both flagged commands: permitted F008 CT and segmentation reads only. Saved code verifies affine/deformable transfer and target refinement. All 71 completed commands scanned; no observed external data, target GT, prior result, or repository access. Allowed transport only chatgpt.com, other recorded hosts denied. Encrypted payload and pretraining unadjudicated.",
+        "original_scores_unchanged": true,
+        "clinical_and_annotation_limits_retained": true,
+        "next_authorized_condition_may_proceed": false
+      }
+    }
+  ],
+  "diagnostics": {
+    "pooled": [
+      {
+        "pulp": {
+          "gt_voxels": 18985,
+          "prediction_voxels": 29965,
+          "intersection": 16635,
+          "dice": 0.6796731358529111,
+          "precision": 0.5551476722843317,
+          "recall": 0.876218066894917
+        },
+        "main_canals": {
+          "gt_voxels": 30206,
+          "prediction_voxels": 23317,
+          "intersection": 9654,
+          "dice": 0.3607421108682249,
+          "precision": 0.41403268001887034,
+          "recall": 0.31960537641528175
+        },
+        "small_canals": {
+          "gt_voxels": 1027,
+          "prediction_voxels": 793,
+          "intersection": 81,
+          "dice": 0.08901098901098901,
+          "precision": 0.1021437578814628,
+          "recall": 0.07887049659201557
+        }
+      },
+      {
+        "pulp": {
+          "gt_voxels": 18985,
+          "prediction_voxels": 22841,
+          "intersection": 17032,
+          "dice": 0.8144216516042653,
+          "precision": 0.7456766341228492,
+          "recall": 0.8971293126152226
+        },
+        "main_canals": {
+          "gt_voxels": 30206,
+          "prediction_voxels": 22199,
+          "intersection": 12631,
+          "dice": 0.4820532391947333,
+          "precision": 0.5689895941258615,
+          "recall": 0.41816195457856054
+        },
+        "small_canals": {
+          "gt_voxels": 1027,
+          "prediction_voxels": 823,
+          "intersection": 151,
+          "dice": 0.16324324324324324,
+          "precision": 0.18347509113001215,
+          "recall": 0.14703018500486856
+        }
+      }
+    ],
+    "diagnostic_details": [
+      {
+        "label": 3,
+        "conditions": [
+          {
+            "gt_voxels": 15957,
+            "prediction_voxels": 10913,
+            "intersection": 5248,
+            "dice": 0.3906215109787867,
+            "precision": 0.4808943461926143,
+            "recall": 0.3288838754151783,
+            "gt_centroid_ijk": [
+              112.79131415679639,
+              184.0511374318481,
+              159.3276931754089
+            ],
+            "prediction_centroid_ijk": [
+              116.61697058554019,
+              174.7851186658114,
+              170.48089434619263
+            ],
+            "centroid_displacement_mm": 4.498886334587414
+          },
+          {
+            "gt_voxels": 15957,
+            "prediction_voxels": 12364,
+            "intersection": 7347,
+            "dice": 0.5188376116662547,
+            "precision": 0.5942251698479456,
+            "recall": 0.4604248918969731,
+            "gt_centroid_ijk": [
+              112.79131415679639,
+              184.0511374318481,
+              159.3276931754089
+            ],
+            "prediction_centroid_ijk": [
+              111.45632481397605,
+              183.2886606276286,
+              162.71999352960208
+            ],
+            "centroid_displacement_mm": 1.1173245814859796
+          }
+        ],
+        "transferred_prior": {
+          "gt_voxels": 15957,
+          "prediction_voxels": 13102,
+          "intersection": 7671,
+          "dice": 0.5279603565160536,
+          "precision": 0.5854831323462066,
+          "recall": 0.4807294604248919
+        },
+        "gt_fraction_within_6_voxels_of_prior": 0.8774832361972802
+      },
+      {
+        "label": 4,
+        "conditions": [
+          {
+            "gt_voxels": 14249,
+            "prediction_voxels": 12404,
+            "intersection": 4406,
+            "dice": 0.33061944246426295,
+            "precision": 0.35520799742018705,
+            "recall": 0.30921468173205136,
+            "gt_centroid_ijk": [
+              305.2166467822303,
+              184.0647062951786,
+              154.43946943645167
+            ],
+            "prediction_centroid_ijk": [
+              300.3366655917446,
+              174.04506610770719,
+              171.21880038697194
+            ],
+            "centroid_displacement_mm": 6.042996092565979
+          },
+          {
+            "gt_voxels": 14249,
+            "prediction_voxels": 9835,
+            "intersection": 5284,
+            "dice": 0.4387975419365554,
+            "precision": 0.5372648703609557,
+            "recall": 0.37083304091515196,
+            "gt_centroid_ijk": [
+              305.2166467822303,
+              184.0647062951786,
+              154.43946943645167
+            ],
+            "prediction_centroid_ijk": [
+              308.4795119471276,
+              190.68378240976105,
+              155.6547025927809
+            ],
+            "centroid_displacement_mm": 2.2436961556159964
+          }
+        ],
+        "transferred_prior": {
+          "gt_voxels": 14249,
+          "prediction_voxels": 10185,
+          "intersection": 5262,
+          "dice": 0.4307113039207661,
+          "precision": 0.5166421207658322,
+          "recall": 0.3692890729173977
+        },
+        "gt_fraction_within_6_voxels_of_prior": 0.8016001122885816
+      },
+      {
+        "label": 103,
+        "conditions": [
+          {
+            "gt_voxels": 393,
+            "prediction_voxels": 404,
+            "intersection": 0,
+            "dice": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "gt_centroid_ijk": [
+              158.15776081424937,
+              87.29516539440203,
+              205.27480916030535
+            ],
+            "prediction_centroid_ijk": [
+              168.13861386138615,
+              89.11138613861387,
+              197.81435643564356
+            ],
+            "centroid_displacement_mm": 3.777790308863669
+          },
+          {
+            "gt_voxels": 393,
+            "prediction_voxels": 388,
+            "intersection": 26,
+            "dice": 0.06658130601792574,
+            "precision": 0.06701030927835051,
+            "recall": 0.06615776081424936,
+            "gt_centroid_ijk": [
+              158.15776081424937,
+              87.29516539440203,
+              205.27480916030535
+            ],
+            "prediction_centroid_ijk": [
+              146.00515463917526,
+              96.97680412371135,
+              199.86082474226805
+            ],
+            "centroid_displacement_mm": 4.936173349357333
+          }
+        ],
+        "transferred_prior": {
+          "gt_voxels": 393,
+          "prediction_voxels": 429,
+          "intersection": 26,
+          "dice": 0.06326034063260341,
+          "precision": 0.06060606060606061,
+          "recall": 0.06615776081424936
+        },
+        "gt_fraction_within_6_voxels_of_prior": 0.5750636132315522
+      },
+      {
+        "label": 104,
+        "conditions": [
+          {
+            "gt_voxels": 355,
+            "prediction_voxels": 291,
+            "intersection": 0,
+            "dice": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "gt_centroid_ijk": [
+              258.2225352112676,
+              89.00845070422535,
+              204.50704225352112
+            ],
+            "prediction_centroid_ijk": [
+              251.90721649484536,
+              92.36769759450172,
+              198.03780068728523
+            ],
+            "centroid_displacement_mm": 2.893388825269166
+          },
+          {
+            "gt_voxels": 355,
+            "prediction_voxels": 203,
+            "intersection": 0,
+            "dice": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "gt_centroid_ijk": [
+              258.2225352112676,
+              89.00845070422535,
+              204.50704225352112
+            ],
+            "prediction_centroid_ijk": [
+              281.42857142857144,
+              117.91625615763547,
+              200.80295566502463
+            ],
+            "centroid_displacement_mm": 11.176365381712852
+          }
+        ],
+        "transferred_prior": {
+          "gt_voxels": 355,
+          "prediction_voxels": 189,
+          "intersection": 0,
+          "dice": 0.0,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "gt_fraction_within_6_voxels_of_prior": 0.0
+      },
+      {
+        "label": 105,
+        "conditions": [
+          {
+            "gt_voxels": 279,
+            "prediction_voxels": 98,
+            "intersection": 81,
+            "dice": 0.4297082228116711,
+            "precision": 0.826530612244898,
+            "recall": 0.2903225806451613,
+            "gt_centroid_ijk": [
+              208.32616487455198,
+              83.68817204301075,
+              208.05017921146953
+            ],
+            "prediction_centroid_ijk": [
+              208.5408163265306,
+              82.5204081632653,
+              201.40816326530611
+            ],
+            "centroid_displacement_mm": 2.0241914731167934
+          },
+          {
+            "gt_voxels": 279,
+            "prediction_voxels": 232,
+            "intersection": 125,
+            "dice": 0.4892367906066536,
+            "precision": 0.5387931034482759,
+            "recall": 0.44802867383512546,
+            "gt_centroid_ijk": [
+              208.32616487455198,
+              83.68817204301075,
+              208.05017921146953
+            ],
+            "prediction_centroid_ijk": [
+              209.1206896551724,
+              80.50431034482759,
+              201.7456896551724
+            ],
+            "centroid_displacement_mm": 2.1322136420882734
+          }
+        ],
+        "transferred_prior": {
+          "gt_voxels": 279,
+          "prediction_voxels": 361,
+          "intersection": 137,
+          "dice": 0.428125,
+          "precision": 0.37950138504155123,
+          "recall": 0.4910394265232975
+        },
+        "gt_fraction_within_6_voxels_of_prior": 1.0
+      },
+      {
+        "label": 122,
+        "conditions": [
+          {
+            "gt_voxels": 288,
+            "prediction_voxels": 493,
+            "intersection": 130,
+            "dice": 0.33290653008962867,
+            "precision": 0.26369168356997974,
+            "recall": 0.4513888888888889,
+            "gt_centroid_ijk": [
+              172.95833333333334,
+              45.9375,
+              47.510416666666664
+            ],
+            "prediction_centroid_ijk": [
+              168.47261663286005,
+              50.73022312373225,
+              47.39756592292089
+            ],
+            "centroid_displacement_mm": 1.9696224534977285
+          },
+          {
+            "gt_voxels": 288,
+            "prediction_voxels": 290,
+            "intersection": 247,
+            "dice": 0.8546712802768166,
+            "precision": 0.8517241379310345,
+            "recall": 0.8576388888888888,
+            "gt_centroid_ijk": [
+              172.95833333333334,
+              45.9375,
+              47.510416666666664
+            ],
+            "prediction_centroid_ijk": [
+              172.26896551724138,
+              44.66896551724138,
+              50.50344827586207
+            ],
+            "centroid_displacement_mm": 0.9969143062524741
+          }
+        ],
+        "transferred_prior": {
+          "gt_voxels": 288,
+          "prediction_voxels": 310,
+          "intersection": 227,
+          "dice": 0.7591973244147158,
+          "precision": 0.7322580645161291,
+          "recall": 0.7881944444444444
+        },
+        "gt_fraction_within_6_voxels_of_prior": 1.0
+      },
+      {
+        "label": 127,
+        "conditions": [
+          {
+            "gt_voxels": 827,
+            "prediction_voxels": 1314,
+            "intersection": 811,
+            "dice": 0.7575899112564223,
+            "precision": 0.617199391171994,
+            "recall": 0.9806529625151149,
+            "gt_centroid_ijk": [
+              131.08585247883917,
+              155.8657799274486,
+              41.94679564691656
+            ],
+            "prediction_centroid_ijk": [
+              130.00304414003045,
+              155.79604261796044,
+              38.34931506849315
+            ],
+            "centroid_displacement_mm": 1.1272658662780406
+          },
+          {
+            "gt_voxels": 827,
+            "prediction_voxels": 409,
+            "intersection": 115,
+            "dice": 0.18608414239482202,
+            "precision": 0.28117359413202936,
+            "recall": 0.13905683192261184,
+            "gt_centroid_ijk": [
+              131.08585247883917,
+              155.8657799274486,
+              41.94679564691656
+            ],
+            "prediction_centroid_ijk": [
+              134.19315403422982,
+              160.77750611246944,
+              30.95354523227384
+            ],
+            "centroid_displacement_mm": 3.7305326506628416
+          }
+        ],
+        "transferred_prior": {
+          "gt_voxels": 827,
+          "prediction_voxels": 564,
+          "intersection": 0,
+          "dice": 0.0,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "gt_fraction_within_6_voxels_of_prior": 0.5973397823458283
+      }
+    ],
+    "improved_pulp_labels": 20,
+    "total_pulp_labels": 29,
+    "selection": [
+      {
+        "label": 122,
+        "reason": "Largest pulp Dice gain",
+        "axis": 1,
+        "index": 43,
+        "crop_ik": [
+          [
+            152,
+            27
+          ],
+          [
+            189,
+            82
+          ]
+        ]
+      },
+      {
+        "label": 127,
+        "reason": "Worst remaining pulp Dice",
+        "axis": 1,
+        "index": 156,
+        "crop_ik": [
+          [
+            102,
+            0
+          ],
+          [
+            159,
+            79
+          ]
+        ]
+      },
+      {
+        "label": 104,
+        "reason": "Incisive canal: zero final overlap",
+        "axis": 1,
+        "index": 90,
+        "crop_ik": [
+          [
+            237,
+            187
+          ],
+          [
+            272,
+            217
+          ]
+        ]
+      }
+    ]
+  },
+  "limits": [
+    "One repeated development-case pair; no population or causal effect estimate.",
+    "Original GT and all original scores preserved.",
+    "Clinical laterality and boundary conventions are not adjudicated.",
+    "Restoration and occupied treated-pulp conventions are untested by this case."
+  ],
+  "local_report": ".local/dental-f018-contract-v3-20260922/comparison/report.md",
+  "evidence_sha256": {
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/answer/segmentation.nii.gz": "f63e6324565074d9db3461db3eeb767bd4d50d7f2e4c7b7e6112e88f3645edaa",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/answer/segmentation.nii.gz": "003b89a7ba10d9eff97a6af7035f73ef644f5a61d1c92d60c7c3a306460bf063",
+    ".local/freezes/7e2f4e2456e2ae23effe56d11d2765fc92019ac9e032f89f93e3a84ed15df5a3/task/environment/data/ct.nii.gz": "5da6864589b6f3f50116fbcc6a79a149a17a030eab71e9a62b1a635b3c2af208",
+    ".local/freezes/7e2f4e2456e2ae23effe56d11d2765fc92019ac9e032f89f93e3a84ed15df5a3/task/tests/reference.nii.gz": "88c9cb6acd74c2eaa7a8c89b17633eac02d3d43906b110d19eb12d94778cc21d",
+    ".local/dental-f018-contract-v3-astra-medium/terminal-review.json": "14ca3abf7770ceddf0403ad49b6da7d0dd676ca046a91b044d616c45f8a69a3b",
+    ".local/dental-f018-contract-v3-astra-medium/terminal-assessment.json": "ceb2584f6f37dbbee5480dd44c47fc2991993c0feb0aa349847c1855b2af097d",
+    ".local/dental-f018-contract-v3-astra-medium/access-audit.json": "2b05acd4a168b515fa32cd162cdb4bba771faafbba2a441fb0ea26a161b151ff",
+    ".local/dental-f018-contract-v3-astra-medium/runtime-isolation.json": "2e9928b753c027ef833e150b93d6792babdb22cfe474ec6b3cfa885dbab47d5c",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/base.py": "e36d8812619ffa8ce99c5e0fc12aeadb9218e99822fc8fb528de355b241457c6",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/canalpano.py": "76a45adb0bcb58a84a54bf90878f08e46e58cd3cafb4d1601dc7bde0b6f29a8c",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/canalreview.py": "73b3393ab64118ddb8b99cb040811cf0bdafbf65293bccefd87cf451fb280c75",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/canals.py": "d3b89fa0002c132be39b8cb7e761ae4d10eca6c846e09c122949b777a22442b2",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/comps.py": "f78b6ca7b8a58f07b31d148afaf5a6df31718a2cfeb5b1ca16bc5e6651149ec8",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/detail.py": "ea478792edf1bc3d51172479a0ef1d26e2fb41ee3813adffd24e8554a984d5b4",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/finalreview.py": "5b2c4f647215837af3c1ec8028534339f672a3dc7faa82c96210744c9a69f821",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/overlay.py": "32c3f8b9c3007a3ad0cb084556e960e75324e5c85406aff9691d9a2b16356ab4",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/pano.py": "e3947c288b0199092ac9d8d5f08d0b542bc4b5bafcdeab573037e7e5f33b2584",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/pulp2.py": "41d369b7496a1590e3073298bc831b767cebbe2b475cf40a5b8e7930780cd1e3",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/pulpview.py": "f4baa50c9c11907c0938fc90b6ac8c741c58f3ca6f788f9ac70ff99631cf2ad9",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/refinebase.py": "d35afdd4d7dbd4678100bf32204cd59493009409007ec48712af69f1850b9a3e",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/refineteeth.py": "f48a72fc17f1833d8003ed8c6ba65e019171227d19d618048839db88024423bd",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/save.py": "72633bd62c8461ae428058590d3588476ad8bf10aedf7a06c09359389cd2500c",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/sinusfix.py": "6109bf35baabb0c8815065a56ceac5cfe8c068510f49a8b69f946f5ee266171d",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/smallcanals.py": "bf2f3f8e5361a380b2aeb2c4f42769a1f454a31a6ae604703530d4a5b9117460",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/teeth.py": "8bb3202204bba33117d78b7fb3463dd044469c7f7072e8e200d8f75ce699856f",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/toothviews.py": "71650c9d052abfbfc7e59eeb6a20ccf6cba661c58c43ce3cc2707e4ab71f94aa",
+    ".local/attempts/attempt-3baf235736e24536/job/task__3rCoiHM/artifacts/app/work/views.py": "f4a10f2248a007c8791bc668b5c7db9302cf55308b374328c2e602ace29a5672",
+    ".local/dental-f018-reference-v3-astra-medium/terminal-review.json": "00fd49948f8418a286a18a4a6268c8bf3fc2dcf2ec65398d699353533ed4b24b",
+    ".local/dental-f018-reference-v3-astra-medium/terminal-assessment.json": "321ea62aa814154564af7d2aa7fe6c884891cb18e5345055a880e12028f596b3",
+    ".local/dental-f018-reference-v3-astra-medium/access-audit.json": "6e3af5ebd4411e1b4bb073b424a6b84c2434a695a18dac6323408e8a621bf87c",
+    ".local/dental-f018-reference-v3-astra-medium/runtime-isolation.json": "38f7b6f99d4a8201287dd792d5c2b3f4813bff47ec130944881fa3e4d09bfcc4",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/assemble.py": "5f8fc1b6762b94891f4196c1d330738f7978fc14a604e067e0e2e4f8b526b5d7",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/canals.py": "f483c8bfe5dd47aa4f1d605353fd72de93177c268f9a9f7b78113efb68c60d3d",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/canalview.py": "e1117419308eb8b62da803ffae2a46bf9f56e8eb4e35a5a4df6947c1a4d47b44",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/cavities.py": "66dccc3a7ea065df6ca647f114873015000d5649ae5d584c78363beea49405f3",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/composite.py": "8292b0a841cdc5732260942946f4935e0bc88bdf8bd729a15b7bd543d65da416",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/composite2.py": "329759abe5ce0739a7752502432022f5ecb247b894e02eea334824b84c8cd2b9",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/deform.py": "ac732efd5694a3317cb161fce75a272eca66f14b25e93ac6cecf55c9bfa0c3b8",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/deform1.py": "dca74152ee9b69816be0631d90c60c2b5d1085d5b6f7dc40d1a228edf7987d86",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/detail.py": "5a00cfa0cd2ccf484521e4b4d3dea486075cbf89e6a751a10a3b03676f5f99cd",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/jaws.py": "7ee28561fd5eee77fdc6f223b441c90f1dff51d4a0d1f82ff18407e1c513ef06",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/landmarks.py": "881d4c8c100c62b40acdff310a6e6d1e38dc7d6f75ef9bb32dcc2fbae15acb5f",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/lower.py": "cf5e06e50f3d56c15f9d65ff0641700d28ad755fa68283432ec06d5c50a8dc3e",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/panels.py": "4f054fa589eb1b9988a63f276cbe8b7b1e6e08e0f618ff22250e75a9e7adf89b",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/pulp.py": "71d99cfb87078b8cf25fd536f64b54bf12cc8635a8dd0e0b081a97bea808a204",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/register.py": "5e4dae75aaf034ed3ef49a5cfc0ac6e009c449753499a4d40b3442a337960aad",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/smallview.py": "62a34698cd379cef54d9f67f30eeec466f7da3ece4cb83c1f6172c34a14fcfc3",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/stats.py": "c38b7b3028cfcd88f1c6741cb0144d2d61e41347a2a17b3f4aae8e14c00d4eed",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/teeth.py": "41a785d9afe62f3c75f3dc40ffcc251027bd8b647977c97919427898553806ce",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/tooth38.py": "6c45196ec1444039edf7271a40df28a658c716acfdd499536ef20b91238c63b7",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/upper.py": "9ecb2bbd6f3e1cb2b3352583ae352c40fa57d8b565fa4266a2733943930efdee",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/view.py": "6aab7c12d8e383d53f43aec330644265f568326f4446ea2c911202c62ad0278e",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/warp.py": "1d620f4cb0bd3f22ee9d30bd686116c9b92982b1917275062d27bb30dfc989e8",
+    ".local/attempts/attempt-72c26b83987d4409/job/task__irqdozr/artifacts/app/work/atlas.npy": "e1c0bb5d70b4bc0df93c0a0107a6a3f72ed59f0c3c63e3f41a0b73a5f9be5fa5",
+    ".local/dental-f018-contract-v3-20260922/preparation-receipt.json": "cd1fae4237ef2767b5b7a944895c1bd5941652708c4161bdf4ec55370671e316",
+    ".local/dental-f018-contract-v3-20260922/image-pins.json": "2db7ac7f8d5d4234964b502579a64f89a58217f830a8871ee7e2c0649c2b326e",
+    ".local/dental-f018-contract-v3-20260922/package-audit.json": "2b5779f8107c369d107c2cd4c008bedcaf75299fd0305430c512f523a3430f4f",
+    ".local/dental-f018-contract-v3-20260922/lifecycle-controls.json": "4d13d4450a0cef54f17d1686a601feb68ebe41967198edaeaadf73d5b36e6b45",
+    ".local/dental-f018-contract-v3-20260922/setup-complete.json": "0d158e9abffb69493f75cb2f168e7cdfb35b75002416589a090cccfe7a37e2f2",
+    ".local/dental-f018-contract-v3-20260922/comparison/native-slices.png": "3243eeb9fcad60d008d9c3821f8e2095d79f6a81c80b76b5db7c819d5084dc44",
+    ".local/dental-f018-contract-v3-20260922/comparison/report.md": "7d151d64c5bf8b7aee9a5e66f27b3cd4efa17136d74a6d8a8ab04433a61f10b3",
+    ".local/dental-f018-contract-v3-20260922/comparison/metrics.png": "e8722d7e89a27cdd493a2e7b18ebc435e9af42285aaf813d350f9ff2ca37755f",
+    ".local/dental-f018-contract-v3-20260922/comparison/analysis.json": "82126508af82e01a2754287569e726b94471ef6693aabf577c9eba13cd3b4a65",
+    ".local/dental-f018-contract-v3-20260922/comparison/canal-projections.png": "969f84ba6c890d14d23c3d458ff681e0b6c642f6bfbc5887f2bbd9307c3e57b6",
+    "groups/anatomy-audit/methods/dental-f018-contract-v3/analyze_comparison.py": "dc3e09e7fa4004563f3b71ae17cbdcb17ac9ee55529908851699770063c65975",
+    "groups/anatomy-audit/methods/dental-f018-contract-v3/instruction.md": "876d6437e65e73ba7611c09ece40179da81f406697b34b264db44d37cdde1f33"
+  },
+  "completed_at": "2026-09-21T18:41:23.634157+00:00",
+  "monitor_status": "PAUSED",
+  "original_evidence_rechecked": true
+}

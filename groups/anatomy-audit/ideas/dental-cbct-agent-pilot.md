@@ -12,7 +12,29 @@ source = "codex://threads/01a0c25e-4b08-7552-8379-90a2b50ad40f"
 
 Can an agent use native CBCT views and fixed tools to correct tooth identity and masks, then trace mandibular canals, without access to evaluation labels?
 
-## Current closeout — 2026-09-22
+## Latest closeout — F018 v3 pair, 2026-09-22
+
+Actor: assistant, completing the user's authorized paired repeat and babysitting.
+Both fresh attempts and terminal reviews are complete; no further inference is
+queued. The [final comparison](../findings/dental-f018-contract-v3-comparison.md)
+records macro Dice 0.71084 without an example and 0.82395 with F008, exact replay,
+all 29 dataset tooth IDs correct in both, and stronger tooth/pulp geometry with
+the example. The reference solver used deformable anatomical transfer followed
+by target refinement. Incisive canal localization and one molar's pulp remained
+poor; the native-coordinate views and saved-prior diagnostics explain why a
+normal example does not guarantee correct small-structure correspondence.
+
+Original GT, scores and prior findings are preserved. Both experiments are closed;
+clinical laterality, occupied-pulp and restoration conventions remain unadjudicated.
+This one repeated development case does not isolate the effect of the instruction
+rewrite or establish population benefit. Reopening inference requires new user
+authorization and a separately fixed question/design, rather than retries of these
+completed attempts. Source: codex://threads/01a0c3e5-6fb0-7321-a930-a7251047e7ad.
+
+## Earlier closeout — 2026-09-22
+
+The user subsequently authorized the new F018 v3 pair recorded below. This
+paragraph describes the earlier completed conditions, not the new live queue.
 
 Actor: assistant, during user-requested worktree closeout. Five authorized CT-only
 experiment conditions and their saved-output reviews are complete. Their stages
@@ -23,6 +45,61 @@ restoration subtypes and occupied pulp conventions remain unresolved; closing th
 work does not settle those questions or replace any recorded score.
 
 ## Prior findings
+
+### F018 v3 paired repeat — user decision, 2026-09-22
+
+The user authorized revising the instructions using best judgment for fairness
+without target leakage, then retesting F18 with Astra-medium in two settings:
+without an example and with the previously selected original F08 CT/annotation,
+with babysitting. Source: codex://threads/01a0c3e5-6fb0-7321-a930-a7251047e7ad.
+This is new authorization after the earlier closeout, not a restart of an old run.
+
+Assistant implementation: [v3 paired protocol](../methods/dental-f018-contract-v3/README.md)
+and its common instructions define general operational boundaries and retain
+uncertainty about agreement with original annotations. Target-specific findings,
+counts, coordinates, cutoffs and prior methods are excluded from solver inputs.
+One fresh medium attempt per setting, two-hour ceiling each, no new tools/weights,
+no retries or feedback, original F018 GT unchanged, separate scoring components,
+and the inherited 20% account reserve. New experiments:
+[without example](../experiments/dental-f018-contract-v3-astra-medium/protocol.md)
+and [with F008](../experiments/dental-f018-reference-v3-astra-medium/protocol.md).
+The local v3 operation packet and queue are authoritative for live execution.
+
+Assistant observation: both conditions passed isolation and native oracle/nop
+controls. The no-example attempt `attempt-3baf235736e24536` launched at
+2026-09-21T17:03:51Z (2026-09-22 local); actual inference, pinned image, internal
+network, log-only mounts and retained transport capture were verified. The F008
+condition remains queued until its predecessor's terminal review. The existing
+dental heartbeat is active and points to the new v3 packet/current task.
+
+At 2026-09-21T17:45Z, the assistant completed the first terminal review: valid
+output, no terminal exception, exact scoring replay, macro Dice 0.71084 in
+1428.15 agent seconds. All 29 matched tooth identities agree with dataset labels;
+pulp macro is 0.69887, main canals 0.36062 and small canals 0.14324. These remain
+descriptive original-reference metrics. No forbidden data access was observed
+in retained commands/transport; invisible pretraining is not adjudicated.
+The authorized F008-reference condition then actually launched as
+`attempt-72c26b83987d4409`; live inference and isolation were verified. It receives
+no information from the first condition and is now the sole running dental unit.
+
+### Dataset contract source audit — assistant observation, 2026-09-22
+
+The user asked whether the unresolved occupied-pulp convention reflects the same
+under-specified dataset setup that caused earlier axis confusion, and requested
+careful reading of the original documentation. The
+[source audit](../findings/dental-dataset-contract-audit.md) found an explicit FAQ
+warning that NIfTI direction metadata is not physically accurate; a June 2025
+P-subset annotation update; taxonomy/scorer discrepancies; and missing operational
+rules for occupied pulp and several class boundaries. The original TF3 structured
+proposal describes expert agreement and review rather than a detailed public
+boundary manual, and predates the final 77-class taxonomy.
+
+The [separate draft](../methods/dental-dataset-contract/instruction-v3-draft.md)
+adds explicit coordinate, encoding, provenance and scoring requirements while
+leaving unadjudicated semantics visibly unresolved. This qualifies claims that
+v2 settled all annotation rules; it does not invalidate the measured method
+failures or establish clinically incorrect GT. No trial, new solver tool,
+reference change or scoring change was authorized or performed in this audit.
 
 ### ToothFairy3 partial download recovery — 2026-09-21
 
