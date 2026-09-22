@@ -20,3 +20,8 @@ review; exact merging interpretation remains under review.
 [Trace methodology and failure attribution](findings/longitudinal-ct-trace-attribution.md):
 separates lesion acceptance, instance partitioning, boundary construction and
 upstream effects on links/events using saved actions and quantitative diagnostics.
+
+[Revised Astra medium and localized recognition](findings/longitudinal-ct-v2-and-localized.md):
+strict localization improves from 2/6 to 3/6, but exact center cues do not rescue
+the remaining separate focus; both indicated structures are explicitly rejected
+as normal/benign. Recognition relative to GT and clinical adjudication are distinct.

@@ -97,3 +97,33 @@ condition, and use separately reported component controls only if selected.
 Instruction causality and expert reference partition remain unadjudicated.
 No new model attempt, prompt revision, reference edit or score replacement was
 performed by this analysis.
+
+## User-selected instruction revision — 2026-09-22
+
+Decision `decision-390f683cedae46ef`, actor=user: revise the generic instructions,
+run Astra medium again, and conditionally run a narrower attribution test if
+lesions remain missed. The [v2 protocol](../experiments/longitudinal-ct-v2-astra-medium/protocol.md)
+preserves all images, references, scorer, runtime and budget; only generic
+touching-instance and uncertain-lesion inclusion wording changes. A fresh attempt
+receives no prior output or lesion-specific hint. The separately declared
+localized test supplies candidate centers only if substantial lesion omission
+persists; it is not scored as whole-volume discovery. Reference partition
+adjudication remains open, and prompt causality cannot be established from one
+original versus one revised attempt.
+
+Completed selected work: revised Astra medium recovered 3/6 strict instances and
+2/4 reference edges, versus 2/6 and 1/4 originally, but still zero complete event
+groups. The separate focus retained 0% coverage at both visits, triggering the
+declared fresh localized probe. With exact centers and no diagnosis/masks, the
+agent inspected native axial and orthogonal views and judged both candidates
+normal/benign (0/2 accepted). The remaining failure is not whole-volume search
+alone; it includes recognition/inclusion disagreement with the positive reference.
+This does not adjudicate the anatomy, clinical malignancy or image-only reference
+suitability, and rejection leaves conditional contouring ability untested.
+[Results, trace evidence and native illustrations](../findings/longitudinal-ct-v2-and-localized.md).
+
+Assistant recommendation: expert review of the indicated source-positive focus
+and image-only target suitability before additional model comparisons. If
+confirmed, a known-positive point segmentation control could isolate boundary
+construction but would explicitly supply positivity. No further trial is selected
+or launched; original scores and source labels remain unchanged.

@@ -1,0 +1,482 @@
+{
+  "schema_version": 2,
+  "id": "observation-6d7f0db9c719d1a519dd3328",
+  "job": "job",
+  "trial_name": "task__Ave9rqP",
+  "task_id": "task",
+  "agent": "codex",
+  "model": "openai/gpt-6-astra",
+  "reasoning_effort": "medium",
+  "agent_version": "0.155.1",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "reward": 1.0,
+  "started_at": "2026-09-22T02:32:05.005072Z",
+  "finished_at": "2026-09-22T02:51:44.356860Z",
+  "timing": {
+    "total": 1179.352,
+    "setup": 0.173,
+    "agent": 1128.18,
+    "verifier": 24.628
+  },
+  "usage": {
+    "n_input_tokens": 4656148.0,
+    "n_cache_tokens": 4452736.0,
+    "n_output_tokens": 25934.0
+  },
+  "cases": [
+    {
+      "name": "artifact_contract",
+      "status": "passed",
+      "detail": ""
+    }
+  ],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/result.json",
+      "sha256": "881bfaa0ab8d7bc786be78cbedc30b1ef8a985b565c1f1fe01883b97febf5753"
+    },
+    {
+      "label": "Verifier cases",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/verifier/test-stdout.txt",
+      "sha256": "b7759fc7f81e58dcb7104c6159db26450dc4576d84437332635519212e31bb6d"
+    },
+    {
+      "label": "Reward artifact",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/agent/trajectory.json",
+      "sha256": "7cbec8bd08c838f22348b969d20ee12e343fa11a674e30182acfc18fc0ca9362"
+    },
+    {
+      "label": "Submitted artifact: answer/baseline_instances.nii.gz",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/answer/baseline_instances.nii.gz",
+      "sha256": "3cebac134a896697d47321ec5df957abe5140fd09df6ddb1128ae32caf3677a8"
+    },
+    {
+      "label": "Submitted artifact: answer/events.json",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/answer/events.json",
+      "sha256": "58b3601cda7345ee8d69ab8e1d3adcadb5e18a46128a574f5f4467227596a5a8"
+    },
+    {
+      "label": "Submitted artifact: answer/followup_instances.nii.gz",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/answer/followup_instances.nii.gz",
+      "sha256": "f715966ce2d5e7a0c9434b39371c194f7d18ecd6cc98ffcf650428e16b990c9e"
+    },
+    {
+      "label": "Submitted artifact: answer/report.md",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/answer/report.md",
+      "sha256": "fd4b17063c48f3745535579b98b911ec9214e67dcc6be42bb5eacf872e9fd333"
+    },
+    {
+      "label": "Submitted artifact: work/README.md",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/README.md",
+      "sha256": "faf99e3d081dde30066eaa8a7656368a688b0f894935d56d1b9cc6274a9c6a37"
+    },
+    {
+      "label": "Submitted artifact: work/__pycache__/contours.cpython-312.pyc",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/__pycache__/contours.cpython-312.pyc",
+      "sha256": "1c8d8a296c49f08a487a0d29cfa30e104abef1bf615879578ce8fdb2b4958f4c"
+    },
+    {
+      "label": "Submitted artifact: work/__pycache__/segment.cpython-312.pyc",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/__pycache__/segment.cpython-312.pyc",
+      "sha256": "f8b0515b11d9ff30e2d386e426eb86cedb7ebbf9e1ebb27919990504462c2dc3"
+    },
+    {
+      "label": "Submitted artifact: work/baseline.npy",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline.npy",
+      "sha256": "6200dcc40f7951ddf1a7ea6716c6075982dccc043a3d69d98252f64f09c08bb6"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_0_261_8_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_0_261_8_50.jpg",
+      "sha256": "44184b69a525704b1be900f81b55575535a45c4ed9a7dee56b53470a99412888"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_bone_sag.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_bone_sag.jpg",
+      "sha256": "3a5c794699b0168a6c87e6b6d5b8b51a268fe1abc298c19f29de884a67dd2e9d"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_0_84_3_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_0_84_3_50.jpg",
+      "sha256": "3282f83c6cdbce3a48700d9c24214f822e8a55f65d7efc34dc8798f94c4dcdf9"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_106_130_1_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_106_130_1_50.jpg",
+      "sha256": "d392852379f56903733c96804de556228f602a37e1cf6f602955704b41d7ac89"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_110_120_1_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_110_120_1_50.jpg",
+      "sha256": "e4a9dc942a80568787e47f9d49ea8914b23f7d29a3d2ec68b374b9bcfdb0d3d7"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_118_134_1_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_118_134_1_50.jpg",
+      "sha256": "b7813e29fc86537e3228e75201a027581abff24cd3edfdb70db8c2e6fb69af70"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_126_222_3_-600.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_126_222_3_-600.jpg",
+      "sha256": "0e7a50625df3014390f802f578888aa3e5799d9ba2b2ca1b443e94080598e080"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_134_158_1_-600.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_134_158_1_-600.jpg",
+      "sha256": "c09cc1090386c22fc3675709582bee82b3815f088633de6608120252ee274ef2"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_138_198_3_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_138_198_3_50.jpg",
+      "sha256": "bd5e97c96b3f4bce10c179d514d316a266b1e7359cd4e1b603f1cba44b881c28"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_158_182_1_-600.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_158_182_1_-600.jpg",
+      "sha256": "4f9a90a86e331cea2100b30faddbbcaa27424cf46f8348ea8fad3952f2fbce51"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_182_206_1_-600.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_182_206_1_-600.jpg",
+      "sha256": "f543c180e7d11cc520547d345880a07302590a29608d94ec9a1c4d9cad1c5325"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_198_261_2_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_198_261_2_50.jpg",
+      "sha256": "5bf9eb6fbde2d52878c267be38b8bd371339aea44ebd2189a94783c39d990af9"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_206_222_1_-600.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_206_222_1_-600.jpg",
+      "sha256": "0ca57ff411dcdd0eb99aacdb146fa0271a72ef623c5a291bca0dfa492ba30581"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_34_82_2_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_34_82_2_50.jpg",
+      "sha256": "15a8a0a7825684388c90946c1c1d9bbe206045b7abe70fc22bd79440ff2c3e80"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_82_106_1_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_82_106_1_50.jpg",
+      "sha256": "c411ec772d01fb403cfdb0822b1ad88ba3023d88033c38c88fec91fa1696d9c2"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_82_142_2_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_82_142_2_50.jpg",
+      "sha256": "a6b36e3484093587fbc2adc501f647c53d4cb7a6c564e682290d09a2ecfd6c30"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_84_128_2_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_detail_84_128_2_50.jpg",
+      "sha256": "696d6c45e8dbc3e9198e5af38edfd3ba448d296a00c9fbf1963eb542f94519a9"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_lung_candidates.json",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_lung_candidates.json",
+      "sha256": "91e57a49530fada9198258e7ec50cea6d014535a8a8cc48fae947bd4a61b1c78"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_mask.npy",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_mask.npy",
+      "sha256": "116f3f1f5d827a1080a16fc9896692d0ddda74a949e55748f132064f265877a0"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_mpr_x_220,235,245,280.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_mpr_x_220,235,245,280.jpg",
+      "sha256": "dbccb053f36b1ec786d635059aace13025e3b79c7287dbb4fb527fc7f6fb1b47"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_mpr_y_235,245,255,265.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_mpr_y_235,245,255,265.jpg",
+      "sha256": "325346e8915471d4ac00b255ee7a768c3e02ee5d6f8cb1aadd320b460bc49788"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_overlay_89_127.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_overlay_89_127.jpg",
+      "sha256": "6e14673364086d29d620c9b69c3b0444c1826917ede15c8124725717f17cac6c"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_overlay_99_125.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_overlay_99_125.jpg",
+      "sha256": "8ca21442103976afd2d154cb74f5bdcec786c9fc57e6d433cb9b410d79e8f7a1"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_pelvis_sag.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_pelvis_sag.jpg",
+      "sha256": "588010ca7d2cc32b52e4bd57b4aedfb01897459c847a837ac209db2417671a16"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_slices_100,104,108,112,116,120.png",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_slices_100,104,108,112,116,120.png",
+      "sha256": "358e5441c1ba013acb37951dd180284fb9edc0f1f3bd1614ffaa4e67397a17bf"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_slices_102,106,110.png",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_slices_102,106,110.png",
+      "sha256": "916925999d1a285121f12340999ffe57b9bef922c0a995160d8f5a6118283beb"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_slices_118,121,124,127,130,133.png",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_slices_118,121,124,127,130,133.png",
+      "sha256": "b4e1892b3a9df603c49acf136593d69b94543b5419d8e61146d0b1471bd2e378"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_slices_216.png",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_slices_216.png",
+      "sha256": "00f1210aae9bb5756365bda07212aa7fe010ac5e6087dd34265d82885add54c4"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_slices_44.png",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_slices_44.png",
+      "sha256": "f4e258695888074d8c3939e729b09e370b20571138ee1598ac79fa82dd376df8"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_slices_90,93,96,99,102,105,108,111,114,117,120,123,126,129.png",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_slices_90,93,96,99,102,105,108,111,114,117,120,123,126,129.png",
+      "sha256": "9d7e6cc9bc4e27c99eea6a6750414889d4479164a9f46e10f4e69f978fff3345"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_slices_94,100,106.png",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_slices_94,100,106.png",
+      "sha256": "fecf6e550ac45c2845571858de0fa330be04f2c45cae7224da2f9ad90db9ac58"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_slices_96,104,112,116,120,124.png",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/baseline_slices_96,104,112,116,120,124.png",
+      "sha256": "a5263198c7c4fcb9ba552b293b453f0d773e47b93323bd18a704f3e42119f8a3"
+    },
+    {
+      "label": "Submitted artifact: work/bone_review.py",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/bone_review.py",
+      "sha256": "8f47ec18a96ab44bcf47cab22d25ba0aef6d55b1b75508118b91fe725f72c21e"
+    },
+    {
+      "label": "Submitted artifact: work/contours.py",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/contours.py",
+      "sha256": "a5fa5c23ad97051fe8557b8bd6ac5070271e2e636d02d9cd306cdaaaaa884ec8"
+    },
+    {
+      "label": "Submitted artifact: work/detail.py",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/detail.py",
+      "sha256": "4c3b6eb60f54c5875b43e844bcc5b94d39bc80442dd501054a715a8e1d9d2963"
+    },
+    {
+      "label": "Submitted artifact: work/evidence.py",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/evidence.py",
+      "sha256": "b90c456a5c775e27b46e9f353d279f71707080258d1f0fbf47e1afb14d8477b5"
+    },
+    {
+      "label": "Submitted artifact: work/finalize.py",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/finalize.py",
+      "sha256": "a66b3cbac760d605cc032bf42e5f6efa07a1afc73202b707e65a5c1074d4c79c"
+    },
+    {
+      "label": "Submitted artifact: work/followup.npy",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup.npy",
+      "sha256": "158af22f5164597bd399efd223125cd8ef98fb08d1d1f2a1a48c1657229f43ca"
+    },
+    {
+      "label": "Submitted artifact: work/followup_0_274_8_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_0_274_8_50.jpg",
+      "sha256": "d8fe34ece327bd07be87e59c71d08d1c1139ffb027e6d21a9ce859c531ace65e"
+    },
+    {
+      "label": "Submitted artifact: work/followup_bone_sag.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_bone_sag.jpg",
+      "sha256": "5236796a0daaaf78140dc8b9094b7490b7cf00950e13e75b38904304d348b69a"
+    },
+    {
+      "label": "Submitted artifact: work/followup_detail_0_84_3_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_detail_0_84_3_50.jpg",
+      "sha256": "e7db38fbb56145f761e45a18194205a9eed59b5d823038309c0454df56374d77"
+    },
+    {
+      "label": "Submitted artifact: work/followup_detail_110_134_1_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_detail_110_134_1_50.jpg",
+      "sha256": "5f7f605f4a560ca102c596a17543d0cbb5acb356ed6367fe861699b96c507ad3"
+    },
+    {
+      "label": "Submitted artifact: work/followup_detail_132_225_3_-600.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_detail_132_225_3_-600.jpg",
+      "sha256": "e1674134de10d03ab178c0060522252abc0b734158d827c578fda2321a6c9380"
+    },
+    {
+      "label": "Submitted artifact: work/followup_detail_136_160_1_-600.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_detail_136_160_1_-600.jpg",
+      "sha256": "8a3b4aa583361fd027ef038c0fb01eea60b063385476a0e07e3c9e1677490584"
+    },
+    {
+      "label": "Submitted artifact: work/followup_detail_141_201_3_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_detail_141_201_3_50.jpg",
+      "sha256": "24d7f34992b05ce6581950d3b82f55db3c15967e6a68adb8e85d1486b55a0512"
+    },
+    {
+      "label": "Submitted artifact: work/followup_detail_160_184_1_-600.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_detail_160_184_1_-600.jpg",
+      "sha256": "d2b1a5c66238966a9e8aa27e920425faa777d3d34591655844e2742fb033d3e3"
+    },
+    {
+      "label": "Submitted artifact: work/followup_detail_184_208_1_-600.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_detail_184_208_1_-600.jpg",
+      "sha256": "7b77ae38cd68b58bb11dacca5c604257b1e665050d9b6a715542e64b5e772e0d"
+    },
+    {
+      "label": "Submitted artifact: work/followup_detail_198_274_2_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_detail_198_274_2_50.jpg",
+      "sha256": "4b0e5ec59579f8a14fae5cdb2160b9887742c810c75a5a781960a6a38d512be9"
+    },
+    {
+      "label": "Submitted artifact: work/followup_detail_208_226_1_-600.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_detail_208_226_1_-600.jpg",
+      "sha256": "1f8aa7624ce316f07409b465e60f6527f5ceb24226be6a65da3b75805c053fc5"
+    },
+    {
+      "label": "Submitted artifact: work/followup_detail_34_84_2_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_detail_34_84_2_50.jpg",
+      "sha256": "a5cb0d755ad165cc41b96136219c31ccfbc2e42ca31eac2371f56ccd588cbf63"
+    },
+    {
+      "label": "Submitted artifact: work/followup_detail_84_132_2_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_detail_84_132_2_50.jpg",
+      "sha256": "dbe6ce1951724ad9d0e6b0875c07e5a446453c4a86cf1e74609fea7419a7fe63"
+    },
+    {
+      "label": "Submitted artifact: work/followup_detail_84_144_2_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_detail_84_144_2_50.jpg",
+      "sha256": "64ec0ddf4fe73073a7db20f85861a8f119f58dbd918d9304c589f9539b5d34ca"
+    },
+    {
+      "label": "Submitted artifact: work/followup_detail_86_110_1_50.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_detail_86_110_1_50.jpg",
+      "sha256": "55dff5f1e5b74b5530dce4246f6af1fde7b843bd4b5cc657cc466640a9694ecb"
+    },
+    {
+      "label": "Submitted artifact: work/followup_lung_candidates.json",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_lung_candidates.json",
+      "sha256": "35886cd7e26bb701f1dd00ec22fd7172123fb474033dd00d56cd8287ef4baa90"
+    },
+    {
+      "label": "Submitted artifact: work/followup_mask.npy",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_mask.npy",
+      "sha256": "98ade435e8f021f702f51ada533e499e2bc9b417b852c5aaa90cf7b242ddf826"
+    },
+    {
+      "label": "Submitted artifact: work/followup_mpr_x_220,235,245,280.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_mpr_x_220,235,245,280.jpg",
+      "sha256": "a76c0c5e5b23b707d7c2aec28ee13debecf232cf05fded1ead4bc7ea878719b9"
+    },
+    {
+      "label": "Submitted artifact: work/followup_mpr_y_205,215,225,235.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_mpr_y_205,215,225,235.jpg",
+      "sha256": "8cea507a8fea736b81e1a92bafefac547226b33d2c7590da3e3ef5838d156202"
+    },
+    {
+      "label": "Submitted artifact: work/followup_overlay_90_132.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_overlay_90_132.jpg",
+      "sha256": "1111883ee36e67f7f37a79ff183d09dcb0203b7c59de6b985bf455fd053306e5"
+    },
+    {
+      "label": "Submitted artifact: work/followup_pelvis_sag.jpg",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_pelvis_sag.jpg",
+      "sha256": "db1b7bc3eabbc37486839d30f97b952f74d8d53759d0b9ca6e5bec44b0aface4"
+    },
+    {
+      "label": "Submitted artifact: work/followup_slices_104,108,112,116,120,124.png",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_slices_104,108,112,116,120,124.png",
+      "sha256": "1f67bebec12f13062911570a8678200fa979de343356698b889dfe9e569400b4"
+    },
+    {
+      "label": "Submitted artifact: work/followup_slices_106,110,114.png",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_slices_106,110,114.png",
+      "sha256": "b2f8d5aba345a55ceb0a18418289754e753312f7a76490ec96cdc25a4b41b81e"
+    },
+    {
+      "label": "Submitted artifact: work/followup_slices_216.png",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_slices_216.png",
+      "sha256": "3482feeac3fcf76cad277d6bfb7c89bec62d6078c158a7f5bd8689b4cc804c3e"
+    },
+    {
+      "label": "Submitted artifact: work/followup_slices_50.png",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_slices_50.png",
+      "sha256": "ead0cc09ce4a58117038f9819c4492920bf113717dadc75da8a1696d5638a751"
+    },
+    {
+      "label": "Submitted artifact: work/followup_slices_92,95,98,101,104,107,110,113,116,119,122,125,128,131.png",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/followup_slices_92,95,98,101,104,107,110,113,116,119,122,125,128,131.png",
+      "sha256": "06d2b7a4fd01d6d06e953917f89dc619ef282bd242ceab106f409303b1f97fab"
+    },
+    {
+      "label": "Submitted artifact: work/lung_candidates.py",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/lung_candidates.py",
+      "sha256": "6dd34876c038e76e839799869ef8296e8c48a707e69c8477d198341250790067"
+    },
+    {
+      "label": "Submitted artifact: work/mpr.py",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/mpr.py",
+      "sha256": "8b8ed16f67c3ac6fc374ebc7296b3cfa98e1926fda8c89b107ad3d766fc053b2"
+    },
+    {
+      "label": "Submitted artifact: work/overlay.py",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/overlay.py",
+      "sha256": "2facf1ec56bb5be7f69032c53809f77d1876a9ea0c799f814f603118da466751"
+    },
+    {
+      "label": "Submitted artifact: work/render.py",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/render.py",
+      "sha256": "3949e95663d01f5cf05f04246b2d546715733063aadd7928ae26033aadd376e5"
+    },
+    {
+      "label": "Submitted artifact: work/representative_evidence.png",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/representative_evidence.png",
+      "sha256": "a4796c08f700b2482f5b6786057c841d81c0173a75bfc617a33c62d039a29c9d"
+    },
+    {
+      "label": "Submitted artifact: work/segment.py",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/segment.py",
+      "sha256": "08e428e28452239aa7b897203f214fc8599322bac9f3fdecae3bfb8ce5d7a4ca"
+    },
+    {
+      "label": "Submitted artifact: work/slices.py",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/slices.py",
+      "sha256": "c89502c4c5c97ca8ef29557bc791432120fba58e3cbe45da16025cecb6623264"
+    },
+    {
+      "label": "Submitted artifact: work/validation.json",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/work/validation.json",
+      "sha256": "31c9e4ab76a7935b92578a37e5953affb39439038ac857a8ce95ab1db8c2597a"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": ".local/attempts/attempt-4749bbfb347f4809/job/lock.json",
+      "sha256": "eff2c4f12f32c6870d4145eca9c68fb769623c44133adeddd04e5d8c23661373"
+    }
+  ],
+  "task_checksum": "434ed9c37f7d2838a6fea27c3a8f530b32cbfd1421c4094fa6699f07be280da2",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [],
+  "source_result": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/result.json",
+  "source_sha256": "881bfaa0ab8d7bc786be78cbedc30b1ef8a985b565c1f1fe01883b97febf5753",
+  "evidence_sha256": "45ede4b2d294ef782587bbcb6b1c0cbf431a8dd59b7342206d5300f8cc207547",
+  "kind": "evaluation",
+  "evaluation_kind": "result",
+  "attempt_id": "attempt-4749bbfb347f4809",
+  "experiment_id": "longitudinal-ct-v2-astra-medium",
+  "group_id": "longitudinal-reading",
+  "collected_at": "2026-09-22T02:51:45.474284+00:00",
+  "execution_state": "completed",
+  "outcome": "pass",
+  "partial": false,
+  "task_digest": "110a8ffd31c0991525ff33800c7a91023bb7cb24cddda518fecd3395f34d75f1",
+  "freeze_checksum_verified": true,
+  "source_classification": "model_pass"
+}

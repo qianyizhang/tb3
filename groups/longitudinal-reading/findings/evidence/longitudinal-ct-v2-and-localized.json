@@ -1,0 +1,855 @@
+{
+  "schema_version": 1,
+  "purpose": "Saved-output evidence for revised instructions and one adaptive localized probe; no further model dispatch",
+  "source_task": "codex://threads/01a0c4d1-741f-76e3-9023-1064e5a9a0c5",
+  "conditions": {
+    "whole-volume": {
+      "attempt_id": "attempt-4749bbfb347f4809",
+      "task_digest": "110a8ffd31c0991525ff33800c7a91023bb7cb24cddda518fecd3395f34d75f1",
+      "metrics": {
+        "schema_version": 1,
+        "reward_meaning": "output_contract_only_not_scientific_success",
+        "matching_tolerance_mm": 3.0,
+        "visits": {
+          "baseline": {
+            "valid": true,
+            "ids": [
+              1,
+              2
+            ],
+            "gt_ids": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "mapping": {
+              "2": 2,
+              "1": 4
+            },
+            "detection": {
+              "tp": 2,
+              "fp": 0,
+              "fn": 2,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "gt_count": 4,
+              "prediction_count": 2,
+              "criterion": "prediction centroid in reference mask or within 3 mm of a labeled voxel center; one-to-one assignment",
+              "mean_centroid_distance_mm": 7.26447296969709,
+              "mean_centroid_to_reference_mm": 0.0
+            },
+            "segmentation": {
+              "foreground_dice": 0.684662479128568,
+              "foreground_precision": 0.6664001031858635,
+              "foreground_recall": 0.7039540016895114,
+              "gt_macro_dice": 0.3061807405255949,
+              "detected_only_macro_dice": 0.38779065432938914,
+              "detection_anchored_gt_macro_dice": 0.19389532716469457
+            },
+            "overlap_detection_sensitivity": {
+              "0.1": {
+                "tp": 2,
+                "fp": 0,
+                "fn": 2,
+                "precision": 1.0,
+                "recall": 0.5,
+                "f1": 0.6666666666666666
+              },
+              "0.25": {
+                "tp": 2,
+                "fp": 0,
+                "fn": 2,
+                "precision": 1.0,
+                "recall": 0.5,
+                "f1": 0.6666666666666666
+              },
+              "0.5": {
+                "tp": 1,
+                "fp": 1,
+                "fn": 3,
+                "precision": 0.5,
+                "recall": 0.25,
+                "f1": 0.3333333333333333
+              }
+            },
+            "per_gt": [
+              {
+                "gt_id": 1,
+                "voxels": 8954,
+                "detection_prediction_id": null,
+                "detected_dice": 0.0,
+                "best_one_to_one_dice": 0.5415552205417498
+              },
+              {
+                "gt_id": 2,
+                "voxels": 597,
+                "detection_prediction_id": 2,
+                "detected_dice": 0.09241356709814845,
+                "best_one_to_one_dice": 0.0
+              },
+              {
+                "gt_id": 3,
+                "voxels": 2669,
+                "detection_prediction_id": null,
+                "detected_dice": 0.0,
+                "best_one_to_one_dice": 0.0
+              },
+              {
+                "gt_id": 4,
+                "voxels": 24477,
+                "detection_prediction_id": 1,
+                "detected_dice": 0.6831677415606299,
+                "best_one_to_one_dice": 0.6831677415606299
+              }
+            ],
+            "matched_pairs": [
+              {
+                "gt_id": 2,
+                "prediction_id": 2,
+                "dice": 0.09241356709814845,
+                "iou": 0.048445284315409724,
+                "centroid_mm": [
+                  18.96453191287472,
+                  150.17660471199608,
+                  1166.580761330741
+                ],
+                "centroid_distance_mm": 8.084349438241299
+              },
+              {
+                "gt_id": 4,
+                "prediction_id": 1,
+                "dice": 0.6831677415606299,
+                "iou": 0.51879632897988,
+                "centroid_mm": [
+                  -16.06940519878205,
+                  159.27173840495655,
+                  1129.3923430735697
+                ],
+                "centroid_distance_mm": 6.444596501152882
+              }
+            ]
+          },
+          "followup": {
+            "valid": true,
+            "ids": [
+              1
+            ],
+            "gt_ids": [
+              3,
+              4
+            ],
+            "mapping": {
+              "1": 4
+            },
+            "detection": {
+              "tp": 1,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666,
+              "gt_count": 2,
+              "prediction_count": 1,
+              "criterion": "prediction centroid in reference mask or within 3 mm of a labeled voxel center; one-to-one assignment",
+              "mean_centroid_distance_mm": 3.02018733077473,
+              "mean_centroid_to_reference_mm": 0.0
+            },
+            "segmentation": {
+              "foreground_dice": 0.7643089396562646,
+              "foreground_precision": 0.7450602647698084,
+              "foreground_recall": 0.7845785722955282,
+              "gt_macro_dice": 0.3935859297531444,
+              "detected_only_macro_dice": 0.7871718595062888,
+              "detection_anchored_gt_macro_dice": 0.3935859297531444
+            },
+            "overlap_detection_sensitivity": {
+              "0.1": {
+                "tp": 1,
+                "fp": 0,
+                "fn": 1,
+                "precision": 1.0,
+                "recall": 0.5,
+                "f1": 0.6666666666666666
+              },
+              "0.25": {
+                "tp": 1,
+                "fp": 0,
+                "fn": 1,
+                "precision": 1.0,
+                "recall": 0.5,
+                "f1": 0.6666666666666666
+              },
+              "0.5": {
+                "tp": 1,
+                "fp": 0,
+                "fn": 1,
+                "precision": 1.0,
+                "recall": 0.5,
+                "f1": 0.6666666666666666
+              }
+            },
+            "per_gt": [
+              {
+                "gt_id": 3,
+                "voxels": 3439,
+                "detection_prediction_id": null,
+                "detected_dice": 0.0,
+                "best_one_to_one_dice": 0.0
+              },
+              {
+                "gt_id": 4,
+                "voxels": 54234,
+                "detection_prediction_id": 1,
+                "detected_dice": 0.7871718595062888,
+                "best_one_to_one_dice": 0.7871718595062888
+              }
+            ],
+            "matched_pairs": [
+              {
+                "gt_id": 4,
+                "prediction_id": 1,
+                "dice": 0.7871718595062888,
+                "iou": 0.6490382546581178,
+                "centroid_mm": [
+                  -4.5941520610016084,
+                  144.69551420585523,
+                  1174.2022868127979
+                ],
+                "centroid_distance_mm": 3.02018733077473
+              }
+            ]
+          }
+        },
+        "association": {
+          "links_end_to_end": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 2,
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666
+          },
+          "links_conditional_on_detection": {
+            "eligible_gt_edges": 2,
+            "total_gt_edges": 4,
+            "tp": 2,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "events_end_to_end": {
+            "tp": 0,
+            "fp": 1,
+            "fn": 2,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "events_conditional_on_detection": {
+            "eligible_gt_groups": 0,
+            "total_gt_groups": 2,
+            "tp": 0,
+            "fp": 1,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0
+          },
+          "event_classes": {
+            "persistent": {
+              "reference_groups": 1,
+              "prediction_groups": 0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "merging": {
+              "reference_groups": 1,
+              "prediction_groups": 1,
+              "tp": 0,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "disappearing": {
+              "reference_groups": 0,
+              "prediction_groups": 0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": null,
+              "recall": null,
+              "f1": null
+            },
+            "newly_appearing": {
+              "reference_groups": 0,
+              "prediction_groups": 0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": null,
+              "recall": null,
+              "f1": null
+            }
+          },
+          "unresolved_groups": 0,
+          "mapped_predictions": [
+            {
+              "event": "merging",
+              "baseline_ids": [
+                2,
+                4
+              ],
+              "followup_ids": [
+                4
+              ]
+            }
+          ]
+        },
+        "valid_visit_count": 2,
+        "detection_micro": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 3,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666
+        },
+        "segmentation_gt_macro_dice": 0.33531580360144475,
+        "report_present": true,
+        "valid": true
+      },
+      "independent_replay_exact": true,
+      "coverage": {
+        "baseline": {
+          "1": {
+            "voxels": 8954,
+            "volume_ml": 18.161954879760742,
+            "covered_fraction": 0.6218449854813491,
+            "centroid_ijk": [
+              227.32231404958677,
+              278.3897699352245,
+              117.66618271163726
+            ],
+            "max_area_k": 120
+          },
+          "2": {
+            "voxels": 597,
+            "volume_ml": 1.2109322547912598,
+            "covered_fraction": 0.9447236180904522,
+            "centroid_ijk": [
+              238.80569514237857,
+              264.0636515912898,
+              116.3249581239531
+            ],
+            "max_area_k": 116
+          },
+          "3": {
+            "voxels": 2669,
+            "volume_ml": 5.413698673248291,
+            "covered_fraction": 0.0,
+            "centroid_ijk": [
+              303.92131884600974,
+              262.88684900711877,
+              212.73847883102286
+            ],
+            "max_area_k": 213
+          },
+          "4": {
+            "voxels": 24477,
+            "volume_ml": 49.648223876953125,
+            "covered_fraction": 0.8048780487804879,
+            "centroid_ijk": [
+              270.4932794051559,
+              257.55215099889693,
+              103.0274543448952
+            ],
+            "max_area_k": 108
+          }
+        },
+        "followup": {
+          "3": {
+            "voxels": 3439,
+            "volume_ml": 7.41298246383667,
+            "covered_fraction": 0.0,
+            "centroid_ijk": [
+              302.3053213143356,
+              220.74963652224483,
+              215.70514684501308
+            ],
+            "max_area_k": 216
+          },
+          "4": {
+            "voxels": 54234,
+            "volume_ml": 116.90482330322266,
+            "covered_fraction": 0.8343290186967585,
+            "centroid_ijk": [
+              262.2223328539293,
+              235.6083821956706,
+              111.14680827525169
+            ],
+            "max_area_k": 115
+          }
+        }
+      },
+      "figure": {
+        "path": ".local/longitudinal-ct-image-only-v2/whole-volume/analysis/comparison.png",
+        "sha256": "c74c361557cc9506a48819db3e02b3bcd57cf2c3c5eeb54faecc88744e6c87e8"
+      },
+      "audit": {
+        "agent_seconds": 1128.179772,
+        "exception_info": null,
+        "image_observation_blocks": 56,
+        "live_isolation_passed": true,
+        "proxy_allowed": {
+          "chatgpt.com:443": 67
+        },
+        "proxy_blocked": {
+          "sdmntprsouthcentralus.oaiusercontent.com:443": 4,
+          "ab.chatgpt.com:443": 19
+        }
+      },
+      "sources": [
+        {
+          "path": ".local/longitudinal-ct-image-only-v2/whole-volume/analysis/evidence.json",
+          "sha256": "4b58fcf11ffccb64f049831fc2e777ef650f8cce4302e43ca0ccbb9dd145affd"
+        },
+        {
+          "path": ".local/longitudinal-ct-image-only-v2/whole-volume/astra-medium/audit.json",
+          "sha256": "7315203ae13c7d61257f4d6cd61242ff9d828aac8a5a0d44a247a64dd498a30f"
+        },
+        {
+          "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/agent/trajectory.json",
+          "sha256": "7cbec8bd08c838f22348b969d20ee12e343fa11a674e30182acfc18fc0ca9362"
+        },
+        {
+          "path": ".local/attempts/attempt-4749bbfb347f4809/job/task__Ave9rqP/artifacts/app/answer/report.md",
+          "sha256": "fd4b17063c48f3745535579b98b911ec9214e67dcc6be42bb5eacf872e9fd333"
+        }
+      ],
+      "localized_trigger": {
+        "threshold": 0.1,
+        "triggered": true,
+        "selected_reference_group": {
+          "baseline_ids": [
+            3
+          ],
+          "followup_ids": [
+            3
+          ],
+          "event": "persistent"
+        },
+        "scope": "Author-only adaptive selection; not input to whole-volume agent"
+      }
+    },
+    "localized": {
+      "attempt_id": "attempt-3756134eb4094e9f",
+      "task_digest": "aeb14dde7d41ffd34bb4dfc83616ade0b1ba8350c9c25a5cbcca046be4671719",
+      "metrics": {
+        "schema_version": 1,
+        "reward_meaning": "output_contract_only_not_scientific_success",
+        "matching_tolerance_mm": 3.0,
+        "visits": {
+          "baseline": {
+            "valid": true,
+            "ids": [],
+            "gt_ids": [
+              3
+            ],
+            "mapping": {},
+            "detection": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 1,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "gt_count": 1,
+              "prediction_count": 0,
+              "criterion": "prediction centroid in reference mask or within 3 mm of a labeled voxel center; one-to-one assignment",
+              "mean_centroid_distance_mm": null,
+              "mean_centroid_to_reference_mm": null
+            },
+            "segmentation": {
+              "foreground_dice": 0.0,
+              "foreground_precision": null,
+              "foreground_recall": 0.0,
+              "gt_macro_dice": 0.0,
+              "detected_only_macro_dice": null,
+              "detection_anchored_gt_macro_dice": 0.0
+            },
+            "overlap_detection_sensitivity": {
+              "0.1": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 1,
+                "precision": null,
+                "recall": 0.0,
+                "f1": 0.0
+              },
+              "0.25": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 1,
+                "precision": null,
+                "recall": 0.0,
+                "f1": 0.0
+              },
+              "0.5": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 1,
+                "precision": null,
+                "recall": 0.0,
+                "f1": 0.0
+              }
+            },
+            "per_gt": [
+              {
+                "gt_id": 3,
+                "voxels": 2669,
+                "detection_prediction_id": null,
+                "detected_dice": 0.0,
+                "best_one_to_one_dice": 0.0
+              }
+            ],
+            "matched_pairs": []
+          },
+          "followup": {
+            "valid": true,
+            "ids": [],
+            "gt_ids": [
+              3
+            ],
+            "mapping": {},
+            "detection": {
+              "tp": 0,
+              "fp": 0,
+              "fn": 1,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0,
+              "gt_count": 1,
+              "prediction_count": 0,
+              "criterion": "prediction centroid in reference mask or within 3 mm of a labeled voxel center; one-to-one assignment",
+              "mean_centroid_distance_mm": null,
+              "mean_centroid_to_reference_mm": null
+            },
+            "segmentation": {
+              "foreground_dice": 0.0,
+              "foreground_precision": null,
+              "foreground_recall": 0.0,
+              "gt_macro_dice": 0.0,
+              "detected_only_macro_dice": null,
+              "detection_anchored_gt_macro_dice": 0.0
+            },
+            "overlap_detection_sensitivity": {
+              "0.1": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 1,
+                "precision": null,
+                "recall": 0.0,
+                "f1": 0.0
+              },
+              "0.25": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 1,
+                "precision": null,
+                "recall": 0.0,
+                "f1": 0.0
+              },
+              "0.5": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 1,
+                "precision": null,
+                "recall": 0.0,
+                "f1": 0.0
+              }
+            },
+            "per_gt": [
+              {
+                "gt_id": 3,
+                "voxels": 3439,
+                "detection_prediction_id": null,
+                "detected_dice": 0.0,
+                "best_one_to_one_dice": 0.0
+              }
+            ],
+            "matched_pairs": []
+          }
+        },
+        "association": {
+          "links_end_to_end": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "links_conditional_on_detection": {
+            "eligible_gt_edges": 0,
+            "total_gt_edges": 1,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "events_end_to_end": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "events_conditional_on_detection": {
+            "eligible_gt_groups": 0,
+            "total_gt_groups": 1,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "event_classes": {
+            "persistent": {
+              "reference_groups": 1,
+              "prediction_groups": 0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1,
+              "precision": null,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "merging": {
+              "reference_groups": 0,
+              "prediction_groups": 0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": null,
+              "recall": null,
+              "f1": null
+            },
+            "disappearing": {
+              "reference_groups": 0,
+              "prediction_groups": 0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": null,
+              "recall": null,
+              "f1": null
+            },
+            "newly_appearing": {
+              "reference_groups": 0,
+              "prediction_groups": 0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": null,
+              "recall": null,
+              "f1": null
+            }
+          },
+          "unresolved_groups": 0,
+          "mapped_predictions": []
+        },
+        "valid_visit_count": 2,
+        "detection_micro": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "segmentation_gt_macro_dice": 0.0,
+        "report_present": true,
+        "valid": true,
+        "recognition": {
+          "valid": true,
+          "judgments": [
+            {
+              "candidate_id": "R01",
+              "judgment": "normal_or_benign",
+              "reason": "Smooth elongated/triangular soft tissue lateral to the thyroid at the left thoracic inlet. Adjacent axial slices and sagittal/coronal reformats show tapering continuity with root-of-neck soft tissue rather than a separate expansile nodule. Normal scalene-region soft tissue is favored over tumor; exact tissue attribution is moderately uncertain."
+            },
+            {
+              "candidate_id": "R02",
+              "judgment": "normal_or_benign",
+              "reason": "The corresponding left thoracic-inlet structure has the same smooth elongated/triangular configuration and continuity with adjacent root-of-neck soft tissue on serial slices and orthogonal reformats. No separable tumor is identified at the specified center. Normal scalene-region soft tissue is favored; exact tissue attribution is moderately uncertain."
+            }
+          ],
+          "reference_positive_candidates": 2,
+          "accepted_as_tumor": 0,
+          "rejected_as_normal_or_benign": 2,
+          "indeterminate": 0,
+          "acceptance_sensitivity": 0.0,
+          "specificity": null,
+          "limitation": "Adaptive positive-reference targets only; measures acceptance relative to GT, not clinically adjudicated malignancy or specificity."
+        }
+      },
+      "independent_replay_exact": true,
+      "coverage": {
+        "baseline": {
+          "3": {
+            "voxels": 2669,
+            "volume_ml": 5.413698673248291,
+            "covered_fraction": 0.0,
+            "centroid_ijk": [
+              303.92131884600974,
+              262.88684900711877,
+              212.73847883102286
+            ],
+            "max_area_k": 213
+          }
+        },
+        "followup": {
+          "3": {
+            "voxels": 3439,
+            "volume_ml": 7.41298246383667,
+            "covered_fraction": 0.0,
+            "centroid_ijk": [
+              302.3053213143356,
+              220.74963652224483,
+              215.70514684501308
+            ],
+            "max_area_k": 216
+          }
+        }
+      },
+      "figure": {
+        "path": ".local/longitudinal-ct-image-only-v2/localized/analysis/comparison.png",
+        "sha256": "5c8eea0ae01a110a644ecec8cca74707c41fa56cbcda8ccc97a9b1cf5e35a996"
+      },
+      "audit": {
+        "agent_seconds": 200.206477,
+        "exception_info": null,
+        "image_observation_blocks": 10,
+        "live_isolation_passed": true,
+        "proxy_allowed": {
+          "chatgpt.com:443": 22
+        },
+        "proxy_blocked": {
+          "sdmntprsouthcentralus.oaiusercontent.com:443": 4,
+          "ab.chatgpt.com:443": 4
+        }
+      },
+      "sources": [
+        {
+          "path": ".local/longitudinal-ct-image-only-v2/localized/analysis/evidence.json",
+          "sha256": "65300028b7cf18e3b460dfc47a02f6499ce3ab1bc32a3107630ae6186a227a65"
+        },
+        {
+          "path": ".local/longitudinal-ct-image-only-v2/localized/astra-medium/audit.json",
+          "sha256": "f9df370f1d0190478b26028def8d63eaa4e9bf8478f03d358cfc54b69a815c4e"
+        },
+        {
+          "path": ".local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/agent/trajectory.json",
+          "sha256": "deb2a5fce2509571b512c8c3624564a52ae6f6d95fe337b4119138efee5e9a5e"
+        },
+        {
+          "path": ".local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/answer/report.md",
+          "sha256": "1ac780fc3c73e1789c0ab6e962055fa5673a13d24b8b39ea16cf09c8efff6820"
+        }
+      ],
+      "candidate_judgments": {
+        "schema_version": 1,
+        "candidates": [
+          {
+            "candidate_id": "R01",
+            "judgment": "normal_or_benign",
+            "reason": "Smooth elongated/triangular soft tissue lateral to the thyroid at the left thoracic inlet. Adjacent axial slices and sagittal/coronal reformats show tapering continuity with root-of-neck soft tissue rather than a separate expansile nodule. Normal scalene-region soft tissue is favored over tumor; exact tissue attribution is moderately uncertain."
+          },
+          {
+            "candidate_id": "R02",
+            "judgment": "normal_or_benign",
+            "reason": "The corresponding left thoracic-inlet structure has the same smooth elongated/triangular configuration and continuity with adjacent root-of-neck soft tissue on serial slices and orthogonal reformats. No separable tumor is identified at the specified center. Normal scalene-region soft tissue is favored; exact tissue attribution is moderately uncertain."
+          }
+        ]
+      },
+      "observed_agent_statements": [
+        {
+          "step_id": 12,
+          "message": "Both centers appear to lie in the same smooth structure at the left thoracic inlet. I\u2019m tracing its continuity through the lower neck to determine whether it is normal anatomy or a discrete lesion.\n"
+        },
+        {
+          "step_id": 16,
+          "message": "I judge both candidates more likely normal or benign than tumor. Their smooth, elongated shape and continuity with adjacent neck soft tissue favor normal anatomy; I do not see a separable tumor at either center. I\u2019ll record the residual uncertainty and create empty masks for both scans, with no lesion events.\n"
+        },
+        {
+          "step_id": 19,
+          "message": "Completed all five files in `/app/answer/`.\n\nBoth candidates were judged `normal_or_benign` and excluded, with uncertainty documented in [report.md](/app/answer/report.md). Both masks contain zero instances and preserve the respective input grids and affines; the event list is empty.\n\nScripts and rendered evidence are preserved in `/app/work/`."
+        }
+      ],
+      "point_geometry_checks": [
+        {
+          "visit": "baseline",
+          "supplied_ijk": [
+            304,
+            263,
+            213
+          ],
+          "private_reference_label_at_point": 3,
+          "inside_selected_reference": true
+        },
+        {
+          "visit": "followup",
+          "supplied_ijk": [
+            302,
+            221,
+            216
+          ],
+          "private_reference_label_at_point": 3,
+          "inside_selected_reference": true
+        }
+      ],
+      "rendering_evidence": [
+        {
+          "path": ".local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/work/views.py",
+          "sha256": "bbe976ac6c1dd287f891631b0c5c73b02a718c0c50db08443715557efb24f509"
+        },
+        {
+          "path": ".local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/work/multiplanar.py",
+          "sha256": "c7ec825a62e7acbad808aa67d455729719522603f982f4f6feb0577792585e74"
+        },
+        {
+          "path": ".local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/work/baseline_center.jpg",
+          "sha256": "a046f230896a2ed9486bce1f8d71b59cdbf1b6175313808e150a0d1fe949b15d"
+        },
+        {
+          "path": ".local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/work/followup_center.jpg",
+          "sha256": "5c33329fdba76ebf66721b4deca723b44128fdc0d3952002ba87d3a2b8670137"
+        },
+        {
+          "path": ".local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/work/baseline_mpr.jpg",
+          "sha256": "9e0aa8aca6e1184b2c6da0cce217375ec6e9ad41e2f1152cf76d0e558afdd833"
+        },
+        {
+          "path": ".local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/work/followup_mpr.jpg",
+          "sha256": "5aa0d3fa5d6bf99dd528bfa34483f6df290434fc42e282f3c5f499341c3bc099"
+        }
+      ],
+      "rendering_review": "Saved views.py uses native axial array[:,:,k].T and marks i horizontally/j vertically after crop and scale; centers equal supplied coordinates. Axial center images include baseline k213 and followup k216 and were inspected. Orthogonal script scales 3 mm slices by in-plane spacing. ATIF step14 requests both center images. This establishes presentation of the indicated region, not clinical validity or hidden attention.",
+      "no_further_dispatch": true
+    }
+  }
+}

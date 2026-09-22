@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "id": "longitudinal-ct-v2-and-localized",
+  "group_id": "longitudinal-reading",
+  "title": "Revised Astra CT task: localized rejection establishes recognition disagreement beyond search",
+  "claim": "Revised whole-volume Astra medium localized 3/6 reference instances and recovered 2/4 links, versus 2/6 and 1/4 originally, while entirely omitting a separate focus at both visits. In a fresh adaptive probe, exact center cues led to explicit normal/benign judgments for both reference-positive structures. Search alone is insufficient to explain the remaining omission; recognition/inclusion relative to GT remains a bottleneck, pending expert anatomy and image-only reference suitability review.",
+  "experiment_ids": [
+    "longitudinal-ct-image-only-astra-medium",
+    "longitudinal-ct-v2-astra-medium",
+    "longitudinal-ct-localized-astra-medium"
+  ],
+  "evidence": [
+    {
+      "path": "groups/longitudinal-reading/findings/evidence/longitudinal-ct-v2-and-localized.json",
+      "sha256": "40fc5bb3f21a6aae5415d6b6b822b8f6ef088554639f3e33c4957bbfbbe71974"
+    }
+  ],
+  "limitations": [
+    "One case and one fresh attempt per condition; no causal prompt benefit or model ranking established.",
+    "Localized candidates are two visits of one adaptively selected positive reference focus; specificity is undefined.",
+    "Point cues change attention and prior belief as well as localization.",
+    "Explicit rejection establishes GT disagreement, not clinically adjudicated malignancy or a defective reference.",
+    "Mask quality conditional on target acceptance and complete event reasoning remain untested for the localized focus.",
+    "Fine abdominal reference partition remains under review; all frozen references and scores are retained."
+  ],
+  "links": [
+    {
+      "label": "Results, trace review and native illustrations",
+      "path": "groups/longitudinal-reading/findings/longitudinal-ct-v2-and-localized.md"
+    },
+    {
+      "label": "Revised generic prompt",
+      "path": "groups/longitudinal-reading/methods/longitudinal-ct-image-only-v2/instruction.md"
+    },
+    {
+      "label": "Localized candidate prompt",
+      "path": "groups/longitudinal-reading/experiments/longitudinal-ct-localized-astra-medium/instruction.md"
+    }
+  ]
+}

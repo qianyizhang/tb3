@@ -1,0 +1,24 @@
+{
+  "schema_version": 2,
+  "kind": "issue",
+  "id": "issue-39b52bc99e12447b",
+  "group_id": "longitudinal-reading",
+  "experiment_ids": [
+    "longitudinal-ct-localized-astra-medium",
+    "longitudinal-ct-v2-astra-medium"
+  ],
+  "affected_records": [
+    "longitudinal-ct-v2-astra-medium",
+    "longitudinal-ct-localized-astra-medium"
+  ],
+  "reason": "The localized agent inspected the exact reference-positive candidate centers and explicitly favored normal/benign neck tissue at both visits. This supports recognition/inclusion disagreement with GT, but expert adjudication of the indicated anatomy and image-only target suitability is pending. Retain original references and all scores; do not infer clinical GT error or intrinsic model incapability from this adaptive positive-only probe.",
+  "pending_action": true,
+  "actor": "assistant",
+  "created_at": "2026-09-22T03:08:09.335275+00:00",
+  "evidence": [
+    {
+      "path": "groups/longitudinal-reading/findings/evidence/longitudinal-ct-v2-and-localized.json",
+      "sha256": "40fc5bb3f21a6aae5415d6b6b822b8f6ef088554639f3e33c4957bbfbbe71974"
+    }
+  ]
+}
