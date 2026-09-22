@@ -24,7 +24,7 @@ const TaskScenes = (() => {
     const labelSpace = d.labels?.length
       ? `<details class="scene-label-space"><summary>Possible class labels (${d.labels.length})</summary><div>${d.labels.map((name) => `<span>${esc(name)}</span>`).join('')}</div></details>`
       : '';
-    return `<div class="scene-player" data-scene="${esc(d.kind)}"><div class="scene-stage"><canvas class="scene-canvas" tabindex="0" role="img" aria-label="${esc(d.input + ' → ' + d.output + '. Conceptual 3D illustration. Drag or use arrow keys to rotate.')}" aria-describedby="scene-description">${esc(d.caption)}</canvas><div class="scene-corner"><span class="scene-dot"></span> <span>3D TASK STUDY</span></div><span class="scene-gesture" aria-hidden="true">Drag to rotate</span></div><div class="scene-controls"><div class="scene-steps" role="group" aria-label="Illustration stage"><button data-scene-step="0" aria-pressed="true"><small>01</small> Input</button><button data-scene-step="1" aria-pressed="false"><small>02</small> Process</button><button data-scene-step="2" aria-pressed="false"><small>03</small> ${e.role && e.role !== 'task' ? 'Study output' : 'Output'}</button></div><button class="scene-play" aria-label="Pause animation">Pause</button><button class="scene-reset" aria-label="Reset illustration view">Reset</button></div><div class="scene-explanation" id="scene-description"><strong data-scene-title>${esc(d.input)}</strong><p>${esc(d.caption)}</p></div><div class="scene-legend">${legend}<span>Conceptual · not to scale</span></div>${labelSpace}${anatomyNotice}<div class="scene-fallback" hidden></div></div>`;
+    return `<div class="scene-player" data-scene="${esc(d.kind)}"><div class="scene-stage"><canvas class="scene-canvas" tabindex="0" role="img" aria-label="${esc(d.input + ' → ' + d.output + '. Conceptual 3D illustration. Drag or use arrow keys to rotate.')}" aria-describedby="scene-description">${esc(d.caption)}</canvas><div class="scene-corner"><span class="scene-dot"></span> <span>TASK ILLUSTRATION</span></div><span class="scene-gesture" aria-hidden="true">Drag to rotate</span></div><div class="scene-controls"><div class="scene-steps" role="group" aria-label="Illustration stage"><button data-scene-step="0" aria-pressed="true"><small>01</small> Input</button><button data-scene-step="1" aria-pressed="false"><small>02</small> Process</button><button data-scene-step="2" aria-pressed="false"><small>03</small> ${e.role && e.role !== 'task' ? 'Study output' : 'Output'}</button></div><button class="scene-play" aria-label="Pause animation">Pause</button><button class="scene-reset" aria-label="Reset illustration view">Reset</button></div><div class="scene-explanation" id="scene-description"><strong data-scene-title>${esc(d.input)}</strong><p>${esc(d.caption)}</p></div><div class="scene-legend">${legend}<span>Conceptual · not to scale</span></div>${labelSpace}${anatomyNotice}<div class="scene-fallback" hidden></div></div>`;
   }
 
   function mount(root, e) {
@@ -103,45 +103,33 @@ const TaskScenes = (() => {
         width * 0.58,
       );
       glow.addColorStop(0, '#ffffff');
-      glow.addColorStop(1, '#eaf0ed');
+      glow.addColorStop(1, '#eff3ee');
       ctx.fillStyle = glow;
       ctx.fillRect(0, 0, width, height);
-      ctx.strokeStyle = '#2c686b0b';
-      ctx.lineWidth = 1;
-      for (let x = width % 28; x < width; x += 28) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, height);
-        ctx.stroke();
-      }
-      for (let y = height % 28; y < height; y += 28) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(width, y);
-        ctx.stroke();
-      }
-      // Static ground rings give depth without implying measurement axes.
-      for (let r = 1; r <= 3; r++) {
-        ctx.beginPath();
-        for (let i = 0; i <= 64; i++) {
-          const p = project([
-            r * 0.55 * Math.cos((i * TAU) / 64),
-            -1.5,
-            r * 0.55 * Math.sin((i * TAU) / 64),
-          ]);
-          if (!i) ctx.moveTo(p[0], p[1]);
-          else ctx.lineTo(p[0], p[1]);
-        }
-        ctx.strokeStyle = '#567a8218';
-        ctx.stroke();
-      }
+      // One quiet studio background for surfaces, image plates and evidence cards.
+      // A soft contact shadow replaces decorative grids and orbital rings.
+      ctx.save();
+      ctx.translate(width * 0.5, height * 0.86);
+      ctx.scale(1, 0.16);
+      const shadow = ctx.createRadialGradient(0, 0, 0, 0, 0, width * 0.25);
+      shadow.addColorStop(0, '#385c5422');
+      shadow.addColorStop(0.55, '#385c5410');
+      shadow.addColorStop(1, '#385c5400');
+      ctx.fillStyle = shadow;
+      ctx.fillRect(-width * 0.3, -width * 0.3, width * 0.6, width * 0.6);
+      ctx.restore();
       const model = TaskSceneModels.build(e, stage, t);
       const projected = model.primitives
         .map((item) => {
           const p = item.points.map(project);
           return { ...item, p, depth: p.reduce((sum, v) => sum + v[2], 0) / p.length };
         })
-        .sort((a, b) => a.depth - b.depth);
+        .sort((a, b) => {
+          // Annotation marks stay legible on opaque forms (e.g. a vessel node
+          // or a nucleus center); surface depth still determines physical occlusion.
+          const layer = (item) => (item.backdrop ? -1 : item.type === 'face' ? 0 : 1);
+          return layer(a) - layer(b) || a.depth - b.depth;
+        });
       const brightness = new Map(),
         colors = new Map();
       const lighting = (normal) => {
@@ -166,7 +154,7 @@ const TaskScenes = (() => {
           const rgb = colors.get(item.color),
             levels = item.normals.map(lighting),
             color = (level) =>
-              `rgb(${rgb.map((n) => Math.round((n * 0.42 + 245 * 0.58) * level)).join(',')})`,
+              `rgb(${rgb.map((n) => Math.round((n * 0.55 + 245 * 0.45) * level)).join(',')})`,
             [a, b, c] = item.p,
             low = Math.min(...levels),
             high = Math.max(...levels),
@@ -204,6 +192,13 @@ const TaskScenes = (() => {
         if (item.type === 'dot') {
           const p = item.p[0];
           ctx.arc(p[0], p[1], Math.max(1.4, item.radius * zoom * p[3]), 0, TAU);
+          if (item.radius * zoom > 2) {
+            ctx.save();
+            ctx.strokeStyle = '#f7faf5';
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+            ctx.restore();
+          }
           ctx.fill();
         } else {
           item.p.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])));
@@ -248,7 +243,8 @@ const TaskScenes = (() => {
       }
       const delta = last ? Math.min(80, now - last) : 0;
       elapsed += delta;
-      yaw += delta * 0.000085;
+      // Keep camera framing stable across stages. Only task-relevant geometry
+      // moves; free rotation remains available through drag and keyboard.
       last = now;
       const next = Math.floor(elapsed / STAGE_MS) % 3;
       if (stage !== next) setStage(next);

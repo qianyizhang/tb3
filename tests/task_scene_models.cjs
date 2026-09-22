@@ -126,3 +126,30 @@ for (const [id, record] of Object.entries(manifest.assets)) {
   assert.equal(record.truncated_at_image_boundary, false);
   assert.ok(sourceMeshes[id].lod.faces.length <= 300, id + ': bounded assembly mesh');
 }
+
+// The material system applies to authored shapes and source-derived anatomy alike.
+// Actual contours and reference paths are tested separately above.
+for (const kind of ['dynamic_mesh', 'nuclei', 'vesselgraph', 'tensor', 'diffraction']) {
+  const model = output(kind);
+  assert.ok(
+    model.primitives.some((p) => p.surface),
+    kind + ': shaded physical form',
+  );
+  assert.ok(
+    model.primitives
+      .filter((p) => p.surface)
+      .every(
+        (p) =>
+          p.points.length === 3 &&
+          p.normals.length === 3 &&
+          p.normals.every((n) => n.every(Number.isFinite)),
+      ),
+    kind + ': finite smooth triangle normals',
+  );
+  assert.equal(
+    model.primitives.filter((p) => p.type === 'line' && !p.dash).length,
+    0,
+    kind + ': no decorative tessellation edges',
+  );
+}
+console.log('shared materials: anatomy, cells, vessels, motion and fields use shaded surfaces');

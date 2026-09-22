@@ -108,6 +108,23 @@ evaluated results for the selected case.
   Brain and dental procedural shapes remain explicitly authored schematics.
   See [asset provenance and rebuilding](anatomy/NOTICE.md).
 
+- Use one material language across the catalogue: softly shaded physical forms,
+  shallow image/signal/document panels, restrained colors and a quiet background.
+  Imported anatomy and procedural shapes share the same triangle material and
+  lighting. Detailed anatomy is a reusable content asset, not a separate style.
+  Do not expose tessellation edges or add decorative background grids and rings.
+- Choose the representation from the actual deliverable. Segmentation, motion,
+  correspondence and routes use surfaces with explicit marks; reconstruction and
+  physical estimates use image/slice panels, fields or directional glyphs; records,
+  classification and reports use planar evidence cards. A scalar stays a scalar.
+  Supporting audits and calibration reuse these forms with labeled comparisons.
+- Reserve linework for information: supplied contours, localization boxes,
+  correspondence paths, graph connections and explicitly dashed references.
+  Draw annotations above physical surfaces so solid geometry cannot hide a
+  landmark, nucleus center or graph node. This is explanatory display layering,
+  not a claim that the point lies on a source-derived anatomical surface.
+  Show registration source and target in separate frames so both remain legible.
+
 - `scene-models.js` explicitly maps each illustration kind to a scene recipe. Use
   `subject`, optional `target` and optional `scene_variant` metadata for anatomy
   and target-specific geometry; do not infer anatomy from task IDs.
@@ -119,8 +136,9 @@ evaluated results for the selected case.
   schema, with the authored possible labels expandable below it, rather than an
   arbitrary diagnosis assigned to the conceptual input.
 - Automatic playback progresses through three stages. Stage selection pauses;
-  Play resumes; Reset restores the initial input and camera. Pointer dragging and
-  keyboard arrows rotate the model. Reduced-motion starts paused and pauses an
+  Play resumes; Reset restores the initial input and camera. Keep the camera fixed
+  during playback so motion belongs to the task rather than a spinning presentation.
+  Pointer dragging and keyboard arrows rotate the model. Reduced-motion starts paused and pauses an
   already running scene when the preference changes.
 - Only the visible selected scene animates, at most 30 frames per second with a
   capped pixel ratio. Navigation disposes animation callbacks and observers;

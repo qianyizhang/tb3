@@ -303,3 +303,30 @@ and MRI/ultrasound correspondence views also select their documented anatomy.
 Source masks, frozen task contracts and scores are unchanged. Asset source hashes,
 licenses, extraction settings and local previews are linked in the
 [shared anatomy receipt](../docs/evidence/task-anatomy-assets-2026-09-22.json).
+
+
+## A consistent visual language — 2026-09-22
+
+Actor: **user** found the mixture of wireframe examples and detailed meshes
+incoherent and requested a consistent solution that addresses all tasks.
+Actor: **assistant** proposed and implemented one shared material system: shaded
+forms for physical structure, shallow panels for flat information, and linework
+reserved for meaningful annotations. The proposal applies through the common
+geometry helpers to all 80 visual recipes and 200 variants; it does not introduce
+a second gallery-only renderer.
+
+Procedural cells, vessels, cardiac geometry, physical fields and astronomical
+forms now use the same smooth surface renderer as the shared organ assets.
+Signal plots and reports use filled panels. Background grids, ground rings and
+automatic camera spinning are removed. Marks are drawn above solid surfaces so
+landmarks and graph nodes remain readable. Source and target correspondence views
+are placed side by side. Supplied contours and dashed references retain their
+contractual meaning, including the distinction between geometry and material
+tracking. Native examples and explicit reference reveals remain inspectable.
+
+A local gallery compares 12 representative tasks and can select any of the 200
+variants. It is a review aid for this assistant-proposed design direction, not a
+record of user acceptance or anatomical validation. Reopen the visual vocabulary
+if task semantics become ambiguous, annotation layering is misleading, or reader
+feedback identifies a remaining mismatch. See the
+[visual-system receipt](../docs/evidence/task-visual-system-2026-09-22.json).

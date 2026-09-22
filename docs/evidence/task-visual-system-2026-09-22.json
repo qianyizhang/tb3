@@ -1,0 +1,117 @@
+{
+  "observed_on": "2026-09-22",
+  "request_actor": "user",
+  "implementation_actor": "assistant",
+  "source_task": "codex://threads/01a0c88e-4154-7cb1-b869-8f3a70e48397",
+  "request": "Resolve the incoherent mixture of wireframe examples and solid meshes with a consistent solution for all tasks.",
+  "design_status": "Assistant-proposed direction, implemented for user review; specific design not yet accepted by the user.",
+  "visual_system": {
+    "forms": "One shaded surface primitive for retained anatomy, authored cells, smooth vessel branches, motion geometry, directional glyphs, physical fields and astronomical forms.",
+    "panels": "Filled shallow image, slice, signal, chart and document panels preserve planar information.",
+    "annotations": "Meaningful contours, boxes, paths, graph nodes and dashed references render above physical surfaces. This is explanatory layering, not a surface-location claim.",
+    "framing": "Quiet background and soft shadow; fixed camera during stage playback; pointer and keyboard inspection retained.",
+    "comparisons": "Side-by-side source/target anatomy and separate organ/lesion masks remain visible with opaque surfaces."
+  },
+  "validation": {
+    "javascript": "make js-check: pass",
+    "builder_tests": "9 task-brief tests: pass",
+    "browser": {
+      "briefs": 200,
+      "taskFamilies": 140,
+      "sourceRecords": 284,
+      "conditions": 428,
+      "nativeImagesDecoded": 15,
+      "conceptualIllustrations": 200,
+      "diagramTypes": 80,
+      "sourcePreviews": 7,
+      "portableFallbacks": 7,
+      "illustratedOverviews": 200,
+      "animated3DScenes": 200,
+      "motionPauseReducedMotionAndCamera": "pass",
+      "canvasUnavailableFallback": "pass",
+      "offscreenAndNavigationCleanup": "pass",
+      "localSources": 70,
+      "sourceReader": "pass",
+      "keyboardFocus": "pass",
+      "groupedTaskList": "pass",
+      "datasetVariants": "pass",
+      "caseDifferences": "pass",
+      "legacyLinksAndBack": "pass",
+      "collapsedProvenance": "pass",
+      "search": "pass",
+      "referenceReveal": "pass",
+      "capabilityNavigation": "pass",
+      "supportingResearch": "pass",
+      "internalExperiments": 59,
+      "mobile": "pass",
+      "pageErrors": [],
+      "remoteRequests": []
+    },
+    "visual_review": {
+      "gallery_examples": 12,
+      "mobile_width": 390,
+      "horizontal_overflow": false,
+      "checks": [
+        "Shared anatomy and cells",
+        "Vessel nodes remain visible on solid branches",
+        "Separate correspondence frames",
+        "Cardiac motion and directional glyphs",
+        "Amplitude and phase use matching legends",
+        "Phantom details stay in front of their image panel",
+        "Separate organ/lesion mask outputs",
+        "Lunar surface and scalar/report cards"
+      ],
+      "page_errors": []
+    },
+    "performance": {
+      "observations": [
+        {
+          "kind": "point_correspondence",
+          "id": "resect-mri-us-correspondence",
+          "frames": 35,
+          "medianFrameMs": 64.8999999910593,
+          "p90FrameMs": 70.5
+        },
+        {
+          "kind": "tensor",
+          "id": "imaging101-diffusion-mri-dti",
+          "frames": 36,
+          "medianFrameMs": 50,
+          "p90FrameMs": 50.20000000298023
+        },
+        {
+          "kind": "vesselgraph",
+          "id": "rexmle-topcow-track1-task3",
+          "frames": 36,
+          "medianFrameMs": 49.80000001192093,
+          "p90FrameMs": 50.599999994039536
+        }
+      ],
+      "scope": "Single disposable-headless-browser observations on this host; not a cross-device guarantee. Detailed paired brain surfaces are the heaviest of these examples."
+    },
+    "repository_gate": {
+      "command": "make check PYTHON=python3.12",
+      "result": "pass",
+      "tests": 129,
+      "log": ".local/task-visual-system/make-check.log"
+    }
+  },
+  "boundaries": [
+    "Original task contracts, scores, source masks and retained anatomy assets are unchanged.",
+    "Conceptual illustrations do not certify anatomical accuracy or show selected-case model results.",
+    "Native examples and explicit reference reveals remain separately inspectable.",
+    "No trial, acquisition, runtime installation or publication."
+  ],
+  "local_artifacts": {
+    "explorer": ".local/task-visual-system/index.html",
+    "gallery": ".local/task-visual-system/gallery.html",
+    "browser_report": ".local/task-visual-system/qa-final.json",
+    "gallery_generator": ".local/task-visual-system/build-gallery.py"
+  },
+  "source_sha256": {
+    "presentation/task-explorer/scene-models.js": "744b7a3d767736502de7374e097be62d52285c1fcca98bb391fe6103afba0e0f",
+    "presentation/task-explorer/scenes.js": "8337350225ceec3d8b0cf57c2bb25d1b87cad87a3c914d63bd6e4c3db7bde40d",
+    "tests/task_scene_models.cjs": "677d85b125f83e1ed8bac2528fd32b5d1af5a38e289053cbec90d2af01d73517",
+    "tests/task_explorer_ui.cjs": "dd5412d424d85f69b7a9d63c78e2fbd72e1d9a2e1f568dc73af0235b7e431384"
+  }
+}

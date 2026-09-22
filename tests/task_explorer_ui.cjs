@@ -200,7 +200,13 @@ async function checkExplorer(browser, input, report) {
       await page.reload();
     }
     // Motion is real, opt-out is respected, and camera controls work without a mouse.
-    await go('tb3-dental-v3/0/overview', 'tb3-dental-v3');
+    const moving = data.entries.find(
+      (e) =>
+        ['dynamic_mesh', 'cardiac_material'].includes(e.illustration.kind) &&
+        e.illustration.input_form !== 'masks',
+    );
+    assert.ok(moving, 'A task with meaningful geometry motion is available');
+    await go(`${moving.id}/0/overview`, moving.id);
     await page.locator('.scene-canvas').scrollIntoViewIfNeeded();
     const pixels = async () =>
       createHash('sha256')
@@ -212,7 +218,11 @@ async function checkExplorer(browser, input, report) {
     assert.equal(await pixels(), still, 'Reduced motion starts at a static input');
     await page.locator('.scene-play').click();
     await page.waitForTimeout(250);
-    assert.notEqual(await pixels(), still, 'Play changes the projected scene');
+    assert.notEqual(
+      await pixels(),
+      still,
+      'Play animates task geometry while the camera stays fixed',
+    );
     await page.locator('.scene-play').click();
     const paused = await pixels();
     await page.waitForTimeout(180);
@@ -269,6 +279,15 @@ async function checkExplorer(browser, input, report) {
       delete window.detachedScene;
     });
     await page.setViewportSize({ width: 1010, height: 1324 });
+    // Playback must not spin an otherwise static anatomical input.
+    await go('tb3-dental-v3/0/overview', 'tb3-dental-v3');
+    await page.locator('.scene-canvas').scrollIntoViewIfNeeded();
+    await page.locator('.scene-player[data-rendered="true"]').waitFor();
+    const fixedInput = await pixels();
+    await page.locator('.scene-play').click();
+    await page.waitForTimeout(250);
+    assert.equal(await pixels(), fixedInput, 'The camera stays fixed during stage playback');
+    await page.locator('.scene-play').click();
     // Canvas-unavailable environments retain the authored, accessible SVG explanation.
     const fallback = await context.newPage();
     await fallback.addInitScript(() => {

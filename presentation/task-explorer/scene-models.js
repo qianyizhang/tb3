@@ -129,34 +129,86 @@ const TaskSceneModels = (() => {
       });
       path(pts, color, alpha, 1, dash);
     };
-    const mesh = (center, radii, color = ink, warp = 0, alpha = 0.5, power = 1, dash = false) => {
+    // Every physical form uses the same smooth surface material, whether its
+    // geometry comes from a public mask or from a procedural teaching model.
+    const surface = (vertices, faces, color, normals = null, asset = null) => {
+      if (!normals) {
+        normals = vertices.map(() => [0, 0, 0]);
+        faces.forEach(([a, b, c]) => {
+          const u = vertices[b].map((v, i) => v - vertices[a][i]),
+            v = vertices[c].map((v, i) => v - vertices[a][i]);
+          const n = [
+            u[1] * v[2] - u[2] * v[1],
+            u[2] * v[0] - u[0] * v[2],
+            u[0] * v[1] - u[1] * v[0],
+          ];
+          for (const index of [a, b, c]) n.forEach((v, i) => (normals[index][i] += v));
+        });
+      }
+      const points = vertices.map(point);
+      faces.forEach((indices) =>
+        primitives.push({
+          type: 'face',
+          points: indices.map((i) => points[i]),
+          color,
+          alpha: 1,
+          surface: true,
+          normals: indices.map((i) => normals[i]),
+          asset,
+        }),
+      );
+    };
+    const mesh = (center, radii, color = ink, warp = 0, dash = false) => {
       const pos = (u, v) => {
         const a = u * TAU,
           b = v * Math.PI,
           mod = 1 + warp * Math.sin(3 * a + 1) * Math.sin(4 * b) * Math.sin(b);
-        const q = (n) => Math.sign(n) * Math.abs(n) ** power;
         return [
-          center[0] + radii[0] * q(Math.sin(b) * Math.cos(a)) * mod,
-          center[1] + radii[1] * q(Math.cos(b)) * mod,
-          center[2] + radii[2] * q(Math.sin(b) * Math.sin(a)) * mod,
+          center[0] + radii[0] * (Math.sin(b) * Math.cos(a)) * mod,
+          center[1] + radii[1] * Math.cos(b) * mod,
+          center[2] + radii[2] * (Math.sin(b) * Math.sin(a)) * mod,
         ];
       };
-      const rows = power === 1 ? 10 : 6,
-        cols = power === 1 ? 16 : 10;
-      const vertices = Array.from({ length: rows + 1 }, (_, j) =>
-        Array.from({ length: cols + 1 }, (_, i) => pos(i / cols, j / rows)),
-      );
-      for (let j = 0; j < rows; j++)
-        for (let i = 0; i < cols; i++) {
-          const a = vertices[j][i],
-            b = vertices[j][i + 1],
-            c = vertices[j + 1][i + 1],
-            f = vertices[j + 1][i];
-          face([a, b, c, f], color, 0.025);
-          line(a, b, color, alpha, 1, dash);
-          line(a, f, color, alpha, 1, dash);
-          if ((i + j) % 3 === 0) line(a, c, color, alpha * 0.35, 0.65, dash);
+      if (dash) {
+        // Sparse reference contours carry meaning; tessellation edges do not.
+        for (const v of [0.22, 0.5, 0.78])
+          path(
+            Array.from({ length: 49 }, (_, i) => pos(i / 48, v)),
+            color,
+            0.8,
+            1.4,
+            true,
+          );
+        for (const u of [0, 0.25, 0.5, 0.75])
+          path(
+            Array.from({ length: 25 }, (_, i) => pos(u, i / 24)),
+            color,
+            0.8,
+            1.4,
+            true,
+          );
+        return;
+      }
+      const rows = 12,
+        cols = 20;
+      const vertices = [pos(0, 0)];
+      for (let j = 1; j < rows; j++)
+        for (let i = 0; i < cols; i++) vertices.push(pos(i / cols, j / rows));
+      const bottom = vertices.push(pos(0, 1)) - 1,
+        faces = [];
+      const at = (j, i) => 1 + (j - 1) * cols + (i % cols);
+      for (let i = 0; i < cols; i++) {
+        faces.push([0, at(1, i), at(1, i + 1)]);
+        for (let j = 1; j < rows - 1; j++) {
+          const a = at(j, i),
+            b = at(j, i + 1),
+            c = at(j + 1, i + 1),
+            d = at(j + 1, i);
+          faces.push([a, d, c], [a, c, b]);
         }
+        faces.push([at(rows - 1, i), bottom, at(rows - 1, i + 1)]);
+      }
+      surface(vertices, faces, color);
     };
     const box = (p, size, color = blue, dash = false) => {
       const pts = Array.from({ length: 8 }, (_, i) =>
@@ -165,6 +217,55 @@ const TaskSceneModels = (() => {
       for (let i = 0; i < 8; i++)
         for (let j = 0; j < 3; j++)
           if (!((i >> j) & 1)) line(pts[i], pts[i | (1 << j)], color, 0.65, 1, dash);
+    };
+    const panel = (p = [0, 0, -0.12], size = [2.8, 2.35]) => {
+      const first = primitives.length;
+      const [x, y, z] = p,
+        [w, h] = size;
+      // A shallow physical plate gives image/signal data the same material
+      // vocabulary as anatomy. Its content remains planar and readable.
+      face(
+        [
+          [x - w / 2, y - h / 2, z - 0.06],
+          [x + w / 2, y - h / 2, z - 0.06],
+          [x + w / 2, y + h / 2, z - 0.06],
+          [x - w / 2, y + h / 2, z - 0.06],
+        ],
+        '#d7e2de',
+        1,
+      );
+      face(
+        [
+          [x - w / 2, y - h / 2, z - 0.06],
+          [x + w / 2, y - h / 2, z - 0.06],
+          [x + w / 2, y - h / 2, z],
+          [x - w / 2, y - h / 2, z],
+        ],
+        '#bacfc9',
+        1,
+      );
+      face(
+        [
+          [x + w / 2, y - h / 2, z - 0.06],
+          [x + w / 2, y + h / 2, z - 0.06],
+          [x + w / 2, y + h / 2, z],
+          [x + w / 2, y - h / 2, z],
+        ],
+        '#c4d6cf',
+        1,
+      );
+      face(
+        [
+          [x - w / 2, y - h / 2, z],
+          [x + w / 2, y - h / 2, z],
+          [x + w / 2, y + h / 2, z],
+          [x - w / 2, y + h / 2, z],
+        ],
+        '#f4f7f3',
+        1,
+      );
+      // Large information planes form a backdrop, not an occluding polygon.
+      primitives.slice(first).forEach((item) => (item.backdrop = true));
     };
     const plane = (y, color = blue, alpha = 0.15) => {
       face(
@@ -188,15 +289,55 @@ const TaskSceneModels = (() => {
         color,
         0.65,
       );
-      for (let i = -4; i <= 4; i++) line([i * 0.25, y, -0.9], [i * 0.25, y, 0.9], color, 0.15);
     };
     const volume = (color = blue, n = 5) => {
-      box([0, 0, 0], [2.5, 2.15, 1.8], color);
-      for (let i = 0; i < n; i++) plane(-0.9 + (i * 1.8) / Math.max(1, n - 1), color, 0.07);
+      for (let i = 0; i < n; i++) {
+        const y = -0.9 + (i * 1.8) / Math.max(1, n - 1);
+        face(
+          [
+            [-1.25, y, -0.9],
+            [1.25, y, -0.9],
+            [1.25, y, 0.9],
+            [-1.25, y, 0.9],
+          ],
+          '#dfe9e2',
+          0.92,
+        );
+        line([-1.25, y, 0.91], [1.25, y, 0.91], color, 0.6, 1.5);
+      }
     };
-    const tube = (pts, color = ink, r = 0.06, alpha = 0.75, dash = false) => {
-      // Cross sections are perpendicular to the tangent; longitudinal ribs join them.
-      const rings = pts.map((p, i) => {
+    const tube = (control, color = ink, r = 0.06, dash = false) => {
+      if (dash) {
+        path(control, color, 0.9, 2, true);
+        return;
+      }
+      // Catmull-Rom interpolation makes continuous branches instead of wire cages.
+      const pts = [];
+      for (let i = 0; i < control.length - 1; i++) {
+        const a = control[Math.max(0, i - 1)],
+          b = control[i],
+          c = control[i + 1],
+          d = control[Math.min(control.length - 1, i + 2)];
+        for (let j = 0; j < 5; j++) {
+          const t = j / 5;
+          pts.push(
+            b.map(
+              (v, q) =>
+                0.5 *
+                (2 * v +
+                  (-a[q] + c[q]) * t +
+                  (2 * a[q] - 5 * v + 4 * c[q] - d[q]) * t * t +
+                  (-a[q] + 3 * v - 3 * c[q] + d[q]) * t * t * t),
+            ),
+          );
+        }
+      }
+      pts.push(control.at(-1));
+      const vertices = [],
+        normals = [],
+        faces = [],
+        sides = 10;
+      pts.forEach((p, i) => {
         const a = pts[Math.max(0, i - 1)],
           b = pts[Math.min(pts.length - 1, i + 1)],
           t = b.map((x, j) => x - a[j]);
@@ -211,21 +352,22 @@ const TaskSceneModels = (() => {
         const ul = Math.hypot(...u);
         u.forEach((_, j) => (u[j] /= ul));
         const v = [t[1] * u[2] - t[2] * u[1], t[2] * u[0] - t[0] * u[2], t[0] * u[1] - t[1] * u[0]];
-        return Array.from({ length: 8 }, (_, j) =>
-          p.map(
-            (x, q) => x + r * (u[q] * Math.cos((j * TAU) / 8) + v[q] * Math.sin((j * TAU) / 8)),
-          ),
-        );
-      });
-      rings.forEach((rs, i) =>
-        rs.forEach((p, j) => {
-          line(p, rs[(j + 1) % 8], color, alpha * 0.55, 0.7, dash);
+        for (let j = 0; j < sides; j++) {
+          const n = u.map(
+            (x, q) => x * Math.cos((j * TAU) / sides) + v[q] * Math.sin((j * TAU) / sides),
+          );
+          normals.push(n);
+          vertices.push(p.map((x, q) => x + r * n[q]));
           if (i) {
-            line(p, rings[i - 1][j], color, alpha, 1, dash);
-            face([p, rs[(j + 1) % 8], rings[i - 1][(j + 1) % 8], rings[i - 1][j]], color, 0.06);
+            const a = (i - 1) * sides + j,
+              b = (i - 1) * sides + ((j + 1) % sides),
+              c = i * sides + ((j + 1) % sides),
+              d = i * sides + j;
+            faces.push([a, b, c], [a, c, d]);
           }
-        }),
-      );
+        }
+      });
+      surface(vertices, faces, color, normals);
     };
     const branches = (colored = false, gap = false, override = null, dash = false) => {
       const paths = [
@@ -269,36 +411,29 @@ const TaskSceneModels = (() => {
       ];
       paths.forEach((p, i) => {
         if (gap && i === 3) {
-          tube(p.slice(1), override || (colored ? teal : ink), 0.065, 0.75, dash);
+          tube(p.slice(1), override || (colored ? teal : ink), 0.065, dash);
           return;
         }
         tube(
           p,
           override || (colored ? [teal, blue, rose, gold][i % 4] : ink),
           i === 0 ? 0.095 : 0.055,
-          0.75,
           dash,
         );
       });
     };
-    const asset = (name, color = null, alpha = 1, deform = null) => {
+    const asset = (name, color = null) => {
       const parts = AnatomyAssets.get(name);
       if (!parts) return false;
-      parts.forEach((part, i) => {
-        const vertices = part.vertices.map((v) => point(deform ? deform(v) : v));
-        const material = color || [teal, blue, rose, gold][i % 4];
-        part.faces.forEach((indices) =>
-          primitives.push({
-            type: 'face',
-            points: indices.map((n) => vertices[n]),
-            color: material,
-            alpha,
-            surface: true,
-            normals: indices.map((n) => part.normals[n]),
-            asset: part.id,
-          }),
-        );
-      });
+      parts.forEach((part, i) =>
+        surface(
+          part.vertices,
+          part.faces,
+          color || [teal, blue, rose, gold][i % 4],
+          part.normals,
+          part.id,
+        ),
+      );
       return true;
     };
     const anatomy = (colored = false) => {
@@ -315,8 +450,8 @@ const TaskSceneModels = (() => {
         for (let i = 0; i < 9; i++) {
           const x = ((i % 3) - 1) * 0.68,
             y = (Math.floor(i / 3) - 1) * 0.62;
-          mesh([x, y, 0.15 * Math.sin(i)], [0.33, 0.28, 0.15], col(i), 0.14, 0.45);
-          mesh([x + 0.03, y, 0.2], [0.095, 0.1, 0.07], colored ? gold : rose, 0, 0.8);
+          mesh([x, y, 0.15 * Math.sin(i)], [0.33, 0.28, 0.15], col(i), 0.14);
+          mesh([x + 0.03, y, 0.2], [0.095, 0.1, 0.07], colored ? gold : rose, 0);
         }
       } else if (['wrist', 'knee'].includes(subject)) {
         for (let i = 0; i < 2; i++)
@@ -324,9 +459,9 @@ const TaskSceneModels = (() => {
         for (let i = 0; i < 4; i++)
           mesh([-0.6 + i * 0.4, 0.65, 0.06], [0.18, 0.21, 0.23], col(i), 0.08);
       } else {
-        volume(ink, 4);
-        mesh([-0.35, 0.15, 0], [0.45, 0.63, 0.45], col(0), 0.12);
-        mesh([0.5, -0.34, 0.1], [0.28, 0.36, 0.34], col(1), 0.08);
+        panel([0, 0, -0.25]);
+        mesh([-0.35, 0.15, 0], [0.45, 0.63, 0.12], col(0), 0.12);
+        mesh([0.5, -0.34, 0.1], [0.28, 0.36, 0.12], col(1), 0.08);
       }
     };
     const organ = () => {
@@ -346,17 +481,7 @@ const TaskSceneModels = (() => {
     };
     const documentMesh = (p = [0, 0, 0], color = ink, rows = 5) =>
       group(p, 1, () => {
-        face(
-          [
-            [-0.62, -0.85, 0],
-            [0.62, -0.85, 0],
-            [0.62, 0.85, 0],
-            [-0.62, 0.85, 0],
-          ],
-          C.paper,
-          0.8,
-        );
-        box([0, 0, -0.025], [1.24, 1.7, 0.05], color);
+        panel([0, 0, -0.04], [1.24, 1.7]);
         for (let i = 0; i < rows; i++)
           line(
             [-0.43, 0.53 - i * 0.24, 0.02],
@@ -367,13 +492,23 @@ const TaskSceneModels = (() => {
           );
       });
     const chart = (mode = 'curve', color = teal) => {
+      panel();
       line([-1, -0.8, 0], [1.05, -0.8, 0], ink, 0.6);
       line([-1, -0.8, 0], [-1, 0.9, 0], ink, 0.6);
       if (mode === 'bars')
         for (let i = 0; i < 5; i++) {
           const x = -0.78 + i * 0.38,
             h = 0.3 + ((i * 3) % 5) * 0.22;
-          box([x, -0.8 + h / 2, 0], [0.18, h, 0.17], color);
+          face(
+            [
+              [x - 0.09, -0.8, 0],
+              [x + 0.09, -0.8, 0],
+              [x + 0.09, -0.8 + h, 0],
+              [x - 0.09, -0.8 + h, 0],
+            ],
+            color,
+            0.85,
+          );
         }
       else
         path(
@@ -394,29 +529,34 @@ const TaskSceneModels = (() => {
           2,
         );
     };
-    const field = (spectral = false) => {
-      for (let j = 0; j < 15; j++)
-        path(
-          Array.from({ length: 20 }, (_, i) => {
-            const x = (i - 9.5) / 8,
-              z = (j - 7) / 7;
-            return [x, 0.42 * Math.sin(x * 2.5 + clock * 0.15) * Math.cos(z * 2), z];
-          }),
-          spectral ? [blue, teal, gold, rose][j % 4] : teal,
-          0.7,
-        );
-      for (let i = 0; i < 20; i++)
-        path(
-          Array.from({ length: 15 }, (_, j) => {
-            const x = (i - 9.5) / 8,
-              z = (j - 7) / 7;
-            return [x, 0.42 * Math.sin(x * 2.5 + clock * 0.15) * Math.cos(z * 2), z];
-          }),
-          ink,
-          0.25,
-        );
+    const field = (spectral = false, color = teal) => {
+      const vertices = [],
+        faces = [],
+        cols = 20,
+        rows = 15;
+      for (let j = 0; j < rows; j++)
+        for (let i = 0; i < cols; i++) {
+          const x = (i - 9.5) / 8,
+            z = (j - 7) / 7;
+          vertices.push([x, 0.42 * Math.sin(x * 2.5 + clock * 0.15) * Math.cos(z * 2), z]);
+          if (i && j) {
+            const a = (j - 1) * cols + i - 1,
+              b = a + 1,
+              c = j * cols + i,
+              d = c - 1;
+            faces.push([a, b, c], [a, c, d]);
+          }
+        }
+      const before = primitives.length;
+      surface(vertices, faces, color);
+      if (spectral)
+        primitives.slice(before).forEach((item, i) => {
+          const y = faces[i].reduce((sum, n) => sum + vertices[n][1], 0) / 3;
+          item.color = y > 0.16 ? gold : y < -0.16 ? blue : teal;
+        });
     };
     const signals = () => {
+      panel();
       for (let j = 0; j < 5; j++)
         path(
           Array.from({ length: 75 }, (_, i) => {
@@ -428,16 +568,17 @@ const TaskSceneModels = (() => {
               j * 0.04,
             ];
           }),
-          [blue, teal, rose][j % 3],
+          ink,
           0.8,
         );
     };
     const sampled = () => {
+      panel();
       for (let j = 0; j < 17; j++) {
         if (!out && j % 3 === 1) continue;
-        line([-1.15, (j - 8) * 0.13, 0], [1.15, (j - 8) * 0.13, 0], j % 3 ? blue : teal, 0.6);
+        line([-1.15, (j - 8) * 0.13, 0], [1.15, (j - 8) * 0.13, 0], ink, 0.6);
       }
-      ring([0, 0, 0], 0.36, gold, 'z');
+      ring([0, 0, 0], 0.36, ink, 'z');
     };
     const resultCard = () => {
       documentMesh([0, 0, 0], teal, k === 'caption' ? 2 : 5);
@@ -468,10 +609,10 @@ const TaskSceneModels = (() => {
           else organ();
           label([0, -1.25, 0], 'One target mask', teal);
         } else if (out && d.mask_mode === 'separate') {
-          organ();
-          mesh([0.6, 0.1, 0.5], [0.23, 0.27, 0.21], gold, 0.1);
-          label([-0.85, -1, 0], 'Organ', teal);
-          label([0.7, -0.6, 0.5], 'Lesion', gold);
+          group([-0.8, 0, 0], 0.63, organ);
+          mesh([0.95, 0, 0], [0.3, 0.36, 0.27], gold, 0.1);
+          label([-0.8, -1.08, 0], 'Organ mask', teal);
+          label([0.95, -1.08, 0], 'Lesion mask', gold);
         } else anatomy(out);
         if (work) sweep();
         break;
@@ -543,12 +684,11 @@ const TaskSceneModels = (() => {
             [0.8 * pulse, 1.1 / pulse, 0.67 * pulse],
             out ? teal : k === 'cardiac_material' ? blue : ink,
             0.06,
-            0.5,
-            1,
-            k === 'cardiac_anchors' && out,
           );
+          if (k === 'cardiac_anchors' && out)
+            mesh([0, 0, 0], [0.81 * pulse, 1.12 / pulse, 0.68 * pulse], teal, 0.06, true);
           if (k === 'cardiac_material' && out)
-            mesh([0, 0, 0], [0.84 * pulse, 1.13 / pulse, 0.69 * pulse], blue, 0, 0.25, 1, true);
+            mesh([0, 0, 0], [0.84 * pulse, 1.13 / pulse, 0.69 * pulse], blue, 0, true);
           if (k === 'cardiac_anchors') {
             ring([0, 0.8, 0], 0.5, gold);
             ring([0, -0.8, 0], 0.42, gold);
@@ -565,36 +705,25 @@ const TaskSceneModels = (() => {
       }
       case 'registration': {
         const t = out ? 1 : work ? smooth((Math.sin(clock * 0.7) + 1) / 2) : 0;
-        if (AnatomyAssets.has(subject)) {
-          asset(subject, blue, 0.45);
-          group([mix(0.63, 0, t), mix(0.3, 0, t), mix(0.3, 0, t)], 1, () =>
-            asset(subject, rose, 0.45),
-          );
-        } else {
-          mesh([0, 0, 0], [0.79, 1, 0.65], blue, 0.09, 0.45);
-          mesh(
-            [mix(0.63, 0, t), mix(0.3, 0, t), mix(0.3, 0, t)],
-            [0.79, 1, 0.65],
-            rose,
-            0.09,
-            0.45,
-          );
-        }
+        // Separate study frames keep both structures readable. Superimposing
+        // transparent triangle soups obscures the correspondence being taught.
+        [-0.95, 0.95].forEach((x, i) =>
+          group([x, 0, 0], 0.6, () => {
+            group(i ? [mix(0.3, 0, t), mix(0.2, 0, t), 0] : [0, 0, 0], 1, () => {
+              if (!asset(subject, i ? rose : blue))
+                mesh([0, 0, 0], [0.79, 1, 0.65], i ? rose : blue, 0.09);
+            });
+          }),
+        );
         if (k !== 'register') {
-          dot([-0.5, 0.55, 0.55], 0.06, gold);
-          if (out || d.initial_candidate)
-            dot([mix(0.13, -0.5, t), mix(0.8, 0.55, t), 0.65], 0.06, teal);
-          line(
-            [-0.5, 0.55, 0.55],
-            [mix(0.13, -0.5, t), mix(0.8, 0.55, t), 0.65],
-            gold,
-            0.8,
-            1,
-            true,
-          );
+          const source = [-1.25, 0.33, 0.4],
+            returned = [0.95 + mix(0.18, -0.3, t), mix(0.48, 0.33, t), 0.4];
+          dot(source, 0.055, gold);
+          if (out || d.initial_candidate) dot(returned, 0.055, teal);
+          if (out || work) line(source, returned, gold, 0.8, 1.4, true);
         }
-        label([-0.9, -1.28, 0], 'Source', blue);
-        label([0.9, -1.28, 0], 'Target', rose);
+        label([-0.95, -1.08, 0], 'Source', blue);
+        label([0.95, -1.08, 0], 'Target', rose);
         break;
       }
       case 'longitudinal':
@@ -689,16 +818,17 @@ const TaskSceneModels = (() => {
         } else {
           if (out) {
             if (k === 'ct_phantom') {
-              mesh([0, 0, 0], [0.87, 1.12, 0.62], ink);
-              mesh([-0.28, 0.02, 0.25], [0.24, 0.65, 0.3], blue);
-              mesh([0.28, 0.12, 0.24], [0.2, 0.53, 0.28], teal);
-              mesh([0, 0.68, 0.3], [0.28, 0.15, 0.18], C.faint);
+              panel();
+              mesh([0, 0, 0], [0.87, 1.12, 0.06], ink);
+              mesh([-0.28, 0.02, 0.12], [0.24, 0.65, 0.04], blue);
+              mesh([0.28, 0.12, 0.12], [0.2, 0.53, 0.04], teal);
+              mesh([0, 0.68, 0.12], [0.28, 0.15, 0.04], C.faint);
             } else if (k === 'pet') {
-              mesh([0, 0, 0], [0.8, 1, 0.6], ink, 0.06, 0.28);
+              mesh([0, 0, 0], [0.8, 1, 0.6], ink, 0.06);
               mesh([0.27, 0.23, 0.45], [0.24, 0.28, 0.2], gold, 0.08);
             } else anatomy(false);
           } else {
-            mesh([0, 0, 0], [0.4, 0.65, 0.4], ink, 0.08, 0.25);
+            mesh([0, 0, 0], [0.4, 0.65, 0.4], ink, 0.08);
             for (let i = 0; i < 9; i++) {
               const a = (i * TAU) / 9 + clock * 0.2,
                 p = [1.35 * Math.cos(a), 0.18, 1.35 * Math.sin(a)];
@@ -772,6 +902,7 @@ const TaskSceneModels = (() => {
           } else
             for (let view = 0; view < 2; view++)
               group([view ? 0.75 : -0.75, 0, 0], 0.56, () => {
+                panel();
                 for (let i = 0; i < 12; i++)
                   path(
                     Array.from({ length: 30 }, (_, j) => [
@@ -786,13 +917,15 @@ const TaskSceneModels = (() => {
               });
         } else if (k === 'wavefront') {
           if (out) field(false);
-          else
+          else {
+            panel();
             for (let i = 0; i < 42; i++)
               dot(
                 [((i % 7) - 3) * 0.34 + Math.sin(i) * 0.04, (Math.floor(i / 7) - 2.5) * 0.34, 0],
                 0.025,
                 blue,
               );
+          }
         } else if (k === 'molecules') {
           if (out) {
             box([0, 0, 0], [2.2, 2, 1.6], C.faint);
@@ -806,7 +939,7 @@ const TaskSceneModels = (() => {
         } else if (out) {
           if (k === 'diffraction') {
             group([-0.72, 0, 0], 0.53, () => field(false));
-            group([0.72, 0, 0], 0.53, () => field(true));
+            group([0.72, 0, 0], 0.53, () => field(false, rose));
             label([-0.85, -0.9, 0], 'Amplitude', teal);
             label([0.85, -0.9, 0], 'Phase', rose);
           } else {
@@ -849,7 +982,15 @@ const TaskSceneModels = (() => {
         } else if (k === 'tensor') {
           for (let i = 0; i < 25; i++)
             group([((i % 5) - 2) * 0.45, (Math.floor(i / 5) - 2) * 0.45, 0], 0.25, () =>
-              mesh([0, 0, 0], [0.68, 0.21, 0.25], [blue, teal, gold][i % 3], 0, 0.65),
+              mesh(
+                [0, 0, 0],
+                [
+                  [0.68, 0.21, 0.25],
+                  [0.21, 0.68, 0.25],
+                  [0.21, 0.25, 0.68],
+                ][i % 3],
+                [blue, teal, gold][i % 3],
+              ),
             );
         } else if (k === 'spectral_cube') {
           volume(teal, 9);
@@ -862,7 +1003,7 @@ const TaskSceneModels = (() => {
           sampled();
           if (work) signals();
         } else if (k === 'planet') {
-          mesh([-0.15, 0, 0], [0.36, 0.36, 0.36], ink, 0, 0.4);
+          mesh([-0.15, 0, 0], [0.36, 0.36, 0.36], ink, 0);
           dot([1, 0.45, 0.3], 0.055, gold);
           ring([1, 0.45, 0.3], 0.17, gold, 'z');
           label([0.85, 0.85, 0.3], 'Candidate', gold);
@@ -888,8 +1029,24 @@ const TaskSceneModels = (() => {
           volume(teal, 7);
           mesh([0, 0, 0], [0.7, 0.45, 0.7], gold, 0.08);
         } else {
-          for (let i = 0; i < 9; i++)
-            ring([0, (i - 4) * 0.025, 0], 0.62 + i * 0.055, i % 3 ? ink : gold, 'y', 0.5);
+          const vertices = [],
+            faces = [],
+            around = 32,
+            cross = 10;
+          for (let i = 0; i < around; i++)
+            for (let j = 0; j < cross; j++) {
+              const a = (i * TAU) / around,
+                b = (j * TAU) / cross,
+                variation = k === 'astro_dynamic' ? 0.04 * Math.sin(3 * a + clock) : 0,
+                r = 0.82 + (0.2 + variation) * Math.cos(b);
+              vertices.push([r * Math.cos(a), 0.15 * Math.sin(b), r * Math.sin(a)]);
+              const u = i * cross + j,
+                v = ((i + 1) % around) * cross + j,
+                w = ((i + 1) % around) * cross + ((j + 1) % cross),
+                z = i * cross + ((j + 1) % cross);
+              faces.push([u, v, w], [u, w, z]);
+            }
+          surface(vertices, faces, teal);
           if (k === 'astro_uncertainty') {
             ring([0, 0, 0], 1.2, rose, 'y', 0.75, true);
             label([0, -1.1, 0], 'Uncertain structure', rose);
@@ -926,15 +1083,15 @@ const TaskSceneModels = (() => {
           group([0.9, 0, 0], 0.55, () => documentMesh([0, 0, 0], teal));
         } else if (k === 'tiles') {
           for (let i = 0; i < 9; i++)
-            box(
-              [((i % 3) - 1) * 0.65, (Math.floor(i / 3) - 1) * 0.6, 0],
-              [0.53, 0.49, 0.08],
-              i % 4 === 0 ? gold : teal,
-            );
+            group([((i % 3) - 1) * 0.75, (Math.floor(i / 3) - 1) * 0.7, 0], 0.22, () => {
+              panel();
+              mesh([0, 0, 0], [0.7, 0.6, 0.12], i % 4 === 0 ? gold : teal, 0.08);
+            });
         } else resultCard();
         break;
       case 'records':
         if (k === 'risk') {
+          panel();
           if (out) {
             line([-1, 0, 0], [1, 0, 0], C.faint, 1, 5);
             dot([0.24, 0, 0], 0.08, teal);
@@ -1065,6 +1222,26 @@ const TaskSceneModels = (() => {
       keys = [
         [C.blue, 'Reference · dashed', true],
         [C.teal, 'Prediction · solid'],
+      ];
+    if (k === 'diffraction')
+      keys = [
+        [C.ink, 'Input measurements'],
+        [C.teal, 'Amplitude'],
+        [C.rose, 'Phase'],
+      ];
+    if (['spectral', 't2', 'soundmap', 'conductivity'].includes(k))
+      keys = [
+        [C.ink, 'Input'],
+        [C.blue, 'Lower field value'],
+        [C.teal, 'Mid field value'],
+        [C.gold, 'Higher field value'],
+      ];
+    if (k === 'tensor')
+      keys = [
+        [C.ink, 'Input'],
+        [C.blue, 'Axis A'],
+        [C.teal, 'Axis B'],
+        [C.gold, 'Axis C'],
       ];
     if (d.mask_mode === 'binary')
       keys = [
