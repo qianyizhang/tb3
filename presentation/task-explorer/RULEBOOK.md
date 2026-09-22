@@ -72,15 +72,54 @@ imported identifiers, authored briefs and available media are distinct coverage 
   and an organ/lesion pair is not one undifferentiated segmentation. Do not fabricate
   measured improvements, patient findings, clinical thresholds or reference answers.
   Geometry and textures are stylized. Cite the task source for any numerical dimensions.
-  `illustrations.js` owns the SVG geometry; the builder embeds it alongside the
+  `illustrations.js` owns the static SVG fallback. `scene-models.js` owns geometry
+  and legends; `scenes.js` owns projection and playback. All are embedded with the
   navigation renderer in the standalone HTML.
 - Every named entry, including supporting research and each grouped variant,
   needs an Overview visual. The composed catalogue enforces this with
-  `require_overview_visuals: true`. Curated input images take precedence; an
-  authored `illustration` also serves as a portable fallback when optional media
-  are absent. Keep the missing-media notice visible beside that fallback.
+  `require_overview_visuals: true`. Every authored `illustration` opens as a conceptual 3D scene. Curated input
+  images remain in the adjacent expandable source-example section with their
+  complete captions, and in Example. The animation remains available when optional
+  media are absent. Keep the missing-media notice visible beside that fallback.
   For supporting research, label the right panel “Study output” and show the
   actual comparison or curation question rather than an implied agent success.
+
+### Animated 3D scenes
+
+On 2026-09-22 the user requested replacing the ordinary infographics with animated
+3D illustrations, citing [OnCo Technologies](https://onco.cc/technologies/).
+Original procedural wireframes use that visual direction; no site geometry or
+code is copied. The three stages are Input, Process and Output (Study output for
+supporting research). Their text comes from the task's illustration metadata.
+These are conceptual explanations, never native reconstructions or experiment results.
+
+- `scene-models.js` explicitly maps each illustration kind to a scene recipe. Use
+  `subject`, optional `target` and optional `scene_variant` metadata for anatomy
+  and target-specific geometry; do not infer anatomy from task IDs.
+- Preserve distinctions between binary/multiclass masks, separate organ/lesion
+  masks, points, boxes, paths, scalar probabilities, wavelength stacks and reports.
+  Legend colors and line styles must agree with the scene and its caption.
+  Image detections use planar boxes; volume detections retain depth. Moving cavity
+  surfaces do not imply tracked material particles. Classification shows an output
+  schema, with the authored possible labels expandable below it, rather than an
+  arbitrary diagnosis assigned to the conceptual input.
+- Automatic playback progresses through three stages. Stage selection pauses;
+  Play resumes; Reset restores the initial input and camera. Pointer dragging and
+  keyboard arrows rotate the model. Reduced-motion starts paused and pauses an
+  already running scene when the preference changes.
+- Only the visible selected scene animates, at most 30 frames per second with a
+  capped pixel ratio. Navigation disposes animation callbacks and observers;
+  hidden tabs and off-screen canvases stop scheduling frames.
+- The standalone build contains the renderer and all geometry, with no remote
+  scripts, models or textures. If Canvas is unavailable, the original accessible
+  SVG input/output pair is built on demand. Native references still require the
+  separate Example reveal.
+- The browser matrix renders all three stages for every variant, preserves source
+  captions and checks motion, pause, reset, pointer/keyboard controls, reduced
+  motion, off-screen suspension, navigation cleanup, Canvas fallback, mobile layout
+  and zero remote requests. Browser-free geometry checks cover dimensionality,
+  mask classes, motion semantics and reference styles. Geometric schematics do
+  not certify anatomical accuracy.
 
 ## Small authoring surface
 

@@ -46,3 +46,34 @@ dialog{border:1px solid var(--line);border-radius:12px;max-width:750px;width:92%
 aside select{width:100%;margin:6px 0 12px;padding:9px;border:1px solid var(--line,#d7dedb);border-radius:7px;background:var(--paper,#fff);color:inherit;font:inherit} .task-provenance{font-size:12px;line-height:1.6;color:var(--muted,#52635f)} .study-index{margin-top:28px}.study{border-top:1px solid var(--line,#d7dedb);padding:12px 0}.study summary{cursor:pointer;font-weight:600}.study p{margin:10px 0}.study code{overflow-wrap:anywhere}.study-index .fine{line-height:1.6}
 
 @media(min-width:801px){aside{position:sticky;top:0;max-height:100vh;overflow-y:auto;align-self:start}}
+
+/* Animated, projected 3D scenes. Static SVGs remain available without Canvas. */
+.task-picture.conceptual{padding:0;overflow:hidden;background:#f9faf6;border-color:#d8e0dc;border-radius:12px}
+.task-picture.conceptual>figcaption{padding:13px 18px;margin:0;border-bottom:1px solid #e3e8e2;font-size:10px}
+.scene-stage{position:relative;background:#eff3ed}
+.scene-canvas{display:block;width:100%;height:340px;cursor:grab;touch-action:pan-y;outline-offset:-4px}
+.scene-canvas.dragging{cursor:grabbing}
+.scene-canvas:focus-visible{outline:3px solid #de8d48}
+.scene-corner{position:absolute;top:18px;left:18px;display:flex;align-items:center;gap:7px;font:9px ui-monospace,monospace;letter-spacing:.12em;color:#64817f;pointer-events:none}
+.scene-dot{width:5px;height:5px;background:#438f83;border-radius:50%}
+.scene-gesture{position:absolute;right:16px;bottom:13px;font-size:10px;color:#738a89;pointer-events:none}
+.scene-controls{display:flex;align-items:center;gap:8px;padding:12px 16px;border-top:1px solid #dee5df;border-bottom:1px solid #e3e8e2;background:#f9faf6}
+.scene-steps{display:flex;gap:5px;flex:1;min-width:0}
+.scene-controls button{border:1px solid #d8e1d9;background:transparent;color:#5a7478;border-radius:5px;font:11px system-ui,sans-serif;padding:8px 10px;cursor:pointer;min-height:34px}
+.scene-controls button:hover{background:#eaf1ec;color:#244e50}
+.scene-controls button[aria-pressed=true]{background:#254b4e;color:#fff;border-color:#254b4e}
+.scene-steps small{font:9px ui-monospace,monospace;opacity:.6;margin-right:5px}
+.scene-controls .scene-play,.scene-controls .scene-reset{border-color:transparent;padding:7px}
+.scene-explanation{padding:16px 18px 8px;min-height:92px}
+.scene-explanation strong{font-size:15px;line-height:1.4;color:#284d53;display:block}
+.scene-explanation p{font-size:11px;line-height:1.65;color:#647b7c;margin:7px 0}
+.scene-legend{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;padding:5px 18px 16px;font-size:9px;color:#698080}
+.scene-legend>span{display:inline-flex;align-items:center;gap:5px}
+.scene-legend i{display:inline-block;width:12px;border-top:2px solid var(--key)}
+.scene-legend>span:last-child{margin-left:auto}
+.scene-source{border-top:1px solid #dce4dd;padding:13px 18px;font-size:11px}
+.scene-source summary{cursor:pointer;color:#396668}
+.scene-source .native-input{margin-top:12px}
+.scene-fallback{padding:18px}
+@media(max-width:600px){.scene-canvas{height:290px}.scene-controls{padding:10px 9px;gap:2px}.scene-controls button{padding:8px 7px;font-size:10px}.scene-steps{gap:3px}.scene-steps small{display:none}.scene-explanation{padding:14px 14px 6px}.scene-legend{padding:6px 14px 14px;font-size:9px}.scene-corner{left:13px;top:13px;font-size:8px}.scene-legend>span:last-child{margin-left:0}}
+.scene-label-space{padding:0 18px 12px;font-size:11px}.scene-label-space summary{padding:0}.scene-label-space>div{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}.scene-label-space span{background:#eaf0eb;border:1px solid #d7e0d8;border-radius:4px;padding:3px 7px;overflow-wrap:anywhere}

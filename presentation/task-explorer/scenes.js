@@ -1,0 +1,312 @@
+// Canvas rendering and playback. Task-specific geometry lives in scene-models.js.
+const TaskScenes = (() => {
+  const TAU = Math.PI * 2;
+  const STAGE_MS = 4500;
+  const INITIAL_YAW = -0.35,
+    INITIAL_PITCH = -0.17;
+  const clampPitch = (value) => Math.max(-1.1, Math.min(1.1, value));
+  function fallback(e) {
+    const d = e.illustration;
+    return `<div class="picture-pair"><section><h4>Input</h4>${taskArt(e)}<p>${esc(d.input)}</p></section><div class="picture-arrow" aria-hidden="true">→</div><section><h4>${e.role && e.role !== 'task' ? 'Study output' : 'Expected output'}</h4>${taskArt(e, true)}<p>${esc(d.output)}</p></section></div>`;
+  }
+  function figure(e) {
+    const d = e.illustration;
+    if (!d || !TaskSceneModels.supports(d.kind)) return '';
+    const legend = TaskSceneModels.legend(e)
+      .map(
+        ([color, label, dashed]) =>
+          `<span><i style="--key:${color};border-top-style:${dashed ? 'dashed' : 'solid'}"></i>${esc(label)}</span>`,
+      )
+      .join('');
+    const labelSpace = d.labels?.length
+      ? `<details class="scene-label-space"><summary>Possible class labels (${d.labels.length})</summary><div>${d.labels.map((name) => `<span>${esc(name)}</span>`).join('')}</div></details>`
+      : '';
+    return `<div class="scene-player" data-scene="${esc(d.kind)}"><div class="scene-stage"><canvas class="scene-canvas" tabindex="0" role="img" aria-label="${esc(d.input + ' → ' + d.output + '. Conceptual 3D illustration. Drag or use arrow keys to rotate.')}" aria-describedby="scene-description">${esc(d.caption)}</canvas><div class="scene-corner"><span class="scene-dot"></span> <span>3D TASK STUDY</span></div><span class="scene-gesture" aria-hidden="true">Drag to rotate</span></div><div class="scene-controls"><div class="scene-steps" role="group" aria-label="Illustration stage"><button data-scene-step="0" aria-pressed="true"><small>01</small> Input</button><button data-scene-step="1" aria-pressed="false"><small>02</small> Process</button><button data-scene-step="2" aria-pressed="false"><small>03</small> ${e.role && e.role !== 'task' ? 'Study output' : 'Output'}</button></div><button class="scene-play" aria-label="Pause animation">Pause</button><button class="scene-reset" aria-label="Reset illustration view">Reset</button></div><div class="scene-explanation" id="scene-description"><strong data-scene-title>${esc(d.input)}</strong><p>${esc(d.caption)}</p></div><div class="scene-legend">${legend}<span>Conceptual · not to scale</span></div>${labelSpace}<div class="scene-fallback" hidden></div></div>`;
+  }
+
+  function mount(root, e) {
+    const player = root.querySelector('.scene-player');
+    if (!player) return () => {};
+    const canvas = player.querySelector('canvas'),
+      ctx = canvas.getContext('2d');
+    if (!ctx) {
+      player.querySelector('.scene-stage').hidden = true;
+      player.querySelector('.scene-controls').hidden = true;
+      const view = player.querySelector('.scene-fallback');
+      view.innerHTML = fallback(e);
+      view.hidden = false;
+      return () => {};
+    }
+    const media = matchMedia('(prefers-reduced-motion: reduce)');
+    let playing = !media.matches,
+      visible = false,
+      disposed = false,
+      stage = 0,
+      elapsed = 0,
+      yaw = INITIAL_YAW,
+      pitch = INITIAL_PITCH,
+      frame = 0,
+      last = 0,
+      lastPaint = 0,
+      drag = null,
+      width = 0,
+      height = 0;
+    const buttons = [...player.querySelectorAll('[data-scene-step]')],
+      play = player.querySelector('.scene-play');
+    const setStage = (n) => {
+      stage = n;
+      player.dataset.stage = String(n);
+      buttons.forEach((b, i) => b.setAttribute('aria-pressed', String(i === n)));
+      player.querySelector('[data-scene-title]').textContent = [
+        e.illustration.input,
+        TaskSceneModels.action(e.illustration.kind),
+        e.illustration.output,
+      ][n];
+    };
+    const syncPlay = () => {
+      play.textContent = playing ? 'Pause' : 'Play';
+      play.setAttribute('aria-label', playing ? 'Pause animation' : 'Play animation');
+      player.dataset.playing = String(playing);
+    };
+    const renderFrame = () => {
+      if (disposed || !width) return;
+      const t = elapsed / 1000,
+        turn = yaw,
+        cy = Math.cos(turn),
+        sy = Math.sin(turn),
+        cx = Math.cos(pitch),
+        sx = Math.sin(pitch);
+      const zoom = Math.min(width / 5.25, height / 3.5);
+      const project = (p) => {
+        const x = p[0] * cy + p[2] * sy,
+          z = -p[0] * sy + p[2] * cy,
+          y = p[1] * cx - z * sx,
+          depth = p[1] * sx + z * cx,
+          perspective = 7 / (7 - depth);
+        return [
+          width / 2 + x * zoom * perspective,
+          height * 0.48 - y * zoom * perspective,
+          depth,
+          perspective,
+        ];
+      };
+      ctx.clearRect(0, 0, width, height);
+      const glow = ctx.createRadialGradient(
+        width * 0.49,
+        height * 0.45,
+        0,
+        width * 0.5,
+        height * 0.5,
+        width * 0.58,
+      );
+      glow.addColorStop(0, '#ffffff');
+      glow.addColorStop(1, '#eaf0ed');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, width, height);
+      ctx.strokeStyle = '#2c686b0b';
+      ctx.lineWidth = 1;
+      for (let x = width % 28; x < width; x += 28) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = height % 28; y < height; y += 28) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+      // Static ground rings give depth without implying measurement axes.
+      for (let r = 1; r <= 3; r++) {
+        ctx.beginPath();
+        for (let i = 0; i <= 64; i++) {
+          const p = project([
+            r * 0.55 * Math.cos((i * TAU) / 64),
+            -1.5,
+            r * 0.55 * Math.sin((i * TAU) / 64),
+          ]);
+          if (!i) ctx.moveTo(p[0], p[1]);
+          else ctx.lineTo(p[0], p[1]);
+        }
+        ctx.strokeStyle = '#567a8218';
+        ctx.stroke();
+      }
+      const model = TaskSceneModels.build(e, stage, t);
+      const projected = model.primitives
+        .map((item) => {
+          const p = item.points.map(project);
+          return { ...item, p, depth: p.reduce((sum, v) => sum + v[2], 0) / p.length };
+        })
+        .sort((a, b) => a.depth - b.depth);
+      projected.forEach((item) => {
+        ctx.globalAlpha = item.alpha;
+        ctx.strokeStyle = item.color;
+        ctx.fillStyle = item.color;
+        ctx.lineWidth = item.width || 1;
+        ctx.setLineDash(item.dash ? [4, 4] : []);
+        ctx.beginPath();
+        if (item.type === 'dot') {
+          const p = item.p[0];
+          ctx.arc(p[0], p[1], Math.max(1.4, item.radius * zoom * p[3]), 0, TAU);
+          ctx.fill();
+        } else {
+          item.p.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])));
+          if (item.type === 'face') {
+            ctx.closePath();
+            ctx.fill();
+          } else ctx.stroke();
+        }
+      });
+      ctx.globalAlpha = 1;
+      ctx.setLineDash([]);
+      ctx.font = `${Math.max(10, Math.min(12, width / 47))}px system-ui,sans-serif`;
+      ctx.textBaseline = 'middle';
+      model.labels.forEach(({ p, text, color }) => {
+        const v = project(p),
+          tw = ctx.measureText(text).width,
+          x = Math.max(8, Math.min(width - tw - 8, v[0] - tw / 2)),
+          y = Math.max(35, Math.min(height - 18, v[1]));
+        ctx.fillStyle = '#f6f8f2ed';
+        ctx.fillRect(x - 4, y - 9, tw + 8, 18);
+        ctx.fillStyle = color;
+        ctx.fillText(text, x, y);
+      });
+      player.dataset.rendered = 'true';
+    };
+    const cancel = () => {
+      if (frame) cancelAnimationFrame(frame);
+      frame = 0;
+      last = 0;
+    };
+    const tick = (now) => {
+      frame = 0;
+      if (disposed || !playing || !visible || document.hidden || drag) {
+        last = 0;
+        return;
+      }
+      const delta = last ? Math.min(80, now - last) : 0;
+      elapsed += delta;
+      yaw += delta * 0.000085;
+      last = now;
+      const next = Math.floor(elapsed / STAGE_MS) % 3;
+      if (stage !== next) setStage(next);
+      if (now - lastPaint >= 1000 / 30) {
+        renderFrame();
+        lastPaint = now;
+      }
+      frame = requestAnimationFrame(tick);
+    };
+    const start = () => {
+      if (!frame && playing && visible && !document.hidden && !disposed && !drag)
+        frame = requestAnimationFrame(tick);
+    };
+    const pause = () => {
+      playing = false;
+      cancel();
+      syncPlay();
+    };
+    buttons.forEach(
+      (b, i) =>
+        (b.onclick = () => {
+          pause();
+          setStage(i);
+          elapsed = i * STAGE_MS;
+          renderFrame();
+        }),
+    );
+    play.onclick = () => {
+      if (playing) pause();
+      else {
+        playing = true;
+        syncPlay();
+        start();
+      }
+      renderFrame();
+    };
+    player.querySelector('.scene-reset').onclick = () => {
+      pause();
+      yaw = INITIAL_YAW;
+      pitch = INITIAL_PITCH;
+      elapsed = 0;
+      setStage(0);
+      renderFrame();
+    };
+    canvas.onpointerdown = (event) => {
+      if (event.button !== 0) return;
+      pause();
+      drag = [event.clientX, event.clientY];
+      canvas.setPointerCapture(event.pointerId);
+      canvas.classList.add('dragging');
+    };
+    canvas.onpointermove = (event) => {
+      if (!drag) return;
+      yaw += (event.clientX - drag[0]) * 0.008;
+      pitch = clampPitch(pitch + (event.clientY - drag[1]) * 0.007);
+      drag = [event.clientX, event.clientY];
+      renderFrame();
+    };
+    canvas.onpointerup =
+      canvas.onpointercancel =
+      canvas.onlostpointercapture =
+        () => {
+          drag = null;
+          canvas.classList.remove('dragging');
+        };
+    canvas.onkeydown = (event) => {
+      if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' '].includes(event.key)) return;
+      event.preventDefault();
+      if (event.key === ' ') {
+        play.click();
+        return;
+      }
+      pause();
+      yaw += event.key === 'ArrowLeft' ? -0.15 : event.key === 'ArrowRight' ? 0.15 : 0;
+      pitch = clampPitch(
+        pitch + (event.key === 'ArrowUp' ? -0.12 : event.key === 'ArrowDown' ? 0.12 : 0),
+      );
+      renderFrame();
+    };
+    const resize = new ResizeObserver(() => {
+      const rect = canvas.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      const ratio = Math.min(devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * ratio);
+      canvas.height = Math.round(height * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      renderFrame();
+    });
+    resize.observe(canvas);
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible) start();
+      else cancel();
+    });
+    observer.observe(canvas);
+    const visibility = () => {
+      if (document.hidden) cancel();
+      else start();
+    };
+    document.addEventListener('visibilitychange', visibility);
+    const preference = () => {
+      if (media.matches) {
+        pause();
+        renderFrame();
+      }
+    };
+    media.addEventListener('change', preference);
+    setStage(0);
+    syncPlay();
+    start();
+    return () => {
+      disposed = true;
+      cancel();
+      resize.disconnect();
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', visibility);
+      media.removeEventListener('change', preference);
+    };
+  }
+  return { figure, mount };
+})();

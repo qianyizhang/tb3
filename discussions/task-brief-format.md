@@ -254,3 +254,34 @@ conditions, including search/history, retained captions, keyboard navigation and
 narrow layouts. Four corrected illustrations were visually inspected. Conceptual
 coverage remains 154 variants, now using 59 drawing types; native coverage is six.
 No trial, runtime installation or publication was part of this maintenance.
+
+
+## Animated 3D illustrations — 2026-09-22
+
+Actor: **user** requested one animated 3D illustration for each task, replacing the
+ordinary Task Explorer infographics, with
+[OnCo Technologies](https://onco.cc/technologies/) as the visual reference.
+Source task: [Add 3D task illustrations](codex://threads/01a0c88e-4154-7cb1-b869-8f3a70e48397).
+
+Actor: **assistant** implemented original rotating wireframe scenes with three
+selectable stages, pause/play, reset and pointer/keyboard camera controls. Every
+current authored variant receives a scene through its task-specific illustration
+kind and explicit subject/target metadata. Source images remain inspectable with
+their original captions; reference answers remain behind the Example reveal.
+Reduced-motion and Canvas-unavailable readers retain static explanations. The
+single-file build embeds the geometry and makes no network requests.
+
+This changes the explanatory presentation, not the task definitions, frozen
+outcomes or anatomical evidence. Reopen individual scenes when the task contract
+changes, a legend becomes ambiguous, or user feedback identifies an unhelpful
+geometric simplification. Validation is recorded in
+[the 3D coverage receipt](../docs/evidence/task-explorer-3d-2026-09-22.json).
+
+Actor: **user** then requested review and polish, simplification, cleanup and a
+focused commit. Actor: **assistant** separated scene geometry from playback,
+removed redundant mesh calculations and deferred static fallback construction.
+Review corrected planar detection boxes, cavity-versus-material motion semantics,
+lunar surface marks, dashed reference styles and overlapping labels. Classification
+now shows a label schema without inventing a diagnosis; authored class labels remain
+expandable. Geometry checks and the full offline browser matrix cover the corrected
+semantics, playback, off-screen suspension and disposal when navigating away.

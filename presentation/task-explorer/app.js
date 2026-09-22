@@ -116,7 +116,11 @@ function route() {
   selectedSource=tab==='sources' && e.sources.some(([,path])=>DATA.local_sources?.[path]?.sha256===requestedSource)?requestedSource:'';
   visual = 'input'; revealFamily(); render();
   if(selectedSource) el('source-heading')?.focus();
-  else if(previousSource) document.querySelector(`[data-source="${CSS.escape(previousSource)}"], [data-notice="${CSS.escape(previousSource)}"]`)?.focus();
+  else if(previousSource) {
+    const control=document.querySelector(`[data-source="${CSS.escape(previousSource)}"], [data-notice="${CSS.escape(previousSource)}"]`);
+    const sample=control?.closest('.scene-source');if(sample)sample.open=true;
+    control?.focus();
+  }
 }
 function clearIncompatibleSearch(e) {
   if (!briefMatch(e,el('search').value.trim().toLowerCase())) el('search').value='';
@@ -211,10 +215,12 @@ function assistance(e) {
 function taskPicture(e) {
   const illustrated=e.example_case_id?itemsFor(e).find(i=>i.id===e.example_case_id):null;
   const exampleLabel=illustrated?' · '+compactLabel(illustrated,e):'';
-  if (/<img\b/.test(e.visuals.input)) return `<figure class="task-picture native-preview"><figcaption><span class="drawing-label">Source-derived example${esc(exampleLabel)}</span><button class="text-button" data-example-open>Inspect example →</button></figcaption><div class="native-input">${e.visuals.input}</div>${imageNotice(e)}</figure>`;
+  const native=/<img\b/.test(e.visuals.input);
   const unavailable=e.missing_media?.length?`<div class="preview-unavailable">${e.visuals.input}${imageNotice(e)}</div>`:'';
-  const d=e.illustration;
-  if(d) return `<figure class="task-picture conceptual" data-illustration="${esc(d.kind)}"><figcaption><span class="drawing-label">Conceptual illustration</span><span>Drawn, not a dataset sample</span></figcaption><div class="picture-pair"><section><h4>Input</h4>${taskArt(e)}<p>${esc(d.input)}</p></section><div class="picture-arrow" aria-hidden="true">→</div><section><h4>${e.role && e.role!=='task'?'Study output':'Expected output'}</h4>${taskArt(e,true)}<p>${esc(d.output)}</p></section></div><p class="picture-caption">${esc(d.caption)}</p></figure>${unavailable}`;
+  const scene=TaskScenes.figure(e);
+  const sample=native?`<details class="scene-source"><summary>Inspect source-derived example${esc(exampleLabel)}</summary><div class="native-input">${e.visuals.input}</div>${imageNotice(e)}<button class="text-button" data-example-open>Inspect example and reference →</button></details>`:'';
+  if(scene) return `<figure class="task-picture conceptual${native?' native-preview':''}" data-illustration="${esc(e.illustration.kind)}"><figcaption><span class="drawing-label">Animated task illustration</span><span>Drawn, not a dataset sample</span></figcaption>${scene}${sample}</figure>${unavailable}`;
+  if(native) return `<figure class="task-picture native-preview"><figcaption><span class="drawing-label">Source-derived example${esc(exampleLabel)}</span><button class="text-button" data-example-open>Inspect example →</button></figcaption><div class="native-input">${e.visuals.input}</div>${imageNotice(e)}</figure>`;
   return unavailable;
 }
 function imageNotice(e) {
@@ -275,7 +281,9 @@ function taskDetail(e) {
   const provenance=`<p class="task-provenance">${esc(e.repo)}${e.owner_group?' · Research owner: '+esc(e.owner_group):''}<br>${esc(categoryInfo(e.category).title)} · ${esc(taxonomy.roles?.[e.role] || 'Agent task')} · ${esc(taxonomy.agent_work?.[e.agent_work] || '')}${e.operations?.length?' · Also: '+e.operations.map(op=>esc(categoryInfo(op).title)).join(', '):''}</p>`;
   return `<article class="task-detail" data-brief="${esc(e.id)}"><div class="detail-heading">${provenance}${e.proposed?'<span class="draft">Proposed</span>':''}<h2>${esc(members.length>1?family.title:e.title)}</h2>${variantPicker}${edition(e)?`<span class="edition">${esc(edition(e))}</span>`:''}${summary?`<div class="task-goal">${summary}</div>`:''}</div>${sourceScope(e)}<div class="tabs" role="tablist" aria-label="Task sections">${tabs.map(([id,label])=>`<button id="tab-${id}" data-tab="${id}" role="tab" tabindex="${tab===id?0:-1}" aria-selected="${tab===id}" aria-controls="task-panel">${label}</button>`).join('')}</div><section id="task-panel" role="tabpanel" tabindex="0" aria-labelledby="tab-${tab}">${body}</section></article>`;
 }
+let disposeTaskScene=()=>{};
 function render() {
+  disposeTaskScene();
   const previousList=el('main').querySelector('.task-list');
   if(previousList) listScroll.set(previousList.dataset.repository,previousList.scrollTop);
   navigation();
@@ -286,6 +294,7 @@ function render() {
   const heading=view==='repository'?group.repo:categoryInfo(e.category).title;
   document.title=group.repo+' · Task Explorer';
   el('main').innerHTML=`<div class="repository-heading"><h1>${esc(heading)}</h1>${intro?`<p>${esc(intro)}</p>`:''}</div><div class="catalogue-workspace">${taskList(e,matches)}${visible?taskDetail(e):'<div class="empty task-detail">Choose a matching task from the list.</div>'}</div>${coverage(e)}`;
+  disposeTaskScene=TaskScenes.mount(el('main'),e);
   // Text insertion preserves leading LF and CRLF that the HTML parser normalizes.
   if(el('source-content')) el('source-content').textContent=Object.values(DATA.local_sources).find(s=>s.sha256===selectedSource).content;
   const currentList=el('main').querySelector('.task-list');

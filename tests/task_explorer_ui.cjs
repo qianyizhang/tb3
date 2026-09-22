@@ -11,7 +11,10 @@ const assert = require('assert/strict');
 const { createHash } = require('crypto');
 async function checkExplorer(browser, input, report) {
   const file = resolve(input);
-  const context = await browser.newContext({ viewport: { width: 1010, height: 1324 } });
+  const context = await browser.newContext({
+    viewport: { width: 1010, height: 1324 },
+    reducedMotion: 'reduce',
+  });
   const errors = [],
     requests = [];
   try {
@@ -103,41 +106,59 @@ async function checkExplorer(browser, input, report) {
           );
         conditions++;
       }
-      if (/<img\b/.test(e.visuals.input)) {
+      if (e.illustration) {
+        await page.locator('.scene-player[data-rendered="true"]').waitFor();
+        assert.equal(await page.locator('.scene-canvas').count(), 1, `${e.id}: 3D scene`);
         assert.equal(
-          await page.locator('.native-preview img').count(),
-          1,
-          'Existing source images should be visible in the overview',
+          await page.locator('.scene-fallback svg').count(),
+          0,
+          'SVG geometry stays lazy while Canvas works',
         );
-        await page.locator('.native-preview img').evaluate((e) => e.decode());
         assert.equal(
-          await page.locator('.native-input').innerHTML(),
-          e.visuals.input,
-          'Preview preserves the authored caption, including reference-based view selection',
+          await page.locator('.scene-player').getAttribute('data-scene'),
+          e.illustration.kind,
         );
-        sourcePreviews++;
-      } else if (e.illustration) {
-        assert.equal(
-          await page.locator('.task-picture.conceptual svg').count(),
-          2,
-          'Input and output must be drawn in the overview',
-        );
+        assert.equal(await page.locator('.scene-player').getAttribute('data-playing'), 'false');
         assert.ok(
           (await page.locator('.task-picture figcaption').innerText()).includes(
             'not a dataset sample',
           ),
         );
-        assert.ok(
-          (await page.locator('.task-picture').innerText()).includes(e.illustration.output),
-        );
+        for (const stage of [0, 1, 2]) {
+          await page.locator(`[data-scene-step="${stage}"]`).click();
+          assert.equal(
+            await page.locator('.scene-player').getAttribute('data-stage'),
+            String(stage),
+          );
+          assert.equal(
+            await page.locator(`[data-scene-step="${stage}"]`).getAttribute('aria-pressed'),
+            'true',
+          );
+        }
+        assert.equal(await page.locator('[data-scene-title]').innerText(), e.illustration.output);
+        if (e.illustration.labels?.length) {
+          const names = await page.locator('.scene-label-space span').allTextContents();
+          assert.deepEqual(
+            names,
+            e.illustration.labels,
+            'The full label space remains readable outside the canvas',
+          );
+        }
         drawings++;
         diagramTypes.add(e.illustration.kind);
-      } else if (e.missing_media.length) {
+      }
+      if (/<img\b/.test(e.visuals.input)) {
+        await page.locator('.scene-source summary').click();
+        assert.equal(await page.locator('.native-preview img').count(), 1);
+        await page.locator('.native-preview img').evaluate((e) => e.decode());
         assert.equal(
-          await page.locator('.preview-unavailable').count(),
-          1,
-          'Missing optional previews have an explicit fallback',
+          await page.locator('.native-input').innerHTML(),
+          e.visuals.input,
+          'Source preview preserves its authored selection caption',
         );
+        sourcePreviews++;
+      } else if (e.missing_media.length) {
+        assert.equal(await page.locator('.preview-unavailable').count(), 1);
         assert.ok((await page.locator('.preview-unavailable').innerText()).includes('unavailable'));
       }
       if (Object.values(e.visuals).some((x) => /<img\b/.test(x))) {
@@ -173,11 +194,92 @@ async function checkExplorer(browser, input, report) {
         entry.missing_media = ['optional-example.png'];
         render();
       }, e.id);
-      assert.equal(await page.locator('.task-picture.conceptual svg').count(), 2);
+      assert.equal(await page.locator('.scene-canvas').count(), 1);
       assert.ok((await page.locator('.preview-unavailable').innerText()).includes('unavailable'));
       fallbackDrawings++;
       await page.reload();
     }
+    // Motion is real, opt-out is respected, and camera controls work without a mouse.
+    await go('tb3-dental-v3/0/overview', 'tb3-dental-v3');
+    await page.locator('.scene-canvas').scrollIntoViewIfNeeded();
+    const pixels = async () =>
+      createHash('sha256')
+        .update(await page.locator('.scene-canvas').evaluate((c) => c.toDataURL()))
+        .digest('hex');
+    await page.locator('.scene-player[data-rendered="true"]').waitFor();
+    const still = await pixels();
+    await page.waitForTimeout(180);
+    assert.equal(await pixels(), still, 'Reduced motion starts at a static input');
+    await page.locator('.scene-play').click();
+    await page.waitForTimeout(250);
+    assert.notEqual(await pixels(), still, 'Play changes the projected scene');
+    await page.locator('.scene-play').click();
+    const paused = await pixels();
+    await page.waitForTimeout(180);
+    assert.equal(await pixels(), paused, 'Pause stops animation');
+    await page.locator('.scene-canvas').focus();
+    await page.keyboard.press('ArrowRight');
+    assert.notEqual(await pixels(), paused, 'Keyboard rotates the 3D camera');
+    const keyboardView = await pixels();
+    const bounds = await page.locator('.scene-canvas').boundingBox();
+    await page.mouse.move(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(bounds.x + bounds.width / 2 + 70, bounds.y + bounds.height / 2 + 20);
+    await page.mouse.up();
+    assert.notEqual(await pixels(), keyboardView, 'Pointer drag rotates the camera');
+    await page.locator('.scene-reset').click();
+    assert.equal(await pixels(), still, 'Reset restores the initial pose and stage');
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await page.reload();
+    await page.locator('.scene-canvas').scrollIntoViewIfNeeded();
+    assert.equal(await page.locator('.scene-player').getAttribute('data-playing'), 'true');
+    await page.waitForFunction(() => document.querySelector('.scene-player').dataset.stage === '1');
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player').dataset.playing === 'false',
+    );
+    assert.equal(await page.locator('.scene-player').getAttribute('data-playing'), 'false');
+    // Off-screen scenes stop changing and navigation releases the old canvas.
+    await page.locator('.scene-play').click();
+    await page.setViewportSize({ width: 1010, height: 600 });
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    assert.ok(
+      await page.locator('.scene-canvas').evaluate((c) => c.getBoundingClientRect().bottom < 0),
+      'The canvas must leave the viewport before checking suspension',
+    );
+    await page.waitForTimeout(120);
+    const offscreen = await pixels();
+    await page.waitForTimeout(180);
+    assert.equal(await pixels(), offscreen, 'Off-screen geometry stops updating');
+    await page.locator('.scene-canvas').scrollIntoViewIfNeeded();
+    await page.waitForTimeout(180);
+    assert.notEqual(await pixels(), offscreen, 'Returning to the scene resumes playback');
+    await page.evaluate(() => {
+      window.detachedScene = document.querySelector('.scene-canvas');
+    });
+    await page.locator('#tab-requirements').click();
+    const detached = await page.evaluate(() => window.detachedScene.toDataURL());
+    await page.waitForTimeout(180);
+    assert.equal(
+      await page.evaluate(() => window.detachedScene.toDataURL()),
+      detached,
+      'Navigation disposes the old player',
+    );
+    await page.evaluate(() => {
+      delete window.detachedScene;
+    });
+    await page.setViewportSize({ width: 1010, height: 1324 });
+    // Canvas-unavailable environments retain the authored, accessible SVG explanation.
+    const fallback = await context.newPage();
+    await fallback.addInitScript(() => {
+      HTMLCanvasElement.prototype.getContext = () => null;
+    });
+    await fallback.goto(pathToFileURL(file).href + '#tb3-dental-v3/0/overview');
+    assert.equal(await fallback.locator('.scene-fallback').isVisible(), true);
+    assert.equal(await fallback.locator('.scene-fallback svg').count(), 2);
+    assert.equal(await fallback.locator('.scene-controls').isVisible(), false);
+    await fallback.close();
+    await page.bringToFront();
     // Local sources remain inspectable from this single HTML file with exact downloads.
     let localSources = 0;
     const seenSources = new Set();
@@ -219,6 +321,7 @@ async function checkExplorer(browser, input, report) {
       }
     // Image notices return to their original control when Back restores the preview.
     await go('abra/0/overview', 'abra');
+    await page.locator('.scene-source summary').click();
     const noticeHash = await page.locator('[data-notice]').getAttribute('data-notice');
     await page.locator('[data-notice]').focus();
     await page.keyboard.press('Enter');
@@ -548,7 +651,11 @@ async function checkExplorer(browser, input, report) {
       diagramTypes: diagramTypes.size,
       sourcePreviews,
       portableFallbacks: fallbackDrawings,
-      illustratedOverviews: drawings + sourcePreviews,
+      illustratedOverviews: drawings,
+      animated3DScenes: drawings,
+      motionPauseReducedMotionAndCamera: 'pass',
+      canvasUnavailableFallback: 'pass',
+      offscreenAndNavigationCleanup: 'pass',
       localSources,
       sourceReader: 'pass',
       keyboardFocus: 'pass',

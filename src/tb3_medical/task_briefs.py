@@ -312,7 +312,10 @@ def build(root, output, catalog=DEFAULT_CATALOG, *, presentation_context=None):
         document.replace("__STYLE__", (base / "style.css").read_text())
         .replace(
             "__APP__",
-            "\n".join((base / name).read_text() for name in ("illustrations.js", "app.js")),
+            "\n".join(
+                (base / name).read_text()
+                for name in ("illustrations.js", "scene-models.js", "scenes.js", "app.js")
+            ),
         )
         .replace("__DATA__", payload)
     )
