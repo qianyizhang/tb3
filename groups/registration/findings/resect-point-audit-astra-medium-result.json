@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "id": "resect-point-audit-astra-medium-result",
+  "group_id": "registration",
+  "title": "Astra preserved a close RESECT point and repaired a larger displacement",
+  "claim": "On two preselected public RESECT training points, one eligible Astra/medium attempt retained a 1.036 mm no-op point and reduced a 9.574 mm point error to 1.130 mm (88.2% reduction). Mean two-point error fell from 5.305 to 1.083 mm, and saved-output replay matched byte-for-byte.",
+  "experiment_ids": [
+    "resect-point-audit-astra-medium"
+  ],
+  "evidence": [
+    {
+      "path": "groups/registration/findings/evidence/resect-point-audit-astra-medium.json",
+      "sha256": "3816095f030da97678d8d88a9ad553fba6121ce37393418e136c4abc9830c14f"
+    }
+  ],
+  "limitations": [
+    "Two selected public training cases and one eligible attempt; no population estimate, unseen-data claim or general model ranking.",
+    "Selection used evaluator-only tumor masks to choose one point per case before inference; the masks were not exposed to the solver.",
+    "The solver received both full volumes, their physical affines and the same-world no-op coordinate, then used visual reslicing plus exploratory local correlation.",
+    "Confidence values are subjective and uncalibrated; no independent clinical adjudication was performed.",
+    "The scalar Harbor reward checks artifact validity only and must not be read as scientific success."
+  ],
+  "links": [
+    {
+      "label": "Protocol and qualified interpretation",
+      "path": "groups/registration/experiments/resect-point-audit-astra-medium/protocol.md"
+    },
+    {
+      "label": "Task brief",
+      "path": "groups/registration/presentation/briefs/resect-mri-us-correspondence.md"
+    }
+  ]
+}

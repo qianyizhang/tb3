@@ -1,0 +1,82 @@
+{
+  "schema_version": 2,
+  "id": "observation-56d4ee608284f59b6a41a043",
+  "job": "job",
+  "trial_name": "task__VwBLpXu",
+  "task_id": "task",
+  "agent": "codex",
+  "model": "openai/gpt-6-astra",
+  "reasoning_effort": "medium",
+  "agent_version": "0.155.1",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "reward": 0.0,
+  "started_at": "2026-09-22T02:13:32.682085Z",
+  "finished_at": "2026-09-22T02:14:37.901609Z",
+  "timing": {
+    "total": 65.22,
+    "setup": 0.191,
+    "agent": 26.829,
+    "verifier": 14.762
+  },
+  "usage": {
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null
+  },
+  "cases": [
+    {
+      "name": "artifact_contract",
+      "status": "failed",
+      "detail": ""
+    }
+  ],
+  "exception_type": "NonZeroAgentExitCodeError",
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": ".local/attempts/attempt-871939f3b5e149e1/job/task__VwBLpXu/result.json",
+      "sha256": "5d22bb435c02567ac77a800be13e399ff4a1ee25c5deeb439a07bf953c5a9a1c"
+    },
+    {
+      "label": "Verifier cases",
+      "path": ".local/attempts/attempt-871939f3b5e149e1/job/task__VwBLpXu/verifier/test-stdout.txt",
+      "sha256": "d838bcdeb81e03d1b044a294b402970976235724f7f0e55ed73e6ae740465238"
+    },
+    {
+      "label": "Reward artifact",
+      "path": ".local/attempts/attempt-871939f3b5e149e1/job/task__VwBLpXu/verifier/reward.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": ".local/attempts/attempt-871939f3b5e149e1/job/task__VwBLpXu/agent/trajectory.json",
+      "sha256": "439898aa2876f27d2047c499fe1489676c4139b6f3228ef8fd4a25a73b5be480"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": ".local/attempts/attempt-871939f3b5e149e1/job/lock.json",
+      "sha256": "4f2e71c2b64f8dd9453fab089e878a21cf467bd1363f8d923be482fd1e3b0ff6"
+    }
+  ],
+  "task_checksum": "f1725c2c96c879a4d262f0838afcb090e2d71ef0ffc8b837d02fc6c3153846b0",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [],
+  "source_result": ".local/attempts/attempt-871939f3b5e149e1/job/task__VwBLpXu/result.json",
+  "source_sha256": "5d22bb435c02567ac77a800be13e399ff4a1ee25c5deeb439a07bf953c5a9a1c",
+  "evidence_sha256": "18211f2377d6bf062987bc4a33ec7f9d2b7efc4d710e83c65df5c993f805f699",
+  "kind": "evaluation",
+  "evaluation_kind": "result",
+  "attempt_id": "attempt-871939f3b5e149e1",
+  "experiment_id": "resect-point-audit-astra-medium",
+  "group_id": "registration",
+  "collected_at": "2026-09-22T02:14:38.088982+00:00",
+  "execution_state": "error",
+  "outcome": "no_verdict",
+  "partial": false,
+  "task_digest": "d36a43d256a590d6756b09c8fc3cb480e1b32bc14e4641ef68e2f6dadde04c8d",
+  "freeze_checksum_verified": true,
+  "source_classification": "execution_error"
+}

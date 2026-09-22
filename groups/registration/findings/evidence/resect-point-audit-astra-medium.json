@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-22T02:24:00+00:00",
+  "source": {
+    "dataset": "RESECT",
+    "revision": "e86fb37dd93f7a9c64e48952f71410af59b04b9b",
+    "selection": "Case 1 landmark 1 and Case 3 landmark 12, zero-based; preselected nearest paired tumor-mask centroids",
+    "selection_frozen_before_inference": true
+  },
+  "task_digest": "d36a43d256a590d6756b09c8fc3cb480e1b32bc14e4641ef68e2f6dadde04c8d",
+  "controls": {
+    "oracle": {
+      "attempt_id": "attempt-d9323bccaf634e96",
+      "reward": 1.0,
+      "evaluation": "groups/registration/experiments/resect-point-audit-astra-medium/evaluations/observation-a12fa4a650cc8e981fd24db0.json",
+      "sha256": "00ffdf1f10ae8897918639dcf373ac89e3cfb533f816963d64581405f2a31801"
+    },
+    "nop": {
+      "attempt_id": "attempt-c930b5054e8948b6",
+      "reward": 0.0,
+      "evaluation": "groups/registration/experiments/resect-point-audit-astra-medium/evaluations/observation-204311f52e485d0ef7d0473e.json",
+      "sha256": "26acaa9d183aa686f42dee7938bf50b0c115e97499375954e3e8c4319b370868"
+    }
+  },
+  "infrastructure_exclusion": {
+    "attempt_id": "attempt-871939f3b5e149e1",
+    "reason": "Harbor supplied an empty API key; Codex exited on HTTP 401 before task work",
+    "evaluation": "groups/registration/experiments/resect-point-audit-astra-medium/evaluations/observation-56d4ee608284f59b6a41a043.json",
+    "sha256": "4662cb1e07e99b38d4ed5f6fc742880f4e422c7df331552dc4b91f5483507d39"
+  },
+  "eligible_attempt": {
+    "attempt_id": "attempt-fa7a4c4250aa4cca",
+    "model": "openai/gpt-6-astra",
+    "reasoning_effort": "medium",
+    "execution_state": "completed",
+    "artifact_contract_reward": 1.0,
+    "freeze_checksum_verified": true,
+    "evaluation": "groups/registration/experiments/resect-point-audit-astra-medium/evaluations/observation-4bbf4a38b72c66743f9e513d.json",
+    "evaluation_sha256": "fcbc67687187d9f7efa77bede547bd5d6ec4e3e3ac219cff62518d2f06b8653b",
+    "metrics": {
+      "case_a": {
+        "decision": "retain",
+        "initial_error_mm": 1.0362422303795615,
+        "final_error_mm": 1.0362422303795615,
+        "movement_mm": 0.0,
+        "confidence": 0.82
+      },
+      "case_b": {
+        "decision": "move",
+        "submitted_us_world_mm": [-30.7, 14.4, 14.4],
+        "initial_error_mm": 9.57402147447618,
+        "final_error_mm": 1.130198743943292,
+        "improvement_mm": 8.443822730532887,
+        "relative_improvement": 0.8819515135874365,
+        "movement_mm": 10.639782879171548,
+        "confidence": 0.71
+      },
+      "mean_initial_error_mm": 5.305131852427871,
+      "mean_final_error_mm": 1.0832204871614266
+    },
+    "local_artifacts": {
+      "metrics": {
+        "path": ".local/attempts/attempt-fa7a4c4250aa4cca/job/task__N85tFCt/verifier/metrics.json",
+        "sha256": "38faf14aba6e4d2935f3d46a493c010761fac14a4d4dad04f0f52cae3f080d9d"
+      },
+      "result": {
+        "path": ".local/attempts/attempt-fa7a4c4250aa4cca/job/task__N85tFCt/artifacts/app/answer/result.json",
+        "sha256": "44c9d40473f13a4bf3f9ef828ef7754b42e4730a912775a272bce301ba44003a"
+      },
+      "report": {
+        "path": ".local/attempts/attempt-fa7a4c4250aa4cca/job/task__N85tFCt/artifacts/app/answer/report.md",
+        "sha256": "c4dac2a78a3b521b184ae1223f749973d126bc37cec6f76063200608345f9b7a"
+      },
+      "trajectory": {
+        "path": ".local/attempts/attempt-fa7a4c4250aa4cca/job/task__N85tFCt/agent/trajectory.json",
+        "sha256": "7044b7f807958ca27885c8638b37d60b4f2562e4f1a56fa0f2cf0645a45bb624"
+      }
+    },
+    "replay": {
+      "byte_identical_metrics": true,
+      "sha256": "38faf14aba6e4d2935f3d46a493c010761fac14a4d4dad04f0f52cae3f080d9d"
+    }
+  }
+}

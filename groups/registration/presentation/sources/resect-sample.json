@@ -1,0 +1,498 @@
+{
+  "schema_version": 1,
+  "dataset": "RESECT + RESECT-SEG bounded sample",
+  "upstream_revision": "e86fb37dd93f7a9c64e48952f71410af59b04b9b",
+  "source": "https://huggingface.co/datasets/MedOtter/RESECT-SEG",
+  "dataset_dois": {
+    "current_landing_pages_and_rehost": "10.11582/2017.00004",
+    "dataset_article_data_access_section": "10.11582/2016.00003"
+  },
+  "landmark_reference": "MNI tag files; first three values are MRI world coordinates and last three are pre-resection US world coordinates, in millimetres.",
+  "license": {
+    "images_and_landmarks": "CC BY 4.0",
+    "resect_seg_masks": "CC BY-NC-SA 4.0",
+    "combined_sample": "CC BY-NC-SA 4.0"
+  },
+  "cases": [
+    {
+      "case_id": "Case1",
+      "source_files": [
+        {
+          "name": "Case1-FLAIR.nii.gz",
+          "bytes": 17911431,
+          "sha256": "bf3a8e47c95a5e2a24fa5afdcdd0728ca50faca48b8eeeb2477d907eed87ae80"
+        },
+        {
+          "name": "Case1-US-before.nii.gz",
+          "bytes": 20943078,
+          "sha256": "3e3e7911c8291886bed7d816b369b73c608a029ffec3ae3e7fa88fa8b6f4b275"
+        },
+        {
+          "name": "Case1-FLAIR-tumor.nii.gz",
+          "bytes": 112348,
+          "sha256": "d4ebab181a2a42d1472bc038a2fa70093501dff8ade2d5990f36065058b2fbed"
+        },
+        {
+          "name": "Case1-US-before-tumor.nii.gz",
+          "bytes": 68159,
+          "sha256": "258488ab9361276d090a2c996782af89d557129677b6e3b152f1f1726c965278"
+        },
+        {
+          "name": "Case1-MRI-beforeUS.tag",
+          "bytes": 1065,
+          "sha256": "46a8ef5c4e0f07f2842236b3ee5205aa1d52046bf32dd673028fdc0947234dfd"
+        }
+      ],
+      "flair": {
+        "shape": [
+          192,
+          256,
+          256
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "affine": [
+          [
+            0.9998157024383545,
+            -0.019196994602680206,
+            0.0,
+            -93.04443359375
+          ],
+          [
+            0.019196994602680206,
+            0.9998157024383545,
+            -0.0,
+            -141.31402587890625
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            -131.16802978515625
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "datatype": 16
+      },
+      "us_before": {
+        "shape": [
+          348,
+          313,
+          275
+        ],
+        "spacing_mm": [
+          0.21635200083255768,
+          0.21635200083255768,
+          0.21635200083255768
+        ],
+        "affine": [
+          [
+            0.16952435672283173,
+            0.05668205767869949,
+            0.12188860774040222,
+            -19.857288360595703
+          ],
+          [
+            0.0067581129260361195,
+            0.19233539700508118,
+            -0.09884127229452133,
+            -53.785400390625
+          ],
+          [
+            -0.13425353169441223,
+            0.08125531673431396,
+            0.14893542230129242,
+            20.44184684753418
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "datatype": 16
+      },
+      "landmark_count": 15,
+      "shared_world_coordinate_copy_baseline": {
+        "description": "Error from predicting each MRI world coordinate unchanged as the US coordinate.",
+        "mean_mm": 1.8195669771543845,
+        "rms_mm": 2.0163786405401654,
+        "median_mm": 1.7359841315988465,
+        "min_mm": 0.5607299471849155,
+        "max_mm": 3.842115959448649,
+        "within_3_mm": 13,
+        "within_5_mm": 15
+      },
+      "reader_example": {
+        "selection": "Published landmark nearest the paired tumor-mask centroids; selected after inspecting evaluator-only annotations.",
+        "landmark_index_zero_based": 1,
+        "mri_world_mm": [
+          44.528484,
+          -31.304113,
+          29.970621
+        ],
+        "us_world_mm": [
+          45.049025,
+          -30.687284,
+          29.320731
+        ],
+        "initial_displacement_mm": [
+          0.520541,
+          0.616829,
+          -0.64989
+        ],
+        "initial_distance_mm": 1.0362422303795615,
+        "mri_voxel_continuous": [
+          139.6594,
+          107.3487,
+          161.1387
+        ],
+        "us_voxel_continuous": [
+          212.9388,
+          188.9213,
+          148.4926
+        ],
+        "crop_radius_mm": 18.0,
+        "plane_order": [
+          "axis-0",
+          "axis-1",
+          "axis-2"
+        ]
+      },
+      "figures": {
+        "input": "case1-input.png",
+        "helper": "case1-tumor-context.png",
+        "reference": "case1-landmark-reference.png"
+      }
+    },
+    {
+      "case_id": "Case2",
+      "source_files": [
+        {
+          "name": "Case2-FLAIR.nii.gz",
+          "bytes": 7814359,
+          "sha256": "58a80a23fb800e7644499c7b1e8de10330398c32a71ab7b5a1fc3e64e4b696f4"
+        },
+        {
+          "name": "Case2-US-before.nii.gz",
+          "bytes": 17162365,
+          "sha256": "38fe045a082ab49f008e0b847895d50b109828727a722d7d366aff470bfd6307"
+        },
+        {
+          "name": "Case2-FLAIR-tumor.nii.gz",
+          "bytes": 92625,
+          "sha256": "0eab92381adc159c8d6597d7281fa736cc421ff4ce0ca885bcefb7b286be37e0"
+        },
+        {
+          "name": "Case2-US-before-tumor.nii.gz",
+          "bytes": 61086,
+          "sha256": "8cc018e55454f341a3b4974e26d41b72dd5430b1863f380c837101b70a7f011b"
+        },
+        {
+          "name": "Case2-MRI-beforeUS.tag",
+          "bytes": 1035,
+          "sha256": "d36b245fa296c918b0e7a7c9c48f3d18478d9d4247bfa8e49907f24c52328333"
+        }
+      ],
+      "flair": {
+        "shape": [
+          176,
+          224,
+          256
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0156251192092896,
+          1.015625
+        ],
+        "affine": [
+          [
+            0.9999675154685974,
+            0.007880236953496933,
+            0.0022201533429324627,
+            -88.67015838623047
+          ],
+          [
+            -0.007711256854236126,
+            1.0153695344924927,
+            -0.02139238640666008,
+            -78.6583023071289
+          ],
+          [
+            -0.0023488772567361593,
+            0.021374568343162537,
+            1.015397310256958,
+            -132.6668243408203
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "datatype": 16
+      },
+      "us_before": {
+        "shape": [
+          306,
+          385,
+          254
+        ],
+        "spacing_mm": [
+          0.20815500617027283,
+          0.20815499126911163,
+          0.20815500617027283
+        ],
+        "affine": [
+          [
+            0.13944926857948303,
+            0.06684437394142151,
+            0.13933499157428741,
+            -34.158111572265625
+          ],
+          [
+            -0.07639287412166595,
+            0.19295844435691833,
+            -0.016114110127091408,
+            43.800235748291016
+          ],
+          [
+            -0.1343373954296112,
+            -0.0403406098484993,
+            0.15380051732063293,
+            62.642852783203125
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "datatype": 16
+      },
+      "landmark_count": 15,
+      "shared_world_coordinate_copy_baseline": {
+        "description": "Error from predicting each MRI world coordinate unchanged as the US coordinate.",
+        "mean_mm": 5.675531449386146,
+        "rms_mm": 5.8391190672047655,
+        "median_mm": 5.267551878190945,
+        "min_mm": 3.4342010031053856,
+        "max_mm": 8.994110145069655,
+        "within_3_mm": 0,
+        "within_5_mm": 5
+      },
+      "reader_example": {
+        "selection": "Published landmark nearest the paired tumor-mask centroids; selected after inspecting evaluator-only annotations.",
+        "landmark_index_zero_based": 12,
+        "mri_world_mm": [
+          19.917883,
+          76.773247,
+          63.579544
+        ],
+        "us_world_mm": [
+          19.289712,
+          79.958067,
+          57.190806
+        ],
+        "initial_displacement_mm": [
+          -0.628171,
+          3.18482,
+          -6.388738
+        ],
+        "initial_distance_mm": 7.166146137938087,
+        "mri_voxel_continuous": [
+          106.925,
+          157.898,
+          190.194
+        ],
+        "us_voxel_continuous": [
+          125.171,
+          248.5566,
+          139.0764
+        ],
+        "crop_radius_mm": 18.0,
+        "plane_order": [
+          "axis-0",
+          "axis-1",
+          "axis-2"
+        ]
+      },
+      "figures": {
+        "input": "case2-input.png",
+        "helper": "case2-tumor-context.png",
+        "reference": "case2-landmark-reference.png"
+      }
+    },
+    {
+      "case_id": "Case3",
+      "source_files": [
+        {
+          "name": "Case3-FLAIR.nii.gz",
+          "bytes": 8055939,
+          "sha256": "cf4e3bb122722693cf626e0dcb6d43892c4e1092cf8fbc5c419741fa9ec4aafa"
+        },
+        {
+          "name": "Case3-US-before.nii.gz",
+          "bytes": 9822564,
+          "sha256": "9fbb4d63cb26d324c7c8281a2b2b932a55a5f3abf4a8fd571a0e0518ac996192"
+        },
+        {
+          "name": "Case3-FLAIR-tumor.nii.gz",
+          "bytes": 110906,
+          "sha256": "5a7bfd52adde03416f5b7dec9b23550c82d180cce40c6a9c73e62db857ce8835"
+        },
+        {
+          "name": "Case3-US-before-tumor.nii.gz",
+          "bytes": 32184,
+          "sha256": "0ed377835dedff666bbfc1ef9e37a29f135ce7921e7244bf4d82e02895182b92"
+        },
+        {
+          "name": "Case3-MRI-beforeUS.tag",
+          "bytes": 1057,
+          "sha256": "e1c9f9c648079a467f69920881440f88a2e517701478986fa025b455b1a32104"
+        }
+      ],
+      "flair": {
+        "shape": [
+          192,
+          256,
+          256
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "affine": [
+          [
+            0.9998522400856018,
+            0.0069790007546544075,
+            0.015710994601249695,
+            -98.630126953125
+          ],
+          [
+            -0.006978136487305164,
+            0.9999756813049316,
+            -0.00010982481762766838,
+            -133.1598663330078
+          ],
+          [
+            -0.015711378306150436,
+            1.7512600436475623e-07,
+            0.9998766183853149,
+            -114.37106323242188
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "datatype": 16
+      },
+      "us_before": {
+        "shape": [
+          337,
+          313,
+          246
+        ],
+        "spacing_mm": [
+          0.20000000298023224,
+          0.20000000298023224,
+          0.1999998837709427
+        ],
+        "affine": [
+          [
+            0.13445448875427246,
+            -0.09907855093479156,
+            0.11002469062805176,
+            -57.232723236083984
+          ],
+          [
+            0.12957128882408142,
+            0.15065573155879974,
+            -0.02267392724752426,
+            -32.732051849365234
+          ],
+          [
+            -0.07164684683084488,
+            0.08652336150407791,
+            0.16547027230262756,
+            -0.8970714807510376
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "datatype": 16
+      },
+      "landmark_count": 15,
+      "shared_world_coordinate_copy_baseline": {
+        "description": "Error from predicting each MRI world coordinate unchanged as the US coordinate.",
+        "mean_mm": 9.577221671814648,
+        "rms_mm": 9.591432314724738,
+        "median_mm": 9.57402147447618,
+        "min_mm": 8.569039392122606,
+        "max_mm": 10.336338557989912,
+        "within_3_mm": 0,
+        "within_5_mm": 0
+      },
+      "reader_example": {
+        "selection": "Published landmark nearest the paired tumor-mask centroids; selected after inspecting evaluator-only annotations.",
+        "landmark_index_zero_based": 12,
+        "mri_world_mm": [
+          -22.918362,
+          19.824648,
+          19.219158
+        ],
+        "us_world_mm": [
+          -29.707903,
+          14.903499,
+          14.598951
+        ],
+        "initial_displacement_mm": [
+          -6.789541,
+          -4.921149,
+          -4.620207
+        ],
+        "initial_distance_mm": 9.57402147447618,
+        "mri_voxel_continuous": [
+          72.5341,
+          153.5092,
+          134.7464
+        ],
+        "us_voxel_continuous": [
+          219.0699,
+          144.7556,
+          112.8115
+        ],
+        "crop_radius_mm": 18.0,
+        "plane_order": [
+          "axis-0",
+          "axis-1",
+          "axis-2"
+        ]
+      },
+      "figures": {
+        "input": "case3-input.png",
+        "helper": "case3-tumor-context.png",
+        "reference": "case3-landmark-reference.png"
+      }
+    }
+  ]
+}

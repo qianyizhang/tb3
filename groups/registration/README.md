@@ -10,6 +10,11 @@ Use `uv run med list --group registration` from the repository root. The group o
 
 [Data sources](sources.json) · [Retained examples](examples/README.md) · [Methods](methods/README.md)
 
+## Current ideas
+
+- [RESECT MRI-to-intraoperative-ultrasound correspondence audit](ideas/resect-mri-us-correspondence.md)
+  with a [three-case visual task brief](presentation/briefs/resect-mri-us-correspondence.md).
+
 ## Research history
 
 Dated session conclusions and trace accounts live in `history/`. They retain
