@@ -4,14 +4,17 @@ import argparse
 import json
 import subprocess
 import sys
+from collections.abc import Sequence
 from pathlib import Path
 
 from . import core as c
 from . import packaging, task_catalog
 from . import workflow as w
+from .methods import method_for
+from .types import Document
 
 
-def main(argv=None):
+def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="med", description=__doc__)
     parser.add_argument("--root", type=Path, help="Workspace containing workbench.toml")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -146,7 +149,12 @@ def main(argv=None):
     p.add_argument("--include-flagged", action="store_true")
     p = sub.add_parser("verify-package")
     p.add_argument("destination", type=Path)
-    args = parser.parse_args(argv)
+    return parser
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    result: Document | list[Document]
     try:
         if args.command == "verify-package":
             from . import task_package
@@ -276,24 +284,8 @@ def main(argv=None):
                 include_flagged=args.include_flagged,
             )
         elif command == "evaluate":
-            from . import task_package
-
-            experiment = c.lookup(root, args.experiment)
-            if experiment.get("method") == "landmarks":
-                from . import landmarks, score_ct, score_mri
-
-                inputs = landmarks.case_inputs(root, experiment, args.case)
-                truth = next(e for e in inputs["files"] if e["destination"] == "tests/truth.json")
-                c.verify_inputs(root, [truth])
-                scorer = score_mri if inputs["scorer"] == "mri" else score_ct
-                result = scorer.score(
-                    c.read(args.answer / "landmarks.json"), c.read(c.inside(root, truth["path"]))
-                )
-            else:
-                bundle = root / ".local/reproduction" / args.experiment / args.case
-                result = task_package.evaluate(
-                    bundle, c.read(bundle / "manifest.json"), args.case, args.answer, args.python
-                )
+            method = method_for(root, c.lookup(root, args.experiment))
+            result = method.evaluate(args.case, args.answer, args.python)
         elif command == "run":
             result = w.run(
                 root,
@@ -309,54 +301,25 @@ def main(argv=None):
         elif command == "collect":
             result = w.collect(root, args.experiment, args.sources)
         elif command in {"replay", "view"}:
-            from . import landmarks
-
-            experiment = c.lookup(root, args.experiment)
-            if experiment.get("method") == "task_package":
-                from . import task_package
-
-                cases = [args.case] if args.case else [t["id"] for t in experiment["tasks"]]
-                outputs = []
-                for case in cases:
-                    bundle = root / ".local/reproduction" / args.experiment / case
-                    manifest = c.read(bundle / "manifest.json")
-                    if command == "view":
-                        outputs.append(
-                            task_package.inspect(
-                                bundle,
-                                manifest,
-                                case,
-                                args.output
-                                or root / ".local/views" / f"{args.experiment}-{case}.html",
-                            )
-                        )
-                    else:
-                        outputs.append(
-                            w.replay_package(root, experiment, bundle, manifest, case, args.python)
-                        )
-                result = {"cases": outputs}
-                if command == "replay":
-                    result["all_match"] = all(o["all_match"] for o in outputs)
-            elif experiment.get("method") != "landmarks":
-                raise c.MedicalError(
-                    "No maintained replay/view method is declared for this experiment"
-                )
-            else:
-                result = (
-                    landmarks.replay(root, experiment, args.case)
-                    if command == "replay"
-                    else landmarks.view(root, experiment, args.case, args.output)
-                )
+            method = method_for(root, c.lookup(root, args.experiment))
+            result = (
+                method.replay(args.case, args.python)
+                if command == "replay"
+                else method.view(args.case, args.output)
+            )
         elif command == "media":
             from . import media
 
-            result = getattr(media, args.operation)(root)
+            operations = {
+                "prepare": media.prepare,
+                "check": media.check,
+                "optimize": media.optimize,
+            }
+            result = operations[args.operation](root)
         elif command == "export":
             result = packaging.export(
                 root, args.recipe, args.destination, include_flagged=args.include_flagged
             )
-        elif command == "verify-package":
-            result = packaging.verify(args.destination)
         elif command == "present":
             from .presentation import present, serve
 
@@ -365,15 +328,20 @@ def main(argv=None):
             if args.serve:
                 print(f"Open http://127.0.0.1:{args.port}/", flush=True)
                 serve(output, args.port)
+        else:
+            raise c.MedicalError(f"Unknown command: {command}")
         print(json.dumps(result, indent=2, allow_nan=False))
-        if command == "run" and result.get("execution_state") in {"error", "interrupted"}:
+        if (
+            command == "run"
+            and isinstance(result, dict)
+            and result.get("execution_state") in {"error", "interrupted"}
+        ):
             return 1
-        if command == "replay" and not result.get("all_match", True):
+        if command == "replay" and isinstance(result, dict) and not result.get("all_match", True):
             return 1
         return 0
     except (
         c.MedicalError,
-        w.harbor.HarborError,
         OSError,
         ValueError,
         KeyError,

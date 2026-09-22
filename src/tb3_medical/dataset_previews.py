@@ -5,12 +5,13 @@ import re
 from pathlib import Path
 
 from . import core as c
+from .types import Pathish, Records
 
 CATALOG = "datasets/previews/catalog.json"
 STATES = {"paired", "input-only", "reference-only", "unavailable"}
 
 
-def load(root, dataset_ids, *, required=False):
+def load(root: Pathish, dataset_ids: set[str], *, required: bool = False) -> Records:
     root = Path(root).resolve()
     path = root / CATALOG
     if not path.is_file():

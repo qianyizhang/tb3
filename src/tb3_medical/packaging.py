@@ -8,9 +8,10 @@ import subprocess
 from pathlib import Path
 
 from . import core as c
+from .types import Document, Pathish
 
 
-def source_bytes(root, commit, entry):
+def source_bytes(root: Pathish, commit: str, entry: Document) -> bytes:
     if entry["origin"] == "git":
         content = subprocess.check_output(["git", "show", commit + ":" + entry["source"]], cwd=root)
     elif entry["origin"] == "artifact":
@@ -22,7 +23,9 @@ def source_bytes(root, commit, entry):
     return content
 
 
-def export(root, recipe_path, destination, *, include_flagged=False):
+def export(
+    root: Pathish, recipe_path: str, destination: Pathish, *, include_flagged: bool = False
+) -> Document:
     source_recipe = c.inside(root, recipe_path)
     recipe_bytes = source_recipe.read_bytes()
     recipe = json.loads(recipe_bytes)
@@ -125,7 +128,7 @@ def export(root, recipe_path, destination, *, include_flagged=False):
     }
 
 
-def verify(destination):
+def verify(destination: Pathish) -> Document:
     dest = Path(destination).resolve()
     if (dest / "INCOMPLETE").exists():
         raise c.MedicalError("Package is marked INCOMPLETE")

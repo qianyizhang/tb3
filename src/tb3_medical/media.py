@@ -8,6 +8,8 @@ import shutil
 from pathlib import Path
 
 from . import core
+from .storage import read
+from .types import Document, Pathish
 
 
 def _require(condition: bool, message: str) -> None:
@@ -15,17 +17,13 @@ def _require(condition: bool, message: str) -> None:
         raise core.MedicalError("Tour validation failed: " + message)
 
 
-def read(path):
-    return core.read(path)
-
-
-def finite(values):
+def finite(values: object) -> bool:
     if isinstance(values, list):
         return all(finite(v) for v in values)
     return isinstance(values, (int, float)) and math.isfinite(values)
 
 
-def prepare(root):
+def prepare(root: Pathish) -> Document:
     tours = Path(root) / "presentation/tours"
     entries = read(tours / "inputs.json")["files"]
     core.verify_inputs(root, entries)
@@ -42,7 +40,7 @@ def prepare(root):
     }
 
 
-def check(root):
+def check(root: Pathish) -> Document:
     root_path = Path(root)
     tours = root_path / "presentation/tours"
     entries = read(tours / "inputs.json")["files"]
@@ -98,7 +96,7 @@ def check(root):
         "vessel path lengths differ",
     )
     _require(len(vessels["cpr"]) == 8, "vessel CPR panel count differs")
-    cumulative = 0
+    cumulative = 0.0
     for index in range(1, len(vessels["path"])):
         cumulative += math.dist(vessels["path"][index - 1], vessels["path"][index])
         _require(
@@ -237,13 +235,13 @@ def check(root):
     return {"verified_files": len(entries), "display_invariants": "passed"}
 
 
-def optimize(root):
+def optimize(root: Pathish) -> Document:
     from PIL import Image
 
     tours = Path(root) / "presentation/tours"
     output = tours / "web"
     output.mkdir(exist_ok=True)
-    manifest = {
+    manifest: Document = {
         "json": {},
         "images": {},
         "files": {},

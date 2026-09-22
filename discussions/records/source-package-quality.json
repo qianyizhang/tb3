@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "kind": "discussion",
+  "id": "discussion-source-package-quality",
+  "title": "Source package quality and maintained method interfaces",
+  "source": "codex://threads/01a0c926-7e9c-7382-9e00-4f96161b0b81",
+  "summary": "Extend existing Ruff and partial mypy checks to the whole source package, with typed service signatures, a shared storage boundary and one interface for the two maintained experiment methods.",
+  "decision_provenance": "The user requested modern static checking, linting, formatting and practical abstractions. The assistant selected strict package-wide mypy, additional Ruff rules, the storage extraction and the ExperimentMethod protocol; these implementation choices were not separately recorded as user decisions.",
+  "findings": [
+    "Ruff already covered source and tests; mypy originally named only four source modules.",
+    "Preparation, scoring, replay and viewing dispatch was repeated across the CLI and workflow for landmark and portable-package methods.",
+    "Extensible research documents retain runtime schema validators; static checking does not certify arbitrary JSON fields or optional model-runtime internals.",
+    "The copied reproduction runner and segmentation adapter retain their standalone execution contracts."
+  ],
+  "links": [
+    {"label": "Package responsibilities and developer checks", "path": "CONTRIBUTING.md"},
+    {"label": "Maintained method interface and adapters", "path": "src/tb3_medical/methods.py"},
+    {"label": "Shared storage guarantees", "path": "src/tb3_medical/storage.py"}
+  ],
+  "reopen_when": "A third maintained method needs these operations, stable record fields justify stronger schema types, or a runtime dependency can be checked without provisioning model environments."
+}

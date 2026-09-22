@@ -10,9 +10,12 @@ import argparse
 import json
 import re
 from collections import Counter
+from collections.abc import Sequence
 from pathlib import Path
+from typing import Any
 
 from . import core as c
+from .types import Document, Pathish
 
 ROLES = {
     "used",
@@ -36,7 +39,7 @@ FIELDS = (
 )
 
 
-def pointer(value, location):
+def pointer(value: Any, location: str) -> Any:
     """Resolve a JSON Pointer; never evaluate a path expression or import a probe."""
     if location and not location.startswith("/"):
         raise c.MedicalError("Invalid dataset receipt pointer: " + location)
@@ -49,7 +52,7 @@ def pointer(value, location):
     return value
 
 
-def checked_receipt(root, ref, cache):
+def checked_receipt(root: Pathish, ref: Document, cache: dict[str, tuple[str, Any]]) -> Any:
     path = c.inside(root, ref["path"])
     if not path.is_file():
         raise c.MedicalError("Missing dataset receipt: " + ref["path"])
@@ -64,7 +67,7 @@ def checked_receipt(root, ref, cache):
     return pointer(value, ref.get("pointer", ""))
 
 
-def file_items(root, spec, cache):
+def file_items(root: Pathish, spec: Document, cache: dict[str, tuple[str, Any]]) -> list[Document]:
     values = checked_receipt(root, spec["receipt"], cache)
     if not isinstance(values, list) or not values:
         raise c.MedicalError("Dataset file set must select a nonempty list")
@@ -78,7 +81,9 @@ def file_items(root, spec, cache):
     return [values[i] for i in indices]
 
 
-def load(root, entries=(), *, require_coverage=False):
+def load(
+    root: Pathish, entries: Sequence[Document] = (), *, require_coverage: bool = False
+) -> Document:
     """Resolve stable dataset/sample/use relationships without reading native files."""
     root = Path(root).resolve()
     experiments = {
@@ -87,7 +92,10 @@ def load(root, entries=(), *, require_coverage=False):
         for row in [c.read(path)]
     }
     entry_ids = {e["id"] for e in entries}
-    cache, records, ids, covered = {}, [], set(), set()
+    cache: dict[str, tuple[str, Any]] = {}
+    records: list[Document] = []
+    ids: set[str] = set()
+    covered: set[str] = set()
     for path in sorted(root.glob("datasets/*.json")):
         row = c.read(path)
         key = c.identifier(row["id"])
@@ -179,10 +187,12 @@ def load(root, entries=(), *, require_coverage=False):
     }
 
 
-def audit(root, data):
+def audit(root: Pathish, data: Document) -> Document:
     """Hash exact declared local paths. No acquisition, basename search or repair."""
     root = Path(root).resolve()
-    cache, seen, files = {}, {}, []
+    cache: dict[str, tuple[str, Any]] = {}
+    seen: dict[str, str] = {}
+    files: list[Document] = []
     for row in data["records"]:
         for file_set in row.get("file_sets", []):
             for item in file_items(root, file_set, cache):
@@ -236,7 +246,7 @@ def audit(root, data):
     }
 
 
-def main():
+def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path.cwd())
     parser.add_argument(

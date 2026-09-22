@@ -5,6 +5,7 @@ import hashlib
 import json
 import mimetypes
 import re
+from collections.abc import Sequence
 from fnmatch import fnmatch
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -12,6 +13,7 @@ from urllib.parse import unquote, urlsplit
 from . import core as c
 from . import dataset_previews, datasets, task_catalog
 from .presentation import markdown
+from .types import Document, Pathish, Records
 
 DEFAULT_CATALOG = task_catalog.DEFAULT_CATALOG
 MARKER = "<!-- tb3-task-explorer: generated -->"
@@ -33,9 +35,11 @@ FIELDS = {
 }
 
 
-def sections(text):
+def sections(text: str) -> dict[str, str]:
     """Read template headings while leaving ordinary Markdown bodies editable."""
-    result, key, major, lines, fenced = {}, "intro", "", [], False
+    result: dict[str, str] = {}
+    lines: list[str] = []
+    key, major, fenced = "intro", "", False
     for line in text.splitlines():
         if line.startswith("```"):
             fenced = not fenced
@@ -57,7 +61,7 @@ def sections(text):
     return result
 
 
-def conditions(body):
+def conditions(body: str) -> list[dict[str, str]]:
     rows = []
     for line in body.splitlines():
         if not line.startswith("|"):
@@ -71,18 +75,18 @@ def conditions(body):
     return rows
 
 
-def local_path(root, source, target):
+def local_path(root: Path, source: Path, target: str) -> Path:
     path = (source.parent / unquote(urlsplit(target).path)).resolve()
     if not path.is_relative_to(root.resolve()):
         raise c.MedicalError("Brief link escapes repository: " + target)
     return path
 
 
-def render_text(root, source, body, missing):
+def render_text(root: Path, source: Path, body: str, missing: list[str]) -> str:
     """Embed local images; never fetch remote media or expose raw runtime folders."""
-    embedded = {}
+    embedded: dict[str, str] = {}
 
-    def image(match):
+    def image(match: re.Match[str]) -> str:
         alt, target = match.groups()
         if urlsplit(target).scheme:
             missing.append(target)
@@ -100,7 +104,7 @@ def render_text(root, source, body, missing):
 
     body = re.sub(r"!\[([^\]]*)\]\(([^)]+)\)", image, body)
 
-    def link(target):
+    def link(target: str) -> str | None:
         if target in embedded:
             return embedded[target]
         return target if urlsplit(target).scheme in {"http", "https", "codex"} else None
@@ -108,7 +112,7 @@ def render_text(root, source, body, missing):
     return markdown(body, link)
 
 
-def source_bundle(root, entries):
+def source_bundle(root: Pathish, entries: Sequence[Document]) -> Records:
     """Package only directly cited small text files, never their dependencies."""
     root = Path(root).resolve()
     policy_path = root / "configs/artifact-policy.json"
@@ -116,7 +120,8 @@ def source_bundle(root, entries):
     local_roots = {"runs", "jobs", ".local", ".cache", "node_modules", "archive/legacy"}
     local_roots.update(policy.get("local_roots", []))
     blocked = [".venv*", ".env", ".env.*", *policy.get("blocked_components", [])]
-    sources, total = {}, 0
+    sources: Records = {}
+    total = 0
     for entry in entries:
         for _, target in entry["sources"]:
             if urlsplit(target).scheme or target in sources:
@@ -160,7 +165,7 @@ def source_bundle(root, entries):
     return sources
 
 
-def load(root, catalog=DEFAULT_CATALOG):
+def load(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
     root = Path(root).resolve()
     data = task_catalog.collection(root, catalog)
     experiment_count = task_catalog.classify(root, data)
@@ -206,7 +211,7 @@ def load(root, catalog=DEFAULT_CATALOG):
         for study in row["studies"]:
             if study["protocol"] not in [target for _, target in row["sources"]]:
                 row["sources"].append([study["title"], study["protocol"]])
-        missing = []
+        missing: list[str] = []
         row["html"] = {
             key: render_text(root, source, row[key], missing) for key in ("goal", *FIELDS)
         }
@@ -276,7 +281,7 @@ def load(root, catalog=DEFAULT_CATALOG):
     }
 
 
-def check(root, catalog=DEFAULT_CATALOG):
+def check(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
     data = load(root, catalog)
     return {
         "briefs": len(data["entries"]),
@@ -313,7 +318,13 @@ def check(root, catalog=DEFAULT_CATALOG):
     }
 
 
-def build(root, output, catalog=DEFAULT_CATALOG, *, presentation_context=None):
+def build(
+    root: Pathish,
+    output: Pathish,
+    catalog: Pathish = DEFAULT_CATALOG,
+    *,
+    presentation_context: Document | None = None,
+) -> Document:
     root = Path(root).resolve()
     output = Path(output).resolve()
     data = load(root, catalog)
@@ -385,14 +396,21 @@ def build(root, output, catalog=DEFAULT_CATALOG, *, presentation_context=None):
 
 
 def new(
-    root, key, title, repository, family, destination, catalog=DEFAULT_CATALOG, repository_id=None
-):
+    root: Pathish,
+    key: str,
+    title: str,
+    repository: str,
+    family: str,
+    destination: Pathish,
+    catalog: Pathish = DEFAULT_CATALOG,
+    repository_id: str | None = None,
+) -> Document:
     root = Path(root).resolve()
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", key):
         raise c.MedicalError("Use a lowercase hyphenated brief ID")
     path = c.inside(root, str(catalog))
     target = c.inside(root, str(destination))
-    data = c.read(path) if path.exists() else {"title": "Task Explorer", "entries": []}
+    data: Document = c.read(path) if path.exists() else {"title": "Task Explorer", "entries": []}
     if data.get("collections"):
         raise c.MedicalError("Choose a group-owned leaf collection with --catalog for a new brief")
     if data.get("taxonomy"):

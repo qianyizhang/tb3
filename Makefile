@@ -2,7 +2,7 @@ PYTHON ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 PRESENTATION_OUTPUT ?= .local/presentation-check
 PRESENTATION_REPORTS ?= .local/presentation-qa
 
-.PHONY: actionlint artifacts build-check check docs-check hooks hygiene js-check med-check \
+.PHONY: actionlint artifacts build-check check docs-check format format-check hooks hygiene js-check lint med-check \
 	presentation-check pre-commit-check site style test type-check
 check: hygiene test med-check docs-check type-check style actionlint
 
@@ -71,6 +71,13 @@ hooks:
 	git config --local core.hooksPath .githooks
 	$(PYTHON) -m pre_commit install-hooks
 
-style:
+style: lint format-check
+
+lint:
 	$(PYTHON) -m ruff check src tests
+
+format-check:
 	$(PYTHON) -m ruff format --check src tests
+
+format:
+	$(PYTHON) -m ruff format src tests

@@ -25,8 +25,8 @@ def score(answer: object, truth: object) -> dict[str, object]:
         linear = finite_matrix3(truth_object["linear_voxel_to_mm"])
 
         rows: dict[str, object] = {}
-        counts = {status: 0 for status in ["observed", "out_of_fov", "absent"]}
-        hallucinated = {status: 0 for status in ["out_of_fov", "absent"]}
+        counts = dict.fromkeys(["observed", "out_of_fov", "absent"], 0)
+        hallucinated = dict.fromkeys(["out_of_fov", "absent"], 0)
         correct = dict(hallucinated)
         uncertain = dict(hallucinated)
         errors: dict[str, float] = {}

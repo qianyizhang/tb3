@@ -7,13 +7,15 @@ import json
 import shutil
 import subprocess
 import tomllib
+from collections.abc import Mapping, Sequence
 from pathlib import Path
 
 from . import core as c
 from . import harbor
+from .types import Document, Pathish
 
 
-def task_files(path):
+def task_files(path: Pathish) -> dict[str, str]:
     result = {}
     for file in sorted(Path(path).rglob("*")):
         if file.is_symlink():
@@ -23,13 +25,13 @@ def task_files(path):
     return result
 
 
-def tree_digest(files):
+def tree_digest(files: Mapping[str, str]) -> str:
     return hashlib.sha256(
         json.dumps(files, sort_keys=True, separators=(",", ":")).encode()
     ).hexdigest()
 
 
-def new(root, group, key, title):
+def new(root: Pathish, group: str, key: str, title: str) -> Document:
     owner = c.lookup(root, group)
     if owner["kind"] != "group" or key in c.load(root):
         raise c.MedicalError("Select a group and an unused experiment ID")
@@ -67,8 +69,8 @@ def new(root, group, key, title):
     return row
 
 
-def task_spec(experiment, case=None):
-    tasks = experiment.get("tasks", [])
+def task_spec(experiment: Document, case: str | None = None) -> Document:
+    tasks: list[Document] = experiment.get("tasks", [])
     if tasks:
         if case is None and len(tasks) == 1:
             return tasks[0]
@@ -81,7 +83,9 @@ def task_spec(experiment, case=None):
     raise c.MedicalError("Historical evidence only; no maintained task recipe is declared")
 
 
-def task_validate(root, experiment, case=None):
+def task_validate(
+    root: Pathish, experiment: str, case: str | None = None
+) -> tuple[Document, Document, Path, dict[str, str]]:
     exp = c.lookup(root, experiment)
     if exp["kind"] != "experiment":
         raise c.MedicalError("Select an experiment")
@@ -101,35 +105,21 @@ def task_validate(root, experiment, case=None):
     return exp, spec, task, task_files(task)
 
 
-def prepare(root, experiment, case=None, execute=False, *, input_root=None, output=None):
+def prepare(
+    root: Pathish,
+    experiment: str,
+    case: str | None = None,
+    execute: bool = False,
+    *,
+    input_root: Pathish | None = None,
+    output: Pathish | None = None,
+) -> Document:
     exp = c.lookup(root, experiment)
     spec = task_spec(exp, case)
-    if exp.get("method") == "landmarks":
-        from .landmarks import prepare_case
+    if exp.get("method") in {"landmarks", "task_package"}:
+        from .methods import method_for
 
-        if input_root is not None or output is not None:
-            raise c.MedicalError(
-                "Use med bundle with --input-root for a portable landmark recovery; native prepare uses its declared landmark inputs"
-            )
-        return prepare_case(root, exp, spec, execute)
-    if exp.get("method") == "task_package":
-        from . import task_package
-
-        destination = output or Path(root) / ".local/reproduction" / experiment / spec["id"]
-        if not execute:
-            manifest = c.read(c.inside(root, exp["reproduction_manifest"]))
-            selected = [e for e in manifest["files"] if e.get("case") in (None, spec["id"])]
-            return {
-                "case": spec["id"],
-                "destination": str(destination),
-                "executed": False,
-                "files": len(selected),
-                "bytes": sum(e["size"] for e in selected),
-                "acquisition": str(Path(exp["reproduction_manifest"]).parent / "acquisition.md"),
-            }
-        return task_package.materialize(
-            root, exp["reproduction_manifest"], destination, case=spec["id"], input_root=input_root
-        )
+        return method_for(root, exp).prepare(spec, execute, input_root=input_root, output=output)
     command = exp.get("prepare_command", [])
     if execute:
         if not command or not all(isinstance(x, str) for x in command):
@@ -138,7 +128,7 @@ def prepare(root, experiment, case=None, execute=False, *, input_root=None, outp
     return {"command": command, "executed": execute, "task_path": spec["task_path"]}
 
 
-def freeze(root, experiment, case=None):
+def freeze(root: Pathish, experiment: str, case: str | None = None) -> Document:
     exp, spec, task, files = task_validate(root, experiment, case)
     digest = tree_digest(files)
     key = "freeze-" + hashlib.sha256((experiment + digest).encode()).hexdigest()[:24]
@@ -170,7 +160,7 @@ def freeze(root, experiment, case=None):
     return row
 
 
-def restore_freeze(root, frozen):
+def restore_freeze(root: Pathish, frozen: Document) -> Path:
     snapshot = c.inside(root, frozen["snapshot_path"])
     if not snapshot.exists():
         source = c.inside(root, frozen["source_path"])
@@ -183,7 +173,7 @@ def restore_freeze(root, frozen):
     return snapshot
 
 
-def result_state(imported):
+def result_state(imported: Document) -> tuple[str, str]:
     classification = imported["classification"]
     if classification == "execution_error":
         return "error", "no_verdict"
@@ -198,7 +188,9 @@ def result_state(imported):
     return "completed", outcome
 
 
-def collect(root, experiment, sources, binding=None):
+def collect(
+    root: Pathish, experiment: str, sources: Sequence[str], binding: Document | None = None
+) -> list[Document]:
     root = Path(root).resolve()
     exp = c.lookup(root, experiment)
     if exp["kind"] != "experiment":
@@ -318,7 +310,7 @@ def collect(root, experiment, sources, binding=None):
     return results
 
 
-def check_controls(root, digest, *, pending_review=None):
+def check_controls(root: Pathish, digest: str, *, pending_review: Document | None = None) -> None:
     rows = c.projection(root, pending_review=pending_review)
     available = set()
     unavailable = []
@@ -355,7 +347,7 @@ def check_controls(root, digest, *, pending_review=None):
         )
 
 
-def harbor_checksum(executable, snapshot):
+def harbor_checksum(executable: str, snapshot: Path) -> str:
     resolved = Path(shutil.which(executable) or executable).resolve()
     python = resolved.parent / "python"
     if not python.is_file():
@@ -375,17 +367,17 @@ def harbor_checksum(executable, snapshot):
 
 
 def run(
-    root,
-    experiment,
-    agent,
-    executable,
+    root: Pathish,
+    experiment: str,
+    agent: str,
+    executable: str,
     *,
-    case=None,
-    model=None,
-    effort=None,
-    diagnostic=False,
-    preview=False,
-):
+    case: str | None = None,
+    model: str | None = None,
+    effort: str | None = None,
+    diagnostic: bool = False,
+    preview: bool = False,
+) -> Document:
     if agent == "codex" and not model:
         raise c.MedicalError("Name the model condition")
     exp, spec, task, files = task_validate(root, experiment, case)
@@ -431,7 +423,7 @@ def run(
         "execution_path": str((out / "execution.json").relative_to(root)),
     }
     c.write_new(base / "attempts" / (identity + ".json"), attempt)
-    config_agent = {"name": agent, "env": {}, "kwargs": {}}
+    config_agent: Document = {"name": agent, "env": {}, "kwargs": {}}
     if model:
         config_agent["model_name"] = model
     if effort:
@@ -448,7 +440,7 @@ def run(
         "artifacts": ["/app"],
     }
     c.write_new(out / "config.json", config)
-    receipt = {
+    receipt: Document = {
         "attempt_id": identity,
         "execution_state": "running",
         "started_at": c.now(),
@@ -500,7 +492,9 @@ def run(
     return receipt
 
 
-def qualify_attempt(root, experiment, identity, *, pending_review=None):
+def qualify_attempt(
+    root: Pathish, experiment: str, identity: str, *, pending_review: Document | None = None
+) -> Document:
     """Reassess a diagnostic attempt using existing exact inputs and controls.
 
     This establishes local control eligibility, not current submission approval.
@@ -535,7 +529,15 @@ def qualify_attempt(root, experiment, identity, *, pending_review=None):
     }
 
 
-def bundle(root, experiment_id, destination, *, case=None, input_root=None, include_flagged=False):
+def bundle(
+    root: Pathish,
+    experiment_id: str,
+    destination: Pathish,
+    *,
+    case: str | None = None,
+    input_root: Pathish | None = None,
+    include_flagged: bool = False,
+) -> Document:
     """Freeze a research handoff and retain its review state and lineage."""
     from . import task_package
 
@@ -573,7 +575,14 @@ def bundle(root, experiment_id, destination, *, case=None, input_root=None, incl
     return {**result, "record": row["id"], "source_assessments": {experiment_id: state}}
 
 
-def replay_package(root, experiment, package_root, manifest, case, python):
+def replay_package(
+    root: Pathish,
+    experiment: Document,
+    package_root: Pathish,
+    manifest: Document,
+    case: str | None,
+    python: str,
+) -> Document:
     """Append replay observations without changing historical execution outcomes."""
     from . import task_package
 

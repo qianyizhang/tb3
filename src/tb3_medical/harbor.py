@@ -7,20 +7,16 @@ import hashlib
 import json
 import math
 import re
+from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any
+
+from .storage import sha as sha256
+from .types import Document
 
 
 class HarborError(ValueError):
     pass
-
-
-def sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for block in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
 
 
 def digest_json(value: Any) -> str:
@@ -45,7 +41,7 @@ def read_json(path: Path) -> Any:
         raise HarborError(f"cannot read JSON: {path.name} ({type(exc).__name__})") from exc
 
 
-def obj(value: Any) -> dict:
+def obj(value: object) -> Document:
     return value if isinstance(value, dict) else {}
 
 
@@ -84,7 +80,7 @@ def seconds(phase: Any) -> float | None:
         return None
 
 
-def classify(result: dict) -> str:
+def classify(result: Document) -> str:
     """Completion and execution errors take precedence over rewards."""
     if result.get("exception_info") is not None:
         return "execution_error"
@@ -103,7 +99,7 @@ def classify(result: dict) -> str:
     return "model_pass" if reward == 1 else "model_failure_candidate"
 
 
-def parse_cases(path: Path) -> tuple[list[dict], list[str]]:
+def parse_cases(path: Path) -> tuple[list[Document], list[str]]:
     """Only consume explicit JSON case records; never infer from prose/log counts."""
     if not path.is_file():
         return [], ["No verifier case output is available."]
@@ -135,6 +131,7 @@ def parse_cases(path: Path) -> tuple[list[dict], list[str]]:
     cases = []
     for status, key in (("passed", "passed"), ("failed", "failures")):
         for item in report[key]:
+            name: object
             if isinstance(item, str):
                 # Cache probe encodes failure name and explanation in one string.
                 name = item.partition(": ")[0] if status == "failed" else item
@@ -154,11 +151,11 @@ def parse_cases(path: Path) -> tuple[list[dict], list[str]]:
     return cases, []
 
 
-def evidence_file(root: Path, path: Path, label: str) -> dict:
+def evidence_file(root: Path, path: Path, label: str) -> dict[str, str]:
     return {"label": label, "path": relative(root, path), "sha256": sha256(path)}
 
 
-def import_trial(root: Path, source: Path) -> dict:
+def import_trial(root: Path, source: Path) -> Document:
     source = workspace_path(root, source)
     before = sha256(source)
     result = read_json(source)
@@ -280,7 +277,7 @@ def import_trial(root: Path, source: Path) -> dict:
     }
 
 
-def evidence_matches(root: Path, evidence: list[dict]) -> bool:
+def evidence_matches(root: Path, evidence: Sequence[Mapping[str, Any]]) -> bool:
     for item in evidence:
         try:
             path = workspace_path(root, item["path"])

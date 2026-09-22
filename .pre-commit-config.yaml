@@ -28,11 +28,11 @@ repos:
         files: ^(src|tests)/.*\.py$
         types: [python]
       - id: mypy
-        name: mypy maintained typed modules
+        name: mypy entire source package
         entry: uv run --locked --no-sync mypy
         language: system
         pass_filenames: false
-        files: ^src/tb3_medical/(doc_links|scoring|score_ct|score_mri)\.py$
+        files: ^(src/.*\.py|pyproject\.toml|uv\.lock)$
       - id: actionlint
         name: actionlint
         entry: uv run --locked --no-sync actionlint

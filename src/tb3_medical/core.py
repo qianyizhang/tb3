@@ -6,21 +6,24 @@ Inspection reads metadata only. Input verification belongs to run/replay/export.
 from __future__ import annotations
 
 import datetime as dt
-import hashlib
 import json
-import os
 import re
-import tomllib
 import uuid
+from collections.abc import Iterable, Iterator, Mapping, Sequence
 from importlib.resources import files
 from pathlib import Path
+from typing import Any
 
-import tomli_w
-
-
-class MedicalError(ValueError):
-    pass
-
+from .errors import MedicalError as MedicalError
+from .storage import atomic_write as atomic_write
+from .storage import encode as encode
+from .storage import inside as inside
+from .storage import publish as publish
+from .storage import read as read
+from .storage import read_object
+from .storage import sha as sha
+from .storage import write_new as write_new
+from .types import Document, Pathish, Records
 
 KINDS = {
     "group",
@@ -78,26 +81,21 @@ REQUIRED = {
 }
 
 
-def now():
+def now() -> str:
     return dt.datetime.now(dt.UTC).isoformat()
 
 
-def identifier(value):
+def identifier(value: object) -> str:
     if not isinstance(value, str) or not re.fullmatch(r"[a-z0-9][a-z0-9_.-]{0,127}", value):
         raise MedicalError("IDs use lowercase letters, digits, dot, underscore and hyphen")
     return value
 
 
-def uid(prefix):
+def uid(prefix: str) -> str:
     return prefix + "-" + uuid.uuid4().hex[:16]
 
 
-def sha(path):
-    with Path(path).open("rb") as stream:
-        return hashlib.file_digest(stream, "sha256").hexdigest()
-
-
-def workspace(start=None):
+def workspace(start: Pathish | None = None) -> Path:
     start = Path(start or Path.cwd()).resolve()
     for path in (start, *start.parents):
         if (path / "workbench.toml").is_file():
@@ -105,70 +103,14 @@ def workspace(start=None):
     raise MedicalError("No workbench.toml found; use --root /path/to/workspace")
 
 
-def inside(root, relative):
-    root, relative = Path(root).resolve(), Path(relative)
-    if relative.is_absolute() or ".." in relative.parts:
-        raise MedicalError(f"Expected a workspace-relative path: {relative}")
-    path = root / relative
-    if not path.resolve().is_relative_to(root):
-        raise MedicalError(f"Path crosses workspace boundary: {relative}")
-    if any(p.is_symlink() for p in (path, *path.parents) if p != root):
-        raise MedicalError(f"Path crosses a symlink: {relative}")
-    return path
-
-
-def read(path):
-    path = Path(path)
-    text = path.read_text()
-    if path.suffix == ".toml":
-        return tomllib.loads(text)
-    if path.suffix == ".md":
-        if not text.startswith("+++\n") or "\n+++\n" not in text[4:]:
-            raise MedicalError(f"Missing TOML metadata header: {path}")
-        header, body = text[4:].split("\n+++\n", 1)
-        return {**tomllib.loads(header), "body": body.strip()}
-    return json.loads(text)
-
-
-def encode(path, value):
-    if Path(path).suffix == ".toml":
-        return tomli_w.dumps(value)
-    if Path(path).suffix == ".md":
-        header = {k: v for k, v in value.items() if k != "body"}
-        return "+++\n" + tomli_w.dumps(header) + "+++\n\n" + value.get("body", "") + "\n"
-    return json.dumps(value, indent=2, allow_nan=False) + "\n"
-
-
-def publish(path, value, *, replace=False):
-    path = Path(path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_name("." + path.name + "." + uuid.uuid4().hex + ".tmp")
-    try:
-        tmp.write_text(encode(path, value))
-        if replace:
-            os.replace(tmp, path)
-        else:
-            os.link(tmp, path)  # Atomic, exclusive publication; readers never see partial JSON.
-    finally:
-        tmp.unlink(missing_ok=True)
-
-
-def write_new(path, value):
-    publish(path, value)
-
-
-def atomic_write(path, value):
-    publish(path, value, replace=True)
-
-
-def evidence(root, relative):
+def evidence(root: Pathish, relative: Pathish) -> dict[str, str]:
     path = inside(root, relative)
     if not path.is_file():
         raise MedicalError(f"Missing evidence: {relative}")
     return {"path": str(relative), "sha256": sha(path)}
 
 
-def verify_inputs(root, entries):
+def verify_inputs(root: Pathish, entries: Iterable[Mapping[str, Any]]) -> None:
     """Check only the files consumed by the requested operation."""
     for entry in entries:
         path = inside(root, entry["path"])
@@ -178,7 +120,7 @@ def verify_inputs(root, entries):
             raise MedicalError(f"Changed input: {entry['path']}")
 
 
-def validate_record(row, path):
+def validate_record(row: Document, path: Pathish) -> None:
     key = identifier(row.get("id"))
     kind = row.get("kind")
     if row.get("schema_version") != 2 or kind not in KINDS:
@@ -195,15 +137,15 @@ def validate_record(row, path):
         raise MedicalError(f"{key}: unknown analysis_kind: {row['analysis_kind']}")
 
 
-def record_paths(root):
+def record_paths(root: Pathish) -> Iterator[tuple[Path, Document]]:
     for pattern in RECORD_GLOBS:
         for path in sorted(Path(root).glob(pattern)):
-            row = read(path)
+            row = read_object(path)
             validate_record(row, path)
             yield path, row
 
 
-def load(root):
+def load(root: Pathish) -> Records:
     rows = {}
     for path, row in record_paths(root):
         if row["id"] in rows:
@@ -212,14 +154,14 @@ def load(root):
     return rows
 
 
-def lookup(root, key):
+def lookup(root: Pathish, key: str) -> Document:
     try:
         return load(root)[key]
     except KeyError:
         raise MedicalError(f"Unknown ID: {key}; use med list to find its stable ID") from None
 
 
-def experiment_ids(row, rows):
+def experiment_ids(row: Document, rows: Records) -> list[str]:
     if row["kind"] == "group":
         return sorted(
             r["id"]
@@ -230,10 +172,11 @@ def experiment_ids(row, rows):
         return [row["id"]]
     if row.get("experiment_id"):
         return [row["experiment_id"]]
-    return row.get("experiment_ids", [])
+    identities: list[str] = row.get("experiment_ids", [])
+    return identities
 
 
-def execution_observations(rows):
+def execution_observations(rows: Records) -> Records:
     """Latest execution/result per attempt, before any eligibility filtering.
 
     Untyped imported Harbor observations remain supported. Evaluations owned by
@@ -263,7 +206,7 @@ def execution_observations(rows):
     return latest
 
 
-def projection(root, *, pending_review=None):
+def projection(root: Pathish, *, pending_review: Document | None = None) -> Records:
     rows = load(root)
     if pending_review is not None:
         rows[pending_review["id"]] = pending_review
@@ -350,7 +293,7 @@ def projection(root, *, pending_review=None):
     }
 
 
-def validate(root):
+def validate(root: Pathish) -> Document:
     rows = load(root)
     reproduction_cases = 0
     for row in rows.values():
@@ -386,15 +329,19 @@ def validate(root):
     }
 
 
-def destination(root, row, folder):
+def destination(root: Pathish, row: Document, folder: str) -> Path:
     group = row["id"] if row["kind"] == "group" else row.get("group_id")
+    if not isinstance(group, str):
+        raise MedicalError("Select a group owner")
     group_row = lookup(root, group)
     if group_row["kind"] != "group":
         raise MedicalError("Select a group owner")
     return Path(root) / Path(group_row["record_path"]).parent / folder
 
 
-def add_idea(root, group, key, title, question, source):
+def add_idea(
+    root: Pathish, group: str, key: str, title: str, question: str, source: str
+) -> Document:
     identifier(key)
     if key in load(root):
         raise MedicalError("Idea already exists; edit its Markdown or record a decision")
@@ -413,7 +360,15 @@ def add_idea(root, group, key, title, question, source):
     return row
 
 
-def decide(root, idea, state, reason, actor, source, accepted=False):
+def decide(
+    root: Pathish,
+    idea: str,
+    state: str,
+    reason: str,
+    actor: str,
+    source: str,
+    accepted: bool = False,
+) -> Document:
     row = lookup(root, idea)
     if row["kind"] != "idea":
         raise MedicalError("Decisions apply to ideas")
@@ -435,7 +390,9 @@ def decide(root, idea, state, reason, actor, source, accepted=False):
     return event
 
 
-def issue(root, targets, reason, paths, actor):
+def issue(
+    root: Pathish, targets: Sequence[str], reason: str, paths: Sequence[str], actor: str
+) -> Document:
     rows = load(root)
     affected = {key for target in targets for key in experiment_ids(rows[target], rows)}
     attempts = {
@@ -455,16 +412,16 @@ def issue(root, targets, reason, paths, actor):
         for r in rows.values()
         if r["kind"] == "evaluation" and r["attempt_id"] in attempts
     )
-    affected = sorted(affected)
-    if not affected or not reason:
+    affected_ids = sorted(affected)
+    if not affected_ids or not reason:
         raise MedicalError("Name an affected experiment or run and a concrete reason")
-    owner = rows[affected[0]]
+    owner = rows[affected_ids[0]]
     event = {
         "schema_version": 2,
         "kind": "issue",
         "id": uid("issue"),
         "group_id": owner["group_id"],
-        "experiment_ids": affected,
+        "experiment_ids": affected_ids,
         "affected_records": targets,
         "reason": reason,
         "pending_action": True,
@@ -477,18 +434,18 @@ def issue(root, targets, reason, paths, actor):
 
 
 def review(
-    root,
-    experiment,
-    assessment,
-    reason,
-    scope,
-    paths,
-    actor,
-    resolves=(),
-    eligible_attempts=(),
+    root: Pathish,
+    experiment: str,
+    assessment: str,
+    reason: str,
+    scope: str,
+    paths: Sequence[str],
+    actor: str,
+    resolves: Sequence[str] = (),
+    eligible_attempts: Sequence[str] = (),
     *,
-    qualify_attempts=(),
-):
+    qualify_attempts: Sequence[str] = (),
+) -> Document:
     owner = lookup(root, experiment)
     if owner["kind"] != "experiment" or not reason or not scope:
         raise MedicalError("Review an experiment's stated conclusions with reason and scope")

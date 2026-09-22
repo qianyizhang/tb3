@@ -4,21 +4,24 @@ import hashlib
 import html
 import json
 import shutil
+from collections.abc import Sequence
 from pathlib import Path
 
 from . import core as c
 from . import score_ct, score_mri
+from .types import Document, Pathish
 
 
-def case_inputs(root, experiment, case):
+def case_inputs(root: Pathish, experiment: Document, case: str) -> Document:
     manifest = c.read(c.inside(root, experiment["input_manifest"]))
     try:
-        return manifest["cases"][case]
+        inputs: Document = manifest["cases"][case]
+        return inputs
     except KeyError:
         raise c.MedicalError("Unknown landmark case: " + str(case)) from None
 
 
-def prepare_case(root, experiment, spec, execute):
+def prepare_case(root: Pathish, experiment: Document, spec: Document, execute: bool) -> Document:
     inputs = case_inputs(root, experiment, spec["id"])
     if execute:
         c.verify_inputs(root, inputs["files"])
@@ -44,7 +47,7 @@ def prepare_case(root, experiment, spec, execute):
     }
 
 
-def replay(root, experiment, case=None):
+def replay(root: Pathish, experiment: Document, case: str | None = None) -> Document:
     manifest = c.read(c.inside(root, experiment["input_manifest"]))
     cases = [case] if case else list(manifest["cases"])
     results = []
@@ -54,7 +57,9 @@ def replay(root, experiment, case=None):
         c.verify_inputs(root, [truth_entry])
         truth = c.read(c.inside(root, truth_entry["path"]))
         scorer = score_mri if inputs["scorer"] == "mri" else score_ct
-        scorer_hash = c.sha(Path(scorer.__file__))
+        if scorer.__file__ is None:
+            raise c.MedicalError("Landmark scorer has no source file to fingerprint")
+        scorer_hash = c.sha(scorer.__file__)
         for observation in inputs["observations"]:
             answer = observation["answer"]
             c.verify_inputs(root, [answer])
@@ -110,7 +115,7 @@ def replay(root, experiment, case=None):
     return {"replays": results, "all_match": all(r["exact_match"] for r in results)}
 
 
-def view(root, experiment, case, output=None):
+def view(root: Pathish, experiment: Document, case: str, output: Pathish | None = None) -> Document:
     """Render a native i-plane with physical j/k aspect and projected markers."""
     import numpy as np
     from PIL import Image, ImageDraw
@@ -127,7 +132,7 @@ def view(root, experiment, case, output=None):
     points = truth.get("points_ijk") or {
         k: v["ijk"] for k, v in truth["targets"].items() if v["status"] == "observed"
     }
-    index = int(round(np.mean(list(points.values()), axis=0)[0]))
+    index = round(float(np.mean(list(points.values()), axis=0)[0]))
     lo, hi = geometry["display_window"]
     plane = np.flipud(np.uint8(np.clip((volume[index, :, :].T - lo) / (hi - lo), 0, 1) * 255))
     spacing = geometry["spacing_ijk_mm"]
@@ -136,7 +141,7 @@ def view(root, experiment, case, output=None):
     image = Image.fromarray(plane).convert("RGB").resize((width, height))
     draw = ImageDraw.Draw(image)
 
-    def marker(point, color):
+    def marker(point: Sequence[float], color: str) -> None:
         x = (point[1] + 0.5) / volume.shape[1] * width
         y = (1 - (point[2] + 0.5) / volume.shape[2]) * height
         draw.ellipse((x - 3, y - 3, x + 3, y + 3), outline=color, width=2)

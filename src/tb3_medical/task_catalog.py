@@ -3,11 +3,12 @@
 from pathlib import Path
 
 from . import core as c
+from .types import Document, Pathish
 
 DEFAULT_CATALOG = "presentation/task-explorer/catalog.json"
 
 
-def collection(root, catalog, parents=()):
+def collection(root: Pathish, catalog: Pathish, parents: tuple[Path, ...] = ()) -> Document:
     path = c.inside(root, str(catalog))
     if path in parents:
         raise c.MedicalError("Task collection cycle: " + str(catalog))
@@ -43,12 +44,12 @@ def collection(root, catalog, parents=()):
     }
 
 
-def classify(root, data):
+def classify(root: Pathish, data: Document) -> int:
     """Validate navigation axes and resolve durable experiment IDs from records."""
     root = Path(root).resolve()
     taxonomy = data["taxonomy"]
     families = data["task_families"]
-    family_axes = {}
+    family_axes: dict[str, tuple[str, str | None, str | None, str | None]] = {}
     experiments = {}
     for path in sorted(root.glob("groups/*/experiments/*/experiment.toml")):
         row = c.read(path)

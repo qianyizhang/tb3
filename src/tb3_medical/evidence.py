@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import re
 from collections import Counter
+from collections.abc import Sequence
 from pathlib import Path
 
 from . import core as c
+from .types import Document, Pathish, Records
 
 SCHEMA_VERSION = 1
 INDEX_MARKER = "<!-- tb3-evidence-index: generated -->"
@@ -29,7 +31,7 @@ INTERPRETATION_BOUNDARIES = [
 ]
 
 
-def _role(path):
+def _role(path: str) -> str:
     path = path.lower()
     if path.endswith("instruction.md") or "prompt" in path:
         return "instruction"
@@ -42,7 +44,7 @@ def _role(path):
     return "environment"
 
 
-def _record_ref(root, row):
+def _record_ref(root: Pathish, row: Document) -> dict[str, str]:
     path = c.inside(root, row["record_path"])
     return {
         "id": row["id"],
@@ -52,13 +54,13 @@ def _record_ref(root, row):
     }
 
 
-def _experiment_ids(rows, targets):
+def _experiment_ids(rows: Records, targets: Sequence[str]) -> list[str]:
     return sorted(
         {experiment_id for key in targets for experiment_id in c.experiment_ids(rows[key], rows)}
     )
 
 
-def _related(row, scope_ids, experiment_ids):
+def _related(row: Document, scope_ids: set[str], experiment_ids: set[str]) -> bool:
     if row["id"] in scope_ids:
         return True
     if row["kind"] == "finding":
@@ -70,7 +72,7 @@ def _related(row, scope_ids, experiment_ids):
     return False
 
 
-def _artifact_pointer(root, source, entry):
+def _artifact_pointer(root: Pathish, source: Document, entry: Document) -> Document | None:
     relative = entry.get("path")
     if not relative:
         return None
@@ -97,8 +99,10 @@ def _artifact_pointer(root, source, entry):
     }
 
 
-def _selected_artifacts(root, related):
-    counts, pointers, seen = Counter(), [], set()
+def _selected_artifacts(root: Pathish, related: Sequence[Document]) -> Document:
+    counts: Counter[str] = Counter()
+    pointers: list[Document] = []
+    seen: set[str] = set()
     for row in related:
         entries = row.get("evidence", [])
         counts[row["kind"]] += len(entries)
@@ -128,7 +132,7 @@ def _selected_artifacts(root, related):
     }
 
 
-def _contracts(rows, experiment_id):
+def _contracts(rows: Records, experiment_id: str) -> list[Document]:
     freezes = sorted(
         (
             row
@@ -139,7 +143,7 @@ def _contracts(rows, experiment_id):
     )
     contracts = []
     for freeze in freezes:
-        roles = {}
+        roles: dict[str, list[dict[str, str]]] = {}
         for path, digest in sorted(freeze["files"].items()):
             roles.setdefault(_role(path), []).append({"path": path, "sha256": digest})
         contracts.append(
@@ -155,7 +159,7 @@ def _contracts(rows, experiment_id):
     return contracts
 
 
-def _observations(rows, executions, experiment_id):
+def _observations(rows: Records, executions: Records, experiment_id: str) -> list[Document]:
     attempts = {
         row["id"]: row
         for row in rows.values()
@@ -190,7 +194,7 @@ def _observations(rows, executions, experiment_id):
     return result
 
 
-def collect(root, targets):
+def collect(root: Pathish, targets: Sequence[str]) -> Document:
     """Collect exact identities and evidence pointers without interpreting them."""
     root = Path(root).resolve()
     rows = c.load(root)
@@ -200,13 +204,15 @@ def collect(root, targets):
     target_rows = {key: rows[key] for key in targets}
     experiment_ids = set(_experiment_ids(rows, targets))
     scope_ids = (
-        set(targets) | experiment_ids | {row.get("group_id") for row in target_rows.values()}
+        set(targets)
+        | experiment_ids
+        | {row["group_id"] for row in target_rows.values() if row.get("group_id")}
     )
     related = [row for row in rows.values() if _related(row, scope_ids, experiment_ids)]
     projection = c.projection(root)
     executions = c.execution_observations(rows)
     experiments = []
-    task_digests = set()
+    task_digests: set[str] = set()
     for experiment_id in sorted(experiment_ids):
         experiment = rows[experiment_id]
         contracts = _contracts(rows, experiment_id)
@@ -260,7 +266,7 @@ def collect(root, targets):
     }
 
 
-def validate_manifest(data):
+def validate_manifest(data: Document) -> Document:
     if data.get("schema_version") != SCHEMA_VERSION or data.get("kind") != "evidence_manifest":
         raise c.MedicalError("Unsupported evidence manifest")
     for field in ("targets", "record_refs", "experiments", "artifacts"):
@@ -272,12 +278,12 @@ def validate_manifest(data):
     return data
 
 
-def write_manifest(path, data):
+def write_manifest(path: Pathish, data: Document) -> None:
     validate_manifest(data)
     c.write_new(path, data)
 
 
-def summary(data):
+def summary(data: Document) -> Document:
     return {
         "targets": len(data["targets"]),
         "records": len(data["record_refs"]),
@@ -287,7 +293,7 @@ def summary(data):
     }
 
 
-def check(root, manifest):
+def check(root: Pathish, manifest: Pathish) -> Document:
     root = Path(root).resolve()
     data = validate_manifest(c.read(manifest))
     changed, missing = [], []
@@ -304,7 +310,8 @@ def check(root, manifest):
         if changed:
             parts.append("changed records: " + ", ".join(changed))
         raise c.MedicalError("Evidence manifest is stale; " + "; ".join(parts))
-    artifact_states, artifact_drift = Counter(), []
+    artifact_states: Counter[str] = Counter()
+    artifact_drift: list[str] = []
     for pointer in data["artifacts"]["selected_pointers"]:
         if pointer["availability"] == "outside_workspace":
             artifact_states["outside_workspace"] += 1
@@ -330,15 +337,15 @@ def check(root, manifest):
     return {**summary(data), "record_hashes": "match", "artifact_states": dict(artifact_states)}
 
 
-def _cell(value):
+def _cell(value: object) -> str:
     return str(value if value is not None else "—").replace("|", "\\|")
 
 
-def _markdown_row(*values):
+def _markdown_row(*values: object) -> str:
     return "| " + " | ".join(_cell(value) for value in values) + " |"
 
 
-def build(root, manifest, output):
+def build(root: Pathish, manifest: Pathish, output: Pathish) -> Document:
     data = validate_manifest(c.read(manifest))
     check(root, manifest)
     lines = [
@@ -423,7 +430,9 @@ def build(root, manifest, output):
     return {"output": str(output), **summary(data)}
 
 
-def new(root, group, key, title, analysis_kind, targets):
+def new(
+    root: Pathish, group: str, key: str, title: str, analysis_kind: str, targets: Sequence[str]
+) -> Document:
     root = Path(root).resolve()
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", key):
         raise c.MedicalError("Use a lowercase hyphenated analysis ID")

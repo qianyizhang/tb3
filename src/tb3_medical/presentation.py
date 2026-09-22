@@ -7,21 +7,24 @@ import json
 import os
 import re
 import shutil
+from collections.abc import Callable
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from typing import Any
 from urllib.parse import unquote, urlsplit
 
 from . import core as c
+from .types import Document, Pathish
 
 
-def pointer(value, path):
+def pointer(value: Any, path: str) -> Any:
     for token in path.lstrip("/").split("/"):
         key = token.replace("~1", "/").replace("~0", "~")
         value = value[int(key)] if isinstance(value, list) else value[key]
     return value
 
 
-def assets(root, write=False):
+def assets(root: Pathish, write: bool = False) -> Document:
     count = 0
     for a in c.read(Path(root) / "presentation/assets.json")["assets"]:
         target = c.inside(root, a["path"])
@@ -53,7 +56,7 @@ def assets(root, write=False):
     return {"verified_assets": count, "written": write}
 
 
-def check_links(root, source):
+def check_links(root: Pathish, source: Path) -> None:
     """Check maintained prose links; retained runtime locators may be unavailable."""
     for target in re.findall(r"!?\[[^\]]*\]\(([^)]+)\)", source.read_text()):
         parsed = urlsplit(target)
@@ -79,7 +82,7 @@ def check_links(root, source):
             raise c.MedicalError(f"Missing portable prose link: {source}: {relative}")
 
 
-def check(root):
+def check(root: Pathish) -> Document:
     stats = c.validate(root)
     rows = c.load(root)
     measurements = 0
@@ -112,13 +115,13 @@ def check(root):
     return {**stats, "source_measurements": measurements, "protocols_checked": len(protocols)}
 
 
-def markdown(text, link):
+def markdown(text: str, link: Callable[[str], str | None]) -> str:
     """Small escaped renderer for authored research prose; no raw HTML execution."""
 
-    def inline(value):
+    def inline(value: str) -> str:
         value = html.escape(value)
 
-        def image(m):
+        def image(m: re.Match[str]) -> str:
             url = link(html.unescape(m[2]))
             return (
                 f'<img loading="lazy" alt="{m[1]}" src="{html.escape(url, quote=True)}">'
@@ -128,7 +131,7 @@ def markdown(text, link):
 
         value = re.sub(r"!\[([^\]]*)\]\(([^)]+)\)", image, value)
 
-        def anchor(m):
+        def anchor(m: re.Match[str]) -> str:
             url = link(html.unescape(m[2]))
             return (
                 f'<a href="{html.escape(url, quote=True)}">{m[1]}</a>'
@@ -208,7 +211,7 @@ def markdown(text, link):
     return "\n".join(out)
 
 
-def present(root, output, local_media=False):
+def present(root: Pathish, output: Pathish, local_media: bool = False) -> Document:
     root, output = Path(root).resolve(), Path(output).resolve()
     if output == root or root.is_relative_to(output):
         raise c.MedicalError("Output cannot contain the source checkout")
@@ -233,7 +236,7 @@ def present(root, output, local_media=False):
         shutil.copy2(root / "presentation" / name, output / name)
     copied = set()
 
-    def copy_link(relative, page_output):
+    def copy_link(relative: str, page_output: Path) -> str | None:
         parsed = urlsplit(relative)
         if parsed.scheme:
             return relative if parsed.scheme in {"https", "http", "codex"} else None
@@ -279,7 +282,9 @@ def present(root, output, local_media=False):
         page = output / "stories" / (group["id"] + ".html")
         page.parent.mkdir(exist_ok=True)
 
-        def story_link(target, *, page_output=page, story_source=source):
+        def story_link(
+            target: str, *, page_output: Path = page, story_source: Path = source
+        ) -> str | None:
             parsed = urlsplit(target)
             if parsed.scheme or not parsed.path:
                 return copy_link(target, page_output)
@@ -366,7 +371,7 @@ def present(root, output, local_media=False):
     }
 
 
-def serve(output, port):
+def serve(output: Pathish, port: int) -> None:
     handler = functools.partial(SimpleHTTPRequestHandler, directory=str(output))
     with ThreadingHTTPServer(("127.0.0.1", port), handler) as server:
         try:

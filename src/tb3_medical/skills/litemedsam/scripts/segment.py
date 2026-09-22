@@ -14,12 +14,12 @@ from pathlib import Path
 WEIGHTS_SHA256 = "79d8c9dca6db4d69d3f905579e5250af05e859fff9c1f543e89a513c3028ce76"
 
 
-def sha(path):
+def sha(path: str | Path) -> str:
     with Path(path).open("rb") as stream:
         return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
-def validate_boxes(boxes, width, height):
+def validate_boxes(boxes: object, width: int, height: int) -> list[list[float]]:
     if not isinstance(boxes, list) or not boxes:
         raise ValueError("Provide a nonempty JSON list of [x0,y0,x1,y1] boxes")
     for box in boxes:
@@ -35,7 +35,7 @@ def validate_boxes(boxes, width, height):
     return boxes
 
 
-def infer(args):
+def infer(args: argparse.Namespace) -> None:
     import cv2
     import numpy as np
     import torch
@@ -61,7 +61,7 @@ def infer(args):
     torch.set_num_threads(4)
     torch.manual_seed(20260921)
 
-    def sync():
+    def sync() -> None:
         if args.device == "mps":
             torch.mps.synchronize()
 
@@ -145,31 +145,31 @@ def infer(args):
     np.save(args.output / "masks.npy", np.stack(masks), allow_pickle=False)
     for i, mask in enumerate(masks):
         Image.fromarray(mask.astype(np.uint8) * 255).save(args.output / f"mask-{i:03d}.png")
-    receipt = dict(
-        model="LiteMedSAM",
-        device=args.device,
-        dtype="float32",
-        threads=4,
-        image_sha256=sha(args.image),
-        boxes_sha256=sha(args.boxes),
-        weights_sha256=WEIGHTS_SHA256,
-        adapter_sha256=sha(__file__),
-        image_shape=[height, width],
-        boxes=boxes,
-        encoder_boxes=[b.tolist() for b in mapped_boxes],
-        torch_version=torch.__version__,
-        model_scores=scores,
-        load_seconds=load_seconds,
-        encode_seconds=encode_seconds,
-        decode_seconds=decode_seconds,
-        timing_note="Single process, no warmup; not comparable to warm benchmark latency",
-        masks_sha256=sha(args.output / "masks.npy"),
-    )
+    receipt = {
+        "model": "LiteMedSAM",
+        "device": args.device,
+        "dtype": "float32",
+        "threads": 4,
+        "image_sha256": sha(args.image),
+        "boxes_sha256": sha(args.boxes),
+        "weights_sha256": WEIGHTS_SHA256,
+        "adapter_sha256": sha(__file__),
+        "image_shape": [height, width],
+        "boxes": boxes,
+        "encoder_boxes": [b.tolist() for b in mapped_boxes],
+        "torch_version": torch.__version__,
+        "model_scores": scores,
+        "load_seconds": load_seconds,
+        "encode_seconds": encode_seconds,
+        "decode_seconds": decode_seconds,
+        "timing_note": "Single process, no warmup; not comparable to warm benchmark latency",
+        "masks_sha256": sha(args.output / "masks.npy"),
+    }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps({"output": str(args.output), "masks": len(masks), "device": args.device}))
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--runtime", type=Path, default=os.environ.get("LITEMEDSAM_ROOT", "/opt/litemedsam")

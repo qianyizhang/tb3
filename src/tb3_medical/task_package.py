@@ -19,15 +19,21 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from collections.abc import Sequence
+from os import PathLike
 from pathlib import Path
+from typing import Any
+
+type Pathish = str | PathLike[str]
+type Document = dict[str, Any]
 
 
-def sha(path):
+def sha(path: Pathish) -> str:
     with Path(path).open("rb") as stream:
         return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
-def inside(root, name):
+def inside(root: Pathish, name: Pathish) -> Path:
     root = Path(root).resolve()
     candidate = root / name
     path = candidate.resolve()
@@ -42,16 +48,16 @@ def inside(root, name):
     return path
 
 
-def read(path):
+def read(path: Pathish) -> Any:
     return json.loads(Path(path).read_text())
 
 
-def write(path, value):
+def write(path: Pathish, value: Document) -> None:
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     Path(path).write_text(json.dumps(value, indent=2, allow_nan=False) + "\n")
 
 
-def select(manifest, case=None):
+def select(manifest: Document, case: str | None = None) -> list[str]:
     if case is None:
         return list(manifest["cases"])
     if case not in manifest["cases"]:
@@ -59,7 +65,9 @@ def select(manifest, case=None):
     return [case]
 
 
-def verify(root, manifest, case=None, *, saved=True):
+def verify(
+    root: Pathish, manifest: Document, case: str | None = None, *, saved: bool = True
+) -> Document:
     cases = select(manifest, case)
     checked = 0
     seen = set()
@@ -83,8 +91,14 @@ def verify(root, manifest, case=None, *, saved=True):
 
 
 def materialize(
-    workspace, manifest_path, destination, *, case=None, input_root=None, assessments=None
-):
+    workspace: Pathish,
+    manifest_path: Pathish,
+    destination: Pathish,
+    *,
+    case: str | None = None,
+    input_root: Pathish | None = None,
+    assessments: dict[str, Document] | None = None,
+) -> Document:
     """Copy declared inputs into a fresh portable directory; preflight everything."""
     workspace = Path(workspace).resolve()
     manifest = read(inside(workspace, manifest_path))
@@ -157,7 +171,9 @@ def materialize(
         raise
 
 
-def validate_metadata(workspace, experiment, records):
+def validate_metadata(
+    workspace: Pathish, experiment: Document, records: dict[str, Document]
+) -> int:
     """Check declared paths and references without inspecting raw local artifacts."""
     manifest = read(inside(workspace, experiment["reproduction_manifest"]))
     if manifest["experiment_id"] != experiment["id"] or not manifest["cases"]:
@@ -198,7 +214,9 @@ def validate_metadata(workspace, experiment, records):
     return len(manifest["cases"])
 
 
-def evaluate(root, manifest, case, answer, python=sys.executable):
+def evaluate(
+    root: Pathish, manifest: Document, case: str, answer: Pathish, python: str = sys.executable
+) -> Document:
     select(manifest, case)
     verify(root, manifest, case, saved=False)
     spec = manifest["cases"][case]
@@ -215,10 +233,15 @@ def evaluate(root, manifest, case, answer, python=sys.executable):
     )
     if proc.returncode:
         raise ValueError("Evaluator process failed: " + proc.stderr[-3000:])
-    return json.loads(proc.stdout)
+    result = json.loads(proc.stdout)
+    if not isinstance(result, dict):
+        raise ValueError("Evaluator output must be a JSON object")
+    return result
 
 
-def compare(actual, expected, *, atol=1e-8, rtol=1e-8, path=""):
+def compare(
+    actual: Any, expected: Any, *, atol: float = 1e-8, rtol: float = 1e-8, path: str = ""
+) -> bool:
     """Compare named scientific metrics; timing/error strings are excluded explicitly."""
     if isinstance(expected, dict):
         return (
@@ -245,10 +268,12 @@ def compare(actual, expected, *, atol=1e-8, rtol=1e-8, path=""):
             and math.isfinite(actual)
             and math.isclose(actual, expected, abs_tol=atol, rel_tol=rtol)
         )
-    return type(actual) is type(expected) and actual == expected
+    return type(actual) is type(expected) and bool(actual == expected)
 
 
-def replay(root, manifest, case=None, python=sys.executable):
+def replay(
+    root: Pathish, manifest: Document, case: str | None = None, python: str = sys.executable
+) -> Document:
     verify(root, manifest, case)
     results = []
     for name in select(manifest, case):
@@ -278,7 +303,9 @@ def replay(root, manifest, case=None, python=sys.executable):
     }
 
 
-def controls(root, manifest, case=None, python=sys.executable):
+def controls(
+    root: Pathish, manifest: Document, case: str | None = None, python: str = sys.executable
+) -> Document:
     """Fresh host scorer checks, not Harbor runtime controls or qualification."""
     results = []
     for name in select(manifest, case):
@@ -289,9 +316,8 @@ def controls(root, manifest, case=None, python=sys.executable):
             answer.mkdir(parents=True, exist_ok=True)
             metrics = evaluate(root, manifest, name, answer, python)
             expected = spec["controls"][role]["reward"]
-            reward = metrics.get(
-                "reward", int(metrics.get("passed", metrics.get("contract_pass", False)))
-            )
+            passed: Any = metrics.get("passed", metrics.get("contract_pass", False))
+            reward = metrics.get("reward", int(passed))
             results.append({"case": name, "role": role, "reward": reward, "expected": expected})
     return {
         "scope": "Fresh host scoring controls; no agent execution or Harbor qualification",
@@ -300,7 +326,7 @@ def controls(root, manifest, case=None, python=sys.executable):
     }
 
 
-def container_controls(root, manifest, case=None):
+def container_controls(root: Pathish, manifest: Document, case: str | None = None) -> Document:
     """Build the declared solver/verifier environments; execute original oracle/nop."""
     subprocess.run(["docker", "info"], capture_output=True, check=True, timeout=30)
     root = Path(root).resolve()
@@ -394,7 +420,13 @@ def container_controls(root, manifest, case=None):
     }
 
 
-def method_replay(root, manifest, case=None, python=sys.executable, work_dir=None):
+def method_replay(
+    root: Pathish,
+    manifest: Document,
+    case: str | None = None,
+    python: str = sys.executable,
+    work_dir: Pathish | None = None,
+) -> Document:
     """Score retained transfers, or reexecute the frozen submitted programs in Docker."""
     cases = select(manifest, case)
     verify(root, manifest, case)
@@ -512,7 +544,7 @@ def method_replay(root, manifest, case=None, python=sys.executable, work_dir=Non
     }
 
 
-def inspect(root, manifest, case, output):
+def inspect(root: Pathish, manifest: Document, case: str, output: Pathish) -> Document:
     """A portable inspection page for instructions, data inventory and source notices."""
     verify(root, manifest, case, saved=False)
     spec = manifest["cases"][case]
@@ -537,7 +569,7 @@ def inspect(root, manifest, case, output):
     return {"output": str(output), "scope": "Task and input inspection; not raw-image rendering"}
 
 
-def main(argv=None):
+def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "operation",
