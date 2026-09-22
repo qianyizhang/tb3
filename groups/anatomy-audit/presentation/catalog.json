@@ -1,0 +1,370 @@
+{
+  "title": "Anatomical labeling tasks",
+  "taxonomy": "presentation/task-explorer/taxonomy.json",
+  "entries": [
+    {
+      "id": "tb3-label-audit",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "anatomy-audit",
+      "category": "annotation-review",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-label-audit.md",
+      "experiments": [
+        {
+          "id": "anatomy-audit-br004",
+          "scope": "Eight-patient and per-patient conditions; full focus lists, distinct tasks and retained timeout."
+        }
+      ],
+      "nav_group": "Audit and correct annotations",
+      "illustration": {
+        "kind": "anatomy_audit",
+        "input": "CT and named annotations",
+        "output": "Affected label and spatial witness",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Gold marks the conceptual point/region; colored shapes indicate supplied labels only in annotation audits.",
+        "subject": "abdomen"
+      }
+    },
+    {
+      "id": "tb3-mixed-tissue-audit",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "anatomy-audit",
+      "category": "annotation-review",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-mixed-tissue-audit.md",
+      "experiments": [
+        {
+          "id": "anatomy-audit-br017",
+          "scope": "M01 whole absorption; M02 partial absorption; N01 unchanged; F01 focused follow-up. These remain distinct contracts/conditions."
+        }
+      ],
+      "operations": [
+        "recognition"
+      ],
+      "nav_group": "Audit and correct annotations",
+      "illustration": {
+        "kind": "anatomy_audit",
+        "input": "CT and potentially mixed named masks",
+        "output": "Host label, included class and witness",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Gold marks the conceptual point/region; colored shapes indicate supplied labels only in annotation audits.",
+        "subject": "abdomen"
+      }
+    },
+    {
+      "id": "tb3-supplied-object-identity",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "anatomy-audit",
+      "category": "recognition",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-supplied-object-identity.md",
+      "experiments": [
+        {
+          "id": "anatomy-audit-br013",
+          "scope": "Upper-abdominal identity; CT and geometric conditions remain separate."
+        },
+        {
+          "id": "anatomy-audit-br014",
+          "scope": "Inventory and fragmented-object conditions; preserve each object set."
+        },
+        {
+          "id": "anatomy-audit-br015",
+          "scope": "Clinical/image context and anatomical identity conditions."
+        }
+      ],
+      "nav_group": "Recognize and classify",
+      "illustration": {
+        "kind": "object_identity",
+        "input": "Supplied anonymous spatial objects",
+        "output": "Anatomical names for object IDs",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
+      }
+    },
+    {
+      "id": "tb3-unlabeled-anatomy-prototype",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "anatomy-audit",
+      "category": "recognition",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": true,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-unlabeled-anatomy-prototype.md",
+      "experiments": [
+        {
+          "id": "anatomy-audit-br011",
+          "scope": "I2 anonymous-object identity prototype only; I1/I3 hypotheses and author screening remain in the linked source study."
+        }
+      ],
+      "nav_group": "Recognize and classify",
+      "illustration": {
+        "kind": "object_identity",
+        "input": "Supplied objects under the proposed contract",
+        "output": "Anatomical identities for anonymous object IDs",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
+      }
+    },
+    {
+      "id": "tb3-ct-organ-segmentation",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "anatomy-audit",
+      "category": "segmentation",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-ct-organ-segmentation.md",
+      "experiments": [
+        {
+          "id": "ct-organ-segmentation-astra-xhigh",
+          "scope": "Original CT-only contract; Astra xhigh; 7,200-second CPU/no-GPU condition."
+        },
+        {
+          "id": "ct-organ-segmentation-astra-medium",
+          "scope": "Same frozen CT-only task; Astra medium."
+        },
+        {
+          "id": "ct-organ-segmentation-sol-xhigh",
+          "scope": "Same frozen CT-only task; Sol xhigh."
+        },
+        {
+          "id": "ct-organ-segmentation-astra-medium-litemedsam",
+          "scope": "New task digest; Astra medium plus LiteMedSAM skill/tool; same CT, targets and scientific scorer. Descriptive comparison, not isolated tool causality."
+        }
+      ],
+      "operations": [
+        "recognition"
+      ],
+      "nav_group": "Segment images",
+      "illustration": {
+        "kind": "segment",
+        "input": "Full native CT",
+        "output": "Semantic organ label volume",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Colors distinguish illustrative spatial classes; the exact label dictionary is in the task contract.",
+        "subject": "abdomen"
+      }
+    },
+    {
+      "id": "tb3-dental-original",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "anatomy-audit",
+      "category": "segmentation",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-dental-original.md",
+      "experiments": [
+        {
+          "id": "dental-ct-only-astra-medium",
+          "scope": "F018 official viewer CT/GT pair; Astra medium."
+        },
+        {
+          "id": "dental-f018-astra-xhigh",
+          "scope": "Same F018 source geometry; Astra xhigh."
+        },
+        {
+          "id": "dental-f002-astra-medium",
+          "scope": "F002 archive CT/GT; Astra medium. Different patient and source geometry."
+        }
+      ],
+      "operations": [
+        "recognition"
+      ],
+      "task_family": "tb3-dental-segmentation",
+      "nav_label": "Original contract",
+      "nav_group": "Segment images",
+      "illustration": {
+        "kind": "segment",
+        "input": "Native dental CBCT",
+        "output": "Dental structure and tooth labels",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Colors distinguish illustrative spatial classes; the exact label dictionary is in the task contract.",
+        "subject": "teeth",
+        "mask_mode": "multiclass"
+      }
+    },
+    {
+      "id": "tb3-dental-v2",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "anatomy-audit",
+      "category": "segmentation",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-dental-v2.md",
+      "experiments": [
+        {
+          "id": "dental-f002-contract-v2-astra-medium",
+          "scope": "F002 v2, Astra medium, no annotated example."
+        },
+        {
+          "id": "dental-f002-reference-v2-astra-medium",
+          "scope": "Same F002 v2, Astra medium, one F008 CT/annotation example."
+        }
+      ],
+      "operations": [
+        "recognition"
+      ],
+      "task_family": "tb3-dental-segmentation",
+      "nav_label": "F002 contract v2",
+      "nav_group": "Segment images",
+      "illustration": {
+        "kind": "segment",
+        "input": "F002 CT with v2 contract",
+        "output": "Dental labels under v2 boundaries",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Colors distinguish illustrative spatial classes; the exact label dictionary is in the task contract.",
+        "subject": "teeth",
+        "mask_mode": "multiclass"
+      }
+    },
+    {
+      "id": "tb3-dental-v3",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "anatomy-audit",
+      "category": "segmentation",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-dental-v3.md",
+      "experiments": [
+        {
+          "id": "dental-f018-contract-v3-astra-medium",
+          "scope": "F018 v3, Astra medium, no annotated example."
+        },
+        {
+          "id": "dental-f018-reference-v3-astra-medium",
+          "scope": "Same F018 v3, Astra medium, F008 example as the paired treatment."
+        }
+      ],
+      "operations": [
+        "recognition"
+      ],
+      "task_family": "tb3-dental-segmentation",
+      "nav_label": "F018 contract v3",
+      "nav_group": "Segment images",
+      "illustration": {
+        "kind": "segment",
+        "input": "F018 CT with v3 contract",
+        "output": "Dental labels under v3 boundaries",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Colors distinguish illustrative spatial classes; the exact label dictionary is in the task contract.",
+        "subject": "teeth",
+        "mask_mode": "multiclass"
+      }
+    },
+    {
+      "id": "tb3-mri-importer",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "anatomy-audit",
+      "category": "data-engineering",
+      "role": "task",
+      "agent_work": "implementation",
+      "proposed": false,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-mri-importer.md",
+      "experiments": [
+        {
+          "id": "anatomy-audit-mr-frame-association",
+          "scope": "Canonical importer contract; frame permutations and shared/per-frame metadata encodings."
+        }
+      ],
+      "nav_group": "Decode and transform data",
+      "illustration": {
+        "kind": "etl",
+        "input": "Shuffled MRI frame/metadata associations",
+        "output": "Canonical time, echo and slice arrays",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
+      }
+    },
+    {
+      "id": "tb3-segmentation-calibration",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "anatomy-audit",
+      "category": "segmentation",
+      "role": "tool-calibration",
+      "agent_work": "none",
+      "proposed": false,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-segmentation-calibration.md",
+      "experiments": [
+        {
+          "id": "sam-litemedsam-slice-calibration",
+          "scope": "72 primary predictions, CPU checks and a later SAM2 CPU diagnostic; preserve separate evidence scopes."
+        }
+      ],
+      "nav_group": "Segment images"
+    },
+    {
+      "id": "tb3-history-sourcing",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "anatomy-audit",
+      "category": "data-engineering",
+      "role": "source-study",
+      "agent_work": "none",
+      "proposed": false,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-history-sourcing.md",
+      "experiments": [
+        {
+          "id": "anatomy-audit-br003",
+          "scope": "Mixed personal-work investigation includes medical and nonmedical leads; not one homogeneous task definition."
+        }
+      ],
+      "nav_group": "Decode and transform data"
+    },
+    {
+      "id": "tb3-mask-reasoning-study",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "anatomy-audit",
+      "category": "annotation-review",
+      "role": "source-study",
+      "agent_work": "none",
+      "proposed": false,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-mask-reasoning-study.md",
+      "experiments": [
+        {
+          "id": "anatomy-audit-br010",
+          "scope": "Author investigation of anatomical consistency and mask-only shortcuts."
+        },
+        {
+          "id": "anatomy-audit-br011",
+          "scope": "Author shortcut screen and separate I1/I3 hypotheses. I2 identity prototype has its own proposed-task entry."
+        }
+      ],
+      "nav_group": "Audit and correct annotations"
+    },
+    {
+      "id": "tb3-anatomy-curation",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "anatomy-audit",
+      "category": "annotation-review",
+      "role": "source-study",
+      "agent_work": "none",
+      "proposed": false,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-anatomy-curation.md",
+      "experiments": [
+        {
+          "id": "anatomy-audit-br012",
+          "scope": "Source curation before trials; no autonomous agent task implied."
+        }
+      ],
+      "nav_group": "Audit and correct annotations"
+    }
+  ],
+  "task_families": {
+    "tb3-dental-segmentation": {
+      "title": "Segment dental anatomy from CBCT",
+      "selector": "Definition / revision"
+    }
+  }
+}

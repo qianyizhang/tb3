@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 from . import core as c
-from . import packaging
+from . import packaging, task_catalog
 from . import workflow as w
 
 
@@ -19,9 +19,7 @@ def main(argv=None):
     brief_sub = p.add_subparsers(dest="brief_command", required=True)
     for action in ("new", "build", "check"):
         b = brief_sub.add_parser(action)
-        b.add_argument(
-            "--catalog", default="discussions/medical-agent-repository-survey/catalog.json"
-        )
+        b.add_argument("--catalog", default=task_catalog.DEFAULT_CATALOG)
         if action == "new":
             b.add_argument("id")
             b.add_argument("--title", required=True)

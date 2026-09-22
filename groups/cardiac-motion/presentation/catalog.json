@@ -1,0 +1,172 @@
+{
+  "title": "Cardiac motion tasks",
+  "taxonomy": "presentation/task-explorer/taxonomy.json",
+  "entries": [
+    {
+      "id": "tb3-cardiac-contour-feasibility",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "cardiac-motion",
+      "category": "motion-mechanics",
+      "role": "source-study",
+      "agent_work": "none",
+      "proposed": false,
+      "brief": "groups/cardiac-motion/presentation/briefs/tb3-cardiac-contour-feasibility.md",
+      "experiments": [
+        {
+          "id": "cardiac-motion-br025",
+          "scope": "FeEcho4D source curation and author reconstruction pilot; no general-agent trial."
+        }
+      ],
+      "nav_group": "Recover motion and mechanics"
+    },
+    {
+      "id": "tb3-cardiac-anchor-feasibility",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "cardiac-motion",
+      "category": "motion-mechanics",
+      "role": "source-study",
+      "agent_work": "none",
+      "proposed": false,
+      "brief": "groups/cardiac-motion/presentation/briefs/tb3-cardiac-anchor-feasibility.md",
+      "experiments": [
+        {
+          "id": "cardiac-motion-br027",
+          "scope": "One- and two-anchor author screens with image tracking; no general-agent trial."
+        }
+      ],
+      "nav_group": "Recover motion and mechanics"
+    },
+    {
+      "id": "tb3-cardiac-material-feasibility",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "cardiac-motion",
+      "category": "motion-mechanics",
+      "role": "source-study",
+      "agent_work": "none",
+      "proposed": false,
+      "brief": "groups/cardiac-motion/presentation/briefs/tb3-cardiac-material-feasibility.md",
+      "experiments": [
+        {
+          "id": "cardiac-motion-br029",
+          "scope": "STRAUS reference audit, author affine/tissue fits and corrected mechanics diagnostics; not a blind agent trial."
+        }
+      ],
+      "nav_group": "Recover motion and mechanics"
+    },
+    {
+      "id": "tb3-cardiac-material-motion",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "cardiac-motion",
+      "category": "motion-mechanics",
+      "role": "task",
+      "agent_work": "implementation",
+      "proposed": false,
+      "brief": "groups/cardiac-motion/presentation/briefs/tb3-cardiac-material-motion.md",
+      "experiments": [
+        {
+          "id": "cardiac-motion-br031",
+          "scope": "Capability ladder: supplied-motion calculation, sparse views and volume observations; only documented executed stages count."
+        }
+      ],
+      "operations": [
+        "quantification"
+      ],
+      "nav_group": "Recover motion and mechanics",
+      "illustration": {
+        "kind": "dynamic_mesh",
+        "input": "Observations and stage-specific supplied anatomy/motion",
+        "output": "Material motion and deformation fields",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted.",
+        "subject": "ultrasound"
+      }
+    },
+    {
+      "id": "tb3-real-echo-reconstruction",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "cardiac-motion",
+      "category": "motion-mechanics",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/cardiac-motion/presentation/briefs/tb3-real-echo-reconstruction.md",
+      "experiments": [
+        {
+          "id": "cardiac-motion-br032",
+          "scope": "Single real-echo case; Sol xhigh; reference-free geometry interpretation."
+        }
+      ],
+      "nav_group": "Recover motion and mechanics",
+      "illustration": {
+        "kind": "dynamic_mesh",
+        "input": "Calibrated real ultrasound observations",
+        "output": "Dynamic cavity mesh with uncertainty",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted.",
+        "subject": "ultrasound"
+      }
+    },
+    {
+      "id": "tb3-clinical-cavity-adaptation",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "cardiac-motion",
+      "category": "motion-mechanics",
+      "role": "task",
+      "agent_work": "implementation",
+      "proposed": false,
+      "brief": "groups/cardiac-motion/presentation/briefs/tb3-clinical-cavity-adaptation.md",
+      "experiments": [
+        {
+          "id": "cardiac-motion-br034",
+          "scope": "Primary clinical task plus unchanged-executable adaptation/replay checks; distinct patients and evidence roles."
+        }
+      ],
+      "operations": [
+        "quantification",
+        "reporting"
+      ],
+      "nav_group": "Recover motion and mechanics",
+      "illustration": {
+        "kind": "dynamic_mesh",
+        "input": "Ultrasound and initial cavity surface",
+        "output": "Dynamic cavity and functional measurements",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted.",
+        "subject": "ultrasound"
+      }
+    },
+    {
+      "id": "tb3-mask-to-mechanics",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "cardiac-motion",
+      "category": "motion-mechanics",
+      "role": "task",
+      "agent_work": "implementation",
+      "proposed": false,
+      "brief": "groups/cardiac-motion/presentation/briefs/tb3-mask-to-mechanics.md",
+      "experiments": [
+        {
+          "id": "cardiac-motion-br035",
+          "scope": "Masks-only and masks-plus-images tasks; synthetic material truth and clinical cavity replay remain separate."
+        }
+      ],
+      "operations": [
+        "geometry",
+        "quantification"
+      ],
+      "nav_group": "Recover motion and mechanics",
+      "illustration": {
+        "kind": "dynamic_mesh",
+        "input": "All-phase supplied masks; optional images",
+        "output": "Shared mesh and F/E/J fields",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted.",
+        "input_form": "masks"
+      }
+    }
+  ],
+  "task_families": {}
+}

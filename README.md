@@ -18,9 +18,13 @@ sync preserves separately installed research packages while keeping declared
 versions locked. No command above downloads data or runs a model. To create a
 portable static build: `uv run med present`.
 
-| Group | Question |
+Find task definitions by [capability and research role](docs/task-taxonomy.md)
+in the Task Explorer (`uv run med brief build`). The groups below own research;
+their membership does not classify every child experiment as the same task.
+
+| Research group | Question |
 | --- | --- |
-| [Anatomy audit](groups/anatomy-audit/README.md) | Does the anatomy match the segmentation and its labels? |
+| [Anatomical labeling](groups/anatomy-audit/README.md) | Can agents construct and check anatomical labels from images or supplied objects? |
 | [Lesion localization](groups/lesion-localization/README.md) | Can the agent find a focal abnormality and justify it spatially? |
 | [Registration](groups/registration/README.md) | Which correspondences survive motion and changed context? |
 | [Tubular anatomy](groups/tubular-anatomy/README.md) | Can it recover connected paths, identify branches and construct curved views? |

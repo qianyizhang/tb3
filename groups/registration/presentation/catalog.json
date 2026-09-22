@@ -1,0 +1,136 @@
+{
+  "title": "Registration tasks",
+  "taxonomy": "presentation/task-explorer/taxonomy.json",
+  "entries": [
+    {
+      "id": "tb3-oblique-pose",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "registration",
+      "category": "correspondence",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/registration/presentation/briefs/tb3-oblique-pose.md",
+      "experiments": [
+        {
+          "id": "registration-br019",
+          "scope": "Same-acquisition full and partial sections."
+        },
+        {
+          "id": "registration-br020",
+          "scope": "Cross-reconstruction-kernel pose recovery."
+        }
+      ],
+      "nav_group": "Register and match",
+      "illustration": {
+        "kind": "register",
+        "input": "Oblique section and target CT",
+        "output": "Rigid pixel-to-patient transformation",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
+      }
+    },
+    {
+      "id": "tb3-respiratory-correspondence",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "registration",
+      "category": "correspondence",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/registration/presentation/briefs/tb3-respiratory-correspondence.md",
+      "experiments": [
+        {
+          "id": "registration-br021",
+          "scope": "Paired-3D and single-view conditions are different observations."
+        },
+        {
+          "id": "registration-br023",
+          "scope": "Fixed component interventions and agent comparisons."
+        },
+        {
+          "id": "registration-br024",
+          "scope": "Harder real-deformation cases; source/target neighborhoods remain explicit."
+        },
+        {
+          "id": "registration-br028",
+          "scope": "Full source-depth condition on patient3; do not pool with single-view conditions."
+        }
+      ],
+      "nav_group": "Register and match",
+      "illustration": {
+        "kind": "point_correspondence",
+        "input": "Source and target respiratory observations",
+        "output": "Corresponding target landmarks",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Gold: query point. Teal: initial or returned target point."
+      }
+    },
+    {
+      "id": "tb3-registration-analysis",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "registration",
+      "category": "correspondence",
+      "role": "analysis",
+      "agent_work": "none",
+      "proposed": false,
+      "brief": "groups/registration/presentation/briefs/tb3-registration-analysis.md",
+      "experiments": [
+        {
+          "id": "registration-br022",
+          "scope": "Systematic BR-021 failure analysis and retained diagnostic experiments."
+        }
+      ],
+      "nav_group": "Register and match"
+    },
+    {
+      "id": "resect-mri-us-correspondence",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "registration",
+      "category": "correspondence",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": true,
+      "brief": "groups/registration/presentation/briefs/resect-mri-us-correspondence.md",
+      "experiments": [],
+      "task_family": "tb3-resect",
+      "nav_label": "Proposed three-case design",
+      "nav_group": "Register and match"
+    },
+    {
+      "id": "tb3-resect-point-pilot",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "registration",
+      "category": "correspondence",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/registration/presentation/briefs/tb3-resect-point-pilot.md",
+      "experiments": [
+        {
+          "id": "resect-point-audit-astra-medium",
+          "scope": "Case A and B are two queries in one Astra medium task, not two independent attempts."
+        }
+      ],
+      "task_family": "tb3-resect",
+      "nav_label": "Two-query pilot",
+      "nav_group": "Register and match",
+      "illustration": {
+        "kind": "point_correspondence",
+        "input": "MRI query and initial ultrasound candidate",
+        "output": "Retained or corrected ultrasound point",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Gold: query point. Teal: initial or returned target point.",
+        "initial_candidate": true
+      }
+    }
+  ],
+  "task_families": {
+    "tb3-resect": {
+      "title": "Match MRI anatomy to intraoperative ultrasound",
+      "selector": "Definition / revision"
+    }
+  }
+}

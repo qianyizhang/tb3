@@ -1,13 +1,13 @@
 {
   "title": "Medical Agent Task Explorer",
-  "updated_on": "2026-09-21",
+  "updated_on": "2026-09-22",
   "source": "codex://threads/01a0bef4-b72c-7241-bb59-f5ca11d4db09",
   "inventory": "discussions/medical-agent-repository-survey/inventory.json",
   "entries": [
     {
       "id": "healthagentbench",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "recognition",
       "tag": "A list of answers",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench.md",
       "proposed": false,
@@ -20,32 +20,38 @@
         "output": "Present / absent findings",
         "caption": "Several findings may coexist. A list of labels does not describe their locations.",
         "subject": "chest-ct"
-      }
+      },
+      "role": "task",
+      "agent_work": "direct"
     },
     {
       "id": "abra",
       "repo": "ABRA",
-      "category": "Viewer operation",
+      "category": "segmentation",
       "tag": "Perception + tool use",
       "brief": "discussions/medical-agent-repository-survey/briefs/abra.md",
       "proposed": false,
       "repository_id": "abra",
-      "nav_group": "Image interpretation"
+      "nav_group": "Image interpretation",
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "bcer",
       "repo": "BCER",
-      "category": "Workflow execution",
+      "category": "reporting",
       "tag": "A chain of artifacts",
       "brief": "discussions/medical-agent-repository-survey/briefs/bcer.md",
       "proposed": false,
       "repository_id": "bcer",
-      "nav_group": "Complete MRI workflows"
+      "nav_group": "Complete MRI workflows",
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "automedbench",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Plan \u2192 validate \u2192 submit",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench.md",
       "proposed": false,
@@ -60,12 +66,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "multiclass",
         "subject": "abdomen"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-tsg",
       "repo": "AutoMedBench \u00b7 Multi-organ",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Native packaged example",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-tsg.md",
       "proposed": false,
@@ -73,22 +81,26 @@
       "example_case_id": "lite-case-TSG_00000001",
       "nav_group": "Segmentation",
       "task_family": "automed-segmentation",
-      "nav_label": "Multi-organ CT \u00b7 packaged Lite example"
+      "nav_label": "Multi-organ CT \u00b7 packaged Lite example",
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Measurements \u2192 image",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101.md",
       "proposed": false,
       "repository_id": "imaging101",
-      "nav_group": "CT & X-ray imaging"
+      "nav_group": "CT & X-ray imaging",
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "radagent",
       "repo": "RadAgent",
-      "category": "Interpretation",
+      "category": "reporting",
       "tag": "Tools \u2192 findings \u2192 report",
       "brief": "discussions/medical-agent-repository-survey/briefs/radagent.md",
       "proposed": false,
@@ -99,32 +111,28 @@
         "output": "Structured report",
         "caption": "Translate visible evidence into a report; the document drawing contains no clinical findings.",
         "subject": "chest-ct"
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "rexmle",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Train \u2192 predict \u2192 submit",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle.md",
       "proposed": false,
       "repository_id": "rexmle",
       "nav_group": "Brain vessels \u00b7 TopCoW",
       "task_family": "rex-topcow-segmentation",
-      "nav_label": "CT angiography"
-    },
-    {
-      "id": "ours",
-      "repo": "Our work \u00b7 BR-030",
-      "category": "Geometry",
-      "tag": "Existing internal reference",
-      "brief": "groups/tubular-anatomy/presentation/briefs/br030.md",
-      "proposed": false
+      "nav_label": "CT angiography",
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "healthagentbench-trial-matching",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "eligibility",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench-trial-matching.md",
       "proposed": false,
@@ -135,12 +143,14 @@
         "input": "Patient note + trial criteria",
         "output": "Eligible trial identifiers",
         "caption": "Eligibility depends on all relevant inclusion and exclusion rules, not topic similarity alone."
-      }
+      },
+      "role": "task",
+      "agent_work": "direct"
     },
     {
       "id": "healthagentbench-quality-combined",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "data-quality",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench-quality-combined.md",
       "proposed": false,
@@ -153,12 +163,14 @@
         "input": "Tables with inconsistent rows",
         "output": "Flagged row identifiers",
         "caption": "Identify affected source rows; the deliverable is not a rewritten patient record."
-      }
+      },
+      "role": "task",
+      "agent_work": "direct"
     },
     {
       "id": "healthagentbench-quality-demographic-conflict",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "data-quality",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench-quality-demographic-conflict.md",
       "proposed": false,
@@ -171,12 +183,14 @@
         "input": "Tables with inconsistent rows",
         "output": "Flagged row identifiers",
         "caption": "Identify affected source rows; the deliverable is not a rewritten patient record."
-      }
+      },
+      "role": "task",
+      "agent_work": "direct"
     },
     {
       "id": "healthagentbench-quality-impossible-value",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "data-quality",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench-quality-impossible-value.md",
       "proposed": false,
@@ -189,12 +203,14 @@
         "input": "Tables with inconsistent rows",
         "output": "Flagged row identifiers",
         "caption": "Identify affected source rows; the deliverable is not a rewritten patient record."
-      }
+      },
+      "role": "task",
+      "agent_work": "direct"
     },
     {
       "id": "healthagentbench-quality-inconsistency",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "data-quality",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench-quality-inconsistency.md",
       "proposed": false,
@@ -207,12 +223,14 @@
         "input": "Tables with inconsistent rows",
         "output": "Flagged row identifiers",
         "caption": "Identify affected source rows; the deliverable is not a rewritten patient record."
-      }
+      },
+      "role": "task",
+      "agent_work": "direct"
     },
     {
       "id": "healthagentbench-predict-acutemi",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "prediction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench-predict-acutemi.md",
       "proposed": false,
@@ -225,12 +243,14 @@
         "input": "History before a cutoff",
         "output": "Future-outcome probability",
         "caption": "Events after the prediction time must not leak into the features."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "healthagentbench-predict-celiac",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "prediction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench-predict-celiac.md",
       "proposed": false,
@@ -243,12 +263,14 @@
         "input": "History before a cutoff",
         "output": "Future-outcome probability",
         "caption": "Events after the prediction time must not leak into the features."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "healthagentbench-predict-hyperlipidemia",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "prediction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench-predict-hyperlipidemia.md",
       "proposed": false,
@@ -261,12 +283,14 @@
         "input": "History before a cutoff",
         "output": "Future-outcome probability",
         "caption": "Events after the prediction time must not leak into the features."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "healthagentbench-predict-hypertension",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "prediction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench-predict-hypertension.md",
       "proposed": false,
@@ -279,12 +303,14 @@
         "input": "History before a cutoff",
         "output": "Future-outcome probability",
         "caption": "Events after the prediction time must not leak into the features."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "healthagentbench-predict-lupus",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "prediction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench-predict-lupus.md",
       "proposed": false,
@@ -297,12 +323,14 @@
         "input": "History before a cutoff",
         "output": "Future-outcome probability",
         "caption": "Events after the prediction time must not leak into the features."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "healthagentbench-predict-pancan",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "prediction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench-predict-pancan.md",
       "proposed": false,
@@ -315,12 +343,14 @@
         "input": "History before a cutoff",
         "output": "Future-outcome probability",
         "caption": "Events after the prediction time must not leak into the features."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "healthagentbench-meds-etl",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "data-engineering",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench-meds-etl.md",
       "proposed": false,
@@ -331,12 +361,14 @@
         "input": "Several source tables",
         "output": "One event representation",
         "caption": "Preserve patient, time and code relationships while changing the data representation."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "healthagentbench-tumor-tiles",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "localization",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench-tumor-tiles.md",
       "proposed": false,
@@ -348,12 +380,14 @@
         "input": "A grid of slide tiles",
         "output": "Selected tumor-bearing tiles",
         "caption": "The task chooses regions from a larger slide rather than classifying a whole patient."
-      }
+      },
+      "role": "task",
+      "agent_work": "direct"
     },
     {
       "id": "healthagentbench-cxr-correction",
       "repo": "HealthAgentBench",
-      "category": "Interpretation",
+      "category": "annotation-review",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/healthagentbench-cxr-correction.md",
       "proposed": false,
@@ -366,12 +400,14 @@
         "output": "Corrected findings text",
         "caption": "The supplied draft may contain errors. Revise its findings against the image evidence.",
         "subject": "chest"
-      }
+      },
+      "role": "task",
+      "agent_work": "direct"
     },
     {
       "id": "bcer-short-denoise",
       "repo": "BCER",
-      "category": "Workflow execution",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/bcer-short-denoise.md",
       "proposed": false,
@@ -382,12 +418,14 @@
         "input": "Noisy measurements or image",
         "output": "Noise-reduced image",
         "caption": "Suppress noise while preserving genuine fine structure; smoothness alone is not success."
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "bcer-short-superres",
       "repo": "BCER",
-      "category": "Workflow execution",
+      "category": "data-engineering",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/bcer-short-superres.md",
       "proposed": false,
@@ -398,12 +436,14 @@
         "input": "Coarse image grid",
         "output": "Finer image grid",
         "caption": "Resample onto the requested grid. This task checks geometry and artifacts, not recovery of unseen detail."
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "bcer-short-segment-brain",
       "repo": "BCER",
-      "category": "Workflow execution",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/bcer-short-segment-brain.md",
       "proposed": false,
@@ -416,12 +456,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "multiclass",
         "subject": "brain"
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "bcer-short-recon-grappa",
       "repo": "BCER",
-      "category": "Workflow execution",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/bcer-short-recon-grappa.md",
       "proposed": false,
@@ -433,12 +475,14 @@
         "output": "Reconstructed MRI image",
         "caption": "Missing measurements must be constrained by the encoding model and the selected prior.",
         "subject": "heart"
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "bcer-medium-register-prostate",
       "repo": "BCER",
-      "category": "Workflow execution",
+      "category": "correspondence",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/bcer-medium-register-prostate.md",
       "proposed": false,
@@ -449,12 +493,14 @@
         "input": "Misaligned image pair",
         "output": "Aligned images",
         "caption": "Match the same anatomy across images without changing its identity."
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "bcer-medium-brain-grade-classify",
       "repo": "BCER",
-      "category": "Workflow execution",
+      "category": "recognition",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/bcer-medium-brain-grade-classify.md",
       "proposed": false,
@@ -466,12 +512,14 @@
         "output": "One class label",
         "caption": "A label summarizes the image; it does not locate the finding.",
         "subject": "brain"
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "bcer-long-cardiac-full",
       "repo": "BCER",
-      "category": "Workflow execution",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/bcer-long-cardiac-full.md",
       "proposed": false,
@@ -483,12 +531,14 @@
         "output": "Processed artifacts + report",
         "caption": "Each operation must receive the right artifact and preserve the required metadata.",
         "subject": "heart"
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "bcer-long-brain-full",
       "repo": "BCER",
-      "category": "Workflow execution",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/bcer-long-brain-full.md",
       "proposed": false,
@@ -500,12 +550,14 @@
         "output": "Processed artifacts + report",
         "caption": "Each operation must receive the right artifact and preserve the required metadata.",
         "subject": "brain"
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "abra-viewer-control",
       "repo": "ABRA",
-      "category": "Viewer operation",
+      "category": "workflow-operation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/abra-viewer-control.md",
       "proposed": false,
@@ -516,12 +568,14 @@
         "input": "Viewer in its initial state",
         "output": "Requested display state",
         "caption": "The task is to operate controls and reach the specified view."
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "abra-metadata-qa",
       "repo": "ABRA",
-      "category": "Viewer operation",
+      "category": "data-engineering",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/abra-metadata-qa.md",
       "proposed": false,
@@ -532,12 +586,14 @@
         "input": "Study metadata fields",
         "output": "Requested field answer",
         "caption": "Read acquisition or study metadata; no image interpretation is implied."
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "abra-vision-probe",
       "repo": "ABRA",
-      "category": "Viewer operation",
+      "category": "recognition",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/abra-vision-probe.md",
       "proposed": false,
@@ -548,12 +604,14 @@
         "input": "An image to classify",
         "output": "One class label",
         "caption": "A label summarizes the image; it does not locate the finding."
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "abra-longitudinal",
       "repo": "ABRA",
-      "category": "Viewer operation",
+      "category": "longitudinal-analysis",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/abra-longitudinal.md",
       "proposed": false,
@@ -564,12 +622,14 @@
         "input": "Earlier and later studies",
         "output": "Matched findings over time",
         "caption": "Distinguish a genuine change from differences in position, slice or appearance."
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "abra-birads",
       "repo": "ABRA",
-      "category": "Viewer operation",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/abra-birads.md",
       "proposed": false,
@@ -581,12 +641,14 @@
         "output": "Laterality, count, enhancement + BI-RADS category",
         "caption": "Compare multiple MRI series and submit structured fields. The highlighted spot is illustrative; no patient finding or assessment is supplied.",
         "subject": "breast"
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "radagent-vqa",
       "repo": "RadAgent",
-      "category": "Interpretation",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/radagent-vqa.md",
       "proposed": false,
@@ -597,12 +659,14 @@
         "output": "An answer",
         "caption": "The question determines which image evidence matters and which answer format is required.",
         "subject": "chest-ct"
-      }
+      },
+      "role": "task",
+      "agent_work": "workflow"
     },
     {
       "id": "imaging101-cars-spectroscopy",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "quantification",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-cars-spectroscopy.md",
       "proposed": false,
@@ -613,12 +677,14 @@
         "input": "Raman spectral curve",
         "output": "Estimated temperature",
         "caption": "Fit the measurement model to a spectrum to estimate a physical parameter."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-confocal-nlos-fk",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-confocal-nlos-fk.md",
       "proposed": false,
@@ -629,12 +695,14 @@
         "input": "Light returned from a wall",
         "output": "Hidden object",
         "caption": "The object is outside direct view; indirect light paths carry the geometric information."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-conventional-ptychography",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-conventional-ptychography.md",
       "proposed": false,
@@ -645,12 +713,14 @@
         "input": "Overlapping diffraction views",
         "output": "Complex image",
         "caption": "Overlapping observations constrain object structure that is not directly visible in each pattern."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-ct-dual-energy",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-ct-dual-energy.md",
       "proposed": false,
@@ -661,12 +731,14 @@
         "input": "Two X-ray energy channels",
         "output": "Material maps",
         "caption": "Separate material contributions instead of producing only one grayscale image."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-ct-fan-beam",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-ct-fan-beam.md",
       "proposed": false,
@@ -677,12 +749,14 @@
         "input": "Projection measurements",
         "output": "Reconstructed slice or volume",
         "caption": "Each projection mixes contributions along rays; reconstruction must reconcile many views."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-ct-poisson-lowdose",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-ct-poisson-lowdose.md",
       "proposed": false,
@@ -693,12 +767,14 @@
         "input": "Projection measurements",
         "output": "Reconstructed slice or volume",
         "caption": "Each projection mixes contributions along rays; reconstruction must reconcile many views."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-differentiable-deflectometry",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "geometry",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-differentiable-deflectometry.md",
       "proposed": false,
@@ -709,12 +785,14 @@
         "input": "Phase fringes from two cameras",
         "output": "Lens geometry + pose parameters",
         "caption": "Use calibrated reflected patterns to estimate curvature, thickness and pose. The profile is a schematic, not a recovered lens."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-diffusion-mri-dti",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "quantification",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-diffusion-mri-dti.md",
       "proposed": false,
@@ -725,12 +803,14 @@
         "input": "Directional MRI signals",
         "output": "Diffusion tensor map",
         "caption": "Different diffusion directions constrain a local orientation-dependent quantity."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-eht-black-hole-uq",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "quantification",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-eht-black-hole-uq.md",
       "proposed": false,
@@ -741,12 +821,14 @@
         "input": "Incomplete observations",
         "output": "An uncertainty estimate",
         "caption": "Uncertainty describes what observations leave unresolved, not just a best-looking image."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-eht-black-hole-dynamic",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-eht-black-hole-dynamic.md",
       "proposed": false,
@@ -757,12 +839,14 @@
         "input": "Observations over time",
         "output": "Evolving source structure",
         "caption": "The solution must account for changes over time as well as incomplete sampling."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-eht-black-hole-feature-extraction-dynamic",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "quantification",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-eht-black-hole-feature-extraction-dynamic.md",
       "proposed": false,
@@ -773,12 +857,14 @@
         "input": "Observations over time",
         "output": "Time-varying image features",
         "caption": "Infer how the source features evolve; the requested quantities are not a full image sequence."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-eht-black-hole-original",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-eht-black-hole-original.md",
       "proposed": false,
@@ -789,12 +875,14 @@
         "input": "Sparse or distorted observations",
         "output": "Reconstructed celestial image",
         "caption": "The requested image must remain consistent with the observation model."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-eht-black-hole-tomography",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-eht-black-hole-tomography.md",
       "proposed": false,
@@ -805,12 +893,14 @@
         "input": "Projected observations",
         "output": "3D emission field",
         "caption": "Different depths can contribute to the same observation."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-eit-conductivity-reconstruction",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-eit-conductivity-reconstruction.md",
       "proposed": false,
@@ -820,12 +910,14 @@
         "input": "Boundary voltages",
         "output": "Interior conductivity",
         "caption": "Measurements at the boundary constrain a spatial property inside the object."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-electron-ptychography",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-electron-ptychography.md",
       "proposed": false,
@@ -836,12 +928,14 @@
         "input": "Overlapping diffraction views",
         "output": "Complex image",
         "caption": "Overlapping observations constrain object structure that is not directly visible in each pattern."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-era5-tensorvar",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "prediction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-era5-tensorvar.md",
       "proposed": false,
@@ -852,12 +946,14 @@
         "input": "Sparse or noisy observations",
         "output": "Recovered field",
         "caption": "Combine incomplete observations across space or time under the task model."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-exoplanet-imaging",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-exoplanet-imaging.md",
       "proposed": false,
@@ -868,12 +964,14 @@
         "input": "Bright star + faint companion",
         "output": "Companion signal",
         "caption": "Suppress the bright source without erasing the much fainter target."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-fourier-ptychography",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-fourier-ptychography.md",
       "proposed": false,
@@ -884,12 +982,14 @@
         "input": "Overlapping diffraction views",
         "output": "Complex image",
         "caption": "Overlapping observations constrain object structure that is not directly visible in each pattern."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-fpm-inr-reconstruction",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-fpm-inr-reconstruction.md",
       "proposed": false,
@@ -900,12 +1000,14 @@
         "input": "Encoded optical measurements",
         "output": "Recovered 3D structure",
         "caption": "A 2D detector measurement encodes contributions from multiple depths."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-hessian-sim",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-hessian-sim.md",
       "proposed": false,
@@ -916,12 +1018,14 @@
         "input": "Patterned-illumination images",
         "output": "Reconstructed image sequence",
         "caption": "Combine illumination patterns and temporal structure; the frames shown are schematic."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-insar-phase-unwrapping",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-insar-phase-unwrapping.md",
       "proposed": false,
@@ -932,12 +1036,14 @@
         "input": "Wrapped phase",
         "output": "Continuous phase field",
         "caption": "The jumps represent wrapped values; the underlying field must be made consistent."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-lensless-imaging",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-lensless-imaging.md",
       "proposed": false,
@@ -948,12 +1054,14 @@
         "input": "Mixed detector pattern",
         "output": "Recovered scene",
         "caption": "The calibrated optical response must undo the spatial mixing in the measurement."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-light-field-microscope",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-light-field-microscope.md",
       "proposed": false,
@@ -964,12 +1072,14 @@
         "input": "Encoded optical measurements",
         "output": "Recovered 3D structure",
         "caption": "A 2D detector measurement encodes contributions from multiple depths."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-lucky-imaging",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-lucky-imaging.md",
       "proposed": false,
@@ -980,12 +1090,14 @@
         "input": "Blurred lunar-image frames",
         "output": "Combined lunar image",
         "caption": "The requested image must remain consistent with the observation model."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-mcr-hyperspectral",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "quantification",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-mcr-hyperspectral.md",
       "proposed": false,
@@ -996,12 +1108,14 @@
         "input": "Mixed spectral measurements",
         "output": "Separated components",
         "caption": "Overlapping spectral contributions must be separated, not merely assigned one image label."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-microscope-denoising",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-microscope-denoising.md",
       "proposed": false,
@@ -1013,12 +1127,14 @@
         "output": "Noise-reduced image",
         "caption": "Suppress noise while preserving genuine fine structure; smoothness alone is not success.",
         "subject": "tissue"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-mri-dynamic-dce",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-mri-dynamic-dce.md",
       "proposed": false,
@@ -1029,12 +1145,14 @@
         "input": "Measurements across time",
         "output": "Image sequence",
         "caption": "Recover spatial structure while retaining changes between time points."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-mri-grappa",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-mri-grappa.md",
       "proposed": false,
@@ -1045,12 +1163,14 @@
         "input": "Incomplete frequency samples",
         "output": "Reconstructed MRI image",
         "caption": "Missing measurements must be constrained by the encoding model and the selected prior."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-mri-l1-wavelet",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-mri-l1-wavelet.md",
       "proposed": false,
@@ -1061,12 +1181,14 @@
         "input": "Incomplete frequency samples",
         "output": "Reconstructed MRI image",
         "caption": "Missing measurements must be constrained by the encoding model and the selected prior."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-mri-noncartesian-cs",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-mri-noncartesian-cs.md",
       "proposed": false,
@@ -1077,12 +1199,14 @@
         "input": "Incomplete frequency samples",
         "output": "Reconstructed MRI image",
         "caption": "Missing measurements must be constrained by the encoding model and the selected prior."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-mri-pnp-admm",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-mri-pnp-admm.md",
       "proposed": false,
@@ -1094,12 +1218,14 @@
         "output": "Reconstructed MRI image",
         "caption": "Missing measurements must be constrained by the encoding model and the selected prior.",
         "subject": "brain"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-mri-sense",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-mri-sense.md",
       "proposed": false,
@@ -1110,12 +1236,14 @@
         "input": "Incomplete frequency samples",
         "output": "Reconstructed MRI image",
         "caption": "Missing measurements must be constrained by the encoding model and the selected prior."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-mri-t2-mapping",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "quantification",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-mri-t2-mapping.md",
       "proposed": false,
@@ -1126,12 +1254,14 @@
         "input": "MRI signals at several echoes",
         "output": "Relaxation map",
         "caption": "Fit the signal changes at each location rather than returning a single anatomical image."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-mri-tv",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-mri-tv.md",
       "proposed": false,
@@ -1143,12 +1273,14 @@
         "output": "Reconstructed MRI image",
         "caption": "Missing measurements must be constrained by the encoding model and the selected prior.",
         "subject": "knee"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-mri-varnet",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-mri-varnet.md",
       "proposed": false,
@@ -1160,12 +1292,14 @@
         "output": "Reconstructed MRI image",
         "caption": "Missing measurements must be constrained by the encoding model and the selected prior.",
         "subject": "knee"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-pet-mlem",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-pet-mlem.md",
       "proposed": false,
@@ -1175,12 +1309,14 @@
         "input": "Detected coincidence counts",
         "output": "Tracer activity map",
         "caption": "Infer the activity distribution from count measurements and the acquisition model."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-photoacoustic-tomography",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-photoacoustic-tomography.md",
       "proposed": false,
@@ -1191,12 +1327,14 @@
         "input": "Acoustic traces after illumination",
         "output": "Initial pressure map",
         "caption": "Use the propagation model to trace the recorded signals back into the object."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-plane-wave-ultrasound",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-plane-wave-ultrasound.md",
       "proposed": false,
@@ -1207,12 +1345,14 @@
         "input": "Echo signals",
         "output": "Ultrasound image",
         "caption": "Echo timing and the acquisition geometry determine where image structure belongs."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-pnp-mri-reconstruction",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-pnp-mri-reconstruction.md",
       "proposed": false,
@@ -1224,12 +1364,14 @@
         "output": "Reconstructed MRI image",
         "caption": "Missing measurements must be constrained by the encoding model and the selected prior.",
         "subject": "knee"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-raman-cell-phenotyping",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "quantification",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-raman-cell-phenotyping.md",
       "proposed": false,
@@ -1240,12 +1382,14 @@
         "input": "Mixed spectral measurements",
         "output": "Separated components",
         "caption": "Overlapping spectral contributions must be separated, not merely assigned one image label."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-reflection-odt",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-reflection-odt.md",
       "proposed": false,
@@ -1256,12 +1400,14 @@
         "input": "Reflected optical fields",
         "output": "3D refractive-index volume",
         "caption": "Measured complex fields constrain an unknown volume; multiple scattering couples its depths."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-s2ism",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-s2ism.md",
       "proposed": false,
@@ -1272,12 +1418,14 @@
         "input": "Encoded optical measurements",
         "output": "Recovered 3D structure",
         "caption": "A 2D detector measurement encodes contributions from multiple depths."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-seismic-fwi-original",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-seismic-fwi-original.md",
       "proposed": false,
@@ -1288,12 +1436,14 @@
         "input": "Waveforms / arrival times",
         "output": "Subsurface structure",
         "caption": "Travel paths depend on the unknown interior; similar signals can have different explanations."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-seismic-lsrtm-original",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-seismic-lsrtm-original.md",
       "proposed": false,
@@ -1304,12 +1454,14 @@
         "input": "Waveforms / arrival times",
         "output": "Subsurface structure",
         "caption": "Travel paths depend on the unknown interior; similar signals can have different explanations."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-seismic-traveltime-tomography",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-seismic-traveltime-tomography.md",
       "proposed": false,
@@ -1320,12 +1472,14 @@
         "input": "Waveforms / arrival times",
         "output": "Subsurface structure",
         "caption": "Travel paths depend on the unknown interior; similar signals can have different explanations."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-shack-hartmann",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-shack-hartmann.md",
       "proposed": false,
@@ -1336,12 +1490,14 @@
         "input": "Spot shifts or fringe patterns",
         "output": "Optical shape / wavefront",
         "caption": "Observed distortions constrain the unknown optical surface or wavefront."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-shapelet-source-reconstruction",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-shapelet-source-reconstruction.md",
       "proposed": false,
@@ -1352,12 +1508,14 @@
         "input": "Gravitationally lensed image",
         "output": "Recovered background galaxy",
         "caption": "The requested image must remain consistent with the observation model."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-single-molecule-light-field",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "localization",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-single-molecule-light-field.md",
       "proposed": false,
@@ -1368,12 +1526,14 @@
         "input": "Light-field observations",
         "output": "3D molecule locations",
         "caption": "The requested output is a set of positions rather than a dense image volume."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-spectral-snapshot-compressive-imaging",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-spectral-snapshot-compressive-imaging.md",
       "proposed": false,
@@ -1384,12 +1544,14 @@
         "input": "One coded snapshot image",
         "output": "Spatial image cube with 31 bands",
         "caption": "Recover an image at each wavelength from one multiplexed measurement. The stack axis is wavelength, not depth."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-ssnp-idt",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-ssnp-idt.md",
       "proposed": false,
@@ -1400,12 +1562,14 @@
         "input": "Intensity at many angles",
         "output": "3D refractive-index volume",
         "caption": "Depth and phase must be inferred from intensity measurements and the optical model."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-ssnp-odt",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-ssnp-odt.md",
       "proposed": false,
@@ -1416,12 +1580,14 @@
         "input": "8 amplitude + phase views",
         "output": "308 \u00d7 256 \u00d7 256 RI volume",
         "caption": "Eight measured views constrain a 3D refractive-index volume. The drawing is conceptual; dimensions come from the pinned task README."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-ultrasound-sos-tomography",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-ultrasound-sos-tomography.md",
       "proposed": false,
@@ -1432,12 +1598,14 @@
         "input": "Transmitted acoustic signals",
         "output": "Sound-speed map",
         "caption": "Recover a physical-property field, not a conventional echo-brightness image."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-usct-fwi",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-usct-fwi.md",
       "proposed": false,
@@ -1448,12 +1616,14 @@
         "input": "Transmitted acoustic signals",
         "output": "Sound-speed map",
         "caption": "Recover a physical-property field, not a conventional echo-brightness image."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-weather-radar-data-assimilation",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "prediction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-weather-radar-data-assimilation.md",
       "proposed": false,
@@ -1464,12 +1634,14 @@
         "input": "Sparse or noisy observations",
         "output": "Recovered field",
         "caption": "Combine incomplete observations across space or time under the task model."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-xray-laminography-tike",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-xray-laminography-tike.md",
       "proposed": false,
@@ -1480,12 +1652,14 @@
         "input": "Projection measurements",
         "output": "Reconstructed slice or volume",
         "caption": "Each projection mixes contributions along rays; reconstruction must reconcile many views."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-xray-ptychography-tike",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-xray-ptychography-tike.md",
       "proposed": false,
@@ -1496,12 +1670,14 @@
         "input": "Overlapping diffraction views",
         "output": "Complex image",
         "caption": "Overlapping observations constrain object structure that is not directly visible in each pattern."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "imaging101-xray-tooth-gridrec",
       "repo": "Imaging-101 / Inverse-101",
-      "category": "Reconstruction",
+      "category": "image-reconstruction",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/imaging101-xray-tooth-gridrec.md",
       "proposed": false,
@@ -1513,12 +1689,14 @@
         "output": "Reconstructed slice or volume",
         "caption": "Each projection mixes contributions along rays; reconstruction must reconcile many views.",
         "subject": "teeth"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-dentex",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "localization",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-dentex.md",
       "proposed": false,
@@ -1529,12 +1707,14 @@
         "output": "Boxes and class labels",
         "caption": "The output must describe where each target is, not only whether it exists.",
         "subject": "teeth"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-isles22",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-isles22.md",
       "proposed": false,
@@ -1546,12 +1726,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "binary",
         "subject": "brain"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-ldct-iqa",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "data-quality",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-ldct-iqa.md",
       "proposed": false,
@@ -1561,12 +1743,14 @@
         "input": "A degraded image",
         "output": "A quality estimate",
         "caption": "Rate image quality rather than correcting the pixels."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-neurips-cellseg",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-neurips-cellseg.md",
       "proposed": false,
@@ -1576,12 +1760,14 @@
         "input": "Touching cells",
         "output": "Separate cell identities",
         "caption": "Each object needs its own boundary, including where neighboring cells touch."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-panther-task1",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-panther-task1.md",
       "proposed": false,
@@ -1596,12 +1782,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "binary",
         "subject": "abdomen"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-panther-task2",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-panther-task2.md",
       "proposed": false,
@@ -1616,12 +1804,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "binary",
         "subject": "abdomen"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-puma-track1-task1",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-puma-track1-task1.md",
       "proposed": false,
@@ -1634,12 +1824,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "multiclass",
         "subject": "tissue"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-puma-track1-task2",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "localization",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-puma-track1-task2.md",
       "proposed": false,
@@ -1652,12 +1844,14 @@
         "input": "Nuclei in tissue",
         "output": "Locations and cell types",
         "caption": "Finding objects and assigning their types are separate parts of the task."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-puma-track2-task2",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "localization",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-puma-track2-task2.md",
       "proposed": false,
@@ -1670,12 +1864,14 @@
         "input": "Nuclei in tissue",
         "output": "Locations and cell types",
         "caption": "Finding objects and assigning their types are separate parts of the task."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-seg-a",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-seg-a.md",
       "proposed": false,
@@ -1687,12 +1883,14 @@
         "caption": "Keep the trunk and thin branches connected in the spatial output; a single solid region would omit the branching target.",
         "mask_mode": "binary",
         "subject": "aorta"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-topbrain-track1",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-topbrain-track1.md",
       "proposed": false,
@@ -1707,12 +1905,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "multiclass",
         "subject": "brain-vessels"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-topbrain-track2",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-topbrain-track2.md",
       "proposed": false,
@@ -1727,12 +1927,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "multiclass",
         "subject": "brain-vessels"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-topcow-track2-task1",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-topcow-track2-task1.md",
       "proposed": false,
@@ -1747,12 +1949,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "multiclass",
         "subject": "brain-vessels"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-topcow-track1-task2",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "localization",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-topcow-track1-task2.md",
       "proposed": false,
@@ -1765,12 +1969,14 @@
         "input": "A whole scan volume",
         "output": "3D region of interest",
         "caption": "A localization box encloses the target; it is not a vessel segmentation."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-topcow-track2-task2",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "localization",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-topcow-track2-task2.md",
       "proposed": false,
@@ -1783,12 +1989,14 @@
         "input": "A whole scan volume",
         "output": "3D region of interest",
         "caption": "A localization box encloses the target; it is not a vessel segmentation."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-topcow-track1-task3",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "recognition",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-topcow-track1-task3.md",
       "proposed": false,
@@ -1801,12 +2009,14 @@
         "input": "Vascular image evidence",
         "output": "Connection labels",
         "caption": "Decide which anatomical connections exist rather than only coloring visible vessels."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-topcow-track2-task3",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "recognition",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-topcow-track2-task3.md",
       "proposed": false,
@@ -1819,12 +2029,14 @@
         "input": "Vascular image evidence",
         "output": "Connection labels",
         "caption": "Decide which anatomical connections exist rather than only coloring visible vessels."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "rexmle-usenhance",
       "repo": "ReX-MLE",
-      "category": "ML workflow",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/rexmle-usenhance.md",
       "proposed": false,
@@ -1835,12 +2047,14 @@
         "output": "Noise-reduced image",
         "caption": "Suppress noise while preserving genuine fine structure; smoothness alone is not success.",
         "subject": "ultrasound"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-braintumor-cls-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "recognition",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-braintumor-cls-task.md",
       "proposed": false,
@@ -1860,12 +2074,14 @@
           "pituitary"
         ],
         "subject": "brain"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-chest-xray-pneumonia-cls-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "recognition",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-chest-xray-pneumonia-cls-task.md",
       "proposed": false,
@@ -1883,12 +2099,14 @@
           "pneumonia"
         ],
         "subject": "chest"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-crc-histology-cls-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "recognition",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-crc-histology-cls-task.md",
       "proposed": false,
@@ -1913,12 +2131,14 @@
           "tum"
         ],
         "subject": "tissue"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-patchcamelyon-cls-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "recognition",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-patchcamelyon-cls-task.md",
       "proposed": false,
@@ -1936,12 +2156,14 @@
           "positive"
         ],
         "subject": "tissue"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-skin-lesion-cls-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "recognition",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-skin-lesion-cls-task.md",
       "proposed": false,
@@ -1964,12 +2186,14 @@
           "vascular_lesions"
         ],
         "subject": "skin"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-bccd-det-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "localization",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-bccd-det-task.md",
       "proposed": false,
@@ -1983,12 +2207,14 @@
         "output": "Boxes and class labels",
         "caption": "The output must describe where each target is, not only whether it exists.",
         "subject": "tissue"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-dentex-det-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "localization",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-dentex-det-task.md",
       "proposed": false,
@@ -2002,12 +2228,14 @@
         "output": "Boxes and class labels",
         "caption": "The output must describe where each target is, not only whether it exists.",
         "subject": "teeth"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-grazpedwri-det-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "localization",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-grazpedwri-det-task.md",
       "proposed": false,
@@ -2021,12 +2249,14 @@
         "output": "Boxes and class labels",
         "caption": "The output must describe where each target is, not only whether it exists.",
         "subject": "wrist"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-vindr-cxr-det-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "localization",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-vindr-cxr-det-task.md",
       "proposed": false,
@@ -2040,12 +2270,14 @@
         "output": "Boxes and class labels",
         "caption": "The output must describe where each target is, not only whether it exists.",
         "subject": "chest"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-brats-t1c-sr-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-brats-t1c-sr-task.md",
       "proposed": false,
@@ -2059,12 +2291,14 @@
         "output": "Finer image grid",
         "caption": "More output pixels do not by themselves establish recovered anatomical detail.",
         "subject": "brain"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-deeplesion-denoising-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-deeplesion-denoising-task.md",
       "proposed": false,
@@ -2077,12 +2311,14 @@
         "input": "Noisy measurements or image",
         "output": "Noise-reduced image",
         "caption": "Suppress noise while preserving genuine fine structure; smoothness alone is not success."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-ixi-t1-sr-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-ixi-t1-sr-task.md",
       "proposed": false,
@@ -2096,12 +2332,14 @@
         "output": "Finer image grid",
         "caption": "More output pixels do not by themselves establish recovered anatomical detail.",
         "subject": "brain"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-ldct-denoising-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-ldct-denoising-task.md",
       "proposed": false,
@@ -2114,12 +2352,14 @@
         "input": "Noisy measurements or image",
         "output": "Noise-reduced image",
         "caption": "Suppress noise while preserving genuine fine structure; smoothness alone is not success."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-lidc-idri-denoising-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-lidc-idri-denoising-task.md",
       "proposed": false,
@@ -2133,12 +2373,14 @@
         "output": "Noise-reduced image",
         "caption": "Suppress noise while preserving genuine fine structure; smoothness alone is not success.",
         "subject": "chest-ct"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-mri-sr-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-mri-sr-task.md",
       "proposed": false,
@@ -2151,12 +2393,14 @@
         "input": "Coarse image grid",
         "output": "Finer image grid",
         "caption": "More output pixels do not by themselves establish recovered anatomical detail."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-nih-cxr-sr-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-nih-cxr-sr-task.md",
       "proposed": false,
@@ -2170,12 +2414,14 @@
         "output": "Finer image grid",
         "caption": "More output pixels do not by themselves establish recovered anatomical detail.",
         "subject": "chest"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-chexpert-plus-cxr-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-chexpert-plus-cxr-task.md",
       "proposed": false,
@@ -2189,12 +2435,14 @@
         "output": "Structured report",
         "caption": "Translate visible evidence into a report; the document drawing contains no clinical findings.",
         "subject": "chest"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-iu-xray-report-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-iu-xray-report-task.md",
       "proposed": false,
@@ -2208,12 +2456,14 @@
         "output": "Structured report",
         "caption": "Translate visible evidence into a report; the document drawing contains no clinical findings.",
         "subject": "chest"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-mimic-cxr-report-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-mimic-cxr-report-task.md",
       "proposed": false,
@@ -2227,12 +2477,14 @@
         "output": "Structured report",
         "caption": "Translate visible evidence into a report; the document drawing contains no clinical findings.",
         "subject": "chest"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-pathology-caption-100-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-pathology-caption-100-task.md",
       "proposed": false,
@@ -2246,12 +2498,14 @@
         "output": "A descriptive sentence",
         "caption": "An image caption describes the visible content in words.",
         "subject": "tissue"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-pathology-caption-500-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-pathology-caption-500-task.md",
       "proposed": false,
@@ -2265,12 +2519,14 @@
         "output": "A descriptive sentence",
         "caption": "An image caption describes the visible content in words.",
         "subject": "tissue"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-aeropath-seg-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-aeropath-seg-task.md",
       "proposed": false,
@@ -2285,12 +2541,14 @@
         "caption": "Broad lung regions and thin airway branches require separate labels. A lung-only output omits a scored structure.",
         "mask_mode": "multiclass",
         "subject": "airways"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-colon-seg-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-colon-seg-task.md",
       "proposed": false,
@@ -2305,12 +2563,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "binary",
         "subject": "abdomen"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-feta-seg-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-feta-seg-task.md",
       "proposed": false,
@@ -2325,12 +2585,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "multiclass",
         "subject": "brain"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-heart-seg-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-heart-seg-task.md",
       "proposed": false,
@@ -2345,12 +2607,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "binary",
         "subject": "heart"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-hepaticvessel-seg-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-hepaticvessel-seg-task.md",
       "proposed": false,
@@ -2365,12 +2629,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "multiclass",
         "subject": "vessels"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-kidney-seg-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-kidney-seg-task.md",
       "proposed": false,
@@ -2385,12 +2651,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "separate",
         "subject": "abdomen"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-liver-seg-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-liver-seg-task.md",
       "proposed": false,
@@ -2405,12 +2673,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "separate",
         "subject": "abdomen"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-pancreas-oar-seg-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-pancreas-oar-seg-task.md",
       "proposed": false,
@@ -2425,12 +2695,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "multiclass",
         "subject": "abdomen"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-pancreas-seg-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-pancreas-seg-task.md",
       "proposed": false,
@@ -2445,12 +2717,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "separate",
         "subject": "abdomen"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-panther-t1-seg-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-panther-t1-seg-task.md",
       "proposed": false,
@@ -2465,12 +2739,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "separate",
         "subject": "abdomen"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-panther-t2-seg-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-panther-t2-seg-task.md",
       "proposed": false,
@@ -2485,12 +2761,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "separate",
         "subject": "abdomen"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-prostate-seg-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-prostate-seg-task.md",
       "proposed": false,
@@ -2505,12 +2783,14 @@
         "caption": "The target is two prostate zones. Preserve alignment between the input channels and the spatial labels.",
         "mask_mode": "multiclass",
         "subject": "prostate"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-spleen-seg-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-spleen-seg-task.md",
       "proposed": false,
@@ -2525,12 +2805,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "binary",
         "subject": "abdomen"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-tsg-multiorgan-seg-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "segmentation",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-tsg-multiorgan-seg-task.md",
       "proposed": false,
@@ -2545,12 +2827,14 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "multiclass",
         "subject": "abdomen"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-ctorg-ctsr-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-ctorg-ctsr-task.md",
       "proposed": false,
@@ -2563,12 +2847,14 @@
         "input": "Degraded volume",
         "output": "Restored volume",
         "caption": "The same object must remain consistent across slices and physical coordinates."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-msd-pancreas-ctsr-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-msd-pancreas-ctsr-task.md",
       "proposed": false,
@@ -2581,12 +2867,14 @@
         "input": "Degraded volume",
         "output": "Restored volume",
         "caption": "The same object must remain consistent across slices and physical coordinates."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-synthrad2025-mrct-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-synthrad2025-mrct-task.md",
       "proposed": false,
@@ -2599,12 +2887,14 @@
         "input": "MRI contrast",
         "output": "CT-like image",
         "caption": "Predict a different imaging contrast while preserving the subject geometry."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-totalsegmentator-ctsr-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "image-restoration",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-totalsegmentator-ctsr-task.md",
       "proposed": false,
@@ -2617,12 +2907,14 @@
         "input": "Degraded volume",
         "output": "Restored volume",
         "caption": "The same object must remain consistent across slices and physical coordinates."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-medframeqa-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-medframeqa-task.md",
       "proposed": false,
@@ -2635,12 +2927,14 @@
         "input": "Image + a question",
         "output": "An answer",
         "caption": "The question determines which image evidence matters and which answer format is required."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-medxpertqa-mm-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-medxpertqa-mm-task.md",
       "proposed": false,
@@ -2653,12 +2947,14 @@
         "input": "Image + a question",
         "output": "An answer",
         "caption": "The question determines which image evidence matters and which answer format is required."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-pathvqa-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-pathvqa-task.md",
       "proposed": false,
@@ -2672,12 +2968,14 @@
         "output": "An answer",
         "caption": "The question determines which image evidence matters and which answer format is required.",
         "subject": "tissue"
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-slake-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-slake-task.md",
       "proposed": false,
@@ -2690,12 +2988,14 @@
         "input": "Image + a question",
         "output": "An answer",
         "caption": "The question determines which image evidence matters and which answer format is required."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-vqa-kvasir-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-vqa-kvasir-task.md",
       "proposed": false,
@@ -2708,12 +3008,14 @@
         "input": "Image + a question",
         "output": "An answer",
         "caption": "The question determines which image evidence matters and which answer format is required."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-vqa-mmmu-medical-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-vqa-mmmu-medical-task.md",
       "proposed": false,
@@ -2726,12 +3028,14 @@
         "input": "Image + a question",
         "output": "An answer",
         "caption": "The question determines which image evidence matters and which answer format is required."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-vqa-omnimedvqa-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-vqa-omnimedvqa-task.md",
       "proposed": false,
@@ -2744,12 +3048,14 @@
         "input": "Image + a question",
         "output": "An answer",
         "caption": "The question determines which image evidence matters and which answer format is required."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-vqa-pmc-vqa-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-vqa-pmc-vqa-task.md",
       "proposed": false,
@@ -2762,12 +3068,14 @@
         "input": "Image + a question",
         "output": "An answer",
         "caption": "The question determines which image evidence matters and which answer format is required."
-      }
+      },
+      "role": "task",
+      "agent_work": "implementation"
     },
     {
       "id": "automedbench-full-vqa-rad-task",
       "repo": "AutoMedBench",
-      "category": "ML workflow",
+      "category": "reporting",
       "tag": "Task definition",
       "brief": "discussions/medical-agent-repository-survey/briefs/automedbench-full-vqa-rad-task.md",
       "proposed": false,
@@ -2780,17 +3088,9 @@
         "input": "Image + a question",
         "output": "An answer",
         "caption": "The question determines which image evidence matters and which answer format is required."
-      }
-    },
-    {
-      "id": "resect-mri-us-correspondence",
-      "repo": "Our work \u00b7 RESECT",
-      "category": "Registration",
-      "tag": "Proposed task",
-      "brief": "groups/registration/presentation/briefs/resect-mri-us-correspondence.md",
-      "proposed": true,
-      "nav_group": "Brain registration",
-      "nav_label": "MRI ↔ intraoperative US"
+      },
+      "role": "task",
+      "agent_work": "implementation"
     }
   ],
   "require_brief_coverage": true,
@@ -2876,5 +3176,6 @@
       "title": "Locate and classify nuclei",
       "selector": "Label taxonomy"
     }
-  }
+  },
+  "taxonomy": "presentation/task-explorer/taxonomy.json"
 }

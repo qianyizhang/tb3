@@ -34,7 +34,7 @@ async function checkExplorer(browser, input, report) {
       );
     const go = async (hash, id, section = 'overview') => {
       await page.evaluate((hash) => {
-        location.hash = hash;
+        location.hash = hash + (hash.includes('?') ? '' : '?view=repository');
       }, hash);
       await page.waitForFunction(
         ({ id, section }) =>
@@ -172,7 +172,7 @@ async function checkExplorer(browser, input, report) {
         await button.focus();
         await page.keyboard.press('Enter');
         assert.equal(await page.evaluate(() => document.activeElement.id), 'source-heading');
-        assert.ok(page.url().endsWith('?source=' + source.sha256));
+        assert.equal(new URLSearchParams(page.url().split('?')[1]).get('source'), source.sha256);
         assert.equal(await page.locator('.source-reader pre').textContent(), source.content);
         const download = await page.locator('#source-download').getAttribute('href');
         const raw = Buffer.from(download.split(',')[1], 'base64');
@@ -329,7 +329,7 @@ async function checkExplorer(browser, input, report) {
       await page.locator('.task-detail').getAttribute('data-brief'),
       'healthagentbench-predict-celiac',
     );
-    assert.ok(page.url().endsWith('#healthagentbench-predict-celiac/0/overview'));
+    assert.ok(page.url().includes('#healthagentbench-predict-celiac/0/overview?'));
     await page.reload();
     assert.equal(
       await page.locator('.task-detail').getAttribute('data-brief'),
@@ -374,7 +374,7 @@ async function checkExplorer(browser, input, report) {
     assert.equal(await page.evaluate(() => document.activeElement.dataset.condition), '1');
     // Unmerged workflows remain separate under collapsible navigation groups.
     await go('bcer-short-denoise/0/overview', 'bcer-short-denoise');
-    const processing = page.locator('[data-family="bcer/Single processing steps"]');
+    const processing = page.locator('[data-family="repository/bcer/Single processing steps"]');
     assert.equal(await processing.getAttribute('open'), '');
     await processing.locator('summary').click();
     await page.locator('[data-tab="requirements"]').click();
@@ -443,6 +443,76 @@ async function checkExplorer(browser, input, report) {
         });
       }
     }
+    // Capability browsing spans repositories while keeping work and research roles separate.
+    await page.setViewportSize({ width: 1440, height: 1100 });
+    await go('tb3-ct-organ-segmentation/0/overview?view=capability', 'tb3-ct-organ-segmentation');
+    assert.equal(await page.locator('#browse').inputValue(), 'capability');
+    assert.equal(await page.locator('.repository-heading h1').innerText(), 'Segment images');
+    assert.equal(await page.locator('[data-experiment]').count(), 4);
+    assert.equal(await page.locator('[data-definition="tb3-segmentation-calibration"]').count(), 0);
+    assert.ok(await page.locator('[data-task="automed-segmentation"]').count());
+    await page.locator('#agent-work').selectOption('implementation');
+    assert.equal(await page.locator('.repository-heading h1').innerText(), 'Segment images');
+    assert.equal(await page.locator('[data-definition="tb3-ct-organ-segmentation"]').count(), 0);
+    await page.reload();
+    assert.equal(await page.locator('#agent-work').inputValue(), 'implementation');
+    await page.locator('#lane').selectOption('supporting');
+    assert.equal(await page.locator('#agent-work').inputValue(), '');
+    assert.equal(
+      await page.locator('.task-detail').getAttribute('data-brief'),
+      'tb3-segmentation-calibration',
+    );
+    assert.ok(
+      (await page.locator('.task-provenance').innerText()).includes('No general-agent task'),
+    );
+    await page.locator('#browse').selectOption('repository');
+    await page.reload();
+    assert.equal(await page.locator('#lane').inputValue(), 'supporting');
+    const supportIds = new Set(
+      data.entries.filter((e) => e.role && e.role !== 'task').map((e) => e.id),
+    );
+    for (const id of await page
+      .locator('[data-definition]')
+      .evaluateAll((nodes) => nodes.map((n) => n.dataset.definition)))
+      assert.ok(supportIds.has(id));
+    // Every internal experiment stays reachable, including the two scopes of BR-033.
+    const internalExperiments = new Set();
+    for (const entry of data.entries.filter((e) => e.studies?.length)) {
+      await go(`${entry.id}/0/overview?view=capability`, entry.id);
+      assert.equal(await page.locator('[data-experiment]').count(), entry.studies.length);
+      for (const study of entry.studies) internalExperiments.add(study.id);
+    }
+    assert.equal(internalExperiments.size, data.experiment_count);
+    await go('tb3-dental-v2/1/overview?view=capability', 'tb3-dental-v2');
+    await page.locator('#task-variant').selectOption('tb3-dental-v3');
+    assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'), 'true');
+    assert.ok((await page.locator('.condition').innerText()).includes('F018'));
+    await go('tb3-ct-organ-segmentation/0/overview?view=capability', 'tb3-ct-organ-segmentation');
+    const study = page.locator('[data-experiment="ct-organ-segmentation-astra-medium-litemedsam"]');
+    await study.locator('summary').click();
+    await study.locator('[data-source]').click();
+    assert.ok(
+      (await page.locator('#source-content').innerText()).includes(
+        'Fixed task and changed capability',
+      ),
+    );
+    await page.goBack();
+    await page.waitForFunction(
+      () => document.querySelector('#tab-overview')?.getAttribute('aria-selected') === 'true',
+    );
+    for (const width of [1440, 390]) {
+      await page.setViewportSize({ width, height: width === 390 ? 844 : 1100 });
+      assert.equal(
+        await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
+        false,
+      );
+      await page.evaluate(() => scrollTo(0, 0));
+      if (process.env.TASK_EXPLORER_SCREENSHOTS)
+        await page.screenshot({
+          path: resolve(process.env.TASK_EXPLORER_SCREENSHOTS, `taxonomy-${width}.png`),
+          fullPage: true,
+        });
+    }
     assert.deepEqual(errors, []);
     assert.deepEqual(requests, []);
     const result = {
@@ -464,6 +534,9 @@ async function checkExplorer(browser, input, report) {
       collapsedProvenance: 'pass',
       search: 'pass',
       referenceReveal: 'pass',
+      capabilityNavigation: 'pass',
+      supportingResearch: 'pass',
+      internalExperiments: internalExperiments.size,
       mobile: 'pass',
       pageErrors: errors,
       remoteRequests: requests,

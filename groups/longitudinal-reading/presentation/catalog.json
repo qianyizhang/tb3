@@ -1,0 +1,222 @@
+{
+  "title": "Longitudinal reading tasks",
+  "taxonomy": "presentation/task-explorer/taxonomy.json",
+  "entries": [
+    {
+      "id": "tb3-longitudinal-mri",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "longitudinal-reading",
+      "category": "longitudinal-analysis",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/longitudinal-reading/presentation/briefs/tb3-longitudinal-mri.md",
+      "experiments": [
+        {
+          "id": "longitudinal-reading-br037",
+          "scope": "Three I-SPY2 neutral cases and one P03 cue condition; distinct case/condition sources."
+        }
+      ],
+      "operations": [
+        "quantification",
+        "reporting"
+      ],
+      "nav_group": "Track findings and change",
+      "illustration": {
+        "kind": "longitudinal",
+        "input": "Serial breast MRI examinations",
+        "output": "Localized changes and qualified interpretation",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted.",
+        "subject": "breast"
+      }
+    },
+    {
+      "id": "tb3-longitudinal-ct-original",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "longitudinal-reading",
+      "category": "longitudinal-analysis",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/longitudinal-reading/presentation/briefs/tb3-longitudinal-ct-original.md",
+      "experiments": [
+        {
+          "id": "longitudinal-ct-image-only-astra-medium",
+          "scope": "First CT pair; original task; Astra medium."
+        },
+        {
+          "id": "longitudinal-ct-image-only-sol-xhigh",
+          "scope": "Same original frozen CT pair/task; Sol xhigh."
+        }
+      ],
+      "operations": [
+        "localization",
+        "segmentation",
+        "correspondence"
+      ],
+      "task_family": "tb3-longitudinal-ct",
+      "nav_label": "Original image-only contract",
+      "nav_group": "Track findings and change",
+      "illustration": {
+        "kind": "longitudinal",
+        "input": "Two full CT volumes",
+        "output": "Instance masks and longitudinal identities",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
+      }
+    },
+    {
+      "id": "tb3-longitudinal-ct-revised",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "longitudinal-reading",
+      "category": "longitudinal-analysis",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/longitudinal-reading/presentation/briefs/tb3-longitudinal-ct-revised.md",
+      "experiments": [
+        {
+          "id": "longitudinal-ct-v2-astra-medium",
+          "scope": "First pair, revised generic instance/inclusion instructions; Astra medium."
+        },
+        {
+          "id": "longitudinal-ct-case02-astra-medium",
+          "scope": "Same revised task concept, second selected patient; Astra medium."
+        },
+        {
+          "id": "longitudinal-ct-context-supplied-astra-medium",
+          "scope": "Second patient plus verified broad clinical context; context inference output is not passed in."
+        }
+      ],
+      "operations": [
+        "localization",
+        "segmentation",
+        "correspondence"
+      ],
+      "task_family": "tb3-longitudinal-ct",
+      "nav_label": "Revised inclusion and instance contract",
+      "nav_group": "Track findings and change",
+      "illustration": {
+        "kind": "longitudinal",
+        "input": "CT pair with revised instance/inclusion rules",
+        "output": "Separate instances, correspondences and events",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
+      }
+    },
+    {
+      "id": "tb3-longitudinal-ct-candidates",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "longitudinal-reading",
+      "category": "longitudinal-analysis",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/longitudinal-reading/presentation/briefs/tb3-longitudinal-ct-candidates.md",
+      "experiments": [
+        {
+          "id": "longitudinal-ct-curation-astra-medium",
+          "scope": "Second patient, supplied context, broader inclusion policy and probability/reason sidecar. Comparison is endpoint_only."
+        }
+      ],
+      "operations": [
+        "localization",
+        "segmentation",
+        "correspondence"
+      ],
+      "task_family": "tb3-longitudinal-ct",
+      "nav_label": "Comprehensive candidate contract",
+      "nav_group": "Track findings and change",
+      "illustration": {
+        "kind": "longitudinal",
+        "input": "CT pair and broad context",
+        "output": "Candidate inventory, links and probability/reason sidecar",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
+      }
+    },
+    {
+      "id": "tb3-localized-candidate-recognition",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "longitudinal-reading",
+      "category": "recognition",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/longitudinal-reading/presentation/briefs/tb3-localized-candidate-recognition.md",
+      "experiments": [
+        {
+          "id": "longitudinal-ct-localized-astra-medium",
+          "scope": "Selected after a whole-volume omission under a declared trigger; Astra medium. Outcome-informed candidate selection limits comparison."
+        }
+      ],
+      "operations": [
+        "segmentation",
+        "longitudinal-analysis"
+      ],
+      "nav_group": "Recognize and classify",
+      "illustration": {
+        "kind": "candidate_judgment",
+        "input": "CT pair and supplied candidate centers",
+        "output": "Judgment followed by masks/links for accepted candidates",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Gold marks the conceptual point/region; colored shapes indicate supplied labels only in annotation audits."
+      }
+    },
+    {
+      "id": "tb3-ct-context-inference",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "longitudinal-reading",
+      "category": "reporting",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/longitudinal-reading/presentation/briefs/tb3-ct-context-inference.md",
+      "experiments": [
+        {
+          "id": "longitudinal-ct-context-inference-astra-medium",
+          "scope": "Astra medium context-report task; distinct output from instance segmentation and tracking."
+        }
+      ],
+      "nav_group": "Interpret and report",
+      "illustration": {
+        "kind": "report",
+        "input": "Deidentified CT pair",
+        "output": "Evidence-qualified context and unknowns",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
+      }
+    },
+    {
+      "id": "tb3-report-backed-reading",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "longitudinal-reading",
+      "category": "reporting",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": true,
+      "brief": "groups/longitudinal-reading/presentation/briefs/tb3-report-backed-reading.md",
+      "experiments": [
+        {
+          "id": "longitudinal-reading-br018",
+          "scope": "Archived unexecuted proposal; retained source protocol and recovery locator."
+        }
+      ],
+      "nav_group": "Interpret and report",
+      "illustration": {
+        "kind": "report",
+        "input": "Proposed images and clinical reports",
+        "output": "Qualified diagnostic reading",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
+      }
+    }
+  ],
+  "task_families": {
+    "tb3-longitudinal-ct": {
+      "title": "Find and track lesions across CT visits",
+      "selector": "Definition / revision"
+    }
+  }
+}

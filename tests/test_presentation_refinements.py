@@ -97,6 +97,7 @@ class PresentationRefinementTests(unittest.TestCase):
         shutil.copytree(
             repo / "presentation/task-explorer", self.root / "presentation/task-explorer"
         )
+        c.atomic_write(self.root / task_briefs.DEFAULT_CATALOG, {"entries": []})
         task_briefs.new(self.root, "example", "Example", "Research", "Imaging", "briefs/example.md")
         output = self.root / "output"
         result = p.present(self.root, output)

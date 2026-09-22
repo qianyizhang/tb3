@@ -10,9 +10,10 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from . import core as c
+from . import task_catalog
 from .presentation import markdown
 
-DEFAULT_CATALOG = "discussions/medical-agent-repository-survey/catalog.json"
+DEFAULT_CATALOG = task_catalog.DEFAULT_CATALOG
 MARKER = "<!-- tb3-task-explorer: generated -->"
 SOURCE_MAX_BYTES = 64 * 1024
 SOURCE_TOTAL_BYTES = 256 * 1024
@@ -161,8 +162,8 @@ def source_bundle(root, entries):
 
 def load(root, catalog=DEFAULT_CATALOG):
     root = Path(root).resolve()
-    path = c.inside(root, str(catalog))
-    data = c.read(path)
+    data = task_catalog.collection(root, catalog)
+    experiment_count = task_catalog.classify(root, data)
     out = []
     ids = set()
     for meta in data["entries"]:
@@ -202,6 +203,9 @@ def load(root, catalog=DEFAULT_CATALOG):
                     raise c.MedicalError(f"{meta['brief']}: missing source {target}")
                 target = p.relative_to(root).as_posix()
             row["sources"].append([label, target])
+        for study in row["studies"]:
+            if study["protocol"] not in [target for _, target in row["sources"]]:
+                row["sources"].append([study["title"], study["protocol"]])
         missing = []
         row["html"] = {
             key: render_text(root, source, row[key], missing) for key in ("goal", *FIELDS)
@@ -221,16 +225,14 @@ def load(root, catalog=DEFAULT_CATALOG):
         }
         row["missing_media"] = sorted(set(missing))
         out.append(row)
-    inventory = (
-        c.read(c.inside(root, data["inventory"])) if data.get("inventory") else {"repositories": []}
-    )
+    inventory = data["inventory"]
     by_id = {entry["id"]: entry for entry in out}
     for repo in inventory.get("repositories", []):
         item_ids = [r["id"] for r in repo["items"]]
         if len(item_ids) != len(set(item_ids)):
             raise c.MedicalError("Duplicate inventory ID: " + repo["id"])
         for item in repo["items"]:
-            if data.get("require_brief_coverage") and not item.get("brief_id"):
+            if repo.get("require_brief_coverage") and not item.get("brief_id"):
                 raise c.MedicalError("Inventory entry lacks a task brief: " + item["id"])
             if item.get("brief_id") and item["brief_id"] not in ids:
                 raise c.MedicalError("Unknown inventory brief: " + item["brief_id"])
@@ -248,6 +250,7 @@ def load(root, catalog=DEFAULT_CATALOG):
         "entries": out,
         "inventory": inventory,
         "local_sources": source_bundle(root, out),
+        "experiment_count": experiment_count,
     }
 
 
@@ -255,6 +258,8 @@ def check(root, catalog=DEFAULT_CATALOG):
     data = load(root, catalog)
     return {
         "briefs": len(data["entries"]),
+        "experiments": data["experiment_count"],
+        "supporting_research": sum(e.get("role", "task") != "task" for e in data["entries"]),
         "conditions": sum(len(x["variants"]) for x in data["entries"]),
         "catalogue_entries": sum(
             len(x["items"]) for x in data["inventory"].get("repositories", [])
@@ -317,6 +322,12 @@ def new(
     path = c.inside(root, str(catalog))
     target = c.inside(root, str(destination))
     data = c.read(path) if path.exists() else {"title": "Task Explorer", "entries": []}
+    if data.get("collections"):
+        raise c.MedicalError("Choose a group-owned leaf collection with --catalog for a new brief")
+    if data.get("taxonomy"):
+        taxonomy = c.read(c.inside(root, data["taxonomy"]))
+        if family not in taxonomy["categories"]:
+            raise c.MedicalError("Use a category ID from the collection taxonomy for --family")
     if target.exists() or any(
         e["id"] == key or e["brief"] == str(destination) for e in data["entries"]
     ):
@@ -331,6 +342,8 @@ def new(
         "tag": "Proposed task",
         "brief": target.relative_to(root).as_posix(),
         "proposed": True,
+        "role": "task",
+        "agent_work": "direct",
     }
     if repository_id:
         entry["repository_id"] = repository_id

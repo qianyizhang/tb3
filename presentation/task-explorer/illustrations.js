@@ -33,7 +33,7 @@ function taskArt(e, output=false) {
     if(subject==='airways') return frame(oval(119,104,36,50,colored?teal:'#4f7481')+oval(202,104,36,50,colored?teal:'#4f7481')+airways(colored));
     if(subject==='teeth') return frame(Array.from({length:10},(_,i)=>{
       const x=53+i*23,y=48+Math.abs(i-4.5)*8;
-      return path(`M${x} ${y}q-10 4-7 20l4 29 6-13 7 13 3-29q3-20-13-20`,muted,1,colored&&i===4?amber:'#cad5d9');
+      return path(`M${x} ${y}q-10 4-7 20l4 29 6-13 7 13 3-29q3-20-13-20`,muted,1,colored?(e.illustration.mask_mode==='multiclass'?[teal,amber,blue,rose][i%4]:i===4?amber:'#cad5d9'):'#cad5d9');
     }).join(''));
     if(subject==='chest') return frame(oval(160,98,87,72,'#758f9b')+oval(124,94,30,53,colored?teal:'#2c515f')+oval(195,94,31,53,colored?blue:'#2c515f')+path('M161 42L161 147','#d7e3e5',6)+c(192,108,11,colored?amber:'#98aeba'));
     if(subject==='chest-ct') return frame(oval(160,97,106,66,'#a6bac2')+oval(116,91,34,43,'#2c515f')+oval(205,91,34,43,'#2c515f')+oval(163,113,20,23,'#7b98a3')+c(162,143,9,'#d5dedb')+c(208,107,7,colored?amber:'#91a7ad'));
@@ -86,6 +86,30 @@ function taskArt(e, output=false) {
   }).join('')+oval(160,140,24,9,blue,'opacity=".8"');
   let art='';
   switch(k) {
+    case 'anatomy_audit':
+      art=output?doc('Affected label + witness')+c(254,127,7,amber):scan(true)+txt(55,178,'supplied spatial labels',12);
+      break;
+    case 'object_identity':
+      art=oval(82,85,30,40,blue)+r(139,48,41,69,teal)+path('M239 42L284 122H207Z',amber,2,amber)+[0,1,2].map(i=>txt(51+i*86,157,output?['label A','label B','label C'][i]:['object 1','object 2','object 3'][i],13)).join('');
+      break;
+    case 'landmark_point':
+      art=scan()+(output?c(175,92,6,amber)+path('M175 75V109M158 92H192',amber,2):txt(48,174,e.illustration.target_prompt || 'named target; location unknown',12));
+      break;
+    case 'candidate_judgment':
+      art=output?doc('Tumor / benign / uncertain'):scan()+c(177,89,15,'none','stroke="#d6ad69" stroke-width="2"')+txt(47,175,'candidate center is supplied',12);
+      break;
+    case 'point_correspondence':
+      art=group(0,18,.48,scan())+group(164,18,.48,scan())+c(87,66,5,amber)+(output || e.illustration.initial_candidate?c(output?240:260,output?76:56,5,teal):'')+txt(27,154,'query point',12)+txt(190,154,output?'matched point':e.illustration.initial_candidate?'initial candidate':'search target',12)+(output?arrow(106,90,217,90):'');
+      break;
+    case 'dynamic_mesh':
+      art=output?[0,1,2].map(i=>oval(62+i*96,88,32-i*5,51-i*8,'none','stroke="#358e85" stroke-width="2"')+path(`M${62+i*96} ${37+i*8}L${30+i*101} 88L${62+i*96} ${139-i*8}L${94+i*91} 88Z`,blue,1)+line(30+i*101,88,94+i*91,88,blue,1)).join('')+arrow(30,166,287,166)+txt(119,188,'phase',12):e.illustration.input_form==='masks'?[0,1,2].map(i=>oval(64+i*96,88,30-i*5,49-i*8,teal)).join('')+txt(81,173,'supplied phase masks',12):scan();
+      break;
+    case 'route_repair':
+      art=frame(path('M50 135L103 99L138 103M166 89L198 61L266 50',teal,7,'none','stroke-linecap="round"')+(output?path('M138 103L166 89',amber,7):''))+txt(66,176,output?'supported route / connection':'supplied route discontinuity',12);
+      break;
+    case 'route_discovery':
+      art=output?frame(path('M60 142L122 103L166 53L254 42M122 103L216 130',teal,4))+txt(99,177,'named paths',12):scan();
+      break;
     case 'classify': case 'multilabel':art=output?labels(k==='multilabel'):scan();break;
     case 'segment':
       art=scan(output);

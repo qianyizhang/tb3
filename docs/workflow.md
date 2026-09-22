@@ -40,6 +40,10 @@ uv run med new anatomical-landmarks my-study --title 'A focused question'
 ```
 
 Edit the generated `experiment.toml`, `protocol.md` and `task/` under the group.
+Link the experiment from the group's `presentation/catalog.json` with its task
+definition and explicit scope; see [task taxonomy](task-taxonomy.md). A new
+model/effort condition normally reuses a brief, while a changed contract may
+need a separate definition or revision.
 The config holds machine-used settings; the protocol explains the question,
 inputs/reference, method, findings and limits. The scaffold's verifier and oracle
 are placeholders. Implement them for the intended study; controls are required

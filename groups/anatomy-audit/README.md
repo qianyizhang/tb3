@@ -1,8 +1,15 @@
-# Anatomy audit
+# Anatomical labeling
 
-How do agents recognize anatomical identity, omissions and tissue assigned to the wrong label?
+Can agents construct and check anatomical labels from images or supplied objects?
 
 Supplied-mask auditing differs from segmentation from scratch. Inventory and image context can change an outcome; broad and focused audits are separate conditions.
+
+This research owner retains the stable ID `anatomy-audit`. Its
+[task catalogue](presentation/catalog.json) separates annotation review,
+supplied-object recognition and raw-image segmentation. Historical MRI importer
+work is classified as data engineering; source studies and segmentation-tool
+calibration appear under supporting research. See the shared
+[taxonomy](../../docs/task-taxonomy.md).
 
 Use `uv run med list --group anatomy-audit` from the repository root. The group owns the current research entry point; original protocols and frozen evidence remain at their recorded paths.
 

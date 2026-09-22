@@ -1,0 +1,43 @@
+{
+  "title": "Anatomical landmarks tasks",
+  "taxonomy": "presentation/task-explorer/taxonomy.json",
+  "entries": [
+    {
+      "id": "tb3-named-landmarks",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "anatomical-landmarks",
+      "category": "localization",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/anatomical-landmarks/presentation/briefs/tb3-named-landmarks.md",
+      "experiments": [
+        {
+          "id": "anatomical-landmarks-br036",
+          "scope": "CT and MRI initial conditions."
+        },
+        {
+          "id": "anatomical-landmarks-br038",
+          "scope": "Coordinate audit and revised localization conditions."
+        },
+        {
+          "id": "anatomical-landmarks-br039",
+          "scope": "Expanded CT targets and partial-field availability conditions."
+        },
+        {
+          "id": "anatomical-landmarks-br040",
+          "scope": "Sol xhigh comparison: ct-full, ct-partial, mri32-full."
+        }
+      ],
+      "nav_group": "Find and localize",
+      "illustration": {
+        "kind": "landmark_point",
+        "input": "Scan and named anatomical target",
+        "output": "Physical point or unavailable response",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Gold marks the conceptual point/region; colored shapes indicate supplied labels only in annotation audits."
+      }
+    }
+  ],
+  "task_families": {}
+}

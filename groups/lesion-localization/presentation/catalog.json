@@ -1,0 +1,36 @@
+{
+  "title": "Lesion localization tasks",
+  "taxonomy": "presentation/task-explorer/taxonomy.json",
+  "entries": [
+    {
+      "id": "tb3-aneurysm-localization",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "lesion-localization",
+      "category": "localization",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/lesion-localization/presentation/briefs/tb3-aneurysm-localization.md",
+      "experiments": [
+        {
+          "id": "lesion-localization-br016",
+          "scope": "N01 and v2 N01/N02/N03 conditions; keep reference and source-assistance differences visible."
+        }
+      ],
+      "operations": [
+        "recognition"
+      ],
+      "nav_group": "Find and localize",
+      "illustration": {
+        "kind": "landmark_point",
+        "input": "Angiographic scan; target may be absent",
+        "output": "Supported lesion location or negative finding",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Gold marks the conceptual point/region; colored shapes indicate supplied labels only in annotation audits.",
+        "subject": "brain-vessels",
+        "target_prompt": "search; target may be absent"
+      }
+    }
+  ],
+  "task_families": {}
+}

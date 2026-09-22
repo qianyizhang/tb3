@@ -13,17 +13,24 @@ const itemsFor = e => (repoInventory(e.id)?.items || []).filter(i => i.brief_id 
 const htmlField = (e, key) => e.html?.[key] || `<p>${esc(e[key])}</p>`;
 const textMatch = (value, query) => JSON.stringify(value).toLowerCase().includes(query);
 const itemMatch = (i, query) => textMatch([i.id,i.title,i.family,i.definition,i.condition,i.case_context?.label,i.case_context?.facts],query);
-const briefMatch = (e, query) => textMatch([e.title,e.nav_group,e.nav_label,DATA.task_families?.[e.task_family]?.title,e.goal,e.raw,e.helpers,e.output,e.repo],query) || itemsFor(e).some(i => itemMatch(i,query));
+const briefMatch = (e, query) => textMatch([e.category,DATA.taxonomy?.categories?.[e.category]?.title,e.operations,e.owner_group,e.studies,e.title,e.nav_group,e.nav_label,DATA.task_families?.[e.task_family]?.title,e.goal,e.raw,e.helpers,e.output,e.repo],query) || itemsFor(e).some(i => itemMatch(i,query));
 const hasExample = e => Object.values(e.visuals).some(s => /<img\b/.test(s));
 const isCase = i => i.kind === 'case';
 const compareItems = (a,b) => a.id.localeCompare(b.id,undefined,{numeric:true});
 const currentItem = () => itemsFor(byId.get(selected)).find(i => i.id === selectedItem);
 let selected = entries[0].id, selectedItem = '', condition = 0, tab = 'overview', visual = 'input', selectedSource = '';
 const familyState = new Map(), listScroll = new Map();
-const familyKey = e => groupId(e)+'/'+e.nav_group;
+let view='capability', lane='tasks', work='';
+const taxonomy=DATA.taxonomy || {}, categoryInfo=id=>taxonomy.categories?.[id] || {title:id,description:''};
+const supporting=e=>(e.role || 'task')!=='task';
+const inScope=e=>(lane==='all' || supporting(e)===(lane==='supporting')) && (!work || e.agent_work===work);
+const navKey=e=>view==='repository'?groupId(e):e.category;
+const navEntries=e=>entries.filter(x=>navKey(x)===navKey(e) && inScope(x));
+const listGroup=e=>view==='capability'?e.repo:e.nav_group;
+const familyKey = e => view+'/'+navKey(e)+'/'+listGroup(e);
 function revealFamily() {
   const e=byId.get(selected);
-  if(e.nav_group) familyState.set(familyKey(e),true);
+  if(listGroup(e)) familyState.set(familyKey(e),true);
 }
 
 const familyConfig = e => DATA.task_families?.[e.task_family];
@@ -31,8 +38,8 @@ const familyMembers = e => e.task_family ? groupEntries(e).filter(x=>x.task_fami
 function taskUnits(list) {
   const units=new Map();
   for(const e of list) {
-    const id=e.task_family || e.id;
-    if(!units.has(id)) units.set(id,{id,entry:e,members:[],title:familyConfig(e)?.title || e.nav_label || e.title});
+    const id=groupId(e)+'/'+(e.task_family || e.id);
+    if(!units.has(id)) units.set(id,{id:e.task_family || e.id,entry:e,members:[],title:familyConfig(e)?.title || e.nav_label || e.title});
     const unit=units.get(id);unit.members.push(e);
     if(e.id===selected) unit.entry=e;
   }
@@ -95,7 +102,13 @@ function route() {
   } else {
     requested = parts[1]; tab = canonicalTab(parts[2]);
   }
+  const params=new URLSearchParams(query);
+  view=params.get('view')==='repository'?'repository':'capability';
   const e = byId.get(selected), n = Number(requested);
+  lane=['tasks','supporting','all'].includes(params.get('lane'))?params.get('lane'):(supporting(e)?'supporting':'tasks');
+  work=taxonomy.agent_work?.[params.get('work')]?params.get('work'):'';
+  if(!inScope(e)){lane=supporting(e)?'supporting':'tasks';work='';}
+  el('browse').value=view;el('lane').value=lane;el('agent-work').value=work;
   clearIncompatibleSearch(e);
   if (requested !== undefined && Number.isInteger(n)) condition = Math.max(0,Math.min(n,e.variants.length-1));
   if (!['overview','requirements','examples','sources'].includes(tab) || (tab === 'examples' && !hasExample(e))) tab = 'overview';
@@ -111,32 +124,41 @@ function clearIncompatibleSearch(e) {
 function saveRoute(replace=false) {
   const e = byId.get(selected), item = currentItem();
   const path = item ? `${groupId(e)}/task/${encodeURIComponent(item.id)}/${condition}/${tab}` : `${selected}/${condition}/${tab}`;
-  history[replace?'replaceState':'pushState'](null,'','#'+path+(selectedSource && tab==='sources'?'?source='+selectedSource:''));
+  const params=new URLSearchParams({view,lane});
+  if(work) params.set('work',work);
+  if(selectedSource && tab==='sources') params.set('source',selectedSource);
+  history[replace?'replaceState':'pushState'](null,'','#'+path+'?'+params);
 }
 function chooseDefinition(id) {
   selected=id; selectedItem=''; selectedSource=''; condition=0; tab='overview'; visual='input'; revealFamily(); saveRoute(); render();
   document.querySelector(`[data-definition="${CSS.escape(id)}"]`)?.focus();
 }
 function chooseGroup(id) {
-  const first = groupEntries(byId.get(id)).find(e => briefMatch(e,el('search').value.trim().toLowerCase()));
+  const first = navEntries(byId.get(id)).find(e => briefMatch(e,el('search').value.trim().toLowerCase()));
   chooseDefinition(first?.id || id);
   document.querySelector(`[data-group="${CSS.escape(id)}"]`)?.focus();
 }
 function navigation() {
-  const query=el('search').value.trim().toLowerCase(), active=groupId(byId.get(selected));
-  const matches=groups.filter(g=>groupEntries(g).some(e=>briefMatch(e,query)));
-  el('nav').innerHTML=matches.map(g=>{
-    const count=taskUnits(groupEntries(g)).length,variants=groupEntries(g).length;
-    const caption=repoInventory(g.id)?`${count} tasks${count===variants?'':` · ${variants} variants`}`:'Internal example';
-    return `<button class="navitem" data-group="${esc(g.id)}" aria-current="${active===groupId(g)}"><strong>${esc(g.repo)}</strong><small>${caption}</small></button>`;
-  }).join('') || '<p class="empty">No matching tasks.</p>';
+  const query=el('search').value.trim().toLowerCase(), active=navKey(byId.get(selected));
+  const buckets=new Map();
+  for(const e of entries.filter(inScope)) {
+    const key=navKey(e);
+    if(!buckets.has(key)) buckets.set(key,[]);
+    buckets.get(key).push(e);
+  }
+  el('nav').setAttribute('aria-label',view==='capability'?'Task capabilities':'Source repositories');
+  el('nav').innerHTML=[...buckets].filter(([,rows])=>rows.some(e=>briefMatch(e,query))).map(([key,rows])=>{
+    const first=rows.find(e=>briefMatch(e,query)),count=taskUnits(rows).length;
+    const title=view==='repository'?first.repo:categoryInfo(key).title;
+    return `<button class="navitem" data-group="${esc(first.id)}" aria-current="${active===key}"><strong>${esc(title)}</strong><small>${count} ${lane==='tasks'?'task entries':'research entries'}</small></button>`;
+  }).join('') || '<p class="empty">No matching entries.</p>';
   el('nav').querySelectorAll('[data-group]').forEach(b=>b.onclick=()=>chooseGroup(b.dataset.group));
 }
 function taskList(e, matches) {
   const searching=Boolean(el('search').value.trim()),units=taskUnits(matches);
   const families=new Map();
-  for(const unit of taskUnits(groupEntries(e))) if(unit.entry.nav_group) {
-    const name=unit.entry.nav_group;
+  for(const unit of taskUnits(navEntries(e))) if(listGroup(unit.entry)) {
+    const name=listGroup(unit.entry);
     if(!families.has(name)) families.set(name,[]);
     families.get(name).push(unit);
   }
@@ -153,15 +175,15 @@ function taskList(e, matches) {
   };
   const seen=new Set(),rows=[];
   for(const unit of units) {
-    const x=unit.entry,family=families.get(x.nav_group);
+    const x=unit.entry,name=listGroup(x),family=families.get(name);
     if(!family || family.length<2) {rows.push(item(unit));continue;}
-    if(seen.has(x.nav_group)) continue;
-    seen.add(x.nav_group);
-    const children=units.filter(y=>y.entry.nav_group===x.nav_group),key=familyKey(x);
+    if(seen.has(name)) continue;
+    seen.add(name);
+    const children=units.filter(y=>listGroup(y.entry)===name),key=familyKey(x);
     const open=searching || (familyState.get(key) ?? children.some(y=>y.members.some(z=>z.id===selected)));
-    rows.push(`<details class="task-family" data-family="${esc(key)}" ${open?'open':''}><summary><span>${esc(x.nav_group)}</span><small>${children.length}</small></summary><div class="family-tasks">${children.map(item).join('')}</div></details>`);
+    rows.push(`<details class="task-family" data-family="${esc(key)}" ${open?'open':''}><summary><span>${esc(name)}</span><small>${children.length}</small></summary><div class="family-tasks">${children.map(item).join('')}</div></details>`);
   }
-  return `<nav class="task-list" data-repository="${esc(groupId(e))}" aria-label="Tasks in this repository"><div class="list-heading">${searching?'Matching tasks':'Tasks'} <span>${units.length}</span></div>${rows.join('') || '<p class="empty">No tasks match this search in this repository.</p>'}</nav>`;
+  return `<nav class="task-list" data-repository="${esc(view+'/'+navKey(e))}" aria-label="Entries in this selection"><div class="list-heading">${searching?'Matching entries':lane==='supporting'?'Supporting research':'Tasks'} <span>${units.length}</span></div>${rows.join('') || '<p class="empty">No tasks match this search in this repository.</p>'}</nav>`;
 }
 
 function coverage(e) {
@@ -199,9 +221,16 @@ function imageNotice(e) {
   return source?.sha256?`<p class="fine"><button class="text-button" data-notice="${source.sha256}">Image attribution, terms and derivation</button></p>`:'';
 }
 
+function studyIndex(e) {
+  if(!e.studies?.length) return '';
+  return `<section class="study-index"><h3>Experiments and conditions</h3><p class="fine">Grouped for navigation. Each protocol retains its contract, cases, assistance, model and runtime. Grouping does not pool scores or count an index as an execution.</p>${e.studies.map(s=>{
+    const source=DATA.local_sources[s.protocol];
+    return `<details class="study" data-experiment="${esc(s.id)}"><summary>${esc(s.title)}</summary><p>${esc(s.scope)}</p>${s.tasks.length?`<p class="fine">Recorded task/case IDs: ${s.tasks.map(id=>`<code>${esc(id)}</code>`).join(' · ')}</p>`:''}<p>${source?.sha256?`<button class="text-button" data-source="${source.sha256}">Read exact protocol</button>`:'Protocol not embedded in this copy.'}</p><p class="fine">Experiment <code>${esc(s.id)}</code><br>${esc(s.record_path)}</p></details>`;
+  }).join('')}</section>`;
+}
 function overview(e) {
   const help=e.variants.length<2?box('Supplied help',htmlField(e,'helpers'),'helper'):'';
-  return `<div class="task-context"><h3>Why it matters</h3>${htmlField(e,'value')}</div>${taskPicture(e)}<div class="overview-contract">${box('Input',htmlField(e,'raw'))}${help}${box('Deliverable',htmlField(e,'output'),'deliverable')}</div>${assistance(e)}<section class="difficulty"><h3>What makes it difficult</h3>${htmlField(e,'challenge')}</section>${caseSelector(e)}`;
+  return `<div class="task-context"><h3>Why it matters</h3>${htmlField(e,'value')}</div>${taskPicture(e)}<div class="overview-contract">${box('Input',htmlField(e,'raw'))}${help}${box('Deliverable',htmlField(e,'output'),'deliverable')}</div>${assistance(e)}<section class="difficulty"><h3>What makes it difficult</h3>${htmlField(e,'challenge')}</section>${caseSelector(e)}${studyIndex(e)}`;
 }
 function requirements(e) {
   return `<div class="requirements">${box('Task rules',htmlField(e,'spec'))}${box('Environment & callable tools',htmlField(e,'tools'))}${box('How success is checked',htmlField(e,'score'))}${box('Reference-only material',htmlField(e,'reference'))}</div>`;
@@ -241,23 +270,25 @@ function taskDetail(e) {
   const body=tab==='requirements'?requirements(e):tab==='examples'?examples(e):tab==='sources'?sourceDetails(e):overview(e);
   const family=familyConfig(e),members=familyMembers(e);
   const variantPicker=members.length>1?`<label class="task-variant-picker" for="task-variant">${esc(family.selector)}<select id="task-variant">${members.map(x=>`<option value="${esc(x.id)}" ${x.id===selected?'selected':''}>${esc(x.nav_label||x.title)}</option>`).join('')}</select></label>`:'';
-  return `<article class="task-detail" data-brief="${esc(e.id)}"><div class="detail-heading">${e.proposed?'<span class="draft">Proposed</span>':''}<h2>${esc(members.length>1?family.title:e.title)}</h2>${variantPicker}${edition(e)?`<span class="edition">${esc(edition(e))}</span>`:''}${summary?`<div class="task-goal">${summary}</div>`:''}</div>${sourceScope(e)}<div class="tabs" role="tablist" aria-label="Task sections">${tabs.map(([id,label])=>`<button id="tab-${id}" data-tab="${id}" role="tab" tabindex="${tab===id?0:-1}" aria-selected="${tab===id}" aria-controls="task-panel">${label}</button>`).join('')}</div><section id="task-panel" role="tabpanel" tabindex="0" aria-labelledby="tab-${tab}">${body}</section></article>`;
+  const provenance=`<p class="task-provenance">${esc(e.repo)}${e.owner_group?' · Research owner: '+esc(e.owner_group):''}<br>${esc(categoryInfo(e.category).title)} · ${esc(taxonomy.roles?.[e.role] || 'Agent task')} · ${esc(taxonomy.agent_work?.[e.agent_work] || '')}${e.operations?.length?' · Also: '+e.operations.map(op=>esc(categoryInfo(op).title)).join(', '):''}</p>`;
+  return `<article class="task-detail" data-brief="${esc(e.id)}"><div class="detail-heading">${provenance}${e.proposed?'<span class="draft">Proposed</span>':''}<h2>${esc(members.length>1?family.title:e.title)}</h2>${variantPicker}${edition(e)?`<span class="edition">${esc(edition(e))}</span>`:''}${summary?`<div class="task-goal">${summary}</div>`:''}</div>${sourceScope(e)}<div class="tabs" role="tablist" aria-label="Task sections">${tabs.map(([id,label])=>`<button id="tab-${id}" data-tab="${id}" role="tab" tabindex="${tab===id?0:-1}" aria-selected="${tab===id}" aria-controls="task-panel">${label}</button>`).join('')}</div><section id="task-panel" role="tabpanel" tabindex="0" aria-labelledby="tab-${tab}">${body}</section></article>`;
 }
 function render() {
   const previousList=el('main').querySelector('.task-list');
   if(previousList) listScroll.set(previousList.dataset.repository,previousList.scrollTop);
   navigation();
-  const e=byId.get(selected),group=repoEntry(e),inv=repoInventory(e.id),query=el('search').value.trim().toLowerCase();
-  const matches=groupEntries(e).filter(x=>briefMatch(x,query));
+  const e=byId.get(selected),group=repoEntry(e),query=el('search').value.trim().toLowerCase();
+  const matches=navEntries(e).filter(x=>briefMatch(x,query));
   const visible=matches.some(x=>x.id===selected);
-  const intro=DATA.repository_contexts?.[groupId(e)];
+  const intro=view==='repository'?DATA.repository_contexts?.[groupId(e)]:categoryInfo(e.category).description;
+  const heading=view==='repository'?group.repo:categoryInfo(e.category).title;
   document.title=group.repo+' · Task Explorer';
-  el('main').innerHTML=`<div class="repository-heading"><h1>${esc(group.repo)}</h1>${intro?`<p>${esc(intro)}</p>`:''}</div>${inv?`<div class="catalogue-workspace">${taskList(e,matches)}${visible?taskDetail(e):'<div class="empty task-detail">Choose a matching task from the list.</div>'}</div>`:taskDetail(e)}${coverage(e)}`;
+  el('main').innerHTML=`<div class="repository-heading"><h1>${esc(heading)}</h1>${intro?`<p>${esc(intro)}</p>`:''}</div><div class="catalogue-workspace">${taskList(e,matches)}${visible?taskDetail(e):'<div class="empty task-detail">Choose a matching task from the list.</div>'}</div>${coverage(e)}`;
   // Text insertion preserves leading LF and CRLF that the HTML parser normalizes.
   if(el('source-content')) el('source-content').textContent=Object.values(DATA.local_sources).find(s=>s.sha256===selectedSource).content;
   const currentList=el('main').querySelector('.task-list');
   if(currentList) {
-    currentList.scrollTop=listScroll.get(groupId(e)) || 0;
+    currentList.scrollTop=listScroll.get(view+'/'+navKey(e)) || 0;
     const active=currentList.querySelector('.task-item[aria-pressed=true]');
     if(active?.getClientRects().length) {
       const bounds=currentList.getBoundingClientRect(),row=active.getBoundingClientRect();
@@ -270,7 +301,7 @@ function render() {
   });
   el('main').querySelectorAll('[data-definition]').forEach(b=>b.onclick=()=>{chooseDefinition(b.dataset.definition);el('main').querySelector('.task-detail')?.scrollIntoView({block:'nearest'})});
   el('main').querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;selectedSource='';saveRoute();render();el('tab-'+tab)?.focus()});
-  el('main').querySelectorAll('[data-source]').forEach(b=>b.onclick=()=>{selectedSource=b.dataset.source;saveRoute();render();el('source-heading')?.focus()});
+  el('main').querySelectorAll('[data-source]').forEach(b=>b.onclick=()=>{tab='sources';selectedSource=b.dataset.source;saveRoute();render();el('source-heading')?.focus()});
   el('main').querySelectorAll('[data-notice]').forEach(b=>b.onclick=()=>{tab='sources';selectedSource=b.dataset.notice;saveRoute();render();el('source-heading')?.focus()});
   if(el('source-close')) el('source-close').onclick=()=>{const previous=selectedSource;selectedSource='';saveRoute();render();document.querySelector(`[data-source="${CSS.escape(previous)}"]`)?.focus()};
   const tabs=[...el('main').querySelectorAll('[role="tab"]')];
@@ -295,7 +326,7 @@ function render() {
 el('search').oninput=()=>{
   const e=byId.get(selected),query=el('search').value.trim().toLowerCase();
   if (!briefMatch(e,query)) {
-    const first=groupEntries(e).find(x=>briefMatch(x,query));
+    const first=entries.find(x=>inScope(x) && briefMatch(x,query));
     if(first){selected=first.id;selectedItem='';condition=0;tab='overview';visual='input';revealFamily();saveRoute(true)}
   }
   render();
@@ -304,7 +335,20 @@ el('format').onclick=()=>el('rules').showModal();el('close').onclick=()=>el('rul
 // Back/forward between these hash routes emits hashchange as well as popstate.
 // Render once so the second event cannot discard the focus restored by route().
 window.onhashchange=route;
-document.querySelector('.navnote').innerHTML=`${inventory.length} repositories · ${taskUnits(entries).length} tasks · ${entries.length} variants<br>Related variants share one task entry.`;
+el('agent-work').innerHTML='<option value="">All agent work</option>'+Object.entries(taxonomy.agent_work || {}).filter(([key])=>key!=='none').map(([key,label])=>`<option value="${esc(key)}">${esc(label)}</option>`).join('');
+for(const id of ['browse','lane','agent-work']) el(id).onchange=()=>{
+  view=el('browse').value;lane=el('lane').value;work=el('agent-work').value;
+  if(lane==='supporting'){work='';el('agent-work').value='';}
+  el('search').value='';
+  if(!inScope(byId.get(selected))) {
+    const first=navEntries(byId.get(selected)).find(inScope) || entries.find(inScope);
+    if(!first){work='';el('agent-work').value='';}
+    selected=(first || entries.find(inScope))?.id || entries[0].id;selectedItem='';condition=0;tab='overview';visual='input';selectedSource='';
+  }
+  revealFamily();saveRoute();render();
+};
+const taskEntries=entries.filter(e=>!supporting(e)),supportEntries=entries.filter(supporting);
+document.querySelector('.navnote').textContent=`${taskUnits(taskEntries).length} task entries · ${taskEntries.length} definitions/revisions · ${supportEntries.length} supporting studies. Source records, cases and attempts are separate counts.`;
 if(DATA.presentation_context?.home_url){
   const link=document.createElement('a');link.id='workbench-home';link.href=DATA.presentation_context.home_url;link.textContent=DATA.presentation_context.home_label || 'Experiment evidence';
   document.querySelector('header>div:last-child').prepend(link);

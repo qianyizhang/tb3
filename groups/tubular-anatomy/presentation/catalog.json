@@ -1,0 +1,183 @@
+{
+  "title": "Tubular anatomy tasks",
+  "taxonomy": "presentation/task-explorer/taxonomy.json",
+  "entries": [
+    {
+      "id": "tb3-vessel-source-screen",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "tubular-anatomy",
+      "category": "geometry",
+      "role": "source-study",
+      "agent_work": "none",
+      "proposed": false,
+      "brief": "groups/tubular-anatomy/presentation/briefs/tb3-vessel-source-screen.md",
+      "experiments": [
+        {
+          "id": "tubular-anatomy-br025",
+          "scope": "Vessel source curation/proposed connection repair; distinct from cardiac-motion-br025."
+        }
+      ],
+      "nav_group": "Recover paths and topology"
+    },
+    {
+      "id": "tb3-vessel-connection-repair",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "tubular-anatomy",
+      "category": "geometry",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/tubular-anatomy/presentation/briefs/tb3-vessel-connection-repair.md",
+      "experiments": [
+        {
+          "id": "tubular-anatomy-br026",
+          "scope": "TopCoW defect and unchanged absence-control tasks; reference-derived deletion is disclosed as synthetic."
+        }
+      ],
+      "operations": [
+        "annotation-review"
+      ],
+      "nav_group": "Recover paths and topology",
+      "illustration": {
+        "kind": "route_repair",
+        "input": "MRA and supplied vessel mask",
+        "output": "Repaired or unchanged mask",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Teal: supplied route. Gold: illustrative repaired segment; unchanged controls need no added segment."
+      }
+    },
+    {
+      "id": "ours",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "tubular-anatomy",
+      "category": "geometry",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/tubular-anatomy/presentation/briefs/br030.md",
+      "experiments": [
+        {
+          "id": "tubular-anatomy-br030",
+          "scope": "Coronary local repair, route and CPR geometry; frozen distance-axis checks remain separate endpoints."
+        }
+      ],
+      "operations": [
+        "annotation-review"
+      ],
+      "nav_group": "Recover paths and topology"
+    },
+    {
+      "id": "tb3-airway-repair",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "tubular-anatomy",
+      "category": "geometry",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/tubular-anatomy/presentation/briefs/tb3-airway-repair.md",
+      "experiments": [
+        {
+          "id": "tubular-anatomy-br033",
+          "scope": "Airway agent pilot only. The same historical round also contains a separate TopBrain source/prediction study."
+        }
+      ],
+      "operations": [
+        "annotation-review"
+      ],
+      "nav_group": "Recover paths and topology",
+      "illustration": {
+        "kind": "route_repair",
+        "input": "CT, supplied airway mask and route constraints",
+        "output": "Local mask repair and preserved routes",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Teal: supplied route. Gold: illustrative repaired segment; unchanged controls need no added segment."
+      }
+    },
+    {
+      "id": "tb3-topbrain-screen",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "tubular-anatomy",
+      "category": "geometry",
+      "role": "source-study",
+      "agent_work": "none",
+      "proposed": false,
+      "brief": "groups/tubular-anatomy/presentation/briefs/tb3-topbrain-screen.md",
+      "experiments": [
+        {
+          "id": "tubular-anatomy-br033",
+          "scope": "TopBrain source/inference screen only; separate from the airway agent pilot under this mixed historical record."
+        }
+      ],
+      "nav_group": "Recover paths and topology"
+    },
+    {
+      "id": "tb3-named-coronary",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "tubular-anatomy",
+      "category": "geometry",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/tubular-anatomy/presentation/briefs/tb3-named-coronary.md",
+      "experiments": [
+        {
+          "id": "tubular-anatomy-br041",
+          "scope": "Named RCA task; Astra/Sol comparisons stay in their attempt/evaluation records."
+        }
+      ],
+      "task_family": "tb3-coronary-centerlines",
+      "nav_label": "Named artery",
+      "nav_group": "Recover paths and topology",
+      "illustration": {
+        "kind": "route_discovery",
+        "input": "CTA and a named artery target",
+        "output": "Requested artery centerline",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
+      }
+    },
+    {
+      "id": "tb3-coronary-inventory",
+      "repo": "TB3 medical workbench",
+      "repository_id": "tb3",
+      "owner_group": "tubular-anatomy",
+      "category": "geometry",
+      "role": "task",
+      "agent_work": "direct",
+      "proposed": false,
+      "brief": "groups/tubular-anatomy/presentation/briefs/tb3-coronary-inventory.md",
+      "experiments": [
+        {
+          "id": "tubular-anatomy-br042",
+          "scope": "All-coronary v1, all-vessels v2/v3/v4-2h; contract and scoring boundaries retained."
+        },
+        {
+          "id": "br042-v4-6h",
+          "scope": "V4 six-hour fresh attempt and its continuation; outcome-informed follow-up, not independent resumed trials."
+        }
+      ],
+      "operations": [
+        "recognition",
+        "localization"
+      ],
+      "task_family": "tb3-coronary-centerlines",
+      "nav_label": "Branch inventory",
+      "nav_group": "Recover paths and topology",
+      "illustration": {
+        "kind": "route_discovery",
+        "input": "CTA and a generic branch taxonomy",
+        "output": "Discovered branch inventory and labeled centerlines",
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
+      }
+    }
+  ],
+  "task_families": {
+    "tb3-coronary-centerlines": {
+      "title": "Recover coronary centerlines from CTA",
+      "selector": "Definition / revision"
+    }
+  }
+}

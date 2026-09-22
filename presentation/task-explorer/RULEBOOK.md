@@ -33,8 +33,11 @@ landmarks, answer lists, algorithms, code, checkpoints and tool-generated output
 Separate pre-supplied files from callable tools and evaluator-only references.
 If source staging was not inspected, say so rather than assuming data is hidden.
 
-One common brief covers repeated cases. The catalogue lists repository → family
-→ definition → condition → case as available. Give meaningful changes in the
+One common brief covers repeated cases. The catalogue offers capability and
+repository views, then family → definition/revision → conditions and cases.
+The [task taxonomy](../../docs/task-taxonomy.md) separates primary deliverable,
+secondary operations, agent work, research role and group ownership.
+Give meaningful changes in the
 contract their own definition or condition. Every imported case remains reachable;
 do not treat one illustrated case as exhaustive coverage. Source-published counts,
 imported identifiers, authored briefs and available media are distinct coverage facts.
@@ -82,7 +85,7 @@ imported identifiers, authored briefs and available media are distinct coverage 
 - A collection can set `require_brief_coverage: true` once its imported inventory
   is backfilled. Checks then reject unlinked entries, cross-repository brief links
   and invalid condition indices. This guarantees an explanation, not a native image.
-- Keep the sidebar grouped by repository and list each shared task definition once.
+- Offer capability and repository navigation and list each shared task definition once.
   Put repeated cases beneath their task, with short labels and only sourced differences
   (for example candidate-pool size). Never infer a clinical description from a case ID.
   Selecting a case must retain its source and condition across reload/back navigation.
@@ -122,7 +125,8 @@ imported identifiers, authored briefs and available media are distinct coverage 
 ```sh
 # Scaffold only; creates a proposed brief and navigation entry, never an experiment.
 med brief new my-task --title "Locate a named landmark" \
-  --repository "Our work" --family "Landmarks" \
+  --repository "TB3 medical workbench" --repository-id tb3 --family localization \
+  --catalog groups/anatomical-landmarks/presentation/catalog.json \
   --destination groups/anatomical-landmarks/presentation/briefs/my-task.md
 
 # Standalone HTML; inputs and images are embedded, no server or remote assets required.
@@ -130,8 +134,12 @@ med brief build --output runs/task-explorer/index.html
 med brief check
 ```
 
-The default collection is `discussions/medical-agent-repository-survey/catalog.json`;
-use `--catalog` on each brief subcommand for another repository-owned collection.
+The default collection is `presentation/task-explorer/catalog.json`. It composes
+group-owned internal catalogues and the external survey catalogue. Use `--catalog`
+with an owning leaf collection when scaffolding; the root composition is not a
+content owner. Each entry uses controlled category, role and agent-work IDs;
+scoped experiment links resolve current protocol locations without changing
+frozen bytes. Supporting entries are excluded from agent-task counts.
 The reusable `author-task-brief` skill discovers this rulebook; keep domain-specific
 rules here. It does not copy this file into user-level skill storage.
 
