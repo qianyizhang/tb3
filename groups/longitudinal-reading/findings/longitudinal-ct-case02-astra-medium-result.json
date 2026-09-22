@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "id": "longitudinal-ct-case02-astra-medium-result",
+  "group_id": "longitudinal-reading",
+  "title": "Second CT pair: high foreground overlap coexists with 3/22 instance recovery",
+  "claim": "On a purposively selected second raw-CT pair, Astra medium recovered the dominant persistent liver lesion at both visits and one new lesion: 3/22 instances, 1/7 links and 2/15 exact event groups. Foreground Dice was 0.799/0.891 but equal-instance Dice 0.107. A reported vessel exclusion coordinate lies inside a missed new reference lesion, supporting at least one recognition/inclusion disagreement relative to GT; other omissions remain mixed search/recognition.",
+  "experiment_ids": [
+    "longitudinal-ct-case02-astra-medium"
+  ],
+  "evidence": [
+    {
+      "path": "groups/longitudinal-reading/findings/evidence/longitudinal-ct-case02-astra-medium.json",
+      "sha256": "a2969ebdb772e2df3bf2e3bdf9953576bdbdd07eb757f53b3decd739cc0f1d33"
+    }
+  ],
+  "limitations": [
+    "One purposively selected patient and one fresh attempt, not population accuracy or a model ranking.",
+    "Source annotators used clinical reports; the solver intentionally received CT only. Clinical malignancy/reference interpretation was not independently adjudicated.",
+    "All 22 survey panels were presented, but this does not establish attention to every lesion; two-slice averaging and downsampling can obscure detail.",
+    "Conditional link/event success concerns only detected endpoints.",
+    "No merger/disappearance case or localized follow-up was tested; no frozen scores or labels were changed."
+  ],
+  "links": [
+    {
+      "label": "Full result, observable methods and CT illustrations",
+      "path": "groups/longitudinal-reading/findings/longitudinal-ct-case02-astra-medium.md"
+    },
+    {
+      "label": "Selection from original source statistics and GT",
+      "path": "groups/longitudinal-reading/examples/longitudinal-ct-case02-selection.md"
+    }
+  ]
+}

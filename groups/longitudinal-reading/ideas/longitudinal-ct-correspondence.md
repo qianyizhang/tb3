@@ -127,3 +127,34 @@ and image-only target suitability before additional model comparisons. If
 confirmed, a known-positive point segmentation control could isolate boundary
 construction but would explicitly supply positivity. No further trial is selected
 or launched; original scores and source labels remain unchanged.
+
+## User-selected second case — 2026-09-22
+
+Decision `decision-7736bd9e5cb1412d`, actor=user: review source documentation and
+GT statistics, select/download another suitable case, and run one fresh
+Astra-medium attempt (explicit follow-up selection). The assistant's
+[selection review](../examples/longitudinal-ct-case02-selection.md) retains the
+300-patient metadata screen, six eligible cases, acquisition hashes and native
+geometry checks. The selected new case has seven persistent and eight new
+reference groups, mostly liver, with no touching distinct mask IDs. Preserve all
+22 present instances. No model outcome informed this patient's selection.
+
+The source card explicitly says annotators used clinical reports, while the
+retained primary contract is CT-only. This is a deliberate information gap and
+limits diagnostic interpretation. The exact revised v2 instructions/scientific
+scorer are reused; no organ/count/location/event hint or clinical context reaches
+the solver. Foreground overlap, equal-lesion scores, size strata and new-event
+recovery are separated because one large lesion dominates total volume.
+[Protocol](../experiments/longitudinal-ct-case02-astra-medium/protocol.md).
+
+The second-case attempt completed normally in 17m02s, with valid outputs and
+exact saved-score replay: 3/22 strict instance matches, 1/7 links, 2/15 exact
+events (one persistent, one new). Foreground Dice 0.799/0.891 is dominated by
+the large lesion; equal-instance Dice is 0.107. No <=1 mL instance was localized.
+A reported follow-up vessel exclusion at (190,235,536) lies inside source GT14,
+providing a concrete recognition/inclusion disagreement for one missed target.
+All 22 survey panels were requested, but this does not isolate attention versus
+recognition for the other omissions. Correct conditional associations do not
+establish complete event reasoning. Source context and clinical adjudication
+limitations remain; no labels or original scores were revised and no localized
+follow-up was launched. [Full result and CT evidence](../findings/longitudinal-ct-case02-astra-medium.md).

@@ -25,3 +25,11 @@ upstream effects on links/events using saved actions and quantitative diagnostic
 strict localization improves from 2/6 to 3/6, but exact center cues do not rescue
 the remaining separate focus; both indicated structures are explicitly rejected
 as normal/benign. Recognition relative to GT and clinical adjudication are distinct.
+
+[Second case selection](examples/longitudinal-ct-case02-selection.md): source documentation,
+300-patient metadata screen, and a new liver-dominant pair with persistence and
+new lesions; the revised image-only contract is retained.
+
+[Second-case Astra result](findings/longitudinal-ct-case02-astra-medium.md):
+3/22 instances and 2/15 exact events despite foreground Dice 0.799/0.891;
+one reported vessel exclusion falls inside a missed new reference lesion.

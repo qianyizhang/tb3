@@ -1,0 +1,2333 @@
+{
+  "schema_version": 1,
+  "source_urls": [
+    "https://fdat.uni-tuebingen.de/records/qe950-g4h94",
+    "https://www.nature.com/articles/s41597-026-07466-y",
+    "https://autopet.org/longitudinalct.html"
+  ],
+  "selection": {
+    "source_release": "Longitudinal-CT v3 / qe950-g4h94",
+    "criteria": "One acquisition per visit; every link explicitly clear; 4-15 present labels per visit; persistence plus newly appearing; no merging; >=3 lung/liver rows. Rank larger minimum lesion volume then larger new lesion, then patient ID. Purposive contrast to first nodal-merger case, not prevalence sampling.",
+    "selection_timing": "After descriptive metadata exploration, before new CT download and any new model output.",
+    "csv_rows": 4638,
+    "patient_count": 300,
+    "row_event_counts": {
+      "UNCHANGED": 2506,
+      "DISAPPEARING": 1407,
+      "NEWLYAPPEARING": 559,
+      "MERGING": 166
+    },
+    "row_anatomy_counts": {
+      "Others": 198,
+      "Lymph node": 964,
+      "Liver": 682,
+      "Lung": 1488,
+      "Soft tissue / Skin": 988,
+      "Adrenals": 42,
+      "Skeleton": 106,
+      "Spleen": 67,
+      "Kidney": 6,
+      "unclear": 81,
+      "Heart": 2,
+      "CNS": 14
+    },
+    "present_instances_bl": 4079,
+    "present_instances_fu": 3103,
+    "patients_all_links_explicitly_clear": 288,
+    "patients_single_volume_each": 252,
+    "eligible": [
+      {
+        "patient": "bcbe3365e6",
+        "events": {
+          "UNCHANGED": 7,
+          "NEWLYAPPEARING": 8
+        },
+        "types": {
+          "Lymph node": 2,
+          "Liver": 12,
+          "Skeleton": 1
+        },
+        "bl_count": 7,
+        "fu_count": 15,
+        "minimum_ml": 0.14781951904296875,
+        "median_ml": 0.995635986328125,
+        "largest_new_ml": 2.880096435546875,
+        "all_links_explicitly_clear": true,
+        "single_volume_per_visit": true,
+        "lung_liver_rows": 12,
+        "compressed_bytes": 278434401
+      },
+      {
+        "patient": "eae27d77ca",
+        "events": {
+          "UNCHANGED": 5,
+          "NEWLYAPPEARING": 6
+        },
+        "types": {
+          "Soft tissue / Skin": 2,
+          "Liver": 1,
+          "Lymph node": 2,
+          "Lung": 6
+        },
+        "bl_count": 5,
+        "fu_count": 11,
+        "minimum_ml": 0.08531999588012695,
+        "median_ml": 0.6979175662994385,
+        "largest_new_ml": 0.5972399711608887,
+        "all_links_explicitly_clear": true,
+        "single_volume_per_visit": true,
+        "lung_liver_rows": 7,
+        "compressed_bytes": 100868244
+      },
+      {
+        "patient": "9dcb88e013",
+        "events": {
+          "UNCHANGED": 5,
+          "DISAPPEARING": 1,
+          "NEWLYAPPEARING": 1
+        },
+        "types": {
+          "Skeleton": 1,
+          "Lung": 2,
+          "Liver": 2,
+          "Soft tissue / Skin": 1,
+          "Others": 1
+        },
+        "bl_count": 6,
+        "fu_count": 6,
+        "minimum_ml": 0.0591278076171875,
+        "median_ml": 0.5050350189208984,
+        "largest_new_ml": 1.2713473320007325,
+        "all_links_explicitly_clear": true,
+        "single_volume_per_visit": true,
+        "lung_liver_rows": 4,
+        "compressed_bytes": 179670131
+      },
+      {
+        "patient": "95b3019dea",
+        "events": {
+          "UNCHANGED": 4,
+          "NEWLYAPPEARING": 1
+        },
+        "types": {
+          "Liver": 5
+        },
+        "bl_count": 4,
+        "fu_count": 5,
+        "minimum_ml": 0.05892162322998047,
+        "median_ml": 0.1803416976928711,
+        "largest_new_ml": 0.638556827545166,
+        "all_links_explicitly_clear": true,
+        "single_volume_per_visit": true,
+        "lung_liver_rows": 5,
+        "compressed_bytes": 132935381
+      },
+      {
+        "patient": "96da2f590c",
+        "events": {
+          "UNCHANGED": 6,
+          "NEWLYAPPEARING": 1
+        },
+        "types": {
+          "Lung": 4,
+          "Liver": 3
+        },
+        "bl_count": 6,
+        "fu_count": 7,
+        "minimum_ml": 0.02624359130859375,
+        "median_ml": 0.17764892578125,
+        "largest_new_ml": 1.5806716918945312,
+        "all_links_explicitly_clear": true,
+        "single_volume_per_visit": true,
+        "lung_liver_rows": 7,
+        "compressed_bytes": 147219736
+      },
+      {
+        "patient": "31c8f1568c",
+        "events": {
+          "UNCHANGED": 8,
+          "NEWLYAPPEARING": 5
+        },
+        "types": {
+          "Skeleton": 1,
+          "Liver": 8,
+          "Lung": 4
+        },
+        "bl_count": 8,
+        "fu_count": 13,
+        "minimum_ml": 0.014429534912109377,
+        "median_ml": 0.8639684028625488,
+        "largest_new_ml": 0.9469382286071776,
+        "all_links_explicitly_clear": true,
+        "single_volume_per_visit": true,
+        "lung_liver_rows": 12,
+        "compressed_bytes": 138382792
+      }
+    ],
+    "selected": {
+      "patient": "bcbe3365e6",
+      "events": {
+        "UNCHANGED": 7,
+        "NEWLYAPPEARING": 8
+      },
+      "types": {
+        "Lymph node": 2,
+        "Liver": 12,
+        "Skeleton": 1
+      },
+      "bl_count": 7,
+      "fu_count": 15,
+      "minimum_ml": 0.14781951904296875,
+      "median_ml": 0.995635986328125,
+      "largest_new_ml": 2.880096435546875,
+      "all_links_explicitly_clear": true,
+      "single_volume_per_visit": true,
+      "lung_liver_rows": 12,
+      "compressed_bytes": 278434401
+    },
+    "metadata_hashes": [
+      {
+        "member": "inputsTr/006f52e910.csv",
+        "sha256": "55c92223409b05d6139bd5df8985288a344ce1570344301f56130c7cede6de3d"
+      },
+      {
+        "member": "inputsTr/01161aaa0b.csv",
+        "sha256": "8694611a06e39f2df439857cb8a914b7ba122a1dbcab80d557ffd38a949a4f8f"
+      },
+      {
+        "member": "inputsTr/013d407166.csv",
+        "sha256": "708943c0b022a2c482743025c7d09df87a3145666738b7277334eb44bfcc719e"
+      },
+      {
+        "member": "inputsTr/02522a2b27.csv",
+        "sha256": "645fd3ab7f6facd23a246984d772682c5d41c519eed74765e6d9fbd18b502d26"
+      },
+      {
+        "member": "inputsTr/0266e33d3f.csv",
+        "sha256": "72538b190cbd3401140303c5ad46738e6e3cce067b612b2104681b3eaffb4ebe"
+      },
+      {
+        "member": "inputsTr/03b90eb112.csv",
+        "sha256": "82f613ae4ded172d0f218d4212d22bca57abe8a74c7f85b1efa6c60bb2b82ff2"
+      },
+      {
+        "member": "inputsTr/03c6b06952.csv",
+        "sha256": "c4055f16a9811aef4b6edc7ad3b82bc124baaf4423fb1a9551ebdefed17b38d8"
+      },
+      {
+        "member": "inputsTr/045117b0e0.csv",
+        "sha256": "d3f2e2a9d7071b4c11e83b31b60e7f8c821af5bfb862b60395b4111dbb07ee68"
+      },
+      {
+        "member": "inputsTr/060ad92489.csv",
+        "sha256": "c7f00f833af52751b99bb199b563ffed503c61b4b4ab0ba689dfd51680bb8c4e"
+      },
+      {
+        "member": "inputsTr/06138bc5af.csv",
+        "sha256": "9a82351dddd2eed2e37328ca64b76e0f1ae1402521f297f40f2ddaa3f151ab08"
+      },
+      {
+        "member": "inputsTr/0640966322.csv",
+        "sha256": "6813f70d3c5211814c6bc91ba5a5bae77bfbcffcdbd28577ed9c881e0b6876a0"
+      },
+      {
+        "member": "inputsTr/069059b7ef.csv",
+        "sha256": "a20bd8dff4d9032a0a600fae659f24bd66bedf5defe5bcb6ab3d771696681de6"
+      },
+      {
+        "member": "inputsTr/06eb133bbf.csv",
+        "sha256": "36d21f264ff71fc797118f934e3425a73d1b2af44927518fb77b6b6f15d31167"
+      },
+      {
+        "member": "inputsTr/06eb61b839.csv",
+        "sha256": "7eb01d9bf3004d29d618e5b52fd96f184261ecc373a3bc5e1a1890c6c05e10da"
+      },
+      {
+        "member": "inputsTr/0777d5c17d.csv",
+        "sha256": "afaf9b4a4a7b17faec9f90527d27efeaf0a90e79e3bcadae29ea06d0372e1eae"
+      },
+      {
+        "member": "inputsTr/077e29b11b.csv",
+        "sha256": "598571a9bcedb4933a92d452cd15b625275fa09acb944332a4e31d0839aeef2f"
+      },
+      {
+        "member": "inputsTr/07cdfd2337.csv",
+        "sha256": "495330b626dc8163800ecfa238a001c75a7a92132bc8f4d90973da4a43061522"
+      },
+      {
+        "member": "inputsTr/07e1cd7dca.csv",
+        "sha256": "8c2197758c7cb235b53c46e50697923565bd3ae78b6fe33bf749725f64a0b3ad"
+      },
+      {
+        "member": "inputsTr/084b6fbb10.csv",
+        "sha256": "8ee46396a47892cd97e5684df4e230391ee55b334936a733426b35f308cf1304"
+      },
+      {
+        "member": "inputsTr/091d584fce.csv",
+        "sha256": "06f88d4a2d111d0d269b2bc6886852506c9422a3f052fd4b30612f5f6204b129"
+      },
+      {
+        "member": "inputsTr/0a09c8844b.csv",
+        "sha256": "299fcc50a706a1a6ddf81d395788292ecb29bf3b45be52635861b99152870fab"
+      },
+      {
+        "member": "inputsTr/0aa1883c64.csv",
+        "sha256": "5a506005e35df623e1d3dd33f35726e8fbb1a16d8794413bcafb8a4fb30025a9"
+      },
+      {
+        "member": "inputsTr/0e01938fc4.csv",
+        "sha256": "8d39349f48168e75a642d0fae8e1956b70649bcc748c219a9c5e1f1ecad4046a"
+      },
+      {
+        "member": "inputsTr/0e51011a4c.csv",
+        "sha256": "8ad81af6dc4746e4c6734306b5caba95f146f54906d6413cef9db8bfe13a37ed"
+      },
+      {
+        "member": "inputsTr/0e65972dce.csv",
+        "sha256": "08ff374f1f57fc4881c8d62c73127fa9423276096e184222f567b93e96ada1d7"
+      },
+      {
+        "member": "inputsTr/0f49c89d1e.csv",
+        "sha256": "db47ea110de2d2d48a610ecfef2db56f2698e3d963bf516e01833e5eb3858c77"
+      },
+      {
+        "member": "inputsTr/11364907cf.csv",
+        "sha256": "b6980b902a56abf839bd2ed3a96a9cc2d1c9055b6da5c8bbcd196814c25074e6"
+      },
+      {
+        "member": "inputsTr/115f895031.csv",
+        "sha256": "3467ca5ad1fb32b465472cad67307174d5b419371df6885f69d0bf2f49276b48"
+      },
+      {
+        "member": "inputsTr/11b9842e0a.csv",
+        "sha256": "a1a8e0290c89efd100c8797b5c1a4545c44315bfd3c7fd12ae38ec72e5e79c87"
+      },
+      {
+        "member": "inputsTr/1385974ed5.csv",
+        "sha256": "29564dd89133a931a10673afc1371e529adb65b22d6577037910a7e6453843ba"
+      },
+      {
+        "member": "inputsTr/13c022b0b3.csv",
+        "sha256": "d73b50f024bff45ef2e59efb9e5ecccae54379e438c5f4ccffaadd744e9093e8"
+      },
+      {
+        "member": "inputsTr/13fe9d8431.csv",
+        "sha256": "f1c06408cbd248c017206332b4c6e8e5d95829b453d35fada6e67ccfc5789981"
+      },
+      {
+        "member": "inputsTr/140f6969d5.csv",
+        "sha256": "8eb838c17468db228ea0ea3cc1e2f97358ff11cd113f18a406bc62cb7fc1c313"
+      },
+      {
+        "member": "inputsTr/1534b76d32.csv",
+        "sha256": "2da4d4e3e88df5c30c3eeb4255163817041ce814d942e33b3ee772e50d48100d"
+      },
+      {
+        "member": "inputsTr/158f3069a4.csv",
+        "sha256": "d22237cb06cc0472422e564c570565b4a40be4f13e54a2a30ed1c632ce843b02"
+      },
+      {
+        "member": "inputsTr/16a5cdae36.csv",
+        "sha256": "b9a47faeb494ccf58423591ff9697f72a9fe3ee0724eb4a5ef8cc661ee8b5f1f"
+      },
+      {
+        "member": "inputsTr/1700002963.csv",
+        "sha256": "2412b81df8a0b634f1c0df45f053ddc8613186e6b88d73da8f5efaef2cb4b5b9"
+      },
+      {
+        "member": "inputsTr/1732cb4372.csv",
+        "sha256": "e6f4f7febf56c90068571a1d507b73a711b5c71635498b3bc242b3179ce57888"
+      },
+      {
+        "member": "inputsTr/18bbcaa5ef.csv",
+        "sha256": "01d83866d89e22f04f1ff570214548e82d4f28656c5991ea19d16c22452784c7"
+      },
+      {
+        "member": "inputsTr/19f3cd308f.csv",
+        "sha256": "c6961ec1db74701fb2a305a8c1521f67c941a746bead7a2bc91808e58eb2819e"
+      },
+      {
+        "member": "inputsTr/1afa34a7f9.csv",
+        "sha256": "163ba78a605d483f43329ff77e74857b5b51996b7ee9bf6d8ba83fdb95d77f09"
+      },
+      {
+        "member": "inputsTr/1c9ac0159c.csv",
+        "sha256": "1e63729633797458f00bb680e30f00f2430f798e71ec39d2dd2a9966ec3f793c"
+      },
+      {
+        "member": "inputsTr/1d7f7abc18.csv",
+        "sha256": "fbbde494ebe13768d89ff08612f5a8807f5a5c1cacf1fae5096167de868ff955"
+      },
+      {
+        "member": "inputsTr/1ff8a7b5dc.csv",
+        "sha256": "724aa391b9777c24d0f99cd396a94b3f7feb46f295cd788277aaafd3a9be3397"
+      },
+      {
+        "member": "inputsTr/207f466f93.csv",
+        "sha256": "d8f2fd8dd9ca1d33fa41a3ab34271d46aefd91c4c36cce789c193f3cea433fbf"
+      },
+      {
+        "member": "inputsTr/21addf5898.csv",
+        "sha256": "98c8321c102f79315f2e4e18d0b4194a637c34b9049bc21d1f8694fd1e835ed2"
+      },
+      {
+        "member": "inputsTr/2618045a3a.csv",
+        "sha256": "992d31d00f39e183cd4a1b95087f342e4652678ae9b7c37f665e90ca07c164c5"
+      },
+      {
+        "member": "inputsTr/26e359e838.csv",
+        "sha256": "a0410cef52113594302c644e752a149f6e71b11a8fb514923a2fadb74c6af368"
+      },
+      {
+        "member": "inputsTr/2723d092b6.csv",
+        "sha256": "5426ee93fe240c96a25e75ac84d8fbb654b66637b42239c4c2c62edb717e961d"
+      },
+      {
+        "member": "inputsTr/274ad4786c.csv",
+        "sha256": "d77c0be2e229cea776bf10e319b6ac8a5ca1188739cd0617ab53a6ec13f40d69"
+      },
+      {
+        "member": "inputsTr/275a967a52.csv",
+        "sha256": "83087eb929195fddf361e550cb50547a6b18f7528b99c56ccdbc8ca30d64ca85"
+      },
+      {
+        "member": "inputsTr/289dff0766.csv",
+        "sha256": "914081cee7605240ae8a29912eac71b7bf387f601ee2af71bccc765a799fa8e8"
+      },
+      {
+        "member": "inputsTr/28fd0fbd33.csv",
+        "sha256": "c7289acb1cad79aa242e5aef671ba130c248f750632980ee1785f99edcb1a509"
+      },
+      {
+        "member": "inputsTr/2a452c50d7.csv",
+        "sha256": "7393ae23f445f29f5fd25d5adef099b71da477e661c08991c01fde7878e98f5b"
+      },
+      {
+        "member": "inputsTr/2a79ea27c2.csv",
+        "sha256": "94066abd951ade3d58f3d99a6f6d901568ca05ce39926b88106fc35540a9440f"
+      },
+      {
+        "member": "inputsTr/2b24d49505.csv",
+        "sha256": "f5c373c05b43a33f4ea1eab41327d8c49362830b68af3d72f2be754811fb9199"
+      },
+      {
+        "member": "inputsTr/2b44928ae1.csv",
+        "sha256": "a5239a396258f552fa7786c11203c63670fc5210ae6721a2cf8021b1729ee069"
+      },
+      {
+        "member": "inputsTr/2ba100d604.csv",
+        "sha256": "71fea0d8217ef0edaa2018525a06c01516af8e55f51bbeed5be2c2fc5bd53542"
+      },
+      {
+        "member": "inputsTr/2c62105ee1.csv",
+        "sha256": "8a12e09d34af0c10d416ff4dd9bdfa2810d0903f52d2d9d40330083d0fb8dc7c"
+      },
+      {
+        "member": "inputsTr/2f1ee6251b.csv",
+        "sha256": "f19391c216d5cd70e352c05c59b57029f126604445f2a87b0247b6930bb8435c"
+      },
+      {
+        "member": "inputsTr/307fd7f231.csv",
+        "sha256": "7a2e70ca1ea0537aab00c6a827a71a65203327560c691bf578fa0c61a30747c4"
+      },
+      {
+        "member": "inputsTr/31b7b72368.csv",
+        "sha256": "777f8714b4a569e8bd5142cb4d6135f396424a4e0346279f9ba826953d93111b"
+      },
+      {
+        "member": "inputsTr/31c8f1568c.csv",
+        "sha256": "76c3877ca97fc952ce1c794ef7bf72bd385a6262a1472432a685a359b672e41e"
+      },
+      {
+        "member": "inputsTr/31fefc0e57.csv",
+        "sha256": "7662e50672458d46d40f7140367b011de976564df244423c1886fb28f19bb445"
+      },
+      {
+        "member": "inputsTr/335f535208.csv",
+        "sha256": "e65d634b6ae8e775df3e7d108f3c224e577a7ca718c939a0e28bb7196887c4b0"
+      },
+      {
+        "member": "inputsTr/34ed066df3.csv",
+        "sha256": "db7ce4e343cc3293e64b7530a69a1131c08ed451b971481fd28c17eb0d082339"
+      },
+      {
+        "member": "inputsTr/3636638817.csv",
+        "sha256": "9d7642537d6deb87bc5fbd3b0226f5cb042a9a388302e035988aab3493a18f5e"
+      },
+      {
+        "member": "inputsTr/3644a684f9.csv",
+        "sha256": "af289dc89d5bb4310041fa31b82be429ee38a5fd7b46edd0873af4e70b8d2f32"
+      },
+      {
+        "member": "inputsTr/36660e5985.csv",
+        "sha256": "ef65c92cb4317d8bf88e505126693aa91b271ecb4ba544e91e6dc1502fee9745"
+      },
+      {
+        "member": "inputsTr/37a749d808.csv",
+        "sha256": "fd95e9586dc5d89a668fada421d69974783c9b9796a2bc77e21bf3f516b32e63"
+      },
+      {
+        "member": "inputsTr/37bc1b6433.csv",
+        "sha256": "f6383273ff9372df35d7728b2857924d2e21f0b92e1545777dfb94cb99b93e55"
+      },
+      {
+        "member": "inputsTr/37bc2f75bf.csv",
+        "sha256": "94bd3070c26f03583338364c0b429b28964adc2f4cde6589c3789a70990d6cdc"
+      },
+      {
+        "member": "inputsTr/38af86134b.csv",
+        "sha256": "488f66de70dd263ee36d06a4c7c0ea3230c2c8c0c0a428a63022271748635f9f"
+      },
+      {
+        "member": "inputsTr/38b18881fc.csv",
+        "sha256": "5be8975ac0803c2988b555c5c552c59dd6df61cef41703ca228f6e6a2069103a"
+      },
+      {
+        "member": "inputsTr/38b3eff8ba.csv",
+        "sha256": "730fc6558bd58758f5982e4870e63f4bd132d8f31f492c0c0ebae6a834474a81"
+      },
+      {
+        "member": "inputsTr/38db3aed92.csv",
+        "sha256": "2c62c6c7777e27f29a8d05b5d0dc321c5b60c5203843f3b03c323bfbde291170"
+      },
+      {
+        "member": "inputsTr/39059724f7.csv",
+        "sha256": "49be7ede556d7efab39764a32a00a2df52a11b22134ba0ef748bbfb7af4ba985"
+      },
+      {
+        "member": "inputsTr/3988c7f88e.csv",
+        "sha256": "96d6800160dbbea28efa82d83bff8481b94516de300e2be5012e394efc8af8ca"
+      },
+      {
+        "member": "inputsTr/3994f23bfb.csv",
+        "sha256": "091023380ce2c936f2465d72285de6eb21dba1fc871e8e5361ea6840183fb2da"
+      },
+      {
+        "member": "inputsTr/3b8a614226.csv",
+        "sha256": "9eec9b60fe7128ec90f879b53a268f8834c86fedd908afcae097b71f3a6d905c"
+      },
+      {
+        "member": "inputsTr/3cec07e9ba.csv",
+        "sha256": "6af6e9ad9d0fa785d208aa93f522197fc35a8802344ae41170754ce40cacedd3"
+      },
+      {
+        "member": "inputsTr/3def184ad8.csv",
+        "sha256": "d69560219bfe8eb38dc3ba492edae95e45daf11cdefbba7223828693739b9cdb"
+      },
+      {
+        "member": "inputsTr/3fe94a0023.csv",
+        "sha256": "92336bd83e59a89e245e3d24a1e069826990738fb5d17f8f4cb8c143fdca76d2"
+      },
+      {
+        "member": "inputsTr/42a0e188f5.csv",
+        "sha256": "d38eac01225a7cc2218c01fab1f2f89a1e35bd5daf0b9a6f6ff124d04b56227c"
+      },
+      {
+        "member": "inputsTr/432aca3a1e.csv",
+        "sha256": "b88c8795a64997bb431f3a05178200e761066c47ccc39386c18ec12ee517a697"
+      },
+      {
+        "member": "inputsTr/441954d29a.csv",
+        "sha256": "719f89f7e3d9a06f007abcc404a112b9b6e47d35806255ea976915898383cf42"
+      },
+      {
+        "member": "inputsTr/45fbc6d3e0.csv",
+        "sha256": "d25153fb2030e172383d53f612384987bcd1b31b80028ec441070bed49580622"
+      },
+      {
+        "member": "inputsTr/46ba9f2a69.csv",
+        "sha256": "97861d4eed7c047d5389d1996f6dab8a20222cd6f2482fa70802946cd0e6f606"
+      },
+      {
+        "member": "inputsTr/4734ba6f3d.csv",
+        "sha256": "b3ffccdf6ddc8cb15412de96cb3de7a175c72905378e779e8b250591a8d182ee"
+      },
+      {
+        "member": "inputsTr/47d1e99058.csv",
+        "sha256": "99de35ff324a760765dc0c84f9cbb88b5cd8714518d713ac50d2229645356f9e"
+      },
+      {
+        "member": "inputsTr/48aedb8880.csv",
+        "sha256": "07f038c53d919ed5a7ce6142faca8b0ef10249daa272c0310854335536b09d6c"
+      },
+      {
+        "member": "inputsTr/49182f81e6.csv",
+        "sha256": "7b94d04358fd2794978c057f218697610a22b5fbc7eb508394c15f33dcdd95e4"
+      },
+      {
+        "member": "inputsTr/496e05e1ae.csv",
+        "sha256": "4b420d92a97ca291311c58b2e56fe99a6b20fcc5284bb6423479e3f4aff4e2bc"
+      },
+      {
+        "member": "inputsTr/4c56ff4ce4.csv",
+        "sha256": "d68edc8e6175e736fcd59f4e590a1ff2c7435698807fa760e787f9dc11746e25"
+      },
+      {
+        "member": "inputsTr/4c5bde74a8.csv",
+        "sha256": "7e21876aa8691e8cea8e70aea07172739320a84fb434d5ee31bc637a6fe4d5d4"
+      },
+      {
+        "member": "inputsTr/502e4a1693.csv",
+        "sha256": "ad5dda5c0ec1a946ae107abbe2bdd25c43d35fbb63e123fde94efe6b0a9c1f28"
+      },
+      {
+        "member": "inputsTr/5072d348b2.csv",
+        "sha256": "9f6431e13e1e1ab4ce556391d7347eb76a6f92686218e5973f900d95c217bb32"
+      },
+      {
+        "member": "inputsTr/53c3bce66e.csv",
+        "sha256": "9dc449384656b830802c5555ab067ffaa0290436e6c48c5579c33735e8a5b31b"
+      },
+      {
+        "member": "inputsTr/555d6702c9.csv",
+        "sha256": "43deeec1941dfb6ea751ee578e3304ffe8421d84bd4d87e35393b8ea1d82b3b2"
+      },
+      {
+        "member": "inputsTr/568628e0d9.csv",
+        "sha256": "c83470f08db39938f8630324560f0f0945f1827af77a31a48822a3484f7eeafd"
+      },
+      {
+        "member": "inputsTr/56d9ba4ec6.csv",
+        "sha256": "4df9e3754300ec85bee345608c3f437fdfe2ac8c2049ee11ffc3a09ceb78dcf4"
+      },
+      {
+        "member": "inputsTr/5737c6ec2e.csv",
+        "sha256": "2fc465fc6b7e5577d19b20eca018d7eab3a6fb9b743edd5307097d30c52142ca"
+      },
+      {
+        "member": "inputsTr/5759d9ff2a.csv",
+        "sha256": "3c8a19282983cd3d7d3c5c898bd1687c9df5006b9ad08f8a95ba1792f9f480fc"
+      },
+      {
+        "member": "inputsTr/577bcc914f.csv",
+        "sha256": "2c98ef91564d119f6583f0860641213c45af84050e9d57c9b0baabde40002670"
+      },
+      {
+        "member": "inputsTr/577ef1154f.csv",
+        "sha256": "18ce02177825d9188fae6b2daf3ee312f36fedaf827f0c8cb45ff8aab57a1705"
+      },
+      {
+        "member": "inputsTr/57aeee35c9.csv",
+        "sha256": "a9eecc683f898628c187c35d637564ba95a6eae950b6a313f64c5aa945cb69a4"
+      },
+      {
+        "member": "inputsTr/5878a7ab84.csv",
+        "sha256": "668cfc768bb229d8e4e66c969810e6d06cd48f4f7adb4b1055492ea49488ea92"
+      },
+      {
+        "member": "inputsTr/58a2fc6ed3.csv",
+        "sha256": "b5c306968762cf26853a1cba686d241f85b48fb3946951a8d3687a05ef1629d5"
+      },
+      {
+        "member": "inputsTr/5b8add2a5d.csv",
+        "sha256": "1ccc1dc2f6dc027b696b20ad25bdaea31949510d2e6434918505dc9484951704"
+      },
+      {
+        "member": "inputsTr/5c7d5705ab.csv",
+        "sha256": "6bbd4a644b68c67c0a8f0b2a8c6cdbff3187ec4921c44296b34d10725c4dd141"
+      },
+      {
+        "member": "inputsTr/5ef059938b.csv",
+        "sha256": "aa55c0c374151fd5514f6d533ed032f057c02f567f213dd4dae7008f14b5a2be"
+      },
+      {
+        "member": "inputsTr/5f93f98352.csv",
+        "sha256": "c30db53378ef7dddc1ee7b9006f7e742ee9be115b179e955c9728ff751389781"
+      },
+      {
+        "member": "inputsTr/621bf66ddb.csv",
+        "sha256": "fb4736d3bf4beca73e6ec9e385fa1d4bbbb842b09958767c4a349606deedfefe"
+      },
+      {
+        "member": "inputsTr/64b2c11867.csv",
+        "sha256": "13080430f546deb322e0b0ba2f0032ad3d7ccecec17675d7da693a92c307f52d"
+      },
+      {
+        "member": "inputsTr/65b9eea6e1.csv",
+        "sha256": "ff6dc5932fad773456d70700637de504f88f659065db9e45fd9d1104854737bf"
+      },
+      {
+        "member": "inputsTr/65cfedc125.csv",
+        "sha256": "4a5e551b551e1afb884ca40a0fc6f30cd73e91de72dee9a4da004dfadec3dcbe"
+      },
+      {
+        "member": "inputsTr/65ded5353c.csv",
+        "sha256": "44eba6c1f62b9a012c529aa4d799e78b058c8e7e73914ecb9686035ebcc8e649"
+      },
+      {
+        "member": "inputsTr/671f8ff3e6.csv",
+        "sha256": "457913904951da79b1cdf04b5a87a204577bd2d446e41f503e72dee7cf45fc4b"
+      },
+      {
+        "member": "inputsTr/682670d9ab.csv",
+        "sha256": "9105ebcaf6aab5359b0f22b68a5c773ddb3b60ca2b9fb627dde6bc862d52aec9"
+      },
+      {
+        "member": "inputsTr/6883966fd8.csv",
+        "sha256": "1bfc07f77a4595c73ff0cef00497accfd10946e23c6e9fa72ec2fdb4b886fc83"
+      },
+      {
+        "member": "inputsTr/6974ce5ac6.csv",
+        "sha256": "d9b6dc426ecf3473bdc25f4e386bcf67d16b84066077f2a480bc50dd9bb8d1ad"
+      },
+      {
+        "member": "inputsTr/698d51a19d.csv",
+        "sha256": "e74aa997bc8a9a7db312db260e0dd81ffc5e607f74e105e63275bf9b2156d910"
+      },
+      {
+        "member": "inputsTr/69adc1e107.csv",
+        "sha256": "381b8ba56592e7cc90c8a12ad54be668031ed69bdab75e376500b65214a34dff"
+      },
+      {
+        "member": "inputsTr/6a9aeddfc6.csv",
+        "sha256": "642b9082965f820b53128661d02c20c9adeec655c530dd37a1df5c37f060e602"
+      },
+      {
+        "member": "inputsTr/6c4b761a28.csv",
+        "sha256": "6de6b4495a0bf4638a22e5244f06c4e39ff0bee1efb96f215cd3e8330414b2d4"
+      },
+      {
+        "member": "inputsTr/6c9882bbac.csv",
+        "sha256": "acf7c5e8437fd3f95dea70f52889d4623a9a198d406efc6d1d86914f7406cac1"
+      },
+      {
+        "member": "inputsTr/6cdd60ea00.csv",
+        "sha256": "68f2bc300f9fe068fcd1f892ff36a283336d1d0fc2a1f6942a8b2636370b11b2"
+      },
+      {
+        "member": "inputsTr/6d4a60c0cd.csv",
+        "sha256": "e19c1f04b90fef85e6f3ad446239df5004c6286e859c9937f44042e0ed326c8d"
+      },
+      {
+        "member": "inputsTr/6da9003b74.csv",
+        "sha256": "6aa3002e29d61de68208a9c6966f2a91a9bd281558b75cbb9426dc492ac7c963"
+      },
+      {
+        "member": "inputsTr/6f3ef77ac0.csv",
+        "sha256": "b8cc99606ae66cd2b896ff916c6a989f9adf6d05beb65a8619d7e7169ba3c203"
+      },
+      {
+        "member": "inputsTr/705f217283.csv",
+        "sha256": "bc9b2e5ea51c264ee8418b35addfe48b9a79537f2bf1e2bc43bcd1bfdff5d467"
+      },
+      {
+        "member": "inputsTr/73278a4a86.csv",
+        "sha256": "64f6dc13a6dce5bc45b3642577fcc63ae8a2e912ed672290122a151a5a3af6c7"
+      },
+      {
+        "member": "inputsTr/738cccd4fd.csv",
+        "sha256": "ec3c2dede656eba14e278360e1a48823332a730e46afffe7465148ed0e4b0484"
+      },
+      {
+        "member": "inputsTr/73f7634ab3.csv",
+        "sha256": "3d3dc0a1948b8a9b7ec2f172c26b11a9127f388f0c9120f5b6d20fb211252360"
+      },
+      {
+        "member": "inputsTr/74db120f0a.csv",
+        "sha256": "dcdb4265cd0d962de05b97d7bd27d4354afb444fad71d43f9fa620fa029bf072"
+      },
+      {
+        "member": "inputsTr/757b505cfd.csv",
+        "sha256": "220f32ee38f3d1b37d95437c2fe37f7f37a11e879e5804619ccf76dd47f15c6a"
+      },
+      {
+        "member": "inputsTr/758874998f.csv",
+        "sha256": "72d30657efaf69ad23c9728b316901d44c4e3aa9519ab5788bb74cff5411e74f"
+      },
+      {
+        "member": "inputsTr/7658d0d211.csv",
+        "sha256": "d8346ca092f5a0c0e72acbda2abf851357f2da692b770fa350b1a6444f894529"
+      },
+      {
+        "member": "inputsTr/76dc611d6e.csv",
+        "sha256": "dae568e6e834b59346214f55f0ad3ce24bbe6dba2695191b551335ab9093aa57"
+      },
+      {
+        "member": "inputsTr/7a614fd06c.csv",
+        "sha256": "f5fa0a17b7c8fe61d035f4f68280b6b6d668626c1e1be6e4d85d7230686d09dd"
+      },
+      {
+        "member": "inputsTr/7ba15e3f07.csv",
+        "sha256": "89a58a598a515e9e8e83fd274d04a9eb2b78ee7f7ba9e396fa422b1ce87fdeab"
+      },
+      {
+        "member": "inputsTr/7d06a9cf10.csv",
+        "sha256": "98460375efa0f4332580e0d3e1e0c0fd70219f16de9ffc031287623b18318619"
+      },
+      {
+        "member": "inputsTr/7e7757b1e1.csv",
+        "sha256": "79a2033db7458dfdfeacee2d444bbd9cafee016b02ab1c039eca73dabaea6bb5"
+      },
+      {
+        "member": "inputsTr/7eabe3a164.csv",
+        "sha256": "e815549046c99079408073774018d7e4fbab45bc5f464e432e1f108d2e3584e6"
+      },
+      {
+        "member": "inputsTr/7ef605fc8d.csv",
+        "sha256": "26dca412410f2d9f3f227ef2993747abda4d9e4db27e6282623421a762fa11b8"
+      },
+      {
+        "member": "inputsTr/7f100b7b36.csv",
+        "sha256": "b20a245bdf52f7223fa1544a14bd75168ca971d7da2eb6483fae5b7c22e6750f"
+      },
+      {
+        "member": "inputsTr/7f1de29e6d.csv",
+        "sha256": "b04f8cb794f0eb9e21b01f5b3169363fa7a66e38c49a7a9c6a43f624a01b87b4"
+      },
+      {
+        "member": "inputsTr/7f5144f962.csv",
+        "sha256": "6d9e41d6166d2b2400e5fee197eeafd75dac35cd4e9b4543677c7679adb32690"
+      },
+      {
+        "member": "inputsTr/7f6ffaa6bb.csv",
+        "sha256": "a94cd791da1c98612ba930f17913e88d5d973dccb7c29f316cf65bfd85f4f2d1"
+      },
+      {
+        "member": "inputsTr/8216124282.csv",
+        "sha256": "5ba39a659f6a023f55fa11021b55168057bb5911d0e6488db55110ca88ceba29"
+      },
+      {
+        "member": "inputsTr/82aa4b0af3.csv",
+        "sha256": "ac5d7cd6649fbb5c58accfe3806c7fe65543b4b421ddce8d87c80fdca0032b7a"
+      },
+      {
+        "member": "inputsTr/839ab46820.csv",
+        "sha256": "534fca30334e5ecf6b7f0a95976a0d660ddb03a346304f378131c9b27b319915"
+      },
+      {
+        "member": "inputsTr/84150c44ef.csv",
+        "sha256": "5bdfbc4db1bfbd80ad965cb4031af63aaf2ea82ba3d06f7cac173184124ed061"
+      },
+      {
+        "member": "inputsTr/842f3298f9.csv",
+        "sha256": "e1a69650f07f79183516150fc110722bcb0b675d02f269956363110c8560ea99"
+      },
+      {
+        "member": "inputsTr/84d9ee44e4.csv",
+        "sha256": "60a43f49ca43dbbe852ff488c9bd7cf4d661ed1161e9b1628347c705699c4dd3"
+      },
+      {
+        "member": "inputsTr/84eb13cfed.csv",
+        "sha256": "8e5524983aa1953f5b26b77000d2c5c26484933935fd27f96304dc3ceed48322"
+      },
+      {
+        "member": "inputsTr/854d6fae5e.csv",
+        "sha256": "0a0bb105c79707598835b929a123ee99bda477b3a2aaae63ca1abc5aa47788e8"
+      },
+      {
+        "member": "inputsTr/85d8ce590a.csv",
+        "sha256": "ac3f4925853046b7a8b61b2ae17f58e6e571badb814f1f8b78f0ff827b0c01e2"
+      },
+      {
+        "member": "inputsTr/871c14878f.csv",
+        "sha256": "bbc897dabf19d1718877ebe8ceb3ce94f2ec2e111d6faddb786a7e26a674a830"
+      },
+      {
+        "member": "inputsTr/8c19f571e2.csv",
+        "sha256": "219e5b4c8becfa2c8d3836822e0ef02f4a792214e5884dc43bbeebe1e8645fcb"
+      },
+      {
+        "member": "inputsTr/8c9611718f.csv",
+        "sha256": "ab7817d60ff4c7122f46484718949622b83425be128bfc2a242dff0cf913e77c"
+      },
+      {
+        "member": "inputsTr/8d3bba7425.csv",
+        "sha256": "fca7e0b43353147ff5b333fd9f00421225d02ffa184adf20ea0c011d8003cd3e"
+      },
+      {
+        "member": "inputsTr/8d5e957f29.csv",
+        "sha256": "ecec4da0b58f8ec4b1ab283c769fe323cc31dc31709178d34f5efaffdf79e5e0"
+      },
+      {
+        "member": "inputsTr/8e98d81f82.csv",
+        "sha256": "9e0da0829193f52243391e7e901e37128db715479f48a075df98f60c8ad40561"
+      },
+      {
+        "member": "inputsTr/8f03ad02c6.csv",
+        "sha256": "6096164d82d8042270d06d6ce9d1b5dc29e95fa55ecf238d7e3bbc4f5bb13432"
+      },
+      {
+        "member": "inputsTr/8f121ce07d.csv",
+        "sha256": "0340f7fcdecb351fc9f11293dad4c3f864c3ecdc51640f96c8b4f04e0185e79f"
+      },
+      {
+        "member": "inputsTr/8f53295a73.csv",
+        "sha256": "577b2b3d113da68024f864af64b8c3d13b525fb9354a0a6a1f56f5c8b806b080"
+      },
+      {
+        "member": "inputsTr/8f85517967.csv",
+        "sha256": "3b1e57eaa2ff874703b3da4f86cac86994ee3cf11ccabd2999812c58a05a520c"
+      },
+      {
+        "member": "inputsTr/8fc4c7ab44.csv",
+        "sha256": "66938f2106b081180ff266f6fbd4de1a928f9b911dc255b4f3df00bc4557ef3d"
+      },
+      {
+        "member": "inputsTr/903ce9225f.csv",
+        "sha256": "6a2be85bb18572442a37c23a1a3ef805d8c6200e72f366b3362e10dfb4008b08"
+      },
+      {
+        "member": "inputsTr/914b62192c.csv",
+        "sha256": "331238fcc8b529a5a3e894eeaa95a75cdae81af158019dc41d651cd205550e71"
+      },
+      {
+        "member": "inputsTr/918317b579.csv",
+        "sha256": "b5109c59cd61d97f35d276e611bfea05b53728910b76fe6bf06d4d754b164853"
+      },
+      {
+        "member": "inputsTr/9188905e74.csv",
+        "sha256": "38044e9c0e7f7f3713ddd1665c3069df031d99d623fe15fcb03b2c67a24c6d10"
+      },
+      {
+        "member": "inputsTr/92c8c96e4c.csv",
+        "sha256": "e25869ae30ecabf576562185e7ff1048e665782429f08f2b7ac6759338384426"
+      },
+      {
+        "member": "inputsTr/93dd4de5cd.csv",
+        "sha256": "4c3e53d0cca7157f48789f0fe40cd702ac157765becd4bb82a39add0bcb4a7ed"
+      },
+      {
+        "member": "inputsTr/94f6d7e04a.csv",
+        "sha256": "d10f2ab0b2a7cc137f3679ed1f480e11904418f524bcd22875633dda7537993c"
+      },
+      {
+        "member": "inputsTr/950a4152c2.csv",
+        "sha256": "e31b2cf6deddb47993a6f08470f8f8ff52429c91775fd5e692ed990ca2bdc3a4"
+      },
+      {
+        "member": "inputsTr/95b3019dea.csv",
+        "sha256": "533009f6732a2203d710247bb02f955863d4734dfcc760ee9aa9d430ca3fbae5"
+      },
+      {
+        "member": "inputsTr/962e611a0f.csv",
+        "sha256": "63b63b3c5f7c762c80d3500ae5581cdc96504695bcc588eea47faba5f56b1584"
+      },
+      {
+        "member": "inputsTr/96da2f590c.csv",
+        "sha256": "21817842c7606cfb2db0d81654668d898f7890a1cf62e49b8f862af8ecae9854"
+      },
+      {
+        "member": "inputsTr/9766527f2b.csv",
+        "sha256": "0097f872a8c0bf09e39d6f850f32495a5643680e698f138f05cc39944221df3e"
+      },
+      {
+        "member": "inputsTr/979d472a84.csv",
+        "sha256": "9fdb592582e824b26a111e6270822cad6cfbe5edd4489b936ea2ed8ec4a85f81"
+      },
+      {
+        "member": "inputsTr/9872ed9fc2.csv",
+        "sha256": "7b1f825c49908ed0f189df4bd87da205c9ad0505b84d8776775403711a8d35e6"
+      },
+      {
+        "member": "inputsTr/9ac05befca.csv",
+        "sha256": "b3b387ec9fe139907c6e2f38a16e3f5a94e8194e6b8bcd591c3105b88f78d56d"
+      },
+      {
+        "member": "inputsTr/9b04d15284.csv",
+        "sha256": "889ba2fd39d07871d5ee20f67421feeb72c6f9431c1e11338560ab68a0575847"
+      },
+      {
+        "member": "inputsTr/9b8619251a.csv",
+        "sha256": "7fdeb0b2a914b47ba492540c83cc34ddb946152e537c1e0ccde0f00648770280"
+      },
+      {
+        "member": "inputsTr/9c3ce93643.csv",
+        "sha256": "45fb00998b3a5991bd82caa7717257e4ae57adccadd06599c490ce3d46439ad4"
+      },
+      {
+        "member": "inputsTr/9c838d2e45.csv",
+        "sha256": "7ea54c13b31c9bf925496ce15db14be1658f7239340c32369616544d30bc697d"
+      },
+      {
+        "member": "inputsTr/9cfdf10e8f.csv",
+        "sha256": "aea2977fcb504dd2581e209a69109b2249d51493ccb031db886f558e1d26730d"
+      },
+      {
+        "member": "inputsTr/9dcb88e013.csv",
+        "sha256": "bc2ec1cd4f98f2aafad72e53d722f6e18a2e43cfeca0d0372103eb9ab7521a57"
+      },
+      {
+        "member": "inputsTr/9dfcd5e558.csv",
+        "sha256": "4f7ffab3fa0a2531a6dc238a5f8716e26eadaf6a97587181a454d706f7153337"
+      },
+      {
+        "member": "inputsTr/9e94b15ed3.csv",
+        "sha256": "23d01c7878128676039ce871ba2b11cac1e3199fb9b9a90573f49f4ba3a32fc4"
+      },
+      {
+        "member": "inputsTr/9f9cee5b98.csv",
+        "sha256": "fbe8f03f055b92d317be50d0c14e0b16c228733b6b7895cf2bec67776ff17c25"
+      },
+      {
+        "member": "inputsTr/9fc3d7152b.csv",
+        "sha256": "01dc1dbfc882cdea89edfa664bf3880b52b57fdc72bb2c48dc9ad751847a9ac7"
+      },
+      {
+        "member": "inputsTr/9fd81843ad.csv",
+        "sha256": "f3cd0700033a40cefe69d56dd63932fc99b5f65a2333ef210e327d5202c6e0d6"
+      },
+      {
+        "member": "inputsTr/a0a080f42e.csv",
+        "sha256": "b756bab37f4558c6c4847dc298d5ae8466dc65b80766b481de73a1e03acac71b"
+      },
+      {
+        "member": "inputsTr/a13ee062ef.csv",
+        "sha256": "ddc0a611780b18cfe81f7bdc3902645270403f4bacac99629cc8a1c94f6b4219"
+      },
+      {
+        "member": "inputsTr/a2557a7b2e.csv",
+        "sha256": "cd5062c8650115647bbbf1a4558af45593b76ef76fca7c453ca92ff5693b52b7"
+      },
+      {
+        "member": "inputsTr/a27ef1c79c.csv",
+        "sha256": "244550822448fe9502e2c480af356791649b0762f31be557807e4c9bf2ec0c86"
+      },
+      {
+        "member": "inputsTr/a3458cbbcc.csv",
+        "sha256": "ac6fe76d7341dc07007ae4892fdf59eca072633cdeb26898f1ccffe71a3a407e"
+      },
+      {
+        "member": "inputsTr/a3c65c2974.csv",
+        "sha256": "b17c30f044f0227e146f46395b14e0e943fdffc9a6aea6a531b523a8e5c65f82"
+      },
+      {
+        "member": "inputsTr/a4a042cf4f.csv",
+        "sha256": "357fabb1d65911e29f12b0151136d80d12786487b77784a2676257556f361412"
+      },
+      {
+        "member": "inputsTr/a4f23670e1.csv",
+        "sha256": "d7f5d163f340e37afe5edd6afb2fcda04732cc14325943d9f2d501daae32f5b9"
+      },
+      {
+        "member": "inputsTr/a597e50502.csv",
+        "sha256": "1c66f1be7350f008a7ea432f3f73b9c99e3233bdf3ff8e5a945c241ac1efd0b6"
+      },
+      {
+        "member": "inputsTr/a5e0013237.csv",
+        "sha256": "f9f234c0bc3cdcd680f564cd4b64d4d03d1b72c4cc8c81e7cd1aaa6a7eaff218"
+      },
+      {
+        "member": "inputsTr/a666587afd.csv",
+        "sha256": "a4c12a1612a38b8b5b36d982fba7ef0ec823c1ea4143438728efcef6d84d8f9f"
+      },
+      {
+        "member": "inputsTr/a71d83915f.csv",
+        "sha256": "edaecd0516b479b3f240c7e2bb0b72abbdac7a0140783bf9b217d8e0fb3b4121"
+      },
+      {
+        "member": "inputsTr/a7228a7d88.csv",
+        "sha256": "eaa6cd45cbb56be4ada893c0f3109afa01206b1c85e6158e4a705ea6ee2efff1"
+      },
+      {
+        "member": "inputsTr/a861405761.csv",
+        "sha256": "94bae6a3d7f2d21d6b3305607e2584847cbce866aeb3b6d9831d371767b33a62"
+      },
+      {
+        "member": "inputsTr/a8baa56554.csv",
+        "sha256": "e37eaed4f6f05c9fd2caec5aa6bcedc6507dc5115853aa409d160eadeed2c7bd"
+      },
+      {
+        "member": "inputsTr/a8c88a0055.csv",
+        "sha256": "05563c31603c439a9c7c255a0436034a892030cc57375ada7414f6b7e58fba84"
+      },
+      {
+        "member": "inputsTr/a8f15eda80.csv",
+        "sha256": "2556eb84a571e48710e5b68dc1f4aec027af9cff4a53dd084236014aadafb691"
+      },
+      {
+        "member": "inputsTr/a91f7d0f27.csv",
+        "sha256": "4026e1f5425a7a2f8497af166beadb968177e22e7acb8120247df64a5d7ce038"
+      },
+      {
+        "member": "inputsTr/a97da629b0.csv",
+        "sha256": "3d702d959b2e5706a83e70f9c85e8d66250bda19d011ea613f2c72f0941ebe5d"
+      },
+      {
+        "member": "inputsTr/ac1dd209cb.csv",
+        "sha256": "87455281978b20ae0f015d297afca1fe87885305b53bfc097a1a4b8083ed17c5"
+      },
+      {
+        "member": "inputsTr/af032fbcb0.csv",
+        "sha256": "13776aa0e033c346c90ac54c4553763a77f5e0b4a882f39ee9066ff63949ac01"
+      },
+      {
+        "member": "inputsTr/b1a59b315f.csv",
+        "sha256": "c48248c021a3df313afff91418a86b81751a06df46ef21ca94d5fd0f03071881"
+      },
+      {
+        "member": "inputsTr/b1d10e7baf.csv",
+        "sha256": "90cfe14ae9dcb0b85d8a1beb8c9ddb69952e98fe1e7ce0430340ca137bdb449d"
+      },
+      {
+        "member": "inputsTr/b1e0a5a7b0.csv",
+        "sha256": "168dd626625e294542a17d0ee51d1b6d358ed6984f998ec619d9a771ee444a9f"
+      },
+      {
+        "member": "inputsTr/b2eb734903.csv",
+        "sha256": "77e3af002fa4ba6b1327d6d955384cef7b4ec60adc7d2851b9cfe5d3568600ab"
+      },
+      {
+        "member": "inputsTr/b34f33d0bc.csv",
+        "sha256": "4ae765291b385824a7d9617e5d95a5baab5e51158b6e4f532d2fce9a9a67af84"
+      },
+      {
+        "member": "inputsTr/b3e3e393c7.csv",
+        "sha256": "08470947024c3934036305048e94d80f13c7f946b49fd5c0bbd28a4ee0feec58"
+      },
+      {
+        "member": "inputsTr/b6aea7af56.csv",
+        "sha256": "4e5a8ee9499851f5ca43a1227662f749250cee1c3af382ceb7c7fab26fc3ef19"
+      },
+      {
+        "member": "inputsTr/b73ce398c3.csv",
+        "sha256": "01410ba5067d636f15ead4113a33d7053f6f365675a8c76352c8b9ec30638a97"
+      },
+      {
+        "member": "inputsTr/b7923fe9af.csv",
+        "sha256": "7fdce44a7d9f2274b8670300d7871cee8fb3659574ab4da32180035f4dd30223"
+      },
+      {
+        "member": "inputsTr/ba55ff88bd.csv",
+        "sha256": "39ebc4595c2a5c036dd80c43d70fca41eb833316de160d7f4051bb91bc933bcf"
+      },
+      {
+        "member": "inputsTr/bbf14f4f9b.csv",
+        "sha256": "7db36c33a90fc708e8c46c9c4069c04a764fdbf7c4c20d64b3eaa2b0baa14979"
+      },
+      {
+        "member": "inputsTr/bc6dc48b74.csv",
+        "sha256": "e6a5d3f92864637f48bdf7f93dc3af9c3f37ac3176a39e906a8f02f2a092f3c2"
+      },
+      {
+        "member": "inputsTr/bcbe3365e6.csv",
+        "sha256": "83fdde5ef52aff700747f628aec4104307f1631672c010d0be097fcd06ba0f42"
+      },
+      {
+        "member": "inputsTr/bd4c9ab730.csv",
+        "sha256": "7cf15f4d241a1bc3fb29d6fdfdcb6c9802cf05c8dcf5232cef5f08881ab19fac"
+      },
+      {
+        "member": "inputsTr/bd686fd640.csv",
+        "sha256": "110621ef63ccde7b2cb02b1a3470cec38b931bc69dca78105a96c7955a8b7ec7"
+      },
+      {
+        "member": "inputsTr/be83ab3ecd.csv",
+        "sha256": "d561ca6ba7e1d818b2831ef4adedd0716e66b159b643c95cabbd955a637018bc"
+      },
+      {
+        "member": "inputsTr/bf8229696f.csv",
+        "sha256": "417d110a33e5d4f13cc5e20076a11aba9bdb9ca3d7aa28f1ccb3225d0386de2c"
+      },
+      {
+        "member": "inputsTr/bf97f24695.csv",
+        "sha256": "95b9590d14675ab40295d9478953d05980b0bf864f5eb187274cd5a498a3b8a8"
+      },
+      {
+        "member": "inputsTr/bff82d1886.csv",
+        "sha256": "1d4fdf8c4c6a129e4c5f6f573d7fdd5bd173fdeed149310225d1a42b592dbd01"
+      },
+      {
+        "member": "inputsTr/c0e190d826.csv",
+        "sha256": "dd71f283e28b8b76ba316ae2bc1e0d1a1814baf82d1f580aa27a5b541cb752d1"
+      },
+      {
+        "member": "inputsTr/c24cd76e1c.csv",
+        "sha256": "add2c4f8dbf6584eb14d86608a182060287800fb998bb11655d74e922f97d786"
+      },
+      {
+        "member": "inputsTr/c4258e0f53.csv",
+        "sha256": "c442be1cbdd2444d2312a49f8d70fede9f005248787b503585055c738e507bae"
+      },
+      {
+        "member": "inputsTr/c45147dee7.csv",
+        "sha256": "5a338c5789b4d006b68ee8a7454b8d8d0a05f9c0b836b78263fb9504c019075f"
+      },
+      {
+        "member": "inputsTr/c4de9fe968.csv",
+        "sha256": "c12980a0fe84e9f64f7e467955fffc4e974b571a3ab5b787e976f866d90b9e2d"
+      },
+      {
+        "member": "inputsTr/c52f1bd66c.csv",
+        "sha256": "2e6c1e4f80cae42bd6620381b2470b7cbdbc10e46e60c247958c8e3eee1cd0ee"
+      },
+      {
+        "member": "inputsTr/c6f057b865.csv",
+        "sha256": "8502368cf5a8bba15887446651da500bc6511e6edee1b60447c1ed5642d1e7a6"
+      },
+      {
+        "member": "inputsTr/c8ffe9a587.csv",
+        "sha256": "0550469a439b1aa663fe9fa345228419770993a464d471e994367e8774454b29"
+      },
+      {
+        "member": "inputsTr/c9e1074f5b.csv",
+        "sha256": "e2dc22b8bc4ee84ae63f88e62031a3ff67531e1f75898a9654c95c404477c59f"
+      },
+      {
+        "member": "inputsTr/ca46c1b951.csv",
+        "sha256": "25a06b5f0ea6568912652c03d765ac28ee41d10f0cd5d0857edb1e82bd39e396"
+      },
+      {
+        "member": "inputsTr/caf1a3dfb5.csv",
+        "sha256": "79c6e8385589901b8d8154bb25d1ff42c1fc5935b6baa55c4999907eb89dcd21"
+      },
+      {
+        "member": "inputsTr/cb70ab3756.csv",
+        "sha256": "2ae2606c3d828b5f9d8106504c4947d4dc947300c94369800719840e516dae31"
+      },
+      {
+        "member": "inputsTr/ce08becc73.csv",
+        "sha256": "3037983031e4d94a2355c5f2c8435b6dd7828cd81711d1508a730e1c5fe0d4c8"
+      },
+      {
+        "member": "inputsTr/cedebb6e87.csv",
+        "sha256": "6dc9e61c904bd6b6105b9c7be1c88ec27a1e8b6175501da398420bd7895c747b"
+      },
+      {
+        "member": "inputsTr/cf2e4f52be.csv",
+        "sha256": "1a7d86bcc14c7e0de946eab2e615908b32afa730a0a0778f45802af0596ed2dd"
+      },
+      {
+        "member": "inputsTr/cfa0860e83.csv",
+        "sha256": "267cc1e19e9182f41a986602e69dd8608ffc5024154926a7e6c97cf9fc96adf0"
+      },
+      {
+        "member": "inputsTr/cfecdb276f.csv",
+        "sha256": "4f4a8d8ee5aa0a0b6063ad08ec23292c286b54374779088186f35c97ebb49ccf"
+      },
+      {
+        "member": "inputsTr/d2490f048d.csv",
+        "sha256": "c1e78ba8c211ad10be89725b7b23b300f5be84194999e418561ff914b633404b"
+      },
+      {
+        "member": "inputsTr/d2716515bd.csv",
+        "sha256": "1410fc7400f38ff3fb2218f8c6c3297cdf2c9c9aa8fdb45109860b26168fc678"
+      },
+      {
+        "member": "inputsTr/d296c101da.csv",
+        "sha256": "27e04c1a2b69fc79e22c8007fae8646b0b6212507ea88a0278446229fc96a5ec"
+      },
+      {
+        "member": "inputsTr/d395771085.csv",
+        "sha256": "df3bc304ff03fe48cf259d4a0368c3fea08b0c28a82b126912556d50513a0d12"
+      },
+      {
+        "member": "inputsTr/d5f038a453.csv",
+        "sha256": "969f35b58dd8f8ce060e6a0b758d624038da753e40dad9dbbd346d9cf5cb4e11"
+      },
+      {
+        "member": "inputsTr/d6baf65e0b.csv",
+        "sha256": "4b450a468a7e6a844b40bc3f3a695e39a74af8b62f6f5aef5fee25265ace21d7"
+      },
+      {
+        "member": "inputsTr/d947bf06a8.csv",
+        "sha256": "e017ff92661d813717c8128294bccdb45b7040838e7c5b6872e435bb38c899b7"
+      },
+      {
+        "member": "inputsTr/db8e1af0cb.csv",
+        "sha256": "23ccf43e7a7ac1b4664fa16a651c99396f02e3fd76b8dddf5127aa70600d614d"
+      },
+      {
+        "member": "inputsTr/dc5c7986da.csv",
+        "sha256": "faf15d65759129ba19089c01f0b49f09e34fc9052a1d984a34c4ebb55e2ca84c"
+      },
+      {
+        "member": "inputsTr/dc5e819e18.csv",
+        "sha256": "ed1a45b67ecd93f29c423dac221fc56a51685bc5cb2843e3ed67686fc114f9fc"
+      },
+      {
+        "member": "inputsTr/defd402043.csv",
+        "sha256": "e72c87c35b09392f3e026fa0cb46d80988de556710a8cd94494c68fbca198816"
+      },
+      {
+        "member": "inputsTr/e00da03b68.csv",
+        "sha256": "fe518e1bb85872bb1ec9e1b645a334062db370672808f0692fd627e556e5111b"
+      },
+      {
+        "member": "inputsTr/e165421110.csv",
+        "sha256": "27b35d45a4e56d01c9b9a9e2c0742ad36f083f5b16f8a511d84077a33c8f396d"
+      },
+      {
+        "member": "inputsTr/e1eee5e2b4.csv",
+        "sha256": "af9be834d55d1d2e4ae3386860a915521b7d5a4bbf01a55108616244d3e14469"
+      },
+      {
+        "member": "inputsTr/e2c0be2456.csv",
+        "sha256": "72991a2c8def88a8b762ee23c032b06bf5ed19b3cd65b815b8c5cfc620fcee97"
+      },
+      {
+        "member": "inputsTr/e46d0ac1f1.csv",
+        "sha256": "cb4b81179ea7016e2f73d1c8033258df14b2550caa937103a46a34e1b65bccf5"
+      },
+      {
+        "member": "inputsTr/e4a6222cdb.csv",
+        "sha256": "a6948737ca6c0741bb56fdd73c9e5f994a0244a2ed1976d9b92516dc268b0778"
+      },
+      {
+        "member": "inputsTr/e56954b4f6.csv",
+        "sha256": "4ca519dad6d38bf96e763874ddcfe0b55cad80029361e2f7aef89297a2a90e7f"
+      },
+      {
+        "member": "inputsTr/e64770ac6b.csv",
+        "sha256": "30b243a7b4ca717f0e829b443d1f5b2c86e66d36cb27528254a7c92ad68e17a4"
+      },
+      {
+        "member": "inputsTr/e7db56dbec.csv",
+        "sha256": "4e3e9ef2ce1bc2715ed101da1bb8017d59ce02ce46df1e9fce831161886c6616"
+      },
+      {
+        "member": "inputsTr/e88a49bccd.csv",
+        "sha256": "6a6b90bc76aa459b1747909e12a925d0ce4cf45bcfa100795c7adb6300081792"
+      },
+      {
+        "member": "inputsTr/e96ed478da.csv",
+        "sha256": "a710b1b4a4cd2b2530bbd65aacba20d61763d3dbd690ad5fc7feefa723dd9f99"
+      },
+      {
+        "member": "inputsTr/ea20a043c0.csv",
+        "sha256": "d9f2a49335bfa792c2caa67c34b5f10d9c93bc072908340750cdf88e8dfee947"
+      },
+      {
+        "member": "inputsTr/eae27d77ca.csv",
+        "sha256": "c22c2e45d0c56f66bdf8d2c820660b4ca2ee3bcdcadfe47019f91352a93adc5b"
+      },
+      {
+        "member": "inputsTr/eb160de1de.csv",
+        "sha256": "ed59ec8e524f738749838696776b143c41bbe07b0c46fa9741cd69b96d072684"
+      },
+      {
+        "member": "inputsTr/eb16372791.csv",
+        "sha256": "5206a9c22475bf54da37cada2cce3508f7eb895b571251f9ad38729aef2cc402"
+      },
+      {
+        "member": "inputsTr/ebf11048b1.csv",
+        "sha256": "89344fffea4bdde995951d860df1e4ea15b661aa5ceac80935366050c9b59519"
+      },
+      {
+        "member": "inputsTr/ec5decca5e.csv",
+        "sha256": "e4f680c8c8655f67e1401b2bea34eaba44f3ba80476ef808c981402891979f2e"
+      },
+      {
+        "member": "inputsTr/ec8ce6abb3.csv",
+        "sha256": "30358906967f4daca4c2be7773f6394791b92861380951bd0716d3493f52836a"
+      },
+      {
+        "member": "inputsTr/eda80a3d5b.csv",
+        "sha256": "1ebd80dd06da33822c4763ffe1b515a6a6f95bec6217745f2207fff03259aa34"
+      },
+      {
+        "member": "inputsTr/eecca5b636.csv",
+        "sha256": "f72495508e3819a3ea0bac66c373b29ed7816927929886792d9cc0d4f3966165"
+      },
+      {
+        "member": "inputsTr/ef0d3930a7.csv",
+        "sha256": "53d826d2204ad78f73f3c9cbbd0322004a328b523f1e1cbaba4b58e1d652224c"
+      },
+      {
+        "member": "inputsTr/f157be1f00.csv",
+        "sha256": "3259e619448cc5d5fe9adca15bd1c3bc28d5d13495ce07385522d5f93348ba43"
+      },
+      {
+        "member": "inputsTr/f2217062e9.csv",
+        "sha256": "e2a306f66676d9ba2e0ded43cb70c56d5a0eea1347813b658d2312d88ad7fe36"
+      },
+      {
+        "member": "inputsTr/f2fc990265.csv",
+        "sha256": "fcc528de54ef5ee2a51167bcd1d78e4a33bc27f2f9b08a4b366eef60f4b611ae"
+      },
+      {
+        "member": "inputsTr/f340f1b1f6.csv",
+        "sha256": "8a574e9b36aec7d65eefdef39185f5e91325bbd3779fa22dc70379d0b21c6cd8"
+      },
+      {
+        "member": "inputsTr/f43686bab1.csv",
+        "sha256": "d1fdd5ca75a43698c59ed2760c65faa008ba430bffa46a914046d755bf1ccc77"
+      },
+      {
+        "member": "inputsTr/f718499c1c.csv",
+        "sha256": "e86740ce3033c93b97391bce416668515e023bdc444619108c0db99732af9dce"
+      },
+      {
+        "member": "inputsTr/f7664060cc.csv",
+        "sha256": "84610419e3c6ea638c85830ce979820853ce3384161e0b562715dbb89929ae76"
+      },
+      {
+        "member": "inputsTr/f7e6c85504.csv",
+        "sha256": "358081278f0682c49055f7328fc4347c02906eeac7ed825a9aeab7dfd74683dd"
+      },
+      {
+        "member": "inputsTr/f803dfeb35.csv",
+        "sha256": "1f9070a7791594c5d55656180873d5ed18089e8004f522f042716ac0d4d0320b"
+      },
+      {
+        "member": "inputsTr/f899139df5.csv",
+        "sha256": "a4f6788debc197ab59f79d72aa6056a91d6cd9c65a2cdf61d785ac75b7828e22"
+      },
+      {
+        "member": "inputsTr/f90f2aca5c.csv",
+        "sha256": "92d3bc02f5b77f7596dec35c7fd855aded79d915f0d442c3dbb386a07b734276"
+      },
+      {
+        "member": "inputsTr/fa7cdfad1a.csv",
+        "sha256": "2cd0057233607ac114178b9cbe9a684069363fb101c923e2f39b8265e083fc76"
+      },
+      {
+        "member": "inputsTr/fb8490a950.csv",
+        "sha256": "73929604a98f068a5d0788e14f333f4b518bf0711063fbdae99b67fa5e3e2f2e"
+      },
+      {
+        "member": "inputsTr/fb9ce87f03.csv",
+        "sha256": "fa72fc82b407af56db9b3b4e7c13ad6af302a7d8c19cf5d6f87bfc004a1cd6b4"
+      },
+      {
+        "member": "inputsTr/fc22130974.csv",
+        "sha256": "34781bd9842d6ff356d85c4219e805553f89ec05c680f0ce275136fa4733cc93"
+      },
+      {
+        "member": "inputsTr/fe131d7f5a.csv",
+        "sha256": "1cca70428b66860b983bdc812d8885b497c8734565a143fe0c76461cc65844f4"
+      }
+    ],
+    "index_sha256": "0bf81a1315a1cee3e1758a7b6db9aa17e107942153ab8742c73fe68d4b122894",
+    "limitations": "Present counts derive from topology and deduplicated destination IDs, not whole-mask validation. Row anatomy counts are longitudinal rows, not baseline prevalence. No tiny lesions will be removed from the selected reference. Selection awaits native-image/GT sanity review."
+  },
+  "acquisition": {
+    "patient": "bcbe3365e6",
+    "files": [
+      {
+        "member": "inputsTr/bcbe3365e6.csv",
+        "bytes": 3202,
+        "crc32": 1327579474,
+        "sha256": "83fdde5ef52aff700747f628aec4104307f1631672c010d0be097fcd06ba0f42"
+      },
+      {
+        "member": "inputsTr/bcbe3365e6_BL_00.json",
+        "bytes": 2956,
+        "crc32": 552414506,
+        "sha256": "eb6a33f02f1c13ddc36afccbe857abf81fc28559921031d52d9cead2c6a1a049"
+      },
+      {
+        "member": "inputsTr/bcbe3365e6_BL_img_00.nii.gz",
+        "bytes": 121660461,
+        "crc32": 931529647,
+        "sha256": "dde83c51e7813e20126c82561b3ca6ae36ef4414a99ab5d9e9777a6e3ceca511"
+      },
+      {
+        "member": "inputsTr/bcbe3365e6_BL_mask_00.nii.gz",
+        "bytes": 317914,
+        "crc32": 2871852907,
+        "sha256": "698fb1f3e8ad7989045e59827001b2457f9fe82021b09c286d741ceef2d8dbc4"
+      },
+      {
+        "member": "inputsTr/bcbe3365e6_FU_00.json",
+        "bytes": 2945,
+        "crc32": 3182771888,
+        "sha256": "869cf344c6b431840986be2df7353981250eac5a1a1908e290dd22b3d58ce446"
+      },
+      {
+        "member": "inputsTr/bcbe3365e6_FU_img_00.nii.gz",
+        "bytes": 156753884,
+        "crc32": 296793924,
+        "sha256": "2e9bf75a2bae77dfc5a3077b1f74e13ecbcb6d806c4d0051e56563f12e3899f1"
+      },
+      {
+        "member": "targetsTr/bcbe3365e6_FU_mask_00.nii.gz",
+        "bytes": 391032,
+        "crc32": 1240177470,
+        "sha256": "c04f8d651d3cad5760dd305a3388744edf0a7b9c2f7f66b4f3748d0c073e27e6"
+      }
+    ],
+    "source_url": "https://fdat.uni-tuebingen.de/api/records/qe950-g4h94/files/Longitudinal_CT_v3.zip/content",
+    "compressed_bytes": 278434401,
+    "archive_bytes": 51047900775,
+    "full_archive_md5_verified": false,
+    "checks": "Exact HTTP 206 range, decompressed size, per-member ZIP CRC32, SHA256 receipt"
+  },
+  "geometry": {
+    "patient": "bcbe3365e6",
+    "visits": {
+      "baseline": {
+        "shape": [
+          512,
+          512,
+          615
+        ],
+        "spacing_mm": [
+          0.9765625,
+          0.9765625,
+          2.0
+        ],
+        "axcodes": [
+          "L",
+          "P",
+          "S"
+        ],
+        "affine": [
+          [
+            -0.9765625,
+            0.0,
+            0.0,
+            249.51171875
+          ],
+          [
+            0.0,
+            -0.9765625,
+            0.0,
+            430.51171875
+          ],
+          [
+            0.0,
+            0.0,
+            2.0,
+            -2003.5
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "image_mask_geometry_equal": true,
+        "labels": [
+          {
+            "id": 1,
+            "anatomy": "Lymph node",
+            "event": "UNCHANGED",
+            "volume_ml": 5.9490203857421875,
+            "csv_volume_ml": 5.949020385742188,
+            "csv_difference_voxels": -4.656612873077393e-13,
+            "centroid_ijk": [
+              201.03366463610132,
+              229.07630650849632,
+              264.63161269637703
+            ],
+            "bbox_ijk": [
+              [
+                190,
+                217,
+                256
+              ],
+              [
+                211,
+                242,
+                270
+              ]
+            ],
+            "max_area_k": 266,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 190,
+            "hu_percentiles_5_50_95": [
+              -16.0,
+              33.0,
+              63.0
+            ]
+          },
+          {
+            "id": 2,
+            "anatomy": "Liver",
+            "event": "UNCHANGED",
+            "volume_ml": 0.9822845458984375,
+            "csv_volume_ml": 0.9822845458984376,
+            "csv_difference_voxels": -5.820766091346741e-14,
+            "centroid_ijk": [
+              192.12815533980583,
+              199.04660194174758,
+              404.378640776699
+            ],
+            "bbox_ijk": [
+              [
+                186,
+                193,
+                402
+              ],
+              [
+                200,
+                205,
+                407
+              ]
+            ],
+            "max_area_k": 404,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 186,
+            "hu_percentiles_5_50_95": [
+              7.0,
+              37.0,
+              66.59999999999991
+            ]
+          },
+          {
+            "id": 3,
+            "anatomy": "Liver",
+            "event": "UNCHANGED",
+            "volume_ml": 1.0089874267578125,
+            "csv_volume_ml": 1.0089874267578123,
+            "csv_difference_voxels": 1.1641532182693482e-13,
+            "centroid_ijk": [
+              142.57844990548205,
+              259.8090737240076,
+              382.17202268431004
+            ],
+            "bbox_ijk": [
+              [
+                135,
+                253,
+                380
+              ],
+              [
+                152,
+                267,
+                384
+              ]
+            ],
+            "max_area_k": 382,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 135,
+            "hu_percentiles_5_50_95": [
+              12.0,
+              42.0,
+              72.0
+            ]
+          },
+          {
+            "id": 4,
+            "anatomy": "Liver",
+            "event": "UNCHANGED",
+            "volume_ml": 58.917999267578125,
+            "csv_volume_ml": 58.917999267578125,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              179.12945937196503,
+              294.3553900938815,
+              434.706895435416
+            ],
+            "bbox_ijk": [
+              [
+                154,
+                267,
+                421
+              ],
+              [
+                201,
+                324,
+                447
+              ]
+            ],
+            "max_area_k": 435,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 154,
+            "hu_percentiles_5_50_95": [
+              10.0,
+              37.0,
+              65.0
+            ]
+          },
+          {
+            "id": 5,
+            "anatomy": "Liver",
+            "event": "UNCHANGED",
+            "volume_ml": 1.36566162109375,
+            "csv_volume_ml": 1.36566162109375,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              191.29329608938548,
+              283.32402234636874,
+              401.45251396648047
+            ],
+            "bbox_ijk": [
+              [
+                183,
+                276,
+                399
+              ],
+              [
+                201,
+                290,
+                404
+              ]
+            ],
+            "max_area_k": 401,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 183,
+            "hu_percentiles_5_50_95": [
+              2.0,
+              40.0,
+              73.5
+            ]
+          },
+          {
+            "id": 6,
+            "anatomy": "Lymph node",
+            "event": "UNCHANGED",
+            "volume_ml": 0.96893310546875,
+            "csv_volume_ml": 0.96893310546875,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              215.60629921259843,
+              257.3602362204724,
+              272.9724409448819
+            ],
+            "bbox_ijk": [
+              [
+                210,
+                252,
+                270
+              ],
+              [
+                221,
+                264,
+                276
+              ]
+            ],
+            "max_area_k": 273,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 210,
+            "hu_percentiles_5_50_95": [
+              -7.0,
+              45.0,
+              83.29999999999995
+            ]
+          },
+          {
+            "id": 7,
+            "anatomy": "Skeleton",
+            "event": "UNCHANGED",
+            "volume_ml": 0.4711151123046875,
+            "csv_volume_ml": 0.4711151123046875,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              258.4412955465587,
+              264.73279352226723,
+              562.9514170040486
+            ],
+            "bbox_ijk": [
+              [
+                252,
+                260,
+                562
+              ],
+              [
+                265,
+                269,
+                564
+              ]
+            ],
+            "max_area_k": 563,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 50,
+            "hu_percentiles_5_50_95": [
+              111.80000000000001,
+              268.0,
+              402.4
+            ]
+          }
+        ]
+      },
+      "followup": {
+        "shape": [
+          512,
+          512,
+          743
+        ],
+        "spacing_mm": [
+          0.9765625,
+          0.9765625,
+          2.5
+        ],
+        "axcodes": [
+          "L",
+          "P",
+          "S"
+        ],
+        "affine": [
+          [
+            -0.9765625,
+            0.0,
+            0.0,
+            249.51171875
+          ],
+          [
+            0.0,
+            -0.9765625,
+            0.0,
+            433.01171875
+          ],
+          [
+            0.0,
+            0.0,
+            2.5,
+            -352.5
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "image_mask_geometry_equal": true,
+        "labels": [
+          {
+            "id": 1,
+            "anatomy": "Lymph node",
+            "event": "UNCHANGED",
+            "volume_ml": 5.424022674560547,
+            "csv_volume_ml": 5.424022674560547,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              174.9432967032967,
+              200.2,
+              417.14945054945053
+            ],
+            "bbox_ijk": [
+              [
+                163,
+                191,
+                411
+              ],
+              [
+                185,
+                212,
+                422
+              ]
+            ],
+            "max_area_k": 418,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 163,
+            "hu_percentiles_5_50_95": [
+              -7.0,
+              27.0,
+              56.0
+            ]
+          },
+          {
+            "id": 2,
+            "anatomy": "Liver",
+            "event": "UNCHANGED",
+            "volume_ml": 0.8225440979003906,
+            "csv_volume_ml": 0.8225440979003906,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              182.1768115942029,
+              165.5536231884058,
+              524.5855072463768
+            ],
+            "bbox_ijk": [
+              [
+                175,
+                160,
+                523
+              ],
+              [
+                189,
+                171,
+                526
+              ]
+            ],
+            "max_area_k": 525,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 160,
+            "hu_percentiles_5_50_95": [
+              6.0,
+              33.0,
+              64.80000000000001
+            ]
+          },
+          {
+            "id": 3,
+            "anatomy": "Liver",
+            "event": "UNCHANGED",
+            "volume_ml": 0.8821487426757812,
+            "csv_volume_ml": 0.8821487426757812,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              125.25675675675676,
+              228.8027027027027,
+              504.0162162162162
+            ],
+            "bbox_ijk": [
+              [
+                119,
+                221,
+                503
+              ],
+              [
+                132,
+                236,
+                505
+              ]
+            ],
+            "max_area_k": 504,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 119,
+            "hu_percentiles_5_50_95": [
+              9.0,
+              33.0,
+              56.0
+            ]
+          },
+          {
+            "id": 4,
+            "anatomy": "Liver",
+            "event": "UNCHANGED",
+            "volume_ml": 368.95036697387695,
+            "csv_volume_ml": 368.95036697387695,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              160.35982138818343,
+              258.5906726376261,
+              551.515421747475
+            ],
+            "bbox_ijk": [
+              [
+                117,
+                212,
+                532
+              ],
+              [
+                201,
+                310,
+                571
+              ]
+            ],
+            "max_area_k": 556,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 117,
+            "hu_percentiles_5_50_95": [
+              3.0,
+              30.0,
+              56.0
+            ]
+          },
+          {
+            "id": 5,
+            "anatomy": "Liver",
+            "event": "UNCHANGED",
+            "volume_ml": 1.4996528625488281,
+            "csv_volume_ml": 1.499652862548828,
+            "csv_difference_voxels": 9.313225746154786e-14,
+            "centroid_ijk": [
+              170.275039745628,
+              254.77424483306837,
+              524.2591414944357
+            ],
+            "bbox_ijk": [
+              [
+                164,
+                248,
+                522
+              ],
+              [
+                176,
+                261,
+                527
+              ]
+            ],
+            "max_area_k": 524,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 164,
+            "hu_percentiles_5_50_95": [
+              2.0,
+              31.0,
+              60.0
+            ]
+          },
+          {
+            "id": 6,
+            "anatomy": "Lymph node",
+            "event": "UNCHANGED",
+            "volume_ml": 0.362396240234375,
+            "csv_volume_ml": 0.362396240234375,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              189.72368421052633,
+              230.375,
+              423.17763157894734
+            ],
+            "bbox_ijk": [
+              [
+                186,
+                226,
+                421
+              ],
+              [
+                194,
+                235,
+                425
+              ]
+            ],
+            "max_area_k": 423,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 186,
+            "hu_percentiles_5_50_95": [
+              7.0,
+              42.0,
+              70.0
+            ]
+          },
+          {
+            "id": 7,
+            "anatomy": "Skeleton",
+            "event": "UNCHANGED",
+            "volume_ml": 0.14781951904296875,
+            "csv_volume_ml": 0.14781951904296875,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              255.82258064516128,
+              243.08064516129033,
+              658.4677419354839
+            ],
+            "bbox_ijk": [
+              [
+                251,
+                241,
+                658
+              ],
+              [
+                260,
+                246,
+                659
+              ]
+            ],
+            "max_area_k": 658,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 83,
+            "hu_percentiles_5_50_95": [
+              104.25,
+              183.0,
+              296.34999999999997
+            ]
+          },
+          {
+            "id": 8,
+            "anatomy": "Liver",
+            "event": "NEWLYAPPEARING",
+            "volume_ml": 1.6808509826660156,
+            "csv_volume_ml": 1.6808509826660156,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              171.89787234042552,
+              320.79148936170213,
+              538.5191489361703
+            ],
+            "bbox_ijk": [
+              [
+                165,
+                314,
+                536
+              ],
+              [
+                179,
+                328,
+                542
+              ]
+            ],
+            "max_area_k": 538,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 165,
+            "hu_percentiles_5_50_95": [
+              8.0,
+              36.0,
+              60.0
+            ]
+          },
+          {
+            "id": 9,
+            "anatomy": "Liver",
+            "event": "NEWLYAPPEARING",
+            "volume_ml": 0.8511543273925781,
+            "csv_volume_ml": 0.8511543273925781,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              217.3781512605042,
+              184.08683473389357,
+              536.8095238095239
+            ],
+            "bbox_ijk": [
+              [
+                212,
+                178,
+                534
+              ],
+              [
+                224,
+                189,
+                539
+              ]
+            ],
+            "max_area_k": 537,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 178,
+            "hu_percentiles_5_50_95": [
+              17.0,
+              41.0,
+              66.19999999999999
+            ]
+          },
+          {
+            "id": 10,
+            "anatomy": "Liver",
+            "event": "NEWLYAPPEARING",
+            "volume_ml": 0.9512901306152344,
+            "csv_volume_ml": 0.9512901306152344,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              169.796992481203,
+              237.17293233082708,
+              519.6992481203008
+            ],
+            "bbox_ijk": [
+              [
+                163,
+                232,
+                517
+              ],
+              [
+                176,
+                243,
+                522
+              ]
+            ],
+            "max_area_k": 520,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 163,
+            "hu_percentiles_5_50_95": [
+              7.0,
+              33.0,
+              62.0
+            ]
+          },
+          {
+            "id": 11,
+            "anatomy": "Liver",
+            "event": "NEWLYAPPEARING",
+            "volume_ml": 1.1301040649414062,
+            "csv_volume_ml": 1.1301040649414062,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              232.2194092827004,
+              205.25316455696202,
+              522.9556962025316
+            ],
+            "bbox_ijk": [
+              [
+                224,
+                199,
+                521
+              ],
+              [
+                242,
+                211,
+                524
+              ]
+            ],
+            "max_area_k": 523,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 199,
+            "hu_percentiles_5_50_95": [
+              8.0,
+              37.0,
+              66.0
+            ]
+          },
+          {
+            "id": 12,
+            "anatomy": "Liver",
+            "event": "NEWLYAPPEARING",
+            "volume_ml": 0.3314018249511719,
+            "csv_volume_ml": 0.3314018249511719,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              122.58992805755396,
+              217.44604316546761,
+              533.0503597122303
+            ],
+            "bbox_ijk": [
+              [
+                119,
+                214,
+                532
+              ],
+              [
+                128,
+                222,
+                534
+              ]
+            ],
+            "max_area_k": 533,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 119,
+            "hu_percentiles_5_50_95": [
+              12.0,
+              37.0,
+              67.29999999999998
+            ]
+          },
+          {
+            "id": 13,
+            "anatomy": "Liver",
+            "event": "NEWLYAPPEARING",
+            "volume_ml": 2.880096435546875,
+            "csv_volume_ml": 2.880096435546875,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              122.43211920529801,
+              205.5819536423841,
+              528.4039735099337
+            ],
+            "bbox_ijk": [
+              [
+                114,
+                195,
+                525
+              ],
+              [
+                135,
+                215,
+                532
+              ]
+            ],
+            "max_area_k": 527,
+            "six_connected_components": 2,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 114,
+            "hu_percentiles_5_50_95": [
+              3.0,
+              28.0,
+              51.0
+            ]
+          },
+          {
+            "id": 14,
+            "anatomy": "Liver",
+            "event": "NEWLYAPPEARING",
+            "volume_ml": 2.3794174194335938,
+            "csv_volume_ml": 2.3794174194335938,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              185.25350701402806,
+              235.04008016032063,
+              536.8256513026053
+            ],
+            "bbox_ijk": [
+              [
+                177,
+                228,
+                533
+              ],
+              [
+                193,
+                243,
+                540
+              ]
+            ],
+            "max_area_k": 537,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 177,
+            "hu_percentiles_5_50_95": [
+              6.0,
+              32.0,
+              57.0
+            ]
+          },
+          {
+            "id": 15,
+            "anatomy": "Liver",
+            "event": "NEWLYAPPEARING",
+            "volume_ml": 0.6175041198730469,
+            "csv_volume_ml": 0.6175041198730469,
+            "csv_difference_voxels": 0.0,
+            "centroid_ijk": [
+              282.11969111969114,
+              166.4208494208494,
+              533.8918918918919
+            ],
+            "bbox_ijk": [
+              [
+                276,
+                162,
+                533
+              ],
+              [
+                290,
+                171,
+                535
+              ]
+            ],
+            "max_area_k": 534,
+            "six_connected_components": 1,
+            "touching_other_labels_6": [],
+            "edge_margin_voxels": 162,
+            "hu_percentiles_5_50_95": [
+              16.6,
+              38.0,
+              59.0
+            ]
+          }
+        ]
+      }
+    },
+    "figures": [
+      {
+        "path": ".local/longitudinal-ct-case02/review/baseline-1.png",
+        "sha256": "f87fb717ee069927130ed5a69d4cd42b0d4bfe11ddb31d96fdc29d6bc89b5c8c"
+      },
+      {
+        "path": ".local/longitudinal-ct-case02/review/followup-1.png",
+        "sha256": "8488a34fc0bf170531d8daee380a87d055f11a74f5d4fc991ae2c408832ba289"
+      },
+      {
+        "path": ".local/longitudinal-ct-case02/review/followup-2.png",
+        "sha256": "709cb409bf35da2b82364c9c57e99e66e021c3f0723a473fe302658bdc1db1cc"
+      }
+    ],
+    "limits": "Geometry/label checks and author visual review do not constitute expert malignancy adjudication. GT-selected slices/crops are author-only; no solver hints."
+  },
+  "author_review": {
+    "accepted_for_diagnostic": true,
+    "actor": "assistant",
+    "reviewed_figures": [
+      "baseline-1.png",
+      "followup-1.png",
+      "followup-2.png"
+    ],
+    "assessment": "Native CT/GT geometry, source label inventory, CSV volumes and all-22 max-area slice/crop sheets inspected. No inter-label 6-connected contact, no label at volume boundary, no obvious defacing overlap in displayed targets. Many liver targets are subtle; reference appearance is not clinically adjudicated.",
+    "fu_label13_six_connected_component_sizes": [
+      1207,
+      1
+    ],
+    "source_masks_unchanged": true,
+    "limits": [
+      "No clinical-report context is provided to the solver although source annotators used reports.",
+      "One large liver label will dominate foreground Dice; retain equal-lesion metrics and size strata.",
+      "Newness remains source-reference correspondence, not independent clinical adjudication.",
+      "Whole-volume native images are 615/743 slices, 2.0/2.5 mm spacing; do not assume the paper typical 3 mm setting."
+    ]
+  },
+  "local_sources": {
+    ".local/longitudinal-ct-case02/source/record-v3-current.json": "4721f854ecbe4a2ed620c03b15221ffc4723bd22914c01789f8485b55aeeff1b",
+    ".local/longitudinal-ct-case02/source/selection.json": "3c6059502d30957d9b71fd8bc05454ba0785ba5dac40da055e7425de95ad239f",
+    ".local/longitudinal-ct-case02/source/acquisition.json": "cf98fa031df80776e9bcd3bbdd648df8b2e38744c0768cdd1f7bcb9001c0693c",
+    ".local/longitudinal-ct-case02/review/geometry.json": "6f2fb10cbf0a909969eab2fe3922a3efcd84744ee91be713c118eea29f523acf",
+    ".local/longitudinal-ct-case02/review/acceptance.json": "73734e44619acb370e1ea2d70217844ab46f2abed8475376b85d117a800aff36"
+  }
+}

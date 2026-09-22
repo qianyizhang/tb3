@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "prepared_at": "2026-09-22T03:28Z",
+  "experiment_id": "longitudinal-ct-case02-astra-medium",
+  "task_digest": "e12f6fc10c83c8dfb2bc4ca3bd4cfffc90811bdb7249ad8ddedcf55655b1083a",
+  "preparation": {
+    "patient": "bcbe3365e6",
+    "source_release": "Longitudinal-CT v3",
+    "source_hashes": {
+      "inputsTr/bcbe3365e6.csv": "83fdde5ef52aff700747f628aec4104307f1631672c010d0be097fcd06ba0f42",
+      "inputsTr/bcbe3365e6_BL_00.json": "eb6a33f02f1c13ddc36afccbe857abf81fc28559921031d52d9cead2c6a1a049",
+      "inputsTr/bcbe3365e6_BL_img_00.nii.gz": "dde83c51e7813e20126c82561b3ca6ae36ef4414a99ab5d9e9777a6e3ceca511",
+      "inputsTr/bcbe3365e6_BL_mask_00.nii.gz": "698fb1f3e8ad7989045e59827001b2457f9fe82021b09c286d741ceef2d8dbc4",
+      "inputsTr/bcbe3365e6_FU_00.json": "869cf344c6b431840986be2df7353981250eac5a1a1908e290dd22b3d58ce446",
+      "inputsTr/bcbe3365e6_FU_img_00.nii.gz": "2e9bf75a2bae77dfc5a3077b1f74e13ecbcb6d806c4d0051e56563f12e3899f1",
+      "targetsTr/bcbe3365e6_FU_mask_00.nii.gz": "c04f8d651d3cad5760dd305a3388744edf0a7b9c2f7f66b4f3748d0c073e27e6"
+    },
+    "input_checks": {
+      "baseline": {
+        "voxels_identical": true,
+        "affine_identical": true,
+        "shape": [
+          512,
+          512,
+          615
+        ]
+      },
+      "followup": {
+        "voxels_identical": true,
+        "affine_identical": true,
+        "shape": [
+          512,
+          512,
+          743
+        ]
+      }
+    },
+    "prompt_sha256": "86554310fb2891ec78aa94767b810022128de1f011eba089490d703f52b17571",
+    "prompt_unchanged_from_v2": true,
+    "scorer_sha256": "c5dcbe1208592b5eeac93d06d80be571f1cab038d730edb289e736892fa145a6",
+    "scorer_unchanged_from_v1": true,
+    "event_counts": {
+      "persistent": 7,
+      "newly_appearing": 8
+    },
+    "solver_allowlist": [
+      "baseline.nii.gz",
+      "followup.nii.gz"
+    ],
+    "model_attempts_authorized": 1,
+    "runtime": "sha256:3de5f01c3d98a0ed47c9c6ac2ef202807e2761e0ece826d0b514c994f033f107",
+    "clinical_context": "Source annotators had clinical reports; solver CT only, deliberate retained limitation."
+  },
+  "images": {
+    "solver": "sha256:ae155277f6c3fb6231a82855fd15ff3d4b96089d307a03015f2fbbcb34095600",
+    "evaluator": "sha256:f8c70dc51baec3c5bb8d33c039d13c53c19a1c86e77a2d6f9fde15efe4a67f76",
+    "runtime": "sha256:3de5f01c3d98a0ed47c9c6ac2ef202807e2761e0ece826d0b514c994f033f107",
+    "transport": "sha256:a2a21e4e45448a01dd1b97b3a5017643dea882953485c99b3fb0aceab777376f"
+  },
+  "preflight": {
+    "files": [
+      "/app/data/baseline.nii.gz",
+      "/app/data/followup.nii.gz"
+    ],
+    "private_paths_absent": {
+      "/tests": true,
+      "/solution": true,
+      "/Users": true,
+      "/var/run/docker.sock": true
+    },
+    "network": [
+      {
+        "host": "huggingface.co",
+        "response": "HTTP/1.1 403 Forbidden"
+      },
+      {
+        "host": "fdat.uni-tuebingen.de",
+        "response": "HTTP/1.1 403 Forbidden"
+      },
+      {
+        "host": "chatgpt.com",
+        "response": "HTTP/1.1 200 Connection Established"
+      },
+      {
+        "direct": "1.1.1.1:443",
+        "result": "OSError"
+      },
+      {
+        "direct": "192.168.5.2:10808",
+        "result": "OSError"
+      }
+    ],
+    "passed": true
+  },
+  "task_file_manifest": {
+    "environment/Dockerfile": "ecacf71f2b1365deb40f9f6f9e6c495fba4d8be1cbb131cbacde16e104d446b3",
+    "environment/data/baseline.nii.gz": "01389bb85db149faec37d64209dbc78caa18aeba3ad91aeb3c410b1c023494ad",
+    "environment/data/followup.nii.gz": "11fca9d904d0171a3e474a07b285cbb8c5917c3f83d3792a3a6182553ec4a385",
+    "environment/docker-compose.yaml": "e8541c90c19542cffc12fe045b2961355d5592af13d7789521879f556af4dd5f",
+    "instruction.md": "86554310fb2891ec78aa94767b810022128de1f011eba089490d703f52b17571",
+    "solution/reference/baseline_instances.nii.gz": "698fb1f3e8ad7989045e59827001b2457f9fe82021b09c286d741ceef2d8dbc4",
+    "solution/reference/events.json": "4bf21839cac26d1b7b3843f159e7f264e33adb50a38e9b72857b1f05978a04c0",
+    "solution/reference/followup_instances.nii.gz": "c04f8d651d3cad5760dd305a3388744edf0a7b9c2f7f66b4f3748d0c073e27e6",
+    "solution/reference/report.md": "a5a8ea2f7c174b1b3346baa2b6545bcefb0938e77685900eb61796f4186104eb",
+    "solution/solve.sh": "0d00db43cca8635ca047f300a0913f2b8b76a585522e32a1683dbbc6bf0340f2",
+    "task.toml": "e02775248a24114bd89e7af352863ef4c94291eb02e0365e8544551df2bb4f1c",
+    "tests/Dockerfile": "3a45fed08e956831d014824759925a0a3c745a9a2192c94f86a0983d7fd4fd32",
+    "tests/reference/baseline_instances.nii.gz": "698fb1f3e8ad7989045e59827001b2457f9fe82021b09c286d741ceef2d8dbc4",
+    "tests/reference/events.json": "4bf21839cac26d1b7b3843f159e7f264e33adb50a38e9b72857b1f05978a04c0",
+    "tests/reference/followup_instances.nii.gz": "c04f8d651d3cad5760dd305a3388744edf0a7b9c2f7f66b4f3748d0c073e27e6",
+    "tests/reference/report.md": "a5a8ea2f7c174b1b3346baa2b6545bcefb0938e77685900eb61796f4186104eb",
+    "tests/score.py": "c5dcbe1208592b5eeac93d06d80be571f1cab038d730edb289e736892fa145a6",
+    "tests/test.sh": "95c8f5717fef5e658dba6f5c75b7bed2a658fdc6e61b627550ed54b6099c0a2e"
+  },
+  "protocol_sha256_before_model_dispatch": "b7e9a27775911bd523a47b7c49b1d88970524f4fb627688c28631b4ec3bb4501"
+}

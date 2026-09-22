@@ -1,0 +1,1124 @@
+{
+  "schema_version": 1,
+  "experiment_id": "longitudinal-ct-case02-astra-medium",
+  "attempt_id": "attempt-92800845745342f4",
+  "task_digest": "e12f6fc10c83c8dfb2bc4ca3bd4cfffc90811bdb7249ad8ddedcf55655b1083a",
+  "metrics": {
+    "schema_version": 1,
+    "reward_meaning": "output_contract_only_not_scientific_success",
+    "matching_tolerance_mm": 3.0,
+    "visits": {
+      "baseline": {
+        "valid": true,
+        "ids": [
+          1
+        ],
+        "gt_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "mapping": {
+          "1": 4
+        },
+        "detection": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.14285714285714285,
+          "f1": 0.25,
+          "gt_count": 7,
+          "prediction_count": 1,
+          "criterion": "prediction centroid in reference mask or within 3 mm of a labeled voxel center; one-to-one assignment",
+          "mean_centroid_distance_mm": 3.1917500440431477,
+          "mean_centroid_to_reference_mm": 0.0
+        },
+        "segmentation": {
+          "foreground_dice": 0.7990998480635266,
+          "foreground_precision": 0.8385476204801156,
+          "foreground_recall": 0.763196802102727,
+          "gt_macro_dice": 0.1241858310092577,
+          "detected_only_macro_dice": 0.8693008170648039,
+          "detection_anchored_gt_macro_dice": 0.1241858310092577
+        },
+        "overlap_detection_sensitivity": {
+          "0.1": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 6,
+            "precision": 1.0,
+            "recall": 0.14285714285714285,
+            "f1": 0.25
+          },
+          "0.25": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 6,
+            "precision": 1.0,
+            "recall": 0.14285714285714285,
+            "f1": 0.25
+          },
+          "0.5": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 6,
+            "precision": 1.0,
+            "recall": 0.14285714285714285,
+            "f1": 0.25
+          }
+        },
+        "per_gt": [
+          {
+            "gt_id": 1,
+            "voxels": 3119,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 2,
+            "voxels": 515,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 3,
+            "voxels": 529,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 4,
+            "voxels": 30890,
+            "detection_prediction_id": 1,
+            "detected_dice": 0.8693008170648039,
+            "best_one_to_one_dice": 0.8693008170648039
+          },
+          {
+            "gt_id": 5,
+            "voxels": 716,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 6,
+            "voxels": 508,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 7,
+            "voxels": 247,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          }
+        ],
+        "matched_pairs": [
+          {
+            "gt_id": 4,
+            "prediction_id": 1,
+            "dice": 0.8693008170648039,
+            "iou": 0.7688170560167692,
+            "centroid_mm": [
+              77.63848139213948,
+              142.65577667183084,
+              -1133.2633716382888
+            ],
+            "centroid_distance_mm": 3.1917500440431477
+          }
+        ]
+      },
+      "followup": {
+        "valid": true,
+        "ids": [
+          1,
+          2
+        ],
+        "gt_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "mapping": {
+          "1": 4,
+          "2": 13
+        },
+        "detection": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 13,
+          "precision": 1.0,
+          "recall": 0.13333333333333333,
+          "f1": 0.23529411764705882,
+          "gt_count": 15,
+          "prediction_count": 2,
+          "criterion": "prediction centroid in reference mask or within 3 mm of a labeled voxel center; one-to-one assignment",
+          "mean_centroid_distance_mm": 3.4861679566702355,
+          "mean_centroid_to_reference_mm": 0.0
+        },
+        "segmentation": {
+          "foreground_dice": 0.8913400236127509,
+          "foreground_precision": 0.8594823513339671,
+          "foreground_recall": 0.9256502841448986,
+          "gt_macro_dice": 0.09938944273989841,
+          "detected_only_macro_dice": 0.7454208205492381,
+          "detection_anchored_gt_macro_dice": 0.09938944273989841
+        },
+        "overlap_detection_sensitivity": {
+          "0.1": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 13,
+            "precision": 1.0,
+            "recall": 0.13333333333333333,
+            "f1": 0.23529411764705882
+          },
+          "0.25": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 13,
+            "precision": 1.0,
+            "recall": 0.13333333333333333,
+            "f1": 0.23529411764705882
+          },
+          "0.5": {
+            "tp": 1,
+            "fp": 1,
+            "fn": 14,
+            "precision": 0.5,
+            "recall": 0.06666666666666667,
+            "f1": 0.11764705882352941
+          }
+        },
+        "per_gt": [
+          {
+            "gt_id": 1,
+            "voxels": 2275,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 2,
+            "voxels": 345,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 3,
+            "voxels": 370,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 4,
+            "voxels": 154749,
+            "detection_prediction_id": 1,
+            "detected_dice": 0.9120181116867115,
+            "best_one_to_one_dice": 0.9120181116867115
+          },
+          {
+            "gt_id": 5,
+            "voxels": 629,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 6,
+            "voxels": 152,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 7,
+            "voxels": 62,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 8,
+            "voxels": 705,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 9,
+            "voxels": 357,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 10,
+            "voxels": 399,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 11,
+            "voxels": 474,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 12,
+            "voxels": 139,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 13,
+            "voxels": 1208,
+            "detection_prediction_id": 2,
+            "detected_dice": 0.5788235294117647,
+            "best_one_to_one_dice": 0.5788235294117647
+          },
+          {
+            "gt_id": 14,
+            "voxels": 998,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          },
+          {
+            "gt_id": 15,
+            "voxels": 259,
+            "detection_prediction_id": null,
+            "detected_dice": 0.0,
+            "best_one_to_one_dice": 0.0
+          }
+        ],
+        "matched_pairs": [
+          {
+            "gt_id": 4,
+            "prediction_id": 1,
+            "dice": 0.9120181116867115,
+            "iou": 0.8382658953088128,
+            "centroid_mm": [
+              93.32049287924434,
+              178.6364827147063,
+              1027.3606676508623
+            ],
+            "centroid_distance_mm": 2.17318352747466
+          },
+          {
+            "gt_id": 13,
+            "prediction_id": 2,
+            "dice": 0.5788235294117647,
+            "iou": 0.40728476821192056,
+            "centroid_mm": [
+              129.85672113549617,
+              227.4703389108506,
+              968.9531079607414
+            ],
+            "centroid_distance_mm": 4.799152385865812
+          }
+        ]
+      }
+    },
+    "association": {
+      "links_end_to_end": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 6,
+        "precision": 1.0,
+        "recall": 0.14285714285714285,
+        "f1": 0.25
+      },
+      "links_conditional_on_detection": {
+        "eligible_gt_edges": 1,
+        "total_gt_edges": 7,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "events_end_to_end": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 13,
+        "precision": 1.0,
+        "recall": 0.13333333333333333,
+        "f1": 0.23529411764705882
+      },
+      "events_conditional_on_detection": {
+        "eligible_gt_groups": 2,
+        "total_gt_groups": 15,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "event_classes": {
+        "persistent": {
+          "reference_groups": 7,
+          "prediction_groups": 1,
+          "tp": 1,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.14285714285714285,
+          "f1": 0.25
+        },
+        "merging": {
+          "reference_groups": 0,
+          "prediction_groups": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null,
+          "f1": null
+        },
+        "disappearing": {
+          "reference_groups": 0,
+          "prediction_groups": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null,
+          "f1": null
+        },
+        "newly_appearing": {
+          "reference_groups": 8,
+          "prediction_groups": 1,
+          "tp": 1,
+          "fp": 0,
+          "fn": 7,
+          "precision": 1.0,
+          "recall": 0.125,
+          "f1": 0.2222222222222222
+        }
+      },
+      "unresolved_groups": 0,
+      "mapped_predictions": [
+        {
+          "event": "persistent",
+          "baseline_ids": [
+            4
+          ],
+          "followup_ids": [
+            4
+          ]
+        },
+        {
+          "event": "newly_appearing",
+          "baseline_ids": [],
+          "followup_ids": [
+            13
+          ]
+        }
+      ]
+    },
+    "valid_visit_count": 2,
+    "detection_micro": {
+      "tp": 3,
+      "fp": 0,
+      "fn": 19,
+      "precision": 1.0,
+      "recall": 0.13636363636363635,
+      "f1": 0.24
+    },
+    "segmentation_gt_macro_dice": 0.10727920264378547,
+    "report_present": true,
+    "valid": true
+  },
+  "independent_replay_exact": true,
+  "declared_size_strata": [
+    {
+      "stratum": "<=1 mL",
+      "gt_count": 11,
+      "localized": 0,
+      "recall": 0.0,
+      "gt_macro_dice": 0.0,
+      "foreground_coverage_mean": 0.004578155657292348
+    },
+    {
+      "stratum": ">1 to 10 mL",
+      "gt_count": 9,
+      "localized": 1,
+      "recall": 0.1111111111111111,
+      "gt_macro_dice": 0.06431372549019608,
+      "foreground_coverage_mean": 0.06892537835052003
+    },
+    {
+      "stratum": ">10 mL",
+      "gt_count": 2,
+      "localized": 2,
+      "recall": 1.0,
+      "gt_macro_dice": 0.8906594643757577,
+      "foreground_coverage_mean": 0.9366936661419036
+    }
+  ],
+  "per_reference": [
+    {
+      "visit": "baseline",
+      "gt_id": 1,
+      "voxels": 3119,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 5.9490203857421875,
+      "anatomy": "Lymph node",
+      "source_event": "UNCHANGED",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 2,
+      "voxels": 515,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.9822845458984375,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 3,
+      "voxels": 529,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 1.0089874267578125,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 4,
+      "voxels": 30890,
+      "detection_prediction_id": 1,
+      "detected_dice": 0.8693008170648039,
+      "best_one_to_one_dice": 0.8693008170648039,
+      "volume_ml": 58.917999267578125,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": ">10 mL",
+      "foreground_coverage": 0.9023955972806733
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 5,
+      "voxels": 716,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 1.36566162109375,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 6,
+      "voxels": 508,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.96893310546875,
+      "anatomy": "Lymph node",
+      "source_event": "UNCHANGED",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 7,
+      "voxels": 247,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.4711151123046875,
+      "anatomy": "Skeleton",
+      "source_event": "UNCHANGED",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 1,
+      "voxels": 2275,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 5.424022674560547,
+      "anatomy": "Lymph node",
+      "source_event": "UNCHANGED",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 2,
+      "voxels": 345,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.8225440979003906,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 3,
+      "voxels": 370,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.8821487426757812,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 4,
+      "voxels": 154749,
+      "detection_prediction_id": 1,
+      "detected_dice": 0.9120181116867115,
+      "best_one_to_one_dice": 0.9120181116867115,
+      "volume_ml": 368.95036697387695,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": ">10 mL",
+      "foreground_coverage": 0.9709917350031341
+    },
+    {
+      "visit": "followup",
+      "gt_id": 5,
+      "voxels": 629,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 1.4996528625488281,
+      "anatomy": "Liver",
+      "source_event": "UNCHANGED",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 6,
+      "voxels": 152,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.362396240234375,
+      "anatomy": "Lymph node",
+      "source_event": "UNCHANGED",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 7,
+      "voxels": 62,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.14781951904296875,
+      "anatomy": "Skeleton",
+      "source_event": "UNCHANGED",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 8,
+      "voxels": 705,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 1.6808509826660156,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 9,
+      "voxels": 357,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.8511543273925781,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 10,
+      "voxels": 399,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.9512901306152344,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 11,
+      "voxels": 474,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 1.1301040649414062,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 12,
+      "voxels": 139,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.3314018249511719,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.050359712230215826
+    },
+    {
+      "visit": "followup",
+      "gt_id": 13,
+      "voxels": 1208,
+      "detection_prediction_id": 2,
+      "detected_dice": 0.5788235294117647,
+      "best_one_to_one_dice": 0.5788235294117647,
+      "volume_ml": 2.880096435546875,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.5091059602649006
+    },
+    {
+      "visit": "followup",
+      "gt_id": 14,
+      "voxels": 998,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 2.3794174194335938,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": ">1 to 10 mL",
+      "foreground_coverage": 0.11122244488977956
+    },
+    {
+      "visit": "followup",
+      "gt_id": 15,
+      "voxels": 259,
+      "detection_prediction_id": null,
+      "detected_dice": 0.0,
+      "best_one_to_one_dice": 0.0,
+      "volume_ml": 0.6175041198730469,
+      "anatomy": "Liver",
+      "source_event": "NEWLYAPPEARING",
+      "size_stratum": "<=1 mL",
+      "foreground_coverage": 0.0
+    }
+  ],
+  "figures": [
+    {
+      "path": ".local/longitudinal-ct-case02/analysis/baseline-1.png",
+      "sha256": "d23a1a4448db700158eecdb4d962f56228c0e90d8fc182394ff86d4cd57af43b"
+    },
+    {
+      "path": ".local/longitudinal-ct-case02/analysis/baseline-2.png",
+      "sha256": "ad4ac28afea5a21871fb564bb9b27edb524d67febcb6cd7a9403b8fba9de9906"
+    },
+    {
+      "path": ".local/longitudinal-ct-case02/analysis/followup-1.png",
+      "sha256": "4f3a8de31c8ce6984c65dff896ffcd8bbe101e713915f1920b82a055a1db59ea"
+    },
+    {
+      "path": ".local/longitudinal-ct-case02/analysis/followup-2.png",
+      "sha256": "0466b8b55a35fcf86b411e25b222747d04d7731051e63998651503a52c7cd76d"
+    },
+    {
+      "path": ".local/longitudinal-ct-case02/analysis/followup-3.png",
+      "sha256": "36e748863450e813a82006cbeecbd958cf4ee70ccdc65161d1d60c2ec1b8e780"
+    },
+    {
+      "path": ".local/longitudinal-ct-case02/analysis/followup-4.png",
+      "sha256": "f6872ee357130950e2ee9c0be4e5d0d7e1496bcfd8a520c753c1bb9286ffb444"
+    }
+  ],
+  "audit": {
+    "condition": "case02-whole-volume",
+    "attempt_id": "attempt-92800845745342f4",
+    "task_digest": "e12f6fc10c83c8dfb2bc4ca3bd4cfffc90811bdb7249ad8ddedcf55655b1083a",
+    "agent_seconds": 1022.309083,
+    "trial_seconds": 1090.437429,
+    "usage": {
+      "n_input_tokens": 6594160,
+      "n_cache_tokens": 6357120,
+      "n_output_tokens": 19203,
+      "cost_usd": null,
+      "rollout_details": null,
+      "metadata": null
+    },
+    "native_execution": {
+      "attempt_id": "attempt-92800845745342f4",
+      "execution_state": "completed",
+      "started_at": "2026-09-22T03:28:38.920437+00:00",
+      "harbor_task_checksum": "ec47637cf60a3c8744e19e9af1bafa664b95793a452f761784e161fc5bea137a",
+      "exit_code": 0,
+      "finished_at": "2026-09-22T03:46:49.908783+00:00",
+      "frozen_payload_unchanged": true
+    },
+    "exception_info": null,
+    "trajectory_step_count": 75,
+    "outer_tool_call_count": 62,
+    "image_observation_blocks": 67,
+    "image_count_method": "input_image blocks in retained trajectory observation content; montages count as one block",
+    "source_specific_strings_in_tool_requests": {
+      "bcbe3365e6": false,
+      "fdat.uni-tuebingen.de": false,
+      "Longitudinal-CT": false,
+      "/tests/reference": false,
+      "/solution/reference": false
+    },
+    "source_specific_strings_in_initial_prompt": {
+      "bcbe3365e6": false,
+      "fdat.uni-tuebingen.de": false,
+      "Longitudinal-CT": false,
+      "liver": false,
+      "lymph node": false,
+      "melanoma": false
+    },
+    "proxy_allowed": {
+      "chatgpt.com:443": 73
+    },
+    "proxy_blocked": {
+      "sdmntprsouthcentralus.oaiusercontent.com:443": 4,
+      "ab.chatgpt.com:443": 17
+    },
+    "live_isolation_passed": true,
+    "artifacts": {
+      "result.json": "7438c2e8210ecc79146a03dd0da0d760e5f35080abf7824dfdc7a9cfafd33f15",
+      "agent/trajectory.json": "8aa35586d8667663e16424c80a54fcf18fb5596d0837702dc0551332dbe41be5",
+      "agent/codex.txt": "d43944144f2e137ad4b67b6993fa39f78f7a27f9fa724cfeee9d0cb941927f69",
+      "verifier/metrics.json": "55eef66b3850860afd8f675ee9dcc1845cf2d7aa2b713b0658d9e03d9fe99b29"
+    },
+    "limits": "Observed requests supplement enforced isolation; absence of source strings alone does not prove absence of source assistance. No estimate of clinical validity or unseen prior training."
+  },
+  "trace_review": {
+    "attempt_id": "attempt-92800845745342f4",
+    "reported_exclusion_points": [
+      {
+        "visit": "baseline",
+        "reported_native_ijk": [
+          155,
+          253,
+          413
+        ],
+        "gt_id_at_reported_point": 0,
+        "nearest_gt_label": 4,
+        "distance_to_nearest_gt_voxel_mm": 39.904760274660525
+      },
+      {
+        "visit": "baseline",
+        "reported_native_ijk": [
+          175,
+          103,
+          104
+        ],
+        "gt_id_at_reported_point": 0,
+        "nearest_gt_label": 1,
+        "distance_to_nearest_gt_voxel_mm": 326.0976004504345
+      },
+      {
+        "visit": "followup",
+        "reported_native_ijk": [
+          226,
+          250,
+          538
+        ],
+        "gt_id_at_reported_point": 0,
+        "nearest_gt_label": 4,
+        "distance_to_nearest_gt_voxel_mm": 32.522997422256836
+      },
+      {
+        "visit": "followup",
+        "reported_native_ijk": [
+          190,
+          235,
+          536
+        ],
+        "gt_id_at_reported_point": 14,
+        "nearest_gt_label": 14,
+        "distance_to_nearest_gt_voxel_mm": 0.0
+      },
+      {
+        "visit": "followup",
+        "reported_native_ijk": [
+          173,
+          102,
+          282
+        ],
+        "gt_id_at_reported_point": 0,
+        "nearest_gt_label": 1,
+        "distance_to_nearest_gt_voxel_mm": 334.53282362573606
+      }
+    ],
+    "observable_messages": [
+      {
+        "step_id": 6,
+        "message": "I\u2019ll inspect both full CT volumes, delineate findings that appear more likely tumor, and compare their anatomical locations across visits. I\u2019ll preserve review images and scripts alongside the masks, event file, and uncertainty report.\n"
+      },
+      {
+        "step_id": 14,
+        "message": "The scans have different coverage and slice spacing, so I\u2019m matching lesions by anatomy rather than raw slice numbers or world-coordinate offsets. The follow-up contains a prominent liver abnormality; I\u2019m reviewing its baseline counterpart and checking the rest of both volumes for smaller findings.\n"
+      },
+      {
+        "step_id": 23,
+        "message": "The chest and abdomen review has not shown a convincing extrahepatic mass so far. I\u2019m using narrower liver windows and adjacent slices to separate true low-density lesions from vessels and image noise, including subtle baseline findings.\n"
+      },
+      {
+        "step_id": 35,
+        "message": "A subtle right-liver lesion is visible at baseline in the same region as the much larger follow-up lesion. Several nearby dark structures trace into vessels on multiplanar views, so I\u2019m checking those carefully before assigning additional lesion IDs.\n"
+      },
+      {
+        "step_id": 44,
+        "message": "I found a second, small round liver focus on follow-up that does not trace into a vessel and has no convincing baseline counterpart. I\u2019m including it as a probable tumor candidate despite the limited contrast, while completing a systematic pass through the remaining anatomy.\n"
+      },
+      {
+        "step_id": 57,
+        "message": "The full-volume survey supports one baseline liver lesion and two follow-up liver lesions. The right-thigh skin/subcutaneous abnormality has a similar flat, scar-like appearance at both visits and is being excluded. I\u2019m now refining the lesion boundaries and checking the masks against the original slices.\n"
+      },
+      {
+        "step_id": 70,
+        "message": "The masks now capture the visible liver lesion boundaries, including the larger follow-up lesion where it reaches the liver surface. The correspondence is one persistent lesion plus one newly appearing small lesion. I\u2019m finishing the evidence report and validating voxel grids, affines, instance IDs, and JSON coverage.\n"
+      },
+      {
+        "step_id": 75,
+        "message": "Created all requested files in [/app/answer/](/app/answer/):\n\n- [Baseline mask](/app/answer/baseline_instances.nii.gz)\n- [Follow-up mask](/app/answer/followup_instances.nii.gz)\n- [Events](/app/answer/events.json)\n- [Report](/app/answer/report.md)\n\nResult: one persistent liver lesion and one newly appearing follow-up lesion. Grid, affine, and ID checks passed. Scripts and evidence views are preserved in `/app/work/`."
+      }
+    ],
+    "presented_survey_paths": [
+      {
+        "step_id": 45,
+        "call": {
+          "tool_call_id": "call_PBIqJec046d4XLqjL8KjqfjO",
+          "function_name": "exec",
+          "arguments": {
+            "input": "image((await tools.view_image({path:\"/app/work/survey/baseline_000.jpg\"})).image_url);\nimage((await tools.view_image({path:\"/app/work/survey/baseline_064.jpg\"})).image_url);\n"
+          }
+        }
+      },
+      {
+        "step_id": 46,
+        "call": {
+          "tool_call_id": "call_1LoNOCx9HYQ55HYrVQAdTkmQ",
+          "function_name": "exec",
+          "arguments": {
+            "input": "image((await tools.view_image({path:\"/app/work/survey/baseline_128.jpg\"})).image_url);\nimage((await tools.view_image({path:\"/app/work/survey/baseline_192.jpg\"})).image_url);\n"
+          }
+        }
+      },
+      {
+        "step_id": 47,
+        "call": {
+          "tool_call_id": "call_Y1SQan1K9cFvT5cTRSu7Cqne",
+          "function_name": "exec",
+          "arguments": {
+            "input": "image((await tools.view_image({path:\"/app/work/survey/baseline_256.jpg\"})).image_url);\nimage((await tools.view_image({path:\"/app/work/survey/baseline_320.jpg\"})).image_url);\n"
+          }
+        }
+      },
+      {
+        "step_id": 48,
+        "call": {
+          "tool_call_id": "call_lY6MvIeWzsTV43FoiXK485cQ",
+          "function_name": "exec",
+          "arguments": {
+            "input": "image((await tools.view_image({path:\"/app/work/survey/baseline_384.jpg\"})).image_url);\nimage((await tools.view_image({path:\"/app/work/survey/baseline_448.jpg\"})).image_url);\n"
+          }
+        }
+      },
+      {
+        "step_id": 49,
+        "call": {
+          "tool_call_id": "call_Lw2PSHHxHJiLjME4S59NjD3F",
+          "function_name": "exec",
+          "arguments": {
+            "input": "image((await tools.view_image({path:\"/app/work/survey/baseline_512.jpg\"})).image_url);\nimage((await tools.view_image({path:\"/app/work/survey/baseline_576.jpg\"})).image_url);\n"
+          }
+        }
+      },
+      {
+        "step_id": 50,
+        "call": {
+          "tool_call_id": "call_3pTqHVsDcqjXqLUockYg1819",
+          "function_name": "exec",
+          "arguments": {
+            "input": "image((await tools.view_image({path:\"/app/work/survey/followup_000.jpg\"})).image_url);\nimage((await tools.view_image({path:\"/app/work/survey/followup_064.jpg\"})).image_url);\n"
+          }
+        }
+      },
+      {
+        "step_id": 51,
+        "call": {
+          "tool_call_id": "call_3nKXLWVB07D8U9iebYHA22Re",
+          "function_name": "exec",
+          "arguments": {
+            "input": "image((await tools.view_image({path:\"/app/work/survey/followup_128.jpg\"})).image_url);\nimage((await tools.view_image({path:\"/app/work/survey/followup_192.jpg\"})).image_url);\n"
+          }
+        }
+      },
+      {
+        "step_id": 52,
+        "call": {
+          "tool_call_id": "call_8RP0N6V9t4ttDdhnkx31Nydw",
+          "function_name": "exec",
+          "arguments": {
+            "input": "image((await tools.view_image({path:\"/app/work/survey/followup_256.jpg\"})).image_url);\nimage((await tools.view_image({path:\"/app/work/survey/followup_320.jpg\"})).image_url);\n"
+          }
+        }
+      },
+      {
+        "step_id": 53,
+        "call": {
+          "tool_call_id": "call_vMbK1pG41u9UHl99zkThboWM",
+          "function_name": "exec",
+          "arguments": {
+            "input": "image((await tools.view_image({path:\"/app/work/survey/followup_384.jpg\"})).image_url);\nimage((await tools.view_image({path:\"/app/work/survey/followup_448.jpg\"})).image_url);\n"
+          }
+        }
+      },
+      {
+        "step_id": 54,
+        "call": {
+          "tool_call_id": "call_ZCuTySenxkCihpVHTqB7G7Nu",
+          "function_name": "exec",
+          "arguments": {
+            "input": "image((await tools.view_image({path:\"/app/work/survey/followup_512.jpg\"})).image_url);\nimage((await tools.view_image({path:\"/app/work/survey/followup_576.jpg\"})).image_url);\n"
+          }
+        }
+      },
+      {
+        "step_id": 55,
+        "call": {
+          "tool_call_id": "call_IHQTHxvu9TzFSpyKrOYepLfy",
+          "function_name": "exec",
+          "arguments": {
+            "input": "image((await tools.view_image({path:\"/app/work/survey/followup_640.jpg\"})).image_url);\nimage((await tools.view_image({path:\"/app/work/survey/followup_704.jpg\"})).image_url);\ntext(await tools.exec_command({cmd:\"python - <<'PY'\\nimport sys;sys.path.insert(0,'/app/work');from crops import crops\\ncrops('baseline',list(range(90,121,2)),'/app/work/baseline_thigh_candidate.jpg',(110,85,205,150),-140,160,4,3,0.6)\\ncrops('followup',list(range(270,301,2)),'/app/work/followup_thigh_candidate.jpg',(130,80,225,145),-140,160,4,3,0.6)\\nPY\",\"max_output_tokens\":1000}));\n"
+          }
+        }
+      }
+    ],
+    "source_hashes": {
+      ".local/attempts/attempt-92800845745342f4/job/task__Hq6FNdV/agent/trajectory.json": "8aa35586d8667663e16424c80a54fcf18fb5596d0837702dc0551332dbe41be5",
+      ".local/attempts/attempt-92800845745342f4/job/task__Hq6FNdV/artifacts/app/answer/report.md": "5bbc8a336b08621133486366ee38963f0ea1ac574f06fd54ca1a6ed5f1c669bc",
+      ".local/attempts/attempt-92800845745342f4/job/task__Hq6FNdV/artifacts/app/work/survey.py": "57220fef05a1c5ba6ea180b313fd7245f56e062fe7c19c85d61ab4bd81b69c64",
+      ".local/attempts/attempt-92800845745342f4/job/task__Hq6FNdV/artifacts/app/work/segment.py": "726343b5af90bce01d86bf3d9eed69e9bec3ee349b9ba74cc2d01f3c3cce64f4"
+    },
+    "limitations": "Reported point alignment establishes disagreement at that reference voxel, not clinical adjudication or precise identity of the entire described structure. Image presentation does not prove attention; other omissions remain search/recognition mixed.",
+    "unique_presented_survey_paths": [
+      "/app/work/survey/baseline_000.jpg",
+      "/app/work/survey/baseline_064.jpg",
+      "/app/work/survey/baseline_128.jpg",
+      "/app/work/survey/baseline_192.jpg",
+      "/app/work/survey/baseline_256.jpg",
+      "/app/work/survey/baseline_320.jpg",
+      "/app/work/survey/baseline_384.jpg",
+      "/app/work/survey/baseline_448.jpg",
+      "/app/work/survey/baseline_512.jpg",
+      "/app/work/survey/baseline_576.jpg",
+      "/app/work/survey/followup_000.jpg",
+      "/app/work/survey/followup_064.jpg",
+      "/app/work/survey/followup_128.jpg",
+      "/app/work/survey/followup_192.jpg",
+      "/app/work/survey/followup_256.jpg",
+      "/app/work/survey/followup_320.jpg",
+      "/app/work/survey/followup_384.jpg",
+      "/app/work/survey/followup_448.jpg",
+      "/app/work/survey/followup_512.jpg",
+      "/app/work/survey/followup_576.jpg",
+      "/app/work/survey/followup_640.jpg",
+      "/app/work/survey/followup_704.jpg"
+    ],
+    "survey_scope": "All 22 generated survey panels were requested. They cover every native axial slice through two-slice means, within j=50:390, resized 512x340 to 384x255. This is image presentation, not verified attention or exhaustive sensitivity."
+  },
+  "source_hashes": {
+    ".local/attempts/attempt-92800845745342f4/job/task__Hq6FNdV/agent/trajectory.json": "8aa35586d8667663e16424c80a54fcf18fb5596d0837702dc0551332dbe41be5",
+    ".local/attempts/attempt-92800845745342f4/job/task__Hq6FNdV/verifier/metrics.json": "55eef66b3850860afd8f675ee9dcc1845cf2d7aa2b713b0658d9e03d9fe99b29",
+    ".local/freezes/e12f6fc10c83c8dfb2bc4ca3bd4cfffc90811bdb7249ad8ddedcf55655b1083a/task/instruction.md": "86554310fb2891ec78aa94767b810022128de1f011eba089490d703f52b17571",
+    ".local/attempts/attempt-92800845745342f4/job/task__Hq6FNdV/artifacts/app/answer/baseline_instances.nii.gz": "f7dc1a131ca147fdbfca1ff6becf51c56943083c48524063e2eed96e30b93c7d",
+    ".local/attempts/attempt-92800845745342f4/job/task__Hq6FNdV/artifacts/app/answer/events.json": "11a00b9380adf44d28c4e6cc8ba7b2e8d4be64f31fce9b364e8ca4d3bce33f16",
+    ".local/attempts/attempt-92800845745342f4/job/task__Hq6FNdV/artifacts/app/answer/followup_instances.nii.gz": "7edc2f083ee969964623bc2a1e68eff64478afd9db910621f632f109404ef14d",
+    ".local/attempts/attempt-92800845745342f4/job/task__Hq6FNdV/artifacts/app/answer/report.md": "5bbc8a336b08621133486366ee38963f0ea1ac574f06fd54ca1a6ed5f1c669bc"
+  },
+  "local_analysis_sources": [
+    {
+      "path": ".local/longitudinal-ct-case02/analysis/evidence.json",
+      "sha256": "e65f368e97f588baac9b183e1ba465efa31a519b2e4824811dfaa92b193cdfcc"
+    },
+    {
+      "path": ".local/longitudinal-ct-case02/astra-medium/audit.json",
+      "sha256": "23a3c0bd76c45d49b97b16f20946c155daf7ef672333a7cad58422d79ffeddc3"
+    },
+    {
+      "path": ".local/longitudinal-ct-case02/trace-review.json",
+      "sha256": "7a8257859323c4c4719f32e811bd8c23fcd80b3dbe94dce6b1e4a631b16ef311"
+    }
+  ],
+  "limits": "One purposively selected patient; 22 visit-level instances are not independent patients. Image-only input omits source clinical-report context. Size strata are descriptive; frozen primary scores are unchanged."
+}
