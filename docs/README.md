@@ -20,6 +20,8 @@ Finding submission candidates is an optional later step, not the research goal.
 
 | Need | Start here |
 | --- | --- |
+| Understand components, research records and execution/presentation flow | [Architecture](architecture.md) |
+| Choose where to put code, experiments, findings, docs or generated files | [Repository layout and file placement](repository-layout.md) |
 | Understand ownership, preserved evidence and what belongs in Git | [Governance](governance.md) |
 | Choose and construct concise conceptual, quantitative and source-derived visuals | [Visual explanation rulebook](visual-explanations.md) |
 | Add LiteMedSAM / a SAM segmentation tool to an experiment | [Segmentation tool rulebook](segmentation-tools.md) |
@@ -43,24 +45,8 @@ preserves the pivot decisions and completed cutover; the
 
 ## Where information belongs
 
-| Location | Purpose |
-| --- | --- |
-| `groups/<group>/` | Current research: question, ideas and decisions, methods, experiments, findings and presentation. Start with its README and AGENTS.md. |
-| `groups/<group>/history/` | Canonical home for dated session closeouts, cross-experiment retrospectives and trace walkthroughs; linked from the group README. |
-| `datasets/` | Shared source discovery; exact inputs and solver visibility belong to the experiment. |
-| [Discussions](../discussions/README.md) | Local artifacts by default; explicit exceptions retain durable decisions and records. |
-| `src/tb3_medical/`, `tests/`, `configs/` | Common implementation, regressions and artifact policy. |
-| `skills/`, `src/tb3_medical/skills/` | Canonical user-facing skills; installed copies are mirrors. See [skill lifecycle](skill-lifecycle.md). |
-| `presentation/` | Shared read-only index and media renderer; groups own their scientific stories. |
-| `exports/recipes/`, `exports/records/` | Selected-input recipes and export lineage. Generated packages have a fresh destination. |
-| `docs/` | Shared current guides plus clearly indexed historical records. |
-| `probes/`, `docs/research-rounds/`, `docs/evidence/` | Retained sources, protocols and receipts at their original paths. They are not a second authoring workflow. |
-| `archive/` | Hashes and Git recovery locators for retired material. |
-| `.local/`, `runs/`, `jobs/`, `.cache/`, `.venv*/` | Local outputs, inputs, environments and caches, outside tracked source. |
-
-Find medical work through the [research groups](../README.md), not a new global
-round or candidate queue. New shared guidance belongs in an existing guide;
-group-specific explanations belong with the group. Put completed session narratives
-and retrospectives in `groups/<group>/history/<scope>-<topic>.md`, not loose in
-`docs/`. Record implementation decisions in the migration history only when they concern that migration. Keep dated source
-records intact and link to them instead of copying their verdicts into another index.
+The [repository layout](repository-layout.md) owns the directory map, placement
+examples and discoverability rules. Groups own scientific work, the package and
+presentation own shared implementation, and this directory owns current shared
+guidance. Dated research closeouts stay with their group; original evidence stays
+at its retained source location.

@@ -1,8 +1,11 @@
 # Medical presentation
 
 Groups own authored stories, source-linked cards, figures and source notices.
-This directory owns the shared index and interactive tour renderer. Run
+This directory owns the React/TypeScript index and Task Explorer, reusable visuals,
+and interactive tour renderer. Run `npm ci` and `npm run frontend:build`, then
 `uv run med present --serve`; add `--local-media` after restoring tour inputs.
+See [frontend development and contracts](frontend/README.md) and the
+[reusable teaching asset home](assets/README.md).
 
 All seven stories have portable prose. Six retain scientific figures and guided
 tours; longitudinal reading remains exploratory. `med check --assets` verifies
@@ -14,6 +17,12 @@ The CLI and frontend consume the same status vocabulary. Group stories display
 current experiment review flags beside the authored historical synthesis. Runtime
 reads do not hash every evidence file, poll jobs or use pathname relocation maps.
 Historical source locators remain provenance, not fallback file resolution.
+
+The overview, task catalogue, dataset reader and research stories share navigation
+and the visual foundations in `ui.css`. Page styles own their content layouts;
+the standalone Task Explorer embeds the same foundations so it needs no remote
+fonts or style assets. Keep task, dataset and evidence links usable in both
+standalone and integrated builds, including keyboard and narrow-screen navigation.
 
 Use [the media guide](tours/TOOL.md) for declared rendering dependencies and
 `npm run media -- --help` for video/still options. Generated arrays and videos stay

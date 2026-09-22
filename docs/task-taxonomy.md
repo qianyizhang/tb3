@@ -11,6 +11,7 @@ or assessment systems.
 | Axis | Meaning | Example |
 | --- | --- | --- |
 | Primary category | The work required to produce the principal deliverable | Segmentation, correspondence, reporting |
+| Modality | The authored imaging or data scope, independently of the requested action | CT, MRI, ultrasound, microscopy, records; multiple tags when the contract spans them |
 | Secondary operations | Other substantive operations in a compound task | Longitudinal analysis also needs localization, segmentation and correspondence |
 | Agent work | What the agent is responsible for | Solve a case, build a method, operate a tool workflow |
 | Research role | Why this entry exists | Agent task, source/feasibility study, tool calibration, retrospective analysis |
@@ -27,6 +28,15 @@ Groups are enduring research owners. They can contain different task categories.
 Changing navigation does not require moving their evidence or renaming durable IDs.
 Model, effort, budget, runtime, tool availability and actual tool use are experiment
 conditions; anatomy, modality and dataset alone do not establish task identity.
+
+The Modality filter composes with capability/repository browsing, research role,
+agent work and search. Its selection is part of the URL. Tags describe the whole
+definition: CT + MRI can mean alternative conditions, while MRI + ultrasound can
+describe source and target. Read the selected assistance condition for exact inputs.
+Use `geometry` for supplied masks/spatial geometry and `nonimaging` for records or
+other non-image data. `imaging-unspecified` preserves a source's unresolved imaging
+scope; `unspecified` is the honest default for a new unclassified draft. Neither
+uncertainty label can be combined with a concrete modality.
 
 ## Definitions, conditions and evidence
 
@@ -97,7 +107,7 @@ med brief check
 med brief build --output runs/task-explorer/index.html
 ```
 
-Edit the proposed entry's `owner_group`, `role`, `agent_work`, optional
+Edit the proposed entry's `owner_group`, `role`, `agent_work`, `modalities`, optional
 `operations`, and `experiments: [{"id": "stable-id", "scope": "exact portion"}]`.
 Use the [Task Brief rulebook](../presentation/task-explorer/RULEBOOK.md) for content.
 After creating an experiment, link it from the appropriate group catalogue before

@@ -10,6 +10,8 @@ import unittest
 from contextlib import redirect_stdout
 from pathlib import Path
 
+from frontend_fixture import install_frontend
+
 from tb3_medical import cli
 from tb3_medical import core as c
 from tb3_medical import task_briefs as briefs
@@ -22,6 +24,9 @@ class TaskBriefTests(unittest.TestCase):
         self.root = Path(self.tmp.name)
         source = Path(__file__).resolve().parents[1] / "presentation/task-explorer"
         shutil.copytree(source, self.root / "presentation/task-explorer")
+        shutil.copyfile(source.parent / "ui.css", self.root / "presentation/ui.css")
+        shutil.copytree(source.parent / "assets", self.root / "presentation/assets")
+        install_frontend(self.root)
         self.catalog = "collection/catalog.json"
 
     def test_native_cli_build_and_check_use_explicit_workspace(self):
@@ -222,8 +227,25 @@ class TaskBriefTests(unittest.TestCase):
         data.update(inventory="collection/inventory.json", require_brief_coverage=True)
         catalog_path.write_text(json.dumps(data))
         inventory_path = self.root / data["inventory"]
-        item = {"id": "case-27"}
-        inventory = {"repositories": [{"id": "example", "items": [item]}]}
+        item = {
+            "id": "case-27",
+            "title": "Example case",
+            "kind": "case",
+            "definition": "Example",
+            "condition": "Published prompt",
+            "url": "https://example.org/case-27",
+        }
+        inventory = {
+            "repositories": [
+                {
+                    "id": "example",
+                    "items": [item],
+                    "coverage": "One fixture case",
+                    "observed_on": "2026-09-22",
+                    "commit": "fixture",
+                }
+            ]
+        }
 
         def save():
             inventory_path.write_text(json.dumps(inventory))

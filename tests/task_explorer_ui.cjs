@@ -185,20 +185,32 @@ async function checkExplorer(browser, input, report) {
     }
     // Optional native images can be absent in a portable build. Every native entry
     // must still explain its task, without disguising the missing source example.
+    const missingData = structuredClone(data);
+    for (const entry of missingData.entries.filter((entry) => /<img\b/.test(entry.visuals.input))) {
+      entry.visuals.input = '<p>Source example unavailable in this build.</p>';
+      entry.missing_media = ['optional-example.png'];
+    }
+    const missingFile = resolve(dirname(report), 'missing-media.html');
+    fs.mkdirSync(dirname(missingFile), { recursive: true });
+    fs.writeFileSync(
+      missingFile,
+      fs
+        .readFileSync(file, 'utf8')
+        .replace(
+          /(<script id="data" type="application\/json">)[\s\S]*?(<\/script>)/,
+          (_, opening, closing) =>
+            opening + JSON.stringify(missingData).replaceAll('<', '\\u003c') + closing,
+        ),
+    );
+    await page.goto(pathToFileURL(missingFile).href);
     for (const e of data.entries.filter((e) => /<img\b/.test(e.visuals.input))) {
       assert.ok(e.illustration, `${e.id}: portable illustration fallback`);
       await go(`${e.id}/0/overview`, e.id);
-      await page.evaluate((id) => {
-        const entry = DATA.entries.find((e) => e.id === id);
-        entry.visuals.input = '<p>Source example unavailable in this build.</p>';
-        entry.missing_media = ['optional-example.png'];
-        render();
-      }, e.id);
       assert.equal(await page.locator('.scene-canvas').count(), 1);
       assert.ok((await page.locator('.preview-unavailable').innerText()).includes('unavailable'));
       fallbackDrawings++;
-      await page.reload();
     }
+    await page.goto(pathToFileURL(file).href);
     // Motion is real, opt-out is respected, and camera controls work without a mouse.
     const moving = data.entries.find(
       (e) =>

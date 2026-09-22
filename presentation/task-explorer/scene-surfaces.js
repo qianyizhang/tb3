@@ -1,6 +1,6 @@
 // One shared offscreen context draws smooth surfaces for every player. The
 // visible Canvas retains labels, annotations, accessibility and a 2D fallback.
-const SceneSurfaces = (() => {
+export const SceneSurfaces = (() => {
   let renderer;
   function create() {
     const canvas = document.createElement('canvas');

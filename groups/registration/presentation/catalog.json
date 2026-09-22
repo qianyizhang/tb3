@@ -27,8 +27,12 @@
         "kind": "register",
         "input": "Oblique section and target CT",
         "output": "Rigid pixel-to-patient transformation",
-        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
-      }
+        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted.",
+        "scene_variant": "slice-to-volume"
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "tb3-respiratory-correspondence",
@@ -65,7 +69,10 @@
         "output": "Corresponding target landmarks",
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Gold: query point. Teal: initial or returned target point.",
         "subject": "chest"
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "tb3-registration-analysis",
@@ -90,7 +97,10 @@
         "output": "Separate transform, search and correspondence defects",
         "caption": "Points and residuals are schematic. This retrospective analysis may use references; a repaired calculation does not replace the original frozen outcome.",
         "subject": "generic"
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "resect-mri-us-correspondence",
@@ -113,7 +123,11 @@
         "caption": "Gold: MRI query. Green: ultrasound candidate or returned point. The initial candidate is supplied; the correct paired coordinate is evaluator-only.",
         "subject": "brain",
         "initial_candidate": true
-      }
+      },
+      "modalities": [
+        "mri",
+        "ultrasound"
+      ]
     },
     {
       "id": "tb3-resect-point-pilot",
@@ -141,7 +155,11 @@
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Gold: query point. Teal: initial or returned target point.",
         "initial_candidate": true,
         "subject": "brain"
-      }
+      },
+      "modalities": [
+        "mri",
+        "ultrasound"
+      ]
     }
   ],
   "task_families": {

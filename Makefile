@@ -4,7 +4,14 @@ PRESENTATION_REPORTS ?= .local/presentation-qa
 
 .PHONY: actionlint artifacts build-check check docs-check format format-check hooks hygiene js-check lint med-check \
 	presentation-check pre-commit-check site style test type-check
-check: hygiene test med-check docs-check type-check style actionlint
+check: hygiene test med-check docs-check type-check contracts-check style actionlint
+
+.PHONY: contracts-check frontend-check
+contracts-check:
+	$(PYTHON) -m tb3_medical.presentation_contracts --check
+
+frontend-check:
+	npm run frontend:build
 
 hygiene:
 	$(PYTHON) -m tb3_medical.hygiene
@@ -44,17 +51,19 @@ build-check:
 # Browser-free JavaScript checks; no scans, encoder or model runtime.
 js-check:
 	npm run format:check
+	node tests/frontend_overview.cjs
+	node tests/frontend_explorer.cjs
 	node tests/tour_state.cjs
 	node tests/task_scene_models.cjs
 	node tests/media_export.cjs
 
 # Optional browser regressions. Uses declared, already installed Node/Playwright.
-presentation-check: js-check
+presentation-check: frontend-check js-check
 	$(PYTHON) -m tb3_medical.cli present --output "$(PRESENTATION_OUTPUT)"
 	node tests/presentation.cjs "$(PRESENTATION_OUTPUT)" "$(PRESENTATION_REPORTS)"
 
 # Open the read-only medical index and available local tours.
-site:
+site: frontend-check
 	$(PYTHON) -m tb3_medical.cli present --serve --local-media
 
 # Inventory only: never delete ignored runs, caches, or frozen inputs.

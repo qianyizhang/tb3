@@ -1,0 +1,124 @@
+{
+  "schema_version": 2,
+  "kind": "discussion",
+  "id": "discussion-frontend-modernization",
+  "title": "Incremental frontend modernization with portable exports",
+  "source": "codex://threads/01a0c9ab-9159-7813-9745-b062bc67b764",
+  "summary": "React and strict TypeScript frontend with Python-owned payload contracts, portable Vite builds, authored modality filters, and reusable input/action/output teaching assets.",
+  "decision_provenance": "The initial stack recommendation was by the assistant. The user subsequently accepted the refactor, retained functional parity as a constraint, authorized visual and wording refinements, and requested Python-owned type contracts and modality filtering. Specific implementation details remain assistant choices for review.",
+  "findings": [
+    "The Task Explorer shares mutable selection, filter, expansion and navigation state across app.js and datasets.js. Its render path replaces the main subtree, reconnects handlers, restores focus and scroll, and disposes/remounts scenes.",
+    "Python currently copies workbench assets and emits records.json; the Task Brief builder concatenates seven scripts and embeds styles, records, source material and anatomy assets into a single HTML file.",
+    "The standalone explorer's direct file opening and embedded assets are documented contracts and covered by the existing browser harness. Default Vite application output alone does not establish parity.",
+    "The scene system uses custom Canvas2D and a WebGL surface helper, with an existing mount/cleanup boundary suitable for a React wrapper. No renderer rewrite is needed to test the UI migration.",
+    "Recent uncommitted cohesion work adds shared ui.css foundations and navigation checks. Migration should build on that work after ownership handoff.",
+    "This is a source audit, not a measured frontend performance study. No framework speed or bundle-size improvement has been established."
+  ],
+  "proposal": {
+    "stack": [
+      "React and strict TypeScript for interactive components, explicit state transitions and typed presentation payloads.",
+      "Vite for development and reproducible browser builds, with a separate tsc --noEmit gate because Vite transpilation does not type-check.",
+      "Retain shared CSS variables and existing visual foundations; introduce CSS Modules for new component-owned styles.",
+      "Use local React state/reducers and a typed hash/query URL adapter that preserves existing links. Add routing or server-state libraries only when demonstrated requirements justify them.",
+      "Retain the Playwright harness and scene checks; extend coverage for component lifecycle, data-contract compatibility and both export modes."
+    ],
+    "boundaries": [
+      "JSON, TOML and Markdown records and Python validation/projection remain authoritative. Add an explicit versioned presentation payload contract with fixture checks rather than duplicating scientific status derivation in TypeScript.",
+      "Keep maintained UI source under presentation/ and Python assembly in src/tb3_medical/. Generated frontend assets stay in an owned ignored output location with a manifest and source/config/lockfile fingerprint; builders reject missing or stale compiled assets.",
+      "Produce a normal static-site build with relative asset paths and a standalone explorer build with bundled inline JavaScript, CSS and data. The standalone output must not depend on runtime module imports, fetches, remote fonts, a Node server or a SPA rewrite server.",
+      "Retain static story HTML, source attribution, conceptual-versus-evidence distinctions, reference reveals, reduced-motion behavior and missing-media states. Wrap existing scene rendering with explicit mount/update/cleanup ownership.",
+      "React adds a build dependency and runtime bytes. Prefer TypeScript modules alone if continued interactive feature development is no longer expected."
+    ],
+    "sequence": [
+      "After the current frontend work is handed off, record baseline behavior and payload/build sizes. Prove one task view and one dataset route in both static-site and standalone file modes, with the existing scene renderer.",
+      "Migrate the Explorer's filters, task/variant selection, detail panels, source drawer and dataset navigation into components using the shared URL and data boundaries.",
+      "After parity is demonstrated, reuse the components in the simpler overview. Remove superseded rendering code per migrated surface; keep group stories as portable generated prose."
+    ],
+    "acceptance": [
+      "Existing task, variant, source and dataset links remain usable, including browser back/forward and integrated-versus-standalone navigation.",
+      "Standalone HTML opens from disk with network access blocked and no missing assets; the integrated site works from a nested static path without server rewrites.",
+      "Keyboard focus, mobile navigation, source/reference reveals, reduced motion, scene cleanup and missing-media behavior retain coverage.",
+      "Python-generated payload fixtures satisfy the frontend contract, original evidence/status semantics remain intact, and build assets are reproducible and attributable to their source inputs.",
+      "Measure initial JavaScript and exported HTML size plus filter/detail response time against the baseline before accepting broader migration."
+    ]
+  },
+  "links": [
+    {
+      "label": "Task Explorer state and rendering",
+      "path": "presentation/frontend/explorer.tsx"
+    },
+    {
+      "label": "Dataset UI and navigation",
+      "path": "presentation/frontend/datasets.tsx"
+    },
+    {
+      "label": "Standalone export contract",
+      "path": "presentation/task-explorer/RULEBOOK.md"
+    },
+    {
+      "label": "Python export assembly",
+      "path": "src/tb3_medical/task_briefs.py"
+    },
+    {
+      "label": "Existing portable browser checks",
+      "path": "tests/task_explorer_ui.cjs"
+    },
+    {
+      "label": "React incremental integration guidance",
+      "path": "https://react.dev/learn/add-react-to-an-existing-project"
+    },
+    {
+      "label": "Vite static builds and relative assets",
+      "path": "https://vite.dev/guide/build"
+    },
+    {
+      "label": "Vite build manifest integration",
+      "path": "https://vite.dev/guide/backend-integration"
+    },
+    {
+      "label": "Vite TypeScript and CSS Modules support",
+      "path": "https://vite.dev/guide/features"
+    },
+    {
+      "label": "Frontend developer guide",
+      "path": "presentation/frontend/README.md"
+    },
+    {
+      "label": "Canonical Python presentation contracts",
+      "path": "src/tb3_medical/presentation_contracts.py"
+    },
+    {
+      "label": "Reusable teaching assets",
+      "path": "presentation/assets/README.md"
+    },
+    {
+      "label": "Modality taxonomy",
+      "path": "presentation/task-explorer/taxonomy.json"
+    }
+  ],
+  "reopen_when": "The user selects a migration direction, the portable build pilot exposes a material cost, interactive feature growth changes, or live editing/multiuser requirements alter the current static read-only architecture.",
+  "decisions": [
+    {
+      "actor": "user",
+      "source": "codex://threads/01a0c9ab-9159-7813-9745-b062bc67b764",
+      "decision": "Accepted the incremental React/TypeScript/Vite refactor and requested clearer, intuitive animations and a reusable asset home."
+    },
+    {
+      "actor": "user",
+      "source": "codex://threads/01a0c9ab-9159-7813-9745-b062bc67b764",
+      "decision": "Keep functionality equivalent; refine wording, layout, visuals and style to be clean, elegant, informative and intuitive."
+    },
+    {
+      "actor": "user",
+      "source": "codex://threads/01a0c9ab-9159-7813-9745-b062bc67b764",
+      "decision": "Requested a dedicated Python module for type contracts and a modality tag/filter/axis."
+    }
+  ],
+  "implementation": {
+    "frontend": "React components for overview, task navigation/details and datasets; reducers and typed URL state replace manual full-subtree rendering.",
+    "contracts": "presentation_contracts.py defines browser payload TypedDicts, validates emitted payloads and generates TypeScript; drift is checked by both Python and frontend gates.",
+    "modality": "All 200 maintained entries carry explicit authored modality arrays. Taxonomy labels distinguish source/target or alternative modalities, geometry, non-image data and unspecified scope.",
+    "assets": "presentation/assets/teaching owns reusable SVG art and action recipes; the existing source-derived anatomy retains its original location, hashes and notices.",
+    "build": "Two local IIFE bundles and a source/output fingerprint manifest; standalone Explorer inlines browser code, CSS, payloads and teaching assets."
+  }
+}

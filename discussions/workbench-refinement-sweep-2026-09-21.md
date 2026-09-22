@@ -177,9 +177,11 @@ Priority: next reader pass. Scope: moderate.
 
 Thirteen local source references across eight briefs render as plain paths. The
 internal vessel brief's Sources panel has five source rows and zero clickable
-sources. [`task-explorer/app.js`](../presentation/task-explorer/app.js) line 210
+sources. The then-current `presentation/task-explorer/app.js` line 210
 links HTTP sources only; [`task_briefs.py`](../src/tb3_medical/task_briefs.py)
 lines 142–148 checks local sources without packaging their content.
+The React refactor now owns source display in
+[`task-detail.tsx`](../presentation/frontend/task-detail.tsx).
 
 Embed a small source viewer or supply an explicit companion bundle for selected
 protocols, task cards, attribution and visual-provenance receipts. Label omitted
@@ -195,8 +197,9 @@ Task/repository selection rebuilds its focused DOM node. Offline Chrome checks
 showed Enter activation leaving focus on `BODY`; the existing tab, condition and
 selector checks still pass. Restore focus to the selected navigation control or
 deliberately move it to the new heading. Relevant code:
-[`task-explorer/app.js`](../presentation/task-explorer/app.js) lines 121–126,
-232 and 246.
+the then-current `presentation/task-explorer/app.js` lines 121–126, 232 and 246.
+The React refactor now owns selection and focus in
+[`explorer.tsx`](../presentation/frontend/explorer.tsx).
 
 The tour player commits every asynchronous load at
 [`tour.js`](../presentation/tours/tour.js) lines 119–121. A deferred-load fixture
@@ -213,10 +216,12 @@ The shared index and standalone Explorer remain separate entry points. Provide
 a visible Explorer entry and an intentional way back to experiment evidence;
 make the portable build's inclusion or omission explicit. The main index reads
 `q`, `kind` and `group` once but does not write filter changes to the URL or restore
-status at [`presentation/app.js`](../presentation/app.js) lines 119–125. Serialize
+status at the then-current `presentation/app.js` lines 119–125. Serialize
 filters and selected records so a useful view can be shared, reloaded and revisited.
 Treat this as a discoverability improvement, not a failure of the existing Explorer
 route behavior, which already has regression coverage.
+The React refactor now owns this state in
+[`overview.tsx`](../presentation/frontend/overview.tsx).
 
 ## C. Research interpretation and maintenance
 

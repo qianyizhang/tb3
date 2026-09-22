@@ -1,7 +1,21 @@
+import anatomyNotice from './anatomy/NOTICE.md?raw';
+import creativeCommonsLicense from './anatomy/CC-BY-4.0.txt?raw';
+import apacheLicense from './assets/Apache-2.0.txt?raw';
+
+const meshes = import.meta.glob(['./anatomy/*.json', '!./anatomy/manifest.json'], {
+  eager: true,
+  import: 'default',
+});
+
 // Shared teaching assets. Source surfaces and derivation are documented in anatomy/.
-const AnatomyAssets = (() => {
-  const source = __ANATOMY_MESHES__;
-  const notice = __ANATOMY_NOTICE__;
+export const AnatomyAssets = (() => {
+  const source = Object.fromEntries(
+    Object.entries(meshes).map(([filename, mesh]) => [
+      filename.split('/').at(-1).slice(0, -5),
+      mesh,
+    ]),
+  );
+  const notice = [anatomyNotice, creativeCommonsLicense, apacheLicense].join('\n');
   const names = {
     liver: 'Liver',
     kidney_left: 'Left kidney',

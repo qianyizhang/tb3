@@ -99,6 +99,7 @@ the older observation remains intact.
 
 ```sh
 uv run med show my-study
+npm run frontend:build
 uv run med present --serve
 # Open http://127.0.0.1:8765
 ```

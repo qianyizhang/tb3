@@ -72,7 +72,9 @@ imported identifiers, authored briefs and available media are distinct coverage 
   and an organ/lesion pair is not one undifferentiated segmentation. Do not fabricate
   measured improvements, patient findings, clinical thresholds or reference answers.
   Geometry and textures are stylized. Cite the task source for any numerical dimensions.
-  `illustrations.js` owns the static SVG fallback. `scene-anatomy.js` owns reusable
+  `presentation/assets/teaching/` owns reusable SVG primitives, task art and
+  plain-language action recipes, shared by storyboards and the static fallback.
+  See [asset reuse](../assets/README.md). `scene-anatomy.js` owns reusable
   anatomy assemblies; `scene-models.js` owns task geometry and legends;
   `scene-surfaces.js` owns GPU surface lighting; `scenes.js` owns annotations,
   software rendering and playback. All are embedded with the navigation renderer in
@@ -97,6 +99,14 @@ Process and Output (Study output for
 supporting research). Their text comes from the task's illustration metadata.
 These explain task structure; they are not presented as reconstructions or
 evaluated results for the selected case.
+
+The user later asked for clearer, more intuitive animation. Keep a labeled
+input → action → illustrative output storyboard visible beside the interactive
+walkthrough, including when playback is paused. Prefer recognizable image planes,
+anatomical context and explicit targets over unmarked generic volumes. The
+storyboard explains the expected output format; native references remain under
+their separate reveal. Shared assets and action descriptions have one owner in
+`presentation/assets/teaching/`.
 
 - Common anatomy lives in `anatomy/` and `scene-anatomy.js`. Eighteen compact
   source surfaces retain source/output hashes and derivation in their manifest.
@@ -176,6 +186,11 @@ evaluated results for the selected case.
   is backfilled. Checks then reject unlinked entries, cross-repository brief links
   and invalid condition indices. This guarantees an explanation, not a native image.
 - Offer capability and repository navigation and list each shared task definition once.
+  Modality is a separate authored filter axis: retain explicit `modalities` IDs
+  from the shared taxonomy, allow multiple tags for source/target or alternative
+  conditions, and do not derive modality from a task ID. Unspecified imaging and
+  non-image inputs must remain distinguishable. Filters compose and survive URL
+  navigation without merging different task contracts.
   Put repeated cases beneath their task, with short labels and only sourced differences
   (for example candidate-pool size). Never infer a clinical description from a case ID.
   Selecting a case must retain its source and condition across reload/back navigation.

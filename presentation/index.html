@@ -1,10 +1,23 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>tb3-medical · Research workbench</title><link rel="stylesheet" href="style.css"></head>
-<body><main><header><a class="brand" href="index.html">TB3 / MEDICAL</a><span class="quiet">Research workbench</span></header>
-<section class="intro"><p class="eyebrow">CAPABILITIES, EVIDENCE & OPEN QUESTIONS</p><h1>What can an agent<br>learn from medical images?</h1><p class="lede">Explore the tasks, revisit decisions and follow each conclusion back to its evidence. Successes, partial attempts and corrections belong in the same record.</p></section>
-<p id="task-explorer-entry" hidden><a id="task-explorer-link">Open the Task Explorer →</a> <span class="quiet">Compare task definitions, examples, assistance and sources.</span></p>
-<section aria-label="Research groups" id="groups" class="groups"></section>
-<section class="catalog"><div class="section-title"><h2>The research record</h2><span id="count" aria-live="polite"></span></div>
-<form id="filters"><label>Search<input id="search" type="search" placeholder="Question, model, source, prior decision…" autocomplete="off"></label><label>Group<select id="group"><option value="">All groups</option></select></label><label>Record<select id="kind"><option value="overview">Ideas, experiments & findings</option><option value="">Everything</option><option>idea</option><option>decision</option><option>experiment</option><option>attempt</option><option>evaluation</option><option>finding</option><option>issue</option><option>review</option><option>export</option><option>plan</option><option>dataset</option></select></label><label>Status<select id="status"><option value="">All statuses</option><option value="attention">Experiments needing action</option></select></label></form>
-<div id="records" class="records"></div><p id="empty" hidden>No records match. Try a broader question or “Everything”.</p></section>
-<details><summary>Status definitions</summary><dl id="legend"></dl></details><footer>Read-only index · Author and orchestrate with Codex and <code>med</code> · Packaging, evidence validity and submission qualification are separate.</footer></main><script src="app.js" defer></script></body></html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TB3 Medical · Research workbench</title>
+    <link rel="stylesheet" href="ui.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="overview-root">
+      <main id="main" tabindex="-1">
+        <h1>Medical imaging research</h1>
+        <p role="status">Loading the research workbench…</p>
+        <noscript>
+          <p>Enable JavaScript to browse the research record and filter its evidence.</p>
+          <p><a href="records.json">Read the research records</a></p>
+        </noscript>
+      </main>
+    </div>
+    <script src="overview.js" defer></script>
+  </body>
+</html>

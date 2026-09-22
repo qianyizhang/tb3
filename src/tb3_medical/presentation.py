@@ -14,6 +14,8 @@ from typing import Any
 from urllib.parse import unquote, urlsplit
 
 from . import core as c
+from . import frontend
+from .presentation_contracts import validate_payload
 from .types import Document, Pathish
 
 
@@ -213,6 +215,7 @@ def markdown(text: str, link: Callable[[str], str | None]) -> str:
 
 def present(root: Pathish, output: Pathish, local_media: bool = False) -> Document:
     root, output = Path(root).resolve(), Path(output).resolve()
+    app_js, app_css = frontend.assets(root, "overview")
     if output == root or root.is_relative_to(output):
         raise c.MedicalError("Output cannot contain the source checkout")
     marker = output / ".tb3-medical-site"
@@ -232,8 +235,10 @@ def present(root: Pathish, output: Pathish, local_media: bool = False) -> Docume
         + ".html"
         for group in groups
     }
-    for name in ("index.html", "app.js", "style.css"):
+    for name in ("index.html", "style.css", "ui.css"):
         shutil.copy2(root / "presentation" / name, output / name)
+    (output / "overview.js").write_text(app_js)
+    (output / "style.css").write_text((output / "style.css").read_text() + "\n" + app_css)
     copied = set()
 
     def copy_link(relative: str, page_output: Path) -> str | None:
@@ -315,13 +320,37 @@ def present(root: Pathish, output: Pathish, local_media: bool = False) -> Docume
             else "No unresolved review flags recorded for the cited experiments"
         )
         notice = f"<aside>Current evidence status: <strong>{html.escape(validity)}</strong>. See the index for review dependencies and evidence availability.</aside>"
+        explorer_navigation = (
+            '<a href="../task-explorer/index.html">Tasks</a>'
+            '<a href="../task-explorer/index.html#datasets">Datasets</a>'
+            if (root / "presentation/task-explorer/catalog.json").is_file()
+            else ""
+        )
+        title = html.escape(group["title"])
         page.write_text(
-            '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'
-            + html.escape(group["title"])
-            + '</title><link rel="stylesheet" href="../style.css"><main class="story"><a href="../index.html">← Medical workbench</a>'
+            '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+            '<meta name="viewport" content="width=device-width,initial-scale=1"><title>'
+            + title
+            + ' · TB3 Medical</title><link rel="stylesheet" href="../ui.css">'
+            '<link rel="stylesheet" href="../style.css"></head><body>'
+            '<a class="skip-link" href="#story-content">Skip to story</a>'
+            '<header class="site-header story-header">'
+            '<a class="site-brand" href="../index.html">TB3 / MEDICAL'
+            '<span class="site-brand-caption">Research workbench</span></a>'
+            '<nav class="site-nav" aria-label="Primary navigation">'
+            '<a href="../index.html" aria-current="page">Overview</a>'
+            + explorer_navigation
+            + '</nav></header><main class="story" id="story-content" tabindex="-1">'
+            '<p class="story-breadcrumb"><a href="../index.html#research-areas">Research areas</a>'
+            '<span aria-hidden="true">/</span>'
+            + title
+            + "</p>"
             + notice
             + body
-            + "</main></html>"
+            + '<footer class="story-footer"><a href="../index.html#research-areas">'
+            '← All research areas</a><a href="../index.html?group='
+            + html.escape(group["id"], quote=True)
+            + '#research-record">Browse evidence for this area →</a></footer></main></body></html>'
         )
         group["story_url"] = "stories/" + group["id"] + ".html"
     for row in rows.values():
@@ -355,12 +384,16 @@ def present(root: Pathish, output: Pathish, local_media: bool = False) -> Docume
         )
     c.atomic_write(
         output / "records.json",
-        {
-            "records": list(rows.values()),
-            "local_media": local_media,
-            "vocabulary": c.VOCABULARY,
-            "task_explorer_url": "task-explorer/index.html" if explorer else None,
-        },
+        validate_payload(
+            {
+                "schema_version": 1,
+                "records": list(rows.values()),
+                "local_media": local_media,
+                "vocabulary": c.VOCABULARY,
+                "task_explorer_url": "task-explorer/index.html" if explorer else None,
+            },
+            "overview",
+        ),
     )
     return {
         "output": str(output),

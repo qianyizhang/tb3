@@ -7,6 +7,8 @@ submission qualification is a separate promotion step.
 
 ```sh
 uv sync --locked --inexact --group dev
+npm ci
+npm run frontend:build
 uv run med present --serve --local-media
 # Open http://127.0.0.1:8765
 ```
@@ -18,7 +20,7 @@ sync preserves separately installed research packages while keeping declared
 versions locked. No command above downloads data or runs a model. To create a
 portable static build: `uv run med present`.
 
-Find task definitions by [capability and research role](docs/task-taxonomy.md)
+Find task definitions by [capability, modality and research role](docs/task-taxonomy.md)
 in the Task Explorer (`uv run med brief build`). The groups below own research;
 their membership does not classify every child experiment as the same task.
 
@@ -39,7 +41,8 @@ uv run med check
 make check
 ```
 
-Start with [the documentation index](docs/README.md). Read
+Start with [the documentation index](docs/README.md). For development, see the
+[architecture](docs/architecture.md) and [file-placement guide](docs/repository-layout.md). Read
 [the workflow](docs/workflow.md) for idea capture, decisions, scaffolding,
 automatic run receipts, collection, scoped review and clean exports. [Contribution rules](CONTRIBUTING.md)
 cover concurrent ownership and milestone checks. Findings are source-linked and

@@ -1,6 +1,8 @@
+import { AnatomyAssets } from './scene-anatomy.js';
+
 // Task choreography over shared teaching assets; no task-specific results.
 // Kept dependency-free so the complete Explorer works as a single offline file.
-const TaskSceneModels = (() => {
+export const TaskSceneModels = (() => {
   const C = {
     ink: '#284952',
     faint: '#89a3aa',
@@ -107,7 +109,8 @@ const TaskSceneModels = (() => {
       primitives.push({ type: 'dot', points: [point(p)], radius: r * scale, color, alpha: 1 });
     const face = (pts, color = C.paper, alpha = 0.25) =>
       primitives.push({ type: 'face', points: pts.map(point), color, alpha });
-    const label = (p, text, color = ink) => labels.push({ p: point(p), text, color });
+    const label = (p, text, color = ink, anchor = null) =>
+      labels.push({ p: point(p), text, color, ...(anchor ? { anchor: point(anchor) } : {}) });
     const group = (p, s, fn) => {
       const old = offset,
         oldScale = scale;
@@ -267,6 +270,25 @@ const TaskSceneModels = (() => {
       );
       // Large information planes form a backdrop, not an occluding polygon.
       primitives.slice(first).forEach((item) => (item.backdrop = true));
+    };
+    const imagePanel = (p = [0, 0, 0], size = [2.7, 1.8], imageSubject = subject, tilt = 0) => {
+      const [x, y, z] = p,
+        [w, h] = size;
+      const corners = [
+        [-w / 2, h / 2],
+        [w / 2, h / 2],
+        [w / 2, -h / 2],
+        [-w / 2, -h / 2],
+      ];
+      primitives.push({
+        type: 'image',
+        points: corners.map(([u, v]) =>
+          point([x + u, y + v * Math.cos(tilt), z + v * Math.sin(tilt)]),
+        ),
+        subject: imageSubject,
+        color: ink,
+        alpha: 1,
+      });
     };
     const plane = (y, color = blue, alpha = 0.15) => {
       face(
@@ -455,8 +477,7 @@ const TaskSceneModels = (() => {
         return;
       }
       if (subject === 'breast') {
-        mesh([-0.64, 0, 0], [0.56, 0.65, 0.75], col(0), 0.035);
-        mesh([0.64, 0, 0], [0.56, 0.65, 0.75], col(1), 0.035);
+        imagePanel();
       } else if (['tissue', 'skin'].includes(subject)) {
         for (let i = 0; i < 9; i++) {
           const x = ((i % 3) - 1) * 0.68,
@@ -470,9 +491,7 @@ const TaskSceneModels = (() => {
         for (let i = 0; i < 4; i++)
           mesh([-0.6 + i * 0.4, 0.65, 0.06], [0.18, 0.21, 0.23], col(i), 0.08);
       } else {
-        panel([0, 0, -0.25]);
-        mesh([-0.35, 0.15, 0], [0.45, 0.63, 0.12], col(0), 0.12);
-        mesh([0.5, -0.34, 0.1], [0.28, 0.36, 0.12], col(1), 0.08);
+        imagePanel();
       }
     };
     const organ = () => {
@@ -624,18 +643,48 @@ const TaskSceneModels = (() => {
         } else if (out && d.mask_mode === 'binary') {
           if (['vessels', 'brain-vessels'].includes(subject)) branches(false, false, teal);
           else organ();
-          label([0, -1.25, 0], 'One target mask', teal);
+          label(
+            [0, -1.25, 0],
+            d.target ? d.target.replaceAll('_', ' ') + ' · binary mask' : 'One target mask',
+            teal,
+          );
         } else if (out && d.mask_mode === 'separate') {
           group([-0.8, 0, 0], 0.63, organ);
           mesh([0.95, 0, 0], [0.3, 0.36, 0.27], gold, 0.1);
           label([-0.8, -1.08, 0], 'Organ mask', teal);
           label([0.95, -1.08, 0], 'Lesion mask', gold);
         } else anatomy(out);
-        if (work) sweep();
+        if (work) {
+          // A bounded reveal colors the actual displayed regions. The movement
+          // teaches region labeling rather than scanning a decorative light beam.
+          const cutoff = mix(-1.4, 1.4, smooth(progress));
+          const palette = [teal, blue, rose, gold];
+          const classes = new Map();
+          primitives
+            .filter((item) => item.surface)
+            .forEach((item) => {
+              const y = item.points.reduce((sum, p) => sum + p[1], 0) / item.points.length;
+              if (y > cutoff) return;
+              if (!classes.has(item.asset)) classes.set(item.asset, classes.size);
+              const isTarget =
+                !d.target ||
+                item.asset === d.target ||
+                (d.target === 'kidneys' && item.asset?.startsWith('kidney_'));
+              if (d.mask_mode !== 'binary' || isTarget)
+                item.color =
+                  d.mask_mode === 'binary'
+                    ? teal
+                    : palette[classes.get(item.asset) % palette.length];
+            });
+          label([0, -1.35, 0], 'Assign labels along the boundaries', teal);
+        }
         break;
       }
       case 'localization':
-        anatomy(false);
+        if (k === 'box3d') {
+          for (let i = 0; i < 3; i++)
+            imagePanel([(i - 1) * 0.13, (i - 1) * 0.18, (i - 1) * 0.25], [2.5, 1.65]);
+        } else imagePanel();
         if (work) sweep();
         if (out || k === 'candidate_judgment') target(undefined, ['detect', 'box3d'].includes(k));
         if (out)
@@ -649,6 +698,7 @@ const TaskSceneModels = (() => {
                   ? 'Region'
                   : 'Coordinate',
             gold,
+            [0.52, 0.15, 0.48],
           );
         break;
       case 'audit':
@@ -723,13 +773,38 @@ const TaskSceneModels = (() => {
       }
       case 'registration': {
         const t = out ? 1 : work ? smooth(progress) : 0;
-        // Separate study frames keep both structures readable. Superimposing
-        // transparent triangle soups obscures the correspondence being taught.
+        if (d.scene_variant === 'slice-to-volume') {
+          // The source is one oblique section, not a second full CT. The output
+          // is its placement and orientation in the patient's volume frame.
+          const center = out || work ? mix(-1.4, 0.72, t) : -1.4;
+          for (let i = 0; i < 4; i++)
+            imagePanel(
+              [0.8 + i * 0.09, (i - 1.5) * 0.24, -0.42 + i * 0.1],
+              [1.75, 1.18],
+              subject,
+              -0.2,
+            );
+          box([0.95, 0, -0.12], [1.94, 1.94, 0.8], blue);
+          imagePanel([center, mix(0, 0.12, t), 0.62], [1.75, 1.18], subject, mix(0, -0.46, t));
+          const planeCenter = [center, mix(0, 0.12, t), 0.63];
+          dot(planeCenter, 0.045, gold);
+          label(
+            [-1.22, -1.22, 0],
+            out ? 'Pixel → patient transform' : 'One oblique section',
+            gold,
+            planeCenter,
+          );
+          label([1.04, -1.22, -0.1], 'Target CT volume', blue);
+          if (out || work) line([-1.4, 0.1, 0.65], planeCenter, teal, 0.85, 1.7, true);
+          break;
+        }
+        // Distinct image planes keep the actual matching question visible. A
+        // cross-modality example uses the modality explicitly named in its input.
+        const ultrasoundTarget = /ultrasound/i.test(d.input || '');
         [-0.95, 0.95].forEach((x, i) =>
           group([x, 0, 0], 0.6, () => {
             group(i ? [mix(0.3, 0, t), mix(0.2, 0, t), 0] : [0, 0, 0], 1, () => {
-              if (!asset(subject, i ? rose : blue))
-                mesh([0, 0, 0], [0.79, 1, 0.65], i ? rose : blue, 0.09);
+              imagePanel([0, 0, 0], [2.75, 1.88], i && ultrasoundTarget ? 'ultrasound' : subject);
             });
           }),
         );
@@ -740,21 +815,34 @@ const TaskSceneModels = (() => {
           if (out || d.initial_candidate) dot(returned, 0.055, teal);
           if (out || work) line(source, returned, gold, 0.8, 1.4, true);
         }
-        label([-0.95, -1.08, 0], 'Source', blue);
-        label([0.95, -1.08, 0], 'Target', rose);
+        label([-0.95, -1.08, 0], k === 'register' ? 'Fixed image' : 'Source · fixed query', blue);
+        label(
+          [0.95, -1.08, 0],
+          k === 'register'
+            ? 'Moving image'
+            : ultrasoundTarget
+              ? 'Ultrasound · target'
+              : 'Target · search here',
+          rose,
+        );
+        if (out && k === 'point_correspondence')
+          label([0.9, 0.85, 0.4], 'Returned point', teal, [0.65, 0.33, 0.4]);
         break;
       }
       case 'longitudinal':
         [-1, 1].forEach((side, i) =>
           group([side * 0.95, 0, 0], 0.57, () => {
             anatomy(false);
-            if (out) {
-              mesh([0.43, 0.1, 0.55], [0.2 + i * 0.08, 0.23 + i * 0.08, 0.21], gold, 0.06);
-              label([0, -1.6, 0], i ? 'Later' : 'Earlier', ink);
+            if (out || work) {
+              if (subject === 'breast' || subject === 'generic') {
+                ring([0.43, 0.1, 0.55], 0.2 + i * 0.06, gold, 'z', 1);
+                dot([0.43, 0.1, 0.55], 0.04, gold);
+              } else mesh([0.43, 0.1, 0.55], [0.2 + i * 0.08, 0.23 + i * 0.08, 0.21], gold, 0.06);
             }
+            label([0, -1.6, 0], i ? 'Later examination' : 'Earlier examination', ink);
           }),
         );
-        if (out) {
+        if (out || work) {
           path(
             [
               [-0.72, 0.08, 0.34],
@@ -767,7 +855,7 @@ const TaskSceneModels = (() => {
             2,
             true,
           );
-          label([0.1, -1.25, 0.5], 'Correspondence', teal);
+          label([0.1, -1.35, 0.5], 'Link identity before describing change', teal);
         }
         break;
       case 'routes':
@@ -1074,7 +1162,10 @@ const TaskSceneModels = (() => {
         break;
       case 'interpretation':
         if (!out) {
-          anatomy(false);
+          if (/\bpair\b/i.test(d.input || '')) {
+            imagePanel([-0.88, 0, 0], [1.75, 1.22]);
+            imagePanel([0.98, 0.05, -0.18], [1.75, 1.22]);
+          } else imagePanel();
           if (k === 'vqa') label([1, 0.8, 0.2], 'Question', gold);
           if (k === 'tiles') volume(blue, 4);
           if (work) sweep();
@@ -1218,6 +1309,12 @@ const TaskSceneModels = (() => {
         [C.rose, 'Target'],
         [C.gold, 'Query'],
         [C.teal, 'Returned point'],
+      ];
+    if (k === 'register' && d.scene_variant === 'slice-to-volume')
+      keys = [
+        [C.gold, 'Oblique section'],
+        [C.blue, 'Target CT volume'],
+        [C.teal, 'Placement path · dashed', true],
       ];
     if (k === 'cardiac_material')
       keys = [

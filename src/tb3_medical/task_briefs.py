@@ -11,8 +11,9 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from . import core as c
-from . import dataset_previews, datasets, task_catalog
+from . import dataset_previews, datasets, frontend, task_catalog
 from .presentation import markdown
+from .presentation_contracts import validate_payload
 from .types import Document, Pathish, Records
 
 DEFAULT_CATALOG = task_catalog.DEFAULT_CATALOG
@@ -271,14 +272,18 @@ def load(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
         {row["id"] for row in dataset_data["records"]},
         required=data.get("require_dataset_previews", False),
     )
-    return {
-        **data,
-        "entries": out,
-        "inventory": inventory,
-        "local_sources": source_bundle(root, out),
-        "datasets": dataset_data,
-        "experiment_count": experiment_count,
-    }
+    return validate_payload(
+        {
+            **data,
+            "schema_version": 1,
+            "entries": out,
+            "inventory": inventory,
+            "local_sources": source_bundle(root, out),
+            "datasets": dataset_data,
+            "experiment_count": experiment_count,
+        },
+        "explorer",
+    )
 
 
 def check(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
@@ -331,6 +336,7 @@ def build(
     if presentation_context:
         data["presentation_context"] = presentation_context
     base = root / "presentation/task-explorer"
+    app_js, app_css = frontend.assets(root, "explorer")
     if output.exists() and MARKER not in output.read_text()[:200]:
         raise c.MedicalError("Refusing to overwrite an unowned file: " + str(output))
     document = (base / "index.html").read_text()
@@ -343,44 +349,19 @@ def build(
     document = (
         document.replace(
             "__STYLE__",
-            (base / "style.css").read_text() + "\n" + (base / "datasets.css").read_text(),
-        )
-        .replace(
-            "__APP__",
             "\n".join(
-                (base / name).read_text()
-                for name in (
-                    "illustrations.js",
-                    "scene-anatomy.js",
-                    "scene-models.js",
-                    "scene-surfaces.js",
-                    "scenes.js",
-                    "datasets.js",
-                    "app.js",
+                path.read_text()
+                for path in (
+                    base.parent / "ui.css",
+                    base / "style.css",
+                    base / "datasets.css",
+                    base / "scene-explanation.css",
                 )
-            ),
+            )
+            + "\n"
+            + app_css,
         )
-        .replace(
-            "__ANATOMY_MESHES__",
-            json.dumps(
-                {
-                    p.stem: json.loads(p.read_text())
-                    for p in sorted((base / "anatomy").glob("*.json"))
-                    if p.stem != "manifest"
-                },
-                separators=(",", ":"),
-            ),
-        )
-        .replace(
-            "__ANATOMY_NOTICE__",
-            json.dumps(
-                (base / "anatomy" / "NOTICE.md").read_text()
-                + "\n"
-                + (base / "anatomy" / "CC-BY-4.0.txt").read_text()
-                + "\n"
-                + (base / "assets" / "Apache-2.0.txt").read_text()
-            ),
-        )
+        .replace("__APP__", re.sub(r"</script", r"<\\/script", app_js, flags=re.I))
         .replace("__DATA__", payload)
     )
     output.parent.mkdir(parents=True, exist_ok=True)

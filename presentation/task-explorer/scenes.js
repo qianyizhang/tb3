@@ -1,5 +1,17 @@
+import { TaskTeachingArt } from '../assets/teaching/task-art.js';
+import { TaskTeachingStory } from '../assets/teaching/task-story.js';
+import { AnatomyAssets } from './scene-anatomy.js';
+import { TaskSceneModels } from './scene-models.js';
+import { SceneSurfaces } from './scene-surfaces.js';
+
+const esc = (value) =>
+  String(value ?? '').replace(
+    /[&<>"']/g,
+    (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char],
+  );
+
 // Canvas rendering and playback. Task-specific geometry lives in scene-models.js.
-const TaskScenes = (() => {
+export const TaskScenes = (() => {
   const TAU = Math.PI * 2;
   const DURATIONS = [2600, 4200, 3200];
   const STARTS = [0, DURATIONS[0], DURATIONS[0] + DURATIONS[1]];
@@ -10,11 +22,14 @@ const TaskScenes = (() => {
   const clampPitch = (value) => Math.max(-1.1, Math.min(1.1, value));
   function fallback(e) {
     const d = e.illustration;
-    return `<div class="picture-pair"><section><h4>Input</h4>${taskArt(e)}<p>${esc(d.input)}</p></section><div class="picture-arrow" aria-hidden="true">→</div><section><h4>${e.role && e.role !== 'task' ? 'Study output' : 'Expected output'}</h4>${taskArt(e, true)}<p>${esc(d.output)}</p></section></div>`;
+    return `<div class="picture-pair"><section><h4>Input</h4>${TaskTeachingArt.render(e)}<p>${esc(d.input)}</p></section><div class="picture-arrow" aria-hidden="true">→</div><section><h4>${e.role && e.role !== 'task' ? 'Study output' : 'Expected output'}</h4>${TaskTeachingArt.render(e, true)}<p>${esc(d.output)}</p></section></div>`;
   }
   function figure(e) {
     const d = e.illustration;
     if (!d || !TaskSceneModels.supports(d.kind)) return '';
+    const story = TaskTeachingStory.describe(e);
+    const outputLabel = e.role && e.role !== 'task' ? 'Study output' : 'Output shape';
+    const storyboard = `<div class="scene-storyboard" aria-label="Task at a glance"><section class="scene-story-card" data-story-step="0"><h4><span>01</span> Given</h4><div class="scene-story-art">${TaskTeachingArt.render(e)}</div><p>${esc(d.input)}</p></section><div class="scene-story-action" data-story-step="1"><span class="scene-story-action-index">02</span><span class="scene-story-arrow" aria-hidden="true">→</span><strong>${esc(story.action)}</strong><small>${esc(story.form)}</small></div><section class="scene-story-card" data-story-step="2"><h4><span>03</span> ${outputLabel}<small>Illustrative</small></h4><div class="scene-story-art">${TaskTeachingArt.render(e, true)}</div><p>${esc(d.output)}</p></section></div>`;
     const legend = TaskSceneModels.legend(e)
       .map(
         ([color, label, dashed]) =>
@@ -27,15 +42,17 @@ const TaskScenes = (() => {
     const labelSpace = d.labels?.length
       ? `<details class="scene-label-space"><summary>Possible class labels (${d.labels.length})</summary><div>${d.labels.map((name) => `<span>${esc(name)}</span>`).join('')}</div></details>`
       : '';
-    return `<div class="scene-player" data-scene="${esc(d.kind)}"><div class="scene-stage"><canvas class="scene-canvas" tabindex="0" role="img" aria-label="${esc(d.input + ' → ' + d.output + '. Conceptual 3D illustration. Drag or use arrow keys to rotate.')}" aria-describedby="scene-description">${esc(d.caption)}</canvas><div class="scene-corner"><span class="scene-dot"></span> <span>TASK ILLUSTRATION</span></div><span class="scene-gesture" aria-hidden="true">Drag to rotate</span></div><div class="scene-controls"><div class="scene-steps" role="group" aria-label="Illustration stage"><button data-scene-step="0" aria-pressed="true"><small>01</small> Input</button><button data-scene-step="1" aria-pressed="false"><small>02</small> Process</button><button data-scene-step="2" aria-pressed="false"><small>03</small> ${e.role && e.role !== 'task' ? 'Study output' : 'Output'}</button></div><button class="scene-play" aria-label="Pause animation">Pause</button><button class="scene-reset" aria-label="Reset illustration view">Reset</button></div><div class="scene-explanation" id="scene-description"><strong data-scene-title>${esc(d.input)}</strong><p>${esc(d.caption)}</p></div><div class="scene-legend">${legend}<span>Conceptual · not to scale</span></div>${labelSpace}${anatomyNotice}<div class="scene-fallback" hidden></div></div>`;
+    return `<div class="scene-player" data-scene="${esc(d.kind)}">${storyboard}<div class="scene-walkthrough-heading"><div><span class="scene-walkthrough-kicker">How to read this task</span><strong>${esc(story.action)}</strong></div><p>${esc(story.cue)}</p></div><div class="scene-stage"><canvas class="scene-canvas" tabindex="0" role="img" aria-label="${esc(d.input + ' → ' + d.output + '. Conceptual 3D illustration. Drag or use arrow keys to rotate.')}" aria-describedby="scene-description">${esc(d.caption)}</canvas><div class="scene-corner"><span class="scene-dot"></span> <span>${esc(story.context)}</span></div><span class="scene-gesture" aria-hidden="true">Drag to explore in 3D</span><span class="scene-stage-label" data-scene-stage-label>${esc(story.stages[0])}</span></div><div class="scene-controls"><div class="scene-steps" role="group" aria-label="Illustration stage"><button data-scene-step="0" aria-pressed="true"><small>01</small> Input</button><button data-scene-step="1" aria-pressed="false"><small>02</small> ${esc(story.action)}</button><button data-scene-step="2" aria-pressed="false"><small>03</small> ${e.role && e.role !== 'task' ? 'Study output' : 'Output'}</button></div><button class="scene-play" aria-label="Pause animation">Pause</button><button class="scene-reset" aria-label="Reset illustration view">Reset</button></div><div class="scene-explanation" id="scene-description"><strong data-scene-title>${esc(d.input)}</strong><p>${esc(d.caption)}</p></div><div class="scene-legend">${legend}<span>Conceptual · not to scale</span></div>${labelSpace}${anatomyNotice}<div class="scene-fallback" hidden></div></div>`;
   }
 
   function mount(root, e) {
     const player = root.querySelector('.scene-player');
     if (!player) return () => {};
+    const story = TaskTeachingStory.describe(e);
     const canvas = player.querySelector('canvas'),
       ctx = canvas.getContext('2d');
     if (!ctx) {
+      player.querySelector('.scene-storyboard').remove();
       player.querySelector('.scene-stage').hidden = true;
       player.querySelector('.scene-controls').hidden = true;
       const view = player.querySelector('.scene-fallback');
@@ -63,6 +80,52 @@ const TaskScenes = (() => {
       height = 0;
     const buttons = [...player.querySelectorAll('[data-scene-step]')],
       play = player.querySelector('.scene-play');
+    const imageTextures = new Map();
+    const texture = (subject) => {
+      if (!imageTextures.has(subject)) {
+        const picture = new Image();
+        picture.onload = () => {
+          if (disposed) return;
+          dirty = true;
+          renderFrame();
+        };
+        picture.src =
+          'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(TaskTeachingArt.scan(subject));
+        imageTextures.set(subject, picture);
+      }
+      return imageTextures.get(subject);
+    };
+    const drawImagePlane = (picture, corners) => {
+      if (!picture.complete || !picture.naturalWidth) return;
+      const source = [
+        [0, 0],
+        [320, 0],
+        [320, 190],
+        [0, 190],
+      ];
+      for (const indices of [
+        [0, 1, 2],
+        [0, 2, 3],
+      ]) {
+        const [a, b, c] = indices.map((i) => source[i]);
+        const [u, v, w] = indices.map((i) => corners[i]);
+        const det = (b[0] - a[0]) * (c[1] - a[1]) - (c[0] - a[0]) * (b[1] - a[1]);
+        const ax = ((v[0] - u[0]) * (c[1] - a[1]) - (w[0] - u[0]) * (b[1] - a[1])) / det;
+        const ay = ((v[1] - u[1]) * (c[1] - a[1]) - (w[1] - u[1]) * (b[1] - a[1])) / det;
+        const bx = ((w[0] - u[0]) * (b[0] - a[0]) - (v[0] - u[0]) * (c[0] - a[0])) / det;
+        const by = ((w[1] - u[1]) * (b[0] - a[0]) - (v[1] - u[1]) * (c[0] - a[0])) / det;
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(u[0], u[1]);
+        ctx.lineTo(v[0], v[1]);
+        ctx.lineTo(w[0], w[1]);
+        ctx.closePath();
+        ctx.clip();
+        ctx.transform(ax, ay, bx, by, u[0] - ax * a[0] - bx * a[1], u[1] - ay * a[0] - by * a[1]);
+        ctx.drawImage(picture, 0, 0, 320, 190);
+        ctx.restore();
+      }
+    };
     const setStage = (n, fade = false) => {
       transition = null;
       if (fade && stage !== n && width && !media.matches) {
@@ -75,10 +138,14 @@ const TaskScenes = (() => {
       stage = n;
       dirty = true;
       player.dataset.stage = String(n);
+      player.querySelector('[data-scene-stage-label]').textContent = story.stages[n];
+      player.querySelectorAll('[data-story-step]').forEach((item) => {
+        item.dataset.active = String(Number(item.dataset.storyStep) === n);
+      });
       buttons.forEach((b, i) => b.setAttribute('aria-pressed', String(i === n)));
       player.querySelector('[data-scene-title]').textContent = [
         e.illustration.input,
-        TaskSceneModels.action(e.illustration.kind),
+        story.action,
         e.illustration.output,
       ][n];
     };
@@ -181,6 +248,11 @@ const TaskScenes = (() => {
         return light;
       };
       projected.forEach((item) => {
+        if (item.type === 'image') {
+          ctx.globalAlpha = item.alpha;
+          drawImagePlane(texture(item.subject), item.p);
+          return;
+        }
         let shade = item.color;
         if (item.surface) {
           if (!colors.has(item.color))
@@ -255,11 +327,24 @@ const TaskScenes = (() => {
       ctx.setLineDash([]);
       ctx.font = `${Math.max(10, Math.min(12, width / 47))}px system-ui,sans-serif`;
       ctx.textBaseline = 'middle';
-      model.labels.forEach(({ p, text, color }) => {
+      model.labels.forEach(({ p, text, color, anchor }) => {
         const v = project(p),
           tw = ctx.measureText(text).width,
           x = Math.max(8, Math.min(width - tw - 8, v[0] - tw / 2)),
           y = Math.max(35, Math.min(height - 18, v[1]));
+        if (anchor) {
+          const a = project(anchor);
+          ctx.strokeStyle = color;
+          ctx.lineWidth = 1.4;
+          ctx.beginPath();
+          ctx.moveTo(a[0], a[1]);
+          ctx.lineTo(x + tw / 2, y);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(a[0], a[1], 3, 0, TAU);
+          ctx.fillStyle = color;
+          ctx.fill();
+        }
         ctx.fillStyle = '#f6f8f2ed';
         ctx.fillRect(x - 4, y - 9, tw + 8, 18);
         ctx.fillStyle = color;
@@ -273,6 +358,11 @@ const TaskScenes = (() => {
       }
       dirty = false;
       player.dataset.rendered = 'true';
+      player.dataset.texturesReady = String(
+        [...imageTextures.values()].every(
+          (picture) => picture.complete && picture.naturalWidth > 0,
+        ),
+      );
     };
     const cancel = () => {
       if (frame) cancelAnimationFrame(frame);
@@ -428,6 +518,10 @@ const TaskScenes = (() => {
       document.removeEventListener('visibilitychange', visibility);
       media.removeEventListener('change', preference);
       if (model) SceneSurfaces.release(model);
+      imageTextures.forEach((picture) => {
+        picture.onload = null;
+      });
+      imageTextures.clear();
       model = null;
       transition = null;
     };

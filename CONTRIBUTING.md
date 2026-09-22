@@ -1,7 +1,9 @@
 # Development
 
 Use [the docs index](docs/README.md) for navigation and
-[the workflow](docs/workflow.md) for research commands.
+[the workflow](docs/workflow.md) for research commands. Read
+[architecture](docs/architecture.md) for component boundaries and the
+[repository layout](docs/repository-layout.md) before adding files.
 
 ## Setup
 
@@ -17,7 +19,11 @@ dependencies still follow the lock. CI uses an exact sync in a fresh environment
 `make hooks` enables pre-commit through the tracked
 `.githooks` wrapper and refuses to replace another hook directory.
 
-For browser checks, install the declared Node 22+ dependencies with `npm ci`.
+For frontend development and browser checks, install the declared Node 22.13+
+dependencies with `npm ci`, then run `npm run frontend:build` before using
+`med present` or `med brief build`. `make presentation-check` builds them for you.
+The [frontend guide](presentation/frontend/README.md) describes Vite development,
+portable outputs and Python-owned generated type contracts.
 Browser setup and the macOS execution boundary are in the
 [media guide](presentation/tours/TOOL.md).
 
@@ -33,6 +39,9 @@ Browser setup and the macOS execution boundary are in the
 | `make format-check` | Check Ruff formatting for `src` and tests without rewriting files |
 | `make format` | Apply Ruff formatting to `src` and tests |
 | `make js-check` | Script formatting, player state and encoder failure cleanup; no browser |
+| `make contracts-check` | Generated TypeScript matches canonical Python presentation types |
+| `npm run typecheck` | Contract freshness and strict TypeScript across the interactive frontend |
+| `npm run frontend:build` | Checked Vite bundles and source/output fingerprint manifest |
 | `make presentation-check` | Portable site navigation, sources, keyboard/mobile behavior; disposable browser |
 | `make build-check` | Wheel installation and CLI checks from an unrelated temporary directory |
 | `npm run format` | Format maintained JavaScript scripts and checks |
@@ -43,32 +52,11 @@ The artifact gate reads the index; unstaged edits do not repair staged failures.
 
 ## Package structure
 
-| Module | Responsibility |
-| --- | --- |
-| `cli` | Parse arguments, invoke services, print results and set exit status. `build_parser()` can be used without executing a command. |
-| `core` | Record validation, relationships, review projection and append-only research events. Existing storage entry points remain exported for callers. |
-| `storage` | Workspace path containment, document encoding, SHA-256 and atomic exclusive/replacement writes. |
-| `methods` | The `ExperimentMethod` protocol and the landmark/package adapters for prepare, evaluate, replay and view. `method_for()` selects a declared method explicitly. |
-| `workflow` | Freeze, execute, collect, qualify and retain provenance. Adapters call its replay service to append observations. |
-| `harbor`, `packaging`, `evidence` | Import external results, assemble exports and collect evidence inventories. |
-| `presentation`, `task_catalog`, `task_briefs`, `datasets`, `dataset_previews`, `media` | Read and validate owned records, then produce explanations and derived presentation assets. |
-| `scoring`, `score_ct`, `score_mri`, `landmarks` | Validate answer contracts, calculate scores and adapt native landmark inputs. |
-
-Add task-specific behavior behind `ExperimentMethod` when another maintained
-method actually needs those operations. Keep execution and review writes in the
-workflow layer. Scientific record fields stay with their existing validators.
-
-All source functions have checked signatures. `types.Document` represents an
-extensible JSON/TOML object; its fields remain dynamic and need runtime validation.
-`storage.read_object()` checks object shape before domain validation, while
-`storage.read()` supports arbitrary serialized payloads. The `py.typed` marker
-ships the annotations to package consumers. Mypy skips only the explicitly named
-optional imaging/model dependencies, whose implementations live in provisioned
-runtimes; local checks do not validate those libraries or perform inference.
-
-`task_package.py` is also copied into exports as `reproduce.py`, and the LiteMedSAM
-adapter runs inside its separate runtime. Keep both standalone modules free of
-workbench imports. Their local helpers preserve that portability contract.
+The [architecture guide](docs/architecture.md#package-responsibilities) owns the
+module map, record model, execution flow, typing and portability boundaries.
+The [file-placement guide](docs/repository-layout.md#where-a-new-file-belongs)
+maps common additions to their canonical homes. Update those guides when a change
+alters component ownership or introduces a new maintained location.
 
 ## Working rules
 

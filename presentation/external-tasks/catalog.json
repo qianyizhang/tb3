@@ -22,7 +22,10 @@
         "subject": "chest-ct"
       },
       "role": "task",
-      "agent_work": "direct"
+      "agent_work": "direct",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "abra",
@@ -41,7 +44,10 @@
         "output": "Attach an outline to the requested lung nodule",
         "caption": "The gold outline is conceptual. The ordinary task supplies a slice; the separate oracle condition can return reference-derived contours.",
         "subject": "chest"
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "bcer",
@@ -60,7 +66,10 @@
         "output": "Masks, lesion candidates, features and a report",
         "caption": "This schematic summarizes a chain of artifacts. Workflow validity does not independently establish anatomical or diagnostic accuracy.",
         "subject": "prostate"
-      }
+      },
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "automedbench",
@@ -82,7 +91,10 @@
         "subject": "abdomen"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-tsg",
@@ -105,7 +117,10 @@
         "caption": "Colored regions represent only a stylized subset of the target classes. Training/setup assistance and private reference masks retain their separate roles.",
         "subject": "abdomen",
         "mask_mode": "multiclass"
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "imaging101",
@@ -123,7 +138,10 @@
         "input": "Sparse projection measurements of a synthetic phantom",
         "output": "Reconstruct the image array",
         "caption": "Original schematic of a mathematical phantom, not patient data or a measured reconstruction. Source-specific dimensions and assistance levels are in the brief."
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "radagent",
@@ -141,7 +159,10 @@
         "subject": "chest-ct"
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "rexmle",
@@ -163,7 +184,10 @@
         "caption": "Colors illustrate vessel classes, not a reference answer. Training labels are supplied; test labels remain withheld for grading.",
         "subject": "brain-vessels",
         "mask_mode": "multiclass"
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "healthagentbench-trial-matching",
@@ -181,7 +205,10 @@
         "caption": "Eligibility depends on all relevant inclusion and exclusion rules, not topic similarity alone."
       },
       "role": "task",
-      "agent_work": "direct"
+      "agent_work": "direct",
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "healthagentbench-quality-combined",
@@ -201,7 +228,10 @@
         "caption": "Identify affected source rows; the deliverable is not a rewritten patient record."
       },
       "role": "task",
-      "agent_work": "direct"
+      "agent_work": "direct",
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "healthagentbench-quality-demographic-conflict",
@@ -221,7 +251,10 @@
         "caption": "Identify affected source rows; the deliverable is not a rewritten patient record."
       },
       "role": "task",
-      "agent_work": "direct"
+      "agent_work": "direct",
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "healthagentbench-quality-impossible-value",
@@ -241,7 +274,10 @@
         "caption": "Identify affected source rows; the deliverable is not a rewritten patient record."
       },
       "role": "task",
-      "agent_work": "direct"
+      "agent_work": "direct",
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "healthagentbench-quality-inconsistency",
@@ -261,7 +297,10 @@
         "caption": "Identify affected source rows; the deliverable is not a rewritten patient record."
       },
       "role": "task",
-      "agent_work": "direct"
+      "agent_work": "direct",
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "healthagentbench-predict-acutemi",
@@ -281,7 +320,10 @@
         "caption": "Events after the prediction time must not leak into the features."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "healthagentbench-predict-celiac",
@@ -301,7 +343,10 @@
         "caption": "Events after the prediction time must not leak into the features."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "healthagentbench-predict-hyperlipidemia",
@@ -321,7 +366,10 @@
         "caption": "Events after the prediction time must not leak into the features."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "healthagentbench-predict-hypertension",
@@ -341,7 +389,10 @@
         "caption": "Events after the prediction time must not leak into the features."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "healthagentbench-predict-lupus",
@@ -361,7 +412,10 @@
         "caption": "Events after the prediction time must not leak into the features."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "healthagentbench-predict-pancan",
@@ -381,7 +435,10 @@
         "caption": "Events after the prediction time must not leak into the features."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "healthagentbench-meds-etl",
@@ -399,7 +456,10 @@
         "caption": "Preserve patient, time and code relationships while changing the data representation."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "healthagentbench-tumor-tiles",
@@ -418,7 +478,10 @@
         "caption": "The task chooses regions from a larger slide rather than classifying a whole patient."
       },
       "role": "task",
-      "agent_work": "direct"
+      "agent_work": "direct",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "healthagentbench-cxr-correction",
@@ -438,7 +501,10 @@
         "subject": "chest"
       },
       "role": "task",
-      "agent_work": "direct"
+      "agent_work": "direct",
+      "modalities": [
+        "x-ray"
+      ]
     },
     {
       "id": "bcer-short-denoise",
@@ -456,7 +522,10 @@
         "caption": "Suppress noise while preserving genuine fine structure; smoothness alone is not success."
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "bcer-short-superres",
@@ -474,7 +543,10 @@
         "caption": "Resample onto the requested grid. This task checks geometry and artifacts, not recovery of unseen detail."
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "bcer-short-segment-brain",
@@ -494,7 +566,10 @@
         "subject": "brain"
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "bcer-short-recon-grappa",
@@ -513,7 +588,10 @@
         "subject": "heart"
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "bcer-medium-register-prostate",
@@ -531,7 +609,10 @@
         "caption": "Match the same anatomy across images without changing its identity."
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "bcer-medium-brain-grade-classify",
@@ -550,7 +631,10 @@
         "subject": "brain"
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "bcer-long-cardiac-full",
@@ -569,7 +653,10 @@
         "subject": "heart"
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "bcer-long-brain-full",
@@ -588,7 +675,10 @@
         "subject": "brain"
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "abra-viewer-control",
@@ -606,7 +696,10 @@
         "caption": "The task is to operate controls and reach the specified view."
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "imaging-unspecified"
+      ]
     },
     {
       "id": "abra-metadata-qa",
@@ -624,7 +717,10 @@
         "caption": "Read acquisition or study metadata; no image interpretation is implied."
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "abra-vision-probe",
@@ -642,7 +738,10 @@
         "caption": "A label summarizes the image; it does not locate the finding."
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "imaging-unspecified"
+      ]
     },
     {
       "id": "abra-longitudinal",
@@ -661,7 +760,10 @@
         "subject": "torso"
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "imaging-unspecified"
+      ]
     },
     {
       "id": "abra-birads",
@@ -680,7 +782,10 @@
         "subject": "breast"
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "radagent-vqa",
@@ -698,7 +803,10 @@
         "subject": "chest-ct"
       },
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "imaging101-cars-spectroscopy",
@@ -716,7 +824,10 @@
         "caption": "Fit the measurement model to a spectrum to estimate a physical parameter."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "spectroscopy"
+      ]
     },
     {
       "id": "imaging101-confocal-nlos-fk",
@@ -734,7 +845,10 @@
         "caption": "The object is outside direct view; indirect light paths carry the geometric information."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "optical"
+      ]
     },
     {
       "id": "imaging101-conventional-ptychography",
@@ -752,7 +866,10 @@
         "caption": "Overlapping observations constrain object structure that is not directly visible in each pattern."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "imaging-unspecified"
+      ]
     },
     {
       "id": "imaging101-ct-dual-energy",
@@ -770,7 +887,10 @@
         "caption": "Separate material contributions instead of producing only one grayscale image."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "imaging101-ct-fan-beam",
@@ -788,7 +908,10 @@
         "caption": "Each projection mixes contributions along rays; reconstruction must reconcile many views."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "imaging101-ct-poisson-lowdose",
@@ -806,7 +929,10 @@
         "caption": "Each projection mixes contributions along rays; reconstruction must reconcile many views."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "imaging101-differentiable-deflectometry",
@@ -824,7 +950,10 @@
         "caption": "Use calibrated reflected patterns to estimate curvature, thickness and pose. The profile is a schematic, not a recovered lens."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "optical"
+      ]
     },
     {
       "id": "imaging101-diffusion-mri-dti",
@@ -842,7 +971,10 @@
         "caption": "Different diffusion directions constrain a local orientation-dependent quantity."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "imaging101-eht-black-hole-uq",
@@ -860,7 +992,10 @@
         "caption": "Uncertainty describes what observations leave unresolved, not just a best-looking image."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "radio-interferometry"
+      ]
     },
     {
       "id": "imaging101-eht-black-hole-dynamic",
@@ -878,7 +1013,10 @@
         "caption": "The solution must account for changes over time as well as incomplete sampling."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "radio-interferometry"
+      ]
     },
     {
       "id": "imaging101-eht-black-hole-feature-extraction-dynamic",
@@ -896,7 +1034,10 @@
         "caption": "Infer how the source features evolve; the requested quantities are not a full image sequence."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "radio-interferometry"
+      ]
     },
     {
       "id": "imaging101-eht-black-hole-original",
@@ -915,7 +1056,10 @@
         "scene_variant": "black-hole"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "radio-interferometry"
+      ]
     },
     {
       "id": "imaging101-eht-black-hole-tomography",
@@ -933,7 +1077,10 @@
         "caption": "Different depths can contribute to the same observation."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "imaging-unspecified"
+      ]
     },
     {
       "id": "imaging101-eit-conductivity-reconstruction",
@@ -950,7 +1097,10 @@
         "caption": "Measurements at the boundary constrain a spatial property inside the object."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "electrical-impedance"
+      ]
     },
     {
       "id": "imaging101-electron-ptychography",
@@ -968,7 +1118,10 @@
         "caption": "Overlapping observations constrain object structure that is not directly visible in each pattern."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "imaging101-era5-tensorvar",
@@ -986,7 +1139,10 @@
         "caption": "Combine incomplete observations across space or time under the task model."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "imaging101-exoplanet-imaging",
@@ -1004,7 +1160,10 @@
         "caption": "Suppress the bright source without erasing the much fainter target."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "optical"
+      ]
     },
     {
       "id": "imaging101-fourier-ptychography",
@@ -1022,7 +1181,10 @@
         "caption": "Overlapping observations constrain object structure that is not directly visible in each pattern."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "imaging101-fpm-inr-reconstruction",
@@ -1040,7 +1202,10 @@
         "caption": "A 2D detector measurement encodes contributions from multiple depths."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "imaging101-hessian-sim",
@@ -1058,7 +1223,10 @@
         "caption": "Combine illumination patterns and temporal structure; the frames shown are schematic."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "imaging101-insar-phase-unwrapping",
@@ -1076,7 +1244,10 @@
         "caption": "The jumps represent wrapped values; the underlying field must be made consistent."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "radar"
+      ]
     },
     {
       "id": "imaging101-lensless-imaging",
@@ -1094,7 +1265,10 @@
         "caption": "The calibrated optical response must undo the spatial mixing in the measurement."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "optical"
+      ]
     },
     {
       "id": "imaging101-light-field-microscope",
@@ -1112,7 +1286,10 @@
         "caption": "A 2D detector measurement encodes contributions from multiple depths."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "imaging101-lucky-imaging",
@@ -1131,7 +1308,10 @@
         "scene_variant": "moon"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "optical"
+      ]
     },
     {
       "id": "imaging101-mcr-hyperspectral",
@@ -1149,7 +1329,10 @@
         "caption": "Overlapping spectral contributions must be separated, not merely assigned one image label."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "spectroscopy"
+      ]
     },
     {
       "id": "imaging101-microscope-denoising",
@@ -1168,7 +1351,10 @@
         "subject": "tissue"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "imaging101-mri-dynamic-dce",
@@ -1186,7 +1372,10 @@
         "caption": "Recover spatial structure while retaining changes between time points."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "imaging101-mri-grappa",
@@ -1204,7 +1393,10 @@
         "caption": "Missing measurements must be constrained by the encoding model and the selected prior."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "imaging101-mri-l1-wavelet",
@@ -1222,7 +1414,10 @@
         "caption": "Missing measurements must be constrained by the encoding model and the selected prior."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "imaging101-mri-noncartesian-cs",
@@ -1240,7 +1435,10 @@
         "caption": "Missing measurements must be constrained by the encoding model and the selected prior."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "imaging101-mri-pnp-admm",
@@ -1259,7 +1457,10 @@
         "subject": "brain"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "imaging101-mri-sense",
@@ -1277,7 +1478,10 @@
         "caption": "Missing measurements must be constrained by the encoding model and the selected prior."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "imaging101-mri-t2-mapping",
@@ -1295,7 +1499,10 @@
         "caption": "Fit the signal changes at each location rather than returning a single anatomical image."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "imaging101-mri-tv",
@@ -1314,7 +1521,10 @@
         "subject": "knee"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "imaging101-mri-varnet",
@@ -1333,7 +1543,10 @@
         "subject": "knee"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "imaging101-pet-mlem",
@@ -1350,7 +1563,10 @@
         "caption": "Infer the activity distribution from count measurements and the acquisition model."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "pet"
+      ]
     },
     {
       "id": "imaging101-photoacoustic-tomography",
@@ -1368,7 +1584,10 @@
         "caption": "Use the propagation model to trace the recorded signals back into the object."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "photoacoustic"
+      ]
     },
     {
       "id": "imaging101-plane-wave-ultrasound",
@@ -1386,7 +1605,10 @@
         "caption": "Echo timing and the acquisition geometry determine where image structure belongs."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ultrasound"
+      ]
     },
     {
       "id": "imaging101-pnp-mri-reconstruction",
@@ -1405,7 +1627,10 @@
         "subject": "knee"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "imaging101-raman-cell-phenotyping",
@@ -1423,7 +1648,10 @@
         "caption": "Overlapping spectral contributions must be separated, not merely assigned one image label."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "spectroscopy"
+      ]
     },
     {
       "id": "imaging101-reflection-odt",
@@ -1441,7 +1669,10 @@
         "caption": "Measured complex fields constrain an unknown volume; multiple scattering couples its depths."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "optical"
+      ]
     },
     {
       "id": "imaging101-s2ism",
@@ -1459,7 +1690,10 @@
         "caption": "A 2D detector measurement encodes contributions from multiple depths."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "imaging101-seismic-fwi-original",
@@ -1477,7 +1711,10 @@
         "caption": "Travel paths depend on the unknown interior; similar signals can have different explanations."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "seismic"
+      ]
     },
     {
       "id": "imaging101-seismic-lsrtm-original",
@@ -1495,7 +1732,10 @@
         "caption": "Travel paths depend on the unknown interior; similar signals can have different explanations."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "seismic"
+      ]
     },
     {
       "id": "imaging101-seismic-traveltime-tomography",
@@ -1513,7 +1753,10 @@
         "caption": "Travel paths depend on the unknown interior; similar signals can have different explanations."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "seismic"
+      ]
     },
     {
       "id": "imaging101-shack-hartmann",
@@ -1531,7 +1774,10 @@
         "caption": "Observed distortions constrain the unknown optical surface or wavefront."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "optical"
+      ]
     },
     {
       "id": "imaging101-shapelet-source-reconstruction",
@@ -1550,7 +1796,10 @@
         "scene_variant": "galaxy"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "imaging-unspecified"
+      ]
     },
     {
       "id": "imaging101-single-molecule-light-field",
@@ -1568,7 +1817,10 @@
         "caption": "The requested output is a set of positions rather than a dense image volume."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "imaging101-spectral-snapshot-compressive-imaging",
@@ -1586,7 +1838,10 @@
         "caption": "Recover an image at each wavelength from one multiplexed measurement. The stack axis is wavelength, not depth."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "spectroscopy"
+      ]
     },
     {
       "id": "imaging101-ssnp-idt",
@@ -1604,7 +1859,10 @@
         "caption": "Depth and phase must be inferred from intensity measurements and the optical model."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "optical"
+      ]
     },
     {
       "id": "imaging101-ssnp-odt",
@@ -1622,7 +1880,10 @@
         "caption": "Eight measured views constrain a 3D refractive-index volume. The drawing is conceptual; dimensions come from the pinned task README."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "optical"
+      ]
     },
     {
       "id": "imaging101-ultrasound-sos-tomography",
@@ -1640,7 +1901,10 @@
         "caption": "Recover a physical-property field, not a conventional echo-brightness image."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ultrasound"
+      ]
     },
     {
       "id": "imaging101-usct-fwi",
@@ -1658,7 +1922,10 @@
         "caption": "Recover a physical-property field, not a conventional echo-brightness image."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ultrasound"
+      ]
     },
     {
       "id": "imaging101-weather-radar-data-assimilation",
@@ -1676,7 +1943,10 @@
         "caption": "Combine incomplete observations across space or time under the task model."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "radar"
+      ]
     },
     {
       "id": "imaging101-xray-laminography-tike",
@@ -1694,7 +1964,10 @@
         "caption": "Each projection mixes contributions along rays; reconstruction must reconcile many views."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "x-ray"
+      ]
     },
     {
       "id": "imaging101-xray-ptychography-tike",
@@ -1712,7 +1985,10 @@
         "caption": "Overlapping observations constrain object structure that is not directly visible in each pattern."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "x-ray"
+      ]
     },
     {
       "id": "imaging101-xray-tooth-gridrec",
@@ -1731,7 +2007,10 @@
         "subject": "teeth"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "x-ray"
+      ]
     },
     {
       "id": "rexmle-dentex",
@@ -1749,7 +2028,10 @@
         "subject": "teeth"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "x-ray"
+      ]
     },
     {
       "id": "rexmle-isles22",
@@ -1769,7 +2051,10 @@
         "target": "lesion"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "rexmle-ldct-iqa",
@@ -1786,7 +2071,10 @@
         "caption": "Rate image quality rather than correcting the pixels."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "rexmle-neurips-cellseg",
@@ -1803,7 +2091,10 @@
         "caption": "Each object needs its own boundary, including where neighboring cells touch."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "rexmle-panther-task1",
@@ -1826,7 +2117,10 @@
         "target": "pancreas"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "rexmle-panther-task2",
@@ -1849,7 +2143,10 @@
         "target": "pancreas"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "rexmle-puma-track1-task1",
@@ -1869,7 +2166,10 @@
         "subject": "tissue"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "rexmle-puma-track1-task2",
@@ -1889,7 +2189,10 @@
         "caption": "Finding objects and assigning their types are separate parts of the task."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "rexmle-puma-track2-task2",
@@ -1909,7 +2212,10 @@
         "caption": "Finding objects and assigning their types are separate parts of the task."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "rexmle-seg-a",
@@ -1928,7 +2234,10 @@
         "subject": "aorta"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "rexmle-topbrain-track1",
@@ -1950,7 +2259,10 @@
         "subject": "brain-vessels"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "rexmle-topbrain-track2",
@@ -1972,7 +2284,10 @@
         "subject": "brain-vessels"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "rexmle-topcow-track2-task1",
@@ -1994,7 +2309,10 @@
         "subject": "brain-vessels"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "rexmle-topcow-track1-task2",
@@ -2014,7 +2332,10 @@
         "caption": "A localization box encloses the target; it is not a vessel segmentation."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "rexmle-topcow-track2-task2",
@@ -2034,7 +2355,10 @@
         "caption": "A localization box encloses the target; it is not a vessel segmentation."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "rexmle-topcow-track1-task3",
@@ -2054,7 +2378,10 @@
         "caption": "Decide which anatomical connections exist rather than only coloring visible vessels."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "rexmle-topcow-track2-task3",
@@ -2074,7 +2401,10 @@
         "caption": "Decide which anatomical connections exist rather than only coloring visible vessels."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "rexmle-usenhance",
@@ -2092,7 +2422,10 @@
         "subject": "ultrasound"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ultrasound"
+      ]
     },
     {
       "id": "automedbench-full-braintumor-cls-task",
@@ -2119,7 +2452,10 @@
         "subject": "brain"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "automedbench-full-chest-xray-pneumonia-cls-task",
@@ -2144,7 +2480,10 @@
         "subject": "chest"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "x-ray"
+      ]
     },
     {
       "id": "automedbench-full-crc-histology-cls-task",
@@ -2176,7 +2515,10 @@
         "subject": "tissue"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "automedbench-full-patchcamelyon-cls-task",
@@ -2201,7 +2543,10 @@
         "subject": "tissue"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "automedbench-full-skin-lesion-cls-task",
@@ -2231,7 +2576,10 @@
         "subject": "skin"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "dermoscopy"
+      ]
     },
     {
       "id": "automedbench-full-bccd-det-task",
@@ -2252,7 +2600,10 @@
         "subject": "tissue"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "automedbench-full-dentex-det-task",
@@ -2273,7 +2624,10 @@
         "subject": "teeth"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "x-ray"
+      ]
     },
     {
       "id": "automedbench-full-grazpedwri-det-task",
@@ -2294,7 +2648,10 @@
         "subject": "wrist"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "x-ray"
+      ]
     },
     {
       "id": "automedbench-full-vindr-cxr-det-task",
@@ -2315,7 +2672,10 @@
         "subject": "chest"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "x-ray"
+      ]
     },
     {
       "id": "automedbench-full-brats-t1c-sr-task",
@@ -2336,7 +2696,10 @@
         "subject": "brain"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "automedbench-full-deeplesion-denoising-task",
@@ -2356,7 +2719,10 @@
         "caption": "Suppress noise while preserving genuine fine structure; smoothness alone is not success."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-ixi-t1-sr-task",
@@ -2377,7 +2743,10 @@
         "subject": "brain"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "automedbench-full-ldct-denoising-task",
@@ -2397,7 +2766,10 @@
         "caption": "Suppress noise while preserving genuine fine structure; smoothness alone is not success."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-lidc-idri-denoising-task",
@@ -2418,7 +2790,10 @@
         "subject": "chest-ct"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-mri-sr-task",
@@ -2438,7 +2813,10 @@
         "caption": "More output pixels do not by themselves establish recovered anatomical detail."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "automedbench-full-nih-cxr-sr-task",
@@ -2459,7 +2837,10 @@
         "subject": "chest"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "x-ray"
+      ]
     },
     {
       "id": "automedbench-full-chexpert-plus-cxr-task",
@@ -2480,7 +2861,10 @@
         "subject": "chest"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "x-ray"
+      ]
     },
     {
       "id": "automedbench-full-iu-xray-report-task",
@@ -2501,7 +2885,10 @@
         "subject": "chest"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "x-ray"
+      ]
     },
     {
       "id": "automedbench-full-mimic-cxr-report-task",
@@ -2522,7 +2909,10 @@
         "subject": "chest"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "x-ray"
+      ]
     },
     {
       "id": "automedbench-full-pathology-caption-100-task",
@@ -2543,7 +2933,10 @@
         "subject": "tissue"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "automedbench-full-pathology-caption-500-task",
@@ -2564,7 +2957,10 @@
         "subject": "tissue"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "automedbench-full-aeropath-seg-task",
@@ -2586,7 +2982,10 @@
         "subject": "airways"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-colon-seg-task",
@@ -2609,7 +3008,10 @@
         "target": "lesion"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-feta-seg-task",
@@ -2631,7 +3033,10 @@
         "subject": "brain"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "automedbench-full-heart-seg-task",
@@ -2654,7 +3059,10 @@
         "target": "atrium"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "automedbench-full-hepaticvessel-seg-task",
@@ -2676,7 +3084,10 @@
         "subject": "vessels"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-kidney-seg-task",
@@ -2699,7 +3110,10 @@
         "target": "kidneys"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-liver-seg-task",
@@ -2722,7 +3136,10 @@
         "target": "liver"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-pancreas-oar-seg-task",
@@ -2744,7 +3161,10 @@
         "subject": "abdomen"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-pancreas-seg-task",
@@ -2767,7 +3187,10 @@
         "target": "pancreas"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-panther-t1-seg-task",
@@ -2790,7 +3213,10 @@
         "target": "pancreas"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "automedbench-full-panther-t2-seg-task",
@@ -2813,7 +3239,10 @@
         "target": "pancreas"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "automedbench-full-prostate-seg-task",
@@ -2835,7 +3264,10 @@
         "subject": "prostate"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "automedbench-full-spleen-seg-task",
@@ -2858,7 +3290,10 @@
         "target": "spleen"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-tsg-multiorgan-seg-task",
@@ -2880,7 +3315,10 @@
         "subject": "abdomen"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-ctorg-ctsr-task",
@@ -2900,7 +3338,10 @@
         "caption": "The same object must remain consistent across slices and physical coordinates."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-msd-pancreas-ctsr-task",
@@ -2920,7 +3361,10 @@
         "caption": "The same object must remain consistent across slices and physical coordinates."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-synthrad2025-mrct-task",
@@ -2940,7 +3384,11 @@
         "caption": "Predict a different imaging contrast while preserving the subject geometry."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct",
+        "mri"
+      ]
     },
     {
       "id": "automedbench-full-totalsegmentator-ctsr-task",
@@ -2960,7 +3408,10 @@
         "caption": "The same object must remain consistent across slices and physical coordinates."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "automedbench-full-medframeqa-task",
@@ -2980,7 +3431,10 @@
         "caption": "The question determines which image evidence matters and which answer format is required."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "imaging-unspecified"
+      ]
     },
     {
       "id": "automedbench-full-medxpertqa-mm-task",
@@ -3000,7 +3454,10 @@
         "caption": "The question determines which image evidence matters and which answer format is required."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "imaging-unspecified"
+      ]
     },
     {
       "id": "automedbench-full-pathvqa-task",
@@ -3021,7 +3478,10 @@
         "subject": "tissue"
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "microscopy"
+      ]
     },
     {
       "id": "automedbench-full-slake-task",
@@ -3041,7 +3501,10 @@
         "caption": "The question determines which image evidence matters and which answer format is required."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "imaging-unspecified"
+      ]
     },
     {
       "id": "automedbench-full-vqa-kvasir-task",
@@ -3061,7 +3524,10 @@
         "caption": "The question determines which image evidence matters and which answer format is required."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "endoscopy"
+      ]
     },
     {
       "id": "automedbench-full-vqa-mmmu-medical-task",
@@ -3081,7 +3547,10 @@
         "caption": "The question determines which image evidence matters and which answer format is required."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "imaging-unspecified"
+      ]
     },
     {
       "id": "automedbench-full-vqa-omnimedvqa-task",
@@ -3101,7 +3570,10 @@
         "caption": "The question determines which image evidence matters and which answer format is required."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "imaging-unspecified"
+      ]
     },
     {
       "id": "automedbench-full-vqa-pmc-vqa-task",
@@ -3121,7 +3593,10 @@
         "caption": "The question determines which image evidence matters and which answer format is required."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "imaging-unspecified"
+      ]
     },
     {
       "id": "automedbench-full-vqa-rad-task",
@@ -3141,7 +3616,10 @@
         "caption": "The question determines which image evidence matters and which answer format is required."
       },
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "modalities": [
+        "imaging-unspecified"
+      ]
     }
   ],
   "require_brief_coverage": true,

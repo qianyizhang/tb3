@@ -25,7 +25,10 @@
         "output": "Determine whether a defensible repair task exists",
         "caption": "The gold dashed circle marks a question to investigate, not a verified defect. Source uncertainty must remain in the candidate record.",
         "subject": "brain-vessels"
-      }
+      },
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "tb3-vessel-connection-repair",
@@ -52,7 +55,10 @@
         "input": "MRA and supplied vessel mask",
         "output": "Repaired or unchanged mask",
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Teal: supplied route. Gold: illustrative repaired segment; unchanged controls need no added segment."
-      }
+      },
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "ours",
@@ -80,7 +86,10 @@
         "output": "Repair the gap, trace and unfold the vessel",
         "caption": "Gold dashed circle: editable review region; green dots: route anchors. The output sketch shows the repaired route and a curved view; the contract also requires physical coordinates and a closed surface.",
         "subject": "vessels"
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "tb3-airway-repair",
@@ -107,7 +116,10 @@
         "input": "CT, supplied airway mask and route constraints",
         "output": "Local mask repair and preserved routes",
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Teal: supplied route. Gold: illustrative repaired segment; unchanged controls need no added segment."
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "tb3-topbrain-screen",
@@ -132,7 +144,10 @@
         "output": "Screen differences and document reference gaps",
         "caption": "Green solid: prediction. Blue dashed: reference. A difference alone is not a valid repair target; this TopBrain screen admitted no clean hard brain task.",
         "subject": "brain-vessels"
-      }
+      },
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "tb3-named-coronary",
@@ -158,7 +173,10 @@
         "input": "CTA and a named artery target",
         "output": "Requested artery centerline",
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "tb3-coronary-inventory",
@@ -192,7 +210,10 @@
         "input": "CTA and a generic branch taxonomy",
         "output": "Discovered branch inventory and labeled centerlines",
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     }
   ],
   "task_families": {

@@ -8,6 +8,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+from frontend_fixture import install_frontend
+
 from tb3_medical import core as c
 from tb3_medical import packaging, presentation
 from tb3_medical import workflow as w
@@ -381,8 +383,9 @@ class MedicalTests(unittest.TestCase):
 
     def test_portable_rebuild_removes_local_media(self):
         (self.root / "presentation/tours/data").mkdir(parents=True)
-        for name in ("index.html", "app.js", "style.css"):
+        for name in ("index.html", "style.css", "ui.css"):
             (self.root / "presentation" / name).write_text("fixture")
+        install_frontend(self.root)
         (self.root / "presentation/tours/data/native-local.bin").write_bytes(b"local")
         (self.root / "groups/g/presentation").mkdir()
         (self.root / "groups/g/presentation/story.md").write_text("# Group")

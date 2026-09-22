@@ -5,6 +5,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from frontend_fixture import install_frontend
+
 from tb3_medical import core as c
 from tb3_medical import presentation as p
 from tb3_medical import task_briefs
@@ -17,10 +19,11 @@ class PresentationRefinementTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         (self.root / "workbench.toml").write_text("version=1\n")
         repo = Path(__file__).resolve().parents[1]
-        for name in ("index.html", "app.js", "style.css"):
+        for name in ("index.html", "style.css", "ui.css"):
             target = self.root / "presentation" / name
             target.parent.mkdir(exist_ok=True)
             shutil.copyfile(repo / "presentation" / name, target)
+        install_frontend(self.root)
         for name in ("first", "second"):
             c.write_new(
                 self.root / "groups" / name / "group.json",
@@ -95,8 +98,12 @@ class PresentationRefinementTests(unittest.TestCase):
     def test_integrated_explorer_has_context_and_standalone_remains_independent(self):
         repo = Path(__file__).resolve().parents[1]
         shutil.copytree(
-            repo / "presentation/task-explorer", self.root / "presentation/task-explorer"
+            repo / "presentation/task-explorer",
+            self.root / "presentation/task-explorer",
+            dirs_exist_ok=True,
         )
+        shutil.copytree(repo / "presentation/assets", self.root / "presentation/assets")
+        install_frontend(self.root)
         c.atomic_write(self.root / task_briefs.DEFAULT_CATALOG, {"entries": []})
         task_briefs.new(self.root, "example", "Example", "Research", "Imaging", "briefs/example.md")
         output = self.root / "output"

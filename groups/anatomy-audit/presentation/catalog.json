@@ -25,7 +25,10 @@
         "output": "Affected label and spatial witness",
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Gold marks the conceptual point/region; colored shapes indicate supplied labels only in annotation audits.",
         "subject": "abdomen"
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "tb3-mixed-tissue-audit",
@@ -53,7 +56,10 @@
         "output": "Host label, included class and witness",
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Gold marks the conceptual point/region; colored shapes indicate supplied labels only in annotation audits.",
         "subject": "abdomen"
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "tb3-supplied-object-identity",
@@ -85,7 +91,11 @@
         "input": "Supplied anonymous spatial objects",
         "output": "Anatomical names for object IDs",
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
-      }
+      },
+      "modalities": [
+        "ct",
+        "geometry"
+      ]
     },
     {
       "id": "tb3-unlabeled-anatomy-prototype",
@@ -109,7 +119,10 @@
         "input": "Supplied objects under the proposed contract",
         "output": "Anatomical identities for anonymous object IDs",
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
-      }
+      },
+      "modalities": [
+        "geometry"
+      ]
     },
     {
       "id": "tb3-ct-organ-segmentation",
@@ -149,7 +162,10 @@
         "output": "Semantic organ label volume",
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Colors distinguish illustrative spatial classes; the exact label dictionary is in the task contract.",
         "subject": "abdomen"
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "tb3-dental-original",
@@ -188,7 +204,10 @@
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Colors distinguish illustrative spatial classes; the exact label dictionary is in the task contract.",
         "subject": "teeth",
         "mask_mode": "multiclass"
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "tb3-dental-v2",
@@ -223,7 +242,10 @@
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Colors distinguish illustrative spatial classes; the exact label dictionary is in the task contract.",
         "subject": "teeth",
         "mask_mode": "multiclass"
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "tb3-dental-v3",
@@ -258,7 +280,10 @@
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Colors distinguish illustrative spatial classes; the exact label dictionary is in the task contract.",
         "subject": "teeth",
         "mask_mode": "multiclass"
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "tb3-mri-importer",
@@ -282,7 +307,10 @@
         "input": "Shuffled MRI frame/metadata associations",
         "output": "Canonical time, echo and slice arrays",
         "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted."
-      }
+      },
+      "modalities": [
+        "mri"
+      ]
     },
     {
       "id": "tb3-segmentation-calibration",
@@ -307,7 +335,10 @@
         "output": "Compare tool masks, reference overlap and inference time",
         "caption": "Blue dashed: reference boundary. Green solid: illustrative tool prediction. The box already supplies localization; these sketches imply no measured ranking or timing.",
         "subject": "abdomen"
-      }
+      },
+      "modalities": [
+        "ct"
+      ]
     },
     {
       "id": "tb3-history-sourcing",
@@ -331,7 +362,10 @@
         "input": "Retained artifacts and prior investigation records",
         "output": "Source-linked task ideas with feasibility limits",
         "caption": "Follow each idea back to its evidence. Historical incidents, infrastructure problems and model outcomes remain separate records; this source study is not an agent trial."
-      }
+      },
+      "modalities": [
+        "nonimaging"
+      ]
     },
     {
       "id": "tb3-mask-reasoning-study",
@@ -359,7 +393,10 @@
         "input": "Anonymous objects with visible size and position",
         "output": "Check whether simple geometry reveals the labels",
         "caption": "The dashed trend illustrates a possible shortcut, not fitted data. Author controls test whether size or ordering solves the proposed task without the intended anatomical reasoning."
-      }
+      },
+      "modalities": [
+        "geometry"
+      ]
     },
     {
       "id": "tb3-anatomy-curation",
@@ -383,7 +420,10 @@
         "input": "Source vertebral masks, labels and anatomical context",
         "output": "Candidate cards with evidence and admission limits",
         "caption": "The rows illustrate possible curation decisions, not verdicts on the drawn shapes. Unusual anatomy is not automatically an annotation error; this source screen admitted no hard task."
-      }
+      },
+      "modalities": [
+        "geometry"
+      ]
     }
   ],
   "task_families": {

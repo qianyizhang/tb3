@@ -48,6 +48,21 @@ def classify(root: Pathish, data: Document) -> int:
     """Validate navigation axes and resolve durable experiment IDs from records."""
     root = Path(root).resolve()
     taxonomy = data["taxonomy"]
+    has_task_axes = any(axis in taxonomy for axis in ("categories", "roles", "agent_work"))
+    modality_labels = taxonomy.get("modalities", {"unspecified": "Not specified"})
+    if (
+        not isinstance(modality_labels, dict)
+        or not modality_labels
+        or any(
+            not isinstance(key, str)
+            or not key.strip()
+            or not isinstance(label, str)
+            or not label.strip()
+            for key, label in modality_labels.items()
+        )
+        or "unspecified" not in modality_labels
+    ):
+        raise c.MedicalError("Task taxonomy needs valid modality labels and unspecified")
     families = data["task_families"]
     family_axes: dict[str, tuple[str, str | None, str | None, str | None]] = {}
     experiments = {}
@@ -59,7 +74,27 @@ def classify(root: Pathish, data: Document) -> int:
     covered = set()
     for entry in data["entries"]:
         key = entry["id"]
-        if taxonomy:
+        modalities = entry.get("modalities")
+        if modalities is None:
+            if data.get("require_modalities"):
+                raise c.MedicalError(f"{key}: missing explicit modalities")
+            modalities = ["unspecified"]
+        if (
+            not isinstance(modalities, list)
+            or not modalities
+            or any(not isinstance(modality, str) for modality in modalities)
+            or len(modalities) != len(set(modalities))
+            or any(modality not in modality_labels for modality in modalities)
+            or (
+                len(modalities) > 1
+                and any(
+                    modality in {"unspecified", "imaging-unspecified"} for modality in modalities
+                )
+            )
+        ):
+            raise c.MedicalError(f"{key}: invalid modalities: {modalities}")
+        entry["modalities"] = modalities
+        if has_task_axes:
             for field, axis in (
                 ("category", "categories"),
                 ("role", "roles"),
@@ -126,4 +161,5 @@ def classify(root: Pathish, data: Document) -> int:
             raise c.MedicalError(
                 "Experiments missing task navigation: " + ", ".join(sorted(missing))
             )
+    taxonomy.setdefault("modalities", modality_labels)
     return len(covered)
