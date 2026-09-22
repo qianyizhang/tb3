@@ -31,7 +31,7 @@ All-candidate association has one correct and one unmatched link. The single eli
 
 ## Native result and reference inspection
 
-![Native CT, GT and saved predictions](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-curation-v1/analysis/curation-comparison.png)
+![Native CT, GT and saved predictions](../../../.local/longitudinal-ct-curation-v1/analysis/curation-comparison.png)
 
 Author-selected axial crops: cyan solid = GT, purple solid = previous context run, orange solid = new curation run. Native zero-based k, i right / j down; HU [0,150], 55 mm crops, no CT resampling before plotting. GT2 appears at both visits, followed by gained GT14 and lost GT13. These views were selected after execution and never reached a solver. [Figure sources, crops and hashes](../../../.local/longitudinal-ct-curation-v1/analysis/curation-comparison.json). Longitudinal-CT v3, FDAT, CC BY-NC 4.0. The rendered figure was visually inspected.
 

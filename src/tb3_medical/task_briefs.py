@@ -1,12 +1,12 @@
 """Small Markdown task briefs and an offline, read-only explorer."""
 
 import base64
-from fnmatch import fnmatch
 import hashlib
 import json
 import mimetypes
-from pathlib import Path
 import re
+from fnmatch import fnmatch
+from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from . import core as c
@@ -66,7 +66,7 @@ def conditions(body):
         ]
         if len(cells) != 3 or cells[0] == "Condition" or re.fullmatch(r":?-+:?", cells[0]):
             continue
-        rows.append(dict(zip(("name", "helper", "remaining"), cells)))
+        rows.append(dict(zip(("name", "helper", "remaining"), cells, strict=True)))
     return rows
 
 

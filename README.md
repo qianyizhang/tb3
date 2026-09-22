@@ -6,15 +6,17 @@ reviews and visual explanations together. Capability learning is primary;
 submission qualification is a separate promotion step.
 
 ```sh
-uv sync --locked
+uv sync --locked --inexact --group dev
 uv run med present --serve --local-media
 # Open http://127.0.0.1:8765
 ```
 
 The read-only index searches prior work and decisions. It includes portable
 stories and figures; existing local data enables guided image and geometry tours.
-Set up a clean checkout with Python 3.12 and `uv sync --locked`. No command above downloads data or runs
-a model. To create a portable static build: `uv run med present`.
+Set up with Python 3.12 and `uv sync --locked --inexact --group dev`. The inexact
+sync preserves separately installed research packages while keeping declared
+versions locked. No command above downloads data or runs a model. To create a
+portable static build: `uv run med present`.
 
 | Group | Question |
 | --- | --- |

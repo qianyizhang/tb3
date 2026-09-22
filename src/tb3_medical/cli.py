@@ -2,11 +2,13 @@
 
 import argparse
 import json
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
-from . import core as c, workflow as w, packaging
+from . import core as c
+from . import packaging
+from . import workflow as w
 
 
 def main(argv=None):
@@ -187,7 +189,7 @@ def main(argv=None):
         elif command == "show":
             result = c.projection(root)[args.id]
         elif command == "check":
-            from .presentation import check, assets
+            from .presentation import assets, check
 
             result = check(root)
             from . import task_briefs

@@ -55,7 +55,7 @@ was not confidently identified by either solver. This case does not test those
 conventions. Clinical laterality and original annotation semantics remain under
 review. Correct dataset tooth IDs do not clinically adjudicate the image headers.
 
-The [full local report](/Users/zhangqy/pkgs/tb3/.local/dental-f018-contract-v3-20260922/comparison/report.md)
+The [full local report](../../../.local/dental-f018-contract-v3-20260922/comparison/report.md)
 contains split metrics, pseudocode, a process diagram, actual native-coordinate CT
 overlays, canal projections, methods and limits. See the
 [compact evidence](evidence/dental-f018-contract-v3-comparison.json) and

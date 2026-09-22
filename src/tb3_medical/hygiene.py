@@ -6,10 +6,10 @@ from __future__ import annotations
 import fnmatch
 import hashlib
 import json
-from pathlib import Path, PurePosixPath
 import subprocess
 import sys
 import tomllib
+from pathlib import Path, PurePosixPath
 
 POLICY = "configs/artifact-policy.json"
 
@@ -18,8 +18,7 @@ def git(root: Path, *args: str, data: bytes | None = None) -> bytes:
     return subprocess.run(
         ["git", "-C", str(root), *args],
         input=data,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
+        capture_output=True,
         check=True,
     ).stdout
 

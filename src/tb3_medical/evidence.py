@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 
+import re
 from collections import Counter
 from pathlib import Path
-import re
 
 from . import core as c
-
 
 SCHEMA_VERSION = 1
 INDEX_MARKER = "<!-- tb3-evidence-index: generated -->"

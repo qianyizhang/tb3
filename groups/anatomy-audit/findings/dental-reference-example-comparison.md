@@ -54,7 +54,7 @@ same attempt; no operator inference retry, continuation, extra tool or feedback.
 
 F008 source/QC, input/image hashes, controls, methods, pseudocode, native-coordinate
 figures and limitations are retained in the
-[full local report](/Users/zhangqy/pkgs/tb3/.local/dental-reference-ablation-20260921/comparison/report.md) and
+[full local report](../../../.local/dental-reference-ablation-20260921/comparison/report.md) and
 [compact evidence](evidence/dental-reference-example-comparison.json).
 [Reproduction code](../methods/dental-reference-ablation/render_comparison.py)
 reads saved outputs only. Raw data and generated figures remain local.

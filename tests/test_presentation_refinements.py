@@ -1,11 +1,13 @@
 """Portable navigation and maintained prose checks without local medical payloads."""
 
-from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from pathlib import Path
 
-from tb3_medical import core as c, presentation as p, task_briefs
+from tb3_medical import core as c
+from tb3_medical import presentation as p
+from tb3_medical import task_briefs
 
 
 class PresentationRefinementTests(unittest.TestCase):
@@ -65,6 +67,30 @@ class PresentationRefinementTests(unittest.TestCase):
             p.check(self.root)
         source.write_text("[Local scan](../../../../runs/scan.nii.gz)\n")
         self.assertEqual(p.check(self.root)["protocols_checked"], 1)
+
+    def test_card_source_digest_covers_changes_outside_selected_measurements(self):
+        source = self.root / "evidence.json"
+        c.write_new(source, {"metric": 1})
+        c.write_new(
+            self.root / "groups/first/presentation/card.json",
+            {
+                "source_hashes": {"evidence.json": c.sha(source)},
+                "measurements": [
+                    {
+                        "label": "metric",
+                        "source": "evidence.json",
+                        "pointer": "/metric",
+                        "value": 1,
+                    }
+                ],
+            },
+        )
+        p.check(self.root)
+
+        c.atomic_write(source, {"metric": 1, "uncited_change": True})
+
+        with self.assertRaisesRegex(c.MedicalError, "Source digest mismatch"):
+            p.check(self.root)
 
     def test_integrated_explorer_has_context_and_standalone_remains_independent(self):
         repo = Path(__file__).resolve().parents[1]

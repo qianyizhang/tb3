@@ -3,11 +3,14 @@
 From the repository root, use Python 3.12 and install the package once:
 
 ```sh
-uv sync --locked
+uv sync --locked --inexact --group dev
 uv run med list --kind group
 uv run med list landmark
 uv run med show anatomical-landmarks-br040
 ```
+
+`--inexact` preserves separately installed research dependencies in a reused
+environment; declared packages still follow the lock.
 
 `uv run med` uses the installed package. With `.venv` activated, use `med` directly.
 It discovers `workbench.toml` from the current directory; use

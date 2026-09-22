@@ -3,20 +3,22 @@
 All workspaces are temporary; launchers and Harbor checksums are mocked.
 """
 
-from concurrent.futures import ThreadPoolExecutor
-from contextlib import redirect_stderr, redirect_stdout
 import io
 import json
 import os
-from pathlib import Path
 import subprocess
 import tempfile
+import unittest
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import redirect_stderr, redirect_stdout
+from pathlib import Path
 from threading import Barrier
 from types import SimpleNamespace
-import unittest
 from unittest.mock import patch
 
-from tb3_medical import cli, core as c, packaging, workflow as w
+from tb3_medical import cli, packaging
+from tb3_medical import core as c
+from tb3_medical import workflow as w
 
 
 class WorkflowRefinementTests(unittest.TestCase):

@@ -74,7 +74,7 @@ with persistent groups preferred and volume used to break ties. The separate
 focus's complete omission at both visits triggers that test without conflating
 the touching-instance convention with lesion discovery.
 
-![Original and revised masks on native CT](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-image-only-v2/whole-volume/analysis/comparison.png)
+![Original and revised masks on native CT](../../../.local/longitudinal-ct-image-only-v2/whole-volume/analysis/comparison.png)
 
 These are post-hoc GT-selected maximum-area axial planes and 150 mm crops.
 Cyan is reference, amber the original output and purple the revised output;
@@ -139,12 +139,12 @@ the nearby thyroid. These are **model interpretations**, not author adjudication
 The whole-volume thyroid exclusion was at different coordinates; that earlier
 statement alone does not prove recognition of this exact reference lesion.
 
-[Exact saved judgments](/Users/zhangqy/pkgs/tb3/.local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/answer/candidate_judgments.json)
-· [Agent report](/Users/zhangqy/pkgs/tb3/.local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/answer/report.md)
-· [Baseline center view](/Users/zhangqy/pkgs/tb3/.local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/work/baseline_center.jpg)
-· [Follow-up center view](/Users/zhangqy/pkgs/tb3/.local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/work/followup_center.jpg).
+[Exact saved judgments](../../../.local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/answer/candidate_judgments.json)
+· [Agent report](../../../.local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/answer/report.md)
+· [Baseline center view](../../../.local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/work/baseline_center.jpg)
+· [Follow-up center view](../../../.local/attempts/attempt-3756134eb4094e9f/job/task__YeEWgzy/artifacts/app/work/followup_center.jpg).
 
-![Supplied reference focus remains excluded at both visits](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-image-only-v2/localized/analysis/comparison.png)
+![Supplied reference focus remains excluded at both visits](../../../.local/longitudinal-ct-image-only-v2/localized/analysis/comparison.png)
 
 Cyan solid contours are GT. Amber/purple would show revised whole-volume and
 localized predictions; both are empty in these regions. Planes and crops were

@@ -88,15 +88,15 @@ the original ID. This technical detail does not establish two clinical lesions
 or justify relabeling. A max-area slice review is not clinical adjudication of
 all 3D boundaries, malignancy or whether a new label was previously invisible.
 
-![Baseline CT and reference labels](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-case02/review/baseline-1.png)
+![Baseline CT and reference labels](../../../.local/longitudinal-ct-case02/review/baseline-1.png)
 
-[Follow-up labels 1–8](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-case02/review/followup-1.png)
-· [Follow-up labels 9–15](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-case02/review/followup-2.png).
+[Follow-up labels 1–8](../../../.local/longitudinal-ct-case02/review/followup-1.png)
+· [Follow-up labels 9–15](../../../.local/longitudinal-ct-case02/review/followup-2.png).
 Cyan solid contours are GT. Native i points right and j down; slices/crops are
 GT-selected author views, never solver input. The fixed 90 mm crops do not show
 the entire largest follow-up mass; the full CT/mask is retained for evaluation.
 
-![Native reference volume profile](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-case02/review/volume-profile.png)
+![Native reference volume profile](../../../.local/longitudinal-ct-case02/review/volume-profile.png)
 
 ## Frozen task choice
 

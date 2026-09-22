@@ -1,36 +1,55 @@
-# Working on tb3-medical
+# Development
 
-Start with [the documentation index](docs/README.md). Use Python 3.12 and
-`uv sync --locked`, then `make check`. The installed `med` command is the supported
-interface. The [daily workflow](docs/workflow.md) covers research operations;
-[governance](docs/governance.md) defines artifact ownership and retention.
+Use [the docs index](docs/README.md) for navigation and
+[the workflow](docs/workflow.md) for research commands.
 
-Inspect Git status and concurrent task ownership before editing. Stage explicit
-paths and use focused Conventional Commits. `make check` includes the staged
-artifact gate, offline regressions, metadata/story checks and formatting. It does
-not run models, Docker, media rendering or whole-dataset integrity scans. Another
-task's dirty experiment must not be staged to make your checks pass.
+## Setup
 
-Author compact experiment TOML plus scientific Markdown; generated receipts carry
-execution details. Use normal package imports. No import-path mutation, legacy
-fallback reader, machine-cache dependency or migration command belongs in daily
-usage. Optional imaging and media dependencies have their own declared setup in
-[reproduction](docs/reproduce.md) and the linked media guide. Keep shared guidance
-in the current docs hub and group-specific explanations with their group. Dated
-session closeouts and retrospectives live in `groups/<group>/history/`, linked from
-the group README and shared historical index; do not create another global research queue.
+```sh
+uv sync --locked --inexact --group dev
+make hooks
+```
 
-Diagnostics may run before controls. Claims require scoped assessment; current
-submission qualification is separately owned. Preserve historical scores and
-frozen bytes. `make hooks` installs the staged artifact gate without overwriting
-another hook directory. The [accepted design](docs/migration/native-workbench-plan.md)
-records the minimal validation boundary. With the project environment active,
-`make check PYTHON=python3.12` uses the installed package and Python 3.12;
-`make check` otherwise selects `.venv/bin/python` when present.
+Python 3.12 is the local default; CI checks 3.12 and 3.14.
+`--inexact` preserves separately installed research packages. CI uses an exact
+sync in a fresh environment. `make hooks` enables pre-commit through the tracked
+`.githooks` wrapper and refuses to replace another hook directory.
 
-For presentation changes, also run `make presentation-check` using the declared
-existing Node/Playwright environment. It builds a portable site and exercises
-navigation, sources, keyboard/mobile behavior and deferred tour loads without
-raw scans or media generation. Set `PLAYWRIGHT_CHANNEL=chromium` for the bundled
-browser; installed Chrome is the local default. A separate changed-input CI job
-runs this command. See [reproduction](docs/reproduce.md) for its coverage boundary.
+For browser checks, install the declared Node 22+ dependencies with `npm ci`.
+Browser setup and the macOS execution boundary are in the
+[media guide](presentation/tours/TOOL.md).
+
+## Checks
+
+| Command | Coverage |
+| --- | --- |
+| `make check` | Git-index artifacts, offline tests, medical records, docs links, types, Ruff, workflow syntax |
+| `make pre-commit-check` | All six configured pre-commit checks; no automatic file rewrites |
+| `make docs-check` | Maintained Markdown paths and heading anchors |
+| `make type-check` | Strict typing for link validation and shared CT/MRI scoring |
+| `make js-check` | Script formatting, player state and encoder failure cleanup; no browser |
+| `make presentation-check` | Portable site navigation, sources, keyboard/mobile behavior; disposable browser |
+| `make build-check` | Wheel installation and CLI checks from an unrelated temporary directory |
+| `npm run format` | Format maintained JavaScript scripts and checks |
+
+Stage intended files, then run `make check PYTHON=python3.12` with the project
+environment active. Otherwise `make check` selects `.venv/bin/python`.
+The artifact gate reads the index; unstaged edits do not repair staged failures.
+
+## Working rules
+
+- Inspect Git status and task ownership first. Preserve concurrent work and stage
+  explicit paths in focused Conventional Commits.
+- Keep shared code in `src/tb3_medical/` and `presentation/`; use normal package
+  imports. Do not add import-path mutations, compatibility readers or cache lookups.
+- Keep experiment TOML compact and scientific explanations with the owning group.
+  Dated closeouts belong in `groups/<group>/history/`; link them from the group.
+- Preserve frozen bytes, original outcomes and evidence hashes. Append scoped
+  observations/reviews when interpretation changes.
+- Maintenance does not launch trials, install medical runtimes, render media or
+  publish. Raw runs, credentials, environments and generated assets stay local.
+- Diagnostics may precede controls; claims require scoped assessment.
+  [Submission](docs/submission.md) has separate ownership.
+
+[Governance](docs/governance.md) defines retention.
+[Reproduction](docs/reproduce.md) defines recovery, replay and export evidence.

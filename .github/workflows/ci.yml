@@ -11,15 +11,23 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.12', '3.14']
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v5
+      - uses: ./.github/actions/setup-python
         with:
-          python-version: '3.12'
-      - uses: astral-sh/setup-uv@v6
-      - run: uv sync --locked
-      - name: Validate artifacts and run offline unit tests
-        run: make check
+          python-version: ${{ matrix.python-version }}
+      - name: Validate pre-commit configuration
+        if: matrix.python-version == '3.12'
+        run: make pre-commit-check PYTHON=.venv/bin/python
+      - name: Validate artifacts, documentation, types, and tests
+        run: make check PYTHON=.venv/bin/python
+      - name: Smoke-test the wheel
+        if: matrix.python-version == '3.12'
+        run: make build-check PYTHON=.venv/bin/python

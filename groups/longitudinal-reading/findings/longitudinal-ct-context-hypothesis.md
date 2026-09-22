@@ -123,7 +123,7 @@ and both remain entirely uncovered. This is documented rejection of a noticed
 reference target. It is not merely a failure to search for that target, but
 reference agreement does not adjudicate whether the focus is clinically malignant.
 
-![Explicit rejection of reference GT2 at both visits](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-context-v1/comparison/explicit-gt2-rejection.png)
+![Explicit rejection of reference GT2 at both visits](../../../.local/longitudinal-ct-context-v1/comparison/explicit-gt2-rejection.png)
 
 Cyan solid contours show source GT2; orange solid would show the new prediction,
 which is absent here. These native CT views are centered on the agent's reported
@@ -148,7 +148,7 @@ focus, so calling it a second documented vessel rejection would overstate the
 trace. The new thigh exclusion is 331 mm from the nearest reference target and
 does not explain any of the actual GT omissions.
 
-![Previously excluded GT14 remains absent as a separate instance](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-context-v1/comparison/gt14-comparison.png)
+![Previously excluded GT14 remains absent as a separate instance](../../../.local/longitudinal-ct-context-v1/comparison/gt14-comparison.png)
 
 Cyan solid: GT; purple solid: original image-only prediction; orange solid:
 context-supplied prediction. Numbers are the respective local instance IDs.
@@ -196,8 +196,8 @@ supplied-context digest `ffdf321ba2637b46484309d8ec2c39fdffd5234b99e3152842c245a
 
 [Machine-readable comparison and trace evidence](evidence/longitudinal-ct-context-comparison.json)
 · [Context inference evidence](evidence/longitudinal-ct-context-inference.json)
-· [Exact inferred context](/Users/zhangqy/pkgs/tb3/.local/attempts/attempt-0a8df9d2ca4a4034/job/task__Rzm9L2L/artifacts/app/answer/context.json)
-· [Exact supplied-context agent report](/Users/zhangqy/pkgs/tb3/.local/attempts/attempt-81ee755346d04be7/job/task__5btJU8Q/artifacts/app/answer/report.md)
+· [Exact inferred context](../../../.local/attempts/attempt-0a8df9d2ca4a4034/job/task__Rzm9L2L/artifacts/app/answer/context.json)
+· [Exact supplied-context agent report](../../../.local/attempts/attempt-81ee755346d04be7/job/task__5btJU8Q/artifacts/app/answer/report.md)
 · [Recovery/analysis method](../methods/longitudinal-ct-context-v1/README.md).
 
 CT source: Longitudinal-CT v3, Küstner, Peisen, Gatidis et al., University Hospital

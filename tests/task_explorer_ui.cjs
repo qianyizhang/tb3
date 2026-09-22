@@ -3,243 +3,488 @@
  * Usage: node tests/task_explorer_ui.cjs runs/task-explorer/index.html [report.json]
  * Does not install dependencies, fetch resources, or run external benchmarks.
  */
-const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const {resolve,dirname}=require('path');
-const {pathToFileURL}=require('url');
-const fs=require('fs');
-const assert=require('assert/strict');
-const {createHash}=require('crypto');
-(async()=>{
-  const file=resolve(process.argv[2] || 'runs/task-explorer/index.html');
-  const channel=process.env.PLAYWRIGHT_CHANNEL || 'chrome';
-  const browser=await chromium.launch({...(channel==='chromium'?{}:{channel}),headless:true});
-  const errors=[],requests=[];
+const { withBrowser } = require('../scripts/browser.cjs');
+const { resolve, dirname } = require('path');
+const { pathToFileURL } = require('url');
+const fs = require('fs');
+const assert = require('assert/strict');
+const { createHash } = require('crypto');
+async function checkExplorer(browser, input, report) {
+  const file = resolve(input);
+  const context = await browser.newContext({ viewport: { width: 1010, height: 1324 } });
+  const errors = [],
+    requests = [];
   try {
-    const page=await browser.newPage({viewport:{width:1010,height:1324}});
-    page.on('pageerror',e=>errors.push(e.message));
-    page.on('request',r=>{if(/^https?:/.test(r.url()))requests.push(r.url())});
+    const page = await context.newPage();
+    page.on('pageerror', (e) => errors.push(e.message));
+    page.on('request', (r) => {
+      if (/^https?:/.test(r.url())) requests.push(r.url());
+    });
     await page.goto(pathToFileURL(file).href);
-    const data=await page.evaluate(()=>JSON.parse(document.querySelector('#data').textContent));
-    assert.equal(await page.locator('#workbench-home').count(),data.presentation_context?.home_url?1:0,'Only integrated builds offer a workbench backlink');
-    if(process.env.TASK_EXPLORER_REQUIRE_ALL_MEDIA) assert.deepEqual(data.entries.flatMap(e=>e.missing_media),[]);
-    const go=async(hash,id,section='overview')=>{
-      await page.evaluate(hash=>{location.hash=hash},hash);
-      await page.waitForFunction(({id,section})=>document.querySelector('.task-detail')?.dataset.brief===id && document.querySelector(`[data-tab="${section}"][aria-selected="true"]`),{id,section});
+    const data = await page.evaluate(() => JSON.parse(document.querySelector('#data').textContent));
+    assert.equal(
+      await page.locator('#workbench-home').count(),
+      data.presentation_context?.home_url ? 1 : 0,
+      'Only integrated builds offer a workbench backlink',
+    );
+    if (process.env.TASK_EXPLORER_REQUIRE_ALL_MEDIA)
+      assert.deepEqual(
+        data.entries.flatMap((e) => e.missing_media),
+        [],
+      );
+    const go = async (hash, id, section = 'overview') => {
+      await page.evaluate((hash) => {
+        location.hash = hash;
+      }, hash);
+      await page.waitForFunction(
+        ({ id, section }) =>
+          document.querySelector('.task-detail')?.dataset.brief === id &&
+          document.querySelector(`[data-tab="${section}"][aria-selected="true"]`),
+        { id, section },
+      );
     };
     // Every imported source record survives its old URL and keeps its source identity.
-    let records=0,conditions=0,images=0,drawings=0,sourcePreviews=0;
-    const diagramTypes=new Set();
-    for(const repo of data.inventory.repositories) for(const item of repo.items){
-      await go(`${repo.id}/task/${encodeURIComponent(item.id)}/${item.condition_index||0}/sources`,item.brief_id,'sources');
-      await page.waitForFunction(id=>document.querySelector('.provenance code')?.textContent===id,item.id);
-      assert.equal(await page.locator('.selected-source > a').getAttribute('href'),item.url);
-      assert.equal(await page.locator('.provenance').getAttribute('open'),null,'Technical IDs must be collapsed');
-      records++;
-    }
-    for(const e of data.entries){
-      for(let n=0;n<e.variants.length;n++){
-        await go(`${e.id}/${n}/brief`,e.id);
-        if(e.task_family && data.entries.filter(x=>x.task_family===e.task_family).length>1){
-          assert.equal(await page.locator('#task-variant').inputValue(),e.id,'Deep links select the exact dataset/target variant');
-          assert.equal(await page.locator('.detail-heading h2').innerText(),data.task_families[e.task_family].title);
+    let records = 0,
+      conditions = 0,
+      images = 0,
+      drawings = 0,
+      sourcePreviews = 0;
+    const diagramTypes = new Set();
+    for (const repo of data.inventory.repositories)
+      for (const item of repo.items) {
+        await go(
+          `${repo.id}/task/${encodeURIComponent(item.id)}/${item.condition_index || 0}/sources`,
+          item.brief_id,
+          'sources',
+        );
+        await page.waitForFunction(
+          (id) => document.querySelector('.provenance code')?.textContent === id,
+          item.id,
+        );
+        assert.equal(await page.locator('.selected-source > a').getAttribute('href'), item.url);
+        assert.equal(
+          await page.locator('.provenance').getAttribute('open'),
+          null,
+          'Technical IDs must be collapsed',
+        );
+        records++;
+      }
+    for (const e of data.entries) {
+      for (let n = 0; n < e.variants.length; n++) {
+        await go(`${e.id}/${n}/brief`, e.id);
+        if (
+          e.task_family &&
+          data.entries.filter((x) => x.task_family === e.task_family).length > 1
+        ) {
+          assert.equal(
+            await page.locator('#task-variant').inputValue(),
+            e.id,
+            'Deep links select the exact dataset/target variant',
+          );
+          assert.equal(
+            await page.locator('.detail-heading h2').innerText(),
+            data.task_families[e.task_family].title,
+          );
         }
-        if(e.variants.length>1){
-          await page.waitForFunction(n=>document.querySelector('[data-condition][aria-pressed=true]')?.dataset.condition===String(n),n);
+        if (e.variants.length > 1) {
+          await page.waitForFunction(
+            (n) =>
+              document.querySelector('[data-condition][aria-pressed=true]')?.dataset.condition ===
+              String(n),
+            n,
+          );
         }
         conditions++;
       }
-      if(e.illustration){
-        assert.equal(await page.locator('.task-picture.conceptual svg').count(),2,'Input and output must be drawn in the overview');
-        assert.ok((await page.locator('.task-picture figcaption').innerText()).includes('not a dataset sample'));
-        assert.ok((await page.locator('.task-picture').innerText()).includes(e.illustration.output));
-        drawings++;diagramTypes.add(e.illustration.kind);
-      }else if(/<img\b/.test(e.visuals.input)){
-        assert.equal(await page.locator('.native-preview img').count(),1,'Existing source images should be visible in the overview');
-        await page.locator('.native-preview img').evaluate(e=>e.decode());
-        assert.equal(await page.locator('.native-input').innerHTML(),e.visuals.input,'Preview preserves the authored caption, including reference-based view selection');
+      if (e.illustration) {
+        assert.equal(
+          await page.locator('.task-picture.conceptual svg').count(),
+          2,
+          'Input and output must be drawn in the overview',
+        );
+        assert.ok(
+          (await page.locator('.task-picture figcaption').innerText()).includes(
+            'not a dataset sample',
+          ),
+        );
+        assert.ok(
+          (await page.locator('.task-picture').innerText()).includes(e.illustration.output),
+        );
+        drawings++;
+        diagramTypes.add(e.illustration.kind);
+      } else if (/<img\b/.test(e.visuals.input)) {
+        assert.equal(
+          await page.locator('.native-preview img').count(),
+          1,
+          'Existing source images should be visible in the overview',
+        );
+        await page.locator('.native-preview img').evaluate((e) => e.decode());
+        assert.equal(
+          await page.locator('.native-input').innerHTML(),
+          e.visuals.input,
+          'Preview preserves the authored caption, including reference-based view selection',
+        );
         sourcePreviews++;
-      } else if(e.missing_media.length){
-        assert.equal(await page.locator('.preview-unavailable').count(),1,'Missing optional previews have an explicit fallback');
+      } else if (e.missing_media.length) {
+        assert.equal(
+          await page.locator('.preview-unavailable').count(),
+          1,
+          'Missing optional previews have an explicit fallback',
+        );
         assert.ok((await page.locator('.preview-unavailable').innerText()).includes('unavailable'));
       }
-      if(Object.values(e.visuals).some(x=>/<img\b/.test(x))){
+      if (Object.values(e.visuals).some((x) => /<img\b/.test(x))) {
         await page.locator('[data-tab="examples"]').click();
-        assert.equal(await page.locator('[data-visible-role]').getAttribute('data-visible-role'),'input');
-        for(const role of ['input','helpers','answer']){
+        assert.equal(
+          await page.locator('[data-visible-role]').getAttribute('data-visible-role'),
+          'input',
+        );
+        for (const role of ['input', 'helpers', 'answer']) {
           await page.locator(`[data-visual="${role}"]`).click();
-          for(const image of await page.locator('.visual-content img').all()){
-            await image.evaluate(e=>e.decode());assert.ok(await image.evaluate(e=>e.naturalWidth>0));images++;
+          for (const image of await page.locator('.visual-content img').all()) {
+            await image.evaluate((e) => e.decode());
+            assert.ok(await image.evaluate((e) => e.naturalWidth > 0));
+            images++;
           }
         }
       } else {
-        assert.equal(await page.locator('[data-tab="examples"]').count(),0,'No repeated text pretending to be an image');
+        assert.equal(
+          await page.locator('[data-tab="examples"]').count(),
+          0,
+          'No repeated text pretending to be an image',
+        );
       }
     }
     // Local sources remain inspectable from this single HTML file with exact downloads.
-    let localSources=0;
-    const seenSources=new Set();
-    for(const e of data.entries) for(const [,path] of e.sources){
-      const source=data.local_sources?.[path];
-      if(!source || seenSources.has(path)) continue;
-      seenSources.add(path);
-      await go(`${e.id}/0/sources`,e.id,'sources');
-      if(source.unavailable){
-        assert.ok((await page.locator('#task-panel').innerText()).includes(source.unavailable));
-        continue;
+    let localSources = 0;
+    const seenSources = new Set();
+    for (const e of data.entries)
+      for (const [, path] of e.sources) {
+        const source = data.local_sources?.[path];
+        if (!source || seenSources.has(path)) continue;
+        seenSources.add(path);
+        await go(`${e.id}/0/sources`, e.id, 'sources');
+        if (source.unavailable) {
+          assert.ok((await page.locator('#task-panel').innerText()).includes(source.unavailable));
+          continue;
+        }
+        const button = page.locator(`[data-source="${source.sha256}"]`).first();
+        await button.focus();
+        await page.keyboard.press('Enter');
+        assert.equal(await page.evaluate(() => document.activeElement.id), 'source-heading');
+        assert.ok(page.url().endsWith('?source=' + source.sha256));
+        assert.equal(await page.locator('.source-reader pre').textContent(), source.content);
+        const download = await page.locator('#source-download').getAttribute('href');
+        const raw = Buffer.from(download.split(',')[1], 'base64');
+        assert.equal(raw.length, source.bytes);
+        assert.equal(createHash('sha256').update(raw).digest('hex'), source.sha256);
+        await page.reload();
+        assert.equal(await page.locator('.source-reader pre').textContent(), source.content);
+        await page.goBack();
+        await page.waitForFunction(() => !document.querySelector('.source-reader'));
+        assert.equal(
+          await page.evaluate(() => document.activeElement.dataset.source),
+          source.sha256,
+        );
+        await button.click();
+        await page.locator('#source-close').click();
+        assert.equal(
+          await page.evaluate(() => document.activeElement.dataset.source),
+          source.sha256,
+        );
+        localSources++;
       }
-      const button=page.locator(`[data-source="${source.sha256}"]`).first();
-      await button.focus();await page.keyboard.press('Enter');
-      assert.equal(await page.evaluate(()=>document.activeElement.id),'source-heading');
-      assert.ok(page.url().endsWith('?source='+source.sha256));
-      assert.equal(await page.locator('.source-reader pre').textContent(),source.content);
-      const download=await page.locator('#source-download').getAttribute('href');
-      const raw=Buffer.from(download.split(',')[1],'base64');
-      assert.equal(raw.length,source.bytes);
-      assert.equal(createHash('sha256').update(raw).digest('hex'),source.sha256);
-      await page.reload();
-      assert.equal(await page.locator('.source-reader pre').textContent(),source.content);
-      await page.goBack();
-      await page.waitForFunction(()=>!document.querySelector('.source-reader'));
-      assert.equal(await page.evaluate(()=>document.activeElement.dataset.source),source.sha256);
-      await button.click();await page.locator('#source-close').click();
-      assert.equal(await page.evaluate(()=>document.activeElement.dataset.source),source.sha256);
-      localSources++;
-    }
     // Image notices return to their original control when Back restores the preview.
-    await go('abra/0/overview','abra');
-    const noticeHash=await page.locator('[data-notice]').getAttribute('data-notice');
-    await page.locator('[data-notice]').focus();await page.keyboard.press('Enter');
-    assert.equal(await page.evaluate(()=>document.activeElement.id),'source-heading');
+    await go('abra/0/overview', 'abra');
+    const noticeHash = await page.locator('[data-notice]').getAttribute('data-notice');
+    await page.locator('[data-notice]').focus();
+    await page.keyboard.press('Enter');
+    assert.equal(await page.evaluate(() => document.activeElement.id), 'source-heading');
     await page.goBack();
-    await page.waitForFunction(()=>document.querySelector('#tab-overview')?.getAttribute('aria-selected')==='true');
-    assert.equal(await page.evaluate(()=>document.activeElement.dataset.notice),noticeHash,'Back from image notices restores preview focus');
-    const clinical='healthagentbench-trial-matching',case29='clinical_trial_matching_task_29';
-    await go(`healthagentbench/task/${case29}/0/catalogue`,clinical);
-    await page.waitForFunction(id=>document.querySelector(`[data-entry="${id}"][aria-pressed=true]`),case29);
-    assert.equal(await page.locator('[data-definition]').count(),7,'Repeated disease/quality variants share one task entry');
-    assert.equal(await page.locator('[data-entry]').count(),9);
-    assert.equal(await page.locator('[data-definition="healthagentbench-trial-matching"]').count(),1);
-    assert.equal(await page.locator('#task-picker').count(),0);
-    assert.equal(await page.locator('.catalogue-glance').count(),0);
-    assert.ok(!await page.locator('body').innerText().then(x=>x.includes('Task at a glance')));
+    await page.waitForFunction(
+      () => document.querySelector('#tab-overview')?.getAttribute('aria-selected') === 'true',
+    );
+    assert.equal(
+      await page.evaluate(() => document.activeElement.dataset.notice),
+      noticeHash,
+      'Back from image notices restores preview focus',
+    );
+    const clinical = 'healthagentbench-trial-matching',
+      case29 = 'clinical_trial_matching_task_29';
+    await go(`healthagentbench/task/${case29}/0/catalogue`, clinical);
+    await page.waitForFunction(
+      (id) => document.querySelector(`[data-entry="${id}"][aria-pressed=true]`),
+      case29,
+    );
+    assert.equal(
+      await page.locator('[data-definition]').count(),
+      7,
+      'Repeated disease/quality variants share one task entry',
+    );
+    assert.equal(await page.locator('[data-entry]').count(), 9);
+    assert.equal(
+      await page.locator('[data-definition="healthagentbench-trial-matching"]').count(),
+      1,
+    );
+    assert.equal(await page.locator('#task-picker').count(), 0);
+    assert.equal(await page.locator('.catalogue-glance').count(), 0);
+    assert.ok(
+      !(await page
+        .locator('body')
+        .innerText()
+        .then((x) => x.includes('Task at a glance'))),
+    );
     assert.ok((await page.locator('.case-facts').innerText()).includes('407 candidate trials'));
-    assert.equal(await page.locator('.provenance').count(),0,'Technical IDs do not occupy the overview');
-    const heading=await page.locator('.detail-heading h2').innerText();
+    assert.equal(
+      await page.locator('.provenance').count(),
+      0,
+      'Technical IDs do not occupy the overview',
+    );
+    const heading = await page.locator('.detail-heading h2').innerText();
     await page.locator('[data-entry="clinical_trial_matching_task_27"]').click();
-    assert.equal(await page.locator('.detail-heading h2').innerText(),heading);
+    assert.equal(await page.locator('.detail-heading h2').innerText(), heading);
     assert.ok((await page.locator('.case-facts').innerText()).includes('451 candidate trials'));
     await page.goBack();
-    await page.waitForFunction(()=>document.querySelector('.case-facts')?.textContent.includes('407 candidate trials'));
+    await page.waitForFunction(() =>
+      document.querySelector('.case-facts')?.textContent.includes('407 candidate trials'),
+    );
     await page.reload();
-    await page.waitForFunction(()=>document.querySelector('.case-facts')?.textContent.includes('407 candidate trials'));
+    await page.waitForFunction(() =>
+      document.querySelector('.case-facts')?.textContent.includes('407 candidate trials'),
+    );
     await page.locator('[data-tab="requirements"]').click();
     assert.ok((await page.locator('#task-panel').innerText()).includes('recall@50'));
     await page.locator('[data-tab="overview"]').click();
-    if(process.env.TASK_EXPLORER_SCREENSHOTS){
-      fs.mkdirSync(process.env.TASK_EXPLORER_SCREENSHOTS,{recursive:true});
-      await page.screenshot({path:resolve(process.env.TASK_EXPLORER_SCREENSHOTS,'catalogue-desktop.png'),fullPage:true});
+    if (process.env.TASK_EXPLORER_SCREENSHOTS) {
+      fs.mkdirSync(process.env.TASK_EXPLORER_SCREENSHOTS, { recursive: true });
+      await page.screenshot({
+        path: resolve(process.env.TASK_EXPLORER_SCREENSHOTS, 'catalogue-desktop.png'),
+        fullPage: true,
+      });
     }
     // Search looks at task/case meaning, never arbitrary hash fragments in source URLs.
-    await page.locator('#search').fill('bcbb8085');assert.equal(await page.locator('[data-group]').count(),0);
+    await page.locator('#search').fill('bcbb8085');
+    assert.equal(await page.locator('[data-group]').count(), 0);
     await page.locator('#search').fill(case29);
-    assert.equal(await page.locator('[data-definition]').count(),1);
+    assert.equal(await page.locator('[data-definition]').count(), 1);
     await page.locator('[data-definition]').click();
-    assert.equal(await page.evaluate(()=>document.activeElement.dataset.definition),clinical,'Task selection retains focus');
-    assert.equal(await page.locator('[data-entry]').count(),9,'The complete case set stays reachable');
+    assert.equal(
+      await page.evaluate(() => document.activeElement.dataset.definition),
+      clinical,
+      'Task selection retains focus',
+    );
+    assert.equal(
+      await page.locator('[data-entry]').count(),
+      9,
+      'The complete case set stays reachable',
+    );
     await page.locator('#search').fill('');
-    await page.locator('[data-group="abra"]').focus();await page.keyboard.press('Enter');
-    assert.equal(await page.evaluate(()=>document.activeElement.dataset.group),'abra','Repository selection retains focus');
+    await page.locator('[data-group="abra"]').focus();
+    await page.keyboard.press('Enter');
+    assert.equal(
+      await page.evaluate(() => document.activeElement.dataset.group),
+      'abra',
+      'Repository selection retains focus',
+    );
     // Related datasets share a task entry, but switching retains the exact output and tier.
-    await go('automedbench-full-braintumor-cls-task/1/overview','automedbench-full-braintumor-cls-task');
-    assert.equal(await page.locator('[data-definition]').count(),10,'AutoMedBench should have ten task families');
-    assert.equal(await page.locator('[data-task="automed-classification"]').count(),1);
-    assert.equal(await page.locator('#task-variant option').count(),5);
-    await page.locator('#task-variant').selectOption('automedbench-full-chest-xray-pneumonia-cls-task');
+    await go(
+      'automedbench-full-braintumor-cls-task/1/overview',
+      'automedbench-full-braintumor-cls-task',
+    );
+    assert.equal(
+      await page.locator('[data-definition]').count(),
+      10,
+      'AutoMedBench should have ten task families',
+    );
+    assert.equal(await page.locator('[data-task="automed-classification"]').count(), 1);
+    assert.equal(await page.locator('#task-variant option').count(), 5);
+    await page
+      .locator('#task-variant')
+      .selectOption('automedbench-full-chest-xray-pneumonia-cls-task');
     assert.ok((await page.locator('.deliverable').innerText()).includes('normal, pneumonia'));
     assert.ok(!(await page.locator('.deliverable').innerText()).includes('meningioma'));
-    assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'),'true');
+    assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'), 'true');
     await page.goBack();
-    await page.waitForFunction(()=>document.querySelector('#task-variant')?.value==='automedbench-full-braintumor-cls-task');
+    await page.waitForFunction(
+      () =>
+        document.querySelector('#task-variant')?.value === 'automedbench-full-braintumor-cls-task',
+    );
     assert.ok((await page.locator('.deliverable').innerText()).includes('meningioma'));
     await page.locator('#search').fill('classification');
-    assert.equal(await page.locator('[data-definition]').count(),1,'Family titles are searchable');
+    assert.equal(
+      await page.locator('[data-definition]').count(),
+      1,
+      'Family titles are searchable',
+    );
     await page.locator('#search').fill('');
-    await go('healthagentbench-predict-hypertension/0/overview','healthagentbench-predict-hypertension');
-    assert.equal(await page.locator('#task-variant option').count(),6);
-    assert.equal(await page.locator('[data-task="hab-disease-prediction"]').count(),1);
+    await go(
+      'healthagentbench-predict-hypertension/0/overview',
+      'healthagentbench-predict-hypertension',
+    );
+    assert.equal(await page.locator('#task-variant option').count(), 6);
+    assert.equal(await page.locator('[data-task="hab-disease-prediction"]').count(), 1);
     // Search selection, explicit variant changes and restored routes must agree.
     await page.locator('#search').fill('celiac');
-    assert.equal(await page.locator('.task-detail').getAttribute('data-brief'),'healthagentbench-predict-celiac');
+    assert.equal(
+      await page.locator('.task-detail').getAttribute('data-brief'),
+      'healthagentbench-predict-celiac',
+    );
     assert.ok(page.url().endsWith('#healthagentbench-predict-celiac/0/overview'));
     await page.reload();
-    assert.equal(await page.locator('.task-detail').getAttribute('data-brief'),'healthagentbench-predict-celiac');
-    await go('automedbench-full-chest-xray-pneumonia-cls-task/1/overview','automedbench-full-chest-xray-pneumonia-cls-task');
+    assert.equal(
+      await page.locator('.task-detail').getAttribute('data-brief'),
+      'healthagentbench-predict-celiac',
+    );
+    await go(
+      'automedbench-full-chest-xray-pneumonia-cls-task/1/overview',
+      'automedbench-full-chest-xray-pneumonia-cls-task',
+    );
     await page.locator('#search').fill('pneumonia');
     await page.locator('#task-variant').selectOption('automedbench-full-braintumor-cls-task');
-    assert.equal(await page.locator('#search').inputValue(),'');
-    assert.equal(await page.locator('.task-detail').getAttribute('data-brief'),'automedbench-full-braintumor-cls-task');
-    assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'),'true');
+    assert.equal(await page.locator('#search').inputValue(), '');
+    assert.equal(
+      await page.locator('.task-detail').getAttribute('data-brief'),
+      'automedbench-full-braintumor-cls-task',
+    );
+    assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'), 'true');
     await page.goBack();
-    await page.waitForFunction(()=>document.querySelector('#task-variant')?.value==='automedbench-full-chest-xray-pneumonia-cls-task');
+    await page.waitForFunction(
+      () =>
+        document.querySelector('#task-variant')?.value ===
+        'automedbench-full-chest-xray-pneumonia-cls-task',
+    );
     await page.locator('#search').fill('pneumonia');
-    await go('abra-birads/0/overview','abra-birads');
-    assert.equal(await page.locator('#search').inputValue(),'','An explicit route remains visible under an incompatible search');
+    await go('abra-birads/0/overview', 'abra-birads');
+    assert.equal(
+      await page.locator('#search').inputValue(),
+      '',
+      'An explicit route remains visible under an incompatible search',
+    );
     // Keyboard tabs and selectors keep focus after the detail DOM is replaced.
     await page.locator('#tab-overview').focus();
     await page.keyboard.press('ArrowRight');
-    assert.equal(await page.locator('#tab-requirements').getAttribute('aria-selected'),'true');
-    assert.equal(await page.evaluate(()=>document.activeElement.id),'tab-requirements');
+    assert.equal(await page.locator('#tab-requirements').getAttribute('aria-selected'), 'true');
+    assert.equal(await page.evaluate(() => document.activeElement.id), 'tab-requirements');
     await page.keyboard.press('End');
-    assert.equal(await page.evaluate(()=>document.activeElement.id),'tab-sources');
-    await page.locator('#source-picker').selectOption({index:1});
-    assert.equal(await page.evaluate(()=>document.activeElement.id),'source-picker');
+    assert.equal(await page.evaluate(() => document.activeElement.id), 'tab-sources');
+    await page.locator('#source-picker').selectOption({ index: 1 });
+    assert.equal(await page.evaluate(() => document.activeElement.id), 'source-picker');
     await page.locator('#tab-overview').click();
     await page.locator('[data-condition="1"]').click();
-    assert.equal(await page.evaluate(()=>document.activeElement.dataset.condition),'1');
+    assert.equal(await page.evaluate(() => document.activeElement.dataset.condition), '1');
     // Unmerged workflows remain separate under collapsible navigation groups.
-    await go('bcer-short-denoise/0/overview','bcer-short-denoise');
-    const processing=page.locator('[data-family="bcer/Single processing steps"]');
-    assert.equal(await processing.getAttribute('open'),'');
+    await go('bcer-short-denoise/0/overview', 'bcer-short-denoise');
+    const processing = page.locator('[data-family="bcer/Single processing steps"]');
+    assert.equal(await processing.getAttribute('open'), '');
     await processing.locator('summary').click();
     await page.locator('[data-tab="requirements"]').click();
-    assert.equal(await processing.getAttribute('open'),null,'Group collapse survives detail rerender');
+    assert.equal(
+      await processing.getAttribute('open'),
+      null,
+      'Group collapse survives detail rerender',
+    );
     await processing.locator('summary').click();
     await processing.locator('[data-definition="bcer-short-superres"]').click();
-    assert.equal(await page.locator('.task-detail').getAttribute('data-brief'),'bcer-short-superres');
-    await go('abra/catalogue/oracle_annotation','abra');
-    assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'),'true');
-    await page.locator('[data-tab="examples"]').click();await page.locator('[data-visual="answer"]').click();
-    await page.locator('[data-tab="overview"]').click();await page.locator('[data-condition="0"]').click();
+    assert.equal(
+      await page.locator('.task-detail').getAttribute('data-brief'),
+      'bcer-short-superres',
+    );
+    await go('abra/catalogue/oracle_annotation', 'abra');
+    assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'), 'true');
     await page.locator('[data-tab="examples"]').click();
-    assert.equal(await page.locator('[data-visible-role]').getAttribute('data-visible-role'),'input');
-    await go('automedbench/task/lite-case-TSG_00000040/0/examples','automedbench-tsg','examples');
+    await page.locator('[data-visual="answer"]').click();
+    await page.locator('[data-tab="overview"]').click();
+    await page.locator('[data-condition="0"]').click();
+    await page.locator('[data-tab="examples"]').click();
+    assert.equal(
+      await page.locator('[data-visible-role]').getAttribute('data-visible-role'),
+      'input',
+    );
+    await go('automedbench/task/lite-case-TSG_00000040/0/examples', 'automedbench-tsg', 'examples');
     assert.ok((await page.locator('.scope-note').innerText()).includes('TSG_00000001'));
-    if(process.env.TASK_EXPLORER_SCREENSHOTS){
-      for(const [id,name] of [['automedbench-full-braintumor-cls-task','automed-families'],['healthagentbench-predict-hypertension','health-families']]){
-        await go(`${id}/0/overview`,id);
-        await page.screenshot({path:resolve(process.env.TASK_EXPLORER_SCREENSHOTS,name+'.png'),fullPage:true});
+    if (process.env.TASK_EXPLORER_SCREENSHOTS) {
+      for (const [id, name] of [
+        ['automedbench-full-braintumor-cls-task', 'automed-families'],
+        ['healthagentbench-predict-hypertension', 'health-families'],
+      ]) {
+        await go(`${id}/0/overview`, id);
+        await page.screenshot({
+          path: resolve(process.env.TASK_EXPLORER_SCREENSHOTS, name + '.png'),
+          fullPage: true,
+        });
       }
     }
     // The same legacy case link remains readable at the comment's viewport and on mobile.
-    for(const width of [1010,390]){
-      await page.setViewportSize({width,height:width===390?844:1324});
-      for(const [hash,id,section] of [
-        [`healthagentbench/task/${case29}/0/catalogue`,clinical,'overview'],
-        ['automedbench-full-tsg-multiorgan-seg-task/1/brief','automedbench-full-tsg-multiorgan-seg-task','overview'],
-        ['imaging101-ssnp-odt/0/overview','imaging101-ssnp-odt','overview'],
-        ['bcer/0/examples','bcer','examples'],
-        ['rexmle/0/sources','rexmle','sources']]){
-        await go(hash,id,section);
-        assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,hash+' overflows');
+    for (const width of [1010, 390]) {
+      await page.setViewportSize({ width, height: width === 390 ? 844 : 1324 });
+      for (const [hash, id, section] of [
+        [`healthagentbench/task/${case29}/0/catalogue`, clinical, 'overview'],
+        [
+          'automedbench-full-tsg-multiorgan-seg-task/1/brief',
+          'automedbench-full-tsg-multiorgan-seg-task',
+          'overview',
+        ],
+        ['imaging101-ssnp-odt/0/overview', 'imaging101-ssnp-odt', 'overview'],
+        ['bcer/0/examples', 'bcer', 'examples'],
+        ['rexmle/0/sources', 'rexmle', 'sources'],
+      ]) {
+        await go(hash, id, section);
+        assert.equal(
+          await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
+          false,
+          hash + ' overflows',
+        );
       }
-      if(width===390 && process.env.TASK_EXPLORER_SCREENSHOTS){
-        await go(`healthagentbench/task/${case29}/0/catalogue`,clinical);
-        await page.screenshot({path:resolve(process.env.TASK_EXPLORER_SCREENSHOTS,'catalogue-mobile.png'),fullPage:true});
+      if (width === 390 && process.env.TASK_EXPLORER_SCREENSHOTS) {
+        await go(`healthagentbench/task/${case29}/0/catalogue`, clinical);
+        await page.screenshot({
+          path: resolve(process.env.TASK_EXPLORER_SCREENSHOTS, 'catalogue-mobile.png'),
+          fullPage: true,
+        });
       }
     }
-    assert.deepEqual(errors,[]);assert.deepEqual(requests,[]);
-    const result={briefs:data.entries.length,taskFamilies:new Set(data.entries.map(e=>e.task_family||e.id)).size,sourceRecords:records,conditions,nativeImagesDecoded:images,conceptualIllustrations:drawings,diagramTypes:diagramTypes.size,sourcePreviews,localSources,sourceReader:'pass',keyboardFocus:'pass',groupedTaskList:'pass',datasetVariants:'pass',caseDifferences:'pass',legacyLinksAndBack:'pass',collapsedProvenance:'pass',search:'pass',referenceReveal:'pass',mobile:'pass',pageErrors:errors,remoteRequests:requests};
-    if(process.argv[3]){const p=resolve(process.argv[3]);fs.mkdirSync(dirname(p),{recursive:true});fs.writeFileSync(p,JSON.stringify(result,null,2)+'\n')}
+    assert.deepEqual(errors, []);
+    assert.deepEqual(requests, []);
+    const result = {
+      briefs: data.entries.length,
+      taskFamilies: new Set(data.entries.map((e) => e.task_family || e.id)).size,
+      sourceRecords: records,
+      conditions,
+      nativeImagesDecoded: images,
+      conceptualIllustrations: drawings,
+      diagramTypes: diagramTypes.size,
+      sourcePreviews,
+      localSources,
+      sourceReader: 'pass',
+      keyboardFocus: 'pass',
+      groupedTaskList: 'pass',
+      datasetVariants: 'pass',
+      caseDifferences: 'pass',
+      legacyLinksAndBack: 'pass',
+      collapsedProvenance: 'pass',
+      search: 'pass',
+      referenceReveal: 'pass',
+      mobile: 'pass',
+      pageErrors: errors,
+      remoteRequests: requests,
+    };
+    if (report) {
+      const p = resolve(report);
+      fs.mkdirSync(dirname(p), { recursive: true });
+      fs.writeFileSync(p, JSON.stringify(result, null, 2) + '\n');
+    }
     console.log(JSON.stringify(result));
-  } finally {await browser.close()}
-})().catch(e=>{console.error(e);process.exit(1)});
+  } finally {
+    await context.close();
+  }
+}
+
+module.exports = { checkExplorer };
+if (require.main === module) {
+  withBrowser((browser) =>
+    checkExplorer(browser, process.argv[2] || 'runs/task-explorer/index.html', process.argv[3]),
+  ).catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

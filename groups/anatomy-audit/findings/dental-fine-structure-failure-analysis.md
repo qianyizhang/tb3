@@ -56,7 +56,7 @@ pulp labels and review an example demonstrating that convention before a further
 trial. For canals, distinguish target localization from tube width and annotated
 extent. More normal examples alone do not directly address the identified gap.
 
-The [full local report](/Users/zhangqy/pkgs/tb3/.local/dental-reference-ablation-20260921/fine-structure-diagnosis/report.md)
+The [full local report](../../../.local/dental-reference-ablation-20260921/fine-structure-diagnosis/report.md)
 contains source-linked methods, native CT overlays, gate counts, intermediate
 scores, fixed-radius sensitivity and reproducible commands. The
 [compact evidence](evidence/dental-fine-structure-failure-analysis.json) retains

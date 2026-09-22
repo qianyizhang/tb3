@@ -73,7 +73,7 @@ The six-tour data bundle falls from 38.81 MB to 15.54 MB, a 60.0% reduction, wit
 - `scripts/export_med_tours.cjs`: browser rendering, captions, encoding, music and manifests, using declared Playwright dependencies.
 - `docs/migration/retired-interfaces.json`: recovery locators for historical raw derivation programs. They are not runtime dependencies.
 
-Setup: `uv sync --locked --extra imaging`, `npm ci`, and
+Setup: `uv sync --locked --inexact --group dev --extra imaging`, `npm ci`, and
 `npx playwright install chromium`. Install FFmpeg separately when producing video.
 Use `med media prepare` after restoring the listed input files, then `med media check`.
 `TOUR_BROWSER` is an optional explicit browser executable; otherwise Playwright's

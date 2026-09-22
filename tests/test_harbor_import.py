@@ -4,13 +4,12 @@ from __future__ import annotations
 
 import copy
 import json
-from pathlib import Path
 import tempfile
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
 from tb3_medical import harbor as core
-
 
 PHASE = {
     "started_at": "2026-09-12T00:00:00Z",
@@ -279,7 +278,7 @@ class HarborImportTests(unittest.TestCase):
             with self.subTest(target=target):
                 source = self.fixture(name)
 
-                def change_after_parse(stdout):
+                def change_after_parse(stdout, source=source, target=target):
                     parsed = original_parser(stdout)
                     changed = source if target == "result" else stdout
                     changed.write_text(changed.read_text(encoding="utf-8") + "\n", encoding="utf-8")

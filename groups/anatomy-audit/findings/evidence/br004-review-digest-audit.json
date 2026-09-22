@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "audit": "BR-004 retained review evidence digests",
+  "audited_on": "2026-09-22",
+  "actor": "assistant",
+  "repository_commit": "d543183bcc7d74c3f8df0b6a991ba7173f4bf481",
+  "review_id": "legacy-review-630e0e6817e568d5559b",
+  "review_path": "groups/anatomy-audit/reviews/legacy-review-630e0e6817e568d5559b.json",
+  "experiment_id": "anatomy-audit-br004",
+  "observation_id": "observation-a38a32588a93bf0ce237cdff",
+  "method": "Compare the review's recorded SHA-256 values with retained bytes and available Git revisions. No authoring module, scorer, model trial or historical freeze was executed or regenerated.",
+  "mismatches": [
+    {
+      "path": "groups/anatomy-audit/findings/sources/analyses/br004-single-patient.md",
+      "expected_sha256": "fb7ff4a3895721789a20b8098b27f07b73ad00d65081d991ccf086c999403d00",
+      "observed_sha256": "b145c769b67d7da931cf23de9b2fbde4189e87eee96d9abb2196ad1b70ead8d1",
+      "history": "Observed bytes were introduced at this path in da40955 and match the earlier catalog/analyses/br004-single-patient.md bytes at 8c37f3d. The expected digest was not found among the inspected Git revisions."
+    },
+    {
+      "path": "docs/evidence/br004-single-patient-reviews.json",
+      "expected_sha256": "56db449e29066a2408c2aadcc08ea5d013448df02af043c779c0213851d2da92",
+      "observed_sha256": "da3be70f383a0e389a4898abe6eaaaeeb9fbfbd8990cbf27fbd0309a4e8d3e3d",
+      "history": "The retained file has these observed bytes since 8c37f3d. The expected digest was not found among the inspected Git revisions."
+    }
+  ],
+  "interpretation": "Confirmed provenance metadata defect predating this cleanup. Available history suggests stale review digests, but does not establish the originally intended evidence bytes.",
+  "effect": "The review's exact-byte evidence chain needs review. This does not change the original run outcome, score or clinical interpretation.",
+  "resolution": "Recover and verify the intended evidence bytes, or append a new scoped review explicitly citing the retained files and resolving the provenance issue. Do not overwrite the historical review or silently replace its digests."
+}

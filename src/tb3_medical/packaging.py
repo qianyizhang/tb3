@@ -3,9 +3,9 @@
 import hashlib
 import json
 import os
-from pathlib import Path
 import re
 import subprocess
+from pathlib import Path
 
 from . import core as c
 

@@ -51,7 +51,8 @@ For a social post, retain the source attribution and the experiment qualificatio
 
 ## Reproduce the presentation
 
-Install the optional declared tools with `uv sync --locked --extra imaging` and
+Install the optional declared tools with
+`uv sync --locked --inexact --group dev --extra imaging` and
 `npm ci`. Restore the exact files listed by `inputs.json` to `.local/inputs/tours/`.
 The snapshot retains the historical raw derivation provenance. Then run:
 

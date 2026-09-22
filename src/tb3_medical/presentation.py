@@ -3,12 +3,12 @@
 import base64
 import functools
 import html
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
 import os
-from pathlib import Path
 import re
 import shutil
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from . import core as c
@@ -95,6 +95,8 @@ def check(root):
             sources = {}
             for path, digest in card["source_hashes"].items():
                 source = c.inside(root, path)
+                if c.sha(source) != digest:
+                    raise c.MedicalError("Source digest mismatch: " + path)
                 # Narrative checks compare the small authored measurements, not raw runs.
                 sources[path] = c.read(source)
             for measurement in card["measurements"]:
@@ -277,11 +279,11 @@ def present(root, output, local_media=False):
         page = output / "stories" / (group["id"] + ".html")
         page.parent.mkdir(exist_ok=True)
 
-        def story_link(target):
+        def story_link(target, *, page_output=page, story_source=source):
             parsed = urlsplit(target)
             if parsed.scheme or not parsed.path:
-                return copy_link(target, page)
-            absolute = (source.parent / unquote(parsed.path)).resolve()
+                return copy_link(target, page_output)
+            absolute = (story_source.parent / unquote(parsed.path)).resolve()
             if not absolute.is_relative_to(root):
                 return None
             rel = absolute.relative_to(root).as_posix()
@@ -292,7 +294,7 @@ def present(root, output, local_media=False):
                     return "../" + rel + ("?" + parsed.query if parsed.query else "")
                 if absolute.suffix != ".md":
                     return None
-            return copy_link(rel + ("#" + parsed.fragment if parsed.fragment else ""), page)
+            return copy_link(rel + ("#" + parsed.fragment if parsed.fragment else ""), page_output)
 
         body = markdown(source.read_text(), story_link)
         flags = group["current"]["review_flags"]

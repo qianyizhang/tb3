@@ -5,10 +5,12 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
-from pathlib import Path
+import os
 import subprocess
 import tempfile
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
 from tb3_medical.hygiene import index_files, problems
 
@@ -18,6 +20,14 @@ POLICY = json.loads((ROOT / "configs/artifact-policy.json").read_text())
 
 class HygieneTests(unittest.TestCase):
     def setUp(self):
+        # A caller may be checking an alternate index; fixture Git must stay local.
+        self.enterContext(
+            patch.dict(
+                os.environ,
+                {key: value for key, value in os.environ.items() if not key.startswith("GIT_")},
+                clear=True,
+            )
+        )
         temp = tempfile.TemporaryDirectory()
         self.addCleanup(temp.cleanup)
         self.root = Path(temp.name)

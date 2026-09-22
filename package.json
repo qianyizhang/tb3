@@ -1,10 +1,20 @@
 {
   "name": "tb3-medical-media",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
-    "media": "node scripts/export_med_tours.cjs"
+    "media": "node scripts/export_med_tours.cjs",
+    "format:check": "prettier --check 'scripts/*.cjs' 'tests/*.cjs'",
+    "format": "prettier --write 'scripts/*.cjs' 'tests/*.cjs'"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 100
   },
   "devDependencies": {
-    "playwright": "1.58.2"
+    "playwright": "1.58.2",
+    "prettier": "3.9.8"
   }
 }

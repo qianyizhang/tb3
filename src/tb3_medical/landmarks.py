@@ -1,12 +1,13 @@
 """Native CT/MRI landmark preparation, saved-output replay and review views."""
 
-from pathlib import Path
 import hashlib
 import html
 import json
 import shutil
+from pathlib import Path
 
-from . import core as c, score_ct, score_mri
+from . import core as c
+from . import score_ct, score_mri
 
 
 def case_inputs(root, experiment, case):

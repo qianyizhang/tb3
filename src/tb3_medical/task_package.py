@@ -15,11 +15,11 @@ import importlib.metadata
 import json
 import math
 import os
-from pathlib import Path
 import shutil
 import subprocess
 import sys
 import tempfile
+from pathlib import Path
 
 
 def sha(path):
@@ -119,7 +119,7 @@ def materialize(
         sources.append(source)
     dest.mkdir(parents=True, exist_ok=False)
     try:
-        for entry, source in zip(entries, sources):
+        for entry, source in zip(entries, sources, strict=True):
             target = inside(dest, entry["path"])
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(source, target)
@@ -234,7 +234,8 @@ def compare(actual, expected, *, atol=1e-8, rtol=1e-8, path=""):
             isinstance(actual, list)
             and len(actual) == len(expected)
             and all(
-                compare(a, b, atol=atol, rtol=rtol, path=path) for a, b in zip(actual, expected)
+                compare(a, b, atol=atol, rtol=rtol, path=path)
+                for a, b in zip(actual, expected, strict=True)
             )
         )
     if isinstance(expected, (int, float)) and not isinstance(expected, bool):
@@ -594,7 +595,7 @@ def main(argv=None):
             write(
                 args.output,
                 {
-                    "observed_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+                    "observed_at": dt.datetime.now(dt.UTC).isoformat(),
                     "experiment_id": manifest["experiment_id"],
                     "manifest_sha256": sha(args.root / "manifest.json"),
                     "runner_sha256": sha(__file__),

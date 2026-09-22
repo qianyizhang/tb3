@@ -1,0 +1,19 @@
+name: Set up locked Python environment
+description: Install the repository's pinned uv and sync its locked development environment.
+inputs:
+  python-version:
+    description: Python version for the job.
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Install uv and Python
+      uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+      with:
+        version-file: pyproject.toml
+        python-version: ${{ inputs.python-version }}
+        enable-cache: true
+        cache-dependency-glob: uv.lock
+    - name: Sync locked development environment
+      shell: bash
+      run: uv sync --locked --group dev

@@ -109,17 +109,17 @@ correct association for selected findings**. This run does not isolate every
 miss, establish clinical GT error, or show that supplying clinical reports would
 fix the result. No additional point-guided trial was run.
 
-![A recovered new lesion and two missed new targets](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-case02/analysis/followup-4.png)
+![A recovered new lesion and two missed new targets](../../../.local/longitudinal-ct-case02/analysis/followup-4.png)
 
 Cyan solid contours are reference and purple solid contours are saved output;
 numbers are their respective local instance IDs. GT-selected native planes and
 crops were generated only after inference. They do not constitute an exhaustive
 false-positive review. Additional sheets:
-[BL 1–4](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-case02/analysis/baseline-1.png),
-[BL 5–7](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-case02/analysis/baseline-2.png),
-[FU 1–4](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-case02/analysis/followup-1.png),
-[FU 5–8](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-case02/analysis/followup-2.png),
-[FU 9–12](/Users/zhangqy/pkgs/tb3/.local/longitudinal-ct-case02/analysis/followup-3.png).
+[BL 1–4](../../../.local/longitudinal-ct-case02/analysis/baseline-1.png),
+[BL 5–7](../../../.local/longitudinal-ct-case02/analysis/baseline-2.png),
+[FU 1–4](../../../.local/longitudinal-ct-case02/analysis/followup-1.png),
+[FU 5–8](../../../.local/longitudinal-ct-case02/analysis/followup-2.png),
+[FU 9–12](../../../.local/longitudinal-ct-case02/analysis/followup-3.png).
 
 ## Interpretation boundaries
 
@@ -153,4 +153,4 @@ failure. This audit cannot exclude unseen training exposure to a public dataset.
 · [Recovery and verification method](../methods/longitudinal-ct-case02/README.md).
 
 [Machine-readable results, size strata, trace statements and hashes](evidence/longitudinal-ct-case02-astra-medium.json)
-· [Exact agent report](/Users/zhangqy/pkgs/tb3/.local/attempts/attempt-92800845745342f4/job/task__Hq6FNdV/artifacts/app/answer/report.md).
+· [Exact agent report](../../../.local/attempts/attempt-92800845745342f4/job/task__Hq6FNdV/artifacts/app/answer/report.md).

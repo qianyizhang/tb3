@@ -1,13 +1,16 @@
 """Offline regressions for the supported daily workflow; no model or Docker jobs."""
 
 import json
-from pathlib import Path
+import os
 import subprocess
 import tempfile
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
-from tb3_medical import core as c, workflow as w, packaging, presentation
+from tb3_medical import core as c
+from tb3_medical import packaging, presentation
+from tb3_medical import workflow as w
 
 
 class MedicalTests(unittest.TestCase):
@@ -196,7 +199,7 @@ class MedicalTests(unittest.TestCase):
         self.assertEqual(
             c.projection(self.root)[attempt["id"]]["current"]["execution_state"], "interrupted"
         )
-        managed = str((Path(attempt["execution_path"]).parent / "job/trial/result.json"))
+        managed = str(Path(attempt["execution_path"]).parent / "job/trial/result.json")
         c.write_new(self.root / ".local/independent/trial/result.json", c.read(self.root / managed))
         first, second = w.collect(
             self.root, "study", [managed, ".local/independent/trial/result.json"]
@@ -280,7 +283,24 @@ class MedicalTests(unittest.TestCase):
         with self.assertRaises(c.MedicalError):
             w.restore_freeze(self.root, frozen)
 
+    def test_freeze_rejects_added_public_files_without_rewriting_snapshot(self):
+        frozen = w.freeze(self.root, "study")
+        snapshot = self.root / frozen["snapshot_path"]
+        before = w.task_files(snapshot)
+        (snapshot / "patient-hint.txt").write_text("Unexpected extra solver input")
+        with self.assertRaises(c.MedicalError):
+            w.restore_freeze(self.root, frozen)
+        self.assertEqual(frozen["files"], before)
+        self.assertTrue((snapshot / "patient-hint.txt").exists())
+
     def test_export_uses_commit_bytes_compact_recipe_and_explicit_flagged_draft(self):
+        self.enterContext(
+            patch.dict(
+                os.environ,
+                {key: value for key, value in os.environ.items() if not key.startswith("GIT_")},
+                clear=True,
+            )
+        )
         subprocess.run(["git", "init", "-q", str(self.root)], check=True)
         subprocess.run(["git", "add", "proof.txt"], cwd=self.root, check=True)
         subprocess.run(

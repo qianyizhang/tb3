@@ -7,9 +7,9 @@ import hashlib
 import json
 import math
 import os
-from pathlib import Path
 import subprocess
 import time
+from pathlib import Path
 
 WEIGHTS_SHA256 = "79d8c9dca6db4d69d3f905579e5250af05e859fff9c1f543e89a513c3028ce76"
 
@@ -38,10 +38,10 @@ def validate_boxes(boxes, width, height):
 def infer(args):
     import cv2
     import numpy as np
+    import torch
     from PIL import Image
     from segment_anything.modeling import MaskDecoder, PromptEncoder, TwoWayTransformer
     from tiny_vit_sam import TinyViT
-    import torch
     from torch import nn
     from torch.nn import functional as F
 

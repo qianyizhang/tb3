@@ -24,7 +24,9 @@ Finding submission candidates is an optional later step, not the research goal.
 [Contribution rules](../CONTRIBUTING.md) cover development checks. The installed
 `med` command is the supported interface; `med --help` and `med COMMAND --help`
 describe its arguments. The executable status definitions live in
-[vocabulary.json](../src/tb3_medical/vocabulary.json).
+[vocabulary.json](../src/tb3_medical/vocabulary.json). Maintained-link scope lives
+in [doc-links.json](../configs/doc-links.json); preserved historical evidence is
+excluded explicitly rather than rewritten to match the current tree.
 
 ## Where information belongs
 

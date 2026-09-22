@@ -1,16 +1,18 @@
 """Offline authoring/build checks; no native images or external tasks required."""
 
-from contextlib import redirect_stdout
 import base64
 import hashlib
 import io
 import json
-from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from contextlib import redirect_stdout
+from pathlib import Path
 
-from tb3_medical import cli, core as c, task_briefs as briefs
+from tb3_medical import cli
+from tb3_medical import core as c
+from tb3_medical import task_briefs as briefs
 
 
 class TaskBriefTests(unittest.TestCase):

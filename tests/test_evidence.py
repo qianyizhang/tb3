@@ -1,13 +1,14 @@
 """Evidence inventories stay deterministic and separate collection from interpretation."""
 
-from contextlib import redirect_stdout
 import io
 import json
-from pathlib import Path
 import tempfile
 import unittest
+from contextlib import redirect_stdout
+from pathlib import Path
 
-from tb3_medical import cli, core as c, evidence
+from tb3_medical import cli, evidence
+from tb3_medical import core as c
 
 
 class EvidenceTests(unittest.TestCase):

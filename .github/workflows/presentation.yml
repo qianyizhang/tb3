@@ -15,9 +15,12 @@ on:
       - 'uv.lock'
       - 'discussions/**'
       - 'tests/**'
+      - 'scripts/**'
       - 'package*.json'
       - 'Makefile'
       - '.github/workflows/presentation.yml'
+      - '.github/actions/**'
+      - '.python-version'
   push:
     paths:
       - 'src/**'
@@ -33,9 +36,12 @@ on:
       - 'uv.lock'
       - 'discussions/**'
       - 'tests/**'
+      - 'scripts/**'
       - 'package*.json'
       - 'Makefile'
       - '.github/workflows/presentation.yml'
+      - '.github/actions/**'
+      - '.python-version'
   workflow_dispatch:
 permissions:
   contents: read
@@ -49,19 +55,17 @@ jobs:
     env:
       PLAYWRIGHT_CHANNEL: chromium
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v5
+      - uses: ./.github/actions/setup-python
         with:
           python-version: '3.12'
-      - uses: astral-sh/setup-uv@v6
-      - run: uv sync --locked
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      - run: npx --no-install playwright install --with-deps chromium
       - name: Check portable navigation, sources and interaction
         run: make presentation-check

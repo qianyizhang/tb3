@@ -1,12 +1,11 @@
-# Experiment support and verification — Cardiac motion
+# 2026-09-21 reproduction baseline — Cardiac motion
 
-This is the canonical group-owned coverage list, using the
-[shared capability checklist](../../../docs/reproduce.md#experiment-support-and-verification).
-The user accepted the selected core backfill on 2026-09-21: another agent must be
-able to recover data, prepare an environment, execute and score; stochastic model
-outputs may differ. [Decision and scope](../../../discussions/experiment-support-backfill-2026-09-21.md).
+This page preserves the group-owned backfill accepted on 2026-09-21. It is not the
+current experiment inventory; use `uv run med list --group cardiac-motion` for that.
+See the [shared capability checklist](../../../docs/reproduce.md#experiment-support-and-verification)
+and the [decision record](../../../discussions/experiment-support-backfill-2026-09-21.md).
 
-## Explicit experiment list
+## Baseline experiment list
 
 Counts are canonical attempt/evaluation records, including controls and replays;
 they are not counts of independent model runs. A zero-record entry may retain an
@@ -20,60 +19,12 @@ checks the 38 experiment records and 187 source hashes across the workbench.
 | [cardiac-motion-br029](../experiments/br029/experiment.toml) · [protocol](../experiments/br029/protocol.md) | 0 / 0 | Source-only entry; no canonical attempt imported and no maintained execution recipe selected. |
 | [cardiac-motion-br031](../experiments/br031/experiment.toml) · [protocol](../experiments/br031/protocol.md) | 10 / 10 | Historical source/protocol; no maintained execution recipe selected. |
 | [cardiac-motion-br032](../experiments/br032/experiment.toml) · [protocol](../experiments/br032/protocol.md) | 3 / 3 | Historical source/protocol; no maintained execution recipe selected. |
-| [cardiac-motion-br034](../experiments/br034/experiment.toml) · [protocol](../experiments/br034/protocol.md) | 3 / 3 | [Recipe](../experiments/br034/reproduction/README.md): 1 task variants, 2 saved-output pairs, 5 submitted-program transfers. |
+| [cardiac-motion-br034](../experiments/br034/experiment.toml) · [protocol](../experiments/br034/protocol.md) | 3 / 3 | [Recipe](../experiments/br034/reproduction/README.md): 1 task variant, 2 saved-output pairs, 5 submitted-program transfers. |
 | [cardiac-motion-br035](../experiments/br035/experiment.toml) · [protocol](../experiments/br035/protocol.md) | 6 / 6 | [Recipe](../experiments/br035/reproduction/README.md): 2 task variants, 4 saved-output pairs, 2 submitted-program transfers. |
 
-## Core capability checklist
+## Using this baseline
 
-Each checked item applies only to the recipe/cases above, not every historical
-experiment. Runtime proof is in the shared receipt and its per-experiment entries.
-Scientific assessments, clinical disputes and old scores remain separate.
-
-- [x] Evidence and interpretation: canonical protocols, attempt/observation links,
-  group findings and all experiment-level source hashes reconciled.
-- [x] Inputs/environment: complete prepared bundles, file size/SHA-256/mode checks,
-  source records and declared Docker/pinned Python requirements.
-- [x] Preparation: fresh materialization, plus recovery from transferred data in an
-  isolated directory without historical author paths. This restores prepared
-  fixtures; it does not regenerate every fixture from upstream raw datasets.
-- [x] Execution/collection: selected frozen task definitions use the shared
-  launcher/collector; portable Docker oracle/no-op execution is checked. No LLM
-  trial was launched as part of this backfill.
-- [x] Saved-output scoring: frozen scorers invoked through maintained adapters;
-  metric comparison excludes only declared timing fields and uses 1e-8 numeric
-  absolute/relative tolerance. Original outcomes are unchanged.
-- [x] Inspection: portable task instructions/input inventory and existing group
-  stories. This does not claim new native-image viewers or regeneration of every
-  historical figure. Landmarks retain their existing native CT/MRI viewer.
-- [x] Export: fresh complete handoff, concrete review flags/lineage, and recovery
-  plus scoring outside the checkout on this machine. Other-machine proof remains
-  to be established by the receiver.
-- [x] Fresh execution: oracle/no-op controls for every listed variant. Where listed,
-  frozen submitted-program transfer execution is separately checked. Fresh
-  stochastic model reruns remain an intentional, unperformed operation.
-
-## Commands and retained limits
-
-Use the experiment ID and a case from its manifest:
-
-```sh
-uv run med prepare EXPERIMENT --case CASE --execute
-uv run med replay EXPERIMENT --case CASE
-uv run med bundle EXPERIMENT /path/to/NEW-bundle --include-flagged
-uv run med verify-package /path/to/NEW-bundle
-```
-
-A receiver runs `reproduce.py verify`, `replay`, `container-controls` and `evaluate`
-from the bundle. Read its README for declared dependencies and fresh model launch
-commands. Copy the whole bundle; a source URL or Git clone alone does not include
-large prepared fixtures. Local checked bundles are under
-`runs/support-backfill-20260921/final/EXPERIMENT/`.
-
-The unselected historical entries above are the remaining backfill list. Reopen a
-specific recipe when reused; preserve its original configuration/outcomes and
-record actual missing inputs. No historical-only entry is silently marked runnable.
-
-The verified handoff index is `runs/support-backfill-20260921/HANDOFF.md`.
-It selects the corrected BR-040 bundle under `final-corrected/`; the earlier
-pre-commit draft remains local but is superseded. Exact bundle paths and hashes
-are recorded in the verification receipt.
+The checklist applies only to the named recipes and cases. The tracked receipt is
+the authority for what was checked; complete local bundles remain untracked. Use
+the [shared reproduction guide](../../../docs/reproduce.md) for commands and proof
+semantics. Reassess an unselected entry before reuse; never rewrite its old outcome.

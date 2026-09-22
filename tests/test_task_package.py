@@ -3,11 +3,11 @@
 import contextlib
 import io
 import json
-from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
 from tb3_medical import task_package as package
@@ -96,7 +96,8 @@ class TaskPackageTests(unittest.TestCase):
         self.assertEqual((restored / "saved/answer/answer.json").read_text(), '{"answer":42}\n')
 
     def test_bundle_preserves_review_flags_and_writes_lineage(self):
-        from tb3_medical import core as c, workflow as w
+        from tb3_medical import core as c
+        from tb3_medical import workflow as w
 
         experiment = {"id": "study", "reproduction_manifest": "recipe.json"}
         state = {"assessment": "needs_review", "attention": True}
@@ -117,7 +118,8 @@ class TaskPackageTests(unittest.TestCase):
         )
 
     def test_replay_appends_observation_and_preserves_original_execution(self):
-        from tb3_medical import core as c, workflow as w
+        from tb3_medical import core as c
+        from tb3_medical import workflow as w
 
         dest = self.build()
         experiment = {

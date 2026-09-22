@@ -7,13 +7,13 @@ from __future__ import annotations
 
 import datetime as dt
 import hashlib
-from importlib.resources import files
 import json
 import os
-from pathlib import Path
 import re
 import tomllib
 import uuid
+from importlib.resources import files
+from pathlib import Path
 
 import tomli_w
 
@@ -79,7 +79,7 @@ REQUIRED = {
 
 
 def now():
-    return dt.datetime.now(dt.timezone.utc).isoformat()
+    return dt.datetime.now(dt.UTC).isoformat()
 
 
 def identifier(value):
