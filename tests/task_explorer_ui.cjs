@@ -244,12 +244,80 @@ async function checkExplorer(browser, input, report) {
     await page.locator('.scene-canvas').scrollIntoViewIfNeeded();
     assert.equal(await page.locator('.scene-player').getAttribute('data-playing'), 'true');
     await page.waitForFunction(() => document.querySelector('.scene-player').dataset.stage === '1');
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player').dataset.playing === 'false',
+      null,
+      { timeout: 18000 },
+    );
+    assert.equal(await page.locator('.scene-player').getAttribute('data-stage'), '2');
+    assert.equal(await page.locator('.scene-play').innerText(), 'Replay');
+    const settled = await pixels();
+    await page.waitForTimeout(180);
+    assert.equal(await pixels(), settled, 'The demonstration finishes on a still output');
+    await page.locator('.scene-play').click();
+    assert.equal(await page.locator('.scene-player').getAttribute('data-stage'), '0');
+    assert.equal(await page.locator('.scene-player').getAttribute('data-playing'), 'true');
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.waitForFunction(
       () => document.querySelector('.scene-player').dataset.playing === 'false',
     );
     assert.equal(await page.locator('.scene-player').getAttribute('data-playing'), 'false');
+    // Manual stage changes ease between static poses, unless reduced motion is on.
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await page.locator('[data-scene-step="2"]').click();
+    const changing = await pixels();
+    await page.waitForTimeout(450);
+    const finalPose = await pixels();
+    assert.notEqual(finalPose, changing, 'Stage changes crossfade into the next pose');
+    await page.waitForTimeout(180);
+    assert.equal(
+      await pixels(),
+      finalPose,
+      'A manual transition settles without starting playback',
+    );
+    await page.locator('.scene-reset').click();
+    assert.equal(await page.locator('.scene-play').innerText(), 'Play');
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.locator('[data-scene-step="2"]').click();
+    const reducedPose = await pixels();
+    await page.waitForTimeout(180);
+    assert.equal(await pixels(), reducedPose, 'Reduced motion skips the crossfade');
+    // GPU failure preserves inspectable surfaces through the Canvas renderer.
+    for (const failure of ['unavailable', 'lost']) {
+      const software = await context.newPage();
+      software.on('pageerror', (e) => errors.push(e.message));
+      await software.addInitScript((failure) => {
+        const getContext = HTMLCanvasElement.prototype.getContext;
+        HTMLCanvasElement.prototype.getContext = function (type, ...options) {
+          if (failure === 'unavailable' && type === 'webgl') return null;
+          const context = getContext.call(this, type, ...options);
+          if (type === 'webgl') window.surfaceContext = context;
+          return context;
+        };
+      }, failure);
+      await software.goto(pathToFileURL(file).href + '#tb3-dental-v3/0/overview');
+      await software.locator('.scene-player[data-rendered="true"]').waitFor();
+      if (failure === 'lost') {
+        assert.equal(
+          await software.locator('.scene-player').getAttribute('data-surface-renderer'),
+          'webgl',
+        );
+        await software.evaluate(() => {
+          window.surfaceContext.getExtension('WEBGL_lose_context').loseContext();
+        });
+        await software.waitForFunction(() => window.surfaceContext.isContextLost());
+      }
+      await software.locator('.scene-canvas').focus();
+      await software.keyboard.press('ArrowRight');
+      assert.equal(
+        await software.locator('.scene-player').getAttribute('data-surface-renderer'),
+        'canvas',
+        `GPU ${failure}: software surfaces remain available`,
+      );
+      await software.close();
+    }
     // Off-screen scenes stop changing and navigation releases the old canvas.
+    await page.bringToFront();
     await page.locator('.scene-play').click();
     await page.setViewportSize({ width: 1010, height: 600 });
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
@@ -673,6 +741,8 @@ async function checkExplorer(browser, input, report) {
       illustratedOverviews: drawings,
       animated3DScenes: drawings,
       motionPauseReducedMotionAndCamera: 'pass',
+      singlePassReplayAndCrossfade: 'pass',
+      webglUnavailableAndLostFallback: 'pass',
       canvasUnavailableFallback: 'pass',
       offscreenAndNavigationCleanup: 'pass',
       localSources,

@@ -353,6 +353,7 @@ def build(
                     "illustrations.js",
                     "scene-anatomy.js",
                     "scene-models.js",
+                    "scene-surfaces.js",
                     "scenes.js",
                     "datasets.js",
                     "app.js",

@@ -72,18 +72,94 @@ const AnatomyAssets = (() => {
       vertices: p.vertices.map((v) => v.map((n, i) => (n - center[i]) * scale)),
     }));
   };
+  // Weld periodic seams and collapsed poles before computing normals. Leaving
+  // each parameter strip disconnected produced spikes and visible shading seams.
   function parametric(id, label, fn, rows = 30, cols = 48) {
     const vertices = [],
-      faces = [];
+      faces = [],
+      indices = [],
+      unique = new Map();
     for (let j = 0; j <= rows; j++)
-      for (let i = 0; i <= cols; i++) vertices.push(fn(i / cols, j / rows));
+      for (let i = 0; i <= cols; i++) {
+        const p = fn(i / cols, j / rows),
+          key = p.map((v) => Math.round(v * 1e6)).join(',');
+        if (!unique.has(key)) {
+          unique.set(key, vertices.length);
+          vertices.push(p);
+        }
+        indices.push(unique.get(key));
+      }
     for (let j = 0; j < rows; j++)
       for (let i = 0; i < cols; i++) {
         const a = j * (cols + 1) + i,
           b = a + cols + 1;
-        faces.push([a, b, a + 1], [a + 1, b, b + 1]);
+        for (const face of [
+          [a, b, a + 1],
+          [a + 1, b, b + 1],
+        ]) {
+          const mapped = face.map((n) => indices[n]);
+          if (new Set(mapped).size === 3) faces.push(mapped);
+        }
       }
     return { id, label, vertices, faces, provenance: 'authored' };
+  }
+  // One display-only Loop subdivision rounds coarse source silhouettes. Retained
+  // meshes and scientific evidence remain byte-identical; assemblies share a frame.
+  function subdivide(part) {
+    const { vertices, faces } = part;
+    const neighbors = vertices.map(() => new Set()),
+      edges = new Map();
+    const key = (a, b) => (a < b ? a + ':' + b : b + ':' + a);
+    for (const [a, b, c] of faces)
+      for (const [u, v, opposite] of [
+        [a, b, c],
+        [b, c, a],
+        [c, a, b],
+      ]) {
+        neighbors[u].add(v);
+        neighbors[v].add(u);
+        const id = key(u, v);
+        if (!edges.has(id)) edges.set(id, { a: u, b: v, opposites: [] });
+        edges.get(id).opposites.push(opposite);
+      }
+    const boundary = vertices.map(() => []);
+    for (const edge of edges.values())
+      if (edge.opposites.length === 1) {
+        boundary[edge.a].push(edge.b);
+        boundary[edge.b].push(edge.a);
+      }
+    const result = vertices.map((p, i) => {
+      if (boundary[i].length === 2)
+        return p.map(
+          (v, q) => 0.75 * v + 0.125 * (vertices[boundary[i][0]][q] + vertices[boundary[i][1]][q]),
+        );
+      const adjacent = [...neighbors[i]],
+        n = adjacent.length;
+      if (!n) return [...p];
+      const beta = (5 / 8 - (3 / 8 + Math.cos((2 * Math.PI) / n) / 4) ** 2) / n;
+      return p.map(
+        (v, q) => (1 - n * beta) * v + beta * adjacent.reduce((sum, j) => sum + vertices[j][q], 0),
+      );
+    });
+    for (const edge of edges.values()) {
+      edge.index = result.length;
+      result.push(
+        vertices[edge.a].map((v, q) =>
+          edge.opposites.length === 2
+            ? 0.375 * (v + vertices[edge.b][q]) +
+              0.125 * (vertices[edge.opposites[0]][q] + vertices[edge.opposites[1]][q])
+            : 0.5 * (v + vertices[edge.b][q]),
+        ),
+      );
+    }
+    const refined = [];
+    for (const [a, b, c] of faces) {
+      const ab = edges.get(key(a, b)).index,
+        bc = edges.get(key(b, c)).index,
+        ca = edges.get(key(c, a)).index;
+      refined.push([a, ab, ca], [b, bc, ab], [c, ca, bc], [ab, bc, ca]);
+    }
+    return { ...part, vertices: result, faces: refined };
   }
   // Authored cortical folds and dental surfaces stay distinct from extracted CT assets.
   function brain() {
@@ -95,16 +171,16 @@ const AnatomyAssets = (() => {
           const a = u * Math.PI * 2,
             b = v * Math.PI;
           const folds =
-            Math.sin(13 * a + 2.8 * Math.sin(4 * b)) * Math.sin(16 * b + 1.7 * Math.cos(5 * a));
-          const relief = 1 + 0.052 * folds + 0.028 * Math.cos(23 * a + 8 * b);
+            Math.sin(7 * a + 1.4 * Math.sin(3 * b)) * Math.sin(9 * b + 0.8 * Math.cos(3 * a));
+          const relief = 1 + 0.055 * folds * Math.sin(b) ** 2;
           return [
             side * (0.035 + 0.8 * (0.5 + 0.5 * Math.cos(a)) * Math.sin(b) * relief),
             0.64 * Math.cos(b) * relief + 0.2,
             0.92 * Math.sin(a) * Math.sin(b) * relief,
           ];
         },
-        36,
-        64,
+        28,
+        48,
       ),
     );
     const cerebellum = parametric(
@@ -113,14 +189,14 @@ const AnatomyAssets = (() => {
       (u, v) => {
         const a = u * Math.PI * 2,
           b = v * Math.PI,
-          ridge = 1 + 0.045 * Math.cos(b * 42);
+          ridge = 1 + 0.018 * Math.cos(b * 26) * Math.sin(b) ** 2;
         return [
           0.61 * Math.cos(a) * Math.sin(b) * ridge,
           -0.48 + 0.34 * Math.cos(b),
           -0.46 + 0.47 * Math.sin(a) * Math.sin(b) * ridge,
         ];
       },
-      24,
+      18,
       36,
     );
     const stem = parametric(
@@ -129,7 +205,7 @@ const AnatomyAssets = (() => {
       (u, v) => {
         const a = u * Math.PI * 2,
           r = 0.14 * Math.sin(v * Math.PI);
-        return [r * Math.cos(a), -0.38 - 0.65 * v, -0.07 - 0.18 * v + r * Math.sin(a)];
+        return [r * Math.cos(a), -0.64 + 0.29 * Math.cos(v * Math.PI), -0.13 + r * Math.sin(a)];
       },
       12,
       20,
@@ -156,7 +232,7 @@ const AnatomyAssets = (() => {
             const cusp = molar ? 0.04 * Math.cos(angle * 4) : canine ? 0.035 : 0;
             return [
               x + width * Math.cos(angle) * Math.sin(b),
-              0.22 + (0.2 + cusp) * Math.cos(b),
+              0.22 + (0.2 + cusp * Math.sin(b) ** 2) * Math.cos(b),
               z + (molar ? 0.19 : 0.11) * Math.sin(angle) * Math.sin(b),
             ];
           },
@@ -171,11 +247,11 @@ const AnatomyAssets = (() => {
             'Root',
             (u, v) => {
               const angle = u * Math.PI * 2,
-                radius = 0.075 * (1 - v) ** 0.6;
+                radius = 0.08 * Math.cos((v * Math.PI) / 2);
               return [
-                x + (molar ? (r ? 1 : -1) * (0.065 + 0.055 * v) : 0) + radius * Math.cos(angle),
-                0.15 - 0.65 * v,
-                z - 0.08 * v + radius * Math.sin(angle),
+                x + (molar ? (r ? 1 : -1) * (0.055 + 0.03 * v) : 0) + radius * Math.cos(angle),
+                0.12 - 0.49 * Math.sin((v * Math.PI) / 2),
+                z - 0.04 * v + radius * Math.sin(angle),
               ];
             },
             8,
@@ -195,17 +271,19 @@ const AnatomyAssets = (() => {
       const ids = groups[name] || (source[name] ? [name] : null);
       if (!ids) return null;
       parts = fit(
-        ids.map((id) => {
-          // Distant multi-organ arrangements use a lighter mesh, preserving the same source frame.
-          const data = name === 'torso' || name === 'abdomen' ? source[id].lod : source[id];
-          return {
-            id,
-            label: names[id],
-            faces: data.faces,
-            vertices: data.vertices.map(([r, a, s]) => [-r, s, a]),
-            provenance: 'TotalSegmentator',
-          };
-        }),
+        ids
+          .map((id) => {
+            // Distant multi-organ arrangements use a lighter mesh, preserving the same source frame.
+            const data = name === 'torso' || name === 'abdomen' ? source[id].lod : source[id];
+            return {
+              id,
+              label: names[id],
+              faces: data.faces,
+              vertices: data.vertices.map(([r, a, s]) => [-r, s, a]),
+              provenance: 'TotalSegmentator',
+            };
+          })
+          .map(subdivide),
       );
     }
     parts.forEach((part) => {

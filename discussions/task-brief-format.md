@@ -330,3 +330,22 @@ record of user acceptance or anatomical validation. Reopen the visual vocabulary
 if task semantics become ambiguous, annotation layering is misleading, or reader
 feedback identifies a remaining mismatch. See the
 [visual-system receipt](../docs/evidence/task-visual-system-2026-09-22.json).
+
+## Form and motion refinement — 2026-09-22
+
+Actor: **user** requested another review and a more elegant presentation, finding
+the animation and some spiky models cheap-looking. Actor: **assistant** refined
+the shared geometry: welded procedural seams/poles, rounded dental roots, gentler
+brain relief, stable vessel cross sections and display-only subdivision of coarse
+organ surfaces. Source masks and retained mesh bytes remain unchanged; these
+teaching surfaces do not gain anatomical validity from visual smoothing.
+
+One shared GPU surface renderer adds smooth matte lighting while retaining Canvas
+and SVG fallbacks. Playback makes a gentle single pass, eases between stages and
+settles on the output with Replay available. Static poses are cached; reduced
+motion skips transitions. Camera inspection and task-specific annotations remain.
+The revised local gallery and browser/geometry coverage are recorded in the
+[refinement receipt](../docs/evidence/task-elegance-2026-09-22.json).
+This is an assistant implementation for review, not a record of user acceptance.
+Reopen if silhouettes become misleading, task motion loses its meaning, or a
+renderer/device exposes new artifacts.

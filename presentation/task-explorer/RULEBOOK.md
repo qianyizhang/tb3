@@ -73,8 +73,9 @@ imported identifiers, authored briefs and available media are distinct coverage 
   measured improvements, patient findings, clinical thresholds or reference answers.
   Geometry and textures are stylized. Cite the task source for any numerical dimensions.
   `illustrations.js` owns the static SVG fallback. `scene-anatomy.js` owns reusable
-  anatomy assemblies; `scene-models.js` owns task geometry and legends; `scenes.js`
-  owns projection and playback. All are embedded with the navigation renderer in
+  anatomy assemblies; `scene-models.js` owns task geometry and legends;
+  `scene-surfaces.js` owns GPU surface lighting; `scenes.js` owns annotations,
+  software rendering and playback. All are embedded with the navigation renderer in
   the standalone HTML.
 - Every named entry, including supporting research and each grouped variant,
   needs an Overview visual. The composed catalogue enforces this with
@@ -106,6 +107,9 @@ evaluated results for the selected case.
   individual organs independently only for explanatory display. Small torso and
   abdomen assemblies use lower-detail meshes; individual organs keep fuller detail.
   Brain and dental procedural shapes remain explicitly authored schematics.
+  Display-only subdivision softens retained organ surfaces without changing
+  source assets. Weld procedural seams and poles; use bounded relief and rounded
+  dental roots. Transport vessel cross sections along their paths to avoid twists.
   See [asset provenance and rebuilding](anatomy/NOTICE.md).
 
 - Use one material language across the catalogue: softly shaded physical forms,
@@ -135,21 +139,28 @@ evaluated results for the selected case.
   surfaces do not imply tracked material particles. Classification shows an output
   schema, with the authored possible labels expandable below it, rather than an
   arbitrary diagnosis assigned to the conceptual input.
-- Automatic playback progresses through three stages. Stage selection pauses;
-  Play resumes; Reset restores the initial input and camera. Keep the camera fixed
+- Automatic playback makes one ten-second pass through three stages, then settles
+  on the output. Replay starts again at input. Stage selection pauses; Play resumes
+  from input or process; Reset restores the initial input and camera. Stage changes
+  use a short eased crossfade. Keep the camera fixed
   during playback so motion belongs to the task rather than a spinning presentation.
   Pointer dragging and keyboard arrows rotate the model. Reduced-motion starts paused and pauses an
-  already running scene when the preference changes.
-- Only the visible selected scene animates, at most 30 frames per second with a
-  capped pixel ratio. Navigation disposes animation callbacks and observers;
+  already running scene when the preference changes. Skip crossfades under reduced
+  motion. Use bounded, eased task movement rather than continuous decorative motion.
+- Only visible scenes animate, targeting at most 60 frames per second with a
+  capped pixel ratio; static stages reuse their pose without repainting. A shared
+  WebGL context provides smooth matte lighting and depth-tested surfaces, with a
+  bounded geometry cache. Navigation releases buffers, callbacks and observers;
   hidden tabs and off-screen canvases stop scheduling frames.
 - The standalone build contains the renderer and all geometry, with no remote
-  scripts, models or textures. If Canvas is unavailable, the original accessible
+  scripts, models or textures. If WebGL is unavailable or lost, shaded Canvas
+  rendering remains available. If Canvas is unavailable, the original accessible
   SVG input/output pair is built on demand. Native references still require the
   separate Example reveal.
 - The browser matrix renders all three stages for every variant, preserves source
   captions and checks motion, pause, reset, pointer/keyboard controls, reduced
-  motion, off-screen suspension, navigation cleanup, Canvas fallback, mobile layout
+  motion, single-pass/replay behavior, transitions, off-screen suspension, navigation
+  cleanup, GPU and Canvas fallbacks, mobile layout
   and zero remote requests. Browser-free geometry checks cover dimensionality,
   mask classes, motion semantics and reference styles. Geometric schematics do
   not certify anatomical accuracy.

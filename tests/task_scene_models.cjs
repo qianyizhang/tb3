@@ -153,3 +153,34 @@ for (const kind of ['dynamic_mesh', 'nuclei', 'vesselgraph', 'tensor', 'diffract
   );
 }
 console.log('shared materials: anatomy, cells, vessels, motion and fields use shaded surfaces');
+
+for (const part of context.anatomy.get('brain')) {
+  const edges = new Map();
+  for (const [a, b, c] of part.faces)
+    for (const [u, v] of [
+      [a, b],
+      [b, c],
+      [c, a],
+    ]) {
+      const key = u < v ? u + ':' + v : v + ':' + u;
+      edges.set(key, (edges.get(key) || 0) + 1);
+    }
+  assert.ok(
+    [...edges.values()].every((n) => n === 2),
+    part.id + ': closed seams and poles',
+  );
+  assert.ok(
+    part.normals.every((n) => Math.hypot(...n) > 0.99),
+    part.id + ': nondegenerate normals',
+  );
+}
+const cardiac = entry('dynamic_mesh');
+assert.equal(models.animated(entry('segment', { subject: 'abdomen' }), 0), false);
+assert.equal(models.animated(cardiac, 0), true);
+const atRest = models.build(cardiac, 2, 0, 1);
+assert.equal(
+  JSON.stringify(models.build(cardiac, 2, 10, 1)),
+  JSON.stringify(atRest),
+  'Motion settles at the completed output',
+);
+console.log('refined geometry: welded brain surfaces, finite normals and settled output pass');

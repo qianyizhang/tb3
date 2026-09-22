@@ -83,7 +83,7 @@ const TaskSceneModels = (() => {
   );
   register('segmenter_calibration', 'calibration', 'Compare boundaries under the supplied box');
 
-  function scene(e, stage, clock) {
+  function scene(e, stage, clock, progress = 0) {
     const d = e.illustration,
       k = d.kind,
       subject = d.subject || 'generic',
@@ -162,7 +162,8 @@ const TaskSceneModels = (() => {
       const pos = (u, v) => {
         const a = u * TAU,
           b = v * Math.PI,
-          mod = 1 + warp * Math.sin(3 * a + 1) * Math.sin(4 * b) * Math.sin(b);
+          mod =
+            1 + Math.min(warp, 0.065) * Math.sin(3 * a + 1) * Math.sin(2 * b) * Math.sin(b) ** 2;
         return [
           center[0] + radii[0] * (Math.sin(b) * Math.cos(a)) * mod,
           center[1] + radii[1] * Math.cos(b) * mod,
@@ -189,8 +190,8 @@ const TaskSceneModels = (() => {
           );
         return;
       }
-      const rows = 12,
-        cols = 20;
+      const rows = 24,
+        cols = 40;
       const vertices = [pos(0, 0)];
       for (let j = 1; j < rows; j++)
         for (let i = 0; i < cols; i++) vertices.push(pos(i / cols, j / rows));
@@ -336,28 +337,29 @@ const TaskSceneModels = (() => {
       const vertices = [],
         normals = [],
         faces = [],
-        sides = 10;
+        sides = 16;
+      let previousU = null;
+      const tangents = [];
       pts.forEach((p, i) => {
         const a = pts[Math.max(0, i - 1)],
           b = pts[Math.min(pts.length - 1, i + 1)],
           t = b.map((x, j) => x - a[j]);
         const len = Math.hypot(...t) || 1;
         t.forEach((_, j) => (t[j] /= len));
-        const ref = Math.abs(t[1]) > 0.9 ? [1, 0, 0] : [0, 1, 0];
-        const u = [
-          t[1] * ref[2] - t[2] * ref[1],
-          t[2] * ref[0] - t[0] * ref[2],
-          t[0] * ref[1] - t[1] * ref[0],
-        ];
-        const ul = Math.hypot(...u);
-        u.forEach((_, j) => (u[j] /= ul));
+        tangents.push(t);
+        const reference = previousU || (Math.abs(t[1]) > 0.9 ? [1, 0, 0] : [0, 1, 0]);
+        const along = reference.reduce((sum, v, q) => sum + v * t[q], 0);
+        const u = reference.map((v, q) => v - along * t[q]);
+        const length = Math.hypot(...u) || 1;
+        u.forEach((_, q) => (u[q] /= length));
+        previousU = u;
         const v = [t[1] * u[2] - t[2] * u[1], t[2] * u[0] - t[0] * u[2], t[0] * u[1] - t[1] * u[0]];
         for (let j = 0; j < sides; j++) {
           const n = u.map(
             (x, q) => x * Math.cos((j * TAU) / sides) + v[q] * Math.sin((j * TAU) / sides),
           );
           normals.push(n);
-          vertices.push(p.map((x, q) => x + r * n[q]));
+          vertices.push(p.map((x, q) => x + r * (1 - (0.12 * i) / (pts.length - 1)) * n[q]));
           if (i) {
             const a = (i - 1) * sides + j,
               b = (i - 1) * sides + ((j + 1) % sides),
@@ -367,6 +369,15 @@ const TaskSceneModels = (() => {
           }
         }
       });
+      for (const [ring, sign] of [
+        [0, -1],
+        [pts.length - 1, 1],
+      ]) {
+        const center = vertices.push(pts[ring]) - 1;
+        normals.push(tangents[ring].map((v) => v * sign));
+        for (let j = 0; j < sides; j++)
+          faces.push([center, ring * sides + j, ring * sides + ((j + 1) % sides)]);
+      }
       surface(vertices, faces, color, normals);
     };
     const branches = (colored = false, gap = false, override = null, dash = false) => {
@@ -469,7 +480,7 @@ const TaskSceneModels = (() => {
       // Unspecified target regions are schematic, not an invented named organ.
       mesh([0, 0, 0], [0.38, 0.45, 0.3], teal, 0.21);
     };
-    const sweep = () => plane(Math.sin(clock * 0.8) * 1.05, teal, 0.16);
+    const sweep = () => plane(mix(-1.05, 1.05, smooth(progress)), teal, 0.1);
     const target = (p = [0.52, 0.15, 0.48], boxed = false) => {
       if (boxed) box(p, [0.65, 0.65, k === 'detect' ? 0 : 0.6], gold);
       else {
@@ -538,7 +549,11 @@ const TaskSceneModels = (() => {
         for (let i = 0; i < cols; i++) {
           const x = (i - 9.5) / 8,
             z = (j - 7) / 7;
-          vertices.push([x, 0.42 * Math.sin(x * 2.5 + clock * 0.15) * Math.cos(z * 2), z]);
+          vertices.push([
+            x,
+            0.42 * Math.sin(x * 2.5 + (work ? clock * 0.08 : 0)) * Math.cos(z * 2),
+            z,
+          ]);
           if (i && j) {
             const a = (j - 1) * cols + i - 1,
               b = a + 1,
@@ -563,7 +578,9 @@ const TaskSceneModels = (() => {
             const x = (i - 37) / 29;
             return [
               x,
-              Math.sin(i * 0.45 + clock * 0.6 + j) * Math.exp(-(((i - 35) / 22) ** 2)) * 0.18 +
+              Math.sin(i * 0.45 + (work ? clock * 0.35 : 0) + j) *
+                Math.exp(-(((i - 35) / 22) ** 2)) *
+                0.18 +
                 (j - 2) * 0.32,
               j * 0.04,
             ];
@@ -669,7 +686,8 @@ const TaskSceneModels = (() => {
         }
         break;
       case 'motion': {
-        const pulse = 1 - 0.16 * (0.5 + 0.5 * Math.sin(clock * 2.1));
+        const settle = out ? 1 - smooth(Math.max(0, (progress - 0.6) / 0.4)) : 1;
+        const pulse = 1 - settle * 0.065 * (0.5 - 0.5 * Math.cos((clock * TAU) / 4.8));
         if (!out && d.input_form === 'masks') {
           for (let i = 0; i < 3; i++)
             group([(i - 1) * 0.9, 0, 0], 0.48, () => mesh([0, 0, 0], [0.8, 1.1, 0.65], blue));
@@ -704,7 +722,7 @@ const TaskSceneModels = (() => {
         break;
       }
       case 'registration': {
-        const t = out ? 1 : work ? smooth((Math.sin(clock * 0.7) + 1) / 2) : 0;
+        const t = out ? 1 : work ? smooth(progress) : 0;
         // Separate study frames keep both structures readable. Superimposing
         // transparent triangle soups obscures the correspondence being taught.
         [-0.95, 0.95].forEach((x, i) =>
@@ -805,14 +823,14 @@ const TaskSceneModels = (() => {
           label([0, -1.7, 0], 'Unfolded route', gold);
         }
         if (work && k === 'route_discovery')
-          dot([0, -1.1 + ((clock * 0.4) % 2.2), 0.12], 0.07, gold);
+          dot([0, mix(-1.1, 1.1, smooth(progress)), 0.12], 0.07, gold);
         break;
       case 'tomography':
         if (k === 'mri' || k === 'mri_dynamic') {
           if (out) anatomy(false);
           else {
             sampled();
-            if (work) plane(Math.sin(clock) * 0.9, teal, 0.12);
+            if (work) sweep();
           }
           if (k === 'mri_dynamic') label([0, -1.4, 0], 'Sequence over time', teal);
         } else {
@@ -830,7 +848,7 @@ const TaskSceneModels = (() => {
           } else {
             mesh([0, 0, 0], [0.4, 0.65, 0.4], ink, 0.08);
             for (let i = 0; i < 9; i++) {
-              const a = (i * TAU) / 9 + clock * 0.2,
+              const a = (i * TAU) / 9 + (work ? smooth(progress) * 0.6 : 0),
                 p = [1.35 * Math.cos(a), 0.18, 1.35 * Math.sin(a)];
               dot(p, 0.04, k === 'dualct' && i % 2 ? rose : teal);
               line(p, [-p[0], -0.25, -p[2]], i % 2 ? blue : teal, 0.3);
@@ -862,7 +880,7 @@ const TaskSceneModels = (() => {
       case 'waves':
         if (!out) {
           signals();
-          if (work) ring([0, 0, 0], 0.7 + 0.2 * Math.sin(clock), gold, 'z');
+          if (work) ring([0, 0, 0], 0.65 + 0.3 * smooth(progress), gold, 'z');
         } else if (k === 'seismic') {
           for (let j = 0; j < 6; j++) group([0, (j - 3) * 0.35, 0], 1, () => field(false));
         } else if (['soundmap', 'conductivity'].includes(k)) {
@@ -1031,13 +1049,13 @@ const TaskSceneModels = (() => {
         } else {
           const vertices = [],
             faces = [],
-            around = 32,
-            cross = 10;
+            around = 64,
+            cross = 16;
           for (let i = 0; i < around; i++)
             for (let j = 0; j < cross; j++) {
               const a = (i * TAU) / around,
                 b = (j * TAU) / cross,
-                variation = k === 'astro_dynamic' ? 0.04 * Math.sin(3 * a + clock) : 0,
+                variation = k === 'astro_dynamic' ? 0.018 * Math.sin(3 * a + clock * 0.4) : 0,
                 r = 0.82 + (0.2 + variation) * Math.cos(b);
               vertices.push([r * Math.cos(a), 0.15 * Math.sin(b), r * Math.sin(a)]);
               const u = i * cross + j,
@@ -1259,6 +1277,29 @@ const TaskSceneModels = (() => {
 
   return {
     build: scene,
+    animated: (e, stage) => {
+      const d = e.illustration,
+        family = recipes[d.kind]?.family;
+      if (family === 'motion')
+        return stage === 2 || (d.input_form !== 'masks' && d.kind !== 'cardiac_contours');
+      if (d.kind === 'astro_dynamic' && stage === 2) return true;
+      return (
+        stage === 1 &&
+        [
+          'segmentation',
+          'localization',
+          'registration',
+          'routes',
+          'tomography',
+          'restoration',
+          'waves',
+          'optics',
+          'fields',
+          'astronomy',
+          'interpretation',
+        ].includes(family)
+      );
+    },
     usesAnatomy: (e) =>
       recipes[e.illustration.kind]?.family !== 'motion' &&
       (AnatomyAssets.has(e.illustration.subject) ||

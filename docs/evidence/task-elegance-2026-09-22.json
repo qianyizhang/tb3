@@ -1,0 +1,110 @@
+{
+  "observed_on": "2026-09-22",
+  "request_actor": "user",
+  "implementation_actor": "assistant",
+  "source_task": "codex://threads/01a0c88e-4154-7cb1-b869-8f3a70e48397",
+  "request": "Review and refine the illustrations for a more elegant appearance; animation and some spiky models looked cheap.",
+  "design_status": "Assistant implementation for review; specific appearance not yet accepted by the user.",
+  "refinements": {
+    "geometry": "Welded procedural seams and poles, bounded brain and cell relief, rounded dental roots, stable vessel cross sections, finer sphere/torus silhouettes and one display-only Loop subdivision step for retained organ meshes.",
+    "lighting": "A shared WebGL surface renderer interpolates normals and applies soft matte lighting. Semantic annotations retain their foreground layer. The bounded buffer cache and static pose reuse avoid repeated surface projection and shading.",
+    "motion": "A fixed camera and one 10-second input/process/output demonstration, with 320 ms eased stage crossfades, gentler task movement and an output that remains still. Replay restarts input. Reduced motion starts paused and skips crossfades.",
+    "fallbacks": "WebGL unavailable or lost uses shaded Canvas surfaces; no Canvas uses the existing accessible SVG pair."
+  },
+  "validation": {
+    "javascript": "make js-check: pass",
+    "builder_tests": "9 task-brief tests: pass",
+    "browser": {
+      "briefs": 200,
+      "taskFamilies": 140,
+      "sourceRecords": 284,
+      "conditions": 428,
+      "nativeImagesDecoded": 15,
+      "conceptualIllustrations": 200,
+      "diagramTypes": 80,
+      "sourcePreviews": 7,
+      "portableFallbacks": 7,
+      "illustratedOverviews": 200,
+      "animated3DScenes": 200,
+      "motionPauseReducedMotionAndCamera": "pass",
+      "singlePassReplayAndCrossfade": "pass",
+      "webglUnavailableAndLostFallback": "pass",
+      "canvasUnavailableFallback": "pass",
+      "offscreenAndNavigationCleanup": "pass",
+      "localSources": 70,
+      "sourceReader": "pass",
+      "keyboardFocus": "pass",
+      "groupedTaskList": "pass",
+      "datasetVariants": "pass",
+      "caseDifferences": "pass",
+      "legacyLinksAndBack": "pass",
+      "collapsedProvenance": "pass",
+      "search": "pass",
+      "referenceReveal": "pass",
+      "capabilityNavigation": "pass",
+      "supportingResearch": "pass",
+      "internalExperiments": 59,
+      "mobile": "pass",
+      "pageErrors": [],
+      "remoteRequests": []
+    },
+    "visual_review": {
+      "errors": [],
+      "renderers": [
+        "webgl",
+        "webgl",
+        "webgl",
+        "webgl",
+        "webgl",
+        "webgl",
+        "webgl",
+        "webgl",
+        "webgl",
+        "webgl",
+        "webgl",
+        "webgl"
+      ],
+      "mobile": {
+        "width": 390,
+        "scroll": 390
+      },
+      "timing": {
+        "frames": 603,
+        "medianMs": 16.69999998807907,
+        "p90Ms": 17.399999976158142
+      },
+      "onePassAndReplay": "pass",
+      "webglUnavailableFallback": "pass"
+    },
+    "performance_scope": "Single disposable headless-browser observation of a cardiac geometry demonstration on this host, including transitions. It is not a cross-device frame-rate guarantee.",
+    "repository_gate": {
+      "command": "make check PYTHON=python3.12",
+      "result": "pass",
+      "log": ".local/task-elegance/make-check.log",
+      "tests": 129
+    }
+  },
+  "boundaries": [
+    "Source masks, retained anatomy mesh JSON and manifest hashes are unchanged. Display subdivision smooths and can shrink local features; it does not recover anatomical detail.",
+    "Authored brain and dental shapes remain conceptual teaching schematics, not a selected-case result or anatomically validated atlas.",
+    "Native examples, task contracts, reference reveals and original scores are unchanged.",
+    "No new acquisition, inference, runtime installation or publication."
+  ],
+  "local_artifacts": {
+    "explorer": ".local/task-elegance/index.html",
+    "gallery": ".local/task-elegance/gallery.html",
+    "browser_report": ".local/task-elegance/qa-final.json",
+    "visual_review": ".local/task-elegance/review.json",
+    "gallery_generator": ".local/task-elegance/build-gallery.py"
+  },
+  "source_sha256": {
+    "presentation/task-explorer/scene-anatomy.js": "4d24a2ff52b803c5f64fddf27019546422cbc86d3ea7743ba7654e1f364a9956",
+    "presentation/task-explorer/scene-models.js": "b9983331cc360c7552ba524a975337d6de0553536dd29c05d28e88002cc19724",
+    "presentation/task-explorer/scene-surfaces.js": "fcd4efc4f78df0dd0eada0f173668b60840b440681ea4fd72b91508e787f2dd7",
+    "presentation/task-explorer/scenes.js": "4b8232d4f4b6764f8ead269cfe26d16fef4124ec4395f2f1aa6a551aa427ff7e",
+    "presentation/task-explorer/style.css": "df984dcb70eb5e16155fc7a367df55e32d3105adca70587d604c1f64d13023b3",
+    "src/tb3_medical/task_briefs.py": "b95ee67c17fd12acc9b1e9222209539570d8f58c2c1c7327fe293b3bba8247d8",
+    "tests/task_scene_models.cjs": "b9476f1043bb42eb03834edc60b7369a88d59d0350d394451af38317a26237ca",
+    "tests/task_explorer_ui.cjs": "a592bf6157d40ccc567ab07489f8816e41525bc89bea3b73bdb6dc500bd3b0bf"
+  }
+}

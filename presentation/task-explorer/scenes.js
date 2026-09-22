@@ -1,9 +1,12 @@
 // Canvas rendering and playback. Task-specific geometry lives in scene-models.js.
 const TaskScenes = (() => {
   const TAU = Math.PI * 2;
-  const STAGE_MS = 4500;
-  const INITIAL_YAW = -0.35,
-    INITIAL_PITCH = -0.17;
+  const DURATIONS = [2600, 4200, 3200];
+  const STARTS = [0, DURATIONS[0], DURATIONS[0] + DURATIONS[1]];
+  const TOTAL_MS = DURATIONS.reduce((sum, value) => sum + value, 0);
+  const FADE_MS = 320;
+  const INITIAL_YAW = -0.24,
+    INITIAL_PITCH = 0.14;
   const clampPitch = (value) => Math.max(-1.1, Math.min(1.1, value));
   function fallback(e) {
     const d = e.illustration;
@@ -52,12 +55,25 @@ const TaskScenes = (() => {
       last = 0,
       lastPaint = 0,
       drag = null,
+      model = null,
+      modelStage = -1,
+      transition = null,
+      dirty = true,
       width = 0,
       height = 0;
     const buttons = [...player.querySelectorAll('[data-scene-step]')],
       play = player.querySelector('.scene-play');
-    const setStage = (n) => {
+    const setStage = (n, fade = false) => {
+      transition = null;
+      if (fade && stage !== n && width && !media.matches) {
+        const previous = document.createElement('canvas');
+        previous.width = canvas.width;
+        previous.height = canvas.height;
+        previous.getContext('2d').drawImage(canvas, 0, 0);
+        transition = { canvas: previous, age: 0 };
+      }
       stage = n;
+      dirty = true;
       player.dataset.stage = String(n);
       buttons.forEach((b, i) => b.setAttribute('aria-pressed', String(i === n)));
       player.querySelector('[data-scene-title]').textContent = [
@@ -67,8 +83,11 @@ const TaskScenes = (() => {
       ][n];
     };
     const syncPlay = () => {
-      play.textContent = playing ? 'Pause' : 'Play';
-      play.setAttribute('aria-label', playing ? 'Pause animation' : 'Play animation');
+      play.textContent = playing ? 'Pause' : stage === 2 ? 'Replay' : 'Play';
+      play.setAttribute(
+        'aria-label',
+        playing ? 'Pause animation' : stage === 2 ? 'Replay illustration' : 'Play animation',
+      );
       player.dataset.playing = String(playing);
     };
     const renderFrame = () => {
@@ -118,8 +137,26 @@ const TaskScenes = (() => {
       ctx.fillStyle = shadow;
       ctx.fillRect(-width * 0.3, -width * 0.3, width * 0.6, width * 0.6);
       ctx.restore();
-      const model = TaskSceneModels.build(e, stage, t);
+      const animated = TaskSceneModels.animated(e, stage);
+      if (!model || modelStage !== stage || animated) {
+        if (model) SceneSurfaces.release(model);
+        const progress = Math.max(0, Math.min(1, (elapsed - STARTS[stage]) / DURATIONS[stage]));
+        model = TaskSceneModels.build(e, stage, t, progress);
+        modelStage = stage;
+      }
+      const accelerated = SceneSurfaces.draw(ctx, model, {
+        width,
+        height,
+        ratio: Math.min(devicePixelRatio || 1, 2),
+        zoom,
+        cy,
+        sy,
+        cx,
+        sx,
+      });
+      player.dataset.surfaceRenderer = accelerated ? 'webgl' : 'canvas';
       const projected = model.primitives
+        .filter((item) => !accelerated || item.type !== 'face')
         .map((item) => {
           const p = item.points.map(project);
           return { ...item, p, depth: p.reduce((sum, v) => sum + v[2], 0) / p.length };
@@ -228,6 +265,13 @@ const TaskScenes = (() => {
         ctx.fillStyle = color;
         ctx.fillText(text, x, y);
       });
+      if (transition) {
+        const p = Math.min(1, transition.age / FADE_MS);
+        ctx.globalAlpha = 1 - p * p * (3 - 2 * p);
+        ctx.drawImage(transition.canvas, 0, 0, width, height);
+        ctx.globalAlpha = 1;
+      }
+      dirty = false;
       player.dataset.rendered = 'true';
     };
     const cancel = () => {
@@ -237,29 +281,42 @@ const TaskScenes = (() => {
     };
     const tick = (now) => {
       frame = 0;
-      if (disposed || !playing || !visible || document.hidden || drag) {
+      if (disposed || (!playing && !transition) || !visible || document.hidden || drag) {
         last = 0;
         return;
       }
       const delta = last ? Math.min(80, now - last) : 0;
-      elapsed += delta;
-      // Keep camera framing stable across stages. Only task-relevant geometry
-      // moves; free rotation remains available through drag and keyboard.
       last = now;
-      const next = Math.floor(elapsed / STAGE_MS) % 3;
-      if (stage !== next) setStage(next);
-      if (now - lastPaint >= 1000 / 30) {
-        renderFrame();
+      if (playing) {
+        elapsed = Math.min(TOTAL_MS, elapsed + delta);
+        const next = elapsed < STARTS[1] ? 0 : elapsed < STARTS[2] ? 1 : 2;
+        if (stage !== next) setStage(next, true);
+        if (elapsed === TOTAL_MS) {
+          playing = false;
+          dirty = true;
+          syncPlay();
+        }
+      }
+      if (transition) {
+        transition.age += delta;
+        if (transition.age >= FADE_MS) {
+          transition = null;
+          dirty = true;
+        }
+      }
+      if (now - lastPaint >= 1000 / 60 - 0.5 || !playing) {
+        if (dirty || transition || TaskSceneModels.animated(e, stage)) renderFrame();
         lastPaint = now;
       }
-      frame = requestAnimationFrame(tick);
+      if (playing || transition) frame = requestAnimationFrame(tick);
     };
     const start = () => {
-      if (!frame && playing && visible && !document.hidden && !disposed && !drag)
+      if (!frame && (playing || transition) && visible && !document.hidden && !disposed && !drag)
         frame = requestAnimationFrame(tick);
     };
     const pause = () => {
       playing = false;
+      transition = null;
       cancel();
       syncPlay();
     };
@@ -267,19 +324,25 @@ const TaskScenes = (() => {
       (b, i) =>
         (b.onclick = () => {
           pause();
-          setStage(i);
-          elapsed = i * STAGE_MS;
+          setStage(i, true);
+          elapsed = STARTS[i] + (i === 1 ? DURATIONS[1] * 0.45 : 0);
+          syncPlay();
           renderFrame();
+          start();
         }),
     );
     play.onclick = () => {
       if (playing) pause();
       else {
+        if (stage === 2 || elapsed >= TOTAL_MS) {
+          setStage(0, true);
+          elapsed = 0;
+        }
         playing = true;
         syncPlay();
+        renderFrame();
         start();
       }
-      renderFrame();
     };
     player.querySelector('.scene-reset').onclick = () => {
       pause();
@@ -287,6 +350,7 @@ const TaskScenes = (() => {
       pitch = INITIAL_PITCH;
       elapsed = 0;
       setStage(0);
+      syncPlay();
       renderFrame();
     };
     canvas.onpointerdown = (event) => {
@@ -363,6 +427,9 @@ const TaskScenes = (() => {
       observer.disconnect();
       document.removeEventListener('visibilitychange', visibility);
       media.removeEventListener('change', preference);
+      if (model) SceneSurfaces.release(model);
+      model = null;
+      transition = null;
     };
   }
   return { figure, mount };
