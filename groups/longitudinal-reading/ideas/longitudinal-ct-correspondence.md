@@ -77,3 +77,23 @@ end-to-end recovery remains incomplete. This is one case, not a model ranking.
 Assistant recommendation: retain image-only inputs, clarify distinguishable
 touching-lesion conventions before a new frozen task, and review further pairs
 with independent event types. No extra attempt was launched from this recommendation.
+
+## User-requested trace attribution — 2026-09-22
+
+The user requested reconstruction of both methods and attribution among model
+capability, genuine task difficulty and instruction ambiguity. The
+[trace audit](../findings/longitudinal-ct-trace-attribution.md) and finding
+`longitudinal-ct-trace-attribution` retain exact step excerpts and source hashes.
+Astra's single baseline mask covers 73.1%, 99.8% and 93.3% of the three abdominal
+GT labels: under-separation contributes to its instance false negatives. The
+separate focus is entirely omitted. Sol's retained breast candidates overlap no
+GT; its final empty output reflects candidate interpretation and acceptance,
+not failed file generation. Its scanner-coordinate pairing does not establish
+anatomical registration. Neither attempt isolates complete event reasoning.
+
+Assistant recommendation: clarify distinguishable touching lesions and the
+generic uncertain-lesion inclusion policy, retain raw CT pairs as the primary
+condition, and use separately reported component controls only if selected.
+Instruction causality and expert reference partition remain unadjudicated.
+No new model attempt, prompt revision, reference edit or score replacement was
+performed by this analysis.

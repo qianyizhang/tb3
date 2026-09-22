@@ -14,6 +14,10 @@ valid artifacts; neither result is a timeout or infrastructure exclusion.
 [Exact scores, replay and trace evidence](evidence/longitudinal-ct-image-only-comparison.json).
 The standalone reader is `.local/longitudinal-ct-image-only-v1/review/index.html`.
 
+Follow-up analysis: [trace methodology and failure attribution](longitudinal-ct-trace-attribution.md)
+distinguishes under-separation from absent lesion coverage, audits candidate
+rejection and coordinate pairing, and identifies instruction changes to test.
+
 ## Task and information boundary
 
 Each agent receives two full native CT volumes, marked only baseline/follow-up,

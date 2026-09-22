@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "id": "longitudinal-ct-trace-attribution",
+  "group_id": "longitudinal-reading",
+  "title": "Image-only CT trace audit: lesion acceptance and instance convention precede event errors",
+  "claim": "Astra deliberately grouped connected abdominal portions and covered most voxels of all three abdominal baseline GT instances, but omitted a separate reference focus. Sol rejected its candidates and deliberately submitted empty masks after inspecting views containing GT regions. Confluence wording plausibly affects Astra instance/event interpretation; neither output isolates event reasoning capability.",
+  "experiment_ids": [
+    "longitudinal-ct-image-only-astra-medium",
+    "longitudinal-ct-image-only-sol-xhigh"
+  ],
+  "evidence": [
+    {
+      "path": "groups/longitudinal-reading/findings/evidence/longitudinal-ct-trace-attribution.json",
+      "sha256": "adb105457f716cd521ca49e64733203de48e68678fe9963216d5951bdc95124e"
+    }
+  ],
+  "limitations": [
+    "One fresh attempt per model on one selected pair; post-hoc mechanism analysis is not causal attribution from controlled ablations.",
+    "Expert lesion boundary and malignancy disputes remain under review; connectivity alone is not confluence.",
+    "Neither output detects a complete reference event group.",
+    "Follow-up reconstruction differs from saved mask at one voxel; saved original masks and frozen scores remain authoritative.",
+    "Image delivery and coverage do not establish attention to each lesion."
+  ],
+  "links": [
+    {
+      "label": "Trace methodology and failure attribution",
+      "path": "groups/longitudinal-reading/findings/longitudinal-ct-trace-attribution.md"
+    },
+    {
+      "label": "Diagnostic replay script",
+      "path": "groups/longitudinal-reading/methods/longitudinal-ct-image-only/analyze_traces.py"
+    }
+  ]
+}

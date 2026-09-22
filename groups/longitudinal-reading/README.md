@@ -16,3 +16,7 @@ Use `uv run med list --group longitudinal-reading` from the repository root. The
 [Image-only Astra-medium / Sol-xhigh pilot](findings/longitudinal-ct-image-only-comparison.md):
 separate detection, segmentation and correspondence scores with native image
 review; exact merging interpretation remains under review.
+
+[Trace methodology and failure attribution](findings/longitudinal-ct-trace-attribution.md):
+separates lesion acceptance, instance partitioning, boundary construction and
+upstream effects on links/events using saved actions and quantitative diagnostics.
