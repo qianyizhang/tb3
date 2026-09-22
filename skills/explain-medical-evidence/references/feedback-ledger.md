@@ -1,6 +1,6 @@
 # Feedback ledger: explain-medical-evidence
 
-- Current skill version: `1.0.0`
+- Current skill version: `1.0.1`
 - Canonical source: `skills/explain-medical-evidence/`
 
 ## Active lessons

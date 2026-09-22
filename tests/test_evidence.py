@@ -58,6 +58,7 @@ class EvidenceTests(unittest.TestCase):
                 "execution_state": "completed",
                 "outcome": "pass",
                 "task_digest": "task-one",
+                "collected_at": "2026-02-01T00:00:00+00:00",
                 "evidence": [
                     {
                         "label": "Trial result",
@@ -65,6 +66,22 @@ class EvidenceTests(unittest.TestCase):
                         "sha256": c.sha(self.root / ".local/result.json"),
                     }
                 ],
+            },
+        )
+        self.write(
+            "groups/g/experiments/e/evaluations/old.json",
+            {
+                "schema_version": 2,
+                "kind": "evaluation",
+                "id": "old",
+                "group_id": "g",
+                "experiment_id": "e",
+                "attempt_id": "a",
+                "evaluation_kind": "result",
+                "execution_state": "completed",
+                "outcome": "fail",
+                "task_digest": "task-one",
+                "collected_at": "2026-01-01T00:00:00+00:00",
             },
         )
         self.write(
@@ -104,6 +121,19 @@ class EvidenceTests(unittest.TestCase):
                 ],
             },
         )
+        self.write(
+            "groups/g/findings/sibling.json",
+            {
+                "schema_version": 2,
+                "kind": "finding",
+                "analysis_kind": "synthesis",
+                "id": "sibling",
+                "group_id": "g",
+                "title": "Sibling",
+                "claim": "A separate analysis of the same experiment.",
+                "experiment_ids": ["e"],
+            },
+        )
 
     def write(self, relative, value):
         c.publish(self.root / relative, value)
@@ -112,7 +142,10 @@ class EvidenceTests(unittest.TestCase):
         data = evidence.collect(self.root, ["f"])
         self.assertEqual(data["comparability"]["observed_task_digests"], ["task-one"])
         self.assertTrue(data["comparability"]["same_observed_task_digest"])
-        self.assertEqual(data["findings"][0]["analysis_kind"], "result")
+        self.assertEqual([finding["id"] for finding in data["findings"]], ["f"])
+        self.assertNotIn("sibling", {row["id"] for row in data["record_refs"]})
+        observations = data["experiments"][0]["observations"]
+        self.assertEqual([observation["evaluation_id"] for observation in observations], ["v"])
         roles = data["experiments"][0]["contracts"][0]["roles"]
         self.assertEqual(set(roles), {"instruction", "input", "evaluator", "reference"})
         states = {p["path"]: p["availability"] for p in data["artifacts"]["selected_pointers"]}

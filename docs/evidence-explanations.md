@@ -59,11 +59,12 @@ uv run med evidence new GROUP ANALYSIS_ID TARGET_ID... \
   --title 'Title' --analysis-kind comparison
 ```
 
-Collection follows the selected record to experiments, attempts, evaluations,
-freezes, reviews, issues and dependent findings. It records exact record hashes;
+Collection follows explicit targets to their experiments, attempts, evaluations,
+freezes, reviews and issues. It records exact record hashes;
 classifies frozen task files as input, instruction, reference, evaluator or
-environment; summarizes run conditions; and selects high-signal result, report,
-score and trace pointers. Missing local raw artifacts remain explicit.
+environment; summarizes the latest execution/result for each attempt; and selects
+high-signal result, report, score and trace pointers. Sibling findings do not make
+the manifest stale, and missing local raw artifacts remain explicit.
 
 `check` rejects changed or missing pinned records. The manifest does not copy raw
 patient data, infer clinical meaning, declare GT wrong, select a causal explanation,

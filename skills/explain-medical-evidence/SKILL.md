@@ -2,7 +2,7 @@
 name: explain-medical-evidence
 description: Explain medical experiment results, GT comparisons, traces, failure modes, or multi-run differences from pinned workbench evidence. Use after a task or experiment has evidence to interpret; use author-task-brief for task-only explanations.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Explain Medical Evidence
@@ -36,23 +36,19 @@ Read [references/modes.md](references/modes.md) for the selected mode only:
 For task-only explanations without results, use the local task-brief convention or
 the `author-task-brief` skill.
 
-## Build the explanation
+## Interpret, then persist
 
 - State solver-visible input, assistance, requested output, scorer and private
   reference boundary before interpreting a score.
 - Put exact measures and denominators before meaning. Keep frozen evaluation
   outcomes separate from post-hoc diagnostics and anatomical interpretation.
-- Inspect actual source/result/GT artifacts when available. Mark conceptual
-  drawings, selected crops and unavailable references explicitly.
 - Follow consequential actions and intermediate artifacts, not routine chronology.
   Separate observation, interpretation, hypothesis and unresolved alternative.
-- Test failure explanations against data, GT, instruction, scorer, tools, runtime
-  and agent behavior. Question GT when evidence warrants it without relabeling the
-  official outcome.
 - For comparisons, declare `matched`, `endpoint_only`, `diagnostic`, or
   `not_comparable` and name task/refinement/runtime confounders.
-- Prefer an at-a-glance table, compact bullets and a few decisive visuals. In tb3,
-  follow `docs/visual-explanations.md` and `docs/evidence-explanations.md`.
+- Prefer compact structure and a few decisive source-derived visuals. Mark
+  conceptual drawings, selected crops and unavailable references explicitly. In
+  tb3, follow `docs/visual-explanations.md` and `docs/evidence-explanations.md`.
 
 Persist substantive work as the owning group's first-class `finding` plus report,
 evidence receipt and figures. Use `med evidence new` only when no suitable finding

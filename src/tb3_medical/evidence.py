@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from collections import Counter
-import hashlib
 from pathlib import Path
 import re
 
@@ -11,6 +10,7 @@ from . import core as c
 
 
 SCHEMA_VERSION = 1
+INDEX_MARKER = "<!-- tb3-evidence-index: generated -->"
 HIGH_SIGNAL_TERMS = {
     "metric",
     "report",
@@ -28,11 +28,6 @@ INTERPRETATION_BOUNDARIES = [
     "Question ground truth without relabeling or rewriting frozen scores.",
     "Choose source-derived views and distinguish them from conceptual drawings.",
 ]
-
-
-def _digest(path):
-    with Path(path).open("rb") as stream:
-        return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
 def _role(path):
@@ -54,7 +49,7 @@ def _record_ref(root, row):
         "id": row["id"],
         "kind": row["kind"],
         "path": row["record_path"],
-        "sha256": _digest(path),
+        "sha256": c.sha(path),
     }
 
 
@@ -64,16 +59,16 @@ def _experiment_ids(rows, targets):
     )
 
 
-def _related(row, target_ids, experiment_ids):
-    if row["id"] in target_ids or row["id"] in experiment_ids:
+def _related(row, scope_ids, experiment_ids):
+    if row["id"] in scope_ids:
         return True
+    if row["kind"] == "finding":
+        return False
     if row.get("experiment_id") in experiment_ids:
         return True
-    if set(row.get("experiment_ids", [])) & set(experiment_ids):
+    if set(row.get("experiment_ids", [])) & experiment_ids:
         return True
-    return row["kind"] == "group" and row["id"] in {
-        candidate.get("group_id") for candidate in target_ids.values()
-    }
+    return False
 
 
 def _artifact_pointer(root, source, entry):
@@ -91,7 +86,7 @@ def _artifact_pointer(root, source, entry):
             "availability": "outside_workspace",
         }
     present = path.is_file()
-    actual = _digest(path) if present else None
+    actual = c.sha(path) if present else None
     expected = entry.get("sha256")
     return {
         "source_record": source["id"],
@@ -161,21 +156,18 @@ def _contracts(rows, experiment_id):
     return contracts
 
 
-def _observations(rows, experiment_id):
+def _observations(rows, executions, experiment_id):
     attempts = {
         row["id"]: row
         for row in rows.values()
         if row["kind"] == "attempt" and row["experiment_id"] == experiment_id
     }
-    result = []
-    for row in sorted(
-        (
-            row
-            for row in rows.values()
-            if row["kind"] == "evaluation" and row["experiment_id"] == experiment_id
-        ),
+    latest = sorted(
+        (row for row in executions.values() if row["experiment_id"] == experiment_id),
         key=lambda item: (item.get("collected_at", ""), item["id"]),
-    ):
+    )
+    result = []
+    for row in latest:
         attempt = attempts.get(row.get("attempt_id"), {})
         result.append(
             {
@@ -207,15 +199,19 @@ def collect(root, targets):
     if missing:
         raise c.MedicalError("Unknown evidence target: " + ", ".join(missing))
     target_rows = {key: rows[key] for key in targets}
-    experiment_ids = _experiment_ids(rows, targets)
-    related = [row for row in rows.values() if _related(row, target_rows, experiment_ids)]
+    experiment_ids = set(_experiment_ids(rows, targets))
+    scope_ids = (
+        set(targets) | experiment_ids | {row.get("group_id") for row in target_rows.values()}
+    )
+    related = [row for row in rows.values() if _related(row, scope_ids, experiment_ids)]
     projection = c.projection(root)
+    executions = c.execution_observations(rows)
     experiments = []
     task_digests = set()
-    for experiment_id in experiment_ids:
+    for experiment_id in sorted(experiment_ids):
         experiment = rows[experiment_id]
         contracts = _contracts(rows, experiment_id)
-        observations = _observations(rows, experiment_id)
+        observations = _observations(rows, executions, experiment_id)
         task_digests.update(
             item["task_digest"] for item in [*contracts, *observations] if item.get("task_digest")
         )
@@ -254,7 +250,7 @@ def collect(root, targets):
         "comparability": {
             "status": "agent_decision_required",
             "observed_task_digests": sorted(task_digests),
-            "same_observed_task_digest": len(task_digests) <= 1,
+            "same_observed_task_digest": len(task_digests) == 1 if task_digests else None,
             "note": (
                 "Digest equality supports byte-level task identity only. The explaining agent must "
                 "still assess endpoints, conditions and scientific comparability."
@@ -300,7 +296,7 @@ def check(root, manifest):
         path = c.inside(root, ref["path"])
         if not path.is_file():
             missing.append(ref["path"])
-        elif _digest(path) != ref["sha256"]:
+        elif c.sha(path) != ref["sha256"]:
             changed.append(ref["path"])
     if missing or changed:
         parts = []
@@ -317,7 +313,7 @@ def check(root, manifest):
         path = c.inside(root, pointer["path"])
         if not path.is_file():
             state = "missing_local"
-        elif pointer.get("expected_sha256") and _digest(path) != pointer["expected_sha256"]:
+        elif pointer.get("expected_sha256") and c.sha(path) != pointer["expected_sha256"]:
             state = "digest_mismatch"
         elif pointer["availability"] == "missing_local":
             state = "newly_available"
@@ -339,11 +335,15 @@ def _cell(value):
     return str(value if value is not None else "—").replace("|", "\\|")
 
 
+def _markdown_row(*values):
+    return "| " + " | ".join(_cell(value) for value in values) + " |"
+
+
 def build(root, manifest, output):
     data = validate_manifest(c.read(manifest))
     check(root, manifest)
     lines = [
-        "<!-- tb3-evidence-index: generated -->",
+        INDEX_MARKER,
         "# Evidence inventory",
         "",
         "> Machine-built identity and availability index. It contains no clinical or causal interpretation.",
@@ -367,19 +367,14 @@ def build(root, manifest, output):
                 if value
             )
             lines.append(
-                "| "
-                + " | ".join(
-                    _cell(value)
-                    for value in (
-                        f"`{experiment['id']}`",
-                        f"`{observation['evaluation_id']}`",
-                        identity or "—",
-                        observation.get("execution_state"),
-                        observation.get("outcome"),
-                        observation.get("task_digest"),
-                    )
+                _markdown_row(
+                    f"`{experiment['id']}`",
+                    f"`{observation['evaluation_id']}`",
+                    identity or "—",
+                    observation.get("execution_state"),
+                    observation.get("outcome"),
+                    observation.get("task_digest"),
                 )
-                + " |"
             )
     lines += [
         "",
@@ -392,20 +387,15 @@ def build(root, manifest, output):
         for contract in experiment["contracts"]:
             roles = contract["roles"]
             lines.append(
-                "| "
-                + " | ".join(
-                    _cell(value)
-                    for value in (
-                        f"`{experiment['id']}`",
-                        f"`{contract['freeze_id']}`",
-                        contract.get("case"),
-                        contract["task_digest"],
-                        len(roles.get("input", [])),
-                        len(roles.get("reference", [])),
-                        len(roles.get("evaluator", [])),
-                    )
+                _markdown_row(
+                    f"`{experiment['id']}`",
+                    f"`{contract['freeze_id']}`",
+                    contract.get("case"),
+                    contract["task_digest"],
+                    len(roles.get("input", [])),
+                    len(roles.get("reference", [])),
+                    len(roles.get("evaluator", [])),
                 )
-                + " |"
             )
     lines += [
         "",
@@ -416,13 +406,16 @@ def build(root, manifest, output):
     ]
     for pointer in data["artifacts"]["selected_pointers"]:
         lines.append(
-            f"| `{_cell(pointer['source_record'])}` | `{_cell(pointer['path'])}` | "
-            f"{_cell(pointer['availability'])} |"
+            _markdown_row(
+                f"`{pointer['source_record']}`",
+                f"`{pointer['path']}`",
+                pointer["availability"],
+            )
         )
     lines += ["", "## Interpretation still required", ""]
     lines += [f"- {item}" for item in data["interpretation_boundaries"]]
     output = Path(output)
-    if output.exists() and "<!-- tb3-evidence-index: generated -->" not in output.read_text()[:100]:
+    if output.exists() and INDEX_MARKER not in output.read_text()[:100]:
         raise c.MedicalError("Refusing to overwrite an unowned file: " + str(output))
     output.parent.mkdir(parents=True, exist_ok=True)
     temporary = output.with_suffix(output.suffix + ".tmp")
@@ -451,28 +444,29 @@ def new(root, group, key, title, analysis_kind, targets):
             raise c.MedicalError("Refusing to overwrite existing analysis file: " + str(path))
     write_manifest(evidence_path, manifest)
     report_path.parent.mkdir(parents=True, exist_ok=True)
-    report_path.write_text(
-        f"# {title}\n\n"
-        "> Draft agent-authored interpretation. Frozen scores and source records remain authoritative.\n\n"
-        "## At a glance\n\n"
-        "| Question | Evidence | Interpretation | Confidence |\n"
-        "| --- | --- | --- | --- |\n"
-        "| What happened? | Add the exact measure. | Explain what it means. | Draft |\n\n"
-        "## Task, data and reference\n\n"
-        "Explain the actual condition, solver-visible inputs, expected output and reference limits.\n\n"
-        "## Measured result\n\n"
-        "Report frozen measures before interpretation.\n\n"
-        "## Result and reference inspection\n\n"
-        "Use source-derived views with exact legends, coordinates and concise captions.\n\n"
-        "## Trace and intermediate artifacts\n\n"
-        "Connect consequential actions to retained evidence; omit routine trace chronology.\n\n"
-        "## Failure attribution and alternatives\n\n"
-        "Separate observation from hypothesis across data, GT, instruction, tool, reasoning and infrastructure.\n\n"
-        "## Comparison and limits\n\n"
-        "Declare comparability, confounders, unresolved questions and what this evidence cannot establish.\n\n"
-        "## Provenance\n\n"
-        f"- Evidence manifest: `{evidence_path.relative_to(root)}`\n"
-    )
+    with report_path.open("x") as report:
+        report.write(
+            f"# {title}\n\n"
+            "> Draft agent-authored interpretation. Frozen scores and source records remain authoritative.\n\n"
+            "## At a glance\n\n"
+            "| Question | Evidence | Interpretation | Confidence |\n"
+            "| --- | --- | --- | --- |\n"
+            "| What happened? | Add the exact measure. | Explain what it means. | Draft |\n\n"
+            "## Task, data and reference\n\n"
+            "Explain the actual condition, solver-visible inputs, expected output and reference limits.\n\n"
+            "## Measured result\n\n"
+            "Report frozen measures before interpretation.\n\n"
+            "## Result and reference inspection\n\n"
+            "Use source-derived views with exact legends, coordinates and concise captions.\n\n"
+            "## Trace and intermediate artifacts\n\n"
+            "Connect consequential actions to retained evidence; omit routine trace chronology.\n\n"
+            "## Failure attribution and alternatives\n\n"
+            "Separate observation from hypothesis across data, GT, instruction, tool, reasoning and infrastructure.\n\n"
+            "## Comparison and limits\n\n"
+            "Declare comparability, confounders, unresolved questions and what this evidence cannot establish.\n\n"
+            "## Provenance\n\n"
+            f"- Evidence manifest: `{evidence_path.relative_to(root)}`\n"
+        )
     record = {
         "schema_version": 2,
         "kind": "finding",
@@ -485,7 +479,7 @@ def new(root, group, key, title, analysis_kind, targets):
         "evidence": [
             {
                 "path": evidence_path.relative_to(root).as_posix(),
-                "sha256": _digest(evidence_path),
+                "sha256": c.sha(evidence_path),
             }
         ],
         "limitations": ["Interpretation and visual inspection are not complete."],
