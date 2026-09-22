@@ -154,3 +154,19 @@ final cleanup and does not guarantee aligned boundaries. This supports an
 organ-dependent benefit in one composite tool/skill condition, not a general
 causal advantage. The original three runs and all scores remain frozen. The
 one authorized follow-up is complete; no additional trial is implied.
+
+## Slice construction and review audit — assistant, 2026-09-22
+
+The user requested separating directly authored slices, interpolated geometry and
+LiteMedSAM-assisted slices, with operation/revisit statistics. The
+[post-submission audit](../findings/ct-organ-slice-construction-audit.md) finds
+nonempty explicit anchors on 22.7%/25.0% of active Astra xhigh/medium organ–slice
+pairs; most remaining geometry starts from interpolation and is subsequently
+processed. Own-anchor Dice is not systematically better than between-anchor Dice.
+The tool condition interpolates boxes and applies learned inference to each CT
+plane, rather than interpolating masks. A comparison on identical baseline-defined
+planes improves macro Dice 0.735→0.750 on anchors and 0.742→0.772 between anchors,
+with small-organ regressions. Successful display, coordinate revision and repeat
+inference are measured separately. Matched-index polygon revisions demonstrate
+some self-correction but do not establish a reliable correction policy. Original
+evidence and scores remain unchanged; no new inference or future trial is implied.
