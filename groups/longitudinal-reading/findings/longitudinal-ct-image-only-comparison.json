@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "id": "longitudinal-ct-image-only-comparison",
+  "group_id": "longitudinal-reading",
+  "title": "Image-only CT: Astra segments the dominant region; full lesion recovery remains incomplete",
+  "claim": "On one identical image-only CT pair, Astra medium localized 2/6 reference instances with foreground Dice 0.68480/0.77921, while Sol xhigh submitted empty masks and localized 0/6. Both completed normally and produced valid artifacts. All original metrics independently replay exactly. Fine-instance and exact merging interpretation remains under review because the generic confluence convention may differ from the reference partition.",
+  "experiment_ids": [
+    "longitudinal-ct-image-only-astra-medium",
+    "longitudinal-ct-image-only-sol-xhigh"
+  ],
+  "evidence": [
+    {
+      "path": "groups/longitudinal-reading/findings/evidence/longitudinal-ct-image-only-comparison.json",
+      "sha256": "099020ce4bc2fb3d94703e9f7a83f2b093cccfdc9925e7354ac6f550df180657"
+    }
+  ],
+  "limitations": [
+    "One selected public CT pair; one attempt per model; no population estimate or general model ranking.",
+    "No eligible complete GT event groups for conditional event interpretation in either output.",
+    "The source has no new or disappearing event in this pair.",
+    "Scalar Harbor reward measures output contract only.",
+    "Source counts/locations and other-model results were not provided to either solver.",
+    "Three baseline reference labels touch; connectivity does not establish radiologic confluence or invalidate expert labels."
+  ],
+  "links": [
+    {
+      "label": "Comparison and native image review",
+      "path": "groups/longitudinal-reading/findings/longitudinal-ct-image-only-comparison.md"
+    },
+    {
+      "label": "Complete generic solver instruction",
+      "path": "groups/longitudinal-reading/methods/longitudinal-ct-image-only/instruction.md"
+    }
+  ]
+}

@@ -10,7 +10,7 @@ source = "codex://threads/01a0c4d1-741f-76e3-9023-1064e5a9a0c5"
 
 # Track lesion identity across CT visits
 
-Can an agent recover lesion correspondence and merging from paired CTs after baseline targets are marked?
+Can an agent discover, segment and link lesions across paired CTs without supplied masks?
 
 ## Prior findings
 
@@ -44,3 +44,36 @@ choose patient-disjoint development/evaluation cases, implement group-aware scor
 and verify an explicit solver file allowlist. Decide whether segmentation is an
 endpoint or only follow-up localization is required. Set numerical tolerances only
 after reference review. Obtain a separate explicit request to run agents.
+
+## User-selected image-only comparison — 2026-09-22
+
+The user explicitly selected full CT pairs with no masks or case-specific lesion
+context, requiring native instance masks and evaluatable links/events; run Astra
+medium and Sol xhigh. The generic invented format example is not an annotated
+example. Localization, segmentation and association are independent endpoints.
+Decision: `decision-af91b921939e40bd`, actor=user.
+
+Assistant implementation: first compare both models on the same reviewed pair,
+one independent attempt each, up to two hours, with references isolated and no
+external dataset retrieval. This is a bounded exploratory study.
+
+- [Astra medium protocol](../experiments/longitudinal-ct-image-only-astra-medium/protocol.md)
+- [Sol xhigh protocol](../experiments/longitudinal-ct-image-only-sol-xhigh/protocol.md)
+- [Shared generic instruction](../methods/longitudinal-ct-image-only/instruction.md)
+
+A scoped instance-convention question was recorded during the first attempt:
+source baseline labels 1/2/4 touch, while the generic prompt says a confluent
+region is one instance. Connectivity is not clinical adjudication. Both model
+experiments remain under review for fine-instance/event interpretation; frozen
+inputs and scores are retained. [Boundary review](../examples/longitudinal-ct-instance-boundary-review.md).
+
+Completed comparison: Astra medium captured the dominant abdominal region but
+localized 2/6 fine GT instances; Sol xhigh submitted empty masks (0/6). Both
+completed normally with valid artifacts, and independent replay reproduced every
+original score exactly. Astra linked its one eligible reference edge correctly;
+end-to-end recovery remains incomplete. This is one case, not a model ranking.
+[Results and native illustrations](../findings/longitudinal-ct-image-only-comparison.md).
+
+Assistant recommendation: retain image-only inputs, clarify distinguishable
+touching-lesion conventions before a new frozen task, and review further pairs
+with independent event types. No extra attempt was launched from this recommendation.

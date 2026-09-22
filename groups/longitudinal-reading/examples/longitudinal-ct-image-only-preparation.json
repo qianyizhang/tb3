@@ -1,0 +1,113 @@
+{
+  "task_digest": "f2aa2fb2f71acd930e927d581a2513c31dd6c5a03f1f0387ff64e00f098eea24",
+  "preparation": {
+    "source_patient": "0a09c8844b",
+    "source_release": "Longitudinal-CT v3",
+    "source_hashes": {
+      "inputsTr/0a09c8844b_BL_img_00.nii.gz": "0256844e8f9bfa46cf238f22aa5b871567bb7b1a0aa88bf82914d16b26d546a7",
+      "inputsTr/0a09c8844b_BL_mask_00.nii.gz": "780a16b5c0966cdc553022e0efd542d8b09ecb052c09ea2bbc3805be92723594",
+      "inputsTr/0a09c8844b_FU_img_00.nii.gz": "f3a451a6dfdebe4dfb3dd064f1b152db5cdffd51efd37c539e8d7a79cabbf521",
+      "targetsTr/0a09c8844b_FU_mask_00.nii.gz": "507318607c54680bd6cde1909b8536c49ffbdf3487c9ae499363a23bb5261913",
+      "inputsTr/0a09c8844b.csv": "299fcc50a706a1a6ddf81d395788292ecb29bf3b45be52635861b99152870fab"
+    },
+    "input_checks": {
+      "baseline": {
+        "voxels_identical": true,
+        "affine_identical": true,
+        "shape": [
+          512,
+          512,
+          261
+        ]
+      },
+      "followup": {
+        "voxels_identical": true,
+        "affine_identical": true,
+        "shape": [
+          512,
+          512,
+          274
+        ]
+      }
+    },
+    "solver_data_files": [
+      "baseline.nii.gz",
+      "followup.nii.gz"
+    ],
+    "shared_task": true,
+    "model_runs_authorized": 2,
+    "runtime_image": "sha256:3de5f01c3d98a0ed47c9c6ac2ef202807e2761e0ece826d0b514c994f033f107",
+    "transport_image": "sha256:a2a21e4e45448a01dd1b97b3a5017643dea882953485c99b3fb0aceab777376f"
+  },
+  "images": {
+    "runtime": "sha256:3de5f01c3d98a0ed47c9c6ac2ef202807e2761e0ece826d0b514c994f033f107",
+    "solver": "sha256:cb998b7609d41429fc5d00d60439c1ff389ad2fdf3c580a834c827e6352280e9",
+    "evaluator": "sha256:7b2b9c1dcf3964b6a6955c64f28000af79d0b0b70eee7922bef4419ce3d04189",
+    "transport": "sha256:a2a21e4e45448a01dd1b97b3a5017643dea882953485c99b3fb0aceab777376f"
+  },
+  "preflight": {
+    "files": [
+      "/app/data/baseline.nii.gz",
+      "/app/data/followup.nii.gz"
+    ],
+    "private_paths_absent": {
+      "/tests": true,
+      "/solution": true,
+      "/Users": true,
+      "/var/run/docker.sock": true
+    },
+    "network": [
+      {
+        "host": "huggingface.co",
+        "response": "HTTP/1.1 403 Forbidden"
+      },
+      {
+        "host": "fdat.uni-tuebingen.de",
+        "response": "HTTP/1.1 403 Forbidden"
+      },
+      {
+        "host": "chatgpt.com",
+        "response": "HTTP/1.1 200 Connection Established"
+      },
+      {
+        "direct": "1.1.1.1:443",
+        "result": "OSError"
+      },
+      {
+        "direct": "192.168.5.2:10808",
+        "result": "OSError"
+      }
+    ],
+    "passed": true
+  },
+  "synthetic_controls": {
+    "passed": true,
+    "controls": [
+      "exact",
+      "independent_ids",
+      "wrong_links",
+      "tiny_masks",
+      "missed_lesion",
+      "false_positive",
+      "empty_valid",
+      "new_and_disappearing",
+      "bad_graph",
+      "bad_geometry",
+      "missing_mask"
+    ]
+  },
+  "oracle_attempt": "attempt-754ef4918aae46ca",
+  "nop_attempt": "attempt-0e1c844e750a422d",
+  "local_evidence": {
+    ".local/longitudinal-ct-image-only-v1/preparation.json": "ddd7bdeaaaf7a516f2518451a5d24f3730fa7f8d454d2786da7b3e8569f37fa2",
+    ".local/longitudinal-ct-image-only-v1/image-identities.json": "8bedc54364000d198d679bec5d8ad65743986bae93928e8a565630831bd41419",
+    ".local/longitudinal-ct-image-only-v1/preflight.json": "fd0f7703c449d2295ef92b000a2b12e565c48c101c39a3665adb61eebeea8010",
+    ".local/longitudinal-ct-image-only-v1/synthetic-controls.json": "6479af04e2d847d03db1876ae3169b37728890d311bb60e513a64e5e38aaf0ef",
+    ".local/longitudinal-ct-image-only-v1/task-files.json": "d6a6705ecd9f20966e995af7690ba1e38bd159677a040c04b0c0808e135eee04",
+    ".local/longitudinal-ct-image-only-v1/oracle.log": "2554fbb2b5b4f59d90175b529120700bebbdc5c50eff9e545be3fe935468fea9",
+    ".local/longitudinal-ct-image-only-v1/nop.log": "268bb7043c269bd65496f8497d65b9d0bf8cf122e470d33dc24d6a755c4cfa43"
+  },
+  "controls_scope": "artifact correctness and endpoint distinction; not clinical or instance-convention adjudication",
+  "runtime_installs": 0,
+  "pretrained_model_downloads": 0
+}

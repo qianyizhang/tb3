@@ -1,0 +1,437 @@
+{
+  "schema_version": 2,
+  "id": "observation-fc4e042d3bc4cd65c6bde8a4",
+  "job": "job",
+  "trial_name": "task__QsdohUX",
+  "task_id": "task",
+  "agent": "codex",
+  "model": "openai/gpt-6-astra",
+  "reasoning_effort": "medium",
+  "agent_version": "0.155.1",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "reward": 1.0,
+  "started_at": "2026-09-22T00:17:28.326806Z",
+  "finished_at": "2026-09-22T00:35:19.398159Z",
+  "timing": {
+    "total": 1071.071,
+    "setup": 0.176,
+    "agent": 1024.864,
+    "verifier": 20.67
+  },
+  "usage": {
+    "n_input_tokens": 2999112.0,
+    "n_cache_tokens": 2728704.0,
+    "n_output_tokens": 23587.0
+  },
+  "cases": [
+    {
+      "name": "artifact_contract",
+      "status": "passed",
+      "detail": ""
+    }
+  ],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/result.json",
+      "sha256": "a8de841b43af42b82e24f0efcbbe469590a807a7f1abde76a0860c35d12ed03a"
+    },
+    {
+      "label": "Verifier cases",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/verifier/test-stdout.txt",
+      "sha256": "b7759fc7f81e58dcb7104c6159db26450dc4576d84437332635519212e31bb6d"
+    },
+    {
+      "label": "Reward artifact",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/agent/trajectory.json",
+      "sha256": "46f1f2d91a8eb7a845caa835e158a8c37f25e968783cac0d6f4b23db14a123a5"
+    },
+    {
+      "label": "Submitted artifact: answer/baseline_instances.nii.gz",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/answer/baseline_instances.nii.gz",
+      "sha256": "be9cafa5c3c1f07d37d6b20d5986df650f401d1366e643aaebf862d185ce992d"
+    },
+    {
+      "label": "Submitted artifact: answer/events.json",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/answer/events.json",
+      "sha256": "52f9bcce5e6d463d4b5816c7a5f6226a4000498b3ab32e2507e9cd3ee4bfdec5"
+    },
+    {
+      "label": "Submitted artifact: answer/followup_instances.nii.gz",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/answer/followup_instances.nii.gz",
+      "sha256": "5f365442bb429f0f0418caf0794287e1632e01e47c2ad80e729f70152b297563"
+    },
+    {
+      "label": "Submitted artifact: answer/report.md",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/answer/report.md",
+      "sha256": "f38be41430b7cfd83c9b8cb4a11bdd893f0596bed2954d37dddd86a1821cdb6a"
+    },
+    {
+      "label": "Submitted artifact: work/__pycache__/contours.cpython-312.pyc",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/__pycache__/contours.cpython-312.pyc",
+      "sha256": "ab690946a7de37fa589a0b0532341cc95f16b49f428cf19c9f01426d28332721"
+    },
+    {
+      "label": "Submitted artifact: work/atlas.py",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/atlas.py",
+      "sha256": "0451ac87ca6afbd189e5674900f44e62cb0376d4fc2c1f2b2c5df5f4833cf323"
+    },
+    {
+      "label": "Submitted artifact: work/baseline.npy",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline.npy",
+      "sha256": "c9cc4b58f9a3363c5a08b6897235352907aecf948a12e826dea77fd14e85306d"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_atlas_0_79_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_atlas_0_79_2_soft.jpg",
+      "sha256": "e3749fc7827091f111b7bc0e032a36ee2dcde93a09cc6f9a6a09e050b9c15c3e"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_atlas_140_209_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_atlas_140_209_2_soft.jpg",
+      "sha256": "a293c3f98a7a378e7defbeb4027ed8887a717cd660bbc10f652afb1e42fd2867"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_atlas_141_209_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_atlas_141_209_2_soft.jpg",
+      "sha256": "421882e38854031957bbb0db1699f991f5d5eba825b528dbc9ad76c12c54dd38"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_atlas_1_79_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_atlas_1_79_2_soft.jpg",
+      "sha256": "333886bef542293ae815018721f8cfba0d741baeeccf5abf984b40395d988871"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_atlas_210_260_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_atlas_210_260_2_soft.jpg",
+      "sha256": "7d7cbff92fe65b579c152f75d46380c7155accee4a7aa4a91aac82a89f6ef8ae"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_atlas_211_260_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_atlas_211_260_2_soft.jpg",
+      "sha256": "6761db072e1e5ad3221917bd1458f78ee08273dcbd93566121c137d8614d12af"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_atlas_80_139_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_atlas_80_139_2_soft.jpg",
+      "sha256": "69e06d3289b42a5793b48b268843ee3615dfca34339797aacc3b0c109d8c5e24"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_atlas_81_139_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_atlas_81_139_2_soft.jpg",
+      "sha256": "143c8ed0ad23dbbe3551560f37dd4c31ac9b90ed459b35677010b58818cd88a8"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_crop_78.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_crop_78.jpg",
+      "sha256": "542ce0d26b5752a80db118c44e1d16f8cd6baafab8be1796113ae3932b01f416"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_crop_80.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_crop_80.jpg",
+      "sha256": "0f57ce986cf4c9a1fba0599fe0fe59aeed65b3ced0a1a4b3cb6d58c95ee533ac"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_crop_90.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_crop_90.jpg",
+      "sha256": "d3c5bb0d98038bd0265138153fddd1d264941435c56e97ee1ffca5ad5d9ee9a6"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_crop_98.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_crop_98.jpg",
+      "sha256": "19d2b34500d57995c0282fa8a103a2699a40946ecbab820156ece0ad84b31576"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_detail_90_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_detail_90_soft.jpg",
+      "sha256": "3af2307ad1f883ae4fd180768c3e3cc31eeb451a71233035a86a9ed663b44793"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_lung_130_3.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_lung_130_3.jpg",
+      "sha256": "2ed1a3f7ebe2fcbff27b989b7f6fd8a9272e40ec3b4be24f46e0847358f5d57b"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_mask.npy",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_mask.npy",
+      "sha256": "699ec4254056568acc68120bcfddc603fd997b19eeb5e1c6cc5f03e34776e5e7"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_mpr_x.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_mpr_x.jpg",
+      "sha256": "b91a4394064f6b20a65a709e31b15ae88478de9abb0cc9b5db8d2473d6715219"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_mpr_y.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_mpr_y.jpg",
+      "sha256": "da74ab0edfc4a9c14d6c131801c95beb2606b8d7a4070bb0b5900521b5241567"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_overlay_82.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_overlay_82.png",
+      "sha256": "a4d34b6fab7e187c3abcb00666bac43bd9d963c21b2ab513e31b662b501a71a7"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_overlay_83.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_overlay_83.png",
+      "sha256": "998e89cd233d90eb07f6b9fc7e6861169e25730a64afcccdde7647970c53fa30"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_overlay_88.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_overlay_88.png",
+      "sha256": "9892ba9af58e9f87dda90be5e4856b513600a5f3685f0f7350592221cf69aa15"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_soft_0_6.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_soft_0_6.jpg",
+      "sha256": "b1d55e1a48c8e1f432e14ba9c5d78b1cbadfd3bde83bf64bbf34e0e589e9495b"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_zoom_106.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_zoom_106.png",
+      "sha256": "91cbb2582a84810b6f693bbe42adee2e6854aed01122e338b5cfeffad0a1857b"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_zoom_118.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_zoom_118.png",
+      "sha256": "4f4afea1266e49d5d07d8f588024f4b085bfa3844e310b5aabc1343a1da95617"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_zoom_70.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_zoom_70.png",
+      "sha256": "bda25a3bfaa1f13ad87f403e9a2ff90534326b27e8e54e9e1111602b8c40793c"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_zoom_82.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_zoom_82.png",
+      "sha256": "5acd3edc161883f04d95bdad90f6800d717da797c2e3f3a1cca752152391cb8e"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_zoom_83.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_zoom_83.png",
+      "sha256": "c8d871d24acb81a1590a0af4df4dd5e1c81ce99c5e5bd43d4c754c8211fb3392"
+    },
+    {
+      "label": "Submitted artifact: work/baseline_zoom_94.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/baseline_zoom_94.png",
+      "sha256": "ade1cdd8f59eba5ed5121a80cc1a766df03bce95d3afd0431b4a8d8dfbfce74f"
+    },
+    {
+      "label": "Submitted artifact: work/contours.py",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/contours.py",
+      "sha256": "5ec6d230bf4e833fb1162bf1478fe205e9c2989fb2d07f28680c0d18dc22f71e"
+    },
+    {
+      "label": "Submitted artifact: work/crop.py",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/crop.py",
+      "sha256": "c5e38ec2b5f084559841d0db9b0c091ac8521521fb70ac245705c8fc52942e9f"
+    },
+    {
+      "label": "Submitted artifact: work/detail.py",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/detail.py",
+      "sha256": "78ff2ee3dd43806d0e563f17697985268bdd359cef0f99661ffb7b009c5e3a3d"
+    },
+    {
+      "label": "Submitted artifact: work/finalize.py",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/finalize.py",
+      "sha256": "8887ae26d8bf17c523885511cdf382380d46c23376ab5a6f575763e264326e54"
+    },
+    {
+      "label": "Submitted artifact: work/followup.npy",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup.npy",
+      "sha256": "86689b249c629f5a03b315e48fe19ad45946858b607f3c5f6ba3257222302617"
+    },
+    {
+      "label": "Submitted artifact: work/followup_atlas_0_79_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_atlas_0_79_2_soft.jpg",
+      "sha256": "079738497b496801f11904a8f702c352ce57c61b5bd57418b858ccf73bff7b5a"
+    },
+    {
+      "label": "Submitted artifact: work/followup_atlas_140_209_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_atlas_140_209_2_soft.jpg",
+      "sha256": "38d0e02911c05b18f61e7f053238bcc1b7e2aaf67e9d83bef831a96c3a6479b7"
+    },
+    {
+      "label": "Submitted artifact: work/followup_atlas_141_209_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_atlas_141_209_2_soft.jpg",
+      "sha256": "3e2fffa6c46d5bef6c41b7526e07ab7e8abd428e2c2c123c3659d263e5177e0e"
+    },
+    {
+      "label": "Submitted artifact: work/followup_atlas_1_79_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_atlas_1_79_2_soft.jpg",
+      "sha256": "b1ad561c638ba24b3489d0745056a7b5416642ba9cea7cfd5922ca26b14902ff"
+    },
+    {
+      "label": "Submitted artifact: work/followup_atlas_210_273_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_atlas_210_273_2_soft.jpg",
+      "sha256": "bfda04b3d117129ae8e215599c0cdf88184b706cf8396f4a9cae0fb73ed962ad"
+    },
+    {
+      "label": "Submitted artifact: work/followup_atlas_211_273_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_atlas_211_273_2_soft.jpg",
+      "sha256": "1cf67f6ff355e496c145642e0f06955ec28a5a8f3eeab0df9063e6f49effc825"
+    },
+    {
+      "label": "Submitted artifact: work/followup_atlas_80_139_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_atlas_80_139_2_soft.jpg",
+      "sha256": "a3a8e7c844a10c16db204ae76d8af012a39bdbfe89f4645633e04631c6a8096a"
+    },
+    {
+      "label": "Submitted artifact: work/followup_atlas_81_139_2_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_atlas_81_139_2_soft.jpg",
+      "sha256": "e3f03f80ac45482031f4777d3add463781d85c05b43ca2349343b6e556f691e4"
+    },
+    {
+      "label": "Submitted artifact: work/followup_crop_94.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_crop_94.jpg",
+      "sha256": "8dbf2f647edf12f3ddb0b950f05c10de985fe0ec0edc5f39af5c6969b7d75724"
+    },
+    {
+      "label": "Submitted artifact: work/followup_crop_98.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_crop_98.jpg",
+      "sha256": "7c9fd6b36bd6185ffa537b9124a1d364451e73bf9ff746a396c0d07c6ef52a04"
+    },
+    {
+      "label": "Submitted artifact: work/followup_detail_90_soft.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_detail_90_soft.jpg",
+      "sha256": "70c40d012f1283155482c4d097451faeb2c305cc49ee78f5272502c0e6a7820a"
+    },
+    {
+      "label": "Submitted artifact: work/followup_lung_130_3.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_lung_130_3.jpg",
+      "sha256": "91bd8adb4f5963a79884802ce1427b75ab532bd6b04bc8bc84f4b45b34cf4063"
+    },
+    {
+      "label": "Submitted artifact: work/followup_mask.npy",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_mask.npy",
+      "sha256": "f90ee517f51fc02c287f1bb88de9fa201fc9d7d7a91081179258432f4084dcd5"
+    },
+    {
+      "label": "Submitted artifact: work/followup_mpr_y.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_mpr_y.jpg",
+      "sha256": "3167e53a2dcd4da015fe8650e4db6cf8de255f91f528a24bae7644a369cf14a5"
+    },
+    {
+      "label": "Submitted artifact: work/followup_overlay_86.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_overlay_86.png",
+      "sha256": "20ce7ebbd254f3f9af496054b215c0a3cc86b38837fd23b156dcaced135b16e8"
+    },
+    {
+      "label": "Submitted artifact: work/followup_overlay_87.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_overlay_87.png",
+      "sha256": "1567e21a0386241a6d2b3d420210267f9f921c8695b674cc4350f305260ec41e"
+    },
+    {
+      "label": "Submitted artifact: work/followup_overlay_90.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_overlay_90.png",
+      "sha256": "960fbd75bc0e35af1e9780300771714af4c9be29a34e2548c0eed5c8d1587bec"
+    },
+    {
+      "label": "Submitted artifact: work/followup_soft_0_6.jpg",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_soft_0_6.jpg",
+      "sha256": "f0346abf4fa0d1f40bc607d39a6cb683824c114a2c1c1c1ff23c03eadccc9865"
+    },
+    {
+      "label": "Submitted artifact: work/followup_zoom_104.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_zoom_104.png",
+      "sha256": "d837bd601686da8b0ef4a63c891838aec82b0ed5b9274ce31045fefc099e3f29"
+    },
+    {
+      "label": "Submitted artifact: work/followup_zoom_110.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_zoom_110.png",
+      "sha256": "5df200d0f60324d7e678c6003fa5021a80cd42ae98b9fc1d030c966ce30f1c2d"
+    },
+    {
+      "label": "Submitted artifact: work/followup_zoom_122.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_zoom_122.png",
+      "sha256": "e9f362f1f91c7f580770b760ab5838d8604ccc2acd7c82e5e85235b27e251142"
+    },
+    {
+      "label": "Submitted artifact: work/followup_zoom_80.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_zoom_80.png",
+      "sha256": "63e2a08d02c13a85ec5be021d3990af024dbe0b7abd8d527a99db4450a464e9d"
+    },
+    {
+      "label": "Submitted artifact: work/followup_zoom_86.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_zoom_86.png",
+      "sha256": "94f5b6f751f8271b5a88f190cd7be85c0d7b95aa1cc7445b7e23a7a19c855b2b"
+    },
+    {
+      "label": "Submitted artifact: work/followup_zoom_98.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/followup_zoom_98.png",
+      "sha256": "d80ae33c8fe2bfe0d568fd1a91db5fbab6335067a3fcb1c3f10523599aeac821"
+    },
+    {
+      "label": "Submitted artifact: work/mpr.py",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/mpr.py",
+      "sha256": "d7fd1e933d32c52d44fdc3c5e7fd83801df39c6aca7b34743b47630d2d275b3e"
+    },
+    {
+      "label": "Submitted artifact: work/orthogonal_evidence.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/orthogonal_evidence.png",
+      "sha256": "628383d6aedc62c13d370a351fbbb3d9a4df87c698fcd90748fb86dad5eaa198"
+    },
+    {
+      "label": "Submitted artifact: work/overlay.py",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/overlay.py",
+      "sha256": "2a7ff0bcd7f0543dab3c4a48e5cb002b1151bd8095f4206e09323d67649db5a7"
+    },
+    {
+      "label": "Submitted artifact: work/paired_evidence.png",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/paired_evidence.png",
+      "sha256": "3de5d6ec5a3e562f6b95f5056e74be675c58fb6757f68b2ae091ad2c58dee11b"
+    },
+    {
+      "label": "Submitted artifact: work/segment.py",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/segment.py",
+      "sha256": "3fa4fc6ea2917078f32ad2a6007fecc588c12d5a805b481572136851547214fb"
+    },
+    {
+      "label": "Submitted artifact: work/validation.json",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/validation.json",
+      "sha256": "011b720fc8f1926b518b36f4a8deeb44b69b9b01d6e5a13e623efbc8c57a352d"
+    },
+    {
+      "label": "Submitted artifact: work/views.py",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/views.py",
+      "sha256": "166735622c26c53ed4c072fb801a086527a39c0ed7e788825001896ec175b6a2"
+    },
+    {
+      "label": "Submitted artifact: work/zoom.py",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/artifacts/app/work/zoom.py",
+      "sha256": "5f4133759f49de815207caca04be8b37247ae3dfd7caa9df503a9b57f2198b0d"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": ".local/attempts/attempt-624605e8cb264dcb/job/lock.json",
+      "sha256": "60490762308189fbc03fccde26f34fd5ada5e0ad5d5c747f89e7ef054b0be053"
+    }
+  ],
+  "task_checksum": "43572744197b15f9f1bc06f415d8475a51cc11a404167331cd6d8b80d0605a24",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [],
+  "source_result": ".local/attempts/attempt-624605e8cb264dcb/job/task__QsdohUX/result.json",
+  "source_sha256": "a8de841b43af42b82e24f0efcbbe469590a807a7f1abde76a0860c35d12ed03a",
+  "evidence_sha256": "665696819cb91ca7a2604a74b2aee97f51f9db2c0721bc606a69a233171da39e",
+  "kind": "evaluation",
+  "evaluation_kind": "result",
+  "attempt_id": "attempt-624605e8cb264dcb",
+  "experiment_id": "longitudinal-ct-image-only-astra-medium",
+  "group_id": "longitudinal-reading",
+  "collected_at": "2026-09-22T00:35:20.200475+00:00",
+  "execution_state": "completed",
+  "outcome": "pass",
+  "partial": false,
+  "task_digest": "f2aa2fb2f71acd930e927d581a2513c31dd6c5a03f1f0387ff64e00f098eea24",
+  "freeze_checksum_verified": true,
+  "source_classification": "model_pass"
+}

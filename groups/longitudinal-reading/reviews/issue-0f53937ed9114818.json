@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "kind": "issue",
+  "id": "issue-0f53937ed9114818",
+  "group_id": "longitudinal-reading",
+  "experiment_ids": [
+    "longitudinal-ct-image-only-astra-medium"
+  ],
+  "affected_records": [
+    "longitudinal-ct-image-only-astra-medium"
+  ],
+  "reason": "Instance-boundary convention needs review: source baseline labels 1,2,4 form one 6-connected foreground component; solver instruction says a confluent region is one instance. Connectivity alone does not adjudicate radiologic confluence, but exact instance detection and merging claims may depend on an unstated annotation convention. Retain frozen task and scores; foreground overlap remains descriptive.",
+  "pending_action": true,
+  "actor": "assistant",
+  "created_at": "2026-09-22T00:22:40.932361+00:00",
+  "evidence": [
+    {
+      "path": "groups/longitudinal-reading/examples/longitudinal-ct-instance-boundary-review.json",
+      "sha256": "99671d61f764cc5813de4e4f0f3a2b851e2bfef1f98c0a723b874326cb3bd857"
+    }
+  ]
+}

@@ -12,3 +12,7 @@ Use `uv run med list --group longitudinal-reading` from the repository root. The
 
 [Longitudinal-CT data/GT review](examples/longitudinal-ct-review-20260922.md) ·
 [Proposed lesion-correspondence task](presentation/briefs/longitudinal-ct-correspondence.md)
+
+[Image-only Astra-medium / Sol-xhigh pilot](findings/longitudinal-ct-image-only-comparison.md):
+separate detection, segmentation and correspondence scores with native image
+review; exact merging interpretation remains under review.
