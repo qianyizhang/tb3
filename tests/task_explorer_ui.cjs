@@ -121,7 +121,7 @@ async function checkExplorer(browser, input, report) {
         assert.equal(await page.locator('.scene-player').getAttribute('data-playing'), 'false');
         assert.ok(
           (await page.locator('.task-picture figcaption').innerText()).includes(
-            'not a dataset sample',
+            'not case-specific',
           ),
         );
         for (const stage of [0, 1, 2]) {

@@ -340,11 +340,33 @@ def build(root, output, catalog=DEFAULT_CATALOG, *, presentation_context=None):
                 (base / name).read_text()
                 for name in (
                     "illustrations.js",
+                    "scene-anatomy.js",
                     "scene-models.js",
                     "scenes.js",
                     "datasets.js",
                     "app.js",
                 )
+            ),
+        )
+        .replace(
+            "__ANATOMY_MESHES__",
+            json.dumps(
+                {
+                    p.stem: json.loads(p.read_text())
+                    for p in sorted((base / "anatomy").glob("*.json"))
+                    if p.stem != "manifest"
+                },
+                separators=(",", ":"),
+            ),
+        )
+        .replace(
+            "__ANATOMY_NOTICE__",
+            json.dumps(
+                (base / "anatomy" / "NOTICE.md").read_text()
+                + "\n"
+                + (base / "anatomy" / "CC-BY-4.0.txt").read_text()
+                + "\n"
+                + (base / "assets" / "Apache-2.0.txt").read_text()
             ),
         )
         .replace("__DATA__", payload)

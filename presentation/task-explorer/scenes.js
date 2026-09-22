@@ -18,10 +18,13 @@ const TaskScenes = (() => {
           `<span><i style="--key:${color};border-top-style:${dashed ? 'dashed' : 'solid'}"></i>${esc(label)}</span>`,
       )
       .join('');
+    const anatomyNotice = TaskSceneModels.usesAnatomy(e)
+      ? `<details class="scene-asset-notice"><summary>About the anatomy models</summary><p>Reusable anatomy explains shape and spatial relationships. The same models are reused across tasks, rather than presented as a reconstruction or scored output for the selected case. Markers, lesions and motion remain illustrative.</p><p>Organ surfaces: Wasserthal and the TotalSegmentator contributors, University Hospital Basel. <a href="https://zenodo.org/records/10047263" target="_blank" rel="noopener">TotalSegmentator v2.0.1</a> · smoothed and simplified from public masks. Brain and dental shapes are authored schematics.</p><details><summary>Derivation and licenses</summary><pre>${esc(AnatomyAssets.notice)}</pre></details></details>`
+      : '';
     const labelSpace = d.labels?.length
       ? `<details class="scene-label-space"><summary>Possible class labels (${d.labels.length})</summary><div>${d.labels.map((name) => `<span>${esc(name)}</span>`).join('')}</div></details>`
       : '';
-    return `<div class="scene-player" data-scene="${esc(d.kind)}"><div class="scene-stage"><canvas class="scene-canvas" tabindex="0" role="img" aria-label="${esc(d.input + ' → ' + d.output + '. Conceptual 3D illustration. Drag or use arrow keys to rotate.')}" aria-describedby="scene-description">${esc(d.caption)}</canvas><div class="scene-corner"><span class="scene-dot"></span> <span>3D TASK STUDY</span></div><span class="scene-gesture" aria-hidden="true">Drag to rotate</span></div><div class="scene-controls"><div class="scene-steps" role="group" aria-label="Illustration stage"><button data-scene-step="0" aria-pressed="true"><small>01</small> Input</button><button data-scene-step="1" aria-pressed="false"><small>02</small> Process</button><button data-scene-step="2" aria-pressed="false"><small>03</small> ${e.role && e.role !== 'task' ? 'Study output' : 'Output'}</button></div><button class="scene-play" aria-label="Pause animation">Pause</button><button class="scene-reset" aria-label="Reset illustration view">Reset</button></div><div class="scene-explanation" id="scene-description"><strong data-scene-title>${esc(d.input)}</strong><p>${esc(d.caption)}</p></div><div class="scene-legend">${legend}<span>Conceptual · not to scale</span></div>${labelSpace}<div class="scene-fallback" hidden></div></div>`;
+    return `<div class="scene-player" data-scene="${esc(d.kind)}"><div class="scene-stage"><canvas class="scene-canvas" tabindex="0" role="img" aria-label="${esc(d.input + ' → ' + d.output + '. Conceptual 3D illustration. Drag or use arrow keys to rotate.')}" aria-describedby="scene-description">${esc(d.caption)}</canvas><div class="scene-corner"><span class="scene-dot"></span> <span>3D TASK STUDY</span></div><span class="scene-gesture" aria-hidden="true">Drag to rotate</span></div><div class="scene-controls"><div class="scene-steps" role="group" aria-label="Illustration stage"><button data-scene-step="0" aria-pressed="true"><small>01</small> Input</button><button data-scene-step="1" aria-pressed="false"><small>02</small> Process</button><button data-scene-step="2" aria-pressed="false"><small>03</small> ${e.role && e.role !== 'task' ? 'Study output' : 'Output'}</button></div><button class="scene-play" aria-label="Pause animation">Pause</button><button class="scene-reset" aria-label="Reset illustration view">Reset</button></div><div class="scene-explanation" id="scene-description"><strong data-scene-title>${esc(d.input)}</strong><p>${esc(d.caption)}</p></div><div class="scene-legend">${legend}<span>Conceptual · not to scale</span></div>${labelSpace}${anatomyNotice}<div class="scene-fallback" hidden></div></div>`;
   }
 
   function mount(root, e) {
@@ -139,10 +142,62 @@ const TaskScenes = (() => {
           return { ...item, p, depth: p.reduce((sum, v) => sum + v[2], 0) / p.length };
         })
         .sort((a, b) => a.depth - b.depth);
+      const brightness = new Map(),
+        colors = new Map();
+      const lighting = (normal) => {
+        if (brightness.has(normal)) return brightness.get(normal);
+        const length = Math.hypot(...normal) || 1,
+          nx = (normal[0] * cy + normal[2] * sy) / length,
+          nz = (-normal[0] * sy + normal[2] * cy) / length,
+          ny = (normal[1] / length) * cx - nz * sx,
+          depth = (normal[1] / length) * sx + nz * cx;
+        const light = 0.5 + 0.5 * Math.abs(-0.38 * nx + 0.6 * ny + 0.7 * depth);
+        brightness.set(normal, light);
+        return light;
+      };
       projected.forEach((item) => {
+        let shade = item.color;
+        if (item.surface) {
+          if (!colors.has(item.color))
+            colors.set(
+              item.color,
+              item.color.match(/[0-9a-f]{2}/gi).map((n) => parseInt(n, 16)),
+            );
+          const rgb = colors.get(item.color),
+            levels = item.normals.map(lighting),
+            color = (level) =>
+              `rgb(${rgb.map((n) => Math.round((n * 0.42 + 245 * 0.58) * level)).join(',')})`,
+            [a, b, c] = item.p,
+            low = Math.min(...levels),
+            high = Math.max(...levels),
+            dx1 = b[0] - a[0],
+            dy1 = b[1] - a[1],
+            dx2 = c[0] - a[0],
+            dy2 = c[1] - a[1],
+            det = dx1 * dy2 - dx2 * dy1;
+          shade = color((low + high) / 2);
+          if (Math.abs(det) > 0.01 && high - low > 0.01) {
+            const gx = ((levels[1] - levels[0]) * dy2 - (levels[2] - levels[0]) * dy1) / det,
+              gy = (dx1 * (levels[2] - levels[0]) - dx2 * (levels[1] - levels[0])) / det,
+              magnitude = gx * gx + gy * gy;
+            if (magnitude > 1e-10) {
+              const start = (low - levels[0]) / magnitude,
+                end = (high - levels[0]) / magnitude;
+              const gradient = ctx.createLinearGradient(
+                a[0] + gx * start,
+                a[1] + gy * start,
+                a[0] + gx * end,
+                a[1] + gy * end,
+              );
+              gradient.addColorStop(0, color(low));
+              gradient.addColorStop(1, color(high));
+              shade = gradient;
+            }
+          }
+        }
         ctx.globalAlpha = item.alpha;
         ctx.strokeStyle = item.color;
-        ctx.fillStyle = item.color;
+        ctx.fillStyle = shade;
         ctx.lineWidth = item.width || 1;
         ctx.setLineDash(item.dash ? [4, 4] : []);
         ctx.beginPath();
@@ -155,6 +210,12 @@ const TaskScenes = (() => {
           if (item.type === 'face') {
             ctx.closePath();
             ctx.fill();
+            if (item.surface && item.alpha === 1) {
+              // Close subpixel seams with the same lit material, without dense wire clutter.
+              ctx.strokeStyle = shade;
+              ctx.lineWidth = 0.45;
+              ctx.stroke();
+            }
           } else ctx.stroke();
         }
       });

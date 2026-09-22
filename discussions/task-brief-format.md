@@ -285,3 +285,21 @@ lunar surface marks, dashed reference styles and overlapping labels. Classificat
 now shows a label schema without inventing a diagnosis; authored class labels remain
 expandable. Geometry checks and the full offline browser matrix cover the corrected
 semantics, playback, off-screen suspension and disposal when navigating away.
+
+## Shared anatomy assets — 2026-09-22
+
+Actor: **user** found the initial shapes too simple and abstract, and requested
+shared assets with more detail so organs are distinguishable. Actor:
+**assistant** replaced repeated ellipsoids with 18 compact surfaces derived from
+retained TotalSegmentator masks, plus reusable authored brain and dental models.
+The library preserves source-relative anatomy in assemblies, uses fuller detail
+for individual organs and lighter geometry for small torso/abdomen views, and
+renders smooth shaded surfaces. Task-specific markers, lesions and motion remain
+illustrative overlays. Source-derived shapes are explicitly distinguished from
+selected-case results and the authored schematics.
+
+The longitudinal CT variants now select a torso assembly explicitly; respiratory
+and MRI/ultrasound correspondence views also select their documented anatomy.
+Source masks, frozen task contracts and scores are unchanged. Asset source hashes,
+licenses, extraction settings and local previews are linked in the
+[shared anatomy receipt](../docs/evidence/task-anatomy-assets-2026-09-22.json).

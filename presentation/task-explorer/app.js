@@ -221,7 +221,7 @@ function taskPicture(e) {
   const unavailable=e.missing_media?.length?`<div class="preview-unavailable">${e.visuals.input}${imageNotice(e)}</div>`:'';
   const scene=TaskScenes.figure(e);
   const sample=native?`<details class="scene-source"><summary>Inspect source-derived example${esc(exampleLabel)}</summary><div class="native-input">${e.visuals.input}</div>${imageNotice(e)}<button class="text-button" data-example-open>Inspect example and reference →</button></details>`:'';
-  if(scene) return `<figure class="task-picture conceptual${native?' native-preview':''}" data-illustration="${esc(e.illustration.kind)}"><figcaption><span class="drawing-label">Animated task illustration</span><span>Drawn, not a dataset sample</span></figcaption>${scene}${sample}</figure>${unavailable}`;
+  if(scene) return `<figure class="task-picture conceptual${native?' native-preview':''}" data-illustration="${esc(e.illustration.kind)}"><figcaption><span class="drawing-label">Animated task illustration</span><span>Illustrative model · not case-specific</span></figcaption>${scene}${sample}</figure>${unavailable}`;
   if(native) return `<figure class="task-picture native-preview"><figcaption><span class="drawing-label">Source-derived example${esc(exampleLabel)}</span><button class="text-button" data-example-open>Inspect example →</button></figcaption><div class="native-input">${e.visuals.input}</div>${imageNotice(e)}</figure>`;
   return unavailable;
 }

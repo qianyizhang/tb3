@@ -1,0 +1,90 @@
+{
+  "observed_on": "2026-09-22",
+  "request_actor": "user",
+  "implementation_actor": "assistant",
+  "source_task": "codex://threads/01a0c88e-4154-7cb1-b869-8f3a70e48397",
+  "request": "Create common, more detailed assets that distinguish organs instead of simple abstract shapes.",
+  "source_assets": 18,
+  "asset_manifest": "presentation/task-explorer/anatomy/manifest.json",
+  "notice": "presentation/task-explorer/anatomy/NOTICE.md",
+  "optional_authoring_script": "scripts/build_anatomy_assets.py",
+  "runtime_assembly": "presentation/task-explorer/scene-anatomy.js",
+  "authored_models": [
+    "brain hemispheres, cortical folds, cerebellum and brainstem",
+    "dental crowns and roots"
+  ],
+  "integration": "Shared input anatomy, segmentation target surfaces, identity studies, longitudinal torso assemblies and anatomy-specific correspondence scenes. Procedural diagrams remain for non-anatomical tasks and abstract motion contracts.",
+  "boundaries": [
+    "Source cases also appear in research records; reusable anatomy is not presented as a selected-case reconstruction or scored result.",
+    "Source masks were read only; no segmentation, trial, model or runtime installation.",
+    "Source assemblies preserve relative placement and uniform display scale; independent cards fit independently.",
+    "The builder rejects empty or image-boundary-truncated masks and writes to fresh destinations."
+  ],
+  "validation": {
+    "javascript": "make js-check: pass",
+    "browser": {
+      "briefs": 200,
+      "taskFamilies": 140,
+      "sourceRecords": 284,
+      "conditions": 428,
+      "nativeImagesDecoded": 15,
+      "conceptualIllustrations": 200,
+      "diagramTypes": 80,
+      "sourcePreviews": 7,
+      "portableFallbacks": 7,
+      "illustratedOverviews": 200,
+      "animated3DScenes": 200,
+      "motionPauseReducedMotionAndCamera": "pass",
+      "canvasUnavailableFallback": "pass",
+      "offscreenAndNavigationCleanup": "pass",
+      "localSources": 70,
+      "sourceReader": "pass",
+      "keyboardFocus": "pass",
+      "groupedTaskList": "pass",
+      "datasetVariants": "pass",
+      "caseDifferences": "pass",
+      "legacyLinksAndBack": "pass",
+      "collapsedProvenance": "pass",
+      "search": "pass",
+      "referenceReveal": "pass",
+      "capabilityNavigation": "pass",
+      "supportingResearch": "pass",
+      "internalExperiments": 59,
+      "mobile": "pass",
+      "pageErrors": [],
+      "remoteRequests": []
+    },
+    "performance": {
+      "frames": 52,
+      "medianFrameMs": 49.900000005960464,
+      "p90FrameMs": 50.1000000089407,
+      "scope": "One headless disposable-browser run of the two-torso longitudinal scene on this host; not a cross-device performance guarantee."
+    },
+    "repository_gate": {
+      "command": "make check PYTHON=python3.12",
+      "result": "pass",
+      "tests": 105,
+      "scope": "Isolated staged snapshot over 4779d7a excluding concurrently owned Dataset Explorer changes.",
+      "snapshot_receipt": ".local/task-anatomy/check-snapshot.json",
+      "log": ".local/task-anatomy/make-check.log"
+    },
+    "visual_review": [
+      "liver, kidneys, pancreas and spleen silhouette gallery",
+      "brain, lungs, heart and dental gallery",
+      "two-visit torso task scene",
+      "rotatable asset library"
+    ]
+  },
+  "local_artifacts": {
+    "preview": ".local/task-anatomy/index.html",
+    "library": ".local/task-anatomy/library.html",
+    "browser_report": ".local/task-anatomy/qa-final.json"
+  },
+  "source_sha256": {
+    "presentation/task-explorer/scene-anatomy.js": "fda764ae8211d179f4245170700bbb34a76df17638cfaf57e0fb28d7e1e0ad52",
+    "presentation/task-explorer/scene-models.js": "d5bcd1ca396e4a38c899718a872bdcb1fcedfb97b565211580c1e481d11c99e2",
+    "presentation/task-explorer/scenes.js": "25da422b404bb5b602f0bee5f313b59fd2b43dcd642b148e59500214d454306f",
+    "presentation/task-explorer/anatomy/manifest.json": "31d9696f77ded3e075d7c921fadcdc2258eeab6212f4720c5ee67a27d28fafec",
+    "scripts/build_anatomy_assets.py": "8705b384fa9f00b3deba427364437349536cea95377a0b8d2418edb68034afe6"
+  }
+}

@@ -72,9 +72,10 @@ imported identifiers, authored briefs and available media are distinct coverage 
   and an organ/lesion pair is not one undifferentiated segmentation. Do not fabricate
   measured improvements, patient findings, clinical thresholds or reference answers.
   Geometry and textures are stylized. Cite the task source for any numerical dimensions.
-  `illustrations.js` owns the static SVG fallback. `scene-models.js` owns geometry
-  and legends; `scenes.js` owns projection and playback. All are embedded with the
-  navigation renderer in the standalone HTML.
+  `illustrations.js` owns the static SVG fallback. `scene-anatomy.js` owns reusable
+  anatomy assemblies; `scene-models.js` owns task geometry and legends; `scenes.js`
+  owns projection and playback. All are embedded with the navigation renderer in
+  the standalone HTML.
 - Every named entry, including supporting research and each grouped variant,
   needs an Overview visual. The composed catalogue enforces this with
   `require_overview_visuals: true`. Every authored `illustration` opens as a conceptual 3D scene. Curated input
@@ -88,10 +89,24 @@ imported identifiers, authored briefs and available media are distinct coverage 
 
 On 2026-09-22 the user requested replacing the ordinary infographics with animated
 3D illustrations, citing [OnCo Technologies](https://onco.cc/technologies/).
-Original procedural wireframes use that visual direction; no site geometry or
-code is copied. The three stages are Input, Process and Output (Study output for
+The user subsequently asked for more detailed, distinguishable shared organ
+assets. Source-derived organ surfaces and authored schematics use that visual
+direction; no site geometry or code is copied. The three stages are Input,
+Process and Output (Study output for
 supporting research). Their text comes from the task's illustration metadata.
-These are conceptual explanations, never native reconstructions or experiment results.
+These explain task structure; they are not presented as reconstructions or
+evaluated results for the selected case.
+
+- Common anatomy lives in `anatomy/` and `scene-anatomy.js`. Eighteen compact
+  source surfaces retain source/output hashes and derivation in their manifest.
+  Normal builds embed the retained assets without scans or scientific runtimes.
+  Keep source-case provenance, attribution and licenses in the expandable model
+  notice. Describe them as shared teaching anatomy, not a selected-case result.
+- Preserve relative size and position within a source-derived assembly. Fit
+  individual organs independently only for explanatory display. Small torso and
+  abdomen assemblies use lower-detail meshes; individual organs keep fuller detail.
+  Brain and dental procedural shapes remain explicitly authored schematics.
+  See [asset provenance and rebuilding](anatomy/NOTICE.md).
 
 - `scene-models.js` explicitly maps each illustration kind to a scene recipe. Use
   `subject`, optional `target` and optional `scene_variant` metadata for anatomy

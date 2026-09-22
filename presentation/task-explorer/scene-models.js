@@ -1,4 +1,4 @@
-// Original, procedural 3D teaching scenes. No patient geometry or scored results.
+// Task choreography over shared teaching assets; no task-specific results.
 // Kept dependency-free so the complete Explorer works as a single offline file.
 const TaskSceneModels = (() => {
   const C = {
@@ -281,114 +281,34 @@ const TaskSceneModels = (() => {
         );
       });
     };
+    const asset = (name, color = null, alpha = 1, deform = null) => {
+      const parts = AnatomyAssets.get(name);
+      if (!parts) return false;
+      parts.forEach((part, i) => {
+        const vertices = part.vertices.map((v) => point(deform ? deform(v) : v));
+        const material = color || [teal, blue, rose, gold][i % 4];
+        part.faces.forEach((indices) =>
+          primitives.push({
+            type: 'face',
+            points: indices.map((n) => vertices[n]),
+            color: material,
+            alpha,
+            surface: true,
+            normals: indices.map((n) => part.normals[n]),
+            asset: part.id,
+          }),
+        );
+      });
+      return true;
+    };
     const anatomy = (colored = false) => {
+      if (asset(subject, colored ? null : ink)) return;
       const col = (i) => (colored ? [teal, blue, rose, gold][i % 4] : ink);
-      if (['brain-vessels', 'aorta', 'vessels'].includes(subject)) {
+      if (['brain-vessels', 'vessels'].includes(subject)) {
         branches(colored);
         return;
       }
-      if (subject === 'brain') {
-        mesh([-0.42, 0, 0], [0.52, 1.08, 0.76], col(0), 0.08);
-        mesh([0.42, 0, 0], [0.52, 1.08, 0.76], col(1), 0.08);
-        for (let j = 0; j < 5; j++)
-          path(
-            Array.from({ length: 30 }, (_, i) => {
-              const a = (i * Math.PI) / 29;
-              return [
-                0.9 * Math.cos(a),
-                -0.7 + j * 0.34 + 0.07 * Math.sin(a * 7),
-                0.62 * Math.sin(a),
-              ];
-            }),
-            col(0),
-            0.5,
-          );
-      } else if (['chest', 'chest-ct', 'airways'].includes(subject)) {
-        mesh([-0.55, 0, 0], [0.46, 1.12, 0.56], col(0), 0.045);
-        mesh([0.55, 0, 0], [0.46, 1.12, 0.56], col(1), 0.045);
-        tube(
-          [
-            [0, 1.35, 0],
-            [0, 0.62, 0],
-            [-0.42, 0.12, 0.12],
-          ],
-          subject === 'airways' && colored ? gold : ink,
-          0.06,
-        );
-        tube(
-          [
-            [0, 0.62, 0],
-            [0.42, 0.12, 0.12],
-          ],
-          subject === 'airways' && colored ? gold : ink,
-          0.06,
-        );
-        if (subject === 'airways') group([0, 0, 0.15], 0.55, () => branches(colored));
-      } else if (subject === 'heart' || subject === 'ultrasound') {
-        mesh([-0.18, 0, 0], [0.71, 1.05, 0.59], col(0), 0.12);
-        mesh([0.43, 0.23, -0.12], [0.4, 0.76, 0.4], col(1), 0.06);
-        tube(
-          [
-            [-0.17, 0.85, 0],
-            [-0.3, 1.25, 0],
-            [0.12, 1.35, -0.1],
-            [0.3, 1, -0.12],
-          ],
-          col(0),
-          0.11,
-        );
-      } else if (subject === 'teeth') {
-        for (let i = 0; i < 12; i++) {
-          const a = 0.16 + (i * (Math.PI - 0.32)) / 11,
-            x = 1.25 * Math.cos(a),
-            z = 0.85 * Math.sin(a);
-          mesh([x, 0.2, z], [0.19, 0.23, 0.19], col(i), 0.04, 0.6, 0.55);
-          tube(
-            [
-              [x - 0.065, 0.13, z],
-              [x - 0.07, -0.14, z - 0.03],
-              [x - 0.1, -0.4, z - 0.05],
-            ],
-            col(i),
-            0.035,
-          );
-          tube(
-            [
-              [x + 0.065, 0.13, z],
-              [x + 0.07, -0.14, z - 0.03],
-              [x + 0.1, -0.4, z - 0.05],
-            ],
-            col(i),
-            0.035,
-          );
-        }
-        path(
-          Array.from({ length: 45 }, (_, i) => [
-            1.45 * Math.cos((i * Math.PI) / 44),
-            -0.63,
-            Math.sin((i * Math.PI) / 44),
-          ]),
-          C.faint,
-          0.5,
-        );
-      } else if (subject === 'abdomen') {
-        mesh([-0.42, 0.48, 0], [0.86, 0.48, 0.53], col(0), 0.14);
-        mesh([0.68, 0.38, -0.12], [0.27, 0.58, 0.32], col(1), 0.12);
-        mesh([-0.61, -0.49, 0.1], [0.25, 0.43, 0.3], col(2), 0.16);
-        mesh([0.6, -0.51, 0.12], [0.25, 0.43, 0.3], col(3), 0.16);
-        tube(
-          [
-            [0, 0.9, -0.3],
-            [0, 0.25, -0.3],
-            [0, -0.9, -0.3],
-          ],
-          colored ? gold : ink,
-          0.06,
-        );
-      } else if (subject === 'prostate') {
-        mesh([0, 0, 0], [0.92, 0.73, 0.66], col(0), 0.055);
-        mesh([0, 0, 0.22], [0.48, 0.49, 0.35], col(1), 0.035);
-      } else if (subject === 'breast') {
+      if (subject === 'breast') {
         mesh([-0.64, 0, 0], [0.56, 0.65, 0.75], col(0), 0.035);
         mesh([0.64, 0, 0], [0.56, 0.65, 0.75], col(1), 0.035);
       } else if (['tissue', 'skin'].includes(subject)) {
@@ -410,14 +330,9 @@ const TaskSceneModels = (() => {
       }
     };
     const organ = () => {
-      if (d.target === 'kidneys') {
-        mesh([-0.55, 0, 0], [0.32, 0.65, 0.36], teal, 0.16);
-        mesh([0.55, 0, 0], [0.32, 0.65, 0.36], teal, 0.16);
-      } else if (d.target === 'pancreas') mesh([0, 0, 0], [1.12, 0.25, 0.32], teal, 0.17);
-      else if (d.target === 'liver') mesh([0, 0, 0], [1.05, 0.66, 0.62], teal, 0.17);
-      else if (d.target === 'spleen') mesh([0, 0, 0], [0.39, 0.91, 0.48], teal, 0.13);
-      else if (d.target === 'lesion') mesh([0, 0, 0], [0.38, 0.45, 0.3], teal, 0.21);
-      else mesh([0, 0, 0], [0.72, 0.87, 0.61], teal, 0.12);
+      if (asset(d.target || subject, teal)) return;
+      // Unspecified target regions are schematic, not an invented named organ.
+      mesh([0, 0, 0], [0.38, 0.45, 0.3], teal, 0.21);
     };
     const sweep = () => plane(Math.sin(clock * 0.8) * 1.05, teal, 0.16);
     const target = (p = [0.52, 0.15, 0.48], boxed = false) => {
@@ -549,7 +464,7 @@ const TaskSceneModels = (() => {
             }
           }
         } else if (out && d.mask_mode === 'binary') {
-          if (['aorta', 'vessels', 'brain-vessels'].includes(subject)) branches(false, false, teal);
+          if (['vessels', 'brain-vessels'].includes(subject)) branches(false, false, teal);
           else organ();
           label([0, -1.25, 0], 'One target mask', teal);
         } else if (out && d.mask_mode === 'separate') {
@@ -592,12 +507,7 @@ const TaskSceneModels = (() => {
         } else {
           for (let i = 0; i < 3; i++)
             group([-1 + i, 0, 0], 0.7, () => {
-              mesh(
-                [0, i * 0.15, 0],
-                [0.3 + i * 0.09, 0.45 + i * 0.08, 0.35],
-                out ? [teal, blue, gold][i] : ink,
-                0.08,
-              );
+              asset(['liver', 'kidney_left', 'spleen'][i], out ? [teal, blue, gold][i] : ink);
               label(
                 [0, -0.95, 0],
                 out ? ['Identity A', 'Identity B', 'Identity C'][i] : 'Object ' + (i + 1),
@@ -655,8 +565,21 @@ const TaskSceneModels = (() => {
       }
       case 'registration': {
         const t = out ? 1 : work ? smooth((Math.sin(clock * 0.7) + 1) / 2) : 0;
-        mesh([0, 0, 0], [0.79, 1, 0.65], blue, 0.09, 0.45);
-        mesh([mix(0.63, 0, t), mix(0.3, 0, t), mix(0.3, 0, t)], [0.79, 1, 0.65], rose, 0.09, 0.45);
+        if (AnatomyAssets.has(subject)) {
+          asset(subject, blue, 0.45);
+          group([mix(0.63, 0, t), mix(0.3, 0, t), mix(0.3, 0, t)], 1, () =>
+            asset(subject, rose, 0.45),
+          );
+        } else {
+          mesh([0, 0, 0], [0.79, 1, 0.65], blue, 0.09, 0.45);
+          mesh(
+            [mix(0.63, 0, t), mix(0.3, 0, t), mix(0.3, 0, t)],
+            [0.79, 1, 0.65],
+            rose,
+            0.09,
+            0.45,
+          );
+        }
         if (k !== 'register') {
           dot([-0.5, 0.55, 0.55], 0.06, gold);
           if (out || d.initial_candidate)
@@ -1159,6 +1082,11 @@ const TaskSceneModels = (() => {
 
   return {
     build: scene,
+    usesAnatomy: (e) =>
+      recipes[e.illustration.kind]?.family !== 'motion' &&
+      (AnatomyAssets.has(e.illustration.subject) ||
+        AnatomyAssets.has(e.illustration.target) ||
+        ['object_identity', 'mask_shortcuts'].includes(e.illustration.kind)),
     legend,
     supports: (kind) => Object.hasOwn(recipes, kind),
     action: (kind) => recipes[kind].action,
