@@ -1,0 +1,2768 @@
+{
+  "schema_version": 1,
+  "summaries": {
+    "image_only": {
+      "attempt_id": "attempt-92800845745342f4",
+      "task_digest": "e12f6fc10c83c8dfb2bc4ca3bd4cfffc90811bdb7249ad8ddedcf55655b1083a",
+      "contract_valid": true,
+      "detection": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 19,
+        "precision": 1.0,
+        "recall": 0.13636363636363635,
+        "f1": 0.24
+      },
+      "foreground_dice": {
+        "baseline": 0.7990998480635266,
+        "followup": 0.8913400236127509
+      },
+      "gt_macro_dice": 0.10727920264378547,
+      "association": {
+        "links_end_to_end": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.14285714285714285,
+          "f1": 0.25
+        },
+        "links_conditional_on_detection": {
+          "eligible_gt_edges": 1,
+          "total_gt_edges": 7,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "events_end_to_end": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 13,
+          "precision": 1.0,
+          "recall": 0.13333333333333333,
+          "f1": 0.23529411764705882
+        },
+        "events_conditional_on_detection": {
+          "eligible_gt_groups": 2,
+          "total_gt_groups": 15,
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "event_classes": {
+          "persistent": {
+            "reference_groups": 7,
+            "prediction_groups": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 6,
+            "precision": 1.0,
+            "recall": 0.14285714285714285,
+            "f1": 0.25
+          },
+          "merging": {
+            "reference_groups": 0,
+            "prediction_groups": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "disappearing": {
+            "reference_groups": 0,
+            "prediction_groups": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "newly_appearing": {
+            "reference_groups": 8,
+            "prediction_groups": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 7,
+            "precision": 1.0,
+            "recall": 0.125,
+            "f1": 0.2222222222222222
+          }
+        },
+        "unresolved_groups": 0,
+        "mapped_predictions": [
+          {
+            "event": "persistent",
+            "baseline_ids": [
+              4
+            ],
+            "followup_ids": [
+              4
+            ]
+          },
+          {
+            "event": "newly_appearing",
+            "baseline_ids": [],
+            "followup_ids": [
+              13
+            ]
+          }
+        ]
+      },
+      "size_strata": [
+        {
+          "stratum": "<=1 mL",
+          "gt_count": 11,
+          "localized": 0,
+          "recall": 0.0,
+          "gt_macro_dice": 0.0,
+          "foreground_coverage_mean": 0.004578155657292348
+        },
+        {
+          "stratum": ">1 to 10 mL",
+          "gt_count": 9,
+          "localized": 1,
+          "recall": 0.1111111111111111,
+          "gt_macro_dice": 0.06431372549019608,
+          "foreground_coverage_mean": 0.06892537835052003
+        },
+        {
+          "stratum": ">10 mL",
+          "gt_count": 2,
+          "localized": 2,
+          "recall": 1.0,
+          "gt_macro_dice": 0.8906594643757577,
+          "foreground_coverage_mean": 0.9366936661419036
+        }
+      ],
+      "independent_replay_exact": true
+    },
+    "context_supplied": {
+      "attempt_id": "attempt-81ee755346d04be7",
+      "task_digest": "ffdf321ba2637b46484309d8ec2c39fdffd5234b99e3152842c245a25a149215",
+      "contract_valid": true,
+      "detection": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 19,
+        "precision": 1.0,
+        "recall": 0.13636363636363635,
+        "f1": 0.24
+      },
+      "foreground_dice": {
+        "baseline": 0.7395221411448591,
+        "followup": 0.8759704098728144
+      },
+      "gt_macro_dice": 0.11044170010039026,
+      "association": {
+        "links_end_to_end": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 6,
+          "precision": 1.0,
+          "recall": 0.14285714285714285,
+          "f1": 0.25
+        },
+        "links_conditional_on_detection": {
+          "eligible_gt_edges": 1,
+          "total_gt_edges": 7,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "events_end_to_end": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 13,
+          "precision": 1.0,
+          "recall": 0.13333333333333333,
+          "f1": 0.23529411764705882
+        },
+        "events_conditional_on_detection": {
+          "eligible_gt_groups": 2,
+          "total_gt_groups": 15,
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "event_classes": {
+          "persistent": {
+            "reference_groups": 7,
+            "prediction_groups": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 6,
+            "precision": 1.0,
+            "recall": 0.14285714285714285,
+            "f1": 0.25
+          },
+          "merging": {
+            "reference_groups": 0,
+            "prediction_groups": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "disappearing": {
+            "reference_groups": 0,
+            "prediction_groups": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "newly_appearing": {
+            "reference_groups": 8,
+            "prediction_groups": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 7,
+            "precision": 1.0,
+            "recall": 0.125,
+            "f1": 0.2222222222222222
+          }
+        },
+        "unresolved_groups": 0,
+        "mapped_predictions": [
+          {
+            "event": "persistent",
+            "baseline_ids": [
+              4
+            ],
+            "followup_ids": [
+              4
+            ]
+          },
+          {
+            "event": "newly_appearing",
+            "baseline_ids": [],
+            "followup_ids": [
+              13
+            ]
+          }
+        ]
+      },
+      "size_strata": [
+        {
+          "stratum": "<=1 mL",
+          "gt_count": 11,
+          "localized": 0,
+          "recall": 0.0,
+          "gt_macro_dice": 0.0,
+          "foreground_coverage_mean": 0.0
+        },
+        {
+          "stratum": ">1 to 10 mL",
+          "gt_count": 9,
+          "localized": 1,
+          "recall": 0.1111111111111111,
+          "gt_macro_dice": 0.0816451810926949,
+          "foreground_coverage_mean": 0.08563281824871229
+        },
+        {
+          "stratum": ">10 mL",
+          "gt_count": 2,
+          "localized": 2,
+          "recall": 1.0,
+          "gt_macro_dice": 0.8474553861871659,
+          "foreground_coverage_mean": 0.9311747824740624
+        }
+      ],
+      "independent_replay_exact": true
+    }
+  },
+  "per_reference_comparison": [
+    {
+      "visit": "baseline",
+      "gt_id": 1,
+      "volume_ml": 5.9490203857421875,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 2,
+      "volume_ml": 0.9822845458984375,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 3,
+      "volume_ml": 1.0089874267578125,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 4,
+      "volume_ml": 58.917999267578125,
+      "before_prediction_id": 1,
+      "after_prediction_id": 1,
+      "before_dice": 0.8693008170648039,
+      "after_dice": 0.7987992260414295,
+      "before_coverage": 0.9023955972806733,
+      "after_coverage": 0.9088054386532859
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 5,
+      "volume_ml": 1.36566162109375,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 6,
+      "volume_ml": 0.96893310546875,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "baseline",
+      "gt_id": 7,
+      "volume_ml": 0.4711151123046875,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 1,
+      "volume_ml": 5.424022674560547,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 2,
+      "volume_ml": 0.8225440979003906,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 3,
+      "volume_ml": 0.8821487426757812,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 4,
+      "volume_ml": 368.95036697387695,
+      "before_prediction_id": 1,
+      "after_prediction_id": 1,
+      "before_dice": 0.9120181116867115,
+      "after_dice": 0.8961115463329021,
+      "before_coverage": 0.9709917350031341,
+      "after_coverage": 0.9535441262948388
+    },
+    {
+      "visit": "followup",
+      "gt_id": 5,
+      "volume_ml": 1.4996528625488281,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 6,
+      "volume_ml": 0.362396240234375,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 7,
+      "volume_ml": 0.14781951904296875,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 8,
+      "volume_ml": 1.6808509826660156,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 9,
+      "volume_ml": 0.8511543273925781,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 10,
+      "volume_ml": 0.9512901306152344,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 11,
+      "volume_ml": 1.1301040649414062,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 12,
+      "volume_ml": 0.3314018249511719,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.050359712230215826,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 13,
+      "volume_ml": 2.880096435546875,
+      "before_prediction_id": 2,
+      "after_prediction_id": 2,
+      "before_dice": 0.5788235294117647,
+      "after_dice": 0.7348066298342542,
+      "before_coverage": 0.5091059602649006,
+      "after_coverage": 0.7706953642384106
+    },
+    {
+      "visit": "followup",
+      "gt_id": 14,
+      "volume_ml": 2.3794174194335938,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.11122244488977956,
+      "after_coverage": 0.0
+    },
+    {
+      "visit": "followup",
+      "gt_id": 15,
+      "volume_ml": 0.6175041198730469,
+      "before_prediction_id": null,
+      "after_prediction_id": null,
+      "before_dice": 0.0,
+      "after_dice": 0.0,
+      "before_coverage": 0.0,
+      "after_coverage": 0.0
+    }
+  ],
+  "context_inference": {
+    "schema_version": 1,
+    "fields": {
+      "broad_diagnosis": {
+        "status": "inferred",
+        "value": "Suspected metastatic malignancy involving the liver, with increased hepatic disease burden on follow-up.",
+        "confidence": 0.91,
+        "basis": "Observed: multiple hypoattenuating hepatic lesions, including an ill-defined right-lobe lesion in baseline.nii.gz at native (i,j,k) approximately (185,315,430), and a much larger right-lobe mass in followup.nii.gz around (155,250,542), with additional lesions across k=526-550. Baseline liver reviewed at k=380-440 and follow-up at k=506-558. Multiplicity and marked interval increase favor malignant hepatic involvement, most likely metastases. This is an imaging inference, not histologic confirmation or a known cancer history.",
+        "alternatives": [
+          "Multifocal primary hepatic malignancy",
+          "Less likely nonmalignant multifocal hepatic lesions, including infection; unenhanced CT cannot establish histology"
+        ]
+      },
+      "specific_primary_diagnosis": {
+        "status": "unknown",
+        "value": null,
+        "confidence": 0.98,
+        "basis": "Neither NIfTI header contains a diagnosis, and the supplied CT images do not establish a primary site or histology. Hepatic lesions are nonspecific. Extensive body coverage and right-groin scar-like changes cannot identify the original tumor.",
+        "alternatives": [
+          "Metastatic melanoma is compatible with extensive limb coverage and possible prior groin intervention, but neither feature is diagnostic",
+          "Other solid malignancies with hepatic metastases",
+          "Primary hepatic malignancy"
+        ]
+      },
+      "age_years": {
+        "status": "unknown",
+        "value": null,
+        "confidence": 1.0,
+        "basis": "No age, birth date, or examination date is present in the available NIfTI headers or extensions. Skeletal maturity supports an adult appearance but cannot establish chronological age.",
+        "alternatives": []
+      },
+      "recorded_sex": {
+        "status": "unknown",
+        "value": null,
+        "confidence": 1.0,
+        "basis": "No recorded sex field or demographic record is supplied. Visible pelvic or breast anatomy does not establish recorded sex.",
+        "alternatives": []
+      },
+      "interval_days": {
+        "status": "unknown",
+        "value": null,
+        "confidence": 1.0,
+        "basis": "No acquisition dates or trustworthy elapsed-time metadata are present. These are separate three-dimensional NIfTI volumes; spatial slice spacing, affine origins, and zero timing fields do not encode the inter-examination interval. Earlier/later ordering comes only from the supplied description. Lesion growth cannot determine elapsed days.",
+        "alternatives": []
+      },
+      "baseline_scan_purpose": {
+        "status": "unknown",
+        "value": null,
+        "confidence": 0.98,
+        "basis": "baseline.nii.gz covers lower legs through the head with arms raised and no convincing intravenous enhancement; this is compatible with a CT component of a whole-body oncologic examination. Hepatic abnormalities are already visible (for example native k=430). The label baseline is relative to this pair and does not establish initial staging, pretreatment status, or the ordering indication. No requisition, PET data, or protocol description is supplied.",
+        "alternatives": [
+          "Oncologic staging or restaging",
+          "Surveillance of known malignancy",
+          "Assessment before, during, or after treatment",
+          "CT component of PET/CT, unconfirmed"
+        ]
+      },
+      "followup_scan_purpose": {
+        "status": "unknown",
+        "value": null,
+        "confidence": 0.98,
+        "basis": "followup.nii.gz has extensive feet-to-head coverage and larger/more conspicuous liver lesions (native k=526-558), supporting possible oncologic reassessment. Observed worsening cannot identify why this examination was ordered or whether it was intended to assess treatment response. No clinical indication or PET series is supplied.",
+        "alternatives": [
+          "Restaging or surveillance",
+          "Treatment-response assessment",
+          "Evaluation of suspected progression or new symptoms",
+          "CT component of PET/CT, unconfirmed"
+        ]
+      },
+      "systemic_treatment_context": {
+        "status": "unknown",
+        "value": null,
+        "confidence": 0.99,
+        "basis": "No medication history, treatment dates, or treatment metadata are supplied. Increased hepatic lesion burden between baseline.nii.gz (k=410-440) and followup.nii.gz (k=526-558) cannot establish whether systemic therapy occurred, its regimen, line, intent, or effectiveness. Calling this progression on chemotherapy or immunotherapy would add unsupported history.",
+        "alternatives": [
+          "No intervening systemic therapy",
+          "Imaging during or after systemic therapy, with regimen and response context unknown"
+        ]
+      },
+      "surgical_context": {
+        "status": "inferred",
+        "value": "Probable prior right inguinal/local intervention; procedure, indication, and timing are unestablished.",
+        "confidence": 0.76,
+        "basis": "Observed: asymmetric right inguinal skin retraction/tethering and linear soft-tissue stranding near the femoral region, present already in baseline.nii.gz (native i=160-215, j=180-225, k=220-250; representative k=230) and persisting in followup.nii.gz (i=160-210, j=155-205, k=378-410; representative k=390). Associated right-thigh subcutaneous stranding/asymmetry is visible at baseline k=160-200 and follow-up k=330-370. This favors a scar from prior local intervention but is not an operative record. No particular cancer resection or lymph-node dissection, and no operation between these scans, can be established.",
+        "alternatives": [
+          "Prior inguinal node biopsy or dissection",
+          "Other prior local surgery or intervention",
+          "Nonsurgical scarring, inflammation, or lymphatic obstruction"
+        ]
+      }
+    }
+  },
+  "context_inference_contract": {
+    "schema_version": 1,
+    "contract_valid": true,
+    "errors": [],
+    "submission": {
+      "schema_version": 1,
+      "fields": {
+        "broad_diagnosis": {
+          "status": "inferred",
+          "value": "Suspected metastatic malignancy involving the liver, with increased hepatic disease burden on follow-up.",
+          "confidence": 0.91,
+          "basis": "Observed: multiple hypoattenuating hepatic lesions, including an ill-defined right-lobe lesion in baseline.nii.gz at native (i,j,k) approximately (185,315,430), and a much larger right-lobe mass in followup.nii.gz around (155,250,542), with additional lesions across k=526-550. Baseline liver reviewed at k=380-440 and follow-up at k=506-558. Multiplicity and marked interval increase favor malignant hepatic involvement, most likely metastases. This is an imaging inference, not histologic confirmation or a known cancer history.",
+          "alternatives": [
+            "Multifocal primary hepatic malignancy",
+            "Less likely nonmalignant multifocal hepatic lesions, including infection; unenhanced CT cannot establish histology"
+          ]
+        },
+        "specific_primary_diagnosis": {
+          "status": "unknown",
+          "value": null,
+          "confidence": 0.98,
+          "basis": "Neither NIfTI header contains a diagnosis, and the supplied CT images do not establish a primary site or histology. Hepatic lesions are nonspecific. Extensive body coverage and right-groin scar-like changes cannot identify the original tumor.",
+          "alternatives": [
+            "Metastatic melanoma is compatible with extensive limb coverage and possible prior groin intervention, but neither feature is diagnostic",
+            "Other solid malignancies with hepatic metastases",
+            "Primary hepatic malignancy"
+          ]
+        },
+        "age_years": {
+          "status": "unknown",
+          "value": null,
+          "confidence": 1.0,
+          "basis": "No age, birth date, or examination date is present in the available NIfTI headers or extensions. Skeletal maturity supports an adult appearance but cannot establish chronological age.",
+          "alternatives": []
+        },
+        "recorded_sex": {
+          "status": "unknown",
+          "value": null,
+          "confidence": 1.0,
+          "basis": "No recorded sex field or demographic record is supplied. Visible pelvic or breast anatomy does not establish recorded sex.",
+          "alternatives": []
+        },
+        "interval_days": {
+          "status": "unknown",
+          "value": null,
+          "confidence": 1.0,
+          "basis": "No acquisition dates or trustworthy elapsed-time metadata are present. These are separate three-dimensional NIfTI volumes; spatial slice spacing, affine origins, and zero timing fields do not encode the inter-examination interval. Earlier/later ordering comes only from the supplied description. Lesion growth cannot determine elapsed days.",
+          "alternatives": []
+        },
+        "baseline_scan_purpose": {
+          "status": "unknown",
+          "value": null,
+          "confidence": 0.98,
+          "basis": "baseline.nii.gz covers lower legs through the head with arms raised and no convincing intravenous enhancement; this is compatible with a CT component of a whole-body oncologic examination. Hepatic abnormalities are already visible (for example native k=430). The label baseline is relative to this pair and does not establish initial staging, pretreatment status, or the ordering indication. No requisition, PET data, or protocol description is supplied.",
+          "alternatives": [
+            "Oncologic staging or restaging",
+            "Surveillance of known malignancy",
+            "Assessment before, during, or after treatment",
+            "CT component of PET/CT, unconfirmed"
+          ]
+        },
+        "followup_scan_purpose": {
+          "status": "unknown",
+          "value": null,
+          "confidence": 0.98,
+          "basis": "followup.nii.gz has extensive feet-to-head coverage and larger/more conspicuous liver lesions (native k=526-558), supporting possible oncologic reassessment. Observed worsening cannot identify why this examination was ordered or whether it was intended to assess treatment response. No clinical indication or PET series is supplied.",
+          "alternatives": [
+            "Restaging or surveillance",
+            "Treatment-response assessment",
+            "Evaluation of suspected progression or new symptoms",
+            "CT component of PET/CT, unconfirmed"
+          ]
+        },
+        "systemic_treatment_context": {
+          "status": "unknown",
+          "value": null,
+          "confidence": 0.99,
+          "basis": "No medication history, treatment dates, or treatment metadata are supplied. Increased hepatic lesion burden between baseline.nii.gz (k=410-440) and followup.nii.gz (k=526-558) cannot establish whether systemic therapy occurred, its regimen, line, intent, or effectiveness. Calling this progression on chemotherapy or immunotherapy would add unsupported history.",
+          "alternatives": [
+            "No intervening systemic therapy",
+            "Imaging during or after systemic therapy, with regimen and response context unknown"
+          ]
+        },
+        "surgical_context": {
+          "status": "inferred",
+          "value": "Probable prior right inguinal/local intervention; procedure, indication, and timing are unestablished.",
+          "confidence": 0.76,
+          "basis": "Observed: asymmetric right inguinal skin retraction/tethering and linear soft-tissue stranding near the femoral region, present already in baseline.nii.gz (native i=160-215, j=180-225, k=220-250; representative k=230) and persisting in followup.nii.gz (i=160-210, j=155-205, k=378-410; representative k=390). Associated right-thigh subcutaneous stranding/asymmetry is visible at baseline k=160-200 and follow-up k=330-370. This favors a scar from prior local intervention but is not an operative record. No particular cancer resection or lymph-node dissection, and no operation between these scans, can be established.",
+          "alternatives": [
+            "Prior inguinal node biopsy or dissection",
+            "Other prior local surgery or intervention",
+            "Nonsurgical scarring, inflammation, or lymphatic obstruction"
+          ]
+        }
+      }
+    },
+    "scientific_score": null,
+    "interpretation": "Reward is output validity only. Unknown is valid; no diagnostic correctness is implied."
+  },
+  "predeclared_focus_point_check": {
+    "native_ijk": [
+      190,
+      235,
+      536
+    ],
+    "gt_label": 14,
+    "old_prediction_label": 0,
+    "new_prediction_label": 0
+  },
+  "audits": {
+    "inference": {
+      "condition": "case02-context-inference",
+      "attempt_id": "attempt-0a8df9d2ca4a4034",
+      "task_digest": "e86b2cee2e85ab108157c9c827d9253f5b8d6f7659e35ca0fa8f0d24ffca23a7",
+      "agent_seconds": 207.370371,
+      "trial_seconds": 249.027054,
+      "usage": {
+        "n_input_tokens": 270462,
+        "n_cache_tokens": 229760,
+        "n_output_tokens": 5269,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "native_execution": {
+        "attempt_id": "attempt-0a8df9d2ca4a4034",
+        "execution_state": "completed",
+        "started_at": "2026-09-22T04:20:36.267265+00:00",
+        "harbor_task_checksum": "fa0a28ba9294949920e7337a5f0d3d3c6b7721acd410a71a79d169cb688a2bb6",
+        "exit_code": 0,
+        "finished_at": "2026-09-22T04:24:45.787684+00:00",
+        "frozen_payload_unchanged": true
+      },
+      "exception_info": null,
+      "trajectory_step_count": 17,
+      "outer_tool_call_count": 8,
+      "image_observation_blocks": 14,
+      "image_count_method": "input_image blocks in retained trajectory observation content; montages count as one block",
+      "source_specific_strings_in_tool_requests": {
+        "bcbe3365e6": false,
+        "fdat.uni-tuebingen.de": false,
+        "Longitudinal-CT": false,
+        "/tests/reference": false,
+        "/solution/reference": false
+      },
+      "source_specific_strings_in_initial_prompt": {
+        "bcbe3365e6": false,
+        "fdat.uni-tuebingen.de": false,
+        "Longitudinal-CT": false,
+        "liver": false,
+        "lymph node": false,
+        "melanoma": false
+      },
+      "proxy_allowed": {
+        "chatgpt.com:443": 18
+      },
+      "proxy_blocked": {
+        "sdmntprsouthcentralus.oaiusercontent.com:443": 4,
+        "ab.chatgpt.com:443": 4
+      },
+      "live_isolation_passed": true,
+      "artifacts": {
+        "result.json": "55ee81c060c66dddde94e0dc1447b1a13aa9d277bb2fce2a41e458421e7a9543",
+        "agent/trajectory.json": "caa4117793b53d1472cbb0831c319613809c45c06e1a5c20c651f1a331dfab41",
+        "agent/codex.txt": "5e7db97428ce7aa41bc28e7f019f874a28cb62ac07349d4b62e8e491205326af",
+        "verifier/metrics.json": "6ad0aac4ca00cfd587e832522c5aba8ea7d6b9d003874e30fa421d5314d03228"
+      },
+      "limits": "Observed requests supplement enforced isolation; absence of source strings alone does not prove absence of source assistance. No estimate of clinical validity or unseen prior training."
+    },
+    "supplied": {
+      "condition": "case02-context-supplied",
+      "attempt_id": "attempt-81ee755346d04be7",
+      "task_digest": "ffdf321ba2637b46484309d8ec2c39fdffd5234b99e3152842c245a25a149215",
+      "agent_seconds": 747.416052,
+      "trial_seconds": 818.717275,
+      "usage": {
+        "n_input_tokens": 3807132,
+        "n_cache_tokens": 3633920,
+        "n_output_tokens": 17722,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+      },
+      "native_execution": {
+        "attempt_id": "attempt-81ee755346d04be7",
+        "execution_state": "completed",
+        "started_at": "2026-09-22T04:25:04.811340+00:00",
+        "harbor_task_checksum": "3bb3c1b8241392f6f67f8d02ff240988183cac8b83bff20e7e9b7924b93770eb",
+        "exit_code": 0,
+        "finished_at": "2026-09-22T04:38:44.013767+00:00",
+        "frozen_payload_unchanged": true
+      },
+      "exception_info": null,
+      "trajectory_step_count": 49,
+      "outer_tool_call_count": 37,
+      "image_observation_blocks": 82,
+      "image_count_method": "input_image blocks in retained trajectory observation content; montages count as one block",
+      "source_specific_strings_in_tool_requests": {
+        "bcbe3365e6": false,
+        "fdat.uni-tuebingen.de": false,
+        "Longitudinal-CT": false,
+        "/tests/reference": false,
+        "/solution/reference": false
+      },
+      "source_specific_strings_in_initial_prompt": {
+        "bcbe3365e6": false,
+        "fdat.uni-tuebingen.de": false,
+        "Longitudinal-CT": false,
+        "liver": false,
+        "lymph node": false,
+        "melanoma": true
+      },
+      "proxy_allowed": {
+        "chatgpt.com:443": 51
+      },
+      "proxy_blocked": {
+        "sdmntprsouthcentralus.oaiusercontent.com:443": 4,
+        "ab.chatgpt.com:443": 13
+      },
+      "live_isolation_passed": true,
+      "artifacts": {
+        "result.json": "485f25a492111838bcdd26da96c8ac7ed8f26bf4caf645c8bc462b28b74e0003",
+        "agent/trajectory.json": "89d38ae766fb2a3361711363996b2a4520a85a5f6f62f0e7bff767acd57beb46",
+        "agent/codex.txt": "3638939867f553ecaf2b66ce27562dc6eb7dae4fc59fe063ada533999947372b",
+        "verifier/metrics.json": "47c4f129092980f9c31f2ed5a16ad29135a510ef0032e806a3085d92db6daa8f"
+      },
+      "limits": "Observed requests supplement enforced isolation; absence of source strings alone does not prove absence of source assistance. No estimate of clinical validity or unseen prior training."
+    }
+  },
+  "controls": [
+    {
+      "condition": "inference",
+      "agent": "nop",
+      "attempt_id": "attempt-427be2c34fc347aa",
+      "task_digest": "e86b2cee2e85ab108157c9c827d9253f5b8d6f7659e35ca0fa8f0d24ffca23a7",
+      "reward": 0.0,
+      "frozen_payload_unchanged": true
+    },
+    {
+      "condition": "inference",
+      "agent": "oracle",
+      "attempt_id": "attempt-f27395e6240b4c61",
+      "task_digest": "e86b2cee2e85ab108157c9c827d9253f5b8d6f7659e35ca0fa8f0d24ffca23a7",
+      "reward": 1.0,
+      "frozen_payload_unchanged": true
+    },
+    {
+      "condition": "supplied",
+      "agent": "oracle",
+      "attempt_id": "attempt-bfcd80729b9c4810",
+      "task_digest": "ffdf321ba2637b46484309d8ec2c39fdffd5234b99e3152842c245a25a149215",
+      "reward": 1.0,
+      "frozen_payload_unchanged": true
+    },
+    {
+      "condition": "supplied",
+      "agent": "nop",
+      "attempt_id": "attempt-8f3d35a9223a4683",
+      "task_digest": "ffdf321ba2637b46484309d8ec2c39fdffd5234b99e3152842c245a25a149215",
+      "reward": 0.0,
+      "frozen_payload_unchanged": true
+    }
+  ],
+  "provenance": {
+    "source_task": "codex://threads/01a0c4d1-741f-76e3-9023-1064e5a9a0c5",
+    "decision": "decision-0025c01d8f434bf6",
+    "baseline_attempt": "attempt-92800845745342f4",
+    "patient": "bcbe3365e6",
+    "demographics_file": ".local/longitudinal-ct-review/raw/LongitudinalCT_demographics.csv",
+    "demographics_sha256": "d4798ac1137fa09776c498b1f752ff3db621cb167c8c4ed6df57562142a13608",
+    "demographics_row": {
+      "ID": "bcbe3365e6",
+      "CT Vendor BL": "Biograph 64",
+      "CT Vendor FU1": "Biograph128",
+      "TimeDiff_BL_FU1_Days": "121.0",
+      "sex": "female",
+      "age": "44"
+    },
+    "source_record_sha256": "4721f854ecbe4a2ed620c03b15221ffc4723bd22914c01789f8485b55aeeff1b",
+    "sources": [
+      "https://fdat.uni-tuebingen.de/records/qe950-g4h94",
+      "https://www.nature.com/articles/s41597-026-07466-y"
+    ],
+    "live_source_review_date": "2026-09-22",
+    "field_provenance": {
+      "age_years": {
+        "value": 44,
+        "level": "patient CSV",
+        "reference_date": "unspecified"
+      },
+      "recorded_sex": {
+        "value": "female",
+        "level": "patient CSV"
+      },
+      "interval_days": {
+        "value": 121,
+        "level": "patient CSV"
+      },
+      "diagnosis": {
+        "value": "metastatic malignant melanoma",
+        "level": "paper cohort inclusion"
+      },
+      "systemic_treatment": {
+        "value": "underwent systemic therapy",
+        "level": "paper cohort"
+      },
+      "scan_purpose": {
+        "value": "staging and longitudinal therapy response assessment",
+        "level": "release cohort"
+      },
+      "surgical_context": {
+        "value": null,
+        "level": "unavailable"
+      },
+      "individual_regimen_and_dates": {
+        "value": null,
+        "level": "unavailable"
+      }
+    },
+    "limits": "No individual clinical reports. Cohort descriptions do not identify patient-specific regimen or surgical timing. No exact field is assumed inferable from CT.",
+    "model_runs_authorized": 2,
+    "source_input_hashes": {
+      "environment/data/baseline.nii.gz": "01389bb85db149faec37d64209dbc78caa18aeba3ad91aeb3c410b1c023494ad",
+      "environment/data/followup.nii.gz": "11fca9d904d0171a3e474a07b285cbb8c5917c3f83d3792a3a6182553ec4a385"
+    },
+    "context_block_sha256": "89bd2d28ae6d3c91261282d8c2a7e84c33d336c594ca534154e7f5486c0f32cf"
+  },
+  "figure": {
+    "path": ".local/longitudinal-ct-context-v1/comparison/gt14-comparison.png",
+    "sha256": "0a2ae46cd9f943e7f0e145e17392355719e40ce9c079a7435d1d9f377fe1d856",
+    "geometry": "Native i right, j down; k slices 534/536/538; HU [-160,240].",
+    "license": "Longitudinal-CT v3, Kuestner/Peisen/Gatidis et al., University Hospital Tuebingen, FDAT, CC BY-NC 4.0."
+  },
+  "sources": {
+    ".local/attempts/attempt-0a8df9d2ca4a4034/job/task__Rzm9L2L/artifacts/app/answer/context.json": "7f8ae8f88e1c81471c3b40c70bc0ed0642a9163c6a41244813f1a9ab800f9293",
+    ".local/attempts/attempt-0a8df9d2ca4a4034/job/task__Rzm9L2L/artifacts/app/answer/report.md": "30c006864f43df4aa2d16a05a5ec08ceeea83e0fe48e45148567da92fd432419",
+    ".local/longitudinal-ct-context-v1/supplied/analysis/evidence.json": "5d01456f7179f561a4130e768fecab125048bf22d42eeb6bb0e072bee99b0e5e",
+    ".local/longitudinal-ct-case02/analysis/evidence.json": "e65f368e97f588baac9b183e1ba465efa31a519b2e4824811dfaa92b193cdfcc",
+    ".local/longitudinal-ct-context-v1/supplied/trace-review.json": "fad3cb60176b7255af4b284da183b0122612ee8403baea305e373bc6df20ea26",
+    ".local/longitudinal-ct-context-v1/inference/review.json": "7e9d6df910e0b8c53195ef8efe83e6abb7459a875c152ae45f82047e61177b4a",
+    ".local/longitudinal-ct-context-v1/comparison/explicit-gt2-rejection.png": "59eee68425319186e5a61cf54d5beeb10d83654bda0b345697f2a8f62a0907c2"
+  },
+  "limits": "One patient; one new attempt per condition. Bundled context and run variation are confounded. GT agreement is not independent clinical adjudication. Exact hidden metadata need not be CT-inferable. Individual clinical reports remain unavailable.",
+  "trace_review": {
+    "attempt_id": "attempt-81ee755346d04be7",
+    "task_digest": "ffdf321ba2637b46484309d8ec2c39fdffd5234b99e3152842c245a25a149215",
+    "public_messages": [
+      {
+        "item_id": "item_0",
+        "text": "I\u2019ll inspect both volumes in full, review suspicious findings across adjacent slices, and create lesion masks and correspondence groups. I\u2019ll preserve review images and scripts, and document uncertain findings in native voxel coordinates.\n"
+      },
+      {
+        "item_id": "item_7",
+        "text": "The scans have different coverage and slice spacing, so I\u2019m matching findings by anatomy rather than world-coordinate offsets. The clearest finding so far is a right liver mass, more conspicuous on follow-up. I\u2019m checking its baseline extent and reviewing the remaining organs, lungs, nodes, and soft tissues.\n"
+      },
+      {
+        "item_id": "item_12",
+        "text": "I haven\u2019t found a convincing tumor outside the liver in the review so far. Several small nodes and skin folds appear more likely benign or normal. I\u2019m examining the smaller liver findings next, where distinguishing tumor from vessels or cysts is less certain.\n"
+      },
+      {
+        "item_id": "item_24",
+        "text": "The liver review supports one persistent mass and a separate small focus on follow-up that I judge more likely tumor. I also found a new plaque-like area in the right anterior thigh. I\u2019m assessing that separately because its appearance could reflect either tumor or a benign local tissue change.\n"
+      },
+      {
+        "item_id": "item_32",
+        "text": "I\u2019m outlining the liver lesions and checking the masks against the images. I\u2019m excluding the thigh finding because its flat shape and surrounding stranding favor benign local tissue change; I\u2019ll record it as an uncertain excluded candidate. I\u2019m also excluding the small, similar-appearing anterior liver focus, which looks more like a cyst.\n"
+      },
+      {
+        "item_id": "item_38",
+        "text": "The masks currently contain one baseline lesion and two follow-up lesions, with one persistent and one newly appearing group. I\u2019m finishing the image checks and validating that both masks preserve their input grids and that every lesion ID appears exactly once in `events.json`.\n"
+      },
+      {
+        "item_id": "item_43",
+        "text": "Created all four files in [answer](/app/answer/): both instance masks, `events.json`, and [report.md](/app/answer/report.md).\n\nIdentified one baseline and two follow-up lesions: one persistent and one newly appearing. Grid and ID consistency checks passed. Uncertainty, evidence, and exclusions are documented; scripts and views are preserved in `/app/work/`."
+      }
+    ],
+    "render_commands": [
+      {
+        "item_id": "item_4",
+        "command": "python /app/work/render.py baseline 0 615 10",
+        "args": [
+          "python",
+          "/app/work/render.py",
+          "baseline",
+          "0",
+          "615",
+          "10"
+        ]
+      },
+      {
+        "item_id": "item_5",
+        "command": "python /app/work/render.py followup 0 743 12",
+        "args": [
+          "python",
+          "/app/work/render.py",
+          "followup",
+          "0",
+          "743",
+          "12"
+        ]
+      },
+      {
+        "item_id": "item_6",
+        "command": "python /app/work/views.py baseline 378,382,386,390,394,398,402,406,410,414,418,422,426,430,434,438 liver",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "378,382,386,390,394,398,402,406,410,414,418,422,426,430,434,438",
+          "liver"
+        ]
+      },
+      {
+        "item_id": "item_6",
+        "command": "python /app/work/views.py followup 508,512,516,520,524,528,532,536,540,544,548,552,556,560,564,568 liver",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "508,512,516,520,524,528,532,536,540,544,548,552,556,560,564,568",
+          "liver"
+        ]
+      },
+      {
+        "item_id": "item_8",
+        "command": "python /app/work/views.py baseline 410,414,418,422,426,430,434,438,442,446,450,454 liver 95,180,310,325",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "410,414,418,422,426,430,434,438,442,446,450,454",
+          "liver",
+          "95,180,310,325"
+        ]
+      },
+      {
+        "item_id": "item_8",
+        "command": "python /app/work/views.py baseline 160,165,170,175,180,185,190,195 soft 100,160,290,390",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "160,165,170,175,180,185,190,195",
+          "soft",
+          "100,160,290,390"
+        ]
+      },
+      {
+        "item_id": "item_8",
+        "command": "python /app/work/views.py followup 330,335,340,345,350,355,360,365 soft 100,160,310,400",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "330,335,340,345,350,355,360,365",
+          "soft",
+          "100,160,310,400"
+        ]
+      },
+      {
+        "item_id": "item_9",
+        "command": "python /app/work/views.py baseline 440,445,450,455,460,465,470,475,480,485,490,495,500,505,510,515 lung 80,150,435,355",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "440,445,450,455,460,465,470,475,480,485,490,495,500,505,510,515",
+          "lung",
+          "80,150,435,355"
+        ]
+      },
+      {
+        "item_id": "item_9",
+        "command": "python /app/work/views.py followup 560,564,568,572,576,580,584,588,592,596,600,604,608,612,616,620 lung 80,140,435,350",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "560,564,568,572,576,580,584,588,592,596,600,604,608,612,616,620",
+          "lung",
+          "80,140,435,350"
+        ]
+      },
+      {
+        "item_id": "item_9",
+        "command": "python /app/work/views.py baseline 210,216,222,228,234,240,246,252,258,264,270,276,282,288,294,300 soft",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "210,216,222,228,234,240,246,252,258,264,270,276,282,288,294,300",
+          "soft"
+        ]
+      },
+      {
+        "item_id": "item_10",
+        "command": "python /app/work/views.py baseline 304,310,316,322,328,334,340,346,352,358,364,370,376,382,388,394 soft",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "304,310,316,322,328,334,340,346,352,358,364,370,376,382,388,394",
+          "soft"
+        ]
+      },
+      {
+        "item_id": "item_10",
+        "command": "python /app/work/views.py followup 370,376,382,388,394,400,406,412,418,424,430,436,442,448,454,460 soft",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "370,376,382,388,394,400,406,412,418,424,430,436,442,448,454,460",
+          "soft"
+        ]
+      },
+      {
+        "item_id": "item_10",
+        "command": "python /app/work/views.py followup 464,468,472,476,480,484,488,492,496,500,504,508,512,516,520,524 soft",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "464,468,472,476,480,484,488,492,496,500,504,508,512,516,520,524",
+          "soft"
+        ]
+      },
+      {
+        "item_id": "item_11",
+        "command": "python /app/work/views.py baseline 460,464,468,472,476,480,484,488,492,496,500,504,508,512,516,520 soft",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "460,464,468,472,476,480,484,488,492,496,500,504,508,512,516,520",
+          "soft"
+        ]
+      },
+      {
+        "item_id": "item_11",
+        "command": "python /app/work/views.py baseline 524,530,536,542,548,554,560,566,572,578,584,590,596,602,608,614 soft",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "524,530,536,542,548,554,560,566,572,578,584,590,596,602,608,614",
+          "soft"
+        ]
+      },
+      {
+        "item_id": "item_11",
+        "command": "python /app/work/views.py followup 580,584,588,592,596,600,604,608,612,616,620,624,628,632,636,640 soft",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "580,584,588,592,596,600,604,608,612,616,620,624,628,632,636,640",
+          "soft"
+        ]
+      },
+      {
+        "item_id": "item_13",
+        "command": "python /app/work/views.py followup 644,650,656,662,668,674,680,686,692,698,704,710,716,722,728,734 soft",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "644,650,656,662,668,674,680,686,692,698,704,710,716,722,728,734",
+          "soft"
+        ]
+      },
+      {
+        "item_id": "item_13",
+        "command": "python /app/work/views.py baseline 0,7,14,21,28,35,42,49,56,63,70,77,84,91,98,105 soft",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "0,7,14,21,28,35,42,49,56,63,70,77,84,91,98,105",
+          "soft"
+        ]
+      },
+      {
+        "item_id": "item_13",
+        "command": "python /app/work/views.py baseline 110,116,122,128,134,140,146,152,158,164,170,176,182,188,194,200 soft",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "110,116,122,128,134,140,146,152,158,164,170,176,182,188,194,200",
+          "soft"
+        ]
+      },
+      {
+        "item_id": "item_14",
+        "command": "python /app/work/views.py followup 0,8,16,24,32,40,48,56,64,72,80,88,96,104,112,120 soft",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "0,8,16,24,32,40,48,56,64,72,80,88,96,104,112,120",
+          "soft"
+        ]
+      },
+      {
+        "item_id": "item_14",
+        "command": "python /app/work/views.py followup 128,136,144,152,160,168,176,184,192,200,208,216,224,232,240,248 soft",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "128,136,144,152,160,168,176,184,192,200,208,216,224,232,240,248",
+          "soft"
+        ]
+      },
+      {
+        "item_id": "item_14",
+        "command": "python /app/work/views.py followup 256,263,270,277,284,291,298,305,312,319,326,333,340,347,354,361 soft",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "256,263,270,277,284,291,298,305,312,319,326,333,340,347,354,361",
+          "soft"
+        ]
+      },
+      {
+        "item_id": "item_15",
+        "command": "python /app/work/views.py followup 270,273,276,279,282,285,288,291,294,297,300,303 soft 100,110,255,230",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "270,273,276,279,282,285,288,291,294,297,300,303",
+          "soft",
+          "100,110,255,230"
+        ]
+      },
+      {
+        "item_id": "item_15",
+        "command": "python /app/work/views.py baseline 60,64,68,72,76,80,84,88,92,96,100,104 soft 75,155,230,265",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "60,64,68,72,76,80,84,88,92,96,100,104",
+          "soft",
+          "75,155,230,265"
+        ]
+      },
+      {
+        "item_id": "item_15",
+        "command": "python /app/work/views.py followup 524,526,528,530,532,534,536,538,540,542,544,546 liver 100,165,300,310",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "524,526,528,530,532,534,536,538,540,542,544,546",
+          "liver",
+          "100,165,300,310"
+        ]
+      },
+      {
+        "item_id": "item_16",
+        "command": "python /app/work/detail.py followup 540 95,170,320,325 10,100 1",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "540",
+          "95,170,320,325",
+          "10,100",
+          "1"
+        ]
+      },
+      {
+        "item_id": "item_16",
+        "command": "python /app/work/detail.py baseline 430 95,170,320,325 10,100 1",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "baseline",
+          "430",
+          "95,170,320,325",
+          "10,100",
+          "1"
+        ]
+      },
+      {
+        "item_id": "item_16",
+        "command": "python /app/work/views.py followup 274,277,280,283,286,289,292,295 soft 110,60,235,180",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "274,277,280,283,286,289,292,295",
+          "soft",
+          "110,60,235,180"
+        ]
+      },
+      {
+        "item_id": "item_16",
+        "command": "python /app/work/views.py baseline 66,70,74,78,82,86,90,94 soft 85,100,220,205",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "66,70,74,78,82,86,90,94",
+          "soft",
+          "85,100,220,205"
+        ]
+      },
+      {
+        "item_id": "item_17",
+        "command": "python /app/work/detail.py baseline 84 60,40,235,180 -160,240",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "baseline",
+          "84",
+          "60,40,235,180",
+          "-160,240"
+        ]
+      },
+      {
+        "item_id": "item_17",
+        "command": "python /app/work/detail.py followup 283 70,40,245,180 -160,240",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "283",
+          "70,40,245,180",
+          "-160,240"
+        ]
+      },
+      {
+        "item_id": "item_17",
+        "command": "python /app/work/detail.py followup 528 95,165,310,325 10,100 1",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "528",
+          "95,165,310,325",
+          "10,100",
+          "1"
+        ]
+      },
+      {
+        "item_id": "item_17",
+        "command": "python /app/work/detail.py baseline 406 95,165,310,325 10,100 1",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "baseline",
+          "406",
+          "95,165,310,325",
+          "10,100",
+          "1"
+        ]
+      },
+      {
+        "item_id": "item_18",
+        "command": "python /app/work/views.py baseline 388,390,392,394,396,398,400,402,404,406,408,410 narrow 95,170,320,330",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "388,390,392,394,396,398,400,402,404,406,408,410",
+          "narrow",
+          "95,170,320,330"
+        ]
+      },
+      {
+        "item_id": "item_18",
+        "command": "python /app/work/views.py followup 512,514,516,518,520,522,524,526,528,530,532,534 narrow 85,130,315,325",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "512,514,516,518,520,522,524,526,528,530,532,534",
+          "narrow",
+          "85,130,315,325"
+        ]
+      },
+      {
+        "item_id": "item_19",
+        "command": "python /app/work/views.py baseline 406,408,410,412,414,416,418,420,422,424,426,428 narrow 100,190,255,330",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "406,408,410,412,414,416,418,420,422,424,426,428",
+          "narrow",
+          "100,190,255,330"
+        ]
+      },
+      {
+        "item_id": "item_19",
+        "command": "python /app/work/views.py followup 520,521,522,523,524,525,526,527,528,529,530,531 narrow 95,170,175,245",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "520,521,522,523,524,525,526,527,528,529,530,531",
+          "narrow",
+          "95,170,175,245"
+        ]
+      },
+      {
+        "item_id": "item_19",
+        "command": "python /app/work/views.py baseline 68,72,76,80,84,88,92,96 soft 60,50,220,150",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "68,72,76,80,84,88,92,96",
+          "soft",
+          "60,50,220,150"
+        ]
+      },
+      {
+        "item_id": "item_20",
+        "command": "python /app/work/ortho.py baseline x 125,135,145,155,165,175,185,195 180,380,350,460 10,100",
+        "args": [
+          "python",
+          "/app/work/ortho.py",
+          "baseline",
+          "x",
+          "125,135,145,155,165,175,185,195",
+          "180,380,350,460",
+          "10,100"
+        ]
+      },
+      {
+        "item_id": "item_20",
+        "command": "python /app/work/ortho.py followup x 115,125,135,145,155,165,175,185 140,505,320,575 10,100",
+        "args": [
+          "python",
+          "/app/work/ortho.py",
+          "followup",
+          "x",
+          "115,125,135,145,155,165,175,185",
+          "140,505,320,575",
+          "10,100"
+        ]
+      },
+      {
+        "item_id": "item_21",
+        "command": "python /app/work/views.py baseline 414,416,418,420,422,424,426,428,430,432,434,436,438,440,442,444 narrow 110,220,250,350",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "414,416,418,420,422,424,426,428,430,432,434,436,438,440,442,444",
+          "narrow",
+          "110,220,250,350"
+        ]
+      },
+      {
+        "item_id": "item_21",
+        "command": "python /app/work/views.py followup 532,534,536,538,540,542,544,546,548,550,552,554,556,558,560,562 narrow 95,190,245,320",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "532,534,536,538,540,542,544,546,548,550,552,554,556,558,560,562",
+          "narrow",
+          "95,190,245,320"
+        ]
+      },
+      {
+        "item_id": "item_21",
+        "command": "python /app/work/ortho.py baseline y 250,260,270,280,290,300,310,320 105,390,255,460 10,100",
+        "args": [
+          "python",
+          "/app/work/ortho.py",
+          "baseline",
+          "y",
+          "250,260,270,280,290,300,310,320",
+          "105,390,255,460",
+          "10,100"
+        ]
+      },
+      {
+        "item_id": "item_21",
+        "command": "python /app/work/ortho.py followup y 210,220,230,240,250,260,270,280 95,515,250,575 10,100",
+        "args": [
+          "python",
+          "/app/work/ortho.py",
+          "followup",
+          "y",
+          "210,220,230,240,250,260,270,280",
+          "95,515,250,575",
+          "10,100"
+        ]
+      },
+      {
+        "item_id": "item_23",
+        "command": "python /app/work/detail.py baseline 436 105,205,260,350 20,70 1.8",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "baseline",
+          "436",
+          "105,205,260,350",
+          "20,70",
+          "1.8"
+        ]
+      },
+      {
+        "item_id": "item_23",
+        "command": "python /app/work/detail.py baseline 424 105,205,260,350 20,70 1.8",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "baseline",
+          "424",
+          "105,205,260,350",
+          "20,70",
+          "1.8"
+        ]
+      },
+      {
+        "item_id": "item_23",
+        "command": "python /app/work/detail.py baseline 444 105,205,260,350 20,70 1.8",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "baseline",
+          "444",
+          "105,205,260,350",
+          "20,70",
+          "1.8"
+        ]
+      },
+      {
+        "item_id": "item_23",
+        "command": "python /app/work/detail.py followup 550 95,185,250,320 10,80 1.2",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "550",
+          "95,185,250,320",
+          "10,80",
+          "1.2"
+        ]
+      },
+      {
+        "item_id": "item_25",
+        "command": "python /app/work/views.py baseline 412,415,418,421,424,427,430,433,436,439,442,445,448,451,454,457 contrast 120,240,225,340",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "412,415,418,421,424,427,430,433,436,439,442,445,448,451,454,457",
+          "contrast",
+          "120,240,225,340"
+        ]
+      },
+      {
+        "item_id": "item_25",
+        "command": "python /app/work/ortho.py followup x 130,140,150,160,170,180,190,200 60,265,150,305 -160,240",
+        "args": [
+          "python",
+          "/app/work/ortho.py",
+          "followup",
+          "x",
+          "130,140,150,160,170,180,190,200",
+          "60,265,150,305",
+          "-160,240"
+        ]
+      },
+      {
+        "item_id": "item_25",
+        "command": "python /app/work/views.py baseline 205,208,211,214,217,220,223,226 soft 75,145,245,280",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "205,208,211,214,217,220,223,226",
+          "soft",
+          "75,145,245,280"
+        ]
+      },
+      {
+        "item_id": "item_26",
+        "command": "python /app/work/detail.py baseline 421 120,240,225,340 20,70 1.5",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "baseline",
+          "421",
+          "120,240,225,340",
+          "20,70",
+          "1.5"
+        ]
+      },
+      {
+        "item_id": "item_26",
+        "command": "python /app/work/detail.py baseline 427 120,240,225,340 20,70 1.5",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "baseline",
+          "427",
+          "120,240,225,340",
+          "20,70",
+          "1.5"
+        ]
+      },
+      {
+        "item_id": "item_26",
+        "command": "python /app/work/detail.py baseline 433 120,240,225,340 20,70 1.5",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "baseline",
+          "433",
+          "120,240,225,340",
+          "20,70",
+          "1.5"
+        ]
+      },
+      {
+        "item_id": "item_26",
+        "command": "python /app/work/detail.py baseline 439 120,240,225,340 20,70 1.5",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "baseline",
+          "439",
+          "120,240,225,340",
+          "20,70",
+          "1.5"
+        ]
+      },
+      {
+        "item_id": "item_26",
+        "command": "python /app/work/detail.py baseline 445 120,240,225,340 20,70 1.5",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "baseline",
+          "445",
+          "120,240,225,340",
+          "20,70",
+          "1.5"
+        ]
+      },
+      {
+        "item_id": "item_26",
+        "command": "python /app/work/detail.py baseline 449 120,240,225,340 20,70 1.5",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "baseline",
+          "449",
+          "120,240,225,340",
+          "20,70",
+          "1.5"
+        ]
+      },
+      {
+        "item_id": "item_27",
+        "command": "python /app/work/detail.py followup 534 100,200,235,315 10,90 1.2",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "534",
+          "100,200,235,315",
+          "10,90",
+          "1.2"
+        ]
+      },
+      {
+        "item_id": "item_27",
+        "command": "python /app/work/detail.py followup 542 100,200,235,315 10,90 1.2",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "542",
+          "100,200,235,315",
+          "10,90",
+          "1.2"
+        ]
+      },
+      {
+        "item_id": "item_27",
+        "command": "python /app/work/detail.py followup 558 100,200,235,315 10,90 1.2",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "558",
+          "100,200,235,315",
+          "10,90",
+          "1.2"
+        ]
+      },
+      {
+        "item_id": "item_27",
+        "command": "python /app/work/detail.py followup 564 100,200,235,315 10,90 1.2",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "564",
+          "100,200,235,315",
+          "10,90",
+          "1.2"
+        ]
+      },
+      {
+        "item_id": "item_27",
+        "command": "python /app/work/views.py followup 563,564,565,566,567,568,569,570 narrow 100,190,230,310",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "563,564,565,566,567,568,569,570",
+          "narrow",
+          "100,190,230,310"
+        ]
+      },
+      {
+        "item_id": "item_28",
+        "command": "python /app/work/views.py followup 568,569,570,571,572,573,574,575 narrow 105,185,235,300",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "568,569,570,571,572,573,574,575",
+          "narrow",
+          "105,185,235,300"
+        ]
+      },
+      {
+        "item_id": "item_28",
+        "command": "python /app/work/views.py baseline 443,444,445,446,447,448,449,450 contrast 120,230,225,335",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "443,444,445,446,447,448,449,450",
+          "contrast",
+          "120,230,225,335"
+        ]
+      },
+      {
+        "item_id": "item_29",
+        "command": "python /app/work/detail.py followup 530 110,220,210,305 10,90 1.3",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "530",
+          "110,220,210,305",
+          "10,90",
+          "1.3"
+        ]
+      },
+      {
+        "item_id": "item_29",
+        "command": "python /app/work/detail.py followup 532 110,220,210,305 10,90 1.3",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "532",
+          "110,220,210,305",
+          "10,90",
+          "1.3"
+        ]
+      },
+      {
+        "item_id": "item_29",
+        "command": "python /app/work/detail.py followup 548 100,200,225,315 10,90 1.2",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "548",
+          "100,200,225,315",
+          "10,90",
+          "1.2"
+        ]
+      },
+      {
+        "item_id": "item_29",
+        "command": "python /app/work/detail.py baseline 423 130,265,215,335 20,70 1.5",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "baseline",
+          "423",
+          "130,265,215,335",
+          "20,70",
+          "1.5"
+        ]
+      },
+      {
+        "item_id": "item_30",
+        "command": "python /app/work/views.py followup 524,525,526,527,528,529,530,531,532,533,534,535 narrow 100,180,150,230",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "524,525,526,527,528,529,530,531,532,533,534,535",
+          "narrow",
+          "100,180,150,230"
+        ]
+      },
+      {
+        "item_id": "item_33",
+        "command": "python /app/work/overlay.py baseline 421,424,427,430,433,436,439,442,445,447,448,449 115,235,230,340 10,100",
+        "args": [
+          "python",
+          "/app/work/overlay.py",
+          "baseline",
+          "421,424,427,430,433,436,439,442,445,447,448,449",
+          "115,235,230,340",
+          "10,100"
+        ]
+      },
+      {
+        "item_id": "item_33",
+        "command": "python /app/work/overlay.py followup 531,534,538,542,546,550,554,558,562,566,569,571 95,185,230,325 10,100",
+        "args": [
+          "python",
+          "/app/work/overlay.py",
+          "followup",
+          "531,534,538,542,546,550,554,558,562,566,569,571",
+          "95,185,230,325",
+          "10,100"
+        ]
+      },
+      {
+        "item_id": "item_34",
+        "command": "python /app/work/detail.py followup 572 120,210,205,280 -160,240 0",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "572",
+          "120,210,205,280",
+          "-160,240",
+          "0"
+        ]
+      },
+      {
+        "item_id": "item_34",
+        "command": "python /app/work/detail.py followup 571 120,210,205,280 10,100 0",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "571",
+          "120,210,205,280",
+          "10,100",
+          "0"
+        ]
+      },
+      {
+        "item_id": "item_34",
+        "command": "python /app/work/overlay.py followup 525,526,527,528,529,530,531,532 95,180,155,235 10,100",
+        "args": [
+          "python",
+          "/app/work/overlay.py",
+          "followup",
+          "525,526,527,528,529,530,531,532",
+          "95,180,155,235",
+          "10,100"
+        ]
+      },
+      {
+        "item_id": "item_35",
+        "command": "python /app/work/views.py followup 684,688,692,696,700,704,708,712,716,720,724,728 brain 170,195,320,370",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "684,688,692,696,700,704,708,712,716,720,724,728",
+          "brain",
+          "170,195,320,370"
+        ]
+      },
+      {
+        "item_id": "item_35",
+        "command": "python /app/work/views.py baseline 592,594,596,598,600,602,604,606,608,610,612,614 brain 160,225,325,390",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "592,594,596,598,600,602,604,606,608,610,612,614",
+          "brain",
+          "160,225,325,390"
+        ]
+      },
+      {
+        "item_id": "item_35",
+        "command": "python /app/work/views.py followup 510,515,520,525,530,535,540,545,550,555,560,565 lung 85,160,410,350",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "510,515,520,525,530,535,540,545,550,555,560,565",
+          "lung",
+          "85,160,410,350"
+        ]
+      },
+      {
+        "item_id": "item_36",
+        "command": "python /app/work/detail.py followup 524 135,130,245,220 10,100 1",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "524",
+          "135,130,245,220",
+          "10,100",
+          "1"
+        ]
+      },
+      {
+        "item_id": "item_36",
+        "command": "python /app/work/detail.py baseline 500 315,185,395,265 -160,240 0",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "baseline",
+          "500",
+          "315,185,395,265",
+          "-160,240",
+          "0"
+        ]
+      },
+      {
+        "item_id": "item_36",
+        "command": "python /app/work/detail.py followup 604 315,180,400,260 -160,240 0",
+        "args": [
+          "python",
+          "/app/work/detail.py",
+          "followup",
+          "604",
+          "315,180,400,260",
+          "-160,240",
+          "0"
+        ]
+      },
+      {
+        "item_id": "item_40",
+        "command": "python /app/work/overlay.py followup 534,542,550,558,562,566,569,571 95,185,230,325 10,100",
+        "args": [
+          "python",
+          "/app/work/overlay.py",
+          "followup",
+          "534,542,550,558,562,566,569,571",
+          "95,185,230,325",
+          "10,100"
+        ]
+      },
+      {
+        "item_id": "item_40",
+        "command": "python /app/work/views.py baseline 325,340,355,370,385,400,415,430,445,460,475,490 bone",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "baseline",
+          "325,340,355,370,385,400,415,430,445,460,475,490",
+          "bone"
+        ]
+      },
+      {
+        "item_id": "item_40",
+        "command": "python /app/work/views.py followup 465,475,485,495,505,515,525,535,545,555,565,575 bone",
+        "args": [
+          "python",
+          "/app/work/views.py",
+          "followup",
+          "465,475,485,495,505,515,525,535,545,555,565,575",
+          "bone"
+        ]
+      }
+    ],
+    "all_generated_axial_slices": {
+      "baseline": [
+        0,
+        7,
+        10,
+        14,
+        20,
+        21,
+        28,
+        30,
+        35,
+        40,
+        42,
+        49,
+        50,
+        56,
+        60,
+        63,
+        64,
+        66,
+        68,
+        70,
+        72,
+        74,
+        76,
+        77,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88,
+        90,
+        91,
+        92,
+        94,
+        96,
+        98,
+        100,
+        104,
+        105,
+        110,
+        116,
+        120,
+        122,
+        128,
+        130,
+        134,
+        140,
+        146,
+        150,
+        152,
+        158,
+        160,
+        164,
+        165,
+        170,
+        175,
+        176,
+        180,
+        182,
+        185,
+        188,
+        190,
+        194,
+        195,
+        200,
+        205,
+        208,
+        210,
+        211,
+        214,
+        216,
+        217,
+        220,
+        222,
+        223,
+        226,
+        228,
+        230,
+        234,
+        240,
+        246,
+        250,
+        252,
+        258,
+        260,
+        264,
+        270,
+        276,
+        280,
+        282,
+        288,
+        290,
+        294,
+        300,
+        304,
+        310,
+        316,
+        320,
+        322,
+        325,
+        328,
+        330,
+        334,
+        340,
+        346,
+        350,
+        352,
+        355,
+        358,
+        360,
+        364,
+        370,
+        376,
+        378,
+        380,
+        382,
+        385,
+        386,
+        388,
+        390,
+        392,
+        394,
+        396,
+        398,
+        400,
+        402,
+        404,
+        406,
+        408,
+        410,
+        412,
+        414,
+        415,
+        416,
+        418,
+        420,
+        421,
+        422,
+        423,
+        424,
+        426,
+        427,
+        428,
+        430,
+        432,
+        433,
+        434,
+        436,
+        438,
+        439,
+        440,
+        442,
+        443,
+        444,
+        445,
+        446,
+        447,
+        448,
+        449,
+        450,
+        451,
+        454,
+        455,
+        457,
+        460,
+        464,
+        465,
+        468,
+        470,
+        472,
+        475,
+        476,
+        480,
+        484,
+        485,
+        488,
+        490,
+        492,
+        495,
+        496,
+        500,
+        504,
+        505,
+        508,
+        510,
+        512,
+        515,
+        516,
+        520,
+        524,
+        530,
+        536,
+        540,
+        542,
+        548,
+        550,
+        554,
+        560,
+        566,
+        570,
+        572,
+        578,
+        580,
+        584,
+        590,
+        592,
+        594,
+        596,
+        598,
+        600,
+        602,
+        604,
+        606,
+        608,
+        610,
+        612,
+        614
+      ],
+      "followup": [
+        0,
+        8,
+        12,
+        16,
+        24,
+        32,
+        36,
+        40,
+        48,
+        56,
+        60,
+        64,
+        72,
+        80,
+        84,
+        88,
+        96,
+        104,
+        108,
+        112,
+        120,
+        128,
+        132,
+        136,
+        144,
+        152,
+        156,
+        160,
+        168,
+        176,
+        180,
+        184,
+        192,
+        200,
+        204,
+        208,
+        216,
+        224,
+        228,
+        232,
+        240,
+        248,
+        252,
+        256,
+        263,
+        264,
+        270,
+        273,
+        274,
+        276,
+        277,
+        279,
+        280,
+        282,
+        283,
+        284,
+        285,
+        286,
+        288,
+        289,
+        291,
+        292,
+        294,
+        295,
+        297,
+        298,
+        300,
+        303,
+        305,
+        312,
+        319,
+        324,
+        326,
+        330,
+        333,
+        335,
+        336,
+        340,
+        345,
+        347,
+        348,
+        350,
+        354,
+        355,
+        360,
+        361,
+        365,
+        370,
+        372,
+        376,
+        382,
+        384,
+        388,
+        394,
+        396,
+        400,
+        406,
+        408,
+        412,
+        418,
+        420,
+        424,
+        430,
+        432,
+        436,
+        442,
+        444,
+        448,
+        454,
+        456,
+        460,
+        464,
+        465,
+        468,
+        472,
+        475,
+        476,
+        480,
+        484,
+        485,
+        488,
+        492,
+        495,
+        496,
+        500,
+        504,
+        505,
+        508,
+        510,
+        512,
+        514,
+        515,
+        516,
+        518,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        538,
+        540,
+        542,
+        544,
+        545,
+        546,
+        548,
+        550,
+        552,
+        554,
+        555,
+        556,
+        558,
+        560,
+        562,
+        563,
+        564,
+        565,
+        566,
+        567,
+        568,
+        569,
+        570,
+        571,
+        572,
+        573,
+        574,
+        575,
+        576,
+        580,
+        584,
+        588,
+        592,
+        596,
+        600,
+        604,
+        608,
+        612,
+        616,
+        620,
+        624,
+        628,
+        632,
+        636,
+        640,
+        644,
+        648,
+        650,
+        656,
+        660,
+        662,
+        668,
+        672,
+        674,
+        680,
+        684,
+        686,
+        688,
+        692,
+        696,
+        698,
+        700,
+        704,
+        708,
+        710,
+        712,
+        716,
+        720,
+        722,
+        724,
+        728,
+        732,
+        734
+      ]
+    },
+    "orthogonal_commands": [
+      {
+        "item_id": "item_20",
+        "command": "python /app/work/ortho.py baseline x 125,135,145,155,165,175,185,195 180,380,350,460 10,100",
+        "args": [
+          "python",
+          "/app/work/ortho.py",
+          "baseline",
+          "x",
+          "125,135,145,155,165,175,185,195",
+          "180,380,350,460",
+          "10,100"
+        ]
+      },
+      {
+        "item_id": "item_20",
+        "command": "python /app/work/ortho.py followup x 115,125,135,145,155,165,175,185 140,505,320,575 10,100",
+        "args": [
+          "python",
+          "/app/work/ortho.py",
+          "followup",
+          "x",
+          "115,125,135,145,155,165,175,185",
+          "140,505,320,575",
+          "10,100"
+        ]
+      },
+      {
+        "item_id": "item_21",
+        "command": "python /app/work/ortho.py baseline y 250,260,270,280,290,300,310,320 105,390,255,460 10,100",
+        "args": [
+          "python",
+          "/app/work/ortho.py",
+          "baseline",
+          "y",
+          "250,260,270,280,290,300,310,320",
+          "105,390,255,460",
+          "10,100"
+        ]
+      },
+      {
+        "item_id": "item_21",
+        "command": "python /app/work/ortho.py followup y 210,220,230,240,250,260,270,280 95,515,250,575 10,100",
+        "args": [
+          "python",
+          "/app/work/ortho.py",
+          "followup",
+          "y",
+          "210,220,230,240,250,260,270,280",
+          "95,515,250,575",
+          "10,100"
+        ]
+      },
+      {
+        "item_id": "item_25",
+        "command": "python /app/work/ortho.py followup x 130,140,150,160,170,180,190,200 60,265,150,305 -160,240",
+        "args": [
+          "python",
+          "/app/work/ortho.py",
+          "followup",
+          "x",
+          "130,140,150,160,170,180,190,200",
+          "60,265,150,305",
+          "-160,240"
+        ]
+      }
+    ],
+    "bone_reference_coverage": {
+      "baseline": {
+        "gt_id": 7,
+        "native_axial_extent": [
+          562,
+          563,
+          564
+        ],
+        "generated_axial_intersections": []
+      },
+      "followup": {
+        "gt_id": 7,
+        "native_axial_extent": [
+          658,
+          659
+        ],
+        "generated_axial_intersections": []
+      }
+    },
+    "coordinate_checks": [
+      {
+        "visit": "baseline",
+        "native_ijk": [
+          190,
+          199,
+          406
+        ],
+        "reference_label": 2,
+        "nearest_label": 2,
+        "nearest_distance_mm": 0.0
+      },
+      {
+        "visit": "followup",
+        "native_ijk": [
+          182,
+          165,
+          524
+        ],
+        "reference_label": 2,
+        "nearest_label": 2,
+        "nearest_distance_mm": 0.0
+      },
+      {
+        "visit": "followup",
+        "native_ijk": [
+          160,
+          108,
+          283
+        ],
+        "reference_label": 0,
+        "nearest_label": 1,
+        "nearest_distance_mm": 330.95987303755595
+      },
+      {
+        "visit": "followup",
+        "native_ijk": [
+          190,
+          235,
+          536
+        ],
+        "reference_label": 14,
+        "nearest_label": 14,
+        "nearest_distance_mm": 0.0
+      }
+    ],
+    "clinical_context_delivery": {
+      "melanoma_in_prompt": true,
+      "melanoma_in_public_messages": false,
+      "melanoma_in_report": false,
+      "interpretation": "Verified availability, not proof of how context was used internally. Absence of explicit discussion does not prove it was ignored."
+    },
+    "sources": {
+      ".local/attempts/attempt-81ee755346d04be7/job/task__5btJU8Q/agent/codex.txt": "3638939867f553ecaf2b66ce27562dc6eb7dae4fc59fe063ada533999947372b",
+      ".local/attempts/attempt-81ee755346d04be7/job/task__5btJU8Q/agent/trajectory.json": "89d38ae766fb2a3361711363996b2a4520a85a5f6f62f0e7bff767acd57beb46",
+      ".local/freezes/ffdf321ba2637b46484309d8ec2c39fdffd5234b99e3152842c245a25a149215/task/instruction.md": "b6c0704b8b6e72c5eb319ed3e1ee7999bf8444fcbdd9b1d0a1e291532d422425",
+      ".local/attempts/attempt-81ee755346d04be7/job/task__5btJU8Q/artifacts/app/answer/report.md": "1860fe0421d97b00f39340da10abd0d1083b751c14cfe227ad280ebfb62ec6c0",
+      ".local/attempts/attempt-81ee755346d04be7/job/task__5btJU8Q/artifacts/app/work/render.py": "b6939e357e303c067b41631ed53a96dd4dabaf8eca8d1046bd0ec1489ff87b3b",
+      ".local/attempts/attempt-81ee755346d04be7/job/task__5btJU8Q/artifacts/app/work/views.py": "8cf0cc2320af616079a521bdc0bae964587c53a010015a6cd11e13216f1a9a6c",
+      ".local/attempts/attempt-81ee755346d04be7/job/task__5btJU8Q/artifacts/app/work/detail.py": "9b5dea680f217aa92e9e95d2603aafb41c5b01b850e0e411dab8676c341c092f",
+      ".local/attempts/attempt-81ee755346d04be7/job/task__5btJU8Q/artifacts/app/work/ortho.py": "f3ca782527ceebccd2ed9e6aa3c44c31c2d597db740441464f6bd6470e81c662",
+      ".local/attempts/attempt-81ee755346d04be7/job/task__5btJU8Q/artifacts/app/work/overlay.py": "b292ec1da2c7cc61cace23d844920613badbc072fbea24d43f37467519d49ead",
+      ".local/attempts/attempt-81ee755346d04be7/job/task__5btJU8Q/artifacts/app/work/segment.py": "231448735cb9cc63c679f46b46b35b48ceef19dd2d1fd0414660ead717d96e6f"
+    },
+    "limits": "Coverage uses all explicit retained render/view/detail/overlay command invocations, including generated views not necessarily requested. Native plane presence does not establish attention. Orthogonal crop extents are retained for manual corroboration. Reference agreement is not clinical adjudication."
+  },
+  "inference_scientific_review": {
+    "attempt_id": "attempt-0a8df9d2ca4a4034",
+    "task_digest": "e86b2cee2e85ab108157c9c827d9253f5b8d6f7659e35ca0fa8f0d24ffca23a7",
+    "contract_valid": true,
+    "agent_seconds": 207.370371,
+    "fields": {
+      "broad_diagnosis": {
+        "status": "inferred",
+        "value": "Suspected metastatic malignancy involving the liver, with increased hepatic disease burden on follow-up.",
+        "confidence": 0.91,
+        "basis": "Observed: multiple hypoattenuating hepatic lesions, including an ill-defined right-lobe lesion in baseline.nii.gz at native (i,j,k) approximately (185,315,430), and a much larger right-lobe mass in followup.nii.gz around (155,250,542), with additional lesions across k=526-550. Baseline liver reviewed at k=380-440 and follow-up at k=506-558. Multiplicity and marked interval increase favor malignant hepatic involvement, most likely metastases. This is an imaging inference, not histologic confirmation or a known cancer history.",
+        "alternatives": [
+          "Multifocal primary hepatic malignancy",
+          "Less likely nonmalignant multifocal hepatic lesions, including infection; unenhanced CT cannot establish histology"
+        ]
+      },
+      "specific_primary_diagnosis": {
+        "status": "unknown",
+        "value": null,
+        "confidence": 0.98,
+        "basis": "Neither NIfTI header contains a diagnosis, and the supplied CT images do not establish a primary site or histology. Hepatic lesions are nonspecific. Extensive body coverage and right-groin scar-like changes cannot identify the original tumor.",
+        "alternatives": [
+          "Metastatic melanoma is compatible with extensive limb coverage and possible prior groin intervention, but neither feature is diagnostic",
+          "Other solid malignancies with hepatic metastases",
+          "Primary hepatic malignancy"
+        ]
+      },
+      "age_years": {
+        "status": "unknown",
+        "value": null,
+        "confidence": 1.0,
+        "basis": "No age, birth date, or examination date is present in the available NIfTI headers or extensions. Skeletal maturity supports an adult appearance but cannot establish chronological age.",
+        "alternatives": []
+      },
+      "recorded_sex": {
+        "status": "unknown",
+        "value": null,
+        "confidence": 1.0,
+        "basis": "No recorded sex field or demographic record is supplied. Visible pelvic or breast anatomy does not establish recorded sex.",
+        "alternatives": []
+      },
+      "interval_days": {
+        "status": "unknown",
+        "value": null,
+        "confidence": 1.0,
+        "basis": "No acquisition dates or trustworthy elapsed-time metadata are present. These are separate three-dimensional NIfTI volumes; spatial slice spacing, affine origins, and zero timing fields do not encode the inter-examination interval. Earlier/later ordering comes only from the supplied description. Lesion growth cannot determine elapsed days.",
+        "alternatives": []
+      },
+      "baseline_scan_purpose": {
+        "status": "unknown",
+        "value": null,
+        "confidence": 0.98,
+        "basis": "baseline.nii.gz covers lower legs through the head with arms raised and no convincing intravenous enhancement; this is compatible with a CT component of a whole-body oncologic examination. Hepatic abnormalities are already visible (for example native k=430). The label baseline is relative to this pair and does not establish initial staging, pretreatment status, or the ordering indication. No requisition, PET data, or protocol description is supplied.",
+        "alternatives": [
+          "Oncologic staging or restaging",
+          "Surveillance of known malignancy",
+          "Assessment before, during, or after treatment",
+          "CT component of PET/CT, unconfirmed"
+        ]
+      },
+      "followup_scan_purpose": {
+        "status": "unknown",
+        "value": null,
+        "confidence": 0.98,
+        "basis": "followup.nii.gz has extensive feet-to-head coverage and larger/more conspicuous liver lesions (native k=526-558), supporting possible oncologic reassessment. Observed worsening cannot identify why this examination was ordered or whether it was intended to assess treatment response. No clinical indication or PET series is supplied.",
+        "alternatives": [
+          "Restaging or surveillance",
+          "Treatment-response assessment",
+          "Evaluation of suspected progression or new symptoms",
+          "CT component of PET/CT, unconfirmed"
+        ]
+      },
+      "systemic_treatment_context": {
+        "status": "unknown",
+        "value": null,
+        "confidence": 0.99,
+        "basis": "No medication history, treatment dates, or treatment metadata are supplied. Increased hepatic lesion burden between baseline.nii.gz (k=410-440) and followup.nii.gz (k=526-558) cannot establish whether systemic therapy occurred, its regimen, line, intent, or effectiveness. Calling this progression on chemotherapy or immunotherapy would add unsupported history.",
+        "alternatives": [
+          "No intervening systemic therapy",
+          "Imaging during or after systemic therapy, with regimen and response context unknown"
+        ]
+      },
+      "surgical_context": {
+        "status": "inferred",
+        "value": "Probable prior right inguinal/local intervention; procedure, indication, and timing are unestablished.",
+        "confidence": 0.76,
+        "basis": "Observed: asymmetric right inguinal skin retraction/tethering and linear soft-tissue stranding near the femoral region, present already in baseline.nii.gz (native i=160-215, j=180-225, k=220-250; representative k=230) and persisting in followup.nii.gz (i=160-210, j=155-205, k=378-410; representative k=390). Associated right-thigh subcutaneous stranding/asymmetry is visible at baseline k=160-200 and follow-up k=330-370. This favors a scar from prior local intervention but is not an operative record. No particular cancer resection or lymph-node dissection, and no operation between these scans, can be established.",
+        "alternatives": [
+          "Prior inguinal node biopsy or dissection",
+          "Other prior local surgery or intervention",
+          "Nonsurgical scarring, inflammation, or lymphatic obstruction"
+        ]
+      }
+    },
+    "point_checks": [
+      {
+        "visit": "baseline",
+        "native_ijk": [
+          185,
+          315,
+          430
+        ],
+        "reference_label_at_point": 0,
+        "meaning": "Post-hoc evidence-coordinate consistency only, not a detection score or clinical adjudication.",
+        "nearest_gt_distance_mm": 1.3810679320049757,
+        "nearest_gt_label": 4,
+        "nearest_gt_native_ijk": [
+          184,
+          314,
+          430
+        ]
+      },
+      {
+        "visit": "followup",
+        "native_ijk": [
+          155,
+          250,
+          542
+        ],
+        "reference_label_at_point": 4,
+        "meaning": "Post-hoc evidence-coordinate consistency only, not a detection score or clinical adjudication.",
+        "nearest_gt_distance_mm": 0.0,
+        "nearest_gt_label": 4,
+        "nearest_gt_native_ijk": [
+          155,
+          250,
+          542
+        ]
+      }
+    ],
+    "field_status_counts": {
+      "observed": 0,
+      "inferred": 2,
+      "unknown": 7
+    },
+    "scientific_interpretation": "Broad malignancy inference is compatible with source; melanoma appears as an alternative. Exact metadata unknowns are not failures. Suggested surgery and exact acquisition context cannot be adjudicated from retained source records. Schema validity is not clinical accuracy.",
+    "source_hashes": {
+      "/Users/zhangqy/pkgs/tb3/.local/attempts/attempt-0a8df9d2ca4a4034/job/task__Rzm9L2L/artifacts/app/answer/context.json": "7f8ae8f88e1c81471c3b40c70bc0ed0642a9163c6a41244813f1a9ab800f9293",
+      "/Users/zhangqy/pkgs/tb3/.local/attempts/attempt-0a8df9d2ca4a4034/job/task__Rzm9L2L/artifacts/app/answer/report.md": "30c006864f43df4aa2d16a05a5ec08ceeea83e0fe48e45148567da92fd432419",
+      "/Users/zhangqy/pkgs/tb3/.local/attempts/attempt-0a8df9d2ca4a4034/job/task__Rzm9L2L/agent/trajectory.json": "caa4117793b53d1472cbb0831c319613809c45c06e1a5c20c651f1a331dfab41",
+      "/Users/zhangqy/pkgs/tb3/.local/attempts/attempt-0a8df9d2ca4a4034/job/task__Rzm9L2L/verifier/metrics.json": "6ad0aac4ca00cfd587e832522c5aba8ea7d6b9d003874e30fa421d5314d03228"
+    },
+    "independent_contract_replay_exact": true
+  },
+  "explicit_rejection_figure": {
+    "path": ".local/longitudinal-ct-context-v1/comparison/explicit-gt2-rejection.png",
+    "sha256": "59eee68425319186e5a61cf54d5beeb10d83654bda0b345697f2a8f62a0907c2",
+    "geometry": "Native i right, j down; 64-voxel crops at reported points; HU [-160,240].",
+    "meaning": "Post-hoc reference agreement illustration, not clinical adjudication or solver input.",
+    "source": "Longitudinal-CT v3, Kuestner/Peisen/Gatidis et al., University Hospital Tuebingen, FDAT, CC BY-NC 4.0."
+  }
+}

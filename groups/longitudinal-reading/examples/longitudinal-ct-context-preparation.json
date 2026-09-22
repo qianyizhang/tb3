@@ -1,0 +1,125 @@
+{
+  "provenance": {
+    "source_task": "codex://threads/01a0c4d1-741f-76e3-9023-1064e5a9a0c5",
+    "decision": "decision-0025c01d8f434bf6",
+    "baseline_attempt": "attempt-92800845745342f4",
+    "patient": "bcbe3365e6",
+    "demographics_file": ".local/longitudinal-ct-review/raw/LongitudinalCT_demographics.csv",
+    "demographics_sha256": "d4798ac1137fa09776c498b1f752ff3db621cb167c8c4ed6df57562142a13608",
+    "demographics_row": {
+      "ID": "bcbe3365e6",
+      "CT Vendor BL": "Biograph 64",
+      "CT Vendor FU1": "Biograph128",
+      "TimeDiff_BL_FU1_Days": "121.0",
+      "sex": "female",
+      "age": "44"
+    },
+    "source_record_sha256": "4721f854ecbe4a2ed620c03b15221ffc4723bd22914c01789f8485b55aeeff1b",
+    "sources": [
+      "https://fdat.uni-tuebingen.de/records/qe950-g4h94",
+      "https://www.nature.com/articles/s41597-026-07466-y"
+    ],
+    "live_source_review_date": "2026-09-22",
+    "field_provenance": {
+      "age_years": {
+        "value": 44,
+        "level": "patient CSV",
+        "reference_date": "unspecified"
+      },
+      "recorded_sex": {
+        "value": "female",
+        "level": "patient CSV"
+      },
+      "interval_days": {
+        "value": 121,
+        "level": "patient CSV"
+      },
+      "diagnosis": {
+        "value": "metastatic malignant melanoma",
+        "level": "paper cohort inclusion"
+      },
+      "systemic_treatment": {
+        "value": "underwent systemic therapy",
+        "level": "paper cohort"
+      },
+      "scan_purpose": {
+        "value": "staging and longitudinal therapy response assessment",
+        "level": "release cohort"
+      },
+      "surgical_context": {
+        "value": null,
+        "level": "unavailable"
+      },
+      "individual_regimen_and_dates": {
+        "value": null,
+        "level": "unavailable"
+      }
+    },
+    "limits": "No individual clinical reports. Cohort descriptions do not identify patient-specific regimen or surgical timing. No exact field is assumed inferable from CT.",
+    "model_runs_authorized": 2,
+    "source_input_hashes": {
+      "environment/data/baseline.nii.gz": "01389bb85db149faec37d64209dbc78caa18aeba3ad91aeb3c410b1c023494ad",
+      "environment/data/followup.nii.gz": "11fca9d904d0171a3e474a07b285cbb8c5917c3f83d3792a3a6182553ec4a385"
+    },
+    "context_block_sha256": "89bd2d28ae6d3c91261282d8c2a7e84c33d336c594ca534154e7f5486c0f32cf"
+  },
+  "conditions": {
+    "inference": {
+      "preparation": {
+        "condition": "inference",
+        "experiment_id": "longitudinal-ct-context-inference-astra-medium",
+        "instruction_sha256": "fbbde10714fb6b2b4adf74162a61149cab1d0bb77e1b44f1420c7af26edb9c13",
+        "scientific_scorer_sha256": "5a0f73fa9209d2ecaaa3fca09e0ef9550d23fc7e04cf21052d3412e15e466b56",
+        "solver_identical_to_baseline": true,
+        "input_hashes": {
+          "environment/data/baseline.nii.gz": "01389bb85db149faec37d64209dbc78caa18aeba3ad91aeb3c410b1c023494ad",
+          "environment/data/followup.nii.gz": "11fca9d904d0171a3e474a07b285cbb8c5917c3f83d3792a3a6182553ec4a385"
+        }
+      },
+      "study": {
+        "experiment_id": "longitudinal-ct-context-inference-astra-medium",
+        "task_digest": "e86b2cee2e85ab108157c9c827d9253f5b8d6f7659e35ca0fa8f0d24ffca23a7"
+      },
+      "images": {
+        "solver": "sha256:ae155277f6c3fb6231a82855fd15ff3d4b96089d307a03015f2fbbcb34095600",
+        "evaluator": "sha256:9d8c82a015ad0644420f5b7077b257fabb330870605679be8e229334cf6f1846",
+        "runtime": "sha256:3de5f01c3d98a0ed47c9c6ac2ef202807e2761e0ece826d0b514c994f033f107",
+        "transport": "sha256:a2a21e4e45448a01dd1b97b3a5017643dea882953485c99b3fb0aceab777376f"
+      },
+      "preflight_passed": true,
+      "frozen_files_match_preflight": true
+    },
+    "supplied": {
+      "preparation": {
+        "condition": "supplied",
+        "experiment_id": "longitudinal-ct-context-supplied-astra-medium",
+        "instruction_sha256": "b6c0704b8b6e72c5eb319ed3e1ee7999bf8444fcbdd9b1d0a1e291532d422425",
+        "scientific_scorer_sha256": "c5dcbe1208592b5eeac93d06d80be571f1cab038d730edb289e736892fa145a6",
+        "solver_identical_to_baseline": true,
+        "input_hashes": {
+          "environment/data/baseline.nii.gz": "01389bb85db149faec37d64209dbc78caa18aeba3ad91aeb3c410b1c023494ad",
+          "environment/data/followup.nii.gz": "11fca9d904d0171a3e474a07b285cbb8c5917c3f83d3792a3a6182553ec4a385"
+        }
+      },
+      "study": {
+        "experiment_id": "longitudinal-ct-context-supplied-astra-medium",
+        "task_digest": "ffdf321ba2637b46484309d8ec2c39fdffd5234b99e3152842c245a25a149215"
+      },
+      "images": {
+        "solver": "sha256:ae155277f6c3fb6231a82855fd15ff3d4b96089d307a03015f2fbbcb34095600",
+        "evaluator": "sha256:f8c70dc51baec3c5bb8d33c039d13c53c19a1c86e77a2d6f9fde15efe4a67f76",
+        "runtime": "sha256:3de5f01c3d98a0ed47c9c6ac2ef202807e2761e0ece826d0b514c994f033f107",
+        "transport": "sha256:a2a21e4e45448a01dd1b97b3a5017643dea882953485c99b3fb0aceab777376f"
+      },
+      "preflight_passed": true,
+      "frozen_files_match_preflight": true
+    }
+  },
+  "validator_checks": {
+    "missing_answer_rejected": true,
+    "unknown_accepted": true,
+    "missing_field_rejected": true,
+    "invalid_confidence_rejected": true,
+    "claimed_unknown_value_rejected": true
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "id": "longitudinal-ct-context-hypothesis-result",
+  "group_id": "longitudinal-reading",
+  "title": "Broad context supplied: same 3/22 CT instances, with recognition and coverage failures remaining",
+  "claim": "On the same second CT case, a fresh Astra-medium context-supplied attempt recovered exactly the same 3/22 instances, 1/7 links and 2/15 events as the earlier image-only attempt. A separate CT-only probe inferred metastatic malignancy and included melanoma as a possibility while abstaining on exact hidden metadata. The new lesion trace explicitly rejected source GT2 at both visits as cyst-like/vascular and skipped all axial planes containing the small bone reference; these distinguish recognition disagreement from incomplete visual coverage.",
+  "experiment_ids": [
+    "longitudinal-ct-case02-astra-medium",
+    "longitudinal-ct-context-inference-astra-medium",
+    "longitudinal-ct-context-supplied-astra-medium"
+  ],
+  "evidence": [
+    {
+      "path": "groups/longitudinal-reading/findings/evidence/longitudinal-ct-context-comparison.json",
+      "sha256": "b0e0f523696d547b696b005a9f8a0e66cd96b63dac6114198c9ee97ffba835d8"
+    }
+  ],
+  "limitations": [
+    "One patient and one new attempt per condition; bundled context and stochastic variation are confounded.",
+    "The intervention supplies patient demographic metadata and cohort-level diagnosis/purpose only; individual clinical reports and surgical/treatment specifics are unavailable.",
+    "Clinical-context delivery is verified, but the public trace does not establish how the model used each supplied field.",
+    "Unknown exact metadata are not CT-inference failures; schema validity is not diagnostic correctness or calibration.",
+    "Recognition disagreements are relative to source GT, not independent clinical adjudication. Views containing a target do not establish attention.",
+    "Original scores, references and freezes remain unchanged; no additional model trial is launched."
+  ],
+  "links": [
+    {
+      "label": "Full comparison, context inference, trace attribution and native CT illustrations",
+      "path": "groups/longitudinal-reading/findings/longitudinal-ct-context-hypothesis.md"
+    },
+    {
+      "label": "Predeclared context design",
+      "path": "groups/longitudinal-reading/methods/longitudinal-ct-context-v1/protocol.md"
+    }
+  ]
+}

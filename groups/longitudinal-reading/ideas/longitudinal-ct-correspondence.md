@@ -158,3 +158,43 @@ recognition for the other omissions. Correct conditional associations do not
 establish complete event reasoning. Source context and clinical adjudication
 limitations remain; no labels or original scores were revised and no localized
 follow-up was launched. [Full result and CT evidence](../findings/longitudinal-ct-case02-astra-medium.md).
+
+## User-selected clinical-context hypothesis — 2026-09-22
+
+Decision `decision-0025c01d8f434bf6`, actor=user: test whether missing diagnosis
+and major patient context contributed to detection/recognition omissions. On
+the latest case, prepare one fresh Astra-medium context-inference session and
+one independent context-supplied lesion-task session. The
+[predeclared design](../methods/longitudinal-ct-context-v1/protocol.md) preserves
+the exact CTs, runtime and lesion scorer, with no prior outputs or direct target
+hints. The supplied context is fixed before inference and does not incorporate
+the first session's output.
+
+Source review supports patient-specific released age, sex and interval, plus
+cohort-level diagnosis, systemic therapy and imaging purpose. Individual clinical
+reports, regimen and surgery timing are unavailable. Exact non-image metadata
+is not assumed inferable from deidentified CT; calibrated unknowns are permitted.
+Broad diagnosis deliberately changes the clinical prior, so this tests partial
+clinical context rather than an information-free recognition intervention.
+One rerun cannot distinguish context causality from stochastic run variation or
+identify which supplied field matters. Original frozen scores remain unchanged.
+
+Completed both selected attempts. The CT-only context probe inferred metastatic
+malignancy and included melanoma among alternatives, while appropriately leaving
+exact metadata/history unknown. With the verified background supplied, the new
+lesion attempt recovered the same three reference instances as before: 3/22,
+1/7 links and 2/15 events; no detection gains or losses. Contours changed but the
+small-lesion bottleneck remained. The new report explicitly rejected GT2 at both
+visits as cyst-like/vascular, while retained render commands skipped all native
+axial planes containing bone GT7 and orthogonal crops excluded that region.
+This distinguishes at least one recognition disagreement from a review-coverage
+gap. GT14 remains absent without an explicit reassessment. Both native runs
+completed normally and saved scores replayed exactly.
+[Results, context assessment and native illustrations](../findings/longitudinal-ct-context-hypothesis.md).
+
+The clinical-context text was delivered, but public reasoning does not establish
+how it was used; no gain on one rerun is not a causal null effect. Assistant
+recommendation: retain explicit broad context as a condition and, if selected,
+separate coverage-controlled review from localized candidate judgment with
+explicit context use. Individual clinical reports and malignancy adjudication
+remain unavailable. No additional trial follows from this recommendation.
