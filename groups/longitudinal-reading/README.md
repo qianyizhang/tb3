@@ -9,3 +9,6 @@ Use `uv run med list --group longitudinal-reading` from the repository root. The
 [Capability story](presentation/story.md) · [Working contract](AGENTS.md)
 
 [Data sources](sources.json) · [Retained examples](examples/README.md) · [Methods](methods/README.md)
+
+[Longitudinal-CT data/GT review](examples/longitudinal-ct-review-20260922.md) ·
+[Proposed lesion-correspondence task](presentation/briefs/longitudinal-ct-correspondence.md)
