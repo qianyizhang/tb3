@@ -10,9 +10,11 @@ uv sync --locked --inexact --group dev
 make hooks
 ```
 
-Python 3.12 is the local default; CI checks 3.12 and 3.14.
-`--inexact` preserves separately installed research packages. CI uses an exact
-sync in a fresh environment. `make hooks` enables pre-commit through the tracked
+Python 3.12 is the local default; CI checks 3.12 and 3.14. Local tooling accepts
+uv 0.11.8 or newer; CI pins uv 0.12.15.
+`--inexact` preserves packages outside the locked dependency graph; shared
+dependencies still follow the lock. CI uses an exact sync in a fresh environment.
+`make hooks` enables pre-commit through the tracked
 `.githooks` wrapper and refuses to replace another hook directory.
 
 For browser checks, install the declared Node 22+ dependencies with `npm ci`.
