@@ -79,3 +79,25 @@ Reopen classification when a new/changed contract exposes an unclear boundary,
 a mixed historical record needs a more precise scope, or reader feedback shows
 that a family hides a meaningful difference. Clinical/reference disputes still
 use the existing issue and review workflow.
+
+## Illustration coverage follow-up
+
+Actor: **user** requested intuitive illustrations for every named task/group.
+Actor: **assistant** added ten study-specific input/output diagrams for the
+previously unillustrated supporting entries and seven conceptual fallbacks for
+entries with curated source images. Source images remain the first choice;
+missing optional media retain a notice alongside their schematic fallback.
+
+The study drawings distinguish reference-box tool calibration, provenance
+tracing, geometric shortcut controls, anatomy curation, registration diagnostics,
+all-phase contours, sparse anchors, material motion and vessel-source screening.
+“Study output” identifies supporting research. Matching legends separate supplied
+anchors, predictions and references; no drawing represents a measured result.
+
+All 200 definitions have an Overview visual, including each variant in the 140
+navigation families/entries. The builder now rejects missing required visuals or
+incomplete illustration metadata. Browser coverage checks all 428 condition
+selections and exercises missing-image fallbacks for each of the seven native
+examples. The ten new studies and seven fallbacks also have a local visual-review
+contact sheet; screenshots and the updated preview live under
+`runs/task-illustrations-20260922/`.

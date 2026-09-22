@@ -10,7 +10,7 @@ function taskArt(e, output=false) {
   const path=(d,col=ink,w=2,fill='none',extra='')=>`<path d="${d}" stroke="${col}" stroke-width="${w}" fill="${fill}" ${extra}/>`;
   const txt=(x,y,s,size=13,col=ink)=>`<text x="${x}" y="${y}" font-size="${size}" fill="${col}">${esc(s)}</text>`;
   const group=(x,y,s,body)=>`<g transform="translate(${x} ${y}) scale(${s})">${body}</g>`;
-  const arrow=(x,y,a,b)=>line(x,y,a,b,teal,3)+path(`M${a-7} ${b-5}L${a} ${b}L${a-7} ${b+5}`,teal,3);
+  const arrow=(x,y,a,b)=>line(x,y,a,b,teal,3)+`<g transform="translate(${a} ${b}) rotate(${Math.atan2(b-y,a-x)*180/Math.PI})">${path('M-7 -5L0 0L-7 5',teal,3)}</g>`;
   const dots=(n=60,col=muted)=>Array.from({length:n},(_,i)=>c(30+(i*47%260),25+(i*31%140),1.5,col,'opacity=".45"')).join('');
   const frame=body=>r(20,12,280,166,'#193c48')+body;
   const cells=(colored=false)=>Array.from({length:14},(_,i)=>{
@@ -84,8 +84,49 @@ function taskArt(e, output=false) {
     const a=i*Math.PI/4,x=160+77*Math.cos(a),y=144+33*Math.sin(a);
     return line(x,y,160,140,teal,1.5)+c(x,y,4,amber);
   }).join('')+oval(160,140,24,9,blue,'opacity=".8"');
+  const cavity=(x,y,rx,ry,col=teal,mesh=false,extra='')=>oval(x,y,rx,ry,'none',`stroke="${col}" stroke-width="2.5" ${extra}`)+(mesh?path(`M${x} ${y-ry}L${x-rx} ${y}L${x} ${y+ry}L${x+rx} ${y}Z`,col,1)+line(x-rx,y,x+rx,y,col,1)+oval(x,y,rx*.45,ry,'none',`stroke="${col}" stroke-width="1"`):'');
+  const screenCard=(rows)=>r(28,25,264,143,'#fff','stroke="#b8ced0"')+rows.map(([label,col],i)=>c(49,53+i*44,6,col)+txt(66,58+i*44,label,14)).join('');
   let art='';
   switch(k) {
+    case 'segmenter_calibration':
+      art=output?[0,1].map(i=>r(20+i*157,16,123,113,'#193c48')+oval(82+i*157,75,31,22,'none',`stroke="${blue}" stroke-width="2.5" stroke-dasharray="5 4"`)+oval(85+i*152,78-i*5,29+i*5,24-i*4,'none',`stroke="${teal}" stroke-width="3"`)+txt(59+i*157,148,i?'LiteMedSAM':'SAM2',13)).join('')+line(34,177,55,177,blue,2.5,'stroke-dasharray="5 4"')+txt(62,181,'reference',12)+line(165,177,186,177,teal,3)+txt(193,181,'prediction',12):scan()+r(84,66,71,61,'none',`stroke="${amber}" stroke-width="3" stroke-dasharray="6 4"`)+txt(79,175,'reference-derived box',12,'#e7eff1');
+      break;
+    case 'source_provenance':
+      art=output?['Source evidence','Candidate task','Feasibility + limits'].map((label,i)=>r(40,13+i*61,240,41,'#fff','stroke="#b8ced0"')+txt(58,39+i*61,label,15)+(i<2?arrow(160,56+i*61,160,70+i*61):'')).join(''):group(4,18,.56,doc('source record'))+group(146,4,.53,doc('prior evidence'))+group(93,80,.46,scan())+path('M108 93L143 118M230 90L216 117',teal,2);
+      break;
+    case 'mask_shortcuts':
+      art=output?line(52,146,283,146,muted)+line(52,146,52,30,muted)+txt(112,177,'object size',13)+txt(16,20,'position',13)+[[88,119,'A'],[163,82,'B'],[247,44,'C']].map(([x,y,label])=>c(x,y,7,teal)+txt(x+11,y+5,label,15)).join('')+path('M76 133L263 32',amber,2,'none','stroke-dasharray="5 4"'):frame([0,1,2].map(i=>oval(75+i*81,123-i*36,16+i*7,12+i*6,'#bdced2')+txt(68+i*81,162,String(i+1),13,'#e7eff1')).join(''));
+      break;
+    case 'anatomy_curation':
+      art=output?screenCard([['Candidate with evidence',teal],['Hold: context missing',amber],['Exclude: ambiguous key',rose]]):[0,1,2,3,4].map(i=>path(`M66 ${21+i*29}q16-7 32 0l15-3v17l-15-3q-16 7-32 0l-12 3v-17Z`,muted,1,i===2?amber:'#9fbdc5')).join('')+group(121,18,.62,doc('source labels'))+txt(40,185,'vertebral masks',12)+c(110,84,12,'#f3e1ba')+txt(106,89,'?',15)+txt(179,146,'context?',13);
+      break;
+    case 'registration_diagnosis':
+      art=output?r(18,18,284,68,'#fff','stroke="#b8ced0"')+txt(31,40,'Transform composition',14)+path('M46 67L102 51L146 67',blue,2)+arrow(160,61,202,61)+txt(214,67,'T(x)',17)+r(18,101,284,71,'#fff','stroke="#b8ced0"')+txt(31,123,'Search + correspondence',14)+r(48,135,68,24,'none',`stroke="${muted}" stroke-dasharray="4 3"`)+c(83,146,4,teal)+c(144,146,4,amber)+line(88,146,139,146,rose,2)+txt(177,152,'residual',13):group(0,20,.49,scan())+group(162,20,.49,scan())+c(86,69,5,amber)+c(256,79,5,teal)+path('M103 106Q160 157 238 105',rose,2,'none','stroke-dasharray="5 4"')+txt(30,173,'saved query',13)+txt(186,173,'saved match',13);
+      break;
+    case 'cardiac_contours':
+      art=[0,1,2].map(i=>cavity(60+i*100,87,31-i*6,53-i*9,output?teal:blue,output)).join('')+arrow(38,156,284,156)+txt(58,183,output?'time-varying cavity mesh':'contours supplied at every phase',13);
+      break;
+    case 'cardiac_anchors':
+      art=[0,1,2].map(i=>(output?cavity(61+i*99,87,32-i*6,50-i*8,i===1?teal:amber,true,i===1?'stroke-dasharray="5 4"':''):group(1+i*100,30,.37,scan())+(i!==1?cavity(62+i*99,68,12-i*2,19-i*3,amber):''))+txt(38+i*99,151,i===1?(output?'recover':'image'):'anchor',13)).join('')+arrow(42,171,281,171);
+      break;
+    case 'cardiac_material':
+      art=output?cavity(149,89,62,53,teal,true)+cavity(156,84,54,60,blue,false,'stroke-dasharray="5 4"')+c(106,54,5,amber)+txt(88,45,'A',13)+c(149,142,5,rose)+txt(156,153,'B',13)+line(22,176,43,176,teal,3)+txt(49,180,'model',12)+line(160,176,181,176,blue,2,'stroke-dasharray="5 4"')+txt(187,180,'reference',12):cavity(91,90,39,63,blue,true)+c(64,46,5,amber)+txt(48,39,'A',13)+c(91,153,5,rose)+txt(101,165,'B',13)+group(160,35,.47,scan())+txt(29,183,'initial material mesh',12)+txt(187,149,'ultrasound',12);
+      break;
+    case 'vessel_source_screen':
+      art=output?screenCard([['Check connection evidence',teal],['Record reference gaps',amber],['Admit, hold or exclude',muted]]):group(16,0,.9,frame(vessel()+r(127,53,31,23,'#193c48')+c(142,65,18,'none',`stroke="${amber}" stroke-width="2" stroke-dasharray="4 3"`)))+txt(252,64,'?',22,amber)+txt(49,182,'source topology needs review',12);
+      break;
+    case 'prediction_screen':
+      art=output?screenCard([['Inspect prediction difference',teal],['Verify reference support',blue],['Decide task suitability',amber]]):group(16,0,.9,frame(path('M73 140L121 99L159 63L246 43M121 99L226 141',blue,5,'none','stroke-dasharray="6 5"')+path('M75 137L121 99L141 81M171 60L244 46M121 99L193 122',teal,4)+c(158,70,20,'none',`stroke="${amber}" stroke-width="2"`)))+line(34,182,56,182,teal,3)+txt(62,186,'prediction',12)+line(178,182,200,182,blue,3,'stroke-dasharray="5 4"')+txt(206,186,'reference',12);
+      break;
+    case 'nodule_outline':
+      art=scan()+(output?c(192,108,17,'none',`stroke="${amber}" stroke-width="3"`):'');
+      break;
+    case 'ct_phantom':
+      art=output?frame(oval(160,94,62,75,'#d9e0df')+oval(160,96,56,67,'#6b838d')+oval(143,96,16,43,'#193c48','transform="rotate(17 143 96)"')+oval(181,91,12,32,'#193c48','transform="rotate(-18 181 91)"')+oval(158,51,19,13,'#a8babf')):group(16,0,.9,frame(Array.from({length:15},(_,i)=>path(`M${40+i*16} 26Q${90+i*13} 73 ${40+i*16} 104Q${10+i*16} 137 ${40+i*16} 164`,i%3===0?'#c3d5d9':'#527785',8)).join('')))+txt(84,184,'sparse projection data',12);
+      break;
+    case 'route_unfold':
+      art=output?path('M47 63L106 31L141 48L211 25L277 42',teal,5)+path('M106 31L141 48',amber,5)+r(34,95,252,62,'#193c48')+path('M45 126Q117 108 165 126T276 126','#a3b7bf',18)+line(45,126,276,126,amber,2,'stroke-dasharray="4 3"')+txt(96,182,'unfolded CT view',13):group(16,0,.9,frame(path('M47 128L106 80M141 97L211 74L277 91','#acbdc5',14)+c(123,88,29,'none',`stroke="${amber}" stroke-width="2" stroke-dasharray="5 4"`)+c(70,109,5,teal)+c(241,82,5,teal)))+txt(54,184,'local repair + route anchors',12);
+      break;
     case 'anatomy_audit':
       art=output?doc('Affected label + witness')+c(254,127,7,amber):scan(true)+txt(55,178,'supplied spatial labels',12);
       break;

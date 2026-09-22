@@ -209,11 +209,13 @@ function assistance(e) {
   return `<section class="assistance"><h3>Assistance condition</h3><div class="variants">${e.variants.map((x,i)=>`<button class="variant" data-condition="${i}" aria-pressed="${i===condition}">${esc(x.name)}</button>`).join('')}</div><div class="condition"><p><strong>Given</strong>${esc(v.helper)}</p><p><strong>Remaining work</strong>${esc(v.remaining)}</p></div></section>`;
 }
 function taskPicture(e) {
-  const d=e.illustration;
-  if(d) return `<figure class="task-picture conceptual" data-illustration="${esc(d.kind)}"><figcaption><span class="drawing-label">Conceptual illustration</span><span>Drawn, not a dataset sample</span></figcaption><div class="picture-pair"><section><h4>Input</h4>${taskArt(e)}<p>${esc(d.input)}</p></section><div class="picture-arrow" aria-hidden="true">→</div><section><h4>Expected output</h4>${taskArt(e,true)}<p>${esc(d.output)}</p></section></div><p class="picture-caption">${esc(d.caption)}</p></figure>`;
   const illustrated=e.example_case_id?itemsFor(e).find(i=>i.id===e.example_case_id):null;
   const exampleLabel=illustrated?' · '+compactLabel(illustrated,e):'';
-  return /<img\b/.test(e.visuals.input)?`<figure class="task-picture native-preview"><figcaption><span class="drawing-label">Source-derived example${esc(exampleLabel)}</span><button class="text-button" data-example-open>Inspect example →</button></figcaption><div class="native-input">${e.visuals.input}</div>${imageNotice(e)}</figure>`:e.missing_media?.length?`<div class="preview-unavailable">${e.visuals.input}${imageNotice(e)}</div>`:'';
+  if (/<img\b/.test(e.visuals.input)) return `<figure class="task-picture native-preview"><figcaption><span class="drawing-label">Source-derived example${esc(exampleLabel)}</span><button class="text-button" data-example-open>Inspect example →</button></figcaption><div class="native-input">${e.visuals.input}</div>${imageNotice(e)}</figure>`;
+  const unavailable=e.missing_media?.length?`<div class="preview-unavailable">${e.visuals.input}${imageNotice(e)}</div>`:'';
+  const d=e.illustration;
+  if(d) return `<figure class="task-picture conceptual" data-illustration="${esc(d.kind)}"><figcaption><span class="drawing-label">Conceptual illustration</span><span>Drawn, not a dataset sample</span></figcaption><div class="picture-pair"><section><h4>Input</h4>${taskArt(e)}<p>${esc(d.input)}</p></section><div class="picture-arrow" aria-hidden="true">→</div><section><h4>${e.role && e.role!=='task'?'Study output':'Expected output'}</h4>${taskArt(e,true)}<p>${esc(d.output)}</p></section></div><p class="picture-caption">${esc(d.caption)}</p></figure>${unavailable}`;
+  return unavailable;
 }
 function imageNotice(e) {
   const notice=e.sources.find(([label])=>label==='Preview image notices');

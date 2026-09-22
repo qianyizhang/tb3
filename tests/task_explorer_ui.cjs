@@ -48,7 +48,8 @@ async function checkExplorer(browser, input, report) {
       conditions = 0,
       images = 0,
       drawings = 0,
-      sourcePreviews = 0;
+      sourcePreviews = 0,
+      fallbackDrawings = 0;
     const diagramTypes = new Set();
     for (const repo of data.inventory.repositories)
       for (const item of repo.items) {
@@ -94,9 +95,28 @@ async function checkExplorer(browser, input, report) {
             n,
           );
         }
+        if (data.require_overview_visuals)
+          assert.equal(
+            await page.locator('.task-picture').count(),
+            1,
+            `${e.id}/${n}: overview visual`,
+          );
         conditions++;
       }
-      if (e.illustration) {
+      if (/<img\b/.test(e.visuals.input)) {
+        assert.equal(
+          await page.locator('.native-preview img').count(),
+          1,
+          'Existing source images should be visible in the overview',
+        );
+        await page.locator('.native-preview img').evaluate((e) => e.decode());
+        assert.equal(
+          await page.locator('.native-input').innerHTML(),
+          e.visuals.input,
+          'Preview preserves the authored caption, including reference-based view selection',
+        );
+        sourcePreviews++;
+      } else if (e.illustration) {
         assert.equal(
           await page.locator('.task-picture.conceptual svg').count(),
           2,
@@ -112,19 +132,6 @@ async function checkExplorer(browser, input, report) {
         );
         drawings++;
         diagramTypes.add(e.illustration.kind);
-      } else if (/<img\b/.test(e.visuals.input)) {
-        assert.equal(
-          await page.locator('.native-preview img').count(),
-          1,
-          'Existing source images should be visible in the overview',
-        );
-        await page.locator('.native-preview img').evaluate((e) => e.decode());
-        assert.equal(
-          await page.locator('.native-input').innerHTML(),
-          e.visuals.input,
-          'Preview preserves the authored caption, including reference-based view selection',
-        );
-        sourcePreviews++;
       } else if (e.missing_media.length) {
         assert.equal(
           await page.locator('.preview-unavailable').count(),
@@ -154,6 +161,22 @@ async function checkExplorer(browser, input, report) {
           'No repeated text pretending to be an image',
         );
       }
+    }
+    // Optional native images can be absent in a portable build. Every native entry
+    // must still explain its task, without disguising the missing source example.
+    for (const e of data.entries.filter((e) => /<img\b/.test(e.visuals.input))) {
+      assert.ok(e.illustration, `${e.id}: portable illustration fallback`);
+      await go(`${e.id}/0/overview`, e.id);
+      await page.evaluate((id) => {
+        const entry = DATA.entries.find((e) => e.id === id);
+        entry.visuals.input = '<p>Source example unavailable in this build.</p>';
+        entry.missing_media = ['optional-example.png'];
+        render();
+      }, e.id);
+      assert.equal(await page.locator('.task-picture.conceptual svg').count(), 2);
+      assert.ok((await page.locator('.preview-unavailable').innerText()).includes('unavailable'));
+      fallbackDrawings++;
+      await page.reload();
     }
     // Local sources remain inspectable from this single HTML file with exact downloads.
     let localSources = 0;
@@ -524,6 +547,8 @@ async function checkExplorer(browser, input, report) {
       conceptualIllustrations: drawings,
       diagramTypes: diagramTypes.size,
       sourcePreviews,
+      portableFallbacks: fallbackDrawings,
+      illustratedOverviews: drawings + sourcePreviews,
       localSources,
       sourceReader: 'pass',
       keyboardFocus: 'pass',

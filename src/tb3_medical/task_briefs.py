@@ -224,6 +224,19 @@ def load(root, catalog=DEFAULT_CATALOG):
             )
         }
         row["missing_media"] = sorted(set(missing))
+        illustration = row.get("illustration")
+        if illustration is not None and (
+            not isinstance(illustration, dict)
+            or not all(
+                isinstance(illustration.get(key), str) and illustration[key].strip()
+                for key in ("kind", "input", "output", "caption")
+            )
+        ):
+            raise c.MedicalError(f"{row['id']}: incomplete overview illustration")
+        if data.get("require_overview_visuals") and not (
+            illustration or "<img " in row["visuals"]["input"]
+        ):
+            raise c.MedicalError(f"{row['id']}: missing overview visual")
         out.append(row)
     inventory = data["inventory"]
     by_id = {entry["id"]: entry for entry in out}
@@ -271,6 +284,9 @@ def check(root, catalog=DEFAULT_CATALOG):
         ),
         "native_visual_briefs": sum(
             any("<img " in body for body in e["visuals"].values()) for e in data["entries"]
+        ),
+        "illustrated_overviews": sum(
+            bool(e.get("illustration")) or "<img " in e["visuals"]["input"] for e in data["entries"]
         ),
         "missing_media": sorted({p for x in data["entries"] for p in x["missing_media"]}),
     }

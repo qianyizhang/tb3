@@ -74,6 +74,13 @@ imported identifiers, authored briefs and available media are distinct coverage 
   Geometry and textures are stylized. Cite the task source for any numerical dimensions.
   `illustrations.js` owns the SVG geometry; the builder embeds it alongside the
   navigation renderer in the standalone HTML.
+- Every named entry, including supporting research and each grouped variant,
+  needs an Overview visual. The composed catalogue enforces this with
+  `require_overview_visuals: true`. Curated input images take precedence; an
+  authored `illustration` also serves as a portable fallback when optional media
+  are absent. Keep the missing-media notice visible beside that fallback.
+  For supporting research, label the right panel “Study output” and show the
+  actual comparison or curation question rather than an implied agent success.
 
 ## Small authoring surface
 

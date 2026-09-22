@@ -132,6 +132,35 @@ class TaskBriefTests(unittest.TestCase):
         with self.assertRaises(c.MedicalError):
             briefs.check(self.root, self.catalog)
 
+    def test_required_overview_survives_missing_optional_media(self):
+        self.scaffold()
+        path = self.root / self.catalog
+        data = json.loads(path.read_text())
+        data["require_overview_visuals"] = True
+        path.write_text(json.dumps(data))
+        with self.assertRaisesRegex(c.MedicalError, "missing overview visual"):
+            briefs.check(self.root, self.catalog)
+        brief = self.root / "group/example.md"
+        brief.write_text(
+            brief.read_text().replace("### Input\n", "### Input\n\n![Input](optional.png)\n")
+        )
+        with self.assertRaisesRegex(c.MedicalError, "missing overview visual"):
+            briefs.check(self.root, self.catalog)
+        data["entries"][0]["illustration"] = {
+            "kind": "segment",
+            "input": "Scan",
+            "output": "Mask",
+            "caption": "Conceptual, not a source example.",
+        }
+        path.write_text(json.dumps(data))
+        checked = briefs.check(self.root, self.catalog)
+        self.assertEqual(checked["illustrated_overviews"], 1)
+        self.assertEqual(checked["missing_media"], ["group/optional.png"])
+        data["entries"][0]["illustration"]["caption"] = " "
+        path.write_text(json.dumps(data))
+        with self.assertRaisesRegex(c.MedicalError, "incomplete overview illustration"):
+            briefs.check(self.root, self.catalog)
+
     def test_sources_are_exact_bounded_deduplicated_and_not_recursive(self):
         self.scaffold()
         self.scaffold("second")

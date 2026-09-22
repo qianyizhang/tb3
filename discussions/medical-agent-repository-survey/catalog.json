@@ -34,7 +34,14 @@
       "repository_id": "abra",
       "nav_group": "Image interpretation",
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "illustration": {
+        "kind": "nodule_outline",
+        "input": "Chest CT at the requested slice and window",
+        "output": "Attach an outline to the requested lung nodule",
+        "caption": "The gold outline is conceptual. The ordinary task supplies a slice; the separate oracle condition can return reference-derived contours.",
+        "subject": "chest"
+      }
     },
     {
       "id": "bcer",
@@ -46,7 +53,14 @@
       "repository_id": "bcer",
       "nav_group": "Complete MRI workflows",
       "role": "task",
-      "agent_work": "workflow"
+      "agent_work": "workflow",
+      "illustration": {
+        "kind": "workflow",
+        "input": "Prostate MRI sequences and processing tools",
+        "output": "Masks, lesion candidates, features and a report",
+        "caption": "This schematic summarizes a chain of artifacts. Workflow validity does not independently establish anatomical or diagnostic accuracy.",
+        "subject": "prostate"
+      }
     },
     {
       "id": "automedbench",
@@ -83,7 +97,15 @@
       "task_family": "automed-segmentation",
       "nav_label": "Multi-organ CT \u00b7 packaged Lite example",
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "illustration": {
+        "kind": "segment",
+        "input": "A CT volume to process",
+        "output": "An integer-label map of anatomical classes",
+        "caption": "Colored regions represent only a stylized subset of the target classes. Training/setup assistance and private reference masks retain their separate roles.",
+        "subject": "abdomen",
+        "mask_mode": "multiclass"
+      }
     },
     {
       "id": "imaging101",
@@ -95,7 +117,13 @@
       "repository_id": "imaging101",
       "nav_group": "CT & X-ray imaging",
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "illustration": {
+        "kind": "ct_phantom",
+        "input": "Sparse projection measurements of a synthetic phantom",
+        "output": "Reconstruct the image array",
+        "caption": "Original schematic of a mathematical phantom, not patient data or a measured reconstruction. Source-specific dimensions and assistance levels are in the brief."
+      }
     },
     {
       "id": "radagent",
@@ -127,7 +155,15 @@
       "task_family": "rex-topcow-segmentation",
       "nav_label": "CT angiography",
       "role": "task",
-      "agent_work": "implementation"
+      "agent_work": "implementation",
+      "illustration": {
+        "kind": "segment",
+        "input": "Brain CTA volumes and labeled training examples",
+        "output": "Predict named vessel classes on unseen CTA",
+        "caption": "Colors illustrate vessel classes, not a reference answer. Training labels are supplied; test labels remain withheld for grading.",
+        "subject": "brain-vessels",
+        "mask_mode": "multiclass"
+      }
     },
     {
       "id": "healthagentbench-trial-matching",

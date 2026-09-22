@@ -300,7 +300,14 @@
           "scope": "72 primary predictions, CPU checks and a later SAM2 CPU diagnostic; preserve separate evidence scopes."
         }
       ],
-      "nav_group": "Segment images"
+      "nav_group": "Segment images",
+      "illustration": {
+        "kind": "segmenter_calibration",
+        "input": "CT slice with a reference-derived box",
+        "output": "Compare tool masks, reference overlap and inference time",
+        "caption": "Blue dashed: reference boundary. Green solid: illustrative tool prediction. The box already supplies localization; these sketches imply no measured ranking or timing.",
+        "subject": "abdomen"
+      }
     },
     {
       "id": "tb3-history-sourcing",
@@ -318,7 +325,13 @@
           "scope": "Mixed personal-work investigation includes medical and nonmedical leads; not one homogeneous task definition."
         }
       ],
-      "nav_group": "Decode and transform data"
+      "nav_group": "Decode and transform data",
+      "illustration": {
+        "kind": "source_provenance",
+        "input": "Retained artifacts and prior investigation records",
+        "output": "Source-linked task ideas with feasibility limits",
+        "caption": "Follow each idea back to its evidence. Historical incidents, infrastructure problems and model outcomes remain separate records; this source study is not an agent trial."
+      }
     },
     {
       "id": "tb3-mask-reasoning-study",
@@ -340,7 +353,13 @@
           "scope": "Author shortcut screen and separate I1/I3 hypotheses. I2 identity prototype has its own proposed-task entry."
         }
       ],
-      "nav_group": "Audit and correct annotations"
+      "nav_group": "Audit and correct annotations",
+      "illustration": {
+        "kind": "mask_shortcuts",
+        "input": "Anonymous objects with visible size and position",
+        "output": "Check whether simple geometry reveals the labels",
+        "caption": "The dashed trend illustrates a possible shortcut, not fitted data. Author controls test whether size or ordering solves the proposed task without the intended anatomical reasoning."
+      }
     },
     {
       "id": "tb3-anatomy-curation",
@@ -358,7 +377,13 @@
           "scope": "Source curation before trials; no autonomous agent task implied."
         }
       ],
-      "nav_group": "Audit and correct annotations"
+      "nav_group": "Audit and correct annotations",
+      "illustration": {
+        "kind": "anatomy_curation",
+        "input": "Source vertebral masks, labels and anatomical context",
+        "output": "Candidate cards with evidence and admission limits",
+        "caption": "The rows illustrate possible curation decisions, not verdicts on the drawn shapes. Unusual anatomy is not automatically an annotation error; this source screen admitted no hard task."
+      }
     }
   ],
   "task_families": {

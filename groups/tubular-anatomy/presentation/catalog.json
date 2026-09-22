@@ -18,7 +18,14 @@
           "scope": "Vessel source curation/proposed connection repair; distinct from cardiac-motion-br025."
         }
       ],
-      "nav_group": "Recover paths and topology"
+      "nav_group": "Recover paths and topology",
+      "illustration": {
+        "kind": "vessel_source_screen",
+        "input": "Angiographic source masks and uncertain connections",
+        "output": "Determine whether a defensible repair task exists",
+        "caption": "The gold dashed circle marks a question to investigate, not a verified defect. Source uncertainty must remain in the candidate record.",
+        "subject": "brain-vessels"
+      }
     },
     {
       "id": "tb3-vessel-connection-repair",
@@ -66,7 +73,14 @@
       "operations": [
         "annotation-review"
       ],
-      "nav_group": "Recover paths and topology"
+      "nav_group": "Recover paths and topology",
+      "illustration": {
+        "kind": "route_unfold",
+        "input": "CTA, a supplied mask gap and route anchors",
+        "output": "Repair the gap, trace and unfold the vessel",
+        "caption": "Gold dashed circle: editable review region; green dots: route anchors. The output sketch shows the repaired route and a curved view; the contract also requires physical coordinates and a closed surface.",
+        "subject": "vessels"
+      }
     },
     {
       "id": "tb3-airway-repair",
@@ -111,7 +125,14 @@
           "scope": "TopBrain source/inference screen only; separate from the airway agent pilot under this mixed historical record."
         }
       ],
-      "nav_group": "Recover paths and topology"
+      "nav_group": "Recover paths and topology",
+      "illustration": {
+        "kind": "prediction_screen",
+        "input": "MRA predictions compared with source vessel labels",
+        "output": "Screen differences and document reference gaps",
+        "caption": "Green solid: prediction. Blue dashed: reference. A difference alone is not a valid repair target; this TopBrain screen admitted no clean hard brain task.",
+        "subject": "brain-vessels"
+      }
     },
     {
       "id": "tb3-named-coronary",
