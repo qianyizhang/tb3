@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "kind": "documentation_pruning_receipt",
+  "source_task": "codex://threads/01a0c827-c51c-7170-a5b3-e1b01dc10ec7",
+  "authorization": {
+    "actor": "user",
+    "response": "yes, prune them, and i think discussions needs a .gitignore and ignore all artifacts by default (maybe only unignore few very important ones)"
+  },
+  "retired_tracked_documents": [
+    "docs/migration/architecture-review.md",
+    "docs/migration/archive-recovery-check.json",
+    "docs/migration/attempt-import.json",
+    "docs/migration/baseline.json",
+    "docs/migration/documentation-audit.md",
+    "docs/migration/main-cutover.json",
+    "docs/migration/main-cutover.md",
+    "docs/migration/native-closeout.md",
+    "docs/migration/native-experiment-inventory.md",
+    "docs/migration/native-record-conversion.json",
+    "docs/migration/preservation-check.json",
+    "docs/migration/recovery-v2-check.json",
+    "docs/migration/status.md",
+    "docs/migration/tb3-medical-inventory.json",
+    "docs/migration/tb3-medical.md",
+    "docs/audit/agy-0917.md",
+    "docs/audit/index.html",
+    "docs/audit/trace_mapping.json",
+    "docs/archive/operations.md",
+    "docs/ledger.md",
+    "docs/research-brainstorm-experiments-20260914.md",
+    "docs/research-specification-audit-20260915.md",
+    "presentation/editorial/brief.md"
+  ],
+  "discarded_uncommitted_projections": [
+    "groups/anatomical-landmarks/history/reproduction-baseline-2026-09-21.md",
+    "groups/anatomy-audit/history/reproduction-baseline-2026-09-21.md",
+    "groups/cardiac-motion/history/reproduction-baseline-2026-09-21.md",
+    "groups/lesion-localization/history/reproduction-baseline-2026-09-21.md",
+    "groups/longitudinal-reading/history/reproduction-baseline-2026-09-21.md",
+    "groups/registration/history/reproduction-baseline-2026-09-21.md",
+    "groups/tubular-anatomy/history/reproduction-baseline-2026-09-21.md"
+  ],
+  "retained_exception": {
+    "path": "docs/migration/recovery-check.json",
+    "reason": "Frozen BR-040 protocol cites this original replay receipt."
+  },
+  "recovery": {
+    "source_commit": "8a07094da83d74012030b57d8c7df38819b9a29d",
+    "git_bundle": ".cache/docs-prune-20260922/pre-prune.bundle",
+    "git_bundle_sha256": "c69b3723f6c11e374fe141da1d45931d3ae9454589b80b84604faad5e0629537",
+    "git_restore_verified_files": 24,
+    "file_bundle": ".cache/docs-prune-20260922/retired-docs.tar.gz",
+    "file_bundle_sha256": "561534f4c1ba7cc2c75a254f42771d731e40e28792becdb28fd7cc394029dc92",
+    "file_restore_verified_files": 31,
+    "independent_backup_verified": false
+  },
+  "discussions": {
+    "source_commit": "c9a79530217c82c262f7c509275a7a1a9faa3a50",
+    "bundle": ".cache/docs-prune-20260922/pre-discussions.bundle",
+    "bundle_sha256": "c17451014c62b07a0e1ef5b4c00cde8e3b1672454187375bdf2fbe54a6307862",
+    "local_only": [
+      "discussions/experiment-support-backfill-2026-09-21.md"
+    ],
+    "tracked_markdown": [
+      "task-brief-format.md",
+      "task-taxonomy-refactor-2026-09-22.md",
+      "workbench-refinement-sweep-2026-09-21.md"
+    ],
+    "relocations": [
+      {
+        "from": "discussions/medical-agent-repository-survey/",
+        "to": "presentation/external-tasks/",
+        "files": 168,
+        "changes": "159 briefs and six source receipts byte-identical; catalog path strings and renderer command updated. Dated survey navigation edition retains its first-cleanup recovery locator."
+      },
+      {
+        "from": "discussions/*.json",
+        "to": "discussions/records/*.json",
+        "files": 6,
+        "changes": "Existing stable record IDs and decisions retained; live links follow relocated sources. Completed backfill narrative points to recovery manifest."
+      }
+    ],
+    "default_ignore": "All artifacts and directories; exact exceptions for .gitignore, README, three design histories and six records.",
+    "runtime_discovery": "discussions/records/*.json; scratch root/nested JSON is not metadata.",
+    "detailed_local_receipt": ".local/docs-prune-20260922/discussion-relocations.json",
+    "detailed_local_receipt_sha256": "b60fe4d9d18933b7cced5d9dc3eb66d4ca4250580006033935d34a36176d9ea8"
+  },
+  "verification": {
+    "status": "passed",
+    "command": "make check PYTHON=python3.12",
+    "scope": "Clean Git-index snapshot based on c9a7953 plus this task; ignored local artifacts absent.",
+    "tests_passed": 105,
+    "staged_files_checked": 3159,
+    "records_checked": 840,
+    "documents_checked": 449,
+    "links_checked": 1345,
+    "optional_local_targets_absent": 94,
+    "log": ".local/docs-prune-20260922/make-check.log",
+    "log_sha256": "275682019e43673ea35c9a85a03b05a29ddbfa73260aed949016663bbbd073ac",
+    "browser": {
+      "command": "node tests/presentation.cjs <clean-built-site> <local-reports>",
+      "disposable_browser": true,
+      "task_briefs": 200,
+      "source_records": 284,
+      "conditions": 428,
+      "illustrated_overviews": 200,
+      "desktop_and_mobile": "passed",
+      "page_errors": [],
+      "remote_requests": [],
+      "reports": [
+        {
+          "path": ".local/docs-prune-20260922/browser-qa/workbench-qa.json",
+          "sha256": "a60fe2dbec3f1157e8fd78dcb739d7fe1aee731eee93da4e2dbf51244947ae9f"
+        },
+        {
+          "path": ".local/docs-prune-20260922/browser-qa/explorer-qa.json",
+          "sha256": "27aea260b1d7e374a84b9f963aae4bb0db36da8af2f96fc912e1542b012cbaa2"
+        }
+      ]
+    }
+  },
+  "preservation": {
+    "protected_files_unchanged": 2685,
+    "protected_inventory": ".local/docs-prune-20260922/protected-files.json",
+    "protected_inventory_sha256": "ff98b72c825270a45be714ed76408b1df11fd1ea5205441709be6ee3f630c2ff",
+    "recipe_manifests": 11,
+    "recipe_manifest_changes": "Only README bytes and sha256; all other fields unchanged.",
+    "moved_briefs_byte_identical": 159,
+    "git_recovery_verified": {
+      "retirement_and_shortened_originals": 26,
+      "discussion_originals": 173,
+      "local_narrative": 1
+    },
+    "ignore_rules_verified": {
+      "ignored_paths": 5,
+      "retained_paths": 11
+    }
+  },
+  "limits": [
+    "Frozen protocols, outcomes, source receipts and raw evidence were not rewritten or regenerated.",
+    "Same-disk recovery was verified; no independent backup or runtime recovery claim.",
+    "The earlier cleanup receipt is a dated intermediate verification record; this receipt records the final pruned layout."
+  ]
+}

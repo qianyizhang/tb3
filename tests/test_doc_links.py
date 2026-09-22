@@ -82,6 +82,47 @@ class DocumentLinkTests(unittest.TestCase):
         self.write("groups/demo/findings/current.md", "[missing](nope.md)\n")
         self.assertIn("target does not exist", self.reasons())
 
+    def test_closing_fence_with_prose_is_reported(self) -> None:
+        self.write("docs/README.md", "# Recipe\n\n```sh\nharbor --help\n``` In the workbench\n")
+        issues = audit(self.root).issues
+        self.assertEqual(len(issues), 1)
+        self.assertEqual(issues[0].line, 3)
+        self.assertEqual(issues[0].reason, "fenced code block is not closed")
+
+    def test_shorter_or_different_markers_do_not_close_fence(self) -> None:
+        self.write(
+            "docs/README.md",
+            "````md\n```\n~~~\n[example](missing.md)\n# Example\n`````\n[valid](#real)\n# Real\n",
+        )
+        self.assertEqual(audit(self.root).issues, ())
+        self.write("docs/README.md", "````md\n```\n")
+        self.assertIn("fenced code block is not closed", self.reasons())
+
+    def test_fenced_heading_is_not_a_link_target(self) -> None:
+        self.write(
+            "docs/README.md",
+            "~~~md\n~~~ trailing prose\n# Hidden\n~~~~\n[bad](#hidden)\n",
+        )
+        self.assertEqual(self.reasons(), ["heading anchor does not exist"])
+
+    def test_links_after_valid_fence_are_checked(self) -> None:
+        self.write("docs/README.md", "```sh\ncommand\n```  \n[bad](missing.md)\n")
+        self.assertEqual(self.reasons(), ["target does not exist"])
+
+    def test_repository_policy_checks_recipe_guides_but_not_frozen_sources(self) -> None:
+        policy = json.loads(
+            (Path(__file__).resolve().parents[1] / "configs/doc-links.json").read_text()
+        )
+        policy["required_files"] = ["docs/README.md"]
+        self.write("configs/doc-links.json", json.dumps(policy))
+        base = "groups/demo/experiments/example/reproduction/"
+        for name in ("README.md", "acquisition.md", "historical-protocol.md", "sources/old.md"):
+            self.write(base + name, "[bad](missing.md)\n")
+        issues = audit(self.root).issues
+        self.assertEqual(
+            {issue.source for issue in issues}, {base + "README.md", base + "acquisition.md"}
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

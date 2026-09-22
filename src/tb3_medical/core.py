@@ -59,7 +59,7 @@ RECORD_GLOBS = (
     "groups/*/experiments/*/plans/*.json",
     "groups/*/experiments/*/reviews/*.json",
     "datasets/*.json",
-    "discussions/*.json",
+    "discussions/records/*.json",
     "exports/records/*.json",
 )
 REQUIRED = {

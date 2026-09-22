@@ -1,7 +1,7 @@
 """Render local survey examples; no network, model execution, or benchmark scoring.
 
 Run with the existing imaging environment:
-  .venv-br030/bin/python discussions/medical-agent-repository-survey/render_samples.py
+  .venv-br030/bin/python presentation/external-tasks/render_samples.py
 Inputs and their download receipts live in runs/task-brief-samples/.
 """
 from pathlib import Path

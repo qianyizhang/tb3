@@ -100,7 +100,7 @@ Actor: **user**. Source: current task; response **“all your rec”**.
 ## Implemented artifacts
 
 - [Canonical rulebook](../presentation/task-explorer/RULEBOOK.md) and [Markdown template](../presentation/task-explorer/brief-template.md).
-- [Collection metadata](medical-agent-repository-survey/catalog.json), 160 authored Markdown briefs and [source inventory](medical-agent-repository-survey/inventory.json).
+- [Collection metadata](../presentation/external-tasks/catalog.json), 160 authored Markdown briefs and [source inventory](../presentation/external-tasks/inventory.json).
 - `med brief new|build|check` supports proposed-brief scaffolding and standalone HTML output without running experiments.
 - [Reusable skill source](../skills/author-task-brief/SKILL.md), installed into the user's Codex skills directory.
 - [Internal vessel example](../groups/tubular-anatomy/presentation/briefs/br030.md) now has delivered CT and supplied-helper views, plus a separate post-run output reveal. Local media is source-derived; frozen tasks and outcomes are unchanged.
@@ -132,7 +132,7 @@ samples. Actor: **assistant** selected bounded public examples and reused retain
   HealthAgentBench CT example and RadAgent’s CT-RATE data route.
 - BCER inputs are a compatible representative case, not a recorded benchmark run;
   ABRA uses one source annotation, not regenerated consensus tasks; ReX-MLE split
-  membership is unverified. Exact scope and source terms are in the [receipt](medical-agent-repository-survey/samples.json).
+  membership is unverified. Exact scope and source terms are in the [receipt](../presentation/external-tasks/samples.json).
 - No model trials, runtime installs or publication. Actual outputs require separate
   retained trajectories or authorized runs; dataset downloads alone cannot supply them.
 
@@ -165,7 +165,7 @@ choices in response; these are implementation decisions, not a new user vote.
 - Preserve all 284 source links, assistance conditions and legacy URLs. Distinguish
   an illustrated case from the selected case when their IDs differ.
 
-Receipts: [context sources](medical-agent-repository-survey/catalogue-context-sources.json)
+Receipts: [context sources](../presentation/external-tasks/catalogue-context-sources.json)
 and [refactor validation](../docs/evidence/task-explorer-catalogue-refactor-2026-09-21.json).
 Reopen when reader feedback reveals remaining duplication or when actual case
 inputs become available to support more useful case differences.
@@ -199,7 +199,7 @@ The AutoMedBench audit keeps 3 denoising variants, 4 super-resolution variants a
 117-label map as identical contracts. Full, Lite and domain-branch material keep
 their release identity. No task packages, frozen evidence or external scores changed.
 
-Validation is retained in [the family audit receipt](medical-agent-repository-survey/task-family-audit.json).
+Validation is retained in [the family audit receipt](../presentation/external-tasks/task-family-audit.json).
 Reopen a merge when it hides a meaningful workflow/assistance distinction; retain
 exact source links and variant-specific requirements when adding future datasets.
 
@@ -227,7 +227,7 @@ upstream datasets are universally unavailable.
 Conceptual figures are explicitly marked as drawings, not dataset samples. They
 explain structure and requested transformations without reporting a measurement,
 model prediction or clinical finding. Native-data coverage remains six briefs.
-The [visual coverage receipt](medical-agent-repository-survey/illustration-coverage.json)
+The [visual coverage receipt](../presentation/external-tasks/illustration-coverage.json)
 records scope and validation. Reopen individual drawings when real source samples
 become available or when a task contract changes the illustrated output.
 

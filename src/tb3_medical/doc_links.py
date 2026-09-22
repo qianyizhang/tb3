@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate repository-local links in maintained Markdown documents."""
+"""Validate local links and closed code fences in maintained Markdown."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 CONFIG_PATH = Path("configs/doc-links.json")
-FENCE = re.compile(r"^\s*(`{3,}|~{3,})")
+FENCE = re.compile(r"^[ \t]*(`{3,}|~{3,})(.*)$")
 INLINE_LINK = re.compile(
     r"!?\[[^\]]*\]\(\s*(?:<([^>]+)>|([^\s)]+))"
     r"(?:\s+(?:\"[^\"]*\"|'[^']*'|\([^)]*\)))?\s*\)"
@@ -95,20 +95,40 @@ def maintained_documents(root: Path, policy: Policy) -> tuple[tuple[Path, ...], 
     return kept, issues
 
 
-def markdown_links(path: Path) -> tuple[tuple[int, str], ...]:
-    links: list[tuple[int, str]] = []
+def markdown_lines(path: Path) -> tuple[list[tuple[int, str]], int | None]:
+    """Return prose and any unclosed fence's line, excluding fenced examples.
+
+    Maintained guides require explicit closing fences, even though Markdown can
+    render an unfinished block through EOF. A closer must use the same marker,
+    be at least as long as its opener and have no trailing prose.
+    """
+    lines: list[tuple[int, str]] = []
     fence: str | None = None
+    fence_line: int | None = None
     for line_number, raw_line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
         fence_match = FENCE.match(raw_line)
-        if fence_match:
-            marker = fence_match.group(1)
-            if fence is None:
-                fence = marker[0]
-            elif marker[0] == fence:
-                fence = None
-            continue
         if fence is not None:
+            if fence_match:
+                marker, trailing = fence_match.groups()
+                closes = marker[0] == fence[0] and len(marker) >= len(fence)
+                if closes and not trailing.strip():
+                    fence = None
+                    fence_line = None
             continue
+        if fence_match:
+            marker, info = fence_match.groups()
+            if marker[0] == "~" or "`" not in info:
+                fence = marker
+                fence_line = line_number
+                continue
+        lines.append((line_number, raw_line))
+    return lines, fence_line
+
+
+def markdown_links(path: Path) -> tuple[tuple[int, str], ...]:
+    links: list[tuple[int, str]] = []
+    lines, _ = markdown_lines(path)
+    for line_number, raw_line in lines:
         line = INLINE_CODE.sub("", raw_line)
         reference = REFERENCE_LINK.match(line)
         if reference:
@@ -131,18 +151,8 @@ def _slug(text: str) -> str:
 def markdown_anchors(path: Path) -> frozenset[str]:
     anchors: set[str] = set()
     occurrences: dict[str, int] = {}
-    fence: str | None = None
-    for raw_line in path.read_text(encoding="utf-8").splitlines():
-        fence_match = FENCE.match(raw_line)
-        if fence_match:
-            marker = fence_match.group(1)
-            if fence is None:
-                fence = marker[0]
-            elif marker[0] == fence:
-                fence = None
-            continue
-        if fence is not None:
-            continue
+    lines, _ = markdown_lines(path)
+    for _, raw_line in lines:
         heading = HEADING.match(raw_line)
         if heading:
             base = _slug(heading.group(2))
@@ -175,6 +185,11 @@ def audit(root: Path) -> AuditResult:
 
     for source in documents:
         source_name = source.relative_to(root).as_posix()
+        _, fence_line = markdown_lines(source)
+        if fence_line is not None:
+            issues.append(
+                LinkIssue(source_name, fence_line, "code fence", "fenced code block is not closed")
+            )
         for line_number, raw_target in markdown_links(source):
             links_checked += 1
             target = raw_target.strip()

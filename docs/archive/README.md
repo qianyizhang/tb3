@@ -27,12 +27,23 @@ local artifacts. Do not regenerate evidence to make an old link work.
 
 ## Earlier investigation and cross-domain lessons
 
-- [Ledger](../ledger.md): dated observations and denominators from the closed investigation.
-- [Brainstorm experiments](../research-brainstorm-experiments-20260914.md): mixed-domain pilot history, including medical source context.
-- [Specification/scaffolding audit](../research-specification-audit-20260915.md): retained evidence for task-design lessons, now summarized in [research design](../research-design.md).
-- [Operating records](operations.md): old setup/geometry pickup and the former round template. Use `med new` for current authoring.
-- [Trace audit](../audit/agy-0917.md) and [local audit viewer](../audit/index.html): retained analysis, not general current status.
-- [Migration history](../migration/README.md): the pivot decisions, phased closeouts, inventories and verification receipts.
+The ledger, mixed-domain brainstorm, specification audit, operating notes and
+2026-09-17 trace-audit viewer are retired. Their exact files and the completed
+migration records are indexed in the [recovery manifest](../../archive/manifest.json);
+see [documentation pruning](../../archive/README.md#documentation-pruning--2026-09-22).
+Applicable current lessons live in [research design](../research-design.md).
+
+- [Medical-agent repository survey](../../presentation/external-tasks/sources/repository-survey-2026-09-20.md): dated source research accompanying the maintained external-task collection.
+- [Retired report figure provenance](../../archive/report-figure.json): original figure hashes, attribution and licensing; raw images remain local.
+- [Migration decisions](../migration/README.md): retained design choices and interface recovery locators.
+
+## Reproduction baseline
+
+The [2026-09-21 backfill receipt](../evidence/experiment-support-backfill-20260921.json)
+retains the checked scope, hashes, controls and replay counts for the dated
+38-experiment inventory and eleven selected core records. Current operations
+belong in the [reproduction guide](../reproduce.md) and group method indexes;
+separate copies of the baseline tables are no longer maintained.
 
 ## Retired guidance and recovery
 

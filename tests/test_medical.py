@@ -46,6 +46,27 @@ class MedicalTests(unittest.TestCase):
         with self.assertRaisesRegex(c.MedicalError, "missing"):
             c.validate(self.root)
 
+    def test_discussion_artifacts_are_separate_from_retained_records(self):
+        discussions = self.root / "discussions"
+        discussions.mkdir()
+        (discussions / "draft.json").write_text("{unfinished local artifact")
+        (discussions / "outputs").mkdir()
+        (discussions / "outputs/result.json").write_text("{raw output")
+        c.write_new(
+            discussions / "records/decision.json",
+            {
+                "schema_version": 2,
+                "kind": "discussion",
+                "id": "discussion-decision",
+                "title": "Retained decision",
+            },
+        )
+        self.assertEqual(c.validate(self.root)["records"], 3)
+        self.assertIn("discussion-decision", c.load(self.root))
+        (discussions / "records/decision.json").write_text("{}")
+        with self.assertRaises(c.MedicalError):
+            c.load(self.root)
+
     def test_recommendation_does_not_overwrite_accepted_decision(self):
         c.add_idea(self.root, "g", "idea", "Idea", "Question", "codex://source")
         c.decide(self.root, "idea", "selected", "Accepted", "user", "codex://source")

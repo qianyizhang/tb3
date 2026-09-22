@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "kind": "documentation_cleanup_receipt",
+  "source_task": "codex://threads/01a0c827-c51c-7170-a5b3-e1b01dc10ec7",
+  "actor": "assistant",
+  "authorized_by": {
+    "actor": "user",
+    "response": "do the tidy/cleanup then"
+  },
+  "baseline_commit": "d85f388deb9a3f993b9c3e9fc47d71e3f81458a4",
+  "scope": "Maintained guide correctness, current-first method navigation and two historical source relocations; task taxonomy separately owned.",
+  "recovery": {
+    "source_commit": "d85f388deb9a3f993b9c3e9fc47d71e3f81458a4",
+    "bundle": ".cache/docs-cleanup-20260922/pre-cleanup.bundle",
+    "bundle_sha256": "aa0208ad6ddc069b0da69909578218e4ec30936fed520c734c83cec2e3805202",
+    "bundle_bytes": 99510562,
+    "independent_backup_verified": false,
+    "recovered_files": [
+      {
+        "original_path": "docs/report-figure.json",
+        "sha256": "0543484ab6d73cd1ee60c055c3578e13115f66d1b31b6c76e16038977fa6dd79",
+        "bytes": 1504,
+        "local_copy": "archive/legacy/docs-cleanup-2026-09-22/docs/report-figure.json"
+      },
+      {
+        "original_path": "docs/medical-agent-repository-survey-2026-09-20.md",
+        "sha256": "2e6c60d4f4d0bdc3415f201809500df8828cfdc5e59eea8a840d7658726677e2",
+        "bytes": 20154,
+        "local_copy": "archive/legacy/docs-cleanup-2026-09-22/docs/medical-agent-repository-survey-2026-09-20.md"
+      },
+      {
+        "original_path": "groups/anatomical-landmarks/methods/README.md",
+        "sha256": "ca2816391dee48c73cb702b7bf48fc1974cde02939df21a057799b51d807eaed",
+        "bytes": 2101,
+        "local_copy": "archive/legacy/docs-cleanup-2026-09-22/groups/anatomical-landmarks/methods/README.md"
+      },
+      {
+        "original_path": "groups/anatomy-audit/methods/README.md",
+        "sha256": "b0fc802e3613db62e4a6dd213ef11ceaf5ab61e893367e4fe89fe6aba8058435",
+        "bytes": 3596,
+        "local_copy": "archive/legacy/docs-cleanup-2026-09-22/groups/anatomy-audit/methods/README.md"
+      },
+      {
+        "original_path": "groups/cardiac-motion/methods/README.md",
+        "sha256": "7ef0d6fd573b736580c4ac2f7399fe16df083009e2df0e66c37a6b55e0bebf27",
+        "bytes": 2801,
+        "local_copy": "archive/legacy/docs-cleanup-2026-09-22/groups/cardiac-motion/methods/README.md"
+      },
+      {
+        "original_path": "groups/lesion-localization/methods/README.md",
+        "sha256": "32fa9cf775224c0cd9d37ae5a1d51dbed42edfa1857e0cffbdfa2b4aea6bdbd8",
+        "bytes": 1503,
+        "local_copy": "archive/legacy/docs-cleanup-2026-09-22/groups/lesion-localization/methods/README.md"
+      },
+      {
+        "original_path": "groups/longitudinal-reading/methods/README.md",
+        "sha256": "421184893c618422a7fc46e413494253522caa4012b82dcf467e58b487eba755",
+        "bytes": 2074,
+        "local_copy": "archive/legacy/docs-cleanup-2026-09-22/groups/longitudinal-reading/methods/README.md"
+      },
+      {
+        "original_path": "groups/registration/methods/README.md",
+        "sha256": "d87c164b711e2ad111d069eb241c6ab76d48a15710da6a42c9bfe677e3848e51",
+        "bytes": 3307,
+        "local_copy": "archive/legacy/docs-cleanup-2026-09-22/groups/registration/methods/README.md"
+      },
+      {
+        "original_path": "groups/tubular-anatomy/methods/README.md",
+        "sha256": "d992efb3fca2db654cacf267087af0ef4dd56ff28fd008358f85184d45cc3027",
+        "bytes": 2730,
+        "local_copy": "archive/legacy/docs-cleanup-2026-09-22/groups/tubular-anatomy/methods/README.md"
+      }
+    ]
+  },
+  "verification": {
+    "status": "passed",
+    "command": "make check PYTHON=python3.12",
+    "scope": "Isolated Git-index snapshot of d85f388 plus this task's cleanup; concurrent taxonomy changes excluded from shared-file overlays.",
+    "tests_passed": 97,
+    "docs_checked": 250,
+    "links_checked": 1031,
+    "optional_local_targets_absent": 92,
+    "records_checked": 840,
+    "experiments_and_protocols_checked": 59,
+    "source_measurements_checked": 153,
+    "strict_type_modules_checked": 4,
+    "additional_checks": [
+      "All 11 recipe workbench paragraphs parse outside code fences with CommonMark.",
+      "All 42 links in the relocated survey pass local link validation.",
+      "Fresh bare-repository Git bundle recovery and byte comparison for all 9 retained originals.",
+      "All prior 1807 archive entries retained unchanged."
+    ],
+    "log": ".local/docs-cleanup-20260922/make-check.log",
+    "log_sha256": "050e19e2531c86877e161b8dd4939c2293f8fe069993f66c62260256f388c317",
+    "browser_checks": "Not required for this documentation/validator change; no browser launched."
+  },
+  "limits": [
+    "No model trials, runtime installation, rendering, publication or scientific reassessment.",
+    "Existing raw runs and previously exported packages remain unchanged.",
+    "The verified bundle is a same-disk recovery source, not an independent backup."
+  ],
+  "preservation": {
+    "protected_files_unchanged": 2722,
+    "protected_inventory_sha256": "a47f96cf80d45ed845a8369c498490103d4c894aa420514aad3a2159b01f349a",
+    "concurrent_taxonomy_exclusions": [
+      "groups/anatomy-audit/group.json"
+    ],
+    "recipe_manifests_checked": 11,
+    "manifest_changes": "Only README size and SHA-256 changed; all other manifest fields and entries match baseline.",
+    "historical_baseline_tables_unchanged": 7,
+    "survey_changes": "Local Markdown link destinations only; other source text unchanged.",
+    "existing_archive_entries_unchanged": 1807
+  },
+  "owned_paths": [
+    "CONTRIBUTING.md",
+    "archive/README.md",
+    "archive/manifest.json",
+    "archive/report-figure.json",
+    "configs/doc-links.json",
+    "discussions/docs-artifacts-feedback-review-2026-09-22.json",
+    "discussions/docs-artifacts-feedback-review-2026-09-22.md",
+    "discussions/medical-agent-repository-survey-2026-09-20.json",
+    "discussions/medical-agent-repository-survey/sources/repository-survey-2026-09-20.md",
+    "docs/README.md",
+    "docs/archive/README.md",
+    "docs/evidence/docs-artifacts-cleanup-20260922.json",
+    "docs/medical-agent-repository-survey-2026-09-20.md",
+    "docs/report-figure.json",
+    "docs/reproduce.md",
+    "groups/anatomical-landmarks/README.md",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/README.md",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/manifest.json",
+    "groups/anatomical-landmarks/history/reproduction-baseline-2026-09-21.md",
+    "groups/anatomical-landmarks/methods/README.md",
+    "groups/anatomy-audit/README.md",
+    "groups/anatomy-audit/experiments/br017/reproduction/README.md",
+    "groups/anatomy-audit/experiments/br017/reproduction/manifest.json",
+    "groups/anatomy-audit/history/reproduction-baseline-2026-09-21.md",
+    "groups/anatomy-audit/methods/README.md",
+    "groups/cardiac-motion/README.md",
+    "groups/cardiac-motion/experiments/br034/reproduction/README.md",
+    "groups/cardiac-motion/experiments/br034/reproduction/manifest.json",
+    "groups/cardiac-motion/experiments/br035/reproduction/README.md",
+    "groups/cardiac-motion/experiments/br035/reproduction/manifest.json",
+    "groups/cardiac-motion/history/reproduction-baseline-2026-09-21.md",
+    "groups/cardiac-motion/methods/README.md",
+    "groups/lesion-localization/README.md",
+    "groups/lesion-localization/experiments/br016/reproduction/README.md",
+    "groups/lesion-localization/experiments/br016/reproduction/manifest.json",
+    "groups/lesion-localization/history/reproduction-baseline-2026-09-21.md",
+    "groups/lesion-localization/methods/README.md",
+    "groups/longitudinal-reading/README.md",
+    "groups/longitudinal-reading/experiments/br037/reproduction/README.md",
+    "groups/longitudinal-reading/experiments/br037/reproduction/manifest.json",
+    "groups/longitudinal-reading/history/reproduction-baseline-2026-09-21.md",
+    "groups/longitudinal-reading/methods/README.md",
+    "groups/registration/README.md",
+    "groups/registration/experiments/br024/reproduction/README.md",
+    "groups/registration/experiments/br024/reproduction/manifest.json",
+    "groups/registration/experiments/br028/reproduction/README.md",
+    "groups/registration/experiments/br028/reproduction/manifest.json",
+    "groups/registration/history/reproduction-baseline-2026-09-21.md",
+    "groups/registration/methods/README.md",
+    "groups/tubular-anatomy/README.md",
+    "groups/tubular-anatomy/experiments/br041/reproduction/README.md",
+    "groups/tubular-anatomy/experiments/br041/reproduction/manifest.json",
+    "groups/tubular-anatomy/experiments/br042-v4-6h/reproduction/README.md",
+    "groups/tubular-anatomy/experiments/br042-v4-6h/reproduction/manifest.json",
+    "groups/tubular-anatomy/experiments/br042/reproduction/README.md",
+    "groups/tubular-anatomy/experiments/br042/reproduction/manifest.json",
+    "groups/tubular-anatomy/history/reproduction-baseline-2026-09-21.md",
+    "groups/tubular-anatomy/methods/README.md",
+    "presentation/tours/TOOL.md",
+    "src/tb3_medical/doc_links.py",
+    "tests/test_doc_links.py"
+  ],
+  "shared_file_scope": {
+    "docs/README.md": "Cleanup sections and prose; concurrent taxonomy row preserved in the shared checkout and excluded from this task's validation snapshot.",
+    "groups/anatomy-audit/README.md": "Appended verification-history link; concurrent title, question and taxonomy explanation preserved and excluded from this task's validation snapshot."
+  }
+}

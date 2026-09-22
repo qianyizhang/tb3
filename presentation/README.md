@@ -25,7 +25,7 @@ local; static figures remain in Git. The old interview is recoverable through
 
 The [Task Brief rulebook](task-explorer/RULEBOOK.md) defines compact explanations
 with explicit assistance and input-first visuals. The source survey lives under
-`discussions/medical-agent-repository-survey/`; internal briefs stay with groups.
+`presentation/external-tasks/`; internal briefs stay with groups.
 The [task taxonomy](../docs/task-taxonomy.md) separates capabilities, research
 roles and ownership. The root catalogue composes group catalogues and the survey;
 it offers capability and repository views plus a supporting-research filter.

@@ -10,7 +10,7 @@ paths and bytes. Their status language and proposed next actions describe the ti
 of writing. New studies use `med new`, experiment TOML and protocol Markdown through
 the [daily workflow](../workflow.md). They do not need another global round document.
 
-The [main-branch cutover](../migration/main-cutover.md) absorbed the completed
+The [main-branch cutover](../migration/README.md) absorbed the completed
 BR-042 continuation. Continue to respect active experiment ownership; a historical
 plan alone does not authorize another run.
 

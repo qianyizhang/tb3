@@ -27,7 +27,7 @@ Browser setup and the macOS execution boundary are in the
 | --- | --- |
 | `make check` | Git-index artifacts, offline tests, medical records, docs links, types, Ruff, workflow syntax |
 | `make pre-commit-check` | All six configured pre-commit checks; no automatic file rewrites |
-| `make docs-check` | Maintained Markdown paths and heading anchors |
+| `make docs-check` | Maintained Markdown paths, heading anchors and closed code fences |
 | `make type-check` | Strict typing for link validation and shared CT/MRI scoring |
 | `make js-check` | Script formatting, player state and encoder failure cleanup; no browser |
 | `make presentation-check` | Portable site navigation, sources, keyboard/mobile behavior; disposable browser |

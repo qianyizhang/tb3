@@ -82,3 +82,25 @@ installed Chromium is used. No personal Codex cache is consulted.
 The older social ZIP and raw-data preprocessing commands are retired. Existing
 outputs remain local; selected video/still outputs can be shared with these source
 notices and their renderer manifest. Nothing is published automatically.
+
+## Browser verification
+
+After the declared Node/Playwright setup, check navigation, source panels,
+keyboard/mobile behavior and deferred tours with:
+
+```sh
+make presentation-check
+# Use the Playwright-managed browser instead of installed Chrome.
+PLAYWRIGHT_CHANNEL=chromium make presentation-check
+```
+
+The harness uses disposable profiles. On macOS, run browser-launching checks
+outside the restricted command sandbox with approval for that specific command.
+If startup reports a permission denial or immediate LaunchServices/WindowServer
+abort, stop unchanged retries and report verification as blocked. Headless mode
+and Chrome's `--no-sandbox` flag do not bypass that outer execution boundary.
+Do not use personal browser profiles or stop unrelated browsers.
+
+Reports and screenshots go to `.local/presentation-qa/`, separate from the site.
+Override `PRESENTATION_OUTPUT` and `PRESENTATION_REPORTS` when needed. Ordinary
+`make check` does not launch a browser.

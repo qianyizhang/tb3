@@ -1,9 +1,8 @@
-# Native workbench: minimal authoring and validation plan
+# Native workbench: accepted design decisions
 
-Status: decisions confirmed by the user, 2026-09-20. Implementation is recorded in
-[the native closeout](native-closeout.md); the [migration index](README.md) separates
-delivered work from original-checkout integration. The plan narrows the architecture proposed in the
-[review](architecture-review.md); the reproduced bugs remain valid findings.
+Confirmed by the user on 2026-09-20. The migration is complete; this page retains
+its design decisions. Original implementation plans, reviews and closeouts are
+recoverable through the [migration index](README.md).
 
 ## Design budget
 
@@ -117,60 +116,3 @@ must not overwrite decisions, interrupted collection must preserve attempt
 identity, and exports must use correct origins and stable recipe hashing. Add
 one ordinary end-to-end authoring/replay/export example. Extend tests when a
 real failure or new supported operation justifies them.
-
-## Temporary migration work
-
-One-off conversion/reconciliation scripts belong under `tools/migration/` while
-needed. They are never imported by the package or exposed as regular `med`
-commands. Old catalog/round parsers, pathname relocation maps, mass backfill and
-baseline comparison belong here, not in the permanent reader.
-
-Convert existing metadata once into the selected canonical format; retain source
-links and attempt identities. Reconcile counts and selected evidence hashes at
-cutover. Keep the migration report and recovery manifest; remove completed
-conversion code from the active tree once the cutover is accepted. Git retains
-the code if another recovery is ever needed. Do not keep dual readers or aliases.
-
-Historical task/scorer bytes remain recoverable evidence. The active application
-does not import historical authoring code. Isolated historical replay may execute
-its own verified snapshot when explicitly requested. Ordinary metadata should
-not require old directory layouts to exist.
-
-## Fix milestones
-
-1. **Package and simplify the core.** Installable entry point; workspace discovery;
-   explicit metadata locations; only required field/reference checks; simple
-   decision and invalidation semantics. Keep the package small. Validate the
-   installed command outside the source checkout and fix the reproduced bugs.
-2. **Prove one daily workflow with landmarks.** Edit its config/protocol, recover
-   inputs, replay saved CT/MRI outputs, view findings and create a clean export.
-   Verify real scientific equivalence where artifacts are available. Use this to
-   settle authoring ergonomics before copying the pattern across families.
-3. **Convert retained work to the agreed depth.** All experiments use canonical
-   records. Reusable methods become native; historical-only entries carry honest
-   gaps. Preserve BR-042's owner's latest changes and BR-043's ongoing discussion.
-   Do not re-run models as a migration requirement.
-4. **Delete temporary scaffolding and close out.** Remove old entry points,
-   fallback imports/path maps and duplicate active docs. Run the normal checks,
-   a clean install, selected replay/export and a browser smoke check. Have the
-   final independent review assess ordinary usage and remaining shims, not invent
-   a new integrity certification system.
-
-Make meaningful scoped commits at each milestone. Completion does not require
-recovering unknown historical settings or running expensive new experiments.
-
-## What will count as done
-
-- A new experiment needs a compact config and scientific Markdown; generated
-  receipts carry the execution details without manual record bookkeeping.
-- The installed command works in a clean environment, finds an explicit
-  workspace, and does not mutate import paths or require a personal tool cache.
-- All retained experiments are represented in the canonical format. Only those
-  with native methods and available inputs are presented as runnable.
-- Diagnostic attempts, accepted decisions, partial runs and review flags remain
-  clear in the ordinary index. A recorded defect reaches the affected experiment
-  and the summaries/exports that cite it.
-- Selected saved outputs replay and export using their declared inputs; the
-  package provenance and recipe serialization defects are fixed.
-- The normal checks cover those supported behaviors. Completed conversion tools,
-  dual readers, path fallbacks and migration-only checks are absent from daily use.

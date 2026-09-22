@@ -59,7 +59,7 @@ For colored image overlays, supply a visible legend with the same colors and lin
 styles as the overlays; label the reference, prediction and prompt separately.
 
 These guidelines retain lessons from the dated
-[specification/scaffolding audit](research-specification-audit-20260915.md) and
+[specification/scaffolding audit](../archive/README.md#documentation-pruning--2026-09-22) and
 [archived source-screening method](archive/README.md#retired-guidance-and-recovery), while
 replacing the closed assignment's failure-first selection goal. Their old counts,
 model matrix and proposed next actions are historical. Submission-specific

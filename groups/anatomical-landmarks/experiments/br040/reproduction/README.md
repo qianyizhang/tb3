@@ -36,7 +36,9 @@ and the fresh output directory):
 ```sh
 harbor trials start --path cases/CASE/task --agent codex --model MODEL \
   --agent-kwarg reasoning_effort=xhigh --trials-dir /path/to/NEW-trials
-``` In the workbench, prepare the selected
+```
+
+In the workbench, prepare the selected
 case and use `med run EXPERIMENT --case CASE --agent oracle` and `--agent nop` to
 retain bound control records before a nondiagnostic model launch. Reviewed evidence
 still requires scoped reassessment, or an explicitly diagnostic new study.

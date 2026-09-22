@@ -1,8 +1,8 @@
 # Reproduction and presentation
 
 Experiment TOML, manifests and stored records are the executable authority. Use
-`uv run med list QUERY` for current inventory; dated tables below are evidence
-snapshots, not a live backlog. Historical metadata does not imply that every task
+`uv run med list QUERY` for current inventory. Dated verification records are
+evidence snapshots, not a live backlog. Historical metadata does not imply that every task
 has a maintained runner.
 
 ## Experiment support and verification
@@ -26,28 +26,6 @@ Keep scientific/reference assessment separate from technical replay. Exact-byte
 checks apply to frozen inputs. Metric equivalence uses the recipe's named tolerance;
 fresh stochastic output need not match byte-for-byte. A runtime failure, scorer
 error and negative result remain distinct.
-
-## 2026-09-21 verification baseline
-
-This dated baseline covered 38 then-canonical experiments and eleven selected core
-records. It is not current inventory. Each group page preserves the original table;
-the [tracked receipt](evidence/experiment-support-backfill-20260921.json) is the
-authority for checked hashes, controls and replay counts.
-
-| Group baseline | Selected scope |
-| --- | --- |
-| [Anatomical landmarks](../groups/anatomical-landmarks/methods/README.md) | BR-040 saved CT/MRI replay |
-| [Anatomy audit](../groups/anatomy-audit/methods/README.md) | BR-017 broad and pair-focused supplied-mask audit |
-| [Cardiac motion](../groups/cardiac-motion/methods/README.md) | BR-034 clinical tracking; BR-035 supplied-mask construction |
-| [Lesion localization](../groups/lesion-localization/methods/README.md) | BR-016 saved localization scoring |
-| [Longitudinal reading](../groups/longitudinal-reading/methods/README.md) | BR-037 mechanical report contract |
-| [Registration](../groups/registration/methods/README.md) | BR-024 and BR-028 physical-error scoring |
-| [Tubular anatomy](../groups/tubular-anatomy/methods/README.md) | BR-041, BR-042 and the separate six-hour continuation |
-
-Unselected rows retain evidence; they are not silently runnable. The optional local
-operational index is `runs/support-backfill-20260921/HANDOFF.md` when that untracked
-handoff exists. A clone depends on the tracked receipt and per-experiment recipes,
-not that machine-local file.
 
 ## Workbench commands
 
@@ -99,15 +77,6 @@ Portable controls do not satisfy model-run qualification gates.
 
 ## Optional imaging and presentation
 
-In a shared local environment, preserve separately installed research dependencies:
-
-```sh
-uv sync --locked --inexact --group dev --extra imaging
-```
-
-`--inexact` keeps undeclared packages already used by local research runtimes;
-declared packages still come from the lock. Then use:
-
 ```sh
 uv run med present
 uv run med present --serve
@@ -117,21 +86,6 @@ uv run med check --assets
 The portable site is written to `.local/site/`; `--serve` binds locally and does
 not publish. Tracked stories and static fallbacks work without raw scans. Optional
 local inputs remain explicit unavailable states.
-
-For browser navigation, source panels, keyboard/mobile behavior and deferred tours:
-
-```sh
-make presentation-check
-# Use the Playwright-managed browser instead of installed Chrome.
-PLAYWRIGHT_CHANNEL=chromium make presentation-check
-```
-
-Use the declared setup in the [media guide](../presentation/tours/TOOL.md). Browser
-tests require their approved macOS execution boundary; ordinary `make check` does
-not launch a browser.
-
-Browser reports and screenshots go to `.local/presentation-qa/`, separate from
-the site. Override `PRESENTATION_OUTPUT` and `PRESENTATION_REPORTS` when needed.
 
 Guided tour inputs are pinned in
 [presentation/tours/inputs.json](../presentation/tours/inputs.json):
@@ -143,8 +97,18 @@ uv run med present --serve --local-media
 ```
 
 These commands restore/check the retained derived snapshot, not every raw
-preprocessing step. Media optimization and rendering dependencies are documented
-in the media guide.
+preprocessing step. The [media guide](../presentation/tours/TOOL.md) owns imaging
+setup, media optimization and rendering. Its
+[browser verification section](../presentation/tours/TOOL.md#browser-verification)
+covers navigation checks, disposable profiles and the macOS execution boundary.
+
+## Verification history
+
+The [2026-09-21 baseline](archive/README.md#reproduction-baseline) links each group's
+dated inventory and the original receipt for hashes, controls and replay counts.
+Unselected experiments retain evidence without implying a maintained runner.
+A clone depends on tracked receipts and per-experiment recipes; the optional local
+`runs/support-backfill-20260921/HANDOFF.md` is an operational convenience.
 
 ## Recovery boundaries
 

@@ -10,7 +10,8 @@ The [workflow](workflow.md) explains the supported interface.
 | --- | --- |
 | groups/ | Semantic ownership: ideas, decisions, methods, experiments, findings, presentation. Small source records are tracked. |
 | groups/<group>/history/ | Dated research closeouts, retrospectives and trace accounts. Current findings and presentation remain separate; narrative navigation may be maintained without changing scientific outcomes. |
-| datasets/ and discussions/ | Source discovery, access/recovery gaps, recurring-discussion provenance. No implicit dataset downloads or trial authorization. |
+| datasets/ | Source discovery and access/recovery gaps; no implicit downloads or trial authorization. |
+| discussions/ | Local notes and artifacts are ignored by default. Exact exceptions retain important design histories and stable records under records/. Maintained Task Explorer content lives in presentation/external-tasks/. |
 | src/tb3_medical/, scripts/, tests/, configs/ | Common interfaces, adapters, executable checks and artifact policy. |
 | presentation/ | Shared read-only renderer, media tools and portable publication support. |
 | exports/ | Pinned recipes and lineage records. Generated destinations have explicit ownership; never overwrite them. |
@@ -32,8 +33,10 @@ The Git-index artifact gate rejects runtime roots, credentials by filename,
 compiler output, symlinks, submodules and unresolved merges. First-party JSON and
 TOML must parse. Binaries and files over 1 MiB require exact path, SHA-256 and
 reason entries in configs/artifact-policy.json. This is not a general secret
-scanner or a clinical/task qualification certificate. Do not blanket-ignore docs,
-probes, JSON, archives or license files to bypass it.
+scanner or a clinical/task qualification certificate. The discussions policy keeps
+local working artifacts out of Git; it does not exempt allowlisted records from
+validation. Elsewhere, do not blanket-ignore docs, probes, JSON, archives or license
+files to bypass the gate.
 
 Archive only an enumerated, verified scope. Keep the original Git commit and a
 verified bundle; record required local artifacts separately. A same-disk copy is

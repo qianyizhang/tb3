@@ -22,8 +22,8 @@ Its replay needs neither the source checkout nor NumPy, Docker, network or infer
 Package verification checks the declared executable bits on POSIX systems as
 well as the exact file inventory and content hashes; other platforms explicitly
 report that executable modes were not checked.
-The [implementation receipt](migration/native-closeout.md) records its verified
-scope. The package retains a historical mutable Docker tag, so saved-output replay
+The original implementation receipt is indexed in the
+[recovery manifest](../archive/manifest.json) as `docs/migration/native-closeout.md`. The package retains a historical mutable Docker tag, so saved-output replay
 is not proof of a rebuilt execution environment.
 
 Flagged evidence can be included in a research draft only with `--include-flagged`;
