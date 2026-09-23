@@ -213,3 +213,42 @@ or a model result. No commit, publication or trial was performed.
   are unchanged.
 - **User authorization:** clean up and commit this WSI work. Other task changes
   retain separate ownership.
+
+### First agent-test recommendation — 2026-09-23
+
+In response to the user's question about what to test after the WSI curation,
+the assistant recommends a bounded **HuBMAP whole-slide glomerulus inventory**
+pilot first. This is an assistant recommendation, not a user task selection or
+authorization to launch a trial. The single `aaa6a05cc` slide is a diagnostic
+case for the workflow; its 99 paired polygons do not establish generalization.
+
+- Solver input: native PAS TIFF, physical scale, overview and coordinate-based
+  tile reader. Keep glomerulus JSON, reference-derived crops and teaching overlays
+  out of the solver context. Freeze a read budget and log every viewed region.
+- Output: deduplicated level-0 object centers, confidence and optional contours;
+  record measured area only when a contour is supplied. Permit explicit
+  unreviewed regions so coverage is visible.
+- Evaluation: audit annotation-valid domain and edge-object rules first. Freeze
+  one-to-one object matching and report recall, false/duplicate detections,
+  count error and recall versus read budget; score contour overlap and physical
+  area error separately for matched objects. Use no-op and full-reference oracle
+  checks for the scorer, plus a uniform-scan baseline under the same read budget.
+- Next distinct mechanism: TIGER `114S` official ROIs for tissue-conditioned
+  immune-cell counting, with and without tissue GT supplied. Score tissue,
+  cells and compartment attribution separately; do not infer full-slide search
+  or clinical sTIL scores from these ROI annotations.
+- Later flagship search: CAMELYON16 after adding appropriate negative and small
+  lesion cases and freezing lesion merging/exclusion rules. The acquired
+  `tumor_091` is a positive teaching example with large regions. HiESD is best
+  reserved for coarse strip/region mapping because its boundaries are not a
+  fine segmentation reference.
+
+Before interpreting any pilot as task performance, pin source/split exposure,
+assistance condition and evaluator-only references. Additional independent
+cases are required for a comparative or generalization claim.
+
+### Diagnostic experiments selected — 2026-09-23
+
+- **User direction:** In [the current task](codex://threads/01a0cbf7-5068-7001-90be-102123fff079), the user accepted the proposed WSI directions and requested Sol 6 at xhigh effort for the experiments, with active babysitting. This authorizes the bounded diagnostic trials and supervision; it does not promote these tasks or change the GT limits above.
+- **Preparation:** Four experiment records cover HuBMAP inventory, TIGER's image-only and tissue-supplied ROI conditions, CAMELYON positive-slide search, and HiESD coarse mapping. All five task previews and Harbor oracle/no-op pairs passed their expected control contrast.
+- **Execution boundary:** Two HuBMAP model invocations ended before analysis with credential/model-routing errors. They are retained as execution errors, with no model performance result. The remaining model conditions await a working `gpt-6-sol` route; do not retry unchanged or substitute another model.
