@@ -12,6 +12,8 @@ Use one 3600-second attempt, no automatic retry, Docker 4 CPUs/12 GiB/0 GPUs, an
 
 The user switched this diagnostic condition to Astra medium after two Sol 6 attempts ended before image analysis. The native task, private reference, source hashes and exact-task oracle/no-op controls are unchanged. A host `gpt-6-astra` medium smoke test passed; isolated Harbor execution still requires a verified auth route.
 
+The first full-slide Astra launch, `attempt-f1b7827a5e544517`, used an explicit Harbor agent environment after a base-runtime toy passed. The WSI task's transport-isolated container instead returned repeated `Network unreachable` errors before image analysis. The launch was interrupted after about two minutes; its frozen task bytes remained unchanged and its execution observation is `no_verdict`. The exact WSI sidecar/auth route must pass a tiny verification before a bounded retry.
+
 ## Question and method
 
 ## Inputs and reference
