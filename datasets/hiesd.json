@@ -29,7 +29,7 @@
         "e4442edf-05b0-431b-bf61-ccf2d8cdebb6"
       ],
       "role": "curated",
-      "note": "One complete source image. TIGER adds three paired ROIs; additional selection-screen files are separately identified in the receipt.",
+      "note": "One complete SVS, category PNG/XML, and two strip masks; a second slide has only a local low-resolution preview.",
       "receipt": {
         "path": "datasets/receipts/wsi-teaching-samples.json",
         "sha256": "2e1c2bdf985d7e6531dbb28883010e08568519d46a3985c0c7053609c3a35c81",
@@ -37,7 +37,7 @@
       }
     }
   ],
-  "experiment_ids": [],
+  "experiment_ids": ["wsi-hiesd-map-sol6-xhigh"],
   "brief_ids": [
     "wsi-hiesd-map"
   ],
@@ -55,5 +55,31 @@
   "documentation_gaps": [
     "Teaching sample only; no frozen scoring contract, model trial or held-out generalization result."
   ],
-  "native_payload_expected": true
+  "native_payload_expected": true,
+  "locales": {
+    "zh-CN": {
+      "title": "HiESD 胃 ESD 全片图像",
+      "summary": "一张胃 ESD 切片、两条组织及粗粒度类别参考。",
+      "modality": "显微病理图像",
+      "sample_unit": "一张原始全片图像及明确配对的参考标注",
+      "image_description": "胃 ESD 的 H&E 原生 SVS，另有缩略图。",
+      "annotation_description": "64 倍下采样的粗类别 XML/PNG 与独立组织条掩膜；未标注不等于正常。",
+      "reference_note": "粗类别区域适合组织条地图，不能作为精确腺体边界或切缘真值。未标注组织不等于正常；纯图像条件下，标注仅供评估与阅读。",
+      "version_note": "2026-09-22/23 有界获取；具体来源、版本、原生几何与校验值见收据。",
+      "terms_note": "Figshare v1 为 CC BY 4.0；作者补充材料固定于所记版本。",
+      "access_note": "所选文件可公开下载；未注册账号、签署协议或运行模型。",
+      "documentation_gaps": [
+        "仅教学样本；尚无全数据集审计、冻结评分方案或模型试验。"
+      ],
+      "sample_set_notes": [
+        "一张完整 SVS、类别 PNG/XML 与两个组织条掩膜；第二张仅有本地低分辨率预览。"
+      ],
+      "snapshot_summary": "一张原生切片与配对粗类别参考。",
+      "snapshot_reference_note": "粗类别标注只覆盖部分组织；未标注不等于正常。",
+      "snapshot_captions": [
+        "HiESD 两条胃组织的原图缩略图；未显示参考。",
+        "来源粗类别 XML 叠加图；部分区域未标注，轮廓不宜用于精确腺体评分。"
+      ]
+    }
+  }
 }

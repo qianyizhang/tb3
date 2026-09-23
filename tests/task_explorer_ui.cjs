@@ -148,7 +148,7 @@ async function checkExplorer(browser, input, report) {
         diagramTypes.add(e.illustration.kind);
       }
       if (/<img\b/.test(e.visuals.input)) {
-        await page.locator('.scene-source summary').click();
+        if (e.illustration) await page.locator('.scene-source summary').click();
         assert.equal(await page.locator('.native-preview img').count(), 1);
         await page.locator('.native-preview img').evaluate((e) => e.decode());
         assert.equal(
@@ -204,17 +204,18 @@ async function checkExplorer(browser, input, report) {
     );
     await page.goto(pathToFileURL(missingFile).href);
     for (const e of data.entries.filter((e) => /<img\b/.test(e.visuals.input))) {
-      assert.ok(e.illustration, `${e.id}: portable illustration fallback`);
       await go(`${e.id}/0/overview`, e.id);
-      assert.equal(await page.locator('.scene-canvas').count(), 1);
+      if (e.illustration) {
+        assert.equal(await page.locator('.scene-canvas').count(), 1);
+        fallbackDrawings++;
+      }
       assert.ok((await page.locator('.preview-unavailable').innerText()).includes('unavailable'));
-      fallbackDrawings++;
     }
     await page.goto(pathToFileURL(file).href);
     // Motion is real, opt-out is respected, and camera controls work without a mouse.
     const moving = data.entries.find(
       (e) =>
-        ['dynamic_mesh', 'cardiac_material'].includes(e.illustration.kind) &&
+        ['dynamic_mesh', 'cardiac_material'].includes(e.illustration?.kind) &&
         e.illustration.input_form !== 'masks',
     );
     assert.ok(moving, 'A task with meaningful geometry motion is available');

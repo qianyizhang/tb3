@@ -14,6 +14,10 @@
   --amber: #fbf1dc;
   --radius: 12px;
   --heading-font: Georgia, 'Times New Roman', serif;
+  --text-body: 16px;
+  --text-reading: 15px;
+  --text-secondary: 14px;
+  --text-label: 13px;
 }
 
 * {
@@ -27,7 +31,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font:
-    15px/1.6 system-ui,
+    var(--text-body)/1.6 system-ui,
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
@@ -85,7 +89,7 @@ summary {
 .site-brand {
   flex-shrink: 0;
   color: var(--ink);
-  font-size: 12px;
+  font-size:var(--text-label);
   font-weight: 750;
   letter-spacing: 0.13em;
   text-decoration: none;
@@ -94,7 +98,7 @@ summary {
   display: block;
   margin-top: 3px;
   color: var(--muted);
-  font-size: 11px;
+  font-size:var(--text-label);
   font-weight: 400;
   letter-spacing: 0.01em;
 }
@@ -111,7 +115,7 @@ summary {
   padding: 9px 16px;
   border-radius: 8px;
   color: var(--muted);
-  font-size: 13px;
+  font-size:var(--text-secondary);
   font-weight: 550;
   text-decoration: none;
   white-space: nowrap;
@@ -124,6 +128,59 @@ summary {
   background: var(--wash);
   color: var(--accent);
 }
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 0 10px;
+  color: var(--ink);
+  font-size: var(--text-secondary);
+  white-space: nowrap;
+}
+.language-switch span { display: inline; }
+.language-switch select {
+  width: auto;
+  min-width: 96px;
+  min-height: 44px;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--text-secondary);
+}
+.reading-boundary {
+  max-width: 790px;
+  margin: 20px 0 24px;
+  padding: 14px 17px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: var(--wash);
+  color: var(--ink);
+  font-size: var(--text-reading);
+  line-height: 1.6;
+}
+.reading-boundary strong { display: block; margin-bottom: 4px; }
+.reading-boundary p { margin: 0; }
+.translation-notice {
+  max-width: 790px;
+  padding: 10px 13px;
+  background: var(--amber);
+  color: var(--ink);
+  font-size: var(--text-secondary);
+}
+.metadata-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px 16px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  font-size: var(--text-secondary);
+}
+.metadata-actions button { min-height: 44px; }
+:lang(zh-CN) h1,
+:lang(zh-CN) h2 { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans CJK SC', sans-serif; }
 .button {
   display: inline-flex;
   align-items: center;
@@ -133,7 +190,7 @@ summary {
   padding: 11px 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  font-size: 13px;
+  font-size:var(--text-secondary);
   font-weight: 600;
   line-height: 1.5;
   text-decoration: none;
@@ -162,7 +219,7 @@ summary {
 .story-breadcrumb {
   margin: 4px 0 28px;
   color: var(--muted);
-  font-size: 13px;
+  font-size:var(--text-secondary);
 }
 .story-breadcrumb span {
   margin: 0 9px;
@@ -182,7 +239,7 @@ summary {
     flex-wrap: wrap;
   }
   .site-brand-caption {
-    font-size: 10px;
+    font-size:var(--text-label);
   }
   .site-nav {
     gap: 3px;
@@ -191,7 +248,7 @@ summary {
   .site-nav a {
     padding: 8px 12px;
     min-height: 42px;
-    font-size: 12px;
+    font-size:var(--text-label);
   }
 }
 @media (prefers-reduced-motion: reduce) {

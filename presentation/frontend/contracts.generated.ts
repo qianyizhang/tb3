@@ -32,6 +32,28 @@ export interface Visuals {
   helpers: string;
   answer: string;
 }
+export interface LocalizedBrief {
+  title: string;
+  goal: string;
+  value: string;
+  raw: string;
+  helpers: string;
+  output: string;
+  challenge: string;
+  spec: string;
+  tools: string;
+  score: string;
+  reference: string;
+  families: string;
+  gap: string;
+  case_note: string;
+  variants: Array<Condition>;
+  sources: Array<[string, string]>;
+  visuals: Visuals;
+  html: Partial<Record<"goal" | "value" | "raw" | "helpers" | "output" | "challenge" | "spec" | "tools" | "score" | "reference" | "families" | "gap" | "case_note", string>>;
+  stages: Array<string>;
+  missing_media: Array<string>;
+}
 export interface TaskEntry {
   id: string;
   title: string;
@@ -69,6 +91,7 @@ export interface TaskEntry {
   example_case_id?: string;
   studies?: Array<Study>;
   stages?: Array<string>;
+  locales?: Record<string, LocalizedBrief>;
 }
 export interface CaseFact {
   value: string | number;
@@ -145,6 +168,23 @@ export interface SourceLink {
   path: string;
   label: string;
 }
+export interface DatasetLocalized {
+  title: string;
+  summary: string;
+  modality: string;
+  sample_unit: string;
+  image_description: string;
+  annotation_description: string;
+  reference_note: string;
+  version_note: string;
+  terms_note: string;
+  access_note: string;
+  documentation_gaps: Array<string>;
+  sample_set_notes: Array<string>;
+  snapshot_summary: string;
+  snapshot_reference_note: string;
+  snapshot_captions: Array<string>;
+}
 export interface DatasetRecord {
   id: string;
   title: string;
@@ -163,6 +203,7 @@ export interface DatasetRecord {
   access_note?: string;
   documentation_gaps?: Array<string>;
   record_path: string;
+  locales?: Record<string, DatasetLocalized>;
   [key: string]: unknown;
 }
 export interface CategoryInfo {

@@ -6,12 +6,12 @@ import {
   inScope,
   listGroup,
   navKey,
-  supporting,
   type ExplorerModel,
   type TaskUnit,
 } from './model';
 import type { Dispatch, ExplorerState } from './state';
 import type { BrowseView, ResearchLane } from './types';
+import { useLocale } from './locale';
 interface Props {
   model: ExplorerModel;
   state: ExplorerState;
@@ -24,6 +24,7 @@ export function TaskBrowser({
   hidden,
   compact,
 }: Props & { hidden: boolean; compact: boolean }) {
+  const { t } = useLocale();
   const query = state.query.trim().toLowerCase(),
     entry = model.get(state.selected),
     active = navKey(entry, state.view),
@@ -40,8 +41,6 @@ export function TaskBrowser({
       (row) => inScope(row, state.lane, state.work, state.modality) && model.match(row, query),
     ),
   ).length;
-  const tasks = model.data.entries.filter((row) => !supporting(row)),
-    studies = model.data.entries.filter(supporting);
   const filter = (
     change: Partial<{ view: BrowseView; lane: ResearchLane; work: string; modality: string }>,
   ) =>
@@ -55,82 +54,82 @@ export function TaskBrowser({
     });
   const reset = () => dispatch({ type: 'reset' }, hidden ? '#main' : '#search');
   return (
-    <aside id="task-browser" aria-label="Browse and filter tasks" hidden={hidden}>
+    <aside id="task-browser" aria-label={t('Browse and filter tasks')} hidden={hidden}>
       <div className="browser-heading">
-        <span className="eyebrow">Task catalogue</span>
+        <span className="eyebrow">{t('Task catalogue')}</span>
         <button
           className="text-button"
           id="reset-filters"
           hidden={!query && state.lane === 'tasks' && !state.work && !state.modality}
           onClick={reset}
         >
-          Reset
+          {t('Reset')}
         </button>
       </div>
-      <label htmlFor="search">Search tasks</label>
+      <label htmlFor="search">{t('Search tasks')}</label>
       <input
         id="search"
         type="search"
-        placeholder="Task, image type, case…"
+        placeholder={t('Task, image type, case…')}
         autoComplete="off"
         value={state.query}
         onChange={(event) => dispatch({ type: 'search', query: event.target.value })}
       />
       <p id="search-count" className="search-count" role="status" aria-live="polite">
-        {count} {state.lane === 'tasks' ? 'task entries' : 'research entries'}
-        {query ? ' match your search' : ' in this collection'}
+        {count} {state.lane === 'tasks' ? t('task entries') : t('research entries')}
+        {query ? t(' match your search') : t(' in this collection')}
       </p>
-      <label htmlFor="browse">Browse by</label>
+      <label htmlFor="browse">{t('Browse by')}</label>
       <select
         id="browse"
         value={state.view}
         onChange={(event) => filter({ view: event.target.value as BrowseView })}
       >
-        <option value="capability">Capability</option>
-        <option value="repository">Repository</option>
+        <option value="capability">{t('Capability')}</option>
+        <option value="repository">{t('Repository')}</option>
       </select>
       <details
         className="advanced-filters"
         id="advanced-filters"
         open={!compact || state.lane !== 'tasks' || !!state.work || !!state.modality}
       >
-        <summary>Refine the collection</summary>
+        <summary>{t('Refine the collection')}</summary>
         <div className="filter-fields">
-          <label htmlFor="lane">Research role</label>
+          <label htmlFor="lane">{t('Research role')}</label>
           <select
             id="lane"
             value={state.lane}
             onChange={(event) => filter({ lane: event.target.value as ResearchLane })}
           >
-            <option value="tasks">Agent tasks</option>
-            <option value="supporting">Supporting research</option>
-            <option value="all">All research</option>
+            <option value="tasks">{t('Agent tasks')}</option>
+            <option value="supporting">{t('Supporting research')}</option>
+            <option value="all">{t('All research')}</option>
           </select>
-          <label htmlFor="modality">Imaging / data modality</label>
+          <label htmlFor="modality">{t('Imaging / data modality')}</label>
           <select
             id="modality"
             value={state.modality}
             onChange={(event) => filter({ modality: event.target.value })}
           >
-            <option value="">All modalities</option>
+            <option value="">{t('All modalities')}</option>
             {Object.entries(model.data.taxonomy.modalities || {}).map(([id, label]) => (
               <option value={id} key={id}>
-                {label}
+                {t(label)}
               </option>
             ))}
           </select>
-          <label htmlFor="agent-work">Agent work</label>
+          <label htmlFor="agent-work">{t('Agent work')}</label>
           <select
             id="agent-work"
             value={state.work}
             onChange={(event) => filter({ work: event.target.value })}
           >
-            <option value="">All agent work</option>
+            <option value="">{t('All agent work')}</option>
             {Object.entries(model.data.taxonomy.agent_work || {})
               .filter(([key]) => key !== 'none')
               .map(([key, label]) => (
                 <option value={key} key={key}>
-                  {label}
+                  {t(label)}
                 </option>
               ))}
           </select>
@@ -138,7 +137,7 @@ export function TaskBrowser({
       </details>
       <nav
         id="nav"
-        aria-label={state.view === 'capability' ? 'Task capabilities' : 'Source repositories'}
+        aria-label={state.view === 'capability' ? t('Task capabilities') : t('Source repositories')}
       >
         {[...buckets]
           .filter(([, rows]) => rows.some((row) => model.match(row, query)))
@@ -159,26 +158,25 @@ export function TaskBrowser({
                 }
               >
                 <strong>
-                  {state.view === 'repository' ? first.repo : model.category(key).title}
+                  {state.view === 'repository' ? first.repo : t(model.category(key).title)}
                 </strong>
                 <small>
-                  {count} {state.lane === 'tasks' ? 'task entries' : 'research entries'}
+                  {count} {state.lane === 'tasks' ? t('task entries') : t('research entries')}
                 </small>
               </button>
             );
           })}
         {!count && (
-          <p className="empty">No matching entries. Try a broader term or reset the filters.</p>
+          <p className="empty">
+            {t('No matching entries. Try a broader term or reset the filters.')}
+          </p>
         )}
       </nav>
-      <p className="navnote">
-        {model.units(tasks).length} task entries · {tasks.length} definitions/revisions ·{' '}
-        {studies.length} supporting studies. Source records, cases and attempts are separate counts.
-      </p>
     </aside>
   );
 }
 export function TaskList({ model, state, dispatch }: Props) {
+  const { t } = useLocale();
   const entry = model.get(state.selected),
     key = navKey(entry, state.view),
     query = state.query.trim().toLowerCase(),
@@ -229,12 +227,12 @@ export function TaskList({ model, state, dispatch }: Props) {
       count = model.members(row).length,
       cases = model.items(row).filter((item) => item.kind === 'case'),
       tags: string[] = [];
-    if (count > 1) tags.push(count + ' variants');
+    if (count > 1) tags.push(count + ' ' + t('variants'));
     else {
       if (edition(row)) tags.push(edition(row));
-      if (cases.length) tags.push(cases.length + (cases.length === 1 ? ' case' : ' cases'));
+      if (cases.length) tags.push(cases.length + ' ' + t(cases.length === 1 ? 'case' : 'cases'));
     }
-    if (unit.members.some(hasExample)) tags.push('Image example');
+    if (unit.members.some(hasExample)) tags.push(t('Image example'));
     return (
       <button
         className="task-item"
@@ -260,9 +258,9 @@ export function TaskList({ model, state, dispatch }: Props) {
     <>
       <div className="mobile-task-selection">
         <label htmlFor="mobile-task-picker">
-          Choose a task{' '}
+          {t('Choose a task')}{' '}
           <span>
-            {units.length} {units.length === 1 ? 'entry' : 'entries'}
+            {units.length} {t(units.length === 1 ? 'entry' : 'entries')}
           </span>
         </label>
         <select
@@ -283,21 +281,21 @@ export function TaskList({ model, state, dispatch }: Props) {
               ))}
             </optgroup>
           ))}
-          {!units.length && <option value="">No matching tasks</option>}
+          {!units.length && <option value="">{t('No matching tasks')}</option>}
         </select>
       </div>
       <nav
         ref={list}
         className="task-list"
         data-repository={scrollKey}
-        aria-label="Entries in this selection"
+        aria-label={t('Entries in this selection')}
       >
         <div className="list-heading">
           {searching
-            ? 'Matching entries'
+            ? t('Matching entries')
             : state.lane === 'supporting'
-              ? 'Supporting research'
-              : 'Tasks'}{' '}
+              ? t('Supporting research')
+              : t('Tasks')}{' '}
           <span>{units.length}</span>
         </div>
         {units.map((unit) => {
@@ -335,7 +333,9 @@ export function TaskList({ model, state, dispatch }: Props) {
             </details>
           );
         })}
-        {!units.length && <p className="empty">No tasks match this search in this repository.</p>}
+        {!units.length && (
+          <p className="empty">{t('No tasks match this search in this repository.')}</p>
+        )}
       </nav>
     </>
   );

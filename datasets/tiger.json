@@ -29,7 +29,7 @@
         "114S"
       ],
       "role": "curated",
-      "note": "One complete source image. TIGER adds three paired ROIs; additional selection-screen files are separately identified in the receipt.",
+      "note": "One complete WSI and three paired ROIs with 518 source cell boxes; other COCO ROIs are not counted as paired samples.",
       "receipt": {
         "path": "datasets/receipts/wsi-teaching-samples.json",
         "sha256": "2e1c2bdf985d7e6531dbb28883010e08568519d46a3985c0c7053609c3a35c81",
@@ -37,7 +37,7 @@
       }
     }
   ],
-  "experiment_ids": [],
+  "experiment_ids": ["wsi-tiger-context-sol6-xhigh"],
   "brief_ids": [
     "wsi-tiger-context"
   ],
@@ -55,5 +55,31 @@
   "documentation_gaps": [
     "Teaching sample only; no frozen scoring contract, model trial or held-out generalization result."
   ],
-  "native_payload_expected": true
+  "native_payload_expected": true,
+  "locales": {
+    "zh-CN": {
+      "title": "TIGER 组织与免疫细胞标注",
+      "summary": "一张乳腺全片与三个明确配对的标注 ROI。",
+      "modality": "显微病理图像",
+      "sample_unit": "一张原始全片图像及明确配对的参考标注",
+      "image_description": "乳腺 H&E 全片及三个来源定义的 ROI PNG。",
+      "annotation_description": "ROI 组织类别掩膜与合并的淋巴细胞／浆细胞框；全片无密集细胞真值。",
+      "reference_note": "密集组织和细胞参考仅覆盖选定 ROI；ROI 外不能当作阴性。细胞类别已合并，不能分别评价淋巴细胞和浆细胞。",
+      "version_note": "2026-09-22/23 有界获取；具体来源、版本、原生几何与校验值见收据。",
+      "terms_note": "所选 JB 全片与 TIGER 标注为 CC BY-NC 4.0。",
+      "access_note": "所选文件可公开下载；未注册账号、签署协议或运行模型。",
+      "documentation_gaps": [
+        "仅教学样本；没有全片穷尽细胞参考、冻结评分方案或模型试验。"
+      ],
+      "sample_set_notes": [
+        "一张完整全片与三个配对 ROI，共 518 个来源细胞框；其他 COCO ROI 不计入本地配对样本。"
+      ],
+      "snapshot_summary": "一张全片与三个标注 ROI 的来源参考。",
+      "snapshot_reference_note": "组织掩膜与合并细胞框仅覆盖选定 ROI；全片其他位置不能当阴性。",
+      "snapshot_captions": [
+        "TIGER `114S` 全片原图缩略图；未显示参考。",
+        "三个标注 ROI 的来源位置与参考叠加；没有全片密集细胞标注。"
+      ]
+    }
+  }
 }

@@ -77,6 +77,29 @@ class Visuals(TypedDict):
     answer: str
 
 
+class LocalizedBrief(TypedDict):
+    title: str
+    goal: str
+    value: str
+    raw: str
+    helpers: str
+    output: str
+    challenge: str
+    spec: str
+    tools: str
+    score: str
+    reference: str
+    families: str
+    gap: str
+    case_note: str
+    variants: list[Condition]
+    sources: list[tuple[str, str]]
+    visuals: Visuals
+    html: dict[BriefField, str]
+    stages: list[str]
+    missing_media: list[str]
+
+
 class TaskEntry(TypedDict):
     id: str
     title: str
@@ -114,6 +137,7 @@ class TaskEntry(TypedDict):
     example_case_id: NotRequired[str]
     studies: NotRequired[list[Study]]
     stages: NotRequired[list[str]]
+    locales: NotRequired[dict[str, LocalizedBrief]]
 
 
 class CaseFact(TypedDict):
@@ -201,6 +225,24 @@ class SourceLink(TypedDict):
     label: str
 
 
+class DatasetLocalized(TypedDict):
+    title: str
+    summary: str
+    modality: str
+    sample_unit: str
+    image_description: str
+    annotation_description: str
+    reference_note: str
+    version_note: str
+    terms_note: str
+    access_note: str
+    documentation_gaps: list[str]
+    sample_set_notes: list[str]
+    snapshot_summary: str
+    snapshot_reference_note: str
+    snapshot_captions: list[str]
+
+
 class DatasetRecord(TypedDict):
     id: str
     title: str
@@ -219,6 +261,7 @@ class DatasetRecord(TypedDict):
     access_note: NotRequired[str]
     documentation_gaps: NotRequired[list[str]]
     record_path: str
+    locales: NotRequired[dict[str, DatasetLocalized]]
 
 
 class CategoryInfo(TypedDict):

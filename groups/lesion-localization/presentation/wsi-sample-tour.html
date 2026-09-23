@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>WSI 实物课堂 · 四种 GT，四种任务</title>
+    <title>WSI 实物课堂 · 四种参考标注，四种任务</title>
     <style>
       :root {
         --ink: #142a30;
@@ -13,6 +13,9 @@
         --paper: #f6f8f4;
         --card: #fff;
         --accent: #d7eee3;
+        --text-label: 13px;
+        --text-secondary: 14px;
+        --text-reading: 15px;
       }
       * {
         box-sizing: border-box;
@@ -67,7 +70,7 @@
         padding: 42px 36px 24px;
       }
       .eyebrow {
-        font-size: 12px;
+        font-size: var(--text-label);
         letter-spacing: 0.13em;
         font-weight: 700;
         color: var(--green);
@@ -83,6 +86,28 @@
         margin: 0;
         color: var(--muted);
       }
+      .language-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 18px;
+        font-size: var(--text-reading);
+      }
+      .language-switch select {
+        width: auto;
+        min-height: 44px;
+        font-size: var(--text-reading);
+      }
+      .reading-boundary {
+        max-width: 1328px;
+        margin: 0 auto 20px;
+        padding: 15px 18px;
+        border-left: 4px solid var(--green);
+        background: #eaf0e9;
+        border-radius: 0 9px 9px 0;
+        font-size: var(--text-reading);
+      }
+      .reading-boundary p { margin: 3px 0 0; }
       .pills {
         display: flex;
         gap: 9px;
@@ -90,7 +115,7 @@
         margin-top: 20px;
       }
       .pill {
-        font-size: 13px;
+        font-size: var(--text-secondary);
         border: 1px solid var(--line);
         padding: 4px 11px;
         border-radius: 30px;
@@ -113,7 +138,7 @@
         display: block;
         font-weight: 400;
         opacity: 0.85;
-        font-size: 12px;
+        font-size: var(--text-label);
       }
       main {
         max-width: 1400px;
@@ -135,13 +160,13 @@
       .intro p {
         max-width: 980px;
         margin: 0;
-        font-size: 15px;
+        font-size: var(--text-reading);
       }
       .badge {
         flex-shrink: 0;
         background: #fff2d9;
         color: #775318;
-        font-size: 12px;
+        font-size: var(--text-label);
         border-radius: 6px;
         padding: 4px 9px;
       }
@@ -168,14 +193,14 @@
         background: #fff;
       }
       .toolbar label {
-        font-size: 13px;
+        font-size: var(--text-secondary);
         display: flex;
         align-items: center;
         gap: 5px;
       }
       select {
         max-width: 100%;
-        font-size: 13px;
+        font-size: var(--text-secondary);
       }
       .viewport {
         height: 520px;
@@ -213,7 +238,7 @@
         text-shadow: 0 1px 4px #000;
         background: #162b31cc;
         padding: 4px 8px;
-        font-size: 11px;
+        font-size: var(--text-label);
         border-radius: 4px;
       }
       .scale i {
@@ -224,7 +249,7 @@
       }
       .view-footer {
         padding: 12px 16px;
-        font-size: 12px;
+        font-size: var(--text-reading);
         color: var(--muted);
       }
       .view-footer p {
@@ -234,7 +259,7 @@
         display: flex;
         gap: 6px 13px;
         flex-wrap: wrap;
-        font-size: 12px;
+        font-size: var(--text-reading);
         padding: 0 15px 12px;
       }
       .swatch {
@@ -250,7 +275,7 @@
       }
       .layers {
         padding: 0 15px 9px;
-        font-size: 13px;
+        font-size: var(--text-reading);
         display: flex;
         gap: 14px;
       }
@@ -264,7 +289,7 @@
         margin: 0 0 10px;
       }
       .card p {
-        font-size: 14px;
+        font-size: var(--text-reading);
         margin: 8px 0;
       }
       .card ul,
@@ -274,7 +299,7 @@
       }
       .card li,
       .body li {
-        font-size: 14px;
+        font-size: var(--text-reading);
         margin: 6px 0;
       }
       .card li p,
@@ -294,7 +319,7 @@
       }
       .read-steps li {
         counter-increment: steps;
-        font-size: 14px;
+        font-size: var(--text-reading);
         margin: 14px 0;
         padding-left: 30px;
         position: relative;
@@ -310,11 +335,11 @@
         height: 22px;
         border-radius: 50%;
         text-align: center;
-        font-size: 12px;
+        font-size: var(--text-label);
         font-weight: 700;
       }
       .small {
-        font-size: 12px;
+        font-size: var(--text-reading);
         color: var(--muted);
       }
       .mini {
@@ -328,7 +353,7 @@
         background: #eef6f0;
         border-radius: 8px;
         padding: 12px;
-        font-size: 13px;
+        font-size: var(--text-reading);
       }
       .steps {
         display: grid;
@@ -337,11 +362,11 @@
         margin-top: 22px;
       }
       .steps .card p {
-        font-size: 14px;
+        font-size: var(--text-reading);
       }
       .stepno {
         color: var(--green);
-        font-size: 12px;
+        font-size: var(--text-label);
         font-weight: 700;
         display: block;
         margin-bottom: 8px;
@@ -359,11 +384,11 @@
         cursor: pointer;
         padding: 15px 0;
         font-weight: 600;
-        font-size: 14px;
+        font-size: var(--text-reading);
       }
       details .body {
         padding-bottom: 15px;
-        font-size: 14px;
+        font-size: var(--text-reading);
         overflow-wrap: anywhere;
       }
       details p {
@@ -371,7 +396,7 @@
       }
       code {
         font-family: ui-monospace, monospace;
-        font-size: 12px;
+        font-size: var(--text-label);
         background: #eff3f0;
         padding: 2px 4px;
         border-radius: 3px;
@@ -384,7 +409,7 @@
       table {
         border-collapse: collapse;
         width: 100%;
-        font-size: 14px;
+        font-size: var(--text-reading);
       }
       .comparison table {
         min-width: 650px;
@@ -397,23 +422,24 @@
         vertical-align: top;
       }
       th {
-        font-size: 12px;
+        font-size: var(--text-label);
         color: var(--muted);
       }
       .table-scroll {
         overflow-x: auto;
       }
       .recommendations {
-        font-size: 14px;
+        font-size: var(--text-reading);
         margin: 8px 0 0;
         padding-left: 22px;
       }
+      .copy-meta { margin: 12px 0; min-height: 44px; }
       .recommendations li,
       .footnote li {
         margin: 6px 0;
       }
       .footnote {
-        font-size: 12px;
+        font-size: var(--text-label);
         color: var(--muted);
         padding: 17px 0 17px 20px;
         max-width: 1100px;
@@ -427,7 +453,7 @@
         color: var(--green);
       }
       .stats-table {
-        font-size: 12px;
+        font-size: var(--text-label);
       }
       .stats-table td {
         padding: 5px 7px;
@@ -443,7 +469,7 @@
       .disclaimer {
         display: block;
         margin-top: 15px;
-        font-size: 12px;
+        font-size: var(--text-label);
         color: var(--muted);
       }
       @media (max-width: 900px) {
@@ -488,7 +514,7 @@
         }
         nav button {
           padding: 10px;
-          font-size: 14px;
+          font-size: var(--text-reading);
         }
         .comparison {
           padding: 15px;
@@ -504,31 +530,33 @@
   </head>
   <body>
     <header>
-      <div class="eyebrow">WSI FIELD GUIDE · REAL IMAGES, SOURCE ANNOTATIONS</div>
-      <h1>先看图，再看答案。</h1>
-      <p>四套真实样本：看原图 → 揭示 GT → 理解任务与评分。</p>
-      <div class="pills">
-        <span class="pill">已下载 4 张完整图像</span
-        ><span class="pill">TIGER 另含 3 个配对 ROI</span
-        ><span class="pill">原生图像约 1.19 GB</span><span class="pill">教学样本 · 未运行模型</span>
-      </div>
+      <div class="eyebrow" data-i18n="eyebrow">全片图像阅读指南 · 原图与来源标注</div>
+      <h1 data-i18n="hero">先看图，再看答案。</h1>
+      <p data-i18n="intro">四套真实样本：看原图 → 揭示参考标注 → 理解任务。</p>
+      <label class="language-switch"><span data-i18n="language">语言</span>
+        <select id="language" aria-label="语言"><option value="en">English</option><option value="zh-CN">中文</option></select>
+      </label>
     </header>
     <nav id="tabs" aria-label="选择数据集"></nav>
     <main>
+      <aside class="reading-boundary" aria-label="阅读边界">
+        <strong data-i18n="boundaryHeading">阅读边界</strong>
+        <p id="boundary"></p>
+      </aside>
       <section class="intro">
         <div>
           <h2 id="title"></h2>
           <div id="goal"></div>
         </div>
-        <span class="badge">拟议任务 / 教学示例</span>
+        <span class="badge" data-i18n="proposed">拟议任务／教学示例</span>
       </section>
       <section class="workbench">
         <div class="viewer">
           <div class="toolbar">
             <select id="view" aria-label="图像视图"></select
-            ><button id="reveal" aria-pressed="false">显示 GT</button
+            ><button id="reveal" aria-pressed="false">显示参考标注</button
             ><label
-              >放大
+              ><span data-i18n="zoom">放大</span>
               <input
                 id="zoom"
                 aria-label="图像放大倍数"
@@ -538,11 +566,11 @@
                 step=".25"
                 value="1"
                 style="width: 85px" /></label
-            ><button id="reset">复位</button>
+            ><button id="reset" data-i18n="reset">复位</button>
           </div>
           <div class="layers" id="layers" hidden>
-            <label><input type="checkbox" id="tissue" checked />组织区域</label
-            ><label><input type="checkbox" id="cells" checked />细胞框</label>
+            <label><input type="checkbox" id="tissue" checked /><span data-i18n="tissue">组织区域</span></label
+            ><label><input type="checkbox" id="cells" checked /><span data-i18n="cells">细胞框</span></label>
           </div>
           <div class="viewport" id="viewport">
             <div class="stage" id="stage">
@@ -562,8 +590,8 @@
           <div id="legend" class="legend" hidden></div>
         </div>
         <aside class="card">
-          <div class="eyebrow">HOW TO READ</div>
-          <h3 style="margin-top: 8px">看这张图时，注意什么？</h3>
+          <div class="eyebrow" data-i18n="howToRead">阅读提示</div>
+          <h3 style="margin-top: 8px" data-i18n="readingHeading">看这张图时，注意什么？</h3>
           <ol class="read-steps" id="reading"></ol>
           <div id="minimap"></div>
           <div class="insight" id="insight"></div>
@@ -572,121 +600,107 @@
       </section>
       <section class="steps">
         <article class="card">
-          <span class="stepno">01 · DATA</span>
-          <h3>你实际拿到什么</h3>
+          <span class="stepno" data-i18n="stepData">01 · 输入</span>
+          <h3 data-i18n="dataHeading">你实际拿到什么</h3>
           <div id="data"></div>
         </article>
         <article class="card">
-          <span class="stepno">02 · GROUND TRUTH</span>
-          <h3>答案到底标了什么</h3>
+          <span class="stepno" data-i18n="stepReference">02 · 参考标注</span>
+          <h3 data-i18n="referenceHeading">参考标注了什么</h3>
           <div id="gt"></div>
         </article>
         <article class="card">
-          <span class="stepno">03 · TASK</span>
-          <h3>让 agent 完成什么</h3>
+          <span class="stepno" data-i18n="stepTask">03 · 任务</span>
+          <h3 data-i18n="taskHeading">让智能体完成什么</h3>
           <div id="task"></div>
         </article>
       </section>
       <section class="details-grid">
         <details>
-          <summary>输出文件与评分方式</summary>
+          <summary data-i18n="outputSummary">输出文件与评分方式</summary>
           <div class="body">
-            <h4>具体交付物</h4>
+            <h4 data-i18n="deliverable">具体交付物</h4>
             <div id="output"></div>
-            <h4>如何评价</h4>
+            <h4 data-i18n="evaluation">如何评价</h4>
             <div id="evaluation"></div>
           </div>
         </details>
         <details>
-          <summary>帮助条件与参考边界</summary>
+          <summary data-i18n="helpersSummary">帮助条件与参考边界</summary>
           <div class="body">
             <div id="helpers"></div>
             <div id="limits"></div>
           </div>
         </details>
         <details>
-          <summary>来源、授权与下载范围</summary>
+          <summary data-i18n="sourcesSummary">来源、授权与下载范围</summary>
           <div class="body">
             <div id="sources"></div>
             <div id="coverage"></div>
-            <p>
-              <strong>文件收据：</strong
-              ><a href="provenance.json">来源、版本、日期与 SHA-256</a>。图像保留在本机。
-            </p>
+            <button id="copy-meta" class="copy-meta" data-i18n="copyMeta">复制完整元数据</button>
+            <span id="copy-status" role="status" aria-live="polite"></span>
           </div>
         </details>
         <details>
-          <summary>本例 GT 的可复核数值</summary>
+          <summary data-i18n="numbersSummary">本例参考标注的可复核数值</summary>
           <div class="body">
-            <p class="note">公开 GT 衍生值，仅供教学。</p>
+            <p class="note" data-i18n="numbersNote">公开参考标注的衍生值，仅供教学。</p>
             <div id="numbers"></div>
           </div>
         </details>
       </section>
-      <section class="comparison">
-        <div class="eyebrow">COMPARE THE WORK</div>
-        <h3>四条路线的差别，在「要完成的工作」。</h3>
-        <div class="table-scroll">
-          <table>
-            <thead>
-              <tr>
-                <th>数据</th>
-                <th>最有意思的任务</th>
-                <th>最关键的 GT 边界</th>
-                <th>适合先验证</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>CAMELYON16</td>
-                <td>在全片中自主搜索病灶</td>
-                <td>病灶多边形 / exclusion；还需要阴性片</td>
-                <td>倍率切换、搜索覆盖与假阳性</td>
-              </tr>
-              <tr>
-                <td>HiESD</td>
-                <td>按组织条组织局部发现</td>
-                <td>粗区域类别；不是精确腺体或切缘 GT</td>
-                <td>局部分类 → 空间汇总</td>
-              </tr>
-              <tr>
-                <td>HuBMAP</td>
-                <td>完整清点对象并测量</td>
-                <td>肾小球轮廓；不含病理分级</td>
-                <td>漏检、去重、对象面积误差</td>
-              </tr>
-              <tr>
-                <td>TIGER</td>
-                <td>结合组织背景计数细胞</td>
-                <td>密集标注仅限 ROI；细胞类别已合并</td>
-                <td>组织分区、细胞检测、区室关联</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p style="font-size: 14px"><strong>我的下一步建议：</strong></p>
-        <ul class="recommendations">
-          <li><strong>HuBMAP：</strong>先做可复核的对象清单。</li>
-          <li><strong>TIGER：</strong>研究上下文；对比「给 / 不给组织 GT」。</li>
-          <li><strong>CAMELYON：</strong>研究全片搜索。</li>
-          <li><strong>HiESD：</strong>先做粗类别地图。</li>
-          <li><strong>性质：</strong>任务设计建议，非模型能力结论。</li>
-        </ul>
-      </section>
-      <ul class="footnote">
-        <li><strong>WSI：</strong>whole-slide image，全玻片数字图像。</li>
-        <li><strong>GT：</strong>ground truth，此处指来源发布的参考标注。</li>
-        <li><strong>教学裁图：</strong>部分由 GT 选定，已减少或移除搜索。</li>
-        <li><strong>浏览范围：</strong>仅预渲染视图，不能任意读取全片高倍区域。</li>
-        <li><strong>第四路线：</strong>选用 TIGER，未下载 PanopTILs。</li>
-        <li><strong>离线：</strong>页面不依赖远程图像。</li>
-      </ul>
     </main>
     <script id="tour-data" type="application/json">
       "__DATA__"
     </script>
+    <script id="tour-metadata" type="application/json">
+      "__META__"
+    </script>
     <script>
       const D = JSON.parse(document.getElementById('tour-data').textContent);
+      const META = JSON.parse(document.getElementById('tour-metadata').textContent);
+      const translations = {
+        eyebrow: 'WSI FIELD GUIDE · REAL IMAGES, SOURCE ANNOTATIONS',
+        hero: 'Look at the slide before revealing the answer.',
+        intro: 'Four real samples: inspect the input → reveal the source reference → understand the task.',
+        language: 'Language',
+        boundaryHeading: 'Reading boundary',
+        proposed: 'Proposed task / teaching example',
+        zoom: 'Zoom',
+        reset: 'Reset view',
+        tissue: 'Tissue regions',
+        cells: 'Cell boxes',
+        howToRead: 'HOW TO READ',
+        stepData: '01 · DATA',
+        stepReference: '02 · SOURCE REFERENCE',
+        stepTask: '03 · TASK',
+        readingHeading: 'What should I notice?',
+        dataHeading: 'What the agent receives',
+        referenceHeading: 'What the reference marks',
+        taskHeading: 'What the agent must do',
+        outputSummary: 'Output and evaluation',
+        deliverable: 'Deliverable',
+        evaluation: 'Evaluation',
+        helpersSummary: 'Assistance and reference limits',
+        sourcesSummary: 'Sources, terms, and acquisition scope',
+        copyMeta: 'Copy full metadata',
+        numbersSummary: 'Checkable source-reference measurements',
+        numbersNote: 'Derived from the released reference for teaching; not a model result.',
+      };
+      const originalText = Object.fromEntries(
+        [...document.querySelectorAll('[data-i18n]')].map((node) => [node.dataset.i18n, node.textContent]),
+      );
+      const languageKey = 'tb3-presentation-language';
+      function initialLanguage() {
+        const query = new URLSearchParams(location.search).get('lang');
+        if (query === 'en' || query === 'zh-CN') return query;
+        try {
+          const saved = localStorage.getItem(languageKey);
+          if (saved === 'en' || saved === 'zh-CN') return saved;
+        } catch { /* Local files can disable storage. */ }
+        return navigator.language.toLowerCase().startsWith('zh') ? 'zh-CN' : 'en';
+      }
+      let language = initialLanguage();
       let ds = 'camelyon',
         vi = 0,
         revealed = false;
@@ -696,18 +710,44 @@
           /[&<>"']/g,
           (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
         );
+      const copy = (dataset) => language === 'en' ? dataset.locales.en : dataset;
+      const phrase = (en, zh) => language === 'en' ? en : zh;
+      function renderStatic() {
+        document.documentElement.lang = language;
+        document.title = phrase('WSI field guide · Four references, four tasks', 'WSI 实物课堂 · 四种参考标注，四种任务');
+        $('language').value = language;
+        $('language').setAttribute('aria-label', phrase('Language', '语言'));
+        $('tabs').setAttribute('aria-label', phrase('Select a dataset', '选择数据集'));
+        document.querySelector('.reading-boundary').setAttribute('aria-label', phrase('Reading boundary', '阅读边界'));
+        $('view').setAttribute('aria-label', phrase('Image view', '图像视图'));
+        $('zoom').setAttribute('aria-label', phrase('Image zoom', '图像放大倍数'));
+        $('raw').alt = phrase('Source pathology image', '原始病理图像');
+        $('overlay').alt = phrase('Source reference overlay', '来源参考标注叠加层');
+        $('overlay2').alt = phrase('Source cell-reference overlay', '来源细胞参考标注叠加层');
+        document.querySelectorAll('[data-i18n]').forEach((node) => {
+          const key = node.dataset.i18n;
+          node.textContent = language === 'en' ? translations[key] : originalText[key];
+        });
+        $('tabs').innerHTML = Object.entries(D)
+          .map(([key, data], index) => `<button data-key="${key}" aria-pressed="false">0${index + 1} · ${data.short}<small>${esc(copy(data).tagline)}</small></button>`)
+          .join('');
+        document.querySelectorAll('#tabs button').forEach((button) => {
+          button.onclick = () => chapter(button.dataset.key);
+        });
+      }
       function chapter(key) {
         ds = key;
         vi = 0;
         revealed = false;
         $('zoom').value = 1;
-        const d = D[key];
+        const d = D[key], c = copy(d);
         document.querySelectorAll('nav button').forEach((b) => {
           b.classList.toggle('active', b.dataset.key === key);
           b.setAttribute('aria-pressed', String(b.dataset.key === key));
         });
-        $('title').textContent = d.title;
-        $('goal').innerHTML = d.sections.goal;
+        $('title').textContent = c.title;
+        $('goal').innerHTML = c.sections.goal;
+        $('boundary').textContent = c.caveat || phrase('Teaching sample; no model was run.', '教学样本；未运行模型。');
         for (const [id, k] of Object.entries({
           data: 'Given/Original data',
           gt: 'Given/Reference-only material',
@@ -719,35 +759,35 @@
           sources: 'Sources',
           coverage: 'Coverage',
         }))
-          $(id).innerHTML = d.sections[k] || '';
-        $('reading').innerHTML = d.reading.map((s) => '<li>' + s + '</li>').join('');
+          $(id).innerHTML = c.sections[k] || '';
+        $('reading').innerHTML = c.reading.map((s) => '<li>' + esc(s) + '</li>').join('');
         $('view').innerHTML = d.views
-          .map((v, i) => `<option value="${i}">${esc(v.label)}</option>`)
+          .map((v, i) => `<option value="${i}">${esc(language === 'en' ? c.viewLabels[i] : v.label)}</option>`)
           .join('');
-        $('scale-note').textContent = d.scaleNote;
-        $('numbers').innerHTML = d.numbers;
+        $('scale-note').textContent = c.scaleNote;
+        $('numbers').innerHTML = c.numbers;
         changeView();
       }
       function changeView() {
-        const d = D[ds],
+        const d = D[ds], c = copy(d),
           v = d.views[vi];
         revealed = false;
         $('zoom').value = 1;
         $('tissue').checked = $('cells').checked = true;
         $('raw').src = v.input;
-        $('caption').textContent = vi === 0 ? d.overviewCaption : v.selection || d.detailCaption;
+        $('caption').textContent = vi === 0 ? c.overviewCaption : language === 'en' ? c.selection : v.selection || d.detailCaption;
         $('coordinates').textContent = v.crop_level0
-          ? '全片左上角 (' +
+          ? phrase('Level-0 crop origin (', '全片左上角 (') +
             v.crop_level0.slice(0, 2).join(', ') +
             ') · ' +
             v.crop_level0[2] +
             ' × ' +
             v.crop_level0[3] +
-            ' 原生像素'
+            phrase(' source pixels', ' 原生像素')
           : v.source_roi
-            ? '官方 ROI：' + v.source_roi
-            : '缩略图显示；完整原始文件已保留';
-        $('insight').innerHTML = d.insight[vi > 0 ? 1 : 0];
+            ? phrase('Official ROI: ', '官方 ROI：') + v.source_roi
+            : phrase('Thumbnail view; complete source image retained', '缩略图显示；完整原始文件已保留');
+        $('insight').textContent = c.insight[vi > 0 ? 1 : 0];
         $('minimap').innerHTML = '';
         if (vi > 0) {
           let b = v.crop_level0;
@@ -762,7 +802,7 @@
             const o = d.views[0],
               down = o.downsample;
             $('minimap').innerHTML =
-              `<svg class="mini" role="img" aria-label="蓝框为当前教学裁图位置" viewBox="0 0 ${o.width} ${o.height}"><image href="${o.input}" width="${o.width}" height="${o.height}"/><rect x="${b[0] / down}" y="${b[1] / down}" width="${b[2] / down}" height="${b[3] / down}" stroke="#0674d8" fill="none" stroke-width="5"/></svg><p class="small">蓝框：当前教学裁图的位置。框是阅读辅助。</p>`;
+              `<svg class="mini" role="img" aria-label="${phrase('Blue box marks the teaching crop', '蓝框标出教学裁图')}" viewBox="0 0 ${o.width} ${o.height}"><image href="${o.input}" width="${o.width}" height="${o.height}"/><rect x="${b[0] / down}" y="${b[1] / down}" width="${b[2] / down}" height="${b[3] / down}" stroke="#0674d8" fill="none" stroke-width="5"/></svg><p class="small">${phrase('Blue box: location of this teaching crop.', '蓝框：当前教学裁图的位置。')}</p>`;
           }
         }
         updateLayers();
@@ -770,18 +810,18 @@
         $('viewport').scrollTo(0, 0);
       }
       function updateLayers() {
-        const d = D[ds],
+        const d = D[ds], c = copy(d),
           v = d.views[vi],
           tiger = ds === 'tiger' && vi > 0;
-        $('reveal').textContent = revealed ? '隐藏 GT' : '显示 GT';
+        $('reveal').textContent = revealed ? phrase('Hide reference', '隐藏参考标注') : phrase('Reveal reference', '显示参考标注');
         $('reveal').setAttribute('aria-pressed', String(revealed));
-        $('status').textContent = revealed ? '当前：原图 + 来源 GT（非模型输出）' : '当前：仅原图';
+        $('status').textContent = revealed ? phrase('Source image + reference (not a model result)', '原图 + 来源参考标注（非模型输出）') : phrase('Source image only', '仅显示原图');
         $('overlay').src = tiger ? v.tissue : v.overlay;
         $('overlay2').src = tiger ? v.cells : v.overlay;
         $('overlay').hidden = !revealed || (tiger && !$('tissue').checked);
         $('overlay2').hidden = !revealed || !tiger || !$('cells').checked;
         $('layers').hidden = !tiger || !revealed;
-        const legend = ds === 'tiger' && vi === 0 ? [['#f59e0b', '有密集标注的 ROI']] : d.legend;
+        const legend = ds === 'tiger' && vi === 0 ? [['#f59e0b', phrase('ROIs with dense annotations', '有密集标注的 ROI')]] : c.legend;
         $('legend').innerHTML = legend
           .map(([c, n]) => `<span><i class="swatch" style="background:${c}"></i>${esc(n)}</span>`)
           .join('');
@@ -802,15 +842,36 @@
         $('scalebar').style.width = px + 'px';
         $('scalelabel').textContent = um >= 1000 ? um / 1000 + ' mm' : um + ' µm';
       }
-      $('tabs').innerHTML = Object.entries(D)
-        .map(
-          ([k, d], i) =>
-            `<button data-key="${k}" aria-pressed="false">0${i + 1} · ${d.short}<small>${d.tagline}</small></button>`,
-        )
-        .join('');
-      document
-        .querySelectorAll('nav button')
-        .forEach((b) => (b.onclick = () => chapter(b.dataset.key)));
+      $('language').onchange = () => {
+        const previousView = vi, previousReveal = revealed;
+        language = $('language').value;
+        const url = new URL(location.href);
+        url.searchParams.set('lang', language);
+        history.replaceState(history.state, '', url.href);
+        try { localStorage.setItem(languageKey, language); } catch { /* URL preserves this choice. */ }
+        renderStatic();
+        chapter(ds);
+        vi = previousView;
+        changeView();
+        revealed = previousReveal;
+        updateLayers();
+      };
+      $('copy-meta').onclick = async () => {
+        const value = JSON.stringify(META, null, 2) + '\n';
+        try {
+          if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(value);
+          else throw new Error('Clipboard API unavailable');
+          $('copy-status').textContent = phrase('Metadata copied', '已复制元数据');
+        } catch {
+          const field = document.createElement('textarea');
+          field.value = value;
+          document.body.append(field);
+          field.select();
+          const okay = document.execCommand('copy');
+          field.remove();
+          $('copy-status').textContent = okay ? phrase('Metadata copied', '已复制元数据') : phrase('Copy failed', '复制失败');
+        }
+      };
       $('view').onchange = (e) => {
         vi = Number(e.target.value);
         changeView();
@@ -827,6 +888,7 @@
       };
       $('tissue').onchange = $('cells').onchange = updateLayers;
       window.addEventListener('resize', fit);
+      renderStatic();
       chapter('camelyon');
     </script>
   </body>

@@ -1,12 +1,14 @@
 import { useRef, useState } from 'react';
 import { SourceLink } from './content';
+import { copyText, useLocale, wsiBoundary } from './locale';
 import type { ExplorerModel } from './model';
 import type { DatasetRecord, DatasetSnapshot, SnapshotPanel } from './types';
 function DatasetDiagram({ dataset }: { dataset: DatasetRecord }) {
+  const { t } = useLocale();
   return (
     <figure className="dataset-diagram">
       <figcaption>
-        How to read this dataset <span>Conceptual structure</span>
+        {t('How to read this dataset')} <span>{t('Conceptual structure')}</span>
       </figcaption>
       <div className="dataset-flow">
         <section>
@@ -23,7 +25,7 @@ function DatasetDiagram({ dataset }: { dataset: DatasetRecord }) {
               strokeDasharray="4 3"
             />
           </svg>
-          <h3>Original data</h3>
+          <h3>{t('Original data')}</h3>
           <p>{dataset.image_description}</p>
         </section>
         <div className="dataset-arrow" aria-hidden="true">
@@ -39,24 +41,27 @@ function DatasetDiagram({ dataset }: { dataset: DatasetRecord }) {
               <circle cx="39" cy="72" r="3" />
             </g>
           </svg>
-          <h3>Annotations / reference</h3>
+          <h3>{t('Annotations / reference')}</h3>
           <p>{dataset.annotation_description}</p>
         </section>
       </div>
       <p className="dataset-unit">
-        <strong>One sample:</strong> {dataset.sample_unit}. Repeated views and conditions may reuse
-        that sample.
+        <strong>{t('One sample:')}</strong> {dataset.sample_unit}.{' '}
+        {t('Repeated views and conditions may reuse that sample.')}
       </p>
     </figure>
   );
 }
 function Snapshot({ snapshot }: { snapshot: DatasetSnapshot | undefined }) {
+  const { t } = useLocale();
   const dialog = useRef<HTMLDialogElement>(null),
     [enlarged, setEnlarged] = useState<SnapshotPanel>(),
     [zoom, setZoom] = useState(100);
   if (!snapshot)
     return (
-      <p className="dataset-no-example">No frozen sample has been documented for this source.</p>
+      <p className="dataset-no-example">
+        {t('No frozen sample has been documented for this source.')}
+      </p>
     );
   const inputs = snapshot.panels.filter((panel) => panel.role === 'input'),
     references = snapshot.panels.filter((panel) => panel.role === 'reference'),
@@ -84,31 +89,31 @@ function Snapshot({ snapshot }: { snapshot: DatasetSnapshot | undefined }) {
             src={row.image_url}
             alt={snapshot.sample_id + ' · ' + row.role + ' · ' + row.caption}
           />
-          <span>Enlarge snapshot ↗</span>
+          <span>{t('Enlarge snapshot ↗')}</span>
         </button>
       ) : row.text ? (
         <pre className="snapshot-text">{row.text}</pre>
       ) : (
         <p className="snapshot-missing">
-          Frozen image unavailable in this build: <code>{row.path}</code>. Recover the pinned
-          snapshot; this is not an empty scan.
+          {t('Frozen image unavailable in this build:')} <code>{row.path}</code>.{' '}
+          {t('Recover the pinned snapshot; this is not an empty scan.')}
         </p>
       )}
       <figcaption>{row.caption}</figcaption>
     </figure>
   );
   const status = {
-    paired: 'Sample + reference',
-    'input-only': 'Sample available · paired GT unavailable',
-    'reference-only': 'Reference available · image unavailable',
-    unavailable: 'Source screen · imaging not acquired',
+    paired: t('Sample + reference'),
+    'input-only': t('Sample available · paired GT unavailable'),
+    'reference-only': t('Reference available · image unavailable'),
+    unavailable: t('Source screen · imaging not acquired'),
   }[snapshot.status];
   return (
     <section className="dataset-snapshot" data-snapshot-status={snapshot.status}>
       <div className="snapshot-heading">
         <div>
-          <div className="eyebrow">Frozen source snapshot</div>
-          <h2>{snapshot.sample_id}</h2>
+          <div className="eyebrow">{t('Frozen source snapshot')}</div>
+          <h2>{snapshot.sample_id.length > 20 ? t('Selected example') : snapshot.sample_id}</h2>
         </div>
         <span className="snapshot-state">{status}</span>
       </div>
@@ -119,36 +124,28 @@ function Snapshot({ snapshot }: { snapshot: DatasetSnapshot | undefined }) {
         metadata.map(panel)
       ) : (
         <div className="snapshot-missing">
-          The source MRI image was not retained. The actual available annotations can be inspected
-          below.
+          {t('The source image was not retained. Available annotations can be inspected below.')}
         </div>
       )}
       {references.length ? (
         <details className="dataset-reference">
-          <summary>Reveal ground truth / source reference</summary>
+          <summary>{t('Reveal ground truth / source reference')}</summary>
           <p className="snapshot-reference-note">{snapshot.reference_note}</p>
           {references.map(panel)}
         </details>
       ) : (
         <p className="snapshot-reference-note">
-          <strong>Ground-truth availability:</strong> {snapshot.reference_note}
+          <strong>{t('Ground-truth availability:')}</strong> {snapshot.reference_note}
         </p>
       )}
       <details className="snapshot-provenance">
-        <summary>Snapshot provenance and exact source files</summary>
+        <summary>{t('Snapshot provenance and exact source files')}</summary>
         <p>
-          These frozen views preserve the stated selection and reference qualifications. Opening
-          this page does not run a model or change task inputs.
+          {t(
+            'These frozen views preserve the selection and reference limits. Opening the page does not run a model or change task inputs.',
+          )}
         </p>
-        <ul>
-          {snapshot.sources.map((source) => (
-            <li key={source.path}>
-              <code>{source.path}</code>
-              <br />
-              <small>SHA-256 {source.sha256}</small>
-            </li>
-          ))}
-        </ul>
+        <p>{t('Exact paths and checksums are included in full metadata below.')}</p>
       </details>
       <dialog
         ref={dialog}
@@ -190,61 +187,82 @@ function Snapshot({ snapshot }: { snapshot: DatasetSnapshot | undefined }) {
   );
 }
 function DatasetDetail({ dataset, model }: { dataset: DatasetRecord; model: ExplorerModel }) {
+  const { locale, t } = useLocale();
+  const [copyStatus, setCopyStatus] = useState('');
   const tasks = dataset.task_ids
       .map((id) => model.byId.get(id))
       .filter((entry) => entry !== undefined),
     links = (dataset.links || []).filter((link) => /^https?:\/\//.test(link.path));
-  const { task_ids: _tasks, experiments: _experiments, record_path: _path, ...record } = dataset,
-    raw = JSON.stringify(record, null, 2);
+  const snapshot = model.data.datasets?.previews?.[dataset.id];
+  const metadata =
+    JSON.stringify(
+      {
+        dataset,
+        snapshot: snapshot && {
+          ...snapshot,
+          panels: snapshot.panels.map(({ image_url: _image, ...panel }) => panel),
+        },
+      },
+      null,
+      2,
+    ) + '\n';
   return (
     <article className="dataset-detail" data-dataset={dataset.id}>
-      <div className="eyebrow">Dataset · {dataset.modality}</div>
+      <div className="eyebrow">
+        {t('Dataset')} · {dataset.modality}
+      </div>
       <h1>{dataset.title}</h1>
       <p className="dataset-lead">{dataset.summary}</p>
-      <Snapshot key={dataset.id} snapshot={model.data.datasets?.previews?.[dataset.id]} />
+      {wsiBoundary(dataset.task_ids[0] || '', locale) && (
+        <aside className="reading-boundary">
+          <strong>{t('Page caveat')}</strong>
+          <p>{wsiBoundary(dataset.task_ids[0] || '', locale)}</p>
+        </aside>
+      )}
+      {locale === 'zh-CN' && !dataset.locales?.['zh-CN'] && (
+        <p className="translation-notice" lang="zh-CN">
+          {t('English source text')}
+        </p>
+      )}
+      <Snapshot key={dataset.id} snapshot={snapshot} />
       <details className="dataset-structure">
-        <summary>Understand the data structure</summary>
+        <summary>{t('Understand the data structure')}</summary>
         <DatasetDiagram dataset={dataset} />
       </details>
       <section className="dataset-reference-scope">
-        <h2>What the reference can establish</h2>
+        <h2>{t('What the reference can establish')}</h2>
         <p>{dataset.reference_note}</p>
       </section>
       <section>
-        <h2>Selected samples &amp; their use</h2>
-        <p className="fine">
-          Selections can overlap. These are documented source selections, not a count of independent
-          patients or successful trials.
-        </p>
+        <h2>{t('Selected samples & their use')}</h2>
+        {!dataset.task_ids[0]?.startsWith('wsi-') ? (
+          <p className="fine">
+            {t(
+              'Selections can overlap. These are documented source selections, not a count of independent patients or successful trials.',
+            )}
+          </p>
+        ) : null}
         {dataset.sample_sets.map((sample, index) => (
           <section className="dataset-sample" key={index}>
             <div>
               <h3>{sample.label}</h3>
-              <span className="dataset-role">{sample.role}</span>
+              <span className="dataset-role">{t(sample.role)}</span>
             </div>
-            <p className="sample-identities">
-              {sample.sample_ids.map((id) => (
-                <code key={id}>{id} </code>
-              ))}
-            </p>
+            {sample.sample_ids.some((id) => id.length <= 20) && (
+              <p className="sample-identities">
+                {sample.sample_ids
+                  .filter((id) => id.length <= 20)
+                  .map((id) => (
+                    <code key={id}>{id} </code>
+                  ))}
+              </p>
+            )}
             <p>{sample.note}</p>
-            <details>
-              <summary>Selection provenance</summary>
-              <p>
-                <code>
-                  {sample.receipt.path}
-                  {sample.receipt.pointer}
-                </code>
-              </p>
-              <p className="fine">
-                Receipt SHA-256 <code>{sample.receipt.sha256}</code>
-              </p>
-            </details>
           </section>
         ))}
       </section>
       <section>
-        <h2>Tasks using or explaining this source</h2>
+        <h2>{t('Tasks using or explaining this source')}</h2>
         {tasks.length ? (
           <div className="dataset-task-links">
             {tasks.map((entry) => (
@@ -254,10 +272,12 @@ function DatasetDetail({ dataset, model }: { dataset: DatasetRecord; model: Expl
             ))}
           </div>
         ) : (
-          <p>Source review only; no task brief is linked.</p>
+          <p>{t('Source review only; no task brief is linked.')}</p>
         )}
         <details>
-          <summary>{dataset.experiments.length} linked experiment records</summary>
+          <summary>
+            {dataset.experiments.length} {t('linked experiment records')}
+          </summary>
           <ul>
             {dataset.experiments.map((experiment) => (
               <li key={experiment.id}>
@@ -267,8 +287,8 @@ function DatasetDetail({ dataset, model }: { dataset: DatasetRecord; model: Expl
           </ul>
         </details>
       </section>
-      <section className="dataset-recovery">
-        <h2>Release, access &amp; recovery</h2>
+      <details className="dataset-recovery">
+        <summary>{t('Release, access & recovery')}</summary>
         <p>{dataset.version_note}</p>
         <p>{dataset.terms_note}</p>
         {dataset.access_note && <p>{dataset.access_note}</p>}
@@ -279,7 +299,7 @@ function DatasetDetail({ dataset, model }: { dataset: DatasetRecord; model: Expl
         ))}
         {!!dataset.documentation_gaps?.length && (
           <>
-            <h3>Open documentation or reference gaps</h3>
+            <h3>{t('Open documentation or reference gaps')}</h3>
             <ul>
               {dataset.documentation_gaps.map((gap) => (
                 <li key={gap}>{gap}</li>
@@ -287,22 +307,27 @@ function DatasetDetail({ dataset, model }: { dataset: DatasetRecord; model: Expl
             </ul>
           </>
         )}
-        <p className="fine">
-          Receipt links were checked when this page was built. Local scan availability is checked
-          only by the explicit dataset audit, not by opening this page.
-        </p>
-        <details>
-          <summary>Dataset record · {dataset.record_path}</summary>
-          <pre className="dataset-record">{raw}</pre>
+        <div className="metadata-actions">
+          <button
+            className="quiet"
+            onClick={async () =>
+              setCopyStatus((await copyText(metadata)) ? t('Metadata copied') : t('Copy failed'))
+            }
+          >
+            {t('Copy full metadata')}
+          </button>
           <a
             id="dataset-download"
-            download={dataset.id + '.json'}
-            href={'data:application/json;charset=utf-8,' + encodeURIComponent(raw + '\n')}
+            download={dataset.id + '-metadata.json'}
+            href={'data:application/json;charset=utf-8,' + encodeURIComponent(metadata)}
           >
-            Download dataset record
+            {t('Download full metadata')}
           </a>
-        </details>
-      </section>
+          <span role="status" aria-live="polite">
+            {copyStatus}
+          </span>
+        </div>
+      </details>
     </article>
   );
 }
@@ -315,6 +340,7 @@ export function Datasets({
   id: string;
   taskRoute: string;
 }) {
+  const { locale, t } = useLocale();
   const [search, setSearch] = useState(''),
     searchInput = useRef<HTMLInputElement>(null);
   const records = model.data.datasets?.records || [],
@@ -338,32 +364,32 @@ export function Datasets({
   return (
     <>
       <div className="dataset-top">
-        <a href={taskRoute}>← Back to Tasks</a>
-        {id ? <a href="#datasets">All datasets →</a> : <span>Source library</span>}
+        <a href={taskRoute}>← {t('Back to Tasks')}</a>
+        {id ? <a href="#datasets">{t('All datasets →')}</a> : <span>{t('Source library')}</span>}
       </div>
       <div className="dataset-workspace">
-        <aside className="dataset-sidebar" aria-label="Find a dataset">
+        <aside className="dataset-sidebar" aria-label={t('Find a dataset')}>
           <div className="browser-heading">
-            <span className="eyebrow">Source library</span>
+            <span className="eyebrow">{t('Source library')}</span>
             <button className="text-button" id="dataset-reset" hidden={!query} onClick={clear}>
-              Reset
+              {t('Reset')}
             </button>
           </div>
-          <label htmlFor="dataset-search">Search datasets</label>
+          <label htmlFor="dataset-search">{t('Search datasets')}</label>
           <input
             ref={searchInput}
             id="dataset-search"
             type="search"
-            placeholder="Name, modality, sample ID…"
+            placeholder={t('Name, modality, sample ID…')}
             autoComplete="off"
             value={search}
             onChange={(event) => setSearch(event.target.value)}
           />
           <p id="dataset-count" className="search-count" role="status" aria-live="polite">
-            {matches.length} {matches.length === 1 ? 'source' : 'sources'}
-            {query ? ' match your search' : ' in this collection'}
+            {matches.length} {t(matches.length === 1 ? 'source' : 'sources')}
+            {query ? t(' match your search') : t(' in this collection')}
           </p>
-          <nav id="dataset-nav" aria-label="Datasets">
+          <nav id="dataset-nav" aria-label={t('Datasets')}>
             {matches.map((record) => (
               <a
                 key={record.id}
@@ -375,7 +401,7 @@ export function Datasets({
               </a>
             ))}
             {!matches.length && (
-              <p className="empty">No matching dataset or sample. Try a broader term.</p>
+              <p className="empty">{t('No matching dataset or sample. Try a broader term.')}</p>
             )}
           </nav>
         </aside>
@@ -384,23 +410,28 @@ export function Datasets({
             <DatasetDetail model={model} dataset={dataset} />
           ) : id ? (
             <section className="empty-state">
-              <div className="eyebrow">Source library</div>
-              <h1>Dataset not found</h1>
-              <p>Choose a source from the dataset list, or return to the full collection.</p>
+              <div className="eyebrow">{t('Source library')}</div>
+              <h1>{t('Dataset not found')}</h1>
+              <p>{t('Choose a source from the dataset list, or return to the full collection.')}</p>
               <a className="button button-secondary" href="#datasets">
-                View all datasets
+                {t('View all datasets')}
               </a>
             </section>
           ) : (
             <div className="dataset-intro">
-              <div className="eyebrow">Learn the data before the task</div>
-              <h1>Datasets</h1>
+              <div className="eyebrow">{t('Learn the data before the task')}</div>
+              <h1>{t('Datasets')}</h1>
               <p className="dataset-lead">
-                Explore the images, annotations and selected samples behind the work.
+                {t('Explore the images, annotations and selected samples behind the work.')}
               </p>
+              {locale === 'zh-CN' && (
+                <p className="translation-notice" lang="zh-CN">
+                  目录中尚未翻译的来源条目保留英文原文；四条 WSI 路线已有中英双语。
+                </p>
+              )}
               <p className="dataset-collection-count">
-                {records.length} sources · {model.data.datasets?.coverage.experiments || 0} linked
-                medical experiment records
+                {records.length} {t('sources')} · {model.data.datasets?.coverage.experiments || 0}{' '}
+                {t('linked medical experiment records')}
               </p>
               <div className="dataset-cards">
                 {records.map((record) => {
@@ -420,13 +451,13 @@ export function Datasets({
                             loading="lazy"
                             className="dataset-card-preview"
                             src={preview.image_url}
-                            alt={record.title + ' source snapshot'}
+                            alt={record.title + ' · ' + t('source snapshot')}
                           />
                         </div>
                       ) : (
                         <div className="dataset-card-placeholder">
-                          <span>Source documentation</span>
-                          <small>Explore samples and reference availability</small>
+                          <span>{t('Source documentation')}</span>
+                          <small>{t('Explore samples and reference availability')}</small>
                         </div>
                       )}
                       <div className="dataset-card-copy">
@@ -434,7 +465,7 @@ export function Datasets({
                         <h2>{record.title}</h2>
                         <p>{record.summary}</p>
                         <div className="dataset-card-action">
-                          Explore source <span aria-hidden="true">→</span>
+                          {t('Explore source')} <span aria-hidden="true">→</span>
                         </div>
                       </div>
                     </a>
@@ -446,38 +477,41 @@ export function Datasets({
                 id="dataset-empty"
                 hidden={!!matches.length}
               >
-                <h2>No matching datasets</h2>
-                <p>Try a dataset name, image type, or sample ID.</p>
+                <h2>{t('No matching datasets')}</h2>
+                <p>{t('Try a dataset name, image type, or sample ID.')}</p>
                 <button
                   className="button button-secondary"
                   id="dataset-clear-search"
                   onClick={clear}
                 >
-                  Clear search
+                  {t('Clear search')}
                 </button>
               </section>
               <details className="dataset-glossary-guide">
-                <summary>How to read a dataset</summary>
+                <summary>{t('How to read a dataset')}</summary>
                 <div className="dataset-glossary">
                   <section>
-                    <h2>Image</h2>
+                    <h2>{t('Image')}</h2>
                     <p>
-                      The acquired scan or generated input. Geometry and coordinates are part of the
-                      data.
+                      {t(
+                        'The acquired scan or generated input. Geometry and coordinates are part of the data.',
+                      )}
                     </p>
                   </section>
                   <section>
-                    <h2>Annotation</h2>
+                    <h2>{t('Annotation')}</h2>
                     <p>
-                      A mask marks voxels; a landmark marks a point; a correspondence links
-                      observations. Each has its own limits.
+                      {t(
+                        'A mask marks voxels; a landmark marks a point; a correspondence links observations. Each has its own limits.',
+                      )}
                     </p>
                   </section>
                   <section>
-                    <h2>Task use</h2>
+                    <h2>{t('Task use')}</h2>
                     <p>
-                      A reference can be hidden for scoring or supplied as help. The task condition
-                      decides which.
+                      {t(
+                        'A reference can be hidden for scoring or supplied as help. The task condition decides which.',
+                      )}
                     </p>
                   </section>
                 </div>

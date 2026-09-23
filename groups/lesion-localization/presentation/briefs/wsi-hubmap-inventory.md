@@ -30,7 +30,7 @@
 
 ### Reference-only material
 
-- **GT：** 99 个肾小球多边形，与图像同坐标。
+- **参考标注：** 99 个肾小球多边形，与图像同坐标。
 - **流程：** 机器辅助起草、专家修正；仍可能有误差。
 - **来源：** 发布包 `gt_masks`，未使用模型预测目录。
 
@@ -63,13 +63,13 @@
 
 ### Input
 
-![HuBMAP PAS 肾脏原图缩略图，无 GT](../../../../.local/wsi-ground-truth/explainer/assets/hubmap-overview-input.jpg)
+![HuBMAP PAS 肾脏原图缩略图，未显示参考标注](../../../../.local/wsi-ground-truth/explainer/assets/hubmap-overview-input.jpg)
 
 ### Supplied helpers
 
 - **位置：** (2016, 6706)，1600 × 1600 原生 px。
 - **宽度：** 1.04 mm。
-- **选择：** 首条 GT 轮廓，仅供教学。
+- **选择：** 首条参考标注轮廓，仅供教学。
 
 ### Reference or output
 
@@ -80,7 +80,7 @@
 | Condition | Supplied help | Work remaining |
 | --- | --- | --- |
 | 全片清单 | 原图与物理尺度 | 搜索、对象识别、分割、测量 |
-| 课堂局部 | GT 选出的裁图 | 观察结构和轮廓，不能证明完整清点 |
+| 课堂局部 | 按参考标注选出的裁图 | 观察结构和轮廓，不能证明完整清点 |
 
 ## Difficulty
 
@@ -102,6 +102,6 @@
 
 ## Gaps
 
-- 无病理分级 GT、正式评分器或临床复核。
+- 无病理分级参考标注、正式评分器或临床复核。
 - 公共训练样本不支持无数据暴露的泛化结论。
 - 拟议任务，未运行模型。

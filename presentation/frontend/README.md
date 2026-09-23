@@ -1,5 +1,9 @@
 # Browser frontend
 
+Reader-facing language, hierarchy and provenance decisions follow
+[the presentation design](../DESIGN.md). Update it when those decisions change;
+this guide and the code own implementation details.
+
 The overview and Task Explorer use React and strict TypeScript. Python remains
 the authority for records, evidence status, task composition and export assembly.
 The browser is read-only. Both production outputs work without a Node server.

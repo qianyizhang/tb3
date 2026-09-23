@@ -72,6 +72,29 @@ class TaskBriefTests(unittest.TestCase):
         with self.assertRaises(c.MedicalError):
             self.scaffold()
 
+    def test_companion_english_brief_keeps_chinese_reader_copy(self):
+        self.scaffold()
+        source = self.root / "group/example.md"
+        english = source.with_name("example.en.md")
+        english.write_text(source.read_text())
+        source.write_text(source.read_text().replace("Inspect a scan", "检查扫描"))
+        entry = briefs.load(self.root, self.catalog)["entries"][0]
+        self.assertEqual(entry["title"], "Inspect a scan")
+        self.assertEqual(entry["locales"]["zh-CN"]["title"], "检查扫描")
+        self.assertEqual(len(entry["variants"]), len(entry["locales"]["zh-CN"]["variants"]))
+
+    def test_translated_brief_cannot_drop_source_targets(self):
+        self.scaffold()
+        source = self.root / "group/example.md"
+        english = source.with_name("example.en.md")
+        english.write_text(
+            source.read_text().replace(
+                "## Sources", "## Sources\n\n- [Reference](https://example.org/reference)"
+            )
+        )
+        with self.assertRaisesRegex(c.MedicalError, "translated source targets differ"):
+            briefs.load(self.root, self.catalog)
+
     def test_markdown_edits_flow_to_standalone_build(self):
         self.scaffold()
         p = self.root / "group/example.md"

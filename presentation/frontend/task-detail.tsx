@@ -1,6 +1,7 @@
 import styles from './task-detail.module.css';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { Box, Field, Markup, SourceLink, TaskScene } from './content';
+import { copyText, useLocale, wsiBoundary } from './locale';
 import { edition, hasExample, type ExplorerModel } from './model';
 import type { Dispatch, ExplorerState } from './state';
 import type { TaskEntry, TaskTab, VisualRole } from './types';
@@ -18,6 +19,7 @@ function ImageNotice({
   entry: TaskEntry;
   dispatch: Dispatch;
 }) {
+  const { t } = useLocale();
   const notice = entry.sources.find(([label]) => label === 'Preview image notices'),
     source = notice && model.data.local_sources[notice[1]];
   return source?.sha256 ? (
@@ -27,12 +29,13 @@ function ImageNotice({
         data-notice={source.sha256}
         onClick={() => dispatch({ type: 'source', source: source.sha256! }, '#source-heading')}
       >
-        Image attribution, terms and derivation
+        {t('Image attribution, terms and derivation')}
       </button>
     </p>
   ) : null;
 }
 function TaskPicture({ model, state, dispatch }: DetailProps) {
+  const { t } = useLocale();
   const entry = model.get(state.selected),
     illustrated = entry.example_case_id
       ? model.items(entry).find((item) => item.id === entry.example_case_id)
@@ -49,17 +52,20 @@ function TaskPicture({ model, state, dispatch }: DetailProps) {
           data-illustration={entry.illustration.kind}
         >
           <figcaption>
-            <span className="drawing-label">Animated task illustration</span>
-            <span>Illustrative model · not case-specific</span>
+            <span className="drawing-label">{t('Animated task illustration')}</span>
+            <span>{t('Illustrative model · not case-specific')}</span>
           </figcaption>
           <TaskScene entry={entry} />
           {native && (
             <details className="scene-source">
-              <summary>Inspect source-derived example{exampleLabel}</summary>
+              <summary>
+                {t('Inspect source-derived example')}
+                {exampleLabel}
+              </summary>
               <Markup className="native-input" html={entry.visuals.input} />
               {notice}
               <button className="text-button" data-example-open onClick={open}>
-                Inspect example and reference →
+                {t('Inspect example and reference →')}
               </button>
             </details>
           )}
@@ -67,9 +73,12 @@ function TaskPicture({ model, state, dispatch }: DetailProps) {
       ) : native ? (
         <figure className="task-picture native-preview">
           <figcaption>
-            <span className="drawing-label">Source-derived example{exampleLabel}</span>
+            <span className="drawing-label">
+              {t('Source-derived example')}
+              {exampleLabel}
+            </span>
             <button className="text-button" data-example-open onClick={open}>
-              Inspect example →
+              {t('Inspect example →')}
             </button>
           </figcaption>
           <Markup className="native-input" html={entry.visuals.input} />
@@ -86,6 +95,7 @@ function TaskPicture({ model, state, dispatch }: DetailProps) {
   );
 }
 function CaseSelector({ model, state, dispatch }: DetailProps) {
+  const { t } = useLocale();
   const entry = model.get(state.selected),
     cases = model
       .items(entry)
@@ -95,10 +105,12 @@ function CaseSelector({ model, state, dispatch }: DetailProps) {
     facts = item?.case_context?.facts || [];
   if (!cases.length) return null;
   return (
-    <section className="case-selector" aria-label="Cases">
+    <section className="case-selector" aria-label={t('Cases')}>
       <div className="case-heading">
-        <h3>{cases.length} cases</h3>
-        <span>Shared task; different inputs</span>
+        <h3>
+          {cases.length} {t('cases')}
+        </h3>
+        <span>{t('Shared task; different inputs')}</span>
       </div>
       <div className="case-buttons">
         {cases.map((row) => (
@@ -122,7 +134,7 @@ function CaseSelector({ model, state, dispatch }: DetailProps) {
             </Fragment>
           ))}{' '}
           {item?.case_context?.source && (
-            <SourceLink url={item.case_context.source}>Pool manifest ↗</SourceLink>
+            <SourceLink url={item.case_context.source}>{t('Pool manifest ↗')}</SourceLink>
           )}
         </p>
       )}
@@ -133,31 +145,40 @@ function CaseSelector({ model, state, dispatch }: DetailProps) {
       )}
       {item && (
         <div className="case-source">
-          <SourceLink url={item.url}>Open {model.label(item, entry)} source ↗</SourceLink>
+          <SourceLink url={item.url}>
+            {t('Open source ↗')} {model.label(item, entry)}
+          </SourceLink>
         </div>
       )}
     </section>
   );
 }
 function StudyIndex({ model, state, dispatch }: DetailProps) {
+  const { locale, t } = useLocale();
   const entry = model.get(state.selected);
   if (!entry.studies?.length) return null;
   return (
     <section className="study-index">
-      <h3>Experiments and conditions</h3>
-      <p className="fine">
-        Grouped for navigation. Each protocol retains its contract, cases, assistance, model and
-        runtime. Grouping does not pool scores or count an index as an execution.
-      </p>
+      <h3>{t('Experiments and conditions')}</h3>
+      {!entry.id.startsWith('wsi-') && (
+        <p className="fine">
+          {t(
+            'Grouped for navigation. Each protocol retains its contract, cases, assistance, model and runtime. Grouping does not pool scores or count an index as an execution.',
+          )}
+        </p>
+      )}
       {entry.studies.map((study) => {
         const source = model.data.local_sources[study.protocol];
         return (
           <details className="study" data-experiment={study.id} key={study.id}>
             <summary>{study.title}</summary>
+            {locale === 'zh-CN' && entry.id.startsWith('wsi-') && (
+              <p className="translation-notice">{t('English source text')}</p>
+            )}
             <p>{study.scope}</p>
             {!!study.tasks.length && (
               <p className="fine">
-                Recorded task/case IDs:{' '}
+                {t('Recorded task/case IDs:')}{' '}
                 {study.tasks.map((id, index) => (
                   <Fragment key={id}>
                     {index > 0 && ' · '}
@@ -175,14 +196,14 @@ function StudyIndex({ model, state, dispatch }: DetailProps) {
                     dispatch({ type: 'source', source: source.sha256! }, '#source-heading')
                   }
                 >
-                  Read exact protocol
+                  {t('Read exact protocol')}
                 </button>
               ) : (
-                'Protocol not embedded in this copy.'
+                t('Protocol not embedded in this copy.')
               )}
             </p>
             <p className="fine">
-              Experiment <code>{study.id}</code>
+              {t('Experiment')} <code>{study.id}</code>
               <br />
               {study.record_path}
             </p>
@@ -193,32 +214,33 @@ function StudyIndex({ model, state, dispatch }: DetailProps) {
   );
 }
 function Overview(props: DetailProps) {
+  const { t } = useLocale();
   const { model, state, dispatch } = props,
     entry = model.get(state.selected),
     condition = entry.variants[state.condition]!;
   return (
     <>
       <div className="task-context">
-        <h3>Why it matters</h3>
+        <h3>{t('Why it matters')}</h3>
         <Field entry={entry} name="value" />
       </div>
       <TaskPicture {...props} />
       <div className="overview-contract">
-        <Box title="Input">
+        <Box title={t('Input')}>
           <Field entry={entry} name="raw" />
         </Box>
         {entry.variants.length < 2 && (
-          <Box title="Supplied help" className="helper">
+          <Box title={t('Supplied help')} className="helper">
             <Field entry={entry} name="helpers" />
           </Box>
         )}
-        <Box title="Deliverable" className="deliverable">
+        <Box title={t('Deliverable')} className="deliverable">
           <Field entry={entry} name="output" />
         </Box>
       </div>
       {entry.variants.length > 1 && (
         <section className="assistance">
-          <h3>Assistance condition</h3>
+          <h3>{t('Assistance condition')}</h3>
           <div className="variants">
             {entry.variants.map((variant, index) => (
               <button
@@ -234,18 +256,18 @@ function Overview(props: DetailProps) {
           </div>
           <div className="condition">
             <p>
-              <strong>Given</strong>
+              <strong>{t('Given')}</strong>
               {condition.helper}
             </p>
             <p>
-              <strong>Remaining work</strong>
+              <strong>{t('Remaining work')}</strong>
               {condition.remaining}
             </p>
           </div>
         </section>
       )}
       <section className="difficulty">
-        <h3>What makes it difficult</h3>
+        <h3>{t('What makes it difficult')}</h3>
         <Field entry={entry} name="challenge" />
       </section>
       <CaseSelector {...props} />
@@ -254,30 +276,32 @@ function Overview(props: DetailProps) {
   );
 }
 function Requirements({ entry }: { entry: TaskEntry }) {
+  const { t } = useLocale();
   return (
     <div className="requirements">
-      <Box title="Task rules">
+      <Box title={t('Task rules')}>
         <Field entry={entry} name="spec" />
       </Box>
-      <Box title="Environment & callable tools">
+      <Box title={t('Environment & callable tools')}>
         <Field entry={entry} name="tools" />
       </Box>
-      <Box title="How success is checked">
+      <Box title={t('How success is checked')}>
         <Field entry={entry} name="score" />
       </Box>
-      <Box title="Reference-only material">
+      <Box title={t('Reference-only material')}>
         <Field entry={entry} name="reference" />
       </Box>
     </div>
   );
 }
 function Examples({ model, state, dispatch }: DetailProps) {
+  const { t } = useLocale();
   const entry = model.get(state.selected),
     illustrated = model.items(entry).find((item) => item.id === entry.example_case_id);
   const roles: [VisualRole, string][] = [
-    ['input', 'Input'],
-    ['helpers', 'Supplied helpers'],
-    ['answer', 'Reveal reference / output'],
+    ['input', t('Input')],
+    ['helpers', t('Supplied helpers')],
+    ['answer', t('Reveal reference / output')],
   ];
   return (
     <>
@@ -290,7 +314,7 @@ function Examples({ model, state, dispatch }: DetailProps) {
             case has no local image preview.
           </p>
         )}
-      <div className="variants" aria-label="Visual reveal">
+      <div className="variants" aria-label={t('Visual reveal')}>
         {roles.map(([role, label]) => (
           <button
             key={role}
@@ -311,6 +335,8 @@ function Examples({ model, state, dispatch }: DetailProps) {
   );
 }
 function Sources({ model, state, dispatch }: DetailProps) {
+  const { t } = useLocale();
+  const [copyStatus, setCopyStatus] = useState('');
   const entry = model.get(state.selected),
     items = model.items(entry),
     active =
@@ -332,24 +358,19 @@ function Sources({ model, state, dispatch }: DetailProps) {
                 dispatch({ type: 'source', source: '' }, `[data-source="${state.source}"]`)
               }
             >
-              Back to references
+              {t('Back to references')}
             </button>
             <a
               id="source-download"
               href={'data:application/octet-stream;base64,' + source.base64}
               download={sourceEntry[1].split('/').at(-1)}
             >
-              Download original
+              {t('Download original')}
             </a>
           </div>
           <h3 id="source-heading" tabIndex={-1}>
             {sourceEntry[0]}
           </h3>
-          <p className="fine">
-            Exact source copy · {source.bytes?.toLocaleString()} bytes
-            <br />
-            SHA-256 <code>{source.sha256}</code>
-          </p>
           <pre id="source-content" tabIndex={0}>
             {source.content}
           </pre>
@@ -357,7 +378,7 @@ function Sources({ model, state, dispatch }: DetailProps) {
       )}
       {items.length > 1 && (
         <label className="source-picker">
-          Source record
+          {t('Source record')}
           <select
             id="source-picker"
             value={state.selectedItem}
@@ -365,7 +386,7 @@ function Sources({ model, state, dispatch }: DetailProps) {
               dispatch({ type: 'item', id: event.target.value }, '#source-picker')
             }
           >
-            <option value="">Shared definition sources</option>
+            <option value="">{t('Shared definition sources')}</option>
             {items.map((item) => (
               <option value={item.id} key={item.id}>
                 {model.label(item, entry)}
@@ -376,10 +397,10 @@ function Sources({ model, state, dispatch }: DetailProps) {
       )}
       {active && (
         <div className="selected-source">
-          <SourceLink url={active.url}>Open selected source ↗</SourceLink>
+          <SourceLink url={active.url}>{t('Open selected source ↗')}</SourceLink>
           {active.brief_scope_note && <p className="fine">{active.brief_scope_note}</p>}
           <details className="provenance">
-            <summary>Technical identifiers</summary>
+            <summary>{t('Technical identifiers')}</summary>
             <dl>
               <dt>Source ID</dt>
               <dd>
@@ -395,7 +416,7 @@ function Sources({ model, state, dispatch }: DetailProps) {
           </details>
         </div>
       )}
-      <h3>Definition references</h3>
+      <h3>{t('Definition references')}</h3>
       {entry.sources.map(([label, path], index) => {
         const reference = model.data.local_sources[path],
           story = model.data.presentation_context?.story_urls?.[path];
@@ -421,13 +442,12 @@ function Sources({ model, state, dispatch }: DetailProps) {
                 {story && (
                   <>
                     {' '}
-                    · <a href={story}>Read illustrated story →</a>
+                    · <a href={story}>{t('Read illustrated story →')}</a>
                   </>
                 )}
-                <small>{path}</small>
                 {!reference?.sha256 && (
                   <small>
-                    Unavailable in this copy:{' '}
+                    {t('Unavailable in this copy:')}{' '}
                     {reference?.unavailable || 'This source is not included.'}
                   </small>
                 )}
@@ -436,8 +456,47 @@ function Sources({ model, state, dispatch }: DetailProps) {
           </div>
         );
       })}
+      <div className="metadata-actions">
+        <button
+          className="quiet"
+          onClick={async () => {
+            const metadata = entry.sources.map(([label, path]) => ({
+              label,
+              path,
+              sha256: model.data.local_sources[path]?.sha256,
+              bytes: model.data.local_sources[path]?.bytes,
+              unavailable: model.data.local_sources[path]?.unavailable,
+            }));
+            setCopyStatus(
+              (await copyText(
+                JSON.stringify(
+                  {
+                    task_id: entry.id,
+                    owner_group: entry.owner_group,
+                    category: entry.category,
+                    role: entry.role,
+                    agent_work: entry.agent_work,
+                    modalities: entry.modalities,
+                    studies: entry.studies?.map((study) => study.id),
+                    sources: metadata,
+                  },
+                  null,
+                  2,
+                ) + '\n',
+              ))
+                ? t('Metadata copied')
+                : t('Copy failed'),
+            );
+          }}
+        >
+          {t('Copy full metadata')}
+        </button>
+        <span role="status" aria-live="polite">
+          {copyStatus}
+        </span>
+      </div>
       <details className="source-limits">
-        <summary>Evidence &amp; remaining gaps</summary>
+        <summary>{t('Evidence & remaining gaps')}</summary>
         <Field entry={entry} name="families" />
         <Field entry={entry} name="gap" />
       </details>
@@ -445,17 +504,18 @@ function Sources({ model, state, dispatch }: DetailProps) {
   );
 }
 export function TaskDetail(props: DetailProps) {
+  const { locale, t } = useLocale();
   const { model, state, dispatch } = props,
     entry = model.get(state.selected),
     members = model.members(entry),
     family = model.family(entry),
     item = model.items(entry).find((row) => row.id === state.selectedItem);
   const tabs: [TaskTab, string][] = [
-    ['overview', 'Overview'],
-    ['requirements', 'Requirements'],
+    ['overview', t('Overview')],
+    ['requirements', t('Requirements')],
   ];
-  if (hasExample(entry)) tabs.push(['examples', 'Example']);
-  tabs.push(['sources', 'Sources']);
+  if (hasExample(entry)) tabs.push(['examples', t('Example')]);
+  tabs.push(['sources', t('Sources')]);
   const normalized = (value: string) =>
     value
       .toLowerCase()
@@ -469,25 +529,29 @@ export function TaskDetail(props: DetailProps) {
   return (
     <article className="task-detail" data-brief={entry.id}>
       <div className="detail-heading">
-        <p className="task-provenance">
-          {entry.repo}
-          {entry.owner_group && ' · Research owner: ' + entry.owner_group}
-          <br />
-          {model.category(entry.category).title} ·{' '}
-          {model.data.taxonomy.roles?.[entry.role || 'task'] || 'Agent task'} ·{' '}
-          {model.data.taxonomy.agent_work?.[entry.agent_work] || ''}
-          {!!entry.operations?.length &&
-            ' · Also: ' +
-              entry.operations.map((operation) => model.category(operation).title).join(', ')}
-        </p>
-        <div className={styles.modalities} aria-label="Imaging and data modalities">
-          {entry.modalities.map((modality) => (
-            <span className={styles.modality} data-modality={modality} key={modality}>
-              {model.data.taxonomy.modalities?.[modality] || modality}
-            </span>
-          ))}
-        </div>
-        {entry.proposed && <span className="draft">Proposed</span>}
+        {!entry.id.startsWith('wsi-') && (
+          <p className="task-provenance">
+            {entry.repo}
+            {entry.owner_group && ' · ' + t('Research owner:') + ' ' + entry.owner_group}
+            <br />
+            {t(model.category(entry.category).title)} ·{' '}
+            {t(model.data.taxonomy.roles?.[entry.role || 'task'] || 'Agent task')} ·{' '}
+            {t(model.data.taxonomy.agent_work?.[entry.agent_work] || '')}
+            {!!entry.operations?.length &&
+              ' · Also: ' +
+                entry.operations.map((operation) => t(model.category(operation).title)).join(', ')}
+          </p>
+        )}
+        {!entry.id.startsWith('wsi-') && (
+          <div className={styles.modalities} aria-label="Imaging and data modalities">
+            {entry.modalities.map((modality) => (
+              <span className={styles.modality} data-modality={modality} key={modality}>
+                {t(model.data.taxonomy.modalities?.[modality] || modality)}
+              </span>
+            ))}
+          </div>
+        )}
+        {entry.proposed && <span className="draft">{t('Proposed')}</span>}
         <h2>{members.length > 1 ? family?.title : entry.title}</h2>
         {members.length > 1 && (
           <label className="task-variant-picker" htmlFor="task-variant">
@@ -513,6 +577,17 @@ export function TaskDetail(props: DetailProps) {
             <Field entry={entry} name="goal" />
           </div>
         )}
+        {wsiBoundary(entry.id, locale) && (
+          <aside className="reading-boundary">
+            <strong>{t('Page caveat')}</strong>
+            <p>{wsiBoundary(entry.id, locale)}</p>
+          </aside>
+        )}
+        {locale === 'zh-CN' && !entry.locales?.['zh-CN'] && (
+          <p className="translation-notice" lang="zh-CN">
+            {t('English source text')}
+          </p>
+        )}
       </div>
       {item?.brief_scope_note && (
         <p className="scope-note">
@@ -529,7 +604,7 @@ export function TaskDetail(props: DetailProps) {
       )}
       {!!datasets.length && (
         <div className="dataset-links">
-          <span>Learn about the data</span>
+          <span>{t('Learn about the data')}</span>
           {datasets.map((dataset) => (
             <a key={dataset.id} href={'#datasets/' + encodeURIComponent(dataset.id)}>
               {dataset.title} →
@@ -537,7 +612,7 @@ export function TaskDetail(props: DetailProps) {
           ))}
         </div>
       )}
-      <div className="tabs" role="tablist" aria-label="Task sections">
+      <div className="tabs" role="tablist" aria-label={t('Task sections')}>
         {tabs.map(([tab, label], index) => (
           <button
             id={'tab-' + tab}

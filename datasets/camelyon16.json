@@ -29,7 +29,7 @@
         "tumor_091"
       ],
       "role": "curated",
-      "note": "One complete source image. TIGER adds three paired ROIs; additional selection-screen files are separately identified in the receipt.",
+      "note": "One paired positive WSI and XML; two other XMLs are selection-only without matching local images.",
       "receipt": {
         "path": "datasets/receipts/wsi-teaching-samples.json",
         "sha256": "2e1c2bdf985d7e6531dbb28883010e08568519d46a3985c0c7053609c3a35c81",
@@ -37,7 +37,7 @@
       }
     }
   ],
-  "experiment_ids": [],
+  "experiment_ids": ["wsi-camelyon-search-sol6-xhigh"],
   "brief_ids": [
     "wsi-camelyon-search"
   ],
@@ -55,5 +55,31 @@
   "documentation_gaps": [
     "Teaching sample only; no frozen scoring contract, model trial or held-out generalization result."
   ],
-  "native_payload_expected": true
+  "native_payload_expected": true,
+  "locales": {
+    "zh-CN": {
+      "title": "CAMELYON16 淋巴结全片图像",
+      "summary": "H&E 淋巴结全片，配有肿瘤与排除区域轮廓。",
+      "modality": "显微病理图像",
+      "sample_unit": "一张原始全片图像及明确配对的参考标注",
+      "image_description": "H&E 淋巴结金字塔 TIFF。",
+      "annotation_description": "Tumor 与 Exclusion 多边形；六个阳性多边形不等于六个独立病灶。",
+      "reference_note": "参考标出肿瘤与排除区域。六个阳性多边形不等于六个独立病灶；在拟议的纯图像条件下，标注仅供评估与阅读。",
+      "version_note": "2026-09-22/23 有界获取；具体来源、版本、原生几何与校验值见收据。",
+      "terms_note": "本次 AWS 发布登记为 CC0；旧网页措辞不同，复用时应保留发布来源。",
+      "access_note": "所选文件可公开下载；未注册账号、签署协议或运行模型。",
+      "documentation_gaps": [
+        "仅教学样本；尚无冻结评分方案、模型试验或留出集泛化结果。"
+      ],
+      "sample_set_notes": [
+        "一张完整配对阳性切片与 XML；另外两个 XML 仅供选样，没有对应本地图像。"
+      ],
+      "snapshot_summary": "一张原生全片与配对来源参考。",
+      "snapshot_reference_note": "Tumor 与 Exclusion 多边形；多边形数不等于独立病灶数。",
+      "snapshot_captions": [
+        "CAMELYON16 `tumor_091` 全片原图缩略图；未显示参考。",
+        "来源肿瘤与排除区轮廓；非模型输出。六个阳性多边形不等于六个独立病灶。"
+      ]
+    }
+  }
 }

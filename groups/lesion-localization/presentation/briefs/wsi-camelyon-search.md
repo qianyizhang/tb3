@@ -17,7 +17,7 @@
 ### Supplied helpers
 
 - **任务输入：** 原始 TIFF、标尺、通用切图工具。
-- **教学裁图：** GT 选定位置，已移除搜索工作。
+- **教学裁图：** 按参考标注选定位置，已移除搜索工作。
 - **选样限制：** 文件较小、阳性区域较大；不代表微小灶难度。
 
 ### Callable tools
@@ -31,7 +31,7 @@
 - **XML：** 6 个 Tumor 多边形 + 1 个 Exclusion。
 - **红色：** 肿瘤；**青色：** 需排除的内部区域。
 - **边界：** 多边形数 ≠ 独立病灶数；不直接给临床分期。
-- **用途：** 评估与教学揭示，默认不提供给 agent。
+- **用途：** 评估与教学揭示，默认不提供给智能体。
 
 ## Task specification
 
@@ -63,12 +63,12 @@
 
 ### Input
 
-![CAMELYON16 原图：全片缩略图，无 GT](../../../../.local/wsi-ground-truth/explainer/assets/camelyon-overview-input.jpg)
+![CAMELYON16 原图：全片缩略图，未显示参考标注](../../../../.local/wsi-ground-truth/explainer/assets/camelyon-overview-input.jpg)
 
 ### Supplied helpers
 
 - **位置：** (47739, 31340)，1600 × 1600 原生 px。
-- **选择：** 最小 Tumor 多边形；属于 GT 选定的教学裁图。
+- **选择：** 最小 Tumor 多边形；属于按参考标注选定的教学裁图。
 
 ### Reference or output
 
@@ -79,7 +79,7 @@
 | Condition | Supplied help | Work remaining |
 | --- | --- | --- |
 | 拟议全片搜索 | 原图与尺度 | 搜索、确认、定位 |
-| 课堂局部检查 | GT 选择的裁图 | 观察形态；不能评价搜索能力 |
+| 课堂局部检查 | 按参考标注选择的裁图 | 观察形态；不能评价搜索能力 |
 
 ## Difficulty
 

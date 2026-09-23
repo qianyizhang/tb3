@@ -18,19 +18,19 @@
   gap: 7px;
   margin: 0 0 10px;
   color: #294e52;
-  font-size: 12px;
+  font-size:var(--text-label);
   font-weight: 650;
 }
 .scene-story-card h4 > span {
   font:
-    10px ui-monospace,
+    var(--text-label) ui-monospace,
     monospace;
   color: #71928a;
 }
 .scene-story-card h4 > small {
   margin-left: auto;
   color: #70847e;
-  font-size: 9px;
+  font-size:var(--text-label);
   font-weight: 400;
 }
 .scene-story-art {
@@ -48,7 +48,7 @@
 }
 .scene-story-card > p {
   margin: 10px 0 0;
-  font-size: 12px;
+  font-size:var(--text-label);
   line-height: 1.5;
   color: #385956;
   overflow-wrap: anywhere;
@@ -68,13 +68,13 @@
 }
 .scene-story-action > strong {
   display: block;
-  font-size: 12px;
+  font-size:var(--text-label);
   line-height: 1.5;
 }
 .scene-story-action > small {
   display: block;
   margin-top: 8px;
-  font-size: 10px;
+  font-size:var(--text-label);
   line-height: 1.45;
   color: #6c827a;
 }
@@ -93,19 +93,19 @@
   display: block;
   margin-bottom: 5px;
   color: #6d827a;
-  font-size: 9px;
+  font-size:var(--text-label);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 .scene-walkthrough-heading strong {
-  font-size: 15px;
+  font-size:var(--text-body);
   line-height: 1.4;
   color: #2b5049;
 }
 .scene-walkthrough-heading > p {
   margin: 0;
   color: #5a736b;
-  font-size: 11px;
+  font-size:var(--text-label);
   line-height: 1.65;
 }
 .scene-player .scene-canvas {
@@ -113,14 +113,14 @@
 }
 .scene-player .scene-corner {
   top: 16px;
-  font-size: 9px;
+  font-size:var(--text-label);
   letter-spacing: 0.03em;
 }
 .scene-stage-label {
   position: absolute;
   left: 18px;
   bottom: 13px;
-  font-size: 10px;
+  font-size:var(--text-label);
   color: #3b6358;
   pointer-events: none;
 }
@@ -129,16 +129,16 @@
   padding-top: 14px;
 }
 .scene-player .scene-explanation strong {
-  font-size: 13px;
+  font-size:var(--text-secondary);
 }
 .scene-player .scene-explanation p {
-  font-size: 10px;
+  font-size:var(--text-label);
 }
 .scene-player .scene-controls {
   padding: 10px 14px;
 }
 .scene-player .scene-steps button {
-  font-size: 10px;
+  font-size:var(--text-label);
 }
 @media (max-width: 900px) {
   .scene-storyboard {
@@ -147,10 +147,10 @@
     padding: 16px 12px;
   }
   .scene-story-action > strong {
-    font-size: 10px;
+    font-size:var(--text-label);
   }
   .scene-story-action > small {
-    font-size: 9px;
+    font-size:var(--text-label);
   }
 }
 @media (max-width: 600px) {
@@ -168,7 +168,7 @@
     font-size: 23px;
   }
   .scene-story-card h4 {
-    font-size: 10px;
+    font-size:var(--text-label);
     gap: 4px;
     flex-wrap: wrap;
   }
@@ -177,7 +177,7 @@
     margin-left: 18px;
   }
   .scene-story-card > p {
-    font-size: 10px;
+    font-size:var(--text-label);
     margin-top: 7px;
   }
   .scene-walkthrough-heading {
@@ -186,7 +186,7 @@
     padding: 15px 14px 2px;
   }
   .scene-walkthrough-heading strong {
-    font-size: 14px;
+    font-size:var(--text-reading);
   }
   .scene-player .scene-canvas {
     height: 255px;
@@ -207,11 +207,11 @@
   .scene-stage-label {
     left: 13px;
     max-width: 52%;
-    font-size: 9px;
+    font-size:var(--text-label);
   }
   .scene-player .scene-gesture {
     right: 10px;
-    font-size: 9px;
+    font-size:var(--text-label);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -223,7 +223,7 @@
 .scene-story-action-index {
   display: block;
   font:
-    10px ui-monospace,
+    var(--text-label) ui-monospace,
     monospace;
   color: #71928a;
 }

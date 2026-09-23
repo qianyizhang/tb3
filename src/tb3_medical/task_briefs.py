@@ -166,6 +166,59 @@ def source_bundle(root: Pathish, entries: Sequence[Document]) -> Records:
     return sources
 
 
+def _brief_projection(root: Path, source: Path) -> Document:
+    """Render one authored language without changing the brief's scientific contract."""
+    content = sections(source.read_text())
+    for field in (
+        "title",
+        "goal",
+        "Given/Original data",
+        "Task specification",
+        "Expected output",
+        "Evaluation",
+        "Sources",
+    ):
+        if not content.get(field):
+            raise c.MedicalError(f"{source.relative_to(root)}: missing {field}")
+    row: Document = {"title": content["title"], "goal": content["goal"]}
+    row.update({field: content.get(key, "Not yet specified.") for field, key in FIELDS.items()})
+    row["stages"] = [
+        line[2:]
+        for line in content.get("Visual explanation/Workflow", "").splitlines()
+        if line.startswith("- ")
+    ]
+    if len(row["stages"]) != 3:
+        row["stages"] = ["Supplied inputs", "Requested action", "Expected deliverable"]
+    row["variants"] = conditions(content.get("Conditions", "")) or [
+        {"name": "Specified condition", "helper": row["helpers"], "remaining": row["spec"]}
+    ]
+    row["sources"] = []
+    for label, target in re.findall(r"\[([^\]]*)\]\(([^)]+)\)", content["Sources"]):
+        if not urlsplit(target).scheme:
+            p = local_path(root, source, target)
+            if not p.exists():
+                raise c.MedicalError(f"{source.relative_to(root)}: missing source {target}")
+            target = p.relative_to(root).as_posix()
+        row["sources"].append([label, target])
+    missing: list[str] = []
+    row["html"] = {key: render_text(root, source, row[key], missing) for key in ("goal", *FIELDS)}
+    row["visuals"] = {
+        key: render_text(
+            root,
+            source,
+            content.get("Visual explanation/" + heading, "No source-derived view curated yet."),
+            missing,
+        )
+        for key, heading in (
+            ("input", "Input"),
+            ("helpers", "Supplied helpers"),
+            ("answer", "Reference or output"),
+        )
+    }
+    row["missing_media"] = sorted(set(missing))
+    return row
+
+
 def load(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
     root = Path(root).resolve()
     data = task_catalog.collection(root, catalog)
@@ -177,59 +230,22 @@ def load(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
             raise c.MedicalError("Duplicate task brief ID: " + meta["id"])
         ids.add(meta["id"])
         source = c.inside(root, meta["brief"])
-        content = sections(source.read_text())
-        for field in (
-            "title",
-            "goal",
-            "Given/Original data",
-            "Task specification",
-            "Expected output",
-            "Evaluation",
-            "Sources",
-        ):
-            if not content.get(field):
-                raise c.MedicalError(f"{meta['brief']}: missing {field}")
-        row = dict(meta, title=content["title"], goal=content["goal"])
-        row.update({field: content.get(key, "Not yet specified.") for field, key in FIELDS.items()})
-        row["stages"] = [
-            line[2:]
-            for line in content.get("Visual explanation/Workflow", "").splitlines()
-            if line.startswith("- ")
-        ]
-        if len(row["stages"]) != 3:
-            row["stages"] = ["Supplied inputs", "Requested action", "Expected deliverable"]
-        row["variants"] = conditions(content.get("Conditions", "")) or [
-            {"name": "Specified condition", "helper": row["helpers"], "remaining": row["spec"]}
-        ]
-        row["sources"] = []
-        for label, target in re.findall(r"\[([^\]]*)\]\(([^)]+)\)", content["Sources"]):
-            if not urlsplit(target).scheme:
-                p = local_path(root, source, target)
-                if not p.exists():
-                    raise c.MedicalError(f"{meta['brief']}: missing source {target}")
-                target = p.relative_to(root).as_posix()
-            row["sources"].append([label, target])
+        english = source.with_name(source.stem + ".en.md")
+        primary = english if english.is_file() else source
+        row = dict(meta, **_brief_projection(root, primary))
+        if primary != source:
+            row["locales"] = {"zh-CN": _brief_projection(root, source)}
+            primary_targets = [target for _, target in row["sources"]]
+            localized_targets = [target for _, target in row["locales"]["zh-CN"]["sources"]]
+            if localized_targets != primary_targets:
+                raise c.MedicalError(
+                    f"{source.relative_to(root)}: translated source targets differ"
+                )
         for study in row["studies"]:
             if study["protocol"] not in [target for _, target in row["sources"]]:
                 row["sources"].append([study["title"], study["protocol"]])
-        missing: list[str] = []
-        row["html"] = {
-            key: render_text(root, source, row[key], missing) for key in ("goal", *FIELDS)
-        }
-        row["visuals"] = {
-            key: render_text(
-                root,
-                source,
-                content.get("Visual explanation/" + heading, "No source-derived view curated yet."),
-                missing,
-            )
-            for key, heading in (
-                ("input", "Input"),
-                ("helpers", "Supplied helpers"),
-                ("answer", "Reference or output"),
-            )
-        }
-        row["missing_media"] = sorted(set(missing))
+                for localized in row.get("locales", {}).values():
+                    localized["sources"].append([study["title"], study["protocol"]])
         illustration = row.get("illustration")
         if illustration is not None and (
             not isinstance(illustration, dict)

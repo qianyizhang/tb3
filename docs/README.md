@@ -1,5 +1,7 @@
 # Documentation
 
+Reader-facing presentation principles live in [Presentation design](../presentation/DESIGN.md).
+
 This is a medical agent capability research workbench. Useful outcomes include
 successes, qualified partial results, source research and visual explanations.
 Finding submission candidates is an optional later step, not the research goal.

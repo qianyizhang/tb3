@@ -28,10 +28,12 @@ async function checkWorkbench(browser, directory, reportDirectory = directory) {
       (count) => document.querySelectorAll('.group-card').length === count,
       groups.length,
     );
-    assert.equal(
+    const explorerLink = new URL(
       await page.locator('#task-explorer-link').getAttribute('href'),
-      'task-explorer/index.html',
+      page.url(),
     );
+    assert.equal(explorerLink.pathname, '/task-explorer/index.html');
+    assert.equal(explorerLink.searchParams.get('lang'), 'en');
 
     const target =
       data.records.find(
@@ -68,8 +70,9 @@ async function checkWorkbench(browser, directory, reportDirectory = directory) {
     );
     await page.locator('#task-explorer-link').click();
     await page.waitForSelector('.task-detail');
-    const home = page.locator('a[href="../index.html"]');
+    const home = page.locator('#workbench-home');
     assert.ok(await home.count(), 'Integrated Explorer has a usable home link');
+    assert.equal(new URL(await home.first().getAttribute('href')).searchParams.get('lang'), 'en');
     await home.first().click();
     await page.waitForSelector('.group-card');
 

@@ -91,10 +91,12 @@ async function checkCohesion(browser, directory, reportDirectory) {
     await page.waitForSelector('.group-card');
     await activeNavigation('Overview');
     await screenshot('home-desktop');
-    assert.equal(
+    const explorerLink = new URL(
       await page.locator('#task-explorer-link').getAttribute('href'),
-      'task-explorer/index.html',
+      page.url(),
     );
+    assert.equal(explorerLink.pathname, '/task-explorer/index.html');
+    assert.equal(explorerLink.searchParams.get('lang'), 'en');
 
     // A search dead end should have a direct escape that clears every active filter.
     const group = await page.locator('#group option').nth(1).getAttribute('value');

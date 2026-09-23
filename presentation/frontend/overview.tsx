@@ -1,6 +1,7 @@
 import { Component, Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import type { ErrorInfo, ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { LanguageSwitch, LocaleProvider, localeHref, useLocale } from './locale';
 import {
   filterRecords,
   initialRoute,
@@ -419,6 +420,7 @@ function LoadError() {
 }
 
 function Overview() {
+  const { locale, t } = useLocale();
   const [data, setData] = useState<OverviewData>();
   const [failed, setFailed] = useState(false);
   const [guideOpen, setGuideOpen] = useState(location.hash === '#status-guide');
@@ -459,52 +461,63 @@ function Overview() {
           main.current?.focus();
         }}
       >
-        Skip to content
+        {t('Skip to content')}
       </a>
       <header className="site-header">
         <a className="site-brand" href="index.html">
-          TB3 / MEDICAL<span className="site-brand-caption">Research workbench</span>
+          TB3 / MEDICAL<span className="site-brand-caption">{t('Research workbench')}</span>
         </a>
-        <nav className="site-nav" aria-label="Primary navigation">
+        <nav className="site-nav" aria-label={t('Primary navigation')}>
           <a href="index.html" aria-current="page">
-            Overview
+            {t('Overview')}
           </a>
-          <a id="tasks-nav-link" href={taskUrl} hidden={!taskUrl}>
-            Tasks
+          <a
+            id="tasks-nav-link"
+            href={taskUrl ? localeHref(taskUrl, locale) : undefined}
+            hidden={!taskUrl}
+          >
+            {t('Tasks')}
           </a>
           <a
             id="datasets-nav-link"
-            href={taskUrl ? `${taskUrl}#datasets` : undefined}
+            href={taskUrl ? localeHref(`${taskUrl}#datasets`, locale) : undefined}
             hidden={!taskUrl}
           >
-            Datasets
+            {t('Datasets')}
           </a>
         </nav>
+        <LanguageSwitch />
       </header>
       <main id="main" ref={main} tabIndex={-1}>
         <section className="intro" aria-labelledby="intro-title">
           <div className="intro-copy">
-            <p className="eyebrow">Medical imaging · Agent research</p>
-            <h1 id="intro-title">What can an agent learn from medical images?</h1>
+            <p className="eyebrow">{t('Medical imaging · Agent research')}</p>
+            <h1 id="intro-title">{t('What can an agent learn from medical images?')}</h1>
             <p className="lede">
-              Explore the tasks, follow the research and trace each conclusion back to its evidence.
+              {t(
+                'Explore the tasks, follow the research and trace each conclusion back to its evidence.',
+              )}
             </p>
             <div className="intro-actions">
               <span id="task-explorer-entry" hidden={!taskUrl}>
-                <a id="task-explorer-link" className="button button-primary" href={taskUrl}>
-                  Explore tasks <span aria-hidden="true">→</span>
+                <a
+                  id="task-explorer-link"
+                  className="button button-primary"
+                  href={taskUrl ? localeHref(taskUrl, locale) : undefined}
+                >
+                  {t('Explore tasks')} <span aria-hidden="true">→</span>
                 </a>
               </span>
               <a className="button button-secondary" href="#research-record">
-                Browse evidence
+                {t('Browse evidence')}
               </a>
             </div>
             <p className="intro-note">
-              Successes, partial attempts and corrections stay in the same record.
+              {t('Successes, partial attempts and corrections stay in the same record.')}
             </p>
           </div>
-          <aside className="wayfinding" aria-label="Explore the workbench">
-            <p className="eyebrow">Find your way</p>
+          <aside className="wayfinding" aria-label={t('Explore the workbench')}>
+            <p className="eyebrow">{t('Find your way')}</p>
             {[
               [
                 'research-areas',
@@ -527,8 +540,8 @@ function Overview() {
                   {String(index + 1).padStart(2, '0')}
                 </span>
                 <span>
-                  <strong>{title}</strong>
-                  <span>{description}</span>
+                  <strong>{t(title)}</strong>
+                  <span>{t(description)}</span>
                 </span>
                 <span className="wayfinding-arrow" aria-hidden="true">
                   ↓
@@ -537,6 +550,11 @@ function Overview() {
             ))}
           </aside>
         </section>
+        {locale === 'zh-CN' && (
+          <p className="translation-notice" lang="zh-CN">
+            研究记录仍以英文原文呈现；WSI 任务与数据集已有中文译文。
+          </p>
+        )}
         <ResearchAreas data={data} />
         <RecordBrowser data={data} failed={failed} />
         <details
@@ -546,8 +564,8 @@ function Overview() {
           onToggle={(event) => setGuideOpen(event.currentTarget.open)}
         >
           <summary>
-            <span>Status definitions</span>
-            <span className="guide-hint">How to read the research record</span>
+            <span>{t('Status definitions')}</span>
+            <span className="guide-hint">{t('How to read the research record')}</span>
           </summary>
           <dl id="legend">
             {Object.entries(data?.vocabulary.axes ?? {}).flatMap(([axis, definition]) =>
@@ -561,10 +579,11 @@ function Overview() {
           </dl>
         </details>
         <footer>
-          <p>Medical imaging research, with a record you can inspect.</p>
+          <p>{t('Medical imaging research, with a record you can inspect.')}</p>
           <p>
-            Read-only workbench · Packaging, evidence validity and submission qualification are
-            separate.
+            {t(
+              'Read-only workbench · Packaging, evidence validity and submission qualification are separate.',
+            )}
           </p>
         </footer>
       </main>
@@ -597,7 +616,9 @@ class OverviewBoundary extends Component<{ children: ReactNode }, { failed: bool
 const root = document.getElementById('overview-root');
 if (!root) throw new Error('The workbench root is missing');
 createRoot(root).render(
-  <OverviewBoundary>
-    <Overview />
-  </OverviewBoundary>,
+  <LocaleProvider>
+    <OverviewBoundary>
+      <Overview />
+    </OverviewBoundary>
+  </LocaleProvider>,
 );
