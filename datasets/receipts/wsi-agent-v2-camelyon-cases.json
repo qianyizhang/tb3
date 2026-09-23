@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "kind": "source_case_acquisition",
+  "source": "CAMELYON16 S3 release",
+  "purpose": "Revised Sol 6 xhigh lesion-localization diagnostic",
+  "cases": [
+    {
+      "role": "small-positive",
+      "slide_id": "tumor_084",
+      "source_url": "https://camelyon-dataset.s3.us-west-2.amazonaws.com/CAMELYON16/images/tumor_084.tif",
+      "local_path": ".local/wsi-ground-truth/camelyon/tumor_084.tif",
+      "bytes": 838426602,
+      "publisher_md5": "be2668c308fcbddca6d29ff2d9c9788c",
+      "sha256": "73c9766616c40aff2bd6315eb44cd39e7b3d6bb7292cb52e25d3872256baee30",
+      "annotation": {
+        "source_url": "https://camelyon-dataset.s3.us-west-2.amazonaws.com/CAMELYON16/annotations/tumor_084.xml",
+        "local_path": ".local/wsi-ground-truth/camelyon/tumor_084.xml",
+        "bytes": 124817,
+        "sha256": "d7c8c3911298cc9428386993baf281ce7eb033b4fce244d0af4f431787081210"
+      }
+    },
+    {
+      "role": "negative",
+      "slide_id": "normal_108",
+      "source_url": "https://camelyon-dataset.s3.us-west-2.amazonaws.com/CAMELYON16/images/normal_108.tif",
+      "local_path": ".local/wsi-ground-truth/camelyon/normal_108.tif",
+      "bytes": 326607275,
+      "publisher_md5": "3714c9bb0d83aa0702aa48526dc340c1",
+      "sha256": "f606e8ef726a42840a2e0d33d3ffcd1afe9ea52ff98ef0880502958c2a07fe3c"
+    }
+  ],
+  "publisher_checksum_manifest": {
+    "url": "https://camelyon-dataset.s3.us-west-2.amazonaws.com/CAMELYON16/checksums.md5",
+    "sha256": "5e4a4efe198cd0427d32f000c7f556f52fbf7f8a422d5210a7c1e5a12ab4ce08"
+  },
+  "publisher_license_file": {
+    "url": "https://camelyon-dataset.s3.us-west-2.amazonaws.com/CAMELYON16/license.txt",
+    "sha256": "d3f9346ae36af5c23f746e68e3a645bf00a41ab6f2d5570d4219eea9458d75e7",
+    "header": "CAMELYON16 data set is available under CC0."
+  },
+  "reference_scope": "Source README says all slides except its named exception list are fully annotated; tumor_084 is not an exception. normal_108 is used as a negative slide by source naming; no separate normal-slide tumor XML is supplied.",
+  "limits": "Publisher S3 license file is pinned for these bytes; other CAMELYON pages have different license wording. Native images and XML remain local, not tracked."
+}

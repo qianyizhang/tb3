@@ -7,7 +7,7 @@
       "category": "localization",
       "tag": "Proposed task",
       "brief": "groups/lesion-localization/presentation/briefs/wsi-camelyon-search.md",
-      "experiments": [{"id": "wsi-camelyon-search-sol6-xhigh", "scope": "One positive WSI diagnostic search; polygon hits, not independent lesion counts."}, {"id": "wsi-camelyon-search-astra-medium", "scope": "Same positive WSI diagnostic task with Astra medium."}],
+      "experiments": [{"id": "wsi-camelyon-search-sol6-xhigh", "scope": "One positive WSI diagnostic search; polygon hits, not independent lesion counts."}, {"id": "wsi-camelyon-search-astra-medium", "scope": "Same positive WSI diagnostic task with Astra medium."}, {"id": "wsi-camelyon-lesion-v2-sol6-xhigh", "scope": "Revised lesion-group search: two annotated positives and one negative; Sol xhigh diagnostic."}],
       "proposed": true,
       "role": "task",
       "agent_work": "direct",
@@ -34,12 +34,28 @@
       ]
     },
     {
+      "id": "wsi-hiesd-patches",
+      "repo": "TB3 medical workbench",
+      "category": "recognition",
+      "tag": "Diagnostic task",
+      "brief": "groups/lesion-localization/presentation/briefs/wsi-hiesd-patches.md",
+      "experiments": [{"id": "wsi-hiesd-patches-v2-sol6-xhigh", "scope": "Twelve GT-selected annotated patches on one gastric ESD slide; six-class Sol xhigh diagnostic, no WSI search endpoint."}],
+      "proposed": true,
+      "role": "task",
+      "agent_work": "direct",
+      "repository_id": "tb3",
+      "owner_group": "lesion-localization",
+      "modalities": [
+        "microscopy"
+      ]
+    },
+    {
       "id": "wsi-hubmap-inventory",
       "repo": "TB3 medical workbench",
       "category": "segmentation",
       "tag": "Proposed task",
       "brief": "groups/lesion-localization/presentation/briefs/wsi-hubmap-inventory.md",
-      "experiments": [{"id": "wsi-hubmap-inventory-sol6-xhigh", "scope": "One PAS WSI diagnostic inventory using point-to-polygon matching."}, {"id": "wsi-hubmap-inventory-astra-medium", "scope": "Same PAS WSI diagnostic inventory with Astra medium."}],
+      "experiments": [{"id": "wsi-hubmap-inventory-sol6-xhigh", "scope": "One PAS WSI diagnostic inventory using point-to-polygon matching."}, {"id": "wsi-hubmap-inventory-astra-medium", "scope": "Same PAS WSI diagnostic inventory with Astra medium."}, {"id": "wsi-hubmap-inventory-v2-sol6-xhigh", "scope": "Revised source-reference recall, unmatched points queued for review; Sol xhigh diagnostic."}],
       "proposed": true,
       "role": "task",
       "agent_work": "direct",
@@ -55,7 +71,7 @@
       "category": "segmentation",
       "tag": "Proposed task",
       "brief": "groups/lesion-localization/presentation/briefs/wsi-tiger-context.md",
-      "experiments": [{"id": "wsi-tiger-context-sol6-xhigh", "scope": "Three fixed ROIs, image-only and tissue-supplied cell-count conditions."}, {"id": "wsi-tiger-context-astra-medium", "scope": "Same paired ROI conditions with Astra medium."}],
+      "experiments": [{"id": "wsi-tiger-context-sol6-xhigh", "scope": "Three fixed ROIs, image-only and tissue-supplied cell-count conditions."}, {"id": "wsi-tiger-context-astra-medium", "scope": "Same paired ROI conditions with Astra medium."}, {"id": "wsi-tiger-context-v2-sol6-xhigh", "scope": "Revised class definitions and both center-based attribution views across the paired conditions; Sol xhigh diagnostic."}],
       "proposed": true,
       "role": "task",
       "agent_work": "direct",

@@ -277,3 +277,19 @@ Assistant analysis of the five saved Astra traces and answers is in the [diagnos
 ### Specification and GT audit — 2026-09-23
 
 Assistant follow-up analysis in the [specification/reference audit](../findings/evidence/wsi-spec-reference-audit.json) found no demonstrated source GT label or raster conversion defect. The TIGER solver prompt omits the scorer's use of the matched *source* center for compartment-mask lookup; two tissue-supplied boundary points have correct mask codes at their *submitted* centers but score wrong at the source centers. CAMELYON's two unhit tiny Tumor polygons lie 24.4 and 32.0 µm from already-hit polygons and together comprise 0.91% of annotated Tumor polygon area; equal per-polygon scoring is therefore a weak proxy for lesion search. HiESD's source XML exactly reproduces the private raster but annotates only 4.0% of the coarse grid, limiting whole-slide evaluation. HuBMAP has no subtype/inclusion flags for sclerosed or edge profiles, so unmatched candidates require pathology adjudication. These are assistant findings, not a user decision to change a task; scoped [TIGER](../reviews/issue-daae20c8eb194e25.json) and [CAMELYON](../reviews/issue-414cfb506d4b4d7b.json) issues remain pending while frozen scores are retained.
+
+### Revised Sol xhigh round selected — 2026-09-23
+
+**Actor: user. Source: [current task](codex://threads/01a0cbf7-5068-7001-90be-102123fff079).**
+The user answered “all your rec” to five explicit design choices: run Sol xhigh
+on corrected tasks without a paired Astra rerun; score HuBMAP source-reference
+recall while reviewing unmatched points separately; retain both TIGER image-only
+and tissue-supplied conditions with class definitions and both center-based
+attribution views; use CAMELYON lesion groups with a negative and small-lesion
+positive slide; and use HiESD labels on GT-selected annotated patches rather
+than a coarse whole-slide map. This authorizes four new experiment records
+covering seven case/assistance conditions and active babysitting. The old
+task bytes, attempts and scores stay frozen. The new CAMELYON grouping is a
+declared study rule, not an official FROC reproduction; the HiESD patch task
+does not measure autonomous slide search. Reopen for independent slides,
+reference adjudication, replicated assistance runs or a matched model comparison.

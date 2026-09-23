@@ -20,6 +20,10 @@
     {
       "label": "Selected-file receipt",
       "path": "datasets/receipts/wsi-teaching-samples.json"
+    },
+    {
+      "label": "Expanded Sol diagnostic cases",
+      "path": "datasets/receipts/wsi-agent-v2-camelyon-cases.json"
     }
   ],
   "sample_sets": [
@@ -35,9 +39,24 @@
         "sha256": "2e1c2bdf985d7e6531dbb28883010e08568519d46a3985c0c7053609c3a35c81",
         "pointer": "/samples/camelyon"
       }
+    },
+    {
+      "label": "Expanded Sol diagnostic cases",
+      "sample_ids": [
+        "tumor_091",
+        "tumor_084",
+        "normal_108"
+      ],
+      "role": "curated",
+      "note": "Two fully annotated positive slides and one source-named normal slide; new TIFFs are publisher-MD5 verified.",
+      "receipt": {
+        "path": "datasets/receipts/wsi-agent-v2-camelyon-cases.json",
+        "sha256": "fa825ae41f6f8687015c8908a3e43cf7dc80805d3e9ec1e0566acf50bd32e9f7",
+        "pointer": "/cases"
+      }
     }
   ],
-  "experiment_ids": ["wsi-camelyon-search-sol6-xhigh", "wsi-camelyon-search-astra-medium"],
+  "experiment_ids": ["wsi-camelyon-search-sol6-xhigh", "wsi-camelyon-search-astra-medium", "wsi-camelyon-lesion-v2-sol6-xhigh"],
   "brief_ids": [
     "wsi-camelyon-search"
   ],
@@ -48,6 +67,14 @@
         "path": "datasets/receipts/wsi-teaching-samples.json",
         "sha256": "2e1c2bdf985d7e6531dbb28883010e08568519d46a3985c0c7053609c3a35c81",
         "pointer": "/samples/camelyon/files"
+      },
+      "path_field": "local_path"
+    },
+    {
+      "receipt": {
+        "path": "datasets/receipts/wsi-agent-v2-camelyon-cases.json",
+        "sha256": "fa825ae41f6f8687015c8908a3e43cf7dc80805d3e9ec1e0566acf50bd32e9f7",
+        "pointer": "/cases"
       },
       "path_field": "local_path"
     }
