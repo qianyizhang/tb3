@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "analysis_kind": "comparison",
+  "id": "wsi-astra-sol-method-comparison",
+  "group_id": "lesion-localization",
+  "title": "Astra and Sol WSI methods and diagnostic outcomes",
+  "claim": "Five Astra medium and seven revised Sol xhigh WSI conditions produced valid artifacts but uneven task-specific reference agreement. The closest shared endpoint is HuBMAP recall (86/99 released polygons in each run), while TIGER instructions and mask assistance, CAMELYON lesion grouping/case set, and HiESD output grain changed. Sol gave empty answers on two positive CAMELYON slides. These observations locate concrete workflow and task-design limits but cannot isolate a model effect or establish population or clinical performance.",
+  "experiment_ids": [
+    "wsi-camelyon-lesion-v2-sol6-xhigh",
+    "wsi-camelyon-search-astra-medium",
+    "wsi-hiesd-map-astra-medium",
+    "wsi-hiesd-patches-v2-sol6-xhigh",
+    "wsi-hubmap-inventory-astra-medium",
+    "wsi-hubmap-inventory-sol6-xhigh",
+    "wsi-hubmap-inventory-v2-sol6-xhigh",
+    "wsi-tiger-context-astra-medium",
+    "wsi-tiger-context-v2-sol6-xhigh"
+  ],
+  "evidence": [
+    {
+      "path": "groups/lesion-localization/findings/evidence/wsi-astra-sol-method-comparison.json",
+      "sha256": "417d13d7597668cd692a7ca415fd8adcc417fef02dc69089dc68be6478a2762d"
+    },
+    {
+      "path": "groups/lesion-localization/findings/evidence/wsi-astra-medium-trace-diagnostics.json",
+      "sha256": "42ab125971068c3d8a1a1a0042333d0821badf1bc76d39a3c782c0b019a1f26e"
+    },
+    {
+      "path": "groups/lesion-localization/findings/evidence/wsi-spec-reference-audit.json",
+      "sha256": "c42890d694daed3ee6593cb0b12872e4ab6467d56103343a52fca176b53736e8"
+    },
+    {
+      "path": "groups/lesion-localization/findings/evidence/wsi-sol6-xhigh-v2-diagnostic-synthesis.json",
+      "sha256": "4c5de475c63d57989affcc92d67c00646892b0bf14179884bfdd5d7e41cc87aa"
+    },
+    {
+      "path": "groups/lesion-localization/findings/figures/wsi-hubmap-astra-overview.jpg",
+      "sha256": "c3231fcba875d59510a2665f8e06dfb0db8305a7bf542a31b2acabb6b97c383b"
+    },
+    {
+      "path": "groups/lesion-localization/findings/figures/wsi-hiesd-astra-coarse-map.jpg",
+      "sha256": "75a1019c49670008d33d457a85d811ed7402d983a595576aa9a3b55e974216a1"
+    }
+  ],
+  "limitations": [
+    "One selected slide per source, or three fixed TIGER ROIs, and one stochastic attempt per condition do not estimate population performance, clinical validity or model ranking. Public-data pretraining exposure is unknown.",
+    "The Sol round changed model and effort alongside task instructions, scoring conventions, case set and method. HuBMAP reference recall is endpoint compatible only; TIGER is diagnostic; CAMELYON and HiESD scores are not numerically comparable across rounds.",
+    "Harbor reward validates answer shape, not pathology accuracy. Two early Sol and one Astra transport attempts ended before image analysis and retain no verdict.",
+    "HuBMAP unmatched points lack pathology adjudication; TIGER supplied masks carry evaluated tissue labels; CAMELYON lesion grouping is a study rule and its negative is one control; HiESD XML is sparse and its fixed patches were selected using private annotations.",
+    "Logged crop containment does not prove visual attention. Source-centered post-hoc crops remove the search task and cannot certify pathology labels."
+  ],
+  "links": [
+    {
+      "label": "Comparative analysis report",
+      "path": "groups/lesion-localization/findings/wsi-astra-sol-method-comparison.md"
+    },
+    {
+      "label": "Astra original analysis",
+      "path": "groups/lesion-localization/findings/wsi-astra-medium-diagnostic-synthesis.md"
+    },
+    {
+      "label": "Sol revised analysis",
+      "path": "groups/lesion-localization/findings/wsi-sol6-xhigh-v2-diagnostic-synthesis.md"
+    }
+  ]
+}

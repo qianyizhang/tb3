@@ -13,3 +13,5 @@ Use `uv run med list --group lesion-localization` from the repository root. The 
 [2026-09-23 Codex routing investigation](history/2026-09-23-codex-routing.md)
 
 [WSI Astra medium diagnostic synthesis](findings/wsi-astra-medium-diagnostic-synthesis.md)
+
+[Astra and Sol WSI methods and outcome comparison](findings/wsi-astra-sol-method-comparison.md)

@@ -2,6 +2,25 @@
 
 Five `openai/gpt-6-astra` medium conditions completed on four selected public pathology sources. Every final answer passed Harbor's **artifact contract**; their private task measures show partial agreement with the released references. These are one-case or three-ROI diagnostics, not population estimates or qualified clinical tasks. The [pinned evidence inventory](evidence/wsi-astra-medium-diagnostic-synthesis.json) retains task digests, attempts, evaluations and local raw-artifact pointers.
 
+## Executive summary
+
+- **The agent completed five distinct image workflows, but artifact validity did not imply scientific correctness.** It matched 86/99 HuBMAP reference polygons, hit 4/6 CAMELYON Tumor polygons, and correctly classified 3,222/11,290 HiESD annotated pixels. TIGER's cell and tissue endpoints diverged sharply.
+- **The only paired input contrast was TIGER.** Giving the agent the official tissue masks raised compartment agreement among matched cells from 0%/12.5%/64% to 100%/100%/99.1% across the three fixed ROIs. Cell matching moved in both directions. This isolates a useful assistance pathway for coding tissue at a predicted center, but different tile layouts and single attempts prevent a causal detection claim.
+- **Several apparent errors depend on the reference endpoint.** HuBMAP's 28 unmatched candidates need inclusion-rule adjudication; CAMELYON's two unhit polygons account for under 1% of annotated Tumor polygon area and are close to hit polygons; HiESD evaluates only 4.0% of its coarse grid. These limits do not erase the observed misses or wrong labels inside the respective references.
+- **Next evidence should target the disputed stage.** Blinded HuBMAP crop review, a lesion-grouped CAMELYON endpoint with negative and small-target slides, fixed-layout replicated TIGER runs, and additional annotated HiESD slides would discriminate task design from agent behavior. No cross-task score average or Sol-versus-Astra performance ranking is supported.
+
+## How the five conditions contrast
+
+| Condition | Unit actually scored | Agent step exposed by the trace | Strongest supported conclusion | Comparison status |
+| --- | --- | --- | --- | --- |
+| HuBMAP inventory | One-to-one glomerulus polygon matches | Full-slide crop search and candidate marking | Most released polygons were marked; 13 released objects were unmarked despite crop containment, and 28 candidates lack a reference match. | Diagnostic single slide; unmatched pathology status unresolved. |
+| TIGER image-only | Cell-center matches, then compartment code on matched cells | Fixed-ROI cell marking and visual compartment choice | Localization was partial and codes were systematically wrong in two ROIs. | Matched input and endpoint with tissue-supplied run; distinct stochastic traces and tile layouts. |
+| TIGER tissue-supplied | Same cell and compartment endpoints | Cell marking plus direct sampling of the supplied official mask | Compartment coding became nearly exact; localization did not improve consistently. | Diagnostic assistance contrast, not an independent tissue-inference test. |
+| CAMELYON search | Hit fraction of six source Tumor polygons | Coarse-to-detail slide search and point selection | Four polygons were hit; two small nearby polygons had no detail revisit. | Endpoint only relative to HuBMAP: both submit points, but targets and matching rules differ. |
+| HiESD map | Correct six-class label per XML-annotated coarse pixel | Crop inspection followed by scripted broad-region drawing | Broad coverage concealed frequent wrong classes and complete omission of codes 4 and 5. | Not numerically comparable to object or cell endpoints. |
+
+The common observation is a **valid executable workflow with imperfect reference agreement**. The tasks differ in anatomy, output grain, assistance, reference coverage and scoring rule; their percentages do not share a denominator or meaning. The TIGER pair is the only within-task input contrast, and even that contrast is diagnostic rather than a controlled estimate of the mask's effect on detection.
+
 ## At a glance
 
 | Condition | Frozen private-reference measure | Reading |
