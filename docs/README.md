@@ -26,6 +26,7 @@ Finding submission candidates is an optional later step, not the research goal.
 | Understand components, research records and execution/presentation flow | [Architecture](architecture.md) |
 | Choose where to put code, experiments, findings, docs or generated files | [Repository layout and file placement](repository-layout.md) |
 | Understand ownership, preserved evidence and what belongs in Git | [Governance](governance.md) |
+| Write concise, structured summaries and reports | [Writing style](writing-style.md) |
 | Choose and construct concise conceptual, quantitative and source-derived visuals | [Visual explanation rulebook](visual-explanations.md) |
 | Add LiteMedSAM / a SAM segmentation tool to an experiment | [Segmentation tool rulebook](segmentation-tools.md) |
 | Interpret badges, assessments and the attention queue | [Status vocabulary](status-vocabulary.md) |
