@@ -11,3 +11,15 @@ Use `openai/gpt-6-astra` medium, one 3600-second attempt per condition, no autom
 ## Inputs and reference
 
 ## Findings and limits
+
+### Paired diagnostic observations — 2026-09-23
+
+Both Astra medium conditions completed in Harbor with no exception, valid answer artifacts (`reward=1`), unchanged frozen task bytes and private-score observations. The image-only attempt is `attempt-582f254a1a1a43e3` / `observation-8f8d8a9d38f610159e0f8fbb`; tissue-supplied is `attempt-7cb2fd0dca184603` / `observation-a87accfd5e23b8e90fbb0f31`. The inspected command traces showed no explicit access to private `tests/` or `solution/` paths.
+
+| ROI (reference cells) | Image-only matched / predicted | Image-only matched compartment accuracy | Tissue-supplied matched / predicted | Tissue-supplied matched compartment accuracy |
+| --- | ---: | ---: | ---: | ---: |
+| roi1 (20) | 9 / 16 | 0% | 7 / 10 | 100% |
+| roi2 (175) | 136 / 154 | 12.5% | 141 / 176 | 100% |
+| roi3 (323) | 250 / 278 | 64% | 232 / 255 | 99.1% |
+
+Matching uses one-to-one cell centers within 20 ROI-local pixels. The supplied tissue masks directly encode the compartment reference, so their near-perfect matched-cell attribution checks use of that assistance rather than independent tissue inference. Cell matching changes in different directions across ROIs; one stochastic attempt per condition on the same three public ROIs cannot establish a causal improvement or generalization. ROI1 has only 20 reference cells. No full-slide hotspot or clinical sTIL claim follows from these fixed ROIs.
