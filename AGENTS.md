@@ -34,27 +34,21 @@ Do not pursue security research or resume the archived security work.
   their authoring modules on import; some mutate artifacts. New work uses group
   experiments and the common CLI. No model run is implied by an idea or plan.
 
-## Reproduction, exports and checks
+## Model launches
 
-Before any authorized Codex model launch, read the
-[local Codex launch rulebook](docs/workflow.md#local-codex-launch-rulebook).
-This Mac's working Harbor routes require explicit login settings via
-`med run --agent-env-file PATH` and preservation of the task's network topology.
-Inspect the existing local profile or a successful run's `agents[].env`; never
-print credential contents or silently substitute an empty environment, API-key
-auth, another model or another client. Host and container Codex versions differ.
-For WSI/restricted sidecars, keep `http://transport:3128`; a direct/LAN proxy
-override is unreachable from the isolated solver. Harbor uploads preserve host
-ownership: `cap_drop: [ALL]` makes a host-owned 0600 auth file unreadable even to
-container root. Use the documented fresh auth copy (0644 inside a 0700 temporary
-host directory) via `CODEX_AUTH_JSON_PATH`; never relax the original auth file or
-remove isolation. Earlier longitudinal/dental launchers already used this pattern.
-When routing changes or fails, verify a bounded toy through the same Harbor image,
-Compose file, capabilities, auth and proxy route before the medical task. Missing credentials,
-401 responses and stale-client model errors are infrastructure observations,
-not proof of account-wide model unavailability or model failure. Do not repeat an
-unchanged failed launch. The dated route-specific smoke results are in the rulebook;
-recheck when the runtime or route changes.
+- Read the [launch rulebook](docs/workflow.md#local-codex-launch-rulebook) before
+  execution. Use `med run --agent-env-file PATH` for explicit local auth settings.
+- Preserve the requested model/effort and the task's declared proxy, networks and
+  capabilities. Host and container clients may differ.
+- In capability-restricted containers, stage auth as a fresh 0644 copy inside a
+  0700 temporary host directory. Keep the original credential file unchanged.
+- Verify a new or repaired route with a bounded toy using the same image, Compose
+  topology, capabilities and verifier arrangement before a medical attempt.
+- Auth, transport and client-version errors are infrastructure observations.
+  Retain them; fix the failing layer before retrying. They do not establish model
+  failure or account-wide unavailability. Never print credentials.
+
+## Reproduction, exports and checks
 
 Keep raw runs, credentials, environments, generated reports and media local.
 Track concise allowlisted records and required fixtures/licenses. Record missing

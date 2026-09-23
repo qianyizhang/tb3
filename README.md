@@ -7,23 +7,18 @@ submission qualification is a separate promotion step.
 
 ## Working environment
 
-The working research environment is a local Apple Silicon Mac. Python 3.12 and
-`uv` run the workbench; Harbor manages experiments in Linux containers through
-Docker Engine via Colima. Inside a solver container, the Codex CLI is the agent harness:
-it calls the selected model and gives it shell and image-inspection tools. The
-workbench prepares and freezes tasks, launches Harbor, and collects its evidence;
-task verifiers determine scores. The Codex desktop app is also used to author and
-supervise this work, but its host login, CLI and network settings are separate
-from those inside an experiment container.
+| Layer | Role |
+| --- | --- |
+| Apple Silicon Mac | Local authoring, supervision and artifact storage |
+| Python 3.12 + `uv` | Workbench CLI, task preparation and evidence records |
+| Docker Engine via Colima | Linux experiment containers |
+| Harbor | Trial lifecycle and verifier execution |
+| Codex CLI inside the solver | Agent harness: model calls, shell and image tools |
+| Codex desktop app | Authoring and supervision; separate from the solver runtime |
 
-**Before launching a model, read the [local Codex launch rulebook](docs/workflow.md#local-codex-launch-rulebook).**
-The verified routes use the existing ChatGPT login and each task's declared
-container network. Pass local auth settings with `med run --agent-env-file`.
-WSI uses a restricted transport sidecar: preserve its proxy and stage a readable
-temporary credential copy inside a private host directory, as the rulebook
-describes. A host or base-image smoke test does not verify those restrictions.
-Raw data, credentials, images and runs remain local. The checkout alone does not
-provision this environment.
+- Task verifiers determine scores; the workbench records the evidence.
+- Data, credentials, images and runs stay local; the checkout does not provision them.
+- Before model execution, follow the [launch rulebook](docs/workflow.md#local-codex-launch-rulebook).
 
 ## Browse and research
 

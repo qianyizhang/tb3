@@ -9,3 +9,5 @@ Use `uv run med list --group lesion-localization` from the repository root. The 
 [Capability story](presentation/story.md) · [Working contract](AGENTS.md)
 
 [Data sources](sources.json) · [Retained examples](examples/README.md) · [Methods](methods/README.md)
+
+[2026-09-23 Codex routing investigation](history/2026-09-23-codex-routing.md)
