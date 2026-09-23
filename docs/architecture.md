@@ -78,6 +78,7 @@ The installed entry point is `med = tb3_medical.cli:main` in
 | [workflow.py](../src/tb3_medical/workflow.py) | Scaffolding, preparation dispatch, task snapshots, controls, execution, collection, qualification and replay provenance. |
 | [methods.py](../src/tb3_medical/methods.py) | `ExperimentMethod` and explicit `landmarks` / `task_package` adapters for prepare, evaluate, replay and view. |
 | [harbor.py](../src/tb3_medical/harbor.py) | Read external Harbor results and classify execution/result evidence for collection. |
+| [hub.py](../src/tb3_medical/hub.py) | Inventory Harbor upload payloads and gate explicit, reviewed Hub job uploads. |
 | [landmarks.py](../src/tb3_medical/landmarks.py), [scoring.py](../src/tb3_medical/scoring.py), [score_ct.py](../src/tb3_medical/score_ct.py), [score_mri.py](../src/tb3_medical/score_mri.py) | Native landmark inputs and views, answer contracts and scoring. |
 | [task_package.py](../src/tb3_medical/task_package.py), [packaging.py](../src/tb3_medical/packaging.py) | Portable task recovery/evaluation and selected-input exports with manifests and hashes. |
 | [evidence.py](../src/tb3_medical/evidence.py) | Pinned evidence inventories and explanation artifacts. |

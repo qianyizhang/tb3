@@ -184,6 +184,42 @@ Collecting the unchanged latest result is a no-op. If the result changes and lat
 returns to earlier bytes, collection appends that return as a new observation;
 the older observation remains intact.
 
+### Harbor Hub job sharing
+
+Existing local runs are Harbor **jobs**, not Harbor datasets. To inventory their
+upload format and inspect one job before using Harbor Hub's trace viewer:
+
+```sh
+uv run med hub scan
+uv run med hub inspect ATTEMPT_ID
+uv run med hub inspect runs/EXISTING-JOB
+```
+
+`inspect` lists the files in Harbor 0.14's job/trial upload archives, their total
+size and any structural blockers. `ready_for_content_review` means the job is
+complete and the listed JSON has no nonempty `env` object. It does **not** mean
+that logs, trajectories, artifacts, images or source licenses permit transfer.
+Review those files and the underlying data terms before uploading; private Hub
+storage is still an external transfer. Jobs with copied agent environment values
+are blocked because Harbor uploads job config, trial config and trial result data.
+The original jobs and research records are never rewritten by this inspection.
+
+After that review, use the exact local attempt ID or job path:
+
+```sh
+.venv/bin/harbor auth login
+uv run med hub upload ATTEMPT_ID --reviewed
+# Public visibility requires an additional explicit flag:
+uv run med hub upload ATTEMPT_ID --reviewed --public
+```
+
+The command passes `--private` explicitly by default. It invokes Harbor's
+existing upload CLI; it does not publish task or dataset packages. Re-uploads
+are idempotent in Harbor, but an explicit visibility flag can update a job's
+Hub visibility. Inspect the current Hub job before re-uploading when visibility
+matters. Source and evaluator packages need a separate redistribution and
+solver/reference-boundary review before any dataset publication.
+
 ```sh
 uv run med show my-study
 npm run frontend:build

@@ -131,6 +131,18 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("collect")
     p.add_argument("experiment")
     p.add_argument("sources", nargs="+")
+    p = sub.add_parser("hub", help="Inspect or upload existing Harbor jobs to Harbor Hub")
+    hub_sub = p.add_subparsers(dest="hub_command", required=True)
+    hub_sub.add_parser("scan", help="Inventory local jobs and upload blockers")
+    h = hub_sub.add_parser("inspect", help="List the exact files Harbor would upload")
+    h.add_argument("target", help="Attempt ID or local job directory")
+    h = hub_sub.add_parser("upload", help="Upload a reviewed job to Harbor Hub")
+    h.add_argument("target", help="Attempt ID or local job directory")
+    h.add_argument(
+        "--reviewed", action="store_true", help="Acknowledge review of payload and rights"
+    )
+    h.add_argument("--public", action="store_true", help="Make the uploaded job public")
+    h.add_argument("--harbor", default="harbor", help="Harbor CLI executable")
     p = sub.add_parser("replay")
     p.add_argument("experiment")
     p.add_argument("--case")
@@ -304,6 +316,21 @@ def main(argv: Sequence[str] | None = None) -> int:
             )
         elif command == "collect":
             result = w.collect(root, args.experiment, args.sources)
+        elif command == "hub":
+            from . import hub
+
+            if args.hub_command == "scan":
+                result = hub.scan(root)
+            elif args.hub_command == "inspect":
+                result = hub.inspect(root, args.target)
+            else:
+                result = hub.upload(
+                    root,
+                    args.target,
+                    reviewed=args.reviewed,
+                    public=args.public,
+                    executable=args.harbor,
+                )
         elif command in {"replay", "view"}:
             method = method_for(root, c.lookup(root, args.experiment))
             result = (
@@ -342,6 +369,13 @@ def main(argv: Sequence[str] | None = None) -> int:
         ):
             return 1
         if command == "replay" and isinstance(result, dict) and not result.get("all_match", True):
+            return 1
+        if (
+            command == "hub"
+            and args.hub_command == "upload"
+            and isinstance(result, dict)
+            and not result.get("uploaded")
+        ):
             return 1
         return 0
     except (
