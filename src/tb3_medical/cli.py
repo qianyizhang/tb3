@@ -122,6 +122,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--agent", choices=["oracle", "nop", "codex"], default="codex")
     p.add_argument("--model")
     p.add_argument("--effort")
+    p.add_argument(
+        "--agent-env-file", type=Path, help="Local JSON object of explicit Harbor agent env values"
+    )
     p.add_argument("--harbor", default="harbor")
     p.add_argument("--diagnostic", action="store_true")
     p.add_argument("--preview", action="store_true")
@@ -295,6 +298,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 case=args.case,
                 model=args.model,
                 effort=args.effort,
+                agent_env_file=args.agent_env_file,
                 diagnostic=args.diagnostic,
                 preview=args.preview,
             )

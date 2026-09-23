@@ -66,6 +66,82 @@ one attempt with no automatic retry. Harbor, Docker and provider routing are
 separately managed optional runtimes; maintenance and inspection never install them.
 Keep secrets out of authored records.
 
+### Local Codex launch rulebook
+
+The working host is an Apple Silicon Mac with Docker Desktop. Harbor runs the
+Codex CLI inside the selected Linux solver image. The desktop app, shell `codex`
+and container `codex` are different clients and can have different versions,
+credentials and routes. Check the exact executable/image used by the failing
+attempt before inferring model availability.
+
+**Use the existing working runtime profile explicitly.** On this Mac it lives at
+`.local/runtime/codex-agent-env.json` (ignored, mode 0600). It contains a flat JSON
+object of string environment values: `CODEX_FORCE_AUTH_JSON` set to `"1"`,
+`http_proxy`, `https_proxy`, `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY`. Harbor
+then injects the existing `~/.codex/auth.json` and the container-reachable proxy
+settings. For a different approved credential location, use
+`CODEX_AUTH_JSON_PATH` instead of assuming the default cache. Keep credentials
+and machine-specific proxy addresses in local files, not tracked instructions.
+
+```sh
+uv run med run my-study --model openai/gpt-6-astra --effort medium \
+  --agent-env-file .local/runtime/codex-agent-env.json \
+  --harbor .venv/bin/harbor --diagnostic --preview
+# After the route and authorized condition are verified, omit --preview to launch.
+```
+
+`--agent-env-file` resolves relative to the workbench root and accepts a flat JSON
+object with valid environment-variable names and string values. Preview validates
+the file and shows variable names only; it does not authenticate or contact a
+model. Launch passes these values as Harbor `agents[].env`. Values stay in the
+private local runtime configuration, not authored attempt/evaluation records.
+Harbor may also retain them in raw logs/configuration under the private attempt
+directory. No environment file means no explicit agent environment is supplied;
+do not assume a host shell's proxy variables will reach the container. Harbor's
+default auth path uses `OPENAI_API_KEY`; an existing ChatGPT login requires the
+explicit opt-in above. Reuse a successful run's environment when recovering a
+missing local profile, without printing secrets or executing historical launchers.
+Tasks with a declared transport sidecar or stricter network policy keep their
+declared route; do not replace it with this WSI profile.
+
+Before a new or repaired route runs a medical task:
+
+1. Inspect active ownership, usage reserve, the selected image/CLI version and
+   auth method; preserve the requested model and effort.
+2. Run one bounded, no-retry toy through that same Harbor runtime and environment.
+   Verify a completed model turn, an actual shell-produced answer and a passing
+   verifier. A host-only reply does not verify Docker/Harbor transport.
+3. If it fails, inspect the first auth/transport/model-discovery error and fix
+   that layer. Retain the failed attempt as an execution error. Do not repeat the
+   same invocation or equate a 401/missing key/stale-client error with model failure
+   or account-wide unavailability. A route repair does not change prior scores.
+4. Resume the already authorized experiment condition with the verified profile.
+   A runtime smoke pass proves execution plumbing, not medical capability.
+
+On 2026-09-23, the new WSI launches omitted the previously successful BR-041
+`agents[].env`. One invocation had no API key; the ChatGPT-auth attempt reached
+`api.openai.com/v1/responses` without usable authentication. The shell CLI was
+0.147.0; the WSI image had 0.155.1. Restoring the prior explicit auth **and** proxy
+environment in the same image made both `gpt-6-astra`/medium and `gpt-6-sol`/xhigh
+complete a `19 + 23` shell/file toy with reward 1 and no Harbor exception. No
+client upgrade was needed. This verifies the restored combination; it does not
+isolate every proxy/backend mechanism or attest provider-side model identity.
+
+Local proof: `.local/model-route-smoke-20260923/jobs/gpt-6-astra-medium/` and
+`.local/model-route-smoke-20260923/jobs/gpt-6-sol-xhigh/`, with the task and configs
+alongside them. Source discussions:
+[WSI experiments](codex://threads/01a0cbf7-5068-7001-90be-102123fff079) and
+[routing investigation](codex://threads/01a0cc34-3a42-7243-aa18-c02bd8b0c2f3).
+Recheck when image, client, login, proxy, model access or host networking changes;
+missing local artifacts require recovery rather than an assumed working route.
+The repaired `med run --agent-env-file` path also passed the same toy in the
+isolated `.local/model-route-smoke-20260923/workbench/`, attempt
+`attempt-4b916c8a4a33420d`, with unchanged frozen bytes and a collected passing
+observation. Earlier auth usage was recorded in historical launch-scope receipts
+and local configurations, but was missing from this daily launch guide.
+
+### Controls and interpretation
+
 Diagnostic runs may precede controls. A model run without `--diagnostic` requires
 an oracle pass and expected no-op failure for the exact task, and an assessment
 other than `needs_review` or `invalidated`. These local checks do not certify

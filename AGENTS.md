@@ -36,6 +36,20 @@ Do not pursue security research or resume the archived security work.
 
 ## Reproduction, exports and checks
 
+Before any authorized Codex model launch, read the
+[local Codex launch rulebook](docs/workflow.md#local-codex-launch-rulebook).
+This Mac's working Harbor route requires explicit login and container proxy
+settings via `med run --agent-env-file .local/runtime/codex-agent-env.json`.
+Inspect the existing local profile or a successful run's `agents[].env`; never
+print credential contents or silently substitute an empty environment, API-key
+auth, another model or another client. Host and container Codex versions differ.
+When routing changes or fails, verify a bounded toy through the same Harbor image,
+auth and proxy route before launching the medical task. Missing credentials,
+401 responses and stale-client model errors are infrastructure observations,
+not proof of account-wide model unavailability or model failure. Do not repeat an
+unchanged failed launch. Astra/medium and GPT-6 Sol/xhigh both passed the documented
+Harbor toy on 2026-09-23; recheck when the runtime or route changes.
+
 Keep raw runs, credentials, environments, generated reports and media local.
 Track concise allowlisted records and required fixtures/licenses. Record missing
 artifacts explicitly. Dockerfiles alone do not prove recovery or replay.

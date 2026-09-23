@@ -96,6 +96,70 @@ class WorkflowRefinementTests(unittest.TestCase):
             status = cli.main(["--root", str(self.root), *args])
         return status, output.getvalue(), error.getvalue()
 
+    def test_agent_environment_reaches_harbor_without_entering_public_records(self):
+        env = {
+            "CODEX_FORCE_AUTH_JSON": "1",
+            "HTTPS_PROXY": "http://runtime-proxy.invalid:10808",
+            "OPENAI_API_KEY": "fixture-secret-never-publish",
+        }
+        source = self.root / ".local/runtime/agent-env.json"
+        c.write_new(source, env)
+        args = (
+            "run",
+            "study",
+            "--model",
+            "test/model",
+            "--effort",
+            "medium",
+            "--diagnostic",
+            "--agent-env-file",
+            str(source.relative_to(self.root)),
+        )
+        status, output, error = self.invoke(*args, "--preview")
+        self.assertEqual((status, error), (0, ""))
+        self.assertEqual(json.loads(output)["agent_env_keys"], sorted(env))
+        self.assertNotIn(env["OPENAI_API_KEY"], output)
+        self.assertFalse((self.root / ".local/attempts").exists())
+        status, output, error = self.invoke(*args)
+        self.assertEqual((status, error), (0, ""))
+        receipt = json.loads(output)
+        attempt = c.lookup(self.root, receipt["attempt_id"])
+        config_path = (self.root / attempt["execution_path"]).parent / "config.json"
+        config = c.read(config_path)
+        self.assertEqual(config["agents"][0]["env"], env)
+        self.assertEqual(config["agents"][0]["kwargs"], {"reasoning_effort": "medium"})
+        self.assertEqual(config_path.stat().st_mode & 0o777, 0o600)
+        self.assertEqual(config_path.parent.stat().st_mode & 0o777, 0o700)
+        public = output + json.dumps(c.load(self.root))
+        self.assertNotIn(env["OPENAI_API_KEY"], public)
+        self.assertNotIn(env["HTTPS_PROXY"], public)
+
+    def test_invalid_agent_environment_fails_before_creating_an_attempt(self):
+        source = self.root / "agent-env.json"
+        for payload in (
+            "[]",
+            '{"CODEX_FORCE_AUTH_JSON":true}',
+            '{"bad=name":"secret"}',
+            '{"KEY":"\\u0000"}',
+            "{invalid",
+        ):
+            with self.subTest(payload=payload):
+                source.write_text(payload)
+                with self.assertRaises(c.MedicalError):
+                    self.run_fake("codex", diagnostic=True, agent_env_file=source)
+                self.assertFalse((self.root / ".local/attempts").exists())
+                self.assertFalse((self.root / "groups/g/experiments/study/freezes").exists())
+        source.unlink()
+        with self.assertRaises(c.MedicalError):
+            self.run_fake("codex", diagnostic=True, agent_env_file=source)
+
+    def test_agent_environment_does_not_copy_ambient_secrets(self):
+        with patch.dict(os.environ, {"UNRELATED_SECRET": "never-copy"}):
+            receipt = self.run_fake("codex", diagnostic=True)
+        attempt = c.lookup(self.root, receipt["attempt_id"])
+        config = c.read((self.root / attempt["execution_path"]).parent / "config.json")
+        self.assertEqual(config["agents"][0]["env"], {})
+
     def test_questioned_control_owner_blocks_reuse_and_diagnostic_remains_explicit(self):
         oracle, _ = self.controls()
         self.assertEqual(c.projection(self.root)["study"]["current"]["assessment"], "not_assessed")

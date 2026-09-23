@@ -5,6 +5,26 @@ Semantic groups keep questions, decisions, data sources, experiments, evidence
 reviews and visual explanations together. Capability learning is primary;
 submission qualification is a separate promotion step.
 
+## Working environment
+
+The working research environment is a local Apple Silicon Mac. Python 3.12 and
+`uv` run the workbench; Harbor manages experiments in Linux containers through
+Docker Desktop. Inside a solver container, the Codex CLI is the agent harness:
+it calls the selected model and gives it shell and image-inspection tools. The
+workbench prepares and freezes tasks, launches Harbor, and collects its evidence;
+task verifiers determine scores. The Codex desktop app is also used to author and
+supervise this work, but its host login, CLI and network settings are separate
+from those inside an experiment container.
+
+**Before launching a model, read the [local Codex launch rulebook](docs/workflow.md#local-codex-launch-rulebook).**
+This Mac's verified experiment route uses the existing ChatGPT login plus explicit
+container proxy settings in an ignored local agent-environment file. Pass that
+file with `med run --agent-env-file`; a host smoke test or an empty Harbor
+`agents[].env` does not verify the container route. Raw data, credentials, images
+and runs remain local. The checkout alone does not provision this environment.
+
+## Browse and research
+
 ```sh
 uv sync --locked --inexact --group dev
 npm ci

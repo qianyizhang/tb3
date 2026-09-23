@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import shutil
 import subprocess
 import tomllib
@@ -366,6 +367,33 @@ def harbor_checksum(executable: str, snapshot: Path) -> str:
     return digest
 
 
+def agent_environment(root: Pathish, path: Pathish | None) -> dict[str, str]:
+    """Load explicit local runtime settings without exposing values in records."""
+    if path is None:
+        return {}
+    source = Path(path).expanduser()
+    if not source.is_absolute():
+        source = Path(root) / source
+    try:
+        values = json.loads(source.read_text())
+    except (OSError, ValueError) as exc:
+        raise c.MedicalError(f"Cannot read agent environment JSON: {source}") from exc
+    if not isinstance(values, dict):
+        raise c.MedicalError("Agent environment must be a JSON object of string values")
+    result: dict[str, str] = {}
+    for key, value in values.items():
+        if (
+            not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", key)
+            or not isinstance(value, str)
+            or "\x00" in value
+        ):
+            raise c.MedicalError(
+                "Agent environment requires valid variable names and string values"
+            )
+        result[key] = value
+    return result
+
+
 def run(
     root: Pathish,
     experiment: str,
@@ -375,11 +403,13 @@ def run(
     case: str | None = None,
     model: str | None = None,
     effort: str | None = None,
+    agent_env_file: Pathish | None = None,
     diagnostic: bool = False,
     preview: bool = False,
 ) -> Document:
     if agent == "codex" and not model:
         raise c.MedicalError("Name the model condition")
+    agent_env = agent_environment(root, agent_env_file)
     exp, spec, task, files = task_validate(root, experiment, case)
     if preview:
         return {
@@ -392,6 +422,7 @@ def run(
             "task_digest": tree_digest(files),
             "task_path": str(task),
             "executes": False,
+            "agent_env_keys": sorted(agent_env),
         }
     if not diagnostic and agent == "codex":
         state = c.projection(root)[experiment]["current"]
@@ -403,7 +434,7 @@ def run(
     checksum = harbor_checksum(executable, snapshot)
     identity = c.uid("attempt")
     out = Path(root) / ".local/attempts" / identity
-    out.mkdir(parents=True, exist_ok=False)
+    out.mkdir(mode=0o700, parents=True, exist_ok=False)
     base = Path(root) / Path(exp["record_path"]).parent
     attempt = {
         "schema_version": 2,
@@ -418,12 +449,13 @@ def run(
         "model": model,
         "reasoning_effort": effort,
         "diagnostic": diagnostic,
+        "agent_env_keys": sorted(agent_env),
         "execution_state": "running",
         "observed_at": c.now(),
         "execution_path": str((out / "execution.json").relative_to(root)),
     }
     c.write_new(base / "attempts" / (identity + ".json"), attempt)
-    config_agent: Document = {"name": agent, "env": {}, "kwargs": {}}
+    config_agent: Document = {"name": agent, "env": agent_env, "kwargs": {}}
     if model:
         config_agent["model_name"] = model
     if effort:
@@ -440,6 +472,7 @@ def run(
         "artifacts": ["/app"],
     }
     c.write_new(out / "config.json", config)
+    (out / "config.json").chmod(0o600)
     receipt: Document = {
         "attempt_id": identity,
         "execution_state": "running",
