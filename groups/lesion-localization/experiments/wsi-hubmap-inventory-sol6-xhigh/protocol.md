@@ -12,6 +12,10 @@ Use one 3600-second attempt, no automatic retry, Docker 4 CPUs/12 GiB/0 GPUs, an
 
 The exact-task oracle passed and no-op failed in Harbor. Two model invocations were retained as `execution_error` with `no_verdict`: `attempt-4f9625ac511d4eea` used an absent `OPENAI_API_KEY`; `attempt-6b34b0a98f284ce8` used Harbor's supported ChatGPT auth-file path but received 401 without a bearer header. An independent host CLI smoke check reported that `gpt-6-sol` is unsupported through this ChatGPT account. Both attempts ended before image reasoning and produced no answer. No further model dispatch is authorized until the route is verified; the task, reference and controls remain unchanged.
 
+### Routing clarification — 2026-09-23
+
+A tiny Harbor task using the same WSI runtime completed with `gpt-6-sol` xhigh when ChatGPT auth and proxy variables were explicitly passed to the container agent. The older host CLI's rejection was not an account-wide model-access verdict. The two earlier HuBMAP attempts retain their execution-error/no-verdict records. The user subsequently selected Astra medium for pending WSI runs, recorded in a separate experiment; no Sol WSI rerun is currently scheduled.
+
 ## Question and method
 
 ## Inputs and reference
