@@ -6,7 +6,7 @@ The solver sees the native `aaa6a05cc` TIFF under a neutral name, physical pixel
 
 The scorer matches one point per glomerulus polygon when the point is inside the polygon or within 50 µm of its edge. It reports recall, unmatched predictions and count error. Unmatched predictions are not automatically clinical false positives until annotation-valid tissue coverage and edge cases are reviewed. No contour/area scoring is attempted without a contour output contract. No-op and reference oracle controls check artifact handling; the oracle's answer is never solver-visible.
 
-Use one 3600-second attempt, no automatic retry, Docker 4 CPUs/12 GiB/0 GPUs, and the existing restricted transport. Pin source hashes from `datasets/receipts/wsi-teaching-samples.json`, runtime image identities, a task preview and controls before model dispatch. Stop on source mismatch, privacy leakage, invalid controls, infrastructure failure or weekly Codex usage below a 20% reserve. Review the trace and score separately; do not claim a population rate from this slide.
+Use one 3600-second attempt, no automatic retry, Docker 4 CPUs/12 GiB/0 GPUs, and the existing restricted transport. Pin source hashes from `datasets/receipts/wsi-teaching-samples.json`, runtime image identities, a task preview and controls before model dispatch. Stop on source mismatch, privacy leakage, invalid controls or infrastructure failure. Apply the one-time quota preflight in `docs/workflow.md`; a lower-cost condition or shorter timeout requires user acceptance before launch. Review the trace and score separately; do not claim a population rate from this slide.
 
 ## Operational status — 2026-09-23
 

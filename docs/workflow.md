@@ -70,7 +70,15 @@ Keep secrets out of authored records.
 
 #### Preflight
 
-1. Confirm authorization, active ownership, usage reserve, model and effort.
+1. Confirm authorization, active ownership, model and effort. Check Codex quota
+   once at the start of the task run, before model dispatch. If less than 20%
+   remains, propose a specific less costly model or effort and a shorter timeout
+   (normally 30 minutes), and ask the user to choose before launching. Keep the
+   authorized model and effort until the user accepts a change; record an accepted
+   change as a separate experiment condition. Do not poll quota during the run or
+   stop an in-progress attempt solely because the balance crosses 20%. The
+   default attempt timeout remains one hour (3600 seconds). If quota cannot be
+   read, report that limitation and use the otherwise authorized settings.
 2. Inspect the solver image, Codex version, `task.toml` and
    `environment/docker-compose.yaml` when present. Host success does not verify
    container execution.
