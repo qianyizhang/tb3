@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>tb3 workload</title>
+<style>
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;color:#16252a;background:#f4f7f5}
+*{box-sizing:border-box}body{margin:0}a{color:#0b665b}button,select,input{font:inherit}button{cursor:pointer}
+header{background:#123b39;color:#f3faf7;padding:28px max(22px,calc((100vw - 1240px)/2)) 30px}
+header h1{font-size:clamp(28px,3.2vw,42px);margin:2px 0 7px;letter-spacing:-.035em}header p{margin:0;color:#c8dfd6;max-width:760px;line-height:1.45}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:#8ed4b5;font-weight:700}
+main{max-width:1284px;margin:auto;padding:22px}.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px}
+.metric,.panel{background:white;border:1px solid #dce8e2;border-radius:13px;box-shadow:0 3px 16px #1b49300a}
+.metric{padding:15px 17px}.metric small{display:block;color:#557168;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.metric strong{display:block;font-size:24px;letter-spacing:-.03em;margin-top:7px}.metric em{font-style:normal;color:#61776f;font-size:12px}
+.panel{padding:18px;margin-bottom:14px}.panel h2{font-size:18px;margin:0 0 5px}.panel p{margin:0 0 14px;color:#60746e;font-size:13px;line-height:1.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.wide{grid-column:1/-1}
+.tablewrap{max-height:370px;overflow:auto;border:1px solid #e7eeea;border-radius:9px}table{width:100%;border-collapse:collapse;font-size:13px}
+.session-table{table-layout:fixed;min-width:1050px}.session-table th:first-child{width:32%}.session-table th:nth-child(2){width:11%}.session-table th:nth-child(3){width:16%}.session-table th:nth-child(4){width:10%}.session-table th:nth-child(5){width:10%}.session-table th:nth-child(6){width:7%}.session-table th:nth-child(7){width:9%}.session-table th:nth-child(8){width:9%}
+.session-table td:first-child strong,.session-table td:first-child .mono{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid #ecf0ed;white-space:nowrap}th{position:sticky;top:0;background:#f4f8f5;color:#526b61;font-size:11px;text-transform:uppercase;letter-spacing:.06em;z-index:1}
+tr:last-child td{border-bottom:0}tbody tr:hover{background:#f6faf7}.numeric{text-align:right;font-variant-numeric:tabular-nums}
+.rowbtn{border:0;background:none;color:#0b665b;font-weight:650;text-align:left;padding:0}.rowbtn:hover{text-decoration:underline}
+.bar{height:8px;background:#e3ede7;border-radius:20px;width:110px;display:inline-block;overflow:hidden;vertical-align:middle;margin-right:6px}.bar i{display:block;background:#3a9a76;height:100%}
+.controls{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0}.controls input,.controls select{border:1px solid #cadbd2;border-radius:8px;padding:8px 10px;background:white;color:#203a32}
+.controls input{min-width:245px;flex:1}.controls button,.active button{border:1px solid #bfd7c9;border-radius:8px;padding:8px 11px;background:#e9f4ed;color:#185e49}
+.active{color:#315849;font-size:12px;min-height:18px;margin-bottom:8px}.active button{padding:3px 8px;margin-left:8px}
+.tag{display:inline-block;padding:3px 7px;background:#edf5ee;border-radius:5px;color:#376a4f;font-size:11px}
+.muted{color:#73867d}.mono{font-family:ui-monospace,SFMono-Regular,monospace;font-size:11px}
+.notice{background:#fff8e8;border:1px solid #f0dfb7;border-radius:10px;padding:12px 15px;color:#6c5229;font-size:13px;line-height:1.5;margin:0 0 14px}
+footer{color:#60766a;font-size:12px;line-height:1.55;padding:8px 3px 25px}
+@media(max-width:850px){.metrics{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.wide{grid-column:auto}}
+@media(max-width:500px){main{padding:12px}.metrics{gap:7px}.metric{padding:11px}.metric strong{font-size:19px}.panel{padding:13px}}
+</style>
+</head>
+<body>
+<header><div class="eyebrow">Local analytics · tb3</div><h1>Workload and model usage</h1><p>Every aggregate narrows to source sessions. Open a session in Trace Atlas to inspect its original JSONL records.</p></header>
+<main>
+<div class="metrics" id="metrics"></div>
+<div class="notice" id="notice"></div>
+<div class="grid">
+<section class="panel"><h2>By day</h2><p>Codex calls use their event date; med runs use the result completion date.</p><div class="tablewrap"><table><thead><tr><th>Day</th><th class="numeric">Tokens</th><th class="numeric">Estimate</th></tr></thead><tbody id="days"></tbody></table></div></section>
+<section class="panel"><h2>By purpose</h2><p>Session labels use title rules unless overridden. A mixed session has one label.</p><div class="tablewrap"><table><thead><tr><th>Purpose</th><th class="numeric">Sessions</th><th class="numeric">Tokens</th><th class="numeric">Estimate</th></tr></thead><tbody id="purposes"></tbody></table></div></section>
+<section class="panel"><h2>By model and effort</h2><p>Cost uses a pinned API Standard price card; unknown models stay unpriced.</p><div class="tablewrap"><table><thead><tr><th>Model / effort</th><th class="numeric">Calls</th><th class="numeric">Tokens</th><th class="numeric">Estimate</th></tr></thead><tbody id="models"></tbody></table></div></section>
+<section class="panel"><h2>Tool calls</h2><p>Counts come from the tracker and med traces. Tokens cannot be attributed causally to a tool call.</p><div class="tablewrap"><table><thead><tr><th>Tool</th><th class="numeric">Calls</th><th class="numeric">Sessions</th></tr></thead><tbody id="tools"></tbody></table></div></section>
+<section class="panel wide"><h2>Source sessions and attempts</h2><p>Filter a suspicious aggregate, then open the exact trace. The source path is shown for missing Trace Atlas roots.</p>
+<div class="controls"><input id="search" type="search" placeholder="Search title, ID, or path"><select id="purpose-filter"><option value="">All purposes</option></select><select id="source-filter"><option value="">All sources</option><option>codex</option><option>med run</option></select><button id="clear">Clear filters</button></div>
+<div class="active" id="active"></div><div class="tablewrap" style="max-height:650px"><table class="session-table"><thead><tr><th>Session / attempt</th><th>Purpose</th><th>Model</th><th class="numeric">Tokens</th><th class="numeric">Estimate</th><th class="numeric">Tools</th><th>Coverage</th><th>Trace</th></tr></thead><tbody id="sessions"></tbody></table></div></section>
+</div>
+<footer id="footer"></footer>
+</main>
+<script id="workload-data" type="application/json">__WORKLOAD_DATA__</script>
+<script>
+const data=JSON.parse(document.getElementById('workload-data').textContent);
+const $=id=>document.getElementById(id), fmt=n=>Number(n||0).toLocaleString(), money=n=>'$'+Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+const filter={day:'',purpose:'',model:'',tool:'',source:''};
+function td(row,value,cls=''){const c=document.createElement('td');c.className=cls;c.textContent=value;row.append(c);return c}
+function button(cell,text,callback){const b=document.createElement('button');b.className='rowbtn';b.textContent=text;b.onclick=callback;cell.append(b)}
+function setFilter(key,value){filter[key]=value;renderSessions();document.querySelector('.wide').scrollIntoView({behavior:'smooth',block:'start'})}
+function addMetric(label,value,note=''){const c=document.createElement('div');c.className='metric';c.innerHTML=`<small>${label}</small><strong>${value}</strong><em>${note}</em>`;$('metrics').append(c)}
+addMetric('Total tokens',fmt(data.totals.total_tokens));addMetric('API-equivalent estimate',money(data.totals.cost_usd),'priced usage only');addMetric('Priced coverage',data.coverage.priced_token_percent+'%','of observed tokens');addMetric('Model calls / results',fmt(data.totals.calls));addMetric('Tool calls',fmt(data.totals.tools));
+$('notice').textContent=`${data.coverage.codex_trace_files} Codex trace files, ${data.coverage.med_results} med results. ${data.coverage.tracker_missing} Codex files missing from the tracker index; ${data.coverage.excluded_duplicate_calls} copied calls excluded by its canonical deduplication. ${data.coverage.unclassified_sessions} sessions need a purpose label (${data.coverage.classified_token_percent}% of tokens classified). Amounts are API Standard equivalents, not subscription charges.`;
+const maxDay=Math.max(1,...data.daily.map(x=>x.total_tokens));
+for(const item of [...data.daily].reverse()){const row=document.createElement('tr');button(td(row,''),item.day,()=>setFilter('day',item.day));const tok=td(row,'','numeric');tok.innerHTML=`<span class="bar"><i style="width:${Math.max(1,item.total_tokens/maxDay*100)}%"></i></span>${fmt(item.total_tokens)}`;td(row,money(item.cost_usd),'numeric');$('days').append(row)}
+const byPurpose=new Map();for(const s of data.sessions){const a=byPurpose.get(s.purpose)||{sessions:0,tokens:0,cost:0};a.sessions++;a.tokens+=s.total_tokens;a.cost+=s.cost_usd;byPurpose.set(s.purpose,a)}
+for(const [name,item] of [...byPurpose].sort((a,b)=>b[1].tokens-a[1].tokens)){const row=document.createElement('tr');button(td(row,''),name.replaceAll('_',' '),()=>setFilter('purpose',name));td(row,fmt(item.sessions),'numeric');td(row,fmt(item.tokens),'numeric');td(row,money(item.cost),'numeric');$('purposes').append(row)}
+for(const item of data.models){const row=document.createElement('tr');button(td(row,''),item.key,()=>setFilter('model',item.key));td(row,fmt(item.calls),'numeric');td(row,fmt(item.total_tokens),'numeric');td(row,item.priced_tokens?money(item.cost_usd):'unpriced','numeric');$('models').append(row)}
+for(const item of data.tools){const row=document.createElement('tr');button(td(row,''),item.name,()=>setFilter('tool',item.name));td(row,fmt(item.calls),'numeric');td(row,fmt(item.sessions.length),'numeric');$('tools').append(row)}
+for(const name of [...new Set(data.sessions.map(x=>x.purpose))].sort()){const opt=document.createElement('option');opt.value=name;opt.textContent=name.replaceAll('_',' ');$('purpose-filter').append(opt)}
+$('purpose-filter').onchange=e=>{filter.purpose=e.target.value;renderSessions()};$('source-filter').onchange=e=>{filter.source=e.target.value;renderSessions()};$('search').oninput=renderSessions;
+$('clear').onclick=()=>{for(const key of Object.keys(filter))filter[key]='';$('search').value='';$('purpose-filter').value='';$('source-filter').value='';renderSessions()};
+function visibleUsage(s){
+  if(!filter.day&&!filter.model)return s;
+  const result={total_tokens:0,priced_tokens:0,cost_usd:0};
+  for(const part of Object.values(s.slices)){
+    if(filter.day&&part.day!==filter.day)continue;
+    if(filter.model&&part.model!==filter.model)continue;
+    result.total_tokens+=part.total_tokens;result.priced_tokens+=part.priced_tokens;result.cost_usd+=part.cost_usd;
+  }
+  return result;
+}
+function renderSessions(){
+  const query=$('search').value.toLowerCase().trim();
+  const active=Object.entries(filter).filter(([_,v])=>v).map(([k,v])=>`${k}: ${v}`);
+  $('active').textContent=active.length?`Showing ${active.join(' · ')}`:'Showing all source sessions';
+  if(filter.tool)$('active').append(document.createTextNode(' · Token and cost values describe the associated session, not the tool.'));
+  if(active.length){const b=document.createElement('button');b.textContent='Clear';b.onclick=$('clear').onclick;$('active').append(b)}
+  const body=$('sessions');body.replaceChildren();let shown=0;
+  const matching=data.sessions.filter(s=>(!filter.day||s.days.includes(filter.day))&&(!filter.purpose||s.purpose===filter.purpose)&&(!filter.source||s.source===filter.source)&&(!filter.model||Object.hasOwn(s.models,filter.model))&&(!filter.tool||Object.hasOwn(s.tool_names,filter.tool))&&(!query||`${s.title} ${s.session_id} ${s.path}`.toLowerCase().includes(query)));
+  matching.sort((a,b)=>visibleUsage(b).total_tokens-visibleUsage(a).total_tokens);
+  for(const s of matching){
+    const usage=visibleUsage(s),row=document.createElement('tr'),title=td(row,'');
+    const strong=document.createElement('strong');strong.textContent=s.title;title.append(strong,document.createElement('br'));
+    const detail=document.createElement('span');detail.className='muted mono';detail.textContent=`${s.source} · ${s.session_id} · ${s.path}`;detail.title=s.path;title.append(detail);
+    const purpose=td(row,s.purpose.replaceAll('_',' '));purpose.title=`Label basis: ${s.purpose_basis}`;
+    td(row,filter.model||s.model||'—');td(row,fmt(usage.total_tokens),'numeric');
+    td(row,usage.priced_tokens?money(usage.cost_usd):usage.total_tokens?'unpriced':'—','numeric');
+    td(row,fmt(s.tools),'numeric');td(row,s.token_coverage);
+    const link=td(row,'');const a=document.createElement('a');a.href=s.trace_url||`file://${encodeURI(s.path)}`;a.textContent=s.trace_url?'Open trace ↗':'Open result ↗';a.target='_blank';a.rel='noopener';link.append(a);
+    body.append(row);shown++;
+  }
+  if(!shown){const row=document.createElement('tr');const c=td(row,'No sessions match these filters.');c.colSpan=8;body.append(row)}
+  $('active').prepend(document.createTextNode(`${shown} sessions · `));
+}
+renderSessions();$('footer').textContent=`Generated ${data.generated_at} · Time zone ${data.timezone} · Rate card checked ${data.price_checked_at}: ${data.price_source} · Local source paths and titles remain in this report. Med result usage is attributed to completion day and priced coarsely from result totals; exact invoice and Codex credits are outside this report.`;
+</script>
+</body>
+</html>

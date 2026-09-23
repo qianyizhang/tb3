@@ -17,6 +17,7 @@ Finding submission candidates is an optional later step, not the research goal.
 | Browse by task capability, distinguish conditions and separate supporting research | [Task taxonomy](task-taxonomy.md) |
 | Explain results, traces, failures or multi-run comparisons from pinned evidence | [Evidence explanation workflow](evidence-explanations.md) |
 | Export a research draft or hand work to a submission owner | [Exports and submission](submission.md) |
+| Analyze local Codex and med-run tokens, cost estimates, purpose and tool calls | [Workload analytics](workload-analytics.md) |
 
 ## Reference
 

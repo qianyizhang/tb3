@@ -1,0 +1,17 @@
+{
+  "schema": "tb3-workload-rates-v1",
+  "currency": "USD",
+  "basis": "API Standard equivalent, not Codex subscription charges",
+  "source": "https://developers.openai.com/api/docs/pricing",
+  "checked_at": "2026-09-23",
+  "unit": "per 1000000 tokens",
+  "long_context_threshold_input_tokens": 272000,
+  "models": {
+    "gpt-6-astra": {"input": 10, "cached_input": 1, "cache_write": 12.5, "output": 50, "long_input": 20, "long_cached_input": 2, "long_cache_write": 25, "long_output": 75},
+    "gpt-6-sol": {"input": 2, "cached_input": 0.2, "cache_write": 2.5, "output": 10, "long_input": 4, "long_cached_input": 0.4, "long_cache_write": 5, "long_output": 15},
+    "gpt-6-luna": {"input": 0.1, "cached_input": 0.01, "cache_write": 0.125, "output": 0.5, "long_input": 0.2, "long_cached_input": 0.02, "long_cache_write": 0.25, "long_output": 0.75},
+    "gpt-5.6-sol": {"input": 4, "cached_input": 0.4, "cache_write": 5, "output": 20, "long_input": 8, "long_cached_input": 0.8, "long_cache_write": 10, "long_output": 30},
+    "gpt-5.6-terra": {"input": 2, "cached_input": 0.2, "cache_write": 2.5, "output": 12, "long_input": 4, "long_cached_input": 0.4, "long_cache_write": 5, "long_output": 18},
+    "gpt-5.6-luna": {"input": 0.2, "cached_input": 0.02, "cache_write": 0.25, "output": 1.2, "long_input": 0.4, "long_cached_input": 0.04, "long_cache_write": 0.5, "long_output": 1.8}
+  }
+}

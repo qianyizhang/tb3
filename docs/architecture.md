@@ -84,6 +84,7 @@ The installed entry point is `med = tb3_medical.cli:main` in
 | [presentation.py](../src/tb3_medical/presentation.py), [task_catalog.py](../src/tb3_medical/task_catalog.py), [task_briefs.py](../src/tb3_medical/task_briefs.py) | Workbench build, composed task catalogues, validated briefs and the Task Explorer. |
 | [presentation_contracts.py](../src/tb3_medical/presentation_contracts.py), [frontend.py](../src/tb3_medical/frontend.py) | Canonical typed browser payloads, runtime validation, generated TypeScript and verified frontend build assets. |
 | [datasets.py](../src/tb3_medical/datasets.py), [dataset_previews.py](../src/tb3_medical/dataset_previews.py), [media.py](../src/tb3_medical/media.py) | Dataset source/receipt contracts, pinned previews and explicit local media operations. |
+| [workload.py](../src/tb3_medical/workload.py) | Read-only, local workload report over an external Codex Usage Tracker index and workbench med results; generated output stays under `.local/`. |
 | [presentation/](../presentation/README.md) | React/TypeScript views, shared styles, reusable teaching assets and tour renderers; scientific stories and internal briefs live with groups. |
 
 `types.Document` represents extensible JSON/TOML objects. Checked function
