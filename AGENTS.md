@@ -38,17 +38,23 @@ Do not pursue security research or resume the archived security work.
 
 Before any authorized Codex model launch, read the
 [local Codex launch rulebook](docs/workflow.md#local-codex-launch-rulebook).
-This Mac's working Harbor route requires explicit login and container proxy
-settings via `med run --agent-env-file .local/runtime/codex-agent-env.json`.
+This Mac's working Harbor routes require explicit login settings via
+`med run --agent-env-file PATH` and preservation of the task's network topology.
 Inspect the existing local profile or a successful run's `agents[].env`; never
 print credential contents or silently substitute an empty environment, API-key
 auth, another model or another client. Host and container Codex versions differ.
+For WSI/restricted sidecars, keep `http://transport:3128`; a direct/LAN proxy
+override is unreachable from the isolated solver. Harbor uploads preserve host
+ownership: `cap_drop: [ALL]` makes a host-owned 0600 auth file unreadable even to
+container root. Use the documented fresh auth copy (0644 inside a 0700 temporary
+host directory) via `CODEX_AUTH_JSON_PATH`; never relax the original auth file or
+remove isolation. Earlier longitudinal/dental launchers already used this pattern.
 When routing changes or fails, verify a bounded toy through the same Harbor image,
-auth and proxy route before launching the medical task. Missing credentials,
+Compose file, capabilities, auth and proxy route before the medical task. Missing credentials,
 401 responses and stale-client model errors are infrastructure observations,
 not proof of account-wide model unavailability or model failure. Do not repeat an
-unchanged failed launch. Astra/medium and GPT-6 Sol/xhigh both passed the documented
-Harbor toy on 2026-09-23; recheck when the runtime or route changes.
+unchanged failed launch. The dated route-specific smoke results are in the rulebook;
+recheck when the runtime or route changes.
 
 Keep raw runs, credentials, environments, generated reports and media local.
 Track concise allowlisted records and required fixtures/licenses. Record missing

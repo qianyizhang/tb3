@@ -68,27 +68,69 @@ Keep secrets out of authored records.
 
 ### Local Codex launch rulebook
 
-The working host is an Apple Silicon Mac with Docker Desktop. Harbor runs the
-Codex CLI inside the selected Linux solver image. The desktop app, shell `codex`
+The working host is an Apple Silicon Mac with Docker Engine via Colima. Harbor
+runs the Codex CLI inside the selected Linux solver image. The desktop app, shell `codex`
 and container `codex` are different clients and can have different versions,
 credentials and routes. Check the exact executable/image used by the failing
 attempt before inferring model availability.
 
-**Use the existing working runtime profile explicitly.** On this Mac it lives at
-`.local/runtime/codex-agent-env.json` (ignored, mode 0600). It contains a flat JSON
-object of string environment values: `CODEX_FORCE_AUTH_JSON` set to `"1"`,
-`http_proxy`, `https_proxy`, `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY`. Harbor
-then injects the existing `~/.codex/auth.json` and the container-reachable proxy
-settings. For a different approved credential location, use
-`CODEX_AUTH_JSON_PATH` instead of assuming the default cache. Keep credentials
-and machine-specific proxy addresses in local files, not tracked instructions.
+**Match authentication, file permissions and the task's actual network.**
+Harbor defaults to `OPENAI_API_KEY`; a ChatGPT login requires either
+`CODEX_AUTH_JSON_PATH` or `CODEX_FORCE_AUTH_JSON="1"`. Read the selected task's
+`environment/docker-compose.yaml` as well as `task.toml`: the base image alone
+is not the complete runtime.
 
-```sh
-uv run med run my-study --model openai/gpt-6-astra --effort medium \
-  --agent-env-file .local/runtime/codex-agent-env.json \
-  --harbor .venv/bin/harbor --diagnostic --preview
-# After the route and authorized condition are verified, omit --preview to launch.
+- **Direct-network tasks:** the local `.local/runtime/codex-agent-env.json`
+  profile (ignored, mode 0600) restores the older BR-041 route: ChatGPT auth plus
+  explicit lower/upper-case HTTP(S) proxy variables and `NO_PROXY`. It passed
+  base-image toys. It is **not the WSI sidecar profile**.
+- **WSI and other isolated-sidecar tasks:** the solver's proxy is
+  `http://transport:3128`, set by Compose. Preserve that value or omit proxy keys
+  from the agent environment to inherit it. The solver has no route to the LAN
+  upstream proxy; only the sidecar can reach that upstream. Never override it
+  with a direct profile or remove the network/capability restrictions.
+- **Restricted-container credentials:** Docker/Harbor upload preserves the host
+  auth file's numeric owner (501 here) and mode (0600). With `cap_drop: [ALL]`,
+  container root lacks `CAP_DAC_OVERRIDE`, so it cannot read that file. This can
+  surface as `codex login status` permission denied and later unauthenticated API
+  requests. Stage a fresh 0644 auth copy inside a **0700 temporary host directory**
+  and supply its path as `CODEX_AUTH_JSON_PATH`. The private parent protects it on
+  the Mac; the readable copy permits the isolated solver to authenticate. Keep it
+  alive until Harbor exits, then remove only the temporary copy. Do not chmod or
+  print the original `~/.codex/auth.json`.
+
+The established [longitudinal launcher](../groups/longitudinal-reading/methods/longitudinal-ct-image-only/run_condition.py)
+and [dental launcher](../groups/anatomy-audit/experiments/dental-ct-only-astra-medium/authoring/launch.py)
+already stage credentials this way.
+For a sidecar experiment, the equivalent supported CLI recipe is below. Replace
+`my-study` with the authorized experiment and keep its requested model/effort.
+This launches a model; it is not a maintenance or inspection command.
+
+```python
+import json
+import shutil
+import subprocess
+import tempfile
+from pathlib import Path
+
+with tempfile.TemporaryDirectory(prefix="tb3-codex-auth-") as directory:
+    private = Path(directory)  # TemporaryDirectory creates mode 0700.
+    auth = private / "auth.json"
+    shutil.copyfile(Path.home() / ".codex/auth.json", auth)
+    auth.chmod(0o644)
+    profile = private / "agent-env.json"
+    profile.write_text(json.dumps({"CODEX_AUTH_JSON_PATH": str(auth)}))
+    profile.chmod(0o600)
+    subprocess.run([
+        ".venv/bin/med", "run", "my-study",
+        "--model", "openai/gpt-6-astra", "--effort", "medium",
+        "--harbor", str(Path(".venv/bin/harbor").resolve()),
+        "--agent-env-file", str(profile), "--diagnostic",
+    ], check=True)
 ```
+
+Append `--preview` to the command for a task/profile check without inference;
+that preview cannot establish runtime readability or connectivity.
 
 `--agent-env-file` resolves relative to the workbench root and accepts a flat JSON
 object with valid environment-variable names and string values. Preview validates
@@ -102,13 +144,15 @@ default auth path uses `OPENAI_API_KEY`; an existing ChatGPT login requires the
 explicit opt-in above. Reuse a successful run's environment when recovering a
 missing local profile, without printing secrets or executing historical launchers.
 Tasks with a declared transport sidecar or stricter network policy keep their
-declared route; do not replace it with this WSI profile.
+declared route; use that task's verified topology rather than a generic profile.
 
 Before a new or repaired route runs a medical task:
 
 1. Inspect active ownership, usage reserve, the selected image/CLI version and
-   auth method; preserve the requested model and effort.
-2. Run one bounded, no-retry toy through that same Harbor runtime and environment.
+   auth method, Compose networks, capabilities and uploaded credential readability;
+   preserve the requested model and effort.
+2. Run one bounded, no-retry toy through that same Harbor image, Compose topology,
+   capabilities, auth environment and separate/shared verifier arrangement.
    Verify a completed model turn, an actual shell-produced answer and a passing
    verifier. A host-only reply does not verify Docker/Harbor transport.
 3. If it fails, inspect the first auth/transport/model-discovery error and fix
@@ -118,27 +162,43 @@ Before a new or repaired route runs a medical task:
 4. Resume the already authorized experiment condition with the verified profile.
    A runtime smoke pass proves execution plumbing, not medical capability.
 
-On 2026-09-23, the new WSI launches omitted the previously successful BR-041
-`agents[].env`. One invocation had no API key; the ChatGPT-auth attempt reached
-`api.openai.com/v1/responses` without usable authentication. The shell CLI was
-0.147.0; the WSI image had 0.155.1. Restoring the prior explicit auth **and** proxy
-environment in the same image made both `gpt-6-astra`/medium and `gpt-6-sol`/xhigh
-complete a `19 + 23` shell/file toy with reward 1 and no Harbor exception. No
-client upgrade was needed. This verifies the restored combination; it does not
-isolate every proxy/backend mechanism or attest provider-side model identity.
+On 2026-09-23, the first WSI invocation lacked API-key auth. The next opted into
+ChatGPT auth but uploaded a host-owned 0600 file into the capability-restricted
+solver; live inspection later confirmed that `codex login status` could not read
+it. The resulting 401 was an infrastructure error. The shell CLI was 0.147.0;
+the WSI image had 0.155.1. Host CLI errors did not establish account-wide model
+unavailability.
 
-Local proof: `.local/model-route-smoke-20260923/jobs/gpt-6-astra-medium/` and
-`.local/model-route-smoke-20260923/jobs/gpt-6-sol-xhigh/`, with the task and configs
-alongside them. Source discussions:
+Restoring the old BR-041 auth/proxy profile made both `gpt-6-astra`/medium and
+`gpt-6-sol`/xhigh complete a base-image `19 + 23` shell/file toy, reward 1 with
+no Harbor exception. The new `med run --agent-env-file` path also passed that toy
+in an isolated workbench (`attempt-4b916c8a4a33420d`). These checks did **not** cover
+WSI's Compose restrictions. Applying that direct profile to WSI produced
+`Network unreachable (os error 101)` because it overrode the sidecar proxy;
+`attempt-f1b7827a5e544517` was interrupted and retained. The investigation then
+verified the unreadable-auth defect and restored the sidecar plus readable-copy
+pattern. Do not infer equivalence from matching image/CLI versions alone.
+
+Local proof is under `.local/model-route-smoke-20260923/`: `jobs/` contains
+model/effort-specific direct and sidecar attempts; `workbench/` contains the
+isolated CLI test. Both sidecar Astra and Sol toys completed inference and produced
+exact `42\n` saved answers. Their initial toy verifiers had harness errors (a
+shared verifier could not write its reward; a separate base image lacked the baked
+test script). Those errors are retained separately from model access. Source discussions:
 [WSI experiments](codex://threads/01a0cbf7-5068-7001-90be-102123fff079) and
 [routing investigation](codex://threads/01a0cc34-3a42-7243-aa18-c02bd8b0c2f3).
-Recheck when image, client, login, proxy, model access or host networking changes;
+Earlier auth usage was recorded in historical launch-scope receipts and local
+configurations, but was missing from this daily launch guide. Recheck when image,
+client, Compose topology, credential permissions, proxy or model access changes;
 missing local artifacts require recovery rather than an assumed working route.
-The repaired `med run --agent-env-file` path also passed the same toy in the
-isolated `.local/model-route-smoke-20260923/workbench/`, attempt
-`attempt-4b916c8a4a33420d`, with unchanged frozen bytes and a collected passing
-observation. Earlier auth usage was recorded in historical launch-scope receipts
-and local configurations, but was missing from this daily launch guide.
+Runtime labels are not independent provider-side model identity attestation.
+
+After baking the toy test into a separate evaluator, the repaired CLI completed
+the full WSI image/sidecar/capability route with Astra/medium: isolated attempt
+`attempt-a354519f85d04d7e`, reward 1, no Harbor exception and unchanged frozen
+bytes. The actual HuBMAP retry `attempt-8d9493603c6d4909` then began model shell
+calls and native slide-crop reads with the same credential-copy pattern. This is
+successful startup evidence; its eventual medical result belongs to the WSI task.
 
 ### Controls and interpretation
 
