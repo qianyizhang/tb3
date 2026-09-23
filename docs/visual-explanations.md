@@ -4,10 +4,20 @@ Choose the view by the question, not by the available plotting tool.
 
 | Reader question | Best first view | What it must not imply |
 | --- | --- | --- |
-| What is the task or pipeline? | Small symbolic SVG/flow | Measured performance or patient evidence |
-| How large is the result? | Table or restrained quantitative chart | Comparability that has not been established |
-| What did prediction and GT look like? | Source-derived overlay or paired native views | Clinical adjudication from a research reference |
-| Where did the process diverge? | Cropped trace/intermediate sequence | That selected steps represent the whole trace |
+| What is the task? | Small symbolic SVG/flowchart | Measured performance or patient evidence |
+| What does success look like? | Input → expected-output example | That a demonstration is a measured result or solver-visible reference |
+| How good was the result? | Metric table/chart plus native matched view | Comparability or clinical validity not established by the evidence |
+| Why did it fail? | Stage funnel plus localized real-data evidence | That the failed stage proves an agent limitation; context, instructions and reference remain candidate causes |
+| How did runs differ? | Matched small multiples on identical planes/crops | That unlike conditions support a causal ranking |
+| Is GT questionable? | GT consistency view, source provenance and counterevidence | That disagreement alone proves a reference defect |
+| What did the agent do? | Phase timeline, artifact DAG and concise pseudocode | That selected steps cover the whole trace or reveal hidden cognition |
+
+A stage funnel shows where an observable loss occurs; use measured counts and
+denominators, or label it qualitative. An artifact DAG shows derivation between
+saved states; a timeline shows order or duration. Choose the view that answers the
+question rather than producing all three. For a disputed reference, show the
+relevant source alongside GT and independent counterevidence at matching geometry;
+label annotation gaps and adjudication status explicitly.
 
 Use a three-level explanation when the material supports it:
 

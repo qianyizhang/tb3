@@ -72,7 +72,8 @@ or decide that equal/different task digests are scientifically comparable.
 
 ## Agent-authored explanation
 
-Use the `explain-medical-evidence` skill. Keep these layers visibly separate:
+Use the [explain-medical-evidence skill](../skills/explain-medical-evidence/SKILL.md).
+Keep these layers visibly separate:
 
 1. **Contract:** solver-visible inputs, output, evaluator and reference boundary.
 2. **Measure:** exact frozen metric and denominator.
@@ -89,3 +90,19 @@ not automatically make every endpoint unusable.
 
 Follow the [visual explanation rulebook](visual-explanations.md). Prefer a compact
 overview plus expandable evidence over a long chronological narrative.
+
+For methodology and failure attribution, use the skill's
+[trace mode](../skills/explain-medical-evidence/references/modes.md#trace-and-failure-attribution):
+reconstruct consequential steps, inspect relevant views, link claims to exact
+trace/artifact locations, and test alternatives. Treat inefficiency as a separate
+measurement. Its exposure levels and completion check also apply inside a broader
+comparison or synthesis that makes trace-based claims. Manifest and repository
+checks validate provenance and structure, not explanation quality.
+
+Every score interpretation also includes the skill's proportional
+[task/context/reference fitness check](../skills/explain-medical-evidence/references/modes.md#task-context-and-reference-fitness).
+Distinguish where the output diverged from why: missing context, ambiguous or
+conflicting instructions, reference/scorer defects and agent limitations can
+coexist. Retain counterevidence and unresolved alternatives instead of assuming
+GT correctness or model failure. The [visual perspective table](visual-explanations.md)
+maps these questions to stage funnels, matched views and GT consistency evidence.

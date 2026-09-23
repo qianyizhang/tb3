@@ -1,0 +1,43 @@
+{
+  "schema_version": 2,
+  "kind": "discussion",
+  "id": "discussion-trace-analysis-regression-2026-09-23",
+  "title": "Trace-analysis regression: skill weakening, visual inspection and driver-model confounding",
+  "source": "codex://threads/01a0cbf7-5068-7001-90be-102123fff079",
+  "summary": "The user accepted the v1.1.0 repair and reiterated prior requirements for context, instruction and GT attribution. The skill now requires proportional task/reference fitness checks, visual inspection, method/stage reconstruction, claim locators, supporting evidence and counterevidence, attribution status and measured efficiency. The shared visual rulebook restores seven question-specific perspectives. Behavioral recovery and independent driver-model effects remain untested.",
+  "links": [
+    {
+      "label": "Investigation, accepted skill repair and comparison design",
+      "path": "discussions/trace-analysis-regression-2026-09-23.md"
+    },
+    {
+      "label": "Current canonical explanation skill",
+      "path": "skills/explain-medical-evidence/SKILL.md"
+    },
+    {
+      "label": "WSI trace analysis reviewed",
+      "path": "groups/lesion-localization/findings/wsi-astra-medium-diagnostic-synthesis.md"
+    },
+    {
+      "label": "Older CT trace analysis reviewed",
+      "path": "groups/longitudinal-reading/findings/longitudinal-ct-trace-attribution.md"
+    }
+  ],
+  "decision_provenance": "On 2026-09-23 the user requested investigation and a proposed solution, identifying skill consolidation and an Astra-to-Sol driver switch as possible causes, and preferring concise tables, visual inspection, flowgraphs, pseudocode and structured bullets. In the investigation task they then replied “seems correct, go fix”, accepting the repair. The canonical skill and shared guidance were updated to v1.1.0 and the installed skill synchronized. Behavioral recovery and the independent model effect remain unmeasured; no model default was changed. The user subsequently cited Consolidate research skills (01a0c710-a53a-7740-9d27-601f8cd9f07f), explicitly required context, instruction and GT problems to remain possible causes, and supplied the seven-row perspective table. The repair incorporates that direction; it does not assume either model failure or reference correctness.",
+  "reopen_when": "A real invocation still omits visual evidence or claim locators after the v1.1.0 repair, or matched evidence from the proposed model-by-skill comparison becomes available.",
+  "related_ids": [
+    "lesion-localization",
+    "longitudinal-reading",
+    "wsi-astra-medium-diagnostic-synthesis",
+    "longitudinal-ct-trace-attribution"
+  ],
+  "accepted_decisions": {
+    "actor": "user",
+    "source": "codex://threads/01a0ccbc-553f-73b2-ae3c-978057811f8a",
+    "response": "seems correct, go fix",
+    "decisions": [
+      "Implement the concrete evidence-skill and trace-mode repair",
+      "Make context, instructions and GT first-class attribution checks with counterevidence, and restore the seven visual perspectives"
+    ]
+  }
+}

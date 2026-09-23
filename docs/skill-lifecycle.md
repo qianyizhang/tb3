@@ -10,6 +10,11 @@ Version changes describe instruction behavior:
 - **Minor:** new mode, decision rule or materially improved workflow.
 - **Major:** incompatible invocation, output or safety contract.
 
+When condensing or consolidating a skill, review the semantic diff: preserve
+required outcomes, inspection steps and claim boundaries. Moving a requirement
+into a mode must not make it disappear from other applicable modes; replacing an
+explicit action with a general preference is a behavior change.
+
 Every ledger entry records the version that was actually invoked. Use
 `unversioned` only for a genuinely historical invocation. Do not silently replace
 it with the version containing the eventual fix.
