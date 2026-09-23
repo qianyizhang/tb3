@@ -1,0 +1,49 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "analysis_kind": "synthesis",
+  "id": "wsi-astra-medium-diagnostic-synthesis",
+  "group_id": "lesion-localization",
+  "title": "Astra medium WSI diagnostic studies",
+  "claim": "Across five Astra medium diagnostic conditions on four selected public WSI sources, all final answers met the artifact contract, while private references showed partial or uneven task agreement: HuBMAP 86/99 polygons matched, TIGER cell matching mixed with near-perfect attribution only when tissue masks were supplied, CAMELYON 4/6 Tumor polygons hit on one positive slide, and HiESD 3,222/11,290 annotated pixels correct. These are case-specific observations, not comparable population or clinical performance estimates.",
+  "experiment_ids": [
+    "wsi-camelyon-search-astra-medium",
+    "wsi-hiesd-map-astra-medium",
+    "wsi-hubmap-inventory-astra-medium",
+    "wsi-tiger-context-astra-medium"
+  ],
+  "evidence": [
+    {
+      "path": "groups/lesion-localization/findings/evidence/wsi-astra-medium-diagnostic-synthesis.json",
+      "sha256": "2e7261ae32357b279b081f04bd2cddcba10cbac4f9348351485d0583c6a816e6"
+    },
+    {
+      "path": "groups/lesion-localization/findings/figures/wsi-hubmap-astra-overview.jpg",
+      "sha256": "c3231fcba875d59510a2665f8e06dfb0db8305a7bf542a31b2acabb6b97c383b"
+    },
+    {
+      "path": "groups/lesion-localization/findings/figures/wsi-hiesd-astra-coarse-map.jpg",
+      "sha256": "75a1019c49670008d33d457a85d811ed7402d983a595576aa9a3b55e974216a1"
+    }
+  ],
+  "limitations": [
+    "One selected public slide per source, or three fixed TIGER ROIs from one slide, and one stochastic attempt per condition cannot establish population performance, a model ranking or clinical validity; public-data pretraining exposure is unknown.",
+    "Harbor reward checks output artifacts rather than scientific correctness. HuBMAP unmatched predictions need annotation-domain review; CAMELYON has no negative or sparse-lesion case; HiESD XML boundaries are coarse and unannotated tissue is not known-normal.",
+    "TIGER tissue-supplied compartment accuracy uses the evaluated tissue mask as an input, so its paired contrast is a diagnostic assistance check, not independent tissue inference or a causal detection estimate.",
+    "Two earlier Sol attempts and one interrupted Astra transport attempt ended before image analysis and retain no-verdict execution status."
+  ],
+  "links": [
+    {
+      "label": "Analysis report",
+      "path": "groups/lesion-localization/findings/wsi-astra-medium-diagnostic-synthesis.md"
+    },
+    {
+      "label": "HuBMAP input and post-hoc overlay",
+      "path": "groups/lesion-localization/findings/figures/wsi-hubmap-astra-overview.jpg"
+    },
+    {
+      "label": "HiESD source, private reference and output",
+      "path": "groups/lesion-localization/findings/figures/wsi-hiesd-astra-coarse-map.jpg"
+    }
+  ]
+}

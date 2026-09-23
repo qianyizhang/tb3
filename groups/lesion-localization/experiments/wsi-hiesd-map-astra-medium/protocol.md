@@ -11,3 +11,9 @@ Use `openai/gpt-6-astra` medium, one 3600-second attempt, no automatic retry, Do
 ## Inputs and reference
 
 ## Findings and limits
+
+### Diagnostic observation — 2026-09-23
+
+`attempt-97fa20fa8e884676` completed with `gpt-6-astra` medium in Harbor, no terminal exception, unchanged frozen task bytes, and a valid 623 × 448 single-channel output (`reward=1` for the artifact contract). The private result `observation-c0a0bd2dc1595143f6cc62e2` scored 10,088 labeled pixels of 11,290 annotated XML-grid pixels (coverage 0.894), of which 3,222 had the correct class. That is 0.285 of all annotated pixels and 0.319 of labeled annotated pixels. The crop helper logged 19 calls; the inspected 8 shell commands showed no explicit access to private `tests/` or `solution/` paths.
+
+Post-hoc inspection of the saved map and private coarse reference shows the output used only classes 1, 2, 3 and 6; it never emitted codes 4 (normal glands) or 5 (well differentiated adenocarcinoma). Within annotated pixels, class 1 (chronic gastritis) was correct on 1,252/6,911; class 2 on 1,106/1,796; class 3 on 71/100; class 4 on 0/121; class 5 on 0/361; class 6 on 793/2,001. This is a diagnostic description of one slide, not a class-level population estimate. The map also labels unannotated tissue, which the reference does not establish as normal or abnormal. The [source/reference/result figure](../../findings/figures/wsi-hiesd-astra-coarse-map.jpg) uses the same 623 × 448 grid and categorical colors; the reference overlay is evaluator-only and was made after the run. Coarse XML boundaries and unannotated tissue prevent fine gland, margin or invasion-depth claims.
