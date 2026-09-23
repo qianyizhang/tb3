@@ -22,9 +22,13 @@ source does not grade sclerosis, partial profiles or clinical disease.
 
 ## Findings and limits
 
-Pending model attempt. The original Astra run matched 86/99 and left 28
-unmatched submitted points, some morphologically altered. No source GT defect
-was proved. A new Sol result on this public training slide is diagnostic only;
-resolve candidate inclusion with pathology adjudication before a precision or
+The completed [Sol attempt](attempts/attempt-d995786db0d345e3.json) submitted
+110 points and matched 86/99 reference polygons (86.9% recall), leaving 13
+missed polygons and 24 unmatched points for review. Harbor reward 1 means a
+valid artifact only. The agent tiled the slide, built a candidate detector and
+checked zoom sheets; its agent phase took about 17.5 minutes. The original
+Astra run also matched 86/99 but used a different task contract and submitted
+114 points with 28 unmatched. Neither result proves a source GT defect.
+Resolve candidate inclusion with pathology adjudication before a precision or
 clinical count claim. Crop-helper logs do not enforce a full read budget because
-direct TIFF access remains available.
+direct TIFF access remains available. See the [seven-condition synthesis](../../findings/wsi-sol6-xhigh-v2-diagnostic-synthesis.md).

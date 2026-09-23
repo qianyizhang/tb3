@@ -1,0 +1,483 @@
+{
+  "schema_version": 1,
+  "kind": "wsi-sol6-xhigh-v2-evidence",
+  "created_at_utc": "2026-09-23T09:06:04.923856+00:00",
+  "model": "openai/gpt-6-sol",
+  "effort": "xhigh",
+  "case_count": 7,
+  "route_verification": {
+    "path": ".local/wsi-agent-v2/route-verification.json",
+    "sha256": "2f90e6f4a9feed4b734f5b18d3249f9d2939a6983a42ef5227171c6f483de8e5"
+  },
+  "control_ledger": {
+    "path": ".local/wsi-agent-v2/controls.json",
+    "sha256": "499c9171d4e102ab5accdbbc529de549ff7e7ad797843b5d5d5706eb5ab5fc14"
+  },
+  "conditions": [
+    {
+      "condition": "hubmap",
+      "experiment_id": "wsi-hubmap-inventory-v2-sol6-xhigh",
+      "case": "default",
+      "attempt_id": "attempt-d995786db0d345e3",
+      "observation_id": "observation-1b5dc9b583fd7c6fa8976278",
+      "task_digest": "568e968744fc0c8bf9c66248b62af62f76026d3b4483a328a5682a9c945f2238",
+      "execution_state": "completed",
+      "outcome": "pass",
+      "artifact_reward": 1.0,
+      "metrics": {
+        "kind": "hubmap",
+        "valid": true,
+        "reward_meaning": "answer contract",
+        "reference_objects": 99,
+        "submitted_points": 110,
+        "matched_reference_objects": 86,
+        "reference_recall": 0.8686868686868687,
+        "unmatched_points_pending_review": 24,
+        "criterion": "one-to-one point in source polygon or within 50 micrometers of edge",
+        "scope": "reference recall only; unmatched points have no adjudicated false-positive status"
+      },
+      "evidence": [
+        {
+          "path": ".local/attempts/attempt-d995786db0d345e3/execution.json",
+          "sha256": "4862dec8506a202a1c9099bf3041ddfd166ea8cdf7528e9dade57f650f6b0ced"
+        },
+        {
+          "path": "groups/lesion-localization/experiments/wsi-hubmap-inventory-v2-sol6-xhigh/evaluations/observation-1b5dc9b583fd7c6fa8976278.json",
+          "sha256": "81bfe01e0ad4f7cfad4475436d0081c1597cb3643093bff261122909166629d2"
+        },
+        {
+          "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/agent/codex.txt",
+          "sha256": "5c8f994270ffbaafb3048a580c4003a9b069f287c2b881f83f2d871e298ba379"
+        },
+        {
+          "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/verifier/test-stdout.txt",
+          "sha256": "0bca03ac31b0d9d062750a860d62082d54d09c7ca60c0f3d8f64a9c377bf926e"
+        },
+        {
+          "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/answer/points.json",
+          "sha256": "a9692082cda4f151915beb8126d40ef7ca2820eeec3eae74912024db2a364d4b"
+        }
+      ]
+    },
+    {
+      "condition": "tiger-image-only",
+      "experiment_id": "wsi-tiger-context-v2-sol6-xhigh",
+      "case": "image-only",
+      "attempt_id": "attempt-bbdbd02aa1ee4e82",
+      "observation_id": "observation-7646e2ec84812761998b0fee",
+      "task_digest": "2288513b76d4b9a0f594c1199c430bd2d41767142079969dfacab0945097b32a",
+      "execution_state": "completed",
+      "outcome": "pass",
+      "artifact_reward": 1.0,
+      "metrics": {
+        "kind": "tiger",
+        "valid": true,
+        "reward_meaning": "answer contract",
+        "rois": {
+          "roi1": {
+            "reference_cells": 20,
+            "submitted_cells": 32,
+            "matched_cells": 11,
+            "cell_recall": 0.55,
+            "cell_precision_within_reference": 0.34375,
+            "compartment_accuracy_reference_center": 1.0,
+            "compartment_accuracy_submitted_center": 1.0,
+            "boundary_band_pairs": 0,
+            "interior_pairs": 11,
+            "interior_compartment_accuracy_reference_center": 1.0
+          },
+          "roi2": {
+            "reference_cells": 175,
+            "submitted_cells": 225,
+            "matched_cells": 158,
+            "cell_recall": 0.9028571428571428,
+            "cell_precision_within_reference": 0.7022222222222222,
+            "compartment_accuracy_reference_center": 0.8227848101265823,
+            "compartment_accuracy_submitted_center": 0.8227848101265823,
+            "boundary_band_pairs": 39,
+            "interior_pairs": 119,
+            "interior_compartment_accuracy_reference_center": 0.8991596638655462
+          },
+          "roi3": {
+            "reference_cells": 323,
+            "submitted_cells": 343,
+            "matched_cells": 259,
+            "cell_recall": 0.8018575851393189,
+            "cell_precision_within_reference": 0.7551020408163265,
+            "compartment_accuracy_reference_center": 0.9536679536679536,
+            "compartment_accuracy_submitted_center": 0.9498069498069498,
+            "boundary_band_pairs": 56,
+            "interior_pairs": 203,
+            "interior_compartment_accuracy_reference_center": 0.9605911330049262
+          }
+        },
+        "matching": "one-to-one within 20 ROI pixels",
+        "boundary_band": "reference center within 20 pixels of another mask code",
+        "scope": "three fixed ROIs from one slide; 0 is unknown/unannotated"
+      },
+      "evidence": [
+        {
+          "path": ".local/attempts/attempt-bbdbd02aa1ee4e82/execution.json",
+          "sha256": "ee8d2d2cb67f993d2766c8a70ed760176dd02735c4f93acf40e3b0c0bb657dac"
+        },
+        {
+          "path": "groups/lesion-localization/experiments/wsi-tiger-context-v2-sol6-xhigh/evaluations/observation-7646e2ec84812761998b0fee.json",
+          "sha256": "42b4014025559badfc8ed23c9db88efc4192e8c6f722569c9cf03efb7859ce62"
+        },
+        {
+          "path": ".local/attempts/attempt-bbdbd02aa1ee4e82/job/task__NuS2Tft/agent/codex.txt",
+          "sha256": "4d263fbf881fb8559d51e61ed9b4ec2666b5d403d57340bec7ece05aa5d0a500"
+        },
+        {
+          "path": ".local/attempts/attempt-bbdbd02aa1ee4e82/job/task__NuS2Tft/verifier/test-stdout.txt",
+          "sha256": "afb5476b41ba93e57d841092867f6e7e4d89b64d13e6c5144a9ee8880bff708d"
+        },
+        {
+          "path": ".local/attempts/attempt-bbdbd02aa1ee4e82/job/task__NuS2Tft/artifacts/app/answer/points.json",
+          "sha256": "c873cceaab3ea7776ddbfa98e0d58a82d1a7092cd210c89d0776e1b1f38715bc"
+        }
+      ]
+    },
+    {
+      "condition": "tiger-tissue-supplied",
+      "experiment_id": "wsi-tiger-context-v2-sol6-xhigh",
+      "case": "tissue-supplied",
+      "attempt_id": "attempt-0b67fda2268d4d68",
+      "observation_id": "observation-aa0731de2c554c234cab5611",
+      "task_digest": "5123acf4fa4b50aa969825a4d5e2b26849b981e4a52d95cf73eb47e1a879ee34",
+      "execution_state": "completed",
+      "outcome": "pass",
+      "artifact_reward": 1.0,
+      "metrics": {
+        "kind": "tiger",
+        "valid": true,
+        "reward_meaning": "answer contract",
+        "rois": {
+          "roi1": {
+            "reference_cells": 20,
+            "submitted_cells": 17,
+            "matched_cells": 5,
+            "cell_recall": 0.25,
+            "cell_precision_within_reference": 0.29411764705882354,
+            "compartment_accuracy_reference_center": 1.0,
+            "compartment_accuracy_submitted_center": 1.0,
+            "boundary_band_pairs": 2,
+            "interior_pairs": 3,
+            "interior_compartment_accuracy_reference_center": 1.0
+          },
+          "roi2": {
+            "reference_cells": 175,
+            "submitted_cells": 175,
+            "matched_cells": 141,
+            "cell_recall": 0.8057142857142857,
+            "cell_precision_within_reference": 0.8057142857142857,
+            "compartment_accuracy_reference_center": 1.0,
+            "compartment_accuracy_submitted_center": 1.0,
+            "boundary_band_pairs": 39,
+            "interior_pairs": 102,
+            "interior_compartment_accuracy_reference_center": 1.0
+          },
+          "roi3": {
+            "reference_cells": 323,
+            "submitted_cells": 366,
+            "matched_cells": 286,
+            "cell_recall": 0.8854489164086687,
+            "cell_precision_within_reference": 0.7814207650273224,
+            "compartment_accuracy_reference_center": 0.9965034965034965,
+            "compartment_accuracy_submitted_center": 1.0,
+            "boundary_band_pairs": 56,
+            "interior_pairs": 230,
+            "interior_compartment_accuracy_reference_center": 1.0
+          }
+        },
+        "matching": "one-to-one within 20 ROI pixels",
+        "boundary_band": "reference center within 20 pixels of another mask code",
+        "scope": "three fixed ROIs from one slide; 0 is unknown/unannotated"
+      },
+      "evidence": [
+        {
+          "path": ".local/attempts/attempt-0b67fda2268d4d68/execution.json",
+          "sha256": "512d83e27a01829eab2074dcdedb8293cf0fc7a44a193b20307087873e864fa2"
+        },
+        {
+          "path": "groups/lesion-localization/experiments/wsi-tiger-context-v2-sol6-xhigh/evaluations/observation-aa0731de2c554c234cab5611.json",
+          "sha256": "484a43ee16481209de3e905789fcb0a988b92a10e10286592ed5017e8b9e8504"
+        },
+        {
+          "path": ".local/attempts/attempt-0b67fda2268d4d68/job/task__q4nroUp/agent/codex.txt",
+          "sha256": "0f8fd07fe55adaa876a533784b1a2ee0cfb30ea0163bc593ade946db7c096318"
+        },
+        {
+          "path": ".local/attempts/attempt-0b67fda2268d4d68/job/task__q4nroUp/verifier/test-stdout.txt",
+          "sha256": "e3dc99425d5ac7a16753a58d9dbbaacbaa9c21275171e82401c0d65cdfae42f1"
+        },
+        {
+          "path": ".local/attempts/attempt-0b67fda2268d4d68/job/task__q4nroUp/artifacts/app/answer/points.json",
+          "sha256": "83a0c9e999cc11ba67baf33c8f3696be1f317744a611d1d4baeb01b497c1f4fa"
+        }
+      ]
+    },
+    {
+      "condition": "camelyon-positive-existing",
+      "experiment_id": "wsi-camelyon-lesion-v2-sol6-xhigh",
+      "case": "positive-existing",
+      "attempt_id": "attempt-8d453145984a45c3",
+      "observation_id": "observation-19bc7bbe7deb9252427dbecc",
+      "task_digest": "0702e93a1988e5e472d2090641813d18120f0e53ee739f251368b169dbeab851",
+      "execution_state": "completed",
+      "outcome": "pass",
+      "artifact_reward": 1.0,
+      "metrics": {
+        "kind": "camelyon_lesions",
+        "valid": true,
+        "reward_meaning": "answer contract",
+        "source_slide": "tumor_091",
+        "reference_tumor_polygons": 6,
+        "reference_lesion_groups": 4,
+        "hit_lesion_groups": 0,
+        "lesion_group_recall": 0.0,
+        "submitted_points": 0,
+        "first_hit_points": 0,
+        "false_positive_points": 0,
+        "duplicate_points_within_hit_groups": 0,
+        "excluded_points": 0,
+        "scope": "selected fully annotated public slide; 50 micrometer polygon grouping is a study rule"
+      },
+      "evidence": [
+        {
+          "path": ".local/attempts/attempt-8d453145984a45c3/execution.json",
+          "sha256": "e17d828b8394dbfe77247faa4fbc15368f84d066b5fd43bd9fdb750d034ef455"
+        },
+        {
+          "path": "groups/lesion-localization/experiments/wsi-camelyon-lesion-v2-sol6-xhigh/evaluations/observation-19bc7bbe7deb9252427dbecc.json",
+          "sha256": "fae568fc4e58c5630bbbe3e7697fb66670f9992698c319bf20ca8efaebaef1b3"
+        },
+        {
+          "path": ".local/attempts/attempt-8d453145984a45c3/job/task__vMZNdty/agent/codex.txt",
+          "sha256": "e64dcfc7528c916b048b337b1955fb99f9817148f107d28f55534548ba6338e1"
+        },
+        {
+          "path": ".local/attempts/attempt-8d453145984a45c3/job/task__vMZNdty/verifier/test-stdout.txt",
+          "sha256": "42cb1c917133396bfb3ef745ede6b780d2c372062bc14e25ff52055a1cdc5e03"
+        },
+        {
+          "path": ".local/attempts/attempt-8d453145984a45c3/job/task__vMZNdty/artifacts/app/answer/points.json",
+          "sha256": "1d945a1dc8f83d34d75fc3f00703dbcc1df07b4e4aabbd5cfba6179c02835979"
+        }
+      ]
+    },
+    {
+      "condition": "camelyon-small-positive",
+      "experiment_id": "wsi-camelyon-lesion-v2-sol6-xhigh",
+      "case": "small-positive",
+      "attempt_id": "attempt-9acd94eaa875417b",
+      "observation_id": "observation-b711afaf4d7eae2e7e51bea6",
+      "task_digest": "522d06f5b8e21cf30459cb7c903b56e605407982401eb701878738d61f243c5c",
+      "execution_state": "completed",
+      "outcome": "pass",
+      "artifact_reward": 1.0,
+      "metrics": {
+        "kind": "camelyon_lesions",
+        "valid": true,
+        "reward_meaning": "answer contract",
+        "source_slide": "tumor_084",
+        "reference_tumor_polygons": 54,
+        "reference_lesion_groups": 30,
+        "hit_lesion_groups": 0,
+        "lesion_group_recall": 0.0,
+        "submitted_points": 0,
+        "first_hit_points": 0,
+        "false_positive_points": 0,
+        "duplicate_points_within_hit_groups": 0,
+        "excluded_points": 0,
+        "scope": "selected fully annotated public slide; 50 micrometer polygon grouping is a study rule"
+      },
+      "evidence": [
+        {
+          "path": ".local/attempts/attempt-9acd94eaa875417b/execution.json",
+          "sha256": "bc739155243d3ae51b969eb3c194abe4c8ee9bdae127daf370b33fc87dc07eda"
+        },
+        {
+          "path": "groups/lesion-localization/experiments/wsi-camelyon-lesion-v2-sol6-xhigh/evaluations/observation-b711afaf4d7eae2e7e51bea6.json",
+          "sha256": "5a1cc77b5ccf9c3f1ae8668daaccec1b3e8fbc45753d20326bf5530a961b9a4b"
+        },
+        {
+          "path": ".local/attempts/attempt-9acd94eaa875417b/job/task__AbJ8DUi/agent/codex.txt",
+          "sha256": "1b039bf20399b372864f24bf37532d4a285580b86c0abe3f63837351ef1a3520"
+        },
+        {
+          "path": ".local/attempts/attempt-9acd94eaa875417b/job/task__AbJ8DUi/verifier/test-stdout.txt",
+          "sha256": "5fb188ede824a9882e867ade9c37ea21d25c020b73962df004aec7b89c08e9c9"
+        },
+        {
+          "path": ".local/attempts/attempt-9acd94eaa875417b/job/task__AbJ8DUi/artifacts/app/answer/points.json",
+          "sha256": "1d945a1dc8f83d34d75fc3f00703dbcc1df07b4e4aabbd5cfba6179c02835979"
+        }
+      ]
+    },
+    {
+      "condition": "camelyon-negative",
+      "experiment_id": "wsi-camelyon-lesion-v2-sol6-xhigh",
+      "case": "negative",
+      "attempt_id": "attempt-927a18c8c21e4ec5",
+      "observation_id": "observation-b7acbecc778db97164261f4e",
+      "task_digest": "8349468f1762a22608a472aa4ae531a3f7d48becbe0f112d5cf511b51997084b",
+      "execution_state": "completed",
+      "outcome": "pass",
+      "artifact_reward": 1.0,
+      "metrics": {
+        "kind": "camelyon_lesions",
+        "valid": true,
+        "reward_meaning": "answer contract",
+        "source_slide": "normal_108",
+        "reference_tumor_polygons": 0,
+        "reference_lesion_groups": 0,
+        "hit_lesion_groups": 0,
+        "lesion_group_recall": null,
+        "submitted_points": 0,
+        "first_hit_points": 0,
+        "false_positive_points": 0,
+        "duplicate_points_within_hit_groups": 0,
+        "excluded_points": 0,
+        "scope": "selected fully annotated public slide; 50 micrometer polygon grouping is a study rule"
+      },
+      "evidence": [
+        {
+          "path": ".local/attempts/attempt-927a18c8c21e4ec5/execution.json",
+          "sha256": "c74d2b4eef9851769e8587cb019b44e143c60c6309c2c755a5625a14a7737317"
+        },
+        {
+          "path": "groups/lesion-localization/experiments/wsi-camelyon-lesion-v2-sol6-xhigh/evaluations/observation-b7acbecc778db97164261f4e.json",
+          "sha256": "c79372fc0948c8432b8a2540ed14eabe6b01028097275434839145498074c5b0"
+        },
+        {
+          "path": ".local/attempts/attempt-927a18c8c21e4ec5/job/task__wWgKRJD/agent/codex.txt",
+          "sha256": "560d57baf2cc5f7e7ff30df515d8a476937946fe76f3b13d086ee3bdfd0a3659"
+        },
+        {
+          "path": ".local/attempts/attempt-927a18c8c21e4ec5/job/task__wWgKRJD/verifier/test-stdout.txt",
+          "sha256": "958234131c3a9afa3329fc792fb750b210f3bd09d895c173e24146191eefacae"
+        },
+        {
+          "path": ".local/attempts/attempt-927a18c8c21e4ec5/job/task__wWgKRJD/artifacts/app/answer/points.json",
+          "sha256": "1d945a1dc8f83d34d75fc3f00703dbcc1df07b4e4aabbd5cfba6179c02835979"
+        }
+      ]
+    },
+    {
+      "condition": "hiesd",
+      "experiment_id": "wsi-hiesd-patches-v2-sol6-xhigh",
+      "case": "default",
+      "attempt_id": "attempt-d1bd0aecea104412",
+      "observation_id": "observation-dc3434e43d570fbe13c32bf6",
+      "task_digest": "ab0a02f7938ebcff7159a75bd6574b126bed8e72880f7527bad7deb6939d7db5",
+      "execution_state": "completed",
+      "outcome": "pass",
+      "artifact_reward": 1.0,
+      "metrics": {
+        "kind": "hiesd_patches",
+        "valid": true,
+        "reward_meaning": "answer contract",
+        "patches": 12,
+        "covered": 12,
+        "correct": 8,
+        "coverage": 1.0,
+        "accuracy": 0.6666666666666666,
+        "accuracy_on_covered": 0.6666666666666666,
+        "per_class": {
+          "1": {
+            "patches": 2,
+            "covered": 2,
+            "correct": 1,
+            "accuracy": 0.5
+          },
+          "2": {
+            "patches": 2,
+            "covered": 2,
+            "correct": 1,
+            "accuracy": 0.5
+          },
+          "3": {
+            "patches": 2,
+            "covered": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          },
+          "4": {
+            "patches": 2,
+            "covered": 2,
+            "correct": 2,
+            "accuracy": 1.0
+          },
+          "5": {
+            "patches": 2,
+            "covered": 2,
+            "correct": 1,
+            "accuracy": 0.5
+          },
+          "6": {
+            "patches": 2,
+            "covered": 2,
+            "correct": 1,
+            "accuracy": 0.5
+          }
+        },
+        "scope": "GT-selected annotated patches from one slide; correlated regions, no WSI search score"
+      },
+      "evidence": [
+        {
+          "path": ".local/attempts/attempt-d1bd0aecea104412/execution.json",
+          "sha256": "cb31d9bd5ed32912a3e5ef11bed0d2089c3fc8c1ea94cff54afcffb7c42126d4"
+        },
+        {
+          "path": "groups/lesion-localization/experiments/wsi-hiesd-patches-v2-sol6-xhigh/evaluations/observation-dc3434e43d570fbe13c32bf6.json",
+          "sha256": "91a6898d8dbaf95f57dee5fb21fd8f8cadb694357405bc36b3652955b69c14b0"
+        },
+        {
+          "path": ".local/attempts/attempt-d1bd0aecea104412/job/task__YhnHQey/agent/codex.txt",
+          "sha256": "b901893c7d9cc512f7fdfb773734168e9f25648672615a7121a7c7a960bdc745"
+        },
+        {
+          "path": ".local/attempts/attempt-d1bd0aecea104412/job/task__YhnHQey/verifier/test-stdout.txt",
+          "sha256": "2570363a4b861e52247ee322e9ff6fe75a5de7c634a45d6d2d08908e067135f6"
+        },
+        {
+          "path": ".local/attempts/attempt-d1bd0aecea104412/job/task__YhnHQey/artifacts/app/answer/labels.json",
+          "sha256": "6de888dc1f6b67dfd47e3db39bf11aec1611aa0e8eca77205fb75fb29bbd354d"
+        }
+      ]
+    }
+  ],
+  "posthoc_camelyon_review": [
+    {
+      "case": "positive-existing",
+      "attempt_id": "attempt-8d453145984a45c3",
+      "explicit_level0_helper_crops_covering_oracle_centers": 2,
+      "lesion_groups": 4,
+      "method": "Count whether each oracle group point falls inside an explicit read_slide.py level-0 rectangle from item.started commands; direct TIFF and pyramid reads are not counted.",
+      "representative_reference_centered_crop": {
+        "path": ".local/wsi-agent-v2/inspection/positive-existing-gt-center.png",
+        "sha256": "f573c39e6c65ad32d612153862ebe1dcc1b6d3a9756c566f51495d1fe56b5d53"
+      },
+      "interpretation": "Illustrative post-hoc source-centered visual review, not clinical adjudication."
+    },
+    {
+      "case": "small-positive",
+      "attempt_id": "attempt-9acd94eaa875417b",
+      "explicit_level0_helper_crops_covering_oracle_centers": 11,
+      "lesion_groups": 30,
+      "method": "Count whether each oracle group point falls inside an explicit read_slide.py level-0 rectangle from item.started commands; direct TIFF and pyramid reads are not counted.",
+      "representative_reference_centered_crop": {
+        "path": ".local/wsi-agent-v2/inspection/small-positive-gt-center.png",
+        "sha256": "ff4636425d1f17cb8728cb9880411d5c018003abbe3b35a976dd777e69070285"
+      },
+      "interpretation": "Illustrative post-hoc source-centered visual review, not clinical adjudication."
+    }
+  ],
+  "interpretation_boundaries": [
+    "Harbor reward is answer contract only; diagnostic measures are in verifier stdout.",
+    "The CAMELYON lesion grouping is a 50 micrometer study rule, not official challenge FROC.",
+    "All source GT remains private to evaluator and post-hoc analyst; source-centered crops were generated after runs.",
+    "One stochastic attempt per condition; no population or causal inference."
+  ]
+}

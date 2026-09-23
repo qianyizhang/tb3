@@ -32,9 +32,16 @@ the three cases. For the source challenge's separate official methodology, see
 
 ## Findings and limits
 
-Pending model attempts. Three selected public training slides are not a
-population sensitivity or specificity estimate. Grouping nearby polygons
-addresses the original equal-weight polygon mismatch but can still merge
-biologically separate foci within its tolerance. Read-helper logs do not
-enforce a search budget because direct TIFF reads remain possible. Keep the
-case-level outputs and confidence thresholds visible before drawing conclusions.
+All three Sol cases completed. [`tumor_091`](attempts/attempt-8d453145984a45c3.json)
+and [`tumor_084`](attempts/attempt-9acd94eaa875417b.json) each produced a
+valid empty answer, hitting 0/4 and 0/30 study-defined lesion groups.
+[`normal_108`](attempts/attempt-927a18c8c21e4ec5.json) also produced an
+empty answer, appropriate for its zero-lesion reference. On the positives,
+the agent reviewed suspicious regions but judged them non-metastatic; explicit
+native helper crops contained 2/4 and 11/30 oracle group points, respectively.
+Direct pyramid reads prevent equating those counts with complete visual access.
+Post-hoc source-centered crops did not show an obvious coordinate/GT defect,
+but need specialist adjudication for pathology claims. Three selected public
+training slides are not a population sensitivity or specificity estimate.
+Grouping nearby polygons can still merge biologically separate foci. See the
+[seven-condition synthesis](../../findings/wsi-sol6-xhigh-v2-diagnostic-synthesis.md).

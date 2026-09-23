@@ -293,3 +293,20 @@ task bytes, attempts and scores stay frozen. The new CAMELYON grouping is a
 declared study rule, not an official FROC reproduction; the HiESD patch task
 does not measure autonomous slide search. Reopen for independent slides,
 reference adjudication, replicated assistance runs or a matched model comparison.
+
+### Revised Sol xhigh observations — 2026-09-23
+
+**Actor: assistant analysis of user-authorized attempts.** The seven revised
+conditions completed, with the [diagnostic synthesis](../findings/wsi-sol6-xhigh-v2-diagnostic-synthesis.md)
+and [pinned evidence](../findings/evidence/wsi-sol6-xhigh-v2-diagnostic-synthesis.json)
+retaining the exact task digests, scores and raw-trace pointers. HuBMAP matched
+86/99 source polygons with 24 unmatched points still awaiting review. TIGER's
+supplied masks made matched-cell compartment attribution nearly exact, while
+cell matching moved in mixed directions. Both CAMELYON positives produced valid
+but empty answers (0/4 and 0/30 study-defined lesion groups); the one normal
+control was also empty. HiESD labeled 12/12 selected patches and got 8 correct.
+Post-hoc source-centered CAMELYON crops did not reveal an obvious reference
+mapping defect, but this is not pathology adjudication. Reopen with blinded
+HuBMAP and HiESD reference review, replicated fixed-procedure TIGER runs, and
+independent CAMELYON slides with an explicit search budget. These are selected
+diagnostics, not task qualification or a model-ranking decision.

@@ -24,9 +24,13 @@ per-class correctness. Only annotated target regions enter the denominator.
 
 ## Findings and limits
 
-Pending model attempt. These 12 patches from one slide are correlated: rare
-classes may contribute two locations from one source region. Their GT-selected
-locations remove autonomous WSI search, and the XML regions do not establish
-precise gland boundaries, invasion depth, margins or labels for unannotated
-tissue. The [HiESD source paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC12311038/)
-recommends patch classification over exact boundary segmentation.
+The completed [Sol attempt](attempts/attempt-d1bd0aecea104412.json) labeled
+12/12 patches and got 8 correct (66.7%). Classes 3 and 4 were 2/2; classes
+1, 2, 5 and 6 were 1/2. The four errors include one tub1-to-incomplete-
+metaplasia confusion and the reverse. These 12 patches from one slide are
+correlated: rare classes may contribute two locations from one source region.
+Their GT-selected locations remove autonomous WSI search, and the XML regions
+do not establish precise gland boundaries, invasion depth, margins or labels
+for unannotated tissue. The [HiESD source paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC12311038/)
+recommends patch classification over exact boundary segmentation. See the
+[seven-condition synthesis](../../findings/wsi-sol6-xhigh-v2-diagnostic-synthesis.md).

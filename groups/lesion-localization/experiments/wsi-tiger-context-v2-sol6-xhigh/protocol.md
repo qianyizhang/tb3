@@ -25,8 +25,15 @@ diagnostic, not an exclusion from the main source-center measure. See the
 
 ## Findings and limits
 
-Pending model attempts. Fixed ROIs from one public slide do not measure
+Both Sol conditions completed. [Image-only](attempts/attempt-bbdbd02aa1ee4e82.json)
+matched 11/20, 158/175 and 259/323 cells; source-center compartment accuracy
+among matches was 100%, 82.3% and 95.4%. [Mask-supplied](attempts/attempt-0b67fda2268d4d68.json)
+matched 5/20, 141/175 and 286/323 cells, with source-center attribution
+100%, 100% and 99.7%. All 286 mask-supplied ROI3 submitted-center codes
+agreed with the mask there; the one source-center disagreement exposes a
+boundary placement difference. Fixed ROIs from one public slide do not measure
 autonomous WSI search or a clinical sTIL score. One paired run per condition
-cannot isolate a causal assistance effect from run variation. The supplied
+cannot isolate a causal detection effect from run variation. The supplied
 mask directly carries the reference tissue labels, so its result measures
-assisted attribution rather than inference from H&E alone.
+assisted attribution rather than inference from H&E alone. See the
+[seven-condition synthesis](../../findings/wsi-sol6-xhigh-v2-diagnostic-synthesis.md).

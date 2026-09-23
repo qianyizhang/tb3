@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "id": "observation-dc3434e43d570fbe13c32bf6",
+  "job": "job",
+  "trial_name": "task__YhnHQey",
+  "task_id": "task",
+  "agent": "codex",
+  "model": "openai/gpt-6-sol",
+  "reasoning_effort": "xhigh",
+  "agent_version": "0.155.1",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "reward": 1.0,
+  "started_at": "2026-09-23T08:55:01.821400Z",
+  "finished_at": "2026-09-23T09:00:59.573233Z",
+  "timing": {
+    "total": 357.752,
+    "setup": 0.2,
+    "agent": 321.018,
+    "verifier": 12.384
+  },
+  "usage": {
+    "n_input_tokens": 953775.0,
+    "n_cache_tokens": 866688.0,
+    "n_output_tokens": 9807.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": ".local/attempts/attempt-d1bd0aecea104412/job/task__YhnHQey/result.json",
+      "sha256": "7ea086d2e9a9c7d58d538b3bd7b8c8d324402e8e920c82c29ce35576160817fd"
+    },
+    {
+      "label": "Verifier cases",
+      "path": ".local/attempts/attempt-d1bd0aecea104412/job/task__YhnHQey/verifier/test-stdout.txt",
+      "sha256": "2570363a4b861e52247ee322e9ff6fe75a5de7c634a45d6d2d08908e067135f6"
+    },
+    {
+      "label": "Reward artifact",
+      "path": ".local/attempts/attempt-d1bd0aecea104412/job/task__YhnHQey/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": ".local/attempts/attempt-d1bd0aecea104412/job/task__YhnHQey/agent/trajectory.json",
+      "sha256": "21abae73c86b1b215e95f5fc7b97c8af01199719b8d88831ff0e675e1bbd9f83"
+    },
+    {
+      "label": "Submitted artifact: answer/labels.json",
+      "path": ".local/attempts/attempt-d1bd0aecea104412/job/task__YhnHQey/artifacts/app/answer/labels.json",
+      "sha256": "6de888dc1f6b67dfd47e3db39bf11aec1611aa0e8eca77205fb75fb29bbd354d"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": ".local/attempts/attempt-d1bd0aecea104412/job/lock.json",
+      "sha256": "6172333a3a4ec2e6420fe8aca6a364218e5f2a84c37534251c5be028995386eb"
+    }
+  ],
+  "task_checksum": "585601abc631d9d28024ebfad85837bebc613bbd39812f25c1edd39e1f420222",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": ".local/attempts/attempt-d1bd0aecea104412/job/task__YhnHQey/result.json",
+  "source_sha256": "7ea086d2e9a9c7d58d538b3bd7b8c8d324402e8e920c82c29ce35576160817fd",
+  "evidence_sha256": "b7ca5a0b0bf4ef9cd720766667412ad856306b9e2cbbdcea377897d3cb7cd026",
+  "kind": "evaluation",
+  "evaluation_kind": "result",
+  "attempt_id": "attempt-d1bd0aecea104412",
+  "experiment_id": "wsi-hiesd-patches-v2-sol6-xhigh",
+  "group_id": "lesion-localization",
+  "collected_at": "2026-09-23T09:01:00.276112+00:00",
+  "execution_state": "completed",
+  "outcome": "pass",
+  "partial": false,
+  "task_digest": "ab0a02f7938ebcff7159a75bd6574b126bed8e72880f7527bad7deb6939d7db5",
+  "freeze_checksum_verified": true,
+  "source_classification": "model_pass"
+}

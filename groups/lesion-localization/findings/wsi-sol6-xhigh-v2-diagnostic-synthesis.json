@@ -1,0 +1,39 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "analysis_kind": "synthesis",
+  "id": "wsi-sol6-xhigh-v2-diagnostic-synthesis",
+  "group_id": "lesion-localization",
+  "title": "Revised WSI diagnostics with Sol 6 xhigh",
+  "claim": "Across seven revised Sol 6 xhigh conditions in four WSI task families, all answers met the artifact contract. Private diagnostic measures showed HuBMAP 86/99 reference polygons matched with 24 unadjudicated extras, TIGER tissue attribution near exact only with supplied source masks while cell matching changed by ROI, no lesion groups hit on either CAMELYON positive slide despite correct empty output on one negative, and 8/12 HiESD annotated patches classified correctly. These are selected-case diagnostics rather than population or clinical performance estimates.",
+  "experiment_ids": [
+    "wsi-camelyon-lesion-v2-sol6-xhigh",
+    "wsi-hiesd-patches-v2-sol6-xhigh",
+    "wsi-hubmap-inventory-v2-sol6-xhigh",
+    "wsi-tiger-context-v2-sol6-xhigh"
+  ],
+  "evidence": [
+    {
+      "path": "groups/lesion-localization/findings/evidence/wsi-sol6-xhigh-v2-diagnostic-synthesis.json",
+      "sha256": "4c5de475c63d57989affcc92d67c00646892b0bf14179884bfdd5d7e41cc87aa"
+    }
+  ],
+  "limitations": [
+    "One selected public slide per source, or three TIGER ROIs from one slide, and one attempt per condition do not estimate population performance or support a Sol-versus-Astra ranking. Public-data pretraining exposure is unknown.",
+    "Harbor reward checks the answer contract, not diagnostic correctness. HuBMAP unmatched points require annotation-domain review before any false-positive claim.",
+    "TIGER's supplied mask carries the evaluated tissue labels. Separate runs used different candidate detection procedures, so changes in matched cells cannot be attributed causally to mask availability.",
+    "CAMELYON 50 micrometer polygon grouping is a study rule rather than official FROC. Two empty positive submissions and one correct empty negative do not estimate sensitivity or specificity.",
+    "HiESD patches were chosen with private coarse annotations from one slide, some spatially correlated. Small target squares and region-level labels need specialist review before alleging a source GT defect.",
+    "Explicit helper-crop coverage omits direct TIFF and pyramid reads and cannot prove what tissue the agent visually recognized. Reference-centered review images are post-hoc and did not enter solver inputs."
+  ],
+  "links": [
+    {
+      "label": "Analysis report",
+      "path": "groups/lesion-localization/findings/wsi-sol6-xhigh-v2-diagnostic-synthesis.md"
+    },
+    {
+      "label": "Evidence receipt",
+      "path": "groups/lesion-localization/findings/evidence/wsi-sol6-xhigh-v2-diagnostic-synthesis.json"
+    }
+  ]
+}

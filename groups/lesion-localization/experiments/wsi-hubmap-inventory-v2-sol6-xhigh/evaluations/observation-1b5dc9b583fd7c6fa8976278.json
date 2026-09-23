@@ -1,0 +1,893 @@
+{
+  "schema_version": 2,
+  "id": "observation-1b5dc9b583fd7c6fa8976278",
+  "job": "job",
+  "trial_name": "task__yzavGjh",
+  "task_id": "task",
+  "agent": "codex",
+  "model": "openai/gpt-6-sol",
+  "reasoning_effort": "xhigh",
+  "agent_version": "0.155.1",
+  "backend": "docker",
+  "harbor_version": "0.14.0",
+  "execution_mode": "harbor",
+  "reward": 1.0,
+  "started_at": "2026-09-23T07:46:31.797455Z",
+  "finished_at": "2026-09-23T08:04:39.738495Z",
+  "timing": {
+    "total": 1087.941,
+    "setup": 0.187,
+    "agent": 1049.345,
+    "verifier": 13.223
+  },
+  "usage": {
+    "n_input_tokens": 6270521.0,
+    "n_cache_tokens": 5849600.0,
+    "n_output_tokens": 23164.0
+  },
+  "cases": [],
+  "exception_type": null,
+  "evidence": [
+    {
+      "label": "Trial result (raw, local)",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/result.json",
+      "sha256": "d1b83615f1e9b8896e26d93cd6da5f8b52a4e542f9673c361fdfb02b0bcd7ad0"
+    },
+    {
+      "label": "Verifier cases",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/verifier/test-stdout.txt",
+      "sha256": "0bca03ac31b0d9d062750a860d62082d54d09c7ca60c0f3d8f64a9c377bf926e"
+    },
+    {
+      "label": "Reward artifact",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/verifier/reward.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "label": "Agent trajectory (raw, local)",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/agent/trajectory.json",
+      "sha256": "7e9a742b382cd8297ce3bed2e99d9d46f12a93514284807911f59914fa872509"
+    },
+    {
+      "label": "Submitted artifact: answer/points.json",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/answer/points.json",
+      "sha256": "a9692082cda4f151915beb8126d40ef7ca2820eeec3eae74912024db2a364d4b"
+    },
+    {
+      "label": "Submitted artifact: work/annotate.py",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/annotate.py",
+      "sha256": "efe9c58a0dddebe9502893ac9fc78f49d67f225c6978a447f42366f92b293aa8"
+    },
+    {
+      "label": "Submitted artifact: work/cands12.npz",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/cands12.npz",
+      "sha256": "61cc02c0970b21666023f3f096b9e8037828a34703b97838fb1de6cca346cebf"
+    },
+    {
+      "label": "Submitted artifact: work/cands20.npz",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/cands20.npz",
+      "sha256": "42cd1c34077ca78635397835d82f7ff6354d921097c1fdbb8290c2c28fec0db3"
+    },
+    {
+      "label": "Submitted artifact: work/cands28.npz",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/cands28.npz",
+      "sha256": "c76a3ecc75218d297bb9ff7aacf17186141a5ecc0a319083bc05e879c0d88d57"
+    },
+    {
+      "label": "Submitted artifact: work/cands28.txt",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/cands28.txt",
+      "sha256": "4d9d250e06e786e12fe7b45313df6769de4932f8e1ac9d9482803cd58a9adbbe"
+    },
+    {
+      "label": "Submitted artifact: work/check_0_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_0_0.jpg",
+      "sha256": "42b981ef2098e81043cab130d93e03ddff63b8fb2053ecec1226d08088909732"
+    },
+    {
+      "label": "Submitted artifact: work/check_0_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_0_1.jpg",
+      "sha256": "2f9a6c94e9b6bca1f370a405c52c7f241ee3540ae048e66a7b83a81446435957"
+    },
+    {
+      "label": "Submitted artifact: work/check_0_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_0_2.jpg",
+      "sha256": "c01f78b28bc7e6139e8083c1314e8225e9a67a85227499fd008db2c1688f2146"
+    },
+    {
+      "label": "Submitted artifact: work/check_0_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_0_3.jpg",
+      "sha256": "97571a9a4dee118c388a7858d9fa69bfc582e47a558baa92c03cd6e4cf793a8e"
+    },
+    {
+      "label": "Submitted artifact: work/check_1_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_1_0.jpg",
+      "sha256": "704d5b6fb75b889d3943bd5aa57c9b1a56b88004742006e00fa075406867a721"
+    },
+    {
+      "label": "Submitted artifact: work/check_1_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_1_1.jpg",
+      "sha256": "d7a806385917b18554815f81544b078bfd35bda4f5d56bafbe4a57adaac370d2"
+    },
+    {
+      "label": "Submitted artifact: work/check_1_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_1_2.jpg",
+      "sha256": "373686605fcc67f034434662e733b4cb9c50ad31a2a157201119b7388fc926c4"
+    },
+    {
+      "label": "Submitted artifact: work/check_1_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_1_3.jpg",
+      "sha256": "a3f59c18874a28ea1c631e660efea54d45245326cc3dbea61a892ed7de1364f8"
+    },
+    {
+      "label": "Submitted artifact: work/check_2_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_2_0.jpg",
+      "sha256": "a410ee137414e1416b40316c1d5ca914eb0a4655b9b9b52987a4b9342ca66f8c"
+    },
+    {
+      "label": "Submitted artifact: work/check_2_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_2_1.jpg",
+      "sha256": "10a1f8daa8ef2b387fd4a1b8501205193308f2e4cd728d4bee1399350effd967"
+    },
+    {
+      "label": "Submitted artifact: work/check_2_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_2_2.jpg",
+      "sha256": "4ff8ec318acef6d668776ab8dd466fa925b1064e3d805c0d95fd8366585eeb9f"
+    },
+    {
+      "label": "Submitted artifact: work/check_2_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_2_3.jpg",
+      "sha256": "9b5433ee0939636c57437161317a66e84e25e186d25046f9e50706e4d744dddf"
+    },
+    {
+      "label": "Submitted artifact: work/check_3_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_3_0.jpg",
+      "sha256": "4569d00b9fd5453c0f816ea26b91acbb504bdc81f35bf09cd6198e957dc5f388"
+    },
+    {
+      "label": "Submitted artifact: work/check_3_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_3_1.jpg",
+      "sha256": "399305fadecfb921852892da49c283017c6edbf639129eeae3b5f954907991e6"
+    },
+    {
+      "label": "Submitted artifact: work/check_3_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_3_2.jpg",
+      "sha256": "f7805997dd706af0836003ec65989888e1f222bb14543b9acbb9a81447b2efb0"
+    },
+    {
+      "label": "Submitted artifact: work/check_3_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_3_3.jpg",
+      "sha256": "297c7460ccc948d2900163e2410e4d2521e8b0160a8f6553eb1e824eabee6ba5"
+    },
+    {
+      "label": "Submitted artifact: work/check_4_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_4_0.jpg",
+      "sha256": "19b23b52633a31fd99fdb3078f1652757475cf2aaf6861e60cf36fd48c6d54d1"
+    },
+    {
+      "label": "Submitted artifact: work/check_4_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_4_1.jpg",
+      "sha256": "0528f4f2bb3859b4e999880285905965dd2b969d669ec05380b76ba0facc7509"
+    },
+    {
+      "label": "Submitted artifact: work/check_4_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_4_2.jpg",
+      "sha256": "5a902d2039cc91b637e58f00c94b9e0f7f917774f5fc4d2e1281f291130d1173"
+    },
+    {
+      "label": "Submitted artifact: work/check_4_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_4_3.jpg",
+      "sha256": "2c469457f5a9ec81c23c87dcff554ddfa6fbd910afa89f37a687daddae0193a9"
+    },
+    {
+      "label": "Submitted artifact: work/check_5_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_5_0.jpg",
+      "sha256": "4e4848fd78c03a14acb239dc9070a05ef076f36a1064f52bde65604380e3e9a5"
+    },
+    {
+      "label": "Submitted artifact: work/check_5_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_5_1.jpg",
+      "sha256": "769fd5a20e8b2d6391a81e7b0a165e659eb52c93c61187b1d779b0890c2b0910"
+    },
+    {
+      "label": "Submitted artifact: work/check_5_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_5_2.jpg",
+      "sha256": "1f025de9bfcdd2e3084d3711d4f5af9a2cad3c4e4934283462ffd115299524eb"
+    },
+    {
+      "label": "Submitted artifact: work/check_5_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/check_5_3.jpg",
+      "sha256": "638970478af5c45b038b4f345287dc18e4cdeab9db4fa5e663c49ea9f98ed4f2"
+    },
+    {
+      "label": "Submitted artifact: work/close_scar.png",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/close_scar.png",
+      "sha256": "4a30eef4f713e2d2a1afcea0d15ebfb88c54d11c6cd0548a1910e3ee436b187e"
+    },
+    {
+      "label": "Submitted artifact: work/contact_00.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/contact_00.jpg",
+      "sha256": "d0093a45c73caecbb235da5f904125f44d452b9428247777f72d40d8def6c745"
+    },
+    {
+      "label": "Submitted artifact: work/contact_01.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/contact_01.jpg",
+      "sha256": "bed3c8f6798b4ed006ce89456bd09957c108e666f64b7947da25b7ddc86c233a"
+    },
+    {
+      "label": "Submitted artifact: work/contact_02.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/contact_02.jpg",
+      "sha256": "deb12d77bbcc1ce796c3f08893554bfafcadde1b8a3f077bd3e8f2537a5562a2"
+    },
+    {
+      "label": "Submitted artifact: work/contact_03.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/contact_03.jpg",
+      "sha256": "ae925363b1317257e7d6c69a4e15efe02132f46b182732bb56e06c4ac77c5c0d"
+    },
+    {
+      "label": "Submitted artifact: work/contact_04.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/contact_04.jpg",
+      "sha256": "95c3bd6184846bf26f868a1b6f0af58c6016179997aba8c50883ec3458bd259b"
+    },
+    {
+      "label": "Submitted artifact: work/contact_05.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/contact_05.jpg",
+      "sha256": "4de1c3bd63cba9ea92ee15d58d4bc0b4819316abbb86bb475b4b3b6d41fc31e3"
+    },
+    {
+      "label": "Submitted artifact: work/contact_06.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/contact_06.jpg",
+      "sha256": "42d2911ba9bbcdd492a37ea38f57ab73ea69779c9fa21c5c21126e8e113e73dc"
+    },
+    {
+      "label": "Submitted artifact: work/contact_07.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/contact_07.jpg",
+      "sha256": "3debada2a1e53da4adf799452fbc538b68868a067e754e3876a3db66961d6f86"
+    },
+    {
+      "label": "Submitted artifact: work/contact_08.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/contact_08.jpg",
+      "sha256": "0b66bd6ea91c5ce60cdd06f93af66bf17784170f9c40ed5318ce928add8918a2"
+    },
+    {
+      "label": "Submitted artifact: work/contact_09.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/contact_09.jpg",
+      "sha256": "03286e72056c01cbc3334e43c5ed2e752270cdb381a1540c569d436545114cd7"
+    },
+    {
+      "label": "Submitted artifact: work/contact_10.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/contact_10.jpg",
+      "sha256": "6d9788c6c287ee4dba780dba216a12199d1e5d8fe287e69205ea52c7b7b13393"
+    },
+    {
+      "label": "Submitted artifact: work/detect.py",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/detect.py",
+      "sha256": "d630f8bd8797b5ba681facf096f59468b77b92e216173cfb02dc8f0170aaa192"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_0_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_0_0.jpg",
+      "sha256": "42b981ef2098e81043cab130d93e03ddff63b8fb2053ecec1226d08088909732"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_0_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_0_1.jpg",
+      "sha256": "5dc2ed52258ef25214514c1e4c7ef6fe7810725d1546bab0dee25faadaae38cb"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_0_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_0_2.jpg",
+      "sha256": "095e724473209ad253dbdf26723c519a71d2650d17bb6cdfca88c0d7bbf8d086"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_0_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_0_3.jpg",
+      "sha256": "97571a9a4dee118c388a7858d9fa69bfc582e47a558baa92c03cd6e4cf793a8e"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_1_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_1_0.jpg",
+      "sha256": "704d5b6fb75b889d3943bd5aa57c9b1a56b88004742006e00fa075406867a721"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_1_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_1_1.jpg",
+      "sha256": "70fc587e28279678085b07e0848a0d1b5c0cda6e2a1a38236e766ddcd9536ceb"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_1_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_1_2.jpg",
+      "sha256": "0fe16b5150f957cfcd89d13a5359bb817c5c8bb6140fbbf6baf5a16c78bf2817"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_1_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_1_3.jpg",
+      "sha256": "5fdcdf88e011a8ecb7332cfb9ff548db91842c1716e4fbbcbe9783608042c3eb"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_2_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_2_0.jpg",
+      "sha256": "ec6d124ca3f88b5544a8583b12fbc2c0457398e7a41b96c50975eb29ef28e4b0"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_2_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_2_1.jpg",
+      "sha256": "db94901e0dd46e012475e62bb0f788047acdc4544bb55f772b0f43c239568655"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_2_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_2_2.jpg",
+      "sha256": "7539c27cf39e54cb509617d28b51b0592e6259bb1d5ccd12ffefea87db605571"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_2_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_2_3.jpg",
+      "sha256": "1ff6cca36508d101599cbb2f810966c3b04c359c5175bb38e132b677a82cf0eb"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_3_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_3_0.jpg",
+      "sha256": "a69141f7b67add0c3e768cfd54423aaf6a904c12026bb19eda9c3d159a3fbf16"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_3_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_3_1.jpg",
+      "sha256": "f20cc20db99921682110069b9bfc23cd0322208d4296fe5eaee41d9adb66bdac"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_3_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_3_2.jpg",
+      "sha256": "f7805997dd706af0836003ec65989888e1f222bb14543b9acbb9a81447b2efb0"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_3_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_3_3.jpg",
+      "sha256": "297c7460ccc948d2900163e2410e4d2521e8b0160a8f6553eb1e824eabee6ba5"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_4_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_4_0.jpg",
+      "sha256": "03015844788745e3e60aca273d95b2e6c2a2c05ee095c69dc9c94f0d9966675b"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_4_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_4_1.jpg",
+      "sha256": "44488e797f51781097b6080d50f76bc94eb5778051af454eb6ba599604ea1d3c"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_4_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_4_2.jpg",
+      "sha256": "dd3729223457d55c1ad2a65706411fb21bec71435411336ebf5c0c6f32faf82a"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_4_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_4_3.jpg",
+      "sha256": "2c469457f5a9ec81c23c87dcff554ddfa6fbd910afa89f37a687daddae0193a9"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_5_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_5_0.jpg",
+      "sha256": "4e4848fd78c03a14acb239dc9070a05ef076f36a1064f52bde65604380e3e9a5"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_5_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_5_1.jpg",
+      "sha256": "276bfd23afc6525a488f842efa0b5b1e9e9d844924c96430eb6ea7ffcf7f2152"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_5_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_5_2.jpg",
+      "sha256": "1f025de9bfcdd2e3084d3711d4f5af9a2cad3c4e4934283462ffd115299524eb"
+    },
+    {
+      "label": "Submitted artifact: work/finalcheck_5_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalcheck_5_3.jpg",
+      "sha256": "638970478af5c45b038b4f345287dc18e4cdeab9db4fa5e663c49ea9f98ed4f2"
+    },
+    {
+      "label": "Submitted artifact: work/finalize.py",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/finalize.py",
+      "sha256": "04ddc890297b6109dbfd223dc479e2dba5a4e09708744810fd2f2e773501f32b"
+    },
+    {
+      "label": "Submitted artifact: work/initial.py",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/initial.py",
+      "sha256": "93b658285251bf07827a01d16be1fa7a40acab39e5e04da352a6b03b0e944a5c"
+    },
+    {
+      "label": "Submitted artifact: work/inspect_1_1_extra.png",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/inspect_1_1_extra.png",
+      "sha256": "8ddf8f9afe2fe7a22fbf0ff90834a106f8fcc69a0753e56bfa227ba92b88ba1c"
+    },
+    {
+      "label": "Submitted artifact: work/inspect_1_2.png",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/inspect_1_2.png",
+      "sha256": "66dc4e7ac4e84cb66dedf9b5b89d070488148ef48b934e601140ca6e10e31230"
+    },
+    {
+      "label": "Submitted artifact: work/inspect_3_1.png",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/inspect_3_1.png",
+      "sha256": "ac889f0b72e747b4e234f6cf1053585ae1a6bed12b04771ccb10cfa3ad3128fd"
+    },
+    {
+      "label": "Submitted artifact: work/inspect_4_0_extra.png",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/inspect_4_0_extra.png",
+      "sha256": "cdacb94ff0ee7fe8b7add0d3937a4d7d6ecdcadd658e63dbbd920f8bc6dff235"
+    },
+    {
+      "label": "Submitted artifact: work/make_contact.py",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/make_contact.py",
+      "sha256": "a71e3c835bcea75b306027117a9a8d1948fbdc91f4547004647637a4879bc1a2"
+    },
+    {
+      "label": "Submitted artifact: work/make_tiles.py",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/make_tiles.py",
+      "sha256": "70a6636be351a582c973bceff3174da2627bcad6a071d17e61e6138fdf335199"
+    },
+    {
+      "label": "Submitted artifact: work/make_zoom.py",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/make_zoom.py",
+      "sha256": "296a8e5d9b06d4e95bc552ff42e827139dacd97742a6fec44aa96314c48ed8ef"
+    },
+    {
+      "label": "Submitted artifact: work/points_initial.json",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/points_initial.json",
+      "sha256": "d4d5571c87e241a4db669ee143a08d2f928ad93d3014ba117e1260d21c3f9e27"
+    },
+    {
+      "label": "Submitted artifact: work/read-ledger.jsonl",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/read-ledger.jsonl",
+      "sha256": "046c20b1a1d0e7c66b36e8879d07048960722cf8fba8fa85ed5ca3a26bcf58c1"
+    },
+    {
+      "label": "Submitted artifact: work/slide4.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/slide4.jpg",
+      "sha256": "e77c7722b2206a506f6f6b84d3c9e5c522afd067013ed1a26c4145f1a8cc97d2"
+    },
+    {
+      "label": "Submitted artifact: work/tile_0_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_0_0.jpg",
+      "sha256": "f985b2bca08cc1019fd39dcae3973d970b638d43857742c3dc6a2fb67e452e7a"
+    },
+    {
+      "label": "Submitted artifact: work/tile_0_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_0_1.jpg",
+      "sha256": "9cbeca3ecbe94cec5acac9e1e957012cba8446f74c4f193af86d9697c24cd3af"
+    },
+    {
+      "label": "Submitted artifact: work/tile_0_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_0_2.jpg",
+      "sha256": "31d21a096ddcad8f66841c2181d4196ff302e20709f549edcb286a202444676f"
+    },
+    {
+      "label": "Submitted artifact: work/tile_0_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_0_3.jpg",
+      "sha256": "8e1c8a9998c50913fb15031faa945195fd64fffb6b1d3210996bafcc20010710"
+    },
+    {
+      "label": "Submitted artifact: work/tile_1_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_1_0.jpg",
+      "sha256": "40d37e642af009fac1d94e17568eb2b168eee4593f5d6bb82f2f7c7979257395"
+    },
+    {
+      "label": "Submitted artifact: work/tile_1_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_1_1.jpg",
+      "sha256": "cdbe5afd8b880a70a16eca20c3dfec94d1f0f0cf111e15ea9e0b93ecf4ca865c"
+    },
+    {
+      "label": "Submitted artifact: work/tile_1_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_1_2.jpg",
+      "sha256": "e05be221e8eea25196ef6116ef7995df4c15cdade010cdf8ab05c23a3098e46e"
+    },
+    {
+      "label": "Submitted artifact: work/tile_1_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_1_3.jpg",
+      "sha256": "954a766a114bc504407116cfff9f26980bf7b6635a5c60b72cbaf8c2d5da0c7b"
+    },
+    {
+      "label": "Submitted artifact: work/tile_2_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_2_0.jpg",
+      "sha256": "3267b7edf9dabcc78129645835e60595b5be59649e5a334346187d67bbd8caf4"
+    },
+    {
+      "label": "Submitted artifact: work/tile_2_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_2_1.jpg",
+      "sha256": "8c205ac4d93290c422b7cf0100d68fe21542903cfbef4deff6235db7687ddf81"
+    },
+    {
+      "label": "Submitted artifact: work/tile_2_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_2_2.jpg",
+      "sha256": "6328f007716d05bfecdf5841eb7bb07256aa264ce50ad234493cea98999a3dec"
+    },
+    {
+      "label": "Submitted artifact: work/tile_2_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_2_3.jpg",
+      "sha256": "d811895cba6c0c799c7b66616fd095ffd13409e288408a0fb6b9569d8a0320e8"
+    },
+    {
+      "label": "Submitted artifact: work/tile_3_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_3_0.jpg",
+      "sha256": "7f9bf17d90080e60e7c26956d79d5638ef03b9659f2948f71990ce8dab90719b"
+    },
+    {
+      "label": "Submitted artifact: work/tile_3_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_3_1.jpg",
+      "sha256": "d8a464768596de4170a176e9dae4add951656a26b82f538ba8701372b78d967d"
+    },
+    {
+      "label": "Submitted artifact: work/tile_3_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_3_2.jpg",
+      "sha256": "dcc805d10615410dfedd45e2a0cfccc3326e867d8061311e4487dc554bf88a72"
+    },
+    {
+      "label": "Submitted artifact: work/tile_3_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_3_3.jpg",
+      "sha256": "f866aae04d3c49e91e6d86f158999dfb67a3996620bbdc4438be59c109fab8af"
+    },
+    {
+      "label": "Submitted artifact: work/tile_4_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_4_0.jpg",
+      "sha256": "4bbfa9f78014e7f0174e8cf70d0100128874ce544e13c41e6cb0557843942b8a"
+    },
+    {
+      "label": "Submitted artifact: work/tile_4_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_4_1.jpg",
+      "sha256": "f8024d924ec089475b7bd8539e0a2627818b186361734f4af68d41cb775f92d8"
+    },
+    {
+      "label": "Submitted artifact: work/tile_4_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_4_2.jpg",
+      "sha256": "7efa1446929ae016587ff9ad12aa3166c388ac9c387a385a911d8abc90146993"
+    },
+    {
+      "label": "Submitted artifact: work/tile_4_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_4_3.jpg",
+      "sha256": "7875b11461209c7f3f3a3e18758b40ed61dfb2d48d59c195d20485a7ca7635a4"
+    },
+    {
+      "label": "Submitted artifact: work/tile_5_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_5_0.jpg",
+      "sha256": "c13887205ecca33c5aa56c0c7fb857a26e764f2a1136a083affda09ba7c7b1c9"
+    },
+    {
+      "label": "Submitted artifact: work/tile_5_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_5_1.jpg",
+      "sha256": "f1f307f3643f79567122af81c2c7c9c19a0308b32bc1fbf0b868efad0c0a0255"
+    },
+    {
+      "label": "Submitted artifact: work/tile_5_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_5_2.jpg",
+      "sha256": "8c6108fb799265e5cc76cc1d8e92953f976f871107ade787e16947b77506b628"
+    },
+    {
+      "label": "Submitted artifact: work/tile_5_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/tile_5_3.jpg",
+      "sha256": "ebc914fcd6f45a033f470654ceeaf8c8bfd0154e78d805c42007a3b9e3a79471"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_0_2_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_0_2_0.jpg",
+      "sha256": "d1d6cb30d143376026780591f9e45aa60928fb7ed9e117202a3d88f00d8ffd04"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_0_2_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_0_2_1.jpg",
+      "sha256": "49dd025fd07b367dacbe6d12ceda0a56f2c1b180da90dc6c0ccc86d5f038e2ee"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_0_2_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_0_2_2.jpg",
+      "sha256": "4057061449ba911f4c230b6f3ace71975c6910cf376e953cf18b2fe8444bbc13"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_0_2_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_0_2_3.jpg",
+      "sha256": "8a2688a3ee9bd834ab51d7b151798b2d7af8e03eeabb122af6b9f7f76f77e2a7"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_1_1_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_1_1_0.jpg",
+      "sha256": "2c918cd8b10675362462474387178a20cf538e1e63faae07c2b180f130b4e2d9"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_1_1_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_1_1_1.jpg",
+      "sha256": "cea768cb2829e784353453b01fc3e946f33a835624dd0049b4a913d08f42d072"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_1_1_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_1_1_2.jpg",
+      "sha256": "23bc99407e9d1ee5d6af2c86848cae021b21decbe52f26102eb3a866fc32a554"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_1_1_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_1_1_3.jpg",
+      "sha256": "9ff640aa69012af447eb0285227c21f213da8ae932f377d3e7048c67892af640"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_1_2_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_1_2_0.jpg",
+      "sha256": "1597feed94dde5e9d091295921d40ca4f03ca8ff0972c935b4587b1581e6d319"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_1_2_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_1_2_1.jpg",
+      "sha256": "5cea90d8c08a2eb55c0d3cd2f99cf004bfc9a07c157a7155f93c2059c600e689"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_1_2_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_1_2_2.jpg",
+      "sha256": "52446ce5564ecf745a84297be17c3fc9cc953fc110ac13be910efb15237fe0a1"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_1_2_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_1_2_3.jpg",
+      "sha256": "f105aa562563f7f2908a5d8102f801ee8d308e829a16a45c38e7c8b05e329bab"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_1_3_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_1_3_0.jpg",
+      "sha256": "c37b121180fadf3a339c112c10145f9a56f60579c4a211a395a756e82aeb1b26"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_1_3_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_1_3_1.jpg",
+      "sha256": "be13f5859a3d47542df80e0a4128303fc38e79217bd23b2e9f05abe1c890a779"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_1_3_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_1_3_2.jpg",
+      "sha256": "da7d3a67169ded966eb6d8fd83acb374979fe1330039e5fdd0a9921d673be185"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_1_3_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_1_3_3.jpg",
+      "sha256": "57ade3f0c7fa0ab7197dc87bd65613682cd1b66d7de9e1aa30dd2d4ea686a732"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_0_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_0_0.jpg",
+      "sha256": "d902132f06c11ee097b637542dbed4b9e466c00eea045df5135a97d5fe9710db"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_0_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_0_1.jpg",
+      "sha256": "278d86ab769653f2fee3a2c6c52331373542f96d0e86437fc739a503923f10d2"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_0_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_0_2.jpg",
+      "sha256": "1ae12018be9e943907dd364d30a87717de0681dd77fbc397df35d706ed984a2f"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_0_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_0_3.jpg",
+      "sha256": "889851fcfb9b87290614eb426570cc8da954afb703085bbcf921725ac1c7dcf6"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_1_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_1_0.jpg",
+      "sha256": "b386622b699b2fd0f8bffed439c69c01d593dd0d4025e7ef6108ab5b5e16bc32"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_1_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_1_1.jpg",
+      "sha256": "e8e874422e1ca89fd4f81e79fad01242a298ed4ba61b4f58deecb187e84cf150"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_1_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_1_2.jpg",
+      "sha256": "02e014821c2b493fd7ceec7fdd58ecdb2789263d5f821ad6e9ddbe536ed28208"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_1_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_1_3.jpg",
+      "sha256": "1dcaab9d2606eb82831c28b8a245a1251830bb432bdea9b2c2686a1c1a71f78f"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_2_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_2_0.jpg",
+      "sha256": "dba5b2f7829a9a82c21ba78fa1255e673159adb6ba03ac329b5b525dc551b89a"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_2_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_2_1.jpg",
+      "sha256": "38c4e54bf1e3b1a0c1c3df29da6684cc17f35970384f4cf4d237e8f67169b2af"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_2_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_2_2.jpg",
+      "sha256": "e84f94ac54871791c9edb11085fd37aadc4ea17ab55aac83708eaf804f0b0c81"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_2_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_2_3.jpg",
+      "sha256": "e1a3d1bd224f20675985a9125616d74740c2059be670585cde391ccb5dd399b9"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_3_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_3_0.jpg",
+      "sha256": "021b6ca86a2effae710b59a0ef60234d4addfceaccf523cd1678289a835aa843"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_3_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_3_1.jpg",
+      "sha256": "fcab429b7f9ce39cc28ec8dc5ca5b065ccab835fd1def20aca56f971402cc6d0"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_3_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_3_2.jpg",
+      "sha256": "c5b966f1cc8370870eb69ceb9a3b6ed1ddda61661fff24ed109737809dbcf2c3"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_2_3_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_2_3_3.jpg",
+      "sha256": "e871e5125d6c52fcc6d1c93e33e46c761d0381dee9ed707e04ffaf0d368b95b1"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_3_0_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_3_0_0.jpg",
+      "sha256": "820558df90f7c509a7545842e79d35aeda802e268147af86e0a37f76239571b8"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_3_0_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_3_0_1.jpg",
+      "sha256": "634a7d97e7285c230e2932a2ecaeff1c0267595ddab27384422013cc6b7b62a6"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_3_0_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_3_0_2.jpg",
+      "sha256": "5cda518208ba3fa5479d333247f4d9f63003d9eebdb83e6c78c623d8db47a117"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_3_0_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_3_0_3.jpg",
+      "sha256": "dc03dec70f648f4cc85bc721fbc6be18b1252d22a214951c772b3918909873e8"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_3_1_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_3_1_0.jpg",
+      "sha256": "0084ee91f0bce21ece832418241e6c05a639f0e89ee99a3fa93a8107306a154e"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_3_1_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_3_1_1.jpg",
+      "sha256": "00792219b8189ee8fd81cc2b7cd4a7d95b9cd31d6a071e613ba42f34dbde8b0b"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_3_1_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_3_1_2.jpg",
+      "sha256": "c644a0f166703eaafeeeea99178482fd173494926259a60d8519459b3b278094"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_3_1_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_3_1_3.jpg",
+      "sha256": "afaeeb6345388d3efc717fb353729e9b6a7766e3e02817cf5b420ba6055b6b0b"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_3_2_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_3_2_0.jpg",
+      "sha256": "9404d7cc7cf0ba7fd7a332418a4e9616e538851b39fc764cc5fae627b52a4174"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_3_2_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_3_2_1.jpg",
+      "sha256": "3e2661c40f2ffbabbfd7ad2dfc5197d14cf271a0c3cf6dc2615435cdcd26747c"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_3_2_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_3_2_2.jpg",
+      "sha256": "e10d925668eb3d03549b72ac7d4d8381745f2c0e5a0b61d3a822b325b6fef518"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_3_2_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_3_2_3.jpg",
+      "sha256": "8a256cac7eb3cb3e8a4a139319502b0d817b757c75738022abb0e219a059879b"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_4_0_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_4_0_0.jpg",
+      "sha256": "5ed70dd0a30c5a11691dc99f940c2542f07d34676f79d73ab9ed8f9bc295bbfd"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_4_0_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_4_0_1.jpg",
+      "sha256": "444aea92c70d687e5253553f458b21e482b4baceabc9a29ac8805bcbcfb2bff2"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_4_0_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_4_0_2.jpg",
+      "sha256": "95b679c4cba97bae945e80aa65a018ecd34bda8553abe008d2a9f661a556afc4"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_4_0_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_4_0_3.jpg",
+      "sha256": "fa31d8114ff1093623ab98afb45bb25e31f6d341c16fa259a6f6ce5d601b31e4"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_4_1_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_4_1_0.jpg",
+      "sha256": "49d7ef54aec46249b277c6bd35a4dceeede25096b87b5c2e43741ad02e459842"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_4_1_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_4_1_1.jpg",
+      "sha256": "74ec8817d5e15dc6a822e74a3434ed11caab0c97b8d49f84e833712d65a857bf"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_4_1_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_4_1_2.jpg",
+      "sha256": "331b81760a7dcb1fd5aa583d4f98865fad8361fbc39d89df01956bd232627e61"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_4_1_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_4_1_3.jpg",
+      "sha256": "f35c842b3ce4fc7926f3d54b3fddabe1855f2c2ecca30c84145e90bcf8d5d92b"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_4_2_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_4_2_0.jpg",
+      "sha256": "dc7c7952949ed2f1321e82e494da769e575351d45850595f1c64acbab66b9861"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_4_2_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_4_2_1.jpg",
+      "sha256": "45f09b101cccd060c841ade31f801b3edd7e90b903141b2cd31930078f66bb3b"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_4_2_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_4_2_2.jpg",
+      "sha256": "61fd3da2e7d5604953ac1a982bed81b17e6593a0edd8cd5ac9dddf1a73987d1d"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_4_2_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_4_2_3.jpg",
+      "sha256": "cb3f163e7ec2ac81c82343782f835fb7742b4db24a59fc5e693ac641d8009bd2"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_5_1_0.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_5_1_0.jpg",
+      "sha256": "25ee895cff6e4a15e81e38c205894f11d1a26a9df1e6aed98ff6899545d0e889"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_5_1_1.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_5_1_1.jpg",
+      "sha256": "5d3b6c7237c021a46043d1cdc603dbb562fce7a7fbf259cbec6a6cf61a86b206"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_5_1_2.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_5_1_2.jpg",
+      "sha256": "ebd81bfa9734b0bbc97620e833bc1f06c3b153103796acfe5084ae6839941724"
+    },
+    {
+      "label": "Submitted artifact: work/zoom_5_1_3.jpg",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/artifacts/app/work/zoom_5_1_3.jpg",
+      "sha256": "fcc861d737582d5df74336f7345c0d14e3786962390b2858db48ecff384fdc83"
+    },
+    {
+      "label": "Harbor lock (raw, local)",
+      "path": ".local/attempts/attempt-d995786db0d345e3/job/lock.json",
+      "sha256": "dfea103fc857f6b4e74ec8254b0452759375d5527692c833135add72fed6262d"
+    }
+  ],
+  "task_checksum": "7e2ca673e60ee1da738c05e2d043074ad3b61831f07b2814ff489543f49455a5",
+  "task_sha256": null,
+  "checksum_kind": "harbor.task_checksum",
+  "warnings": [
+    "Verifier output has no single supported JSON case summary; inspect raw evidence."
+  ],
+  "source_result": ".local/attempts/attempt-d995786db0d345e3/job/task__yzavGjh/result.json",
+  "source_sha256": "d1b83615f1e9b8896e26d93cd6da5f8b52a4e542f9673c361fdfb02b0bcd7ad0",
+  "evidence_sha256": "6ede7fd7ce5f696173b7fdd19524155d4b01c2d5ee9f3bd3d582e7d9428d959b",
+  "kind": "evaluation",
+  "evaluation_kind": "result",
+  "attempt_id": "attempt-d995786db0d345e3",
+  "experiment_id": "wsi-hubmap-inventory-v2-sol6-xhigh",
+  "group_id": "lesion-localization",
+  "collected_at": "2026-09-23T08:04:40.353397+00:00",
+  "execution_state": "completed",
+  "outcome": "pass",
+  "partial": false,
+  "task_digest": "568e968744fc0c8bf9c66248b62af62f76026d3b4483a328a5682a9c945f2238",
+  "freeze_checksum_verified": true,
+  "source_classification": "model_pass"
+}
