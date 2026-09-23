@@ -11,3 +11,7 @@ Use `openai/gpt-6-astra` medium, one 3600-second attempt, no automatic retry, Do
 ## Inputs and reference
 
 ## Findings and limits
+
+### Diagnostic observation — 2026-09-23
+
+`attempt-fc12d5620c0b4d15` completed with `gpt-6-astra` medium in Harbor, no terminal exception, and unchanged frozen task bytes. Its valid-artifact `reward=1` is separate from the private score in `observation-950002481d2bb6163a60f449`: 7 submitted points, 4 of 6 Tumor polygons with at least one point, 4 reference-supported points, 3 points outside Tumor polygons, and 0 in the Exclusion polygon. Polygons are not independent connected lesions; this is a polygon-hit fraction of 0.667, not lesion sensitivity. The crop helper logged 8 calls, without enforcing all possible reads. The inspected 11 shell commands showed no explicit access to private `tests/` or `solution/` paths. This one positive slide with relatively large regions cannot measure negative-answer specificity or sparse metastasis sensitivity. Review outside-reference points and add negative/small-lesion cases before any task promotion.
