@@ -46,6 +46,7 @@ locators; there is no basename search, implicit download or authoring import.
 | Brain and vessels | [AFIDs](afids.json), [generic MNI atlas assistance](afids-atlas.json), [OpenNeuro ds003949](openneuro.json), [TopCoW](topcow.json), [TopBrain](topbrain.json), [AeroPath](aeropath.json), [ImageCAS / ImageCAS-X](imagecas.json) |
 | Correspondence | [Learn2Reg](learn2reg.json), [RESECT](resect.json), [Longitudinal-CT](longitudinal-ct.json), [I-SPY2](ispy2.json) |
 | Cardiac sequences | [FeEcho4D](feecho4d.json), [STRAUS simulation](straus.json), [EchoSlicer](echoslicer.json), [EchoXFlow](echoxflow.json) |
+| Whole-slide pathology | [CAMELYON16](camelyon16.json), [HiESD](hiesd.json), [HuBMAP kidney](hubmap-kidney.json), [TIGER](tiger.json); four paired teaching selections, no model trial |
 | External examples | [LIDC-IDRI](lidc-idri.json), [PI-CAI](picai.json), [Imaging-101 phantom](imaging101.json); AutoMedBench and ReX-MLE examples link to TotalSegmentator and TopCoW |
 | Metadata and fixtures | [CT-RATE access screen](ct-rate.json), [ACRIN brain metadata](acrin-brain.json), [synthetic MR fixtures](synthetic-mr.json) |
 

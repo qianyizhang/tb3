@@ -1,0 +1,598 @@
+{
+  "schema_version": 1,
+  "purpose": "Bounded four-route WSI teaching acquisition; no model execution",
+  "source_task": "codex://threads/01a0c9be-5bd3-7c21-af12-4c012196fff7",
+  "recorded_at_utc": "2026-09-22T16:12:12.847650+00:00",
+  "native_image_count": 4,
+  "additional_paired_tiger_rois": 3,
+  "native_image_bytes": 1193104862,
+  "samples": {
+    "camelyon": {
+      "sample_id": "tumor_091",
+      "files": [
+        {
+          "path": "camelyon/tumor_091.tif",
+          "url": "https://camelyon-dataset.s3.us-west-2.amazonaws.com/CAMELYON16/images/tumor_091.tif",
+          "bytes": 546437217,
+          "local_path": ".local/wsi-ground-truth/camelyon/tumor_091.tif",
+          "sha256": "29f5ca4caf206a2197a134fd61fd79032cf9f8364495aba5840a842a6967d4a4"
+        },
+        {
+          "local_path": ".local/wsi-ground-truth/camelyon/tumor_091.xml",
+          "url": "https://camelyon-dataset.s3.us-west-2.amazonaws.com/CAMELYON16/annotations/tumor_091.xml",
+          "bytes": 85520,
+          "sha256": "0a5206bbee1044ad1149b729a1fd2372698ccb147a92e68f0ff16b13498396a0"
+        },
+        {
+          "local_path": ".local/wsi-ground-truth/camelyon/tumor_084.xml",
+          "url": "https://camelyon-dataset.s3.us-west-2.amazonaws.com/CAMELYON16/annotations/tumor_084.xml",
+          "bytes": 124817,
+          "sha256": "d7c8c3911298cc9428386993baf281ce7eb033b4fce244d0af4f431787081210"
+        },
+        {
+          "local_path": ".local/wsi-ground-truth/camelyon/tumor_075.xml",
+          "url": "https://camelyon-dataset.s3.us-west-2.amazonaws.com/CAMELYON16/annotations/tumor_075.xml",
+          "bytes": 334356,
+          "sha256": "9eaa977587d7e7ae7796f274d95e6fccfcad2b256ee8967c42944aeaf085d556"
+        }
+      ],
+      "measurements": {
+        "sample": "tumor_091",
+        "dimensions": [
+          61440,
+          53760
+        ],
+        "mpp": 0.227273,
+        "tumor_polygons": 6,
+        "exclusion_polygons": 1,
+        "crop": [
+          47739,
+          31340,
+          1600,
+          1600
+        ],
+        "note": "Polygon count is not a connected-lesion count or clinical metastasis stage."
+      }
+    },
+    "hiesd": {
+      "sample_id": "e4442edf-05b0-431b-bf61-ccf2d8cdebb6",
+      "files": [
+        {
+          "path": "hiesd/e4442edf-05b0-431b-bf61-ccf2d8cdebb6.svs",
+          "url": "https://ndownloader.figshare.com/files/54167411",
+          "bytes": 139324209,
+          "local_path": ".local/wsi-ground-truth/hiesd/e4442edf-05b0-431b-bf61-ccf2d8cdebb6.svs",
+          "sha256": "e794b843353936ccca535ba945a1d30342868c23d63524285f50f8517b3ca329"
+        },
+        {
+          "local_path": ".local/wsi-ground-truth/hiesd/ESD_40X_Thumbnail_downsample64/e4442edf-05b0-431b-bf61-ccf2d8cdebb6_thumbnail.png",
+          "url": "https://huggingface.co/datasets/JSGe-AI/HiESD/resolve/f35faff3300342aaa31c87465b264b98fa6b8726/ESD_40X_Thumbnail_downsample64/e4442edf-05b0-431b-bf61-ccf2d8cdebb6_thumbnail.png",
+          "bytes": 215650,
+          "sha256": "e5cf9e90928eb5709f8fc737de9fd04796e767309c9a60db9c46414dfb4a9197"
+        },
+        {
+          "local_path": ".local/wsi-ground-truth/hiesd/ESD_40X_annotation_downsample64/e4442edf-05b0-431b-bf61-ccf2d8cdebb6.png",
+          "url": "https://huggingface.co/datasets/JSGe-AI/HiESD/resolve/f35faff3300342aaa31c87465b264b98fa6b8726/ESD_40X_annotation_downsample64/e4442edf-05b0-431b-bf61-ccf2d8cdebb6.png",
+          "bytes": 34396,
+          "sha256": "9268babdbc09dfaab8acb8e91855fdaabbb38f2ced7b74774b2719f314e2fdde"
+        },
+        {
+          "local_path": ".local/wsi-ground-truth/hiesd/ESD_40X_annotation_downsample64_xml/e4442edf-05b0-431b-bf61-ccf2d8cdebb6.xml",
+          "url": "https://huggingface.co/datasets/JSGe-AI/HiESD/resolve/f35faff3300342aaa31c87465b264b98fa6b8726/ESD_40X_annotation_downsample64_xml/e4442edf-05b0-431b-bf61-ccf2d8cdebb6.xml",
+          "bytes": 136535,
+          "sha256": "2594e20dfc16f871e52e2f8a4346428d855304369707fce69af2b4c452333864"
+        },
+        {
+          "local_path": ".local/wsi-ground-truth/hiesd/ESD_40X_Thumbnail_downsample64/0a682165-55f9-4045-b550-b943291ad1b8_thumbnail.png",
+          "url": "https://huggingface.co/datasets/JSGe-AI/HiESD/resolve/f35faff3300342aaa31c87465b264b98fa6b8726/ESD_40X_Thumbnail_downsample64/0a682165-55f9-4045-b550-b943291ad1b8_thumbnail.png",
+          "bytes": 305522,
+          "sha256": "5120a2aa390583b1f3c150a4cdaded2e37f5df037d983cd27e50d5a4a1a1a3b6"
+        },
+        {
+          "local_path": ".local/wsi-ground-truth/hiesd/ESD_40X_annotation_downsample64/0a682165-55f9-4045-b550-b943291ad1b8.png",
+          "url": "https://huggingface.co/datasets/JSGe-AI/HiESD/resolve/f35faff3300342aaa31c87465b264b98fa6b8726/ESD_40X_annotation_downsample64/0a682165-55f9-4045-b550-b943291ad1b8.png",
+          "bytes": 6850,
+          "sha256": "c3bc517d3671baf8b0b9845163f350c2aa9cf02c4fe0868fee4e8950fccf60f4"
+        },
+        {
+          "local_path": ".local/wsi-ground-truth/hiesd/ESD_40X_annotation_downsample64_xml/0a682165-55f9-4045-b550-b943291ad1b8.xml",
+          "url": "https://huggingface.co/datasets/JSGe-AI/HiESD/resolve/f35faff3300342aaa31c87465b264b98fa6b8726/ESD_40X_annotation_downsample64_xml/0a682165-55f9-4045-b550-b943291ad1b8.xml",
+          "bytes": 96298,
+          "sha256": "76929a0263c4eb56494cc3f5904145b628ac053f3e260cc371925797a0ede4bd"
+        },
+        {
+          "local_path": ".local/wsi-ground-truth/hiesd/Components_single_308/e4442edf-05b0-431b-bf61-ccf2d8cdebb6_c1.png",
+          "url": "https://huggingface.co/datasets/JSGe-AI/HiESD/resolve/f35faff3300342aaa31c87465b264b98fa6b8726/Components_single_308/e4442edf-05b0-431b-bf61-ccf2d8cdebb6_c1.png",
+          "bytes": 3304,
+          "sha256": "3b2578faffd3a97a0211bc9f2c9221622a0754284348967471212f16654552d6"
+        },
+        {
+          "local_path": ".local/wsi-ground-truth/hiesd/Components_single_308/e4442edf-05b0-431b-bf61-ccf2d8cdebb6_c2.png",
+          "url": "https://huggingface.co/datasets/JSGe-AI/HiESD/resolve/f35faff3300342aaa31c87465b264b98fa6b8726/Components_single_308/e4442edf-05b0-431b-bf61-ccf2d8cdebb6_c2.png",
+          "bytes": 4000,
+          "sha256": "8d82d2f4397a11c28606ff4ca651eae2c03c669c912a1855b9fa423f7489dae5"
+        }
+      ],
+      "measurements": {
+        "sample": "e4442edf-05b0-431b-bf61-ccf2d8cdebb6",
+        "dimensions": [
+          39887,
+          28702
+        ],
+        "mpp": 0.2458,
+        "annotation_dimensions": [
+          623,
+          448
+        ],
+        "annotation_downsample": 64,
+        "annotation_unique_rgb": 1569,
+        "xml_polygons": 88,
+        "xml_colors": [
+          "#0000FF",
+          "#008000",
+          "#00FF00",
+          "#8A2BE2",
+          "#8B0000",
+          "#FFFF00"
+        ],
+        "crop": [
+          32192,
+          2560,
+          2048,
+          2048
+        ],
+        "strips": 2
+      }
+    },
+    "hubmap": {
+      "sample_id": "aaa6a05cc",
+      "files": [
+        {
+          "url": "https://zenodo.org/api/records/7729610/files/data.zip/content",
+          "archive_bytes": 33596097575,
+          "archive_publisher_checksum": "md5:7b94d816d4faf84bb562e447be8eb566",
+          "archive_checksum_verified": false,
+          "zip_member": "data/hubmap/kidney/images/train/aaa6a05cc.tiff",
+          "zip_crc32": "8fb98d38",
+          "bytes": 82349484,
+          "local_path": ".local/wsi-ground-truth/hubmap/aaa6a05cc.tiff",
+          "sha256": "d566a741fa6de767b4373d1adbe46a6c134ffe8bb982b879c5303e4d0119797a"
+        },
+        {
+          "url": "https://zenodo.org/api/records/7729610/files/data.zip/content",
+          "archive_bytes": 33596097575,
+          "archive_publisher_checksum": "md5:7b94d816d4faf84bb562e447be8eb566",
+          "archive_checksum_verified": false,
+          "zip_member": "data/hubmap/kidney/gt_masks/aaa6a05cc.json",
+          "zip_crc32": "492b45d4",
+          "bytes": 166171,
+          "local_path": ".local/wsi-ground-truth/hubmap/aaa6a05cc.json",
+          "sha256": "f50973826c4dbe89d7a88d1ae76fdac72ef71325133f82d26e84b0789a8ee050"
+        },
+        {
+          "url": "https://zenodo.org/api/records/7729610/files/data.zip/content",
+          "archive_bytes": 33596097575,
+          "archive_publisher_checksum": "md5:7b94d816d4faf84bb562e447be8eb566",
+          "archive_checksum_verified": false,
+          "zip_member": "data/hubmap/kidney/gt_masks/aaa6a05cc-anatomical-structure.json",
+          "zip_crc32": "1b2a874c",
+          "bytes": 3304,
+          "local_path": ".local/wsi-ground-truth/hubmap/aaa6a05cc-anatomical-structure.json",
+          "sha256": "fcaf15bcf360e68ad6fe050c0198848054825869e4c33c502d18a6b787d426a0"
+        }
+      ],
+      "measurements": {
+        "sample": "aaa6a05cc",
+        "dimensions": [
+          13013,
+          18484
+        ],
+        "mpp": 0.65,
+        "glomerulus_polygons": 99,
+        "first_polygon_area_um2": 15458.430000000002,
+        "median_polygon_area_um2": 18182.921250000003,
+        "crop": [
+          2016,
+          6706,
+          1600,
+          1600
+        ]
+      }
+    },
+    "tiger": {
+      "sample_id": "114S",
+      "files": [
+        {
+          "path": "tiger/114S.tif",
+          "url": "https://tiger-training.s3.us-west-2.amazonaws.com/wsirois/wsi-level-annotations/images/114S.tif",
+          "bytes": 424993952,
+          "local_path": ".local/wsi-ground-truth/tiger/114S.tif",
+          "sha256": "4479ba07bb1023137232c6717724aa41871b8875f6dd82c4cdd8ce5a2f7144e0"
+        },
+        {
+          "path": "tiger/rois/114S_[25546, 18605, 26758, 19785].png",
+          "url": "https://tiger-training.s3.us-west-2.amazonaws.com/wsirois/roi-level-annotations/tissue-cells/images/114S_%5B25546%2C%2018605%2C%2026758%2C%2019785%5D.png",
+          "bytes": 3023064,
+          "local_path": ".local/wsi-ground-truth/tiger/rois/114S_[25546, 18605, 26758, 19785].png",
+          "sha256": "c1162d5a9fa60450b5c312f216781d3030c13c1cfe27536fa9acd1a649873d53"
+        },
+        {
+          "path": "tiger/masks/114S_[25546, 18605, 26758, 19785].png",
+          "url": "https://tiger-training.s3.us-west-2.amazonaws.com/wsirois/roi-level-annotations/tissue-cells/masks/114S_%5B25546%2C%2018605%2C%2026758%2C%2019785%5D.png",
+          "local_path": ".local/wsi-ground-truth/tiger/masks/114S_[25546, 18605, 26758, 19785].png",
+          "bytes": 15570,
+          "sha256": "fe41cc025a3ecb3320af05476f7c967694b1974528ad80ca51346e1b8e117b77"
+        },
+        {
+          "path": "tiger/rois/114S_[33188, 13944, 34412, 15110].png",
+          "url": "https://tiger-training.s3.us-west-2.amazonaws.com/wsirois/roi-level-annotations/tissue-cells/images/114S_%5B33188%2C%2013944%2C%2034412%2C%2015110%5D.png",
+          "bytes": 3196994,
+          "local_path": ".local/wsi-ground-truth/tiger/rois/114S_[33188, 13944, 34412, 15110].png",
+          "sha256": "5852ecb8d47221d89b10e163b1a14d69382b435542b6cec6b8fe5943e75ac107"
+        },
+        {
+          "path": "tiger/masks/114S_[33188, 13944, 34412, 15110].png",
+          "url": "https://tiger-training.s3.us-west-2.amazonaws.com/wsirois/roi-level-annotations/tissue-cells/masks/114S_%5B33188%2C%2013944%2C%2034412%2C%2015110%5D.png",
+          "local_path": ".local/wsi-ground-truth/tiger/masks/114S_[33188, 13944, 34412, 15110].png",
+          "bytes": 27935,
+          "sha256": "32ab7c642047976c4f4f22087c65053c68985669551ed09e983be0fcc983a09e"
+        },
+        {
+          "path": "tiger/rois/114S_[41017, 24190, 42161, 25327].png",
+          "url": "https://tiger-training.s3.us-west-2.amazonaws.com/wsirois/roi-level-annotations/tissue-cells/images/114S_%5B41017%2C%2024190%2C%2042161%2C%2025327%5D.png",
+          "bytes": 2806081,
+          "local_path": ".local/wsi-ground-truth/tiger/rois/114S_[41017, 24190, 42161, 25327].png",
+          "sha256": "8656c042d69cfaf3c450b866e4bb4a14747e294e86870ecdaec49d404415e66c"
+        },
+        {
+          "path": "tiger/masks/114S_[41017, 24190, 42161, 25327].png",
+          "url": "https://tiger-training.s3.us-west-2.amazonaws.com/wsirois/roi-level-annotations/tissue-cells/masks/114S_%5B41017%2C%2024190%2C%2042161%2C%2025327%5D.png",
+          "local_path": ".local/wsi-ground-truth/tiger/masks/114S_[41017, 24190, 42161, 25327].png",
+          "bytes": 18942,
+          "sha256": "11b474077fe948f8abe3ac346b45dda79e91674b57239e98b8f44594400ea46b"
+        },
+        {
+          "local_path": ".local/wsi-ground-truth/tiger/tiger-coco.json",
+          "url": "https://tiger-training.s3.us-west-2.amazonaws.com/wsirois/roi-level-annotations/tissue-cells/tiger-coco.json",
+          "bytes": 8882790,
+          "sha256": "47a266bbcced333eced09e8ec8bfa13f3056cb8c121e02d893fd69d1f2fcd174"
+        },
+        {
+          "local_path": ".local/wsi-ground-truth/tiger/114S.xml",
+          "url": "https://tiger-training.s3.us-west-2.amazonaws.com/wsirois/wsi-level-annotations/annotations-tissue-cells-xmls/114S.xml",
+          "bytes": 276784,
+          "sha256": "7376cbb65f61a19e4481715cc7c7f123a60e1e485d5ae7435b9900f7a39ff088"
+        }
+      ],
+      "measurements": {
+        "sample": "114S",
+        "dimensions": [
+          61504,
+          43392
+        ],
+        "mpp": 0.45669399219053275,
+        "rois": [
+          {
+            "id": 940,
+            "file": "114S_[33188, 13944, 34412, 15110].png",
+            "bbox_level0_xyxy": [
+              33188,
+              13944,
+              34412,
+              15110
+            ],
+            "cell_boxes": 175,
+            "centroid_assignment_counts": {
+              "0": 0,
+              "1": 0,
+              "2": 45,
+              "3": 0,
+              "4": 0,
+              "5": 0,
+              "6": 129,
+              "7": 1
+            },
+            "centroids_outside_roi": 0,
+            "tissue_pixel_counts": {
+              "0": 9106,
+              "1": 578771,
+              "2": 324146,
+              "3": 0,
+              "4": 93936,
+              "5": 0,
+              "6": 82968,
+              "7": 338257
+            },
+            "native_roi_rgb_mae": 0.0,
+            "mpp": 0.45669399219053275
+          },
+          {
+            "id": 941,
+            "file": "114S_[41017, 24190, 42161, 25327].png",
+            "bbox_level0_xyxy": [
+              41017,
+              24190,
+              42161,
+              25327
+            ],
+            "cell_boxes": 323,
+            "centroid_assignment_counts": {
+              "0": 0,
+              "1": 6,
+              "2": 212,
+              "3": 0,
+              "4": 0,
+              "5": 0,
+              "6": 105,
+              "7": 0
+            },
+            "centroids_outside_roi": 0,
+            "tissue_pixel_counts": {
+              "0": 9051,
+              "1": 579124,
+              "2": 649167,
+              "3": 0,
+              "4": 0,
+              "5": 0,
+              "6": 63386,
+              "7": 0
+            },
+            "native_roi_rgb_mae": 0.0,
+            "mpp": 0.45669399219053275
+          },
+          {
+            "id": 942,
+            "file": "114S_[25546, 18605, 26758, 19785].png",
+            "bbox_level0_xyxy": [
+              25546,
+              18605,
+              26758,
+              19785
+            ],
+            "cell_boxes": 20,
+            "centroid_assignment_counts": {
+              "0": 0,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 0,
+              "5": 0,
+              "6": 0,
+              "7": 20
+            },
+            "centroids_outside_roi": 0,
+            "tissue_pixel_counts": {
+              "0": 5645,
+              "1": 0,
+              "2": 0,
+              "3": 0,
+              "4": 493543,
+              "5": 0,
+              "6": 0,
+              "7": 930972
+            },
+            "native_roi_rgb_mae": 0.0,
+            "mpp": 0.45669399219053275
+          }
+        ],
+        "cell_category": [
+          {
+            "id": 1,
+            "name": "lymphocytes and plasma cells"
+          }
+        ]
+      }
+    }
+  },
+  "acquisition_notes": [
+    "Selection prioritized bounded native file size and readable GT; it is not a random or held-out benchmark sample.",
+    "Extra CAMELYON XMLs and one extra HiESD low-resolution pair belong to the retained selection screen and are not additional native WSI cases.",
+    "HuBMAP selected ZIP members were CRC32-validated by zipfile and hashed. Entire-archive publisher MD5 was retained but not verified because the entire archive was not downloaded.",
+    "All three TIGER native ROI crops match supplied PNGs exactly (RGB MAE 0).",
+    "HiESD selected SVS MD5 equals publisher 8cc29d45e826fee3e2ee0dd49eb569ac."
+  ],
+  "methods": [
+    {
+      "path": "groups/lesion-localization/methods/wsi-samples/render.py",
+      "sha256": "80a5f5cdb7651c12c5d14748e8de8cc7422f2d858aeda3d1548b8bbc81b2d90e"
+    },
+    {
+      "path": "groups/lesion-localization/methods/wsi-samples/http_zip.py",
+      "sha256": "38bc2329f02779aa0d1aea8429de533b2cab8bbfb5eb10ade6357bbd6e1405de"
+    },
+    {
+      "path": "groups/lesion-localization/methods/wsi-samples/acquire_selected.py",
+      "sha256": "81c765cfdc3e9b37c8f2e76893d9417a180f736fd339e203ad091560499d328a"
+    },
+    {
+      "path": "groups/lesion-localization/methods/wsi-samples/build_tour.py",
+      "sha256": "f2fef04e8ff01b667833453a341d87138202c3cfe9690e46d578de00501399ea"
+    }
+  ],
+  "rendered_files": [
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi2-tissue.png",
+      "sha256": "950faffc483c403a3eb6b3e43f3eeac2b877cba88bbc8276888e6c0beca5e50f"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hiesd-overview-input.jpg",
+      "sha256": "b402368f1964dc3e866a44b163e8f597d83901c6c4f9f8b6a9146f66684e3b55"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hiesd-overview-input.png",
+      "sha256": "013dfe0bace05310a06eea84739114c1cae305629883731e5683e8bb5804dca7"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hubmap-detail-reference.png",
+      "sha256": "7aceb3f153a81351755352879cf13d6e17ed7beaec70d44fd1e09be2ee0a6a60"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi3-overlay.png",
+      "sha256": "16a26ff5b6d99d94004a6d4a1d7f5e7c610ccc94fb44f1e43ced835a79940ebc"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hubmap-overview-input.jpg",
+      "sha256": "6b912980f8e311bd428a7bbd4d25055c20b3fc1924b51ceef96743bcb5aeaef5"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi1-cells.png",
+      "sha256": "a752777a08da6f069c1469b824d39b1e2485cf36688dee82bd917396c37ebfaa"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hubmap-overview-input.png",
+      "sha256": "8de4d98cce3ef61f0b2619388f63bfe19392746d839f8a8ee46a97ec7d7ba7e2"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi2-input.png",
+      "sha256": "6a07430e838687f124524c72f00a6bfd080bd8c01620847ec3d882877cfaabcb"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi3-reference.png",
+      "sha256": "3c9cfe9cf5bea3490385e6a39c5b0e24f6041ed7e03b93e4f52042c1d84e827d"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi2-input.jpg",
+      "sha256": "3b8db7199148ef1155ca5a419d46a1e0181ef964a562aef3ce91bc186d8b0980"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/camelyon-overview-overlay.png",
+      "sha256": "3ed681c12917b07572531ed583dab835c1983ad8c693c0f768574d2de7b1d5ee"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/camelyon-overview-input.png",
+      "sha256": "b81f0411084f2910a661cba3af73f59e571a78365b20c98e6afab5d49400ec0c"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/camelyon-overview-input.jpg",
+      "sha256": "5ab443272cd16c58000271ef533f707f08ed1add5abb415f40d4fdd7a91e6fdb"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi3-input.png",
+      "sha256": "08cbcac26913b772423c6266addf5f307d39ceeea9749f6d4d8983ff0de52d28"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hiesd-detail-reference.png",
+      "sha256": "3d5b9e42318febca81f9453225a3d7b9d7a264e4ad1f08ce9fe21e9541664aea"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi3-input.jpg",
+      "sha256": "3d47ee9fb4b7559a75fa92641c9601aa405e61ea4749099292497b400ffc706e"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hubmap-detail-input.jpg",
+      "sha256": "e8d572d54e6fbb47ebbfe0f1e65b193c61442288bcab0f688a252358a1a1c2e2"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hubmap-detail-input.png",
+      "sha256": "ee6f4aaac8c52239fe6bc20c2c286dda14d2068beb3dee1cbbd8f6bf6c1118f1"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-overview-input.jpg",
+      "sha256": "ea3c15351a18a938cb619c160051049c7b69f05bd2e023bbc989ae58970fee09"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-overview-input.png",
+      "sha256": "22ee5e028d492fc44a824a25d9c7df4dc02a6dd9b22caf48f2e9d87be76193ca"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-overview-reference.png",
+      "sha256": "6eca6cc15f87e5ad4978d60364181d65054cbd604a19f014564aa402d71637dc"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hubmap-overview-overlay.png",
+      "sha256": "3a910c8cc606e8b6dcf846b2c6f9033cee453760e7f9fe327d05d2bb82e2e30e"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi2-overlay.png",
+      "sha256": "6477eb3a64e076a63f43630384268786655dd69d86eaa5cd29e45ff88ade9dad"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/camelyon-overview-reference.png",
+      "sha256": "eb4e6b520cbe625d9d1d4cce239f6139cfa4e9444454135bc9c4c1eb8faa3521"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi3-tissue.png",
+      "sha256": "5717b417a4d4c51472c6b58c118d94af4ba216f961417b29e07107317c6c15c5"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/camelyon-detail-overlay.png",
+      "sha256": "2af80a3f517e3155559f887134f5644aaea53d81230eb56d6d7a32458ee578a7"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi3-cells.png",
+      "sha256": "b2e78ea07daa6424ca11154c0f9bbc4c3fa3b3703eed9ffde67e465e1fa20e1e"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hubmap-detail-overlay.png",
+      "sha256": "4202944f440461fe506636378e3b48dc519b36298ef62fa9ce3e4bf14ad16d67"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hiesd-overview-reference.png",
+      "sha256": "93588221b2bee72f9cf2d40daacd2c4779262aa2bfec19438d121ab42f8bb6ad"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hubmap-overview-reference.png",
+      "sha256": "68e540a5f6b11d3866c1ef9a0dd9633da7dcffa652560d8e55850c1a9bb7adb5"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/camelyon-detail-reference.png",
+      "sha256": "c9546afbf3ba9196f7db0109f92f40cbf030716403713ac78babde7a5acf9832"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi2-reference.png",
+      "sha256": "b8b95ca39990e7c98816aa09d78ea3a7cbd8fad3abd1c3df0e965c21d18473ca"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/camelyon-detail-input.jpg",
+      "sha256": "caaca6feb3373e872ecc2dd572f5cd6958fb6e6dacee7443afb9a7012efd41b6"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/camelyon-detail-input.png",
+      "sha256": "37d23d4a78de3ce0b1751748beb752a8315e9ed7a3690593321db2f0e6798c20"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-overview-overlay.png",
+      "sha256": "283298041fdaccfa564766084508d309c8fc1ffbbae8313a8f4e38af67072069"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi1-reference.png",
+      "sha256": "5e8aaeba8adab0d91a27c8cdafc94494839bf0786390325b09b314900cd00623"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hiesd-detail-input.png",
+      "sha256": "bf0ea192869b7330817f2c5c326d071f618b9b61b1732c55504a501b63121eb6"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi1-overlay.png",
+      "sha256": "dece4a4671aceb8cf23225a150792254229cc4c74991f080e2272e87e1f13a00"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hiesd-detail-input.jpg",
+      "sha256": "fca0d4f5f08e40da6e733fa026feb960fd99bfc8fe0b45ccc1bfae51b354a86e"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi1-tissue.png",
+      "sha256": "59934443b8a7c4223e7eaa821fa6b279c6277fe06a623317c5022db72e9dbb66"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi1-input.png",
+      "sha256": "e5febb8b8a3c2d786e802e3a729ea3b8dc06fa7cd179e49497bca41a7c657e69"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi1-input.jpg",
+      "sha256": "2d0f72fb1bc464321bd9cd4ee0e1cf70af864d31343b0ece522f6b3a599bb478"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hiesd-overview-overlay.png",
+      "sha256": "5d3f84a879fa6cbc829d40163c21beb70bef41674431d1c5dccc42ee5f0133b9"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/hiesd-detail-overlay.png",
+      "sha256": "338553c4afc081fab3692f1627de1ee7ee925655dba91e4be9ff3def118f18b7"
+    },
+    {
+      "path": ".local/wsi-ground-truth/explainer/assets/tiger-roi2-cells.png",
+      "sha256": "fb529a245dfbc25dfd91f753b1cbe86aa030e5e35a9a05921677309afa32da4b"
+    }
+  ]
+}

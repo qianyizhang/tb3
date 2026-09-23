@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-hiesd",
+  "title": "HiESD gastric ESD WSI",
+  "summary": "H&E gastric resection, native SVS, two tissue strips.",
+  "modality": "Microscopy / histopathology",
+  "sample_unit": "One source whole-slide image with explicitly paired references",
+  "image_description": "H&E gastric resection, native SVS, two tissue strips.",
+  "annotation_description": "64x-downsampled coarse category XML/PNG and separate strip masks. Unannotated tissue is not normal GT.",
+  "reference_note": "64x-downsampled coarse category XML/PNG and separate strip masks. Unannotated tissue is not normal GT. Source annotations remain evaluator/reader-only in the proposed image-only condition.",
+  "version_note": "Bounded acquisition 2026-09-22/23. Exact release URLs, member names, native geometry and hashes are pinned in the receipt.",
+  "terms_note": "Figshare v1 CC BY 4.0; author Hugging Face supplement pinned at f35faff3300342aaa31c87465b264b98fa6b8726.",
+  "access_note": "Public author/organizer downloads succeeded for this selection; no account, data agreement or model run.",
+  "links": [
+    {
+      "label": "Official release",
+      "path": "https://doi.org/10.6084/m9.figshare.28919840"
+    },
+    {
+      "label": "Selected-file receipt",
+      "path": "datasets/receipts/wsi-teaching-samples.json"
+    }
+  ],
+  "sample_sets": [
+    {
+      "label": "Teaching selection",
+      "sample_ids": [
+        "e4442edf-05b0-431b-bf61-ccf2d8cdebb6"
+      ],
+      "role": "curated",
+      "note": "One complete source image. TIGER adds three paired ROIs; additional selection-screen files are separately identified in the receipt.",
+      "receipt": {
+        "path": "datasets/receipts/wsi-teaching-samples.json",
+        "sha256": "2e1c2bdf985d7e6531dbb28883010e08568519d46a3985c0c7053609c3a35c81",
+        "pointer": "/samples/hiesd"
+      }
+    }
+  ],
+  "experiment_ids": [],
+  "brief_ids": [
+    "wsi-hiesd-map"
+  ],
+  "example_brief": "wsi-hiesd-map",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/wsi-teaching-samples.json",
+        "sha256": "2e1c2bdf985d7e6531dbb28883010e08568519d46a3985c0c7053609c3a35c81",
+        "pointer": "/samples/hiesd/files"
+      },
+      "path_field": "local_path"
+    }
+  ],
+  "documentation_gaps": [
+    "Teaching sample only; no frozen scoring contract, model trial or held-out generalization result."
+  ],
+  "native_payload_expected": true
+}

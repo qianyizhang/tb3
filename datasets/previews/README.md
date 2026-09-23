@@ -5,10 +5,10 @@ acquisition gap. The snapshot appears before the optional conceptual diagram.
 Images open in a zoomable viewer; ground truth and other source references require
 an explicit reveal. A page reload closes that reveal.
 
-The current collection contains 28 documented examples: 23 sample/reference
+The current collection contains 32 documented examples: 27 sample/reference
 pairs, two image-only examples (PI-CAI and EchoSlicer), one reference-only example
 (the generic AFIDs atlas), and two metadata-only source screens (CT-RATE and
-ACRIN brain). There are 48 pinned PNG panels and four text panels. **Paired means
+ACRIN brain). There are 56 pinned PNG panels and four text panels. **Paired means
 both artifacts are shown, not that every annotation is valid ground truth.**
 The STS-3D mirror masks and MedPelvis3D landmark mapping remain disputed. NLST
 shows a paired reconstruction; I-SPY2 includes clinical/functional measurements;

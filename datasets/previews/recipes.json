@@ -869,6 +869,126 @@
       "source": "docs/evidence/br037-curation.json",
       "pointer": "/brain_status",
       "selection": "Only metadata were retained. Imaging access and subject-to-DICOM linkage were unresolved; no image/GT pair is claimed."
+    },
+    {
+      "dataset_id": "dataset-camelyon16",
+      "sample_id": "tumor_091",
+      "status": "paired",
+      "summary": "Bounded native WSI and paired source-reference acquisition.",
+      "reference_note": "Tumor and Exclusion polygons; six positive polygons are not necessarily six connected lesions.",
+      "sources": [
+        {
+          "path": ".local/wsi-ground-truth/explainer/assets/camelyon-overview-input.png",
+          "sha256": "b81f0411084f2910a661cba3af73f59e571a78365b20c98e6afab5d49400ec0c"
+        },
+        {
+          "path": ".local/wsi-ground-truth/explainer/assets/camelyon-overview-reference.png",
+          "sha256": "eb4e6b520cbe625d9d1d4cce239f6139cfa4e9444454135bc9c4c1eb8faa3521"
+        }
+      ],
+      "kind": "copy",
+      "panels": [
+        {
+          "role": "input",
+          "source": ".local/wsi-ground-truth/explainer/assets/camelyon-overview-input.png",
+          "caption": "CAMELYON16 lymph-node WSI, tumor_091: full-image thumbnail. Source pixels; no GT overlay."
+        },
+        {
+          "role": "reference",
+          "source": ".local/wsi-ground-truth/explainer/assets/camelyon-overview-reference.png",
+          "caption": "CAMELYON16 lymph-node WSI, tumor_091: full-image thumbnail. Tumor and Exclusion polygons; six positive polygons are not necessarily six connected lesions. Colored source-reference overlay, no model output. See linked brief for legend and grid transform."
+        }
+      ]
+    },
+    {
+      "dataset_id": "dataset-hiesd",
+      "sample_id": "e4442edf-05b0-431b-bf61-ccf2d8cdebb6",
+      "status": "paired",
+      "summary": "Bounded native WSI and paired source-reference acquisition.",
+      "reference_note": "64x-downsampled coarse category XML/PNG and separate strip masks. Unannotated tissue is not normal GT.",
+      "sources": [
+        {
+          "path": ".local/wsi-ground-truth/explainer/assets/hiesd-overview-input.png",
+          "sha256": "013dfe0bace05310a06eea84739114c1cae305629883731e5683e8bb5804dca7"
+        },
+        {
+          "path": ".local/wsi-ground-truth/explainer/assets/hiesd-overview-reference.png",
+          "sha256": "93588221b2bee72f9cf2d40daacd2c4779262aa2bfec19438d121ab42f8bb6ad"
+        }
+      ],
+      "kind": "copy",
+      "panels": [
+        {
+          "role": "input",
+          "source": ".local/wsi-ground-truth/explainer/assets/hiesd-overview-input.png",
+          "caption": "HiESD gastric ESD WSI, e4442edf-05b0-431b-bf61-ccf2d8cdebb6: full-image thumbnail. Source pixels; no GT overlay."
+        },
+        {
+          "role": "reference",
+          "source": ".local/wsi-ground-truth/explainer/assets/hiesd-overview-reference.png",
+          "caption": "HiESD gastric ESD WSI, e4442edf-05b0-431b-bf61-ccf2d8cdebb6: full-image thumbnail. 64x-downsampled coarse category XML/PNG and separate strip masks. Unannotated tissue is not normal GT. Colored source-reference overlay, no model output. See linked brief for legend and grid transform."
+        }
+      ]
+    },
+    {
+      "dataset_id": "dataset-hubmap-kidney",
+      "sample_id": "aaa6a05cc",
+      "status": "paired",
+      "summary": "Bounded native WSI and paired source-reference acquisition.",
+      "reference_note": "99 glomerulus polygon features plus separate optional anatomical-region polygons; not disease grades.",
+      "sources": [
+        {
+          "path": ".local/wsi-ground-truth/explainer/assets/hubmap-overview-input.png",
+          "sha256": "8de4d98cce3ef61f0b2619388f63bfe19392746d839f8a8ee46a97ec7d7ba7e2"
+        },
+        {
+          "path": ".local/wsi-ground-truth/explainer/assets/hubmap-overview-reference.png",
+          "sha256": "68e540a5f6b11d3866c1ef9a0dd9633da7dcffa652560d8e55850c1a9bb7adb5"
+        }
+      ],
+      "kind": "copy",
+      "panels": [
+        {
+          "role": "input",
+          "source": ".local/wsi-ground-truth/explainer/assets/hubmap-overview-input.png",
+          "caption": "HuBMAP kidney glomerulus reference, aaa6a05cc: full-image thumbnail. Source pixels; no GT overlay."
+        },
+        {
+          "role": "reference",
+          "source": ".local/wsi-ground-truth/explainer/assets/hubmap-overview-reference.png",
+          "caption": "HuBMAP kidney glomerulus reference, aaa6a05cc: full-image thumbnail. 99 glomerulus polygon features plus separate optional anatomical-region polygons; not disease grades. Colored source-reference overlay, no model output. See linked brief for legend and grid transform."
+        }
+      ]
+    },
+    {
+      "dataset_id": "dataset-tiger",
+      "sample_id": "114S",
+      "status": "paired",
+      "summary": "Bounded native WSI and paired source-reference acquisition.",
+      "reference_note": "ROI tissue label masks plus COCO lymphocyte/plasma-cell boxes, merged as one class; not dense full-slide cell GT.",
+      "sources": [
+        {
+          "path": ".local/wsi-ground-truth/explainer/assets/tiger-overview-input.png",
+          "sha256": "22ee5e028d492fc44a824a25d9c7df4dc02a6dd9b22caf48f2e9d87be76193ca"
+        },
+        {
+          "path": ".local/wsi-ground-truth/explainer/assets/tiger-overview-reference.png",
+          "sha256": "6eca6cc15f87e5ad4978d60364181d65054cbd604a19f014564aa402d71637dc"
+        }
+      ],
+      "kind": "copy",
+      "panels": [
+        {
+          "role": "input",
+          "source": ".local/wsi-ground-truth/explainer/assets/tiger-overview-input.png",
+          "caption": "TIGER tissue and immune-cell annotations, 114S: full-image thumbnail. Source pixels; no GT overlay."
+        },
+        {
+          "role": "reference",
+          "source": ".local/wsi-ground-truth/explainer/assets/tiger-overview-reference.png",
+          "caption": "TIGER tissue and immune-cell annotations, 114S: full-image thumbnail. ROI tissue label masks plus COCO lymphocyte/plasma-cell boxes, merged as one class; not dense full-slide cell GT. Colored source-reference overlay, no model output. See linked brief for legend and grid transform."
+        }
+      ]
     }
   ]
 }

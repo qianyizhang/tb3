@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-tiger",
+  "title": "TIGER tissue and immune-cell annotations",
+  "summary": "H&E breast WSI and three source-defined paired ROI PNGs.",
+  "modality": "Microscopy / histopathology",
+  "sample_unit": "One source whole-slide image with explicitly paired references",
+  "image_description": "H&E breast WSI and three source-defined paired ROI PNGs.",
+  "annotation_description": "ROI tissue label masks plus COCO lymphocyte/plasma-cell boxes, merged as one class; not dense full-slide cell GT.",
+  "reference_note": "ROI tissue label masks plus COCO lymphocyte/plasma-cell boxes, merged as one class; not dense full-slide cell GT. Source annotations remain evaluator/reader-only in the proposed image-only condition.",
+  "version_note": "Bounded acquisition 2026-09-22/23. Exact release URLs, member names, native geometry and hashes are pinned in the receipt.",
+  "terms_note": "CC BY-NC 4.0 for selected JB WSI and TIGER annotations.",
+  "access_note": "Public author/organizer downloads succeeded for this selection; no account, data agreement or model run.",
+  "links": [
+    {
+      "label": "Official release",
+      "path": "https://registry.opendata.aws/tiger/"
+    },
+    {
+      "label": "Selected-file receipt",
+      "path": "datasets/receipts/wsi-teaching-samples.json"
+    }
+  ],
+  "sample_sets": [
+    {
+      "label": "Teaching selection",
+      "sample_ids": [
+        "114S"
+      ],
+      "role": "curated",
+      "note": "One complete source image. TIGER adds three paired ROIs; additional selection-screen files are separately identified in the receipt.",
+      "receipt": {
+        "path": "datasets/receipts/wsi-teaching-samples.json",
+        "sha256": "2e1c2bdf985d7e6531dbb28883010e08568519d46a3985c0c7053609c3a35c81",
+        "pointer": "/samples/tiger"
+      }
+    }
+  ],
+  "experiment_ids": [],
+  "brief_ids": [
+    "wsi-tiger-context"
+  ],
+  "example_brief": "wsi-tiger-context",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/wsi-teaching-samples.json",
+        "sha256": "2e1c2bdf985d7e6531dbb28883010e08568519d46a3985c0c7053609c3a35c81",
+        "pointer": "/samples/tiger/files"
+      },
+      "path_field": "local_path"
+    }
+  ],
+  "documentation_gaps": [
+    "Teaching sample only; no frozen scoring contract, model trial or held-out generalization result."
+  ],
+  "native_payload_expected": true
+}

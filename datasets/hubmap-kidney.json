@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "kind": "dataset",
+  "id": "dataset-hubmap-kidney",
+  "title": "HuBMAP kidney glomerulus reference",
+  "summary": "PAS kidney TIFF, original released training-image grid, OME 0.65 microns/pixel.",
+  "modality": "Microscopy / histopathology",
+  "sample_unit": "One source whole-slide image with explicitly paired references",
+  "image_description": "PAS kidney TIFF, original released training-image grid, OME 0.65 microns/pixel.",
+  "annotation_description": "99 glomerulus polygon features plus separate optional anatomical-region polygons; not disease grades.",
+  "reference_note": "99 glomerulus polygon features plus separate optional anatomical-region polygons; not disease grades. Source annotations remain evaluator/reader-only in the proposed image-only condition.",
+  "version_note": "Bounded acquisition 2026-09-22/23. Exact release URLs, member names, native geometry and hashes are pinned in the receipt.",
+  "terms_note": "CC BY 4.0 on author Zenodo record 7729610 v1.",
+  "access_note": "Public author/organizer downloads succeeded for this selection; no account, data agreement or model run.",
+  "links": [
+    {
+      "label": "Official release",
+      "path": "https://zenodo.org/records/7729610"
+    },
+    {
+      "label": "Selected-file receipt",
+      "path": "datasets/receipts/wsi-teaching-samples.json"
+    }
+  ],
+  "sample_sets": [
+    {
+      "label": "Teaching selection",
+      "sample_ids": [
+        "aaa6a05cc"
+      ],
+      "role": "curated",
+      "note": "One complete source image. TIGER adds three paired ROIs; additional selection-screen files are separately identified in the receipt.",
+      "receipt": {
+        "path": "datasets/receipts/wsi-teaching-samples.json",
+        "sha256": "2e1c2bdf985d7e6531dbb28883010e08568519d46a3985c0c7053609c3a35c81",
+        "pointer": "/samples/hubmap"
+      }
+    }
+  ],
+  "experiment_ids": [],
+  "brief_ids": [
+    "wsi-hubmap-inventory"
+  ],
+  "example_brief": "wsi-hubmap-inventory",
+  "file_sets": [
+    {
+      "receipt": {
+        "path": "datasets/receipts/wsi-teaching-samples.json",
+        "sha256": "2e1c2bdf985d7e6531dbb28883010e08568519d46a3985c0c7053609c3a35c81",
+        "pointer": "/samples/hubmap/files"
+      },
+      "path_field": "local_path"
+    }
+  ],
+  "documentation_gaps": [
+    "Teaching sample only; no frozen scoring contract, model trial or held-out generalization result."
+  ],
+  "native_payload_expected": true
+}

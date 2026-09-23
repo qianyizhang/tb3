@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>WSI 实物课堂 · 四种 GT，四种任务</title>
+    <style>
+      :root {
+        --ink: #142a30;
+        --muted: #637478;
+        --line: #d8e3df;
+        --green: #15645b;
+        --paper: #f6f8f4;
+        --card: #fff;
+        --accent: #d7eee3;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font:
+          16px/1.65 -apple-system,
+          BlinkMacSystemFont,
+          'PingFang SC',
+          'Noto Sans CJK SC',
+          sans-serif;
+      }
+      a {
+        color: #0d6f65;
+      }
+      button,
+      select,
+      input {
+        font: inherit;
+      }
+      button,
+      select {
+        border: 1px solid var(--line);
+        background: white;
+        border-radius: 9px;
+        padding: 9px 13px;
+        color: var(--ink);
+        cursor: pointer;
+      }
+      button:hover {
+        background: #e9f4ee;
+      }
+      button:focus-visible,
+      select:focus-visible,
+      input:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid #f0ac45;
+        outline-offset: 3px;
+      }
+      button[aria-pressed='true'],
+      button.active {
+        background: var(--green);
+        color: white;
+        border-color: var(--green);
+      }
+      header {
+        max-width: 1400px;
+        margin: auto;
+        padding: 42px 36px 24px;
+      }
+      .eyebrow {
+        font-size: 12px;
+        letter-spacing: 0.13em;
+        font-weight: 700;
+        color: var(--green);
+      }
+      h1 {
+        font-size: clamp(30px, 4vw, 50px);
+        line-height: 1.2;
+        letter-spacing: -0.03em;
+        margin: 10px 0 16px;
+      }
+      header p {
+        max-width: 950px;
+        margin: 0;
+        color: var(--muted);
+      }
+      .pills {
+        display: flex;
+        gap: 9px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+      .pill {
+        font-size: 13px;
+        border: 1px solid var(--line);
+        padding: 4px 11px;
+        border-radius: 30px;
+        background: white;
+      }
+      nav {
+        max-width: 1328px;
+        margin: 4px auto 22px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        padding: 0 0;
+      }
+      nav button {
+        text-align: left;
+        padding: 15px 18px;
+        font-weight: 600;
+      }
+      nav small {
+        display: block;
+        font-weight: 400;
+        opacity: 0.85;
+        font-size: 12px;
+      }
+      main {
+        max-width: 1400px;
+        margin: auto;
+        padding: 0 36px 42px;
+      }
+      h2 {
+        font-size: 27px;
+        line-height: 1.35;
+        margin: 0 0 10px;
+      }
+      .intro {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      .intro p {
+        max-width: 980px;
+        margin: 0;
+        font-size: 15px;
+      }
+      .badge {
+        flex-shrink: 0;
+        background: #fff2d9;
+        color: #775318;
+        font-size: 12px;
+        border-radius: 6px;
+        padding: 4px 9px;
+      }
+      .workbench {
+        display: grid;
+        grid-template-columns: minmax(0, 2.25fr) minmax(270px, 1fr);
+        gap: 20px;
+      }
+      .viewer,
+      .card,
+      .comparison,
+      details {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        overflow: hidden;
+      }
+      .toolbar {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        flex-wrap: wrap;
+        padding: 14px;
+        background: #fff;
+      }
+      .toolbar label {
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      select {
+        max-width: 100%;
+        font-size: 13px;
+      }
+      .viewport {
+        height: 520px;
+        overflow: auto;
+        background: #e9eeeb;
+        padding: 12px;
+        position: relative;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .stage {
+        position: relative;
+        margin: auto;
+        flex-shrink: 0;
+        background: white;
+        box-shadow: 0 2px 12px #18302810;
+      }
+      .stage img[hidden] {
+        display: none;
+      }
+      .stage img {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        pointer-events: none;
+      }
+      .scale {
+        position: absolute;
+        bottom: 10px;
+        left: 12px;
+        color: #fff;
+        text-shadow: 0 1px 4px #000;
+        background: #162b31cc;
+        padding: 4px 8px;
+        font-size: 11px;
+        border-radius: 4px;
+      }
+      .scale i {
+        display: block;
+        height: 3px;
+        background: white;
+        margin-bottom: 3px;
+      }
+      .view-footer {
+        padding: 12px 16px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .view-footer p {
+        margin: 3px 0;
+      }
+      .legend {
+        display: flex;
+        gap: 6px 13px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        padding: 0 15px 12px;
+      }
+      .swatch {
+        display: inline-block;
+        width: 11px;
+        height: 11px;
+        border: 1px solid #0003;
+        margin-right: 4px;
+      }
+      .legend[hidden],
+      .layers[hidden] {
+        display: none;
+      }
+      .layers {
+        padding: 0 15px 9px;
+        font-size: 13px;
+        display: flex;
+        gap: 14px;
+      }
+      .card {
+        padding: 20px;
+      }
+      .card h3,
+      .steps h3 {
+        font-size: 17px;
+        line-height: 1.4;
+        margin: 0 0 10px;
+      }
+      .card p {
+        font-size: 14px;
+        margin: 8px 0;
+      }
+      .card ul,
+      .body ul {
+        margin: 8px 0;
+        padding-left: 18px;
+      }
+      .card li,
+      .body li {
+        font-size: 14px;
+        margin: 6px 0;
+      }
+      .card li p,
+      .body li p {
+        margin: 0;
+      }
+      .stats-table {
+        min-width: 340px;
+      }
+      .body:has(.stats-table) {
+        overflow-x: auto;
+      }
+      .read-steps {
+        padding: 0;
+        list-style: none;
+        counter-reset: steps;
+      }
+      .read-steps li {
+        counter-increment: steps;
+        font-size: 14px;
+        margin: 14px 0;
+        padding-left: 30px;
+        position: relative;
+      }
+      .read-steps li:before {
+        content: counter(steps);
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: var(--accent);
+        color: var(--green);
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .small {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .mini {
+        width: 150px;
+        float: right;
+        margin: 8px 0 8px 12px;
+        border: 1px solid var(--line);
+      }
+      .insight {
+        margin-top: 15px;
+        background: #eef6f0;
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 13px;
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 22px;
+      }
+      .steps .card p {
+        font-size: 14px;
+      }
+      .stepno {
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 8px;
+      }
+      .details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 18px 0;
+      }
+      details {
+        padding: 0 18px;
+      }
+      summary {
+        cursor: pointer;
+        padding: 15px 0;
+        font-weight: 600;
+        font-size: 14px;
+      }
+      details .body {
+        padding-bottom: 15px;
+        font-size: 14px;
+        overflow-wrap: anywhere;
+      }
+      details p {
+        margin: 8px 0;
+      }
+      code {
+        font-family: ui-monospace, monospace;
+        font-size: 12px;
+        background: #eff3f0;
+        padding: 2px 4px;
+        border-radius: 3px;
+        overflow-wrap: anywhere;
+      }
+      .comparison {
+        margin-top: 30px;
+        padding: 23px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 14px;
+      }
+      .comparison table {
+        min-width: 650px;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 11px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      th {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .table-scroll {
+        overflow-x: auto;
+      }
+      .recommendations {
+        font-size: 14px;
+        margin: 8px 0 0;
+        padding-left: 22px;
+      }
+      .recommendations li,
+      .footnote li {
+        margin: 6px 0;
+      }
+      .footnote {
+        font-size: 12px;
+        color: var(--muted);
+        padding: 17px 0 17px 20px;
+        max-width: 1100px;
+      }
+      strong {
+        font-weight: 650;
+      }
+      .metric {
+        font-size: 22px;
+        font-weight: 650;
+        color: var(--green);
+      }
+      .stats-table {
+        font-size: 12px;
+      }
+      .stats-table td {
+        padding: 5px 7px;
+      }
+      .caption-status {
+        color: var(--green);
+        font-weight: 600;
+      }
+      .note {
+        border-left: 3px solid #d6a13b;
+        padding-left: 10px;
+      }
+      .disclaimer {
+        display: block;
+        margin-top: 15px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      @media (max-width: 900px) {
+        header,
+        main {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+        nav {
+          margin: 0 18px 22px;
+          grid-template-columns: 1fr 1fr;
+        }
+        .workbench {
+          grid-template-columns: 1fr;
+        }
+        .steps {
+          grid-template-columns: 1fr;
+        }
+        .details-grid {
+          grid-template-columns: 1fr;
+        }
+        .viewport {
+          height: 440px;
+        }
+        h2 {
+          font-size: 24px;
+        }
+      }
+      @media (max-width: 500px) {
+        .toolbar {
+          padding: 10px;
+        }
+        .viewport {
+          height: 365px;
+        }
+        .intro {
+          display: block;
+        }
+        .badge {
+          display: inline-block;
+          margin-top: 10px;
+        }
+        nav button {
+          padding: 10px;
+          font-size: 14px;
+        }
+        .comparison {
+          padding: 15px;
+        }
+        header {
+          padding-top: 26px;
+        }
+        select {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="eyebrow">WSI FIELD GUIDE · REAL IMAGES, SOURCE ANNOTATIONS</div>
+      <h1>先看图，再看答案。</h1>
+      <p>四套真实样本：看原图 → 揭示 GT → 理解任务与评分。</p>
+      <div class="pills">
+        <span class="pill">已下载 4 张完整图像</span
+        ><span class="pill">TIGER 另含 3 个配对 ROI</span
+        ><span class="pill">原生图像约 1.19 GB</span><span class="pill">教学样本 · 未运行模型</span>
+      </div>
+    </header>
+    <nav id="tabs" aria-label="选择数据集"></nav>
+    <main>
+      <section class="intro">
+        <div>
+          <h2 id="title"></h2>
+          <div id="goal"></div>
+        </div>
+        <span class="badge">拟议任务 / 教学示例</span>
+      </section>
+      <section class="workbench">
+        <div class="viewer">
+          <div class="toolbar">
+            <select id="view" aria-label="图像视图"></select
+            ><button id="reveal" aria-pressed="false">显示 GT</button
+            ><label
+              >放大
+              <input
+                id="zoom"
+                aria-label="图像放大倍数"
+                type="range"
+                min="1"
+                max="4"
+                step=".25"
+                value="1"
+                style="width: 85px" /></label
+            ><button id="reset">复位</button>
+          </div>
+          <div class="layers" id="layers" hidden>
+            <label><input type="checkbox" id="tissue" checked />组织区域</label
+            ><label><input type="checkbox" id="cells" checked />细胞框</label>
+          </div>
+          <div class="viewport" id="viewport">
+            <div class="stage" id="stage">
+              <img id="raw" alt="原始病理图像" /><img
+                id="overlay"
+                alt="来源 GT 叠加层"
+                hidden
+              /><img id="overlay2" alt="来源细胞 GT 叠加层" hidden />
+              <div class="scale"><i id="scalebar"></i><span id="scalelabel"></span></div>
+            </div>
+          </div>
+          <div class="view-footer">
+            <p><span class="caption-status" id="status">当前：仅原图</span></p>
+            <p id="caption"></p>
+            <p id="coordinates"></p>
+          </div>
+          <div id="legend" class="legend" hidden></div>
+        </div>
+        <aside class="card">
+          <div class="eyebrow">HOW TO READ</div>
+          <h3 style="margin-top: 8px">看这张图时，注意什么？</h3>
+          <ol class="read-steps" id="reading"></ol>
+          <div id="minimap"></div>
+          <div class="insight" id="insight"></div>
+          <div class="small" id="scale-note" style="margin-top: 14px"></div>
+        </aside>
+      </section>
+      <section class="steps">
+        <article class="card">
+          <span class="stepno">01 · DATA</span>
+          <h3>你实际拿到什么</h3>
+          <div id="data"></div>
+        </article>
+        <article class="card">
+          <span class="stepno">02 · GROUND TRUTH</span>
+          <h3>答案到底标了什么</h3>
+          <div id="gt"></div>
+        </article>
+        <article class="card">
+          <span class="stepno">03 · TASK</span>
+          <h3>让 agent 完成什么</h3>
+          <div id="task"></div>
+        </article>
+      </section>
+      <section class="details-grid">
+        <details>
+          <summary>输出文件与评分方式</summary>
+          <div class="body">
+            <h4>具体交付物</h4>
+            <div id="output"></div>
+            <h4>如何评价</h4>
+            <div id="evaluation"></div>
+          </div>
+        </details>
+        <details>
+          <summary>帮助条件与参考边界</summary>
+          <div class="body">
+            <div id="helpers"></div>
+            <div id="limits"></div>
+          </div>
+        </details>
+        <details>
+          <summary>来源、授权与下载范围</summary>
+          <div class="body">
+            <div id="sources"></div>
+            <div id="coverage"></div>
+            <p>
+              <strong>文件收据：</strong
+              ><a href="provenance.json">来源、版本、日期与 SHA-256</a>。图像保留在本机。
+            </p>
+          </div>
+        </details>
+        <details>
+          <summary>本例 GT 的可复核数值</summary>
+          <div class="body">
+            <p class="note">公开 GT 衍生值，仅供教学。</p>
+            <div id="numbers"></div>
+          </div>
+        </details>
+      </section>
+      <section class="comparison">
+        <div class="eyebrow">COMPARE THE WORK</div>
+        <h3>四条路线的差别，在「要完成的工作」。</h3>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>数据</th>
+                <th>最有意思的任务</th>
+                <th>最关键的 GT 边界</th>
+                <th>适合先验证</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CAMELYON16</td>
+                <td>在全片中自主搜索病灶</td>
+                <td>病灶多边形 / exclusion；还需要阴性片</td>
+                <td>倍率切换、搜索覆盖与假阳性</td>
+              </tr>
+              <tr>
+                <td>HiESD</td>
+                <td>按组织条组织局部发现</td>
+                <td>粗区域类别；不是精确腺体或切缘 GT</td>
+                <td>局部分类 → 空间汇总</td>
+              </tr>
+              <tr>
+                <td>HuBMAP</td>
+                <td>完整清点对象并测量</td>
+                <td>肾小球轮廓；不含病理分级</td>
+                <td>漏检、去重、对象面积误差</td>
+              </tr>
+              <tr>
+                <td>TIGER</td>
+                <td>结合组织背景计数细胞</td>
+                <td>密集标注仅限 ROI；细胞类别已合并</td>
+                <td>组织分区、细胞检测、区室关联</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 14px"><strong>我的下一步建议：</strong></p>
+        <ul class="recommendations">
+          <li><strong>HuBMAP：</strong>先做可复核的对象清单。</li>
+          <li><strong>TIGER：</strong>研究上下文；对比「给 / 不给组织 GT」。</li>
+          <li><strong>CAMELYON：</strong>研究全片搜索。</li>
+          <li><strong>HiESD：</strong>先做粗类别地图。</li>
+          <li><strong>性质：</strong>任务设计建议，非模型能力结论。</li>
+        </ul>
+      </section>
+      <ul class="footnote">
+        <li><strong>WSI：</strong>whole-slide image，全玻片数字图像。</li>
+        <li><strong>GT：</strong>ground truth，此处指来源发布的参考标注。</li>
+        <li><strong>教学裁图：</strong>部分由 GT 选定，已减少或移除搜索。</li>
+        <li><strong>浏览范围：</strong>仅预渲染视图，不能任意读取全片高倍区域。</li>
+        <li><strong>第四路线：</strong>选用 TIGER，未下载 PanopTILs。</li>
+        <li><strong>离线：</strong>页面不依赖远程图像。</li>
+      </ul>
+    </main>
+    <script id="tour-data" type="application/json">
+      "__DATA__"
+    </script>
+    <script>
+      const D = JSON.parse(document.getElementById('tour-data').textContent);
+      let ds = 'camelyon',
+        vi = 0,
+        revealed = false;
+      const $ = (id) => document.getElementById(id);
+      const esc = (s) =>
+        String(s).replace(
+          /[&<>"']/g,
+          (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
+        );
+      function chapter(key) {
+        ds = key;
+        vi = 0;
+        revealed = false;
+        $('zoom').value = 1;
+        const d = D[key];
+        document.querySelectorAll('nav button').forEach((b) => {
+          b.classList.toggle('active', b.dataset.key === key);
+          b.setAttribute('aria-pressed', String(b.dataset.key === key));
+        });
+        $('title').textContent = d.title;
+        $('goal').innerHTML = d.sections.goal;
+        for (const [id, k] of Object.entries({
+          data: 'Given/Original data',
+          gt: 'Given/Reference-only material',
+          task: 'Task specification',
+          output: 'Expected output',
+          evaluation: 'Evaluation',
+          helpers: 'Given/Supplied helpers',
+          limits: 'Gaps',
+          sources: 'Sources',
+          coverage: 'Coverage',
+        }))
+          $(id).innerHTML = d.sections[k] || '';
+        $('reading').innerHTML = d.reading.map((s) => '<li>' + s + '</li>').join('');
+        $('view').innerHTML = d.views
+          .map((v, i) => `<option value="${i}">${esc(v.label)}</option>`)
+          .join('');
+        $('scale-note').textContent = d.scaleNote;
+        $('numbers').innerHTML = d.numbers;
+        changeView();
+      }
+      function changeView() {
+        const d = D[ds],
+          v = d.views[vi];
+        revealed = false;
+        $('zoom').value = 1;
+        $('tissue').checked = $('cells').checked = true;
+        $('raw').src = v.input;
+        $('caption').textContent = vi === 0 ? d.overviewCaption : v.selection || d.detailCaption;
+        $('coordinates').textContent = v.crop_level0
+          ? '全片左上角 (' +
+            v.crop_level0.slice(0, 2).join(', ') +
+            ') · ' +
+            v.crop_level0[2] +
+            ' × ' +
+            v.crop_level0[3] +
+            ' 原生像素'
+          : v.source_roi
+            ? '官方 ROI：' + v.source_roi
+            : '缩略图显示；完整原始文件已保留';
+        $('insight').innerHTML = d.insight[vi > 0 ? 1 : 0];
+        $('minimap').innerHTML = '';
+        if (vi > 0) {
+          let b = v.crop_level0;
+          if (v.source_roi) {
+            const q = v.source_roi
+              .match(/\[(.*?)\]/)[1]
+              .split(',')
+              .map(Number);
+            b = [q[0], q[1], q[2] - q[0], q[3] - q[1]];
+          }
+          if (b) {
+            const o = d.views[0],
+              down = o.downsample;
+            $('minimap').innerHTML =
+              `<svg class="mini" role="img" aria-label="蓝框为当前教学裁图位置" viewBox="0 0 ${o.width} ${o.height}"><image href="${o.input}" width="${o.width}" height="${o.height}"/><rect x="${b[0] / down}" y="${b[1] / down}" width="${b[2] / down}" height="${b[3] / down}" stroke="#0674d8" fill="none" stroke-width="5"/></svg><p class="small">蓝框：当前教学裁图的位置。框是阅读辅助。</p>`;
+          }
+        }
+        updateLayers();
+        fit();
+        $('viewport').scrollTo(0, 0);
+      }
+      function updateLayers() {
+        const d = D[ds],
+          v = d.views[vi],
+          tiger = ds === 'tiger' && vi > 0;
+        $('reveal').textContent = revealed ? '隐藏 GT' : '显示 GT';
+        $('reveal').setAttribute('aria-pressed', String(revealed));
+        $('status').textContent = revealed ? '当前：原图 + 来源 GT（非模型输出）' : '当前：仅原图';
+        $('overlay').src = tiger ? v.tissue : v.overlay;
+        $('overlay2').src = tiger ? v.cells : v.overlay;
+        $('overlay').hidden = !revealed || (tiger && !$('tissue').checked);
+        $('overlay2').hidden = !revealed || !tiger || !$('cells').checked;
+        $('layers').hidden = !tiger || !revealed;
+        const legend = ds === 'tiger' && vi === 0 ? [['#f59e0b', '有密集标注的 ROI']] : d.legend;
+        $('legend').innerHTML = legend
+          .map(([c, n]) => `<span><i class="swatch" style="background:${c}"></i>${esc(n)}</span>`)
+          .join('');
+        $('legend').hidden = !revealed;
+      }
+      function fit() {
+        const d = D[ds],
+          v = d.views[vi],
+          vp = $('viewport'),
+          scale =
+            Math.min((vp.clientWidth - 24) / v.width, (vp.clientHeight - 24) / v.height) *
+            Number($('zoom').value);
+        $('stage').style.width = v.width * scale + 'px';
+        $('stage').style.height = v.height * scale + 'px';
+        const umPerPixel = d.mpp * (v.downsample || 1);
+        let um = vi === 0 ? 1000 : 100,
+          px = (um / umPerPixel) * scale;
+        $('scalebar').style.width = px + 'px';
+        $('scalelabel').textContent = um >= 1000 ? um / 1000 + ' mm' : um + ' µm';
+      }
+      $('tabs').innerHTML = Object.entries(D)
+        .map(
+          ([k, d], i) =>
+            `<button data-key="${k}" aria-pressed="false">0${i + 1} · ${d.short}<small>${d.tagline}</small></button>`,
+        )
+        .join('');
+      document
+        .querySelectorAll('nav button')
+        .forEach((b) => (b.onclick = () => chapter(b.dataset.key)));
+      $('view').onchange = (e) => {
+        vi = Number(e.target.value);
+        changeView();
+      };
+      $('reveal').onclick = () => {
+        revealed = !revealed;
+        updateLayers();
+      };
+      $('zoom').oninput = fit;
+      $('reset').onclick = () => {
+        $('zoom').value = 1;
+        fit();
+        $('viewport').scrollTo(0, 0);
+      };
+      $('tissue').onchange = $('cells').onchange = updateLayers;
+      window.addEventListener('resize', fit);
+      chapter('camelyon');
+    </script>
+  </body>
+</html>
