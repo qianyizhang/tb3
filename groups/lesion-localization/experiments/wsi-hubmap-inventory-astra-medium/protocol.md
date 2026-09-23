@@ -14,6 +14,10 @@ The user switched this diagnostic condition to Astra medium after two Sol 6 atte
 
 The first full-slide Astra launch, `attempt-f1b7827a5e544517`, used an explicit Harbor agent environment after a base-runtime toy passed. The WSI task's transport-isolated container instead returned repeated `Network unreachable` errors before image analysis. The launch was interrupted after about two minutes; its frozen task bytes remained unchanged and its execution observation is `no_verdict`. The exact WSI sidecar/auth route must pass a tiny verification before a bounded retry.
 
+### Diagnostic result — 2026-09-23
+
+With the unchanged WSI sidecar and a private temporary auth copy, `attempt-8d9493603c6d4909` completed in Harbor with no exception and frozen task bytes unchanged. Its `reward=1` verifies the answer artifact contract only. The private scorer matched 86 of 99 reference polygons to 114 submitted level-0 points using one-to-one inside-polygon or 50 µm edge tolerance: recall 0.869, 13 unmatched reference polygons, 28 unmatched predictions, and absolute count error 15. `precision_within_reference=0.754` is the scorer's matched-point fraction, not an adjudicated clinical precision estimate. The crop helper recorded 22 calls, but direct slide reads were possible, so this is not an enforced search budget. The inspected 14 shell commands showed no explicit access to the private `tests/` or `solution/` paths. One selected public training slide cannot establish population performance; unmatched predictions need annotation-domain and morphology review before being called false positives. Raw evidence is in `observation-e86a9102f526e7c5ebc39c9e` and its local Harbor trial.
+
 ## Question and method
 
 ## Inputs and reference
