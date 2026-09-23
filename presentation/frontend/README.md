@@ -14,6 +14,10 @@ npm run frontend:build
 uv run med present --serve
 ```
 
+`make site` builds and serves the portable site with available local tours.
+`make site-dev` builds a data snapshot and serves the React/TypeScript sources
+through Vite.
+
 `npm run frontend:dev` builds a local data snapshot and opens a Vite development
 server on loopback. Vite serves the TypeScript entries against that generated
 snapshot; restart the command after changing Python projections or source records.

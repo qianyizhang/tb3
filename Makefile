@@ -2,15 +2,15 @@ PYTHON ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 PRESENTATION_OUTPUT ?= .local/presentation-check
 PRESENTATION_REPORTS ?= .local/presentation-qa
 
-.PHONY: actionlint artifacts build-check check docs-check format format-check hooks hygiene js-check lint med-check \
-	presentation-check pre-commit-check site style test type-check
+.PHONY: actionlint artifacts build-check check contracts-check docs-check format format-check \
+	frontend-build hooks hygiene js-check lint med-check presentation-check pre-commit-check \
+	site site-dev style test type-check
 check: hygiene test med-check docs-check type-check contracts-check style actionlint
 
-.PHONY: contracts-check frontend-check
 contracts-check:
 	$(PYTHON) -m tb3_medical.presentation_contracts --check
 
-frontend-check:
+frontend-build:
 	npm run frontend:build
 
 hygiene:
@@ -58,13 +58,17 @@ js-check:
 	node tests/media_export.cjs
 
 # Optional browser regressions. Uses declared, already installed Node/Playwright.
-presentation-check: frontend-check js-check
+presentation-check: frontend-build js-check
 	$(PYTHON) -m tb3_medical.cli present --output "$(PRESENTATION_OUTPUT)"
 	node tests/presentation.cjs "$(PRESENTATION_OUTPUT)" "$(PRESENTATION_REPORTS)"
 
-# Open the read-only medical index and available local tours.
-site: frontend-check
+# Serve the built read-only site with available local tours.
+site: frontend-build
 	$(PYTHON) -m tb3_medical.cli present --serve --local-media
+
+# Serve the React/TypeScript sources against a generated data snapshot.
+site-dev:
+	npm run frontend:dev
 
 # Inventory only: never delete ignored runs, caches, or frozen inputs.
 artifacts:
