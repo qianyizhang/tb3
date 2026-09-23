@@ -24,13 +24,18 @@
     {
       "path": "groups/lesion-localization/findings/figures/wsi-hiesd-astra-coarse-map.jpg",
       "sha256": "75a1019c49670008d33d457a85d811ed7402d983a595576aa9a3b55e974216a1"
+    },
+    {
+      "path": "groups/lesion-localization/findings/evidence/wsi-astra-medium-trace-diagnostics.json",
+      "sha256": "42ab125971068c3d8a1a1a0042333d0821badf1bc76d39a3c782c0b019a1f26e"
     }
   ],
   "limitations": [
     "One selected public slide per source, or three fixed TIGER ROIs from one slide, and one stochastic attempt per condition cannot establish population performance, a model ranking or clinical validity; public-data pretraining exposure is unknown.",
     "Harbor reward checks output artifacts rather than scientific correctness. HuBMAP unmatched predictions need annotation-domain review; CAMELYON has no negative or sparse-lesion case; HiESD XML boundaries are coarse and unannotated tissue is not known-normal.",
     "TIGER tissue-supplied compartment accuracy uses the evaluated tissue mask as an input, so its paired contrast is a diagnostic assistance check, not independent tissue inference or a causal detection estimate.",
-    "Two earlier Sol attempts and one interrupted Astra transport attempt ended before image analysis and retain no-verdict execution status."
+    "Two earlier Sol attempts and one interrupted Astra transport attempt ended before image analysis and retain no-verdict execution status.",
+    "Logged crop containment does not prove focused inspection; native TIFF reads can bypass the helper ledger. TIGER's paired runs used different tile layouts, and post-hoc confidence slices are not validated thresholds."
   ],
   "links": [
     {

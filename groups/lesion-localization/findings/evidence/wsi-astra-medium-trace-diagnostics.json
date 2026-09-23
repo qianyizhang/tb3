@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "kind": "posthoc_trace_diagnostics",
+  "scope": "Five completed Astra medium WSI conditions on four selected public sources; no new model run or score change",
+  "method": "Recomputed one-to-one matches with the pinned wsi-agent-v1 scorer, compared final answers with evaluator-only references after completion, projected recorded helper crop rectangles onto reference geometry, and inspected saved command traces and answer-generation scripts. Crop containment shows an image region was generated, not that every object was consciously reviewed. Native slide reads could bypass helper ledgers.",
+  "attempts": {
+    "hubmap": "attempt-8d9493603c6d4909",
+    "tiger_image_only": "attempt-582f254a1a1a43e3",
+    "tiger_tissue_supplied": "attempt-7cb2fd0dca184603",
+    "camelyon": "attempt-fc12d5620c0b4d15",
+    "hiesd": "attempt-97fa20fa8e884676"
+  },
+  "hubmap": {
+    "matched_reference_objects": 86,
+    "reference_objects": 99,
+    "missed_reference_centroids_inside_logged_crop_rectangles": 13,
+    "missed_reference_objects": 13,
+    "unmatched_predictions": 28,
+    "unmatched_predictions_with_y_at_least_12000": 20,
+    "unmatched_predictions_below_0_97_confidence": 19,
+    "matched_predictions_below_0_97_confidence": 0,
+    "matched_predictions_at_0_97_confidence": 86,
+    "unmatched_predictions_at_0_97_confidence": 9,
+    "unmatched_predictions_qualifying_for_any_reference_polygon_before_one_to_one_assignment": 1,
+    "unmatched_predictions_within_200_px_of_a_matched_prediction": 2,
+    "interpretation_boundary": "Most unmatched points are not explained by duplicate matching. The 19 lower-confidence candidates account for much of the unmatched count, but reference coverage and morphology need adjudication before calling them false glomeruli."
+  },
+  "tiger": {
+    "image_only": {
+      "matched_by_roi": [9, 136, 250],
+      "predicted_by_roi": [16, 154, 278],
+      "roi1_matched_reference_codes": {"7": 9},
+      "roi1_matched_predicted_codes": {"0": 9},
+      "roi2_matched_reference_codes": {"2": 17, "6": 118, "7": 1},
+      "roi2_matched_predicted_codes": {"2": 136}
+    },
+    "tissue_supplied": {
+      "matched_by_roi": [7, 141, 232],
+      "predicted_by_roi": [10, 176, 255],
+      "matched_compartment_errors_by_roi": [0, 0, 2],
+      "roi3_error_mechanism": "Both predicted compartment codes equal the supplied mask at the predicted point; the scorer checks the mask at the matched reference-cell center, 1.4 and 3.6 pixels away."
+    },
+    "reference_cells_matched_in_both_conditions_by_roi": [6, 132, 205],
+    "reference_cells_matched_only_image_only_by_roi": [3, 4, 45],
+    "reference_cells_matched_only_tissue_supplied_by_roi": [1, 9, 27],
+    "interpretation_boundary": "The independent runs used different enlarged-tile layouts as well as different assistance. Detection changes cannot be causally assigned to the supplied tissue masks."
+  },
+  "camelyon": {
+    "tumor_polygons_hit": 4,
+    "tumor_polygons_total": 6,
+    "unhit_polygons_intersecting_logged_high_resolution_helper_crops": 0,
+    "unhit_polygons_visible_in_a_direct_lower_resolution_pyramid_crop": 2,
+    "direct_crop_geometry": "Both unhit polygon bounds lie within the trace's page-4 lower crop (900,1550)-(3450,2800) on a 15x-downsampled pyramid page, equivalent to level-0 (13500,23250)-(51750,42000).",
+    "outside_reference_points": 3,
+    "minimum_distance_of_each_outside_point_to_any_tumor_polygon_px": [11549, 13315, 18655],
+    "interpretation_boundary": "The two unhit polygons were available in a broad low-resolution crop but not revisited at detail resolution. The three outside points are unsupported by the six released Tumor polygons; their clinical truth requires independent review."
+  },
+  "hiesd": {
+    "annotated_pixels": 11290,
+    "labeled_annotated_pixels": 10088,
+    "correct_annotated_pixels": 3222,
+    "unlabeled_annotated_pixels": 1202,
+    "wrongly_classified_annotated_pixels": 6866,
+    "true_class_1_predicted_as_2": 2288,
+    "true_class_1_predicted_as_6": 2610,
+    "true_class_4_pixels": 121,
+    "true_class_5_pixels": 361,
+    "predicted_classes_4_or_5": 0,
+    "predicted_pixels_outside_annotated_reference": 31865,
+    "interpretation_boundary": "The answer script drew broad class-2 and class-6 polygons and never emitted classes 4 or 5. Labels outside XML-annotated regions are unscored, not known-normal false positives."
+  }
+}
