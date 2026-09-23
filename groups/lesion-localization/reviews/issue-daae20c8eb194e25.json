@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "kind": "issue",
+  "id": "issue-daae20c8eb194e25",
+  "group_id": "lesion-localization",
+  "experiment_ids": [
+    "wsi-tiger-context-astra-medium"
+  ],
+  "affected_records": [
+    "observation-a87accfd5e23b8e90fbb0f31"
+  ],
+  "reason": "TIGER tissue-supplied matched-compartment scoring has a hidden boundary convention: the solver instruction assigns codes to submitted centers, but the scorer checks the mask at the matched source-cell center. Two of 380 matched cells are scored wrong despite their codes equaling the supplied mask at the submitted centers, 1.4 and 3.6 pixels from source centers. Preserve the frozen 378/380 result; specify the convention or revise a future task before promotion.",
+  "pending_action": true,
+  "actor": "assistant",
+  "created_at": "2026-09-23T05:41:34.677200+00:00",
+  "evidence": [
+    {
+      "path": "groups/lesion-localization/findings/evidence/wsi-spec-reference-audit.json",
+      "sha256": "c42890d694daed3ee6593cb0b12872e4ab6467d56103343a52fca176b53736e8"
+    }
+  ]
+}

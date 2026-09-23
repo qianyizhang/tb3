@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "kind": "issue",
+  "id": "issue-414cfb506d4b4d7b",
+  "group_id": "lesion-localization",
+  "experiment_ids": [
+    "wsi-camelyon-search-astra-medium"
+  ],
+  "affected_records": [
+    "observation-950002481d2bb6163a60f449"
+  ],
+  "reason": "CAMELYON 4/6 polygon-hit fraction overweights two unhit small Tumor polygons: they lie 24.4 and 32.0 micrometers from already-hit polygons and together occupy 0.91% of annotated Tumor polygon area. The solver-facing task asks for metastatic-tissue points and explicitly disavows polygon count as lesion count, while the scorer requires a point in every withheld polygon. Retain the frozen 4/6; review lesion grouping and endpoint before interpreting this as lesion-search sensitivity or promoting the task.",
+  "pending_action": true,
+  "actor": "assistant",
+  "created_at": "2026-09-23T05:41:48.760908+00:00",
+  "evidence": [
+    {
+      "path": "groups/lesion-localization/findings/evidence/wsi-spec-reference-audit.json",
+      "sha256": "c42890d694daed3ee6593cb0b12872e4ab6467d56103343a52fca176b53736e8"
+    }
+  ]
+}

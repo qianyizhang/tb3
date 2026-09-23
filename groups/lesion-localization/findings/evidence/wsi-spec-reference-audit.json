@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "kind": "posthoc_specification_reference_audit",
+  "scope": "Frozen Astra medium WSI tasks and source references; no model execution or score changes",
+  "method": "Compared solver-visible instruction.md files with the pinned score.py and private reference.json files; checked source annotation identity, CAMELYON polygon geometry, TIGER mask sampling at predicted and source-cell centers, and HiESD source XML versus the private raster. HuBMAP unmatched crops were reviewed as unadjudicated candidates.",
+  "camelyon": {
+    "source_tumor_polygons": 6,
+    "unhit_polygon_indices": [1, 4],
+    "unhit_polygon_area_mm2": [0.016027, 0.006568],
+    "distance_to_nearest_hit_polygon_um": [24.4, 32.0],
+    "area_fraction_of_all_tumor_polygons_in_four_hit_polygons": 0.990923,
+    "metric": "4/6 polygon-hit fraction",
+    "specification_gap": "The solver was asked for points judged to contain metastatic tissue and warned not to infer lesion count from polygons. The scorer gives each withheld source polygon equal weight and requires a point inside every polygon. The two unhit small polygons are close to already-hit polygons, so 4/6 is not a lesion detection rate. The 99.1% figure describes polygon area, not a measured segmentation or sensitivity endpoint."
+  },
+  "tiger": {
+    "tissue_supplied_matched_cells": 380,
+    "scorer_correct_compartments": 378,
+    "codes_equal_official_mask_at_predicted_centers": 380,
+    "boundary_disagreements": [
+      {
+        "roi": "roi3",
+        "predicted_center": [973, 74],
+        "predicted_code_and_mask_at_predicted_center": 0,
+        "matched_reference_center": [972, 75],
+        "mask_at_reference_center": 2,
+        "center_separation_px": 1.4
+      },
+      {
+        "roi": "roi3",
+        "predicted_center": [467, 873],
+        "predicted_code_and_mask_at_predicted_center": 2,
+        "matched_reference_center": [465, 870],
+        "mask_at_reference_center": 1,
+        "center_separation_px": 3.6
+      }
+    ],
+    "specification_gap": "The solver-facing instruction asks for a compartment code for each submitted center and permits code 0, but does not state that after a 20-pixel match the scorer uses the mask at the source cell's center. Both residual errors depend on this hidden boundary convention. The source tissue mask itself is unchanged."
+  },
+  "hiesd": {
+    "grid_size": [623, 448],
+    "grid_pixels": 279104,
+    "xml_annotated_pixels": 11290,
+    "annotated_fraction_of_grid": 0.040451,
+    "source_xml_polygons": 88,
+    "cross_class_overlap_pixels": 0,
+    "out_of_bounds_xml_vertices": 0,
+    "private_mask_disagreements_with_source_xml_raster": 0,
+    "reference_limit": "The six-class XML is sparse. It can score agreement within its annotated regions but cannot establish correctness of the whole-slide map or penalize the 31,865 submitted labels outside those regions. This audit found no XML-to-mask conversion defect."
+  },
+  "hubmap": {
+    "source_polygons": 99,
+    "source_classification_labels": ["glomerulus"],
+    "subtype_or_sclerosis_flags_in_source_features": false,
+    "unmatched_predictions": 28,
+    "visual_review": "Source-only and post-hoc contour crop montages of the nine high-confidence and nineteen lower-confidence unmatched points show heterogeneous glomeruloid, sclerotic and vessel-like profiles. These images do not independently establish which points are true glomeruli or prove missing annotations.",
+    "specification_gap": "The solver instruction asks for each glomerulus and permits uncertainty but gives no inclusion rule for globally sclerosed, partial or edge profiles; the scorer counts every submitted point and ignores confidence. Annotation-domain adjudication is needed before labeling reference-unmatched points clinical false positives."
+  },
+  "overall": "No definite source annotation or GT-raster corruption was demonstrated. TIGER has a boundary-scoring convention absent from the solver-facing prompt; CAMELYON has a task-to-endpoint mismatch. HuBMAP inclusion criteria and HiESD coverage limit interpretation."
+}

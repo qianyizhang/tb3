@@ -28,6 +28,10 @@
     {
       "path": "groups/lesion-localization/findings/evidence/wsi-astra-medium-trace-diagnostics.json",
       "sha256": "42ab125971068c3d8a1a1a0042333d0821badf1bc76d39a3c782c0b019a1f26e"
+    },
+    {
+      "path": "groups/lesion-localization/findings/evidence/wsi-spec-reference-audit.json",
+      "sha256": "c42890d694daed3ee6593cb0b12872e4ab6467d56103343a52fca176b53736e8"
     }
   ],
   "limitations": [
@@ -35,7 +39,8 @@
     "Harbor reward checks output artifacts rather than scientific correctness. HuBMAP unmatched predictions need annotation-domain review; CAMELYON has no negative or sparse-lesion case; HiESD XML boundaries are coarse and unannotated tissue is not known-normal.",
     "TIGER tissue-supplied compartment accuracy uses the evaluated tissue mask as an input, so its paired contrast is a diagnostic assistance check, not independent tissue inference or a causal detection estimate.",
     "Two earlier Sol attempts and one interrupted Astra transport attempt ended before image analysis and retain no-verdict execution status.",
-    "Logged crop containment does not prove focused inspection; native TIFF reads can bypass the helper ledger. TIGER's paired runs used different tile layouts, and post-hoc confidence slices are not validated thresholds."
+    "Logged crop containment does not prove focused inspection; native TIFF reads can bypass the helper ledger. TIGER's paired runs used different tile layouts, and post-hoc confidence slices are not validated thresholds.",
+    "TIGER's solver prompt omits the scorer's matched-source-center mask convention, affecting two tissue-supplied cells at boundaries. CAMELYON's equal-per-polygon endpoint overweights two tiny polygons close to already-hit tumor regions; 4/6 is not lesion-search sensitivity. HiESD XML covers only 4.0% of its coarse grid. No source GT label defect has been adjudicated."
   ],
   "links": [
     {
@@ -49,6 +54,10 @@
     {
       "label": "HiESD source, private reference and output",
       "path": "groups/lesion-localization/findings/figures/wsi-hiesd-astra-coarse-map.jpg"
+    },
+    {
+      "label": "Specification and reference audit",
+      "path": "groups/lesion-localization/findings/evidence/wsi-spec-reference-audit.json"
     }
   ]
 }
