@@ -181,6 +181,7 @@ export interface DatasetLocalized {
   access_note: string;
   documentation_gaps: Array<string>;
   sample_set_notes: Array<string>;
+  sample_set_labels?: Array<string>;
   snapshot_summary: string;
   snapshot_reference_note: string;
   snapshot_captions: Array<string>;

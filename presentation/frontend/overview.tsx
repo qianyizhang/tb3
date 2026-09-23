@@ -54,6 +54,7 @@ function RecordBadges({
 }
 
 function RecordDetails({ row, data }: { row: ResearchRecord; data: OverviewData }) {
+  const { locale, t } = useLocale();
   const { vocabulary } = data;
   const observed = row.current.observed_at || row.observed_at || row.collected_at;
   const decisions = data.records
@@ -77,18 +78,24 @@ function RecordDetails({ row, data }: { row: ResearchRecord; data: OverviewData 
       {Boolean(row.partial || row.current.partial) && (
         <Badge term={vocabulary.context_badges.partial} />
       )}
-      {Boolean(observed) && <p className="meta">Observed: {recordText(observed)}</p>}
+      {Boolean(observed) && (
+        <p className="meta">
+          {t('Observed:')} {recordText(observed)}
+        </p>
+      )}
       {['question', 'claim', 'reason', 'scope', 'body', 'insight', 'notes'].map((key) =>
         row[key] ? <p key={key}>{recordText(row[key])}</p> : null,
       )}
       {Boolean(row.current.assessment_reason) && <p>{recordText(row.current.assessment_reason)}</p>}
       {Boolean(row.current.assessment_scope) && (
-        <p>Assessed scope: {recordText(row.current.assessment_scope)}</p>
+        <p>
+          {t('Assessed scope:')} <span lang="en">{recordText(row.current.assessment_scope)}</span>
+        </p>
       )}
       {row.kind === 'evaluation' && (
         <>
           <p>
-            Scorer reward: {recordText(row.reward ?? 'not recorded')} ·{' '}
+            {t('Scorer reward:')} {recordText(row.reward ?? 'not recorded')} ·{' '}
             {recordText(row.model || row.agent || 'role not recorded')}
           </p>
           {control && <Badge term={vocabulary.context_badges[control]} />}
@@ -103,7 +110,7 @@ function RecordDetails({ row, data }: { row: ResearchRecord; data: OverviewData 
       ))}
       {decisions.map((decision) => (
         <p key={decision.id}>
-          {decision.accepted ? 'Accepted decision' : 'Recommendation'} ·{' '}
+          {t(decision.accepted ? 'Accepted decision' : 'Recommendation')} ·{' '}
           {recordText(decision.actor)}:{' '}
           {vocabulary.axes.idea_state?.values[recordText(decision.idea_state)]?.label ??
             recordText(decision.idea_state)}{' '}
@@ -119,11 +126,13 @@ function RecordDetails({ row, data }: { row: ResearchRecord; data: OverviewData 
       )}
       {(row.experiment_ids ?? []).map((id) => (
         <p key={id}>
-          <a href={`?kind=experiment&q=${encodeURIComponent(id)}`}>Experiment: {id}</a>
+          <a href={localeHref(`?kind=experiment&q=${encodeURIComponent(id)}`, locale)}>
+            {t('Experiment:')} {id}
+          </a>
         </p>
       ))}
       <details>
-        <summary>Record and evidence locators</summary>
+        <summary>{t('Record and evidence locators')}</summary>
         <pre>{JSON.stringify(row, null, 2)}</pre>
       </details>
     </div>
@@ -143,6 +152,7 @@ function RecordCard({
   open: boolean;
   toggle: () => void;
 }) {
+  const { locale } = useLocale();
   return (
     <details className="record" id={row.id} open={open}>
       <summary
@@ -154,8 +164,14 @@ function RecordCard({
       >
         <span className="type">{row.kind}</span>
         <span className="record-heading">
-          <span className="record-title">{recordText(row.title) || row.id}</span>
-          {groupLabel && <span className="record-subtitle">{groupLabel}</span>}
+          <span className="record-title" lang={locale === 'zh-CN' ? 'en' : undefined}>
+            {recordText(row.title) || row.id}
+          </span>
+          {groupLabel && (
+            <span className="record-subtitle" lang={locale === 'zh-CN' ? 'en' : undefined}>
+              {groupLabel}
+            </span>
+          )}
         </span>
         <RecordBadges row={row} vocabulary={data.vocabulary} />
         <span className="disclosure" aria-hidden="true">
@@ -168,6 +184,7 @@ function RecordCard({
 }
 
 function ResearchAreas({ data }: { data: OverviewData | undefined }) {
+  const { locale, t } = useLocale();
   const groups = data?.records.filter((row) => row.kind === 'group') ?? [];
   return (
     <section id="research-areas" className="research-areas" aria-labelledby="areas-title">
@@ -186,14 +203,17 @@ function ResearchAreas({ data }: { data: OverviewData | undefined }) {
             (row) => row.kind === 'idea' && row.group_id === group.id,
           ).length;
           return (
-            <a className="group-card" href={recordText(group.story_url)} key={group.id}>
+            <a
+              className="group-card"
+              href={localeHref(recordText(group.story_url), locale)}
+              key={group.id}
+            >
               <span className="number">{String(index + 1).padStart(2, '0')}</span>
-              <h3>{recordText(group.title)}</h3>
-              <p>{recordText(group.question)}</p>
+              <h3 lang={locale === 'zh-CN' ? 'en' : undefined}>{recordText(group.title)}</h3>
+              <p lang={locale === 'zh-CN' ? 'en' : undefined}>{recordText(group.question)}</p>
               <p className="counts">
                 <span>
-                  {experiments} experiment{experiments === 1 ? '' : 's'} · {ideas} idea
-                  {ideas === 1 ? '' : 's'}
+                  {experiments} {t('experiments')} · {ideas} {t('ideas')}
                 </span>
                 <span className="card-arrow" aria-hidden="true">
                   →
@@ -218,18 +238,20 @@ function SectionTitle({
   title: string;
   description: string;
 }) {
+  const { t } = useLocale();
   return (
     <div className="section-title">
       <div>
-        <p className="eyebrow">{eyebrow}</p>
-        <h2 id={id}>{title}</h2>
+        <p className="eyebrow">{t(eyebrow)}</p>
+        <h2 id={id}>{t(title)}</h2>
       </div>
-      <p>{description}</p>
+      <p>{t(description)}</p>
     </div>
   );
 }
 
 function RecordBrowser({ data, failed }: { data: OverviewData | undefined; failed: boolean }) {
+  const { t } = useLocale();
   const [route, setRoute] = useState<OverviewRoute>(initialRoute);
   const [openRecords, setOpenRecords] = useState<Set<string>>(() => new Set());
   const searchInput = useRef<HTMLInputElement>(null);
@@ -291,7 +313,7 @@ function RecordBrowser({ data, failed }: { data: OverviewData | undefined; faile
       <form
         id="filters"
         role="search"
-        aria-label="Filter research records"
+        aria-label={t('Filter research records')}
         onSubmit={(event) => event.preventDefault()}
         onReset={(event) => {
           event.preventDefault();
@@ -299,12 +321,12 @@ function RecordBrowser({ data, failed }: { data: OverviewData | undefined; faile
         }}
       >
         <label htmlFor="search">
-          Search the record
+          {t('Search the record')}
           <input
             ref={searchInput}
             id="search"
             type="search"
-            placeholder="Question, model, source…"
+            placeholder={t('Question, model, source…')}
             autoComplete="off"
             disabled={!data}
             value={route.search}
@@ -312,14 +334,14 @@ function RecordBrowser({ data, failed }: { data: OverviewData | undefined; faile
           />
         </label>
         <label htmlFor="group">
-          Research area
+          {t('Research area')}
           <select
             id="group"
             disabled={!data}
             value={route.group}
             onChange={(event) => updateFilter('group', event.target.value)}
           >
-            <option value="">All research areas</option>
+            <option value="">{t('All research areas')}</option>
             {groups.map((group) => (
               <option value={group.id} key={group.id}>
                 {recordText(group.title)}
@@ -328,7 +350,7 @@ function RecordBrowser({ data, failed }: { data: OverviewData | undefined; faile
           </select>
         </label>
         <label htmlFor="kind">
-          Record type
+          {t('Record type')}
           <select
             id="kind"
             disabled={!data}
@@ -337,21 +359,21 @@ function RecordBrowser({ data, failed }: { data: OverviewData | undefined; faile
           >
             {recordKinds.map(([kind, label]) => (
               <option value={kind} key={kind}>
-                {label}
+                {t(label)}
               </option>
             ))}
           </select>
         </label>
         <label htmlFor="status">
-          Status
+          {t('Status')}
           <select
             id="status"
             disabled={!data}
             value={route.status}
             onChange={(event) => updateFilter('status', event.target.value)}
           >
-            <option value="">All statuses</option>
-            <option value="attention">Experiments needing action</option>
+            <option value="">{t('All statuses')}</option>
+            <option value="attention">{t('Experiments needing action')}</option>
             {Object.entries(data?.vocabulary.axes ?? {}).map(([axis, definition]) => (
               <optgroup label={axis.replaceAll('_', ' ')} key={axis}>
                 {Object.entries(definition.values).map(([code, term]) => (
@@ -367,10 +389,10 @@ function RecordBrowser({ data, failed }: { data: OverviewData | undefined; faile
       <div className="result-toolbar">
         <p id="count" role="status" aria-live="polite">
           {failed
-            ? 'Research record unavailable'
+            ? t('Research record unavailable')
             : data
-              ? `${rows.length} of ${data.records.length} records`
-              : 'Loading the research record…'}
+              ? `${rows.length} ${t('of')} ${data.records.length} ${t('records')}`
+              : t('Loading the research record…')}
         </p>
         <button
           id="reset-filters"
@@ -379,7 +401,7 @@ function RecordBrowser({ data, failed }: { data: OverviewData | undefined; faile
           form="filters"
           disabled={!data}
         >
-          Reset filters
+          {t('Reset filters')}
         </button>
       </div>
       <div id="records" className="records" aria-busy={!data && !failed}>
@@ -397,10 +419,12 @@ function RecordBrowser({ data, failed }: { data: OverviewData | undefined; faile
           ))}
       </div>
       <div id="empty" className="empty-state" hidden={!data || rows.length > 0}>
-        <h3>No matching records</h3>
-        <p>Try a broader search, choose another research area or include all record types.</p>
+        <h3>{t('No matching records')}</h3>
+        <p>
+          {t('Try a broader search, choose another research area or include all record types.')}
+        </p>
         <button className="button button-secondary" type="reset" form="filters">
-          Reset filters
+          {t('Reset filters')}
         </button>
       </div>
     </section>
@@ -408,12 +432,13 @@ function RecordBrowser({ data, failed }: { data: OverviewData | undefined; faile
 }
 
 function LoadError() {
+  const { t } = useLocale();
   return (
     <div className="empty-state" role="alert">
-      <h3>The research record could not be loaded</h3>
-      <p>Reload the page to try again.</p>
+      <h3>{t('The research record could not be loaded')}</h3>
+      <p>{t('Reload the page to try again.')}</p>
       <button className="button button-secondary" type="button" onClick={() => location.reload()}>
-        Reload workbench
+        {t('Reload workbench')}
       </button>
     </div>
   );

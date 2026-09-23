@@ -94,6 +94,9 @@ def check(root: Pathish) -> Document:
         if not story.is_file():
             raise c.MedicalError("Missing group story: " + group["id"])
         check_links(root, story)
+        translated_story = story.with_name("story.zh-CN.md")
+        if translated_story.is_file():
+            check_links(root, translated_story)
         card_path = Path(root) / directory / "card.json"
         if card_path.is_file():
             card = c.read(card_path)
@@ -235,7 +238,7 @@ def present(root: Pathish, output: Pathish, local_media: bool = False) -> Docume
         + ".html"
         for group in groups
     }
-    for name in ("index.html", "style.css", "ui.css"):
+    for name in ("index.html", "style.css", "ui.css", "story-language.js"):
         shutil.copy2(root / "presentation" / name, output / name)
     (output / "overview.js").write_text(app_js)
     (output / "style.css").write_text((output / "style.css").read_text() + "\n" + app_css)
@@ -307,6 +310,10 @@ def present(root: Pathish, output: Pathish, local_media: bool = False) -> Docume
             return copy_link(rel + ("#" + parsed.fragment if parsed.fragment else ""), page_output)
 
         body = markdown(source.read_text(), story_link)
+        chinese_source = source.with_name("story.zh-CN.md")
+        chinese_body = (
+            markdown(chinese_source.read_text(), story_link) if chinese_source.is_file() else ""
+        )
         flags = group["current"]["review_flags"]
         validity = (
             "; ".join(
@@ -319,10 +326,10 @@ def present(root: Pathish, output: Pathish, local_media: bool = False) -> Docume
             if flags
             else "No unresolved review flags recorded for the cited experiments"
         )
-        notice = f"<aside>Current evidence status: <strong>{html.escape(validity)}</strong>. See the index for review dependencies and evidence availability.</aside>"
+        notice = f'<aside lang="en">Current evidence status: <strong>{html.escape(validity)}</strong>. See the index for review dependencies and evidence availability.</aside>'
         explorer_navigation = (
-            '<a href="../task-explorer/index.html">Tasks</a>'
-            '<a href="../task-explorer/index.html#datasets">Datasets</a>'
+            '<a href="../task-explorer/index.html" data-en="Tasks" data-zh="任务">Tasks</a>'
+            '<a href="../task-explorer/index.html#datasets" data-en="Datasets" data-zh="数据集">Datasets</a>'
             if (root / "presentation/task-explorer/catalog.json").is_file()
             else ""
         )
@@ -333,24 +340,35 @@ def present(root: Pathish, output: Pathish, local_media: bool = False) -> Docume
             + title
             + ' · TB3 Medical</title><link rel="stylesheet" href="../ui.css">'
             '<link rel="stylesheet" href="../style.css"></head><body>'
-            '<a class="skip-link" href="#story-content">Skip to story</a>'
+            '<a class="skip-link" href="#story-content" data-en="Skip to story" data-zh="跳到正文">Skip to story</a>'
             '<header class="site-header story-header">'
             '<a class="site-brand" href="../index.html">TB3 / MEDICAL'
-            '<span class="site-brand-caption">Research workbench</span></a>'
+            '<span class="site-brand-caption" data-en="Research workbench" data-zh="研究工作台">Research workbench</span></a>'
             '<nav class="site-nav" aria-label="Primary navigation">'
-            '<a href="../index.html" aria-current="page">Overview</a>'
+            '<a href="../index.html" aria-current="page" data-en="Overview" data-zh="总览">Overview</a>'
             + explorer_navigation
-            + '</nav></header><main class="story" id="story-content" tabindex="-1">'
-            '<p class="story-breadcrumb"><a href="../index.html#research-areas">Research areas</a>'
+            + '</nav><label class="language-switch"><span data-en="Language" data-zh="语言">Language</span>'
+            '<select id="story-language" aria-label="Language"><option value="en">English</option><option value="zh-CN">中文</option></select></label>'
+            '</header><main class="story" id="story-content" tabindex="-1">'
+            '<p class="story-breadcrumb"><a href="../index.html#research-areas" data-en="Research areas" data-zh="研究领域">Research areas</a>'
             '<span aria-hidden="true">/</span>'
             + title
             + "</p>"
+            + '<p id="story-translation-notice" class="translation-notice" lang="zh-CN" hidden>本篇研究故事尚无中文译文&#65292;以下显示英文原文。</p>'
             + notice
+            + '<div data-story-locale="en" lang="en">'
             + body
+            + "</div>"
+            + (
+                '<div data-story-locale="zh-CN" lang="zh-CN" hidden>' + chinese_body + "</div>"
+                if chinese_body
+                else ""
+            )
             + '<footer class="story-footer"><a href="../index.html#research-areas">'
-            '← All research areas</a><a href="../index.html?group='
+            '<span data-en="← All research areas" data-zh="← 全部研究领域">← All research areas</span></a><a href="../index.html?group='
             + html.escape(group["id"], quote=True)
-            + '#research-record">Browse evidence for this area →</a></footer></main></body></html>'
+            + '#research-record"><span data-en="Browse evidence for this area →" data-zh="查看此领域的证据 →">Browse evidence for this area →</span></a></footer></main>'
+            '<script src="../story-language.js"></script></body></html>'
         )
         group["story_url"] = "stories/" + group["id"] + ".html"
     for row in rows.values():

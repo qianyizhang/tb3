@@ -7,6 +7,10 @@ this guide and the code own implementation details.
 The overview and Task Explorer use React and strict TypeScript. Python remains
 the authority for records, evidence status, task composition and export assembly.
 The browser is read-only. Both production outputs work without a Node server.
+The composed catalogue checks `presentation/i18n-coverage.json`: each brief,
+dataset and group story either has authored Chinese copy or an explicit English
+source fallback. A translated dataset includes its snapshot captions and sample
+notes; the source IDs, links and evidence bytes remain unchanged.
 
 ## Build and develop
 

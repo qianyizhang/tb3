@@ -98,5 +98,34 @@
       "path_field": "member",
       "local_root": ".local/longitudinal-ct-case02/raw"
     }
-  ]
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "Longitudinal-CT 纵向 CT",
+      "summary": "成对 CT 检查及跨访视的病灶标签和关联。",
+      "modality": "CT",
+      "sample_unit": "一位受检者的基线与随访检查",
+      "image_description": "时间上分开的两次完整 CT 检查。",
+      "annotation_description": "病灶掩膜、每次访视的元数据及跨访视关联。",
+      "reference_note": "标签是否存在、跨访视对应关系和临床恶性判断是不同主张。不确定关联、去面部处理及坐标约定均需明确保留。",
+      "version_note": "固定 v3，DOI 10.57754/FDAT.qe950-g4h94，于 2026-09-18 发布。2026-09-22 获取五组患者配对并筛查全部 300 份患者 CSV；第五组用于另一项持续／新发病灶诊断。",
+      "terms_note": "发布 API 标示 CC BY-NC 4.0。保留具名作者及图宾根大学医院的归属；来源图像和衍生媒体仅留本地。",
+      "access_note": "",
+      "documentation_gaps": [],
+      "sample_set_notes": [
+        "0a09c8844b 是首个重复使用的开发病例；其他配对虽经审查，并非都进行试验。",
+        "所选七个文件成员；用于持续病灶与新发病灶的诊断。"
+      ],
+      "snapshot_summary": "保留的三组访视配对及其人工参考掩膜。",
+      "snapshot_reference_note": "每组配对图遵循自己的原始来源图注；面板依据病灶参考选取，不能视为盲选搜索。",
+      "snapshot_captions": [
+        "冻结的三例来源审查图。保留原始标签、病灶居中的裁图和颜色图例；没有智能体输出。",
+        "相同三例的人工参考掩膜；裁图依据病灶参考选取，不代表盲选的全体积搜索。"
+      ],
+      "sample_set_labels": [
+        "首批获取的配对",
+        "第二组试验配对"
+      ]
+    }
+  }
 }

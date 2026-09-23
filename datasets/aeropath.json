@@ -75,5 +75,32 @@
       "path_field": "path",
       "local_root": "runs/br033-brain-routing/airway-access"
     }
-  ]
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "AeroPath 气道 CT",
+      "summary": "胸部 CT 配有气道／肺部参考，模型预测另行保存。",
+      "modality": "CT",
+      "sample_unit": "一次 CT 检查",
+      "image_description": "高分辨率胸部 CT。",
+      "annotation_description": "气道与肺部标签；预测是另外生成的衍生产物。",
+      "reference_note": "参考中的遗漏及主干连接缺口疑问仍须明确。二值掩膜不能识别有名称的支气管或活检目标。",
+      "version_note": "BR-033 于 2026-09-16 的历史来源审查：镜像版本 6d0f831ca22bf57918aba3980ae475c94d45b997；所选 CT、气道及肺文件按发布的 LFS SHA-256 核查。",
+      "terms_note": "保留的 license.md 标为 CC BY 4.0，Hugging Face 页面则标为 MIT。保留两种声明；页面或代码仓库都不能单独解决数据再分发条款。这是 2026-09-16 的观察，并非当前许可核查。",
+      "access_note": "所选文件及模型输出仅保留本地，具体哈希见来源收据。本索引未下载文件、验证当前访问或取得发布许可。",
+      "sample_set_labels": [
+        "已获取的气道病例"
+      ],
+      "sample_set_notes": [
+        "三组来源 CT／气道／肺配对；是否纳入试验由各实验决定。"
+      ],
+      "snapshot_summary": "原生图像及可主动揭示的来源标注。",
+      "snapshot_reference_note": "金色表示来源气道标签。此快照只是标注示例，不是气道修复成功的证据。",
+      "snapshot_captions": [
+        "检查来源参考后，在各正交轴上选取参考前景面积最大的切面。规范 RAS 视图保留体素间距；未显示预测。",
+        "相同参考选定切面上的来源气道标签，以金色显示；不是模型修复结果。"
+      ],
+      "documentation_gaps": []
+    }
+  }
 }

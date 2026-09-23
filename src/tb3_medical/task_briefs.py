@@ -11,7 +11,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from . import core as c
-from . import dataset_previews, datasets, frontend, task_catalog
+from . import dataset_previews, datasets, frontend, presentation_i18n, task_catalog
 from .presentation import markdown
 from .presentation_contracts import validate_payload
 from .types import Document, Pathish, Records
@@ -288,6 +288,11 @@ def load(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
         {row["id"] for row in dataset_data["records"]},
         required=data.get("require_dataset_previews", False),
     )
+    translation_coverage = (
+        presentation_i18n.check(root, out, dataset_data)
+        if data.get("require_translation_coverage")
+        else {}
+    )
     return validate_payload(
         {
             **data,
@@ -297,6 +302,7 @@ def load(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
             "local_sources": source_bundle(root, out),
             "datasets": dataset_data,
             "experiment_count": experiment_count,
+            "translation_coverage": translation_coverage,
         },
         "explorer",
     )
@@ -305,6 +311,7 @@ def load(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
 def check(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
     data = load(root, catalog)
     return {
+        "translation_coverage": data["translation_coverage"],
         "briefs": len(data["entries"]),
         "experiments": data["experiment_count"],
         "supporting_research": sum(e.get("role", "task") != "task" for e in data["entries"]),

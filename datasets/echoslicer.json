@@ -73,5 +73,31 @@
       "path_field": "path",
       "local_root": ""
     }
-  ]
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "EchoSlicer 志愿者超声",
+      "summary": "一段真实志愿者序列，但没有独立重建参考。",
+      "modality": "超声",
+      "sample_unit": "一段记录的三维序列",
+      "image_description": "A_0.dcm 解码为十八个原生时相。",
+      "annotation_description": "已标定的几何切面；没有配对参考表面。",
+      "reference_note": "动画看起来合理，不构成解剖准确性证据；临床射血分数 EF 尚未确立。",
+      "version_note": "BR-032 于 2026-09-16 审查代码提交 78f7085104492d5229b1bb96b7748ad9d950e53d 和 2025-11-19 发布版本。来源笔记保留所选 dataset/A_0.dcm 的 SHA-256；解码了十八个原生时相。",
+      "terms_note": "历史审查确认可公开下载，但没有确立再分发许可。原始扫描及病例输出仅留本地；未重新核查当前许可或访问。",
+      "access_note": "BR-032 只通过字节范围获取所选归档成员。来源 DICOM 及原始元数据未进入求解器任务包；公开预训练是否接触过该数据未知。",
+      "sample_set_labels": [
+        "志愿者序列"
+      ],
+      "sample_set_notes": [
+        "来源代码／发布版本及准确的 DICOM 哈希见来源笔记。"
+      ],
+      "snapshot_summary": "从已获取的三维超声中保留三个切面。",
+      "snapshot_reference_note": "此志愿者序列没有配对的解剖真值表面。标定切面仅是几何参考，不是解剖真值。",
+      "snapshot_captions": [
+        "保留的标定笛卡尔切面由极坐标来源体数据采样：首帧、long_0、long_90 与 short_85。像素间距 0.75 mm；显示轴遵循各切面定义，未提供解剖真值。"
+      ],
+      "documentation_gaps": []
+    }
+  }
 }

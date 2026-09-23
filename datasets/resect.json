@@ -88,5 +88,32 @@
       "path_field": "name",
       "local_root": ".local/datasets/resect-sample/e86fb37/Case3"
     }
-  ]
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "RESECT MRI 与术中超声",
+      "summary": "配对 MRI 和超声使跨模态点位对应关系可供检查。",
+      "modality": "MRI + 超声",
+      "sample_unit": "一例切除术前的配对检查",
+      "image_description": "切除前 FLAIR MRI 与三维超声。",
+      "annotation_description": "配对的 MNI tag 坐标；另有提供解剖背景的肿瘤掩膜。",
+      "reference_note": "成对 tag 是配准参考。肿瘤掩膜仅描述背景，不能替代对应点。",
+      "version_note": "当前入口页和固定镜像将 RESECT 标识为 DOI 10.11582/2017.00004，而 2017 年数据论文的获取章节引用 10.11582/2016.00003。2026-09-22 从固定于 e86fb37dd93f7a9c64e48952f71410af59b04b9b 的 MedOtter/RESECT-SEG 镜像获取三例；具体文件哈希值见样本清单。",
+      "terms_note": "原始 RESECT 图像和标志点据报采用 CC BY 4.0；RESECT-SEG 掩膜为 CC BY-NC-SA 4.0，故合并的有界样本按 CC BY-NC-SA 4.0 看待。再分发前保留两项引用并重新核查条款。",
+      "access_note": "获取时旧 NIRD 入口页不稳定。原始体数据保留本地；固定镜像提供了少量单独文件。此记录不证明后续持续可访问。",
+      "documentation_gaps": [],
+      "sample_set_notes": [
+        "三例来源病例；保留来源哈希、物理几何及供读者查看的所选切面。"
+      ],
+      "snapshot_summary": "MRI 与术中超声，配有对应的参考标志点。",
+      "snapshot_reference_note": "保留图中的金色标记表示同一来源标志点。肿瘤掩膜只是解剖背景，不是点位对应真值。",
+      "snapshot_captions": [
+        "Case2：上排 FLAIR，下排超声；各列为原生数组的第 0、1、2 轴，经重采样仅用于显示。每张半径 18 mm 的裁图都以仅供评估的标志点为中心；这是读者视图，不是求解器输入。",
+        "Case2 同一读者裁图，金色十字表示已发表的第 13 对点（从 0 起编号为 12）：MRI [19.918, 76.773, 63.580] mm；超声 [19.290, 79.958, 57.191] mm；初始相距 7.17 mm。该点对仅供参考揭示。"
+      ],
+      "sample_set_labels": [
+        "精选配对病例"
+      ]
+    }
+  }
 }

@@ -135,5 +135,36 @@
       "path_field": "member",
       "local_root": "runs/br033-brain-routing/sources"
     }
-  ]
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "TopCoW 脑血管",
+      "summary": "血管造影图像、分区掩膜与图结构，用于血管拓扑和修复研究。",
+      "modality": "MRA + CTA",
+      "sample_unit": "一次来源血管造影检查",
+      "image_description": "原始 MRA 或 CT 血管造影图像。",
+      "annotation_description": "有名称的 Willis 环掩膜、边标注和由掩膜派生的图结构。",
+      "reference_note": "派生图结构不是独立的解剖真值。标注覆盖范围及新增体素的未决问题限制对修复结果的解释。",
+      "version_note": "TopCoW 训练版 15692630 和图结构版 17358162；BR-025 于 2026-09-16 整理。所选文件、CRC 核查和哈希值保留在整理收据中。",
+      "terms_note": "BR-025 在 2026-09-16 记录的历史条款：TopCoW 要求署名，商业使用需所有者许可；派生图结构为 CC BY-NC。这并非当前再分发许可核准。",
+      "access_note": "所选图像、掩膜和图结构成员已在本地保留。本索引不获取数据，也不能证明当前仍可访问；复用时须重新核查具体版本、条款和可用性。",
+      "documentation_gaps": [],
+      "sample_set_notes": [
+        "四例 MRA 有参考掩膜及边／图元数据；试验只使用其中各自指定的子集。",
+        "上游训练样本；未核实其是否属于 ReX-MLE 准备好的数据划分。",
+        "恢复的五例开发筛查复用了 TopCoW 图像和 TopBrain 标签；大小与 CRC 均和 TopBrain 成员一致，选样使用了参考中的第三段 A2/A3 解剖。"
+      ],
+      "snapshot_summary": "保留的来源衍生示例。",
+      "snapshot_reference_note": "已发布掩膜是此数据集示例的来源参考。个别任务可以把掩膜作为帮助提供；它不是预测结果。",
+      "snapshot_captions": [
+        "三张来源 CTA 切面根据 Willis 环标注选定；完整来源图注和颜色图例均保留。",
+        "三张相同切面上的已发布参考掩膜；不是预测。填充叠层透明度为 80%：浅蓝色 (#aec7e8)＝来源类别 1；橙色 (#ff7f0e)＝2；浅橙色 (#ffbb78)＝3；绿色 (#2ca02c)＝4；浅绿色 (#98df8a)＝5；红色 (#d62728)＝6；浅红色 (#ff9896)＝7；浅紫色 (#c5b0d5)＝9；浅棕色 (#c49c94)＝11；粉色 (#e377c2)＝12。这些是来源的数字类别 ID，本图未额外指定解剖名称。"
+      ],
+      "sample_set_labels": [
+        "精选 MRA",
+        "外部训练示例",
+        "额外 TopBrain 开发图像"
+      ]
+    }
+  }
 }

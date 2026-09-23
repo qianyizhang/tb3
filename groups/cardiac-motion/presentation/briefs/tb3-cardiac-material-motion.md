@@ -1,60 +1,59 @@
-# Recover cardiac material motion and compute mechanics
+# 恢复心脏材料运动并计算力学量
 
-Recover cardiac material motion and compute mechanics.
+根据所给观察恢复材料点运动，并计算形变场。
 
 ## Value
 
-Tests reusable reconstruction and deformation calculations under explicit observation levels.
+在明确区分观察条件的前提下，检验可复用的重建与形变计算。
 
 ## Given
 
 ### Original data
 
-Synthetic calibrated ultrasound views or full volumes, depending on stage.
+依据阶段提供合成、已标定的超声视图或完整体数据。
 
 ### Supplied helpers
 
-Initial material mesh/axes; stage 0 also supplies reference motion and tests calculations rather than motion inference.
+初始材料网格与解剖轴。第 0 阶段还直接提供参考运动，因此检验的是计算，而非运动推断。
 
 ### Callable tools
 
-Each linked protocol specifies the permitted tools and execution environment.
+各关联协议分别规定允许调用的工具与执行环境。
 
 ### Reference-only material
 
-References and permitted access follow each frozen contract. A reader-facing source or illustration is not automatically solver-visible.
+参考答案及可用范围以各冻结契约为准。供读者查看的来源或示意图不会自动提供给求解器。
 
 ## Task specification
 
-Produce reusable motion reconstruction and finite-deformation fields with physical consistency. Follow each protocol's coordinate, identifier and access contract.
+输出可复用的运动重建与有限形变场，并保持物理一致性。遵守各协议的坐标、标识符和访问契约。
 
 ## Expected output
 
-Produce reusable motion reconstruction and finite-deformation fields with physical consistency.
+可复用的运动重建、有限形变场及其物理一致性检查。
 
 ## Evaluation
 
-Separate calculations, observed/withheld images, geometry and material-motion/strain error; input stages are not equivalent.
+分别评价计算、可见与留出图像、几何和材料运动／应变误差；不同输入阶段不能视为等价。
 
 ## Conditions
 
 | Condition | Supplied help | Work remaining |
 | --- | --- | --- |
-| Stage 0: calculations | Initial mesh, reference motion and anatomical axes | Compute consistent finite-deformation fields; no motion inference |
-| Stage 1: sparse views | Calibrated ultrasound videos, initial mesh and axes | Recover subsequent material motion and compute fields |
-| Stage 1V: source volume | Initial mesh and full native ultrasound cycle | Use volumetric observations to recover material motion |
+| 第 0 阶段：计算 | 初始网格、参考运动与解剖轴 | 计算一致的有限形变场；不要求推断运动 |
+| 第 1 阶段：稀疏视图 | 已标定超声视频、初始网格与解剖轴 | 恢复后续材料运动并计算形变场 |
+| 第 1V 阶段：来源体数据 | 初始网格与完整原生超声周期 | 利用体积观察恢复材料运动 |
 
-Only documented executed stages constitute agent evidence.
+只有有记录且实际执行的阶段才构成智能体证据。
 
 ## Difficulty
 
-Correct finite-strain calculations do not prove recovered tissue motion. Sparse and volumetric observations constrain different parts of the inverse problem.
+有限应变计算正确，不代表组织运动恢复正确。稀疏与体积观察对逆问题提供不同约束。
 
 ## Coverage
 
-The experiment index preserves case, contract, assistance and execution boundaries.
-An experiment record is not an execution count; grouping does not pool scores.
+实验索引保留病例、契约、帮助条件和执行边界。实验记录不等于执行次数；分组不会合并分数。
 
 ## Sources
 
-- [BR-031 — cardiac agent capability ladder](../../experiments/br031/protocol.md)
+- [BR-031：心脏智能体能力阶梯](../../experiments/br031/protocol.md)

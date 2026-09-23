@@ -238,6 +238,7 @@ class DatasetLocalized(TypedDict):
     access_note: str
     documentation_gaps: list[str]
     sample_set_notes: list[str]
+    sample_set_labels: NotRequired[list[str]]
     snapshot_summary: str
     snapshot_reference_note: str
     snapshot_captions: list[str]

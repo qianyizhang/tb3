@@ -1,12 +1,19 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import type { BriefField, TaskEntry } from './types';
 import { TaskScenes } from '../task-explorer/scenes.js';
+import { useLocale } from './locale';
 /** Only build-authored, escaped Markdown fragments enter this boundary. UI is React-owned. */
 export function Markup({ html, className }: { html: string; className?: string }) {
   return <div className={className} dangerouslySetInnerHTML={{ __html: html }} />;
 }
 export function Field({ entry, name }: { entry: TaskEntry; name: BriefField }) {
-  return entry.html?.[name] ? <Markup html={entry.html[name]!} /> : <p>{entry[name]}</p>;
+  const { locale } = useLocale();
+  const language = locale === 'zh-CN' && !entry.locales?.['zh-CN'] ? 'en' : locale;
+  return (
+    <div lang={language}>
+      {entry.html?.[name] ? <Markup html={entry.html[name]!} /> : <p>{entry[name]}</p>}
+    </div>
+  );
 }
 export function Box({
   title,
@@ -33,16 +40,17 @@ export function SourceLink({ url, children }: { url: string; children: ReactNode
 }
 /** The scene renderer owns only its subtree and disposes observers/GPU resources on exit. */
 export function TaskScene({ entry }: { entry: TaskEntry }) {
+  const { locale } = useLocale();
   const host = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const root = host.current;
     if (!root) return;
-    root.innerHTML = TaskScenes.figure(entry);
-    const dispose = TaskScenes.mount(root, entry);
+    root.innerHTML = TaskScenes.figure(entry, locale);
+    const dispose = TaskScenes.mount(root, entry, locale);
     return () => {
       dispose();
       root.replaceChildren();
     };
-  }, [entry]);
+  }, [entry, locale]);
   return <div ref={host} className="task-scene-host" />;
 }

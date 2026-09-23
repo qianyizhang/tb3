@@ -73,5 +73,32 @@
       "path_field": "local_path",
       "local_root": "runs/br025-cardiac/source/native"
     }
-  ]
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "FeEcho4D 胎儿超声",
+      "summary": "胎儿超声切面配有轮廓与拟合网格。",
+      "modality": "超声",
+      "sample_unit": "一段胎儿 STIC 序列",
+      "image_description": "三十个时相与放射状来源切面。",
+      "annotation_description": "腔体／心肌轮廓及拟合网格。",
+      "reference_note": "未观察到的稀疏区域不能当作背景。网格物理变换、腔体划分和时相编号基准仍未解决。",
+      "version_note": "BR-025 于 2026-09-16 审查原生 Zenodo 记录 21322299 的 Patient001：30 帧、37 个放射状切面。部分获取的归档仅验证提取成员的 CRC 与 SHA-256，完整归档 MD5 未核实。",
+      "terms_note": "项目于 2026-09-16 表示限非商业研究使用；后续再分发的确切许可仍未解决。此处没有更新当前许可或访问核验。",
+      "access_note": "原生 Patient001 仅在本地供作者校准。来源收据另列未请求的受限替代数据；本记录既不授予也不请求其访问。",
+      "sample_set_labels": [
+        "原生序列"
+      ],
+      "sample_set_notes": [
+        "三十个时相、三十七个放射状切面；所选成员已核查，完整归档 MD5 未验证。"
+      ],
+      "snapshot_summary": "保留的胎儿超声切面与提供的掩膜。",
+      "snapshot_reference_note": "示意图把非零掩膜值合并显示。未观察空间不是背景；腔体划分与网格物理变换仍未解决。",
+      "snapshot_captions": [
+        "time002 时相上，事后选择参考前景最大的三个来源放射状切面。保留原始 PNG 栅格方向；金色合并非零掩膜值，不推断腔体划分或网格物理变换。",
+        "相同切面的来源掩膜，以金色合并非零值显示；不能把未观察空间当背景，也不能推断物理网格变换。"
+      ],
+      "documentation_gaps": []
+    }
+  }
 }

@@ -19,7 +19,7 @@ class PresentationRefinementTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         (self.root / "workbench.toml").write_text("version=1\n")
         repo = Path(__file__).resolve().parents[1]
-        for name in ("index.html", "style.css", "ui.css"):
+        for name in ("index.html", "style.css", "ui.css", "story-language.js"):
             target = self.root / "presentation" / name
             target.parent.mkdir(exist_ok=True)
             shutil.copyfile(repo / "presentation" / name, target)

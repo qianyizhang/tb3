@@ -1,50 +1,49 @@
-# Repair a vessel connection without damaging anatomy
+# 修复血管连接，同时保护周围解剖
 
-Repair a vessel connection without damaging anatomy.
+判断局部血管连接是否需要修复，并返回有依据的掩膜。
 
 ## Value
 
-Tests whether a local connection can be restored while preserving surrounding anatomy.
+检验能否在保留周围解剖的前提下恢复局部连接。
 
 ## Given
 
 ### Original data
 
-Native MRA plus a supplied vessel mask.
+原生 MRA 及已提供的血管掩膜。
 
 ### Supplied helpers
 
-Broad review region; synthetic local deletion and unchanged-control masks differ.
+宽泛的检查区域；合成局部删除病例与未改动对照病例各自独立。
 
 ### Callable tools
 
-Each linked protocol specifies the permitted tools and execution environment.
+各关联协议分别规定允许调用的工具与执行环境。
 
 ### Reference-only material
 
-References and permitted access follow each frozen contract. A reader-facing source or illustration is not automatically solver-visible.
+参考答案及可用范围以各冻结契约为准。供读者查看的来源或示意图不会自动提供给求解器。
 
 ## Task specification
 
-Return a repaired or appropriately unchanged vessel mask. Follow each protocol's coordinate, identifier and access contract.
+返回修复后的血管掩膜；若无需修复，则恰当地保持原样。遵守各协议的坐标、标识符和访问契约。
 
 ## Expected output
 
-Return a repaired or appropriately unchanged vessel mask.
+经过有依据的修复，或恰当地保持不变的血管掩膜。
 
 ## Evaluation
 
-Local topology, geometry and preservation checks; an unchanged control should not be spuriously repaired.
+检查局部拓扑、几何与周围结构保留情况；未改动对照不应被错误地添加修复段。
 
 ## Difficulty
 
-Connecting every nearby component can create false anatomy. A valid absence control requires an unchanged answer.
+连接所有相邻分支可能制造虚假的解剖。真实的无缺口对照要求保持不变。
 
 ## Coverage
 
-The experiment index preserves case, contract, assistance and execution boundaries.
-An experiment record is not an execution count; grouping does not pool scores.
+实验索引保留病例、契约、帮助条件和执行边界。实验记录不等于执行次数；分组不会合并分数。
 
 ## Sources
 
-- [BR-026 — vessel repair feasibility experiment](../../experiments/br026/protocol.md)
+- [BR-026：血管修复可行性实验](../../experiments/br026/protocol.md)

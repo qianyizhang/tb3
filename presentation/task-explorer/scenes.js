@@ -10,6 +10,36 @@ const esc = (value) =>
     (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char],
   );
 
+const chinese = {
+  Input: '输入',
+  Given: '已提供',
+  Output: '输出',
+  'Expected output': '预期输出',
+  'Study output': '研究输出',
+  'Output shape': '输出形式',
+  Illustrative: '示意',
+  'Task at a glance': '任务概览',
+  'How to read this task': '如何阅读此任务',
+  'Drag to explore in 3D': '拖动查看三维示意',
+  'Illustration stage': '示意阶段',
+  Pause: '暂停',
+  Replay: '重播',
+  Play: '播放',
+  Reset: '复位',
+  'Pause animation': '暂停动画',
+  'Replay illustration': '重播示意',
+  'Play animation': '播放动画',
+  'Reset illustration view': '复位示意视角',
+  'Conceptual 3D illustration. Drag or use arrow keys to rotate.':
+    '概念性三维示意。拖动或使用方向键旋转。',
+  'Conceptual · not to scale': '概念示意 · 不按比例',
+  'About the anatomy models': '关于解剖模型',
+  'Derivation and licenses': '生成方式与许可',
+  'Possible class labels': '可能的类别标签',
+  'English source illustration text': '示意说明保留英文原文',
+};
+const translate = (locale, value) => (locale === 'zh-CN' ? chinese[value] || value : value);
+
 // Canvas rendering and playback. Task-specific geometry lives in scene-models.js.
 export const TaskScenes = (() => {
   const TAU = Math.PI * 2;
@@ -20,32 +50,32 @@ export const TaskScenes = (() => {
   const INITIAL_YAW = -0.24,
     INITIAL_PITCH = 0.14;
   const clampPitch = (value) => Math.max(-1.1, Math.min(1.1, value));
-  function fallback(e) {
+  function fallback(e, locale = 'en') {
     const d = e.illustration;
-    return `<div class="picture-pair"><section><h4>Input</h4>${TaskTeachingArt.render(e)}<p>${esc(d.input)}</p></section><div class="picture-arrow" aria-hidden="true">→</div><section><h4>${e.role && e.role !== 'task' ? 'Study output' : 'Expected output'}</h4>${TaskTeachingArt.render(e, true)}<p>${esc(d.output)}</p></section></div>`;
+    return `<div class="picture-pair"><section><h4>${translate(locale, 'Input')}</h4>${TaskTeachingArt.render(e)}<p lang="en">${esc(d.input)}</p></section><div class="picture-arrow" aria-hidden="true">→</div><section><h4>${translate(locale, e.role && e.role !== 'task' ? 'Study output' : 'Expected output')}</h4>${TaskTeachingArt.render(e, true)}<p lang="en">${esc(d.output)}</p></section></div>`;
   }
-  function figure(e) {
+  function figure(e, locale = 'en') {
     const d = e.illustration;
     if (!d || !TaskSceneModels.supports(d.kind)) return '';
     const story = TaskTeachingStory.describe(e);
     const outputLabel = e.role && e.role !== 'task' ? 'Study output' : 'Output shape';
-    const storyboard = `<div class="scene-storyboard" aria-label="Task at a glance"><section class="scene-story-card" data-story-step="0"><h4><span>01</span> Given</h4><div class="scene-story-art">${TaskTeachingArt.render(e)}</div><p>${esc(d.input)}</p></section><div class="scene-story-action" data-story-step="1"><span class="scene-story-action-index">02</span><span class="scene-story-arrow" aria-hidden="true">→</span><strong>${esc(story.action)}</strong><small>${esc(story.form)}</small></div><section class="scene-story-card" data-story-step="2"><h4><span>03</span> ${outputLabel}<small>Illustrative</small></h4><div class="scene-story-art">${TaskTeachingArt.render(e, true)}</div><p>${esc(d.output)}</p></section></div>`;
+    const storyboard = `<div class="scene-storyboard" aria-label="${translate(locale, 'Task at a glance')}"><section class="scene-story-card" data-story-step="0"><h4><span>01</span> ${translate(locale, 'Given')}</h4><div class="scene-story-art">${TaskTeachingArt.render(e)}</div><p lang="en">${esc(d.input)}</p></section><div class="scene-story-action" data-story-step="1"><span class="scene-story-action-index">02</span><span class="scene-story-arrow" aria-hidden="true">→</span><strong lang="en">${esc(story.action)}</strong><small lang="en">${esc(story.form)}</small></div><section class="scene-story-card" data-story-step="2"><h4><span>03</span> ${translate(locale, outputLabel)}<small>${translate(locale, 'Illustrative')}</small></h4><div class="scene-story-art">${TaskTeachingArt.render(e, true)}</div><p lang="en">${esc(d.output)}</p></section></div>`;
     const legend = TaskSceneModels.legend(e)
       .map(
         ([color, label, dashed]) =>
-          `<span><i style="--key:${color};border-top-style:${dashed ? 'dashed' : 'solid'}"></i>${esc(label)}</span>`,
+          `<span lang="en"><i style="--key:${color};border-top-style:${dashed ? 'dashed' : 'solid'}"></i>${esc(label)}</span>`,
       )
       .join('');
     const anatomyNotice = TaskSceneModels.usesAnatomy(e)
-      ? `<details class="scene-asset-notice"><summary>About the anatomy models</summary><p>Reusable anatomy explains shape and spatial relationships. The same models are reused across tasks, rather than presented as a reconstruction or scored output for the selected case. Markers, lesions and motion remain illustrative.</p><p>Organ surfaces: Wasserthal and the TotalSegmentator contributors, University Hospital Basel. <a href="https://zenodo.org/records/10047263" target="_blank" rel="noopener">TotalSegmentator v2.0.1</a> · smoothed and simplified from public masks. Brain and dental shapes are authored schematics.</p><details><summary>Derivation and licenses</summary><pre>${esc(AnatomyAssets.notice)}</pre></details></details>`
+      ? `<details class="scene-asset-notice"><summary>${translate(locale, 'About the anatomy models')}</summary><p lang="en">Reusable anatomy explains shape and spatial relationships. The same models are reused across tasks, rather than presented as a reconstruction or scored output for the selected case. Markers, lesions and motion remain illustrative.</p><p lang="en">Organ surfaces: Wasserthal and the TotalSegmentator contributors, University Hospital Basel. <a href="https://zenodo.org/records/10047263" target="_blank" rel="noopener">TotalSegmentator v2.0.1</a> · smoothed and simplified from public masks. Brain and dental shapes are authored schematics.</p><details><summary>${translate(locale, 'Derivation and licenses')}</summary><pre lang="en">${esc(AnatomyAssets.notice)}</pre></details></details>`
       : '';
     const labelSpace = d.labels?.length
-      ? `<details class="scene-label-space"><summary>Possible class labels (${d.labels.length})</summary><div>${d.labels.map((name) => `<span>${esc(name)}</span>`).join('')}</div></details>`
+      ? `<details class="scene-label-space"><summary>${translate(locale, 'Possible class labels')} (${d.labels.length})</summary><div lang="en">${d.labels.map((name) => `<span>${esc(name)}</span>`).join('')}</div></details>`
       : '';
-    return `<div class="scene-player" data-scene="${esc(d.kind)}">${storyboard}<div class="scene-walkthrough-heading"><div><span class="scene-walkthrough-kicker">How to read this task</span><strong>${esc(story.action)}</strong></div><p>${esc(story.cue)}</p></div><div class="scene-stage"><canvas class="scene-canvas" tabindex="0" role="img" aria-label="${esc(d.input + ' → ' + d.output + '. Conceptual 3D illustration. Drag or use arrow keys to rotate.')}" aria-describedby="scene-description">${esc(d.caption)}</canvas><div class="scene-corner"><span class="scene-dot"></span> <span>${esc(story.context)}</span></div><span class="scene-gesture" aria-hidden="true">Drag to explore in 3D</span><span class="scene-stage-label" data-scene-stage-label>${esc(story.stages[0])}</span></div><div class="scene-controls"><div class="scene-steps" role="group" aria-label="Illustration stage"><button data-scene-step="0" aria-pressed="true"><small>01</small> Input</button><button data-scene-step="1" aria-pressed="false"><small>02</small> ${esc(story.action)}</button><button data-scene-step="2" aria-pressed="false"><small>03</small> ${e.role && e.role !== 'task' ? 'Study output' : 'Output'}</button></div><button class="scene-play" aria-label="Pause animation">Pause</button><button class="scene-reset" aria-label="Reset illustration view">Reset</button></div><div class="scene-explanation" id="scene-description"><strong data-scene-title>${esc(d.input)}</strong><p>${esc(d.caption)}</p></div><div class="scene-legend">${legend}<span>Conceptual · not to scale</span></div>${labelSpace}${anatomyNotice}<div class="scene-fallback" hidden></div></div>`;
+    return `<div class="scene-player" data-scene="${esc(d.kind)}">${locale === 'zh-CN' ? `<p class="translation-notice">${translate(locale, 'English source illustration text')}</p>` : ''}${storyboard}<div class="scene-walkthrough-heading"><div><span class="scene-walkthrough-kicker">${translate(locale, 'How to read this task')}</span><strong lang="en">${esc(story.action)}</strong></div><p lang="en">${esc(story.cue)}</p></div><div class="scene-stage"><canvas class="scene-canvas" tabindex="0" role="img" aria-label="${esc(d.input + ' → ' + d.output + '. ' + translate(locale, 'Conceptual 3D illustration. Drag or use arrow keys to rotate.'))}" aria-describedby="scene-description">${esc(d.caption)}</canvas><div class="scene-corner"><span class="scene-dot"></span> <span lang="en">${esc(story.context)}</span></div><span class="scene-gesture" aria-hidden="true">${translate(locale, 'Drag to explore in 3D')}</span><span class="scene-stage-label" data-scene-stage-label lang="en">${esc(story.stages[0])}</span></div><div class="scene-controls"><div class="scene-steps" role="group" aria-label="${translate(locale, 'Illustration stage')}"><button data-scene-step="0" aria-pressed="true"><small>01</small> ${translate(locale, 'Input')}</button><button data-scene-step="1" aria-pressed="false"><small>02</small> <span lang="en">${esc(story.action)}</span></button><button data-scene-step="2" aria-pressed="false"><small>03</small> ${translate(locale, e.role && e.role !== 'task' ? 'Study output' : 'Output')}</button></div><button class="scene-play" aria-label="${translate(locale, 'Pause animation')}">${translate(locale, 'Pause')}</button><button class="scene-reset" aria-label="${translate(locale, 'Reset illustration view')}">${translate(locale, 'Reset')}</button></div><div class="scene-explanation" id="scene-description" lang="en"><strong data-scene-title>${esc(d.input)}</strong><p>${esc(d.caption)}</p></div><div class="scene-legend">${legend}<span>${translate(locale, 'Conceptual · not to scale')}</span></div>${labelSpace}${anatomyNotice}<div class="scene-fallback" hidden></div></div>`;
   }
 
-  function mount(root, e) {
+  function mount(root, e, locale = 'en') {
     const player = root.querySelector('.scene-player');
     if (!player) return () => {};
     const story = TaskTeachingStory.describe(e);
@@ -56,7 +86,7 @@ export const TaskScenes = (() => {
       player.querySelector('.scene-stage').hidden = true;
       player.querySelector('.scene-controls').hidden = true;
       const view = player.querySelector('.scene-fallback');
-      view.innerHTML = fallback(e);
+      view.innerHTML = fallback(e, locale);
       view.hidden = false;
       return () => {};
     }
@@ -150,10 +180,13 @@ export const TaskScenes = (() => {
       ][n];
     };
     const syncPlay = () => {
-      play.textContent = playing ? 'Pause' : stage === 2 ? 'Replay' : 'Play';
+      play.textContent = translate(locale, playing ? 'Pause' : stage === 2 ? 'Replay' : 'Play');
       play.setAttribute(
         'aria-label',
-        playing ? 'Pause animation' : stage === 2 ? 'Replay illustration' : 'Play animation',
+        translate(
+          locale,
+          playing ? 'Pause animation' : stage === 2 ? 'Replay illustration' : 'Play animation',
+        ),
       );
       player.dataset.playing = String(playing);
     };

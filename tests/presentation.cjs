@@ -5,6 +5,7 @@ const { checkWorkbench } = require('./workbench_ui.cjs');
 const { checkExplorer } = require('./task_explorer_ui.cjs');
 const { checkCohesion } = require('./frontend_cohesion.cjs');
 const { checkPortability } = require('./frontend_portability.cjs');
+const { checkLanguage } = require('./presentation_language.cjs');
 
 const root = path.resolve(process.argv[2] || '.local/presentation-check');
 const reports = path.resolve(process.argv[3] || root + '-qa');
@@ -20,6 +21,7 @@ withBrowser(async (browser) => {
   );
   await checkCohesion(browser, root, reports);
   await checkPortability(browser, root, reports);
+  await checkLanguage(browser, root);
 }).catch((error) => {
   console.error(error);
   process.exitCode = 1;
