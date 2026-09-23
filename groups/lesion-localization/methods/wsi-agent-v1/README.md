@@ -7,3 +7,5 @@
 The local runtime is built from the previously validated Python runtime with pinned `imagecodecs==2026.8.16`. Solver and evaluator images must be built and pinned in task metadata before freezing. Protocols in the four experiment folders specify fixed model, effort, resource ceilings and stop conditions. Raw images, generated tasks and runtime logs remain under `.local/`.
 
 As of 2026-09-23, the five task previews and Harbor oracle/no-op controls passed. The first two HuBMAP `gpt-6-sol` model invocations failed at auth/model routing before inference; see its protocol and `.local/wsi-agent-v1/operator-state.json`. Do not repeat the same launch without a verified model route.
+
+The user then switched the pending diagnostic conditions to `gpt-6-astra` medium. The four Astra experiment records reuse the exact five task inputs and private scorers; the Sol attempts stay separate. A bundled host CLI smoke test passed, while isolated Harbor routing is being verified before a WSI model attempt.
