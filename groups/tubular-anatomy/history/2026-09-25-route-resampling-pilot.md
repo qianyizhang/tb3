@@ -4,27 +4,111 @@ The integrated pilot is implemented and polished in commit
 `750498629bb07c970a563cd7d2cc67006f1170ba` on `main`. On 2026-09-25 the user
 reviewed the result as “this is much much better” and requested cleanup, commit
 and this handoff. Preserve that visual direction. Remaining catalogue migration
-has not been authorized; select the next bounded scope with the user.
+has not been executed. The concrete continuation assignment below replaces the
+earlier vague request to choose a reuse case.
 
-## Start here
+## Full picture before choosing the next batch
 
-1. Inspect current Git status and ownership. Preserve later commits and local work.
-   Read repository/group instructions, contribution rules and governance.
-2. Read [the maintained explainer contract](../../../presentation/EXPLAINERS.md)
-   and [canonical script](../presentation/stories/route-unfold-teaching-v1.story.md).
-3. Open the latest local HTML/MP4 and acceptance report listed below. They are
-   actual integrated renders, not the downloaded kit's reference render.
-4. Establish the next task with the user. A distinct route/graph explanation is
-   the recommended small reuse test; this is an assistant recommendation, not
-   a user decision to migrate it or the catalogue.
+The [complete candidate map](../../../presentation/EXPLAINER-CANDIDATES.md) lists
+**all 205 entries across 145 task families**, grouped by operation: 46 internal
+TB3 entries and 159 external entries. One has migrated to the scripted pipeline;
+204 remain planning candidates. It includes existing recipe/state, source brief,
+task-versus-study role, counts and proposed rollout. The coronary pair below is
+the recommended first reuse test, not the whole project.
 
-Suggested next-session prompt:
+## Proposed first batch: two distinct coronary tasks
+
+**Recommended deliverable:** integrated scripted explanations for
+`tb3-named-coronary` and `tb3-coronary-inventory`, each with its own HTML, MP4,
+poster, captions, transcript and acceptance evidence. The user approved the pilot's
+appearance, then asked for meaningful continuation work. This is the concrete
+recommended next scope; this handoff update does not itself migrate either entry.
+
+The product difference must be visible:
+
+| Existing task | Given | Explanation must show | Final teaching output |
+| --- | --- | --- | --- |
+| [Named artery](../presentation/briefs/tb3-named-coronary.md) | CTA and target name; no supplied centerline/mask | Follow one requested course; distinguish target identity from path geometry | One requested centerline in patient coordinates |
+| [Branch inventory](../presentation/briefs/tb3-coronary-inventory.md) | CTA and generic taxonomy; no case-specific branch list or geometry | Discover branches, separate them, assign identities and expose unresolved branches | Inventory linked to labeled centerline polylines |
+
+This is substantive reuse work. At present, the compiler and DTO accept only
+`route-unfold-v1`/`tb3-route-kit-v1`; the player mounts `createRoutePrefab` for every
+plan. The heading, scope, legend, output panel and fallback are resampling-specific.
+The exporter writes `route-unfold.mp4`; the browser test assumes frame 791.
+Changing only story captions would produce the wrong explanation for these tasks.
+
+### Implementation sequence
+
+1. **Ground both stories in the existing contracts.** Read the linked briefs and
+   retained BR041/BR042 protocols, including the selected revision's coordinate
+   convention. Write two canonical group stories: named-target tracing versus
+   inventory discovery. Include input, operation, output and difficulty beats.
+   Keep teaching illustrations distinct from model inference or scored results;
+   preserve native input/helpers and the existing reference reveal.
+2. **Add the smallest second typed recipe.** Extend `explanation_stories.py` and
+   `presentation_contracts.py` with a discriminated route-discovery plan and
+   validated recipe-specific channels. Regenerate TS contracts. Keep existing
+   route-unfold scripts compatible and avoid arbitrary untyped channel bags.
+   Add a small recipe dispatch shared by player, output view and fallback; keep
+   the existing stage, absolute-frame clock and export composition.
+3. **Build branch selection and inventory visuals.** Reuse stage and asset-loading
+   infrastructure. Inspect existing anatomy/graph assets before creating a new
+   fixture. If the route fixture cannot represent the required branch operations,
+   add one small provenance-labeled teaching graph with stable branch IDs and
+   explicit coordinates, rather than pretending it is patient anatomy. Do not
+   label the generic phantom RCA as though that identity were validated. A selected
+   branch must drive its line, output row and label from the same data. Named-target
+   and inventory stories need different reveal logic and different final outputs.
+4. **Remove concrete pilot assumptions.** Make heading, scope, legend and output
+   description story/recipe-owned; render a centerline or inventory panel instead
+   of the CPR raster. Provide a matching static fallback. Generalize the export
+   filename and browser acceptance inputs to the selected story's duration and
+   recipe, retaining compatibility for the delivered route pilot. Test multi-story
+   asset binding so a story cannot silently render another story's prefab.
+5. **Bind exactly the two entries and deliver.** Add explicit `story_id` bindings
+   for these two catalogue IDs. Generate a fresh full Explorer and separate
+   standalone exports. Capture meaningful stills first, inspect readability, then
+   render both MP4s. Produce a concise comparison showing the task distinction,
+   source receipts and acceptance results. Commit owned changes after checks and
+   stop for review of this pair.
+
+### Acceptance that makes the work meaningful
+
+- A viewer can tell **a known target with an unknown course** from **an unknown
+  branch inventory with unknown courses** without reading implementation details.
+- Every displayed branch/row/highlight agrees with the fixture's branch ID and
+  coordinates. Missing or uncertain identity is not silently marked correct.
+- Each canonical script drives HTML, subtitles, transcript, stills and MP4. Changing
+  a caption and duration changes every projection and its beat boundaries.
+- Random/reverse seeks, final frame, pause/replay, switching between all three
+  scripted stories, mobile, localization, reduced motion and GPU fallback pass.
+  Recipe-specific tests derive bounds from the plan; no copied 792-frame assumption.
+- The original `ours` pilot and unbound legacy entries keep their behavior. Full
+  presentation checks and `make check PYTHON=python3.12` pass; exporter receipts
+  identify exact assets/source revision and outputs. No new model run is required.
+
+### Later catalogue work
+
+After reviewing this pair, group the remaining catalogue by the actual operation
+and output it needs, not merely by illustration kind. Record entry IDs, reusable
+recipe/assets, missing assets and source limitations, then migrate one coherent
+family per reviewable batch. Repair/control, registration and motion need their
+own operation semantics; do not force them through the route-discovery recipe.
+The next session's deliverable is the two working explainers above, not a second
+status memo or a catalogue-wide rewrite.
+
+### Ready-to-use next-session prompt
+
+The user can use this prompt to authorize the recommended implementation:
 
 > Read groups/tubular-anatomy/history/2026-09-25-route-resampling-pilot.md and
-> presentation/EXPLAINERS.md. Inspect the current checkout without resetting it.
-> Review the committed pilot and latest local artifacts. Recommend one bounded
-> next route/graph reuse case, explain the required changes and acceptance, and
-> agree that scope with me before implementing further catalogue migration.
+> presentation/EXPLAINERS.md. Implement the next assignment in that handoff:
+> distinct named-coronary and coronary-inventory explainers using the existing
+> stage, player and media exporter. Remove the specific single-pilot assumptions
+> needed by those two stories; preserve the approved route-resampling pilot and
+> other work. Deliver the integrated Explorer, two HTML/MP4 exports and acceptance
+> evidence, then commit and stop for review before migrating further families.
+> Inspect current status and preserve later commits; do not reset to the handoff.
 
 ## Reconciliation and scope
 

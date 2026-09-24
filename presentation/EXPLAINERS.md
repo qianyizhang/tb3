@@ -6,6 +6,10 @@ It explains one synthetic route-conditioned sampling ribbon. It does not replace
 BR030's source input, supplied helpers, repair, eight planes, mesh or scorer.
 Other entries keep their typed legacy recipes and three-stage player.
 
+See the [full candidate map](EXPLAINER-CANDIDATES.md) for all 205 catalogue entries,
+operation coverage and proposed migration batches. It is planning scope, not a
+request to migrate every entry.
+
 ## Owners
 
 - Group `*.story.md`: sole maintained explanation copy, beat IDs, frame-aligned
