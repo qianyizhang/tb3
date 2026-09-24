@@ -80,15 +80,21 @@ imported identifiers, authored briefs and available media are distinct coverage 
   plain-language action recipes, shared by storyboards and the static fallback.
   See [asset reuse](../assets/README.md). `scene-anatomy.js` owns reusable
   anatomy assemblies; `scene-models.js` owns task geometry and legends;
-  `scene-surfaces.js` owns Three.js surface lighting; `scenes.js` owns annotations,
-  software rendering and playback. All are embedded with the navigation renderer in
+  `scene-stage.js` owns the direct Three.js WebGL stage and projected DOM annotations;
+  `scenes.js` owns 2D/3D selection, accessible controls, playback and the SVG fallback. All are embedded with the navigation renderer in
   the standalone HTML.
 - Every named entry, including supporting research and each grouped variant,
   needs an Overview visual. The composed catalogue enforces this with
-  `require_overview_visuals: true`. Every authored `illustration` opens as a conceptual 3D scene. Curated input
+  `require_overview_visuals: true`. Spatial illustrations open as conceptual 3D scenes, paused on the input stage; 2D-first illustrations show input and output together. Curated input
   images remain above the teaching scene in the normal reading path with their
   complete captions, and in Example. The animation remains available when optional
   media are absent. Keep the missing-media notice visible beside that fallback.
+  The 2D-first routing is explicit in `TaskScenes.mode`; a new kind must be
+  reviewed against its output form before adding it there. A named segmentation
+  target without a matched reusable 3D surface stays 2D-first rather than
+  borrowing an unrelated organ or generic lesion shape. The Chinese view
+  translates scene controls and marks untranslated authored recipe text as
+  English source copy.
   For supporting research, label the right panel “Study output” and show the
   actual comparison or curation question rather than an implied agent success.
 

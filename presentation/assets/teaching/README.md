@@ -7,7 +7,7 @@ what comes out** before asking someone to interpret a moving 3D scene.
 | --- | --- |
 | [task-art.js](task-art.js) | `TaskTeachingArt.render(entry, output)` returns a self-contained accessible SVG; `scan(subject)` supplies reusable image-plane texture for the 3D renderer. Shared scan, anatomy, signal, document, table and field primitives support every authored illustration kind. |
 | [task-story.js](task-story.js) | `TaskTeachingStory.describe(entry)` returns a concrete action, a reading cue, the output form and stage names. `kinds` lists supported recipes. |
-| [scenes.js](../../task-explorer/scenes.js) | The named `TaskScenes` module combines the teaching assets with the 3D renderer and playback. |
+| [scenes.js](../../task-explorer/scenes.js) | The named `TaskScenes` module chooses a spatial 3D scene or a 2D-first explanation and owns stage controls and playback. |
 | [scene-explanation.css](../../task-explorer/scene-explanation.css) | Responsive storyboard and scene explanation layout. |
 
 ```js
@@ -47,8 +47,9 @@ caller-supplied text and can render outside the Task Explorer.
    context. Maintain spatial correspondence between the input sketch and its
    output marks. Prefer named targets to a generic blob. Existing source-derived
    3D anatomy is reusable through `AnatomyAssets`, with its original provenance.
-3. A new deliverable needs an explicit SVG recipe, a story recipe and a 3D recipe
-   in [scene-models.js](../../task-explorer/scene-models.js). Use plain action
+3. A new deliverable needs an explicit SVG recipe and story recipe. Spatial
+   tasks also need a 3D recipe in [scene-models.js](../../task-explorer/scene-models.js);
+   2D-first tasks should be routed through `TaskScenes.mode`. Use plain action
    verbs and a cue that tells readers what to look for.
 4. Show both input and illustrative output at rest. Animate only the actual
    operation: region labeling, correspondence, phase change or reconstruction.

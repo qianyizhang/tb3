@@ -677,6 +677,27 @@ export const TaskSceneModels = (() => {
                     ? teal
                     : palette[classes.get(item.asset) % palette.length];
             });
+          const selected = AnatomyAssets.get(subject)?.find((part) => part.id === d.target);
+          if (selected) {
+            const bounds = [0, 1, 2].map((axis) => [
+              Math.min(...selected.vertices.map((vertex) => vertex[axis])),
+              Math.max(...selected.vertices.map((vertex) => vertex[axis])),
+            ]);
+            const anchor = [
+              (bounds[0][0] + bounds[0][1]) / 2,
+              (bounds[1][0] + bounds[1][1]) / 2,
+              bounds[2][1] + 0.08,
+            ];
+            ring(
+              anchor,
+              Math.max(bounds[0][1] - bounds[0][0], bounds[1][1] - bounds[1][0]) * 0.56,
+              teal,
+              'z',
+              0.8,
+              true,
+            );
+            label([0.9, 0.88, 0.3], 'Inspect target boundary', teal, anchor);
+          }
           label([0, -1.35, 0], 'Assign labels along the boundaries', teal);
         }
         break;
@@ -718,7 +739,11 @@ export const TaskSceneModels = (() => {
               ]
             : [0.52, 0.15, 0.48];
           if (!asset(subject, null, focus)) anatomy(false);
-          if (work || out) label([0.9, 0.95, 0.3], 'Inspect one supplied label', teal);
+          if (work) {
+            ring(witness, 0.28, teal, 'z', 0.85, true);
+            dot(witness, 0.05, teal);
+            label([0.9, 0.95, 0.3], 'Selected supplied label', teal, witness);
+          }
           if (out) {
             target(witness);
             label([0.6, 0.7, 0.5], 'Spatial witness', gold, witness);
@@ -772,7 +797,6 @@ export const TaskSceneModels = (() => {
           }
           line([-1.13, 0.4, 0.38], [0.51, 0.43, 0.38], gold, 0.9, 1.5, true);
           line([-0.61, -0.27, 0.36], [1.03, -0.24, 0.36], rose, 0.9, 1.5, true);
-          label([0, -1.53, 0], 'Same material points; geometry alone is insufficient', ink);
           break;
         }
         const settle = out ? 1 - smooth(Math.max(0, (progress - 0.6) / 0.4)) : 1;
@@ -910,6 +934,13 @@ export const TaskSceneModels = (() => {
             dot([1.05, 1.05, 0.2], 0.075, teal);
           });
         if (k === 'route_repair' || k === 'route_unfold') {
+          if (work) {
+            const traced = smooth(progress);
+            const cursor = [mix(0, 0.48, traced), mix(-0.15, 0.17, traced), 0.2];
+            line([0, -0.15, 0.2], cursor, gold, 0.9, 2, true);
+            dot(cursor, 0.065, gold);
+            label([0.85, -0.85, 0.2], 'Trace candidate route', gold, cursor);
+          }
           if (out)
             group(
               k === 'route_unfold' ? [-0.76, 0.1, 0] : [0, 0, 0],
@@ -1348,6 +1379,71 @@ export const TaskSceneModels = (() => {
           label([0.85, -1, 0], 'Tool · solid', teal);
         }
         break;
+    }
+    // Paused action stages need an inspectable cue, including families whose
+    // output is a static comparison. These marks indicate the operation only;
+    // they do not depict a reference, prediction or adjudicated result.
+    if (work) {
+      switch (k) {
+        case 'object_identity':
+        case 'mask_shortcuts':
+          ring([0, 0, 0.65], 0.42, gold, 'z', 0.85, true);
+          label(
+            [0.75, 0.75, 0.65],
+            k === 'mask_shortcuts' ? 'Check spatial cue' : 'Inspect one object',
+            gold,
+            [0, 0, 0.65],
+          );
+          break;
+        case 'anatomy_curation':
+          ring([0, 0, 0.5], 0.48, gold, 'z', 0.85, true);
+          label([0.8, 0.65, 0.5], 'Review candidate', gold, [0, 0, 0.5]);
+          break;
+        case 'cardiac_contours':
+          ring([0, 0, 0.35], 0.7, teal, 'z', 0.9, true);
+          label([0.8, 0.8, 0.35], 'Fit between contours', teal, [0, 0, 0.35]);
+          break;
+        case 'dynamic_mesh':
+          if (d.input_form === 'masks') {
+            line([-0.9, 0, 0.5], [0, 0, 0.5], teal, 0.9, 2, true);
+            label([0.8, 0.8, 0.5], 'Connect phase shapes', teal, [0, 0, 0.5]);
+          }
+          break;
+        case 'vesselgraph':
+          dot([0, -0.3, 0.28], 0.06, gold);
+          dot([0.48, 0.17, 0.28], 0.06, gold);
+          line([0, -0.3, 0.28], [0.48, 0.17, 0.28], gold, 0.9, 2, true);
+          label([0.9, -0.7, 0.3], 'Check connectivity', gold, [0.48, 0.17, 0.28]);
+          break;
+        case 'vessel_source_screen':
+          line([0.2, 0.03, 0.3], [0.7, 0.4, 0.3], gold, 0.9, 2, true);
+          label([0.9, -0.65, 0.3], 'Inspect source route', gold, [0.5, 0.25, 0.3]);
+          break;
+        case 'prediction_screen':
+          ring([0.28, 0.08, 0.45], 0.28, gold, 'z', 0.8, true);
+          label([0.9, -0.7, 0.45], 'Compare structures', gold, [0.28, 0.08, 0.45]);
+          break;
+        case 'nlos':
+          ring([0.2, 0.35, 0.7], 0.22, gold, 'z', 0.85, true);
+          label([0.8, -0.8, 0.7], 'Trace wall return', gold, [0.2, 0.35, 0.7]);
+          break;
+        case 'deflectometry':
+          line([-0.55, 0.1, 0.45], [0.55, 0.1, 0.45], gold, 0.9, 2, true);
+          label([0.8, -0.9, 0.45], 'Compare views', gold, [0, 0.1, 0.45]);
+          break;
+        case 'wavefront':
+          ring([0, 0, 0.22], 0.48, gold, 'z', 0.85, true);
+          label([0.85, -0.8, 0.22], 'Fit wavefront', gold, [0, 0, 0.22]);
+          break;
+        case 'molecules':
+          box([0, 0, 0.3], [0.9, 0.9, 0.6], gold, true);
+          label([0.85, -0.85, 0.3], 'Localize emitters', gold, [0, 0, 0.3]);
+          break;
+        case 't2':
+          dot([0.35, 0.2, 0.3], 0.06, gold);
+          label([0.8, 0.7, 0.3], 'Fit decay', gold, [0.35, 0.2, 0.3]);
+          break;
+      }
     }
     return { primitives, labels };
   }

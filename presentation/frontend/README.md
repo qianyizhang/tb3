@@ -67,8 +67,13 @@ payloads rather than rendering a misleading partial view.
   displayed shared vocabulary. They do not derive scientific verdicts.
 - Shared visual foundations stay in `../ui.css`. New component-specific styles
   use CSS Modules. Scene rendering is imported through the `TaskScenes` ES module:
-  Three.js draws lit surfaces, Canvas draws annotations and supplies the fallback,
-  with effect cleanup when its task/view is replaced. Vite bundles teaching art,
+  Three.js draws directly into the visible WebGL stage for spatial tasks; HTML
+  labels and leader lines remain readable outside the model silhouette. Image,
+  report and records tasks use 2D teaching art. SVG also supplies the fallback
+  when WebGL is unavailable or lost, with effect cleanup on task/view replacement.
+  SVG scan textures are rasterized locally before WebGL upload. Animated stages
+  update compatible geometry buffers in place and render only while visible.
+  Vite bundles teaching art,
   anatomy and notices into the Explorer through direct module imports.
 - [Reusable teaching assets](../assets/README.md) own task illustrations and
   plain-language action recipes. Source-derived anatomy keeps its original
@@ -86,3 +91,7 @@ other filters, and is retained in the URL. Unspecified modalities remain explici
 the disposable-browser harness for standalone and served navigation, all task
 conditions, source/reference reveals, scenes, keyboard behavior and mobile views.
 Follow the root macOS execution instructions for browser launches.
+
+`node scripts/task_visual_review.cjs PATH/TO/index.html OUTPUT_DIR` writes a local
+entry-to-renderer inventory and input/action/output screenshot sheet for every
+authored illustration. It does not publish the images or access remote assets.

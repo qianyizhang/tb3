@@ -1,6 +1,6 @@
 import styles from './task-detail.module.css';
 import { Fragment, useState } from 'react';
-import { Box, Field, Markup, SourceLink, TaskScene } from './content';
+import { Box, Field, Markup, SourceLink, TaskScene, taskSceneMode } from './content';
 import { copyText, useLocale, wsiBoundary } from './locale';
 import { edition, hasExample, type ExplorerModel } from './model';
 import type { Dispatch, ExplorerState } from './state';
@@ -64,7 +64,13 @@ function TaskPicture({ model, state, dispatch }: DetailProps) {
       {entry.illustration ? (
         <figure className="task-picture conceptual" data-illustration={entry.illustration.kind}>
           <figcaption>
-            <span className="drawing-label">{t('Animated task illustration')}</span>
+            <span className="drawing-label">
+              {t(
+                taskSceneMode(entry) === '3d'
+                  ? 'Interactive task illustration'
+                  : 'Task illustration',
+              )}
+            </span>
             <span>{t('Illustrative model · not case-specific')}</span>
           </figcaption>
           <TaskScene entry={entry} />

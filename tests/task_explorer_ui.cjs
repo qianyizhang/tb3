@@ -52,7 +52,9 @@ async function checkExplorer(browser, input, report) {
       images = 0,
       drawings = 0,
       sourcePreviews = 0,
-      fallbackDrawings = 0;
+      fallbackDrawings = 0,
+      staticDrawings = 0,
+      spatialDrawings = 0;
     const diagramTypes = new Set();
     for (const repo of data.inventory.repositories)
       for (const item of repo.items) {
@@ -107,50 +109,56 @@ async function checkExplorer(browser, input, report) {
         conditions++;
       }
       if (e.illustration) {
-        await page
-          .locator('.scene-player[data-rendered="true"]')
-          .waitFor({
-            timeout: 30000,
-          })
-          .catch((error) => {
-            throw Error(`${e.id}: ${error.message}; page errors: ${errors.join(' | ')}`);
-          });
-        assert.equal(await page.locator('.scene-canvas').count(), 1, `${e.id}: 3D scene`);
-        assert.equal(
-          await page.locator('.scene-fallback svg').count(),
-          0,
-          'SVG geometry stays lazy while Canvas works',
-        );
-        assert.equal(
-          await page.locator('.scene-player').getAttribute('data-scene'),
-          e.illustration.kind,
-        );
-        assert.equal(await page.locator('.scene-player').getAttribute('data-playing'), 'false');
+        await page.locator('.task-picture.conceptual').waitFor();
+        if (await page.locator('.scene-static').count()) {
+          assert.equal(
+            await page.locator('.scene-static').getAttribute('data-scene'),
+            e.illustration.kind,
+          );
+          assert.equal(await page.locator('.scene-static .picture-pair svg').count(), 2);
+          assert.equal(await page.locator('.scene-canvas').count(), 0);
+          staticDrawings++;
+        } else {
+          await page
+            .locator('.scene-player[data-rendered="true"]')
+            .waitFor({ timeout: 30000 })
+            .catch((error) => {
+              throw Error(`${e.id}: ${error.message}; page errors: ${errors.join(' | ')}`);
+            });
+          assert.equal(await page.locator('.scene-canvas').count(), 1, `${e.id}: 3D scene`);
+          assert.equal(await page.locator('.scene-fallback svg').count(), 0);
+          assert.equal(
+            await page.locator('.scene-player').getAttribute('data-scene'),
+            e.illustration.kind,
+          );
+          assert.equal(await page.locator('.scene-player').getAttribute('data-playing'), 'false');
+          for (const stage of [0, 1, 2]) {
+            await page.locator(`[data-scene-step="${stage}"]`).click();
+            assert.equal(
+              await page.locator('.scene-player').getAttribute('data-stage'),
+              String(stage),
+            );
+            assert.equal(
+              await page.locator(`[data-scene-step="${stage}"]`).getAttribute('aria-pressed'),
+              'true',
+            );
+          }
+          assert.equal(await page.locator('[data-scene-title]').innerText(), e.illustration.output);
+          if (e.illustration.labels?.length) {
+            const names = await page.locator('.scene-label-space span').allTextContents();
+            assert.deepEqual(
+              names,
+              e.illustration.labels,
+              'The full label space remains readable outside the canvas',
+            );
+          }
+          spatialDrawings++;
+        }
         assert.ok(
           (await page.locator('.task-picture.conceptual figcaption').innerText()).includes(
             'not case-specific',
           ),
         );
-        for (const stage of [0, 1, 2]) {
-          await page.locator(`[data-scene-step="${stage}"]`).click();
-          assert.equal(
-            await page.locator('.scene-player').getAttribute('data-stage'),
-            String(stage),
-          );
-          assert.equal(
-            await page.locator(`[data-scene-step="${stage}"]`).getAttribute('aria-pressed'),
-            'true',
-          );
-        }
-        assert.equal(await page.locator('[data-scene-title]').innerText(), e.illustration.output);
-        if (e.illustration.labels?.length) {
-          const names = await page.locator('.scene-label-space span').allTextContents();
-          assert.deepEqual(
-            names,
-            e.illustration.labels,
-            'The full label space remains readable outside the canvas',
-          );
-        }
         drawings++;
         diagramTypes.add(e.illustration.kind);
       }
@@ -225,7 +233,7 @@ async function checkExplorer(browser, input, report) {
     for (const e of data.entries.filter((e) => /<img\b/.test(e.visuals.input))) {
       await go(`${e.id}/0/overview`, e.id);
       if (e.illustration) {
-        assert.equal(await page.locator('.scene-canvas').count(), 1);
+        assert.equal(await page.locator('.scene-canvas, .scene-static').count(), 1);
         fallbackDrawings++;
       }
       assert.ok((await page.locator('.preview-unavailable').innerText()).includes('unavailable'));
@@ -246,6 +254,9 @@ async function checkExplorer(browser, input, report) {
         .digest('hex');
     await page.locator('.scene-player[data-rendered="true"]').waitFor();
     const still = await pixels();
+    const initialRebuilds = Number(
+      await page.locator('.scene-player').getAttribute('data-geometry-rebuilds'),
+    );
     await page.waitForTimeout(180);
     assert.equal(await pixels(), still, 'Reduced motion starts at a static input');
     await page.locator('.scene-play').click();
@@ -254,6 +265,15 @@ async function checkExplorer(browser, input, report) {
       await pixels(),
       still,
       'Play animates task geometry while the camera stays fixed',
+    );
+    assert.ok(
+      Number(await page.locator('.scene-player').getAttribute('data-geometry-updates')) > 0,
+      'Animation reuses scene geometry buffers',
+    );
+    assert.equal(
+      Number(await page.locator('.scene-player').getAttribute('data-geometry-rebuilds')),
+      initialRebuilds,
+      'Stable animation topology keeps its GPU meshes',
     );
     await page.locator('.scene-play').click();
     const paused = await pixels();
@@ -274,6 +294,8 @@ async function checkExplorer(browser, input, report) {
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     await page.reload();
     await page.locator('.scene-canvas').scrollIntoViewIfNeeded();
+    assert.equal(await page.locator('.scene-player').getAttribute('data-playing'), 'false');
+    await page.locator('.scene-play').click();
     assert.equal(await page.locator('.scene-player').getAttribute('data-playing'), 'true');
     await page.waitForFunction(() => document.querySelector('.scene-player').dataset.stage === '1');
     await page.waitForFunction(
@@ -294,13 +316,13 @@ async function checkExplorer(browser, input, report) {
       () => document.querySelector('.scene-player').dataset.playing === 'false',
     );
     assert.equal(await page.locator('.scene-player').getAttribute('data-playing'), 'false');
-    // Manual stage changes ease between static poses, unless reduced motion is on.
+    // Manual stage changes settle immediately into a readable still.
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     await page.locator('[data-scene-step="2"]').click();
     const changing = await pixels();
     await page.waitForTimeout(450);
     const finalPose = await pixels();
-    assert.notEqual(finalPose, changing, 'Stage changes crossfade into the next pose');
+    assert.equal(finalPose, changing, 'Manual stage changes render a deterministic still');
     await page.waitForTimeout(180);
     assert.equal(
       await pixels(),
@@ -314,7 +336,7 @@ async function checkExplorer(browser, input, report) {
     const reducedPose = await pixels();
     await page.waitForTimeout(180);
     assert.equal(await pixels(), reducedPose, 'Reduced motion skips the crossfade');
-    // GPU failure preserves inspectable surfaces through the Canvas renderer.
+    // GPU failure preserves an inspectable, accessible static explanation.
     for (const failure of ['unavailable', 'lost']) {
       const software = await context.newPage();
       software.on('pageerror', (e) => errors.push(e.message));
@@ -339,17 +361,17 @@ async function checkExplorer(browser, input, report) {
         });
         await software.waitForFunction(() => window.surfaceContext.isContextLost());
       }
-      await software.locator('.scene-canvas').focus();
-      await software.keyboard.press('ArrowRight');
+      await software.locator('.scene-fallback svg').first().waitFor();
       assert.equal(
         await software.locator('.scene-player').getAttribute('data-surface-renderer'),
-        'canvas',
-        `GPU ${failure}: software surfaces remain available`,
+        'svg',
+        `GPU ${failure}: static SVG explanation remains available`,
       );
       await software.close();
     }
     // Off-screen scenes stop changing and navigation releases the old canvas.
     await page.bringToFront();
+    await page.locator('[data-scene-step="1"]').click();
     await page.locator('.scene-play').click();
     await page.setViewportSize({ width: 1010, height: 600 });
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
@@ -388,6 +410,27 @@ async function checkExplorer(browser, input, report) {
     await page.waitForTimeout(250);
     assert.equal(await pixels(), fixedInput, 'The camera stays fixed during stage playback');
     await page.locator('.scene-play').click();
+    // Image-plane scenes must show their supplied fixed and moving images.
+    await go('tb3-registration-analysis/0/overview', 'tb3-registration-analysis');
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.dataset.texturesReady === 'true',
+    );
+    const imagePixels = await page.locator('.scene-canvas').evaluate(async (canvas) => {
+      const image = new Image();
+      image.src = canvas.toDataURL();
+      await image.decode();
+      const copy = document.createElement('canvas');
+      copy.width = canvas.width;
+      copy.height = canvas.height;
+      const context = copy.getContext('2d');
+      context.drawImage(image, 0, 0);
+      const rgba = context.getImageData(0, 0, copy.width, copy.height).data;
+      let dark = 0;
+      for (let i = 0; i < rgba.length; i += 4)
+        if (rgba[i + 3] > 128 && rgba[i] + rgba[i + 1] + rgba[i + 2] < 510) dark++;
+      return dark;
+    });
+    assert.ok(imagePixels > 10000, 'Fixed and moving image planes are visibly rendered');
     // Canvas-unavailable environments retain the authored, accessible SVG explanation.
     const fallback = await context.newPage();
     await fallback.addInitScript(() => {
@@ -766,13 +809,15 @@ async function checkExplorer(browser, input, report) {
       conditions,
       nativeImagesDecoded: images,
       conceptualIllustrations: drawings,
+      staticDrawings,
+      spatialDrawings,
       diagramTypes: diagramTypes.size,
       sourcePreviews,
       portableFallbacks: fallbackDrawings,
       illustratedOverviews: drawings,
-      animated3DScenes: drawings,
+      animated3DScenes: spatialDrawings,
       motionPauseReducedMotionAndCamera: 'pass',
-      singlePassReplayAndCrossfade: 'pass',
+      singlePassReplayAndStillStages: 'pass',
       webglUnavailableAndLostFallback: 'pass',
       canvasUnavailableFallback: 'pass',
       offscreenAndNavigationCleanup: 'pass',

@@ -44,10 +44,16 @@ meaning of a reference overlay stays beside that reveal.
   explain an action, but it does not replace a readable source image or imply a
   case-specific result. The WSI viewer starts with the input alone; GT appears only
   after an explicit reveal.
-- Task Explorer teaching scenes use the Sculpted Atlas direction: warm neutral
-  surroundings, matte anatomy, quiet context and one task-relevant focus. The
-  action must be visible in the staged scene. Source input stays above the scene
-  in the normal reading path; reference images keep their explicit reveal.
+- Task Explorer spatial teaching scenes use the Sculpted Atlas direction: warm
+  neutral surroundings, matte anatomy, quiet context and one task-relevant
+  focus. They open on a useful still; input, action and output remain manually
+  selectable, and motion starts on request. Image interpretation, microscopy,
+  reports and records use a 2D explanation. Source input stays above either
+  explanation in the normal reading path; reference images keep their explicit
+  reveal. A source image and model are not spatially linked without a shared
+  coordinate transform. The scene controls follow the selected language; authored
+  teaching art and recipe copy still in English are explicitly labeled as source
+  language in the Chinese view.
 - Make one visual point at a time. Separate dense label layers when they represent
   different questions, as with TIGER tissue compartments and cell boxes. A legend
   must match overlay colors and line styles. Show crop position and scale without

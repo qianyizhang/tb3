@@ -226,12 +226,12 @@ async function main() {
   const kinds = new Set();
   for (const e of illustrated) {
     kinds.add(e.illustration.kind);
-    assert.ok(models.supports(e.illustration.kind), e.id + ': supported 3D kind');
+    assert.ok(models.supports(e.illustration.kind), e.id + ': supported illustration kind');
     const figure = context.scenes.figure(e);
     assert.match(
       figure,
-      /class="scene-storyboard"/,
-      e.id + ': imported renderer builds storyboard',
+      /class="scene-storyboard"|class="scene-static"/,
+      e.id + ': imported renderer builds an explanation',
     );
     assert.equal(
       (figure.match(/<svg /g) || []).length,
@@ -249,6 +249,24 @@ async function main() {
     }
   }
   assert.deepEqual([...kinds].sort(), [...context.teachingStory.kinds].sort());
+  assert.equal(
+    context.scenes.mode(entry('segment', { subject: 'abdomen', target: 'colon' })),
+    'static',
+  );
+  assert.equal(
+    context.scenes.mode(entry('segment', { subject: 'abdomen', target: 'spleen' })),
+    '3d',
+  );
+  const zhPilot = context.scenes.figure(
+    illustrated.find((item) => item.illustration.kind === 'anatomy_audit'),
+    'zh-CN',
+  );
+  assert.match(zhPilot, /示意图细节保留英文原文/);
+  assert.match(zhPilot, /播放动画/);
+  const auditWork = models.build(entry('anatomy_audit', { subject: 'abdomen' }), 1, 0, 0.45);
+  assert.ok(auditWork.labels.some((label) => label.text === 'Selected supplied label'));
+  const routeWork = models.build(entry('route_unfold', { subject: 'vessels' }), 1, 0, 0.45);
+  assert.ok(routeWork.labels.some((label) => label.text === 'Trace candidate route'));
   const teachingOutput = (kind, fields = {}) =>
     context.teachingArt.render(entry(kind, { input: 'Input', output: 'Output', ...fields }), true);
   assert.match(teachingOutput('classify', { labels: ['normal', 'pneumonia'] }), /class_label/);
