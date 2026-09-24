@@ -4,6 +4,7 @@ Use [the docs index](docs/README.md) for navigation and
 [the workflow](docs/workflow.md) for research commands. Read
 [architecture](docs/architecture.md) for component boundaries and the
 [repository layout](docs/repository-layout.md) before adding files.
+Follow the [coding style](docs/coding-style.md) for contracts, ownership and reuse.
 For reader-facing summaries and reports, follow the
 [writing guide](docs/writing-style.md).
 

@@ -9,11 +9,23 @@ import shutil
 import subprocess
 import tomllib
 from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Literal
 
 from . import core as c
-from . import harbor
+from . import harbor, storage
 from .types import Document, Pathish
+
+
+@dataclass(frozen=True, slots=True)
+class ValidatedTask:
+    """Resolved inputs for one operation; callers treat nested mappings as read-only."""
+
+    experiment: Document
+    case: Document
+    directory: Path
+    file_hashes: dict[str, str]
 
 
 def task_files(path: Pathish) -> dict[str, str]:
@@ -22,11 +34,12 @@ def task_files(path: Pathish) -> dict[str, str]:
         if file.is_symlink():
             raise c.MedicalError(f"Task contains a symlink: {file}")
         if file.is_file() and "__pycache__" not in file.parts and file.suffix != ".pyc":
-            result[file.relative_to(path).as_posix()] = c.sha(file)
+            result[file.relative_to(path).as_posix()] = storage.sha(file)
     return result
 
 
 def tree_digest(files: Mapping[str, str]) -> str:
+    """Hash task files with the established compact JSON encoding."""
     return hashlib.sha256(
         json.dumps(files, sort_keys=True, separators=(",", ":")).encode()
     ).hexdigest()
@@ -51,7 +64,7 @@ def new(root: Pathish, group: str, key: str, title: str) -> Document:
         "protocol": "protocol.md",
         "task_path": str((base / "task").relative_to(root)),
     }
-    c.write_new(base / "experiment.toml", row)
+    storage.write_new(base / "experiment.toml", row)
     (base / "protocol.md").write_text(
         f"# {title}\n\n## Question and method\n\n## Inputs and reference\n\n## Findings and limits\n"
     )
@@ -84,14 +97,12 @@ def task_spec(experiment: Document, case: str | None = None) -> Document:
     raise c.MedicalError("Historical evidence only; no maintained task recipe is declared")
 
 
-def task_validate(
-    root: Pathish, experiment: str, case: str | None = None
-) -> tuple[Document, Document, Path, dict[str, str]]:
+def task_validate(root: Pathish, experiment: str, case: str | None = None) -> ValidatedTask:
     exp = c.lookup(root, experiment)
     if exp["kind"] != "experiment":
         raise c.MedicalError("Select an experiment")
     spec = task_spec(exp, case)
-    task = c.inside(root, spec["task_path"])
+    task = storage.inside(root, spec["task_path"])
     required = (
         "instruction.md",
         "task.toml",
@@ -103,7 +114,7 @@ def task_validate(
     if missing:
         raise c.MedicalError("Missing task inputs; prepare first: " + ", ".join(missing))
     tomllib.loads((task / "task.toml").read_text())
-    return exp, spec, task, task_files(task)
+    return ValidatedTask(exp, spec, task, task_files(task))
 
 
 def prepare(
@@ -130,8 +141,8 @@ def prepare(
 
 
 def freeze(root: Pathish, experiment: str, case: str | None = None) -> Document:
-    exp, spec, task, files = task_validate(root, experiment, case)
-    digest = tree_digest(files)
+    validated = task_validate(root, experiment, case)
+    digest = tree_digest(validated.file_hashes)
     key = "freeze-" + hashlib.sha256((experiment + digest).encode()).hexdigest()[:24]
     records = c.load(root)
     if key in records:
@@ -140,31 +151,36 @@ def freeze(root: Pathish, experiment: str, case: str | None = None) -> Document:
     snapshot = Path(root) / ".local/freezes" / digest / "task"
     if not snapshot.exists():
         snapshot.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copytree(task, snapshot, ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
-    if task_files(snapshot) != files or task_files(task) != files:
+        shutil.copytree(
+            validated.directory, snapshot, ignore=shutil.ignore_patterns("__pycache__", "*.pyc")
+        )
+    if (
+        task_files(snapshot) != validated.file_hashes
+        or task_files(validated.directory) != validated.file_hashes
+    ):
         raise c.MedicalError("Task changed while preparing its exact snapshot")
     row = {
         "schema_version": 2,
         "kind": "freeze",
         "id": key,
         "experiment_id": experiment,
-        "group_id": exp["group_id"],
-        "case": spec["id"],
+        "group_id": validated.experiment["group_id"],
+        "case": validated.case["id"],
         "created_at": c.now(),
         "task_digest": digest,
-        "files": files,
-        "source_path": spec["task_path"],
+        "files": validated.file_hashes,
+        "source_path": validated.case["task_path"],
         "snapshot_path": str(snapshot.relative_to(root)),
     }
-    base = Path(root) / Path(exp["record_path"]).parent
-    c.write_new(base / "freezes" / (key + ".json"), row)
+    base = Path(root) / Path(validated.experiment["record_path"]).parent
+    storage.write_new(base / "freezes" / (key + ".json"), row)
     return row
 
 
 def restore_freeze(root: Pathish, frozen: Document) -> Path:
-    snapshot = c.inside(root, frozen["snapshot_path"])
+    snapshot = storage.inside(root, frozen["snapshot_path"])
     if not snapshot.exists():
-        source = c.inside(root, frozen["source_path"])
+        source = storage.inside(root, frozen["source_path"])
         if task_files(source) != frozen["files"]:
             raise c.MedicalError("Restore the selected frozen inputs before replay or execution")
         snapshot.parent.mkdir(parents=True, exist_ok=True)
@@ -174,19 +190,23 @@ def restore_freeze(root: Pathish, frozen: Document) -> Path:
     return snapshot
 
 
-def result_state(imported: Document) -> tuple[str, str]:
-    classification = imported["classification"]
+@dataclass(frozen=True, slots=True)
+class ResultState:
+    execution: Literal["error", "running", "planned", "completed"]
+    outcome: Literal["pass", "fail", "no_verdict"]
+
+
+def result_state(imported: harbor.ImportedTrial) -> ResultState:
+    classification = imported.classification
     if classification == "execution_error":
-        return "error", "no_verdict"
+        return ResultState("error", "no_verdict")
     if classification == "incomplete":
-        return ("running" if imported.get("started_at") else "planned"), "no_verdict"
-    outcome = {
-        "model_pass": "pass",
-        "control_pass": "pass",
-        "model_failure_candidate": "fail",
-        "control_fail": "fail",
-    }.get(classification, "no_verdict")
-    return "completed", outcome
+        return ResultState("running" if imported.started_at else "planned", "no_verdict")
+    if classification in {"model_pass", "control_pass"}:
+        return ResultState("completed", "pass")
+    if classification in {"model_failure_candidate", "control_fail"}:
+        return ResultState("completed", "fail")
+    return ResultState("completed", "no_verdict")
 
 
 def collect(
@@ -199,7 +219,7 @@ def collect(
     base = root / Path(exp["record_path"]).parent
     results = []
     for source in sources:
-        imported = harbor.import_trial(root, c.inside(root, source))
+        imported = harbor.import_trial(root, storage.inside(root, source))
         rows = c.load(root)
         current_binding = dict(binding or {})
         # A launched attempt owns its output directory even when collection occurs
@@ -210,16 +230,16 @@ def collect(
                 for r in rows.values()
                 if r["kind"] == "attempt"
                 and r.get("execution_path")
-                and c.inside(root, source).is_relative_to(
-                    c.inside(root, r["execution_path"]).parent / "job"
+                and storage.inside(root, source).is_relative_to(
+                    storage.inside(root, r["execution_path"]).parent / "job"
                 )
             ),
             None,
         )
         if owned:
-            receipt = c.read(c.inside(root, owned["execution_path"]))
+            receipt = storage.read(storage.inside(root, owned["execution_path"]))
             frozen = rows[owned["freeze_id"]]
-            unchanged = task_files(c.inside(root, frozen["snapshot_path"])) == frozen["files"]
+            unchanged = task_files(storage.inside(root, frozen["snapshot_path"])) == frozen["files"]
             current_binding = {"attempt_id": owned["id"]}
             if receipt.get("frozen_payload_unchanged") and unchanged:
                 current_binding.update(
@@ -229,7 +249,7 @@ def collect(
             (
                 r
                 for r in rows.values()
-                if r["kind"] == "evaluation" and r.get("source_result") == imported["source_result"]
+                if r["kind"] == "evaluation" and r.get("source_result") == imported.source_result
             ),
             None,
         )
@@ -237,12 +257,12 @@ def collect(
             prior["attempt_id"]
             if prior
             else current_binding.get("attempt_id")
-            or "attempt-" + hashlib.sha256(imported["source_result"].encode()).hexdigest()[:24]
+            or "attempt-" + hashlib.sha256(imported.source_result.encode()).hexdigest()[:24]
         )
         if identity in rows and rows[identity]["experiment_id"] != experiment:
             raise c.MedicalError("The attempt already belongs to another experiment")
         if identity not in rows:
-            c.write_new(
+            storage.write_new(
                 base / "attempts" / (identity + ".json"),
                 {
                     "schema_version": 2,
@@ -250,16 +270,17 @@ def collect(
                     "id": identity,
                     "group_id": exp["group_id"],
                     "experiment_id": experiment,
-                    "source_result": imported["source_result"],
+                    "source_result": imported.source_result,
                     "diagnostic": True,
                 },
             )
         verified = bool(
             current_binding.get("task_digest")
-            and current_binding.get("checksum") == imported["task_checksum"]
+            and current_binding.get("checksum") == imported.task_checksum
         )
-        execution, outcome = result_state(imported)
-        if owned and imported["classification"] == "incomplete":
+        state = result_state(imported)
+        execution, outcome = state.execution, state.outcome
+        if owned and imported.classification == "incomplete":
             terminal = receipt.get("execution_state")
             if terminal in {"interrupted", "error", "completed"}:
                 execution = terminal
@@ -268,13 +289,13 @@ def collect(
         if latest and all(
             latest.get(field) == value
             for field, value in {
-                "source_result": imported["source_result"],
-                "evidence_sha256": imported["evidence_sha256"],
+                "source_result": imported.source_result,
+                "evidence_sha256": imported.evidence_sha256,
                 "freeze_checksum_verified": verified,
                 "task_digest": current_binding.get("task_digest") if verified else None,
                 "execution_state": execution,
                 "outcome": outcome,
-                "partial": imported["classification"] == "incomplete",
+                "partial": imported.classification == "incomplete",
             }.items()
         ):
             results.append(latest)
@@ -285,11 +306,11 @@ def collect(
         key = (
             "observation-"
             + hashlib.sha256(
-                (identity + imported["evidence_sha256"] + proof + predecessor).encode()
+                (identity + imported.evidence_sha256 + proof + predecessor).encode()
             ).hexdigest()[:24]
         )
         row = {
-            **imported,
+            **imported.model_dump(mode="python"),
             "schema_version": 2,
             "kind": "evaluation",
             "evaluation_kind": "result",
@@ -300,13 +321,13 @@ def collect(
             "collected_at": c.now(),
             "execution_state": execution,
             "outcome": outcome,
-            "partial": imported["classification"] == "incomplete",
+            "partial": imported.classification == "incomplete",
             "task_digest": current_binding.get("task_digest") if verified else None,
             "freeze_checksum_verified": verified,
         }
         row["source_classification"] = row.pop("classification")
         row.pop("qualifying_final_trial", None)
-        c.write_new(base / "evaluations" / (key + ".json"), row)
+        storage.write_new(base / "evaluations" / (key + ".json"), row)
         results.append(row)
     return results
 
@@ -410,17 +431,17 @@ def run(
     if agent == "codex" and not model:
         raise c.MedicalError("Name the model condition")
     agent_env = agent_environment(root, agent_env_file)
-    exp, spec, task, files = task_validate(root, experiment, case)
+    validated = task_validate(root, experiment, case)
     if preview:
         return {
             "experiment_id": experiment,
-            "case": spec["id"],
+            "case": validated.case["id"],
             "agent": agent,
             "model": model,
             "reasoning_effort": effort,
             "diagnostic": diagnostic,
-            "task_digest": tree_digest(files),
-            "task_path": str(task),
+            "task_digest": tree_digest(validated.file_hashes),
+            "task_path": str(validated.directory),
             "executes": False,
             "agent_env_keys": sorted(agent_env),
         }
@@ -428,23 +449,23 @@ def run(
         state = c.projection(root)[experiment]["current"]
         if state.get("assessment") in {"needs_review", "invalidated"}:
             raise c.MedicalError("Resolve the experiment issue or use an explicitly diagnostic run")
-        check_controls(root, tree_digest(files))
+        check_controls(root, tree_digest(validated.file_hashes))
     frozen = freeze(root, experiment, case)
     snapshot = restore_freeze(root, frozen)
     checksum = harbor_checksum(executable, snapshot)
     identity = c.uid("attempt")
     out = Path(root) / ".local/attempts" / identity
     out.mkdir(mode=0o700, parents=True, exist_ok=False)
-    base = Path(root) / Path(exp["record_path"]).parent
+    base = Path(root) / Path(validated.experiment["record_path"]).parent
     attempt = {
         "schema_version": 2,
         "kind": "attempt",
         "id": identity,
         "experiment_id": experiment,
-        "group_id": exp["group_id"],
+        "group_id": validated.experiment["group_id"],
         "freeze_id": frozen["id"],
         "task_digest": frozen["task_digest"],
-        "case": spec["id"],
+        "case": validated.case["id"],
         "agent": agent,
         "model": model,
         "reasoning_effort": effort,
@@ -454,7 +475,7 @@ def run(
         "observed_at": c.now(),
         "execution_path": str((out / "execution.json").relative_to(root)),
     }
-    c.write_new(base / "attempts" / (identity + ".json"), attempt)
+    storage.write_new(base / "attempts" / (identity + ".json"), attempt)
     config_agent: Document = {"name": agent, "env": agent_env, "kwargs": {}}
     if model:
         config_agent["model_name"] = model
@@ -471,7 +492,7 @@ def run(
         "tasks": [{"path": str(snapshot)}],
         "artifacts": ["/app"],
     }
-    c.write_new(out / "config.json", config)
+    storage.write_new(out / "config.json", config)
     (out / "config.json").chmod(0o600)
     receipt: Document = {
         "attempt_id": identity,
@@ -479,7 +500,7 @@ def run(
         "started_at": c.now(),
         "harbor_task_checksum": checksum,
     }
-    c.write_new(out / "execution.json", receipt)
+    storage.write_new(out / "execution.json", receipt)
     try:
         with (out / "launcher.log").open("x") as log:
             process = subprocess.run(
@@ -501,9 +522,9 @@ def run(
     finally:
         receipt["finished_at"] = c.now()
         receipt["frozen_payload_unchanged"] = task_files(snapshot) == frozen["files"]
-        c.atomic_write(out / "execution.json", receipt)
+        storage.atomic_write(out / "execution.json", receipt)
         key = c.uid("execution")
-        c.write_new(
+        storage.write_new(
             base / "evaluations" / (key + ".json"),
             {
                 "schema_version": 2,
@@ -512,7 +533,7 @@ def run(
                 "id": key,
                 "attempt_id": identity,
                 "experiment_id": experiment,
-                "group_id": exp["group_id"],
+                "group_id": validated.experiment["group_id"],
                 "execution_state": receipt["execution_state"],
                 "outcome": "no_verdict",
                 "collected_at": receipt["finished_at"],
@@ -589,7 +610,7 @@ def bundle(
         input_root=input_root,
         assessments={experiment_id: state},
     )
-    digest = c.sha(Path(result["destination"]) / "manifest.json")
+    digest = storage.sha(Path(result["destination"]) / "manifest.json")
     row = {
         "schema_version": 2,
         "kind": "export",
@@ -604,7 +625,7 @@ def bundle(
     }
     target = Path(root) / "exports/records" / (row["id"] + ".json")
     if not target.exists():
-        c.write_new(target, row)
+        storage.write_new(target, row)
     return {**result, "record": row["id"], "source_assessments": {experiment_id: state}}
 
 
@@ -624,7 +645,9 @@ def replay_package(
     recipe = experiment["reproduction_manifest"]
     for item in result["replays"]:
         source = records[item["source_evaluation"]]
-        signature = json.dumps([c.sha(Path(package_root) / "manifest.json"), item], sort_keys=True)
+        signature = json.dumps(
+            [storage.sha(Path(package_root) / "manifest.json"), item], sort_keys=True
+        )
         key = "replay-" + hashlib.sha256(signature.encode()).hexdigest()[:24]
         row = {
             "schema_version": 2,
@@ -643,13 +666,13 @@ def replay_package(
             "replay_matches": item["matches"],
             "exact_match": item["exact_match"],
             "evidence": [c.evidence(root, recipe)],
-            "package_manifest_sha256": c.sha(Path(package_root) / "manifest.json"),
+            "package_manifest_sha256": storage.sha(Path(package_root) / "manifest.json"),
             "scope": result["scope"] + "; same attempt, no new model execution or qualification.",
         }
         target = (
             Path(root) / Path(experiment["record_path"]).parent / "evaluations" / (key + ".json")
         )
         if not target.exists():
-            c.write_new(target, row)
+            storage.write_new(target, row)
         item["id"] = key
     return result

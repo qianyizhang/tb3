@@ -17,5 +17,47 @@
     {"label": "Maintained method interface and adapters", "path": "src/tb3_medical/methods.py"},
     {"label": "Shared storage guarantees", "path": "src/tb3_medical/storage.py"}
   ],
+  "followups": [
+    {
+      "source": "codex://threads/01a0d3cc-edf4-7990-9e3a-dd024547aaea",
+      "actor": "assistant",
+      "summary": "The user requested an audit, fixes and polish against TB3_CODING_STYLE.md and allowed simplifying it into canonical guidance. The assistant reviewed the current checkout and the completed typed-Harbor branch, reused its implementation, and made docs/coding-style.md the maintained guide. Implementation choices below are assistant decisions, not separate user approvals.",
+      "proposal": {
+        "filename": "TB3_CODING_STYLE.md",
+        "sha256": "edb3198f66de168e6c546065867c1cca2bb3f30a673dc91416cac6981a2fd400",
+        "reviewed_snapshot": "902af85e6cceeb4de195295969b45d22d9d25794"
+      },
+      "prior_work": {
+        "source": "codex://threads/01a0d27d-2bda-7951-aedb-f0728e791300",
+        "commit": "35876fb",
+        "integration": "Applied reviewed code and lockfile changes from the completed local branch without moving branches or changing the shared Git index."
+      },
+      "findings": [
+        "Strict mypy passed at baseline, but Document hid fixed Harbor result fields and task validation returned four positional values. ImportedTrial, typed case/evidence helpers, ParsedCases, ResultState and ValidatedTask now expose those contracts.",
+        "Projection previously required a workspace read. project_records now accepts loaded records and a pending review without mutating its inputs; extensible scientific fields remain accepted.",
+        "Workflow storage calls now name storage directly. Existing core re-exports remain for other callers.",
+        "Historical timestamps remain opaque objects with unchanged truthiness and serialized values. New closed normalized models reject missing/extra fields and unintended coercion; existing research records keep their current validators.",
+        "Ten synthetic baseline fixtures pin imported JSON, collected JSON, observation identity, warnings and result states to b7b9717. They are regression witnesses, not medical evidence.",
+        "Digest encodings, path policies, standalone reproduction code, generated browser contracts and experiment-local algorithms intentionally retain separate ownership."
+      ],
+      "links": [
+        {
+          "label": "Canonical coding style",
+          "path": "docs/coding-style.md"
+        },
+        {
+          "label": "Synthetic pre-refactor wire and identity fixtures",
+          "path": "tests/fixtures/harbor-import-baseline.json"
+        }
+      ],
+      "review": {
+        "actor": "assistant",
+        "summary": "A follow-up review found that finite-number normalization raised OverflowError for oversized JSON integers. Such rewards and token counts now normalize to unavailable values; the trial remains inspectable with no scoring verdict. Synthetic baseline fixtures were retained unchanged.",
+        "regressions": "Added positive and negative oversized-integer coverage. Tightened baseline assertions to compare serialized values, persisted evaluation text and the complete raw-file inventory.",
+        "commit_scope": "Canonical style guide, typed Harbor and workflow contracts, pure projection, dependencies and their regressions. Prior frontend and architecture-discussion edits remain separately owned."
+      },
+      "reopen_when": "A maintained consumer needs a narrower record or method-result schema, or a shared scientific primitive has matching semantics and a preservation plan. Broad record migration and universal scoring models remain out of scope."
+    }
+  ],
   "reopen_when": "A third maintained method needs these operations, stable record fields justify stronger schema types, or a runtime dependency can be checked without provisioning model environments."
 }

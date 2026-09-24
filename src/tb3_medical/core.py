@@ -207,7 +207,14 @@ def execution_observations(rows: Records) -> Records:
 
 
 def projection(root: Pathish, *, pending_review: Document | None = None) -> Records:
-    rows = load(root)
+    return project_records(load(root), pending_review=pending_review)
+
+
+def project_records(
+    loaded: Mapping[str, Document], *, pending_review: Document | None = None
+) -> Records:
+    """Derive current state from already-loaded records without changing the input."""
+    rows = dict(loaded)
     if pending_review is not None:
         rows[pending_review["id"]] = pending_review
     latest_observations = execution_observations(rows)

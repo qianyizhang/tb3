@@ -1,5 +1,6 @@
 """Offline regressions for the supported daily workflow; no model or Docker jobs."""
 
+import copy
 import json
 import os
 import subprocess
@@ -33,6 +34,36 @@ class MedicalTests(unittest.TestCase):
         )
         w.new(self.root, "g", "study", "Study")
         (self.root / "proof.txt").write_text("review proof")
+
+    def test_validated_task_names_resolved_inputs(self):
+        validated = w.task_validate(self.root, "study")
+        self.assertEqual(validated.experiment["id"], "study")
+        self.assertEqual(validated.case["id"], "default")
+        self.assertEqual(
+            validated.directory, (self.root / "groups/g/experiments/study/task").resolve()
+        )
+        self.assertEqual(validated.file_hashes, w.task_files(validated.directory))
+
+    def test_projection_uses_loaded_records_without_mutating_them(self):
+        loaded = c.load(self.root)
+        loaded["study"]["scientific_extension"] = {"axes": ["x", "y", "z"]}
+        pending = {
+            "id": "pending-review",
+            "kind": "review",
+            "experiment_id": "study",
+            "assessment": "usable",
+            "reason": "Scoped review",
+            "scope": "Synthetic fixture",
+            "resolves": [],
+        }
+        before = copy.deepcopy(loaded)
+        before_pending = copy.deepcopy(pending)
+        with patch.object(c, "load", side_effect=AssertionError("Projection reloaded records")):
+            projected = c.project_records(loaded, pending_review=pending)
+        self.assertEqual(projected["study"]["current"]["assessment"], "usable")
+        self.assertEqual(projected["study"]["scientific_extension"], {"axes": ["x", "y", "z"]})
+        self.assertEqual(loaded, before)
+        self.assertEqual(pending, before_pending)
 
     def test_explicit_record_locations_ignore_task_payload_and_reads_never_hash(self):
         task = self.root / "groups/g/experiments/study/task"
@@ -294,6 +325,31 @@ class MedicalTests(unittest.TestCase):
         self.assertEqual(first["attempt_id"], second["attempt_id"])
         self.assertNotEqual(first["id"], second["id"])
         self.assertEqual(w.collect(self.root, "study", [source])[0]["id"], second["id"])
+
+    def test_return_to_prior_result_appends_observation_without_replacing_history(self):
+        source = ".local/job/trial/result.json"
+        partial = {"task_name": "demo", "config": {}, "finished_at": None}
+        c.write_new(self.root / source, partial)
+        with patch.object(c, "now", return_value="2026-09-24T00:00:00Z"):
+            first = w.collect(self.root, "study", [source])[0]
+        path = self.root / "groups/g/experiments/study/evaluations" / (first["id"] + ".json")
+        original = path.read_bytes()
+        c.atomic_write(self.root / source, {**partial, "finished_at": "2026-09-24T00:00:01Z"})
+        with patch.object(c, "now", return_value="2026-09-24T00:00:02Z"):
+            second = w.collect(self.root, "study", [source])[0]
+        c.atomic_write(self.root / source, partial)
+        with patch.object(c, "now", return_value="2026-09-24T00:00:03Z"):
+            third = w.collect(self.root, "study", [source])[0]
+        self.assertEqual(len({row["id"] for row in (first, second, third)}), 3)
+        self.assertEqual(
+            {row["attempt_id"] for row in (first, second, third)}, {first["attempt_id"]}
+        )
+        self.assertEqual(first["evidence_sha256"], third["evidence_sha256"])
+        self.assertEqual(w.collect(self.root, "study", [source])[0]["id"], third["id"])
+        self.assertEqual(path.read_bytes(), original)
+        current = c.projection(self.root)[first["attempt_id"]]["current"]
+        self.assertEqual(current["execution_state"], "planned")
+        self.assertTrue(current["partial"])
 
     def test_selected_freeze_detects_change_and_restores_missing_snapshot(self):
         import shutil
