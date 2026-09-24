@@ -9,11 +9,21 @@ import shutil
 import subprocess
 import tomllib
 from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Literal
 
 from . import core as c
 from . import harbor
 from .types import Document, Pathish
+
+
+@dataclass(frozen=True, slots=True)
+class ValidatedTask:
+    experiment: Document
+    case: Document
+    directory: Path
+    file_hashes: dict[str, str]
 
 
 def task_files(path: Pathish) -> dict[str, str]:
@@ -84,9 +94,7 @@ def task_spec(experiment: Document, case: str | None = None) -> Document:
     raise c.MedicalError("Historical evidence only; no maintained task recipe is declared")
 
 
-def task_validate(
-    root: Pathish, experiment: str, case: str | None = None
-) -> tuple[Document, Document, Path, dict[str, str]]:
+def task_validate(root: Pathish, experiment: str, case: str | None = None) -> ValidatedTask:
     exp = c.lookup(root, experiment)
     if exp["kind"] != "experiment":
         raise c.MedicalError("Select an experiment")
@@ -103,7 +111,7 @@ def task_validate(
     if missing:
         raise c.MedicalError("Missing task inputs; prepare first: " + ", ".join(missing))
     tomllib.loads((task / "task.toml").read_text())
-    return exp, spec, task, task_files(task)
+    return ValidatedTask(exp, spec, task, task_files(task))
 
 
 def prepare(
@@ -130,8 +138,8 @@ def prepare(
 
 
 def freeze(root: Pathish, experiment: str, case: str | None = None) -> Document:
-    exp, spec, task, files = task_validate(root, experiment, case)
-    digest = tree_digest(files)
+    validated = task_validate(root, experiment, case)
+    digest = tree_digest(validated.file_hashes)
     key = "freeze-" + hashlib.sha256((experiment + digest).encode()).hexdigest()[:24]
     records = c.load(root)
     if key in records:
@@ -140,23 +148,28 @@ def freeze(root: Pathish, experiment: str, case: str | None = None) -> Document:
     snapshot = Path(root) / ".local/freezes" / digest / "task"
     if not snapshot.exists():
         snapshot.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copytree(task, snapshot, ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
-    if task_files(snapshot) != files or task_files(task) != files:
+        shutil.copytree(
+            validated.directory, snapshot, ignore=shutil.ignore_patterns("__pycache__", "*.pyc")
+        )
+    if (
+        task_files(snapshot) != validated.file_hashes
+        or task_files(validated.directory) != validated.file_hashes
+    ):
         raise c.MedicalError("Task changed while preparing its exact snapshot")
     row = {
         "schema_version": 2,
         "kind": "freeze",
         "id": key,
         "experiment_id": experiment,
-        "group_id": exp["group_id"],
-        "case": spec["id"],
+        "group_id": validated.experiment["group_id"],
+        "case": validated.case["id"],
         "created_at": c.now(),
         "task_digest": digest,
-        "files": files,
-        "source_path": spec["task_path"],
+        "files": validated.file_hashes,
+        "source_path": validated.case["task_path"],
         "snapshot_path": str(snapshot.relative_to(root)),
     }
-    base = Path(root) / Path(exp["record_path"]).parent
+    base = Path(root) / Path(validated.experiment["record_path"]).parent
     c.write_new(base / "freezes" / (key + ".json"), row)
     return row
 
@@ -174,19 +187,23 @@ def restore_freeze(root: Pathish, frozen: Document) -> Path:
     return snapshot
 
 
-def result_state(imported: Document) -> tuple[str, str]:
-    classification = imported["classification"]
+@dataclass(frozen=True, slots=True)
+class ResultState:
+    execution: Literal["error", "running", "planned", "completed"]
+    outcome: Literal["pass", "fail", "no_verdict"]
+
+
+def result_state(imported: harbor.ImportedTrial) -> ResultState:
+    classification = imported.classification
     if classification == "execution_error":
-        return "error", "no_verdict"
+        return ResultState("error", "no_verdict")
     if classification == "incomplete":
-        return ("running" if imported.get("started_at") else "planned"), "no_verdict"
-    outcome = {
-        "model_pass": "pass",
-        "control_pass": "pass",
-        "model_failure_candidate": "fail",
-        "control_fail": "fail",
-    }.get(classification, "no_verdict")
-    return "completed", outcome
+        return ResultState("running" if imported.started_at else "planned", "no_verdict")
+    if classification in {"model_pass", "control_pass"}:
+        return ResultState("completed", "pass")
+    if classification in {"model_failure_candidate", "control_fail"}:
+        return ResultState("completed", "fail")
+    return ResultState("completed", "no_verdict")
 
 
 def collect(
@@ -229,7 +246,7 @@ def collect(
             (
                 r
                 for r in rows.values()
-                if r["kind"] == "evaluation" and r.get("source_result") == imported["source_result"]
+                if r["kind"] == "evaluation" and r.get("source_result") == imported.source_result
             ),
             None,
         )
@@ -237,7 +254,7 @@ def collect(
             prior["attempt_id"]
             if prior
             else current_binding.get("attempt_id")
-            or "attempt-" + hashlib.sha256(imported["source_result"].encode()).hexdigest()[:24]
+            or "attempt-" + hashlib.sha256(imported.source_result.encode()).hexdigest()[:24]
         )
         if identity in rows and rows[identity]["experiment_id"] != experiment:
             raise c.MedicalError("The attempt already belongs to another experiment")
@@ -250,16 +267,17 @@ def collect(
                     "id": identity,
                     "group_id": exp["group_id"],
                     "experiment_id": experiment,
-                    "source_result": imported["source_result"],
+                    "source_result": imported.source_result,
                     "diagnostic": True,
                 },
             )
         verified = bool(
             current_binding.get("task_digest")
-            and current_binding.get("checksum") == imported["task_checksum"]
+            and current_binding.get("checksum") == imported.task_checksum
         )
-        execution, outcome = result_state(imported)
-        if owned and imported["classification"] == "incomplete":
+        state = result_state(imported)
+        execution, outcome = state.execution, state.outcome
+        if owned and imported.classification == "incomplete":
             terminal = receipt.get("execution_state")
             if terminal in {"interrupted", "error", "completed"}:
                 execution = terminal
@@ -268,13 +286,13 @@ def collect(
         if latest and all(
             latest.get(field) == value
             for field, value in {
-                "source_result": imported["source_result"],
-                "evidence_sha256": imported["evidence_sha256"],
+                "source_result": imported.source_result,
+                "evidence_sha256": imported.evidence_sha256,
                 "freeze_checksum_verified": verified,
                 "task_digest": current_binding.get("task_digest") if verified else None,
                 "execution_state": execution,
                 "outcome": outcome,
-                "partial": imported["classification"] == "incomplete",
+                "partial": imported.classification == "incomplete",
             }.items()
         ):
             results.append(latest)
@@ -285,11 +303,11 @@ def collect(
         key = (
             "observation-"
             + hashlib.sha256(
-                (identity + imported["evidence_sha256"] + proof + predecessor).encode()
+                (identity + imported.evidence_sha256 + proof + predecessor).encode()
             ).hexdigest()[:24]
         )
         row = {
-            **imported,
+            **imported.model_dump(mode="python"),
             "schema_version": 2,
             "kind": "evaluation",
             "evaluation_kind": "result",
@@ -300,7 +318,7 @@ def collect(
             "collected_at": c.now(),
             "execution_state": execution,
             "outcome": outcome,
-            "partial": imported["classification"] == "incomplete",
+            "partial": imported.classification == "incomplete",
             "task_digest": current_binding.get("task_digest") if verified else None,
             "freeze_checksum_verified": verified,
         }
@@ -410,17 +428,17 @@ def run(
     if agent == "codex" and not model:
         raise c.MedicalError("Name the model condition")
     agent_env = agent_environment(root, agent_env_file)
-    exp, spec, task, files = task_validate(root, experiment, case)
+    validated = task_validate(root, experiment, case)
     if preview:
         return {
             "experiment_id": experiment,
-            "case": spec["id"],
+            "case": validated.case["id"],
             "agent": agent,
             "model": model,
             "reasoning_effort": effort,
             "diagnostic": diagnostic,
-            "task_digest": tree_digest(files),
-            "task_path": str(task),
+            "task_digest": tree_digest(validated.file_hashes),
+            "task_path": str(validated.directory),
             "executes": False,
             "agent_env_keys": sorted(agent_env),
         }
@@ -428,23 +446,23 @@ def run(
         state = c.projection(root)[experiment]["current"]
         if state.get("assessment") in {"needs_review", "invalidated"}:
             raise c.MedicalError("Resolve the experiment issue or use an explicitly diagnostic run")
-        check_controls(root, tree_digest(files))
+        check_controls(root, tree_digest(validated.file_hashes))
     frozen = freeze(root, experiment, case)
     snapshot = restore_freeze(root, frozen)
     checksum = harbor_checksum(executable, snapshot)
     identity = c.uid("attempt")
     out = Path(root) / ".local/attempts" / identity
     out.mkdir(mode=0o700, parents=True, exist_ok=False)
-    base = Path(root) / Path(exp["record_path"]).parent
+    base = Path(root) / Path(validated.experiment["record_path"]).parent
     attempt = {
         "schema_version": 2,
         "kind": "attempt",
         "id": identity,
         "experiment_id": experiment,
-        "group_id": exp["group_id"],
+        "group_id": validated.experiment["group_id"],
         "freeze_id": frozen["id"],
         "task_digest": frozen["task_digest"],
-        "case": spec["id"],
+        "case": validated.case["id"],
         "agent": agent,
         "model": model,
         "reasoning_effort": effort,
@@ -512,7 +530,7 @@ def run(
                 "id": key,
                 "attempt_id": identity,
                 "experiment_id": experiment,
-                "group_id": exp["group_id"],
+                "group_id": validated.experiment["group_id"],
                 "execution_state": receipt["execution_state"],
                 "outcome": "no_verdict",
                 "collected_at": receipt["finished_at"],

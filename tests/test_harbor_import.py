@@ -101,9 +101,10 @@ class HarborImportTests(unittest.TestCase):
         ):
             with self.subTest(name=name):
                 row = core.import_trial(self.root, self.fixture(name, agent=agent, reward=reward))
-                self.assertEqual(row["classification"], expected)
-                self.assertFalse(row["qualifying_final_trial"])
-                self.assertEqual(row["harbor_version"], "0.14.0")
+                self.assertIsInstance(row, core.ImportedTrial)
+                self.assertEqual(row.classification, expected)
+                self.assertFalse(row.qualifying_final_trial)
+                self.assertEqual(row.harbor_version, "0.14.0")
 
     def test_execution_error_and_incomplete_take_precedence_over_contradictions(self):
         for name, overrides, expected in (
@@ -122,7 +123,7 @@ class HarborImportTests(unittest.TestCase):
                     cases={"passed": [], "failures": ["case: mismatch"]},
                     overrides=overrides,
                 )
-                self.assertEqual(core.import_trial(self.root, source)["classification"], expected)
+                self.assertEqual(core.import_trial(self.root, source).classification, expected)
 
     def test_disabled_multistep_and_missing_execution_are_not_model_outcomes(self):
         base_config = {"agent": {"name": "codex"}, "verifier": {"disable": True}}
@@ -137,13 +138,13 @@ class HarborImportTests(unittest.TestCase):
                 row = core.import_trial(
                     self.root, self.fixture(name, reward=1, overrides=overrides)
                 )
-                self.assertEqual(row["classification"], "unknown")
+                self.assertEqual(row.classification, "unknown")
 
     def test_nonbinary_nonfinite_and_boolean_rewards_are_unknown(self):
         for index, reward in enumerate((0.5, True, False, float("nan"), float("inf"), "1", None)):
             with self.subTest(reward=reward):
                 source = self.fixture(f"reward-{index}", reward=reward, artifact=None)
-                self.assertEqual(core.import_trial(self.root, source)["classification"], "unknown")
+                self.assertEqual(core.import_trial(self.root, source).classification, "unknown")
 
     def test_reward_artifact_disagreement_and_invalid_text_are_unknown(self):
         for index, artifact in enumerate((0, "invalid", "nan")):
@@ -151,8 +152,8 @@ class HarborImportTests(unittest.TestCase):
                 row = core.import_trial(
                     self.root, self.fixture(f"artifact-{index}", reward=1, artifact=artifact)
                 )
-                self.assertEqual(row["classification"], "unknown")
-                self.assertTrue(row["warnings"])
+                self.assertEqual(row.classification, "unknown")
+                self.assertTrue(row.warnings)
 
     def test_snapshot_checksum_never_falls_back_to_result_hash(self):
         for index, checksum in enumerate(
@@ -160,20 +161,20 @@ class HarborImportTests(unittest.TestCase):
         ):
             with self.subTest(checksum=checksum):
                 row = self.imported(self.fixture(f"snapshot-{index}", checksum=checksum))
-                self.assertIsNone(row["task_checksum"])
-                self.assertIsNone(row["task_sha256"])
-                self.assertEqual(len(row["source_sha256"]), 64)
-                self.assertTrue(row["warnings"])
-                self.assertFalse(row["qualifying_final_trial"])
+                self.assertIsNone(row.task_checksum)
+                self.assertIsNone(row.task_sha256)
+                self.assertEqual(len(row.source_sha256), 64)
+                self.assertTrue(row.warnings)
+                self.assertFalse(row.qualifying_final_trial)
 
     def test_opaque_task_checksum_is_kept_distinct_from_source_and_evidence_hashes(self):
         source = self.fixture()
         row = core.import_trial(self.root, source)
-        self.assertEqual(row["task_checksum"], TASK_CHECKSUM)
-        self.assertEqual(row["checksum_kind"], "harbor.task_checksum")
-        self.assertIsNone(row["task_sha256"])
-        self.assertNotEqual(row["task_checksum"], row["source_sha256"])
-        self.assertNotEqual(row["task_checksum"], row["evidence_sha256"])
+        self.assertEqual(row.task_checksum, TASK_CHECKSUM)
+        self.assertEqual(row.checksum_kind, "harbor.task_checksum")
+        self.assertIsNone(row.task_sha256)
+        self.assertNotEqual(row.task_checksum, row.source_sha256)
+        self.assertNotEqual(row.task_checksum, row.evidence_sha256)
 
     def test_private_config_environment_trajectory_and_exception_text_are_not_exported(self):
         canary = "PRIVATE_CANARY_NEVER_EXPORT"
@@ -207,9 +208,9 @@ class HarborImportTests(unittest.TestCase):
             source.parent.parent / "lock.json", {"harbor": {"version": "0.14.0"}, "env": canary}
         )
         row = core.import_trial(self.root, source)
-        self.assertNotIn(canary, json.dumps(row))
-        self.assertEqual(row["exception_type"], "SetupError")
-        self.assertTrue(any(item["path"].endswith("trajectory.json") for item in row["evidence"]))
+        self.assertNotIn(canary, json.dumps(row.model_dump()))
+        self.assertEqual(row.exception_type, "SetupError")
+        self.assertTrue(any(item.path.endswith("trajectory.json") for item in row.evidence))
 
     def test_raw_verifier_details_and_free_text_metadata_are_not_exported(self):
         canary = "PRIVATE_DETAIL_CANARY"
@@ -234,9 +235,9 @@ class HarborImportTests(unittest.TestCase):
             },
         )
         row = core.import_trial(self.root, source)
-        self.assertNotIn(canary, json.dumps(row))
-        self.assertEqual({case["name"] for case in row["cases"]}, {"baseline", "case-a", "case-b"})
-        self.assertTrue(all(not case.get("detail") for case in row["cases"]))
+        self.assertNotIn(canary, json.dumps(row.model_dump()))
+        self.assertEqual({case.name for case in row.cases}, {"baseline", "case-a", "case-b"})
+        self.assertTrue(all(not case.detail for case in row.cases))
 
     def test_case_parser_supports_one_json_summary_inside_log_output(self):
         source = self.fixture(
@@ -244,7 +245,7 @@ class HarborImportTests(unittest.TestCase):
         )
         row = core.import_trial(self.root, source)
         self.assertEqual(
-            [(case["name"], case["status"]) for case in row["cases"]],
+            [(case.name, case.status) for case in row.cases],
             [("clean", "passed"), ("edge", "failed")],
         )
 
@@ -259,8 +260,8 @@ class HarborImportTests(unittest.TestCase):
         ):
             with self.subTest(name=name):
                 row = core.import_trial(self.root, self.fixture(name, cases=cases))
-                self.assertEqual(row["cases"], [])
-                self.assertTrue(row["warnings"])
+                self.assertEqual(row.cases, [])
+                self.assertTrue(row.warnings)
 
     def test_artifact_symlink_escape_does_not_read_outside_workspace(self):
         source = self.fixture()

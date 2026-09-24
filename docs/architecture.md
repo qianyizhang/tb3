@@ -91,10 +91,14 @@ The installed entry point is `med = tb3_medical.cli:main` in
 `types.Document` represents extensible JSON/TOML objects. Checked function
 signatures do not replace domain validation: `storage.read_object()` verifies
 object shape, then the owning validator checks its fields. `storage.read()` also
-supports arbitrary serialized payloads. `core` re-exports existing storage entry
-points for callers. The `py.typed` marker ships package annotations; optional
-imaging/model dependencies remain separately provisioned and are not validated by
-local type checks.
+supports arbitrary serialized payloads. `core.project_records()` derives state
+from already-loaded records without altering them; `projection()` is its
+workspace-loading entry point. Harbor normalizes raw trial JSON into an
+`ImportedTrial` model, and collection serializes it only when writing an
+evaluation. Task validation and result-state mapping return named dataclass values.
+`core` re-exports existing storage entry points for callers. The `py.typed`
+marker ships package annotations; optional imaging/model dependencies remain
+separately provisioned and are not validated by local type checks.
 
 ## Execution, presentation and export boundaries
 

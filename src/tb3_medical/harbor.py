@@ -9,14 +9,96 @@ import math
 import re
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
+
+from pydantic import BaseModel, ConfigDict
 
 from .storage import sha as sha256
 from .types import Document
 
+type TrialClassification = Literal[
+    "execution_error",
+    "incomplete",
+    "unknown",
+    "control_pass",
+    "control_fail",
+    "model_pass",
+    "model_failure_candidate",
+]
+
 
 class HarborError(ValueError):
     pass
+
+
+class VerifierCase(BaseModel):
+    model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+
+    name: str
+    status: Literal["passed", "failed"]
+    detail: str
+
+
+class EvidenceFile(BaseModel):
+    model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+
+    label: str
+    path: str
+    sha256: str
+
+
+class TrialTiming(BaseModel):
+    model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+
+    total: float | None
+    setup: float | None
+    agent: float | None
+    verifier: float | None
+
+
+class TokenUsage(BaseModel):
+    model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+
+    n_input_tokens: float | None
+    n_cache_tokens: float | None
+    n_output_tokens: float | None
+
+
+class ImportedTrial(BaseModel):
+    """Allowlisted Harbor result after normalization; no raw config or secrets."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+
+    schema_version: Literal[1]
+    id: str
+    job: str
+    trial_name: str
+    task_id: str
+    agent: str | None
+    model: str | None
+    reasoning_effort: str | None
+    agent_version: str | None
+    backend: str | None
+    harbor_version: str | None
+    execution_mode: Literal["harbor"]
+    classification: TrialClassification
+    reward: float | None
+    # Harbor timestamps are copied through unchanged, including malformed legacy values.
+    started_at: Any
+    finished_at: Any
+    timing: TrialTiming
+    usage: TokenUsage
+    cases: list[VerifierCase]
+    exception_type: str | None
+    evidence: list[EvidenceFile]
+    task_checksum: str | None
+    task_sha256: None
+    checksum_kind: Literal["harbor.task_checksum"]
+    warnings: list[str]
+    source_result: str
+    source_sha256: str
+    evidence_sha256: str
+    qualifying_final_trial: Literal[False]
 
 
 def digest_json(value: Any) -> str:
@@ -80,7 +162,7 @@ def seconds(phase: Any) -> float | None:
         return None
 
 
-def classify(result: Document) -> str:
+def classify(result: Document) -> TrialClassification:
     """Completion and execution errors take precedence over rewards."""
     if result.get("exception_info") is not None:
         return "execution_error"
@@ -155,7 +237,7 @@ def evidence_file(root: Path, path: Path, label: str) -> dict[str, str]:
     return {"label": label, "path": relative(root, path), "sha256": sha256(path)}
 
 
-def import_trial(root: Path, source: Path) -> Document:
+def import_trial(root: Path, source: Path) -> ImportedTrial:
     source = workspace_path(root, source)
     before = sha256(source)
     result = read_json(source)
@@ -236,45 +318,46 @@ def import_trial(root: Path, source: Path) -> Document:
     ):
         raise HarborError("trial evidence changed while being imported; retry collection")
     usage = obj(result.get("agent_result"))
-    return {
-        "schema_version": 1,
-        "id": identifier,
-        "job": job_dir.name,
-        "trial_name": trial_name,
-        "task_id": task_id,
-        "agent": machine_label(agent.get("name")) or machine_label(info.get("name")),
-        "model": machine_label(agent.get("model_name")),
-        "reasoning_effort": machine_label(obj(agent.get("kwargs")).get("reasoning_effort")),
-        "agent_version": machine_label(info.get("version")),
-        "backend": machine_label(obj(config.get("environment")).get("type")),
-        "harbor_version": machine_label(version),
-        "execution_mode": "harbor",
-        "classification": classification,
-        "reward": reward,
-        "started_at": result.get("started_at"),
-        "finished_at": result.get("finished_at"),
-        "timing": {
-            "total": seconds(result),
-            "setup": seconds(result.get("agent_setup")),
-            "agent": seconds(result.get("agent_execution")),
-            "verifier": seconds(result.get("verifier")),
-        },
-        "usage": {
-            key: number(usage.get(key))
-            for key in ("n_input_tokens", "n_cache_tokens", "n_output_tokens")
-        },
-        "cases": cases,
-        "exception_type": machine_label(obj(result.get("exception_info")).get("exception_type")),
-        "evidence": evidence,
-        "task_checksum": checksum(result.get("task_checksum")),
-        "task_sha256": None,
-        "checksum_kind": "harbor.task_checksum",
-        "warnings": warnings,
-        "source_result": source_relative,
-        "source_sha256": before,
-        "evidence_sha256": digest_json(evidence),
-        "qualifying_final_trial": False,
-    }
+    return ImportedTrial(
+        schema_version=1,
+        id=identifier,
+        job=job_dir.name,
+        trial_name=trial_name,
+        task_id=task_id,
+        agent=machine_label(agent.get("name")) or machine_label(info.get("name")),
+        model=machine_label(agent.get("model_name")),
+        reasoning_effort=machine_label(obj(agent.get("kwargs")).get("reasoning_effort")),
+        agent_version=machine_label(info.get("version")),
+        backend=machine_label(obj(config.get("environment")).get("type")),
+        harbor_version=machine_label(version),
+        execution_mode="harbor",
+        classification=classification,
+        reward=reward,
+        started_at=result.get("started_at"),
+        finished_at=result.get("finished_at"),
+        timing=TrialTiming(
+            total=seconds(result),
+            setup=seconds(result.get("agent_setup")),
+            agent=seconds(result.get("agent_execution")),
+            verifier=seconds(result.get("verifier")),
+        ),
+        usage=TokenUsage(
+            n_input_tokens=number(usage.get("n_input_tokens")),
+            n_cache_tokens=number(usage.get("n_cache_tokens")),
+            n_output_tokens=number(usage.get("n_output_tokens")),
+        ),
+        cases=[VerifierCase(**case) for case in cases],
+        exception_type=machine_label(obj(result.get("exception_info")).get("exception_type")),
+        evidence=[EvidenceFile(**item) for item in evidence],
+        task_checksum=checksum(result.get("task_checksum")),
+        task_sha256=None,
+        checksum_kind="harbor.task_checksum",
+        warnings=warnings,
+        source_result=source_relative,
+        source_sha256=before,
+        evidence_sha256=digest_json(evidence),
+        qualifying_final_trial=False,
+    )
 
 
 def evidence_matches(root: Path, evidence: Sequence[Mapping[str, Any]]) -> bool:

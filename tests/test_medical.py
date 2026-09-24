@@ -34,6 +34,22 @@ class MedicalTests(unittest.TestCase):
         w.new(self.root, "g", "study", "Study")
         (self.root / "proof.txt").write_text("review proof")
 
+    def test_validated_task_names_resolved_inputs(self):
+        validated = w.task_validate(self.root, "study")
+        self.assertEqual(validated.experiment["id"], "study")
+        self.assertEqual(validated.case["id"], "default")
+        self.assertEqual(
+            validated.directory, (self.root / "groups/g/experiments/study/task").resolve()
+        )
+        self.assertEqual(validated.file_hashes, w.task_files(validated.directory))
+
+    def test_projection_uses_loaded_records_without_mutating_them(self):
+        loaded = c.load(self.root)
+        with patch.object(c, "load", side_effect=AssertionError("Projection reloaded records")):
+            projected = c.project_records(loaded)
+        self.assertEqual(projected["study"]["current"]["assessment"], "not_assessed")
+        self.assertNotIn("current", loaded["study"])
+
     def test_explicit_record_locations_ignore_task_payload_and_reads_never_hash(self):
         task = self.root / "groups/g/experiments/study/task"
         (task / "misleading.json").write_text("{invalid payload")

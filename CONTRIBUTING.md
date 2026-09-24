@@ -75,5 +75,24 @@ alters component ownership or introduces a new maintained location.
 - Diagnostics may precede controls; claims require scoped assessment.
   [Submission](docs/submission.md) has separate ownership.
 
+## Coding style
+
+- Keep shared package operations in functions. Give values and results names when
+  their fields have different meanings; use a class when it owns state or a
+  resource lifetime.
+- Use Pydantic for new closed serialized contracts and normalized external
+  results, dataclasses for internal computed values, and the existing TypedDict
+  contracts for browser payloads. Keep extensible research records under their
+  current validators until a specific operation needs a narrower type.
+- Normalize untrusted input at its adapter. Pass typed values between services
+  and serialize once at the persistence or presentation boundary. Make file
+  access, hashing and publication explicit operations, not model side effects.
+- Share behavior when its callers should change together. Keep condition-specific
+  scientific code local to its experiment; promote a stable method within a group
+  when multiple experiments need the same assumptions.
+- Preserve standalone runners and frozen evidence when refactoring maintained
+  package code. Test unchanged classifications, identities and output formats
+  for each migrated boundary.
+
 [Governance](docs/governance.md) defines retention.
 [Reproduction](docs/reproduce.md) defines recovery, replay and export evidence.
