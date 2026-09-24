@@ -11,7 +11,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from . import core as c
-from . import dataset_previews, datasets, frontend, task_catalog
+from . import dataset_previews, datasets, explanation_stories, frontend, task_catalog
 from .presentation import markdown
 from .presentation_contracts import validate_payload
 from .types import Document, Pathish, Records
@@ -222,6 +222,7 @@ def _brief_projection(root: Path, source: Path) -> Document:
 def load(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
     root = Path(root).resolve()
     data = task_catalog.collection(root, catalog)
+    data["explanation_stories"] = explanation_stories.resolve_stories(root, data["entries"])
     experiment_count = task_catalog.classify(root, data)
     out = []
     ids = set()

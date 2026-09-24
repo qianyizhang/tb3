@@ -18,6 +18,8 @@ function preferredLocale(): Locale {
 }
 
 const zh: Record<string, string> = {
+  '3D is unavailable. The synthetic fixture poster and transcript remain available.':
+    '三维显示不可用，可查看合成教学模型静态图及英文讲解全文。',
   Action: '操作',
   Output: '输出',
   'Study output': '研究输出',

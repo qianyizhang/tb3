@@ -68,3 +68,10 @@ Read only **Active lessons** in
 [the feedback ledger](references/feedback-ledger.md). Add a History entry only
 for material reusable feedback, recording the invoked version. Routine success
 needs no entry.
+
+## Canonical task stories
+
+For explicitly bound task explainers, resolve the group-owned canonical script
+and follow [the shared explainer contract](../../presentation/EXPLAINERS.md).
+Do not author another copy of its words or timing in a local storyboard. Local
+exports and acceptance receipts remain derived products of that source.

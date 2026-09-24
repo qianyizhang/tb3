@@ -126,9 +126,10 @@ async function checkExplorer(browser, input, report) {
               throw Error(`${e.id}: ${error.message}; page errors: ${errors.join(' | ')}`);
             });
           assert.equal(await page.locator('.scene-canvas').count(), 1, `${e.id}: 3D scene`);
+          const storyPlan = data.explanation_stories?.[e.illustration.story_id];
           assert.equal(
             await page.locator('.scene-steps button').count(),
-            3,
+            storyPlan?.beats.length || 3,
             'One complete stage selector',
           );
           assert.equal(
@@ -148,18 +149,23 @@ async function checkExplorer(browser, input, report) {
             e.illustration.kind,
           );
           assert.equal(await page.locator('.scene-player').getAttribute('data-playing'), 'false');
-          for (const stage of [0, 1, 2]) {
+          for (const stage of Array.from({ length: storyPlan?.beats.length || 3 }, (_, i) => i)) {
             await page.locator(`[data-scene-step="${stage}"]`).click();
             assert.equal(
-              await page.locator('.scene-player').getAttribute('data-stage'),
-              String(stage),
+              await page
+                .locator('.scene-player')
+                .getAttribute(storyPlan ? 'data-beat' : 'data-stage'),
+              storyPlan ? storyPlan.beats[stage].id : String(stage),
             );
             assert.equal(
               await page.locator(`[data-scene-step="${stage}"]`).getAttribute('aria-pressed'),
               'true',
             );
           }
-          assert.equal(await page.locator('[data-scene-title]').innerText(), e.illustration.output);
+          assert.equal(
+            await page.locator('[data-scene-title]').innerText(),
+            storyPlan ? storyPlan.beats.at(-1).caption : e.illustration.output,
+          );
           if (e.illustration.labels?.length) {
             const names = await page.locator('.scene-label-space span').allTextContents();
             assert.deepEqual(

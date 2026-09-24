@@ -4,7 +4,41 @@ export type TaskTab = "overview" | "requirements" | "examples" | "sources";
 export type BrowseView = "capability" | "repository";
 export type ResearchLane = "tasks" | "supporting" | "all";
 export type BriefField = "goal" | "value" | "raw" | "helpers" | "output" | "challenge" | "spec" | "tools" | "score" | "reference" | "families" | "gap" | "case_note";
+export interface StoryBeat {
+  id: string;
+  duration: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  context: [number, number];
+  route: [number, number];
+  ribbon: [number, number];
+  cursor: [number, number];
+  unfold: [number, number];
+  output: [number, number];
+  startFrame: number;
+  endFrame: number;
+}
+export interface StoryPlan {
+  schema: 1;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  recipe: "route-unfold-v1";
+  asset_pack: "tb3-route-kit-v1";
+  fps: number;
+  reference_policy: "no-reference-assets";
+  source_class: "procedural-teaching";
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  scope: string;
+  beats: Array<StoryBeat>;
+}
 export interface Illustration {
+  story_id?: string;
   kind: string;
   input: string;
   output: string;
@@ -241,6 +275,7 @@ export interface Inventory {
   repositories?: Array<RepositoryInventory>;
 }
 export interface ExplorerData {
+  explanation_stories?: Record<string, StoryPlan>;
   schema_version: 1;
   title?: string;
   entries: Array<TaskEntry>;

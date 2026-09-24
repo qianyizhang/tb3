@@ -33,6 +33,20 @@ class FrontendTests(unittest.TestCase):
         with self.assertRaisesRegex(MedicalError, "stale"):
             frontend.assets(self.root, "explorer")
 
+    def test_story_and_fixture_changes_invalidate_build(self):
+        install_frontend(self.root)
+        story = self.root / "groups/test/presentation/stories/test.story.md"
+        story.parent.mkdir(parents=True)
+        story.write_text("canonical story")
+        with self.assertRaisesRegex(MedicalError, "stale"):
+            frontend.assets(self.root, "explorer")
+        install_frontend(self.root)
+        fixture = self.root / "presentation/assets/teaching-fixtures/test/route.json"
+        fixture.parent.mkdir(parents=True)
+        fixture.write_text('{"source": "changed"}')
+        with self.assertRaisesRegex(MedicalError, "stale"):
+            frontend.assets(self.root, "explorer")
+
     def test_modified_output_is_rejected(self):
         install_frontend(self.root)
         (self.root / frontend.BUILD_DIR / "overview.js").write_text("altered")

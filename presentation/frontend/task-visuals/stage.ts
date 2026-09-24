@@ -1,4 +1,9 @@
 import * as THREE from 'three';
+import type { StoryState } from './story-timeline';
+export interface NativeContent {
+  update(state: StoryState): Annotation[];
+  dispose(): void;
+}
 import type { Annotation, Face, Point, SceneModel, SceneView, Line } from './types';
 type SurfaceMesh = THREE.Mesh<
   THREE.BufferGeometry,
@@ -84,6 +89,8 @@ export const SceneStage = {
       geometry: THREE.BufferGeometry | null;
       material: THREE.Material | null;
     }[] = [];
+    let native: NativeContent | null = null;
+    const nativeModel: SceneModel = { primitives: [], labels: [] };
     let renderables: Renderables | null = null;
     let rebuilds = 0;
     let updates = 0;
@@ -472,6 +479,16 @@ export const SceneStage = {
     };
     canvas.addEventListener('webglcontextlost', contextLost);
     return {
+      installNative(factory: (parent: THREE.Group) => NativeContent) {
+        native?.dispose();
+        releaseModel();
+        native = factory(yaw);
+      },
+      drawNative(state: StoryState, view: SceneView) {
+        if (!native) throw new Error('Native content not installed');
+        nativeModel.labels = native.update(state);
+        return this.draw(nativeModel, view);
+      },
       draw(model: SceneModel, view: SceneView) {
         if (disposed || gl.isContextLost()) return false;
         if (width !== view.width || height !== view.height) {
@@ -501,10 +518,18 @@ export const SceneStage = {
         );
       },
       get stats() {
-        return { rebuilds, updates };
+        return {
+          rebuilds,
+          updates,
+          geometries: renderer.info.memory.geometries,
+          nativeRoots: native ? 1 : 0,
+        };
       },
       dispose() {
+        if (disposed) return;
         disposed = true;
+        native?.dispose();
+        native = null;
         canvas.removeEventListener('webglcontextlost', contextLost);
         releaseModel();
         for (const { image, map } of textures.values()) {

@@ -83,3 +83,10 @@ Check both languages, input-first/reference-reveal behavior, keyboard and mobile
 reading, and a copy of complete provenance. For a new visual, verify it against the
 source image and the task's actual output. The [Task Brief rules](task-explorer/RULEBOOK.md)
 own the detailed authoring contract; this page owns the presentation principles.
+
+## Scripted operation explanations
+
+An explicitly bound story may use authored chapters instead of three legacy
+stages. One canonical group script drives interactive copy and composed media.
+The synthetic route pilot stays next to the native task input and retains its
+operation-only scope. See [canonical explainers](EXPLAINERS.md).

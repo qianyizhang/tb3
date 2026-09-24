@@ -333,3 +333,163 @@
   height: 10px;
   border-inline: 2px solid currentColor;
 }
+
+.storyHeading {
+  padding: 20px 24px 14px;
+}
+.storyHeading span {
+  font-size: 14px;
+  color: var(--muted);
+}
+.storyHeading h3 {
+  font-size: 25px;
+  margin: 8px 0;
+}
+.storyHeading p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 100ch;
+}
+.scripted :global(.scene-walkthrough-heading) {
+  display: none;
+}
+.scripted :global(.scene-steps) {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.scripted :global(.scene-steps button) {
+  min-height: 42px;
+  padding: 10px 8px;
+}
+.scripted :global(.scene-steps strong),
+.scripted :global(.scene-current-step) {
+  text-transform: capitalize;
+}
+.scripted :global(.scene-step-copy) {
+  display: none;
+}
+.storyLayout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: start;
+  background: var(--stage-paper);
+}
+.storyOutput {
+  padding: 24px;
+  min-width: 0;
+  align-self: center;
+}
+.storyOutput > strong {
+  font-size: 18px;
+}
+.storyOutput p {
+  font-size: 14px;
+  margin: 8px 0 16px;
+}
+.sampledImage {
+  position: relative;
+  background: #e7e7df;
+  aspect-ratio: 768 / 184;
+  overflow: hidden;
+}
+.sampledImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.sampledImage i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #78bedc;
+}
+.sampledImage > span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #64756b;
+}
+.profile {
+  margin-top: 14px;
+  font-size: 14px;
+}
+.profile svg {
+  width: 100%;
+  height: 65px;
+  display: block;
+}
+.profile span,
+.storyOutput small {
+  font-size: 13px;
+  line-height: 1.4;
+}
+.equation {
+  font-family: ui-monospace, monospace;
+  color: #426c82;
+}
+.scripted :global(.scene-explanation) {
+  min-height: 58px;
+}
+.scripted :global(.scene-explanation strong) {
+  font-size: 20px;
+}
+@container task-visual (max-width: 600px) {
+  .storyLayout {
+    grid-template-columns: 1fr;
+  }
+  .scripted :global(.scene-steps) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .storyOutput {
+    padding: 16px;
+  }
+  .storyHeading {
+    padding: 16px;
+  }
+  .storyHeading h3 {
+    font-size: 21px;
+  }
+}
+:global([data-explainer-export-frame]) {
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  background: #faf9f5;
+}
+:global([data-explainer-export-frame]) .scripted {
+  height: 100%;
+}
+:global([data-explainer-export-frame]) :global(.scene-transport),
+:global([data-explainer-export-frame]) :global(.scene-notes),
+:global([data-explainer-export-frame]) :global(.scene-legend) {
+  display: none;
+}
+:global([data-explainer-export-frame]) :global(.scene-canvas) {
+  height: 425px;
+}
+:global([data-explainer-export-frame]) .storyOutput {
+  padding: 16px 44px;
+  height: 425px;
+  box-sizing: border-box;
+}
+:global([data-explainer-export-frame]) *,
+:global([data-explainer-export-frame]) *::before {
+  transition: none !important;
+  animation: none !important;
+}
+:global([data-explainer-export-frame]) .sampledImage {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+}
+:global([data-explainer-export-frame]) .profile {
+  margin-top: 8px;
+}
+:global([data-explainer-export-frame]) .profile svg {
+  height: 45px;
+}
+:global([data-explainer-export-frame]) .storyOutput p {
+  margin: 6px 0 10px;
+}

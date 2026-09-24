@@ -33,11 +33,13 @@ async function main() {
         });
         const url = pathToFileURL(input).href;
         await page.goto(url);
-        const entries = await page.evaluate(
-          () => JSON.parse(document.querySelector('#data').textContent).entries,
+        const data = await page.evaluate(() =>
+          JSON.parse(document.querySelector('#data').textContent),
         );
+        const entries = data.entries;
         const results = [];
         for (const entry of entries.filter((item) => item.illustration)) {
+          const plan = data.explanation_stories?.[entry.illustration.story_id];
           await page.evaluate((id) => {
             location.hash = `${id}/0/overview?view=repository`;
           }, entry.id);
@@ -60,10 +62,12 @@ async function main() {
             await page.waitForFunction(
               () => document.querySelector('.scene-player')?.dataset.texturesReady === 'true',
             );
-            for (const stage of [0, 1, 2]) {
+            for (const stage of Array.from({ length: plan?.beats.length || 3 }, (_, i) => i)) {
               if (stage) await page.locator(`[data-scene-step="${stage}"]`).click();
               const path = `images/${name}-${stage}.png`;
-              await page.locator('.scene-stage').screenshot({ path: join(output, path) });
+              await page
+                .locator(plan ? '.scene-player' : '.scene-stage')
+                .screenshot({ path: join(output, path) });
               images.push(path);
             }
           }
@@ -81,6 +85,7 @@ async function main() {
             sourceImage: /<img\b/.test(entry.visuals.input),
             missingMedia: entry.missing_media?.length || 0,
             images,
+            chapters: plan?.beats.map((beat) => beat.caption),
           });
         }
         await context.close();
@@ -102,7 +107,10 @@ async function main() {
       (row) =>
         `<article data-mode="${row.mode}"><h2>${esc(row.title)}</h2><p><code>${esc(row.id)}</code> · ${esc(row.kind)} · ${row.mode === '3d' ? 'spatial 3D' : '2D-first'}${row.sourceImage ? ' · source image' : ''}</p><div>${row.images
           .map((path, i) => {
-            const stage = row.mode === '3d' ? ['Input', 'Action', 'Output'][i] : 'Input and output';
+            const stage =
+              row.mode === '3d'
+                ? (row.chapters || ['Input', 'Action', 'Output'])[i]
+                : 'Input and output';
             return `<figure><img loading="lazy" src="${esc(path)}" alt="${esc(row.title)}: ${stage}"><figcaption>${stage}</figcaption></figure>`;
           })
           .join('')}</div></article>`,

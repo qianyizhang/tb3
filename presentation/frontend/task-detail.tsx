@@ -75,7 +75,14 @@ function TaskPicture({ model, state, dispatch }: DetailProps) {
             </span>
             <span>{t('Illustrative model · not case-specific')}</span>
           </figcaption>
-          <TaskScene entry={entry} />
+          <TaskScene
+            entry={entry}
+            plan={
+              entry.illustration.story_id
+                ? model.data.explanation_stories?.[entry.illustration.story_id]
+                : undefined
+            }
+          />
         </figure>
       ) : null}
       {!!entry.missing_media?.length && (

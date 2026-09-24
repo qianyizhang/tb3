@@ -132,3 +132,10 @@ that migration. Review the diff and run the relevant
 [contribution checks](../CONTRIBUTING.md#checks); stage only owned paths. The
 artifact gate reads the Git index, so an unstaged correction cannot repair a
 staged artifact failure.
+
+## Explanation pilot locations
+
+Canonical copy lives in `groups/<group>/presentation/stories/*.story.md`. Shared
+fixture owners live under `presentation/assets/teaching-fixtures/`, discovered by
+`presentation/assets/teaching-prefabs.json`. Generated HTML, video and acceptance
+receipts stay under `.local/explainers/`. See [canonical explainers](../presentation/EXPLAINERS.md).

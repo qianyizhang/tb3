@@ -104,3 +104,10 @@ Do not use personal browser profiles or stop unrelated browsers.
 Reports and screenshots go to `.local/presentation-qa/`, separate from the site.
 Override `PRESENTATION_OUTPUT` and `PRESENTATION_REPORTS` when needed. Ordinary
 `make check` does not launch a browser.
+
+## Canonical explanation source
+
+`--story=route-unfold-teaching-v1 --output=FRESH-DIR` exports the integrated
+synthetic operation pilot through the same browser and encoder infrastructure.
+It requires canonical timing and a fresh output directory. `--stills-only` is
+supported; legacy `--only` remains a tour selector. See [the explainer contract](../EXPLAINERS.md).

@@ -150,3 +150,10 @@ modules may mutate evidence on import and must not become inspection dependencie
 Update this map when entry points, storage boundaries or component ownership
 change. Update the layout guide when a canonical home changes, and use the
 [contribution checks](../CONTRIBUTING.md#checks) for the affected surface.
+
+## Canonical explanation projection
+
+`explanation_stories.py` parses group-owned story scripts, explicitly resolves
+shared teaching fixtures and projects Python-owned browser plans. The existing
+typed task-visual feature and Three.js stage render them; the existing media
+exporter accepts a story source. See [the explainer contract](../presentation/EXPLAINERS.md).

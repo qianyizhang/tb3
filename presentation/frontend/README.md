@@ -98,3 +98,9 @@ Follow the root macOS execution instructions for browser launches.
 `node scripts/task_visual_review.cjs PATH/TO/index.html OUTPUT_DIR` writes a local
 entry-to-renderer inventory and input/action/output screenshot sheet for every
 authored illustration. It does not publish the images or access remote assets.
+
+## Canonical explanation pilot
+
+The explicit `ours` story binding extends the existing typed feature with a native
+route prefab and absolute-frame evaluation. See [the explainer contract](../EXPLAINERS.md)
+for ownership, dependency checks, composed export and the review boundary.

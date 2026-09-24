@@ -102,7 +102,9 @@ class PresentationRefinementTests(unittest.TestCase):
             self.root / "presentation/task-explorer",
             dirs_exist_ok=True,
         )
-        shutil.copytree(repo / "presentation/assets", self.root / "presentation/assets")
+        shutil.copytree(
+            repo / "presentation/assets", self.root / "presentation/assets", dirs_exist_ok=True
+        )
         install_frontend(self.root)
         c.atomic_write(self.root / task_briefs.DEFAULT_CATALOG, {"entries": []})
         task_briefs.new(self.root, "example", "Example", "Research", "Imaging", "briefs/example.md")

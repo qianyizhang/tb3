@@ -15,6 +15,8 @@ BUILD_INPUTS = (
     "tsconfig.json",
     "scripts/build_frontend.mjs",
     "src/tb3_medical/presentation_contracts.py",
+    "src/tb3_medical/explanation_stories.py",
+    "presentation/assets/teaching-prefabs.json",
     "presentation/task-explorer/assets/Apache-2.0.txt",
 )
 
@@ -30,6 +32,12 @@ def input_hashes(root: Path) -> dict[str, str]:
     paths.extend(
         path for path in (root / "presentation/task-explorer/anatomy").glob("*") if path.is_file()
     )
+    paths.extend(
+        path
+        for path in (root / "presentation/assets/teaching-fixtures").rglob("*")
+        if path.is_file()
+    )
+    paths.extend(root.glob("groups/*/presentation/stories/*.story.md"))
     return {
         path.relative_to(root).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
         for path in sorted(paths)
@@ -38,7 +46,7 @@ def input_hashes(root: Path) -> dict[str, str]:
 
 def assets(root: Path, entry: str) -> tuple[str, str]:
     """Return JS/CSS only when source inputs and compiled output match the receipt."""
-    if entry not in {"explorer", "overview"}:
+    if entry not in {"explorer", "overview", "explainer-export"}:
         raise MedicalError("Unknown frontend entry: " + entry)
     folder = root / BUILD_DIR
     try:

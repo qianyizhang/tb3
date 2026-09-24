@@ -45,7 +45,43 @@ BriefField = Literal[
 ]
 
 
+class StoryBeat(TypedDict):
+    id: str
+    duration: float
+    caption: str
+    narration: str
+    visual: str
+    context: tuple[float, float]
+    route: tuple[float, float]
+    ribbon: tuple[float, float]
+    cursor: tuple[float, float]
+    unfold: tuple[float, float]
+    output: tuple[float, float]
+    startFrame: int
+    endFrame: int
+
+
+class StoryPlan(TypedDict):
+    schema: Literal[1]
+    id: str
+    title: str
+    locale: Literal["en"]
+    purpose: str
+    recipe: Literal["route-unfold-v1"]
+    asset_pack: Literal["tb3-route-kit-v1"]
+    fps: int
+    reference_policy: Literal["no-reference-assets"]
+    source_class: Literal["procedural-teaching"]
+    durationFrames: int
+    source_sha256: str
+    asset_manifest_sha256: str
+    dependencies: dict[str, str]
+    scope: str
+    beats: list[StoryBeat]
+
+
 class Illustration(TypedDict):
+    story_id: NotRequired[str]
     kind: str
     input: str
     output: str
@@ -306,6 +342,7 @@ class Inventory(TypedDict, total=False):
 
 
 class ExplorerData(TypedDict):
+    explanation_stories: NotRequired[dict[str, StoryPlan]]
     schema_version: Literal[1]
     title: NotRequired[str]
     entries: list[TaskEntry]

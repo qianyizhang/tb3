@@ -4,6 +4,7 @@ import { readdir, readFile, mkdir, writeFile, rename, rm } from 'node:fs/promise
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { build } from 'vite';
+import { execFileSync } from 'node:child_process';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, '.local/frontend');
@@ -32,6 +33,12 @@ async function inputHashes() {
       /\.(tsx?|css|js)$/.test(name),
     ),
     ...(await files('presentation/task-explorer/anatomy')),
+    'src/tb3_medical/explanation_stories.py',
+    'presentation/assets/teaching-prefabs.json',
+    ...(await files('presentation/assets/teaching-fixtures')),
+    ...(await files('groups')).filter((name) =>
+      /^groups\/[^/]+\/presentation\/stories\/[^/]+\.story\.md$/.test(name),
+    ),
   ].sort();
   return Object.fromEntries(
     await Promise.all(
@@ -41,8 +48,16 @@ async function inputHashes() {
 }
 await mkdir(pending, { recursive: true });
 try {
+  execFileSync(
+    path.join(root, '.venv/bin/python'),
+    [
+      '-c',
+      'from pathlib import Path; from tb3_medical.explanation_stories import compile_story; r=Path.cwd(); [compile_story(r,p) for p in r.glob("groups/*/presentation/stories/*.story.md")]',
+    ],
+    { cwd: root, stdio: 'inherit' },
+  );
   const inputs = await inputHashes();
-  for (const entry of ['explorer', 'overview']) {
+  for (const entry of ['explorer', 'overview', 'explainer-export']) {
     await build({
       configFile: false,
       root,
@@ -55,7 +70,7 @@ try {
         cssCodeSplit: false,
         lib: {
           entry: path.join(root, `presentation/frontend/${entry}.tsx`),
-          name: `TB3${entry}`,
+          name: `TB3${entry.replaceAll('-', '')}`,
           formats: ['iife'],
           fileName: () => entry + '.js',
           cssFileName: entry,

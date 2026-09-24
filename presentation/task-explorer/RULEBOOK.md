@@ -274,3 +274,11 @@ Set `PLAYWRIGHT_MODULE` to the module path when it is outside the normal Node
 lookup path. `TASK_EXPLORER_SCREENSHOTS` optionally selects a local screenshot
 directory. The check covers every imported source link and assistance condition,
 case differences, legacy routes, reference reveals, search and narrow layouts.
+
+## Explicit scripted pilot
+
+`Illustration.story_id` opts a reviewed entry into a resolved canonical story.
+Missing bindings fail the build. The `ours` route-resampling pilot preserves the
+full brief, native input, helpers and separate post-run reveal. Its synthetic
+operation scope and English-source boundary stay visible. Authoring and export
+share [the explainer contract](../EXPLAINERS.md).
