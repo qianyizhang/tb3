@@ -12,6 +12,9 @@ export interface Illustration {
   subject?: string;
   target?: string;
   scene_variant?: string;
+  mask_mode?: string;
+  input_form?: string;
+  initial_candidate?: boolean;
   labels?: Array<string>;
 }
 export interface Study {

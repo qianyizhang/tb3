@@ -65,16 +65,19 @@ payloads rather than rendering a misleading partial view.
   views. Authored rich HTML is rendered through a small trusted-content boundary.
 - `overview.tsx` and `overview-data.ts` own evidence browsing, URL filters and the
   displayed shared vocabulary. They do not derive scientific verdicts.
-- Shared visual foundations stay in `../ui.css`. New component-specific styles
-  use CSS Modules. Scene rendering is imported through the `TaskScenes` ES module:
-  Three.js draws directly into the visible WebGL stage for spatial tasks; HTML
-  labels and leader lines remain readable outside the model silhouette. Image,
-  report and records tasks use 2D teaching art. SVG also supplies the fallback
-  when WebGL is unavailable or lost, with effect cleanup on task/view replacement.
-  SVG scan textures are rasterized locally before WebGL upload. Animated stages
-  update compatible geometry buffers in place and render only while visible.
-  Vite bundles teaching art,
-  anatomy and notices into the Explorer through direct module imports.
+- Shared visual foundations stay in `../ui.css`; component styles use CSS Modules.
+- `task-visuals/TaskVisual.tsx` owns the React stage selector, controls, legend,
+  disclosures and SVG fallback. `use-scene-player.ts` owns one animation clock
+  and cleans up observers and GPU resources. React updates on stage/play changes,
+  not on every frame; the renderer touches only the canvas and projected labels.
+- `task-visuals/recipes.ts` owns task choreography and legends. `geometry.ts` owns
+  shared geometry construction; `anatomy.ts` adapts retained source meshes without
+  changing them. `mode.ts` explicitly chooses spatial or 2D-first presentation.
+- `task-visuals/stage.ts` is the single typed Three.js renderer. It updates existing
+  GPU buffers when topology matches, draws only on demand, and rasterizes SVG
+  image planes locally. Plain Three.js retains the verified offline rendering
+  boundary; React Three Fiber would not simplify these existing mesh recipes.
+  There is no HTML-string player, duplicate Canvas renderer or global scene API.
 - [Reusable teaching assets](../assets/README.md) own task illustrations and
   plain-language action recipes. Source-derived anatomy keeps its original
   provenance, hashes and notices.

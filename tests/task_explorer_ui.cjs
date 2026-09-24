@@ -126,6 +126,22 @@ async function checkExplorer(browser, input, report) {
               throw Error(`${e.id}: ${error.message}; page errors: ${errors.join(' | ')}`);
             });
           assert.equal(await page.locator('.scene-canvas').count(), 1, `${e.id}: 3D scene`);
+          assert.equal(
+            await page.locator('.scene-steps button').count(),
+            3,
+            'One complete stage selector',
+          );
+          assert.equal(
+            await page.locator('.scene-storyboard svg').count(),
+            0,
+            'The spatial stage is not duplicated as SVG thumbnails',
+          );
+          assert.equal(
+            await page.locator('.scene-notes').getAttribute('open'),
+            null,
+            'Derivation is available on demand',
+          );
+
           assert.equal(await page.locator('.scene-fallback svg').count(), 0);
           assert.equal(
             await page.locator('.scene-player').getAttribute('data-scene'),
@@ -800,6 +816,21 @@ async function checkExplorer(browser, input, report) {
           fullPage: true,
         });
     }
+    // The React player shares the app language; authored recipe text remains marked.
+    await page.goto(pathToFileURL(file).href + '?lang=zh-CN#tb3-label-audit/0/overview');
+    await page.locator('.scene-player[data-rendered="true"]').waitFor();
+    assert.equal(await page.locator('html').getAttribute('lang'), 'zh-CN');
+    assert.deepEqual(await page.locator('.scene-steps strong').allTextContents(), [
+      '输入',
+      '操作',
+      '输出',
+    ]);
+    assert.equal(await page.locator('.scene-play').getAttribute('aria-label'), '播放动画');
+    assert.ok((await page.locator('.scene-language-note').innerText()).includes('英文原文'));
+    assert.equal(
+      await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
+      false,
+    );
     assert.deepEqual(errors, []);
     assert.deepEqual(requests, []);
     const result = {
@@ -835,6 +866,7 @@ async function checkExplorer(browser, input, report) {
       supportingResearch: 'pass',
       internalExperiments: internalExperiments.size,
       mobile: 'pass',
+      chinesePlayer: 'pass',
       pageErrors: errors,
       remoteRequests: requests,
     };

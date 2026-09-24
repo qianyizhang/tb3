@@ -53,6 +53,9 @@ class Illustration(TypedDict):
     subject: NotRequired[str]
     target: NotRequired[str]
     scene_variant: NotRequired[str]
+    mask_mode: NotRequired[str]
+    input_form: NotRequired[str]
+    initial_candidate: NotRequired[bool]
     labels: NotRequired[list[str]]
 
 

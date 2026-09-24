@@ -85,6 +85,34 @@ async function main() {
       `${kind}: dashed geometry`,
     );
   }
+  // Rounded vessel caps must shade from the same side as their face winding.
+  // A mismatch reverses the lighting even though every vertex is finite.
+  for (const face of output('route_unfold').primitives.filter(
+    (p) => p.type === 'face' && p.surface,
+  )) {
+    const [a, b, c] = face.points;
+    const u = b.map((v, i) => v - a[i]),
+      v = c.map((v, i) => v - a[i]);
+    const normal = [
+      u[1] * v[2] - u[2] * v[1],
+      u[2] * v[0] - u[0] * v[2],
+      u[0] * v[1] - u[1] * v[0],
+    ];
+    assert.ok(
+      normal.reduce((sum, value, i) => sum + value * face.normals[0][i], 0) >= -1e-12,
+      'Vessel winding and shading normals agree',
+    );
+  }
+  const cavity = output('cardiac_material');
+  const cavityVertices = cavity.primitives
+    .filter((p) => p.type === 'face' && p.surface)
+    .flatMap((p) => p.points);
+  for (const marker of cavity.primitives.filter((p) => p.type === 'dot')) {
+    assert.ok(
+      cavityVertices.some((p) => Math.hypot(...p.map((v, i) => v - marker.points[0][i])) < 0.055),
+      'Material marker stays on the schematic cavity surface',
+    );
+  }
   console.log(
     'task scene geometry: dimensionality, mask classes, motion semantics and reference styles pass',
   );
@@ -227,17 +255,7 @@ async function main() {
   for (const e of illustrated) {
     kinds.add(e.illustration.kind);
     assert.ok(models.supports(e.illustration.kind), e.id + ': supported illustration kind');
-    const figure = context.scenes.figure(e);
-    assert.match(
-      figure,
-      /class="scene-storyboard"|class="scene-static"/,
-      e.id + ': imported renderer builds an explanation',
-    );
-    assert.equal(
-      (figure.match(/<svg /g) || []).length,
-      2,
-      e.id + ': input and output remain visible',
-    );
+    assert.ok(['3d', 'static'].includes(context.mode(e)), e.id + ': explicit rendering mode');
     const story = context.teachingStory.describe(e);
     assert.ok(story.action && story.cue && story.form, e.id + ': concrete teaching recipe');
     assert.equal(story.stages.length, 3);
@@ -249,20 +267,8 @@ async function main() {
     }
   }
   assert.deepEqual([...kinds].sort(), [...context.teachingStory.kinds].sort());
-  assert.equal(
-    context.scenes.mode(entry('segment', { subject: 'abdomen', target: 'colon' })),
-    'static',
-  );
-  assert.equal(
-    context.scenes.mode(entry('segment', { subject: 'abdomen', target: 'spleen' })),
-    '3d',
-  );
-  const zhPilot = context.scenes.figure(
-    illustrated.find((item) => item.illustration.kind === 'anatomy_audit'),
-    'zh-CN',
-  );
-  assert.match(zhPilot, /示意图细节保留英文原文/);
-  assert.match(zhPilot, /播放动画/);
+  assert.equal(context.mode(entry('segment', { subject: 'abdomen', target: 'colon' })), 'static');
+  assert.equal(context.mode(entry('segment', { subject: 'abdomen', target: 'spleen' })), '3d');
   const auditWork = models.build(entry('anatomy_audit', { subject: 'abdomen' }), 1, 0, 0.45);
   assert.ok(auditWork.labels.some((label) => label.text === 'Selected supplied label'));
   const routeWork = models.build(entry('route_unfold', { subject: 'vessels' }), 1, 0, 0.45);

@@ -7,6 +7,9 @@ studies are useful. Submission difficulty gates apply only when promoting a task
 Do not launch trials, install runtimes or publish as a side effect of maintenance.
 Do not pursue security research or resume the archived security work.
 
+Use [architecture](docs/architecture.md) for component boundaries and the
+[repository layout](docs/repository-layout.md) when choosing where new files belong.
+
 ## Ownership and daily work
 
 - Inspect Git status and active task ownership first. Preserve concurrent probe,

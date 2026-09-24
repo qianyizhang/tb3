@@ -1,8 +1,10 @@
 import styles from './task-detail.module.css';
 import { Fragment, useState } from 'react';
-import { Box, Field, Markup, SourceLink, TaskScene, taskSceneMode } from './content';
+import { Box, Field, Markup, SourceLink, TaskScene } from './content';
 import { copyText, useLocale, wsiBoundary } from './locale';
 import { edition, hasExample, type ExplorerModel } from './model';
+import { taskSceneMode } from './task-visuals/mode';
+import type { VisualEntry } from './task-visuals/types';
 import type { Dispatch, ExplorerState } from './state';
 import type { TaskEntry, TaskTab, VisualRole } from './types';
 interface DetailProps {
@@ -66,7 +68,7 @@ function TaskPicture({ model, state, dispatch }: DetailProps) {
           <figcaption>
             <span className="drawing-label">
               {t(
-                taskSceneMode(entry) === '3d'
+                taskSceneMode(entry as VisualEntry) === '3d'
                   ? 'Interactive task illustration'
                   : 'Task illustration',
               )}

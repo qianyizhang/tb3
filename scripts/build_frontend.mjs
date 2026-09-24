@@ -31,9 +31,6 @@ async function inputHashes() {
     ...(await files('presentation/assets/teaching')).filter((name) =>
       /\.(tsx?|css|js)$/.test(name),
     ),
-    ...(await readdir(path.join(root, 'presentation/task-explorer')))
-      .filter((name) => /^scene.*\.(js|d\.ts)$/.test(name))
-      .map((name) => 'presentation/task-explorer/' + name),
     ...(await files('presentation/task-explorer/anatomy')),
   ].sort();
   return Object.fromEntries(

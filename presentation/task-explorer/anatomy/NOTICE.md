@@ -38,7 +38,7 @@ size and position within the same source case. Individually displayed organs are
 fitted separately; cross-card size is not a physical comparison. Camera rotation
 does not redefine anatomical sides.
 
-For explanatory display, scene-anatomy.js applies one Loop subdivision step to
+For explanatory display, presentation/frontend/task-visuals/anatomy.ts applies one Loop subdivision step to
 the retained triangulated surfaces before fitting the assembly. This rounds the
 coarse silhouettes and can slightly shrink or smooth local features. It is a
 runtime display treatment, not recovered anatomical detail: retained JSON meshes,
@@ -47,7 +47,7 @@ source masks and manifest hashes stay unchanged. Do not measure these displays.
 ## Authored models
 
 Brain hemispheres, cortical folds, cerebellum, brainstem and dental crowns/roots
-are procedural schematics in scene-anatomy.js. They are not extracted anatomy.
+are procedural schematics in presentation/frontend/task-visuals/anatomy.ts. They are not extracted anatomy.
 They carry no measured surface detail or tooth identity claim. Their features
 exist to make the subject recognizable.
 

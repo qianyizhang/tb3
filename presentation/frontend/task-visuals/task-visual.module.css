@@ -1,0 +1,335 @@
+/* One owned visual surface: compact task sequence, specimen, then provenance. */
+.player,
+.staticVisual {
+  container-type: inline-size;
+  container-name: task-visual;
+  --stage-paper: #f7f6f1;
+  --stage-line: #dedfd6;
+  color: var(--ink);
+  background: var(--surface);
+}
+.player :global(.scene-walkthrough-heading),
+.staticVisual :global(.scene-static-heading) {
+  padding: 22px 24px 18px;
+}
+.player :global(.scene-walkthrough-heading strong),
+.staticVisual :global(.scene-static-heading strong) {
+  display: block;
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+.player :global(.scene-walkthrough-heading p),
+.staticVisual :global(.scene-static-heading p) {
+  max-width: 64ch;
+  margin: 8px 0 0;
+  font-size: var(--text-secondary);
+  line-height: 1.6;
+  color: var(--muted);
+}
+.player :global(.scene-steps) {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-block: 1px solid var(--stage-line);
+}
+.player :global(.scene-steps button) {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  min-width: 0;
+  min-height: 86px;
+  padding: 14px 16px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: #fafbf8;
+  color: var(--muted);
+  text-align: left;
+  line-height: 1.4;
+}
+.player :global(.scene-steps button + button) {
+  border-left: 1px solid var(--stage-line);
+}
+.player :global(.scene-steps button:hover) {
+  background: var(--wash);
+}
+.player :global(.scene-steps button[aria-pressed='true']) {
+  background: #edf3ec;
+  border-bottom-color: var(--accent);
+  color: var(--ink);
+}
+.player :global(.scene-steps strong) {
+  display: block;
+  margin-bottom: 4px;
+  font-size: var(--text-secondary);
+  font-weight: 650;
+}
+.player :global(.scene-step-index) {
+  margin-top: 1px;
+  font:
+    var(--text-label)/1.4 ui-monospace,
+    monospace;
+  color: var(--accent);
+  opacity: 0.75;
+}
+.player :global(.scene-step-copy) {
+  display: block;
+  font-size: var(--text-label);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.player :global(.scene-stage) {
+  position: relative;
+  isolation: isolate;
+  background: radial-gradient(ellipse at 45% 35%, #fdfcf8, var(--stage-paper) 74%);
+}
+.player :global(.scene-canvas) {
+  display: block;
+  width: 100%;
+  height: clamp(360px, 32vw, 460px);
+  cursor: grab;
+  touch-action: pan-y;
+  outline-offset: -4px;
+}
+.player :global(.scene-canvas.dragging) {
+  cursor: grabbing;
+}
+.player :global(.scene-corner) {
+  position: absolute;
+  top: 17px;
+  left: 22px;
+  color: var(--muted);
+  font-size: var(--text-label);
+  pointer-events: none;
+}
+.player :global(.scene-annotations),
+.player :global(.scene-leaders) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.player :global(.scene-leaders path) {
+  fill: none;
+  stroke-width: 1;
+  opacity: 0.65;
+}
+.player :global(.scene-annotation) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 172px;
+  padding: 4px 7px;
+  border-radius: 3px;
+  background: #fffef9ed;
+  font:
+    500 var(--text-label)/1.4 system-ui,
+    sans-serif;
+  overflow-wrap: break-word;
+}
+.player :global(.scene-transport) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-block: 1px solid var(--stage-line);
+  background: #fbfaf7;
+}
+.player :global(.scene-transport button) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--ink);
+  background: transparent;
+  font-size: var(--text-secondary);
+}
+.player :global(.scene-transport .scene-play) {
+  min-width: 88px;
+  background: var(--accent);
+  color: white;
+}
+.player :global(.scene-transport button:hover) {
+  border-color: var(--accent);
+}
+.player :global(.scene-gesture) {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: var(--text-label);
+}
+.player :global(.scene-explanation) {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 17px 24px 10px;
+  font-size: var(--text-secondary);
+  line-height: 1.5;
+}
+.player :global(.scene-current-step) {
+  color: var(--muted);
+  flex: none;
+}
+.player :global(.scene-explanation strong) {
+  font-weight: 550;
+}
+.player :global(.scene-legend) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 18px;
+  padding: 3px 24px 18px;
+  font-size: var(--text-label);
+  line-height: 1.5;
+  color: var(--muted);
+}
+.player :global(.scene-legend > span) {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.player :global(.scene-legend i) {
+  width: 15px;
+  border-top: 3px solid var(--key);
+}
+.player :global(.scene-fallback) {
+  padding: 20px;
+}
+.player :global(.scene-fallback > p) {
+  font-size: var(--text-secondary);
+  color: var(--muted);
+}
+.player :global(.scene-notes),
+.staticVisual :global(.scene-notes) {
+  border-top: 1px solid var(--stage-line);
+  padding: 0 24px;
+  font-size: var(--text-secondary);
+  line-height: 1.6;
+}
+.player :global(.scene-notes > summary),
+.staticVisual :global(.scene-notes > summary) {
+  padding: 13px 0;
+}
+.player :global(.scene-notes[open]),
+.staticVisual :global(.scene-notes[open]) {
+  padding-bottom: 18px;
+}
+.player :global(.scene-label-space > div),
+.staticVisual :global(.scene-label-space > div) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.player :global(.scene-label-space span),
+.staticVisual :global(.scene-label-space span) {
+  padding: 3px 7px;
+  background: var(--wash);
+  border-radius: 4px;
+}
+.player :global(.scene-asset-notice pre),
+.staticVisual :global(.scene-asset-notice pre) {
+  max-height: 280px;
+  overflow: auto;
+  white-space: pre-wrap;
+  font:
+    var(--text-label)/1.6 ui-monospace,
+    monospace;
+}
+.player :global(.scene-language-note),
+.staticVisual :global(.scene-language-note) {
+  margin: 0;
+  padding: 8px 24px;
+  color: var(--muted);
+  background: var(--paper);
+  font-size: var(--text-label);
+}
+.staticVisual :global(.picture-pair) {
+  padding: 0 24px 24px;
+  gap: 16px;
+}
+.staticVisual :global(.picture-pair h4) {
+  margin-bottom: 10px;
+}
+.staticVisual :global(.picture-pair svg) {
+  background: #f3f6f3;
+}
+.staticVisual :global(.picture-pair p) {
+  font-size: var(--text-secondary);
+  line-height: 1.5;
+}
+@container task-visual (max-width: 520px) {
+  .player :global(.scene-walkthrough-heading),
+  .staticVisual :global(.scene-static-heading) {
+    padding: 18px 16px 16px;
+  }
+  .player :global(.scene-walkthrough-heading strong),
+  .staticVisual :global(.scene-static-heading strong) {
+    font-size: 18px;
+  }
+  .player :global(.scene-steps button) {
+    display: block;
+    padding: 10px 9px;
+    min-height: 60px;
+  }
+  .player :global(.scene-step-index) {
+    display: none;
+  }
+  .player :global(.scene-step-copy) {
+    display: none;
+  }
+  .player :global(.scene-steps strong) {
+    margin: 0;
+  }
+  .player :global(.scene-canvas) {
+    height: 310px;
+  }
+  .player :global(.scene-corner) {
+    left: 14px;
+    top: 12px;
+  }
+  .player :global(.scene-annotation) {
+    max-width: 105px;
+    padding: 3px 4px;
+  }
+  .player :global(.scene-transport) {
+    padding: 9px 12px;
+    gap: 4px;
+  }
+  .player :global(.scene-gesture) {
+    max-width: 115px;
+    text-align: right;
+  }
+  .player :global(.scene-explanation) {
+    display: block;
+    padding: 14px 16px 9px;
+  }
+  .player :global(.scene-current-step) {
+    margin-right: 8px;
+  }
+  .player :global(.scene-legend) {
+    padding: 0 16px 16px;
+  }
+  .player :global(.scene-notes),
+  .staticVisual :global(.scene-notes) {
+    padding-inline: 16px;
+  }
+  .staticVisual :global(.picture-pair) {
+    padding: 0 16px 20px;
+  }
+}
+
+.playIcon {
+  width: 0;
+  height: 0;
+  border-block: 5px solid transparent;
+  border-left: 7px solid currentColor;
+}
+.pauseIcon {
+  width: 8px;
+  height: 10px;
+  border-inline: 2px solid currentColor;
+}

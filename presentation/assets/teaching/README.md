@@ -7,8 +7,8 @@ what comes out** before asking someone to interpret a moving 3D scene.
 | --- | --- |
 | [task-art.js](task-art.js) | `TaskTeachingArt.render(entry, output)` returns a self-contained accessible SVG; `scan(subject)` supplies reusable image-plane texture for the 3D renderer. Shared scan, anatomy, signal, document, table and field primitives support every authored illustration kind. |
 | [task-story.js](task-story.js) | `TaskTeachingStory.describe(entry)` returns a concrete action, a reading cue, the output form and stage names. `kinds` lists supported recipes. |
-| [scenes.js](../../task-explorer/scenes.js) | The named `TaskScenes` module chooses a spatial 3D scene or a 2D-first explanation and owns stage controls and playback. |
-| [scene-explanation.css](../../task-explorer/scene-explanation.css) | Responsive storyboard and scene explanation layout. |
+| [TaskVisual.tsx](../../frontend/task-visuals/TaskVisual.tsx) | React-owned stage controls, concise task sequence, 2D explanation and static fallback. |
+| [task-visual.module.css](../../frontend/task-visuals/task-visual.module.css) | Scoped, container-responsive scene layout. |
 
 ```js
 import { TaskTeachingArt } from './task-art.js';
@@ -31,7 +31,7 @@ const { action, cue, form } = TaskTeachingStory.describe(example);
 ```
 
 These are ordinary ES modules with named exports. The browser build follows
-normal imports from `scenes.js`, bundling teaching diagrams, source anatomy JSON
+normal imports from `TaskVisual.tsx`, bundling teaching diagrams, source anatomy JSON
 and license notices into the portable output. There is no script-order contract,
 global renderer bridge or compatibility wrapper. The modules require no runtime
 fetches, fonts, graphics packages or dataset access. The SVG library escapes
@@ -48,10 +48,11 @@ caller-supplied text and can render outside the Task Explorer.
    output marks. Prefer named targets to a generic blob. Existing source-derived
    3D anatomy is reusable through `AnatomyAssets`, with its original provenance.
 3. A new deliverable needs an explicit SVG recipe and story recipe. Spatial
-   tasks also need a 3D recipe in [scene-models.js](../../task-explorer/scene-models.js);
-   2D-first tasks should be routed through `TaskScenes.mode`. Use plain action
+   tasks also need a 3D recipe in [recipes.ts](../../frontend/task-visuals/recipes.ts);
+   2D-first tasks should be routed through `taskSceneMode` in `mode.ts`. Use plain action
    verbs and a cue that tells readers what to look for.
-4. Show both input and illustrative output at rest. Animate only the actual
+4. Keep the input/action/output sequence readable at rest. Spatial tasks use one
+   compact stage selector; 2D tasks show paired input/output diagrams. Animate only the actual
    operation: region labeling, correspondence, phase change or reconstruction.
    Retain a legible reduced-motion state and the static fallback.
 5. Keep output diagrams labeled illustrative. Never choose an arbitrary

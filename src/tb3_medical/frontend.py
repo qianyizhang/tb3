@@ -27,8 +27,6 @@ def input_hashes(root: Path) -> dict[str, str]:
         for path in (root / folder).rglob("*")
         if path.is_file() and path.suffix in {".ts", ".tsx", ".css", ".js"}
     )
-    paths.extend((root / "presentation/task-explorer").glob("scene*.js"))
-    paths.extend((root / "presentation/task-explorer").glob("scene*.d.ts"))
     paths.extend(
         path for path in (root / "presentation/task-explorer/anatomy").glob("*") if path.is_file()
     )

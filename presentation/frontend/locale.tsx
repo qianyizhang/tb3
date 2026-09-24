@@ -18,6 +18,28 @@ function preferredLocale(): Locale {
 }
 
 const zh: Record<string, string> = {
+  Action: '操作',
+  Output: '输出',
+  'Study output': '研究输出',
+  'Expected output': '预期输出',
+  'Illustration stage': '示意阶段',
+  Play: '播放',
+  Pause: '暂停',
+  Replay: '重播',
+  Reset: '重置',
+  'Play animation': '播放动画',
+  'Pause animation': '暂停动画',
+  'Replay illustration': '重播示意',
+  'Reset illustration view': '重置视角',
+  'Drag to explore in 3D': '拖动查看三维结构',
+  'Drag or use arrow keys to rotate. Space to play or pause.':
+    '拖动或使用方向键旋转。空格键播放或暂停。',
+  'About this illustration': '示意说明与来源',
+  'Possible class labels': '可用类别标签',
+  'About the anatomy models': '关于解剖模型',
+  'Derivation and licenses': '来源与许可',
+  '3D is unavailable. The task diagram is shown below.': '三维显示不可用，下方为任务示意图。',
+
   'Research workbench': '研究工作台',
   'Primary navigation': '主导航',
   Overview: '总览',
@@ -169,7 +191,6 @@ const zh: Record<string, string> = {
   'Recover the pinned snapshot; this is not an empty scan.': '需恢复固定快照；这不表示空白扫描。',
   'Repeated views and conditions may reuse that sample.': '不同视图和条件可能复用同一样本。',
   'Research owner:': '研究归属：',
-  Reset: '重置',
   'Search datasets': '搜索数据集',
   'Selections can overlap. These are documented source selections, not a count of independent patients or successful trials.':
     '所选样本可能重叠；这里记录的是来源选样，不代表独立患者数或成功试验数。',

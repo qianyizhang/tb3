@@ -46,6 +46,18 @@ class PresentationContractTests(unittest.TestCase):
         with self.assertRaisesRegex(MedicalError, r"visuals.answer"):
             contracts.validate_payload(data, "explorer")
 
+    def test_illustration_controls_reject_untyped_extensions(self):
+        data = copy.deepcopy(self.explorer)
+        entry = next(entry for entry in data["entries"] if entry.get("illustration"))
+        for key, invalid in (("initial_candidate", "false"), ("mask_mode", []), ("input_form", 3)):
+            with self.subTest(field=key):
+                illustration = entry["illustration"]
+                original = copy.deepcopy(illustration)
+                illustration[key] = invalid
+                with self.assertRaisesRegex(MedicalError, rf"illustration.{key}"):
+                    contracts.validate_payload(data, "explorer")
+                entry["illustration"] = original
+
 
 if __name__ == "__main__":
     unittest.main()

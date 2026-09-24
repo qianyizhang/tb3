@@ -46,7 +46,9 @@ meaning of a reference overlay stays beside that reveal.
   after an explicit reveal.
 - Task Explorer spatial teaching scenes use the Sculpted Atlas direction: warm
   neutral surroundings, matte anatomy, quiet context and one task-relevant
-  focus. They open on a useful still; input, action and output remain manually
+  focus. Use a single compact Input / Action / Output selector above the specimen,
+  with playback below it; omit duplicate thumbnail storyboards. Put detailed
+  drawing caveats and anatomy provenance in one disclosure. They open on a useful still; input, action and output remain manually
   selectable, and motion starts on request. Image interpretation, microscopy,
   reports and records use a 2D explanation. Source input stays above either
   explanation in the normal reading path; reference images keep their explicit

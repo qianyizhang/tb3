@@ -1,10 +1,33 @@
 import * as THREE from 'three';
-import { TaskTeachingArt } from '../assets/teaching/task-art.js';
+import type { Annotation, Face, Point, SceneModel, SceneView, Line } from './types';
+type SurfaceMesh = THREE.Mesh<
+  THREE.BufferGeometry,
+  THREE.MeshBasicMaterial | THREE.MeshStandardMaterial
+>;
+type Lines = THREE.LineSegments<
+  THREE.BufferGeometry,
+  THREE.LineBasicMaterial | THREE.LineDashedMaterial
+>;
+interface Renderables {
+  backdrop?: SurfaceMesh;
+  surface?: SurfaceMesh;
+  flat?: SurfaceMesh;
+  transparent: SurfaceMesh[];
+  lines: Map<string, Lines>;
+  dots: SurfaceMesh[];
+  images: SurfaceMesh[];
+}
+import { TaskTeachingArt } from '../../assets/teaching/task-art.js';
 
 // The one browser renderer for teaching scenes. Scene recipes still own task
 // geometry; Three owns projection, surfaces, lines, image planes and depth.
 export const SceneStage = {
-  create(canvas, labelsRoot, onChange, onLost) {
+  create(
+    canvas: HTMLCanvasElement,
+    labelsRoot: HTMLElement,
+    onChange: () => void,
+    onLost: () => void,
+  ) {
     const gl = canvas.getContext('webgl2', {
       alpha: true,
       antialias: true,
@@ -21,16 +44,16 @@ export const SceneStage = {
     renderer.setClearColor(0xffffff, 0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
+    renderer.toneMappingExposure = 1.05;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     const scene = new THREE.Scene();
     const pitch = new THREE.Group();
     const yaw = new THREE.Group();
     pitch.add(yaw);
     scene.add(pitch);
-    scene.add(new THREE.HemisphereLight(0xffffff, 0xb1b2a8, 1.25));
-    const key = new THREE.DirectionalLight(0xffffff, 1.55);
-    key.position.set(-3, 5, 7);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0xc2bdb2, 1.6));
+    const key = new THREE.DirectionalLight(0xfff7e8, 2.0);
+    key.position.set(-3, 5, 5);
     scene.add(key);
     const rim = new THREE.DirectionalLight(0xe4eff0, 0.45);
     rim.position.set(4, 1, -4);
@@ -39,7 +62,7 @@ export const SceneStage = {
     camera.position.set(0, 0, 7);
     const surfaceMaterial = new THREE.MeshStandardMaterial({
       vertexColors: true,
-      roughness: 0.88,
+      roughness: 0.64,
       metalness: 0,
       side: THREE.DoubleSide,
     });
@@ -54,27 +77,35 @@ export const SceneStage = {
       depthWrite: false,
     });
     const dotGeometry = new THREE.SphereGeometry(1, 14, 10);
-    const materialCache = new Map();
-    const textures = new Map();
-    const objects = [];
-    let renderables = null;
+    const materialCache = new Map<string, THREE.MeshBasicMaterial>();
+    const textures = new Map<string, { image: HTMLImageElement; map: THREE.Texture }>();
+    const objects: {
+      object: THREE.Object3D;
+      geometry: THREE.BufferGeometry | null;
+      material: THREE.Material | null;
+    }[] = [];
+    let renderables: Renderables | null = null;
     let rebuilds = 0;
     let updates = 0;
     const leaders = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     leaders.classList.add('scene-leaders');
     leaders.setAttribute('aria-hidden', 'true');
     labelsRoot.append(leaders);
-    let currentModel = null;
+    let currentModel: SceneModel | null = null;
     let width = 0;
     let height = 0;
     let disposed = false;
-    const colorCache = new Map();
-    const rgb = (hex) => {
+    const colorCache = new Map<string, number[]>();
+    const rgb = (hex: string) => {
       if (!colorCache.has(hex)) colorCache.set(hex, new THREE.Color(hex).toArray());
-      return colorCache.get(hex);
+      return colorCache.get(hex)!;
     };
-    const point = (p) => new THREE.Vector3(p[0], p[1], p[2]);
-    const own = (object, geometry = null, material = null) => {
+    const point = (p: Point) => new THREE.Vector3(p[0], p[1], p[2]);
+    const own = <T extends THREE.Object3D>(
+      object: T,
+      geometry: THREE.BufferGeometry | null = null,
+      material: THREE.Material | null = null,
+    ): T => {
       yaw.add(object);
       objects.push({ object, geometry, material });
       return object;
@@ -89,7 +120,7 @@ export const SceneStage = {
       currentModel = null;
       renderables = null;
     };
-    const faceGeometry = (faces, uv = false) => {
+    const faceGeometry = (faces: Pick<Face, 'points' | 'color' | 'normals'>[], uv = false) => {
       const count = faces.reduce((sum, face) => sum + face.points.length - 2, 0);
       const positions = new Float32Array(count * 9);
       const normals = new Float32Array(count * 9);
@@ -124,7 +155,11 @@ export const SceneStage = {
       if (uvs) geometry.setAttribute('uv', new THREE.BufferAttribute(uvs, 2));
       return geometry;
     };
-    const updateFaces = (geometry, faces, offset = [0, 0, 0]) => {
+    const updateFaces = (
+      geometry: THREE.BufferGeometry,
+      faces: Pick<Face, 'points' | 'color' | 'normals'>[],
+      offset = [0, 0, 0],
+    ) => {
       const positions = geometry.getAttribute('position');
       const normals = geometry.getAttribute('normal');
       const colors = geometry.getAttribute('color');
@@ -175,21 +210,25 @@ export const SceneStage = {
       if (normalsChanged) normals.needsUpdate = true;
       if (colorsChanged) colors.needsUpdate = true;
     };
-    const addFaces = (faces, material, renderOrder = 0) => {
+    const addFaces = (
+      faces: Face[],
+      material: THREE.MeshBasicMaterial | THREE.MeshStandardMaterial,
+      renderOrder = 0,
+    ) => {
       if (!faces.length) return;
       const geometry = faceGeometry(faces);
       const mesh = own(new THREE.Mesh(geometry, material), geometry);
       mesh.renderOrder = renderOrder;
       return mesh;
     };
-    const collect = (model) => {
+    const collect = (model: SceneModel) => {
       const faces = model.primitives.filter((item) => item.type === 'face');
-      const lines = new Map();
+      const lines = new Map<string, { items: Line[]; dash: boolean; alpha: number }>();
       for (const item of model.primitives.filter((primitive) => primitive.type === 'line')) {
         const key = `${Boolean(item.dash)}:${item.alpha}`;
         if (!lines.has(key))
           lines.set(key, { items: [], dash: Boolean(item.dash), alpha: item.alpha });
-        lines.get(key).items.push(item);
+        lines.get(key)!.items.push(item);
       }
       return {
         backdrop: faces.filter((item) => item.backdrop && item.alpha === 1),
@@ -201,24 +240,25 @@ export const SceneStage = {
         images: model.primitives.filter((item) => item.type === 'image'),
       };
     };
-    const sameLayout = (previous, next) => {
+    const sameLayout = (previous: SceneModel, next: SceneModel) => {
       if (previous.primitives.length !== next.primitives.length) return false;
       return previous.primitives.every((item, i) => {
         const other = next.primitives[i];
         if (item.type !== other.type || item.points.length !== other.points.length) return false;
-        if (item.type === 'face')
+        if (item.type === 'face' && other.type === 'face')
           return (
             item.surface === other.surface &&
             item.backdrop === other.backdrop &&
             item.alpha === other.alpha
           );
-        if (item.type === 'line') return item.dash === other.dash && item.alpha === other.alpha;
-        if (item.type === 'image') return item.subject === other.subject;
-        if (item.type === 'dot') return item.color === other.color;
+        if (item.type === 'line' && other.type === 'line')
+          return item.dash === other.dash && item.alpha === other.alpha;
+        if (item.type === 'image' && other.type === 'image') return item.subject === other.subject;
+        if (item.type === 'dot' && other.type === 'dot') return item.color === other.color;
         return true;
       });
     };
-    const texture = (subject) => {
+    const texture = (subject: string) => {
       if (!textures.has(subject)) {
         const image = new Image();
         const map = new THREE.Texture();
@@ -230,7 +270,7 @@ export const SceneStage = {
           const bitmap = document.createElement('canvas');
           bitmap.width = 512;
           bitmap.height = 304;
-          bitmap.getContext('2d').drawImage(image, 0, 0, bitmap.width, bitmap.height);
+          bitmap.getContext('2d')!.drawImage(image, 0, 0, bitmap.width, bitmap.height);
           map.image = bitmap;
           map.needsUpdate = true;
           onChange();
@@ -239,9 +279,9 @@ export const SceneStage = {
           'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(TaskTeachingArt.scan(subject));
         textures.set(subject, { image, map });
       }
-      return textures.get(subject).map;
+      return textures.get(subject)!.map;
     };
-    const build = (model) => {
+    const build = (model: SceneModel) => {
       releaseModel();
       const groups = collect(model);
       renderables = {
@@ -267,9 +307,9 @@ export const SceneStage = {
           depthWrite: false,
         });
         const mesh = own(new THREE.Mesh(geometry, material), geometry, material);
-        mesh.position.set(...center);
+        mesh.position.set(center[0], center[1], center[2]);
         mesh.renderOrder = 1;
-        renderables.transparent.push(mesh);
+        renderables!.transparent.push(mesh);
       }
       for (const [key, { items, dash, alpha }] of groups.lines) {
         const positions = new Float32Array(items.length * 6);
@@ -303,7 +343,7 @@ export const SceneStage = {
         if (dash) line.computeLineDistances();
         line.renderOrder = 2;
         own(line, geometry, material);
-        renderables.lines.set(key, line);
+        renderables!.lines.set(key, line);
       }
       for (const item of groups.dots) {
         if (!materialCache.has(item.color))
@@ -316,7 +356,7 @@ export const SceneStage = {
         dot.scale.setScalar(item.radius);
         dot.renderOrder = 3;
         own(dot);
-        renderables.dots.push(dot);
+        renderables!.dots.push(dot);
       }
       for (const item of groups.images) {
         const geometry = faceGeometry([{ ...item, color: '#ffffff' }], true);
@@ -329,33 +369,33 @@ export const SceneStage = {
         });
         const image = own(new THREE.Mesh(geometry, material), geometry, material);
         image.renderOrder = 1;
-        renderables.images.push(image);
+        renderables!.images.push(image);
       }
       currentModel = model;
       rebuilds++;
     };
-    const update = (model) => {
+    const update = (model: SceneModel) => {
       const groups = collect(model);
-      for (const name of ['backdrop', 'surface', 'flat'])
-        if (renderables[name]) updateFaces(renderables[name].geometry, groups[name]);
+      for (const name of ['backdrop', 'surface', 'flat'] as const)
+        if (renderables![name]) updateFaces(renderables![name]!.geometry, groups[name]);
       groups.transparent.forEach((face, i) => {
-        const mesh = renderables.transparent[i];
+        const mesh = renderables!.transparent[i];
         const center = face.points[0].map(
           (_, axis) => face.points.reduce((sum, p) => sum + p[axis], 0) / face.points.length,
         );
         updateFaces(mesh.geometry, [face], center);
-        mesh.position.set(...center);
+        mesh.position.set(center[0], center[1], center[2]);
       });
       for (const [key, { items, dash }] of groups.lines) {
-        const line = renderables.lines.get(key);
+        const line = renderables!.lines.get(key)!;
         const positions = line.geometry.getAttribute('position');
         const colors = line.geometry.getAttribute('color');
         items.forEach((item, i) => {
-          positions.setXYZ(i * 2, ...item.points[0]);
-          positions.setXYZ(i * 2 + 1, ...item.points[1]);
+          positions.setXYZ(i * 2, item.points[0][0], item.points[0][1], item.points[0][2]);
+          positions.setXYZ(i * 2 + 1, item.points[1][0], item.points[1][1], item.points[1][2]);
           const color = rgb(item.color);
-          colors.setXYZ(i * 2, ...color);
-          colors.setXYZ(i * 2 + 1, ...color);
+          colors.setXYZ(i * 2, color[0], color[1], color[2]);
+          colors.setXYZ(i * 2 + 1, color[0], color[1], color[2]);
         });
         positions.needsUpdate = true;
         colors.needsUpdate = true;
@@ -363,21 +403,21 @@ export const SceneStage = {
         if (dash) line.computeLineDistances();
       }
       groups.dots.forEach((item, i) => {
-        renderables.dots[i].position.copy(point(item.points[0]));
-        renderables.dots[i].scale.setScalar(item.radius);
+        renderables!.dots[i].position.copy(point(item.points[0]));
+        renderables!.dots[i].scale.setScalar(item.radius);
       });
       groups.images.forEach((item, i) =>
-        updateFaces(renderables.images[i].geometry, [{ ...item, color: '#ffffff' }]),
+        updateFaces(renderables!.images[i].geometry, [{ ...item, color: '#ffffff' }]),
       );
       currentModel = model;
       updates++;
     };
-    const project = (p) => {
+    const project = (p: Point) => {
       const v = point(p).applyMatrix4(yaw.matrixWorld).project(camera);
       return [(v.x + 1) * width * 0.5, (1 - v.y) * height * 0.5];
     };
-    const paintLabels = (labels) => {
-      let annotations = [...labelsRoot.querySelectorAll('.scene-annotation')];
+    const paintLabels = (labels: Annotation[]) => {
+      let annotations = [...labelsRoot.querySelectorAll<HTMLElement>('.scene-annotation')];
       if (annotations.length !== labels.length) {
         annotations.forEach((item) => item.remove());
         annotations = labels.map(() => {
@@ -410,7 +450,7 @@ export const SceneStage = {
         if (external) last[side] = top + el.offsetHeight + 8;
         el.style.transform = `translate(${Math.round(left)}px, ${Math.round(top)}px)`;
         if (external) {
-          const [ax, ay] = project(label.anchor);
+          const [ax, ay] = project(label.anchor!);
           const endX = side === 'left' ? left + el.offsetWidth + 5 : left - 5;
           const endY = top + el.offsetHeight / 2;
           const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -418,21 +458,21 @@ export const SceneStage = {
           line.setAttribute('stroke', label.color);
           leaders.append(line);
           const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-          dot.setAttribute('cx', ax);
-          dot.setAttribute('cy', ay);
+          dot.setAttribute('cx', String(ax));
+          dot.setAttribute('cy', String(ay));
           dot.setAttribute('r', '2.5');
           dot.setAttribute('fill', label.color);
           leaders.append(dot);
         }
       });
     };
-    const contextLost = (event) => {
+    const contextLost = (event: Event) => {
       event.preventDefault();
       onLost();
     };
     canvas.addEventListener('webglcontextlost', contextLost);
     return {
-      draw(model, view) {
+      draw(model: SceneModel, view: SceneView) {
         if (disposed || gl.isContextLost()) return false;
         if (width !== view.width || height !== view.height) {
           width = view.width;

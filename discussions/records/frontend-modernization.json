@@ -12,7 +12,8 @@
     "The standalone explorer's direct file opening and embedded assets are documented contracts and covered by the existing browser harness. Default Vite application output alone does not establish parity.",
     "The scene system uses custom Canvas2D and a WebGL surface helper, with an existing mount/cleanup boundary suitable for a React wrapper. No renderer rewrite is needed to test the UI migration.",
     "Recent uncommitted cohesion work adds shared ui.css foundations and navigation checks. Migration should build on that work after ownership handoff.",
-    "This is a source audit, not a measured frontend performance study. No framework speed or bundle-size improvement has been established."
+    "This is a source audit, not a measured frontend performance study. No framework speed or bundle-size improvement has been established.",
+    "2026-09-24 review: the prior scene UI repeated two SVG thumbnails, a heading, controls and explanation around one model. Consolidated the walkthrough and declared the existing mask_mode, input_form and initial_candidate fields in the Python-owned contract. Reopening conditions: a scene still looks ambiguous, a source-aligned view is requested, or measured animation cost warrants a different geometry representation."
   ],
   "proposal": {
     "stack": [
@@ -112,6 +113,11 @@
       "actor": "user",
       "source": "codex://threads/01a0c9ab-9159-7813-9745-b062bc67b764",
       "decision": "Requested a dedicated Python module for type contracts and a modality tag/filter/axis."
+    },
+    {
+      "actor": "user",
+      "source": "codex://threads/01a0d247-d9ca-7ae3-8dc7-8adaf517539b",
+      "decision": "Requested a further visual and architectural polish of the previous Sculpted Atlas implementation, including reduction of raw JavaScript and improved maintainability."
     }
   ],
   "implementation": {
@@ -119,6 +125,7 @@
     "contracts": "presentation_contracts.py defines browser payload TypedDicts, validates emitted payloads and generates TypeScript; drift is checked by both Python and frontend gates.",
     "modality": "All 200 maintained entries carry explicit authored modality arrays. Taxonomy labels distinguish source/target or alternative modalities, geometry, non-image data and unspecified scope.",
     "assets": "presentation/assets/teaching owns reusable SVG art and action recipes; the existing source-derived anatomy retains its original location, hashes and notices.",
-    "build": "Two local IIFE bundles and a source/output fingerprint manifest; standalone Explorer inlines browser code, CSS, payloads and teaching assets."
+    "build": "Two local IIFE bundles and a source/output fingerprint manifest; standalone Explorer inlines browser code, CSS, payloads and teaching assets.",
+    "task_visuals": "Typed React task controls and CSS Modules replace the imperative HTML-string scene player. Geometry construction, task choreography, retained anatomy, and the Three.js stage have separate TypeScript owners. This implementation choice is by the assistant; retained evidence and anatomy payloads are unchanged."
   }
 }

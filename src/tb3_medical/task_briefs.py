@@ -371,7 +371,6 @@ def build(
                     base.parent / "ui.css",
                     base / "style.css",
                     base / "datasets.css",
-                    base / "scene-explanation.css",
                 )
             )
             + "\n"
