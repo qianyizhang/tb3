@@ -11,3 +11,5 @@ Use `uv run med list --group tubular-anatomy` from the repository root. The grou
 [Data sources](sources.json) · [Retained examples](examples/README.md) · [Methods](methods/README.md)
 
 [BR-042 final technical report and interactive showcase](presentation/br042/README.md) — native CTA, all saved model/settings, methods, failure mechanisms and reference limits.
+
+[Route-resampling pilot handoff](history/2026-09-25-route-resampling-pilot.md) — committed teaching explainer, local HTML/MP4, acceptance evidence and next-session boundary.
