@@ -66,7 +66,8 @@ payloads rather than rendering a misleading partial view.
 - `overview.tsx` and `overview-data.ts` own evidence browsing, URL filters and the
   displayed shared vocabulary. They do not derive scientific verdicts.
 - Shared visual foundations stay in `../ui.css`. New component-specific styles
-  use CSS Modules. Scene rendering is imported through the `TaskScenes` ES module,
+  use CSS Modules. Scene rendering is imported through the `TaskScenes` ES module:
+  Three.js draws lit surfaces, Canvas draws annotations and supplies the fallback,
   with effect cleanup when its task/view is replaced. Vite bundles teaching art,
   anatomy and notices into the Explorer through direct module imports.
 - [Reusable teaching assets](../assets/README.md) own task illustrations and

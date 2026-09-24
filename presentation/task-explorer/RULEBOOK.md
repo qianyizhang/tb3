@@ -80,13 +80,13 @@ imported identifiers, authored briefs and available media are distinct coverage 
   plain-language action recipes, shared by storyboards and the static fallback.
   See [asset reuse](../assets/README.md). `scene-anatomy.js` owns reusable
   anatomy assemblies; `scene-models.js` owns task geometry and legends;
-  `scene-surfaces.js` owns GPU surface lighting; `scenes.js` owns annotations,
+  `scene-surfaces.js` owns Three.js surface lighting; `scenes.js` owns annotations,
   software rendering and playback. All are embedded with the navigation renderer in
   the standalone HTML.
 - Every named entry, including supporting research and each grouped variant,
   needs an Overview visual. The composed catalogue enforces this with
   `require_overview_visuals: true`. Every authored `illustration` opens as a conceptual 3D scene. Curated input
-  images remain in the adjacent expandable source-example section with their
+  images remain above the teaching scene in the normal reading path with their
   complete captions, and in Example. The animation remains available when optional
   media are absent. Keep the missing-media notice visible beside that fallback.
   For supporting research, label the right panel “Study output” and show the
@@ -118,8 +118,8 @@ their separate reveal. Shared assets and action descriptions have one owner in
   Keep source-case provenance, attribution and licenses in the expandable model
   notice. Describe them as shared teaching anatomy, not a selected-case result.
 - Preserve relative size and position within a source-derived assembly. Fit
-  individual organs independently only for explanatory display. Small torso and
-  abdomen assemblies use lower-detail meshes; individual organs keep fuller detail.
+  individual organs independently only for explanatory display. The distant torso
+  uses lower-detail meshes; the close abdomen and individual organs keep fuller detail.
   Brain and dental procedural shapes remain explicitly authored schematics.
   Display-only subdivision softens retained organ surfaces without changing
   source assets. Weld procedural seams and poles; use bounded relief and rounded
@@ -128,6 +128,8 @@ their separate reveal. Shared assets and action descriptions have one owner in
 
 - Use one material language across the catalogue: softly shaded physical forms,
   shallow image/signal/document panels, restrained colors and a quiet background.
+  Sculpted Atlas uses warm neutral anatomy for context, teal for the selected
+  structure and gold for the operation or spatial witness.
   Imported anatomy and procedural shapes share the same triangle material and
   lighting. Detailed anatomy is a reusable content asset, not a separate style.
   Do not expose tessellation edges or add decorative background grids and rings.
@@ -163,7 +165,7 @@ their separate reveal. Shared assets and action descriptions have one owner in
   motion. Use bounded, eased task movement rather than continuous decorative motion.
 - Only visible scenes animate, targeting at most 60 frames per second with a
   capped pixel ratio; static stages reuse their pose without repainting. A shared
-  WebGL context provides smooth matte lighting and depth-tested surfaces, with a
+  Three.js WebGL2 context provides smooth matte lighting and depth-tested surfaces, with a
   bounded geometry cache. Navigation releases buffers, callbacks and observers;
   hidden tabs and off-screen canvases stop scheduling frames.
 - The standalone build contains the renderer and all geometry, with no remote

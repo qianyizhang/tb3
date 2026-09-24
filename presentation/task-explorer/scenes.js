@@ -165,7 +165,7 @@ export const TaskScenes = (() => {
         sy = Math.sin(turn),
         cx = Math.cos(pitch),
         sx = Math.sin(pitch);
-      const zoom = Math.min(width / 5.25, height / 3.5);
+      const zoom = Math.min(width / 4.8, height / 3.25);
       const project = (p) => {
         const x = p[0] * cy + p[2] * sy,
           z = -p[0] * sy + p[2] * cy,
@@ -174,7 +174,7 @@ export const TaskScenes = (() => {
           perspective = 7 / (7 - depth);
         return [
           width / 2 + x * zoom * perspective,
-          height * 0.48 - y * zoom * perspective,
+          height * 0.5 - y * zoom * perspective,
           depth,
           perspective,
         ];
@@ -188,8 +188,8 @@ export const TaskScenes = (() => {
         height * 0.5,
         width * 0.58,
       );
-      glow.addColorStop(0, '#ffffff');
-      glow.addColorStop(1, '#eff3ee');
+      glow.addColorStop(0, '#fffdf8');
+      glow.addColorStop(1, '#eae7df');
       ctx.fillStyle = glow;
       ctx.fillRect(0, 0, width, height);
       // One quiet studio background for surfaces, image plates and evidence cards.
@@ -198,9 +198,9 @@ export const TaskScenes = (() => {
       ctx.translate(width * 0.5, height * 0.86);
       ctx.scale(1, 0.16);
       const shadow = ctx.createRadialGradient(0, 0, 0, 0, 0, width * 0.25);
-      shadow.addColorStop(0, '#385c5422');
-      shadow.addColorStop(0.55, '#385c5410');
-      shadow.addColorStop(1, '#385c5400');
+      shadow.addColorStop(0, '#62544430');
+      shadow.addColorStop(0.55, '#62544414');
+      shadow.addColorStop(1, '#62544400');
       ctx.fillStyle = shadow;
       ctx.fillRect(-width * 0.3, -width * 0.3, width * 0.6, width * 0.6);
       ctx.restore();
@@ -263,7 +263,7 @@ export const TaskScenes = (() => {
           const rgb = colors.get(item.color),
             levels = item.normals.map(lighting),
             color = (level) =>
-              `rgb(${rgb.map((n) => Math.round((n * 0.55 + 245 * 0.45) * level)).join(',')})`,
+              `rgb(${rgb.map((n) => Math.round((n * 0.7 + 245 * 0.3) * level)).join(',')})`,
             [a, b, c] = item.p,
             low = Math.min(...levels),
             high = Math.max(...levels),
@@ -345,7 +345,7 @@ export const TaskScenes = (() => {
           ctx.fillStyle = color;
           ctx.fill();
         }
-        ctx.fillStyle = '#f6f8f2ed';
+        ctx.fillStyle = '#faf8f0ed';
         ctx.fillRect(x - 4, y - 9, tw + 8, 18);
         ctx.fillStyle = color;
         ctx.fillText(text, x, y);

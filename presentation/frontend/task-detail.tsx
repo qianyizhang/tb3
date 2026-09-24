@@ -46,31 +46,7 @@ function TaskPicture({ model, state, dispatch }: DetailProps) {
   const notice = <ImageNotice model={model} entry={entry} dispatch={dispatch} />;
   return (
     <>
-      {entry.illustration ? (
-        <figure
-          className={'task-picture conceptual' + (native ? ' native-preview' : '')}
-          data-illustration={entry.illustration.kind}
-        >
-          <figcaption>
-            <span className="drawing-label">{t('Animated task illustration')}</span>
-            <span>{t('Illustrative model · not case-specific')}</span>
-          </figcaption>
-          <TaskScene entry={entry} />
-          {native && (
-            <details className="scene-source">
-              <summary>
-                {t('Inspect source-derived example')}
-                {exampleLabel}
-              </summary>
-              <Markup className="native-input" html={entry.visuals.input} />
-              {notice}
-              <button className="text-button" data-example-open onClick={open}>
-                {t('Inspect example and reference →')}
-              </button>
-            </details>
-          )}
-        </figure>
-      ) : native ? (
+      {native && (
         <figure className="task-picture native-preview">
           <figcaption>
             <span className="drawing-label">
@@ -83,6 +59,15 @@ function TaskPicture({ model, state, dispatch }: DetailProps) {
           </figcaption>
           <Markup className="native-input" html={entry.visuals.input} />
           {notice}
+        </figure>
+      )}
+      {entry.illustration ? (
+        <figure className="task-picture conceptual" data-illustration={entry.illustration.kind}>
+          <figcaption>
+            <span className="drawing-label">{t('Animated task illustration')}</span>
+            <span>{t('Illustrative model · not case-specific')}</span>
+          </figcaption>
+          <TaskScene entry={entry} />
         </figure>
       ) : null}
       {!!entry.missing_media?.length && (

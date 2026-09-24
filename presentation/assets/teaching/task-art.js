@@ -645,16 +645,18 @@ export const TaskTeachingArt = (() => {
         break;
       case 'cardiac_material':
         art = output
-          ? cavity(149, 89, 62, 53, teal, true) +
-            cavity(156, 84, 54, 60, blue, false, 'stroke-dasharray="5 4"') +
-            c(106, 54, 5, amber) +
-            txt(88, 45, 'A', 13) +
-            c(149, 142, 5, rose) +
-            txt(156, 153, 'B', 13) +
-            line(22, 176, 43, 176, teal, 3) +
-            txt(49, 180, 'model', 12) +
-            line(160, 176, 181, 176, blue, 2, 'stroke-dasharray="5 4"') +
-            txt(187, 180, 'reference', 12)
+          ? cavity(85, 86, 35, 49, blue, true) +
+            cavity(232, 86, 32, 54, teal, true) +
+            line(61, 50, 210, 48, amber, 2, 'stroke-dasharray="5 4"') +
+            line(100, 123, 247, 128, rose, 2, 'stroke-dasharray="5 4"') +
+            c(61, 50, 5, amber) +
+            c(210, 48, 5, amber) +
+            c(100, 123, 5, rose) +
+            c(247, 128, 5, rose) +
+            txt(51, 41, 'A', 13) +
+            txt(250, 142, 'B', 13) +
+            txt(45, 177, 'initial phase', 12) +
+            txt(197, 177, 'later phase', 12)
           : cavity(91, 90, 39, 63, blue, true) +
             c(64, 46, 5, amber) +
             txt(48, 39, 'A', 13) +

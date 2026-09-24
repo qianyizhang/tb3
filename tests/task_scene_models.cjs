@@ -124,6 +124,19 @@ async function main() {
       .primitives.filter((p) => p.surface)
       .every((p) => p.asset === 'pancreas'),
   );
+  const audit = output('anatomy_audit', { subject: 'abdomen' });
+  const witness = audit.labels.find((item) => item.text === 'Spatial witness')?.anchor;
+  const focused = audit.primitives.filter((item) => item.asset === 'kidney_left');
+  assert.ok(witness && focused.length, 'Audit keeps a highlighted supplied object and witness');
+  for (const axis of [0, 1]) {
+    const values = focused.flatMap((item) => item.points.map((point) => point[axis]));
+    assert.ok(witness[axis] >= Math.min(...values) && witness[axis] <= Math.max(...values));
+  }
+  assert.equal(
+    models.legend(entry('segment', { mask_mode: 'binary' }))[0][0],
+    '#aaa99f',
+    'Binary input legend matches neutral anatomy',
+  );
   console.log(
     'shared anatomy: finite surfaces, assembly laterality, torso reuse and target isolation pass',
   );
@@ -263,7 +276,7 @@ async function main() {
   const revealColors = (progress) =>
     models
       .build(tracing, 1, 0, progress)
-      .primitives.filter((p) => p.surface && p.color !== '#284952').length;
+      .primitives.filter((p) => p.surface && p.color !== '#aaa99f').length;
   assert.ok(revealColors(0.9) > revealColors(0.1), 'Process reveals labels on displayed regions');
   console.log(
     `teaching assets: ${illustrated.length} entries / ${kinds.size} kinds, complete static storyboards and honest output schemas pass`,

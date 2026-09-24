@@ -101,13 +101,20 @@ async function checkExplorer(browser, input, report) {
         if (data.require_overview_visuals)
           assert.equal(
             await page.locator('.task-picture').count(),
-            1,
+            Number(/<img\b/.test(e.visuals.input)) + Number(Boolean(e.illustration)),
             `${e.id}/${n}: overview visual`,
           );
         conditions++;
       }
       if (e.illustration) {
-        await page.locator('.scene-player[data-rendered="true"]').waitFor();
+        await page
+          .locator('.scene-player[data-rendered="true"]')
+          .waitFor({
+            timeout: 30000,
+          })
+          .catch((error) => {
+            throw Error(`${e.id}: ${error.message}; page errors: ${errors.join(' | ')}`);
+          });
         assert.equal(await page.locator('.scene-canvas').count(), 1, `${e.id}: 3D scene`);
         assert.equal(
           await page.locator('.scene-fallback svg').count(),
@@ -120,7 +127,7 @@ async function checkExplorer(browser, input, report) {
         );
         assert.equal(await page.locator('.scene-player').getAttribute('data-playing'), 'false');
         assert.ok(
-          (await page.locator('.task-picture figcaption').innerText()).includes(
+          (await page.locator('.task-picture.conceptual figcaption').innerText()).includes(
             'not case-specific',
           ),
         );
@@ -148,8 +155,20 @@ async function checkExplorer(browser, input, report) {
         diagramTypes.add(e.illustration.kind);
       }
       if (/<img\b/.test(e.visuals.input)) {
-        if (e.illustration) await page.locator('.scene-source summary').click();
         assert.equal(await page.locator('.native-preview img').count(), 1);
+        if (e.illustration)
+          assert.ok(
+            await page.evaluate(() => {
+              const input = document.querySelector('.native-preview');
+              const teaching = document.querySelector('.task-picture.conceptual');
+              return (
+                input &&
+                teaching &&
+                Boolean(input.compareDocumentPosition(teaching) & Node.DOCUMENT_POSITION_FOLLOWING)
+              );
+            }),
+            'Source input precedes the teaching scene in the reading order',
+          );
         await page.locator('.native-preview img').evaluate((e) => e.decode());
         assert.equal(
           await page.locator('.native-input').innerHTML(),
@@ -302,9 +321,9 @@ async function checkExplorer(browser, input, report) {
       await software.addInitScript((failure) => {
         const getContext = HTMLCanvasElement.prototype.getContext;
         HTMLCanvasElement.prototype.getContext = function (type, ...options) {
-          if (failure === 'unavailable' && type === 'webgl') return null;
+          if (failure === 'unavailable' && type === 'webgl2') return null;
           const context = getContext.call(this, type, ...options);
-          if (type === 'webgl') window.surfaceContext = context;
+          if (type === 'webgl2') window.surfaceContext = context;
           return context;
         };
       }, failure);
@@ -421,7 +440,6 @@ async function checkExplorer(browser, input, report) {
       }
     // Image notices return to their original control when Back restores the preview.
     await go('abra/0/overview', 'abra');
-    await page.locator('.scene-source summary').click();
     const noticeHash = await page.locator('[data-notice]').getAttribute('data-notice');
     await page.locator('[data-notice]').focus();
     await page.keyboard.press('Enter');

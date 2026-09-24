@@ -1,180 +1,173 @@
-// One shared offscreen context draws smooth surfaces for every player. The
-// visible Canvas retains labels, annotations, accessibility and a 2D fallback.
+import * as THREE from 'three';
+
+// Retained scene recipes produce triangles in a shared physical frame. Three
+// owns the camera, lighting and depth buffer. The visible Canvas owns labels
+// and remains the fallback when WebGL2 is unavailable.
 export const SceneSurfaces = (() => {
-  let renderer;
+  let stage;
+
+  function geometry(faces) {
+    const triangles = faces.reduce((sum, face) => sum + face.points.length - 2, 0);
+    const positions = new Float32Array(triangles * 9);
+    const normals = new Float32Array(triangles * 9);
+    const colors = new Float32Array(triangles * 9);
+    let cursor = 0;
+    faces.forEach((face) => {
+      const color = new THREE.Color(face.color);
+      for (let i = 1; i < face.points.length - 1; i++)
+        for (const index of [0, i, i + 1]) {
+          positions.set(face.points[index], cursor);
+          normals.set(face.normals?.[index] || [0, 0, 1], cursor);
+          colors.set(color.toArray(), cursor);
+          cursor += 3;
+        }
+    });
+    const result = new THREE.BufferGeometry();
+    result.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    result.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
+    result.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    return result;
+  }
+
   function create() {
     const canvas = document.createElement('canvas');
-    const gl = canvas.getContext('webgl', {
+    const gl = canvas.getContext('webgl2', {
       alpha: true,
       antialias: true,
-      premultipliedAlpha: true,
       preserveDrawingBuffer: true,
     });
     if (!gl) return null;
-    canvas.addEventListener('webglcontextlost', () => {
-      renderer = null;
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      context: gl,
+      alpha: true,
+      antialias: true,
+      preserveDrawingBuffer: true,
     });
-    const shader = (type, source) => {
-      const value = gl.createShader(type);
-      gl.shaderSource(value, source);
-      gl.compileShader(value);
-      if (!gl.getShaderParameter(value, gl.COMPILE_STATUS)) throw Error(gl.getShaderInfoLog(value));
-      return value;
-    };
-    const vertex = shader(
-      gl.VERTEX_SHADER,
-      `
-      attribute vec3 position;
-      attribute vec3 normal;
-      attribute vec4 color;
-      attribute float lit;
-      uniform vec4 angles;
-      uniform vec2 scale;
-      varying vec3 n;
-      varying vec4 material;
-      varying float lighting;
-      vec3 rotate(vec3 p) {
-        float x = p.x * angles.x + p.z * angles.y;
-        float z = -p.x * angles.y + p.z * angles.x;
-        return vec3(x, p.y * angles.z - z * angles.w, p.y * angles.w + z * angles.z);
-      }
-      void main() {
-        vec3 p = rotate(position);
-        float w = 1.0 - p.z / 7.0;
-        gl_Position = vec4(p.x * scale.x, p.y * scale.y + 0.04 * w, -p.z / 7.0, w);
-        n = rotate(normal / max(length(normal), 0.0001));
-        material = color;
-        lighting = lit;
-      }
-    `,
-    );
-    const fragment = shader(
-      gl.FRAGMENT_SHADER,
-      `
-      precision mediump float;
-      varying vec3 n;
-      varying vec4 material;
-      varying float lighting;
-      void main() {
-        vec3 rgb = material.rgb;
-        if (lighting > 0.5) {
-          vec3 normal = n / max(length(n), 0.0001);
-          if (normal.z < 0.0) normal = -normal;
-          vec3 key = normalize(vec3(-0.45, 0.8, 1.0));
-          float diffuse = max(dot(normal, key), 0.0);
-          float fill = max(dot(normal, normalize(vec3(0.8, 0.1, 0.6))), 0.0);
-          float sheen = pow(max(dot(normal, normalize(key + vec3(0.0, 0.0, 1.0))), 0.0), 28.0);
-          vec3 base = mix(pow(rgb, vec3(2.2)), vec3(0.87), 0.25);
-          rgb = pow(base * (0.36 + 0.50 * diffuse + 0.14 * fill) + 0.035 * sheen, vec3(1.0 / 2.2));
-        }
-        gl_FragColor = vec4(rgb * material.a, material.a);
-      }
-    `,
-    );
-    const program = gl.createProgram();
-    gl.attachShader(program, vertex);
-    gl.attachShader(program, fragment);
-    gl.linkProgram(program);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS))
-      throw Error(gl.getProgramInfoLog(program));
-    gl.deleteShader(vertex);
-    gl.deleteShader(fragment);
-    gl.useProgram(program);
-    const attributes = [
-      ['position', 3, 0],
-      ['normal', 3, 3],
-      ['color', 4, 6],
-      ['lit', 1, 10],
-    ].map(([name, size, offset]) => [gl.getAttribLocation(program, name), size, offset]);
-    const angles = gl.getUniformLocation(program, 'angles');
-    const scale = gl.getUniformLocation(program, 'scale');
-    const cache = new Map(),
-      colors = new Map();
-    const upload = (faces) => {
-      const count = faces.reduce((sum, face) => sum + (face.points.length - 2) * 3, 0);
-      const data = new Float32Array(count * 11);
-      let cursor = 0;
-      for (const face of faces) {
-        if (!colors.has(face.color))
-          colors.set(
-            face.color,
-            face.color.match(/[0-9a-f]{2}/gi).map((v) => parseInt(v, 16) / 255),
-          );
-        const rgb = colors.get(face.color);
-        for (let i = 1; i < face.points.length - 1; i++)
-          for (const index of [0, i, i + 1]) {
-            data.set(face.points[index], cursor);
-            data.set(face.normals?.[index] || [0, 0, 1], cursor + 3);
-            data.set(rgb, cursor + 6);
-            data[cursor + 9] = face.alpha;
-            data[cursor + 10] = face.surface ? 1 : 0;
-            cursor += 11;
-          }
-      }
-      const buffer = gl.createBuffer();
-      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-      gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
-      return { buffer, count };
-    };
-    const draw = ({ buffer, count }) => {
-      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-      for (const [location, size, offset] of attributes) {
-        gl.enableVertexAttribArray(location);
-        gl.vertexAttribPointer(location, size, gl.FLOAT, false, 44, offset * 4);
-      }
-      gl.drawArrays(gl.TRIANGLES, 0, count);
-    };
-    const drop = (model) => {
-      const buffers = cache.get(model);
-      if (!buffers) return;
-      gl.deleteBuffer(buffers.backdrop.buffer);
-      gl.deleteBuffer(buffers.opaque.buffer);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.15;
+    const scene = new THREE.Scene();
+    const pitch = new THREE.Group();
+    const yaw = new THREE.Group();
+    pitch.add(yaw);
+    scene.add(pitch);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0xb1b2a8, 1.25));
+    const key = new THREE.DirectionalLight(0xffffff, 1.55);
+    key.position.set(-3, 5, 7);
+    scene.add(key);
+    const rim = new THREE.DirectionalLight(0xe4eff0, 0.45);
+    rim.position.set(4, 1, -4);
+    scene.add(rim);
+    const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 60);
+    camera.position.set(0, 0, 7);
+    camera.lookAt(0, 0, 0);
+    const material = new THREE.MeshStandardMaterial({
+      vertexColors: true,
+      roughness: 0.88,
+      metalness: 0,
+      side: THREE.DoubleSide,
+    });
+    const backdropMaterial = new THREE.MeshBasicMaterial({
+      vertexColors: true,
+      side: THREE.DoubleSide,
+      depthTest: false,
+      depthWrite: false,
+    });
+    const flatMaterial = new THREE.MeshBasicMaterial({
+      vertexColors: true,
+      side: THREE.DoubleSide,
+    });
+    const cache = new Map();
+    const clear = (model) => {
+      const meshes = cache.get(model);
+      if (!meshes) return;
+      meshes.forEach((mesh) => {
+        yaw.remove(mesh);
+        mesh.geometry.dispose();
+        if (
+          mesh.material !== material &&
+          mesh.material !== backdropMaterial &&
+          mesh.material !== flatMaterial
+        )
+          mesh.material.dispose();
+      });
       cache.delete(model);
     };
+    canvas.addEventListener('webglcontextlost', (event) => {
+      event.preventDefault();
+      stage = null;
+    });
     return {
-      drop,
+      clear,
       paint(ctx, model, view) {
         if (gl.isContextLost()) return false;
         const { width, height, ratio, zoom, cy, sy, cx, sx } = view;
-        const w = Math.round(width * ratio),
-          h = Math.round(height * ratio);
-        if (canvas.width !== w || canvas.height !== h) {
-          canvas.width = w;
-          canvas.height = h;
-        }
+        renderer.setSize(
+          Math.max(1, Math.round(width * ratio)),
+          Math.max(1, Math.round(height * ratio)),
+          false,
+        );
+        camera.aspect = width / height;
+        camera.fov = (2 * Math.atan(height / (14 * zoom)) * 180) / Math.PI;
+        camera.updateProjectionMatrix();
+        yaw.rotation.y = Math.atan2(sy, cy);
+        pitch.rotation.x = Math.atan2(sx, cx);
         if (!cache.has(model)) {
-          const faces = model.primitives.filter((p) => p.type === 'face');
-          cache.set(model, {
-            backdrop: upload(faces.filter((p) => p.backdrop)),
-            opaque: upload(faces.filter((p) => !p.backdrop && p.alpha === 1)),
-            transparent: faces.filter((p) => !p.backdrop && p.alpha < 1),
-          });
-          if (cache.size > 6) drop(cache.keys().next().value);
+          const meshes = [];
+          for (const [faces, faceMaterial, order] of [
+            [
+              model.primitives.filter((p) => p.type === 'face' && p.backdrop && p.alpha === 1),
+              backdropMaterial,
+              -1,
+            ],
+            [
+              model.primitives.filter(
+                (p) => p.type === 'face' && p.surface && p.alpha === 1 && !p.backdrop,
+              ),
+              material,
+              0,
+            ],
+            [
+              model.primitives.filter(
+                (p) => p.type === 'face' && !p.surface && p.alpha === 1 && !p.backdrop,
+              ),
+              flatMaterial,
+              0,
+            ],
+          ]) {
+            if (!faces.length) continue;
+            const mesh = new THREE.Mesh(geometry(faces), faceMaterial);
+            mesh.renderOrder = order;
+            meshes.push(mesh);
+            yaw.add(mesh);
+          }
+          for (const face of model.primitives.filter((p) => p.type === 'face' && p.alpha < 1)) {
+            const transparentMaterial = new THREE.MeshBasicMaterial({
+              vertexColors: true,
+              side: THREE.DoubleSide,
+              transparent: true,
+              opacity: face.alpha,
+              depthWrite: false,
+            });
+            const center = face.points[0].map(
+              (_, axis) =>
+                face.points.reduce((sum, point) => sum + point[axis], 0) / face.points.length,
+            );
+            const faceGeometry = geometry([face]);
+            faceGeometry.translate(-center[0], -center[1], -center[2]);
+            const mesh = new THREE.Mesh(faceGeometry, transparentMaterial);
+            mesh.position.set(...center);
+            mesh.renderOrder = 1;
+            meshes.push(mesh);
+            yaw.add(mesh);
+          }
+          cache.set(model, meshes);
+          if (cache.size > 6) clear(cache.keys().next().value);
         }
-        const buffers = cache.get(model);
-        gl.viewport(0, 0, w, h);
-        gl.clearColor(0, 0, 0, 0);
-        gl.depthMask(true);
-        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-        gl.uniform4f(angles, cy, sy, cx, sx);
-        gl.uniform2f(scale, (2 * zoom) / width, (2 * zoom) / height);
-        gl.disable(gl.BLEND);
-        gl.disable(gl.DEPTH_TEST);
-        draw(buffers.backdrop);
-        gl.clear(gl.DEPTH_BUFFER_BIT);
-        gl.enable(gl.DEPTH_TEST);
-        draw(buffers.opaque);
-        if (buffers.transparent.length) {
-          const depth = (face) =>
-            face.points.reduce((sum, p) => sum + p[1] * sx + (-p[0] * sy + p[2] * cy) * cx, 0) /
-            face.points.length;
-          const transparent = upload([...buffers.transparent].sort((a, b) => depth(a) - depth(b)));
-          gl.enable(gl.BLEND);
-          gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-          gl.depthMask(false);
-          draw(transparent);
-          gl.deleteBuffer(transparent.buffer);
-        }
+        for (const [cached, meshes] of cache)
+          meshes.forEach((mesh) => (mesh.visible = cached === model));
+        renderer.render(scene, camera);
         ctx.drawImage(canvas, 0, 0, width, height);
         return true;
       },
@@ -182,17 +175,17 @@ export const SceneSurfaces = (() => {
   }
   return {
     draw(ctx, model, view) {
-      if (renderer === undefined) {
+      if (stage === undefined) {
         try {
-          renderer = create();
+          stage = create();
         } catch {
-          renderer = null;
+          stage = null;
         }
       }
-      return renderer?.paint(ctx, model, view) || false;
+      return stage?.paint(ctx, model, view) || false;
     },
     release(model) {
-      renderer?.drop(model);
+      stage?.clear(model);
     },
   };
 })();

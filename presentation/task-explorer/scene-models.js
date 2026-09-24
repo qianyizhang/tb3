@@ -5,8 +5,9 @@ import { AnatomyAssets } from './scene-anatomy.js';
 export const TaskSceneModels = (() => {
   const C = {
     ink: '#284952',
+    stone: '#aaa99f',
     faint: '#89a3aa',
-    teal: '#299786',
+    teal: '#328c7d',
     gold: '#c38a36',
     blue: '#548ab0',
     rose: '#bc708a',
@@ -153,7 +154,7 @@ export const TaskSceneModels = (() => {
         primitives.push({
           type: 'face',
           points: indices.map((i) => points[i]),
-          color,
+          color: color === ink ? C.stone : color,
           alpha: 1,
           surface: true,
           normals: indices.map((i) => normals[i]),
@@ -455,14 +456,14 @@ export const TaskSceneModels = (() => {
         );
       });
     };
-    const asset = (name, color = null) => {
+    const asset = (name, color = null, focus = null) => {
       const parts = AnatomyAssets.get(name);
       if (!parts) return false;
       parts.forEach((part, i) =>
         surface(
           part.vertices,
           part.faces,
-          color || [teal, blue, rose, gold][i % 4],
+          focus ? (part.id === focus ? teal : ink) : color || [teal, blue, rose, gold][i % 4],
           part.normals,
           part.id,
         ),
@@ -703,10 +704,24 @@ export const TaskSceneModels = (() => {
         break;
       case 'audit':
         if (k === 'anatomy_audit') {
-          anatomy(true);
+          const focus = d.target || (subject === 'abdomen' ? 'kidney_left' : null);
+          const selected = AnatomyAssets.get(subject)?.find((part) => part.id === focus);
+          const witness = selected
+            ? [
+                (Math.min(...selected.vertices.map((point) => point[0])) +
+                  Math.max(...selected.vertices.map((point) => point[0]))) /
+                  2,
+                (Math.min(...selected.vertices.map((point) => point[1])) +
+                  Math.max(...selected.vertices.map((point) => point[1]))) /
+                  2,
+                Math.max(...selected.vertices.map((point) => point[2])) + 0.04,
+              ]
+            : [0.52, 0.15, 0.48];
+          if (!asset(subject, null, focus)) anatomy(false);
+          if (work || out) label([0.9, 0.95, 0.3], 'Inspect one supplied label', teal);
           if (out) {
-            target();
-            label([0.6, 0.7, 0.5], 'Spatial witness', gold);
+            target(witness);
+            label([0.6, 0.7, 0.5], 'Spatial witness', gold, witness);
           }
         } else if (k === 'anatomy_curation') {
           for (let i = 0; i < 5; i++)
@@ -736,6 +751,30 @@ export const TaskSceneModels = (() => {
         }
         break;
       case 'motion': {
+        if (k === 'cardiac_material' && out) {
+          for (const [x, phase, color] of [
+            [-0.82, 'Initial', blue],
+            [0.82, 'Later', teal],
+          ]) {
+            group([x, 0.1, 0], 0.54, () => {
+              mesh(
+                [0, 0, 0],
+                phase === 'Initial' ? [0.8, 1.1, 0.67] : [0.7, 1.19, 0.74],
+                color,
+                0.06,
+              );
+              dot([-0.57, 0.55, 0.55], 0.075, gold);
+              dot([0.4, -0.7, 0.52], 0.075, rose);
+              label([-0.7, 0.73, 0.6], 'A', gold);
+              label([0.5, -0.86, 0.6], 'B', rose);
+            });
+            label([x, -1.14, 0], phase + ' phase', color);
+          }
+          line([-1.13, 0.4, 0.38], [0.51, 0.43, 0.38], gold, 0.9, 1.5, true);
+          line([-0.61, -0.27, 0.36], [1.03, -0.24, 0.36], rose, 0.9, 1.5, true);
+          label([0, -1.53, 0], 'Same material points; geometry alone is insufficient', ink);
+          break;
+        }
         const settle = out ? 1 - smooth(Math.max(0, (progress - 0.6) / 0.4)) : 1;
         const pulse = 1 - settle * 0.065 * (0.5 - 0.5 * Math.cos((clock * TAU) / 4.8));
         if (!out && d.input_form === 'masks') {
@@ -755,8 +794,6 @@ export const TaskSceneModels = (() => {
           );
           if (k === 'cardiac_anchors' && out)
             mesh([0, 0, 0], [0.81 * pulse, 1.12 / pulse, 0.68 * pulse], teal, 0.06, true);
-          if (k === 'cardiac_material' && out)
-            mesh([0, 0, 0], [0.84 * pulse, 1.13 / pulse, 0.69 * pulse], blue, 0, true);
           if (k === 'cardiac_anchors') {
             ring([0, 0.8, 0], 0.5, gold);
             ring([0, -0.8, 0], 0.42, gold);
@@ -859,25 +896,40 @@ export const TaskSceneModels = (() => {
         }
         break;
       case 'routes':
-        branches(
-          out && k === 'route_discovery',
-          k === 'route_repair' || k === 'route_unfold',
-          k === 'prediction_screen'
-            ? blue
-            : ['route_repair', 'route_unfold'].includes(k)
-              ? teal
-              : null,
-          k === 'prediction_screen',
-        );
+        if (k === 'route_unfold' && out) group([-0.76, 0.1, 0], 0.62, () => branches(false, true));
+        else
+          branches(
+            out && k === 'route_discovery',
+            k === 'route_repair' || k === 'route_unfold',
+            k === 'prediction_screen' ? blue : k === 'route_repair' ? teal : null,
+            k === 'prediction_screen',
+          );
+        if (k === 'route_unfold')
+          group(out ? [-0.76, 0.1, 0] : [0, 0, 0], out ? 0.62 : 1, () => {
+            dot([0, -0.15, 0.15], 0.075, teal);
+            dot([1.05, 1.05, 0.2], 0.075, teal);
+          });
         if (k === 'route_repair' || k === 'route_unfold') {
           if (out)
-            tube(
-              [
-                [0, -0.15, 0],
-                [0.48, 0.17, -0.12],
-              ],
-              gold,
-              0.065,
+            group(
+              k === 'route_unfold' ? [-0.76, 0.1, 0] : [0, 0, 0],
+              k === 'route_unfold' ? 0.62 : 1,
+              () =>
+                tube(
+                  k === 'route_unfold'
+                    ? [
+                        [0, -0.15, 0],
+                        [0.48, 0.17, -0.12],
+                        [0.83, 0.55, -0.1],
+                        [1.05, 1.05, 0.07],
+                      ]
+                    : [
+                        [0, -0.15, 0],
+                        [0.48, 0.17, -0.12],
+                      ],
+                  gold,
+                  0.065,
+                ),
             );
           else ring([0.22, 0.03, 0], 0.31, gold, 'z', 0.8, true);
         }
@@ -899,16 +951,36 @@ export const TaskSceneModels = (() => {
           label([0.85, -0.6, 0], 'Connection uncertain', gold);
         }
         if (out && k === 'route_unfold') {
-          path(
-            [
-              [-1.1, -1.45, 0],
-              [1.1, -1.45, 0],
-            ],
-            gold,
-            1,
-            5,
-          );
-          label([0, -1.7, 0], 'Unfolded route', gold);
+          group([0.83, 0, 0], 0.63, () => {
+            panel([0, 0, -0.14], [1.45, 2.4]);
+            path(
+              [
+                [-0.3, -0.95, 0.04],
+                [-0.38, -0.48, 0.04],
+                [-0.26, 0.1, 0.04],
+                [-0.36, 0.95, 0.04],
+              ],
+              teal,
+              0.85,
+              2,
+            );
+            path(
+              [
+                [0.3, -0.95, 0.04],
+                [0.22, -0.48, 0.04],
+                [0.34, 0.1, 0.04],
+                [0.24, 0.95, 0.04],
+              ],
+              teal,
+              0.85,
+              2,
+            );
+            line([0, -0.95, 0.06], [-0.08, 0.95, 0.06], gold, 1, 2);
+            for (const y of [-0.7, -0.2, 0.3, 0.8])
+              line([-0.31, y, 0.05], [0.29, y, 0.05], blue, 0.5);
+          });
+          label([-0.8, -1.34, 0], 'Selected vessel route', gold);
+          label([0.83, -1.34, 0], 'Curved planar view', teal);
         }
         if (work && k === 'route_discovery')
           dot([0, mix(-1.1, 1.1, smooth(progress)), 0.12], 0.07, gold);
@@ -1284,20 +1356,26 @@ export const TaskSceneModels = (() => {
     const d = e.illustration,
       k = d.kind;
     let keys = [
-      [C.ink, 'Structure / input'],
+      [C.stone, 'Structure / input'],
       [C.teal, 'Derived structure'],
       [C.gold, 'Focus / correspondence'],
     ];
+    if (k === 'anatomy_audit')
+      keys = [
+        [C.stone, 'Anatomical context'],
+        [C.teal, 'Illustrative supplied mask'],
+        [C.gold, 'Spatial witness'],
+      ];
     if (['segment', 'instances', 'nuclei', 'object_identity'].includes(k))
       keys =
         d.mask_mode === 'separate'
           ? [
-              [C.ink, 'Input'],
+              [C.stone, 'Input'],
               [C.teal, 'Organ'],
               [C.gold, 'Lesion'],
             ]
           : [
-              [C.ink, 'Input'],
+              [C.stone, 'Input'],
               [C.teal, 'Spatial class A'],
               [C.blue, 'Class B'],
               [C.rose, 'Class C'],
@@ -1318,10 +1396,10 @@ export const TaskSceneModels = (() => {
       ];
     if (k === 'cardiac_material')
       keys = [
-        [C.teal, 'Model / geometry'],
-        [C.blue, 'Initial mesh / dashed reference', true],
-        [C.gold, 'Material point A'],
-        [C.rose, 'Material point B'],
+        [C.blue, 'Initial phase geometry'],
+        [C.teal, 'Later phase geometry'],
+        [C.gold, 'Material point A · dashed track', true],
+        [C.rose, 'Material point B · dashed track', true],
       ];
     if (k === 'cardiac_anchors')
       keys = [
@@ -1360,7 +1438,7 @@ export const TaskSceneModels = (() => {
       ];
     if (d.mask_mode === 'binary')
       keys = [
-        [C.ink, 'Input'],
+        [C.stone, 'Input'],
         [C.teal, 'Single target mask'],
       ];
     if (k === 'segmenter_calibration')
@@ -1378,7 +1456,9 @@ export const TaskSceneModels = (() => {
       const d = e.illustration,
         family = recipes[d.kind]?.family;
       if (family === 'motion')
-        return stage === 2 || (d.input_form !== 'masks' && d.kind !== 'cardiac_contours');
+        return d.kind === 'cardiac_material'
+          ? stage < 2
+          : stage === 2 || (d.input_form !== 'masks' && d.kind !== 'cardiac_contours');
       if (d.kind === 'astro_dynamic' && stage === 2) return true;
       return (
         stage === 1 &&

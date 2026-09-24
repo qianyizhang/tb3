@@ -287,8 +287,9 @@ export const AnatomyAssets = (() => {
       parts = fit(
         ids
           .map((id) => {
-            // Distant multi-organ arrangements use a lighter mesh, preserving the same source frame.
-            const data = name === 'torso' || name === 'abdomen' ? source[id].lod : source[id];
+            // The close abdominal specimen keeps its retained surface detail.
+            // The distant torso overview still uses the compact assembly mesh.
+            const data = name === 'torso' ? source[id].lod : source[id];
             return {
               id,
               label: names[id],

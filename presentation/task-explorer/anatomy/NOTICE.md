@@ -28,7 +28,8 @@ Source and output SHA-256 values, affine matrices and extraction settings are in
 manifest.json. Derivation: keep the largest mask component, smooth sigma 0.65
 voxels, extract at 0.5, apply 15 windowed-sinc iterations with passband 0.1, reduce
 triangles by quadrics, retain a smaller assembly mesh (at most 300 triangles per
-organ), and round vertices to 0.01 mm. Truncated organs are rejected.
+organ) for the distant torso overview, and round vertices to 0.01 mm. The close
+abdominal teaching scene uses the fuller retained surfaces. Truncated organs are rejected.
 This discards detail and cannot support clinical measurements or scoring.
 
 JSON vertices retain source RAS millimetres. Display maps RAS to (-R, S, A), then
