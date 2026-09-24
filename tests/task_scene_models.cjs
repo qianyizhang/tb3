@@ -26,6 +26,22 @@ async function main() {
   const sandbox = vm.createContext({});
   vm.runInContext(chunk.code, sandbox);
   const context = sandbox.TB3SceneFixture;
+  for (const invalid of [
+    [1, 2],
+    [1, 2, 3, 4],
+    [1, NaN, 3],
+    [1, Infinity, 3],
+    ['1', 2, 3],
+  ])
+    assert.throws(() => context.scenePoint(invalid), /three finite coordinates/);
+  assert.throws(
+    () =>
+      context.polygon([
+        [0, 0, 0],
+        [1, 1, 1],
+      ]),
+    /at least three/,
+  );
   const anatomyDir = path.join(__dirname, '../presentation/task-explorer/anatomy');
   const sourceMeshes = Object.fromEntries(
     fs
@@ -244,18 +260,19 @@ async function main() {
   // The reusable storyboard must remain complete without Canvas, app globals or
   // source media. Its labels describe schemas, not invented clinical answers.
   const rootDir = path.join(__dirname, '..');
-  const catalog = JSON.parse(
-    fs.readFileSync(path.join(rootDir, 'presentation/task-explorer/catalog.json'), 'utf8'),
-  );
-  const entries = catalog.collections.flatMap(
-    (file) => JSON.parse(fs.readFileSync(path.join(rootDir, file), 'utf8')).entries,
-  );
+  const entriesFrom = (file) => {
+    const catalog = JSON.parse(fs.readFileSync(path.join(rootDir, file), 'utf8'));
+    return [...(catalog.entries || []), ...(catalog.collections || []).flatMap(entriesFrom)];
+  };
+  const entries = entriesFrom('presentation/task-explorer/catalog.json');
   const illustrated = entries.filter((e) => e.illustration);
   const kinds = new Set();
   for (const e of illustrated) {
     kinds.add(e.illustration.kind);
     assert.ok(models.supports(e.illustration.kind), e.id + ': supported illustration kind');
     assert.ok(['3d', 'static'].includes(context.mode(e)), e.id + ': explicit rendering mode');
+    if (e.illustration.subject === 'wsi')
+      assert.equal(context.mode(e), 'static', e.id + ': planar WSI explanation');
     const story = context.teachingStory.describe(e);
     assert.ok(story.action && story.cue && story.form, e.id + ': concrete teaching recipe');
     assert.equal(story.stages.length, 3);
@@ -280,6 +297,15 @@ async function main() {
   assert.match(teachingOutput('multilabel'), /true \/ false/);
   assert.match(teachingOutput('risk'), /one probability per test row/);
   assert.match(teachingOutput('landmark_point'), /point → \(x, y, z\)/);
+  assert.match(teachingOutput('landmark_point', { subject: 'wsi' }), /points → \(x, y\)/);
+  assert.equal(
+    context.teachingStory.describe(entry('landmark_point', { subject: 'wsi' })).action,
+    'Search the whole slide',
+  );
+  assert.match(
+    context.teachingStory.describe(entry('nuclei', { subject: 'wsi' })).cue,
+    /annotated reference regions/,
+  );
   assert.match(teachingOutput('detect'), /box → location \+ extent/);
   assert.match(teachingOutput('report'), /Impression \/ uncertainty/);
   assert.match(teachingOutput('segment', { mask_mode: 'separate' }), /organ mask/);

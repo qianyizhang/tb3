@@ -1,6 +1,7 @@
-import type { AnatomyPart, Point } from './types';
+import { mapPoint, scenePoint } from './coordinates';
+import type { AnatomyPart, ScenePoint } from './types';
 interface MeshData {
-  vertices: Point[];
+  vertices: number[][];
   faces: number[][];
   lod: MeshData;
 }
@@ -91,7 +92,7 @@ const fit = (parts: AnatomyPart[]): AnatomyPart[] => {
     scale = Math.min(2.5 / span[0], 2.5 / span[1], 1.9 / span[2]);
   return parts.map((p) => ({
     ...p,
-    vertices: p.vertices.map((v) => v.map((n, i) => (n - center[i]) * scale)),
+    vertices: p.vertices.map((v) => mapPoint(v, (n, i) => (n - center[i]) * scale)),
   }));
 };
 // Weld periodic seams and collapsed poles before computing normals. Leaving
@@ -99,18 +100,18 @@ const fit = (parts: AnatomyPart[]): AnatomyPart[] => {
 function parametric(
   id: string,
   label: string,
-  fn: (u: number, v: number) => Point,
+  fn: (u: number, v: number) => ScenePoint,
   rows = 30,
   cols = 48,
 ): AnatomyPart {
-  const vertices: Point[] = [],
+  const vertices: ScenePoint[] = [],
     faces: number[][] = [],
     indices: number[] = [],
     unique = new Map<string, number>();
   for (let j = 0; j <= rows; j++)
     for (let i = 0; i <= cols; i++) {
       const p = fn(i / cols, j / rows),
-        key = p.map((v) => Math.round(v * 1e6)).join(',');
+        key = mapPoint(p, (v) => Math.round(v * 1e6)).join(',');
       if (!unique.has(key)) {
         unique.set(key, vertices.length);
         vertices.push(p);
@@ -156,23 +157,25 @@ function subdivide(part: AnatomyPart): AnatomyPart {
       boundary[edge.a].push(edge.b);
       boundary[edge.b].push(edge.a);
     }
-  const result = vertices.map((p, i) => {
+  const result = vertices.map((p, i): ScenePoint => {
     if (boundary[i].length === 2)
-      return p.map(
+      return mapPoint(
+        p,
         (v, q) => 0.75 * v + 0.125 * (vertices[boundary[i][0]][q] + vertices[boundary[i][1]][q]),
       );
     const adjacent = [...neighbors[i]],
       n = adjacent.length;
     if (!n) return [...p];
     const beta = (5 / 8 - (3 / 8 + Math.cos((2 * Math.PI) / n) / 4) ** 2) / n;
-    return p.map(
+    return mapPoint(
+      p,
       (v, q) => (1 - n * beta) * v + beta * adjacent.reduce((sum, j) => sum + vertices[j][q], 0),
     );
   });
   for (const edge of edges.values()) {
     edge.index = result.length;
     result.push(
-      vertices[edge.a].map((v, q) =>
+      mapPoint(vertices[edge.a], (v, q) =>
         edge.opposites.length === 2
           ? 0.375 * (v + vertices[edge.b][q]) +
             0.125 * (vertices[edge.opposites[0]][q] + vertices[edge.opposites[1]][q])
@@ -308,7 +311,10 @@ function get(name: string): AnatomyPart[] | null {
             id,
             label: names[id],
             faces: data.faces,
-            vertices: data.vertices.map(([r, a, s]) => [-r, s, a]),
+            vertices: data.vertices.map((vertex): ScenePoint => {
+              const [r, a, s] = scenePoint(vertex);
+              return [-r, s, a];
+            }),
             provenance: 'TotalSegmentator',
           };
         })
@@ -325,7 +331,7 @@ function get(name: string): AnatomyPart[] | null {
     });
     part.normals = normals.map((n) => {
       const length = Math.hypot(...n) || 1;
-      return n.map((v) => v / length);
+      return mapPoint([n[0], n[1], n[2]], (v) => v / length);
     });
   });
   cache.set(name, parts);

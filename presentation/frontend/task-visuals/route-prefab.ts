@@ -5,7 +5,7 @@ import sampledImage from '../../assets/teaching-fixtures/route-unfold-v1/cpr-sam
 import fixturePoster from '../../assets/teaching-fixtures/route-unfold-v1/phantom-projection.png?inline';
 import { createRouteSampler } from './route-correspondence';
 import type { StoryState } from './story-timeline';
-import type { Annotation } from './types';
+import type { Annotation, ScenePoint } from './types';
 interface MeshData {
   vertices: number[][];
   normals: number[][];
@@ -138,7 +138,10 @@ export function createRoutePrefab(parent: THREE.Group) {
   const scale = 2.3 / Math.max(size.x, size.y, size.z);
   group.scale.setScalar(scale);
   group.position.copy(center).multiplyScalar(-scale);
-  const display = (p: readonly number[]) => p.map((v, i) => (v - center.getComponent(i)) * scale);
+  const display = (p: readonly number[]): ScenePoint => {
+    if (p.length !== 3 || !p.every(Number.isFinite)) throw new Error('Invalid route point');
+    return [(p[0] - center.x) * scale, (p[1] - center.y) * scale, (p[2] - center.z) * scale];
+  };
   let disposed = false;
   return {
     update(state: StoryState): Annotation[] {

@@ -73,7 +73,7 @@ export const TaskTeachingArt = (() => {
         'stroke-linecap="round"',
       );
     const scan = (colored = false) => {
-      if (subject === 'tissue') return tissue(colored);
+      if (subject === 'tissue' || subject === 'wsi') return tissue(colored);
       if (subject === 'skin')
         return frame(
           oval(160, 94, 92, 70, '#ddc5b3') +
@@ -801,7 +801,14 @@ export const TaskTeachingArt = (() => {
         art =
           scan() +
           (output
-            ? targetMark() + txt(35, 166, 'point → (x, y, z)', 12, '#eef6f3')
+            ? targetMark() +
+              txt(
+                35,
+                166,
+                subject === 'wsi' ? 'points → (x, y)' : 'point → (x, y, z)',
+                12,
+                '#eef6f3',
+              )
             : txt(
                 48,
                 174,

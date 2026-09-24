@@ -4,5 +4,6 @@ export { AnatomyAssets as anatomy } from '../presentation/frontend/task-visuals/
 export { TaskSceneModels as models } from '../presentation/frontend/task-visuals/recipes.ts';
 export { SceneStage as stage } from '../presentation/frontend/task-visuals/stage.ts';
 export { taskSceneMode as mode } from '../presentation/frontend/task-visuals/mode.ts';
+export { scenePoint, polygon } from '../presentation/frontend/task-visuals/coordinates.ts';
 export { TaskTeachingArt as teachingArt } from '../presentation/assets/teaching/task-art.js';
 export { TaskTeachingStory as teachingStory } from '../presentation/assets/teaching/task-story.js';

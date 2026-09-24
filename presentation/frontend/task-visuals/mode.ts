@@ -33,7 +33,7 @@ const STATIC_KINDS = new Set([
 ]);
 export const taskSceneMode = (e: VisualEntry) => {
   const d = e.illustration;
-  if (STATIC_KINDS.has(d?.kind)) return 'static';
+  if (d?.subject === 'wsi' || STATIC_KINDS.has(d?.kind)) return 'static';
   if (
     d?.kind === 'segment' &&
     d.target &&

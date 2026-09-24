@@ -15,7 +15,7 @@ from typing import Literal
 
 from . import core as c
 from . import harbor, storage
-from .types import Document, Pathish
+from .types import Document, Pathish, Records
 
 
 @dataclass(frozen=True, slots=True)
@@ -209,42 +209,144 @@ def result_state(imported: harbor.ImportedTrial) -> ResultState:
     return ResultState("completed", "no_verdict")
 
 
+type TerminalExecution = Literal["interrupted", "error", "completed"]
+
+
+@dataclass(frozen=True, slots=True)
+class VerifiedTaskBinding:
+    task_digest: str
+    checksum: str
+
+    @property
+    def proof(self) -> str:
+        return self.task_digest + self.checksum
+
+
+@dataclass(frozen=True, slots=True)
+class CollectionBinding:
+    """Candidate ownership and task identity; verification is trial-specific."""
+
+    attempt_id: str | None = None
+    task_digest: str | None = None
+    checksum: str | None = None
+    launcher_execution: TerminalExecution | None = None
+
+    def verify(self, trial: harbor.ImportedTrial) -> VerifiedTaskBinding | None:
+        if self.task_digest and self.checksum is not None and self.checksum == trial.task_checksum:
+            return VerifiedTaskBinding(self.task_digest, self.checksum)
+        return None
+
+
+@dataclass(frozen=True, slots=True)
+class ObservationState:
+    execution: Literal["error", "running", "planned", "completed", "interrupted"]
+    outcome: Literal["pass", "fail", "no_verdict"]
+    partial: bool
+
+
+def resolve_observation_state(
+    trial: harbor.ImportedTrial, launcher_execution: TerminalExecution | None = None
+) -> ObservationState:
+    imported = result_state(trial)
+    partial = trial.classification == "incomplete"
+    execution = launcher_execution if partial and launcher_execution else imported.execution
+    return ObservationState(execution, imported.outcome, partial)
+
+
+def resolve_collection_binding(
+    root: Path, rows: Records, source: Path, supplied: CollectionBinding
+) -> CollectionBinding:
+    """A launched attempt owns its output, including collection after interruption."""
+    owned = next(
+        (
+            row
+            for row in rows.values()
+            if row["kind"] == "attempt"
+            and row.get("execution_path")
+            and source.is_relative_to(storage.inside(root, row["execution_path"]).parent / "job")
+        ),
+        None,
+    )
+    if not owned:
+        return supplied
+    receipt = storage.read_object(storage.inside(root, owned["execution_path"]))
+    frozen = rows[owned["freeze_id"]]
+    unchanged = task_files(storage.inside(root, frozen["snapshot_path"])) == frozen["files"]
+    digest = checksum = None
+    if receipt.get("frozen_payload_unchanged") and unchanged:
+        digest, checksum = frozen["task_digest"], receipt["harbor_task_checksum"]
+    terminal = receipt.get("execution_state")
+    # Normalize the extensible launcher receipt once, at its read boundary.
+    launcher: TerminalExecution | None = None
+    if terminal == "interrupted":
+        launcher = "interrupted"
+    elif terminal == "error":
+        launcher = "error"
+    elif terminal == "completed":
+        launcher = "completed"
+    return CollectionBinding(owned["id"], digest, checksum, launcher)
+
+
+def evaluation_from_trial(
+    trial: harbor.ImportedTrial,
+    *,
+    observation_id: str,
+    attempt_id: str,
+    experiment: Document,
+    state: ObservationState,
+    verified: VerifiedTaskBinding | None,
+    collected_at: str,
+) -> Document:
+    """Project the importer contract to the established evaluation wire format."""
+    row = {
+        **trial.model_dump(mode="python"),
+        "schema_version": 2,
+        "kind": "evaluation",
+        "evaluation_kind": "result",
+        "id": observation_id,
+        "attempt_id": attempt_id,
+        "experiment_id": experiment["id"],
+        "group_id": experiment["group_id"],
+        "collected_at": collected_at,
+        "execution_state": state.execution,
+        "outcome": state.outcome,
+        "partial": state.partial,
+        "task_digest": verified.task_digest if verified else None,
+        "freeze_checksum_verified": verified is not None,
+    }
+    row["source_classification"] = row.pop("classification")
+    row.pop("qualifying_final_trial", None)
+    return row
+
+
 def collect(
-    root: Pathish, experiment: str, sources: Sequence[str], binding: Document | None = None
+    root: Pathish,
+    experiment: str,
+    sources: Sequence[str],
+    binding: CollectionBinding | Document | None = None,
 ) -> list[Document]:
     root = Path(root).resolve()
     exp = c.lookup(root, experiment)
     if exp["kind"] != "experiment":
         raise c.MedicalError("Collect into an experiment")
     base = root / Path(exp["record_path"]).parent
+    # Retain the accepted document API; internal collection uses named fields.
+    supplied = (
+        binding
+        if isinstance(binding, CollectionBinding)
+        else CollectionBinding(
+            attempt_id=(binding or {}).get("attempt_id"),
+            task_digest=(binding or {}).get("task_digest"),
+            checksum=(binding or {}).get("checksum"),
+        )
+    )
     results = []
     for source in sources:
         imported = harbor.import_trial(root, storage.inside(root, source))
         rows = c.load(root)
-        current_binding = dict(binding or {})
-        # A launched attempt owns its output directory even when collection occurs
-        # after interruption. External results retain a stable source-path identity.
-        owned = next(
-            (
-                r
-                for r in rows.values()
-                if r["kind"] == "attempt"
-                and r.get("execution_path")
-                and storage.inside(root, source).is_relative_to(
-                    storage.inside(root, r["execution_path"]).parent / "job"
-                )
-            ),
-            None,
+        current_binding = resolve_collection_binding(
+            root, rows, storage.inside(root, source), supplied
         )
-        if owned:
-            receipt = storage.read(storage.inside(root, owned["execution_path"]))
-            frozen = rows[owned["freeze_id"]]
-            unchanged = task_files(storage.inside(root, frozen["snapshot_path"])) == frozen["files"]
-            current_binding = {"attempt_id": owned["id"]}
-            if receipt.get("frozen_payload_unchanged") and unchanged:
-                current_binding.update(
-                    task_digest=frozen["task_digest"], checksum=receipt["harbor_task_checksum"]
-                )
         prior = next(
             (
                 r
@@ -256,7 +358,7 @@ def collect(
         identity = (
             prior["attempt_id"]
             if prior
-            else current_binding.get("attempt_id")
+            else current_binding.attempt_id
             or "attempt-" + hashlib.sha256(imported.source_result.encode()).hexdigest()[:24]
         )
         if identity in rows and rows[identity]["experiment_id"] != experiment:
@@ -274,28 +376,20 @@ def collect(
                     "diagnostic": True,
                 },
             )
-        verified = bool(
-            current_binding.get("task_digest")
-            and current_binding.get("checksum") == imported.task_checksum
-        )
-        state = result_state(imported)
-        execution, outcome = state.execution, state.outcome
-        if owned and imported.classification == "incomplete":
-            terminal = receipt.get("execution_state")
-            if terminal in {"interrupted", "error", "completed"}:
-                execution = terminal
-        proof = current_binding["task_digest"] + current_binding["checksum"] if verified else ""
+        verified = current_binding.verify(imported)
+        state = resolve_observation_state(imported, current_binding.launcher_execution)
+        proof = verified.proof if verified else ""
         latest = c.execution_observations(rows).get(identity)
         if latest and all(
             latest.get(field) == value
             for field, value in {
                 "source_result": imported.source_result,
                 "evidence_sha256": imported.evidence_sha256,
-                "freeze_checksum_verified": verified,
-                "task_digest": current_binding.get("task_digest") if verified else None,
-                "execution_state": execution,
-                "outcome": outcome,
-                "partial": imported.classification == "incomplete",
+                "freeze_checksum_verified": verified is not None,
+                "task_digest": verified.task_digest if verified else None,
+                "execution_state": state.execution,
+                "outcome": state.outcome,
+                "partial": state.partial,
             }.items()
         ):
             results.append(latest)
@@ -309,24 +403,15 @@ def collect(
                 (identity + imported.evidence_sha256 + proof + predecessor).encode()
             ).hexdigest()[:24]
         )
-        row = {
-            **imported.model_dump(mode="python"),
-            "schema_version": 2,
-            "kind": "evaluation",
-            "evaluation_kind": "result",
-            "id": key,
-            "attempt_id": identity,
-            "experiment_id": experiment,
-            "group_id": exp["group_id"],
-            "collected_at": c.now(),
-            "execution_state": execution,
-            "outcome": outcome,
-            "partial": imported.classification == "incomplete",
-            "task_digest": current_binding.get("task_digest") if verified else None,
-            "freeze_checksum_verified": verified,
-        }
-        row["source_classification"] = row.pop("classification")
-        row.pop("qualifying_final_trial", None)
+        row = evaluation_from_trial(
+            imported,
+            observation_id=key,
+            attempt_id=identity,
+            experiment=exp,
+            state=state,
+            verified=verified,
+            collected_at=c.now(),
+        )
         storage.write_new(base / "evaluations" / (key + ".json"), row)
         results.append(row)
     return results

@@ -4,7 +4,7 @@ import { sampleStory, type StoryState } from './story-timeline';
 import { createRoutePrefab } from './route-prefab';
 import { TaskSceneModels } from './recipes';
 import { SceneStage } from './stage';
-import type { Point, SceneModel, Stage, VisualEntry } from './types';
+import type { ScreenPoint, SceneModel, Stage, VisualEntry } from './types';
 
 const DURATIONS = [2600, 4200, 3200];
 const STARTS = [0, DURATIONS[0], DURATIONS[0] + DURATIONS[1]];
@@ -34,7 +34,7 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const annotations = useRef<HTMLDivElement>(null);
   const actions = useRef<PlayerActions | null>(null);
-  const pointer = useRef<Point | null>(null);
+  const pointer = useRef<ScreenPoint | null>(null);
   const [state, setState] = useState<PlayerState>(() => ({
     ...INITIAL,
     storyState: plan ? sampleStory(plan, 0) : undefined,
@@ -69,7 +69,8 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
       width = 0,
       height = 0;
     let model: SceneModel | null = null,
-      modelStage = -1;
+      modelStage = -1,
+      modelElapsed = -1;
     let view: ReturnType<typeof SceneStage.create> = null;
     const sync = () => {
       if (!disposed)
@@ -102,10 +103,15 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
         player.dataset.frame = String(state.frame);
         sync();
       } else {
-        if (!model || modelStage !== stage || (playing && TaskSceneModels.animated(entry, stage))) {
+        if (
+          !model ||
+          modelStage !== stage ||
+          (modelElapsed !== elapsed && TaskSceneModels.animated(entry, stage))
+        ) {
           const progress = Math.max(0, Math.min(1, (elapsed - STARTS[stage]) / DURATIONS[stage]));
           model = TaskSceneModels.build(entry, stage, elapsed / 1000, progress);
           modelStage = stage;
+          modelElapsed = elapsed;
         }
         if (!view.draw(model, { width, height, yaw, pitch })) return fallback();
       }

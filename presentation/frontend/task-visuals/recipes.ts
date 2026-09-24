@@ -1,5 +1,6 @@
+import { mapPoint } from './coordinates';
 import { C, TAU, mix, smooth, createGeometry } from './geometry';
-import type { Face, LegendKey, SceneModel, VisualEntry } from './types';
+import type { Face, LegendKey, SceneModel, ScenePoint, VisualEntry, Stage } from './types';
 import { AnatomyAssets } from './anatomy';
 
 // Task choreography over shared teaching assets; no task-specific results.
@@ -74,7 +75,7 @@ register(
 );
 register('segmenter_calibration', 'calibration', 'Compare boundaries under the supplied box');
 
-function scene(e: VisualEntry, stage: number, clock: number, progress = 0): SceneModel {
+function scene(e: VisualEntry, stage: Stage, clock: number, progress = 0): SceneModel {
   const d = e.illustration,
     k = d.kind,
     subject = d.subject || 'generic',
@@ -125,7 +126,7 @@ function scene(e: VisualEntry, stage: number, clock: number, progress = 0): Scen
     case 'segmentation': {
       if (k === 'instances' || k === 'nuclei') {
         for (let i = 0; i < 7; i++) {
-          const p = [
+          const p: ScenePoint = [
             Math.cos(i * 2.4) * (0.4 + i * 0.1),
             Math.sin(i * 2.4) * (0.4 + i * 0.1),
             Math.sin(i) * 0.17,
@@ -176,7 +177,7 @@ function scene(e: VisualEntry, stage: number, clock: number, progress = 0): Scen
             Math.min(...selected.vertices.map((vertex) => vertex[axis])),
             Math.max(...selected.vertices.map((vertex) => vertex[axis])),
           ]);
-          const anchor = [
+          const anchor: ScenePoint = [
             (bounds[0][0] + bounds[0][1]) / 2,
             (bounds[1][0] + bounds[1][1]) / 2,
             bounds[2][1] + 0.08,
@@ -220,7 +221,7 @@ function scene(e: VisualEntry, stage: number, clock: number, progress = 0): Scen
       if (k === 'anatomy_audit') {
         const focus = d.target || (subject === 'abdomen' ? 'kidney_left' : null);
         const selected = AnatomyAssets.get(subject)?.find((part) => part.id === focus);
-        const witness = selected
+        const witness: ScenePoint = selected
           ? [
               (Math.min(...selected.vertices.map((point) => point[0])) +
                 Math.max(...selected.vertices.map((point) => point[0]))) /
@@ -269,12 +270,12 @@ function scene(e: VisualEntry, stage: number, clock: number, progress = 0): Scen
       }
       break;
     case 'motion': {
-      const markerParameters = [
+      const markerParameters: [number, number][] = [
         [0.34, 0.22],
         [0.12, 0.72],
       ];
       const marker = (index: number, phase: number) =>
-        cavityPoint(...(markerParameters[index] as [number, number]), phase);
+        cavityPoint(...markerParameters[index], phase);
       const markers = (phase: number) =>
         markerParameters.forEach((_, i) => {
           const p = marker(i, phase),
@@ -299,8 +300,8 @@ function scene(e: VisualEntry, stage: number, clock: number, progress = 0): Scen
           label([x, -1.18, 0], phase + ' phase', color);
         }
         for (let i = 0; i < 2; i++) {
-          const source = marker(i, 1).map((v, q) => v * 0.7 + [-0.82, 0.08, 0][q]);
-          const target = marker(i, 0.86).map((v, q) => v * 0.7 + [0.82, 0.08, 0][q]);
+          const source = mapPoint(marker(i, 1), (v, q) => v * 0.7 + [-0.82, 0.08, 0][q]);
+          const target = mapPoint(marker(i, 0.86), (v, q) => v * 0.7 + [0.82, 0.08, 0][q]);
           line(source, target, i ? rose : gold, 0.8, 1.5, true);
         }
         break;
@@ -355,7 +356,7 @@ function scene(e: VisualEntry, stage: number, clock: number, progress = 0): Scen
           );
         box([0.95, 0, -0.12], [1.94, 1.94, 0.8], blue);
         imagePanel([center, mix(0, 0.12, t), 0.62], [1.75, 1.18], subject, mix(0, -0.46, t));
-        const planeCenter = [center, mix(0, 0.12, t), 0.63];
+        const planeCenter: ScenePoint = [center, mix(0, 0.12, t), 0.63];
         dot(planeCenter, 0.045, gold);
         label(
           [-1.22, -1.22, 0],
@@ -378,8 +379,8 @@ function scene(e: VisualEntry, stage: number, clock: number, progress = 0): Scen
         }),
       );
       if (k !== 'register') {
-        const source = [-1.25, 0.33, 0.4],
-          returned = [0.95 + mix(0.18, -0.3, t), mix(0.48, 0.33, t), 0.4];
+        const source: ScenePoint = [-1.25, 0.33, 0.4],
+          returned: ScenePoint = [0.95 + mix(0.18, -0.3, t), mix(0.48, 0.33, t), 0.4];
         dot(source, 0.055, gold);
         if (out || d.initial_candidate) dot(returned, 0.055, teal);
         if (out || work) line(source, returned, gold, 0.8, 1.4, true);
@@ -444,7 +445,7 @@ function scene(e: VisualEntry, stage: number, clock: number, progress = 0): Scen
       if (k === 'route_repair' || k === 'route_unfold') {
         if (work) {
           const traced = smooth(progress);
-          const cursor = [mix(0, 0.48, traced), mix(-0.15, 0.17, traced), 0.2];
+          const cursor: ScenePoint = [mix(0, 0.48, traced), mix(-0.15, 0.17, traced), 0.2];
           line([0, -0.15, 0.2], cursor, gold, 0.9, 2, true);
           dot(cursor, 0.065, gold);
           label([0.85, -0.85, 0.2], 'Trace candidate route', gold, cursor);
@@ -473,12 +474,13 @@ function scene(e: VisualEntry, stage: number, clock: number, progress = 0): Scen
         else ring([0.22, 0.03, 0], 0.31, gold, 'z', 0.8, true);
       }
       if (out && k === 'vesselgraph') {
-        [
+        const junctions: ScenePoint[] = [
           [0, -0.3, 0.04],
           [-0.45, 0.03, 0.08],
           [0.48, 0.17, -0.12],
           [0.83, 0.55, -0.1],
-        ].forEach((p) => dot(p, 0.075, gold));
+        ];
+        junctions.forEach((p) => dot(p, 0.075, gold));
         label([0.85, -0.65, 0.2], 'Connection labels', gold);
       }
       if (k === 'prediction_screen') {
@@ -548,7 +550,7 @@ function scene(e: VisualEntry, stage: number, clock: number, progress = 0): Scen
           mesh([0, 0, 0], [0.4, 0.65, 0.4], ink, 0.08);
           for (let i = 0; i < 9; i++) {
             const a = (i * TAU) / 9 + (work ? smooth(progress) * 0.6 : 0),
-              p = [1.35 * Math.cos(a), 0.18, 1.35 * Math.sin(a)];
+              p: ScenePoint = [1.35 * Math.cos(a), 0.18, 1.35 * Math.sin(a)];
             dot(p, 0.04, k === 'dualct' && i % 2 ? rose : teal);
             line(p, [-p[0], -0.25, -p[2]], i % 2 ? blue : teal, 0.3);
           }
@@ -693,17 +695,14 @@ function scene(e: VisualEntry, stage: number, clock: number, progress = 0): Scen
         line([0, -0.7, 0.1], [0, 0.45, 0.1], gold, 1, 3);
         label([0.4, 0.2, 0], 'Temperature', gold);
       } else if (k === 'tensor') {
+        const radii: ScenePoint[] = [
+          [0.68, 0.21, 0.25],
+          [0.21, 0.68, 0.25],
+          [0.21, 0.25, 0.68],
+        ];
         for (let i = 0; i < 25; i++)
           group([((i % 5) - 2) * 0.45, (Math.floor(i / 5) - 2) * 0.45, 0], 0.25, () =>
-            mesh(
-              [0, 0, 0],
-              [
-                [0.68, 0.21, 0.25],
-                [0.21, 0.68, 0.25],
-                [0.21, 0.25, 0.68],
-              ][i % 3],
-              [blue, teal, gold][i % 3],
-            ),
+            mesh([0, 0, 0], radii[i % 3], [blue, teal, gold][i % 3]),
           );
       } else if (k === 'spectral_cube') {
         volume(teal, 9);
@@ -742,9 +741,9 @@ function scene(e: VisualEntry, stage: number, clock: number, progress = 0): Scen
         volume(teal, 7);
         mesh([0, 0, 0], [0.7, 0.45, 0.7], gold, 0.08);
       } else {
-        const vertices = [],
-          faces = [],
-          around = 64,
+        const vertices: ScenePoint[] = [];
+        const faces: number[][] = [];
+        const around = 64,
           cross = 16;
         for (let i = 0; i < around; i++)
           for (let j = 0; j < cross; j++) {
@@ -1052,7 +1051,7 @@ function legend(e: VisualEntry): LegendKey[] {
 
 export const TaskSceneModels = {
   build: scene,
-  animated: (e: VisualEntry, stage: number) => {
+  animated: (e: VisualEntry, stage: Stage) => {
     const d = e.illustration,
       family = recipes[d.kind]?.family;
     if (family === 'motion')

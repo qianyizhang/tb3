@@ -1,5 +1,6 @@
+import { mapPoint, polygon } from './coordinates';
 import { AnatomyAssets } from './anatomy';
-import type { Annotation, Point, Primitive, VisualEntry } from './types';
+import type { Annotation, ScenePoint, Primitive, VisualEntry, Stage } from './types';
 export const C = {
   ink: '#284952',
   stone: '#aaa99f',
@@ -15,7 +16,7 @@ export const mix = (a: number, b: number, t: number) => a + (b - a) * t;
 export const smooth = (t: number) => t * t * (3 - 2 * t);
 
 /** Shared geometry construction. No DOM, GPU resources or application state. */
-export function createGeometry(e: VisualEntry, stage: number, clock: number, progress: number) {
+export function createGeometry(e: VisualEntry, stage: Stage, clock: number, progress: number) {
   const d = e.illustration,
     k = d.kind,
     subject = d.subject || 'generic';
@@ -24,18 +25,18 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
   const { ink, teal, gold, blue, rose } = C;
   const primitives: Primitive[] = [],
     labels: Annotation[] = [];
-  let offset = [0, 0, 0],
-    scale = 1;
-  const point = (p: Point) => p.map((v, i) => offset[i] + v * scale);
-  const line = (a: Point, b: Point, color = ink, alpha = 0.65, width = 1, dash = false) =>
+  let offset: ScenePoint = [0, 0, 0];
+  let scale = 1;
+  const point = (p: ScenePoint) => mapPoint(p, (v, i) => offset[i] + v * scale);
+  const line = (a: ScenePoint, b: ScenePoint, color = ink, alpha = 0.65, width = 1, dash = false) =>
     primitives.push({ type: 'line', points: [point(a), point(b)], color, alpha, width, dash });
-  const dot = (p: Point, r = 0.045, color = gold) =>
+  const dot = (p: ScenePoint, r = 0.045, color = gold) =>
     primitives.push({ type: 'dot', points: [point(p)], radius: r * scale, color, alpha: 1 });
-  const face = (pts: Point[], color = C.paper, alpha = 0.25) =>
-    primitives.push({ type: 'face', points: pts.map(point), color, alpha });
-  const label = (p: Point, text: string, color = ink, anchor: Point | null = null) =>
+  const face = (pts: ScenePoint[], color = C.paper, alpha = 0.25) =>
+    primitives.push({ type: 'face', points: polygon(pts.map(point)), color, alpha });
+  const label = (p: ScenePoint, text: string, color = ink, anchor: ScenePoint | null = null) =>
     labels.push({ p: point(p), text, color, ...(anchor ? { anchor: point(anchor) } : {}) });
-  const group = (p: Point, s: number, fn: () => void) => {
+  const group = (p: ScenePoint, s: number, fn: () => void) => {
     const old = offset,
       oldScale = scale;
     offset = point(p);
@@ -44,11 +45,11 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
     offset = old;
     scale = oldScale;
   };
-  const path = (pts: Point[], color = ink, alpha = 0.65, width = 1, dash = false) => {
+  const path = (pts: ScenePoint[], color = ink, alpha = 0.65, width = 1, dash = false) => {
     for (let i = 1; i < pts.length; i++) line(pts[i - 1], pts[i], color, alpha, width, dash);
   };
-  const ring = (p: Point, r: number, color = ink, axis = 'y', alpha = 0.55, dash = false) => {
-    const pts = Array.from({ length: 49 }, (_, i) => {
+  const ring = (p: ScenePoint, r: number, color = ink, axis = 'y', alpha = 0.55, dash = false) => {
+    const pts = Array.from({ length: 49 }, (_, i): ScenePoint => {
       const a = (i * TAU) / 48;
       return axis === 'y'
         ? [p[0] + r * Math.cos(a), p[1], p[2] + r * Math.sin(a)]
@@ -59,26 +60,27 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
   // Every physical form uses the same smooth surface material, whether its
   // geometry comes from a public mask or from a procedural teaching model.
   const surface = (
-    vertices: Point[],
+    vertices: ScenePoint[],
     faces: number[][],
     color: string,
-    normals: Point[] | null = null,
+    normals: ScenePoint[] | null = null,
     asset: string | null = null,
   ) => {
     if (!normals) {
-      normals = vertices.map(() => [0, 0, 0]);
+      const accumulated = vertices.map(() => [0, 0, 0]);
       faces.forEach(([a, b, c]) => {
         const u = vertices[b].map((v, i) => v - vertices[a][i]),
           v = vertices[c].map((v, i) => v - vertices[a][i]);
         const n = [u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0]];
-        for (const index of [a, b, c]) n.forEach((v, i) => (normals![index][i] += v));
+        for (const index of [a, b, c]) n.forEach((v, i) => (accumulated[index][i] += v));
       });
+      normals = accumulated.map(([x, y, z]): ScenePoint => [x, y, z]);
     }
     const points = vertices.map(point);
     faces.forEach((indices) =>
       primitives.push({
         type: 'face',
-        points: indices.map((i) => points[i]),
+        points: polygon(indices.map((i) => points[i])),
         color: color === ink ? C.stone : color,
         alpha: 1,
         surface: true,
@@ -87,8 +89,8 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
       }),
     );
   };
-  const mesh = (center: Point, radii: Point, color = ink, warp = 0, dash = false) => {
-    const pos = (u: number, v: number) => {
+  const mesh = (center: ScenePoint, radii: ScenePoint, color = ink, warp = 0, dash = false) => {
+    const pos = (u: number, v: number): ScenePoint => {
       const a = u * TAU,
         b = v * Math.PI,
         mod = 1 + Math.min(warp, 0.065) * Math.sin(3 * a + 1) * Math.sin(2 * b) * Math.sin(b) ** 2;
@@ -139,7 +141,7 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
     }
     surface(vertices, faces, color);
   };
-  const cavityPoint = (u: number, v: number, phase = 1): Point => {
+  const cavityPoint = (u: number, v: number, phase = 1): ScenePoint => {
     const a = u * TAU,
       b = 0.55 + v * (Math.PI - 0.55);
     const radius = Math.sin(b),
@@ -149,7 +151,7 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
   const cavity = (color = ink, phase = 1) => {
     const rows = 30,
       cols = 48,
-      vertices: Point[] = [],
+      vertices: ScenePoint[] = [],
       faces: number[][] = [];
     // Separate inner and outer walls, joined at the basal rim. This is an
     // authored explanatory shell; thickness is not a patient measurement.
@@ -198,15 +200,15 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
     }
     surface(vertices, faces, color);
   };
-  const box = (p: Point, size: Point, color = blue, dash = false) => {
+  const box = (p: ScenePoint, size: ScenePoint, color = blue, dash = false) => {
     const pts = Array.from({ length: 8 }, (_, i) =>
-      p.map((v, j) => v + size[j] * (((i >> j) & 1) - 0.5)),
+      mapPoint(p, (v, j) => v + size[j] * (((i >> j) & 1) - 0.5)),
     );
     for (let i = 0; i < 8; i++)
       for (let j = 0; j < 3; j++)
         if (!((i >> j) & 1)) line(pts[i], pts[i | (1 << j)], color, 0.65, 1, dash);
   };
-  const panel = (p = [0, 0, -0.12], size = [2.8, 2.35]) => {
+  const panel = (p: ScenePoint = [0, 0, -0.12], size = [2.8, 2.35]) => {
     const first = primitives.length;
     const [x, y, z] = p,
       [w, h] = size;
@@ -257,20 +259,24 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
       if (item.type === 'face') item.backdrop = true;
     });
   };
-  const imagePanel = (p = [0, 0, 0], size = [2.7, 1.8], imageSubject = subject, tilt = 0) => {
+  const imagePanel = (
+    p: ScenePoint = [0, 0, 0],
+    size = [2.7, 1.8],
+    imageSubject = subject,
+    tilt = 0,
+  ) => {
     const [x, y, z] = p,
       [w, h] = size;
-    const corners = [
-      [-w / 2, h / 2],
-      [w / 2, h / 2],
-      [w / 2, -h / 2],
-      [-w / 2, -h / 2],
-    ];
+    const corner = (u: number, v: number) =>
+      point([x + u, y + v * Math.cos(tilt), z + v * Math.sin(tilt)]);
     primitives.push({
       type: 'image',
-      points: corners.map(([u, v]) =>
-        point([x + u, y + v * Math.cos(tilt), z + v * Math.sin(tilt)]),
-      ),
+      points: [
+        corner(-w / 2, h / 2),
+        corner(w / 2, h / 2),
+        corner(w / 2, -h / 2),
+        corner(-w / 2, -h / 2),
+      ],
       subject: imageSubject,
       color: ink,
       alpha: 1,
@@ -315,13 +321,13 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
       line([-1.25, y, 0.91], [1.25, y, 0.91], color, 0.6, 1.5);
     }
   };
-  const tube = (control: Point[], color = ink, r = 0.06, dash = false) => {
+  const tube = (control: ScenePoint[], color = ink, r = 0.06, dash = false) => {
     if (dash) {
       path(control, color, 0.9, 2, true);
       return;
     }
     // Catmull-Rom interpolation makes continuous branches instead of wire cages.
-    const pts: Point[] = [];
+    const pts: ScenePoint[] = [];
     for (let i = 0; i < control.length - 1; i++) {
       const a = control[Math.max(0, i - 1)],
         b = control[i],
@@ -330,7 +336,8 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
       for (let j = 0; j < 5; j++) {
         const t = j / 5;
         pts.push(
-          b.map(
+          mapPoint(
+            b,
             (v, q) =>
               0.5 *
               (2 * v +
@@ -342,32 +349,33 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
       }
     }
     pts.push(control.at(-1)!);
-    const vertices = [],
-      normals = [],
-      faces = [],
+    const vertices: ScenePoint[] = [],
+      normals: ScenePoint[] = [];
+    const faces: number[][] = [],
       sides = 16;
-    let previousU: Point | null = null;
-    const tangents: Point[] = [];
+    let previousU: ScenePoint | null = null;
+    const tangents: ScenePoint[] = [];
     pts.forEach((p, i) => {
       const a = pts[Math.max(0, i - 1)],
         b = pts[Math.min(pts.length - 1, i + 1)],
-        t = b.map((x, j) => x - a[j]);
+        t = mapPoint(b, (x, j) => x - a[j]);
       const len = Math.hypot(...t) || 1;
       t.forEach((_, j) => (t[j] /= len));
       tangents.push(t);
-      const reference = previousU || (Math.abs(t[1]) > 0.9 ? [1, 0, 0] : [0, 1, 0]);
+      const reference: ScenePoint = previousU || (Math.abs(t[1]) > 0.9 ? [1, 0, 0] : [0, 1, 0]);
       const along = reference.reduce((sum, v, q) => sum + v * t[q], 0);
-      const u = reference.map((v, q) => v - along * t[q]);
+      const u = mapPoint(reference, (v, q) => v - along * t[q]);
       const length = Math.hypot(...u) || 1;
       u.forEach((_, q) => (u[q] /= length));
       previousU = u;
       const v = [t[1] * u[2] - t[2] * u[1], t[2] * u[0] - t[0] * u[2], t[0] * u[1] - t[1] * u[0]];
       for (let j = 0; j < sides; j++) {
-        const n = u.map(
+        const n = mapPoint(
+          u,
           (x, q) => x * Math.cos((j * TAU) / sides) + v[q] * Math.sin((j * TAU) / sides),
         );
         normals.push(n);
-        vertices.push(p.map((x, q) => x + r * (1 - (0.12 * i) / (pts.length - 1)) * n[q]));
+        vertices.push(mapPoint(p, (x, q) => x + r * (1 - (0.12 * i) / (pts.length - 1)) * n[q]));
         if (i) {
           const a = (i - 1) * sides + j,
             b = (i - 1) * sides + ((j + 1) % sides),
@@ -391,11 +399,14 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
         const current = radial.map((n) => {
           const index = vertices.length;
           vertices.push(
-            center.map(
+            mapPoint(
+              center,
               (v, q) => v + radius * (n[q] * Math.cos(angle) + sign * tangent[q] * Math.sin(angle)),
             ),
           );
-          normals.push(n.map((v, q) => v * Math.cos(angle) + sign * tangent[q] * Math.sin(angle)));
+          normals.push(
+            mapPoint(n, (v, q) => v * Math.cos(angle) + sign * tangent[q] * Math.sin(angle)),
+          );
           return index;
         });
         for (let j = 0; j < sides; j++) {
@@ -408,8 +419,8 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
         }
         previous = current;
       }
-      const tip = vertices.push(center.map((v, q) => v + sign * radius * tangent[q])) - 1;
-      normals.push(tangent.map((v) => v * sign));
+      const tip = vertices.push(mapPoint(center, (v, q) => v + sign * radius * tangent[q])) - 1;
+      normals.push(mapPoint(tangent, (v) => v * sign));
       for (let j = 0; j < sides; j++) {
         const triangle = [previous[j], previous[(j + 1) % sides], tip];
         faces.push(sign < 0 ? triangle.reverse() : triangle);
@@ -418,7 +429,7 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
     surface(vertices, faces, color, normals);
   };
   const branches = (colored = false, gap = false, override: string | null = null, dash = false) => {
-    const paths = [
+    const paths: ScenePoint[][] = [
       [
         [0, -1.15, 0],
         [0, -0.6, 0.08],
@@ -515,7 +526,7 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
     mesh([0, 0, 0], [0.38, 0.45, 0.3], teal, 0.21);
   };
   const sweep = () => plane(mix(-1.05, 1.05, smooth(progress)), teal, 0.1);
-  const target = (p = [0.52, 0.15, 0.48], boxed = false) => {
+  const target = (p: ScenePoint = [0.52, 0.15, 0.48], boxed = false) => {
     if (boxed) box(p, [0.65, 0.65, k === 'detect' ? 0 : 0.6], gold);
     else {
       ring(p, 0.24, gold, 'z', 1);
@@ -524,7 +535,7 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
       line([p[0], p[1] - 0.34, p[2]], [p[0], p[1] + 0.34, p[2]], gold, 0.8);
     }
   };
-  const documentMesh = (p = [0, 0, 0], color = ink, rows = 5) =>
+  const documentMesh = (p: ScenePoint = [0, 0, 0], color = ink, rows = 5) =>
     group(p, 1, () => {
       panel([0, 0, -0.04], [1.24, 1.7]);
       for (let i = 0; i < rows; i++)
@@ -575,7 +586,7 @@ export function createGeometry(e: VisualEntry, stage: number, clock: number, pro
       );
   };
   const field = (spectral = false, color = teal) => {
-    const vertices: Point[] = [],
+    const vertices: ScenePoint[] = [],
       faces: number[][] = [],
       cols = 20,
       rows = 15;

@@ -156,6 +156,47 @@ class HarborImportTests(unittest.TestCase):
                     before,
                 )
 
+    def test_resolved_state_preserves_terminal_partial_and_final_precedence(self):
+        partial = self.imported(self.fixture("partial", overrides={"finished_at": None}))
+        complete = self.imported(self.fixture("complete", reward=1))
+        for terminal in ("interrupted", "error", "completed"):
+            with self.subTest(terminal=terminal):
+                state = workflow.resolve_observation_state(partial, terminal)
+                self.assertEqual(state.execution, terminal)
+                self.assertEqual(state.outcome, "no_verdict")
+                self.assertTrue(state.partial)
+                final = workflow.resolve_observation_state(complete, terminal)
+                self.assertEqual(final.execution, "completed")
+                self.assertEqual(final.outcome, "pass")
+                self.assertFalse(final.partial)
+
+    def test_binding_and_projection_preserve_source_and_wire_contract(self):
+        trial = self.imported(self.fixture())
+        before = trial.model_dump(mode="python")
+        binding = workflow.CollectionBinding("attempt-test", "digest", TASK_CHECKSUM)
+        verified = binding.verify(trial)
+        self.assertEqual(verified.proof, "digest" + TASK_CHECKSUM)
+        self.assertIsNone(
+            workflow.CollectionBinding("attempt-test", "digest", "wrong").verify(trial)
+        )
+        self.assertIsNone(workflow.CollectionBinding("attempt-test").verify(trial))
+        row = workflow.evaluation_from_trial(
+            trial,
+            observation_id="observation-test",
+            attempt_id="attempt-test",
+            experiment={"id": "study", "group_id": "g"},
+            state=workflow.resolve_observation_state(trial),
+            verified=verified,
+            collected_at="fixed-time",
+        )
+        self.assertEqual(row["schema_version"], 2)
+        self.assertEqual(row["source_classification"], trial.classification)
+        self.assertNotIn("classification", row)
+        self.assertNotIn("qualifying_final_trial", row)
+        self.assertTrue(row["freeze_checksum_verified"])
+        self.assertEqual(row["task_digest"], "digest")
+        self.assertEqual(trial.model_dump(mode="python"), before)
+
     def test_normalized_contract_rejects_missing_extra_and_coerced_fields(self):
         expected = self.imported(self.fixture()).model_dump()
         invalid = []

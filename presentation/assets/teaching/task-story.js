@@ -470,6 +470,7 @@ export const TaskTeachingStory = (() => {
     heart: 'Heart anatomy',
     teeth: 'Dental arch',
     tissue: 'Microscopy field',
+    wsi: 'Whole-slide microscopy',
     skin: 'Skin image',
     wrist: 'Wrist view',
     knee: 'Knee view',
@@ -485,6 +486,18 @@ export const TaskTeachingStory = (() => {
     const d = entry.illustration;
     if (!recipes[d.kind]) throw new Error('Missing teaching recipe: ' + d.kind);
     const recipe = { ...recipes[d.kind] };
+    if (d.subject === 'wsi' && d.kind === 'landmark_point')
+      Object.assign(recipe, {
+        action: 'Search the whole slide',
+        form: 'Candidate points in slide coordinates',
+        cue: 'Inspect tissue regions at higher magnification and report candidate locations in the slide coordinate frame.',
+      });
+    if (d.subject === 'wsi' && d.kind === 'nuclei')
+      Object.assign(recipe, {
+        action: 'Relate cells to tissue',
+        form: 'Cell marks and tissue-context assignments',
+        cue: 'Read cell morphology with its surrounding tissue; assess results only where the task provides annotated reference regions.',
+      });
     if (d.kind === 'segment' && d.mask_mode === 'binary')
       Object.assign(recipe, {
         action: 'Isolate the target',

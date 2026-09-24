@@ -4,7 +4,7 @@ export interface NativeContent {
   update(state: StoryState): Annotation[];
   dispose(): void;
 }
-import type { Annotation, Face, Point, SceneModel, SceneView, Line } from './types';
+import type { Annotation, Face, ScenePoint, SceneModel, SceneView, Line } from './types';
 type SurfaceMesh = THREE.Mesh<
   THREE.BufferGeometry,
   THREE.MeshBasicMaterial | THREE.MeshStandardMaterial
@@ -107,7 +107,7 @@ export const SceneStage = {
       if (!colorCache.has(hex)) colorCache.set(hex, new THREE.Color(hex).toArray());
       return colorCache.get(hex)!;
     };
-    const point = (p: Point) => new THREE.Vector3(p[0], p[1], p[2]);
+    const point = (p: ScenePoint) => new THREE.Vector3(p[0], p[1], p[2]);
     const own = <T extends THREE.Object3D>(
       object: T,
       geometry: THREE.BufferGeometry | null = null,
@@ -419,7 +419,7 @@ export const SceneStage = {
       currentModel = model;
       updates++;
     };
-    const project = (p: Point) => {
+    const project = (p: ScenePoint) => {
       const v = point(p).applyMatrix4(yaw.matrixWorld).project(camera);
       return [(v.x + 1) * width * 0.5, (1 - v.y) * height * 0.5];
     };

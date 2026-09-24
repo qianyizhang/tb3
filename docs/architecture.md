@@ -97,7 +97,10 @@ supports arbitrary serialized payloads. `core.project_records()` derives state
 from already-loaded records without altering them; `projection()` is its
 workspace-loading entry point. Harbor normalizes raw trial JSON into an
 `ImportedTrial` model, and collection serializes it only when writing an
-evaluation. Task validation and result-state mapping return named dataclass values.
+evaluation. Collection resolves candidate ownership into a verified task binding
+and a final observation state before `evaluation_from_trial()` projects the
+persisted record. Task validation and imported result-state mapping return named
+dataclass values.
 `core` re-exports existing storage entry points for callers. The `py.typed`
 marker ships package annotations; optional imaging/model dependencies remain
 separately provisioned and are not validated by local type checks.

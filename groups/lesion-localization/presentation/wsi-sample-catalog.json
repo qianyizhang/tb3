@@ -3,6 +3,14 @@
   "entries": [
     {
       "id": "wsi-camelyon-search",
+      "illustration": {
+        "kind": "landmark_point",
+        "subject": "wsi",
+        "target_prompt": "Candidate tumor locations",
+        "input": "Whole-slide tissue and GT-free navigation; inspect candidate regions at higher magnification.",
+        "output": "Candidate locations in level-0 slide coordinates, with the task-specific confidence and evidence fields.",
+        "caption": "Conceptual task diagram, not a source slide, prediction or reference. Amber solid crosshair: illustrative candidate location; it does not represent an independent lesion or measured detection."
+      },
       "repo": "TB3 medical workbench",
       "category": "localization",
       "tag": "Proposed task",
@@ -19,6 +27,14 @@
     },
     {
       "id": "wsi-hiesd-map",
+      "illustration": {
+        "kind": "segment",
+        "subject": "wsi",
+        "mask_mode": "multiclass",
+        "input": "One gastric ESD whole-slide image; the coarse XML regions are withheld from the solver.",
+        "output": "A six-class spatial map. Evaluation is restricted to the source-annotated regions; blank tissue is not automatically normal.",
+        "caption": "Conceptual task diagram, not a source slide, prediction or reference. Teal, blue, rose and amber solid fills distinguish schematic regions; they do not encode the six official histotypes or imply dense whole-slide ground truth."
+      },
       "repo": "TB3 medical workbench",
       "category": "localization",
       "tag": "Proposed task",
@@ -35,6 +51,13 @@
     },
     {
       "id": "wsi-hiesd-patches",
+      "illustration": {
+        "kind": "classify",
+        "subject": "wsi",
+        "input": "Twelve fixed target patches with larger context crops; locations are supplied, so no WSI search is required.",
+        "output": "labels.json: one class code per patch ID, using six histotypes or code 0 to abstain.",
+        "caption": "Conceptual tissue and output schema, not a source patch, prediction or reference. The twelve selected locations come from one slide; this diagram makes no recognition or clinical performance claim."
+      },
       "repo": "TB3 medical workbench",
       "category": "recognition",
       "tag": "Diagnostic task",
@@ -51,6 +74,13 @@
     },
     {
       "id": "wsi-hubmap-inventory",
+      "illustration": {
+        "kind": "instances",
+        "subject": "wsi",
+        "input": "A kidney PAS whole-slide image; reference glomerulus contours are withheld.",
+        "output": "Separate glomerulus instances with slide-coordinate geometry and an inventory count.",
+        "caption": "Conceptual task diagram, not a source slide, prediction or reference. Teal, blue, rose and amber solid fills distinguish illustrative instances, not tissue classes. The drawn shapes and count are schematic."
+      },
       "repo": "TB3 medical workbench",
       "category": "segmentation",
       "tag": "Proposed task",
@@ -67,6 +97,13 @@
     },
     {
       "id": "wsi-tiger-context",
+      "illustration": {
+        "kind": "nuclei",
+        "subject": "wsi",
+        "input": "A whole-slide tissue view and selected ROI context; dense cell references cover only annotated ROIs.",
+        "output": "Cell locations/types and tissue-context assignments, evaluated only within the task-defined annotated regions.",
+        "caption": "Conceptual task diagram, not a source slide, prediction or reference. Teal, amber and blue solid dots with white outlines distinguish illustrative cell marks, not official cell classes. Dense ROI reference must not be extrapolated to the full slide."
+      },
       "repo": "TB3 medical workbench",
       "category": "segmentation",
       "tag": "Proposed task",

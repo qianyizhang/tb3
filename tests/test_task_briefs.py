@@ -9,6 +9,7 @@ import tempfile
 import unittest
 from contextlib import redirect_stdout
 from pathlib import Path
+from unittest.mock import patch
 
 from frontend_fixture import install_frontend
 
@@ -18,6 +19,25 @@ from tb3_medical import task_briefs as briefs
 
 
 class TaskBriefTests(unittest.TestCase):
+    def test_real_catalog_has_overviews_without_local_images(self):
+        root = Path(__file__).resolve().parents[1]
+        is_file = Path.is_file
+
+        def portable_file(path):
+            return False if ".local" in path.parts else is_file(path)
+
+        # Exercise the composed production catalog, including English projections.
+        # Existing author-local images must not hide a missing portable overview.
+        with patch.object(Path, "is_file", portable_file):
+            data = briefs.load(root)
+        wsi = [row for row in data["entries"] if row["id"].startswith("wsi-")]
+        self.assertEqual(len(wsi), 5)
+        for row in wsi:
+            with self.subTest(entry=row["id"]):
+                self.assertTrue(row["illustration"])
+                self.assertTrue(row["missing_media"])
+                self.assertIn("local image unavailable", row["visuals"]["input"])
+
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
