@@ -35,7 +35,7 @@ A successful export, verification or control run does not promote it automatical
 Before claiming submission readiness, check the target's then-current task format,
 licenses/access, authorship requirements, runtime/profile and required trials.
 Record what was checked and what remains incomplete in the destination package.
-The [2026-09-12 requirements snapshot](archive/README.md#retired-guidance-and-recovery) is historical reference,
+The [2026-09-12 requirements snapshot](../archive/manifest.json) is historical reference,
 not a current upstream specification. This documentation audit did not refresh
 external submission requirements.
 

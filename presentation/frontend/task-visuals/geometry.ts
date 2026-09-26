@@ -547,43 +547,23 @@ export function createGeometry(e: VisualEntry, stage: Stage, clock: number, prog
           2,
         );
     });
-  const chart = (mode = 'curve', color = teal) => {
+  const chart = (mode: 'decay' | 'phase', color = teal) => {
     panel();
     line([-1, -0.8, 0], [1.05, -0.8, 0], ink, 0.6);
     line([-1, -0.8, 0], [-1, 0.9, 0], ink, 0.6);
-    if (mode === 'bars')
-      for (let i = 0; i < 5; i++) {
-        const x = -0.78 + i * 0.38,
-          h = 0.3 + ((i * 3) % 5) * 0.22;
-        face(
-          [
-            [x - 0.09, -0.8, 0],
-            [x + 0.09, -0.8, 0],
-            [x + 0.09, -0.8 + h, 0],
-            [x - 0.09, -0.8 + h, 0],
-          ],
-          color,
-          0.85,
-        );
-      }
-    else
-      path(
-        Array.from({ length: 65 }, (_, i) => {
-          const x = i / 64;
-          return [
-            -1 + 2 * x,
-            mode === 'decay'
-              ? 0.8 - 1.5 * (1 - Math.exp(-3 * x))
-              : mode === 'phase'
-                ? -0.6 + 1.2 * x
-                : Math.sin(x * 9) * 0.45 * Math.exp(-x * 0.65),
-            0,
-          ];
-        }),
-        color,
-        1,
-        2,
-      );
+    path(
+      Array.from({ length: 65 }, (_, i) => {
+        const x = i / 64;
+        return [
+          -1 + 2 * x,
+          mode === 'decay' ? 0.8 - 1.5 * (1 - Math.exp(-3 * x)) : -0.6 + 1.2 * x,
+          0,
+        ];
+      }),
+      color,
+      1,
+      2,
+    );
   };
   const field = (spectral = false, color = teal) => {
     const vertices: ScenePoint[] = [],
@@ -642,14 +622,6 @@ export function createGeometry(e: VisualEntry, stage: Stage, clock: number, prog
     }
     ring([0, 0, 0], 0.36, ink, 'z');
   };
-  const resultCard = () => {
-    documentMesh([0, 0, 0], teal, k === 'caption' ? 2 : 5);
-    label(
-      [0, -1.12, 0],
-      k === 'vqa' ? 'Answer' : k === 'caption' ? 'Description' : 'Structured output',
-      teal,
-    );
-  };
 
   return {
     cavity,
@@ -663,12 +635,10 @@ export function createGeometry(e: VisualEntry, stage: Stage, clock: number, prog
     group,
     path,
     ring,
-    surface,
     mesh,
     box,
     panel,
     imagePanel,
-    plane,
     volume,
     tube,
     branches,
@@ -682,6 +652,5 @@ export function createGeometry(e: VisualEntry, stage: Stage, clock: number, prog
     field,
     signals,
     sampled,
-    resultCard,
   };
 }

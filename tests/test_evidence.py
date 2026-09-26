@@ -7,8 +7,9 @@ import unittest
 from contextlib import redirect_stdout
 from pathlib import Path
 
-from tb3_medical import cli, evidence
+from tb3_medical import cli, evidence, storage
 from tb3_medical import core as c
+from tb3_medical.errors import MedicalError
 
 
 class EvidenceTests(unittest.TestCase):
@@ -64,7 +65,7 @@ class EvidenceTests(unittest.TestCase):
                     {
                         "label": "Trial result",
                         "path": ".local/result.json",
-                        "sha256": c.sha(self.root / ".local/result.json"),
+                        "sha256": storage.sha(self.root / ".local/result.json"),
                     }
                 ],
             },
@@ -137,7 +138,7 @@ class EvidenceTests(unittest.TestCase):
         )
 
     def write(self, relative, value):
-        c.publish(self.root / relative, value)
+        storage.publish(self.root / relative, value)
 
     def test_collect_check_and_build_preserve_identity_and_boundaries(self):
         data = evidence.collect(self.root, ["f"])
@@ -164,25 +165,25 @@ class EvidenceTests(unittest.TestCase):
         self.assertIn("Interpretation still required", rendered)
 
         (self.root / ".local/result.json").write_text('{"score": 0.9}\n')
-        with self.assertRaisesRegex(c.MedicalError, "artifact drift"):
+        with self.assertRaisesRegex(MedicalError, "artifact drift"):
             evidence.check(self.root, manifest)
         (self.root / ".local/result.json").write_text('{"score": 0.5}\n')
 
         missing = self.root / "groups/g/findings/evidence/missing.json"
         missing.parent.mkdir(parents=True)
         missing.write_text("{}\n")
-        with self.assertRaisesRegex(c.MedicalError, "artifact drift"):
+        with self.assertRaisesRegex(MedicalError, "artifact drift"):
             evidence.check(self.root, manifest)
         missing.unlink()
 
         finding = self.root / "groups/g/findings/f.json"
         finding.write_text(finding.read_text().replace("A measured result.", "Changed claim."))
-        with self.assertRaisesRegex(c.MedicalError, "manifest is stale"):
+        with self.assertRaisesRegex(MedicalError, "manifest is stale"):
             evidence.check(self.root, manifest)
 
     def test_new_scaffolds_a_first_class_finding_and_cli_collect_writes_only_explicit_output(self):
         result = evidence.new(self.root, "g", "new-analysis", "New analysis", "audit", ["e"])
-        row = c.read(self.root / result["record"])
+        row = storage.read(self.root / result["record"])
         self.assertEqual((row["kind"], row["analysis_kind"]), ("finding", "audit"))
         self.assertEqual(row["experiment_ids"], ["e"])
         self.assertTrue((self.root / result["report"]).is_file())
@@ -207,9 +208,9 @@ class EvidenceTests(unittest.TestCase):
         self.assertTrue(destination.is_file())
 
     def test_invalid_analysis_kind_is_rejected(self):
-        row = c.read(self.root / "groups/g/findings/f.json")
+        row = storage.read(self.root / "groups/g/findings/f.json")
         row["analysis_kind"] = "narrative"
-        with self.assertRaisesRegex(c.MedicalError, "unknown analysis_kind"):
+        with self.assertRaisesRegex(MedicalError, "unknown analysis_kind"):
             c.validate_record(row, "finding")
 
 

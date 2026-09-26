@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 from tb3_medical import core, storage
+from tb3_medical.errors import MedicalError
 
 
 class StorageTests(unittest.TestCase):
@@ -40,7 +41,7 @@ class StorageTests(unittest.TestCase):
         (self.root / "real").mkdir()
         (self.root / "alias").symlink_to(self.root / "real", target_is_directory=True)
         for value in ("../outside", str(self.root / "real"), "alias/input.json"):
-            with self.subTest(value=value), self.assertRaises(core.MedicalError):
+            with self.subTest(value=value), self.assertRaises(MedicalError):
                 storage.inside(self.root, value)
 
     def test_nonobject_record_reports_a_domain_error(self):
@@ -48,5 +49,5 @@ class StorageTests(unittest.TestCase):
         path.parent.mkdir(parents=True)
         path.write_text("[]")
         self.assertEqual(storage.read(path), [])
-        with self.assertRaisesRegex(core.MedicalError, "Expected a document object"):
+        with self.assertRaisesRegex(MedicalError, "Expected a document object"):
             core.load(self.root)

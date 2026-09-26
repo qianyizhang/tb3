@@ -8,36 +8,37 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from . import core as c
-from . import score_ct, score_mri
+from . import score_ct, score_mri, storage
+from .errors import MedicalError
 from .types import Document, Pathish
 
 
 def case_inputs(root: Pathish, experiment: Document, case: str) -> Document:
-    manifest = c.read(c.inside(root, experiment["input_manifest"]))
+    manifest = storage.read(storage.inside(root, experiment["input_manifest"]))
     try:
         inputs: Document = manifest["cases"][case]
         return inputs
     except KeyError:
-        raise c.MedicalError("Unknown landmark case: " + str(case)) from None
+        raise MedicalError("Unknown landmark case: " + str(case)) from None
 
 
 def prepare_case(root: Pathish, experiment: Document, spec: Document, execute: bool) -> Document:
     inputs = case_inputs(root, experiment, spec["id"])
     if execute:
         c.verify_inputs(root, inputs["files"])
-        target = c.inside(root, spec["task_path"])
+        target = storage.inside(root, spec["task_path"])
         if target.exists():
             from .workflow import task_files
 
             if task_files(target) != {f["destination"]: f["sha256"] for f in inputs["files"]}:
-                raise c.MedicalError(
+                raise MedicalError(
                     "Prepared task differs; choose a fresh task_path before preparing"
                 )
         else:
             for entry in inputs["files"]:
-                output = c.inside(target, entry["destination"])
+                output = storage.inside(target, entry["destination"])
                 output.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(c.inside(root, entry["path"]), output)
+                shutil.copy2(storage.inside(root, entry["path"]), output)
     return {
         "case": spec["id"],
         "task_path": spec["task_path"],
@@ -48,22 +49,22 @@ def prepare_case(root: Pathish, experiment: Document, spec: Document, execute: b
 
 
 def replay(root: Pathish, experiment: Document, case: str | None = None) -> Document:
-    manifest = c.read(c.inside(root, experiment["input_manifest"]))
+    manifest = storage.read(storage.inside(root, experiment["input_manifest"]))
     cases = [case] if case else list(manifest["cases"])
     results = []
     for name in cases:
         inputs = case_inputs(root, experiment, name)
         truth_entry = next(e for e in inputs["files"] if e["destination"] == "tests/truth.json")
         c.verify_inputs(root, [truth_entry])
-        truth = c.read(c.inside(root, truth_entry["path"]))
+        truth = storage.read(storage.inside(root, truth_entry["path"]))
         scorer = score_mri if inputs["scorer"] == "mri" else score_ct
         if scorer.__file__ is None:
-            raise c.MedicalError("Landmark scorer has no source file to fingerprint")
-        scorer_hash = c.sha(scorer.__file__)
+            raise MedicalError("Landmark scorer has no source file to fingerprint")
+        scorer_hash = storage.sha(scorer.__file__)
         for observation in inputs["observations"]:
             answer = observation["answer"]
             c.verify_inputs(root, [answer])
-            metrics = scorer.score(c.read(c.inside(root, answer["path"])), truth)
+            metrics = scorer.score(storage.read(storage.inside(root, answer["path"])), truth)
             matches = metrics == observation["expected"]
             signature = json.dumps(
                 [
@@ -103,7 +104,7 @@ def replay(root: Pathish, experiment: Document, case: str | None = None) -> Docu
                 / (key + ".json")
             )
             if not target.exists():
-                c.write_new(target, row)
+                storage.write_new(target, row)
             results.append(
                 {
                     "id": key,
@@ -124,11 +125,11 @@ def view(root: Pathish, experiment: Document, case: str, output: Pathish | None 
     wanted = {"tests/truth.json", "environment/geometry.json", "environment/volume.npy"}
     files = {e["destination"]: e for e in inputs["files"] if e["destination"] in wanted}
     c.verify_inputs(root, [*files.values(), *(o["answer"] for o in inputs["observations"])])
-    truth = c.read(c.inside(root, files["tests/truth.json"]["path"]))
-    geometry = c.read(c.inside(root, files["environment/geometry.json"]["path"]))
-    volume = np.load(c.inside(root, files["environment/volume.npy"]["path"]), mmap_mode="r")
+    truth = storage.read(storage.inside(root, files["tests/truth.json"]["path"]))
+    geometry = storage.read(storage.inside(root, files["environment/geometry.json"]["path"]))
+    volume = np.load(storage.inside(root, files["environment/volume.npy"]["path"]), mmap_mode="r")
     if list(volume.shape) != truth["shape_ijk"] or list(volume.shape) != geometry["shape_ijk"]:
-        raise c.MedicalError("Native volume and geometry shapes differ")
+        raise MedicalError("Native volume and geometry shapes differ")
     points = truth.get("points_ijk") or {
         k: v["ijk"] for k, v in truth["targets"].items() if v["status"] == "observed"
     }
@@ -151,7 +152,7 @@ def view(root: Pathish, experiment: Document, case: str, output: Pathish | None 
     summaries = []
     for n, observation in enumerate(inputs["observations"]):
         color = ("#ffcd6b", "#fa80bc")[n % 2]
-        predictions = c.read(c.inside(root, observation["answer"]["path"]))["landmarks"]
+        predictions = storage.read(storage.inside(root, observation["answer"]["path"]))["landmarks"]
         for p in predictions.values():
             if isinstance(p, dict):
                 p = p["ijk"] if p["status"] == "observed" else None
@@ -162,7 +163,7 @@ def view(root: Pathish, experiment: Document, case: str, output: Pathish | None 
     if not out.is_absolute():
         out = Path(root) / out
     if out.exists():
-        raise c.MedicalError("Choose a fresh view output directory")
+        raise MedicalError("Choose a fresh view output directory")
     out.mkdir(parents=True)
     image.save(out / "native-plane.png")
     (out / "index.html").write_text(

@@ -4,7 +4,7 @@ Follow the [presentation design](../DESIGN.md) for language, reading hierarchy,
 typography and provenance disclosure. Update it when a reader-facing decision
 changes; this rulebook owns the brief's detailed content contract.
 
-Accepted by the user on 2026-09-21 in [the design discussion](../../discussions/task-brief-format.md).
+Accepted by the user on 2026-09-21; see [the decision record](../../discussions/records/task-brief-format.json).
 A **Task Brief** explains one task definition; the **Task Explorer** makes definitions,
 assistance conditions and cases navigable. Write for technical readers without
 specialist medical knowledge. Use the same format for existing and proposed tasks.

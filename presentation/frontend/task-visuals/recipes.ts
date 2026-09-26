@@ -5,82 +5,34 @@ import { AnatomyAssets } from './anatomy';
 
 // Task choreography over shared teaching assets; no task-specific results.
 // Kept dependency-free so the complete Explorer works as a single offline file.
-const recipes: Record<string, { family: string; action: string }> = {};
-const register = (kinds: string, family: string, action: string) =>
+const recipes: Record<string, string> = {};
+const register = (kinds: string, family: string) =>
   kinds.split(' ').forEach((kind) => {
-    recipes[kind] = { family, action };
+    recipes[kind] = family;
   });
-register('segment instances nuclei', 'segmentation', 'Separate the spatial structures');
-register(
-  'landmark_point nodule_outline detect box3d candidate_judgment',
-  'localization',
-  'Search the image space',
-);
-register(
-  'anatomy_audit object_identity mask_shortcuts anatomy_curation',
-  'audit',
-  'Inspect the supplied objects',
-);
-register(
-  'dynamic_mesh cardiac_contours cardiac_anchors cardiac_material',
-  'motion',
-  'Follow shape through time',
-);
-register(
-  'point_correspondence register registration_diagnosis',
-  'registration',
-  'Find spatial correspondence',
-);
-register('longitudinal', 'longitudinal', 'Match structures across examinations');
+register('segment instances', 'segmentation');
+register('landmark_point box3d', 'localization');
+register('anatomy_audit object_identity mask_shortcuts anatomy_curation', 'audit');
+register('dynamic_mesh cardiac_contours cardiac_anchors cardiac_material', 'motion');
+register('point_correspondence register registration_diagnosis', 'registration');
+register('longitudinal', 'longitudinal');
 register(
   'route_repair route_discovery route_unfold vesselgraph vessel_source_screen prediction_screen',
   'routes',
-  'Inspect the branching structure',
 );
-register('mri mri_dynamic ct ct_phantom dualct pet', 'tomography', 'Reconcile the measurements');
-register(
-  'denoise superres restore3d synthesis lensless image_sequence',
-  'restoration',
-  'Recover image structure',
-);
-register(
-  'ultrasound photoacoustic soundmap seismic conductivity',
-  'waves',
-  'Infer structure from signals',
-);
-register(
-  'odt idt diffraction opticalvolume molecules nlos wavefront deflectometry',
-  'optics',
-  'Resolve the hidden structure',
-);
-register(
-  'tensor t2 spectral spectral_cube temperature phase geofield',
-  'fields',
-  'Estimate the physical quantity',
-);
-register(
-  'astronomy astro_uncertainty astro_dynamic astro_features astro_volume planet',
-  'astronomy',
-  'Infer structure from observations',
-);
-register(
-  'classify multilabel report caption vqa quality tiles workflow viewer metadata',
-  'interpretation',
-  'Read the evidence',
-);
-register(
-  'records etl trials risk source_provenance',
-  'records',
-  'Connect evidence to the deliverable',
-);
-register('segmenter_calibration', 'calibration', 'Compare boundaries under the supplied box');
+register('mri mri_dynamic ct ct_phantom dualct pet', 'tomography');
+register('restore3d lensless', 'restoration');
+register('ultrasound photoacoustic soundmap seismic conductivity', 'waves');
+register('odt idt diffraction opticalvolume molecules nlos wavefront deflectometry', 'optics');
+register('tensor t2 spectral spectral_cube temperature phase geofield', 'fields');
+register('astro_volume', 'astronomy');
 
 function scene(e: VisualEntry, stage: Stage, clock: number, progress = 0): SceneModel {
   const d = e.illustration,
     k = d.kind,
     subject = d.subject || 'generic',
-    recipe = recipes[k];
-  if (!recipe) throw Error('Missing 3D scene: ' + k);
+    family = recipes[k];
+  if (!family) throw Error('Missing 3D scene: ' + k);
   const out = stage === 2,
     work = stage === 1,
     ink = C.ink,
@@ -100,12 +52,10 @@ function scene(e: VisualEntry, stage: Stage, clock: number, progress = 0): Scene
     group,
     path,
     ring,
-    surface,
     mesh,
     box,
     panel,
     imagePanel,
-    plane,
     volume,
     tube,
     branches,
@@ -119,12 +69,11 @@ function scene(e: VisualEntry, stage: Stage, clock: number, progress = 0): Scene
     field,
     signals,
     sampled,
-    resultCard,
   } = createGeometry(e, stage, clock, progress);
 
-  switch (recipe.family) {
+  switch (family) {
     case 'segmentation': {
-      if (k === 'instances' || k === 'nuclei') {
+      if (k === 'instances') {
         for (let i = 0; i < 7; i++) {
           const p: ScenePoint = [
             Math.cos(i * 2.4) * (0.4 + i * 0.1),
@@ -132,10 +81,7 @@ function scene(e: VisualEntry, stage: Stage, clock: number, progress = 0): Scene
             Math.sin(i) * 0.17,
           ];
           mesh(p, [0.34, 0.28, 0.24], out ? [teal, blue, gold, rose][i % 4] : ink, 0.12);
-          if (out) {
-            if (k === 'nuclei') dot(p, 0.08, [teal, blue, gold][i % 3]);
-            else label([p[0], p[1], p[2] + 0.27], String(i + 1), teal);
-          }
+          if (out) label([p[0], p[1], p[2] + 0.27], String(i + 1), teal);
         }
       } else if (out && d.mask_mode === 'binary') {
         if (['vessels', 'brain-vessels'].includes(subject)) branches(false, false, teal);
@@ -202,20 +148,9 @@ function scene(e: VisualEntry, stage: Stage, clock: number, progress = 0): Scene
           imagePanel([(i - 1) * 0.13, (i - 1) * 0.18, (i - 1) * 0.25], [2.5, 1.65]);
       } else imagePanel();
       if (work) sweep();
-      if (out || k === 'candidate_judgment') target(undefined, ['detect', 'box3d'].includes(k));
+      if (out) target(undefined, k === 'box3d');
       if (out)
-        label(
-          [0.6, 0.63, 0.55],
-          k === 'nodule_outline'
-            ? 'Outline'
-            : k === 'candidate_judgment'
-              ? 'Candidate judgment'
-              : k === 'detect' || k === 'box3d'
-                ? 'Region'
-                : 'Coordinate',
-          gold,
-          [0.52, 0.15, 0.48],
-        );
+        label([0.6, 0.63, 0.55], k === 'box3d' ? 'Region' : 'Coordinate', gold, [0.52, 0.15, 0.48]);
       break;
     case 'audit':
       if (k === 'anatomy_audit') {
@@ -438,25 +373,17 @@ function scene(e: VisualEntry, stage: Stage, clock: number, progress = 0): Scene
           label([0.85, -0.85, 0.2], 'Trace candidate route', gold, cursor);
         }
         if (out && k === 'route_unfold')
-          group(
-            k === 'route_unfold' ? [-0.76, 0.1, 0] : [0, 0, 0],
-            k === 'route_unfold' ? 0.62 : 1,
-            () =>
-              tube(
-                k === 'route_unfold'
-                  ? [
-                      [0, -0.15, 0],
-                      [0.48, 0.17, -0.12],
-                      [0.83, 0.55, -0.1],
-                      [1.05, 1.05, 0.07],
-                    ]
-                  : [
-                      [0, -0.15, 0],
-                      [0.48, 0.17, -0.12],
-                    ],
-                gold,
-                0.065,
-              ),
+          group([-0.76, 0.1, 0], 0.62, () =>
+            tube(
+              [
+                [0, -0.15, 0],
+                [0.48, 0.17, -0.12],
+                [0.83, 0.55, -0.1],
+                [1.05, 1.05, 0.07],
+              ],
+              gold,
+              0.065,
+            ),
           );
         else ring([0.22, 0.03, 0], 0.31, gold, 'z', 0.8, true);
       }
@@ -553,17 +480,14 @@ function scene(e: VisualEntry, stage: Stage, clock: number, progress = 0): Scene
       break;
     case 'restoration':
       anatomy(false);
-      if (!out && ['denoise', 'restore3d', 'lensless'].includes(k))
+      if (!out)
         for (let i = 0; i < 110; i++)
           dot(
             [Math.sin(i * 13.7) * 1.15, Math.sin(i * 4.3) * 1.05, Math.cos(i * 7.7) * 0.85],
             0.011,
             C.faint,
           );
-      if (k === 'superres') volume(out ? teal : blue, out ? 11 : 4);
       if (work) sweep();
-      if (out && k === 'synthesis') group([0, 0, 0.04], 1, () => anatomy(true));
-      if (k === 'image_sequence') label([0, -1.4, 0], 'Frames retain temporal order', teal);
       break;
     case 'waves':
       if (!out) {
@@ -701,11 +625,6 @@ function scene(e: VisualEntry, stage: Stage, clock: number, progress = 0): Scene
       if (!out) {
         sampled();
         if (work) signals();
-      } else if (k === 'planet') {
-        mesh([-0.15, 0, 0], [0.36, 0.36, 0.36], ink, 0);
-        dot([1, 0.45, 0.3], 0.055, gold);
-        ring([1, 0.45, 0.3], 0.17, gold, 'z');
-        label([0.85, 0.85, 0.3], 'Candidate', gold);
       } else if (d.scene_variant === 'moon') {
         mesh([0, 0, 0], [0.9, 0.9, 0.9], ink, 0.025);
         for (let i = 0; i < 6; i++) {
@@ -723,150 +642,9 @@ function scene(e: VisualEntry, stage: Stage, clock: number, progress = 0): Scene
       } else if (d.scene_variant === 'galaxy') {
         mesh([0, 0, 0], [1.2, 0.24, 0.75], teal, 0.1);
         mesh([0, 0, 0], [0.3, 0.32, 0.3], gold, 0.05);
-      } else if (k === 'astro_features') chart();
-      else if (k === 'astro_volume') {
+      } else {
         volume(teal, 7);
         mesh([0, 0, 0], [0.7, 0.45, 0.7], gold, 0.08);
-      } else {
-        const vertices: ScenePoint[] = [];
-        const faces: number[][] = [];
-        const around = 64,
-          cross = 16;
-        for (let i = 0; i < around; i++)
-          for (let j = 0; j < cross; j++) {
-            const a = (i * TAU) / around,
-              b = (j * TAU) / cross,
-              variation = k === 'astro_dynamic' ? 0.018 * Math.sin(3 * a + clock * 0.4) : 0,
-              r = 0.82 + (0.2 + variation) * Math.cos(b);
-            vertices.push([r * Math.cos(a), 0.15 * Math.sin(b), r * Math.sin(a)]);
-            const u = i * cross + j,
-              v = ((i + 1) % around) * cross + j,
-              w = ((i + 1) % around) * cross + ((j + 1) % cross),
-              z = i * cross + ((j + 1) % cross);
-            faces.push([u, v, w], [u, w, z]);
-          }
-        surface(vertices, faces, teal);
-        if (k === 'astro_uncertainty') {
-          ring([0, 0, 0], 1.2, rose, 'y', 0.75, true);
-          label([0, -1.1, 0], 'Uncertain structure', rose);
-        }
-        if (k === 'astro_dynamic') label([0, -1.1, 0], 'Time-varying reconstruction', teal);
-      }
-      break;
-    case 'interpretation':
-      if (!out) {
-        if (/\bpair\b/i.test(d.input || '')) {
-          imagePanel([-0.88, 0, 0], [1.75, 1.22]);
-          imagePanel([0.98, 0.05, -0.18], [1.75, 1.22]);
-        } else imagePanel();
-        if (k === 'vqa') label([1, 0.8, 0.2], 'Question', gold);
-        if (k === 'tiles') volume(blue, 4);
-        if (work) sweep();
-      } else if (k === 'quality') {
-        chart('bars');
-        label([0, -1.2, 0], 'Quality estimate', teal);
-      } else if (k === 'viewer') {
-        anatomy(false);
-        plane(0.35, teal, 0.2);
-        label([0, -1.5, 0], 'Requested view', teal);
-      } else if (k === 'classify') {
-        documentMesh([0, 0, 0], teal, 0);
-        label([0, 0.15, 0.08], 'One class label', teal);
-        line([-0.35, -0.15, 0.06], [0.35, -0.15, 0.06], teal, 0.8, 2);
-      } else if (k === 'multilabel') {
-        documentMesh([0, 0, 0], teal, 0);
-        ['Finding A', 'Finding B', 'Finding C'].forEach((name, i) => {
-          const y = 0.5 - i * 0.5;
-          dot([-0.46, y, 0.05], 0.035, i !== 1 ? teal : C.faint);
-          label([0, y, 0.08], name, ink);
-        });
-      } else if (k === 'workflow') {
-        group([-0.72, 0, 0], 0.6, () => anatomy(true));
-        group([0.9, 0, 0], 0.55, () => documentMesh([0, 0, 0], teal));
-      } else if (k === 'tiles') {
-        for (let i = 0; i < 9; i++)
-          group([((i % 3) - 1) * 0.75, (Math.floor(i / 3) - 1) * 0.7, 0], 0.22, () => {
-            panel();
-            mesh([0, 0, 0], [0.7, 0.6, 0.12], i % 4 === 0 ? gold : teal, 0.08);
-          });
-      } else resultCard();
-      break;
-    case 'records':
-      if (k === 'risk') {
-        panel();
-        if (out) {
-          line([-1, 0, 0], [1, 0, 0], C.faint, 1, 5);
-          dot([0.24, 0, 0], 0.08, teal);
-          label([-1, -0.3, 0], '0', ink);
-          label([1, -0.3, 0], '1', ink);
-          label([0, 0.55, 0], 'One probability per row', teal);
-          label([0, -0.7, 0], 'Illustrative marker', C.faint);
-        } else {
-          for (let i = 0; i < 5; i++) {
-            const x = -1 + i * 0.4;
-            dot([x, 0.2 * Math.sin(i), 0], 0.05, blue);
-            if (i) line([x - 0.4, 0.2 * Math.sin(i - 1), 0], [x, 0.2 * Math.sin(i), 0], blue);
-          }
-          line([0.95, -0.6, 0], [0.95, 0.8, 0], rose, 0.8, 1, true);
-          label([0.95, -0.9, 0], 'Cutoff', rose);
-        }
-      } else if (k === 'etl') {
-        for (let i = 0; i < 3; i++)
-          group([out ? 0 : (i - 1) * 0.8, out ? 0 : Math.sin(i) * 0.3, (i - 1) * 0.4], 0.7, () =>
-            documentMesh([0, 0, 0], out ? teal : ink, 4),
-          );
-      } else if (k === 'trials') {
-        group([-0.8, 0, 0], 0.72, () => documentMesh([0, 0, 0], blue));
-        group([0.8, 0, 0], 0.72, () => documentMesh([0, 0, 0], out ? teal : ink));
-        path(
-          [
-            [-0.3, 0, 0.1],
-            [0.3, 0, 0.1],
-          ],
-          out ? teal : gold,
-          0.9,
-          2,
-          true,
-        );
-        label([-0.8, -1, 0], 'Patient', blue);
-        label([0.8, -1, 0], out ? 'Trial IDs' : 'Criteria', out ? teal : ink);
-      } else {
-        documentMesh([0, 0, 0], out ? teal : ink, 5);
-        if (out && k === 'records') {
-          [0.3, -0.18].forEach((y) => box([0, y, 0.05], [1.07, 0.2, 0.04], gold));
-        }
-        if (k === 'source_provenance') {
-          group([-0.95, 0, -0.25], 0.55, () => documentMesh());
-          path(
-            [
-              [-0.6, 0.3, 0],
-              [0.3, 0.7, 0.1],
-            ],
-            gold,
-            0.8,
-            1,
-            true,
-          );
-        }
-      }
-      break;
-    case 'calibration':
-      if (!out) {
-        anatomy(false);
-        box([0.1, 0.05, 0.4], [1.2, 1, 0.1], gold, true);
-      } else {
-        mesh([0, 0, 0], [0.83, 0.68, 0.55], teal, 0.08);
-        for (let i = 0; i < 6; i++)
-          ring(
-            [0, (i - 2.5) * 0.2, 0],
-            Math.sqrt(1 - ((i - 2.5) / 4) ** 2) * 0.88,
-            blue,
-            'y',
-            0.8,
-            true,
-          );
-        label([-0.9, -1, 0], 'Reference · dashed', blue);
-        label([0.85, -1, 0], 'Tool · solid', teal);
       }
       break;
   }
@@ -952,7 +730,7 @@ function legend(e: VisualEntry): LegendKey[] {
       [C.teal, 'Illustrative supplied mask'],
       [C.gold, 'Spatial witness'],
     ];
-  if (['segment', 'instances', 'nuclei', 'object_identity'].includes(k))
+  if (['segment', 'instances', 'object_identity'].includes(k))
     keys =
       d.mask_mode === 'separate'
         ? [
@@ -1027,12 +805,6 @@ function legend(e: VisualEntry): LegendKey[] {
       [C.stone, 'Input'],
       [C.teal, 'Single target mask'],
     ];
-  if (k === 'segmenter_calibration')
-    keys = [
-      [C.gold, 'Supplied box · dashed', true],
-      [C.blue, 'Reference · dashed', true],
-      [C.teal, 'Tool · solid'],
-    ];
   return keys;
 }
 
@@ -1040,12 +812,11 @@ export const TaskSceneModels = {
   build: scene,
   animated: (e: VisualEntry, stage: Stage) => {
     const d = e.illustration,
-      family = recipes[d.kind]?.family;
+      family = recipes[d.kind];
     if (family === 'motion')
       return d.kind === 'cardiac_material'
         ? stage < 2
         : stage === 2 || (d.input_form !== 'masks' && d.kind !== 'cardiac_contours');
-    if (d.kind === 'astro_dynamic' && stage === 2) return true;
     return (
       stage === 1 &&
       [
@@ -1059,16 +830,14 @@ export const TaskSceneModels = {
         'optics',
         'fields',
         'astronomy',
-        'interpretation',
       ].includes(family)
     );
   },
   usesAnatomy: (e: VisualEntry) =>
-    recipes[e.illustration.kind]?.family !== 'motion' &&
+    recipes[e.illustration.kind] !== 'motion' &&
     (AnatomyAssets.has(e.illustration.subject) ||
       AnatomyAssets.has(e.illustration.target) ||
       ['object_identity', 'mask_shortcuts'].includes(e.illustration.kind)),
   legend,
   supports: (kind: string) => Object.hasOwn(recipes, kind),
-  action: (kind: string) => recipes[kind].action,
 };

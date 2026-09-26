@@ -8,6 +8,8 @@ import subprocess
 from pathlib import Path
 
 from . import core as c
+from . import storage
+from .errors import MedicalError
 from .types import Document, Pathish
 
 
@@ -15,30 +17,30 @@ def source_bytes(root: Pathish, commit: str, entry: Document) -> bytes:
     if entry["origin"] == "git":
         content = subprocess.check_output(["git", "show", commit + ":" + entry["source"]], cwd=root)
     elif entry["origin"] == "artifact":
-        content = c.inside(root, entry["source"]).read_bytes()
+        content = storage.inside(root, entry["source"]).read_bytes()
     else:
-        raise c.MedicalError("Declare git or artifact origin for " + entry["source"])
+        raise MedicalError("Declare git or artifact origin for " + entry["source"])
     if hashlib.sha256(content).hexdigest() != entry["sha256"]:
-        raise c.MedicalError("Changed export input: " + entry["source"])
+        raise MedicalError("Changed export input: " + entry["source"])
     return content
 
 
 def export(
     root: Pathish, recipe_path: str, destination: Pathish, *, include_flagged: bool = False
 ) -> Document:
-    source_recipe = c.inside(root, recipe_path)
+    source_recipe = storage.inside(root, recipe_path)
     recipe_bytes = source_recipe.read_bytes()
     recipe = json.loads(recipe_bytes)
     if recipe.get("schema_version") != 2 or recipe.get("mode") not in {"exact", "adapted"}:
-        raise c.MedicalError("Expected a canonical exact/adapted export recipe")
+        raise MedicalError("Expected a canonical exact/adapted export recipe")
     commit = recipe["source_commit"]
     if not re.fullmatch(r"[0-9a-f]{40}", commit):
-        raise c.MedicalError("Pin source_commit to an immutable Git commit SHA")
+        raise MedicalError("Pin source_commit to an immutable Git commit SHA")
     subprocess.run(
         ["git", "cat-file", "-e", commit + "^{commit}"], cwd=root, check=True, capture_output=True
     )
     if recipe.get("submission_status") != "draft":
-        raise c.MedicalError(
+        raise MedicalError(
             "Exports begin as drafts; submission readiness needs a separate assessment"
         )
     rows = c.projection(root)
@@ -49,26 +51,26 @@ def export(
         if state.get("assessment") in {"needs_review", "invalidated"}
     }
     if flags and not include_flagged:
-        raise c.MedicalError(
+        raise MedicalError(
             "Selected conclusions need review; use --include-flagged for a labeled research draft"
         )
     dest = Path(destination).absolute()
     if dest.exists():
-        raise c.MedicalError(
+        raise MedicalError(
             "Build into a fresh destination; existing packages are independently owned"
         )
     if recipe["mode"] == "adapted" and not recipe.get("changes"):
-        raise c.MedicalError("Record the adaptations in changes")
+        raise MedicalError("Record the adaptations in changes")
     seen = set()
     for entry in recipe["files"]:
         name = entry["destination"]
-        c.inside(dest, name)
+        storage.inside(dest, name)
         if (
             name in seen
             or name in {"manifest.json", "recipe.json"}
             or Path(name).parts[0] == ".git"
         ):
-            raise c.MedicalError("Duplicate/reserved export destination: " + name)
+            raise MedicalError("Duplicate/reserved export destination: " + name)
         seen.add(name)
         source_bytes(root, commit, entry)
     manifest = {
@@ -93,12 +95,12 @@ def export(
     dest.mkdir(parents=True, exist_ok=False)
     try:
         for entry in recipe["files"]:
-            target = c.inside(dest, entry["destination"])
+            target = storage.inside(dest, entry["destination"])
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(source_bytes(root, commit, entry))
             target.chmod(entry.get("mode", 0o644))
         (dest / "recipe.json").write_bytes(recipe_bytes)
-        c.write_new(dest / "manifest.json", manifest)
+        storage.write_new(dest / "manifest.json", manifest)
         verify(dest)
     except BaseException:
         (dest / "INCOMPLETE").write_text(
@@ -108,17 +110,17 @@ def export(
     row = {
         "schema_version": 2,
         "kind": "export",
-        "id": "export-" + c.sha(dest / "manifest.json")[:24],
+        "id": "export-" + storage.sha(dest / "manifest.json")[:24],
         "experiment_ids": recipe["experiment_ids"],
         "recipe": recipe_path,
-        "manifest_sha256": c.sha(dest / "manifest.json"),
+        "manifest_sha256": storage.sha(dest / "manifest.json"),
         "submission_status": "draft",
         "review_flags_at_export": flags,
         "evidence": [c.evidence(root, recipe_path)],
     }
     path = Path(root) / "exports/records" / (row["id"] + ".json")
     if not path.exists():
-        c.write_new(path, row)
+        storage.write_new(path, row)
     return {
         "destination": str(dest),
         "files": len(recipe["files"]),
@@ -131,11 +133,11 @@ def export(
 def verify(destination: Pathish) -> Document:
     dest = Path(destination).resolve()
     if (dest / "INCOMPLETE").exists():
-        raise c.MedicalError("Package is marked INCOMPLETE")
-    manifest = c.read(dest / "manifest.json")
-    if c.sha(dest / "recipe.json") != manifest["recipe_sha256"]:
-        raise c.MedicalError("Package recipe changed")
-    recipe = c.read(dest / "recipe.json")
+        raise MedicalError("Package is marked INCOMPLETE")
+    manifest = storage.read(dest / "manifest.json")
+    if storage.sha(dest / "recipe.json") != manifest["recipe_sha256"]:
+        raise MedicalError("Package recipe changed")
+    recipe = storage.read(dest / "recipe.json")
     pinned = (
         "schema_version",
         "files",
@@ -150,7 +152,7 @@ def verify(destination: Pathish) -> Document:
         any(recipe[k] != manifest[k] for k in pinned)
         or recipe.get("changes", []) != manifest["changes"]
     ):
-        raise c.MedicalError("Package manifest differs from the pinned recipe")
+        raise MedicalError("Package manifest differs from the pinned recipe")
     expected = {"recipe.json", "manifest.json", *(e["destination"] for e in manifest["files"])}
     actual = set()
     for path in dest.rglob("*"):
@@ -158,19 +160,19 @@ def verify(destination: Pathish) -> Document:
         if relative.parts[0] == ".git":
             continue
         if path.is_symlink():
-            raise c.MedicalError("Unexpected package symlink: " + str(relative))
+            raise MedicalError("Unexpected package symlink: " + str(relative))
         if path.is_file():
             actual.add(relative.as_posix())
     if actual != expected:
-        raise c.MedicalError("Package inventory differs: " + ", ".join(sorted(actual ^ expected)))
+        raise MedicalError("Package inventory differs: " + ", ".join(sorted(actual ^ expected)))
     for entry in manifest["files"]:
-        target = c.inside(dest, entry["destination"])
-        if c.sha(target) != entry["sha256"]:
-            raise c.MedicalError("Package input changed: " + entry["destination"])
+        target = storage.inside(dest, entry["destination"])
+        if storage.sha(target) != entry["sha256"]:
+            raise MedicalError("Package input changed: " + entry["destination"])
         # POSIX execute bits carry the declared runnable-file contract. Windows
         # chmod does not preserve these bits, so never claim to verify them there.
         if os.name == "posix" and target.stat().st_mode & 0o111 != entry.get("mode", 0o644) & 0o111:
-            raise c.MedicalError("Package executable mode changed: " + entry["destination"])
+            raise MedicalError("Package executable mode changed: " + entry["destination"])
     return {
         "verified_files": len(manifest["files"]),
         "submission_status": manifest["submission_status"],

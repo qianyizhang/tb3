@@ -1,65 +1,53 @@
 /** Run the production hook with a controlled clock and resource adapters; no browser. */
 const assert = require('node:assert/strict');
 const path = require('node:path');
-const vm = require('node:vm');
+const { loadFrontend } = require('./frontend_bundle.cjs');
 
 async function main() {
-  const { build } = await import('vite');
   const root = path.resolve(__dirname, '..');
   const entry = path.join(root, 'tests/virtual-player-test.ts');
   const react = path.join(root, 'tests/virtual-player-react.ts');
   const stage = path.join(root, 'tests/virtual-player-stage.ts');
-  const bundles = await build({
-    configFile: false,
-    root,
-    logLevel: 'silent',
-    plugins: [
-      {
-        name: 'player-resource-adapters',
-        enforce: 'pre',
-        resolveId(id, importer) {
-          if ([entry, react, stage].includes(id)) return id;
-          if (id === 'react') return react;
-          if (id === './stage' && importer?.endsWith('/use-scene-player.ts')) return stage;
-        },
-        load(id) {
-          if (id === entry)
-            return `
+  const plugins = [
+    {
+      name: 'player-resource-adapters',
+      enforce: 'pre',
+      resolveId(id, importer) {
+        if ([entry, react, stage].includes(id)) return id;
+        if (id === 'react') return react;
+        if (id === './stage' && importer?.endsWith('/use-scene-player.ts')) return stage;
+      },
+      load(id) {
+        if (id === entry)
+          return `
           export { useScenePlayer } from '${root}/presentation/frontend/task-visuals/use-scene-player.ts';
           export { TaskSceneModels } from '${root}/presentation/frontend/task-visuals/recipes.ts';
           export { effects } from '${react}';
           export { draws } from '${stage}';
         `;
-          if (id === react)
-            return `
+        if (id === react)
+          return `
           export const effects = [];
           export const useRef = current => ({ current });
           export const useState = initial => [typeof initial === 'function' ? initial() : initial, () => {}];
           export const useEffect = effect => effects.push(effect);
         `;
-          if (id === stage)
-            return `
+        if (id === stage)
+          return `
           export const draws = [];
           export const SceneStage = { create: () => ({
             draw(model) { draws.push(model); return true; },
             stats: {}, texturesReady: true, dispose() {}
           }) };
         `;
-        },
       },
-    ],
-    build: {
-      write: false,
-      minify: false,
-      target: 'es2022',
-      lib: { entry, name: 'PlayerTest', formats: ['iife'] },
     },
-  });
+  ];
   const frames = new Map();
   let nextFrame = 1;
   let resize;
   const listeners = { addEventListener() {}, removeEventListener() {} };
-  const context = vm.createContext({
+  const globals = {
     console,
     document: { hidden: false, ...listeners },
     matchMedia: () => ({ matches: false, ...listeners }),
@@ -87,12 +75,11 @@ async function main() {
       }
       disconnect() {}
     },
+  };
+  const { useScenePlayer, TaskSceneModels, effects, draws } = await loadFrontend(entry, {
+    plugins,
+    globals,
   });
-  vm.runInContext(
-    bundles[0].output.find((item) => item.type === 'chunk' && item.isEntry).code,
-    context,
-  );
-  const { useScenePlayer, TaskSceneModels, effects, draws } = context.PlayerTest;
   const samples = [];
   TaskSceneModels.build = (entry, stage, seconds, progress) => {
     const sample = { stage, seconds, progress };
@@ -106,7 +93,7 @@ async function main() {
     frames.delete(id);
     callback((now += 17));
   };
-  for (const kind of ['dynamic_mesh', 'cardiac_contours', 'astro_dynamic']) {
+  for (const kind of ['dynamic_mesh', 'cardiac_contours', 'cardiac_anchors']) {
     samples.length = draws.length = 0;
     const player = useScenePlayer({ illustration: { kind } });
     player.root.current = { dataset: {} };

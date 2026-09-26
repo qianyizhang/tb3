@@ -16,9 +16,12 @@ from threading import Barrier
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from tb3_medical import cli, packaging
+from harbor_fixture import fake_harbor
+
+from tb3_medical import cli, packaging, storage
 from tb3_medical import core as c
 from tb3_medical import workflow as w
+from tb3_medical.errors import MedicalError
 
 
 class WorkflowRefinementTests(unittest.TestCase):
@@ -27,7 +30,7 @@ class WorkflowRefinementTests(unittest.TestCase):
         self.addCleanup(temp.cleanup)
         self.root = Path(temp.name)
         (self.root / "workbench.toml").write_text("version=1\n")
-        c.write_new(
+        storage.write_new(
             self.root / "groups/g/group.json",
             {"schema_version": 2, "kind": "group", "id": "g", "title": "Group"},
         )
@@ -37,28 +40,7 @@ class WorkflowRefinementTests(unittest.TestCase):
         for name in ("study", "other"):
             (self.root / f"groups/g/experiments/{name}/task/instruction.md").write_text("Task\n")
         self.enterContext(patch.object(w, "harbor_checksum", return_value="a" * 64))
-        self.enterContext(patch.object(w.subprocess, "run", side_effect=self.fake_harbor))
-
-    def fake_harbor(self, argv, **kwargs):
-        config_path = Path(argv[-1])
-        config = c.read(config_path)
-        agent = config["agents"][0]["name"]
-        phase = {"started_at": "2026-09-20T00:00:00Z", "finished_at": "2026-09-20T00:00:01Z"}
-        c.write_new(
-            config_path.parent / "job/trial/result.json",
-            {
-                **phase,
-                "task_name": "task",
-                "trial_name": "trial",
-                "task_checksum": "a" * 64,
-                "config": {"agent": config["agents"][0]},
-                "agent_execution": phase,
-                "verifier": phase,
-                "exception_info": None,
-                "verifier_result": {"rewards": {"reward": 1 if agent == "oracle" else 0}},
-            },
-        )
-        return subprocess.CompletedProcess(argv, 0)
+        self.enterContext(patch.object(w.subprocess, "run", side_effect=fake_harbor))
 
     def run_fake(self, agent="oracle", experiment="study", **kwargs):
         if agent == "codex":
@@ -74,7 +56,7 @@ class WorkflowRefinementTests(unittest.TestCase):
         row = {k: v for k, v in original.items() if k != "record_path"}
         row.update(id=c.uid("observation"), collected_at=c.now(), **updates)
         base = self.root / f"groups/g/experiments/{row['experiment_id']}/evaluations"
-        c.write_new(base / (row["id"] + ".json"), row)
+        storage.write_new(base / (row["id"] + ".json"), row)
         return row
 
     def review(self, assessment="usable", resolves=(), **kwargs):
@@ -103,7 +85,7 @@ class WorkflowRefinementTests(unittest.TestCase):
             "OPENAI_API_KEY": "fixture-secret-never-publish",
         }
         source = self.root / ".local/runtime/agent-env.json"
-        c.write_new(source, env)
+        storage.write_new(source, env)
         args = (
             "run",
             "study",
@@ -125,7 +107,7 @@ class WorkflowRefinementTests(unittest.TestCase):
         receipt = json.loads(output)
         attempt = c.lookup(self.root, receipt["attempt_id"])
         config_path = (self.root / attempt["execution_path"]).parent / "config.json"
-        config = c.read(config_path)
+        config = storage.read(config_path)
         self.assertEqual(config["agents"][0]["env"], env)
         self.assertEqual(config["agents"][0]["kwargs"], {"reasoning_effort": "medium"})
         self.assertEqual(config_path.stat().st_mode & 0o777, 0o600)
@@ -145,19 +127,19 @@ class WorkflowRefinementTests(unittest.TestCase):
         ):
             with self.subTest(payload=payload):
                 source.write_text(payload)
-                with self.assertRaises(c.MedicalError):
+                with self.assertRaises(MedicalError):
                     self.run_fake("codex", diagnostic=True, agent_env_file=source)
                 self.assertFalse((self.root / ".local/attempts").exists())
                 self.assertFalse((self.root / "groups/g/experiments/study/freezes").exists())
         source.unlink()
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             self.run_fake("codex", diagnostic=True, agent_env_file=source)
 
     def test_agent_environment_does_not_copy_ambient_secrets(self):
         with patch.dict(os.environ, {"UNRELATED_SECRET": "never-copy"}):
             receipt = self.run_fake("codex", diagnostic=True)
         attempt = c.lookup(self.root, receipt["attempt_id"])
-        config = c.read((self.root / attempt["execution_path"]).parent / "config.json")
+        config = storage.read((self.root / attempt["execution_path"]).parent / "config.json")
         self.assertEqual(config["agents"][0]["env"], {})
 
     def test_questioned_control_owner_blocks_reuse_and_diagnostic_remains_explicit(self):
@@ -165,12 +147,12 @@ class WorkflowRefinementTests(unittest.TestCase):
         self.assertEqual(c.projection(self.root)["study"]["current"]["assessment"], "not_assessed")
         self.run_fake("codex", "other")
         issue = c.issue(self.root, [oracle["attempt_id"]], "Oracle defect", [], "assistant")
-        with self.assertRaisesRegex(c.MedicalError, "unresolved review flags"):
+        with self.assertRaisesRegex(MedicalError, "unresolved review flags"):
             self.run_fake("codex", "other")
         self.run_fake("codex", "other", diagnostic=True)
         # A usable review without an explicit issue resolution is insufficient.
         self.review()
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             self.run_fake("codex", "other")
         self.review(resolves=[issue["id"]])
         self.run_fake("codex", "other")
@@ -178,12 +160,12 @@ class WorkflowRefinementTests(unittest.TestCase):
     def test_invalidated_controls_need_usable_reassessment_or_other_owner(self):
         self.controls()
         self.review("invalidated")
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             self.run_fake("codex", "other")
         self.controls("other")
         self.run_fake("codex", "other")
         # Target assessment remains an independent gate, even with other controls.
-        with self.assertRaisesRegex(c.MedicalError, "experiment issue"):
+        with self.assertRaisesRegex(MedicalError, "experiment issue"):
             self.run_fake("codex", "study")
         self.review()
         self.run_fake("codex", "study")
@@ -194,15 +176,15 @@ class WorkflowRefinementTests(unittest.TestCase):
         w.check_controls(self.root, oracle["task_digest"])
         issue = c.issue(self.root, [oracle["attempt_id"]], "Oracle defect", [], "assistant")
         before = c.load(self.root)
-        with self.assertRaisesRegex(c.MedicalError, "cannot be reset"):
+        with self.assertRaisesRegex(MedicalError, "cannot be reset"):
             self.review("not_assessed", resolves=[issue["id"]])
         self.assertEqual(before, c.load(self.root))
         self.review("invalidated", resolves=[issue["id"]])
         before = c.load(self.root)
-        with self.assertRaisesRegex(c.MedicalError, "usable scoped reassessment"):
+        with self.assertRaisesRegex(MedicalError, "usable scoped reassessment"):
             self.review("not_assessed")
         self.assertEqual(before, c.load(self.root))
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             self.run_fake("codex", "other")
         self.review()
         self.review("not_assessed")
@@ -219,7 +201,7 @@ class WorkflowRefinementTests(unittest.TestCase):
         for row in c.execution_observations(c.load(self.root)).values():
             if row["experiment_id"] == "other" and row.get("agent") == "nop":
                 self.append_observation(row, task_digest="different-task")
-        with self.assertRaises(c.MedicalError) as caught:
+        with self.assertRaises(MedicalError) as caught:
             w.check_controls(self.root, oracle["task_digest"])
         message = str(caught.exception)
         self.assertIn(f"{oracle['attempt_id']} (owner study, needs_review)", message)
@@ -241,7 +223,7 @@ class WorkflowRefinementTests(unittest.TestCase):
         ):
             with self.subTest(change=change):
                 self.append_observation(oracle, **change)
-                with self.assertRaises(c.MedicalError):
+                with self.assertRaises(MedicalError):
                     w.check_controls(self.root, oracle["task_digest"])
                 self.append_observation(oracle)
                 w.check_controls(self.root, oracle["task_digest"])
@@ -256,7 +238,7 @@ class WorkflowRefinementTests(unittest.TestCase):
             task_digest=None,
             freeze_checksum_verified=False,
         )
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             w.check_controls(self.root, oracle["task_digest"])
 
     def test_replay_trace_comparative_and_legacy_saved_reviews_do_not_replace_execution(self):
@@ -294,18 +276,18 @@ class WorkflowRefinementTests(unittest.TestCase):
             outcome="no_verdict",
             evidence=[c.evidence(self.root, attempt["execution_path"])],
         )
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             w.check_controls(self.root, oracle["task_digest"])
 
     def test_recollection_verifies_new_evidence_without_hashing_superseded_source(self):
         oracle, _ = self.controls()
         path = self.root / oracle["source_result"]
-        payload = c.read(path)
+        payload = storage.read(path)
         payload["retained_metadata"] = "new detail"
-        c.atomic_write(path, payload)
+        storage.atomic_write(path, payload)
         recollected = w.collect(self.root, "study", [oracle["source_result"]])[0]
         self.assertNotEqual(oracle["id"], recollected["id"])
-        with self.assertRaisesRegex(c.MedicalError, "Changed input"):
+        with self.assertRaisesRegex(MedicalError, "Changed input"):
             c.verify_inputs(self.root, oracle["evidence"])
         w.check_controls(self.root, oracle["task_digest"])
 
@@ -320,18 +302,18 @@ class WorkflowRefinementTests(unittest.TestCase):
             r for r in latest.values() if r.get("agent") == "oracle" and r["id"] != oracle["id"]
         )
         (self.root / replacement["source_result"]).unlink()
-        with self.assertRaisesRegex(c.MedicalError, "Unavailable evidence"):
+        with self.assertRaisesRegex(MedicalError, "Unavailable evidence"):
             w.check_controls(self.root, oracle["task_digest"])
 
     def test_a_b_a_recollection_appends_restored_observation_then_deduplicates(self):
         oracle, _ = self.controls()
         path = self.root / oracle["source_result"]
         original_bytes = path.read_bytes()
-        payload = c.read(path)
+        payload = storage.read(path)
         payload["verifier_result"]["rewards"]["reward"] = 0
-        c.atomic_write(path, payload)
+        storage.atomic_write(path, payload)
         middle = w.collect(self.root, "study", [oracle["source_result"]])[0]
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             w.check_controls(self.root, oracle["task_digest"])
         path.write_bytes(original_bytes)
         restored = w.collect(self.root, "study", [oracle["source_result"]])[0]
@@ -357,7 +339,7 @@ class WorkflowRefinementTests(unittest.TestCase):
         ):
             with self.subTest(change=change):
                 self.append_observation(original, **change)
-                with self.assertRaisesRegex(c.MedicalError, "normally completed"):
+                with self.assertRaisesRegex(MedicalError, "normally completed"):
                     w.qualify_attempt(self.root, "study", result["attempt_id"])
                 restored = self.append_observation(original)
                 self.append_observation(
@@ -372,7 +354,7 @@ class WorkflowRefinementTests(unittest.TestCase):
         self.controls()
         result = self.run_fake("codex", diagnostic=True)
         issue = c.issue(self.root, ["study"], "Check exact control scope", [], "assistant")
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             w.qualify_attempt(self.root, "study", result["attempt_id"])
         status, output, error = self.invoke(
             "review",
@@ -428,7 +410,7 @@ class WorkflowRefinementTests(unittest.TestCase):
         ):
             with self.subTest(assessment=assessment):
                 before = c.load(self.root)
-                with self.assertRaises(c.MedicalError):
+                with self.assertRaises(MedicalError):
                     self.review(assessment, resolves, qualify_attempts=[result["attempt_id"]])
                 self.assertEqual(before, c.load(self.root))
 
@@ -442,7 +424,7 @@ class WorkflowRefinementTests(unittest.TestCase):
         self.assertEqual(receipt["exit_code"], 17)
         self.assertEqual(receipt["execution_state"], "error")
         attempt = c.lookup(self.root, receipt["attempt_id"])
-        self.assertEqual(c.read(self.root / attempt["execution_path"])["exit_code"], 17)
+        self.assertEqual(storage.read(self.root / attempt["execution_path"])["exit_code"], 17)
 
     def test_completed_scoring_failure_returns_zero_and_preview_does_not_launch(self):
         status, output, error = self.invoke(
@@ -474,7 +456,7 @@ class WorkflowRefinementTests(unittest.TestCase):
             c.projection(self.root)["g"]["experiment_ids"], ["one", "other", "study", "two"]
         )
         self.assertEqual(c.validate(self.root)["experiments"], 4)
-        c.write_new(
+        storage.write_new(
             self.root / "groups/g/findings/f.json",
             {
                 "schema_version": 2,
@@ -485,7 +467,7 @@ class WorkflowRefinementTests(unittest.TestCase):
                 "experiment_ids": ["study"],
             },
         )
-        c.write_new(
+        storage.write_new(
             self.root / "exports/records/e.json",
             {
                 "schema_version": 2,
@@ -514,7 +496,7 @@ class ExportModeTests(unittest.TestCase):
             "files": [
                 {
                     "destination": "script.sh",
-                    "sha256": c.sha(self.root / "script.sh"),
+                    "sha256": storage.sha(self.root / "script.sh"),
                     "mode": 0o755,
                 }
             ],
@@ -525,10 +507,10 @@ class ExportModeTests(unittest.TestCase):
             "target_profile": "research",
             "experiment_ids": [],
         }
-        c.write_new(self.root / "recipe.json", recipe)
-        c.write_new(
+        storage.write_new(self.root / "recipe.json", recipe)
+        storage.write_new(
             self.root / "manifest.json",
-            {**recipe, "recipe_sha256": c.sha(self.root / "recipe.json"), "changes": []},
+            {**recipe, "recipe_sha256": storage.sha(self.root / "recipe.json"), "changes": []},
         )
 
     @unittest.skipUnless(os.name == "posix", "POSIX executable bits")
@@ -542,21 +524,21 @@ class ExportModeTests(unittest.TestCase):
             path.chmod(mode)
             with (
                 self.subTest(mode=oct(mode)),
-                self.assertRaisesRegex(c.MedicalError, "executable mode"),
+                self.assertRaisesRegex(MedicalError, "executable mode"),
             ):
                 packaging.verify(self.root)
 
     @unittest.skipUnless(os.name == "posix", "POSIX executable bits")
     def test_default_nonexecutable_contract_detects_added_execute_bits(self):
-        recipe = c.read(self.root / "recipe.json")
+        recipe = storage.read(self.root / "recipe.json")
         recipe["files"][0].pop("mode")
-        c.atomic_write(self.root / "recipe.json", recipe)
-        c.atomic_write(
+        storage.atomic_write(self.root / "recipe.json", recipe)
+        storage.atomic_write(
             self.root / "manifest.json",
-            {**recipe, "recipe_sha256": c.sha(self.root / "recipe.json"), "changes": []},
+            {**recipe, "recipe_sha256": storage.sha(self.root / "recipe.json"), "changes": []},
         )
         (self.root / "script.sh").chmod(0o755)
-        with self.assertRaisesRegex(c.MedicalError, "executable mode"):
+        with self.assertRaisesRegex(MedicalError, "executable mode"):
             packaging.verify(self.root)
 
     def test_nonposix_does_not_claim_to_verify_executable_bits(self):

@@ -10,8 +10,8 @@ from fnmatch import fnmatch
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-from . import core as c
-from . import dataset_previews, datasets, explanation_stories, frontend, task_catalog
+from . import dataset_previews, datasets, explanation_stories, frontend, storage, task_catalog
+from .errors import MedicalError
 from .presentation import markdown
 from .presentation_contracts import validate_payload
 from .types import Document, Pathish, Records
@@ -79,7 +79,7 @@ def conditions(body: str) -> list[dict[str, str]]:
 def local_path(root: Path, source: Path, target: str) -> Path:
     path = (source.parent / unquote(urlsplit(target).path)).resolve()
     if not path.is_relative_to(root.resolve()):
-        raise c.MedicalError("Brief link escapes repository: " + target)
+        raise MedicalError("Brief link escapes repository: " + target)
     return path
 
 
@@ -98,7 +98,7 @@ def render_text(root: Path, source: Path, body: str, missing: list[str]) -> str:
             return f"{alt} (local image unavailable)"
         mime = mimetypes.guess_type(path.name)[0]
         if mime not in {"image/png", "image/jpeg", "image/webp", "image/svg+xml"}:
-            raise c.MedicalError("Unsupported brief image: " + str(path))
+            raise MedicalError("Unsupported brief image: " + str(path))
         token = "brief-image-" + str(len(embedded))
         embedded[token] = "data:" + mime + ";base64," + base64.b64encode(path.read_bytes()).decode()
         return f"![{alt}]({token})"
@@ -117,7 +117,7 @@ def source_bundle(root: Pathish, entries: Sequence[Document]) -> Records:
     """Package only directly cited small text files, never their dependencies."""
     root = Path(root).resolve()
     policy_path = root / "configs/artifact-policy.json"
-    policy = c.read(policy_path) if policy_path.is_file() else {}
+    policy = storage.read(policy_path) if policy_path.is_file() else {}
     local_roots = {"runs", "jobs", ".local", ".cache", "node_modules", "archive/legacy"}
     local_roots.update(policy.get("local_roots", []))
     blocked = [".venv*", ".env", ".env.*", *policy.get("blocked_components", [])]
@@ -127,7 +127,7 @@ def source_bundle(root: Pathish, entries: Sequence[Document]) -> Records:
         for _, target in entry["sources"]:
             if urlsplit(target).scheme or target in sources:
                 continue
-            path = c.inside(root, target)
+            path = storage.inside(root, target)
             reason = ""
             if any(path.is_relative_to(root / p) for p in local_roots) or any(
                 fnmatch(part, pattern)
@@ -142,7 +142,7 @@ def source_bundle(root: Pathish, entries: Sequence[Document]) -> Records:
             elif path.stat().st_size > SOURCE_MAX_BYTES:
                 reason = "Source exceeds the 64 KiB per-file limit."
             elif total + path.stat().st_size > SOURCE_TOTAL_BYTES:
-                raise c.MedicalError(
+                raise MedicalError(
                     "Task Explorer sources exceed the 256 KiB combined limit at "
                     + target
                     + "; reduce the explicitly cited source scope."
@@ -179,7 +179,7 @@ def _brief_projection(root: Path, source: Path) -> Document:
         "Sources",
     ):
         if not content.get(field):
-            raise c.MedicalError(f"{source.relative_to(root)}: missing {field}")
+            raise MedicalError(f"{source.relative_to(root)}: missing {field}")
     row: Document = {"title": content["title"], "goal": content["goal"]}
     row.update({field: content.get(key, "Not yet specified.") for field, key in FIELDS.items()})
     row["stages"] = [
@@ -197,7 +197,7 @@ def _brief_projection(root: Path, source: Path) -> Document:
         if not urlsplit(target).scheme:
             p = local_path(root, source, target)
             if not p.exists():
-                raise c.MedicalError(f"{source.relative_to(root)}: missing source {target}")
+                raise MedicalError(f"{source.relative_to(root)}: missing source {target}")
             target = p.relative_to(root).as_posix()
         row["sources"].append([label, target])
     missing: list[str] = []
@@ -228,9 +228,9 @@ def load(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
     ids = set()
     for meta in data["entries"]:
         if meta["id"] in ids:
-            raise c.MedicalError("Duplicate task brief ID: " + meta["id"])
+            raise MedicalError("Duplicate task brief ID: " + meta["id"])
         ids.add(meta["id"])
-        source = c.inside(root, meta["brief"])
+        source = storage.inside(root, meta["brief"])
         english = source.with_name(source.stem + ".en.md")
         primary = english if english.is_file() else source
         row = dict(meta, **_brief_projection(root, primary))
@@ -239,9 +239,7 @@ def load(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
             primary_targets = [target for _, target in row["sources"]]
             localized_targets = [target for _, target in row["locales"]["zh-CN"]["sources"]]
             if localized_targets != primary_targets:
-                raise c.MedicalError(
-                    f"{source.relative_to(root)}: translated source targets differ"
-                )
+                raise MedicalError(f"{source.relative_to(root)}: translated source targets differ")
         for study in row["studies"]:
             if study["protocol"] not in [target for _, target in row["sources"]]:
                 row["sources"].append([study["title"], study["protocol"]])
@@ -255,32 +253,32 @@ def load(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
                 for key in ("kind", "input", "output", "caption")
             )
         ):
-            raise c.MedicalError(f"{row['id']}: incomplete overview illustration")
+            raise MedicalError(f"{row['id']}: incomplete overview illustration")
         if data.get("require_overview_visuals") and not (
             illustration or "<img " in row["visuals"]["input"]
         ):
-            raise c.MedicalError(f"{row['id']}: missing overview visual")
+            raise MedicalError(f"{row['id']}: missing overview visual")
         out.append(row)
     inventory = data["inventory"]
     by_id = {entry["id"]: entry for entry in out}
     for repo in inventory.get("repositories", []):
         item_ids = [r["id"] for r in repo["items"]]
         if len(item_ids) != len(set(item_ids)):
-            raise c.MedicalError("Duplicate inventory ID: " + repo["id"])
+            raise MedicalError("Duplicate inventory ID: " + repo["id"])
         for item in repo["items"]:
             if repo.get("require_brief_coverage") and not item.get("brief_id"):
-                raise c.MedicalError("Inventory entry lacks a task brief: " + item["id"])
+                raise MedicalError("Inventory entry lacks a task brief: " + item["id"])
             if item.get("brief_id") and item["brief_id"] not in ids:
-                raise c.MedicalError("Unknown inventory brief: " + item["brief_id"])
+                raise MedicalError("Unknown inventory brief: " + item["brief_id"])
             if item.get("brief_id"):
                 entry = by_id[item["brief_id"]]
                 if entry.get("repository_id", entry["id"]) != repo["id"]:
-                    raise c.MedicalError(
+                    raise MedicalError(
                         "Inventory brief belongs to another repository: " + item["id"]
                     )
                 index = item.get("condition_index", 0)
                 if type(index) is not int or not 0 <= index < len(entry["variants"]):
-                    raise c.MedicalError("Invalid inventory condition: " + item["id"])
+                    raise MedicalError("Invalid inventory condition: " + item["id"])
     dataset_data = datasets.load(
         root, out, require_coverage=data.get("require_dataset_coverage", False)
     )
@@ -355,7 +353,7 @@ def build(
     base = root / "presentation/task-explorer"
     app_js, app_css = frontend.assets(root, "explorer")
     if output.exists() and MARKER not in output.read_text()[:200]:
-        raise c.MedicalError("Refusing to overwrite an unowned file: " + str(output))
+        raise MedicalError("Refusing to overwrite an unowned file: " + str(output))
     document = (base / "index.html").read_text()
     payload = (
         json.dumps(data, ensure_ascii=False)
@@ -405,20 +403,22 @@ def new(
 ) -> Document:
     root = Path(root).resolve()
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", key):
-        raise c.MedicalError("Use a lowercase hyphenated brief ID")
-    path = c.inside(root, str(catalog))
-    target = c.inside(root, str(destination))
-    data: Document = c.read(path) if path.exists() else {"title": "Task Explorer", "entries": []}
+        raise MedicalError("Use a lowercase hyphenated brief ID")
+    path = storage.inside(root, str(catalog))
+    target = storage.inside(root, str(destination))
+    data: Document = (
+        storage.read(path) if path.exists() else {"title": "Task Explorer", "entries": []}
+    )
     if data.get("collections"):
-        raise c.MedicalError("Choose a group-owned leaf collection with --catalog for a new brief")
+        raise MedicalError("Choose a group-owned leaf collection with --catalog for a new brief")
     if data.get("taxonomy"):
-        taxonomy = c.read(c.inside(root, data["taxonomy"]))
+        taxonomy = storage.read(storage.inside(root, data["taxonomy"]))
         if family not in taxonomy["categories"]:
-            raise c.MedicalError("Use a category ID from the collection taxonomy for --family")
+            raise MedicalError("Use a category ID from the collection taxonomy for --family")
     if target.exists() or any(
         e["id"] == key or e["brief"] == str(destination) for e in data["entries"]
     ):
-        raise c.MedicalError("Brief ID or destination already exists")
+        raise MedicalError("Brief ID or destination already exists")
     template = (root / "presentation/task-explorer/brief-template.md").read_text()
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(template.replace("{{title}}", title.replace("\n", " ")))
@@ -435,7 +435,7 @@ def new(
     if repository_id:
         entry["repository_id"] = repository_id
     data["entries"].append(entry)
-    c.atomic_write(path, data)
+    storage.atomic_write(path, data)
     return {
         "brief": str(target),
         "catalog": str(path),

@@ -127,8 +127,8 @@ File placement and navigation are separate contracts:
   artifacts or loosen ignore rules to bypass retention policy.
 
 Keep original evidence and scientific outcomes intact when reorganizing
-navigation. Migration decisions belong in migration history only when they concern
-that migration. Review the diff and run the relevant
+navigation. Keep accepted decisions in their owning records; recover completed
+proposals through [the archive](../archive/README.md). Run the relevant
 [contribution checks](../CONTRIBUTING.md#checks); stage only owned paths. The
 artifact gate reads the Git index, so an unstaged correction cannot repair a
 staged artifact failure.

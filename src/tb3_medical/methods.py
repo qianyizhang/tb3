@@ -9,7 +9,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Protocol
 
-from . import core, landmarks, score_ct, score_mri, task_package
+from . import core, landmarks, score_ct, score_mri, storage, task_package
+from .errors import MedicalError
 from .types import Document, Pathish
 
 
@@ -44,7 +45,7 @@ class LandmarkMethod:
         output: Pathish | None = None,
     ) -> Document:
         if input_root is not None or output is not None:
-            raise core.MedicalError(
+            raise MedicalError(
                 "Use med bundle with --input-root for a portable landmark recovery; "
                 "native prepare uses its declared landmark inputs"
             )
@@ -56,8 +57,8 @@ class LandmarkMethod:
         core.verify_inputs(self.root, [truth])
         score = score_mri.score if inputs["scorer"] == "mri" else score_ct.score
         return score(
-            core.read(Path(answer) / "landmarks.json"),
-            core.read(core.inside(self.root, truth["path"])),
+            storage.read(Path(answer) / "landmarks.json"),
+            storage.read(storage.inside(self.root, truth["path"])),
         )
 
     def replay(self, case: str | None, python: str) -> Document:
@@ -87,7 +88,7 @@ class PackageMethod:
         destination = output or self._bundle(spec["id"])
         recipe = self.experiment["reproduction_manifest"]
         if not execute:
-            manifest = core.read(core.inside(self.root, recipe))
+            manifest = storage.read(storage.inside(self.root, recipe))
             selected = [e for e in manifest["files"] if e.get("case") in (None, spec["id"])]
             return {
                 "case": spec["id"],
@@ -104,7 +105,7 @@ class PackageMethod:
     def evaluate(self, case: str, answer: Pathish, python: str) -> Document:
         bundle = self._bundle(case)
         return task_package.evaluate(
-            bundle, core.read(bundle / "manifest.json"), case, answer, python
+            bundle, storage.read(bundle / "manifest.json"), case, answer, python
         )
 
     def replay(self, case: str | None, python: str) -> Document:
@@ -120,7 +121,7 @@ class PackageMethod:
                     self.root,
                     self.experiment,
                     bundle,
-                    core.read(bundle / "manifest.json"),
+                    storage.read(bundle / "manifest.json"),
                     name,
                     python,
                 )
@@ -131,7 +132,7 @@ class PackageMethod:
         bundle = self._bundle(case)
         result = task_package.inspect(
             bundle,
-            core.read(bundle / "manifest.json"),
+            storage.read(bundle / "manifest.json"),
             case,
             output or self.root / ".local/views" / f"{self.experiment['id']}-{case}.html",
         )
@@ -146,4 +147,4 @@ def method_for(root: Pathish, experiment: Document) -> ExperimentMethod:
         case "task_package":
             return PackageMethod(Path(root), experiment)
         case _:
-            raise core.MedicalError("No maintained method is declared for this experiment")
+            raise MedicalError("No maintained method is declared for this experiment")

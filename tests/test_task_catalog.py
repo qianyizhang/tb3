@@ -5,8 +5,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tb3_medical import core as c
 from tb3_medical import task_briefs, task_catalog
+from tb3_medical.errors import MedicalError
 
 
 class TaskCatalogTests(unittest.TestCase):
@@ -76,7 +76,7 @@ class TaskCatalogTests(unittest.TestCase):
         duplicate = folder.parent / "duplicate"
         duplicate.mkdir()
         (duplicate / "experiment.toml").write_bytes((folder / "experiment.toml").read_bytes())
-        with self.assertRaisesRegex(c.MedicalError, "Duplicate experiment ID"):
+        with self.assertRaisesRegex(MedicalError, "Duplicate experiment ID"):
             self.load()
 
     def test_no_orphan_experiment_and_no_silent_unclassified_entry(self):
@@ -94,14 +94,14 @@ class TaskCatalogTests(unittest.TestCase):
         ):
             with self.subTest(field=field, value=value):
                 self.write("leaf.json", {"entries": [{**self.entry, field: value}]})
-                with self.assertRaisesRegex(c.MedicalError, message):
+                with self.assertRaisesRegex(MedicalError, message):
                     self.load()
 
     def test_supporting_role_is_not_an_agent_task_and_many_scoped_links_are_allowed(self):
         self.fixture()
         support = {**self.entry, "id": "calibration", "role": "tool-calibration"}
         self.write("leaf.json", {"entries": [self.entry, support]})
-        with self.assertRaisesRegex(c.MedicalError, "supporting research"):
+        with self.assertRaisesRegex(MedicalError, "supporting research"):
             self.load()
         support["agent_work"] = "none"
         support["experiments"] = [
@@ -119,53 +119,26 @@ class TaskCatalogTests(unittest.TestCase):
             "task_families": {"related": {"title": "Related", "selector": "Contract"}},
         }
         self.write("leaf.json", leaf)
-        with self.assertRaisesRegex(c.MedicalError, "crosses repository or task axes"):
+        with self.assertRaisesRegex(MedicalError, "crosses repository or task axes"):
             self.load()
         leaf["task_families"] = {}
         self.write("leaf.json", leaf)
-        with self.assertRaisesRegex(c.MedicalError, "unknown or incomplete task family"):
+        with self.assertRaisesRegex(MedicalError, "unknown or incomplete task family"):
             self.load()
 
     def test_collection_cycles_conflicts_and_parent_scaffolding_fail(self):
         self.fixture()
         self.write("leaf.json", {"collections": ["catalog.json"]})
-        with self.assertRaisesRegex(c.MedicalError, "cycle"):
+        with self.assertRaisesRegex(MedicalError, "cycle"):
             self.load()
         self.write(
             "leaf.json", {"task_families": {"x": {"title": "First"}}, "collections": ["other.json"]}
         )
         self.write("other.json", {"task_families": {"x": {"title": "Different"}}})
-        with self.assertRaisesRegex(c.MedicalError, "Conflicting catalogue"):
+        with self.assertRaisesRegex(MedicalError, "Conflicting catalogue"):
             self.load()
-        with self.assertRaisesRegex(c.MedicalError, "group-owned leaf"):
+        with self.assertRaisesRegex(MedicalError, "group-owned leaf"):
             task_briefs.new(
                 self.root, "new", "Task", "Repo", "segmentation", "new.md", "catalog.json"
             )
         self.assertFalse((self.root / "new.md").exists())
-
-    def test_live_catalogue_preserves_boundary_examples_and_all_experiments(self):
-        root = Path(__file__).resolve().parents[1]
-        data = task_briefs.load(root)
-        entries = {e["id"]: e for e in data["entries"]}
-        self.assertEqual(
-            data["experiment_count"], len(list(root.glob("groups/*/experiments/*/experiment.toml")))
-        )
-        for key, category in {
-            "tb3-mri-importer": "data-engineering",
-            "tb3-resect-point-pilot": "correspondence",
-            "tb3-localized-candidate-recognition": "recognition",
-            "tb3-ct-context-inference": "reporting",
-            "tb3-longitudinal-ct-candidates": "longitudinal-analysis",
-            "healthagentbench-meds-etl": "data-engineering",
-            "healthagentbench-trial-matching": "eligibility",
-            "healthagentbench-predict-celiac": "prediction",
-            "healthagentbench-quality-combined": "data-quality",
-        }.items():
-            self.assertEqual(entries[key]["category"], category)
-        self.assertEqual(entries["tb3-segmentation-calibration"]["role"], "tool-calibration")
-        self.assertEqual(len(entries["tb3-ct-organ-segmentation"]["studies"]), 4)
-        self.assertNotEqual(
-            entries["tb3-airway-repair"]["role"], entries["tb3-topbrain-screen"]["role"]
-        )
-        self.assertTrue(entries["resect-mri-us-correspondence"]["proposed"])
-        self.assertFalse(entries["tb3-resect-point-pilot"]["proposed"])

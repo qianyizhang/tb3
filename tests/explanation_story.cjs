@@ -2,8 +2,8 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const vm = require('node:vm');
 const { execFileSync } = require('node:child_process');
+const { loadFrontend } = require('./frontend_bundle.cjs');
 (async () => {
   const root = path.resolve(__dirname, '..');
   const plan = JSON.parse(
@@ -16,19 +16,8 @@ const { execFileSync } = require('node:child_process');
       { cwd: root, encoding: 'utf8' },
     ),
   );
-  const { build } = await import('vite');
-  const bundles = await build({
-    configFile: false,
-    logLevel: 'silent',
-    build: {
-      write: false,
-      minify: false,
-      lib: { entry: path.join(__dirname, 'story_fixture.mjs'), name: 'Fixture', formats: ['iife'] },
-    },
-  });
-  const sandbox = vm.createContext({});
-  vm.runInContext(bundles[0].output.find((c) => c.type === 'chunk').code, sandbox);
-  const { sampleStory, createRouteSampler, createRoutePrefab, Group } = sandbox.Fixture;
+  const { sampleStory, createRouteSampler, createRoutePrefab, Group } =
+    await loadFrontend('story_fixture.mjs');
   const route = JSON.parse(
     fs.readFileSync(
       path.join(root, 'presentation/assets/teaching-fixtures/route-unfold-v1/route.json'),

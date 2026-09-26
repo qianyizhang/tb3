@@ -8,6 +8,8 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from . import core as c
+from . import storage
+from .errors import MedicalError
 from .types import Document, Pathish, Records
 
 SCHEMA_VERSION = 1
@@ -45,12 +47,12 @@ def _role(path: str) -> str:
 
 
 def _record_ref(root: Pathish, row: Document) -> dict[str, str]:
-    path = c.inside(root, row["record_path"])
+    path = storage.inside(root, row["record_path"])
     return {
         "id": row["id"],
         "kind": row["kind"],
         "path": row["record_path"],
-        "sha256": c.sha(path),
+        "sha256": storage.sha(path),
     }
 
 
@@ -77,8 +79,8 @@ def _artifact_pointer(root: Pathish, source: Document, entry: Document) -> Docum
     if not relative:
         return None
     try:
-        path = c.inside(root, relative)
-    except c.MedicalError:
+        path = storage.inside(root, relative)
+    except MedicalError:
         return {
             "source_record": source["id"],
             "label": entry.get("label", "Evidence"),
@@ -87,7 +89,7 @@ def _artifact_pointer(root: Pathish, source: Document, entry: Document) -> Docum
             "availability": "outside_workspace",
         }
     present = path.is_file()
-    actual = c.sha(path) if present else None
+    actual = storage.sha(path) if present else None
     expected = entry.get("sha256")
     return {
         "source_record": source["id"],
@@ -200,7 +202,7 @@ def collect(root: Pathish, targets: Sequence[str]) -> Document:
     rows = c.load(root)
     missing = [key for key in targets if key not in rows]
     if missing:
-        raise c.MedicalError("Unknown evidence target: " + ", ".join(missing))
+        raise MedicalError("Unknown evidence target: " + ", ".join(missing))
     target_rows = {key: rows[key] for key in targets}
     experiment_ids = set(_experiment_ids(rows, targets))
     scope_ids = (
@@ -268,19 +270,19 @@ def collect(root: Pathish, targets: Sequence[str]) -> Document:
 
 def validate_manifest(data: Document) -> Document:
     if data.get("schema_version") != SCHEMA_VERSION or data.get("kind") != "evidence_manifest":
-        raise c.MedicalError("Unsupported evidence manifest")
+        raise MedicalError("Unsupported evidence manifest")
     for field in ("targets", "record_refs", "experiments", "artifacts"):
         if field not in data:
-            raise c.MedicalError("Evidence manifest missing " + field)
+            raise MedicalError("Evidence manifest missing " + field)
     paths = [row["path"] for row in data["record_refs"]]
     if len(paths) != len(set(paths)):
-        raise c.MedicalError("Evidence manifest has duplicate record paths")
+        raise MedicalError("Evidence manifest has duplicate record paths")
     return data
 
 
 def write_manifest(path: Pathish, data: Document) -> None:
     validate_manifest(data)
-    c.write_new(path, data)
+    storage.write_new(path, data)
 
 
 def summary(data: Document) -> Document:
@@ -295,13 +297,13 @@ def summary(data: Document) -> Document:
 
 def check(root: Pathish, manifest: Pathish) -> Document:
     root = Path(root).resolve()
-    data = validate_manifest(c.read(manifest))
+    data = validate_manifest(storage.read(manifest))
     changed, missing = [], []
     for ref in data["record_refs"]:
-        path = c.inside(root, ref["path"])
+        path = storage.inside(root, ref["path"])
         if not path.is_file():
             missing.append(ref["path"])
-        elif c.sha(path) != ref["sha256"]:
+        elif storage.sha(path) != ref["sha256"]:
             changed.append(ref["path"])
     if missing or changed:
         parts = []
@@ -309,17 +311,17 @@ def check(root: Pathish, manifest: Pathish) -> Document:
             parts.append("missing records: " + ", ".join(missing))
         if changed:
             parts.append("changed records: " + ", ".join(changed))
-        raise c.MedicalError("Evidence manifest is stale; " + "; ".join(parts))
+        raise MedicalError("Evidence manifest is stale; " + "; ".join(parts))
     artifact_states: Counter[str] = Counter()
     artifact_drift: list[str] = []
     for pointer in data["artifacts"]["selected_pointers"]:
         if pointer["availability"] == "outside_workspace":
             artifact_states["outside_workspace"] += 1
             continue
-        path = c.inside(root, pointer["path"])
+        path = storage.inside(root, pointer["path"])
         if not path.is_file():
             state = "missing_local"
-        elif pointer.get("expected_sha256") and c.sha(path) != pointer["expected_sha256"]:
+        elif pointer.get("expected_sha256") and storage.sha(path) != pointer["expected_sha256"]:
             state = "digest_mismatch"
         elif pointer["availability"] == "missing_local":
             state = "newly_available"
@@ -331,9 +333,7 @@ def check(root: Pathish, manifest: Pathish) -> Document:
         ):
             artifact_drift.append(pointer["path"])
     if artifact_drift:
-        raise c.MedicalError(
-            "Evidence manifest artifact drift: " + ", ".join(sorted(artifact_drift))
-        )
+        raise MedicalError("Evidence manifest artifact drift: " + ", ".join(sorted(artifact_drift)))
     return {**summary(data), "record_hashes": "match", "artifact_states": dict(artifact_states)}
 
 
@@ -346,7 +346,7 @@ def _markdown_row(*values: object) -> str:
 
 
 def build(root: Pathish, manifest: Pathish, output: Pathish) -> Document:
-    data = validate_manifest(c.read(manifest))
+    data = validate_manifest(storage.read(manifest))
     check(root, manifest)
     lines = [
         INDEX_MARKER,
@@ -422,7 +422,7 @@ def build(root: Pathish, manifest: Pathish, output: Pathish) -> Document:
     lines += [f"- {item}" for item in data["interpretation_boundaries"]]
     output = Path(output)
     if output.exists() and INDEX_MARKER not in output.read_text()[:100]:
-        raise c.MedicalError("Refusing to overwrite an unowned file: " + str(output))
+        raise MedicalError("Refusing to overwrite an unowned file: " + str(output))
     output.parent.mkdir(parents=True, exist_ok=True)
     temporary = output.with_suffix(output.suffix + ".tmp")
     temporary.write_text("\n".join(lines) + "\n")
@@ -435,12 +435,12 @@ def new(
 ) -> Document:
     root = Path(root).resolve()
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", key):
-        raise c.MedicalError("Use a lowercase hyphenated analysis ID")
+        raise MedicalError("Use a lowercase hyphenated analysis ID")
     if analysis_kind not in c.ANALYSIS_KINDS:
-        raise c.MedicalError("Unknown analysis kind: " + analysis_kind)
+        raise MedicalError("Unknown analysis kind: " + analysis_kind)
     owner = c.lookup(root, group)
     if owner["kind"] != "group":
-        raise c.MedicalError("Analysis owner must be a group")
+        raise MedicalError("Analysis owner must be a group")
     manifest = collect(root, targets)
     experiment_ids = sorted(e["id"] for e in manifest["experiments"])
     base = c.destination(root, owner, "findings")
@@ -449,7 +449,7 @@ def new(
     evidence_path = base / "evidence" / (key + ".json")
     for path in (report_path, record_path, evidence_path):
         if path.exists():
-            raise c.MedicalError("Refusing to overwrite existing analysis file: " + str(path))
+            raise MedicalError("Refusing to overwrite existing analysis file: " + str(path))
     write_manifest(evidence_path, manifest)
     report_path.parent.mkdir(parents=True, exist_ok=True)
     with report_path.open("x") as report:
@@ -487,13 +487,13 @@ def new(
         "evidence": [
             {
                 "path": evidence_path.relative_to(root).as_posix(),
-                "sha256": c.sha(evidence_path),
+                "sha256": storage.sha(evidence_path),
             }
         ],
         "limitations": ["Interpretation and visual inspection are not complete."],
         "links": [{"label": "Analysis report", "path": report_path.relative_to(root).as_posix()}],
     }
-    c.write_new(record_path, record)
+    storage.write_new(record_path, record)
     return {
         "record": record_path.relative_to(root).as_posix(),
         "report": report_path.relative_to(root).as_posix(),

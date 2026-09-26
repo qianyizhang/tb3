@@ -8,7 +8,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from tb3_medical import hub
-from tb3_medical.core import MedicalError
+from tb3_medical.errors import MedicalError
 
 
 class HubTest(unittest.TestCase):

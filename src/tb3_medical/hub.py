@@ -9,7 +9,7 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
-from . import core as c
+from .errors import MedicalError
 from .types import Document
 
 JOB_FILES = ("config.json", "lock.json", "result.json", "analysis.md", "job.log")
@@ -30,7 +30,7 @@ def _json(path: Path) -> Any:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeError, ValueError) as exc:
-        raise c.MedicalError(f"Cannot read Harbor JSON: {path}") from exc
+        raise MedicalError(f"Cannot read Harbor JSON: {path}") from exc
 
 
 def _job(root: Path, target: str) -> Path:
@@ -40,9 +40,9 @@ def _job(root: Path, target: str) -> Path:
         path = root / target
     resolved = path.resolve()
     if not resolved.is_relative_to(root.resolve()):
-        raise c.MedicalError("Harbor job must stay inside the workbench")
+        raise MedicalError("Harbor job must stay inside the workbench")
     if not resolved.is_dir():
-        raise c.MedicalError(f"No local Harbor job: {target}")
+        raise MedicalError(f"No local Harbor job: {target}")
     return resolved
 
 
@@ -57,13 +57,13 @@ def _entries(job: Path, trials: list[Path]) -> list[Path]:
     files: list[Path] = []
     for path in paths:
         if path.is_symlink():
-            raise c.MedicalError(f"Upload payload contains a symlink: {path}")
+            raise MedicalError(f"Upload payload contains a symlink: {path}")
         if path.is_file():
             files.append(path)
         elif path.is_dir():
             for child in sorted(path.rglob("*")):
                 if child.is_symlink():
-                    raise c.MedicalError(f"Upload payload contains a symlink: {child}")
+                    raise MedicalError(f"Upload payload contains a symlink: {child}")
                 if child.is_file():
                     files.append(child)
     return files
@@ -89,7 +89,7 @@ def inspect(root: Path, target: str, *, include_files: bool = True) -> Document:
         return {"job": str(job.relative_to(root)), "status": "blocked", "problems": problems}
     try:
         result = _json(job / "result.json")
-    except c.MedicalError:
+    except MedicalError:
         problems.append("invalid job result JSON")
         result = {}
     if not isinstance(result, dict) or not result.get("id"):
@@ -108,7 +108,7 @@ def inspect(root: Path, target: str, *, include_files: bool = True) -> Document:
     for trial in trials:
         try:
             trial_result = _json(trial / "result.json")
-        except c.MedicalError:
+        except MedicalError:
             problems.append("invalid trial result JSON")
             continue
         if not isinstance(trial_result, dict) or not trial_result.get("id"):
@@ -117,7 +117,7 @@ def inspect(root: Path, target: str, *, include_files: bool = True) -> Document:
             problems.append("trial is unfinished")
     try:
         files = _entries(job, trials)
-    except c.MedicalError as exc:
+    except MedicalError as exc:
         problems.append(str(exc))
         files = []
     for path in files:
@@ -126,7 +126,7 @@ def inspect(root: Path, target: str, *, include_files: bool = True) -> Document:
                 if _nonempty_env(_json(path)):
                     problems.append("nonempty environment values in upload payload")
                     break
-            except c.MedicalError:
+            except MedicalError:
                 problems.append("unreadable JSON in upload payload")
                 break
     trajectories = sum((trial / "agent/trajectory.json").is_file() for trial in trials)
@@ -152,7 +152,7 @@ def scan(root: Path) -> Document:
     for path in (root / "groups").glob("*/experiments/*/attempts/attempt-*.json"):
         try:
             record = _json(path)
-        except c.MedicalError:
+        except MedicalError:
             continue
         if isinstance(record, dict):
             attempts[path.stem] = record.get("experiment_id")
@@ -185,20 +185,20 @@ def upload(root: Path, target: str, *, reviewed: bool, public: bool, executable:
     root = root.resolve()
     row = inspect(root, target, include_files=False)
     if row["status"] != "ready_for_content_review":
-        raise c.MedicalError("Upload blocked: " + "; ".join(row["problems"]))
+        raise MedicalError("Upload blocked: " + "; ".join(row["problems"]))
     if not reviewed:
-        raise c.MedicalError(
+        raise MedicalError(
             "Inspect the payload and pass --reviewed after checking content and rights"
         )
     harbor = shutil.which(executable) or (
         str(root / ".venv/bin/harbor") if executable == "harbor" else None
     )
     if not harbor or not Path(harbor).is_file():
-        raise c.MedicalError("Harbor CLI unavailable; pass --harbor PATH")
+        raise MedicalError("Harbor CLI unavailable; pass --harbor PATH")
     command = [harbor, "upload", str(root / row["job"]), "--public" if public else "--private"]
     completed = subprocess.run(command, cwd=root, capture_output=True, text=True, check=False)
     if completed.returncode:
-        raise c.MedicalError(
+        raise MedicalError(
             f"Harbor upload failed (exit {completed.returncode}); run Harbor auth/login diagnostics locally"
         )
     match = re.search(r"https://hub\.harborframework\.com/jobs/[A-Za-z0-9-]+", completed.stdout)

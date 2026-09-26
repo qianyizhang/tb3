@@ -104,8 +104,8 @@ covers navigation checks, disposable profiles and the macOS execution boundary.
 
 ## Verification history
 
-The [2026-09-21 baseline](archive/README.md#reproduction-baseline) links each group's
-dated inventory and the original receipt for hashes, controls and replay counts.
+The [2026-09-21 baseline receipt](evidence/experiment-support-backfill-20260921.json)
+records the dated inventory, hashes, controls and replay counts.
 Unselected experiments retain evidence without implying a maintained runner.
 A clone depends on tracked receipts and per-experiment recipes; the optional local
 `runs/support-backfill-20260921/HANDOFF.md` is an operational convenience.

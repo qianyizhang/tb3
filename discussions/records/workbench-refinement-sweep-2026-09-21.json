@@ -7,10 +7,6 @@
   "summary": "The user accepted all R01-R11 refinements after a four-choice decision interview. Workflow gates, source inspection, navigation and research summaries are repaired and covered by clean-checkout regressions; original scores and separately owned BR-042 work are preserved.",
   "links": [
     {
-      "label": "Full sweep, prioritized refinements and acceptance criteria",
-      "path": "discussions/workbench-refinement-sweep-2026-09-21.md"
-    },
-    {
       "label": "Bounded verification and reproduction receipt",
       "path": "docs/evidence/workbench-refinement-sweep-2026-09-21.json"
     },
@@ -19,8 +15,12 @@
       "path": "docs/evidence/workbench-refinement-implementation-2026-09-21.json"
     },
     {
-      "label": "Accepted minimal design boundary",
-      "path": "docs/migration/native-workbench-plan.md"
+      "label": "Original proposal and decision history: Git recovery",
+      "path": "archive/manifest.json"
+    },
+    {
+      "label": "Current component and authoring boundaries",
+      "path": "docs/architecture.md"
     }
   ],
   "decision_provenance": "The user requested a full sweep, then a decision interview followed by fixes. After the four-choice interview, the user explicitly replied “all your rec”, accepting conservative control reuse, notice-complete preview retention, parking the three calibration ideas, the scoped BR-042 issue, and implementation of the full refinement pass. This authorizes maintenance and editorial fixes, not model trials or publication.",
@@ -44,6 +44,19 @@
       "Retain notice-complete previews with individual restrictions; leave incomplete notices optional",
       "Park the three completed calibration ideas with reopening conditions",
       "Record the scoped BR-042 naming dispute for both affected experiments"
+    ]
+  },
+  "native_workbench_decisions": {
+    "actor": "user",
+    "date": "2026-09-20",
+    "source_git": "c00e6eb4b41bd2a7ddd3f78e73f419d81043b7b1:docs/migration/native-workbench-plan.md",
+    "decisions": [
+      "Retain all 37 historical execution records; maintain native implementations only where reuse justifies them.",
+      "Author compact experiment config and scientific Markdown; generate execution receipts and snapshots.",
+      "Allow explicit diagnostic exploration before controls; require verified controls for benchmark claims and promotion.",
+      "Flag affected experiments and their summaries/exports, recording affected runs in the issue rather than adding claim-level dependency machinery.",
+      "Keep modules, files and normal imports; avoid a generic store, schema migration engine, plugin framework or compatibility shims.",
+      "Allow scoped narrower reassessment after partial withdrawal, eligibility of unchanged diagnostic attempts after exact-task controls and reassessment, and explicitly flagged draft exports. None establishes submission readiness."
     ]
   }
 }

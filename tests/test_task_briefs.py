@@ -4,18 +4,17 @@ import base64
 import hashlib
 import io
 import json
-import shutil
 import tempfile
 import unittest
 from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 
-from frontend_fixture import install_frontend
+from frontend_fixture import install_explorer
 
 from tb3_medical import cli
-from tb3_medical import core as c
 from tb3_medical import task_briefs as briefs
+from tb3_medical.errors import MedicalError
 
 
 class TaskBriefTests(unittest.TestCase):
@@ -42,11 +41,7 @@ class TaskBriefTests(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
-        source = Path(__file__).resolve().parents[1] / "presentation/task-explorer"
-        shutil.copytree(source, self.root / "presentation/task-explorer")
-        shutil.copyfile(source.parent / "ui.css", self.root / "presentation/ui.css")
-        shutil.copytree(source.parent / "assets", self.root / "presentation/assets")
-        install_frontend(self.root)
+        install_explorer(self.root)
         self.catalog = "collection/catalog.json"
 
     def test_native_cli_build_and_check_use_explicit_workspace(self):
@@ -89,7 +84,7 @@ class TaskBriefTests(unittest.TestCase):
         self.assertTrue(all(e["proposed"] for e in data["entries"]))
         self.assertEqual((self.root / "group/example.md").read_bytes(), first)
         self.assertFalse(list(self.root.rglob("experiment.json")))
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             self.scaffold()
 
     def test_companion_english_brief_keeps_chinese_reader_copy(self):
@@ -112,7 +107,7 @@ class TaskBriefTests(unittest.TestCase):
                 "## Sources", "## Sources\n\n- [Reference](https://example.org/reference)"
             )
         )
-        with self.assertRaisesRegex(c.MedicalError, "translated source targets differ"):
+        with self.assertRaisesRegex(MedicalError, "translated source targets differ"):
             briefs.load(self.root, self.catalog)
 
     def test_markdown_edits_flow_to_standalone_build(self):
@@ -163,21 +158,21 @@ class TaskBriefTests(unittest.TestCase):
                 "[Task](missing-task.md)",
             )
         )
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             briefs.load(self.root, self.catalog)
 
     def test_build_does_not_overwrite_authored_file(self):
         self.scaffold()
         target = self.root / "user.html"
         target.write_text("Keep my page")
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             briefs.build(self.root, target, self.catalog)
         self.assertEqual(target.read_text(), "Keep my page")
         path = self.root / self.catalog
         data = json.loads(path.read_text())
         data["entries"].append(data["entries"][0])
         path.write_text(json.dumps(data))
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             briefs.check(self.root, self.catalog)
 
     def test_required_overview_survives_missing_optional_media(self):
@@ -186,13 +181,13 @@ class TaskBriefTests(unittest.TestCase):
         data = json.loads(path.read_text())
         data["require_overview_visuals"] = True
         path.write_text(json.dumps(data))
-        with self.assertRaisesRegex(c.MedicalError, "missing overview visual"):
+        with self.assertRaisesRegex(MedicalError, "missing overview visual"):
             briefs.check(self.root, self.catalog)
         brief = self.root / "group/example.md"
         brief.write_text(
             brief.read_text().replace("### Input\n", "### Input\n\n![Input](optional.png)\n")
         )
-        with self.assertRaisesRegex(c.MedicalError, "missing overview visual"):
+        with self.assertRaisesRegex(MedicalError, "missing overview visual"):
             briefs.check(self.root, self.catalog)
         data["entries"][0]["illustration"] = {
             "kind": "segment",
@@ -206,7 +201,7 @@ class TaskBriefTests(unittest.TestCase):
         self.assertEqual(checked["missing_media"], ["group/optional.png"])
         data["entries"][0]["illustration"]["caption"] = " "
         path.write_text(json.dumps(data))
-        with self.assertRaisesRegex(c.MedicalError, "incomplete overview illustration"):
+        with self.assertRaisesRegex(MedicalError, "incomplete overview illustration"):
             briefs.check(self.root, self.catalog)
 
     def test_sources_are_exact_bounded_deduplicated_and_not_recursive(self):
@@ -253,14 +248,14 @@ class TaskBriefTests(unittest.TestCase):
             path = self.root / f"source-{i}.txt"
             path.write_bytes(bytes([65 + i]) * briefs.SOURCE_MAX_BYTES)
             entries[0]["sources"].append(["Source", path.name])
-        with self.assertRaisesRegex(c.MedicalError, "256 KiB combined limit"):
+        with self.assertRaisesRegex(MedicalError, "256 KiB combined limit"):
             briefs.source_bundle(self.root, entries)
         entries[0]["sources"].pop()
         sources = briefs.source_bundle(self.root, entries)
         self.assertEqual(
             sum(s.get("bytes", 0) for s in sources.values()), briefs.SOURCE_TOTAL_BYTES
         )
-        with self.assertRaisesRegex(c.MedicalError, "escapes repository"):
+        with self.assertRaisesRegex(MedicalError, "escapes repository"):
             briefs.local_path(self.root, self.root / "brief.md", "../outside.md")
 
     def test_catalogue_coverage_condition_and_repository_are_checked(self):
@@ -294,7 +289,7 @@ class TaskBriefTests(unittest.TestCase):
             inventory_path.write_text(json.dumps(inventory))
 
         save()
-        with self.assertRaisesRegex(c.MedicalError, "lacks a task brief"):
+        with self.assertRaisesRegex(MedicalError, "lacks a task brief"):
             briefs.check(self.root, self.catalog)
         item.update(brief_id="example", condition_index=0)
         save()
@@ -302,10 +297,10 @@ class TaskBriefTests(unittest.TestCase):
         for invalid in (-1, 99, "0", True):
             item["condition_index"] = invalid
             save()
-            with self.assertRaisesRegex(c.MedicalError, "Invalid inventory condition"):
+            with self.assertRaisesRegex(MedicalError, "Invalid inventory condition"):
                 briefs.check(self.root, self.catalog)
         item["condition_index"] = 0
         inventory["repositories"][0]["id"] = "another-project"
         save()
-        with self.assertRaisesRegex(c.MedicalError, "another repository"):
+        with self.assertRaisesRegex(MedicalError, "another repository"):
             briefs.check(self.root, self.catalog)

@@ -53,6 +53,31 @@ class FrontendTests(unittest.TestCase):
         with self.assertRaisesRegex(MedicalError, "stale"):
             frontend.assets(self.root, "overview")
 
+    def test_nested_asset_and_inventory_policy_changes_invalidate_build(self):
+        for name in (
+            "presentation/task-explorer/anatomy/nested/mesh.json",
+            "src/tb3_medical/frontend.py",
+        ):
+            with self.subTest(input=name):
+                install_frontend(self.root)
+                source = self.root / name
+                source.parent.mkdir(parents=True, exist_ok=True)
+                source.write_text("changed")
+                with self.assertRaisesRegex(MedicalError, "stale"):
+                    frontend.assets(self.root, "explorer")
+
+    def test_external_story_discovery_matches_supported_authoring_paths(self):
+        install_frontend(self.root)
+        for name in ("README.md", "nested/draft.story.md"):
+            note = self.root / "presentation/external-tasks/stories" / name
+            note.parent.mkdir(parents=True, exist_ok=True)
+            note.write_text("Not a compiled story")
+        frontend.assets(self.root, "explorer")
+        story = self.root / "presentation/external-tasks/stories/accepted.story.md"
+        story.write_text("A supported story path")
+        with self.assertRaisesRegex(MedicalError, "stale"):
+            frontend.assets(self.root, "explorer")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,22 +1,10 @@
 /* Task state, modality composition and portable URL restoration; no browser or scans. */
 const assert = require('node:assert/strict');
-const fs = require('node:fs');
-const path = require('node:path');
-const { stripTypeScriptTypes } = require('node:module');
-const directory = path.join(__dirname, '../presentation/frontend');
-const moduleUrl = (source) => 'data:text/javascript,' + encodeURIComponent(source);
-const stripped = (name) =>
-  stripTypeScriptTypes(fs.readFileSync(path.join(directory, name), 'utf8'));
+const { loadFrontend } = require('./frontend_bundle.cjs');
 
 async function checkExplorer() {
-  const modelUrl = moduleUrl(stripped('model.ts'));
-  const { createModel, inScope } = await import(modelUrl);
-  const stateSource = stripped('state.ts').replace(
-    /from '\.\/model'/,
-    'from ' + JSON.stringify(modelUrl),
-  );
-  const { initialState, explorerReducer, taskRoute } = await import(moduleUrl(stateSource));
-  const { parseExplorerData } = await import(moduleUrl(stripped('types.ts')));
+  const { createModel, inScope, initialState, explorerReducer, taskRoute, parseExplorerData } =
+    await loadFrontend('explorer_fixture.mjs', { globals: { URLSearchParams } });
   const entry = (id, modalities, role = 'task') => ({
     id,
     modalities,

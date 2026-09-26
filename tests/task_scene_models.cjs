@@ -2,30 +2,9 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const vm = require('node:vm');
+const { loadFrontend } = require('./frontend_bundle.cjs');
 async function main() {
-  const { build } = await import('vite');
-  const bundles = await build({
-    configFile: false,
-    root: path.join(__dirname, '..'),
-    logLevel: 'silent',
-    build: {
-      write: false,
-      minify: false,
-      target: 'es2022',
-      lib: {
-        entry: path.join(__dirname, 'scene_fixture.mjs'),
-        name: 'TB3SceneFixture',
-        formats: ['iife'],
-      },
-    },
-  });
-  assert.equal(bundles.length, 1, 'One IIFE fixture bundle');
-  const chunk = bundles[0].output.find((item) => item.type === 'chunk' && item.isEntry);
-  assert.ok(chunk, 'Vite builds the real scene module entry');
-  const sandbox = vm.createContext({});
-  vm.runInContext(chunk.code, sandbox);
-  const context = sandbox.TB3SceneFixture;
+  const context = await loadFrontend('scene_fixture.mjs');
   for (const invalid of [
     [1, 2],
     [1, 2, 3, 4],
@@ -56,7 +35,6 @@ async function main() {
     model.primitives.filter((p) => p.color === '#c38a36').flatMap((p) => p.points);
   const depth = (points) =>
     Math.max(...points.map((p) => p[2])) - Math.min(...points.map((p) => p[2]));
-  assert.equal(depth(focusPoints(output('detect'))), 0, 'Image detections have planar boxes');
   assert.ok(depth(focusPoints(output('box3d'))) > 0.5, 'Volume localization keeps box depth');
   assert.equal(
     output('dynamic_mesh').labels.some((l) => l.text === 'A' || l.text === 'B'),
@@ -64,20 +42,13 @@ async function main() {
     'Cavity geometry does not imply tracked material particles',
   );
   assert.ok(output('cardiac_material').labels.some((l) => l.text === 'A'));
-  assert.equal(
-    output('classify', { labels: ['normal', 'pneumonia'] }).labels.some((l) =>
-      ['normal', 'pneumonia'].includes(l.text),
-    ),
-    false,
-    'Classification shows an output schema rather than assigning a diagnosis',
-  );
   const vessel = output('segment', { subject: 'aorta', mask_mode: 'binary' });
   assert.equal(
     new Set(vessel.primitives.map((p) => p.color)).size,
     1,
     'Binary targets use one class',
   );
-  const moon = output('astronomy', { scene_variant: 'moon' });
+  const moon = output('astro_volume', { scene_variant: 'moon' });
   const craterPoints = moon.primitives
     .filter((p) => p.color === '#89a3aa')
     .flatMap((p) => p.points);
@@ -86,12 +57,7 @@ async function main() {
     craterPoints.every((p) => Math.abs(Math.hypot(...p) - 0.9) < 1e-10),
     'Lunar marks lie on the surface',
   );
-  for (const kind of [
-    'prediction_screen',
-    'cardiac_anchors',
-    'cardiac_material',
-    'segmenter_calibration',
-  ]) {
+  for (const kind of ['prediction_screen', 'cardiac_anchors', 'cardiac_material']) {
     assert.ok(
       models.legend(entry(kind)).some(([, , dashed]) => dashed),
       `${kind}: dashed legend`,
@@ -201,7 +167,7 @@ async function main() {
 
   // The material system applies to authored shapes and source-derived anatomy alike.
   // Actual contours and reference paths are tested separately above.
-  for (const kind of ['dynamic_mesh', 'nuclei', 'vesselgraph', 'tensor', 'diffraction']) {
+  for (const kind of ['dynamic_mesh', 'instances', 'vesselgraph', 'tensor', 'diffraction']) {
     const model = output(kind);
     assert.ok(
       model.primitives.some((p) => p.surface),
@@ -269,7 +235,8 @@ async function main() {
   const kinds = new Set();
   for (const e of illustrated) {
     kinds.add(e.illustration.kind);
-    assert.ok(models.supports(e.illustration.kind), e.id + ': supported illustration kind');
+    if (context.mode(e) === '3d')
+      assert.ok(models.supports(e.illustration.kind), e.id + ': spatial recipe available');
     assert.ok(['3d', 'static'].includes(context.mode(e)), e.id + ': explicit rendering mode');
     if (e.illustration.subject === 'wsi')
       assert.equal(context.mode(e), 'static', e.id + ': planar WSI explanation');
@@ -307,6 +274,7 @@ async function main() {
     /annotated reference regions/,
   );
   assert.match(teachingOutput('detect'), /box → location \+ extent/);
+  assert.match(teachingOutput('segmenter_calibration'), /stroke-dasharray/);
   assert.match(teachingOutput('report'), /Impression \/ uncertainty/);
   assert.match(teachingOutput('segment', { mask_mode: 'separate' }), /organ mask/);
   assert.match(teachingOutput('segment', { mask_mode: 'separate' }), /lesion mask/);

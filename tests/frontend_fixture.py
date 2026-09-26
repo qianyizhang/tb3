@@ -2,9 +2,26 @@
 
 import hashlib
 import json
+import shutil
 from pathlib import Path
 
 from tb3_medical import frontend
+
+
+def install_explorer(root: Path) -> None:
+    """Copy only assembly templates; unit tests do not need anatomy or teaching media."""
+    source = Path(__file__).resolve().parents[1] / "presentation"
+    for name in (
+        "ui.css",
+        "task-explorer/index.html",
+        "task-explorer/style.css",
+        "task-explorer/datasets.css",
+        "task-explorer/brief-template.md",
+    ):
+        target = root / "presentation" / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source / name, target)
+    install_frontend(root)
 
 
 def install_frontend(root: Path) -> None:

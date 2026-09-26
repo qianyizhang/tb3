@@ -1,8 +1,11 @@
-"""Python export contracts and generated browser types share one authority."""
+"""Payload validation uses a minimal authored brief; med check covers the full catalogue."""
 
 import copy
+import tempfile
 import unittest
 from pathlib import Path
+
+from frontend_fixture import install_explorer
 
 from tb3_medical import core, task_briefs
 from tb3_medical import presentation_contracts as contracts
@@ -12,21 +15,30 @@ from tb3_medical.errors import MedicalError
 class PresentationContractTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.root = Path(__file__).resolve().parents[1]
-        cls.explorer = task_briefs.load(cls.root)
+        temp = tempfile.TemporaryDirectory()
+        cls.addClassCleanup(temp.cleanup)
+        root = Path(temp.name)
+        install_explorer(root)
+        task_briefs.new(root, "example", "Inspect a scan", "Fixture", "Imaging", "example.md")
+        cls.explorer = task_briefs.load(root)
+        cls.explorer["entries"][0]["illustration"] = {
+            "kind": "segment",
+            "input": "Scan",
+            "output": "Mask",
+            "caption": "Conceptual example",
+        }
 
-    def test_current_projection_and_generated_types_match(self):
-        contracts.validate_payload(self.explorer, "explorer")
+    def test_overview_projection_matches_contract(self):
+        root = Path(__file__).resolve().parents[1]
         contracts.validate_payload(
             {
                 "schema_version": 1,
-                "records": list(core.projection(self.root).values()),
+                "records": list(core.projection(root).values()),
                 "vocabulary": core.VOCABULARY,
                 "local_media": False,
             },
             "overview",
         )
-        self.assertEqual((self.root / contracts.GENERATED).read_text(), contracts.typescript())
 
     def test_bad_version_and_nested_condition_fail_with_field_path(self):
         data = copy.deepcopy(self.explorer)

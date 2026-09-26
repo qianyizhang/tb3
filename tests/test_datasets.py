@@ -5,8 +5,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tb3_medical import core as c
-from tb3_medical import datasets
+from tb3_medical import datasets, storage
+from tb3_medical.errors import MedicalError
 
 
 class DatasetTests(unittest.TestCase):
@@ -19,7 +19,11 @@ class DatasetTests(unittest.TestCase):
         self.receipt.write_text(
             json.dumps({"files": [{"path": "runs/scan.nii", "sha256": "0" * 64}]})
         )
-        self.ref = {"path": "receipt.json", "sha256": c.sha(self.receipt), "pointer": "/files"}
+        self.ref = {
+            "path": "receipt.json",
+            "sha256": storage.sha(self.receipt),
+            "pointer": "/files",
+        }
         self.row = {
             "id": "dataset-example",
             "title": "Example",
@@ -49,19 +53,19 @@ class DatasetTests(unittest.TestCase):
 
     def test_receipt_drift_and_invalid_pointer_fail_before_build(self):
         self.receipt.write_text('{"files": []}')
-        with self.assertRaisesRegex(c.MedicalError, "receipt changed"):
+        with self.assertRaisesRegex(MedicalError, "receipt changed"):
             datasets.load(self.root)
-        self.ref["sha256"] = c.sha(self.receipt)
+        self.ref["sha256"] = storage.sha(self.receipt)
         self.ref["pointer"] = "/missing"
         self.save()
-        with self.assertRaisesRegex(c.MedicalError, "receipt pointer"):
+        with self.assertRaisesRegex(MedicalError, "receipt pointer"):
             datasets.load(self.root)
 
     def test_new_experiment_requires_dataset_mapping(self):
         path = self.root / "groups/group/experiments/new/experiment.toml"
         path.parent.mkdir(parents=True)
         path.write_text('id = "new-experiment"\ntitle = "New experiment"\n')
-        with self.assertRaisesRegex(c.MedicalError, "missing dataset documentation"):
+        with self.assertRaisesRegex(MedicalError, "missing dataset documentation"):
             datasets.load(self.root, require_coverage=True)
         self.row["experiment_ids"] = ["new-experiment"]
         self.save()
@@ -72,24 +76,24 @@ class DatasetTests(unittest.TestCase):
     def test_unknown_brief_and_escaping_file_are_rejected(self):
         self.row["brief_ids"] = ["missing"]
         self.save()
-        with self.assertRaisesRegex(c.MedicalError, "unknown task brief"):
+        with self.assertRaisesRegex(MedicalError, "unknown task brief"):
             datasets.load(self.root, require_coverage=True)
         self.row["brief_ids"] = []
         self.row["file_sets"][0]["local_root"] = "../outside"
         self.save()
-        with self.assertRaisesRegex(c.MedicalError, "workspace-relative"):
+        with self.assertRaisesRegex(MedicalError, "workspace-relative"):
             datasets.load(self.root)
 
     def test_external_acquired_files_have_exactly_one_owner(self):
         path = self.root / "presentation/external-tasks/samples.json"
         path.parent.mkdir(parents=True)
         path.write_text(json.dumps({"downloads": [{"path": "runs/input.nii", "sha256": "a" * 64}]}))
-        with self.assertRaisesRegex(c.MedicalError, "exactly one dataset owner"):
+        with self.assertRaisesRegex(MedicalError, "exactly one dataset owner"):
             datasets.load(self.root, require_coverage=True)
         spec = {
             "receipt": {
                 "path": "presentation/external-tasks/samples.json",
-                "sha256": c.sha(path),
+                "sha256": storage.sha(path),
                 "pointer": "/downloads",
             },
             "path_field": "path",
@@ -99,7 +103,7 @@ class DatasetTests(unittest.TestCase):
         datasets.load(self.root, require_coverage=True)
         self.row["file_sets"].append(spec)
         self.save()
-        with self.assertRaisesRegex(c.MedicalError, "exactly one dataset owner"):
+        with self.assertRaisesRegex(MedicalError, "exactly one dataset owner"):
             datasets.load(self.root, require_coverage=True)
 
     def test_local_mismatch_is_not_silently_rebaselined(self):
@@ -128,7 +132,7 @@ class DatasetTests(unittest.TestCase):
     def test_repeated_views_cannot_be_duplicated_sample_identities(self):
         self.row["sample_sets"][0]["sample_ids"] = ["case-1", "case-1"]
         self.save()
-        with self.assertRaisesRegex(c.MedicalError, "incomplete sample selection"):
+        with self.assertRaisesRegex(MedicalError, "incomplete sample selection"):
             datasets.load(self.root)
 
 

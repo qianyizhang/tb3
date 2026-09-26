@@ -119,5 +119,60 @@
       "reopen_when": "A maintained consumer needs a narrower record or method-result schema, or a shared scientific primitive has matching semantics and a preservation plan. Broad record migration and universal scoring models remain out of scope."
     }
   ],
+  "cleanup_20260926": {
+    "source": "codex://threads/01a0db21-433e-7452-b96e-1968756e5257",
+    "decisions": [
+      {
+        "actor": "user",
+        "decision": "Survey simplification opportunities and implement high-value, high-confidence fixes."
+      },
+      {
+        "actor": "user",
+        "decision": "Be aggressive; CLI/SDK design may change with good reason. Hand off risky future work. Initially finish staged, without committing."
+      },
+      {
+        "actor": "user",
+        "decision": "Prune more docs; no shims."
+      },
+      {
+        "actor": "user",
+        "decision": "Simplify, tidy and polish the changes, then commit."
+      }
+    ],
+    "changes": [
+      "Python owns frontend dependency discovery; JavaScript consumes it before and after bundling. Fingerprints cover nested assets, supported story paths and the inventory implementation.",
+      "Share the Vite test loader and synthetic Harbor launcher. Python assembly fixtures use five templates/styles and compiled stubs instead of copying anatomy and teaching media.",
+      "Remove two authored-catalogue assertion tests, the duplicate generated-contract freshness assertion, unreachable 3D branches and unreferenced CSS. Keep behavior, wire-format, rendering and portability coverage.",
+      "Replace the mirrored 205-row explainer table with concise priorities. Retire eight completed proposal/navigation pages; current guides own operations and existing records retain decisions.",
+      "Remove core storage/error re-exports and the unused collection binding override. Import owning modules directly and resolve each collection source path once."
+    ],
+    "python_api": "External Python consumers of core storage helpers or core.MedicalError must import their owning modules. collect(root, experiment, sources) no longer accepts binding; ownership proof comes from retained launcher receipts. CLI arguments and maintained call behavior are unchanged.",
+    "recovery": {
+      "source_commit": "c00e6eb4b41bd2a7ddd3f78e73f419d81043b7b1",
+      "bundle": ".local/repository-cleanup-20260926-01a0db21/docs-prune/pre-prune.bundle",
+      "bundle_sha256": "0b8fdf39027bcb156f1a40ad2aca06645953ae39460a1a61d0c1d058b6ca75d0",
+      "verified_originals": 10,
+      "result": "Fetched bundle into an empty temporary Git repository and restored all originals; all bytes match the checkout.",
+      "independent_backup_verified": false
+    },
+    "verification": {
+      "repository": "Final isolated commit candidate: make check PYTHON=python3.12 passed with 180 tests, medical records, 507 maintained docs and 1601 links, strict mypy (33 source files), generated contracts, Ruff, skills checks and actionlint. The 114 absent links are declared optional local artifacts.",
+      "frontend": "Final frontend build and make js-check passed. The earlier cleanup also passed the 205-entry disposable-browser suite with no page errors or remote requests; its rendering witnesses retain their original source scope. Source mutation during bundling correctly rejected the build.",
+      "preservation": "410 teaching SVGs and 1062 spatial scene samples matched their pre-change baseline. The doc/API pass preserved 3127 research/dataset/export files and all unowned index entries. Frozen Harbor fixtures and scientific outcomes remain unchanged.",
+      "fixture_size": "Assembly fixture: 39319 bytes across 16 files; previous fixture copied about 8.1 MB of anatomy/teaching assets.",
+      "docs": "Eight pages retired and 1109 net Markdown lines removed before final polishing; all ten retired/shortened originals restored exactly from the verified bundle."
+    },
+    "history": {
+      "local_artifacts": ".local/repository-cleanup-20260926-01a0db21",
+      "pre_polish_record": ".local/repository-cleanup-20260926-01a0db21/commit-polish/before/discussions/records/source-package-quality.json",
+      "sha256": "8ccbf77a6b287896e9fdf655f8fae2b0eb6d07f7dd492ebc01c6a5d8d4b1d28c",
+      "survey": "discussions/simplification-candidates-2026-09-26.md"
+    },
+    "remaining_work": [
+      "Retire a live renderer only after every consumer and fallback has an accepted replacement; 13 of 205 entries had reviewed scripted replacements at this survey.",
+      "Historical bulk retirement requires an enumerated dependency audit and verified recovery; size alone is not deletion evidence."
+    ],
+    "local_handoff": "discussions/simplification-handoff-2026-09-26.md"
+  },
   "reopen_when": "A third maintained method needs these operations, stable record fields justify stronger schema types, or a runtime dependency can be checked without provisioning model environments."
 }

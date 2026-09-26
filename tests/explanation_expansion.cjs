@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const path = require('node:path');
-const vm = require('node:vm');
 const { execFileSync } = require('node:child_process');
+const { loadFrontend } = require('./frontend_bundle.cjs');
 (async () => {
   const root = path.resolve(__dirname, '..');
   const plans = JSON.parse(
@@ -14,22 +14,6 @@ const { execFileSync } = require('node:child_process');
       { cwd: root, encoding: 'utf8' },
     ),
   );
-  const { build } = await import('vite');
-  const bundle = await build({
-    configFile: false,
-    logLevel: 'silent',
-    build: {
-      write: false,
-      minify: false,
-      lib: {
-        entry: path.join(__dirname, 'expansion_fixture.mjs'),
-        name: 'Fixture',
-        formats: ['iife'],
-      },
-    },
-  });
-  const sandbox = vm.createContext({});
-  vm.runInContext(bundle[0].output.find((c) => c.type === 'chunk').code, sandbox);
   const {
     sampleStory,
     nativeFactory,
@@ -39,7 +23,7 @@ const { execFileSync } = require('node:child_process');
     graph,
     residualM,
     level0Point,
-  } = sandbox.Fixture;
+  } = await loadFrontend('expansion_fixture.mjs');
   let frames = 0,
     native = 0;
   for (const plan of plans) {

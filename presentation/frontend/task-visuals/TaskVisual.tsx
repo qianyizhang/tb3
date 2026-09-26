@@ -20,7 +20,6 @@ import { taskSceneMode } from './mode';
 import { useScenePlayer } from './use-scene-player';
 import type { Stage, VisualEntry } from './types';
 import styles from './task-visual.module.css';
-export { taskSceneMode } from './mode';
 
 /** Only the retained SVG teaching library crosses this markup boundary. */
 function TeachingArt({ entry, output = false }: { entry: VisualEntry; output?: boolean }) {

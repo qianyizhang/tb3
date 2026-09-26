@@ -15,6 +15,8 @@ from pathlib import Path
 from typing import Any
 
 from . import core as c
+from . import storage
+from .errors import MedicalError
 from .types import Document, Pathish
 
 ROLES = {
@@ -42,42 +44,42 @@ FIELDS = (
 def pointer(value: Any, location: str) -> Any:
     """Resolve a JSON Pointer; never evaluate a path expression or import a probe."""
     if location and not location.startswith("/"):
-        raise c.MedicalError("Invalid dataset receipt pointer: " + location)
+        raise MedicalError("Invalid dataset receipt pointer: " + location)
     try:
         for part in location.split("/")[1:]:
             part = part.replace("~1", "/").replace("~0", "~")
             value = value[int(part)] if isinstance(value, list) else value[part]
     except (KeyError, IndexError, ValueError, TypeError) as error:
-        raise c.MedicalError("Missing dataset receipt pointer: " + location) from error
+        raise MedicalError("Missing dataset receipt pointer: " + location) from error
     return value
 
 
 def checked_receipt(root: Pathish, ref: Document, cache: dict[str, tuple[str, Any]]) -> Any:
-    path = c.inside(root, ref["path"])
+    path = storage.inside(root, ref["path"])
     if not path.is_file():
-        raise c.MedicalError("Missing dataset receipt: " + ref["path"])
+        raise MedicalError("Missing dataset receipt: " + ref["path"])
     if ref["path"] not in cache:
         cache[ref["path"]] = (
-            c.sha(path),
-            c.read(path) if path.suffix == ".json" else path.read_text(),
+            storage.sha(path),
+            storage.read(path) if path.suffix == ".json" else path.read_text(),
         )
     digest, value = cache[ref["path"]]
     if ref.get("sha256") != digest:
-        raise c.MedicalError("Dataset receipt changed; review provenance: " + ref["path"])
+        raise MedicalError("Dataset receipt changed; review provenance: " + ref["path"])
     return pointer(value, ref.get("pointer", ""))
 
 
 def file_items(root: Pathish, spec: Document, cache: dict[str, tuple[str, Any]]) -> list[Document]:
     values = checked_receipt(root, spec["receipt"], cache)
     if not isinstance(values, list) or not values:
-        raise c.MedicalError("Dataset file set must select a nonempty list")
+        raise MedicalError("Dataset file set must select a nonempty list")
     indices = spec.get("indices", list(range(len(values))))
     if (
         not indices
         or len(indices) != len(set(indices))
         or any(type(i) is not int or not 0 <= i < len(values) for i in indices)
     ):
-        raise c.MedicalError("Invalid dataset file selection indices")
+        raise MedicalError("Invalid dataset file selection indices")
     return [values[i] for i in indices]
 
 
@@ -89,7 +91,7 @@ def load(
     experiments = {
         row["id"]: row
         for path in sorted(root.glob("groups/*/experiments/*/experiment.toml"))
-        for row in [c.read(path)]
+        for row in [storage.read(path)]
     }
     entry_ids = {e["id"] for e in entries}
     cache: dict[str, tuple[str, Any]] = {}
@@ -97,18 +99,18 @@ def load(
     ids: set[str] = set()
     covered: set[str] = set()
     for path in sorted(root.glob("datasets/*.json")):
-        row = c.read(path)
+        row = storage.read(path)
         key = c.identifier(row["id"])
         if key in ids:
-            raise c.MedicalError("Duplicate dataset ID: " + key)
+            raise MedicalError("Duplicate dataset ID: " + key)
         ids.add(key)
         if row.get("record_type") == "overview":
             continue
         for field in FIELDS:
             if not isinstance(row.get(field), str) or not row[field].strip():
-                raise c.MedicalError(f"{key}: missing dataset {field}")
+                raise MedicalError(f"{key}: missing dataset {field}")
         if not row.get("sample_sets"):
-            raise c.MedicalError(key + ": document selected samples or an explicit acquisition gap")
+            raise MedicalError(key + ": document selected samples or an explicit acquisition gap")
         for sample in row["sample_sets"]:
             if (
                 sample.get("role") not in ROLES
@@ -116,34 +118,34 @@ def load(
                 or len(sample["sample_ids"]) != len(set(sample["sample_ids"]))
                 or not sample.get("note")
             ):
-                raise c.MedicalError(key + ": incomplete sample selection")
+                raise MedicalError(key + ": incomplete sample selection")
             checked_receipt(root, sample["receipt"], cache)
         for payload in row.get("unverified_payloads", []):
             if not all(payload.get(k) for k in ("sample_id", "original_runtime_path", "note")):
-                raise c.MedicalError(key + ": incomplete unrecovered payload documentation")
+                raise MedicalError(key + ": incomplete unrecovered payload documentation")
             checked_receipt(root, payload["receipt"], cache)
         if (
             require_coverage
             and row.get("native_payload_expected", True)
             and not row.get("file_sets")
         ):
-            raise c.MedicalError(key + ": missing local file inventory")
+            raise MedicalError(key + ": missing local file inventory")
         for files in row.get("file_sets", []):
             values = file_items(root, files, cache)
             for item in values:
                 relative = str(Path(files.get("local_root", "")) / item[files["path_field"]])
-                c.inside(root, relative)
+                storage.inside(root, relative)
                 if not re.fullmatch(r"[0-9a-f]{64}", item.get("sha256", "")):
-                    raise c.MedicalError(key + ": file lacks a SHA-256: " + relative)
+                    raise MedicalError(key + ": file lacks a SHA-256: " + relative)
         uses = row.get("experiment_ids", [])
         if len(uses) != len(set(uses)) or set(uses) - experiments.keys():
-            raise c.MedicalError(key + ": duplicate or unknown experiment use")
+            raise MedicalError(key + ": duplicate or unknown experiment use")
         explicit = row.get("brief_ids", [])
         if require_coverage and set(explicit) - entry_ids:
-            raise c.MedicalError(key + ": unknown task brief")
+            raise MedicalError(key + ": unknown task brief")
         example = row.get("example_brief")
         if require_coverage and example and example not in entry_ids:
-            raise c.MedicalError(key + ": unknown example brief")
+            raise MedicalError(key + ": unknown example brief")
         covered.update(uses)
         briefs = [e["id"] for e in entries if e["id"] in explicit]
         records.append(
@@ -156,14 +158,14 @@ def load(
         )
     missing = sorted(experiments.keys() - covered)
     if require_coverage and missing:
-        raise c.MedicalError("Experiments missing dataset documentation: " + ", ".join(missing))
+        raise MedicalError("Experiments missing dataset documentation: " + ", ".join(missing))
     # Every acquired external example file must resolve once to a source dataset.
     external = root / "presentation/external-tasks/samples.json"
     if require_coverage and external.is_file():
         expected = {
             item["path"]
             for field in ("downloads", "reused_sources")
-            for item in c.read(external).get(field, [])
+            for item in storage.read(external).get(field, [])
         }
         actual = Counter(
             item[files["path_field"]]
@@ -173,7 +175,7 @@ def load(
             for item in file_items(root, files, cache)
         )
         if set(actual) != expected or any(n != 1 for n in actual.values()):
-            raise c.MedicalError("External sample files need exactly one dataset owner")
+            raise MedicalError("External sample files need exactly one dataset owner")
     return {
         "records": records,
         "coverage": {
@@ -200,11 +202,11 @@ def audit(root: Pathish, data: Document) -> Document:
                 expected = item["sha256"]
                 if relative in seen:
                     if seen[relative] != expected:
-                        raise c.MedicalError("Conflicting source digests: " + relative)
+                        raise MedicalError("Conflicting source digests: " + relative)
                     continue
                 seen[relative] = expected
-                path = c.inside(root, relative)
-                actual = c.sha(path) if path.is_file() else None
+                path = storage.inside(root, relative)
+                actual = storage.sha(path) if path.is_file() else None
                 files.append(
                     {
                         "dataset_id": row["id"],

@@ -2,16 +2,15 @@
 
 The medical workbench is active for user-authorized work. The original interview
 and selection queue are historical. The [existing submission](submission.md)
-remains independently owned. Start with [current documentation](README.md);
-[migration history](migration/README.md) records the pivot and integration boundary.
-The [workflow](workflow.md) explains the supported interface.
+remains independently owned. Use [current documentation](README.md) for operations
+and [the archive](../archive/README.md) for historical sources and recovery.
 
 | Location | Authority and treatment |
 | --- | --- |
 | groups/ | Semantic ownership: ideas, decisions, methods, experiments, findings, presentation. Small source records are tracked. |
 | groups/<group>/history/ | Dated research closeouts, retrospectives and trace accounts. Current findings and presentation remain separate; narrative navigation may be maintained without changing scientific outcomes. |
 | datasets/ | Source explanations, selected samples, pinned receipts, task links and access/recovery gaps; no implicit downloads or trial authorization. See [dataset contracts](../datasets/README.md). |
-| discussions/ | Local notes and artifacts are ignored by default. Exact exceptions retain important design histories and stable records under records/. Maintained Task Explorer content lives in presentation/external-tasks/. |
+| discussions/ | Local notes and artifacts are ignored by default. Exact exceptions retain stable records under records/ and necessary narrative context. Maintained Task Explorer content lives in presentation/external-tasks/. |
 | src/tb3_medical/, scripts/, tests/, configs/ | Common interfaces, adapters, executable checks and artifact policy. |
 | presentation/ | Shared read-only renderer, media tools and portable publication support. |
 | exports/ | Pinned recipes and lineage records. Generated destinations have explicit ownership; never overwrite them. |

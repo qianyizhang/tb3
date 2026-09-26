@@ -9,7 +9,8 @@ from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 
-from tb3_medical import cli, core, task_package, workflow
+from tb3_medical import cli, core, storage, task_package, workflow
+from tb3_medical.errors import MedicalError
 from tb3_medical.methods import method_for
 
 
@@ -19,7 +20,7 @@ class MethodTests(unittest.TestCase):
         self.addCleanup(temp.cleanup)
         self.root = Path(temp.name)
         (self.root / "workbench.toml").write_text("version=1\n")
-        core.write_new(
+        storage.write_new(
             self.root / "groups/g/group.json",
             {"schema_version": 2, "kind": "group", "id": "g", "title": "Group"},
         )
@@ -28,7 +29,7 @@ class MethodTests(unittest.TestCase):
 
     def configure(self, method, **fields):
         self.experiment.update(method=method, **fields)
-        core.atomic_write(self.base / "experiment.toml", self.experiment)
+        storage.atomic_write(self.base / "experiment.toml", self.experiment)
 
     def invoke(self, *args):
         output, error = io.StringIO(), io.StringIO()
@@ -47,8 +48,8 @@ class MethodTests(unittest.TestCase):
             "linear_voxel_to_mm": [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
             "tolerance_mm": 1,
         }
-        core.write_new(self.root / "truth.json", truth)
-        core.write_new(
+        storage.write_new(self.root / "truth.json", truth)
+        storage.write_new(
             self.root / "inputs.json",
             {
                 "cases": {
@@ -64,7 +65,7 @@ class MethodTests(unittest.TestCase):
                 }
             },
         )
-        core.write_new(
+        storage.write_new(
             self.root / "answer/landmarks.json",
             {"space": "voxel_ijk_zero_based", "landmarks": {"p": [1, 2, 3]}},
         )
@@ -81,8 +82,8 @@ class MethodTests(unittest.TestCase):
     def prepare_packages(self, expected_reward=1):
         evaluator = self.root / "evaluate.py"
         evaluator.write_text("print('{\"reward\": 1}')\n")
-        core.write_new(self.root / "expected.json", {"reward": expected_reward})
-        core.write_new(self.root / "answer.json", {"answer": 42})
+        storage.write_new(self.root / "expected.json", {"reward": expected_reward})
+        storage.write_new(self.root / "answer.json", {"answer": 42})
         (self.root / "instruction.md").write_text("# Task\n\nInspect the sample.\n")
         manifest = {
             "experiment_id": "study",
@@ -105,7 +106,7 @@ class MethodTests(unittest.TestCase):
                 {
                     "source": source,
                     "path": destination,
-                    "sha256": core.sha(self.root / source),
+                    "sha256": storage.sha(self.root / source),
                     "size": (self.root / source).stat().st_size,
                     "mode": 0o644,
                     "case": None,
@@ -120,7 +121,7 @@ class MethodTests(unittest.TestCase):
                 )
             ],
         }
-        core.write_new(self.root / "recipe.json", manifest)
+        storage.write_new(self.root / "recipe.json", manifest)
         self.configure(
             "task_package",
             reproduction_manifest="recipe.json",
@@ -138,7 +139,7 @@ class MethodTests(unittest.TestCase):
                 },
             ),
         ):
-            core.write_new(
+            storage.write_new(
                 self.base / (kind + "s") / (identity + ".json"),
                 {
                     "schema_version": 2,
@@ -211,7 +212,7 @@ class MethodTests(unittest.TestCase):
     def test_landmark_prepare_rejects_package_only_options(self):
         self.configure("landmarks")
         adapter = method_for(self.root, self.experiment)
-        with self.assertRaisesRegex(core.MedicalError, "med bundle"):
+        with self.assertRaisesRegex(MedicalError, "med bundle"):
             adapter.prepare({"id": "a"}, False, input_root=self.root)
 
     def test_evaluator_rejects_nonobject_json_at_the_process_boundary(self):
@@ -219,8 +220,8 @@ class MethodTests(unittest.TestCase):
         bundle = self.root / ".local/reproduction/study/a"
         script = bundle / "evaluate.py"
         script.write_text('print("[]")\n')
-        manifest = core.read(bundle / "manifest.json")
+        manifest = storage.read(bundle / "manifest.json")
         entry = next(item for item in manifest["files"] if item["path"] == "evaluate.py")
-        entry.update(sha256=core.sha(script), size=script.stat().st_size)
+        entry.update(sha256=storage.sha(script), size=script.stat().st_size)
         with self.assertRaisesRegex(ValueError, "JSON object"):
             task_package.evaluate(bundle, manifest, "a", self.root)

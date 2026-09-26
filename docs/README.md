@@ -1,11 +1,5 @@
 # Documentation
 
-Reader-facing presentation principles live in [Presentation design](../presentation/DESIGN.md).
-
-This is a medical agent capability research workbench. Useful outcomes include
-successes, qualified partial results, source research and visual explanations.
-Finding submission candidates is an optional later step, not the research goal.
-
 ## Use the workbench
 
 | Need | Start here |
@@ -28,30 +22,16 @@ Finding submission candidates is an optional later step, not the research goal.
 | Choose where to put code, experiments, findings, docs or generated files | [Repository layout and file placement](repository-layout.md) |
 | Understand ownership, preserved evidence and what belongs in Git | [Governance](governance.md) |
 | Write concise, structured summaries and reports | [Writing style](writing-style.md) |
+| Design reader-facing presentation and provenance disclosure | [Presentation design](../presentation/DESIGN.md) |
 | Choose and construct concise conceptual, quantitative and source-derived visuals | [Visual explanation rulebook](visual-explanations.md) |
 | Add LiteMedSAM / a SAM segmentation tool to an experiment | [Segmentation tool rulebook](segmentation-tools.md) |
 | Interpret badges, assessments and the attention queue | [Status vocabulary](status-vocabulary.md) |
 
-[Contribution rules](../CONTRIBUTING.md) cover development checks. The installed
-`med` command is the supported interface; `med --help` and `med COMMAND --help`
-describe its arguments. The executable status definitions live in
-[vocabulary.json](../src/tb3_medical/vocabulary.json). Maintained-link scope lives
-in [doc-links.json](../configs/doc-links.json). Checks cover local links and closed
-code fences in maintained guides, including recipe README/acquisition pages;
-preserved historical evidence is
-excluded explicitly rather than rewritten to match the current tree.
+[Contribution rules](../CONTRIBUTING.md) cover setup and checks. Use `med --help`
+and `med COMMAND --help` for arguments. [doc-links.json](../configs/doc-links.json)
+defines maintained-link coverage; frozen historical sources retain their citations.
 
 ## Historical records
 
-[Historical navigation](archive/README.md) leads to dated research, verification
-baselines and retired material. The [migration record](migration/README.md)
-preserves the pivot decisions and completed cutover; the
-[recovery guide](../archive/README.md) explains how to restore exact originals.
-
-## Where information belongs
-
-The [repository layout](repository-layout.md) owns the directory map, placement
-examples and discoverability rules. Groups own scientific work, the package and
-presentation own shared implementation, and this directory owns current shared
-guidance. Dated research closeouts stay with their group; original evidence stays
-at its retained source location.
+[The archive guide](../archive/README.md) links retained research, verification
+baselines and exact-byte recovery for retired material.

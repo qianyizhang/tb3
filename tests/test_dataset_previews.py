@@ -5,8 +5,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tb3_medical import core as c
 from tb3_medical import dataset_previews as previews
+from tb3_medical import storage
+from tb3_medical.errors import MedicalError
 
 
 class DatasetPreviewTests(unittest.TestCase):
@@ -28,7 +29,7 @@ class DatasetPreviewTests(unittest.TestCase):
                 {
                     "role": "input",
                     "path": "snapshot.png",
-                    "sha256": c.sha(self.image),
+                    "sha256": storage.sha(self.image),
                     "caption": "Full source plane; frozen for reader inspection",
                 }
             ],
@@ -48,7 +49,7 @@ class DatasetPreviewTests(unittest.TestCase):
 
     def test_changed_snapshot_fails_and_missing_snapshot_stays_explicit(self):
         self.image.write_bytes(b"different pixels")
-        with self.assertRaisesRegex(c.MedicalError, "snapshot changed"):
+        with self.assertRaisesRegex(MedicalError, "snapshot changed"):
             self.load()
         self.image.unlink()
         panel = self.load()["panels"][0]
@@ -56,11 +57,11 @@ class DatasetPreviewTests(unittest.TestCase):
         self.assertNotIn("image_url", panel)
 
     def test_every_source_needs_a_preview_or_documented_unavailability(self):
-        with self.assertRaisesRegex(c.MedicalError, "Every dataset"):
+        with self.assertRaisesRegex(MedicalError, "Every dataset"):
             previews.load(self.root, {"dataset-test", "dataset-missing"}, required=True)
         self.row["status"] = "paired"
         self.save()
-        with self.assertRaisesRegex(c.MedicalError, "contradicts"):
+        with self.assertRaisesRegex(MedicalError, "contradicts"):
             self.load()
 
     def test_unavailable_and_reference_only_cannot_be_counted_as_paired(self):
@@ -76,5 +77,5 @@ class DatasetPreviewTests(unittest.TestCase):
     def test_escaping_source_path_is_rejected(self):
         self.row["sources"][0]["path"] = "../outside.nii.gz"
         self.save()
-        with self.assertRaisesRegex(c.MedicalError, "workspace-relative"):
+        with self.assertRaisesRegex(MedicalError, "workspace-relative"):
             self.load()

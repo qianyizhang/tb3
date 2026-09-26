@@ -9,7 +9,7 @@ cross-task synthesis remain separate work.
 - [External source notes](external-source-notes.md): context for proportionate
   comparisons; retain cohort, assistance, split and metric differences.
 - [Presentation guide](../README.md): current authoring and local build commands.
-- [Original brief and full editorial history](../../archive/README.md#documentation-pruning--2026-09-22): recoverable originals.
+- [Original brief and full editorial history](../../archive/README.md#recover-retired-files): recoverable originals.
 
 ## Corrections that the rewrite must carry
 

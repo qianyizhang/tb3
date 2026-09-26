@@ -47,10 +47,11 @@ caller-supplied text and can render outside the Task Explorer.
    context. Maintain spatial correspondence between the input sketch and its
    output marks. Prefer named targets to a generic blob. Existing source-derived
    3D anatomy is reusable through `AnatomyAssets`, with its original provenance.
-3. A new deliverable needs an explicit SVG recipe and story recipe. Spatial
-   tasks also need a 3D recipe in [recipes.ts](../../frontend/task-visuals/recipes.ts);
-   2D-first tasks should be routed through `taskSceneMode` in `mode.ts`. Use plain action
-   verbs and a cue that tells readers what to look for.
+3. A new deliverable needs an explicit SVG recipe and story recipe. The routing in
+   [mode.ts](../../frontend/task-visuals/mode.ts) determines which tasks also need
+   a 3D recipe in [recipes.ts](../../frontend/task-visuals/recipes.ts). Keep static
+   tasks in the SVG library; do not add parallel, unreachable 3D recipes. Teaching
+   actions and cues belong in `task-story.js`.
 4. Keep the input/action/output sequence readable at rest. Spatial tasks use one
    compact stage selector; 2D tasks show paired input/output diagrams. Animate only the actual
    operation: region labeling, correspondence, phase change or reconstruction.

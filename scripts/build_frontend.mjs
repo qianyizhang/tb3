@@ -10,41 +10,12 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, '.local/frontend');
 const pending = path.join(root, '.local/frontend-pending-' + process.pid);
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
-async function files(directory) {
-  const entries = await readdir(path.join(root, directory), { withFileTypes: true });
-  const nested = await Promise.all(
-    entries.map((entry) => {
-      const name = directory + '/' + entry.name;
-      return entry.isDirectory() ? files(name) : [name];
+function inputHashes() {
+  return JSON.parse(
+    execFileSync(path.join(root, '.venv/bin/python'), ['-m', 'tb3_medical.frontend'], {
+      cwd: root,
+      encoding: 'utf8',
     }),
-  );
-  return nested.flat();
-}
-async function inputHashes() {
-  const names = [
-    'package.json',
-    'package-lock.json',
-    'tsconfig.json',
-    'scripts/build_frontend.mjs',
-    'src/tb3_medical/presentation_contracts.py',
-    'presentation/task-explorer/assets/Apache-2.0.txt',
-    ...(await files('presentation/frontend')).filter((name) => /\.(tsx?|css|js)$/.test(name)),
-    ...(await files('presentation/assets/teaching')).filter((name) =>
-      /\.(tsx?|css|js)$/.test(name),
-    ),
-    ...(await files('presentation/task-explorer/anatomy')),
-    'src/tb3_medical/explanation_stories.py',
-    'presentation/assets/teaching-prefabs.json',
-    ...(await files('presentation/assets/teaching-fixtures')),
-    ...(await files('presentation/external-tasks/stories')),
-    ...(await files('groups')).filter((name) =>
-      /^groups\/[^/]+\/presentation\/stories\/[^/]+\.story\.md$/.test(name),
-    ),
-  ].sort();
-  return Object.fromEntries(
-    await Promise.all(
-      names.map(async (name) => [name, hash(await readFile(path.join(root, name)))]),
-    ),
   );
 }
 await mkdir(pending, { recursive: true });
@@ -57,7 +28,7 @@ try {
     ],
     { cwd: root, stdio: 'inherit' },
   );
-  const inputs = await inputHashes();
+  const inputs = inputHashes();
   for (const entry of ['explorer', 'overview', 'explainer-export']) {
     await build({
       configFile: false,
@@ -79,7 +50,7 @@ try {
       },
     });
   }
-  if (JSON.stringify(inputs) !== JSON.stringify(await inputHashes())) {
+  if (JSON.stringify(inputs) !== JSON.stringify(inputHashes())) {
     throw Error('Frontend source changed during the build; rebuild the current source.');
   }
   const outputs = Object.fromEntries(

@@ -13,7 +13,7 @@ from pydantic import ValidationError
 
 from tb3_medical import core as records
 from tb3_medical import harbor as core
-from tb3_medical import workflow
+from tb3_medical import storage, workflow
 
 PHASE = {
     "started_at": "2026-09-12T00:00:00Z",
@@ -114,7 +114,7 @@ class HarborImportTests(unittest.TestCase):
         baseline = json.loads(
             (Path(__file__).parent / "fixtures/harbor-import-baseline.json").read_text()
         )
-        records.write_new(
+        storage.write_new(
             self.root / "groups/g/group.json",
             {"schema_version": 2, "kind": "group", "id": "g", "title": "Group"},
         )

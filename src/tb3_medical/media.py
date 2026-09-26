@@ -7,14 +7,15 @@ import re
 import shutil
 from pathlib import Path
 
-from . import core
+from . import core, storage
+from .errors import MedicalError
 from .storage import read
 from .types import Document, Pathish
 
 
 def _require(condition: bool, message: str) -> None:
     if not condition:
-        raise core.MedicalError("Tour validation failed: " + message)
+        raise MedicalError("Tour validation failed: " + message)
 
 
 def finite(values: object) -> bool:
@@ -30,10 +31,10 @@ def prepare(root: Pathish) -> Document:
     target = tours / "data"
     target.mkdir(exist_ok=True)
     for entry in entries:
-        path = core.inside(target, entry["destination"])
-        if path.exists() and core.sha(path) != entry["sha256"]:
-            raise core.MedicalError("Tour output differs: " + str(path))
-        shutil.copy2(core.inside(root, entry["path"]), path)
+        path = storage.inside(target, entry["destination"])
+        if path.exists() and storage.sha(path) != entry["sha256"]:
+            raise MedicalError("Tour output differs: " + str(path))
+        shutil.copy2(storage.inside(root, entry["path"]), path)
     return {
         "prepared_files": len(entries),
         "scope": "Restored retained derived data; original raw derivation remains historical.",
@@ -276,8 +277,8 @@ def optimize(root: Pathish) -> Document:
         manifest["served_bytes"] += served.stat().st_size
         manifest["files"][served.name] = {
             "source": source.name,
-            "source_sha256": core.sha(source),
-            "sha256": core.sha(served),
+            "source_sha256": storage.sha(source),
+            "sha256": storage.sha(served),
             "bytes": served.stat().st_size,
         }
     _require(manifest["source_bytes"] > 0, "no player data was optimized")

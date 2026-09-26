@@ -9,8 +9,9 @@ from dataclasses import asdict
 from pathlib import Path
 
 from . import core as c
-from . import packaging, task_catalog
+from . import packaging, storage, task_catalog
 from . import workflow as w
+from .errors import MedicalError
 from .methods import method_for
 from .types import Document
 
@@ -199,10 +200,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.command == "verify-package":
             from . import task_package
 
-            manifest = c.read(args.destination / "manifest.json")
+            manifest = storage.read(args.destination / "manifest.json")
             if manifest.get("experiment_id") and manifest.get("cases"):
                 if (args.destination / "INCOMPLETE").exists():
-                    raise c.MedicalError("Package preparation is incomplete")
+                    raise MedicalError("Package preparation is incomplete")
                 result = task_package.verify(args.destination, manifest)
             else:
                 result = packaging.verify(args.destination)
@@ -414,7 +415,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 print(f"Open http://127.0.0.1:{args.port}/", flush=True)
                 serve(output, args.port)
         else:
-            raise c.MedicalError(f"Unknown command: {command}")
+            raise MedicalError(f"Unknown command: {command}")
         print(json.dumps(result, indent=2, allow_nan=False))
         if command == "story" and isinstance(result, dict) and result.get("ok") is False:
             return 1
@@ -435,7 +436,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             return 1
         return 0
     except (
-        c.MedicalError,
+        MedicalError,
         OSError,
         ValueError,
         KeyError,

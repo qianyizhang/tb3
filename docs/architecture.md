@@ -101,9 +101,10 @@ evaluation. Collection resolves candidate ownership into a verified task binding
 and a final observation state before `evaluation_from_trial()` projects the
 persisted record. Task validation and imported result-state mapping return named
 dataclass values.
-`core` re-exports existing storage entry points for callers. The `py.typed`
-marker ships package annotations; optional imaging/model dependencies remain
-separately provisioned and are not validated by local type checks.
+Import storage operations from `storage` and `MedicalError` from `errors`.
+Collection derives attempt ownership from retained execution receipts; callers
+do not supply a binding override. The `py.typed` marker ships package annotations;
+optional imaging/model dependencies remain separately provisioned.
 
 ## Execution, presentation and export boundaries
 
@@ -135,6 +136,13 @@ explanations must not silently become solver inputs. Dataset provenance alone
 does not define that visibility boundary; the experiment/task contract does.
 
 ## Extending the system
+
+The accepted design uses ordinary modules, directories and compact authoring
+records. Generate snapshots, receipts and export manifests during operations;
+do not make authors maintain them by hand. Retain historical execution records
+without requiring a native implementation for every old trial. Extract scientific
+helpers when maintained methods demonstrate reuse. Keep `make check` as the fast
+offline gate; selected runs, replays and exports validate their own inputs.
 
 Keep command syntax in `cli`, reusable operation logic in its owning service, and
 scientific record fields with their validators. Add task-specific preparation,

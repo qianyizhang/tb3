@@ -2,7 +2,7 @@
 
 The single source of truth for status codes, display labels, applicability and
 definitions is [vocabulary.json](../src/tb3_medical/vocabulary.json). This guide
-explains its use and the conversion of existing labels. Do not maintain another
+explains its use. Do not maintain another
 label dictionary in the CLI, frontend or documentation.
 
 The three product decisions were confirmed by the user on 2026-09-20:
@@ -16,11 +16,7 @@ The three product decisions were confirmed by the user on 2026-09-20:
 
 Source discussion: `codex://threads/01a0beac-4403-7993-a52f-be13be6d4bb5`.
 
-## Adoption status
-
-The installed CLI consumes this catalogue as package data. The static frontend
-receives the same catalogue in its generated records file. Existing metadata has
-been converted once; the live reader has no old-label translation layer.
+The CLI and static frontend consume the same catalogue.
 
 ## Usage rules
 
@@ -52,40 +48,3 @@ cases and receipt they cover.
 The [experiment support and verification checklist](reproduce.md#experiment-support-and-verification)
 tracks operation support and scoped proof independently. It is not another
 experiment-stage ladder or a replacement for these status codes.
-
-## Historical conversion reference
-
-For day-to-day fields and labels, use the catalogue and usage rules above. The
-following table is retained to interpret pre-native records, not to prescribe
-additional authoring fields.
-
-This table is a one-time migration guide, not runtime aliases or a fallback reader.
-Preserve historical source bytes and attribution. Reuse existing review evidence
-where possible; unknown history may remain unassessed without becoming a queue.
-
-| Existing label/field | Treatment |
-| --- | --- |
-| `unreviewed` | Use `assessment.not_assessed` only for conclusions that require assessment. Remove the meaningless default from attempts, decisions and other inapplicable records. |
-| `supported`, general `qualified` | Map to `assessment.usable` where an explicit authored assessment supports the scope. Do not infer it from a pass score, copied label or import alone. |
-| `under_review`, `need_fix` | Consolidate to `assessment.needs_review` with a concrete reason or review request. Repair instructions belong in that reason. |
-| `invalidated` | Preserve the assessed scope and explanation; use `assessment.invalidated`. Do not rewrite original scores. |
-| Experiment `lifecycle: reviewed` | Preserve/link the review event and recover its actual verdict if possible. Determine work progress separately; do not mechanically infer that it is closed or usable. |
-| `curated` | Preserve as import/editorial provenance if useful. It is not work progress or an evidence verdict. |
-| `screening`, `calibration` | Keep as descriptive phase/purpose tags when useful, not idea disposition. |
-| Idea `rejected` | Map to `idea_state.dropped`, retaining the reason. |
-| `superseded` | Keep an explicit replacement link and reason. Replacement alone does not invalidate earlier results. |
-| `promoted` | Keep the resulting experiment/export link and decision event. It is not submission qualification. |
-| `model_pass`, `model_failure_candidate` | Separate agent role from `outcome.pass` or `outcome.fail`. Keep the original classification in historical receipts; task failure alone does not establish a capability claim. |
-| `control_pass`, `control_fail` | Separate raw scorer outcome from whether the control met its expectation. A no-op fail can produce `control_expected`. |
-| `execution_error`, `launcher_error` | Use `execution_state.error` and retain the specific reason. Do not count it as task failure. |
-| `incomplete`, `partial`, `observed` | Preserve actual execution facts; use `partial` only for incomplete evidence collection. `observed` is not a verdict or proof of completeness. |
-| `pending` | Use `execution_state.planned` only if it actually describes an unstarted plan. |
-| `externally_running_at_migration` | Retain as a timestamped historical observation, never an assertion of current liveness. |
-| `available`, `missing_local` | Describe the selected operation's local inputs through `local_availability`, retaining check time and scope. |
-| `unverified`, `not_yet_verified`, `historical_recipe_only` | Keep meaningful recovery notes. Display reproduction proof only when a scoped receipt exists; do not create blanket failure/review states. |
-| `qualification: draft` | Use `submission_status.draft` for a candidate package. Reserve submission-ready for an explicit assessment against a named, dated profile. |
-| `execution_enabled` | Removed from canonical authoring. Explicit run/diagnostic selection and selected-input/control checks own launch behavior. |
-
-The examples and conversion table do not introduce new mandatory authoring
-fields. Generated receipts retain execution facts; the vocabulary controls how
-their meaning is presented.

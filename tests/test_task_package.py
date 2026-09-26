@@ -11,6 +11,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from tb3_medical import task_package as package
+from tb3_medical.errors import MedicalError
 
 
 class TaskPackageTests(unittest.TestCase):
@@ -105,7 +106,7 @@ class TaskPackageTests(unittest.TestCase):
             patch.object(c, "lookup", return_value=experiment),
             patch.object(c, "projection", return_value={"study": {"current": state}}),
         ):
-            with self.assertRaisesRegex(c.MedicalError, "needs review"):
+            with self.assertRaisesRegex(MedicalError, "needs review"):
                 w.bundle(self.root, "study", self.root / "denied")
             self.assertFalse((self.root / "denied").exists())
             result = w.bundle(self.root, "study", self.root / "handoff", include_flagged=True)

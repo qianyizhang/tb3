@@ -15,6 +15,7 @@ from typing import Literal
 
 from . import core as c
 from . import harbor, storage
+from .errors import MedicalError
 from .types import Document, Pathish, Records
 
 
@@ -32,7 +33,7 @@ def task_files(path: Pathish) -> dict[str, str]:
     result = {}
     for file in sorted(Path(path).rglob("*")):
         if file.is_symlink():
-            raise c.MedicalError(f"Task contains a symlink: {file}")
+            raise MedicalError(f"Task contains a symlink: {file}")
         if file.is_file() and "__pycache__" not in file.parts and file.suffix != ".pyc":
             result[file.relative_to(path).as_posix()] = storage.sha(file)
     return result
@@ -48,7 +49,7 @@ def tree_digest(files: Mapping[str, str]) -> str:
 def new(root: Pathish, group: str, key: str, title: str) -> Document:
     owner = c.lookup(root, group)
     if owner["kind"] != "group" or key in c.load(root):
-        raise c.MedicalError("Select a group and an unused experiment ID")
+        raise MedicalError("Select a group and an unused experiment ID")
     c.identifier(key)
     base = c.destination(root, owner, "experiments") / key
     base.mkdir(parents=True, exist_ok=False)
@@ -91,16 +92,16 @@ def task_spec(experiment: Document, case: str | None = None) -> Document:
         for task in tasks:
             if task["id"] == case:
                 return task
-        raise c.MedicalError("Choose --case from: " + ", ".join(t["id"] for t in tasks))
+        raise MedicalError("Choose --case from: " + ", ".join(t["id"] for t in tasks))
     if experiment.get("task_path"):
         return {"id": "default", "task_path": experiment["task_path"]}
-    raise c.MedicalError("Historical evidence only; no maintained task recipe is declared")
+    raise MedicalError("Historical evidence only; no maintained task recipe is declared")
 
 
 def task_validate(root: Pathish, experiment: str, case: str | None = None) -> ValidatedTask:
     exp = c.lookup(root, experiment)
     if exp["kind"] != "experiment":
-        raise c.MedicalError("Select an experiment")
+        raise MedicalError("Select an experiment")
     spec = task_spec(exp, case)
     task = storage.inside(root, spec["task_path"])
     required = (
@@ -112,7 +113,7 @@ def task_validate(root: Pathish, experiment: str, case: str | None = None) -> Va
     )
     missing = [name for name in required if not (task / name).is_file()]
     if missing:
-        raise c.MedicalError("Missing task inputs; prepare first: " + ", ".join(missing))
+        raise MedicalError("Missing task inputs; prepare first: " + ", ".join(missing))
     tomllib.loads((task / "task.toml").read_text())
     return ValidatedTask(exp, spec, task, task_files(task))
 
@@ -135,7 +136,7 @@ def prepare(
     command = exp.get("prepare_command", [])
     if execute:
         if not command or not all(isinstance(x, str) for x in command):
-            raise c.MedicalError("No preparation command; author the task files directly")
+            raise MedicalError("No preparation command; author the task files directly")
         subprocess.run(command, cwd=root, check=True)
     return {"command": command, "executed": execute, "task_path": spec["task_path"]}
 
@@ -158,7 +159,7 @@ def freeze(root: Pathish, experiment: str, case: str | None = None) -> Document:
         task_files(snapshot) != validated.file_hashes
         or task_files(validated.directory) != validated.file_hashes
     ):
-        raise c.MedicalError("Task changed while preparing its exact snapshot")
+        raise MedicalError("Task changed while preparing its exact snapshot")
     row = {
         "schema_version": 2,
         "kind": "freeze",
@@ -182,11 +183,11 @@ def restore_freeze(root: Pathish, frozen: Document) -> Path:
     if not snapshot.exists():
         source = storage.inside(root, frozen["source_path"])
         if task_files(source) != frozen["files"]:
-            raise c.MedicalError("Restore the selected frozen inputs before replay or execution")
+            raise MedicalError("Restore the selected frozen inputs before replay or execution")
         snapshot.parent.mkdir(parents=True, exist_ok=True)
         shutil.copytree(source, snapshot, ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
     if task_files(snapshot) != frozen["files"]:
-        raise c.MedicalError("Frozen task bytes changed")
+        raise MedicalError("Frozen task bytes changed")
     return snapshot
 
 
@@ -253,9 +254,7 @@ def resolve_observation_state(
     return ObservationState(execution, imported.outcome, partial)
 
 
-def resolve_collection_binding(
-    root: Path, rows: Records, source: Path, supplied: CollectionBinding
-) -> CollectionBinding:
+def resolve_collection_binding(root: Path, rows: Records, source: Path) -> CollectionBinding:
     """A launched attempt owns its output, including collection after interruption."""
     owned = next(
         (
@@ -268,7 +267,7 @@ def resolve_collection_binding(
         None,
     )
     if not owned:
-        return supplied
+        return CollectionBinding()
     receipt = storage.read_object(storage.inside(root, owned["execution_path"]))
     frozen = rows[owned["freeze_id"]]
     unchanged = task_files(storage.inside(root, frozen["snapshot_path"])) == frozen["files"]
@@ -319,34 +318,18 @@ def evaluation_from_trial(
     return row
 
 
-def collect(
-    root: Pathish,
-    experiment: str,
-    sources: Sequence[str],
-    binding: CollectionBinding | Document | None = None,
-) -> list[Document]:
+def collect(root: Pathish, experiment: str, sources: Sequence[str]) -> list[Document]:
     root = Path(root).resolve()
     exp = c.lookup(root, experiment)
     if exp["kind"] != "experiment":
-        raise c.MedicalError("Collect into an experiment")
+        raise MedicalError("Collect into an experiment")
     base = root / Path(exp["record_path"]).parent
-    # Retain the accepted document API; internal collection uses named fields.
-    supplied = (
-        binding
-        if isinstance(binding, CollectionBinding)
-        else CollectionBinding(
-            attempt_id=(binding or {}).get("attempt_id"),
-            task_digest=(binding or {}).get("task_digest"),
-            checksum=(binding or {}).get("checksum"),
-        )
-    )
     results = []
     for source in sources:
-        imported = harbor.import_trial(root, storage.inside(root, source))
+        source_path = storage.inside(root, source)
+        imported = harbor.import_trial(root, source_path)
         rows = c.load(root)
-        current_binding = resolve_collection_binding(
-            root, rows, storage.inside(root, source), supplied
-        )
+        current_binding = resolve_collection_binding(root, rows, source_path)
         prior = next(
             (
                 r
@@ -362,7 +345,7 @@ def collect(
             or "attempt-" + hashlib.sha256(imported.source_result.encode()).hexdigest()[:24]
         )
         if identity in rows and rows[identity]["experiment_id"] != experiment:
-            raise c.MedicalError("The attempt already belongs to another experiment")
+            raise MedicalError("The attempt already belongs to another experiment")
         if identity not in rows:
             storage.write_new(
                 base / "attempts" / (identity + ".json"),
@@ -441,12 +424,12 @@ def check_controls(root: Pathish, digest: str, *, pending_review: Document | Non
         ):
             try:
                 c.verify_inputs(root, row.get("evidence", []))
-            except c.MedicalError as exc:
+            except MedicalError as exc:
                 unavailable.append(str(exc))
                 continue
             available.add(row["agent"])
     if not {"oracle", "nop"}.issubset(available):
-        raise c.MedicalError(
+        raise MedicalError(
             "Verified runs require current oracle pass and no-op fail on this task from "
             "experiments without unresolved review flags; use --diagnostic for exploration"
             + (". Blocked controls: " + "; ".join(blocked) if blocked else "")
@@ -458,7 +441,7 @@ def harbor_checksum(executable: str, snapshot: Path) -> str:
     resolved = Path(shutil.which(executable) or executable).resolve()
     python = resolved.parent / "python"
     if not python.is_file():
-        raise c.MedicalError("Select the Harbor executable in its runtime environment")
+        raise MedicalError("Select the Harbor executable in its runtime environment")
     digest = subprocess.check_output(
         [
             str(python),
@@ -469,7 +452,7 @@ def harbor_checksum(executable: str, snapshot: Path) -> str:
         text=True,
     ).strip()
     if not harbor.checksum(digest):
-        raise c.MedicalError("Could not establish the selected Harbor task checksum")
+        raise MedicalError("Could not establish the selected Harbor task checksum")
     return digest
 
 
@@ -483,9 +466,9 @@ def agent_environment(root: Pathish, path: Pathish | None) -> dict[str, str]:
     try:
         values = json.loads(source.read_text())
     except (OSError, ValueError) as exc:
-        raise c.MedicalError(f"Cannot read agent environment JSON: {source}") from exc
+        raise MedicalError(f"Cannot read agent environment JSON: {source}") from exc
     if not isinstance(values, dict):
-        raise c.MedicalError("Agent environment must be a JSON object of string values")
+        raise MedicalError("Agent environment must be a JSON object of string values")
     result: dict[str, str] = {}
     for key, value in values.items():
         if (
@@ -493,9 +476,7 @@ def agent_environment(root: Pathish, path: Pathish | None) -> dict[str, str]:
             or not isinstance(value, str)
             or "\x00" in value
         ):
-            raise c.MedicalError(
-                "Agent environment requires valid variable names and string values"
-            )
+            raise MedicalError("Agent environment requires valid variable names and string values")
         result[key] = value
     return result
 
@@ -514,7 +495,7 @@ def run(
     preview: bool = False,
 ) -> Document:
     if agent == "codex" and not model:
-        raise c.MedicalError("Name the model condition")
+        raise MedicalError("Name the model condition")
     agent_env = agent_environment(root, agent_env_file)
     validated = task_validate(root, experiment, case)
     if preview:
@@ -533,7 +514,7 @@ def run(
     if not diagnostic and agent == "codex":
         state = c.projection(root)[experiment]["current"]
         if state.get("assessment") in {"needs_review", "invalidated"}:
-            raise c.MedicalError("Resolve the experiment issue or use an explicitly diagnostic run")
+            raise MedicalError("Resolve the experiment issue or use an explicitly diagnostic run")
         check_controls(root, tree_digest(validated.file_hashes))
     frozen = freeze(root, experiment, case)
     snapshot = restore_freeze(root, frozen)
@@ -641,11 +622,11 @@ def qualify_attempt(
     rows = c.projection(root, pending_review=pending_review)
     attempt = rows[identity]
     if attempt["kind"] != "attempt" or attempt["experiment_id"] != experiment:
-        raise c.MedicalError("Select an attempt from the reviewed experiment")
+        raise MedicalError("Select an attempt from the reviewed experiment")
     if rows[experiment]["current"]["assessment"] in {"needs_review", "invalidated"}:
-        raise c.MedicalError("Resolve the experiment issue in a usable scoped review first")
+        raise MedicalError("Resolve the experiment issue in a usable scoped review first")
     if not attempt.get("freeze_id"):
-        raise c.MedicalError("This historical attempt has no verified task binding")
+        raise MedicalError("This historical attempt has no verified task binding")
     frozen = rows[attempt["freeze_id"]]
     restore_freeze(root, frozen)
     check_controls(root, frozen["task_digest"], pending_review=pending_review)
@@ -658,7 +639,7 @@ def qualify_attempt(
         and selected.get("task_digest") == frozen["task_digest"]
         and selected.get("freeze_checksum_verified")
     ):
-        raise c.MedicalError("No normally completed scoring observation bound to that exact task")
+        raise MedicalError("No normally completed scoring observation bound to that exact task")
     c.verify_inputs(root, selected.get("evidence", []))
     return {
         "attempt_id": identity,
@@ -684,7 +665,7 @@ def bundle(
     state = c.projection(root)[experiment_id]["current"]
     flagged = state.get("assessment") in {"needs_review", "invalidated"}
     if flagged and not include_flagged:
-        raise c.MedicalError(
+        raise MedicalError(
             "Selected evidence needs review; use --include-flagged for a research handoff"
         )
     result = task_package.materialize(

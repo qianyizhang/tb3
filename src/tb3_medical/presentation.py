@@ -14,7 +14,8 @@ from typing import Any
 from urllib.parse import unquote, urlsplit
 
 from . import core as c
-from . import frontend
+from . import frontend, storage
+from .errors import MedicalError
 from .presentation_contracts import validate_payload
 from .types import Document, Pathish
 
@@ -28,11 +29,11 @@ def pointer(value: Any, path: str) -> Any:
 
 def assets(root: Pathish, write: bool = False) -> Document:
     count = 0
-    for a in c.read(Path(root) / "presentation/assets.json")["assets"]:
-        target = c.inside(root, a["path"])
-        source = c.inside(root, a["source_path"])
-        if not source.is_file() or c.sha(source) != a["source_sha256"]:
-            raise c.MedicalError("Changed/missing figure source: " + a["source_path"])
+    for a in storage.read(Path(root) / "presentation/assets.json")["assets"]:
+        target = storage.inside(root, a["path"])
+        source = storage.inside(root, a["source_path"])
+        if not source.is_file() or storage.sha(source) != a["source_sha256"]:
+            raise MedicalError("Changed/missing figure source: " + a["source_path"])
         encoding = a["encoding"]
         if encoding in {"json-base64", "javascript-json-base64"}:
             raw = source.read_text()
@@ -48,12 +49,12 @@ def assets(root: Pathish, write: bool = False) -> Document:
         import hashlib
 
         if hashlib.sha256(blob).hexdigest() != a["sha256"]:
-            raise c.MedicalError("Derived figure digest mismatch: " + a["path"])
+            raise MedicalError("Derived figure digest mismatch: " + a["path"])
         if write:
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(blob)
         elif not target.is_file() or target.read_bytes() != blob:
-            raise c.MedicalError("Missing/stale figure: " + a["path"])
+            raise MedicalError("Missing/stale figure: " + a["path"])
         count += 1
     return {"verified_assets": count, "written": write}
 
@@ -66,7 +67,7 @@ def check_links(root: Pathish, source: Path) -> None:
             continue
         path = (source.parent / unquote(parsed.path)).resolve()
         if not path.is_relative_to(Path(root).resolve()):
-            raise c.MedicalError(f"Prose link escapes repository: {source}: {target}")
+            raise MedicalError(f"Prose link escapes repository: {source}: {target}")
         relative = path.relative_to(Path(root).resolve()).as_posix()
         if relative.startswith(
             (
@@ -81,7 +82,7 @@ def check_links(root: Pathish, source: Path) -> None:
         ):
             continue
         if not path.exists():
-            raise c.MedicalError(f"Missing portable prose link: {source}: {relative}")
+            raise MedicalError(f"Missing portable prose link: {source}: {relative}")
 
 
 def check(root: Pathish) -> Document:
@@ -90,26 +91,26 @@ def check(root: Pathish) -> Document:
     measurements = 0
     for group in [r for r in rows.values() if r["kind"] == "group"]:
         directory = Path(group["record_path"]).parent / "presentation"
-        story = c.inside(root, str(directory / "story.md"))
+        story = storage.inside(root, str(directory / "story.md"))
         if not story.is_file():
-            raise c.MedicalError("Missing group story: " + group["id"])
+            raise MedicalError("Missing group story: " + group["id"])
         check_links(root, story)
         card_path = Path(root) / directory / "card.json"
         if card_path.is_file():
-            card = c.read(card_path)
+            card = storage.read(card_path)
             sources = {}
             for path, digest in card["source_hashes"].items():
-                source = c.inside(root, path)
-                if c.sha(source) != digest:
-                    raise c.MedicalError("Source digest mismatch: " + path)
+                source = storage.inside(root, path)
+                if storage.sha(source) != digest:
+                    raise MedicalError("Source digest mismatch: " + path)
                 # Narrative checks compare the small authored measurements, not raw runs.
-                sources[path] = c.read(source)
+                sources[path] = storage.read(source)
             for measurement in card["measurements"]:
                 if (
                     pointer(sources[measurement["source"]], measurement["pointer"])
                     != measurement["value"]
                 ):
-                    raise c.MedicalError("Source measurement mismatch: " + measurement["label"])
+                    raise MedicalError("Source measurement mismatch: " + measurement["label"])
                 measurements += 1
     protocols = list(Path(root).glob("groups/*/experiments/*/protocol.md"))
     for protocol in protocols:
@@ -217,10 +218,10 @@ def present(root: Pathish, output: Pathish, local_media: bool = False) -> Docume
     root, output = Path(root).resolve(), Path(output).resolve()
     app_js, app_css = frontend.assets(root, "overview")
     if output == root or root.is_relative_to(output):
-        raise c.MedicalError("Output cannot contain the source checkout")
+        raise MedicalError("Output cannot contain the source checkout")
     marker = output / ".tb3-medical-site"
     if output.exists() and not marker.exists() and any(output.iterdir()):
-        raise c.MedicalError("Refusing a nonempty unowned output directory")
+        raise MedicalError("Refusing a nonempty unowned output directory")
     if marker.exists():
         # This is an explicitly marked disposable build. Rebuild the whole inventory
         # so a portable build cannot retain media from a prior local build.
@@ -382,7 +383,7 @@ def present(root: Pathish, output: Pathish, local_media: bool = False) -> Docume
                 "story_urls": {path: "../" + url for path, url in story_pages.items()},
             },
         )
-    c.atomic_write(
+    storage.atomic_write(
         output / "records.json",
         validate_payload(
             {

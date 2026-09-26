@@ -1,14 +1,12 @@
 /* URL restoration and evidence semantics, without a browser or research artifacts. */
 const assert = require('node:assert/strict');
-const fs = require('node:fs');
-const path = require('node:path');
-const { stripTypeScriptTypes } = require('node:module');
+const { loadFrontend } = require('./frontend_bundle.cjs');
 
-const filename = path.join(__dirname, '../presentation/frontend/overview-data.ts');
 async function checkOverview() {
-  const source = stripTypeScriptTypes(fs.readFileSync(filename, 'utf8'));
   const { parseOverviewData, initialRoute, readOverviewRoute, overviewUrl, filterRecords } =
-    await import('data:text/javascript,' + encodeURIComponent(source));
+    await loadFrontend('../presentation/frontend/overview-data.ts', {
+      globals: { URL, URLSearchParams },
+    });
   const plain = (value) => JSON.parse(JSON.stringify(value));
 
   const payload = {

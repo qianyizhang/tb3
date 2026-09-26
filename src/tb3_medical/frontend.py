@@ -14,6 +14,7 @@ BUILD_INPUTS = (
     "package-lock.json",
     "tsconfig.json",
     "scripts/build_frontend.mjs",
+    "src/tb3_medical/frontend.py",
     "src/tb3_medical/presentation_contracts.py",
     "src/tb3_medical/explanation_stories.py",
     "presentation/assets/teaching-prefabs.json",
@@ -30,11 +31,12 @@ def input_hashes(root: Path) -> dict[str, str]:
         if path.is_file() and path.suffix in {".ts", ".tsx", ".css", ".js"}
     )
     paths.extend(
-        path for path in (root / "presentation/task-explorer/anatomy").glob("*") if path.is_file()
-    )
-    paths.extend(
         path
-        for path in (root / "presentation/assets/teaching-fixtures").rglob("*")
+        for folder in (
+            "presentation/task-explorer/anatomy",
+            "presentation/assets/teaching-fixtures",
+        )
+        for path in (root / folder).rglob("*")
         if path.is_file()
     )
     paths.extend(root.glob("groups/*/presentation/stories/*.story.md"))
@@ -73,3 +75,7 @@ def assets(root: Path, entry: str) -> tuple[str, str]:
             "Frontend assets are missing or stale; run npm ci, then npm run frontend:build "
             "from the workbench root before building a presentation."
         ) from exc
+
+
+if __name__ == "__main__":
+    print(json.dumps(input_hashes(Path.cwd())))

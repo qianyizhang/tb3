@@ -10,10 +10,12 @@ from pathlib import Path
 from unittest.mock import patch
 
 from frontend_fixture import install_frontend
+from harbor_fixture import fake_harbor
 
 from tb3_medical import core as c
-from tb3_medical import packaging, presentation
+from tb3_medical import packaging, presentation, storage
 from tb3_medical import workflow as w
+from tb3_medical.errors import MedicalError
 
 
 class MedicalTests(unittest.TestCase):
@@ -22,7 +24,7 @@ class MedicalTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
         (self.root / "workbench.toml").write_text("version=1\n")
-        c.write_new(
+        storage.write_new(
             self.root / "groups/g/group.json",
             {
                 "schema_version": 2,
@@ -68,15 +70,15 @@ class MedicalTests(unittest.TestCase):
     def test_explicit_record_locations_ignore_task_payload_and_reads_never_hash(self):
         task = self.root / "groups/g/experiments/study/task"
         (task / "misleading.json").write_text("{invalid payload")
-        with patch.object(c, "sha", side_effect=AssertionError("Inspection hashed input")):
+        with patch.object(storage, "sha", side_effect=AssertionError("Inspection hashed input")):
             self.assertEqual(c.validate(self.root)["records"], 2)
             self.assertFalse(c.projection(self.root)["study"]["current"]["attention"])
         (self.root / "groups/g/experiments/study/attempts").mkdir()
-        c.write_new(
+        storage.write_new(
             self.root / "groups/g/experiments/study/attempts/bad.json",
             {"schema_version": 2, "kind": "attempt", "id": "bad"},
         )
-        with self.assertRaisesRegex(c.MedicalError, "missing"):
+        with self.assertRaisesRegex(MedicalError, "missing"):
             c.validate(self.root)
 
     def test_discussion_artifacts_are_separate_from_retained_records(self):
@@ -85,7 +87,7 @@ class MedicalTests(unittest.TestCase):
         (discussions / "draft.json").write_text("{unfinished local artifact")
         (discussions / "outputs").mkdir()
         (discussions / "outputs/result.json").write_text("{raw output")
-        c.write_new(
+        storage.write_new(
             discussions / "records/decision.json",
             {
                 "schema_version": 2,
@@ -97,7 +99,7 @@ class MedicalTests(unittest.TestCase):
         self.assertEqual(c.validate(self.root)["records"], 3)
         self.assertIn("discussion-decision", c.load(self.root))
         (discussions / "records/decision.json").write_text("{}")
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             c.load(self.root)
 
     def test_recommendation_does_not_overwrite_accepted_decision(self):
@@ -108,7 +110,7 @@ class MedicalTests(unittest.TestCase):
         self.assertEqual(c.lookup(self.root, "idea")["idea_state"], "exploring")
 
     def test_experiment_issue_reaches_summaries_and_scoped_reassessment_clears_attention(self):
-        c.write_new(
+        storage.write_new(
             self.root / "groups/g/findings/f.json",
             {
                 "schema_version": 2,
@@ -119,7 +121,7 @@ class MedicalTests(unittest.TestCase):
                 "experiment_ids": ["study"],
             },
         )
-        c.write_new(
+        storage.write_new(
             self.root / "exports/records/export.json",
             {
                 "schema_version": 2,
@@ -159,7 +161,7 @@ class MedicalTests(unittest.TestCase):
 
     def test_issue_flags_comparison_reusing_an_earlier_attempt(self):
         w.new(self.root, "g", "comparison", "Comparison")
-        c.write_new(
+        storage.write_new(
             self.root / "groups/g/experiments/study/attempts/a.json",
             {
                 "schema_version": 2,
@@ -169,7 +171,7 @@ class MedicalTests(unittest.TestCase):
                 "experiment_id": "study",
             },
         )
-        c.write_new(
+        storage.write_new(
             self.root / "groups/g/experiments/comparison/evaluations/e.json",
             {
                 "schema_version": 2,
@@ -185,40 +187,19 @@ class MedicalTests(unittest.TestCase):
         self.assertEqual(issue["experiment_ids"], ["comparison", "study"])
         self.assertTrue(c.projection(self.root)["comparison"]["current"]["attention"])
 
-    def fake_harbor(self, argv, **kwargs):
-        config_path = Path(argv[-1])
-        config = c.read(config_path)
-        agent = config["agents"][0]["name"]
-        phase = {"started_at": "2026-09-20T00:00:00Z", "finished_at": "2026-09-20T00:00:01Z"}
-        c.write_new(
-            config_path.parent / "job/trial/result.json",
-            {
-                **phase,
-                "task_name": "task",
-                "trial_name": "trial",
-                "task_checksum": "a" * 64,
-                "config": {"agent": config["agents"][0]},
-                "agent_execution": phase,
-                "verifier": phase,
-                "exception_info": None,
-                "verifier_result": {"rewards": {"reward": 1 if agent == "oracle" else 0}},
-            },
-        )
-        return subprocess.CompletedProcess(argv, 0)
-
     def run_fake(self, agent="oracle", **kwargs):
         return w.run(self.root, "study", agent, "fake-harbor", **kwargs)
 
     def test_diagnostic_then_controls_then_explicit_qualification(self):
         with (
             patch.object(w, "harbor_checksum", return_value="a" * 64),
-            patch.object(w.subprocess, "run", side_effect=self.fake_harbor) as launch,
+            patch.object(w.subprocess, "run", side_effect=fake_harbor) as launch,
         ):
-            with self.assertRaises(c.MedicalError):
+            with self.assertRaises(MedicalError):
                 self.run_fake("codex", model="test/model")
             self.assertFalse(launch.called)
             diagnostic = self.run_fake("codex", model="test/model", diagnostic=True)
-            with self.assertRaises(c.MedicalError):
+            with self.assertRaises(MedicalError):
                 w.qualify_attempt(self.root, "study", diagnostic["attempt_id"])
             self.run_fake("oracle")
             self.run_fake("nop")
@@ -240,7 +221,7 @@ class MedicalTests(unittest.TestCase):
 
     def test_interruption_and_batch_collection_keep_attempt_identity(self):
         def interrupted(argv, **kwargs):
-            self.fake_harbor(argv, **kwargs)
+            fake_harbor(argv, **kwargs)
             raise KeyboardInterrupt()
 
         with (
@@ -254,7 +235,9 @@ class MedicalTests(unittest.TestCase):
             c.projection(self.root)[attempt["id"]]["current"]["execution_state"], "interrupted"
         )
         managed = str(Path(attempt["execution_path"]).parent / "job/trial/result.json")
-        c.write_new(self.root / ".local/independent/trial/result.json", c.read(self.root / managed))
+        storage.write_new(
+            self.root / ".local/independent/trial/result.json", storage.read(self.root / managed)
+        )
         first, second = w.collect(
             self.root, "study", [managed, ".local/independent/trial/result.json"]
         )
@@ -265,11 +248,11 @@ class MedicalTests(unittest.TestCase):
 
     def test_partial_collect_preserves_terminal_launcher_state(self):
         def interrupted(argv, **kwargs):
-            self.fake_harbor(argv, **kwargs)
+            fake_harbor(argv, **kwargs)
             path = Path(argv[-1]).parent / "job/trial/result.json"
-            payload = c.read(path)
+            payload = storage.read(path)
             payload["finished_at"] = None
-            c.atomic_write(path, payload)
+            storage.atomic_write(path, payload)
             raise KeyboardInterrupt()
 
         with (
@@ -291,7 +274,7 @@ class MedicalTests(unittest.TestCase):
         early = []
 
         def collect_running(argv, **kwargs):
-            result = self.fake_harbor(argv, **kwargs)
+            result = fake_harbor(argv, **kwargs)
             source = str((Path(argv[-1]).parent / "job/trial/result.json").relative_to(self.root))
             early.extend(w.collect(self.root, "study", [source]))
             return result
@@ -315,12 +298,12 @@ class MedicalTests(unittest.TestCase):
             "config": {"agent": {"name": "oracle", "env": {"SECRET": "never-retain"}}},
             "finished_at": None,
         }
-        c.write_new(self.root / source, trial)
+        storage.write_new(self.root / source, trial)
         first = w.collect(self.root, "study", [source])[0]
         self.assertTrue(first["partial"])
         self.assertNotIn("never-retain", json.dumps(first))
         trial["finished_at"] = "2026-09-20T10:00:00Z"
-        c.atomic_write(self.root / source, trial)
+        storage.atomic_write(self.root / source, trial)
         second = w.collect(self.root, "study", [source])[0]
         self.assertEqual(first["attempt_id"], second["attempt_id"])
         self.assertNotEqual(first["id"], second["id"])
@@ -329,15 +312,15 @@ class MedicalTests(unittest.TestCase):
     def test_return_to_prior_result_appends_observation_without_replacing_history(self):
         source = ".local/job/trial/result.json"
         partial = {"task_name": "demo", "config": {}, "finished_at": None}
-        c.write_new(self.root / source, partial)
+        storage.write_new(self.root / source, partial)
         with patch.object(c, "now", return_value="2026-09-24T00:00:00Z"):
             first = w.collect(self.root, "study", [source])[0]
         path = self.root / "groups/g/experiments/study/evaluations" / (first["id"] + ".json")
         original = path.read_bytes()
-        c.atomic_write(self.root / source, {**partial, "finished_at": "2026-09-24T00:00:01Z"})
+        storage.atomic_write(self.root / source, {**partial, "finished_at": "2026-09-24T00:00:01Z"})
         with patch.object(c, "now", return_value="2026-09-24T00:00:02Z"):
             second = w.collect(self.root, "study", [source])[0]
-        c.atomic_write(self.root / source, partial)
+        storage.atomic_write(self.root / source, partial)
         with patch.object(c, "now", return_value="2026-09-24T00:00:03Z"):
             third = w.collect(self.root, "study", [source])[0]
         self.assertEqual(len({row["id"] for row in (first, second, third)}), 3)
@@ -359,7 +342,7 @@ class MedicalTests(unittest.TestCase):
         snapshot = w.restore_freeze(self.root, frozen)
         self.assertEqual(w.task_files(snapshot), frozen["files"])
         (snapshot / "instruction.md").write_text("Changed task")
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             w.restore_freeze(self.root, frozen)
 
     def test_freeze_rejects_added_public_files_without_rewriting_snapshot(self):
@@ -367,7 +350,7 @@ class MedicalTests(unittest.TestCase):
         snapshot = self.root / frozen["snapshot_path"]
         before = w.task_files(snapshot)
         (snapshot / "patient-hint.txt").write_text("Unexpected extra solver input")
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             w.restore_freeze(self.root, frozen)
         self.assertEqual(frozen["files"], before)
         self.assertTrue((snapshot / "patient-hint.txt").exists())
@@ -412,27 +395,29 @@ class MedicalTests(unittest.TestCase):
                     "origin": "git",
                     "source": "proof.txt",
                     "destination": "proof.txt",
-                    "sha256": c.sha(self.root / "proof.txt"),
+                    "sha256": storage.sha(self.root / "proof.txt"),
                 }
             ],
         }
         (self.root / "recipe.json").write_text(json.dumps(recipe, separators=(",", ":")))
         (self.root / "proof.txt").write_text("Working tree differs")
         c.issue(self.root, ["study"], "Needs review", [], "assistant")
-        with self.assertRaises(c.MedicalError):
+        with self.assertRaises(MedicalError):
             packaging.export(self.root, "recipe.json", self.root / "package")
         packaging.export(self.root, "recipe.json", self.root / "package", include_flagged=True)
         self.assertEqual((self.root / "package/proof.txt").read_text(), "review proof")
         self.assertEqual(packaging.verify(self.root / "package")["verified_files"], 1)
         self.assertEqual(
-            c.read(self.root / "package/manifest.json")["review_flags"]["study"]["assessment"],
+            storage.read(self.root / "package/manifest.json")["review_flags"]["study"][
+                "assessment"
+            ],
             "needs_review",
         )
         (self.root / "package/extra").write_text("oops")
-        with self.assertRaisesRegex(c.MedicalError, "inventory"):
+        with self.assertRaisesRegex(MedicalError, "inventory"):
             packaging.verify(self.root / "package")
         recipe["files"][0]["source"] = "not-in-commit"
-        c.atomic_write(self.root / "missing.json", recipe)
+        storage.atomic_write(self.root / "missing.json", recipe)
         with self.assertRaises(subprocess.CalledProcessError):
             packaging.export(self.root, "missing.json", self.root / "missing", include_flagged=True)
         self.assertFalse((self.root / "missing").exists())

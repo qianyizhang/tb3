@@ -14,15 +14,7 @@ from importlib.resources import files
 from pathlib import Path
 from typing import Any
 
-from .errors import MedicalError as MedicalError
-from .storage import atomic_write as atomic_write
-from .storage import encode as encode
-from .storage import inside as inside
-from .storage import publish as publish
-from .storage import read as read
-from .storage import read_object
-from .storage import sha as sha
-from .storage import write_new as write_new
+from . import errors, storage
 from .types import Document, Pathish, Records
 
 KINDS = {
@@ -87,7 +79,7 @@ def now() -> str:
 
 def identifier(value: object) -> str:
     if not isinstance(value, str) or not re.fullmatch(r"[a-z0-9][a-z0-9_.-]{0,127}", value):
-        raise MedicalError("IDs use lowercase letters, digits, dot, underscore and hyphen")
+        raise errors.MedicalError("IDs use lowercase letters, digits, dot, underscore and hyphen")
     return value
 
 
@@ -100,47 +92,47 @@ def workspace(start: Pathish | None = None) -> Path:
     for path in (start, *start.parents):
         if (path / "workbench.toml").is_file():
             return path
-    raise MedicalError("No workbench.toml found; use --root /path/to/workspace")
+    raise errors.MedicalError("No workbench.toml found; use --root /path/to/workspace")
 
 
 def evidence(root: Pathish, relative: Pathish) -> dict[str, str]:
-    path = inside(root, relative)
+    path = storage.inside(root, relative)
     if not path.is_file():
-        raise MedicalError(f"Missing evidence: {relative}")
-    return {"path": str(relative), "sha256": sha(path)}
+        raise errors.MedicalError(f"Missing evidence: {relative}")
+    return {"path": str(relative), "sha256": storage.sha(path)}
 
 
 def verify_inputs(root: Pathish, entries: Iterable[Mapping[str, Any]]) -> None:
     """Check only the files consumed by the requested operation."""
     for entry in entries:
-        path = inside(root, entry["path"])
+        path = storage.inside(root, entry["path"])
         if not path.is_file():
-            raise MedicalError(f"Missing input: {entry['path']}")
-        if sha(path) != entry["sha256"]:
-            raise MedicalError(f"Changed input: {entry['path']}")
+            raise errors.MedicalError(f"Missing input: {entry['path']}")
+        if storage.sha(path) != entry["sha256"]:
+            raise errors.MedicalError(f"Changed input: {entry['path']}")
 
 
 def validate_record(row: Document, path: Pathish) -> None:
     key = identifier(row.get("id"))
     kind = row.get("kind")
     if row.get("schema_version") != 2 or kind not in KINDS:
-        raise MedicalError(f"Unsupported record: {path}")
+        raise errors.MedicalError(f"Unsupported record: {path}")
     missing = [name for name in REQUIRED.get(kind, ()) if name not in row]
     if missing:
-        raise MedicalError(f"{key}: missing {', '.join(missing)}")
+        raise errors.MedicalError(f"{key}: missing {', '.join(missing)}")
     for axis, values in VOCABULARY["axes"].items():
         if axis in row and row[axis] not in values["values"]:
-            raise MedicalError(f"{key}: unknown {axis}: {row[axis]}")
+            raise errors.MedicalError(f"{key}: unknown {axis}: {row[axis]}")
     if kind == "review" and (not row["reason"] or not row["scope"]):
-        raise MedicalError(f"{key}: review needs reason and scope")
+        raise errors.MedicalError(f"{key}: review needs reason and scope")
     if kind == "finding" and row.get("analysis_kind") not in {None, *ANALYSIS_KINDS}:
-        raise MedicalError(f"{key}: unknown analysis_kind: {row['analysis_kind']}")
+        raise errors.MedicalError(f"{key}: unknown analysis_kind: {row['analysis_kind']}")
 
 
 def record_paths(root: Pathish) -> Iterator[tuple[Path, Document]]:
     for pattern in RECORD_GLOBS:
         for path in sorted(Path(root).glob(pattern)):
-            row = read_object(path)
+            row = storage.read_object(path)
             validate_record(row, path)
             yield path, row
 
@@ -149,7 +141,7 @@ def load(root: Pathish) -> Records:
     rows = {}
     for path, row in record_paths(root):
         if row["id"] in rows:
-            raise MedicalError(f"Duplicate record ID: {row['id']}")
+            raise errors.MedicalError(f"Duplicate record ID: {row['id']}")
         rows[row["id"]] = {**row, "record_path": str(path.relative_to(root))}
     return rows
 
@@ -158,7 +150,9 @@ def lookup(root: Pathish, key: str) -> Document:
     try:
         return load(root)[key]
     except KeyError:
-        raise MedicalError(f"Unknown ID: {key}; use med list to find its stable ID") from None
+        raise errors.MedicalError(
+            f"Unknown ID: {key}; use med list to find its stable ID"
+        ) from None
 
 
 def experiment_ids(row: Document, rows: Records) -> list[str]:
@@ -276,7 +270,7 @@ def project_records(
             continue
         for key in experiment_ids(row, rows):
             if key not in states:
-                raise MedicalError(f"{row['id']}: missing experiment {key}")
+                raise errors.MedicalError(f"{row['id']}: missing experiment {key}")
             state = states[key]
             if state.get("assessment") in {"needs_review", "invalidated"}:
                 states[row["id"]]["review_flags"].append(
@@ -313,7 +307,7 @@ def validate(root: Pathish) -> Document:
         refs += [("issue_id", key) for key in row.get("resolves", [])]
         for field, key in refs:
             if key not in rows:
-                raise MedicalError(f"{row['id']}: missing {field} {key}")
+                raise errors.MedicalError(f"{row['id']}: missing {field} {key}")
             expected = {
                 "group_id": "group",
                 "experiment_id": "experiment",
@@ -322,7 +316,7 @@ def validate(root: Pathish) -> Document:
                 "issue_id": "issue",
             }.get(field)
             if expected and rows[key]["kind"] != expected:
-                raise MedicalError(f"{row['id']}: {field} must reference {expected}")
+                raise errors.MedicalError(f"{row['id']}: {field} must reference {expected}")
         if row["kind"] == "experiment" and row.get("reproduction_manifest"):
             from .task_package import validate_metadata
 
@@ -339,10 +333,10 @@ def validate(root: Pathish) -> Document:
 def destination(root: Pathish, row: Document, folder: str) -> Path:
     group = row["id"] if row["kind"] == "group" else row.get("group_id")
     if not isinstance(group, str):
-        raise MedicalError("Select a group owner")
+        raise errors.MedicalError("Select a group owner")
     group_row = lookup(root, group)
     if group_row["kind"] != "group":
-        raise MedicalError("Select a group owner")
+        raise errors.MedicalError("Select a group owner")
     return Path(root) / Path(group_row["record_path"]).parent / folder
 
 
@@ -351,7 +345,7 @@ def add_idea(
 ) -> Document:
     identifier(key)
     if key in load(root):
-        raise MedicalError("Idea already exists; edit its Markdown or record a decision")
+        raise errors.MedicalError("Idea already exists; edit its Markdown or record a decision")
     owner = lookup(root, group)
     row = {
         "schema_version": 2,
@@ -363,7 +357,7 @@ def add_idea(
         "source": source,
         "body": f"# {title}\n\n{question}\n\n## Prior findings\n\n## Reopen when",
     }
-    write_new(destination(root, owner, "ideas") / (key + ".md"), row)
+    storage.write_new(destination(root, owner, "ideas") / (key + ".md"), row)
     return row
 
 
@@ -378,7 +372,7 @@ def decide(
 ) -> Document:
     row = lookup(root, idea)
     if row["kind"] != "idea":
-        raise MedicalError("Decisions apply to ideas")
+        raise errors.MedicalError("Decisions apply to ideas")
     event = {
         "schema_version": 2,
         "kind": "decision",
@@ -393,7 +387,7 @@ def decide(
         "accepted": actor == "user" or accepted,
     }
     validate_record(event, idea)
-    write_new(destination(root, row, "decisions") / (event["id"] + ".json"), event)
+    storage.write_new(destination(root, row, "decisions") / (event["id"] + ".json"), event)
     return event
 
 
@@ -421,7 +415,7 @@ def issue(
     )
     affected_ids = sorted(affected)
     if not affected_ids or not reason:
-        raise MedicalError("Name an affected experiment or run and a concrete reason")
+        raise errors.MedicalError("Name an affected experiment or run and a concrete reason")
     owner = rows[affected_ids[0]]
     event = {
         "schema_version": 2,
@@ -436,7 +430,7 @@ def issue(
         "created_at": now(),
         "evidence": [evidence(root, p) for p in paths],
     }
-    write_new(destination(root, owner, "reviews") / (event["id"] + ".json"), event)
+    storage.write_new(destination(root, owner, "reviews") / (event["id"] + ".json"), event)
     return event
 
 
@@ -455,19 +449,19 @@ def review(
 ) -> Document:
     owner = lookup(root, experiment)
     if owner["kind"] != "experiment" or not reason or not scope:
-        raise MedicalError("Review an experiment's stated conclusions with reason and scope")
+        raise errors.MedicalError("Review an experiment's stated conclusions with reason and scope")
     if assessment == "not_assessed" and projection(root)[experiment]["current"]["assessment"] in {
         "needs_review",
         "invalidated",
     }:
-        raise MedicalError(
+        raise errors.MedicalError(
             "An adverse assessment cannot be reset to not_assessed; record a usable scoped "
             "reassessment and resolve outstanding issues first"
         )
     for key in resolves:
         issue_row = lookup(root, key)
         if issue_row["kind"] != "issue" or experiment not in issue_row["experiment_ids"]:
-            raise MedicalError("The issue must affect this experiment")
+            raise errors.MedicalError("The issue must affect this experiment")
     event = {
         "schema_version": 2,
         "kind": "review",
@@ -486,7 +480,7 @@ def review(
     validate_record(event, experiment)
     if qualify_attempts:
         if assessment != "usable":
-            raise MedicalError("Attempt qualification requires a usable scoped review")
+            raise errors.MedicalError("Attempt qualification requires a usable scoped review")
         from .workflow import qualify_attempt
 
         # Check the proposed resolution before publishing any optimistic state.
@@ -494,5 +488,5 @@ def review(
             qualify_attempt(root, experiment, identity, pending_review=event)
             for identity in qualify_attempts
         )
-    write_new(destination(root, owner, "reviews") / (event["id"] + ".json"), event)
+    storage.write_new(destination(root, owner, "reviews") / (event["id"] + ".json"), event)
     return event

@@ -11,16 +11,15 @@ For reader-facing summaries and reports, follow the
 ## Setup
 
 ```sh
-uv sync --locked --inexact --group dev
 make hooks
 ```
 
 Python 3.12 is the local default; CI checks 3.12 and 3.14. Local tooling accepts
 uv 0.11.8 or newer; CI pins uv 0.12.15.
-`--inexact` preserves packages outside the locked dependency graph; shared
-dependencies still follow the lock. CI uses an exact sync in a fresh environment.
-`make hooks` enables pre-commit through the tracked
-`.githooks` wrapper and refuses to replace another hook directory.
+`make hooks` runs `uv sync --locked --inexact --group dev` and enables pre-commit
+through `.githooks`, refusing to replace another hook directory. `--inexact`
+preserves packages outside the lock; shared dependencies follow it. CI uses an
+exact sync in a fresh environment.
 
 For frontend development and browser checks, install the declared Node 22.13+
 dependencies with `npm ci`, then run `npm run frontend:build` before using
@@ -54,13 +53,12 @@ Stage intended files, then run `make check PYTHON=python3.12` with the project
 environment active. Otherwise `make check` selects `.venv/bin/python`.
 The artifact gate reads the index; unstaged edits do not repair staged failures.
 
-## Package structure
-
-The [architecture guide](docs/architecture.md#package-responsibilities) owns the
-module map, record model, execution flow, typing and portability boundaries.
-The [file-placement guide](docs/repository-layout.md#where-a-new-file-belongs)
-maps common additions to their canonical homes. Update those guides when a change
-alters component ownership or introduces a new maintained location.
+Test behavior with small synthetic inputs. `med check` validates the authored
+catalogue; `make contracts-check` validates generated type freshness. Avoid tests
+that repeat catalogue labels or counts. Reuse the
+[Python assembly fixtures](tests/frontend_fixture.py),
+[Vite module loader](tests/frontend_bundle.cjs), and
+[disposable-browser harness](scripts/browser.cjs).
 
 ## Working rules
 

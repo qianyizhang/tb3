@@ -5,11 +5,11 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from frontend_fixture import install_frontend
+from frontend_fixture import install_explorer, install_frontend
 
-from tb3_medical import core as c
 from tb3_medical import presentation as p
-from tb3_medical import task_briefs
+from tb3_medical import storage, task_briefs
+from tb3_medical.errors import MedicalError
 
 
 class PresentationRefinementTests(unittest.TestCase):
@@ -25,7 +25,7 @@ class PresentationRefinementTests(unittest.TestCase):
             shutil.copyfile(repo / "presentation" / name, target)
         install_frontend(self.root)
         for name in ("first", "second"):
-            c.write_new(
+            storage.write_new(
                 self.root / "groups" / name / "group.json",
                 {"schema_version": 2, "kind": "group", "id": name, "title": name},
             )
@@ -36,7 +36,7 @@ class PresentationRefinementTests(unittest.TestCase):
     def test_chapter_links_use_rendered_pages_and_heading_fragments(self):
         source = self.root / "groups/first/presentation/story.md"
         source.write_text("# First\n\n[Next](../../second/presentation/story.md#results)\n")
-        c.write_new(
+        storage.write_new(
             self.root / "groups/first/findings/f.json",
             {
                 "schema_version": 2,
@@ -52,7 +52,7 @@ class PresentationRefinementTests(unittest.TestCase):
         p.present(self.root, output)
         self.assertIn('href="second.html#results"', (output / "stories/first.html").read_text())
         self.assertIn('id="results"', (output / "stories/second.html").read_text())
-        rows = {r["id"]: r for r in c.read(output / "records.json")["records"]}
+        rows = {r["id"]: r for r in storage.read(output / "records.json")["records"]}
         self.assertEqual(rows["f"]["portable_links"][0]["url"], "stories/first.html")
         self.assertFalse((output / "groups/first/presentation/story.md").exists())
         rendered = p.markdown("# Results\n\n# Results\n\n# Results", lambda value: value)
@@ -63,21 +63,21 @@ class PresentationRefinementTests(unittest.TestCase):
         source = self.root / "groups/first/experiments/e/protocol.md"
         source.parent.mkdir(parents=True)
         source.write_text("[Historical protocol](../../../../../outside.md)\n")
-        with self.assertRaisesRegex(c.MedicalError, "escapes repository"):
+        with self.assertRaisesRegex(MedicalError, "escapes repository"):
             p.check(self.root)
         source.write_text("[Missing](../../../../missing.md)\n")
-        with self.assertRaisesRegex(c.MedicalError, "Missing portable prose link"):
+        with self.assertRaisesRegex(MedicalError, "Missing portable prose link"):
             p.check(self.root)
         source.write_text("[Local scan](../../../../runs/scan.nii.gz)\n")
         self.assertEqual(p.check(self.root)["protocols_checked"], 1)
 
     def test_card_source_digest_covers_changes_outside_selected_measurements(self):
         source = self.root / "evidence.json"
-        c.write_new(source, {"metric": 1})
-        c.write_new(
+        storage.write_new(source, {"metric": 1})
+        storage.write_new(
             self.root / "groups/first/presentation/card.json",
             {
-                "source_hashes": {"evidence.json": c.sha(source)},
+                "source_hashes": {"evidence.json": storage.sha(source)},
                 "measurements": [
                     {
                         "label": "metric",
@@ -90,30 +90,21 @@ class PresentationRefinementTests(unittest.TestCase):
         )
         p.check(self.root)
 
-        c.atomic_write(source, {"metric": 1, "uncited_change": True})
+        storage.atomic_write(source, {"metric": 1, "uncited_change": True})
 
-        with self.assertRaisesRegex(c.MedicalError, "Source digest mismatch"):
+        with self.assertRaisesRegex(MedicalError, "Source digest mismatch"):
             p.check(self.root)
 
     def test_integrated_explorer_has_context_and_standalone_remains_independent(self):
-        repo = Path(__file__).resolve().parents[1]
-        shutil.copytree(
-            repo / "presentation/task-explorer",
-            self.root / "presentation/task-explorer",
-            dirs_exist_ok=True,
-        )
-        shutil.copytree(
-            repo / "presentation/assets", self.root / "presentation/assets", dirs_exist_ok=True
-        )
-        install_frontend(self.root)
-        c.atomic_write(self.root / task_briefs.DEFAULT_CATALOG, {"entries": []})
+        install_explorer(self.root)
+        storage.atomic_write(self.root / task_briefs.DEFAULT_CATALOG, {"entries": []})
         task_briefs.new(self.root, "example", "Example", "Research", "Imaging", "briefs/example.md")
         output = self.root / "output"
         result = p.present(self.root, output)
         self.assertEqual(result["task_explorer"]["briefs"], 1)
         self.assertTrue((output / "task-explorer/index.html").is_file())
         self.assertEqual(
-            c.read(output / "records.json")["task_explorer_url"], "task-explorer/index.html"
+            storage.read(output / "records.json")["task_explorer_url"], "task-explorer/index.html"
         )
 
 
