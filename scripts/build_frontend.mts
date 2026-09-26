@@ -4,31 +4,20 @@ import { readdir, readFile, mkdir, writeFile, rename, rm } from 'node:fs/promise
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { build } from 'vite';
-import { execFileSync } from 'node:child_process';
+import { runPython } from '../presentation/tooling/python.mts';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, '.local/frontend');
 const pending = path.join(root, '.local/frontend-pending-' + process.pid);
-const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
-function inputHashes() {
+const hash = (bytes: Buffer) => createHash('sha256').update(bytes).digest('hex');
+function inputHashes(validate = false): Record<string, string> {
   return JSON.parse(
-    execFileSync(path.join(root, '.venv/bin/python'), ['-m', 'tb3_medical.frontend'], {
-      cwd: root,
-      encoding: 'utf8',
-    }),
+    runPython(root, ['-m', 'tb3_medical.frontend', ...(validate ? ['--validate-stories'] : [])]),
   );
 }
 await mkdir(pending, { recursive: true });
 try {
-  execFileSync(
-    path.join(root, '.venv/bin/python'),
-    [
-      '-c',
-      'from pathlib import Path; from tb3_medical.explanation_stories import compile_story; r=Path.cwd(); [compile_story(r,p) for p in [*r.glob("groups/*/presentation/stories/*.story.md"), *r.glob("presentation/external-tasks/stories/*.story.md")]]',
-    ],
-    { cwd: root, stdio: 'inherit' },
-  );
-  const inputs = inputHashes();
+  const inputs = inputHashes(true);
   for (const entry of ['explorer', 'overview', 'explainer-export']) {
     await build({
       configFile: false,

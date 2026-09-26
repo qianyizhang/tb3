@@ -10,7 +10,7 @@ The browser is read-only. Both production outputs work without a Node server.
 
 ## Build and develop
 
-Use the repository's Python environment and Node 22.13 or newer:
+Use the repository's Python environment and Node 22.18 or newer:
 
 ```sh
 npm ci
@@ -27,7 +27,7 @@ server on loopback. Vite serves the TypeScript entries against that generated
 snapshot; restart the command after changing Python projections or source records.
 Never point the development server at raw research runtime directories.
 
-The build writes two self-contained browser bundles under `.local/frontend/`.
+The build writes three self-contained browser bundles under `.local/frontend/`.
 Its manifest hashes the frontend source, package lock, build script and TypeScript
 configuration, plus compiled output bytes. Python rejects missing, modified or
 stale bundles with an explicit rebuild instruction. Source changes during a build
@@ -95,9 +95,16 @@ the disposable-browser harness for standalone and served navigation, all task
 conditions, source/reference reveals, scenes, keyboard behavior and mobile views.
 Follow the root macOS execution instructions for browser launches.
 
-`node scripts/task_visual_review.cjs PATH/TO/index.html OUTPUT_DIR` writes a local
-entry-to-renderer inventory and input/action/output screenshot sheet for every
-authored illustration. It does not publish the images or access remote assets.
+`node scripts/task_visual_review.mts PATH/TO/index.html OUTPUT_DIR` writes a local
+entry-to-renderer inventory and screenshot sheet for every authored illustration,
+distinguishing spatial, planar, static and fallback views. Add `--from-inventory`
+to rebuild only the HTML report: saved inventory bytes and recorded errors remain
+intact, and a failed inventory still returns a nonzero status.
+
+The commands import `presentation/tooling/` modules, checked separately with
+`npm run tooling:typecheck`. Browser capture and the export page share the
+`capture.ts` interface. Python owns source discovery and story compilation;
+`TB3_PYTHON` selects an interpreter, otherwise tooling uses `uv run --no-sync python`.
 
 ## Canonical operation explanations
 

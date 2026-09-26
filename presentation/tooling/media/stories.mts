@@ -1,37 +1,39 @@
 /** Canonical-story source adapter for export_med_tours, sharing its browser and pipe encoder. */
-const fs = require('node:fs');
-const path = require('node:path');
-const crypto = require('node:crypto');
-const os = require('node:os');
-const { execFileSync } = require('node:child_process');
-const { pathToFileURL } = require('node:url');
-const { withBrowser } = require('./browser.cjs');
-const { runPipedEncoder } = require('./media_export_support.cjs');
-const { captureComposedFrame } = require('./capture_composed_frame.cjs');
-const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
-async function exportStory(flags) {
-  for (const key of Object.keys(flags))
-    if (!['story', 'output', 'stills-only'].includes(key))
-      throw Error(
-        `Story source does not accept --${key}; edit canonical copy/timing in the group story`,
-      );
-  if (typeof flags.story !== 'string' || typeof flags.output !== 'string')
-    throw Error('--story=ID requires --output=DIR');
-  const root = path.resolve(__dirname, '..'),
-    output = path.resolve(flags.output);
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import os from 'node:os';
+import { execFileSync } from 'node:child_process';
+import { pathToFileURL } from 'node:url';
+import type { StoryPlan } from '../../frontend/contracts.generated.ts';
+import { withBrowser } from '../browser.mts';
+import { runPython } from '../python.mts';
+import { runPipedEncoder } from './encoder.mts';
+import { captureComposedFrame } from './capture.mts';
+
+const sha = (bytes: string | Buffer) => crypto.createHash('sha256').update(bytes).digest('hex');
+export interface StoryOptions {
+  story: string;
+  output: string;
+  stillsOnly: boolean;
+}
+
+export async function exportStory(root: string, options: StoryOptions): Promise<void> {
+  const output = path.resolve(options.output);
   if (fs.existsSync(output)) throw Error('Story exports require a fresh output directory');
-  execFileSync(
-    path.join(root, '.venv/bin/python'),
-    [
-      '-c',
-      'from pathlib import Path; import sys; from tb3_medical.explanation_stories import build_export; build_export(Path.cwd(),sys.argv[1],Path(sys.argv[2]))',
-      flags.story,
-      output,
-    ],
-    { cwd: root, stdio: 'inherit' },
-  );
-  const plan = JSON.parse(fs.readFileSync(path.join(output, 'plan.json'), 'utf8'));
-  const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' });
+  runPython(root, [
+    '-m',
+    'tb3_medical.cli',
+    '--root',
+    root,
+    'story',
+    'build',
+    options.story,
+    '--output',
+    output,
+  ]);
+  const plan: StoryPlan = JSON.parse(fs.readFileSync(path.join(output, 'plan.json'), 'utf8'));
+  const git = (...args: string[]) => execFileSync('git', args, { cwd: root, encoding: 'utf8' });
   const changed = [
     ...new Set([
       ...git('diff', '--name-only', '-z', 'HEAD').split('\0'),
@@ -79,8 +81,10 @@ async function exportStory(flags) {
       codec: 'H.264',
       crf: 18,
     },
-    outputs: {},
-    errors: [],
+    outputs: {} as Record<string, { sha256: string; bytes: number }>,
+    errors: [] as string[],
+    browser: '',
+    renderer: '',
   };
   await withBrowser(async (browser) => {
     receipt.browser = browser.version();
@@ -97,7 +101,7 @@ async function exportStory(flags) {
     page.on('pageerror', (e) => receipt.errors.push(e.message));
     await page.goto(pathToFileURL(path.join(output, 'index.html')).href + '?capture=1');
     await page.waitForFunction(() => window.__tb3ExplainerCapture);
-    const capture = (frame) =>
+    const capture = (frame: number) =>
       captureComposedFrame(page, { frame, fps: plan.fps, width: 1280, height: 720 });
     fs.writeFileSync(path.join(output, 'first.png'), await capture(0));
     const stills = [];
@@ -109,9 +113,10 @@ async function exportStory(flags) {
     }
     fs.writeFileSync(path.join(output, 'stills.json'), JSON.stringify(stills, null, 2) + '\n');
     const posterBeat =
-      plan.beats.find((beat) => beat.output?.every((value) => value === 1)) || plan.beats.at(-1);
+      plan.beats.find((beat) => 'output' in beat && beat.output?.every((value) => value === 1)) ||
+      plan.beats.at(-1)!;
     fs.copyFileSync(path.join(output, `${posterBeat.id}.png`), path.join(output, 'poster.png'));
-    if (!flags['stills-only'])
+    if (!options.stillsOnly)
       await runPipedEncoder({
         command: process.env.FFMPEG || 'ffmpeg',
         args: [
@@ -149,11 +154,13 @@ async function exportStory(flags) {
         },
       });
     receipt.renderer = await page.evaluate(() => {
-      if (document.querySelector('.scene-player')?.dataset.surfaceRenderer === 'planar')
+      if (
+        document.querySelector<HTMLElement>('.scene-player')?.dataset.surfaceRenderer === 'planar'
+      )
         return 'DOM/SVG planar';
-      const canvas = document.querySelector('canvas'),
-        gl = canvas.getContext('webgl2'),
-        ext = gl.getExtension('WEBGL_debug_renderer_info');
+      const gl = document.querySelector('canvas')?.getContext('webgl2');
+      if (!gl) throw Error('Missing export WebGL renderer');
+      const ext = gl.getExtension('WEBGL_debug_renderer_info');
       return ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER);
     });
     await context.close();
@@ -167,4 +174,3 @@ async function exportStory(flags) {
   if (receipt.errors.length) throw Error(receipt.errors.join('\n'));
   console.log(`Integrated story exported: ${output}`);
 }
-module.exports = { exportStory };

@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
+from collections.abc import Sequence
 from pathlib import Path
 
 from .errors import MedicalError
@@ -13,7 +15,9 @@ BUILD_INPUTS = (
     "package.json",
     "package-lock.json",
     "tsconfig.json",
-    "scripts/build_frontend.mjs",
+    "tsconfig.tooling.json",
+    "scripts/build_frontend.mts",
+    "presentation/tooling/python.mts",
     "src/tb3_medical/frontend.py",
     "src/tb3_medical/presentation_contracts.py",
     "src/tb3_medical/explanation_stories.py",
@@ -77,5 +81,22 @@ def assets(root: Path, entry: str) -> tuple[str, str]:
         ) from exc
 
 
+def main(argv: Sequence[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--validate-stories", action="store_true")
+    args = parser.parse_args(argv)
+    root = Path.cwd()
+    if args.validate_stories:
+        from .explanation_stories import compile_story
+
+        for pattern in (
+            "groups/*/presentation/stories/*.story.md",
+            "presentation/external-tasks/stories/*.story.md",
+        ):
+            for path in sorted(root.glob(pattern)):
+                compile_story(root, path)
+    print(json.dumps(input_hashes(root)))
+
+
 if __name__ == "__main__":
-    print(json.dumps(input_hashes(Path.cwd())))
+    main()

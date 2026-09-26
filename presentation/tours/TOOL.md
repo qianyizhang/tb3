@@ -70,7 +70,7 @@ The six-tour data bundle falls from 38.81 MB to 15.54 MB, a 60.0% reduction, wit
 
 - `tb3_medical.media`: restore the retained derived snapshot, check scientific display invariants, optimize lossless web assets.
 - `presentation/tours/inputs.json`: exact canonical inputs, restored under `.local/inputs/tours/`.
-- `scripts/export_med_tours.cjs`: browser rendering, captions, encoding, music and manifests, using declared Playwright dependencies.
+- `scripts/export_med_tours.mts`: typed argument parsing and dispatch to the internal `presentation/tooling/media/` library. Tour planning is independent of browser rendering and encoding.
 - `docs/migration/retired-interfaces.json`: recovery locators for historical raw derivation programs. They are not runtime dependencies.
 
 Setup: `uv sync --locked --inexact --group dev --extra imaging`, `npm ci`, and
@@ -111,3 +111,7 @@ Override `PRESENTATION_OUTPUT` and `PRESENTATION_REPORTS` when needed. Ordinary
 synthetic operation pilot through the same browser and encoder infrastructure.
 It requires canonical timing and a fresh output directory. `--stills-only` is
 supported; legacy `--only` remains a tour selector. See [the explainer contract](../EXPLAINERS.md).
+
+`med story build ID --output FRESH-DIR` assembles the standalone HTML and plan
+without launching a browser or encoder. The exporter invokes that operation using
+`TB3_PYTHON` when set, otherwise the existing uv environment.

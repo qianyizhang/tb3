@@ -1,12 +1,12 @@
 /** Failure and publication contracts for the media encoder helper; no browser or FFmpeg. */
-const assert = require('node:assert/strict');
-const fs = require('node:fs');
-const os = require('node:os');
-const path = require('node:path');
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 
-const { normalizeTiming, runPipedEncoder } = require('../scripts/media_export_support.cjs');
+import { runPipedEncoder } from '../presentation/tooling/media/encoder.mts';
 
-async function waitForFile(file) {
+async function waitForFile(file: string) {
   const deadline = Date.now() + 2000;
   while (!fs.existsSync(file)) {
     if (Date.now() >= deadline) throw Error(`Timed out waiting for ${file}`);
@@ -15,18 +15,8 @@ async function waitForFile(file) {
 }
 
 (async () => {
-  const unhandled = [];
+  const unhandled: unknown[] = [];
   process.on('unhandledRejection', (error) => unhandled.push(error));
-  assert.deepEqual(normalizeTiming({}), { durationScale: 1, previewSeconds: null });
-  assert.deepEqual(normalizeTiming({ durationScale: '1.25', previewSeconds: '2' }), {
-    durationScale: 1.25,
-    previewSeconds: 2,
-  });
-  for (const invalid of [0, false, '']) {
-    assert.throws(() => normalizeTiming({ durationScale: invalid }), /duration scale/);
-    assert.throws(() => normalizeTiming({ previewSeconds: invalid }), /preview duration/);
-  }
-
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'tb3-media-export-'));
   try {
     const destination = path.join(directory, 'tour.mp4');
@@ -57,6 +47,9 @@ async function waitForFile(file) {
       ['child-started', 'tour.mp4'],
       'failed render removes only its partial output',
     );
+    assert.throws(() => process.kill(Number(fs.readFileSync(marker, 'utf8')), 0), {
+      code: 'ESRCH',
+    });
 
     await assert.rejects(
       runPipedEncoder({
@@ -108,7 +101,7 @@ async function waitForFile(file) {
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
   }
-  console.log('Media export: timing validation, failure cleanup and atomic publication passed.');
+  console.log('Media export: failure cleanup and atomic publication passed.');
 })().catch((error) => {
   console.error(error);
   process.exitCode = 1;

@@ -47,12 +47,13 @@ the layout used for new work.
 | A new experiment condition | `groups/<group>/experiments/<id>/`; start with `med new`, then author its compact TOML and protocol. |
 | A group-specific preparation, scoring or diagnostic method | `groups/<group>/methods/<method>/`, with method documentation and explicit entry points. |
 | A reusable command/service or cross-group algorithm | `src/tb3_medical/`, in the module that owns the responsibility described in [architecture](architecture.md#package-responsibilities). |
-| A regression for shared behavior | `tests/test_<area>.py`; browser/JavaScript checks use the existing `tests/*.cjs` harness and `scripts/browser.cjs`. |
+| A regression for shared behavior | `tests/test_<area>.py`; browser/JavaScript checks use the existing `tests/*.cjs` harness and `presentation/tooling/browser.mts`. |
 | A supported claim or evidence explanation | `groups/<group>/findings/`, with a concise discoverable JSON record and linked prose/evidence; `med evidence new` scaffolds explanations. |
 | A current story, internal Task Brief or scientific figure | `groups/<group>/presentation/`; link briefs through its `catalog.json`. |
 | An external task explanation | `presentation/external-tasks/`, following the [Task Brief rulebook](../presentation/task-explorer/RULEBOOK.md). |
 | Shared browser layout, styling or interactions | `presentation/`; Python build/validation logic stays in `src/tb3_medical/`. |
 | React components and browser state | `presentation/frontend/`; Python owns payload contracts and generates `contracts.generated.ts`. |
+| Shared Node browser, capture and media operations | `presentation/tooling/`; typed ES modules imported by thin `scripts/*.mts` commands and tests. |
 | Reusable conceptual illustration primitives and action recipes | `presentation/assets/teaching/`; preserve provenance at existing source-derived anatomy paths. |
 | A dataset/source description or selected-sample receipt | `datasets/<source>.json`, `datasets/receipts/` and the declared preview register; follow the [dataset contracts](../datasets/README.md). Native images remain local. |
 | A reusable guide | An existing `docs/*.md` guide, or a focused new page linked from [the docs index](README.md). |

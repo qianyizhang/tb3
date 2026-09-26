@@ -2,6 +2,7 @@
 
 import json
 import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -94,7 +95,8 @@ class StoryBatchTests(unittest.TestCase):
         self.assertEqual(before, (self.output / "first/receipt.json").read_bytes())
 
     def test_first_browser_failure_stops_batch_and_cannot_be_retried_in_place(self):
-        def fail(command, *, cwd, stdout, stderr):
+        def fail(command, *, cwd, stdout, stderr, env):
+            self.assertEqual(env["TB3_PYTHON"], sys.executable)
             stdout.write("browserType.launch: registration failed\n")
             return subprocess.CompletedProcess(command, 1)
 
@@ -110,7 +112,7 @@ class StoryBatchTests(unittest.TestCase):
             batches.run(self.root, self.output)
 
     def test_source_change_after_one_export_prevents_the_next_launch(self):
-        def change_source(command, *, cwd, stdout, stderr):
+        def change_source(command, *, cwd, stdout, stderr, env):
             (self.root / "source.md").write_text("Changed while exporter was running")
             return subprocess.CompletedProcess(command, 0)
 

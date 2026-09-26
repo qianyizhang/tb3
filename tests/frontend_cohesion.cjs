@@ -2,7 +2,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs/promises');
 const path = require('node:path');
-const { serveDirectory } = require('../scripts/browser.cjs');
+const { serveDirectory } = require('../presentation/tooling/browser.mts');
 
 async function checkCohesion(browser, directory, reportDirectory) {
   const root = path.resolve(directory);

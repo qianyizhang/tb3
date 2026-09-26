@@ -1,5 +1,5 @@
 /* Browser checks against a fresh portable site. Loopback only; no restored scans needed. */
-const { serveDirectory, withBrowser } = require('../scripts/browser.cjs');
+const { serveDirectory, withBrowser } = require('../presentation/tooling/browser.mts');
 const assert = require('node:assert/strict');
 const fs = require('node:fs/promises');
 const path = require('node:path');

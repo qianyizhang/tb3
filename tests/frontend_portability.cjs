@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs/promises');
 const os = require('node:os');
 const path = require('node:path');
-const { serveDirectory } = require('../scripts/browser.cjs');
+const { serveDirectory } = require('../presentation/tooling/browser.mts');
 
 async function checkPortability(browser, directory, reportDirectory) {
   const temporary = await fs.mkdtemp(path.join(os.tmpdir(), 'tb3-frontend-nested-'));

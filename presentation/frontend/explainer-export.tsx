@@ -7,6 +7,7 @@ import { TaskVisual } from './task-visuals/TaskVisual';
 import type { PlayerActions } from './task-visuals/use-scene-player';
 import type { StoryPlan } from './types';
 import type { VisualEntry } from './task-visuals/types';
+import type {} from './capture';
 const plan: StoryPlan = JSON.parse(document.querySelector('#story-plan')!.textContent!);
 const entry: VisualEntry = {
   illustration: {
@@ -17,20 +18,6 @@ const entry: VisualEntry = {
     caption: plan.scope,
   },
 };
-interface CaptureRequest {
-  frame: number;
-  fps: number;
-  width: number;
-  height: number;
-}
-declare global {
-  interface Window {
-    __tb3ExplainerCapture?: {
-      ready: Promise<void>;
-      seekFrame(request: CaptureRequest): Promise<void>;
-    };
-  }
-}
 function ExportView() {
   const capture = useRef<PlayerActions | null>(null);
   const [readiness] = useState(() => {

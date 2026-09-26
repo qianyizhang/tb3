@@ -2,23 +2,26 @@
   "name": "tb3-medical-media",
   "private": true,
   "engines": {
-    "node": ">=22.13"
+    "node": ">=22.18"
   },
   "scripts": {
-    "media": "node scripts/export_med_tours.cjs",
-    "format:check": "prettier --check 'scripts/*.cjs' 'tests/*.cjs' 'scripts/*.mjs' 'presentation/frontend/**/*.{ts,tsx,css}' 'presentation/assets/teaching/*.js' 'presentation/vite.config.mjs' 'tests/*.mjs'",
-    "format": "prettier --write 'scripts/*.cjs' 'tests/*.cjs' 'scripts/*.mjs' 'presentation/frontend/**/*.{ts,tsx,css}' 'presentation/assets/teaching/*.js' 'presentation/vite.config.mjs' 'tests/*.mjs'",
-    "frontend:build": "npm run typecheck && node scripts/build_frontend.mjs",
-    "typecheck": "npm run contracts:check && tsc --noEmit",
+    "media": "node scripts/export_med_tours.mts",
+    "format:check": "prettier --check 'scripts/*.mts' 'presentation/tooling/**/*.mts' 'tests/*.cjs' 'tests/*.mts' 'presentation/frontend/**/*.{ts,tsx,css}' 'presentation/assets/teaching/*.js' 'presentation/vite.config.mjs' 'tests/*.mjs'",
+    "format": "prettier --write 'scripts/*.mts' 'presentation/tooling/**/*.mts' 'tests/*.cjs' 'tests/*.mts' 'presentation/frontend/**/*.{ts,tsx,css}' 'presentation/assets/teaching/*.js' 'presentation/vite.config.mjs' 'tests/*.mjs'",
+    "frontend:build": "npm run typecheck && node scripts/build_frontend.mts",
+    "typecheck": "npm run contracts:check && tsc --noEmit && npm run tooling:typecheck",
     "frontend:dev": "npm run frontend:build && uv run --no-sync med present --output .local/frontend-preview && vite --config presentation/vite.config.mjs",
     "contracts:generate": "uv run --no-sync python -m tb3_medical.presentation_contracts",
-    "contracts:check": "uv run --no-sync python -m tb3_medical.presentation_contracts --check"
+    "contracts:check": "uv run --no-sync python -m tb3_medical.presentation_contracts --check",
+    "tooling:typecheck": "tsc --project tsconfig.tooling.json",
+    "visual-review": "node scripts/task_visual_review.mts"
   },
   "prettier": {
     "singleQuote": true,
     "printWidth": 100
   },
   "devDependencies": {
+    "@types/node": "22.20.4",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "@types/three": "0.183.1",

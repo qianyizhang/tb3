@@ -1,27 +1,12 @@
-/** Small, testable helpers for deterministic media export. */
-const crypto = require('node:crypto');
-const fs = require('node:fs');
-const path = require('node:path');
-const { spawn } = require('node:child_process');
-const { once } = require('node:events');
+/** Pipe frames to an encoder; publish only after successful process completion. */
+import crypto from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
+import { spawn, type ChildProcessByStdio } from 'node:child_process';
+import type { Readable, Writable } from 'node:stream';
+import { once } from 'node:events';
 
-function normalizeTiming({ durationScale, previewSeconds }) {
-  const normalizedScale = Number(durationScale ?? 1);
-  if (!(normalizedScale > 0 && normalizedScale <= 10)) {
-    throw Error('duration scale must be >0 and <=10');
-  }
-  const normalizedPreview =
-    previewSeconds === undefined || previewSeconds === null ? null : Number(previewSeconds);
-  if (
-    normalizedPreview !== null &&
-    !(Number.isFinite(normalizedPreview) && normalizedPreview > 0)
-  ) {
-    throw Error('Invalid preview duration');
-  }
-  return { durationScale: normalizedScale, previewSeconds: normalizedPreview };
-}
-
-function temporaryOutputPath(destination) {
+function temporaryOutputPath(destination: string): string {
   const extension = path.extname(destination);
   const stem = path.basename(destination, extension);
   const token = crypto.randomBytes(6).toString('hex');
@@ -31,55 +16,66 @@ function temporaryOutputPath(destination) {
   );
 }
 
-async function settle(promise) {
-  try {
-    await promise;
-  } catch {
-    // The original render or encoder error remains authoritative.
-  }
+type EncoderProcess = ChildProcessByStdio<Writable, null, Readable>;
+interface Outcome {
+  code: number | null;
+  signal: NodeJS.Signals | null;
+  error: Error | null;
 }
 
-async function stopProcess(child, finished) {
+async function stopProcess(child: EncoderProcess, finished: Promise<Outcome>): Promise<void> {
   if (child.exitCode !== null || child.signalCode !== null) {
-    await settle(finished);
+    await finished;
     return;
   }
   child.kill('SIGTERM');
-  let timer;
+  let timer: ReturnType<typeof setTimeout> | undefined;
   const timedOut = await Promise.race([
-    finished.then(
-      () => false,
-      () => false,
-    ),
-    new Promise((resolve) => {
+    finished.then(() => false),
+    new Promise<boolean>((resolve) => {
       timer = setTimeout(() => resolve(true), 1000);
     }),
   ]);
   if (timer) clearTimeout(timer);
   if (timedOut && child.exitCode === null && child.signalCode === null) {
     child.kill('SIGKILL');
-    await settle(finished);
+    await finished;
   }
 }
 
-async function runPipedEncoder({ command, args, destination, renderFrames, spawnProcess = spawn }) {
+export interface EncoderRequest {
+  command: string;
+  args: string[];
+  destination: string;
+  renderFrames(writeFrame: (frame: Uint8Array) => Promise<void>): Promise<void>;
+}
+
+export async function runPipedEncoder({
+  command,
+  args,
+  destination,
+  renderFrames,
+}: EncoderRequest): Promise<void> {
   const partial = temporaryOutputPath(destination);
-  const child = spawnProcess(command, [...args, partial], {
+  const child = spawn(command, [...args, partial], {
     stdio: ['pipe', 'ignore', 'pipe'],
   });
   let stderr = '';
-  let pipeError = null;
+  let pipeError: Error | undefined;
   child.stderr.on('data', (chunk) => (stderr += chunk));
-  child.stdin.on('error', (error) => (pipeError = error));
+  child.stdin.on('error', (error: Error) => (pipeError = error));
   // Observe spawn errors immediately; renderFrames may still be awaiting the browser.
-  const finished = once(child, 'close').then(
+  const finished: Promise<Outcome> = once(child, 'close').then(
     ([code, signal]) => ({ code, signal, error: null }),
     (error) => ({ code: null, signal: null, error }),
   );
   let published = false;
 
-  const writeFrame = async (frame) => {
+  const checkPipe = () => {
     if (pipeError) throw Error(`${pipeError.message}: ${stderr}`);
+  };
+  const writeFrame = async (frame: Uint8Array): Promise<void> => {
+    checkPipe();
     if (!child.stdin.write(frame)) {
       await Promise.race([
         once(child.stdin, 'drain'),
@@ -89,7 +85,7 @@ async function runPipedEncoder({ command, args, destination, renderFrames, spawn
         }),
       ]);
     }
-    if (pipeError) throw Error(`${pipeError.message}: ${stderr}`);
+    checkPipe();
   };
 
   try {
@@ -110,5 +106,3 @@ async function runPipedEncoder({ command, args, destination, renderFrames, spawn
     if (!published) fs.rmSync(partial, { force: true });
   }
 }
-
-module.exports = { normalizeTiming, runPipedEncoder };

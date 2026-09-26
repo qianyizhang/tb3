@@ -21,7 +21,7 @@ through `.githooks`, refusing to replace another hook directory. `--inexact`
 preserves packages outside the lock; shared dependencies follow it. CI uses an
 exact sync in a fresh environment.
 
-For frontend development and browser checks, install the declared Node 22.13+
+For frontend development and browser checks, install the declared Node 22.18+
 dependencies with `npm ci`, then run `npm run frontend:build` before using
 `med present` or `med brief build`. `make presentation-check` builds them for you.
 The [frontend guide](presentation/frontend/README.md) describes Vite development,
@@ -39,11 +39,11 @@ Browser setup and the macOS execution boundary are in the
 | `make skills-check` | Canonical skill metadata and portable resources; optional local mirror checks are in the skill lifecycle guide |
 | `make type-check` | Strict mypy across the entire source package, including portable adapters |
 | `make lint` | Ruff correctness, imports, modern syntax, bugbear, comprehensions and Ruff rules |
-| `make format-check` | Check Ruff formatting for `src` and tests without rewriting files |
-| `make format` | Apply Ruff formatting to `src` and tests |
-| `make js-check` | Script formatting, player state and encoder failure cleanup; no browser |
+| `make format-check` | Check Ruff formatting for `src`, tests and the optional anatomy recipe without rewriting files |
+| `make format` | Apply Ruff formatting to those Python sources |
+| `make js-check` | Node tooling types, formatting, media/report boundaries, player state and encoder cleanup; no browser |
 | `make contracts-check` | Generated TypeScript matches canonical Python presentation types |
-| `npm run typecheck` | Contract freshness and strict TypeScript across the interactive frontend |
+| `npm run typecheck` | Contract freshness and strict TypeScript across frontend and Node tooling |
 | `npm run frontend:build` | Checked Vite bundles and source/output fingerprint manifest |
 | `make presentation-check` | Portable site navigation, sources, keyboard/mobile behavior; disposable browser |
 | `make build-check` | Wheel installation and CLI checks from an unrelated temporary directory |
@@ -58,7 +58,13 @@ catalogue; `make contracts-check` validates generated type freshness. Avoid test
 that repeat catalogue labels or counts. Reuse the
 [Python assembly fixtures](tests/frontend_fixture.py),
 [Vite module loader](tests/frontend_bundle.cjs), and
-[disposable-browser harness](scripts/browser.cjs).
+[disposable-browser harness](presentation/tooling/browser.mts).
+
+Node 22.18+ runs the tooling's `.mts` modules directly. Keep reusable browser/media
+operations in `presentation/tooling/` and command dispatch in `scripts/`.
+`tsconfig.tooling.json` checks Node imports separately from the frontend's bundler
+configuration. Python calls use `uv run --no-sync python`, or `TB3_PYTHON` when an
+interpreter is explicitly selected; story batches pass their running interpreter.
 
 ## Working rules
 

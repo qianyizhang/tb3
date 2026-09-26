@@ -1,9 +1,11 @@
 /** Disposable browser and loopback server shared by presentation checks and exports. */
-const fs = require('node:fs');
-const http = require('node:http');
-const path = require('node:path');
+import fs from 'node:fs';
+import http from 'node:http';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+import type { chromium, Browser, LaunchOptions } from 'playwright';
 
-const contentTypes = {
+const contentTypes: Record<string, string> = {
   '.html': 'text/html',
   '.json': 'application/json',
   '.js': 'text/javascript',
@@ -18,11 +20,11 @@ const contentTypes = {
   '.vtt': 'text/vtt',
 };
 
-async function serveDirectory(directory) {
+export async function serveDirectory(directory: string) {
   const root = path.resolve(directory);
   const server = http.createServer(async (request, response) => {
     try {
-      const name = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+      const name = decodeURIComponent(new URL(request.url || '/', 'http://localhost').pathname);
       const target = path.resolve(root, '.' + (name.endsWith('/') ? name + 'index.html' : name));
       if (!target.startsWith(root + path.sep)) {
         response.writeHead(404).end();
@@ -41,24 +43,31 @@ async function serveDirectory(directory) {
       response.writeHead(404).end();
     }
   });
-  await new Promise((resolve, reject) => {
+  await new Promise<void>((resolve, reject) => {
     server.once('error', reject);
     server.listen(0, '127.0.0.1', resolve);
   });
+  const address = server.address();
+  if (!address || typeof address === 'string') throw Error('Expected loopback TCP address');
   return {
-    url: `http://127.0.0.1:${server.address().port}/`,
+    url: `http://127.0.0.1:${address.port}/`,
     close: () =>
-      new Promise((resolve, reject) =>
+      new Promise<void>((resolve, reject) =>
         server.close((error) => (error ? reject(error) : resolve())),
       ),
   };
 }
 
-async function withBrowser(run, options = {}) {
-  const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+export async function withBrowser<T>(
+  run: (browser: Browser) => Promise<T>,
+  options: LaunchOptions = {},
+): Promise<T> {
+  const engine: typeof chromium = createRequire(import.meta.url)(
+    process.env.PLAYWRIGHT_MODULE || 'playwright',
+  ).chromium;
   const channel = process.env.PLAYWRIGHT_CHANNEL || 'chrome';
   // One launch per invocation. Startup failure ends the suite without retries.
-  const browser = await chromium.launch({
+  const browser = await engine.launch({
     headless: true,
     ...(channel === 'chromium' ? {} : { channel }),
     ...options,
@@ -69,5 +78,3 @@ async function withBrowser(run, options = {}) {
     await browser.close();
   }
 }
-
-module.exports = { serveDirectory, withBrowser };

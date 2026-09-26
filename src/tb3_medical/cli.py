@@ -65,6 +65,9 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--preview", action="store_true")
     s = story_sub.add_parser("check", help="Compile a story ID or workspace path")
     s.add_argument("source")
+    s = story_sub.add_parser("build", help="Assemble a standalone story; no browser or encoder")
+    s.add_argument("id")
+    s.add_argument("--output", type=Path, required=True)
     s = story_sub.add_parser("batch", help="Prepare, export or verify selected story entries")
     batch_sub = s.add_subparsers(dest="batch_command", required=True)
     b = batch_sub.add_parser("new", help="Pin a review batch; no browser or media execution")
@@ -306,6 +309,14 @@ def main(argv: Sequence[str] | None = None) -> int:
                 )
             elif args.story_command == "check":
                 result = story_authoring.check(root, args.source)
+            elif args.story_command == "build":
+                from .explanation_stories import build_export
+
+                output = args.output if args.output.is_absolute() else root / args.output
+                if output.exists():
+                    raise MedicalError("Story build needs a fresh output directory")
+                plan = build_export(root, args.id, output)
+                result = {"story": plan["id"], "output": str(output)}
             elif args.batch_command == "new":
                 result = story_batches.new(
                     root,

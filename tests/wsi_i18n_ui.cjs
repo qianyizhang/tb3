@@ -1,7 +1,7 @@
 /** Optional bilingual WSI browser check against freshly built local outputs. */
 const assert = require('node:assert/strict');
 const path = require('node:path');
-const { serveDirectory, withBrowser } = require('../scripts/browser.cjs');
+const { serveDirectory, withBrowser } = require('../presentation/tooling/browser.mts');
 
 const report = path.resolve(process.argv[2] || '/private/tmp/tb3-wsi-i18n.png');
 const reportPage = (suffix) => report.replace(/\.png$/, '-' + suffix + '.png');

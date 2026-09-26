@@ -57,6 +57,8 @@ class FrontendTests(unittest.TestCase):
         for name in (
             "presentation/task-explorer/anatomy/nested/mesh.json",
             "src/tb3_medical/frontend.py",
+            "presentation/tooling/python.mts",
+            "tsconfig.tooling.json",
         ):
             with self.subTest(input=name):
                 install_frontend(self.root)

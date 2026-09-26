@@ -53,6 +53,7 @@ build-check:
 
 # Browser-free JavaScript checks; no scans, encoder or model runtime.
 js-check:
+	npm run tooling:typecheck
 	npm run format:check
 	node tests/frontend_overview.cjs
 	node tests/frontend_explorer.cjs
@@ -61,7 +62,8 @@ js-check:
 	node tests/scene_player.cjs
 	node tests/explanation_story.cjs
 	node tests/explanation_expansion.cjs
-	node tests/media_export.cjs
+	node tests/media_export.mts
+	node --test tests/tooling.mts
 
 # Optional browser regressions. Uses declared, already installed Node/Playwright.
 presentation-check: frontend-build js-check
@@ -93,10 +95,10 @@ hooks:
 style: lint format-check
 
 lint:
-	$(PYTHON) -m ruff check src tests
+	$(PYTHON) -m ruff check src tests scripts/build_anatomy_assets.py
 
 format-check:
-	$(PYTHON) -m ruff format --check src tests
+	$(PYTHON) -m ruff format --check src tests scripts/build_anatomy_assets.py
 
 format:
-	$(PYTHON) -m ruff format src tests
+	$(PYTHON) -m ruff format src tests scripts/build_anatomy_assets.py

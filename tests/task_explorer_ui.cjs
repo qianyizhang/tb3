@@ -3,7 +3,7 @@
  * Usage: node tests/task_explorer_ui.cjs runs/task-explorer/index.html [report.json]
  * Does not install dependencies, fetch resources, or run external benchmarks.
  */
-const { withBrowser } = require('../scripts/browser.cjs');
+const { withBrowser } = require('../presentation/tooling/browser.mts');
 const { resolve, dirname } = require('path');
 const { pathToFileURL } = require('url');
 const fs = require('fs');
@@ -409,8 +409,13 @@ async function checkExplorer(browser, input, report) {
     const offscreen = await pixels();
     await page.waitForTimeout(180);
     assert.equal(await pixels(), offscreen, 'Off-screen geometry stops updating');
+    const offscreenImage = await page.locator('.scene-canvas').evaluate((c) => c.toDataURL());
     await page.locator('.scene-canvas').scrollIntoViewIfNeeded();
-    await page.waitForTimeout(180);
+    await page.waitForFunction(
+      (image) => document.querySelector('.scene-canvas').toDataURL() !== image,
+      offscreenImage,
+      { timeout: 5000 },
+    );
     assert.notEqual(await pixels(), offscreen, 'Returning to the scene resumes playback');
     await page.evaluate(() => {
       window.detachedScene = document.querySelector('.scene-canvas');

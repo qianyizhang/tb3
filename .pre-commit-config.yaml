@@ -19,13 +19,13 @@ repos:
         name: ruff check
         entry: uv run --locked --no-sync ruff check
         language: system
-        files: ^(src|tests)/.*\.py$
+        files: ^((src|tests)/.*|scripts/build_anatomy_assets)\.py$
         types: [python]
       - id: ruff-format-check
         name: ruff format check
         entry: uv run --locked --no-sync ruff format --check
         language: system
-        files: ^(src|tests)/.*\.py$
+        files: ^((src|tests)/.*|scripts/build_anatomy_assets)\.py$
         types: [python]
       - id: mypy
         name: mypy entire source package

@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
+import sys
 from collections.abc import Sequence
 from html import escape
 from pathlib import Path
@@ -17,11 +19,17 @@ from .errors import MedicalError
 from .types import Document
 
 EXPORT_SOURCES = (
-    "scripts/export_med_tours.cjs",
-    "scripts/story_export_source.cjs",
-    "scripts/capture_composed_frame.cjs",
-    "scripts/media_export_support.cjs",
-    "scripts/browser.cjs",
+    "scripts/export_med_tours.mts",
+    "presentation/tooling/media/cli.mts",
+    "presentation/tooling/media/stories.mts",
+    "presentation/tooling/media/capture.mts",
+    "presentation/tooling/media/encoder.mts",
+    "presentation/tooling/media/tours.mts",
+    "presentation/tooling/media/tour-plan.mts",
+    "presentation/tooling/browser.mts",
+    "presentation/tooling/python.mts",
+    "src/tb3_medical/cli.py",
+    "tsconfig.tooling.json",
     "presentation/ui.css",
 )
 REQUIRED_OUTPUTS = {
@@ -161,7 +169,7 @@ def run(root: Path, output: Path) -> Document:
     for entry in batch.entries:
         command = [
             "node",
-            str(root / "scripts/export_med_tours.cjs"),
+            str(root / "scripts/export_med_tours.mts"),
             f"--story={entry.story_id}",
             f"--output={output / entry.story_id}",
         ]
@@ -171,7 +179,13 @@ def run(root: Path, output: Path) -> Document:
         result["exports"].append(row)
         try:
             with (output / f"{entry.story_id}.log").open("x") as log:
-                process = subprocess.run(command, cwd=root, stdout=log, stderr=subprocess.STDOUT)
+                process = subprocess.run(
+                    command,
+                    cwd=root,
+                    stdout=log,
+                    stderr=subprocess.STDOUT,
+                    env={**os.environ, "TB3_PYTHON": sys.executable},
+                )
             row["exit_code"] = process.returncode
             row["status"] = "exported" if process.returncode == 0 else "execution_failed"
             if process.returncode:

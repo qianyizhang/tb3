@@ -1,0 +1,123 @@
+{
+  "schema_version": 2,
+  "kind": "discussion",
+  "id": "discussion-scripts-maintainability-audit-2026-09-26",
+  "title": "Scripts maintainability: internal typed tooling and thin commands",
+  "source": "codex://threads/01a0dc2f-38eb-7a52-a32d-90be7a63e4f9",
+  "summary": "Audit of eight maintained scripts (1090 lines): all retain a current caller or documented reproduction purpose. The authorized follow-up moves reusable Node code into an internal TypeScript/ES-module library with thin commands and named Python operations. Visual-review replay now retains saved errors and inventory bytes, and renderer reporting distinguishes planar views from spatial 3D. No standalone package is justified by the inspected consumers.",
+  "decision_provenance": "The user requested an audit of usefulness, simplification, library placement and the JavaScript stack, then asked the assistant to use its judgment with maintainability as the goal. The architecture and migration sequence below are assistant recommendations. This audit did not implement a code or dependency migration. The user subsequently authorized implementation with \"sounds good, go fix\"; that follow-up is recorded separately below.",
+  "related_ids": [
+    "discussion-source-package-quality",
+    "discussion-frontend-modernization"
+  ],
+  "findings": [
+    "Four files are command/build entry points and four are reusable modules. Reference discovery establishes maintained use, not invocation frequency.",
+    "task_visual_review.cjs --from-inventory replaces prior summary.errors with an empty list, rewrites the source name and returns status 0. Reproduced with a synthetic failed inventory and no browser.",
+    "task_visual_review.cjs treats every non-static view as spatial 3D, while use-scene-player.ts supports planar DOM/SVG story rendering. This is a code-inspection finding, not a fresh rendering result.",
+    "export_med_tours.cjs mixes parsing, configuration, timing, captions, browser lifecycle, encoding and output writes in a 323-line entry point. The existing encoder and composed-capture helpers already have useful boundaries.",
+    "Current TypeScript coverage includes zero scripts and zero JavaScript tests. The optional Python anatomy recipe also sits outside routine Python style gates, although its direct Ruff checks pass.",
+    "The staged frontend builder already uses Python-owned input discovery. Build and story export still hard-code .venv/bin/python and embed Python source snippets.",
+    "The anatomy builder remains a documented, source-hash-pinned optional reproduction recipe. Its heavy imaging dependencies and fixed-case policy should remain outside the default library."
+  ],
+  "recommendations": [
+    "Fix inventory replay and planar classification before module-format changes.",
+    "Keep thin commands in scripts and ordinary internal TypeScript/ES-module helpers under presentation/tooling, with one existing root package manifest.",
+    "Add strict Node tooling checks and declared Node types; migrate direct consumers together. Keep frontend bundler resolution separate. Account explicitly for the declared Node 22.13 floor when selecting native TypeScript execution.",
+    "Extract typed tour configuration/timing/caption planning and explicit export operations. Use built-in argument parsing. Preserve encoder cleanup and exact composed-frame capture.",
+    "Expose named operations in the existing Python owners instead of embedded Python snippets. Keep canonical records, source fingerprints and story compilation in Python.",
+    "Update build and story-batch fingerprint lists when relocating code. Preserve historical receipts and original outcomes.",
+    "Reconsider a standalone package only after a second application needs a stable, workspace-independent API. Defer replacing the shared browser harness with a test framework until it removes demonstrated maintenance work."
+  ],
+  "verification": {
+    "snapshot": "Current working tree including three pre-existing staged script changes; exact script hashes are retained in the local evidence file.",
+    "passed": [
+      "make js-check: formatting and all eight browser-free JavaScript suites",
+      "npm run typecheck: frontend TypeScript and generated-contract freshness",
+      "node --check for all seven JavaScript scripts",
+      "Python AST parsing and direct Ruff lint/format checks for the anatomy builder",
+      "Synthetic inventory replay witness and confirmation that audited script bytes remained unchanged"
+    ],
+    "not_run": "Full make check, frontend rebuild, browser rendering, video encoding and optional anatomy runtime. No product source or index changes."
+  },
+  "links": [
+    {
+      "label": "Local file-by-file audit, evidence links and migration acceptance",
+      "path": ".local/scripts-audit-20260926/report.md"
+    },
+    {
+      "label": "Local source fingerprints and synthetic failed-inventory witness",
+      "path": ".local/scripts-audit-20260926/evidence.json"
+    },
+    {
+      "label": "Current visual-review command",
+      "path": "scripts/task_visual_review.mts"
+    },
+    {
+      "label": "Current media command",
+      "path": "scripts/export_med_tours.mts"
+    },
+    {
+      "label": "Source provenance and optional anatomy rebuild",
+      "path": "presentation/task-explorer/anatomy/NOTICE.md"
+    },
+    {
+      "label": "Local implementation verification and source fingerprints",
+      "path": ".local/scripts-refactor-20260926/verification.json"
+    },
+    {
+      "label": "Local cleanup baseline and verification",
+      "path": ".local/scripts-polish-20260926/verification.json"
+    }
+  ],
+  "reopen_when": "A script loses all maintained consumers, a second application needs a stable workspace-independent runtime API, or a new export/report workflow changes the current boundaries.",
+  "implementation": {
+    "actor": "assistant",
+    "authorization": {
+      "actor": "user",
+      "source": "codex://threads/01a0dc2f-38eb-7a52-a32d-90be7a63e4f9",
+      "response": "sounds good, go fix"
+    },
+    "status": "verified",
+    "changes": [
+      "Preserve saved visual-review inventory bytes and failure status; distinguish planar, spatial, static and fallback renderers.",
+      "Use typed ES modules under presentation/tooling with thin command entry points; keep one root package.",
+      "Extract tour planning and captions from browser export; validate CLI options with Node parseArgs.",
+      "Use named Python frontend/story-build operations and an explicit TB3_PYTHON interpreter for batches.",
+      "Declare Node types and a Node 22.18 minimum, type-check tooling separately, preserve fingerprint coverage and add boundary regressions."
+    ],
+    "limitations": "Historical receipts and the optional anatomy recipe remain unchanged; no standalone package or broad test framework migration. Commands now require Node 22.18 or newer.",
+    "verification": {
+      "passed": [
+        "make check PYTHON=python3.12 on the intended Git index: 180 Python tests, artifact policy, medical records, documentation links, skill checks, strict mypy, generated contracts, Ruff and actionlint",
+        "make js-check: strict Node tooling types, formatting, eight existing browser-free suites and six new tooling regressions",
+        "npm run frontend:build: frontend types and three production bundles",
+        "Named med story build assembly plus refusal to overwrite an existing destination",
+        "Disposable-browser presentation suite: 205 illustrated entries, navigation, lifecycle, mobile, localization, portability and renderer classifications",
+        "Existing composed-frame browser acceptance: exact dimensions, stable repeated seeks, lifecycle and fallbacks",
+        "Pinned anatomy recipe SHA-256 remains identical to the original audit snapshot"
+      ],
+      "environment": "Python 3.12 and local Node 25.9.0; CI is configured to test Node 22.18.0, but no remote CI run is claimed.",
+      "not_run": "Fresh video encoding and optional anatomy runtime. Encoder failure and atomic publication were exercised with real child processes in the existing test suite.",
+      "browser_test_repair": "The first presentation run failed the legacy fixed 180 ms playback-resume wait. A bounded wait for actual pixel movement retained the same assertion and the full suite passed."
+    },
+    "polish": {
+      "actor": "assistant",
+      "authorization": {
+        "actor": "user",
+        "response": "can they be simplified?\ntidy, polish, clean up;\nthen commit"
+      },
+      "changes": [
+        "Normalize configuration and timing once in the pure planner; remove repeated conversions and the planner dependency on encoder operations.",
+        "Build resolved stories directly instead of cloning and then mutating the full source collection.",
+        "Remove redundant promise error handling and temporary error state wrappers from encoder cleanup.",
+        "Use readable report markup and styles with a mobile viewport; preserve saved-inventory failure and provenance behavior."
+      ],
+      "verification": [
+        "18 preset, locale and override combinations preserve resolved story values and exact VTT/SRT bytes against the pre-cleanup baseline.",
+        "make js-check passes, including encoder child termination, failure cleanup, atomic publication and six tooling regressions.",
+        "Focused disposable-browser checks pass for spatial, planar, static and narrow-viewport report rendering."
+      ],
+      "normalized_settings": "Preview duration is now stored as a number or null in newly resolved settings, rather than retaining CLI string values."
+    }
+  }
+}

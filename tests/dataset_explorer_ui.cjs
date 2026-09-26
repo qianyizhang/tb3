@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
-const { withBrowser } = require('../scripts/browser.cjs');
+const { withBrowser } = require('../presentation/tooling/browser.mts');
 
 withBrowser(async (browser) => {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1050 } });
