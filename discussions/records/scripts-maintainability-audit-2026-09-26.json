@@ -67,6 +67,10 @@
     {
       "label": "Local cleanup baseline and verification",
       "path": ".local/scripts-polish-20260926/verification.json"
+    },
+    {
+      "label": "Blueprint refactor verification and retained before/after witnesses",
+      "path": ".local/blueprint-refactor/REPORT.md"
     }
   ],
   "reopen_when": "A script loses all maintained consumers, a second application needs a stable workspace-independent runtime API, or a new export/report workflow changes the current boundaries.",
@@ -119,5 +123,51 @@
       ],
       "normalized_settings": "Preview duration is now stored as a number or null in newly resolved settings, rather than retaining CLI string values."
     }
+  },
+  "blueprint_refactor": {
+    "actor": "assistant",
+    "authorization": {
+      "actor": "user",
+      "source": "codex://threads/01a0de73-16a7-7143-895d-6a4a0d1f43dc",
+      "request": "refactor according to the blueprint, keep it clean and elegant"
+    },
+    "handoff": {
+      "path": "/Users/zhangqy/Downloads/tb3-blueprint-handoff/",
+      "baseline": "0ea91a59b649520f27644aea155f02238b3079e6",
+      "source_guard": "exact match before editing"
+    },
+    "changes": [
+      "Parse YAML frontmatter and fenced beats once; dispatch on a strict supported integer schema.",
+      "Require explicit topology/multiscale operations and per-beat correspondence deformation visibility. Normalize only six verified legacy path/hash/recipe inputs; preserve original stories.",
+      "Separate renderer freshness from narratives; pin selected sources and compiler context in plans and capture/encoder context in export receipts, with source-drift checks.",
+      "Validate schema-1 receipt fields and safe output names at ingress while retaining extra producer metadata.",
+      "Reuse storage file hashing and workspace path policy for story dependencies after the complete baseline path inventory passed.",
+      "Share exact canonical sample selection between export and its review report; keep explorer chapter-start captures distinct and preserve unknown legacy inventory metadata."
+    ],
+    "verification": {
+      "baseline": [
+        "make check: exit 0",
+        "make js-check: exit 0",
+        "npm run frontend:build: exit 0",
+        "Source guard: exact pinned revision and checked file match"
+      ],
+      "passed": [
+        "make presentation-check: exit 0; all 205 illustrated entries and selected review surfaces",
+        "13-story browser matrix: exit 0; locales, repeated seeks, renames, mobile, no-GPU and navigation",
+        "104 before/after captures: pixel-identical",
+        "13 source hashes and 8064 sampled frames: baseline-equal",
+        "All original compiled plan fields/dependency hashes preserved; additions are explicit semantics and compiler identity",
+        "3048 protected source/research files: byte-identical",
+        "Fresh correspondence and coverage stills batches: typed receipts and hashes verified",
+        "Fresh v1 route: 792 frames, 24 fps, 1280x720 H.264, full ffmpeg decode and batch verification"
+      ],
+      "limits": [
+        "Rendering regression verification does not grant scientific or catalogue-wide visual acceptance.",
+        "No model trials, data acquisition, runtime installation or remote publishing.",
+        "Numerical fixtures were unchanged and their optional regeneration was not run.",
+        "Local Node 25.9.0 and Python 3.12.13; remote CI and cross-GPU equality were not tested."
+      ]
+    },
+    "reopen_when": "A new operation needs a distinct contract, an edited legacy story lacks explicit semantics, or a producer/dependency change exposes a verification gap."
   }
 }

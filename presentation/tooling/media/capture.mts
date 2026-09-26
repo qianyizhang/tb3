@@ -35,6 +35,9 @@ export async function captureComposedFrame(
       await bridge.seekFrame({ frame, fps, width, height });
       const root = document.querySelector(selector);
       if (!root) throw new Error('Missing composed export root');
+      const player = root.matches('.scene-player') ? root : root.querySelector('.scene-player');
+      if (player?.getAttribute('data-committed-frame') !== String(frame))
+        throw new Error('Composed capture did not commit the requested frame');
       if (document.fonts) await document.fonts.ready;
       await Promise.all(
         [...root.querySelectorAll('img')].map(async (image) => {

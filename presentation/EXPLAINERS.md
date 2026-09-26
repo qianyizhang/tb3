@@ -12,7 +12,10 @@ A bound story is not automatically accepted; unresolved entries remain visible.
   `presentation/external-tasks/stories/`. Scripts own captions, narration, scope,
   sequencing and integer frame timing. Scientific briefs/protocols remain authoritative.
 - `explanation_stories.py` retains the v1 route parser and adds closed v2 models
-  discriminated by recipe. It checks continuity, source locators, provenance,
+  discriminated by recipe. Frontmatter and fenced beats are parsed once; only
+  integer schema 1 or 2 selects validation. Comments, spacing and CRLF are accepted;
+  booleans, numeric strings, duplicate keys and malformed beats are rejected.
+  It checks continuity, source locators, provenance,
   recipe dependencies and hashes before projection. No validator acquires data.
 - Python presentation contracts still generate browser DTOs. Bindings are explicit
   `illustration.story_id` values, including nested WSI collections.
@@ -45,6 +48,14 @@ A bound story is not automatically accepted; unresolved entries remain visible.
 | Anatomy audit | Existing seven-part s1233 assembly; label/witness schema and clean-control semantics |
 | CT/MRI | Separate Radon/FFT measurements and image outputs; toy vs task dimensions/assistance explicit |
 
+V2 multiscale stories require `operation: coordinate-navigation`, `supplied-patches`
+or `annotation-coverage`; topology requires `ordered-path` or `edge-inventory`.
+Every correspondence beat declares `show_deformed_target: true` or `false`.
+These fields drive the sampler, scenes, output and legends; renaming IDs does not
+change their meaning. The six original sources at revision `0ea91a5` retain their
+bytes through compiler-local path/hash/recipe matching. Editing or copying one
+requires explicit fields; a familiar filename does not enable legacy decoding.
+
 ## Build and export
 
 ### Draft a canonical story
@@ -63,6 +74,9 @@ in the owning catalogue. Drafts are excluded from normal story discovery; unfini
 authoring fields fail compilation. Inverse drafts also require explicit
 `--acquisition ct-parallel` or `--acquisition mri-cartesian`. The retained v1 route
 pilot remains supported but is not a new-draft template.
+Multiscale and topology drafts require `--operation` from the values above.
+Correspondence drafts include an explicit false flag on each beat; author the
+deformation chapter deliberately. `med story recipes` lists each recipe's choices.
 
 ### Review a selected batch
 
@@ -78,7 +92,10 @@ existing exporter, stops on the first failure and retains execution logs. It nee
 the same approved browser execution boundary as individual exports. An attempted
 batch is never retried in place. Source changes stop the batch; create a fresh
 destination after rebuilding. `check` verifies required output hashes and one
-source/frontend snapshot; `--decode` additionally checks full MP4 decoding,
+source/frontend snapshot against current sources; it is not an offline historical
+verifier. Its schema-1 receipt reader validates consumed fields and safe leaf
+filenames while preserving additional producer metadata. Invalid counts, hashes,
+links, missing files and recorded errors remain failures. `--decode` additionally checks full MP4 decoding,
 dimensions, frame counts and fps. These operations never mark visual acceptance.
 The generated `review.html` links interactive outputs, source captions, receipts
 and representative frames; record actual inspection and limits separately.
@@ -101,6 +118,30 @@ Capture seeks the exact integer frame and waits for React commit, fonts, HTML an
 SVG image decoding before screenshotting the complete 1280×720 root. Receipts pin
 source/asset/frontend/lock hashes, dirty files, OS, browser, renderer and outputs.
 These are local rendering receipts, not scientific evidence or cross-GPU equality.
+
+Renderer inputs exclude narrative stories. Selected plans pin their exact story,
+source locators, pack dependencies and compiler implementation/runtime lock files.
+`med story export-context` reads checked frontend/exporter fingerprints and the
+Python runtime version without capture. Individual exports and batches reject
+source drift; failed captures retain their receipt and errors in the fresh folder.
+Story dependencies use `storage.inside`: workspace-relative paths without parent
+segments or symlinks. Pack files are relative to their manifest directory. All
+13 original stories passed this policy before migration; historical task/import
+digest encodings and the standalone reproduction runner are unchanged.
+
+`presentation/tooling/review-samples.mts` selects frame 0 and each beat's
+`endFrame - 1`, deduplicating within a beat; explicit motion review can add
+midpoints. Canonical exports retain `first.png`, chapter PNGs and `poster.png`,
+and generate `review.html` from those same captures. Receipt samples identify the
+export surface, story/source/plan, beat, phase, requested and committed frame,
+renderer and viewport. Standalone canonical exports have no entry scope: their
+images cannot establish correctness of every catalogue binding.
+
+Explorer review remains a UX capture at chapter starts, with its entry scope and
+surface labeled separately. It never gains the export bridge. Saved inventory
+replay keeps original bytes/errors and labels missing frame metadata as unknown.
+Explorer plan fingerprints use the serialized embedded payload; export plan
+fingerprints use the exact `plan.json` bytes.
 
 ## Checks and visual acceptance
 

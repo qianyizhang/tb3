@@ -2,7 +2,7 @@
 name: author-task-story
 description: Create or revise canonical TB3 stories for integrated task explainers and catalogue expansion. Use video-explainer to export an established story.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Author a Task Story
@@ -29,6 +29,10 @@ missing recipes or source dependencies explicitly; visual resemblance is not eno
 Preview with `med story new ENTRY STORY_ID --recipe RECIPE --preview`; omit
 `--preview` to write an unbound draft. Replace every authoring marker with sourced
 copy, scope and meaningful beats. Preserve channel continuity or declare a cut.
+Multiscale and topology drafts require the explicit `--operation` listed by
+`med story recipes`; inverse drafts require `--acquisition`. Set
+`show_deformed_target` on every correspondence beat. IDs are identity, never
+operation instructions. Editing an original legacy story requires explicit fields.
 Run `med story check PATH`, then move the finished draft into its owner's
 `stories/` directory and explicitly set the leaf catalogue's `illustration.story_id`.
 
@@ -41,6 +45,8 @@ records only within the requested scope.
 Build the frontend and use `med story batch` for local review outputs. Inspect
 first/decisive/ending frames, motion, output, legends, captions, narrow layout and
 no-GPU behavior; visibly separate references from solver inputs.
+Canonical `review.html` reuses exact exported endpoints and frame metadata.
+Explorer chapter-start captures are separate UX witnesses; preserve their labels.
 
 Retain reviewer, source snapshot, inspected entries and limits. Compilation,
 binding and verified export do not assign visual acceptance. Update the ledger

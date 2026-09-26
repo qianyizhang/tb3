@@ -98,6 +98,7 @@ export interface TopologyPlan {
   asset_manifest_sha256: string;
   dependencies: Record<string, string>;
   recipe: "topology-v1";
+  operation: "ordered-path" | "edge-inventory";
   beats: Array<TopologyBeat>;
 }
 export interface CorrespondenceChannels {
@@ -114,6 +115,7 @@ export interface CorrespondenceBeat {
   cut: "continuous" | "intentional-cut";
   startFrame: number;
   endFrame: number;
+  show_deformed_target: boolean;
   channels: CorrespondenceChannels;
 }
 export interface CorrespondencePlan {
@@ -239,6 +241,7 @@ export interface MultiscalePlan {
   asset_manifest_sha256: string;
   dependencies: Record<string, string>;
   recipe: "multiscale-v1";
+  operation: "coordinate-navigation" | "supplied-patches" | "annotation-coverage";
   beats: Array<MultiscaleBeat>;
 }
 export interface InverseChannels {

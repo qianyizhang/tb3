@@ -3,6 +3,7 @@ export { sampleStory } from '../presentation/frontend/task-visuals/story-timelin
 export {
   nativeFactory,
   isPlanarStory,
+  storyPresentation,
 } from '../presentation/frontend/task-visuals/story-recipes.ts';
 export {
   traceEdges,

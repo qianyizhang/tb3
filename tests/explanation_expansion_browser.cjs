@@ -132,6 +132,52 @@ withBrowser(async (browser) => {
       }
       row.locales.push(locale);
     }
+    // IDs may change while explicit operation fields retain the rendered meaning.
+    if (['multiscale-v1', 'topology-v1', 'correspondence-v1'].includes(plan.recipe)) {
+      const renamed = structuredClone(plan);
+      renamed.id = 'renamed-explicit-story';
+      renamed.beats.forEach((beat, index) => {
+        beat.id = `renamed-${index}`;
+      });
+      const renamedFile = path.join(out, 'renamed.html');
+      fs.writeFileSync(
+        renamedFile,
+        fs
+          .readFileSync(path.join(out, 'index.html'), 'utf8')
+          .replace(
+            /(<script id="story-plan" type="application\/json">)[\s\S]*?(<\/script>)/,
+            (_match, start, end) =>
+              start + JSON.stringify(renamed).replaceAll('<', '\\u003c') + end,
+          ),
+      );
+      const semanticFrames = plan.beats.map((beat) => beat.endFrame - 1);
+      await page.goto(url + '?capture=1&lang=en');
+      const originals = [];
+      for (const frame of semanticFrames) {
+        await captureComposedFrame(page, { frame, fps: plan.fps, width: 1280, height: 720 });
+        originals.push(
+          await page.locator('.scene-player').evaluate((element) => ({
+            caption: element.querySelector('[data-scene-title]')?.textContent,
+            legend: element.querySelector('.scene-legend')?.textContent,
+            // Ignore data attributes and identity; compare the actual composition and geometry.
+            svg: [...element.querySelectorAll('svg')].map((svg) => svg.outerHTML),
+            output: element.querySelector('[class*="storyOutput"]')?.innerHTML,
+          })),
+        );
+      }
+      await page.goto(pathToFileURL(renamedFile).href + '?capture=1&lang=en');
+      for (const [index, frame] of semanticFrames.entries()) {
+        await captureComposedFrame(page, { frame, fps: plan.fps, width: 1280, height: 720 });
+        const renamedView = await page.locator('.scene-player').evaluate((element) => ({
+          caption: element.querySelector('[data-scene-title]')?.textContent,
+          legend: element.querySelector('.scene-legend')?.textContent,
+          svg: [...element.querySelectorAll('svg')].map((svg) => svg.outerHTML),
+          output: element.querySelector('[class*="storyOutput"]')?.innerHTML,
+        }));
+        assert.deepEqual(renamedView, originals[index], `${id} explicit rename at frame ${frame}`);
+      }
+      row.renameInvariant = semanticFrames;
+    }
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(url + '?lang=zh-CN');
     await page.locator('.scene-player[data-rendered="true"]').waitFor();

@@ -1,7 +1,6 @@
 /** Parse and dispatch media requests without executing work on import. */
 import { parseArgs } from 'node:util';
 import { exportStory, type StoryOptions } from './stories.mts';
-import { exportTours } from './tours.mts';
 import type { TourFlags } from './tour-plan.mts';
 
 const help = `Medical media tool — npm run media -- [options]
@@ -64,5 +63,8 @@ export async function runMedia(root: string, args: string[]): Promise<void> {
   const request = parseMediaArgs(args);
   if (request.kind === 'help') console.log(help);
   else if (request.kind === 'story') await exportStory(root, request);
-  else await exportTours(root, request.flags, request.stillsOnly);
+  else {
+    const { exportTours } = await import('./tours.mts');
+    await exportTours(root, request.flags, request.stillsOnly);
+  }
 }

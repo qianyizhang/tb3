@@ -23,7 +23,7 @@ class ExpansionTests(unittest.TestCase):
 
     def test_recipe_channels_and_continuity_fail_closed(self):
         path = ROOT / "groups/registration/presentation/stories/rigid-correspondence.story.md"
-        raw = path.read_text()
+        raw = path.read_text().replace("frames:", "show_deformed_target: false\nframes:")
         for bad in [
             raw.replace("schema: 2", "schema: 2\nunknown: true"),
             raw.replace("locale: en", "locale: en\nlocale: en"),
@@ -50,3 +50,69 @@ class ExpansionTests(unittest.TestCase):
             self.assertEqual(entry["illustration"]["story_id"], story_id)
             self.assertEqual(data["explanation_stories"][story_id]["recipe"], "multiscale-v1")
             self.assertTrue(entry["reference"])
+
+    def test_legacy_compatibility_is_source_pinned_and_new_semantics_are_explicit(self):
+        import json
+        import tempfile
+
+        import yaml
+
+        baseline = json.loads((ROOT / "tests/fixtures/story-baseline.json").read_text())
+        for witness in baseline["stories"]:
+            path = ROOT / witness["source"]
+            plan = stories.compile_story(ROOT, path)
+            self.assertEqual(plan["source_sha256"], witness["source_sha256"])
+            if witness["source"] not in stories.LEGACY_SEMANTICS:
+                continue
+            with self.subTest(story=plan["id"]):
+                raw = path.read_text()
+                with self.assertRaises(ValueError):
+                    stories.parse_expansion(raw)
+                document = stories.parse_document(raw)
+                header = dict(document.header)
+                beats = [dict(beat) for beat in document.beats]
+                if plan["recipe"] == "correspondence-v1":
+                    for beat, compiled in zip(beats, plan["beats"], strict=True):
+                        beat["show_deformed_target"] = compiled["show_deformed_target"]
+                else:
+                    header["operation"] = plan["operation"]
+                explicit = stories.parse_expansion(stories.StoryDocument(header, tuple(beats)))
+                header["id"] = "renamed-story"
+                for i, beat in enumerate(beats):
+                    beat["id"] = f"renamed-{i}"
+                renamed = stories.parse_expansion(stories.StoryDocument(header, tuple(beats)))
+                self.assertEqual(
+                    [beat.channels for beat in explicit.beats],
+                    [beat.channels for beat in renamed.beats],
+                )
+                with tempfile.TemporaryDirectory(dir=ROOT / ".local") as temp:
+                    draft = Path(temp) / path.name
+                    draft.write_text(raw)
+                    with self.assertRaises(ValueError):
+                        stories.compile_story(ROOT, draft)
+                    # Copying a familiar ID never activates compatibility, even at a new path.
+                    text = "---\n" + yaml.safe_dump(header) + "---\n"
+                    text += "\n".join("```beat\n" + yaml.safe_dump(b) + "```" for b in beats)
+                    draft.write_text(text)
+                    self.assertEqual(stories.compile_story(ROOT, draft)["id"], "renamed-story")
+                bad = dict(header, operation="unsupported")
+                with self.assertRaises(ValueError):
+                    stories.parse_expansion(stories.StoryDocument(bad, tuple(beats)))
+
+    def test_malformed_document_and_fenced_examples(self):
+        raw = (ROOT / "presentation/external-tasks/stories/ct-forward.story.md").read_text()
+        original = stories.parse_expansion(raw)
+        self.assertEqual(stories.parse_expansion(raw.replace("\n", "\r\n")), original)
+        example = "\n````markdown\n```beat\nnot: a real beat\n```\n````\n"
+        self.assertEqual(stories.parse_expansion(raw + example), original)
+        for bad in (
+            "---\n[]\n---\n",
+            "---\nnull\n---\n",
+            raw + "\n```beat\n[]\n```\n",
+            raw + "\n```beat\nnull\n```\n",
+            raw.replace("  observations:\n", "  observations: [0, 0]\n  observations:\n", 1),
+            raw + "\n```beat \nid: unfinished\n```\n",
+            raw + "\n```beat\nid: unclosed\n",
+        ):
+            with self.subTest(raw=bad[-120:]), self.assertRaises(ValueError):
+                stories.parse_expansion(bad)

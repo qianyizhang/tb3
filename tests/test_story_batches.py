@@ -61,6 +61,7 @@ class StoryBatchTests(unittest.TestCase):
                 json.dumps({"schema": 2, "id": entry.story_id, "dependencies": self.dependencies})
             )
             receipt = {
+                "schema": 1,
                 "story": entry.story_id,
                 "dependencies": self.dependencies,
                 "frontend_manifest_sha256": self.batch.frontend_manifest_sha256,
@@ -143,3 +144,121 @@ class StoryBatchTests(unittest.TestCase):
                 for issue in batches.check(self.root, self.output)["issues"]
             )
         )
+
+    def test_real_exporter_receipt_preserves_all_producer_metadata(self):
+        source = Path(__file__).parent / "fixtures/story-export-receipt.json"
+        raw = json.loads(source.read_text())
+        receipt = batches.read_receipt(source)
+        self.assertEqual(receipt.model_dump(mode="json", by_alias=True, exclude_unset=True), raw)
+        self.assertEqual(receipt.story, "rigid-correspondence")
+
+    def test_malformed_receipts_fail_at_ingress(self):
+        import copy
+
+        self.export_fixture()
+        path = self.output / "first/receipt.json"
+        original = storage.read_object(path)
+        for outputs in ([], None, "bad", {"first.png": None}, {"first.png": []}):
+            receipt = dict(original, outputs=outputs)
+            storage.atomic_write(path, receipt)
+            result = batches.check(self.root, self.output)
+            self.assertFalse(result["ok"])
+            self.assertTrue(any("validation error" in issue for issue in result["issues"]))
+        for field in (
+            "schema",
+            "story",
+            "dependencies",
+            "frontend_manifest_sha256",
+            "errors",
+            "outputs",
+        ):
+            receipt = dict(original)
+            del receipt[field]
+            storage.atomic_write(path, receipt)
+            self.assertFalse(batches.check(self.root, self.output)["ok"])
+        for size in (True, -1, "10", 1.5):
+            receipt = copy.deepcopy(original)
+            receipt["outputs"]["first.png"]["bytes"] = size
+            storage.atomic_write(path, receipt)
+            self.assertFalse(batches.check(self.root, self.output)["ok"])
+        for name in ("../outside", "/tmp/x", "..", ".", "", "a\\b", "C:foo", "bad\0name"):
+            receipt = copy.deepcopy(original)
+            receipt["outputs"][name] = {"sha256": "f" * 64, "bytes": 0}
+            storage.atomic_write(path, receipt)
+            result = batches.check(self.root, self.output)
+            self.assertTrue(any("unsafe output name" in issue for issue in result["issues"]))
+        for field, value in (
+            ("schema", True),
+            ("schema", "1"),
+            ("errors", [False]),
+            ("frontend_manifest_sha256", "not-a-hash"),
+            ("dependencies", {"x": "bad"}),
+        ):
+            storage.atomic_write(path, dict(original, **{field: value}))
+            self.assertFalse(batches.check(self.root, self.output)["ok"])
+
+    def test_wrong_identity_errors_missing_files_and_symlinks_remain_failures(self):
+        self.export_fixture()
+        path = self.output / "first/receipt.json"
+        original = storage.read_object(path)
+        for key, value in (
+            ("story", "wrong"),
+            ("dependencies", {}),
+            ("errors", ["retained capture failure"]),
+            ("frontend_manifest_sha256", "f" * 64),
+        ):
+            storage.atomic_write(path, dict(original, **{key: value}))
+            self.assertFalse(batches.check(self.root, self.output)["ok"])
+        storage.atomic_write(path, original)
+        artifact = path.parent / "first.png"
+        artifact.unlink()
+        self.assertFalse(batches.check(self.root, self.output)["ok"])
+        artifact.symlink_to(path.parent / "poster.png")
+        result = batches.check(self.root, self.output)
+        self.assertTrue(any("symlink" in issue for issue in result["issues"]))
+
+    def test_decode_checks_dimensions_timing_and_decoder_failure(self):
+        stream = {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 720,
+            "nb_read_frames": "120",
+            "r_frame_rate": "24/1",
+        }
+        entry = self.batch.entries[0]
+
+        def probe(command, **kwargs):
+            return subprocess.CompletedProcess(command, 0, json.dumps({"streams": [stream]}))
+
+        with patch.object(subprocess, "run", side_effect=probe):
+            batches._decode(self.output / "video.mp4", entry)
+        for key, value in (
+            ("codec_name", "vp9"),
+            ("width", 640),
+            ("height", 360),
+            ("nb_read_frames", "119"),
+            ("r_frame_rate", "25/1"),
+        ):
+            invalid = {**stream, key: value}
+            with (
+                self.subTest(key=key),
+                patch.object(
+                    subprocess,
+                    "run",
+                    return_value=subprocess.CompletedProcess(
+                        [], 0, json.dumps({"streams": [invalid]})
+                    ),
+                ),
+            ):
+                with self.assertRaises(ValueError):
+                    batches._decode(self.output / "video.mp4", entry)
+        with patch.object(
+            subprocess,
+            "run",
+            side_effect=[
+                subprocess.CompletedProcess([], 0, json.dumps({"streams": [stream]})),
+                subprocess.CalledProcessError(1, "ffmpeg"),
+            ],
+        ):
+            with self.assertRaises(subprocess.CalledProcessError):
+                batches._decode(self.output / "video.mp4", entry)

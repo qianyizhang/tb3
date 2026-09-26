@@ -1,5 +1,7 @@
 const assert = require('node:assert/strict');
 const path = require('node:path');
+const fs = require('node:fs');
+const crypto = require('node:crypto');
 const { execFileSync } = require('node:child_process');
 const { loadFrontend } = require('./frontend_bundle.cjs');
 (async () => {
@@ -16,6 +18,7 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    storyPresentation,
     nativeFactory,
     isPlanarStory,
     Group,
@@ -24,12 +27,47 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     residualM,
     level0Point,
   } = await loadFrontend('expansion_fixture.mjs');
+  const baseline = JSON.parse(
+    fs.readFileSync(path.join(__dirname, 'fixtures/story-baseline.json')),
+  );
+  assert.equal(
+    plans.length,
+    baseline.stories.length,
+    'Review new sources rather than regenerating baseline witnesses',
+  );
   let frames = 0,
     native = 0;
   for (const plan of plans) {
     const snapshots = Array.from({ length: plan.durationFrames }, (_, frame) =>
       JSON.stringify(sampleStory(plan, frame)),
     );
+    const witness = baseline.stories.find((s) => s.id === plan.id);
+    assert.equal(plan.source_sha256, witness.source_sha256);
+    const oldStates = snapshots.map((value) => {
+      const state = JSON.parse(value);
+      delete state.operation;
+      delete state.showDeformedTarget;
+      return state;
+    });
+    assert.equal(
+      crypto.createHash('sha256').update(JSON.stringify(oldStates)).digest('hex'),
+      witness.state_sha256,
+      plan.id + ' pre-refactor state witness',
+    );
+    const renamed = structuredClone(plan);
+    renamed.id = 'renamed-story';
+    renamed.beats.forEach((beat, i) => {
+      beat.id = `renamed-${i}`;
+    });
+    assert.equal(
+      JSON.stringify(storyPresentation(plan)),
+      JSON.stringify(storyPresentation(renamed)),
+    );
+    for (const beat of plan.beats) {
+      const original = { ...sampleStory(plan, beat.endFrame - 1), beatId: null };
+      const other = { ...sampleStory(renamed, beat.endFrame - 1), beatId: null };
+      assert.equal(JSON.stringify(original), JSON.stringify(other), plan.id + ' rename semantics');
+    }
     frames += snapshots.length;
     for (const frame of [plan.durationFrames - 1, 0, ...plan.beats.map((b) => b.startFrame), 17]) {
       const state = sampleStory(plan, frame);

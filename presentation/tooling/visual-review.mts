@@ -5,6 +5,8 @@ import { pathToFileURL } from 'node:url';
 import type { Browser } from 'playwright';
 import type { ExplorerData } from '../frontend/contracts.generated.ts';
 import { withBrowser } from './browser.mts';
+import { createHash } from 'node:crypto';
+import type { ReviewCapture } from './review-samples.mts';
 
 export type ReviewMode = 'static' | '3d' | 'planar' | 'fallback';
 export interface ReviewEntry {
@@ -17,6 +19,7 @@ export interface ReviewEntry {
   missingMedia: number;
   images: string[];
   chapters?: string[];
+  captures?: ReviewCapture[];
 }
 export interface ReviewInventory {
   source: string;
@@ -99,12 +102,41 @@ export async function captureReview(
       );
       const name = entry.id.replace(/[^a-z0-9_-]/gi, '_');
       const images: string[] = [];
+      const captures: ReviewCapture[] = [];
+      const retain = async (
+        file: string,
+        requestedFrame: number | null,
+        phase: ReviewCapture['phase'],
+        beatId: string | null,
+      ) => {
+        const value = isStatic
+          ? null
+          : await page.locator('.scene-player').getAttribute('data-committed-frame');
+        const committedFrame = value !== null && /^\d+$/.test(value) ? Number(value) : null;
+        if (requestedFrame !== null && requestedFrame !== committedFrame)
+          throw Error(`Explorer did not commit requested frame ${requestedFrame}`);
+        images.push(file);
+        captures.push({
+          surface: 'explorer',
+          storyId: plan?.id ?? null,
+          sourceSha256: plan?.source_sha256 ?? null,
+          planSha256: plan ? createHash('sha256').update(JSON.stringify(plan)).digest('hex') : null,
+          entryScope: [entry.id],
+          beatId,
+          requestedFrame,
+          committedFrame,
+          phase,
+          renderer: mode,
+          viewport: { width: 1280, height: 1000 },
+          file,
+        });
+      };
       if (mode === 'static' || mode === 'fallback') {
         const file = `images/${name}.png`;
         await (isStatic ? staticView : page.locator('.scene-player')).screenshot({
           path: join(output, file),
         });
-        images.push(file);
+        await retain(file, null, 'displayed', null);
       } else {
         await page.waitForFunction(
           () =>
@@ -112,11 +144,24 @@ export async function captureReview(
         );
         for (let stage = 0; stage < (plan?.beats.length || 3); stage++) {
           if (stage) await page.locator(`[data-scene-step="${stage}"]`).click();
+          const beat = plan?.beats[stage];
+          if (beat)
+            await page.waitForFunction(
+              (frame) =>
+                document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+                String(frame),
+              beat.startFrame,
+            );
           const file = `images/${name}-${stage}.png`;
           await page
             .locator(plan ? '.scene-player' : '.scene-stage')
             .screenshot({ path: join(output, file) });
-          images.push(file);
+          await retain(
+            file,
+            beat?.startFrame ?? null,
+            beat ? 'start' : 'displayed',
+            beat?.id ?? null,
+          );
         }
       }
       rows.push({
@@ -128,6 +173,7 @@ export async function captureReview(
         sourceImage: /<img\b/.test(entry.visuals.input),
         missingMedia: entry.missing_media?.length || 0,
         images,
+        captures,
         chapters: plan?.beats.map((beat) => beat.caption),
       });
     }
@@ -151,6 +197,10 @@ export async function captureReview(
 
 function renderEntry(row: ReviewEntry): string {
   const images = row.images.map((path, i) => {
+    const capture = row.captures?.find((item) => item.file === path);
+    const identity = capture
+      ? `${capture.surface} · ${capture.phase} · requested ${capture.requestedFrame ?? 'unknown'} / committed ${capture.committedFrame ?? 'unknown'} · ${capture.viewport.width} × ${capture.viewport.height}`
+      : 'Legacy capture · surface, frame and phase unknown';
     const stage =
       row.mode === 'static'
         ? 'Input and output'
@@ -159,7 +209,7 @@ function renderEntry(row: ReviewEntry): string {
           : (row.chapters || ['Input', 'Action', 'Output'])[i];
     return `<figure>
       <img loading="lazy" src="${esc(path)}" alt="${esc(row.title)}: ${esc(stage)}">
-      <figcaption>${esc(stage)}</figcaption>
+      <figcaption>${esc(stage)}<br>${esc(identity)}</figcaption>
     </figure>`;
   });
   return `<article data-mode="${row.mode}">

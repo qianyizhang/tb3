@@ -66,12 +66,12 @@ export function storyPresentation(plan: StoryPlan): {
         heading: 'Coordinates and coverage · abstract planar explanation',
         corner: 'Abstract level-0 canvas · not histology',
         legend:
-          plan.id === 'wsi-coverage'
+          plan.operation === 'annotation-coverage'
             ? [
                 ['#307f74', 'Synthetic evaluated ROI'],
                 ['#a0a099', 'Unannotated / unknown', true],
               ]
-            : plan.id === 'wsi-search'
+            : plan.operation === 'coordinate-navigation'
               ? [
                   ['#b77128', 'Selected local point'],
                   ['#557e93', 'Viewport'],

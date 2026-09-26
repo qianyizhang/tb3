@@ -153,7 +153,7 @@ export function createCorrespondencePrefab(parent: THREE.Group): NativeContent {
       c.alive();
       if (state.recipe !== 'correspondence-v1') throw Error('Correspondence state required');
       deformation.forEach((point) => {
-        point.visible = state.beatId === 'scope';
+        point.visible = state.showDeformedTarget;
       });
       fixed.visible = state.transform < 0.995;
       movingRoot.position.copy(translation).multiplyScalar(state.transform);

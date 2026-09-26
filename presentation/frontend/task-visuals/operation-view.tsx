@@ -157,9 +157,9 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
     );
   if (state.recipe === 'inverse-v1') return <InverseScene plan={plan} state={state} />;
   if (state.recipe !== 'multiscale-v1') return <FamilyScene state={state} />;
-  if (plan.id === 'wsi-search') return <NavigationScene state={state} />;
-  const patches = plan.id === 'wsi-patches',
-    coverage = plan.id === 'wsi-coverage';
+  if (state.operation === 'coordinate-navigation') return <NavigationScene state={state} />;
+  const patches = state.operation === 'supplied-patches',
+    coverage = state.operation === 'annotation-coverage';
   const sx = 520 / m.width_level0,
     sy = 300 / m.height_level0;
   return (
@@ -286,7 +286,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
 }
 export function OperationOutput({ plan, state }: { plan: StoryPlan; state: StoryState }) {
   if (state.recipe === 'topology-v1') {
-    const inventory = plan.id === 'topology-inventory',
+    const inventory = state.operation === 'edge-inventory',
       edges = inventory
         ? graph.edges
         : graph.selected_edges.map((id) => graph.edges.find((e) => e.id === id)!);
@@ -365,7 +365,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
             </tr>
           </tbody>
         </table>
-        {state.beatId === 'scope' && (
+        {state.showDeformedTarget && (
           <p>
             Deformed-target rigid residual:{' '}
             {Math.max(
@@ -386,13 +386,13 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
     return (
       <aside className={styles.storyOutput}>
         <strong>
-          {plan.id === 'wsi-patches'
+          {state.operation === 'supplied-patches'
             ? 'One unfilled output per supplied ID'
-            : plan.id === 'wsi-coverage'
+            : state.operation === 'annotation-coverage'
               ? 'Six nonclinical teaching codes'
               : 'Coordinates retain origin and scale'}
         </strong>
-        {plan.id === 'wsi-patches' ? (
+        {state.operation === 'supplied-patches' ? (
           <>
             <p>Real task: 256² target + 1024² context; codes 0–6, with 0 = abstention.</p>
             <div className={styles.patchSlots}>
@@ -405,7 +405,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
             <p>No labels assigned. Twelve selected locations from one slide.</p>
             <code>{'{"labels":[{"id":"patch_ID","class":…}]}'}</code>
           </>
-        ) : plan.id === 'wsi-coverage' ? (
+        ) : state.operation === 'annotation-coverage' ? (
           <>
             <div className={styles.patchSlots}>
               {m.teaching_classes.map((c, i) => (

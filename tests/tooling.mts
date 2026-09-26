@@ -232,3 +232,33 @@ test('importing the media library performs no export or filesystem work', () => 
     rmSync(output, { recursive: true, force: true });
   }
 });
+
+test('canonical samples use half-open endpoints and deduplicate short beats', async () => {
+  const { reviewSamples } = await import('../presentation/tooling/review-samples.mts');
+  const plan = {
+    durationFrames: 8,
+    beats: [
+      { id: 'one', startFrame: 0, endFrame: 1 },
+      { id: 'two', startFrame: 1, endFrame: 3 },
+      { id: 'long', startFrame: 3, endFrame: 8 },
+    ],
+  };
+  assert.deepEqual(reviewSamples(plan), [
+    { beatId: 'one', frame: 0, phase: 'start' },
+    { beatId: 'two', frame: 2, phase: 'end' },
+    { beatId: 'long', frame: 7, phase: 'end' },
+  ]);
+  assert.deepEqual(
+    reviewSamples(plan, { motion: true }).map((s) => s.frame),
+    [0, 1, 2, 5, 7],
+  );
+  assert.throws(() => reviewSamples({ durationFrames: 0, beats: [] }));
+  assert.throws(() => reviewSamples({ ...plan, durationFrames: 9 }));
+  for (const endFrame of [0, -1, NaN, Infinity, 1.5])
+    assert.throws(() =>
+      reviewSamples({ durationFrames: endFrame, beats: [{ id: 'bad', startFrame: 0, endFrame }] }),
+    );
+  assert.throws(() =>
+    reviewSamples({ durationFrames: 3, beats: [{ id: 'gap', startFrame: 1, endFrame: 3 }] }),
+  );
+});

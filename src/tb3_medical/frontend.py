@@ -8,6 +8,7 @@ import json
 from collections.abc import Sequence
 from pathlib import Path
 
+from . import storage
 from .errors import MedicalError
 
 BUILD_DIR = Path(".local/frontend")
@@ -20,7 +21,6 @@ BUILD_INPUTS = (
     "presentation/tooling/python.mts",
     "src/tb3_medical/frontend.py",
     "src/tb3_medical/presentation_contracts.py",
-    "src/tb3_medical/explanation_stories.py",
     "presentation/assets/teaching-prefabs.json",
     "presentation/task-explorer/assets/Apache-2.0.txt",
 )
@@ -43,12 +43,7 @@ def input_hashes(root: Path) -> dict[str, str]:
         for path in (root / folder).rglob("*")
         if path.is_file()
     )
-    paths.extend(root.glob("groups/*/presentation/stories/*.story.md"))
-    paths.extend(root.glob("presentation/external-tasks/stories/*.story.md"))
-    return {
-        path.relative_to(root).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
-        for path in sorted(paths)
-    }
+    return {path.relative_to(root).as_posix(): storage.sha(path) for path in sorted(paths)}
 
 
 def assets(root: Path, entry: str) -> tuple[str, str]:

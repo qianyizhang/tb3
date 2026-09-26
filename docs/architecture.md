@@ -86,6 +86,7 @@ The installed entry point is `med = tb3_medical.cli:main` in
 | [evidence.py](../src/tb3_medical/evidence.py) | Pinned evidence inventories and explanation artifacts. |
 | [presentation.py](../src/tb3_medical/presentation.py), [task_catalog.py](../src/tb3_medical/task_catalog.py), [task_briefs.py](../src/tb3_medical/task_briefs.py) | Workbench build, composed task catalogues, validated briefs and the Task Explorer. |
 | [presentation_contracts.py](../src/tb3_medical/presentation_contracts.py), [frontend.py](../src/tb3_medical/frontend.py) | Canonical typed browser payloads, runtime validation, generated TypeScript and verified frontend build assets. |
+| [explanation_stories.py](../src/tb3_medical/explanation_stories.py), [story_authoring.py](../src/tb3_medical/story_authoring.py), [story_batches.py](../src/tb3_medical/story_batches.py) | Parse-once story compilation, explicit recipe semantics, unbound drafts, selected dependency snapshots and typed export-receipt verification. |
 | [datasets.py](../src/tb3_medical/datasets.py), [dataset_previews.py](../src/tb3_medical/dataset_previews.py), [media.py](../src/tb3_medical/media.py) | Dataset source/receipt contracts, pinned previews and explicit local media operations. |
 | [workload.py](../src/tb3_medical/workload.py) | Read-only, local workload report over an external Codex Usage Tracker index and workbench med results; generated output stays under `.local/`. |
 | [presentation/](../presentation/README.md) | React/TypeScript views, shared styles, reusable teaching assets and tour renderers; scientific stories and internal briefs live with groups. |
@@ -105,6 +106,16 @@ Import storage operations from `storage` and `MedicalError` from `errors`.
 Collection derives attempt ownership from retained execution receipts; callers
 do not supply a binding override. The `py.typed` marker ships package annotations;
 optional imaging/model dependencies remain separately provisioned.
+
+Renderer freshness covers maintained browser code and bundled assets. A selected
+story pins its own sources and compiler implementation/runtime lock context;
+capture/encoder inputs belong to export snapshots. Whole-catalogue validation
+remains a build gate without making every narrative an input to every bundle.
+Canonical sample selection is a pure tooling function; the existing export bridge,
+player and stage own capture. Explorer UX captures retain their distinct surface.
+See [canonical explainers](../presentation/EXPLAINERS.md) for compatibility and
+review semantics. These snapshots verify current sources and never assign
+scientific or visual acceptance.
 
 ## Execution, presentation and export boundaries
 

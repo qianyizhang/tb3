@@ -33,13 +33,12 @@ class FrontendTests(unittest.TestCase):
         with self.assertRaisesRegex(MedicalError, "stale"):
             frontend.assets(self.root, "explorer")
 
-    def test_story_and_fixture_changes_invalidate_build(self):
+    def test_story_is_independent_but_bundled_fixture_invalidates_build(self):
         install_frontend(self.root)
         story = self.root / "groups/test/presentation/stories/test.story.md"
         story.parent.mkdir(parents=True)
         story.write_text("canonical story")
-        with self.assertRaisesRegex(MedicalError, "stale"):
-            frontend.assets(self.root, "explorer")
+        frontend.assets(self.root, "explorer")
         install_frontend(self.root)
         fixture = self.root / "presentation/assets/teaching-fixtures/test/route.json"
         fixture.parent.mkdir(parents=True)
@@ -77,8 +76,7 @@ class FrontendTests(unittest.TestCase):
         frontend.assets(self.root, "explorer")
         story = self.root / "presentation/external-tasks/stories/accepted.story.md"
         story.write_text("A supported story path")
-        with self.assertRaisesRegex(MedicalError, "stale"):
-            frontend.assets(self.root, "explorer")
+        frontend.assets(self.root, "explorer")
 
 
 if __name__ == "__main__":

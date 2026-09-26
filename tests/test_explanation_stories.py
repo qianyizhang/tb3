@@ -8,7 +8,7 @@ import unittest
 from pathlib import Path
 
 from tb3_medical import explanation_stories as stories
-from tb3_medical import task_briefs, task_catalog
+from tb3_medical import storage, task_briefs, task_catalog
 from tb3_medical.errors import MedicalError
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,6 +16,25 @@ SOURCE = Path("groups/tubular-anatomy/presentation/stories/route-unfold-teaching
 
 
 class ExplanationStoriesTests(unittest.TestCase):
+    def test_schema_dispatch_uses_only_parsed_frontmatter(self):
+        route = (ROOT / SOURCE).read_text()
+        expansion = (ROOT / "presentation/external-tasks/stories/ct-forward.story.md").read_text()
+        with tempfile.TemporaryDirectory(dir=ROOT / ".local") as temp:
+            source = Path(temp) / "example.story.md"
+            for raw, expected in (
+                (route + "\n```yaml\nschema: 2\n```\n", 1),
+                (route.replace("\n", "\r\n"), 1),
+                (expansion.replace("schema: 2", "schema:   2  # supported version"), 2),
+            ):
+                with self.subTest(schema=expected):
+                    source.write_bytes(raw.encode())
+                    plan = stories.compile_story(ROOT, source)
+                    self.assertEqual(plan["schema"], expected)
+            for schema in ("true", "3", "'2'", "2.0"):
+                source.write_text(expansion.replace("schema: 2", "schema: " + schema))
+                with self.subTest(schema=schema), self.assertRaises(ValueError):
+                    stories.compile_story(ROOT, source)
+
     def test_parser_rejects_invalid_authoring(self):
         raw = (ROOT / SOURCE).read_text()
         cases = [
@@ -88,6 +107,10 @@ class ExplanationStoriesTests(unittest.TestCase):
                 ROOT / "presentation/assets/teaching-prefabs.json",
                 root / "presentation/assets/teaching-prefabs.json",
             )
+            for name in stories.COMPILER_SOURCES:
+                target = root / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(ROOT / name, target)
             source = root / SOURCE
             source.parent.mkdir(parents=True)
             source.write_bytes((ROOT / SOURCE).read_bytes())
@@ -125,5 +148,90 @@ class ExplanationStoriesTests(unittest.TestCase):
             (manifest.parent / "route.json").unlink()
             with self.assertRaises(FileNotFoundError):
                 stories.compile_story(root, source)
-            with self.assertRaisesRegex(ValueError, "escaped"):
-                stories.inside(root, "../outside")
+            with self.assertRaisesRegex(ValueError, "workspace-relative"):
+                storage.inside(root, "../outside")
+
+    def test_workspace_paths_reject_aliases_and_links_without_losing_valid_sources(self):
+        from unittest.mock import patch
+
+        raw = (ROOT / "presentation/external-tasks/stories/ct-forward.story.md").read_text()
+        with tempfile.TemporaryDirectory(dir=ROOT / ".local") as temp:
+            folder = Path(temp)
+            source = folder / "example.story.md"
+            original = stories.parse_document(raw)
+            valid = folder / "nested/source.md"
+            valid.parent.mkdir()
+            valid.write_text("Source")
+            link = folder / "link.md"
+            link.symlink_to(valid)
+            with patch.object(stories, "resolve_assets", side_effect=lambda *args: ("a" * 64, {})):
+                for locator in (
+                    str(valid),
+                    "../outside",
+                    str(link.relative_to(ROOT)),
+                    str(folder.relative_to(ROOT) / "nested/../nested/source.md"),
+                    str(folder.relative_to(ROOT) / "missing.md"),
+                ):
+                    source.write_text(raw.replace(original.header["source_locators"][0], locator))
+                    with self.subTest(locator=locator), self.assertRaises(ValueError):
+                        stories.compile_story(ROOT, source)
+                source.write_text(
+                    raw.replace(
+                        original.header["source_locators"][0], valid.relative_to(ROOT).as_posix()
+                    )
+                )
+                plan = stories.compile_story(ROOT, source)
+                self.assertEqual(
+                    plan["dependencies"][valid.relative_to(ROOT).as_posix()], storage.sha(valid)
+                )
+                valid.write_text("Revised source brief")
+                changed = stories.compile_story(ROOT, source)
+                self.assertEqual(plan["source_sha256"], changed["source_sha256"])
+                self.assertNotEqual(plan["dependencies"], changed["dependencies"])
+                alias = folder / "alias.story.md"
+                alias.symlink_to(source)
+                with self.assertRaisesRegex(ValueError, "symlink"):
+                    stories.compile_story(ROOT, alias)
+
+    def test_compiler_source_and_selected_story_freshness_are_separate_from_renderer(self):
+        from unittest.mock import patch
+
+        from frontend_fixture import install_frontend
+
+        from tb3_medical import frontend
+
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp).resolve()
+            install_frontend(root)
+            for name in stories.COMPILER_SOURCES:
+                target = root / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                if not target.exists():
+                    target.write_bytes((ROOT / name).read_bytes())
+            source = root / "story.md"
+            raw = (ROOT / SOURCE).read_text()
+            source.write_text(raw)
+            with patch.object(stories, "resolve_assets", side_effect=lambda *args: ("a" * 64, {})):
+                plan = stories.compile_story(root, source)
+                (root / "sibling.story.md").write_text("Unrelated")
+                self.assertEqual(stories.compile_story(root, source), plan)
+                frontend.assets(root, "explorer")
+                compiler = root / "src/tb3_medical/explanation_stories.py"
+                compiler.write_text(compiler.read_text() + "\n# changed compiler\n")
+                updated = stories.compile_story(root, source)
+                self.assertNotEqual(plan["dependencies"], updated["dependencies"])
+                frontend.assets(root, "explorer")
+                with self.assertRaisesRegex(ValueError, "Compiled story dependency changed"):
+                    stories.write_export(root, plan, root / "stale")
+                source.write_text(raw + "\nNew source text\n")
+                changed = stories.compile_story(root, source)
+                self.assertNotEqual(changed["source_sha256"], plan["source_sha256"])
+                frontend.assets(root, "explorer")
+
+            def drift(*args):
+                source.write_text(raw + "\nEdited during compilation\n")
+                return "a" * 64, {}
+
+            with patch.object(stories, "resolve_assets", side_effect=drift):
+                with self.assertRaisesRegex(ValueError, "Compiled story dependency changed"):
+                    stories.compile_story(root, source)

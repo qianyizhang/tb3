@@ -40,6 +40,18 @@ export async function checkReview(browser: Browser, site: string, reports: strin
     inventory.entries.map((entry) => entry.mode),
     ['3d', 'planar', 'static'],
   );
+  for (const entry of inventory.entries) {
+    assert.equal(entry.captures?.length, entry.images.length);
+    for (const capture of entry.captures!) {
+      assert.equal(capture.surface, 'explorer');
+      assert.deepEqual(capture.entryScope, [entry.id]);
+      if (capture.requestedFrame !== null) {
+        assert.equal(capture.requestedFrame, capture.committedFrame);
+        assert.equal(capture.phase, 'start');
+        assert.ok(capture.storyId && capture.sourceSha256 && capture.planSha256);
+      }
+    }
+  }
   assert.equal(inventory.summary.spatial, 1);
   assert.equal(inventory.summary.planar, 1);
   writeFileSync(join(output, 'inventory.json'), JSON.stringify(inventory, null, 2) + '\n');

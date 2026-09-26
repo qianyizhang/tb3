@@ -56,10 +56,12 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("story", help="Draft, check and review canonical task stories")
     story_sub = p.add_subparsers(dest="story_command", required=True)
     story_sub.add_parser("recipes", help="Inspect supported draft recipes and channels")
+    story_sub.add_parser("export-context", help="Inspect checked renderer and exporter inputs")
     s = story_sub.add_parser("new", help="Create an unbound draft in its catalogue owner")
     s.add_argument("entry")
     s.add_argument("id")
     s.add_argument("--recipe", required=True)
+    s.add_argument("--operation", help="Explicit recipe operation; see med story recipes")
     s.add_argument("--acquisition", choices=["ct-parallel", "mri-cartesian"])
     s.add_argument("--catalog", default=task_catalog.DEFAULT_CATALOG)
     s.add_argument("--preview", action="store_true")
@@ -297,6 +299,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
             if args.story_command == "recipes":
                 result = [asdict(recipe) for recipe in story_authoring.recipes()]
+            elif args.story_command == "export-context":
+                result = story_batches.export_context(root)
             elif args.story_command == "new":
                 result = story_authoring.new(
                     root,
@@ -304,6 +308,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     args.id,
                     recipe=args.recipe,
                     acquisition=args.acquisition,
+                    operation=args.operation,
                     catalog=args.catalog,
                     preview=args.preview,
                 )

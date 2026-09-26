@@ -35,6 +35,7 @@ export function sampleStory(plan: StoryPlan, requested: number) {
       return Object.freeze({
         ...common,
         recipe: plan.recipe,
+        operation: plan.operation,
         focus: channel(b.channels.focus),
         trace: channel(b.channels.trace),
         inventory: channel(b.channels.inventory),
@@ -45,6 +46,7 @@ export function sampleStory(plan: StoryPlan, requested: number) {
       return Object.freeze({
         ...common,
         recipe: plan.recipe,
+        showDeformedTarget: b.show_deformed_target,
         transform: channel(b.channels.transform),
         query: channel(b.channels.query),
         residual: channel(b.channels.residual),
@@ -75,6 +77,7 @@ export function sampleStory(plan: StoryPlan, requested: number) {
       return Object.freeze({
         ...common,
         recipe: plan.recipe,
+        operation: plan.operation,
         viewport: channel(b.channels.viewport),
         selections: channel(b.channels.selections),
         coverage: channel(b.channels.coverage),

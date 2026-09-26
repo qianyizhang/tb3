@@ -121,6 +121,7 @@ class TopologyBeat(ExpansionBeat):
 
 class TopologyPlan(ExpansionPlan):
     recipe: Literal["topology-v1"]
+    operation: Literal["ordered-path", "edge-inventory"]
     beats: list[TopologyBeat]
 
 
@@ -131,6 +132,7 @@ class CorrespondenceChannels(TypedDict):
 
 
 class CorrespondenceBeat(ExpansionBeat):
+    show_deformed_target: bool
     channels: CorrespondenceChannels
 
 
@@ -182,6 +184,7 @@ class MultiscaleBeat(ExpansionBeat):
 
 class MultiscalePlan(ExpansionPlan):
     recipe: Literal["multiscale-v1"]
+    operation: Literal["coordinate-navigation", "supplied-patches", "annotation-coverage"]
     beats: list[MultiscaleBeat]
 
 

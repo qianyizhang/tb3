@@ -9,9 +9,9 @@ import sys
 from collections.abc import Sequence
 from html import escape
 from pathlib import Path
-from typing import Literal
+from typing import Annotated, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, field_validator
 
 from . import explanation_stories as stories
 from . import frontend, storage, story_authoring, task_catalog
@@ -24,11 +24,12 @@ EXPORT_SOURCES = (
     "presentation/tooling/media/stories.mts",
     "presentation/tooling/media/capture.mts",
     "presentation/tooling/media/encoder.mts",
-    "presentation/tooling/media/tours.mts",
-    "presentation/tooling/media/tour-plan.mts",
+    "presentation/tooling/review-samples.mts",
+    "presentation/tooling/visual-review.mts",
     "presentation/tooling/browser.mts",
     "presentation/tooling/python.mts",
     "src/tb3_medical/cli.py",
+    "src/tb3_medical/story_batches.py",
     "tsconfig.tooling.json",
     "presentation/ui.css",
 )
@@ -43,6 +44,56 @@ REQUIRED_OUTPUTS = {
     "first.png",
     "poster.png",
 }
+
+SHA256 = Annotated[str, Field(strict=True, pattern=r"^[a-f0-9]{64}$")]
+
+
+class OutputFingerprint(BaseModel):
+    model_config = ConfigDict(extra="allow", frozen=True)
+    sha256: SHA256
+    bytes: Annotated[StrictInt, Field(ge=0)]
+
+
+class ExportReceipt(BaseModel):
+    """Consumed schema-1 fields; keep the producer's additional provenance intact."""
+
+    model_config = ConfigDict(extra="allow", frozen=True)
+    schema_version: Annotated[StrictInt, Field(alias="schema", ge=1, le=1)]
+    story: Annotated[str, Field(strict=True, min_length=1)]
+    dependencies: dict[str, SHA256]
+    frontend_manifest_sha256: SHA256
+    errors: list[Annotated[str, Field(strict=True)]]
+    outputs: dict[str, OutputFingerprint]
+    exporter_dependencies: dict[str, SHA256] | None = None
+
+    @field_validator("outputs", mode="before")
+    @classmethod
+    def safe_names(cls, value: object) -> object:
+        if isinstance(value, dict):
+            for name in value:
+                if (
+                    not isinstance(name, str)
+                    or name in {"", ".", ".."}
+                    or any(char in name for char in ("/", "\\", "\0", ":"))
+                ):
+                    raise ValueError("unsafe output name")
+        return value
+
+
+def read_receipt(path: Path) -> ExportReceipt:
+    return ExportReceipt.model_validate_json(path.read_bytes())
+
+
+def export_context(root: Path) -> Document:
+    """Read the existing export boundary's identity; never launch a browser."""
+    frontend.assets(root, "explainer-export")
+    return {
+        "exporter_dependencies": {
+            name: storage.sha(storage.inside(root, name)) for name in EXPORT_SOURCES
+        },
+        "frontend_manifest_sha256": storage.sha(root / frontend.BUILD_DIR / "manifest.json"),
+        "python_version": sys.version,
+    }
 
 
 class BatchEntry(BaseModel):
@@ -92,8 +143,8 @@ def new(
         raise MedicalError("Batch needs a fresh output directory")
     if not entry_ids or len(set(entry_ids)) != len(entry_ids):
         raise MedicalError("Select distinct catalogue entries")
-    frontend.assets(root, "explainer-export")
-    dependencies = {name: storage.sha(root / name) for name in EXPORT_SOURCES}
+    context = export_context(root)
+    dependencies = dict(context["exporter_dependencies"])
     entries = []
     selected_stories: set[str] = set()
     for entry_id in entry_ids:
@@ -123,7 +174,7 @@ def new(
         entries=tuple(entries),
         stills_only=stills_only,
         frontend_inputs=frontend.input_hashes(root),
-        frontend_manifest_sha256=storage.sha(root / frontend.BUILD_DIR / "manifest.json"),
+        frontend_manifest_sha256=context["frontend_manifest_sha256"],
         dependencies=dependencies,
     )
     output.mkdir(parents=True, exist_ok=False)
@@ -219,32 +270,31 @@ def check(root: Path, output: Path, *, decode: bool = False) -> Document:
     for entry in batch.entries:
         folder = output / entry.story_id
         try:
-            receipt = storage.read_object(folder / "receipt.json")
-            plan = storage.read_object(folder / "plan.json")
-            if receipt["story"] != entry.story_id or plan["id"] != entry.story_id:
+            receipt = read_receipt(storage.inside(output, f"{entry.story_id}/receipt.json"))
+            plan = storage.read_object(storage.inside(output, f"{entry.story_id}/plan.json"))
+            if receipt.story != entry.story_id or plan["id"] != entry.story_id:
                 raise ValueError("story identity differs")
             if (
-                receipt["dependencies"] != entry.dependencies
+                receipt.dependencies != entry.dependencies
                 or plan["dependencies"] != entry.dependencies
             ):
                 raise ValueError("story dependencies differ")
-            if receipt["frontend_manifest_sha256"] != batch.frontend_manifest_sha256:
+            if receipt.frontend_manifest_sha256 != batch.frontend_manifest_sha256:
                 raise ValueError("frontend fingerprint differs")
-            if receipt["errors"]:
+            if receipt.exporter_dependencies is not None and any(
+                batch.dependencies.get(name) != expected
+                for name, expected in receipt.exporter_dependencies.items()
+            ):
+                raise ValueError("exporter dependencies differ")
+            if receipt.errors:
                 raise ValueError("exporter reported page/network errors")
-            outputs = receipt["outputs"]
+            outputs = receipt.outputs
             required = REQUIRED_OUTPUTS | (set() if batch.stills_only else {entry.video_name})
             if not required.issubset(outputs):
                 raise ValueError("required export artifacts are missing from receipt")
             for name, expected in outputs.items():
-                if Path(name).name != name:
-                    raise ValueError("unsafe output name")
-                path = folder / name
-                if (
-                    path.is_symlink()
-                    or path.stat().st_size != expected["bytes"]
-                    or storage.sha(path) != expected["sha256"]
-                ):
+                path = storage.inside(output, f"{entry.story_id}/{name}")
+                if path.stat().st_size != expected.bytes or storage.sha(path) != expected.sha256:
                     raise ValueError(f"output fingerprint differs: {name}")
             if decode and not batch.stills_only:
                 _decode(folder / entry.video_name, entry)
@@ -255,7 +305,7 @@ def check(root: Path, output: Path, *, decode: bool = False) -> Document:
                     "receipt_sha256": storage.sha(folder / "receipt.json"),
                 }
             )
-        except (OSError, ValueError, KeyError, TypeError, subprocess.CalledProcessError) as exc:
+        except (OSError, ValueError, MedicalError, KeyError, subprocess.CalledProcessError) as exc:
             issues.append(f"{entry.story_id}: {exc}")
     return {"ok": not issues, "exports": checked, "issues": issues, "visual_review": "pending"}
 

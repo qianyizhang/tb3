@@ -20,6 +20,7 @@ class Recipe:
     asset_pack: str
     channels: tuple[str, ...]
     acquisitions: tuple[str, ...]
+    operations: tuple[str, ...]
 
 
 def recipes() -> tuple[Recipe, ...]:
@@ -38,6 +39,7 @@ def recipes() -> tuple[Recipe, ...]:
                 stories.RECIPE_PACKS[recipe],
                 tuple(channels["properties"]),
                 tuple(fields.get("acquisition", {}).get("enum", ())),
+                tuple(fields.get("operation", {}).get("enum", ())),
             )
         )
     return tuple(result)
@@ -71,6 +73,7 @@ def new(
     *,
     recipe: str,
     acquisition: str | None = None,
+    operation: str | None = None,
     catalog: str = task_catalog.DEFAULT_CATALOG,
     preview: bool = False,
 ) -> Document:
@@ -85,6 +88,10 @@ def new(
         not spec.acquisitions and acquisition is not None
     ):
         raise MedicalError(f"Recipe acquisition must be one of {spec.acquisitions or (None,)}")
+    if (spec.operations and operation not in spec.operations) or (
+        not spec.operations and operation is not None
+    ):
+        raise MedicalError(f"Recipe operation must be one of {spec.operations or (None,)}")
     leaf, entry = entry_owner(root, entry_id, catalog)
     brief = storage.inside(root, entry["brief"])
     if not brief.is_file():
@@ -116,6 +123,8 @@ def new(
         "fps": 24,
         "source_locators": [brief.relative_to(root).as_posix()],
     }
+    if operation is not None:
+        header["operation"] = operation
     if acquisition is not None:
         header["acquisition"] = acquisition
     content = "---\n" + yaml.safe_dump(header, sort_keys=False, allow_unicode=True) + "---\n"
@@ -129,6 +138,8 @@ def new(
             "visual": f"[[AUTHOR: {name} visible operation and witness]]",
             "channels": {channel: [0.0, 0.0] for channel in spec.channels},
         }
+        if recipe == "correspondence-v1":
+            beat["show_deformed_target"] = False
         content += f"\n## {name}\n\n```beat\n" + yaml.safe_dump(beat, sort_keys=False) + "```\n"
     if not preview:
         destination.parent.mkdir(parents=True, exist_ok=True)

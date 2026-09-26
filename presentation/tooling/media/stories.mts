@@ -10,6 +10,8 @@ import { withBrowser } from '../browser.mts';
 import { runPython } from '../python.mts';
 import { runPipedEncoder } from './encoder.mts';
 import { captureComposedFrame } from './capture.mts';
+import { reviewSamples, type ReviewCapture } from '../review-samples.mts';
+import { renderReview, reviewMode } from '../visual-review.mts';
 
 const sha = (bytes: string | Buffer) => crypto.createHash('sha256').update(bytes).digest('hex');
 export interface StoryOptions {
@@ -21,6 +23,15 @@ export interface StoryOptions {
 export async function exportStory(root: string, options: StoryOptions): Promise<void> {
   const output = path.resolve(options.output);
   if (fs.existsSync(output)) throw Error('Story exports require a fresh output directory');
+  const context = () =>
+    JSON.parse(
+      runPython(root, ['-m', 'tb3_medical.cli', '--root', root, 'story', 'export-context']),
+    ) as {
+      exporter_dependencies: Record<string, string>;
+      frontend_manifest_sha256: string;
+      python_version: string;
+    };
+  const exportContext = context();
   runPython(root, [
     '-m',
     'tb3_medical.cli',
@@ -52,6 +63,8 @@ export async function exportStory(root: string, options: StoryOptions): Promise<
   );
   const receipt = {
     schema: 1,
+    ...exportContext,
+    samples: [] as ReviewCapture[],
     story: plan.id,
     revision: git('rev-parse', 'HEAD').trim(),
     dirty_sources: dirty,
@@ -59,9 +72,6 @@ export async function exportStory(root: string, options: StoryOptions): Promise<
     source_sha256: plan.source_sha256,
     plan_sha256: sha(fs.readFileSync(path.join(output, 'plan.json'))),
     dependencies: plan.dependencies,
-    frontend_manifest_sha256: sha(
-      fs.readFileSync(path.join(root, '.local/frontend/manifest.json')),
-    ),
     lockfile_sha256: sha(fs.readFileSync(path.join(root, 'package-lock.json'))),
     os: { platform: os.platform(), release: os.release(), arch: os.arch() },
     locale: plan.locale,
@@ -86,91 +96,159 @@ export async function exportStory(root: string, options: StoryOptions): Promise<
     browser: '',
     renderer: '',
   };
-  await withBrowser(async (browser) => {
-    receipt.browser = browser.version();
-    const context = await browser.newContext({
-      viewport: { width: 1280, height: 720 },
-      deviceScaleFactor: 1,
-      reducedMotion: 'reduce',
-    });
-    await context.route(/^https?:/, (route) => {
-      receipt.errors.push('Forbidden remote request: ' + route.request().url());
-      return route.abort();
-    });
-    const page = await context.newPage();
-    page.on('pageerror', (e) => receipt.errors.push(e.message));
-    await page.goto(pathToFileURL(path.join(output, 'index.html')).href + '?capture=1');
-    await page.waitForFunction(() => window.__tb3ExplainerCapture);
-    const capture = (frame: number) =>
-      captureComposedFrame(page, { frame, fps: plan.fps, width: 1280, height: 720 });
-    fs.writeFileSync(path.join(output, 'first.png'), await capture(0));
-    const stills = [];
-    for (const beat of plan.beats) {
-      const frame = beat.endFrame - 1,
-        file = `${beat.id}.png`;
-      fs.writeFileSync(path.join(output, file), await capture(frame));
-      stills.push({ frame, file, caption: beat.caption, narration: beat.narration });
-    }
-    fs.writeFileSync(path.join(output, 'stills.json'), JSON.stringify(stills, null, 2) + '\n');
-    const posterBeat =
-      plan.beats.find((beat) => 'output' in beat && beat.output?.every((value) => value === 1)) ||
-      plan.beats.at(-1)!;
-    fs.copyFileSync(path.join(output, `${posterBeat.id}.png`), path.join(output, 'poster.png'));
-    if (!options.stillsOnly)
-      await runPipedEncoder({
-        command: process.env.FFMPEG || 'ffmpeg',
-        args: [
-          '-hide_banner',
-          '-loglevel',
-          'error',
-          '-y',
-          '-f',
-          'image2pipe',
-          '-vcodec',
-          'png',
-          '-framerate',
-          String(plan.fps),
-          '-i',
-          'pipe:0',
-          '-an',
-          '-c:v',
-          'libx264',
-          '-preset',
-          'slow',
-          '-crf',
-          '18',
-          '-pix_fmt',
-          'yuv420p',
-          '-movflags',
-          '+faststart',
-        ],
-        destination: path.join(output, plan.schema === 1 ? 'route-unfold.mp4' : plan.id + '.mp4'),
-        renderFrames: async (writeFrame) => {
-          for (let frame = 0; frame < plan.durationFrames; frame++) {
-            await writeFrame(await capture(frame));
-            if (frame % (plan.fps * 4) === 0)
-              console.log(`Story ${plan.id}: ${frame}/${plan.durationFrames} frames`);
-          }
-        },
+  try {
+    await withBrowser(async (browser) => {
+      receipt.browser = browser.version();
+      const context = await browser.newContext({
+        viewport: { width: 1280, height: 720 },
+        deviceScaleFactor: 1,
+        reducedMotion: 'reduce',
       });
-    receipt.renderer = await page.evaluate(() => {
-      if (
-        document.querySelector<HTMLElement>('.scene-player')?.dataset.surfaceRenderer === 'planar'
-      )
-        return 'DOM/SVG planar';
-      const gl = document.querySelector('canvas')?.getContext('webgl2');
-      if (!gl) throw Error('Missing export WebGL renderer');
-      const ext = gl.getExtension('WEBGL_debug_renderer_info');
-      return ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER);
+      await context.route(/^https?:/, (route) => {
+        receipt.errors.push('Forbidden remote request: ' + route.request().url());
+        return route.abort();
+      });
+      const page = await context.newPage();
+      page.on('pageerror', (e) => receipt.errors.push(e.message));
+      await page.goto(pathToFileURL(path.join(output, 'index.html')).href + '?capture=1');
+      await page.waitForFunction(() => window.__tb3ExplainerCapture);
+      const capture = (frame: number) =>
+        captureComposedFrame(page, { frame, fps: plan.fps, width: 1280, height: 720 });
+      const viewport = { width: 1280, height: 720 };
+      for (const sample of reviewSamples(plan)) {
+        const file = sample.phase === 'start' ? 'first.png' : `${sample.beatId}.png`;
+        fs.writeFileSync(path.join(output, file), await capture(sample.frame));
+        const player = page.locator('.scene-player');
+        receipt.samples.push({
+          surface: 'explainer-export',
+          storyId: plan.id,
+          sourceSha256: plan.source_sha256,
+          planSha256: receipt.plan_sha256,
+          entryScope: [],
+          beatId: sample.beatId,
+          requestedFrame: sample.frame,
+          committedFrame: Number(await player.getAttribute('data-committed-frame')),
+          phase: sample.phase,
+          renderer: (await player.getAttribute('data-surface-renderer'))!,
+          viewport,
+          file,
+        });
+      }
+      const stills = plan.beats.map((beat) => {
+        const sample = receipt.samples.find(
+          (s) => s.beatId === beat.id && s.requestedFrame === beat.endFrame - 1,
+        )!;
+        const file = `${beat.id}.png`;
+        if (file !== sample.file)
+          fs.copyFileSync(path.join(output, sample.file), path.join(output, file));
+        return { frame: beat.endFrame - 1, file, caption: beat.caption, narration: beat.narration };
+      });
+      fs.writeFileSync(path.join(output, 'stills.json'), JSON.stringify(stills, null, 2) + '\n');
+      const posterBeat =
+        plan.beats.find((beat) => 'output' in beat && beat.output?.every((value) => value === 1)) ||
+        plan.beats.at(-1)!;
+      fs.copyFileSync(path.join(output, `${posterBeat.id}.png`), path.join(output, 'poster.png'));
+      if (!options.stillsOnly)
+        await runPipedEncoder({
+          command: process.env.FFMPEG || 'ffmpeg',
+          args: [
+            '-hide_banner',
+            '-loglevel',
+            'error',
+            '-y',
+            '-f',
+            'image2pipe',
+            '-vcodec',
+            'png',
+            '-framerate',
+            String(plan.fps),
+            '-i',
+            'pipe:0',
+            '-an',
+            '-c:v',
+            'libx264',
+            '-preset',
+            'slow',
+            '-crf',
+            '18',
+            '-pix_fmt',
+            'yuv420p',
+            '-movflags',
+            '+faststart',
+          ],
+          destination: path.join(output, plan.schema === 1 ? 'route-unfold.mp4' : plan.id + '.mp4'),
+          renderFrames: async (writeFrame) => {
+            for (let frame = 0; frame < plan.durationFrames; frame++) {
+              await writeFrame(await capture(frame));
+              if (frame % (plan.fps * 4) === 0)
+                console.log(`Story ${plan.id}: ${frame}/${plan.durationFrames} frames`);
+            }
+          },
+        });
+      receipt.renderer = await page.evaluate(() => {
+        if (
+          document.querySelector<HTMLElement>('.scene-player')?.dataset.surfaceRenderer === 'planar'
+        )
+          return 'DOM/SVG planar';
+        const gl = document.querySelector('canvas')?.getContext('webgl2');
+        if (!gl) throw Error('Missing export WebGL renderer');
+        const ext = gl.getExtension('WEBGL_debug_renderer_info');
+        return ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER);
+      });
+      await context.close();
     });
-    await context.close();
-  });
-  for (const name of fs.readdirSync(output))
-    receipt.outputs[name] = {
-      sha256: sha(fs.readFileSync(path.join(output, name))),
-      bytes: fs.statSync(path.join(output, name)).size,
-    };
-  fs.writeFileSync(path.join(output, 'receipt.json'), JSON.stringify(receipt, null, 2) + '\n');
+  } catch (error) {
+    receipt.errors.push(error instanceof Error ? error.message : String(error));
+    throw error;
+  } finally {
+    // Preserve failed captures and reject mixed source snapshots, including single exports.
+    try {
+      if (JSON.stringify(context()) !== JSON.stringify(exportContext))
+        throw Error('Exporter or frontend source changed during capture');
+      for (const [name, expected] of Object.entries(plan.dependencies))
+        if (sha(fs.readFileSync(path.join(root, name))) !== expected)
+          throw Error(`Story source changed during capture: ${name}`);
+    } catch (error) {
+      receipt.errors.push(error instanceof Error ? error.message : String(error));
+    }
+    const mode = receipt.samples.length ? reviewMode(receipt.samples[0].renderer) : 'static';
+    fs.writeFileSync(
+      path.join(output, 'review.html'),
+      renderReview({
+        source: 'plan.json',
+        summary: {
+          entries: 1,
+          spatial: Number(mode === '3d'),
+          planar: Number(mode === 'planar'),
+          static: Number(mode === 'static'),
+          sourceImages: 0,
+          errors: receipt.errors,
+        },
+        entries: [
+          {
+            id: plan.id,
+            title: plan.title,
+            kind: plan.recipe,
+            mode,
+            disposition: 'Canonical samples; entry bindings and visual acceptance not assessed',
+            sourceImage: false,
+            missingMedia: 0,
+            images: receipt.samples.map((s) => s.file),
+            chapters: receipt.samples.map(
+              (s) => plan.beats.find((b) => b.id === s.beatId)!.caption,
+            ),
+            captures: receipt.samples,
+          },
+        ],
+      }),
+    );
+    for (const name of fs.readdirSync(output))
+      receipt.outputs[name] = {
+        sha256: sha(fs.readFileSync(path.join(output, name))),
+        bytes: fs.statSync(path.join(output, name)).size,
+      };
+    fs.writeFileSync(path.join(output, 'receipt.json'), JSON.stringify(receipt, null, 2) + '\n');
+  }
   if (receipt.errors.length) throw Error(receipt.errors.join('\n'));
   console.log(`Integrated story exported: ${output}`);
 }

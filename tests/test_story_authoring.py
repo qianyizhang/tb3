@@ -1,5 +1,6 @@
 """Drafting respects nested ownership, existing bindings and authoring boundaries."""
 
+import itertools
 import json
 import re
 import tempfile
@@ -48,7 +49,9 @@ class StoryAuthoringTests(unittest.TestCase):
 
     def test_every_recipe_draft_uses_the_compilers_actual_channel_contract(self):
         for recipe in author.recipes():
-            for acquisition in recipe.acquisitions or (None,):
+            for acquisition, operation in itertools.product(
+                recipe.acquisitions or (None,), recipe.operations or (None,)
+            ):
                 with self.subTest(recipe=recipe.id, acquisition=acquisition):
                     result = author.new(
                         self.root,
@@ -56,6 +59,7 @@ class StoryAuthoringTests(unittest.TestCase):
                         "draft",
                         recipe=recipe.id,
                         acquisition=acquisition,
+                        operation=operation,
                         preview=True,
                     )
                     raw = re.sub(r"\[\[AUTHOR:.*?\]\]", "Authored explanation", result["content"])

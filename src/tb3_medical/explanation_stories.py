@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 import re
+from dataclasses import dataclass
 from html import escape
 from pathlib import Path
 from typing import Annotated, Literal, Self, cast
@@ -14,15 +14,33 @@ from pydantic import (
     BaseModel,
     ConfigDict,
     Field,
+    StrictBool,
     StrictFloat,
     StrictInt,
     TypeAdapter,
     model_validator,
 )
 
+from . import storage
 from .errors import MedicalError
 from .presentation_contracts import StoryBeat, StoryPlan
 from .types import Document
+
+# Explicit compiler identity stays with selected plans, not renderer bundle freshness.
+COMPILER_SOURCES = (
+    "src/tb3_medical/explanation_stories.py",
+    "src/tb3_medical/presentation_contracts.py",
+    "src/tb3_medical/storage.py",
+    "src/tb3_medical/errors.py",
+    "src/tb3_medical/types.py",
+    "pyproject.toml",
+    "uv.lock",
+)
+
+
+def compiler_hashes(root: Path) -> dict[str, str]:
+    return {name: storage.sha(storage.inside(root, name)) for name in COMPILER_SOURCES}
+
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
@@ -156,10 +174,16 @@ class Story[Channels: Closed](Closed):
 
 class TopologyStory(Story[TopologyChannels]):
     recipe: Literal["topology-v1"]
+    operation: Literal["ordered-path", "edge-inventory"]
+
+
+class CorrespondenceBeat(ExpansionBeat[CorrespondenceChannels]):
+    show_deformed_target: StrictBool
 
 
 class CorrespondenceStory(Story[CorrespondenceChannels]):
     recipe: Literal["correspondence-v1"]
+    beats: tuple[CorrespondenceBeat, ...]
 
 
 class MaterialStory(Story[MaterialChannels]):
@@ -172,6 +196,7 @@ class LongitudinalStory(Story[LongitudinalChannels]):
 
 class MultiscaleStory(Story[MultiscaleChannels]):
     recipe: Literal["multiscale-v1"]
+    operation: Literal["coordinate-navigation", "supplied-patches", "annotation-coverage"]
 
 
 class InverseStory(Story[InverseChannels]):
@@ -290,15 +315,68 @@ class Beat(Closed):
         return self
 
 
-def parse_story(raw: str) -> tuple[Header, tuple[Beat, ...]]:
+@dataclass(frozen=True)
+class StoryDocument:
+    """Parsed authoring syntax; recipe models validate its values without reading files."""
+
+    header: dict[str, object]
+    beats: tuple[dict[str, object], ...]
+
+    @property
+    def schema(self) -> int:
+        version = self.header.get("schema")
+        if type(version) is not int or version not in (1, 2):
+            raise ValueError("Story schema must be the integer 1 or 2")
+        return version
+
+
+def parse_document(raw: str) -> StoryDocument:
+    # Normalize line endings for syntax only. Compilation hashes and copies original bytes.
+    raw = raw.replace("\r\n", "\n")
     match = re.match(r"\A---\n(.*?)\n---\n", raw, re.S)
     if not match:
         raise ValueError("Expected YAML frontmatter")
-    header = Header.model_validate(yaml.load(match[1], Loader=UniqueLoader))
-    blocks = re.findall(r"^```beat\n(.*?)^```\s*$", raw, re.M | re.S)
-    if len(blocks) != len(re.findall(r"^```beat\s*$", raw, re.M)):
+
+    def mapping(text: str, context: str) -> dict[str, object]:
+        value = yaml.load(text, Loader=UniqueLoader)
+        if not isinstance(value, dict):
+            raise ValueError(f"Expected {context} mapping")
+        return cast(dict[str, object], value)
+
+    header = mapping(match[1], "frontmatter")
+    if "beats" in header:
+        raise ValueError("Beats belong in fenced blocks")
+    # A small fence scanner keeps examples inside other code fences out of the story.
+    beats = []
+    fence: str | None = None
+    block: list[str] | None = None
+    for line in raw[match.end() :].splitlines():
+        if fence is not None:
+            if re.fullmatch(re.escape(fence) + r"\s*", line):
+                if block is not None:
+                    beats.append(mapping("\n".join(block), "beat"))
+                fence, block = None, None
+            elif block is not None:
+                block.append(line)
+        elif opening := re.match(r"^(`{3,}|~{3,})(.*)$", line):
+            fence, info = opening.groups()
+            if info.strip() == "beat":
+                if fence != "```" or info != "beat":
+                    raise ValueError("Unclosed or malformed beat block")
+                block = []
+            elif info.strip().startswith("beat"):
+                raise ValueError("Unclosed or malformed beat block")
+    if block is not None:
         raise ValueError("Unclosed or malformed beat block")
-    beats = tuple(Beat.model_validate(yaml.load(block, Loader=UniqueLoader)) for block in blocks)
+    document = StoryDocument(header, tuple(beats))
+    _ = document.schema  # Validate before dispatch, including direct parse callers.
+    return document
+
+
+def parse_story(raw: str | StoryDocument) -> tuple[Header, tuple[Beat, ...]]:
+    document = parse_document(raw) if isinstance(raw, str) else raw
+    header = Header.model_validate(document.header)
+    beats = tuple(Beat.model_validate(beat) for beat in document.beats)
     if not beats or len({beat.id for beat in beats}) != len(beats):
         raise ValueError("Missing beats or duplicate beat IDs")
     for beat in beats:
@@ -309,7 +387,7 @@ def parse_story(raw: str) -> tuple[Header, tuple[Beat, ...]]:
 
 
 def parse_expansion(
-    raw: str,
+    raw: str | StoryDocument,
 ) -> (
     TopologyStory
     | CorrespondenceStory
@@ -320,37 +398,67 @@ def parse_expansion(
     | EditStory
     | AnatomyStory
 ):
-    match = re.match(r"\A---\n(.*?)\n---\n", raw, re.S)
-    if not match:
-        raise ValueError("Expected YAML frontmatter")
-    obj = yaml.load(match[1], Loader=UniqueLoader)
-    if not isinstance(obj, dict) or "beats" in obj:
-        raise ValueError("Beats belong in fenced blocks")
-    blocks = re.findall(r"^```beat\n(.*?)^```\s*$", raw, re.M | re.S)
-    if len(blocks) != len(re.findall(r"^```beat\s*$", raw, re.M)):
-        raise ValueError("Unclosed or malformed beat block")
-    obj["beats"] = [yaml.load(block, Loader=UniqueLoader) for block in blocks]
-    return ADAPTER.validate_python(obj)
+    document = parse_document(raw) if isinstance(raw, str) else raw
+    return ADAPTER.validate_python({**document.header, "beats": document.beats})
 
 
-def digest(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+# Compatibility is limited to these exact pre-refactor sources (0ea91a5).
+# New or edited sources must declare their semantics; IDs alone never opt in.
+LEGACY_SEMANTICS = {
+    "groups/lesion-localization/presentation/stories/wsi-search.story.md": (
+        "f17d8e4d9472d19e4413fb1518680ad14b17f8249ddd5573242c557e8fcf564d",
+        "multiscale-v1",
+        "coordinate-navigation",
+    ),
+    "groups/lesion-localization/presentation/stories/wsi-patches.story.md": (
+        "2e9611245dcf9bf2bdf2be4ee639bea980cbcc8c1c1cc7e80fa1112a2b8f287b",
+        "multiscale-v1",
+        "supplied-patches",
+    ),
+    "groups/lesion-localization/presentation/stories/wsi-coverage.story.md": (
+        "a1577d0e2e21c5926ac1fd7fb27c5d4511fd7c6b0fe74997d8cb05532e27896f",
+        "multiscale-v1",
+        "annotation-coverage",
+    ),
+    "groups/tubular-anatomy/presentation/stories/topology-path.story.md": (
+        "a8e7306179b03715b8bf5fa88c92569178bdcd2624241e80697411bd5ad071c4",
+        "topology-v1",
+        "ordered-path",
+    ),
+    "groups/tubular-anatomy/presentation/stories/topology-inventory.story.md": (
+        "ac9d6f5cd0793d4026a3271871ef831e30f130d013253293d88eacddcfe1cf32",
+        "topology-v1",
+        "edge-inventory",
+    ),
+    "groups/registration/presentation/stories/rigid-correspondence.story.md": (
+        "21dd407a7ed2fdd0d56882f053d870337b79c32cac2d1d09221828142390d3af",
+        "correspondence-v1",
+        None,
+    ),
+}
 
 
-def inside(root: Path, name: str) -> Path:
-    path = (root / name).resolve()
-    if not path.is_relative_to(root.resolve()):
-        raise ValueError(f"Asset escaped owner: {name}")
-    return path
+def _legacy_semantics(document: StoryDocument, source: str, source_sha: str) -> StoryDocument:
+    legacy = LEGACY_SEMANTICS.get(source)
+    if legacy is None or (source_sha, document.header.get("recipe")) != legacy[:2]:
+        return document
+    if legacy[1] == "correspondence-v1":
+        return StoryDocument(
+            document.header,
+            tuple(
+                {**beat, "show_deformed_target": beat["id"] == "scope"} for beat in document.beats
+            ),
+        )
+    return StoryDocument({**document.header, "operation": legacy[2]}, document.beats)
 
 
 def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
-    index_path = root / "presentation/assets/teaching-prefabs.json"
+    index_path = storage.inside(root, "presentation/assets/teaching-prefabs.json")
     index = PrefabIndex.model_validate_json(index_path.read_text())
     if pack_id not in index.packs:
         raise ValueError(f"Unknown asset pack: {pack_id}")
     pack = index.packs[pack_id]
-    manifest_path = inside(root, pack.manifest)
+    manifest_path = storage.inside(root, pack.manifest)
     manifest = json.loads(manifest_path.read_text())
     if isinstance(pack, AnatomyPack):
         if pack_id != "retained-anatomy-v1" or not manifest.get("terms"):
@@ -379,15 +487,20 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         }
         if len(frames) != 1 or len(cases) != 1:
             raise ValueError("Anatomy parts must share a source case and physical frame")
-        dependencies = {str(p.relative_to(root)): digest(p) for p in (index_path, manifest_path)}
+        dependencies = {
+            p.relative_to(root).as_posix(): storage.sha(p) for p in (index_path, manifest_path)
+        }
         for name in pack.retained_files:
-            path = inside(manifest_path.parent, name)
+            path = storage.inside(manifest_path.parent, name)
             if name.endswith(".json"):
                 asset = manifest["assets"][path.stem]
-                if digest(path) != asset["asset_sha256"] or path.stat().st_size != asset["bytes"]:
+                if (
+                    storage.sha(path) != asset["asset_sha256"]
+                    or path.stat().st_size != asset["bytes"]
+                ):
                     raise ValueError(f"Stale anatomy asset: {name}")
-            dependencies[str(path.relative_to(root))] = digest(path)
-        return digest(manifest_path), dependencies
+            dependencies[path.relative_to(root).as_posix()] = storage.sha(path)
+        return storage.sha(manifest_path), dependencies
     if isinstance(pack, FixturePack):
         if (
             manifest.get("license") != "CC0-1.0"
@@ -419,7 +532,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Recipe pack missing required dependencies")
     if manifest["id"] != pack_id:
         raise ValueError("Asset pack mismatch")
-    dependencies = {str(p.relative_to(root)): digest(p) for p in (index_path, manifest_path)}
+    dependencies = {
+        p.relative_to(root).as_posix(): storage.sha(p) for p in (index_path, manifest_path)
+    }
     assets = {asset["file"]: asset for asset in manifest["assets"]}
     if len(assets) != len(manifest["assets"]):
         raise ValueError("Duplicate manifest asset")
@@ -427,20 +542,26 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         asset = assets[name]
         if asset["provenance"] != "procedural-teaching" or asset["role"] != "illustration":
             raise ValueError("Pilot prohibits reference or non-teaching assets")
-        path = inside(manifest_path.parent, name)
-        if digest(path) != asset["sha256"] or path.stat().st_size != asset["bytes"]:
+        path = storage.inside(manifest_path.parent, name)
+        if storage.sha(path) != asset["sha256"] or path.stat().st_size != asset["bytes"]:
             raise ValueError(f"Stale asset: {name}")
-        dependencies[str(path.relative_to(root))] = digest(path)
-    return digest(manifest_path), dependencies
+        dependencies[path.relative_to(root).as_posix()] = storage.sha(path)
+    return storage.sha(manifest_path), dependencies
 
 
 def compile_story(root: Path, path: Path) -> StoryPlan:
-    root, path = root.resolve(), path.resolve()
+    relative = path.relative_to(root) if path.is_absolute() else path
+    root = root.resolve()
+    path = storage.inside(root, relative)
+    source = path.relative_to(root).as_posix()
+    source_sha = storage.sha(path)
     raw = path.read_text()
     if "[[AUTHOR:" in raw:
         raise ValueError("Unfinished story draft: replace every [[AUTHOR:...]] field")
-    if re.search(r"^schema: 2$", raw, re.M):
-        story = parse_expansion(raw)
+    compiler = compiler_hashes(root)
+    document = parse_document(raw)
+    if document.schema == 2:
+        story = parse_expansion(_legacy_semantics(document, source, source_sha))
         expected_pack = RECIPE_PACKS[story.recipe]
         if story.asset_pack != expected_pack:
             raise ValueError("Recipe asset pack mismatch")
@@ -452,41 +573,45 @@ def compile_story(root: Path, path: Path) -> StoryPlan:
         if story.recipe == "topology-v1":
             _, route_dependencies = resolve_assets(root, "tb3-route-kit-v1")
             dependencies.update(route_dependencies)
-        dependencies[str(path.relative_to(root))] = digest(path)
+        dependencies.update(compiler)
+        dependencies[path.relative_to(root).as_posix()] = source_sha
         for locator in story.source_locators:
-            source = inside(root, locator)
-            if not source.is_file():
+            source_path = storage.inside(root, locator)
+            if not source_path.is_file():
                 raise ValueError(f"Missing story source: {locator}")
-            dependencies[locator] = digest(source)
+            dependencies[source_path.relative_to(root).as_posix()] = storage.sha(source_path)
         result = story.model_dump(mode="json", by_alias=True)
         at = 0
         for beat in result["beats"]:
             beat["startFrame"] = at
             at += beat["frames"]
             beat["endFrame"] = at
+        _check_dependencies(root, dependencies)
         result.update(
             durationFrames=at,
-            source_sha256=digest(path),
+            source_sha256=source_sha,
             asset_manifest_sha256=manifest_hash,
             dependencies=dependencies,
         )
         return cast(StoryPlan, result)
-    header, beats = parse_story(raw)
+    header, beats = parse_story(document)
     manifest_hash, dependencies = resolve_assets(root, header.asset_pack)
-    dependencies[str(path.relative_to(root))] = digest(path)
+    dependencies.update(compiler)
+    dependencies[path.relative_to(root).as_posix()] = source_sha
     at = 0
     projected: list[StoryBeat] = []
     for beat in beats:
         end = at + round(beat.duration * header.fps)
         projected.append(cast(StoryBeat, {**beat.model_dump(), "startFrame": at, "endFrame": end}))
         at = end
+    _check_dependencies(root, dependencies)
     return cast(
         StoryPlan,
         {
             **header.model_dump(by_alias=True),
             "durationFrames": at,
             "beats": projected,
-            "source_sha256": digest(path),
+            "source_sha256": source_sha,
             "asset_manifest_sha256": manifest_hash,
             "dependencies": dependencies,
             "scope": SCOPE,
@@ -559,9 +684,7 @@ def write_export(root: Path, plan: StoryPlan, output: Path) -> None:
     from . import frontend
 
     root = root.resolve()
-    for name, expected in plan["dependencies"].items():
-        if digest(inside(root, name)) != expected:
-            raise ValueError(f"Compiled story dependency changed: {name}")
+    _check_dependencies(root, plan["dependencies"])
     script, css = frontend.assets(root, "explainer-export")
     write_projections(plan, output)
     source = next(name for name in plan["dependencies"] if name.endswith(".story.md"))
@@ -577,3 +700,11 @@ def write_export(root: Path, plan: StoryPlan, output: Path) -> None:
         f'<script id="story-plan" type="application/json">{payload}</script>'
         f"<script>{script}</script></html>"
     )
+    _check_dependencies(root, plan["dependencies"])
+    frontend.assets(root, "explainer-export")
+
+
+def _check_dependencies(root: Path, dependencies: dict[str, str]) -> None:
+    for name, expected in dependencies.items():
+        if storage.sha(storage.inside(root, name)) != expected:
+            raise ValueError(f"Compiled story dependency changed: {name}")

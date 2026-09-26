@@ -33,6 +33,14 @@ configuration, plus compiled output bytes. Python rejects missing, modified or
 stale bundles with an explicit rebuild instruction. Source changes during a build
 also reject that build. Compiled assets are local outputs, not tracked source.
 
+The explicit renderer inventory in `frontend.py` includes all maintained frontend
+modules, styles and bundled teaching/anatomy fixtures. Canonical narrative stories
+and the Python story compiler are excluded from bundle freshness. The build still
+validates every canonical story; `python -m tb3_medical.frontend --validate-stories`
+also runs that gate directly. Selected plans pin compiler and source dependencies,
+and exports pin capture/encoder code separately. Changing an unrelated story does
+not require a renderer rebuild; selected-source drift still blocks its export.
+
 `med present` copies the overview bundle and assembles static story pages.
 `med brief build` embeds the Explorer bundle, CSS, records, source previews,
 teaching art and anatomy into one HTML file that opens directly from disk. Assets
@@ -100,6 +108,9 @@ entry-to-renderer inventory and screenshot sheet for every authored illustration
 distinguishing spatial, planar, static and fallback views. Add `--from-inventory`
 to rebuild only the HTML report: saved inventory bytes and recorded errors remain
 intact, and a failed inventory still returns a nonzero status.
+New inventories identify explorer chapter-start captures and their committed
+frames; old inventories show unknown metadata. Canonical endpoint witnesses live
+in the existing story export's `review.html`, using its exact captured PNGs.
 
 The commands import `presentation/tooling/` modules, checked separately with
 `npm run tooling:typecheck`. Browser capture and the export page share the
