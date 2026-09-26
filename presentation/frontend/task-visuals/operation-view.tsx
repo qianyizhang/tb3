@@ -206,7 +206,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
                 stroke="#307f74"
                 strokeWidth="2"
               />
-              <text x={r.bounds_level0[0] * sx + 5} y={r.bounds_level0[1] * sy + 18} fontSize="14">
+              <text x={r.bounds_level0[0] * sx + 5} y={r.bounds_level0[1] * sy - 6} fontSize="14">
                 {r.id}
               </text>
             </g>

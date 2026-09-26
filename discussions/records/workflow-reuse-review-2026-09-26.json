@@ -1,0 +1,117 @@
+{
+  "schema_version": 2,
+  "kind": "discussion",
+  "id": "discussion-workflow-reuse-review-2026-09-26",
+  "title": "Reusable skills and task-story tooling",
+  "source": "codex://threads/01a0dbcd-df2c-7953-be9f-8a667b837d0c",
+  "summary": "Repaired video routing and portable skill resources; added canonical-story authoring, study-design guidance, story drafts, source-pinned export batches and mirror checks. The follow-up polish condenses repeated instructions and removes duplicate export bookkeeping while preserving evidence inspection and visual-acceptance boundaries. Catalogue migration remains a separate 13/205 checkpoint.",
+  "decision_provenance": "The user requested a latest-work survey and skills/scaffolding proposals, then instructed make repairs and complete the expansion. The assistant completed the proposed workflow tooling under that direction and kept the separate 205-entry content migration explicit. The user then requested simplification, polishing, cleanup and a commit. No medical execution, acquisition or publication is included.",
+  "reopen_when": "A real invocation exposes a workflow gap, a source or recipe contract changes, or the user selects the separate remaining catalogue-content expansion.",
+  "related_ids": [
+    "discussion-frontend-modernization",
+    "discussion-source-package-quality",
+    "discussion-trace-analysis-regression-2026-09-23",
+    "discussion-experiment-support-backfill-2026-09-21"
+  ],
+  "links": [
+    {
+      "label": "Review, priorities, scaffold interfaces and acceptance criteria",
+      "path": "discussions/workflow-reuse-review-2026-09-26.md"
+    },
+    {
+      "label": "Canonical skill lifecycle",
+      "path": "docs/skill-lifecycle.md"
+    },
+    {
+      "label": "Canonical explainer contract",
+      "path": "presentation/EXPLAINERS.md"
+    },
+    {
+      "label": "Per-entry migration ledger",
+      "path": "presentation/EXPLAINER-LEDGER.json"
+    },
+    {
+      "label": "Local implementation and validation report",
+      "path": ".local/skill-expansion-20260926/REPORT.md"
+    },
+    {
+      "label": "Local two-story review gallery",
+      "path": ".local/skill-expansion-20260926/batch-final/review.html"
+    }
+  ],
+  "review_snapshot": {
+    "head": "c00e6eb4b41bd2a7ddd3f78e73f419d81043b7b1",
+    "worktree": "Uncommitted expansion and concurrent cleanup; not a clean-tree acceptance",
+    "ledger_sha256": "a5f9b098892e9d04dcbafe4619a7c7e5d0eb021f25821dc841f0e8f95a3bff17",
+    "video_skill_version": "0.1.0",
+    "canonical_video_skill_sha256": "9f9e31b4cf8be0f4bb0efd35cce1ffd88227ac0773dc8711e8c3006834e08eff",
+    "installed_video_skill_sha256": "c45a3cd221fbd6f8037cdb5548fbd7a152b9bdefb48a442e0941d4de5e8edb34",
+    "retained_frontend_manifest_sha256": "da027894e4f9a6e90c1f0685a573d7e0e9d768fc309df5c03eb670e11e1ea56d",
+    "verification_scope": "Fresh med check, ledger recount, skill-tree comparison, export story/asset dependency hashes and frontend input comparison. No fresh browser, video, visual or clinical validation."
+  },
+  "implementation": {
+    "status": "skills_scaffolding_complete",
+    "skills": {
+      "video-explainer": "0.2.1",
+      "explain-medical-evidence": "1.1.1",
+      "author-task-story": "1.0.1",
+      "design-medical-study": "1.0.1"
+    },
+    "tools": [
+      "med story recipes/new/check",
+      "med story batch new/run/check",
+      "make skills-check"
+    ],
+    "installed_mirrors": "All six canonical skill trees synchronized and byte-verified; original changed mirrors backed up locally.",
+    "catalogue_boundary": "No new catalogue bindings or reviewed-entry statuses are claimed by the skills/scaffolding work. The 13/205 checkpoint remains separate.",
+    "local_review": ".local/skill-expansion-20260926/batch-final/review.html",
+    "local_install_plan": ".local/skill-expansion-20260926/install-plan.json",
+    "local_report": ".local/skill-expansion-20260926/REPORT.md",
+    "validation": {
+      "repository_gate": "make check PYTHON=python3.12 passed on an isolated snapshot of the pinned Git index; 180 tests, structural medical check, documentation links, skill consistency, mypy, contracts, Ruff and actionlint.",
+      "frontend_gate": "make js-check passed on the same pinned snapshot; current frontend build passed.",
+      "exports": {
+        "stories": [
+          "rigid-correspondence",
+          "wsi-coverage"
+        ],
+        "decoded_frames": 1248,
+        "fps": 24,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "receipt_and_decode": "passed",
+        "visual_scope": "First, decisive and ending stills inspected; final WSI views rechecked after the label fix. Full motion, narrow layout, no-GPU behavior and all other catalogue entries were not freshly visually accepted."
+      },
+      "behavioral_cases": "Evidence and video skill review scenarios are defined; no fresh agent behavioral evaluation was launched."
+    }
+  },
+  "polish": {
+    "status": "verified",
+    "source": "codex://threads/01a0dbcd-df2c-7953-be9f-8a667b837d0c",
+    "changes": [
+      "Condense story, study and video entrypoints while retaining their decision and review requirements.",
+      "Replace obsolete proposal narrative with current owners, repairs and evidence limits.",
+      "Use one CLI serialization path, one batch receipt write per export and one video filename rule; remove duplicate gallery generation."
+    ],
+    "preserved": "Evidence skill inspection/attribution rules, immutable receipts, unbound drafts, source-drift checks, stop-on-failure behavior and separate visual acceptance.",
+    "local_report": ".local/skill-polish-20260926/REPORT.md",
+    "validation": {
+      "isolated_commit_gates": "make check PYTHON=python3.12, make js-check and npm run frontend:build passed without the concurrent cleanup changes.",
+      "installed_skills": "All six complete canonical trees match installed mirrors; the three revised entrypoints also pass the bundled skill validator.",
+      "cli": "Eight recipes produce one JSON result; the current two-story receipt batch passes, and the retained stale batch returns one JSON failure and exit 1.",
+      "media": "No new rendering or visual acceptance during polish; the earlier export receipts are retained.",
+      "word_counts": {
+        "three_revised_entrypoints": {
+          "before": 1446,
+          "after": 1058
+        },
+        "retained_review": {
+          "before": 1865,
+          "after": 484
+        }
+      }
+    }
+  }
+}

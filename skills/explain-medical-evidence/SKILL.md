@@ -2,7 +2,7 @@
 name: explain-medical-evidence
 description: Explain medical experiment results, GT comparisons, traces, failure modes, or multi-run differences from pinned workbench evidence. Use after a task or experiment has evidence to interpret; use author-task-brief for task-only explanations.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Explain Medical Evidence
@@ -99,3 +99,8 @@ closeout, read only **Active lessons** in
 entry only for material reusable feedback, recording that invoked version.
 Do not log routine success or delay the requested deliverable. If the canonical
 ledger is not writable or in scope, surface a compact suggested entry instead.
+
+When maintaining this skill, use the
+[behavioral review cases](references/behavioral-cases.md) to check that instruction
+changes preserve inspection and attribution. They are not an automatic gate on
+ordinary explanation requests.

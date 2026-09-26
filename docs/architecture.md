@@ -160,3 +160,14 @@ change. Update the layout guide when a canonical home changes, and use the
 shared teaching fixtures and projects Python-owned browser plans. The existing
 typed task-visual feature and Three.js stage render them; the existing media
 exporter accepts a story source. See [the explainer contract](../presentation/EXPLAINERS.md).
+
+`med story` uses [story_authoring.py](../src/tb3_medical/story_authoring.py) for
+unbound drafts and compiler checks, and
+[story_batches.py](../src/tb3_medical/story_batches.py) for selected export batches
+and receipt verification. Drafts do not alter catalogue bindings; batch checks do
+not assign visual acceptance. The batch runner invokes the existing exporter and
+stops on source changes or the first execution failure.
+
+[skill_checks.py](../src/tb3_medical/skill_checks.py) checks portable skill resources
+and optionally compares installed mirrors. It never installs skills or runs their
+workflows; canonical ownership remains with the repository skill directories.

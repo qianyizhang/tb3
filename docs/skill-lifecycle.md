@@ -4,6 +4,27 @@ Repository-owned skills use semantic versions in `metadata.version` and keep a
 local `references/feedback-ledger.md`. The repository copy is canonical; copies
 under `~/.codex/skills` are installation mirrors, not independent histories.
 
+`make skills-check` validates canonical metadata and portable resources. Workspace
+contracts resolve from `workbench.toml`; links outside an installed skill break.
+Compare full installed trees without changing them:
+
+```sh
+.venv/bin/python -m tb3_medical.skill_checks --installed-root ~/.codex/skills
+# Add --skill NAME to select one skill.
+```
+
+Matching versions do not prove matching bytes. Inspect differences and preserve
+independent feedback before mirroring. CI needs only canonical sources.
+
+The authoring workflow has separate owners: `design-medical-study` prepares a
+question and protocol; `author-task-brief` explains the task;
+`explain-medical-evidence` interprets retained results; `author-task-story` creates
+canonical interactive explanations; `video-explainer` exports established sources.
+
+Evidence and video skills have maintenance review cases. Packaging checks or case
+definitions do not prove agent behavior; new evaluations need their own execution
+scope and receipts.
+
 Version changes describe instruction behavior:
 
 - **Patch:** correction or clarification without a material workflow change.

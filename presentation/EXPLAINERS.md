@@ -47,6 +47,42 @@ A bound story is not automatically accepted; unresolved entries remain visible.
 
 ## Build and export
 
+### Draft a canonical story
+
+```sh
+uv run med story recipes
+uv run med story new ENTRY STORY_ID --recipe RECIPE --preview
+uv run med story new ENTRY STORY_ID --recipe RECIPE
+uv run med story check groups/GROUP/presentation/stories/drafts/STORY_ID.story.md
+```
+
+Drafting resolves the entry's leaf catalogue and creates an unbound file in its
+owner's `stories/drafts/`. Replace all `[[AUTHOR:...]]` fields and check the finished
+story before moving it to `stories/` and explicitly setting `illustration.story_id`
+in the owning catalogue. Drafts are excluded from normal story discovery; unfinished
+authoring fields fail compilation. Inverse drafts also require explicit
+`--acquisition ct-parallel` or `--acquisition mri-cartesian`. The retained v1 route
+pilot remains supported but is not a new-draft template.
+
+### Review a selected batch
+
+```sh
+# After the current frontend build; new only prepares a pinned batch.
+uv run med story batch new tb3-oblique-pose wsi-hiesd-map --output .local/explainers/NEW-BATCH
+uv run med story batch run .local/explainers/NEW-BATCH
+uv run med story batch check .local/explainers/NEW-BATCH --decode
+```
+
+`new --stills-only` prepares a batch without video encoding. `run` invokes the
+existing exporter, stops on the first failure and retains execution logs. It needs
+the same approved browser execution boundary as individual exports. An attempted
+batch is never retried in place. Source changes stop the batch; create a fresh
+destination after rebuilding. `check` verifies required output hashes and one
+source/frontend snapshot; `--decode` additionally checks full MP4 decoding,
+dimensions, frame counts and fps. These operations never mark visual acceptance.
+The generated `review.html` links interactive outputs, source captions, receipts
+and representative frames; record actual inspection and limits separately.
+
 Use the existing environments and exporter. Generated media, review frames and
 receipts stay in fresh local destinations; nothing here launches tasks or publishes.
 

@@ -25,6 +25,16 @@ from .presentation_contracts import StoryBeat, StoryPlan
 from .types import Document
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
+RECIPE_PACKS = {
+    "topology-v1": "topology-v1",
+    "correspondence-v1": "correspondence-v1",
+    "multiscale-v1": "multiscale-v1",
+    "shape-material-v1": "shape-material-v1",
+    "local-edit-v1": "local-edit-v1",
+    "longitudinal-v1": "longitudinal-v1",
+    "inverse-v1": "inverse-problems-v1",
+    "anatomy-audit-v1": "retained-anatomy-v1",
+}
 SCOPE = (
     "Synthetic teaching fixture · one sampling ribbon only. Does not demonstrate local mask "
     "repair, eight CT planes, closed mesh production or full BR030 verification. "
@@ -427,18 +437,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
 def compile_story(root: Path, path: Path) -> StoryPlan:
     root, path = root.resolve(), path.resolve()
     raw = path.read_text()
+    if "[[AUTHOR:" in raw:
+        raise ValueError("Unfinished story draft: replace every [[AUTHOR:...]] field")
     if re.search(r"^schema: 2$", raw, re.M):
         story = parse_expansion(raw)
-        expected_pack = {
-            "topology-v1": "topology-v1",
-            "correspondence-v1": "correspondence-v1",
-            "multiscale-v1": "multiscale-v1",
-            "shape-material-v1": "shape-material-v1",
-            "local-edit-v1": "local-edit-v1",
-            "longitudinal-v1": "longitudinal-v1",
-            "inverse-v1": "inverse-problems-v1",
-            "anatomy-audit-v1": "retained-anatomy-v1",
-        }[story.recipe]
+        expected_pack = RECIPE_PACKS[story.recipe]
         if story.asset_pack != expected_pack:
             raise ValueError("Recipe asset pack mismatch")
         if (story.recipe == "anatomy-audit-v1") != (

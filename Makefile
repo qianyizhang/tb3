@@ -4,8 +4,8 @@ PRESENTATION_REPORTS ?= .local/presentation-qa
 
 .PHONY: actionlint artifacts build-check check contracts-check docs-check format format-check \
 	frontend-build hooks hygiene js-check lint med-check presentation-check pre-commit-check \
-	site site-dev style test type-check
-check: hygiene test med-check docs-check type-check contracts-check style actionlint
+	site site-dev skills-check style test type-check
+check: hygiene test med-check docs-check skills-check type-check contracts-check style actionlint
 
 contracts-check:
 	$(PYTHON) -m tb3_medical.presentation_contracts --check
@@ -25,6 +25,9 @@ med-check:
 
 docs-check:
 	$(PYTHON) -m tb3_medical.doc_links
+
+skills-check:
+	$(PYTHON) -m tb3_medical.skill_checks
 
 type-check:
 	$(PYTHON) -m mypy

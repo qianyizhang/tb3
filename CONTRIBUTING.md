@@ -37,6 +37,7 @@ Browser setup and the macOS execution boundary are in the
 | `make check` | Git-index artifacts, offline tests, medical records, docs links, types, Ruff, workflow syntax |
 | `make pre-commit-check` | All six configured pre-commit checks; no automatic file rewrites |
 | `make docs-check` | Maintained Markdown paths, heading anchors and closed code fences |
+| `make skills-check` | Canonical skill metadata and portable resources; optional local mirror checks are in the skill lifecycle guide |
 | `make type-check` | Strict mypy across the entire source package, including portable adapters |
 | `make lint` | Ruff correctness, imports, modern syntax, bugbear, comprehensions and Ruff rules |
 | `make format-check` | Check Ruff formatting for `src` and tests without rewriting files |

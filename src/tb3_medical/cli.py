@@ -5,6 +5,7 @@ import json
 import subprocess
 import sys
 from collections.abc import Sequence
+from dataclasses import asdict
 from pathlib import Path
 
 from . import core as c
@@ -51,6 +52,30 @@ def build_parser() -> argparse.ArgumentParser:
     e.add_argument("targets", nargs="+")
     e.add_argument("--title", required=True)
     e.add_argument("--analysis-kind", choices=sorted(c.ANALYSIS_KINDS), required=True)
+    p = sub.add_parser("story", help="Draft, check and review canonical task stories")
+    story_sub = p.add_subparsers(dest="story_command", required=True)
+    story_sub.add_parser("recipes", help="Inspect supported draft recipes and channels")
+    s = story_sub.add_parser("new", help="Create an unbound draft in its catalogue owner")
+    s.add_argument("entry")
+    s.add_argument("id")
+    s.add_argument("--recipe", required=True)
+    s.add_argument("--acquisition", choices=["ct-parallel", "mri-cartesian"])
+    s.add_argument("--catalog", default=task_catalog.DEFAULT_CATALOG)
+    s.add_argument("--preview", action="store_true")
+    s = story_sub.add_parser("check", help="Compile a story ID or workspace path")
+    s.add_argument("source")
+    s = story_sub.add_parser("batch", help="Prepare, export or verify selected story entries")
+    batch_sub = s.add_subparsers(dest="batch_command", required=True)
+    b = batch_sub.add_parser("new", help="Pin a review batch; no browser or media execution")
+    b.add_argument("entries", nargs="+")
+    b.add_argument("--output", type=Path, required=True)
+    b.add_argument("--catalog", default=task_catalog.DEFAULT_CATALOG)
+    b.add_argument("--stills-only", action="store_true")
+    for action in ("run", "check"):
+        b = batch_sub.add_parser(action)
+        b.add_argument("output", type=Path)
+        if action == "check":
+            b.add_argument("--decode", action="store_true", help="Also fully decode videos")
     p = sub.add_parser("list")
     p.add_argument("query", nargs="?", default="")
     p.add_argument("--kind", choices=sorted(c.KINDS))
@@ -263,6 +288,35 @@ def main(argv: Sequence[str] | None = None) -> int:
                     args.analysis_kind,
                     args.targets,
                 )
+        elif command == "story":
+            from . import story_authoring, story_batches
+
+            if args.story_command == "recipes":
+                result = [asdict(recipe) for recipe in story_authoring.recipes()]
+            elif args.story_command == "new":
+                result = story_authoring.new(
+                    root,
+                    args.entry,
+                    args.id,
+                    recipe=args.recipe,
+                    acquisition=args.acquisition,
+                    catalog=args.catalog,
+                    preview=args.preview,
+                )
+            elif args.story_command == "check":
+                result = story_authoring.check(root, args.source)
+            elif args.batch_command == "new":
+                result = story_batches.new(
+                    root,
+                    args.entries,
+                    args.output,
+                    stills_only=args.stills_only,
+                    catalog=args.catalog,
+                )
+            elif args.batch_command == "run":
+                result = story_batches.run(root, args.output)
+            else:
+                result = story_batches.check(root, args.output, decode=args.decode)
         elif command == "new":
             result = w.new(root, args.group, args.id, args.title)
         elif command == "idea":
@@ -362,6 +416,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         else:
             raise c.MedicalError(f"Unknown command: {command}")
         print(json.dumps(result, indent=2, allow_nan=False))
+        if command == "story" and isinstance(result, dict) and result.get("ok") is False:
+            return 1
         if (
             command == "run"
             and isinstance(result, dict)
