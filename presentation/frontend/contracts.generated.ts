@@ -4,6 +4,7 @@ export type TaskTab = "overview" | "requirements" | "examples" | "sources";
 export type BrowseView = "capability" | "repository";
 export type ResearchLane = "tasks" | "supporting" | "all";
 export type BriefField = "goal" | "value" | "raw" | "helpers" | "output" | "challenge" | "spec" | "tools" | "score" | "reference" | "families" | "gap" | "case_note";
+export type StoryPlan = RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan;
 export interface StoryBeat {
   id: string;
   duration: number;
@@ -19,7 +20,7 @@ export interface StoryBeat {
   startFrame: number;
   endFrame: number;
 }
-export interface StoryPlan {
+export interface RouteStoryPlan {
   schema: 1;
   id: string;
   title: string;
@@ -36,6 +37,315 @@ export interface StoryPlan {
   dependencies: Record<string, string>;
   scope: string;
   beats: Array<StoryBeat>;
+}
+export interface ExpansionPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+}
+export interface ExpansionBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+}
+export interface TopologyChannels {
+  focus: [number, number];
+  trace: [number, number];
+  inventory: [number, number];
+}
+export interface TopologyBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: TopologyChannels;
+}
+export interface TopologyPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "topology-v1";
+  beats: Array<TopologyBeat>;
+}
+export interface CorrespondenceChannels {
+  transform: [number, number];
+  query: [number, number];
+  residual: [number, number];
+}
+export interface CorrespondenceBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: CorrespondenceChannels;
+}
+export interface CorrespondencePlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "correspondence-v1";
+  beats: Array<CorrespondenceBeat>;
+}
+export interface MaterialChannels {
+  phase: [number, number];
+  markers: [number, number];
+  alternative: [number, number];
+}
+export interface MaterialBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: MaterialChannels;
+}
+export interface MaterialPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "shape-material-v1";
+  beats: Array<MaterialBeat>;
+}
+export interface LongitudinalChannels {
+  visits: [number, number];
+  links: [number, number];
+  coverage: [number, number];
+}
+export interface LongitudinalBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: LongitudinalChannels;
+}
+export interface LongitudinalPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "longitudinal-v1";
+  beats: Array<LongitudinalBeat>;
+}
+export interface MultiscaleChannels {
+  viewport: [number, number];
+  selections: [number, number];
+  coverage: [number, number];
+  outputs: [number, number];
+}
+export interface MultiscaleBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: MultiscaleChannels;
+}
+export interface MultiscalePlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "multiscale-v1";
+  beats: Array<MultiscaleBeat>;
+}
+export interface InverseChannels {
+  observations: [number, number];
+  reconstruction: [number, number];
+  residual: [number, number];
+}
+export interface InverseBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: InverseChannels;
+}
+export interface InversePlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "inverse-v1";
+  beats: Array<InverseBeat>;
+  acquisition: "ct-parallel" | "mri-cartesian";
+}
+export interface EditChannels {
+  domain: [number, number];
+  correction: [number, number];
+  control: [number, number];
+}
+export interface EditBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: EditChannels;
+}
+export interface EditPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "local-edit-v1";
+  beats: Array<EditBeat>;
+}
+export interface AnatomyChannels {
+  focus: [number, number];
+  evidence: [number, number];
+  output: [number, number];
+}
+export interface AnatomyBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: AnatomyChannels;
+}
+export interface AnatomyPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "anatomy-audit-v1";
+  beats: Array<AnatomyBeat>;
 }
 export interface Illustration {
   story_id?: string;
@@ -275,7 +585,7 @@ export interface Inventory {
   repositories?: Array<RepositoryInventory>;
 }
 export interface ExplorerData {
-  explanation_stories?: Record<string, StoryPlan>;
+  explanation_stories?: Record<string, RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan>;
   schema_version: 1;
   title?: string;
   entries: Array<TaskEntry>;

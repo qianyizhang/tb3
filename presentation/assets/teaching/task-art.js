@@ -896,12 +896,12 @@ export const TaskTeachingArt = (() => {
               7,
               'none',
               'stroke-linecap="round"',
-            ) + (output ? path('M138 103L166 89', amber, 7) : ''),
+            ),
           ) +
           txt(
             66,
             176,
-            output ? 'supported route / connection' : 'supplied route discontinuity',
+            output ? 'repaired or unchanged: schema' : 'supplied route discontinuity',
             12,
           );
         break;
@@ -1367,13 +1367,9 @@ export const TaskTeachingArt = (() => {
         art =
           group(1, 16, 0.5, scan()) +
           group(159, 16, 0.5, scan()) +
-          (output
-            ? path('M91 86Q160 142 250 86', teal, 3) +
-              c(91, 86, 13, 'none', 'stroke="#c38a36" stroke-width="3"') +
-              c(250, 86, 17, 'none', 'stroke="#c38a36" stroke-width="3"')
-            : '') +
           txt(36, 154, 'earlier') +
-          txt(212, 154, 'later');
+          txt(212, 154, 'later') +
+          (output ? txt(32, 181, 'links / new / unobserved: schema', 12) : '');
         break;
       case 'viewer':
         art =

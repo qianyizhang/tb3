@@ -63,8 +63,13 @@ async function exportStory(flags) {
     lockfile_sha256: sha(fs.readFileSync(path.join(root, 'package-lock.json'))),
     os: { platform: os.platform(), release: os.release(), arch: os.arch() },
     locale: plan.locale,
-    camera:
-      'stage fitted perspective; yaw -0.24; pitch 0.14; one parent metre-to-display transform',
+    camera: ['multiscale-v1', 'local-edit-v1', 'longitudinal-v1', 'inverse-v1'].includes(
+      plan.recipe,
+    )
+      ? 'Planar coordinate-preserving SVG/DOM'
+      : plan.recipe === 'anatomy-audit-v1'
+        ? 'stage fitted perspective; yaw -0.24; pitch 0.14; retained shared source-world mm assembly normalized by the existing anatomy owner'
+        : 'stage fitted perspective; yaw -0.24; pitch 0.14; one parent metre-to-display transform',
     settings: {
       width: 1280,
       height: 720,
@@ -94,6 +99,7 @@ async function exportStory(flags) {
     await page.waitForFunction(() => window.__tb3ExplainerCapture);
     const capture = (frame) =>
       captureComposedFrame(page, { frame, fps: plan.fps, width: 1280, height: 720 });
+    fs.writeFileSync(path.join(output, 'first.png'), await capture(0));
     const stills = [];
     for (const beat of plan.beats) {
       const frame = beat.endFrame - 1,
@@ -103,7 +109,7 @@ async function exportStory(flags) {
     }
     fs.writeFileSync(path.join(output, 'stills.json'), JSON.stringify(stills, null, 2) + '\n');
     const posterBeat =
-      plan.beats.find((beat) => beat.output.every((value) => value === 1)) || plan.beats.at(-1);
+      plan.beats.find((beat) => beat.output?.every((value) => value === 1)) || plan.beats.at(-1);
     fs.copyFileSync(path.join(output, `${posterBeat.id}.png`), path.join(output, 'poster.png'));
     if (!flags['stills-only'])
       await runPipedEncoder({
@@ -133,7 +139,7 @@ async function exportStory(flags) {
           '-movflags',
           '+faststart',
         ],
-        destination: path.join(output, 'route-unfold.mp4'),
+        destination: path.join(output, plan.schema === 1 ? 'route-unfold.mp4' : plan.id + '.mp4'),
         renderFrames: async (writeFrame) => {
           for (let frame = 0; frame < plan.durationFrames; frame++) {
             await writeFrame(await capture(frame));
@@ -143,6 +149,8 @@ async function exportStory(flags) {
         },
       });
     receipt.renderer = await page.evaluate(() => {
+      if (document.querySelector('.scene-player')?.dataset.surfaceRenderer === 'planar')
+        return 'DOM/SVG planar';
       const canvas = document.querySelector('canvas'),
         gl = canvas.getContext('webgl2'),
         ext = gl.getExtension('WEBGL_debug_renderer_info');

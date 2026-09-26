@@ -38,6 +38,7 @@ def input_hashes(root: Path) -> dict[str, str]:
         if path.is_file()
     )
     paths.extend(root.glob("groups/*/presentation/stories/*.story.md"))
+    paths.extend(root.glob("presentation/external-tasks/stories/*.story.md"))
     return {
         path.relative_to(root).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
         for path in sorted(paths)

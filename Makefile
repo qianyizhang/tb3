@@ -57,6 +57,7 @@ js-check:
 	node tests/task_scene_models.cjs
 	node tests/scene_player.cjs
 	node tests/explanation_story.cjs
+	node tests/explanation_expansion.cjs
 	node tests/media_export.cjs
 
 # Optional browser regressions. Uses declared, already installed Node/Playwright.

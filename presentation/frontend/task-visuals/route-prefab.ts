@@ -146,6 +146,7 @@ export function createRoutePrefab(parent: THREE.Group) {
   return {
     update(state: StoryState): Annotation[] {
       if (disposed) throw new Error('Disposed prefab');
+      if (state.recipe !== 'route-unfold-v1') throw new Error('Route state required');
       context.material.opacity = state.context;
       selected.visible = state.route >= 0.999;
       routeGeo.setDrawRange(0, Math.floor(state.route * (route.points.length - 1)) + 1);

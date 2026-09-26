@@ -39,6 +39,13 @@ async function captureComposedFrame(page, request) {
             throw new Error('Export image did not decode');
         }),
       );
+      await Promise.all(
+        [...root.querySelectorAll('svg image')].map(async (element) => {
+          const image = new Image();
+          image.src = element.getAttribute('href') || '';
+          await image.decode();
+        }),
+      );
     },
     { frame, fps, width, height, selector },
   );

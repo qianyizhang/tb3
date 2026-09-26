@@ -7,10 +7,18 @@ import json
 import re
 from html import escape
 from pathlib import Path
-from typing import Literal, Self, cast
+from typing import Annotated, Literal, Self, cast
 
 import yaml  # type: ignore[import-untyped]
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, model_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictFloat,
+    StrictInt,
+    TypeAdapter,
+    model_validator,
+)
 
 from .errors import MedicalError
 from .presentation_contracts import StoryBeat, StoryPlan
@@ -46,6 +54,166 @@ class Closed(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True, allow_inf_nan=False)
 
 
+Unit = Annotated[StrictFloat, Field(ge=0, le=1)]
+Pair = tuple[Unit, Unit]
+Text = Annotated[str, Field(strict=True, min_length=1)]
+
+
+class TopologyChannels(Closed):
+    focus: Pair
+    trace: Pair
+    inventory: Pair
+
+
+class CorrespondenceChannels(Closed):
+    transform: Pair
+    query: Pair
+    residual: Pair
+
+
+class MaterialChannels(Closed):
+    phase: Pair
+    markers: Pair
+    alternative: Pair
+
+
+class LongitudinalChannels(Closed):
+    visits: Pair
+    links: Pair
+    coverage: Pair
+
+
+class MultiscaleChannels(Closed):
+    viewport: Pair
+    selections: Pair
+    coverage: Pair
+    outputs: Pair
+
+
+class InverseChannels(Closed):
+    observations: Pair
+    reconstruction: Pair
+    residual: Pair
+
+
+class AnatomyChannels(Closed):
+    focus: Pair
+    evidence: Pair
+    output: Pair
+
+
+class EditChannels(Closed):
+    domain: Pair
+    correction: Pair
+    control: Pair
+
+
+class ExpansionBeat[Channels: Closed](Closed):
+    id: Annotated[str, Field(strict=True, pattern=r"^[a-z0-9-]+$")]
+    frames: Annotated[StrictInt, Field(ge=2, le=3600)]
+    caption: Text
+    narration: Text
+    visual: Text
+    channels: Channels
+    cut: Literal["continuous", "intentional-cut"] = "continuous"
+
+
+class Story[Channels: Closed](Closed):
+    schema_version: Annotated[StrictInt, Field(alias="schema", ge=2, le=2)]
+    id: Annotated[str, Field(strict=True, pattern=r"^[a-z0-9-]+$")]
+    title: Text
+    locale: Literal["en"]
+    purpose: Text
+    scope: Text
+    asset_pack: Text
+    source_class: Literal["procedural-teaching", "source-derived-teaching"]
+    reference_policy: Literal["no-reference-assets"]
+    fps: Annotated[StrictInt, Field(ge=12, le=60)]
+    source_locators: Annotated[tuple[Text, ...], Field(min_length=1)]
+    beats: tuple[ExpansionBeat[Channels], ...]
+
+    @model_validator(mode="after")
+    def timeline(self) -> Self:
+        if not self.beats or len({b.id for b in self.beats}) != len(self.beats):
+            raise ValueError("Missing or duplicate beats")
+        for prev, cur in zip(self.beats, self.beats[1:], strict=False):
+            if cur.cut == "continuous":
+                a, b = prev.channels.model_dump(), cur.channels.model_dump()
+                if any(abs(a[k][1] - b[k][0]) > 1e-9 for k in a):
+                    raise ValueError(f"Unmarked channel discontinuity at {cur.id}")
+        return self
+
+
+class TopologyStory(Story[TopologyChannels]):
+    recipe: Literal["topology-v1"]
+
+
+class CorrespondenceStory(Story[CorrespondenceChannels]):
+    recipe: Literal["correspondence-v1"]
+
+
+class MaterialStory(Story[MaterialChannels]):
+    recipe: Literal["shape-material-v1"]
+
+
+class LongitudinalStory(Story[LongitudinalChannels]):
+    recipe: Literal["longitudinal-v1"]
+
+
+class MultiscaleStory(Story[MultiscaleChannels]):
+    recipe: Literal["multiscale-v1"]
+
+
+class InverseStory(Story[InverseChannels]):
+    recipe: Literal["inverse-v1"]
+    acquisition: Literal["ct-parallel", "mri-cartesian"]
+
+
+class AnatomyStory(Story[AnatomyChannels]):
+    recipe: Literal["anatomy-audit-v1"]
+
+
+class EditStory(Story[EditChannels]):
+    recipe: Literal["local-edit-v1"]
+
+
+AnyStory = Annotated[
+    TopologyStory
+    | CorrespondenceStory
+    | MaterialStory
+    | LongitudinalStory
+    | MultiscaleStory
+    | InverseStory
+    | EditStory
+    | AnatomyStory,
+    Field(discriminator="recipe"),
+]
+ADAPTER: TypeAdapter[
+    TopologyStory
+    | CorrespondenceStory
+    | MaterialStory
+    | LongitudinalStory
+    | MultiscaleStory
+    | InverseStory
+    | EditStory
+    | AnatomyStory
+] = TypeAdapter(AnyStory)
+
+
+class FixturePack(Closed):
+    manifest: str = Field(min_length=1, strict=True)
+    retained_files: tuple[str, ...]
+    runtime_geometry: Literal["fixture.json"]
+
+    @model_validator(mode="after")
+    def complete(self) -> Self:
+        if "fixture.json" not in self.retained_files or len(set(self.retained_files)) != len(
+            self.retained_files
+        ):
+            raise ValueError("Missing fixture or duplicate dependency")
+        return self
+
+
 class AssetPack(Closed):
     manifest: str = Field(min_length=1, strict=True)
     retained_files: tuple[str, ...]
@@ -67,9 +235,15 @@ class AssetPack(Closed):
         return self
 
 
+class AnatomyPack(Closed):
+    manifest: str
+    retained_files: tuple[str, ...]
+    runtime_geometry: Literal["anatomy-assembly"]
+
+
 class PrefabIndex(Closed):
     schema_version: StrictInt = Field(alias="schema", ge=1, le=1)
-    packs: dict[str, AssetPack]
+    packs: dict[str, AssetPack | FixturePack | AnatomyPack]
 
 
 class Header(Closed):
@@ -124,6 +298,31 @@ def parse_story(raw: str) -> tuple[Header, tuple[Beat, ...]]:
     return header, beats
 
 
+def parse_expansion(
+    raw: str,
+) -> (
+    TopologyStory
+    | CorrespondenceStory
+    | MaterialStory
+    | LongitudinalStory
+    | MultiscaleStory
+    | InverseStory
+    | EditStory
+    | AnatomyStory
+):
+    match = re.match(r"\A---\n(.*?)\n---\n", raw, re.S)
+    if not match:
+        raise ValueError("Expected YAML frontmatter")
+    obj = yaml.load(match[1], Loader=UniqueLoader)
+    if not isinstance(obj, dict) or "beats" in obj:
+        raise ValueError("Beats belong in fenced blocks")
+    blocks = re.findall(r"^```beat\n(.*?)^```\s*$", raw, re.M | re.S)
+    if len(blocks) != len(re.findall(r"^```beat\s*$", raw, re.M)):
+        raise ValueError("Unclosed or malformed beat block")
+    obj["beats"] = [yaml.load(block, Loader=UniqueLoader) for block in blocks]
+    return ADAPTER.validate_python(obj)
+
+
 def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -143,6 +342,71 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
     pack = index.packs[pack_id]
     manifest_path = inside(root, pack.manifest)
     manifest = json.loads(manifest_path.read_text())
+    if isinstance(pack, AnatomyPack):
+        if pack_id != "retained-anatomy-v1" or not manifest.get("terms"):
+            raise ValueError("Invalid anatomy owner or missing terms")
+        required_parts = {
+            "liver",
+            "stomach",
+            "spleen",
+            "pancreas",
+            "kidney_left",
+            "kidney_right",
+            "gallbladder",
+        }
+        required_files = {name + ".json" for name in required_parts} | {
+            "NOTICE.md",
+            "CC-BY-4.0.txt",
+        }
+        if set(pack.retained_files) != required_files or len(pack.retained_files) != len(
+            required_files
+        ):
+            raise ValueError("Anatomy assembly requires its exact parts and notices")
+        frames = {json.dumps(manifest["assets"][name]["affine"]) for name in required_parts}
+        cases = {
+            manifest["assets"][name]["source"].split("/segmentations/")[0]
+            for name in required_parts
+        }
+        if len(frames) != 1 or len(cases) != 1:
+            raise ValueError("Anatomy parts must share a source case and physical frame")
+        dependencies = {str(p.relative_to(root)): digest(p) for p in (index_path, manifest_path)}
+        for name in pack.retained_files:
+            path = inside(manifest_path.parent, name)
+            if name.endswith(".json"):
+                asset = manifest["assets"][path.stem]
+                if digest(path) != asset["asset_sha256"] or path.stat().st_size != asset["bytes"]:
+                    raise ValueError(f"Stale anatomy asset: {name}")
+            dependencies[str(path.relative_to(root))] = digest(path)
+        return digest(manifest_path), dependencies
+    if isinstance(pack, FixturePack):
+        if (
+            manifest.get("license") != "CC0-1.0"
+            or not manifest.get("frame")
+            or not manifest.get("units")
+        ):
+            raise ValueError("Fixture terms or coordinate frame missing")
+        required = {
+            "local-edit-v1": {
+                "fixture.json",
+                "masks.npz",
+                "supplied-mask.png",
+                "corrected-mask.png",
+                "editable-domain.png",
+                "unchanged-control.png",
+            },
+            "inverse-problems-v1": {
+                "fixture.json",
+                "arrays.npz",
+                "ct-sinogram.png",
+                "ct-reconstruction.png",
+                "mri-kspace.png",
+                "mri-sampled.png",
+                "mri-zero-filled.png",
+                "object.png",
+            },
+        }.get(pack_id, {"fixture.json"})
+        if not required.issubset(pack.retained_files):
+            raise ValueError("Recipe pack missing required dependencies")
     if manifest["id"] != pack_id:
         raise ValueError("Asset pack mismatch")
     dependencies = {str(p.relative_to(root)): digest(p) for p in (index_path, manifest_path)}
@@ -163,6 +427,47 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
 def compile_story(root: Path, path: Path) -> StoryPlan:
     root, path = root.resolve(), path.resolve()
     raw = path.read_text()
+    if re.search(r"^schema: 2$", raw, re.M):
+        story = parse_expansion(raw)
+        expected_pack = {
+            "topology-v1": "topology-v1",
+            "correspondence-v1": "correspondence-v1",
+            "multiscale-v1": "multiscale-v1",
+            "shape-material-v1": "shape-material-v1",
+            "local-edit-v1": "local-edit-v1",
+            "longitudinal-v1": "longitudinal-v1",
+            "inverse-v1": "inverse-problems-v1",
+            "anatomy-audit-v1": "retained-anatomy-v1",
+        }[story.recipe]
+        if story.asset_pack != expected_pack:
+            raise ValueError("Recipe asset pack mismatch")
+        if (story.recipe == "anatomy-audit-v1") != (
+            story.source_class == "source-derived-teaching"
+        ):
+            raise ValueError("Recipe provenance mismatch")
+        manifest_hash, dependencies = resolve_assets(root, story.asset_pack)
+        if story.recipe == "topology-v1":
+            _, route_dependencies = resolve_assets(root, "tb3-route-kit-v1")
+            dependencies.update(route_dependencies)
+        dependencies[str(path.relative_to(root))] = digest(path)
+        for locator in story.source_locators:
+            source = inside(root, locator)
+            if not source.is_file():
+                raise ValueError(f"Missing story source: {locator}")
+            dependencies[locator] = digest(source)
+        result = story.model_dump(mode="json", by_alias=True)
+        at = 0
+        for beat in result["beats"]:
+            beat["startFrame"] = at
+            at += beat["frames"]
+            beat["endFrame"] = at
+        result.update(
+            durationFrames=at,
+            source_sha256=digest(path),
+            asset_manifest_sha256=manifest_hash,
+            dependencies=dependencies,
+        )
+        return cast(StoryPlan, result)
     header, beats = parse_story(raw)
     manifest_hash, dependencies = resolve_assets(root, header.asset_pack)
     dependencies[str(path.relative_to(root))] = digest(path)
@@ -197,7 +502,9 @@ def resolve_stories(root: Path, entries: list[Document]) -> dict[str, StoryPlan]
             continue
         if not isinstance(story_id, str) or not re.fullmatch(r"[a-z0-9-]+", story_id):
             raise MedicalError("Invalid explanation story ID")
-        matches = list(root.glob(f"groups/*/presentation/stories/{story_id}.story.md"))
+        matches = list(root.glob(f"groups/*/presentation/stories/{story_id}.story.md")) + list(
+            root.glob(f"presentation/external-tasks/stories/{story_id}.story.md")
+        )
         if len(matches) != 1:
             raise MedicalError(f"Unknown or ambiguous explanation story: {story_id}")
         plan = compile_story(root, matches[0])

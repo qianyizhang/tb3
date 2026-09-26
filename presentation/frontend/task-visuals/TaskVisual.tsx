@@ -3,6 +3,8 @@ import type { StoryPlan } from '../types';
 import type { PlayerActions } from './use-scene-player';
 import { StoryOutput } from './story-output';
 import { fixturePoster } from './route-prefab';
+import { isPlanarStory, storyPresentation } from './story-recipes';
+import { OperationScene, OperationOutput } from './operation-view';
 export interface VisualProps {
   entry: VisualEntry;
   plan?: StoryPlan;
@@ -118,6 +120,8 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
   const story = TaskTeachingStory.describe(entry),
     d = entry.illustration;
   const player = useScenePlayer(entry, plan);
+  const planar = !!plan && isPlanarStory(plan);
+  const presentation = plan ? storyPresentation(plan) : undefined;
   useLayoutEffect(() => {
     if (capture) capture.current = player.actions.current;
     if (player.root.current?.dataset.rendered === 'true')
@@ -142,6 +146,7 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
     <div
       className={`scene-player ${styles.player} ${plan ? styles.scripted : ''}`}
       ref={player.root}
+      data-recipe={plan?.recipe}
       data-scene={d.kind}
       data-stage={stage}
       data-beat={player.storyState?.beatId}
@@ -151,7 +156,7 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
       <LanguageNote />
       {plan && (
         <header className={styles.storyHeading} lang="en">
-          <span>How route-conditioned resampling works — synthetic teaching example</span>
+          <span>{presentation!.heading}</span>
           <h3>{plan.title}</h3>
           <p>{plan.scope}</p>
         </header>
@@ -191,7 +196,14 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
       </div>
       <div className={plan ? styles.storyLayout : undefined}>
         <div className="scene-stage" hidden={fallback}>
+          {planar && plan && player.storyState && (
+            <>
+              <OperationScene plan={plan} state={player.storyState} />
+              <p className={styles.mobileNarration}>{player.storyState.narration}</p>
+            </>
+          )}
           <canvas
+            hidden={planar}
             className="scene-canvas"
             ref={player.canvas}
             tabIndex={0}
@@ -231,9 +243,9 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
             {d.caption}
           </canvas>
           <div className="scene-annotations" ref={player.annotations} aria-hidden="true" />
-          <span className="scene-corner" lang="en">
+          <span className="scene-corner" lang="en" hidden={planar}>
             {plan
-              ? 'Synthetic branching volume · teaching frame'
+              ? presentation!.corner
               : [
                     'dynamic_mesh',
                     'cardiac_material',
@@ -244,7 +256,13 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
                 : story.context}
           </span>
         </div>
-        {plan && player.storyState && <StoryOutput state={player.storyState} />}
+        {plan &&
+          player.storyState &&
+          (player.storyState.recipe === 'route-unfold-v1' ? (
+            <StoryOutput state={player.storyState} />
+          ) : (
+            <OperationOutput plan={plan} state={player.storyState} />
+          ))}
       </div>
       <div className="scene-transport" hidden={fallback}>
         <button
@@ -264,21 +282,25 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
         >
           {t('Reset')}
         </button>
-        <span className="scene-gesture" aria-hidden="true">
+        <span className="scene-gesture" aria-hidden="true" hidden={planar}>
           {t('Drag to explore in 3D')}
         </span>
       </div>
       <div className="scene-fallback" hidden={!fallback}>
         {fallback && (
           <>
-            <p>
-              {t(
-                plan
-                  ? '3D is unavailable. The synthetic fixture poster and transcript remain available.'
-                  : '3D is unavailable. The task diagram is shown below.',
-              )}
+            <p lang={plan?.schema === 2 ? 'en' : undefined}>
+              {plan?.schema === 2
+                ? `3D is unavailable. This is a data-derived ending-frame projection${plan.recipe === 'anatomy-audit-v1' ? ' of the retained source assembly' : ' of the teaching fixture'}; the transcript retains every step.`
+                : t(
+                    plan
+                      ? '3D is unavailable. The synthetic fixture poster and transcript remain available.'
+                      : '3D is unavailable. The task diagram is shown below.',
+                  )}
             </p>
-            {plan ? (
+            {plan && plan.recipe !== 'route-unfold-v1' && player.storyState ? (
+              <OperationScene plan={plan} state={player.storyState} />
+            ) : plan ? (
               <figure>
                 <img
                   src={fixturePoster}
@@ -299,22 +321,18 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
         </strong>
       </div>
       <div className="scene-legend" lang="en">
-        {(plan
-          ? [
-              ['#b77128', 'Connected route'],
-              ['#557e93', 'Linked sample'],
-            ]
-          : TaskSceneModels.legend(entry)
-        ).map(([color, label, dashed]) => (
-          <span key={label}>
-            <i
-              style={
-                { '--key': color, borderTopStyle: dashed ? 'dashed' : 'solid' } as CSSProperties
-              }
-            />
-            {label}
-          </span>
-        ))}
+        {(plan ? presentation!.legend : TaskSceneModels.legend(entry)).map(
+          ([color, label, dashed]) => (
+            <span key={label}>
+              <i
+                style={
+                  { '--key': color, borderTopStyle: dashed ? 'dashed' : 'solid' } as CSSProperties
+                }
+              />
+              {label}
+            </span>
+          ),
+        )}
       </div>
       {plan ? (
         <details className="scene-notes" lang="en">
@@ -334,7 +352,7 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
 }
 export function TaskVisual({ entry, plan, capture, captureReady }: VisualProps) {
   if (entry.illustration.story_id && !plan) throw new Error('Unresolved explanation story');
-  return taskSceneMode(entry) === 'static' ? (
+  return !plan && taskSceneMode(entry) === 'static' ? (
     <StaticVisual entry={entry} />
   ) : (
     <SpatialVisual entry={entry} plan={plan} capture={capture} captureReady={captureReady} />

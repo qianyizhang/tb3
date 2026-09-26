@@ -1,88 +1,95 @@
 # Canonical task explainers
 
-The first pilot binds only the tubular-anatomy catalogue entry `ours` to
-[route-unfold-teaching-v1](../groups/tubular-anatomy/presentation/stories/route-unfold-teaching-v1.story.md).
-It explains one synthetic route-conditioned sampling ribbon. It does not replace
-BR030's source input, supplied helpers, repair, eight planes, mesh or scorer.
-Other entries keep their typed legacy recipes and three-stage player.
-
-See the [full candidate map](EXPLAINER-CANDIDATES.md) for all 205 catalogue entries,
-operation coverage and proposed migration batches. It is planning scope, not a
-request to migrate every entry.
+The operation library preserves the original `ours` route pilot and adds explicit
+spatial and planar stories. [The candidate map](EXPLAINER-CANDIDATES.md) and
+[per-entry ledger](EXPLAINER-LEDGER.json) use all **205 entries** as the denominator.
+A bound story is not automatically accepted; unresolved entries remain visible.
 
 ## Owners
 
-- Group `*.story.md`: sole maintained explanation copy, beat IDs, frame-aligned
-  durations and bounded route-operation channels. Six beats, 24 fps, 792 frames.
-- `explanation_stories.py`: closed Pydantic parsing, explicit asset resolution,
-  hash checks and deterministic browser/caption/transcript projection. Duplicate
-  keys, IDs, unknown fields, coercions, references and unresolved bindings fail.
-- Python presentation contracts: optional `Illustration.story_id` and resolved
-  `ExplorerData.explanation_stories`. Catalogue and brief composition preserve
-  the association; it is never inferred from illustration kind.
-- [Prefab index](assets/teaching-prefabs.json): discovery over retained asset
-  owners. [Route fixture](assets/teaching-fixtures/route-unfold-v1/README.md)
-  retains the original manifest and a deliberate subset of its assets.
-- Existing `use-scene-player.ts`: one on-demand clock; legacy stages or pure
-  absolute story frames. Paused load, orbit/reset, visibility and reduced motion
-  remain here. Capture forces a paused canonical-camera seek.
-- Existing `stage.ts`: camera, lighting, renderer, annotation projection and
-  disposal. Its narrow native-content seam hosts the typed route prefab. Every
-  related point shares one metre-to-display transform; source values stay in m.
-- `TaskVisual.tsx`: shared interactive/export composition, chapters, caption,
-  scalar profile, output column and transcript. Chinese controls retain an
-  explicit English-source note. GPU fallback uses the retained fixture-derived
-  poster and canonical transcript; it is not a fresh integrated GPU render.
+- Internal canonical scripts live in `groups/<group>/presentation/stories/`.
+  External task scripts live beside their briefs in
+  `presentation/external-tasks/stories/`. Scripts own captions, narration, scope,
+  sequencing and integer frame timing. Scientific briefs/protocols remain authoritative.
+- `explanation_stories.py` retains the v1 route parser and adds closed v2 models
+  discriminated by recipe. It checks continuity, source locators, provenance,
+  recipe dependencies and hashes before projection. No validator acquires data.
+- Python presentation contracts still generate browser DTOs. Bindings are explicit
+  `illustration.story_id` values, including nested WSI collections.
+- [The retained pack index](assets/teaching-prefabs.json) references the existing
+  route owner, seven selected mathematical fixture packs and the existing anatomy
+  owner. Topology checks the original route hash; anatomy checks its common source
+  case/frame and exact parts/notices. No evaluator reference pack is supported.
+- `story-timeline.ts` returns an immutable, recipe-discriminated absolute state.
+  `use-scene-player.ts` owns the single clock, seek, visibility, reduced motion and
+  cleanup for both spatial and planar content.
+- `stage.ts` remains the camera, lights, renderer, projection and disposal owner.
+  New spatial content uses its existing native seam. Planar stories use DOM/SVG
+  without creating WebGL. Recipe dispatch precedes legacy mode selection.
+- `TaskVisual.tsx` composes chapters, stage, output, current caption, matching
+  legend and transcript. No-GPU spatial views derive from the same fixture and
+  plan. Planar stories remain interactive without a GPU. Chinese controls retain
+  the explicit English-source note.
+
+## Integrated operations
+
+| Recipe | Distinction preserved |
+| --- | --- |
+| Route v1 | Original synthetic sampling ribbon; not full BR030 |
+| Topology | Selected connected path vs seven-edge inventory; teaching graph is not CTA input |
+| Rigid correspondence | One transform, P1–P3 fit, P4–P5 held-out checks, absent P6 and deformation boundary |
+| Multiscale | Twelve supplied slots, coordinate navigation, and six-code coverage are separate stories |
+| Local edit | Bounded correction, unsupported source-evidence gate, valid unchanged control |
+| Shape/material | Identical analytic shells with two material maps; calculation/sparse/volume conditions distinct |
+| Longitudinal | Explicit match/new/unobserved relations; actual CT task supplies no candidate locations |
+| Anatomy audit | Existing seven-part s1233 assembly; label/witness schema and clean-control semantics |
+| CT/MRI | Separate Radon/FFT measurements and image outputs; toy vs task dimensions/assistance explicit |
 
 ## Build and export
 
-Use the existing environments; no model, dataset acquisition or publication is
-part of this workflow. A frontend build validates story/asset dependencies and
-fingerprints the compiler, scripts and retained assets. Editing any of them
-invalidates the bundle before portable HTML assembly.
+Use the existing environments and exporter. Generated media, review frames and
+receipts stay in fresh local destinations; nothing here launches tasks or publishes.
 
 ```sh
-npm run frontend:build
-npm run media -- --story=route-unfold-teaching-v1 --output=.local/explainers/NEW-BUILD
-# Review a fresh stills-only destination first if editing the visual.
-npm run media -- --story=route-unfold-teaching-v1 --output=.local/explainers/NEW-STILLS --stills-only
+UV_CACHE_DIR=/tmp/tb3-uv-cache npm run frontend:build
+npm run media -- --story=topology-path --output=.local/explainers/NEW-STILLS --stills-only
+npm run media -- --story=topology-path --output=.local/explainers/NEW-VIDEO
 ```
 
-The existing exporter dispatches the story source to its existing browser harness
-and pipe encoder. Legacy `--only=TOUR` behavior stays intact. Story exports require
-a fresh destination; copy/timing, music and preset overrides are rejected for this
-bounded pilot. Edit the canonical source and regenerate every projection.
+Each export contains interactive single-file HTML, the canonical script and plan,
+first/chapter/poster frames, VTT/SRT, transcript and a receipt. Full export adds
+silent H.264 MP4 at the script's fps. V1 retains `route-unfold.mp4`; v2 filenames use
+story IDs. The capture bridge exists only in the dedicated export entry.
 
-`index.html` is a single-file interactive view. `?capture=1` uses the fixed
-1280×720 composed root. Only that dedicated entry exposes the capture bridge;
-the Explorer exposes none. Capture waits for native readiness, the requested
-React commit, fonts and image decoding, then screenshots the full root, including
-DOM labels, SVG leaders, image and caption. Output is H.264 at 24 fps, 33 seconds,
-792 frames, without audio. The receipt records dirty-source hashes, plan/assets,
-frontend/lock identity, OS/browser/GPU, settings and output hashes. Hashes describe
-that local export, not clinical validity or cross-GPU pixel equality.
+Capture seeks the exact integer frame and waits for React commit, fonts, HTML and
+SVG image decoding before screenshotting the complete 1280×720 root. Receipts pin
+source/asset/frontend/lock hashes, dirty files, OS, browser, renderer and outputs.
+These are local rendering receipts, not scientific evidence or cross-GPU equality.
 
-## Acceptance and review boundary
+## Checks and visual acceptance
 
 ```sh
-.venv/bin/python -m unittest discover -s tests -p test_explanation_stories.py -v
+.venv/bin/python -m unittest discover -s tests -p 'test_explanation*.py' -v
+node tests/scene_player.cjs
 node tests/explanation_story.cjs
-# Requires an existing NumPy/Pillow environment; no installation is implied.
-.venv-medical/bin/python tests/route_fixture_numerics.py
-node tests/explanation_story_browser.cjs EXPORT-DIR EXPLORER-HTML
-node tests/task_scene_models.cjs
+node tests/explanation_expansion.cjs
+.venv-br030/bin/python tests/expansion_fixture_numerics.py -v
+node tests/explanation_expansion_browser.cjs REVIEW-DIR EXPLORER-HTML
+node tests/explanation_story_browser.cjs ROUTE-EXPORT-DIR EXPLORER-HTML
 make presentation-check
 make check PYTHON=python3.12
 ```
 
-Browser-launching commands need approved execution outside the macOS restricted
-sandbox, using disposable profiles. Browser acceptance distinguishes production
-`file://` checks from simulated no-WebGL/context-loss tests. The original volume
-and seven-decimal mesh/frame rounding allow scalar error below `3e-5` and vertex
-error below `2e-7 m`. The 192×97 scalar grid is shown through the supplied bilinear
-768×184 physical-aspect raster; this display derivative reproduces within one
-8-bit level. It is not a CT image and its values are not HU.
+Browser commands use the disposable repository harness outside the restricted
+macOS command sandbox. The expansion matrix exercises actual `file://` pages,
+English and Chinese-source fallback, first/decisive/ending frames, narrow screens,
+no-GPU mode, repeated seeks and navigation. Exact sampled states are required.
+The composed DOM must match exactly on repeated seeks. A documented raster allowance
+covers at most 2,048 of 921,600 pixels differing by one channel level at Chromium
+SVG antialias/translucent-fill edges. V1 retains its existing 16-pixel / 8-level
+raster allowance; displaced content is a failure.
 
-Review the integrated output and local acceptance report before reusing this
-prefab for a distinct route/graph explanation. Catalogue migration remains out
-of scope. Retain original frozen task outcomes and all medical evidence.
+Inspect the resulting scenes in addition to tests. Keep per-entry observations,
+before/after frames, source boundaries and unresolved dependencies in the ledger
+and local acceptance report. A legacy diagram or passing build is not migration
+completion. Do not remove scientific conditions or frozen outcomes for uniformity.

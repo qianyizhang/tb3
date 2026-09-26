@@ -99,8 +99,9 @@ Follow the root macOS execution instructions for browser launches.
 entry-to-renderer inventory and input/action/output screenshot sheet for every
 authored illustration. It does not publish the images or access remote assets.
 
-## Canonical explanation pilot
+## Canonical operation explanations
 
-The explicit `ours` story binding extends the existing typed feature with a native
-route prefab and absolute-frame evaluation. See [the explainer contract](../EXPLAINERS.md)
+Explicit story bindings extend the existing typed feature with recipe-specific
+native content or planar DOM/SVG and absolute-frame evaluation. The original
+`ours` route binding remains v1. See [the explainer contract](../EXPLAINERS.md)
 for ownership, dependency checks, composed export and the review boundary.

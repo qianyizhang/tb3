@@ -405,28 +405,15 @@ function scene(e: VisualEntry, stage: Stage, clock: number, progress = 0): Scene
           anatomy(false);
           if (out || work) {
             if (subject === 'breast' || subject === 'generic') {
-              ring([0.43, 0.1, 0.55], 0.2 + i * 0.06, gold, 'z', 1);
+              ring([0.43, 0.1, 0.55], 0.2, gold, 'z', 1);
               dot([0.43, 0.1, 0.55], 0.04, gold);
-            } else mesh([0.43, 0.1, 0.55], [0.2 + i * 0.08, 0.23 + i * 0.08, 0.21], gold, 0.06);
+            } else mesh([0.43, 0.1, 0.55], [0.2, 0.23, 0.21], gold, 0.06);
           }
           label([0, -1.6, 0], i ? 'Later examination' : 'Earlier examination', ink);
         }),
       );
-      if (out || work) {
-        path(
-          [
-            [-0.72, 0.08, 0.34],
-            [-0.2, -0.35, 0.55],
-            [0.3, -0.35, 0.55],
-            [1.19, 0.08, 0.34],
-          ],
-          teal,
-          0.8,
-          2,
-          true,
-        );
-        label([0.1, -1.35, 0.5], 'Link identity before describing change', teal);
-      }
+      if (out || work)
+        label([0.1, -1.35, 0.5], 'Link / new / unobserved: output schema only', teal);
       break;
     case 'routes':
       if (k === 'route_unfold' && out) group([-0.76, 0.1, 0], 0.62, () => branches(false, true));
@@ -450,7 +437,7 @@ function scene(e: VisualEntry, stage: Stage, clock: number, progress = 0): Scene
           dot(cursor, 0.065, gold);
           label([0.85, -0.85, 0.2], 'Trace candidate route', gold, cursor);
         }
-        if (out)
+        if (out && k === 'route_unfold')
           group(
             k === 'route_unfold' ? [-0.76, 0.1, 0] : [0, 0, 0],
             k === 'route_unfold' ? 0.62 : 1,

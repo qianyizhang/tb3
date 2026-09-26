@@ -493,3 +493,136 @@
 :global([data-explainer-export-frame]) .storyOutput p {
   margin: 6px 0 10px;
 }
+
+.operationCanvas {
+  display: block;
+  width: 100%;
+  height: 425px;
+  color: #37473e;
+  font-family: system-ui, sans-serif;
+  font-size: 17px;
+}
+.operationCanvas text {
+  fill: currentColor;
+}
+.patchSlots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  margin: 14px 0;
+}
+.patchSlots > div {
+  border-bottom: 1px solid #d7d8cf;
+  padding: 5px;
+  font-size: 15px;
+}
+.patchSlots b {
+  float: right;
+}
+.storyOutput table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.storyOutput th,
+.storyOutput td {
+  padding: 6px 4px;
+  border-bottom: 1px solid #ddded5;
+  text-align: left;
+}
+.matrix {
+  font-size: 16px;
+  line-height: 1.7;
+}
+:global([data-explainer-export-frame])
+  :global([data-recipe]:not([data-recipe='route-unfold-v1']))
+  :global(.scene-legend) {
+  display: flex;
+  padding: 8px 24px;
+}
+:global([data-explainer-export-frame])
+  :global([data-recipe]:not([data-recipe='route-unfold-v1']))
+  .storyHeading {
+  height: 142px;
+  box-sizing: border-box;
+  padding-block: 12px;
+}
+:global([data-explainer-export-frame])
+  :global([data-recipe]:not([data-recipe='route-unfold-v1']))
+  .storyHeading
+  h3 {
+  margin: 5px 0;
+}
+:global([data-explainer-export-frame])
+  :global([data-recipe]:not([data-recipe='route-unfold-v1']))
+  .storyOutput {
+  padding: 22px 30px;
+}
+@container task-visual (max-width: 600px) {
+  .operationCanvas {
+    height: auto;
+    min-height: 260px;
+  }
+  .matrix {
+    font-size: 13px;
+  }
+}
+:global([data-recipe='topology-v1']) .storyOutput td {
+  padding-block: 4px;
+}
+:global([data-recipe='topology-v1']) .storyOutput p {
+  line-height: 1.45;
+}
+:global([data-explainer-export-frame])
+  :global([data-recipe]:not([data-recipe='route-unfold-v1']))
+  :global(.scene-language-note) {
+  position: absolute;
+  right: 24px;
+  top: 8px;
+  margin: 0;
+  font-size: 13px;
+}
+.mobileInverse,
+.mobileNarration {
+  display: none;
+}
+.storyOutput code {
+  overflow-wrap: anywhere;
+}
+@container task-visual (max-width:600px) {
+  .mobileInverse {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+  .mobileInverse figure {
+    margin: 0;
+    text-align: center;
+  }
+  .mobileInverse img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 8px;
+  }
+  .mobileInverse figcaption,
+  .mobileInverse p {
+    font-size: 15px;
+  }
+  .inverseCanvas {
+    display: none;
+  }
+  .operationCanvas text {
+    font-size: 23px;
+  }
+  .operationCanvas > text {
+    display: none;
+  }
+  .mobileNarration {
+    display: block;
+    margin: 12px 16px;
+    font-size: 14px;
+  }
+}

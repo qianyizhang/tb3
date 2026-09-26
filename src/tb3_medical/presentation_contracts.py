@@ -61,7 +61,7 @@ class StoryBeat(TypedDict):
     endFrame: int
 
 
-class StoryPlan(TypedDict):
+class RouteStoryPlan(TypedDict):
     schema: Literal[1]
     id: str
     title: str
@@ -78,6 +78,170 @@ class StoryPlan(TypedDict):
     dependencies: dict[str, str]
     scope: str
     beats: list[StoryBeat]
+
+
+class ExpansionPlan(TypedDict):
+    schema: Literal[2]
+    id: str
+    title: str
+    locale: Literal["en"]
+    purpose: str
+    scope: str
+    asset_pack: str
+    source_class: Literal["procedural-teaching", "source-derived-teaching"]
+    reference_policy: Literal["no-reference-assets"]
+    fps: int
+    source_locators: list[str]
+    durationFrames: int
+    source_sha256: str
+    asset_manifest_sha256: str
+    dependencies: dict[str, str]
+
+
+class ExpansionBeat(TypedDict):
+    id: str
+    frames: int
+    caption: str
+    narration: str
+    visual: str
+    cut: Literal["continuous", "intentional-cut"]
+    startFrame: int
+    endFrame: int
+
+
+class TopologyChannels(TypedDict):
+    focus: tuple[float, float]
+    trace: tuple[float, float]
+    inventory: tuple[float, float]
+
+
+class TopologyBeat(ExpansionBeat):
+    channels: TopologyChannels
+
+
+class TopologyPlan(ExpansionPlan):
+    recipe: Literal["topology-v1"]
+    beats: list[TopologyBeat]
+
+
+class CorrespondenceChannels(TypedDict):
+    transform: tuple[float, float]
+    query: tuple[float, float]
+    residual: tuple[float, float]
+
+
+class CorrespondenceBeat(ExpansionBeat):
+    channels: CorrespondenceChannels
+
+
+class CorrespondencePlan(ExpansionPlan):
+    recipe: Literal["correspondence-v1"]
+    beats: list[CorrespondenceBeat]
+
+
+class MaterialChannels(TypedDict):
+    phase: tuple[float, float]
+    markers: tuple[float, float]
+    alternative: tuple[float, float]
+
+
+class MaterialBeat(ExpansionBeat):
+    channels: MaterialChannels
+
+
+class MaterialPlan(ExpansionPlan):
+    recipe: Literal["shape-material-v1"]
+    beats: list[MaterialBeat]
+
+
+class LongitudinalChannels(TypedDict):
+    visits: tuple[float, float]
+    links: tuple[float, float]
+    coverage: tuple[float, float]
+
+
+class LongitudinalBeat(ExpansionBeat):
+    channels: LongitudinalChannels
+
+
+class LongitudinalPlan(ExpansionPlan):
+    recipe: Literal["longitudinal-v1"]
+    beats: list[LongitudinalBeat]
+
+
+class MultiscaleChannels(TypedDict):
+    viewport: tuple[float, float]
+    selections: tuple[float, float]
+    coverage: tuple[float, float]
+    outputs: tuple[float, float]
+
+
+class MultiscaleBeat(ExpansionBeat):
+    channels: MultiscaleChannels
+
+
+class MultiscalePlan(ExpansionPlan):
+    recipe: Literal["multiscale-v1"]
+    beats: list[MultiscaleBeat]
+
+
+class InverseChannels(TypedDict):
+    observations: tuple[float, float]
+    reconstruction: tuple[float, float]
+    residual: tuple[float, float]
+
+
+class InverseBeat(ExpansionBeat):
+    channels: InverseChannels
+
+
+class InversePlan(ExpansionPlan):
+    recipe: Literal["inverse-v1"]
+    beats: list[InverseBeat]
+    acquisition: Literal["ct-parallel", "mri-cartesian"]
+
+
+class EditChannels(TypedDict):
+    domain: tuple[float, float]
+    correction: tuple[float, float]
+    control: tuple[float, float]
+
+
+class EditBeat(ExpansionBeat):
+    channels: EditChannels
+
+
+class EditPlan(ExpansionPlan):
+    recipe: Literal["local-edit-v1"]
+    beats: list[EditBeat]
+
+
+class AnatomyChannels(TypedDict):
+    focus: tuple[float, float]
+    evidence: tuple[float, float]
+    output: tuple[float, float]
+
+
+class AnatomyBeat(ExpansionBeat):
+    channels: AnatomyChannels
+
+
+class AnatomyPlan(ExpansionPlan):
+    recipe: Literal["anatomy-audit-v1"]
+    beats: list[AnatomyBeat]
+
+
+StoryPlan = (
+    RouteStoryPlan
+    | TopologyPlan
+    | CorrespondencePlan
+    | MaterialPlan
+    | LongitudinalPlan
+    | MultiscalePlan
+    | InversePlan
+    | EditPlan
+    | AnatomyPlan
+)
 
 
 class Illustration(TypedDict):
@@ -403,7 +567,7 @@ class OverviewData(TypedDict):
 
 ALIASES = {
     name: globals()[name]
-    for name in ("VisualRole", "TaskTab", "BrowseView", "ResearchLane", "BriefField")
+    for name in ("VisualRole", "TaskTab", "BrowseView", "ResearchLane", "BriefField", "StoryPlan")
 }
 MODELS = {name: model for name, model in list(globals().items()) if is_typeddict(model)}
 EXTENSIBLE = {"ResearchRecord", "RecordCurrent", "DatasetRecord"}

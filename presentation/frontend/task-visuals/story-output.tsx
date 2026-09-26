@@ -1,7 +1,7 @@
 import { routeSampler, sampledImage } from './route-prefab';
-import type { StoryState } from './story-timeline';
+import type { RouteState } from './story-timeline';
 import styles from './task-visual.module.css';
-export function StoryOutput({ state }: { state: StoryState }) {
+export function StoryOutput({ state }: { state: RouteState }) {
   const sample = routeSampler.atDistanceFraction(state.cursor);
   const visible = state.index >= 2;
   const reveal =

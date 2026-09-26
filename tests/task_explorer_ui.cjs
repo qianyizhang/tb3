@@ -54,7 +54,8 @@ async function checkExplorer(browser, input, report) {
       sourcePreviews = 0,
       fallbackDrawings = 0,
       staticDrawings = 0,
-      spatialDrawings = 0;
+      spatialDrawings = 0,
+      scriptedPlanarDrawings = 0;
     const diagramTypes = new Set();
     for (const repo of data.inventory.repositories)
       for (const item of repo.items) {
@@ -174,10 +175,12 @@ async function checkExplorer(browser, input, report) {
               'The full label space remains readable outside the canvas',
             );
           }
-          spatialDrawings++;
+          if (await page.locator('.scene-player[data-surface-renderer="planar"]').count())
+            scriptedPlanarDrawings++;
+          else spatialDrawings++;
         }
         assert.ok(
-          (await page.locator('.task-picture.conceptual figcaption').innerText()).includes(
+          (await page.locator('.task-picture.conceptual > figcaption').innerText()).includes(
             'not case-specific',
           ),
         );
@@ -265,6 +268,7 @@ async function checkExplorer(browser, input, report) {
     const moving = data.entries.find(
       (e) =>
         ['dynamic_mesh', 'cardiac_material'].includes(e.illustration?.kind) &&
+        !e.illustration.story_id &&
         e.illustration.input_form !== 'masks',
     );
     assert.ok(moving, 'A task with meaningful geometry motion is available');
@@ -827,9 +831,10 @@ async function checkExplorer(browser, input, report) {
     await page.locator('.scene-player[data-rendered="true"]').waitFor();
     assert.equal(await page.locator('html').getAttribute('lang'), 'zh-CN');
     assert.deepEqual(await page.locator('.scene-steps strong').allTextContents(), [
-      '输入',
-      '操作',
-      '输出',
+      'context',
+      'inspect',
+      'witness',
+      'control',
     ]);
     assert.equal(await page.locator('.scene-play').getAttribute('aria-label'), '播放动画');
     assert.ok((await page.locator('.scene-language-note').innerText()).includes('英文原文'));
@@ -848,6 +853,7 @@ async function checkExplorer(browser, input, report) {
       conceptualIllustrations: drawings,
       staticDrawings,
       spatialDrawings,
+      scriptedPlanarDrawings,
       diagramTypes: diagramTypes.size,
       sourcePreviews,
       portableFallbacks: fallbackDrawings,

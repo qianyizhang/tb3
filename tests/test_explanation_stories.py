@@ -54,13 +54,13 @@ class ExplanationStoriesTests(unittest.TestCase):
 
     def test_binding_survives_collection_and_brief_projection(self):
         catalog = task_catalog.collection(ROOT, task_catalog.DEFAULT_CATALOG)
-        self.assertEqual(
+        self.assertIn(
+            ("ours", "route-unfold-teaching-v1"),
             [
                 (e["id"], e["illustration"]["story_id"])
                 for e in catalog["entries"]
                 if e.get("illustration", {}).get("story_id")
             ],
-            [("ours", "route-unfold-teaching-v1")],
         )
         data = task_briefs.load(ROOT)
         ours = next(e for e in data["entries"] if e["id"] == "ours")

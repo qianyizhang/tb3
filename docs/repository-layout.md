@@ -135,7 +135,8 @@ staged artifact failure.
 
 ## Explanation pilot locations
 
-Canonical copy lives in `groups/<group>/presentation/stories/*.story.md`. Shared
+Canonical internal copy lives in `groups/<group>/presentation/stories/*.story.md`.
+External task stories live beside their briefs in `presentation/external-tasks/stories/`. Shared
 fixture owners live under `presentation/assets/teaching-fixtures/`, discovered by
 `presentation/assets/teaching-prefabs.json`. Generated HTML, video and acceptance
 receipts stay under `.local/explainers/`. See [canonical explainers](../presentation/EXPLAINERS.md).

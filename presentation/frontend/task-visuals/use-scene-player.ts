@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { StoryPlan } from '../types';
 import { sampleStory, type StoryState } from './story-timeline';
-import { createRoutePrefab } from './route-prefab';
+import { nativeFactory, isPlanarStory } from './story-recipes';
 import { TaskSceneModels } from './recipes';
 import { SceneStage } from './stage';
 import type { ScreenPoint, SceneModel, Stage, VisualEntry } from './types';
@@ -39,9 +39,10 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
     ...INITIAL,
     storyState: plan ? sampleStory(plan, 0) : undefined,
   }));
+  const planar = !!plan && isPlanarStory(plan);
   useEffect(() => {
     const player = root.current,
-      surface = canvas.current,
+      surface = planar ? player?.querySelector<HTMLElement>('.scene-stage') : canvas.current,
       labels = annotations.current;
     if (!player || !surface || !labels) return;
     const totalMs = plan ? (plan.durationFrames / plan.fps) * 1000 : TOTAL_MS;
@@ -56,14 +57,12 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
       elapsed = 0,
       frame = 0,
       last = 0;
-    const initialPitch = [
-      'dynamic_mesh',
-      'cardiac_material',
-      'cardiac_contours',
-      'cardiac_anchors',
-    ].includes(entry.illustration.kind)
-      ? 0.38
-      : INITIAL_PITCH;
+    const initialPitch =
+      ['dynamic_mesh', 'cardiac_material', 'cardiac_contours', 'cardiac_anchors'].includes(
+        entry.illustration.kind,
+      ) && !plan
+        ? 0.38
+        : INITIAL_PITCH;
     let yaw = INITIAL_YAW,
       pitch = initialPitch,
       width = 0,
@@ -91,12 +90,24 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
       failed = true;
       playing = false;
       cancel();
+      // A static v2 fallback summarizes the authored ending; the transcript retains every beat.
+      if (plan?.schema === 2) elapsed = totalMs;
       sync();
       player.dataset.surfaceRenderer = plan ? 'poster' : 'svg';
       player.dataset.rendered = 'true';
     };
     const render = () => {
-      if (disposed || failed || !view || !width || !height) return;
+      if (disposed || failed || !width || !height) return;
+      if (planar && plan) {
+        const state = sampleStory(plan, storyFrame());
+        player.dataset.frame = String(state.frame);
+        player.dataset.surfaceRenderer = 'planar';
+        player.dataset.rendered = 'true';
+        player.dataset.texturesReady = 'true';
+        sync();
+        return;
+      }
+      if (!view) return;
       if (plan) {
         const state = sampleStory(plan, storyFrame());
         if (!view.drawNative(state, { width, height, yaw, pitch })) return fallback();
@@ -158,14 +169,16 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
       sync();
     };
     try {
-      view = SceneStage.create(surface, labels, render, fallback);
-      if (plan) view?.installNative(createRoutePrefab);
+      if (!planar) {
+        view = SceneStage.create(canvas.current!, labels, render, fallback);
+        if (plan) view?.installNative(nativeFactory(plan));
+      }
     } catch (error) {
       console.warn('3D task scene unavailable:', error);
       view?.dispose();
       view = null;
     }
-    if (!view) {
+    if (!planar && !view) {
       fallback();
       return;
     }
@@ -271,6 +284,6 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
       view?.dispose();
       model = null;
     };
-  }, [entry, plan]);
+  }, [entry, plan, planar]);
   return { root, canvas, annotations, actions, pointer, ...state };
 }

@@ -36,6 +36,7 @@ async function inputHashes() {
     'src/tb3_medical/explanation_stories.py',
     'presentation/assets/teaching-prefabs.json',
     ...(await files('presentation/assets/teaching-fixtures')),
+    ...(await files('presentation/external-tasks/stories')),
     ...(await files('groups')).filter((name) =>
       /^groups\/[^/]+\/presentation\/stories\/[^/]+\.story\.md$/.test(name),
     ),
@@ -52,7 +53,7 @@ try {
     path.join(root, '.venv/bin/python'),
     [
       '-c',
-      'from pathlib import Path; from tb3_medical.explanation_stories import compile_story; r=Path.cwd(); [compile_story(r,p) for p in r.glob("groups/*/presentation/stories/*.story.md")]',
+      'from pathlib import Path; from tb3_medical.explanation_stories import compile_story; r=Path.cwd(); [compile_story(r,p) for p in [*r.glob("groups/*/presentation/stories/*.story.md"), *r.glob("presentation/external-tasks/stories/*.story.md")]]',
     ],
     { cwd: root, stdio: 'inherit' },
   );
