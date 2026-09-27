@@ -274,3 +274,5 @@ Inspect the resulting scenes in addition to tests. Keep per-entry observations,
 before/after frames, source boundaries and unresolved dependencies in the ledger
 and local acceptance report. A legacy diagram or passing build is not migration
 completion. Do not remove scientific conditions or frozen outcomes for uniformity.
+
+`tiger-context-v1` uses the [retained TIGER ROIs](task-explorer/tiger-context/NOTICE.md) to explain source tissue masks, merged cell centers, boundary attribution, ROI-to-slide transforms and calibrated compartment densities. The `reference` channel gates masks, points and derived measurements; `view` controls explicit worked arithmetic or a constructed boundary displacement. Proposed cells/regions/summary files remain separate from retained point-only pilots. Code 0 is excluded, absent area is unavailable, and codes 2+6 pool counts and areas. Fixed cell-marker boxes are not nuclear outlines. No new model result is produced.

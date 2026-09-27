@@ -18,6 +18,13 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    tigerSource,
+    tigerViews,
+    tigerRef,
+    tigerReveal,
+    tissueArea,
+    pooledDensity,
+    slidePoint,
     hubmapSource,
     hubmapDetail,
     hubmapTiles,
@@ -256,6 +263,49 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   assert.ok(Math.abs(fullCurve[0].score - 0.2691879476) < 1e-9);
   assert.ok(Math.abs(fullCurve[100].score - 0.5876808912) < 1e-9);
   assert.equal(JSON.stringify(objectiveSamples('q01', 0)), JSON.stringify([fullCurve[0]]));
+  const tigerPlan = plans.find((p) => p.recipe === 'tiger-context-v1');
+  assert.ok(isPlanarStory(tigerPlan));
+  const tissue = tigerPlan.beats.find((b) => b.scene === 'tissue');
+  assert.equal(tigerReveal(sampleStory(tigerPlan, 0)), false);
+  assert.equal(tigerReveal(sampleStory(tigerPlan, tissue.startFrame)), false);
+  assert.equal(tigerReveal(sampleStory(tigerPlan, tissue.endFrame - 1)), true);
+  assert.equal(tigerReveal(sampleStory(tigerPlan, 0)), false);
+  assert.equal(tigerSource.mpp, 20000 / 43793);
+  assert.deepEqual(
+    Array.from(tigerViews, (v) => v.coco_id),
+    [942, 940, 941],
+  );
+  assert.deepEqual(
+    Array.from(tigerRef.rois, (r) => r.cells.length),
+    [20, 175, 323],
+  );
+  const stroma = tigerRef.rois[1].rows.filter((r) => [2, 6].includes(r.code));
+  assert.ok(Math.abs(tissueArea(324146) - 0.06760693754371358) < 1e-15);
+  assert.ok(Math.abs(pooledDensity(stroma) - 2049.191821737891) < 1e-9);
+  assert.notEqual(pooledDensity(stroma), stroma.reduce((a, r) => a + r.density_per_mm2, 0) / 2);
+  assert.equal(pooledDensity([{ cells: 0, area_mm2: 0 }]), null);
+  assert.equal(tigerRef.rois[1].rows[0].density_per_mm2, null);
+  assert.equal(tigerRef.rois[1].rows[3].density_per_mm2, null);
+  assert.equal(tigerRef.rois[1].rows[1].density_per_mm2, 0);
+  assert.deepEqual(Array.from(slidePoint([10, 20], tigerViews[1].bounds_level0)), [33198, 13964]);
+  for (const r of tigerRef.rois) {
+    assert.equal(
+      r.rows.reduce((a, row) => a + row.pixels, 0),
+      r.bounds_level0[2] * r.bounds_level0[3],
+    );
+    assert.equal(
+      r.rows.reduce((a, row) => a + row.cells, 0),
+      r.cells.length,
+    );
+    assert.ok(
+      r.cells.every(
+        (c) =>
+          c.center[0] === c.bbox[0] + c.bbox[2] / 2 && c.center[1] === c.bbox[1] + c.bbox[3] / 2,
+      ),
+    );
+  }
+  assert.equal(tigerRef.boundary.distance_px, Math.sqrt(13));
+  assert.notEqual(tigerRef.boundary.source_code, tigerRef.boundary.shifted_code);
   const hubmapPlan = plans.find((p) => p.recipe === 'hubmap-inventory-v1');
   assert.ok(isPlanarStory(hubmapPlan));
   const outline = hubmapPlan.beats.find((b) => b.scene === 'outline');

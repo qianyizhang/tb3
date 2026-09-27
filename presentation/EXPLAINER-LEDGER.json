@@ -1733,15 +1733,15 @@
       ],
       "illustration_kind": "nuclei",
       "subject": "wsi",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "tiger-context",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "multiscale",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Nine release files, license and all 70 files in four unique frozen point-task conditions verified. Native ROI RGB equality, source mask/center identity, coordinate mapping and calibrated density arithmetic audited.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/014-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: - `cells.csv`: `x_px, y_px, class, compartment`.\n- `regions.geojson`: compartment outlines.\n- `summary.csv`: `compartment, n_cells, area_mm2, density_per_mm2`.\n- Map ROI coordinates back to the whole slide using the crop origin.",
+      "remaining_work": "No outstanding explainer work within the proposed joint tissue/cell/density scope. A joint evaluator, new trial or reference adjudication requires separate research; remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "- **Sample:** `114S`, a breast H&E whole slide at 0.456694 µm/pixel.\n- **Paired material:** three source-defined ROIs, tissue masks, whole-slide XML, and COCO cell boxes.",
         "helpers": "- The first condition supplies an official ROI and scale, removing full-slide search.\n- A comparison condition also supplies tissue reference labels, leaving cell detection and compartment assignment.",
@@ -1793,7 +1793,66 @@
         ],
         "gap": "- No exhaustive full-slide cell reference, separate lymphocyte/plasma-cell labels, exact nuclear outlines, frozen scorer, or model run."
       },
-      "source_brief_sha256": "9991305adc4970032c7ab63e01b355d01c88aacf71f6a48072ade80ba49384ce"
+      "source_brief_sha256": "9991305adc4970032c7ab63e01b355d01c88aacf71f6a48072ade80ba49384ce",
+      "acceptance_scope": "Visual and engineering review of the proposed joint tissue/cell/density explainer using actual TIGER ROIs and reader-reference calculations. Historical point-only pilots remain a narrower condition. No model execution, new result interpretation, source-label adjudication or publication.",
+      "visual_review": "Ten source-based chapters, both UI locales, reference reveal/reset, actual Explorer before/after, keyboard/mobile/no-GPU behavior and decoded 88-second video inspected. Proposed joint task and historical point-only pilots remain separate.",
+      "reviewed_contract_projection": {
+        "raw": "- **Sample:** `114S`, a breast H&E whole slide at 0.456694 µm/pixel.\n- **Paired material:** three source-defined ROIs, tissue masks, whole-slide XML, and COCO cell boxes.",
+        "helpers": "- The first condition supplies an official ROI and scale, removing full-slide search.\n- A comparison condition also supplies tissue reference labels, leaving cell detection and compartment assignment.",
+        "tools": "- Zoom the image, mark cell centers, outline tissue regions, and summarize counts by compartment.",
+        "spec": "- Mark tissue compartments and immune-cell centers; assign each cell to a compartment.\n- Report count, annotated area, and density. Exclude mask class 0.\n- Decide before evaluation whether tissue classes 2 and 6 are combined.",
+        "output": "- `cells.csv`: `x_px, y_px, class, compartment`.\n- `regions.geojson`: compartment outlines.\n- `summary.csv`: `compartment, n_cells, area_mm2, density_per_mm2`.\n- Map ROI coordinates back to the whole slide using the crop origin.",
+        "reference": "- Tissue masks identify compartments. Pilot roi1 = COCO 942 (20 cells), roi2 = COCO 940 (175), roi3 = COCO 941 (323). Older teaching images use COCO order instead.\n- Fixed-size source boxes encode cell points; they are not nuclear contours.\n- Lymphocytes and plasma cells are merged in this release; they cannot be scored as separate classes here.\n- An unannotated area outside the ROIs is not a cell-negative reference.",
+        "variants": [
+          {
+            "name": "Joint task",
+            "helper": "ROI and scale",
+            "remaining": "Segment tissue, detect cells, assign compartments"
+          },
+          {
+            "name": "Tissue supplied",
+            "helper": "Add tissue reference",
+            "remaining": "Detect cells and count by known compartment"
+          }
+        ],
+        "sources": [
+          [
+            "Official TIGER data guide",
+            "https://tiger.grand-challenge.org/Data/"
+          ],
+          [
+            "AWS release",
+            "https://registry.opendata.aws/tiger/"
+          ],
+          [
+            "example algorithm",
+            "https://grand-challenge.org/algorithms/tiger-algorithm-example/"
+          ],
+          [
+            "CC BY-NC 4.0 terms",
+            "https://tiger-training.s3.us-west-2.amazonaws.com/license.txt"
+          ],
+          [
+            "TIGER tissue-conditioned cell count — Sol 6 xhigh",
+            "groups/lesion-localization/experiments/wsi-tiger-context-sol6-xhigh/protocol.md"
+          ],
+          [
+            "TIGER tissue-conditioned cell count — Astra medium",
+            "groups/lesion-localization/experiments/wsi-tiger-context-astra-medium/protocol.md"
+          ],
+          [
+            "TIGER cell compartment context — Sol 6 xhigh",
+            "groups/lesion-localization/experiments/wsi-tiger-context-v2-sol6-xhigh/protocol.md"
+          ]
+        ],
+        "gap": "- No exhaustive full-slide cell reference, separate lymphocyte/plasma-cell labels or exact nuclear outlines.\n- Point-task freezes and diagnostic trials exist; a joint contour/area/density evaluator remains to be frozen. No new trial or held-out generalization claim follows from this explainer.\n- Define boundary attribution, reference inclusion and the class 2/6 merge policy before evaluation."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "e7e9b417ae0f19b3405d0cd585c1a0b04fdd21a9283dc808d70ebdf9f73cc24a",
+        "source_story_sha256": "474c94ce6940d3619a1fcd4c73a0f2c8c0798590e9ef7c30336f608fac8502f6",
+        "acceptance_receipt_sha256": "9b2b55622ac46a0b210da1392a50317a14230499b16a63387f126582be201367"
+      }
     },
     {
       "entry_id": "tb3-longitudinal-mri",
@@ -12428,9 +12487,9 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 29,
+    "pending-operation-review": 28,
     "reviewed-scripted-spatial": 12,
-    "reviewed-scripted-planar": 14,
+    "reviewed-scripted-planar": 15,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
   },
@@ -12451,7 +12510,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "wsi-tiger-context",
+    "active_entry": "tb3-longitudinal-mri",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -12856,7 +12915,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/013-acceptance.json",
         "reviewed_entries": 26,
-        "next_entry": "wsi-tiger-context"
+        "next_entry": "wsi-tiger-context",
+        "local_commit": "c823657ad4f3f5824d56c2433f7fad4af5b8aef9"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "wsi-tiger-context",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/014-acceptance.json",
+        "reviewed_entries": 27,
+        "next_entry": "tb3-longitudinal-mri"
       }
     ]
   }

@@ -32,6 +32,7 @@ class ExpansionTests(unittest.TestCase):
                     "airway-repair-v1",
                     "topbrain-screen-v1",
                     "hubmap-inventory-v1",
+                    "tiger-context-v1",
                 }
                 else "no-reference-assets",
             )
@@ -71,6 +72,7 @@ class ExpansionTests(unittest.TestCase):
             ("tubular-anatomy", "airway-repair"),
             ("tubular-anatomy", "topbrain-screen"),
             ("lesion-localization", "hubmap-inventory"),
+            ("lesion-localization", "tiger-context"),
         ]:
             path = ROOT / f"groups/{group}/presentation/stories/{name}.story.md"
             model = stories.parse_expansion(path.read_text())
@@ -112,12 +114,13 @@ class ExpansionTests(unittest.TestCase):
             "airway-repair",
             "topbrain-screen",
             "hubmap-inventory",
+            "tiger-context",
         ]:
             path = ROOT / f"presentation/task-explorer/{name}/manifest.json"
             for key, value in [
                 ("frame", "LPS"),
                 ("label_license", "Apache-2.0"),
-                ("units", "mm" if name == "hubmap-inventory" else "px"),
+                ("units", "mm" if name in {"hubmap-inventory", "tiger-context"} else "px"),
             ]:
                 manifest = json.loads(path.read_text())
                 manifest[key] = value

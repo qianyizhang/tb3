@@ -112,11 +112,12 @@
     {
       "id": "wsi-tiger-context",
       "illustration": {
+        "story_id": "tiger-context",
         "kind": "nuclei",
         "subject": "wsi",
-        "input": "A whole-slide tissue view and selected ROI context; dense cell references cover only annotated ROIs.",
-        "output": "Cell locations/types and tissue-context assignments, evaluated only within the task-defined annotated regions.",
-        "caption": "Conceptual task diagram, not a source slide, prediction or reference. Teal, amber and blue solid dots with white outlines distinguish illustrative cell marks, not official cell classes. Dense ROI reference must not be extrapolated to the full slide."
+        "input": "Three actual source-defined H&E ROIs and scale; optional tissue masks form a separate assistance condition.",
+        "output": "Proposed cells.csv, regions.geojson and calibrated summary.csv; retained pilots submitted ROI-local points and compartment codes only.",
+        "caption": "Source-derived teaching with separately revealed tissue and cell references. Yellow dashed boxes mark merged immune-cell points, not nuclear contours. Counts and density arithmetic cover selected ROIs only."
       },
       "repo": "TB3 medical workbench",
       "category": "segmentation",

@@ -1,4 +1,13 @@
 export {
+  tigerSource,
+  tigerViews,
+  tigerRef,
+  tigerReveal,
+  tissueArea,
+  pooledDensity,
+  slidePoint,
+} from '../presentation/frontend/task-visuals/tiger-context';
+export {
   hubmapSource,
   hubmapDetail,
   hubmapTiles,

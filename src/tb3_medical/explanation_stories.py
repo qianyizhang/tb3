@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "tiger-context-v1": "retained-tiger-context-v1",
     "hubmap-inventory-v1": "retained-hubmap-inventory-v1",
     "topbrain-screen-v1": "retained-topbrain-screen-v1",
     "airway-repair-v1": "retained-airway-repair-v1",
@@ -67,6 +68,19 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-tiger-context-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "source.json",
+            "roi1.json",
+            "roi2.json",
+            "roi3.json",
+            "reference.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+        },
+    ),
     "retained-hubmap-inventory-v1": (
         "source-slices",
         "reference.json",
@@ -279,6 +293,11 @@ class AirwayRepairChannels(Closed):
     reference: Pair
 
 
+class TigerContextChannels(Closed):
+    view: Pair
+    reference: Pair
+
+
 class HubmapInventoryChannels(Closed):
     view: Pair
     reference: Pair
@@ -425,6 +444,33 @@ class IdentityStory(Story[IdentityChannels]):
 
 class PrototypeIdentityStory(Story[IdentityChannels]):
     recipe: Literal["prototype-identity-v1"]
+
+
+class TigerContextBeat(ExpansionBeat[TigerContextChannels]):
+    scene: Literal[
+        "inputs",
+        "conditions",
+        "tissue",
+        "cells",
+        "assign",
+        "coordinates",
+        "area",
+        "density",
+        "output",
+        "limits",
+    ]
+
+
+class TigerContextStory(Story[TigerContextChannels]):
+    recipe: Literal["tiger-context-v1"]
+    beats: tuple[TigerContextBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
 
 
 class HubmapInventoryBeat(ExpansionBeat[HubmapInventoryChannels]):
@@ -649,6 +695,7 @@ AnyStory = Annotated[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | TigerContextStory
     | HubmapInventoryStory
     | TopbrainScreenStory
     | AirwayRepairStory
@@ -673,6 +720,7 @@ ADAPTER: TypeAdapter[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | TigerContextStory
     | HubmapInventoryStory
     | TopbrainScreenStory
     | AirwayRepairStory
@@ -857,6 +905,7 @@ def parse_expansion(
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | TigerContextStory
     | HubmapInventoryStory
     | TopbrainScreenStory
     | AirwayRepairStory
@@ -936,6 +985,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         frame, data_license, label_license = {
+            "retained-tiger-context-v1": ("level-0-image", "CC-BY-NC-4.0", "CC-BY-NC-4.0"),
             "retained-hubmap-inventory-v1": ("level-0-image", "CC-BY-4.0", "CC-BY-4.0"),
             "retained-topbrain-screen-v1": (
                 "RAS",
@@ -961,7 +1011,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             or manifest.get("label_license") != label_license
             or manifest.get("frame") != frame
             or manifest.get("units")
-            != ("px" if pack_id == "retained-hubmap-inventory-v1" else "mm")
+            != (
+                "px"
+                if pack_id in {"retained-hubmap-inventory-v1", "retained-tiger-context-v1"}
+                else "mm"
+            )
             or manifest.get("reference_policy") != "reader-reference-reveal"
             or not manifest.get("sources")
             or set(pack.retained_files) != required

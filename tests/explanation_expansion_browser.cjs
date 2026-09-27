@@ -57,11 +57,12 @@ withBrowser(async (browser) => {
           'airway-repair-v1',
           'topbrain-screen-v1',
           'hubmap-inventory-v1',
+          'tiger-context-v1',
         ].includes(plan.recipe)
           ? plan.beats.map((b) => b.endFrame - 1)
           : []),
       ];
-      if (plan.recipe === 'hubmap-inventory-v1') {
+      if (['hubmap-inventory-v1', 'tiger-context-v1'].includes(plan.recipe)) {
         for (const b of plan.beats) frames.push(b.startFrame);
       }
       if (plan.recipe === 'topbrain-screen-v1') {
@@ -113,6 +114,34 @@ withBrowser(async (browser) => {
           if (frame === 0) {
             assert.equal(await page.locator('[data-airway-reference-image]').count(), 0);
             assert.equal(await page.locator('[data-airway-added-slice]').count(), 0);
+          }
+        }
+        if (plan.recipe === 'tiger-context-v1') {
+          const legend = await page.locator('.scene-legend').boundingBox();
+          assert.ok(legend && legend.y + legend.height <= 720, 'TIGER legend clipped');
+          assert.ok(
+            await page
+              .locator('[data-tiger-output]')
+              .evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'TIGER output overflows',
+          );
+          const beat = plan.beats.find((b) => frame >= b.startFrame && frame < b.endFrame);
+          if (
+            ['inputs', 'conditions', 'output', 'limits'].includes(beat.scene) ||
+            (beat.scene === 'tissue' && frame === beat.startFrame)
+          ) {
+            assert.equal(await page.locator('[data-tiger-reference]').count(), 0);
+            assert.equal(
+              await page
+                .locator('[data-tiger-measurement],[data-tiger-density],[data-tiger-coordinate]')
+                .count(),
+              0,
+            );
+          }
+          if (beat.scene === 'density' && frame === beat.endFrame - 1) {
+            assert.equal(await page.locator('[data-tiger-density] tbody tr').count(), 3);
+            assert.equal(await page.locator('[data-tiger-reference] path').count(), 175);
+            assert.match(await page.locator('[data-tiger-measurement]').textContent(), /2,049.19/);
           }
         }
         if (plan.recipe === 'hubmap-inventory-v1') {
@@ -427,6 +456,19 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'tiger-context-v1') {
+      const labels = await page.locator('[data-tiger-scene]').evaluate((svg) => {
+        const box = svg.getBoundingClientRect();
+        return [...svg.querySelectorAll('text')].every((text) => {
+          const b = text.getBoundingClientRect();
+          return b.width > 0 && b.height > 0 && b.left >= box.left - 1 && b.right <= box.right + 1;
+        });
+      });
+      assert.ok(
+        labels,
+        'TIGER mobile scale and source labels must remain visible and inside the figure',
+      );
+    }
     if (plan.recipe === 'mixed-tissue-v1') {
       assert.equal(await page.locator('[data-mixed-orientation]').isVisible(), true);
       assert.match(await page.locator('[data-mixed-orientation]').innerText(), /LPS mm/);
@@ -467,6 +509,7 @@ withBrowser(async (browser) => {
       'airway-repair-v1',
       'topbrain-screen-v1',
       'hubmap-inventory-v1',
+      'tiger-context-v1',
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
@@ -525,6 +568,26 @@ withBrowser(async (browser) => {
       );
       assert.equal(await fallback.locator('[data-airway-reference-geometry]').count(), 0);
       assert.equal(await fallback.locator('[data-airway-result]').count(), 0);
+    }
+    if (plan.recipe === 'tiger-context-v1') {
+      assert.equal(await fallback.locator('[data-tiger-reference]').count(), 0);
+      await fallback.locator('[data-story-step="2"]').click();
+      assert.equal(await fallback.locator('[data-tiger-reference]').count(), 0);
+      await fallback.locator('.scene-play').click();
+      await fallback.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await fallback.locator('[data-tiger-reference]').first().waitFor();
+      await fallback.locator('.scene-play').click();
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('.scene-reset').click();
+      await fallback.waitForFunction(
+        () =>
+          document.querySelector('[data-tiger-scene]')?.getAttribute('data-tiger-scene') ===
+          'inputs',
+      );
+      assert.equal(await fallback.locator('[data-tiger-reference]').count(), 0);
+      assert.equal(await fallback.locator('[data-tiger-measurement]').count(), 0);
     }
     if (plan.recipe === 'hubmap-inventory-v1') {
       assert.equal(await fallback.locator('[data-hubmap-reference]').count(), 0);

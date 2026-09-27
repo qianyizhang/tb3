@@ -280,9 +280,35 @@ class AirwayRepairPlan(ExpansionPlan):
     beats: list[AirwayRepairBeat]
 
 
+class TigerContextChannels(TypedDict):
+    view: tuple[float, float]
+    reference: tuple[float, float]
+
+
 class HubmapInventoryChannels(TypedDict):
     view: tuple[float, float]
     reference: tuple[float, float]
+
+
+class TigerContextBeat(ExpansionBeat):
+    channels: TigerContextChannels
+    scene: Literal[
+        "inputs",
+        "conditions",
+        "tissue",
+        "cells",
+        "assign",
+        "coordinates",
+        "area",
+        "density",
+        "output",
+        "limits",
+    ]
+
+
+class TigerContextPlan(ExpansionPlan):
+    recipe: Literal["tiger-context-v1"]
+    beats: list[TigerContextBeat]
 
 
 class HubmapInventoryBeat(ExpansionBeat):
@@ -486,6 +512,7 @@ StoryPlan = (
     | AnatomyPlan
     | IdentityPlan
     | PrototypeIdentityPlan
+    | TigerContextPlan
     | HubmapInventoryPlan
     | TopbrainScreenPlan
     | AirwayRepairPlan

@@ -23,6 +23,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'vessel-source-v1',
     'topbrain-screen-v1',
     'hubmap-inventory-v1',
+    'tiger-context-v1',
     'resect-pilot-v1',
     'resect-correspondence-v1',
   ].includes(plan.recipe);
@@ -72,6 +73,20 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'tiger-context-v1':
+      return {
+        heading: 'TIGER · cells, tissue and a calibrated denominator',
+        corner: '114S · supplied ROIs · source-reference teaching',
+        legend: [
+          ['#ffde35', 'Cell marker reference', true],
+          ['#d54579', '1 · invasive tumor'],
+          ['#20a49a', '2 · stroma'],
+          ['#3476c9', '6 · inflamed stroma'],
+          ['#8970c6', '4 · healthy glands'],
+          ['#aaa54a', '7 · rest'],
+          ['#697582', '0 · excluded'],
+        ],
+      };
     case 'hubmap-inventory-v1':
       return {
         heading: 'HuBMAP · one contour, one inventory row',
