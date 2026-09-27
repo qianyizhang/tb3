@@ -1183,12 +1183,12 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "shape-material",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "blocked-source-contract",
+      "source_asset_readiness": "Verified 290 pins including 121 native source files, all 120 extracted public images, seven saved mechanics conditions, nodal fields and the full-tensor export. Selected source/result views inspected; onward source-asset redistribution remains unresolved.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Assess material motion, strain, mesh validity and reference limitations.",
+      "blocking_dependency": "STRAUS project, public collection and 21 root-folder metadata records expose no explicit redistribution license. Resolve permission for source-derived portable assets or obtain an explicit private-local final-scope decision. The STRAUS-specific user question remains pending.",
+      "remaining_work": "After delivery scope is resolved, author and integrate the actual material-motion and mechanics story, preserving source/reference/privileged-control roles, missing directions and numerical corrections; export fresh artifacts and review motion, mobile and no-GPU behavior. Source/mechanics audit alone is not completion.",
       "contract_projection": {
         "raw": "STRAUS synthetic ultrasound, initial material mesh and reference mechanics for author controls.",
         "helpers": "Initial anatomy/axes; privileged reference-motion controls are labeled separately.",
@@ -1211,7 +1211,67 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "ee9b8477591e9f607a3c9ba89519b7c4dc753c8a32e875959b6fea60b08118f8"
+      "source_brief_sha256": "ee9b8477591e9f607a3c9ba89519b7c4dc753c8a32e875959b6fea60b08118f8",
+      "blocker_resolution": "Document source permission or the user private-local scope decision; keep this entry unfinished and continue the next actionable item. No trial or publication is authorized by this record.",
+      "audited_contract_projection": {
+        "raw": "Four fixed planes extracted from the STRAUS `patient01_healthy` simulation:\nthree long-axis orientations at 0/60/120 degrees and one short-axis plane.\nEach has 30 grayscale frames at 192 × 192 pixels and **0.75 mm/pixel**.\nOnly these **120 images**, rather than the complete source volumes, are supplied.\n\nThe extraction uses one initial rigid pose, documented in `geometry.json`.\nIt aligns the anatomical reference to the first source mesh with maximum error\n0.00763 mm. The native volume grid is 208 × 224 × 208 with spacing\n0.82235/0.83450/0.72558 mm; trilinear sampling and a first-volume intensity limit\nof 202 produce the byte-matched input images. Later meshes do not determine\nthe planes. Physical frame duration is unknown.",
+        "helpers": "`initial_mesh.npz` supplies 11,370 material points in mm, 47,186 fixed tetrahedra,\npoint/cell AHA labels and reference directions. `geometry.json` supplies the\nplane poses, spacing and coordinate transform; `TASK.md` and a hash manifest\ncomplete the public package. There are **123 payload files plus the manifest**.\n\nInitial anatomy removes meshing from this condition. AHA 0 has no directional\nbasis. Three positive-AHA tetrahedra also lack usable axes; unknown directions\nmust remain unavailable rather than being filled with zero strain.",
+        "tools": "The author implementation uses CPU NumPy/SciPy, Pillow, meshio and OpenCV DIS\noptical flow. It selects material seeds within 1.5 mm of the initial planes:\n402/321/478/483 seed observations across the four views. The affine baseline\nfits one global 12-parameter deformation from the tracked in-plane observations.\n\nThe later tissue method fits vertex displacements using the same image evidence,\nedge smoothness and a finite-Jacobian penalty. It uses scales of 0.75 mm for\nimage observations, 0.30 for edge gradients and 0.15 for Jacobian deviations,\nthree nonlinear steps per frame and positive-Jacobian backtracking. This is a\ndevelopment-informed kinematic fit, not an active-force or circulation solver.",
+        "spec": "Keep the initial material IDs and tetrahedral connectivity fixed while recovering\n30 point arrays. Recompute deformation gradients F from corresponding tetrahedral\nedges, Green–Lagrange tensors E=(FᵀF−I)/2, directional engineering strain\nsqrt(eᵀFᵀFe)−1 and Jacobian J=det(F). Engineering strain and directional components\nof E are distinct quantities. Use frame 1 as the reference, without asserting\nthat it is clinically adjudicated end diastole. Do not align each later frame\nto remove displacement errors.",
+        "output": "Retained analyzed models contain `points[30,11370,3]`, shared\n`tetra[47186,4]`, cell labels/directions, directional engineering and\nGreen–Lagrange fields `[30,47186,3]`, and `jacobian[30,47186]`.\nMissing directional values are NaN; geometry/Jacobians still cover those cells.\nVolume-weighted nodal fields support the viewer without replacing element data.\n\nThe retained tissue export additionally contains full `F` and `E_green_lagrange`\ntensors `[30,47186,3,3]`, boundary triangles, units and reference-frame metadata.\nIts tensors are derived from the saved point arrays. Regional curves, peaks and\ntissue-volume diagnostics remain separate outputs. Tissue volume is **not cavity\nvolume or EF**; no cavity/valve-plane partition was validated.",
+        "reference": "All later healthy source meshes are private to evaluation. Known material\ncorrespondences also supply the privileged best uniform-scaling and affine\ncontrols; these are representation checks, not input-legal video methods.\nThe static control repeats the initial body. `patient04_lbbb` is a separate\nreference playback, not an inferred diagnosis or a second reconstruction test.\n\nPublic-only access was reviewed in code, not enforced by an isolated provider\nruntime. The author had inspected the source. Reader figures and viewers include\nprivate references and must not become solver inputs. Simulator material motion\nis not independently measured patient strain.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "`initial_mesh.npz` supplies 11,370 material points in mm, 47,186 fixed tetrahedra,\npoint/cell AHA labels and reference directions. `geometry.json` supplies the\nplane poses, spacing and coordinate transform; `TASK.md` and a hash manifest\ncomplete the public package. There are **123 payload files plus the manifest**.\n\nInitial anatomy removes meshing from this condition. AHA 0 has no directional\nbasis. Three positive-AHA tetrahedra also lack usable axes; unknown directions\nmust remain unavailable rather than being filled with zero strain.",
+            "remaining": "Keep the initial material IDs and tetrahedral connectivity fixed while recovering\n30 point arrays. Recompute deformation gradients F from corresponding tetrahedral\nedges, Green–Lagrange tensors E=(FᵀF−I)/2, directional engineering strain\nsqrt(eᵀFᵀFe)−1 and Jacobian J=det(F). Engineering strain and directional components\nof E are distinct quantities. Use frame 1 as the reference, without asserting\nthat it is clinically adjudicated end diastole. Do not align each later frame\nto remove displacement errors."
+          }
+        ],
+        "sources": [
+          [
+            "BR-029 protocol and source amendment",
+            "groups/cardiac-motion/experiments/br029/protocol.md"
+          ],
+          [
+            "Corrected result interpretation",
+            "docs/research-rounds/BR-029-dynamic-heart-results.md"
+          ],
+          [
+            "Reference/control metrics",
+            "docs/evidence/br029-dynamic-heart-results.json"
+          ],
+          [
+            "Tissue-fit metrics",
+            "docs/evidence/br029-dynamic-heart-tissue-results.json"
+          ],
+          [
+            "Original integrity and correction record",
+            "docs/evidence/br029-dynamic-heart-integrity.json"
+          ],
+          [
+            "Source/package/mechanics audit",
+            "groups/cardiac-motion/presentation/sources/cardiac-material-audit.json"
+          ],
+          [
+            "STRAUS project",
+            "https://humanheart-project.creatis.insa-lyon.fr/multimodalityStraus.html"
+          ],
+          [
+            "Human Heart Project access guidance",
+            "https://humanheart-project.creatis.insa-lyon.fr/faq.html"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "source_review": {
+        "date": "2026-09-27",
+        "actor": "assistant",
+        "receipt": "groups/cardiac-motion/presentation/sources/cardiac-material-audit.json",
+        "receipt_sha256": "51df0ab9c42a48fcbbc75f365a9926ac7920db7d64552393c7e7fc1f508f0f86",
+        "brief_sha256": "78c33c90ea498ff9ed81a39feb8b8a38e82f9e9410d86d417061c05f251774df",
+        "local_artifacts": ".local/explainers/completion-20260927/020-audit-v4",
+        "no_visual_acceptance": true
+      }
     },
     {
       "entry_id": "tb3-cardiac-material-motion",
@@ -12791,10 +12851,10 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 23,
+    "pending-operation-review": 22,
     "reviewed-scripted-spatial": 12,
     "reviewed-scripted-planar": 18,
-    "blocked-source-contract": 104,
+    "blocked-source-contract": 105,
     "blocked-source-input": 48
   },
   "completion_program": {
@@ -12814,7 +12874,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-cardiac-material-feasibility",
+    "active_entry": "tb3-real-echo-reconstruction",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -13273,7 +13333,16 @@
         "stage": "source-audit-complete-delivery-scope-unresolved",
         "receipt": "groups/cardiac-motion/presentation/sources/cardiac-anchor-audit.json",
         "reviewed_entries": 30,
-        "next_entry": "tb3-cardiac-material-feasibility"
+        "next_entry": "tb3-cardiac-material-feasibility",
+        "local_commit": "0ac8992"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-cardiac-material-feasibility",
+        "stage": "source-audit-complete-delivery-scope-unresolved",
+        "receipt": "groups/cardiac-motion/presentation/sources/cardiac-material-audit.json",
+        "reviewed_entries": 30,
+        "next_entry": "tb3-real-echo-reconstruction"
       }
     ]
   }

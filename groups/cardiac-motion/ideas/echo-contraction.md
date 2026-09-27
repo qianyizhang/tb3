@@ -70,3 +70,26 @@ development-informed author study, not an independently isolated model test.
 BR-027 uses an anchor-only origin and curve-extrema EF; BR-025 uses a different
 origin and config-phase EF. Compare within each round's controls. Its source
 rights, canonical story, integrated review and export remain unresolved.
+
+The separate [BR-029 material-feasibility brief](../presentation/briefs/tb3-cardiac-material-feasibility.md)
+and [source/mechanics audit](../presentation/sources/cardiac-material-audit.json)
+retain the distinction between reference playback, privileged representation
+controls and four-video reconstruction. The assistant verified 121 source files,
+all 120 public images, seven corrected saved models and the existing full-tensor
+export without fitting. Directional statistics cover 31,241 usable cells, whereas
+geometry covers all 47,186 tetrahedra. Three unsupported positive-AHA cells remain
+explicitly unavailable; superseded outputs and all original predictions are intact.
+
+The tissue method's radial MAE improves to 6.79 pp, but its 4.03 mm global material
+RMSE and incomplete regional accuracy still fail the provisional targets. Initial
+CG nonconvergence (81/87 solves) and the later 87/87 converged solves are numerical
+execution evidence, not agent outcomes. Selected native input views and the
+retained source/result strain figure were inspected locally. Neither tissue volume
+nor a visually plausible mesh establishes chamber EF or physiological force balance.
+
+Actor: assistant, under the same completion request. STRAUS project/collection
+and root-folder metadata still give no explicit redistribution license. The
+assistant separately requested a concrete delivery-scope decision for STRAUS;
+it remains unanswered. Keep source-derived assets local, leave this explainer
+unfinished, and continue the next actionable entry while permission or private-only
+final scope is unresolved. This does not authorize a new medical trial.
