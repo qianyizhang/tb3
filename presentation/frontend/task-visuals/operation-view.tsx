@@ -1,3 +1,4 @@
+import { ResectPilotScene, ResectPilotOutput } from './resect-pilot-panels';
 import { ResectScene, ResectOutput } from './resect-panels';
 import { useId } from 'react';
 import type { StoryPlan } from '../types';
@@ -96,6 +97,7 @@ function NavigationScene({ state }: { state: Extract<StoryState, { recipe: 'mult
 }
 /** Fallbacks are data-derived views of the current canonical frame, not separate stories. */
 export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryState }) {
+  if (state.recipe === 'resect-pilot-v1') return <ResectPilotScene state={state} />;
   if (state.recipe === 'resect-correspondence-v1') return <ResectScene state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisScene state={state} />;
@@ -305,6 +307,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   );
 }
 export function OperationOutput({ plan, state }: { plan: StoryPlan; state: StoryState }) {
+  if (state.recipe === 'resect-pilot-v1') return <ResectPilotOutput state={state} />;
   if (state.recipe === 'resect-correspondence-v1') return <ResectOutput state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisOutput state={state} />;

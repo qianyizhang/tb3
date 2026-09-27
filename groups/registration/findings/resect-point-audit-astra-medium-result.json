@@ -12,6 +12,10 @@
     {
       "path": "groups/registration/findings/evidence/resect-point-audit-astra-medium.json",
       "sha256": "3816095f030da97678d8d88a9ad553fba6121ce37393418e136c4abc9830c14f"
+    },
+    {
+      "path": "groups/registration/findings/evidence/resect-point-prompt-cue-audit.json",
+      "sha256": "fe135ac559f29feef251e9fc43fb5809a3cc5f5192cfec931b21bf70780c247e"
     }
   ],
   "limitations": [
@@ -19,7 +23,8 @@
     "Selection used evaluator-only tumor masks to choose one point per case before inference; the masks were not exposed to the solver.",
     "The solver received both full volumes, their physical affines and the same-world no-op coordinate, then used visual reslicing plus exploratory local correlation.",
     "Confidence values are subjective and uncalibrated; no independent clinical adjudication was performed.",
-    "The scalar Harbor reward checks artifact validity only and must not be read as scientific success."
+    "The scalar Harbor reward checks artifact validity only and must not be read as scientific success.",
+    "2026-09-27 context audit: frozen Case B viewer example [-30,15,15] is 0.505444 mm from the private reference, closer than the returned 1.130199 mm point. Trace steps 5,18,19 prove delivery and candidate viewing; unaided correction and superiority to all supplied cues are unsupported. Example origin and causal impact remain unresolved."
   ],
   "links": [
     {
@@ -29,6 +34,10 @@
     {
       "label": "Task brief",
       "path": "groups/registration/presentation/briefs/resect-mri-us-correspondence.md"
+    },
+    {
+      "label": "Scoped context and score audit",
+      "path": "groups/registration/findings/resect-point-audit-context.md"
     }
   ]
 }

@@ -18,6 +18,12 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    pilotGeometry,
+    pilotTrace,
+    pilotReference,
+    pilotOutput,
+    pilotReveal,
+    pilotSlabIndex,
     resectCase,
     resectReference,
     resectProjection,
@@ -144,6 +150,35 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   assert.ok(Math.abs(fullCurve[0].score - 0.2691879476) < 1e-9);
   assert.ok(Math.abs(fullCurve[100].score - 0.5876808912) < 1e-9);
   assert.equal(JSON.stringify(objectiveSamples('q01', 0)), JSON.stringify([fullCurve[0]]));
+  const pilotPlan = plans.find((p) => p.recipe === 'resect-pilot-v1');
+  assert.ok(isPlanarStory(pilotPlan));
+  assert.equal(pilotOutput(sampleStory(pilotPlan, 0)), null);
+  assert.equal(pilotReveal(sampleStory(pilotPlan, 0)), false);
+  const pb = pilotPlan.beats.find((b) => b.scene === 'reference');
+  assert.equal(pilotReveal(sampleStory(pilotPlan, pb.startFrame)), false);
+  assert.equal(pilotReveal(sampleStory(pilotPlan, pb.endFrame - 1)), true);
+  const pa = pilotOutput(sampleStory(pilotPlan, pb.endFrame - 1));
+  const dist = (a, b) => Math.hypot(...a.map((v, i) => v - b[i]));
+  pilotReference.cases.forEach((ref, i) => {
+    assert.ok(
+      Math.abs(dist(pa[i].us_world_mm, ref.reference_world_mm) - ref.final_error_mm) < 1e-12,
+    );
+    for (const plane of pilotGeometry[i].modalities.us.ras) {
+      const p = resectProjection(plane, ref.reference_world_mm);
+      const initial = resectProjection(plane, ref.initial_world_mm);
+      const recovered = Math.hypot((p.u - initial.u) * 0.5, (p.v - initial.v) * 0.5, p.normal_mm);
+      assert.ok(Math.abs(recovered - ref.initial_error_mm) < 1e-10);
+    }
+  });
+  assert.ok(
+    Math.abs(
+      dist(pilotTrace.cue_world_mm, pilotReference.cases[1].reference_world_mm) -
+        pilotReference.cue_error_mm,
+    ) < 1e-12,
+  );
+  assert.ok(pilotReference.cue_error_mm < pilotReference.cases[1].final_error_mm);
+  assert.deepEqual([pilotSlabIndex(-1), pilotSlabIndex(0.5), pilotSlabIndex(2)], [0, 2, 4]);
+  assert.equal(pilotReveal(sampleStory(pilotPlan, 0)), false, 'Reverse seeking removes reference');
   const resectPlan = plans.find((p) => p.recipe === 'resect-correspondence-v1');
   assert.ok(isPlanarStory(resectPlan));
   const resectStart = sampleStory(resectPlan, 0);

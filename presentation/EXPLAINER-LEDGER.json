@@ -2509,15 +2509,15 @@
       ],
       "illustration_kind": "point_correspondence",
       "subject": "brain",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "resect-point-pilot",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "correspondence",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Verified frozen task and retained outputs; native source sections, actual delivered trace crops, world-coordinate answer and manual targets have pinned geometry and provenance. Helpful frozen prompt cue and scorer-only diagnostics are explicitly separated.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/009-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Return a retained or corrected US voxel point with confidence and image evidence for each query.",
+      "remaining_work": "No outstanding work for this bounded cue-present pilot explanation. Unassisted capability requires a separately authorized neutral-prompt study; remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "Two full FLAIR / pre-resection ultrasound pairs and an MRI query point for each.",
         "helpers": "Initial US candidate copies the MRI world coordinate; generic orthogonal viewer. No tumor masks in this pilot.",
@@ -2540,7 +2540,45 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "79bd5564bbe091b5633d07b1d463a9c02a6ffcdbd7ac7e8e6c9c1931a0dc0bbc"
+      "source_brief_sha256": "79bd5564bbe091b5633d07b1d463a9c02a6ffcdbd7ac7e8e6c9c1931a0dc0bbc",
+      "acceptance_scope": "Visual and engineering review of the retained two-query cue-present RESECT pilot; exact scores and scoped context audit, not unaided capability, clinical adjudication or a new trial.",
+      "visual_review": "Eight chapters, actual Explorer before/after, every mobile chapter and reveal state, no-GPU reference/reset and fully decoded video inspected. Inputs, prompt cue, retained correlation, independent image centres, actual world output, fixed-plane manual targets and artifact-only controls retain distinct roles.",
+      "reviewed_contract_projection": {
+        "raw": "Two complete native FLAIR / pre-resection 3D ultrasound pairs, with one MRI\nworld-coordinate query per case. Source Case 1 tag index 1 and Case 3 tag index 12\nwere selected before inference using published paired landmarks and mask centroids.\nThese are two selected public training points, not blinded or held-out sampling.",
+        "helpers": "Each initial US candidate copies the MRI world coordinate. A generic orthogonal\nviewer can inspect arbitrary world coordinates. The frozen instruction also gives\nCase B `--us-center -30 15 15`; the trace renders and displays that candidate.\nTumor masks, source names and paired tag files were withheld.",
+        "tools": "The agent used Python, native-affine reslicing, image display and exploratory\nlocal normalized correlation. The declared task permits model-service transport\nonly; this explanation is not a new runtime-isolation audit.",
+        "spec": "Return retained or corrected US **RAS+ world millimetres** for ordered `case_a`\nand `case_b`, confidence in [0,1] and nonempty image evidence. Write `result.json`\nand a nonempty `report.md`. This executed pilot differs from the proposed\nthree-case voxel-output correspondence task.",
+        "output": "Actual output keeps A at `[44.528484,-31.304113,29.970621]` with confidence 0.82\nand moves B to `[-30.7,14.4,14.4]` with confidence 0.71. Confidence is subjective,\nnot calibrated. The retained report cites visual inspection and local correlation.",
+        "reference": "The evaluator holds the paired US tag coordinate in `tests/reference.json`.\nReader reveals display it and exact physical errors. These reveals are not\nsolver inputs; the helpful example coordinate above was solver-visible.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "Each initial US candidate copies the MRI world coordinate. A generic orthogonal\nviewer can inspect arbitrary world coordinates. The frozen instruction also gives\nCase B `--us-center -30 15 15`; the trace renders and displays that candidate.\nTumor masks, source names and paired tag files were withheld.",
+            "remaining": "Return retained or corrected US **RAS+ world millimetres** for ordered `case_a`\nand `case_b`, confidence in [0,1] and nonempty image evidence. Write `result.json`\nand a nonempty `report.md`. This executed pilot differs from the proposed\nthree-case voxel-output correspondence task."
+          }
+        ],
+        "sources": [
+          [
+            "Frozen protocol and appended context audit",
+            "groups/registration/experiments/resect-point-audit-astra-medium/protocol.md"
+          ],
+          [
+            "Result, trace, controls and qualified interpretation",
+            "groups/registration/findings/resect-point-audit-context.md"
+          ],
+          [
+            "Pinned context-audit evidence",
+            "groups/registration/findings/evidence/resect-point-prompt-cue-audit.json"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "aaffebf4c7574e55c08227b04765cb69e54cb80547eb8f9e736798a6d84a3845",
+        "source_story_sha256": "a866d0591f042fd695f093c08e048362fa3178be65fb8ee0513c9ce74c452472",
+        "acceptance_receipt_sha256": "229f81bf3dc5dfff96f155796bdc68d55dbab452c13be4d8eefa60f506f96e1c"
+      }
     },
     {
       "entry_id": "tb3-vessel-source-screen",
@@ -12170,9 +12208,9 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 34,
+    "pending-operation-review": 33,
     "reviewed-scripted-spatial": 11,
-    "reviewed-scripted-planar": 10,
+    "reviewed-scripted-planar": 11,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
   },
@@ -12193,7 +12231,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-resect-point-pilot",
+    "active_entry": "tb3-vessel-source-screen",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -12553,7 +12591,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/008-acceptance.json",
         "reviewed_entries": 21,
-        "next_entry": "tb3-resect-point-pilot"
+        "next_entry": "tb3-resect-point-pilot",
+        "local_commit": "2a8fcf8"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-resect-point-pilot",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/009-acceptance.json",
+        "reviewed_entries": 22,
+        "next_entry": "tb3-vessel-source-screen"
       }
     ]
   }

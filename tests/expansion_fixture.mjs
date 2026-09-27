@@ -54,3 +54,12 @@ export {
   resectSweepIndex,
   resectTeachingOutput,
 } from '../presentation/frontend/task-visuals/resect.ts';
+
+export {
+  pilotGeometry,
+  pilotTrace,
+  pilotReference,
+  pilotOutput,
+  pilotReveal,
+  pilotSlabIndex,
+} from '../presentation/frontend/task-visuals/resect-pilot';

@@ -61,3 +61,18 @@ three-case voxel-output proposal separate from the
 [two-query world-output pilot](../presentation/briefs/tb3-resect-point-pilot.md).
 These are presentation/source checks, not a new trial or a user study decision.
 Reopen protocol design under the existing conditions above.
+
+## Context reassessment — 2026-09-27
+
+Assistant audit: the frozen instruction supplies Case B `[-30,15,15]`,
+**0.505444 mm** from the private reference versus **1.130199 mm** for the
+returned point. Trace steps 5, 18 and 19 establish prompt delivery and viewing
+of that candidate. The later correlation search is centred on the original MRI
+query, so the cue's causal necessity is unresolved. The historical distances
+and outcomes remain unchanged; the earlier capability interpretation is narrowed
+to a descriptive result with this cue present. It does not establish unaided
+recovery or superiority to all supplied cues. Original no-op failure was a missing
+artifact, not a valid unchanged-coordinate prediction. See the
+[scoped report](../findings/resect-point-audit-context.md) and its pinned proof. Reopen unaided capability only with
+a separately authorized prompt-neutral revision and preregistered points; this
+presentation audit runs no trial. This is an assistant assessment, not a user decision.

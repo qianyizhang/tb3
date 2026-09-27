@@ -19,6 +19,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'inverse-v1',
     'mixed-tissue-v1',
     'registration-analysis-v1',
+    'resect-pilot-v1',
     'resect-correspondence-v1',
   ].includes(plan.recipe);
 }
@@ -64,6 +65,17 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'resect-pilot-v1':
+      return {
+        heading: 'RESECT pilot · two queries and a supplied cue',
+        corner: 'One retained attempt · RAS+ mm · explicit reference reveal',
+        legend: [
+          ['#efa933', 'Initial / MRI query'],
+          ['#697be8', 'Prompt cue'],
+          ['#41c5b6', 'Returned'],
+          ['#e880ad', 'Manual reference', true],
+        ],
+      };
     case 'resect-correspondence-v1':
       return {
         heading: 'RESECT · MRI to ultrasound point correspondence',

@@ -55,3 +55,18 @@ calibrated confidence or a population estimate. The challenge selection used
 evaluator-only masks before inference, foundation-model exposure is unknown, and
 the agent's exploratory local correlation helped choose the Case B candidate even
 though its final rationale also cited visual correspondence.
+
+## Context reassessment — 2026-09-27
+
+Assistant audit: the frozen instruction supplies Case B `[-30,15,15]`,
+**0.505444 mm** from the private reference versus **1.130199 mm** for the
+returned point. Trace steps 5, 18 and 19 establish prompt delivery and viewing
+of that candidate. The later correlation search is centred on the original MRI
+query, so the cue's causal necessity is unresolved. The historical distances
+and outcomes remain unchanged; the earlier capability interpretation is narrowed
+to a descriptive result with this cue present. It does not establish unaided
+recovery or superiority to all supplied cues. Original no-op failure was a missing
+artifact, not a valid unchanged-coordinate prediction. See the
+[scoped report](../../findings/resect-point-audit-context.md) and its pinned proof. Reopen unaided capability only with
+a separately authorized prompt-neutral revision and preregistered points; this
+presentation audit runs no trial. This is an assistant assessment, not a user decision.

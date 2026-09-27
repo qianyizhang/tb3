@@ -49,6 +49,7 @@ withBrowser(async (browser) => {
           'respiratory-v1',
           'registration-analysis-v1',
           'resect-correspondence-v1',
+          'resect-pilot-v1',
         ].includes(plan.recipe)
           ? plan.beats.map((b) => b.endFrame - 1)
           : []),
@@ -71,6 +72,19 @@ withBrowser(async (browser) => {
           assert.equal(await tile.getAttribute('width'), frame === 0 ? '130' : '520');
           const returned = canvas.getByText('level-0 (2680, 2040) px', { exact: true });
           assert.equal(await returned.count(), frame === plan.durationFrames - 1 ? 1 : 0);
+        }
+        if (plan.recipe === 'resect-pilot-v1') {
+          const output = page.locator('[data-pilot-output]');
+          assert.ok(
+            await output.evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'Pilot output overflows',
+          );
+          const box = await output.boundingBox();
+          assert.ok(box && box.y + box.height <= 720, 'Pilot output clipped');
+          if (frame === 0) {
+            assert.equal(await page.locator('[data-pilot-point="reference"]').count(), 0);
+            assert.equal(await page.locator('[data-pilot-answer]').count(), 0);
+          }
         }
         if (plan.recipe === 'resect-correspondence-v1') {
           const output = page.locator('[data-resect-output]');
@@ -344,9 +358,31 @@ withBrowser(async (browser) => {
       'respiratory-v1',
       'registration-analysis-v1',
       'resect-correspondence-v1',
+      'resect-pilot-v1',
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'resect-pilot-v1') {
+      await fallback.locator('[data-story-step="5"]').click();
+      await fallback.waitForFunction(
+        () => document.querySelector('[data-pilot-reference]')?.textContent === 'hidden',
+      );
+      assert.equal(await fallback.locator('[data-pilot-point="reference"]').count(), 0);
+      await fallback.locator('.scene-play').click();
+      await fallback.locator('[data-pilot-point="reference"]').first().waitFor();
+      await fallback.locator('.scene-play').click();
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('[data-story-step="0"]').click();
+      await fallback.waitForFunction(
+        () =>
+          document.querySelector('[data-pilot-output]')?.getAttribute('data-pilot-output') ===
+          'inputs',
+      );
+      assert.equal(await fallback.locator('[data-pilot-point="reference"]').count(), 0);
+      assert.equal(await fallback.locator('[data-pilot-answer]').count(), 0);
+    }
     if (plan.recipe === 'resect-correspondence-v1') {
       await fallback.locator('[data-story-step="5"]').click();
       await fallback.waitForFunction(

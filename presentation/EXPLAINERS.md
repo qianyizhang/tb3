@@ -124,6 +124,15 @@ a diagnostic straight segment, not a solver path. Independently centred actual
 CT patches compare appearance without depicting displacement. Neither presentation
 constitutes a blind solver packet or a new medical execution.
 
+`resect-pilot-v1` explains the executed two-query world-output task separately
+from `resect-correspondence-v1`, the proposed voxel-output task. Its closed scenes
+separate input, prompt cue, delivered slab inspection, retained correlation,
+output, manual reference, controls and limits. The
+[source notice](task-explorer/resect-pilot/NOTICE.md) pins actual trace images and
+calibrated source sections. `view` changes the inspected slab; `output` and
+`reference` control separate reveals. The supplied coordinate cue, exact original
+scores and later synthetic verifier diagnostics retain distinct roles.
+
 ### Draft a canonical story
 
 ```sh
