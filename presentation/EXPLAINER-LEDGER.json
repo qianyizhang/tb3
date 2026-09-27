@@ -1971,15 +1971,15 @@
       ],
       "illustration_kind": "longitudinal",
       "subject": "torso",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "longitudinal-ct-original",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "longitudinal",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "18 unique shared frozen files, seven source members, full source/input pixel and affine identity, six native reference instances and both exact saved-score replays verified. Source views, actual mask boundaries and CC BY-NC 4.0 terms retained.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/016-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Produce per-visit instance masks, longitudinal identities/events and a report.",
+      "remaining_work": "No outstanding explainer work within the original image-only CT contract. Instance/confluence adjudication and fresh medical trials remain separate research. Remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "Two full native CT volumes at different visits.",
         "helpers": "Only full CTs and generic schema; no lesion locations, masks or clinical context.",
@@ -2006,7 +2006,69 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "b34ec6e7e049b8bcafed14b2723754273ed64a0d7f15b31e9aec4ed8dc59425c"
+      "source_brief_sha256": "b34ec6e7e049b8bcafed14b2723754273ed64a0d7f15b31e9aec4ed8dc59425c",
+      "acceptance_scope": "Source, visual and engineering review of the original image-only CT task explanation. Native saved-output replay preserves all original results. Instance/confluence and clinical adjudication remain open. No new model execution, registration, medical runtime installation or publication.",
+      "visual_review": "Ten chapters cover full inputs, native instances, open partition review, omitted focus, physical detection matching, link eligibility, complete events, disaggregated results and complete file output. Both locales, mobile/keyboard/no-GPU/reset and fully decoded 94-second video inspected.",
+      "reviewed_contract_projection": {
+        "raw": "`/app/data/baseline.nii.gz` and `followup.nii.gz`: full native CTs, respectively 512 × 512 × 261 and 512 × 512 × 274 voxels. In-plane spacing is 0.822265625 and 0.84765625 mm; both have 3 mm slice spacing. Each native affine maps zero-based voxel centers to RAS mm. Visits are not registered.\n\nSource case 0a09c8844b from Longitudinal-CT v3 is reader provenance, **not solver-visible identity**. Neutral filenames and scrubbed free-text NIfTI metadata preserve all original image pixels and geometry. No dataset name, source identifier, diagnosis, clinical history, target counts or locations were supplied.",
+        "helpers": "Only the two CT volumes, generic inclusion/confluence instructions, output schema and illustrative event syntax. No candidate centers, target masks, prior outputs or longitudinal reference links. Generic example IDs convey neither counts nor identities in this case.",
+        "tools": "CPU image analysis with NumPy, SciPy, nibabel, scikit-image and Pillow; up to two hours per attempt. No GPU, pretrained weights, external dataset lookup or model downloads. The model transport route is separate from data/network assistance. Read the exact frozen protocol for execution details.",
+        "spec": "Segment every visible tumor lesion with its full extent while excluding normal anatomy. The original instruction states: **“A confluent region is one instance.”** IDs are local to each visit; matching numerical IDs do not establish biological identity.\n\nReturn events with exact cardinalities: persistent 1→1; merging at least 2→1; disappearing 1→0; newly_appearing 0→1; unresolved any nonempty group. Every positive instance ID must appear in exactly one event group per visit. An unresolved group does not assert links. Check follow-up field of view before calling disappearance.",
+        "output": "- `baseline_instances.nii.gz` and `followup_instances.nii.gz`: 3D integer maps on each exact input shape/affine. Zero is background; IDs are 1–65535, at most 4096 instances per visit.\n- `events.json`: `schema_version: 1`, complete event groups with per-visit ID lists.\n- `report.md`: method, uncertainty and representative image evidence citing a filename and zero-based native slice index. Preserve scripts and views under `/app/work`.\n\nAn empty mask pair with `groups: []` and a nonempty report can satisfy the artifact contract; validity does not establish a scientific or clinical pass.",
+        "reference": "Private native instance masks and a source-derived event ledger: four baseline instances, two follow-up instances; B1+B2+B4 → F4 merging and B3 → F3 persistent. This is four links in two groups. No newly appearing or disappearing reference event occurs here. Source topology `UNCHANGED` means identity persists, not unchanged lesion size.\n\nSource annotators used CT plus clinical examination reports; the solver had CT alone. Reader crops are reference-selected and remove localization search. The portable explanation embeds private-to-solver material and must never serve as a solver input packet.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "Only the two CT volumes, generic inclusion/confluence instructions, output schema and illustrative event syntax. No candidate centers, target masks, prior outputs or longitudinal reference links. Generic example IDs convey neither counts nor identities in this case.",
+            "remaining": "Segment every visible tumor lesion with its full extent while excluding normal anatomy. The original instruction states: **“A confluent region is one instance.”** IDs are local to each visit; matching numerical IDs do not establish biological identity.\n\nReturn events with exact cardinalities: persistent 1→1; merging at least 2→1; disappearing 1→0; newly_appearing 0→1; unresolved any nonempty group. Every positive instance ID must appear in exactly one event group per visit. An unresolved group does not assert links. Check follow-up field of view before calling disappearance."
+          }
+        ],
+        "sources": [
+          [
+            "Original solver instruction",
+            "groups/longitudinal-reading/methods/longitudinal-ct-image-only/instruction.md"
+          ],
+          [
+            "private scoring implementation",
+            "groups/longitudinal-reading/methods/longitudinal-ct-image-only/score.py"
+          ],
+          [
+            "Astra medium protocol",
+            "groups/longitudinal-reading/experiments/longitudinal-ct-image-only-astra-medium/protocol.md"
+          ],
+          [
+            "Sol xhigh protocol",
+            "groups/longitudinal-reading/experiments/longitudinal-ct-image-only-sol-xhigh/protocol.md"
+          ],
+          [
+            "Retained comparison and native review",
+            "groups/longitudinal-reading/findings/longitudinal-ct-image-only-comparison.md"
+          ],
+          [
+            "instance-boundary review",
+            "groups/longitudinal-reading/examples/longitudinal-ct-instance-boundary-review.md"
+          ],
+          [
+            "source/derivation audit",
+            "groups/longitudinal-reading/presentation/sources/longitudinal-ct-original-audit.json"
+          ],
+          [
+            "Longitudinal-CT v3 source release",
+            "https://fdat.uni-tuebingen.de/records/qe950-g4h94"
+          ],
+          [
+            "teaching attribution and transforms",
+            "presentation/task-explorer/longitudinal-ct-original/NOTICE.md"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "8d0a7a2bf44eca67f1dd7e37f737454be4426f4b01bf9c2a07e804eb24a9d818",
+        "source_story_sha256": "8795b1c703315128dbbd3d6c2f4fbf2625fb85656d8e12c2052e41ed82e6d6af",
+        "acceptance_receipt_sha256": "a5b151ff26a9687da9facbc12176c0dd6b122bad564ba72e715e595b5719b52b"
+      }
     },
     {
       "entry_id": "tb3-longitudinal-ct-revised",
@@ -12541,9 +12603,9 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 27,
+    "pending-operation-review": 26,
     "reviewed-scripted-spatial": 12,
-    "reviewed-scripted-planar": 16,
+    "reviewed-scripted-planar": 17,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
   },
@@ -12564,7 +12626,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-longitudinal-ct-original",
+    "active_entry": "tb3-longitudinal-ct-revised",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -12987,7 +13049,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/015-acceptance.json",
         "reviewed_entries": 28,
-        "next_entry": "tb3-longitudinal-ct-original"
+        "next_entry": "tb3-longitudinal-ct-original",
+        "local_commit": "1f74e13acb897901218e06e42765ec8b1fc4ddc6"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-longitudinal-ct-original",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/016-acceptance.json",
+        "reviewed_entries": 29,
+        "next_entry": "tb3-longitudinal-ct-revised"
       }
     ]
   }

@@ -59,12 +59,18 @@ withBrowser(async (browser) => {
           'hubmap-inventory-v1',
           'tiger-context-v1',
           'longitudinal-mri-v1',
+          'longitudinal-ct-original-v1',
         ].includes(plan.recipe)
           ? plan.beats.map((b) => b.endFrame - 1)
           : []),
       ];
       if (
-        ['hubmap-inventory-v1', 'tiger-context-v1', 'longitudinal-mri-v1'].includes(plan.recipe)
+        [
+          'hubmap-inventory-v1',
+          'tiger-context-v1',
+          'longitudinal-mri-v1',
+          'longitudinal-ct-original-v1',
+        ].includes(plan.recipe)
       ) {
         for (const b of plan.beats) frames.push(b.startFrame);
       }
@@ -118,6 +124,39 @@ withBrowser(async (browser) => {
             assert.equal(await page.locator('[data-airway-reference-image]').count(), 0);
             assert.equal(await page.locator('[data-airway-added-slice]').count(), 0);
           }
+        }
+        if (plan.recipe === 'longitudinal-ct-original-v1') {
+          const legend = await page.locator('.scene-legend').boundingBox();
+          assert.ok(legend && legend.y + legend.height <= 720, 'CT legend clipped');
+          assert.ok(
+            await page
+              .locator('[data-ct-output-panel]')
+              .evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'CT output overflows',
+          );
+          const figure = page.locator('[data-ct-scene]');
+          assert.deepEqual(
+            await figure.evaluate((svg) => {
+              const box = svg.getBoundingClientRect();
+              return [...svg.querySelectorAll('text')]
+                .filter((t) => {
+                  const b = t.getBoundingClientRect();
+                  return (
+                    b.left < box.left - 1 || b.right > box.right + 1 || b.bottom > box.bottom + 1
+                  );
+                })
+                .map((t) => t.textContent);
+            }),
+            [],
+            'CT figure label outside bounds',
+          );
+          if (frame === 0) {
+            assert.equal(await page.locator('[data-ct-reference], [data-ct-output]').count(), 0);
+            assert.equal(await page.locator('[data-ct-input]').count(), 2);
+          }
+          const b = plan.beats.find((b) => frame >= b.startFrame && frame < b.endFrame);
+          if (b.scene === 'partition' && frame === b.endFrame - 1)
+            assert.ok(await page.locator('[data-ct-reference] image[data-ct-reference]').count());
         }
         if (plan.recipe === 'longitudinal-mri-v1') {
           const legend = await page.locator('.scene-legend').boundingBox();
@@ -550,9 +589,17 @@ withBrowser(async (browser) => {
       'hubmap-inventory-v1',
       'tiger-context-v1',
       'longitudinal-mri-v1',
+      'longitudinal-ct-original-v1',
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'longitudinal-ct-original-v1') {
+      assert.equal(await fallback.locator('[data-ct-reference], [data-ct-output]').count(), 0);
+      await fallback.locator('[data-story-step="2"]').click();
+      assert.equal(await fallback.locator('image[data-ct-reference]').count(), 1);
+      await fallback.locator('.scene-reset').click();
+      assert.equal(await fallback.locator('[data-ct-reference], [data-ct-output]').count(), 0);
+    }
     if (plan.recipe === 'longitudinal-mri-v1') {
       assert.equal(await fallback.locator('[data-mri-reference], [data-mri-output]').count(), 0);
       await fallback.locator('[data-story-step="2"]').click();

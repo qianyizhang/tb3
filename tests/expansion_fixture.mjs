@@ -1,4 +1,14 @@
 export {
+  ctSource,
+  ctVisits,
+  ctReference,
+  ctFrameIndex,
+  ctShowReference,
+  ctShowOutput,
+  ctEdges,
+  ctEligibleGroups,
+} from '../presentation/frontend/task-visuals/longitudinal-ct-original';
+export {
   mriSource,
   mriP02,
   mriP03,

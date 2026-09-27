@@ -18,6 +18,14 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    ctSource,
+    ctVisits,
+    ctReference,
+    ctFrameIndex,
+    ctShowReference,
+    ctShowOutput,
+    ctEdges,
+    ctEligibleGroups,
     mriSource,
     mriP02,
     mriP03,
@@ -272,6 +280,48 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   assert.ok(Math.abs(fullCurve[0].score - 0.2691879476) < 1e-9);
   assert.ok(Math.abs(fullCurve[100].score - 0.5876808912) < 1e-9);
   assert.equal(JSON.stringify(objectiveSamples('q01', 0)), JSON.stringify([fullCurve[0]]));
+  const ctPlan = plans.find((p) => p.recipe === 'longitudinal-ct-original-v1');
+  assert.ok(ctPlan && isPlanarStory(ctPlan));
+  assert.equal(ctShowReference(sampleStory(ctPlan, 0)), false);
+  assert.equal(ctShowOutput(sampleStory(ctPlan, 0)), false);
+  assert.deepEqual(
+    Array.from(ctSource.overview, (v) => v.shape[2]),
+    [261, 274],
+  );
+  assert.deepEqual(
+    [0, 0.2, 0.4, 0.6, 0.8, 1].map((v) => ctFrameIndex(v)),
+    [0, 1, 2, 3, 4, 5],
+  );
+  assert.deepEqual(
+    Array.from(ctVisits[0].boundary_frames, (v) => v.k),
+    [114, 115, 116, 118, 119, 120],
+  );
+  assert.equal(ctEdges(ctReference.groups).length, 4);
+  assert.equal(ctEligibleGroups(ctReference.groups, [4], [4]).length, 0);
+  assert.equal(ctEligibleGroups(ctReference.groups, [1, 2, 3, 4], [3, 4]).length, 2);
+  assert.equal(ctEdges([{ event: 'unresolved', baseline_ids: [1], followup_ids: [2] }]).length, 0);
+  for (const [i, v] of ctVisits.entries()) {
+    assert.equal(v.focus.fov_mm, v.focus.width_pixels * ctSource.overview[i].spacing_mm[0]);
+    assert.equal(v.focus.k, i === 0 ? 213 : 216);
+    assert.equal(
+      v.saved_output_view.reference,
+      undefined,
+      'Output-selected view must not carry a reference overlay',
+    );
+  }
+  for (const row of ctReference.coverage.filter((v) => v.reference_id === 3))
+    assert.equal(row.astra_fraction_covered, 0);
+  assert.equal(
+    ctReference.conditions[0].metrics.association.links_conditional_on_detection.eligible_gt_edges,
+    1,
+  );
+  assert.equal(
+    ctReference.conditions[0].metrics.association.events_conditional_on_detection
+      .eligible_gt_groups,
+    0,
+  );
+  assert.equal(ctReference.conditions[1].metrics.valid, true);
+  assert.equal(ctReference.conditions[1].events.groups.length, 0);
   const mriPlan = plans.find((p) => p.recipe === 'longitudinal-mri-v1');
   assert.ok(mriPlan && isPlanarStory(mriPlan));
   assert.equal(mriShowReference(sampleStory(mriPlan, 0)), false);

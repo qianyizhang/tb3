@@ -157,6 +157,7 @@ def new(
             "topbrain-screen-v1",
             "hubmap-inventory-v1",
             "tiger-context-v1",
+            "longitudinal-ct-original-v1",
             "longitudinal-mri-v1",
         }:
             beat["scene"] = "inputs"

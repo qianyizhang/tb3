@@ -34,6 +34,7 @@ class ExpansionTests(unittest.TestCase):
                     "hubmap-inventory-v1",
                     "tiger-context-v1",
                     "longitudinal-mri-v1",
+                    "longitudinal-ct-original-v1",
                 }
                 else "no-reference-assets",
             )
@@ -75,6 +76,7 @@ class ExpansionTests(unittest.TestCase):
             ("lesion-localization", "hubmap-inventory"),
             ("lesion-localization", "tiger-context"),
             ("longitudinal-reading", "longitudinal-mri"),
+            ("longitudinal-reading", "longitudinal-ct-original"),
         ]:
             path = ROOT / f"groups/{group}/presentation/stories/{name}.story.md"
             model = stories.parse_expansion(path.read_text())
@@ -118,6 +120,7 @@ class ExpansionTests(unittest.TestCase):
             "hubmap-inventory",
             "tiger-context",
             "longitudinal-mri",
+            "longitudinal-ct-original",
         ]:
             path = ROOT / f"presentation/task-explorer/{name}/manifest.json"
             for key, value in [

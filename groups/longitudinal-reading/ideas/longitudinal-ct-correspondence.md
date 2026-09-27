@@ -237,3 +237,11 @@ unchanged. Assistant interpretation: stronger goal/inclusion wording did not
 resolve the bottleneck in this single bundled intervention. A blinded
 native-resolution candidate/mimic recognition control would now be informative;
 no additional run is implied. [Comparison, attribution and native GT panels](../findings/longitudinal-ct-curation-comparison.md).
+
+## Original-contract reader explanation — 2026-09-27
+
+Assistant explanation, not a new user research decision: the [original task story](../presentation/stories/longitudinal-ct-original.story.md) now separates native instance output, reference partition, omitted focus, local-ID detection matching, edge eligibility and complete typed event groups. The [audit](../presentation/sources/longitudinal-ct-original-audit.json) verifies all 18 shared frozen files, seven source members, full source/input pixel and affine identity, eight saved answers and both original metric files. Fresh saved-score replay matches every retained field within 1e-12. No model trial or historical authoring module was executed.
+
+The instance/confluence review remains open: baseline reference IDs 1/2/4 touch, but voxel connectivity does not establish radiologic confluence or invalidate expert partitions. Astra's 2/6 strict detection includes foreground coverage of other dominant-region labels; B3/F3 has zero saved coverage. A 1/1 conditional edge score has only 1/4 eligible GT edges; no complete event group is eligible, so merging ability is not isolated. Original scientific evidence and scores are unchanged. Reader-selected crops remove search, and the source annotators' clinical-report access remains distinct from CT-only solver inputs.
+
+Reopen scientific interpretation only with appropriate instance-convention/reference adjudication or a separately authorized, predeclared new condition. Explanation acceptance covers the reader artifact, not clinical task qualification.

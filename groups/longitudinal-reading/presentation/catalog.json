@@ -65,10 +65,11 @@
       "nav_group": "Track findings and change",
       "illustration": {
         "kind": "longitudinal",
-        "input": "Two full CT volumes",
-        "output": "Instance masks and longitudinal identities",
-        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted.",
-        "subject": "torso"
+        "input": "Two full native CT volumes, without targets or clinical history",
+        "output": "Native instances, mapped identities, complete events and a qualified report",
+        "caption": "Actual saved masks and reader-only reference reveals separate foreground overlap, instance partition and event completeness. The original confluence convention remains under review.",
+        "subject": "torso",
+        "story_id": "longitudinal-ct-original"
       },
       "modalities": [
         "ct"
@@ -141,7 +142,8 @@
       "task_family": "tb3-longitudinal-ct",
       "nav_label": "Comprehensive candidate contract",
       "nav_group": "Track findings and change",
-      "illustration": {"story_id": "longitudinal-links",
+      "illustration": {
+        "story_id": "longitudinal-links",
         "kind": "longitudinal",
         "input": "CT pair and broad context",
         "output": "Candidate inventory, links and probability/reason sidecar",

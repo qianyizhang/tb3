@@ -24,6 +24,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'topbrain-screen-v1',
     'hubmap-inventory-v1',
     'tiger-context-v1',
+    'longitudinal-ct-original-v1',
     'longitudinal-mri-v1',
     'resect-pilot-v1',
     'resect-correspondence-v1',
@@ -74,6 +75,18 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'longitudinal-ct-original-v1':
+      return {
+        heading: 'Original CT · find, partition and link',
+        corner: 'Native CT · reader-only reference reveals · convention under review',
+        legend: [
+          ['#ffb636', 'Saved Astra mask · solid'],
+          ['#36dcdd', 'Reference palette · cyan solid'],
+          ['#ef81e4', 'Reference palette · pink solid'],
+          ['#a8ed70', 'Reference palette · green solid'],
+          ['#72a9ff', 'Reference palette · blue solid'],
+        ],
+      };
     case 'longitudinal-mri-v1':
       return {
         heading: 'Longitudinal MRI · locate, measure, qualify',
