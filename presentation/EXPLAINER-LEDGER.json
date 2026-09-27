@@ -1269,15 +1269,15 @@
       ],
       "illustration_kind": "segmenter_calibration",
       "subject": "abdomen",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "segmentation-calibration",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "42 source fingerprints; 18 exact input reconstructions; 116 exact saved-mask metric replays; licensed source/output/reference layers with full-mask crop and pixel round trips.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/029-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Compare slice masks and synchronized inference timings.",
+      "remaining_work": "No outstanding explainer work for the retained tool calibration. Clinical reference intent, training overlap and backend cause remain qualified; remote delivery pending at program level.",
       "contract_projection": {
         "raw": "One known public CT; six organs and 18 reference-selected organ/slice pairs.",
         "helpers": "GT-derived slices and boxes expanded by 2 or 10 pixels; direct local SAM2/LiteMedSAM inference.",
@@ -1300,7 +1300,101 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "13aa24d7eb0a348b5d77fd2dc61e4c9ad0dca0bb92a88cf30286e5bdbacfbf44"
+      "source_brief_sha256": "13aa24d7eb0a348b5d77fd2dc61e4c9ad0dca0bb92a88cf30286e5bdbacfbf44",
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "receipt": "groups/anatomy-audit/presentation/sources/segmentation-calibration-audit.json",
+        "sha256": "bd7e77b72e95d9ac0c150bf49906e1cf31cf87de04a51ab12a44f10472e0090d",
+        "status": "source-audit-complete"
+      },
+      "acceptance_scope": "Source, visual and engineering review of retained direct SAM2/LiteMedSAM tool calibration on s1233. No fresh inference, medical runtime install, clinical adjudication or publication.",
+      "visual_review": "Thirteen chapters and full 174-second playback; native reference-derived boxes, both saved tools, fixed middle-slice organ comparisons, duodenum counterexample, controls, metric/timing denominators and separate backend agreement; desktop/mobile/locale/Explorer/no-GPU reviewed.",
+      "reviewed_contract_projection": {
+        "title": "Calibrate promptable segmenters on CT slices",
+        "goal": "Compare two frozen box-to-mask tools on the same full CT slices and two supplied\nbox sizes. LiteMedSAM has higher mean agreement and lower image-encoding latency\nin this retained one-case calibration; duodenum and SAM2 backend differences\nprevent treating the mean as a universal ranking.",
+        "value": "Establish conditional mask quality, sensitivity to box extent and measured local\nruntime cost before exposing a segmenter to an agent. The supplied localization\ncomes from the reference. This does not test whether an agent can find an organ,\nchoose the box, correct a mask or assemble a 3D segmentation.",
+        "raw": "One known public TotalSegmentator v2.0.1 CT, **s1233**, on its original\n265 × 265 × 401 grid with 1.5 mm isotropic spacing. Six reference labels select\nliver, right kidney, gallbladder, pancreas, right adrenal and duodenum.\nThe 25th, 50th and 75th percentiles of each organ's nonempty slice-index list\ngive **18 correlated organ/slice pairs from one patient**.\n\nEach input is a full 265 × 265 axial section, clipped to **[-160,240] HU**,\nscaled to uint8 and replicated into three grayscale RGB channels. Native\ndisplay x=i, y=j increases down and k identifies the slice. No radiological flip\nor target-mask resampling is applied. Reader detail crops are not model inputs.",
+        "helpers": "Each reference bounding rectangle is expanded by **2 pixels (3 mm)** or\n**10 pixels (15 mm)** on every side, clipped to the image boundary. Coordinates\nare half-open xyxy in the native image. The same slice and native box go to\nboth tools. Slices and boxes are fixed before outputs are inspected.",
+        "tools": "Direct official **SAM 2.1 Small** and **LiteMedSAM** checkpoint inference, retained\nfrom 2026-09-21 on an Apple M5 Pro with 64 GiB unified memory. Both use PyTorch\n2.10, FP32, evaluation/inference mode and four CPU threads. There is no general\nagent, training, Docker execution or interactive correction in this calibration.\n\nTheir native preprocessing differs: SAM2 resizes to 1024² with floating-point\nbox scaling; LiteMedSAM resizes to 256², normalizes intensities and truncates its\nscaled box coordinates to integers. Each encodes a full image once and reuses\nthe embedding for the two box decodes. Native-resolution binary masks are\nreturned; no extra connected-component cleanup is applied by the benchmark.",
+        "reference": "Dense organ masks are author/evaluator material. They select slices and derive\nthe supplied boxes, but neither model receives the dense mask or the semantic\norgan name. Reference outlines, agreement scores and display crops are reader\naids with explicit reveals. This privileged prompt origin remains visible even\nwhen the dense reference overlay is hidden.",
+        "spec": "Run both fixed models with tight and loose boxes on the fixed 18 samples.\nThe retained primary comparison contains **72 MPS predictions**. Eight\nprespecified CPU checks cover both tools on middle liver/adrenal slices and both\nboxes. After a SAM2 backend discrepancy, **36 additional SAM2 CPU predictions**\nrepeat the complete sample set as a diagnostic. They do not replace the MPS\nresults or constitute another patient.",
+        "output": "For every model/backend/sample/box: a 265 × 265 Boolean mask, native box and\nslice ID, synchronized encode/decode durations, predicted model quality and\nreference-based measurements. All **116 masks** and their receipts remain local.\nThe model quality-head score is distinct from measured Dice and is not assumed\nto be calibrated confidence.",
+        "score": "The [saved-output audit](../sources/segmentation-calibration-audit.json) reconstructs\nall input images, selected slices and boxes from the original source files, then\nrecomputes Dice, precision, recall and HD95 from every saved mask. All four\nmeasurements match the historical receipts exactly. The replay runs no model.\n\nHD95 uses 4-connected erosion to identify 2D boundary pixels and takes the\n95th percentile of **concatenated bidirectional** nearest-boundary distances,\nwith 1.5 mm sampling. It is not a 3D surface score or the maximum of two\ndirectional percentiles. Both mean scores below use 18 samples per box condition.\n\n| Tool / backend | Tight mean Dice | Loose mean Dice | Median encode | Median cached decode |\n| --- | ---: | ---: | ---: | ---: |\n| SAM 2.1 Small / MPS | 0.7745 | 0.5165 | 134.5 ms | 14.5 ms |\n| LiteMedSAM / MPS | 0.8334 | 0.8524 | 42.5 ms | 12.3 ms |\n| SAM2 / CPU, later diagnostic | 0.7905 | 0.5593 | 1,791.8 ms | 42.3 ms |\n| Filled supplied rectangle | 0.5260 | 0.3090 | — | — |\n\nTiming denominators are **18 unique image encodes / 36 cached box decodes** per\ncomplete run. Encode time is repeated in the two prompt rows but counted once\nper image. Synchronization and CPU mask return are included; disk input, model\nload and warmup are excluded. First measured SAM2 MPS encoding takes 786 ms,\nso the median is not a startup estimate. These are descriptive local timings,\nnot sustained throughput. RSS and Metal-driver allocation are different,\nnon-additive counters; they do not establish total peak unified memory.\n\nExact-reference/empty masks produce Dice 1/0 on all 18 nonempty references.\nFilled-box controls show how much localization the prompt already supplies.\nMean Dice and mean boundary error can move differently: LiteMedSAM's loose-box\nmean Dice improves while mean HD95 rises from **6.40 to 7.21 mm**.",
+        "challenge": "Box expansion can include neighboring tissue or multiple disconnected regions.\nFor duodenum, tighter-box mean Dice favors SAM2 (**0.566 vs 0.461**); wider-box\nmean Dice favors LiteMedSAM (**0.606 vs 0.381**). The fixed middle slice shows\nboth wider-box predictions joining or including tissue between separated\nreference regions. Wider boxes also lower LiteMedSAM's mean gallbladder Dice.\n\nAcross 36 SAM2 CPU/MPS prompt pairs, median mask-to-mask Dice is **0.9546**,\n17 pairs are below 0.95 and the minimum is **0.0539** on loose liver q25.\nThat extreme is selected after inspecting results. These are backend agreement\nscores, not scores against GT. Four LiteMedSAM prespecified pairs are\npixel-identical; all four SAM2 subset masks also match their later CPU repeats.\nNeither observation establishes universal backend determinism or isolates the\ncause of SAM2's discrepancy.",
+        "families": "The source/grid audit supports faithful replay, not clinical adjudication of the\nreference masks. One known development case, correlated selected slices and\nunverified checkpoint training overlap do not support population or causal\nclaims. No revised prompts, component-specific retries, volume propagation or\nagent reasoning were tested. Do not rank these 2D, reference-box numbers against\nearlier CT-only whole-volume agent scores.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "Each reference bounding rectangle is expanded by **2 pixels (3 mm)** or\n**10 pixels (15 mm)** on every side, clipped to the image boundary. Coordinates\nare half-open xyxy in the native image. The same slice and native box go to\nboth tools. Slices and boxes are fixed before outputs are inspected.",
+            "remaining": "Run both fixed models with tight and loose boxes on the fixed 18 samples.\nThe retained primary comparison contains **72 MPS predictions**. Eight\nprespecified CPU checks cover both tools on middle liver/adrenal slices and both\nboxes. After a SAM2 backend discrepancy, **36 additional SAM2 CPU predictions**\nrepeat the complete sample set as a diagnostic. They do not replace the MPS\nresults or constitute another patient."
+          }
+        ],
+        "sources": [
+          [
+            "Original protocol",
+            "groups/anatomy-audit/experiments/sam-litemedsam-slice-calibration/protocol.md"
+          ],
+          [
+            "Original finding and visual comparisons",
+            "groups/anatomy-audit/findings/sam-litemedsam-slice-calibration.md"
+          ],
+          [
+            "Retained inference and provisioning receipt",
+            "groups/anatomy-audit/findings/evidence/sam-litemedsam-slice-calibration.json"
+          ],
+          [
+            "Source manifest and licenses",
+            "groups/anatomy-audit/experiments/ct-organ-segmentation-astra-xhigh/source/selected-source-manifest.json"
+          ],
+          [
+            "Fresh read-only audit",
+            "groups/anatomy-audit/presentation/sources/segmentation-calibration-audit.json"
+          ],
+          [
+            "Agent-prompted study idea and decisions",
+            "groups/anatomy-audit/ideas/agent-prompted-segmentation.md"
+          ],
+          [
+            "Segmentation tool rulebook",
+            "docs/segmentation-tools.md"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Compare two frozen box-to-mask tools on the same full CT slices and two supplied box sizes. LiteMedSAM has higher mean agreement and lower image-encoding latency in this retained one-case calibration; duodenum and SAM2 backend differences prevent treating the mean as a universal ranking.</p>",
+          "value": "<p>Establish conditional mask quality, sensitivity to box extent and measured local runtime cost before exposing a segmenter to an agent. The supplied localization comes from the reference. This does not test whether an agent can find an organ, choose the box, correct a mask or assemble a 3D segmentation.</p>",
+          "raw": "<p>One known public TotalSegmentator v2.0.1 CT, <strong>s1233</strong>, on its original 265 × 265 × 401 grid with 1.5 mm isotropic spacing. Six reference labels select liver, right kidney, gallbladder, pancreas, right adrenal and duodenum. The 25th, 50th and 75th percentiles of each organ&#x27;s nonempty slice-index list give <strong>18 correlated organ/slice pairs from one patient</strong>.</p>\n<p>Each input is a full 265 × 265 axial section, clipped to <strong>[-160,240] HU</strong>, scaled to uint8 and replicated into three grayscale RGB channels. Native display x=i, y=j increases down and k identifies the slice. No radiological flip or target-mask resampling is applied. Reader detail crops are not model inputs.</p>",
+          "helpers": "<p>Each reference bounding rectangle is expanded by <strong>2 pixels (3 mm)</strong> or <strong>10 pixels (15 mm)</strong> on every side, clipped to the image boundary. Coordinates are half-open xyxy in the native image. The same slice and native box go to both tools. Slices and boxes are fixed before outputs are inspected.</p>",
+          "tools": "<p>Direct official <strong>SAM 2.1 Small</strong> and <strong>LiteMedSAM</strong> checkpoint inference, retained from 2026-09-21 on an Apple M5 Pro with 64 GiB unified memory. Both use PyTorch 2.10, FP32, evaluation/inference mode and four CPU threads. There is no general agent, training, Docker execution or interactive correction in this calibration.</p>\n<p>Their native preprocessing differs: SAM2 resizes to 1024² with floating-point box scaling; LiteMedSAM resizes to 256², normalizes intensities and truncates its scaled box coordinates to integers. Each encodes a full image once and reuses the embedding for the two box decodes. Native-resolution binary masks are returned; no extra connected-component cleanup is applied by the benchmark.</p>",
+          "reference": "<p>Dense organ masks are author/evaluator material. They select slices and derive the supplied boxes, but neither model receives the dense mask or the semantic organ name. Reference outlines, agreement scores and display crops are reader aids with explicit reveals. This privileged prompt origin remains visible even when the dense reference overlay is hidden.</p>",
+          "spec": "<p>Run both fixed models with tight and loose boxes on the fixed 18 samples. The retained primary comparison contains <strong>72 MPS predictions</strong>. Eight prespecified CPU checks cover both tools on middle liver/adrenal slices and both boxes. After a SAM2 backend discrepancy, <strong>36 additional SAM2 CPU predictions</strong> repeat the complete sample set as a diagnostic. They do not replace the MPS results or constitute another patient.</p>",
+          "output": "<p>For every model/backend/sample/box: a 265 × 265 Boolean mask, native box and slice ID, synchronized encode/decode durations, predicted model quality and reference-based measurements. All <strong>116 masks</strong> and their receipts remain local. The model quality-head score is distinct from measured Dice and is not assumed to be calibrated confidence.</p>",
+          "score": "<p>The <span class=\"unavailable\">saved-output audit (local artifact)</span> reconstructs all input images, selected slices and boxes from the original source files, then recomputes Dice, precision, recall and HD95 from every saved mask. All four measurements match the historical receipts exactly. The replay runs no model.</p>\n<p>HD95 uses 4-connected erosion to identify 2D boundary pixels and takes the 95th percentile of <strong>concatenated bidirectional</strong> nearest-boundary distances, with 1.5 mm sampling. It is not a 3D surface score or the maximum of two directional percentiles. Both mean scores below use 18 samples per box condition.</p>\n<div class=\"table\"><table>\n<tr><th>Tool / backend</th><th>Tight mean Dice</th><th>Loose mean Dice</th><th>Median encode</th><th>Median cached decode</th></tr>\n<tr><td>SAM 2.1 Small / MPS</td><td>0.7745</td><td>0.5165</td><td>134.5 ms</td><td>14.5 ms</td></tr>\n<tr><td>LiteMedSAM / MPS</td><td>0.8334</td><td>0.8524</td><td>42.5 ms</td><td>12.3 ms</td></tr>\n<tr><td>SAM2 / CPU, later diagnostic</td><td>0.7905</td><td>0.5593</td><td>1,791.8 ms</td><td>42.3 ms</td></tr>\n<tr><td>Filled supplied rectangle</td><td>0.5260</td><td>0.3090</td><td>—</td><td>—</td></tr>\n</table></div>\n<p>Timing denominators are <strong>18 unique image encodes / 36 cached box decodes</strong> per complete run. Encode time is repeated in the two prompt rows but counted once per image. Synchronization and CPU mask return are included; disk input, model load and warmup are excluded. First measured SAM2 MPS encoding takes 786 ms, so the median is not a startup estimate. These are descriptive local timings, not sustained throughput. RSS and Metal-driver allocation are different, non-additive counters; they do not establish total peak unified memory.</p>\n<p>Exact-reference/empty masks produce Dice 1/0 on all 18 nonempty references. Filled-box controls show how much localization the prompt already supplies. Mean Dice and mean boundary error can move differently: LiteMedSAM&#x27;s loose-box mean Dice improves while mean HD95 rises from <strong>6.40 to 7.21 mm</strong>.</p>",
+          "challenge": "<p>Box expansion can include neighboring tissue or multiple disconnected regions. For duodenum, tighter-box mean Dice favors SAM2 (<strong>0.566 vs 0.461</strong>); wider-box mean Dice favors LiteMedSAM (<strong>0.606 vs 0.381</strong>). The fixed middle slice shows both wider-box predictions joining or including tissue between separated reference regions. Wider boxes also lower LiteMedSAM&#x27;s mean gallbladder Dice.</p>\n<p>Across 36 SAM2 CPU/MPS prompt pairs, median mask-to-mask Dice is <strong>0.9546</strong>, 17 pairs are below 0.95 and the minimum is <strong>0.0539</strong> on loose liver q25. That extreme is selected after inspecting results. These are backend agreement scores, not scores against GT. Four LiteMedSAM prespecified pairs are pixel-identical; all four SAM2 subset masks also match their later CPU repeats. Neither observation establishes universal backend determinism or isolates the cause of SAM2&#x27;s discrepancy.</p>",
+          "families": "<p>The source/grid audit supports faithful replay, not clinical adjudication of the reference masks. One known development case, correlated selected slices and unverified checkpoint training overlap do not support population or causal claims. No revised prompts, component-specific retries, volume propagation or agent reasoning were tested. Do not rank these 2D, reference-box numbers against earlier CT-only whole-volume agent scores.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
+      },
+      "completion_review": {
+        "date": "2026-09-28",
+        "source_brief_sha256": "212fbb96afd43a90742699a7222b88a693be141a061de9b79058be4e0c4e9aed",
+        "source_story_sha256": "f56d1b6de4801272636c25f1715a2db07a1aa354e30f3846387d3acd1b055741",
+        "acceptance_receipt_sha256": "f940e01f7f09637bea3daa9fc23d2f6209db710b739ce96b74263176af1fcb44"
+      }
     },
     {
       "entry_id": "tb3-history-sourcing",
@@ -13696,9 +13790,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 23,
+    "reviewed-scripted-planar": 24,
     "reviewed-scripted-spatial": 13,
-    "pending-operation-review": 14,
+    "pending-operation-review": 13,
     "blocked-source-contract": 107,
     "blocked-source-input": 48
   },
@@ -13719,7 +13813,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-segmentation-calibration",
+    "active_entry": "tb3-aneurysm-localization",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -14307,6 +14401,15 @@
         "export_receipt_sha256": "fd209cefc430d9abc2e4208dbd8b2efdce9c43390d7419d704230750aa5648de",
         "reviewed_entries": 36,
         "next_entry": "tb3-segmentation-calibration"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-segmentation-calibration",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/029-acceptance.json",
+        "export_receipt_sha256": "e7acf8ebbbecba1815a3cfc5229ff98bec3d7a188a7d90fc98807633cb08bf37",
+        "reviewed_entries": 37,
+        "next_entry": "tb3-aneurysm-localization"
       }
     ]
   }

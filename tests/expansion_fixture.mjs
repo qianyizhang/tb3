@@ -169,3 +169,5 @@ export * from '../presentation/frontend/task-visuals/dental-original';
 export * from '../presentation/frontend/task-visuals/dental-v2';
 
 export * from '../presentation/frontend/task-visuals/dental-v3';
+
+export * from '../presentation/frontend/task-visuals/segmentation-calibration';

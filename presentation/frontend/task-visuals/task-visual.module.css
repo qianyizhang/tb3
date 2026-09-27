@@ -1686,3 +1686,148 @@
     grid-template-columns: 1fr;
   }
 }
+
+.calibrationScene {
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.calibrationScene h4 {
+  font-size: 16px;
+  margin: 0 0 14px;
+}
+.calibrationScene p {
+  margin: 12px 0;
+}
+.calibrationCards,
+.calibrationInput,
+.calibrationFlow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.calibrationCards article,
+.calibrationInput article {
+  min-width: 0;
+}
+.calibrationCards b,
+.calibrationInput b {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.calibrationImage {
+  display: block;
+  width: 100%;
+  height: 200px;
+  background: #090e16;
+  border: 1px solid #74818a;
+}
+.calibrationScene small,
+.calibrationAside small {
+  display: block;
+  font-size: 10px;
+  line-height: 1.45;
+  margin-top: 5px;
+}
+.calibrationInput .calibrationImage {
+  height: 265px;
+}
+.calibrationFacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.calibrationFacts p {
+  flex: 1 1 125px;
+}
+.calibrationFacts strong {
+  display: block;
+  font-size: 22px;
+  color: #175d70;
+}
+.calibrationInput .calibrationFacts {
+  display: block;
+}
+.calibrationFlow article {
+  border-top: 3px solid #3f8391;
+  padding: 12px;
+  background: #eff4f5;
+}
+.calibrationFlow strong {
+  display: block;
+  font-size: 24px;
+  margin: 20px 0;
+}
+.calibrationFlow code {
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.calibrationTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 10px 0;
+}
+.calibrationTable th,
+.calibrationTable td {
+  padding: 8px 4px;
+  border-bottom: 1px solid #cbd3d6;
+  text-align: right;
+}
+.calibrationTable th:first-child,
+.calibrationTable td:first-child {
+  text-align: left;
+}
+.calibrationAside {
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.calibrationAside .calibrationImage {
+  height: 140px;
+  margin-top: 12px;
+}
+.calibrationAside p {
+  margin: 12px 0;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='segmentation-calibration-v1']
+  .storyHeading {
+  height: 116px;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='segmentation-calibration-v1']
+  :global(.scene-steps button) {
+  min-height: 31px;
+  padding-block: 4px;
+}
+.player[data-recipe='segmentation-calibration-v1'] :global(.scene-step-index) {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.player[data-recipe='segmentation-calibration-v1'] :global(.scene-steps) {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+@container task-visual (max-width: 900px) {
+  .player[data-recipe='segmentation-calibration-v1'] .storyLayout {
+    grid-template-columns: 1fr;
+  }
+  .player[data-recipe='segmentation-calibration-v1'] :global(.scene-steps) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@container task-visual (max-width: 600px) {
+  .calibrationCards,
+  .calibrationInput,
+  .calibrationFlow {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .calibrationImage {
+    height: 245px;
+  }
+  .calibrationTable {
+    font-size: 11px;
+  }
+}

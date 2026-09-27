@@ -56,6 +56,7 @@ A bound story is not automatically accepted; unresolved entries remain visible.
 | Registration postmortem | Retained composition repairs, calibrated search boxes, actual CT patch objective and separate author controls/fresh repeats |
 | Clinical cavity | Actual EchoXFlow frames, supplied initial surface, saved tracking, private reference reveal, volume/EF gates and distinct static/shift controls |
 | Dental contract v3 | Same-target F018 pair; saved example transfer, explicit target-reference reveal, five exact pulp refinement stages, fixed canal search crop and complete-axis silhouettes; original metrics and development-case limits |
+| Segmentation calibration | One public CT; fixed reference-derived slices and boxes, all 116 saved tool masks, input/output/reference separation, per-organ box sensitivity, cached encode/decode denominators and distinct CPU/MPS disagreement |
 | CT organ segmentation | Ten independent binary masks; native CT, saved polygon interpolation, image-conditioned tool candidates, explicit private-reference reveals and organ-balanced comparisons |
 | Named landmarks | Actual CT/MRI sections, native-to-world conversion, saved point/status outputs, private reference reveal, wrong-level detections and visible-target denominators |
 | CT/MRI | Separate Radon/FFT measurements and image outputs; toy vs task dimensions/assistance explicit |

@@ -172,6 +172,10 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     dentalDisplayedItems,
   } = await loadFrontend('expansion_fixture.mjs');
   const {
+    calibrationSelection,
+    calibrationSource,
+    calibrationOutput,
+    calibrationReference,
     dentalV3Selection,
     dentalV3Reference,
     dentalV3Outputs,
@@ -181,6 +185,53 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     dentalV2Stages,
     dentalV2Outputs,
   } = await loadFrontend('expansion_fixture.mjs');
+  const calPlan = plans.find((p) => p.recipe === 'segmentation-calibration-v1');
+  assert.ok(calPlan);
+  const calStart = calibrationSelection(sampleStory(calPlan, 0));
+  assert.equal(calStart.output, false);
+  assert.equal(calStart.reveal, false);
+  assert.equal(calStart.box, false);
+  for (const [scene, field, expected] of [
+    ['sampling', 'sample', ['pancreas_q25', 'pancreas_q50', 'pancreas_q75']],
+    [
+      'sensitivity',
+      'sample',
+      ['liver', 'kidney_right', 'gallbladder', 'pancreas', 'adrenal_gland_right', 'duodenum'].map(
+        (o) => o + '_q50',
+      ),
+    ],
+    ['duodenum', 'condition', ['tight', 'loose']],
+    ['backend', 'sample', ['adrenal_gland_right_q50', 'liver_q25']],
+  ]) {
+    const b = calPlan.beats.find((b) => b.scene === scene),
+      seen = new Set();
+    for (let frame = b.startFrame; frame < b.endFrame; frame++)
+      seen.add(calibrationSelection(sampleStory(calPlan, frame))[field]);
+    assert.deepEqual([...seen], expected);
+  }
+  for (const row of calibrationReference.replays) {
+    const view = calibrationSource.views[row.id],
+      [x0, y0, x1, y1] = view.detail_bounds_xyxy;
+    const mask = calibrationOutput.views[row.id][row.tag][row.condition];
+    assert.equal(mask.pixels, row.pred_pixels);
+    for (const path of mask.paths)
+      for (const [x, y] of path)
+        assert.ok(x >= x0 && x <= x1 && y >= y0 && y <= y1, 'Crop clips retained mask');
+    assert.ok(
+      Math.abs((2 * row.intersection) / (row.pred_pixels + row.gt_pixels) - row.dice) < 1e-12,
+    );
+  }
+  for (const tag of ['sam2-mps', 'lite-mps', 'sam2-cpu'])
+    for (const condition of ['tight', 'loose']) {
+      const rows = calibrationReference.replays.filter(
+        (r) => r.tag === tag && r.condition === condition,
+      );
+      const mean = rows.reduce((n, r) => n + r.dice, 0) / rows.length;
+      assert.ok(Math.abs(mean - calibrationReference.aggregates[tag][condition].mean_dice) < 1e-12);
+    }
+  const refBeat = calPlan.beats.find((b) => b.scene === 'reference');
+  assert.equal(calibrationSelection(sampleStory(calPlan, refBeat.startFrame)).reveal, false);
+  assert.equal(calibrationSelection(sampleStory(calPlan, refBeat.endFrame - 1)).reveal, true);
   const v3Plan = plans.find((p) => p.recipe === 'dental-v3-v1');
   assert.ok(v3Plan);
   const v3Start = dentalV3Selection(sampleStory(v3Plan, 0));

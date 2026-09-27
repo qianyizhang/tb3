@@ -514,6 +514,38 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class SegmentationCalibrationChannels(TypedDict):
+    view: tuple[float, float]
+    condition: tuple[float, float]
+    box: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class SegmentationCalibrationBeat(ExpansionBeat):
+    channels: SegmentationCalibrationChannels
+    scene: Literal[
+        "inputs",
+        "sampling",
+        "boxes",
+        "preprocess",
+        "outputs",
+        "reference",
+        "sensitivity",
+        "duodenum",
+        "controls",
+        "metrics",
+        "latency",
+        "backend",
+        "limits",
+    ]
+
+
+class SegmentationCalibrationPlan(ExpansionPlan):
+    recipe: Literal["segmentation-calibration-v1"]
+    beats: list[SegmentationCalibrationBeat]
+
+
 class DentalV3Channels(TypedDict):
     view: tuple[float, float]
     helper: tuple[float, float]
@@ -788,6 +820,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | SegmentationCalibrationPlan
     | DentalV3Plan
     | DentalV2Plan
     | DentalOriginalPlan

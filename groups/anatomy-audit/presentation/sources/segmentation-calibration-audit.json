@@ -1,0 +1,3431 @@
+{
+  "schema": 1,
+  "entry": "tb3-segmentation-calibration",
+  "status": "source-audit-complete-story-pending",
+  "source_pins": {
+    "scripts/audit_segmentation_calibration_evidence.py": "8a9ebf6e2750b64d9be1830118389609486bb350a53e95ea833872f843e50b28",
+    "groups/anatomy-audit/experiments/sam-litemedsam-slice-calibration/protocol.md": "16594c4c5ab81bd254759153fce4c32053486037e0d704521bec68e5c4f4bac9",
+    "groups/anatomy-audit/experiments/sam-litemedsam-slice-calibration/summarize.py": "df91cd9611b8bbf04c932bd8daa8db601db6a6c03dbe4604c1c860ad5c536b71",
+    "groups/anatomy-audit/experiments/sam-litemedsam-slice-calibration/bench.py": "d4ea0543c39aa51711bbf424c0a60544a9ba46159a022f3ef8ab63be1780e03f",
+    "groups/anatomy-audit/findings/evidence/sam-litemedsam-slice-calibration.json": "334a5d9c1c0d49ae12b15c7d4435b09ad702e06734032294e98bdf1babc5f1fd",
+    ".local/sam-lite-bench-20260921/summary/summary.json": "2a91cc69ff2c0bbf0d75630b754f591562309abac05f31853262bf04e9503c20",
+    ".local/sam-lite-bench-20260921/samples/manifest.json": "64bccb641cf6af62c5b26c1a9a261138976cb1475223242cfcfe48a1d115679b",
+    ".local/sam-lite-bench-20260921/samples/arrays.npz": "8eb6fa02bd2eb3c27384b3a3278b088b6b2cee6378b4e27ccc151aeeab150805",
+    "groups/anatomy-audit/experiments/ct-organ-segmentation-astra-xhigh/source/selected-source-manifest.json": "6b654998c846d4bd72098e76e2b80dbe9ce0c77929b0719711fa10aae8b4d0b5",
+    "groups/anatomy-audit/experiments/ct-organ-segmentation-astra-xhigh/source/licenses/DATA-LICENSE.txt": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94",
+    "groups/anatomy-audit/experiments/ct-organ-segmentation-astra-xhigh/source/licenses/LABEL-LICENSE.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "runs/br004-v1/source/s1233/ct.nii.gz": "5352376d8fd9c0ab582a7fca1443f28762a66b9782d59c645b976771587c0cfc",
+    "runs/br004-v1/source/s1233/segmentations/kidney_right.nii.gz": "8ca7e6696b90cb1e7e39b14e5c8f7e92c59b9344bff8fd368009751335abc8b5",
+    "runs/br004-v1/source/s1233/segmentations/gallbladder.nii.gz": "c5dd1e8886ed87d29dac8225acbac49dfc308c0ead9116690c818e49b1addcc7",
+    "runs/br004-v1/source/s1233/segmentations/liver.nii.gz": "0e37697cde4bf2f6042fa89d338cfbe71d85b4b44e42801840be5612c4785980",
+    "runs/br004-v1/source/s1233/segmentations/pancreas.nii.gz": "9f11083652d059e85514d419c90124911953dbbce2018ccc549eaa2c73b0968b",
+    "runs/br004-v1/source/s1233/segmentations/adrenal_gland_right.nii.gz": "a8dd37f4c58abf4c8c35b7ef2e120f145dca2eeae093a533745bf911efb5b8e1",
+    "runs/br004-v1/source/s1233/segmentations/duodenum.nii.gz": "057f1c54ad413a3291e5750c9cdfee74a06cbe0c9d7b8ac42bb90f3b742e9063",
+    ".local/sam-lite-bench-20260921/provisioning.json": "ab0268a8ed20071d62a0bbbb01be02c411cef873c0f6463a07ccd1a86bfd9257",
+    ".local/sam-lite-bench-20260921/requirements-resolved.txt": "73352e861f2d008e20cf27b1546c8010cd30f48721e2ced12cec75d393b1e405",
+    ".local/sam-lite-bench-20260921/weights/sam2.1_hiera_small.pt": "6d1aa6f30de5c92224f8172114de081d104bbd23dd9dc5c58996f0cad5dc4d38",
+    ".local/sam-lite-bench-20260921/weights/lite_medsam.pth": "79d8c9dca6db4d69d3f905579e5250af05e859fff9c1f543e89a513c3028ce76",
+    ".local/sam-lite-bench-20260921/vendor/sam2/LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    ".local/sam-lite-bench-20260921/vendor/LiteMedSAM/LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    ".local/sam-lite-bench-20260921/vendor/sam2/sam2/utils/transforms.py": "ba3a64f4600c62f209206a6df3b40e3fcf133edae32fad658831bb0c2a6d1146",
+    ".local/sam-lite-bench-20260921/vendor/sam2/sam2/sam2_image_predictor.py": "f13e5f9d94e5c8d9d2c3622dab20c8f334c089ef2ee5ea8e199da7d332b029ba",
+    ".local/sam-lite-bench-20260921/vendor/sam2/sam2/configs/sam2.1/sam2.1_hiera_s.yaml": "0f36b91e86e58d06c87e42997166212468b88b98b60e4d816d5e4d4d088b6f55",
+    ".local/sam-lite-bench-20260921/results/sam2-mps/receipt.json": "b7d4be5ba3fabf1e2ab3f3477747f01ca44d00eb858d694453e8cedd85aa5348",
+    ".local/sam-lite-bench-20260921/results/sam2-mps/masks.npz": "5b8051d0bcb8140093ffbd20d82ad0810fbdce4126049c4bf3cad0680369c1c1",
+    ".local/sam-lite-bench-20260921/results/sam2-mps/rows.jsonl": "86de046a25d6465c7070f7808b24fd32765464b2a55ba22fa88643d6c1c89352",
+    ".local/sam-lite-bench-20260921/results/lite-mps/receipt.json": "dd5083a290c033d8de95a6d77d6c7bb03b8ea26cf2eaf4c00b86d5e8198b8834",
+    ".local/sam-lite-bench-20260921/results/lite-mps/masks.npz": "ebcdc8934d59dbd54f7a96ba24b08d0a7db8cb2ae56b6f2daa0d38fb23c5821b",
+    ".local/sam-lite-bench-20260921/results/lite-mps/rows.jsonl": "e49ba1fd87d33e30e188763f8053f52eb838dc0f6d5838040c01846e7cbaf1e1",
+    ".local/sam-lite-bench-20260921/results/sam2-cpu-subset/receipt.json": "e57d9c1ac42653a94572324fe14d82755ad3d19b93eaf3e8711606a87ee39a67",
+    ".local/sam-lite-bench-20260921/results/sam2-cpu-subset/masks.npz": "b5a3ab3061f99290a49ecfa3a59b4550141ed57cd3b1677cd65295cbea189a39",
+    ".local/sam-lite-bench-20260921/results/sam2-cpu-subset/rows.jsonl": "b673f4e0df1e1dadbce253b79d916b12fd9c996aac4ce3e1c017c7d2de37eed0",
+    ".local/sam-lite-bench-20260921/results/lite-cpu-subset/receipt.json": "5198378de0e82f4fdb114f3ce847bd2c5dc610c4ade81e28e77a188d8019125c",
+    ".local/sam-lite-bench-20260921/results/lite-cpu-subset/masks.npz": "c24d3c93f432bf56f37a5f104d425ea40156b9dae427bc8eeaf9a107e984fbd1",
+    ".local/sam-lite-bench-20260921/results/lite-cpu-subset/rows.jsonl": "3e4f7b22322aeada9358fc076734df6f063b63958533435db0d09d66644f5299",
+    ".local/sam-lite-bench-20260921/results/sam2-cpu/receipt.json": "bd085c21154f61056e94656698e13e0b4e3fb8a2fcb94b1bbe7084aef6db7042",
+    ".local/sam-lite-bench-20260921/results/sam2-cpu/masks.npz": "9183f32dae5e8462d0911761749d4e13d73b17e27c467916cf531a3afec0bdee",
+    ".local/sam-lite-bench-20260921/results/sam2-cpu/rows.jsonl": "4188f92681805986ddd59a69b6508e78017470ca2fd3833031a75dbe015948c6"
+  },
+  "scope": "Retained 2026-09-21 direct tool inference; saved-output replay, no new inference",
+  "geometry": {
+    "shape_ijk": [
+      265,
+      265,
+      401
+    ],
+    "spacing_mm": [
+      1.5,
+      1.5,
+      1.5
+    ],
+    "affine": [
+      [
+        1.5,
+        0.0,
+        0.0,
+        -215.611328125
+      ],
+      [
+        0.0,
+        1.5,
+        0.0,
+        -37.111328125
+      ],
+      [
+        0.0,
+        0.0,
+        1.5,
+        41.20000076293945
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "display": "x=i, y=j increasing down, native k; no flips"
+  },
+  "source_and_reference": {
+    "record": "https://zenodo.org/records/10047263",
+    "version": "2.0.1",
+    "case": "s1233",
+    "licenses": {
+      "image_data": {
+        "spdx": "CC-BY-4.0",
+        "file": "licenses/DATA-LICENSE.txt",
+        "source": "https://creativecommons.org/licenses/by/4.0/legalcode.txt",
+        "bytes": 18656,
+        "sha256": "9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94"
+      },
+      "labels": {
+        "spdx": "Apache-2.0",
+        "file": "licenses/LABEL-LICENSE.txt",
+        "source": "https://github.com/wasserth/TotalSegmentator/blob/v2.0.1/LICENSE",
+        "bytes": 11357,
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      }
+    },
+    "fitness": "Exact source grids and binary masks verified; clinical annotation intent not adjudicated",
+    "prompt_privilege": "GT selects slices and boxes; dense GT and organ names are not model inputs"
+  },
+  "samples": [
+    {
+      "id": "liver_q25",
+      "organ": "liver",
+      "q": 0.25,
+      "slice_k": 196,
+      "boxes": {
+        "tight": [
+          136,
+          98,
+          237,
+          206
+        ],
+        "loose": [
+          128,
+          90,
+          245,
+          214
+        ]
+      },
+      "gt_pixels": 3349
+    },
+    {
+      "id": "liver_q50",
+      "organ": "liver",
+      "q": 0.5,
+      "slice_k": 220,
+      "boxes": {
+        "tight": [
+          115,
+          83,
+          238,
+          206
+        ],
+        "loose": [
+          107,
+          75,
+          246,
+          214
+        ]
+      },
+      "gt_pixels": 7525
+    },
+    {
+      "id": "liver_q75",
+      "organ": "liver",
+      "q": 0.75,
+      "slice_k": 244,
+      "boxes": {
+        "tight": [
+          108,
+          100,
+          231,
+          199
+        ],
+        "loose": [
+          100,
+          92,
+          239,
+          207
+        ]
+      },
+      "gt_pixels": 6967
+    },
+    {
+      "id": "kidney_right_q25",
+      "organ": "kidney_right",
+      "q": 0.25,
+      "slice_k": 152,
+      "boxes": {
+        "tight": [
+          176,
+          121,
+          210,
+          162
+        ],
+        "loose": [
+          168,
+          113,
+          218,
+          170
+        ]
+      },
+      "gt_pixels": 767
+    },
+    {
+      "id": "kidney_right_q50",
+      "organ": "kidney_right",
+      "q": 0.5,
+      "slice_k": 166,
+      "boxes": {
+        "tight": [
+          175,
+          107,
+          212,
+          156
+        ],
+        "loose": [
+          167,
+          99,
+          220,
+          164
+        ]
+      },
+      "gt_pixels": 833
+    },
+    {
+      "id": "kidney_right_q75",
+      "organ": "kidney_right",
+      "q": 0.75,
+      "slice_k": 179,
+      "boxes": {
+        "tight": [
+          172,
+          102,
+          207,
+          146
+        ],
+        "loose": [
+          164,
+          94,
+          215,
+          154
+        ]
+      },
+      "gt_pixels": 737
+    },
+    {
+      "id": "gallbladder_q25",
+      "organ": "gallbladder",
+      "q": 0.25,
+      "slice_k": 191,
+      "boxes": {
+        "tight": [
+          178,
+          156,
+          217,
+          192
+        ],
+        "loose": [
+          170,
+          148,
+          225,
+          200
+        ]
+      },
+      "gt_pixels": 532
+    },
+    {
+      "id": "gallbladder_q50",
+      "organ": "gallbladder",
+      "q": 0.5,
+      "slice_k": 196,
+      "boxes": {
+        "tight": [
+          172,
+          150,
+          220,
+          193
+        ],
+        "loose": [
+          164,
+          142,
+          228,
+          201
+        ]
+      },
+      "gt_pixels": 709
+    },
+    {
+      "id": "gallbladder_q75",
+      "organ": "gallbladder",
+      "q": 0.75,
+      "slice_k": 201,
+      "boxes": {
+        "tight": [
+          173,
+          150,
+          219,
+          192
+        ],
+        "loose": [
+          165,
+          142,
+          227,
+          200
+        ]
+      },
+      "gt_pixels": 435
+    },
+    {
+      "id": "pancreas_q25",
+      "organ": "pancreas",
+      "q": 0.25,
+      "slice_k": 178,
+      "boxes": {
+        "tight": [
+          137,
+          144,
+          166,
+          169
+        ],
+        "loose": [
+          129,
+          136,
+          174,
+          177
+        ]
+      },
+      "gt_pixels": 326
+    },
+    {
+      "id": "pancreas_q50",
+      "organ": "pancreas",
+      "q": 0.5,
+      "slice_k": 195,
+      "boxes": {
+        "tight": [
+          142,
+          145,
+          165,
+          174
+        ],
+        "loose": [
+          134,
+          137,
+          173,
+          182
+        ]
+      },
+      "gt_pixels": 304
+    },
+    {
+      "id": "pancreas_q75",
+      "organ": "pancreas",
+      "q": 0.75,
+      "slice_k": 212,
+      "boxes": {
+        "tight": [
+          115,
+          149,
+          154,
+          171
+        ],
+        "loose": [
+          107,
+          141,
+          162,
+          179
+        ]
+      },
+      "gt_pixels": 390
+    },
+    {
+      "id": "adrenal_gland_right_q25",
+      "organ": "adrenal_gland_right",
+      "q": 0.25,
+      "slice_k": 213,
+      "boxes": {
+        "tight": [
+          154,
+          110,
+          174,
+          132
+        ],
+        "loose": [
+          146,
+          102,
+          182,
+          140
+        ]
+      },
+      "gt_pixels": 119
+    },
+    {
+      "id": "adrenal_gland_right_q50",
+      "organ": "adrenal_gland_right",
+      "q": 0.5,
+      "slice_k": 217,
+      "boxes": {
+        "tight": [
+          153,
+          106,
+          179,
+          131
+        ],
+        "loose": [
+          145,
+          98,
+          187,
+          139
+        ]
+      },
+      "gt_pixels": 156
+    },
+    {
+      "id": "adrenal_gland_right_q75",
+      "organ": "adrenal_gland_right",
+      "q": 0.75,
+      "slice_k": 222,
+      "boxes": {
+        "tight": [
+          154,
+          109,
+          173,
+          129
+        ],
+        "loose": [
+          146,
+          101,
+          181,
+          137
+        ]
+      },
+      "gt_pixels": 74
+    },
+    {
+      "id": "duodenum_q25",
+      "organ": "duodenum",
+      "q": 0.25,
+      "slice_k": 163,
+      "boxes": {
+        "tight": [
+          121,
+          144,
+          177,
+          168
+        ],
+        "loose": [
+          113,
+          136,
+          185,
+          176
+        ]
+      },
+      "gt_pixels": 570
+    },
+    {
+      "id": "duodenum_q50",
+      "organ": "duodenum",
+      "q": 0.5,
+      "slice_k": 177,
+      "boxes": {
+        "tight": [
+          116,
+          146,
+          182,
+          170
+        ],
+        "loose": [
+          108,
+          138,
+          190,
+          178
+        ]
+      },
+      "gt_pixels": 291
+    },
+    {
+      "id": "duodenum_q75",
+      "organ": "duodenum",
+      "q": 0.75,
+      "slice_k": 190,
+      "boxes": {
+        "tight": [
+          118,
+          152,
+          181,
+          172
+        ],
+        "loose": [
+          110,
+          144,
+          189,
+          180
+        ]
+      },
+      "gt_pixels": 201
+    }
+  ],
+  "selection_reconstruction": [
+    {
+      "id": "liver_q25",
+      "nonempty_slice_count": 97,
+      "quantile_list_index": 24,
+      "reference_components_4_connected": 3
+    },
+    {
+      "id": "liver_q50",
+      "nonempty_slice_count": 97,
+      "quantile_list_index": 48,
+      "reference_components_4_connected": 1
+    },
+    {
+      "id": "liver_q75",
+      "nonempty_slice_count": 97,
+      "quantile_list_index": 72,
+      "reference_components_4_connected": 2
+    },
+    {
+      "id": "kidney_right_q25",
+      "nonempty_slice_count": 56,
+      "quantile_list_index": 14,
+      "reference_components_4_connected": 1
+    },
+    {
+      "id": "kidney_right_q50",
+      "nonempty_slice_count": 56,
+      "quantile_list_index": 28,
+      "reference_components_4_connected": 1
+    },
+    {
+      "id": "kidney_right_q75",
+      "nonempty_slice_count": 56,
+      "quantile_list_index": 41,
+      "reference_components_4_connected": 1
+    },
+    {
+      "id": "gallbladder_q25",
+      "nonempty_slice_count": 21,
+      "quantile_list_index": 5,
+      "reference_components_4_connected": 1
+    },
+    {
+      "id": "gallbladder_q50",
+      "nonempty_slice_count": 21,
+      "quantile_list_index": 10,
+      "reference_components_4_connected": 1
+    },
+    {
+      "id": "gallbladder_q75",
+      "nonempty_slice_count": 21,
+      "quantile_list_index": 15,
+      "reference_components_4_connected": 2
+    },
+    {
+      "id": "pancreas_q25",
+      "nonempty_slice_count": 67,
+      "quantile_list_index": 16,
+      "reference_components_4_connected": 1
+    },
+    {
+      "id": "pancreas_q50",
+      "nonempty_slice_count": 67,
+      "quantile_list_index": 33,
+      "reference_components_4_connected": 1
+    },
+    {
+      "id": "pancreas_q75",
+      "nonempty_slice_count": 67,
+      "quantile_list_index": 50,
+      "reference_components_4_connected": 1
+    },
+    {
+      "id": "adrenal_gland_right_q25",
+      "nonempty_slice_count": 18,
+      "quantile_list_index": 4,
+      "reference_components_4_connected": 1
+    },
+    {
+      "id": "adrenal_gland_right_q50",
+      "nonempty_slice_count": 18,
+      "quantile_list_index": 8,
+      "reference_components_4_connected": 1
+    },
+    {
+      "id": "adrenal_gland_right_q75",
+      "nonempty_slice_count": 18,
+      "quantile_list_index": 13,
+      "reference_components_4_connected": 1
+    },
+    {
+      "id": "duodenum_q25",
+      "nonempty_slice_count": 56,
+      "quantile_list_index": 14,
+      "reference_components_4_connected": 1
+    },
+    {
+      "id": "duodenum_q50",
+      "nonempty_slice_count": 56,
+      "quantile_list_index": 28,
+      "reference_components_4_connected": 2
+    },
+    {
+      "id": "duodenum_q75",
+      "nonempty_slice_count": 56,
+      "quantile_list_index": 41,
+      "reference_components_4_connected": 2
+    }
+  ],
+  "sample_arrays_reconstructed_exactly": true,
+  "metrics_max_absolute_error": {
+    "dice": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "hd95_mm": 0.0
+  },
+  "hd95_definition": "95th percentile of concatenated bidirectional 2D surface distances, 4-connected erosion, 1.5 mm pixels",
+  "aggregates": {
+    "sam2-mps": {
+      "count": 36,
+      "load_seconds": 11.60778391599888,
+      "warmup_seconds": 16.790051124997262,
+      "process_peak_rss_mib": 828.203125,
+      "encode_median_ms": 134.53779149858747,
+      "prompt_median_ms": 14.548458999342984,
+      "driver_memory_max_observed_mib": 2822.21875,
+      "tight": {
+        "mean_dice": 0.7745125804950884,
+        "median_dice": 0.8260745977289139,
+        "mean_hd95_mm": 13.27315174150833
+      },
+      "loose": {
+        "mean_dice": 0.5164836421990279,
+        "median_dice": 0.5044023902731622,
+        "mean_hd95_mm": 26.19251209295937
+      }
+    },
+    "lite-mps": {
+      "count": 36,
+      "load_seconds": 4.57384858399746,
+      "warmup_seconds": 5.251615791996301,
+      "process_peak_rss_mib": 537.296875,
+      "encode_median_ms": 42.45456200078479,
+      "prompt_median_ms": 12.27627100161044,
+      "driver_memory_max_observed_mib": 1139.859375,
+      "tight": {
+        "mean_dice": 0.8334325428952764,
+        "median_dice": 0.9216818184418749,
+        "mean_hd95_mm": 6.3978067299380905
+      },
+      "loose": {
+        "mean_dice": 0.8523816599262672,
+        "median_dice": 0.9288453159041394,
+        "mean_hd95_mm": 7.212047978671448
+      }
+    },
+    "sam2-cpu-subset": {
+      "count": 4,
+      "load_seconds": 2.3138676669987035,
+      "warmup_seconds": 2.5096377919981023,
+      "process_peak_rss_mib": 1476.796875,
+      "encode_median_ms": 2009.4936245004646,
+      "prompt_median_ms": 46.931750002841,
+      "driver_memory_max_observed_mib": 0.0,
+      "tight": {
+        "mean_dice": 0.88197077138137,
+        "median_dice": 0.88197077138137,
+        "mean_hd95_mm": 13.167261889578034
+      },
+      "loose": {
+        "mean_dice": 0.6921331480136523,
+        "median_dice": 0.6921331480136523,
+        "mean_hd95_mm": 27.799237763267936
+      }
+    },
+    "lite-cpu-subset": {
+      "count": 4,
+      "load_seconds": 1.9497734999968088,
+      "warmup_seconds": 0.32446325000637444,
+      "process_peak_rss_mib": 875.828125,
+      "encode_median_ms": 208.01245799884782,
+      "prompt_median_ms": 15.097021005203715,
+      "driver_memory_max_observed_mib": 0.0,
+      "tight": {
+        "mean_dice": 0.9439295465735642,
+        "median_dice": 0.9439295465735642,
+        "mean_hd95_mm": 3.8146304534492654
+      },
+      "loose": {
+        "mean_dice": 0.9262563619916829,
+        "median_dice": 0.9262563619916829,
+        "mean_hd95_mm": 4.677050983124842
+      }
+    },
+    "sam2-cpu": {
+      "count": 36,
+      "load_seconds": 1.7313700000013341,
+      "warmup_seconds": 1.9683883329998935,
+      "process_peak_rss_mib": 1474.640625,
+      "encode_median_ms": 1791.762437500438,
+      "prompt_median_ms": 42.27514599915594,
+      "driver_memory_max_observed_mib": 0.0,
+      "tight": {
+        "mean_dice": 0.7904792295330471,
+        "median_dice": 0.8315187919743044,
+        "mean_hd95_mm": 12.29151945041966
+      },
+      "loose": {
+        "mean_dice": 0.559310638495343,
+        "median_dice": 0.581220800594606,
+        "mean_hd95_mm": 23.84374480891107
+      }
+    }
+  },
+  "timing_denominators": {
+    "sam2-mps": {
+      "unique_image_encodes": 18,
+      "cached_box_decodes": 36,
+      "first_measured_encode_ms": 786.3136250016396,
+      "encode_min_ms": 130.99900000088383,
+      "encode_max_ms": 786.3136250016396
+    },
+    "lite-mps": {
+      "unique_image_encodes": 18,
+      "cached_box_decodes": 36,
+      "first_measured_encode_ms": 47.435000000405125,
+      "encode_min_ms": 40.95087500172667,
+      "encode_max_ms": 47.435000000405125
+    },
+    "sam2-cpu-subset": {
+      "unique_image_encodes": 2,
+      "cached_box_decodes": 4,
+      "first_measured_encode_ms": 2066.1753329986823,
+      "encode_min_ms": 1952.811916002247,
+      "encode_max_ms": 2066.1753329986823
+    },
+    "lite-cpu-subset": {
+      "unique_image_encodes": 2,
+      "cached_box_decodes": 4,
+      "first_measured_encode_ms": 210.23524999327492,
+      "encode_min_ms": 205.78966600442072,
+      "encode_max_ms": 210.23524999327492
+    },
+    "sam2-cpu": {
+      "unique_image_encodes": 18,
+      "cached_box_decodes": 36,
+      "first_measured_encode_ms": 1769.7690420027357,
+      "encode_min_ms": 1726.4573339998606,
+      "encode_max_ms": 1981.9163330030278
+    }
+  },
+  "controls": {
+    "exact_mask_dice": 1.0,
+    "empty_mask_dice": 0.0,
+    "independent_mask_replays": 116,
+    "filled_box_mean_dice": {
+      "tight": 0.5260478481059616,
+      "loose": 0.3090499206346456
+    }
+  },
+  "control_rows": [
+    {
+      "id": "liver_q25",
+      "condition": "tight",
+      "dice": 0.46980430665637934,
+      "precision": 0.307022368903557,
+      "recall": 1.0,
+      "hd95_mm": 66.58100576088542,
+      "pred_pixels": 10908,
+      "gt_pixels": 3349,
+      "intersection": 3349,
+      "false_positive_pixels": 7559,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "liver_q25",
+      "condition": "loose",
+      "dice": 0.37509100072800583,
+      "precision": 0.2308381582575131,
+      "recall": 1.0,
+      "hd95_mm": 80.73558244346387,
+      "pred_pixels": 14508,
+      "gt_pixels": 3349,
+      "intersection": 3349,
+      "false_positive_pixels": 11159,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "liver_q50",
+      "condition": "tight",
+      "dice": 0.6643418380859892,
+      "precision": 0.49738912023266574,
+      "recall": 1.0,
+      "hd95_mm": 76.49117562233506,
+      "pred_pixels": 15129,
+      "gt_pixels": 7525,
+      "intersection": 7525,
+      "false_positive_pixels": 7604,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "liver_q50",
+      "condition": "loose",
+      "dice": 0.5606049318334202,
+      "precision": 0.38947259458620154,
+      "recall": 1.0,
+      "hd95_mm": 90.1623535628923,
+      "pred_pixels": 19321,
+      "gt_pixels": 7525,
+      "intersection": 7525,
+      "false_positive_pixels": 11796,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "liver_q75",
+      "condition": "tight",
+      "dice": 0.7278520685332219,
+      "precision": 0.5721442062905477,
+      "recall": 1.0,
+      "hd95_mm": 59.971848583257845,
+      "pred_pixels": 12177,
+      "gt_pixels": 6967,
+      "intersection": 6967,
+      "false_positive_pixels": 5210,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "liver_q75",
+      "condition": "loose",
+      "dice": 0.607093063785291,
+      "precision": 0.43584610572411636,
+      "recall": 1.0,
+      "hd95_mm": 73.70153843240891,
+      "pred_pixels": 15985,
+      "gt_pixels": 6967,
+      "intersection": 6967,
+      "false_positive_pixels": 9018,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "kidney_right_q25",
+      "condition": "tight",
+      "dice": 0.7098565478944933,
+      "precision": 0.5502152080344332,
+      "recall": 1.0,
+      "hd95_mm": 19.5,
+      "pred_pixels": 1394,
+      "gt_pixels": 767,
+      "intersection": 767,
+      "false_positive_pixels": 627,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "kidney_right_q25",
+      "condition": "loose",
+      "dice": 0.4241083771081006,
+      "precision": 0.2691228070175439,
+      "recall": 1.0,
+      "hd95_mm": 31.471164609606618,
+      "pred_pixels": 2850,
+      "gt_pixels": 767,
+      "intersection": 767,
+      "false_positive_pixels": 2083,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "kidney_right_q50",
+      "condition": "tight",
+      "dice": 0.6296296296296297,
+      "precision": 0.4594594594594595,
+      "recall": 1.0,
+      "hd95_mm": 22.5,
+      "pred_pixels": 1813,
+      "gt_pixels": 833,
+      "intersection": 833,
+      "false_positive_pixels": 980,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "kidney_right_q50",
+      "condition": "loose",
+      "dice": 0.38943431510051424,
+      "precision": 0.24179970972423803,
+      "recall": 1.0,
+      "hd95_mm": 34.5,
+      "pred_pixels": 3445,
+      "gt_pixels": 833,
+      "intersection": 833,
+      "false_positive_pixels": 2612,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "kidney_right_q75",
+      "condition": "tight",
+      "dice": 0.6473429951690821,
+      "precision": 0.4785714285714286,
+      "recall": 1.0,
+      "hd95_mm": 20.89795329498737,
+      "pred_pixels": 1540,
+      "gt_pixels": 737,
+      "intersection": 737,
+      "false_positive_pixels": 803,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "kidney_right_q75",
+      "condition": "loose",
+      "dice": 0.38820121148274955,
+      "precision": 0.24084967320261438,
+      "recall": 1.0,
+      "hd95_mm": 33.459866713122295,
+      "pred_pixels": 3060,
+      "gt_pixels": 737,
+      "intersection": 737,
+      "false_positive_pixels": 2323,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "gallbladder_q25",
+      "condition": "tight",
+      "dice": 0.5495867768595041,
+      "precision": 0.3789173789173789,
+      "recall": 1.0,
+      "hd95_mm": 24.60182920028509,
+      "pred_pixels": 1404,
+      "gt_pixels": 532,
+      "intersection": 532,
+      "false_positive_pixels": 872,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "gallbladder_q25",
+      "condition": "loose",
+      "dice": 0.3136792452830189,
+      "precision": 0.18601398601398603,
+      "recall": 1.0,
+      "hd95_mm": 40.00780414504689,
+      "pred_pixels": 2860,
+      "gt_pixels": 532,
+      "intersection": 532,
+      "false_positive_pixels": 2328,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "gallbladder_q50",
+      "condition": "tight",
+      "dice": 0.5113595384060584,
+      "precision": 0.3435077519379845,
+      "recall": 1.0,
+      "hd95_mm": 30.886890422961002,
+      "pred_pixels": 2064,
+      "gt_pixels": 709,
+      "intersection": 709,
+      "false_positive_pixels": 1355,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "gallbladder_q50",
+      "condition": "loose",
+      "dice": 0.316164994425864,
+      "precision": 0.1877648305084746,
+      "recall": 1.0,
+      "hd95_mm": 46.77105178859051,
+      "pred_pixels": 3776,
+      "gt_pixels": 709,
+      "intersection": 709,
+      "false_positive_pixels": 3067,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "gallbladder_q75",
+      "condition": "tight",
+      "dice": 0.36755386565272496,
+      "precision": 0.2251552795031056,
+      "recall": 1.0,
+      "hd95_mm": 32.58652718822469,
+      "pred_pixels": 1932,
+      "gt_pixels": 435,
+      "intersection": 435,
+      "false_positive_pixels": 1497,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "gallbladder_q75",
+      "condition": "loose",
+      "dice": 0.2158273381294964,
+      "precision": 0.12096774193548387,
+      "recall": 1.0,
+      "hd95_mm": 48.51943398401945,
+      "pred_pixels": 3596,
+      "gt_pixels": 435,
+      "intersection": 435,
+      "false_positive_pixels": 3161,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "pancreas_q25",
+      "condition": "tight",
+      "dice": 0.6203615604186489,
+      "precision": 0.4496551724137931,
+      "recall": 1.0,
+      "hd95_mm": 13.5,
+      "pred_pixels": 725,
+      "gt_pixels": 326,
+      "intersection": 326,
+      "false_positive_pixels": 399,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "pancreas_q25",
+      "condition": "loose",
+      "dice": 0.30032243205895903,
+      "precision": 0.1766937669376694,
+      "recall": 1.0,
+      "hd95_mm": 27.915957381595106,
+      "pred_pixels": 1845,
+      "gt_pixels": 326,
+      "intersection": 326,
+      "false_positive_pixels": 1519,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "pancreas_q50",
+      "condition": "tight",
+      "dice": 0.6261585993820803,
+      "precision": 0.45577211394302847,
+      "recall": 1.0,
+      "hd95_mm": 12.0,
+      "pred_pixels": 667,
+      "gt_pixels": 304,
+      "intersection": 304,
+      "false_positive_pixels": 363,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "pancreas_q50",
+      "condition": "loose",
+      "dice": 0.29528897523069453,
+      "precision": 0.17321937321937322,
+      "recall": 1.0,
+      "hd95_mm": 26.537709019431198,
+      "pred_pixels": 1755,
+      "gt_pixels": 304,
+      "intersection": 304,
+      "false_positive_pixels": 1451,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "pancreas_q75",
+      "condition": "tight",
+      "dice": 0.625,
+      "precision": 0.45454545454545453,
+      "recall": 1.0,
+      "hd95_mm": 12.442381113848331,
+      "pred_pixels": 858,
+      "gt_pixels": 390,
+      "intersection": 390,
+      "false_positive_pixels": 468,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "pancreas_q75",
+      "condition": "loose",
+      "dice": 0.31451612903225806,
+      "precision": 0.18660287081339713,
+      "recall": 1.0,
+      "hd95_mm": 26.809381469395724,
+      "pred_pixels": 2090,
+      "gt_pixels": 390,
+      "intersection": 390,
+      "false_positive_pixels": 1700,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "adrenal_gland_right_q25",
+      "condition": "tight",
+      "dice": 0.4257602862254025,
+      "precision": 0.27045454545454545,
+      "recall": 1.0,
+      "hd95_mm": 13.5,
+      "pred_pixels": 440,
+      "gt_pixels": 119,
+      "intersection": 119,
+      "false_positive_pixels": 321,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "adrenal_gland_right_q25",
+      "condition": "loose",
+      "dice": 0.16005379959650304,
+      "precision": 0.08698830409356725,
+      "recall": 1.0,
+      "hd95_mm": 29.124731758421397,
+      "pred_pixels": 1368,
+      "gt_pixels": 119,
+      "intersection": 119,
+      "false_positive_pixels": 1249,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "adrenal_gland_right_q50",
+      "condition": "tight",
+      "dice": 0.3870967741935484,
+      "precision": 0.24,
+      "recall": 1.0,
+      "hd95_mm": 18.552389776406528,
+      "pred_pixels": 650,
+      "gt_pixels": 156,
+      "intersection": 156,
+      "false_positive_pixels": 494,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "adrenal_gland_right_q50",
+      "condition": "loose",
+      "dice": 0.16613418530351437,
+      "precision": 0.09059233449477352,
+      "recall": 1.0,
+      "hd95_mm": 34.20526275297414,
+      "pred_pixels": 1722,
+      "gt_pixels": 156,
+      "intersection": 156,
+      "false_positive_pixels": 1566,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "adrenal_gland_right_q75",
+      "condition": "tight",
+      "dice": 0.32599118942731276,
+      "precision": 0.19473684210526315,
+      "recall": 1.0,
+      "hd95_mm": 15.443445211480501,
+      "pred_pixels": 380,
+      "gt_pixels": 74,
+      "intersection": 74,
+      "false_positive_pixels": 306,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "adrenal_gland_right_q75",
+      "condition": "loose",
+      "dice": 0.11094452773613193,
+      "precision": 0.05873015873015873,
+      "recall": 1.0,
+      "hd95_mm": 31.363322878125405,
+      "pred_pixels": 1260,
+      "gt_pixels": 74,
+      "intersection": 74,
+      "false_positive_pixels": 1186,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "duodenum_q25",
+      "condition": "tight",
+      "dice": 0.5956112852664577,
+      "precision": 0.42410714285714285,
+      "recall": 1.0,
+      "hd95_mm": 15.0,
+      "pred_pixels": 1344,
+      "gt_pixels": 570,
+      "intersection": 570,
+      "false_positive_pixels": 774,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "duodenum_q25",
+      "condition": "loose",
+      "dice": 0.33043478260869563,
+      "precision": 0.19791666666666666,
+      "recall": 1.0,
+      "hd95_mm": 29.569403993139744,
+      "pred_pixels": 2880,
+      "gt_pixels": 570,
+      "intersection": 570,
+      "false_positive_pixels": 2310,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "duodenum_q50",
+      "condition": "tight",
+      "dice": 0.3104,
+      "precision": 0.18371212121212122,
+      "recall": 1.0,
+      "hd95_mm": 25.482337649086283,
+      "pred_pixels": 1584,
+      "gt_pixels": 291,
+      "intersection": 291,
+      "false_positive_pixels": 1293,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "duodenum_q50",
+      "condition": "loose",
+      "dice": 0.16297955754690563,
+      "precision": 0.08871951219512195,
+      "recall": 1.0,
+      "hd95_mm": 32.91124001957527,
+      "pred_pixels": 3280,
+      "gt_pixels": 291,
+      "intersection": 291,
+      "false_positive_pixels": 2989,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "duodenum_q75",
+      "condition": "tight",
+      "dice": 0.2751540041067762,
+      "precision": 0.1595238095238095,
+      "recall": 1.0,
+      "hd95_mm": 28.548888973248516,
+      "pred_pixels": 1260,
+      "gt_pixels": 201,
+      "intersection": 201,
+      "false_positive_pixels": 1059,
+      "false_negative_pixels": 0
+    },
+    {
+      "id": "duodenum_q75",
+      "condition": "loose",
+      "dice": 0.13201970443349753,
+      "precision": 0.07067510548523206,
+      "recall": 1.0,
+      "hd95_mm": 34.23813663153998,
+      "pred_pixels": 2844,
+      "gt_pixels": 201,
+      "intersection": 201,
+      "false_positive_pixels": 2643,
+      "false_negative_pixels": 0
+    }
+  ],
+  "per_organ": [
+    {
+      "organ": "liver",
+      "sam2_tight": 0.8940391242067625,
+      "sam2_loose": 0.7974684261702413,
+      "lite_tight": 0.9600895594263111,
+      "lite_loose": 0.9671691155040163
+    },
+    {
+      "organ": "kidney_right",
+      "sam2_tight": 0.8545720938469197,
+      "sam2_loose": 0.6717266929002861,
+      "lite_tight": 0.9616506027835818,
+      "lite_loose": 0.9633910475408217
+    },
+    {
+      "organ": "gallbladder",
+      "sam2_tight": 0.7545259553826303,
+      "sam2_loose": 0.5140483920669267,
+      "lite_tight": 0.8602812187577276,
+      "lite_loose": 0.8054215592664825
+    },
+    {
+      "organ": "pancreas",
+      "sam2_tight": 0.8007619696713162,
+      "sam2_loose": 0.4798384083937874,
+      "lite_tight": 0.8863671203493317,
+      "lite_loose": 0.9141712278031212
+    },
+    {
+      "organ": "adrenal_gland_right",
+      "sam2_tight": 0.7768379920269618,
+      "sam2_loose": 0.25528768830294224,
+      "lite_tight": 0.8711641422396571,
+      "lite_loose": 0.8580091044649737
+    },
+    {
+      "organ": "duodenum",
+      "sam2_tight": 0.56633834783594,
+      "sam2_loose": 0.38053224535998437,
+      "lite_tight": 0.4610426138150485,
+      "lite_loose": 0.6061279049781879
+    }
+  ],
+  "replays": [
+    {
+      "tag": "sam2-mps",
+      "id": "liver_q25",
+      "condition": "tight",
+      "dice": 0.8060750596209364,
+      "precision": 0.6953226504980511,
+      "recall": 0.9587936697521648,
+      "hd95_mm": 29.81909088590099,
+      "pred_pixels": 4618,
+      "gt_pixels": 3349,
+      "intersection": 3211,
+      "false_positive_pixels": 1407,
+      "false_negative_pixels": 138,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "liver_q25",
+      "condition": "loose",
+      "dice": 0.6705097087378641,
+      "precision": 0.5069582504970179,
+      "recall": 0.9898477157360406,
+      "hd95_mm": 42.95346318982906,
+      "pred_pixels": 6539,
+      "gt_pixels": 3349,
+      "intersection": 3315,
+      "false_positive_pixels": 3224,
+      "false_negative_pixels": 34,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "liver_q50",
+      "condition": "tight",
+      "dice": 0.9043709248973678,
+      "precision": 0.8286314857838256,
+      "recall": 0.9953488372093023,
+      "hd95_mm": 22.253542561789452,
+      "pred_pixels": 9039,
+      "gt_pixels": 7525,
+      "intersection": 7490,
+      "false_positive_pixels": 1549,
+      "false_negative_pixels": 35,
+      "pixels_outside_prompt": 41
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "liver_q50",
+      "condition": "loose",
+      "dice": 0.8260487590599604,
+      "precision": 0.7038457939552728,
+      "recall": 0.9996013289036545,
+      "hd95_mm": 37.769034936042516,
+      "pred_pixels": 10687,
+      "gt_pixels": 7525,
+      "intersection": 7522,
+      "false_positive_pixels": 3165,
+      "false_negative_pixels": 3,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "liver_q75",
+      "condition": "tight",
+      "dice": 0.9716713881019831,
+      "precision": 0.9590381658045575,
+      "recall": 0.984641883163485,
+      "hd95_mm": 6.046164609606622,
+      "pred_pixels": 7153,
+      "gt_pixels": 6967,
+      "intersection": 6860,
+      "false_positive_pixels": 293,
+      "false_negative_pixels": 107,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "liver_q75",
+      "condition": "loose",
+      "dice": 0.8958468107128995,
+      "precision": 0.8154516546932046,
+      "recall": 0.9938280465049519,
+      "hd95_mm": 38.04190562684175,
+      "pred_pixels": 8491,
+      "gt_pixels": 6967,
+      "intersection": 6924,
+      "false_positive_pixels": 1567,
+      "false_negative_pixels": 43,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "kidney_right_q25",
+      "condition": "tight",
+      "dice": 0.9002403846153846,
+      "precision": 0.835005574136009,
+      "recall": 0.9765319426336375,
+      "hd95_mm": 14.006226942619392,
+      "pred_pixels": 897,
+      "gt_pixels": 767,
+      "intersection": 749,
+      "false_positive_pixels": 148,
+      "false_negative_pixels": 18,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "kidney_right_q25",
+      "condition": "loose",
+      "dice": 0.7215428033866416,
+      "precision": 0.5643855776306107,
+      "recall": 1.0,
+      "hd95_mm": 17.4928556845359,
+      "pred_pixels": 1359,
+      "gt_pixels": 767,
+      "intersection": 767,
+      "false_positive_pixels": 592,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "kidney_right_q50",
+      "condition": "tight",
+      "dice": 0.8173220507715281,
+      "precision": 0.6981292517006803,
+      "recall": 0.985594237695078,
+      "hd95_mm": 14.442897196829946,
+      "pred_pixels": 1176,
+      "gt_pixels": 833,
+      "intersection": 821,
+      "false_positive_pixels": 355,
+      "false_negative_pixels": 12,
+      "pixels_outside_prompt": 2
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "kidney_right_q50",
+      "condition": "loose",
+      "dice": 0.5950590762620838,
+      "precision": 0.42397959183673467,
+      "recall": 0.9975990396158463,
+      "hd95_mm": 24.5192099625241,
+      "pred_pixels": 1960,
+      "gt_pixels": 833,
+      "intersection": 831,
+      "false_positive_pixels": 1129,
+      "false_negative_pixels": 2,
+      "pixels_outside_prompt": 3
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "kidney_right_q75",
+      "condition": "tight",
+      "dice": 0.8461538461538461,
+      "precision": 0.7333333333333333,
+      "recall": 1.0,
+      "hd95_mm": 15.562803215017425,
+      "pred_pixels": 1005,
+      "gt_pixels": 737,
+      "intersection": 737,
+      "false_positive_pixels": 268,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 17
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "kidney_right_q75",
+      "condition": "loose",
+      "dice": 0.6985781990521327,
+      "precision": 0.5367807720320467,
+      "recall": 1.0,
+      "hd95_mm": 18.866434061931606,
+      "pred_pixels": 1373,
+      "gt_pixels": 737,
+      "intersection": 737,
+      "false_positive_pixels": 636,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "gallbladder_q25",
+      "condition": "tight",
+      "dice": 0.9250871080139372,
+      "precision": 0.862012987012987,
+      "recall": 0.9981203007518797,
+      "hd95_mm": 3.3541019662496847,
+      "pred_pixels": 616,
+      "gt_pixels": 532,
+      "intersection": 531,
+      "false_positive_pixels": 85,
+      "false_negative_pixels": 1,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "gallbladder_q25",
+      "condition": "loose",
+      "dice": 0.6266195524146054,
+      "precision": 0.4562607204116638,
+      "recall": 1.0,
+      "hd95_mm": 20.12461179749811,
+      "pred_pixels": 1166,
+      "gt_pixels": 532,
+      "intersection": 532,
+      "false_positive_pixels": 634,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 1
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "gallbladder_q50",
+      "condition": "tight",
+      "dice": 0.892466194462331,
+      "precision": 0.8210900473933649,
+      "recall": 0.9774330042313117,
+      "hd95_mm": 7.581691098714045,
+      "pred_pixels": 844,
+      "gt_pixels": 709,
+      "intersection": 693,
+      "false_positive_pixels": 151,
+      "false_negative_pixels": 16,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "gallbladder_q50",
+      "condition": "loose",
+      "dice": 0.48644939965694683,
+      "precision": 0.3213961922030825,
+      "recall": 1.0,
+      "hd95_mm": 38.42571368857939,
+      "pred_pixels": 2206,
+      "gt_pixels": 709,
+      "intersection": 709,
+      "false_positive_pixels": 1497,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 15
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "gallbladder_q75",
+      "condition": "tight",
+      "dice": 0.4460245636716225,
+      "precision": 0.3102517985611511,
+      "recall": 0.7931034482758621,
+      "hd95_mm": 27.363192855011633,
+      "pred_pixels": 1112,
+      "gt_pixels": 435,
+      "intersection": 345,
+      "false_positive_pixels": 767,
+      "false_negative_pixels": 90,
+      "pixels_outside_prompt": 25
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "gallbladder_q75",
+      "condition": "loose",
+      "dice": 0.4290762241292277,
+      "precision": 0.27490297542043984,
+      "recall": 0.9770114942528736,
+      "hd95_mm": 36.00787271919558,
+      "pred_pixels": 1546,
+      "gt_pixels": 435,
+      "intersection": 425,
+      "false_positive_pixels": 1121,
+      "false_negative_pixels": 10,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "pancreas_q25",
+      "condition": "tight",
+      "dice": 0.8348271446862996,
+      "precision": 0.7164835164835165,
+      "recall": 1.0,
+      "hd95_mm": 6.68202665779572,
+      "pred_pixels": 455,
+      "gt_pixels": 326,
+      "intersection": 326,
+      "false_positive_pixels": 129,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "pancreas_q25",
+      "condition": "loose",
+      "dice": 0.5516074450084603,
+      "precision": 0.3808411214953271,
+      "recall": 1.0,
+      "hd95_mm": 25.609308973486584,
+      "pred_pixels": 856,
+      "gt_pixels": 326,
+      "intersection": 326,
+      "false_positive_pixels": 530,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 64
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "pancreas_q50",
+      "condition": "tight",
+      "dice": 0.8081632653061225,
+      "precision": 0.6890951276102089,
+      "recall": 0.9769736842105263,
+      "hd95_mm": 10.334453808273633,
+      "pred_pixels": 431,
+      "gt_pixels": 304,
+      "intersection": 297,
+      "false_positive_pixels": 134,
+      "false_negative_pixels": 7,
+      "pixels_outside_prompt": 12
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "pancreas_q50",
+      "condition": "loose",
+      "dice": 0.4013201320132013,
+      "precision": 0.2510322047894302,
+      "recall": 1.0,
+      "hd95_mm": 24.53957080697667,
+      "pred_pixels": 1211,
+      "gt_pixels": 304,
+      "intersection": 304,
+      "false_positive_pixels": 907,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 67
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "pancreas_q75",
+      "condition": "tight",
+      "dice": 0.7592954990215264,
+      "precision": 0.6139240506329114,
+      "recall": 0.9948717948717949,
+      "hd95_mm": 10.5,
+      "pred_pixels": 632,
+      "gt_pixels": 390,
+      "intersection": 388,
+      "false_positive_pixels": 244,
+      "false_negative_pixels": 2,
+      "pixels_outside_prompt": 9
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "pancreas_q75",
+      "condition": "loose",
+      "dice": 0.48658764815970057,
+      "precision": 0.3215169002473207,
+      "recall": 1.0,
+      "hd95_mm": 19.289466384404108,
+      "pred_pixels": 1213,
+      "gt_pixels": 390,
+      "intersection": 390,
+      "false_positive_pixels": 823,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 4
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "adrenal_gland_right_q25",
+      "condition": "tight",
+      "dice": 0.7687296416938111,
+      "precision": 0.6276595744680851,
+      "recall": 0.9915966386554622,
+      "hd95_mm": 4.585195771588398,
+      "pred_pixels": 188,
+      "gt_pixels": 119,
+      "intersection": 118,
+      "false_positive_pixels": 70,
+      "false_negative_pixels": 1,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "adrenal_gland_right_q25",
+      "condition": "loose",
+      "dice": 0.4311594202898551,
+      "precision": 0.2748267898383372,
+      "recall": 1.0,
+      "hd95_mm": 17.50248481176743,
+      "pred_pixels": 433,
+      "gt_pixels": 119,
+      "intersection": 119,
+      "false_positive_pixels": 314,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "adrenal_gland_right_q50",
+      "condition": "tight",
+      "dice": 0.8438356164383561,
+      "precision": 0.7368421052631579,
+      "recall": 0.9871794871794872,
+      "hd95_mm": 3.3541019662496847,
+      "pred_pixels": 209,
+      "gt_pixels": 156,
+      "intersection": 154,
+      "false_positive_pixels": 55,
+      "false_negative_pixels": 2,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "adrenal_gland_right_q50",
+      "condition": "loose",
+      "dice": 0.3275862068965517,
+      "precision": 0.5,
+      "recall": 0.24358974358974358,
+      "hd95_mm": 14.849242404917497,
+      "pred_pixels": 76,
+      "gt_pixels": 156,
+      "intersection": 38,
+      "false_positive_pixels": 38,
+      "false_negative_pixels": 118,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "adrenal_gland_right_q75",
+      "condition": "tight",
+      "dice": 0.717948717948718,
+      "precision": 0.5785123966942148,
+      "recall": 0.9459459459459459,
+      "hd95_mm": 3.3541019662496847,
+      "pred_pixels": 121,
+      "gt_pixels": 74,
+      "intersection": 70,
+      "false_positive_pixels": 51,
+      "false_negative_pixels": 4,
+      "pixels_outside_prompt": 1
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "adrenal_gland_right_q75",
+      "condition": "loose",
+      "dice": 0.0071174377224199285,
+      "precision": 0.004830917874396135,
+      "recall": 0.013513513513513514,
+      "hd95_mm": 18.198484723665104,
+      "pred_pixels": 207,
+      "gt_pixels": 74,
+      "intersection": 1,
+      "false_positive_pixels": 206,
+      "false_negative_pixels": 73,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "duodenum_q25",
+      "condition": "tight",
+      "dice": 0.8600311041990669,
+      "precision": 0.7723463687150838,
+      "recall": 0.9701754385964912,
+      "hd95_mm": 7.5,
+      "pred_pixels": 716,
+      "gt_pixels": 570,
+      "intersection": 553,
+      "false_positive_pixels": 163,
+      "false_negative_pixels": 17,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "duodenum_q25",
+      "condition": "loose",
+      "dice": 0.5222171323866239,
+      "precision": 0.35337879727216365,
+      "recall": 1.0,
+      "hd95_mm": 21.54945120949993,
+      "pred_pixels": 1613,
+      "gt_pixels": 570,
+      "intersection": 570,
+      "false_positive_pixels": 1043,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 23
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "duodenum_q50",
+      "condition": "tight",
+      "dice": 0.4741907261592301,
+      "precision": 0.318075117370892,
+      "recall": 0.9312714776632303,
+      "hd95_mm": 24.445770640069885,
+      "pred_pixels": 852,
+      "gt_pixels": 291,
+      "intersection": 271,
+      "false_positive_pixels": 581,
+      "false_negative_pixels": 20,
+      "pixels_outside_prompt": 11
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "duodenum_q50",
+      "condition": "loose",
+      "dice": 0.4066811909949165,
+      "precision": 0.2578268876611418,
+      "recall": 0.9621993127147767,
+      "hd95_mm": 24.427410809456337,
+      "pred_pixels": 1086,
+      "gt_pixels": 291,
+      "intersection": 280,
+      "false_positive_pixels": 806,
+      "false_negative_pixels": 11,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "duodenum_q75",
+      "condition": "tight",
+      "dice": 0.3647932131495228,
+      "precision": 0.23180592991913745,
+      "recall": 0.8557213930348259,
+      "hd95_mm": 27.731369205183746,
+      "pred_pixels": 742,
+      "gt_pixels": 201,
+      "intersection": 172,
+      "false_positive_pixels": 570,
+      "false_negative_pixels": 29,
+      "pixels_outside_prompt": 5
+    },
+    {
+      "tag": "sam2-mps",
+      "id": "duodenum_q75",
+      "condition": "loose",
+      "dice": 0.2126984126984127,
+      "precision": 0.11900532859680284,
+      "recall": 1.0,
+      "hd95_mm": 31.298695882116967,
+      "pred_pixels": 1689,
+      "gt_pixels": 201,
+      "intersection": 201,
+      "false_positive_pixels": 1488,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "liver_q25",
+      "condition": "tight",
+      "dice": 0.946843853820598,
+      "precision": 0.9578368469294225,
+      "recall": 0.9361003284562556,
+      "hd95_mm": 4.5,
+      "pred_pixels": 3273,
+      "gt_pixels": 3349,
+      "intersection": 3135,
+      "false_positive_pixels": 138,
+      "false_negative_pixels": 214,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "liver_q25",
+      "condition": "loose",
+      "dice": 0.9642529789184234,
+      "precision": 0.9871754770096965,
+      "recall": 0.9423708569722306,
+      "hd95_mm": 3.0,
+      "pred_pixels": 3197,
+      "gt_pixels": 3349,
+      "intersection": 3156,
+      "false_positive_pixels": 41,
+      "false_negative_pixels": 193,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "liver_q50",
+      "condition": "tight",
+      "dice": 0.9611924264804619,
+      "precision": 0.9713665354864975,
+      "recall": 0.9512292358803986,
+      "hd95_mm": 6.129260906898531,
+      "pred_pixels": 7369,
+      "gt_pixels": 7525,
+      "intersection": 7158,
+      "false_positive_pixels": 211,
+      "false_negative_pixels": 367,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "liver_q50",
+      "condition": "loose",
+      "dice": 0.9629778402624356,
+      "precision": 0.9703184025903939,
+      "recall": 0.9557475083056478,
+      "hd95_mm": 6.0,
+      "pred_pixels": 7412,
+      "gt_pixels": 7525,
+      "intersection": 7192,
+      "false_positive_pixels": 220,
+      "false_negative_pixels": 333,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "liver_q75",
+      "condition": "tight",
+      "dice": 0.9722323979778739,
+      "precision": 0.9929661777910805,
+      "recall": 0.9523467776661404,
+      "hd95_mm": 4.242640687119285,
+      "pred_pixels": 6682,
+      "gt_pixels": 6967,
+      "intersection": 6635,
+      "false_positive_pixels": 47,
+      "false_negative_pixels": 332,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "liver_q75",
+      "condition": "loose",
+      "dice": 0.9742765273311897,
+      "precision": 0.9924073246985261,
+      "recall": 0.9567963255346634,
+      "hd95_mm": 3.3541019662496847,
+      "pred_pixels": 6717,
+      "gt_pixels": 6967,
+      "intersection": 6666,
+      "false_positive_pixels": 51,
+      "false_negative_pixels": 301,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "kidney_right_q25",
+      "condition": "tight",
+      "dice": 0.9399339933993399,
+      "precision": 0.9518716577540107,
+      "recall": 0.9282920469361148,
+      "hd95_mm": 2.1213203435596424,
+      "pred_pixels": 748,
+      "gt_pixels": 767,
+      "intersection": 712,
+      "false_positive_pixels": 36,
+      "false_negative_pixels": 55,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "kidney_right_q25",
+      "condition": "loose",
+      "dice": 0.9450980392156862,
+      "precision": 0.9475753604193972,
+      "recall": 0.9426336375488917,
+      "hd95_mm": 2.1213203435596424,
+      "pred_pixels": 763,
+      "gt_pixels": 767,
+      "intersection": 723,
+      "false_positive_pixels": 40,
+      "false_negative_pixels": 44,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "kidney_right_q50",
+      "condition": "tight",
+      "dice": 0.959902794653706,
+      "precision": 0.971709717097171,
+      "recall": 0.9483793517406963,
+      "hd95_mm": 1.5,
+      "pred_pixels": 813,
+      "gt_pixels": 833,
+      "intersection": 790,
+      "false_positive_pixels": 23,
+      "false_negative_pixels": 43,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "kidney_right_q50",
+      "condition": "loose",
+      "dice": 0.9618874773139746,
+      "precision": 0.9695121951219512,
+      "recall": 0.9543817527010804,
+      "hd95_mm": 1.5,
+      "pred_pixels": 820,
+      "gt_pixels": 833,
+      "intersection": 795,
+      "false_positive_pixels": 25,
+      "false_negative_pixels": 38,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "kidney_right_q75",
+      "condition": "tight",
+      "dice": 0.9851150202976996,
+      "precision": 0.9824561403508771,
+      "recall": 0.9877883310719131,
+      "hd95_mm": 1.5,
+      "pred_pixels": 741,
+      "gt_pixels": 737,
+      "intersection": 728,
+      "false_positive_pixels": 13,
+      "false_negative_pixels": 9,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "kidney_right_q75",
+      "condition": "loose",
+      "dice": 0.9831876260928043,
+      "precision": 0.9746666666666667,
+      "recall": 0.9918588873812755,
+      "hd95_mm": 1.5,
+      "pred_pixels": 750,
+      "gt_pixels": 737,
+      "intersection": 731,
+      "false_positive_pixels": 19,
+      "false_negative_pixels": 6,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "gallbladder_q25",
+      "condition": "tight",
+      "dice": 0.9552806850618458,
+      "precision": 0.9672447013487476,
+      "recall": 0.943609022556391,
+      "hd95_mm": 1.5,
+      "pred_pixels": 519,
+      "gt_pixels": 532,
+      "intersection": 502,
+      "false_positive_pixels": 17,
+      "false_negative_pixels": 30,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "gallbladder_q25",
+      "condition": "loose",
+      "dice": 0.9714285714285714,
+      "precision": 0.9529837251356239,
+      "recall": 0.9906015037593985,
+      "hd95_mm": 1.5,
+      "pred_pixels": 553,
+      "gt_pixels": 532,
+      "intersection": 527,
+      "false_positive_pixels": 26,
+      "false_negative_pixels": 5,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "gallbladder_q50",
+      "condition": "tight",
+      "dice": 0.924187725631769,
+      "precision": 0.9467455621301775,
+      "recall": 0.9026798307475318,
+      "hd95_mm": 3.753944390640995,
+      "pred_pixels": 676,
+      "gt_pixels": 709,
+      "intersection": 640,
+      "false_positive_pixels": 36,
+      "false_negative_pixels": 69,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "gallbladder_q50",
+      "condition": "loose",
+      "dice": 0.9474402730375426,
+      "precision": 0.917989417989418,
+      "recall": 0.9788434414668548,
+      "hd95_mm": 4.876398574841245,
+      "pred_pixels": 756,
+      "gt_pixels": 709,
+      "intersection": 694,
+      "false_positive_pixels": 62,
+      "false_negative_pixels": 15,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "gallbladder_q75",
+      "condition": "tight",
+      "dice": 0.7013752455795678,
+      "precision": 0.6123499142367067,
+      "recall": 0.8206896551724138,
+      "hd95_mm": 8.240760876116472,
+      "pred_pixels": 583,
+      "gt_pixels": 435,
+      "intersection": 357,
+      "false_positive_pixels": 226,
+      "false_negative_pixels": 78,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "gallbladder_q75",
+      "condition": "loose",
+      "dice": 0.4973958333333333,
+      "precision": 0.3469573115349682,
+      "recall": 0.8781609195402299,
+      "hd95_mm": 28.38461330062038,
+      "pred_pixels": 1101,
+      "gt_pixels": 435,
+      "intersection": 382,
+      "false_positive_pixels": 719,
+      "false_negative_pixels": 53,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "pancreas_q25",
+      "condition": "tight",
+      "dice": 0.919175911251981,
+      "precision": 0.9508196721311475,
+      "recall": 0.8895705521472392,
+      "hd95_mm": 3.0,
+      "pred_pixels": 305,
+      "gt_pixels": 326,
+      "intersection": 290,
+      "false_positive_pixels": 15,
+      "false_negative_pixels": 36,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "pancreas_q25",
+      "condition": "loose",
+      "dice": 0.9125925925925926,
+      "precision": 0.8825214899713467,
+      "recall": 0.9447852760736196,
+      "hd95_mm": 3.0,
+      "pred_pixels": 349,
+      "gt_pixels": 326,
+      "intersection": 308,
+      "false_positive_pixels": 41,
+      "false_negative_pixels": 18,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "pancreas_q50",
+      "condition": "tight",
+      "dice": 0.9025270758122743,
+      "precision": 1.0,
+      "recall": 0.8223684210526315,
+      "hd95_mm": 3.0,
+      "pred_pixels": 250,
+      "gt_pixels": 304,
+      "intersection": 250,
+      "false_positive_pixels": 0,
+      "false_negative_pixels": 54,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "pancreas_q50",
+      "condition": "loose",
+      "dice": 0.9510961214165261,
+      "precision": 0.9757785467128027,
+      "recall": 0.9276315789473685,
+      "hd95_mm": 1.5,
+      "pred_pixels": 289,
+      "gt_pixels": 304,
+      "intersection": 282,
+      "false_positive_pixels": 7,
+      "false_negative_pixels": 22,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "pancreas_q75",
+      "condition": "tight",
+      "dice": 0.8373983739837398,
+      "precision": 0.8879310344827587,
+      "recall": 0.7923076923076923,
+      "hd95_mm": 6.18465843842649,
+      "pred_pixels": 348,
+      "gt_pixels": 390,
+      "intersection": 309,
+      "false_positive_pixels": 39,
+      "false_negative_pixels": 81,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "pancreas_q75",
+      "condition": "loose",
+      "dice": 0.8788249694002448,
+      "precision": 0.8407494145199064,
+      "recall": 0.9205128205128205,
+      "hd95_mm": 6.0,
+      "pred_pixels": 427,
+      "gt_pixels": 390,
+      "intersection": 359,
+      "false_positive_pixels": 68,
+      "false_negative_pixels": 31,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "adrenal_gland_right_q25",
+      "condition": "tight",
+      "dice": 0.8421052631578947,
+      "precision": 0.9777777777777777,
+      "recall": 0.7394957983193278,
+      "hd95_mm": 6.28936753724106,
+      "pred_pixels": 90,
+      "gt_pixels": 119,
+      "intersection": 88,
+      "false_positive_pixels": 2,
+      "false_negative_pixels": 31,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "adrenal_gland_right_q25",
+      "condition": "loose",
+      "dice": 0.8778625954198473,
+      "precision": 0.8041958041958042,
+      "recall": 0.9663865546218487,
+      "hd95_mm": 3.487382774380117,
+      "pred_pixels": 143,
+      "gt_pixels": 119,
+      "intersection": 115,
+      "false_positive_pixels": 28,
+      "false_negative_pixels": 4,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "adrenal_gland_right_q50",
+      "condition": "tight",
+      "dice": 0.9266666666666666,
+      "precision": 0.9652777777777778,
+      "recall": 0.8910256410256411,
+      "hd95_mm": 1.5,
+      "pred_pixels": 144,
+      "gt_pixels": 156,
+      "intersection": 139,
+      "false_positive_pixels": 5,
+      "false_negative_pixels": 17,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "adrenal_gland_right_q50",
+      "condition": "loose",
+      "dice": 0.8895348837209303,
+      "precision": 0.8138297872340425,
+      "recall": 0.9807692307692307,
+      "hd95_mm": 3.3541019662496847,
+      "pred_pixels": 188,
+      "gt_pixels": 156,
+      "intersection": 153,
+      "false_positive_pixels": 35,
+      "false_negative_pixels": 3,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "adrenal_gland_right_q75",
+      "condition": "tight",
+      "dice": 0.84472049689441,
+      "precision": 0.7816091954022989,
+      "recall": 0.918918918918919,
+      "hd95_mm": 2.1213203435596424,
+      "pred_pixels": 87,
+      "gt_pixels": 74,
+      "intersection": 68,
+      "false_positive_pixels": 19,
+      "false_negative_pixels": 6,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "adrenal_gland_right_q75",
+      "condition": "loose",
+      "dice": 0.8066298342541437,
+      "precision": 0.6822429906542056,
+      "recall": 0.9864864864864865,
+      "hd95_mm": 2.1213203435596424,
+      "pred_pixels": 107,
+      "gt_pixels": 74,
+      "intersection": 73,
+      "false_positive_pixels": 34,
+      "false_negative_pixels": 1,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "duodenum_q25",
+      "condition": "tight",
+      "dice": 0.8797127468581688,
+      "precision": 0.9007352941176471,
+      "recall": 0.8596491228070176,
+      "hd95_mm": 4.548683298050511,
+      "pred_pixels": 544,
+      "gt_pixels": 570,
+      "intersection": 490,
+      "false_positive_pixels": 54,
+      "false_negative_pixels": 80,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "duodenum_q25",
+      "condition": "loose",
+      "dice": 0.9094017094017094,
+      "precision": 0.8866666666666667,
+      "recall": 0.9333333333333333,
+      "hd95_mm": 5.408326913195984,
+      "pred_pixels": 600,
+      "gt_pixels": 570,
+      "intersection": 532,
+      "false_positive_pixels": 68,
+      "false_negative_pixels": 38,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "duodenum_q50",
+      "condition": "tight",
+      "dice": 0.31932773109243695,
+      "precision": 0.24538745387453875,
+      "recall": 0.4570446735395189,
+      "hd95_mm": 23.62173497625682,
+      "pred_pixels": 542,
+      "gt_pixels": 291,
+      "intersection": 133,
+      "false_positive_pixels": 409,
+      "false_negative_pixels": 158,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "duodenum_q50",
+      "condition": "loose",
+      "dice": 0.5073170731707317,
+      "precision": 0.3542234332425068,
+      "recall": 0.8934707903780069,
+      "hd95_mm": 23.23516090940666,
+      "pred_pixels": 734,
+      "gt_pixels": 291,
+      "intersection": 260,
+      "false_positive_pixels": 474,
+      "false_negative_pixels": 31,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-mps",
+      "id": "duodenum_q75",
+      "condition": "tight",
+      "dice": 0.18408736349453977,
+      "precision": 0.1340909090909091,
+      "recall": 0.2935323383084577,
+      "hd95_mm": 31.406829341016174,
+      "pred_pixels": 440,
+      "gt_pixels": 201,
+      "intersection": 59,
+      "false_positive_pixels": 381,
+      "false_negative_pixels": 142,
+      "pixels_outside_prompt": 20
+    },
+    {
+      "tag": "lite-mps",
+      "id": "duodenum_q75",
+      "condition": "loose",
+      "dice": 0.4016649323621228,
+      "precision": 0.25394736842105264,
+      "recall": 0.9601990049751243,
+      "hd95_mm": 29.474136524023027,
+      "pred_pixels": 760,
+      "gt_pixels": 201,
+      "intersection": 193,
+      "false_positive_pixels": 567,
+      "false_negative_pixels": 8,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu-subset",
+      "id": "liver_q50",
+      "condition": "tight",
+      "dice": 0.9278759689922481,
+      "precision": 0.8698837209302326,
+      "recall": 0.9941528239202658,
+      "hd95_mm": 23.33452377915607,
+      "pred_pixels": 8600,
+      "gt_pixels": 7525,
+      "intersection": 7481,
+      "false_positive_pixels": 1119,
+      "false_negative_pixels": 44,
+      "pixels_outside_prompt": 4
+    },
+    {
+      "tag": "sam2-cpu-subset",
+      "id": "liver_q50",
+      "condition": "loose",
+      "dice": 0.8210894007204453,
+      "precision": 0.696675002315458,
+      "recall": 0.9996013289036545,
+      "hd95_mm": 40.749233121618374,
+      "pred_pixels": 10797,
+      "gt_pixels": 7525,
+      "intersection": 7522,
+      "false_positive_pixels": 3275,
+      "false_negative_pixels": 3,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu-subset",
+      "id": "adrenal_gland_right_q50",
+      "condition": "tight",
+      "dice": 0.8360655737704918,
+      "precision": 0.7285714285714285,
+      "recall": 0.9807692307692307,
+      "hd95_mm": 3.0,
+      "pred_pixels": 210,
+      "gt_pixels": 156,
+      "intersection": 153,
+      "false_positive_pixels": 57,
+      "false_negative_pixels": 3,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu-subset",
+      "id": "adrenal_gland_right_q50",
+      "condition": "loose",
+      "dice": 0.5631768953068592,
+      "precision": 0.6446280991735537,
+      "recall": 0.5,
+      "hd95_mm": 14.849242404917497,
+      "pred_pixels": 121,
+      "gt_pixels": 156,
+      "intersection": 78,
+      "false_positive_pixels": 43,
+      "false_negative_pixels": 78,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-cpu-subset",
+      "id": "liver_q50",
+      "condition": "tight",
+      "dice": 0.9611924264804619,
+      "precision": 0.9713665354864975,
+      "recall": 0.9512292358803986,
+      "hd95_mm": 6.129260906898531,
+      "pred_pixels": 7369,
+      "gt_pixels": 7525,
+      "intersection": 7158,
+      "false_positive_pixels": 211,
+      "false_negative_pixels": 367,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-cpu-subset",
+      "id": "liver_q50",
+      "condition": "loose",
+      "dice": 0.9629778402624356,
+      "precision": 0.9703184025903939,
+      "recall": 0.9557475083056478,
+      "hd95_mm": 6.0,
+      "pred_pixels": 7412,
+      "gt_pixels": 7525,
+      "intersection": 7192,
+      "false_positive_pixels": 220,
+      "false_negative_pixels": 333,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-cpu-subset",
+      "id": "adrenal_gland_right_q50",
+      "condition": "tight",
+      "dice": 0.9266666666666666,
+      "precision": 0.9652777777777778,
+      "recall": 0.8910256410256411,
+      "hd95_mm": 1.5,
+      "pred_pixels": 144,
+      "gt_pixels": 156,
+      "intersection": 139,
+      "false_positive_pixels": 5,
+      "false_negative_pixels": 17,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "lite-cpu-subset",
+      "id": "adrenal_gland_right_q50",
+      "condition": "loose",
+      "dice": 0.8895348837209303,
+      "precision": 0.8138297872340425,
+      "recall": 0.9807692307692307,
+      "hd95_mm": 3.3541019662496847,
+      "pred_pixels": 188,
+      "gt_pixels": 156,
+      "intersection": 153,
+      "false_positive_pixels": 35,
+      "false_negative_pixels": 3,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "liver_q25",
+      "condition": "tight",
+      "dice": 0.8198984242739941,
+      "precision": 0.7270207852193995,
+      "recall": 0.9399820842042401,
+      "hd95_mm": 26.066246384378488,
+      "pred_pixels": 4330,
+      "gt_pixels": 3349,
+      "intersection": 3148,
+      "false_positive_pixels": 1182,
+      "false_negative_pixels": 201,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "liver_q25",
+      "condition": "loose",
+      "dice": 0.033862433862433865,
+      "precision": 0.14849187935034802,
+      "recall": 0.01911018214392356,
+      "hd95_mm": 42.25292088687754,
+      "pred_pixels": 431,
+      "gt_pixels": 3349,
+      "intersection": 64,
+      "false_positive_pixels": 367,
+      "false_negative_pixels": 3285,
+      "pixels_outside_prompt": 2
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "liver_q50",
+      "condition": "tight",
+      "dice": 0.9278759689922481,
+      "precision": 0.8698837209302326,
+      "recall": 0.9941528239202658,
+      "hd95_mm": 23.33452377915607,
+      "pred_pixels": 8600,
+      "gt_pixels": 7525,
+      "intersection": 7481,
+      "false_positive_pixels": 1119,
+      "false_negative_pixels": 44,
+      "pixels_outside_prompt": 4
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "liver_q50",
+      "condition": "loose",
+      "dice": 0.8210894007204453,
+      "precision": 0.696675002315458,
+      "recall": 0.9996013289036545,
+      "hd95_mm": 40.749233121618374,
+      "pred_pixels": 10797,
+      "gt_pixels": 7525,
+      "intersection": 7522,
+      "false_positive_pixels": 3275,
+      "false_negative_pixels": 3,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "liver_q75",
+      "condition": "tight",
+      "dice": 0.9748186086214256,
+      "precision": 0.9662953039063602,
+      "recall": 0.9834936127458016,
+      "hd95_mm": 3.3541019662496847,
+      "pred_pixels": 7091,
+      "gt_pixels": 6967,
+      "intersection": 6852,
+      "false_positive_pixels": 239,
+      "false_negative_pixels": 115,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "liver_q75",
+      "condition": "loose",
+      "dice": 0.884376401255525,
+      "precision": 0.798588616381305,
+      "recall": 0.9908138366585331,
+      "hd95_mm": 36.31115531073061,
+      "pred_pixels": 8644,
+      "gt_pixels": 6967,
+      "intersection": 6903,
+      "false_positive_pixels": 1741,
+      "false_negative_pixels": 64,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "kidney_right_q25",
+      "condition": "tight",
+      "dice": 0.9015606242496998,
+      "precision": 0.8353726362625139,
+      "recall": 0.9791395045632334,
+      "hd95_mm": 13.82931668593933,
+      "pred_pixels": 899,
+      "gt_pixels": 767,
+      "intersection": 751,
+      "false_positive_pixels": 148,
+      "false_negative_pixels": 16,
+      "pixels_outside_prompt": 3
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "kidney_right_q25",
+      "condition": "loose",
+      "dice": 0.8741418764302059,
+      "precision": 0.7787971457696228,
+      "recall": 0.9960886571056062,
+      "hd95_mm": 15.099068964504859,
+      "pred_pixels": 981,
+      "gt_pixels": 767,
+      "intersection": 764,
+      "false_positive_pixels": 217,
+      "false_negative_pixels": 3,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "kidney_right_q50",
+      "condition": "tight",
+      "dice": 0.9158249158249159,
+      "precision": 0.8598524762908325,
+      "recall": 0.9795918367346939,
+      "hd95_mm": 5.408326913195984,
+      "pred_pixels": 949,
+      "gt_pixels": 833,
+      "intersection": 816,
+      "false_positive_pixels": 133,
+      "false_negative_pixels": 17,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "kidney_right_q50",
+      "condition": "loose",
+      "dice": 0.71875,
+      "precision": 0.5628823929299797,
+      "recall": 0.9939975990396158,
+      "hd95_mm": 19.091883092036785,
+      "pred_pixels": 1471,
+      "gt_pixels": 833,
+      "intersection": 828,
+      "false_positive_pixels": 643,
+      "false_negative_pixels": 5,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "kidney_right_q75",
+      "condition": "tight",
+      "dice": 0.8691037735849056,
+      "precision": 0.7685088633993743,
+      "recall": 1.0,
+      "hd95_mm": 15.264183905346314,
+      "pred_pixels": 959,
+      "gt_pixels": 737,
+      "intersection": 737,
+      "false_positive_pixels": 222,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 11
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "kidney_right_q75",
+      "condition": "loose",
+      "dice": 0.6328896522112495,
+      "precision": 0.4629396984924623,
+      "recall": 1.0,
+      "hd95_mm": 20.280232432232232,
+      "pred_pixels": 1592,
+      "gt_pixels": 737,
+      "intersection": 737,
+      "false_positive_pixels": 855,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "gallbladder_q25",
+      "condition": "tight",
+      "dice": 0.9407603890362511,
+      "precision": 0.8881469115191987,
+      "recall": 1.0,
+      "hd95_mm": 2.1213203435596424,
+      "pred_pixels": 599,
+      "gt_pixels": 532,
+      "intersection": 532,
+      "false_positive_pixels": 67,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "gallbladder_q25",
+      "condition": "loose",
+      "dice": 0.6292134831460674,
+      "precision": 0.45901639344262296,
+      "recall": 1.0,
+      "hd95_mm": 20.868320021555515,
+      "pred_pixels": 1159,
+      "gt_pixels": 532,
+      "intersection": 532,
+      "false_positive_pixels": 627,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 2
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "gallbladder_q50",
+      "condition": "tight",
+      "dice": 0.9020381328073636,
+      "precision": 0.8448275862068966,
+      "recall": 0.9675599435825106,
+      "hd95_mm": 5.408326913195984,
+      "pred_pixels": 812,
+      "gt_pixels": 709,
+      "intersection": 686,
+      "false_positive_pixels": 126,
+      "false_negative_pixels": 23,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "gallbladder_q50",
+      "condition": "loose",
+      "dice": 0.8731487443657437,
+      "precision": 0.8033175355450237,
+      "recall": 0.9562764456981664,
+      "hd95_mm": 6.18465843842649,
+      "pred_pixels": 844,
+      "gt_pixels": 709,
+      "intersection": 678,
+      "false_positive_pixels": 166,
+      "false_negative_pixels": 31,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "gallbladder_q75",
+      "condition": "tight",
+      "dice": 0.45302445302445304,
+      "precision": 0.3145665773011618,
+      "recall": 0.8091954022988506,
+      "hd95_mm": 28.94328389057192,
+      "pred_pixels": 1119,
+      "gt_pixels": 435,
+      "intersection": 352,
+      "false_positive_pixels": 767,
+      "false_negative_pixels": 83,
+      "pixels_outside_prompt": 42
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "gallbladder_q75",
+      "condition": "loose",
+      "dice": 0.43227091633466136,
+      "precision": 0.27590591226954864,
+      "recall": 0.9977011494252873,
+      "hd95_mm": 34.25454992053423,
+      "pred_pixels": 1573,
+      "gt_pixels": 435,
+      "intersection": 434,
+      "false_positive_pixels": 1139,
+      "false_negative_pixels": 1,
+      "pixels_outside_prompt": 5
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "pancreas_q25",
+      "condition": "tight",
+      "dice": 0.8269720101781171,
+      "precision": 0.7065217391304348,
+      "recall": 0.9969325153374233,
+      "hd95_mm": 6.18465843842649,
+      "pred_pixels": 460,
+      "gt_pixels": 326,
+      "intersection": 325,
+      "false_positive_pixels": 135,
+      "false_negative_pixels": 1,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "pancreas_q25",
+      "condition": "loose",
+      "dice": 0.5992647058823529,
+      "precision": 0.42782152230971127,
+      "recall": 1.0,
+      "hd95_mm": 24.186773244895647,
+      "pred_pixels": 762,
+      "gt_pixels": 326,
+      "intersection": 326,
+      "false_positive_pixels": 436,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 19
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "pancreas_q50",
+      "condition": "tight",
+      "dice": 0.8173207036535859,
+      "precision": 0.6942528735632184,
+      "recall": 0.993421052631579,
+      "hd95_mm": 10.055548268891284,
+      "pred_pixels": 435,
+      "gt_pixels": 304,
+      "intersection": 302,
+      "false_positive_pixels": 133,
+      "false_negative_pixels": 2,
+      "pixels_outside_prompt": 8
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "pancreas_q50",
+      "condition": "loose",
+      "dice": 0.5109612141652614,
+      "precision": 0.3435374149659864,
+      "recall": 0.9967105263157895,
+      "hd95_mm": 24.829418035870273,
+      "pred_pixels": 882,
+      "gt_pixels": 304,
+      "intersection": 303,
+      "false_positive_pixels": 579,
+      "false_negative_pixels": 1,
+      "pixels_outside_prompt": 60
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "pancreas_q75",
+      "condition": "tight",
+      "dice": 0.7652859960552268,
+      "precision": 0.6217948717948718,
+      "recall": 0.9948717948717949,
+      "hd95_mm": 10.324922359499618,
+      "pred_pixels": 624,
+      "gt_pixels": 390,
+      "intersection": 388,
+      "false_positive_pixels": 236,
+      "false_negative_pixels": 2,
+      "pixels_outside_prompt": 8
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "pancreas_q75",
+      "condition": "loose",
+      "dice": 0.4733009708737864,
+      "precision": 0.31001589825119236,
+      "recall": 1.0,
+      "hd95_mm": 20.0124960961895,
+      "pred_pixels": 1258,
+      "gt_pixels": 390,
+      "intersection": 390,
+      "false_positive_pixels": 868,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 12
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "adrenal_gland_right_q25",
+      "condition": "tight",
+      "dice": 0.7727272727272727,
+      "precision": 0.6296296296296297,
+      "recall": 1.0,
+      "hd95_mm": 4.242640687119285,
+      "pred_pixels": 189,
+      "gt_pixels": 119,
+      "intersection": 119,
+      "false_positive_pixels": 70,
+      "false_negative_pixels": 0,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "adrenal_gland_right_q25",
+      "condition": "loose",
+      "dice": 0.45614035087719296,
+      "precision": 0.2969543147208122,
+      "recall": 0.9831932773109243,
+      "hd95_mm": 17.45383325373102,
+      "pred_pixels": 394,
+      "gt_pixels": 119,
+      "intersection": 117,
+      "false_positive_pixels": 277,
+      "false_negative_pixels": 2,
+      "pixels_outside_prompt": 2
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "adrenal_gland_right_q50",
+      "condition": "tight",
+      "dice": 0.8360655737704918,
+      "precision": 0.7285714285714285,
+      "recall": 0.9807692307692307,
+      "hd95_mm": 3.0,
+      "pred_pixels": 210,
+      "gt_pixels": 156,
+      "intersection": 153,
+      "false_positive_pixels": 57,
+      "false_negative_pixels": 3,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "adrenal_gland_right_q50",
+      "condition": "loose",
+      "dice": 0.5631768953068592,
+      "precision": 0.6446280991735537,
+      "recall": 0.5,
+      "hd95_mm": 14.849242404917497,
+      "pred_pixels": 121,
+      "gt_pixels": 156,
+      "intersection": 78,
+      "false_positive_pixels": 43,
+      "false_negative_pixels": 78,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "adrenal_gland_right_q75",
+      "condition": "tight",
+      "dice": 0.776595744680851,
+      "precision": 0.6403508771929824,
+      "recall": 0.9864864864864865,
+      "hd95_mm": 3.30098667131223,
+      "pred_pixels": 114,
+      "gt_pixels": 74,
+      "intersection": 73,
+      "false_positive_pixels": 41,
+      "false_negative_pixels": 1,
+      "pixels_outside_prompt": 1
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "adrenal_gland_right_q75",
+      "condition": "loose",
+      "dice": 0.2568306010928962,
+      "precision": 0.16095890410958905,
+      "recall": 0.6351351351351351,
+      "hd95_mm": 16.552298194584232,
+      "pred_pixels": 292,
+      "gt_pixels": 74,
+      "intersection": 47,
+      "false_positive_pixels": 245,
+      "false_negative_pixels": 27,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "duodenum_q25",
+      "condition": "tight",
+      "dice": 0.8679245283018868,
+      "precision": 0.7863247863247863,
+      "recall": 0.968421052631579,
+      "hd95_mm": 7.5,
+      "pred_pixels": 702,
+      "gt_pixels": 570,
+      "intersection": 552,
+      "false_positive_pixels": 150,
+      "false_negative_pixels": 18,
+      "pixels_outside_prompt": 0
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "duodenum_q25",
+      "condition": "loose",
+      "dice": 0.6932026944274342,
+      "precision": 0.5324553151458138,
+      "recall": 0.9929824561403509,
+      "hd95_mm": 20.0124960961895,
+      "pred_pixels": 1063,
+      "gt_pixels": 570,
+      "intersection": 566,
+      "false_positive_pixels": 497,
+      "false_negative_pixels": 4,
+      "pixels_outside_prompt": 13
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "duodenum_q50",
+      "condition": "tight",
+      "dice": 0.46499567847882456,
+      "precision": 0.31062355658198615,
+      "recall": 0.9243986254295533,
+      "hd95_mm": 24.60182920028509,
+      "pred_pixels": 866,
+      "gt_pixels": 291,
+      "intersection": 269,
+      "false_positive_pixels": 597,
+      "false_negative_pixels": 22,
+      "pixels_outside_prompt": 7
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "duodenum_q50",
+      "condition": "loose",
+      "dice": 0.3869209809264305,
+      "precision": 0.2412914188615123,
+      "recall": 0.9759450171821306,
+      "hd95_mm": 24.921310429150417,
+      "pred_pixels": 1177,
+      "gt_pixels": 291,
+      "intersection": 284,
+      "false_positive_pixels": 893,
+      "false_negative_pixels": 7,
+      "pixels_outside_prompt": 1
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "duodenum_q75",
+      "condition": "tight",
+      "dice": 0.3958333333333333,
+      "precision": 0.2579185520361991,
+      "recall": 0.8507462686567164,
+      "hd95_mm": 28.30713370042646,
+      "pred_pixels": 663,
+      "gt_pixels": 201,
+      "intersection": 171,
+      "false_positive_pixels": 492,
+      "false_negative_pixels": 30,
+      "pixels_outside_prompt": 9
+    },
+    {
+      "tag": "sam2-cpu",
+      "id": "duodenum_q75",
+      "condition": "loose",
+      "dice": 0.22805017103762829,
+      "precision": 0.128783000643915,
+      "recall": 0.9950248756218906,
+      "hd95_mm": 31.277516616354575,
+      "pred_pixels": 1553,
+      "gt_pixels": 201,
+      "intersection": 200,
+      "false_positive_pixels": 1353,
+      "false_negative_pixels": 1,
+      "pixels_outside_prompt": 0
+    }
+  ],
+  "paired_box_differences": [
+    {
+      "id": "liver_q25",
+      "sam2_loose_minus_tight_dice": -0.1355653508830723,
+      "lite_loose_minus_tight_dice": 0.01740912509782544
+    },
+    {
+      "id": "liver_q50",
+      "sam2_loose_minus_tight_dice": -0.07832216583740736,
+      "lite_loose_minus_tight_dice": 0.0017854137819737215
+    },
+    {
+      "id": "liver_q75",
+      "sam2_loose_minus_tight_dice": -0.07582457738908355,
+      "lite_loose_minus_tight_dice": 0.002044129353315882
+    },
+    {
+      "id": "kidney_right_q25",
+      "sam2_loose_minus_tight_dice": -0.17869758122874302,
+      "lite_loose_minus_tight_dice": 0.00516404581634633
+    },
+    {
+      "id": "kidney_right_q50",
+      "sam2_loose_minus_tight_dice": -0.22226297450944432,
+      "lite_loose_minus_tight_dice": 0.001984682660268633
+    },
+    {
+      "id": "kidney_right_q75",
+      "sam2_loose_minus_tight_dice": -0.14757564710171345,
+      "lite_loose_minus_tight_dice": -0.0019273942048952941
+    },
+    {
+      "id": "gallbladder_q25",
+      "sam2_loose_minus_tight_dice": -0.2984675555993318,
+      "lite_loose_minus_tight_dice": 0.016147886366725595
+    },
+    {
+      "id": "gallbladder_q50",
+      "sam2_loose_minus_tight_dice": -0.40601679480538416,
+      "lite_loose_minus_tight_dice": 0.02325254740577365
+    },
+    {
+      "id": "gallbladder_q75",
+      "sam2_loose_minus_tight_dice": -0.01694833954239483,
+      "lite_loose_minus_tight_dice": -0.20397941224623445
+    },
+    {
+      "id": "pancreas_q25",
+      "sam2_loose_minus_tight_dice": -0.28321969967783933,
+      "lite_loose_minus_tight_dice": -0.006583318659388326
+    },
+    {
+      "id": "pancreas_q50",
+      "sam2_loose_minus_tight_dice": -0.40684313329292116,
+      "lite_loose_minus_tight_dice": 0.04856904560425179
+    },
+    {
+      "id": "pancreas_q75",
+      "sam2_loose_minus_tight_dice": -0.2727078508618258,
+      "lite_loose_minus_tight_dice": 0.04142659541650495
+    },
+    {
+      "id": "adrenal_gland_right_q25",
+      "sam2_loose_minus_tight_dice": -0.337570221403956,
+      "lite_loose_minus_tight_dice": 0.03575733226195266
+    },
+    {
+      "id": "adrenal_gland_right_q50",
+      "sam2_loose_minus_tight_dice": -0.5162494095418044,
+      "lite_loose_minus_tight_dice": -0.03713178294573638
+    },
+    {
+      "id": "adrenal_gland_right_q75",
+      "sam2_loose_minus_tight_dice": -0.710831280226298,
+      "lite_loose_minus_tight_dice": -0.03809066264026628
+    },
+    {
+      "id": "duodenum_q25",
+      "sam2_loose_minus_tight_dice": -0.337813971812443,
+      "lite_loose_minus_tight_dice": 0.029688962543540587
+    },
+    {
+      "id": "duodenum_q50",
+      "sam2_loose_minus_tight_dice": -0.06750953516431357,
+      "lite_loose_minus_tight_dice": 0.18798934207829476
+    },
+    {
+      "id": "duodenum_q75",
+      "sam2_loose_minus_tight_dice": -0.1520948004511101,
+      "lite_loose_minus_tight_dice": 0.21757756886758303
+    }
+  ],
+  "backend_pairs": [
+    {
+      "model": "sam2",
+      "id": "liver_q25",
+      "condition": "tight",
+      "differing_pixels": 294,
+      "cpu_mps_mask_dice": 0.967143495753241
+    },
+    {
+      "model": "sam2",
+      "id": "liver_q25",
+      "condition": "loose",
+      "differing_pixels": 6594,
+      "cpu_mps_mask_dice": 0.0539454806312769
+    },
+    {
+      "model": "sam2",
+      "id": "liver_q50",
+      "condition": "tight",
+      "differing_pixels": 515,
+      "cpu_mps_mask_dice": 0.9708033335223085
+    },
+    {
+      "model": "sam2",
+      "id": "liver_q50",
+      "condition": "loose",
+      "differing_pixels": 312,
+      "cpu_mps_mask_dice": 0.9854775646993111
+    },
+    {
+      "model": "sam2",
+      "id": "liver_q75",
+      "condition": "tight",
+      "differing_pixels": 106,
+      "cpu_mps_mask_dice": 0.9925582701488346
+    },
+    {
+      "model": "sam2",
+      "id": "liver_q75",
+      "condition": "loose",
+      "differing_pixels": 621,
+      "cpu_mps_mask_dice": 0.963758389261745
+    },
+    {
+      "model": "sam2",
+      "id": "kidney_right_q25",
+      "condition": "tight",
+      "differing_pixels": 22,
+      "cpu_mps_mask_dice": 0.987750556792873
+    },
+    {
+      "model": "sam2",
+      "id": "kidney_right_q25",
+      "condition": "loose",
+      "differing_pixels": 378,
+      "cpu_mps_mask_dice": 0.8384615384615385
+    },
+    {
+      "model": "sam2",
+      "id": "kidney_right_q50",
+      "condition": "tight",
+      "differing_pixels": 235,
+      "cpu_mps_mask_dice": 0.8894117647058823
+    },
+    {
+      "model": "sam2",
+      "id": "kidney_right_q50",
+      "condition": "loose",
+      "differing_pixels": 489,
+      "cpu_mps_mask_dice": 0.8574759545322064
+    },
+    {
+      "model": "sam2",
+      "id": "kidney_right_q75",
+      "condition": "tight",
+      "differing_pixels": 46,
+      "cpu_mps_mask_dice": 0.9765784114052953
+    },
+    {
+      "model": "sam2",
+      "id": "kidney_right_q75",
+      "condition": "loose",
+      "differing_pixels": 329,
+      "cpu_mps_mask_dice": 0.8890387858347386
+    },
+    {
+      "model": "sam2",
+      "id": "gallbladder_q25",
+      "condition": "tight",
+      "differing_pixels": 35,
+      "cpu_mps_mask_dice": 0.9711934156378601
+    },
+    {
+      "model": "sam2",
+      "id": "gallbladder_q25",
+      "condition": "loose",
+      "differing_pixels": 197,
+      "cpu_mps_mask_dice": 0.9152688172043011
+    },
+    {
+      "model": "sam2",
+      "id": "gallbladder_q50",
+      "condition": "tight",
+      "differing_pixels": 62,
+      "cpu_mps_mask_dice": 0.9625603864734299
+    },
+    {
+      "model": "sam2",
+      "id": "gallbladder_q50",
+      "condition": "loose",
+      "differing_pixels": 1404,
+      "cpu_mps_mask_dice": 0.539672131147541
+    },
+    {
+      "model": "sam2",
+      "id": "gallbladder_q75",
+      "condition": "tight",
+      "differing_pixels": 79,
+      "cpu_mps_mask_dice": 0.9645898700134469
+    },
+    {
+      "model": "sam2",
+      "id": "gallbladder_q75",
+      "condition": "loose",
+      "differing_pixels": 393,
+      "cpu_mps_mask_dice": 0.8739980763065085
+    },
+    {
+      "model": "sam2",
+      "id": "pancreas_q25",
+      "condition": "tight",
+      "differing_pixels": 27,
+      "cpu_mps_mask_dice": 0.9704918032786886
+    },
+    {
+      "model": "sam2",
+      "id": "pancreas_q25",
+      "condition": "loose",
+      "differing_pixels": 104,
+      "cpu_mps_mask_dice": 0.9357231149567367
+    },
+    {
+      "model": "sam2",
+      "id": "pancreas_q50",
+      "condition": "tight",
+      "differing_pixels": 30,
+      "cpu_mps_mask_dice": 0.9653579676674365
+    },
+    {
+      "model": "sam2",
+      "id": "pancreas_q50",
+      "condition": "loose",
+      "differing_pixels": 345,
+      "cpu_mps_mask_dice": 0.8351648351648352
+    },
+    {
+      "model": "sam2",
+      "id": "pancreas_q75",
+      "condition": "tight",
+      "differing_pixels": 32,
+      "cpu_mps_mask_dice": 0.9745222929936306
+    },
+    {
+      "model": "sam2",
+      "id": "pancreas_q75",
+      "condition": "loose",
+      "differing_pixels": 97,
+      "cpu_mps_mask_dice": 0.9607446377984622
+    },
+    {
+      "model": "sam2",
+      "id": "adrenal_gland_right_q25",
+      "condition": "tight",
+      "differing_pixels": 31,
+      "cpu_mps_mask_dice": 0.9177718832891246
+    },
+    {
+      "model": "sam2",
+      "id": "adrenal_gland_right_q25",
+      "condition": "loose",
+      "differing_pixels": 79,
+      "cpu_mps_mask_dice": 0.9044740024183797
+    },
+    {
+      "model": "sam2",
+      "id": "adrenal_gland_right_q50",
+      "condition": "tight",
+      "differing_pixels": 11,
+      "cpu_mps_mask_dice": 0.9737470167064439
+    },
+    {
+      "model": "sam2",
+      "id": "adrenal_gland_right_q50",
+      "condition": "loose",
+      "differing_pixels": 91,
+      "cpu_mps_mask_dice": 0.5380710659898477
+    },
+    {
+      "model": "sam2",
+      "id": "adrenal_gland_right_q75",
+      "condition": "tight",
+      "differing_pixels": 15,
+      "cpu_mps_mask_dice": 0.9361702127659575
+    },
+    {
+      "model": "sam2",
+      "id": "adrenal_gland_right_q75",
+      "condition": "loose",
+      "differing_pixels": 221,
+      "cpu_mps_mask_dice": 0.5571142284569138
+    },
+    {
+      "model": "sam2",
+      "id": "duodenum_q25",
+      "condition": "tight",
+      "differing_pixels": 24,
+      "cpu_mps_mask_dice": 0.9830747531734838
+    },
+    {
+      "model": "sam2",
+      "id": "duodenum_q25",
+      "condition": "loose",
+      "differing_pixels": 560,
+      "cpu_mps_mask_dice": 0.7907324364723468
+    },
+    {
+      "model": "sam2",
+      "id": "duodenum_q50",
+      "condition": "tight",
+      "differing_pixels": 52,
+      "cpu_mps_mask_dice": 0.969732246798603
+    },
+    {
+      "model": "sam2",
+      "id": "duodenum_q50",
+      "condition": "loose",
+      "differing_pixels": 105,
+      "cpu_mps_mask_dice": 0.9536014140521432
+    },
+    {
+      "model": "sam2",
+      "id": "duodenum_q75",
+      "condition": "tight",
+      "differing_pixels": 97,
+      "cpu_mps_mask_dice": 0.9309608540925267
+    },
+    {
+      "model": "sam2",
+      "id": "duodenum_q75",
+      "condition": "loose",
+      "differing_pixels": 144,
+      "cpu_mps_mask_dice": 0.9555829734731647
+    },
+    {
+      "model": "lite",
+      "id": "liver_q50",
+      "condition": "tight",
+      "differing_pixels": 0,
+      "cpu_mps_mask_dice": 1.0
+    },
+    {
+      "model": "lite",
+      "id": "liver_q50",
+      "condition": "loose",
+      "differing_pixels": 0,
+      "cpu_mps_mask_dice": 1.0
+    },
+    {
+      "model": "lite",
+      "id": "adrenal_gland_right_q50",
+      "condition": "tight",
+      "differing_pixels": 0,
+      "cpu_mps_mask_dice": 1.0
+    },
+    {
+      "model": "lite",
+      "id": "adrenal_gland_right_q50",
+      "condition": "loose",
+      "differing_pixels": 0,
+      "cpu_mps_mask_dice": 1.0
+    }
+  ],
+  "sam2_backend": {
+    "count": 36,
+    "median_mask_dice": 0.9545921937626539,
+    "below_095": 17,
+    "minimum": {
+      "model": "sam2",
+      "id": "liver_q25",
+      "condition": "loose",
+      "differing_pixels": 6594,
+      "cpu_mps_mask_dice": 0.0539454806312769
+    }
+  },
+  "sam2_cpu_subset_vs_full_repeat": [
+    {
+      "id": "liver_q50",
+      "condition": "tight",
+      "differing_pixels": 0,
+      "mask_dice": 1.0
+    },
+    {
+      "id": "liver_q50",
+      "condition": "loose",
+      "differing_pixels": 0,
+      "mask_dice": 1.0
+    },
+    {
+      "id": "adrenal_gland_right_q50",
+      "condition": "tight",
+      "differing_pixels": 0,
+      "mask_dice": 1.0
+    },
+    {
+      "id": "adrenal_gland_right_q50",
+      "condition": "loose",
+      "differing_pixels": 0,
+      "mask_dice": 1.0
+    }
+  ],
+  "not_established": [
+    "autonomous localization",
+    "whole-volume segmentation",
+    "population accuracy",
+    "training non-overlap",
+    "clinical reference adjudication",
+    "backend numerical cause",
+    "general CPU/MPS parity",
+    "sustained throughput or total peak unified memory"
+  ]
+}

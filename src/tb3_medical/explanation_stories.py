@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "segmentation-calibration-v1": "retained-segmentation-calibration-v1",
     "dental-v3-v1": "retained-dental-v3-v1",
     "dental-v2-v1": "retained-dental-v2-v1",
     "dental-original-v1": "retained-dental-original-v1",
@@ -77,6 +78,18 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-segmentation-calibration-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "source.json",
+            "output.json",
+            "reference.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+            "LABEL-LICENSE.txt",
+        },
+    ),
     "retained-dental-v3-v1": (
         "source-slices",
         "reference.json",
@@ -434,6 +447,14 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class SegmentationCalibrationChannels(Closed):
+    view: Pair
+    condition: Pair
+    box: Pair
+    output: Pair
+    reference: Pair
 
 
 class DentalV3Channels(Closed):
@@ -854,6 +875,36 @@ class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
         return self
 
 
+class SegmentationCalibrationBeat(ExpansionBeat[SegmentationCalibrationChannels]):
+    scene: Literal[
+        "inputs",
+        "sampling",
+        "boxes",
+        "preprocess",
+        "outputs",
+        "reference",
+        "sensitivity",
+        "duodenum",
+        "controls",
+        "metrics",
+        "latency",
+        "backend",
+        "limits",
+    ]
+
+
+class SegmentationCalibrationStory(Story[SegmentationCalibrationChannels]):
+    recipe: Literal["segmentation-calibration-v1"]
+    beats: tuple[SegmentationCalibrationBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class DentalV3Beat(ExpansionBeat[DentalV3Channels]):
     scene: Literal[
         "inputs",
@@ -1109,6 +1160,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | SegmentationCalibrationStory
     | DentalV3Story
     | DentalV2Story
     | DentalOriginalStory
@@ -1143,6 +1195,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | SegmentationCalibrationStory
     | DentalV3Story
     | DentalV2Story
     | DentalOriginalStory
@@ -1337,6 +1390,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | SegmentationCalibrationStory
     | DentalV3Story
     | DentalV2Story
     | DentalOriginalStory
@@ -1415,6 +1469,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         frame, data_license, label_license = {
+            "retained-segmentation-calibration-v1": ("native-ijk", "CC-BY-4.0", "Apache-2.0"),
             "retained-dental-v3-v1": ("native-ijk", "CC-BY-NC-SA-4.0", None),
             "retained-dental-v2-v1": ("native-ijk", "CC-BY-NC-SA-4.0", None),
             "retained-dental-original-v1": ("native-ijk", "CC-BY-NC-SA-4.0", None),
@@ -1461,7 +1516,12 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             != (
                 "voxel"
                 if pack_id
-                in {"retained-dental-original-v1", "retained-dental-v2-v1", "retained-dental-v3-v1"}
+                in {
+                    "retained-dental-original-v1",
+                    "retained-dental-v2-v1",
+                    "retained-dental-v3-v1",
+                    "retained-segmentation-calibration-v1",
+                }
                 else "px"
                 if pack_id in {"retained-hubmap-inventory-v1", "retained-tiger-context-v1"}
                 else "mm"

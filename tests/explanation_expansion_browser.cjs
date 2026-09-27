@@ -49,6 +49,7 @@ withBrowser(async (browser) => {
         ...([
           'mask-screen-v1',
           'anatomy-curation-v1',
+          'segmentation-calibration-v1',
           'dental-v3-v1',
           'dental-v2-v1',
           'dental-original-v1',
@@ -81,6 +82,21 @@ withBrowser(async (browser) => {
         ].includes(plan.recipe)
       ) {
         for (const b of plan.beats) frames.push(b.startFrame);
+      }
+      if (plan.recipe === 'segmentation-calibration-v1') {
+        for (const b of plan.beats) frames.push(b.startFrame);
+        for (const scene of [
+          'sampling',
+          'preprocess',
+          'reference',
+          'sensitivity',
+          'duodenum',
+          'backend',
+        ]) {
+          const b = plan.beats.find((b) => b.scene === scene);
+          for (const fraction of [0.08, 0.25, 0.42, 0.58, 0.75, 0.92])
+            frames.push(Math.round(b.startFrame + fraction * (b.endFrame - b.startFrame - 1)));
+        }
       }
       if (plan.recipe === 'dental-v3-v1') {
         for (const b of plan.beats) frames.push(b.startFrame);
@@ -409,6 +425,41 @@ withBrowser(async (browser) => {
           const box = await output.boundingBox();
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
+        }
+        if (plan.recipe === 'segmentation-calibration-v1') {
+          const scene = page.locator('[data-calibration-scene]');
+          const reveal = (await scene.getAttribute('data-calibration-reference')) === 'visible';
+          if (!reveal)
+            assert.equal(
+              await page
+                .locator('[data-calibration-private], [data-calibration-layer="reference"]')
+                .count(),
+              0,
+            );
+          if (frame === 0) assert.equal(await page.locator('[data-calibration-layer]').count(), 0);
+          if ((await scene.getAttribute('data-calibration-scene')) === 'reference')
+            assert.equal(
+              await page.locator('[data-scene-inline-narration]').count(),
+              reveal ? 1 : 0,
+            );
+          for (const selector of [
+            '.scene-player > header',
+            '[data-calibration-scene]',
+            '[data-calibration-output]',
+          ]) {
+            assert.ok(
+              await page
+                .locator(selector)
+                .evaluate(
+                  (e) => e.scrollHeight <= e.clientHeight && e.scrollWidth <= e.clientWidth,
+                ),
+              'Calibration overflow: ' + selector,
+            );
+            const box = await page.locator(selector).boundingBox();
+            assert.ok(box && box.y + box.height <= 720, 'Calibration panel clipped: ' + selector);
+          }
+          const legend = await page.locator('.scene-legend').boundingBox();
+          assert.ok(legend && legend.y + legend.height <= 720, 'Calibration legend clipped');
         }
         if (plan.recipe === 'dental-v3-v1') {
           const scene = page.locator('[data-dental-v3-scene]');
@@ -795,6 +846,24 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'segmentation-calibration-v1') {
+      for (const step of [1, 2, 3, 5, 6, 7, 8, 9, 10, 11]) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        await page.waitForFunction(
+          (f) =>
+            document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+            String(f),
+          plan.beats[step].startFrame,
+        );
+        assert.ok(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          'Calibration mobile overflow',
+        );
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+      }
+    }
     if (plan.recipe === 'dental-v3-v1') {
       for (const step of [2, 3, 5, 6, 7, 8, 9, 10, 11]) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -945,6 +1014,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'segmentation-calibration-v1',
       'dental-v3-v1',
       'dental-v2-v1',
       'dental-original-v1',
@@ -974,6 +1044,28 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'segmentation-calibration-v1') {
+      assert.equal(await fallback.locator('[data-calibration-layer]').count(), 0);
+      await fallback.locator('[data-story-step="7"]').click();
+      await fallback.waitForFunction(
+        () =>
+          document
+            .querySelector('[data-calibration-reference]')
+            ?.getAttribute('data-calibration-reference') === 'visible',
+      );
+      assert.ok((await fallback.locator('[data-calibration-layer="reference"]').count()) > 0);
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('.scene-reset').click();
+      await fallback.waitForFunction(
+        () =>
+          document
+            .querySelector('[data-calibration-reference]')
+            ?.getAttribute('data-calibration-reference') === 'hidden',
+      );
+      assert.equal(await fallback.locator('[data-calibration-layer]').count(), 0);
+    }
     if (plan.recipe === 'dental-v3-v1') {
       assert.equal(await fallback.locator('[data-dental-v3-layer]').count(), 0);
       await fallback.locator('[data-story-step="9"]').click();
@@ -1671,6 +1763,35 @@ withBrowser(async (browser) => {
   );
   assert.equal(await page.locator('[data-dental-v3-layer]').count(), 0);
   report.navigation.push({ id: 'tb3-dental-v3', revealAndReset: true });
+  await page.evaluate(() => {
+    location.hash = 'tb3-segmentation-calibration/0/overview?view=repository';
+  });
+  await page.waitForFunction(
+    () =>
+      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+      'segmentation-calibration-v1',
+  );
+  assert.equal(await page.locator('[data-calibration-layer]').count(), 0);
+  await page.locator('[data-story-step="7"]').click();
+  await page.waitForFunction(
+    () =>
+      document
+        .querySelector('[data-calibration-reference]')
+        ?.getAttribute('data-calibration-reference') === 'visible',
+  );
+  assert.ok((await page.locator('[data-calibration-layer="reference"]').count()) > 0);
+  await page
+    .locator('.scene-player')
+    .screenshot({ path: path.join(folder, 'integrated-calibration.png') });
+  await page.locator('.scene-reset').click();
+  await page.waitForFunction(
+    () =>
+      document
+        .querySelector('[data-calibration-reference]')
+        ?.getAttribute('data-calibration-reference') === 'hidden',
+  );
+  assert.equal(await page.locator('[data-calibration-layer]').count(), 0);
+  report.navigation.push({ id: 'tb3-segmentation-calibration', revealAndReset: true });
 
   await context.close();
   assert.deepEqual(report.errors, []);

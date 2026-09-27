@@ -116,3 +116,25 @@ and reference-derived prompts; checkpoint training overlap remains unverified.
 The 18 correlated slices are not 18 patients. These 2D numbers must not replace
 or be directly ranked against the earlier ten-organ, full-volume, CT-only agent
 scores. No general model ranking or clinical accuracy conclusion is supported.
+
+## Retained-evidence explanation audit — 2026-09-28
+
+The assistant's [read-only audit](../presentation/sources/segmentation-calibration-audit.json)
+reconstructs all 18 selected native RGB inputs, binary references and both boxes
+from the pinned CT/label files. Dice, precision, recall and 2D HD95 reproduce
+exactly for all **116 saved masks**. Nearest-neighbor surface distances are
+independently evaluated with spatial trees; the original concatenated-direction
+HD95 definition and all historical scores remain unchanged. No inference runs.
+
+The lowest SAM2 CPU/MPS mask agreement is **0.053945** for liver q25 with a loose
+box, with 6,594 differing pixels. This is a post-result selected diagnostic, not
+a prespecified display example. The four SAM2 CPU subset masks equal their
+corresponding full-CPU repeats pixel for pixel; the four LiteMedSAM CPU/MPS
+checks also agree exactly. These limited repeats do not establish general parity.
+
+The explainer's derived assets retain complete native slices and every saved
+contour. Reader detail crops enclose the union of all CPU/MPS predictions,
+reference and both prompt boxes, avoiding clipping false-positive extent. These
+crops are derived after inference; original inference used full images. Exact
+contour rasterization preserves disconnected regions and holes. The original
+GT-box-cropped figures remain historical evidence, with their policy disclosed above.

@@ -17,6 +17,20 @@ export function sampleStory(plan: StoryPlan, requested: number) {
   const eased = progress * progress * (3 - 2 * progress);
   const channel = (pair: readonly number[]) => pair[0] + (pair[1] - pair[0]) * eased;
   switch (plan.recipe) {
+    case 'segmentation-calibration-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        view: b.channels.view[0] + (b.channels.view[1] - b.channels.view[0]) * progress,
+        condition:
+          b.channels.condition[0] + (b.channels.condition[1] - b.channels.condition[0]) * progress,
+        box: channel(b.channels.box),
+        output: channel(b.channels.output),
+        reference: channel(b.channels.reference),
+      });
+    }
     case 'dental-v3-v1': {
       const b = plan.beats[index];
       return Object.freeze({

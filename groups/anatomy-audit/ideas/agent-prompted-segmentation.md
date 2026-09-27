@@ -177,3 +177,22 @@ to be named in the task. Author setup guidance and the Mac runtime locator remai
 in the rulebook. This wording revision leaves the inference adapter and recorded
 smoke-test results unchanged; the prior receipt's skill digest identifies its
 original tested revision.
+
+### Retained calibration explainer — 2026-09-28
+
+Assistant observation during the authorized sequential explainer work: the
+[fresh audit](../presentation/sources/segmentation-calibration-audit.json)
+reconstructs all 18 source inputs/boxes and reproduces all four reference metrics
+for 116 saved masks exactly. The retained four SAM2 CPU subset masks also match
+the later full-CPU repeats; LiteMedSAM's four prespecified CPU/MPS checks match.
+The strongest SAM2 backend disagreement is loose liver q25 (mask Dice 0.053945,
+6,594 differing pixels), explicitly a post-result selected example. No inference
+or new medical experiment was launched.
+
+The [expanded brief](../presentation/briefs/tb3-segmentation-calibration.md)
+keeps privileged localization, full-image inference, unique encode/box-decode
+denominators, duodenum/gallbladder counterexamples and the exact 2D HD95 definition
+visible. Derived assets use full slices and complete-mask union crops, with
+separate reference layers. An assistant recommendation remains to test agent-chosen
+prompts only under a separately authorized protocol; this explanation does not
+reopen that experiment or promote the calibration to autonomous evidence.
