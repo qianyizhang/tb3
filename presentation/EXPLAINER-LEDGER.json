@@ -511,15 +511,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "abdomen",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "ct-organ-segmentation",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "645 fingerprints, two frozen task variants and eight saved evaluations verified; 40 per-organ scores independently reproduced; 17 licensed native CT teaching views.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/025-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Produce a native-grid semantic organ label volume.",
+      "remaining_work": "No outstanding explainer work for the four completed CT-organ conditions. Cohort expansion remains separate; remote delivery pending at program level.",
       "contract_projection": {
         "raw": "One full native CT and a finite ten-organ label dictionary.",
         "helpers": "Baseline has no masks or pretrained segmenter. The LiteMedSAM condition adds a callable tool and generic skill; the agent chooses prompts.",
@@ -559,7 +559,123 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "075ac661d280886b06c5bdcbf5b18ba19a093abed1466fe671a4286e55fe1770"
+      "source_brief_sha256": "075ac661d280886b06c5bdcbf5b18ba19a093abed1466fe671a4286e55fe1770",
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "receipt": "groups/anatomy-audit/presentation/sources/ct-organ-audit.json",
+        "status": "source-audit-complete",
+        "sha256": "5f32e6a81eb537576d7947cc7dcf7a34eff2950c58f0a1cf3f81dd272f543feb",
+        "limitations": [
+          "Reader teaching review, not clinical or user adjudication.",
+          "One public case and one attempt per condition; unknown training overlap and combined tool/skill/runtime intervention.",
+          "Selected cross-sections are not exhaustive clinical 3D inspection."
+        ]
+      },
+      "acceptance_scope": "Source, visual and engineering review of the completed four-condition single-case CT organ task. No new model or medical inference, runtime installation or publication.",
+      "visual_review": "Eleven chapters reviewed at desktop/mobile sizes; complete 116-second video playback, all ten organ pairs, native method sweep, explicit private reference, conditional/full-volume score boundaries and no-GPU reset.",
+      "reviewed_contract_projection": {
+        "title": "Segment and name ten organs from CT",
+        "goal": "Construct ten independent organ masks from a complete native CT, then compare\nlocalization, boundary quality and semantic identity separately.",
+        "value": "This task begins with CT intensities and target definitions. It requires new\ncontours, unlike the group's supplied-object identity and mask-audit tasks.",
+        "raw": "One CT, 265 × 265 × 401 voxels at 1.5 mm isotropic spacing, with its RAS affine.\nThe finite dictionary contains spleen, both kidneys, gallbladder, liver, stomach,\npancreas, both adrenal glands and duodenum. Numeric filenames map to organ names.",
+        "helpers": "The three standalone conditions receive no masks or pretrained segmenter. They\nhave ordinary scientific imaging libraries. The separate Astra/medium tool\ncondition adds a generic LiteMedSAM skill, adapter and pinned CPU model. The agent\nchooses every image, crop, slice, box and semantic assignment.",
+        "tools": "Shell and image inspection with NumPy, SciPy, NiBabel, scikit-image and Pillow.\nOnly the tool condition has LiteMedSAM. Its checkpoint is pinned in the protocol.\nThere is no new tool execution in this reader explanation.",
+        "reference": "Source identity (TotalSegmentator v2.0.1 small release, s1233), case selection,\nsource masks, scorer, scores and prior answers are private to preparation or\npost-submission evaluation. Reader crops are selected after submission, with\nreference outlines and scores revealed separately. Research labels retain possible\nresidual errors; this is not a new independent clinical contour adjudication.",
+        "spec": "Create ten binary NIfTI masks with exactly the input shape and affine, and a method\nnote. Use patient anatomy for right/left. Preserve independent masks: they may\noverlap, and the source masks share 57 voxels. Do not force an exclusive label volume.\nStomach, gallbladder and duodenum include the specified envelope and contents;\nkidneys exclude separately classed cysts. Other anatomy is outside this taxonomy.",
+        "output": "`01.nii.gz` through `10.nii.gz`, mapped to the supplied names, plus `method.md`.\nEach mask contains only 0 and 1 and uses the native CT grid.",
+        "score": "Semantic Dice pairs each mask with its declared organ. The primary score averages\nall ten organs equally. Optimal one-to-one matching estimates geometry recoverable\nby relabelling; identity is assessed only for positive-overlap matches. Foreground\nunion measures are separate. Oracle/no-op and perturbation controls preserve this\nseparation. There is no invented clinical pass threshold.\n\n| Retained condition | Semantic macro Dice | Matched macro Dice |\n| --- | ---: | ---: |\n| Astra/xhigh | 0.73803 | 0.73803 |\n| Astra/medium | 0.73419 | 0.73419 |\n| Sol/xhigh | 0.32907 | 0.34878 |\n| Astra/medium + LiteMedSAM | 0.75697 | 0.75697 |\n\nOne selected case and one attempt per condition. The tool condition improves 7/10\norgans; gallbladder, pancreas and right adrenal regress. Three standalone attempts\nshare frozen task bytes. The tool arm holds CT, labels, reference and scorer fixed,\nbut changes instruction, skill and runtime. These are descriptive matched-endpoint\nresults, not a causal tool test or population model ranking.",
+        "challenge": "Knowing a target's name does not provide its location or contour. Small structures,\nendpoint coverage and nearby organs remain difficult even when a segmenter is\navailable. Prompt coverage diagnoses localization separately from learned contours;\nit is not a hard score ceiling. Image displays, explicit authoring, repeat inference\nand demonstrated correction are distinct operations.",
+        "families": "The source audit replays eight saved model/control evaluations across two task\ndigests. The independent slice analysis reproduces all 40 final organ scores.\nOriginal scores, references and frozen tasks remain unchanged. Training overlap\nis unknown. Full-volume research Dice does not certify clinical correctness.\n\nThe canonical story uses seventeen native source views: one centre section, ten\npost-submission diagnostic sections and six consecutive stomach method planes.\nThese selected views do not constitute exhaustive visual review of the full volume.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "CT only",
+            "helper": "CT, dictionary and scientific libraries",
+            "remaining": "Discover, delineate, complete and name organs"
+          },
+          {
+            "name": "Callable LiteMedSAM",
+            "helper": "CT, dictionary, generic skill and segmenter",
+            "remaining": "Choose images/prompts, inspect candidates, reconstruct volumes and name organs"
+          }
+        ],
+        "sources": [
+          [
+            "CT-only ten-organ segmentation — Astra xhigh",
+            "groups/anatomy-audit/experiments/ct-organ-segmentation-astra-xhigh/protocol.md"
+          ],
+          [
+            "CT-only ten-organ segmentation — Astra medium",
+            "groups/anatomy-audit/experiments/ct-organ-segmentation-astra-medium/protocol.md"
+          ],
+          [
+            "CT-only ten-organ segmentation — Sol xhigh",
+            "groups/anatomy-audit/experiments/ct-organ-segmentation-sol-xhigh/protocol.md"
+          ],
+          [
+            "Astra medium with LiteMedSAM",
+            "groups/anatomy-audit/experiments/ct-organ-segmentation-astra-medium-litemedsam/protocol.md"
+          ],
+          [
+            "Three-condition comparison",
+            "groups/anatomy-audit/findings/ct-organ-three-condition-comparison.md"
+          ],
+          [
+            "Tool result, prompts and limitations",
+            "groups/anatomy-audit/findings/ct-organ-segmentation-astra-medium-litemedsam.md"
+          ],
+          [
+            "Slice construction and correction audit",
+            "groups/anatomy-audit/findings/ct-organ-slice-construction-audit.md"
+          ],
+          [
+            "Current source audit",
+            "groups/anatomy-audit/presentation/sources/ct-organ-audit.json"
+          ],
+          [
+            "Canonical story",
+            "groups/anatomy-audit/presentation/stories/ct-organ-segmentation.story.md"
+          ],
+          [
+            "Reader asset notice",
+            "presentation/task-explorer/ct-organ/NOTICE.md"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Construct ten independent organ masks from a complete native CT, then compare localization, boundary quality and semantic identity separately.</p>",
+          "value": "<p>This task begins with CT intensities and target definitions. It requires new contours, unlike the group&#x27;s supplied-object identity and mask-audit tasks.</p>",
+          "raw": "<p>One CT, 265 × 265 × 401 voxels at 1.5 mm isotropic spacing, with its RAS affine. The finite dictionary contains spleen, both kidneys, gallbladder, liver, stomach, pancreas, both adrenal glands and duodenum. Numeric filenames map to organ names.</p>",
+          "helpers": "<p>The three standalone conditions receive no masks or pretrained segmenter. They have ordinary scientific imaging libraries. The separate Astra/medium tool condition adds a generic LiteMedSAM skill, adapter and pinned CPU model. The agent chooses every image, crop, slice, box and semantic assignment.</p>",
+          "tools": "<p>Shell and image inspection with NumPy, SciPy, NiBabel, scikit-image and Pillow. Only the tool condition has LiteMedSAM. Its checkpoint is pinned in the protocol. There is no new tool execution in this reader explanation.</p>",
+          "reference": "<p>Source identity (TotalSegmentator v2.0.1 small release, s1233), case selection, source masks, scorer, scores and prior answers are private to preparation or post-submission evaluation. Reader crops are selected after submission, with reference outlines and scores revealed separately. Research labels retain possible residual errors; this is not a new independent clinical contour adjudication.</p>",
+          "spec": "<p>Create ten binary NIfTI masks with exactly the input shape and affine, and a method note. Use patient anatomy for right/left. Preserve independent masks: they may overlap, and the source masks share 57 voxels. Do not force an exclusive label volume. Stomach, gallbladder and duodenum include the specified envelope and contents; kidneys exclude separately classed cysts. Other anatomy is outside this taxonomy.</p>",
+          "output": "<p><code>01.nii.gz</code> through <code>10.nii.gz</code>, mapped to the supplied names, plus <code>method.md</code>. Each mask contains only 0 and 1 and uses the native CT grid.</p>",
+          "score": "<p>Semantic Dice pairs each mask with its declared organ. The primary score averages all ten organs equally. Optimal one-to-one matching estimates geometry recoverable by relabelling; identity is assessed only for positive-overlap matches. Foreground union measures are separate. Oracle/no-op and perturbation controls preserve this separation. There is no invented clinical pass threshold.</p>\n<div class=\"table\"><table>\n<tr><th>Retained condition</th><th>Semantic macro Dice</th><th>Matched macro Dice</th></tr>\n<tr><td>Astra/xhigh</td><td>0.73803</td><td>0.73803</td></tr>\n<tr><td>Astra/medium</td><td>0.73419</td><td>0.73419</td></tr>\n<tr><td>Sol/xhigh</td><td>0.32907</td><td>0.34878</td></tr>\n<tr><td>Astra/medium + LiteMedSAM</td><td>0.75697</td><td>0.75697</td></tr>\n</table></div>\n<p>One selected case and one attempt per condition. The tool condition improves 7/10 organs; gallbladder, pancreas and right adrenal regress. Three standalone attempts share frozen task bytes. The tool arm holds CT, labels, reference and scorer fixed, but changes instruction, skill and runtime. These are descriptive matched-endpoint results, not a causal tool test or population model ranking.</p>",
+          "challenge": "<p>Knowing a target&#x27;s name does not provide its location or contour. Small structures, endpoint coverage and nearby organs remain difficult even when a segmenter is available. Prompt coverage diagnoses localization separately from learned contours; it is not a hard score ceiling. Image displays, explicit authoring, repeat inference and demonstrated correction are distinct operations.</p>",
+          "families": "<p>The source audit replays eight saved model/control evaluations across two task digests. The independent slice analysis reproduces all 40 final organ scores. Original scores, references and frozen tasks remain unchanged. Training overlap is unknown. Full-volume research Dice does not certify clinical correctness.</p>\n<p>The canonical story uses seventeen native source views: one centre section, ten post-submission diagnostic sections and six consecutive stomach method planes. These selected views do not constitute exhaustive visual review of the full volume.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
+      },
+      "completion_review": {
+        "date": "2026-09-28",
+        "source_brief_sha256": "108f22b054c9580fb77fc66e4115732a0853a85c8c4df36a28d81863ca048562",
+        "source_story_sha256": "ab79f4973bf0ea4249cf4ca1cfbb6c8caea98b6bec94e2fd4932c6753b4977ea",
+        "acceptance_receipt_sha256": "894cf1448c7b16795e15ac151bccd4a00600bae5a9c19ed3659ae23558eb3558"
+      }
     },
     {
       "entry_id": "tb3-dental-original",
@@ -13221,9 +13337,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 19,
+    "reviewed-scripted-planar": 20,
     "reviewed-scripted-spatial": 13,
-    "pending-operation-review": 18,
+    "pending-operation-review": 17,
     "blocked-source-contract": 107,
     "blocked-source-input": 48
   },
@@ -13244,7 +13360,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-ct-organ-segmentation",
+    "active_entry": "tb3-dental-original",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -13766,7 +13882,17 @@
         "receipt": ".local/explainers/completion-20260927/024-acceptance.json",
         "export_receipt_sha256": "9c7df4e018db4cf7efa8dca3010cd0a52a997f011d39cd070edc4cca6e2f6ff9",
         "reviewed_entries": 32,
-        "next_entry": "tb3-ct-organ-segmentation"
+        "next_entry": "tb3-ct-organ-segmentation",
+        "local_commit": "542ac14827cbae55a7756fa242f71f128ce7e05c"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-ct-organ-segmentation",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/025-acceptance.json",
+        "export_receipt_sha256": "060167cf04027dce84e872939b82313341a6f5be0adf05f7dfdb7ccdee0e46a2",
+        "reviewed_entries": 33,
+        "next_entry": "tb3-dental-original"
       }
     ]
   }

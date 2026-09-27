@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "ct-organ-v1": "retained-ct-organ-v1",
     "named-landmarks-v1": "retained-named-landmarks-v1",
     "clinical-cavity-v1": "retained-clinical-cavity-v1",
     "longitudinal-ct-revised-v1": "retained-longitudinal-ct-revised-v1",
@@ -73,6 +74,18 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-ct-organ-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "source.json",
+            "output.json",
+            "reference.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+            "LABEL-LICENSE.txt",
+        },
+    ),
     "retained-named-landmarks-v1": (
         "source-slices",
         "reference.json",
@@ -403,6 +416,12 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class CtOrganChannels(Closed):
+    view: Pair
+    output: Pair
+    reference: Pair
 
 
 class NamedLandmarksChannels(Closed):
@@ -791,6 +810,34 @@ class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
         return self
 
 
+class CtOrganBeat(ExpansionBeat[CtOrganChannels]):
+    scene: Literal[
+        "inputs",
+        "contract",
+        "polygon",
+        "tool",
+        "output",
+        "reference",
+        "regressions",
+        "inventory",
+        "comparison",
+        "slices",
+        "limits",
+    ]
+
+
+class CtOrganStory(Story[CtOrganChannels]):
+    recipe: Literal["ct-organ-v1"]
+    beats: tuple[CtOrganBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class NamedLandmarksBeat(ExpansionBeat[NamedLandmarksChannels]):
     scene: Literal[
         "inputs",
@@ -929,6 +976,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | CtOrganStory
     | NamedLandmarksStory
     | ClinicalCavityStory
     | RespiratoryStory
@@ -959,6 +1007,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | CtOrganStory
     | NamedLandmarksStory
     | ClinicalCavityStory
     | RespiratoryStory
@@ -1149,6 +1198,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | CtOrganStory
     | NamedLandmarksStory
     | ClinicalCavityStory
     | RespiratoryStory
@@ -1223,6 +1273,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         frame, data_license, label_license = {
+            "retained-ct-organ-v1": ("RAS", "CC-BY-4.0", "Apache-2.0"),
             "retained-longitudinal-ct-revised-v1": ("RAS", "CC-BY-NC-4.0", "CC-BY-NC-4.0"),
             "retained-longitudinal-ct-original-v1": ("RAS", "CC-BY-NC-4.0", "CC-BY-NC-4.0"),
             "retained-longitudinal-mri-v1": ("RAS", "CC-BY-4.0", "CC-BY-4.0"),

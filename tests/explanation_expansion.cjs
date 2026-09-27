@@ -162,6 +162,68 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   ]);
   assert.equal((stitched.match(/M/g) || []).length, 1);
   assert.equal((stitched.match(/L/g) || []).length, 4);
+  const { ctOrganSelection, ctOrganSource, ctOrganOutputs, ctOrganReference } =
+    await loadFrontend('expansion_fixture.mjs');
+  const organPlan = plans.find((p) => p.recipe === 'ct-organ-v1');
+  assert.ok(organPlan);
+  assert.equal(ctOrganSelection(sampleStory(organPlan, 0)).output, false);
+  assert.equal(ctOrganSelection(sampleStory(organPlan, 0)).reveal, false);
+  for (const [scene, expected] of [
+    ['polygon', [235, 236, 237, 238, 239, 240]],
+    ['tool', [235, 236, 237, 238, 239, 240]],
+    ['inventory', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
+    ['regressions', [4, 7, 8]],
+  ]) {
+    const b = organPlan.beats.find((b) => b.scene === scene),
+      seen = new Set();
+    for (let frame = b.startFrame; frame < b.endFrame; frame++) {
+      const v = ctOrganSelection(sampleStory(organPlan, frame));
+      seen.add(['tool', 'polygon'].includes(scene) ? v.method.k : v.id);
+    }
+    assert.deepEqual([...seen], expected);
+  }
+  assert.deepEqual(
+    Array.from(ctOrganOutputs.methods, (m) => m.polygon_explicit),
+    [true, false, false, false, false, true],
+  );
+  assert.deepEqual(
+    Array.from(ctOrganOutputs.methods, (m) => m.box_explicit),
+    [true, false, false, false, false, true],
+  );
+  for (const m of ctOrganOutputs.methods) {
+    const b = ctOrganSource.views[`method-${m.k}`].bounds_ij;
+    assert.ok(Math.abs(m.box[0] + b[0][0] - 0.5 - m.native_image_box_xyxy[0]) < 1e-10);
+    assert.ok(Math.abs(m.box[1] + 265 - b[1][1] - 0.5 - m.native_image_box_xyxy[1]) < 1e-10);
+    assert.ok(m.tool_candidate.length && m.raw_polygon.length);
+    const plane = ctOrganSource.views[`method-${m.k}`];
+    for (const layer of [m.raw_polygon, m.tool_candidate, m.baseline_final, m.tool_final])
+      for (const contour of layer)
+        for (const [x, y] of contour)
+          assert.ok(
+            x > 0 && x < plane.width && y > 0 && y < plane.height,
+            'method contour clipped by crop',
+          );
+    assert.ok(
+      m.box[0] > 0 &&
+        m.box[1] > 0 &&
+        m.box[0] + m.box[2] < plane.width &&
+        m.box[1] + m.box[3] < plane.height,
+      'method prompt clipped by crop',
+    );
+  }
+  const metrics = ctOrganReference.metrics;
+  assert.equal(metrics.medium.per_label.length, 10);
+  assert.equal(
+    metrics.tool.per_label.filter((r, i) => r.dice > metrics.medium.per_label[i].dice).length,
+    7,
+  );
+  assert.equal(ctOrganReference.overlap_voxels, 57);
+  for (const m of Object.values(metrics))
+    assert.ok(
+      Math.abs(m.per_label.reduce((s, r) => s + r.dice, 0) / 10 - m.semantic_macro_dice) < 1e-12,
+    );
+  assert.equal(ctOrganReference.matched_macro.authored_polygon.n, 119);
+  assert.equal(ctOrganReference.matched_macro.interpolated_shape.n, 372);
   const landmarkPlan = plans.find((p) => p.recipe === 'named-landmarks-v1');
   assert.ok(landmarkPlan);
   assert.equal(landmarkSelection(sampleStory(landmarkPlan, 0)).reveal, false);

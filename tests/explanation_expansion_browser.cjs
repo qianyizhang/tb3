@@ -49,6 +49,7 @@ withBrowser(async (browser) => {
         ...([
           'mask-screen-v1',
           'anatomy-curation-v1',
+          'ct-organ-v1',
           'named-landmarks-v1',
           'clinical-cavity-v1',
           'respiratory-v1',
@@ -373,6 +374,28 @@ withBrowser(async (browser) => {
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
         }
+        if (plan.recipe === 'ct-organ-v1') {
+          const scene = page.locator('[data-ct-scene]');
+          const reveal = (await scene.getAttribute('data-ct-reference')) === 'visible';
+          if (!reveal)
+            assert.equal(
+              await page.locator('[data-ct-layer="reference"], [data-ct-private]').count(),
+              0,
+            );
+          if (frame === 0) assert.equal(await page.locator('[data-ct-layer]').count(), 0);
+          assert.ok(
+            await page
+              .locator('[data-ct-output]')
+              .evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'CT output overflow',
+          );
+          assert.ok(
+            await scene.evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'CT scene overflow',
+          );
+          const legend = await page.locator('.scene-legend').boundingBox();
+          assert.ok(legend && legend.y + legend.height <= 720, 'CT legend clipped');
+        }
         if (plan.recipe === 'named-landmarks-v1') {
           const panel = page.locator('[data-landmark-output]');
           assert.ok(
@@ -632,6 +655,24 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'ct-organ-v1') {
+      for (const step of [2, 3, 6, 8, 9]) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        await page.waitForFunction(
+          (f) =>
+            document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+            String(f),
+          plan.beats[step].startFrame,
+        );
+        assert.ok(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          'CT mobile overflow',
+        );
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+      }
+    }
     if (plan.recipe === 'named-landmarks-v1') {
       for (const step of [4, 5, 8, 9, 10]) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -706,6 +747,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'ct-organ-v1',
       'multiscale-v1',
       'local-edit-v1',
       'longitudinal-v1',
@@ -731,6 +773,26 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'ct-organ-v1') {
+      assert.equal(await fallback.locator('[data-ct-layer]').count(), 0);
+      await fallback.locator('[data-story-step="6"]').click();
+      await fallback.waitForFunction(
+        () =>
+          document.querySelector('[data-ct-reference]')?.getAttribute('data-ct-reference') ===
+          'visible',
+      );
+      assert.equal(await fallback.locator('[data-ct-layer="reference"]').count(), 2);
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('.scene-reset').click();
+      await fallback.waitForFunction(
+        () =>
+          document.querySelector('[data-ct-reference]')?.getAttribute('data-ct-reference') ===
+          'hidden',
+      );
+      assert.equal(await fallback.locator('[data-ct-layer]').count(), 0);
+    }
     if (plan.recipe === 'named-landmarks-v1') {
       assert.equal(await fallback.locator('[data-landmark-mark]').count(), 0);
       await fallback.locator('[data-story-step="5"]').click();
@@ -1235,6 +1297,30 @@ withBrowser(async (browser) => {
         ?.getAttribute('data-landmark-reference') === 'hidden',
   );
   report.navigation.push({ id: 'tb3-named-landmarks', revealAndReset: true });
+  await page.evaluate(() => {
+    location.hash = 'tb3-ct-organ-segmentation/0/overview?view=repository';
+  });
+  await page.waitForFunction(
+    () => document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'ct-organ-v1',
+  );
+  assert.equal(await page.locator('[data-ct-layer]').count(), 0);
+  await page.locator('[data-story-step="6"]').click();
+  await page.waitForFunction(
+    () =>
+      document.querySelector('[data-ct-reference]')?.getAttribute('data-ct-reference') ===
+      'visible',
+  );
+  assert.equal(await page.locator('[data-ct-layer="reference"]').count(), 2);
+  await page
+    .locator('.scene-player')
+    .screenshot({ path: path.join(folder, 'integrated-ct-organ.png') });
+  await page.locator('.scene-reset').click();
+  await page.waitForFunction(
+    () =>
+      document.querySelector('[data-ct-reference]')?.getAttribute('data-ct-reference') === 'hidden',
+  );
+  assert.equal(await page.locator('[data-ct-layer]').count(), 0);
+  report.navigation.push({ id: 'tb3-ct-organ-segmentation', revealAndReset: true });
   await context.close();
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.remote_requests, []);

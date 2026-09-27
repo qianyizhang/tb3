@@ -24,6 +24,7 @@ class ExpansionTests(unittest.TestCase):
                     "prototype-identity-v1",
                     "mask-screen-v1",
                     "anatomy-curation-v1",
+                    "ct-organ-v1",
                     "named-landmarks-v1",
                     "clinical-cavity-v1",
                     "respiratory-v1",
@@ -69,6 +70,7 @@ class ExpansionTests(unittest.TestCase):
         for group, name in [
             ("anatomy-audit", "mask-reasoning-study"),
             ("anatomy-audit", "anatomy-curation"),
+            ("anatomy-audit", "ct-organ-segmentation"),
             ("anatomical-landmarks", "named-landmarks"),
             ("cardiac-motion", "clinical-cavity-adaptation"),
             ("registration", "respiratory-correspondence"),
@@ -118,6 +120,7 @@ class ExpansionTests(unittest.TestCase):
         for name in [
             "respiratory",
             "registration-analysis",
+            "ct-organ",
             "named-landmarks",
             "resect",
             "resect-pilot",
@@ -133,7 +136,7 @@ class ExpansionTests(unittest.TestCase):
             path = ROOT / f"presentation/task-explorer/{name}/manifest.json"
             for key, value in [
                 ("frame", "LPS"),
-                ("label_license", "Apache-2.0"),
+                ("label_license", "CC0-1.0" if name == "ct-organ" else "Apache-2.0"),
                 ("units", "mm" if name in {"hubmap-inventory", "tiger-context"} else "px"),
             ]:
                 manifest = json.loads(path.read_text())

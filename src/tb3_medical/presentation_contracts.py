@@ -514,6 +514,34 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class CtOrganChannels(TypedDict):
+    view: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class CtOrganBeat(ExpansionBeat):
+    channels: CtOrganChannels
+    scene: Literal[
+        "inputs",
+        "contract",
+        "polygon",
+        "tool",
+        "output",
+        "reference",
+        "regressions",
+        "inventory",
+        "comparison",
+        "slices",
+        "limits",
+    ]
+
+
+class CtOrganPlan(ExpansionPlan):
+    recipe: Literal["ct-organ-v1"]
+    beats: list[CtOrganBeat]
+
+
 class NamedLandmarksChannels(TypedDict):
     view: tuple[float, float]
     output: tuple[float, float]
@@ -663,6 +691,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | CtOrganPlan
     | NamedLandmarksPlan
     | ClinicalCavityPlan
     | RespiratoryPlan

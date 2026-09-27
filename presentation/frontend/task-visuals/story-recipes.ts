@@ -15,6 +15,7 @@ import {
 } from './operation-prefabs';
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'ct-organ-v1',
     'named-landmarks-v1',
     'multiscale-v1',
     'local-edit-v1',
@@ -81,6 +82,17 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'ct-organ-v1':
+      return {
+        heading: 'CT organs · construct, name and compare',
+        corner: 'Native CT · reader-selected sections · independent masks',
+        legend: [
+          ['#fb923c', 'Astra/medium · solid'],
+          ['#32d8e2', '+ LiteMedSAM · solid'],
+          ['#9beb72', 'Private reference · dashed', true],
+          ['#d197ff', 'Method polygon / box · dashed', true],
+        ],
+      };
     case 'named-landmarks-v1':
       return {
         heading: 'Named targets · location and availability',

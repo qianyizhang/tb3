@@ -55,6 +55,7 @@ A bound story is not automatically accepted; unresolved entries remain visible.
 | Respiratory correspondence | Actual oblique CT, calibrated source/target sections, source-depth contracts, ordered historical output and separate numerical/visual judgments |
 | Registration postmortem | Retained composition repairs, calibrated search boxes, actual CT patch objective and separate author controls/fresh repeats |
 | Clinical cavity | Actual EchoXFlow frames, supplied initial surface, saved tracking, private reference reveal, volume/EF gates and distinct static/shift controls |
+| CT organ segmentation | Ten independent binary masks; native CT, saved polygon interpolation, image-conditioned tool candidates, explicit private-reference reveals and organ-balanced comparisons |
 | Named landmarks | Actual CT/MRI sections, native-to-world conversion, saved point/status outputs, private reference reveal, wrong-level detections and visible-target denominators |
 | CT/MRI | Separate Radon/FFT measurements and image outputs; toy vs task dimensions/assistance explicit |
 
@@ -305,3 +306,13 @@ original float64 values. Dashed sections join existing intersection endpoints.
 Static images with a responsive executable and static initialization against a
 moving reference are different controls. See the [source notice](task-explorer/clinical-cavity/NOTICE.md)
 and [canonical story](../groups/cardiac-motion/presentation/stories/clinical-cavity-adaptation.story.md).
+
+`ct-organ-v1` uses seventeen actual CT sections and saved masks/prompts from the
+four completed single-case conditions. Its `view` channel selects discrete native
+planes or organ IDs; it never morphs contours between unrelated acquisitions.
+`output` and `reference` keep submitted geometry and private research labels
+separate. The [source notice](task-explorer/ct-organ/NOTICE.md) pins the exact CT,
+mask, polygon and candidate provenance. Six stomach planes distinguish signed-
+distance mask interpolation from box interpolation followed by per-image learned
+inference. Output remains ten overlapping binary masks, not one exclusive volume.
+Full 3D scores and conditional same-plane diagnostics have distinct denominators.

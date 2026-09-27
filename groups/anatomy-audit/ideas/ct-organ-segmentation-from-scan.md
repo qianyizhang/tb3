@@ -170,3 +170,24 @@ with small-organ regressions. Successful display, coordinate revision and repeat
 inference are measured separately. Matched-index polygon revisions demonstrate
 some self-correction but do not establish a reliable correction policy. Original
 evidence and scores remain unchanged; no new inference or future trial is implied.
+
+
+## Reader explainer source audit — assistant, 2026-09-28
+
+The [canonical CT-organ story](../presentation/stories/ct-organ-segmentation.story.md)
+and [brief](../presentation/briefs/tb3-ct-organ-segmentation.md) distinguish the
+actual ten-independent-mask contract from the earlier brief's inaccurate singular
+semantic-volume wording. The original tasks, masks and scores are unchanged.
+The [current source audit](../presentation/sources/ct-organ-audit.json) replays eight
+saved model/control evaluations and reproduces the existing 40-organ slice audit.
+Native source/reference equality and the 57 overlapping reference voxels are
+rechecked. Prompt coverage is independently recomputed in native coordinates.
+
+Reader assets preserve actual CT pixels, stored output contours, exact polygons
+and saved tool candidates. The six-plane stomach sequence separates interpolated
+geometry from image-conditioned inference with interpolated boxes; it does not
+claim a hidden reasoning trajectory. The complete ten-organ comparison retains
+all three tool regressions and uses private-reference reveal. Same-plane diagnostics
+remain conditional analyses rather than replacement scores. Reopen this explanation
+if source hashes, coordinate mappings or an adjudicated reference change; no new
+medical trial is authorized by this presentation work.
