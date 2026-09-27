@@ -18,6 +18,13 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    vesselCases,
+    vesselReference,
+    vesselReveal,
+    vesselOutput,
+    vesselSliceIndex,
+    vesselNodePixel,
+    vesselVisibleNodes,
     pilotGeometry,
     pilotTrace,
     pilotReference,
@@ -150,6 +157,56 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   assert.ok(Math.abs(fullCurve[0].score - 0.2691879476) < 1e-9);
   assert.ok(Math.abs(fullCurve[100].score - 0.5876808912) < 1e-9);
   assert.equal(JSON.stringify(objectiveSamples('q01', 0)), JSON.stringify([fullCurve[0]]));
+  const vesselPlan = plans.find((p) => p.recipe === 'vessel-source-v1');
+  assert.ok(isPlanarStory(vesselPlan));
+  assert.equal(vesselReveal(sampleStory(vesselPlan, 0)), false);
+  assert.equal(vesselOutput(sampleStory(vesselPlan, 0)), null);
+  const vs = vesselPlan.beats.find((b) => b.scene === 'states');
+  assert.equal(vesselReveal(sampleStory(vesselPlan, vs.startFrame)), false);
+  assert.equal(vesselReveal(sampleStory(vesselPlan, vs.endFrame - 1)), true);
+  const vi = vesselPlan.beats.find((b) => b.scene === 'inspect');
+  assert.equal(vesselSliceIndex(sampleStory(vesselPlan, vi.startFrame).scan), 0);
+  assert.equal(vesselSliceIndex(sampleStory(vesselPlan, vi.endFrame - 1).scan), 13);
+  assert.equal(vesselSliceIndex(-1), 0);
+  assert.equal(vesselSliceIndex(2), 13);
+  const vo = vesselPlan.beats.find((b) => b.scene === 'admission');
+  assert.equal(vesselOutput(sampleStory(vesselPlan, vo.startFrame)), null);
+  const result = vesselOutput(sampleStory(vesselPlan, vo.endFrame - 1));
+  assert.equal(result.admitted_defect_fixtures, 0);
+  assert.equal(result.local_model_trials, 0);
+  assert.ok(result.source_candidates.every((c) => c.status === 'source_candidate_only'));
+  for (const [i, c] of vesselCases.entries()) {
+    for (const n of vesselReference[i].node_entries) {
+      const reconstructed = c.affine_ras_mm
+        .slice(0, 3)
+        .map((row) => row[3] + row.slice(0, 3).reduce((sum, v, j) => sum + v * n.native_ijk[j], 0));
+      assert.ok(reconstructed.every((v, j) => Math.abs(v - n.ras_mm[j]) < 1e-10));
+    }
+    for (const n of vesselVisibleNodes(i)) {
+      const p = vesselNodePixel(c, n);
+      assert.ok(p.u >= -0.5 && p.u < c.mip.width - 0.5);
+      assert.ok(p.v > -0.5 && p.v <= c.mip.height - 0.5);
+    }
+    assert.ok(vesselVisibleNodes(i).length < vesselReference[i].node_entries.length);
+    const ref = vesselReference[i];
+    for (const side of ['left', 'right']) {
+      assert.equal(ref.edges[side === 'left' ? 'L-Pcom' : 'R-Pcom'], ref.pcoms[side].components_26);
+    }
+  }
+  for (const p of vesselCases[1].native) {
+    const c = vesselCases[1],
+      ijk = [...c.roi_origin_ijk];
+    ijk[1] += c.roi_size_ijk[1] - 1;
+    ijk[2] = p.k;
+    p.origin_world_mm.forEach((v, axis) => {
+      const row = c.affine_ras_mm[axis];
+      assert.ok(
+        Math.abs(v - row[3] - ijk.reduce((sum, coord, j) => sum + coord * row[j], 0)) < 1e-10,
+      );
+      assert.equal(p.dx_world_mm[axis], row[0]);
+      assert.equal(p.dy_world_mm[axis], -row[1]);
+    });
+  }
   const pilotPlan = plans.find((p) => p.recipe === 'resect-pilot-v1');
   assert.ok(isPlanarStory(pilotPlan));
   assert.equal(pilotOutput(sampleStory(pilotPlan, 0)), null);

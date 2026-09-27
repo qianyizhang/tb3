@@ -47,3 +47,24 @@ Not established. The synthetic gap passes with Terra/high and an ordinary image-
 ## Reopen when
 
 Bounded feasibility experiment complete; no trial queued. Retain V01 as calibration and hold V02 as a reference disagreement. Any future promotion requires independent review of the added L-ACA-adjacent structure and a separately admitted natural segmentation-model error with reproducible prediction provenance.
+
+## Source explanation audit — 2026-09-27
+
+Assistant observation, not a user decision or task promotion: the
+[BR-025 explainer](../presentation/stories/vessel-source-screen.story.md) preserves
+source curation separately from later BR-026 feasibility. The
+[read-only audit](../presentation/sources/vessel-source-audit.json) verifies all
+30 selected files by size, SHA-256 and retained ZIP CRC, twelve screened MRA edge
+files, four image/mask grids, four present Pcom label components and expected
+parent contacts. All 146 graph-node entries reproduce the stored alignment screen;
+the largest nearest-foreground-centre distance is 0.33460045 mm. Shared-boundary
+entries are repeated, and full VTP edge geometry is not independently validated.
+
+[Source projections and native slices](../../../presentation/task-explorer/vessel-source/NOTICE.md)
+are author teaching views with separately revealed annotations. Case 007's slice
+extent is annotation-selected; it is not a solver crop. The graph source derives
+from the same masks. Paired CTA labels agree, but CTA images were not reviewed.
+No natural faulty prediction, admitted defect fixture, numeric verifier threshold
+or model trial is added. Original receipts and outcomes are unchanged. The
+reopening conditions above remain in force; commercial redistribution remains
+subject to source-owner permission.

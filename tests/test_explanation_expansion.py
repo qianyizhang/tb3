@@ -28,6 +28,7 @@ class ExpansionTests(unittest.TestCase):
                     "registration-analysis-v1",
                     "resect-correspondence-v1",
                     "resect-pilot-v1",
+                    "vessel-source-v1",
                 }
                 else "no-reference-assets",
             )
@@ -63,6 +64,7 @@ class ExpansionTests(unittest.TestCase):
             ("registration", "registration-failure-analysis"),
             ("registration", "resect-point-correspondence"),
             ("registration", "resect-point-pilot"),
+            ("tubular-anatomy", "vessel-source-screen"),
         ]:
             path = ROOT / f"groups/{group}/presentation/stories/{name}.story.md"
             model = stories.parse_expansion(path.read_text())
@@ -95,7 +97,13 @@ class ExpansionTests(unittest.TestCase):
         import json
         from unittest.mock import patch
 
-        for name in ["respiratory", "registration-analysis", "resect", "resect-pilot"]:
+        for name in [
+            "respiratory",
+            "registration-analysis",
+            "resect",
+            "resect-pilot",
+            "vessel-source",
+        ]:
             path = ROOT / f"presentation/task-explorer/{name}/manifest.json"
             for key, value in [("frame", "LPS"), ("label_license", "Apache-2.0")]:
                 manifest = json.loads(path.read_text())

@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "vessel-source-v1": "retained-vessel-source-v1",
     "resect-pilot-v1": "retained-resect-pilot-v1",
     "resect-correspondence-v1": "retained-resect-v1",
     "topology-v1": "topology-v1",
@@ -63,6 +64,18 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-vessel-source-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "geometry.json",
+            "reference.json",
+            "output.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+            "GRAPH-TERMS.txt",
+        },
+    ),
     "retained-resect-pilot-v1": (
         "source-slices",
         "reference.json",
@@ -216,6 +229,12 @@ class IdentityChannels(Closed):
     reveal: Pair
 
 
+class VesselSourceChannels(Closed):
+    scan: Pair
+    reference: Pair
+    output: Pair
+
+
 class ResectPilotChannels(Closed):
     view: Pair
     output: Pair
@@ -347,6 +366,24 @@ class PrototypeIdentityStory(Story[IdentityChannels]):
     recipe: Literal["prototype-identity-v1"]
 
 
+class VesselSourceBeat(ExpansionBeat[VesselSourceChannels]):
+    scene: Literal[
+        "sources", "states", "inspect", "contacts", "nodes", "contract", "admission", "limits"
+    ]
+
+
+class VesselSourceStory(Story[VesselSourceChannels]):
+    recipe: Literal["vessel-source-v1"]
+    beats: tuple[VesselSourceBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class ResectPilotBeat(ExpansionBeat[ResectPilotChannels]):
     scene: Literal[
         "inputs", "cue", "inspect", "search", "output", "reference", "controls", "limits"
@@ -472,6 +509,7 @@ AnyStory = Annotated[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | VesselSourceStory
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
@@ -492,6 +530,7 @@ ADAPTER: TypeAdapter[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | VesselSourceStory
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
@@ -672,6 +711,7 @@ def parse_expansion(
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | VesselSourceStory
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
@@ -747,6 +787,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         frame, data_license, label_license = {
+            "retained-vessel-source-v1": (
+                "RAS",
+                "LicenseRef-TopCoW-2024-noncommercial",
+                "LicenseRef-CoW-Centerline-CC-BY-NC",
+            ),
             "retained-resect-pilot-v1": ("RAS", "CC-BY-4.0", None),
             "retained-resect-v1": ("RAS", "CC-BY-4.0", "CC-BY-NC-SA-4.0"),
             "retained-anatomy-curation-v1": ("LPS", "CC-BY-SA-4.0", "CC-BY-SA-4.0"),

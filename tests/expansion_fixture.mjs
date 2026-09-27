@@ -63,3 +63,13 @@ export {
   pilotReveal,
   pilotSlabIndex,
 } from '../presentation/frontend/task-visuals/resect-pilot';
+
+export {
+  vesselCases,
+  vesselReference,
+  vesselReveal,
+  vesselOutput,
+  vesselSliceIndex,
+  vesselNodePixel,
+  vesselVisibleNodes,
+} from '../presentation/frontend/task-visuals/vessel-source';

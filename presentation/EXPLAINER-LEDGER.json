@@ -2595,15 +2595,15 @@
       ],
       "illustration_kind": "vessel_source_screen",
       "subject": "brain-vessels",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "vessel-source-screen",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "topology",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "All selected source bytes and archive CRCs verified; four native MRA projections, calibrated 14-slice sequence, source-mask overlays and affine-projected graph nodes retained with explicit terms and reference boundaries.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/010-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Select inspectable connection-repair cases and record reference limitations.",
+      "remaining_work": "No outstanding work for this bounded source-curation explanation. Natural defect admission, clinical/reference adjudication and medical trials remain outside its scope; remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "Angiographic sources, segmentations and reference topology.",
         "helpers": "Author access to source masks and anatomical context.",
@@ -2626,7 +2626,61 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "b12a0d31a0fded4a7e3c2bc222e3d9df496f915e3ece74aaa701b91f36c56df7"
+      "source_brief_sha256": "b12a0d31a0fded4a7e3c2bc222e3d9df496f915e3ece74aaa701b91f36c56df7",
+      "acceptance_scope": "Visual and engineering review of the retained BR-025 author source screen. Four source candidates, zero admitted defect fixtures and zero model trials; no task promotion or clinical adjudication.",
+      "visual_review": "Eight chapters and middle native section, actual Explorer before/after, every mobile chapter and reveals, no-GPU reveal/reset and decoded video inspected. Source inputs, source labels, technical mask/node checks, proposed solver contract and actual candidate records retain separate roles.",
+      "reviewed_contract_projection": {
+        "raw": "Four complete public training MRA volumes: `004`, `007`, `009`, `012`, selected\nafter screening twelve edge-label files. Displayed projections use source Circle\nof Willis boxes. CTA labels were checked; CTA images were not reviewed.",
+        "helpers": "The author has multiclass masks, boxes, edge labels and mask-derived graphs.\nThese are curation inputs, not a frozen solver packet.",
+        "tools": "Read-only native-affine inspection and local measurements. No inference is required.",
+        "spec": "Preserve the source annotation configurations and possible control roles:\n\n| Case | Left / right Pcom label | Candidate role |\n| --- | --- | --- |\n| 004 | Absent / present | Unchanged right-only |\n| 007 | Present / present | Broken connection source |\n| 009 | Absent / absent | False bridge source |\n| 012 | Present / absent | Unchanged left-only |\n\nAnnotation absence is not a diagnosis. Projection overlap does not establish 3D\nattachment; class mistakes that disappear on merging labels are not binary defects.",
+        "output": "Four `source_candidate_only` records; **zero admitted defects and trials**.\nNo natural faulty prediction or numeric verifier thresholds were obtained.\n\nThe proposed future task gives MRA, a proposed binary mask and a broad editable\nregion → `corrected_mask.nii.gz`, same grid, preserved outside. Reconnect,\ndisconnect and unchanged remain possible. No answer labels or GT-shaped corridor.",
+        "reference": "Reveal orange right-Pcom, teal left-Pcom and blue other vessel annotations.\nPcom means posterior communicating artery. The native slice extent is selected\nfrom annotations for author inspection. Graphs are not independent truth.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "The author has multiclass masks, boxes, edge labels and mask-derived graphs.\nThese are curation inputs, not a frozen solver packet.",
+            "remaining": "Preserve the source annotation configurations and possible control roles:\n\n| Case | Left / right Pcom label | Candidate role |\n| --- | --- | --- |\n| 004 | Absent / present | Unchanged right-only |\n| 007 | Present / present | Broken connection source |\n| 009 | Absent / absent | False bridge source |\n| 012 | Present / absent | Unchanged left-only |\n\nAnnotation absence is not a diagnosis. Projection overlap does not establish 3D\nattachment; class mistakes that disappear on merging labels are not binary defects."
+          }
+        ],
+        "sources": [
+          [
+            "Retained BR-025 study",
+            "groups/tubular-anatomy/experiments/br025/protocol.md"
+          ],
+          [
+            "Original task design",
+            "docs/research-rounds/BR-025-vessel-connectivity.md"
+          ],
+          [
+            "Original curation receipt",
+            "docs/evidence/br025-curation.json"
+          ],
+          [
+            "Current source audit",
+            "groups/tubular-anatomy/presentation/sources/vessel-source-audit.json"
+          ],
+          [
+            "Teaching derivation and terms",
+            "presentation/task-explorer/vessel-source/NOTICE.md"
+          ],
+          [
+            "TopCoW source release",
+            "https://zenodo.org/records/15692630"
+          ],
+          [
+            "Mask-derived graph release",
+            "https://zenodo.org/records/17358162"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "39060c481ebd53c68f44f40a4d87021228c2b7c0886d8e810064dad2c30e5bf0",
+        "source_story_sha256": "beb3c4f9e1b660f55922fe5de076143efcdcec1d91c7edf0b6b1e6ca20502a92",
+        "acceptance_receipt_sha256": "21de3cd5edd23933608064c8bbcf7dfda92191aae95bbe8c88775e8ebcab25ae"
+      }
     },
     {
       "entry_id": "tb3-vessel-connection-repair",
@@ -12208,9 +12262,9 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 33,
+    "pending-operation-review": 32,
     "reviewed-scripted-spatial": 11,
-    "reviewed-scripted-planar": 11,
+    "reviewed-scripted-planar": 12,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
   },
@@ -12231,7 +12285,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-vessel-source-screen",
+    "active_entry": "tb3-airway-repair",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -12600,7 +12654,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/009-acceptance.json",
         "reviewed_entries": 22,
-        "next_entry": "tb3-vessel-source-screen"
+        "next_entry": "tb3-vessel-source-screen",
+        "local_commit": "b22114d"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-vessel-source-screen",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/010-acceptance.json",
+        "reviewed_entries": 23,
+        "next_entry": "tb3-airway-repair"
       }
     ]
   }

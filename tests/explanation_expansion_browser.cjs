@@ -50,11 +50,16 @@ withBrowser(async (browser) => {
           'registration-analysis-v1',
           'resect-correspondence-v1',
           'resect-pilot-v1',
+          'vessel-source-v1',
         ].includes(plan.recipe)
           ? plan.beats.map((b) => b.endFrame - 1)
           : []),
       ];
-      for (const frame of frames) {
+      if (plan.recipe === 'vessel-source-v1') {
+        const inspect = plan.beats.find((b) => b.scene === 'inspect');
+        frames.push(Math.floor((inspect.startFrame + inspect.endFrame) / 2));
+      }
+      for (const frame of new Set(frames)) {
         const bytes = await captureComposedFrame(page, {
           frame,
           fps: plan.fps,
@@ -72,6 +77,20 @@ withBrowser(async (browser) => {
           assert.equal(await tile.getAttribute('width'), frame === 0 ? '130' : '520');
           const returned = canvas.getByText('level-0 (2680, 2040) px', { exact: true });
           assert.equal(await returned.count(), frame === plan.durationFrames - 1 ? 1 : 0);
+        }
+        if (plan.recipe === 'vessel-source-v1') {
+          const output = page.locator('[data-vessel-output]');
+          assert.ok(
+            await output.evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'Source output overflows',
+          );
+          const box = await output.boundingBox();
+          assert.ok(box && box.y + box.height <= 720, 'Source output clipped');
+          if (frame === 0) {
+            assert.equal(await page.locator('[data-vessel-reference-image]').count(), 0);
+            assert.equal(await page.locator('[data-vessel-answer]').count(), 0);
+            assert.equal(await page.locator('[data-vessel-node]').count(), 0);
+          }
         }
         if (plan.recipe === 'resect-pilot-v1') {
           const output = page.locator('[data-pilot-output]');
@@ -359,9 +378,31 @@ withBrowser(async (browser) => {
       'registration-analysis-v1',
       'resect-correspondence-v1',
       'resect-pilot-v1',
+      'vessel-source-v1',
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'vessel-source-v1') {
+      assert.equal(await fallback.locator('[data-vessel-reference-image]').count(), 0);
+      await fallback.locator('[data-story-step="1"]').click();
+      await fallback.waitForFunction(
+        () => document.querySelector('[data-vessel-reference]')?.textContent === 'hidden',
+      );
+      await fallback.locator('.scene-play').click();
+      await fallback.locator('[data-vessel-reference-image]').first().waitFor();
+      await fallback.locator('.scene-play').click();
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('.scene-reset').click();
+      await fallback.waitForFunction(
+        () =>
+          document.querySelector('[data-vessel-output]')?.getAttribute('data-vessel-output') ===
+          'sources',
+      );
+      assert.equal(await fallback.locator('[data-vessel-reference-image]').count(), 0);
+      assert.equal(await fallback.locator('[data-vessel-answer]').count(), 0);
+    }
     if (plan.recipe === 'resect-pilot-v1') {
       await fallback.locator('[data-story-step="5"]').click();
       await fallback.waitForFunction(

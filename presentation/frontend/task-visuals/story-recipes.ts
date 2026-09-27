@@ -19,6 +19,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'inverse-v1',
     'mixed-tissue-v1',
     'registration-analysis-v1',
+    'vessel-source-v1',
     'resect-pilot-v1',
     'resect-correspondence-v1',
   ].includes(plan.recipe);
@@ -65,6 +66,17 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'vessel-source-v1':
+      return {
+        heading: 'TopCoW · source curation for local vessel repair',
+        corner: 'Four public MRA cases · author study · separate reference reveal',
+        legend: [
+          ['#f49c30', 'Right Pcom · reference'],
+          ['#27c4bc', 'Left Pcom · reference'],
+          ['#5773df', 'Other vessels · reference'],
+          ['#f5e4a7', 'Graph nodes · circles'],
+        ],
+      };
     case 'resect-pilot-v1':
       return {
         heading: 'RESECT pilot · two queries and a supplied cue',

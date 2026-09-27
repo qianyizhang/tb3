@@ -133,6 +133,14 @@ calibrated source sections. `view` changes the inspected slab; `output` and
 `reference` control separate reveals. The supplied coordinate cue, exact original
 scores and later synthetic verifier diagnostics retain distinct roles.
 
+`vessel-source-v1` separates BR-025 author source curation from later repair trials.
+Its [source pack](task-explorer/vessel-source/NOTICE.md) pins four actual MRA
+projections, calibrated native sections, masks and graph nodes. `scan` selects a
+native section; `reference` reveals annotations, and `output` reveals curation
+records. Node projection clips to the actual source box and preserves the native
+affine. Closed scene cuts retain source selection, topology checks, proposed solver
+inputs and the unresolved natural-defect admission boundary.
+
 ### Draft a canonical story
 
 ```sh

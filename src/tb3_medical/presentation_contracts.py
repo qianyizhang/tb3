@@ -254,6 +254,24 @@ class PrototypeIdentityPlan(ExpansionPlan):
     beats: list[IdentityBeat]
 
 
+class VesselSourceChannels(TypedDict):
+    scan: tuple[float, float]
+    reference: tuple[float, float]
+    output: tuple[float, float]
+
+
+class VesselSourceBeat(ExpansionBeat):
+    channels: VesselSourceChannels
+    scene: Literal[
+        "sources", "states", "inspect", "contacts", "nodes", "contract", "admission", "limits"
+    ]
+
+
+class VesselSourcePlan(ExpansionPlan):
+    recipe: Literal["vessel-source-v1"]
+    beats: list[VesselSourceBeat]
+
+
 class ResectPilotChannels(TypedDict):
     view: tuple[float, float]
     output: tuple[float, float]
@@ -390,6 +408,7 @@ StoryPlan = (
     | AnatomyPlan
     | IdentityPlan
     | PrototypeIdentityPlan
+    | VesselSourcePlan
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan

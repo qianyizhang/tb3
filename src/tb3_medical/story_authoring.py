@@ -153,6 +153,8 @@ def new(
             beat["scene"] = "inputs"
         if recipe == "anatomy-curation-v1":
             beat["scene"] = "pair"
+        if recipe == "vessel-source-v1":
+            beat["scene"] = "sources"
         if recipe == "mask-screen-v1":
             beat["scene"] = "ribs-32"
         content += f"\n## {name}\n\n```beat\n" + yaml.safe_dump(beat, sort_keys=False) + "```\n"
