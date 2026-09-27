@@ -21,6 +21,13 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     identityRows,
     curationRows,
     curationReference,
+    respiratory,
+    respiratoryRows,
+    respiratoryReference,
+    respiratoryOutput,
+    q06Error,
+    planePoint,
+    planePixels,
     screenRows,
     screenReference,
     prototypeRows,
@@ -96,20 +103,62 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     assert.equal(parent.children.length, 1);
     for (const beat of plan.beats) content.update(sampleStory(plan, beat.endFrame - 1));
     const geometries = new Set(),
-      materials = new Set();
+      materials = new Set(),
+      textures = new Set();
     parent.traverse((o) => {
       if (o.geometry) geometries.add(o.geometry);
       if (o.material) materials.add(o.material);
+      if (o.material?.map) textures.add(o.material.map);
     });
     let disposed = 0;
-    for (const resource of [...geometries, ...materials])
+    for (const resource of [...geometries, ...materials, ...textures])
       resource.addEventListener('dispose', () => disposed++);
     content.dispose();
     content.dispose();
     assert.equal(parent.children.length, 0);
-    assert.equal(disposed, geometries.size + materials.size);
+    assert.equal(disposed, geometries.size + materials.size + textures.size);
     assert.throws(() => content.update(sampleStory(plan, 0)));
   }
+  const respiratoryPlan = plans.find((p) => p.recipe === 'respiratory-v1');
+  assert.ok(
+    respiratoryRows(sampleStory(respiratoryPlan, 0)).every(
+      (r) => r.point === null && r.reference === null,
+    ),
+  );
+  const referenceBeat = respiratoryPlan.beats.find((b) => b.scene === 'reference');
+  assert.ok(
+    respiratoryRows(sampleStory(respiratoryPlan, referenceBeat.startFrame)).every(
+      (r) => r.point && !r.reference,
+    ),
+  );
+  assert.equal(
+    respiratoryRows(sampleStory(respiratoryPlan, referenceBeat.endFrame - 1)).filter(
+      (r) => r.error > 5,
+    ).length,
+    1,
+  );
+  assert.ok(Math.abs(q06Error - 6.411513081948768) < 1e-12);
+  for (const view of Object.values(respiratory.views)) {
+    for (const [i, uv] of view.pixels_uv.entries()) {
+      const world = planePoint(view.plane, ...uv);
+      assert.ok(world.every((v, j) => Math.abs(v - view.source_world_mm[i][j]) < 1e-10));
+      assert.ok(planePixels(view.plane, world).every((v, j) => Math.abs(v - uv[j]) < 1e-10));
+    }
+  }
+  const parentCT = new Group(),
+    ct = nativeFactory(respiratoryPlan)(parentCT);
+  ct.update(sampleStory(respiratoryPlan, referenceBeat.endFrame - 1));
+  const revealedCT = [];
+  parentCT.traverse((o) => {
+    if (o.isLine && o.visible) revealedCT.push(o);
+  });
+  assert.equal(revealedCT.length, 4, 'Residual and three radius circles');
+  ct.update(sampleStory(respiratoryPlan, 0));
+  assert.ok(
+    revealedCT.every((o) => !o.visible),
+    'Reverse seek removes reference geometry',
+  );
+  ct.dispose();
   const curation = plans.find((p) => p.recipe === 'anatomy-curation-v1');
   assert.ok(curationRows(sampleStory(curation, 0)).every((r) => r.source === null));
   const revealed = curationRows(sampleStory(curation, curation.beats[1].endFrame - 1));

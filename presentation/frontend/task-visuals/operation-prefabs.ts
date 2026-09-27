@@ -1,4 +1,15 @@
 import * as THREE from 'three';
+import {
+  respiratory,
+  respiratoryOutput,
+  respiratoryReference,
+  respiratoryColors,
+  planePoint,
+  respiratoryPlacement,
+  focusQuery,
+  isRespiratoryCloseup,
+  type CTPlane,
+} from './respiratory';
 import rawHero from '../../assets/teaching-fixtures/route-unfold-v1/geometry.json?raw';
 import { graph, rigid, traceEdges, type IndexedMesh } from './operation-fixtures';
 import {
@@ -32,7 +43,8 @@ function content(parent: THREE.Group, name: string) {
   root.name = name;
   parent.add(root);
   const geometries: THREE.BufferGeometry[] = [],
-    materials: THREE.Material[] = [];
+    materials: THREE.Material[] = [],
+    textures: THREE.Texture[] = [];
   function mesh(data: IndexedMesh, color: string, owner = root) {
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(data.vertices.flat(), 3));
@@ -44,6 +56,45 @@ function content(parent: THREE.Group, name: string) {
     geometries.push(geometry);
     materials.push(material);
     return mesh;
+  }
+  function imagePlane(plane: CTPlane, place: (p: number[]) => number[]) {
+    const data = Uint8Array.from(atob(plane.gray_u8), (c) => c.charCodeAt(0));
+    if (data.length !== plane.width * plane.height) throw Error('Invalid CT plane');
+    const rgba = new Uint8Array(data.length * 4);
+    data.forEach((v, i) => rgba.set([v, v, v, 255], i * 4));
+    const texture = new THREE.DataTexture(rgba, plane.width, plane.height, THREE.RGBAFormat);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.magFilter = THREE.LinearFilter;
+    texture.needsUpdate = true;
+    const geometry = new THREE.BufferGeometry();
+    const corners = [
+      [-0.5, -0.5],
+      [plane.width - 0.5, -0.5],
+      [plane.width - 0.5, plane.height - 0.5],
+      [-0.5, plane.height - 0.5],
+    ];
+    geometry.setAttribute(
+      'position',
+      new THREE.Float32BufferAttribute(
+        corners.flatMap(([u, v]) => place(planePoint(plane, u, v))),
+        3,
+      ),
+    );
+    geometry.setAttribute('uv', new THREE.Float32BufferAttribute([0, 0, 1, 0, 1, 1, 0, 1], 2));
+    geometry.setIndex([0, 1, 2, 0, 2, 3]);
+    const material = new THREE.MeshBasicMaterial({
+      map: texture,
+      side: THREE.DoubleSide,
+      toneMapped: false,
+      transparent: true,
+      depthWrite: false,
+    });
+    const object = new THREE.Mesh(geometry, material);
+    root.add(object);
+    geometries.push(geometry);
+    materials.push(material);
+    textures.push(texture);
+    return object;
   }
   function line(points: number[][], color: string, dashed = false) {
     const geometry = new THREE.BufferGeometry().setFromPoints(
@@ -79,10 +130,10 @@ function content(parent: THREE.Group, name: string) {
     materials.push(material);
     return object;
   }
-  function fit(box: THREE.Box3) {
+  function fit(box: THREE.Box3, extent = 2.35) {
     const center = box.getCenter(new THREE.Vector3()),
       size = box.getSize(new THREE.Vector3());
-    const scale = 2.35 / Math.max(size.x, size.y, size.z);
+    const scale = extent / Math.max(size.x, size.y, size.z);
     root.scale.setScalar(scale);
     root.position.copy(center).multiplyScalar(-scale);
     return (p: readonly number[]): ScenePoint => [
@@ -95,6 +146,7 @@ function content(parent: THREE.Group, name: string) {
   return {
     root,
     mesh,
+    imagePlane,
     line,
     points,
     marker,
@@ -108,6 +160,7 @@ function content(parent: THREE.Group, name: string) {
       parent.remove(root);
       geometries.forEach((g) => g.dispose());
       materials.forEach((m) => m.dispose());
+      textures.forEach((t) => t.dispose());
       root.clear();
     },
   };
@@ -485,6 +538,161 @@ export function createCurationPrefab(parent: THREE.Group): NativeContent {
           color: curationColor(row),
         },
       ];
+    },
+    dispose: c.dispose,
+  };
+}
+
+/** Real calibrated CT planes and retained point outputs; no solver animation or inferred deformation. */
+export function createRespiratoryPrefab(parent: THREE.Group): NativeContent {
+  const c = content(parent, 'respiratory-v1');
+  const scenes = [
+    'inputs',
+    'frame',
+    'depth',
+    'output',
+    'reference',
+    'judgment',
+    'conditions',
+    'limits',
+  ] as const;
+  const built = scenes.map((scene) => {
+    const start = c.root.children.length;
+    const source = (p: number[]) => respiratoryPlacement(scene, 'source', p),
+      target = (p: number[]) => respiratoryPlacement(scene, 'target', p);
+    const markers = (
+      positions: number[][],
+      color: string,
+      place: (p: number[]) => number[],
+      radius: number,
+    ) =>
+      positions.map((p) => {
+        const m = c.marker(place(p), color);
+        m.scale.setScalar(radius / 0.0018);
+        m.material.emissive.set(color);
+        m.material.emissiveIntensity = 0.35;
+        m.material.transparent = true;
+        m.material.depthTest = false;
+        m.renderOrder = 20;
+        return m;
+      });
+    let depth: THREE.Mesh<THREE.BufferGeometry, THREE.MeshBasicMaterial>[] = [];
+    let returned: THREE.Mesh[] = [];
+    const reveal: THREE.Object3D[] = [];
+    const close = isRespiratoryCloseup(scene);
+    if (close) {
+      respiratory.target_returned_patch.forEach(
+        (plane) => (c.imagePlane(plane, target).material.opacity = 0.65),
+      );
+      markers(
+        [respiratoryOutput.points_world_mm[focusQuery]],
+        respiratoryColors.returned,
+        target,
+        1.4,
+      );
+      const gt = respiratoryReference.truth.points_world_mm[focusQuery];
+      reveal.push(...markers([gt], respiratoryColors.reference, target, 1.4));
+      reveal.push(
+        c.line(
+          [respiratoryOutput.points_world_mm[focusQuery], gt].map(target),
+          respiratoryColors.reference,
+        ),
+      );
+      for (const [a, b] of [
+        [0, 1],
+        [0, 2],
+        [1, 2],
+      ])
+        reveal.push(
+          c.line(
+            Array.from({ length: 65 }, (_, i) => {
+              const p = [...gt],
+                angle = (i / 64) * Math.PI * 2;
+              p[a] += 5 * Math.cos(angle);
+              p[b] += 5 * Math.sin(angle);
+              return target(p);
+            }),
+            respiratoryColors.reference,
+            true,
+          ),
+        );
+    } else if (scene === 'conditions') {
+      for (const [i, view] of [respiratory.views.patient1, respiratory.views.patient3].entries()) {
+        const plane = view.plane;
+        const place = (p: number[]) => {
+          const delta = p.map((v, j) => v - plane.origin_world_mm[j]);
+          const uv = [plane.dx_world_mm, plane.dy_world_mm].map(
+            (axis) => delta.reduce((n, v, j) => n + v * axis[j], 0) / 1.25,
+          );
+          return [
+            uv[0] - (plane.width * 1.25) / 2 + (i - 0.5) * 290,
+            -uv[1] + (plane.height * 1.25) / 2,
+            0,
+          ];
+        };
+        c.imagePlane(plane, place);
+        markers(view.source_world_mm, respiratoryColors.query, place, 2.5);
+      }
+    } else {
+      c.imagePlane(respiratory.views.patient3.plane, source);
+      markers(respiratory.views.patient3.source_world_mm, respiratoryColors.query, source, 4.5);
+      depth = respiratory.source_sections.map((plane) => c.imagePlane(plane, source));
+      respiratory.target_sections.forEach(
+        (plane) => (c.imagePlane(plane, target).material.opacity = 0.75),
+      );
+      returned = markers(
+        respiratoryOutput.points_world_mm,
+        respiratoryColors.returned,
+        target,
+        4.5,
+      );
+    }
+    reveal.forEach((o) => {
+      if (o instanceof THREE.Line) {
+        o.material.transparent = true;
+        o.material.depthTest = false;
+        o.renderOrder = 30;
+      }
+    });
+    const objects = c.root.children.slice(start);
+    const box = new THREE.Box3();
+    objects.forEach((o) => box.union(new THREE.Box3().setFromObject(o)));
+    return { scene, objects, depth, returned, reveal, box };
+  });
+  return {
+    update(state) {
+      c.alive();
+      if (state.recipe !== 'respiratory-v1') throw Error('Respiratory state required');
+      built.forEach((item) => {
+        item.objects.forEach((o) => (o.visible = item.scene === state.scene));
+        if (item.scene !== state.scene) return;
+        item.depth.forEach((o) => {
+          o.visible = state.depth > 0;
+          o.material.opacity = 0.55 * state.depth;
+        });
+        item.returned.forEach((o, i) => (o.visible = i < Math.floor(state.output * 8 + 1e-8)));
+        item.reveal.forEach((o) => (o.visible = state.reference > 0.5));
+      });
+      const item = built.find((s) => s.scene === state.scene)!;
+      const display = c.fit(item.box, isRespiratoryCloseup(state.scene) ? 2.35 : 3.6);
+      if (state.scene === 'frame') {
+        const anchor = display(
+          respiratoryPlacement(
+            state.scene,
+            'source',
+            respiratory.views.patient3.source_world_mm[focusQuery],
+          ),
+        );
+        return [
+          {
+            anchor,
+            p: [anchor[0], anchor[1] - 0.35, anchor[2]] as ScenePoint,
+            text: 'q06 · source',
+            color: respiratoryColors.query,
+          },
+        ];
+      }
+      return [];
     },
     dispose: c.dispose,
   };

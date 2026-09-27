@@ -43,7 +43,7 @@ withBrowser(async (browser) => {
         0,
         plan.beats[Math.floor(plan.beats.length / 2)].endFrame - 1,
         plan.durationFrames - 1,
-        ...(['mask-screen-v1', 'anatomy-curation-v1'].includes(plan.recipe)
+        ...(['mask-screen-v1', 'anatomy-curation-v1', 'respiratory-v1'].includes(plan.recipe)
           ? plan.beats.map((b) => b.endFrame - 1)
           : []),
       ];
@@ -65,6 +65,15 @@ withBrowser(async (browser) => {
           assert.equal(await tile.getAttribute('width'), frame === 0 ? '130' : '520');
           const returned = canvas.getByText('level-0 (2680, 2040) px', { exact: true });
           assert.equal(await returned.count(), frame === plan.durationFrames - 1 ? 1 : 0);
+        }
+        if (plan.recipe === 'respiratory-v1') {
+          const output = page.locator('[data-respiratory-output]');
+          assert.ok(
+            await output.evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'Respiratory output overflows',
+          );
+          const box = await output.boundingBox();
+          assert.ok(box && box.y + box.height <= 720, 'Respiratory output clipped');
         }
         if (plan.recipe === 'anatomy-curation-v1') {
           assert.ok(
@@ -296,9 +305,32 @@ withBrowser(async (browser) => {
       'prototype-identity-v1',
       'mask-screen-v1',
       'anatomy-curation-v1',
+      'respiratory-v1',
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'respiratory-v1') {
+      await fallback.locator('[data-story-step="4"]').click();
+      await fallback.waitForFunction(
+        () => document.querySelector('[data-respiratory-reference]')?.textContent === 'hidden',
+      );
+      await fallback.locator('[data-story-step="5"]').click();
+      await fallback.waitForFunction(() =>
+        document
+          .querySelector('[data-respiratory-output]')
+          ?.textContent.includes('User visual judgment'),
+      );
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('[data-story-step="0"]').click();
+      await fallback.waitForFunction(() =>
+        document
+          .querySelector('[data-respiratory-output]')
+          ?.textContent.includes('Eight source queries'),
+      );
+      assert.equal(await fallback.locator('[data-respiratory-reference]').count(), 0);
+    }
     if (plan.recipe === 'anatomy-curation-v1') {
       assert.deepEqual(await fallback.locator('[data-curation-reference]').allTextContents(), [
         'hidden',
@@ -422,6 +454,7 @@ withBrowser(async (browser) => {
       'tb3-unlabeled-anatomy-prototype',
       'tb3-mask-reasoning-study',
       'tb3-anatomy-curation',
+      'tb3-respiratory-correspondence',
     ]) {
       await page.evaluate((id) => {
         location.hash = `${id}/0/overview?view=repository`;

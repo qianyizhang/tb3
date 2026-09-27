@@ -39,3 +39,9 @@ Reopen if independent review revises the q06 correspondence or a new unused resp
 ## Current disposition
 
 The full-source respiratory registration calibration is complete and was accepted by the user on visual review; no follow-up trial is scheduled. Preserve the unchanged numerical failure and its separate practical acceptance. The user accepted parking on 2026-09-21 in [the refinement task](codex://threads/01a0c040-3777-7b72-b932-6e6b118304a2). This does not close the broader scientific question.
+
+## Explainer checkpoint — 2026-09-27
+
+Assistant source audit for the [respiratory correspondence story](../presentation/stories/respiratory-correspondence.story.md): verified 59 frozen task files across the four BR-021/024/028 contracts and 21 retained Learn2Reg source members. The import-safe [asset builder](../../../scripts/build_respiratory_assets.py) checks NPZ/NIfTI arrays and affines, manual CSV pairing, slice sampling and both case 3 submitted answers. Original data, scores, gates and user decisions are unchanged.
+
+The explanation uses actual calibrated CT planes and ordered BR-028 coordinates, then a reader-only manual-target reveal. Its q06 target sections share a returned-point centre, so the 6.412 mm residual remains visible. Known source pose, extra source depth, exact versus projected source queries, sparse-point scoring and later user visual acceptance are separate. This is a presentation checkpoint, not a new trial, clinical adjudication, difficulty qualification or causal source-depth result. The parked state and reopening conditions remain in force.

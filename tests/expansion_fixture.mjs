@@ -30,3 +30,13 @@ export {
   curationRows,
   curationReference,
 } from '../presentation/frontend/task-visuals/anatomy-curation.ts';
+
+export {
+  respiratory,
+  respiratoryRows,
+  respiratoryReference,
+  respiratoryOutput,
+  q06Error,
+  planePoint,
+  planePixels,
+} from '../presentation/frontend/task-visuals/respiratory.ts';

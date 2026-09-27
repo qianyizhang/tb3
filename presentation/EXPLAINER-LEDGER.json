@@ -2145,15 +2145,15 @@
       ],
       "illustration_kind": "point_correspondence",
       "subject": "chest",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "respiratory-correspondence",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "correspondence",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-spatial",
+      "source_asset_readiness": "All 59 frozen task files and 21 retained source members verified. Four exact source contracts, CT arrays/affines, manual pairings, public slice sampling and two retained outputs checked. CC BY 4.0 and a separate reader reference asset retained.",
+      "rendered_mode": "spatial",
+      "acceptance_receipt": ".local/explainers/completion-20260927/006-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Return corresponding anatomical points in target patient coordinates.",
+      "remaining_work": "No outstanding work for this bounded respiratory correspondence explanation. Sparse evaluation, single-run confounds, public annotation access and separate user visual judgment remain explicit. Remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "Paired respiratory CT observations, supplied as a section or full source volume.",
         "helpers": "Query landmarks and image calibration; source depth, field of view and fixed component interventions vary.",
@@ -2188,7 +2188,73 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "a0cb24900064005125e78c986344b545cc8d1fd697481d389d37991e532a5aee"
+      "source_brief_sha256": "a0cb24900064005125e78c986344b545cc8d1fd697481d389d37991e532a5aee",
+      "acceptance_scope": "Visual and engineering review of retained respiratory point-correspondence contracts and historical output; not a new model trial, user acceptance, clinical adjudication or causal comparison.",
+      "visual_review": "Actual calibrated CT planes, source-depth reveal, ordered output, returned-centred q06 residual and 5 mm radius, four condition boundaries, full video motion sampling, mobile and no-GPU reference/reset reviewed.",
+      "reviewed_contract_projection": {
+        "raw": "Learn2Reg LungCT 1.11 supplies paired exhale/inhale CTs and manual corresponding landmarks. The retained cases are cropped, resampled and affine prealigned. Expiration coverage is incomplete. Each volume has shape **192 × 192 × 208**, spacing **1.75 × 1.25 × 1.75 mm**, and its own explicit voxel-to-world matrix. Use the task's **dataset-world** convention; do not assert original patient LPS/RAS.\n\n| Frozen task | Solver-visible source | Target |\n| --- | --- | --- |\n| BR-021 case 1, `deform-2d` | Complete 118 × 171 oblique array, fractional query pixels, `view.json` pose and spacing | Full inhale CT |\n| BR-021 case 1, `deform-3d` | Full exhale CT and exact manual source query coordinates | Same full inhale CT and eight targets |\n| BR-024 case 3, `deform-harder-patient3` | Complete 121 × 189 oblique array, fractional query pixels, pose and spacing | Full inhale CT |\n| BR-028 case 3, `deform-patient3-source3d` | Adds only full source `reference_volume.npz`; retains the BR-024 slice and queries | Identical target, truth and grader |\n\nArray dimensions above are rows × columns. The full-source files contain `hu` and `voxel_to_world`. BR-023 reuses the exact case 1 2D freeze; its four later author component interventions are diagnostic assistance, not four additional model trials or new source contracts.",
+        "helpers": "For 2D queries, compute `source_world = slice_to_world × [u × sx, v × sy, 0, 1]`. This is a nominal source location, not an anatomical mapping into the inhale scan. Projection makes the case 1 source locations differ from exact manual queries by up to **0.313 mm**. BR-028 keeps the projected case 3 queries rather than replacing them with hidden exact source landmarks.",
+        "tools": "Frozen tasks allowed ordinary installed libraries and network access, with 1,800 seconds, four CPUs and 4 GB RAM. The initial solver payload excludes manual target references, prior solution code and solution hints. External public annotations remain a contamination limitation; this is not a sealed annotation-free benchmark.",
+        "spec": "Identify the same anatomical locations in the target phase. Preserve query ordering, coordinate convention and the exact condition's source information. The task asks for target points; it does not require a single rigid transform, source pose estimate or dense warp.",
+        "output": "Write `/app/answer/points.json` containing `query_ids` and eight finite XYZ rows in `points_world_mm`, in the requested order. Output coordinates are dataset-world millimetres.",
+        "reference": "Private evaluator `truth.json` contains ordered manual target coordinates and **RMS ≤ 3 mm AND maximum ≤ 5 mm** gates. CSV landmarks use zero-based voxels and are transformed by the matching image affine. The actual release arrays, not duplicated phase images from an auxiliary evaluation repository, are authoritative.\n\nThe story embeds a reader-only reveal of these targets and the retained BR-028 output. q06 is selected after the trial as a teaching example. Its target close-up is centred on the returned point, preserving the manual target's true offset; centred independent comparison panels must not erase that offset.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "For 2D queries, compute `source_world = slice_to_world × [u × sx, v × sy, 0, 1]`. This is a nominal source location, not an anatomical mapping into the inhale scan. Projection makes the case 1 source locations differ from exact manual queries by up to **0.313 mm**. BR-028 keeps the projected case 3 queries rather than replacing them with hidden exact source landmarks.",
+            "remaining": "Identify the same anatomical locations in the target phase. Preserve query ordering, coordinate convention and the exact condition's source information. The task asks for target points; it does not require a single rigid transform, source pose estimate or dense warp."
+          }
+        ],
+        "sources": [
+          [
+            "BR-021 — paired 2D and 3D source conditions",
+            "groups/registration/experiments/br021/protocol.md"
+          ],
+          [
+            "BR-023 — same frozen task and author interventions",
+            "groups/registration/experiments/br023/protocol.md"
+          ],
+          [
+            "BR-024 — harder case admission and trial",
+            "groups/registration/experiments/br024/protocol.md"
+          ],
+          [
+            "BR-028 — source-depth condition",
+            "groups/registration/experiments/br028/protocol.md"
+          ],
+          [
+            "Frozen scores",
+            "docs/evidence/br028-results.json"
+          ],
+          [
+            "user visual judgment",
+            "docs/evidence/br028-adjudication.json"
+          ],
+          [
+            "Dataset record",
+            "datasets/learn2reg.json"
+          ],
+          [
+            "source member receipts",
+            "datasets/receipts/learn2reg-files.json"
+          ],
+          [
+            "Teaching manifest",
+            "presentation/task-explorer/respiratory/manifest.json"
+          ],
+          [
+            "attribution and limits",
+            "presentation/task-explorer/respiratory/NOTICE.md"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "6a137e8411eac6c87327e1dd2ca396d9970ca41b33f05f6ccd2cc5cabe7f439c",
+        "source_story_sha256": "920aa7892424f6839e099b678da049f2128711cf6d6d26a77bae2bc0c9d08031",
+        "acceptance_receipt_sha256": "ac2cd6b505925e0d9058f23402bdf00e03451d620a5505d4e7fe295a64ec9601"
+      }
     },
     {
       "entry_id": "tb3-registration-analysis",
@@ -11998,8 +12064,8 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 37,
-    "reviewed-scripted-spatial": 10,
+    "pending-operation-review": 36,
+    "reviewed-scripted-spatial": 11,
     "reviewed-scripted-planar": 8,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
@@ -12021,7 +12087,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-respiratory-correspondence",
+    "active_entry": "tb3-registration-analysis",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -12354,7 +12420,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/005-acceptance.json",
         "reviewed_entries": 18,
-        "next_entry": "tb3-respiratory-correspondence"
+        "next_entry": "tb3-respiratory-correspondence",
+        "local_commit": "495c0da"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-respiratory-correspondence",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/006-acceptance.json",
+        "reviewed_entries": 19,
+        "next_entry": "tb3-registration-analysis"
       }
     ]
   }

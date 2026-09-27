@@ -147,6 +147,8 @@ def new(
         }
         if recipe == "correspondence-v1":
             beat["show_deformed_target"] = False
+        if recipe == "respiratory-v1":
+            beat["scene"] = "inputs"
         if recipe == "anatomy-curation-v1":
             beat["scene"] = "pair"
         if recipe == "mask-screen-v1":

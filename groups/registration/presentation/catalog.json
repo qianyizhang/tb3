@@ -23,7 +23,8 @@
         }
       ],
       "nav_group": "Register and match",
-      "illustration": {"story_id": "rigid-correspondence",
+      "illustration": {
+        "story_id": "rigid-correspondence",
         "kind": "register",
         "input": "Oblique section and target CT",
         "output": "Rigid pixel-to-patient transformation",
@@ -67,8 +68,9 @@
         "kind": "point_correspondence",
         "input": "Source and target respiratory observations",
         "output": "Corresponding target landmarks",
-        "caption": "Schematic output structure only; no patient finding, reference answer or measured improvement is depicted. Gold: query point. Teal: initial or returned target point.",
-        "subject": "chest"
+        "caption": "Retained Learn2Reg CT sections and BR-028 output. Gold: public source queries. Teal: submitted target points. Pink: manual target reveal; dashed pink: 5 mm radius. Dataset-world mm; display poses are not registration. Frozen score and user visual acceptance remain separate.",
+        "subject": "chest",
+        "story_id": "respiratory-correspondence"
       },
       "modalities": [
         "ct"

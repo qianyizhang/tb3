@@ -9,6 +9,7 @@ import {
   createPrototypeIdentityPrefab,
   createMaskScreenPrefab,
   createCurationPrefab,
+  createRespiratoryPrefab,
 } from './operation-prefabs';
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
@@ -26,10 +27,13 @@ export function hasInteractiveProjection(plan: StoryPlan): boolean {
     'prototype-identity-v1',
     'mask-screen-v1',
     'anatomy-curation-v1',
+    'respiratory-v1',
   ].includes(plan.recipe);
 }
 export function nativeFactory(plan: StoryPlan) {
   switch (plan.recipe) {
+    case 'respiratory-v1':
+      return createRespiratoryPrefab;
     case 'anatomy-curation-v1':
       return createCurationPrefab;
     case 'mask-screen-v1':
@@ -58,6 +62,17 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'respiratory-v1':
+      return {
+        heading: 'Respiratory correspondence · real CT and retained output',
+        corner: 'Dataset-world mm · display poses only · HU −1000 to 200',
+        legend: [
+          ['#efa933', 'Public source query'],
+          ['#41c5b6', 'Retained target output'],
+          ['#e880ad', 'Manual target · reveal'],
+          ['#e880ad', '5 mm radius · reveal', true],
+        ],
+      };
     case 'anatomy-curation-v1':
       return {
         heading: 'Anatomy curation · source evidence before task admission',
