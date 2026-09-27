@@ -129,3 +129,44 @@ decision in this chat; no answer has been recorded. Keep derived images and mesh
 local, and reopen canonical story/export acceptance when permission is documented
 or the user explicitly approves private-local final scope. Continue the clinical
 cavity entry meanwhile. This is not a user decision to change the deliverable.
+
+## Clinical-cavity source review — 2026-09-28
+
+Actor: assistant, under the same completion request. The
+[BR-034 exact brief](../presentation/briefs/tb3-clinical-cavity-adaptation.md) and
+[native/output audit](../presentation/sources/clinical-cavity-audit.json) verify
+three selected archives, 114 extracted recording files, all 101 prepared volumes
+and 303 previews, supplied initial meshes and withheld reference sequences.
+The decoded C-order array digest still differs from the publisher's unspecified
+serialization; archive/codec agreement does not resolve that convention.
+
+The frozen scores reproduce without flow fitting or executable/model launches.
+Primary, hidden reduced and supplementary preserved-case EF errors remain
+23.30/25.94/30.49 pp, despite mean surface distances of 1.89/1.85/2.24 mm.
+All three pass the mean-distance gate, as does the static initial surface at
+2.70 mm. Preserve separate function and geometry endpoints. Initial-frame
+agreement is supplied assistance; clinical cavity indices are not material truth.
+
+The retained original replay matches all vertices. Still inputs produce exactly
+stationary output and EF 0%; a five-frame shift produces the corresponding
+permutation exactly. These controls establish input response while clinical
+contraction remains wrong relative to the source surfaces. There is one actual
+model attempt; the two hidden cases are unchanged-executable replays. The
+supplementary control's timing, rejected predecessor and replacement remain explicit.
+
+The assistant inspected source-only, solver and private-reference sections at
+reference systole in all three orthogonal planes for all three cases. The
+transverse solver sections remain larger than their references; longer-axis
+sections also show different narrowing. These are selected stills, not a
+full-motion review or clinical adjudication. The original pre-fit impression
+precedes the flow experiments in the retained tool trace; the final severe
+category follows an underestimated EF. That within-session change is descriptive,
+not evidence of modeling's causal diagnostic effect.
+
+The pinned EchoXFlow catalogue/license and the official card inspected on
+2026-09-28 agree on CC BY-NC-SA 4.0. Continue the same entry with attributed local
+source-derived assets and an operation-specific story showing image input,
+initialization, saved tracking, reference reveal, volume curves and altered-input
+controls. Canonical integration, exports, motion/mobile/no-GPU review and final
+acceptance remain pending; the ledger stays at 30/205 reviewed. This record
+does not authorize publication or another medical trial.
