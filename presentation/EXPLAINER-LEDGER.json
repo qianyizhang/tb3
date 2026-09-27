@@ -983,12 +983,12 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "shape-material",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "blocked-source-contract",
+      "source_asset_readiness": "Native Patient001 source members and six saved-output conditions verified; local selected overlays inspected. FeEcho4D onward redistribution rights remain unresolved.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Construct and assess plausible time-varying cavity geometry.",
+      "blocking_dependency": "FeEcho4D project permits noncommercial research; Zenodo record 21322299 has open access but no explicit metadata license. Resolve permission for source-derived portable assets, or obtain an explicit private-local final-scope decision. User decision requested in this chat; no answer yet.",
+      "remaining_work": "Keep source images and derived mesh assets local. After the delivery scope is resolved, author the actual all-phase-contour reconstruction story, integrate it, export fresh artifacts and perform entry-specific visual, motion, mobile and no-GPU review. Source audit alone is not completion.",
       "contract_projection": {
         "raw": "Calibrated fetal ultrasound views and source-derived contours.",
         "helpers": "Accurate contours across the cycle supply boundaries.",
@@ -1011,7 +1011,59 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "2ae89bdc1ba9994dd9c0e5d3820d1ca0458ef6306f1d1acc6956d05d053db892"
+      "source_brief_sha256": "2ae89bdc1ba9994dd9c0e5d3820d1ca0458ef6306f1d1acc6956d05d053db892",
+      "blocker_resolution": "External rights or explicit user delivery-scope decision. Continue the next actionable entry; retain this row in the unfinished denominator.",
+      "audited_contract_projection": {
+        "raw": "Native FeEcho4D Patient001: 30 frames, 37 radial ultrasound planes, each 464 × 485\npixels. Use 36 directions; plane 37 repeats the 180-degree direction. The case was\nselected by native archive order before outcomes, after rejecting the GitHub\nsparse-volume example as unsuitable for dense-background scoring.\n\nThe source specifies **0.089950 mm/pixel** in plane. The pilot assumes 5-degree\nradial steps, an x=242 pixel rotation axis and a y=172 pixel origin derived from\nsupplied plane 1 across the cycle. Per-plane physical poses remain unaudited;\nthe config's 0.5 mm z-spacing is not an angular-plane translation.",
+        "helpers": "Clean source cavity masks at **all 30 frames** of the selected directions:\none view [1]; two [1,19]; four [1,10,19,28]; eight [1,5,10,14,19,23,28,32].\nPlane numbers are one-based. Native mask labels are 0 background, 127 LV cavity\nand 255 myocardium; this reconstruction uses cavity label 127.",
+        "tools": "The retained CPU author baseline uses NumPy, SciPy and Pillow. It samples radial\nextent from the supplied masks and interpolates between directions. It uses no\ntrained weights and fits every frame independently; ultrasound appearance is\navailable for inspection but does not drive this reconstruction.",
+        "spec": "For each frame, sample the supplied cavity boundaries along 65 polar directions,\ninterpolate their radii onto 72 azimuths and close the two poles. This star-shaped\nprior fills concavities and supplies unobserved geometry. Serialize each sparse\nresult before evaluating the dense comparator. Preserve source coordinates,\nframe IDs and assumptions; shared vertex indices establish geometric indexing,\nnot tissue material correspondence.",
+        "output": "The retained pilot saves one NPZ for each of the one/two/four/eight/dense conditions:\n`vertices[30,4538,3]` in millimetres, shared `faces[9072,3]`,\n`radius_px[30,72,65]` and `volume_ml[30]`. Results and curves JSON retain original\nmeasurements. The static control repeats the four-view frame-1 geometry.\nThese are author outputs, not a frozen solver submission contract.",
+        "reference": "The common withheld directions [3,8,12,17,21,26,30,35] are disjoint from every\nsparse input set. Their masks are evaluation material. A separate dense comparator\nuses all 36 directions, including these evaluation planes: its overlap is\n**source fit**, not withheld accuracy. Source phase indices enter evaluation only.\n\nThe source project describes expert endpoint contours and propagated, reviewed\nintermediate masks. Derived surfaces are not independent 3D truth. The native OBJ\nsequence's physical transform and cavity/shell partition remain unresolved; its\nwhole enclosed volume is not an LV blood-pool oracle.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "Clean source cavity masks at **all 30 frames** of the selected directions:\none view [1]; two [1,19]; four [1,10,19,28]; eight [1,5,10,14,19,23,28,32].\nPlane numbers are one-based. Native mask labels are 0 background, 127 LV cavity\nand 255 myocardium; this reconstruction uses cavity label 127.",
+            "remaining": "For each frame, sample the supplied cavity boundaries along 65 polar directions,\ninterpolate their radii onto 72 azimuths and close the two poles. This star-shaped\nprior fills concavities and supplies unobserved geometry. Serialize each sparse\nresult before evaluating the dense comparator. Preserve source coordinates,\nframe IDs and assumptions; shared vertex indices establish geometric indexing,\nnot tissue material correspondence."
+          }
+        ],
+        "sources": [
+          [
+            "BR-025 protocol and original results",
+            "groups/cardiac-motion/experiments/br025/protocol.md"
+          ],
+          [
+            "Original source audit",
+            "docs/evidence/br025-source-audit.json"
+          ],
+          [
+            "Original pilot metrics",
+            "docs/evidence/br025-pilot-results.json"
+          ],
+          [
+            "Saved-output and source review",
+            "groups/cardiac-motion/presentation/sources/cardiac-contour-audit.json"
+          ],
+          [
+            "FeEcho4D project and research-use terms",
+            "https://feecho4d.github.io/Website/"
+          ],
+          [
+            "Native release metadata",
+            "https://zenodo.org/records/21322299"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "source_review": {
+        "date": "2026-09-27",
+        "actor": "assistant",
+        "receipt": "groups/cardiac-motion/presentation/sources/cardiac-contour-audit.json",
+        "receipt_sha256": "39920e028b3536593ec36ab07f97779de34971654ab6b2b8c6d1e61166f79d11",
+        "brief_sha256": "a4ed5f9ece67e1a42e18f188265c4ef068e22c37008245b7131e523c6f29b409",
+        "local_artifacts": ".local/explainers/completion-20260927/018-audit-v2",
+        "no_visual_acceptance": true
+      }
     },
     {
       "entry_id": "tb3-cardiac-anchor-feasibility",
@@ -12687,10 +12739,10 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 25,
+    "pending-operation-review": 24,
     "reviewed-scripted-spatial": 12,
     "reviewed-scripted-planar": 18,
-    "blocked-source-contract": 102,
+    "blocked-source-contract": 103,
     "blocked-source-input": 48
   },
   "completion_program": {
@@ -12710,7 +12762,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-cardiac-contour-feasibility",
+    "active_entry": "tb3-cardiac-anchor-feasibility",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -13151,7 +13203,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/017-acceptance.json",
         "reviewed_entries": 30,
-        "next_entry": "tb3-cardiac-contour-feasibility"
+        "next_entry": "tb3-cardiac-contour-feasibility",
+        "local_commit": "3ad3e133f6907d701bb51e955bcbf35434a6877a"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-cardiac-contour-feasibility",
+        "stage": "source-audit-complete-delivery-scope-unresolved",
+        "receipt": "groups/cardiac-motion/presentation/sources/cardiac-contour-audit.json",
+        "reviewed_entries": 30,
+        "next_entry": "tb3-cardiac-anchor-feasibility"
       }
     ]
   }
