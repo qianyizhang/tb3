@@ -31,6 +31,7 @@ class ExpansionTests(unittest.TestCase):
                     "vessel-source-v1",
                     "airway-repair-v1",
                     "topbrain-screen-v1",
+                    "hubmap-inventory-v1",
                 }
                 else "no-reference-assets",
             )
@@ -69,6 +70,7 @@ class ExpansionTests(unittest.TestCase):
             ("tubular-anatomy", "vessel-source-screen"),
             ("tubular-anatomy", "airway-repair"),
             ("tubular-anatomy", "topbrain-screen"),
+            ("lesion-localization", "hubmap-inventory"),
         ]:
             path = ROOT / f"groups/{group}/presentation/stories/{name}.story.md"
             model = stories.parse_expansion(path.read_text())
@@ -109,9 +111,14 @@ class ExpansionTests(unittest.TestCase):
             "vessel-source",
             "airway-repair",
             "topbrain-screen",
+            "hubmap-inventory",
         ]:
             path = ROOT / f"presentation/task-explorer/{name}/manifest.json"
-            for key, value in [("frame", "LPS"), ("label_license", "Apache-2.0")]:
+            for key, value in [
+                ("frame", "LPS"),
+                ("label_license", "Apache-2.0"),
+                ("units", "mm" if name == "hubmap-inventory" else "px"),
+            ]:
                 manifest = json.loads(path.read_text())
                 manifest[key] = value
                 with patch.object(stories.json, "loads", return_value=manifest):

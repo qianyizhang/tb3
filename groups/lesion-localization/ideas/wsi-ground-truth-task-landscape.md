@@ -310,3 +310,11 @@ mapping defect, but this is not pathology adjudication. Reopen with blinded
 HuBMAP and HiESD reference review, replicated fixed-procedure TIGER runs, and
 independent CAMELYON slides with an explicit search budget. These are selected
 diagnostics, not task qualification or a model-ranking decision.
+
+### HuBMAP explainer contract reconciliation — 2026-09-27
+
+**Actor: assistant source audit**, under the user-authorized [explainer completion task](codex://threads/01a0e024-3705-7a91-9181-d237131801fa). The [revised brief](../presentation/briefs/wsi-hubmap-inventory.en.md) preserves the proposed contour-plus-area inventory and distinguishes the existing point-only [original](../experiments/wsi-hubmap-inventory-astra-medium/protocol.md) and [revised](../experiments/wsi-hubmap-inventory-v2-sol6-xhigh/protocol.md) pilots. The earlier no-model-run statement was stale for point diagnostics; a contour/area trial remains unestablished. No original outcome or frozen task was changed.
+
+The [source audit](../presentation/sources/hubmap-inventory-audit.json) verifies three retained archive members, both 13-file point-task snapshots, exact agreement of all 99 source polygons, and 0.65 µm pixel spacing. Polygon area/centroid calculations independently agree and preserve local-to-level-0 coordinates. Source feature IDs repeat; worked examples use explicit source-order IDs. The canonical [story](../presentation/stories/hubmap-inventory.story.md) labels its reference-selected crop and constructed overlap duplicate. Anatomical-region helpers were absent from the retained point pilots.
+
+These are teaching and contract findings, not task promotion, new inference or clinical adjudication. Reopen contour execution only with a frozen contour/area contract, declared matching and helper conditions, and inclusion rules for partial/altered profiles. Prior reference concerns and independent-slide requirements remain open.

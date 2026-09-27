@@ -18,6 +18,16 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    hubmapSource,
+    hubmapDetail,
+    hubmapTiles,
+    hubmapRef,
+    hubmapReveal,
+    slideFit,
+    toLocal,
+    toLevel0,
+    profileArea,
+    hubmapRows,
     brainCases,
     brainRefs,
     brainResult,
@@ -246,6 +256,40 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   assert.ok(Math.abs(fullCurve[0].score - 0.2691879476) < 1e-9);
   assert.ok(Math.abs(fullCurve[100].score - 0.5876808912) < 1e-9);
   assert.equal(JSON.stringify(objectiveSamples('q01', 0)), JSON.stringify([fullCurve[0]]));
+  const hubmapPlan = plans.find((p) => p.recipe === 'hubmap-inventory-v1');
+  assert.ok(isPlanarStory(hubmapPlan));
+  const outline = hubmapPlan.beats.find((b) => b.scene === 'outline');
+  assert.equal(hubmapReveal(sampleStory(hubmapPlan, 0)), false);
+  assert.equal(hubmapReveal(sampleStory(hubmapPlan, outline.startFrame)), false);
+  assert.equal(hubmapReveal(sampleStory(hubmapPlan, outline.endFrame - 1)), true);
+  // Reset is an absolute seek, including all reference-derived output.
+  assert.equal(hubmapReveal(sampleStory(hubmapPlan, 0)), false);
+  const obj = hubmapRef.objects[0];
+  assert.equal(hubmapRef.objects.length, 99);
+  assert.ok(Math.abs(profileArea(obj.area_px2) - 15458.43) < 1e-8);
+  assert.notEqual(profileArea(obj.area_px2), obj.area_px2 * hubmapSource.mpp);
+  const fit = slideFit(hubmapSource.overview, 280, 309);
+  assert.ok(Math.abs(fit.width / fit.height - 13013 / 18484) < 1e-12);
+  assert.notEqual(
+    fit.width / fit.height,
+    563 / 800,
+    'rounded thumbnail dimensions must not set native geometry',
+  );
+  assert.equal(slideFit(hubmapDetail, 280, 309).width, 280);
+  for (const [i, tile] of hubmapTiles.entries()) {
+    const global = toLevel0(hubmapRef.duplicate.local_centers[i], tile.bounds_level0);
+    assert.deepEqual(Array.from(global), Array.from(obj.center_level0));
+    for (const point of obj.ring) {
+      const local = toLocal(point, tile.bounds_level0);
+      assert.ok(local.every((v, axis) => v >= 0 && v < tile.bounds_level0[axis + 2]));
+      assert.deepEqual(Array.from(toLevel0(local, tile.bounds_level0)), Array.from(point));
+    }
+  }
+  assert.equal(new Set(hubmapRef.objects.map((o) => o.id)).size, 99);
+  assert.equal(new Set(hubmapRef.objects.map((o) => o.source_id)).size, 1);
+  assert.equal(hubmapRows(0), 1);
+  assert.equal(hubmapRows(1), 5);
+  assert.equal(hubmapRows(0.8), 5, 'completed table needs reading time before the next chapter');
   const brainPlan = plans.find((p) => p.recipe === 'topbrain-screen-v1');
   assert.ok(isPlanarStory(brainPlan));
   assert.equal(brainReveal(sampleStory(brainPlan, 0)), false);

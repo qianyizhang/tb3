@@ -1,3 +1,4 @@
+import { HubmapScene, HubmapOutput } from './hubmap-inventory-panels';
 import { AirwayRepairScene, AirwayRepairOutput } from './airway-repair-panels';
 import { TopbrainScene, TopbrainOutput } from './topbrain-screen-panels';
 import { VesselSourceScene, VesselSourceOutput } from './vessel-source-panels';
@@ -100,6 +101,7 @@ function NavigationScene({ state }: { state: Extract<StoryState, { recipe: 'mult
 }
 /** Fallbacks are data-derived views of the current canonical frame, not separate stories. */
 export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryState }) {
+  if (state.recipe === 'hubmap-inventory-v1') return <HubmapScene state={state} />;
   if (state.recipe === 'topbrain-screen-v1') return <TopbrainScene state={state} />;
   if (state.recipe === 'airway-repair-v1') return <AirwayRepairScene state={state} />;
   if (state.recipe === 'vessel-source-v1') return <VesselSourceScene state={state} />;
@@ -314,6 +316,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
 }
 export function OperationOutput({ plan, state }: { plan: StoryPlan; state: StoryState }) {
   if (state.recipe === 'airway-repair-v1') return <AirwayRepairOutput state={state} />;
+  if (state.recipe === 'hubmap-inventory-v1') return <HubmapOutput state={state} />;
   if (state.recipe === 'topbrain-screen-v1') return <TopbrainOutput state={state} />;
   if (state.recipe === 'vessel-source-v1') return <VesselSourceOutput state={state} />;
   if (state.recipe === 'resect-pilot-v1') return <ResectPilotOutput state={state} />;

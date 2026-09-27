@@ -158,6 +158,8 @@ separate saved and reference material. Native pixel spacing controls both displa
 axes. MIPs collapse depth; full-volume audits establish the reported discrete
 contacts and selected parent attachments. No new inference or agent trial is implied.
 
+`hubmap-inventory-v1` uses the [retained PAS slide and polygons](task-explorer/hubmap-inventory/NOTICE.md) to explain the proposed contour/area inventory separately from historical point-only pilots. `view` controls a teaching viewport, worked arithmetic or row progression; `reference` gates source polygons, counts and reference-derived measurements. Native level-0 extents preserve physical aspect, local coordinates return through explicit crop origins, and area uses squared OME pixel spacing. Optional cortex/medulla helpers are a distinct condition. The crop is reference-selected and the duplicate example constructed; neither is agent-search evidence.
+
 ### Draft a canonical story
 
 ```sh
@@ -215,7 +217,9 @@ silent H.264 MP4 at the script's fps. V1 retains `route-unfold.mp4`; v2 filename
 story IDs. The capture bridge exists only in the dedicated export entry.
 
 Capture seeks the exact integer frame and waits for React commit, fonts, HTML and
-SVG image decoding before screenshotting the complete 1280×720 root. Receipts pin
+SVG image decoding before screenshotting the complete 1280×720 root. Capture uses
+the verified viewport rectangle and rejects any frame or root-bound change across
+the screenshot; it does not require the interactive animation clock to advance. Receipts pin
 source/asset/frontend/lock hashes, dirty files, OS, browser, renderer and outputs.
 These are local rendering receipts, not scientific evidence or cross-GPU equality.
 

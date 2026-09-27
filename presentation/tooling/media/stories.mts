@@ -195,6 +195,8 @@ export async function exportStory(root: string, options: StoryOptions): Promise<
         const ext = gl.getExtension('WEBGL_debug_renderer_info');
         return ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER);
       });
+      if (receipt.renderer === 'DOM/SVG planar')
+        receipt.camera = 'Planar coordinate-preserving SVG/DOM';
       await context.close();
     });
   } catch (error) {

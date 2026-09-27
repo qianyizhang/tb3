@@ -61,5 +61,36 @@ export async function captureComposedFrame(
   const box = await root.boundingBox();
   if (!box || Math.abs(box.width - width) > 0.01 || Math.abs(box.height - height) > 0.01)
     throw new Error(`Export root must be exactly ${width}x${height} CSS pixels`);
-  return root.screenshot({ type: 'png', scale: 'css', caret: 'hide', animations: 'disabled' });
+  const viewport = page.viewportSize();
+  if (
+    !viewport ||
+    box.x < 0 ||
+    box.y < 0 ||
+    box.x + box.width > viewport.width ||
+    box.y + box.height > viewport.height
+  )
+    throw new Error('Composed export root must fit entirely inside the capture viewport');
+  // The bridge has already committed this absolute frame and decoded its images.
+  // Element screenshots add an unrelated RAF-based scrolling/stability wait that
+  // can stall on an unchanged export root. Capture its verified viewport rectangle
+  // directly, then reject any layout or frame change across the screenshot.
+  const bytes = await page.screenshot({
+    clip: box,
+    type: 'png',
+    scale: 'css',
+    caret: 'hide',
+    animations: 'disabled',
+  });
+  const after = await root.boundingBox();
+  const committed = await root.evaluate((node) => {
+    const player = node.matches('.scene-player') ? node : node.querySelector('.scene-player');
+    return player?.getAttribute('data-committed-frame');
+  });
+  if (
+    committed !== String(frame) ||
+    !after ||
+    (['x', 'y', 'width', 'height'] as const).some((key) => Math.abs(after[key] - box[key]) > 0.01)
+  )
+    throw new Error('Composed export layout or committed frame changed during capture');
+  return bytes;
 }

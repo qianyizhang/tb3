@@ -22,6 +22,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'registration-analysis-v1',
     'vessel-source-v1',
     'topbrain-screen-v1',
+    'hubmap-inventory-v1',
     'resect-pilot-v1',
     'resect-correspondence-v1',
   ].includes(plan.recipe);
@@ -71,6 +72,17 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'hubmap-inventory-v1':
+      return {
+        heading: 'HuBMAP · one contour, one inventory row',
+        corner: 'PAS kidney · level-0 pixels · reference-derived teaching',
+        legend: [
+          ['#187d74', 'Source reference', true],
+          ['#be791f', 'Teaching viewport / centroid'],
+          ['#426ebc', 'Optional cortex'],
+          ['#8854ad', 'Optional medulla'],
+        ],
+      };
     case 'topbrain-screen-v1':
       return {
         heading: 'TopBrain · prediction screening before task admission',

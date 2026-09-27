@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "hubmap-inventory-v1": "retained-hubmap-inventory-v1",
     "topbrain-screen-v1": "retained-topbrain-screen-v1",
     "airway-repair-v1": "retained-airway-repair-v1",
     "vessel-source-v1": "retained-vessel-source-v1",
@@ -66,6 +67,19 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-hubmap-inventory-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "source.json",
+            "detail.json",
+            "tiles.json",
+            "helpers.json",
+            "reference.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+        },
+    ),
     "retained-topbrain-screen-v1": (
         "source-slices",
         "reference.json",
@@ -265,6 +279,11 @@ class AirwayRepairChannels(Closed):
     reference: Pair
 
 
+class HubmapInventoryChannels(Closed):
+    view: Pair
+    reference: Pair
+
+
 class TopbrainScreenChannels(Closed):
     view: Pair
     output: Pair
@@ -406,6 +425,33 @@ class IdentityStory(Story[IdentityChannels]):
 
 class PrototypeIdentityStory(Story[IdentityChannels]):
     recipe: Literal["prototype-identity-v1"]
+
+
+class HubmapInventoryBeat(ExpansionBeat[HubmapInventoryChannels]):
+    scene: Literal[
+        "inputs",
+        "helpers",
+        "detail",
+        "outline",
+        "coordinates",
+        "duplicate",
+        "area",
+        "inventory",
+        "conditions",
+        "limits",
+    ]
+
+
+class HubmapInventoryStory(Story[HubmapInventoryChannels]):
+    recipe: Literal["hubmap-inventory-v1"]
+    beats: tuple[HubmapInventoryBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
 
 
 class TopbrainScreenBeat(ExpansionBeat[TopbrainScreenChannels]):
@@ -603,6 +649,7 @@ AnyStory = Annotated[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | HubmapInventoryStory
     | TopbrainScreenStory
     | AirwayRepairStory
     | VesselSourceStory
@@ -626,6 +673,7 @@ ADAPTER: TypeAdapter[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | HubmapInventoryStory
     | TopbrainScreenStory
     | AirwayRepairStory
     | VesselSourceStory
@@ -809,6 +857,7 @@ def parse_expansion(
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | HubmapInventoryStory
     | TopbrainScreenStory
     | AirwayRepairStory
     | VesselSourceStory
@@ -887,6 +936,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         frame, data_license, label_license = {
+            "retained-hubmap-inventory-v1": ("level-0-image", "CC-BY-4.0", "CC-BY-4.0"),
             "retained-topbrain-screen-v1": (
                 "RAS",
                 "LicenseRef-TopBrain-2026-noncommercial",
@@ -910,7 +960,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             or manifest.get("license") != data_license
             or manifest.get("label_license") != label_license
             or manifest.get("frame") != frame
-            or manifest.get("units") != "mm"
+            or manifest.get("units")
+            != ("px" if pack_id == "retained-hubmap-inventory-v1" else "mm")
             or manifest.get("reference_policy") != "reader-reference-reveal"
             or not manifest.get("sources")
             or set(pack.retained_files) != required

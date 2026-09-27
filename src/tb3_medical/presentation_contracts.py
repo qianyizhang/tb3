@@ -280,6 +280,32 @@ class AirwayRepairPlan(ExpansionPlan):
     beats: list[AirwayRepairBeat]
 
 
+class HubmapInventoryChannels(TypedDict):
+    view: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class HubmapInventoryBeat(ExpansionBeat):
+    channels: HubmapInventoryChannels
+    scene: Literal[
+        "inputs",
+        "helpers",
+        "detail",
+        "outline",
+        "coordinates",
+        "duplicate",
+        "area",
+        "inventory",
+        "conditions",
+        "limits",
+    ]
+
+
+class HubmapInventoryPlan(ExpansionPlan):
+    recipe: Literal["hubmap-inventory-v1"]
+    beats: list[HubmapInventoryBeat]
+
+
 class TopbrainScreenChannels(TypedDict):
     view: tuple[float, float]
     output: tuple[float, float]
@@ -460,6 +486,7 @@ StoryPlan = (
     | AnatomyPlan
     | IdentityPlan
     | PrototypeIdentityPlan
+    | HubmapInventoryPlan
     | TopbrainScreenPlan
     | AirwayRepairPlan
     | VesselSourcePlan

@@ -35,6 +35,9 @@ withBrowser(async (browser) => {
     const out = path.join(folder, id),
       plan = JSON.parse(fs.readFileSync(path.join(out, 'plan.json'))),
       row = { id, frames: [], locales: [], fallback: false };
+    const receipt = JSON.parse(fs.readFileSync(path.join(out, 'receipt.json')));
+    if (receipt.renderer === 'DOM/SVG planar')
+      assert.equal(receipt.camera, 'Planar coordinate-preserving SVG/DOM');
     const url = pathToFileURL(path.join(out, 'index.html')).href;
     for (const locale of ['en', 'zh-CN']) {
       await page.goto(url + '?capture=1&lang=' + locale);
@@ -53,10 +56,14 @@ withBrowser(async (browser) => {
           'vessel-source-v1',
           'airway-repair-v1',
           'topbrain-screen-v1',
+          'hubmap-inventory-v1',
         ].includes(plan.recipe)
           ? plan.beats.map((b) => b.endFrame - 1)
           : []),
       ];
+      if (plan.recipe === 'hubmap-inventory-v1') {
+        for (const b of plan.beats) frames.push(b.startFrame);
+      }
       if (plan.recipe === 'topbrain-screen-v1') {
         for (const scene of ['cohort', 'variants', 'contacts', 'calibration', 'cpr']) {
           const beat = plan.beats.find((b) => b.scene === scene);
@@ -106,6 +113,41 @@ withBrowser(async (browser) => {
           if (frame === 0) {
             assert.equal(await page.locator('[data-airway-reference-image]').count(), 0);
             assert.equal(await page.locator('[data-airway-added-slice]').count(), 0);
+          }
+        }
+        if (plan.recipe === 'hubmap-inventory-v1') {
+          const panel = page.locator('[data-hubmap-output]');
+          const legend = await page.locator('.scene-legend').boundingBox();
+          assert.ok(legend && legend.y + legend.height <= 720, 'HuBMAP legend clipped');
+          assert.ok(
+            await panel.evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'HuBMAP output overflows',
+          );
+          const beat = plan.beats.find((b) => frame >= b.startFrame && frame < b.endFrame);
+          if (
+            ['inputs', 'helpers', 'detail', 'conditions', 'limits'].includes(beat.scene) ||
+            (beat.scene === 'outline' && frame === beat.startFrame)
+          ) {
+            assert.equal(await page.locator('[data-hubmap-reference]').count(), 0);
+            assert.equal(
+              await page
+                .locator(
+                  '[data-hubmap-measurement], [data-hubmap-worked-rows], [data-hubmap-inventory]',
+                )
+                .count(),
+              0,
+            );
+          }
+          if (beat.scene === 'inventory' && frame === beat.endFrame - 1) {
+            assert.equal(await page.locator('[data-hubmap-reference] path').count(), 99);
+            assert.equal(await page.locator('[data-hubmap-worked-rows] tbody tr').count(), 5);
+          }
+          if (beat.scene === 'duplicate' && frame === beat.endFrame - 1) {
+            assert.match(
+              await page.locator('[data-hubmap-duplicate-count]').textContent(),
+              /1 unique source object/,
+            );
+            assert.equal(await page.locator('[data-hubmap-reference] path').count(), 2);
           }
         }
         if (plan.recipe === 'topbrain-screen-v1') {
@@ -424,6 +466,7 @@ withBrowser(async (browser) => {
       'vessel-source-v1',
       'airway-repair-v1',
       'topbrain-screen-v1',
+      'hubmap-inventory-v1',
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
@@ -482,6 +525,26 @@ withBrowser(async (browser) => {
       );
       assert.equal(await fallback.locator('[data-airway-reference-geometry]').count(), 0);
       assert.equal(await fallback.locator('[data-airway-result]').count(), 0);
+    }
+    if (plan.recipe === 'hubmap-inventory-v1') {
+      assert.equal(await fallback.locator('[data-hubmap-reference]').count(), 0);
+      await fallback.locator('[data-story-step="3"]').click();
+      assert.equal(await fallback.locator('[data-hubmap-reference]').count(), 0);
+      await fallback.locator('.scene-play').click();
+      await fallback.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await fallback.locator('[data-hubmap-reference]').waitFor();
+      await fallback.locator('.scene-play').click();
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('.scene-reset').click();
+      await fallback.waitForFunction(
+        () =>
+          document.querySelector('[data-hubmap-scene]')?.getAttribute('data-hubmap-scene') ===
+          'inputs',
+      );
+      assert.equal(await fallback.locator('[data-hubmap-reference]').count(), 0);
+      assert.equal(await fallback.locator('[data-hubmap-measurement]').count(), 0);
     }
     if (plan.recipe === 'topbrain-screen-v1') {
       assert.equal(await fallback.locator('[data-brain-reference-image]').count(), 0);

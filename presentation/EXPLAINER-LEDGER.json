@@ -1586,15 +1586,15 @@
       ],
       "illustration_kind": "instances",
       "subject": "wsi",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "hubmap-inventory",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "multiscale",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "34 source paths verified, including three retained archive members and both frozen point-task references; original PAS pixels, 99 polygons and optional anatomical context retained with exact geometry/area/coordinate checks.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/013-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: - `glomeruli.geojson` with contours and `inventory.csv` with `id, center_x_px, center_y_px, area_um2`.\n- Convert polygon pixel area with 0.65² µm² per pixel.",
+      "remaining_work": "No outstanding explainer work within the proposed contour-inventory scope. A new contour/area trial, reference adjudication and independent slides require separate research; remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "- **Sample:** `aaa6a05cc`, a PAS-stained kidney training slide.\n- **Image:** 13,013 × 18,484-pixel TIFF at 0.65 µm/pixel.",
         "helpers": "- The default input is the image and physical scale; an anatomical-region JSON can be added as context.\n- The teaching crop centers on a reference object, so it cannot test full-slide search.",
@@ -1642,7 +1642,81 @@
         ],
         "gap": "- No disease-grade reference, frozen scorer, clinical review, or model run. A public training slide does not establish held-out generalization."
       },
-      "source_brief_sha256": "7993d681ac783407bae682ef6bf686b09e3cc112a2bb8f7c2918a98b3dadbbd3"
+      "source_brief_sha256": "7993d681ac783407bae682ef6bf686b09e3cc112a2bb8f7c2918a98b3dadbbd3",
+      "acceptance_scope": "Visual and engineering review of the proposed HuBMAP contour-plus-area inventory, with actual PAS imagery and separately revealed source-derived worked examples. Historical point-only pilots remain a narrower condition; no new model trial, contour/area result or clinical adjudication.",
+      "visual_review": "Ten source-based chapters, both UI locales, reference reveal/reset, actual Explorer before/after, keyboard/mobile/no-GPU behavior and full decoded 92-second video inspected. Proposed contour inventory and historical point pilots remain separate.",
+      "reviewed_contract_projection": {
+        "raw": "PAS kidney training TIFF `aaa6a05cc`: **13,013 × 18,484 level-0 pixels**, with OME spacing **0.65 µm/pixel** on both axes. Upper-left origin; x increases right and y down.",
+        "helpers": "Default: image and scale. Optional cortex/medulla polygons provide rough regional context, not glomerulus answers or an adjudicated negative domain. They were not supplied to the retained point pilots.",
+        "tools": "Read crops, trace contours, reconcile overlapping views and compute geometry. Point pilots had a GT-free overview and crop helper; direct TIFF reads were also possible.",
+        "spec": "Survey the slide, retain one stable record per distinct profile and map crop-local coordinates back to level 0. Export centers, contours and calibrated area. Do not infer disease grades, three-dimensional volumes or whole-kidney counts.",
+        "output": "`glomeruli.geojson` and `inventory.csv`: `id, center_x_px, center_y_px, area_um2`. Use polygon area centroids consistently; **pixel area × 0.65²** gives µm². The displayed worked example comes from source reference, not an agent answer.",
+        "reference": "The source `gt_masks` member contains **99 glomerulus polygons**, initialized automatically and expert-corrected. Reader reveals and reference-selected crops are teaching aids, not solver inputs.",
+        "variants": [
+          {
+            "name": "Proposed contour inventory",
+            "helper": "Image and scale",
+            "remaining": "Search, outline, deduplicate, measure"
+          },
+          {
+            "name": "Optional anatomical context",
+            "helper": "Rough cortex/medulla regions",
+            "remaining": "Locate and outline individual profiles"
+          },
+          {
+            "name": "Teaching crop",
+            "helper": "Reference-selected location",
+            "remaining": "Inspect geometry; full-slide search removed"
+          },
+          {
+            "name": "Original point pilot",
+            "helper": "GT-free overview and crop helper",
+            "remaining": "Return level-0 centers; no contours"
+          },
+          {
+            "name": "Revised reference-recall pilot",
+            "helper": "Same images; explicit uncertain-profile guidance",
+            "remaining": "Return centers and notes; extras await review"
+          }
+        ],
+        "sources": [
+          [
+            "Author release v1, CC BY 4.0",
+            "https://zenodo.org/records/7729610"
+          ],
+          [
+            "annotation methods",
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC10356924/"
+          ],
+          [
+            "Source receipt",
+            "datasets/receipts/wsi-teaching-samples.json"
+          ],
+          [
+            "display derivation",
+            "presentation/task-explorer/hubmap-inventory/NOTICE.md"
+          ],
+          [
+            "Original point protocol",
+            "groups/lesion-localization/experiments/wsi-hubmap-inventory-astra-medium/protocol.md"
+          ],
+          [
+            "revised point protocol",
+            "groups/lesion-localization/experiments/wsi-hubmap-inventory-v2-sol6-xhigh/protocol.md"
+          ],
+          [
+            "HuBMAP whole-slide glomerulus inventory — Sol 6 xhigh",
+            "groups/lesion-localization/experiments/wsi-hubmap-inventory-sol6-xhigh/protocol.md"
+          ]
+        ],
+        "gap": "The contour/area proposal has no frozen evaluator or evaluated contour output. Point pilots already exist under separate protocols. Reference inclusion, partial profiles and disease grades remain unresolved; no clinical adjudication or new trial is implied."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "0a7827f8d81daa230ece30a350b0ad7a5d2e385fd33c60a3313684a41d28c4dc",
+        "source_story_sha256": "6220654cd27ba51cdb437c486a1118da9c411e6ac507ad6bc639d1e4d94ad6bd",
+        "acceptance_receipt_sha256": "5ae8ed568713bf5e3d556451f9dd43e59f9f413b510807fe72e8b02d12e8bc94"
+      }
     },
     {
       "entry_id": "wsi-tiger-context",
@@ -12354,9 +12428,9 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 30,
+    "pending-operation-review": 29,
     "reviewed-scripted-spatial": 12,
-    "reviewed-scripted-planar": 13,
+    "reviewed-scripted-planar": 14,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
   },
@@ -12377,7 +12451,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "wsi-hubmap-inventory",
+    "active_entry": "wsi-tiger-context",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -12773,7 +12847,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/012-acceptance.json",
         "reviewed_entries": 25,
-        "next_entry": "wsi-hubmap-inventory"
+        "next_entry": "wsi-hubmap-inventory",
+        "local_commit": "55d8415be2fe64cf6209a7d898f6e1c6e82865f1"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "wsi-hubmap-inventory",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/013-acceptance.json",
+        "reviewed_entries": 26,
+        "next_entry": "wsi-tiger-context"
       }
     ]
   }

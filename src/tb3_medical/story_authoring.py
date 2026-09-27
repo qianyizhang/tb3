@@ -155,6 +155,7 @@ def new(
             "resect-pilot-v1",
             "airway-repair-v1",
             "topbrain-screen-v1",
+            "hubmap-inventory-v1",
         }:
             beat["scene"] = "inputs"
         if recipe == "anatomy-curation-v1":

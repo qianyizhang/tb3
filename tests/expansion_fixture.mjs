@@ -1,3 +1,15 @@
+export {
+  hubmapSource,
+  hubmapDetail,
+  hubmapTiles,
+  hubmapRef,
+  hubmapReveal,
+  slideFit,
+  toLocal,
+  toLevel0,
+  profileArea,
+  hubmapRows,
+} from '../presentation/frontend/task-visuals/hubmap-inventory';
 export { Group } from 'three';
 export { sampleStory } from '../presentation/frontend/task-visuals/story-timeline.ts';
 export {
