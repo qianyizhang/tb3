@@ -93,3 +93,39 @@ assistant separately requested a concrete delivery-scope decision for STRAUS;
 it remains unanswered. Keep source-derived assets local, leave this explainer
 unfinished, and continue the next actionable entry while permission or private-only
 final scope is unresolved. This does not authorize a new medical trial.
+
+## Real-echo explainer source review — 2026-09-28
+
+Actor: assistant, under the same user completion request. The
+[BR-032 exact brief](../presentation/briefs/tb3-real-echo-reconstruction.md) and
+[source/output audit](../presentation/sources/real-echo-audit.json) separate the
+72 given plane images from 72 withheld review images, with no contour or 3D truth.
+All 18 native decoded volumes, all 144 reslices, the frozen public inventory,
+retained mesh metrics and section/brightness calculations were checked without
+executing the historical solver or launching a model.
+
+One actual `gpt-5.6-sol`/xhigh attempt completed in 657.06 s and earned artifact
+reward 1; the static ellipsoid control also earned 1. The original trace records
+image viewing before the solver stored framewise measurements in fixed tables.
+The retained static-input replay changes 68/72 images while preserving every
+primary and alternative point, including 5.3973 mm RMS motion. The pose replay
+preserves the geometric response to calibration. These establish different
+properties: original image interpretation and saved executable input dependence.
+They do not establish anatomical accuracy, memorization or a failure to view
+the original images. Original rewards, failed infrastructure records and missing
+auxiliary-file replay checks remain intact.
+
+Source-only images beside primary and basal-alternative sections were inspected
+at frames 2/4/10/14 on two given and two withheld planes. At short-85, the primary
+has no section in frames 2/14 while the basal alternative does; both intersect
+at 4/10. This makes cap sensitivity visible without adjudicating chamber identity.
+The 54.08–177.57 mL primary range is model geometry, not clinical EF evidence;
+alternative spread is not calibrated uncertainty. The audit retains exact local
+image paths, hashes, color/line legends and the selected-still coverage limit.
+
+EchoSlicer repository/release records inspected on 2026-09-27 contain no explicit
+redistribution license. The assistant requested a separate EchoSlicer delivery
+decision in this chat; no answer has been recorded. Keep derived images and meshes
+local, and reopen canonical story/export acceptance when permission is documented
+or the user explicitly approves private-local final scope. Continue the clinical
+cavity entry meanwhile. This is not a user decision to change the deliverable.

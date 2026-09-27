@@ -1351,12 +1351,12 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "shape-material",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "blocked-source-contract",
+      "source_asset_readiness": "Verified 580 existing hash pins and recorded 304 additional retained-file fingerprints, native 18-volume decode, all 144 reslices, frozen 73-file public inventory, original model/control mesh metrics and retained pose/static outputs. Inspected 16 native plane/frame observations with labeled primary/alternative sections. Source-asset delivery scope remains unresolved.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Produce a dynamic closed LV cavity surface with shared connectivity and uncertainty.",
+      "blocking_dependency": "EchoSlicer project and v1.0 repository/release metadata provide no explicit redistribution license. Resolve permission for source-derived portable assets or obtain an explicit private-local final-scope decision. The EchoSlicer-specific question remains pending.",
+      "remaining_work": "After delivery scope is resolved, author and integrate the exact real-echo story, including original image interpretation versus fixed measurement-table replay, artifact-only reward, withheld plane review and unadjudicated basal/chamber assumptions; export fresh artifacts and inspect motion, mobile and no-GPU behavior. Source/output audit alone is not completion.",
       "contract_projection": {
         "raw": "Calibrated planes from a real 3D echo sequence.",
         "helpers": "Acquisition geometry, no initial source mesh or labels; held-out planes are review-only.",
@@ -1379,7 +1379,63 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "57f0322c79ae1369d0215c38aed623ae5a9297705306a651caa07f55bc8dd386"
+      "source_brief_sha256": "57f0322c79ae1369d0215c38aed623ae5a9297705306a651caa07f55bc8dd386",
+      "blocker_resolution": "Document source permission or an explicit user private-local scope decision; retain this row as unfinished and continue the next actionable entry. No new trial or publication is authorized.",
+      "audited_contract_projection": {
+        "raw": "**72 grayscale PNGs:** four simultaneous reslices, each with all 18 original\nframes, at 256 × 256 pixels and **0.75 mm/pixel**. They come from EchoSlicer's\n`dataset/A_0.dcm`, selected as the first lexicographic non-resource-fork DICOM\nin the public v1.0 archive. Selection was not based on model performance.\n\nThe author decoded a native `[18,404,76,62]` uint8 array in spherical\nrho/phi/theta coordinates, then sampled two long-axis planes and short-axis\nplanes at source depths 65 and 105 mm. All frames retain their original order\nand 161.15 ms spacing; there is no synthetic motion or phase interpolation.\nEighteen samples do not by themselves establish one adjudicated heartbeat.",
+        "helpers": "`geometry.json` supplies four plane origins and orthonormal in-plane directions,\npixel centre 127.5, spacing, frame IDs 1–18, times 0–2.73955 s and task axes in mm.\nThe public inventory is exactly **73 files**. Source coordinates were rotated\nand translated into the task frame; the rigid transform does not create new\nanatomical information or demonstrate freedom from prior source exposure.\n\nThe solver receives no masks, seed points, initial mesh, full native volume,\nDICOM identifiers or source acquisition link. Plane images are reslices of one\nvolume acquisition, not four separately acquired probe videos.",
+        "tools": "The frozen Python 3.12 container provides NumPy 2.2.6, SciPy 1.15.3, Pillow\n11.3.0, OpenCV 4.12.0.88, meshio 5.3.5 and scikit-image 0.25.2, with four CPUs,\n8 GiB memory and no GPU. The agent allowance is 1,800 s; verification is separate.\nThe prompt permits local processing and forbids retrieval of the source case,\npretrained cardiac models or previous solvers. The primary task declares public\nnetwork mode, so this is a prompt restriction, not enforced network isolation.\nThe later retained executable replays used `--network none`.",
+        "spec": "Infer cavity location, apical extent and a declared basal cap from the supplied\nimages. Construct 18 finite, closed, outward-oriented surface meshes with shared\ntriangle connectivity and positive signed volume in the supplied mm frame.\nPersistent surface indices represent geometric correspondence; they do not\nestablish tracked myocardial tissue or permit a strain claim.\n\nThe original agent inspected individual images, contact sheets, enlarged regions\nand pixel grids before recording framewise radii, centroids, basal depths and\napical depths in six `OBSERVED` tables. Its solver builds a smooth stack of\n25 rings × 48 azimuths, plus basal and apical centre vertices. The planar basal\nfan is a modeling convention, not an observed valve surface. Between-plane shape\ncomes from a fixed radial profile and mild harmonic modulation.",
+        "output": "`prediction.npz` contains `points[18,N,3]`, integer `faces[M,3]` and\n`alternative_points[K,18,N,3]`, with 2–5 alternatives, at most 10,000 vertices\nand 20,000 triangles. Also provide executable `solve.py --input ... --output ...`,\n`method.md` and `summary.json` with frame IDs, consistent mL volumes, inferred\nextrema, basal-cap convention, assumptions and uncertainty.\n\nThe retained primary has **1,202 vertices and 2,400 triangles**. Three alternatives\nchange radial extent, apex or basal inclusion while sharing connectivity and\ntiming. Their spread is sensitivity to chosen assumptions, not a calibrated\nconfidence interval or guaranteed coverage of the true cavity.",
+        "reference": "The raw DICOM, native volume and four additional review planes remain author-side.\nThe withheld set comprises long-axis orientations 45/135 degrees and short-axis\ndepths 45/85 mm: another **72 images**, unavailable to the original solver.\nThey permit section/image inspection but provide no independent contours.\n\nNo paired 3D geometry, material correspondence, strain, clinical EF, flow or\ndiagnosis truth is supplied. Chamber identity and basal closure remain\nunadjudicated. The control called `oracle` in historical execution receipts is\nan image-ignorant static ellipsoid used to test format validity, not anatomy GT.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "`geometry.json` supplies four plane origins and orthonormal in-plane directions,\npixel centre 127.5, spacing, frame IDs 1–18, times 0–2.73955 s and task axes in mm.\nThe public inventory is exactly **73 files**. Source coordinates were rotated\nand translated into the task frame; the rigid transform does not create new\nanatomical information or demonstrate freedom from prior source exposure.\n\nThe solver receives no masks, seed points, initial mesh, full native volume,\nDICOM identifiers or source acquisition link. Plane images are reslices of one\nvolume acquisition, not four separately acquired probe videos.",
+            "remaining": "Infer cavity location, apical extent and a declared basal cap from the supplied\nimages. Construct 18 finite, closed, outward-oriented surface meshes with shared\ntriangle connectivity and positive signed volume in the supplied mm frame.\nPersistent surface indices represent geometric correspondence; they do not\nestablish tracked myocardial tissue or permit a strain claim.\n\nThe original agent inspected individual images, contact sheets, enlarged regions\nand pixel grids before recording framewise radii, centroids, basal depths and\napical depths in six `OBSERVED` tables. Its solver builds a smooth stack of\n25 rings × 48 azimuths, plus basal and apical centre vertices. The planar basal\nfan is a modeling convention, not an observed valve surface. Between-plane shape\ncomes from a fixed radial profile and mild harmonic modulation."
+          }
+        ],
+        "sources": [
+          [
+            "BR-032 — real ultrasound without a reference reconstruction",
+            "groups/cardiac-motion/experiments/br032/protocol.md"
+          ],
+          [
+            "Original source and task preparation",
+            "docs/research-rounds/BR-032-real-echo-case.md"
+          ],
+          [
+            "Original result interpretation",
+            "docs/research-rounds/BR-032-real-echo-results.md"
+          ],
+          [
+            "Frozen result and replay receipt",
+            "docs/evidence/br032-real-echo-results.json"
+          ],
+          [
+            "Source, saved-output and replay audit",
+            "groups/cardiac-motion/presentation/sources/real-echo-audit.json"
+          ],
+          [
+            "EchoSlicer project",
+            "https://github.com/echonet/3d-echo"
+          ],
+          [
+            "EchoSlicer v1.0 release",
+            "https://github.com/echonet/3d-echo/releases/tag/v1.0"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "source_review": {
+        "date": "2026-09-28",
+        "actor": "assistant",
+        "receipt": "groups/cardiac-motion/presentation/sources/real-echo-audit.json",
+        "receipt_sha256": "cac57a80d5e037adc23e5a3024951663e6e926642cab23db029af1be85d4c770",
+        "brief_sha256": "fc54c631f14519d63df506039db13dbc34ffd4ef7f8a1d16d4214e16f9263b9a",
+        "local_artifacts": ".local/explainers/completion-20260927/021-audit-v4",
+        "no_visual_acceptance": true
+      }
     },
     {
       "entry_id": "tb3-clinical-cavity-adaptation",
@@ -12851,10 +12907,10 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 22,
+    "pending-operation-review": 21,
     "reviewed-scripted-spatial": 12,
     "reviewed-scripted-planar": 18,
-    "blocked-source-contract": 105,
+    "blocked-source-contract": 106,
     "blocked-source-input": 48
   },
   "completion_program": {
@@ -12874,7 +12930,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-real-echo-reconstruction",
+    "active_entry": "tb3-clinical-cavity-adaptation",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -13342,7 +13398,16 @@
         "stage": "source-audit-complete-delivery-scope-unresolved",
         "receipt": "groups/cardiac-motion/presentation/sources/cardiac-material-audit.json",
         "reviewed_entries": 30,
-        "next_entry": "tb3-real-echo-reconstruction"
+        "next_entry": "tb3-real-echo-reconstruction",
+        "commit": "c0119f3e8d1f6d8c61a2aa750071a47bffd375fe"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-real-echo-reconstruction",
+        "stage": "source-audit-complete-delivery-scope-unresolved",
+        "receipt": "groups/cardiac-motion/presentation/sources/real-echo-audit.json",
+        "reviewed_entries": 30,
+        "next_entry": "tb3-clinical-cavity-adaptation"
       }
     ]
   }
