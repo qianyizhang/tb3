@@ -18,6 +18,12 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    cavityCases,
+    cavityOutputs,
+    cavityReferences,
+    cavitySelection,
+    cavitySectionPath,
+    decodeCavity,
     revisedSource,
     revisedViews,
     revisedRef,
@@ -130,6 +136,92 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     residualM,
     level0Point,
   } = await loadFrontend('expansion_fixture.mjs');
+  const stitched = cavitySectionPath([
+    [
+      [1, 0],
+      [1, 1],
+    ],
+    [
+      [0, 0],
+      [1, 0],
+    ],
+    [
+      [0, 1],
+      [0, 0],
+    ],
+    [
+      [1, 1],
+      [0, 1],
+    ],
+  ]);
+  assert.equal((stitched.match(/M/g) || []).length, 1);
+  assert.equal((stitched.match(/L/g) || []).length, 4);
+  const cavityPlan = plans.find((p) => p.recipe === 'clinical-cavity-v1');
+  assert.ok(cavityPlan);
+  const inputState = sampleStory(cavityPlan, 0);
+  assert.equal(inputState.output, 0);
+  assert.equal(inputState.helper, 0);
+  assert.equal(cavitySelection(inputState).reveal, false);
+  for (const key of ['primary', 'patient', 'preserved']) {
+    const data = cavityCases[key],
+      output = cavityOutputs[key].mesh;
+    assert.equal(data.frames, { primary: 18, patient: 35, preserved: 48 }[key]);
+    assert.equal(output.frames, data.frames);
+    assert.equal(cavityReferences[key].mesh.frames, data.frames);
+    assert.deepEqual(decodeCavity(output).frames[0], decodeCavity(data.initial).frames[0]);
+    const beat = cavityPlan.beats.find(
+      (b) => b.scene === { primary: 'tracking', patient: 'patient', preserved: 'preserved' }[key],
+    );
+    const visited = new Set();
+    for (let frame = beat.startFrame; frame < beat.endFrame; frame++) {
+      const selection = cavitySelection(sampleStory(cavityPlan, frame));
+      visited.add(selection.imageFrame);
+      assert.equal(selection.frame, selection.imageFrame);
+      assert.equal(selection.refFrame, selection.imageFrame);
+      for (const plane of data.planes)
+        assert.ok(plane.frames[selection.imageFrame].png.startsWith('data:image/png;base64,'));
+    }
+    assert.equal(visited.size, data.frames, 'Every native frame must appear');
+  }
+  const original = decodeCavity(cavityOutputs.primary.mesh);
+  for (const scene of ['static', 'shift']) {
+    const beat = cavityPlan.beats.find((b) => b.scene === scene);
+    const visited = new Set();
+    for (let frame = beat.startFrame; frame < beat.endFrame; frame++) {
+      const selection = cavitySelection(sampleStory(cavityPlan, frame));
+      const expected = scene === 'static' ? 0 : (selection.frame - 5 + 18) % 18;
+      assert.equal(selection.imageFrame, expected);
+      assert.deepEqual(
+        decodeCavity(selection.output).frames[selection.frame],
+        original.frames[expected],
+      );
+      assert.equal(
+        selection.output.volume_ml[selection.frame],
+        cavityOutputs.primary.mesh.volume_ml[expected],
+      );
+      assert.equal(
+        selection.reveal,
+        false,
+        'Clinical reference must not masquerade as a counterfactual control',
+      );
+      visited.add(selection.frame);
+    }
+    assert.equal(visited.size, 18);
+  }
+  const revealBeat = cavityPlan.beats.find((b) => b.id === 'reveal');
+  assert.equal(cavitySelection(sampleStory(cavityPlan, revealBeat.startFrame)).reveal, false);
+  assert.equal(cavitySelection(sampleStory(cavityPlan, revealBeat.endFrame - 1)).reveal, true);
+  const cavityParent = new Group(),
+    cavityContent = nativeFactory(cavityPlan)(cavityParent);
+  cavityContent.update(sampleStory(cavityPlan, revealBeat.startFrame));
+  const beforeRevealScale = cavityParent.children[0].scale.toArray();
+  cavityContent.update(sampleStory(cavityPlan, revealBeat.endFrame - 1));
+  assert.deepEqual(
+    cavityParent.children[0].scale.toArray(),
+    beforeRevealScale,
+    'Reference reveal must not change the displayed mm scale',
+  );
+  cavityContent.dispose();
   const baseline = JSON.parse(
     fs.readFileSync(path.join(__dirname, 'fixtures/story-baseline.json')),
   );

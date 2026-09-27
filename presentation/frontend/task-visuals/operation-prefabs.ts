@@ -53,7 +53,7 @@ import {
 } from './prototype-identity';
 
 /** Content lifetime only; the existing stage retains camera, renderer and projection. */
-function content(parent: THREE.Group, name: string) {
+export function content(parent: THREE.Group, name: string) {
   const root = new THREE.Group();
   root.name = name;
   parent.add(root);

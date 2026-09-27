@@ -1,3 +1,4 @@
+import { ClinicalCavityScene, ClinicalCavityOutput } from './clinical-cavity-panels';
 import { RevisedCtScene, RevisedCtOutput } from './longitudinal-ct-revised-panels';
 import { CtOriginalScene, CtOriginalOutput } from './longitudinal-ct-original-panels';
 import { MriScene, MriOutput } from './longitudinal-mri-panels';
@@ -117,6 +118,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   if (state.recipe === 'resect-correspondence-v1') return <ResectScene state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisScene state={state} />;
+  if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityScene state={state} />;
   if (state.recipe === 'respiratory-v1') return <RespiratoryScene state={state} />;
   if (state.recipe === 'anatomy-curation-v1') return <CurationScene state={state} />;
   if (state.recipe === 'mask-screen-v1') return <MaskScreenScene state={state} />;
@@ -335,6 +337,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'resect-correspondence-v1') return <ResectOutput state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisOutput state={state} />;
+  if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityOutput state={state} />;
   if (state.recipe === 'respiratory-v1') return <RespiratoryOutput state={state} />;
   if (state.recipe === 'anatomy-curation-v1') return <CurationOutput state={state} />;
   if (state.recipe === 'mask-screen-v1') return <MaskScreenOutput state={state} />;

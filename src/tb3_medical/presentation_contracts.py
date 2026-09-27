@@ -514,6 +514,34 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class ClinicalCavityChannels(TypedDict):
+    phase: tuple[float, float]
+    helper: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class ClinicalCavityBeat(ExpansionBeat):
+    channels: ClinicalCavityChannels
+    scene: Literal[
+        "inputs",
+        "initial",
+        "tracking",
+        "reference",
+        "patient",
+        "preserved",
+        "static",
+        "shift",
+        "judgment",
+        "output",
+    ]
+
+
+class ClinicalCavityPlan(ExpansionPlan):
+    recipe: Literal["clinical-cavity-v1"]
+    beats: list[ClinicalCavityBeat]
+
+
 class RespiratoryChannels(TypedDict):
     depth: tuple[float, float]
     output: tuple[float, float]
@@ -606,6 +634,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | ClinicalCavityPlan
     | RespiratoryPlan
     | CurationPlan
     | MaskScreenPlan

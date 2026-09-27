@@ -1,3 +1,4 @@
+import { createClinicalCavityPrefab } from './clinical-cavity-prefab';
 import type { StoryPlan } from '../types';
 import { createRoutePrefab } from './route-prefab';
 import {
@@ -39,11 +40,14 @@ export function hasInteractiveProjection(plan: StoryPlan): boolean {
     'mask-screen-v1',
     'anatomy-curation-v1',
     'airway-repair-v1',
+    'clinical-cavity-v1',
     'respiratory-v1',
   ].includes(plan.recipe);
 }
 export function nativeFactory(plan: StoryPlan) {
   switch (plan.recipe) {
+    case 'clinical-cavity-v1':
+      return createClinicalCavityPrefab;
     case 'airway-repair-v1':
       return createAirwayRepairPrefab;
     case 'respiratory-v1':
@@ -76,6 +80,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'clinical-cavity-v1':
+      return {
+        heading: 'Clinical cavity · track, measure and test',
+        corner: 'EchoXFlow · local mm axes · discrete acquired frames · slowed playback',
+        legend: [
+          ['#8398ad', 'Supplied initial surface'],
+          ['#18c6d4', 'Saved output · solid section'],
+          ['#f4bc49', 'Private reference · dashed section', true],
+        ],
+      };
     case 'longitudinal-ct-revised-v1':
       return {
         heading: 'Revised CT · inclusion, partition and context',

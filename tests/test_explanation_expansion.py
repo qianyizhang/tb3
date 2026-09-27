@@ -24,6 +24,7 @@ class ExpansionTests(unittest.TestCase):
                     "prototype-identity-v1",
                     "mask-screen-v1",
                     "anatomy-curation-v1",
+                    "clinical-cavity-v1",
                     "respiratory-v1",
                     "registration-analysis-v1",
                     "resect-correspondence-v1",
@@ -67,6 +68,7 @@ class ExpansionTests(unittest.TestCase):
         for group, name in [
             ("anatomy-audit", "mask-reasoning-study"),
             ("anatomy-audit", "anatomy-curation"),
+            ("cardiac-motion", "clinical-cavity-adaptation"),
             ("registration", "respiratory-correspondence"),
             ("registration", "registration-failure-analysis"),
             ("registration", "resect-point-correspondence"),

@@ -1,4 +1,12 @@
 export {
+  cavityCases,
+  cavityOutputs,
+  cavityReferences,
+  cavitySelection,
+  cavitySectionPath,
+  decodeCavity,
+} from '../presentation/frontend/task-visuals/clinical-cavity';
+export {
   revisedSource,
   revisedViews,
   revisedRef,

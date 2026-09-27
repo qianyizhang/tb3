@@ -1452,15 +1452,15 @@
       ],
       "illustration_kind": "dynamic_mesh",
       "subject": "ultrasound",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "clinical-cavity-adaptation",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "shape-material",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "816 existing/verified-archive hash pins checked; all 101 prepared frames and 303 previews, initial/private surfaces, clinical gates, retained altered-input outputs and 822 section sets reproduced. Three reference-systolic native-view comparisons inspected. Pinned catalogue/license and current official source card agree on CC BY-NC-SA 4.0.",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "No external source-access blocker currently identified for authorized local work. An entry-specific clinical cavity recipe, canonical story, attributed local assets, exports and full visual acceptance remain required.",
-      "remaining_work": "Build the actual image/initialization-to-tracking story with synchronized saved mesh motion, reader-only reference sections, full volume curves and still/phase-shift controls. Integrate a specific shared recipe; export HTML/MP4/captions/receipts; inspect decisive frames, continuous motion, mobile and no-GPU behavior before changing this row to reviewed.",
+      "reviewed_disposition": "reviewed-scripted-spatial",
+      "source_asset_readiness": "Source audit verifies 820 fingerprints, all 101 prepared frames and 303 previews, 822 section sets and original grades/retained replays. Required licensed teaching fixtures and explicit clinical-cavity recipe now integrated; CC BY-NC-SA 4.0 attribution and reader-reference boundaries retained.",
+      "rendered_mode": "spatial",
+      "acceptance_receipt": ".local/explainers/completion-20260927/022-acceptance.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work for the retained clinical-cavity condition. Clinical/reference adjudication and new trials remain separate research. Remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "Clinical B-mode sequence with calibration/timestamps.",
         "helpers": "Initial LV cavity surface and optional earlier executable; later surfaces and functional references are withheld.",
@@ -1546,7 +1546,64 @@
         "brief_sha256": "0b683ba7bedc945a198e2c3aca6e9a85fc93fa7f14d1ddc787612f96f137448b",
         "local_artifacts": ".local/explainers/completion-20260927/022-audit-v3",
         "no_visual_acceptance": true
-      }
+      },
+      "acceptance_scope": "Visual and engineering review of the retained BR-034 clinical-cavity task: one Sol/xhigh attempt, two unchanged-executable clinical replays and distinct counterfactual/static-surface controls. Original scores and clinical-reference limits remain unchanged; no new model, solver, medical runtime or publication.",
+      "visual_review": "Eleven chapters with actual 3D surfaces, calibrated images, synchronized original volume curves, reader-only reference reveal, two hidden cases and distinct controls. Source-first/reset, fixed reveal scale, legends, both locales, mobile control/result chapters, no-GPU playback and actual narrow Explorer reviewed. Fully decoded 100-second video.",
+      "reviewed_contract_projection": {
+        "raw": "The primary input is `volumes.npy`, **18 consecutive acquired B-mode frames**\non a `[18,134,82,93]` Cartesian grid in `[t,z,y,x]` order. Spatial sampling is\n**1 mm** along each axis. These are resampled native images, not synthetic\nmotion, beat stitching or a segmentation volume.\n\nSource: EchoXFlow `recording_8aef1d9a69fc3bae`. Native indices 3–20 of 25\nframes align with the annotated beat at about 22.6 volumes/s. The author applies\nthe published scanner-to-render convention `(-X,Z,Y)`, then an initial-surface\nPCA basis and an 18 mm padded crop. Both axes and crop use only the initial\nsurface. The local axes are not adjudicated anatomical planes.",
+        "helpers": "`initial_mesh.npz` supplies the expert/software-derived LV endocardial surface\nand its basal closure at `initial_mesh_frame=0`. `geometry.json` supplies origin,\n1 mm spacing, shape and timestamps. The coordinate rule is\n`XYZ_mm = origin + spacing * [x,y,z]` for `volumes[t,z,y,x]`.\n\nThe primary **58-file** public inventory contains those three files,\n54 unannotated orthogonal preview PNGs and BR-032's optional\n`previous_case_solve.py`. Its fixed-table limitation is disclosed. No later\nsurface, EF, disease label, Doppler, patient history or source identifier is\ngiven. Supplying the initial cavity removes segmentation and meshing at that\nframe; later tracking remains the task.",
+        "tools": "The frozen Python 3.12 environment provides NumPy 2.2.6, SciPy 1.15.3,\nPillow 11.3.0, OpenCV 4.12.0.88, meshio 5.3.5 and scikit-image 0.25.2.\nThe model allowance is 1,800 s on four CPUs and 8 GiB RAM, with no GPU.\nThe submitted executable must finish a replay within 300 s on the same CPU/RAM\nbudget. Prompt restrictions forbid source scans, reference reconstructions,\npretrained cardiac models and previous workbench retrieval. Primary execution\ndeclares public network mode; the retained independent replays disable network.",
+        "spec": "Inspect images and save `pre_model_assessment.json` before fitting. Then recover\nall phases from the current volumetric pixels while retaining the supplied\ninitialization at its declared frame. The executable must handle different\nframe counts/grids, repeated-initial-frame inputs and a circular frame shift\nwith an updated initialization index.\n\nThe actual solver replaces the previous case's tables with sequential 3D TV-L1\noptical flow. It smooths a 12 mm padded tracking crop, registers consecutive\nframes including the last-to-first edge, samples displacement at cavity\nvertices and distributes accumulated loop drift linearly over the cycle.\nIdentical neighboring arrays explicitly yield zero flow. The initial mesh\nremains exact; the basal closure follows the image displacement. This is\nkinematic cavity tracking, not myocardial material identification or mechanics.",
+        "output": "`prediction.npz` contains finite `points[T,N,3]` in mm and shared integer\n`faces[M,3]`, with at most 10,000 vertices and 20,000 triangles. Surfaces must\nbe closed and consistently oriented, including the declared basal closure.\nThe retained outputs have **1,946 vertices and 3,888 triangles** per frame.\n\nAlso provide executable `solve.py --input ... --output ...`, `method.md`,\ninspectable overlays and `summary.json`: one independently calculated mL volume\nper frame, `EF=100*(max(volume)-min(volume))/max(volume)`, zero-based ED/ES indices,\nuncertainty and a bounded functional interpretation. The four supplied pilot\ncategories are EF below 30%, 30–40%, above 40% to below 54%, and at least 54%.\nThese task bins are not a complete clinical guideline or a heart-failure diagnosis.",
+        "reference": "Later source endocardial surfaces and their volume/EF curves are private to\nthe verifier. They are operator/software-derived clinical annotations, with\nobserver uncertainty and no independent cardiologist adjudication. Dense cavity\nindices are not measured myocardial material trajectories or disease etiology.\n\nTwo additional cases reach only the unchanged executable after the attempt:\na hidden reduced-function case with 35 annotated frames and a supplementary\npreserved-function case with 48 frames. Each replay receives its own initial\nsurface, calibration and current images; no model feedback is supplied.\nTheir input grids are `[35,112,84,85]` and `[48,131,84,88]`, with\n108 and 147 public files respectively. Reader reference reveals are not inputs.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "`initial_mesh.npz` supplies the expert/software-derived LV endocardial surface\nand its basal closure at `initial_mesh_frame=0`. `geometry.json` supplies origin,\n1 mm spacing, shape and timestamps. The coordinate rule is\n`XYZ_mm = origin + spacing * [x,y,z]` for `volumes[t,z,y,x]`.\n\nThe primary **58-file** public inventory contains those three files,\n54 unannotated orthogonal preview PNGs and BR-032's optional\n`previous_case_solve.py`. Its fixed-table limitation is disclosed. No later\nsurface, EF, disease label, Doppler, patient history or source identifier is\ngiven. Supplying the initial cavity removes segmentation and meshing at that\nframe; later tracking remains the task.",
+            "remaining": "Inspect images and save `pre_model_assessment.json` before fitting. Then recover\nall phases from the current volumetric pixels while retaining the supplied\ninitialization at its declared frame. The executable must handle different\nframe counts/grids, repeated-initial-frame inputs and a circular frame shift\nwith an updated initialization index.\n\nThe actual solver replaces the previous case's tables with sequential 3D TV-L1\noptical flow. It smooths a 12 mm padded tracking crop, registers consecutive\nframes including the last-to-first edge, samples displacement at cavity\nvertices and distributes accumulated loop drift linearly over the cycle.\nIdentical neighboring arrays explicitly yield zero flow. The initial mesh\nremains exact; the basal closure follows the image displacement. This is\nkinematic cavity tracking, not myocardial material identification or mechanics."
+          }
+        ],
+        "sources": [
+          [
+            "BR-034 — Clinical LV adaptation and functional assessment",
+            "groups/cardiac-motion/experiments/br034/protocol.md"
+          ],
+          [
+            "Original contract and source selection",
+            "docs/research-rounds/BR-034-pathological-echo.md"
+          ],
+          [
+            "Supplementary control and input-quality correction",
+            "docs/research-rounds/BR-034-preserved-control-amendment.md"
+          ],
+          [
+            "Original result interpretation",
+            "docs/research-rounds/BR-034-results.md"
+          ],
+          [
+            "Frozen results, controls and replay receipts",
+            "docs/evidence/br034-clinical-adaptation-results.json"
+          ],
+          [
+            "Native source and retained-output audit",
+            "groups/cardiac-motion/presentation/sources/clinical-cavity-audit.json"
+          ],
+          [
+            "EchoXFlow dataset",
+            "https://huggingface.co/datasets/Ahus-AIM/EchoXFlow"
+          ],
+          [
+            "EchoXFlow source tools",
+            "https://github.com/Ahus-AIM/EchoXFlow"
+          ],
+          [
+            "CC BY-NC-SA 4.0",
+            "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "reviewed_source_brief_sha256": "0b683ba7bedc945a198e2c3aca6e9a85fc93fa7f14d1ddc787612f96f137448b"
     },
     {
       "entry_id": "tb3-mask-to-mechanics",
@@ -12970,8 +13027,8 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 21,
-    "reviewed-scripted-spatial": 12,
+    "pending-operation-review": 20,
+    "reviewed-scripted-spatial": 13,
     "reviewed-scripted-planar": 18,
     "blocked-source-contract": 106,
     "blocked-source-input": 48
@@ -12993,7 +13050,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-clinical-cavity-adaptation",
+    "active_entry": "tb3-mask-to-mechanics",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -13480,6 +13537,15 @@
         "receipt": "groups/cardiac-motion/presentation/sources/clinical-cavity-audit.json",
         "reviewed_entries": 30,
         "next_action": "Continue this same entry with source-derived assets and a specific clinical cavity operation recipe."
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-clinical-cavity-adaptation",
+        "stage": "reviewed-scripted-spatial",
+        "receipt": ".local/explainers/completion-20260927/022-acceptance.json",
+        "export_receipt_sha256": "738183a04e43293d88395f90e678cf684349496da9e833c74de90148d5767eaf",
+        "reviewed_entries": 31,
+        "next_action": "Continue tb3-mask-to-mechanics; preserve the existing unanswered STRAUS scope question and do not infer permission."
       }
     ]
   }

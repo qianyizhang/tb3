@@ -54,6 +54,7 @@ A bound story is not automatically accepted; unresolved entries remain visible.
 | Mixed tissue | Retained M02 CT with supplied host/donor outlines; author-only region and LPS witness revealed explicitly; whole/partial/unchanged/focused conditions stay distinct |
 | Respiratory correspondence | Actual oblique CT, calibrated source/target sections, source-depth contracts, ordered historical output and separate numerical/visual judgments |
 | Registration postmortem | Retained composition repairs, calibrated search boxes, actual CT patch objective and separate author controls/fresh repeats |
+| Clinical cavity | Actual EchoXFlow frames, supplied initial surface, saved tracking, private reference reveal, volume/EF gates and distinct static/shift controls |
 | CT/MRI | Separate Radon/FFT measurements and image outputs; toy vs task dimensions/assistance explicit |
 
 V2 multiscale stories require `operation: coordinate-navigation`, `supplied-patches`
@@ -282,3 +283,14 @@ completion. Do not remove scientific conditions or frozen outcomes for uniformit
 `longitudinal-ct-original-v1` explains the original full-volume CT task through [native retained views](task-explorer/longitudinal-ct-original/NOTICE.md). Closed scenes separate inputs, saved instance maps, the open reference-partition review, an omitted focus, physical detection matching, link eligibility, complete events and file-contract validity. `view` advances six actual native sections; `output` and `reference` independently reveal saved and private material. Mask-selected crops and source-selected crops retain distinct roles. Fixed HU windows, native spacing and per-visit affines preserve scale without depicting registration. Saved-score replay is not new inference; instance/confluence adjudication stays open.
 
 `longitudinal-ct-revised-v1` explains revised inclusion/instance rules and broad supplied context through [audited native views](task-explorer/longitudinal-ct-revised/NOTICE.md). Twelve closed scenes separate two full CT pairs, generic rules, retained partition changes, volume dominance, all size strata, exact context fields, reported exclusions, accepted-focus contours, complete event denominators and qualified comparisons. `view` advances three native sections in each comparison; `output` and `reference` preserve saved-answer and private-label boundaries. Report-selected exclusions appear before their reference reveal. Shared CT drawing helpers retain native scale and orientation. All three saved-score sets replay exactly; no clinical adjudication, new inference or causal context effect is implied.
+
+
+`clinical-cavity-v1` advances `phase` through discrete acquired frames; `helper`,
+`output` and `reference` control separate reveals. Native paired surfaces use the
+same fixed input bounds within each case. The no-GPU player retains synchronized
+calibrated sections, volume curves and all chapters. Source positions use float32
+for display (maximum audited error below 0.000002 mm); curves and grades retain
+original float64 values. Dashed sections join existing intersection endpoints.
+Static images with a responsive executable and static initialization against a
+moving reference are different controls. See the [source notice](task-explorer/clinical-cavity/NOTICE.md)
+and [canonical story](../groups/cardiac-motion/presentation/stories/clinical-cavity-adaptation.story.md).

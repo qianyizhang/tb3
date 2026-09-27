@@ -1008,3 +1008,116 @@
 :global([data-recipe='longitudinal-ct-revised-v1']) .storyOutput td {
   font-size: 13px;
 }
+
+.cavitySlices,
+.cavityCurve {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 6px 0;
+}
+.cavitySlices text,
+.cavityCurve text {
+  font:
+    11px ui-sans-serif,
+    system-ui,
+    sans-serif;
+  fill: #43544d;
+}
+.cavityOutput > small {
+  display: block;
+  font-size: 11px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.cavityOutput p {
+  margin: 7px 0;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.cavityOutput table {
+  font-size: 11px;
+  width: 100%;
+}
+.cavityOutput th,
+.cavityOutput td {
+  padding: 3px 4px;
+}
+.cavityAttribution {
+  margin-top: 9px;
+  color: var(--muted);
+}
+.cavityFallback {
+  padding: 20px;
+}
+.cavityFallback > .cavitySlices {
+  max-height: 330px;
+}
+:global([data-explainer-export-frame]) .player[data-recipe='clinical-cavity-v1'] .storyOutput {
+  padding: 10px 14px;
+}
+:global([data-explainer-export-frame]) .cavityOutput > strong {
+  font-size: 16px;
+}
+
+.cavityOutput > .cavitySlices {
+  height: 136px;
+}
+.cavityReadout[data-with-curve='true'] {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.cavityReadout small {
+  display: block;
+  font-size: 11px;
+  line-height: 1.35;
+}
+.cavityReadout .cavityCurve text {
+  font-size: 13px;
+}
+:global([data-explainer-export-frame]) .player[data-recipe='clinical-cavity-v1'] .storyHeading {
+  height: 112px;
+}
+:global([data-explainer-export-frame])
+  :global([data-recipe='clinical-cavity-v1'])
+  :global(.scene-steps button) {
+  min-height: 36px;
+  padding-block: 6px;
+}
+@container task-visual (max-width: 600px) {
+  .cavityReadout[data-with-curve='true'] {
+    grid-template-columns: 1fr;
+  }
+  .cavityOutput > .cavitySlices {
+    height: auto;
+  }
+  .cavityOutput p {
+    font-size: 14px;
+  }
+  .cavityReadout small,
+  .cavityOutput > small {
+    font-size: 12px;
+  }
+}
+
+.cavitySlices text {
+  font-size: 14px;
+}
+.cavityReadout .cavityCurve {
+  margin-top: 0;
+}
+
+.player[data-recipe='clinical-cavity-v1'] :global(.scene-step-index) {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+@container task-visual (max-width: 900px) {
+  .player[data-recipe='clinical-cavity-v1'] .storyLayout {
+    grid-template-columns: 1fr;
+  }
+  .player[data-recipe='clinical-cavity-v1'] :global(.scene-steps) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

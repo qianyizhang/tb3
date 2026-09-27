@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "clinical-cavity-v1": "retained-clinical-cavity-v1",
     "longitudinal-ct-revised-v1": "retained-longitudinal-ct-revised-v1",
     "longitudinal-ct-original-v1": "retained-longitudinal-ct-original-v1",
     "longitudinal-mri-v1": "retained-longitudinal-mri-v1",
@@ -71,6 +72,11 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-clinical-cavity-v1": (
+        "source-slices",
+        "reference.json",
+        {"source.json", "output.json", "reference.json", "NOTICE.md", "DATA-LICENSE.txt"},
+    ),
     "retained-longitudinal-ct-revised-v1": (
         "source-slices",
         "reference.json",
@@ -384,6 +390,13 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class ClinicalCavityChannels(Closed):
+    phase: Pair
+    helper: Pair
+    output: Pair
+    reference: Pair
 
 
 class RespiratoryChannels(Closed):
@@ -759,6 +772,33 @@ class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
         return self
 
 
+class ClinicalCavityBeat(ExpansionBeat[ClinicalCavityChannels]):
+    scene: Literal[
+        "inputs",
+        "initial",
+        "tracking",
+        "reference",
+        "patient",
+        "preserved",
+        "static",
+        "shift",
+        "judgment",
+        "output",
+    ]
+
+
+class ClinicalCavityStory(Story[ClinicalCavityChannels]):
+    recipe: Literal["clinical-cavity-v1"]
+    beats: tuple[ClinicalCavityBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class RespiratoryBeat(ExpansionBeat[RespiratoryChannels]):
     scene: Literal[
         "inputs", "frame", "depth", "output", "reference", "judgment", "conditions", "limits"
@@ -841,6 +881,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | ClinicalCavityStory
     | RespiratoryStory
     | CurationStory
     | MaskScreenStory
@@ -869,6 +910,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | ClinicalCavityStory
     | RespiratoryStory
     | CurationStory
     | MaskScreenStory
@@ -1057,6 +1099,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | ClinicalCavityStory
     | RespiratoryStory
     | CurationStory
     | MaskScreenStory
@@ -1148,6 +1191,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             "retained-resect-pilot-v1": ("RAS", "CC-BY-4.0", None),
             "retained-resect-v1": ("RAS", "CC-BY-4.0", "CC-BY-NC-SA-4.0"),
             "retained-anatomy-curation-v1": ("LPS", "CC-BY-SA-4.0", "CC-BY-SA-4.0"),
+            "retained-clinical-cavity-v1": (
+                "initial-cavity-local",
+                "CC-BY-NC-SA-4.0",
+                "CC-BY-NC-SA-4.0",
+            ),
             "retained-respiratory-v1": ("dataset-world", "CC-BY-4.0", "CC-BY-4.0"),
             "retained-registration-analysis-v1": ("dataset-world", "CC-BY-4.0", "CC-BY-4.0"),
         }.get(pack_id, ("LPS", "CC-BY-4.0", "Apache-2.0"))

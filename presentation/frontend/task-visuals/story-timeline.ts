@@ -17,6 +17,19 @@ export function sampleStory(plan: StoryPlan, requested: number) {
   const eased = progress * progress * (3 - 2 * progress);
   const channel = (pair: readonly number[]) => pair[0] + (pair[1] - pair[0]) * eased;
   switch (plan.recipe) {
+    case 'clinical-cavity-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        // Physical phase progresses linearly; reveal channels retain smooth easing.
+        phase: b.channels.phase[0] + (b.channels.phase[1] - b.channels.phase[0]) * progress,
+        helper: channel(b.channels.helper),
+        output: channel(b.channels.output),
+        reference: channel(b.channels.reference),
+      });
+    }
     case 'tiger-context-v1': {
       const b = plan.beats[index];
       return Object.freeze({

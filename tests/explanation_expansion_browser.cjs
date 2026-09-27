@@ -49,6 +49,7 @@ withBrowser(async (browser) => {
         ...([
           'mask-screen-v1',
           'anatomy-curation-v1',
+          'clinical-cavity-v1',
           'respiratory-v1',
           'registration-analysis-v1',
           'resect-correspondence-v1',
@@ -371,6 +372,34 @@ withBrowser(async (browser) => {
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
         }
+        if (plan.recipe === 'clinical-cavity-v1') {
+          const panel = page.locator('[data-cavity-output]');
+          const legend = await page.locator('.scene-legend').boundingBox();
+          assert.ok(legend && legend.y + legend.height <= 720, 'Cavity legend clipped');
+          assert.ok(
+            await panel.evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'Cavity output overflows',
+          );
+          const box = await panel.boundingBox();
+          assert.ok(box && box.y + box.height <= 720, 'Cavity output clipped');
+          const beat = plan.beats.find((b) => frame >= b.startFrame && frame < b.endFrame);
+          const reveal = (await panel.getAttribute('data-cavity-reference')) === 'revealed';
+          assert.equal(
+            await panel.locator('[data-cavity-reference-section]').count(),
+            reveal ? 3 : 0,
+          );
+          assert.equal(
+            await panel.locator('[data-cavity-reference-curve]').count(),
+            reveal ? 1 : 0,
+          );
+          if (frame === 0)
+            assert.equal(await panel.locator('[data-cavity-output-section]').count(), 0);
+          const selected = Number(await panel.getAttribute('data-cavity-frame'));
+          const image = Number(await panel.getAttribute('data-cavity-image-frame'));
+          if (beat.scene === 'static') assert.equal(image, 0);
+          else if (beat.scene === 'shift') assert.equal(image, (selected - 5 + 18) % 18);
+          else assert.equal(image, selected);
+        }
         if (plan.recipe === 'respiratory-v1') {
           const output = page.locator('[data-respiratory-output]');
           assert.ok(
@@ -578,6 +607,30 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'clinical-cavity-v1') {
+      for (const step of [4, 5, 6, 7, 8, 9, 10]) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        await page.waitForFunction(
+          (frame) =>
+            document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+            String(frame),
+          plan.beats[step].startFrame,
+        );
+        assert.ok(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          'Cavity mobile chapter overflows',
+        );
+        const panel = await page.locator('[data-cavity-output]').boundingBox();
+        assert.ok(
+          panel && panel.x >= 0 && panel.x + panel.width <= 390,
+          'Cavity mobile panel clipped',
+        );
+        if ([4, 9, 10].includes(step))
+          await page
+            .locator('.scene-player')
+            .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+      }
+    }
     if (plan.recipe === 'tiger-context-v1') {
       const labels = await page.locator('[data-tiger-scene]').evaluate((svg) => {
         const box = svg.getBoundingClientRect();
@@ -623,6 +676,7 @@ withBrowser(async (browser) => {
       'prototype-identity-v1',
       'mask-screen-v1',
       'anatomy-curation-v1',
+      'clinical-cavity-v1',
       'respiratory-v1',
       'registration-analysis-v1',
       'resect-correspondence-v1',
@@ -638,6 +692,27 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'clinical-cavity-v1') {
+      assert.equal(await fallback.locator('[data-cavity-projection]').count(), 1);
+      assert.equal(await fallback.locator('[data-cavity-reference-section]').count(), 0);
+      await fallback.locator('[data-story-step="4"]').click();
+      await fallback.waitForFunction(
+        () =>
+          document.querySelector('[data-cavity-output]')?.getAttribute('data-cavity-reference') ===
+          'revealed',
+      );
+      assert.equal(await fallback.locator('[data-cavity-reference-section]').count(), 6);
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('.scene-reset').click();
+      await fallback.waitForFunction(
+        () =>
+          document.querySelector('[data-cavity-output]')?.getAttribute('data-cavity-reference') ===
+          'hidden',
+      );
+      assert.equal(await fallback.locator('[data-cavity-reference-section]').count(), 0);
+    }
     if (plan.recipe === 'longitudinal-ct-revised-v1') {
       assert.equal(await fallback.locator('[data-ct-reference], [data-ct-output]').count(), 0);
       await fallback.locator('[data-story-step="2"]').click();
@@ -1008,6 +1083,7 @@ withBrowser(async (browser) => {
       'tb3-anatomy-curation',
       'tb3-respiratory-correspondence',
       'tb3-registration-analysis',
+      'tb3-clinical-cavity-adaptation',
     ]) {
       await page.evaluate((id) => {
         location.hash = `${id}/0/overview?view=repository`;
@@ -1028,6 +1104,45 @@ withBrowser(async (browser) => {
       );
       assert.equal(state.canvases, 1);
       if (state.renderer === 'webgl') assert.equal(state.roots, '1');
+      if (id === 'tb3-clinical-cavity-adaptation') {
+        assert.equal(
+          await page.locator('.scene-player').getAttribute('data-recipe'),
+          'clinical-cavity-v1',
+        );
+        assert.equal(
+          await page.locator('[data-cavity-output]').getAttribute('data-cavity-reference'),
+          'hidden',
+        );
+        if (pass === 0) {
+          await page.locator('[data-story-step="4"]').click();
+          await page.waitForFunction(
+            () =>
+              document
+                .querySelector('[data-cavity-output]')
+                ?.getAttribute('data-cavity-reference') === 'revealed',
+          );
+          assert.match(await page.locator('[data-cavity-output]').innerText(), /45.31%/);
+          const playerBox = await page.locator('.scene-player').boundingBox();
+          const stageBox = await page.locator('.scene-stage').boundingBox();
+          const outputBox = await page.locator('[data-cavity-output]').boundingBox();
+          if (playerBox.width <= 900)
+            assert.ok(
+              outputBox.y >= stageBox.y + stageBox.height - 1,
+              'Narrow Explorer must stack the cavity measurements beneath the stage',
+            );
+
+          await page
+            .locator('.scene-player')
+            .screenshot({ path: path.join(folder, 'explorer-clinical-reference.png') });
+          await page.locator('.scene-reset').click();
+          await page.waitForFunction(
+            () =>
+              document
+                .querySelector('[data-cavity-output]')
+                ?.getAttribute('data-cavity-reference') === 'hidden',
+          );
+        }
+      }
       report.navigation.push(state);
     }
   await context.close();
