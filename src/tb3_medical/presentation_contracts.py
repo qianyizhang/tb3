@@ -280,6 +280,33 @@ class AirwayRepairPlan(ExpansionPlan):
     beats: list[AirwayRepairBeat]
 
 
+class LongitudinalMriChannels(TypedDict):
+    view: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class LongitudinalMriBeat(ExpansionBeat):
+    channels: LongitudinalMriChannels
+    scene: Literal[
+        "inputs",
+        "locate",
+        "phases",
+        "sequences",
+        "measure",
+        "change",
+        "reference",
+        "output",
+        "forecast",
+        "limits",
+    ]
+
+
+class LongitudinalMriPlan(ExpansionPlan):
+    recipe: Literal["longitudinal-mri-v1"]
+    beats: list[LongitudinalMriBeat]
+
+
 class TigerContextChannels(TypedDict):
     view: tuple[float, float]
     reference: tuple[float, float]
@@ -512,6 +539,7 @@ StoryPlan = (
     | AnatomyPlan
     | IdentityPlan
     | PrototypeIdentityPlan
+    | LongitudinalMriPlan
     | TigerContextPlan
     | HubmapInventoryPlan
     | TopbrainScreenPlan

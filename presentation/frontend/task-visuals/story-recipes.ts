@@ -24,6 +24,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'topbrain-screen-v1',
     'hubmap-inventory-v1',
     'tiger-context-v1',
+    'longitudinal-mri-v1',
     'resect-pilot-v1',
     'resect-correspondence-v1',
   ].includes(plan.recipe);
@@ -73,6 +74,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'longitudinal-mri-v1':
+      return {
+        heading: 'Longitudinal MRI · locate, measure, qualify',
+        corner: 'BR037 · native MRI · saved outputs and reader references',
+        legend: [
+          ['#cb8523', 'Saved output / projected method box'],
+          ['#187d74', 'Source reference', true],
+          ['#697582', 'Unregistered native visits'],
+        ],
+      };
     case 'tiger-context-v1':
       return {
         heading: 'TIGER · cells, tissue and a calibrated denominator',

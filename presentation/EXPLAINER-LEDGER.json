@@ -1869,15 +1869,15 @@
       ],
       "illustration_kind": "longitudinal",
       "subject": "breast",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "longitudinal-mri",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "longitudinal",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "354 original frozen task files, source metadata and saved assessments verified; 11 sampled DICOM pixel/origin checks and both P03 component methods reproduced. Native/source/saved-output views and CC BY 4.0 terms retained.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/015-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Produce localized findings, longitudinal measurements, bounded impression and uncertainty.",
+      "remaining_work": "No outstanding explainer work within the retained MRI contract. Clinical measurement adjudication, source diameter units, fresh trials and causal cue testing remain separate research. Remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "Serial full MRI volumes and available acquisition metadata.",
         "helpers": "Relative timing; neutral versus prompt-cued conditions are separate.",
@@ -1900,7 +1900,61 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "08ac0e41ecbdb2978c71b14ef5f09a4ca7fa3d56b531029f8aecb1788e94f22f"
+      "source_brief_sha256": "08ac0e41ecbdb2978c71b14ef5f09a4ca7fa3d56b531029f8aecb1788e94f22f",
+      "acceptance_scope": "Source, visual and engineering review of the retained BR037 MRI reading contract, with saved-method diagnostic reproduction. Original scores and clinical uncertainty remain unchanged. No new model execution, image registration, clinical adjudication or publication.",
+      "visual_review": "Ten chapters cover actual inputs, citations, phases, T2, saved method boxes, percent change, source endpoints, complete reporting, forecasts and evidence limits. Both UI locales, mobile/keyboard/no-GPU/reset and a fully decoded 93-second video inspected.",
+      "reviewed_contract_projection": {
+        "raw": "Full reconstructed MRI NIfTI volumes for visits V1 and V2, not raw k-space. P01/P02/P03 contain 22/40/122 volumes and 1,288/2,936/1,930 source frames; split localizers account for many small volumes. Metadata supplies sequence names, acquisition phase offsets, voxel spacing, native RAS affines and relative exam days. Cross-examination image positions are not registered. The teaching player shows selected slices, not the complete solver packet.",
+        "helpers": "A viewing helper, neutral series identifiers, native-coordinate metadata and relative visit timing. No target locations or source VOIs were supplied. P03 cue is a separate condition with an unverified disappearance assertion and identical image inputs; it is not verified clinical history. P03 dynamic acquisitions are separate 3D files, so their output citation phase is zero even when a filename describes a later acquisition phase.",
+        "tools": "Frozen local Python/image-analysis tools, filesystem and general internet references were allowed. Source patient lookup was forbidden. Inspect the exact frozen instruction and environment before a new execution; no launch is implied by this explanation.",
+        "spec": "Cite observations in both visits using visit, series_id, zero-based phase and native zero-based [i,j,k]. Map points through each native affine; anatomical laterality is not screen side. Describe the organ/laterality, extent trend, sequence-specific signal and distribution. State exactly which object, sequence/phase and boundary convention was measured. Return a numeric longest_diameter_mm or null with a method; null is allowed when no defensible measurement is available. Give a bounded impression, alternatives, confidence and limitations. Forecast smaller/similar/larger/indeterminate with confidence, basis and assumptions while future exams remain hidden.",
+        "output": "/app/answer/assessment.json with observations, primary_location, comparison (including size_measurements_mm), impression and forecast; report.md plus analysis code and key figures. The saved P02 answer reported 31.0 mm at V1 and null at V2. That is valid syntax, not adjudication that the residual extent is unmeasurable.",
+        "reference": "Source patient identities, measurement workbook, regional VOIs, later visits, treatment/receptor metadata and pathological response remain reader/evaluator-only. They were excluded from solver inputs. Reference-selected teaching crops remove localization search and require explicit reveal. Portable HTML embeds references and saved answers; it must not serve as a solver packet.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "A viewing helper, neutral series identifiers, native-coordinate metadata and relative visit timing. No target locations or source VOIs were supplied. P03 cue is a separate condition with an unverified disappearance assertion and identical image inputs; it is not verified clinical history. P03 dynamic acquisitions are separate 3D files, so their output citation phase is zero even when a filename describes a later acquisition phase.",
+            "remaining": "Cite observations in both visits using visit, series_id, zero-based phase and native zero-based [i,j,k]. Map points through each native affine; anatomical laterality is not screen side. Describe the organ/laterality, extent trend, sequence-specific signal and distribution. State exactly which object, sequence/phase and boundary convention was measured. Return a numeric longest_diameter_mm or null with a method; null is allowed when no defensible measurement is available. Give a bounded impression, alternatives, confidence and limitations. Forecast smaller/similar/larger/indeterminate with confidence, basis and assumptions while future exams remain hidden."
+          }
+        ],
+        "sources": [
+          [
+            "BR037 protocol",
+            "groups/longitudinal-reading/experiments/br037/protocol.md"
+          ],
+          [
+            "Existing synthesis",
+            "groups/longitudinal-reading/findings/longitudinal-reading-current-synthesis.json"
+          ],
+          [
+            "Source and saved-method audit",
+            "groups/longitudinal-reading/presentation/sources/longitudinal-mri-audit.json"
+          ],
+          [
+            "Historical results and limits",
+            "docs/research-rounds/BR-037-results.md"
+          ],
+          [
+            "I-SPY2 collection",
+            "https://www.cancerimagingarchive.net/collection/ispy2/"
+          ],
+          [
+            "Pinned release context and CC BY 4.0 terms",
+            "https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=70230072"
+          ],
+          [
+            "Li et al. multi-feature MRI study",
+            "https://doi.org/10.1038/s41523-020-00203-7"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "fa748f36f6185b3db869f006799f57182f3d0dd46ceed02e890b30717b1256c4",
+        "source_story_sha256": "cbe4e254be1a6c981dd4e2ca18e8e1fb0c004aa220c0f9ec0bde0b56791f617a",
+        "acceptance_receipt_sha256": "434070369c47b5f3981bc798613ab5892d2680cc48b453b16317838656c72983"
+      }
     },
     {
       "entry_id": "tb3-longitudinal-ct-original",
@@ -12487,9 +12541,9 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 28,
+    "pending-operation-review": 27,
     "reviewed-scripted-spatial": 12,
-    "reviewed-scripted-planar": 15,
+    "reviewed-scripted-planar": 16,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
   },
@@ -12510,7 +12564,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-longitudinal-mri",
+    "active_entry": "tb3-longitudinal-ct-original",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -12924,7 +12978,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/014-acceptance.json",
         "reviewed_entries": 27,
-        "next_entry": "tb3-longitudinal-mri"
+        "next_entry": "tb3-longitudinal-mri",
+        "local_commit": "4abbfd32cc89babf985448062526e83940927c58"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-longitudinal-mri",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/015-acceptance.json",
+        "reviewed_entries": 28,
+        "next_entry": "tb3-longitudinal-ct-original"
       }
     ]
   }

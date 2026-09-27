@@ -30,3 +30,10 @@ BR-037 exposed unresolved measurement reliability and source diameter units. Red
 ## Reopen when
 
 Assistant recommends deferring trials until fresh cases have adjudicated boundaries, resolved units and one prospective measurement definition.
+
+
+## Explainer audit — 2026-09-27
+
+Assistant source/engineering review for the [MRI task](../presentation/briefs/tb3-longitudinal-mri.md) rechecked 354 original frozen files and reproduced both P03 saved component-box methods (−5.9% versus −27.2%). [The source audit](../presentation/sources/longitudinal-mri-audit.json) retains native geometry checks, method definitions and source-reference boundaries. The [canonical story](../presentation/stories/longitudinal-mri.story.md) connects actual images to citations, phase choice, measurements, uncertainty and forecast baselines.
+
+The diagnostic comparison does not resolve clinical measurement validity or source workbook diameter units. Source-VOI selected reader crops remove search; no new model run, adjudication or score revision occurred. All three next-visit source diameters decreased, so an always-smaller baseline ties the neutral forecasts. The existing reopening conditions remain unchanged. This is an assistant explanation, not a new user research decision.

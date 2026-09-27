@@ -1,4 +1,15 @@
 export {
+  mriSource,
+  mriP02,
+  mriP03,
+  mriRef,
+  mriPhaseIndex,
+  mriShowReference,
+  mriShowOutput,
+  percentChange,
+  projectedMethodBox,
+} from '../presentation/frontend/task-visuals/longitudinal-mri';
+export {
   tigerSource,
   tigerViews,
   tigerRef,

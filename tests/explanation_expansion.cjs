@@ -18,6 +18,15 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    mriSource,
+    mriP02,
+    mriP03,
+    mriRef,
+    mriPhaseIndex,
+    mriShowReference,
+    mriShowOutput,
+    percentChange,
+    projectedMethodBox,
     tigerSource,
     tigerViews,
     tigerRef,
@@ -263,6 +272,45 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   assert.ok(Math.abs(fullCurve[0].score - 0.2691879476) < 1e-9);
   assert.ok(Math.abs(fullCurve[100].score - 0.5876808912) < 1e-9);
   assert.equal(JSON.stringify(objectiveSamples('q01', 0)), JSON.stringify([fullCurve[0]]));
+  const mriPlan = plans.find((p) => p.recipe === 'longitudinal-mri-v1');
+  assert.ok(mriPlan && isPlanarStory(mriPlan));
+  assert.equal(mriShowReference(sampleStory(mriPlan, 0)), false);
+  assert.equal(mriShowOutput(sampleStory(mriPlan, 0)), false);
+  assert.deepEqual(
+    Array.from(mriSource.cases, (c) => c.frames),
+    [1288, 2936, 1930],
+  );
+  assert.deepEqual(Array.from(mriP02.citation.voxel), [386, 155, 84]);
+  assert.deepEqual([0, 0.3, 0.6, 1].map(mriPhaseIndex), [0, 1, 2, 3]);
+  assert.equal(percentChange(0, 1), null);
+  assert.equal(mriRef.clinical_success_rate, null);
+  assert.equal(
+    mriRef.answers[1].assessment.comparison.size_measurements_mm[1].longest_diameter_mm,
+    null,
+  );
+  for (const method of mriP03.methods) {
+    const [first, second] = method.visits;
+    assert.ok(
+      Math.abs(percentChange(first.diameter_mm, second.diameter_mm) - method.change_percent) <
+        1e-10,
+    );
+    for (const v of method.visits) {
+      assert.equal(v.phase, 0, 'Separate P03 acquisition phases are 3D files');
+      const box = projectedMethodBox(v),
+        edge = v.method.bbox_convention === 'voxel edges' ? 1 : 0;
+      assert.ok(box.x >= 0 && box.y >= 0 && box.x + box.width <= 120 && box.y + box.height <= 120);
+      assert.equal(box.width, v.bbox_native_max[0] - v.bbox_native_min[0] + edge);
+      assert.ok(Math.abs(Math.max(...v.bbox_mm) - v.diameter_mm) < 1e-10);
+    }
+  }
+  for (const scene of ['phases', 'sequences', 'reference', 'forecast']) {
+    const b = mriPlan.beats.find((b) => b.scene === scene);
+    assert.ok(mriShowReference(sampleStory(mriPlan, b.endFrame - 1)));
+  }
+  assert.deepEqual(
+    Array.from(mriRef.cases, (c) => Math.sign(c.ftv_change_percent)),
+    [-1, -1, 1],
+  );
   const tigerPlan = plans.find((p) => p.recipe === 'tiger-context-v1');
   assert.ok(isPlanarStory(tigerPlan));
   const tissue = tigerPlan.beats.find((b) => b.scene === 'tissue');

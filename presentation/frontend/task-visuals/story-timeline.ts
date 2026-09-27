@@ -37,6 +37,17 @@ export function sampleStory(plan: StoryPlan, requested: number) {
         reference: channel(b.channels.reference),
       });
     }
+    case 'longitudinal-mri-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        view: channel(b.channels.view),
+        reference: channel(b.channels.reference),
+        output: channel(b.channels.output),
+      });
+    }
     case 'topbrain-screen-v1': {
       const b = plan.beats[index];
       return Object.freeze({

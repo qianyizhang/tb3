@@ -33,6 +33,7 @@ class ExpansionTests(unittest.TestCase):
                     "topbrain-screen-v1",
                     "hubmap-inventory-v1",
                     "tiger-context-v1",
+                    "longitudinal-mri-v1",
                 }
                 else "no-reference-assets",
             )
@@ -73,6 +74,7 @@ class ExpansionTests(unittest.TestCase):
             ("tubular-anatomy", "topbrain-screen"),
             ("lesion-localization", "hubmap-inventory"),
             ("lesion-localization", "tiger-context"),
+            ("longitudinal-reading", "longitudinal-mri"),
         ]:
             path = ROOT / f"groups/{group}/presentation/stories/{name}.story.md"
             model = stories.parse_expansion(path.read_text())
@@ -115,6 +117,7 @@ class ExpansionTests(unittest.TestCase):
             "topbrain-screen",
             "hubmap-inventory",
             "tiger-context",
+            "longitudinal-mri",
         ]:
             path = ROOT / f"presentation/task-explorer/{name}/manifest.json"
             for key, value in [

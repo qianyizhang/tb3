@@ -58,11 +58,14 @@ withBrowser(async (browser) => {
           'topbrain-screen-v1',
           'hubmap-inventory-v1',
           'tiger-context-v1',
+          'longitudinal-mri-v1',
         ].includes(plan.recipe)
           ? plan.beats.map((b) => b.endFrame - 1)
           : []),
       ];
-      if (['hubmap-inventory-v1', 'tiger-context-v1'].includes(plan.recipe)) {
+      if (
+        ['hubmap-inventory-v1', 'tiger-context-v1', 'longitudinal-mri-v1'].includes(plan.recipe)
+      ) {
         for (const b of plan.beats) frames.push(b.startFrame);
       }
       if (plan.recipe === 'topbrain-screen-v1') {
@@ -115,6 +118,42 @@ withBrowser(async (browser) => {
             assert.equal(await page.locator('[data-airway-reference-image]').count(), 0);
             assert.equal(await page.locator('[data-airway-added-slice]').count(), 0);
           }
+        }
+        if (plan.recipe === 'longitudinal-mri-v1') {
+          const legend = await page.locator('.scene-legend').boundingBox();
+          assert.ok(legend && legend.y + legend.height <= 720, 'MRI legend clipped');
+          assert.ok(
+            await page
+              .locator('[data-mri-output-panel]')
+              .evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'MRI output overflows',
+          );
+          const b = plan.beats.find((b) => frame >= b.startFrame && frame < b.endFrame);
+          const figure = page.locator('[data-mri-scene]');
+          assert.deepEqual(
+            await figure.evaluate((svg) => {
+              const box = svg.getBoundingClientRect();
+              return [...svg.querySelectorAll('text')]
+                .filter((t) => {
+                  const b = t.getBoundingClientRect();
+                  return (
+                    b.left < box.left - 1 || b.right > box.right + 1 || b.bottom > box.bottom + 1
+                  );
+                })
+                .map((t) => t.textContent);
+            }),
+            [],
+            'MRI figure label outside bounds',
+          );
+          if (frame === 0) {
+            assert.equal(await page.locator('[data-mri-reference], [data-mri-output]').count(), 0);
+            assert.equal(await page.locator('[data-mri-input]').count(), 6);
+          }
+          if (
+            frame === b.endFrame - 1 &&
+            ['phases', 'sequences', 'reference', 'forecast'].includes(b.scene)
+          )
+            assert.ok((await page.locator('[data-mri-reference]').count()) > 0);
         }
         if (plan.recipe === 'tiger-context-v1') {
           const legend = await page.locator('.scene-legend').boundingBox();
@@ -510,9 +549,17 @@ withBrowser(async (browser) => {
       'topbrain-screen-v1',
       'hubmap-inventory-v1',
       'tiger-context-v1',
+      'longitudinal-mri-v1',
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'longitudinal-mri-v1') {
+      assert.equal(await fallback.locator('[data-mri-reference], [data-mri-output]').count(), 0);
+      await fallback.locator('[data-story-step="2"]').click();
+      assert.equal(await fallback.locator('[data-mri-reference] [data-mri-input]').count(), 2);
+      await fallback.locator('.scene-reset').click();
+      assert.equal(await fallback.locator('[data-mri-reference], [data-mri-output]').count(), 0);
+    }
     if (plan.recipe === 'airway-repair-v1') {
       // Check rendered pixels, not only nonempty paths: opposite mesh-face winding
       // can silently cancel a complete silhouette inside a compound SVG path.

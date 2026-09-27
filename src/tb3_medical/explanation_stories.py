@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "longitudinal-mri-v1": "retained-longitudinal-mri-v1",
     "tiger-context-v1": "retained-tiger-context-v1",
     "hubmap-inventory-v1": "retained-hubmap-inventory-v1",
     "topbrain-screen-v1": "retained-topbrain-screen-v1",
@@ -68,6 +69,11 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-longitudinal-mri-v1": (
+        "source-slices",
+        "reference.json",
+        {"source.json", "p02.json", "p03.json", "reference.json", "NOTICE.md", "DATA-LICENSE.txt"},
+    ),
     "retained-tiger-context-v1": (
         "source-slices",
         "reference.json",
@@ -293,6 +299,12 @@ class AirwayRepairChannels(Closed):
     reference: Pair
 
 
+class LongitudinalMriChannels(Closed):
+    view: Pair
+    output: Pair
+    reference: Pair
+
+
 class TigerContextChannels(Closed):
     view: Pair
     reference: Pair
@@ -444,6 +456,33 @@ class IdentityStory(Story[IdentityChannels]):
 
 class PrototypeIdentityStory(Story[IdentityChannels]):
     recipe: Literal["prototype-identity-v1"]
+
+
+class LongitudinalMriBeat(ExpansionBeat[LongitudinalMriChannels]):
+    scene: Literal[
+        "inputs",
+        "locate",
+        "phases",
+        "sequences",
+        "measure",
+        "change",
+        "reference",
+        "output",
+        "forecast",
+        "limits",
+    ]
+
+
+class LongitudinalMriStory(Story[LongitudinalMriChannels]):
+    recipe: Literal["longitudinal-mri-v1"]
+    beats: tuple[LongitudinalMriBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
 
 
 class TigerContextBeat(ExpansionBeat[TigerContextChannels]):
@@ -695,6 +734,7 @@ AnyStory = Annotated[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | LongitudinalMriStory
     | TigerContextStory
     | HubmapInventoryStory
     | TopbrainScreenStory
@@ -720,6 +760,7 @@ ADAPTER: TypeAdapter[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | LongitudinalMriStory
     | TigerContextStory
     | HubmapInventoryStory
     | TopbrainScreenStory
@@ -905,6 +946,7 @@ def parse_expansion(
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | LongitudinalMriStory
     | TigerContextStory
     | HubmapInventoryStory
     | TopbrainScreenStory
@@ -985,6 +1027,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         frame, data_license, label_license = {
+            "retained-longitudinal-mri-v1": ("RAS", "CC-BY-4.0", "CC-BY-4.0"),
             "retained-tiger-context-v1": ("level-0-image", "CC-BY-NC-4.0", "CC-BY-NC-4.0"),
             "retained-hubmap-inventory-v1": ("level-0-image", "CC-BY-4.0", "CC-BY-4.0"),
             "retained-topbrain-screen-v1": (
