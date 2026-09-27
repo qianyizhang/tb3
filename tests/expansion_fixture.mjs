@@ -159,3 +159,5 @@ export {
   airwayBounds,
   airwayCPRRowEdges,
 } from '../presentation/frontend/task-visuals/airway-repair';
+
+export * from '../presentation/frontend/task-visuals/named-landmarks';

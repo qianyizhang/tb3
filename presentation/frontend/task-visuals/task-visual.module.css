@@ -1121,3 +1121,136 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+/* Twelve landmark chapters retain the legend inside the fixed export frame. */
+:global([data-explainer-export-frame]) .player[data-recipe='named-landmarks-v1'] .storyHeading {
+  height: 114px;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='named-landmarks-v1']
+  :global(.scene-steps button) {
+  min-height: 36px;
+  padding-block: 6px;
+}
+.player[data-recipe='named-landmarks-v1'] :global(.scene-step-index) {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+@container task-visual (max-width: 900px) {
+  .player[data-recipe='named-landmarks-v1'] .storyLayout {
+    grid-template-columns: 1fr;
+  }
+  .player[data-recipe='named-landmarks-v1'] :global(.scene-steps) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.landmarkScene {
+  padding: 12px 18px;
+  box-sizing: border-box;
+  min-width: 0;
+}
+.landmarkScene h4 {
+  margin: 0 0 7px;
+  font-size: 18px;
+  line-height: 1.35;
+}
+.landmarkScene p {
+  margin: 6px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.landmarkCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.landmarkCards[data-columns='2'] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.landmarkCards[data-columns='1'] {
+  display: block;
+  max-width: 220px;
+  margin: auto;
+}
+.landmarkCards article {
+  min-width: 0;
+}
+.landmarkCards article b,
+.landmarkCards article span {
+  display: block;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.landmarkNative {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 270px;
+  overflow: visible;
+}
+.landmarkNative text {
+  fill: #37473e;
+  font-family: system-ui, sans-serif;
+}
+.landmarkCounts {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+.landmarkCounts th {
+  font-size: 14px;
+  text-align: left;
+}
+.landmarkCounts td {
+  padding: 14px 4px;
+  font-size: 24px;
+  border-bottom: 1px solid #deded5;
+}
+.landmarkCounts td:first-child {
+  font-size: 16px;
+}
+.landmarkLimits {
+  margin: 0;
+}
+.landmarkLimits div {
+  margin: 16px 0;
+}
+.landmarkLimits dt {
+  font-size: 17px;
+  font-weight: 600;
+}
+.landmarkLimits dd {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+@container task-visual (max-width:600px) {
+  .landmarkCards,
+  .landmarkCards[data-columns='2'] {
+    grid-template-columns: 1fr;
+  }
+  .landmarkCards article {
+    margin: 8px 0;
+  }
+  .landmarkCards article b,
+  .landmarkCards article span {
+    font-size: 14px;
+  }
+  .landmarkNative {
+    max-height: 355px;
+  }
+  .landmarkCards[data-columns='1'] {
+    max-width: 100%;
+  }
+  .landmarkCounts td {
+    font-size: 20px;
+  }
+  .landmarkCounts td:first-child {
+    font-size: 14px;
+  }
+}
+
+:global([data-explainer-export-frame]) .player[data-recipe='named-landmarks-v1'] .landmarkScene {
+  height: 425px;
+}

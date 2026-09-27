@@ -15,6 +15,7 @@ import {
 } from './operation-prefabs';
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'named-landmarks-v1',
     'multiscale-v1',
     'local-edit-v1',
     'longitudinal-v1',
@@ -80,6 +81,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'named-landmarks-v1':
+      return {
+        heading: 'Named targets · location and availability',
+        corner: 'Native CT / MRI · reader-selected diagnostic views · physical 3D scoring',
+        legend: [
+          ['#fb923c', 'Terra/high · saved cross'],
+          ['#cf94ff', 'Sol/xhigh · saved circle'],
+          ['#54deaa', 'Private source point · plus'],
+        ],
+      };
     case 'clinical-cavity-v1':
       return {
         heading: 'Clinical cavity · track, measure and test',

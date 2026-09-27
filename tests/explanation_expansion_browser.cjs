@@ -49,6 +49,7 @@ withBrowser(async (browser) => {
         ...([
           'mask-screen-v1',
           'anatomy-curation-v1',
+          'named-landmarks-v1',
           'clinical-cavity-v1',
           'respiratory-v1',
           'registration-analysis-v1',
@@ -372,6 +373,30 @@ withBrowser(async (browser) => {
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
         }
+        if (plan.recipe === 'named-landmarks-v1') {
+          const panel = page.locator('[data-landmark-output]');
+          assert.ok(
+            await panel.evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'Landmark output overflows',
+          );
+          const legend = await page.locator('.scene-legend').boundingBox();
+          assert.ok(legend && legend.y + legend.height <= 720, 'Landmark legend clipped');
+          assert.ok(
+            await page
+              .locator('[data-landmark-scene]')
+              .evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'Landmark scene overflows',
+          );
+          const revealed = (await panel.getAttribute('data-landmark-reference')) === 'visible';
+          if (!revealed)
+            assert.equal(
+              await page
+                .locator('[data-landmark-mark="reference"], [data-landmark-private]')
+                .count(),
+              0,
+            );
+          if (frame === 0) assert.equal(await page.locator('[data-landmark-mark]').count(), 0);
+        }
         if (plan.recipe === 'clinical-cavity-v1') {
           const panel = page.locator('[data-cavity-output]');
           const legend = await page.locator('.scene-legend').boundingBox();
@@ -607,6 +632,19 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'named-landmarks-v1') {
+      for (const step of [4, 5, 8, 9, 10]) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        assert.equal(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          true,
+          'Landmark mobile overflow',
+        );
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+      }
+    }
     if (plan.recipe === 'clinical-cavity-v1') {
       for (const step of [4, 5, 6, 7, 8, 9, 10]) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -676,6 +714,7 @@ withBrowser(async (browser) => {
       'prototype-identity-v1',
       'mask-screen-v1',
       'anatomy-curation-v1',
+      'named-landmarks-v1',
       'clinical-cavity-v1',
       'respiratory-v1',
       'registration-analysis-v1',
@@ -692,6 +731,29 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'named-landmarks-v1') {
+      assert.equal(await fallback.locator('[data-landmark-mark]').count(), 0);
+      await fallback.locator('[data-story-step="5"]').click();
+      await fallback.waitForFunction(
+        () =>
+          document
+            .querySelector('[data-landmark-reference]')
+            ?.getAttribute('data-landmark-reference') === 'visible',
+      );
+      assert.equal(await fallback.locator('[data-landmark-mark="reference"]').count(), 3);
+      assert.equal(await fallback.locator('[data-landmark-mark="sol"]').count(), 0);
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('.scene-reset').click();
+      await fallback.waitForFunction(
+        () =>
+          document
+            .querySelector('[data-landmark-reference]')
+            ?.getAttribute('data-landmark-reference') === 'hidden',
+      );
+      assert.equal(await fallback.locator('[data-landmark-mark]').count(), 0);
+    }
     if (plan.recipe === 'clinical-cavity-v1') {
       assert.equal(await fallback.locator('[data-cavity-projection]').count(), 1);
       assert.equal(await fallback.locator('[data-cavity-reference-section]').count(), 0);
@@ -1145,6 +1207,34 @@ withBrowser(async (browser) => {
       }
       report.navigation.push(state);
     }
+  await page.evaluate(() => {
+    location.hash = 'tb3-named-landmarks/0/overview?view=repository';
+  });
+  await page.waitForFunction(
+    () =>
+      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'named-landmarks-v1',
+  );
+  assert.equal(await page.locator('[data-landmark-mark]').count(), 0);
+  await page.locator('[data-story-step="5"]').click();
+  await page.waitForFunction(
+    () =>
+      document
+        .querySelector('[data-landmark-reference]')
+        ?.getAttribute('data-landmark-reference') === 'visible',
+  );
+  assert.match(await page.locator('[data-landmark-output]').innerText(), /visible miss/);
+  assert.equal(await page.locator('[data-landmark-mark="sol"]').count(), 0);
+  await page
+    .locator('.scene-player')
+    .screenshot({ path: path.join(folder, 'integrated-landmarks.png') });
+  await page.locator('.scene-reset').click();
+  await page.waitForFunction(
+    () =>
+      document
+        .querySelector('[data-landmark-reference]')
+        ?.getAttribute('data-landmark-reference') === 'hidden',
+  );
+  report.navigation.push({ id: 'tb3-named-landmarks', revealAndReset: true });
   await context.close();
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.remote_requests, []);

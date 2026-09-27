@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "named-landmarks-v1": "retained-named-landmarks-v1",
     "clinical-cavity-v1": "retained-clinical-cavity-v1",
     "longitudinal-ct-revised-v1": "retained-longitudinal-ct-revised-v1",
     "longitudinal-ct-original-v1": "retained-longitudinal-ct-original-v1",
@@ -72,6 +73,18 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-named-landmarks-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "source.json",
+            "output.json",
+            "reference.json",
+            "NOTICE.md",
+            "AFIDS-CC0.txt",
+            "VERSE-CC-BY-SA.txt",
+        },
+    ),
     "retained-clinical-cavity-v1": (
         "source-slices",
         "reference.json",
@@ -390,6 +403,12 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class NamedLandmarksChannels(Closed):
+    view: Pair
+    output: Pair
+    reference: Pair
 
 
 class ClinicalCavityChannels(Closed):
@@ -772,6 +791,35 @@ class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
         return self
 
 
+class NamedLandmarksBeat(ExpansionBeat[NamedLandmarksChannels]):
+    scene: Literal[
+        "inputs",
+        "coordinates",
+        "search",
+        "output",
+        "reference",
+        "availability",
+        "condyle",
+        "mri",
+        "counterexample",
+        "comparison",
+        "conditions",
+        "limits",
+    ]
+
+
+class NamedLandmarksStory(Story[NamedLandmarksChannels]):
+    recipe: Literal["named-landmarks-v1"]
+    beats: tuple[NamedLandmarksBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class ClinicalCavityBeat(ExpansionBeat[ClinicalCavityChannels]):
     scene: Literal[
         "inputs",
@@ -881,6 +929,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | NamedLandmarksStory
     | ClinicalCavityStory
     | RespiratoryStory
     | CurationStory
@@ -910,6 +959,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | NamedLandmarksStory
     | ClinicalCavityStory
     | RespiratoryStory
     | CurationStory
@@ -1099,6 +1149,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | NamedLandmarksStory
     | ClinicalCavityStory
     | RespiratoryStory
     | CurationStory
@@ -1191,6 +1242,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             "retained-resect-pilot-v1": ("RAS", "CC-BY-4.0", None),
             "retained-resect-v1": ("RAS", "CC-BY-4.0", "CC-BY-NC-SA-4.0"),
             "retained-anatomy-curation-v1": ("LPS", "CC-BY-SA-4.0", "CC-BY-SA-4.0"),
+            "retained-named-landmarks-v1": (
+                "RAS",
+                "LicenseRef-NamedLandmarkSources",
+                "LicenseRef-NamedLandmarkSources",
+            ),
             "retained-clinical-cavity-v1": (
                 "initial-cavity-local",
                 "CC-BY-NC-SA-4.0",

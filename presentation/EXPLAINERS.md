@@ -55,6 +55,7 @@ A bound story is not automatically accepted; unresolved entries remain visible.
 | Respiratory correspondence | Actual oblique CT, calibrated source/target sections, source-depth contracts, ordered historical output and separate numerical/visual judgments |
 | Registration postmortem | Retained composition repairs, calibrated search boxes, actual CT patch objective and separate author controls/fresh repeats |
 | Clinical cavity | Actual EchoXFlow frames, supplied initial surface, saved tracking, private reference reveal, volume/EF gates and distinct static/shift controls |
+| Named landmarks | Actual CT/MRI sections, native-to-world conversion, saved point/status outputs, private reference reveal, wrong-level detections and visible-target denominators |
 | CT/MRI | Separate Radon/FFT measurements and image outputs; toy vs task dimensions/assistance explicit |
 
 V2 multiscale stories require `operation: coordinate-navigation`, `supplied-patches`
@@ -162,6 +163,16 @@ contacts and selected parent attachments. No new inference or agent trial is imp
 `hubmap-inventory-v1` uses the [retained PAS slide and polygons](task-explorer/hubmap-inventory/NOTICE.md) to explain the proposed contour/area inventory separately from historical point-only pilots. `view` controls a teaching viewport, worked arithmetic or row progression; `reference` gates source polygons, counts and reference-derived measurements. Native level-0 extents preserve physical aspect, local coordinates return through explicit crop origins, and area uses squared OME pixel spacing. Optional cortex/medulla helpers are a distinct condition. The crop is reference-selected and the duplicate example constructed; neither is agent-search evidence.
 
 ### Draft a canonical story
+
+`named-landmarks-v1` uses [retained native sections](task-explorer/named-landmarks/NOTICE.md)
+from PDDCA, AFIDs and VerSe. Closed scene cuts separate source inputs, coordinate
+conversion, teaching navigation, saved outputs, private references and comparisons.
+`view` selects acquired sections or discrete score thresholds; `output` and
+`reference` reveal separate records. Diagnostic sections are reader-selected, not
+supplied hints or an agent trajectory. Physical aspect, native directions, signed
+plane offsets and equal-scale full/crop views preserve three-dimensional meaning
+without requiring WebGL. MRI atlas assistance, unrecovered runtime atlas bytes,
+reference uncertainty and all-visible-target denominators remain explicit.
 
 ```sh
 uv run med story recipes

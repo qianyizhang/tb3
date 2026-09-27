@@ -1,0 +1,733 @@
+{
+  "schema": 1,
+  "scope": "Source arrays, private coordinates, all saved scores and archived assistance; no model or solver execution",
+  "source_pins": {
+    "docs/evidence/br036-ct-source-inventory.json": "0065f2ca4b33fd9bfa844882d37e273a48bfa1311113aa3cfd0405e105cc8b04",
+    "docs/evidence/br036-curation.json": "5b5a4ae53c68ac6a4a3f7d4ef5ee7616ab4f30570a0ea9538d40681bab6fc4fd",
+    "docs/evidence/br036-distance-sensitivity.json": "153750f9916a564813b9157c5ab6a3cb4e7c2aa5fe9b988ec1281855dec24c25",
+    "docs/evidence/br036-expanded-curation.json": "da26ea0f852baf7c654a99428872e4f602269308a4ef821f0870f298d517bbfe",
+    "docs/evidence/br036-expanded-freeze.json": "7ee579c67fc26c97ea9757cab03ebe71fc41ffa762d03576c0b0a12548545c3c",
+    "docs/evidence/br036-freeze.json": "e57669d0c3e8ef52aff6b7cc8f2c75c9daa8ee9339a134ce24352475d8392b7b",
+    "docs/evidence/br036-results.json": "425bae1b73e2c5803ae450a940bf424e60e78790d65cbe27664b723ff54bb32c",
+    "docs/evidence/br036-trace-review.json": "ffba25a4bf994c545c763b8afdd2a461f16af3576ce9fbc11086eb3de25c601e",
+    "docs/evidence/br036-visibility-controls.json": "606595f2bfba5c85f095354563d2b08a694621a7a9b8caa66f3c03ee9168ba32",
+    "docs/evidence/br038-freeze.json": "fc3e479c742019e26630f54687be1b5ffa281a7acf3397d578daa55c64f1c774",
+    "docs/evidence/br038-mri-overlap.json": "77ee9481adba18b968605d91c8ff5228c613edaa50e90614f4377c05344a51e2",
+    "docs/evidence/br038-original-audit.json": "012aeec2111b2fac18dfe2e90626d5078048c018baefee6af3b8b00903912133",
+    "docs/evidence/br038-original-image-payloads.json": "58dbfd640dcfc3644237241a3ad855dda2184f5b68a6537e18285a0d1366c792",
+    "docs/evidence/br038-results.json": "fc5d78297040ae1c89383ffc09309095739a08b9f85de7ed50304a4c3a634527",
+    "docs/evidence/br038-validation.json": "b5160d661388401effa5181a90680f2f9f0dd1baaae4a555ccc5df5cc3669030",
+    "docs/evidence/br039-curation.json": "76adf5f784c8f9d7ef5ffadffd070085123674eb719f13be1477a6bbf0869a3d",
+    "docs/evidence/br039-freeze.json": "be1d522ecf221e0c2294a362a579488df616f431650293851c42cc633a968727",
+    "docs/evidence/br039-results.json": "802fd6de4d2a2195e76552f90b4344b19de39eb2551117e461969b49ab41ebc1",
+    "docs/evidence/br039-trace-review.json": "80bdbfcd76182c34a379edbf8e54317ed92d017efad090bf7999b208d55c9453",
+    "docs/evidence/br039-validation.json": "f1a614edf86f28bd99d3fe4c5a7240bfc04e2423df9d9a22dfdb6b4e6b58db8c",
+    "docs/evidence/br040-config-audit.json": "4cb553ff218950a7bad9ca03ea1197c75243462e36f8466883c38083a73b2036",
+    "docs/evidence/br040-ct-diagnostic.json": "c678c23dbc93b942d1dbd1ee660ebaf186390254db7b2b0685c2314f2082f937",
+    "docs/evidence/br040-plan.json": "6ed5f71d9e8c8f1e3d94aded67a45622f2c275ddb7b2183149db14c39a545e17",
+    "docs/evidence/br040-results.json": "dc9c8da07ad0948e8813f74188f87776c872e5619b2a1cf38019897731d1887b",
+    "docs/evidence/br040-source-audit.json": "74937bc75d4b24afc10e0489b2f661b12457f01410cd6732811b8313722700f5",
+    "runs/br036-semantic-landmarks/tasks/ct-C001/environment/Dockerfile": "9e2f2ded28bc2173a4161e9d37404b8fd48845ac3cb10d29556c3ec87691b60b",
+    "runs/br036-semantic-landmarks/tasks/ct-C001/environment/SOURCE_NOTICE.md": "3c314ca8ac79274a86da33cd8bcfeda35726c5dc81dafaab2673ad0c8e33ef70",
+    "runs/br036-semantic-landmarks/tasks/ct-C001/environment/landmarks.json": "d124052eeb03e4cff125bbae20117ea1b12292b509690bf65443569c5d502780",
+    "runs/br036-semantic-landmarks/tasks/ct-C001/environment/volume.nii.gz": "d423062c82934bf5cd3e148fafd6c509a2e089bfb0b0549247446a72b3580ca1",
+    "runs/br036-semantic-landmarks/tasks/ct-C001/instruction.md": "7768b5e9a0489c93677f9dac228aa0fc777d2faf35b7a59073d0bc0313ec3a11",
+    "runs/br036-semantic-landmarks/tasks/ct-C001/solution/landmarks.json": "4ce282bcb20de233d973e548d7344cc6a1fee927d5e7169bc27e88273ed3cf2d",
+    "runs/br036-semantic-landmarks/tasks/ct-C001/solution/solve.sh": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+    "runs/br036-semantic-landmarks/tasks/ct-C001/task.toml": "a0896dbb460897145fb9f049aeecd9090f8591045381f7117d5bc77bf2bb124b",
+    "runs/br036-semantic-landmarks/tasks/ct-C001/tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+    "runs/br036-semantic-landmarks/tasks/ct-C001/tests/score.py": "0d73073172d313e89216864fefb3a8fb80cfb178fb99c0239b6278964cbde0a3",
+    "runs/br036-semantic-landmarks/tasks/ct-C001/tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+    "runs/br036-semantic-landmarks/tasks/ct-C001/tests/truth.json": "2e15813df421901de566d20fbc419784684f52ecc5e569ce7ba5f5cb6e77d729",
+    "runs/br036-semantic-landmarks/tasks/mri-C001/environment/Dockerfile": "9e2f2ded28bc2173a4161e9d37404b8fd48845ac3cb10d29556c3ec87691b60b",
+    "runs/br036-semantic-landmarks/tasks/mri-C001/environment/SOURCE_NOTICE.md": "a1a14b98cda6f9ed2eb6a8226f9af7703ee7501d6a2e3f9ec7961537c18659c1",
+    "runs/br036-semantic-landmarks/tasks/mri-C001/environment/landmarks.json": "0a9e5b8751fdce3c06646ef5a91fe8e96446721dde42bca5b357eda96a3642ea",
+    "runs/br036-semantic-landmarks/tasks/mri-C001/environment/volume.nii.gz": "ec9c3a73d97d1268aa8f0490c83c9382ad158d51ded4a0ac3d77de10e27e9a03",
+    "runs/br036-semantic-landmarks/tasks/mri-C001/instruction.md": "6c56b67d9935a4ead9d6f5e74d3f9260276eb1940bfc0d03ec0870fe65100021",
+    "runs/br036-semantic-landmarks/tasks/mri-C001/solution/landmarks.json": "243ed1a38b09ba36c6233b0d64adb0596c606fbda78ff817b4ded3e0b118a704",
+    "runs/br036-semantic-landmarks/tasks/mri-C001/solution/solve.sh": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+    "runs/br036-semantic-landmarks/tasks/mri-C001/task.toml": "9d9a8f753cc1111b65dc07843651469bafda6e9761c6ed320b252bf65a869693",
+    "runs/br036-semantic-landmarks/tasks/mri-C001/tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+    "runs/br036-semantic-landmarks/tasks/mri-C001/tests/score.py": "0d73073172d313e89216864fefb3a8fb80cfb178fb99c0239b6278964cbde0a3",
+    "runs/br036-semantic-landmarks/tasks/mri-C001/tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+    "runs/br036-semantic-landmarks/tasks/mri-C001/tests/truth.json": "fa74c1a84fc6c1c518dd172c41cb94ffe6786ce9716a0bc02d9e2e9d43860be2",
+    "runs/br036-semantic-landmarks/tasks/mri32-crop/environment/Dockerfile": "9e2f2ded28bc2173a4161e9d37404b8fd48845ac3cb10d29556c3ec87691b60b",
+    "runs/br036-semantic-landmarks/tasks/mri32-crop/environment/SOURCE_NOTICE.md": "a1a14b98cda6f9ed2eb6a8226f9af7703ee7501d6a2e3f9ec7961537c18659c1",
+    "runs/br036-semantic-landmarks/tasks/mri32-crop/environment/landmarks.json": "cd7350b876e2c1b084dee4b6a165f4d2f914c68335143f828025299a29871e28",
+    "runs/br036-semantic-landmarks/tasks/mri32-crop/environment/volume.nii.gz": "73f4c663123b13faa56e28d909d904b770cecad2d88d6c96cf13ce979ee681cc",
+    "runs/br036-semantic-landmarks/tasks/mri32-crop/instruction.md": "fcb7f59f7c61148fa2f2694a402fb6b41f037a8bdfa1f4cfdc2864976c91803d",
+    "runs/br036-semantic-landmarks/tasks/mri32-crop/solution/landmarks.json": "b01950026f40e8ea934cb6f34db383949404601a8182ff8dceb651faaf212d5f",
+    "runs/br036-semantic-landmarks/tasks/mri32-crop/solution/solve.sh": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+    "runs/br036-semantic-landmarks/tasks/mri32-crop/task.toml": "02365dd1f6a4870e96070f12f7f74a47609f2301f8607cb387e11e718d3867d6",
+    "runs/br036-semantic-landmarks/tasks/mri32-crop/tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+    "runs/br036-semantic-landmarks/tasks/mri32-crop/tests/score.py": "fd644d7abb5e46f502707f50647a250fc946686e38f4fcc64d699f7a7a8971b0",
+    "runs/br036-semantic-landmarks/tasks/mri32-crop/tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+    "runs/br036-semantic-landmarks/tasks/mri32-crop/tests/truth.json": "903864f7aa9a3039859061dc1a27530b671d15c899e6868f4e999146eea931e6",
+    "runs/br036-semantic-landmarks/tasks/ct-crop/environment/Dockerfile": "9e2f2ded28bc2173a4161e9d37404b8fd48845ac3cb10d29556c3ec87691b60b",
+    "runs/br036-semantic-landmarks/tasks/ct-crop/environment/SOURCE_NOTICE.md": "3c314ca8ac79274a86da33cd8bcfeda35726c5dc81dafaab2673ad0c8e33ef70",
+    "runs/br036-semantic-landmarks/tasks/ct-crop/environment/landmarks.json": "d124052eeb03e4cff125bbae20117ea1b12292b509690bf65443569c5d502780",
+    "runs/br036-semantic-landmarks/tasks/ct-crop/environment/volume.nii.gz": "882e4c6c03a951058009b44658c29204e313b126c7ad4c032b1b79ef2970379b",
+    "runs/br036-semantic-landmarks/tasks/ct-crop/instruction.md": "29e01e7d84d27e2e86dbd4c7bb5ecb6fd545c6fbc3d45aeb5ba5c017e0995d0b",
+    "runs/br036-semantic-landmarks/tasks/ct-crop/solution/landmarks.json": "457504d32be6748b6a45b1f42d937548c36c6fd6941ff457f343cba6a37f484c",
+    "runs/br036-semantic-landmarks/tasks/ct-crop/solution/solve.sh": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+    "runs/br036-semantic-landmarks/tasks/ct-crop/task.toml": "2f43bdba45457b1c7d67bf796959f9c14e826fa11e062fb1e050f7735b96bb4c",
+    "runs/br036-semantic-landmarks/tasks/ct-crop/tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+    "runs/br036-semantic-landmarks/tasks/ct-crop/tests/score.py": "fd644d7abb5e46f502707f50647a250fc946686e38f4fcc64d699f7a7a8971b0",
+    "runs/br036-semantic-landmarks/tasks/ct-crop/tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+    "runs/br036-semantic-landmarks/tasks/ct-crop/tests/truth.json": "7401edbbae9eff35366288cbbe08bd32f7ad3b9ef7fdf4ba92dce686250e5012",
+    "runs/br038-volume-landmarks/tasks/ct-full/environment/Dockerfile": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7",
+    "runs/br038-volume-landmarks/tasks/ct-full/environment/SOURCE_NOTICE.md": "3c314ca8ac79274a86da33cd8bcfeda35726c5dc81dafaab2673ad0c8e33ef70",
+    "runs/br038-volume-landmarks/tasks/ct-full/environment/geometry.json": "75d4e3694743f3e361384d93914fc8124e78567c4e8ce42fb32ff254093da348",
+    "runs/br038-volume-landmarks/tasks/ct-full/environment/landmarks.json": "d124052eeb03e4cff125bbae20117ea1b12292b509690bf65443569c5d502780",
+    "runs/br038-volume-landmarks/tasks/ct-full/environment/volume.nii.gz": "d423062c82934bf5cd3e148fafd6c509a2e089bfb0b0549247446a72b3580ca1",
+    "runs/br038-volume-landmarks/tasks/ct-full/environment/volume.npy": "ba58631b072d2a9a93fa24c838b2e3c1c37c39ec5b6af2c60076f2ffd65206a9",
+    "runs/br038-volume-landmarks/tasks/ct-full/environment/volume_tools.py": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058",
+    "runs/br038-volume-landmarks/tasks/ct-full/instruction.md": "662254d5d5ac8abee01cb78605c6234d3a37de8b649695de64445d58a10cba06",
+    "runs/br038-volume-landmarks/tasks/ct-full/solution/landmarks.json": "b0d08a8ee8d4e3f96a28f72976e65e3f91b2da7702ff7d3c5f5a5e7d03e63d5a",
+    "runs/br038-volume-landmarks/tasks/ct-full/solution/solve.sh": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+    "runs/br038-volume-landmarks/tasks/ct-full/task.toml": "024a07228d62a01d7c58d7586930e0d19ee6a4cacb18765387b78b0f87d67f4f",
+    "runs/br038-volume-landmarks/tasks/ct-full/tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+    "runs/br038-volume-landmarks/tasks/ct-full/tests/score.py": "9a8dd57ef1d282dd36355c97c10004f0b975ae77e3a7842344598e74718a5584",
+    "runs/br038-volume-landmarks/tasks/ct-full/tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+    "runs/br038-volume-landmarks/tasks/ct-full/tests/truth.json": "00f39614525266ade46225be6a7bc8e8a08e5c587999b00c7d0dc4273c03eb76",
+    "runs/br038-volume-landmarks/tasks/mri32-full/environment/Dockerfile": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7",
+    "runs/br038-volume-landmarks/tasks/mri32-full/environment/SOURCE_NOTICE.md": "a1a14b98cda6f9ed2eb6a8226f9af7703ee7501d6a2e3f9ec7961537c18659c1",
+    "runs/br038-volume-landmarks/tasks/mri32-full/environment/geometry.json": "19b5d2f991bc9fa23bafbfd30b07ebfc68cc56c16382477c58573fe7872a04ed",
+    "runs/br038-volume-landmarks/tasks/mri32-full/environment/landmarks.json": "cd7350b876e2c1b084dee4b6a165f4d2f914c68335143f828025299a29871e28",
+    "runs/br038-volume-landmarks/tasks/mri32-full/environment/volume.nii.gz": "ec9c3a73d97d1268aa8f0490c83c9382ad158d51ded4a0ac3d77de10e27e9a03",
+    "runs/br038-volume-landmarks/tasks/mri32-full/environment/volume.npy": "f9595bf5992e377a2d17d47a3d631f7c762433725e3c11a8470a34c4f627810f",
+    "runs/br038-volume-landmarks/tasks/mri32-full/environment/volume_tools.py": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058",
+    "runs/br038-volume-landmarks/tasks/mri32-full/instruction.md": "47de0fc82312e256a082a209b7bfc1769151760b893ee66e0ce656c5f2a1a622",
+    "runs/br038-volume-landmarks/tasks/mri32-full/solution/landmarks.json": "3aa433bed64a3be08bd46f76a97c0ade1d582cb8cf996dcd94b56ce401b1f1d4",
+    "runs/br038-volume-landmarks/tasks/mri32-full/solution/solve.sh": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+    "runs/br038-volume-landmarks/tasks/mri32-full/task.toml": "c17f08145813c2f442717b9ccb3b9268e010528000ee8d8d38dfc428ae06323f",
+    "runs/br038-volume-landmarks/tasks/mri32-full/tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+    "runs/br038-volume-landmarks/tasks/mri32-full/tests/score.py": "9a8dd57ef1d282dd36355c97c10004f0b975ae77e3a7842344598e74718a5584",
+    "runs/br038-volume-landmarks/tasks/mri32-full/tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+    "runs/br038-volume-landmarks/tasks/mri32-full/tests/truth.json": "432b8dc62712fa249b8382c094e76acc894bac2968004cb2c15730e5a95e0a42",
+    "runs/br039-ct-landmarks/tasks/ct-full/environment/Dockerfile": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7",
+    "runs/br039-ct-landmarks/tasks/ct-full/environment/SOURCE_NOTICE.md": "91188f8f2a43b8bf02b5e02914c44d7b47d8afdb17e8d5e1b0a9a1769ed4ddd1",
+    "runs/br039-ct-landmarks/tasks/ct-full/environment/geometry.json": "805beff019b82bd6811166b7ea82fa583e25a2e6ee623e38b9d2b78f280510d4",
+    "runs/br039-ct-landmarks/tasks/ct-full/environment/landmarks.json": "c01dd5b1366b3b6d5c16b997c4549ccf8a8610c60da357ab0d3fd4301404167a",
+    "runs/br039-ct-landmarks/tasks/ct-full/environment/volume.nii.gz": "e0f690b3c0774e3fc6f49ea196b334accf6711cad199e255dca65ea86508ef4e",
+    "runs/br039-ct-landmarks/tasks/ct-full/environment/volume.npy": "7f8b3f0737b91f403e72fff8d55f6f5fa3a48f03c9c7063d820e552bb2383615",
+    "runs/br039-ct-landmarks/tasks/ct-full/environment/volume_tools.py": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058",
+    "runs/br039-ct-landmarks/tasks/ct-full/instruction.md": "6908c9cc14b82421fc01fea617be485572273ae29895c4918c664f396f0d03ff",
+    "runs/br039-ct-landmarks/tasks/ct-full/solution/landmarks.json": "7641a3ab5faf9e1937768ae06de12b44176442012493bae96cd90544778ed659",
+    "runs/br039-ct-landmarks/tasks/ct-full/solution/solve.sh": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+    "runs/br039-ct-landmarks/tasks/ct-full/task.toml": "1c062f47162e225d9addb835822aeca213b4f01485a1ac5139734e202eea67af",
+    "runs/br039-ct-landmarks/tasks/ct-full/tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+    "runs/br039-ct-landmarks/tasks/ct-full/tests/score.py": "10dd7d5417180e95d8f98f677904a0136a772dbee5f14d4b34e9d2fc3c1b9ef4",
+    "runs/br039-ct-landmarks/tasks/ct-full/tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+    "runs/br039-ct-landmarks/tasks/ct-full/tests/truth.json": "70ad569289d5faae92428f2d9d33e16227156ec545c602e290a4cb5a63cabc9e",
+    "runs/br039-ct-landmarks/tasks/ct-partial/environment/Dockerfile": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7",
+    "runs/br039-ct-landmarks/tasks/ct-partial/environment/SOURCE_NOTICE.md": "91188f8f2a43b8bf02b5e02914c44d7b47d8afdb17e8d5e1b0a9a1769ed4ddd1",
+    "runs/br039-ct-landmarks/tasks/ct-partial/environment/geometry.json": "8aa4dfd5e420440b2c74f34672bdf7e72b27a6d21cf169c5d25488fc6780b62c",
+    "runs/br039-ct-landmarks/tasks/ct-partial/environment/landmarks.json": "c01dd5b1366b3b6d5c16b997c4549ccf8a8610c60da357ab0d3fd4301404167a",
+    "runs/br039-ct-landmarks/tasks/ct-partial/environment/volume.nii.gz": "d0820fce2984ab65448fed1fea8b41b88b739468fe46677ee9147f05de680439",
+    "runs/br039-ct-landmarks/tasks/ct-partial/environment/volume.npy": "9d800b5afb3dda6d2b6b4d7ebafd5f91bacb0fcc9b351982232df362df55c1d5",
+    "runs/br039-ct-landmarks/tasks/ct-partial/environment/volume_tools.py": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058",
+    "runs/br039-ct-landmarks/tasks/ct-partial/instruction.md": "48d4dfa2accae7922cbc54a9f7d9b5dc9d266bb1028cd5fb98544197d267d830",
+    "runs/br039-ct-landmarks/tasks/ct-partial/solution/landmarks.json": "1d97a59620e072ba0974325674cac2950c35dc8f549a8dcf375ef920c7fe47bc",
+    "runs/br039-ct-landmarks/tasks/ct-partial/solution/solve.sh": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+    "runs/br039-ct-landmarks/tasks/ct-partial/task.toml": "5eb7cae714e25d3c7c73dbfc897e01f0248cbc7801ae2794f7c1a47772336fad",
+    "runs/br039-ct-landmarks/tasks/ct-partial/tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+    "runs/br039-ct-landmarks/tasks/ct-partial/tests/score.py": "10dd7d5417180e95d8f98f677904a0136a772dbee5f14d4b34e9d2fc3c1b9ef4",
+    "runs/br039-ct-landmarks/tasks/ct-partial/tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+    "runs/br039-ct-landmarks/tasks/ct-partial/tests/truth.json": "3de07e775860f7cbf10f11a66666cda62dfc0b5e26f4186f402f651f22de585e",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/manifest.json": "894f6328fe6e5548e0d626117b494a73c0fb81ee2ab19ed6191c750a490afa41",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/environment/Dockerfile": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/environment/SOURCE_NOTICE.md": "91188f8f2a43b8bf02b5e02914c44d7b47d8afdb17e8d5e1b0a9a1769ed4ddd1",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/environment/geometry.json": "805beff019b82bd6811166b7ea82fa583e25a2e6ee623e38b9d2b78f280510d4",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/environment/landmarks.json": "c01dd5b1366b3b6d5c16b997c4549ccf8a8610c60da357ab0d3fd4301404167a",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/cases/ct-full/task/environment/volume.nii.gz": "e0f690b3c0774e3fc6f49ea196b334accf6711cad199e255dca65ea86508ef4e",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/cases/ct-full/task/environment/volume.npy": "7f8b3f0737b91f403e72fff8d55f6f5fa3a48f03c9c7063d820e552bb2383615",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/environment/volume_tools.py": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/instruction.md": "6908c9cc14b82421fc01fea617be485572273ae29895c4918c664f396f0d03ff",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/solution/landmarks.json": "7641a3ab5faf9e1937768ae06de12b44176442012493bae96cd90544778ed659",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/solution/solve.sh": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/task.toml": "1c062f47162e225d9addb835822aeca213b4f01485a1ac5139734e202eea67af",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/tests/score.py": "10dd7d5417180e95d8f98f677904a0136a772dbee5f14d4b34e9d2fc3c1b9ef4",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/tests/truth.json": "70ad569289d5faae92428f2d9d33e16227156ec545c602e290a4cb5a63cabc9e",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/task/tests/evaluate.py": "0fd045235bc634602d5252f36619db8a255785e74ba2ffb9cd0ceaf09ba47c24",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-full/oracle/landmarks.json": "7641a3ab5faf9e1937768ae06de12b44176442012493bae96cd90544778ed659",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-401a1f3ae78768630da4d284/answer/landmarks.json": "7bea533ac1782c273a220890680fdb6ac66b80f8de14973a5f096ee0be813621",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-401a1f3ae78768630da4d284/expected.json": "e70b60b958066f5746fe618d2ad4e2dd330bfcc631923971ddbfbd8b97393151",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-dcc9b18ee674dd5dcb99be00/answer/landmarks.json": "648f1895605382e35e45257123af9fb8e6fb380d1a79cc4dba264f4db71ce110",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-dcc9b18ee674dd5dcb99be00/expected.json": "529820b57ca677701ce69d2b8234c0e4c5efcdd326823a32277a171d3be40c4b",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/environment/Dockerfile": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/environment/SOURCE_NOTICE.md": "91188f8f2a43b8bf02b5e02914c44d7b47d8afdb17e8d5e1b0a9a1769ed4ddd1",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/environment/geometry.json": "8aa4dfd5e420440b2c74f34672bdf7e72b27a6d21cf169c5d25488fc6780b62c",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/environment/landmarks.json": "c01dd5b1366b3b6d5c16b997c4549ccf8a8610c60da357ab0d3fd4301404167a",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/cases/ct-partial/task/environment/volume.nii.gz": "d0820fce2984ab65448fed1fea8b41b88b739468fe46677ee9147f05de680439",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/cases/ct-partial/task/environment/volume.npy": "9d800b5afb3dda6d2b6b4d7ebafd5f91bacb0fcc9b351982232df362df55c1d5",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/environment/volume_tools.py": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/instruction.md": "48d4dfa2accae7922cbc54a9f7d9b5dc9d266bb1028cd5fb98544197d267d830",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/solution/landmarks.json": "1d97a59620e072ba0974325674cac2950c35dc8f549a8dcf375ef920c7fe47bc",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/solution/solve.sh": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/task.toml": "5eb7cae714e25d3c7c73dbfc897e01f0248cbc7801ae2794f7c1a47772336fad",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/tests/score.py": "10dd7d5417180e95d8f98f677904a0136a772dbee5f14d4b34e9d2fc3c1b9ef4",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/tests/truth.json": "3de07e775860f7cbf10f11a66666cda62dfc0b5e26f4186f402f651f22de585e",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/task/tests/evaluate.py": "0fd045235bc634602d5252f36619db8a255785e74ba2ffb9cd0ceaf09ba47c24",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/ct-partial/oracle/landmarks.json": "1d97a59620e072ba0974325674cac2950c35dc8f549a8dcf375ef920c7fe47bc",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-824eaf2afb12f840a722b998/answer/landmarks.json": "3e7ab43535874c35152d1830af7b55dedb73ebfc52d7726de5331f3a5636cdfe",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-824eaf2afb12f840a722b998/expected.json": "2b99324b6fd48aafc0a1efda77adfb6980d77b7d7ca362b52c1e33424b86800d",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-fa326c40eb125e7ca1b28f60/answer/landmarks.json": "15e6393fd685bf04f5ad5aaa170c8dd58daaef393c005bc4a3564bc2bf602c22",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-fa326c40eb125e7ca1b28f60/expected.json": "ecfb66d1a887d16c18335e976dd1ee6777ce59074412b34ec142a7c1f72bfe0d",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/environment/Dockerfile": "7690e68c26d0f15283731846bda6ce8a67d88c80d7ab04453055ba9f5d7493c7",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/environment/SOURCE_NOTICE.md": "a1a14b98cda6f9ed2eb6a8226f9af7703ee7501d6a2e3f9ec7961537c18659c1",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/environment/geometry.json": "19b5d2f991bc9fa23bafbfd30b07ebfc68cc56c16382477c58573fe7872a04ed",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/environment/landmarks.json": "cd7350b876e2c1b084dee4b6a165f4d2f914c68335143f828025299a29871e28",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/cases/mri32-full/task/environment/volume.nii.gz": "ec9c3a73d97d1268aa8f0490c83c9382ad158d51ded4a0ac3d77de10e27e9a03",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/cases/mri32-full/task/environment/volume.npy": "f9595bf5992e377a2d17d47a3d631f7c762433725e3c11a8470a34c4f627810f",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/environment/volume_tools.py": "9e45612aae89c572509492807b4323ee8027201c69b3a3336faff4ff18a0f058",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/instruction.md": "47de0fc82312e256a082a209b7bfc1769151760b893ee66e0ce656c5f2a1a622",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/solution/landmarks.json": "3aa433bed64a3be08bd46f76a97c0ade1d582cb8cf996dcd94b56ce401b1f1d4",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/solution/solve.sh": "6d106179799f3de5e8c6800c16779380e5f3a025729c742727750a76c1721da7",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/task.toml": "c17f08145813c2f442717b9ccb3b9268e010528000ee8d8d38dfc428ae06323f",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/tests/Dockerfile": "50299c2021cc6aefbb76e520dd0bcb37d23da91f5f34d56b7d3d9fe12bf9a37f",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/tests/score.py": "9a8dd57ef1d282dd36355c97c10004f0b975ae77e3a7842344598e74718a5584",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/tests/test.sh": "3b3a9511624d444b58841a1b3affe27def3e830aee18c50f1c2f2fd9846a79c7",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/tests/truth.json": "432b8dc62712fa249b8382c094e76acc894bac2968004cb2c15730e5a95e0a42",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/task/tests/evaluate.py": "0fd045235bc634602d5252f36619db8a255785e74ba2ffb9cd0ceaf09ba47c24",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/cases/mri32-full/oracle/landmarks.json": "3aa433bed64a3be08bd46f76a97c0ade1d582cb8cf996dcd94b56ce401b1f1d4",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-3bd0c23138df59bc288d0451/answer/landmarks.json": "a0c32abb87387541ef2d27886d191094266b119f3e7dbebdf363405840626116",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-3bd0c23138df59bc288d0451/expected.json": "29811c63f527597a7760b22020c0bdb8ec9645f8042d9bc6bff9741974015191",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-cd5a1ec8b5694e739bc3c409/answer/landmarks.json": "a0b57be7aa1716769c5f957a23ed5d903c37a64f48d543088bdb8a468bda7947",
+    ".local/inputs/reproduction/anatomical-landmarks-br040/saved/attempt-cd5a1ec8b5694e739bc3c409/expected.json": "4b8e8a2e172b26942881b17d9457cd0fdc5d14c0e113977cf9b6189cf38a9c41",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/requirements-evaluation.txt": "4b81b6b6a549771115529e6900b9589835cdbfff0c6acf179aef53d283b744d5",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/source-records.json": "5cc3124127a1b46423efe2f335021c47f4890165c162b94bf047b111bd86577a",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/provenance/BR-040-results.md": "2df21f3b77f46bfb82f65f9ad013d76f6359b2dd66a48f5595ed971bd8e44331",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/provenance/BR-040-sol-landmarks.md": "f5be0bc1e54f053cf39fdd821a5cdfcf610fd21f4ab6e7a8b3d8d7f65ec6cfd3",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/provenance/recovery-check.json": "757b82bb375389862a6d209ebe5eed84d8f11d85b5c59bd54f4d1079b9d28285",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/historical-protocol.md": "42c1caf31fb65d8599546cb995982f5e97dcc4c4efad1dd72c74fa9eadae7a1c",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/acquisition.md": "3a561e9822f099fe827d601ac7645c1c6684722f5aa5518a6d905b9f8fdf6716",
+    "groups/anatomical-landmarks/experiments/br040/reproduction/README.md": "89baa4216d90cf961392b637241419953bbc688be184250fc74cc324f8880ea1",
+    "runs/br036-semantic-landmarks/source/protocol-tree.json": "0a90fb85163944d97e47d8ca27d4c73978b44f20e8ef5f656ed1fdec1687c968",
+    "runs/br036-semantic-landmarks/source/mri-tree.json": "c8719ef07aa06e3089c541c107391e01b280c56ea412e6f24be6e7dc37149574",
+    "runs/br036-semantic-landmarks/source/mri-rater2.fcsv": "3391db6709a736a6681bf1f8d5b67b51b02355bd97f73e42b51848aa02f3a7f8",
+    "runs/br036-semantic-landmarks/source/pddca.odt": "182eee40d68a63efea6f3aada73725f3f1c05d0156bc53aaef1c0f1be5d6241d",
+    "runs/br036-semantic-landmarks/source/mri-pointer.txt": "0fecdef819f2b6360be0fae1b1fcfd927711da0b3f37af56155976f18daee489",
+    "runs/br036-semantic-landmarks/source/ct-C001.nii.gz": "d423062c82934bf5cd3e148fafd6c509a2e089bfb0b0549247446a72b3580ca1",
+    "runs/br036-semantic-landmarks/source/mri-rater3.fcsv": "4b0a9ce4c0fd0668b96f209285cfc921ee8937b706e151cb17223e25f5db0891",
+    "runs/br036-semantic-landmarks/source/PDDCA-1.4.1_part1.zip": "5b47b94f1e6aaad0a10c694906bd40ee8bcfc701e6d3bcbe3f12005815b721ef",
+    "runs/br036-semantic-landmarks/source/mri-rater1.fcsv": "e0786e6db19f01b2290c1ee99269b90f3eaff5628bb931a0a6abd93b4723c045",
+    "runs/br036-semantic-landmarks/source/mri-C001.nii.gz": "4569c5e45fa61362ebde1e214fee1e5385978000d298c8da82f99f10e4b23688",
+    "runs/br036-semantic-landmarks/source/mri-C001.fcsv": "d617ebb0ae555772844919b35e4c1fe19e25dbe38b322f13e7b65795bbe958d7",
+    "runs/br036-semantic-landmarks/source/0522c0001/img.nrrd": "cabcbbc97e05318e6091716dc2ad472380ccb6988bb644594ece87e3ddad89f6",
+    "runs/br036-semantic-landmarks/source/0522c0001/Landmarks_0001.fcsv": "8ad3a9f27e41856dc6f8134355ef84a25c8a8e09ced3ac59bc3e1f6c81a34b39",
+    "runs/br012-curation/source/files/20training/dataset-01training/derivatives/sub-verse823/sub-verse823_dir-iso_seg-subreg_ctd.json": "71f0d225a54a2b5aaed152b1fe95568017a0229d77796a09f083654843ee3b46",
+    "runs/br039-ct-landmarks/source/verse/ct.nii.gz": "7e0cf8f31a4e2d597b6bae2b9996e61b8b158e0ab0d44bf250144fac9b062d71",
+    "runs/br012-curation/source/files/20training/dataset-01training/derivatives/sub-verse823/sub-verse823_dir-iso_seg-vert_msk.nii.gz": "bc12746141863b8d44b0c7903bc6c50f5a43ddd96f2bce1463c387ef6ecb630b",
+    "runs/br040-sol-landmarks/review/index.html": "aa0d9299e3d16d35f8e3119b9e16a1a69d1ba8056a71d56ecf168ec0bd533963",
+    "runs/br040-sol-landmarks/review/ct-full-C3.png": "68a203f60753cc264589216314874afaa0556b29e574be7f37367a4774f2bb96",
+    "runs/br040-sol-landmarks/review/ct-full-L3.png": "db5a9d5f5f839f336f0b9631caa51092701b1700450ad68899a73a919369f3ed",
+    "runs/br040-sol-landmarks/review/ct-partial-T4.png": "dd2d36ba353bee69e59b7aa716cbe7f41d6af6cc96d437c933c45dc4eccffe3c",
+    "runs/br040-sol-landmarks/review/ct-partial-T5.png": "b60dd56860ee9ad7df41b07d9ded391c4d9cc535b312a4fb71226e85bbee9b3b",
+    "runs/br040-sol-landmarks/review/mri32-full-1.png": "4dc75dfe8d7dbd179f802010259d080b40255bad332596ed7018ae227dc9b2a8",
+    "runs/br040-sol-landmarks/review/mri32-full-20.png": "f7cb6c11dbd0b0cd2b0676dba2909a2ac1556bc3e92918a1ebba068e129e1cc1",
+    "runs/br040-sol-landmarks/review/mri32-full-28.png": "a752f3944055533725b64d582e29256c9bd0e1d40a5380d2ad3875ca1934fc22",
+    "runs/br012-curation/source/verse2020-supplement.pdf": "dfac09fbb372b2b4aedfc58d8f0dcc557a4232ee498c057314dd6b80c50bd347",
+    "runs/br012-curation/source/verse2020-supplement.txt": "fc4ba8cc6ec779d05fdbc6c57132e66df7749b46fb6f61ef507b1c495b233cc1",
+    "runs/br036-ct-C001-oracle-v1-20260917/ct-C001__fP6J7nf/artifacts/app/answer/landmarks.json": "4ce282bcb20de233d973e548d7344cc6a1fee927d5e7169bc27e88273ed3cf2d",
+    "runs/br036-ct-C001-oracle-v1-20260917/ct-C001__fP6J7nf/result.json": "f364bcab21881efbfaef06951b8d5aba08d324520731d767933141c7b8419b8d",
+    "runs/br036-ct-C001-nop-v1-20260917/ct-C001__pMdsWTC/result.json": "db0d3edb88f643a7cefc4a0b5a9ac090b5760ebb7778dfee5c49071e45e51468",
+    "runs/br036-ct-C001-terra-high-v1-20260917/ct-C001__UcLT9uD/artifacts/app/answer/landmarks.json": "762ba5838839de538239c1c287a838a503d89715194b44e62df83480b248c2ed",
+    "runs/br036-ct-C001-terra-high-v1-20260917/ct-C001__UcLT9uD/result.json": "fa09fa40e90132b59a642fc70456a268a02f1c464335a93e89ce3cae7cf905bb",
+    "runs/br036-ct-C001-terra-high-v1-20260917/ct-C001__UcLT9uD/agent/trajectory.json": "a17d7b0294c3873e2225e14ef0d9d2ccf2d94252a02d1ec8a5107d4001b85014",
+    "runs/br036-mri-C001-oracle-v1-20260917/mri-C001__FYFuYx8/artifacts/app/answer/landmarks.json": "243ed1a38b09ba36c6233b0d64adb0596c606fbda78ff817b4ded3e0b118a704",
+    "runs/br036-mri-C001-oracle-v1-20260917/mri-C001__FYFuYx8/result.json": "d3aa0c014f0df007b5fbfe42a1257edf1791fc19f738a09922a1007f49b4b3fd",
+    "runs/br036-mri-C001-nop-v1-20260917/mri-C001__xTHcKu9/result.json": "291968832b7f79880e0e6bd9dd41412a90bbd3ab50b64414fb3b3bbb93bae140",
+    "runs/br036-mri-C001-terra-high-v1-20260917/mri-C001__SxyZKtk/artifacts/app/answer/landmarks.json": "8885c3f0cafed11d1d4e007da98dd6a883ca209e056b54f556eb365aa8b43ac0",
+    "runs/br036-mri-C001-terra-high-v1-20260917/mri-C001__SxyZKtk/result.json": "48bdd577231f6a22c7d0ff25a08c6496311540f19bb5dc1f02e73463599728b3",
+    "runs/br036-mri-C001-terra-high-v1-20260917/mri-C001__SxyZKtk/agent/trajectory.json": "9e03e386748462959acd28c5a02fa932cbabca70869ac9c48dde17bd4c7de450",
+    "runs/br036-mri32-crop-oracle-v1-20260917/mri32-crop__gaRzSYa/artifacts/app/answer/landmarks.json": "b01950026f40e8ea934cb6f34db383949404601a8182ff8dceb651faaf212d5f",
+    "runs/br036-mri32-crop-oracle-v1-20260917/mri32-crop__gaRzSYa/result.json": "949a214b17c74cf8cc2b78a87dcdac1b1bc4e2ecca3013b68329e2a23aaf3faf",
+    "runs/br036-mri32-crop-nop-v1-20260917/mri32-crop__hDYxRen/result.json": "2c10766c6d1f683a9b635420ef33913eb8451ce63533051655747a37d0d8ccb3",
+    "runs/br036-mri32-crop-terra-high-v1-20260917/mri32-crop__P44eEHA/artifacts/app/answer/landmarks.json": "e88ff38b69e154f4d7c0797174e0c837f9e06bec0ea9b9afe879169081526778",
+    "runs/br036-mri32-crop-terra-high-v1-20260917/mri32-crop__P44eEHA/result.json": "72b6fc77a3e12759d45ec614a9e951ab14fe277beb09d889a70a4ec0a9f8eb64",
+    "runs/br036-mri32-crop-terra-high-v1-20260917/mri32-crop__P44eEHA/agent/trajectory.json": "36ca7151474c39f417dec48ec78005e7ec0fdc2e288ce19327f4006f864d5854",
+    "runs/br036-ct-crop-oracle-v1-20260917/ct-crop__RvHBeo6/artifacts/app/answer/landmarks.json": "457504d32be6748b6a45b1f42d937548c36c6fd6941ff457f343cba6a37f484c",
+    "runs/br036-ct-crop-oracle-v1-20260917/ct-crop__RvHBeo6/result.json": "53e96049098593b7ebfec82d5887d245cf8d859e3a5639a2b4eae5937f07b11b",
+    "runs/br036-ct-crop-nop-v1-20260917/ct-crop__Zd5Pmae/result.json": "9e898536c9a4b57c71f967b373179a7ae5e01d574753e17f09a841b870f7f260",
+    "runs/br036-ct-crop-terra-high-v1-20260917/ct-crop__eJRRUUC/artifacts/app/answer/landmarks.json": "d20592f2aa118d4e182b655005ef4f74a99e535f22cb5ebe86f2645072dfdd61",
+    "runs/br036-ct-crop-terra-high-v1-20260917/ct-crop__eJRRUUC/result.json": "9f201566a6a6f1e2dcb7e8d446591bf9a0ede3a0f5db737bee6f6372150f298b",
+    "runs/br036-ct-crop-terra-high-v1-20260917/ct-crop__eJRRUUC/agent/trajectory.json": "580907ba4a6c35e8188a3f6bb4476997f9adedae691fc780776a8ec366e9e132",
+    "runs/br038-ct-full-oracle-v1-20260917/ct-full__XPahJhb/artifacts/app/answer/landmarks.json": "b0d08a8ee8d4e3f96a28f72976e65e3f91b2da7702ff7d3c5f5a5e7d03e63d5a",
+    "runs/br038-ct-full-oracle-v1-20260917/ct-full__XPahJhb/result.json": "93e13ddde53ee38abbfbd41c068968760ed5772aec594e8c1ee0c6db114c8d57",
+    "runs/br038-ct-full-nop-v1-20260917/ct-full__qVUcB22/result.json": "9aa0dbd98b9c384a29b7d32db2b483b89d7ca3f91aefb89d6a108017d8695bff",
+    "runs/br038-ct-full-terra-high-v1-20260917/ct-full__U3shdJw/artifacts/app/answer/landmarks.json": "b5a8ebae2d43dcff976a80f82bf33579ffb4f4447840f7ebc275c3cd0789459e",
+    "runs/br038-ct-full-terra-high-v1-20260917/ct-full__U3shdJw/result.json": "ddaa37a0f1dd15e5981fcb23fff1a5ddae52e64ca566476225574d542783b70a",
+    "runs/br038-ct-full-terra-high-v1-20260917/ct-full__U3shdJw/agent/trajectory.json": "bf33e8cf5aeb98e8c1ad5e96abe01de88b293202ca93a7f82374ea44adce384f",
+    "runs/br038-mri32-full-oracle-v1-20260917/mri32-full__U2jbqCF/artifacts/app/answer/landmarks.json": "3aa433bed64a3be08bd46f76a97c0ade1d582cb8cf996dcd94b56ce401b1f1d4",
+    "runs/br038-mri32-full-oracle-v1-20260917/mri32-full__U2jbqCF/result.json": "152face6424a0f7f8cee9fb13f5ed17571215626f780d98a0eb4216911c0513c",
+    "runs/br038-mri32-full-nop-v1-20260917/mri32-full__TTGdSz7/result.json": "1b848300d8717334b3278f09c9a8bfb76bb75214c492cbcdc34d10746f7940d1",
+    "runs/br038-mri32-full-terra-high-v1-20260917/mri32-full__q5PAj85/artifacts/app/answer/landmarks.json": "a0c32abb87387541ef2d27886d191094266b119f3e7dbebdf363405840626116",
+    "runs/br038-mri32-full-terra-high-v1-20260917/mri32-full__q5PAj85/result.json": "22dd200804b72099fa3936f50da2a6cbfeb2204180a426ced8046fd11a05cd62",
+    "runs/br038-mri32-full-terra-high-v1-20260917/mri32-full__q5PAj85/agent/trajectory.json": "d608aa3b61f0a34bdcb91b7a90c4ff21f1f8a4cb64f7be16fb51a2e623463707",
+    "runs/br039-ct-full-oracle-v1-20260917/ct-full__e8it67i/artifacts/app/answer/landmarks.json": "7641a3ab5faf9e1937768ae06de12b44176442012493bae96cd90544778ed659",
+    "runs/br039-ct-full-oracle-v1-20260917/ct-full__e8it67i/result.json": "501e93092c5cd2165e9ef99f07c05857a6db44b70de6a0171bf50d84c33ba12b",
+    "runs/br039-ct-full-nop-v1-20260917/ct-full__bjRVumL/result.json": "b637323fee1278d2c43029e13999564d8cb48e2fb81004b3dba12b6ccdad58ee",
+    "runs/br039-ct-full-terra-high-v1-20260917/ct-full__UvZqJrf/artifacts/app/answer/landmarks.json": "7bea533ac1782c273a220890680fdb6ac66b80f8de14973a5f096ee0be813621",
+    "runs/br039-ct-full-terra-high-v1-20260917/ct-full__UvZqJrf/result.json": "10825e9433fd91ecc4db759c2607ab700370dbf644ac159cce8b60bf2c5eadf0",
+    "runs/br039-ct-full-terra-high-v1-20260917/ct-full__UvZqJrf/agent/trajectory.json": "2ac079487b5ea2c44d64d86a1efcee34dd56ff58202019e9375c585083c5d93e",
+    "runs/br039-ct-partial-oracle-v1-20260917/ct-partial__MyGi9CQ/artifacts/app/answer/landmarks.json": "1d97a59620e072ba0974325674cac2950c35dc8f549a8dcf375ef920c7fe47bc",
+    "runs/br039-ct-partial-oracle-v1-20260917/ct-partial__MyGi9CQ/result.json": "601a507cc886131d023358cc1743c7a576256ab626041bb5027fd326a47598cf",
+    "runs/br039-ct-partial-nop-v1-20260917/ct-partial__7FJngrC/result.json": "f6730d97529952808398bf9da482ca43ce36512c84571feda29a384178372b47",
+    "runs/br039-ct-partial-terra-high-v1-20260917/ct-partial__DeU639y/artifacts/app/answer/landmarks.json": "3e7ab43535874c35152d1830af7b55dedb73ebfc52d7726de5331f3a5636cdfe",
+    "runs/br039-ct-partial-terra-high-v1-20260917/ct-partial__DeU639y/result.json": "89995e6a6ed77f1039351a248ca35deb0feb45fc6edb2232dfb835bec1f0d1ff",
+    "runs/br039-ct-partial-terra-high-v1-20260917/ct-partial__DeU639y/agent/trajectory.json": "d2c5338c2eac8ffa249a193aac09ba6a4aaa0bc5224340190f6cf9bd9b6837d4",
+    "runs/br039-ct-full-terra-high-v1-20260917/ct-full__UvZqJrf/agent/sessions/2026/09/17/rollout-2026-09-17T03-00-08-01a0ad4e-a995-7023-a9f8-620848e91587.jsonl": "b07a8527c728cf33860a1918027bd677ec4080b84b1999c5ddc618f5a5d20782",
+    "runs/br040-ct-full-sol-xhigh-v1-20260917/ct-full__uk7tsH3/artifacts/app/answer/landmarks.json": "648f1895605382e35e45257123af9fb8e6fb380d1a79cc4dba264f4db71ce110",
+    "runs/br040-ct-full-sol-xhigh-v1-20260917/ct-full__uk7tsH3/result.json": "785e39a24a1e3e058e92263a0a4f5034870aee92f03b40b5f198e46344643161",
+    "runs/br040-ct-full-sol-xhigh-v1-20260917/ct-full__uk7tsH3/agent/sessions/2026/09/17/rollout-2026-09-17T03-31-56-01a0ad6b-c46c-72e0-a00d-81e7dfe90ec2.jsonl": "bfa535739e0283a9d39ca3b5442436b6c3fd76c296d45920769360057fabe024",
+    "runs/br039-ct-partial-terra-high-v1-20260917/ct-partial__DeU639y/agent/sessions/2026/09/17/rollout-2026-09-17T02-58-49-01a0ad4d-73ab-7232-baec-00ac00209daa.jsonl": "027731522496a1cdc49ac82bd774bbe6a256ae5b510018d91d39b19f8cc05e0a",
+    "runs/br040-ct-partial-sol-xhigh-v1-20260917/ct-partial__53TnzeA/artifacts/app/answer/landmarks.json": "15e6393fd685bf04f5ad5aaa170c8dd58daaef393c005bc4a3564bc2bf602c22",
+    "runs/br040-ct-partial-sol-xhigh-v1-20260917/ct-partial__53TnzeA/result.json": "753aefd9bd72ed349c8cf7cce3ee4dd6c8c99354c4db22542b4c4c88e5ec8b9f",
+    "runs/br040-ct-partial-sol-xhigh-v1-20260917/ct-partial__53TnzeA/agent/sessions/2026/09/17/rollout-2026-09-17T03-44-39-01a0ad77-6b6d-76e2-a0a1-5ae6c5bcb90d.jsonl": "901bcb9c32db041f38a14d0eb9369d51af39e62196899caee35e2b146ebf1e52",
+    "runs/br038-mri32-full-terra-high-v1-20260917/mri32-full__q5PAj85/agent/sessions/2026/09/17/rollout-2026-09-17T02-18-31-01a0ad28-8fcc-7f80-abfe-3859235c6840.jsonl": "75d50cdbf76816b2aa7ed3f4d7fe0d2061ba7a4d9c6854f32aa16d6a997f2f62",
+    "runs/br040-mri32-full-sol-xhigh-v1-20260917/mri32-full__QjMqoBN/artifacts/app/answer/landmarks.json": "a0b57be7aa1716769c5f957a23ed5d903c37a64f48d543088bdb8a468bda7947",
+    "runs/br040-mri32-full-sol-xhigh-v1-20260917/mri32-full__QjMqoBN/result.json": "aa927b0f4e5886c0b4d06957b69fbeb9bd1b65250c70d69b84ae3cad04ce9042",
+    "runs/br040-mri32-full-sol-xhigh-v1-20260917/mri32-full__QjMqoBN/agent/sessions/2026/09/17/rollout-2026-09-17T03-31-52-01a0ad6b-b46a-7123-8076-a62c3bf5c773.jsonl": "c0ec068eb14b4edefa3ec621e05c1986e7512c855d256195e2d90a7f8697ca23",
+    "runs/br040-sol-landmarks/source-audit/tpl_casym.zip": "a5cbb97793da4f3aae7be7935228532f7fd1031d4b0d6f40f3ea1584653ce075",
+    "runs/br040-sol-landmarks/source-audit/afids-data.zip": "79f04b23750fd7229687044c41ce6281b85ccf6bcd6b38b8dd30e325cb2ac0dd"
+  },
+  "reproduction_manifest_files": 71,
+  "task_checks": {
+    "036/ct-C001": {
+      "shape_ijk": [
+        512,
+        512,
+        107
+      ],
+      "affine_ras_mm": [
+        [
+          -1.1200000047683716,
+          0.0,
+          0.0,
+          286.7200012207031
+        ],
+        [
+          0.0,
+          -1.1200000047683716,
+          0.0,
+          286.7200012207031
+        ],
+        [
+          0.0,
+          0.0,
+          3.0,
+          61.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "positive_axes": [
+        "L",
+        "P",
+        "S"
+      ],
+      "all_native_intensities_verified": true,
+      "reference_coordinates_verified": true
+    },
+    "036/mri-C001": {
+      "shape_ijk": [
+        224,
+        342,
+        342
+      ],
+      "affine_ras_mm": [
+        [
+          0.7000045776367188,
+          0.0,
+          -0.0,
+          -78.05101013183594
+        ],
+        [
+          0.0,
+          0.7017543911933899,
+          -0.0,
+          -104.04400634765625
+        ],
+        [
+          0.0,
+          0.0,
+          0.7017543911933899,
+          -138.1844482421875
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "positive_axes": [
+        "R",
+        "A",
+        "S"
+      ],
+      "all_native_intensities_verified": true,
+      "reference_coordinates_verified": true
+    },
+    "036/mri32-crop": {
+      "shape_ijk": [
+        224,
+        342,
+        197
+      ],
+      "affine_ras_mm": [
+        [
+          0.7000045776367188,
+          0.0,
+          -0.0,
+          -78.05101013183594
+        ],
+        [
+          0.0,
+          0.7017543911933899,
+          -0.0,
+          -104.04400634765625
+        ],
+        [
+          0.0,
+          0.0,
+          0.7017543911933899,
+          -36.43006134033203
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "positive_axes": [
+        "R",
+        "A",
+        "S"
+      ],
+      "all_native_intensities_verified": true,
+      "reference_coordinates_verified": true
+    },
+    "036/ct-crop": {
+      "shape_ijk": [
+        512,
+        512,
+        39
+      ],
+      "affine_ras_mm": [
+        [
+          -1.1200000047683716,
+          0.0,
+          0.0,
+          286.7200012207031
+        ],
+        [
+          0.0,
+          -1.1200000047683716,
+          0.0,
+          286.7200012207031
+        ],
+        [
+          0.0,
+          0.0,
+          3.0,
+          265.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "positive_axes": [
+        "L",
+        "P",
+        "S"
+      ],
+      "all_native_intensities_verified": true,
+      "reference_coordinates_verified": true
+    },
+    "038/ct-full": {
+      "shape_ijk": [
+        512,
+        512,
+        107
+      ],
+      "affine_ras_mm": [
+        [
+          -1.1200000047683716,
+          0.0,
+          0.0,
+          286.7200012207031
+        ],
+        [
+          0.0,
+          -1.1200000047683716,
+          0.0,
+          286.7200012207031
+        ],
+        [
+          0.0,
+          0.0,
+          3.0,
+          61.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "positive_axes": [
+        "L",
+        "P",
+        "S"
+      ],
+      "all_native_intensities_verified": true,
+      "reference_coordinates_verified": true
+    },
+    "038/mri32-full": {
+      "shape_ijk": [
+        224,
+        342,
+        342
+      ],
+      "affine_ras_mm": [
+        [
+          0.7000045776367188,
+          0.0,
+          -0.0,
+          -78.05101013183594
+        ],
+        [
+          0.0,
+          0.7017543911933899,
+          -0.0,
+          -104.04400634765625
+        ],
+        [
+          0.0,
+          0.0,
+          0.7017543911933899,
+          -138.1844482421875
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "positive_axes": [
+        "R",
+        "A",
+        "S"
+      ],
+      "all_native_intensities_verified": true,
+      "reference_coordinates_verified": true
+    },
+    "039/ct-full": {
+      "shape_ijk": [
+        512,
+        512,
+        1214
+      ],
+      "affine_ras_mm": [
+        [
+          -0.71875,
+          -0.0,
+          0.0,
+          181.640625
+        ],
+        [
+          0.0,
+          0.71875,
+          0.0,
+          -7.140625
+        ],
+        [
+          0.0,
+          0.0,
+          0.70001220703125,
+          -1546.11474609375
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "positive_axes": [
+        "L",
+        "A",
+        "S"
+      ],
+      "all_native_intensities_verified": true,
+      "reference_coordinates_verified": true
+    },
+    "039/ct-partial": {
+      "shape_ijk": [
+        512,
+        512,
+        920
+      ],
+      "affine_ras_mm": [
+        [
+          -0.71875,
+          -0.0,
+          0.0,
+          181.640625
+        ],
+        [
+          0.0,
+          0.71875,
+          0.0,
+          -7.140625
+        ],
+        [
+          0.0,
+          0.0,
+          0.70001220703125,
+          -1546.11474609375
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "positive_axes": [
+        "L",
+        "A",
+        "S"
+      ],
+      "all_native_intensities_verified": true,
+      "reference_coordinates_verified": true
+    }
+  },
+  "saved_score_records": 30,
+  "unique_execution_records": 27,
+  "model_attempts": 11,
+  "rater_max_distance_to_mean_mm": {
+    "1": 0.3019082390904007,
+    "2": 0.8693821021996025,
+    "3": 1.4349400228309934,
+    "4": 0.9716820135129385,
+    "5": 1.25107263346643,
+    "6": 1.1349696372297045,
+    "7": 1.1416497860990473,
+    "8": 1.4708035914046758,
+    "9": 0.5302651726573494,
+    "10": 0.559636918710696,
+    "11": 0.7094771290538517,
+    "12": 0.30766475644044294,
+    "13": 0.2969023145937267,
+    "14": 1.2935292761476616,
+    "15": 0.7916881407613904,
+    "16": 0.8544190397184104,
+    "17": 1.1970125257965258,
+    "18": 1.1176105760057924,
+    "19": 0.8595005666664803,
+    "20": 1.5397965692262736,
+    "21": 2.71742791358953,
+    "22": 3.5875825330034012,
+    "23": 2.2837369252170876,
+    "24": 0.9794052080273569,
+    "25": 0.7125300664221538,
+    "26": 2.0425269953336427,
+    "27": 3.137844030186618,
+    "28": 0.9760891864988558,
+    "29": 0.8629522846342972,
+    "30": 1.789151354693054,
+    "31": 1.3905935990711966,
+    "32": 0.5883491083815218
+  },
+  "atlas_archives": {
+    "tpl_casym.zip": {
+      "entries": 15,
+      "fiducial_files": [
+        "tpl-MNI152NLin2009cAsym-master/raters/tpl-MNI152NLin2009cAsym_res-01_desc-rater01_afids.fcsv",
+        "tpl-MNI152NLin2009cAsym-master/raters/tpl-MNI152NLin2009cAsym_res-01_desc-rater02_afids.fcsv",
+        "tpl-MNI152NLin2009cAsym-master/raters/tpl-MNI152NLin2009cAsym_res-01_desc-rater03_afids.fcsv",
+        "tpl-MNI152NLin2009cAsym-master/raters/tpl-MNI152NLin2009cAsym_res-01_desc-rater04_afids.fcsv",
+        "tpl-MNI152NLin2009cAsym-master/tpl-MNI152NLin2009cAsym_res-01_desc-groundtruth_afids.fcsv"
+      ]
+    },
+    "afids-data.zip": {
+      "entries": 37,
+      "fiducial_files": []
+    }
+  },
+  "atlas_image_gap": "The runtime TemplateFlow image bytes and SHA-256 remain unavailable; archive NIfTI entry is an annex pointer, not an audited image.",
+  "score_absolute_tolerance": 1e-09,
+  "script_sha256": "e96fc442c660a719460a354d5dec11ff329d932f52a2dc449ed3833ba20184da",
+  "environment": {
+    "numpy": "2.2.6",
+    "nibabel": "5.3.2",
+    "SimpleITK": "2.4.1"
+  },
+  "review_date": "2026-09-28",
+  "reviewer": "assistant",
+  "entry_id": "tb3-named-landmarks",
+  "status": "source-audit-complete-story-pending",
+  "audit_script": "scripts/audit_named_landmark_evidence.py",
+  "replay_receipt": {
+    "path": ".local/explainers/completion-20260927/024-audit-v2/replayed-results.json",
+    "sha256": "63030d08a0e2f1143505f08bf38c114cd9a73cf889be28c49b56ba990c00d615"
+  },
+  "terms_receipt": {
+    "path": "groups/anatomical-landmarks/presentation/sources/named-landmark-source-terms.json",
+    "sha256": "28c6418902c844467df19709174e4b435d4f6e48edf9f7428d8ee4ec1a1a9a35"
+  },
+  "visual_inspection": [
+    {
+      "path": "runs/br040-sol-landmarks/review/ct-partial-T4.png",
+      "observation": "Terra observed T4 inside partial FOV; no true T4 or Sol marker in the panel. Private source confirms the point lies 2.142 mm from T5, a wrong-level claim on real bone."
+    },
+    {
+      "path": "runs/br040-sol-landmarks/review/ct-partial-T5.png",
+      "observation": "Visible private T5 is missed by Sol. Terra T5 looks near in axial projection but has -25.1 mm plane offset; long planes expose depth error."
+    },
+    {
+      "path": "runs/br038-volume-landmarks/review/ct-full-mand_r.png",
+      "observation": "Reference condyle and returned point visibly separate in long planes; 32.07 mm physical error. No unadjudicated wrong-structure identity assigned."
+    },
+    {
+      "path": "runs/br040-sol-landmarks/review/mri32-full-1.png",
+      "observation": "Anterior commissure: Terra 0.716 mm vs Sol 8.807 mm. A local counterexample to aggregate MRI improvement."
+    },
+    {
+      "path": "runs/br040-sol-landmarks/review/mri32-full-28.png",
+      "observation": "Projected markers have nonzero printed plane offsets; a near projection is not a near 3D point."
+    }
+  ],
+  "reference_uncertainty": {
+    "afids_rater_max_over_3mm": {
+      "22": 3.5875825330034012,
+      "27": 3.137844030186618
+    },
+    "interpretation": "IDs 22 and 27 exceed the 3 mm scoring tolerance. Preserve the source consensus and frozen scores; this is context, not a reference invalidation."
+  },
+  "boundaries": [
+    "11 model attempts, 16 unique controls; 30 saved score records include 3 reused records.",
+    "Full and cropped volumes share subjects; one attempt per condition. Model and effort both change in BR-040.",
+    "Only BR-040 has the retained 71-file reproduction manifest. Earlier native tasks and outputs were checked locally.",
+    "MRI generic atlas assistance is not unaided localization; missing original runtime image is a recovery limit, not a trial failure.",
+    "Reader panels are reference-centred and projected; markers and masks are not solver-visible.",
+    "Source audit and score replay are not story acceptance, fresh inference, causal evidence or clinical qualification."
+  ]
+}

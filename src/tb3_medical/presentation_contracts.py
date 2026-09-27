@@ -514,6 +514,35 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class NamedLandmarksChannels(TypedDict):
+    view: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class NamedLandmarksBeat(ExpansionBeat):
+    channels: NamedLandmarksChannels
+    scene: Literal[
+        "inputs",
+        "coordinates",
+        "search",
+        "output",
+        "reference",
+        "availability",
+        "condyle",
+        "mri",
+        "counterexample",
+        "comparison",
+        "conditions",
+        "limits",
+    ]
+
+
+class NamedLandmarksPlan(ExpansionPlan):
+    recipe: Literal["named-landmarks-v1"]
+    beats: list[NamedLandmarksBeat]
+
+
 class ClinicalCavityChannels(TypedDict):
     phase: tuple[float, float]
     helper: tuple[float, float]
@@ -634,6 +663,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | NamedLandmarksPlan
     | ClinicalCavityPlan
     | RespiratoryPlan
     | CurationPlan

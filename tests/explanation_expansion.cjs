@@ -18,6 +18,12 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    landmarkSource,
+    landmarkOutputs,
+    landmarkReference,
+    landmarkWorld,
+    landmarkProjection,
+    landmarkSelection,
     cavityCases,
     cavityOutputs,
     cavityReferences,
@@ -156,6 +162,47 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   ]);
   assert.equal((stitched.match(/M/g) || []).length, 1);
   assert.equal((stitched.match(/L/g) || []).length, 4);
+  const landmarkPlan = plans.find((p) => p.recipe === 'named-landmarks-v1');
+  assert.ok(landmarkPlan);
+  assert.equal(landmarkSelection(sampleStory(landmarkPlan, 0)).reveal, false);
+  assert.equal(landmarkSelection(sampleStory(landmarkPlan, 0)).output, false);
+  const partial = landmarkOutputs.partial;
+  assert.equal(partial.sol.T5.status, 'out_of_fov');
+  assert.equal(partial.sol.T5.ijk, null);
+  assert.equal(landmarkReference.points.partial.T5.status, 'observed');
+  assert.equal(landmarkReference.points.partial.T4.status, 'out_of_fov');
+  const p = partial.terra.T4.ijk;
+  const q = landmarkReference.points.partial.T5.ijk;
+  const wp = landmarkWorld('partial', p),
+    wq = landmarkWorld('partial', q);
+  assert.ok(Math.abs(Math.hypot(...wp.map((v, i) => v - wq[i])) - 2.14) < 0.005);
+  for (const plane of landmarkSource.views['partial-T5']) {
+    const projected = landmarkProjection(plane, 'partial', p);
+    const u = (projected.u - 0.5) * plane.step + plane.origin_uv[0];
+    const v = (plane.height - projected.v - 0.5) * plane.step + plane.origin_uv[1];
+    assert.ok(Math.abs(u - p[plane.u_axis]) < 1e-10);
+    assert.ok(Math.abs(v - p[plane.v_axis]) < 1e-10);
+    assert.equal(
+      projected.offset,
+      (p[plane.axis] - plane.index) * landmarkSource.cases.partial.spacing[plane.axis],
+    );
+  }
+  const grade = landmarkReference.grades.partial.sol;
+  assert.equal(grade.score.localized_visible, 12);
+  assert.equal(grade.score.missed_visible, 1);
+  assert.equal(grade.success_counts['5'], 4);
+  const sweepBeat = landmarkPlan.beats.find((b) => b.scene === 'search');
+  const visitedSlices = new Set();
+  for (let frame = sweepBeat.startFrame; frame < sweepBeat.endFrame; frame++) {
+    const state = landmarkSelection(sampleStory(landmarkPlan, frame));
+    assert.equal(state.output, false);
+    assert.equal(state.reveal, false);
+    visitedSlices.add(state.planes[0].index);
+  }
+  assert.deepEqual(
+    [...visitedSlices],
+    Array.from(landmarkSource.views['partial-sweep'], (p) => p.index),
+  );
   const cavityPlan = plans.find((p) => p.recipe === 'clinical-cavity-v1');
   assert.ok(cavityPlan);
   const inputState = sampleStory(cavityPlan, 0);
