@@ -6,6 +6,7 @@ import {
   createMaterialPrefab,
   createAnatomyPrefab,
   createIdentityPrefab,
+  createPrototypeIdentityPrefab,
 } from './operation-prefabs';
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
@@ -18,7 +19,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
 }
 export function hasInteractiveProjection(plan: StoryPlan): boolean {
   // Identity names must stay hidden at the start even without a GPU.
-  return plan.recipe === 'anatomy-identity-v1';
+  return ['anatomy-identity-v1', 'prototype-identity-v1'].includes(plan.recipe);
 }
 export function nativeFactory(plan: StoryPlan) {
   switch (plan.recipe) {
@@ -34,6 +35,8 @@ export function nativeFactory(plan: StoryPlan) {
       return createAnatomyPrefab;
     case 'anatomy-identity-v1':
       return createIdentityPrefab;
+    case 'prototype-identity-v1':
+      return createPrototypeIdentityPrefab;
     default:
       throw new Error('No native factory for ' + plan.recipe);
   }
@@ -44,6 +47,15 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'prototype-identity-v1':
+      return {
+        heading: 'Anonymous object identity · retained BR-011 I2 prototype',
+        corner: 'Case 32 · shared LPS frame · sampled surface points',
+        legend: [
+          ['#8c9589', 'Other supplied objects'],
+          ['#307f74', 'Selected object'],
+        ],
+      };
     case 'mixed-tissue-v1':
       return {
         heading: 'Mixed tissue inside a proposed label · retained BR-017 M02 slices',

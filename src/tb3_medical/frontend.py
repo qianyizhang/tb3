@@ -43,7 +43,15 @@ def input_hashes(root: Path) -> dict[str, str]:
         for path in (root / folder).rglob("*")
         if path.is_file()
     )
-    return {path.relative_to(root).as_posix(): storage.sha(path) for path in sorted(paths)}
+    # Source-derived packs can live outside the legacy anatomy/fixture folders.
+    # Pin their declared inputs too, so a changed slice or private reveal cannot
+    # silently reuse a bundle that still embeds older bytes.
+    index = json.loads((root / "presentation/assets/teaching-prefabs.json").read_text())
+    for pack in index.get("packs", {}).values():
+        manifest = root / pack["manifest"]
+        paths.append(manifest)
+        paths.extend(manifest.parent / name for name in pack["retained_files"])
+    return {path.relative_to(root).as_posix(): storage.sha(path) for path in sorted(set(paths))}
 
 
 def assets(root: Path, entry: str) -> tuple[str, str]:

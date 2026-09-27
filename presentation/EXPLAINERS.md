@@ -47,6 +47,7 @@ A bound story is not automatically accepted; unresolved entries remain visible.
 | Longitudinal | Explicit match/new/unobserved relations; actual CT task supplies no candidate locations |
 | Anatomy audit | Existing seven-part s1233 assembly; label/witness schema and clean-control semantics |
 | Object identity | Anonymous teaching IDs, shared source geometry, condition-specific vocabulary, assignment output and explicit source-name reveal; seven-part s1233 subset is not full A01 |
+| Prototype identity | All 17 actual case-32 I2 objects as sampled surface points; 117-name vocabulary, complete assignment list, private-key reveal and prototype admission limits |
 | Mixed tissue | Retained M02 CT with supplied host/donor outlines; author-only region and LPS witness revealed explicitly; whole/partial/unchanged/focused conditions stay distinct |
 | CT/MRI | Separate Radon/FFT measurements and image outputs; toy vs task dimensions/assistance explicit |
 
@@ -72,6 +73,16 @@ or solver input. The dedicated source-slice pack pins CC BY / Apache terms,
 source hashes, native pixel-to-LPS transforms and separately classified reference
 paths. Other recipes retain `no-reference-assets`. Rebuild instructions and
 limits are in [the source notice](task-explorer/mixed-tissue/NOTICE.md).
+
+`prototype-identity-v1` shares the identity channels but uses its own 17-object
+source pack and private-key reveal. All source clouds keep one proper rotation,
+centre and uniform fit; point samples do not become watertight meshes or imply
+connectivity. [Its notice](task-explorer/prototype-identity/NOTICE.md) retains
+the public-file hashes and source-occupancy identity checks. Every asset pack's
+declared files now enter the frontend fingerprint, including source packs outside
+the earlier anatomy/fixture folders. A changed reference cannot reuse old bundled
+bytes. The Explorer's directly cited text bundle is bounded at 2 MiB for the
+205-entry catalogue; the 64 KiB per-file limit and private-runtime exclusions remain.
 
 ## Build and export
 

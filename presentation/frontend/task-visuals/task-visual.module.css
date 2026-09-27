@@ -598,9 +598,36 @@
 }
 
 :global([data-recipe='anatomy-identity-v1']) :global(.scene-step-index),
+:global([data-recipe='prototype-identity-v1']) :global(.scene-step-index),
 :global([data-recipe='mixed-tissue-v1']) :global(.scene-step-index) {
   flex-shrink: 0;
   white-space: nowrap;
+}
+.prototypeAssignments {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 12px;
+  margin: 10px 0;
+  font-size: 12px;
+  line-height: 1.25;
+}
+.prototypeAssignments > div {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 4px;
+  min-height: 22px;
+  border-bottom: 1px solid #ddded5;
+}
+.prototypeAssignments [data-prototype-selected='true'] {
+  background: #e4eee8;
+}
+.prototypeAssignments span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+:global([data-recipe='prototype-identity-v1']) .storyOutput p {
+  line-height: 1.4;
+  margin: 6px 0 8px;
 }
 @container task-visual (max-width:600px) {
   .mobileInverse {

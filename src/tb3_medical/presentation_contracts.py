@@ -249,6 +249,11 @@ class IdentityPlan(ExpansionPlan):
     beats: list[IdentityBeat]
 
 
+class PrototypeIdentityPlan(ExpansionPlan):
+    recipe: Literal["prototype-identity-v1"]
+    beats: list[IdentityBeat]
+
+
 class MixedTissueChannels(TypedDict):
     conditions: list[float]
     plane: list[float]
@@ -277,6 +282,7 @@ StoryPlan = (
     | EditPlan
     | AnatomyPlan
     | IdentityPlan
+    | PrototypeIdentityPlan
     | MixedTissuePlan
 )
 

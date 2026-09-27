@@ -96,6 +96,22 @@ withBrowser(async (browser) => {
             'Identity output content overflows its panel',
           );
         }
+        if (plan.recipe === 'prototype-identity-v1') {
+          const labels = await page.locator('[data-prototype-label]').allTextContents();
+          assert.equal(labels.length, 17);
+          assert.equal(
+            labels.every((label) => label === 'unassigned'),
+            frame !== plan.durationFrames - 1,
+          );
+          assert.ok(
+            await page
+              .locator('[data-prototype-output]')
+              .evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'Prototype output content overflows',
+          );
+          const output = await page.locator('[data-prototype-output]').boundingBox();
+          assert.ok(output && output.y + output.height <= 720, 'Prototype output clipped');
+        }
         assert.equal(
           await page.locator('.scene-player').getAttribute('data-committed-frame'),
           String(frame),
@@ -249,9 +265,29 @@ withBrowser(async (browser) => {
       'longitudinal-v1',
       'inverse-v1',
       'anatomy-identity-v1',
+      'prototype-identity-v1',
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'prototype-identity-v1') {
+      assert.ok(
+        (await fallback.locator('[data-prototype-label]').allTextContents()).every(
+          (s) => s === 'unassigned',
+        ),
+      );
+      await fallback.locator('[data-story-step="4"]').click();
+      await fallback.waitForFunction(() =>
+        [...document.querySelectorAll('[data-prototype-label]')].every(
+          (e) => e.textContent !== 'unassigned',
+        ),
+      );
+      await fallback.locator('[data-story-step="0"]').click();
+      await fallback.waitForFunction(() =>
+        [...document.querySelectorAll('[data-prototype-label]')].every(
+          (e) => e.textContent === 'unassigned',
+        ),
+      );
+    }
     if (plan.recipe === 'mixed-tissue-v1') {
       assert.equal(await fallback.locator('[data-mixed-reference]').count(), 0);
       assert.equal(await fallback.locator('[data-mixed-answer]').count(), 0);
@@ -310,6 +346,7 @@ withBrowser(async (browser) => {
       'tb3-label-audit',
       'tb3-supplied-object-identity',
       'tb3-mixed-tissue-audit',
+      'tb3-unlabeled-anatomy-prototype',
     ]) {
       await page.evaluate((id) => {
         location.hash = `${id}/0/overview?view=repository`;

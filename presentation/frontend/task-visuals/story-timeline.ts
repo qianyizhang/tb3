@@ -104,6 +104,16 @@ export function sampleStory(plan: StoryPlan, requested: number) {
         reveal: channel(b.channels.reveal),
       });
     }
+    case 'prototype-identity-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        focus: channel(b.channels.focus),
+        inventory: channel(b.channels.inventory),
+        reveal: channel(b.channels.reveal),
+      });
+    }
     case 'mixed-tissue-v1': {
       const b = plan.beats[index];
       return Object.freeze({

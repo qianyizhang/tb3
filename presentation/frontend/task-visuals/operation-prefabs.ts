@@ -3,6 +3,12 @@ import rawHero from '../../assets/teaching-fixtures/route-unfold-v1/geometry.jso
 import { graph, rigid, traceEdges, type IndexedMesh } from './operation-fixtures';
 import type { NativeContent } from './stage';
 import type { ScenePoint, Annotation } from './types';
+import {
+  prototypeObjects,
+  prototypePoints,
+  prototypeDisplay,
+  prototypeRows,
+} from './prototype-identity';
 
 /** Content lifetime only; the existing stage retains camera, renderer and projection. */
 function content(parent: THREE.Group, name: string) {
@@ -34,6 +40,16 @@ function content(parent: THREE.Group, name: string) {
     materials.push(material);
     return line;
   }
+  function points(vertices: number[][], color: string) {
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices.flat(), 3));
+    const material = new THREE.PointsMaterial({ color, size: 2, sizeAttenuation: false });
+    const cloud = new THREE.Points(geometry, material);
+    root.add(cloud);
+    geometries.push(geometry);
+    materials.push(material);
+    return cloud;
+  }
   function marker(p: number[], color: string, owner = root) {
     const geometry = new THREE.SphereGeometry(0.0018, 16, 10);
     const material = new THREE.MeshStandardMaterial({ color, roughness: 0.8 });
@@ -61,6 +77,7 @@ function content(parent: THREE.Group, name: string) {
     root,
     mesh,
     line,
+    points,
     marker,
     fit,
     alive() {
@@ -74,6 +91,38 @@ function content(parent: THREE.Group, name: string) {
       materials.forEach((m) => m.dispose());
       root.clear();
     },
+  };
+}
+export function createPrototypeIdentityPrefab(parent: THREE.Group): NativeContent {
+  const c = content(parent, 'prototype-identity-v1');
+  const clouds = prototypePoints.map((points) => c.points(points, '#8c9589'));
+  const display = c.fit(new THREE.Box3().setFromObject(c.root));
+  return {
+    update(state) {
+      c.alive();
+      if (state.recipe !== 'prototype-identity-v1')
+        throw Error('Prototype identity state required');
+      const rows = prototypeRows(state);
+      clouds.forEach((cloud, i) => {
+        cloud.material.color.set(rows[i].selected ? '#307f74' : '#8c9589');
+        cloud.material.transparent = true;
+        cloud.material.opacity = rows[i].selected ? 1 : 0.27;
+        cloud.material.size = rows[i].selected ? 2.7 : 1.5;
+        cloud.material.depthWrite = rows[i].selected;
+      });
+      const index = rows.findIndex((r) => r.selected),
+        row = rows[index];
+      const anchor = display(prototypeDisplay(prototypeObjects[index].centroid_lps_mm));
+      return [
+        {
+          p: anchor,
+          anchor,
+          text: row.label ? `${row.objectId}: ${row.label} · source key` : row.objectId,
+          color: '#307f74',
+        },
+      ];
+    },
+    dispose: c.dispose,
   };
 }
 export function createTopologyPrefab(parent: THREE.Group): NativeContent {

@@ -19,6 +19,10 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   const {
     sampleStory,
     identityRows,
+    prototypeRows,
+    prototypeObjects,
+    prototypeVocabulary,
+    prototypeDisplay,
     mixedTissueView,
     mixedTissue,
     storyPresentation,
@@ -103,6 +107,34 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     assert.throws(() => content.update(sampleStory(plan, 0)));
   }
   const full = traceEdges(1);
+  const prototype = plans.find((plan) => plan.recipe === 'prototype-identity-v1');
+  assert.ok(prototype, 'Exercise actual BR-011 prototype semantics');
+  assert.equal(prototypeObjects.length, 17);
+  assert.equal(prototypeVocabulary.length, 117);
+  for (const beat of prototype.beats.filter((b) => b.channels.reveal[1] === 0))
+    assert.ok(
+      prototypeRows(sampleStory(prototype, beat.endFrame - 1)).every((row) => row.label === null),
+    );
+  const prototypeEnd = prototypeRows(sampleStory(prototype, prototype.durationFrames - 1));
+  assert.equal(new Set(prototypeEnd.map((r) => r.objectId)).size, 17);
+  assert.ok(prototypeEnd.every((r) => prototypeVocabulary.includes(r.label)));
+  const inspection = prototype.beats.find(
+    (b) => b.channels.focus[0] === 0 && b.channels.focus[1] === 1,
+  );
+  const holds = new Map();
+  for (let f = inspection.startFrame; f < inspection.endFrame; f++) {
+    const id = prototypeRows(sampleStory(prototype, f)).find((r) => r.selected).objectId;
+    holds.set(id, (holds.get(id) ?? 0) + 1);
+  }
+  assert.equal(holds.size, 17);
+  assert.ok(
+    [...holds.values()].every((n) => n >= 24),
+    'Each source object must hold for at least a second',
+  );
+  const a = prototypeObjects[0].points_lps_mm[0],
+    b = prototypeObjects[1].points_lps_mm[0];
+  const distance = (p, q) => Math.hypot(...p.map((v, i) => v - q[i]));
+  assert.ok(Math.abs(distance(a, b) - distance(prototypeDisplay(a), prototypeDisplay(b))) < 1e-9);
   const mixed = plans.find((plan) => plan.recipe === 'mixed-tissue-v1');
   assert.ok(mixed, 'Exercise the mixed-tissue reference boundary');
   const noReference = mixedTissueView(sampleStory(mixed, 0));

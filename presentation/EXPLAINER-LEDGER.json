@@ -315,15 +315,15 @@
       ],
       "illustration_kind": "object_identity",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "unlabeled-anatomy-prototype",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "anatomy-audit",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-spatial",
+      "source_asset_readiness": "24 public files and all 67,285 source points verified; 17 private identities checked against original source occupancy and affine. Shared-frame sampled points, separate reader key, vocabulary and full licenses pinned.",
+      "rendered_mode": "spatial",
+      "acceptance_receipt": ".local/explainers/completion-20260927/003-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Assign anatomical identities to anonymous object IDs.",
+      "remaining_work": "No outstanding work for the bounded BR-011 I2 teaching story; prototype, subsampling, source-reference and separate I1/I3 limits remain explicit. Remote delivery remains a program-level pending approval.",
       "contract_projection": {
         "raw": "Intact anonymous 3D instances from retained source masks.",
         "helpers": "Anonymous object IDs, geometry, vocabulary and viewing conventions; boundaries are already supplied.",
@@ -346,7 +346,49 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "172e5d35ed57033ecc8b46b2ccee0523c7c574f12d63716f60d2b25c2801f00d"
+      "source_brief_sha256": "172e5d35ed57033ecc8b46b2ccee0523c7c574f12d63716f60d2b25c2801f00d",
+      "acceptance_scope": "Visual and engineering review of the retained BR-011 I2 teaching story; no user, clinical, blind-identifiability or model-performance acceptance.",
+      "visual_review": "Seventeen actual objects inspected in their shared frame, anonymous assignments preserved until explicit source reveal, exact labels, full-duration motion, keyboard reset, mobile and source-derived no-GPU projection reviewed.",
+      "reviewed_contract_projection": {
+        "raw": "An integer occupancy volume (`objects.npz`) derived at **3 mm** resolution from\nretained case **32**, plus **17 PLY surface point clouds**. The affine maps voxel\ncoordinates to physical LPS millimetres: positive left, posterior and superior.\nThere are no CT intensities or anatomical labels in the public object metadata.",
+        "helpers": "The packet supplies anonymous object IDs and mask values, a scene index and the\nfull **117-name vocabulary**. All objects retain shared position, orientation and\nscale; do not fit them independently. The boundaries are supplied, so this is not\nsegmentation from images. PLY points have no faces: occupancy and connectivity\ncome from the volume, not a sparse display.",
+        "tools": "The local prototype supplies the NPZ/PLY representation and a brief instruction.\nA ready blind viewer and tested volume loader are requirements for a future\ntrial package. No frozen agent environment, model configuration or trial is\nestablished by this prototype record.",
+        "spec": "Assign one vocabulary label to each supplied object ID. Preserve patient\norientation and global relationships. No proposed names, CT, annotation-quality\njudgments or disease diagnosis are part of I2's deliverable.",
+        "output": "Write `assignments.json` as `{\"assignments\":[{\"object_id\":\"o123\",\"label\":\"label-name\"}]}`,\nwith each of the 17 actual IDs exactly once. The example ID and name above are\nplaceholders. Labels must match the source spelling; row order is irrelevant.",
+        "reference": "The source identity key and reviewer preview are outside the public packet.\nThe teaching story samples the actual 17 PLY clouds and later reveals this key\nto the reader. That reveal is not solver assistance or a model answer. This\nreview checked each private-key identity against the separately hash-verified\noriginal occupancy array and taxonomy; it did not adjudicate clinical truth or\nwhether every identity is inferable from masks alone.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "The packet supplies anonymous object IDs and mask values, a scene index and the\nfull **117-name vocabulary**. All objects retain shared position, orientation and\nscale; do not fit them independently. The boundaries are supplied, so this is not\nsegmentation from images. PLY points have no faces: occupancy and connectivity\ncome from the volume, not a sparse display.",
+            "remaining": "Assign one vocabulary label to each supplied object ID. Preserve patient\norientation and global relationships. No proposed names, CT, annotation-quality\njudgments or disease diagnosis are part of I2's deliverable."
+          }
+        ],
+        "sources": [
+          [
+            "BR-011 — Identify anatomy, then separate unusual anatomy from errors",
+            "groups/anatomy-audit/experiments/br011/protocol.md"
+          ],
+          [
+            "Author-screen source and public-file receipt",
+            "docs/evidence/br011-author-screen.json"
+          ],
+          [
+            "Scorer controls",
+            "docs/evidence/br011-grader-controls.json"
+          ],
+          [
+            "Point-display derivation and terms",
+            "presentation/task-explorer/prototype-identity/NOTICE.md"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "f4270b45c7d29f71a502e7032aa4cdb37292a4c099fbc5f5af851d978c982c14",
+        "source_story_sha256": "943a2d1e7b583a06c7d1d8f06068e6b36b0f0f668f60de3b4e19e5284be58884",
+        "acceptance_receipt_sha256": "4cf7b9482252f55896a50eeaefc3effffa178f3d8f9ce0ac31aeb066a614fe77"
+      }
     },
     {
       "entry_id": "tb3-ct-organ-segmentation",
@@ -11860,8 +11902,8 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 40,
-    "reviewed-scripted-spatial": 7,
+    "pending-operation-review": 39,
+    "reviewed-scripted-spatial": 8,
     "reviewed-scripted-planar": 8,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
@@ -11883,7 +11925,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-unlabeled-anatomy-prototype",
+    "active_entry": "tb3-mask-reasoning-study",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -12189,7 +12231,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/002-acceptance.json",
         "reviewed_entries": 15,
-        "next_entry": "tb3-unlabeled-anatomy-prototype"
+        "next_entry": "tb3-unlabeled-anatomy-prototype",
+        "local_commit": "5b2f587"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-unlabeled-anatomy-prototype",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/003-acceptance.json",
+        "reviewed_entries": 16,
+        "next_entry": "tb3-mask-reasoning-study"
       }
     ]
   }

@@ -1,5 +1,6 @@
 """The publication boundary rejects stale source and modified compiled assets."""
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -11,6 +12,35 @@ from tb3_medical.errors import MedicalError
 
 
 class FrontendTests(unittest.TestCase):
+    def test_declared_source_pack_bytes_invalidate_bundled_renderer(self):
+        install_frontend(self.root)
+        index = self.root / "presentation/assets/teaching-prefabs.json"
+        pack = self.root / "presentation/task-explorer/new-source-pack"
+        pack.mkdir(parents=True)
+        (pack / "manifest.json").write_text("{}")
+        asset = pack / "reference.json"
+        asset.write_text('{"label":"original"}')
+        index.write_text(
+            json.dumps(
+                {
+                    "packs": {
+                        "source": {
+                            "manifest": "presentation/task-explorer/new-source-pack/manifest.json",
+                            "retained_files": ["reference.json"],
+                        }
+                    }
+                }
+            )
+        )
+        receipt_path = self.root / frontend.BUILD_DIR / "manifest.json"
+        receipt = json.loads(receipt_path.read_text())
+        receipt["inputs"] = frontend.input_hashes(self.root)
+        receipt_path.write_text(json.dumps(receipt))
+        frontend.assets(self.root, "explorer")
+        asset.write_text('{"label":"changed"}')
+        with self.assertRaisesRegex(MedicalError, "stale"):
+            frontend.assets(self.root, "explorer")
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

@@ -18,7 +18,7 @@ class ExpansionTests(unittest.TestCase):
             self.assertEqual(
                 plan["reference_policy"],
                 "reader-reference-reveal"
-                if plan["recipe"] == "mixed-tissue-v1"
+                if plan["recipe"] in {"mixed-tissue-v1", "prototype-identity-v1"}
                 else "no-reference-assets",
             )
             if plan["schema"] == 2:

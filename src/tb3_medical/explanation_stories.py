@@ -54,6 +54,34 @@ RECIPE_PACKS = {
     "anatomy-audit-v1": "retained-anatomy-v1",
     "anatomy-identity-v1": "retained-anatomy-v1",
     "mixed-tissue-v1": "retained-mixed-tissue-v1",
+    "prototype-identity-v1": "retained-prototype-identity-v1",
+}
+SOURCE_REFERENCE_PACKS = {
+    "retained-mixed-tissue-v1": (
+        "source-slices",
+        "fixture.json",
+        {
+            "fixture.json",
+            "axial.png",
+            "coronal.png",
+            "sagittal.png",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+            "LABEL-LICENSE.txt",
+        },
+    ),
+    "retained-prototype-identity-v1": (
+        "source-points",
+        "reference.json",
+        {
+            "geometry.json",
+            "reference.json",
+            "vocabulary.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+            "LABEL-LICENSE.txt",
+        },
+    ),
 }
 SCOPE = (
     "Synthetic teaching fixture · one sampling ribbon only. Does not demonstrate local mask "
@@ -228,6 +256,10 @@ class IdentityStory(Story[IdentityChannels]):
     recipe: Literal["anatomy-identity-v1"]
 
 
+class PrototypeIdentityStory(Story[IdentityChannels]):
+    recipe: Literal["prototype-identity-v1"]
+
+
 class MixedTissueStory(Story[MixedTissueChannels]):
     recipe: Literal["mixed-tissue-v1"]
 
@@ -246,6 +278,7 @@ AnyStory = Annotated[
     | EditStory
     | AnatomyStory
     | IdentityStory
+    | PrototypeIdentityStory
     | MixedTissueStory,
     Field(discriminator="recipe"),
 ]
@@ -259,6 +292,7 @@ ADAPTER: TypeAdapter[
     | EditStory
     | AnatomyStory
     | IdentityStory
+    | PrototypeIdentityStory
     | MixedTissueStory
 ] = TypeAdapter(AnyStory)
 
@@ -304,15 +338,15 @@ class AnatomyPack(Closed):
     runtime_geometry: Literal["anatomy-assembly"]
 
 
-class SourceSlicePack(Closed):
+class SourceTeachingPack(Closed):
     manifest: str
     retained_files: tuple[str, ...]
-    runtime_geometry: Literal["source-slices"]
+    runtime_geometry: Literal["source-slices", "source-points"]
 
 
 class PrefabIndex(Closed):
     schema_version: StrictInt = Field(alias="schema", ge=1, le=1)
-    packs: dict[str, AssetPack | FixturePack | AnatomyPack | SourceSlicePack]
+    packs: dict[str, AssetPack | FixturePack | AnatomyPack | SourceTeachingPack]
 
 
 class Header(Closed):
@@ -432,6 +466,7 @@ def parse_expansion(
     | EditStory
     | AnatomyStory
     | IdentityStory
+    | PrototypeIdentityStory
     | MixedTissueStory
 ):
     document = parse_document(raw) if isinstance(raw, str) else raw
@@ -496,18 +531,12 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
     pack = index.packs[pack_id]
     manifest_path = storage.inside(root, pack.manifest)
     manifest = json.loads(manifest_path.read_text())
-    if isinstance(pack, SourceSlicePack):
-        required = {
-            "fixture.json",
-            "axial.png",
-            "coronal.png",
-            "sagittal.png",
-            "NOTICE.md",
-            "DATA-LICENSE.txt",
-            "LABEL-LICENSE.txt",
-        }
+    if isinstance(pack, SourceTeachingPack):
+        if pack_id not in SOURCE_REFERENCE_PACKS:
+            raise ValueError("Unknown source teaching pack")
+        geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         if (
-            pack_id != "retained-mixed-tissue-v1"
+            pack.runtime_geometry != geometry
             or manifest.get("id") != pack_id
             or manifest.get("license") != "CC-BY-4.0"
             or manifest.get("label_license") != "Apache-2.0"
@@ -518,24 +547,26 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             or set(pack.retained_files) != required
             or len(pack.retained_files) != len(required)
         ):
-            raise ValueError("Source slices require exact provenance, terms and reference policy")
+            raise ValueError(
+                "Source teaching packs require exact provenance, terms and reference policy"
+            )
         assets = {asset["file"]: asset for asset in manifest["assets"]}
         if set(assets) != required or len(assets) != len(manifest["assets"]):
-            raise ValueError("Missing or duplicate source slice asset")
+            raise ValueError("Missing or duplicate source teaching asset")
         dependencies = {
             p.relative_to(root).as_posix(): storage.sha(p) for p in (index_path, manifest_path)
         }
         for name in pack.retained_files:
             path = storage.inside(manifest_path.parent, name)
             asset = assets[name]
-            role = "reader-reference-reveal" if name == "fixture.json" else "illustration"
+            role = "reader-reference-reveal" if name == reference_file else "illustration"
             if (
                 asset["provenance"] != "source-derived-teaching"
                 or asset["role"] != role
                 or storage.sha(path) != asset["sha256"]
                 or path.stat().st_size != asset["bytes"]
             ):
-                raise ValueError(f"Stale or incorrectly classified source slice: {name}")
+                raise ValueError(f"Stale or incorrectly classified source teaching asset: {name}")
             dependencies[path.relative_to(root).as_posix()] = storage.sha(path)
         return storage.sha(manifest_path), dependencies
     if isinstance(pack, AnatomyPack):
@@ -643,11 +674,11 @@ def compile_story(root: Path, path: Path) -> StoryPlan:
         expected_pack = RECIPE_PACKS[story.recipe]
         if story.asset_pack != expected_pack:
             raise ValueError("Recipe asset pack mismatch")
-        if (story.asset_pack in {"retained-anatomy-v1", "retained-mixed-tissue-v1"}) != (
-            story.source_class == "source-derived-teaching"
-        ):
+        if (
+            story.asset_pack == "retained-anatomy-v1" or story.asset_pack in SOURCE_REFERENCE_PACKS
+        ) != (story.source_class == "source-derived-teaching"):
             raise ValueError("Recipe provenance mismatch")
-        if (story.recipe == "mixed-tissue-v1") != (
+        if (story.asset_pack in SOURCE_REFERENCE_PACKS) != (
             story.reference_policy == "reader-reference-reveal"
         ):
             raise ValueError("Recipe reference policy mismatch")

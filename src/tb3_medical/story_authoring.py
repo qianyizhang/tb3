@@ -118,11 +118,14 @@ def new(
         "asset_pack": spec.asset_pack,
         "source_class": (
             "source-derived-teaching"
-            if spec.asset_pack in {"retained-anatomy-v1", "retained-mixed-tissue-v1"}
+            if spec.asset_pack == "retained-anatomy-v1"
+            or spec.asset_pack in stories.SOURCE_REFERENCE_PACKS
             else "procedural-teaching"
         ),
         "reference_policy": (
-            "reader-reference-reveal" if recipe == "mixed-tissue-v1" else "no-reference-assets"
+            "reader-reference-reveal"
+            if spec.asset_pack in stories.SOURCE_REFERENCE_PACKS
+            else "no-reference-assets"
         ),
         "fps": 24,
         "source_locators": [brief.relative_to(root).as_posix()],
