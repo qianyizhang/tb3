@@ -12,6 +12,26 @@ source = "codex://threads/01a0c25e-4b08-7552-8379-90a2b50ad40f"
 
 Can an agent use native CBCT views and fixed tools to correct tooth identity and masks, then trace mandibular canals, without access to evaluation labels?
 
+## Original-contract explainer preparation — assistant, 2026-09-28
+
+The [reader brief](../presentation/briefs/tb3-dental-original.md) now separates
+the exclusive integer-map contract, original per-label scores, side-permutation
+diagnostics and retained geometry errors. The [current source audit](../presentation/sources/dental-original-audit.json)
+verifies 403 fingerprints, two frozen task digests and seven saved model/control
+evaluations. Source arrays, prior trace diagnostics and pulp-gate counts reproduce;
+no solver script or model is executed. The authentication-only invocation stays
+separate from three completed segmentation attempts.
+
+Eight [native teaching views](../../../presentation/task-explorer/dental-original/NOTICE.md)
+include the same-position tooth-ID disagreement, pooled canal residuals,
+restoration labels and a reference-selected pulp gate example. Their preparation
+does not complete the integrated story or visual/video acceptance. Laterality and
+reference-boundary disputes remain under review, original answers and scores are
+unchanged, and license-source discrepancies remain visible. Reopen the source
+review if pinned inputs, coordinate mappings or appropriately adjudicated reference
+conventions change. Public redistribution and new medical trials are outside this
+explainer work.
+
 ## Latest closeout — F018 v3 pair, 2026-09-22
 
 Actor: assistant, completing the user's authorized paired repeat and babysitting.

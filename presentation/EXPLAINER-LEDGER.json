@@ -696,11 +696,11 @@
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "segmentation-localization",
       "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
+      "source_asset_readiness": "Source audit complete: 403 fingerprints, two frozen task digests, seven saved model/control replays; eight native views and reproduced pulp gates. Integrated story and acceptance remain pending.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Produce native-grid semantic masks for the specified dental structures and tooth identities.",
+      "remaining_work": "Implement and bind the original-contract story; keep original scores, diagnostic label permutation, changing denominators and unresolved clinical semantics distinct. Fresh export, browser/mobile/no-GPU review and full video playback are still required.",
       "contract_projection": {
         "raw": "Native dental CBCT; exact F002/F018 source and geometry remain in the experiment.",
         "helpers": "CT plus the complete semantic taxonomy; no example masks.",
@@ -731,7 +731,19 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "187228537a80dc58dfde1c99ed368a46bb928dad8982868a0d1d9a517aac8f10"
+      "source_brief_sha256": "187228537a80dc58dfde1c99ed368a46bb928dad8982868a0d1d9a517aac8f10",
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "status": "source-audit-complete-story-pending",
+        "receipt": "groups/anatomy-audit/presentation/sources/dental-original-audit.json",
+        "sha256": "b028a8c7bc9fc029da086137cfffd5c4a7cadb8c0aeecad58bff091a8434ec83",
+        "limitations": [
+          "Laterality and detailed reference conventions remain unadjudicated.",
+          "Two source cases and three completed model attempts; original scores preserved.",
+          "Local derivative preparation is not integrated-story or video acceptance."
+        ]
+      }
     },
     {
       "entry_id": "tb3-dental-v2",
@@ -13892,7 +13904,17 @@
         "receipt": ".local/explainers/completion-20260927/025-acceptance.json",
         "export_receipt_sha256": "060167cf04027dce84e872939b82313341a6f5be0adf05f7dfdb7ccdee0e46a2",
         "reviewed_entries": 33,
-        "next_entry": "tb3-dental-original"
+        "next_entry": "tb3-dental-original",
+        "local_commit": "9a2bd40acd9f4085eadf76deaed7760bf0a30e36"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-dental-original",
+        "stage": "source-audit-complete-story-pending",
+        "receipt": "groups/anatomy-audit/presentation/sources/dental-original-audit.json",
+        "asset_manifest": "presentation/task-explorer/dental-original/manifest.json",
+        "reviewed_entries": 33,
+        "next_action": "Implement the dedicated original dental-contract story and renderer."
       }
     ]
   }
