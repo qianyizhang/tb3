@@ -25,3 +25,8 @@ export {
   residualM,
   level0Point,
 } from '../presentation/frontend/task-visuals/operation-fixtures.ts';
+
+export {
+  curationRows,
+  curationReference,
+} from '../presentation/frontend/task-visuals/anatomy-curation.ts';

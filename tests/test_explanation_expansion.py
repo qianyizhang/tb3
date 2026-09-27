@@ -18,7 +18,13 @@ class ExpansionTests(unittest.TestCase):
             self.assertEqual(
                 plan["reference_policy"],
                 "reader-reference-reveal"
-                if plan["recipe"] in {"mixed-tissue-v1", "prototype-identity-v1", "mask-screen-v1"}
+                if plan["recipe"]
+                in {
+                    "mixed-tissue-v1",
+                    "prototype-identity-v1",
+                    "mask-screen-v1",
+                    "anatomy-curation-v1",
+                }
                 else "no-reference-assets",
             )
             if plan["schema"] == 2:
@@ -46,12 +52,33 @@ class ExpansionTests(unittest.TestCase):
             type(model).model_validate(data)
 
     def test_source_screen_scene_changes_require_explicit_cuts(self):
-        path = ROOT / "groups/anatomy-audit/presentation/stories/mask-reasoning-study.story.md"
-        model = stories.parse_expansion(path.read_text())
-        data = copy.deepcopy(model.model_dump(by_alias=True))
-        data["beats"][1]["cut"] = "continuous"
-        with self.assertRaisesRegex(ValueError, "Changing source scenes"):
-            type(model).model_validate(data)
+        for name in ["mask-reasoning-study", "anatomy-curation"]:
+            path = ROOT / f"groups/anatomy-audit/presentation/stories/{name}.story.md"
+            model = stories.parse_expansion(path.read_text())
+            data = copy.deepcopy(model.model_dump(by_alias=True))
+            index = next(
+                i
+                for i, beat in enumerate(data["beats"])
+                if i and beat["scene"] != data["beats"][i - 1]["scene"]
+            )
+            data["beats"][index]["cut"] = "continuous"
+            # Hold numeric channels continuous so only the scene boundary is invalid.
+            for beat in data["beats"]:
+                beat["channels"] = dict.fromkeys(beat["channels"], (0.0, 0.0))
+            with self.assertRaisesRegex(ValueError, "Changing source scenes"):
+                type(model).model_validate(data)
+
+    def test_curation_pack_rejects_wrong_source_terms(self):
+        import json
+        from unittest.mock import patch
+
+        path = ROOT / "presentation/task-explorer/anatomy-curation/manifest.json"
+        for key in ("license", "label_license"):
+            manifest = json.loads(path.read_text())
+            manifest[key] = "CC-BY-4.0"
+            with patch.object(stories.json, "loads", return_value=manifest):
+                with self.assertRaisesRegex(ValueError, "exact provenance, terms"):
+                    stories.resolve_assets(ROOT, "retained-anatomy-curation-v1")
 
     def test_nested_planar_binding_survives_projection(self):
         data = task_briefs.load(ROOT)

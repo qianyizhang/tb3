@@ -1,6 +1,13 @@
 import * as THREE from 'three';
 import rawHero from '../../assets/teaching-fixtures/route-unfold-v1/geometry.json?raw';
 import { graph, rigid, traceEdges, type IndexedMesh } from './operation-fixtures';
+import {
+  curationLayouts,
+  curationRows,
+  curationColor,
+  curationScanName,
+  type CurationState,
+} from './anatomy-curation';
 import type { NativeContent } from './stage';
 import type { ScenePoint, Annotation } from './types';
 import {
@@ -436,6 +443,46 @@ export function createMaskScreenPrefab(parent: THREE.Group): NativeContent {
           p: display(screenDisplay(row.centroid_lps_mm)),
           anchor: display(screenDisplay(row.centroid_lps_mm)),
           color: screenColor(row),
+        },
+      ];
+    },
+    dispose: c.dispose,
+  };
+}
+
+export function createCurationPrefab(parent: THREE.Group): NativeContent {
+  const c = content(parent, 'anatomy-curation-v1');
+  const scenes = (Object.keys(curationLayouts) as CurationState['scene'][]).map((key) => {
+    const rows = curationLayouts[key];
+    const clouds = rows.map((row) => c.points(row.points, '#8c9589'));
+    const bounds = new THREE.Box3().setFromPoints(
+      rows.flatMap((row) => row.points.map((p) => new THREE.Vector3(...p))),
+    );
+    return { key, clouds, bounds };
+  });
+  return {
+    update(state) {
+      c.alive();
+      if (state.recipe !== 'anatomy-curation-v1') throw new Error('Recipe mismatch');
+      const rows = curationRows(state);
+      const display = c.fit(scenes.find((s) => s.key === state.scene)!.bounds);
+      scenes.forEach((scene) =>
+        scene.clouds.forEach((cloud, i) => {
+          cloud.visible = scene.key === state.scene;
+          if (!cloud.visible) return;
+          cloud.material.color.set(curationColor(rows[i]));
+          cloud.material.transparent = true;
+          cloud.material.opacity = rows[i].selected ? 1 : 0.6;
+          cloud.material.size = rows[i].selected ? 2.8 : 1.8;
+        }),
+      );
+      const row = rows.find((r) => r.selected)!;
+      return [
+        {
+          p: display(row.centroid),
+          anchor: display(row.centroid),
+          text: `${curationScanName(row.key)} · ${row.source ?? row.id}`,
+          color: curationColor(row),
         },
       ];
     },

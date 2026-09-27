@@ -56,8 +56,14 @@ RECIPE_PACKS = {
     "mixed-tissue-v1": "retained-mixed-tissue-v1",
     "prototype-identity-v1": "retained-prototype-identity-v1",
     "mask-screen-v1": "retained-mask-screen-v1",
+    "anatomy-curation-v1": "retained-anatomy-curation-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-anatomy-curation-v1": (
+        "source-points",
+        "reference.json",
+        {"geometry.json", "reference.json", "NOTICE.md", "DATA-LICENSE.txt"},
+    ),
     "retained-mask-screen-v1": (
         "source-points",
         "reference.json",
@@ -172,6 +178,11 @@ class IdentityChannels(Closed):
     reveal: Pair
 
 
+class CurationChannels(Closed):
+    reference: Pair
+    focus: Pair
+
+
 class MaskScreenChannels(Closed):
     measure: Pair
     prediction: Pair
@@ -273,6 +284,24 @@ class PrototypeIdentityStory(Story[IdentityChannels]):
     recipe: Literal["prototype-identity-v1"]
 
 
+class CurationBeat(ExpansionBeat[CurationChannels]):
+    scene: Literal[
+        "pair", "preservation", "overlap", "calibration", "reserve", "ambiguity", "admission"
+    ]
+
+
+class CurationStory(Story[CurationChannels]):
+    recipe: Literal["anatomy-curation-v1"]
+    beats: tuple[CurationBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class MaskScreenBeat(ExpansionBeat[MaskScreenChannels]):
     scene: Literal["context", "ribs-32", "ribs-74", "organs-32", "admission"]
 
@@ -308,6 +337,7 @@ AnyStory = Annotated[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | CurationStory
     | MaskScreenStory
     | MixedTissueStory,
     Field(discriminator="recipe"),
@@ -323,6 +353,7 @@ ADAPTER: TypeAdapter[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | CurationStory
     | MaskScreenStory
     | MixedTissueStory
 ] = TypeAdapter(AnyStory)
@@ -498,6 +529,7 @@ def parse_expansion(
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | CurationStory
     | MaskScreenStory
     | MixedTissueStory
 ):
@@ -567,11 +599,16 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if pack_id not in SOURCE_REFERENCE_PACKS:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
+        data_license, label_license = (
+            ("CC-BY-SA-4.0", "CC-BY-SA-4.0")
+            if pack_id == "retained-anatomy-curation-v1"
+            else ("CC-BY-4.0", "Apache-2.0")
+        )
         if (
             pack.runtime_geometry != geometry
             or manifest.get("id") != pack_id
-            or manifest.get("license") != "CC-BY-4.0"
-            or manifest.get("label_license") != "Apache-2.0"
+            or manifest.get("license") != data_license
+            or manifest.get("label_license") != label_license
             or manifest.get("frame") != "LPS"
             or manifest.get("units") != "mm"
             or manifest.get("reference_policy") != "reader-reference-reveal"

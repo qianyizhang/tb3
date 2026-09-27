@@ -18,7 +18,7 @@ async function loadFrontend(entry, { globals = {}, plugins = [] } = {}) {
   });
   const chunk = bundles[0].output.find((item) => item.type === 'chunk' && item.isEntry);
   if (!chunk) throw new Error('Vite did not produce a frontend fixture entry');
-  const context = vm.createContext(globals);
+  const context = vm.createContext({ atob, ...globals });
   vm.runInContext(chunk.code, context);
   return context.Fixture;
 }

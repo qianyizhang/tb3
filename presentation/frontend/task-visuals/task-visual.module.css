@@ -757,3 +757,21 @@
 .screenCredit {
   font-size: 11px;
 }
+
+:global([data-recipe='anatomy-curation-v1']) :global(.scene-step-index) {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+:global([data-explainer-export-frame])
+  :global([data-recipe='anatomy-curation-v1'])
+  :global(.scene-steps) {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+:global([data-explainer-export-frame]) :global([data-recipe='anatomy-curation-v1']) .storyOutput {
+  padding: 16px 24px;
+}
+:global([data-recipe='anatomy-curation-v1']) .storyOutput p {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 6px 0 8px;
+}

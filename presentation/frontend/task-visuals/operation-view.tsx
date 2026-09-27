@@ -17,6 +17,7 @@ import { IdentityScene, IdentityOutput } from './identity-panels';
 import { MixedTissueScene, MixedTissueOutput } from './mixed-tissue-panels';
 import { PrototypeIdentityScene, PrototypeIdentityOutput } from './prototype-identity-panels';
 import { MaskScreenScene, MaskScreenOutput } from './mask-screen-panels';
+import { CurationScene, CurationOutput } from './anatomy-curation-panels';
 const COLORS = ['#357f75', '#b4743c', '#72639a', '#497a9a', '#9b5863', '#77833d'];
 const xy = (p: number[]) => `${300 + p[0] * 3300},${235 - p[1] * 3300}`;
 function NavigationScene({ state }: { state: Extract<StoryState, { recipe: 'multiscale-v1' }> }) {
@@ -89,6 +90,7 @@ function NavigationScene({ state }: { state: Extract<StoryState, { recipe: 'mult
 }
 /** Fallbacks are data-derived views of the current canonical frame, not separate stories. */
 export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryState }) {
+  if (state.recipe === 'anatomy-curation-v1') return <CurationScene state={state} />;
   if (state.recipe === 'mask-screen-v1') return <MaskScreenScene state={state} />;
   if (state.recipe === 'prototype-identity-v1') return <PrototypeIdentityScene state={state} />;
   if (state.recipe === 'mixed-tissue-v1') return <MixedTissueScene state={state} />;
@@ -293,6 +295,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   );
 }
 export function OperationOutput({ plan, state }: { plan: StoryPlan; state: StoryState }) {
+  if (state.recipe === 'anatomy-curation-v1') return <CurationOutput state={state} />;
   if (state.recipe === 'mask-screen-v1') return <MaskScreenOutput state={state} />;
   if (state.recipe === 'prototype-identity-v1') return <PrototypeIdentityOutput state={state} />;
   if (state.recipe === 'mixed-tissue-v1') return <MixedTissueOutput state={state} />;

@@ -8,6 +8,7 @@ import {
   createIdentityPrefab,
   createPrototypeIdentityPrefab,
   createMaskScreenPrefab,
+  createCurationPrefab,
 } from './operation-prefabs';
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
@@ -20,10 +21,17 @@ export function isPlanarStory(plan: StoryPlan): boolean {
 }
 export function hasInteractiveProjection(plan: StoryPlan): boolean {
   // Identity names must stay hidden at the start even without a GPU.
-  return ['anatomy-identity-v1', 'prototype-identity-v1', 'mask-screen-v1'].includes(plan.recipe);
+  return [
+    'anatomy-identity-v1',
+    'prototype-identity-v1',
+    'mask-screen-v1',
+    'anatomy-curation-v1',
+  ].includes(plan.recipe);
 }
 export function nativeFactory(plan: StoryPlan) {
   switch (plan.recipe) {
+    case 'anatomy-curation-v1':
+      return createCurationPrefab;
     case 'mask-screen-v1':
       return createMaskScreenPrefab;
     case 'route-unfold-v1':
@@ -50,6 +58,18 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'anatomy-curation-v1':
+      return {
+        heading: 'Anatomy curation · source evidence before task admission',
+        corner: 'VerSe · LPS points · independent scan fitting · no CT',
+        legend: [
+          ['#8c9589', 'Source name hidden'],
+          ['#537d9b', 'Cervical · reveal'],
+          ['#b77128', 'Thoracic · reveal'],
+          ['#307f74', 'Lumbar · reveal'],
+          ['#a34555', 'Selected object'],
+        ],
+      };
     case 'mask-screen-v1':
       return {
         heading: 'Geometric shortcut screen · retained author study',

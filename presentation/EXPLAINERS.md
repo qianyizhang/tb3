@@ -48,6 +48,7 @@ A bound story is not automatically accepted; unresolved entries remain visible.
 | Longitudinal | Explicit match/new/unobserved relations; actual CT task supplies no candidate locations |
 | Anatomy audit | Existing seven-part s1233 assembly; label/witness schema and clean-control semantics |
 | Object identity | Anonymous teaching IDs, shared source geometry, condition-specific vocabulary, assignment output and explicit source-name reveal; seven-part s1233 subset is not full A01 |
+| Anatomy curation | Seven retained VerSe source volumes, five distinct candidate decisions, reference partition reveal, focused preservation measurements and explicit admission limits |
 | Mask shortcut screen | Retained author ordering and leave-one-patient-out baselines; exact source centroids, coverage exception, separate reference reveal and pre-trial admission limits |
 | Prototype identity | All 17 actual case-32 I2 objects as sampled surface points; 117-name vocabulary, complete assignment list, private-key reveal and prototype admission limits |
 | Mixed tissue | Retained M02 CT with supplied host/donor outlines; author-only region and LPS witness revealed explicitly; whole/partial/unchanged/focused conditions stay distinct |
@@ -94,6 +95,14 @@ arrays, seven audit trajectories, 24 recomputed ordering rows and 131 recomputed
 organ predictions. Selected source points retain one physical frame per scene;
 centroids use full occupancy. Dashed centroid guides are not anatomical connections.
 The baseline's labeled training examples remain distinct from I2 solver assistance.
+
+`anatomy-curation-v1` uses discrete candidate scenes with explicit cuts and separate
+`reference` and `focus` channels. All seven VerSe source volumes are represented;
+the 406 preservation view selects T9-T11 without changing their relative geometry.
+The [source notice](task-explorer/anatomy-curation/NOTICE.md) records the 21 source
+hashes, 145 full-occupancy measurements, 104,100 verified boundary points and
+mask/centroid discrepancy. The pack checks its exact CC BY-SA 4.0 terms, independently
+of the TotalSegmentator source packs. Independent scan fitting is never registration.
 
 ## Build and export
 

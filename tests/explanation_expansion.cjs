@@ -19,6 +19,8 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   const {
     sampleStory,
     identityRows,
+    curationRows,
+    curationReference,
     screenRows,
     screenReference,
     prototypeRows,
@@ -108,6 +110,28 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     assert.equal(disposed, geometries.size + materials.size);
     assert.throws(() => content.update(sampleStory(plan, 0)));
   }
+  const curation = plans.find((p) => p.recipe === 'anatomy-curation-v1');
+  assert.ok(curationRows(sampleStory(curation, 0)).every((r) => r.source === null));
+  const revealed = curationRows(sampleStory(curation, curation.beats[1].endFrame - 1));
+  assert.equal(revealed.filter((r) => r.source === 'T13').length, 1);
+  const selected = curationRows(sampleStory(curation, curation.beats[2].endFrame - 1));
+  assert.equal(selected.length, 3);
+  assert.equal(selected.find((r) => r.selected).source, 'T10');
+  assert.ok(
+    Math.abs(
+      selected.find((r) => r.selected).volume_ml /
+        ((selected[0].volume_ml + selected[2].volume_ml) / 2) -
+        0.3335910362925618,
+    ) < 1e-12,
+  );
+  assert.equal(
+    Object.values(curationReference).reduce((a, r) => a + r.multiset_correct, 0),
+    145,
+  );
+  assert.equal(
+    Object.values(curationReference).reduce((a, r) => a + r.fixed_correct, 0),
+    128,
+  );
   const full = traceEdges(1);
   const screen = plans.find((p) => p.recipe === 'mask-screen-v1');
   for (const beat of screen.beats) {

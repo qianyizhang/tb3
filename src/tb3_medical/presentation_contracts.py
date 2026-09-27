@@ -254,6 +254,23 @@ class PrototypeIdentityPlan(ExpansionPlan):
     beats: list[IdentityBeat]
 
 
+class CurationChannels(TypedDict):
+    reference: tuple[float, float]
+    focus: tuple[float, float]
+
+
+class CurationBeat(ExpansionBeat):
+    channels: CurationChannels
+    scene: Literal[
+        "pair", "preservation", "overlap", "calibration", "reserve", "ambiguity", "admission"
+    ]
+
+
+class CurationPlan(ExpansionPlan):
+    recipe: Literal["anatomy-curation-v1"]
+    beats: list[CurationBeat]
+
+
 class MaskScreenChannels(TypedDict):
     measure: tuple[float, float]
     prediction: tuple[float, float]
@@ -300,6 +317,7 @@ StoryPlan = (
     | AnatomyPlan
     | IdentityPlan
     | PrototypeIdentityPlan
+    | CurationPlan
     | MaskScreenPlan
     | MixedTissuePlan
 )

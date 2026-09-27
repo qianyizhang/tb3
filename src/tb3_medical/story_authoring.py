@@ -147,6 +147,8 @@ def new(
         }
         if recipe == "correspondence-v1":
             beat["show_deformed_target"] = False
+        if recipe == "anatomy-curation-v1":
+            beat["scene"] = "pair"
         if recipe == "mask-screen-v1":
             beat["scene"] = "ribs-32"
         content += f"\n## {name}\n\n```beat\n" + yaml.safe_dump(beat, sort_keys=False) + "```\n"

@@ -54,3 +54,21 @@ historical authoring code. This confirms the retained computation, not clinical
 truth or mask-only identifiability. Reopen difficulty claims only after blind
 identity/ambiguity review, a unique supported answer and appropriate clean controls.
 This is an assistant explanation and recommendation, not a new user decision.
+
+## Source curation explanation checkpoint — 2026-09-27
+
+Assistant review for the same sequential completion task: the retained
+[BR-012 curation](../../../docs/research-rounds/BR-012-anatomy-curation.md)
+separates five candidate decisions from task admission. Six patients and seven
+volumes supply 145 annotated instances, including three overlapping identities.
+Both author ordering screens reproduce; all 21 source member hashes and 104,100
+teaching boundary points were checked against the original masks. The
+[canonical curation explanation](../presentation/briefs/tb3-anatomy-curation.md)
+shows the 547/585 count ambiguity, 406 preservation and unresolved C1 centroid
+exception, 823 calibration, 642 reserve and 581 exact-key rejection. Reference
+labels remain an explicit reader reveal, separate from hypothetical solver inputs.
+
+Zero hard tasks were admitted and no new model trial follows. Reopening requires
+qualified context, independent input-only identifiability review, defensible
+acceptable-answer rules and verified controls. This is an assistant explanation
+and recommendation, not a new user decision or clinical adjudication.

@@ -882,15 +882,15 @@
       ],
       "illustration_kind": "anatomy_curation",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "anatomy-curation",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "anatomy-audit",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-spatial",
+      "source_asset_readiness": "All 21 VerSe source members hash-verified; 145 full-occupancy measurements and both ordering screens reproduced. All 104100 point samples checked against native boundary occupancy; exact CC BY-SA terms and separate reader reference asset retained.",
+      "rendered_mode": "spatial",
+      "acceptance_receipt": ".local/explainers/completion-20260927/005-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Produce a source screen, feasibility assessment and explicit task-design limitations.",
+      "remaining_work": "No outstanding work for this bounded source-curation explanation. Source ambiguity, missing context, annotation discrepancy and task-admission conditions remain explicit. Remote delivery is pending at program level.",
       "contract_projection": {
         "raw": "Retained source artifacts and investigation records.",
         "helpers": "Author access to source labels, references and prior evidence.",
@@ -913,7 +913,57 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "3af5944f6523b20ebf6fd336402302326f1fa6ebb565bb6ebb394b6866bbb7a9"
+      "source_brief_sha256": "3af5944f6523b20ebf6fd336402302326f1fa6ebb565bb6ebb394b6866bbb7a9",
+      "acceptance_scope": "Visual and engineering review of the retained BR-012 author curation explanation; no user, clinical, blind-identifiability or model-performance acceptance.",
+      "visual_review": "All five candidate decisions, seven source volumes, focused preservation geometry, source partition reveal, 80-second motion sampling, mobile labels and no-GPU reset reviewed.",
+      "reviewed_contract_projection": {
+        "raw": "Seven unchanged vertebral masks, seven centroid JSON files and seven source PNG\npreviews: 406 upper/lower, 547, 585, 581, 642 and 823. Their 145 annotated instances\ninclude three repeated identities across the overlapping 406 scans. Full CT volumes,\nrib/sacral masks and validated fracture grades were not acquired for this screen.",
+        "helpers": "Author access to source labels, the source paper and its supplementary table.\nThe multiset baseline receives the label inventory. The fixed-12-thoracic baseline\nreceives the true top anchor and can extend through L6. This is privileged author\nassistance; no blind solver packet was frozen here.",
+        "tools": "Local array/affine inspection, full-mask centroid and volume measurements, and\nsource preview inspection. Historical authoring modules are not rerun on import.\nThe new teaching builder verifies source hashes and measurements independently.",
+        "spec": "Screen source suitability, geometric shortcuts and alternative naming conventions.\nPreserve physical LPS millimetres and each scan's native frame. The 406 scans\noverlap but have not been validated for fusion. The source's assumed segment\nstructure must not be conflated with segmented counts.",
+        "output": "| Card | Source | Retained decision and reopening condition |\n| --- | --- | --- |\n| C01 | 547 / 585 | Both have 25 objects, but source partitions are 7C/13T/5L and 7C/12T/6L. Needs anonymous rib context or independent proof that supplied facet geometry uniquely resolves the convention. Cross-patient and sampling differences remain. |\n| C02 | 406 | Preservation candidate. T10 volume is 13.79 mL versus T9 37.49 and T11 45.17 mL; posthoc size flagging cannot separate faithful anatomy from error. Upper C1 mask lacks a centroid entry; cause unresolved. |\n| C03 | 823 | Typical-numbering calibration only. Both ordering baselines recover 24/24; no pathology-free certification. |\n| C04 | 642 | Reserve: C5-C7 + 11T + 6L, cropped upper cervical coverage, about 3 mm left-right sampling, missing contextual masks. Needs anchor, morphology and nomenclature checks. |\n| C05 | 581 | Reject an exact mask-only key. Explicit source ambiguity and omission policy for partly sacral-fused vertebrae preclude inventing a missing-object error. An uncertainty task needs an acceptable-answer set. |",
+        "reference": "Source vertebral names, segmented counts, assumed anatomical structure and\ncuration decisions. Reader reveal exposes these references explicitly. Source\nlabels are not independent clinical adjudication or proof of a unique mask-only key.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "Author access to source labels, the source paper and its supplementary table.\nThe multiset baseline receives the label inventory. The fixed-12-thoracic baseline\nreceives the true top anchor and can extend through L6. This is privileged author\nassistance; no blind solver packet was frozen here.",
+            "remaining": "Screen source suitability, geometric shortcuts and alternative naming conventions.\nPreserve physical LPS millimetres and each scan's native frame. The 406 scans\noverlap but have not been validated for fusion. The source's assumed segment\nstructure must not be conflated with segmented counts."
+          }
+        ],
+        "sources": [
+          [
+            "BR-012 protocol",
+            "groups/anatomy-audit/experiments/br012/protocol.md"
+          ],
+          [
+            "Retained curation report",
+            "docs/research-rounds/BR-012-anatomy-curation.md"
+          ],
+          [
+            "Retained measurements and source receipts",
+            "docs/evidence/br012-curation.json"
+          ],
+          [
+            "Teaching provenance and license",
+            "presentation/task-explorer/anatomy-curation/NOTICE.md"
+          ],
+          [
+            "VerSe source",
+            "https://github.com/anjany/verse"
+          ],
+          [
+            "Liebl, Schinz et al. source paper",
+            "https://doi.org/10.1038/s41597-021-01060-0"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "205eae4e0632e4f903d999c6dccd057af80b8ba61f4bb37c31705a675a212148",
+        "source_story_sha256": "74ed8e3a45375d7294a9d816ed7636e73f946aecdb3ba17345c97e62af78a964",
+        "acceptance_receipt_sha256": "d399d07a2fc3a1406eaa50ac1752621a8c98c6910477ee9a7f9f3afd85232cbb"
+      }
     },
     {
       "entry_id": "tb3-cardiac-contour-feasibility",
@@ -11948,8 +11998,8 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 38,
-    "reviewed-scripted-spatial": 9,
+    "pending-operation-review": 37,
+    "reviewed-scripted-spatial": 10,
     "reviewed-scripted-planar": 8,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
@@ -11971,7 +12021,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-anatomy-curation",
+    "active_entry": "tb3-respiratory-correspondence",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -12295,7 +12345,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/004-acceptance.json",
         "reviewed_entries": 17,
-        "next_entry": "tb3-anatomy-curation"
+        "next_entry": "tb3-anatomy-curation",
+        "local_commit": "3a787ec"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-anatomy-curation",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/005-acceptance.json",
+        "reviewed_entries": 18,
+        "next_entry": "tb3-respiratory-correspondence"
       }
     ]
   }
