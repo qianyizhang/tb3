@@ -22,7 +22,8 @@ A bound story is not automatically accepted; unresolved entries remain visible.
 - [The retained pack index](assets/teaching-prefabs.json) references the existing
   route owner, seven selected mathematical fixture packs and the existing anatomy
   owner. Topology checks the original route hash; anatomy checks its common source
-  case/frame and exact parts/notices. No evaluator reference pack is supported.
+  case/frame and exact parts/notices. Explicit source-reference packs require a
+  recipe-specific reader-only reveal; they are not solver inputs.
 - `story-timeline.ts` returns an immutable, recipe-discriminated absolute state.
   `use-scene-player.ts` owns the single clock, seek, visibility, reduced motion and
   cleanup for both spatial and planar content.
@@ -47,6 +48,7 @@ A bound story is not automatically accepted; unresolved entries remain visible.
 | Longitudinal | Explicit match/new/unobserved relations; actual CT task supplies no candidate locations |
 | Anatomy audit | Existing seven-part s1233 assembly; label/witness schema and clean-control semantics |
 | Object identity | Anonymous teaching IDs, shared source geometry, condition-specific vocabulary, assignment output and explicit source-name reveal; seven-part s1233 subset is not full A01 |
+| Mask shortcut screen | Retained author ordering and leave-one-patient-out baselines; exact source centroids, coverage exception, separate reference reveal and pre-trial admission limits |
 | Prototype identity | All 17 actual case-32 I2 objects as sampled surface points; 117-name vocabulary, complete assignment list, private-key reveal and prototype admission limits |
 | Mixed tissue | Retained M02 CT with supplied host/donor outlines; author-only region and LPS witness revealed explicitly; whole/partial/unchanged/focused conditions stay distinct |
 | CT/MRI | Separate Radon/FFT measurements and image outputs; toy vs task dimensions/assistance explicit |
@@ -83,6 +85,15 @@ declared files now enter the frontend fingerprint, including source packs outsid
 the earlier anatomy/fixture folders. A changed reference cannot reuse old bundled
 bytes. The Explorer's directly cited text bundle is bounded at 2 MiB for the
 205-entry catalogue; the 64 KiB per-file limit and private-runtime exclusions remain.
+
+`mask-screen-v1` explains the BR-010/011 author study with discrete source scenes
+and `measure`, `prediction`, `reference` and `focus` channels. Source-scene changes
+require an explicit cut; scene meaning never comes from chapter names. The
+[mask-screen notice](task-explorer/mask-screen/NOTICE.md) pins all eight source
+arrays, seven audit trajectories, 24 recomputed ordering rows and 131 recomputed
+organ predictions. Selected source points retain one physical frame per scene;
+centroids use full occupancy. Dashed centroid guides are not anatomical connections.
+The baseline's labeled training examples remain distinct from I2 solver assistance.
 
 ## Build and export
 

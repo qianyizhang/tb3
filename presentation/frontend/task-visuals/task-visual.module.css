@@ -678,3 +678,82 @@
   border-radius: 50%;
   box-sizing: border-box;
 }
+
+.screenNotes {
+  padding-left: 1.15rem;
+  margin: 12px 0;
+}
+.screenNotes li {
+  margin: 9px 0;
+}
+.screenTable {
+  font-size: 13px;
+}
+.screenTable td,
+.screenTable th {
+  padding: 5px 4px;
+}
+.screenTable tr[data-screen-selected='true'] {
+  background: #e4efea;
+}
+.screenTable tr[data-screen-wrong='true'] {
+  color: #a34555;
+  background: #f5e9ec;
+}
+.screenCredit {
+  display: block;
+  margin-top: 10px;
+}
+.screenBars {
+  display: grid;
+  gap: 5px;
+  margin-top: 12px;
+}
+.screenBars > div {
+  display: grid;
+  grid-template-columns: 62px 1fr 48px;
+  gap: 10px;
+  align-items: center;
+  font-size: 13px;
+}
+.screenBars > div > div {
+  background: #e7e9df;
+  height: 8px;
+}
+.screenBars i {
+  display: block;
+  background: #307f74;
+  height: 100%;
+}
+
+:global([data-recipe='mask-screen-v1']) :global(.scene-step-index) {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+:global([data-explainer-export-frame])
+  :global([data-recipe='mask-screen-v1'])
+  :global(.scene-steps) {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+:global([data-explainer-export-frame]) :global([data-recipe='mask-screen-v1']) .storyOutput {
+  padding: 16px 24px;
+}
+:global([data-recipe='mask-screen-v1']) .storyOutput p {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 6px 0 8px;
+}
+.storyOutput .screenTable {
+  font-size: 13px;
+  line-height: 1.3;
+}
+.storyOutput .screenTable td,
+.storyOutput .screenTable th {
+  padding: 3px 4px;
+}
+.screenBars {
+  gap: 3px;
+}
+.screenCredit {
+  font-size: 11px;
+}

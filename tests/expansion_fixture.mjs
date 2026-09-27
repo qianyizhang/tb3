@@ -1,6 +1,7 @@
 export { Group } from 'three';
 export { sampleStory } from '../presentation/frontend/task-visuals/story-timeline.ts';
 export { identityRows } from '../presentation/frontend/task-visuals/identity.ts';
+export { screenRows, screenReference } from '../presentation/frontend/task-visuals/mask-screen.ts';
 export {
   prototypeRows,
   prototypeObjects,

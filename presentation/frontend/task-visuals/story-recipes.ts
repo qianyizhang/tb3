@@ -7,6 +7,7 @@ import {
   createAnatomyPrefab,
   createIdentityPrefab,
   createPrototypeIdentityPrefab,
+  createMaskScreenPrefab,
 } from './operation-prefabs';
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
@@ -19,10 +20,12 @@ export function isPlanarStory(plan: StoryPlan): boolean {
 }
 export function hasInteractiveProjection(plan: StoryPlan): boolean {
   // Identity names must stay hidden at the start even without a GPU.
-  return ['anatomy-identity-v1', 'prototype-identity-v1'].includes(plan.recipe);
+  return ['anatomy-identity-v1', 'prototype-identity-v1', 'mask-screen-v1'].includes(plan.recipe);
 }
 export function nativeFactory(plan: StoryPlan) {
   switch (plan.recipe) {
+    case 'mask-screen-v1':
+      return createMaskScreenPrefab;
     case 'route-unfold-v1':
       return createRoutePrefab;
     case 'topology-v1':
@@ -47,6 +50,17 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'mask-screen-v1':
+      return {
+        heading: 'Geometric shortcut screen · retained author study',
+        corner: 'Source LPS points · per-scene fit · no CT',
+        legend: [
+          ['#8c9589', 'Other source objects'],
+          ['#307f74', 'Selected object'],
+          ['#b77128', 'Centroid ordering guide', true],
+          ['#a34555', 'Baseline / source disagreement'],
+        ],
+      };
     case 'prototype-identity-v1':
       return {
         heading: 'Anonymous object identity · retained BR-011 I2 prototype',

@@ -784,15 +784,15 @@
       ],
       "illustration_kind": "mask_shortcuts",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "mask-reasoning-study",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "anatomy-audit",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-spatial",
+      "source_asset_readiness": "Eight original arrays and seven audit trajectories hash-verified. All 24 ordering rows and 131 organ predictions independently matched; selected source ribs/organs, full-occupancy centroids and reader-only references are pinned.",
+      "rendered_mode": "spatial",
+      "acceptance_receipt": ".local/explainers/completion-20260927/004-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Produce a source screen, feasibility assessment and explicit task-design limitations.",
+      "remaining_work": "No outstanding work for the bounded author-study explanation; unequal assistance, coverage, clustered denominators and pre-trial review limits remain explicit. Remote delivery is a program-level pending approval.",
       "contract_projection": {
         "raw": "Retained source artifacts and investigation records.",
         "helpers": "Author access to source labels, references and prior evidence.",
@@ -819,7 +819,53 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "663aedec7264ed87ec3ebaf954209d382153dc456aedc6a7421444c85e33c595"
+      "source_brief_sha256": "663aedec7264ed87ec3ebaf954209d382153dc456aedc6a7421444c85e33c595",
+      "acceptance_scope": "Visual and engineering review of the BR-010/011 author-study explanation; no user, clinical, blind-identifiability or model-performance acceptance.",
+      "visual_review": "Actual source centroid ordering, case-74 reversal, numerical organ-template example, private-source reveal, complete motion, mobile tables and interactive no-GPU reset reviewed.",
+      "reviewed_contract_projection": {
+        "raw": "Eight retained, unmodified TotalSegmentator source-label arrays in their physical\nLPS frames: cases 19, 28, 32, 46, 61, 74, 83 and 95. The author screen uses original\nmasks, not the earlier BR-004 planted edits. BR-010 separately audits seven\nhistorical Terra/Sol tool trajectories.",
+        "helpers": "For the ordering screen, the author baseline knows each lumbar or left/right rib\nfamily and its proposed-label multiset. For the organ classifier, seven other\npatients supply labeled training examples for each held-out patient. These are\ndifferent assistance conditions; I2 prototype solvers do not receive that training set.",
+        "tools": "The retained NumPy method computes full-mask centroids, volumes and bounding-box\nextents, then sorts physical superior coordinates or compares standardized feature\nvectors with median class templates. No parameter search or one-to-one assignment\nwas performed. Historical authoring modules are inspection sources, not importable\npresentation helpers.",
+        "spec": "Audit the strategy evidence, measure simple geometric baselines, and state which\ncandidate designs remain admissible questions. Do not convert residual errors into\nmodel failures or select a partial-coverage case merely because a baseline fails.",
+        "output": "A provenance-backed author assessment with exact baseline predictions, counterexamples,\nsolver/reference boundaries and reopening conditions. No model answer file is requested.",
+        "reference": "Original identities, retained baseline predictions and post-hoc source comparisons\nare author references. The teaching view reveals them explicitly for the reader;\nit must not become a blind solver packet. Source-label agreement is not independent\nclinical adjudication or proof that identities are inferable from masks alone.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "For the ordering screen, the author baseline knows each lumbar or left/right rib\nfamily and its proposed-label multiset. For the organ classifier, seven other\npatients supply labeled training examples for each held-out patient. These are\ndifferent assistance conditions; I2 prototype solvers do not receive that training set.",
+            "remaining": "Audit the strategy evidence, measure simple geometric baselines, and state which\ncandidate designs remain admissible questions. Do not convert residual errors into\nmodel failures or select a partial-coverage case merely because a baseline fails."
+          }
+        ],
+        "sources": [
+          [
+            "BR-010 — From boundary inspection to anatomical consistency",
+            "groups/anatomy-audit/experiments/br010/protocol.md"
+          ],
+          [
+            "Seven-trajectory retrospective audit",
+            "docs/evidence/br010-mask-reasoning-audit.json"
+          ],
+          [
+            "BR-011 — Author screens and distinct identity/quality hypotheses",
+            "groups/anatomy-audit/experiments/br011/protocol.md"
+          ],
+          [
+            "All retained baseline predictions and source hashes",
+            "docs/evidence/br011-author-screen.json"
+          ],
+          [
+            "Display derivation, source checks and terms",
+            "presentation/task-explorer/mask-screen/NOTICE.md"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "dbc0ce1096940e06b6bdfcec1683197667a1a93622e78dd2d686b04ca6275d02",
+        "source_story_sha256": "1f39275cd62146bafff9bd7c7ca4c5be939f63099bd0a7ea0db4689a163cce3f",
+        "acceptance_receipt_sha256": "4819ba58d198cbc046f1c122763fe6960be7e909518e1fe865a7a8e45ee3593f"
+      }
     },
     {
       "entry_id": "tb3-anatomy-curation",
@@ -11902,8 +11948,8 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 39,
-    "reviewed-scripted-spatial": 8,
+    "pending-operation-review": 38,
+    "reviewed-scripted-spatial": 9,
     "reviewed-scripted-planar": 8,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
@@ -11925,7 +11971,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-mask-reasoning-study",
+    "active_entry": "tb3-anatomy-curation",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -12240,7 +12286,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/003-acceptance.json",
         "reviewed_entries": 16,
-        "next_entry": "tb3-mask-reasoning-study"
+        "next_entry": "tb3-mask-reasoning-study",
+        "local_commit": "d6e11a4"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-mask-reasoning-study",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/004-acceptance.json",
+        "reviewed_entries": 17,
+        "next_entry": "tb3-anatomy-curation"
       }
     ]
   }

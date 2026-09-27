@@ -4,6 +4,15 @@ import { graph, rigid, traceEdges, type IndexedMesh } from './operation-fixtures
 import type { NativeContent } from './stage';
 import type { ScenePoint, Annotation } from './types';
 import {
+  screenGeometry,
+  screenDisplay,
+  screenKey,
+  screenRows,
+  screenBounds,
+  screenColor,
+  type ScreenKey,
+} from './mask-screen';
+import {
   prototypeObjects,
   prototypePoints,
   prototypeDisplay,
@@ -29,12 +38,15 @@ function content(parent: THREE.Group, name: string) {
     materials.push(material);
     return mesh;
   }
-  function line(points: number[][], color: string) {
+  function line(points: number[][], color: string, dashed = false) {
     const geometry = new THREE.BufferGeometry().setFromPoints(
       points.map((p) => new THREE.Vector3(p[0], p[1], p[2])),
     );
-    const material = new THREE.LineBasicMaterial({ color });
+    const material = dashed
+      ? new THREE.LineDashedMaterial({ color, dashSize: 3, gapSize: 2 })
+      : new THREE.LineBasicMaterial({ color });
     const line = new THREE.Line(geometry, material);
+    if (dashed) line.computeLineDistances();
     root.add(line);
     geometries.push(geometry);
     materials.push(material);
@@ -360,6 +372,72 @@ export function createAnatomyPrefab(parent: THREE.Group): NativeContent {
             },
           ]
         : [];
+    },
+    dispose: c.dispose,
+  };
+}
+
+export function createMaskScreenPrefab(parent: THREE.Group): NativeContent {
+  const c = content(parent, 'mask-screen-v1');
+  function makeScene(key: ScreenKey) {
+    const scene = screenGeometry[key];
+    const clouds = scene.objects.map((o) =>
+      c.points(o.points_lps_mm.map(screenDisplay), '#8c9589'),
+    );
+    const centroids = scene.objects.map((o) => {
+      const dot = c.marker(screenDisplay(o.centroid_lps_mm), '#b77128');
+      dot.scale.setScalar((screenBounds[key as ScreenKey].span * 0.009) / 0.0018);
+      return dot;
+    });
+    const ordered = [...scene.objects].sort((a, b) => b.centroid_lps_mm[2] - a.centroid_lps_mm[2]);
+    const line = c.line(
+      ordered.map((o) => screenDisplay(o.centroid_lps_mm)),
+      '#b77128',
+      true,
+    );
+    return { clouds, centroids, line };
+  }
+  const scenes = {
+    'ribs-32': makeScene('ribs-32'),
+    'ribs-74': makeScene('ribs-74'),
+    'organs-32': makeScene('organs-32'),
+  };
+  return {
+    update(state) {
+      c.alive();
+      if (state.recipe !== 'mask-screen-v1') throw new Error('Recipe mismatch');
+      const key = screenKey(state),
+        rows = screenRows(state),
+        bounds = screenBounds[key];
+      const display = c.fit(
+        new THREE.Box3(new THREE.Vector3(...bounds.low), new THREE.Vector3(...bounds.high)),
+      );
+      for (const name of Object.keys(scenes) as ScreenKey[]) {
+        const scene = scenes[name];
+        const objects = screenGeometry[name].objects;
+        scene.clouds.forEach((cloud, i) => {
+          cloud.visible = name === key;
+          if (!cloud.visible) return;
+          const row = rows.find((r) => r.id === objects[i].id)!;
+          cloud.material.color.set(screenColor(row));
+          cloud.material.transparent = true;
+          cloud.material.opacity = row.selected || row.wrong ? 0.95 : 0.38;
+          cloud.material.size = row.selected || row.wrong ? 2.7 : 1.8;
+        });
+        scene.centroids.forEach((dot) => {
+          dot.visible = name === key && key !== 'organs-32' && state.measure > 0;
+        });
+        scene.line.visible = name === key && key !== 'organs-32' && state.measure > 0;
+      }
+      const row = rows.find((r) => r.selected)!;
+      return [
+        {
+          text: `${row.id.split('-').at(-1)}${row.predicted ? ' → ' + row.predicted : ''}${row.source ? ' · source: ' + row.source : ''}`,
+          p: display(screenDisplay(row.centroid_lps_mm)),
+          anchor: display(screenDisplay(row.centroid_lps_mm)),
+          color: screenColor(row),
+        },
+      ];
     },
     dispose: c.dispose,
   };

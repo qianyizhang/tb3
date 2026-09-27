@@ -35,3 +35,22 @@ Localized changes preserve plausible whole-mask shape and tissue class, but the 
 ## Reopen when
 
 Preserve the batch timeout as inconclusive. The completed single-patient screen identifies dicom-audit-32 as the lead and dicom-audit-83 as a second reviewed miss; source holds remain for cases 46 and 61. See the separate resource benchmark before any newly frozen design.
+
+## Author explanation checkpoint — 2026-09-27
+
+Assistant review for the [sequential explainer completion task](codex://threads/01a0e024-3705-7a91-9181-d237131801fa):
+[BR-010](../../../docs/research-rounds/BR-010-mask-only-anatomy.md) qualifies the
+older case-32 lead and documents relational reasoning already present in the
+traces. [BR-011](../../../docs/research-rounds/BR-011-unlabeled-anatomy.md) finds
+23/24 anatomical groups solved by coordinate ordering and 109/131 organ identities
+recovered by a baseline with labeled examples from seven other patients. No new
+model trial or historical score change follows from this presentation work.
+
+The [canonical study explanation](../presentation/briefs/tb3-mask-reasoning-study.md)
+uses actual selected source geometry and reader-only reference comparisons.
+All eight source arrays and seven trajectory hashes were checked; every retained
+ordering row and organ prediction was independently recomputed without importing
+historical authoring code. This confirms the retained computation, not clinical
+truth or mask-only identifiability. Reopen difficulty claims only after blind
+identity/ambiguity review, a unique supported answer and appropriate clean controls.
+This is an assistant explanation and recommendation, not a new user decision.

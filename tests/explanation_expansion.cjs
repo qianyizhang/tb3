@@ -19,6 +19,8 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   const {
     sampleStory,
     identityRows,
+    screenRows,
+    screenReference,
     prototypeRows,
     prototypeObjects,
     prototypeVocabulary,
@@ -107,6 +109,51 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     assert.throws(() => content.update(sampleStory(plan, 0)));
   }
   const full = traceEdges(1);
+  const screen = plans.find((p) => p.recipe === 'mask-screen-v1');
+  for (const beat of screen.beats) {
+    const rows = screenRows(sampleStory(screen, beat.endFrame - 1));
+    if (beat.channels.reference[1] === 0)
+      assert.ok(rows.every((r) => r.source === null && !r.wrong));
+    if (beat.channels.prediction[1] === 0) assert.ok(rows.every((r) => r.predicted === null));
+    if (beat.scene === 'ribs-74') {
+      assert.deepEqual(
+        JSON.parse(JSON.stringify(rows.filter((r) => r.wrong).map((r) => [r.predicted, r.source]))),
+        [
+          ['rib_left_8', 'rib_left_9'],
+          ['rib_left_9', 'rib_left_8'],
+        ],
+      );
+      assert.ok(
+        rows.every((r, i) => i === 0 || rows[i - 1].centroid_lps_mm[2] > r.centroid_lps_mm[2]),
+      );
+    }
+    if (beat.scene === 'organs-32' && beat.channels.reference[1] === 1)
+      assert.deepEqual(
+        JSON.parse(JSON.stringify(rows.filter((r) => r.wrong).map((r) => [r.source, r.predicted]))),
+        [['spleen', 'stomach']],
+      );
+  }
+  const heldOut = screenReference.organ_baseline.rows;
+  const featureExample = screenReference.feature_example;
+  assert.equal(featureExample.features.length, 7);
+  assert.equal(featureExample.training_cases.length, 7);
+  assert.ok(!featureExample.training_cases.includes(32));
+  assert.equal(featureExample.nearest_templates[0].label, 'stomach');
+  assert.ok(
+    featureExample.nearest_templates.every(
+      (r, i) =>
+        i === 0 || r.squared_distance > featureExample.nearest_templates[i - 1].squared_distance,
+    ),
+  );
+  assert.equal(
+    heldOut.reduce((sum, r) => sum + r.correct, 0),
+    screenReference.organ_baseline.correct,
+  );
+  assert.equal(
+    heldOut.reduce((sum, r) => sum + r.total, 0),
+    screenReference.organ_baseline.total,
+  );
+  assert.equal(heldOut.filter((r) => r.all_correct).length, 0);
   const prototype = plans.find((plan) => plan.recipe === 'prototype-identity-v1');
   assert.ok(prototype, 'Exercise actual BR-011 prototype semantics');
   assert.equal(prototypeObjects.length, 17);

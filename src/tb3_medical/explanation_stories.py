@@ -55,8 +55,14 @@ RECIPE_PACKS = {
     "anatomy-identity-v1": "retained-anatomy-v1",
     "mixed-tissue-v1": "retained-mixed-tissue-v1",
     "prototype-identity-v1": "retained-prototype-identity-v1",
+    "mask-screen-v1": "retained-mask-screen-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-mask-screen-v1": (
+        "source-points",
+        "reference.json",
+        {"geometry.json", "reference.json", "NOTICE.md", "DATA-LICENSE.txt", "LABEL-LICENSE.txt"},
+    ),
     "retained-mixed-tissue-v1": (
         "source-slices",
         "fixture.json",
@@ -166,6 +172,13 @@ class IdentityChannels(Closed):
     reveal: Pair
 
 
+class MaskScreenChannels(Closed):
+    measure: Pair
+    prediction: Pair
+    reference: Pair
+    focus: Pair
+
+
 class MixedTissueChannels(Closed):
     conditions: Pair
     plane: Pair
@@ -260,6 +273,22 @@ class PrototypeIdentityStory(Story[IdentityChannels]):
     recipe: Literal["prototype-identity-v1"]
 
 
+class MaskScreenBeat(ExpansionBeat[MaskScreenChannels]):
+    scene: Literal["context", "ribs-32", "ribs-74", "organs-32", "admission"]
+
+
+class MaskScreenStory(Story[MaskScreenChannels]):
+    recipe: Literal["mask-screen-v1"]
+    beats: tuple[MaskScreenBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class MixedTissueStory(Story[MixedTissueChannels]):
     recipe: Literal["mixed-tissue-v1"]
 
@@ -279,6 +308,7 @@ AnyStory = Annotated[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | MaskScreenStory
     | MixedTissueStory,
     Field(discriminator="recipe"),
 ]
@@ -293,6 +323,7 @@ ADAPTER: TypeAdapter[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | MaskScreenStory
     | MixedTissueStory
 ] = TypeAdapter(AnyStory)
 
@@ -467,6 +498,7 @@ def parse_expansion(
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | MaskScreenStory
     | MixedTissueStory
 ):
     document = parse_document(raw) if isinstance(raw, str) else raw

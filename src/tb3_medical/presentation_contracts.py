@@ -254,6 +254,23 @@ class PrototypeIdentityPlan(ExpansionPlan):
     beats: list[IdentityBeat]
 
 
+class MaskScreenChannels(TypedDict):
+    measure: tuple[float, float]
+    prediction: tuple[float, float]
+    reference: tuple[float, float]
+    focus: tuple[float, float]
+
+
+class MaskScreenBeat(ExpansionBeat):
+    channels: MaskScreenChannels
+    scene: Literal["context", "ribs-32", "ribs-74", "organs-32", "admission"]
+
+
+class MaskScreenPlan(ExpansionPlan):
+    recipe: Literal["mask-screen-v1"]
+    beats: list[MaskScreenBeat]
+
+
 class MixedTissueChannels(TypedDict):
     conditions: list[float]
     plane: list[float]
@@ -283,6 +300,7 @@ StoryPlan = (
     | AnatomyPlan
     | IdentityPlan
     | PrototypeIdentityPlan
+    | MaskScreenPlan
     | MixedTissuePlan
 )
 

@@ -18,7 +18,7 @@ class ExpansionTests(unittest.TestCase):
             self.assertEqual(
                 plan["reference_policy"],
                 "reader-reference-reveal"
-                if plan["recipe"] in {"mixed-tissue-v1", "prototype-identity-v1"}
+                if plan["recipe"] in {"mixed-tissue-v1", "prototype-identity-v1", "mask-screen-v1"}
                 else "no-reference-assets",
             )
             if plan["schema"] == 2:
@@ -43,6 +43,14 @@ class ExpansionTests(unittest.TestCase):
         data = copy.deepcopy(model.model_dump())
         data["beats"][1]["channels"]["transform"] = (0.5, 1.0)
         with self.assertRaises(ValueError):
+            type(model).model_validate(data)
+
+    def test_source_screen_scene_changes_require_explicit_cuts(self):
+        path = ROOT / "groups/anatomy-audit/presentation/stories/mask-reasoning-study.story.md"
+        model = stories.parse_expansion(path.read_text())
+        data = copy.deepcopy(model.model_dump(by_alias=True))
+        data["beats"][1]["cut"] = "continuous"
+        with self.assertRaisesRegex(ValueError, "Changing source scenes"):
             type(model).model_validate(data)
 
     def test_nested_planar_binding_survives_projection(self):
