@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "dental-v3-v1": "retained-dental-v3-v1",
     "dental-v2-v1": "retained-dental-v2-v1",
     "dental-original-v1": "retained-dental-original-v1",
     "ct-organ-v1": "retained-ct-organ-v1",
@@ -76,6 +77,11 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-dental-v3-v1": (
+        "source-slices",
+        "reference.json",
+        {"source.json", "output.json", "reference.json", "NOTICE.md", "DATA-LICENSE.txt"},
+    ),
     "retained-dental-v2-v1": (
         "source-slices",
         "reference.json",
@@ -428,6 +434,15 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class DentalV3Channels(Closed):
+    view: Pair
+    helper: Pair
+    transfer: Pair
+    output: Pair
+    reference: Pair
+    stage: Pair
 
 
 class DentalV2Channels(Closed):
@@ -839,6 +854,36 @@ class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
         return self
 
 
+class DentalV3Beat(ExpansionBeat[DentalV3Channels]):
+    scene: Literal[
+        "inputs",
+        "contract",
+        "example",
+        "transfer",
+        "outputs",
+        "shape",
+        "metrics",
+        "pulp-gain",
+        "pulp-loss",
+        "pulp-reach",
+        "canal-crop",
+        "canal-extent",
+        "limits",
+    ]
+
+
+class DentalV3Story(Story[DentalV3Channels]):
+    recipe: Literal["dental-v3-v1"]
+    beats: tuple[DentalV3Beat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class DentalV2Beat(ExpansionBeat[DentalV2Channels]):
     scene: Literal[
         "inputs",
@@ -1064,6 +1109,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | DentalV3Story
     | DentalV2Story
     | DentalOriginalStory
     | CtOrganStory
@@ -1097,6 +1143,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | DentalV3Story
     | DentalV2Story
     | DentalOriginalStory
     | CtOrganStory
@@ -1290,6 +1337,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | DentalV3Story
     | DentalV2Story
     | DentalOriginalStory
     | CtOrganStory
@@ -1367,6 +1415,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         frame, data_license, label_license = {
+            "retained-dental-v3-v1": ("native-ijk", "CC-BY-NC-SA-4.0", None),
             "retained-dental-v2-v1": ("native-ijk", "CC-BY-NC-SA-4.0", None),
             "retained-dental-original-v1": ("native-ijk", "CC-BY-NC-SA-4.0", None),
             "retained-ct-organ-v1": ("RAS", "CC-BY-4.0", "Apache-2.0"),
@@ -1411,7 +1460,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             or manifest.get("units")
             != (
                 "voxel"
-                if pack_id in {"retained-dental-original-v1", "retained-dental-v2-v1"}
+                if pack_id
+                in {"retained-dental-original-v1", "retained-dental-v2-v1", "retained-dental-v3-v1"}
                 else "px"
                 if pack_id in {"retained-hubmap-inventory-v1", "retained-tiger-context-v1"}
                 else "mm"

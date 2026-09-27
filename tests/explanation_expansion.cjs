@@ -171,8 +171,67 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     dentalSwapId,
     dentalDisplayedItems,
   } = await loadFrontend('expansion_fixture.mjs');
-  const { dentalV2Selection, dentalV2Reference, dentalV2Stages, dentalV2Outputs } =
-    await loadFrontend('expansion_fixture.mjs');
+  const {
+    dentalV3Selection,
+    dentalV3Reference,
+    dentalV3Outputs,
+    dentalV3Stages,
+    dentalV2Selection,
+    dentalV2Reference,
+    dentalV2Stages,
+    dentalV2Outputs,
+  } = await loadFrontend('expansion_fixture.mjs');
+  const v3Plan = plans.find((p) => p.recipe === 'dental-v3-v1');
+  assert.ok(v3Plan);
+  const v3Start = dentalV3Selection(sampleStory(v3Plan, 0));
+  assert.equal(v3Start.reveal, false);
+  assert.equal(v3Start.helper, false);
+  assert.equal(v3Start.output, false);
+  for (const [scene, field, expected] of [
+    ['pulp-reach', 'stage', Array.from(dentalV3Stages)],
+    ['pulp-gain', 'gainView', ['pulp-122-j43', 'pulp-122-j50']],
+    ['pulp-loss', 'lossView', ['pulp-127-j156', 'pulp-127-j160', 'pulp-127-j162']],
+    ['canal-crop', 'canalView', ['canal-104-k201', 'canal-104-k204', 'canal-104-k207']],
+    ['canal-extent', 'projection', ['canal-4-along-i', 'canal-4-along-j', 'canal-4-along-k']],
+  ]) {
+    const beat = v3Plan.beats.find((b) => b.scene === scene),
+      seen = new Set();
+    for (let frame = beat.startFrame; frame < beat.endFrame; frame++)
+      seen.add(dentalV3Selection(sampleStory(v3Plan, frame))[field]);
+    assert.deepEqual([...seen], expected);
+  }
+  const v3Transfer = v3Plan.beats.find((b) => b.scene === 'transfer');
+  assert.equal(dentalV3Selection(sampleStory(v3Plan, v3Transfer.startFrame)).transfer, 0);
+  assert.equal(dentalV3Selection(sampleStory(v3Plan, v3Transfer.endFrame - 1)).transfer, 1);
+  assert.equal(dentalV3Selection(sampleStory(v3Plan, v3Transfer.endFrame - 1)).reveal, false);
+  assert.equal(dentalV3Outputs.registration.atlas_plane_exactly_reproduced, true);
+  assert.equal(dentalV3Outputs.registration.warped_ct_plane_exactly_reproduced, true);
+  assert.equal(dentalV3Outputs.registration.optimization_rerun, false);
+  const reach = dentalV3Reference.pulp_stages.find((r) => r.label === 127);
+  assert.ok(
+    reach.after_component_filter.intersection <= reach.retained_or_geometry_eligible.intersection,
+  );
+  assert.ok(reach.retained_or_geometry_eligible.intersection < reach.gt_voxels_full_volume);
+  assert.equal(reach.gt_voxels_in_tooth_crop, reach.gt_voxels_full_volume);
+  const crop = dentalV3Reference.canal_stages.find((r) => r.label === 104);
+  assert.equal(crop.gt_voxels_in_search_crop, 0);
+  assert.equal(crop.final.intersection, 0);
+  assert.notEqual(crop.prior.prediction_voxels, crop.final.prediction_voxels);
+  const four = dentalV3Reference.metrics.map((m) => ({
+    dice: m.score.per_label.find((r) => r.id === 4).dice,
+    hd95: m.score.canal_surface_metrics['4'].hd95_mm,
+  }));
+  assert.ok(four[1].dice > four[0].dice && four[1].hd95 > four[0].hd95);
+  for (let i = 0; i < 2; i++) {
+    const c = dentalV3Reference.conditions[i],
+      m = dentalV3Reference.metrics[i].score;
+    const active = m.per_label.filter((r) => r.dice !== null);
+    assert.equal(active.length, c.active_labels);
+    assert.ok(
+      Math.abs(active.reduce((sum, r) => sum + r.dice, 0) / active.length - c.original_macro_dice) <
+        1e-12,
+    );
+  }
   const v2Plan = plans.find((p) => p.recipe === 'dental-v2-v1');
   assert.ok(v2Plan);
   const v2Start = dentalV2Selection(sampleStory(v2Plan, 0));

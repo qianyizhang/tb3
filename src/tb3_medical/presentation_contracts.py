@@ -514,6 +514,39 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class DentalV3Channels(TypedDict):
+    view: tuple[float, float]
+    helper: tuple[float, float]
+    transfer: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+    stage: tuple[float, float]
+
+
+class DentalV3Beat(ExpansionBeat):
+    channels: DentalV3Channels
+    scene: Literal[
+        "inputs",
+        "contract",
+        "example",
+        "transfer",
+        "outputs",
+        "shape",
+        "metrics",
+        "pulp-gain",
+        "pulp-loss",
+        "pulp-reach",
+        "canal-crop",
+        "canal-extent",
+        "limits",
+    ]
+
+
+class DentalV3Plan(ExpansionPlan):
+    recipe: Literal["dental-v3-v1"]
+    beats: list[DentalV3Beat]
+
+
 class DentalV2Channels(TypedDict):
     view: tuple[float, float]
     helper: tuple[float, float]
@@ -755,6 +788,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | DentalV3Plan
     | DentalV2Plan
     | DentalOriginalPlan
     | CtOrganPlan

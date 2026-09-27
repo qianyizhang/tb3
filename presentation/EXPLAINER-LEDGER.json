@@ -1055,15 +1055,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "teeth",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "dental-v3",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "pending-operation-review",
+      "reviewed_disposition": "reviewed-scripted-planar",
       "source_asset_readiness": "341 source fingerprints, two freezes and six saved evaluations verified; all 29 pulp and five canal refinements reproduced; fourteen native sections and six complete-axis silhouettes inspected with exact PNG/contour/native-coordinate and saved-map checks.",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/028-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Implement dedicated v3 shape and bounded-refinement story and renderer; bind Explorer; export fresh HTML/MP4/captions/receipts; inspect playback, mobile and no-GPU behavior before acceptance.",
+      "remaining_work": "No outstanding explainer work for the retained F018 v3 pair. Reference disputes and untested conventions remain qualified; remote delivery pending at program level.",
       "contract_projection": {
         "raw": "Full native F018 dental CBCT; source hashes and geometry remain in the linked protocols.",
         "helpers": "Further operational label boundaries in v3; example and no-example conditions remain separate.",
@@ -1101,7 +1101,7 @@
         "reviewer": "assistant",
         "receipt": "groups/anatomy-audit/presentation/sources/dental-v3-audit.json",
         "sha256": "4a067401d66fae99f81e8ee30dda8b66457aad07646caf3893c2e67e68a1c509",
-        "status": "source-audit-complete-story-pending",
+        "status": "source-audit-complete",
         "asset_manifest": "presentation/task-explorer/dental-v3/manifest.json",
         "asset_manifest_sha256": "d52a11f93ada013d3bc672734a06191e25b6ac0c318cd0caf6419f6192351dc4",
         "source_visual_review": ".local/explainers/completion-20260927/028-asset-review-v3/review.json",
@@ -1196,6 +1196,14 @@
           "answer": "<p>No source-derived view curated yet.</p>"
         },
         "missing_media": []
+      },
+      "acceptance_scope": "Source, visual and engineering review of the same-target F018 v3 pair through saved transfer and exact pulp/canal refinement. No fresh inference, clinical adjudication, runtime installation or publication.",
+      "visual_review": "Thirteen chapters and full 170-second playback; saved transfer wipe, shape/identity separation, two pulp successes/three counterexample sections, five exact refinement stages, canal crop and three complete-axis silhouettes; desktop/mobile/locale/Explorer/no-GPU reviewed.",
+      "completion_review": {
+        "date": "2026-09-28",
+        "source_brief_sha256": "ee16d8d01a3c4a553a1c422ccdf6fe4813adf1df7388b7d1de0bee0957e84109",
+        "source_story_sha256": "50c530b310520bfcb6d9576411ea43f4a63d4ef980de98a3f7f7c1b7d745397f",
+        "acceptance_receipt_sha256": "27dd3e65f107315d31ce7b7c6215c485b142712bd90bb96506d078560b4a1ae7"
       }
     },
     {
@@ -13688,9 +13696,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 22,
+    "reviewed-scripted-planar": 23,
     "reviewed-scripted-spatial": 13,
-    "pending-operation-review": 15,
+    "pending-operation-review": 14,
     "blocked-source-contract": 107,
     "blocked-source-input": 48
   },
@@ -13711,7 +13719,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-dental-v3",
+    "active_entry": "tb3-segmentation-calibration",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -14290,6 +14298,15 @@
         "asset_manifest": "presentation/task-explorer/dental-v3/manifest.json",
         "reviewed_entries": 35,
         "next_action": "Implement dedicated v3 canonical comparison story and player; do not count source review as acceptance."
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-dental-v3",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/028-acceptance.json",
+        "export_receipt_sha256": "fd209cefc430d9abc2e4208dbd8b2efdce9c43390d7419d704230750aa5648de",
+        "reviewed_entries": 36,
+        "next_entry": "tb3-segmentation-calibration"
       }
     ]
   }

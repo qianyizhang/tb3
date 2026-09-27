@@ -16,10 +16,14 @@ import {
 } from './operation-prefabs';
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
-  return !(state.recipe === 'dental-v2-v1' && state.scene === 'identity' && state.reference <= 0.5);
+  return !(
+    (state.recipe === 'dental-v2-v1' && state.scene === 'identity' && state.reference <= 0.5) ||
+    (state.recipe === 'dental-v3-v1' && state.scene === 'shape' && state.reference <= 0.5)
+  );
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'dental-v3-v1',
     'dental-v2-v1',
     'dental-original-v1',
     'ct-organ-v1',
@@ -86,9 +90,21 @@ export function nativeFactory(plan: StoryPlan) {
 export function storyPresentation(plan: StoryPlan): {
   heading: string;
   corner: string;
-  legend: [string, string, boolean?][];
+  legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'dental-v3-v1':
+      return {
+        heading: 'Dental v3 · how far refinement can reach',
+        corner: 'One F018 pair · native indices · saved operations',
+        legend: [
+          ['#fb923c', 'No example · solid'],
+          ['#32d8e2', 'Assisted / example · solid'],
+          ['#9beb72', 'Private target reference · dashed', true],
+          ['#d197ff', 'Transferred prior · solid'],
+          ['#f5d76e', 'Eligible region / search box · dotted', 'dotted'],
+        ],
+      };
     case 'dental-v2-v1':
       return {
         heading: 'Dental v2 · what transfers, what fails',

@@ -335,7 +335,10 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
             <span key={label}>
               <i
                 style={
-                  { '--key': color, borderTopStyle: dashed ? 'dashed' : 'solid' } as CSSProperties
+                  {
+                    '--key': color,
+                    borderTopStyle: dashed === 'dotted' ? 'dotted' : dashed ? 'dashed' : 'solid',
+                  } as CSSProperties
                 }
               />
               {label}

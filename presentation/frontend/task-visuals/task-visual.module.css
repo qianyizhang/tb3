@@ -1643,3 +1643,46 @@
     grid-template-columns: 1fr;
   }
 }
+
+.dentalV3Scene .dentalNative {
+  height: 205px;
+}
+.dentalV3Scene .dentalFacts strong {
+  font-size: 22px;
+}
+.dentalV3Table th,
+.dentalV3Table td {
+  padding: 8px 4px;
+}
+:global([data-explainer-export-frame]) .player[data-recipe='dental-v3-v1'] .storyHeading {
+  height: 120px;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='dental-v3-v1']
+  :global(.scene-steps button) {
+  min-height: 31px;
+  padding-block: 4px;
+}
+.player[data-recipe='dental-v3-v1'] :global(.scene-step-index) {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.player[data-recipe='dental-v3-v1'] :global(.scene-steps) {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+@container task-visual (max-width: 900px) {
+  .player[data-recipe='dental-v3-v1'] .storyLayout {
+    grid-template-columns: 1fr;
+  }
+  .player[data-recipe='dental-v3-v1'] :global(.scene-steps) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@container task-visual (max-width: 600px) {
+  .dentalV3Scene .dentalNative {
+    height: 245px;
+  }
+  .dentalV3Scene .dentalCards[data-columns='3'] {
+    grid-template-columns: 1fr;
+  }
+}
