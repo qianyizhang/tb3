@@ -57,3 +57,16 @@ audit and recommendation, not a user selection of a new medical trial.
 Reopen the contour and anchor asset integration when redistribution permission
 is documented or the user explicitly approves private local artifacts as final
 scope. Continue other actionable explainer entries while that decision is pending.
+
+The assistant also audited the separate [BR-027 anchor condition](../presentation/briefs/tb3-cardiac-anchor-feasibility.md)
+and retained its [package/replay receipt](../presentation/sources/cardiac-anchor-audit.json).
+Both exact public inventories contain 120 native images and only four/eight
+allowed masks. All seven saved conditions reproduce, without new tracking or
+fitting. Unsupplied input-view Dice has distinct 116/112-pair denominators; the
+common withheld comparison uses 240 pairs. GrabCut's improved scalar EF does not
+repair its shape failure. Native selected overlays show direct mask disagreements
+before 3D interpolation and separately reveal withheld mesh sections. This is a
+development-informed author study, not an independently isolated model test.
+BR-027 uses an anchor-only origin and curve-extrema EF; BR-025 uses a different
+origin and config-phase EF. Compare within each round's controls. Its source
+rights, canonical story, integrated review and export remain unresolved.

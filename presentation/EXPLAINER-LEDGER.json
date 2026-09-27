@@ -1083,12 +1083,12 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "shape-material",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "blocked-source-contract",
+      "source_asset_readiness": "Verified both exact public packages (120 images plus four/eight anchors), 2251 source members, all prediction receipts, anchor preservation and seven original conditions. Selected native overlays inspected; source onward redistribution unresolved.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Recover intervening cavity motion and assess geometry/volume errors.",
+      "blocking_dependency": "Same unresolved FeEcho4D asset rights as tb3-cardiac-contour-feasibility. Noncommercial research statement and open release metadata do not specify onward redistribution. User decision on permission or private-local final scope remains pending.",
+      "remaining_work": "After the delivery scope is resolved, author and integrate the actual sparse-anchor tracking story, with distinct direct-mask and withheld-section reveals, then export and review motion, mobile and no-GPU behavior. Package audit and saved-score replay do not complete this entry.",
       "contract_projection": {
         "raw": "Four calibrated image sequences over a cardiac cycle.",
         "helpers": "One or two contour frames; withheld-time masks remain evaluation material.",
@@ -1111,7 +1111,59 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "7529886c5984299bf03ddd2752ccc610526b1ee9013174e6a9bd6f8491a56023"
+      "source_brief_sha256": "7529886c5984299bf03ddd2752ccc610526b1ee9013174e6a9bd6f8491a56023",
+      "blocker_resolution": "Use the existing pending delivery-scope question; do not repeat it or infer approval. Continue to the STRAUS material-feasibility entry while this remains unfinished.",
+      "audited_contract_projection": {
+        "raw": "FeEcho4D Patient001, 30 frames from each of four native radial views at assumed\n0/45/90/135 degrees: **120 images**, each 464 × 485 pixels. Native source planes\nare 1/10/19/28, one-based. The public images are byte-identical to their source.\n\n`geometry.json` supplies 0.089950 mm/pixel, x=242 px rotation axis and y=184.5 px\norigin, derived only from the plane-1 frame-2 cavity mask. Image y increases down;\nmesh coordinates use `x=r sin(phi) cos(theta)`, `y=r cos(phi)`,\n`z=r sin(phi) sin(theta)` in millimetres. The radial pose convention remains an\nassumption, not independently measured plane transforms.",
+        "helpers": "- **One anchor:** four binary cavity masks, all at filename frame 2.\n- **Two anchors:** eight binary masks at frames 2 and 17.\n\nAnchor pixels encode native cavity label 127 as foreground 255. Frame numbers\nare explicit anchors, not supplied clinical phase labels. Both packages include\nthe same task instructions, geometry and a hash manifest. There are no additional\ntarget-time masks, source config/EF values, OBJ meshes or dense answers.",
+        "tools": "The retained author methods use CPU NumPy/SciPy/Pillow and OpenCV DIS optical\nflow with the medium preset. Tracking warps signed-distance fields using\nconsecutive target-to-source flow. The two-anchor method blends the two\npropagated fields, with weights clamped outside the anchor interval.\n\nThe image-free controls copy one anchor or linearly interpolate two anchor\nsigned-distance fields with endpoint hold. Periodic interpolation was not tested.\nThe stronger one-anchor method applies GrabCut to the saved tracking prediction:\n60% interior-distance seed, 15-pixel exterior band, 20-pixel crop padding and five\niterations. These fixed settings were chosen after inspecting the first screen;\nthe method is **development-informed**, not blind.",
+        "spec": "Preserve every supplied anchor, recover the intervening cavity masks from images,\nthen interpolate their radial profiles into a closed mesh at each of 30 frames.\nUse fixed connectivity and document units, frame IDs and anatomical assumptions.\nCompute the complete cavity volume curve and its extrema; shared vertex indexing\nis a surface parameterization, not myocardial material tracking.",
+        "output": "The retained predictions contain `vertices[30,4538,3]` in mm, shared\n`faces[9072,3]`, `volume_ml[30]`, `radius_px[30,72,65]` and\n`input_view_masks[4,30,464,485]`. Solver receipts identify inputs, code and\nprediction hashes, extrema frames and **EF = 100 × (1 − min(V)/max(V))**.\nThe controls computed by the evaluator omit input-view prediction masks.\nThese author packages are not a formally admitted or provider-isolated task.",
+        "reference": "All masks from source planes [3,8,12,17,21,26,30,35] and unsupplied times of the\nfour input views are evaluator material. The clean-contour control uses all 120\ninput-view masks. The dense comparator uses all 36 unique source directions,\nincluding evaluation views; its overlap is source fit, not withheld accuracy.\n\nPredictions were serialized and hashed before evaluation. Input access was\nreviewed in code, without OS isolation; the author already knew this patient.\nThe source tree, private evaluator and reader viewer are not solver inputs.\nThe fitted dense reference is annotation-derived, not independent 3D or clinical\ntruth. Native OBJ cavity/shell and physical-transform questions remain unresolved.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "- **One anchor:** four binary cavity masks, all at filename frame 2.\n- **Two anchors:** eight binary masks at frames 2 and 17.\n\nAnchor pixels encode native cavity label 127 as foreground 255. Frame numbers\nare explicit anchors, not supplied clinical phase labels. Both packages include\nthe same task instructions, geometry and a hash manifest. There are no additional\ntarget-time masks, source config/EF values, OBJ meshes or dense answers.",
+            "remaining": "Preserve every supplied anchor, recover the intervening cavity masks from images,\nthen interpolate their radial profiles into a closed mesh at each of 30 frames.\nUse fixed connectivity and document units, frame IDs and anatomical assumptions.\nCompute the complete cavity volume curve and its extrema; shared vertex indexing\nis a surface parameterization, not myocardial material tracking."
+          }
+        ],
+        "sources": [
+          [
+            "BR-027 protocol and original interpretation",
+            "groups/cardiac-motion/experiments/br027/protocol.md"
+          ],
+          [
+            "Original metrics",
+            "docs/evidence/br027-cardiac-results.json"
+          ],
+          [
+            "Original integrity receipt",
+            "docs/evidence/br027-cardiac-integrity.json"
+          ],
+          [
+            "Author implementation and access boundary",
+            "probes/cardiac-reconstruction/authoring/video_difficulty/README.md"
+          ],
+          [
+            "Package and saved-output audit",
+            "groups/cardiac-motion/presentation/sources/cardiac-anchor-audit.json"
+          ],
+          [
+            "FeEcho4D project and research-use terms",
+            "https://feecho4d.github.io/Website/"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "source_review": {
+        "date": "2026-09-27",
+        "actor": "assistant",
+        "receipt": "groups/cardiac-motion/presentation/sources/cardiac-anchor-audit.json",
+        "receipt_sha256": "fdbee2158cbfad7b18bb3c0bf746fe5884527f1218b25e86a651eb23db657524",
+        "brief_sha256": "f722a2d6cfe196c7f8e73e8a8a6368b7a9a0ed4debca45a34442cc20775153d5",
+        "local_artifacts": ".local/explainers/completion-20260927/019-audit-v2",
+        "no_visual_acceptance": true
+      }
     },
     {
       "entry_id": "tb3-cardiac-material-feasibility",
@@ -12739,10 +12791,10 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 24,
+    "pending-operation-review": 23,
     "reviewed-scripted-spatial": 12,
     "reviewed-scripted-planar": 18,
-    "blocked-source-contract": 103,
+    "blocked-source-contract": 104,
     "blocked-source-input": 48
   },
   "completion_program": {
@@ -12762,7 +12814,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-cardiac-anchor-feasibility",
+    "active_entry": "tb3-cardiac-material-feasibility",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -13212,7 +13264,16 @@
         "stage": "source-audit-complete-delivery-scope-unresolved",
         "receipt": "groups/cardiac-motion/presentation/sources/cardiac-contour-audit.json",
         "reviewed_entries": 30,
-        "next_entry": "tb3-cardiac-anchor-feasibility"
+        "next_entry": "tb3-cardiac-anchor-feasibility",
+        "local_commit": "8c1f32b"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-cardiac-anchor-feasibility",
+        "stage": "source-audit-complete-delivery-scope-unresolved",
+        "receipt": "groups/cardiac-motion/presentation/sources/cardiac-anchor-audit.json",
+        "reviewed_entries": 30,
+        "next_entry": "tb3-cardiac-material-feasibility"
       }
     ]
   }
