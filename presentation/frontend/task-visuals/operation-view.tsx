@@ -1,3 +1,4 @@
+import { RevisedCtScene, RevisedCtOutput } from './longitudinal-ct-revised-panels';
 import { CtOriginalScene, CtOriginalOutput } from './longitudinal-ct-original-panels';
 import { MriScene, MriOutput } from './longitudinal-mri-panels';
 import { TigerScene, TigerOutput } from './tiger-context-panels';
@@ -104,6 +105,7 @@ function NavigationScene({ state }: { state: Extract<StoryState, { recipe: 'mult
 }
 /** Fallbacks are data-derived views of the current canonical frame, not separate stories. */
 export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryState }) {
+  if (state.recipe === 'longitudinal-ct-revised-v1') return <RevisedCtScene state={state} />;
   if (state.recipe === 'longitudinal-ct-original-v1') return <CtOriginalScene state={state} />;
   if (state.recipe === 'longitudinal-mri-v1') return <MriScene state={state} />;
   if (state.recipe === 'tiger-context-v1') return <TigerScene state={state} />;
@@ -322,6 +324,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
 }
 export function OperationOutput({ plan, state }: { plan: StoryPlan; state: StoryState }) {
   if (state.recipe === 'airway-repair-v1') return <AirwayRepairOutput state={state} />;
+  if (state.recipe === 'longitudinal-ct-revised-v1') return <RevisedCtOutput state={state} />;
   if (state.recipe === 'longitudinal-ct-original-v1') return <CtOriginalOutput state={state} />;
   if (state.recipe === 'longitudinal-mri-v1') return <MriOutput state={state} />;
   if (state.recipe === 'tiger-context-v1') return <TigerOutput state={state} />;

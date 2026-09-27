@@ -2085,15 +2085,15 @@
       ],
       "illustration_kind": "longitudinal",
       "subject": "torso",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "longitudinal-ct-revised",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "longitudinal",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "105 source pins, 54 frozen files, full source/input native pixel and affine identity, 28 reference instances and three exact saved-score replays verified. Native views and CC BY-NC 4.0 terms retained.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/017-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Produce per-visit instance masks, correspondences/events and uncertain-candidate decisions.",
+      "remaining_work": "No outstanding explainer work within the three revised CT conditions. Instance/confluence and clinical adjudication remain separate research. Remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "Two full native CT volumes at different visits.",
         "helpers": "Revised touching-lesion and inclusion rules; the supplied-context condition adds broad clinical prior information.",
@@ -2129,7 +2129,91 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "f46be07ffbb1112c8a930047ad0207ba124ac22863fee65861bbd6055f3957c2"
+      "source_brief_sha256": "f46be07ffbb1112c8a930047ad0207ba124ac22863fee65861bbd6055f3957c2",
+      "acceptance_scope": "Source, visual and engineering review of three revised CT conditions across two selected pairs. Saved-score replay preserves original results; first-case fine-instance and clinical adjudication remain open. No new model execution, medical runtime installation or publication.",
+      "visual_review": "Twelve chapters distinguish revised rules, first-case partition, volume dominance and small-instance recovery, exact context, reported exclusions, accepted contours and complete event denominators. Both locales, mobile/keyboard/no-GPU/reset, original CT helper preservation and fully decoded 117-second video reviewed.",
+      "reviewed_contract_projection": {
+        "raw": "Full native baseline and follow-up CT volumes, named neutrally. The first pair has 261/274 slices at 3 mm spacing; the second has 615/743 slices at 2.0/2.5 mm spacing. Preserve each volume's own grid and affine. Visits are not registered by this explanation.",
+        "helpers": "- **Inclusion:** include findings judged more likely tumor than normal/benign, even without diagnostic certainty. Exclude findings judged more likely normal/benign; uncertainty alone is not an exclusion rule.\n- **Partition:** distinguishable touching lesions receive separate local IDs. Voxel connectivity alone does not establish one confluent instance.\n- **Uncertainty:** record native location, included/excluded decision and short reason in the report.\n- **Context condition only:** released age 44, recorded sex female, 121-day interval; cohort background of metastatic melanoma, systemic therapy and staging/therapy-response assessment. The age field's reference date is unspecified. No individual clinical report, regimen, surgery dates or target hints are supplied. Cohort information is not an individual history. Separate context-inference output was never passed in.",
+        "tools": "The frozen image provides CPU Python image/numerical tools and shell access. No pretrained medical weights or external dataset lookup are supplied. The three linked protocols retain the exact environment and restrictions; each attempt uses `openai/gpt-6-astra`, medium effort and a two-hour bound.",
+        "spec": "Search both complete volumes. Produce distinct native tumor instances, infer correspondence and type events as persistent, merging, newly appearing, disappearing or unresolved. Persistent means identity continuity, not stable size. Check coverage before interpreting absence. Every positive local mask ID belongs to exactly one group; unresolved groups assert no links.",
+        "output": "- `baseline_instances.nii.gz` and `followup_instances.nii.gz`: exact native shape and affine; integer background 0 and local IDs 1–65535, at most 4096 per visit.\n- `events.json`: schema 1; complete local-ID membership and event cardinalities. Persistent is 1→1, merging ≥2→1, new 0→1 and disappearing 1→0.\n- `report.md`: method, uncertainty, native candidate coordinates, inclusion decisions/reasons and representative filename plus zero-based native-slice evidence. Retain useful scripts/views under the work directory.\n\nThere is **no probability sidecar** in this revision. Empty masks with an empty event list may satisfy the mechanical contract; this does not establish scientific success. The later comprehensive-candidate task is separate.",
+        "reference": "Source instance maps, lesion tables, correspondence/event groups, source patient identity and private scorer are evaluator material. No lesion locations, counts, anatomic hints, masks, links or previous outputs are given to the solver. The reader story separately reveals actual saved outputs and source references. Its selected crops remove search and are not solver inputs.",
+        "variants": [
+          {
+            "name": "First pair revised",
+            "helper": "Full CT pair and revised generic instructions",
+            "remaining": "Discover targets, partition touching instances and infer events"
+          },
+          {
+            "name": "Second pair revised",
+            "helper": "Different selected full CT pair, identical revised prompt",
+            "remaining": "Discover all targets; infer persistent and new events"
+          },
+          {
+            "name": "Second pair with context",
+            "helper": "Same second-pair images plus the verified broad context block",
+            "remaining": "Use priors without supplied locations or instance identities"
+          }
+        ],
+        "sources": [
+          [
+            "Revised image-only protocol",
+            "groups/longitudinal-reading/experiments/longitudinal-ct-v2-astra-medium/protocol.md"
+          ],
+          [
+            "retained finding",
+            "groups/longitudinal-reading/findings/longitudinal-ct-v2-and-localized.md"
+          ],
+          [
+            "Second-case protocol",
+            "groups/longitudinal-reading/experiments/longitudinal-ct-case02-astra-medium/protocol.md"
+          ],
+          [
+            "selection account",
+            "groups/longitudinal-reading/examples/longitudinal-ct-case02-selection.md"
+          ],
+          [
+            "retained result",
+            "groups/longitudinal-reading/findings/longitudinal-ct-case02-astra-medium.md"
+          ],
+          [
+            "Supplied-context protocol",
+            "groups/longitudinal-reading/experiments/longitudinal-ct-context-supplied-astra-medium/protocol.md"
+          ],
+          [
+            "actual context block",
+            "groups/longitudinal-reading/methods/longitudinal-ct-context-v1/context-block.md"
+          ],
+          [
+            "context comparison",
+            "groups/longitudinal-reading/findings/longitudinal-ct-context-hypothesis.md"
+          ],
+          [
+            "Source and replay audit",
+            "groups/longitudinal-reading/presentation/sources/longitudinal-ct-revised-audit.json"
+          ],
+          [
+            "canonical story",
+            "groups/longitudinal-reading/presentation/stories/longitudinal-ct-revised.story.md"
+          ],
+          [
+            "asset attribution",
+            "presentation/task-explorer/longitudinal-ct-revised/NOTICE.md"
+          ],
+          [
+            "Longitudinal-CT source release",
+            "https://fdat.uni-tuebingen.de/records/qe950-g4h94"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "a522ac62e38d4823af514a67c703cbf440f6118bf6f1ca07c5778b3d03cfc884",
+        "source_story_sha256": "240340e394f518304e862f4a137793cc673ec92d31e251f5518776d25d7ce080",
+        "acceptance_receipt_sha256": "bb72d627c7e0532b31509707649aa2ae753a388bb312f4a8f49de3b93ca66742"
+      }
     },
     {
       "entry_id": "tb3-longitudinal-ct-candidates",
@@ -12603,9 +12687,9 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 26,
+    "pending-operation-review": 25,
     "reviewed-scripted-spatial": 12,
-    "reviewed-scripted-planar": 17,
+    "reviewed-scripted-planar": 18,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
   },
@@ -12626,7 +12710,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-longitudinal-ct-revised",
+    "active_entry": "tb3-cardiac-contour-feasibility",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -13058,7 +13142,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/016-acceptance.json",
         "reviewed_entries": 29,
-        "next_entry": "tb3-longitudinal-ct-revised"
+        "next_entry": "tb3-longitudinal-ct-revised",
+        "local_commit": "65712bd3d0a5a05a6be3828ea3d0515f48a25471"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-longitudinal-ct-revised",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/017-acceptance.json",
+        "reviewed_entries": 30,
+        "next_entry": "tb3-cardiac-contour-feasibility"
       }
     ]
   }

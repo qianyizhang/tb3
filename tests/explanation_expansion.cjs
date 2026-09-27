@@ -18,6 +18,15 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    revisedSource,
+    revisedViews,
+    revisedRef,
+    revisedIndex,
+    revisedReference,
+    revisedOutput,
+    ctNativePoint,
+    recoveredIdentities,
+    sizeSummary,
     ctSource,
     ctVisits,
     ctReference,
@@ -280,6 +289,73 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   assert.ok(Math.abs(fullCurve[0].score - 0.2691879476) < 1e-9);
   assert.ok(Math.abs(fullCurve[100].score - 0.5876808912) < 1e-9);
   assert.equal(JSON.stringify(objectiveSamples('q01', 0)), JSON.stringify([fullCurve[0]]));
+  const revisedPlan = plans.find((p) => p.recipe === 'longitudinal-ct-revised-v1');
+  assert.ok(revisedPlan && isPlanarStory(revisedPlan));
+  assert.equal(revisedReference(sampleStory(revisedPlan, 0)), false);
+  assert.equal(revisedOutput(sampleStory(revisedPlan, 0)), false);
+  assert.deepEqual(
+    Array.from(revisedSource.overview, (v) => v.spacing_mm[2]),
+    [3, 3, 2, 2.5],
+  );
+  assert.deepEqual(
+    [0, 0.34, 0.67, 1].map((v) => revisedIndex(v)),
+    [0, 1, 2, 2],
+  );
+  assert.deepEqual(
+    Array.from(revisedViews[0].partition, (v) => v.k),
+    [108, 116, 120],
+  );
+  assert.deepEqual(
+    Array.from(revisedViews[3].new_focus, (v) => v.k),
+    [527, 529, 531],
+  );
+  assert.equal(
+    JSON.stringify(recoveredIdentities('case2-image')),
+    JSON.stringify(recoveredIdentities('case2-context')),
+  );
+  assert.deepEqual(Array.from(recoveredIdentities('case2-image')), [
+    'baseline:4',
+    'followup:13',
+    'followup:4',
+  ]);
+  for (const c of ['case2-image', 'case2-context']) {
+    assert.deepEqual(
+      Array.from(sizeSummary(c), (r) => [r.total, r.matched]),
+      [
+        [11, 0],
+        [9, 1],
+        [2, 2],
+      ],
+    );
+    const m = revisedRef.results[c].metrics;
+    assert.equal(m.association.events_conditional_on_detection.eligible_gt_groups, 2);
+    assert.equal(m.association.events_conditional_on_detection.total_gt_groups, 15);
+  }
+  for (const [i, v] of revisedViews.entries()) {
+    if (!v.excluded) continue;
+    const p = ctNativePoint(v.excluded.reported_point_ijk, v.excluded);
+    assert.ok(p.every((x) => x >= 0 && x < 256));
+    assert.equal(
+      v.excluded.fov_mm,
+      v.excluded.width_pixels * revisedSource.overview[i].spacing_mm[0],
+    );
+    assert.deepEqual(Array.from(ctNativePoint(v.excluded.origin_ij, v.excluded)), [0, 0]);
+  }
+  for (const point of revisedRef.point_checks) {
+    assert.equal(point.reference_id, 2);
+    assert.equal(point.context_mask_at_point, 0);
+  }
+  const satellite = revisedRef.instances.find(
+    (v) => v.case === 'case2' && v.visit === 'followup' && v.id === 13,
+  );
+  assert.deepEqual(
+    Array.from(satellite.components_6).sort((a, b) => a - b),
+    [1, 1207],
+  );
+  const decisionBeat = revisedPlan.beats.find((b) => b.scene === 'decisions');
+  assert.equal(revisedReference(sampleStory(revisedPlan, decisionBeat.startFrame)), false);
+  assert.equal(revisedOutput(sampleStory(revisedPlan, decisionBeat.startFrame)), true);
+  assert.equal(revisedReference(sampleStory(revisedPlan, decisionBeat.endFrame - 1)), true);
   const ctPlan = plans.find((p) => p.recipe === 'longitudinal-ct-original-v1');
   assert.ok(ctPlan && isPlanarStory(ctPlan));
   assert.equal(ctShowReference(sampleStory(ctPlan, 0)), false);

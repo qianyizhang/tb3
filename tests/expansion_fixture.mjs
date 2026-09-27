@@ -1,4 +1,15 @@
 export {
+  revisedSource,
+  revisedViews,
+  revisedRef,
+  revisedIndex,
+  revisedReference,
+  revisedOutput,
+  ctNativePoint,
+  recoveredIdentities,
+  sizeSummary,
+} from '../presentation/frontend/task-visuals/longitudinal-ct-revised';
+export {
   ctSource,
   ctVisits,
   ctReference,

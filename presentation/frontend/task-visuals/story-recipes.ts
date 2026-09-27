@@ -24,6 +24,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'topbrain-screen-v1',
     'hubmap-inventory-v1',
     'tiger-context-v1',
+    'longitudinal-ct-revised-v1',
     'longitudinal-ct-original-v1',
     'longitudinal-mri-v1',
     'resect-pilot-v1',
@@ -75,6 +76,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'longitudinal-ct-revised-v1':
+      return {
+        heading: 'Revised CT · inclusion, partition and context',
+        corner: 'Two selected cases · three revised conditions · original scores retained',
+        legend: [
+          ['#36dcdd', 'Reference mask · cyan solid'],
+          ['#e583ea', 'Revised / image-only mask · purple solid'],
+          ['#ffb636', 'Original / context mask · amber solid'],
+        ],
+      };
     case 'longitudinal-ct-original-v1':
       return {
         heading: 'Original CT · find, partition and link',

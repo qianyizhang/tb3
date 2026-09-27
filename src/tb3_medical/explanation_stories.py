@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "longitudinal-ct-revised-v1": "retained-longitudinal-ct-revised-v1",
     "longitudinal-ct-original-v1": "retained-longitudinal-ct-original-v1",
     "longitudinal-mri-v1": "retained-longitudinal-mri-v1",
     "tiger-context-v1": "retained-tiger-context-v1",
@@ -70,6 +71,20 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-longitudinal-ct-revised-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "source.json",
+            "case1-baseline.json",
+            "case1-followup.json",
+            "case2-baseline.json",
+            "case2-followup.json",
+            "reference.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+        },
+    ),
     "retained-longitudinal-ct-original-v1": (
         "source-slices",
         "reference.json",
@@ -312,6 +327,12 @@ class AirwayRepairChannels(Closed):
     reference: Pair
 
 
+class LongitudinalCtRevisedChannels(Closed):
+    view: Pair
+    output: Pair
+    reference: Pair
+
+
 class LongitudinalCtOriginalChannels(Closed):
     view: Pair
     output: Pair
@@ -475,6 +496,35 @@ class IdentityStory(Story[IdentityChannels]):
 
 class PrototypeIdentityStory(Story[IdentityChannels]):
     recipe: Literal["prototype-identity-v1"]
+
+
+class LongitudinalCtRevisedBeat(ExpansionBeat[LongitudinalCtRevisedChannels]):
+    scene: Literal[
+        "inputs",
+        "rules",
+        "partition",
+        "inventory",
+        "size",
+        "context",
+        "decisions",
+        "newfocus",
+        "events",
+        "comparison",
+        "output",
+        "limits",
+    ]
+
+
+class LongitudinalCtRevisedStory(Story[LongitudinalCtRevisedChannels]):
+    recipe: Literal["longitudinal-ct-revised-v1"]
+    beats: tuple[LongitudinalCtRevisedBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
 
 
 class LongitudinalCtOriginalBeat(ExpansionBeat[LongitudinalCtOriginalChannels]):
@@ -780,6 +830,7 @@ AnyStory = Annotated[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | LongitudinalCtRevisedStory
     | LongitudinalCtOriginalStory
     | LongitudinalMriStory
     | TigerContextStory
@@ -807,6 +858,7 @@ ADAPTER: TypeAdapter[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | LongitudinalCtRevisedStory
     | LongitudinalCtOriginalStory
     | LongitudinalMriStory
     | TigerContextStory
@@ -994,6 +1046,7 @@ def parse_expansion(
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | LongitudinalCtRevisedStory
     | LongitudinalCtOriginalStory
     | LongitudinalMriStory
     | TigerContextStory
@@ -1076,6 +1129,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         frame, data_license, label_license = {
+            "retained-longitudinal-ct-revised-v1": ("RAS", "CC-BY-NC-4.0", "CC-BY-NC-4.0"),
             "retained-longitudinal-ct-original-v1": ("RAS", "CC-BY-NC-4.0", "CC-BY-NC-4.0"),
             "retained-longitudinal-mri-v1": ("RAS", "CC-BY-4.0", "CC-BY-4.0"),
             "retained-tiger-context-v1": ("level-0-image", "CC-BY-NC-4.0", "CC-BY-NC-4.0"),

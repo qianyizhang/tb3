@@ -35,6 +35,7 @@ class ExpansionTests(unittest.TestCase):
                     "tiger-context-v1",
                     "longitudinal-mri-v1",
                     "longitudinal-ct-original-v1",
+                    "longitudinal-ct-revised-v1",
                 }
                 else "no-reference-assets",
             )
@@ -77,6 +78,7 @@ class ExpansionTests(unittest.TestCase):
             ("lesion-localization", "tiger-context"),
             ("longitudinal-reading", "longitudinal-mri"),
             ("longitudinal-reading", "longitudinal-ct-original"),
+            ("longitudinal-reading", "longitudinal-ct-revised"),
         ]:
             path = ROOT / f"groups/{group}/presentation/stories/{name}.story.md"
             model = stories.parse_expansion(path.read_text())
@@ -121,6 +123,7 @@ class ExpansionTests(unittest.TestCase):
             "tiger-context",
             "longitudinal-mri",
             "longitudinal-ct-original",
+            "longitudinal-ct-revised",
         ]:
             path = ROOT / f"presentation/task-explorer/{name}/manifest.json"
             for key, value in [
