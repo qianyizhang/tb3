@@ -886,11 +886,11 @@
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "segmentation-localization",
       "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
+      "source_asset_readiness": "331 source fingerprints, two frozen tasks and six saved evaluations verified; fine diagnostics reproduced; thirteen native views with exact PNG/contour/native-coordinate checks and saved atlas-plane replay.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Produce native-grid semantic masks for the specified dental structures and tooth identities.",
+      "remaining_work": "Implement the dedicated v2 example-transfer comparison story and renderer, bind the Explorer, export fresh HTML/MP4/captions/receipts and review playback, mobile and no-GPU behavior before acceptance.",
       "contract_projection": {
         "raw": "Full native F002 dental CBCT; source hashes and geometry remain in the linked protocols.",
         "helpers": "Explicit revised label/convention contract; the paired assistance condition supplies an annotated F008 example.",
@@ -922,7 +922,111 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "523b03782e79ea08a277f06b0ff7985b87cc9fc233128bbc2ff35ce9f500aa66"
+      "source_brief_sha256": "523b03782e79ea08a277f06b0ff7985b87cc9fc233128bbc2ff35ce9f500aa66",
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "receipt": "groups/anatomy-audit/presentation/sources/dental-v2-audit.json",
+        "sha256": "bc7cb589c3ae72569ae6fdc9a24cda2cc4fe4fdc09da2c7495aa9b90369210e3",
+        "status": "source-audit-complete-story-pending",
+        "asset_manifest": "presentation/task-explorer/dental-v2/manifest.json",
+        "asset_manifest_sha256": "a01962c9cf74dddc77faea8c2c9d4f37243104b2a9dbfbe68b300c36dfd698aa",
+        "source_visual_review": ".local/explainers/completion-20260927/027-asset-review-v2/review.json",
+        "source_visual_review_sha256": "b9f651795dee17cb82b727c65a5c5782403abe17bc95e19ce0e8bee1100fa30c",
+        "limitations": [
+          "One exploratory F002 pair; unequal realized compute and self-chosen methods.",
+          "Target GT is reader-only; F008 annotation was solver assistance only in the example condition.",
+          "Acquisition orientation, occupied pulp and restoration subtypes remain unadjudicated."
+        ]
+      },
+      "reviewed_contract_projection": {
+        "title": "Segment dental anatomy — F002 contract v2",
+        "goal": "Segment the same native F002 dental CBCT under an explicit naming and boundary\ncontract, once without an example and once with an annotated F008 case. The\nexample-assisted attempt improves tooth identity and canal agreement but loses\npulp agreement; retained intermediate masks explain several of those losses.",
+        "value": "Separates whole-tooth geometry, tooth identity and fine structures when an\nannotated example is available. This is one exploratory pair on a development\ncase, with different realized compute and self-chosen methods. It does not\nestimate an isolated assistance effect or clinical performance.",
+        "raw": "The complete F002 ToothFairy3 CBCT: **410 × 410 × 274 voxels**, approximately\n0.3 mm isotropic, supplied as `/app/data/ct.nii.gz`. Both conditions have identical\ntarget, labels, common instructions and private evaluator bytes. Case identifiers\nand source records are author context; solver files use neutral names.",
+        "helpers": "Both conditions receive the full dataset-wide dictionary: background 0 and\n**77 sparse foreground IDs through 148**. It covers jaws, air spaces, canals,\nrestorations, 32 possible tooth identities and their corresponding pulp classes.\nThe dictionary does not reveal the target inventory.\n\nThe assisted condition additionally receives F008 CT and its original dense\nannotation at `/app/reference/ct.nii.gz` and `segmentation.nii.gz`. F008 has\n410 × 410 × 270 voxels at the same spacing. Its annotation contains all 32\ntooth/pulp pairs and five canals, but **no restoration labels**. A source inventory\nand selected views supported choosing it; they do not certify a clinically normal\ncase or every annotated voxel. F031 was rejected before any freeze or trial.",
+        "tools": "Installed NumPy, SciPy, scikit-image, nibabel, PIL and image inspection in a CPU\ncontainer. No external data, websites or pretrained weights. Each independent\nAstra/medium attempt has a two-hour ceiling and four CPUs, without a GPU.\nThe assisted agent attempted to retrieve SimpleITK; the proxy blocked it and\ninstallation failed. It continued with available tools.",
+        "reference": "F002 dense labels, scoring, source identity, previous answers and target-specific\nfindings are withheld from both solvers. The second solver receives no first-run\nfeedback. F008 annotation is authorized assistance only in the second condition.\n\nAll target reference overlays, scores, GT-selected sections, corrected-match\ntables and fine-structure diagnostics are later reader/evaluator material.\nTarget true-tooth masks in the pulp-rule experiment are an author-only oracle\ndiagnostic, never solver inputs.",
+        "spec": "Locate, outline and name supported anatomy on the full CT. The explicit v2\ncontract assigns increasing native **i, j, k to Right, Posterior, Inferior** for\nsemantic names. Retain the original dimensions, affine, qform and sform; do not\nflip the scan to make the legacy header canonical. This operational rule does\nnot adjudicate physical acquisition laterality.\n\nEvery voxel receives one integer label. Natural mineralized tooth tissue and\nits paired pulp are exclusive classes; their union forms the whole tooth.\nJawbone, air spaces, canals and prosthetic structures have explicit general\nboundaries. Do not infer target occupancy from the dictionary or invent anatomy\nto use every ID. Uncertainty notes do not exempt missed reference voxels.\n\nThe contract defines internal pulp chambers and root-canal spaces but leaves\noccupied, treated or calcified chamber contents insufficiently specified.\nRestoration subtype consistency and clinical acquisition orientation remain\nunder review. V2 is a separate contract from the original and later v3 tasks.",
+        "output": "`/app/answer/segmentation.nii.gz`: one exclusive integer NIfTI using allowed IDs\non the unchanged target grid, preserving affine and qform/sform including codes.\n`/app/answer/method.md` documents the method, uncertainty and omissions.",
+        "score": "The frozen custom scorer checks geometry and label validity, then measures\nwhole-volume reference agreement. Per-label Dice excludes classes empty in both\nreference and answer; false-positive-only or missed classes score zero.\nThe macro weights each active foreground ID equally. There is no clinical pass\nthreshold, and this is not official challenge leaderboard scoring.\n\nWhole-tooth evaluation unions each tooth with its paired pulp and finds a\none-to-one assignment maximizing total Dice. Unmatched objects contribute zero;\nDice ≥0.5 defines detection. Identity accuracy among detections and correctly\nidentified GT recall have different denominators. Group-pooled Dice ignores\nIDs within the group; it does not measure correct tooth numbering.\n\n| Retained measure | No example | F008 example |\n| --- | ---: | ---: |\n| Original macro Dice; active foreground classes | 0.454233; 61 | 0.501169; 59 |\n| Whole-tooth matched geometry Dice | 0.778375 | 0.788633 |\n| Detected teeth / 22 reference teeth | 19/22 | 20/22 |\n| Correct identity among detected teeth | 17/19 | 19/20 |\n| Correctly detected and identified / 22 reference teeth | 17/22 | 19/22 |\n| Pulp macro Dice | 0.337878 | 0.314702 |\n| Pulp pooled Dice | 0.470050 | 0.364235 |\n| Main-canal macro Dice | 0.111758 | 0.196409 |\n| Small-canal macro Dice | 0.001495 | 0.127071 |\n| Agent time | 22m55s | 49m04s |\n| Output tokens | 33,743 | 67,173 |\n\n**Denominator diagnostic:** scoring both answers over the same union of 61 active\nIDs, assigning both-empty IDs zero only for this diagnostic, gives\n0.454233 → 0.484738. This is not a replacement for either original score.\nNo ID permutation, output editing or new segmentation is performed.\n\nReference teeth 26/27 match output IDs 27/28 without an example and 26/27 with\nF008. Reference tooth 37 still matches output 38 in both; the first match is\nbelow the detection threshold. Both answers contain 22 tooth objects, so\nmatching object count alone does not establish correct identity.\n\nPooled pulp precision falls from 0.3954 to 0.3213, and recall from 0.5795 to\n0.4204. Main-canal recall improves from 8.04% to 14.40%; assisted small-canal\nrecall remains 8.49%. Improvements do not imply adequate coverage.",
+        "challenge": "The no-example agent used CT inspection, agent-selected envelopes and paths,\nthresholds, morphology and exclusive-label assembly. The assisted agent actively\nused F008 for affine/smooth registration, transferred labels, jaw/tooth priors\nand pulp calibration. It adapted and edited those priors rather than simply\nreturning the example. Saved scripts and command events establish these actions;\nthey do not expose hidden reasoning.\n\nThree measured mechanisms explain why assistance did not solve fine structures:\n\n- **Intensity transfer:** the same fixed pulp rule (smoothed intensity <1250,\n  interior distance >2 voxels) gives pooled Dice 0.765 on F008's matching 22 tooth\n  IDs and 0.299 on true F002 tooth masks. Target true masks are an author-only\n  diagnostic. Example calibration is not held-out validation.\n- **Harmful prior clipping:** in tooth 14, the saved 1.05 mm prior-distance rule\n  deletes 440 of 443 correctly placed pulp voxels, leaving 3. It also removes\n  false positives; retention alone does not assess its full tradeoff. The exact\n  saved deletion reproduces voxel for voxel.\n- **Canal placement and width:** only 19.8%/43.6% of assisted main-canal path\n  samples lie inside reference masks. Of missed main-canal voxels, 98.6% already\n  lie outside the uncut tubes. Enlarging radii helps only partially in a diagnostic;\n  it is not a validated repair or a revised submission.\n\n**Unresolved convention:** target pulp labels 116/131 include 838/858 and 331/333\nvoxels above raw intensity 3000, mostly at the scan maximum. F008 lacks this\nappearance. The images establish a mismatch, not material identity or clinically\nwrong GT. Excluding the two IDs raises assisted pooled pulp Dice only\n0.364 → 0.417 diagnostically, so they do not explain all residual errors.",
+        "families": "One selected target, two independent completed model attempts, two exact-reference\ncontrols and two no-output controls. The source audit replays all six saved\nevaluations exactly, verifies frozen task/source fingerprints and independently\nreproduces the retained fine-structure diagnostics. No new model attempt or\nhistorical solver program runs during explainer preparation.\n\nRetained isolation and command records show the intended input boundary and no\nobserved target-GT or external-dataset retrieval. They cannot adjudicate encrypted\ntransport content or pretraining exposure. Unequal realized compute and methods\nprevent a clean causal claim about the example. Original scores remain intact.\n\nSource-selected views are local teaching derivatives, not exhaustive clinical\nreview. The publisher's CC BY-NC-SA 4.0 notice is retained alongside conflicting\narchive CC-BY-SA metadata. Raw data remain local; publication is outside this work.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "No annotated example",
+            "helper": "F002 CT, full dictionary, v2 contract, local scientific tools",
+            "remaining": "Locate, outline and name target anatomy"
+          },
+          {
+            "name": "F008 example",
+            "helper": "Identical target and common contract, plus F008 CT and original annotation",
+            "remaining": "Adapt example geometry and conventions to the distinct target"
+          }
+        ],
+        "sources": [
+          [
+            "F002 v2 without an annotated example",
+            "groups/anatomy-audit/experiments/dental-f002-contract-v2-astra-medium/protocol.md"
+          ],
+          [
+            "F002 v2 with the F008 example",
+            "groups/anatomy-audit/experiments/dental-f002-reference-v2-astra-medium/protocol.md"
+          ],
+          [
+            "Shared contract and preparation boundaries",
+            "groups/anatomy-audit/methods/dental-reference-ablation/README.md"
+          ],
+          [
+            "Paired results and method comparison",
+            "groups/anatomy-audit/findings/dental-reference-example-comparison.md"
+          ],
+          [
+            "Pulp and canal mechanism diagnosis",
+            "groups/anatomy-audit/findings/dental-fine-structure-failure-analysis.md"
+          ],
+          [
+            "Dataset direction and annotation audit",
+            "groups/anatomy-audit/findings/dental-dataset-contract-audit.md"
+          ],
+          [
+            "Current source and replay audit",
+            "groups/anatomy-audit/presentation/sources/dental-v2-audit.json"
+          ],
+          [
+            "Native asset provenance and limitations",
+            "presentation/task-explorer/dental-v2/NOTICE.md"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Segment the same native F002 dental CBCT under an explicit naming and boundary contract, once without an example and once with an annotated F008 case. The example-assisted attempt improves tooth identity and canal agreement but loses pulp agreement; retained intermediate masks explain several of those losses.</p>",
+          "value": "<p>Separates whole-tooth geometry, tooth identity and fine structures when an annotated example is available. This is one exploratory pair on a development case, with different realized compute and self-chosen methods. It does not estimate an isolated assistance effect or clinical performance.</p>",
+          "raw": "<p>The complete F002 ToothFairy3 CBCT: <strong>410 × 410 × 274 voxels</strong>, approximately 0.3 mm isotropic, supplied as <code>/app/data/ct.nii.gz</code>. Both conditions have identical target, labels, common instructions and private evaluator bytes. Case identifiers and source records are author context; solver files use neutral names.</p>",
+          "helpers": "<p>Both conditions receive the full dataset-wide dictionary: background 0 and <strong>77 sparse foreground IDs through 148</strong>. It covers jaws, air spaces, canals, restorations, 32 possible tooth identities and their corresponding pulp classes. The dictionary does not reveal the target inventory.</p>\n<p>The assisted condition additionally receives F008 CT and its original dense annotation at <code>/app/reference/ct.nii.gz</code> and <code>segmentation.nii.gz</code>. F008 has 410 × 410 × 270 voxels at the same spacing. Its annotation contains all 32 tooth/pulp pairs and five canals, but <strong>no restoration labels</strong>. A source inventory and selected views supported choosing it; they do not certify a clinically normal case or every annotated voxel. F031 was rejected before any freeze or trial.</p>",
+          "tools": "<p>Installed NumPy, SciPy, scikit-image, nibabel, PIL and image inspection in a CPU container. No external data, websites or pretrained weights. Each independent Astra/medium attempt has a two-hour ceiling and four CPUs, without a GPU. The assisted agent attempted to retrieve SimpleITK; the proxy blocked it and installation failed. It continued with available tools.</p>",
+          "reference": "<p>F002 dense labels, scoring, source identity, previous answers and target-specific findings are withheld from both solvers. The second solver receives no first-run feedback. F008 annotation is authorized assistance only in the second condition.</p>\n<p>All target reference overlays, scores, GT-selected sections, corrected-match tables and fine-structure diagnostics are later reader/evaluator material. Target true-tooth masks in the pulp-rule experiment are an author-only oracle diagnostic, never solver inputs.</p>",
+          "spec": "<p>Locate, outline and name supported anatomy on the full CT. The explicit v2 contract assigns increasing native <strong>i, j, k to Right, Posterior, Inferior</strong> for semantic names. Retain the original dimensions, affine, qform and sform; do not flip the scan to make the legacy header canonical. This operational rule does not adjudicate physical acquisition laterality.</p>\n<p>Every voxel receives one integer label. Natural mineralized tooth tissue and its paired pulp are exclusive classes; their union forms the whole tooth. Jawbone, air spaces, canals and prosthetic structures have explicit general boundaries. Do not infer target occupancy from the dictionary or invent anatomy to use every ID. Uncertainty notes do not exempt missed reference voxels.</p>\n<p>The contract defines internal pulp chambers and root-canal spaces but leaves occupied, treated or calcified chamber contents insufficiently specified. Restoration subtype consistency and clinical acquisition orientation remain under review. V2 is a separate contract from the original and later v3 tasks.</p>",
+          "output": "<p><code>/app/answer/segmentation.nii.gz</code>: one exclusive integer NIfTI using allowed IDs on the unchanged target grid, preserving affine and qform/sform including codes. <code>/app/answer/method.md</code> documents the method, uncertainty and omissions.</p>",
+          "score": "<p>The frozen custom scorer checks geometry and label validity, then measures whole-volume reference agreement. Per-label Dice excludes classes empty in both reference and answer; false-positive-only or missed classes score zero. The macro weights each active foreground ID equally. There is no clinical pass threshold, and this is not official challenge leaderboard scoring.</p>\n<p>Whole-tooth evaluation unions each tooth with its paired pulp and finds a one-to-one assignment maximizing total Dice. Unmatched objects contribute zero; Dice ≥0.5 defines detection. Identity accuracy among detections and correctly identified GT recall have different denominators. Group-pooled Dice ignores IDs within the group; it does not measure correct tooth numbering.</p>\n<div class=\"table\"><table>\n<tr><th>Retained measure</th><th>No example</th><th>F008 example</th></tr>\n<tr><td>Original macro Dice; active foreground classes</td><td>0.454233; 61</td><td>0.501169; 59</td></tr>\n<tr><td>Whole-tooth matched geometry Dice</td><td>0.778375</td><td>0.788633</td></tr>\n<tr><td>Detected teeth / 22 reference teeth</td><td>19/22</td><td>20/22</td></tr>\n<tr><td>Correct identity among detected teeth</td><td>17/19</td><td>19/20</td></tr>\n<tr><td>Correctly detected and identified / 22 reference teeth</td><td>17/22</td><td>19/22</td></tr>\n<tr><td>Pulp macro Dice</td><td>0.337878</td><td>0.314702</td></tr>\n<tr><td>Pulp pooled Dice</td><td>0.470050</td><td>0.364235</td></tr>\n<tr><td>Main-canal macro Dice</td><td>0.111758</td><td>0.196409</td></tr>\n<tr><td>Small-canal macro Dice</td><td>0.001495</td><td>0.127071</td></tr>\n<tr><td>Agent time</td><td>22m55s</td><td>49m04s</td></tr>\n<tr><td>Output tokens</td><td>33,743</td><td>67,173</td></tr>\n</table></div>\n<p><strong>Denominator diagnostic:</strong> scoring both answers over the same union of 61 active IDs, assigning both-empty IDs zero only for this diagnostic, gives 0.454233 → 0.484738. This is not a replacement for either original score. No ID permutation, output editing or new segmentation is performed.</p>\n<p>Reference teeth 26/27 match output IDs 27/28 without an example and 26/27 with F008. Reference tooth 37 still matches output 38 in both; the first match is below the detection threshold. Both answers contain 22 tooth objects, so matching object count alone does not establish correct identity.</p>\n<p>Pooled pulp precision falls from 0.3954 to 0.3213, and recall from 0.5795 to 0.4204. Main-canal recall improves from 8.04% to 14.40%; assisted small-canal recall remains 8.49%. Improvements do not imply adequate coverage.</p>",
+          "challenge": "<p>The no-example agent used CT inspection, agent-selected envelopes and paths, thresholds, morphology and exclusive-label assembly. The assisted agent actively used F008 for affine/smooth registration, transferred labels, jaw/tooth priors and pulp calibration. It adapted and edited those priors rather than simply returning the example. Saved scripts and command events establish these actions; they do not expose hidden reasoning.</p>\n<p>Three measured mechanisms explain why assistance did not solve fine structures:</p>\n<ul>\n<li><strong>Intensity transfer:</strong> the same fixed pulp rule (smoothed intensity &lt;1250,</li>\n</ul>\n<p>  interior distance &gt;2 voxels) gives pooled Dice 0.765 on F008&#x27;s matching 22 tooth   IDs and 0.299 on true F002 tooth masks. Target true masks are an author-only   diagnostic. Example calibration is not held-out validation.</p>\n<ul>\n<li><strong>Harmful prior clipping:</strong> in tooth 14, the saved 1.05 mm prior-distance rule</li>\n</ul>\n<p>  deletes 440 of 443 correctly placed pulp voxels, leaving 3. It also removes   false positives; retention alone does not assess its full tradeoff. The exact   saved deletion reproduces voxel for voxel.</p>\n<ul>\n<li><strong>Canal placement and width:</strong> only 19.8%/43.6% of assisted main-canal path</li>\n</ul>\n<p>  samples lie inside reference masks. Of missed main-canal voxels, 98.6% already   lie outside the uncut tubes. Enlarging radii helps only partially in a diagnostic;   it is not a validated repair or a revised submission.</p>\n<p><strong>Unresolved convention:</strong> target pulp labels 116/131 include 838/858 and 331/333 voxels above raw intensity 3000, mostly at the scan maximum. F008 lacks this appearance. The images establish a mismatch, not material identity or clinically wrong GT. Excluding the two IDs raises assisted pooled pulp Dice only 0.364 → 0.417 diagnostically, so they do not explain all residual errors.</p>",
+          "families": "<p>One selected target, two independent completed model attempts, two exact-reference controls and two no-output controls. The source audit replays all six saved evaluations exactly, verifies frozen task/source fingerprints and independently reproduces the retained fine-structure diagnostics. No new model attempt or historical solver program runs during explainer preparation.</p>\n<p>Retained isolation and command records show the intended input boundary and no observed target-GT or external-dataset retrieval. They cannot adjudicate encrypted transport content or pretraining exposure. Unequal realized compute and methods prevent a clean causal claim about the example. Original scores remain intact.</p>\n<p>Source-selected views are local teaching derivatives, not exhaustive clinical review. The publisher&#x27;s CC BY-NC-SA 4.0 notice is retained alongside conflicting archive CC-BY-SA metadata. Raw data remain local; publication is outside this work.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
+      }
     },
     {
       "entry_id": "tb3-dental-v3",
@@ -14046,6 +14150,15 @@
         "export_receipt_sha256": "dd29320bad0583506de3223a3e033fc2f66519cbfa30f7f1e897f278ba3a2574",
         "reviewed_entries": 34,
         "next_entry": "tb3-dental-v2"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-dental-v2",
+        "stage": "source-audit-complete-story-pending",
+        "receipt": "groups/anatomy-audit/presentation/sources/dental-v2-audit.json",
+        "asset_manifest": "presentation/task-explorer/dental-v2/manifest.json",
+        "reviewed_entries": 34,
+        "next_action": "Implement the dedicated v2 example-transfer comparison story and renderer."
       }
     ]
   }

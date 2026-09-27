@@ -538,3 +538,34 @@ a specific annotation uncertainty without changing any original outcome.
 Assistant recommendation: clarify that convention and use an adjudicated example
 that demonstrates it before a future trial; separate canal localization from
 width/extent. This is not a user decision to launch another experiment.
+
+### V2 explainer source checkpoint — assistant action, 2026-09-28
+
+For the [sequential explainer completion goal](codex://threads/01a0e024-3705-7a91-9181-d237131801fa),
+the assistant audited the two frozen v2 conditions and exactly replayed all six
+saved evaluations (two Astra/medium, two oracle, two no-output controls). Fresh
+read-only diagnostics reproduce the retained pulp/canal measurements and exact
+prior-clipping deletion. Original sources, answers and scores remain unchanged;
+no medical attempt, solver script, installation or publication occurred.
+
+The [expanded v2 brief](../presentation/briefs/tb3-dental-v2.md) separates the
+matched target/contract from unequal realized compute and preserves both the
+identity/canal gains and pulp loss. The [audit](../presentation/sources/dental-v2-audit.json)
+pins 331 source files: frozen bytes, source grids, saved outputs, methods and
+access records. Thirteen [native reader views](../../../presentation/task-explorer/dental-v2/NOTICE.md)
+include CT-only input, authorized F008 annotation, both outputs, saved transfer,
+private-reference reveals and tooth-14 prior clipping. The saved displacement
+field exactly reproduces a 168,100-voxel atlas plane. PNG pixels, binary contours
+and inverse native coordinates pass exact checks. All 21 review panels across
+four contact sheets were inspected; this is source-view review, not story acceptance.
+
+**Next implementation:** a dedicated v2 comparison recipe, with explicit scenes
+for input/contract, supplied example, saved transfer, original outputs, reference
+identity comparison, denominator-sensitive results, pulp intensity transfer,
+occupied-pulp uncertainty, prior exclusion, canal placement/coverage and limits.
+Use the saved field only for a labeled reader comparison, never simulated optimizer
+iterations. Keep target GT and measurements behind reader reveals; retain matched
+colors/line styles with dark under-strokes over bright voxels. Use full-volume
+denominators beside selected sections. Canonical story, Explorer binding, fresh
+export, playback/mobile/no-GPU review and final acceptance are still outstanding.
+The v2 ledger row remains pending; no new user decision is inferred.
