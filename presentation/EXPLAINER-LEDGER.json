@@ -692,15 +692,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "teeth",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "dental-original",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "Source audit complete: 403 fingerprints, two frozen task digests, seven saved model/control replays; eight native views and reproduced pulp gates. Integrated story and acceptance remain pending.",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "403 fingerprints, two frozen task digests and seven saved model/control evaluations verified; full prior diagnostics reproduced; eight licensed native teaching views with exact pixel/coordinate checks.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/026-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Implement and bind the original-contract story; keep original scores, diagnostic label permutation, changing denominators and unresolved clinical semantics distinct. Fresh export, browser/mobile/no-GPU review and full video playback are still required.",
+      "remaining_work": "No outstanding explainer work for these original-contract attempts. V2/v3 are separate entries; reference disputes remain qualified. Remote delivery pending at program level.",
       "contract_projection": {
         "raw": "Native dental CBCT; exact F002/F018 source and geometry remain in the experiment.",
         "helpers": "CT plus the complete semantic taxonomy; no example masks.",
@@ -735,14 +735,136 @@
       "source_review": {
         "date": "2026-09-28",
         "reviewer": "assistant",
-        "status": "source-audit-complete-story-pending",
         "receipt": "groups/anatomy-audit/presentation/sources/dental-original-audit.json",
+        "status": "source-audit-complete",
         "sha256": "b028a8c7bc9fc029da086137cfffd5c4a7cadb8c0aeecad58bff091a8434ec83",
         "limitations": [
-          "Laterality and detailed reference conventions remain unadjudicated.",
-          "Two source cases and three completed model attempts; original scores preserved.",
-          "Local derivative preparation is not integrated-story or video acceptance."
+          "Assistant teaching-content review, not clinical or user adjudication.",
+          "Two source cases and three completed model attempts; unknown pretraining overlap and non-isolated effort/method differences.",
+          "Reader-selected native cross-sections and a reference-selected tooth are not exhaustive clinical inspection.",
+          "Publisher and mirror license discrepancy retained; local derivatives use publisher CC-BY-NC-SA-4.0 and public redistribution remains unauthorized."
         ]
+      },
+      "acceptance_scope": "Source, visual and engineering review of three original-contract dental attempts on two source cases. No new medical/model execution, runtime installation, clinical adjudication or publication.",
+      "visual_review": "Twelve chapters, full 148-second video playback, fixed-geometry ID swap, two native canal planes, all five pulp stages, score denominators, omitted-label counts, desktop/mobile/locale/Explorer and no-GPU reveal/reset reviewed.",
+      "reviewed_contract_projection": {
+        "title": "Segment dental anatomy — Original contract",
+        "goal": "Construct a native-grid dental segmentation from CBCT and a complete label\ndictionary. Explain the three retained attempts without treating unresolved\nsource orientation as a clean measure of anatomical identity.",
+        "value": "Separates finding and outlining anatomy from assigning the dataset's semantic\nIDs. Large foreground overlap can coexist with opposing tooth IDs and missing\nfine structures. These are exploratory development observations, not a clinical\nor population evaluation.",
+        "raw": "Two ToothFairy3 cases, named only in author/evaluator records. F018 uses the\nofficial viewer pair: 410 × 410 × 264 voxels. F002 uses its archive pair:\n410 × 410 × 274 voxels. Both have approximately 0.3 mm isotropic spacing.\nThe complete volume is supplied as `ct.nii.gz`; voxel values and affine are\npreserved while descriptive NIfTI fields are removed.\n\nF018 archive and viewer arrays are equal, but their third-axis affine metadata\ndiffers. The original trials consistently pair the viewer CT with viewer labels.\nF002 uses its internally aligned archive pair. No orientation conversion is\napplied to these retained tasks or answers.",
+        "helpers": "The complete dataset-wide dictionary, including background 0 and **77 sparse\nforeground IDs through 148**: jaws, canals, sinuses, pharynx, restorations, 32 tooth\nidentities and 32 corresponding pulp classes. It specifies possible labels, not\nwhich structures occur in a case. No masks, exemplars, target counts, source\nidentity, prior answers or method suggestions are supplied.",
+        "tools": "Local scientific libraries and image inspection in a CPU container. No external\ndata, websites, pretrained segmentation weights, reference mask or score feedback.\nEach independent Astra attempt has a two-hour ceiling; F018 is tested once at\nmedium and once at xhigh, and F002 once at medium. The retained authentication-only\ninvocation is an infrastructure observation, not a fourth segmentation attempt.",
+        "reference": "Case/source identity, ground-truth masks, private scorer, scores and all\npost-submission diagnostics are evaluator/reader material. The full taxonomy is\nsolver-visible; per-case reference occupancy is not. Selected diagnostic sections\nand the reference-selected pulp example are teaching views, not supplied hints.\n\nThe publisher FAQ explicitly warns that NIfTI direction information is not\nphysically accurate. That convention was absent from the original solver package.\nHeader/label agreement and detailed annotation boundaries remain unadjudicated;\npaired-grid validity alone does not settle clinical laterality.",
+        "spec": "Inspect the full CBCT, construct a three-dimensional integer segmentation of\nvisible structures and assign the supplied IDs. Preserve the input dimensions\nand affine exactly. Every voxel receives one integer ID; background is zero.\nDo not assume all dictionary classes occur in the image.\n\nThe original instructions provide semantic names without an operational manual\nfor every boundary. Laterality, occupied pulp, restoration subtype and related\nreference-convention questions qualify interpretation of same-ID voxel scores.\nLater v2/v3 contracts and annotated-example conditions are separate catalogue\nentries; their instructions and results do not retroactively repair this task.",
+        "output": "`segmentation.nii.gz`, containing allowed integer IDs on the untouched CT grid,\nand `method.md`, describing the chosen method, limitations and uncertainty.",
+        "score": "The frozen custom evaluator computes whole-volume Dice separately for each\nforeground ID. A class absent from both output and reference is excluded; a\nfalse-positive-only or missed class receives zero. The macro gives every active\nclass equal weight. Invalid geometry or unknown IDs are rejected. Foreground\nDice pools all nonzero labels and ignores identity. There is no clinical pass\nthreshold, and these are not official challenge leaderboard scores.\n\n| Retained attempt | Original macro Dice; active classes | Foreground Dice | Fixed L/R ID diagnostic; active classes |\n| --- | --- | ---: | --- |\n| F018 Astra/medium | 0.039394; 70 | 0.968609 | 0.692457; 68 |\n| F018 Astra/xhigh | 0.044766; 70 | 0.970754 | 0.703420; 68 |\n| F002 Astra/medium | 0.049641; 62 | 0.874451 | 0.463379; 57 |\n\nThe fixed side-ID permutation operates on the confusion matrix. It changes\nneither voxel positions nor saved answers, and is **not a replacement score**.\nIt also changes the active-class denominator: its score difference is not a\nfixed-denominator causal share of error. The original outcomes remain unchanged.\n\nF018 medium/xhigh share exact frozen task bytes. F002 shares the output and\nscoring contract but differs in case and class inventory. One attempt per\ncondition supports descriptive observations, not an effort or case-difficulty\nranking. Clinical acquisition laterality remains unresolved.\n\nResidual disagreement persists after pooling or side-pairing. Both F018 attempts\nomit the two incisive canal IDs; F002 omits all five canal IDs. F018 main-canal\ncontours remain offset in selected native sections. F002 restoration subtype\ndisagreement accompanies geometric errors, with no clinical subtype adjudication.\n\nThe retained F002 tooth-envelope and intensity gates explain one concrete source\nof pulp loss. Across side-paired reference pulp, the distance gate retains 10,433\nof 12,242 reference voxels; the following intensity gate retains 4,074. This is\nreference retention, not precision or proof that raising the cutoff is a safe fix.\nThe reference-selected tooth-16 example loses 843 of 844 surviving reference\nvoxels at that intensity gate. Component/core filters and later cleanup follow.",
+        "challenge": "The agents chose image-guided classical processing: thresholds, connected regions,\nmorphology, interpolated tooth envelopes and internal dark-component extraction.\nXhigh additionally used 3D watershed. Canal paths were constrained by chosen\nlandmarks or deliberately omitted. Fine anatomy can remain misplaced even when\nlarge structures overlap. Missing source conventions are a separate task-context\nlimitation; they do not explain every residual geometry error.",
+        "families": "Two cases, three completed segmentation attempts and one pre-inference\nauthentication failure. The current source audit verifies two frozen task digests,\n403 source fingerprints and seven saved model/control evaluations (three model,\ntwo oracle, two no-op). Original scores and the prior trace/pulp diagnostics\nreproduce independently. No fresh model or historical solver script is executed.\n\nThe reader views use original pixels, saved output contours and separately\nrevealed research labels. Selected sections are not an exhaustive clinical\nreview. Public-data training overlap is unknown. The publisher's noncommercial,\nshare-alike notice is retained alongside the conflicting archive license string;\nraw data stay local and public redistribution is outside this work.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "F018 Astra/medium",
+            "helper": "CT, full dictionary, local scientific tools",
+            "remaining": "Locate, outline and name visible anatomy"
+          },
+          {
+            "name": "F018 Astra/xhigh",
+            "helper": "Exactly the same frozen task",
+            "remaining": "Same work; separate higher-effort attempt"
+          },
+          {
+            "name": "F002 Astra/medium",
+            "helper": "Another native CT; same dictionary and output/scorer rules",
+            "remaining": "Segment the separate case without prior-case feedback"
+          }
+        ],
+        "sources": [
+          [
+            "Dental CBCT segmentation from CT alone — Astra medium",
+            "groups/anatomy-audit/experiments/dental-ct-only-astra-medium/protocol.md"
+          ],
+          [
+            "Dental F018 CT-only segmentation — Astra xhigh",
+            "groups/anatomy-audit/experiments/dental-f018-astra-xhigh/protocol.md"
+          ],
+          [
+            "Dental F002 CT-only segmentation — Astra medium",
+            "groups/anatomy-audit/experiments/dental-f002-astra-medium/protocol.md"
+          ],
+          [
+            "Original F018 medium result",
+            "groups/anatomy-audit/findings/dental-ct-only-astra-medium.md"
+          ],
+          [
+            "F018 effort comparison",
+            "groups/anatomy-audit/findings/dental-f018-effort-comparison.md"
+          ],
+          [
+            "F002 result",
+            "groups/anatomy-audit/findings/dental-f002-astra-medium.md"
+          ],
+          [
+            "Trace and method audit",
+            "groups/anatomy-audit/findings/dental-trace-root-causes.md"
+          ],
+          [
+            "Dataset contract audit",
+            "groups/anatomy-audit/findings/dental-dataset-contract-audit.md"
+          ],
+          [
+            "Current source audit",
+            "groups/anatomy-audit/presentation/sources/dental-original-audit.json"
+          ],
+          [
+            "Publisher orientation description",
+            "https://ditto.ing.unimore.it/toothfairy3/"
+          ],
+          [
+            "Publisher FAQ",
+            "https://toothfairy3.grand-challenge.org/faq/"
+          ],
+          [
+            "Canonical original-contract story",
+            "groups/anatomy-audit/presentation/stories/dental-original.story.md"
+          ],
+          [
+            "Native teaching asset notice",
+            "presentation/task-explorer/dental-original/NOTICE.md"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Construct a native-grid dental segmentation from CBCT and a complete label dictionary. Explain the three retained attempts without treating unresolved source orientation as a clean measure of anatomical identity.</p>",
+          "value": "<p>Separates finding and outlining anatomy from assigning the dataset&#x27;s semantic IDs. Large foreground overlap can coexist with opposing tooth IDs and missing fine structures. These are exploratory development observations, not a clinical or population evaluation.</p>",
+          "raw": "<p>Two ToothFairy3 cases, named only in author/evaluator records. F018 uses the official viewer pair: 410 × 410 × 264 voxels. F002 uses its archive pair: 410 × 410 × 274 voxels. Both have approximately 0.3 mm isotropic spacing. The complete volume is supplied as <code>ct.nii.gz</code>; voxel values and affine are preserved while descriptive NIfTI fields are removed.</p>\n<p>F018 archive and viewer arrays are equal, but their third-axis affine metadata differs. The original trials consistently pair the viewer CT with viewer labels. F002 uses its internally aligned archive pair. No orientation conversion is applied to these retained tasks or answers.</p>",
+          "helpers": "<p>The complete dataset-wide dictionary, including background 0 and <strong>77 sparse foreground IDs through 148</strong>: jaws, canals, sinuses, pharynx, restorations, 32 tooth identities and 32 corresponding pulp classes. It specifies possible labels, not which structures occur in a case. No masks, exemplars, target counts, source identity, prior answers or method suggestions are supplied.</p>",
+          "tools": "<p>Local scientific libraries and image inspection in a CPU container. No external data, websites, pretrained segmentation weights, reference mask or score feedback. Each independent Astra attempt has a two-hour ceiling; F018 is tested once at medium and once at xhigh, and F002 once at medium. The retained authentication-only invocation is an infrastructure observation, not a fourth segmentation attempt.</p>",
+          "reference": "<p>Case/source identity, ground-truth masks, private scorer, scores and all post-submission diagnostics are evaluator/reader material. The full taxonomy is solver-visible; per-case reference occupancy is not. Selected diagnostic sections and the reference-selected pulp example are teaching views, not supplied hints.</p>\n<p>The publisher FAQ explicitly warns that NIfTI direction information is not physically accurate. That convention was absent from the original solver package. Header/label agreement and detailed annotation boundaries remain unadjudicated; paired-grid validity alone does not settle clinical laterality.</p>",
+          "spec": "<p>Inspect the full CBCT, construct a three-dimensional integer segmentation of visible structures and assign the supplied IDs. Preserve the input dimensions and affine exactly. Every voxel receives one integer ID; background is zero. Do not assume all dictionary classes occur in the image.</p>\n<p>The original instructions provide semantic names without an operational manual for every boundary. Laterality, occupied pulp, restoration subtype and related reference-convention questions qualify interpretation of same-ID voxel scores. Later v2/v3 contracts and annotated-example conditions are separate catalogue entries; their instructions and results do not retroactively repair this task.</p>",
+          "output": "<p><code>segmentation.nii.gz</code>, containing allowed integer IDs on the untouched CT grid, and <code>method.md</code>, describing the chosen method, limitations and uncertainty.</p>",
+          "score": "<p>The frozen custom evaluator computes whole-volume Dice separately for each foreground ID. A class absent from both output and reference is excluded; a false-positive-only or missed class receives zero. The macro gives every active class equal weight. Invalid geometry or unknown IDs are rejected. Foreground Dice pools all nonzero labels and ignores identity. There is no clinical pass threshold, and these are not official challenge leaderboard scores.</p>\n<div class=\"table\"><table>\n<tr><th>Retained attempt</th><th>Original macro Dice; active classes</th><th>Foreground Dice</th><th>Fixed L/R ID diagnostic; active classes</th></tr>\n<tr><td>F018 Astra/medium</td><td>0.039394; 70</td><td>0.968609</td><td>0.692457; 68</td></tr>\n<tr><td>F018 Astra/xhigh</td><td>0.044766; 70</td><td>0.970754</td><td>0.703420; 68</td></tr>\n<tr><td>F002 Astra/medium</td><td>0.049641; 62</td><td>0.874451</td><td>0.463379; 57</td></tr>\n</table></div>\n<p>The fixed side-ID permutation operates on the confusion matrix. It changes neither voxel positions nor saved answers, and is <strong>not a replacement score</strong>. It also changes the active-class denominator: its score difference is not a fixed-denominator causal share of error. The original outcomes remain unchanged.</p>\n<p>F018 medium/xhigh share exact frozen task bytes. F002 shares the output and scoring contract but differs in case and class inventory. One attempt per condition supports descriptive observations, not an effort or case-difficulty ranking. Clinical acquisition laterality remains unresolved.</p>\n<p>Residual disagreement persists after pooling or side-pairing. Both F018 attempts omit the two incisive canal IDs; F002 omits all five canal IDs. F018 main-canal contours remain offset in selected native sections. F002 restoration subtype disagreement accompanies geometric errors, with no clinical subtype adjudication.</p>\n<p>The retained F002 tooth-envelope and intensity gates explain one concrete source of pulp loss. Across side-paired reference pulp, the distance gate retains 10,433 of 12,242 reference voxels; the following intensity gate retains 4,074. This is reference retention, not precision or proof that raising the cutoff is a safe fix. The reference-selected tooth-16 example loses 843 of 844 surviving reference voxels at that intensity gate. Component/core filters and later cleanup follow.</p>",
+          "challenge": "<p>The agents chose image-guided classical processing: thresholds, connected regions, morphology, interpolated tooth envelopes and internal dark-component extraction. Xhigh additionally used 3D watershed. Canal paths were constrained by chosen landmarks or deliberately omitted. Fine anatomy can remain misplaced even when large structures overlap. Missing source conventions are a separate task-context limitation; they do not explain every residual geometry error.</p>",
+          "families": "<p>Two cases, three completed segmentation attempts and one pre-inference authentication failure. The current source audit verifies two frozen task digests, 403 source fingerprints and seven saved model/control evaluations (three model, two oracle, two no-op). Original scores and the prior trace/pulp diagnostics reproduce independently. No fresh model or historical solver script is executed.</p>\n<p>The reader views use original pixels, saved output contours and separately revealed research labels. Selected sections are not an exhaustive clinical review. Public-data training overlap is unknown. The publisher&#x27;s noncommercial, share-alike notice is retained alongside the conflicting archive license string; raw data stay local and public redistribution is outside this work.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
+      },
+      "completion_review": {
+        "date": "2026-09-28",
+        "source_brief_sha256": "55d873338c1d9770f05b1bd880fc61aab5c6d96b506642c589ce470be5f359b1",
+        "source_story_sha256": "f02d4b32fd1e7238178d637bc9328245a73d32e5ca356ead778c410af2fd9538",
+        "acceptance_receipt_sha256": "9a26a6c0a2483286f974a716a272e9688cf80bc6e9c375cec5b245f9dc2d370e"
       }
     },
     {
@@ -13349,9 +13471,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 20,
+    "reviewed-scripted-planar": 21,
     "reviewed-scripted-spatial": 13,
-    "pending-operation-review": 17,
+    "pending-operation-review": 16,
     "blocked-source-contract": 107,
     "blocked-source-input": 48
   },
@@ -13372,7 +13494,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-dental-original",
+    "active_entry": "tb3-dental-v2",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -13915,6 +14037,15 @@
         "asset_manifest": "presentation/task-explorer/dental-original/manifest.json",
         "reviewed_entries": 33,
         "next_action": "Implement the dedicated original dental-contract story and renderer."
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-dental-original",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/026-acceptance.json",
+        "export_receipt_sha256": "dd29320bad0583506de3223a3e033fc2f66519cbfa30f7f1e897f278ba3a2574",
+        "reviewed_entries": 34,
+        "next_entry": "tb3-dental-v2"
       }
     ]
   }

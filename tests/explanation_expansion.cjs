@@ -162,6 +162,90 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   ]);
   assert.equal((stitched.match(/M/g) || []).length, 1);
   assert.equal((stitched.match(/L/g) || []).length, 4);
+  const {
+    dentalSelection,
+    dentalSource,
+    dentalOutputs,
+    dentalReference,
+    dentalGates,
+    dentalSwapId,
+    dentalDisplayedItems,
+  } = await loadFrontend('expansion_fixture.mjs');
+  const dentalPlan = plans.find((p) => p.recipe === 'dental-original-v1');
+  assert.ok(dentalPlan);
+  const initialDental = dentalSelection(sampleStory(dentalPlan, 0));
+  assert.equal(initialDental.output, false);
+  assert.equal(initialDental.reveal, false);
+  assert.equal(initialDental.key, 'input-f018');
+  for (const [scene, field, expected] of [
+    ['pulp', 'gate', Array.from(dentalGates)],
+    ['canals', 'key', ['canals-145', 'canals-205']],
+  ]) {
+    const b = dentalPlan.beats.find((b) => b.scene === scene),
+      seen = new Set();
+    for (let f = b.startFrame; f < b.endFrame; f++)
+      seen.add(dentalSelection(sampleStory(dentalPlan, f))[field]);
+    assert.deepEqual([...seen], expected);
+  }
+  for (const id of Object.keys(dentalSource.labels).map(Number))
+    assert.equal(dentalSwapId(dentalSwapId(id)), id, 'ID permutation must be an involution');
+  for (const id of [0, 1, 2, 7, 8, 9, 10, 105]) assert.equal(dentalSwapId(id), id);
+  assert.equal(dentalSwapId(11), 21);
+  assert.equal(dentalSwapId(138), 148);
+  const unchanged = dentalOutputs.views.identity.xhigh;
+  const swapped = dentalDisplayedItems(unchanged, true);
+  for (let i = 0; i < unchanged.length; i++) {
+    assert.equal(swapped[i].paths, unchanged[i].paths, 'Diagnostic may not move contours');
+    assert.equal(swapped[i].center, unchanged[i].center, 'Diagnostic may not move labels');
+    assert.equal(swapped[i].pixels, unchanged[i].pixels);
+  }
+  for (const run of dentalReference.diagnostics) {
+    const active = run.per_label.filter((r) => r.original_dice !== null);
+    const diagnostic = run.per_label.filter((r) => r.lr_diagnostic_dice !== null);
+    assert.equal(active.length, run.active_labels_original);
+    assert.equal(diagnostic.length, run.active_labels_lr_diagnostic);
+    assert.ok(
+      Math.abs(
+        active.reduce((s, r) => s + r.original_dice, 0) / active.length - run.original_macro,
+      ) < 1e-12,
+    );
+    assert.ok(
+      Math.abs(
+        diagnostic.reduce((s, r) => s + r.lr_diagnostic_dice, 0) / diagnostic.length -
+          run.fixed_lr_diagnostic_macro,
+      ) < 1e-12,
+    );
+  }
+  assert.deepEqual(
+    Array.from(dentalReference.diagnostics, (r) => [
+      r.active_labels_original,
+      r.active_labels_lr_diagnostic,
+    ]),
+    [
+      [70, 68],
+      [70, 68],
+      [62, 57],
+    ],
+  );
+  const canals = dentalReference.diagnostics[2].per_label.filter((r) =>
+    [3, 4, 103, 104, 105].includes(r.id),
+  );
+  assert.ok(canals.every((r) => r.gt_voxels > 0 && r.pred_voxels === 0));
+  assert.deepEqual(
+    Object.values(dentalOutputs.gate_description.overlap_counts),
+    [850, 844, 1, 1, 0],
+  );
+  for (const p of Object.values(dentalSource.views)) {
+    const [[u0, u1], [v0, v1]] = p.bounds_uv;
+    assert.equal(u1 - u0, p.width);
+    assert.equal(v1 - v0, p.height);
+    const u = (u0 + u1 - 1) / 2,
+      v = (v0 + v1 - 1) / 2,
+      x = u - u0 + 0.5,
+      y = v1 - v - 0.5;
+    assert.equal(u0 + x - 0.5, u);
+    assert.equal(v1 - y - 0.5, v);
+  }
   const { ctOrganSelection, ctOrganSource, ctOrganOutputs, ctOrganReference } =
     await loadFrontend('expansion_fixture.mjs');
   const organPlan = plans.find((p) => p.recipe === 'ct-organ-v1');

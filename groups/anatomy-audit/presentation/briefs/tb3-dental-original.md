@@ -153,3 +153,6 @@ raw data stay local and public redistribution is outside this work.
 - [Current source audit](../sources/dental-original-audit.json)
 - [Publisher orientation description](https://ditto.ing.unimore.it/toothfairy3/)
 - [Publisher FAQ](https://toothfairy3.grand-challenge.org/faq/)
+
+- [Canonical original-contract story](../stories/dental-original.story.md)
+- [Native teaching asset notice](../../../../presentation/task-explorer/dental-original/NOTICE.md)

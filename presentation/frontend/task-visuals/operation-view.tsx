@@ -1,3 +1,4 @@
+import { DentalOriginalScene, DentalOriginalOutput } from './dental-original-panels';
 import { CtOrganScene, CtOrganOutput } from './ct-organ-panels';
 import { NamedLandmarksScene, NamedLandmarksOutput } from './named-landmarks-panels';
 import { ClinicalCavityScene, ClinicalCavityOutput } from './clinical-cavity-panels';
@@ -120,6 +121,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   if (state.recipe === 'resect-correspondence-v1') return <ResectScene state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisScene state={state} />;
+  if (state.recipe === 'dental-original-v1') return <DentalOriginalScene state={state} />;
   if (state.recipe === 'ct-organ-v1') return <CtOrganScene state={state} />;
   if (state.recipe === 'named-landmarks-v1') return <NamedLandmarksScene state={state} />;
   if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityScene state={state} />;
@@ -341,6 +343,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'resect-correspondence-v1') return <ResectOutput state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisOutput state={state} />;
+  if (state.recipe === 'dental-original-v1') return <DentalOriginalOutput state={state} />;
   if (state.recipe === 'ct-organ-v1') return <CtOrganOutput state={state} />;
   if (state.recipe === 'named-landmarks-v1') return <NamedLandmarksOutput state={state} />;
   if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityOutput state={state} />;

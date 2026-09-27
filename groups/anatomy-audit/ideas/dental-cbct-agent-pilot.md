@@ -12,6 +12,25 @@ source = "codex://threads/01a0c25e-4b08-7552-8379-90a2b50ad40f"
 
 Can an agent use native CBCT views and fixed tools to correct tooth identity and masks, then trace mandibular canals, without access to evaluation labels?
 
+## Original-contract explainer review — assistant, 2026-09-28
+
+The [canonical story](../presentation/stories/dental-original.story.md) is now
+bound to the original-contract Explorer entry. Its twelve chapters separate the
+solver packet, saved methods and outputs, private-reference reveal, fixed-geometry
+ID diagnostic, changing score denominators, canal residuals, restoration
+disagreements and five reconstructed pulp stages. Final saved pulp remains nonempty
+in the selected view despite zero overlap with the paired reference; the displayed
+retention counts are not precision or a validated threshold repair.
+
+The assistant reviewed captured playback across the complete 148-second silent
+video, its transitions, desktop/mobile layouts, Explorer navigation and no-GPU
+reveal/reset. Full decoding separately verified all 3,552 frames. Local receipts are retained under
+`.local/explainers/completion-20260927/026-acceptance.json` and referenced by the
+[completion ledger](../../../presentation/EXPLAINER-LEDGER.json). This accepts the
+teaching explanation only. Original scores, clinical/reference disputes and the
+source-review reopening conditions below remain unchanged. V2 and v3 retain their
+own unfinished entries; remote delivery remains pending at program level.
+
 ## Original-contract explainer preparation — assistant, 2026-09-28
 
 The [reader brief](../presentation/briefs/tb3-dental-original.md) now separates

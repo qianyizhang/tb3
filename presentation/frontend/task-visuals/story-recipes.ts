@@ -15,6 +15,7 @@ import {
 } from './operation-prefabs';
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'dental-original-v1',
     'ct-organ-v1',
     'named-landmarks-v1',
     'multiscale-v1',
@@ -82,6 +83,17 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'dental-original-v1':
+      return {
+        heading: 'Dental anatomy · geometry, identity and reference conventions',
+        corner: 'Native indices · selected reader views · unchanged submitted arrays',
+        legend: [
+          ['#fb923c', 'F018 medium · solid'],
+          ['#32d8e2', 'Xhigh / F002 output · solid'],
+          ['#9beb72', 'Private reference · dashed', true],
+          ['#d197ff', 'Reconstructed pulp gate · solid'],
+        ],
+      };
     case 'ct-organ-v1':
       return {
         heading: 'CT organs · construct, name and compare',

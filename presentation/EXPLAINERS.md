@@ -316,3 +316,13 @@ mask, polygon and candidate provenance. Six stomach planes distinguish signed-
 distance mask interpolation from box interpolation followed by per-image learned
 inference. Output remains ten overlapping binary masks, not one exclusive volume.
 Full 3D scores and conditional same-plane diagnostics have distinct denominators.
+
+`dental-original-v1` separates the original exclusive-label CBCT contract from
+post-submission ID diagnostics. The [native source pack](task-explorer/dental-original/NOTICE.md)
+preserves F018/F002 voxel positions and saved outputs. The `diagnostic` channel
+changes displayed IDs only; separate reference panels keep opposing labels
+legible. Discrete `view` and `gate` channels select real native planes and five
+reconstructed/saved pulp stages. All scores retain active-class denominators;
+reference-overlap counts are not precision. Native i/j/k coordinates remain
+explicit because physical laterality is unadjudicated. Source and reference
+visibility use the shared planar player and work without WebGL.

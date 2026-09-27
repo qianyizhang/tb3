@@ -49,6 +49,7 @@ withBrowser(async (browser) => {
         ...([
           'mask-screen-v1',
           'anatomy-curation-v1',
+          'dental-original-v1',
           'ct-organ-v1',
           'named-landmarks-v1',
           'clinical-cavity-v1',
@@ -374,6 +375,40 @@ withBrowser(async (browser) => {
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
         }
+        if (plan.recipe === 'dental-original-v1') {
+          assert.ok(
+            await page
+              .locator('.scene-player > header')
+              .evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'Dental story heading clipped',
+          );
+          const scene = page.locator('[data-dental-scene]');
+          const reveal = (await scene.getAttribute('data-dental-reference')) === 'visible';
+          if (!reveal)
+            assert.equal(
+              await page.locator('[data-dental-private], [data-dental-layer="reference"]').count(),
+              0,
+            );
+          if (frame === 0) assert.equal(await page.locator('[data-dental-layer]').count(), 0);
+          for (const selector of ['[data-dental-scene]', '[data-dental-output]'])
+            assert.ok(
+              await page.locator(selector).evaluate((e) => e.scrollHeight <= e.clientHeight),
+              'Dental content overflows',
+            );
+          const legend = await page.locator('.scene-legend').boundingBox();
+          assert.ok(legend && legend.y + legend.height <= 720, 'Dental legend clipped');
+          if ((await scene.getAttribute('data-dental-scene')) === 'diagnostic') {
+            const paths = async (key) =>
+              page
+                .locator(`[data-dental-panel="${key}"] path`)
+                .evaluateAll((xs) => xs.map((x) => x.getAttribute('d')));
+            assert.deepEqual(
+              await paths('xhigh'),
+              await paths('diagnostic'),
+              'ID diagnostic moved geometry',
+            );
+          }
+        }
         if (plan.recipe === 'ct-organ-v1') {
           const scene = page.locator('[data-ct-scene]');
           const reveal = (await scene.getAttribute('data-ct-reference')) === 'visible';
@@ -655,6 +690,24 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'dental-original-v1') {
+      for (const step of [4, 5, 6, 8, 9, 10]) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        await page.waitForFunction(
+          (f) =>
+            document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+            String(f),
+          plan.beats[step].startFrame,
+        );
+        assert.ok(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          'Dental mobile overflow',
+        );
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+      }
+    }
     if (plan.recipe === 'ct-organ-v1') {
       for (const step of [2, 3, 6, 8, 9]) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -747,6 +800,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'dental-original-v1',
       'ct-organ-v1',
       'multiscale-v1',
       'local-edit-v1',
@@ -773,6 +827,28 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'dental-original-v1') {
+      assert.equal(await fallback.locator('[data-dental-layer]').count(), 0);
+      await fallback.locator('[data-story-step="5"]').click();
+      await fallback.waitForFunction(
+        () =>
+          document
+            .querySelector('[data-dental-reference]')
+            ?.getAttribute('data-dental-reference') === 'visible',
+      );
+      assert.ok((await fallback.locator('[data-dental-layer="reference"]').count()) > 0);
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('.scene-reset').click();
+      await fallback.waitForFunction(
+        () =>
+          document
+            .querySelector('[data-dental-reference]')
+            ?.getAttribute('data-dental-reference') === 'hidden',
+      );
+      assert.equal(await fallback.locator('[data-dental-layer]').count(), 0);
+    }
     if (plan.recipe === 'ct-organ-v1') {
       assert.equal(await fallback.locator('[data-ct-layer]').count(), 0);
       await fallback.locator('[data-story-step="6"]').click();
@@ -1321,6 +1397,32 @@ withBrowser(async (browser) => {
   );
   assert.equal(await page.locator('[data-ct-layer]').count(), 0);
   report.navigation.push({ id: 'tb3-ct-organ-segmentation', revealAndReset: true });
+  await page.evaluate(() => {
+    location.hash = 'tb3-dental-original/0/overview?view=repository';
+  });
+  await page.waitForFunction(
+    () =>
+      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'dental-original-v1',
+  );
+  assert.equal(await page.locator('[data-dental-layer]').count(), 0);
+  await page.locator('[data-story-step="5"]').click();
+  await page.waitForFunction(
+    () =>
+      document.querySelector('[data-dental-reference]')?.getAttribute('data-dental-reference') ===
+      'visible',
+  );
+  assert.ok((await page.locator('[data-dental-layer="reference"]').count()) > 0);
+  await page
+    .locator('.scene-player')
+    .screenshot({ path: path.join(folder, 'integrated-dental-original.png') });
+  await page.locator('.scene-reset').click();
+  await page.waitForFunction(
+    () =>
+      document.querySelector('[data-dental-reference]')?.getAttribute('data-dental-reference') ===
+      'hidden',
+  );
+  assert.equal(await page.locator('[data-dental-layer]').count(), 0);
+  report.navigation.push({ id: 'tb3-dental-original', revealAndReset: true });
   await context.close();
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.remote_requests, []);
