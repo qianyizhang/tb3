@@ -58,8 +58,14 @@ RECIPE_PACKS = {
     "mask-screen-v1": "retained-mask-screen-v1",
     "anatomy-curation-v1": "retained-anatomy-curation-v1",
     "respiratory-v1": "retained-respiratory-v1",
+    "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-registration-analysis-v1": (
+        "source-slices",
+        "reference.json",
+        {"geometry.json", "reference.json", "NOTICE.md", "DATA-LICENSE.txt"},
+    ),
     "retained-respiratory-v1": (
         "source-slices",
         "reference.json",
@@ -184,6 +190,12 @@ class IdentityChannels(Closed):
     reveal: Pair
 
 
+class RegistrationAnalysisChannels(Closed):
+    reference: Pair
+    bounds: Pair
+    curve: Pair
+
+
 class RespiratoryChannels(Closed):
     depth: Pair
     output: Pair
@@ -296,6 +308,24 @@ class PrototypeIdentityStory(Story[IdentityChannels]):
     recipe: Literal["prototype-identity-v1"]
 
 
+class RegistrationAnalysisBeat(ExpansionBeat[RegistrationAnalysisChannels]):
+    scene: Literal[
+        "input", "replay", "composition", "support", "objective", "context", "repeats", "limits"
+    ]
+
+
+class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
+    recipe: Literal["registration-analysis-v1"]
+    beats: tuple[RegistrationAnalysisBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class RespiratoryBeat(ExpansionBeat[RespiratoryChannels]):
     scene: Literal[
         "inputs", "frame", "depth", "output", "reference", "judgment", "conditions", "limits"
@@ -367,6 +397,7 @@ AnyStory = Annotated[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | RegistrationAnalysisStory
     | RespiratoryStory
     | CurationStory
     | MaskScreenStory
@@ -384,6 +415,7 @@ ADAPTER: TypeAdapter[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | RegistrationAnalysisStory
     | RespiratoryStory
     | CurationStory
     | MaskScreenStory
@@ -561,6 +593,7 @@ def parse_expansion(
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | RegistrationAnalysisStory
     | RespiratoryStory
     | CurationStory
     | MaskScreenStory
@@ -635,6 +668,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         frame, data_license, label_license = {
             "retained-anatomy-curation-v1": ("LPS", "CC-BY-SA-4.0", "CC-BY-SA-4.0"),
             "retained-respiratory-v1": ("dataset-world", "CC-BY-4.0", "CC-BY-4.0"),
+            "retained-registration-analysis-v1": ("dataset-world", "CC-BY-4.0", "CC-BY-4.0"),
         }.get(pack_id, ("LPS", "CC-BY-4.0", "Apache-2.0"))
         if (
             pack.runtime_geometry != geometry

@@ -51,3 +51,14 @@ Stable difficulty is not established. The original BR-021 2D miss (12.641 mm RMS
 ## Reopen when
 
 Retire this exact 2D snapshot as a reliably difficult Terra candidate under the pass-retirement rule, preserving the original miss, fresh mixed outcomes and all counterfactuals as diagnostic evidence. The 3D snapshot remains retired. Any multi-patient replication or new difficulty condition requires a separately authorized, frozen study; none is scheduled.
+
+## Presentation checkpoint — 2026-09-27
+
+Assistant-authored explanation of retained BR-022 evidence: [failure-mechanism
+finding](../findings/respiratory-failure-mechanisms.md) and [canonical story](../presentation/stories/registration-failure-analysis.story.md).
+The pack independently checks the original/fresh coordinates, 14 diagnostic
+variants, four author controls, 112 box distances and 808 objective samples.
+It distinguishes q04 support exclusion, q01/q06 objective disagreement, q02's
+counterexample and the successful small-patch fresh strategy. This is an assistant
+interpretation and presentation checkpoint, not a new user decision. Historical
+retirement, original scores and reopening requirements remain unchanged; no trial ran.

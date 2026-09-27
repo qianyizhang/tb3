@@ -775,3 +775,19 @@
   line-height: 1.45;
   margin: 6px 0 8px;
 }
+
+:global([data-explainer-export-frame])
+  :global([data-recipe='registration-analysis-v1'])
+  .storyOutput {
+  padding: 16px 24px;
+}
+:global([data-recipe='registration-analysis-v1']) .storyOutput p {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 6px 0 8px;
+}
+@container task-visual (max-width: 600px) {
+  .analysisCanvas[data-analysis-scene='composition'] text {
+    font-size: 16px;
+  }
+}

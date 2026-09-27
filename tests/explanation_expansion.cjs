@@ -22,6 +22,9 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     curationRows,
     curationReference,
     respiratory,
+    supportRows,
+    objectiveSamples,
+    analysisRevealed,
     respiratoryRows,
     respiratoryReference,
     respiratoryOutput,
@@ -119,6 +122,22 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     assert.equal(disposed, geometries.size + materials.size + textures.size);
     assert.throws(() => content.update(sampleStory(plan, 0)));
   }
+  const analysisPlan = plans.find((p) => p.recipe === 'registration-analysis-v1');
+  assert.equal(analysisRevealed(sampleStory(analysisPlan, 0)), false);
+  assert.equal(
+    analysisRevealed(sampleStory(analysisPlan, analysisPlan.beats[1].endFrame - 1)),
+    true,
+  );
+  assert.ok(Math.abs(supportRows(0)[3].distance - 18.99374121165789) < 1e-10);
+  assert.ok(supportRows(1).every((r) => r.distance === 0));
+  assert.ok(supportRows(0.5).every((r, i) => r.distance <= supportRows(0)[i].distance));
+  const fullCurve = objectiveSamples('q01', 1);
+  assert.equal(fullCurve.length, 101);
+  assert.equal(fullCurve[0].t, 0);
+  assert.equal(fullCurve[100].t, 1);
+  assert.ok(Math.abs(fullCurve[0].score - 0.2691879476) < 1e-9);
+  assert.ok(Math.abs(fullCurve[100].score - 0.5876808912) < 1e-9);
+  assert.equal(JSON.stringify(objectiveSamples('q01', 0)), JSON.stringify([fullCurve[0]]));
   const respiratoryPlan = plans.find((p) => p.recipe === 'respiratory-v1');
   assert.ok(
     respiratoryRows(sampleStory(respiratoryPlan, 0)).every(

@@ -2271,15 +2271,15 @@
       ],
       "illustration_kind": "registration_diagnosis",
       "subject": "generic",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "registration-failure-analysis",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "correspondence",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "All 15 task files, original/fresh traces and retained interventions verified. Independently recomputed 14 variants, four controls, six stages, 112 box distances and 808 fixed objective samples. Actual complete source and six CT patches retain CC BY 4.0 attribution and reader-only manual references.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/007-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Attribute transform and correspondence defects with retained evidence.",
+      "remaining_work": "No outstanding work for this bounded BR-022 postmortem explanation. Diagnostic, finite-search, single-case and reference-fitness limits remain explicit; remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "Saved registration outputs, transforms and source images.",
         "helpers": "Retrospective access to references and failed components.",
@@ -2302,7 +2302,45 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "822e3863337abe7febac46edb4a2b09bdb3b974907b2e86db3c07a238d1b5e82"
+      "source_brief_sha256": "822e3863337abe7febac46edb4a2b09bdb3b974907b2e86db3c07a238d1b5e82",
+      "acceptance_scope": "Visual and engineering review of retained BR-022 author postmortem; not a fresh model attempt, clinical adjudication or population capability result.",
+      "visual_review": "Actual CT/source patches, consistent/refitted transform diagrams, calibrated box projections and animation, fixed objective curves, context controls and separate fresh attempts reviewed. Full video sampling, actual Explorer, mobile and no-GPU reference/reset reviewed.",
+      "reviewed_contract_projection": {
+        "raw": "The original solver received a complete 171 × 118 exhalation CT section, a complete\n192 × 192 × 208 inhalation target CT, eight fractional-pixel queries, 1.25 mm\nin-plane spacing and the known source pose. No full source volume was supplied.\nCoordinates are dataset-world millimetres; native patient LPS/RAS is not asserted.\nThe author additionally retained source code, final answers and reconstructed stages.",
+        "helpers": "The postmortem recovered the original trace and fitted transforms. The original\ntrial image had been removed; historical replay used an identical-Dockerfile image\nwith pinned packages and matching task bytes. Its maximum final-coordinate drift\nwas 6.30 × 10⁻⁹ mm. Today’s explainer reads these retained results without rerunning\na solver, optimizer or model.",
+        "tools": "The historical solver used the frozen Python imaging environment. The author\nprotocol fixed replay, transform/search interventions, a context-by-flexibility\ncontrol and exactly two fresh Terra/high sessions. Presentation generation uses\nonly local retained artifacts and deterministic measurements.",
+        "spec": "Check that replay preserves the final coordinates before interpreting intermediate\nstages. Compare B(x) against the original A(B(x)), distinguish a search box’s best\npossible geometric error from optimization failure, and inspect the recorded\npatch objective at manual and submitted points. Keep author controls separate from\nfresh blind attempts.",
+        "output": "A source-linked attribution report and reader explainer with separate observed\ndefects, controlled comparisons, counterexamples and unresolved alternatives.\nThe underlying solver output remains eight ordered `query_ids` and finite XYZ rows\nin `points_world_mm`, saved to `/app/answer/points.json`.",
+        "reference": "Manual target landmarks, reference-centred CT patches, point errors and diagnostic\nsearches are author/reader references. The original and fresh agents did not receive\nthis postmortem. Public annotation availability remains an exposure limitation.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "The postmortem recovered the original trace and fitted transforms. The original\ntrial image had been removed; historical replay used an identical-Dockerfile image\nwith pinned packages and matching task bytes. Its maximum final-coordinate drift\nwas 6.30 × 10⁻⁹ mm. Today’s explainer reads these retained results without rerunning\na solver, optimizer or model.",
+            "remaining": "Check that replay preserves the final coordinates before interpreting intermediate\nstages. Compare B(x) against the original A(B(x)), distinguish a search box’s best\npossible geometric error from optimization failure, and inspect the recorded\npatch objective at manual and submitted points. Keep author controls separate from\nfresh blind attempts."
+          }
+        ],
+        "sources": [
+          [
+            "BR-022 — systematic analysis of the BR-021 single-view failure",
+            "groups/registration/experiments/br022/protocol.md"
+          ],
+          [
+            "Attribution finding and source fitness",
+            "groups/registration/findings/respiratory-failure-mechanisms.md"
+          ],
+          [
+            "Retained source views and derivation",
+            "presentation/task-explorer/registration-analysis/NOTICE.md"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "dd9c681ac0c91c8100970978d64bc8d640a3ee5ba87c662ccb2967ec94fbcfa4",
+        "source_story_sha256": "c3740b8895c8462c22e451fcdae7500b5bebec3a6a6549aa4cd41eef86e4de7e",
+        "acceptance_receipt_sha256": "f93ab73f025ba1a883357013db4e80b3a921deb53fc738f07ece23f37731e87b"
+      }
     },
     {
       "entry_id": "resect-mri-us-correspondence",
@@ -12064,9 +12102,9 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 36,
+    "pending-operation-review": 35,
     "reviewed-scripted-spatial": 11,
-    "reviewed-scripted-planar": 8,
+    "reviewed-scripted-planar": 9,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
   },
@@ -12087,7 +12125,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-registration-analysis",
+    "active_entry": "resect-mri-us-correspondence",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -12429,7 +12467,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/006-acceptance.json",
         "reviewed_entries": 19,
-        "next_entry": "tb3-registration-analysis"
+        "next_entry": "tb3-registration-analysis",
+        "local_commit": "4b3cb83"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-registration-analysis",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/007-acceptance.json",
+        "reviewed_entries": 20,
+        "next_entry": "resect-mri-us-correspondence"
       }
     ]
   }

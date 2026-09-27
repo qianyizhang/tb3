@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "kind": "evidence_manifest",
+  "targets": [
+    "registration-br022"
+  ],
+  "record_refs": [
+    {
+      "id": "attempt-0a8b9da65f9ebf0be3df4197",
+      "kind": "attempt",
+      "path": "groups/registration/experiments/br022/attempts/attempt-0a8b9da65f9ebf0be3df4197.json",
+      "sha256": "6a15bb6627c3063bf3523faabcca271ccdbfda81cdd769935c6df28135601a26"
+    },
+    {
+      "id": "attempt-1bd9d21ff85a8acf598d0c38",
+      "kind": "attempt",
+      "path": "groups/registration/experiments/br022/attempts/attempt-1bd9d21ff85a8acf598d0c38.json",
+      "sha256": "90630848bf402d50ca3a22fa9489cecdd4773f6bd83360526501763aeafe070a"
+    },
+    {
+      "id": "attempt-8784ae1d92fd7537eb99a5ef",
+      "kind": "attempt",
+      "path": "groups/registration/experiments/br022/attempts/attempt-8784ae1d92fd7537eb99a5ef.json",
+      "sha256": "b231a5de0d99c62f608758b54065dd15e9dfd8bfa51d353dcce4f28f9d5fe9a0"
+    },
+    {
+      "id": "attempt-c20a6be817d1c96b68ba0473",
+      "kind": "attempt",
+      "path": "groups/registration/experiments/br022/attempts/attempt-c20a6be817d1c96b68ba0473.json",
+      "sha256": "797e999f5a086eb0f1381f75defe5a72d10fb84af1fd01ac8e265a13eb97104a"
+    },
+    {
+      "id": "dataset-learn2reg",
+      "kind": "dataset",
+      "path": "datasets/learn2reg.json",
+      "sha256": "375baf5ed15399a24d99c8eeac5c4a2b1fb3462b6b2404c1f9daf41a21d34167"
+    },
+    {
+      "id": "observation-47b589ea40cfd6c2258f255f",
+      "kind": "evaluation",
+      "path": "groups/registration/experiments/br022/evaluations/observation-47b589ea40cfd6c2258f255f.json",
+      "sha256": "1779514c4b42865fdc971a7f14543da33d4ded9a58a208f7f9157842c0efdd47"
+    },
+    {
+      "id": "observation-8b0b3ab4baab16896b21f1c6",
+      "kind": "evaluation",
+      "path": "groups/registration/experiments/br022/evaluations/observation-8b0b3ab4baab16896b21f1c6.json",
+      "sha256": "78cfb0c9b588f7eb9db2b141e88506ab0e32ae443a6d4faf7603dc409149cbf9"
+    },
+    {
+      "id": "observation-bcc8f11483c75e1647364e0f",
+      "kind": "evaluation",
+      "path": "groups/registration/experiments/br022/evaluations/observation-bcc8f11483c75e1647364e0f.json",
+      "sha256": "96eaddbecd09a27331178fc30981a9a014ff4afec24984af027dd73e2167fe6f"
+    },
+    {
+      "id": "observation-cd9b165731bdf58078ef4b6e",
+      "kind": "evaluation",
+      "path": "groups/registration/experiments/br022/evaluations/observation-cd9b165731bdf58078ef4b6e.json",
+      "sha256": "ca21e2f79d7265267ee43708eac87a4556d61b2e0c94ff5b7bebae231dae4900"
+    },
+    {
+      "id": "registration-br022",
+      "kind": "experiment",
+      "path": "groups/registration/experiments/br022/experiment.toml",
+      "sha256": "5eb4319f9cf4fde9356d5b9ce63b558d3ade53bef9aef3b68389f3ea785d11c0"
+    },
+    {
+      "id": "registration",
+      "kind": "group",
+      "path": "groups/registration/group.json",
+      "sha256": "a14d7b6e5b2e4abb61c1e47b8f493f04c425763fbeef09e91ee29a22eeeee13e"
+    }
+  ],
+  "findings": [],
+  "experiments": [
+    {
+      "id": "registration-br022",
+      "group_id": "registration",
+      "title": "BR-022 \u2014 systematic analysis of the BR-021 single-view failure",
+      "method": null,
+      "current": {
+        "assessment": "not_assessed",
+        "attention": false,
+        "review_flags": []
+      },
+      "contracts": [],
+      "observations": [
+        {
+          "evaluation_id": "observation-bcc8f11483c75e1647364e0f",
+          "attempt_id": "attempt-c20a6be817d1c96b68ba0473",
+          "evaluation_kind": "legacy",
+          "agent": "nop",
+          "model": null,
+          "reasoning_effort": null,
+          "execution_state": "completed",
+          "outcome": "fail",
+          "reward": 0.0,
+          "partial": false,
+          "source_classification": "control_fail",
+          "task_digest": null,
+          "collected_at": "2026-09-20T09:49:50.702936+00:00",
+          "timing": {
+            "total": 24.535,
+            "setup": 0.0,
+            "agent": 0.0,
+            "verifier": 12.186
+          },
+          "usage": {
+            "n_input_tokens": null,
+            "n_cache_tokens": null,
+            "n_output_tokens": null
+          }
+        },
+        {
+          "evaluation_id": "observation-8b0b3ab4baab16896b21f1c6",
+          "attempt_id": "attempt-8784ae1d92fd7537eb99a5ef",
+          "evaluation_kind": "legacy",
+          "agent": "oracle",
+          "model": null,
+          "reasoning_effort": null,
+          "execution_state": "completed",
+          "outcome": "pass",
+          "reward": 1.0,
+          "partial": false,
+          "source_classification": "control_pass",
+          "task_digest": null,
+          "collected_at": "2026-09-20T09:49:50.739136+00:00",
+          "timing": {
+            "total": 24.667,
+            "setup": 0.0,
+            "agent": 0.163,
+            "verifier": 12.257
+          },
+          "usage": {
+            "n_input_tokens": null,
+            "n_cache_tokens": null,
+            "n_output_tokens": null
+          }
+        },
+        {
+          "evaluation_id": "observation-cd9b165731bdf58078ef4b6e",
+          "attempt_id": "attempt-0a8b9da65f9ebf0be3df4197",
+          "evaluation_kind": "legacy",
+          "agent": "codex",
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "high",
+          "execution_state": "completed",
+          "outcome": "fail",
+          "reward": 0.0,
+          "partial": false,
+          "source_classification": "model_failure_candidate",
+          "task_digest": null,
+          "collected_at": "2026-09-20T09:49:50.781183+00:00",
+          "timing": {
+            "total": 434.068,
+            "setup": 33.799,
+            "agent": 374.691,
+            "verifier": 12.134
+          },
+          "usage": {
+            "n_input_tokens": 868977.0,
+            "n_cache_tokens": 811520.0,
+            "n_output_tokens": 15196.0
+          }
+        },
+        {
+          "evaluation_id": "observation-47b589ea40cfd6c2258f255f",
+          "attempt_id": "attempt-1bd9d21ff85a8acf598d0c38",
+          "evaluation_kind": "legacy",
+          "agent": "codex",
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "high",
+          "execution_state": "completed",
+          "outcome": "pass",
+          "reward": 1.0,
+          "partial": false,
+          "source_classification": "model_pass",
+          "task_digest": null,
+          "collected_at": "2026-09-20T09:49:50.825111+00:00",
+          "timing": {
+            "total": 346.557,
+            "setup": 31.334,
+            "agent": 290.098,
+            "verifier": 12.063
+          },
+          "usage": {
+            "n_input_tokens": 457848.0,
+            "n_cache_tokens": 422912.0,
+            "n_output_tokens": 11855.0
+          }
+        }
+      ]
+    }
+  ],
+  "comparability": {
+    "status": "agent_decision_required",
+    "observed_task_digests": [],
+    "same_observed_task_digest": null,
+    "note": "Digest equality supports byte-level task identity only. The explaining agent must still assess endpoints, conditions and scientific comparability."
+  },
+  "artifacts": {
+    "declared_by_record_kind": {
+      "attempt": 0,
+      "dataset": 1,
+      "evaluation": 21,
+      "experiment": 4,
+      "group": 0
+    },
+    "selected_pointers": [
+      {
+        "source_record": "registration-br022",
+        "label": "Evidence",
+        "path": "docs/evidence/br022-results.json",
+        "expected_sha256": "e96e861e970e8c47323dbde61a59a178a7c723eb80fedfbc8d4ac355c36818c6",
+        "availability": "present",
+        "digest_matches": true
+      },
+      {
+        "source_record": "observation-cd9b165731bdf58078ef4b6e",
+        "label": "Agent trajectory (raw, local)",
+        "path": "runs/br022-deform-2d-terra-high-r2-v1-20260916/deform-2d__iiX3ZYe/agent/trajectory.json",
+        "expected_sha256": "e6a267c0fe5839f6bd20aac8f3fdabe0bb38576c7e075c8e9f94bf5726c4ab87",
+        "availability": "present",
+        "digest_matches": true
+      },
+      {
+        "source_record": "observation-cd9b165731bdf58078ef4b6e",
+        "label": "Trial result (raw, local)",
+        "path": "runs/br022-deform-2d-terra-high-r2-v1-20260916/deform-2d__iiX3ZYe/result.json",
+        "expected_sha256": "dc8babe3de3e27fd029b7c3bcdc619f47238d538630e29d116b93c7d972485a5",
+        "availability": "present",
+        "digest_matches": true
+      },
+      {
+        "source_record": "observation-cd9b165731bdf58078ef4b6e",
+        "label": "Reward artifact",
+        "path": "runs/br022-deform-2d-terra-high-r2-v1-20260916/deform-2d__iiX3ZYe/verifier/reward.txt",
+        "expected_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "availability": "present",
+        "digest_matches": true
+      },
+      {
+        "source_record": "observation-cd9b165731bdf58078ef4b6e",
+        "label": "Verifier cases",
+        "path": "runs/br022-deform-2d-terra-high-r2-v1-20260916/deform-2d__iiX3ZYe/verifier/test-stdout.txt",
+        "expected_sha256": "6ef684cf3f50aec21b5dfa1853ad0e4655e3e37d6780000fb7520be055e2eedb",
+        "availability": "present",
+        "digest_matches": true
+      },
+      {
+        "source_record": "observation-47b589ea40cfd6c2258f255f",
+        "label": "Agent trajectory (raw, local)",
+        "path": "runs/br022-deform-2d-terra-high-r3-v1-20260916/deform-2d__GsTbtot/agent/trajectory.json",
+        "expected_sha256": "07da48872d159d4714b56dde7f3f18204f4beae6caaca4a3cce264be194b9fb9",
+        "availability": "present",
+        "digest_matches": true
+      },
+      {
+        "source_record": "observation-47b589ea40cfd6c2258f255f",
+        "label": "Trial result (raw, local)",
+        "path": "runs/br022-deform-2d-terra-high-r3-v1-20260916/deform-2d__GsTbtot/result.json",
+        "expected_sha256": "ef8361719029bf950b9569e85e06520bdc7c7cf3080485293e5d7bd7f9565baa",
+        "availability": "present",
+        "digest_matches": true
+      },
+      {
+        "source_record": "observation-47b589ea40cfd6c2258f255f",
+        "label": "Reward artifact",
+        "path": "runs/br022-deform-2d-terra-high-r3-v1-20260916/deform-2d__GsTbtot/verifier/reward.txt",
+        "expected_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+        "availability": "present",
+        "digest_matches": true
+      },
+      {
+        "source_record": "observation-47b589ea40cfd6c2258f255f",
+        "label": "Verifier cases",
+        "path": "runs/br022-deform-2d-terra-high-r3-v1-20260916/deform-2d__GsTbtot/verifier/test-stdout.txt",
+        "expected_sha256": "0c5f398de6c36b911d3f5892e8b18be2f946415f48020bf1d640d4e7570e8dd3",
+        "availability": "present",
+        "digest_matches": true
+      }
+    ],
+    "selection_note": "All finding/review/issue evidence plus high-signal model result, score, report and trace pointers are listed. Control and full submitted-artifact declarations remain available through pinned record references."
+  },
+  "interpretation_boundaries": [
+    "Decide whether differing task, instruction, scorer, reference or input digests are comparable.",
+    "Interpret metric meaning and clinical or anatomical significance.",
+    "Attribute failures across data, reference, instruction, tool, reasoning and infrastructure.",
+    "Question ground truth without relabeling or rewriting frozen scores.",
+    "Choose source-derived views and distinguish them from conceptual drawings."
+  ]
+}

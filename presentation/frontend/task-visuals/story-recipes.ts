@@ -18,6 +18,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'longitudinal-v1',
     'inverse-v1',
     'mixed-tissue-v1',
+    'registration-analysis-v1',
   ].includes(plan.recipe);
 }
 export function hasInteractiveProjection(plan: StoryPlan): boolean {
@@ -62,6 +63,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'registration-analysis-v1':
+      return {
+        heading: 'Registration postmortem · retained BR-022 evidence',
+        corner: 'Case 1 · dataset-world mm · author diagnostics, not new trials',
+        legend: [
+          ['#b77128', 'Public query / search box'],
+          ['#307f74', 'Submitted point / outcome'],
+          ['#a34575', 'Manual target / bound', true],
+        ],
+      };
     case 'respiratory-v1':
       return {
         heading: 'Respiratory correspondence · real CT and retained output',

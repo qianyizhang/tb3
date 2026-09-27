@@ -52,6 +52,8 @@ A bound story is not automatically accepted; unresolved entries remain visible.
 | Mask shortcut screen | Retained author ordering and leave-one-patient-out baselines; exact source centroids, coverage exception, separate reference reveal and pre-trial admission limits |
 | Prototype identity | All 17 actual case-32 I2 objects as sampled surface points; 117-name vocabulary, complete assignment list, private-key reveal and prototype admission limits |
 | Mixed tissue | Retained M02 CT with supplied host/donor outlines; author-only region and LPS witness revealed explicitly; whole/partial/unchanged/focused conditions stay distinct |
+| Respiratory correspondence | Actual oblique CT, calibrated source/target sections, source-depth contracts, ordered historical output and separate numerical/visual judgments |
+| Registration postmortem | Retained composition repairs, calibrated search boxes, actual CT patch objective and separate author controls/fresh repeats |
 | CT/MRI | Separate Radon/FFT measurements and image outputs; toy vs task dimensions/assistance explicit |
 
 V2 multiscale stories require `operation: coordinate-navigation`, `supplied-patches`
@@ -105,6 +107,22 @@ mask/centroid discrepancy. The pack checks its exact CC BY-SA 4.0 terms, indepen
 of the TotalSegmentator source packs. Independent scan fitting is never registration.
 
 ## Build and export
+
+`respiratory-v1` preserves dataset-world geometry across source pixel coordinates,
+calibrated CT sections and the retained target points. Its source-depth reveal does
+not move points. The q06 reference scene preserves the candidate-centred physical
+offset, with the frozen score separate from later visual judgment. The
+[source notice](task-explorer/respiratory/NOTICE.md) describes four task contracts,
+two cases and reference provenance. No-GPU views use the same calibrated sections.
+
+`registration-analysis-v1` is a planar author postmortem with explicit source-scene
+cuts and `reference`, `bounds` and `curve` channels. The
+[source notice](task-explorer/registration-analysis/NOTICE.md) pins recovered code,
+fresh traces, original scores and diagnostic artifacts. Box extents interpolate
+for teaching; only the ±9/±30 mm endpoints were executed. Objective curves sample
+a diagnostic straight segment, not a solver path. Independently centred actual
+CT patches compare appearance without depicting displacement. Neither presentation
+constitutes a blind solver packet or a new medical execution.
 
 ### Draft a canonical story
 

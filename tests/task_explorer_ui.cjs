@@ -441,27 +441,42 @@ async function checkExplorer(browser, input, report) {
     await page.waitForTimeout(250);
     assert.equal(await pixels(), fixedInput, 'The camera stays fixed during stage playback');
     await page.locator('.scene-play').click();
-    // Image-plane scenes must show their supplied fixed and moving images.
+    // The postmortem must display its complete retained source CT, even without WebGL.
     await go('tb3-registration-analysis/0/overview', 'tb3-registration-analysis');
-    await page.waitForFunction(
-      () => document.querySelector('.scene-player')?.dataset.texturesReady === 'true',
+    const analysisPlayer = page.locator('.scene-player[data-recipe="registration-analysis-v1"]');
+    await analysisPlayer.waitFor();
+    assert.equal(await analysisPlayer.getAttribute('data-surface-renderer'), 'planar');
+    const sourceImage = analysisPlayer.locator('svg image').first();
+    const imageBox = await sourceImage.boundingBox();
+    assert.ok(
+      imageBox && imageBox.width > 200 && imageBox.height > 150,
+      'Source CT is visibly sized',
     );
-    const imagePixels = await page.locator('.scene-canvas').evaluate(async (canvas) => {
+    const imagePixels = await sourceImage.evaluate(async (element) => {
       const image = new Image();
-      image.src = canvas.toDataURL();
+      image.src = element.href.baseVal;
       await image.decode();
       const copy = document.createElement('canvas');
-      copy.width = canvas.width;
-      copy.height = canvas.height;
+      copy.width = image.naturalWidth;
+      copy.height = image.naturalHeight;
       const context = copy.getContext('2d');
       context.drawImage(image, 0, 0);
       const rgba = context.getImageData(0, 0, copy.width, copy.height).data;
       let dark = 0;
       for (let i = 0; i < rgba.length; i += 4)
         if (rgba[i + 3] > 128 && rgba[i] + rgba[i + 1] + rgba[i + 2] < 510) dark++;
-      return dark;
+      return {
+        width: copy.width,
+        height: copy.height,
+        darkFraction: dark / (copy.width * copy.height),
+      };
     });
-    assert.ok(imagePixels > 10000, 'Fixed and moving image planes are visibly rendered');
+    assert.equal(imagePixels.width, 171);
+    assert.equal(imagePixels.height, 118);
+    assert.ok(
+      imagePixels.darkFraction > 0.05 && imagePixels.darkFraction < 0.95,
+      'Actual source pixels have visible CT contrast',
+    );
     // Canvas-unavailable environments retain the authored, accessible SVG explanation.
     const fallback = await context.newPage();
     await fallback.addInitScript(() => {

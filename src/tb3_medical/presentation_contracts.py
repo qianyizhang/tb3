@@ -254,6 +254,24 @@ class PrototypeIdentityPlan(ExpansionPlan):
     beats: list[IdentityBeat]
 
 
+class RegistrationAnalysisChannels(TypedDict):
+    reference: tuple[float, float]
+    bounds: tuple[float, float]
+    curve: tuple[float, float]
+
+
+class RegistrationAnalysisBeat(ExpansionBeat):
+    channels: RegistrationAnalysisChannels
+    scene: Literal[
+        "input", "replay", "composition", "support", "objective", "context", "repeats", "limits"
+    ]
+
+
+class RegistrationAnalysisPlan(ExpansionPlan):
+    recipe: Literal["registration-analysis-v1"]
+    beats: list[RegistrationAnalysisBeat]
+
+
 class RespiratoryChannels(TypedDict):
     depth: tuple[float, float]
     output: tuple[float, float]
@@ -335,6 +353,7 @@ StoryPlan = (
     | AnatomyPlan
     | IdentityPlan
     | PrototypeIdentityPlan
+    | RegistrationAnalysisPlan
     | RespiratoryPlan
     | CurationPlan
     | MaskScreenPlan

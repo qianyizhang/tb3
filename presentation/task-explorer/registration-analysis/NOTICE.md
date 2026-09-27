@@ -1,0 +1,11 @@
+# Registration postmortem teaching views
+
+Learn2Reg LungCT 1.11: Hering, Alessa; Murphy, Keelin; van Ginneken, Bram (2020), Radboud University Medical Center. [Source](https://doi.org/10.5281/zenodo.3835682), CC BY 4.0; exact license text retained. No endorsement implied.
+
+Actual case 1 source and target CT arrays are retained in the frozen BR-021 task. Coordinates are dataset-world millimetres, not asserted native LPS/RAS. Source preview is complete. Selected q01/q06 patches are posthoc teaching comparisons, independently centred on the source, returned point or manual target. They do not show displacement or remove the original search problem. Each 21 by 21 patch samples the recorded radius-8 objective grid at 0.8 mm spacing; source sampling is bilinear, target sampling trilinear, with the saved local target axes. Grayscale window is HU -1000 to 200. The objective uses original HU and a 0.4 raw / 0.6 high-pass NCC mixture, not these display grayscale values.
+
+The author postmortem had privileged references; the original solver did not. Reference targets, reference-centred pixels, scores and diagnosis are separately in reference.json and revealed to the reader. Search boxes use saved orthonormal local axes and half-widths; plots must name their axes and retain the full 3D lower bound. A curve between manual and submitted points is a diagnostic interpolation, never the solver's search path.
+
+The builder checks all frozen task bytes, retained answer hashes, replay stages, fourteen composition/search interventions and four author controls. It recomputes every point error, all 112 query-box distances, and 808 recorded objective-curve samples without rerunning any optimizer, historical authoring module or model. The original replay image was replaced by an identical-Dockerfile retained image; numerical output equivalence is retained separately from original execution. No new scientific trial, annotation correction or regrading is implied.
+
+Rebuild with the existing imaging environment: `python scripts/build_registration_analysis_assets.py --root . --output NEW_DIRECTORY`. Shared pixel encoding comes from the import-safe respiratory builder. This is a reader presentation, not a blind solver packet.

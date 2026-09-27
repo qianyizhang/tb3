@@ -17,6 +17,17 @@ export function sampleStory(plan: StoryPlan, requested: number) {
   const eased = progress * progress * (3 - 2 * progress);
   const channel = (pair: readonly number[]) => pair[0] + (pair[1] - pair[0]) * eased;
   switch (plan.recipe) {
+    case 'registration-analysis-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        reference: channel(b.channels.reference),
+        bounds: channel(b.channels.bounds),
+        curve: channel(b.channels.curve),
+      });
+    }
     case 'respiratory-v1': {
       const b = plan.beats[index];
       return Object.freeze({
