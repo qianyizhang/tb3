@@ -595,3 +595,52 @@ This completes this v2 teaching explanation only, bringing the program to
 program level; no trial, installation, publication or clinical adjudication is
 implied. Reopen this explanation if its pinned sources or contract change, or a
 reproduced content/rendering defect affects the accepted view.
+
+### V3 explainer source checkpoint — assistant action, 2026-09-28
+
+For the [sequential explainer goal](codex://threads/01a0e024-3705-7a91-9181-d237131801fa),
+the assistant verified both v3 freezes and six saved scores against 341 pinned
+files. Original scores and source arrays remain unchanged; no model, optimizer,
+historical solver program, runtime installation or publication was performed.
+The [v3 brief](../presentation/briefs/tb3-dental-v3.md) now distinguishes shape
+improvement from the unchanged 29/29 tooth identity count, with 68 active labels
+in both means and the same target/contract but unequal realized compute.
+
+The [audit](../presentation/sources/dental-v3-audit.json) exactly reproduces all
+29 pulp and five canal refinement operations. Additional pulp-127 refinement is
+geometrically limited to 128/827 reference voxels and retains 115; its preceding
+whole-tooth object contains only 345/827. Canal 104's actual four-voxel-padded
+prior crop contains 0/355 GT voxels, so that operation cannot reach the reference.
+These are overlapping search constraints, not a unique attribution of upstream
+registration error or a clinical GT judgment. Main-canal 4 has better Dice but
+worse HD95; the source views retain this counterexample.
+
+Fourteen native sections and six complete-axis silhouettes are available with
+[explicit derivation and attribution](../../../presentation/task-explorer/dental-v3/NOTICE.md).
+The saved composite field exactly reproduces both atlas and warped-CT k=55 planes
+(168,100 voxels each). All PNG pixels, binary contours and native-coordinate
+inverses pass exact checks. Target GT, measurements and GT-selected views remain
+reader-only; the F008 annotation remains a permitted input only in its condition.
+Physical laterality, original annotation semantics and the untested restoration/
+occupied-pulp conventions are preserved as limits.
+
+**Next implementation:** a dedicated v3 comparison recipe with input/contract,
+permitted example, saved transfer, submitted answers, shape-versus-identity,
+whole-volume metrics, pulp success/counterexample, bounded pulp refinement,
+canal-104 search crop, main-canal Dice-versus-HD95 and limits. Use discrete real
+planes/stages and labeled silhouettes; the transfer wipe is not optimizer motion.
+Fill or hatch eligibility regions lightly so holes are distinguishable from
+included territory. Use black under-strokes for contours over bright tooth CT,
+matching role colors/line styles and explicit private-reference reveals.
+
+Canonical story, Explorer binding, fresh export, playback/mobile/no-GPU review
+and acceptance are still outstanding. The row remains pending at 35/205 reviewed
+entries; this source checkpoint is not another accepted explainer or a new user
+decision. Reopen the audit if pinned evidence, contract or reproduced geometry changes.
+
+Source-view review is recorded in
+`.local/explainers/completion-20260927/028-asset-review-v3/review.json`:
+27 panels across seven contact sheets were opened and inspected. Revised sheet
+layout removes label overlap and displays actual native index ticks. Source assets
+remain byte-identical through the final provenance refresh. This does not replace
+the outstanding story, playback, mobile or no-GPU reviews.

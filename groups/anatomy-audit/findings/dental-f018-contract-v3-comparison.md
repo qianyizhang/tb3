@@ -62,3 +62,28 @@ overlays, canal projections, methods and limits. See the
 [reproducible analysis](../methods/dental-f018-contract-v3/analyze_comparison.py).
 Figures are explicitly post-hoc diagnostic selections, with matching legends;
 raw evidence and media remain local. Original scores are preserved.
+
+## Explainer source audit — 2026-09-28
+
+The [reader-source audit](../presentation/sources/dental-v3-audit.json) rechecks
+341 pinned files, both freezes and six saved evaluations. Original outputs/scores
+remain unchanged. The retained pulp and canal refinement math reproduces exactly
+for all 29 pulp and five canal labels; no historical solver program is executed.
+The [expanded brief](../presentation/briefs/tb3-dental-v3.md) and
+[reader asset notice](../../../presentation/task-explorer/dental-v3/NOTICE.md)
+provide native views, selection rules and reference boundaries. This source review
+does not yet accept a canonical story or playback.
+
+| Post-hoc operation check | Observed limit | Evidence locator |
+| --- | --- | --- |
+| Pulp 127 before additional refinement | 28/827 GT voxels in the saved initial pulp; 345/827 in its whole-tooth object | Assisted `teeth.npy`, `teeth.py:6–29`; trace line 116 |
+| Pulp 127 expansion | Retained mask plus geometric eligibility contains 128/827 GT voxels; intensity/component filtering retains 115/827 | Assisted `pulp.py:6–11`, `teeth_final.npy`; trace line 136 |
+| Canal 104 search crop | Prior bounds plus four voxels contains 0/355 GT voxels; 189 prior voxels become 203 final voxels | Assisted `canals.py:5–17`, `canals.npy`; trace line 144 |
+| Saved example transfer | All 168,100 atlas and warped-CT voxels at k=55 reproduce from saved affine/regional fields | Assisted `composite2.py:4–16`, `atlas.npy`, `warpct.npy`; trace line 95 |
+
+Locators refer to attempt `attempt-72c26b83987d4409`, trial `task__irqdozr`,
+`artifacts/app/work/` and line-numbered `agent/codex.txt`; hashes are in the audit.
+The pulp constraints overlap and their exclusions must not be summed. The
+historical six-voxel prior-distance diagnostic is not the canal algorithm's
+search radius. These checks establish a specific operation's limited reach;
+they do not establish a unique upstream cause or clinically adjudicate the GT.
