@@ -170,3 +170,48 @@ initialization, saved tracking, reference reveal, volume curves and altered-inpu
 controls. Canonical integration, exports, motion/mobile/no-GPU review and final
 acceptance remain pending; the ledger stays at 30/205 reviewed. This record
 does not authorize publication or another medical trial.
+
+The clinical-cavity entry subsequently completed its source-derived canonical
+story, integrated Explorer review and fresh HTML/MP4/caption export in commit
+`c7a01f9006071b1abb4925b446787b36c0e0f949`. Its acceptance receipt is
+`.local/explainers/completion-20260927/022-acceptance.json`; the completion ledger
+now records 31/205 reviewed. This closes the explainer work described above,
+without changing the retained scientific outcomes or authorizing publication.
+
+## Supplied-mask mechanics source review — 2026-09-28
+
+Actor: assistant, under the same completion request. The
+[BR-035 exact brief](../presentation/briefs/tb3-mask-to-mechanics.md) and
+[input/output audit](../presentation/sources/mask-mechanics-audit.json) verify
+219 file fingerprints, including all 77 reproduction-manifest entries. All
+30 synthetic and 18 clinical mask/image frames reproduce their retained source
+derivations. Six full saved scores reproduce within absolute 1e-8, without
+executing either submitted solver or launching a model.
+
+Both synthetic constructions pass, but radial-strain MAE remains 7.37/5.45 pp
+against the separate 5 pp diagnostic target. Material coverage is 98.06%, with
+45,970 of 47,186 source-cell centroids covered; coverage and strain have different
+weights and validity rules. Both agent meshes retain six nonmanifold boundary
+edges. Those defects and small severely compressed regions are post-hoc findings,
+not grounds to overwrite their original construction rewards.
+
+Source-only slices, supplied masks and saved-mesh voxel occupancy were inspected
+in three native planes at synthetic phase index 9 and clinical phase index 11.
+Synthetic boundaries differ locally despite high global overlap. Clinical contours
+closely follow the supplied cavity masks in these selected views. The retained
+volume/strain figure shows the corresponding separation: matching supplied volume
+curves does not prevent missing the simulator radial-strain target.
+
+The original executable hashes confirm both methods explicitly match total volume.
+The image program uses its texture branch only for myocardial-wall inputs; its
+clinical cavity transfer uses masks alone. Both clinical EF values reproduce the
+already supplied mask curve. Preserve this assistance boundary, the original
+incorrect timestamp boilerplate and the one-case/two-program comparison limit.
+This is an endpoint-only comparison, not a causal estimate of image assistance.
+
+The STRAUS delivery-scope question already pending for the material entry also
+covers this entry and remains unanswered. Keep all source-derived media local;
+canonical story, portable assets, exports and complete visual acceptance remain
+unfinished. Reopen when permission is documented or the user explicitly approves
+private-local final scope. The assistant advances to named landmarks, retaining
+31/205 reviewed and all blocked entries in the denominator.

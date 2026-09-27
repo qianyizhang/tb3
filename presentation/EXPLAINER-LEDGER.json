@@ -1624,12 +1624,12 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "shape-material",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "blocked-source-contract",
+      "source_asset_readiness": "Verified 219 file fingerprints and all 77 reproduction-manifest entries. All 30 synthetic and 18 clinical mask/image frames match source derivation; six full saved scores and post-hoc mesh diagnostics reproduce. Selected input/result views inspected; STRAUS delivery scope unresolved.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Build a shared tetrahedral mesh across phases and compute F, Green–Lagrange E and J.",
+      "blocking_dependency": "The STRAUS delivery-scope question already pending for material-feasibility also covers this entry. Document onward source redistribution permission or obtain explicit private-local final-scope approval; no answer or scope change inferred.",
+      "remaining_work": "After source scope is resolved, show actual masks, own tetrahedral mesh, material-probe comparison, separate field/construction gates and clinical cavity limits in an operation-specific story; export fresh artifacts and inspect motion, Explorer, mobile and no-GPU behavior. Source audit alone is not completion.",
       "contract_projection": {
         "raw": "Full-cycle binary masks; paired condition adds registered ultrasound.",
         "helpers": "All-phase segmentation is supplied, but persistent material coordinates and the reference mesh are withheld.",
@@ -1657,7 +1657,95 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "e715fe1f210bbb5f9ddafbc4145cd45e2eb3b7252eb77aa8071b9234fae47d07"
+      "source_brief_sha256": "e715fe1f210bbb5f9ddafbc4145cd45e2eb3b7252eb77aa8071b9234fae47d07",
+      "blocker_resolution": "Keep source-derived assets local and this entry unfinished. Reopen canonical story integration when the existing STRAUS permission/scope decision is resolved; continue the ordered queue.",
+      "audited_contract_projection": {
+        "raw": "The primary case is one **30-phase STRAUS healthy biventricular myocardial wall**.\n`masks.npz` supplies boolean `masks[T,Z,Y,X]` with shape **30 × 86 × 81 × 85**.\nThe second condition adds registered float32 ultrasound `images.npy` on exactly\nthe same grid. The masks and geometry files are byte-identical between conditions.\nUltrasound intensity is neither blood velocity nor reference deformation.\n\nThe masks were independently rasterized from each simulator mesh at voxel\ncentres. They include both inner and outer wall boundaries, without persistent\nvertex IDs, tracked points, AHA labels or an initial mesh. Original material\nidentities cannot be read from the binary mask labels.",
+        "helpers": "`geometry.json` gives **1.5 mm isotropic spacing**, origin\n**[81, −108, 95] mm**, reference frame 0 and dimensionless phases `0/30…29/30`.\nWorld coordinates are `origin + spacing × [x,y,z]`; array order is `[t,z,y,x]`.\nSynthetic physical frame duration is unknown (`timestamps_s=null`), so a\nseconds-based strain rate is unavailable.\n\nThe transfer case supplies **18 all-phase clinical LV cavity masks**, with\noptional registered images. It has a different grid and real timestamps.\nThese masks enclose blood pool and basal closure; they supply the volume curve\nbut neither epicardium nor myocardial material motion.",
+        "tools": "The frozen environment provides ordinary NumPy/SciPy, scikit-image, meshio,\nOpenCV and Pillow; ordinary meshing libraries are permitted. Each original\n`gpt-5.6-sol`/xhigh attempt had 30 minutes, 4 CPUs and 8 GB, no evaluator feedback\nand no retry. The unchanged submitted programs were subsequently executed on the\nclinical transfer with a five-minute limit and runtime network disabled.\nThe masks+images program applies texture refinement only to myocardial-wall\ninputs; its clinical cavity replay deliberately uses masks alone.\n\nThese are retained executions. Reviewing this entry does not launch a model,\nrerun its solver or install a medical runtime.",
+        "spec": "Construct an initial tetrahedral mesh from frame 0, preserve its connectivity,\nand infer vertex positions throughout the cycle. Fixed indices encode a\nhypothesized material map; they do not prove tissue tracking.\n\nFor each tetrahedron, use reference and current edge-column matrices `Dm` and\n`Ds`: `F=Ds·Dm⁻¹`, `E=(FᵀF−I)/2`, `J=det(F)`. F maps reference column vectors\nto current column vectors; E is full Green–Lagrange strain in fractional units.\nNegative or zero J fails the orientation check. Directional engineering strain\n`||F·e||−1`, evaluated on private anatomical axes, is a different quantity from\nE or its minimum principal value used in the historical viewer.",
+        "output": "A runnable `solve.py --input DIRECTORY --output DIRECTORY`, `prediction.npz`\nwith `points[T,N,3]` in world mm, fixed integer `tetra[M,4]`, full `F` and `E`\narrays `[T,M,3,3]` and `J[T,M]`. `method.md` states meshing, correspondence\nassumptions and uncertainty. `assessment.json` declares mask semantics,\nlimitations and whether the domain supports a myocardial-strain model.\n\nFor `lv_cavity`, the program must set `myocardial_strain_supported=false`.\nMathematical cavity deformation may support geometric volume/EF checks; it\ncannot be reported as myocardial strain. For synthetic wall, a true domain flag\ndoes not certify the inferred motion.",
+        "reference": "The evaluator retains the simulator's complete moving mesh, AHA cell labels,\nanatomical directions and reference-volume weights. The source has **11,370\nvertices and 47,186 tetrahedra**; it is not the agent's required topology.\nEvery source-cell reference centroid is an independent material probe, located\nbarycentrically in the agent's initial tetrahedral mesh. Later predictions are\ncompared at those same material probes, without per-frame realignment.\n\nDirectional comparisons require positive AHA labels and three usable source\naxes. Coverage and regional coverage remain explicit. Simulator material motion\nis synthetic truth for this selected case, not measured patient strain. The\nclinical surface sequence is a geometric comparator; it has no material-motion\ntruth. Exact-source oracle output is privileged evaluator material, not a legal\nmasks-only answer. Reader-facing reference reveals must remain separate from inputs.",
+        "variants": [
+          {
+            "name": "Masks only",
+            "helper": "All 30 binary wall masks and calibration",
+            "remaining": "Own shared mesh and hypothesized material map"
+          },
+          {
+            "name": "Masks and images",
+            "helper": "Identical masks plus registered ultrasound",
+            "remaining": "Own mesh; optionally constrain motion with appearance"
+          },
+          {
+            "name": "Clinical transfer",
+            "helper": "All 18 cavity masks; optional images and timestamps",
+            "remaining": "Unchanged program preserves geometry and rejects myocardial strain"
+          },
+          {
+            "name": "Exact-source oracle",
+            "helper": "Private source trajectories and mesh",
+            "remaining": "Validate evaluator arithmetic; privileged control"
+          },
+          {
+            "name": "Static / empty controls",
+            "helper": "Static reference geometry / no output",
+            "remaining": "Test construction failure; not agent attempts"
+          }
+        ],
+        "sources": [
+          [
+            "Frozen BR-035 protocol",
+            "docs/research-rounds/BR-035-segmentation-mechanics.md"
+          ],
+          [
+            "Retained results and engineering limits",
+            "docs/research-rounds/BR-035-results.md"
+          ],
+          [
+            "Original evidence receipt",
+            "docs/evidence/br035-segmentation-mechanics-results.json"
+          ],
+          [
+            "Exact masks-only instruction",
+            "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks/task/instruction.md"
+          ],
+          [
+            "Exact masks-and-images instruction",
+            "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks-images/task/instruction.md"
+          ],
+          [
+            "Independent frozen scorer",
+            "groups/cardiac-motion/experiments/br035/reproduction/cases/cardiac-masks/task/tests/score.py"
+          ],
+          [
+            "Input and saved-answer manifest",
+            "groups/cardiac-motion/experiments/br035/reproduction/manifest.json"
+          ],
+          [
+            "STRAUS source and terms audit",
+            "groups/cardiac-motion/presentation/sources/cardiac-material-audit.json"
+          ],
+          [
+            "Clinical source and terms audit",
+            "groups/cardiac-motion/presentation/sources/clinical-cavity-audit.json"
+          ],
+          [
+            "Mask-to-mechanics input/output audit",
+            "groups/cardiac-motion/presentation/sources/mask-mechanics-audit.json"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "source_review": {
+        "date": "2026-09-28",
+        "actor": "assistant",
+        "receipt": "groups/cardiac-motion/presentation/sources/mask-mechanics-audit.json",
+        "receipt_sha256": "54da7ec2c18c06a927f2c5d8996ae6ce9842c03e952d70f598b5b931d18512ba",
+        "brief_sha256": "056e44433349f7a8f0dc5f96d026ce151dd1d9d87fa587942f8d8aa6287d748e",
+        "local_artifacts": ".local/explainers/completion-20260927/023-audit-v1",
+        "no_visual_acceptance": true
+      }
     },
     {
       "entry_id": "tb3-aneurysm-localization",
@@ -13027,10 +13115,10 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 20,
+    "pending-operation-review": 19,
     "reviewed-scripted-spatial": 13,
     "reviewed-scripted-planar": 18,
-    "blocked-source-contract": 106,
+    "blocked-source-contract": 107,
     "blocked-source-input": 48
   },
   "completion_program": {
@@ -13050,7 +13138,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-mask-to-mechanics",
+    "active_entry": "tb3-named-landmarks",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -13545,7 +13633,16 @@
         "receipt": ".local/explainers/completion-20260927/022-acceptance.json",
         "export_receipt_sha256": "738183a04e43293d88395f90e678cf684349496da9e833c74de90148d5767eaf",
         "reviewed_entries": 31,
-        "next_action": "Continue tb3-mask-to-mechanics; preserve the existing unanswered STRAUS scope question and do not infer permission."
+        "next_action": "Continue tb3-mask-to-mechanics; preserve the existing unanswered STRAUS scope question and do not infer permission.",
+        "local_commit": "c7a01f9006071b1abb4925b446787b36c0e0f949"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-mask-to-mechanics",
+        "stage": "source-audit-complete-delivery-scope-unresolved",
+        "receipt": "groups/cardiac-motion/presentation/sources/mask-mechanics-audit.json",
+        "reviewed_entries": 31,
+        "next_entry": "tb3-named-landmarks"
       }
     ]
   }
