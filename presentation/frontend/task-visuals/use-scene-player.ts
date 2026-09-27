@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { StoryPlan } from '../types';
 import { sampleStory, type StoryState } from './story-timeline';
-import { nativeFactory, isPlanarStory } from './story-recipes';
+import { nativeFactory, isPlanarStory, hasInteractiveProjection } from './story-recipes';
 import { TaskSceneModels } from './recipes';
 import { SceneStage } from './stage';
 import type { ScreenPoint, SceneModel, Stage, VisualEntry } from './types';
@@ -40,9 +40,13 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
     storyState: plan ? sampleStory(plan, 0) : undefined,
   }));
   const planar = !!plan && isPlanarStory(plan);
+  const interactiveProjection = !!plan && hasInteractiveProjection(plan);
   useEffect(() => {
     const player = root.current,
-      surface = planar ? player?.querySelector<HTMLElement>('.scene-stage') : canvas.current,
+      surface =
+        planar || interactiveProjection
+          ? player?.querySelector<HTMLElement>('.scene-stage')
+          : canvas.current,
       labels = annotations.current;
     if (!player || !surface || !labels) return;
     const totalMs = plan ? (plan.durationFrames / plan.fps) * 1000 : TOTAL_MS;
@@ -91,14 +95,14 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
       playing = false;
       cancel();
       // A static v2 fallback summarizes the authored ending; the transcript retains every beat.
-      if (plan?.schema === 2) elapsed = totalMs;
+      if (plan?.schema === 2 && !interactiveProjection) elapsed = totalMs;
       sync();
-      player.dataset.surfaceRenderer = plan ? 'poster' : 'svg';
+      player.dataset.surfaceRenderer = interactiveProjection ? 'planar' : plan ? 'poster' : 'svg';
       player.dataset.rendered = 'true';
     };
     const render = () => {
-      if (disposed || failed || !width || !height) return;
-      if (planar && plan) {
+      if (disposed || (failed && !interactiveProjection) || !width || !height) return;
+      if ((planar || (failed && interactiveProjection)) && plan) {
         const state = sampleStory(plan, storyFrame());
         player.dataset.frame = String(state.frame);
         player.dataset.surfaceRenderer = 'planar';
@@ -141,7 +145,14 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
     };
     const tick = (now: number) => {
       frame = 0;
-      if (disposed || failed || !playing || !visible || document.hidden || dragging) {
+      if (
+        disposed ||
+        (failed && !interactiveProjection) ||
+        !playing ||
+        !visible ||
+        document.hidden ||
+        dragging
+      ) {
         last = 0;
         return;
       }
@@ -160,7 +171,15 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
       if (playing) frame = requestAnimationFrame(tick);
     };
     const start = () => {
-      if (!frame && playing && visible && !document.hidden && !disposed && !failed && !dragging)
+      if (
+        !frame &&
+        playing &&
+        visible &&
+        !document.hidden &&
+        !disposed &&
+        (!failed || interactiveProjection) &&
+        !dragging
+      )
         frame = requestAnimationFrame(tick);
     };
     const pause = () => {
@@ -180,7 +199,7 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
     }
     if (!planar && !view) {
       fallback();
-      return;
+      if (!interactiveProjection) return;
     }
     sync();
     const seekFrame = (requested: number, canonical = false) => {
@@ -191,7 +210,7 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
         requested >= plan.durationFrames
       )
         throw new RangeError('Invalid story frame');
-      if (failed) throw new Error('WebGL capture unavailable');
+      if (failed && !interactiveProjection) throw new Error('WebGL capture unavailable');
       pause();
       elapsed = (requested / plan.fps) * 1000;
       if (canonical) {
@@ -284,6 +303,6 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
       view?.dispose();
       model = null;
     };
-  }, [entry, plan, planar]);
+  }, [entry, plan, planar, interactiveProjection]);
   return { root, canvas, annotations, actions, pointer, ...state };
 }

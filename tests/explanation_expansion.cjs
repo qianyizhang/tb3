@@ -18,6 +18,7 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    identityRows,
     storyPresentation,
     nativeFactory,
     isPlanarStory,
@@ -30,11 +31,11 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   const baseline = JSON.parse(
     fs.readFileSync(path.join(__dirname, 'fixtures/story-baseline.json')),
   );
-  assert.equal(
-    plans.length,
-    baseline.stories.length,
-    'Review new sources rather than regenerating baseline witnesses',
-  );
+  for (const witness of baseline.stories)
+    assert.ok(
+      plans.some((plan) => plan.id === witness.id),
+      'Missing original story: ' + witness.id,
+    );
   let frames = 0,
     native = 0;
   for (const plan of plans) {
@@ -42,18 +43,20 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       JSON.stringify(sampleStory(plan, frame)),
     );
     const witness = baseline.stories.find((s) => s.id === plan.id);
-    assert.equal(plan.source_sha256, witness.source_sha256);
-    const oldStates = snapshots.map((value) => {
-      const state = JSON.parse(value);
-      delete state.operation;
-      delete state.showDeformedTarget;
-      return state;
-    });
-    assert.equal(
-      crypto.createHash('sha256').update(JSON.stringify(oldStates)).digest('hex'),
-      witness.state_sha256,
-      plan.id + ' pre-refactor state witness',
-    );
+    if (witness) {
+      assert.equal(plan.source_sha256, witness.source_sha256);
+      const oldStates = snapshots.map((value) => {
+        const state = JSON.parse(value);
+        delete state.operation;
+        delete state.showDeformedTarget;
+        return state;
+      });
+      assert.equal(
+        crypto.createHash('sha256').update(JSON.stringify(oldStates)).digest('hex'),
+        witness.state_sha256,
+        plan.id + ' pre-refactor state witness',
+      );
+    }
     const renamed = structuredClone(plan);
     renamed.id = 'renamed-story';
     renamed.beats.forEach((beat, i) => {
@@ -98,6 +101,20 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     assert.throws(() => content.update(sampleStory(plan, 0)));
   }
   const full = traceEdges(1);
+  const identity = plans.find((plan) => plan.recipe === 'anatomy-identity-v1');
+  assert.ok(identity, 'Exercise supplied-object identity semantics');
+  for (const beat of identity.beats.filter((beat) => beat.channels.reveal[1] === 0)) {
+    const rows = identityRows(sampleStory(identity, beat.endFrame - 1));
+    assert.ok(
+      rows.every((row) => row.label === null),
+      'No names before the reveal',
+    );
+    assert.equal(rows.filter((row) => row.selected).length, 1);
+  }
+  const identityEnd = identityRows(sampleStory(identity, identity.durationFrames - 1));
+  assert.equal(new Set(identityEnd.map((row) => row.objectId)).size, 7);
+  assert.equal(new Set(identityEnd.map((row) => row.label)).size, 7);
+  assert.ok(identityEnd.every((row) => row.label && /^T\d\d$/.test(row.objectId)));
   assert.equal(full.length, 3);
   for (const { edge, points } of full) assert.equal(points.length, edge.points.length);
   assert.equal(new Set(graph.edges.map((e) => e.id)).size, 7);

@@ -13,6 +13,7 @@ import {
 import styles from './task-visual.module.css';
 import { InverseScene, InverseOutput } from './inverse-panels';
 import { FamilyScene, FamilyOutput } from './family-panels';
+import { IdentityScene, IdentityOutput } from './identity-panels';
 const COLORS = ['#357f75', '#b4743c', '#72639a', '#497a9a', '#9b5863', '#77833d'];
 const xy = (p: number[]) => `${300 + p[0] * 3300},${235 - p[1] * 3300}`;
 function NavigationScene({ state }: { state: Extract<StoryState, { recipe: 'multiscale-v1' }> }) {
@@ -85,6 +86,7 @@ function NavigationScene({ state }: { state: Extract<StoryState, { recipe: 'mult
 }
 /** Fallbacks are data-derived views of the current canonical frame, not separate stories. */
 export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryState }) {
+  if (state.recipe === 'anatomy-identity-v1') return <IdentityScene state={state} />;
   if (state.recipe === 'topology-v1')
     return (
       <svg
@@ -285,6 +287,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   );
 }
 export function OperationOutput({ plan, state }: { plan: StoryPlan; state: StoryState }) {
+  if (state.recipe === 'anatomy-identity-v1') return <IdentityOutput state={state} />;
   if (state.recipe === 'topology-v1') {
     const inventory = state.operation === 'edge-inventory',
       edges = inventory

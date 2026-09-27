@@ -1,5 +1,6 @@
 export { Group } from 'three';
 export { sampleStory } from '../presentation/frontend/task-visuals/story-timeline.ts';
+export { identityRows } from '../presentation/frontend/task-visuals/identity.ts';
 export {
   nativeFactory,
   isPlanarStory,

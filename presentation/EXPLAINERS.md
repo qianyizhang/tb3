@@ -46,6 +46,7 @@ A bound story is not automatically accepted; unresolved entries remain visible.
 | Shape/material | Identical analytic shells with two material maps; calculation/sparse/volume conditions distinct |
 | Longitudinal | Explicit match/new/unobserved relations; actual CT task supplies no candidate locations |
 | Anatomy audit | Existing seven-part s1233 assembly; label/witness schema and clean-control semantics |
+| Object identity | Anonymous teaching IDs, shared source geometry, condition-specific vocabulary, assignment output and explicit source-name reveal; seven-part s1233 subset is not full A01 |
 | CT/MRI | Separate Radon/FFT measurements and image outputs; toy vs task dimensions/assistance explicit |
 
 V2 multiscale stories require `operation: coordinate-navigation`, `supplied-patches`
@@ -55,6 +56,12 @@ These fields drive the sampler, scenes, output and legends; renaming IDs does no
 change their meaning. The six original sources at revision `0ea91a5` retain their
 bytes through compiler-local path/hash/recipe matching. Editing or copying one
 requires explicit fields; a familiar filename does not enable legacy decoding.
+
+`anatomy-identity-v1` traverses anonymous teaching objects with `focus`, describes
+the condition's vocabulary with `inventory`, and exposes source names only through
+`reveal`. Its no-GPU projection retains the same clock, chapters and input-first
+state. The retained seven-object s1233 subset shares a source with BR-013 A01;
+teaching IDs and source-name rows are explicitly separate from the frozen task.
 
 ## Build and export
 

@@ -117,7 +117,9 @@ def new(
         "recipe": recipe,
         "asset_pack": spec.asset_pack,
         "source_class": (
-            "source-derived-teaching" if recipe == "anatomy-audit-v1" else "procedural-teaching"
+            "source-derived-teaching"
+            if spec.asset_pack == "retained-anatomy-v1"
+            else "procedural-teaching"
         ),
         "reference_policy": "no-reference-assets",
         "fps": 24,

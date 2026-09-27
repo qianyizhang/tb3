@@ -240,6 +240,45 @@ export function createMaterialPrefab(parent: THREE.Group): NativeContent {
 }
 
 import { AnatomyAssets } from './anatomy';
+import { identityObjects, identityRows } from './identity';
+
+export function createIdentityPrefab(parent: THREE.Group): NativeContent {
+  const c = content(parent, 'anatomy-identity-v1');
+  const meshes = identityObjects().map(({ part, objectId }) => ({
+    objectId,
+    mesh: c.mesh(part, '#b8b5a6'),
+  }));
+  const display = c.fit(new THREE.Box3().setFromObject(c.root));
+  const anchors = meshes.map(({ mesh }) =>
+    new THREE.Box3().setFromObject(mesh).getCenter(new THREE.Vector3()).toArray(),
+  );
+  return {
+    update(state) {
+      c.alive();
+      if (state.recipe !== 'anatomy-identity-v1') throw Error('Identity state required');
+      const rows = identityRows(state);
+      meshes.forEach(({ mesh }, index) => {
+        const selected = rows[index].selected;
+        mesh.material.color.set(selected ? '#307f74' : '#b8b5a6');
+        mesh.material.transparent = !selected;
+        mesh.material.opacity = selected ? 1 : 0.3;
+        mesh.material.depthWrite = selected;
+      });
+      const index = rows.findIndex((row) => row.selected);
+      const row = rows[index];
+      return [
+        {
+          p: display(anchors[index]),
+          anchor: display(anchors[index]),
+          text: row.label ? `${row.objectId} → ${row.label} · source reveal` : row.objectId,
+          color: '#307f74',
+        },
+      ];
+    },
+    dispose: c.dispose,
+  };
+}
+
 export function createAnatomyPrefab(parent: THREE.Group): NativeContent {
   const c = content(parent, 'anatomy-audit-v1');
   // AnatomyAssets fits the entire assembly once and keeps source-relative geometry.

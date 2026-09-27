@@ -589,6 +589,17 @@
 .storyOutput code {
   overflow-wrap: anywhere;
 }
+
+:global([data-recipe='anatomy-identity-v1']) .storyOutput th,
+:global([data-recipe='anatomy-identity-v1']) .storyOutput td {
+  padding-block: 2px;
+  line-height: 1.25;
+}
+
+:global([data-recipe='anatomy-identity-v1']) :global(.scene-step-index) {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
 @container task-visual (max-width:600px) {
   .mobileInverse {
     display: grid;

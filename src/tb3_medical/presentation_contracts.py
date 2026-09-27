@@ -234,6 +234,21 @@ class AnatomyPlan(ExpansionPlan):
     beats: list[AnatomyBeat]
 
 
+class IdentityChannels(TypedDict):
+    focus: tuple[float, float]
+    inventory: tuple[float, float]
+    reveal: tuple[float, float]
+
+
+class IdentityBeat(ExpansionBeat):
+    channels: IdentityChannels
+
+
+class IdentityPlan(ExpansionPlan):
+    recipe: Literal["anatomy-identity-v1"]
+    beats: list[IdentityBeat]
+
+
 StoryPlan = (
     RouteStoryPlan
     | TopologyPlan
@@ -244,6 +259,7 @@ StoryPlan = (
     | InversePlan
     | EditPlan
     | AnatomyPlan
+    | IdentityPlan
 )
 
 

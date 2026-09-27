@@ -179,15 +179,15 @@
       ],
       "illustration_kind": "object_identity",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "supplied-object-identity",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "anatomy-audit",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-spatial",
+      "source_asset_readiness": "Retained seven-object s1233 assembly and license/manifest dependencies hash-verified. Twelve frozen prompt/scorer/staging files inspected or hash-checked; source-name reveal is reader-facing.",
+      "rendered_mode": "spatial",
+      "acceptance_receipt": ".local/explainers/completion-20260927/001-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Assign anatomical identities to supplied object IDs.",
+      "remaining_work": "No outstanding work for the bounded identity teaching story; source subset and condition limits are retained. Remote delivery remains a program-level pending approval.",
       "contract_projection": {
         "raw": "Supplied 3D abdominal objects, with CT only in the relevant conditions.",
         "helpers": "Shape and global arrangement are already supplied; label inventories, fragmentation and CT help vary.",
@@ -218,7 +218,45 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "d4995c716f80b08a6c82694dce96426228bd9e1d76dd8e5031ead210722e3ed4"
+      "source_brief_sha256": "d4995c716f80b08a6c82694dce96426228bd9e1d76dd8e5031ead210722e3ed4",
+      "acceptance_scope": "Visual and engineering review of this integrated task-operation teaching story; no user, clinical or model-performance acceptance.",
+      "visual_review": "Anonymous assignment rows, explicit source-name reveal, native shared-frame inspection, keyboard reset, mobile and interactive input-first no-GPU projection reviewed.",
+      "reviewed_contract_projection": {
+        "raw": "Anonymous abdominal objects in a shared patient frame. BR-013 A01/A02 supply\nindependent binary masks, an overview, object IDs and a label vocabulary. The\nmask files preserve overlaps and map voxel indices to physical LPS millimetres;\nthe surface rendering is a preview. These conditions supply no CT.",
+        "helpers": "Shape, relative placement, patient orientation and a ready scene viewer are\nalready supplied. The condition determines the label inventory and image help:\n\n| Condition | Supplied assistance | Remaining work |\n| --- | --- | --- |\n| BR-013 A01/A02 | Vocabulary; each label may be used at most once; some labels may be unused | Name every supplied object; unused labels imply neither disease nor missing annotation |\n| BR-014 I01 | Exact inventory for the unchanged A02 objects | Identify which object receives each supplied name |\n| BR-014 F01 | Retained fragments in the shared scene; repeated labels allowed | Assign a source-specific anatomical identity to every fragment |\n| BR-015 C01 | Original CT plus the A02 objects and broad vocabulary | Use image context to resolve object identity |\n| BR-015 V01 | Native CT, overlapping venous context and an exact eight-name branch inventory | Identify only the eight targets; do not assign a name to the context mask |",
+        "tools": "The original abdominal conditions include Python, NumPy, Pillow and a scene\nloader/renderer. Later CT-supported conditions add their declared image tools.\nEach frozen task retains its exact environment and access contract.",
+        "spec": "Assign anatomical identities to the supplied IDs without changing masks,\nreconstructing missing boundaries or diagnosing the patient. Follow the\ncondition's vocabulary and whether repeated labels are allowed. BR-013 A03 is a\nseparate proposed-label audit: it returns only changed identities.",
+        "output": "Write `answer.json` with `assignments`, each containing `object_id` and `label`;\ninclude every target object exactly once. V01's overlapping context mask is not\na target. Labels must match the condition's\nvocabulary. The separate A03 audit uses `corrections` and omits unchanged objects.",
+        "reference": "The expected ID-to-label key belongs to the separate evaluator. Source names\nrevealed by the teaching story are reader-facing metadata, not supplied\nrecognition answers. The retained s1233 teaching assembly uses seven of the\nsource anatomy classes; A01 also uses source s1233 but supplies 13 objects.\nTeaching IDs, display smoothing and the subset are not the frozen task data.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "Shape, relative placement, patient orientation and a ready scene viewer are\nalready supplied. The condition determines the label inventory and image help:\n\n| Condition | Supplied assistance | Remaining work |\n| --- | --- | --- |\n| BR-013 A01/A02 | Vocabulary; each label may be used at most once; some labels may be unused | Name every supplied object; unused labels imply neither disease nor missing annotation |\n| BR-014 I01 | Exact inventory for the unchanged A02 objects | Identify which object receives each supplied name |\n| BR-014 F01 | Retained fragments in the shared scene; repeated labels allowed | Assign a source-specific anatomical identity to every fragment |\n| BR-015 C01 | Original CT plus the A02 objects and broad vocabulary | Use image context to resolve object identity |\n| BR-015 V01 | Native CT, overlapping venous context and an exact eight-name branch inventory | Identify only the eight targets; do not assign a name to the context mask |",
+            "remaining": "Assign anatomical identities to the supplied IDs without changing masks,\nreconstructing missing boundaries or diagnosing the patient. Follow the\ncondition's vocabulary and whether repeated labels are allowed. BR-013 A03 is a\nseparate proposed-label audit: it returns only changed identities."
+          }
+        ],
+        "sources": [
+          [
+            "BR-013 — Prioritize upper-abdominal identity reasoning",
+            "groups/anatomy-audit/experiments/br013/protocol.md"
+          ],
+          [
+            "BR-014 — Label inventory and fragmented organ identity",
+            "groups/anatomy-audit/experiments/br014/protocol.md"
+          ],
+          [
+            "BR-015 — Clinical evidence and anatomical identity",
+            "groups/anatomy-audit/experiments/br015/protocol.md"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "3b0d8772ae6c10a9e99a92e0b0a465f21c34fa921e6d5ab213444d0da922b8bf",
+        "source_story_sha256": "61456539a503ba71550ecf70c0cbd2c42aa592b5956679a186c0a81c93f563fe",
+        "acceptance_receipt_sha256": "003c55f5dca4d3f597dea3b280d8a5300a0ef5a98f488be907de89ec9ce9ebc5"
+      }
     },
     {
       "entry_id": "tb3-unlabeled-anatomy-prototype",
@@ -11780,8 +11818,8 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 42,
-    "reviewed-scripted-spatial": 6,
+    "pending-operation-review": 41,
+    "reviewed-scripted-spatial": 7,
     "reviewed-scripted-planar": 7,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
@@ -11803,11 +11841,13 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": null,
+    "active_entry": "tb3-mixed-tissue-audit",
     "delivery": {
       "commit": "27fcca9",
-      "status": "pending-push-and-ci",
-      "ci_runs": []
+      "status": "awaiting-explicit-push-approval",
+      "ci_runs": [],
+      "plan_commit": "756ccde",
+      "reason": "Automatic approval review rejected pushing the two commits to origin/main; explicit approval requested in this chat. No push performed."
     },
     "sequence": [
       {
@@ -12083,6 +12123,23 @@
         ]
       }
     ],
-    "checkpoints": []
+    "checkpoints": [
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-supplied-object-identity",
+        "stage": "source-and-recipe-design",
+        "receipt": ".local/explainers/completion-20260927/entry-001-source-audit.json",
+        "next_action": "Add explicit supplied-object identity semantics and an input-first source-name reveal using the existing anatomy stage; author and verify the entry before visual acceptance.",
+        "acceptance_changed": false
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-supplied-object-identity",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/001-acceptance.json",
+        "reviewed_entries": 14,
+        "next_entry": "tb3-mixed-tissue-audit"
+      }
+    ]
   }
 }

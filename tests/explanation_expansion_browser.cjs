@@ -63,6 +63,22 @@ withBrowser(async (browser) => {
           const returned = canvas.getByText('level-0 (2680, 2040) px', { exact: true });
           assert.equal(await returned.count(), frame === plan.durationFrames - 1 ? 1 : 0);
         }
+        if (plan.recipe === 'anatomy-identity-v1') {
+          const labels = await page.locator('[data-identity-label]').allTextContents();
+          assert.equal(labels.length, 7);
+          assert.equal(
+            labels.every((label) => label === 'unassigned'),
+            frame !== plan.durationFrames - 1,
+          );
+          const output = await page.locator('[data-identity-output]').boundingBox();
+          assert.ok(output && output.y + output.height <= 720, 'Identity output clipped');
+          assert.ok(
+            await page
+              .locator('[data-identity-output]')
+              .evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'Identity output content overflows its panel',
+          );
+        }
         assert.equal(
           await page.locator('.scene-player').getAttribute('data-committed-frame'),
           String(frame),
@@ -206,10 +222,37 @@ withBrowser(async (browser) => {
     await fallback.goto(url + '?lang=en');
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
-    const planar = ['multiscale-v1', 'local-edit-v1', 'longitudinal-v1', 'inverse-v1'].includes(
-      plan.recipe,
-    );
+    const planar = [
+      'multiscale-v1',
+      'local-edit-v1',
+      'longitudinal-v1',
+      'inverse-v1',
+      'anatomy-identity-v1',
+    ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'anatomy-identity-v1') {
+      assert.equal(
+        await fallback.locator('.scene-player').getAttribute('data-committed-frame'),
+        '0',
+      );
+      assert.ok(
+        (await fallback.locator('[data-identity-label]').allTextContents()).every(
+          (label) => label === 'unassigned',
+        ),
+      );
+      await fallback.locator('[data-story-step="4"]').click();
+      await fallback.waitForFunction(() =>
+        [...document.querySelectorAll('[data-identity-label]')].every(
+          (e) => e.textContent !== 'unassigned',
+        ),
+      );
+      await fallback.locator('[data-story-step="0"]').click();
+      await fallback.waitForFunction(() =>
+        [...document.querySelectorAll('[data-identity-label]')].every(
+          (e) => e.textContent === 'unassigned',
+        ),
+      );
+    }
     if (!planar && plan.schema === 2)
       assert.equal(
         await fallback.locator('.scene-player').getAttribute('data-committed-frame'),
@@ -234,6 +277,7 @@ withBrowser(async (browser) => {
       'wsi-hiesd-patches',
       'tb3-oblique-pose',
       'tb3-label-audit',
+      'tb3-supplied-object-identity',
     ]) {
       await page.evaluate((id) => {
         location.hash = `${id}/0/overview?view=repository`;

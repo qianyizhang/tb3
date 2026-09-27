@@ -52,6 +52,7 @@ RECIPE_PACKS = {
     "longitudinal-v1": "longitudinal-v1",
     "inverse-v1": "inverse-problems-v1",
     "anatomy-audit-v1": "retained-anatomy-v1",
+    "anatomy-identity-v1": "retained-anatomy-v1",
 }
 SCOPE = (
     "Synthetic teaching fixture · one sampling ribbon only. Does not demonstrate local mask "
@@ -128,6 +129,12 @@ class AnatomyChannels(Closed):
     focus: Pair
     evidence: Pair
     output: Pair
+
+
+class IdentityChannels(Closed):
+    focus: Pair
+    inventory: Pair
+    reveal: Pair
 
 
 class EditChannels(Closed):
@@ -208,6 +215,10 @@ class AnatomyStory(Story[AnatomyChannels]):
     recipe: Literal["anatomy-audit-v1"]
 
 
+class IdentityStory(Story[IdentityChannels]):
+    recipe: Literal["anatomy-identity-v1"]
+
+
 class EditStory(Story[EditChannels]):
     recipe: Literal["local-edit-v1"]
 
@@ -220,7 +231,8 @@ AnyStory = Annotated[
     | MultiscaleStory
     | InverseStory
     | EditStory
-    | AnatomyStory,
+    | AnatomyStory
+    | IdentityStory,
     Field(discriminator="recipe"),
 ]
 ADAPTER: TypeAdapter[
@@ -232,6 +244,7 @@ ADAPTER: TypeAdapter[
     | InverseStory
     | EditStory
     | AnatomyStory
+    | IdentityStory
 ] = TypeAdapter(AnyStory)
 
 
@@ -397,6 +410,7 @@ def parse_expansion(
     | InverseStory
     | EditStory
     | AnatomyStory
+    | IdentityStory
 ):
     document = parse_document(raw) if isinstance(raw, str) else raw
     return ADAPTER.validate_python({**document.header, "beats": document.beats})
@@ -565,7 +579,7 @@ def compile_story(root: Path, path: Path) -> StoryPlan:
         expected_pack = RECIPE_PACKS[story.recipe]
         if story.asset_pack != expected_pack:
             raise ValueError("Recipe asset pack mismatch")
-        if (story.recipe == "anatomy-audit-v1") != (
+        if (story.asset_pack == "retained-anatomy-v1") != (
             story.source_class == "source-derived-teaching"
         ):
             raise ValueError("Recipe provenance mismatch")

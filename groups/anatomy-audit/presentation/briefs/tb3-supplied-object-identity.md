@@ -10,31 +10,57 @@ Separates anatomical naming from construction of organ boundaries.
 
 ### Original data
 
-Supplied 3D abdominal objects, with CT only in the relevant conditions.
+Anonymous abdominal objects in a shared patient frame. BR-013 A01/A02 supply
+independent binary masks, an overview, object IDs and a label vocabulary. The
+mask files preserve overlaps and map voxel indices to physical LPS millimetres;
+the surface rendering is a preview. These conditions supply no CT.
 
 ### Supplied helpers
 
-Shape and global arrangement are already supplied; label inventories, fragmentation and CT help vary.
+Shape, relative placement, patient orientation and a ready scene viewer are
+already supplied. The condition determines the label inventory and image help:
+
+| Condition | Supplied assistance | Remaining work |
+| --- | --- | --- |
+| BR-013 A01/A02 | Vocabulary; each label may be used at most once; some labels may be unused | Name every supplied object; unused labels imply neither disease nor missing annotation |
+| BR-014 I01 | Exact inventory for the unchanged A02 objects | Identify which object receives each supplied name |
+| BR-014 F01 | Retained fragments in the shared scene; repeated labels allowed | Assign a source-specific anatomical identity to every fragment |
+| BR-015 C01 | Original CT plus the A02 objects and broad vocabulary | Use image context to resolve object identity |
+| BR-015 V01 | Native CT, overlapping venous context and an exact eight-name branch inventory | Identify only the eight targets; do not assign a name to the context mask |
 
 ### Callable tools
 
-Each linked protocol specifies the permitted tools and execution environment.
+The original abdominal conditions include Python, NumPy, Pillow and a scene
+loader/renderer. Later CT-supported conditions add their declared image tools.
+Each frozen task retains its exact environment and access contract.
 
 ### Reference-only material
 
-References and permitted access follow each frozen contract. A reader-facing source or illustration is not automatically solver-visible.
+The expected ID-to-label key belongs to the separate evaluator. Source names
+revealed by the teaching story are reader-facing metadata, not supplied
+recognition answers. The retained s1233 teaching assembly uses seven of the
+source anatomy classes; A01 also uses source s1233 but supplies 13 objects.
+Teaching IDs, display smoothing and the subset are not the frozen task data.
 
 ## Task specification
 
-Assign anatomical identities to supplied object IDs. Follow each protocol's coordinate, identifier and access contract.
+Assign anatomical identities to the supplied IDs without changing masks,
+reconstructing missing boundaries or diagnosing the patient. Follow the
+condition's vocabulary and whether repeated labels are allowed. BR-013 A03 is a
+separate proposed-label audit: it returns only changed identities.
 
 ## Expected output
 
-Assign anatomical identities to supplied object IDs.
+Write `answer.json` with `assignments`, each containing `object_id` and `label`;
+include every target object exactly once. V01's overlapping context mask is not
+a target. Labels must match the condition's
+vocabulary. The separate A03 audit uses `corrections` and omits unchanged objects.
 
 ## Evaluation
 
-Exact identity under each source taxonomy; keep anatomical disputes and fragmented-object conventions explicit.
+The recognition scorer checks missing/extra IDs and exact labels, and reports
+correct identities over all supplied objects. Keep anatomical disputes and
+fragmented-object conventions explicit; this explainer asserts no model result.
 
 ## Difficulty
 

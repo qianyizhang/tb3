@@ -4,7 +4,7 @@ export type TaskTab = "overview" | "requirements" | "examples" | "sources";
 export type BrowseView = "capability" | "repository";
 export type ResearchLane = "tasks" | "supporting" | "all";
 export type BriefField = "goal" | "value" | "raw" | "helpers" | "output" | "challenge" | "spec" | "tools" | "score" | "reference" | "families" | "gap" | "case_note";
-export type StoryPlan = RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan;
+export type StoryPlan = RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan;
 export interface StoryBeat {
   id: string;
   duration: number;
@@ -350,6 +350,41 @@ export interface AnatomyPlan {
   recipe: "anatomy-audit-v1";
   beats: Array<AnatomyBeat>;
 }
+export interface IdentityChannels {
+  focus: [number, number];
+  inventory: [number, number];
+  reveal: [number, number];
+}
+export interface IdentityBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: IdentityChannels;
+}
+export interface IdentityPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "anatomy-identity-v1";
+  beats: Array<IdentityBeat>;
+}
 export interface Illustration {
   story_id?: string;
   kind: string;
@@ -588,7 +623,7 @@ export interface Inventory {
   repositories?: Array<RepositoryInventory>;
 }
 export interface ExplorerData {
-  explanation_stories?: Record<string, RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan>;
+  explanation_stories?: Record<string, RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan>;
   schema_version: 1;
   title?: string;
   entries: Array<TaskEntry>;

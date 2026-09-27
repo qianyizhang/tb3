@@ -3,7 +3,7 @@ import type { StoryPlan } from '../types';
 import type { PlayerActions } from './use-scene-player';
 import { StoryOutput } from './story-output';
 import { fixturePoster } from './route-prefab';
-import { isPlanarStory, storyPresentation } from './story-recipes';
+import { isPlanarStory, storyPresentation, hasInteractiveProjection } from './story-recipes';
 import { OperationScene, OperationOutput } from './operation-view';
 export interface VisualProps {
   entry: VisualEntry;
@@ -130,6 +130,7 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
     };
   });
   const { stage, playing, fallback, actions, pointer } = player;
+  const projected = fallback && !!plan && hasInteractiveProjection(plan);
   const steps = plan
     ? plan.beats.map((beat) => beat.id)
     : [t('Input'), t('Action'), t(entry.role && entry.role !== 'task' ? 'Study output' : 'Output')];
@@ -164,7 +165,7 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
         <strong lang="en">{story.action}</strong>
         <p lang="en">{story.cue}</p>
       </div>
-      <div className="scene-controls" hidden={fallback}>
+      <div className="scene-controls" hidden={fallback && !projected}>
         <div
           className="scene-steps scene-storyboard"
           role="group"
@@ -194,15 +195,15 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
         </div>
       </div>
       <div className={plan ? styles.storyLayout : undefined}>
-        <div className="scene-stage" hidden={fallback}>
-          {planar && plan && player.storyState && (
+        <div className="scene-stage" hidden={fallback && !projected}>
+          {(planar || projected) && plan && player.storyState && (
             <>
               <OperationScene plan={plan} state={player.storyState} />
               <p className={styles.mobileNarration}>{player.storyState.narration}</p>
             </>
           )}
           <canvas
-            hidden={planar}
+            hidden={planar || projected}
             className="scene-canvas"
             ref={player.canvas}
             tabIndex={0}
@@ -242,7 +243,7 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
             {d.caption}
           </canvas>
           <div className="scene-annotations" ref={player.annotations} aria-hidden="true" />
-          <span className="scene-corner" lang="en" hidden={planar}>
+          <span className="scene-corner" lang="en" hidden={planar || projected}>
             {plan
               ? presentation!.corner
               : [
@@ -263,7 +264,7 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
             <OperationOutput plan={plan} state={player.storyState} />
           ))}
       </div>
-      <div className="scene-transport" hidden={fallback}>
+      <div className="scene-transport" hidden={fallback && !projected}>
         <button
           className="scene-play"
           onClick={() => actions.current?.toggle()}
@@ -281,12 +282,12 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
         >
           {t('Reset')}
         </button>
-        <span className="scene-gesture" aria-hidden="true" hidden={planar}>
+        <span className="scene-gesture" aria-hidden="true" hidden={planar || projected}>
           {t('Drag to explore in 3D')}
         </span>
       </div>
-      <div className="scene-fallback" hidden={!fallback}>
-        {fallback && (
+      <div className="scene-fallback" hidden={!fallback || projected}>
+        {fallback && !projected && (
           <>
             <p lang={plan?.schema === 2 ? 'en' : undefined}>
               {plan?.schema === 2

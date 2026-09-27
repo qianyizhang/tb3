@@ -5,9 +5,14 @@ import {
   createCorrespondencePrefab,
   createMaterialPrefab,
   createAnatomyPrefab,
+  createIdentityPrefab,
 } from './operation-prefabs';
 export function isPlanarStory(plan: StoryPlan): boolean {
   return ['multiscale-v1', 'local-edit-v1', 'longitudinal-v1', 'inverse-v1'].includes(plan.recipe);
+}
+export function hasInteractiveProjection(plan: StoryPlan): boolean {
+  // Identity names must stay hidden at the start even without a GPU.
+  return plan.recipe === 'anatomy-identity-v1';
 }
 export function nativeFactory(plan: StoryPlan) {
   switch (plan.recipe) {
@@ -21,6 +26,8 @@ export function nativeFactory(plan: StoryPlan) {
       return createMaterialPrefab;
     case 'anatomy-audit-v1':
       return createAnatomyPrefab;
+    case 'anatomy-identity-v1':
+      return createIdentityPrefab;
     default:
       throw new Error('No native factory for ' + plan.recipe);
   }
@@ -109,6 +116,15 @@ export function storyPresentation(plan: StoryPlan): {
           ['#307f74', 'Point A / trajectory'],
           ['#b77128', 'Point B / trajectory'],
           ['#557e93', 'Point C / trajectory'],
+        ],
+      };
+    case 'anatomy-identity-v1':
+      return {
+        heading: 'Supplied objects → anatomical identities',
+        corner: 's1233 subset · teaching IDs · shared source frame',
+        legend: [
+          ['#b8b5a6', 'Supplied neighbouring objects'],
+          ['#307f74', 'Object being inspected'],
         ],
       };
     case 'anatomy-audit-v1':
