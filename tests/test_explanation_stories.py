@@ -16,6 +16,46 @@ SOURCE = Path("groups/tubular-anatomy/presentation/stories/route-unfold-teaching
 
 
 class ExplanationStoriesTests(unittest.TestCase):
+    def test_source_slice_pack_requires_reference_disclosure_and_retained_terms(self):
+        source = Path("groups/anatomy-audit/presentation/stories/mixed-tissue-audit.story.md")
+        plan = stories.compile_story(ROOT, source)
+        self.assertEqual(plan["reference_policy"], "reader-reference-reveal")
+        with tempfile.TemporaryDirectory(dir=ROOT / ".local") as temp:
+            path = Path(temp) / "hidden-reference.story.md"
+            path.write_text(
+                (ROOT / source)
+                .read_text()
+                .replace(
+                    "reference_policy: reader-reference-reveal",
+                    "reference_policy: no-reference-assets",
+                )
+            )
+            with self.assertRaisesRegex(ValueError, "reference policy mismatch"):
+                stories.compile_story(ROOT, path)
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp).resolve()
+            source_dir = "presentation/task-explorer/mixed-tissue"
+            shutil.copytree(ROOT / source_dir, root / source_dir)
+            index_path = root / "presentation/assets/teaching-prefabs.json"
+            index_path.parent.mkdir(parents=True)
+            shutil.copyfile(ROOT / "presentation/assets/teaching-prefabs.json", index_path)
+            manifest_path = root / source_dir / "manifest.json"
+            original = json.loads(manifest_path.read_text())
+            stories.resolve_assets(root, "retained-mixed-tissue-v1")
+            for mutation in ("license", "reference", "hash"):
+                changed = copy.deepcopy(original)
+                if mutation == "license":
+                    changed["license"] = "CC0-1.0"
+                elif mutation == "reference":
+                    next(a for a in changed["assets"] if a["file"] == "fixture.json")["role"] = (
+                        "illustration"
+                    )
+                else:
+                    changed["assets"][0]["sha256"] = "0" * 64
+                manifest_path.write_text(json.dumps(changed))
+                with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                    stories.resolve_assets(root, "retained-mixed-tissue-v1")
+
     def test_schema_dispatch_uses_only_parsed_frontmatter(self):
         route = (ROOT / SOURCE).read_text()
         expansion = (ROOT / "presentation/external-tasks/stories/ct-forward.story.md").read_text()

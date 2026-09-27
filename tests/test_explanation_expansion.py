@@ -15,7 +15,12 @@ class ExpansionTests(unittest.TestCase):
         for path in ROOT.glob("groups/*/presentation/stories/*.story.md"):
             plan = stories.compile_story(ROOT, path)
             self.assertEqual(plan["beats"][-1]["endFrame"], plan["durationFrames"])
-            self.assertEqual(plan["reference_policy"], "no-reference-assets")
+            self.assertEqual(
+                plan["reference_policy"],
+                "reader-reference-reveal"
+                if plan["recipe"] == "mixed-tissue-v1"
+                else "no-reference-assets",
+            )
             if plan["schema"] == 2:
                 for locator in plan["source_locators"]:
                     self.assertIn(locator, plan["dependencies"])

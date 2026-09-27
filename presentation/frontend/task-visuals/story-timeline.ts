@@ -104,6 +104,18 @@ export function sampleStory(plan: StoryPlan, requested: number) {
         reveal: channel(b.channels.reveal),
       });
     }
+    case 'mixed-tissue-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        conditions: channel(b.channels.conditions),
+        plane: channel(b.channels.plane),
+        overlay: channel(b.channels.overlay),
+        reference: channel(b.channels.reference),
+        witness: channel(b.channels.witness),
+      });
+    }
     case 'anatomy-audit-v1': {
       const b = plan.beats[index];
       return Object.freeze({

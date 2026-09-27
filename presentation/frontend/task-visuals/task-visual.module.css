@@ -583,7 +583,8 @@
   font-size: 13px;
 }
 .mobileInverse,
-.mobileNarration {
+.mobileNarration,
+.mixedMobileMeta {
   display: none;
 }
 .storyOutput code {
@@ -596,7 +597,8 @@
   line-height: 1.25;
 }
 
-:global([data-recipe='anatomy-identity-v1']) :global(.scene-step-index) {
+:global([data-recipe='anatomy-identity-v1']) :global(.scene-step-index),
+:global([data-recipe='mixed-tissue-v1']) :global(.scene-step-index) {
   flex-shrink: 0;
   white-space: nowrap;
 }
@@ -636,4 +638,16 @@
     margin: 12px 16px;
     font-size: 14px;
   }
+  .mixedMobileMeta {
+    display: block;
+    margin: 12px 16px 0;
+    font-size: 14px;
+  }
+}
+.player[data-recipe='mixed-tissue-v1'] :global(.scene-legend > span:last-child i) {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #555;
+  border-radius: 50%;
+  box-sizing: border-box;
 }

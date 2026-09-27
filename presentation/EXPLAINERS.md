@@ -47,6 +47,7 @@ A bound story is not automatically accepted; unresolved entries remain visible.
 | Longitudinal | Explicit match/new/unobserved relations; actual CT task supplies no candidate locations |
 | Anatomy audit | Existing seven-part s1233 assembly; label/witness schema and clean-control semantics |
 | Object identity | Anonymous teaching IDs, shared source geometry, condition-specific vocabulary, assignment output and explicit source-name reveal; seven-part s1233 subset is not full A01 |
+| Mixed tissue | Retained M02 CT with supplied host/donor outlines; author-only region and LPS witness revealed explicitly; whole/partial/unchanged/focused conditions stay distinct |
 | CT/MRI | Separate Radon/FFT measurements and image outputs; toy vs task dimensions/assistance explicit |
 
 V2 multiscale stories require `operation: coordinate-navigation`, `supplied-patches`
@@ -62,6 +63,15 @@ the condition's vocabulary with `inventory`, and exposes source names only throu
 `reveal`. Its no-GPU projection retains the same clock, chapters and input-first
 state. The retained seven-object s1233 subset shares a source with BR-013 A01;
 teaching IDs and source-name rows are explicitly separate from the frozen task.
+
+`mixed-tissue-v1` uses three native CT slices with an explicit
+`reader-reference-reveal` policy. The reference region and witness are absent
+from the initial rendered view, including without a GPU. Crops are oracle-centred
+and labeled as such from the start; this is a reader explanation, not blind search
+or solver input. The dedicated source-slice pack pins CC BY / Apache terms,
+source hashes, native pixel-to-LPS transforms and separately classified reference
+paths. Other recipes retain `no-reference-assets`. Rebuild instructions and
+limits are in [the source notice](task-explorer/mixed-tissue/NOTICE.md).
 
 ## Build and export
 

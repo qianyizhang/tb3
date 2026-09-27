@@ -89,7 +89,7 @@ class ExpansionPlan(TypedDict):
     scope: str
     asset_pack: str
     source_class: Literal["procedural-teaching", "source-derived-teaching"]
-    reference_policy: Literal["no-reference-assets"]
+    reference_policy: Literal["no-reference-assets", "reader-reference-reveal"]
     fps: int
     source_locators: list[str]
     durationFrames: int
@@ -249,6 +249,23 @@ class IdentityPlan(ExpansionPlan):
     beats: list[IdentityBeat]
 
 
+class MixedTissueChannels(TypedDict):
+    conditions: list[float]
+    plane: list[float]
+    overlay: list[float]
+    reference: list[float]
+    witness: list[float]
+
+
+class MixedTissueBeat(ExpansionBeat):
+    channels: MixedTissueChannels
+
+
+class MixedTissuePlan(ExpansionPlan):
+    recipe: Literal["mixed-tissue-v1"]
+    beats: list[MixedTissueBeat]
+
+
 StoryPlan = (
     RouteStoryPlan
     | TopologyPlan
@@ -260,6 +277,7 @@ StoryPlan = (
     | EditPlan
     | AnatomyPlan
     | IdentityPlan
+    | MixedTissuePlan
 )
 
 

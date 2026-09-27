@@ -2,6 +2,10 @@ export { Group } from 'three';
 export { sampleStory } from '../presentation/frontend/task-visuals/story-timeline.ts';
 export { identityRows } from '../presentation/frontend/task-visuals/identity.ts';
 export {
+  mixedTissueView,
+  mixedTissue,
+} from '../presentation/frontend/task-visuals/mixed-tissue.ts';
+export {
   nativeFactory,
   isPlanarStory,
   storyPresentation,

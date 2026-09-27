@@ -130,15 +130,15 @@
       ],
       "illustration_kind": "anatomy_audit",
       "subject": "abdomen",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "mixed-tissue-audit",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "anatomy-audit",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "71 frozen files verified. Retained M02 CT and supplied masks plus a separately disclosed private region/witness; three native oracle-centred slices, pixel-to-LPS transforms and full licenses pinned.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/002-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Return host object, included anatomical class and a physical LPS witness point.",
+      "remaining_work": "No outstanding work for the bounded mixed-tissue teaching story; selected-crop, private-reference and condition limits remain explicit. Remote delivery remains a program-level pending approval.",
       "contract_projection": {
         "raw": "Native abdominal CT and named organ masks.",
         "helpers": "Proposed masks and neighboring anatomy; whole absorption, partial absorption and unchanged controls supply different cues.",
@@ -161,7 +161,49 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "08654ecea37039ff5d86ca116f860fd011335fe7329a5c1f0d92460b3ec2edad"
+      "source_brief_sha256": "08654ecea37039ff5d86ca116f860fd011335fe7329a5c1f0d92460b3ec2edad",
+      "acceptance_scope": "Visual and engineering review of the integrated mixed-tissue teaching story; no user, clinical or model-performance acceptance.",
+      "visual_review": "Input-first CT/mask inspection, explicit gold reference and white LPS witness, all-plane timing, immediate condition comparison, keyboard reset, mobile orientation and no-GPU behavior reviewed.",
+      "reviewed_contract_projection": {
+        "raw": "Native abdominal CT and proposed named masks from retained TotalSegmentator case\n`s1233`, with voxel-to-LPS affines. Positive LPS axes point left, posterior and\nsuperior; coordinates are millimetres. Arrays are authoritative; PNGs are previews.",
+        "helpers": "The broad M02 task supplies 13 masks, a vocabulary, a scene index and ready 3D and\ntriplanar CT previews. Masks can overlap. Object IDs and colours are arbitrary.",
+        "tools": "Python, NumPy, Pillow, `inspect_scene.py` and `inspect_ct.py` are supplied; additional\ncalculations and tools are allowed. No external source/patient matching is needed.",
+        "spec": "Report every affected host mask containing at least **5 mL** of another organ.\nThe number of findings is unspecified and may be zero. A separate correct label\ndoes not rule out foreign tissue inside another mask. Missing class names alone,\nthin contour differences, native overlaps and incomplete scan coverage are outside\nscope. Do not infer disease or surgery.",
+        "output": "Write `answer.json` with one `findings` list. Each finding has `object_id` (the host,\nnot a remaining donor), `included_label` and three finite `point_lps_mm` numbers.\nReturn `{\"findings\":[]}` for an unchanged control. Do not add prose fields or\nduplicate host/class pairs. No contours or exact volume estimates are required.",
+        "reference": "Original source masks, injected-region lineage and the oracle point are private\nevaluator material, absent from the solver environment. The integrated teaching\nstory uses three **oracle-centred crops** and explicitly reveals the injected region\nand point later. That selected view is neither blind search nor a full-volume audit;\nit must not be given to a solver as task input.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "The broad M02 task supplies 13 masks, a vocabulary, a scene index and ready 3D and\ntriplanar CT previews. Masks can overlap. Object IDs and colours are arbitrary.",
+            "remaining": "Report every affected host mask containing at least **5 mL** of another organ.\nThe number of findings is unspecified and may be zero. A separate correct label\ndoes not rule out foreign tissue inside another mask. Missing class names alone,\nthin contour differences, native overlaps and incomplete scan coverage are outside\nscope. Do not infer disease or surgery."
+          }
+        ],
+        "sources": [
+          [
+            "BR-017 — Substantial anatomy absorbed into an adjacent label",
+            "groups/anatomy-audit/experiments/br017/protocol.md"
+          ],
+          [
+            "Frozen M02 contract",
+            "docs/evidence/br017-abdomen-m02-freeze.json"
+          ],
+          [
+            "Independent source/voxel audit",
+            "docs/evidence/br017-audit.json"
+          ],
+          [
+            "Teaching slice provenance and terms",
+            "presentation/task-explorer/mixed-tissue/NOTICE.md"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "6c2aff500d91d116f3245095838e1b00465e6fba6b0b0df5d3cbfd7440994b9e",
+        "source_story_sha256": "81f3b3ed281fa1ca458a09d9b8bc080b2a97a356de11acef5bafaa1340410564",
+        "acceptance_receipt_sha256": "ecc89af9ada4cb280385ad9f994f332b3adcf79512bfb79f23fcde8a6c05c130"
+      }
     },
     {
       "entry_id": "tb3-supplied-object-identity",
@@ -11818,9 +11860,9 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 41,
+    "pending-operation-review": 40,
     "reviewed-scripted-spatial": 7,
-    "reviewed-scripted-planar": 7,
+    "reviewed-scripted-planar": 8,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
   },
@@ -11841,7 +11883,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-mixed-tissue-audit",
+    "active_entry": "tb3-unlabeled-anatomy-prototype",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -12138,7 +12180,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/001-acceptance.json",
         "reviewed_entries": 14,
-        "next_entry": "tb3-mixed-tissue-audit"
+        "next_entry": "tb3-mixed-tissue-audit",
+        "local_commit": "59c78fd"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-mixed-tissue-audit",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/002-acceptance.json",
+        "reviewed_entries": 15,
+        "next_entry": "tb3-unlabeled-anatomy-prototype"
       }
     ]
   }

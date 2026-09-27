@@ -4,7 +4,7 @@ export type TaskTab = "overview" | "requirements" | "examples" | "sources";
 export type BrowseView = "capability" | "repository";
 export type ResearchLane = "tasks" | "supporting" | "all";
 export type BriefField = "goal" | "value" | "raw" | "helpers" | "output" | "challenge" | "spec" | "tools" | "score" | "reference" | "families" | "gap" | "case_note";
-export type StoryPlan = RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan;
+export type StoryPlan = RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | MixedTissuePlan;
 export interface StoryBeat {
   id: string;
   duration: number;
@@ -47,7 +47,7 @@ export interface ExpansionPlan {
   scope: string;
   asset_pack: string;
   source_class: "procedural-teaching" | "source-derived-teaching";
-  reference_policy: "no-reference-assets";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
   durationFrames: number;
@@ -90,7 +90,7 @@ export interface TopologyPlan {
   scope: string;
   asset_pack: string;
   source_class: "procedural-teaching" | "source-derived-teaching";
-  reference_policy: "no-reference-assets";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
   durationFrames: number;
@@ -127,7 +127,7 @@ export interface CorrespondencePlan {
   scope: string;
   asset_pack: string;
   source_class: "procedural-teaching" | "source-derived-teaching";
-  reference_policy: "no-reference-assets";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
   durationFrames: number;
@@ -162,7 +162,7 @@ export interface MaterialPlan {
   scope: string;
   asset_pack: string;
   source_class: "procedural-teaching" | "source-derived-teaching";
-  reference_policy: "no-reference-assets";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
   durationFrames: number;
@@ -197,7 +197,7 @@ export interface LongitudinalPlan {
   scope: string;
   asset_pack: string;
   source_class: "procedural-teaching" | "source-derived-teaching";
-  reference_policy: "no-reference-assets";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
   durationFrames: number;
@@ -233,7 +233,7 @@ export interface MultiscalePlan {
   scope: string;
   asset_pack: string;
   source_class: "procedural-teaching" | "source-derived-teaching";
-  reference_policy: "no-reference-assets";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
   durationFrames: number;
@@ -269,7 +269,7 @@ export interface InversePlan {
   scope: string;
   asset_pack: string;
   source_class: "procedural-teaching" | "source-derived-teaching";
-  reference_policy: "no-reference-assets";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
   durationFrames: number;
@@ -305,7 +305,7 @@ export interface EditPlan {
   scope: string;
   asset_pack: string;
   source_class: "procedural-teaching" | "source-derived-teaching";
-  reference_policy: "no-reference-assets";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
   durationFrames: number;
@@ -340,7 +340,7 @@ export interface AnatomyPlan {
   scope: string;
   asset_pack: string;
   source_class: "procedural-teaching" | "source-derived-teaching";
-  reference_policy: "no-reference-assets";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
   durationFrames: number;
@@ -375,7 +375,7 @@ export interface IdentityPlan {
   scope: string;
   asset_pack: string;
   source_class: "procedural-teaching" | "source-derived-teaching";
-  reference_policy: "no-reference-assets";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
   durationFrames: number;
@@ -384,6 +384,43 @@ export interface IdentityPlan {
   dependencies: Record<string, string>;
   recipe: "anatomy-identity-v1";
   beats: Array<IdentityBeat>;
+}
+export interface MixedTissueChannels {
+  conditions: Array<number>;
+  plane: Array<number>;
+  overlay: Array<number>;
+  reference: Array<number>;
+  witness: Array<number>;
+}
+export interface MixedTissueBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: MixedTissueChannels;
+}
+export interface MixedTissuePlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "mixed-tissue-v1";
+  beats: Array<MixedTissueBeat>;
 }
 export interface Illustration {
   story_id?: string;
@@ -623,7 +660,7 @@ export interface Inventory {
   repositories?: Array<RepositoryInventory>;
 }
 export interface ExplorerData {
-  explanation_stories?: Record<string, RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan>;
+  explanation_stories?: Record<string, RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | MixedTissuePlan>;
   schema_version: 1;
   title?: string;
   entries: Array<TaskEntry>;

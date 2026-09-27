@@ -8,7 +8,13 @@ import {
   createIdentityPrefab,
 } from './operation-prefabs';
 export function isPlanarStory(plan: StoryPlan): boolean {
-  return ['multiscale-v1', 'local-edit-v1', 'longitudinal-v1', 'inverse-v1'].includes(plan.recipe);
+  return [
+    'multiscale-v1',
+    'local-edit-v1',
+    'longitudinal-v1',
+    'inverse-v1',
+    'mixed-tissue-v1',
+  ].includes(plan.recipe);
 }
 export function hasInteractiveProjection(plan: StoryPlan): boolean {
   // Identity names must stay hidden at the start even without a GPU.
@@ -38,6 +44,17 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'mixed-tissue-v1':
+      return {
+        heading: 'Mixed tissue inside a proposed label · retained BR-017 M02 slices',
+        corner: 'Reference-centred teaching crops · LPS mm',
+        legend: [
+          ['#57cabb', 'Supplied duodenum host'],
+          ['#6cafff', 'Remaining pancreas'],
+          ['#f5b344', 'Injected region · reveal only'],
+          ['#ffffff', 'Witness ring · reveal only'],
+        ],
+      };
     case 'route-unfold-v1':
       return {
         heading: 'How route-conditioned resampling works — synthetic teaching example',

@@ -1,6 +1,6 @@
 # Explainer completion plan
 
-Complete the remaining **192 of 205 catalogue entries**, one entry at a time.
+Complete the **192 of 205 catalogue entries unfinished at the start**, one entry at a time.
 The [ledger](EXPLAINER-LEDGER.json) is the single authority for entry status,
 source blockers, bindings and acceptance receipts. Its `completion_program.sequence`
 enumerates every unfinished entry exactly once in execution order. This plan was
@@ -15,9 +15,11 @@ remote delivery/CI remains open. The catalogue has 13 reviewed teaching stories,
 blockers. These are assistant visual/engineering statuses, not clinical, model
 or user acceptance. Preserve the existing 13 reviews and their original receipts.
 
-The authorized work covers source inspection, contracts and briefs, task-specific
+The authorized local work covers source inspection, contracts and briefs, task-specific
 story authoring, necessary shared recipe changes, local media exports, visual
-review, focused commits, push and CI. It does not launch medical/model trials,
+review and focused commits. Push to `main` remains pending explicit user approval
+after automatic approval review rejected the first push; remote CI depends on that
+delivery. Continue local entries while this approval is pending. The work does not launch medical/model trials,
 rewrite frozen evidence, install medical runtimes or publish the website. Public
 source research and small licensed teaching inputs may resolve dependencies;
 restricted access, unclear rights or large acquisitions need a concrete decision

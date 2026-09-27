@@ -19,6 +19,8 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   const {
     sampleStory,
     identityRows,
+    mixedTissueView,
+    mixedTissue,
     storyPresentation,
     nativeFactory,
     isPlanarStory,
@@ -101,6 +103,40 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     assert.throws(() => content.update(sampleStory(plan, 0)));
   }
   const full = traceEdges(1);
+  const mixed = plans.find((plan) => plan.recipe === 'mixed-tissue-v1');
+  assert.ok(mixed, 'Exercise the mixed-tissue reference boundary');
+  const noReference = mixedTissueView(sampleStory(mixed, 0));
+  assert.equal(noReference.referenceVisible, false);
+  assert.equal(noReference.witnessVisible, false);
+  const planeSweep = mixed.beats.find(
+    (b) => b.channels.plane[0] === 0 && b.channels.plane[1] === 1,
+  );
+  const planeFrames = new Map();
+  for (let frame = planeSweep.startFrame; frame < planeSweep.endFrame; frame++) {
+    const plane = mixedTissueView(sampleStory(mixed, frame)).slice.plane;
+    planeFrames.set(plane, (planeFrames.get(plane) ?? 0) + 1);
+  }
+  assert.equal(planeFrames.size, 3);
+  assert.ok(
+    [...planeFrames.values()].every((count) => count >= 24),
+    'Every inspection plane must hold for at least one second',
+  );
+  for (const beat of mixed.beats) {
+    const view = mixedTissueView(sampleStory(mixed, beat.endFrame - 1));
+    assert.equal(view.referenceVisible, beat.channels.reference[1] > 0);
+    assert.equal(view.witnessVisible, beat.channels.witness[1] > 0);
+  }
+  for (const slice of mixedTissue.slices) {
+    const [x, y] = slice.witness_pixel.map((v) => v - 0.5);
+    const lps = slice.pixel_center_origin_lps_mm.map(
+      (v, j) => v + x * slice.pixel_dx_lps_mm[j] + y * slice.pixel_dy_lps_mm[j],
+    );
+    assert.ok(Math.hypot(...lps.map((v, j) => v - mixedTissue.witness_lps_mm[j])) < 1e-8);
+    assert.ok(
+      slice.region_cells.includes('M74,74h1v1h-1z'),
+      'Witness must lie in displayed reference',
+    );
+  }
   const identity = plans.find((plan) => plan.recipe === 'anatomy-identity-v1');
   assert.ok(identity, 'Exercise supplied-object identity semantics');
   for (const beat of identity.beats.filter((beat) => beat.channels.reveal[1] === 0)) {

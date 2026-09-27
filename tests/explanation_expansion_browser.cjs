@@ -63,6 +63,23 @@ withBrowser(async (browser) => {
           const returned = canvas.getByText('level-0 (2680, 2040) px', { exact: true });
           assert.equal(await returned.count(), frame === plan.durationFrames - 1 ? 1 : 0);
         }
+        if (plan.recipe === 'mixed-tissue-v1') {
+          const reveal = plan.beats.find((b) => b.channels.reference[1] > 0).startFrame;
+          const witness = plan.beats.find((b) => b.channels.witness[1] > 0).startFrame;
+          assert.equal(
+            await page.locator('[data-mixed-reference]').count(),
+            frame > reveal ? 1 : 0,
+          );
+          assert.equal(await page.locator('[data-mixed-answer]').count(), frame > witness ? 1 : 0);
+          assert.ok(
+            await page
+              .locator('[data-mixed-output]')
+              .evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'Mixed-tissue content overflows',
+          );
+          const output = await page.locator('[data-mixed-output]').boundingBox();
+          assert.ok(output && output.y + output.height <= 720, 'Mixed-tissue output clipped');
+        }
         if (plan.recipe === 'anatomy-identity-v1') {
           const labels = await page.locator('[data-identity-label]').allTextContents();
           assert.equal(labels.length, 7);
@@ -203,6 +220,10 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'mixed-tissue-v1') {
+      assert.equal(await page.locator('[data-mixed-orientation]').isVisible(), true);
+      assert.match(await page.locator('[data-mixed-orientation]').innerText(), /LPS mm/);
+    }
     await page.setViewportSize({ width: 1280, height: 900 });
     const noGpu = await browser.newContext({
       viewport: { width: 1280, height: 900 },
@@ -228,8 +249,18 @@ withBrowser(async (browser) => {
       'longitudinal-v1',
       'inverse-v1',
       'anatomy-identity-v1',
+      'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'mixed-tissue-v1') {
+      assert.equal(await fallback.locator('[data-mixed-reference]').count(), 0);
+      assert.equal(await fallback.locator('[data-mixed-answer]').count(), 0);
+      await fallback.locator('[data-story-step="5"]').click();
+      await fallback.locator('[data-mixed-answer]').waitFor();
+      await fallback.locator('[data-story-step="0"]').click();
+      await fallback.locator('[data-mixed-pending]').waitFor();
+      assert.equal(await fallback.locator('[data-mixed-reference]').count(), 0);
+    }
     if (plan.recipe === 'anatomy-identity-v1') {
       assert.equal(
         await fallback.locator('.scene-player').getAttribute('data-committed-frame'),
@@ -278,6 +309,7 @@ withBrowser(async (browser) => {
       'tb3-oblique-pose',
       'tb3-label-audit',
       'tb3-supplied-object-identity',
+      'tb3-mixed-tissue-audit',
     ]) {
       await page.evaluate((id) => {
         location.hash = `${id}/0/overview?view=repository`;

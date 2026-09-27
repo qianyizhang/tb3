@@ -53,6 +53,7 @@ RECIPE_PACKS = {
     "inverse-v1": "inverse-problems-v1",
     "anatomy-audit-v1": "retained-anatomy-v1",
     "anatomy-identity-v1": "retained-anatomy-v1",
+    "mixed-tissue-v1": "retained-mixed-tissue-v1",
 }
 SCOPE = (
     "Synthetic teaching fixture · one sampling ribbon only. Does not demonstrate local mask "
@@ -137,6 +138,14 @@ class IdentityChannels(Closed):
     reveal: Pair
 
 
+class MixedTissueChannels(Closed):
+    conditions: Pair
+    plane: Pair
+    overlay: Pair
+    reference: Pair
+    witness: Pair
+
+
 class EditChannels(Closed):
     domain: Pair
     correction: Pair
@@ -162,7 +171,7 @@ class Story[Channels: Closed](Closed):
     scope: Text
     asset_pack: Text
     source_class: Literal["procedural-teaching", "source-derived-teaching"]
-    reference_policy: Literal["no-reference-assets"]
+    reference_policy: Literal["no-reference-assets", "reader-reference-reveal"]
     fps: Annotated[StrictInt, Field(ge=12, le=60)]
     source_locators: Annotated[tuple[Text, ...], Field(min_length=1)]
     beats: tuple[ExpansionBeat[Channels], ...]
@@ -219,6 +228,10 @@ class IdentityStory(Story[IdentityChannels]):
     recipe: Literal["anatomy-identity-v1"]
 
 
+class MixedTissueStory(Story[MixedTissueChannels]):
+    recipe: Literal["mixed-tissue-v1"]
+
+
 class EditStory(Story[EditChannels]):
     recipe: Literal["local-edit-v1"]
 
@@ -232,7 +245,8 @@ AnyStory = Annotated[
     | InverseStory
     | EditStory
     | AnatomyStory
-    | IdentityStory,
+    | IdentityStory
+    | MixedTissueStory,
     Field(discriminator="recipe"),
 ]
 ADAPTER: TypeAdapter[
@@ -245,6 +259,7 @@ ADAPTER: TypeAdapter[
     | EditStory
     | AnatomyStory
     | IdentityStory
+    | MixedTissueStory
 ] = TypeAdapter(AnyStory)
 
 
@@ -289,9 +304,15 @@ class AnatomyPack(Closed):
     runtime_geometry: Literal["anatomy-assembly"]
 
 
+class SourceSlicePack(Closed):
+    manifest: str
+    retained_files: tuple[str, ...]
+    runtime_geometry: Literal["source-slices"]
+
+
 class PrefabIndex(Closed):
     schema_version: StrictInt = Field(alias="schema", ge=1, le=1)
-    packs: dict[str, AssetPack | FixturePack | AnatomyPack]
+    packs: dict[str, AssetPack | FixturePack | AnatomyPack | SourceSlicePack]
 
 
 class Header(Closed):
@@ -411,6 +432,7 @@ def parse_expansion(
     | EditStory
     | AnatomyStory
     | IdentityStory
+    | MixedTissueStory
 ):
     document = parse_document(raw) if isinstance(raw, str) else raw
     return ADAPTER.validate_python({**document.header, "beats": document.beats})
@@ -474,6 +496,48 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
     pack = index.packs[pack_id]
     manifest_path = storage.inside(root, pack.manifest)
     manifest = json.loads(manifest_path.read_text())
+    if isinstance(pack, SourceSlicePack):
+        required = {
+            "fixture.json",
+            "axial.png",
+            "coronal.png",
+            "sagittal.png",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+            "LABEL-LICENSE.txt",
+        }
+        if (
+            pack_id != "retained-mixed-tissue-v1"
+            or manifest.get("id") != pack_id
+            or manifest.get("license") != "CC-BY-4.0"
+            or manifest.get("label_license") != "Apache-2.0"
+            or manifest.get("frame") != "LPS"
+            or manifest.get("units") != "mm"
+            or manifest.get("reference_policy") != "reader-reference-reveal"
+            or not manifest.get("sources")
+            or set(pack.retained_files) != required
+            or len(pack.retained_files) != len(required)
+        ):
+            raise ValueError("Source slices require exact provenance, terms and reference policy")
+        assets = {asset["file"]: asset for asset in manifest["assets"]}
+        if set(assets) != required or len(assets) != len(manifest["assets"]):
+            raise ValueError("Missing or duplicate source slice asset")
+        dependencies = {
+            p.relative_to(root).as_posix(): storage.sha(p) for p in (index_path, manifest_path)
+        }
+        for name in pack.retained_files:
+            path = storage.inside(manifest_path.parent, name)
+            asset = assets[name]
+            role = "reader-reference-reveal" if name == "fixture.json" else "illustration"
+            if (
+                asset["provenance"] != "source-derived-teaching"
+                or asset["role"] != role
+                or storage.sha(path) != asset["sha256"]
+                or path.stat().st_size != asset["bytes"]
+            ):
+                raise ValueError(f"Stale or incorrectly classified source slice: {name}")
+            dependencies[path.relative_to(root).as_posix()] = storage.sha(path)
+        return storage.sha(manifest_path), dependencies
     if isinstance(pack, AnatomyPack):
         if pack_id != "retained-anatomy-v1" or not manifest.get("terms"):
             raise ValueError("Invalid anatomy owner or missing terms")
@@ -579,10 +643,14 @@ def compile_story(root: Path, path: Path) -> StoryPlan:
         expected_pack = RECIPE_PACKS[story.recipe]
         if story.asset_pack != expected_pack:
             raise ValueError("Recipe asset pack mismatch")
-        if (story.asset_pack == "retained-anatomy-v1") != (
+        if (story.asset_pack in {"retained-anatomy-v1", "retained-mixed-tissue-v1"}) != (
             story.source_class == "source-derived-teaching"
         ):
             raise ValueError("Recipe provenance mismatch")
+        if (story.recipe == "mixed-tissue-v1") != (
+            story.reference_policy == "reader-reference-reveal"
+        ):
+            raise ValueError("Recipe reference policy mismatch")
         manifest_hash, dependencies = resolve_assets(root, story.asset_pack)
         if story.recipe == "topology-v1":
             _, route_dependencies = resolve_assets(root, "tb3-route-kit-v1")
