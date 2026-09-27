@@ -33,7 +33,8 @@ only paired tag point and compare against the no-op baseline. A mask-assisted
 condition may expose the two tumor masks; it narrows region search but does not
 identify the homologous point.
 
-One Astra/medium diagnostic trial has now exercised that contract on a preselected
+One Astra/medium diagnostic trial has now exercised a related two-query,
+world-coordinate-output contract on a preselected
 Case 1 preservation point and Case 3 challenge point. It retained the 1.036 mm
 Case 1 candidate and reduced the Case 3 error from 9.574 to 1.130 mm. The exact
 saved-output replay matched, while an earlier empty-credential dispatch remains
@@ -47,3 +48,16 @@ define collateral-movement and case-level aggregation rules, compare image-only
 reasoning with intensity/registration baselines, and audit whether public training
 exposure or shared affine geometry makes any condition too easy. Keep published
 US landmark coordinates evaluator-only.
+
+## Presentation checkpoint — 2026-09-27
+
+Assistant source audit: all 15 staged files match the acquisition manifest; all
+45 tag pairs reproduce the recorded shared-frame baseline. NIfTI image sforms
+and valid US-mask qforms agree within 0.000031 mm at volume corners. The
+[canonical story](../presentation/stories/resect-point-correspondence.story.md)
+keeps same-query-centred views separate from older independently GT-centred
+figures, optional tumor masks separate from paired-point references, and this
+three-case voxel-output proposal separate from the
+[two-query world-output pilot](../presentation/briefs/tb3-resect-point-pilot.md).
+These are presentation/source checks, not a new trial or a user study decision.
+Reopen protocol design under the existing conditions above.

@@ -40,13 +40,21 @@ the example crop selection are also withheld in the base condition.
 
 For one query, inspect both full volumes and return a corrected US voxel point,
 confidence and a short description of the matching feature. Do not read tag files.
-The initial candidate may be retained. This is a proposed definition; there is no
-frozen prompt or experiment yet.
+The initial candidate may be retained. This three-case, single-query, voxel-output
+definition remains proposed and unfrozen. A [separate executed pilot](tb3-resect-point-pilot.md)
+used two selected queries and returned world coordinates; its contract and outcomes
+must not be silently substituted for this proposal.
 
 ## Expected output
 
-`{"us_voxel_ijk":[125.2,248.6,139.1],"confidence":0.7,"evidence":"sulcal corner"}`.
-The evaluator maps the native continuous voxel coordinate into world millimetres.
+Return `us_voxel_ijk` (three finite continuous native US voxel coordinates),
+`confidence` and a short `evidence` description. The evaluator maps the voxel
+coordinate through the native US affine into NIfTI RAS+ world millimetres.
+
+For the selected Case 2 teaching query, the **unchanged control** is
+`us_voxel_ijk = [113.000, 229.394, 164.959]` (rounded for display),
+confidence 0 and evidence "Unchanged teaching control; no anatomical claim."
+This is not a model answer or a claim that the initial point is anatomically correct.
 
 ## Evaluation
 
@@ -59,6 +67,13 @@ was 0.33 ± 0.08 mm, but this does not itself define a fair agent threshold.
 
 ## Visual explanation
 
+The canonical animation uses verified source sections centred on the supplied
+MRI query and same-world US candidate, then reveals the manual US target without
+recentering. It includes complete native sections, a co-oriented RAS axial sweep,
+optional masks and all 45 shared-frame no-op distances. Image windows are fixed
+positive-intensity 1st–99th percentiles; absent source coverage is transparent.
+The selected teaching point still uses posthoc tag/mask selection.
+
 ### Workflow
 
 - Full FLAIR + pre-resection 3D US + MRI query and initial US candidate
@@ -70,8 +85,9 @@ was 0.33 ± 0.08 mm, but this does not itself define a fair agent threshold.
 ![Case 2 FLAIR and pre-resection US reader views](../figures/resect-sample/case2-input.png)
 
 Case 2. Top: FLAIR; bottom: US. Columns are native array axes 0, 1 and 2,
-resampled only for display. Each 18 mm-radius view is centered using an
-evaluator-only landmark, so this crop is not a proposed solver input.
+resampled only for display. Each 18 mm-radius MRI and US view is independently
+centered using its own evaluator-only landmark. Their aligned crosshairs therefore
+do not demonstrate solved correspondence; these are not proposed solver inputs.
 
 ### Supplied helpers
 
@@ -118,6 +134,7 @@ Improving Cases 2–3 without degrading Case 1 is the useful hypothesis.
 
 ## Sources
 
+- [Source-derived teaching manifest and terms](../../../../presentation/task-explorer/resect/NOTICE.md)
 - [RESECT dataset article](https://doi.org/10.1002/mp.12268)
 - [Original dataset DOI](https://doi.org/10.11582/2017.00004)
 - [Legacy DOI cited in the dataset article](https://doi.org/10.11582/2016.00003)
@@ -134,7 +151,8 @@ volumes remain local; the compact source-derived previews are retained here.
 
 ## Gaps
 
-No executable task bundle, viewer contract, decoy policy or scorer is frozen.
+For this three-case proposal, no executable task bundle, viewer contract, decoy
+policy or scorer is frozen. The separate two-query pilot is retained independently.
 Affines may leak a strong initial guess, while GT-centered crops leak the search
 region entirely; both require explicit condition design. These public cases were
 used by CuRIOUS/Learn2Reg and are unsuitable as unseen test data for models exposed

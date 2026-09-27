@@ -45,3 +45,12 @@ export {
   planePoint,
   planePixels,
 } from '../presentation/frontend/task-visuals/respiratory.ts';
+
+export {
+  resectCase,
+  resectReference,
+  resectProjection,
+  resectReveal,
+  resectSweepIndex,
+  resectTeachingOutput,
+} from '../presentation/frontend/task-visuals/resect.ts';

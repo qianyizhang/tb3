@@ -2358,15 +2358,15 @@
       ],
       "illustration_kind": "point_correspondence",
       "subject": "brain",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "resect-point-correspondence",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "correspondence",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Verified 15 retained files and 45 landmark pairs. Query-centred native/RAS source sections, optional paired masks, fixed affine geometry and reader-only manual targets have pinned provenance and distinct licenses.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/008-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: `{\"us_voxel_ijk\":[125.2,248.6,139.1],\"confidence\":0.7,\"evidence\":\"sulcal corner\"}`.\nThe evaluator maps the native continuous voxel coordinate into world millimetres.",
+      "remaining_work": "No outstanding work for this bounded proposed-task explanation. Protocol freezing and the separate pilot remain distinct; remote delivery is pending at program level.",
       "contract_projection": {
         "raw": "Full native NIfTI volumes: T2-FLAIR MRI (about 1 mm voxels) and tracked B-mode 3D\nultrasound before resection (about 0.2 mm isotropic) from the same operation.\nThe three locally staged cases each contain 15 published point pairs.",
         "helpers": "The base condition supplies the MRI query point and the same physical coordinate\nas an initial US candidate. A separate helper condition adds MRI and US tumor\nmasks; they constrain the search region but do not reveal the landmark.",
@@ -2423,7 +2423,75 @@
         ],
         "gap": "No executable task bundle, viewer contract, decoy policy or scorer is frozen.\nAffines may leak a strong initial guess, while GT-centered crops leak the search\nregion entirely; both require explicit condition design. These public cases were\nused by CuRIOUS/Learn2Reg and are unsuitable as unseen test data for models exposed\nto those benchmarks. The legacy official landing page was unreliable during this\nacquisition, so files came from the pinned re-host with checksums and terms retained.\nCurrent landing pages/re-host use DOI `10.11582/2017.00004`, while the original\narticle's data-access section cites `10.11582/2016.00003`; this discrepancy remains\nexplicit rather than being silently normalized."
       },
-      "source_brief_sha256": "df02c9250e85b636a2a5c73c6df4e5e81d8a7b0d91c80059c48601b4411cb3f4"
+      "source_brief_sha256": "df02c9250e85b636a2a5c73c6df4e5e81d8a7b0d91c80059c48601b4411cb3f4",
+      "acceptance_scope": "Visual and engineering review of a proposed three-case, single-query MRI to US correspondence task; not a new model run or the separate two-query pilot.",
+      "visual_review": "Eight chapters and all reveal states reviewed in desktop/mobile/no-GPU views. Real input images, source-plane sweep, optional masks, unchanged voxel control, fixed-centre manual references and all 45 no-op errors inspected; full decoded video sampled every second.",
+      "reviewed_contract_projection": {
+        "raw": "Full native NIfTI volumes: T2-FLAIR MRI (about 1 mm voxels) and tracked B-mode 3D\nultrasound before resection (about 0.2 mm isotropic) from the same operation.\nThe three locally staged cases each contain 15 published point pairs.",
+        "helpers": "The base condition supplies the MRI query point and the same physical coordinate\nas an initial US candidate. A separate helper condition adds MRI and US tumor\nmasks; they constrain the search region but do not reveal the landmark.",
+        "tools": "A proposed viewer should expose orthogonal slices, linked world coordinates,\nzoom/window controls and point placement in the complete volumes. The rendered\ncrops below are reader-only and selected after inspecting reference annotations.",
+        "spec": "For one query, inspect both full volumes and return a corrected US voxel point,\nconfidence and a short description of the matching feature. Do not read tag files.\nThe initial candidate may be retained. This three-case, single-query, voxel-output\ndefinition remains proposed and unfrozen. A [separate executed pilot](tb3-resect-point-pilot.md)\nused two selected queries and returned world coordinates; its contract and outcomes\nmust not be silently substituted for this proposal.",
+        "output": "Return `us_voxel_ijk` (three finite continuous native US voxel coordinates),\n`confidence` and a short `evidence` description. The evaluator maps the voxel\ncoordinate through the native US affine into NIfTI RAS+ world millimetres.\n\nFor the selected Case 2 teaching query, the **unchanged control** is\n`us_voxel_ijk = [113.000, 229.394, 164.959]` (rounded for display),\nconfidence 0 and evidence \"Unchanged teaching control; no anatomical claim.\"\nThis is not a model answer or a claim that the initial point is anatomically correct.",
+        "reference": "The matching US coordinate from the MNI `.tag` file is evaluator-only. Each tag\nrow stores MRI `(x,y,z)` then US `(x,y,z)` in world millimetres. Tumor masks and\nthe example crop selection are also withheld in the base condition.",
+        "variants": [
+          {
+            "name": "Shared-frame base",
+            "helper": "Query point + same-world-coordinate US candidate",
+            "remaining": "Decide whether and where to correct from image evidence"
+          },
+          {
+            "name": "Mask assisted",
+            "helper": "Base + paired tumor masks",
+            "remaining": "Match local structure within a narrowed region"
+          },
+          {
+            "name": "Coordinate-only control",
+            "helper": "Coordinates, no voxels",
+            "remaining": "Quantify how much shared geometry solves without images"
+          }
+        ],
+        "sources": [
+          [
+            "Source-derived teaching manifest and terms",
+            "presentation/task-explorer/resect/NOTICE.md"
+          ],
+          [
+            "RESECT dataset article",
+            "https://doi.org/10.1002/mp.12268"
+          ],
+          [
+            "Original dataset DOI",
+            "https://doi.org/10.11582/2017.00004"
+          ],
+          [
+            "Legacy DOI cited in the dataset article",
+            "https://doi.org/10.11582/2016.00003"
+          ],
+          [
+            "RESECT-SEG annotation article",
+            "https://doi.org/10.1002/mp.17317"
+          ],
+          [
+            "Pinned three-case acquisition and figure manifest",
+            "groups/registration/presentation/sources/resect-sample.json"
+          ],
+          [
+            "Pinned combined re-host",
+            "https://huggingface.co/datasets/MedOtter/RESECT-SEG/tree/e86fb37dd93f7a9c64e48952f71410af59b04b9b"
+          ],
+          [
+            "Proposed idea and controls",
+            "groups/registration/ideas/resect-mri-us-correspondence.md"
+          ]
+        ],
+        "gap": "For this three-case proposal, no executable task bundle, viewer contract, decoy\npolicy or scorer is frozen. The separate two-query pilot is retained independently.\nAffines may leak a strong initial guess, while GT-centered crops leak the search\nregion entirely; both require explicit condition design. These public cases were\nused by CuRIOUS/Learn2Reg and are unsuitable as unseen test data for models exposed\nto those benchmarks. The legacy official landing page was unreliable during this\nacquisition, so files came from the pinned re-host with checksums and terms retained.\nCurrent landing pages/re-host use DOI `10.11582/2017.00004`, while the original\narticle's data-access section cites `10.11582/2016.00003`; this discrepancy remains\nexplicit rather than being silently normalized."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "2df30acffc006042d0fd807d966341debdd4be754e331524dfaad6d210269d94",
+        "source_story_sha256": "a77c7046a8b4939d29366ff2d7c73fb29f4a817959a903979a207fa0556ef909",
+        "acceptance_receipt_sha256": "92ae1fa10f2bc42efe7e059124faddb4417424daa6997cdebf01cc228de1bde3"
+      }
     },
     {
       "entry_id": "tb3-resect-point-pilot",
@@ -12102,9 +12170,9 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 35,
+    "pending-operation-review": 34,
     "reviewed-scripted-spatial": 11,
-    "reviewed-scripted-planar": 9,
+    "reviewed-scripted-planar": 10,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
   },
@@ -12125,7 +12193,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "resect-mri-us-correspondence",
+    "active_entry": "tb3-resect-point-pilot",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -12476,7 +12544,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/007-acceptance.json",
         "reviewed_entries": 20,
-        "next_entry": "resect-mri-us-correspondence"
+        "next_entry": "resect-mri-us-correspondence",
+        "local_commit": "46f2c9d"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "resect-mri-us-correspondence",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/008-acceptance.json",
+        "reviewed_entries": 21,
+        "next_entry": "tb3-resect-point-pilot"
       }
     ]
   }

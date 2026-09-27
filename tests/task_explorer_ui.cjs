@@ -443,7 +443,9 @@ async function checkExplorer(browser, input, report) {
     await page.locator('.scene-play').click();
     // The postmortem must display its complete retained source CT, even without WebGL.
     await go('tb3-registration-analysis/0/overview', 'tb3-registration-analysis');
-    const analysisPlayer = page.locator('.scene-player[data-recipe="registration-analysis-v1"]');
+    const analysisPlayer = page.locator(
+      '.scene-player[data-recipe="registration-analysis-v1"][data-surface-renderer="planar"]',
+    );
     await analysisPlayer.waitFor();
     assert.equal(await analysisPlayer.getAttribute('data-surface-renderer'), 'planar');
     const sourceImage = analysisPlayer.locator('svg image').first();

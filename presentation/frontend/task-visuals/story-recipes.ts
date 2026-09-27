@@ -19,6 +19,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'inverse-v1',
     'mixed-tissue-v1',
     'registration-analysis-v1',
+    'resect-correspondence-v1',
   ].includes(plan.recipe);
 }
 export function hasInteractiveProjection(plan: StoryPlan): boolean {
@@ -63,6 +64,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'resect-correspondence-v1':
+      return {
+        heading: 'RESECT · MRI to ultrasound point correspondence',
+        corner: 'Three-case proposal · NIfTI RAS+ mm · selected reader example',
+        legend: [
+          ['#efa933', 'MRI query'],
+          ['#41c5b6', 'Initial US candidate'],
+          ['#e880ad', 'Manual US target · reveal', true],
+        ],
+      };
     case 'registration-analysis-v1':
       return {
         heading: 'Registration postmortem · retained BR-022 evidence',

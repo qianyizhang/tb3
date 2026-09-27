@@ -254,6 +254,25 @@ class PrototypeIdentityPlan(ExpansionPlan):
     beats: list[IdentityBeat]
 
 
+class ResectChannels(TypedDict):
+    reference: tuple[float, float]
+    scan: tuple[float, float]
+    helper: tuple[float, float]
+    output: tuple[float, float]
+
+
+class ResectBeat(ExpansionBeat):
+    channels: ResectChannels
+    scene: Literal[
+        "inputs", "frame", "inspect", "helpers", "output", "reference", "cases", "limits"
+    ]
+
+
+class ResectPlan(ExpansionPlan):
+    recipe: Literal["resect-correspondence-v1"]
+    beats: list[ResectBeat]
+
+
 class RegistrationAnalysisChannels(TypedDict):
     reference: tuple[float, float]
     bounds: tuple[float, float]
@@ -353,6 +372,7 @@ StoryPlan = (
     | AnatomyPlan
     | IdentityPlan
     | PrototypeIdentityPlan
+    | ResectPlan
     | RegistrationAnalysisPlan
     | RespiratoryPlan
     | CurationPlan

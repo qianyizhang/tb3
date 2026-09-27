@@ -48,6 +48,7 @@ withBrowser(async (browser) => {
           'anatomy-curation-v1',
           'respiratory-v1',
           'registration-analysis-v1',
+          'resect-correspondence-v1',
         ].includes(plan.recipe)
           ? plan.beats.map((b) => b.endFrame - 1)
           : []),
@@ -70,6 +71,26 @@ withBrowser(async (browser) => {
           assert.equal(await tile.getAttribute('width'), frame === 0 ? '130' : '520');
           const returned = canvas.getByText('level-0 (2680, 2040) px', { exact: true });
           assert.equal(await returned.count(), frame === plan.durationFrames - 1 ? 1 : 0);
+        }
+        if (plan.recipe === 'resect-correspondence-v1') {
+          const output = page.locator('[data-resect-output]');
+          assert.ok(
+            await output.evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'RESECT output overflows',
+          );
+          const box = await output.boundingBox();
+          assert.ok(box && box.y + box.height <= 720, 'RESECT output clipped');
+          if ((await output.getAttribute('data-resect-output')) === 'helpers') {
+            assert.equal(
+              await page.locator('[data-resect-mask-legend="mri"]').getAttribute('fill'),
+              '#e65b9f',
+            );
+            assert.equal(
+              await page.locator('[data-resect-mask-legend="us"]').getAttribute('fill'),
+              '#37cdcd',
+            );
+          }
+          if (frame === 0) assert.equal(await page.locator('[data-resect-target]').count(), 0);
         }
         if (plan.recipe === 'registration-analysis-v1') {
           const output = page.locator('[data-registration-analysis-output]');
@@ -322,9 +343,30 @@ withBrowser(async (browser) => {
       'anatomy-curation-v1',
       'respiratory-v1',
       'registration-analysis-v1',
+      'resect-correspondence-v1',
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'resect-correspondence-v1') {
+      await fallback.locator('[data-story-step="5"]').click();
+      await fallback.waitForFunction(
+        () => document.querySelector('[data-resect-reference]')?.textContent === 'hidden',
+      );
+      await fallback.locator('[data-story-step="6"]').click();
+      await fallback.waitForFunction(() =>
+        document.querySelector('[data-resect-output]')?.textContent.includes('9.58'),
+      );
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-cases.png') });
+      await fallback.locator('[data-story-step="0"]').click();
+      await fallback.waitForFunction(
+        () =>
+          document.querySelector('[data-resect-output]')?.getAttribute('data-resect-output') ===
+          'inputs',
+      );
+      assert.equal(await fallback.locator('[data-resect-target]').count(), 0);
+    }
     if (plan.recipe === 'registration-analysis-v1') {
       await fallback.locator('[data-story-step="1"]').click();
       await fallback.waitForFunction(

@@ -1,3 +1,4 @@
+import { ResectScene, ResectOutput } from './resect-panels';
 import { useId } from 'react';
 import type { StoryPlan } from '../types';
 import type { StoryState } from './story-timeline';
@@ -95,6 +96,7 @@ function NavigationScene({ state }: { state: Extract<StoryState, { recipe: 'mult
 }
 /** Fallbacks are data-derived views of the current canonical frame, not separate stories. */
 export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryState }) {
+  if (state.recipe === 'resect-correspondence-v1') return <ResectScene state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisScene state={state} />;
   if (state.recipe === 'respiratory-v1') return <RespiratoryScene state={state} />;
@@ -303,6 +305,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   );
 }
 export function OperationOutput({ plan, state }: { plan: StoryPlan; state: StoryState }) {
+  if (state.recipe === 'resect-correspondence-v1') return <ResectOutput state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisOutput state={state} />;
   if (state.recipe === 'respiratory-v1') return <RespiratoryOutput state={state} />;

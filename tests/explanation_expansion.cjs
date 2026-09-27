@@ -18,6 +18,12 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    resectCase,
+    resectReference,
+    resectProjection,
+    resectReveal,
+    resectSweepIndex,
+    resectTeachingOutput,
     identityRows,
     curationRows,
     curationReference,
@@ -138,6 +144,51 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   assert.ok(Math.abs(fullCurve[0].score - 0.2691879476) < 1e-9);
   assert.ok(Math.abs(fullCurve[100].score - 0.5876808912) < 1e-9);
   assert.equal(JSON.stringify(objectiveSamples('q01', 0)), JSON.stringify([fullCurve[0]]));
+  const resectPlan = plans.find((p) => p.recipe === 'resect-correspondence-v1');
+  assert.ok(isPlanarStory(resectPlan));
+  const resectStart = sampleStory(resectPlan, 0);
+  assert.equal(resectReveal(resectStart), false);
+  assert.equal(resectTeachingOutput(resectStart), null);
+  const rb = resectPlan.beats.find((b) => b.scene === 'reference');
+  assert.equal(resectReveal(sampleStory(resectPlan, rb.startFrame)), false);
+  assert.equal(resectReveal(sampleStory(resectPlan, rb.endFrame - 1)), true);
+  const outputControl = resectTeachingOutput(sampleStory(resectPlan, rb.endFrame - 1));
+  const affine = resectCase.modalities.us.affine;
+  const mapped = affine
+    .slice(0, 3)
+    .map(
+      (row) =>
+        row[3] + row.slice(0, 3).reduce((sum, v, i) => sum + v * outputControl.us_voxel_ijk[i], 0),
+    );
+  assert.ok(mapped.every((v, i) => Math.abs(v - resectCase.query_world_mm[i]) < 1e-10));
+  assert.equal(outputControl.confidence, 0);
+  for (const key of ['mri', 'us'])
+    for (const plane of resectCase.modalities[key].ras) {
+      const projected = resectProjection(plane, resectCase.query_world_mm);
+      assert.ok(
+        Math.abs(projected.u - 48) < 1e-10 &&
+          Math.abs(projected.v - 48) < 1e-10 &&
+          Math.abs(projected.normal_mm) < 1e-10,
+      );
+      const target = resectProjection(plane, resectReference[1].target_world_mm);
+      const distance = Math.hypot((target.u - 48) * 0.5, (target.v - 48) * 0.5, target.normal_mm);
+      assert.ok(Math.abs(distance - resectReference[1].initial_error_mm) < 1e-10);
+    }
+  const oblique = { origin_world_mm: [1, 2, 3], dx_world_mm: [1, 0, 0], dy_world_mm: [0.5, 1, 0] };
+  const projected = resectProjection(oblique, [6, 6, 5]);
+  assert.ok(
+    Math.abs(projected.u - 3) < 1e-10 &&
+      Math.abs(projected.v - 4) < 1e-10 &&
+      Math.abs(projected.normal_mm - 2) < 1e-10,
+  );
+  assert.equal(resectSweepIndex(-1), 0);
+  assert.equal(resectSweepIndex(0.5), 6);
+  assert.equal(resectSweepIndex(2), 12);
+  assert.equal(
+    resectReveal(sampleStory(resectPlan, 0)),
+    false,
+    'Reverse seek hides manual references',
+  );
   const respiratoryPlan = plans.find((p) => p.recipe === 'respiratory-v1');
   assert.ok(
     respiratoryRows(sampleStory(respiratoryPlan, 0)).every(
