@@ -806,3 +806,33 @@
   .storyOutput {
   padding: 16px 24px;
 }
+
+:global([data-explainer-export-frame])
+  :global([data-recipe='airway-repair-v1'])
+  :global(.scene-steps) {
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+}
+:global([data-explainer-export-frame]) :global([data-recipe='airway-repair-v1']) .storyOutput {
+  padding: 16px 24px;
+}
+:global([data-recipe='airway-repair-v1']) .storyOutput p {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 6px 0 8px;
+}
+:global([data-recipe='airway-repair-v1']) .storyOutput small {
+  display: block;
+  margin-top: 7px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+:global([data-recipe='airway-repair-v1']) :global(.scene-step-index) {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+@container task-visual (max-width: 600px) {
+  :global([data-recipe='airway-repair-v1']) .storyOutput th {
+    white-space: nowrap;
+    font-size: 13px;
+  }
+}

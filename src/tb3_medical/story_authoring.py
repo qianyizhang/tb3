@@ -149,7 +149,12 @@ def new(
             beat["show_deformed_target"] = False
         if recipe == "registration-analysis-v1":
             beat["scene"] = "input"
-        if recipe in {"respiratory-v1", "resect-correspondence-v1", "resect-pilot-v1"}:
+        if recipe in {
+            "respiratory-v1",
+            "resect-correspondence-v1",
+            "resect-pilot-v1",
+            "airway-repair-v1",
+        }:
             beat["scene"] = "inputs"
         if recipe == "anatomy-curation-v1":
             beat["scene"] = "pair"

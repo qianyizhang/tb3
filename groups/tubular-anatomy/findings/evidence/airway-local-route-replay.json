@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "date": "2026-09-27",
+  "kind": "saved-output replay",
+  "new_solver_execution": false,
+  "original_outcome_unchanged": true,
+  "original_results": {
+    "path": "docs/evidence/br033-results.json",
+    "sha256": "7747d60a45eb10a2e7fd1e672d5b9b885cebedcd5449fcb3f2c2141d0a6e43a0"
+  },
+  "frozen_scorer": {
+    "path": "runs/br033-airway-routing/tasks/airway-route-cpr/tests/score.py",
+    "sha256": "34715e2684e7c4d490afec534514b41fd76530b37355643ff4877ab8be974708"
+  },
+  "answer": "runs/br033-airway-cpr-terra-high-v1-20260916/airway-route-cpr__rJDn6xz/artifacts/app/answer",
+  "reference": "runs/br033-airway-routing/tasks/airway-route-cpr/tests/truth",
+  "command": "python FROZEN_SCORER ANSWER REFERENCE (explicit arguments: print-only scorer mode)",
+  "environment": {
+    "python": "3.12.13",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "replay": {
+    "reward": 1,
+    "anatomy_pass": true,
+    "CPR_pass": true,
+    "cases": {
+      "A01": {
+        "anatomy": true,
+        "CPR": true,
+        "checks": {
+          "format": true,
+          "preservation": true,
+          "connection": true,
+          "lumen_core": true,
+          "no_false_addition": true,
+          "intact_preserved": true,
+          "route_geometry": true,
+          "route_in_mask": true,
+          "CPR": true
+        },
+        "metrics": {
+          "changed_voxels": 578,
+          "core_coverage": 0.8747474747474747,
+          "far_added_mm3": 0.0,
+          "route_p95_mm": 0.4491458846981582,
+          "reference_coverage": 1.0,
+          "length_mm": 29.671620241200714,
+          "endpoint_error_mm": 7.62939453125e-06,
+          "cpr_coordinate_error_mm": 5.684341886080801e-13,
+          "cpr_HU_p99_error": 0.005699107236739987,
+          "cpr_arc_error_mm": 0.0
+        },
+        "errors": {}
+      },
+      "A02": {
+        "anatomy": true,
+        "CPR": true,
+        "checks": {
+          "format": true,
+          "preservation": true,
+          "connection": true,
+          "lumen_core": true,
+          "no_false_addition": true,
+          "intact_preserved": true,
+          "route_geometry": true,
+          "route_in_mask": true,
+          "CPR": true
+        },
+        "metrics": {
+          "changed_voxels": 0,
+          "core_coverage": 1.0,
+          "far_added_mm3": 0.0,
+          "route_p95_mm": 0.7013164316768329,
+          "reference_coverage": 1.0,
+          "length_mm": 17.12107369287505,
+          "endpoint_error_mm": 1.5382156253533292e-06,
+          "cpr_coordinate_error_mm": 1.4210854715202004e-14,
+          "cpr_HU_p99_error": 0.0007757394509195594,
+          "cpr_arc_error_mm": 0.0
+        },
+        "errors": {}
+      },
+      "A03": {
+        "anatomy": true,
+        "CPR": true,
+        "checks": {
+          "format": true,
+          "preservation": true,
+          "connection": true,
+          "lumen_core": true,
+          "no_false_addition": true,
+          "intact_preserved": true,
+          "route_geometry": true,
+          "route_in_mask": true,
+          "CPR": true
+        },
+        "metrics": {
+          "changed_voxels": 0,
+          "core_coverage": 1.0,
+          "far_added_mm3": 0.0,
+          "route_p95_mm": 0.40596638511871386,
+          "reference_coverage": 1.0,
+          "length_mm": 15.124814611710192,
+          "endpoint_error_mm": 7.62939453125e-06,
+          "cpr_coordinate_error_mm": 5.684341886080802e-14,
+          "cpr_HU_p99_error": 0.006037200549172326,
+          "cpr_arc_error_mm": 0.0
+        },
+        "errors": {}
+      }
+    },
+    "limits": {
+      "core_coverage": 0.8,
+      "new_voxels_far_from_reference_mm3": 1.0,
+      "far_distance_mm": 0.8,
+      "route_p95_mm": 1.2,
+      "reference_coverage": 0.9,
+      "endpoint_error_mm": 1.0,
+      "route_length_relative_error": 0.2,
+      "CPR_coordinate_error_mm": 0.02,
+      "CPR_HU_p99_error": 0.2,
+      "CPR_arc_error_mm": 0.1,
+      "intact_max_changed_voxels": 0
+    }
+  },
+  "differences": [
+    {
+      "path": "/cases/A01/metrics/cpr_coordinate_error_mm",
+      "original": 5.684785957944772e-13,
+      "replay": 5.684341886080801e-13,
+      "delta": -4.4407186397015845e-17
+    }
+  ]
+}

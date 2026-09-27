@@ -29,6 +29,7 @@ class ExpansionTests(unittest.TestCase):
                     "resect-correspondence-v1",
                     "resect-pilot-v1",
                     "vessel-source-v1",
+                    "airway-repair-v1",
                 }
                 else "no-reference-assets",
             )
@@ -65,6 +66,7 @@ class ExpansionTests(unittest.TestCase):
             ("registration", "resect-point-correspondence"),
             ("registration", "resect-point-pilot"),
             ("tubular-anatomy", "vessel-source-screen"),
+            ("tubular-anatomy", "airway-repair"),
         ]:
             path = ROOT / f"groups/{group}/presentation/stories/{name}.story.md"
             model = stories.parse_expansion(path.read_text())
@@ -103,6 +105,7 @@ class ExpansionTests(unittest.TestCase):
             "resect",
             "resect-pilot",
             "vessel-source",
+            "airway-repair",
         ]:
             path = ROOT / f"presentation/task-explorer/{name}/manifest.json"
             for key, value in [("frame", "LPS"), ("label_license", "Apache-2.0")]:

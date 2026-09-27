@@ -1,3 +1,4 @@
+import { AirwayRepairScene, AirwayRepairOutput } from './airway-repair-panels';
 import { VesselSourceScene, VesselSourceOutput } from './vessel-source-panels';
 import { ResectPilotScene, ResectPilotOutput } from './resect-pilot-panels';
 import { ResectScene, ResectOutput } from './resect-panels';
@@ -98,6 +99,7 @@ function NavigationScene({ state }: { state: Extract<StoryState, { recipe: 'mult
 }
 /** Fallbacks are data-derived views of the current canonical frame, not separate stories. */
 export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryState }) {
+  if (state.recipe === 'airway-repair-v1') return <AirwayRepairScene state={state} />;
   if (state.recipe === 'vessel-source-v1') return <VesselSourceScene state={state} />;
   if (state.recipe === 'resect-pilot-v1') return <ResectPilotScene state={state} />;
   if (state.recipe === 'resect-correspondence-v1') return <ResectScene state={state} />;
@@ -309,6 +311,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   );
 }
 export function OperationOutput({ plan, state }: { plan: StoryPlan; state: StoryState }) {
+  if (state.recipe === 'airway-repair-v1') return <AirwayRepairOutput state={state} />;
   if (state.recipe === 'vessel-source-v1') return <VesselSourceOutput state={state} />;
   if (state.recipe === 'resect-pilot-v1') return <ResectPilotOutput state={state} />;
   if (state.recipe === 'resect-correspondence-v1') return <ResectOutput state={state} />;

@@ -254,6 +254,32 @@ class PrototypeIdentityPlan(ExpansionPlan):
     beats: list[IdentityBeat]
 
 
+class AirwayRepairChannels(TypedDict):
+    view: tuple[float, float]
+    reference: tuple[float, float]
+    output: tuple[float, float]
+
+
+class AirwayRepairBeat(ExpansionBeat):
+    channels: AirwayRepairChannels
+    scene: Literal[
+        "inputs",
+        "inspect",
+        "repair",
+        "route",
+        "cpr",
+        "reference",
+        "controls",
+        "comparison",
+        "limits",
+    ]
+
+
+class AirwayRepairPlan(ExpansionPlan):
+    recipe: Literal["airway-repair-v1"]
+    beats: list[AirwayRepairBeat]
+
+
 class VesselSourceChannels(TypedDict):
     scan: tuple[float, float]
     reference: tuple[float, float]
@@ -408,6 +434,7 @@ StoryPlan = (
     | AnatomyPlan
     | IdentityPlan
     | PrototypeIdentityPlan
+    | AirwayRepairPlan
     | VesselSourcePlan
     | ResectPilotPlan
     | ResectPlan

@@ -141,6 +141,14 @@ records. Node projection clips to the actual source box and preserves the native
 affine. Closed scene cuts retain source selection, topology checks, proposed solver
 inputs and the unresolved natural-defect admission boundary.
 
+`airway-repair-v1` explains the BR-033 airway pilot using [retained source assets](task-explorer/airway-repair/NOTICE.md).
+Native meshes, CT sections, submitted routes and CPR coordinates share physical
+RAS+ mm. `view` selects a native section, saved route cursor, CPR angle or explicitly
+labeled control case; `output` and `reference` reveal separate saved and private
+assets. The no-GPU projection preserves these boundaries. Whole-crop connectivity
+is distinguished from the frozen route-tube check; detached preservation controls
+and the valid local pass remain visible together. No solver iterations are simulated.
+
 ### Draft a canonical story
 
 ```sh

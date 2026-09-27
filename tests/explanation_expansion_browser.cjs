@@ -51,13 +51,20 @@ withBrowser(async (browser) => {
           'resect-correspondence-v1',
           'resect-pilot-v1',
           'vessel-source-v1',
+          'airway-repair-v1',
         ].includes(plan.recipe)
           ? plan.beats.map((b) => b.endFrame - 1)
           : []),
       ];
-      if (plan.recipe === 'vessel-source-v1') {
+      if (['vessel-source-v1', 'airway-repair-v1'].includes(plan.recipe)) {
         const inspect = plan.beats.find((b) => b.scene === 'inspect');
         frames.push(Math.floor((inspect.startFrame + inspect.endFrame) / 2));
+        if (plan.recipe === 'airway-repair-v1') {
+          for (const scene of ['controls', 'cpr', 'route']) {
+            const beat = plan.beats.find((b) => b.scene === scene);
+            frames.push(beat.startFrame, Math.floor((beat.startFrame + beat.endFrame) / 2));
+          }
+        }
       }
       for (const frame of new Set(frames)) {
         const bytes = await captureComposedFrame(page, {
@@ -77,6 +84,19 @@ withBrowser(async (browser) => {
           assert.equal(await tile.getAttribute('width'), frame === 0 ? '130' : '520');
           const returned = canvas.getByText('level-0 (2680, 2040) px', { exact: true });
           assert.equal(await returned.count(), frame === plan.durationFrames - 1 ? 1 : 0);
+        }
+        if (plan.recipe === 'airway-repair-v1') {
+          const panel = page.locator('[data-airway-output]');
+          const legend = await page.locator('.scene-legend').boundingBox();
+          assert.ok(legend && legend.y + legend.height <= 720, 'Airway legend clipped');
+          assert.ok(
+            await panel.evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'Airway output overflows',
+          );
+          if (frame === 0) {
+            assert.equal(await page.locator('[data-airway-reference-image]').count(), 0);
+            assert.equal(await page.locator('[data-airway-added-slice]').count(), 0);
+          }
         }
         if (plan.recipe === 'vessel-source-v1') {
           const output = page.locator('[data-vessel-output]');
@@ -379,9 +399,66 @@ withBrowser(async (browser) => {
       'resect-correspondence-v1',
       'resect-pilot-v1',
       'vessel-source-v1',
+      'airway-repair-v1',
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'airway-repair-v1') {
+      // Check rendered pixels, not only nonempty paths: opposite mesh-face winding
+      // can silently cancel a complete silhouette inside a compound SVG path.
+      const bluePixels = await fallback.locator('.scene-stage svg').evaluate(async (svg) => {
+        const image = new Image();
+        const url = URL.createObjectURL(
+          new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' }),
+        );
+        try {
+          await new Promise((resolve, reject) => {
+            image.onload = resolve;
+            image.onerror = reject;
+            image.src = url;
+          });
+          const canvas = document.createElement('canvas');
+          canvas.width = 600;
+          canvas.height = 420;
+          const context = canvas.getContext('2d');
+          context.drawImage(image, 0, 0, 600, 420);
+          const pixels = context.getImageData(0, 0, 600, 420).data;
+          let count = 0;
+          for (let i = 0; i < pixels.length; i += 4)
+            if (
+              pixels[i + 3] > 100 &&
+              pixels[i + 2] > pixels[i] + 20 &&
+              pixels[i + 1] > pixels[i] + 15
+            )
+              count++;
+          return count;
+        } finally {
+          URL.revokeObjectURL(url);
+        }
+      });
+      assert.ok(bluePixels > 1000, 'Fallback must visibly render the supplied airway mask');
+      row.fallbackMaskPixels = bluePixels;
+      assert.equal(await fallback.locator('[data-airway-reference-geometry]').count(), 0);
+      assert.equal(await fallback.locator('[data-airway-result]').count(), 0);
+      await fallback.locator('[data-story-step="5"]').click();
+      await fallback.waitForFunction(
+        () => document.querySelector('[data-airway-reference-state]')?.textContent === 'hidden',
+      );
+      await fallback.locator('.scene-play').click();
+      await fallback.locator('[data-airway-reference-geometry]').waitFor();
+      await fallback.locator('.scene-play').click();
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('.scene-reset').click();
+      await fallback.waitForFunction(
+        () =>
+          document.querySelector('[data-airway-output]')?.getAttribute('data-airway-output') ===
+          'inputs',
+      );
+      assert.equal(await fallback.locator('[data-airway-reference-geometry]').count(), 0);
+      assert.equal(await fallback.locator('[data-airway-result]').count(), 0);
+    }
     if (plan.recipe === 'vessel-source-v1') {
       assert.equal(await fallback.locator('[data-vessel-reference-image]').count(), 0);
       await fallback.locator('[data-story-step="1"]').click();

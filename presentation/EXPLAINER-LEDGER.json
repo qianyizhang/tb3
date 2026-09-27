@@ -2829,15 +2829,15 @@
       ],
       "illustration_kind": "route_repair",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "airway-repair",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "topology",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-spatial",
+      "source_asset_readiness": "Pinned frozen source/output files verified; actual mask meshes, calibrated CT sections, submitted routes and CPRs retained, with private core/path reveal and a reproduced parent-gap audit.",
+      "rendered_mode": "spatial",
+      "acceptance_receipt": ".local/explainers/completion-20260927/011-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Return the corrected airway mask and requested route outputs.",
+      "remaining_work": "No outstanding work for this bounded local-route explanation. Broader parent-tree repair and clinical/control adjudication require new research outside this scope; remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "AeroPath CT, supplied airway mask and task-specific route constraints.",
         "helpers": "Local defect/review context and preservation routes; the latter were inside detached fragments.",
@@ -2860,7 +2860,53 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "62a83bc13e35300426e836f06ea934ef61b7decc82ff4d7047c5a9faad738ae7"
+      "source_brief_sha256": "62a83bc13e35300426e836f06ea934ef61b7decc82ff4d7047c5a9faad738ae7",
+      "acceptance_scope": "Visual and engineering review of the retained BR-033 airway local-route pilot: three selected requests from two patients, one Terra/high attempt. Original pass and parent-disconnected control limitation remain separate; no new solver or clinical adjudication.",
+      "visual_review": "Nine chapters in both locales, native CT sweep, saved route/CPR inspection and both detached controls; desktop/mobile/keyboard/no-GPU reveal and reset; full decoded video inspected. Original local pass and parent-tree limitation remain distinct.",
+      "reviewed_contract_projection": {
+        "raw": "AeroPath CT in HU. Three requests, A01–A03, come from **two patients**; A01 and A03\nshare exactly the same CT and prediction crop. The author selected crops using\nsource references. These are natural omissions in the retained released-model\nprediction, with no injected defect.",
+        "helpers": "Binary proposed mask, editable region, public review centre/radius and two ordered\nanchors in **NIfTI RAS+ mm**. This removes whole-volume localization. A02/A03 anchors\nlie within detached fragments: their requested local routes are connected, while\nthe larger parent mask remains disconnected.",
+        "tools": "The frozen Python environment supplies scientific imaging libraries; ordinary\nshell/code tools and network access were allowed. The retained attempt inspected\nCT montages and used local threshold/connectivity and path calculations. No new\nexecution is implied by this explanation.",
+        "spec": "Add lumen supported by CT between the requested anchors; preserve existing\nforeground and all voxels outside the editable region. Already connected requested\nroutes must remain **exactly unchanged**. Unrelated defects are outside scope.",
+        "output": "Per request: same-grid binary `corrected_mask.nii.gz`, ordered `centerline.npy`\n(N×3 RAS+ mm; 0.05–0.75 mm steps), and `cpr.npz`. CPR HU has shape **8×N×65**, with\nsource coordinates, angles, offsets −8…+8 mm at 0.25 mm, and cumulative arc length.\nThe frozen contract specifies parallel-transport frames and trilinear CT sampling.\nOptional posttrial PLYs are author views, not required outputs.",
+        "reference": "Private evaluator CT copies, GT, core, route tube and reference centerline remain\noutside the solver packet. Reader reveals expose selected core/path geometry and\noriginal metrics separately. Portable teaching HTML embeds those reference assets.",
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "Binary proposed mask, editable region, public review centre/radius and two ordered\nanchors in **NIfTI RAS+ mm**. This removes whole-volume localization. A02/A03 anchors\nlie within detached fragments: their requested local routes are connected, while\nthe larger parent mask remains disconnected.",
+            "remaining": "Add lumen supported by CT between the requested anchors; preserve existing\nforeground and all voxels outside the editable region. Already connected requested\nroutes must remain **exactly unchanged**. Unrelated defects are outside scope."
+          }
+        ],
+        "sources": [
+          [
+            "Airway protocol within mixed BR-033",
+            "groups/tubular-anatomy/experiments/br033/protocol.md"
+          ],
+          [
+            "Result, trace and parent-gap interpretation",
+            "groups/tubular-anatomy/findings/airway-local-route-scope.md"
+          ],
+          [
+            "Source-derived teaching provenance",
+            "presentation/task-explorer/airway-repair/NOTICE.md"
+          ],
+          [
+            "AeroPath source and attribution",
+            "https://github.com/raidionics/AeroPath"
+          ],
+          [
+            "Annotation workflow and reference limitations",
+            "https://doi.org/10.1371/journal.pone.0311416"
+          ]
+        ],
+        "gap": "Not yet specified."
+      },
+      "completion_review": {
+        "date": "2026-09-27",
+        "source_brief_sha256": "f2d92a1a437cd1116e547d85af11580dfb516832bb59ee17f249da124a0d14c8",
+        "source_story_sha256": "9d407b094718eca81fc7bc2f68ede68ddbb7e0568c4fa5f60979c3f8cc438277",
+        "acceptance_receipt_sha256": "5942260cbc7e0215a79c632829984d25338673922b9eb05352c09e2919fa92d5"
+      }
     },
     {
       "entry_id": "tb3-topbrain-screen",
@@ -12262,8 +12308,8 @@
     }
   ],
   "counts": {
-    "pending-operation-review": 32,
-    "reviewed-scripted-spatial": 11,
+    "pending-operation-review": 31,
+    "reviewed-scripted-spatial": 12,
     "reviewed-scripted-planar": 12,
     "blocked-source-contract": 102,
     "blocked-source-input": 48
@@ -12285,7 +12331,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-airway-repair",
+    "active_entry": "tb3-topbrain-screen",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -12663,7 +12709,16 @@
         "stage": "reviewed-teaching-story",
         "receipt": ".local/explainers/completion-20260927/010-acceptance.json",
         "reviewed_entries": 23,
-        "next_entry": "tb3-airway-repair"
+        "next_entry": "tb3-airway-repair",
+        "local_commit": "0154787"
+      },
+      {
+        "date": "2026-09-27",
+        "entry_id": "tb3-airway-repair",
+        "stage": "reviewed-teaching-story",
+        "receipt": ".local/explainers/completion-20260927/011-acceptance.json",
+        "reviewed_entries": 24,
+        "next_entry": "tb3-topbrain-screen"
       }
     ]
   }

@@ -73,3 +73,18 @@ export {
   vesselNodePixel,
   vesselVisibleNodes,
 } from '../presentation/frontend/task-visuals/vessel-source';
+
+export {
+  airwayCases,
+  airwayOutput,
+  airwayReference,
+  airwayReveal,
+  airwayReturned,
+  airwayCaseIndex,
+  airwaySliceIndex,
+  airwayAngleIndex,
+  airwayRouteIndex,
+  airwayDisplay,
+  airwayBounds,
+  airwayCPRRowEdges,
+} from '../presentation/frontend/task-visuals/airway-repair';

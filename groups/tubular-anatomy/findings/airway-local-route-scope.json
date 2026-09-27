@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "analysis_kind": "audit",
+  "id": "airway-local-route-scope",
+  "group_id": "tubular-anatomy",
+  "title": "Airway local-route pass and detached preservation controls",
+  "claim": "The retained Terra/high pass satisfies the frozen local-route contract: A01 adds 578 voxels and connects its requested components; A02/A03 correctly preserve routes inside parent-disconnected fragments. These controls do not establish intact parent trees.",
+  "experiment_ids": [
+    "tubular-anatomy-br033"
+  ],
+  "evidence": [
+    {
+      "path": "groups/tubular-anatomy/findings/evidence/airway-local-route-scope.json",
+      "sha256": "e06ae3ec9302bef707232638ac56c7758a66632d3e51a2ac1070d4082c809d85"
+    },
+    {
+      "path": "groups/tubular-anatomy/presentation/sources/airway-repair-audit.json",
+      "sha256": "600bff59dd9c9fe82ac8238561382fb33e5f9eea28fdcce25f08cd4b2d2628a4"
+    },
+    {
+      "path": "groups/tubular-anatomy/findings/evidence/airway-local-route-replay.json",
+      "sha256": "0620afe3c81a2f3bbc44cccc8f807be38d72fe1fbb9b9e628c007c54d2c5da6b"
+    }
+  ],
+  "limitations": [
+    "One attempt, three selected requests from two patients; A01/A03 share the same crop.",
+    "Clinical airway completeness, named-branch identity and public-source exposure remain unresolved.",
+    "Saved-artifact remeasurement is not a new solver trial; all original scores and frozen bytes remain unchanged."
+  ],
+  "links": [
+    {
+      "label": "Analysis report",
+      "path": "groups/tubular-anatomy/findings/airway-local-route-scope.md"
+    }
+  ]
+}

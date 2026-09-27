@@ -10,6 +10,7 @@ import {
   createMaskScreenPrefab,
   createCurationPrefab,
   createRespiratoryPrefab,
+  createAirwayRepairPrefab,
 } from './operation-prefabs';
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
@@ -31,11 +32,14 @@ export function hasInteractiveProjection(plan: StoryPlan): boolean {
     'prototype-identity-v1',
     'mask-screen-v1',
     'anatomy-curation-v1',
+    'airway-repair-v1',
     'respiratory-v1',
   ].includes(plan.recipe);
 }
 export function nativeFactory(plan: StoryPlan) {
   switch (plan.recipe) {
+    case 'airway-repair-v1':
+      return createAirwayRepairPrefab;
     case 'respiratory-v1':
       return createRespiratoryPrefab;
     case 'anatomy-curation-v1':
@@ -66,6 +70,18 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'airway-repair-v1':
+      return {
+        heading: 'Airway repair · one local route and two preservation controls',
+        corner: 'AeroPath · RAS+ mm · fixed display poses · actual saved outputs',
+        legend: [
+          ['#7197a9', 'Input mask'],
+          ['#efa933', 'Public anchors / edit region'],
+          ['#2bbba0', 'Saved addition / route'],
+          ['#e880ad', 'Private core'],
+          ['#e880ad', 'Private path', true],
+        ],
+      };
     case 'vessel-source-v1':
       return {
         heading: 'TopCoW · source curation for local vessel repair',

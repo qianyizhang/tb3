@@ -18,6 +18,18 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    airwayCases,
+    airwayOutput,
+    airwayReference,
+    airwayReveal,
+    airwayReturned,
+    airwayCaseIndex,
+    airwaySliceIndex,
+    airwayAngleIndex,
+    airwayRouteIndex,
+    airwayDisplay,
+    airwayBounds,
+    airwayCPRRowEdges,
     vesselCases,
     vesselReference,
     vesselReveal,
@@ -140,6 +152,75 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     assert.equal(parent.children.length, 0);
     assert.equal(disposed, geometries.size + materials.size + textures.size);
     assert.throws(() => content.update(sampleStory(plan, 0)));
+  }
+  const airwayPlan = plans.find((p) => p.recipe === 'airway-repair-v1');
+  const airwayState = (scene, end = false) => {
+    const b = airwayPlan.beats.find((b) => b.scene === scene);
+    return sampleStory(airwayPlan, end ? b.endFrame - 1 : b.startFrame);
+  };
+  assert.equal(airwayReveal(airwayState('inputs')), false);
+  assert.equal(airwayReturned(airwayState('inputs')), false);
+  assert.equal(airwayReturned(airwayState('repair')), false);
+  assert.equal(airwayReturned(airwayState('repair', true)), true);
+  assert.equal(airwayReveal(airwayState('reference')), false);
+  assert.equal(airwayReveal(airwayState('reference', true)), true);
+  assert.equal(airwayReveal(airwayState('controls')), false);
+  assert.equal(airwayCaseIndex(airwayState('controls')), 1);
+  assert.equal(airwayCaseIndex(airwayState('controls', true)), 2);
+  assert.equal(airwaySliceIndex(airwayState('inspect')), 0);
+  assert.equal(airwaySliceIndex(airwayState('inspect', true)), 8);
+  assert.equal(airwayAngleIndex(airwayState('cpr')), 0);
+  assert.equal(airwayAngleIndex(airwayState('cpr', true)), 7);
+  assert.equal(airwayRouteIndex(airwayState('route', true)), airwayOutput[0].route.length - 1);
+  assert.deepEqual(airwayBounds(0), airwayBounds(2));
+  for (let i = 0; i < 3; i++) {
+    const c = airwayCases[i],
+      out = airwayOutput[i];
+    const distance = (a, b) => Math.hypot(...a.map((v, k) => v - b[k]));
+    assert.ok(
+      Math.abs(distance(...c.anchors) - distance(...c.anchors.map((p) => airwayDisplay(p, i)))) <
+        1e-10,
+      'Display rotation preserves physical distance',
+    );
+    for (const p of c.sections) {
+      const a = Math.hypot(...p.dx_world_mm),
+        b = Math.hypot(...p.dy_world_mm);
+      assert.ok(a > 0 && b > 0);
+      assert.ok(Math.abs(p.dx_world_mm.reduce((v, x, j) => v + x * p.dy_world_mm[j], 0)) < 1e-12);
+      assert.equal(atob(p.gray_u8).length, p.width * p.height);
+    }
+    for (const angle of out.cpr) {
+      assert.equal(angle.display_arc_mm.length, 2 * angle.arc_mm.length - 1);
+      assert.equal(angle.display_arc_mm[0], angle.arc_mm[0]);
+      assert.equal(angle.display_arc_mm.at(-1), angle.arc_mm.at(-1));
+      const edges = airwayCPRRowEdges(angle.arc_mm);
+      for (let j = 0; j < angle.arc_mm.length; j++) {
+        assert.ok(edges[j] < angle.arc_mm[j] && edges[j + 1] > angle.arc_mm[j]);
+        if (j) assert.equal(edges[j], (angle.arc_mm[j - 1] + angle.arc_mm[j]) / 2);
+      }
+      assert.equal(angle.offsets_mm[0], -8);
+      assert.equal(angle.offsets_mm.at(-1), 8);
+      assert.equal(angle.sampling_edges.length, out.route.length);
+      for (let j = 0; j < out.route.length; j++) {
+        const [a, b] = angle.sampling_edges[j];
+        assert.ok(Math.abs(distance(a, b) - 16) < 1e-9, 'CPR ribbon spans actual physical offsets');
+        assert.ok(
+          distance(
+            a.map((v, k) => (v + b[k]) / 2),
+            out.route[j],
+          ) < 1e-9,
+          'CPR centre matches saved route',
+        );
+      }
+    }
+    if (i) {
+      assert.equal(airwayReference[i].connectivity.added, 0);
+      assert.equal(airwayReference[i].connectivity.after.anchors_connected, true);
+      assert.deepEqual(
+        Array.from(airwayReference[i].connectivity.after.anchors_in_largest_component),
+        [false, false],
+      );
+    }
   }
   const analysisPlan = plans.find((p) => p.recipe === 'registration-analysis-v1');
   assert.equal(analysisRevealed(sampleStory(analysisPlan, 0)), false);

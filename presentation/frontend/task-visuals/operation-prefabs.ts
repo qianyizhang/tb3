@@ -1,3 +1,18 @@
+import {
+  airwayCases,
+  airwayMasks,
+  airwayOutput,
+  airwayReference,
+  airwayColors,
+  airwayDisplay,
+  airwayBounds,
+  airwayCaseIndex,
+  airwayReturned,
+  airwayReveal,
+  airwayRouteIndex,
+  airwaySliceIndex,
+  airwayAngleIndex,
+} from './airway-repair';
 import * as THREE from 'three';
 import {
   respiratory,
@@ -693,6 +708,115 @@ export function createRespiratoryPrefab(parent: THREE.Group): NativeContent {
         ];
       }
       return [];
+    },
+    dispose: c.dispose,
+  };
+}
+
+/** Actual saved airway geometry; reveal never mutates input masks or synthesizes a repair. */
+export function createAirwayRepairPrefab(parent: THREE.Group): NativeContent {
+  const c = content(parent, 'airway-repair-v1');
+  const built = airwayCases.map((row, index) => {
+    const place = (p: readonly number[]) => airwayDisplay(p, index);
+    const mapped = (m: IndexedMesh) => ({ vertices: m.vertices.map(place), faces: m.faces });
+    const start = c.root.children.length;
+    const original = c.mesh(mapped(airwayMasks[row.mesh_key]), airwayColors.input);
+    original.material.transparent = true;
+    original.material.opacity = 0.65;
+    original.material.depthWrite = false;
+    const added = c.mesh(mapped(airwayOutput[index].added_mesh), airwayColors.output);
+    const core = c.mesh(mapped(airwayReference[index].core_mesh), airwayColors.reference);
+    core.material.transparent = true;
+    core.material.opacity = 0.38;
+    core.material.depthWrite = false;
+    const line = c.line(airwayOutput[index].route.map(place), airwayColors.output);
+    const refLine = c.line(
+      airwayReference[index].reference_path.map(place),
+      airwayColors.reference,
+      true,
+    );
+    for (const l of [line, refLine]) {
+      l.material.depthTest = false;
+      l.renderOrder = 20;
+    }
+    const markers = row.anchors.map((p) => {
+      const m = c.marker(place(p), airwayColors.anchor);
+      m.scale.setScalar(0.55 / 0.0018);
+      m.material.depthTest = false;
+      m.renderOrder = 22;
+      return m;
+    });
+    const cursor = c.marker(place(airwayOutput[index].route[0]), airwayColors.output);
+    cursor.scale.setScalar(0.5 / 0.0018);
+    cursor.material.depthTest = false;
+    cursor.renderOrder = 23;
+    const sections = row.sections.map((p) => c.imagePlane(p, place));
+    sections.forEach((p) => {
+      p.material.opacity = 0.7;
+    });
+    const ribbons = airwayOutput[index].cpr.map((angle) => {
+      const edges = angle.sampling_edges;
+      const objects = [0, 1].map((side) =>
+        c.line(
+          edges.map((e) => place(e[side])),
+          airwayColors.output,
+        ),
+      );
+      objects.push(c.line(edges[Math.floor(edges.length / 2)].map(place), airwayColors.output));
+      return objects;
+    });
+    const bounds = airwayBounds(index);
+    const box = new THREE.Box3(new THREE.Vector3(...bounds.low), new THREE.Vector3(...bounds.high));
+    return {
+      objects: c.root.children.slice(start),
+      added,
+      core,
+      line,
+      refLine,
+      markers,
+      cursor,
+      sections,
+      ribbons,
+      box,
+    };
+  });
+  return {
+    update(state) {
+      c.alive();
+      if (state.recipe !== 'airway-repair-v1') throw Error('Airway repair state required');
+      const index = airwayCaseIndex(state);
+      built.forEach((item, i) => {
+        item.objects.forEach((o) => {
+          o.visible = i === index;
+        });
+        if (i !== index) return;
+        item.added.visible = airwayReturned(state);
+        item.line.visible = airwayReturned(state) && !['repair', 'inspect'].includes(state.scene);
+        item.core.visible = item.refLine.visible = airwayReveal(state);
+        item.cursor.visible = state.scene === 'route' && airwayReturned(state);
+        item.cursor.position.fromArray(
+          airwayDisplay(airwayOutput[index].route[airwayRouteIndex(state)], index),
+        );
+        item.sections.forEach((o, j) => {
+          o.visible = state.scene === 'inspect' && j === airwaySliceIndex(state);
+        });
+        item.ribbons.forEach((objects, j) =>
+          objects.forEach((o) => {
+            o.visible =
+              state.scene === 'cpr' && airwayReturned(state) && j === airwayAngleIndex(state);
+          }),
+        );
+      });
+      const display = c.fit(built[index].box, 2.3);
+      return airwayCases[index].anchors.map((p, j) => {
+        const anchor = display(airwayDisplay(p, index));
+        return {
+          anchor,
+          p: [anchor[0] + 0.14, anchor[1] + (j ? -0.08 : 0.08), anchor[2]] as ScenePoint,
+          text: j ? 'B' : 'A',
+          color: airwayColors.anchor,
+        };
+      });
     },
     dispose: c.dispose,
   };
