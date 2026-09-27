@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "kind": "evidence_manifest",
+  "targets": [
+    "tubular-anatomy-br033"
+  ],
+  "record_refs": [
+    {
+      "id": "attempt-07b07b968b2cb7a41c1092f6",
+      "kind": "attempt",
+      "path": "groups/tubular-anatomy/experiments/br033/attempts/attempt-07b07b968b2cb7a41c1092f6.json",
+      "sha256": "51fa97d0814fabf4c4310776dc6969b7f265a99464b80348a2a281eac7706a79"
+    },
+    {
+      "id": "attempt-332779014f4d8a4edc4309fd",
+      "kind": "attempt",
+      "path": "groups/tubular-anatomy/experiments/br033/attempts/attempt-332779014f4d8a4edc4309fd.json",
+      "sha256": "453406bbccbfc6de6b19eb0b1d8f131d6d34e3ebbda71a0d3b9d159aeb8ce455"
+    },
+    {
+      "id": "attempt-e812b49f8416ea30c22eb88b",
+      "kind": "attempt",
+      "path": "groups/tubular-anatomy/experiments/br033/attempts/attempt-e812b49f8416ea30c22eb88b.json",
+      "sha256": "f9b3dd77c98e3b49d56eb3ded0b515a00bacdd968de2a8dddef5cc91e8311e81"
+    },
+    {
+      "id": "dataset-aeropath",
+      "kind": "dataset",
+      "path": "datasets/aeropath.json",
+      "sha256": "9ddae70bf50f923ad04989a95095fed247dcacd9ab1f4e94640c9d8b673302ed"
+    },
+    {
+      "id": "dataset-topbrain",
+      "kind": "dataset",
+      "path": "datasets/topbrain.json",
+      "sha256": "b4b72c9e5c6c3db7249f78579734ebe8b0c2bf84f06c669bac677f16ba6e7af8"
+    },
+    {
+      "id": "dataset-topcow",
+      "kind": "dataset",
+      "path": "datasets/topcow.json",
+      "sha256": "76c0224f496d747cfbb0272e0aa1acf7f16abab66651f0a8e923aa9301ac1044"
+    },
+    {
+      "id": "observation-031d684cabe77cf505c3da42",
+      "kind": "evaluation",
+      "path": "groups/tubular-anatomy/experiments/br033/evaluations/observation-031d684cabe77cf505c3da42.json",
+      "sha256": "1571dff28092bca01ab6e584d67bb5c29dd0fed1d6666b203f892074ada9feca"
+    },
+    {
+      "id": "observation-5c8aef185f175914397034e4",
+      "kind": "evaluation",
+      "path": "groups/tubular-anatomy/experiments/br033/evaluations/observation-5c8aef185f175914397034e4.json",
+      "sha256": "c36ff12609c6d770cf97d5c7f339282b794771b97896e2c126e08e13369dcea6"
+    },
+    {
+      "id": "observation-64365a697726910a159d43c9",
+      "kind": "evaluation",
+      "path": "groups/tubular-anatomy/experiments/br033/evaluations/observation-64365a697726910a159d43c9.json",
+      "sha256": "59821a8f0a65edbec19905cf4f98b78bc4eebef4e756348b63679f6503ed2eb4"
+    },
+    {
+      "id": "tubular-anatomy-br033",
+      "kind": "experiment",
+      "path": "groups/tubular-anatomy/experiments/br033/experiment.toml",
+      "sha256": "1748392a9dd247c4681cfee336243a769b14f4e4355f0a861c307deb4512c2c0"
+    },
+    {
+      "id": "tubular-anatomy",
+      "kind": "group",
+      "path": "groups/tubular-anatomy/group.json",
+      "sha256": "d10080cd99bf93e86072d1f75000fb216fb55b9438f1e0ec118bdb52409880d7"
+    }
+  ],
+  "findings": [],
+  "experiments": [
+    {
+      "id": "tubular-anatomy-br033",
+      "group_id": "tubular-anatomy",
+      "title": "BR-033 \u2014 resumed TopBrain experiment",
+      "method": null,
+      "current": {
+        "assessment": "not_assessed",
+        "attention": false,
+        "review_flags": []
+      },
+      "contracts": [],
+      "observations": [
+        {
+          "evaluation_id": "observation-031d684cabe77cf505c3da42",
+          "attempt_id": "attempt-e812b49f8416ea30c22eb88b",
+          "evaluation_kind": "legacy",
+          "agent": "nop",
+          "model": null,
+          "reasoning_effort": null,
+          "execution_state": "completed",
+          "outcome": "fail",
+          "reward": 0.0,
+          "partial": false,
+          "source_classification": "control_fail",
+          "task_digest": null,
+          "collected_at": "2026-09-20T09:49:52.633657+00:00",
+          "timing": {
+            "total": 26.359,
+            "setup": 0.0,
+            "agent": 0.0,
+            "verifier": 13.207
+          },
+          "usage": {
+            "n_input_tokens": null,
+            "n_cache_tokens": null,
+            "n_output_tokens": null
+          }
+        },
+        {
+          "evaluation_id": "observation-64365a697726910a159d43c9",
+          "attempt_id": "attempt-332779014f4d8a4edc4309fd",
+          "evaluation_kind": "legacy",
+          "agent": "oracle",
+          "model": null,
+          "reasoning_effort": null,
+          "execution_state": "completed",
+          "outcome": "pass",
+          "reward": 1.0,
+          "partial": false,
+          "source_classification": "control_pass",
+          "task_digest": null,
+          "collected_at": "2026-09-20T09:49:52.684845+00:00",
+          "timing": {
+            "total": 27.104,
+            "setup": 0.0,
+            "agent": 0.165,
+            "verifier": 13.508
+          },
+          "usage": {
+            "n_input_tokens": null,
+            "n_cache_tokens": null,
+            "n_output_tokens": null
+          }
+        },
+        {
+          "evaluation_id": "observation-5c8aef185f175914397034e4",
+          "attempt_id": "attempt-07b07b968b2cb7a41c1092f6",
+          "evaluation_kind": "legacy",
+          "agent": "codex",
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "high",
+          "execution_state": "completed",
+          "outcome": "pass",
+          "reward": 1.0,
+          "partial": false,
+          "source_classification": "model_pass",
+          "task_digest": null,
+          "collected_at": "2026-09-20T09:49:52.739932+00:00",
+          "timing": {
+            "total": 426.609,
+            "setup": 68.322,
+            "agent": 330.295,
+            "verifier": 13.533
+          },
+          "usage": {
+            "n_input_tokens": 584188.0,
+            "n_cache_tokens": 535680.0,
+            "n_output_tokens": 14798.0
+          }
+        }
+      ]
+    }
+  ],
+  "comparability": {
+    "status": "agent_decision_required",
+    "observed_task_digests": [],
+    "same_observed_task_digest": null,
+    "note": "Digest equality supports byte-level task identity only. The explaining agent must still assess endpoints, conditions and scientific comparability."
+  },
+  "artifacts": {
+    "declared_by_record_kind": {
+      "attempt": 0,
+      "dataset": 5,
+      "evaluation": 34,
+      "experiment": 5,
+      "group": 0
+    },
+    "selected_pointers": [
+      {
+        "source_record": "tubular-anatomy-br033",
+        "label": "Evidence",
+        "path": "docs/evidence/br033-results.json",
+        "expected_sha256": "7747d60a45eb10a2e7fd1e672d5b9b885cebedcd5449fcb3f2c2141d0a6e43a0",
+        "availability": "present",
+        "digest_matches": true
+      },
+      {
+        "source_record": "dataset-aeropath",
+        "label": "Evidence",
+        "path": "docs/research-rounds/BR-033-results.md",
+        "expected_sha256": "9522ed008fd375d3d57459339652f2e181c049bbe29dc0d22e42b6759b34a0fb",
+        "availability": "present",
+        "digest_matches": true
+      },
+      {
+        "source_record": "observation-5c8aef185f175914397034e4",
+        "label": "Agent trajectory (raw, local)",
+        "path": "runs/br033-airway-cpr-terra-high-v1-20260916/airway-route-cpr__rJDn6xz/agent/trajectory.json",
+        "expected_sha256": "aba0bdb9a1295681aaa52d03ea965d36be0d623a39346dc35e97f52c61ae3989",
+        "availability": "present",
+        "digest_matches": true
+      },
+      {
+        "source_record": "observation-5c8aef185f175914397034e4",
+        "label": "Trial result (raw, local)",
+        "path": "runs/br033-airway-cpr-terra-high-v1-20260916/airway-route-cpr__rJDn6xz/result.json",
+        "expected_sha256": "9c864ee053fe000a79d388ed0a72fdbce09c798ffced2aa6334c70193151ad15",
+        "availability": "present",
+        "digest_matches": true
+      },
+      {
+        "source_record": "observation-5c8aef185f175914397034e4",
+        "label": "Reward artifact",
+        "path": "runs/br033-airway-cpr-terra-high-v1-20260916/airway-route-cpr__rJDn6xz/verifier/reward.txt",
+        "expected_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+        "availability": "present",
+        "digest_matches": true
+      },
+      {
+        "source_record": "observation-5c8aef185f175914397034e4",
+        "label": "Verifier cases",
+        "path": "runs/br033-airway-cpr-terra-high-v1-20260916/airway-route-cpr__rJDn6xz/verifier/test-stdout.txt",
+        "expected_sha256": "b7243c0c56807655912597f72833149d73438af8086f58f695d6bbc0acdca4aa",
+        "availability": "present",
+        "digest_matches": true
+      }
+    ],
+    "selection_note": "All finding/review/issue evidence plus high-signal model result, score, report and trace pointers are listed. Control and full submitted-artifact declarations remain available through pinned record references."
+  },
+  "interpretation_boundaries": [
+    "Decide whether differing task, instruction, scorer, reference or input digests are comparable.",
+    "Interpret metric meaning and clinical or anatomical significance.",
+    "Attribute failures across data, reference, instruction, tool, reasoning and infrastructure.",
+    "Question ground truth without relabeling or rewriting frozen scores.",
+    "Choose source-derived views and distinguish them from conceptual drawings."
+  ]
+}

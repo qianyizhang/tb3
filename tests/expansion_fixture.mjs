@@ -1,6 +1,16 @@
 export { Group } from 'three';
 export { sampleStory } from '../presentation/frontend/task-visuals/story-timeline.ts';
 export {
+  brainCases,
+  brainRefs,
+  brainResult,
+  brainReveal,
+  brainOutput,
+  brainSelection,
+  brainPlaneFit,
+  brainPixel,
+} from '../presentation/frontend/task-visuals/topbrain-screen';
+export {
   supportRows,
   objectiveSamples,
   analysisRevealed,

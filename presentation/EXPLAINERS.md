@@ -149,6 +149,15 @@ assets. The no-GPU projection preserves these boundaries. Whole-crop connectivit
 is distinguished from the frozen route-tube check; detached preservation controls
 and the valid local pass remain visible together. No solver iterations are simulated.
 
+`topbrain-screen-v1` explains the separate BR-033 brain source study through
+[five retained MRA cases](task-explorer/topbrain-screen/NOTICE.md). Closed scenes
+separate development prediction comparison, variant preservation, contact conventions,
+reference-parent gaps, saved geometric calibration and the admission decision.
+`view` selects an actual case/plane/CPR angle; `output` and `reference` reveal
+separate saved and reference material. Native pixel spacing controls both display
+axes. MIPs collapse depth; full-volume audits establish the reported discrete
+contacts and selected parent attachments. No new inference or agent trial is implied.
+
 ### Draft a canonical story
 
 ```sh

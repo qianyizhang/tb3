@@ -21,6 +21,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'mixed-tissue-v1',
     'registration-analysis-v1',
     'vessel-source-v1',
+    'topbrain-screen-v1',
     'resect-pilot-v1',
     'resect-correspondence-v1',
   ].includes(plan.recipe);
@@ -70,6 +71,17 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'topbrain-screen-v1':
+      return {
+        heading: 'TopBrain · prediction screening before task admission',
+        corner: 'Five development scans · selected native views · no agent trial',
+        legend: [
+          ['#5b77d8', 'Prediction / reference context'],
+          ['#f4aa3d', 'First named class'],
+          ['#27c4bc', 'Second named class'],
+          ['#e7519f', 'Saved addition / detached reference'],
+        ],
+      };
     case 'airway-repair-v1':
       return {
         heading: 'Airway repair · one local route and two preservation controls',

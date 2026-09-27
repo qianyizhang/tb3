@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "topbrain-screen-v1": "retained-topbrain-screen-v1",
     "airway-repair-v1": "retained-airway-repair-v1",
     "vessel-source-v1": "retained-vessel-source-v1",
     "resect-pilot-v1": "retained-resect-pilot-v1",
@@ -65,6 +66,21 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-topbrain-screen-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "case-004.json",
+            "case-006.json",
+            "case-007.json",
+            "case-011.json",
+            "case-012.json",
+            "reference.json",
+            "output.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+        },
+    ),
     "retained-airway-repair-v1": (
         "source-slices",
         "reference.json",
@@ -249,6 +265,12 @@ class AirwayRepairChannels(Closed):
     reference: Pair
 
 
+class TopbrainScreenChannels(Closed):
+    view: Pair
+    output: Pair
+    reference: Pair
+
+
 class VesselSourceChannels(Closed):
     scan: Pair
     reference: Pair
@@ -384,6 +406,32 @@ class IdentityStory(Story[IdentityChannels]):
 
 class PrototypeIdentityStory(Story[IdentityChannels]):
     recipe: Literal["prototype-identity-v1"]
+
+
+class TopbrainScreenBeat(ExpansionBeat[TopbrainScreenChannels]):
+    scene: Literal[
+        "inputs",
+        "cohort",
+        "variants",
+        "contacts",
+        "parent",
+        "calibration",
+        "cpr",
+        "admission",
+        "limits",
+    ]
+
+
+class TopbrainScreenStory(Story[TopbrainScreenChannels]):
+    recipe: Literal["topbrain-screen-v1"]
+    beats: tuple[TopbrainScreenBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
 
 
 class AirwayRepairBeat(ExpansionBeat[AirwayRepairChannels]):
@@ -555,6 +603,7 @@ AnyStory = Annotated[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | TopbrainScreenStory
     | AirwayRepairStory
     | VesselSourceStory
     | ResectPilotStory
@@ -577,6 +626,7 @@ ADAPTER: TypeAdapter[
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | TopbrainScreenStory
     | AirwayRepairStory
     | VesselSourceStory
     | ResectPilotStory
@@ -759,6 +809,7 @@ def parse_expansion(
     | AnatomyStory
     | IdentityStory
     | PrototypeIdentityStory
+    | TopbrainScreenStory
     | AirwayRepairStory
     | VesselSourceStory
     | ResectPilotStory
@@ -836,6 +887,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         frame, data_license, label_license = {
+            "retained-topbrain-screen-v1": (
+                "RAS",
+                "LicenseRef-TopBrain-2026-noncommercial",
+                "LicenseRef-TopBrain-2026-noncommercial",
+            ),
             "retained-airway-repair-v1": ("RAS", "CC-BY-4.0", "CC-BY-4.0"),
             "retained-vessel-source-v1": (
                 "RAS",

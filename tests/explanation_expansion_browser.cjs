@@ -52,10 +52,20 @@ withBrowser(async (browser) => {
           'resect-pilot-v1',
           'vessel-source-v1',
           'airway-repair-v1',
+          'topbrain-screen-v1',
         ].includes(plan.recipe)
           ? plan.beats.map((b) => b.endFrame - 1)
           : []),
       ];
+      if (plan.recipe === 'topbrain-screen-v1') {
+        for (const scene of ['cohort', 'variants', 'contacts', 'calibration', 'cpr']) {
+          const beat = plan.beats.find((b) => b.scene === scene);
+          for (const fraction of [0, 0.25, 0.5, 0.75])
+            frames.push(
+              Math.round(beat.startFrame + fraction * (beat.endFrame - beat.startFrame - 1)),
+            );
+        }
+      }
       if (['vessel-source-v1', 'airway-repair-v1'].includes(plan.recipe)) {
         const inspect = plan.beats.find((b) => b.scene === 'inspect');
         frames.push(Math.floor((inspect.startFrame + inspect.endFrame) / 2));
@@ -96,6 +106,19 @@ withBrowser(async (browser) => {
           if (frame === 0) {
             assert.equal(await page.locator('[data-airway-reference-image]').count(), 0);
             assert.equal(await page.locator('[data-airway-added-slice]').count(), 0);
+          }
+        }
+        if (plan.recipe === 'topbrain-screen-v1') {
+          const panel = page.locator('[data-brain-output]');
+          const legend = await page.locator('.scene-legend').boundingBox();
+          assert.ok(legend && legend.y + legend.height <= 720, 'TopBrain legend clipped');
+          assert.ok(
+            await panel.evaluate((e) => e.scrollHeight <= e.clientHeight),
+            'TopBrain output overflows',
+          );
+          if (frame === 0) {
+            assert.equal(await page.locator('[data-brain-reference-image]').count(), 0);
+            assert.equal(await page.locator('[data-brain-answer]').count(), 0);
           }
         }
         if (plan.recipe === 'vessel-source-v1') {
@@ -400,6 +423,7 @@ withBrowser(async (browser) => {
       'resect-pilot-v1',
       'vessel-source-v1',
       'airway-repair-v1',
+      'topbrain-screen-v1',
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
@@ -458,6 +482,28 @@ withBrowser(async (browser) => {
       );
       assert.equal(await fallback.locator('[data-airway-reference-geometry]').count(), 0);
       assert.equal(await fallback.locator('[data-airway-result]').count(), 0);
+    }
+    if (plan.recipe === 'topbrain-screen-v1') {
+      assert.equal(await fallback.locator('[data-brain-reference-image]').count(), 0);
+      await fallback.locator('[data-story-step="6"]').click();
+      await fallback.waitForFunction(
+        () => document.querySelector('[data-brain-reference-state]')?.textContent === 'hidden',
+      );
+      await fallback.locator('.scene-play').click();
+      await fallback.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await fallback.locator('[data-brain-reference-image]').first().waitFor();
+      await fallback.locator('.scene-play').click();
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('.scene-reset').click();
+      await fallback.waitForFunction(
+        () =>
+          document.querySelector('[data-brain-output]')?.getAttribute('data-brain-output') ===
+          'inputs',
+      );
+      assert.equal(await fallback.locator('[data-brain-reference-image]').count(), 0);
+      assert.equal(await fallback.locator('[data-brain-answer]').count(), 0);
     }
     if (plan.recipe === 'vessel-source-v1') {
       assert.equal(await fallback.locator('[data-vessel-reference-image]').count(), 0);

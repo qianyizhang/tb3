@@ -182,7 +182,7 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
               }
             >
               <span className="scene-step-index" aria-hidden="true">
-                0{i + 1}
+                {String(i + 1).padStart(2, '0')}
               </span>
               <span>
                 <strong>{label}</strong>

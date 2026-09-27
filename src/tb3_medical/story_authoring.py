@@ -154,6 +154,7 @@ def new(
             "resect-correspondence-v1",
             "resect-pilot-v1",
             "airway-repair-v1",
+            "topbrain-screen-v1",
         }:
             beat["scene"] = "inputs"
         if recipe == "anatomy-curation-v1":

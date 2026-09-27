@@ -18,6 +18,14 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    brainCases,
+    brainRefs,
+    brainResult,
+    brainReveal,
+    brainOutput,
+    brainSelection,
+    brainPlaneFit,
+    brainPixel,
     airwayCases,
     airwayOutput,
     airwayReference,
@@ -238,6 +246,85 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   assert.ok(Math.abs(fullCurve[0].score - 0.2691879476) < 1e-9);
   assert.ok(Math.abs(fullCurve[100].score - 0.5876808912) < 1e-9);
   assert.equal(JSON.stringify(objectiveSamples('q01', 0)), JSON.stringify([fullCurve[0]]));
+  const brainPlan = plans.find((p) => p.recipe === 'topbrain-screen-v1');
+  assert.ok(isPlanarStory(brainPlan));
+  assert.equal(brainReveal(sampleStory(brainPlan, 0)), false);
+  assert.equal(brainOutput(sampleStory(brainPlan, 0)), false);
+  const bridge = brainPlan.beats.find((b) => b.id === 'calibration');
+  assert.equal(brainOutput(sampleStory(brainPlan, bridge.startFrame)), false);
+  assert.equal(brainOutput(sampleStory(brainPlan, bridge.endFrame - 1)), true);
+  const referenceCheck = brainPlan.beats.find((b) => b.id === 'reference');
+  assert.equal(brainReveal(sampleStory(brainPlan, referenceCheck.startFrame)), false);
+  assert.equal(brainReveal(sampleStory(brainPlan, referenceCheck.endFrame - 1)), true);
+  const contactBeat = brainPlan.beats.find((b) => b.scene === 'contacts');
+  const inspected = new Set();
+  for (let f = contactBeat.startFrame; f < contactBeat.endFrame; f++) {
+    const s = brainSelection(sampleStory(brainPlan, f));
+    inspected.add(`${s.case.id}:${s.plane}`);
+  }
+  assert.deepEqual(
+    [...inspected],
+    ['004:0', '004:1', '004:2', '007:0', '007:1', '007:2', '011:0', '011:1', '011:2'],
+  );
+  assert.equal(brainResult.coding_agent_trials, 0);
+  assert.equal(brainResult.hard_cases_admitted, 0);
+  // A square in physical space must stay square despite a 2:1 voxel-count ratio.
+  const physicalSquare = brainPlaneFit(
+    { width: 60, height: 30, pixel_spacing_mm: [0.3, 0.6] },
+    200,
+    300,
+  );
+  assert.equal(physicalSquare.width, 200);
+  assert.equal(physicalSquare.height, 200);
+  for (const c of brainCases) {
+    const planes = [
+      c.overview,
+      c.variant,
+      c.parent,
+      ...(c.contacts || []),
+      ...(c.calibration?.gap_sections || []),
+      c.calibration?.overview,
+    ].filter(Boolean);
+    for (const p of planes) {
+      for (const source of [p.image, p.prediction]) {
+        const bytes = Buffer.from(source.split(',')[1], 'base64');
+        assert.equal(bytes.readUInt32BE(16), p.width);
+        assert.equal(bytes.readUInt32BE(20), p.height);
+      }
+      const dims = [0, 1, 2].filter((a) => a !== p.axis);
+      const point = [...p.origin_ijk];
+      point[dims[1]] = p.end_ijk_exclusive[dims[1]] - 1;
+      if (p.index !== null) point[p.axis] = p.index;
+      assert.deepEqual(Array.from(brainPixel(p, point)), [0, 0]);
+      point[dims[0]] += 3;
+      point[dims[1]] -= 4;
+      assert.deepEqual(Array.from(brainPixel(p, point)), [3, 4]);
+      c.affine_ras_mm.slice(0, 3).forEach((row, axis) => {
+        const native = row[3] + point.reduce((sum, v, j) => sum + v * row[j], 0);
+        const displayed = p.origin_ras_mm[axis] + 3 * p.dx_ras_mm[axis] + 4 * p.dy_ras_mm[axis];
+        assert.ok(Math.abs(native - displayed) < 1e-10);
+      });
+      const fit = brainPlaneFit(p, 254, 240);
+      assert.ok(
+        Math.abs(
+          fit.width / fit.height -
+            (p.width * p.pixel_spacing_mm[0]) / (p.height * p.pixel_spacing_mm[1]),
+        ) < 1e-10,
+      );
+    }
+  }
+  const cal = brainCases[0].calibration;
+  assert.equal(cal.cpr.length, 8);
+  assert.equal(cal.cpr[7].angle, 315);
+  assert.equal(
+    brainRefs['004'].calibration.checks.cpr_samples,
+    8 * cal.arc_mm.length * cal.offsets_mm.length,
+  );
+  assert.ok(
+    Math.abs(cal.cpr_display_extent_mm[1] - (cal.offsets_mm.at(-1) - cal.offsets_mm[0] + 0.2)) <
+      1e-10,
+  );
+  assert.equal(brainReveal(sampleStory(brainPlan, 0)), false, 'Reverse seek removes reference');
   const vesselPlan = plans.find((p) => p.recipe === 'vessel-source-v1');
   assert.ok(isPlanarStory(vesselPlan));
   assert.equal(vesselReveal(sampleStory(vesselPlan, 0)), false);

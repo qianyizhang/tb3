@@ -280,6 +280,32 @@ class AirwayRepairPlan(ExpansionPlan):
     beats: list[AirwayRepairBeat]
 
 
+class TopbrainScreenChannels(TypedDict):
+    view: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class TopbrainScreenBeat(ExpansionBeat):
+    channels: TopbrainScreenChannels
+    scene: Literal[
+        "inputs",
+        "cohort",
+        "variants",
+        "contacts",
+        "parent",
+        "calibration",
+        "cpr",
+        "admission",
+        "limits",
+    ]
+
+
+class TopbrainScreenPlan(ExpansionPlan):
+    recipe: Literal["topbrain-screen-v1"]
+    beats: list[TopbrainScreenBeat]
+
+
 class VesselSourceChannels(TypedDict):
     scan: tuple[float, float]
     reference: tuple[float, float]
@@ -434,6 +460,7 @@ StoryPlan = (
     | AnatomyPlan
     | IdentityPlan
     | PrototypeIdentityPlan
+    | TopbrainScreenPlan
     | AirwayRepairPlan
     | VesselSourcePlan
     | ResectPilotPlan

@@ -17,6 +17,17 @@ export function sampleStory(plan: StoryPlan, requested: number) {
   const eased = progress * progress * (3 - 2 * progress);
   const channel = (pair: readonly number[]) => pair[0] + (pair[1] - pair[0]) * eased;
   switch (plan.recipe) {
+    case 'topbrain-screen-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        view: channel(b.channels.view),
+        reference: channel(b.channels.reference),
+        output: channel(b.channels.output),
+      });
+    }
     case 'airway-repair-v1': {
       const b = plan.beats[index];
       return Object.freeze({
