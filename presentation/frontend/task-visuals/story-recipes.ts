@@ -1,5 +1,6 @@
 import { createClinicalCavityPrefab } from './clinical-cavity-prefab';
 import type { StoryPlan } from '../types';
+import type { StoryState } from './story-timeline';
 import { createRoutePrefab } from './route-prefab';
 import {
   createTopologyPrefab,
@@ -13,8 +14,13 @@ import {
   createRespiratoryPrefab,
   createAirwayRepairPrefab,
 } from './operation-prefabs';
+export function showInlineNarration(state: StoryState): boolean {
+  // The identity chapter reveals its reference midway through playback.
+  return !(state.recipe === 'dental-v2-v1' && state.scene === 'identity' && state.reference <= 0.5);
+}
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'dental-v2-v1',
     'dental-original-v1',
     'ct-organ-v1',
     'named-landmarks-v1',
@@ -83,6 +89,18 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, boolean?][];
 } {
   switch (plan.recipe) {
+    case 'dental-v2-v1':
+      return {
+        heading: 'Dental v2 · what transfers, what fails',
+        corner: 'One F002 pair · native indices · unchanged answers',
+        legend: [
+          ['#fb923c', 'No example · solid'],
+          ['#32d8e2', 'Assisted / supplied example · solid'],
+          ['#9beb72', 'Private target reference · dashed', true],
+          ['#d197ff', 'Transferred prior · solid'],
+          ['#f472b6', 'Deleted pulp · solid'],
+        ],
+      };
     case 'dental-original-v1':
       return {
         heading: 'Dental anatomy · geometry, identity and reference conventions',

@@ -882,15 +882,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "teeth",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "dental-v2",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "pending-operation-review",
+      "reviewed_disposition": "reviewed-scripted-planar",
       "source_asset_readiness": "331 source fingerprints, two frozen tasks and six saved evaluations verified; fine diagnostics reproduced; thirteen native views with exact PNG/contour/native-coordinate checks and saved atlas-plane replay.",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/027-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Implement the dedicated v2 example-transfer comparison story and renderer, bind the Explorer, export fresh HTML/MP4/captions/receipts and review playback, mobile and no-GPU behavior before acceptance.",
+      "remaining_work": "No outstanding explainer work for the retained v2 pair. V3 is a separate entry; reference disputes remain qualified. Remote delivery pending at program level.",
       "contract_projection": {
         "raw": "Full native F002 dental CBCT; source hashes and geometry remain in the linked protocols.",
         "helpers": "Explicit revised label/convention contract; the paired assistance condition supplies an annotated F008 example.",
@@ -928,7 +928,7 @@
         "reviewer": "assistant",
         "receipt": "groups/anatomy-audit/presentation/sources/dental-v2-audit.json",
         "sha256": "bc7cb589c3ae72569ae6fdc9a24cda2cc4fe4fdc09da2c7495aa9b90369210e3",
-        "status": "source-audit-complete-story-pending",
+        "status": "source-audit-complete",
         "asset_manifest": "presentation/task-explorer/dental-v2/manifest.json",
         "asset_manifest_sha256": "a01962c9cf74dddc77faea8c2c9d4f37243104b2a9dbfbe68b300c36dfd698aa",
         "source_visual_review": ".local/explainers/completion-20260927/027-asset-review-v2/review.json",
@@ -972,6 +972,10 @@
           }
         ],
         "sources": [
+          [
+            "Canonical comparison and mechanism story",
+            "groups/anatomy-audit/presentation/stories/dental-v2.story.md"
+          ],
           [
             "F002 v2 without an annotated example",
             "groups/anatomy-audit/experiments/dental-f002-contract-v2-astra-medium/protocol.md"
@@ -1026,6 +1030,14 @@
           "answer": "<p>No source-derived view curated yet.</p>"
         },
         "missing_media": []
+      },
+      "acceptance_scope": "Source, visual and engineering review of the same-target dental v2 pair and retained fine-structure diagnostics. No new medical/model execution, runtime installation, clinical adjudication or publication.",
+      "visual_review": "Thirteen chapters, full 162-second video playback, saved transfer wipe, separate identity panels, four pulp-clipping stages, two pulp/main-canal/small-canal views, explicit metric denominators, desktop/mobile/locale/Explorer and no-GPU reveal/reset reviewed.",
+      "completion_review": {
+        "date": "2026-09-28",
+        "source_brief_sha256": "4ed6799ece6b990697e61e042aa39ea77ff219e78431cba8fb6c10eb0612aa78",
+        "source_story_sha256": "1048653df2bfd748b13f0110870acb839c884bf40e48be1b64c6cc403d80119f",
+        "acceptance_receipt_sha256": "3eab1e28bdf82bf9ffdc3ffa3e656baa761660a984a0b18f9213828e8575491e"
       }
     },
     {
@@ -13575,9 +13587,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 21,
+    "reviewed-scripted-planar": 22,
     "reviewed-scripted-spatial": 13,
-    "pending-operation-review": 16,
+    "pending-operation-review": 15,
     "blocked-source-contract": 107,
     "blocked-source-input": 48
   },
@@ -13598,7 +13610,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-dental-v2",
+    "active_entry": "tb3-dental-v3",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -14159,6 +14171,15 @@
         "asset_manifest": "presentation/task-explorer/dental-v2/manifest.json",
         "reviewed_entries": 34,
         "next_action": "Implement the dedicated v2 example-transfer comparison story and renderer."
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-dental-v2",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/027-acceptance.json",
+        "export_receipt_sha256": "50d5115dffc75702bdb7a76b6aa1dafd99eb8e23946dce1f59b4404f4740dff8",
+        "reviewed_entries": 35,
+        "next_entry": "tb3-dental-v3"
       }
     ]
   }

@@ -326,3 +326,15 @@ reconstructed/saved pulp stages. All scores retain active-class denominators;
 reference-overlap counts are not precision. Native i/j/k coordinates remain
 explicit because physical laterality is unadjudicated. Source and reference
 visibility use the shared planar player and work without WebGL.
+
+`dental-v2-v1` compares the same F002 target with and without a supplied F008
+annotation. The [native source pack](task-explorer/dental-v2/NOTICE.md) keeps the
+supplied example, saved target outputs and private target reference distinct.
+`transfer` wipes between the target CT and the example sampled through the saved
+displacement field; it does not reenact optimization. Discrete `view` changes
+select native pulp/canal sections, while `stage` shows four saved or exactly
+reconstructed prior-clipping states. Macro scores retain their original active
+denominators; a separately labeled common-union diagnostic and pooled pulp scores
+do not replace them. The story qualifies unequal realized compute, one-target
+scope and unresolved reference conventions, and supports explicit reference
+reveal/reset in the shared planar player without WebGL.

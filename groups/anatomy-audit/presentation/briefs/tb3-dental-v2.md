@@ -177,6 +177,7 @@ archive CC-BY-SA metadata. Raw data remain local; publication is outside this wo
 
 ## Sources
 
+- [Canonical comparison and mechanism story](../stories/dental-v2.story.md)
 - [F002 v2 without an annotated example](../../experiments/dental-f002-contract-v2-astra-medium/protocol.md)
 - [F002 v2 with the F008 example](../../experiments/dental-f002-reference-v2-astra-medium/protocol.md)
 - [Shared contract and preparation boundaries](../../methods/dental-reference-ablation/README.md)

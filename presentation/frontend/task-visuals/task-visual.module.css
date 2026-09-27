@@ -1571,3 +1571,75 @@
     font-size: 10px;
   }
 }
+
+.dentalV2Scene .dentalNative {
+  height: 215px;
+}
+.dentalV2Scene .dentalPulp .dentalNative {
+  height: 265px;
+}
+.dentalV2Scene .dentalFacts strong {
+  font-size: 22px;
+}
+.dentalV2Table th,
+.dentalV2Table td {
+  padding: 8px 4px;
+}
+.dentalV2Bars {
+  margin: 20px 0;
+}
+.dentalV2Bars > div {
+  margin: 16px 0;
+  font-size: 12px;
+}
+.dentalV2Bars > div > div {
+  background: #e5eaed;
+  height: 24px;
+  position: relative;
+  margin-top: 5px;
+}
+.dentalV2Bars i {
+  background: #087e91;
+  display: block;
+  height: 100%;
+}
+.dentalV2Bars b {
+  position: absolute;
+  right: 7px;
+  top: 4px;
+}
+.dentalV2Bars small {
+  font-size: 11px;
+}
+:global([data-explainer-export-frame]) .player[data-recipe='dental-v2-v1'] .storyHeading {
+  height: 120px;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='dental-v2-v1']
+  :global(.scene-steps button) {
+  min-height: 31px;
+  padding-block: 4px;
+}
+.player[data-recipe='dental-v2-v1'] :global(.scene-step-index) {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.player[data-recipe='dental-v2-v1'] :global(.scene-steps) {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+@container task-visual (max-width: 900px) {
+  .player[data-recipe='dental-v2-v1'] .storyLayout {
+    grid-template-columns: 1fr;
+  }
+  .player[data-recipe='dental-v2-v1'] :global(.scene-steps) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@container task-visual (max-width: 600px) {
+  .dentalV2Scene .dentalNative {
+    height: 245px;
+  }
+  .dentalV2Scene .dentalCards[data-columns='3'] {
+    grid-template-columns: 1fr;
+  }
+}

@@ -171,6 +171,63 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     dentalSwapId,
     dentalDisplayedItems,
   } = await loadFrontend('expansion_fixture.mjs');
+  const { dentalV2Selection, dentalV2Reference, dentalV2Stages, dentalV2Outputs } =
+    await loadFrontend('expansion_fixture.mjs');
+  const v2Plan = plans.find((p) => p.recipe === 'dental-v2-v1');
+  assert.ok(v2Plan);
+  const v2Start = dentalV2Selection(sampleStory(v2Plan, 0));
+  assert.equal(v2Start.reveal, false);
+  assert.equal(v2Start.helper, false);
+  assert.equal(v2Start.output, false);
+  for (const [scene, field, expected] of [
+    ['pulp-clip', 'stage', Array.from(dentalV2Stages)],
+    ['pulp-contents', 'pulpId', [116, 131]],
+    ['canals', 'canalView', ['canals-145', 'canals-205']],
+    ['small-canals', 'canalId', [103, 104]],
+  ]) {
+    const beat = v2Plan.beats.find((b) => b.scene === scene),
+      seen = new Set();
+    for (let frame = beat.startFrame; frame < beat.endFrame; frame++)
+      seen.add(dentalV2Selection(sampleStory(v2Plan, frame))[field]);
+    assert.deepEqual([...seen], expected);
+  }
+  const transfer = v2Plan.beats.find((b) => b.scene === 'transfer');
+  assert.equal(dentalV2Selection(sampleStory(v2Plan, transfer.startFrame)).transfer, 0);
+  assert.equal(dentalV2Selection(sampleStory(v2Plan, transfer.endFrame - 1)).transfer, 1);
+  assert.equal(dentalV2Selection(sampleStory(v2Plan, transfer.endFrame - 1)).reveal, false);
+  assert.equal(dentalV2Outputs.registration.atlas_plane_exactly_reproduced, true);
+  const {
+    before_true_overlap: before,
+    after_true_overlap: after,
+    removed_true_pulp_voxels: removed,
+  } = dentalV2Reference.clipping;
+  assert.equal(
+    before - removed,
+    after,
+    'Saved exclusion preserves exact reference-retention accounting',
+  );
+  for (let i = 0; i < 2; i++) {
+    const c = dentalV2Reference.conditions[i],
+      m = dentalV2Reference.metrics[i].score;
+    const active = m.per_label.filter((r) => r.dice !== null);
+    assert.equal(active.length, c.active_labels);
+    assert.ok(
+      Math.abs(active.reduce((sum, r) => sum + r.dice, 0) / active.length - c.original_macro_dice) <
+        1e-12,
+    );
+    const common = c.common_label_set.map((id) => m.per_label.find((r) => r.id === id).dice || 0);
+    assert.ok(
+      Math.abs(
+        common.reduce((a, b) => a + b, 0) / common.length - c.posthoc_common_label_macro_dice,
+      ) < 1e-12,
+    );
+    const detected = c.tooth_matches.filter((r) => r.dice >= 0.5);
+    assert.equal(detected.length, c.identity_counts.detected);
+    assert.equal(
+      detected.filter((r) => r.correct_fdi).length,
+      c.identity_counts.correct_among_detected,
+    );
+  }
   const dentalPlan = plans.find((p) => p.recipe === 'dental-original-v1');
   assert.ok(dentalPlan);
   const initialDental = dentalSelection(sampleStory(dentalPlan, 0));

@@ -165,3 +165,5 @@ export * from '../presentation/frontend/task-visuals/named-landmarks';
 export * from '../presentation/frontend/task-visuals/ct-organ';
 
 export * from '../presentation/frontend/task-visuals/dental-original';
+
+export * from '../presentation/frontend/task-visuals/dental-v2';

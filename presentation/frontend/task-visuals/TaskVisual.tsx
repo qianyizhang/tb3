@@ -3,7 +3,12 @@ import type { StoryPlan } from '../types';
 import type { PlayerActions } from './use-scene-player';
 import { StoryOutput } from './story-output';
 import { fixturePoster } from './route-prefab';
-import { isPlanarStory, storyPresentation, hasInteractiveProjection } from './story-recipes';
+import {
+  isPlanarStory,
+  storyPresentation,
+  hasInteractiveProjection,
+  showInlineNarration,
+} from './story-recipes';
 import { OperationScene, OperationOutput } from './operation-view';
 export interface VisualProps {
   entry: VisualEntry;
@@ -199,7 +204,11 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
           {(planar || projected) && plan && player.storyState && (
             <>
               <OperationScene plan={plan} state={player.storyState} />
-              <p className={styles.mobileNarration}>{player.storyState.narration}</p>
+              {showInlineNarration(player.storyState) && (
+                <p className={styles.mobileNarration} data-scene-inline-narration>
+                  {player.storyState.narration}
+                </p>
+              )}
             </>
           )}
           <canvas

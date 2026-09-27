@@ -569,3 +569,29 @@ colors/line styles with dark under-strokes over bright voxels. Use full-volume
 denominators beside selected sections. Canonical story, Explorer binding, fresh
 export, playback/mobile/no-GPU review and final acceptance are still outstanding.
 The v2 ledger row remains pending; no new user decision is inferred.
+
+### V2 explainer accepted locally — assistant review, 2026-09-28
+
+The [canonical v2 story](../presentation/stories/dental-v2.story.md) now binds to
+the Explorer with a dedicated planar recipe. Its thirteen chapters separate the
+supplied F008 annotation, saved target answers and private target reference.
+The transfer wipe uses the saved field; four discrete clipping stages reproduce
+the retained exclusion. Full-volume metrics retain their original denominators,
+and the occupied-pulp and clinical-laterality questions remain qualified.
+
+The fresh local export is
+`.local/explainers/completion-20260927/027-final-v2/dental-v2/`: HTML, silent
+162-second MP4, captions, transcript, chapter stills and pinned receipts.
+All 3,888 frames decode. The assistant inspected 213 normal-speed playback
+captures in 21 contact sheets, decisive full-resolution frames, mobile panels
+and no-GPU/Explorer reveal/reset. Browser checks cover 108 states across both
+locales with no remote requests. Review fixed export spacing and delayed identity
+inline narration until the reference appears; preliminary exports are retained.
+
+Acceptance is recorded in
+`.local/explainers/completion-20260927/027-acceptance.json` and the per-entry ledger.
+This completes this v2 teaching explanation only, bringing the program to
+35/205 reviewed entries. Dental v3 is next. Remote delivery remains pending at
+program level; no trial, installation, publication or clinical adjudication is
+implied. Reopen this explanation if its pinned sources or contract change, or a
+reproduced content/rendering defect affects the accepted view.
