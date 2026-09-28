@@ -113,6 +113,7 @@ establish general superiority or blind reconstruction ability.
 - [Pinned generator and noise convention](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/eht_black_hole_dynamic/src/generate_data.py)
 - [Pinned generic scorer](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py)
 - [StarWarps paper, v2](https://arxiv.org/abs/1711.01357v2)
+- [Canonical story](../stories/imaging101-eht-dynamic.story.md)
 - [Source audit, controls and provenance](../sources/imaging101-eht-dynamic-audit.json)
 
 ## Coverage
@@ -124,6 +125,6 @@ staging were checked. Two fixtures lack complete inputs for exact replay.
 ## Gaps
 
 Pinned `main.py` has a syntax error at line 31. Original output arrays and scores
-remain unchanged; no fresh EM execution or benchmark pass is claimed. Source-array
-views have been inspected locally. Canonical story, export and visual acceptance
-remain pending in the completion ledger.
+remain unchanged; no fresh EM execution or benchmark pass is claimed. The canonical
+story preserves all twelve epochs, the oracle controls and these source limits.
+The completion ledger records export and visual-review evidence separately.

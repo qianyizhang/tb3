@@ -1,3 +1,4 @@
+import { EhtDynamicScene, EhtDynamicOutput } from './imaging101-eht-dynamic-panels';
 import { EhtScene, EhtOutput } from './imaging101-eht-uq-panels';
 import { DtiScene, DtiOutput } from './imaging101-dti-panels';
 import { DeflectometryScene, DeflectometryOutput } from './imaging101-deflectometry-panels';
@@ -141,6 +142,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   if (state.recipe === 'resect-correspondence-v1') return <ResectScene state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisScene state={state} />;
+  if (state.recipe === 'imaging101-eht-dynamic-v1') return <EhtDynamicScene state={state} />;
   if (state.recipe === 'imaging101-eht-uq-v1') return <EhtScene state={state} />;
   if (state.recipe === 'imaging101-dti-v1') return <DtiScene state={state} />;
   if (state.recipe === 'imaging101-deflectometry-v1') return <DeflectometryScene state={state} />;
@@ -383,6 +385,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'resect-correspondence-v1') return <ResectOutput state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisOutput state={state} />;
+  if (state.recipe === 'imaging101-eht-dynamic-v1') return <EhtDynamicOutput state={state} />;
   if (state.recipe === 'imaging101-eht-uq-v1') return <EhtOutput state={state} />;
   if (state.recipe === 'imaging101-dti-v1') return <DtiOutput state={state} />;
   if (state.recipe === 'imaging101-deflectometry-v1') return <DeflectometryOutput state={state} />;

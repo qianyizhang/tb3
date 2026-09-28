@@ -18,6 +18,12 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    dynamicInput,
+    dynamicData,
+    dynamicReference,
+    dynamicReveal,
+    dynamicIndex,
+    dynamicReferenceIndex,
     ehtInput,
     ehtData,
     ehtReference,
@@ -1666,6 +1672,59 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       'Witness must lie in displayed reference',
     );
   }
+  const dyn = plans.find((p) => p.recipe === 'imaging101-eht-dynamic-v1');
+  assert(dyn);
+  for (const scene of ['inputs', 'output', 'reference']) {
+    const beat = dyn.beats.find((b) => b.scene === scene),
+      seen = new Set();
+    for (let frame = beat.startFrame; frame < beat.endFrame; frame++) {
+      const state = sampleStory(dyn, frame);
+      if (scene === 'reference') {
+        const mid = (beat.startFrame + beat.endFrame) / 2;
+        assert.equal(dynamicReveal(state), frame >= mid);
+        if (dynamicReveal(state)) seen.add(dynamicReferenceIndex(state));
+      } else {
+        assert.equal(dynamicReveal(state), false);
+        seen.add(dynamicIndex(state));
+      }
+    }
+    assert.deepEqual(
+      [...seen],
+      Array.from({ length: 12 }, (_, i) => i),
+      'Every native epoch remains reachable',
+    );
+  }
+  for (const b of dyn.beats) {
+    const state = sampleStory(dyn, b.startFrame);
+    assert.equal(dynamicReveal(state), ['diagnostics', 'scoring'].includes(b.scene));
+  }
+  assert.equal(dynamicReveal(sampleStory(dyn, 0)), false, 'Reset conceals reference views');
+  for (const f of dynamicInput.frames) {
+    assert.equal(f.uv_Glambda.length, 28);
+    assert.equal(f.vis_real_Jy.length, 28);
+    assert.equal(f.station_pairs.length, 28);
+  }
+  assert.deepEqual(
+    Array.from(dynamicInput.kernels, (k) => k.baseline),
+    [0, 8, 16, 27],
+  );
+  for (const a of [
+    ...dynamicData.videos.static,
+    ...dynamicData.videos.starwarps,
+    ...dynamicReference.truth,
+  ]) {
+    assert.deepEqual(Array.from(a.shape), [30, 30]);
+    assert.deepEqual(Array.from(a.range), [0, 0.075]);
+  }
+  const constant = dyn && dynamicReference.controls[1],
+    reverse = dynamicReference.controls[2];
+  assert.equal(constant.first.data, constant.last.data, 'Oracle mean is explicitly motionless');
+  assert.equal(constant.direction_change_deg, 0);
+  assert.ok(constant.native.ncc > dynamicData.metrics.starwarps.average.ncc);
+  assert.equal(reverse.direction_change_deg, -90);
+  assert.equal(reverse.first.data, dynamicReference.truth[11].data);
+  assert.equal(reverse.last.data, dynamicReference.truth[0].data);
+  assert.equal(dynamicData.generic_starwarps.passed, null);
   const eht = plans.find((p) => p.recipe === 'imaging101-eht-uq-v1');
   assert(eht);
   const ehtRef = eht.beats.find((b) => b.scene === 'reference');

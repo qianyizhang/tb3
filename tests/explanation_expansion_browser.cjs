@@ -50,6 +50,7 @@ withBrowser(async (browser) => {
           'mask-screen-v1',
           'anatomy-curation-v1',
           'ct-context-v1',
+          'imaging101-eht-dynamic-v1',
           'imaging101-eht-uq-v1',
           'imaging101-dti-v1',
           'imaging101-deflectometry-v1',
@@ -99,6 +100,32 @@ withBrowser(async (browser) => {
         ].includes(plan.recipe)
       ) {
         for (const b of plan.beats) frames.push(b.startFrame);
+      }
+      if (plan.recipe === 'imaging101-eht-dynamic-v1') {
+        const selections = {
+          inputs: 12,
+          operator: 4,
+          temporal: 8,
+          output: 12,
+          diagnostics: 12,
+          scoring: 4,
+          limits: 4,
+        };
+        for (const b of plan.beats) {
+          frames.push(b.startFrame);
+          if (b.scene === 'reference') {
+            frames.push(Math.floor((b.startFrame + b.endFrame) / 2) - 1);
+            frames.push(Math.floor((b.startFrame + b.endFrame) / 2));
+            for (const fraction of Array.from({ length: 12 }, (_, i) => 0.5 + (i + 0.5) / 24))
+              frames.push(Math.floor(b.startFrame + fraction * (b.endFrame - b.startFrame)));
+          } else {
+            const count = selections[b.scene];
+            for (let i = 0; i < count; i++)
+              frames.push(
+                Math.floor(b.startFrame + ((i + 0.5) / count) * (b.endFrame - b.startFrame)),
+              );
+          }
+        }
       }
       if (plan.recipe === 'imaging101-eht-uq-v1') {
         const selections = {
@@ -692,6 +719,70 @@ withBrowser(async (browser) => {
           const box = await output.boundingBox();
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
+        }
+        if (plan.recipe === 'imaging101-eht-dynamic-v1') {
+          const name = await page
+            .locator('[data-dynamic-scene]')
+            .getAttribute('data-dynamic-scene');
+          const beat = plan.beats.find((b) => b.scene === name);
+          const revealed =
+            ['diagnostics', 'scoring'].includes(name) ||
+            (name === 'reference' &&
+              frame > beat.startFrame + (beat.endFrame - beat.startFrame - 1) / 2);
+          assert.equal(await page.locator('[data-dynamic-reference]').count(), revealed ? 1 : 0);
+          if (name === 'output')
+            assert.equal(await page.locator('[data-dynamic-panel]').count(), 2);
+          if (['inputs', 'output'].includes(name)) {
+            const actual = Number(
+              await page.locator('[data-dynamic-epoch]').getAttribute('data-dynamic-epoch'),
+            );
+            const expected = Math.min(
+              11,
+              Math.floor(((frame - beat.startFrame) / (beat.endFrame - beat.startFrame - 1)) * 12),
+            );
+            assert.equal(actual, expected, 'Displayed epoch follows source time order');
+          }
+          if (name === 'reference' && revealed)
+            assert.equal(await page.locator('[data-dynamic-panel]').count(), 3);
+          for (const selector of [
+            '.scene-player > header',
+            '[data-dynamic-scene]',
+            '[data-dynamic-output]',
+            '.scene-legend',
+          ]) {
+            const box = await page.locator(selector).boundingBox();
+            assert.ok(
+              box && box.y + box.height <= 720,
+              'Dynamic EHT clipping ' + selector + ' frame ' + frame,
+            );
+            assert.ok(
+              await page.locator(selector).evaluate((e) => {
+                if (!e.hasAttribute('data-dynamic-scene'))
+                  return e.scrollHeight <= e.clientHeight && e.scrollWidth <= e.clientWidth;
+                // Overflowing trailing padding does not clip content. Check rendered
+                // text fragments and image bounds against the actual clipping box.
+                const box = e.getBoundingClientRect();
+                const inside = (r) =>
+                  r.width === 0 ||
+                  r.height === 0 ||
+                  (r.left >= box.left &&
+                    r.top >= box.top &&
+                    r.right <= box.right &&
+                    r.bottom <= box.bottom);
+                const walker = document.createTreeWalker(e, NodeFilter.SHOW_TEXT);
+                while (walker.nextNode()) {
+                  if (!walker.currentNode.textContent.trim()) continue;
+                  const range = document.createRange();
+                  range.selectNodeContents(walker.currentNode);
+                  if (!Array.from(range.getClientRects()).every(inside)) return false;
+                }
+                return Array.from(e.querySelectorAll('svg,img')).every((n) =>
+                  inside(n.getBoundingClientRect()),
+                );
+              }),
+              'Dynamic EHT overflow ' + selector + ' frame ' + frame,
+            );
+          }
         }
         if (plan.recipe === 'imaging101-eht-uq-v1') {
           const name = await page.locator('[data-eht-scene]').getAttribute('data-eht-scene');
@@ -1932,6 +2023,39 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'imaging101-eht-dynamic-v1') {
+      for (let step = 1; step < plan.beats.length; step++) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        await page.waitForFunction(
+          (f) =>
+            document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+            String(f),
+          plan.beats[step].startFrame,
+        );
+        assert.ok(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          'Dynamic EHT mobile overflow',
+        );
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+      }
+      await page.locator('[data-story-step="4"]').click();
+      assert.equal(await page.locator('[data-dynamic-reference]').count(), 0);
+      await page.locator('.scene-play').click();
+      await page.locator('[data-dynamic-reference]').first().waitFor({ timeout: 20000 });
+      await page.locator('.scene-play').click();
+      assert.equal(await page.locator('[data-dynamic-reference]').count(), 1);
+      assert.ok(
+        await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+        'Dynamic EHT mobile reference overflow',
+      );
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'mobile-reference-revealed.png') });
+      await page.locator('.scene-reset').click();
+      assert.equal(await page.locator('[data-dynamic-reference]').count(), 0);
+    }
     if (plan.recipe === 'imaging101-eht-uq-v1') {
       for (let step = 1; step < plan.beats.length; step++) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -2622,6 +2746,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-eht-dynamic-v1',
       'imaging101-eht-uq-v1',
       'imaging101-dti-v1',
       'imaging101-deflectometry-v1',
@@ -2669,6 +2794,17 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'imaging101-eht-dynamic-v1') {
+      for (const step of [1, 3, 6]) {
+        await fallback.locator(`[data-story-step="${step}"]`).click();
+        await fallback.locator(`[data-dynamic-scene="${plan.beats[step].scene}"]`).waitFor();
+        await fallback
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `no-gpu-${plan.beats[step].scene}.png`) });
+      }
+      await fallback.locator('.scene-reset').click();
+      await fallback.locator('[data-dynamic-scene="inputs"]').waitFor();
+    }
     if (plan.recipe === 'imaging101-eht-uq-v1') {
       for (const step of [1, 3, 6]) {
         await fallback.locator(`[data-story-step="${step}"]`).click();
@@ -4021,6 +4157,23 @@ withBrowser(async (browser) => {
   await page.locator('[data-eht-scene="inputs"]').waitFor();
   assert.equal(await page.locator('[data-eht-reference]').count(), 0);
   report.navigation.push({ id: 'imaging101-eht-black-hole-uq', closureAndReset: true });
+  await page.evaluate(() => {
+    location.hash = 'imaging101-eht-black-hole-dynamic/0/overview?view=repository';
+  });
+  await page.waitForFunction(
+    () =>
+      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+      'imaging101-eht-dynamic-v1',
+  );
+  await page.locator('[data-story-step="2"]').click();
+  await page.locator('[data-dynamic-scene="temporal"]').waitFor();
+  await page
+    .locator('.scene-player')
+    .screenshot({ path: path.join(folder, 'integrated-eht-dynamic.png') });
+  await page.locator('.scene-reset').click();
+  await page.locator('[data-dynamic-scene="inputs"]').waitFor();
+  assert.equal(await page.locator('[data-dynamic-reference]').count(), 0);
+  report.navigation.push({ id: 'imaging101-eht-black-hole-dynamic', temporalAndReset: true });
   await context.close();
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.remote_requests, []);

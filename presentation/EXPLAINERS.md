@@ -1,5 +1,13 @@
 # Canonical task explainers
 
+`imaging101-eht-dynamic-v1` uses all twelve native epochs, explicit DFT weights,
+a conceptual temporal model and both retained videos. Its [source notice](task-explorer/imaging101-eht-dynamic/NOTICE.md)
+preserves array axes, noise convention, synthetic provenance and oracle controls.
+`view` selects epochs or controls; `reference` gates truth, error and answer-based
+diagnostics in explicit chapters. Native image scores, descriptive brightness
+direction and temporal-difference error remain distinct. Actual L1–L3 expose
+truth; the planar player performs no simulation or EM reconstruction.
+
 `imaging101-eht-uq-v1` uses native sparse Fourier coverage, exact station-gain
 cancellation controls and saved posterior arrays. Its [source notice](task-explorer/imaging101-eht-uq/NOTICE.md)
 retains sky coordinates, sample-file identity, source drift and third-party

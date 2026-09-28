@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "imaging101-eht-dynamic-v1": "retained-imaging101-eht-dynamic-v1",
     "imaging101-eht-uq-v1": "retained-imaging101-eht-uq-v1",
     "imaging101-dti-v1": "retained-imaging101-dti-v1",
     "imaging101-deflectometry-v1": "retained-imaging101-deflectometry-v1",
@@ -103,6 +104,18 @@ SOURCE_INPUT_PACKS = {
     ),
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-imaging101-eht-dynamic-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "inputs.json",
+            "reference.json",
+            "contract.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+            "BENCHMARK-LICENSE.txt",
+        },
+    ),
     "retained-imaging101-eht-uq-v1": (
         "source-records",
         "reference.json",
@@ -619,6 +632,11 @@ class RegistrationAnalysisChannels(Closed):
     curve: Pair
 
 
+class Imaging101EhtDynamicChannels(Closed):
+    view: Pair
+    reference: Pair
+
+
 class Imaging101EhtUqChannels(Closed):
     view: Pair
     reference: Pair
@@ -1127,6 +1145,24 @@ class RegistrationAnalysisBeat(ExpansionBeat[RegistrationAnalysisChannels]):
 class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
     recipe: Literal["registration-analysis-v1"]
     beats: tuple[RegistrationAnalysisBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class Imaging101EhtDynamicBeat(ExpansionBeat[Imaging101EhtDynamicChannels]):
+    scene: Literal[
+        "inputs", "operator", "temporal", "output", "reference", "diagnostics", "scoring", "limits"
+    ]
+
+
+class Imaging101EhtDynamicStory(Story[Imaging101EhtDynamicChannels]):
+    recipe: Literal["imaging101-eht-dynamic-v1"]
+    beats: tuple[Imaging101EhtDynamicBeat, ...]
 
     @model_validator(mode="after")
     def scene_cuts(self) -> Self:
@@ -1779,6 +1815,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101EhtDynamicStory
     | Imaging101EhtUqStory
     | Imaging101DtiStory
     | Imaging101DeflectometryStory
@@ -1831,6 +1868,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101EhtDynamicStory
     | Imaging101EhtUqStory
     | Imaging101DtiStory
     | Imaging101DeflectometryStory
@@ -2043,6 +2081,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101EhtDynamicStory
     | Imaging101EhtUqStory
     | Imaging101DtiStory
     | Imaging101DeflectometryStory
@@ -2140,6 +2179,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = source_packs[pack_id]
         frame, data_license, label_license = {
+            "retained-imaging101-eht-dynamic-v1": (
+                "source-record",
+                "LicenseRef-Imaging101-EHT-dynamic-sources",
+                "MIT",
+            ),
             "retained-imaging101-eht-uq-v1": (
                 "source-record",
                 "LicenseRef-Imaging101-DPI-sources",
@@ -2235,7 +2279,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             or manifest.get("units")
             != (
                 "Jy/pixel"
-                if pack_id == "retained-imaging101-eht-uq-v1"
+                if pack_id
+                in {"retained-imaging101-eht-uq-v1", "retained-imaging101-eht-dynamic-v1"}
                 else "mm^2/s"
                 if pack_id == "retained-imaging101-dti-v1"
                 else "um"

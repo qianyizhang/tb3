@@ -17,6 +17,9 @@ import {
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
   return !(
+    (state.recipe === 'imaging101-eht-dynamic-v1' &&
+      state.scene === 'reference' &&
+      state.reference <= 0.5) ||
     (state.recipe === 'imaging101-eht-uq-v1' &&
       state.scene === 'reference' &&
       state.reference <= 0.5) ||
@@ -66,6 +69,7 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'imaging101-eht-dynamic-v1',
     'imaging101-eht-uq-v1',
     'imaging101-dti-v1',
     'imaging101-deflectometry-v1',
@@ -154,6 +158,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'imaging101-eht-dynamic-v1':
+      return {
+        heading: 'Recover a changing source from sparse snapshots',
+        corner: 'Synthetic EHT sequence · retained arrays',
+        legend: [
+          ['#264b43', 'Measured / StarWarps · solid'],
+          ['#b9521e', 'Static / imaginary · orange'],
+          ['#8052a1', 'Reference / control · dashed', true],
+        ],
+      };
     case 'imaging101-eht-uq-v1':
       return {
         heading: 'Read uncertainty in a radio-interferometric image',

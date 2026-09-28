@@ -514,6 +514,23 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class Imaging101EhtDynamicChannels(TypedDict):
+    view: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class Imaging101EhtDynamicBeat(ExpansionBeat):
+    channels: Imaging101EhtDynamicChannels
+    scene: Literal[
+        "inputs", "operator", "temporal", "output", "reference", "diagnostics", "scoring", "limits"
+    ]
+
+
+class Imaging101EhtDynamicPlan(ExpansionPlan):
+    recipe: Literal["imaging101-eht-dynamic-v1"]
+    beats: list[Imaging101EhtDynamicBeat]
+
+
 class Imaging101EhtUqChannels(TypedDict):
     view: tuple[float, float]
     reference: tuple[float, float]
@@ -1167,6 +1184,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | Imaging101EhtDynamicPlan
     | Imaging101EhtUqPlan
     | Imaging101DtiPlan
     | Imaging101DeflectometryPlan
