@@ -65,6 +65,8 @@ This answer-based control shows why a point-error score cannot validate uncertai
 
 ## Visual explanation
 
+[Canonical story](../stories/imaging101-eht-features-dynamic.story.md).
+
 ### Workflow
 
 - Inspect time-indexed measurements and derive gain-invariant closure quantities.
@@ -127,4 +129,5 @@ and latent/log-density arrays are absent, so corrected inference cannot be infer
 The no-filesystem scorer fallback cannot find the released NPZ truth. The source
 uses linear angle statistics; a fixed wrap-boundary counterexample is retained,
 but these saved samples do not cross that boundary. Original results remain intact.
-Canonical story, integrated export and visual acceptance are pending.
+The canonical story is linked above. Export and visual acceptance are recorded
+separately in the [completion ledger](../../EXPLAINER-LEDGER.json).

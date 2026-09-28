@@ -18,6 +18,12 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    featuresInput,
+    featuresData,
+    featuresReference,
+    featuresIndex,
+    featuresReferenceIndex,
+    featuresReveal,
     dynamicInput,
     dynamicData,
     dynamicReference,
@@ -1672,6 +1678,82 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       'Witness must lie in displayed reference',
     );
   }
+  const features = plans.find((p) => p.recipe === 'imaging101-eht-features-dynamic-v1');
+  assert(features);
+  for (const scene of ['inputs', 'reference']) {
+    const b = features.beats.find((b) => b.scene === scene),
+      seen = new Set();
+    for (let frame = b.startFrame; frame < b.endFrame; frame++) {
+      const state = sampleStory(features, frame);
+      if (scene === 'reference') {
+        assert.equal(featuresReveal(state), frame >= (b.startFrame + b.endFrame) / 2);
+        if (featuresReveal(state)) seen.add(featuresReferenceIndex(state));
+      } else {
+        assert.equal(featuresReveal(state), false);
+        seen.add(featuresIndex(state));
+      }
+    }
+    assert.deepEqual(
+      [...seen],
+      Array.from({ length: 10 }, (_, i) => i),
+      'Every retained epoch remains reachable',
+    );
+  }
+  for (const b of features.beats)
+    assert.equal(
+      featuresReveal(sampleStory(features, b.startFrame)),
+      ['diagnostics', 'scoring'].includes(b.scene),
+    );
+  assert.equal(featuresReveal(sampleStory(features, 0)), false, 'Reset conceals reference');
+  for (const f of featuresInput.frames) {
+    assert.equal(f.uv_Glambda.length, 28);
+    assert.equal(f.vis_real_Jy.length, 28);
+    assert.equal(f.station_pairs.length, 28);
+    assert.ok(
+      f.uv_Glambda.flat().every((v) => Math.abs(v) <= 10),
+      'All native coordinates fit the fixed axes',
+    );
+    assert.ok(
+      [...f.vis_real_Jy, ...f.vis_imaginary_Jy].every((v) => v >= -0.25 && v <= 0.75),
+      'All complex components fit the fixed axes',
+    );
+  }
+  assert.equal(featuresInput.closure_controls.length, 6);
+  for (const c of featuresInput.closure_controls) {
+    assert.ok(Math.abs(c.combined_before - c.combined_after) < 1e-10, 'Station gain cancellation');
+    assert.ok(c.pairs.flat().every((s) => c.stations.includes(s)));
+  }
+  for (const [k, c] of featuresInput.model_controls.entries()) {
+    assert.equal(c.images.length, 2);
+    assert.deepEqual(
+      Array.from(c.parameters[0], (v, j) => v === c.parameters[1][j]),
+      Array.from({ length: 4 }, (_, j) => j !== k),
+      'Each fixed example changes exactly one parameter',
+    );
+  }
+  for (const h of featuresData.histograms) {
+    assert.equal(h.edges.length, 61);
+    assert.equal(h.mass.length, 10);
+    for (const m of h.mass) {
+      assert.equal(m.length, 60);
+      assert.ok(
+        Math.abs(m.reduce((a, b) => a + b, 0) - 1) < 1e-8,
+        'Histogram retains all original weight',
+      );
+    }
+  }
+  for (const image of [...featuresData.images, ...featuresReference.truth]) {
+    assert.deepEqual(Array.from(image.shape), [64, 64]);
+    assert.deepEqual(Array.from(image.range), [0, 0.0022]);
+  }
+  assert.ok(Math.min(...featuresData.ess) > 4.3 && Math.max(...featuresData.ess) < 111);
+  assert.ok(featuresData.max_weight[9] > 0.45);
+  assert.equal(featuresData.likelihood_ratio, 70);
+  assert.ok(featuresReference.oracle_point.avg_abs_bias.every((x) => x === 0));
+  assert.ok(featuresReference.oracle_point.stds.flat().every((x) => x === 0));
+  assert.equal(featuresReference.angle_wrap.source_linear_mean_deg, 0);
+  assert.equal(Math.abs(featuresReference.angle_wrap.circular_mean_deg), 180);
+  assert.equal(featuresReference.generic.passed, null);
   const dyn = plans.find((p) => p.recipe === 'imaging101-eht-dynamic-v1');
   assert(dyn);
   for (const scene of ['inputs', 'output', 'reference']) {

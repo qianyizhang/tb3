@@ -28,6 +28,7 @@ class ExpansionTests(unittest.TestCase):
                     "mask-screen-v1",
                     "anatomy-curation-v1",
                     "ct-context-v1",
+                    "imaging101-eht-features-dynamic-v1",
                     "imaging101-eht-dynamic-v1",
                     "imaging101-eht-uq-v1",
                     "imaging101-dti-v1",
@@ -92,6 +93,7 @@ class ExpansionTests(unittest.TestCase):
 
     def test_source_screen_scene_changes_require_explicit_cuts(self):
         for group, name in [
+            (None, "imaging101-eht-features-dynamic"),
             (None, "imaging101-eht-dynamic"),
             (None, "imaging101-eht-uq"),
             (None, "imaging101-dti"),
@@ -172,6 +174,7 @@ class ExpansionTests(unittest.TestCase):
             "registration-analysis",
             "segmentation-calibration",
             "ct-context",
+            "imaging101-eht-features-dynamic",
             "imaging101-eht-dynamic",
             "imaging101-eht-uq",
             "imaging101-dti",

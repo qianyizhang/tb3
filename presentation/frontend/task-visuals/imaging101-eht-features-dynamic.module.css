@@ -1,0 +1,230 @@
+.scene {
+  height: 442px;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 14px 20px;
+  background: #f6f7ef;
+  color: #264b43;
+  font-size: 15px;
+}
+.scene h3 {
+  margin: 0 0 12px;
+  font-size: 22px;
+  line-height: 1.2;
+}
+.scene h4 {
+  margin: 4px 0 8px;
+  font-size: 17px;
+  line-height: 1.3;
+}
+.scene p {
+  margin: 7px 0;
+  line-height: 1.4;
+}
+.two,
+.three {
+  display: grid;
+  gap: 16px;
+  align-items: start;
+}
+.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.card {
+  padding: 12px;
+  border: 1px solid #d0d5ca;
+  background: white;
+  min-width: 0;
+}
+.note {
+  padding: 8px 11px;
+  border-left: 3px solid #b9521e;
+  background: #fff3dc;
+}
+.formula {
+  padding: 8px 10px;
+  background: #e9eee4;
+  font-variant-numeric: tabular-nums;
+}
+.plane {
+  margin: 0;
+  min-width: 0;
+  text-align: center;
+}
+.plane figcaption {
+  font-size: 15px;
+  font-weight: 600;
+  min-height: 20px;
+}
+.plane svg {
+  display: block;
+  width: 100%;
+  height: 232px;
+}
+.scene svg text {
+  fill: #264b43;
+  font-size: 13px;
+  font-family: inherit;
+}
+.scale {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  align-items: center;
+  font-size: 13px;
+  line-height: 18px;
+}
+.scale i {
+  width: 90px;
+  height: 9px;
+  border: 1px solid #a8b8ac;
+}
+.heat {
+  background: linear-gradient(to right, #000, #6e0000, #e64100, #ffd737, #ffffe6);
+}
+.scene .unit {
+  margin: 3px 0;
+  font-size: 13px;
+  line-height: 1.3;
+}
+.chart {
+  display: block;
+  width: 100%;
+  height: 272px;
+}
+.network {
+  display: block;
+  width: 100%;
+  height: 165px;
+}
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13px;
+  margin: 0 0 12px;
+  table-layout: fixed;
+}
+.table th,
+.table td {
+  text-align: left;
+  padding: 9px 6px;
+  border-bottom: 1px solid #d6dfd2;
+  overflow-wrap: anywhere;
+}
+.table th:first-child {
+  width: 42%;
+}
+.active {
+  background: #e0ece5;
+  outline: 1px solid #86a49a;
+}
+.hidden {
+  max-width: 550px;
+  margin: 20px auto;
+  padding: 42px 24px;
+  border: 2px dashed #8052a1;
+  background: #fbf8fd;
+}
+.scene code {
+  overflow-wrap: anywhere;
+  font-size: 13px;
+}
+.aside {
+  padding: 20px;
+  color: #345148;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.aside b {
+  font-size: 13px;
+}
+.aside h4 {
+  margin: 8px 0;
+}
+.aside small {
+  display: block;
+  font-size: 13px;
+  color: #6c8178;
+}
+@container task-visual (max-width:900px) {
+  .scene {
+    height: auto;
+    overflow: visible;
+    padding: 16px;
+    font-size: 14px;
+  }
+  .scene h3 {
+    font-size: 21px;
+  }
+  .two,
+  .three {
+    grid-template-columns: 1fr;
+  }
+  .plane svg {
+    height: 245px;
+  }
+  .chart {
+    height: 300px;
+  }
+  .network {
+    height: 200px;
+  }
+  .hidden {
+    padding: 24px 14px;
+  }
+  .table th,
+  .table td {
+    padding: 7px 4px;
+  }
+}
+.error {
+  background: linear-gradient(to right, #440154, #3b528b, #21918c, #5ec962, #fde725);
+}
+.signed {
+  background: linear-gradient(to right, #28528c, #f8f8f0, #ae401e);
+}
+.epochs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 4px;
+  font-size: 12px;
+}
+.epochs span {
+  padding: 3px 6px;
+  border: 1px solid #c7d4c7;
+  font-variant-numeric: tabular-nums;
+}
+.epochs small {
+  padding-left: 8px;
+  font-size: 12px;
+}
+.temporal .network {
+  height: 175px;
+}
+.scene[data-features-scene='operator'] .card {
+  font-size: 14px;
+}
+.scene[data-features-scene='scoring'] .table {
+  font-size: 12px;
+}
+.scene[data-features-scene='scoring'] .table td {
+  padding: 8px 4px;
+}
+.scene[data-features-scene='diagnostics'] .chart {
+  height: 260px;
+}
+.scene[data-features-scene='limits'] .card {
+  min-height: 157px;
+}
+
+.selected {
+  outline: 2px solid #b9521e;
+  outline-offset: 0;
+}

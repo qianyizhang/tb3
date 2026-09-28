@@ -1,5 +1,13 @@
 # Canonical task explainers
 
+`imaging101-eht-features-dynamic-v1` preserves ten native snapshots, fixed station-gain
+cancellation controls, four parameter examples and histograms of every retained
+weighted sample. Its [source notice](task-explorer/imaging101-eht-features-dynamic/NOTICE.md)
+records unit-flux images, native array orientation and bin widths. `view` selects
+epochs or parameter controls; `reference` gates reader comparisons, not solver
+access. Independent fits, effective sample size, weighted spread, point error
+and image scores remain distinct. No new training or calibration is implied.
+
 `imaging101-eht-dynamic-v1` uses all twelve native epochs, explicit DFT weights,
 a conceptual temporal model and both retained videos. Its [source notice](task-explorer/imaging101-eht-dynamic/NOTICE.md)
 preserves array axes, noise convention, synthetic provenance and oracle controls.

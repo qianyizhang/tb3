@@ -231,3 +231,5 @@ export * from '../presentation/frontend/task-visuals/imaging101-dti';
 export * from '../presentation/frontend/task-visuals/imaging101-eht-uq';
 
 export * from '../presentation/frontend/task-visuals/imaging101-eht-dynamic';
+
+export * from '../presentation/frontend/task-visuals/imaging101-eht-features-dynamic';
