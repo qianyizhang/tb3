@@ -514,6 +514,23 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class Imaging101FanBeamChannels(TypedDict):
+    view: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class Imaging101FanBeamBeat(ExpansionBeat):
+    channels: Imaging101FanBeamChannels
+    scene: Literal[
+        "inputs", "geometry", "weights", "output", "reference", "scoring", "staging", "limits"
+    ]
+
+
+class Imaging101FanBeamPlan(ExpansionPlan):
+    recipe: Literal["imaging101-fan-beam-v1"]
+    beats: list[Imaging101FanBeamBeat]
+
+
 class Imaging101DualEnergyChannels(TypedDict):
     view: tuple[float, float]
     reference: tuple[float, float]
@@ -1099,6 +1116,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | Imaging101FanBeamPlan
     | Imaging101DualEnergyPlan
     | Imaging101PtychographyPlan
     | Imaging101NlosPlan

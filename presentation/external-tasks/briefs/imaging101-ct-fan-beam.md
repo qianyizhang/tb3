@@ -130,7 +130,7 @@ looks for the absent `ground_truth.npy` and reports that error.
 
 ### Input
 
-**Native arrays available; canonical visuals pending.** Angle runs down sinogram
+**Native source views.** Angle runs down sinogram
 rows; detector position runs across columns. Preserve negative values, a common
 projection scale and the 180-versus-116 sample counts.
 
@@ -169,6 +169,7 @@ optimization method or general scanner accuracy.
 - [Notebook with retained metric output](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/notebooks/ct_fan_beam.ipynb)
 - [Pinned active scorer](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py)
 - [Pinned numeric assets](https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_fan_beam)
+- [Canonical story](../stories/imaging101-fan-beam.story.md)
 - [Source and numerical audit](../sources/imaging101-fan-beam-audit.json)
 - [Cited upstream FBP source](https://github.com/leehoy/CTReconstruction/tree/5e70b4fc91347b7ecf1cb00e993072b51c5a47c6)
 - [Cited upstream curved-detector projector](https://github.com/xtie97/CT_fanbeam_recon_numba/tree/e80a62c5f982d2680edf211b8e84648c6631df63)
@@ -185,7 +186,7 @@ Original arrays, source and historical scores remain intact.
 
 ## Gaps
 
-Canonical story, exports and visual acceptance remain pending. No fresh iterative
+The canonical story illustrates this pinned source condition. No fresh iterative
 reconstruction, agent result, hidden-reference validity, current benchmark pass
 or patient accuracy is established. Technical controls qualify the source's
 operator descriptions without rewriting any saved result.

@@ -18,6 +18,11 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    fanBeamReveal,
+    fanBeamInput,
+    fanBeamData,
+    fanBeamReference,
+    fanBeamProject,
     dualEnergyReveal,
     dualEnergyInput,
     dualEnergyData,
@@ -1643,6 +1648,35 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       'Witness must lie in displayed reference',
     );
   }
+  const fan = plans.find((p) => p.recipe === 'imaging101-fan-beam-v1');
+  assert(fan);
+  const fanRef = fan.beats.find((b) => b.scene === 'reference');
+  assert.equal(fanBeamReveal(sampleStory(fan, fanRef.startFrame)), false);
+  assert.equal(fanBeamReveal(sampleStory(fan, fanRef.endFrame - 1)), true);
+  assert.equal(fanBeamReveal(sampleStory(fan, 0)), false);
+  for (const c of fanBeamData.pixel_controls) {
+    const projected = fanBeamProject(c.row, c.column, c.angle_degrees);
+    assert.deepEqual(projected.bins, c.bins);
+    assert.ok(Math.abs(projected.detector - c.detector_coordinate) < 1e-10);
+    projected.weights.forEach((v, i) => assert.ok(Math.abs(v - c.weights[i]) < 1e-10));
+  }
+  for (const map of fanBeamData.maps) {
+    assert.deepEqual(map.shape, fanBeamReference.map.shape);
+    assert.deepEqual(map.range, fanBeamReference.map.range);
+  }
+  assert.deepEqual(fanBeamInput.sinograms[0].range, fanBeamInput.sinograms[1].range);
+  assert.ok(fanBeamInput.sinograms[0].range[0] < 0);
+  assert.deepEqual(Array.from(fanBeamData.normalized_maps[2].shape), [104, 104]);
+  assert.deepEqual(fanBeamData.normalized_maps[2].range, fanBeamReference.normalized_map.range);
+  assert.equal(fanBeamData.loss.values.length, 150);
+  assert.equal(
+    fanBeamData.loss.values.slice(1).filter((v, i) => v > fanBeamData.loss.values[i]).length,
+    66,
+  );
+  assert.equal(fanBeamData.native['half-truth'].nrmse, 0);
+  assert.ok(fanBeamData.generic['half-truth'].nrmse > 0.1);
+  assert.equal(fanBeamData.native['outside-crop-plus-ten'].nrmse, 0);
+  assert.ok(fanBeamData.generic['outside-crop-plus-ten'].nrmse > 5);
   const dual = plans.find((p) => p.recipe === 'imaging101-dual-energy-v1');
   assert(dual);
   const dualRef = dual.beats.find((b) => b.scene === 'reference');

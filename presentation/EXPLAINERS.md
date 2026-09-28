@@ -1,5 +1,14 @@
 # Canonical task explainers
 
+`imaging101-fan-beam-v1` uses native full/short sinograms, the source pixel-driven
+geometry, released Parker weights and three saved images. Its [source notice](task-explorer/imaging101-fan-beam/NOTICE.md)
+preserves signed projection values, pixel coordinates, upstream attribution and
+operator controls. `view` selects exact pixel controls and saved outputs;
+`reference` gates truth before switching to the actual normalized scoring crops.
+The saved loss cursor is an inspection aid, not a fresh optimizer. Actual L1–L3
+staging exposes truth; native crop-normalized and generic full-image metrics
+remain distinct. The shared planar player works without WebGL.
+
 `imaging101-dual-energy-v1` uses paired native count sinograms, supplied spectra
 and attenuation curves, selected saved-ray forward checks and both saved material
 maps. The [source notice](task-explorer/imaging101-dual-energy/NOTICE.md) preserves

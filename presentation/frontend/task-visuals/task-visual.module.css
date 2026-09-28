@@ -3143,3 +3143,36 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+.player[data-recipe='imaging101-fan-beam-v1'] .storyLayout {
+  grid-template-columns: minmax(0, 1fr) 280px;
+}
+.player[data-recipe='imaging101-fan-beam-v1'] .storyOperation {
+  overflow: hidden;
+}
+.player[data-recipe='imaging101-fan-beam-v1'] :global(.scene-steps) {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+:global([data-explainer-export-frame]) .player[data-recipe='imaging101-fan-beam-v1'] .storyHeading {
+  height: 104px;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='imaging101-fan-beam-v1']
+  .storyHeading
+  h3 {
+  line-height: 1.2;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='imaging101-fan-beam-v1']
+  :global(.scene-steps button) {
+  min-height: 31px;
+  padding-block: 4px;
+}
+@container task-visual (max-width:900px) {
+  .player[data-recipe='imaging101-fan-beam-v1'] .storyLayout {
+    grid-template-columns: 1fr;
+  }
+  .player[data-recipe='imaging101-fan-beam-v1'] :global(.scene-steps) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

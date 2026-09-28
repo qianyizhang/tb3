@@ -1,3 +1,4 @@
+import { FanBeamScene, FanBeamOutput } from './imaging101-fan-beam-panels';
 import { DualEnergyScene, DualEnergyOutput } from './imaging101-dual-energy-panels';
 import { PtychographyScene, PtychographyOutput } from './imaging101-ptychography-panels';
 import { NlosScene, NlosOutput } from './imaging101-nlos-panels';
@@ -137,6 +138,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   if (state.recipe === 'resect-correspondence-v1') return <ResectScene state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisScene state={state} />;
+  if (state.recipe === 'imaging101-fan-beam-v1') return <FanBeamScene state={state} />;
   if (state.recipe === 'imaging101-dual-energy-v1') return <DualEnergyScene state={state} />;
   if (state.recipe === 'imaging101-ptychography-v1') return <PtychographyScene state={state} />;
   if (state.recipe === 'imaging101-nlos-v1') return <NlosScene state={state} />;
@@ -375,6 +377,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'resect-correspondence-v1') return <ResectOutput state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisOutput state={state} />;
+  if (state.recipe === 'imaging101-fan-beam-v1') return <FanBeamOutput state={state} />;
   if (state.recipe === 'imaging101-dual-energy-v1') return <DualEnergyOutput state={state} />;
   if (state.recipe === 'imaging101-ptychography-v1') return <PtychographyOutput state={state} />;
   if (state.recipe === 'imaging101-nlos-v1') return <NlosOutput state={state} />;

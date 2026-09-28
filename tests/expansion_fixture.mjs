@@ -221,3 +221,5 @@ export * from '../presentation/frontend/task-visuals/imaging101-nlos';
 export * from '../presentation/frontend/task-visuals/imaging101-ptychography';
 
 export * from '../presentation/frontend/task-visuals/imaging101-dual-energy';
+
+export * from '../presentation/frontend/task-visuals/imaging101-fan-beam';

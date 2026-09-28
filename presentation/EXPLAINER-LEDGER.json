@@ -8473,15 +8473,15 @@
       ],
       "illustration_kind": "ct",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "imaging101-fan-beam",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "Thirteen pinned task sources, 60 shared sources and all seven numeric/metadata assets verified. Native sinograms, phantom, three saved images, recorded losses and operator fixtures available.",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Thirteen task and 60 shared sources plus all seven assets verified. Source fixtures, exact float32 FBP replay, fixed unit-pixel/operator controls, native/generic scores and actual L1-L3 truth staging audited.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/047-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Author and bind a native fan-beam story covering actual pixel-driven geometry, full/short measurements, released Parker weights, saved FBP and TV-labelled images, explicit truth reveal, native crop versus generic scoring and actual staging. Preserve source operator and attribution limits. Export and inspect desktop/mobile/no-GPU/playback before acceptance.",
+      "remaining_work": "No outstanding explainer work for the pinned synthetic fan-beam condition. Fresh iterative reconstruction, corrected operator guarantees, hidden-reference validity, current pass and patient accuracy remain unclaimed. Remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "Full-scan and short-scan fan-beam projection measurements.",
         "helpers": "Source/detector geometry, angles and short-scan weighting guidance. The assistance level can add an approach and software design.",
@@ -8527,7 +8527,115 @@
         "sha256": "3e053985ec2b7282484f413927c263a85ca5d4098dda1e9787cc61ceb7203507",
         "status": "source-audit-complete"
       },
-      "acceptance_scope": null
+      "acceptance_scope": "Assistant source, numerical, visual and engineering review of one pinned Imaging101 synthetic fan-beam CT case, three saved reconstructions and fixed geometry/operator/scoring controls. No fresh iterative reconstruction, agent capability, hidden-reference validity, benchmark pass or patient accuracy.",
+      "visual_review": "Eight chapters: signed sinograms, divergent pixel projection, released weights, three saved maps, raw and normalized truth reveals, scoring controls, actual staging and loss/operator limits. Desktop/mobile/locale/Explorer/no-GPU and 196-second playback inspected.",
+      "reviewed_contract_projection": {
+        "title": "Reconstruct a fan-beam CT slice",
+        "goal": "Reconstruct one synthetic attenuation image from divergent-ray measurements.\nThe released scans, three saved reconstructions and source operators are\ninspectable. Geometry, score normalization and exposed truth limit the claims.",
+        "value": "A pixel's detector position depends on its distance from the rotating source.\nThe task combines magnification, detector interpolation, filtering and weighted\nbackprojection. A short sweep also changes which measurements receive full weight.",
+        "raw": "One synthetic 128×128 Shepp–Logan phantom, not an acquired patient scan.\n`raw_data.npz` contains float32 `sino_full` `(1,180,192)` and `sino_short`\n`(1,116,192)`: case, source-angle index, detector bin. Full-scan angles cover\n360° in 2° steps; the short scan covers **232.891°** in approximately 2.008°\nsteps. Both exclude their ending angle. The short scan is separately sampled,\nnot a prefix cropped from the full scan.\n\nValues range from **−4.331 to 52.506** for the full scan and **−3.858 to 54.620**\nfor the short scan. The generator adds Gaussian noise at 2% of the maximum clean\nfull-scan value. Negative measurements are retained. These are simulated\nprojection values in pixel coordinates, not photon counts or HU.",
+        "helpers": "The raw archive supplies both angle vectors in radians and 192 detector-center\npositions spanning **−127⅓ to 127⅓ pixels**, spaced **1⅓ pixels** apart. Metadata\nsets source-to-isocenter and isocenter-to-detector distances to **256 pixels**\neach. Image pixel centers range from −63.5 to 63.5. No millimeter calibration or\npatient orientation is supplied. L2 adds an approach; L3 also adds software design.\n\nThe executed mapping places the source at `(-256 sin β, 256 cos β)` and detector\ncenter opposite it; the README formula differs by a quarter turn. The generator\nand Parker helper use `atan(detector_position / 256)`, giving the declared\n**26.446°** half-fan angle. The actual source-to-detector separation is 512 pixels,\ngiving **13.966°** to the outer detector centers. Released angles and weights\nremain unchanged; 232.891° is not described as this geometry's minimum sweep.",
+        "tools": "Python numerical dependencies. The audit used existing NumPy/SciPy packages for\nsource fixtures, saved-input FBP replay, fixed operator controls and scoring.\nIt did not run an iterative solver, agent, dataset generator or installer.",
+        "reference": "`data/ground_truth.npz:phantom` is float32 `(1,128,128)` with values from 0 to 1.\nActual L1/L2/L3 local file seeding copies **this truth archive** alongside\nmeasurements and metadata. A reader-facing reveal does not imply a private\nevaluator. Saved reconstructions remain in the evaluation directory, which is\nnot copied by that seeding path.",
+        "spec": "For each angle, the forward operator maps every pixel to a fractional detector\ncoordinate. With `t = x cos β + y sin β` and `s = −x sin β + y cos β`, it uses\n`U = 256 − s` and detector coordinate `512 t / U`. Each pixel contributes to two\nneighboring bins with linear weights multiplied by `512 / U`. This is a\npixel-driven splat, not the cited upstream ray tracer. Fixed unit-pixel controls\nreproduce the bin positions and weights.\n\nSource FBP optionally applies the released Parker weights, preweights detector\nvalues, uses its Hann-windowed filter with cutoff 0.3, and interpolates filtered\nprojections with `256² / U²` distance weighting. Native `main.py` clips negative\nreconstructions to zero. Rebuilt geometry matches the saved float32 coordinates.\nBoth FBP outputs reproduce **exactly as float32** from the saved noisy measurements.\n\nThe saved TV-labelled result comes from a separate 150-step source routine.\nTwo bounded controls limit algorithmic claims: the forward/backprojection pair\nfails a Euclidean adjoint inner-product check, and the helper documented as\nprojection onto a radius-0.005 ball returns `(3,4)` with norm **5** unchanged.\nThe audit neither reruns nor repairs that solver, and does not infer that its\nsaved image is invalid. Its 150 saved loss values omit the TV penalty;\n**66 of 149 successive steps increase**. No intermediate images or monotone\nconvergence guarantee are established.",
+        "output": "One 128×128 reconstructed image in the task's relative attenuation scale.\nNative `main.py` writes three NPZ archives under `evaluation/reference_outputs/`:\nfull-scan FBP, short-scan FBP and the TV-labelled short-scan result. Each has\n`reconstruction` `(1,128,128)`; the last also has `loss_history` `(150,)`.\nThese are saved numerical results, not fresh agent outputs.\n\nThe active generic end-to-end scorer requires `output/reconstruction.npy`.\nA native NPZ alone fails that filename check; stacked images and the loss vector\nfail the shape check.",
+        "score": "Native evaluation crops 12 pixels from each edge, retaining **104×104 =\n10,816/16,384 pixels**, then independently min-max normalizes each image.\nNCC is cosine similarity without mean subtraction; NRMSE divides by the reference\nrange. The live generic scorer uses the full unnormalized image and selects\n`data/ground_truth.npz:phantom`.\n\n| Saved result | Native NCC | Native NRMSE | Generic NCC | Generic NRMSE |\n| --- | ---: | ---: | ---: | ---: |\n| Full-scan FBP | 0.6518 | 0.1929 | 0.6380 | 0.1854 |\n| Short-scan FBP | 0.5578 | 0.2110 | 0.5626 | 0.1927 |\n| TV-labelled short scan | 0.9661 | 0.0855 | 0.9706 | 0.0634 |\n\nNative replay matches all six four-decimal values in notebook cell 17. That\nretained cell also prints boundaries NCC ≥0.8695 and NRMSE ≤0.0941. However,\n**no `metrics.json` is shipped** in the pinned source tree or asset manifest.\nThe actual generic scorer returns metrics without pass/fail; historical printed\nboundaries have not been installed or treated as current.\n\nHalf-strength truth, truth plus one, and truth changed only outside the crop all\nretain native NCC **1** and NRMSE **0**. Their generic NRMSE values are **0.1165**,\n**1.0000** and **5.8296**, respectively. Copying staged truth yields perfect scores\nbut does not demonstrate reconstruction. The separate non-filesystem fallback\nlooks for the absent `ground_truth.npy` and reports that error.",
+        "challenge": "Magnification couples angle, pixel position and detector bins. Source operators\nuse different weights, and cropped normalized scores can conceal scale, offset\nand image-edge errors. A good saved image alone does not establish the claimed\noptimization method or general scanner accuracy.",
+        "families": "One phantom, two scans and three saved images. Thirteen task sources, 60 shared\nsources and all seven numeric/metadata assets are verified. The benchmark has an\nMIT notice; the cited leehoy repository has GPL-2.0 license text, and the pinned\nxtie97 tree has no license file. These provenance differences remain explicit;\nthe benchmark's MIT notice is not assigned to both upstreams. The cited curved-\ndetector ray tracer differs from this flat-detector pixel-driven adaptation.\nOriginal arrays, source and historical scores remain intact.",
+        "gap": "The canonical story illustrates this pinned source condition. No fresh iterative\nreconstruction, agent result, hidden-reference validity, current benchmark pass\nor patient accuracy is established. Technical controls qualify the source's\noperator descriptions without rewriting any saved result.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "L1 · README",
+            "helper": "README, requirements and complete data directory, including the phantom.",
+            "remaining": "Implement reconstruction; hidden-reference evaluation is not established."
+          },
+          {
+            "name": "L2 · + approach",
+            "helper": "L1 plus the numerical approach.",
+            "remaining": "Implement the method and check geometry and operators."
+          },
+          {
+            "name": "L3 · + design",
+            "helper": "L2 plus software design.",
+            "remaining": "Implement the interfaces; source and evaluation directories are not seeded by the local runner."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/README.md"
+          ],
+          [
+            "Pinned geometry and operators",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/src/physics_model.py"
+          ],
+          [
+            "Pinned native pipeline",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/main.py"
+          ],
+          [
+            "Notebook with retained metric output",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/notebooks/ct_fan_beam.ipynb"
+          ],
+          [
+            "Pinned active scorer",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+          ],
+          [
+            "Pinned numeric assets",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_fan_beam"
+          ],
+          [
+            "Canonical story",
+            "presentation/external-tasks/stories/imaging101-fan-beam.story.md"
+          ],
+          [
+            "Source and numerical audit",
+            "presentation/external-tasks/sources/imaging101-fan-beam-audit.json"
+          ],
+          [
+            "Cited upstream FBP source",
+            "https://github.com/leehoy/CTReconstruction/tree/5e70b4fc91347b7ecf1cb00e993072b51c5a47c6"
+          ],
+          [
+            "Cited upstream curved-detector projector",
+            "https://github.com/xtie97/CT_fanbeam_recon_numba/tree/e80a62c5f982d2680edf211b8e84648c6631df63"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Reconstruct one synthetic attenuation image from divergent-ray measurements. The released scans, three saved reconstructions and source operators are inspectable. Geometry, score normalization and exposed truth limit the claims.</p>",
+          "value": "<p>A pixel&#x27;s detector position depends on its distance from the rotating source. The task combines magnification, detector interpolation, filtering and weighted backprojection. A short sweep also changes which measurements receive full weight.</p>",
+          "raw": "<p>One synthetic 128×128 Shepp–Logan phantom, not an acquired patient scan. <code>raw_data.npz</code> contains float32 <code>sino_full</code> <code>(1,180,192)</code> and <code>sino_short</code> <code>(1,116,192)</code>: case, source-angle index, detector bin. Full-scan angles cover 360° in 2° steps; the short scan covers <strong>232.891°</strong> in approximately 2.008° steps. Both exclude their ending angle. The short scan is separately sampled, not a prefix cropped from the full scan.</p>\n<p>Values range from <strong>−4.331 to 52.506</strong> for the full scan and <strong>−3.858 to 54.620</strong> for the short scan. The generator adds Gaussian noise at 2% of the maximum clean full-scan value. Negative measurements are retained. These are simulated projection values in pixel coordinates, not photon counts or HU.</p>",
+          "helpers": "<p>The raw archive supplies both angle vectors in radians and 192 detector-center positions spanning <strong>−127⅓ to 127⅓ pixels</strong>, spaced <strong>1⅓ pixels</strong> apart. Metadata sets source-to-isocenter and isocenter-to-detector distances to <strong>256 pixels</strong> each. Image pixel centers range from −63.5 to 63.5. No millimeter calibration or patient orientation is supplied. L2 adds an approach; L3 also adds software design.</p>\n<p>The executed mapping places the source at <code>(-256 sin β, 256 cos β)</code> and detector center opposite it; the README formula differs by a quarter turn. The generator and Parker helper use <code>atan(detector_position / 256)</code>, giving the declared <strong>26.446°</strong> half-fan angle. The actual source-to-detector separation is 512 pixels, giving <strong>13.966°</strong> to the outer detector centers. Released angles and weights remain unchanged; 232.891° is not described as this geometry&#x27;s minimum sweep.</p>",
+          "tools": "<p>Python numerical dependencies. The audit used existing NumPy/SciPy packages for source fixtures, saved-input FBP replay, fixed operator controls and scoring. It did not run an iterative solver, agent, dataset generator or installer.</p>",
+          "reference": "<p><code>data/ground_truth.npz:phantom</code> is float32 <code>(1,128,128)</code> with values from 0 to 1. Actual L1/L2/L3 local file seeding copies <strong>this truth archive</strong> alongside measurements and metadata. A reader-facing reveal does not imply a private evaluator. Saved reconstructions remain in the evaluation directory, which is not copied by that seeding path.</p>",
+          "spec": "<p>For each angle, the forward operator maps every pixel to a fractional detector coordinate. With <code>t = x cos β + y sin β</code> and <code>s = −x sin β + y cos β</code>, it uses <code>U = 256 − s</code> and detector coordinate <code>512 t / U</code>. Each pixel contributes to two neighboring bins with linear weights multiplied by <code>512 / U</code>. This is a pixel-driven splat, not the cited upstream ray tracer. Fixed unit-pixel controls reproduce the bin positions and weights.</p>\n<p>Source FBP optionally applies the released Parker weights, preweights detector values, uses its Hann-windowed filter with cutoff 0.3, and interpolates filtered projections with <code>256² / U²</code> distance weighting. Native <code>main.py</code> clips negative reconstructions to zero. Rebuilt geometry matches the saved float32 coordinates. Both FBP outputs reproduce <strong>exactly as float32</strong> from the saved noisy measurements.</p>\n<p>The saved TV-labelled result comes from a separate 150-step source routine. Two bounded controls limit algorithmic claims: the forward/backprojection pair fails a Euclidean adjoint inner-product check, and the helper documented as projection onto a radius-0.005 ball returns <code>(3,4)</code> with norm <strong>5</strong> unchanged. The audit neither reruns nor repairs that solver, and does not infer that its saved image is invalid. Its 150 saved loss values omit the TV penalty; <strong>66 of 149 successive steps increase</strong>. No intermediate images or monotone convergence guarantee are established.</p>",
+          "output": "<p>One 128×128 reconstructed image in the task&#x27;s relative attenuation scale. Native <code>main.py</code> writes three NPZ archives under <code>evaluation/reference_outputs/</code>: full-scan FBP, short-scan FBP and the TV-labelled short-scan result. Each has <code>reconstruction</code> <code>(1,128,128)</code>; the last also has <code>loss_history</code> <code>(150,)</code>. These are saved numerical results, not fresh agent outputs.</p>\n<p>The active generic end-to-end scorer requires <code>output/reconstruction.npy</code>. A native NPZ alone fails that filename check; stacked images and the loss vector fail the shape check.</p>",
+          "score": "<p>Native evaluation crops 12 pixels from each edge, retaining <strong>104×104 = 10,816/16,384 pixels</strong>, then independently min-max normalizes each image. NCC is cosine similarity without mean subtraction; NRMSE divides by the reference range. The live generic scorer uses the full unnormalized image and selects <code>data/ground_truth.npz:phantom</code>.</p>\n<div class=\"table\"><table>\n<tr><th>Saved result</th><th>Native NCC</th><th>Native NRMSE</th><th>Generic NCC</th><th>Generic NRMSE</th></tr>\n<tr><td>Full-scan FBP</td><td>0.6518</td><td>0.1929</td><td>0.6380</td><td>0.1854</td></tr>\n<tr><td>Short-scan FBP</td><td>0.5578</td><td>0.2110</td><td>0.5626</td><td>0.1927</td></tr>\n<tr><td>TV-labelled short scan</td><td>0.9661</td><td>0.0855</td><td>0.9706</td><td>0.0634</td></tr>\n</table></div>\n<p>Native replay matches all six four-decimal values in notebook cell 17. That retained cell also prints boundaries NCC ≥0.8695 and NRMSE ≤0.0941. However, <strong>no <code>metrics.json</code> is shipped</strong> in the pinned source tree or asset manifest. The actual generic scorer returns metrics without pass/fail; historical printed boundaries have not been installed or treated as current.</p>\n<p>Half-strength truth, truth plus one, and truth changed only outside the crop all retain native NCC <strong>1</strong> and NRMSE <strong>0</strong>. Their generic NRMSE values are <strong>0.1165</strong>, <strong>1.0000</strong> and <strong>5.8296</strong>, respectively. Copying staged truth yields perfect scores but does not demonstrate reconstruction. The separate non-filesystem fallback looks for the absent <code>ground_truth.npy</code> and reports that error.</p>",
+          "challenge": "<p>Magnification couples angle, pixel position and detector bins. Source operators use different weights, and cropped normalized scores can conceal scale, offset and image-edge errors. A good saved image alone does not establish the claimed optimization method or general scanner accuracy.</p>",
+          "families": "<p>One phantom, two scans and three saved images. Thirteen task sources, 60 shared sources and all seven numeric/metadata assets are verified. The benchmark has an MIT notice; the cited leehoy repository has GPL-2.0 license text, and the pinned xtie97 tree has no license file. These provenance differences remain explicit; the benchmark&#x27;s MIT notice is not assigned to both upstreams. The cited curved- detector ray tracer differs from this flat-detector pixel-driven adaptation. Original arrays, source and historical scores remain intact.</p>",
+          "gap": "<p>The canonical story illustrates this pinned source condition. No fresh iterative reconstruction, agent result, hidden-reference validity, current benchmark pass or patient accuracy is established. Technical controls qualify the source&#x27;s operator descriptions without rewriting any saved result.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Native source views.</strong> Angle runs down sinogram rows; detector position runs across columns. Preserve negative values, a common projection scale and the 180-versus-116 sample counts.</p>",
+          "helpers": "<p><strong>Pixel geometry and exact source operations.</strong> Geometry views must follow the numerical angle convention. Unit-pixel controls are diagnostic fixtures, not patient images or optimization traces. Do not substitute parallel-beam Radon.</p>",
+          "answer": "<p><strong>Saved reconstructions and synthetic truth remain separate.</strong> Preserve one raw image scale before showing metric-specific cropping and normalization. Disclose that solver inputs already include the phantom when revealing the reference.</p>"
+        },
+        "missing_media": []
+      },
+      "completion_review": {
+        "date": "2026-09-29",
+        "source_brief_sha256": "eab13bac1aca8a809f79a075e2a08ff06c3f12171455313f321cb7648bafc2f9",
+        "source_story_sha256": "828344101bd8b695cd7ffe6b4dbadaf5ecd6e654baaa2ec0d49c0983eb2ef253",
+        "acceptance_receipt_sha256": "de615985d9efea576dadb2060f7280d72e498999da1baff2a1e53cf3d3146f5e"
+      }
     },
     {
       "entry_id": "imaging101-ct-poisson-lowdose",
@@ -15479,11 +15587,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 37,
+    "reviewed-scripted-planar": 38,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 102,
-    "blocked-source-input": 52,
-    "pending-operation-review": 1
+    "blocked-source-input": 52
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -15502,7 +15609,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "imaging101-ct-fan-beam",
+    "active_entry": "imaging101-ct-poisson-lowdose",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -16295,6 +16402,15 @@
         "reviewed_entries": 50,
         "next_entry": "imaging101-ct-fan-beam",
         "note": "All native arrays available; saved FBP and scores replayed with bounded operator controls. Canonical authoring and visual review remain pending. No iterative solver executed."
+      },
+      {
+        "date": "2026-09-29",
+        "entry_id": "imaging101-ct-fan-beam",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/047-acceptance.json",
+        "export_receipt_sha256": "33e38b532238a1b7ee4ff030f6bd63ab3bb85623f3ad7e1caecfb22d22cbe1ff",
+        "reviewed_entries": 51,
+        "next_entry": "imaging101-ct-poisson-lowdose"
       }
     ]
   }

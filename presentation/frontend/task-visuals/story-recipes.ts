@@ -17,6 +17,9 @@ import {
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
   return !(
+    (state.recipe === 'imaging101-fan-beam-v1' &&
+      state.scene === 'reference' &&
+      state.reference <= 0.5) ||
     (state.recipe === 'imaging101-dual-energy-v1' &&
       state.scene === 'reference' &&
       state.reference <= 0.5) ||
@@ -54,6 +57,7 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'imaging101-fan-beam-v1',
     'imaging101-dual-energy-v1',
     'imaging101-ptychography-v1',
     'imaging101-nlos-v1',
@@ -138,6 +142,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'imaging101-fan-beam-v1':
+      return {
+        heading: 'Reconstruct a fan-beam CT slice',
+        corner: 'Synthetic projections · saved reconstructions',
+        legend: [
+          ['#264b43', 'Source / saved · solid'],
+          ['#b9521e', 'Pixel / crop · orange'],
+          ['#8052a1', 'Synthetic truth · dashed', true],
+        ],
+      };
     case 'imaging101-dual-energy-v1':
       return {
         heading: 'Separate two materials with dual-energy CT',
