@@ -8301,12 +8301,12 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "pending-operation-review",
+      "source_asset_readiness": "Twelve pinned task source files, 60 shared files and ten numeric/metadata assets verified. Measurements, calibration, truth and saved two-material results are available; optional inverse fixture unavailable.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-ct-dual-energy.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: Separate bone and soft-tissue density maps.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "blocking_dependency": null,
+      "remaining_work": "Author and bind a native dual-energy CT story with paired count sinograms, supplied calibration, selected saved-ray spectral attenuation, saved material FBP, separate truth reveal, actual staging and two-material scoring controls. Export and inspect desktop/mobile/no-GPU/playback before acceptance. Optional unavailable inverse fixture is outside the planned saved-output scope.",
       "contract_projection": {
         "raw": "CT projections acquired with two X-ray energy spectra.",
         "helpers": "Energy spectra and material attenuation coefficients. The assistance level can add an approach and software design.",
@@ -8344,7 +8344,15 @@
         "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
       },
       "source_brief_sha256": "190b4e45de51e50b8a108529563d64e89c15f09670ab34f6cd9c7aad4f864afc",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval."
+      "blocker_resolution": "Source staging and native versus generic scoring replayed. Truth is solver-visible in L1-L3; generic reference selection depends on array shape and does not validate both material maps. Source audit is complete; the explainer is not.",
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "receipt": "presentation/external-tasks/sources/imaging101-dual-energy-audit.json",
+        "sha256": "f4d2e76cd10ce1afa54b281b9d821101f8cab450ea4f799594f40f6e3d3a4269",
+        "status": "source-audit-complete"
+      },
+      "acceptance_scope": null
     },
     {
       "entry_id": "imaging101-ct-fan-beam",
@@ -15361,8 +15369,9 @@
   "counts": {
     "reviewed-scripted-planar": 36,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 104,
-    "blocked-source-input": 52
+    "blocked-source-contract": 103,
+    "blocked-source-input": 52,
+    "pending-operation-review": 1
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -16145,6 +16154,16 @@
         "export_receipt_sha256": "01a0f2910fadd1df409245d942e47a8b447898c7cd5eb9c86c6597eae47922e0",
         "reviewed_entries": 49,
         "next_entry": "imaging101-ct-dual-energy"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "imaging101-ct-dual-energy",
+        "stage": "source-audit-complete",
+        "receipt": "presentation/external-tasks/sources/imaging101-dual-energy-audit.json",
+        "receipt_sha256": "f4d2e76cd10ce1afa54b281b9d821101f8cab450ea4f799594f40f6e3d3a4269",
+        "reviewed_entries": 49,
+        "next_entry": "imaging101-ct-dual-energy",
+        "note": "Native measurements, truth, saved result and forward fixtures verified. Canonical authoring and visual review remain pending. Optional inverse fixture unavailable; no material optimizer executed."
       }
     ]
   }
