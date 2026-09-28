@@ -1,5 +1,14 @@
 # Canonical task explainers
 
+`imaging101-dti-v1` uses native synthetic signal planes, exact gradient/design
+rows, fixed pixel controls and saved tensor-derived maps. Its [source notice](task-explorer/imaging101-dti/NOTICE.md)
+retains source coordinates, display quantization and contradictory source labels.
+`view` selects retained volumes, pixels, scalar maps and evaluator controls;
+`reference` gates truth and error maps for the reader. Actual L1–L3 expose truth
+and the mask. Tensor glyph projections use saved eigenvalues in source axes;
+the planar player performs no fitting. Masked FA, generic full-grid/reference
+selection and the missing-NPY fallback remain distinct scoring conditions.
+
 `imaging101-deflectometry-v1` explains one refracting-lens case using retained
 notebook camera panels, a separate synthetic phase fixture and analytical sections
 from source parameters. Its [source notice](task-explorer/imaging101-deflectometry/NOTICE.md)

@@ -1,3 +1,4 @@
+import { DtiScene, DtiOutput } from './imaging101-dti-panels';
 import { DeflectometryScene, DeflectometryOutput } from './imaging101-deflectometry-panels';
 import { FanBeamScene, FanBeamOutput } from './imaging101-fan-beam-panels';
 import { DualEnergyScene, DualEnergyOutput } from './imaging101-dual-energy-panels';
@@ -139,6 +140,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   if (state.recipe === 'resect-correspondence-v1') return <ResectScene state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisScene state={state} />;
+  if (state.recipe === 'imaging101-dti-v1') return <DtiScene state={state} />;
   if (state.recipe === 'imaging101-deflectometry-v1') return <DeflectometryScene state={state} />;
   if (state.recipe === 'imaging101-fan-beam-v1') return <FanBeamScene state={state} />;
   if (state.recipe === 'imaging101-dual-energy-v1') return <DualEnergyScene state={state} />;
@@ -379,6 +381,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'resect-correspondence-v1') return <ResectOutput state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisOutput state={state} />;
+  if (state.recipe === 'imaging101-dti-v1') return <DtiOutput state={state} />;
   if (state.recipe === 'imaging101-deflectometry-v1') return <DeflectometryOutput state={state} />;
   if (state.recipe === 'imaging101-fan-beam-v1') return <FanBeamOutput state={state} />;
   if (state.recipe === 'imaging101-dual-energy-v1') return <DualEnergyOutput state={state} />;

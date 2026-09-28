@@ -225,3 +225,5 @@ export * from '../presentation/frontend/task-visuals/imaging101-dual-energy';
 export * from '../presentation/frontend/task-visuals/imaging101-fan-beam';
 
 export * from '../presentation/frontend/task-visuals/imaging101-deflectometry';
+
+export * from '../presentation/frontend/task-visuals/imaging101-dti';

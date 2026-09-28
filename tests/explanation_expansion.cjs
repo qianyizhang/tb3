@@ -18,6 +18,12 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    dtiInput,
+    dtiData,
+    dtiReference,
+    dtiReveal,
+    dtiScalar,
+    dtiFa,
     deflectometryReveal,
     deflectometryInput,
     deflectometryData,
@@ -1654,6 +1660,75 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       'Witness must lie in displayed reference',
     );
   }
+  const dti = plans.find((p) => p.recipe === 'imaging101-dti-v1');
+  assert(dti);
+  const dtiRef = dti.beats.find((b) => b.scene === 'reference');
+  const dtiMid = Math.floor((dtiRef.startFrame + dtiRef.endFrame) / 2);
+  assert.equal(dtiReveal(sampleStory(dti, dtiMid - 1)), false);
+  assert.equal(dtiReveal(sampleStory(dti, dtiMid)), true);
+  assert.equal(dtiScalar(sampleStory(dti, dtiMid)), 'fa');
+  assert.equal(dtiScalar(sampleStory(dti, dtiRef.endFrame - 1)), 'md');
+  assert.equal(dtiReveal(sampleStory(dti, 0)), false);
+  dtiInput.gradients.design_matrix.forEach((row, i) => {
+    const [x, y, z] = dtiInput.gradients.bvecs[i],
+      b = dtiInput.gradients.bvals[i];
+    const expected = [
+      1,
+      -b * x * x,
+      -2 * b * x * y,
+      -2 * b * x * z,
+      -b * y * y,
+      -2 * b * y * z,
+      -b * z * z,
+    ];
+    row.forEach((v, j) => assert.ok(Math.abs(v - expected[j]) < 1e-10));
+  });
+  for (const method of ['ols', 'wls']) {
+    const fit = dtiData.fixed_pixel_fits[method];
+    fit.tensor_elements.forEach((e, i) => {
+      const params = [Math.log(fit.fitted_s0[i]), ...e];
+      dtiInput.gradients.design_matrix.forEach((row, j) => {
+        const predicted = Math.exp(row.reduce((total, v, k) => total + v * params[k], 0));
+        assert.ok(Math.abs(predicted - fit.predicted_signal[i][j]) < 1e-12);
+        if (method === 'ols')
+          assert.ok(Math.abs(predicted ** 2 - dtiData.wls_weights[i][j]) < 1e-12);
+      });
+    });
+  }
+  for (const t of [
+    ...dtiData.tensor_probes.ols,
+    ...dtiData.tensor_probes.wls,
+    ...dtiReference.tensor_probes,
+  ]) {
+    assert.ok(Math.abs(dtiFa(t.eigenvalues) - t.fa) < 2e-7);
+    assert.ok(Math.abs(t.eigenvalues.reduce((a, b) => a + b, 0) / 3 - t.md) < 1e-9);
+    for (const projection of t.projections) {
+      const [a, b] = projection.axes;
+      const product = (i, j) =>
+        t.matrix[i].reduce((sum, v, k) => sum + v * t.matrix[k][j], 0) * 1e6;
+      const aa = product(a, a),
+        ab = product(a, b),
+        bb = product(b, b),
+        determinant = aa * bb - ab * ab;
+      for (const [x, y] of projection.points) {
+        const ellipse = (bb * x * x - 2 * ab * x * y + aa * y * y) / determinant;
+        assert.ok(
+          Math.abs(ellipse - 1) < 1e-10,
+          'Tensor projection must be the silhouette of its own eigenvalue-scaled glyph',
+        );
+      }
+    }
+  }
+  assert.equal(dtiReference.solver_visible_all_levels, true);
+  assert.equal(dtiData.thresholds_available, false);
+  assert.equal(dtiData.custom_scoring.oracle_fa_with_zero_md_and_tensor.nrmse, 0);
+  assert.deepEqual(Array.from(dtiData.generic_scoring.oracle_md.selected_reference_keys), [
+    'fa_map',
+  ]);
+  assert.deepEqual(Array.from(dtiData.generic_scoring.oracle_tensor.selected_reference_keys), [
+    'tensor_elements',
+  ]);
+  assert.equal(dtiData.fallback.runner_commands_executed, 0);
   const deflectometry = plans.find((p) => p.recipe === 'imaging101-deflectometry-v1');
   assert(deflectometry);
   const deflectometryRef = deflectometry.beats.find((b) => b.scene === 'reference');

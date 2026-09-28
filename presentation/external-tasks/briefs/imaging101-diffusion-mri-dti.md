@@ -68,8 +68,8 @@ notebook boundaries are historical. See the audit for controls and exact dispatc
 
 ### Input
 
-Native arrays are audited; the current illustration is still an unreviewed
-schematic. The operation-specific story is pending.
+Native arrays retain their 128×128 grid. The canonical story selects four
+signal volumes and five post-hoc pixels with their source coordinates.
 
 ### Supplied helpers
 
@@ -100,6 +100,7 @@ The truth-exposed condition does not establish blind reconstruction difficulty.
 - [Pinned task and array contract](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/diffusion_mri_dti/README.md)
 - [Pinned fitting implementation](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/diffusion_mri_dti/src/solvers.py)
 - [Pinned generic reference selection](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py)
+- [Canonical story](../stories/imaging101-dti.story.md)
 - [Source audit, controls and provenance](../sources/imaging101-dti-audit.json)
 
 ## Coverage
@@ -110,5 +111,7 @@ fit, phantom generation or patient study.
 
 ## Gaps
 
-Canonical story, teaching assets and visual/export review remain unfinished.
-Scoring and reference-access limits remain explicit; original evidence is unchanged.
+One synthetic phantom and saved fits do not establish clinical accuracy or agent
+capability. Truth is exposed, evaluator scopes differ and current pass thresholds
+are unavailable. The canonical story preserves these limits; explainer acceptance
+is recorded in the completion ledger.

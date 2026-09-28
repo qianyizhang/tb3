@@ -17,6 +17,9 @@ import {
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
   return !(
+    (state.recipe === 'imaging101-dti-v1' &&
+      state.scene === 'reference' &&
+      state.reference <= 0.5) ||
     (state.recipe === 'imaging101-deflectometry-v1' &&
       state.scene === 'reference' &&
       state.reference <= 0.5) ||
@@ -60,6 +63,7 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'imaging101-dti-v1',
     'imaging101-deflectometry-v1',
     'imaging101-fan-beam-v1',
     'imaging101-dual-energy-v1',
@@ -146,6 +150,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'imaging101-dti-v1':
+      return {
+        heading: 'Fit a diffusion tensor from directional signals',
+        corner: 'Synthetic source arrays · fixed pixel controls',
+        legend: [
+          ['#264b43', 'Source / saved · solid'],
+          ['#b9521e', 'Selected control · orange'],
+          ['#8052a1', 'Truth / error · dashed', true],
+        ],
+      };
     case 'imaging101-deflectometry-v1':
       return {
         heading: 'Recover a lens from refracted fringes',

@@ -1,0 +1,278 @@
+.scene {
+  height: 442px;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 14px 24px;
+  background: #f6f7ef;
+  color: #264b43;
+  font-size: 14px;
+}
+.scene h3 {
+  margin: 0 0 12px;
+  font-size: 22px;
+  line-height: 1.2;
+}
+.scene h4 {
+  margin: 4px 0 8px;
+  font-size: 17px;
+  line-height: 1.3;
+}
+.scene p {
+  margin: 7px 0;
+  line-height: 1.4;
+}
+.two,
+.three {
+  display: grid;
+  gap: 18px;
+  align-items: start;
+}
+.two {
+  grid-template-columns: 1fr 1fr;
+}
+.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.card {
+  padding: 12px;
+  border: 1px solid #d0d5ca;
+  background: white;
+  min-width: 0;
+}
+.note {
+  padding: 8px 11px;
+  border-left: 3px solid #b9521e;
+  background: #fff3dc;
+}
+.formula {
+  padding: 8px 10px;
+  background: #e9eee4;
+  font-variant-numeric: tabular-nums;
+}
+.plane {
+  margin: 0;
+  min-width: 0;
+  text-align: center;
+}
+.plane figcaption {
+  font-size: 15px;
+  font-weight: 600;
+  min-height: 20px;
+}
+.plane svg {
+  display: block;
+  width: 100%;
+  height: 230px;
+}
+.scene svg text {
+  fill: #264b43;
+  font-size: 13px;
+  font-family: inherit;
+}
+.scale {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  align-items: center;
+  font-size: 12px;
+  line-height: 16px;
+}
+.scale i {
+  width: 110px;
+  height: 8px;
+  background: linear-gradient(to right, #000, #fff);
+  border: 1px solid #a8b8ac;
+}
+.scene .unit {
+  margin: 3px 0;
+  font-size: 12px;
+  line-height: 1.3;
+  text-align: center;
+}
+.maskSummary {
+  display: grid;
+  grid-template-columns: 155px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+.small svg {
+  height: 115px;
+}
+.small svg text {
+  display: none;
+}
+.small figcaption {
+  font-size: 13px;
+}
+.small .scale i {
+  width: 68px;
+}
+.small .unit {
+  font-size: 11px;
+}
+.gradient {
+  display: block;
+  width: 100%;
+  height: 265px;
+}
+.coefficients {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px 14px;
+  font-size: 13px;
+}
+.coefficients > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 5px;
+  background: #f2f5ef;
+  font-variant-numeric: tabular-nums;
+}
+.curve {
+  display: block;
+  width: 100%;
+  height: 275px;
+}
+.weights {
+  display: block;
+  width: 100%;
+  height: 88px;
+}
+.lineLegend {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-size: 13px;
+}
+.lineLegend span:first-child {
+  color: #182b26;
+}
+.lineLegend span:nth-child(2) {
+  color: #788c84;
+}
+.lineLegend strong {
+  color: #264b43;
+}
+.matrix {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  padding: 12px;
+  border-left: 2px solid #264b43;
+  border-right: 2px solid #264b43;
+  font-size: 19px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  background: #f3f6f0;
+}
+.glyph {
+  display: block;
+  width: 100%;
+  height: 175px;
+}
+.scene dl {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin: 12px 0;
+}
+.scene dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  font-size: 13px;
+  margin: 0 0 12px;
+}
+.table th,
+.table td {
+  text-align: left;
+  padding: 8px 6px;
+  border-bottom: 1px solid #d6dfd2;
+  overflow-wrap: anywhere;
+}
+.table th:first-child {
+  width: 34%;
+}
+.table th:nth-child(2) {
+  width: 30%;
+}
+.table td:nth-last-child(-n + 2) {
+  font-variant-numeric: tabular-nums;
+}
+.active {
+  background: #e0ece5;
+  outline: 1px solid #86a49a;
+}
+.hidden {
+  max-width: 560px;
+  margin: 20px auto;
+  padding: 48px 24px;
+  border: 2px dashed #8052a1;
+  background: #fbf8fd;
+}
+.scene code {
+  overflow-wrap: anywhere;
+  font-size: 13px;
+}
+.aside {
+  padding: 22px;
+  color: #345148;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.aside b {
+  font-size: 12px;
+}
+.aside h4 {
+  margin: 8px 0;
+}
+.aside small {
+  display: block;
+  font-size: 11px;
+  color: #6c8178;
+}
+@container task-visual (max-width:900px) {
+  .scene {
+    height: auto;
+    overflow: visible;
+    padding: 16px;
+  }
+  .scene h3 {
+    font-size: 21px;
+  }
+  .two,
+  .three {
+    grid-template-columns: 1fr;
+  }
+  .plane svg {
+    height: 220px;
+  }
+  .small svg {
+    height: 115px;
+  }
+  .table {
+    font-size: 11px;
+  }
+  .table th,
+  .table td {
+    padding: 7px 4px;
+  }
+  .maskSummary {
+    grid-template-columns: 130px 1fr;
+    gap: 8px;
+  }
+  .matrix {
+    font-size: 17px;
+    padding: 9px;
+  }
+  .hidden {
+    padding: 24px 14px;
+  }
+}
