@@ -8763,15 +8763,15 @@
       ],
       "illustration_kind": "deflectometry",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "imaging101-deflectometry",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reconstruction-other",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "13 task and60 shared sources plus43 numerical/metadata/figure assets verified. Notebook-embedded rendered measurement panels recovered; synthetic phase/crop controls and saved-parameter scoring audited. Full raw camera stacks remain unavailable and are not replaced by rendered pixels.",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Thirteen task and 60 shared sources plus 43 benchmark assets verified. Pinned notebook camera panels, saved parameters, synthetic phase/crop controls, actual L1-L3 staging and scoring controls audited. Native raw archive unavailable.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/049-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Author an operation-specific story from pinned notebook camera panels, calibrated lens geometry, separate synthetic phase controls, saved parameters and explicit scoring/staging limits. Keep rendered figures distinct from unavailable raw stacks. Export and inspect entry-specific desktop/mobile/no-GPU/playback states before acceptance.",
+      "remaining_work": "No outstanding explainer work for this retained source condition. Native raw-stack and intersection replay, fresh optical fit, agent capability, private-reference validity, independent sample metrology and benchmark pass remain unclaimed. Remote delivery pending at program level.",
       "contract_projection": {
         "title": "Recover lens geometry from refracted fringe patterns",
         "goal": "Estimate a lens's curvature, thickness and pose from how it bends displayed\nstripes seen by two cameras. This is **refraction through two lens surfaces**.",
@@ -8857,6 +8857,95 @@
         "receipt": "presentation/external-tasks/sources/imaging101-deflectometry-audit.json",
         "sha256": "0f821033f25b7a20220be019c7effd6f9435274ab59b0ebce08b8132890a4895",
         "status": "source-audited-raw-replay-unavailable"
+      },
+      "acceptance_scope": "Assistant source, numerical, visual and engineering review of one retained Imaging101 refractive-lens example, rendered notebook views, saved parameters and separate synthetic helper controls. No raw-stack or native-intersection replay, fresh optical fit, agent capability, independent sample metrology, hidden-reference validity or benchmark pass.",
+      "visual_review": "Eight chapters: source camera views, calibrated crop, four synthetic phase controls, signed lens geometry, saved outputs, manufacturer reveal, score controls and loss limits. Desktop/mobile/locale/Explorer/no-GPU and 204-second playback inspected.",
+      "reviewed_contract_projection": {
+        "title": "Recover lens geometry from refracted fringe patterns",
+        "goal": "Estimate a lens's curvature, thickness and pose from how it bends displayed\nstripes seen by two cameras. This is **refraction through two lens surfaces**.",
+        "value": "Optical metrology links distorted patterns to lens geometry through calibrated\ncameras, a display and a differentiable ray tracer.",
+        "raw": "The README specifies lens-present and lens-absent stacks, each\n`(1, 3, 8, 2, 2048, 2048)`: batch, fringe periods, shifts, cameras, rows, columns.\n**Raw stacks are absent from the pinned benchmark dataset.** Saved notebook\nfigures preserve normalized camera views; they are not raw intensity samples.",
+        "helpers": "Camera/display calibration, a lens prescription and periods 70/100/110 pixels.\nThe source selects a centered `768 × 768` crop, starting at pixel `(640, 640)`.",
+        "tools": "Python, PyTorch differentiation and optical/optimization code. The audit executes\nonly fixed preprocessing and scoring controls, with no ray tracing or optimization.",
+        "reference": "**Manufacturer truth and the lens prescription are solver-visible:** L1–L3 seed\nthe complete data directory. Lens-absent images are measurement inputs. Saved\nreconstructions and metric fixtures are not seeded.",
+        "spec": "Extract phase from shifted fringes, infer display intersections and fit the two\nrefracting surfaces. Keep calibration, valid-pixel masks and coordinate units consistent.",
+        "output": "Eight lens parameters: two curvatures (`mm^-1`), thickness and three origin\ncoordinates (`mm`), and two tilts (degrees). The native file is\n`optimized_params.json`; the generic end-to-end format is incompatible with this\nthree-key scalar truth archive.",
+        "score": "The custom helper compares only two radii and thickness, ignoring pose. Generic\nscoring rejects even the correct three-parameter truth vector; a one-radius oracle\nhas infinite range-normalized error. Saved metrics contain no NCC/NRMSE pass thresholds.",
+        "challenge": "Curvature, thickness and pose interact in the ray geometry. A three-parameter\nscore cannot establish correct pose or native image agreement.",
+        "families": "One retained LE1234-A source example, two cameras and synthetic helper fixtures.\nThirteen task sources, 60 shared files and 43 benchmark assets were verified.\nNo fresh optical fit, agent evaluation or medical inference.",
+        "gap": "The upstream raw archive is listed as 3.22 GB; bounded retrieval failed with TLS\nand connection errors. Native screen-intersection metrics cannot be replayed from\nsaved figures. The canonical story preserves this replay limit.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect calibrated camera views and shifted fringes",
+          "Extract phase and fit refracting lens geometry",
+          "Reveal saved parameters and the evaluator's limits"
+        ],
+        "variants": [
+          {
+            "name": "L1 · README",
+            "helper": "README, data and requirements, including available truth/prescription.",
+            "remaining": "Choose and implement the inversion."
+          },
+          {
+            "name": "L2 · + approach",
+            "helper": "Adds phase analysis, differentiable tracing and LM optimization.",
+            "remaining": "Implement the numerical method."
+          },
+          {
+            "name": "L3 · + design",
+            "helper": "Adds module and function contracts.",
+            "remaining": "Implement the code and preserve units and masks."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/README.md"
+          ],
+          [
+            "Pinned notebook with measurement views",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/notebooks/diff_deflectometry.ipynb"
+          ],
+          [
+            "Original implementation and raw-data locator",
+            "https://github.com/vccimaging/DiffDeflectometry/tree/df23bef16ed92d597f9d9397f313de54e9d4015a"
+          ],
+          [
+            "Canonical story",
+            "presentation/external-tasks/stories/imaging101-deflectometry.story.md"
+          ],
+          [
+            "Source audit, controls and limitations",
+            "presentation/external-tasks/sources/imaging101-deflectometry-audit.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Estimate a lens&#x27;s curvature, thickness and pose from how it bends displayed stripes seen by two cameras. This is <strong>refraction through two lens surfaces</strong>.</p>",
+          "value": "<p>Optical metrology links distorted patterns to lens geometry through calibrated cameras, a display and a differentiable ray tracer.</p>",
+          "raw": "<p>The README specifies lens-present and lens-absent stacks, each <code>(1, 3, 8, 2, 2048, 2048)</code>: batch, fringe periods, shifts, cameras, rows, columns. <strong>Raw stacks are absent from the pinned benchmark dataset.</strong> Saved notebook figures preserve normalized camera views; they are not raw intensity samples.</p>",
+          "helpers": "<p>Camera/display calibration, a lens prescription and periods 70/100/110 pixels. The source selects a centered <code>768 × 768</code> crop, starting at pixel <code>(640, 640)</code>.</p>",
+          "tools": "<p>Python, PyTorch differentiation and optical/optimization code. The audit executes only fixed preprocessing and scoring controls, with no ray tracing or optimization.</p>",
+          "reference": "<p><strong>Manufacturer truth and the lens prescription are solver-visible:</strong> L1–L3 seed the complete data directory. Lens-absent images are measurement inputs. Saved reconstructions and metric fixtures are not seeded.</p>",
+          "spec": "<p>Extract phase from shifted fringes, infer display intersections and fit the two refracting surfaces. Keep calibration, valid-pixel masks and coordinate units consistent.</p>",
+          "output": "<p>Eight lens parameters: two curvatures (<code>mm^-1</code>), thickness and three origin coordinates (<code>mm</code>), and two tilts (degrees). The native file is <code>optimized_params.json</code>; the generic end-to-end format is incompatible with this three-key scalar truth archive.</p>",
+          "score": "<p>The custom helper compares only two radii and thickness, ignoring pose. Generic scoring rejects even the correct three-parameter truth vector; a one-radius oracle has infinite range-normalized error. Saved metrics contain no NCC/NRMSE pass thresholds.</p>",
+          "challenge": "<p>Curvature, thickness and pose interact in the ray geometry. A three-parameter score cannot establish correct pose or native image agreement.</p>",
+          "families": "<p>One retained LE1234-A source example, two cameras and synthetic helper fixtures. Thirteen task sources, 60 shared files and 43 benchmark assets were verified. No fresh optical fit, agent evaluation or medical inference.</p>",
+          "gap": "<p>The upstream raw archive is listed as 3.22 GB; bounded retrieval failed with TLS and connection errors. Native screen-intersection metrics cannot be replayed from saved figures. The canonical story preserves this replay limit.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Source-derived camera view available.</strong> Pinned notebook cells 9–10 contain normalized, masked measurement panels. The full camera archive remains unavailable; rendered panels cannot recover quantitative raw intensities.</p>",
+          "helpers": "<p><strong>Given material.</strong> Calibration and the lens prescription define the setup. A separate <code>32 × 32</code> synthetic fixture demonstrates four-step phase extraction; it is not a native camera sample.</p>",
+          "answer": "<p><strong>Saved source output, not a fresh prediction.</strong> Notebook comparisons show measured, initially modeled and optimized views. The plotting code saves the same two-camera figure twice; repeated notebook rows are not extra cameras or cases. Reader reference reveals must remain distinct from measurement panels.</p>"
+        },
+        "missing_media": []
+      },
+      "completion_review": {
+        "date": "2026-09-29",
+        "source_brief_sha256": "6f346c0b2af21d5c2d56dcaf0ce7e355500b6e36acd4d1dbe232ce528447b40f",
+        "source_story_sha256": "b603656cfd7d707db5de5c4031fbafe92caa6910dfb12666327180fa95faf2c5",
+        "acceptance_receipt_sha256": "8181c1b5c8842db7c4438e52079957366d50fc7f3d248bef98d4509dbb141a61"
       }
     },
     {
@@ -15683,11 +15772,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 38,
+    "reviewed-scripted-planar": 39,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 100,
-    "blocked-source-input": 53,
-    "pending-operation-review": 1
+    "blocked-source-input": 53
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -15706,7 +15794,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "imaging101-differentiable-deflectometry",
+    "active_entry": "imaging101-diffusion-mri-dti",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -16528,6 +16616,15 @@
         "reviewed_entries": 51,
         "next_entry": "imaging101-differentiable-deflectometry",
         "note": "Source-derived notebook camera panels and numerical fixture controls available; raw stacks absent and generic scorer incompatible. Canonical story/export/visual acceptance pending."
+      },
+      {
+        "date": "2026-09-29",
+        "entry_id": "imaging101-differentiable-deflectometry",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/049-acceptance.json",
+        "export_receipt_sha256": "afcaaf56758427aa3ff59193266a2b6a8b3ea6424ea3808dcbc118ed715e0af8",
+        "reviewed_entries": 52,
+        "next_entry": "imaging101-diffusion-mri-dti"
       }
     ]
   }

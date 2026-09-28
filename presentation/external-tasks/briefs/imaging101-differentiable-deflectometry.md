@@ -96,6 +96,7 @@ score cannot establish correct pose or native image agreement.
 - [Pinned task README](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/README.md)
 - [Pinned notebook with measurement views](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/notebooks/diff_deflectometry.ipynb)
 - [Original implementation and raw-data locator](https://github.com/vccimaging/DiffDeflectometry/tree/df23bef16ed92d597f9d9397f313de54e9d4015a)
+- [Canonical story](../stories/imaging101-deflectometry.story.md)
 - [Source audit, controls and limitations](../sources/imaging101-deflectometry-audit.json)
 
 ## Coverage
@@ -108,4 +109,4 @@ No fresh optical fit, agent evaluation or medical inference.
 
 The upstream raw archive is listed as 3.22 GB; bounded retrieval failed with TLS
 and connection errors. Native screen-intersection metrics cannot be replayed from
-saved figures. A canonical story and its visual/export review remain unfinished.
+saved figures. The canonical story preserves this replay limit.

@@ -18,6 +18,12 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    deflectometryReveal,
+    deflectometryInput,
+    deflectometryData,
+    deflectometryReference,
+    deflectometryPhase,
+    deflectometrySag,
     fanBeamReveal,
     fanBeamInput,
     fanBeamData,
@@ -1648,6 +1654,41 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       'Witness must lie in displayed reference',
     );
   }
+  const deflectometry = plans.find((p) => p.recipe === 'imaging101-deflectometry-v1');
+  assert(deflectometry);
+  const deflectometryRef = deflectometry.beats.find((b) => b.scene === 'reference');
+  assert.equal(deflectometryReveal(sampleStory(deflectometry, deflectometryRef.startFrame)), false);
+  assert.equal(
+    deflectometryReveal(sampleStory(deflectometry, deflectometryRef.endFrame - 1)),
+    true,
+  );
+  assert.equal(deflectometryReveal(sampleStory(deflectometry, 0)), false);
+  for (const probe of deflectometryInput.fixture_probes) {
+    assert.ok(Math.abs(deflectometryPhase(probe.values) - probe.phase) < 1e-12);
+    assert.equal(probe.values.reduce((a, b) => a + b, 0) / 4, probe.mean);
+    assert.ok(
+      Math.abs((probe.delta[0] ** 2 + probe.delta[1] ** 2) / 4 - probe.squared_modulation) < 1e-9,
+    );
+  }
+  for (const profile of [
+    deflectometryData.initial_profile,
+    deflectometryData.saved_profile,
+    deflectometryReference.profile,
+  ]) {
+    profile.r.forEach((r, i) => {
+      assert.ok(Math.abs(deflectometrySag(profile.curvatures[0], r) - profile.front[i]) < 1e-12);
+      assert.ok(
+        Math.abs(profile.thickness + deflectometrySag(profile.curvatures[1], r) - profile.back[i]) <
+          1e-12,
+      );
+    });
+  }
+  assert.equal(deflectometryInput.raw_available, false);
+  assert.equal(deflectometryReference.solver_visible_all_levels, true);
+  assert.equal(deflectometryReference.pose_truth_available, false);
+  assert.deepEqual(deflectometryData.pose_control.score, deflectometryData.custom_score);
+  assert.ok(Object.values(deflectometryData.generic_scoring).some((r) => r.error));
+  assert.ok(Object.values(deflectometryData.generic_scoring).some((r) => r.nrmse === 'inf'));
   const fan = plans.find((p) => p.recipe === 'imaging101-fan-beam-v1');
   assert(fan);
   const fanRef = fan.beats.find((b) => b.scene === 'reference');

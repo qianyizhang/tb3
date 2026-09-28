@@ -28,6 +28,7 @@ class ExpansionTests(unittest.TestCase):
                     "mask-screen-v1",
                     "anatomy-curation-v1",
                     "ct-context-v1",
+                    "imaging101-deflectometry-v1",
                     "imaging101-fan-beam-v1",
                     "imaging101-dual-energy-v1",
                     "imaging101-ptychography-v1",
@@ -88,6 +89,7 @@ class ExpansionTests(unittest.TestCase):
 
     def test_source_screen_scene_changes_require_explicit_cuts(self):
         for group, name in [
+            (None, "imaging101-deflectometry"),
             (None, "imaging101-fan-beam"),
             (None, "imaging101-dual-energy"),
             (None, "imaging101-ptychography"),
@@ -164,6 +166,7 @@ class ExpansionTests(unittest.TestCase):
             "registration-analysis",
             "segmentation-calibration",
             "ct-context",
+            "imaging101-deflectometry",
             "imaging101-fan-beam",
             "imaging101-dual-energy",
             "imaging101-ptychography",

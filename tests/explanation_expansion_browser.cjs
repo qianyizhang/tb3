@@ -50,6 +50,7 @@ withBrowser(async (browser) => {
           'mask-screen-v1',
           'anatomy-curation-v1',
           'ct-context-v1',
+          'imaging101-deflectometry-v1',
           'imaging101-fan-beam-v1',
           'imaging101-dual-energy-v1',
           'imaging101-ptychography-v1',
@@ -96,6 +97,19 @@ withBrowser(async (browser) => {
         ].includes(plan.recipe)
       ) {
         for (const b of plan.beats) frames.push(b.startFrame);
+      }
+      if (plan.recipe === 'imaging101-deflectometry-v1') {
+        for (const b of plan.beats) {
+          frames.push(b.startFrame);
+          for (const fraction of [1 / 6, 1 / 2, 5 / 6])
+            frames.push(Math.floor(b.startFrame + fraction * (b.endFrame - b.startFrame)));
+          if (b.scene === 'phase')
+            frames.push(Math.floor(b.startFrame + (3 / 8) * (b.endFrame - b.startFrame)));
+          if (b.scene === 'reference') {
+            frames.push(Math.floor(b.startFrame + (3 / 4) * (b.endFrame - b.startFrame)));
+            frames.push(Math.floor((b.startFrame + b.endFrame) / 2) - 1);
+          }
+        }
       }
       if (plan.recipe === 'imaging101-fan-beam-v1') {
         for (const b of plan.beats) {
@@ -624,6 +638,60 @@ withBrowser(async (browser) => {
           const box = await output.boundingBox();
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
+        }
+        if (plan.recipe === 'imaging101-deflectometry-v1') {
+          const name = await page
+            .locator('[data-deflectometry-scene]')
+            .getAttribute('data-deflectometry-scene');
+          const beat = plan.beats.find((b) => b.scene === name);
+          const revealed =
+            name === 'reference' &&
+            frame > beat.startFrame + (beat.endFrame - beat.startFrame - 1) / 2;
+          assert.equal(
+            await page.locator('[data-deflectometry-reference]').count(),
+            revealed ? 2 : 0,
+          );
+          if (name === 'inputs' || name === 'output')
+            assert.equal(await page.locator('[data-deflectometry-panel]').count(), 2);
+          for (const selector of [
+            '.scene-player > header',
+            '[data-deflectometry-scene]',
+            '[data-deflectometry-aside]',
+            '.scene-legend',
+          ]) {
+            const box = await page.locator(selector).boundingBox();
+            assert.ok(
+              box && box.y + box.height <= 720,
+              'Deflectometry clipping ' + selector + ' frame ' + frame,
+            );
+            assert.ok(
+              await page.locator(selector).evaluate((e) => {
+                if (!e.hasAttribute('data-deflectometry-scene'))
+                  return e.scrollHeight <= e.clientHeight && e.scrollWidth <= e.clientWidth;
+                // Overflowing trailing padding does not clip content. Check rendered
+                // text fragments and image bounds against the actual clipping box.
+                const box = e.getBoundingClientRect();
+                const inside = (r) =>
+                  r.width === 0 ||
+                  r.height === 0 ||
+                  (r.left >= box.left &&
+                    r.top >= box.top &&
+                    r.right <= box.right &&
+                    r.bottom <= box.bottom);
+                const walker = document.createTreeWalker(e, NodeFilter.SHOW_TEXT);
+                while (walker.nextNode()) {
+                  if (!walker.currentNode.textContent.trim()) continue;
+                  const range = document.createRange();
+                  range.selectNodeContents(walker.currentNode);
+                  if (!Array.from(range.getClientRects()).every(inside)) return false;
+                }
+                return Array.from(e.querySelectorAll('svg,img')).every((n) =>
+                  inside(n.getBoundingClientRect()),
+                );
+              }),
+              'Deflectometry overflow ' + selector + ' frame ' + frame,
+            );
+          }
         }
         if (plan.recipe === 'imaging101-fan-beam-v1') {
           const name = await page
@@ -1701,6 +1769,39 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'imaging101-deflectometry-v1') {
+      for (let step = 1; step < plan.beats.length; step++) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        await page.waitForFunction(
+          (f) =>
+            document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+            String(f),
+          plan.beats[step].startFrame,
+        );
+        assert.ok(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          'Deflectometry mobile overflow',
+        );
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+      }
+      await page.locator('[data-story-step="5"]').click();
+      assert.equal(await page.locator('[data-deflectometry-reference]').count(), 0);
+      await page.locator('.scene-play').click();
+      await page.locator('[data-deflectometry-reference]').first().waitFor({ timeout: 20000 });
+      await page.locator('.scene-play').click();
+      assert.equal(await page.locator('[data-deflectometry-reference]').count(), 2);
+      assert.ok(
+        await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+        'Deflectometry mobile reference overflow',
+      );
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'mobile-reference-revealed.png') });
+      await page.locator('.scene-reset').click();
+      assert.equal(await page.locator('[data-deflectometry-reference]').count(), 0);
+    }
     if (plan.recipe === 'imaging101-fan-beam-v1') {
       for (let step = 1; step < plan.beats.length; step++) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -2292,6 +2393,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-deflectometry-v1',
       'imaging101-fan-beam-v1',
       'imaging101-dual-energy-v1',
       'imaging101-ptychography-v1',
@@ -2336,6 +2438,17 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'imaging101-deflectometry-v1') {
+      for (const step of [2, 3, 6]) {
+        await fallback.locator(`[data-story-step="${step}"]`).click();
+        await fallback.locator(`[data-deflectometry-scene="${plan.beats[step].scene}"]`).waitFor();
+        await fallback
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `no-gpu-${plan.beats[step].scene}.png`) });
+      }
+      await fallback.locator('.scene-reset').click();
+      await fallback.locator('[data-deflectometry-scene="inputs"]').waitFor();
+    }
     if (plan.recipe === 'imaging101-fan-beam-v1') {
       for (const step of [1, 2, 5]) {
         await fallback.locator(`[data-story-step="${step}"]`).click();
@@ -3607,6 +3720,23 @@ withBrowser(async (browser) => {
   await page.locator('[data-fan-beam-scene="inputs"]').waitFor();
   assert.equal(await page.locator('[data-fan-beam-reference]').count(), 0);
   report.navigation.push({ id: 'imaging101-ct-fan-beam', geometryAndReset: true });
+  await page.evaluate(() => {
+    location.hash = 'imaging101-differentiable-deflectometry/0/overview?view=repository';
+  });
+  await page.waitForFunction(
+    () =>
+      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+      'imaging101-deflectometry-v1',
+  );
+  await page.locator('[data-story-step="3"]').click();
+  await page.locator('[data-deflectometry-scene="geometry"]').waitFor();
+  await page
+    .locator('.scene-player')
+    .screenshot({ path: path.join(folder, 'integrated-deflectometry.png') });
+  await page.locator('.scene-reset').click();
+  await page.locator('[data-deflectometry-scene="inputs"]').waitFor();
+  assert.equal(await page.locator('[data-deflectometry-reference]').count(), 0);
+  report.navigation.push({ id: 'imaging101-differentiable-deflectometry', geometryAndReset: true });
   await context.close();
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.remote_requests, []);

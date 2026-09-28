@@ -1,5 +1,14 @@
 # Canonical task explainers
 
+`imaging101-deflectometry-v1` explains one refracting-lens case using retained
+notebook camera panels, a separate synthetic phase fixture and analytical sections
+from source parameters. Its [source notice](task-explorer/imaging101-deflectometry/NOTICE.md)
+separates rendered pixels from unavailable raw intensities. `view` selects fixed
+phase controls, initial/saved states and a recorded-loss cursor; `reference` gates
+manufacturer dimensions for the reader. Actual L1–L3 staging exposes that truth.
+The custom score ignores pose, and the generic output contract rejects the full
+truth vector. The planar player performs no ray tracing or optical optimization.
+
 `imaging101-fan-beam-v1` uses native full/short sinograms, the source pixel-driven
 geometry, released Parker weights and three saved images. Its [source notice](task-explorer/imaging101-fan-beam/NOTICE.md)
 preserves signed projection values, pixel coordinates, upstream attribution and

@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "imaging101-deflectometry-v1": "retained-imaging101-deflectometry-v1",
     "imaging101-fan-beam-v1": "retained-imaging101-fan-beam-v1",
     "imaging101-dual-energy-v1": "retained-imaging101-dual-energy-v1",
     "imaging101-ptychography-v1": "retained-imaging101-ptychography-v1",
@@ -100,6 +101,18 @@ SOURCE_INPUT_PACKS = {
     ),
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-imaging101-deflectometry-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "inputs.json",
+            "reference.json",
+            "contract.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+            "BENCHMARK-LICENSE.txt",
+        },
+    ),
     "retained-imaging101-fan-beam-v1": (
         "source-records",
         "reference.json",
@@ -578,6 +591,11 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class Imaging101DeflectometryChannels(Closed):
+    view: Pair
+    reference: Pair
 
 
 class Imaging101FanBeamChannels(Closed):
@@ -1073,6 +1091,24 @@ class RegistrationAnalysisBeat(ExpansionBeat[RegistrationAnalysisChannels]):
 class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
     recipe: Literal["registration-analysis-v1"]
     beats: tuple[RegistrationAnalysisBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class Imaging101DeflectometryBeat(ExpansionBeat[Imaging101DeflectometryChannels]):
+    scene: Literal[
+        "inputs", "calibration", "phase", "geometry", "output", "reference", "scoring", "limits"
+    ]
+
+
+class Imaging101DeflectometryStory(Story[Imaging101DeflectometryChannels]):
+    recipe: Literal["imaging101-deflectometry-v1"]
+    beats: tuple[Imaging101DeflectometryBeat, ...]
 
     @model_validator(mode="after")
     def scene_cuts(self) -> Self:
@@ -1671,6 +1707,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101DeflectometryStory
     | Imaging101FanBeamStory
     | Imaging101DualEnergyStory
     | Imaging101PtychographyStory
@@ -1720,6 +1757,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101DeflectometryStory
     | Imaging101FanBeamStory
     | Imaging101DualEnergyStory
     | Imaging101PtychographyStory
@@ -1929,6 +1967,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101DeflectometryStory
     | Imaging101FanBeamStory
     | Imaging101DualEnergyStory
     | Imaging101PtychographyStory
@@ -2023,6 +2062,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = source_packs[pack_id]
         frame, data_license, label_license = {
+            "retained-imaging101-deflectometry-v1": (
+                "source-record",
+                "LicenseRef-Imaging101-deflectometry-sources",
+                "MIT",
+            ),
             "retained-imaging101-fan-beam-v1": (
                 "source-record",
                 "LicenseRef-Imaging101-fan-beam-sources",

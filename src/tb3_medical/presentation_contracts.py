@@ -514,6 +514,23 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class Imaging101DeflectometryChannels(TypedDict):
+    view: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class Imaging101DeflectometryBeat(ExpansionBeat):
+    channels: Imaging101DeflectometryChannels
+    scene: Literal[
+        "inputs", "calibration", "phase", "geometry", "output", "reference", "scoring", "limits"
+    ]
+
+
+class Imaging101DeflectometryPlan(ExpansionPlan):
+    recipe: Literal["imaging101-deflectometry-v1"]
+    beats: list[Imaging101DeflectometryBeat]
+
+
 class Imaging101FanBeamChannels(TypedDict):
     view: tuple[float, float]
     reference: tuple[float, float]
@@ -1116,6 +1133,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | Imaging101DeflectometryPlan
     | Imaging101FanBeamPlan
     | Imaging101DualEnergyPlan
     | Imaging101PtychographyPlan
