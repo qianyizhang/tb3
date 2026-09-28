@@ -1,0 +1,1203 @@
+{
+  "schema": 1,
+  "entry_id": "automedbench",
+  "date": "2026-09-28",
+  "reviewer": "assistant",
+  "status": "source-audit-complete-native-input-unavailable",
+  "scope": "Pinned binary kidney Lite/Standard contract. Source inspection and selected-function nonclinical fixtures only; no model, medical pipeline, controller, judge or security-harness execution.",
+  "repository": "AutoMedBench/AutoMedBench",
+  "commit": "5a9834ce0010c4e97b9eb22a4645321b9529902b",
+  "source_license_notice": "Copyright (c) 2026 AutoMedBench Contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction for non-commercial research purposes,\nincluding without limitation the rights to use, copy, modify, merge, publish,\nand distribute copies of the Software, subject to the following conditions:\n\n1. The above copyright notice and this permission notice shall be included in\n   all copies or substantial portions of the Software.\n\n2. The Software is provided for research use only. It must not be used for\n   clinical diagnosis, treatment decisions, or any other direct patient care\n   application.\n\n3. Redistribution of any part of this Software that touches medical imaging\n   data must preserve the dataset-license terms of the underlying sources\n   (KiTS, LiTS, MSD, FeTA, MIMIC-CXR, etc.).\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+  "source_files": [
+    {
+      "path": "HOW_TO_PREPARE_DATA.md",
+      "sha": "1bd4960cf4e96ff54e66fc173a76a63313b1f8e5",
+      "sha256": "dd3dbc440fa80d5ec579b9be33ade205136c412b2321e04dc645e66a176f7738",
+      "bytes": 6316,
+      "local_path": ".local/explainers/completion-20260927/039-source/HOW_TO_PREPARE_DATA.md"
+    },
+    {
+      "path": "LICENSE",
+      "sha": "e19bb775a4e50f83b2d7b4993dd58b444e36459b",
+      "sha256": "02ed0a63faedaa39f35eb19a83d1b921bb08c8ee8a6f86925e969b1bf57e2141",
+      "bytes": 1390,
+      "local_path": ".local/explainers/completion-20260927/039-source/LICENSE"
+    },
+    {
+      "path": "README.md",
+      "sha": "8888135a271f7df76caa3ccae8caa21f63cc3825",
+      "sha256": "b1db861d7f0420b80cb7c54be0c95e7c52d8639f2b284f3d1e50973824a99069",
+      "bytes": 3962,
+      "local_path": ".local/explainers/completion-20260927/039-source/README.md"
+    },
+    {
+      "path": "eval_seg/README.md",
+      "sha": "d6cd33b60c3d5bb70fa8937a313d1bf1c5905e42",
+      "sha256": "d5954b35175241d4515200d9e8aae8a1c26cff8b1ed9e17a036f8fa1c59e896d",
+      "bytes": 7671,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/README.md"
+    },
+    {
+      "path": "eval_seg/aggregate.py",
+      "sha": "33bd0076555580e046d00d6af52b23191545baf4",
+      "sha256": "a8637336377b4b401cfbc13b18d1c3ebbbfc1e256402bc50113a7973a2c15063",
+      "bytes": 11944,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/aggregate.py"
+    },
+    {
+      "path": "eval_seg/benchmark_runner.py",
+      "sha": "2fbf7f8a4d5bc5e28fec8b4e10b280463ff586ab",
+      "sha256": "e7a677ffea05cfa70250b7c92011ff77d18119fc2c834f5b843c19f3f090a162",
+      "bytes": 102119,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/benchmark_runner.py"
+    },
+    {
+      "path": "eval_seg/dice_scorer.py",
+      "sha": "24e86da0e592964b05734ca78fde55e5e3190757",
+      "sha256": "c6f7a608764e138bdf34f957ac250673e60879df3e0080204d51cf7e909f70e7",
+      "bytes": 9244,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/dice_scorer.py"
+    },
+    {
+      "path": "eval_seg/format_checker.py",
+      "sha": "eaec17902bdde4144f0af59374085e245fada801",
+      "sha256": "513cc61c32e7a611acd793a0ae89cbbb909c94a2b11fc992b96661855884e404",
+      "bytes": 6764,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/format_checker.py"
+    },
+    {
+      "path": "eval_seg/kidney-seg-task/config.yaml",
+      "sha": "0879f50e33782904502a2f0aee273d9d09a05ea7",
+      "sha256": "61d9e45a664f34a4662c96f424d8eb970df74925742061ec9e9329779444d65d",
+      "bytes": 265,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/kidney-seg-task/config.yaml"
+    },
+    {
+      "path": "eval_seg/kidney-seg-task/lite_s1.md",
+      "sha": "6d041d785140a8f72e59b38bbead1c2b456a6bb4",
+      "sha256": "73014e6cfc8e0dce2cf41afd5e8459363d7141e74540afd1ef02ac6a50b0fea6",
+      "bytes": 1011,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/kidney-seg-task/lite_s1.md"
+    },
+    {
+      "path": "eval_seg/kidney-seg-task/lite_s2.md",
+      "sha": "80a37662a650b929cc90e587d111d875d6bbda6e",
+      "sha256": "d632ab3377aa1de0bb7940cc913a1d8e6d0f81fdcfac61c884db05227da2850a",
+      "bytes": 737,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/kidney-seg-task/lite_s2.md"
+    },
+    {
+      "path": "eval_seg/kidney-seg-task/lite_s3.md",
+      "sha": "85b20f5a7c2d315dd3a63d9685519077ad2dce61",
+      "sha256": "2d7a721979e49e201b63ad76d60d9126335074ef8999f2a4e586799f1b265d44",
+      "bytes": 2692,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/kidney-seg-task/lite_s3.md"
+    },
+    {
+      "path": "eval_seg/kidney-seg-task/model_info.yaml",
+      "sha": "2913cabee54b75f6d6a6b2529787be6b839f0910",
+      "sha256": "c932f590150b89e98eacd3b660f9737ae074dd2846bc4d00c40e537dc0454715",
+      "bytes": 1512,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/kidney-seg-task/model_info.yaml"
+    },
+    {
+      "path": "eval_seg/kidney-seg-task/requirements.txt",
+      "sha": "d528c56282bea4215707234a6b08d44b4d5c2156",
+      "sha256": "b85ec02186be1485b508fb323fb86e3d8c8b46a4e78800d8629af35bc957e228",
+      "bytes": 294,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/kidney-seg-task/requirements.txt"
+    },
+    {
+      "path": "eval_seg/kidney-seg-task/standard_s1.md",
+      "sha": "04ef14a3c034bbd18c5d2de10126f18892530736",
+      "sha256": "e9912895ce3ae74711d8fa27aed921ad672cf0d7d44ee52e3f158b7ffaff6a68",
+      "bytes": 1047,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/kidney-seg-task/standard_s1.md"
+    },
+    {
+      "path": "eval_seg/kidney-seg-task/standard_s3.md",
+      "sha": "85b20f5a7c2d315dd3a63d9685519077ad2dce61",
+      "sha256": "2d7a721979e49e201b63ad76d60d9126335074ef8999f2a4e586799f1b265d44",
+      "bytes": 2692,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/kidney-seg-task/standard_s3.md"
+    },
+    {
+      "path": "eval_seg/llm_judge.py",
+      "sha": "b3f0a8056eeab29f8100499dc17d995c5591c855",
+      "sha256": "2d3fb82bdbe83a7c4c240cfa112ad1a54870efa27ff11c2539493ea064393eab",
+      "bytes": 48135,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/llm_judge.py"
+    },
+    {
+      "path": "eval_seg/medal_tier.py",
+      "sha": "46298991a928fcca3c1c3d7fca6e40c8a5970a3e",
+      "sha256": "f02054c00be7921049bba143bb98cdad1d19e81c60977b2d14429eed4c203e07",
+      "bytes": 1129,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/medal_tier.py"
+    },
+    {
+      "path": "eval_seg/prompts/common/env_lite.md",
+      "sha": "2c4af257f010632bf5925d0a0e7e95e6be54cdc1",
+      "sha256": "dc534fd7b5da6773c06dc119e7c76288b7460a4e8fafbd18476b84107c1e13b8",
+      "bytes": 511,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/prompts/common/env_lite.md"
+    },
+    {
+      "path": "eval_seg/prompts/common/env_standard.md",
+      "sha": "139eafcdc1fd6fe02e23f7784ec9f518fd70d439",
+      "sha256": "7736c34b214a317515d3908c71e54df257c58a4b1938748142513bb4e88901d7",
+      "bytes": 438,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/prompts/common/env_standard.md"
+    },
+    {
+      "path": "eval_seg/prompts/common/important_lite.md",
+      "sha": "22f9d7fe3c176018d8069734455092c4ecbe4e07",
+      "sha256": "d973a898a6caba10aea5f3ce19037e552552274b25945d89e7e288c40bf7549f",
+      "bytes": 387,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/prompts/common/important_lite.md"
+    },
+    {
+      "path": "eval_seg/prompts/common/important_standard.md",
+      "sha": "c8e5c47341611a74845b9c2142090a8fba66ece9",
+      "sha256": "9f57e0db8287509536b8599767f53cf047d362f65ca2c437ed5a384811d37373",
+      "bytes": 578,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/prompts/common/important_standard.md"
+    },
+    {
+      "path": "eval_seg/prompts/common/preamble.md",
+      "sha": "05ae6acdac622ce056d4323cfd864a1c2c82a04c",
+      "sha256": "e66825809130f4eab3a30f6ba9a1237d2aaa981f6d125e9782181142103a88de",
+      "bytes": 2975,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/prompts/common/preamble.md"
+    },
+    {
+      "path": "eval_seg/prompts/s1_plan/lite.md",
+      "sha": "4255e83939b78e00ba585b30e4e89bb50c1e1fd6",
+      "sha256": "9045408499023fbf71796d6909ad902cf66b990e4a28a9f1cd3d371f2ee1926f",
+      "bytes": 583,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/prompts/s1_plan/lite.md"
+    },
+    {
+      "path": "eval_seg/prompts/s1_plan/standard.md",
+      "sha": "3aaf54ea519dc49ba7624961fc3b6fb813eb8651",
+      "sha256": "e80aea50bc786938c7621372c49675bb5a2fab8f7254464a69998ab91e43d0d4",
+      "bytes": 2412,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/prompts/s1_plan/standard.md"
+    },
+    {
+      "path": "eval_seg/prompts/s2_setup/lite.md",
+      "sha": "f657d135c37fe56f4229caab7b9dcb2d05b210e0",
+      "sha256": "02f0ea5e74544efbd1565130c602c88d005334f934784fb1e026b843ddc85968",
+      "bytes": 1356,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/prompts/s2_setup/lite.md"
+    },
+    {
+      "path": "eval_seg/prompts/s2_setup/standard_pro.md",
+      "sha": "431ac29d203dd110ab5f36bbef71d185a12b84d7",
+      "sha256": "8b7a737228cb2b2670bd6ead70f5b9e2df081ac8c96fbfd2420df18cb1c6f35f",
+      "bytes": 569,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/prompts/s2_setup/standard_pro.md"
+    },
+    {
+      "path": "eval_seg/prompts/s3_validate/lite_standard.md",
+      "sha": "2082d49f973367ba84bc6dcfc6bde528b3e083c4",
+      "sha256": "eb9a2db4ea56fec8f2bdd1ab3dbf652f59748f35e9d332dc25545936a5f0f78d",
+      "bytes": 1348,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/prompts/s3_validate/lite_standard.md"
+    },
+    {
+      "path": "eval_seg/prompts/s4_inference/lite_standard.md",
+      "sha": "3f31a46cb903622e093ddc7bf1bcb883d76edd1d",
+      "sha256": "9365e6e5e512e19c2bd023e6be547611f13fcce50867b2970fcc22c04f725609",
+      "bytes": 666,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/prompts/s4_inference/lite_standard.md"
+    },
+    {
+      "path": "eval_seg/prompts/s5_submit/all.md",
+      "sha": "9aac1f3f705836720102837347a2fbd4d3aadb89",
+      "sha256": "23856e06a487e044a479f40d4e60be5dbbc42ce3350ad39309965429ebd0c39c",
+      "bytes": 586,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/prompts/s5_submit/all.md"
+    },
+    {
+      "path": "eval_seg/run_eval.py",
+      "sha": "5b35e46200596dc2d8420870afe84844980dcb55",
+      "sha256": "56a9052afc88ce138c351cbb5bbb514e200be6454111ac227140ded3c01b3ff4",
+      "bytes": 9288,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/run_eval.py"
+    },
+    {
+      "path": "eval_seg/stage_data.py",
+      "sha": "902c8041c7c766df79d012a5f81a5f01d59672fa",
+      "sha256": "6304c7a518bd73ce218356ddba213fe326083285726923ee708b984d0af4efc3",
+      "bytes": 3810,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/stage_data.py"
+    },
+    {
+      "path": "eval_seg/task_loader.py",
+      "sha": "dc46dec0178697e2cd8ea711b7c2fca7e84b0c21",
+      "sha256": "743fd1b84236b4089ba492330756d6ee033b266d81320e878049fb8a4d0daef8",
+      "bytes": 4961,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/task_loader.py"
+    },
+    {
+      "path": "eval_seg/tier_config.py",
+      "sha": "a025add858cd29aa698474124a2001f21f46d445",
+      "sha256": "60fc716c8dcd90a5005b8057016fd87fc1686b2ba21dab096f5080bb27305986",
+      "bytes": 8972,
+      "local_path": ".local/explainers/completion-20260927/039-source/eval_seg/tier_config.py"
+    },
+    {
+      "path": "stage_data.py",
+      "sha": "d3ba84647003ae980d4d1ebf665c5f7bca45e0fb",
+      "sha256": "2523b68ebf42c5c29d69f5b32c70473e61451eda6058cff78dd78edf384677e4",
+      "bytes": 17809,
+      "local_path": ".local/explainers/completion-20260927/039-source/stage_data.py"
+    }
+  ],
+  "selected_functions": {
+    "eval_seg/task_loader.py": {
+      "discover_tasks": {
+        "sha256": "8c6900e74f95f4359320326526fe1843946a2b377c4de6118f284ee911f99ca3",
+        "lines": [
+          24,
+          35
+        ]
+      },
+      "load_task_config": {
+        "sha256": "63f73783c5dda3d7fb3588bb8a15ec519301eca4ee592b032073976a7a93f2c3",
+        "lines": [
+          38,
+          60
+        ]
+      },
+      "load_skill": {
+        "sha256": "b1e3edddfb716b9050ec20ac49bf95cbe6ad75af887a0f47a2e1700b13a0a417",
+        "lines": [
+          71,
+          81
+        ]
+      },
+      "load_requirements_path": {
+        "sha256": "97abc5275cc548d15c156b6e53463fdce26d9784ff37006740799c74ab7118bd",
+        "lines": [
+          84,
+          93
+        ]
+      }
+    },
+    "eval_seg/benchmark_runner.py": {
+      "build_tier_system_prompt": {
+        "sha256": "467cda851a176621282dcd9f69d911079a26c849c3b9233cbcddd5823eae8277",
+        "lines": [
+          663,
+          830
+        ]
+      }
+    },
+    "eval_seg/dice_scorer.py": {
+      "dice_coefficient": {
+        "sha256": "55db1670a60a4adc308f5308d595de6f296d673fd70bca5052f136ee0b904eb5",
+        "lines": [
+          8,
+          22
+        ]
+      },
+      "score_patient": {
+        "sha256": "0637c91935427c6225312d2e50ef9120a41f5885c20688e46327318ec53191c7",
+        "lines": [
+          25,
+          43
+        ]
+      },
+      "_find_mask": {
+        "sha256": "16a3cd115051d8d25bc49c473433009d8b1a30c91698f88f1e917d4050699079",
+        "lines": [
+          46,
+          53
+        ]
+      },
+      "score_all": {
+        "sha256": "01dd7416c066671443f3f9b4ca396ccd77b4be19ae3386599d12204b8d81aad7",
+        "lines": [
+          66,
+          142
+        ]
+      }
+    },
+    "eval_seg/format_checker.py": {
+      "check_decision_csv": {
+        "sha256": "13289cdca99d994ba15192859f1952c7a934bdda47b1d2b6e93285d6543aa39d",
+        "lines": [
+          10,
+          45
+        ]
+      },
+      "check_mask_file": {
+        "sha256": "523484a8bdc044a332c6786c4fc1aad356c5c526d569a1ee9f7aa3bf1179475c",
+        "lines": [
+          48,
+          79
+        ]
+      },
+      "check_submission": {
+        "sha256": "0ef93e926fb226a65099e47c9f7c13412b1667798fd422bda52d174eee58dfce",
+        "lines": [
+          120,
+          190
+        ]
+      }
+    },
+    "eval_seg/medal_tier.py": {
+      "assign_tier": {
+        "sha256": "04206119ffd6b94a26563bb3d56de38367b29a6b7c53f0204eeeefc0d708b71a",
+        "lines": [
+          23,
+          35
+        ]
+      }
+    },
+    "eval_seg/aggregate.py": {
+      "compute_s4": {
+        "sha256": "a66c71554e9f467b2b45500648d795db9101988819e23d157ee18ae2e7febb3a",
+        "lines": [
+          22,
+          25
+        ]
+      },
+      "compute_s5": {
+        "sha256": "de7e7cb593addae293cbd367cb3027d74dbb788c4a8e2c8937ec42a46cc466b9",
+        "lines": [
+          28,
+          32
+        ]
+      },
+      "compute_clinical_score": {
+        "sha256": "f3d6cc2955fdb8b61d3e9b9174f187c67ddbac4bf30a4597df4ce2901b9ec1be",
+        "lines": [
+          35,
+          40
+        ]
+      },
+      "compute_workflow_score": {
+        "sha256": "fbed4bd263a1941d9434c550abb49a8eb0dc613349be07189de97a6b3ea5e918",
+        "lines": [
+          51,
+          64
+        ]
+      },
+      "compute_overall_score": {
+        "sha256": "5bce448799cea2a6f03a0e90f6ce2aa265b172a8367f6abb352b44fa91b512ef",
+        "lines": [
+          67,
+          69
+        ]
+      },
+      "assign_rating": {
+        "sha256": "2761a0040f44f063e8bba658637722752d0688fb0ba70bffd2a226d81507dabe",
+        "lines": [
+          72,
+          87
+        ]
+      },
+      "is_resolved": {
+        "sha256": "797f08f9613b98e99900e3d94f72fb40c56993efb2f66a396136fa3c30667e99",
+        "lines": [
+          90,
+          92
+        ]
+      },
+      "build_report": {
+        "sha256": "0b3f225e5b7865623223f5b8ecdb44db29a6d39613a99046170fcd1815bb2e63",
+        "lines": [
+          98,
+          213
+        ]
+      }
+    },
+    "runner_quick_submission_check": {
+      "check_submission": {
+        "sha256": "912811c70fe874ead968b6ed60a10b401dfc7270897fd8082c416d324bd2b515",
+        "lines": [
+          1374,
+          1385
+        ]
+      }
+    }
+  },
+  "config": {
+    "task_id": "kidney-seg-task",
+    "organ": "kidney",
+    "modality": "CT",
+    "input_filename": "ct.nii.gz",
+    "task_description": "Segment kidneys and detect kidney lesions/tumors.",
+    "data_dir_name": "CruzAbdomen_Kidney",
+    "time_limit_s": 3600,
+    "lesion_ratio_min": 0.01
+  },
+  "model_assistance": {
+    "lite": {
+      "model_architecture": "nnU-Net v2 (KiTS19 3d_lowres)",
+      "model_description": "SOTA checkpoint: huggingface.co/KagglingFace/nnUNet-KiTS19-3d-lowres-50epochs. nnU-Net v2 trained on KiTS19 with 3d_lowres config, fold 1, 50 epochs. Has kidney organ + kidney tumor labels. Use nnUNetPredictor from nnunetv2.inference.predict_from_raw_data to run inference. NOTE: nnU-Net env vars (nnUNet_raw, nnUNet_preprocessed, nnUNet_results) are not required for inference-only mode — use predict_from_files() or predict_single_npy_array() directly.\n"
+    },
+    "standard": {
+      "model_range": [
+        "**nnU-Net pre-trained models** — search for nnU-Net checkpoints trained on KiTS (kidney + tumor labels). Both v1 and v2 format checkpoints exist online. Standalone PyTorch models (e.g., MLPerf 3D-UNet KiTS19) are also available",
+        "**MONAI Bundles / VISTA3D** — check the MONAI Model Zoo on HuggingFace (huggingface.co/MONAI). VISTA3D has kidney organ labels but verify it has kidney TUMOR labels before using"
+      ]
+    },
+    "pro": {
+      "clinical_background": "Kidney tumors in CT include renal cell carcinoma (RCC), the most common kidney malignancy. Your score depends primarily on tumor/lesion Dice — a model that segments kidneys but misses tumors will score near zero. You need a model trained specifically on tumor-annotated data. Note: tools like TotalSegmentator are general organ segmenters — they segment kidneys but do NOT detect tumors.\n"
+    }
+  },
+  "prompt_witnesses": [
+    {
+      "tier": "lite",
+      "path": ".local/explainers/completion-20260927/039-audit-v3/prompt-fixtures/lite/system-prompt.txt",
+      "sha256": "d6ff2a16724f39123d82c27c0789ada16925cda548aefe5c17b9a542b675ba8e",
+      "includes_s3_example": true,
+      "requirements_copied": true
+    },
+    {
+      "tier": "standard",
+      "path": ".local/explainers/completion-20260927/039-audit-v3/prompt-fixtures/standard/system-prompt.txt",
+      "sha256": "6928141d80cccc64cdbb3a0cd91896c0df385e3627135e356d0f3b637bcb000c",
+      "includes_s3_example": true,
+      "requirements_copied": false
+    }
+  ],
+  "fixture_scope": "Two author 8x8x8 arrays. Empty artificial input, 8-voxel organ and 1-voxel positive lesion; not patient anatomy or medical performance.",
+  "fixtures": [
+    {
+      "name": "exact-arrays",
+      "quick_check": {
+        "missing_masks": [],
+        "complete": true
+      },
+      "format": {
+        "submission_format_valid": true,
+        "output_format_valid": true,
+        "decision_csv_valid": null,
+        "per_patient": {
+          "fixture-positive": {
+            "lesion": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            },
+            "organ": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            }
+          },
+          "fixture-negative": {
+            "lesion": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            },
+            "organ": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            }
+          }
+        },
+        "errors": []
+      },
+      "dice": {
+        "per_patient": {
+          "fixture-positive": {
+            "lesion_dice": 1.0,
+            "organ_dice": 1.0,
+            "gt_has_lesion": true,
+            "lesion_detail": {
+              "dice": 1.0,
+              "pred_voxels": 1,
+              "gt_voxels": 1
+            },
+            "organ_detail": {
+              "dice": 1.0,
+              "pred_voxels": 8,
+              "gt_voxels": 8
+            }
+          },
+          "fixture-negative": {
+            "lesion_dice": 1.0,
+            "organ_dice": 1.0,
+            "gt_has_lesion": false,
+            "lesion_detail": {
+              "dice": 1.0,
+              "pred_voxels": 0,
+              "gt_voxels": 0
+            },
+            "organ_detail": {
+              "dice": 1.0,
+              "pred_voxels": 8,
+              "gt_voxels": 8
+            }
+          }
+        },
+        "mean_lesion_dice": 1.0,
+        "mean_lesion_dice_all": 1.0,
+        "mean_organ_dice": 1.0,
+        "n_lesion_positive": 1,
+        "n_patients": 2
+      },
+      "report_before_judge": {
+        "step_scores": {
+          "s1": null,
+          "s2": null,
+          "s3": null,
+          "s4": 1.0,
+          "s5": 1.0
+        },
+        "metrics": {
+          "lesion_dice": 1.0,
+          "organ_dice": 1.0,
+          "pos_organ_dice": 1.0,
+          "medal_tier": 2,
+          "medal_name": "good"
+        },
+        "format": {
+          "submission_format_valid": true,
+          "output_format_valid": true
+        },
+        "aggregate": {
+          "rating": "A",
+          "resolved": true,
+          "overall_score": 0.625,
+          "agentic_score": 0.25,
+          "clinical_score": 1.0,
+          "progress_rate": 1.0,
+          "active_steps": [
+            "s4",
+            "s5"
+          ]
+        }
+      }
+    },
+    {
+      "name": "missing-organ",
+      "quick_check": {
+        "missing_masks": [
+          "fixture-positive/organ.nii.gz",
+          "fixture-negative/organ.nii.gz"
+        ],
+        "complete": false
+      },
+      "format": {
+        "submission_format_valid": true,
+        "output_format_valid": true,
+        "decision_csv_valid": null,
+        "per_patient": {
+          "fixture-positive": {
+            "lesion": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            }
+          },
+          "fixture-negative": {
+            "lesion": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            }
+          }
+        },
+        "errors": []
+      },
+      "dice": {
+        "per_patient": {
+          "fixture-positive": {
+            "lesion_dice": 1.0,
+            "organ_dice": null,
+            "gt_has_lesion": true,
+            "lesion_detail": {
+              "dice": 1.0,
+              "pred_voxels": 1,
+              "gt_voxels": 1
+            }
+          },
+          "fixture-negative": {
+            "lesion_dice": 1.0,
+            "organ_dice": null,
+            "gt_has_lesion": false,
+            "lesion_detail": {
+              "dice": 1.0,
+              "pred_voxels": 0,
+              "gt_voxels": 0
+            }
+          }
+        },
+        "mean_lesion_dice": 1.0,
+        "mean_lesion_dice_all": 1.0,
+        "mean_organ_dice": 0.0,
+        "n_lesion_positive": 1,
+        "n_patients": 2
+      },
+      "report_before_judge": {
+        "step_scores": {
+          "s1": null,
+          "s2": null,
+          "s3": null,
+          "s4": 1.0,
+          "s5": 1.0
+        },
+        "metrics": {
+          "lesion_dice": 1.0,
+          "organ_dice": "N/A",
+          "pos_organ_dice": "N/A",
+          "medal_tier": 2,
+          "medal_name": "good"
+        },
+        "format": {
+          "submission_format_valid": true,
+          "output_format_valid": true
+        },
+        "aggregate": {
+          "rating": "A",
+          "resolved": true,
+          "overall_score": 0.375,
+          "agentic_score": 0.25,
+          "clinical_score": 0.5,
+          "progress_rate": 1.0,
+          "active_steps": [
+            "s4",
+            "s5"
+          ]
+        }
+      }
+    },
+    {
+      "name": "nonbinary-organ",
+      "quick_check": {
+        "missing_masks": [],
+        "complete": true
+      },
+      "format": {
+        "submission_format_valid": true,
+        "output_format_valid": true,
+        "decision_csv_valid": null,
+        "per_patient": {
+          "fixture-positive": {
+            "lesion": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            },
+            "organ": {
+              "exists": true,
+              "valid": false,
+              "errors": [
+                "Non-binary values: [0. 2.]"
+              ]
+            }
+          },
+          "fixture-negative": {
+            "lesion": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            },
+            "organ": {
+              "exists": true,
+              "valid": false,
+              "errors": [
+                "Non-binary values: [0. 2.]"
+              ]
+            }
+          }
+        },
+        "errors": []
+      },
+      "dice": {
+        "per_patient": {
+          "fixture-positive": {
+            "lesion_dice": 1.0,
+            "organ_dice": 1.0,
+            "gt_has_lesion": true,
+            "lesion_detail": {
+              "dice": 1.0,
+              "pred_voxels": 1,
+              "gt_voxels": 1
+            },
+            "organ_detail": {
+              "dice": 1.0,
+              "pred_voxels": 8,
+              "gt_voxels": 8
+            }
+          },
+          "fixture-negative": {
+            "lesion_dice": 1.0,
+            "organ_dice": 1.0,
+            "gt_has_lesion": false,
+            "lesion_detail": {
+              "dice": 1.0,
+              "pred_voxels": 0,
+              "gt_voxels": 0
+            },
+            "organ_detail": {
+              "dice": 1.0,
+              "pred_voxels": 8,
+              "gt_voxels": 8
+            }
+          }
+        },
+        "mean_lesion_dice": 1.0,
+        "mean_lesion_dice_all": 1.0,
+        "mean_organ_dice": 1.0,
+        "n_lesion_positive": 1,
+        "n_patients": 2
+      },
+      "report_before_judge": {
+        "step_scores": {
+          "s1": null,
+          "s2": null,
+          "s3": null,
+          "s4": 1.0,
+          "s5": 1.0
+        },
+        "metrics": {
+          "lesion_dice": 1.0,
+          "organ_dice": 1.0,
+          "pos_organ_dice": 1.0,
+          "medal_tier": 2,
+          "medal_name": "good"
+        },
+        "format": {
+          "submission_format_valid": true,
+          "output_format_valid": true
+        },
+        "aggregate": {
+          "rating": "A",
+          "resolved": true,
+          "overall_score": 0.625,
+          "agentic_score": 0.25,
+          "clinical_score": 1.0,
+          "progress_rate": 1.0,
+          "active_steps": [
+            "s4",
+            "s5"
+          ]
+        }
+      }
+    },
+    {
+      "name": "shifted-affine",
+      "quick_check": {
+        "missing_masks": [],
+        "complete": true
+      },
+      "format": {
+        "submission_format_valid": true,
+        "output_format_valid": true,
+        "decision_csv_valid": null,
+        "per_patient": {
+          "fixture-positive": {
+            "lesion": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            },
+            "organ": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            }
+          },
+          "fixture-negative": {
+            "lesion": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            },
+            "organ": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            }
+          }
+        },
+        "errors": []
+      },
+      "dice": {
+        "per_patient": {
+          "fixture-positive": {
+            "lesion_dice": 1.0,
+            "organ_dice": 1.0,
+            "gt_has_lesion": true,
+            "lesion_detail": {
+              "dice": 1.0,
+              "pred_voxels": 1,
+              "gt_voxels": 1
+            },
+            "organ_detail": {
+              "dice": 1.0,
+              "pred_voxels": 8,
+              "gt_voxels": 8
+            }
+          },
+          "fixture-negative": {
+            "lesion_dice": 1.0,
+            "organ_dice": 1.0,
+            "gt_has_lesion": false,
+            "lesion_detail": {
+              "dice": 1.0,
+              "pred_voxels": 0,
+              "gt_voxels": 0
+            },
+            "organ_detail": {
+              "dice": 1.0,
+              "pred_voxels": 8,
+              "gt_voxels": 8
+            }
+          }
+        },
+        "mean_lesion_dice": 1.0,
+        "mean_lesion_dice_all": 1.0,
+        "mean_organ_dice": 1.0,
+        "n_lesion_positive": 1,
+        "n_patients": 2
+      },
+      "report_before_judge": {
+        "step_scores": {
+          "s1": null,
+          "s2": null,
+          "s3": null,
+          "s4": 1.0,
+          "s5": 1.0
+        },
+        "metrics": {
+          "lesion_dice": 1.0,
+          "organ_dice": 1.0,
+          "pos_organ_dice": 1.0,
+          "medal_tier": 2,
+          "medal_name": "good"
+        },
+        "format": {
+          "submission_format_valid": true,
+          "output_format_valid": true
+        },
+        "aggregate": {
+          "rating": "A",
+          "resolved": true,
+          "overall_score": 0.625,
+          "agentic_score": 0.25,
+          "clinical_score": 1.0,
+          "progress_rate": 1.0,
+          "active_steps": [
+            "s4",
+            "s5"
+          ]
+        }
+      }
+    },
+    {
+      "name": "missing-patient",
+      "quick_check": {
+        "missing_masks": [
+          "fixture-negative/organ.nii.gz",
+          "fixture-negative/lesion.nii.gz"
+        ],
+        "complete": false
+      },
+      "format": {
+        "submission_format_valid": false,
+        "output_format_valid": false,
+        "decision_csv_valid": null,
+        "per_patient": {
+          "fixture-positive": {
+            "lesion": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            },
+            "organ": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            }
+          },
+          "fixture-negative": {
+            "lesion": {
+              "exists": false,
+              "valid": false,
+              "errors": [
+                "Mask not found: .local/explainers/completion-20260927/039-audit-v3/missing-patient/agents_outputs/fixture-negative/lesion.nii.gz"
+              ]
+            }
+          }
+        },
+        "errors": []
+      },
+      "dice": {
+        "per_patient": {
+          "fixture-positive": {
+            "lesion_dice": 1.0,
+            "organ_dice": 1.0,
+            "gt_has_lesion": true,
+            "lesion_detail": {
+              "dice": 1.0,
+              "pred_voxels": 1,
+              "gt_voxels": 1
+            },
+            "organ_detail": {
+              "dice": 1.0,
+              "pred_voxels": 8,
+              "gt_voxels": 8
+            }
+          },
+          "fixture-negative": {
+            "lesion_dice": null,
+            "organ_dice": null,
+            "gt_has_lesion": false
+          }
+        },
+        "mean_lesion_dice": 1.0,
+        "mean_lesion_dice_all": 1.0,
+        "mean_organ_dice": 1.0,
+        "n_lesion_positive": 1,
+        "n_patients": 2
+      },
+      "report_before_judge": {
+        "step_scores": {
+          "s1": null,
+          "s2": null,
+          "s3": null,
+          "s4": 0.25,
+          "s5": 0.0
+        },
+        "metrics": {
+          "lesion_dice": 0.0,
+          "organ_dice": "N/A",
+          "pos_organ_dice": "N/A",
+          "medal_tier": 0,
+          "medal_name": "good"
+        },
+        "format": {
+          "submission_format_valid": false,
+          "output_format_valid": false
+        },
+        "aggregate": {
+          "rating": "F",
+          "resolved": false,
+          "overall_score": 0.0187,
+          "agentic_score": 0.0375,
+          "clinical_score": 0.0,
+          "progress_rate": 0.0,
+          "active_steps": [
+            "s4",
+            "s5"
+          ]
+        }
+      }
+    },
+    {
+      "name": "empty-lesion",
+      "quick_check": {
+        "missing_masks": [],
+        "complete": true
+      },
+      "format": {
+        "submission_format_valid": true,
+        "output_format_valid": true,
+        "decision_csv_valid": null,
+        "per_patient": {
+          "fixture-positive": {
+            "lesion": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            },
+            "organ": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            }
+          },
+          "fixture-negative": {
+            "lesion": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            },
+            "organ": {
+              "exists": true,
+              "valid": true,
+              "errors": []
+            }
+          }
+        },
+        "errors": []
+      },
+      "dice": {
+        "per_patient": {
+          "fixture-positive": {
+            "lesion_dice": 0.0,
+            "organ_dice": 1.0,
+            "gt_has_lesion": true,
+            "lesion_detail": {
+              "dice": 0.0,
+              "pred_voxels": 0,
+              "gt_voxels": 1
+            },
+            "organ_detail": {
+              "dice": 1.0,
+              "pred_voxels": 8,
+              "gt_voxels": 8
+            }
+          },
+          "fixture-negative": {
+            "lesion_dice": 1.0,
+            "organ_dice": 1.0,
+            "gt_has_lesion": false,
+            "lesion_detail": {
+              "dice": 1.0,
+              "pred_voxels": 0,
+              "gt_voxels": 0
+            },
+            "organ_detail": {
+              "dice": 1.0,
+              "pred_voxels": 8,
+              "gt_voxels": 8
+            }
+          }
+        },
+        "mean_lesion_dice": 0.0,
+        "mean_lesion_dice_all": 0.5,
+        "mean_organ_dice": 1.0,
+        "n_lesion_positive": 1,
+        "n_patients": 2
+      },
+      "report_before_judge": {
+        "step_scores": {
+          "s1": null,
+          "s2": null,
+          "s3": null,
+          "s4": 1.0,
+          "s5": 1.0
+        },
+        "metrics": {
+          "lesion_dice": 0.0,
+          "organ_dice": 1.0,
+          "pos_organ_dice": 1.0,
+          "medal_tier": 0,
+          "medal_name": "fail"
+        },
+        "format": {
+          "submission_format_valid": true,
+          "output_format_valid": true
+        },
+        "aggregate": {
+          "rating": "C",
+          "resolved": false,
+          "overall_score": 0.375,
+          "agentic_score": 0.25,
+          "clinical_score": 0.5,
+          "progress_rate": 1.0,
+          "active_steps": [
+            "s4",
+            "s5"
+          ]
+        }
+      }
+    }
+  ],
+  "source_pins": {
+    "scripts/audit_automed_kidney.py": "24ace9adea5630e489f53dd8905f0b2793ae4ecdb3ceaaabe38d41fa6d9f662a"
+  },
+  "observations": [
+    "The source prompt requests two binary masks per patient plus optional decision CSV, with S1 plan, S2 setup, S3 one-patient validation, S4 batch inference and S5 submit_results.",
+    "Both rendered Lite and Standard prompts include the S3 validation example. Lite also stages requirements and names a KiTS19 checkpoint; Standard asks for model comparisons. README S1-only wording for Standard differs from prompt assembly.",
+    "The runner quick check requires both masks. The format check requires lesion masks but treats organ files as optional and does not propagate an invalid organ mask to its overall format flag.",
+    "Mask format and Dice helpers compare array shapes/values, not physical affines. The 100-mm-shifted nonclinical fixture retains perfect array Dice; this is not geometric alignment evidence.",
+    "Lesion Dice averages evaluated GT-positive cases; organ Dice averages available evaluated organs. The aggregate completeness gate uses non-null lesion results and zeroes Dice credit on missing patient output.",
+    "S1-S3 remain None in deterministic reports until a judge supplies them. No judge scores were generated; these fixture reports are not full benchmark runs.",
+    "The root preparation recipe selects the first 20 malignant KiTS19 metadata rows and merges labels 1 or 2 into organ, with label 2 for lesion. Its data/Kidney destination differs from the task loader config data/CruzAbdomen_Kidney. The older eval_seg staging script has another CruzBench path/layout. No staging script was executed.",
+    "The retained Full-release archive and multi-organ CT belong to separate releases/tasks; neither proves this pinned kidney condition has its native input or staging layout."
+  ],
+  "remaining": [
+    "Obtain and hash a licensed native kidney CT/label pair, preferably KiTS19 case_00000; record representative-versus-exact-stage status.",
+    "Audit geometry and source-label conversion, then author the task-specific story, integrate, export and perform visual review.",
+    "Do not mark the explainer reviewed from this source audit or the synthetic fixtures alone."
+  ],
+  "native_input_recovery": {
+    "repository": "neheller/kits19",
+    "commit": "456b293435b25303bbc7995f094f83a0afdff0eb",
+    "license": "CC-BY-NC-SA-4.0",
+    "files": [
+      {
+        "path": ".local/explainers/completion-20260927/039-source/kits19/data/LICENSE",
+        "repository_path": "data/LICENSE",
+        "git_blob_sha": "d9e352b2f77a35accd82f8ce91c2fef5dab1df22",
+        "sha256": "b74fbcfc8ced6f7893b729b2685fc23cf221c72bcd716bd04cd884bf8a33bd48",
+        "bytes": 20717
+      },
+      {
+        "path": ".local/explainers/completion-20260927/039-source/kits19/data/kits.json",
+        "repository_path": "data/kits.json",
+        "git_blob_sha": "0e1b9d8b217198dbc4c8b784b38917b9b5191292",
+        "sha256": "d84e7a0b0538cabb361b007bd7291787af9e1e9250fb81a5dbae91025174fa02",
+        "bytes": 494148
+      },
+      {
+        "path": ".local/explainers/completion-20260927/039-source/kits19/starter_code/get_imaging.py",
+        "repository_path": "starter_code/get_imaging.py",
+        "git_blob_sha": "8f93d7b4b43db2d57b118b985da8152eb3c0c424",
+        "sha256": "d0ccaf6f9bcecf744fd54376fe7e486edcb8abd76447160a106d63ff150a884b",
+        "bytes": 2504
+      }
+    ],
+    "selected_first_20_from_root_recipe": [
+      "case_00000",
+      "case_00001",
+      "case_00002",
+      "case_00003",
+      "case_00004",
+      "case_00005",
+      "case_00006",
+      "case_00007",
+      "case_00008",
+      "case_00009",
+      "case_00010",
+      "case_00011",
+      "case_00012",
+      "case_00013",
+      "case_00014",
+      "case_00015",
+      "case_00016",
+      "case_00018",
+      "case_00021",
+      "case_00022"
+    ],
+    "preferred_case": "case_00000",
+    "representative_status": "Not acquired. A recovered original KiTS case must retain the root-recipe versus configured staged-layout distinction.",
+    "attempts": [
+      {
+        "route": "https://huggingface.co/api/datasets/neheller/KiTS-Challenge-Imaging",
+        "mechanism": "approved curl metadata request",
+        "result": "exit 28: connection timed out after 30005 milliseconds"
+      },
+      {
+        "route": "https://raw.githubusercontent.com/neheller/kits19/456b293435b25303bbc7995f094f83a0afdff0eb/data/case_00000/segmentation.nii.gz",
+        "mechanism": "approved bounded curl request for one 775587-byte mask",
+        "result": "exit 56: recv failure / operation timed out; no retained mask"
+      },
+      {
+        "route": "https://huggingface.co/datasets/neheller/KiTS-Challenge-Imaging",
+        "mechanism": "in-app browser initialization",
+        "result": "30-second js execution timeout; kernel reset; no page inspected"
+      },
+      {
+        "route": "Hugging Face metadata and image tree",
+        "mechanism": "web tool",
+        "result": "URLs not accessible via tool"
+      }
+    ],
+    "user_question": "Local licensed KiTS19 CT and segmentation paths requested asynchronously; continue queue while unavailable. No answer or source substitution inferred."
+  },
+  "no_visual_acceptance": true
+}

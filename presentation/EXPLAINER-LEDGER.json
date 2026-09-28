@@ -5608,12 +5608,12 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "blocked-source-input",
+      "source_asset_readiness": "35 upstream source files Git-blob verified; Lite/Standard prompt assembly and six nonclinical scorer fixtures audited. No native kidney CT or label pair acquired.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Kidney/tumor segmentation predictions plus the required staged workflow artifacts; exact submission details belong to the domain branch.",
+      "blocking_dependency": "A licensed native KiTS19 CT/label pair is absent. Official metadata/reference requests and browser initialization timed out; no source substitution or account restriction inferred.",
+      "remaining_work": "Recover a licensed native pair, preferably case_00000, and retain the root preparation recipe versus configured stage-layout distinction. Then build the task-specific canonical story, integrate, export and review. The source audit and nonclinical fixtures alone do not complete this entry.",
       "contract_projection": {
         "raw": "Abdominal CT inputs; the inspected task config uses ct.nii.gz.",
         "helpers": "Tier-specific skills. Lite includes a concrete KiTS19 checkpoint and inspection example; Standard supplies search and model-comparison guidance.",
@@ -5653,7 +5653,105 @@
         ],
         "gap": "This kidney task still needs its own case and submission audit. A separate multi-organ segmentation brief now illustrates an exact AutoMedBench Lite CT with reference masks; the two tasks are kept distinct."
       },
-      "source_brief_sha256": "17a9b79d87e7b49ebcf80752d1a926359f59fae753ecd103188b8156733fdbfc"
+      "source_brief_sha256": "17a9b79d87e7b49ebcf80752d1a926359f59fae753ecd103188b8156733fdbfc",
+      "source_review": {
+        "date": "2026-09-28",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automed-kidney-audit.json",
+        "receipt_sha256": "1849dc0a39b3d3a6d7a2d825735397779b9e63264419506b9ab60cea245b953e",
+        "brief_sha256": "49b75ac01eb5957c0230c15f06ca0cebd63853022aa73495c2201f8ebcac6c68",
+        "no_visual_acceptance": true
+      },
+      "audited_contract_projection": {
+        "title": "Build a kidney and tumor segmentation pipeline",
+        "goal": "Select and run a model to label kidneys and kidney lesions in CT, then submit predictions.",
+        "value": "Separating organs and lesions can support measurement and review. Here the agent is evaluated on constructing the research pipeline.",
+        "raw": "Per-patient `ct.nii.gz` volumes. The pinned domain-branch config names `CruzAbdomen_Kidney`; its staging scripts use different directory layouts. No native kidney case is retained for this entry.",
+        "helpers": "Lite names a KiTS19 nnU-Net checkpoint and supplies requirements plus setup examples. Standard supplies candidate families and comparison guidance. Both assembled prompts include the one-patient S3 validation example.",
+        "tools": "GPU/network agent environment; a separate evaluator compares submitted outputs with held-out references.",
+        "reference": "Held-out segmentation references belong to the separate evaluation environment.",
+        "spec": "Plan, set up, validate on one patient, infer every patient, then call `submit_results`. The config sets **3,600 seconds**. Check tumor-label coverage and preserve input geometry; an organ-only model does not satisfy the requested target.",
+        "output": "Write two binary files per patient: `agents_outputs/<patient_id>/organ.nii.gz` and `lesion.nii.gz`. Retain the plan, setup and validation artifacts. `agents_decision.csv` is optional. These are requested outputs, not retained predictions.",
+        "score": "The deterministic score combines organ Dice and lesion Dice equally; lesion Dice uses evaluated reference-positive cases. Missing patient outputs trigger the completeness gate. S1–S3 require a separate judge; none was run here.\n\n**Contract caveat:** the prompt and runner quick check require both masks, but the format helper treats organ masks as optional. Its shape/value checks and array Dice do not verify physical affines. Six nonclinical fixtures reproduce these distinctions in the linked source audit; they are not medical performance results.",
+        "challenge": "Knowing a plausible model is only the start: loading weights, mapping labels, checking preprocessing and producing valid predictions all matter.",
+        "families": "Segmentation · enhancement · VQA · reporting · detection · classification; the full packaged release also lists synthesis. Published coverage differs by release.",
+        "gap": "The source contract is audited; native input, canonical story and visual review remain open. Official KiTS19 acquisition timed out on 2026-09-28. Resume with a licensed CT/label pair, preferably `case_00000`, and reconcile its provenance with the pinned staging recipe. The separate multi-organ CT and Full-release harness do not establish this kidney condition's inputs. No model, judge or medical pipeline was run.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "CT + tier guidance",
+          "Plan, set up, validate, infer",
+          "Segmentation + submission"
+        ],
+        "variants": [
+          {
+            "name": "Lite guidance",
+            "helper": "Named checkpoint, requirements and S1–S3 examples",
+            "remaining": "Verify preprocessing, tumor labels and complete inference."
+          },
+          {
+            "name": "Standard guidance",
+            "helper": "Candidate families, comparison guidance and S3 example",
+            "remaining": "Research the model, provision dependencies and validate its outputs."
+          }
+        ],
+        "sources": [
+          [
+            "Kidney task config",
+            "https://github.com/AutoMedBench/AutoMedBench/blob/5a9834ce0010c4e97b9eb22a4645321b9529902b/eval_seg/kidney-seg-task/config.yaml"
+          ],
+          [
+            "Lite assistance",
+            "https://github.com/AutoMedBench/AutoMedBench/blob/5a9834ce0010c4e97b9eb22a4645321b9529902b/eval_seg/kidney-seg-task/lite_s1.md"
+          ],
+          [
+            "Standard assistance",
+            "https://github.com/AutoMedBench/AutoMedBench/blob/5a9834ce0010c4e97b9eb22a4645321b9529902b/eval_seg/kidney-seg-task/standard_s1.md"
+          ],
+          [
+            "Task gallery",
+            "https://github.com/AutoMedBench/AutoMedBench/blob/5394fe7aa73e6b5891fe43942c99f4b0c2b50873/docs/task-gallery.md"
+          ],
+          [
+            "Pinned format checker",
+            "https://github.com/AutoMedBench/AutoMedBench/blob/5a9834ce0010c4e97b9eb22a4645321b9529902b/eval_seg/format_checker.py"
+          ],
+          [
+            "Pinned Dice and aggregate scoring",
+            "https://github.com/AutoMedBench/AutoMedBench/blob/5a9834ce0010c4e97b9eb22a4645321b9529902b/eval_seg/aggregate.py"
+          ],
+          [
+            "Source audit and nonclinical fixtures",
+            "presentation/external-tasks/sources/automed-kidney-audit.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Select and run a model to label kidneys and kidney lesions in CT, then submit predictions.</p>",
+          "value": "<p>Separating organs and lesions can support measurement and review. Here the agent is evaluated on constructing the research pipeline.</p>",
+          "raw": "<p>Per-patient <code>ct.nii.gz</code> volumes. The pinned domain-branch config names <code>CruzAbdomen_Kidney</code>; its staging scripts use different directory layouts. No native kidney case is retained for this entry.</p>",
+          "helpers": "<p>Lite names a KiTS19 nnU-Net checkpoint and supplies requirements plus setup examples. Standard supplies candidate families and comparison guidance. Both assembled prompts include the one-patient S3 validation example.</p>",
+          "tools": "<p>GPU/network agent environment; a separate evaluator compares submitted outputs with held-out references.</p>",
+          "reference": "<p>Held-out segmentation references belong to the separate evaluation environment.</p>",
+          "spec": "<p>Plan, set up, validate on one patient, infer every patient, then call <code>submit_results</code>. The config sets <strong>3,600 seconds</strong>. Check tumor-label coverage and preserve input geometry; an organ-only model does not satisfy the requested target.</p>",
+          "output": "<p>Write two binary files per patient: <code>agents_outputs/&lt;patient_id&gt;/organ.nii.gz</code> and <code>lesion.nii.gz</code>. Retain the plan, setup and validation artifacts. <code>agents_decision.csv</code> is optional. These are requested outputs, not retained predictions.</p>",
+          "score": "<p>The deterministic score combines organ Dice and lesion Dice equally; lesion Dice uses evaluated reference-positive cases. Missing patient outputs trigger the completeness gate. S1–S3 require a separate judge; none was run here.</p>\n<p><strong>Contract caveat:</strong> the prompt and runner quick check require both masks, but the format helper treats organ masks as optional. Its shape/value checks and array Dice do not verify physical affines. Six nonclinical fixtures reproduce these distinctions in the linked source audit; they are not medical performance results.</p>",
+          "challenge": "<p>Knowing a plausible model is only the start: loading weights, mapping labels, checking preprocessing and producing valid predictions all matter.</p>",
+          "families": "<p>Segmentation · enhancement · VQA · reporting · detection · classification; the full packaged release also lists synthesis. Published coverage differs by release.</p>",
+          "gap": "<p>The source contract is audited; native input, canonical story and visual review remain open. Official KiTS19 acquisition timed out on 2026-09-28. Resume with a licensed CT/label pair, preferably <code>case_00000</code>, and reconcile its provenance with the pinned staging recipe. The separate multi-organ CT and Full-release harness do not establish this kidney condition&#x27;s inputs. No model, judge or medical pipeline was run.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No native input view curated yet. The workflow diagram explains structure only.</p>",
+          "helpers": "<p>The condition switch describes assistance. Both tiers receive validation guidance; no native source-derived overlay is available.</p>",
+          "answer": "<p>No source-derived reference/output visual curated yet.</p>"
+        },
+        "missing_media": []
+      },
+      "blocker_resolution": {
+        "status": "source-contract-audited-input-unavailable",
+        "native_input": "KiTS19 case_00000 preferred, with original CT and matching 0/1/2 segmentation plus provenance.",
+        "user_question": "Local paths requested asynchronously; unanswered at this checkpoint. Continue queue; do not infer a scope change.",
+        "resume": "Verify image/label hashes, native grid and exact preparation mapping; source license is CC BY-NC-SA 4.0. The multi-organ sample and Full-release harness remain separate."
+      }
     },
     {
       "entry_id": "automedbench-tsg",
@@ -14624,8 +14722,8 @@
     "reviewed-scripted-planar": 31,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 107,
-    "blocked-source-input": 50,
-    "pending-operation-review": 4
+    "blocked-source-input": 51,
+    "pending-operation-review": 3
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -14644,7 +14742,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "automedbench",
+    "active_entry": "automedbench-tsg",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -15333,6 +15431,16 @@
         "export_receipt_sha256": "6afb2fc6651e18379a2fa7bf301ef24c9858f82c7b039dc932e89369ef165dd3",
         "reviewed_entries": 44,
         "next_entry": "automedbench"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "automedbench",
+        "stage": "blocked-source-input",
+        "receipt": "presentation/external-tasks/sources/automed-kidney-audit.json",
+        "receipt_sha256": "1849dc0a39b3d3a6d7a2d825735397779b9e63264419506b9ab60cea245b953e",
+        "reviewed_entries": 44,
+        "next_entry": "automedbench-tsg",
+        "note": "35 pinned source files, two assembled prompts and six nonclinical scorer fixtures audited. Native acquisition timed out; no visual acceptance or scope substitution."
       }
     ]
   }
