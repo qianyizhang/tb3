@@ -18,6 +18,10 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    automedInputs,
+    automedReference,
+    automedContract,
+    automedSelection,
     bcerInputs,
     bcerContract,
     bcerSelection,
@@ -1614,6 +1618,53 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     assert.ok(
       slice.region_cells.includes('M74,74h1v1h-1z'),
       'Witness must lie in displayed reference',
+    );
+  }
+  const automed = plans.find((p) => p.recipe === 'automed-multiorgan-v1');
+  assert.equal(automed.reference_policy, 'reader-reference-reveal');
+  assert.deepEqual(
+    Array.from(automedInputs.views, (v) => v.y),
+    [144, 164, 184],
+  );
+  assert.deepEqual(
+    Array.from(automedContract.remap, (r) => [r.model_id, r.benchmark_id]),
+    [
+      [3, 42],
+      [2, 43],
+      [5, 44],
+      [1, 84],
+      [52, 3],
+    ],
+  );
+  assert.ok(automedReference.structures.every((r) => r.plane_voxels > 0));
+  assert.deepEqual(
+    Array.from(automedContract.examples, (e) => [e.format_valid, e.task_score]),
+    [
+      [true, 1],
+      [true, 0.9829],
+      [true, 0.9829],
+      [false, 0],
+      [false, 0],
+      [true, 0.5],
+      [true, 0],
+    ],
+  );
+  for (const [scene, count] of [
+    ['inputs', 3],
+    ['workflow', 5],
+    ['remap', 5],
+    ['geometry', 2],
+    ['reference', 5],
+    ['scoring', 2],
+    ['coverage', 7],
+  ]) {
+    const b = automed.beats.find((b) => b.scene === scene),
+      seen = new Set();
+    for (let f = b.startFrame; f < b.endFrame; f++)
+      seen.add(automedSelection(sampleStory(automed, f)));
+    assert.deepEqual(
+      [...seen],
+      Array.from({ length: count }, (_, i) => i),
     );
   }
   const bcer = plans.find((p) => p.recipe === 'bcer-workflow-v1');

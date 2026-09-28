@@ -50,6 +50,7 @@ withBrowser(async (browser) => {
           'mask-screen-v1',
           'anatomy-curation-v1',
           'ct-context-v1',
+          'automed-multiorgan-v1',
           'bcer-workflow-v1',
           'abra-annotation-v1',
           'history-sourcing-v1',
@@ -89,6 +90,28 @@ withBrowser(async (browser) => {
         ].includes(plan.recipe)
       ) {
         for (const b of plan.beats) frames.push(b.startFrame);
+      }
+      if (plan.recipe === 'automed-multiorgan-v1') {
+        for (const b of plan.beats) frames.push(b.startFrame);
+        for (const [scene, count] of [
+          ['inputs', 3],
+          ['workflow', 5],
+          ['remap', 5],
+          ['geometry', 2],
+          ['reference', 5],
+          ['scoring', 2],
+          ['coverage', 7],
+        ]) {
+          const b = plan.beats.find((b) => b.scene === scene);
+          for (let i = 0; i < count; i++)
+            frames.push(
+              Math.floor(
+                b.startFrame +
+                  (scene === 'reference' ? 0.5 + (i + 0.5) / count / 2 : (i + 0.5) / count) *
+                    (b.endFrame - b.startFrame),
+              ),
+            );
+        }
       }
       if (plan.recipe === 'bcer-workflow-v1') {
         for (const b of plan.beats) frames.push(b.startFrame);
@@ -539,6 +562,64 @@ withBrowser(async (browser) => {
           const box = await output.boundingBox();
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
+        }
+        if (plan.recipe === 'automed-multiorgan-v1') {
+          const name = await page
+            .locator('[data-automed-scene]')
+            .getAttribute('data-automed-scene');
+          const b = plan.beats.find((b) => b.scene === name);
+          const revealed =
+            name === 'reference' && frame > b.startFrame + (b.endFrame - b.startFrame) / 2;
+          assert.equal(await page.locator('[data-automed-reference]').count(), revealed ? 5 : 0);
+          if (name === 'remap')
+            assert.equal(
+              await page.locator('[data-automed-remap] tr[data-current="true"]').count(),
+              1,
+            );
+          if (name === 'coverage')
+            assert.equal(
+              await page.locator('[data-automed-fixtures] tr[data-current="true"]').count(),
+              1,
+            );
+          for (const selector of [
+            '.scene-player > header',
+            '[data-automed-scene]',
+            '[data-automed-aside]',
+            '.scene-legend',
+          ]) {
+            const box = await page.locator(selector).boundingBox();
+            assert.ok(
+              box && box.y + box.height <= 720,
+              'Automed clipping ' + selector + ' frame ' + frame,
+            );
+            assert.ok(
+              await page.locator(selector).evaluate((e) => {
+                if (!e.hasAttribute('data-automed-scene'))
+                  return e.scrollHeight <= e.clientHeight && e.scrollWidth <= e.clientWidth;
+                // Overflowing trailing padding does not clip content. Check rendered
+                // text fragments and image bounds against the actual clipping box.
+                const box = e.getBoundingClientRect();
+                const inside = (r) =>
+                  r.width === 0 ||
+                  r.height === 0 ||
+                  (r.left >= box.left &&
+                    r.top >= box.top &&
+                    r.right <= box.right &&
+                    r.bottom <= box.bottom);
+                const walker = document.createTreeWalker(e, NodeFilter.SHOW_TEXT);
+                while (walker.nextNode()) {
+                  if (!walker.currentNode.textContent.trim()) continue;
+                  const range = document.createRange();
+                  range.selectNodeContents(walker.currentNode);
+                  if (!Array.from(range.getClientRects()).every(inside)) return false;
+                }
+                return Array.from(e.querySelectorAll('svg,img')).every((n) =>
+                  inside(n.getBoundingClientRect()),
+                );
+              }),
+              'Automed overflow ' + selector + ' frame ' + frame,
+            );
+          }
         }
         if (plan.recipe === 'bcer-workflow-v1') {
           const name = await page.locator('[data-bcer-scene]').getAttribute('data-bcer-scene');
@@ -1247,6 +1328,24 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'automed-multiorgan-v1') {
+      for (let step = 1; step < plan.beats.length; step++) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        await page.waitForFunction(
+          (f) =>
+            document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+            String(f),
+          plan.beats[step].startFrame,
+        );
+        assert.ok(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          'Automed mobile overflow',
+        );
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+      }
+    }
     if (plan.recipe === 'bcer-workflow-v1') {
       for (let step = 1; step < plan.beats.length; step++) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -1622,6 +1721,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-multiorgan-v1',
       'bcer-workflow-v1',
       'abra-annotation-v1',
       'ct-context-v1',
@@ -1659,6 +1759,17 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'automed-multiorgan-v1') {
+      for (const step of [2, 6]) {
+        await fallback.locator(`[data-story-step="${step}"]`).click();
+        await fallback.locator(`[data-automed-scene="${plan.beats[step].scene}"]`).waitFor();
+        await fallback
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `no-gpu-${plan.beats[step].scene}.png`) });
+      }
+      await fallback.locator('.scene-reset').click();
+      await fallback.locator('[data-automed-scene="inputs"]').waitFor();
+    }
     if (plan.recipe === 'bcer-workflow-v1') {
       for (const step of [2, 3, 5]) {
         await fallback.locator(`[data-story-step="${step}"]`).click();
@@ -2736,6 +2847,24 @@ withBrowser(async (browser) => {
   await page.locator('.scene-reset').click();
   await page.locator('[data-bcer-scene="inputs"]').waitFor();
   report.navigation.push({ id: 'bcer', contractsAndReset: true });
+  await page.evaluate(() => {
+    location.hash = 'automedbench-tsg/0/overview?view=repository';
+  });
+  await page.waitForFunction(
+    () =>
+      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+      'automed-multiorgan-v1',
+  );
+  await page.locator('[data-story-step="2"]').click();
+  await page.locator('[data-automed-remap]').waitFor();
+  await page
+    .locator('.scene-player')
+    .screenshot({ path: path.join(folder, 'integrated-automed.png') });
+  await page.locator('[data-story-step="6"]').click();
+  assert.equal(await page.locator('[data-automed-fixtures] tbody tr').count(), 7);
+  await page.locator('.scene-reset').click();
+  assert.equal(await page.locator('[data-automed-reference]').count(), 0);
+  report.navigation.push({ id: 'automedbench-tsg', remapAndReset: true });
   await context.close();
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.remote_requests, []);

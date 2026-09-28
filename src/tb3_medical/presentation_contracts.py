@@ -514,6 +514,23 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class AutomedMultiorganChannels(TypedDict):
+    view: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedMultiorganBeat(ExpansionBeat):
+    channels: AutomedMultiorganChannels
+    scene: Literal[
+        "inputs", "workflow", "remap", "geometry", "reference", "scoring", "coverage", "limits"
+    ]
+
+
+class AutomedMultiorganPlan(ExpansionPlan):
+    recipe: Literal["automed-multiorgan-v1"]
+    beats: list[AutomedMultiorganBeat]
+
+
 class BcerWorkflowChannels(TypedDict):
     view: tuple[float, float]
 
@@ -990,6 +1007,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | AutomedMultiorganPlan
     | BcerWorkflowPlan
     | AbraAnnotationPlan
     | CtContextPlan

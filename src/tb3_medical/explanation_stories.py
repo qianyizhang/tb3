@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-multiorgan-v1": "retained-automed-multiorgan-v1",
     "bcer-workflow-v1": "retained-bcer-workflow-v1",
     "abra-annotation-v1": "retained-abra-annotation-v1",
     "ct-context-v1": "retained-ct-context-v1",
@@ -93,6 +94,11 @@ SOURCE_INPUT_PACKS = {
     ),
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-automed-multiorgan-v1": (
+        "source-slices",
+        "reference.json",
+        {"inputs.json", "reference.json", "contract.json", "NOTICE.md", "DATA-LICENSE.txt"},
+    ),
     "retained-abra-annotation-v1": (
         "source-slices",
         "reference.json",
@@ -507,6 +513,11 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class AutomedMultiorganChannels(Closed):
+    view: Pair
+    reference: Pair
 
 
 class BcerWorkflowChannels(Closed):
@@ -976,6 +987,24 @@ class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
         return self
 
 
+class AutomedMultiorganBeat(ExpansionBeat[AutomedMultiorganChannels]):
+    scene: Literal[
+        "inputs", "workflow", "remap", "geometry", "reference", "scoring", "coverage", "limits"
+    ]
+
+
+class AutomedMultiorganStory(Story[AutomedMultiorganChannels]):
+    recipe: Literal["automed-multiorgan-v1"]
+    beats: tuple[AutomedMultiorganBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class BcerWorkflowBeat(ExpansionBeat[BcerWorkflowChannels]):
     scene: Literal[
         "inputs",
@@ -1432,6 +1461,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | AutomedMultiorganStory
     | BcerWorkflowStory
     | AbraAnnotationStory
     | CtContextStory
@@ -1474,6 +1504,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | AutomedMultiorganStory
     | BcerWorkflowStory
     | AbraAnnotationStory
     | CtContextStory
@@ -1676,6 +1707,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | AutomedMultiorganStory
     | BcerWorkflowStory
     | AbraAnnotationStory
     | CtContextStory
@@ -1763,6 +1795,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = source_packs[pack_id]
         frame, data_license, label_license = {
+            "retained-automed-multiorgan-v1": ("RAS", "CC-BY-4.0", "CC-BY-4.0"),
             "retained-bcer-workflow-v1": ("LPS", "CC-BY-NC-4.0", None),
             "retained-abra-annotation-v1": ("LPS", "CC-BY-3.0", "CC-BY-3.0"),
             "retained-ct-context-v1": ("RAS", "CC-BY-NC-4.0", "CC-BY-NC-4.0"),

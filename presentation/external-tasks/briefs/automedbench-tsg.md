@@ -34,7 +34,19 @@ One dseg.nii.gz per CT, with integer values 0–117; 0 is background.
 
 ## Evaluation
 
-The config specifies mean Dice over classes with nonempty reference masks per patient. Workflow evaluation is separate from this overlap score.
+The config claims a mean over nonempty reference classes, but the pinned Lite scorer
+loops over all **117** configured classes, assigning Dice 1 to empty/empty pairs.
+Seven nonclinical fixtures reproduce that implementation: with two occupied classes
+and 115 empty classes, an all-background output scores **115/117 = 0.9829**. This
+toy result is not anatomical performance or a score on the illustrated patient.
+
+Present outputs must have valid integer IDs and matching native geometry, including
+active qform/sform consistency. Missing files do not make the aggregate format flag
+false; the scorer omits them from its class averages, then aggregation scales Dice
+by completed-patient fraction. Malformed present outputs count in completeness but
+receive zero Dice. Medal assignment occurs before completeness scaling and remains
+unchanged afterward. Read format, coverage and final task score together. S1–S3
+remain unscored in this deterministic path; no judge was executed.
 
 ## Visual explanation
 
@@ -53,6 +65,11 @@ Native 1.5 mm CT, coronal plane 164; window −160 to 240 HU. This plane was sel
 ### Supplied helpers
 
 Model and label-remapping guidance are supplied; this patient's reference masks are not. The model's native label numbers must be converted before submission.
+
+For the separately pinned TotalSegmentator 2.4.0 `total` map, left kidney maps 3→42,
+right kidney 2→43, liver 5→44, spleen 1→84 and aorta 52→3. These are five example
+conversions, not a full map. Requirements allow later versions; inspect the actual
+checkpoint's labels. No model output is fabricated for this explanation.
 
 ### Reference or output
 
@@ -79,6 +96,10 @@ A plausible mask can fail if class numbers or geometry are wrong. The task requi
 - [Lite supplied guidance](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Lite-release/blob/8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5/benchmarks/AutoMedBench-segmentation/eval_seg/tsg-multiorgan-seg-task/lite_s1.md)
 - [Data card and attribution](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Lite-release/blob/8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5/DATA_CARD.md)
 - [Sample download and rendering receipt](../samples.json)
+- [Pinned Lite source and nonclinical evaluator audit](../sources/automed-multiorgan-audit.json)
+- [Canonical operation story](../stories/automed-multiorgan.story.md)
+- [Native teaching assets and attribution](../../../presentation/task-explorer/automed-multiorgan/NOTICE.md)
+- [Pinned model label table](https://github.com/wasserth/TotalSegmentator/blob/2e0c20058df8acb17acd54a7adf25bf7a0a33c90/totalsegmentator/map_to_binary.py)
 
 ## Coverage
 
@@ -86,7 +107,15 @@ One illustrated case from the 40-case Lite segmentation track. The Lite release 
 
 ## Gaps
 
-Only five reference masks were downloaded. No model run, full-case scoring or private-reference isolation audit was performed.
+Only five reference masks were downloaded. No model run, full-case scoring or
+private-reference isolation audit was performed. The audit acquired 29 pinned Lite
+source files through `hf-mirror.com`, matching revision headers and Git blob ETags;
+it does not claim authenticated primary-host transport. The separate Full-release
+task package has a different revision/config and was not substituted for Lite.
+
+Assistant review decision: explain the observed all-class denominator and preserve
+the contradictory config prose. Reopen the score interpretation for a new release,
+an upstream clarification, or a changed evaluator; this is not a user research decision.
 
 ## Cases
 

@@ -17,6 +17,9 @@ import {
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
   return !(
+    (state.recipe === 'automed-multiorgan-v1' &&
+      state.scene === 'reference' &&
+      state.reference <= 0.5) ||
     (state.recipe === 'abra-annotation-v1' &&
       state.scene === 'reference' &&
       state.reference <= 0.5) ||
@@ -38,6 +41,7 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'automed-multiorgan-v1',
     'bcer-workflow-v1',
     'abra-annotation-v1',
     'ct-context-v1',
@@ -116,6 +120,18 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'automed-multiorgan-v1':
+      return {
+        heading: 'Map CT anatomy into the benchmark labels',
+        corner: 'Native CT · partial reference reveal · nonclinical scoring',
+        legend: [
+          ['#49cfac', 'Left kidney · reference fill'],
+          ['#69aaff', 'Right kidney · reference fill'],
+          ['#ffd26b', 'Liver · reference fill'],
+          ['#ee8dbd', 'Spleen · reference fill'],
+          ['#c2a0ff', 'Aorta · reference fill'],
+        ],
+      };
     case 'bcer-workflow-v1':
       return {
         heading: 'Complete a prostate MRI workflow',

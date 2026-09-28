@@ -116,9 +116,10 @@
         "kind": "segment",
         "input": "A CT volume to process",
         "output": "An integer-label map of anatomical classes",
-        "caption": "Colored regions represent only a stylized subset of the target classes. Training/setup assistance and private reference masks retain their separate roles.",
+        "caption": "Native CT, named label remapping, explicit partial-reference reveal and nonclinical evaluator fixtures; no model run.",
         "subject": "abdomen",
-        "mask_mode": "multiclass"
+        "mask_mode": "multiclass",
+        "story_id": "automed-multiorgan"
       },
       "modalities": [
         "ct"
@@ -135,7 +136,8 @@
       "nav_group": "CT & X-ray imaging",
       "role": "task",
       "agent_work": "implementation",
-      "illustration": {"story_id": "ct-forward",
+      "illustration": {
+        "story_id": "ct-forward",
         "kind": "ct_phantom",
         "input": "Sparse projection measurements of a synthetic phantom",
         "output": "Reconstruct the image array",
@@ -1515,7 +1517,8 @@
       "proposed": false,
       "repository_id": "imaging101",
       "nav_group": "MRI",
-      "illustration": {"story_id": "mri-sampling",
+      "illustration": {
+        "story_id": "mri-sampling",
         "kind": "mri",
         "input": "Incomplete frequency samples",
         "output": "Reconstructed MRI image",
