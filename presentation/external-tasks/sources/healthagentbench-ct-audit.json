@@ -1,0 +1,193 @@
+{
+  "schema": 1,
+  "entry_id": "healthagentbench",
+  "date": "2026-09-28",
+  "actor": "assistant",
+  "scope": "Read-only audit of the pinned chest-CT classification task. No clinical data download, runtime launch, model trial, evaluator execution or visual acceptance.",
+  "task_id": "ct_abnormality_valid_16_a_1",
+  "source_commit": "bcbb8085fd549469e2dc7455f4bfd68a1b98895a",
+  "source_files": [
+    {
+      "path": "instruction.md",
+      "git_blob": "a81aa9da523e9263cf3038cb9df21c20a5d4e8e6",
+      "url": "https://github.com/microsoft/HealthAgentBench/blob/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/ct_abnormality_valid_16_a_1/instruction.md",
+      "sha256": "89760d55e2495aade7219e8c0bed4e6fc8b33d95be996d3f251d62e106b05b86",
+      "bytes": 1638,
+      "git_blob_verified": true
+    },
+    {
+      "path": "tests/harbor_evaluator.py",
+      "git_blob": "c3b27b46111145f2cb9a01eaeefc0b82e8151108",
+      "url": "https://github.com/microsoft/HealthAgentBench/blob/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/ct_abnormality_valid_16_a_1/tests/harbor_evaluator.py",
+      "sha256": "0e3b2dcfe2d0ab329ab45313a0f0a342b617b71c7ff8c99a6383d552e51af06c",
+      "bytes": 8870,
+      "git_blob_verified": true
+    },
+    {
+      "path": "README.md",
+      "git_blob": "1d29ddf067eb86f4c3fe71889e2a02982ec81132",
+      "url": "https://github.com/microsoft/HealthAgentBench/blob/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/ct_abnormality_valid_16_a_1/README.md",
+      "sha256": "df7d996b36dc6f0499c70792bcb5e1eadd596502dff975de531dcbdc28937d9b",
+      "bytes": 1509,
+      "git_blob_verified": true
+    },
+    {
+      "path": "task.toml",
+      "git_blob": "d73bdd1c6b26c919c3df5c7d19b7d32dc1bd6037",
+      "url": "https://github.com/microsoft/HealthAgentBench/blob/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/ct_abnormality_valid_16_a_1/task.toml",
+      "sha256": "8b430ea4529ef2a89dd9b5974babeeff51422eeb1d4ef6975c93174f89d1fa0d",
+      "bytes": 401,
+      "git_blob_verified": true
+    },
+    {
+      "path": "environment/Dockerfile",
+      "git_blob": "bed11f1ece6351b3c4f6f288e89450479e40abbb",
+      "url": "https://github.com/microsoft/HealthAgentBench/blob/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/ct_abnormality_valid_16_a_1/environment/Dockerfile",
+      "sha256": "df40205116f6340eb06bda56ee8c2ceda991c9a4af2e9414bd2a7848210ab539",
+      "bytes": 1509,
+      "git_blob_verified": true
+    },
+    {
+      "path": "environment/bootstrap.sh",
+      "git_blob": "ada643f4a0771822d4474b435fbd7505717ae109",
+      "url": "https://github.com/microsoft/HealthAgentBench/blob/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/ct_abnormality_valid_16_a_1/environment/bootstrap.sh",
+      "sha256": "182d50123971c11df1725f53b911a7926130e040a65506025e294092f3872b97",
+      "bytes": 3604,
+      "git_blob_verified": true
+    },
+    {
+      "path": "environment/docker-compose.yaml",
+      "git_blob": "e1389da903adcbed552db0b8894079a0550d41c9",
+      "url": "https://github.com/microsoft/HealthAgentBench/blob/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/ct_abnormality_valid_16_a_1/environment/docker-compose.yaml",
+      "sha256": "b3027259b734e369c603fbeacfae4be8680619c4e276889c90d5d4f445a98744",
+      "bytes": 1574,
+      "git_blob_verified": true
+    },
+    {
+      "path": "environment/gold_derivation.py",
+      "git_blob": "ef21fdd72c06677d6b1541a81aacf52036aa41f7",
+      "url": "https://github.com/microsoft/HealthAgentBench/blob/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/ct_abnormality_valid_16_a_1/environment/gold_derivation.py",
+      "sha256": "2a07f7b9a9ba751659b4abb56da5ce3354605b7db9999d397150b973eefc8517",
+      "bytes": 13149,
+      "git_blob_verified": true
+    },
+    {
+      "path": "tests/verify.py",
+      "git_blob": "e6b413a4e57548d8477cae46677016703dea85a0",
+      "url": "https://github.com/microsoft/HealthAgentBench/blob/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/ct_abnormality_valid_16_a_1/tests/verify.py",
+      "sha256": "c11851233a9fc534d9657c007b08014df234e817141c0c8d94a9bf95aa14f15a",
+      "bytes": 576,
+      "git_blob_verified": true
+    },
+    {
+      "path": "tests/test.sh",
+      "git_blob": "2d58d2471a4060e7845fb227066031c355d1a5ec",
+      "url": "https://github.com/microsoft/HealthAgentBench/blob/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/ct_abnormality_valid_16_a_1/tests/test.sh",
+      "sha256": "f9f2e775d9317463932a90b492a3ae5fa3dad8a610c1d9edd2c8b9061d07d519",
+      "bytes": 123,
+      "git_blob_verified": true
+    }
+  ],
+  "local_source_pins": {
+    "presentation/external-tasks/inventory.json": "4fd16193fe9564cedbff2bc877a46db4f35082ec3e815f55d2c0dc47187beb0e",
+    "presentation/external-tasks/samples.json": "6d2038c3123b7fcd6a26420f0d3cd5aa05d46349c9ec7b265d49a89466ad0130",
+    "datasets/ct-rate.json": "6f0a92d37d2cd0b14e973fc77d3dd83d327c1aa646c9cc98b50c6ac93d4d6a85"
+  },
+  "download_receipt": ".local/explainers/completion-20260927/036-source/verified-receipt.json",
+  "download_receipt_sha256": "3cd038c1c9be26056a1228b2b9188315d9eb132cf8492c3e85b77f1b9764113b",
+  "contract": {
+    "input_scan": "/workspace/data/scan.nii.gz",
+    "supplied_labels": "/workspace/data/labels.txt",
+    "reference": "/tests/gold.json; report-derived labels and evidence sentences",
+    "output": "/workspace/submission/predictions.txt",
+    "coordinate_output_required": false,
+    "agent_timeout_seconds": 3600,
+    "verifier_timeout_seconds": 300,
+    "declared_resources": {
+      "cpus": 2,
+      "memory_mb": 8192,
+      "storage_mb": 8192,
+      "gpus": 0,
+      "internet": true
+    },
+    "specialist_tools": "Agent may install tools; source reports and labels may not be looked up. No particular image viewer prescribed.",
+    "actual_requested_labels": null,
+    "prompt_typical_label_count": [
+      4,
+      12
+    ],
+    "prompt_example_is_actual_case": false
+  },
+  "staging": {
+    "scan_source_path": "dataset/valid_fixed/valid_16/valid_16_a/valid_16_a_1.nii.gz",
+    "report_source_path": "dataset/radiology_text_reports/validation_reports.csv",
+    "report_fields": [
+      "Findings_EN",
+      "Impressions_EN"
+    ],
+    "row_key": "VolumeName == valid_16_a_1.nii.gz",
+    "dataset_revision_pinned_by_bootstrap": false,
+    "isolation": "Compose mounts cache, bootstrap code, gold derivation and credentials only in bootstrap, with scan/label names in shared solver data. Declaration inspected; no runtime isolation verification.",
+    "label_derivation": "17 ordered categories; positive-only phrase match retains 1; negative-only retains 0; both or neither drops the category. Positive matches have same-clause negation guards; several categories have no negative phrase rule.",
+    "clinical_review_limit": "README asserts hand verification, but no patient-specific review record was available. Phrase rules do not establish complete clinical truth.",
+    "missing_cited_files": [
+      "assets/ct_abnormality/assets/manifest.yaml returned GitHub 404 at the pinned revision; evaluator docstring references it."
+    ]
+  },
+  "scoring": {
+    "reward": "1 iff all retained gold labels have matching parsed predictions; otherwise 0",
+    "extra_predictions": "Unrequested label names are not scored",
+    "missing_prediction": "Wrong even for a gold-negative label",
+    "format": "Case-insensitive names, first-colon split, blank/comment lines ignored, published true/false synonym sets accepted; duplicate parsed names overwrite earlier values.",
+    "diagnostics": "metrics.json retains per-label evidence, predictions, accuracy and confusion counts; only binary reward is serialized in reward.txt.",
+    "limits": "No localization score, full-report score, image-search completeness score or independent diagnostic adjudication. No local score was generated."
+  },
+  "availability": {
+    "actual_scan": false,
+    "paired_report": false,
+    "derived_label_names": false,
+    "derived_gold": false,
+    "agent_output": false,
+    "retained_access_check": {
+      "dataset": "ibrahimhamamci/CT-RATE",
+      "hf_revision": "deeca4d89e9f978d4d1bccd88a55071ddbb146bb",
+      "gated": "auto",
+      "authentication_used": false,
+      "url": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE/resolve/deeca4d89e9f978d4d1bccd88a55071ddbb146bb/dataset/valid_fixed/valid_16/valid_16_a/valid_16_a_1.nii.gz",
+      "status": 401,
+      "reason": "Access to dataset ibrahimhamamci/CT-RATE is restricted. You must have access to it and be authenticated to access it. Please log in.",
+      "affects": [
+        "healthagentbench CT example",
+        "RadAgent CT-RATE workflows"
+      ],
+      "scope": "Exact HEAD request was for HealthAgentBench valid_16_a_1; RadAgent access was assessed from dataset metadata and its downloader."
+    },
+    "historical_access_limit": "2026-09-21 unauthenticated request, not a current account authorization check.",
+    "current_public_card": {
+      "url": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE",
+      "checked": "2026-09-28",
+      "observation": "Access requires accepting conditions and contact sharing. Public card lists CC-BY-NC-SA-4.0 and additional redistribution restrictions. No acceptance, authenticated access test or source download performed."
+    }
+  },
+  "blocker": {
+    "kind": "source-input",
+    "missing": [
+      "Exact valid_16_a_1 scan bytes",
+      "Paired report row and report revision",
+      "Derived requested names and gold from that row",
+      "Source-asset delivery terms"
+    ],
+    "next_action": "Use authorized local copies if supplied, pin image/report hashes and derivation, review native geometry and reference scope, resolve portable asset terms, then author/export/review the actual task. Continue ABRA in the meantime.",
+    "user_question": "Asked for authorized local directory in current chat; no answer recorded at audit time."
+  },
+  "transport_observations": [
+    "Web cache could not retrieve the pinned GitHub files.",
+    "Sandbox raw-GitHub retrieval failed DNS; approved direct retrieval timed out.",
+    "GitHub connector successfully returned all ten source files; their local bytes match Git blob IDs. These transport observations are not benchmark failures."
+  ],
+  "acceptance": {
+    "reviewed": false,
+    "story_bound": false,
+    "visual_acceptance": false
+  }
+}
