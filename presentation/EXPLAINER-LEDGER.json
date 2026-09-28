@@ -9598,50 +9598,110 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "astronomy",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "pending-operation-review",
+      "source_asset_readiness": "14 task files,60 shared sources and all9 released assets verified. Native measurements,10000 weighted samples per frame, saved mean images and references are available; source formula, closure algebra, scoring and staging audited.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-eht-black-hole-feature-extraction-dynamic.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: Posterior estimates for the model’s changing geometric features.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "blocking_dependency": null,
+      "remaining_work": "Author the dynamic feature-distribution story from native closure measurements and retained posteriors; distinguish effective sample size, source weighting, image/parameter scorers and reference access. Export and inspect desktop/mobile/no-GPU/playback before acceptance.",
       "contract_projection": {
-        "raw": "Time-dependent interferometric closure measurements.",
-        "helpers": "A parameterized crescent image model and inference guidance. The assistance level can add an approach and software design.",
-        "tools": "Python and the task’s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README’s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "Posterior estimates for the model’s changing geometric features.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "title": "Infer evolving black-hole image features",
+        "goal": "Infer distributions of **four crescent parameters at ten independent snapshots**\nfrom synthetic radio-interferometry measurements.",
+        "value": "Parameter distributions describe which source shapes fit indirect observations.\nFollowing them through time can expose variability and uncertainty.",
+        "raw": "**28 complex visibilities per snapshot**, baseline coordinates, station pairs and\nnoise estimates from eight EHT-inspired stations. Ten epochs span **0–7.2 hours**\nat 0.8-hour intervals within an eight-hour synthetic observation window.",
+        "helpers": "Metadata specifies a four-parameter crescent and 64×64 grid over 120 μas.\n**All L1–L3 copy both ground-truth arrays and answer-bearing `data/meta_data`\ninto the solver workspace.** L2 adds approach guidance; L3 adds software design.\nSource code and saved evaluation outputs are not seeded.",
+        "tools": "Python and declared numerical/flow dependencies. The audit used existing NumPy\nfor fixed arithmetic and retained arrays; no training or runtime installation ran.",
+        "reference": "Saved parameter samples, weights, mean images and notebook plots support reader\ncomparison. Supplied truth is solver-visible; a reader reveal does not make it private.",
+        "spec": "Derive closure phases from visibility triangles and log closure amplitudes from\nfour-station ratios. Fit a Real-NVP distribution over ring-center diameter,\nGaussian width, asymmetry and source angle, then importance-weight samples.\nEach frame is fitted independently; **there is no temporal coupling**.",
+        "output": "The native deliverable contains parameter samples **(10, 10000, 4)**, weights\n**(10, 10000)** and mean images **(10, 64, 64)**. Parameter units are μas, μas,\ndimensionless and degrees. Stored images sum to approximately one, despite the\nREADME's Jy/pixel label; the observation generator uses **0.6 Jy**.\n\nThe live local harness instead requests `output/reconstruction.npy`. It accepts\nthe image stack and rejects the native posterior array. These contracts differ.",
+        "score": "- **Native saved result:** angle mean absolute error **6.08°** across ten frames;\n  frame 4 has **−26.24° bias**. Weighted means and standard deviations reproduce\n  within float32 rounding.\n- **Weight concentration:** effective sample sizes are **4.3–110.9 of 10,000**.\n  Stored sample count alone does not establish reliable uncertainty.\n- **Live image score:** cosine NCC **0.996218**, range-normalized error **0.022811**.\n  It does not evaluate parameter distributions; published pass thresholds are absent.\n\nAn oracle collapsed exactly at truth has zero parameter error and zero spread.\nThis answer-based control shows why a point-error score cannot validate uncertainty.",
+        "challenge": "Sparse observations and concentrated importance weights make uncertainty assessment\nconsequential. Ten snapshots from one synthetic sequence do not establish calibration,\nblind inference ability or performance on actual Sgr A* observations.",
+        "families": "14 task sources, 60 shared sources and all nine released assets verified.\nThe fixed crescent fixture, closure algebra, saved summaries, scoring and L1–L3\nstaging were audited. The native arrays were visually inspected locally.",
+        "gap": "Pinned source applies **70 times more likelihood weight during training than\nduring importance reweighting**, relative to the same log-density term. Checkpoints\nand latent/log-density arrays are absent, so corrected inference cannot be inferred.\nThe no-filesystem scorer fallback cannot find the released NPZ truth. The source\nuses linear angle statistics; a fixed wrap-boundary counterexample is retained,\nbut these saved samples do not cross that boundary. Original results remain intact.\nCanonical story, integrated export and visual acceptance are pending.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect time-indexed measurements and derive gain-invariant closure quantities.",
+          "Follow independent crescent fits and inspect retained weighted distributions.",
+          "Reveal supplied truth, weight concentration and separate scoring contracts."
+        ],
         "variants": [
           {
             "name": "L1 · README",
-            "helper": "README, data description and method hints.",
-            "remaining": "Choose and implement a workable algorithm."
+            "helper": "README, data including answers, requirements.",
+            "remaining": "Implement inference; answer copying is possible."
           },
           {
             "name": "L2 · + approach",
-            "helper": "A proposed algorithmic approach is added.",
-            "remaining": "Design the software and implement the method."
+            "helper": "L1 plus per-frame flow and weighting guidance.",
+            "remaining": "Design and implement the method."
           },
           {
             "name": "L3 · + design",
-            "helper": "Approach and software design are added.",
-            "remaining": "Implement the specified design and numerical details."
+            "helper": "L2 plus interfaces and numerical details.",
+            "remaining": "Implement and reconcile the source contract."
           }
         ],
         "sources": [
           [
-            "Pinned task README",
+            "Pinned task definition",
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/eht_black_hole_feature_extraction_dynamic/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Pinned closure preparation",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/eht_black_hole_feature_extraction_dynamic/src/preprocessing.py"
+          ],
+          [
+            "Pinned inference and weighting",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/eht_black_hole_feature_extraction_dynamic/src/solvers.py"
+          ],
+          [
+            "Pinned generic image scorer",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+          ],
+          [
+            "Pinned parameter scorer",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/task_scoring.py"
+          ],
+          [
+            "EHT variability paper cited by the release",
+            "https://arxiv.org/abs/2311.08697v1"
+          ],
+          [
+            "Source audit, controls and provenance",
+            "presentation/external-tasks/sources/imaging101-eht-features-dynamic-audit.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
+        "html": {
+          "goal": "<p>Infer distributions of <strong>four crescent parameters at ten independent snapshots</strong> from synthetic radio-interferometry measurements.</p>",
+          "value": "<p>Parameter distributions describe which source shapes fit indirect observations. Following them through time can expose variability and uncertainty.</p>",
+          "raw": "<p><strong>28 complex visibilities per snapshot</strong>, baseline coordinates, station pairs and noise estimates from eight EHT-inspired stations. Ten epochs span <strong>0–7.2 hours</strong> at 0.8-hour intervals within an eight-hour synthetic observation window.</p>",
+          "helpers": "<p>Metadata specifies a four-parameter crescent and 64×64 grid over 120 μas. <strong>All L1–L3 copy both ground-truth arrays and answer-bearing <code>data/meta_data</code> into the solver workspace.</strong> L2 adds approach guidance; L3 adds software design. Source code and saved evaluation outputs are not seeded.</p>",
+          "tools": "<p>Python and declared numerical/flow dependencies. The audit used existing NumPy for fixed arithmetic and retained arrays; no training or runtime installation ran.</p>",
+          "reference": "<p>Saved parameter samples, weights, mean images and notebook plots support reader comparison. Supplied truth is solver-visible; a reader reveal does not make it private.</p>",
+          "spec": "<p>Derive closure phases from visibility triangles and log closure amplitudes from four-station ratios. Fit a Real-NVP distribution over ring-center diameter, Gaussian width, asymmetry and source angle, then importance-weight samples. Each frame is fitted independently; <strong>there is no temporal coupling</strong>.</p>",
+          "output": "<p>The native deliverable contains parameter samples <strong>(10, 10000, 4)</strong>, weights <strong>(10, 10000)</strong> and mean images <strong>(10, 64, 64)</strong>. Parameter units are μas, μas, dimensionless and degrees. Stored images sum to approximately one, despite the README&#x27;s Jy/pixel label; the observation generator uses <strong>0.6 Jy</strong>.</p>\n<p>The live local harness instead requests <code>output/reconstruction.npy</code>. It accepts the image stack and rejects the native posterior array. These contracts differ.</p>",
+          "score": "<ul>\n<li><strong>Native saved result:</strong> angle mean absolute error <strong>6.08°</strong> across ten frames;</li>\n</ul>\n<p>  frame 4 has <strong>−26.24° bias</strong>. Weighted means and standard deviations reproduce   within float32 rounding.</p>\n<ul>\n<li><strong>Weight concentration:</strong> effective sample sizes are <strong>4.3–110.9 of 10,000</strong>.</li>\n</ul>\n<p>  Stored sample count alone does not establish reliable uncertainty.</p>\n<ul>\n<li><strong>Live image score:</strong> cosine NCC <strong>0.996218</strong>, range-normalized error <strong>0.022811</strong>.</li>\n</ul>\n<p>  It does not evaluate parameter distributions; published pass thresholds are absent.</p>\n<p>An oracle collapsed exactly at truth has zero parameter error and zero spread. This answer-based control shows why a point-error score cannot validate uncertainty.</p>",
+          "challenge": "<p>Sparse observations and concentrated importance weights make uncertainty assessment consequential. Ten snapshots from one synthetic sequence do not establish calibration, blind inference ability or performance on actual Sgr A* observations.</p>",
+          "families": "<p>14 task sources, 60 shared sources and all nine released assets verified. The fixed crescent fixture, closure algebra, saved summaries, scoring and L1–L3 staging were audited. The native arrays were visually inspected locally.</p>",
+          "gap": "<p>Pinned source applies <strong>70 times more likelihood weight during training than during importance reweighting</strong>, relative to the same log-density term. Checkpoints and latent/log-density arrays are absent, so corrected inference cannot be inferred. The no-filesystem scorer fallback cannot find the released NPZ truth. The source uses linear angle statistics; a fixed wrap-boundary counterexample is retained, but these saved samples do not cross that boundary. Original results remain intact. Canonical story, integrated export and visual acceptance are pending.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>Native arrays are available and inspected. The source forms <strong>56 phase combinations and 70 amplitude combinations</strong>, with linear ranks <strong>21 and 19</strong> respectively. They are correlated combinations, not 126 independent measurements.</p>",
+          "helpers": "<p>Use a labeled four-parameter schematic. Diameter is twice the Gaussian ring&#x27;s center radius, not a sharp outer boundary; width is Gaussian σ. Source angle follows its array formula; celestial orientation is not independently verified.</p>",
+          "answer": "<p>Preserve all ten frames, unit-flux intensity scales, original weights and explicit truth reveals. Histogram bins and any density smoothing must be labeled. Error bars describe weighted spread, not a demonstrated coverage guarantee.</p>"
+        },
+        "missing_media": []
       },
-      "source_brief_sha256": "2c3511531008b804b516b4f9749587ce82eb61c3f6b9cb9fb840e3c3da99d8c2",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval."
+      "source_brief_sha256": "c3ec7a32ddf20ed79250799ef3b5848814806c8a82dc10a645b003045b7bca35",
+      "blocker_resolution": "Exact release assets, native parameter/output conventions and local staging/scorers are audited. Source/runner discrepancies are retained explicitly. No canonical story or visual acceptance is claimed.",
+      "source_review": {
+        "date": "2026-09-29",
+        "reviewer": "assistant",
+        "receipt": "presentation/external-tasks/sources/imaging101-eht-features-dynamic-audit.json",
+        "sha256": "3a856558c32a8fc43c196ad055c6fb023ce10257d04eeaeacc25978c96f680b3",
+        "status": "source-audited-native-arrays-available"
+      }
     },
     {
       "entry_id": "imaging101-eht-black-hole-original",
@@ -16217,8 +16277,9 @@
   "counts": {
     "reviewed-scripted-planar": 42,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 97,
-    "blocked-source-input": 53
+    "blocked-source-contract": 96,
+    "blocked-source-input": 53,
+    "pending-operation-review": 1
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -17125,6 +17186,16 @@
         "export_receipt_sha256": "4ad4a5487d32bdf78d24eeaae50e8bf87fabfe626ff2a3e65cc2431fc5f9f2e7",
         "reviewed_entries": 55,
         "next_entry": "imaging101-eht-black-hole-feature-extraction-dynamic"
+      },
+      {
+        "date": "2026-09-29",
+        "entry_id": "imaging101-eht-black-hole-feature-extraction-dynamic",
+        "stage": "source-audit-complete",
+        "receipt": "presentation/external-tasks/sources/imaging101-eht-features-dynamic-audit.json",
+        "receipt_sha256": "3a856558c32a8fc43c196ad055c6fb023ce10257d04eeaeacc25978c96f680b3",
+        "reviewed_entries": 55,
+        "next_entry": "imaging101-eht-black-hole-feature-extraction-dynamic",
+        "note": "Pinned arrays, fixed geometric/closure controls, retained weighted summaries, scorer mismatches and answer visibility audited. Native diagnostic views inspected; canonical story/export/visual acceptance pending."
       }
     ]
   }
