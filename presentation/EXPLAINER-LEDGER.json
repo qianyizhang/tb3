@@ -6033,12 +6033,12 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "blocked-source-input",
+      "source_asset_readiness": "36 pinned source files verified; nonclinical input/reference, trace-format and coverage fixtures pass. Native CT, specialist trace and final report remain absent.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Final report plus streamed JSON interaction trace; batch mode saves trajectories and failures.",
+      "blocking_dependency": "An authorized native CT plus matching retained RadAgent trace/final report and provenance for any shown tool outputs. A CT alone does not provide the missing case-specific results.",
+      "remaining_work": "Obtain authorized matching source/trace assets, author a case-specific canonical story, export and visually review it. Source audit is retained but does not count as completion.",
       "contract_projection": {
         "raw": "A chest CT scan, such as a CT-RATE case.",
         "helpers": "Trained specialist backends can supply draft reports, disease predictions, organ/effusion segmentations and selected slices.",
@@ -6077,7 +6077,119 @@
         ],
         "gap": "CT-RATE needs authorized account access. Actual specialist outputs and final report are a separate evidence gap: downloading CT alone does not supply them. No model run was launched."
       },
-      "source_brief_sha256": "f9ed298f7e0f035f5365e335bfc5b972a1dcb53dd2f315b90c1d93f1508b8455"
+      "source_brief_sha256": "f9ed298f7e0f035f5365e335bfc5b972a1dcb53dd2f315b90c1d93f1508b8455",
+      "source_audit": "presentation/external-tasks/sources/radagent-report-audit.json",
+      "source_audit_sha256": "39b6371b4f862cc20cb9360036ad910cdbcccccab6a097b859b0b6feab28db8e",
+      "blocker_resolution": {
+        "status": "source-contract-audited-input-and-trace-unavailable",
+        "required_assets": "An authorized native CT plus matching retained RadAgent trace/final report and provenance for any shown tool outputs. A CT alone does not provide the missing case-specific results.",
+        "user_question": "Local paths requested asynchronously; unanswered at this checkpoint. Continue queue without changing scope.",
+        "resume": "Verify case identity and source/terms/hashes; separate input, specialist outputs and reference; construct the operation story and run the full export and visual review. Do not execute models or substitute a synthetic report to claim completion."
+      },
+      "reviewed_contract_projection": {
+        "title": "Write a chest CT report using specialist tools",
+        "goal": "Inspect a chest CT through specialist tools and assemble a report with an inspectable interaction trace.",
+        "value": "The intended product summarizes imaging findings for a reader. Report quality and tool usage need separate evaluation.",
+        "raw": "A chest CT NIfTI volume readable by the tool services. The pinned minimal-inference agent receives the request and image path as text; its specialist backends read the image. CT-RATE batch mode resolves paths from a report-generation manifest.",
+        "helpers": "The v8c prompt supplies a nine-item diagnosis checklist and descriptions of ten callable tools. Draft reports, pathology predictions and masks are generated assistance, not reference annotations. CT-Chat supplies the draft-report and whole-volume VQA backends; separate models support classification, segmentation and slice VQA.",
+        "tools": "Whole-volume and slice VQA, draft-report generation, an 18-pathology classifier, anatomy and effusion segmentation, largest-mask and distributed-mask slice selection, whole-volume slice selection, and windowing. A shared MCP proxy forwards calls to the separate backends. Availability requires the corresponding model assets and services.",
+        "reference": "The minimal batch loader takes only the request and image identity from the manifest. Its scenarios omit the paired reference report. The separate metric reader loads that report for comparison. The full training implementation retains `gt` in the host scenario for reward computation; it is not inserted into the initial user message. These are source-level data-flow observations, not a runtime filesystem-isolation test.",
+        "spec": "Given an image path, orchestrate tool calls and return a generated report. The v8c prompt requests an initial draft, checklist coverage, additional checks of abnormalities, and reconciliation of disagreements. The minimal runtime allows up to 60 assistant steps and requests JSON actions: `call_tool` or `final_answer`. These instructions do not establish that any saved report followed them. This entry covers system inference, not a frozen benchmark submission.",
+        "output": "The single-case CLI streams a JSON list of system/user, assistant and tool messages to stdout. The final assistant action contains an `answer` string. Batch mode writes per-case files under `trajectory/` or `fails/`; successful traces append `status: success` and `reward: 0.0`. That zero is placeholder metadata, not a measured report-quality score.",
+        "score": "CT-RATE evaluation compares generated and reference reports using BLEU-1, ROUGE-L, CIDEr and the learned GREEN scorer. A RadBERT classifier separately extracts 18 binary labels from both texts for classification metrics; these labels are model-derived. RadChest-CT lacks reference reports and instead joins generated-report classifications to its provided label table.\n\n**Coverage:** cases with no output file are removed from the reference set. Recorded failures remain as the literal text `Failed`; they are not assigned a fixed zero by the loader. Report quality therefore needs a separate attempted/completed-case denominator.\n\n**Serialization:** the rollout parser tolerates fenced JSON and Python-style literal dictionaries, but the report-metric reader uses strict JSON parsing. Nonclinical fixtures reproduce accepted runtime decisions becoming empty evaluation reports. A failure file also overrides a success file for the same scan key when both exist. These are source-reader observations; no learned scorer or medical inference was run.",
+        "challenge": "The agent must reconcile several specialist outputs. Its capability depends partly on those models and checkpoints.",
+        "families": "Report generation · CT-RATE multiple-choice VQA · tool ablations. This anchor covers reporting only.",
+        "gap": "The source contract is audited; the native worked example, canonical story and visual review remain unfinished. Resume with an authorized CT, its matching saved RadAgent trace/final report, and provenance for tool-generated assets. Keep any paired reference report in a separate reader-only reveal. Downloading a CT alone does not supply the missing outputs. No model or learned-metric run was launched, and this audit does not complete the separate VQA entry.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Chest CT",
+          "Consult and reconcile tools",
+          "Report + interaction trace"
+        ],
+        "variants": [
+          {
+            "name": "Minimal single-case inference",
+            "helper": "Ten tools and the v8c checklist",
+            "remaining": "Inspect the CT, reconcile tool findings and return the final report/trace."
+          },
+          {
+            "name": "CT-RATE batch inference",
+            "helper": "Same workflow plus a split manifest",
+            "remaining": "Produce per-case traces; account separately for failures, absent outputs and report quality."
+          }
+        ],
+        "sources": [
+          [
+            "System and tools",
+            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/README.md"
+          ],
+          [
+            "Single-case inference interface",
+            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/README.md"
+          ],
+          [
+            "Prompt, actions and rollout parser",
+            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/agent_runtime.py"
+          ],
+          [
+            "Batch input projection",
+            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/dataset_scenarios.py"
+          ],
+          [
+            "Saved-output reader and case pairing",
+            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/process_generated_reports.py"
+          ],
+          [
+            "Report and label metrics",
+            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/compute_metrics.py"
+          ],
+          [
+            "CT-RATE downloader",
+            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/dataset_utils/CT-RATE/download_scripts/download_dataset.py"
+          ],
+          [
+            "Dataset and access terms",
+            "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE"
+          ],
+          [
+            "Sample download and rendering receipt",
+            "presentation/external-tasks/samples.json"
+          ],
+          [
+            "Pinned source audit and nonclinical fixtures",
+            "presentation/external-tasks/sources/radagent-report-audit.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Inspect a chest CT through specialist tools and assemble a report with an inspectable interaction trace.</p>",
+          "value": "<p>The intended product summarizes imaging findings for a reader. Report quality and tool usage need separate evaluation.</p>",
+          "raw": "<p>A chest CT NIfTI volume readable by the tool services. The pinned minimal-inference agent receives the request and image path as text; its specialist backends read the image. CT-RATE batch mode resolves paths from a report-generation manifest.</p>",
+          "helpers": "<p>The v8c prompt supplies a nine-item diagnosis checklist and descriptions of ten callable tools. Draft reports, pathology predictions and masks are generated assistance, not reference annotations. CT-Chat supplies the draft-report and whole-volume VQA backends; separate models support classification, segmentation and slice VQA.</p>",
+          "tools": "<p>Whole-volume and slice VQA, draft-report generation, an 18-pathology classifier, anatomy and effusion segmentation, largest-mask and distributed-mask slice selection, whole-volume slice selection, and windowing. A shared MCP proxy forwards calls to the separate backends. Availability requires the corresponding model assets and services.</p>",
+          "reference": "<p>The minimal batch loader takes only the request and image identity from the manifest. Its scenarios omit the paired reference report. The separate metric reader loads that report for comparison. The full training implementation retains <code>gt</code> in the host scenario for reward computation; it is not inserted into the initial user message. These are source-level data-flow observations, not a runtime filesystem-isolation test.</p>",
+          "spec": "<p>Given an image path, orchestrate tool calls and return a generated report. The v8c prompt requests an initial draft, checklist coverage, additional checks of abnormalities, and reconciliation of disagreements. The minimal runtime allows up to 60 assistant steps and requests JSON actions: <code>call_tool</code> or <code>final_answer</code>. These instructions do not establish that any saved report followed them. This entry covers system inference, not a frozen benchmark submission.</p>",
+          "output": "<p>The single-case CLI streams a JSON list of system/user, assistant and tool messages to stdout. The final assistant action contains an <code>answer</code> string. Batch mode writes per-case files under <code>trajectory/</code> or <code>fails/</code>; successful traces append <code>status: success</code> and <code>reward: 0.0</code>. That zero is placeholder metadata, not a measured report-quality score.</p>",
+          "score": "<p>CT-RATE evaluation compares generated and reference reports using BLEU-1, ROUGE-L, CIDEr and the learned GREEN scorer. A RadBERT classifier separately extracts 18 binary labels from both texts for classification metrics; these labels are model-derived. RadChest-CT lacks reference reports and instead joins generated-report classifications to its provided label table.</p>\n<p><strong>Coverage:</strong> cases with no output file are removed from the reference set. Recorded failures remain as the literal text <code>Failed</code>; they are not assigned a fixed zero by the loader. Report quality therefore needs a separate attempted/completed-case denominator.</p>\n<p><strong>Serialization:</strong> the rollout parser tolerates fenced JSON and Python-style literal dictionaries, but the report-metric reader uses strict JSON parsing. Nonclinical fixtures reproduce accepted runtime decisions becoming empty evaluation reports. A failure file also overrides a success file for the same scan key when both exist. These are source-reader observations; no learned scorer or medical inference was run.</p>",
+          "challenge": "<p>The agent must reconcile several specialist outputs. Its capability depends partly on those models and checkpoints.</p>",
+          "families": "<p>Report generation · CT-RATE multiple-choice VQA · tool ablations. This anchor covers reporting only.</p>",
+          "gap": "<p>The source contract is audited; the native worked example, canonical story and visual review remain unfinished. Resume with an authorized CT, its matching saved RadAgent trace/final report, and provenance for tool-generated assets. Keep any paired reference report in a separate reader-only reveal. Downloading a CT alone does not supply the missing outputs. No model or learned-metric run was launched, and this audit does not complete the separate VQA entry.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No native case is retained. The official CT-RATE page, checked on 2026-09-28, still requires accepted conditions and authentication. Its separate access terms restrict redistribution. The older HTTP 401 receipt concerns a HealthAgentBench sample, not a new RadAgent download attempt.</p>",
+          "helpers": "<p>No case-specific specialist trace is retained. The pinned repository&#x27;s complete 288-file tree contains no NIfTI/DICOM/NPZ input and its output directory contains only three task-to-image maps. Those maps do not supply tool results or generated reports.</p>",
+          "answer": "<p>The source audit includes nonclinical text fixtures for prompt/reference separation and trace parsing. They contain no scan, medical finding or model prediction and do not substitute for the missing worked example.</p>"
+        },
+        "missing_media": []
+      },
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "receipt": "presentation/external-tasks/sources/radagent-report-audit.json",
+        "sha256": "39b6371b4f862cc20cb9360036ad910cdbcccccab6a097b859b0b6feab28db8e",
+        "status": "source-contract-audited-input-and-trace-unavailable",
+        "current_brief_sha256": "274ff6476bbe8ddc495051ac36f58b88b8b1183d4d59162439528fbed99a0188"
+      }
     },
     {
       "entry_id": "rexmle",
@@ -14828,8 +14940,8 @@
     "reviewed-scripted-planar": 32,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 107,
-    "blocked-source-input": 51,
-    "pending-operation-review": 2
+    "blocked-source-input": 52,
+    "pending-operation-review": 1
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -14848,7 +14960,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "radagent",
+    "active_entry": "rexmle",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -15556,6 +15668,16 @@
         "export_receipt_sha256": "0d7e2b92af4e06d21597baa2e6cffdc7d6d63ab996e0ed2a72ecb4a07c4489b2",
         "reviewed_entries": 45,
         "next_entry": "radagent"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "radagent",
+        "stage": "blocked-source-input",
+        "receipt": "presentation/external-tasks/sources/radagent-report-audit.json",
+        "receipt_sha256": "39b6371b4f862cc20cb9360036ad910cdbcccccab6a097b859b0b6feab28db8e",
+        "reviewed_entries": 45,
+        "next_entry": "rexmle",
+        "note": "36 source files verified. Six nonclinical serialization fixtures plus reference/coverage/duplicate-file checks passed. Native CT and matching saved trace remain unavailable; no visual acceptance or scope substitution."
       }
     ]
   }

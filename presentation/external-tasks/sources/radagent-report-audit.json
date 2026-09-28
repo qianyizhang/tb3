@@ -1,0 +1,819 @@
+{
+  "schema": 1,
+  "entry_id": "radagent",
+  "date": "2026-09-28",
+  "actor": "assistant",
+  "scope": "Pinned source review and selected-function execution on nonclinical text fixtures. No agent, model, learned metric, medical processing, runtime isolation test, or visual acceptance.",
+  "source_repository": "eth-medical-ai-lab/rad-agent",
+  "source_commit": "9e9d32936ce24676cba32c81605720fe74a5da5a",
+  "source_tree": {
+    "path": ".local/explainers/completion-20260927/041-source/tree.json",
+    "sha256": "be4c261d24dd555bbea35a4e21442bcb75a1bbbc4cdd1f0c549993895f4e82ec",
+    "truncated": false,
+    "blob_count": 288,
+    "native_volume_files": [],
+    "output_files": [
+      "radagent/outputs/task_to_id_maps/task_id_to_image_id_base_test_ctrate_start0_endNone.json",
+      "radagent/outputs/task_to_id_maps/task_id_to_image_id_base_test_radchestct_start0_endNone.json",
+      "radagent/outputs/task_to_id_maps/task_id_to_image_id_base_val_ctrate_start0_end1000.json"
+    ],
+    "availability_scope": "This exact repository tree only; absence here does not establish absence from all external publications or private archives.",
+    "license_note": "README links a root MIT LICENSE, but no root LICENSE file is present at this pin. Vendored CT-Chat licenses are separate. Raw upstream code remains local; no upstream figure or native image is redistributed by this audit."
+  },
+  "source_files": [
+    {
+      "path": "README.md",
+      "bytes": 25951,
+      "git_blob_sha1": "57f4b901b593d089b05f45f680cda8405f2e4303",
+      "sha256": "8c09afba35a060534c08416371fc367e1b2c03bafc5180d4b5bf0613f712d7cc",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/README.md"
+    },
+    {
+      "path": "dataset_utils/CT-RATE/data_preparation_files/internal_split_generation.ipynb",
+      "bytes": 4248,
+      "git_blob_sha1": "54c60669ee508133524019bf470e5c857aa18a35",
+      "sha256": "7103c70fcd8a013f8fa468d3f133f06adf219f23a84b9e846e4830f2feef9c7e",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/dataset_utils/CT-RATE/data_preparation_files/internal_split_generation.ipynb"
+    },
+    {
+      "path": "dataset_utils/CT-RATE/data_preparation_files/vqa_splits.ipynb",
+      "bytes": 7133,
+      "git_blob_sha1": "2e8e0b376d5719cd24a1ce87af1335ebf49f1cc0",
+      "sha256": "20508ccd8c6e665145ec747bd6978b8c536de1ce873b3db89463970421e5a11b",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/dataset_utils/CT-RATE/data_preparation_files/vqa_splits.ipynb"
+    },
+    {
+      "path": "dataset_utils/CT-RATE/download_scripts/download_dataset.py",
+      "bytes": 1363,
+      "git_blob_sha1": "694d573137cd64556e0803d079bdaf52e5ea0da3",
+      "sha256": "0d0c22686f506f083e19bafc4ec2cd65be10f01c9ec272d19202dc7c310e31f0",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/dataset_utils/CT-RATE/download_scripts/download_dataset.py"
+    },
+    {
+      "path": "minimal_inference/README.md",
+      "bytes": 22107,
+      "git_blob_sha1": "5ad90e5c8a8b6a9211d817c26a400cef3b49ee08",
+      "sha256": "622f10129f3761a9a8c51f9db4eb9277cc79cd69bff4964b00db5a1d7794387d",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/README.md"
+    },
+    {
+      "path": "minimal_inference/app/cli/minimal_ct_agent_batch.py",
+      "bytes": 8938,
+      "git_blob_sha1": "ccef195369f8343c08d70410badfc787b178c0e6",
+      "sha256": "6618a34c63f0d661f4ada7386e36057a8611acab5e61b0e950a3ca6cc5718924",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/cli/minimal_ct_agent_batch.py"
+    },
+    {
+      "path": "minimal_inference/app/cli/minimal_ct_agent_loop.py",
+      "bytes": 1477,
+      "git_blob_sha1": "e6ed8830dc68388bbb03e076934c7bc9a77d3586",
+      "sha256": "99fdb497b0a271e943453ea10204afe5d10d630d8ab7c2114cf112bb5617cf22",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/cli/minimal_ct_agent_loop.py"
+    },
+    {
+      "path": "minimal_inference/app/runtime/agent_runtime.py",
+      "bytes": 17927,
+      "git_blob_sha1": "c1e020de81b65d9b52b1f60af2149b528691b6ee",
+      "sha256": "cca753d328007b8767d18f7ef32eb19e617098c8eb51c045cfb4ff5be0e2da95",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/agent_runtime.py"
+    },
+    {
+      "path": "minimal_inference/app/runtime/dataset_scenarios.py",
+      "bytes": 1388,
+      "git_blob_sha1": "4c635caf60238a78f41dd51d220b1784e2facf41",
+      "sha256": "9452caadcb35c7fb7cf1c1ceea0ac0cd0b773f09964d671eea04c3c46106a7b1",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/dataset_scenarios.py"
+    },
+    {
+      "path": "minimal_inference/app/runtime/mcp_toolbox_proxy.py",
+      "bytes": 6215,
+      "git_blob_sha1": "2fc5277ffa0e754598101db7ac4d0f08b5655d82",
+      "sha256": "f54f0723de4c616d4a9b8d5bd193fd45fc3fad33b82fb86510496a4e4d3f8e6b",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/mcp_toolbox_proxy.py"
+    },
+    {
+      "path": "minimal_inference/app/runtime/rollout_output_paths.py",
+      "bytes": 1650,
+      "git_blob_sha1": "ba0d5d85779dc466bb1b6e97f084e62ad0afdc95",
+      "sha256": "4f70aae63d50ea84ab80f13170e0a5e53897825af0524c0ba03257c215be6415",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/rollout_output_paths.py"
+    },
+    {
+      "path": "minimal_inference/infra/Dockerfile",
+      "bytes": 4261,
+      "git_blob_sha1": "b43b3c9acf036fcf75d2a78f2bdc7ce9f2090f55",
+      "sha256": "640c50497a2d4d438a6562d7790af5bf12a68d67c19e92aaff6a5c6e4b5a4c13",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/infra/Dockerfile"
+    },
+    {
+      "path": "minimal_inference/launch/start_inference_stack.sh",
+      "bytes": 2456,
+      "git_blob_sha1": "8c3b1c609e9743923dbcce1b8c2a4190b39ecbe0",
+      "sha256": "74988f524e5406ea26869856db8680e7ba643be439c4cfc0ecbd3d43a57e9988",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/launch/start_inference_stack.sh"
+    },
+    {
+      "path": "minimal_inference/radagent/constants_and_path_utils.py",
+      "bytes": 2539,
+      "git_blob_sha1": "a788527b079775aba289bcd89862a2d20600d391",
+      "sha256": "64f7fd05853cbd46411b7f79f3c8f380f4b29869497618b8bd1f6b3a78cc0905",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/constants_and_path_utils.py"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/anatomy_segmentation_tool.py",
+      "bytes": 2397,
+      "git_blob_sha1": "25e74a153d3a014fae1c8422bf9dde393927675f",
+      "sha256": "bd1cb0670c6539976413dee4138edcdf4e0026d35f2f2b990116717797001f2f",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/anatomy_segmentation_tool.py"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/biggest_slice_selection_tool.py",
+      "bytes": 3105,
+      "git_blob_sha1": "b3f5f52dd254f4d24158756836dcbef09e3661b8",
+      "sha256": "4cb2c046732a04549a1559647db143e0732cb94cf0009ea73b769f623937f57a",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/biggest_slice_selection_tool.py"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/ct_chat.py",
+      "bytes": 4885,
+      "git_blob_sha1": "93de543a81815d478ea3d69b3df21dcf740c8394",
+      "sha256": "580d7783c22a2dc178fda5f932c54ba9f5359e64eef7d720a7a89b279a6a74b9",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/ct_chat.py"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/disease_classifier.py",
+      "bytes": 1910,
+      "git_blob_sha1": "b76c04fa4ddf924e954e8e6afea378ac0a02f0ce",
+      "sha256": "7039a70cfba636920be4c652459ddc027cb78be29f85e7aeec4b8108f1610065",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/disease_classifier.py"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/effusion_segmentation_tool.py",
+      "bytes": 1632,
+      "git_blob_sha1": "42f6bda2890c40096570ca8785f4e89483cce05e",
+      "sha256": "8e217dfd438efc09baa6eb3f39fc3fa8963cf06b37d2fe377ef9492e18f4e955",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/effusion_segmentation_tool.py"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/equidistant_slice_selection_seg.py",
+      "bytes": 3834,
+      "git_blob_sha1": "3b692e7fb87f9023ee017a2113c2852a94a610c3",
+      "sha256": "0ce7e12671aef177591e6509b32a30a8578928d3fdb9799561a25e585fe3ba96",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/equidistant_slice_selection_seg.py"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/report_generator.py",
+      "bytes": 4559,
+      "git_blob_sha1": "2139d8dab7ff1b012ccc1d805d0b56833165b10b",
+      "sha256": "00512d4a7a4f671f82614c5fb537479374c24b4c66116d3a842bc8eb5d2457c1",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/report_generator.py"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/select_ct_slices.py",
+      "bytes": 3000,
+      "git_blob_sha1": "3c8c344bae3aa88ca509f324e53956e2d89eb46d",
+      "sha256": "abcb097a05e4a990b64f636ff3089d53c0690e5eb83e7ea9dcf4428e9505d0fc",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/select_ct_slices.py"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/slice_vqa_tool.py",
+      "bytes": 8167,
+      "git_blob_sha1": "116ab60cc0035da256944ee8f8303d2428ccd699",
+      "sha256": "0cb95f704715abc7d52939cb5b905f9b6d5ca7d63d1f0d133437b049b793978e",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/slice_vqa_tool.py"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/tool_configs.py",
+      "bytes": 9211,
+      "git_blob_sha1": "63d5ab820e7236aab3f15a5cf02f0406d7975317",
+      "sha256": "00586abe3638b4f9ccb4216b35e8a8a231cfc0dd54c8be8c4d08329f86c9b181",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/tool_configs.py"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/windowing_tool.py",
+      "bytes": 4581,
+      "git_blob_sha1": "036aca688b8bf5b53088c6f4b84b882974e4216e",
+      "sha256": "6e5189f1639a054a68029078ce9ed1170493736aa78d695270456cf11529a5f2",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/windowing_tool.py"
+    },
+    {
+      "path": "radagent/agents/art_dataset.py",
+      "bytes": 5185,
+      "git_blob_sha1": "0648f1ce8abf1886b2a10f60efc843635248d8bf",
+      "sha256": "bc00b17de4a98b6ecb0672726352a7f0e05dc2447330cb1d2c8f04b49ee53c00",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/agents/art_dataset.py"
+    },
+    {
+      "path": "radagent/agents/base_orchestrator.py",
+      "bytes": 34971,
+      "git_blob_sha1": "c3f82fded719250fca3be926e06bec4628e70e2b",
+      "sha256": "f9ccbbfa158cadf433bf613303c1ba7cf77eba3a2bc14b79bb2d2bc277c3014e",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/agents/base_orchestrator.py"
+    },
+    {
+      "path": "radagent/agents/custom_orchestrators.py",
+      "bytes": 14243,
+      "git_blob_sha1": "c30ef8219032ff248aae45b9ce125716c178f2a8",
+      "sha256": "88bede07e99e1ba076f54de3e14b1dbc20aceb7f52c89ea87482b89d04dfd713",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/agents/custom_orchestrators.py"
+    },
+    {
+      "path": "radagent/agents/diagnosis_checklist.py",
+      "bytes": 6262,
+      "git_blob_sha1": "68e9a2d7f882a98b71aa6755a6e5c52e25b0935f",
+      "sha256": "807a2eb08057da0b0ef3bc4f1c1214c0bc45e48cf644badcc371f0b9ebfc79ef",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/agents/diagnosis_checklist.py"
+    },
+    {
+      "path": "radagent/evaluation/compute_f1_wo_bootstrap.py",
+      "bytes": 6153,
+      "git_blob_sha1": "7866d52c7c2b5fc27b804b54d0d6a99dbfde8911",
+      "sha256": "b64191f19c621a581c9f1e6d1c1e953bed14f4a9693bef4da1ea249a2dc6e5c4",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/compute_f1_wo_bootstrap.py"
+    },
+    {
+      "path": "radagent/evaluation/compute_metrics.py",
+      "bytes": 7279,
+      "git_blob_sha1": "371c2dbe2c10b73640fe9388713d7e4235698c08",
+      "sha256": "752c6e0b2e4c59946306e494368ca2b22f8d2d09a8ba639969f5e62b29a7d82f",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/compute_metrics.py"
+    },
+    {
+      "path": "radagent/evaluation/map_task_to_image_id.py",
+      "bytes": 3800,
+      "git_blob_sha1": "3036d0ecd44f972b44a814121268469cfa8f8fea",
+      "sha256": "8068e1724c44741c41247c4584e6495d4ce4d311748a593098b92dd00c655491",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/map_task_to_image_id.py"
+    },
+    {
+      "path": "radagent/evaluation/process_generated_reports.py",
+      "bytes": 9799,
+      "git_blob_sha1": "b4b76b1b9bfe475f70aaa5f5de16ef862ed76393",
+      "sha256": "2d423d9ab7cc0c82e57d8181a3ecb4bef7fc850493ec9e47ac2737381c37efc1",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/process_generated_reports.py"
+    },
+    {
+      "path": "radagent/evaluation/process_generated_reports_radchest.py",
+      "bytes": 4077,
+      "git_blob_sha1": "d2c7a5ff7e062c18ce322a83ab43ade674f95578",
+      "sha256": "1a90666ed0a3881baf9a0723f91a6eb4e7cf85dd5db9b2817f10f72d8c89cbff",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/process_generated_reports_radchest.py"
+    },
+    {
+      "path": "radagent/evaluation/text_classifier_CT_pathology.py",
+      "bytes": 3425,
+      "git_blob_sha1": "9e78b4ba910b735ce82bfcd6c6bc5e3a247615fa",
+      "sha256": "0f9d9f6d2f34a4ffa557d1292a360d720bfd12dbaf2dc2614ab26ffaec99ff73",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/text_classifier_CT_pathology.py"
+    },
+    {
+      "path": "radagent/tools/tool_configs.py",
+      "bytes": 12148,
+      "git_blob_sha1": "33d01c81d27fcb4fb3dda04b1d2783fdaf3df8fe",
+      "sha256": "c826be88ee2064a3f9c52598f11065c653fe232652ebd9e26fbf3507b96c61c9",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/tools/tool_configs.py"
+    }
+  ],
+  "download_receipt": ".local/explainers/completion-20260927/041-source/fetch-receipt.json",
+  "download_receipt_sha256": "648a00db98e03b4647c0eeabe15fc016d3d04a26ee14bf40cbe01039fafe71fc",
+  "claims": [
+    {
+      "id": "input-flow",
+      "observation": "Minimal inference sends text messages containing the request and image path. The ten backends consume the native CT or their derived files; the agent message is not an embedded image.",
+      "evidence": [
+        {
+          "path": "minimal_inference/app/runtime/agent_runtime.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/agent_runtime.py",
+          "start_line": 259,
+          "end_line": 330,
+          "symbol": "stream_agent_rollout"
+        },
+        {
+          "path": "minimal_inference/app/runtime/agent_runtime.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/agent_runtime.py",
+          "start_line": 210,
+          "end_line": 217,
+          "symbol": "build_art_user_prompt"
+        }
+      ]
+    },
+    {
+      "id": "reference-separation",
+      "observation": "Minimal CT-RATE scenarios omit conversations[1], retaining task, task_id, image_path and original_query. The independent reference reader takes conversations[1]. Three nonclinical sentinel records reproduce this separation; end_id is inclusive.",
+      "evidence": [
+        {
+          "path": "minimal_inference/app/runtime/dataset_scenarios.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/dataset_scenarios.py",
+          "start_line": 18,
+          "end_line": 46,
+          "symbol": "load_ctrate_report_generation_scenarios"
+        },
+        {
+          "path": "radagent/evaluation/process_generated_reports.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/process_generated_reports.py",
+          "start_line": 18,
+          "end_line": 31,
+          "symbol": "generate_gt_list"
+        }
+      ]
+    },
+    {
+      "id": "host-reference-limit",
+      "observation": "The full training path retains gt in host scenarios and passes it to reward tools after completion when enabled. Initial user messages use scenario.task. This audit does not establish OS/filesystem isolation.",
+      "evidence": [
+        {
+          "path": "radagent/agents/art_dataset.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/agents/art_dataset.py",
+          "start_line": 36,
+          "end_line": 77,
+          "symbol": "generate_report_generation_scenarios"
+        },
+        {
+          "path": "radagent/agents/base_orchestrator.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/agents/base_orchestrator.py",
+          "start_line": 468,
+          "end_line": 753,
+          "symbol": "rollout"
+        }
+      ]
+    },
+    {
+      "id": "prompt-policy",
+      "observation": "The v8c prompt asks for a draft report, nine checklist items, checks of abnormalities, varied tools and resolution of disagreements. It requests a final paragraph based on the latest findings list. These are instructions, not observed adherence.",
+      "evidence": [
+        {
+          "path": "minimal_inference/app/runtime/agent_runtime.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/agent_runtime.py",
+          "start_line": 129,
+          "end_line": 188,
+          "symbol": "build_v8c_system_prompt"
+        }
+      ]
+    },
+    {
+      "id": "tool-help-conflict",
+      "observation": "The v8c prompt says to start with report_generation_tool, while its tool description suggests generating the draft after checking regions. A retained trace is needed to describe the sequence actually used.",
+      "evidence": [
+        {
+          "path": "minimal_inference/app/runtime/agent_runtime.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/agent_runtime.py",
+          "start_line": 129,
+          "end_line": 188,
+          "symbol": "build_v8c_system_prompt"
+        },
+        {
+          "path": "minimal_inference/radagent/tools/tool_configs.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/tool_configs.py"
+        }
+      ]
+    },
+    {
+      "id": "runtime-limits",
+      "observation": "The minimal path allows 60 assistant steps, retries unparsable responses and stops after three consecutive formatting failures. Tool exceptions or unlisted tool names become Tool call failed text. No actual network/model call was made.",
+      "evidence": [
+        {
+          "path": "minimal_inference/app/runtime/agent_runtime.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/agent_runtime.py",
+          "start_line": 259,
+          "end_line": 330,
+          "symbol": "stream_agent_rollout"
+        }
+      ]
+    },
+    {
+      "id": "output-persistence",
+      "observation": "Single-case CLI prints a streamed JSON array. Batch writes trajectory or fails records and appends success metadata with reward 0.0, task_id and image_path. The zero is not an evaluated report-quality reward.",
+      "evidence": [
+        {
+          "path": "minimal_inference/app/cli/minimal_ct_agent_loop.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/cli/minimal_ct_agent_loop.py",
+          "start_line": 21,
+          "end_line": 42,
+          "symbol": "main"
+        },
+        {
+          "path": "minimal_inference/app/cli/minimal_ct_agent_batch.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/cli/minimal_ct_agent_batch.py",
+          "start_line": 102,
+          "end_line": 116,
+          "symbol": "success_payload"
+        },
+        {
+          "path": "minimal_inference/app/cli/minimal_ct_agent_batch.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/cli/minimal_ct_agent_batch.py",
+          "start_line": 119,
+          "end_line": 134,
+          "symbol": "failure_payload"
+        }
+      ]
+    },
+    {
+      "id": "parser-disagreement",
+      "observation": "The runtime parser accepts fenced JSON and Python-style literal dictionaries; the saved-output reader uses json.loads and turns those exact assistant messages into empty reports. Six nonclinical fixtures retain both interpretations.",
+      "evidence": [
+        {
+          "path": "minimal_inference/app/runtime/agent_runtime.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/agent_runtime.py",
+          "start_line": 51,
+          "end_line": 114,
+          "symbol": "clean_and_convert_to_json"
+        },
+        {
+          "path": "radagent/evaluation/process_generated_reports.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/process_generated_reports.py",
+          "start_line": 34,
+          "end_line": 82,
+          "symbol": "generate_test_list_from_agent_outputs"
+        }
+      ]
+    },
+    {
+      "id": "coverage",
+      "observation": "Missing output keys remove corresponding references before metric computation. A fails record becomes literal Failed; it stays in the paired set. Three nonclinical cases produce two paired records: one success and one failure.",
+      "evidence": [
+        {
+          "path": "radagent/evaluation/process_generated_reports.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/process_generated_reports.py",
+          "start_line": 85,
+          "end_line": 94,
+          "symbol": "test_if_paired_data"
+        },
+        {
+          "path": "radagent/evaluation/process_generated_reports.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/process_generated_reports.py",
+          "start_line": 34,
+          "end_line": 82,
+          "symbol": "generate_test_list_from_agent_outputs"
+        }
+      ]
+    },
+    {
+      "id": "duplicate-file-precedence",
+      "observation": "The metric reader processes fails after trajectory, so a fails file replaces a success for the same scan key. Minimal batch reconciliation removes a stale fail when an existing trajectory is found; the reader itself does not reconcile them.",
+      "evidence": [
+        {
+          "path": "radagent/evaluation/process_generated_reports.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/process_generated_reports.py",
+          "start_line": 34,
+          "end_line": 82,
+          "symbol": "generate_test_list_from_agent_outputs"
+        },
+        {
+          "path": "minimal_inference/app/cli/minimal_ct_agent_batch.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/cli/minimal_ct_agent_batch.py",
+          "start_line": 88,
+          "end_line": 93,
+          "symbol": "reconcile_existing_outputs"
+        }
+      ]
+    },
+    {
+      "id": "learned-report-metrics",
+      "observation": "The selected metric implementation uses BLEU-1, ROUGE-L, CIDEr and GREEN. A RadBERT checkpoint extracts 18 labels from generated and reference text using >0.5, with tokenization truncated to 512 tokens. No learned metric was executed.",
+      "evidence": [
+        {
+          "path": "radagent/evaluation/compute_metrics.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/compute_metrics.py",
+          "start_line": 30,
+          "end_line": 77,
+          "symbol": "compute_nlp_metrics"
+        },
+        {
+          "path": "radagent/evaluation/compute_metrics.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/compute_metrics.py",
+          "start_line": 80,
+          "end_line": 104,
+          "symbol": "compute_green_score"
+        },
+        {
+          "path": "radagent/evaluation/compute_metrics.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/compute_metrics.py",
+          "start_line": 107,
+          "end_line": 163,
+          "symbol": "compute_multilabel_ct_classification_metrics"
+        },
+        {
+          "path": "radagent/evaluation/text_classifier_CT_pathology.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/text_classifier_CT_pathology.py"
+        }
+      ]
+    },
+    {
+      "id": "radchest-boundary",
+      "observation": "RadChest-CT has no paired report in its scenario generator. Its pipeline predicts labels from generated reports and inner-joins them with broad_labels.csv. This is a distinct reference/coverage condition.",
+      "evidence": [
+        {
+          "path": "radagent/agents/art_dataset.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/agents/art_dataset.py",
+          "start_line": 10,
+          "end_line": 33,
+          "symbol": "generate_radchest_ct_scenarios"
+        },
+        {
+          "path": "radagent/evaluation/process_generated_reports_radchest.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/process_generated_reports_radchest.py"
+        }
+      ]
+    },
+    {
+      "id": "draft-assistance",
+      "observation": "Report generation and CT VQA use CTChat_full_model. The classifier loads a CT-CLIP checkpoint and can return a cached generated prediction. None of these outputs is a reference report.",
+      "evidence": [
+        {
+          "path": "minimal_inference/radagent/tools/report_generator.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/report_generator.py",
+          "start_line": 9,
+          "end_line": 84,
+          "symbol": "ReportGenerationTool"
+        },
+        {
+          "path": "minimal_inference/radagent/tools/ct_chat.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/ct_chat.py"
+        },
+        {
+          "path": "minimal_inference/radagent/tools/disease_classifier.py",
+          "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/radagent/tools/disease_classifier.py",
+          "start_line": 10,
+          "end_line": 34,
+          "symbol": "DiseaseClassifierTool"
+        }
+      ]
+    }
+  ],
+  "contract": {
+    "condition": "Released minimal inference with v8c prompt; distinct from full training/reward and the sibling VQA entry.",
+    "input": "Native chest CT NIfTI path plus request text. CT-RATE batch input is selected from a report-generation split manifest.",
+    "reference": "Paired reference report is read by evaluation. Minimal scenario projection omits it. Full host scenarios retain gt for optional reward tools; runtime filesystem isolation remains untested.",
+    "assistance": "Nine-item prompt checklist and ten specialist/image-operation tools. Generated drafts, classifications and masks are assistance, not ground truth.",
+    "tools": [
+      "ct_vqa_tool",
+      "report_generation_tool",
+      "disease_classifier_tool",
+      "effusion_segmentation_tool",
+      "anatomy_segmentation_tool",
+      "biggest_slice_selection_tool",
+      "windowing_tool",
+      "get_several_slices_from_segmentation",
+      "slice_vqa_tool",
+      "extract_slices_from_ct"
+    ],
+    "max_steps": 60,
+    "output": "Final assistant JSON action with answer string plus streamed message list; batch appends status/reward metadata and separates trajectory and fails.",
+    "scoring": "Text similarity, learned GREEN and learned report-label comparisons. The minimal batch reward field is placeholder 0.0.",
+    "coverage": "Absent outputs shrink the paired reference set; failure outputs remain as Failed text. No fixed zero penalty in the output loader.",
+    "artifact_boundary": "No case CT, tool-generated assets, final report or reference has been acquired for this entry."
+  },
+  "nonclinical_reproduction": {
+    "command": "python3.12 scripts/audit_radagent_contract.py --sources .local/explainers/completion-20260927/041-source --output .local/explainers/completion-20260927/041-audit-v1",
+    "script": "scripts/audit_radagent_contract.py",
+    "script_sha256": "7608aa0801c802a0d7e239879a3d7f919947e9e17b96d7427b31b046b06e2914",
+    "receipt": ".local/explainers/completion-20260927/041-audit-v1/audit.json",
+    "receipt_sha256": "876218518b017e4bf693ce965d5005a738ea45ed30b8978fad799e5e3c3f3e29",
+    "selection": {
+      "minimal_inference/app/runtime/agent_runtime.py": [
+        {
+          "function": "clean_and_convert_to_json",
+          "start_line": 51,
+          "end_line": 114
+        },
+        {
+          "function": "build_art_user_prompt",
+          "start_line": 210,
+          "end_line": 217
+        },
+        {
+          "function": "parse_assistant_decision",
+          "start_line": 235,
+          "end_line": 239
+        }
+      ],
+      "minimal_inference/radagent/constants_and_path_utils.py": [
+        {
+          "function": "path_parse",
+          "start_line": 86,
+          "end_line": 96
+        }
+      ],
+      "minimal_inference/app/runtime/dataset_scenarios.py": [
+        {
+          "function": "_split_path",
+          "start_line": 10,
+          "end_line": 15
+        },
+        {
+          "function": "load_ctrate_report_generation_scenarios",
+          "start_line": 18,
+          "end_line": 46
+        }
+      ],
+      "minimal_inference/app/cli/minimal_ct_agent_batch.py": [
+        {
+          "function": "trace_filename",
+          "start_line": 71,
+          "end_line": 77
+        },
+        {
+          "function": "success_payload",
+          "start_line": 102,
+          "end_line": 116
+        },
+        {
+          "function": "failure_payload",
+          "start_line": 119,
+          "end_line": 134
+        }
+      ],
+      "radagent/evaluation/process_generated_reports.py": [
+        {
+          "function": "generate_gt_list",
+          "start_line": 18,
+          "end_line": 31
+        },
+        {
+          "function": "generate_test_list_from_agent_outputs",
+          "start_line": 34,
+          "end_line": 82
+        },
+        {
+          "function": "test_if_paired_data",
+          "start_line": 85,
+          "end_line": 94
+        }
+      ]
+    },
+    "scenario_fixture": {
+      "selected_cases": 2,
+      "inclusive_end_index": true,
+      "reference_sentinels_absent_from_scenarios": true,
+      "reference_loader_cases": 3,
+      "image_path_in_prompt": true
+    },
+    "serialization_fixtures": [
+      {
+        "fixture": "strict-json",
+        "assistant_content": "{\"action\": \"final_answer\", \"answer\": \"NONCLINICAL OUTPUT A\"}",
+        "runtime_decision": {
+          "action": "final_answer",
+          "answer": "NONCLINICAL OUTPUT A"
+        },
+        "metric_reader_output": {
+          "valid_1_a_1": "NONCLINICAL OUTPUT A"
+        },
+        "note": "Constructed serialization fixture; success metadata is supplied directly, not produced by a rollout."
+      },
+      {
+        "fixture": "fenced-json",
+        "assistant_content": "```json\n{\"action\": \"final_answer\", \"answer\": \"NONCLINICAL OUTPUT A\"}\n```",
+        "runtime_decision": {
+          "action": "final_answer",
+          "answer": "NONCLINICAL OUTPUT A"
+        },
+        "metric_reader_output": {
+          "valid_1_a_1": ""
+        },
+        "note": "Constructed serialization fixture; success metadata is supplied directly, not produced by a rollout."
+      },
+      {
+        "fixture": "python-literal",
+        "assistant_content": "{'action': 'final_answer', 'answer': 'NONCLINICAL OUTPUT A'}",
+        "runtime_decision": {
+          "action": "final_answer",
+          "answer": "NONCLINICAL OUTPUT A"
+        },
+        "metric_reader_output": {
+          "valid_1_a_1": ""
+        },
+        "note": "Constructed serialization fixture; success metadata is supplied directly, not produced by a rollout."
+      },
+      {
+        "fixture": "nonstring-answer",
+        "assistant_content": "{\"action\": \"final_answer\", \"answer\": 7}",
+        "runtime_decision": {
+          "action": "final_answer",
+          "answer": 7
+        },
+        "metric_reader_output": {
+          "valid_1_a_1": ""
+        },
+        "note": "Constructed serialization fixture; success metadata is supplied directly, not produced by a rollout."
+      },
+      {
+        "fixture": "nonfinal-action",
+        "assistant_content": "{\"action\": \"call_tool\", \"tool_name\": \"report_generation_tool\"}",
+        "runtime_decision": {
+          "action": "call_tool",
+          "tool_name": "report_generation_tool"
+        },
+        "metric_reader_output": {
+          "valid_1_a_1": ""
+        },
+        "note": "Constructed serialization fixture; success metadata is supplied directly, not produced by a rollout."
+      },
+      {
+        "fixture": "malformed-text",
+        "assistant_content": "NONCLINICAL INVALID JSON",
+        "runtime_decision": null,
+        "metric_reader_output": {
+          "valid_1_a_1": ""
+        },
+        "note": "Constructed serialization fixture; success metadata is supplied directly, not produced by a rollout."
+      }
+    ],
+    "coverage_fixture": {
+      "reference_cases": 3,
+      "success_traces": 1,
+      "failure_traces": 1,
+      "absent_cases": 1,
+      "paired_cases": 2,
+      "metric_reader_output": {
+        "valid_1_a_1": "NONCLINICAL OUTPUT A",
+        "valid_2_a_1": "Failed"
+      },
+      "paired_reference_keys": [
+        "valid_1_a_1",
+        "valid_2_a_1"
+      ],
+      "meaning": "Missing output removes its reference. A retained failure remains as literal Failed. No score is computed."
+    },
+    "duplicate_success_failure": {
+      "output": "Failed",
+      "meaning": "A failure file overwrites the same scan key from trajectory when both are retained."
+    },
+    "all_assertions_passed": true,
+    "limits": "Hand-constructed nonclinical strings and disposable fixture paths. The success metadata is called directly; no rollout occurred. No report metric, quality score or patient conclusion is produced."
+  },
+  "access": {
+    "checked_on": "2026-09-28",
+    "primary_page": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE",
+    "observation": "Current page requires accepted conditions and authentication to access files; separate access terms prohibit redistribution of dataset portions.",
+    "page_receipt": ".local/explainers/completion-20260927/041-source/ct-rate-access-page.json",
+    "page_receipt_sha256": "7574029ebab4899bf45e47904e1d7f422e6bc61aca994d80f671eef63e05faa7",
+    "prior_exact_request": {
+      "receipt": "presentation/external-tasks/samples.json",
+      "pointer": "/access_checks",
+      "scope": "Earlier HealthAgentBench valid_16_a_1 request returned 401; not a new RadAgent file request."
+    },
+    "credentials_inspected": false,
+    "gated_download_attempted_this_audit": false,
+    "terms_accepted_by_assistant": false,
+    "mirror_used_to_bypass_gate": false
+  },
+  "availability": {
+    "native_ct": false,
+    "case_specific_tool_trace": false,
+    "final_report": false,
+    "paired_reference_report": false,
+    "source_contract": true,
+    "canonical_story": false,
+    "visual_review": false
+  },
+  "blocking_dependency": "An authorized native CT plus matching retained RadAgent trace/final report and provenance for any shown tool outputs. A CT alone does not provide the missing case-specific results.",
+  "resume": "Verify case identity and source/terms/hashes; separate input, specialist outputs and reference; construct the operation story and run the full export and visual review. Do not execute models or substitute a synthetic report to claim completion.",
+  "user_question": {
+    "kind": "missing local artifact paths",
+    "status": "asked asynchronously; unanswered at this checkpoint",
+    "default_action": "Continue ordered queue; no scope reduction inferred."
+  },
+  "disposition": "blocked-source-input",
+  "reviewed_entries_changed": false,
+  "local_dependencies": {
+    "presentation/external-tasks/samples.json": "6d2038c3123b7fcd6a26420f0d3cd5aa05d46349c9ec7b265d49a89466ad0130",
+    "datasets/ct-rate.json": "6f0a92d37d2cd0b14e973fc77d3dd83d327c1aa646c9cc98b50c6ac93d4d6a85"
+  }
+}
