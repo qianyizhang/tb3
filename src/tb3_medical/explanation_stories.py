@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "rex-topcow-v1": "retained-rex-topcow-v1",
     "automed-multiorgan-v1": "retained-automed-multiorgan-v1",
     "bcer-workflow-v1": "retained-bcer-workflow-v1",
     "abra-annotation-v1": "retained-abra-annotation-v1",
@@ -94,6 +95,11 @@ SOURCE_INPUT_PACKS = {
     ),
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-rex-topcow-v1": (
+        "source-slices",
+        "reference.json",
+        {"inputs.json", "reference.json", "contract.json", "NOTICE.md", "DATA-LICENSE.txt"},
+    ),
     "retained-automed-multiorgan-v1": (
         "source-slices",
         "reference.json",
@@ -513,6 +519,11 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class RexTopcowChannels(Closed):
+    view: Pair
+    reference: Pair
 
 
 class AutomedMultiorganChannels(Closed):
@@ -978,6 +989,33 @@ class RegistrationAnalysisBeat(ExpansionBeat[RegistrationAnalysisChannels]):
 class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
     recipe: Literal["registration-analysis-v1"]
     beats: tuple[RegistrationAnalysisBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class RexTopcowBeat(ExpansionBeat[RexTopcowChannels]):
+    scene: Literal[
+        "inputs",
+        "split",
+        "labels",
+        "submission",
+        "reference",
+        "metrics",
+        "topology",
+        "geometry",
+        "ranking",
+        "limits",
+    ]
+
+
+class RexTopcowStory(Story[RexTopcowChannels]):
+    recipe: Literal["rex-topcow-v1"]
+    beats: tuple[RexTopcowBeat, ...]
 
     @model_validator(mode="after")
     def scene_cuts(self) -> Self:
@@ -1461,6 +1499,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | RexTopcowStory
     | AutomedMultiorganStory
     | BcerWorkflowStory
     | AbraAnnotationStory
@@ -1504,6 +1543,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | RexTopcowStory
     | AutomedMultiorganStory
     | BcerWorkflowStory
     | AbraAnnotationStory
@@ -1707,6 +1747,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | RexTopcowStory
     | AutomedMultiorganStory
     | BcerWorkflowStory
     | AbraAnnotationStory
@@ -1795,6 +1836,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = source_packs[pack_id]
         frame, data_license, label_license = {
+            "retained-rex-topcow-v1": (
+                "RAS",
+                "LicenseRef-TopCoW-OpenDataSwiss",
+                "LicenseRef-TopCoW-OpenDataSwiss",
+            ),
             "retained-automed-multiorgan-v1": ("RAS", "CC-BY-4.0", "CC-BY-4.0"),
             "retained-bcer-workflow-v1": ("LPS", "CC-BY-NC-4.0", None),
             "retained-abra-annotation-v1": ("LPS", "CC-BY-3.0", "CC-BY-3.0"),

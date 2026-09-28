@@ -1,0 +1,301 @@
+.scene {
+  padding: 18px 24px;
+  height: 442px;
+  color: #203d32;
+  background: #f6f7ef;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.scene h3 {
+  font-size: 23px;
+  line-height: 1.18;
+  margin: 0 0 12px;
+}
+.scene h4 {
+  font-size: 18px;
+  margin: 8px 0;
+}
+.scene p {
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 10px 0;
+}
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.columns article {
+  padding: 14px;
+  background: white;
+  border: 1px solid #d0d9cb;
+  min-width: 0;
+}
+.callout {
+  background: #fff0d7;
+  border-left: 3px solid #b67a22;
+  padding: 9px 12px;
+}
+.small {
+  font-size: 11px !important;
+}
+.kicker {
+  font-size: 10px !important;
+  letter-spacing: 0.8px;
+  font-weight: 700;
+}
+.selected {
+  padding: 9px 12px;
+  background: #dfebe2;
+  font-size: 12px;
+  margin: 12px 0 8px;
+}
+.selected b {
+  font-size: 19px;
+}
+.selected p {
+  margin: 5px 0;
+}
+.native {
+  margin: 0;
+  background: #11251d;
+  padding: 5px;
+  min-width: 0;
+}
+.native svg {
+  display: block;
+  width: 100%;
+  height: 300px;
+}
+.native figcaption {
+  color: #edf3eb;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.native figcaption b,
+.native figcaption span {
+  display: block;
+}
+.flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #dceadd;
+  padding: 16px;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+.flow span {
+  font-size: 12px;
+}
+.key {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  background: #172e26;
+  padding: 10px;
+  color: #f1f5ed;
+}
+.key div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid transparent;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.key i {
+  width: 11px;
+  height: 11px;
+  flex: none;
+}
+.key [data-current='true'] {
+  border-color: white;
+  background: #385144;
+}
+.file {
+  padding: 20px;
+  background: #dfebe2;
+  font:
+    12px/1.8 ui-monospace,
+    monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.referenceColumns {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 16px;
+}
+.referenceColumns article {
+  min-width: 0;
+}
+.referenceColumns .key {
+  grid-template-columns: repeat(4, 1fr);
+  padding: 6px;
+  gap: 2px;
+}
+.referenceColumns .key div {
+  padding: 3px 1px;
+  font-size: 10px;
+}
+.referenceColumns .key i {
+  width: 8px;
+  height: 8px;
+}
+.crop {
+  margin: 0 0 8px;
+  padding: 5px;
+  background: #172e26;
+  color: white;
+  text-align: center;
+}
+.crop svg {
+  height: 140px;
+  width: 100%;
+  display: block;
+  image-rendering: pixelated;
+}
+.crop figcaption {
+  font-size: 10px;
+  line-height: 1.3;
+  padding-top: 4px;
+}
+.toys {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.toy {
+  margin: 0;
+  width: 180px;
+}
+.toy svg {
+  width: 100%;
+  height: 105px;
+  display: block;
+}
+.toy figcaption {
+  font-size: 10px;
+  text-align: center;
+  padding: 4px;
+}
+.toyKey {
+  display: grid;
+  gap: 5px;
+  font-size: 11px;
+  background: #142b23;
+  padding: 8px;
+}
+.toyKey b {
+  font-size: 16px;
+  color: #f1f5ed;
+}
+.scene table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.scene th,
+.scene td {
+  text-align: left;
+  padding: 5px 6px;
+  border-bottom: 1px solid #cbd6c7;
+}
+.scene tr[data-current='true'] {
+  background: #d7eadd;
+  font-weight: 700;
+}
+.rank {
+  font-size: 25px !important;
+  font-weight: 700;
+  background: #dfebe2;
+  padding: 9px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+}
+.cards article {
+  padding: 18px;
+  background: white;
+  border: 1px solid #b8c7b7;
+}
+.cards b {
+  font-size: 17px;
+}
+.aside {
+  padding: 17px 20px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #23473e;
+}
+.aside p {
+  margin: 7px 0 12px;
+  font-size: 12px;
+}
+.aside small {
+  display: block;
+  font-size: 10px;
+  color: #526f63;
+}
+@container task-visual (max-width:900px) {
+  .scene {
+    height: auto;
+    min-height: 442px;
+    overflow: visible;
+  }
+  .columns {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .scene {
+    height: auto;
+    padding: 16px;
+    overflow: visible;
+  }
+  .scene h3 {
+    font-size: 20px;
+  }
+  .columns,
+  .referenceColumns,
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .key {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .referenceColumns .key {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .flow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .scene table {
+    font-size: 10px;
+  }
+  .scene th,
+  .scene td {
+    padding: 5px 3px;
+  }
+  .toys {
+    flex-wrap: wrap;
+  }
+  .toy {
+    width: calc(50% - 6px);
+  }
+  .toyKey {
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+  }
+  .toyKey b {
+    grid-column: 1/-1;
+  }
+}

@@ -211,3 +211,5 @@ export * from '../presentation/frontend/task-visuals/abra-annotation';
 export * from '../presentation/frontend/task-visuals/bcer-workflow';
 
 export * from '../presentation/frontend/task-visuals/automed-multiorgan';
+
+export * from '../presentation/frontend/task-visuals/rex-topcow';

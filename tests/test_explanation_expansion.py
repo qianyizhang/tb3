@@ -28,6 +28,7 @@ class ExpansionTests(unittest.TestCase):
                     "mask-screen-v1",
                     "anatomy-curation-v1",
                     "ct-context-v1",
+                    "rex-topcow-v1",
                     "automed-multiorgan-v1",
                     "abra-annotation-v1",
                     "history-sourcing-v1",
@@ -82,6 +83,7 @@ class ExpansionTests(unittest.TestCase):
 
     def test_source_screen_scene_changes_require_explicit_cuts(self):
         for group, name in [
+            (None, "rex-topcow"),
             (None, "automed-multiorgan"),
             (None, "bcer-workflow"),
             (None, "abra-annotation"),
@@ -152,6 +154,7 @@ class ExpansionTests(unittest.TestCase):
             "registration-analysis",
             "segmentation-calibration",
             "ct-context",
+            "rex-topcow",
             "automed-multiorgan",
             "bcer-workflow",
             "abra-annotation",

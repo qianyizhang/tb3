@@ -348,3 +348,14 @@ reveal/reset in the shared planar player without WebGL.
 `mri-importer-v1` uses [retained synthetic frame records](task-explorer/mri-importer/NOTICE.md) to separate storage order, descriptor ordinals, actual acquisition labels and physical LPS coordinates. Closed scene cuts retain the original task and saved-code replay. `view` visits each actual frame or physical corner discretely; `output` reveals replayed public results and `reference` reveals private aggregate grades. Numerical tiles are exact source samples; projected geometry is labelled as a diagram. The no-GPU view uses the same SVG/DOM data. No new model execution or clinical DICOM conformance claim is implied.
 
 `bcer-workflow-v1` uses [native PI-CAI MRI and public BCER contracts](task-explorer/bcer-workflow/NOTICE.md). Eight closed scenes trace modality names, physical-header coordinates, the exact eight-node template, four artifact keys and five nonclinical validator fixtures. Its single `view` channel selects discrete source points, nodes, artifacts or fixtures. Base stage success, ten-part TCR and five artifact invariants remain independent; a source documentation discrepancy is explicit. No patient mask or private reference is supplied, so this source-derived pack uses `no-reference-assets`. Synthetic grids are separate from native MRI. The planar recipe works without WebGL and implies no medical tool, model or controller run.
+
+`rex-topcow-v1` uses [native TopCoW CTA](task-explorer/rex-topcow/NOTICE.md) to
+explain the pinned ReX-MLE preparation, 13 vessel IDs, CSV/NIfTI submission and
+nine-measure ranking. `view` selects native planes, public label names or actual
+nonclinical fixtures; `reference` gates case 012's held-out source mask and
+annotation-derived crop. The complete-release filename replay puts this upstream
+training example in the ReX test subset. Magnification preserves source pixels;
+the crop is a reader aid, not solver assistance. Five toy arrays distinguish class
+Dice, binary clDice, B0 and simplified presence/IoU topology. Eight selected metrics,
+a geometry fragment and a rank tie were reproduced; HD95 and the full grader were
+not executed. The planar recipe requires no WebGL and implies no model run.

@@ -1,3 +1,4 @@
+import { RexScene, RexOutput } from './rex-topcow-panels';
 import { AutomedScene, AutomedOutput } from './automed-multiorgan-panels';
 import { BcerScene, BcerOutput } from './bcer-workflow-panels';
 import { AbraScene, AbraOutput } from './abra-annotation-panels';
@@ -132,6 +133,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   if (state.recipe === 'resect-correspondence-v1') return <ResectScene state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisScene state={state} />;
+  if (state.recipe === 'rex-topcow-v1') return <RexScene state={state} />;
   if (state.recipe === 'automed-multiorgan-v1') return <AutomedScene state={state} />;
   if (state.recipe === 'bcer-workflow-v1') return <BcerScene state={state} />;
   if (state.recipe === 'abra-annotation-v1') return <AbraScene state={state} />;
@@ -365,6 +367,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'resect-correspondence-v1') return <ResectOutput state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisOutput state={state} />;
+  if (state.recipe === 'rex-topcow-v1') return <RexOutput state={state} />;
   if (state.recipe === 'automed-multiorgan-v1') return <AutomedOutput state={state} />;
   if (state.recipe === 'bcer-workflow-v1') return <BcerOutput state={state} />;
   if (state.recipe === 'abra-annotation-v1') return <AbraOutput state={state} />;

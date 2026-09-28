@@ -17,6 +17,7 @@ import {
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
   return !(
+    (state.recipe === 'rex-topcow-v1' && state.scene === 'reference' && state.reference <= 0.5) ||
     (state.recipe === 'automed-multiorgan-v1' &&
       state.scene === 'reference' &&
       state.reference <= 0.5) ||
@@ -41,6 +42,7 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'rex-topcow-v1',
     'automed-multiorgan-v1',
     'bcer-workflow-v1',
     'abra-annotation-v1',
@@ -120,6 +122,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'rex-topcow-v1':
+      return {
+        heading: 'Learn named vessels from CTA',
+        corner: 'Native CTA · held-out reference reveal · nonclinical fixtures',
+        legend: [
+          ['#bcc7c3', 'Native CTA · grayscale'],
+          ['#8f71ca', 'Reference IDs · local color key'],
+          ['#267f72', 'Constructed scoring examples'],
+        ],
+      };
     case 'automed-multiorgan-v1':
       return {
         heading: 'Map CT anatomy into the benchmark labels',

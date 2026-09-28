@@ -18,6 +18,12 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    rexInputs,
+    rexReference,
+    rexContract,
+    rexSelection,
+    rexReveal,
+    rexNativeIndex,
     automedInputs,
     automedReference,
     automedContract,
@@ -1620,6 +1626,51 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       'Witness must lie in displayed reference',
     );
   }
+  const rex = plans.find((p) => p.recipe === 'rex-topcow-v1');
+  assert.equal(rex.reference_policy, 'reader-reference-reveal');
+  assert.deepEqual(
+    Array.from(rexInputs.views, (v) => v.z),
+    [108, 118, 128],
+  );
+  assert.ok(rexInputs.views.every((v) => !('crop_png' in v)));
+  assert.equal(rexContract.split.public_label_012, false);
+  assert.equal(rexContract.split.private_label_012, true);
+  assert.ok(rexContract.split.test_ids.includes('012'));
+  assert.deepEqual(
+    Array.from(
+      rexReference.structures.filter((r) => r.voxels === 0),
+      (r) => r.id,
+    ),
+    [8, 15],
+  );
+  assert.deepEqual(Array.from(rexNativeIndex(0, 0, 118)), [265, 0, 118]);
+  assert.deepEqual(Array.from(rexNativeIndex(0, 0, 118, true)), [187, 113, 118]);
+  assert.deepEqual(Array.from(rexNativeIndex(101, 64, 118, true)), [86, 177, 118]);
+  assert.equal(rexContract.fixtures[1].anterior_topology, 1);
+  assert.equal(rexContract.fixtures[1].b0_error, 0.5);
+  assert.equal(rexContract.fixtures[2].dice, 0);
+  assert.equal(rexContract.fixtures[2].cldice, 1);
+  for (const [scene, count] of [
+    ['inputs', 3],
+    ['labels', 13],
+    ['reference', 3],
+    ['metrics', 5],
+    ['topology', 2],
+    ['geometry', 2],
+  ]) {
+    const b = rex.beats.find((b) => b.scene === scene),
+      seen = new Set();
+    for (let f = b.startFrame; f < b.endFrame; f++) {
+      const state = sampleStory(rex, f);
+      seen.add(rexSelection(state));
+      assert.equal(rexReveal(state), scene === 'reference' && state.reference > 0.5);
+    }
+    assert.deepEqual(
+      [...seen],
+      Array.from({ length: count }, (_, i) => i),
+    );
+  }
+  for (const b of rex.beats) assert.equal(rexReveal(sampleStory(rex, b.startFrame)), false);
   const automed = plans.find((p) => p.recipe === 'automed-multiorgan-v1');
   assert.equal(automed.reference_policy, 'reader-reference-reveal');
   assert.deepEqual(

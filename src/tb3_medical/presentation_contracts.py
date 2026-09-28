@@ -514,6 +514,32 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class RexTopcowChannels(TypedDict):
+    view: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexTopcowBeat(ExpansionBeat):
+    channels: RexTopcowChannels
+    scene: Literal[
+        "inputs",
+        "split",
+        "labels",
+        "submission",
+        "reference",
+        "metrics",
+        "topology",
+        "geometry",
+        "ranking",
+        "limits",
+    ]
+
+
+class RexTopcowPlan(ExpansionPlan):
+    recipe: Literal["rex-topcow-v1"]
+    beats: list[RexTopcowBeat]
+
+
 class AutomedMultiorganChannels(TypedDict):
     view: tuple[float, float]
     reference: tuple[float, float]
@@ -1007,6 +1033,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | RexTopcowPlan
     | AutomedMultiorganPlan
     | BcerWorkflowPlan
     | AbraAnnotationPlan
