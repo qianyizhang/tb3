@@ -1,0 +1,2393 @@
+{
+  "schema": 1,
+  "entry_id": "imaging101-ct-fan-beam",
+  "date": "2026-09-28",
+  "reviewer": "assistant",
+  "scope": "Pinned synthetic fan-beam measurements and three saved reconstructions; selected source functions, saved-input FBP replay, fixed operator controls, actual staging and scoring. No iterative solver or agent.",
+  "source": {
+    "repository": "AI4ImagingLab/imaging-101-release",
+    "revision": "dc2f668939b21e8312e22529615def610f8611df",
+    "tree_sha256": "0ed33133a6dba6c52a44e2955b17b66454d224c8578cbdf5b0dac04242d56f24",
+    "tree_entries": 1722,
+    "truncated": false,
+    "files": [
+      {
+        "path": "tasks/ct_fan_beam/README.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/README.md",
+        "bytes": 5539,
+        "git_blob_sha1": "7800d703393a2b23a4552e3a6f88958924dbb9f9",
+        "sha256": "4e3d85b3c4626325b75c756f3c0c6112aec9e7ed708a9fd95920bc841a1a16a6",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/ct_fan_beam/generate_fixtures.py",
+        "url": "https://api.github.com/repos/AI4ImagingLab/imaging-101-release/git/blobs/820abdf5c8c213f57788cd81cac880b8b7245968",
+        "bytes": 2184,
+        "git_blob_sha1": "820abdf5c8c213f57788cd81cac880b8b7245968",
+        "sha256": "7648556347852b63a35b112659f0cdd08b03600bee0bf55c921f6b0e7d902b77",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/ct_fan_beam/main.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/main.py",
+        "bytes": 7671,
+        "git_blob_sha1": "01a1167612be7f47004e0e6574944eec1c7820fb",
+        "sha256": "007d54408179b5929c99df179c1aaa166d79fc79b6dc82124eebbcd9c06dc284",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/ct_fan_beam/notebooks/ct_fan_beam.ipynb",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/notebooks/ct_fan_beam.ipynb",
+        "bytes": 835308,
+        "git_blob_sha1": "7578eb62556343763fc2d4bf39354ce720b88992",
+        "sha256": "e933d6d34c12322b9898210fbe2b15bfbc39db01464043ec07788c2f0ffb6786",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/ct_fan_beam/plan/approach.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/plan/approach.md",
+        "bytes": 2699,
+        "git_blob_sha1": "928f99bbc75326919581c0ea3d81cba1b247a522",
+        "sha256": "a28624e827133ee0d707369ac4d6bde18ce1af66f9f22e40abb3262b842957aa",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/ct_fan_beam/plan/design.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/plan/design.md",
+        "bytes": 3456,
+        "git_blob_sha1": "e6150f07eecc193624aac50d9de889077a805e7b",
+        "sha256": "713ac8a41bfdc8ff224cb1268fca4279629b5bde746fa1dde5c78e5399eb2618",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/ct_fan_beam/requirements.txt",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/requirements.txt",
+        "bytes": 89,
+        "git_blob_sha1": "100a80d096a5650f3ed6a4efb7c10150cb4bffc5",
+        "sha256": "b3b367263f1184307442939ad8a319d36dd8bf5849814313312db1e6cc8c8efc",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/ct_fan_beam/src/__init__.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/src/__init__.py",
+        "bytes": 0,
+        "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/ct_fan_beam/src/generate_data.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/src/generate_data.py",
+        "bytes": 5778,
+        "git_blob_sha1": "00de8ae47e89bbe3fa539fa29f4b6b99c98bad3d",
+        "sha256": "d7a1823d20f01fa4a099d988caa403e2089a54c8dfaf530d10add48aede80c4f",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/ct_fan_beam/src/physics_model.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/src/physics_model.py",
+        "bytes": 15006,
+        "git_blob_sha1": "de0ea6b43d7402988a108ecfa8301bc920929cae",
+        "sha256": "5df160c9350c05960ae8a01b7a17c7f67e8fdd95bf3232338fc5c39c4a0ef690",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/ct_fan_beam/src/preprocessing.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/src/preprocessing.py",
+        "bytes": 2125,
+        "git_blob_sha1": "2efafd89842e8bb8e1615ca7cd897e5ff950468d",
+        "sha256": "ab131c2edbe974376421052b7635b91f9cadf3fa117873a27b516854ba3b0baa",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/ct_fan_beam/src/solvers.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/src/solvers.py",
+        "bytes": 4313,
+        "git_blob_sha1": "d07003b388414fdb9c6405ae5d1c93934f7258db",
+        "sha256": "e59504031e7ba3e357dd3302702c83a0d37e9bdc0d8b2a702441dbca82a7694a",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/ct_fan_beam/src/visualization.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/src/visualization.py",
+        "bytes": 3403,
+        "git_blob_sha1": "f4df8a7a8cf00116bccb5048a198aee7adbde94c",
+        "sha256": "0dc0d1290a6e703beee1a40317761873b0fae7c1037aeeb4c4e69ba11ef19d02",
+        "status": "verified"
+      }
+    ],
+    "shared_files": [
+      {
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/LICENSE",
+        "bytes": 1076,
+        "git_blob_sha1": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+        "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/LICENSE"
+      },
+      {
+        "path": "README.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/README.md",
+        "bytes": 7194,
+        "git_blob_sha1": "60233784ecb46358623ee3be1e9de40e23c70eee",
+        "sha256": "33b226ba0171c595b655c52da7bd4e38c7192e1d274051eb677af4aa49681fef",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/README.md"
+      },
+      {
+        "path": "assets_manifest.json",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/assets_manifest.json",
+        "bytes": 315512,
+        "git_blob_sha1": "6c0d85a9ad9ad8f4ddeeac4a0a8e9953fcf80884",
+        "sha256": "66568d11536efc12c8be6f03fd0e2ece0a6080ca4abeeea05ab73a3f8e98c797",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/assets_manifest.json"
+      },
+      {
+        "path": "docs/END2END_EVALUATION.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/docs/END2END_EVALUATION.md",
+        "bytes": 8188,
+        "git_blob_sha1": "912fb91731f4427c9190c51997372cfb974f1818",
+        "sha256": "d4a07d6b25bb4b983f1c47cf9b858486e93500554e19ac6421bd40fc69cd987a",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/docs/END2END_EVALUATION.md"
+      },
+      {
+        "path": "docs/EVALUATION_GUIDE.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/docs/EVALUATION_GUIDE.md",
+        "bytes": 4894,
+        "git_blob_sha1": "48195e9f098f46fd957b69e2754dbf7eba0a9340",
+        "sha256": "28c32eda23906b2c69b86af28f7f66da4fa8ab3d024de885619340cfcf4b92d9",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/docs/EVALUATION_GUIDE.md"
+      },
+      {
+        "path": "docs/function_level_evaluation.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/docs/function_level_evaluation.md",
+        "bytes": 9348,
+        "git_blob_sha1": "45d1e24102c55b278986e2af7aa1bdf86c8bc78a",
+        "sha256": "799ecaa32db6bf05784c4789692ab98493161b027fcaf66f26cf4cf57ab4e267",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/docs/function_level_evaluation.md"
+      },
+      {
+        "path": "docs/plan_evaluation.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/docs/plan_evaluation.md",
+        "bytes": 8733,
+        "git_blob_sha1": "fa9a00275d21acb0e8111d92def6fc268b037bbe",
+        "sha256": "d51b5efb8d349de27251454c706e0e5d6446c9fb0a054c2dace1fe63297d0b37",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/docs/plan_evaluation.md"
+      },
+      {
+        "path": "evaluation_harness/Dockerfile",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/Dockerfile",
+        "bytes": 166,
+        "git_blob_sha1": "7763c091e48fbd4d6580befd971a73d2cf87652c",
+        "sha256": "3c9b4ee8e87a022a383597e33531c5e6a61c64c6a445f45a383be165f57e09fa",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/Dockerfile"
+      },
+      {
+        "path": "evaluation_harness/README.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/README.md",
+        "bytes": 5199,
+        "git_blob_sha1": "4175991a54ea3f28197acf100db2e2f2ac99ee4a",
+        "sha256": "4758ca8e26e8464f3c3bba57b03b52357c953aaa5c3e100b63ce7bc4f7634bd0",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/README.md"
+      },
+      {
+        "path": "evaluation_harness/__init__.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/__init__.py",
+        "bytes": 199,
+        "git_blob_sha1": "8cf86e231ca72c897f1ff6204349f6ce1b24eb0d",
+        "sha256": "6638875de491c616d5e44b271a2f76324464871e26fa8a867e0cd34cc66dd874",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/__init__.py"
+      },
+      {
+        "path": "evaluation_harness/__main__.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/__main__.py",
+        "bytes": 28282,
+        "git_blob_sha1": "634fdf98a3f04a55556c2243f91546a52ba1da3d",
+        "sha256": "f25a61fbda26b216e1aee6817a50dd9bb7d3b681412d1a4eef819c3dd18b4445",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/__main__.py"
+      },
+      {
+        "path": "evaluation_harness/agent.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agent.py",
+        "bytes": 32610,
+        "git_blob_sha1": "ee4c8d2f0cb34f411587f59b92ff659a65c4d761",
+        "sha256": "ffeea0d6c3261589833f0887b91c42ebc1cf7190a118ad23cfc7924cb765db15",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/agent.py"
+      },
+      {
+        "path": "evaluation_harness/agents/__init__.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/__init__.py",
+        "bytes": 392,
+        "git_blob_sha1": "3908f884bcf6ceaa9bd4631f33e5ff32155ceded",
+        "sha256": "6a4ade3870198ea9376196d524a0b90d50cfcf782a5702f570f9ffe31dfce123",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/agents/__init__.py"
+      },
+      {
+        "path": "evaluation_harness/agents/architect_agent.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/architect_agent.py",
+        "bytes": 4029,
+        "git_blob_sha1": "27e043a670636c1881d7dbd746560896fb10556e",
+        "sha256": "62eb96c2b4f279e75ef3b212cf74cbe809fcbefe24872c1e032b0fd89162e590",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/agents/architect_agent.py"
+      },
+      {
+        "path": "evaluation_harness/agents/base.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/base.py",
+        "bytes": 3948,
+        "git_blob_sha1": "a53f1309245a22ceb85109341573fb775d48d49b",
+        "sha256": "f22cd120705acb77052af47b56b2a1a4a926c82c8769c6dc1962a6f5efa8a90a",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/agents/base.py"
+      },
+      {
+        "path": "evaluation_harness/agents/coder_agent.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/coder_agent.py",
+        "bytes": 9187,
+        "git_blob_sha1": "79a670932420d85358ae035c0bbdbd719f10eb83",
+        "sha256": "94d297f20e38d3ec65a8d1c9b5f7c9113c476819cd75f6a6ca54ed0bcf2a34e7",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/agents/coder_agent.py"
+      },
+      {
+        "path": "evaluation_harness/agents/judge_agent.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/judge_agent.py",
+        "bytes": 8924,
+        "git_blob_sha1": "7356c46ce8698dd34cf922690a3ebc17f623f1ac",
+        "sha256": "3c5651e839a24cec006b8e45c1ba4f129e612c5ebbc86f39da5843ef6ece3182",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/agents/judge_agent.py"
+      },
+      {
+        "path": "evaluation_harness/agents/planner_agent.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/planner_agent.py",
+        "bytes": 11747,
+        "git_blob_sha1": "4a26bd9ee47ace344dfa978378c99577b59b4b19",
+        "sha256": "b2f0b308d4b6603cd3af3e9f98e5c1454a2070e49bae8791448eb9a57c5d96f8",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/agents/planner_agent.py"
+      },
+      {
+        "path": "evaluation_harness/config.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/config.py",
+        "bytes": 1765,
+        "git_blob_sha1": "c78bc04b8c82a1649c7106d3900525441bdcbabf",
+        "sha256": "428bacdcd01f4a24e132fa50ac59ad3ff5023e2850494b7e42421b60f1710584",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/config.py"
+      },
+      {
+        "path": "evaluation_harness/docker_runner.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/docker_runner.py",
+        "bytes": 4792,
+        "git_blob_sha1": "79f71f432b405f40c087b323b6369c4015403729",
+        "sha256": "8c8d5fb663701fa141402416593b69fe2dc4a13f96648fa210e6d66e1f2f1ee4",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/docker_runner.py"
+      },
+      {
+        "path": "evaluation_harness/env_manager.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/env_manager.py",
+        "bytes": 8475,
+        "git_blob_sha1": "cee2df4d5392093571807dcebdfac42e5582d377",
+        "sha256": "c6fa6d5e855eb302a3d7a4de23d1bfecf5f91222e6196652fbfb99a987c40252",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/env_manager.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/__init__.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/__init__.py",
+        "bytes": 489,
+        "git_blob_sha1": "4b1f462e03a91a3170ca87b19c92362fdd054af0",
+        "sha256": "81f25389770abe1051f4a0e1c9cd4f09466f5b34f55ec58107b16acc7d533d44",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/__init__.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/claude_code/README.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/README.md",
+        "bytes": 2729,
+        "git_blob_sha1": "7f7d4a313beb4cb3de04917c0f23a738c6c497dc",
+        "sha256": "285f8474c75570a8ae5c720414a95f518d9c5570ab69ebadc0b727187faf7923",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/claude_code/README.md"
+      },
+      {
+        "path": "evaluation_harness/frameworks/claude_code/__init__.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/__init__.py",
+        "bytes": 1036,
+        "git_blob_sha1": "f6e0403cc65d270f4a1998a16f68edd1de0ac546",
+        "sha256": "b0e1e174619b1d3135b6a95de9e8b732938773f96f3c253df1a8c41449c042ef",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/claude_code/__init__.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/claude_code/copilot_prompt.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/copilot_prompt.py",
+        "bytes": 10492,
+        "git_blob_sha1": "a14f50e7ec54a42d487c8a130bc9b8d1202f1516",
+        "sha256": "12d4d2b0094523184196b9eda88108f783123b40ae7f0f34fba2a829de4847be",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/claude_code/copilot_prompt.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/claude_code/copilot_runner.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/copilot_runner.py",
+        "bytes": 20758,
+        "git_blob_sha1": "83a10cfa613135abfc4222fa4831d6195d179d77",
+        "sha256": "adc54b3971bcc9c8a7ee303b36cfbe2650948e77c4c5f162bc8d0b5c29fb1a6b",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/claude_code/copilot_runner.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/claude_code/copilot_scorer.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/copilot_scorer.py",
+        "bytes": 6937,
+        "git_blob_sha1": "15ff30434cff0f3391acbefda225bfd443face34",
+        "sha256": "c4c2cc9047f28be087c38b594d86dadfe6be0ab673ee7d1d903742dfd4615e58",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/claude_code/copilot_scorer.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/claude_code/prepare_all.ps1",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/prepare_all.ps1",
+        "bytes": 2321,
+        "git_blob_sha1": "ce499961c2297e5a76503c6fee1d95108dc4f2f7",
+        "sha256": "0c1618624ba1f4bd55779ff717456b9ba07fe9382d873c53d2c2150a1d87e937",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/claude_code/prepare_all.ps1"
+      },
+      {
+        "path": "evaluation_harness/frameworks/claude_code/prepare_all.sh",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/prepare_all.sh",
+        "bytes": 1714,
+        "git_blob_sha1": "9e291b1a576d41c43cef4cd0b687e2c206315270",
+        "sha256": "39b91bb48c11a8e6f23a1a862e129731472cfb23c86928c5a399aef60fc71137",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/claude_code/prepare_all.sh"
+      },
+      {
+        "path": "evaluation_harness/frameworks/deepcode/README.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/README.md",
+        "bytes": 4279,
+        "git_blob_sha1": "19e3c6413dba14037e4c0a70f2cd25a256e642f0",
+        "sha256": "6585e2263da08f394aec6b33a5ab0caa01b25552fc921b0499520576b5c90471",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/deepcode/README.md"
+      },
+      {
+        "path": "evaluation_harness/frameworks/deepcode/__init__.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/__init__.py",
+        "bytes": 579,
+        "git_blob_sha1": "d707c57d116f16f11b7f1d5f36f97528d208a584",
+        "sha256": "392f28d3e9246e0b0eaa03531feb9c649eb055d0c99a223d1213a69323d92859",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/deepcode/__init__.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/deepcode/config.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/config.py",
+        "bytes": 2315,
+        "git_blob_sha1": "891e02faf339340019b7fb26fcf8452432475c70",
+        "sha256": "b312a79bddba3d28d7e6702827173f80338cf6738c64fc3a9e35f81d7487ee05",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/deepcode/config.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/deepcode/deepcode_config.yaml",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/deepcode_config.yaml",
+        "bytes": 719,
+        "git_blob_sha1": "ec5dbf57cbd1202cab89edd4a970f309c34c3c0b",
+        "sha256": "0c1a7169f4e1db3f7ca452e4833a8e9351b19241d5e8be32d8ee2a8ebac1ca99",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/deepcode/deepcode_config.yaml"
+      },
+      {
+        "path": "evaluation_harness/frameworks/deepcode/runner.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/runner.py",
+        "bytes": 8726,
+        "git_blob_sha1": "fa20e36cfec7bbb8d58237ce35a44a26d10416f4",
+        "sha256": "53e2aa4ad727587a6e515110f29511a280cfa014c4e1c3bf61411503fbecc2d9",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/deepcode/runner.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/multi_agent/README.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/README.md",
+        "bytes": 2507,
+        "git_blob_sha1": "dd38dbbc37edd50c15039bff35e3d0ab882f30f8",
+        "sha256": "d440eb7124a8877ce5a4f4feea2eb8d58bea0a92a75f71a46d7fe9f10119071f",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/multi_agent/README.md"
+      },
+      {
+        "path": "evaluation_harness/frameworks/multi_agent/__init__.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/__init__.py",
+        "bytes": 441,
+        "git_blob_sha1": "3cbce98e7b78f4987605217409c9746aaf2d9cac",
+        "sha256": "30411fceb45df21d37556003631e323a9ff145cb9f1a7c8d33f296b47da6a7a5",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/multi_agent/__init__.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/multi_agent/agents/__init__.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/__init__.py",
+        "bytes": 392,
+        "git_blob_sha1": "3908f884bcf6ceaa9bd4631f33e5ff32155ceded",
+        "sha256": "6a4ade3870198ea9376196d524a0b90d50cfcf782a5702f570f9ffe31dfce123",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/multi_agent/agents/__init__.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/multi_agent/agents/architect_agent.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/architect_agent.py",
+        "bytes": 4029,
+        "git_blob_sha1": "27e043a670636c1881d7dbd746560896fb10556e",
+        "sha256": "62eb96c2b4f279e75ef3b212cf74cbe809fcbefe24872c1e032b0fd89162e590",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/multi_agent/agents/architect_agent.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/multi_agent/agents/base.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/base.py",
+        "bytes": 3965,
+        "git_blob_sha1": "8343b0b8ac43c90db74f6894a0708866334f6f54",
+        "sha256": "68a0f5f9f230c84f2cea8378c45a22a79100c09dfd40ebb49ef148aa5a7d91b9",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/multi_agent/agents/base.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/multi_agent/agents/coder_agent.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/coder_agent.py",
+        "bytes": 9187,
+        "git_blob_sha1": "79a670932420d85358ae035c0bbdbd719f10eb83",
+        "sha256": "94d297f20e38d3ec65a8d1c9b5f7c9113c476819cd75f6a6ca54ed0bcf2a34e7",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/multi_agent/agents/coder_agent.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/multi_agent/agents/judge_agent.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/judge_agent.py",
+        "bytes": 8924,
+        "git_blob_sha1": "7356c46ce8698dd34cf922690a3ebc17f623f1ac",
+        "sha256": "3c5651e839a24cec006b8e45c1ba4f129e612c5ebbc86f39da5843ef6ece3182",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/multi_agent/agents/judge_agent.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/multi_agent/agents/planner_agent.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/planner_agent.py",
+        "bytes": 11747,
+        "git_blob_sha1": "4a26bd9ee47ace344dfa978378c99577b59b4b19",
+        "sha256": "b2f0b308d4b6603cd3af3e9f98e5c1454a2070e49bae8791448eb9a57c5d96f8",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/multi_agent/agents/planner_agent.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/multi_agent/multi_agent.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/multi_agent.py",
+        "bytes": 55097,
+        "git_blob_sha1": "017a4c8063437c31d4d6b201c400bff7b707edd7",
+        "sha256": "733c142dc593621aafffb8719455e0d51b8d04f06cf33c598d3c6de0aecd14f7",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/multi_agent/multi_agent.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/react/README.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/react/README.md",
+        "bytes": 1173,
+        "git_blob_sha1": "1e49b02b31d75c98998a6f37e1e673551753a38b",
+        "sha256": "fcdaf2708c65f975a6e2a840a85251d4a68cd89e15508114668b08cc07aa7bf3",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/react/README.md"
+      },
+      {
+        "path": "evaluation_harness/frameworks/react/__init__.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/react/__init__.py",
+        "bytes": 347,
+        "git_blob_sha1": "1babd4cfc3c6444f9e07a75cb33cb9326058589a",
+        "sha256": "ad12c82942ebc1285fb09358212faa79c2227383013799a3a500f9cb712f0ecc",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/react/__init__.py"
+      },
+      {
+        "path": "evaluation_harness/frameworks/react/prompts.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/react/prompts.py",
+        "bytes": 14489,
+        "git_blob_sha1": "62400053d5ab984c96ec3eca91bc6a0c685e172f",
+        "sha256": "3bfc53d6dff130ea7176d90cdfb126f3d01e9929f2b0fe6d02c65e6a5115f3b8",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/frameworks/react/prompts.py"
+      },
+      {
+        "path": "evaluation_harness/llm_client.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/llm_client.py",
+        "bytes": 5658,
+        "git_blob_sha1": "56c3a932bcdf48dcb0ba7a08da7f413bfc22a943",
+        "sha256": "0c9abc3e725bdaf712912c3e34381f75975eb82ad74b91093c4621afd85fcf43",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/llm_client.py"
+      },
+      {
+        "path": "evaluation_harness/local_runner.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py",
+        "bytes": 13941,
+        "git_blob_sha1": "6091549a8a97225b9cc9708074067757720a3d9e",
+        "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/local_runner.py"
+      },
+      {
+        "path": "evaluation_harness/multi_agent.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/multi_agent.py",
+        "bytes": 55044,
+        "git_blob_sha1": "3bb2d18281b365ec4ec39c4cf8b8009e256155ae",
+        "sha256": "cedf8a0db70f1c4f399e33f10d2fc4a9b6d5f8dfbef0636213ef0b9a4f9de0ab",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/multi_agent.py"
+      },
+      {
+        "path": "evaluation_harness/plan_scorer.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/plan_scorer.py",
+        "bytes": 11956,
+        "git_blob_sha1": "9cfb772a8604f201aae1d992cd6263581c3098c9",
+        "sha256": "ab374d64dae2a4dd5758e4d56b54d8d1ef529d3dc80b1c1fa377df05528700d1",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/plan_scorer.py"
+      },
+      {
+        "path": "evaluation_harness/prompts.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/prompts.py",
+        "bytes": 14489,
+        "git_blob_sha1": "62400053d5ab984c96ec3eca91bc6a0c685e172f",
+        "sha256": "3bfc53d6dff130ea7176d90cdfb126f3d01e9929f2b0fe6d02c65e6a5115f3b8",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/prompts.py"
+      },
+      {
+        "path": "evaluation_harness/reference_scoring.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py",
+        "bytes": 9172,
+        "git_blob_sha1": "87eb882e79a514f2ab1303080c222d5fd7f00b42",
+        "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/reference_scoring.py"
+      },
+      {
+        "path": "evaluation_harness/requirements.txt",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/requirements.txt",
+        "bytes": 15,
+        "git_blob_sha1": "b18d513474f4804f996a469c7424a69097eaa717",
+        "sha256": "af1d882a2cc1717c9da20d96d963d2bf7f83b28f2a191612a17599e0e44ff3a5",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/requirements.txt"
+      },
+      {
+        "path": "evaluation_harness/runner.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/runner.py",
+        "bytes": 15186,
+        "git_blob_sha1": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab",
+        "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/runner.py"
+      },
+      {
+        "path": "evaluation_harness/scorer.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py",
+        "bytes": 23821,
+        "git_blob_sha1": "07125c06b504291288ab8b3d04c046b476446e04",
+        "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/scorer.py"
+      },
+      {
+        "path": "evaluation_harness/task_recipes.json",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/task_recipes.json",
+        "bytes": 9844,
+        "git_blob_sha1": "58b0536442c89c59f5d4d5ee2d106bb0fcc82851",
+        "sha256": "3086bb41906ff096b80f9d53ab4d69fd6eb86256d4826959b11df0f0332f3c3c",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/task_recipes.json"
+      },
+      {
+        "path": "evaluation_harness/task_scoring.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/task_scoring.py",
+        "bytes": 19005,
+        "git_blob_sha1": "d5f5043d353d9a29ff9f9044def53334f79d96d0",
+        "sha256": "04596307728d59880ad09376ec511f90400f0527c48887f16ce57c8a6d9d4f6b",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/task_scoring.py"
+      },
+      {
+        "path": "evaluation_harness/task_scoring_custom.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/task_scoring_custom.py",
+        "bytes": 31984,
+        "git_blob_sha1": "fe69b4d4a1dd537815f8e5c496bbffef0125d732",
+        "sha256": "d9ca21d8350d6600bbc9acce82875c821828f9e44e1b886347fd5a4fa06087cf",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/task_scoring_custom.py"
+      },
+      {
+        "path": "evaluation_harness/visualizer.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/visualizer.py",
+        "bytes": 20288,
+        "git_blob_sha1": "7e50750d5405fb009f2789559d1cf2dea40d23c5",
+        "sha256": "a73bd8c63e87353eab4e2b68f0639e32af08973e1774e39fd9e57072ca541cd6",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/evaluation_harness/visualizer.py"
+      },
+      {
+        "path": "scripts/download_assets.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/scripts/download_assets.py",
+        "bytes": 4068,
+        "git_blob_sha1": "93c7b4bb01304f9709362aef04052149907cac32",
+        "sha256": "8c45517a99a8bfc4d8baf2384156e8e5ff7c5ead1737a9e1ff04fb2c3e780480",
+        "status": "verified",
+        "reused_from": ".local/explainers/completion-20260927/045-source/scripts/download_assets.py"
+      }
+    ]
+  },
+  "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+  "asset_downloads": [
+    {
+      "path": "tasks/ct_fan_beam/data/ground_truth.npz",
+      "hf_path": "tasks/ct_fan_beam/data/ground_truth.npz",
+      "task": "ct_fan_beam",
+      "size": 9903,
+      "sha256": "851e79d75546ef5502b68c3a8016ec5ed0719dce786b7d5c4be61b38ed6a439d",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_fan_beam/data/ground_truth.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/ct_fan_beam/data/meta_data.json",
+      "hf_path": "tasks/ct_fan_beam/data/meta_data.json",
+      "task": "ct_fan_beam",
+      "size": 345,
+      "sha256": "4aa4642dfe3c82a9c0b584568e1954fa267dc920a09705bba78af1bb9d64848e",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_fan_beam/data/meta_data.json",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/ct_fan_beam/data/raw_data.npz",
+      "hf_path": "tasks/ct_fan_beam/data/raw_data.npz",
+      "task": "ct_fan_beam",
+      "size": 204676,
+      "sha256": "f1ea7b032fdc7feb1db9c2ade72a06ba34c44c05c03b867183ece1d27dfd9d7a",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_fan_beam/data/raw_data.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "verified",
+      "error": null
+    },
+    {
+      "path": "tasks/ct_fan_beam/evaluation/fixtures/physics_model_fixtures.npz",
+      "hf_path": "tasks/ct_fan_beam/evaluation/fixtures/physics_model_fixtures.npz",
+      "task": "ct_fan_beam",
+      "size": 32556,
+      "sha256": "e523180e9a2a2e8d68106e6ffd68b1ab7a738f97cd57bbbaff2d9554e6e32171",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_fan_beam/evaluation/fixtures/physics_model_fixtures.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/ct_fan_beam/evaluation/reference_outputs/recon_fbp_full.npz",
+      "hf_path": "tasks/ct_fan_beam/evaluation/reference_outputs/recon_fbp_full.npz",
+      "task": "ct_fan_beam",
+      "size": 37206,
+      "sha256": "36996979e032a49c88163a84a503060b560bb0211351a75fbef17adfbf0a7944",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_fan_beam/evaluation/reference_outputs/recon_fbp_full.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/ct_fan_beam/evaluation/reference_outputs/recon_fbp_short.npz",
+      "hf_path": "tasks/ct_fan_beam/evaluation/reference_outputs/recon_fbp_short.npz",
+      "task": "ct_fan_beam",
+      "size": 36598,
+      "sha256": "8398683b792b3c90ec79f6bd61beb1f567f21ae660da4456b93a78322065b334",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_fan_beam/evaluation/reference_outputs/recon_fbp_short.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/ct_fan_beam/evaluation/reference_outputs/recon_tv_short.npz",
+      "hf_path": "tasks/ct_fan_beam/evaluation/reference_outputs/recon_tv_short.npz",
+      "task": "ct_fan_beam",
+      "size": 27803,
+      "sha256": "5547dfff0583f8aa40fa6ffa34d4d4feb349d98f38e7420c525a8d593357d0b6",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_fan_beam/evaluation/reference_outputs/recon_tv_short.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    }
+  ],
+  "acquisition_failures_retained": {
+    "sandbox_dns": [
+      ".local/explainers/completion-20260927/047-source/fetch-receipt-sandbox.json",
+      ".local/explainers/completion-20260927/047-source/asset-fetch-receipt-sandbox.json"
+    ],
+    "source_tls": [
+      {
+        "path": "tasks/ct_fan_beam/generate_fixtures.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_fan_beam/generate_fixtures.py",
+        "status": "failed",
+        "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)>"
+      }
+    ],
+    "asset_tls": [
+      {
+        "path": "tasks/ct_fan_beam/data/raw_data.npz",
+        "hf_path": "tasks/ct_fan_beam/data/raw_data.npz",
+        "task": "ct_fan_beam",
+        "size": 204676,
+        "sha256": "f1ea7b032fdc7feb1db9c2ade72a06ba34c44c05c03b867183ece1d27dfd9d7a",
+        "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_fan_beam/data/raw_data.npz",
+        "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+        "status": "failed",
+        "error": "URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)'))"
+      }
+    ],
+    "resolution": "Source recovered via official GitHub blob API; raw measurements via hf.co. All expected hashes verified."
+  },
+  "context_downloads": [
+    {
+      "url": "https://api.github.com/repos/AI4ImagingLab/imaging-101-release/git/blobs/820abdf5c8c213f57788cd81cac880b8b7245968",
+      "path": "fixture-git-blob.json",
+      "bytes": 3309,
+      "sha256": "250badedd518c56e72e5a2ad26f23c71947c737a9775789cab1e0d187820b968",
+      "http_status": 200,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_fan_beam/data/raw_data.npz",
+      "path": "tasks/ct_fan_beam/data/raw_data.npz",
+      "bytes": 204676,
+      "sha256": "f1ea7b032fdc7feb1db9c2ade72a06ba34c44c05c03b867183ece1d27dfd9d7a",
+      "http_status": 200,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://api.github.com/repos/leehoy/CTReconstruction/commits/HEAD",
+      "path": "upstream/leehoy/commit.json",
+      "bytes": 6155,
+      "sha256": "b226dabe3ebe77ce0522646fc3e64433b1a744f73cb86cb042080189aeb103bb",
+      "http_status": 200,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://api.github.com/repos/leehoy/CTReconstruction/git/trees/5e70b4fc91347b7ecf1cb00e993072b51c5a47c6?recursive=1",
+      "path": "upstream/leehoy/tree.json",
+      "bytes": 13049,
+      "sha256": "17c7991a9855ee2c672dbceb56003188decd888c519f98ba2bd9cbefd1eb0432",
+      "http_status": 200,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://api.github.com/repos/xtie97/CT_fanbeam_recon_numba/commits/HEAD",
+      "path": "upstream/xtie97/commit.json",
+      "bytes": 5397,
+      "sha256": "9487a8165b872ea21c379399556596fd4e1f2daa7277dac7bcb936011c51dd30",
+      "http_status": 200,
+      "status": "downloaded"
+    },
+    {
+      "url": "https://api.github.com/repos/xtie97/CT_fanbeam_recon_numba/git/trees/e80a62c5f982d2680edf211b8e84648c6631df63?recursive=1",
+      "path": "upstream/xtie97/tree.json",
+      "bytes": 2317,
+      "sha256": "fff0f213c216b3cc599206a335753712e203e50a79e52a87ef6006a96d7a09cb",
+      "http_status": 200,
+      "status": "downloaded"
+    }
+  ],
+  "upstream_sources": [
+    {
+      "repository": "leehoy/CTReconstruction",
+      "revision": "5e70b4fc91347b7ecf1cb00e993072b51c5a47c6",
+      "path": "upstream/leehoy/README.md",
+      "url": "https://raw.githubusercontent.com/leehoy/CTReconstruction/5e70b4fc91347b7ecf1cb00e993072b51c5a47c6/README.md",
+      "bytes": 535,
+      "sha256": "fe44f01e5dce6db78aadcba1753cfff724c3c25cb15d4beab323f4bb613e5a07",
+      "git_blob_sha1": "2180a53f32937d9edff18aef16227dbff606aa98",
+      "status": "verified"
+    },
+    {
+      "repository": "leehoy/CTReconstruction",
+      "revision": "5e70b4fc91347b7ecf1cb00e993072b51c5a47c6",
+      "path": "upstream/leehoy/LICENSE",
+      "url": "https://raw.githubusercontent.com/leehoy/CTReconstruction/5e70b4fc91347b7ecf1cb00e993072b51c5a47c6/LICENSE",
+      "bytes": 18092,
+      "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+      "git_blob_sha1": "d159169d1050894d3ea3b98e1c965c4058208fe1",
+      "status": "verified"
+    },
+    {
+      "repository": "leehoy/CTReconstruction",
+      "revision": "5e70b4fc91347b7ecf1cb00e993072b51c5a47c6",
+      "path": "upstream/leehoy/python/FanBeam.py",
+      "url": "https://raw.githubusercontent.com/leehoy/CTReconstruction/5e70b4fc91347b7ecf1cb00e993072b51c5a47c6/python/FanBeam.py",
+      "bytes": 8972,
+      "sha256": "981cae07578f066506cdfabc4e0b34757a22f53b3c48a3c664f144b9d5aa5106",
+      "git_blob_sha1": "cd5fe4c5f8d8cb23bf1130b4ed1226499dc2c8aa",
+      "status": "verified"
+    },
+    {
+      "repository": "xtie97/CT_fanbeam_recon_numba",
+      "revision": "e80a62c5f982d2680edf211b8e84648c6631df63",
+      "path": "upstream/xtie97/README.md",
+      "url": "https://raw.githubusercontent.com/xtie97/CT_fanbeam_recon_numba/e80a62c5f982d2680edf211b8e84648c6631df63/README.md",
+      "bytes": 788,
+      "sha256": "864c17bac367117d4d303ccfd0225457e1f106556ae48ade613ee502a599ca2e",
+      "git_blob_sha1": "75d33c7f6973141fb689ef06cfda8d8141e8e8b1",
+      "status": "verified"
+    },
+    {
+      "repository": "xtie97/CT_fanbeam_recon_numba",
+      "revision": "e80a62c5f982d2680edf211b8e84648c6631df63",
+      "path": "upstream/xtie97/fp_fan.py",
+      "url": "https://raw.githubusercontent.com/xtie97/CT_fanbeam_recon_numba/e80a62c5f982d2680edf211b8e84648c6631df63/fp_fan.py",
+      "bytes": 4618,
+      "sha256": "df5b983f3059bd49b6908dd7cfe60fbf3bf801ae50838086b01614db8c1afcd6",
+      "git_blob_sha1": "707474b3428024690d4b33934004a2c0ea19ed7b",
+      "status": "verified"
+    },
+    {
+      "repository": "xtie97/CT_fanbeam_recon_numba",
+      "revision": "e80a62c5f982d2680edf211b8e84648c6631df63",
+      "path": "upstream/xtie97/config.py",
+      "url": "https://raw.githubusercontent.com/xtie97/CT_fanbeam_recon_numba/e80a62c5f982d2680edf211b8e84648c6631df63/config.py",
+      "bytes": 1302,
+      "sha256": "6eb4e87bd6b727fdbe8100f7b518c33c00ba3a95ebd391a30209caf8500ce825",
+      "git_blob_sha1": "0e79d961c2b208d57aad9fc41ed430c16d816f24",
+      "status": "verified"
+    }
+  ],
+  "licenses": [
+    {
+      "owner": "AI4ImagingLab benchmark",
+      "label": "MIT",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "source": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "owner": "leehoy/CTReconstruction",
+      "label": "GNU GPL version 2 text",
+      "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+      "source": "https://github.com/leehoy/CTReconstruction/blob/5e70b4fc91347b7ecf1cb00e993072b51c5a47c6/LICENSE"
+    },
+    {
+      "owner": "xtie97/CT_fanbeam_recon_numba",
+      "label": "No license file in inspected pinned tree",
+      "tree_sha256": "fff0f213c216b3cc599206a335753712e203e50a79e52a87ef6006a96d7a09cb",
+      "source": "https://github.com/xtie97/CT_fanbeam_recon_numba/tree/e80a62c5f982d2680edf211b8e84648c6631df63"
+    }
+  ],
+  "reproduction": {
+    "command": ".venv-br033/bin/python scripts/audit_imaging101_fan_beam.py --sources .local/explainers/completion-20260927/047-source --output .local/explainers/FRESH-fan-beam-audit",
+    "script": "scripts/audit_imaging101_fan_beam.py",
+    "script_sha256": "4b6eced5b32509bd04b0dc2fe93659ab968c49198799dbb28efaf5e880359599",
+    "receipt": ".local/explainers/completion-20260927/047-audit-v2/audit.json",
+    "receipt_sha256": "7437533a7559a9215fc919da36eb42cca16d39506f5d0558b30c1eb25d78f2a8",
+    "result": {
+      "schema": 1,
+      "entry_id": "imaging101-ct-fan-beam",
+      "source_commit": "dc2f668939b21e8312e22529615def610f8611df",
+      "audit_script_sha256": "4b6eced5b32509bd04b0dc2fe93659ab968c49198799dbb28efaf5e880359599",
+      "verified_source_files": [
+        "tasks/ct_fan_beam/README.md",
+        "tasks/ct_fan_beam/generate_fixtures.py",
+        "tasks/ct_fan_beam/main.py",
+        "tasks/ct_fan_beam/notebooks/ct_fan_beam.ipynb",
+        "tasks/ct_fan_beam/plan/approach.md",
+        "tasks/ct_fan_beam/plan/design.md",
+        "tasks/ct_fan_beam/requirements.txt",
+        "tasks/ct_fan_beam/src/__init__.py",
+        "tasks/ct_fan_beam/src/generate_data.py",
+        "tasks/ct_fan_beam/src/physics_model.py",
+        "tasks/ct_fan_beam/src/preprocessing.py",
+        "tasks/ct_fan_beam/src/solvers.py",
+        "tasks/ct_fan_beam/src/visualization.py",
+        "LICENSE",
+        "README.md",
+        "assets_manifest.json",
+        "docs/END2END_EVALUATION.md",
+        "docs/EVALUATION_GUIDE.md",
+        "docs/function_level_evaluation.md",
+        "docs/plan_evaluation.md",
+        "evaluation_harness/Dockerfile",
+        "evaluation_harness/README.md",
+        "evaluation_harness/__init__.py",
+        "evaluation_harness/__main__.py",
+        "evaluation_harness/agent.py",
+        "evaluation_harness/agents/__init__.py",
+        "evaluation_harness/agents/architect_agent.py",
+        "evaluation_harness/agents/base.py",
+        "evaluation_harness/agents/coder_agent.py",
+        "evaluation_harness/agents/judge_agent.py",
+        "evaluation_harness/agents/planner_agent.py",
+        "evaluation_harness/config.py",
+        "evaluation_harness/docker_runner.py",
+        "evaluation_harness/env_manager.py",
+        "evaluation_harness/frameworks/__init__.py",
+        "evaluation_harness/frameworks/claude_code/README.md",
+        "evaluation_harness/frameworks/claude_code/__init__.py",
+        "evaluation_harness/frameworks/claude_code/copilot_prompt.py",
+        "evaluation_harness/frameworks/claude_code/copilot_runner.py",
+        "evaluation_harness/frameworks/claude_code/copilot_scorer.py",
+        "evaluation_harness/frameworks/claude_code/prepare_all.ps1",
+        "evaluation_harness/frameworks/claude_code/prepare_all.sh",
+        "evaluation_harness/frameworks/deepcode/README.md",
+        "evaluation_harness/frameworks/deepcode/__init__.py",
+        "evaluation_harness/frameworks/deepcode/config.py",
+        "evaluation_harness/frameworks/deepcode/deepcode_config.yaml",
+        "evaluation_harness/frameworks/deepcode/runner.py",
+        "evaluation_harness/frameworks/multi_agent/README.md",
+        "evaluation_harness/frameworks/multi_agent/__init__.py",
+        "evaluation_harness/frameworks/multi_agent/agents/__init__.py",
+        "evaluation_harness/frameworks/multi_agent/agents/architect_agent.py",
+        "evaluation_harness/frameworks/multi_agent/agents/base.py",
+        "evaluation_harness/frameworks/multi_agent/agents/coder_agent.py",
+        "evaluation_harness/frameworks/multi_agent/agents/judge_agent.py",
+        "evaluation_harness/frameworks/multi_agent/agents/planner_agent.py",
+        "evaluation_harness/frameworks/multi_agent/multi_agent.py",
+        "evaluation_harness/frameworks/react/README.md",
+        "evaluation_harness/frameworks/react/__init__.py",
+        "evaluation_harness/frameworks/react/prompts.py",
+        "evaluation_harness/llm_client.py",
+        "evaluation_harness/local_runner.py",
+        "evaluation_harness/multi_agent.py",
+        "evaluation_harness/plan_scorer.py",
+        "evaluation_harness/prompts.py",
+        "evaluation_harness/reference_scoring.py",
+        "evaluation_harness/requirements.txt",
+        "evaluation_harness/runner.py",
+        "evaluation_harness/scorer.py",
+        "evaluation_harness/task_recipes.json",
+        "evaluation_harness/task_scoring.py",
+        "evaluation_harness/task_scoring_custom.py",
+        "evaluation_harness/visualizer.py",
+        "scripts/download_assets.py"
+      ],
+      "verified_assets": [
+        "tasks/ct_fan_beam/data/ground_truth.npz",
+        "tasks/ct_fan_beam/data/meta_data.json",
+        "tasks/ct_fan_beam/data/raw_data.npz",
+        "tasks/ct_fan_beam/evaluation/fixtures/physics_model_fixtures.npz",
+        "tasks/ct_fan_beam/evaluation/reference_outputs/recon_fbp_full.npz",
+        "tasks/ct_fan_beam/evaluation/reference_outputs/recon_fbp_short.npz",
+        "tasks/ct_fan_beam/evaluation/reference_outputs/recon_tv_short.npz"
+      ],
+      "runtime": {
+        "numpy": "2.2.6",
+        "scipy": "1.15.3"
+      },
+      "raw": {
+        "sino_full": {
+          "shape": [
+            1,
+            180,
+            192
+          ],
+          "dtype": "float32",
+          "min": -4.330924987792969,
+          "max": 52.506107330322266,
+          "nonfinite": 0,
+          "array_bytes_sha256": "f298b162a6248a9051465bb4d949a4648d58aece72b8aa209b4f4ca9f1adc1e1"
+        },
+        "sino_short": {
+          "shape": [
+            1,
+            116,
+            192
+          ],
+          "dtype": "float32",
+          "min": -3.8581037521362305,
+          "max": 54.61981964111328,
+          "nonfinite": 0,
+          "array_bytes_sha256": "9de18160660f77369184f5f4638055595a660d530dd132feb975398c9c8eda8d"
+        },
+        "angles_full": {
+          "shape": [
+            180
+          ],
+          "dtype": "float32",
+          "min": 0.0,
+          "max": 6.248278617858887,
+          "nonfinite": 0,
+          "array_bytes_sha256": "f3b80d8642e3a2097253ca8f0e3cb1372c50d220019f2ca0e23dc65b4fe0d223"
+        },
+        "angles_short": {
+          "shape": [
+            116
+          ],
+          "dtype": "float32",
+          "min": 0.0,
+          "max": 4.02967643737793,
+          "nonfinite": 0,
+          "array_bytes_sha256": "35d6498b9bfe13960f8db06f3882c2bbb154e5686aec781fea58952af7fb7cbe"
+        },
+        "det_pos": {
+          "shape": [
+            192
+          ],
+          "dtype": "float32",
+          "min": -127.33333587646484,
+          "max": 127.33333587646484,
+          "nonfinite": 0,
+          "array_bytes_sha256": "6024a1555500abec9446290a760efb7cb77624ff192a68399ecfe5c52ab9e72c"
+        }
+      },
+      "truth": {
+        "phantom": {
+          "shape": [
+            1,
+            128,
+            128
+          ],
+          "dtype": "float32",
+          "min": 0.0,
+          "max": 1.0,
+          "nonfinite": 0,
+          "array_bytes_sha256": "1260e9342875481f333871eea45f72f2c907d3b86a75c3c2938b66f5a5338c3a"
+        }
+      },
+      "saved": {
+        "fbp_full": {
+          "reconstruction": {
+            "shape": [
+              1,
+              128,
+              128
+            ],
+            "dtype": "float32",
+            "min": 0.0,
+            "max": 1.235034704208374,
+            "nonfinite": 0,
+            "array_bytes_sha256": "ef46568e004082fd84f5144d30325ea904f98aef2dc707f1403098382f7d6171"
+          }
+        },
+        "fbp_short": {
+          "reconstruction": {
+            "shape": [
+              1,
+              128,
+              128
+            ],
+            "dtype": "float32",
+            "min": 0.0,
+            "max": 0.9861753582954407,
+            "nonfinite": 0,
+            "array_bytes_sha256": "9fb4126b315db229d60b225cff567234c15b26d2be630333daa4029b7dfd7c8e"
+          }
+        },
+        "tv_short": {
+          "reconstruction": {
+            "shape": [
+              1,
+              128,
+              128
+            ],
+            "dtype": "float32",
+            "min": 0.0,
+            "max": 1.4597727060317993,
+            "nonfinite": 0,
+            "array_bytes_sha256": "f5483e93d16150ff6f1fde440d04f0c2c510de02ffe6f31857aa638b41161266"
+          },
+          "loss_history": {
+            "shape": [
+              150
+            ],
+            "dtype": "float32",
+            "min": 45613.50390625,
+            "max": 1921043.5,
+            "nonfinite": 0,
+            "array_bytes_sha256": "878e233ce5913389d46d3f52433ca313f758d61f9fbf91f3e99f09c0d4b10249"
+          }
+        }
+      },
+      "metadata": {
+        "image_size": 128,
+        "n_det": 192,
+        "n_angles_full": 180,
+        "n_angles_short": 116,
+        "source_to_isocenter_pixels": 256.0,
+        "isocenter_to_detector_pixels": 256.0,
+        "noise_sigma_relative": 0.02,
+        "fan_half_angle_deg": 26.445560673538605,
+        "short_scan_range_deg": 232.8911213470772,
+        "modality": "fan-beam CT",
+        "detector_type": "flat"
+      },
+      "geometry": {
+        "coordinate_units": "pixels; no supplied mm calibration, HU or patient orientation",
+        "image_pixel_centers": [
+          -63.5,
+          63.5
+        ],
+        "detector_center_range": [
+          -127.33333333333333,
+          127.33333333333333
+        ],
+        "detector_spacing": 1.3333333333333333,
+        "source_to_isocenter": 256,
+        "source_to_detector": 512,
+        "code_source_xy": "(-256*sin(beta), 256*cos(beta))",
+        "code_detector_center_xy": "(256*sin(beta), -256*cos(beta))",
+        "code_detector_axis_xy": "(cos(beta), sin(beta))",
+        "readme_source_xy": "(256*cos(beta), 256*sin(beta)); differs by a quarter turn",
+        "declared_half_fan_degrees": 26.445560673538605,
+        "geometric_half_fan_degrees": 13.96600656837054,
+        "declared_sweep_degrees": 232.8911213470772,
+        "geometric_pi_plus_fan_degrees": 207.9320131367411,
+        "full_angle_step_degrees": 2.0,
+        "short_angle_step_degrees": 2.0076820805782516,
+        "endpoints_excluded": true,
+        "saved_float32_coordinates_match_rebuilt_geometry": true,
+        "note": "Metadata/generator/Parker use det_pos/256, while the source-detector separation is 512. Released geometry and weights are retained unchanged."
+      },
+      "fixture_max_abs_errors": {
+        "forward": 4.263256414560601e-14,
+        "backprojection": 5.684341886080802e-14,
+        "fbp": 3.1086244689504383e-15
+      },
+      "saved_fbp_replay": {
+        "fbp_full": {
+          "float64_vs_saved_float32_max_abs_error": 5.899543920051542e-08,
+          "float32_exact": true
+        },
+        "fbp_short": {
+          "float64_vs_saved_float32_max_abs_error": 2.9798172929140776e-08,
+          "float32_exact": true
+        }
+      },
+      "pixel_controls": [
+        {
+          "row": 64,
+          "column": 80,
+          "angle_index": 0,
+          "angle_degrees": 0.0,
+          "xy_pixels": [
+            16.5,
+            0.5
+          ],
+          "U": 255.5,
+          "magnification": 2.003913894324853,
+          "detector_coordinate": 33.064579256360076,
+          "bins": [
+            120,
+            121
+          ],
+          "weights": [
+            1.4058769689139283,
+            0.5980369254109247
+          ],
+          "max_abs_error": 8.544276397515205e-13,
+          "scope": "Unit-pixel operator diagnostic; not a source phantom or reconstruction."
+        },
+        {
+          "row": 96,
+          "column": 80,
+          "angle_index": 0,
+          "angle_degrees": 0.0,
+          "xy_pixels": [
+            16.5,
+            32.5
+          ],
+          "U": 223.5,
+          "magnification": 2.29082774049217,
+          "detector_coordinate": 37.79865771812081,
+          "bins": [
+            123,
+            124
+          ],
+          "weights": [
+            0.3459303634961592,
+            1.9448973769960107
+          ],
+          "max_abs_error": 1.0091927293842673e-12,
+          "scope": "Unit-pixel operator diagnostic; not a source phantom or reconstruction."
+        },
+        {
+          "row": 64,
+          "column": 80,
+          "angle_index": 45,
+          "angle_degrees": 90.0,
+          "xy_pixels": [
+            16.5,
+            0.5
+          ],
+          "U": 272.5,
+          "magnification": 1.8788990825688074,
+          "detector_coordinate": 0.9394495412844056,
+          "bins": [
+            96,
+            97
+          ],
+          "weights": [
+            1.494500462923342,
+            0.3843986196454653
+          ],
+          "max_abs_error": 6.408207298136404e-13,
+          "scope": "Unit-pixel operator diagnostic; not a source phantom or reconstruction."
+        }
+      ],
+      "parker_weights": {
+        "stats": {
+          "shape": [
+            116,
+            192
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0,
+          "nonfinite": 0,
+          "array_bytes_sha256": "6439ce25787eaa107ddad4151c672c4168661c136612f852487eef05efc018bb"
+        },
+        "selected_detector_bins": [
+          0,
+          95,
+          191
+        ],
+        "selected_curves": [
+          [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            0.9995784433892969,
+            0.9974674173998828,
+            0.9935883189461688,
+            0.9879549349153406,
+            0.9805872871838819,
+            0.9715115614568758,
+            0.9607600142001536,
+            0.9483708579960639,
+            0.9343881257303281,
+            0.9188615140926792,
+            0.9018462069475073,
+            0.8834026792022791,
+            0.8635964818708103,
+            0.8424980090953091,
+            0.8201822479552269,
+            0.7967285119521356,
+            0.7722201591178605,
+            0.7467442957477615,
+            0.7203914668121285,
+            0.6932553341460241,
+            0.6654323435613279,
+            0.6370213820641158,
+            0.6081234263956794,
+            0.5788411841463145,
+            0.54927872871742,
+            0.5195411294293028,
+            0.4897340780893388,
+            0.45996351334772473,
+            0.43033524417591373,
+            0.4009545738059472,
+            0.3719259254672599,
+            0.34335247125114554,
+            0.315335765421949,
+            0.28797538347825447,
+            0.26136856824689897,
+            0.23560988426764518,
+            0.21079088169688018,
+            0.18699977092487602,
+            0.16432110906307346,
+            0.142835499415654,
+            0.12261930500352623,
+            0.10374437715890376,
+            0.0862778001550888,
+            0.07028165277908463,
+            0.05581278769444526,
+            0.042922629378535485,
+            0.03165699135236528,
+            0.022055913352589065,
+            0.01415351902438499,
+            0.007977894640994158,
+            0.0035509892809698104,
+            0.0008885368179192282
+          ],
+          [
+            0.0,
+            0.003591352302061996,
+            0.01431381796281788,
+            0.03201336437532951,
+            0.05643573031258077,
+            0.0872300784940495,
+            0.12395403550680759,
+            0.16608004668062062,
+            0.2130029546266657,
+            0.2640486925710569,
+            0.3184839675998858,
+            0.37552679471199996,
+            0.43435773035353875,
+            0.4941316440599068,
+            0.553989859100734,
+            0.6130724877224838,
+            0.6705307837879052,
+            0.7255393353616101,
+            0.7773079220902895,
+            0.8250928670414525,
+            0.8682077199268828,
+            0.9060331182419273,
+            0.9380256846613255,
+            0.963725832876841,
+            0.982764369742645,
+            0.994867798885934,
+            0.9998622495942414,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            0.9991457983846238,
+            0.9921843256704355,
+            0.9783100204510184,
+            0.9577177502650283,
+            0.9306967378838404,
+            0.8976264991168184,
+            0.8589715124318476,
+            0.8152746952574359,
+            0.7671497785930961,
+            0.7152726870282099,
+            0.6603720452388235,
+            0.6032189443006272,
+            0.5446161115524124,
+            0.48538663612154803,
+            0.4263624084638464,
+            0.3683724362869234,
+            0.31223120096235907,
+            0.25872721796330644,
+            0.20861196199861926,
+            0.162589312392306,
+            0.12130566695019268,
+            0.08534086316661195,
+            0.055200034284685416,
+            0.03130651459354409,
+            0.013995893609088272,
+            0.0035113026485617768
+          ],
+          [
+            0.0,
+            0.000888536817919247,
+            0.0035509892809697957,
+            0.007977894640994127,
+            0.014153519024384935,
+            0.022055913352589093,
+            0.03165699135236529,
+            0.04292262937853546,
+            0.05581278769444522,
+            0.07028165277908457,
+            0.08627780015508871,
+            0.10374437715890379,
+            0.12261930500352627,
+            0.142835499415654,
+            0.16432110906307337,
+            0.1869997709248759,
+            0.21079088169688004,
+            0.2356098842676453,
+            0.2613685682468991,
+            0.28797538347825447,
+            0.315335765421949,
+            0.34335247125114554,
+            0.3719259254672596,
+            0.40095457380594685,
+            0.43033524417591384,
+            0.45996351334772473,
+            0.4897340780893388,
+            0.5195411294293024,
+            0.5492787287174197,
+            0.5788411841463144,
+            0.6081234263956794,
+            0.6370213820641158,
+            0.6654323435613279,
+            0.6932553341460241,
+            0.7203914668121283,
+            0.7467442957477615,
+            0.7722201591178607,
+            0.7967285119521356,
+            0.8201822479552269,
+            0.8424980090953091,
+            0.8635964818708103,
+            0.8834026792022791,
+            0.9018462069475071,
+            0.9188615140926792,
+            0.9343881257303281,
+            0.9483708579960639,
+            0.9607600142001536,
+            0.9715115614568756,
+            0.9805872871838819,
+            0.9879549349153406,
+            0.9935883189461688,
+            0.9974674173998828,
+            0.9995784433892969,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "angles_degrees": [
+          0.0,
+          2.0076820805782516,
+          4.015364161156503,
+          6.023046241734755,
+          8.030728322313006,
+          10.038410402891259,
+          12.04609248346951,
+          14.05377456404776,
+          16.061456644626013,
+          18.069138725204265,
+          20.076820805782518,
+          22.084502886360767,
+          24.09218496693902,
+          26.09986704751727,
+          28.10754912809552,
+          30.115231208673777,
+          32.122913289252025,
+          34.130595369830274,
+          36.13827745040853,
+          38.14595953098678,
+          40.153641611565035,
+          42.161323692143284,
+          44.16900577272153,
+          46.17668785329979,
+          48.18436993387804,
+          50.19205201445629,
+          52.19973409503454,
+          54.20741617561279,
+          56.21509825619104,
+          58.2227803367693,
+          60.23046241734755,
+          62.238144497925795,
+          64.24582657850405,
+          66.2535086590823,
+          68.26119073966055,
+          70.2688728202388,
+          72.27655490081706,
+          74.28423698139531,
+          76.29191906197356,
+          78.29960114255181,
+          80.30728322313007,
+          82.3149653037083,
+          84.32264738428657,
+          86.33032946486482,
+          88.33801154544307,
+          90.34569362602132,
+          92.35337570659958,
+          94.36105778717781,
+          96.36873986775608,
+          98.37642194833433,
+          100.38410402891257,
+          102.39178610949082,
+          104.39946819006909,
+          106.40715027064734,
+          108.41483235122558,
+          110.42251443180383,
+          112.43019651238208,
+          114.43787859296033,
+          116.4455606735386,
+          118.45324275411684,
+          120.4609248346951,
+          122.46860691527334,
+          124.47628899585159,
+          126.48397107642984,
+          128.4916531570081,
+          130.49933523758637,
+          132.5070173181646,
+          134.51469939874286,
+          136.5223814793211,
+          138.53006355989936,
+          140.5377456404776,
+          142.54542772105586,
+          144.55310980163412,
+          146.56079188221238,
+          148.56847396279062,
+          150.57615604336885,
+          152.58383812394712,
+          154.59152020452538,
+          156.59920228510362,
+          158.60688436568188,
+          160.61456644626014,
+          162.62224852683838,
+          164.6299306074166,
+          166.63761268799487,
+          168.64529476857314,
+          170.6529768491514,
+          172.66065892972964,
+          174.66834101030787,
+          176.67602309088613,
+          178.6837051714644,
+          180.69138725204263,
+          182.6990693326209,
+          184.70675141319916,
+          186.7144334937774,
+          188.72211557435563,
+          190.7297976549339,
+          192.73747973551215,
+          194.74516181609042,
+          196.75284389666865,
+          198.7605259772469,
+          200.76820805782515,
+          202.7758901384034,
+          204.78357221898165,
+          206.7912542995599,
+          208.79893638013817,
+          210.80661846071644,
+          212.81430054129467,
+          214.8219826218729,
+          216.82966470245117,
+          218.83734678302943,
+          220.84502886360767,
+          222.85271094418593,
+          224.86039302476416,
+          226.86807510534243,
+          228.87575718592066,
+          230.88343926649895
+        ]
+      },
+      "adjoint_control": {
+        "seed": 47,
+        "shape_image": [
+          32,
+          32
+        ],
+        "shape_measurements": [
+          18,
+          48
+        ],
+        "inner_Ax_y": 154.94025930121353,
+        "inner_x_By": 25.29671637035146,
+        "relative_error": 0.8367324510463541,
+        "scope": "Euclidean inner product for the shipped discrete forward/backproject pair; no solver run."
+      },
+      "tv_projection_control": {
+        "input": [
+          3,
+          4
+        ],
+        "declared_ball_radius": 0.005,
+        "output": [
+          3.0,
+          4.0
+        ],
+        "output_norm": 5.0,
+        "scope": "One helper call. No TV iteration or replacement implementation."
+      },
+      "native_crop": {
+        "margin": 12,
+        "shape": [
+          104,
+          104
+        ],
+        "pixels": 10816,
+        "total_pixels": 16384,
+        "normalization": "Independent per-array min-max normalization after cropping"
+      },
+      "native_metrics": {
+        "fbp_full": {
+          "ncc": 0.6518170164870655,
+          "nrmse": 0.19290505377475808,
+          "raw_crop_min": 0.0,
+          "raw_crop_max": 1.235034704208374
+        },
+        "fbp_short": {
+          "ncc": 0.5578447376152443,
+          "nrmse": 0.21100600513343398,
+          "raw_crop_min": 0.0,
+          "raw_crop_max": 0.9861753582954407
+        },
+        "tv_short": {
+          "ncc": 0.9660966064395552,
+          "nrmse": 0.08551159079236603,
+          "raw_crop_min": 0.0,
+          "raw_crop_max": 1.4597727060317993
+        },
+        "truth": {
+          "ncc": 1.0000000000000002,
+          "nrmse": 0.0,
+          "raw_crop_min": 0.0,
+          "raw_crop_max": 0.9999992847442627
+        },
+        "half-truth": {
+          "ncc": 1.0000000000000002,
+          "nrmse": 0.0,
+          "raw_crop_min": 0.0,
+          "raw_crop_max": 0.49999964237213135
+        },
+        "truth-plus-one": {
+          "ncc": 1.0000000000000002,
+          "nrmse": 0.0,
+          "raw_crop_min": 1.0,
+          "raw_crop_max": 1.9999992847442627
+        },
+        "outside-crop-plus-ten": {
+          "ncc": 1.0000000000000002,
+          "nrmse": 0.0,
+          "raw_crop_min": 0.0,
+          "raw_crop_max": 0.9999992847442627
+        },
+        "zero": {
+          "ncc": 0.0,
+          "nrmse": 0.2542171084835609,
+          "raw_crop_min": 0.0,
+          "raw_crop_max": 0.0
+        }
+      },
+      "notebook_historical_metrics": "Method                               | NCC    | NRMSE\n-------------------------------------------------------\nFBP full-scan (360 deg)              | 0.6518 | 0.1929\nFBP short-scan with Parker weighting | 0.5578 | 0.2110\nTV-PDHG short-scan                   | 0.9661 | 0.0855\n\nBoundaries: NCC >= 0.8695, NRMSE <= 0.0941\n",
+      "saved_data_fidelity": {
+        "samples": 150,
+        "first": 1921043.5,
+        "last": 62483.19140625,
+        "increasing_steps": 66,
+        "values": [
+          1921043.5,
+          1829490.875,
+          1700822.5,
+          1543739.875,
+          1368331.625,
+          1185342.25,
+          1005430.3125,
+          838469.0,
+          692931.4375,
+          575401.75,
+          490241.15625,
+          439433.9375,
+          422583.78125,
+          437068.9375,
+          478346.0,
+          540376.1875,
+          616102.875,
+          698121.625,
+          779143.8125,
+          852577.5625,
+          912584.1875,
+          954957.8125,
+          976876.9375,
+          977082.0,
+          955574.4375,
+          913557.1875,
+          853323.5,
+          778737.75,
+          693933.6875,
+          604076.25,
+          514538.28125,
+          429331.0,
+          352270.125,
+          286031.6875,
+          231949.078125,
+          190141.328125,
+          160128.4375,
+          140990.625,
+          131480.4375,
+          130247.7109375,
+          135689.9375,
+          146249.359375,
+          160337.171875,
+          176392.53125,
+          192942.828125,
+          208716.671875,
+          222622.28125,
+          233817.46875,
+          241667.953125,
+          245706.75,
+          245823.5625,
+          241973.8125,
+          234358.71875,
+          223360.859375,
+          209452.921875,
+          193226.9375,
+          175350.3125,
+          156562.984375,
+          137635.96875,
+          119314.9296875,
+          102328.390625,
+          87309.953125,
+          74827.125,
+          65305.39453125,
+          59049.9765625,
+          56204.33984375,
+          56754.12890625,
+          60534.46484375,
+          67241.5,
+          76447.8828125,
+          87628.5859375,
+          100187.1171875,
+          113490.1640625,
+          126883.015625,
+          139748.140625,
+          151500.953125,
+          161649.390625,
+          169751.046875,
+          175495.71875,
+          178706.015625,
+          179314.25,
+          177295.03125,
+          172780.5625,
+          166016.359375,
+          157305.296875,
+          147030.5625,
+          135612.5625,
+          123487.921875,
+          111149.296875,
+          99053.0,
+          87605.5234375,
+          77186.1015625,
+          68134.7109375,
+          60717.55859375,
+          55109.234375,
+          51413.4921875,
+          49644.10546875,
+          49743.2890625,
+          51583.48828125,
+          54966.09375,
+          59645.04296875,
+          65338.671875,
+          71732.65625,
+          78493.546875,
+          85314.2109375,
+          91872.921875,
+          97875.5078125,
+          103084.875,
+          107277.875,
+          110274.140625,
+          111969.3671875,
+          112316.4375,
+          111331.078125,
+          109073.234375,
+          105644.3515625,
+          101188.0390625,
+          95892.984375,
+          89970.3671875,
+          83665.21875,
+          77221.109375,
+          70881.6484375,
+          64882.84375,
+          59438.7578125,
+          54734.27734375,
+          50916.88671875,
+          48091.453125,
+          46319.17578125,
+          45613.50390625,
+          45942.6015625,
+          47229.45703125,
+          49360.15234375,
+          52188.1796875,
+          55546.7890625,
+          59249.94921875,
+          63106.84765625,
+          66925.984375,
+          70526.2265625,
+          73741.5546875,
+          76435.5078125,
+          78498.703125,
+          79849.3125,
+          80442.296875,
+          80266.09375,
+          79339.734375,
+          77712.078125,
+          75465.3515625,
+          72699.328125,
+          69527.4375,
+          66078.046875,
+          62483.19140625
+        ],
+        "definition": "Saved 0.5*sum((A*x-b)^2), without TV penalty; no iterate images and no fresh TV run."
+      },
+      "staging": {
+        "L1": {
+          "visible_paths": [
+            "README.md",
+            "data",
+            "requirements.txt"
+          ],
+          "files": [
+            "README.md",
+            "data/ground_truth.npz",
+            "data/meta_data.json",
+            "data/raw_data.npz",
+            "requirements.txt"
+          ],
+          "truth_copied": true,
+          "commands_intercepted": [
+            "python -m venv /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/047-audit-v2/L1/.venv",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/047-audit-v2/L1/.venv/bin/pip install -q -r /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/047-source/tasks/ct_fan_beam/requirements.txt",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/047-audit-v2/L1/.venv/bin/pip install -q pytest"
+          ]
+        },
+        "L2": {
+          "visible_paths": [
+            "README.md",
+            "data",
+            "requirements.txt",
+            "plan/approach.md"
+          ],
+          "files": [
+            "README.md",
+            "data/ground_truth.npz",
+            "data/meta_data.json",
+            "data/raw_data.npz",
+            "plan/approach.md",
+            "requirements.txt"
+          ],
+          "truth_copied": true,
+          "commands_intercepted": [
+            "python -m venv /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/047-audit-v2/L2/.venv",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/047-audit-v2/L2/.venv/bin/pip install -q -r /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/047-source/tasks/ct_fan_beam/requirements.txt",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/047-audit-v2/L2/.venv/bin/pip install -q pytest"
+          ]
+        },
+        "L3": {
+          "visible_paths": [
+            "README.md",
+            "data",
+            "requirements.txt",
+            "plan"
+          ],
+          "files": [
+            "README.md",
+            "data/ground_truth.npz",
+            "data/meta_data.json",
+            "data/raw_data.npz",
+            "plan/approach.md",
+            "plan/design.md",
+            "requirements.txt"
+          ],
+          "truth_copied": true,
+          "commands_intercepted": [
+            "python -m venv /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/047-audit-v2/L3/.venv",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/047-audit-v2/L3/.venv/bin/pip install -q -r /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/047-source/tasks/ct_fan_beam/requirements.txt",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/047-audit-v2/L3/.venv/bin/pip install -q pytest"
+          ]
+        }
+      },
+      "generic_reference_selection": {
+        "fbp_full": {
+          "path": "tasks/ct_fan_beam/data/ground_truth.npz",
+          "key": "phantom",
+          "shape": [
+            128,
+            128
+          ]
+        },
+        "fbp_short": {
+          "path": "tasks/ct_fan_beam/data/ground_truth.npz",
+          "key": "phantom",
+          "shape": [
+            128,
+            128
+          ]
+        },
+        "tv_short": {
+          "path": "tasks/ct_fan_beam/data/ground_truth.npz",
+          "key": "phantom",
+          "shape": [
+            128,
+            128
+          ]
+        },
+        "truth": {
+          "path": "tasks/ct_fan_beam/data/ground_truth.npz",
+          "key": "phantom",
+          "shape": [
+            128,
+            128
+          ]
+        },
+        "half-truth": {
+          "path": "tasks/ct_fan_beam/data/ground_truth.npz",
+          "key": "phantom",
+          "shape": [
+            128,
+            128
+          ]
+        },
+        "truth-plus-one": {
+          "path": "tasks/ct_fan_beam/data/ground_truth.npz",
+          "key": "phantom",
+          "shape": [
+            128,
+            128
+          ]
+        },
+        "outside-crop-plus-ten": {
+          "path": "tasks/ct_fan_beam/data/ground_truth.npz",
+          "key": "phantom",
+          "shape": [
+            128,
+            128
+          ]
+        },
+        "zero": {
+          "path": "tasks/ct_fan_beam/data/ground_truth.npz",
+          "key": "phantom",
+          "shape": [
+            128,
+            128
+          ]
+        }
+      },
+      "generic_scoring": {
+        "fbp_full": {
+          "nrmse": 0.18535,
+          "ncc": 0.637988,
+          "mse": 0.0343547168,
+          "psnr": 14.64,
+          "ssim": 0.481676,
+          "scorer": "generic"
+        },
+        "fbp_short": {
+          "nrmse": 0.192722,
+          "ncc": 0.562577,
+          "mse": 0.0371419338,
+          "psnr": 14.3,
+          "ssim": 0.303536,
+          "scorer": "generic"
+        },
+        "tv_short": {
+          "nrmse": 0.063428,
+          "ncc": 0.970626,
+          "mse": 0.0040231517,
+          "psnr": 23.95,
+          "ssim": 0.953953,
+          "scorer": "generic"
+        },
+        "truth": {
+          "nrmse": 0.0,
+          "ncc": 1.0,
+          "mse": 0.0,
+          "psnr": "inf",
+          "ssim": 1.0,
+          "scorer": "generic"
+        },
+        "half-truth": {
+          "nrmse": 0.116547,
+          "ncc": 1.0,
+          "mse": 0.0135831621,
+          "psnr": 18.67,
+          "ssim": 0.643732,
+          "scorer": "generic"
+        },
+        "truth-plus-one": {
+          "nrmse": 1.0,
+          "ncc": 0.667802,
+          "mse": 1.0,
+          "psnr": 0.0,
+          "ssim": 0.216822,
+          "scorer": "generic"
+        },
+        "outside-crop-plus-ten": {
+          "nrmse": 5.829612,
+          "ncc": 0.148611,
+          "mse": 33.984375,
+          "psnr": -15.31,
+          "ssim": -0.001466,
+          "scorer": "generic"
+        },
+        "zero": {
+          "nrmse": 0.233094,
+          "ncc": 0.0,
+          "mse": 0.0543326484,
+          "psnr": 12.65,
+          "ssim": 0.000147,
+          "scorer": "generic"
+        },
+        "stacked-maps": {
+          "error": "Shape mismatch: reconstruction (3, 128, 128) vs expected (128, 128)",
+          "expected_shape": [
+            128,
+            128
+          ],
+          "scorer": "generic"
+        },
+        "saved-loss-only": {
+          "error": "Shape mismatch: reconstruction (150,) vs expected (128, 128)",
+          "expected_shape": [
+            128,
+            128
+          ],
+          "scorer": "generic"
+        },
+        "native-npz": {
+          "error": "output/reconstruction.npy not found",
+          "scorer": "generic"
+        },
+        "no-filesystem-fallback": {
+          "error": "ground_truth.npy not found in task directory",
+          "scorer": "generic"
+        }
+      },
+      "metrics_file_present": false,
+      "source_function_selections": {
+        "src/preprocessing.py": [
+          {
+            "name": "load_sinogram_data",
+            "lines": [
+              10,
+              38
+            ]
+          },
+          {
+            "name": "load_ground_truth",
+            "lines": [
+              41,
+              52
+            ]
+          },
+          {
+            "name": "load_metadata",
+            "lines": [
+              55,
+              65
+            ]
+          },
+          {
+            "name": "preprocess_sinogram",
+            "lines": [
+              68,
+              81
+            ]
+          }
+        ],
+        "src/physics_model.py": [
+          {
+            "name": "fan_beam_geometry",
+            "lines": [
+              21,
+              60
+            ]
+          },
+          {
+            "name": "fan_beam_forward_vectorized",
+            "lines": [
+              91,
+              169
+            ]
+          },
+          {
+            "name": "fan_beam_backproject",
+            "lines": [
+              176,
+              232
+            ]
+          },
+          {
+            "name": "ramp_filter",
+            "lines": [
+              239,
+              302
+            ]
+          },
+          {
+            "name": "parker_weights",
+            "lines": [
+              309,
+              365
+            ]
+          },
+          {
+            "name": "fan_beam_fbp",
+            "lines": [
+              372,
+              465
+            ]
+          }
+        ],
+        "src/visualization.py": [
+          {
+            "name": "compute_ncc",
+            "lines": [
+              8,
+              19
+            ]
+          },
+          {
+            "name": "compute_nrmse",
+            "lines": [
+              22,
+              33
+            ]
+          },
+          {
+            "name": "centre_crop_normalize",
+            "lines": [
+              36,
+              54
+            ]
+          }
+        ],
+        "src/solvers.py": [
+          {
+            "name": "_prox_l1_norm",
+            "lines": [
+              58,
+              66
+            ]
+          }
+        ],
+        "runner.py": [
+          {
+            "name": "_get_visible_paths",
+            "lines": [
+              66,
+              89
+            ]
+          }
+        ],
+        "local_runner.py": [
+          {
+            "name": "start",
+            "lines": [
+              59,
+              97
+            ]
+          }
+        ],
+        "scorer.py": [
+          {
+            "name": "_compute_quality_metrics",
+            "lines": [
+              194,
+              218
+            ]
+          },
+          {
+            "name": "_compute_quality_metrics_generic",
+            "lines": [
+              246,
+              329
+            ]
+          }
+        ]
+      },
+      "execution_scope": {
+        "agent": false,
+        "iterative_solver_steps": 0,
+        "dataset_generation": false,
+        "runtime_install": false,
+        "docker": false,
+        "source_fbp_replay": true,
+        "fixed_operator_controls": true,
+        "staging_file_copy": true,
+        "generic_and_native_scoring": true
+      }
+    }
+  },
+  "source_visual_inspection": {
+    "path": ".local/explainers/completion-20260927/047-source-inspection.png",
+    "sha256": "02cc7e9552b3e91cfb224cd5fd6c42a5bb3e20f028fd5e8b1c4ebed2f8294388",
+    "scope": "Assistant inspected native sinograms, truth and three saved maps with common within-domain scales. This is a source inspection, not canonical visual acceptance."
+  },
+  "findings": [
+    "One 128x128 synthetic phantom with full (180x192) and short (116x192) count-independent projection arrays. Angles cover 360 and 232.891121 degrees with excluded endpoints and different steps; no physical millimeter or HU calibration. All seven numeric/metadata assets verified.",
+    "The executed source position is (-256*sin(beta),256*cos(beta)), a quarter turn from the README formula. Metadata and Parker use atan(det_pos/256)=26.445561 degrees at the outer bin, but physical source-detector separation is 512, giving 13.966007 degrees. Original geometry and weights are retained.",
+    "The projector is a pixel-driven two-bin splat with 512/U magnification. Three unit-pixel controls reproduce detector coordinates and weights. Fixture forward, backprojection and FBP errors are below 6e-14. Both saved FBP reconstructions match exactly after float32 conversion from source replay of saved noisy measurements.",
+    "A fixed Euclidean adjoint control gives <Ax,y>=154.940259 versus <x,By>=25.296716, relative discrepancy 0.836732. The helper documented as radius-0.005 ball projection returns (3,4) unchanged with norm 5. These qualify source algorithm descriptions; no iterative solver was executed or saved output invalidated.",
+    "The 150 saved loss samples are data fidelity without the TV penalty. 66 of 149 successive steps increase; first 1921043.5, last 62483.1914. No intermediate reconstruction images or monotone convergence claim.",
+    "Native scores use a 104x104 crop after removing 12 pixels per edge, covering 10816/16384 pixels, and independently normalize each crop. Saved native NCC/NRMSE are full FBP 0.6518/0.1929, short FBP 0.5578/0.2110, TV-labelled 0.9661/0.0855; all match retained notebook cell 17 to four decimals.",
+    "The notebook prints historical boundaries 0.8695 NCC and 0.0941 NRMSE, but the pinned source tree and asset manifest contain no metrics.json. Actual generic scores have no pass/fail status; those printed boundaries were not installed.",
+    "Actual generic scoring selects data/ground_truth.npz:phantom and evaluates the full unnormalized image. Saved generic NCC/NRMSE are 0.637988/0.185350, 0.562577/0.192722 and 0.970626/0.063428. Native NPZ alone fails filename checking; stacked maps and loss-only vectors fail shape checks; non-filesystem fallback errors on missing ground_truth.npy.",
+    "Half-strength truth, truth plus one, and outside-crop additions each preserve native NCC 1 / NRMSE 0. Generic NRMSE changes to 0.116547, 1 and 5.829612. Truth-copy scoring is perfect but establishes no reconstruction capability.",
+    "Actual L1-L3 local seeding copies the complete data directory including ground_truth.npz. No source/evaluation directory is seeded. All environment and package installation commands were intercepted.",
+    "The benchmark MIT notice, cited leehoy GPLv2 text and absent license file in the pinned xtie97 tree are separately recorded. The cited xtie97 implementation uses curved-detector ray tracing, unlike the benchmark flat-detector pixel splat; upstream equivalence is not claimed."
+  ],
+  "status": {
+    "source_audit": true,
+    "canonical_story": false,
+    "visual_review": false
+  }
+}

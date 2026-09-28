@@ -8476,12 +8476,12 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "pending-operation-review",
+      "source_asset_readiness": "Thirteen pinned task sources, 60 shared sources and all seven numeric/metadata assets verified. Native sinograms, phantom, three saved images, recorded losses and operator fixtures available.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-ct-fan-beam.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A reconstructed 2D attenuation image.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "blocking_dependency": null,
+      "remaining_work": "Author and bind a native fan-beam story covering actual pixel-driven geometry, full/short measurements, released Parker weights, saved FBP and TV-labelled images, explicit truth reveal, native crop versus generic scoring and actual staging. Preserve source operator and attribution limits. Export and inspect desktop/mobile/no-GPU/playback before acceptance.",
       "contract_projection": {
         "raw": "Full-scan and short-scan fan-beam projection measurements.",
         "helpers": "Source/detector geometry, angles and short-scan weighting guidance. The assistance level can add an approach and software design.",
@@ -8519,7 +8519,15 @@
         "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
       },
       "source_brief_sha256": "c2644e1fbc633ead98346de8b07c4b9c5f71485234a54aa3453c49ebbb149c1b",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval."
+      "blocker_resolution": "Source staging, actual geometry, saved FBP and native/generic scoring replayed. Truth is solver-visible in L1-L3; native crop/normalization and generic full-array metrics differ. Technical controls qualify adjoint/projection claims without rewriting saved output. Source audit complete; explainer pending.",
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "receipt": "presentation/external-tasks/sources/imaging101-fan-beam-audit.json",
+        "sha256": "3e053985ec2b7282484f413927c263a85ca5d4098dda1e9787cc61ceb7203507",
+        "status": "source-audit-complete"
+      },
+      "acceptance_scope": null
     },
     {
       "entry_id": "imaging101-ct-poisson-lowdose",
@@ -15473,8 +15481,9 @@
   "counts": {
     "reviewed-scripted-planar": 37,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 103,
-    "blocked-source-input": 52
+    "blocked-source-contract": 102,
+    "blocked-source-input": 52,
+    "pending-operation-review": 1
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -16276,6 +16285,16 @@
         "export_receipt_sha256": "3e3796cc5330e730ec82868461cab334cf7f89cd4ee55da179d10d59c26b0e8e",
         "reviewed_entries": 50,
         "next_entry": "imaging101-ct-fan-beam"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "imaging101-ct-fan-beam",
+        "stage": "source-audit-complete",
+        "receipt": "presentation/external-tasks/sources/imaging101-fan-beam-audit.json",
+        "receipt_sha256": "3e053985ec2b7282484f413927c263a85ca5d4098dda1e9787cc61ceb7203507",
+        "reviewed_entries": 50,
+        "next_entry": "imaging101-ct-fan-beam",
+        "note": "All native arrays available; saved FBP and scores replayed with bounded operator controls. Canonical authoring and visual review remain pending. No iterative solver executed."
       }
     ]
   }
