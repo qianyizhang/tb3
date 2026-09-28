@@ -1,0 +1,1921 @@
+{
+  "schema": 1,
+  "entry_id": "imaging101-differentiable-deflectometry",
+  "date": "2026-09-29",
+  "reviewer": "assistant",
+  "source_commit": "dc2f668939b21e8312e22529615def610f8611df",
+  "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+  "script_sha256": "78c659e4fa79a1aca5a8cdd5d02c7205c72b1fb7db7f9fbb2dec27b8e543ff92",
+  "helper_script_sha256": "ab56938d764c1f32f4c077c98e8bce85d1145360258c07b39bcf3fdb8765d1be",
+  "verified_sources": [
+    {
+      "path": "tasks/differentiable_deflectometry/CLAUDE.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/CLAUDE.md",
+      "bytes": 17043,
+      "git_blob_sha1": "b63a2ce036125f288fda3e43d0199e1bdf565e26",
+      "sha256": "2dc6eb603a00a185d027e1a1f74450c2c09902c9f113827d455d9b899eaa1a3f",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/README.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/README.md",
+      "bytes": 6012,
+      "git_blob_sha1": "93458f46e575cb4f85ab391a2f04f9373e192c74",
+      "sha256": "6c101a1e0e890b5185157968294a0b525fc4821e5e7bebe4717e957f6612d6c0",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/generate_fixtures.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/generate_fixtures.py",
+      "bytes": 10122,
+      "git_blob_sha1": "a87cd2b25716225e176c32f7f6033bc754c5b0c2",
+      "sha256": "86038afd5f03e0bc109d64f5788750447c539893740712b02d10580f9013dd38",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/main.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/main.py",
+      "bytes": 9392,
+      "git_blob_sha1": "3e0958eb9ffdbc62c18c168adcea0bac324078ba",
+      "sha256": "b406d8a542ef207153ff03060ece1277826978487d725edeb7abf200a2822a5b",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/notebooks/diff_deflectometry.ipynb",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/notebooks/diff_deflectometry.ipynb",
+      "bytes": 605124,
+      "git_blob_sha1": "b56998e860e0bb740eb0fb2f941a08c3a3ac4c07",
+      "sha256": "184f904a1e75e2c552461a78416e4bb62a2ff26a73082431dd161027eff98e1a",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/plan/approach.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/plan/approach.md",
+      "bytes": 6650,
+      "git_blob_sha1": "f9e6c82bb0448f3125b74638dad2cc8469d39461",
+      "sha256": "f1d3123d3a6515dc3b042c96118ee974c1373a464458b8504b9420e6a37f1c97",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/plan/design.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/plan/design.md",
+      "bytes": 4588,
+      "git_blob_sha1": "eb6083ee956a2a79f9f326bea4d00dad3ad67756",
+      "sha256": "4cb211088e1b2d24309876f8400a86456c5d6473a1fdbd25fe7cb9e325640e99",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/requirements.txt",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/requirements.txt",
+      "bytes": 47,
+      "git_blob_sha1": "655aa4b17744ab19f2d909e6d36a327ef94d21e4",
+      "sha256": "b07baa89ee098cde8ae4517362542fc4c84a90ae6a45668bb8de57c416381cb9",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/src/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/src/__init__.py",
+      "bytes": 0,
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/src/physics_model.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/src/physics_model.py",
+      "bytes": 49567,
+      "git_blob_sha1": "ce74fcfd549a3181643e86bb400fb0bc92ec6f4d",
+      "sha256": "75e6a6955a038350a80c975606b930a91ee37a1360d2db5d880b2ce148d68086",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/src/preprocessing.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/src/preprocessing.py",
+      "bytes": 11632,
+      "git_blob_sha1": "9f5145e53d1f06dda0ee894627ec135e538332e0",
+      "sha256": "5701afdf53a5d27719c9158ff0c8da490d6895c8e431adc0ca8b41287cef44dc",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/src/solvers.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/src/solvers.py",
+      "bytes": 9311,
+      "git_blob_sha1": "bcb5c91494dfee5c76e5b4a7497b81909118fd21",
+      "sha256": "9fa0bea34e21234576303922b0c6a04585319767dee7df4372566cf662bc16f3",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/src/visualization.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/differentiable_deflectometry/src/visualization.py",
+      "bytes": 4998,
+      "git_blob_sha1": "a4d4c27168632ec13914d51f7371587aba90ff01",
+      "sha256": "8ba22dc9f69411a23e6245099a7e08eb69ce4cf0100b1285156f8f8f4ebdb97e",
+      "status": "verified"
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/LICENSE",
+      "bytes": 1076,
+      "git_blob_sha1": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/LICENSE"
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/README.md",
+      "bytes": 7194,
+      "git_blob_sha1": "60233784ecb46358623ee3be1e9de40e23c70eee",
+      "sha256": "33b226ba0171c595b655c52da7bd4e38c7192e1d274051eb677af4aa49681fef",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/README.md"
+    },
+    {
+      "path": "assets_manifest.json",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/assets_manifest.json",
+      "bytes": 315512,
+      "git_blob_sha1": "6c0d85a9ad9ad8f4ddeeac4a0a8e9953fcf80884",
+      "sha256": "66568d11536efc12c8be6f03fd0e2ece0a6080ca4abeeea05ab73a3f8e98c797",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/assets_manifest.json"
+    },
+    {
+      "path": "docs/END2END_EVALUATION.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/docs/END2END_EVALUATION.md",
+      "bytes": 8188,
+      "git_blob_sha1": "912fb91731f4427c9190c51997372cfb974f1818",
+      "sha256": "d4a07d6b25bb4b983f1c47cf9b858486e93500554e19ac6421bd40fc69cd987a",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/docs/END2END_EVALUATION.md"
+    },
+    {
+      "path": "docs/EVALUATION_GUIDE.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/docs/EVALUATION_GUIDE.md",
+      "bytes": 4894,
+      "git_blob_sha1": "48195e9f098f46fd957b69e2754dbf7eba0a9340",
+      "sha256": "28c32eda23906b2c69b86af28f7f66da4fa8ab3d024de885619340cfcf4b92d9",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/docs/EVALUATION_GUIDE.md"
+    },
+    {
+      "path": "docs/function_level_evaluation.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/docs/function_level_evaluation.md",
+      "bytes": 9348,
+      "git_blob_sha1": "45d1e24102c55b278986e2af7aa1bdf86c8bc78a",
+      "sha256": "799ecaa32db6bf05784c4789692ab98493161b027fcaf66f26cf4cf57ab4e267",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/docs/function_level_evaluation.md"
+    },
+    {
+      "path": "docs/plan_evaluation.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/docs/plan_evaluation.md",
+      "bytes": 8733,
+      "git_blob_sha1": "fa9a00275d21acb0e8111d92def6fc268b037bbe",
+      "sha256": "d51b5efb8d349de27251454c706e0e5d6446c9fb0a054c2dace1fe63297d0b37",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/docs/plan_evaluation.md"
+    },
+    {
+      "path": "evaluation_harness/Dockerfile",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/Dockerfile",
+      "bytes": 166,
+      "git_blob_sha1": "7763c091e48fbd4d6580befd971a73d2cf87652c",
+      "sha256": "3c9b4ee8e87a022a383597e33531c5e6a61c64c6a445f45a383be165f57e09fa",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/Dockerfile"
+    },
+    {
+      "path": "evaluation_harness/README.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/README.md",
+      "bytes": 5199,
+      "git_blob_sha1": "4175991a54ea3f28197acf100db2e2f2ac99ee4a",
+      "sha256": "4758ca8e26e8464f3c3bba57b03b52357c953aaa5c3e100b63ce7bc4f7634bd0",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/README.md"
+    },
+    {
+      "path": "evaluation_harness/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/__init__.py",
+      "bytes": 199,
+      "git_blob_sha1": "8cf86e231ca72c897f1ff6204349f6ce1b24eb0d",
+      "sha256": "6638875de491c616d5e44b271a2f76324464871e26fa8a867e0cd34cc66dd874",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/__init__.py"
+    },
+    {
+      "path": "evaluation_harness/__main__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/__main__.py",
+      "bytes": 28282,
+      "git_blob_sha1": "634fdf98a3f04a55556c2243f91546a52ba1da3d",
+      "sha256": "f25a61fbda26b216e1aee6817a50dd9bb7d3b681412d1a4eef819c3dd18b4445",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/__main__.py"
+    },
+    {
+      "path": "evaluation_harness/agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agent.py",
+      "bytes": 32610,
+      "git_blob_sha1": "ee4c8d2f0cb34f411587f59b92ff659a65c4d761",
+      "sha256": "ffeea0d6c3261589833f0887b91c42ebc1cf7190a118ad23cfc7924cb765db15",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/agent.py"
+    },
+    {
+      "path": "evaluation_harness/agents/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/__init__.py",
+      "bytes": 392,
+      "git_blob_sha1": "3908f884bcf6ceaa9bd4631f33e5ff32155ceded",
+      "sha256": "6a4ade3870198ea9376196d524a0b90d50cfcf782a5702f570f9ffe31dfce123",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/agents/__init__.py"
+    },
+    {
+      "path": "evaluation_harness/agents/architect_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/architect_agent.py",
+      "bytes": 4029,
+      "git_blob_sha1": "27e043a670636c1881d7dbd746560896fb10556e",
+      "sha256": "62eb96c2b4f279e75ef3b212cf74cbe809fcbefe24872c1e032b0fd89162e590",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/agents/architect_agent.py"
+    },
+    {
+      "path": "evaluation_harness/agents/base.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/base.py",
+      "bytes": 3948,
+      "git_blob_sha1": "a53f1309245a22ceb85109341573fb775d48d49b",
+      "sha256": "f22cd120705acb77052af47b56b2a1a4a926c82c8769c6dc1962a6f5efa8a90a",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/agents/base.py"
+    },
+    {
+      "path": "evaluation_harness/agents/coder_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/coder_agent.py",
+      "bytes": 9187,
+      "git_blob_sha1": "79a670932420d85358ae035c0bbdbd719f10eb83",
+      "sha256": "94d297f20e38d3ec65a8d1c9b5f7c9113c476819cd75f6a6ca54ed0bcf2a34e7",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/agents/coder_agent.py"
+    },
+    {
+      "path": "evaluation_harness/agents/judge_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/judge_agent.py",
+      "bytes": 8924,
+      "git_blob_sha1": "7356c46ce8698dd34cf922690a3ebc17f623f1ac",
+      "sha256": "3c5651e839a24cec006b8e45c1ba4f129e612c5ebbc86f39da5843ef6ece3182",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/agents/judge_agent.py"
+    },
+    {
+      "path": "evaluation_harness/agents/planner_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/planner_agent.py",
+      "bytes": 11747,
+      "git_blob_sha1": "4a26bd9ee47ace344dfa978378c99577b59b4b19",
+      "sha256": "b2f0b308d4b6603cd3af3e9f98e5c1454a2070e49bae8791448eb9a57c5d96f8",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/agents/planner_agent.py"
+    },
+    {
+      "path": "evaluation_harness/config.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/config.py",
+      "bytes": 1765,
+      "git_blob_sha1": "c78bc04b8c82a1649c7106d3900525441bdcbabf",
+      "sha256": "428bacdcd01f4a24e132fa50ac59ad3ff5023e2850494b7e42421b60f1710584",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/config.py"
+    },
+    {
+      "path": "evaluation_harness/docker_runner.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/docker_runner.py",
+      "bytes": 4792,
+      "git_blob_sha1": "79f71f432b405f40c087b323b6369c4015403729",
+      "sha256": "8c8d5fb663701fa141402416593b69fe2dc4a13f96648fa210e6d66e1f2f1ee4",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/docker_runner.py"
+    },
+    {
+      "path": "evaluation_harness/env_manager.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/env_manager.py",
+      "bytes": 8475,
+      "git_blob_sha1": "cee2df4d5392093571807dcebdfac42e5582d377",
+      "sha256": "c6fa6d5e855eb302a3d7a4de23d1bfecf5f91222e6196652fbfb99a987c40252",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/env_manager.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/__init__.py",
+      "bytes": 489,
+      "git_blob_sha1": "4b1f462e03a91a3170ca87b19c92362fdd054af0",
+      "sha256": "81f25389770abe1051f4a0e1c9cd4f09466f5b34f55ec58107b16acc7d533d44",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/__init__.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/claude_code/README.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/README.md",
+      "bytes": 2729,
+      "git_blob_sha1": "7f7d4a313beb4cb3de04917c0f23a738c6c497dc",
+      "sha256": "285f8474c75570a8ae5c720414a95f518d9c5570ab69ebadc0b727187faf7923",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/claude_code/README.md"
+    },
+    {
+      "path": "evaluation_harness/frameworks/claude_code/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/__init__.py",
+      "bytes": 1036,
+      "git_blob_sha1": "f6e0403cc65d270f4a1998a16f68edd1de0ac546",
+      "sha256": "b0e1e174619b1d3135b6a95de9e8b732938773f96f3c253df1a8c41449c042ef",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/claude_code/__init__.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/claude_code/copilot_prompt.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/copilot_prompt.py",
+      "bytes": 10492,
+      "git_blob_sha1": "a14f50e7ec54a42d487c8a130bc9b8d1202f1516",
+      "sha256": "12d4d2b0094523184196b9eda88108f783123b40ae7f0f34fba2a829de4847be",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/claude_code/copilot_prompt.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/claude_code/copilot_runner.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/copilot_runner.py",
+      "bytes": 20758,
+      "git_blob_sha1": "83a10cfa613135abfc4222fa4831d6195d179d77",
+      "sha256": "adc54b3971bcc9c8a7ee303b36cfbe2650948e77c4c5f162bc8d0b5c29fb1a6b",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/claude_code/copilot_runner.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/claude_code/copilot_scorer.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/copilot_scorer.py",
+      "bytes": 6937,
+      "git_blob_sha1": "15ff30434cff0f3391acbefda225bfd443face34",
+      "sha256": "c4c2cc9047f28be087c38b594d86dadfe6be0ab673ee7d1d903742dfd4615e58",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/claude_code/copilot_scorer.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/claude_code/prepare_all.ps1",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/prepare_all.ps1",
+      "bytes": 2321,
+      "git_blob_sha1": "ce499961c2297e5a76503c6fee1d95108dc4f2f7",
+      "sha256": "0c1618624ba1f4bd55779ff717456b9ba07fe9382d873c53d2c2150a1d87e937",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/claude_code/prepare_all.ps1"
+    },
+    {
+      "path": "evaluation_harness/frameworks/claude_code/prepare_all.sh",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/prepare_all.sh",
+      "bytes": 1714,
+      "git_blob_sha1": "9e291b1a576d41c43cef4cd0b687e2c206315270",
+      "sha256": "39b91bb48c11a8e6f23a1a862e129731472cfb23c86928c5a399aef60fc71137",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/claude_code/prepare_all.sh"
+    },
+    {
+      "path": "evaluation_harness/frameworks/deepcode/README.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/README.md",
+      "bytes": 4279,
+      "git_blob_sha1": "19e3c6413dba14037e4c0a70f2cd25a256e642f0",
+      "sha256": "6585e2263da08f394aec6b33a5ab0caa01b25552fc921b0499520576b5c90471",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/deepcode/README.md"
+    },
+    {
+      "path": "evaluation_harness/frameworks/deepcode/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/__init__.py",
+      "bytes": 579,
+      "git_blob_sha1": "d707c57d116f16f11b7f1d5f36f97528d208a584",
+      "sha256": "392f28d3e9246e0b0eaa03531feb9c649eb055d0c99a223d1213a69323d92859",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/deepcode/__init__.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/deepcode/config.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/config.py",
+      "bytes": 2315,
+      "git_blob_sha1": "891e02faf339340019b7fb26fcf8452432475c70",
+      "sha256": "b312a79bddba3d28d7e6702827173f80338cf6738c64fc3a9e35f81d7487ee05",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/deepcode/config.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/deepcode/deepcode_config.yaml",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/deepcode_config.yaml",
+      "bytes": 719,
+      "git_blob_sha1": "ec5dbf57cbd1202cab89edd4a970f309c34c3c0b",
+      "sha256": "0c1a7169f4e1db3f7ca452e4833a8e9351b19241d5e8be32d8ee2a8ebac1ca99",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/deepcode/deepcode_config.yaml"
+    },
+    {
+      "path": "evaluation_harness/frameworks/deepcode/runner.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/runner.py",
+      "bytes": 8726,
+      "git_blob_sha1": "fa20e36cfec7bbb8d58237ce35a44a26d10416f4",
+      "sha256": "53e2aa4ad727587a6e515110f29511a280cfa014c4e1c3bf61411503fbecc2d9",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/deepcode/runner.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/README.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/README.md",
+      "bytes": 2507,
+      "git_blob_sha1": "dd38dbbc37edd50c15039bff35e3d0ab882f30f8",
+      "sha256": "d440eb7124a8877ce5a4f4feea2eb8d58bea0a92a75f71a46d7fe9f10119071f",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/README.md"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/__init__.py",
+      "bytes": 441,
+      "git_blob_sha1": "3cbce98e7b78f4987605217409c9746aaf2d9cac",
+      "sha256": "30411fceb45df21d37556003631e323a9ff145cb9f1a7c8d33f296b47da6a7a5",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/__init__.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/agents/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/__init__.py",
+      "bytes": 392,
+      "git_blob_sha1": "3908f884bcf6ceaa9bd4631f33e5ff32155ceded",
+      "sha256": "6a4ade3870198ea9376196d524a0b90d50cfcf782a5702f570f9ffe31dfce123",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/agents/__init__.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/agents/architect_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/architect_agent.py",
+      "bytes": 4029,
+      "git_blob_sha1": "27e043a670636c1881d7dbd746560896fb10556e",
+      "sha256": "62eb96c2b4f279e75ef3b212cf74cbe809fcbefe24872c1e032b0fd89162e590",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/agents/architect_agent.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/agents/base.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/base.py",
+      "bytes": 3965,
+      "git_blob_sha1": "8343b0b8ac43c90db74f6894a0708866334f6f54",
+      "sha256": "68a0f5f9f230c84f2cea8378c45a22a79100c09dfd40ebb49ef148aa5a7d91b9",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/agents/base.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/agents/coder_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/coder_agent.py",
+      "bytes": 9187,
+      "git_blob_sha1": "79a670932420d85358ae035c0bbdbd719f10eb83",
+      "sha256": "94d297f20e38d3ec65a8d1c9b5f7c9113c476819cd75f6a6ca54ed0bcf2a34e7",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/agents/coder_agent.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/agents/judge_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/judge_agent.py",
+      "bytes": 8924,
+      "git_blob_sha1": "7356c46ce8698dd34cf922690a3ebc17f623f1ac",
+      "sha256": "3c5651e839a24cec006b8e45c1ba4f129e612c5ebbc86f39da5843ef6ece3182",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/agents/judge_agent.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/agents/planner_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/planner_agent.py",
+      "bytes": 11747,
+      "git_blob_sha1": "4a26bd9ee47ace344dfa978378c99577b59b4b19",
+      "sha256": "b2f0b308d4b6603cd3af3e9f98e5c1454a2070e49bae8791448eb9a57c5d96f8",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/agents/planner_agent.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/multi_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/multi_agent.py",
+      "bytes": 55097,
+      "git_blob_sha1": "017a4c8063437c31d4d6b201c400bff7b707edd7",
+      "sha256": "733c142dc593621aafffb8719455e0d51b8d04f06cf33c598d3c6de0aecd14f7",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/multi_agent.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/react/README.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/react/README.md",
+      "bytes": 1173,
+      "git_blob_sha1": "1e49b02b31d75c98998a6f37e1e673551753a38b",
+      "sha256": "fcdaf2708c65f975a6e2a840a85251d4a68cd89e15508114668b08cc07aa7bf3",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/react/README.md"
+    },
+    {
+      "path": "evaluation_harness/frameworks/react/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/react/__init__.py",
+      "bytes": 347,
+      "git_blob_sha1": "1babd4cfc3c6444f9e07a75cb33cb9326058589a",
+      "sha256": "ad12c82942ebc1285fb09358212faa79c2227383013799a3a500f9cb712f0ecc",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/react/__init__.py"
+    },
+    {
+      "path": "evaluation_harness/frameworks/react/prompts.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/react/prompts.py",
+      "bytes": 14489,
+      "git_blob_sha1": "62400053d5ab984c96ec3eca91bc6a0c685e172f",
+      "sha256": "3bfc53d6dff130ea7176d90cdfb126f3d01e9929f2b0fe6d02c65e6a5115f3b8",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/react/prompts.py"
+    },
+    {
+      "path": "evaluation_harness/llm_client.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/llm_client.py",
+      "bytes": 5658,
+      "git_blob_sha1": "56c3a932bcdf48dcb0ba7a08da7f413bfc22a943",
+      "sha256": "0c9abc3e725bdaf712912c3e34381f75975eb82ad74b91093c4621afd85fcf43",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/llm_client.py"
+    },
+    {
+      "path": "evaluation_harness/local_runner.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py",
+      "bytes": 13941,
+      "git_blob_sha1": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/local_runner.py"
+    },
+    {
+      "path": "evaluation_harness/multi_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/multi_agent.py",
+      "bytes": 55044,
+      "git_blob_sha1": "3bb2d18281b365ec4ec39c4cf8b8009e256155ae",
+      "sha256": "cedf8a0db70f1c4f399e33f10d2fc4a9b6d5f8dfbef0636213ef0b9a4f9de0ab",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/multi_agent.py"
+    },
+    {
+      "path": "evaluation_harness/plan_scorer.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/plan_scorer.py",
+      "bytes": 11956,
+      "git_blob_sha1": "9cfb772a8604f201aae1d992cd6263581c3098c9",
+      "sha256": "ab374d64dae2a4dd5758e4d56b54d8d1ef529d3dc80b1c1fa377df05528700d1",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/plan_scorer.py"
+    },
+    {
+      "path": "evaluation_harness/prompts.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/prompts.py",
+      "bytes": 14489,
+      "git_blob_sha1": "62400053d5ab984c96ec3eca91bc6a0c685e172f",
+      "sha256": "3bfc53d6dff130ea7176d90cdfb126f3d01e9929f2b0fe6d02c65e6a5115f3b8",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/prompts.py"
+    },
+    {
+      "path": "evaluation_harness/reference_scoring.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py",
+      "bytes": 9172,
+      "git_blob_sha1": "87eb882e79a514f2ab1303080c222d5fd7f00b42",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/reference_scoring.py"
+    },
+    {
+      "path": "evaluation_harness/requirements.txt",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/requirements.txt",
+      "bytes": 15,
+      "git_blob_sha1": "b18d513474f4804f996a469c7424a69097eaa717",
+      "sha256": "af1d882a2cc1717c9da20d96d963d2bf7f83b28f2a191612a17599e0e44ff3a5",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/requirements.txt"
+    },
+    {
+      "path": "evaluation_harness/runner.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/runner.py",
+      "bytes": 15186,
+      "git_blob_sha1": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/runner.py"
+    },
+    {
+      "path": "evaluation_harness/scorer.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py",
+      "bytes": 23821,
+      "git_blob_sha1": "07125c06b504291288ab8b3d04c046b476446e04",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/scorer.py"
+    },
+    {
+      "path": "evaluation_harness/task_recipes.json",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/task_recipes.json",
+      "bytes": 9844,
+      "git_blob_sha1": "58b0536442c89c59f5d4d5ee2d106bb0fcc82851",
+      "sha256": "3086bb41906ff096b80f9d53ab4d69fd6eb86256d4826959b11df0f0332f3c3c",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/task_recipes.json"
+    },
+    {
+      "path": "evaluation_harness/task_scoring.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/task_scoring.py",
+      "bytes": 19005,
+      "git_blob_sha1": "d5f5043d353d9a29ff9f9044def53334f79d96d0",
+      "sha256": "04596307728d59880ad09376ec511f90400f0527c48887f16ce57c8a6d9d4f6b",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/task_scoring.py"
+    },
+    {
+      "path": "evaluation_harness/task_scoring_custom.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/task_scoring_custom.py",
+      "bytes": 31984,
+      "git_blob_sha1": "fe69b4d4a1dd537815f8e5c496bbffef0125d732",
+      "sha256": "d9ca21d8350d6600bbc9acce82875c821828f9e44e1b886347fd5a4fa06087cf",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/task_scoring_custom.py"
+    },
+    {
+      "path": "evaluation_harness/visualizer.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/visualizer.py",
+      "bytes": 20288,
+      "git_blob_sha1": "7e50750d5405fb009f2789559d1cf2dea40d23c5",
+      "sha256": "a73bd8c63e87353eab4e2b68f0639e32af08973e1774e39fd9e57072ca541cd6",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/evaluation_harness/visualizer.py"
+    },
+    {
+      "path": "scripts/download_assets.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/scripts/download_assets.py",
+      "bytes": 4068,
+      "git_blob_sha1": "93c7b4bb01304f9709362aef04052149907cac32",
+      "sha256": "8c45517a99a8bfc4d8baf2384156e8e5ff7c5ead1737a9e1ff04fb2c3e780480",
+      "status": "verified",
+      "reused_from": ".local/explainers/completion-20260927/048-source/scripts/download_assets.py"
+    }
+  ],
+  "verified_assets": [
+    {
+      "path": "tasks/differentiable_deflectometry/data/calibration/calibration.mat",
+      "hf_path": "tasks/differentiable_deflectometry/data/calibration/calibration.mat",
+      "task": "differentiable_deflectometry",
+      "size": 696,
+      "sha256": "2b2abcb0841f2bc63bc942d8c70ce2a03711a9ff29bf32b8984f19b434746d8b",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/data/calibration/calibration.mat",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/data/calibration/cam1.mat",
+      "hf_path": "tasks/differentiable_deflectometry/data/calibration/cam1.mat",
+      "task": "differentiable_deflectometry",
+      "size": 4471,
+      "sha256": "a2f6914f3a23644cb6d652e937b6220bc41e3b891730a784eee0921535eddf63",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/data/calibration/cam1.mat",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/data/calibration/cam2.mat",
+      "hf_path": "tasks/differentiable_deflectometry/data/calibration/cam2.mat",
+      "task": "differentiable_deflectometry",
+      "size": 4536,
+      "sha256": "05caa5b829e365cce01a15f24dfcd94ce4f70b938f538bd7f2c00629c90f71cd",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/data/calibration/cam2.mat",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/data/calibration/cams.mat",
+      "hf_path": "tasks/differentiable_deflectometry/data/calibration/cams.mat",
+      "task": "differentiable_deflectometry",
+      "size": 1063,
+      "sha256": "27ca284237f4e6b17ea9bf69f113fb4da5f51bcdf9c1bc6e09edc95fa26ed74b",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/data/calibration/cams.mat",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/data/calibration/gammas.mat",
+      "hf_path": "tasks/differentiable_deflectometry/data/calibration/gammas.mat",
+      "task": "differentiable_deflectometry",
+      "size": 8058,
+      "sha256": "b951b124288765acc4b6a1cb1f3d025bcff793b62324bcaed92c6b4aefcd8808",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/data/calibration/gammas.mat",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/data/calibration/rotation.mat",
+      "hf_path": "tasks/differentiable_deflectometry/data/calibration/rotation.mat",
+      "task": "differentiable_deflectometry",
+      "size": 258,
+      "sha256": "94ed1b27b1dffe8b1e02c2cbcc72ba43409d1537e7e909ce67cec773057e5604",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/data/calibration/rotation.mat",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/data/ground_truth.npz",
+      "hf_path": "tasks/differentiable_deflectometry/data/ground_truth.npz",
+      "task": "differentiable_deflectometry",
+      "size": 830,
+      "sha256": "ffc5b601099be95deb8897290db0efcfd41fcb6aec143c89c3f8dcbb5e886852",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/data/ground_truth.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/config_crop_offset.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/config_crop_offset.npz",
+      "task": "differentiable_deflectometry",
+      "size": 564,
+      "sha256": "5ca5b9813ae27bdf9a2c4595e1137b57696f0268f2b2241eb4fa0d5b77977b1b",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/config_crop_offset.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_aspheric_intersection.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_aspheric_intersection.npz",
+      "task": "differentiable_deflectometry",
+      "size": 514,
+      "sha256": "ca1fe4d4cb20a37bb76a08ed7df6909fce887413c24a2aa49a503fd2ece30f1a",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/input_aspheric_intersection.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_aspheric_spherical.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_aspheric_spherical.npz",
+      "task": "differentiable_deflectometry",
+      "size": 1038,
+      "sha256": "9b9367ff8b83c659d22ced5949b36c0a6dacc894aa949df0f3252a6fff4df57a",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/input_aspheric_spherical.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_change_params.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_change_params.npz",
+      "task": "differentiable_deflectometry",
+      "size": 1018,
+      "sha256": "30d050d2d44d23cbb4a2cd9fa3f0519255e2ed5c0027fdfd7617eebe2421789d",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/input_change_params.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_crop_images.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_crop_images.npz",
+      "task": "differentiable_deflectometry",
+      "size": 134218254,
+      "sha256": "ab1031789585acdec464cb90aa21372c99a9d8371e2103997714f2a73d47039f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/input_crop_images.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_fringe_solve.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_fringe_solve.npz",
+      "task": "differentiable_deflectometry",
+      "size": 131334,
+      "sha256": "6a295128ee235c617528061536922ff4633e00444c2eaa06887a32a92c4e64b6",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/input_fringe_solve.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_jacobian_linear.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_jacobian_linear.npz",
+      "task": "differentiable_deflectometry",
+      "size": 514,
+      "sha256": "f79591ab14129e48e3f595cf7388ea69c25cf8dc0fe1c030faef9a3177d2cc0b",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/input_jacobian_linear.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_jacobian_quadratic.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_jacobian_quadratic.npz",
+      "task": "differentiable_deflectometry",
+      "size": 260,
+      "sha256": "9419ddb8754689f1b63f5a0df48f568b4c55c53eb43ac41bb7948f086fde76de",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/input_jacobian_quadratic.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_lm_quadratic.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_lm_quadratic.npz",
+      "task": "differentiable_deflectometry",
+      "size": 1028,
+      "sha256": "3c0de06b137765a6f3e1adbd002de47714daaab1b722a2e7459d398d1801d5b9",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/input_lm_quadratic.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_material.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_material.npz",
+      "task": "differentiable_deflectometry",
+      "size": 560,
+      "sha256": "716aac6c0f2c3c0ced675ede09d60412f5f356f494c512028ce9a27f4a2f4f06",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/input_material.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_ray_evaluation.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_ray_evaluation.npz",
+      "task": "differentiable_deflectometry",
+      "size": 1016,
+      "sha256": "42d02e7935469838232dc4157e0fd66947f5f05f79a2e4d2eb0bd820cb60573c",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/input_ray_evaluation.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_transformation.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_transformation.npz",
+      "task": "differentiable_deflectometry",
+      "size": 1922,
+      "sha256": "e559ee68e6667b41aba9e090e555c3902ea9967ba8df3ad384c3cfd184619026",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/input_transformation.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_intersection.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_intersection.npz",
+      "task": "differentiable_deflectometry",
+      "size": 558,
+      "sha256": "e1e88ca275ae211dec282f9b8ca7679322291a215f991b6986ff73ec9908deb6",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_intersection.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_spherical.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_spherical.npz",
+      "task": "differentiable_deflectometry",
+      "size": 276,
+      "sha256": "db307738c1bc41a5514cc83ea7c7efab34da02fb40f113f8c1cdaa0f06cca2f8",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_spherical.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_change_params_add.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_change_params_add.npz",
+      "task": "differentiable_deflectometry",
+      "size": 542,
+      "sha256": "2d21c874e8effc22aadd0f82725eaa5541668f8ae1dd747875e15fcad05886b0",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_change_params_add.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_crop_images.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_crop_images.npz",
+      "task": "differentiable_deflectometry",
+      "size": 576,
+      "sha256": "9ae4f3c36a65055d5d47f9b97bde79f7a8d10a821c7368b4561bf8b3c740e5fb",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_crop_images.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_jacobian_linear.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_jacobian_linear.npz",
+      "task": "differentiable_deflectometry",
+      "size": 290,
+      "sha256": "1f5686248536f4d0e5909866ffc413e67d8796a9c9e4d417a06f7eda69461afb",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_jacobian_linear.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_jacobian_quadratic.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_jacobian_quadratic.npz",
+      "task": "differentiable_deflectometry",
+      "size": 282,
+      "sha256": "d3a45144c221ffd22d47a233fa2f5a19a0214c81fd0e8edf16984b5cba8ba6fa",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_jacobian_quadratic.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_lm_quadratic.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_lm_quadratic.npz",
+      "task": "differentiable_deflectometry",
+      "size": 540,
+      "sha256": "f4a5f54bb2e0277111807896744846a4e468aa2a1bd2940b8d5e4086ca7b1e88",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_lm_quadratic.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_material.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_material.npz",
+      "task": "differentiable_deflectometry",
+      "size": 1094,
+      "sha256": "0321c89c690e835f6895a0420268a561d189efb1e2f09cd0583ebe2928cae0fb",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_material.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_ray_evaluation.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_ray_evaluation.npz",
+      "task": "differentiable_deflectometry",
+      "size": 294,
+      "sha256": "3b22a259486ea2e81b8bcbb0fb912f96bfa5e4c1368f99f6c4ae0f90803176c7",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_ray_evaluation.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_transformation.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_transformation.npz",
+      "task": "differentiable_deflectometry",
+      "size": 300,
+      "sha256": "28103d4e82d70a45f441b0a7dbfcd864b3b648e418789c917c2fa58bca3a4777",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_transformation.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/param_aspheric_intersection.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/param_aspheric_intersection.npz",
+      "task": "differentiable_deflectometry",
+      "size": 990,
+      "sha256": "2df90b4023b40cfe71e52b26bf56d21ea53d3618cac7e4c5ca30286b732d6d09",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/param_aspheric_intersection.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/param_aspheric_spherical.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/param_aspheric_spherical.npz",
+      "task": "differentiable_deflectometry",
+      "size": 990,
+      "sha256": "26f8608e4ab9987a6d12b1d9de4a17206c2e00feec9088cef2bdb6859faac7e9",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/param_aspheric_spherical.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/param_fringe_solve.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/param_fringe_solve.npz",
+      "task": "differentiable_deflectometry",
+      "size": 756,
+      "sha256": "4f75f293a591cb8765351e34cbd6f1568e278a79ae0645bc97cd99c6dd824452",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/param_fringe_solve.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/metrics.json",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/metrics.json",
+      "task": "differentiable_deflectometry",
+      "size": 510,
+      "sha256": "74c107aa89d1b4e57450f8c4e577a8befe198629f5da313484112eb06ee7b215",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/reference_outputs/metrics.json",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/optimized_params.json",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/optimized_params.json",
+      "task": "differentiable_deflectometry",
+      "size": 274,
+      "sha256": "baf8d528bcbd9545aeff6fedab61cbbc28b1da07977253d206b296de538e13a2",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/reference_outputs/optimized_params.json",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/data/meta_data.json",
+      "hf_path": "tasks/differentiable_deflectometry/data/meta_data.json",
+      "task": "differentiable_deflectometry",
+      "size": 861,
+      "sha256": "5b33bf1283881bf5f46fb7b14cc7ca6cf34176d9f10a199370619e07cd3e18be",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/data/meta_data.json",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "verified",
+      "error": null
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_aspheric_flat.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_aspheric_flat.npz",
+      "task": "differentiable_deflectometry",
+      "size": 522,
+      "sha256": "ae4a6f1f6fe33fc642ebff7b0cacbf194c8dc913ab22122c142680dc3986e004",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/input_aspheric_flat.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "verified",
+      "error": null
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_change_params_subtract.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_change_params_subtract.npz",
+      "task": "differentiable_deflectometry",
+      "size": 282,
+      "sha256": "5b94c0d209474940e58473f4b04fa219386abd51ea96b39af75400097b5a2d1a",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_change_params_subtract.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "verified",
+      "error": null
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_fringe_solve.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_fringe_solve.npz",
+      "task": "differentiable_deflectometry",
+      "size": 33554,
+      "sha256": "5421ecbc8bc21cacd8267a90060b753334960076442a3fef3b7fcbb60ab2310d",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_fringe_solve.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "verified",
+      "error": null
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/param_aspheric_flat.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/param_aspheric_flat.npz",
+      "task": "differentiable_deflectometry",
+      "size": 990,
+      "sha256": "7777c8b0970b49b97e3d4f829bd1566000c10e4f7d27ee7f33ea2c6d4328470c",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/param_aspheric_flat.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "verified",
+      "error": null
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/loss_history.npy",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/loss_history.npy",
+      "task": "differentiable_deflectometry",
+      "size": 296,
+      "sha256": "55033e0dfa04e497019b379f8c040c5e7c3714f953d55942adbb9cf33fa3aaf0",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/reference_outputs/loss_history.npy",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "verified",
+      "error": null
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/data/calibration/checkerboard.png",
+      "hf_path": "tasks/differentiable_deflectometry/data/calibration/checkerboard.png",
+      "task": "differentiable_deflectometry",
+      "size": 5808,
+      "sha256": "3bb007a4400e92920f26ef0ff78d76eb4023943c834698d353a28b6a9e0e448f",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/data/calibration/checkerboard.png?download=true",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_flat.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_flat.npz",
+      "task": "differentiable_deflectometry",
+      "size": 290,
+      "sha256": "b1b570c35baa568757e8831d724e1df375f0322c1a31ff42cc57d77b7a9d7669",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_flat.npz?download=true",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/spot_initial.jpg",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/spot_initial.jpg",
+      "task": "differentiable_deflectometry",
+      "size": 134002,
+      "sha256": "c6d57510d5025e5cb7c5aceb86e44a8d90bf871209dce598463981aab80ef69a",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/reference_outputs/spot_initial.jpg?download=true",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "verified"
+    }
+  ],
+  "asset_attempts": [
+    {
+      "path": "tasks/differentiable_deflectometry/data/meta_data.json",
+      "hf_path": "tasks/differentiable_deflectometry/data/meta_data.json",
+      "task": "differentiable_deflectometry",
+      "size": 861,
+      "sha256": "5b33bf1283881bf5f46fb7b14cc7ca6cf34176d9f10a199370619e07cd3e18be",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/data/meta_data.json",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "URLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)'))"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_aspheric_flat.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/input_aspheric_flat.npz",
+      "task": "differentiable_deflectometry",
+      "size": 522,
+      "sha256": "ae4a6f1f6fe33fc642ebff7b0cacbf194c8dc913ab22122c142680dc3986e004",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/input_aspheric_flat.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "URLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)'))"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_flat.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_flat.npz",
+      "task": "differentiable_deflectometry",
+      "size": 290,
+      "sha256": "b1b570c35baa568757e8831d724e1df375f0322c1a31ff42cc57d77b7a9d7669",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_flat.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "URLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)'))"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_change_params_subtract.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_change_params_subtract.npz",
+      "task": "differentiable_deflectometry",
+      "size": 282,
+      "sha256": "5b94c0d209474940e58473f4b04fa219386abd51ea96b39af75400097b5a2d1a",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_change_params_subtract.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "URLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)'))"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_fringe_solve.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_fringe_solve.npz",
+      "task": "differentiable_deflectometry",
+      "size": 33554,
+      "sha256": "5421ecbc8bc21cacd8267a90060b753334960076442a3fef3b7fcbb60ab2310d",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_fringe_solve.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "URLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)'))"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/param_aspheric_flat.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/param_aspheric_flat.npz",
+      "task": "differentiable_deflectometry",
+      "size": 990,
+      "sha256": "7777c8b0970b49b97e3d4f829bd1566000c10e4f7d27ee7f33ea2c6d4328470c",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/param_aspheric_flat.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "URLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)'))"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/loss_history.npy",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/loss_history.npy",
+      "task": "differentiable_deflectometry",
+      "size": 296,
+      "sha256": "55033e0dfa04e497019b379f8c040c5e7c3714f953d55942adbb9cf33fa3aaf0",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/reference_outputs/loss_history.npy",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "URLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)'))"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_flat.npz",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_flat.npz",
+      "task": "differentiable_deflectometry",
+      "size": 290,
+      "sha256": "b1b570c35baa568757e8831d724e1df375f0322c1a31ff42cc57d77b7a9d7669",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/fixtures/output_aspheric_flat.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "URLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)'))"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/initial0.jpg",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/initial0.jpg",
+      "task": "differentiable_deflectometry",
+      "size": 74573,
+      "sha256": "1d962614f2f0a8a7866de8816eddeb2218734f55a3aa79dc20d65408de1505fd",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/reference_outputs/initial0.jpg?download=true",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "URLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)'))"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/optimized0.jpg",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/optimized0.jpg",
+      "task": "differentiable_deflectometry",
+      "size": 71469,
+      "sha256": "44d757910dd0a4ff63b0023cf5ebb7b11969ada7172a19361e58d2c4beb504d0",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/reference_outputs/optimized0.jpg?download=true",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "URLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)'))"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/spot_optimized.jpg",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/spot_optimized.jpg",
+      "task": "differentiable_deflectometry",
+      "size": 117757,
+      "sha256": "2f37f7000db42206018f9a96e41616e485f52d89be24f341d742bedd3086eb05",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/reference_outputs/spot_optimized.jpg?download=true",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "URLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)'))"
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/initial0.jpg",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/initial0.jpg",
+      "task": "differentiable_deflectometry",
+      "size": 74573,
+      "sha256": "1d962614f2f0a8a7866de8816eddeb2218734f55a3aa79dc20d65408de1505fd",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/reference_outputs/initial0.jpg",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "curl: (28) Connection timed out after 35002 milliseconds\n",
+      "method": "curl",
+      "returncode": 28
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/optimized0.jpg",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/optimized0.jpg",
+      "task": "differentiable_deflectometry",
+      "size": 71469,
+      "sha256": "44d757910dd0a4ff63b0023cf5ebb7b11969ada7172a19361e58d2c4beb504d0",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/reference_outputs/optimized0.jpg",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "curl: (28) Connection timed out after 35005 milliseconds\n",
+      "method": "curl",
+      "returncode": 28
+    },
+    {
+      "path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/spot_optimized.jpg",
+      "hf_path": "tasks/differentiable_deflectometry/evaluation/reference_outputs/spot_optimized.jpg",
+      "task": "differentiable_deflectometry",
+      "size": 117757,
+      "sha256": "2f37f7000db42206018f9a96e41616e485f52d89be24f341d742bedd3086eb05",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry/evaluation/reference_outputs/spot_optimized.jpg",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "curl: (28) Connection timed out after 35002 milliseconds\n",
+      "method": "curl",
+      "returncode": 28
+    }
+  ],
+  "hf_listing_count": 66,
+  "hf_file_count": 58,
+  "metadata": {
+    "task_name": "differentiable_deflectometry",
+    "paper": {
+      "title": "Towards self-calibrated lens metrology by differentiable refractive deflectometry",
+      "authors": [
+        "Congli Wang",
+        "Ni Chen",
+        "Wolfgang Heidrich"
+      ],
+      "venue": "OSA Optics Express",
+      "year": 2021,
+      "url": "https://vccimaging.org/Publications/Wang2021DiffDeflectometry/"
+    },
+    "lens": {
+      "name": "LE1234-A",
+      "file": "ThorLabs/LE1234-A.txt"
+    },
+    "imaging": {
+      "filmsize": [
+        768,
+        768
+      ],
+      "full_filmsize": [
+        2048,
+        2048
+      ],
+      "sinusoid_periods": [
+        70,
+        100,
+        110
+      ],
+      "sinusoid_period_index": 0,
+      "sinusoid_xs": [
+        0
+      ],
+      "display_pixel_size_mm": 0.115,
+      "max_image_val": 65535.0
+    },
+    "calibration": {
+      "texture_shift": [
+        0.0,
+        1.1106231
+      ],
+      "origin_shift": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "calibration": {
+    "display_pixel_size": {
+      "shape": [
+        1,
+        1
+      ],
+      "dtype": "float64",
+      "min": 111.85,
+      "max": 111.85,
+      "nonfinite": 0,
+      "array_sha256": "8ee0aac19bb4cd3bb24375c7695c922b678db33017f4edbb5b4412186a4d3b22"
+    },
+    "h": {
+      "shape": [
+        1,
+        1
+      ],
+      "dtype": "int32",
+      "min": 8.0,
+      "max": 8.0,
+      "nonfinite": 0,
+      "array_sha256": "dc765660b06ee03dd16fd7ca5b957e8c805161ac2c4af28c5a100ab2ab432ca1"
+    },
+    "s": {
+      "shape": [
+        1,
+        1
+      ],
+      "dtype": "int32",
+      "min": 40.0,
+      "max": 40.0,
+      "nonfinite": 0,
+      "array_sha256": "1a00f51f3029fa4b7e61b9bf7aa9de5a64798857872981f7e056e4f437171955"
+    },
+    "w": {
+      "shape": [
+        1,
+        1
+      ],
+      "dtype": "int32",
+      "min": 9.0,
+      "max": 9.0,
+      "nonfinite": 0,
+      "array_sha256": "9f076b7eb7fdc0311cd3208cdbbebbf8014dd3a05e35191c96947b358a362b40"
+    },
+    "squaresize": {
+      "shape": [
+        1,
+        1
+      ],
+      "dtype": "float64",
+      "min": 4.474,
+      "max": 4.474,
+      "nonfinite": 0,
+      "array_sha256": "2d815eeaea81cf553a9d9845d28e72570937a08d80b62d23596d874cb06b38a6"
+    },
+    "final_index": {
+      "shape": [
+        1,
+        1
+      ],
+      "dtype": "uint8",
+      "min": 61.0,
+      "max": 61.0,
+      "nonfinite": 0,
+      "array_sha256": "380918b946a526640a40df5dced6516794f3d97bbd9e6bb553d037c4439f31c3"
+    },
+    "f": {
+      "shape": [
+        2,
+        2
+      ],
+      "dtype": "float64",
+      "min": 14187.637737408993,
+      "max": 15504.998255836588,
+      "nonfinite": 0,
+      "array_sha256": "5ebb38c3ad3aa09465ffa581112fe17c68ddcf35528aaf94d6a0e46a84cada4d"
+    },
+    "c": {
+      "shape": [
+        2,
+        2
+      ],
+      "dtype": "float64",
+      "min": 1013.325682640458,
+      "max": 1058.1818275497074,
+      "nonfinite": 0,
+      "array_sha256": "9c9c8660caaf9ba4197996ea90350fa2298d31822b3785e46ac7167bbd740139"
+    },
+    "filmsize": {
+      "shape": [
+        2,
+        2
+      ],
+      "dtype": "uint16",
+      "min": 2048.0,
+      "max": 2048.0,
+      "nonfinite": 0,
+      "array_sha256": "7971bdefa5d350222fbe3aa926ee2bdbd685341db331bea9e81324b49dc78544"
+    },
+    "k": {
+      "shape": [
+        2,
+        2
+      ],
+      "dtype": "float64",
+      "min": -0.09715033967785795,
+      "max": 35.45664659289696,
+      "nonfinite": 0,
+      "array_sha256": "36ead165514ff12f9e3170bc239cf911fbdefc3365bb8268e9a8471730f336df"
+    },
+    "p": {
+      "shape": [
+        2,
+        2
+      ],
+      "dtype": "uint8",
+      "min": 0.0,
+      "max": 0.0,
+      "nonfinite": 0,
+      "array_sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119"
+    },
+    "R": {
+      "shape": [
+        3,
+        3,
+        2
+      ],
+      "dtype": "float64",
+      "min": -0.25401350550716756,
+      "max": 0.9999893556598218,
+      "nonfinite": 0,
+      "array_sha256": "5f33a5b779a6aef02f8d48d32078138459b2f0ce63511058be5d5cf564725bfc"
+    },
+    "t": {
+      "shape": [
+        3,
+        2
+      ],
+      "dtype": "float64",
+      "min": -43.346622362773516,
+      "max": 977.6728861967865,
+      "nonfinite": 0,
+      "array_sha256": "756b061ce82a3b5416d92729fd38a6b47e7cca90d1fc456dbc95df983e307ef4"
+    }
+  },
+  "parameter_order": [
+    "surface_0_roc_mm",
+    "surface_1_roc_mm",
+    "thickness_mm"
+  ],
+  "manufacturer_truth_mm": [
+    -82.23,
+    -32.14,
+    3.59
+  ],
+  "saved_recovered_mm": [
+    -76.50730870355196,
+    -31.67109826500937,
+    3.2508296966552734
+  ],
+  "saved_metrics": {
+    "final_loss": 0.001163493492640555,
+    "n_iterations": 21,
+    "mean_displacement_error_um": 43.05133056640625,
+    "recovered_surface_0_roc_mm": -76.50730870355196,
+    "recovered_surface_1_roc_mm": -31.67109826500937,
+    "recovered_thickness_mm": 3.2508296966552734,
+    "relative_error_surface_0_roc_mm": 0.06959371636200958,
+    "relative_error_surface_1_roc_mm": 0.014589350808669285,
+    "relative_error_thickness_mm": 0.09447640761691545,
+    "theta_x_deg": 1.0381163358688354,
+    "theta_y_deg": -0.581322968006134
+  },
+  "loss": {
+    "values": [
+      1.9438362121582031,
+      1.865420937538147,
+      0.9808444976806641,
+      0.42932096123695374,
+      0.12683317065238953,
+      0.05070628225803375,
+      0.02665809728205204,
+      0.014587637968361378,
+      0.008980636484920979,
+      0.007734765764325857,
+      0.007485957816243172,
+      0.007137893233448267,
+      0.006490407977253199,
+      0.005390097852796316,
+      0.0038405219092965126,
+      0.002215384738519788,
+      0.0013706600293517113,
+      0.001166735659353435,
+      0.0011635313276201487,
+      0.001163493492640555,
+      0.001163493492640555
+    ],
+    "definition": "Source optimizer records pre-update mean of squared masked residual components across the full grid; differs from valid-pixel mean displacement norm. No optimizer replay."
+  },
+  "phase_fixture": {
+    "x": {
+      "max_wrapped_phase_error_radians": 0.0,
+      "mean_level": 100.0,
+      "returned_b": 2500.0,
+      "note": "b is squared modulation, not amplitude; these are synthetic 32x32 fixture pixels."
+    },
+    "y": {
+      "max_wrapped_phase_error_radians": 0.0,
+      "mean_level": 100.0,
+      "returned_b": 2500.0,
+      "note": "b is squared modulation, not amplitude; these are synthetic 32x32 fixture pixels."
+    }
+  },
+  "crop_fixture": {
+    "source_shape": [
+      2048,
+      2048
+    ],
+    "crop_shape": [
+      768,
+      768
+    ],
+    "offset": [
+      640,
+      640
+    ],
+    "center_value": 0.9071852602402631
+  },
+  "custom_scoring": {
+    "ncc": 0.999802,
+    "nrmse": 0.038696
+  },
+  "custom_pose_control": {
+    "output_pose": {
+      "origin": [
+        1000,
+        1000,
+        1000
+      ],
+      "theta_x": 90,
+      "theta_y": 90
+    },
+    "score": {
+      "ncc": 0.999802,
+      "nrmse": 0.038696
+    },
+    "scope": "Custom score ignores pose fields; no ray tracing or claim of optical equivalence."
+  },
+  "generic_scoring": {
+    "three-parameter-output": {
+      "error": "Failed to load reference array: reference array not usable; tried ground_truth.npy, ground_truth.npz, ground_truth.npy, ground_truth.npz, reference.npy, reference.npz, reference_reconstruction.npy, reference_reconstruction.npz, reconstruction.npy, reconstruction.npz; errors: ground_truth.npz: ground_truth.npz has no array matching output shape (3,); available shapes: {'surface_0_roc_mm': [1], 'surface_1_roc_mm': [1], 'thickness_mm': [1]}",
+      "scorer": "generic"
+    },
+    "three-parameter-oracle": {
+      "error": "Failed to load reference array: reference array not usable; tried ground_truth.npy, ground_truth.npz, ground_truth.npy, ground_truth.npz, reference.npy, reference.npz, reference_reconstruction.npy, reference_reconstruction.npz, reconstruction.npy, reconstruction.npz; errors: ground_truth.npz: ground_truth.npz has no array matching output shape (3,); available shapes: {'surface_0_roc_mm': [1], 'surface_1_roc_mm': [1], 'thickness_mm': [1]}",
+      "scorer": "generic"
+    },
+    "first-radius-only": {
+      "nrmse": "inf",
+      "ncc": 1.0,
+      "mse": 0.0,
+      "psnr": "inf",
+      "ssim": 1.0,
+      "boundaries": {
+        "ncc_boundary": null,
+        "nrmse_boundary": null
+      },
+      "passed": null,
+      "scorer": "generic"
+    }
+  },
+  "staging": {
+    "L1": {
+      "visible_paths": [
+        "README.md",
+        "data",
+        "requirements.txt"
+      ],
+      "available_files_copied": [
+        "README.md",
+        "data/calibration/calibration.mat",
+        "data/calibration/cam1.mat",
+        "data/calibration/cam2.mat",
+        "data/calibration/cams.mat",
+        "data/calibration/checkerboard.png",
+        "data/calibration/gammas.mat",
+        "data/calibration/rotation.mat",
+        "data/ground_truth.npz",
+        "data/lenses/ThorLabs/LE1234-A.txt",
+        "data/meta_data.json",
+        "requirements.txt"
+      ],
+      "truth_copied": true,
+      "lens_prescription_copied": true,
+      "raw_images_available": false,
+      "commands_intercepted": [
+        "python -m venv /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/049-audit-v2/staging/L1/.venv",
+        "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/049-audit-v2/staging/L1/.venv/bin/pip install -q -r /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/049-source/tasks/differentiable_deflectometry/requirements.txt",
+        "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/049-audit-v2/staging/L1/.venv/bin/pip install -q pytest"
+      ]
+    },
+    "L2": {
+      "visible_paths": [
+        "README.md",
+        "data",
+        "requirements.txt",
+        "plan/approach.md"
+      ],
+      "available_files_copied": [
+        "README.md",
+        "data/calibration/calibration.mat",
+        "data/calibration/cam1.mat",
+        "data/calibration/cam2.mat",
+        "data/calibration/cams.mat",
+        "data/calibration/checkerboard.png",
+        "data/calibration/gammas.mat",
+        "data/calibration/rotation.mat",
+        "data/ground_truth.npz",
+        "data/lenses/ThorLabs/LE1234-A.txt",
+        "data/meta_data.json",
+        "plan/approach.md",
+        "requirements.txt"
+      ],
+      "truth_copied": true,
+      "lens_prescription_copied": true,
+      "raw_images_available": false,
+      "commands_intercepted": [
+        "python -m venv /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/049-audit-v2/staging/L2/.venv",
+        "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/049-audit-v2/staging/L2/.venv/bin/pip install -q -r /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/049-source/tasks/differentiable_deflectometry/requirements.txt",
+        "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/049-audit-v2/staging/L2/.venv/bin/pip install -q pytest"
+      ]
+    },
+    "L3": {
+      "visible_paths": [
+        "README.md",
+        "data",
+        "requirements.txt",
+        "plan"
+      ],
+      "available_files_copied": [
+        "README.md",
+        "data/calibration/calibration.mat",
+        "data/calibration/cam1.mat",
+        "data/calibration/cam2.mat",
+        "data/calibration/cams.mat",
+        "data/calibration/checkerboard.png",
+        "data/calibration/gammas.mat",
+        "data/calibration/rotation.mat",
+        "data/ground_truth.npz",
+        "data/lenses/ThorLabs/LE1234-A.txt",
+        "data/meta_data.json",
+        "plan/approach.md",
+        "plan/design.md",
+        "requirements.txt"
+      ],
+      "truth_copied": true,
+      "lens_prescription_copied": true,
+      "raw_images_available": false,
+      "commands_intercepted": [
+        "python -m venv /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/049-audit-v2/staging/L3/.venv",
+        "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/049-audit-v2/staging/L3/.venv/bin/pip install -q -r /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/049-source/tasks/differentiable_deflectometry/requirements.txt",
+        "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/049-audit-v2/staging/L3/.venv/bin/pip install -q pytest"
+      ]
+    }
+  },
+  "source_function_selections": {
+    "Fringe._solve": [
+      {
+        "name": "_solve",
+        "lines": [
+          70,
+          78
+        ]
+      }
+    ],
+    "crop": [
+      {
+        "name": "crop_images",
+        "lines": [
+          179,
+          193
+        ]
+      },
+      {
+        "name": "get_crop_offset",
+        "lines": [
+          196,
+          199
+        ]
+      }
+    ],
+    "scorer.py": [
+      {
+        "name": "_compute_quality_metrics",
+        "lines": [
+          194,
+          218
+        ]
+      }
+    ],
+    "custom": [
+      {
+        "name": "_bases",
+        "lines": [
+          30,
+          32
+        ]
+      },
+      {
+        "name": "_find",
+        "lines": [
+          35,
+          41
+        ]
+      },
+      {
+        "name": "score_differentiable_deflectometry",
+        "lines": [
+          640,
+          659
+        ]
+      }
+    ],
+    "runner": [
+      {
+        "name": "_get_visible_paths",
+        "lines": [
+          66,
+          89
+        ]
+      }
+    ],
+    "local_runner": [
+      {
+        "name": "start",
+        "lines": [
+          59,
+          97
+        ]
+      }
+    ]
+  },
+  "scope": {
+    "model_runs": 0,
+    "optical_ray_tracer_runs": 0,
+    "optimizer_iterations": 0,
+    "runtime_installs": 0,
+    "native_raw_data_present": false,
+    "fixtures": "Synthetic controls, not native camera samples.",
+    "saved_displacement_error": "Retained metric only; raw screen-intersection maps absent, so not replayed."
+  },
+  "reproduction": {
+    "command": ".venv-br033/bin/python scripts/audit_imaging101_deflectometry.py --sources .local/explainers/completion-20260927/049-source --output .local/explainers/FRESH-deflectometry-audit",
+    "receipt": ".local/explainers/completion-20260927/049-audit-v2/audit.json",
+    "receipt_sha256": "dcb84ae48a60965be376d2422ef120742620522614b064ea8fd717e260a44058",
+    "script": "scripts/audit_imaging101_deflectometry.py",
+    "helper_script": "scripts/audit_imaging101_poisson_lowdose.py"
+  },
+  "upstream": {
+    "revision": "df23bef16ed92d597f9d9397f313de54e9d4015a",
+    "receipts": [
+      {
+        "url": "https://huggingface.co/api/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/differentiable_deflectometry?recursive=true&expand=true",
+        "path": "hf-task-tree.json",
+        "link_header": "<https://huggingface.co/api/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks%2Fdifferentiable_deflectometry?expand=true&recursive=true&limit=50&cursor=ZXlKbWFXeGxYMjVoYldVaU9pSjBZWE5yY3k5a2FXWm1aWEpsYm5ScFlXSnNaVjlrWldac1pXTjBiMjFsZEhKNUwyVjJZV3gxWVhScGIyNHZabWw0ZEhWeVpYTXZiM1YwY0hWMFgyMWhkR1Z5YVdGc0xtNXdlaUlzSW5SeVpXVmZiMmxrSWpvaVlUaGhZMlUzTkRrME9UWTNZemt6Tnpjek1EaGlZVGMyWkdZeU0yTTNOVEEwTVdObFptVXhOaUo5OjUw>; rel=\"next\"",
+        "status": "downloaded",
+        "bytes": 42129,
+        "sha256": "7ee42eebd7203c733908cc7c85e99851e028c6002dcdb47e78c66f5afb26a263"
+      },
+      {
+        "url": "https://api.github.com/repos/vccimaging/DiffDeflectometry/commits/master",
+        "path": "upstream/commit.json",
+        "link_header": null,
+        "status": "downloaded",
+        "bytes": 6881,
+        "sha256": "86ec1543d672a4d79329b585be8f460c6d69fca46edbbc519e0b3059cac9ee9a"
+      },
+      {
+        "url": "https://api.github.com/repos/vccimaging/DiffDeflectometry/git/trees/df23bef16ed92d597f9d9397f313de54e9d4015a?recursive=1",
+        "path": "upstream/tree.json",
+        "link_header": null,
+        "status": "downloaded",
+        "bytes": 16787,
+        "sha256": "562a7856e915dbae5e64a992facbd56cf7f07d991cf8801438122a619f9c0b1c"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/vccimaging/DiffDeflectometry/df23bef16ed92d597f9d9397f313de54e9d4015a/README.md",
+        "path": "upstream/README.md",
+        "link_header": null,
+        "status": "downloaded",
+        "bytes": 3443,
+        "sha256": "73719ed644c7654a7559a46f2110a293f437d7f4ee0c7189671327c4e4efb357"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/vccimaging/DiffDeflectometry/df23bef16ed92d597f9d9397f313de54e9d4015a/demo_experiments.py",
+        "path": "upstream/demo_experiments.py",
+        "link_header": null,
+        "status": "downloaded",
+        "bytes": 6198,
+        "sha256": "c1d0576b2e77afa0578f79e6b102989e55fe8c7d198bc7b5d9f0faab108ea40b"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/vccimaging/DiffDeflectometry/df23bef16ed92d597f9d9397f313de54e9d4015a/lenses/ThorLabs/LE1234-A.txt",
+        "path": "upstream/LE1234-A.txt",
+        "link_header": null,
+        "status": "downloaded",
+        "bytes": 194,
+        "sha256": "c7d6788ea236cc7145c5c9b332c91cb7873ac754533bdca589f147990546a237"
+      }
+    ],
+    "lens_recovery": {
+      "path": "tasks/differentiable_deflectometry/data/lenses/ThorLabs/LE1234-A.txt",
+      "bytes": 194,
+      "git_blob_sha1": "20e9e005e14f3d885e78a07aedb297d081d856cc",
+      "sha256": "c7d6788ea236cc7145c5c9b332c91cb7873ac754533bdca589f147990546a237",
+      "status": "verified-against-HF-tree",
+      "benchmark_manifest_entry": false,
+      "copied_from": "upstream/LE1234-A.txt",
+      "upstream_revision": "df23bef16ed92d597f9d9397f313de54e9d4015a"
+    },
+    "license": "No license file found in pinned upstream tree; benchmark MIT and upstream attribution remain distinct."
+  },
+  "raw_data_recovery": {
+    "name": "data_new.npz",
+    "public_page": "https://drive.google.com/file/d/1s2EnhoUOpbP4G6GtjMOA-lEsp0Ogt3aL/view",
+    "viewer_metadata_bytes": 3221226050,
+    "metadata_field": "itemJson[25][2]",
+    "range_probe_bytes_received": 0,
+    "attempts": [
+      ".local/explainers/completion-20260927/049-source/upstream/data-range-probe-receipt.json",
+      ".local/explainers/completion-20260927/049-source/upstream/data-range-curl-receipt.json"
+    ],
+    "status": "Python TLS EOF; curl connection timeout. Full 3.22 GB archive not downloaded."
+  },
+  "source_figure_inspection": {
+    "reviewer": "assistant",
+    "date": "2026-09-29",
+    "scope": "Notebook-embedded measurement/modeled/error figures inspected. Native measurements have been normalized, masked, rendered and resampled; these panels do not replace raw numerical arrays. This source inspection is not canonical story acceptance.",
+    "figures": [
+      {
+        "cell": 9,
+        "path": ".local/explainers/completion-20260927/049-source/notebook-cell-9.png",
+        "bytes": 209845,
+        "sha256": "ed1286d552572ce8faea6727e8642f653e7216209742b278101c46b0e469ba60"
+      },
+      {
+        "cell": 10,
+        "path": ".local/explainers/completion-20260927/049-source/notebook-cell-10.png",
+        "bytes": 197404,
+        "sha256": "df210cd8f5c41bfeb0f8cda2cf7a31340466a0af1b94cb6c44faf23861a499df"
+      }
+    ],
+    "observations": [
+      "Cell9 shows initial modeled stripes disagreeing with both measured camera views. Cell10 shows visually closer saved modeled stripes; this is a retained source comparison, not an independently reproduced fit.",
+      "Each upper two-camera figure is repeated below with an outer Camera2 label. Source plot_image_comparison saves the same complete figure for both camera filenames. There are two cameras, not four.",
+      "The left measurement panels can support a source-derived input view if separated from modeled/error panels and explicitly labeled as rendered source figures. The numerical32x32 fixture remains a separate synthetic explanation."
+    ]
+  },
+  "status": {
+    "source_audit": true,
+    "native_raw_acquisition": false,
+    "source_figure_available": true,
+    "canonical_story": false,
+    "visual_acceptance": false
+  },
+  "findings": [
+    "The task is refractive metrology through two lens surfaces, not reflection. README specifies two arrays (1,3,8,2,2048,2048), while available metadata selects768x768 crops beginning at640,640. Full raw_data.npz is absent from both pages of the pinned HF listing and the benchmark manifest.",
+    "All41 requested numeric/metadata assets are now verified; checkerboard and initial spot diagram bring the verified total to43. Three small saved JPGs remain unavailable after distinct Python/hf.co and curl/primary-host transport attempts. Notebook-embedded camera comparison images are retained within the verified notebook and inspected separately.",
+    "An unmanifested194-byte lens prescription was found in the pinned HF tree. Cited upstream bytes have the same Git blob SHA1,20e9e005e14f3d885e78a07aedb297d081d856cc, and were copied locally with a recovery receipt. It encodes the same manufacturer radii and thickness as ground_truth.npz.",
+    "Manufacturer truth is two signed radii -82.23/-32.14mm and thickness3.59mm. Saved curvatures invert to -76.50730870355196/-31.67109826500937mm and thickness3.2508296966552734mm. Relative errors6.9594%,1.4589%,9.4476% reproduce the saved metric fields. No pose truth is supplied.",
+    "The native result includes eight parameters: two curvatures, thickness, three origin coordinates and two tilts. The task-aware scorer evaluates only the three radii/thickness values. Replacing origin with[1000,1000,1000] and both tilts with90 leaves its NCC0.999802/NRMSE0.038696 unchanged. This is a file-scoring control, not optical equivalence.",
+    "Actual end-to-end scorer dispatch is generic. Both saved and exact-truth three-vectors fail against the separate scalar NPZ keys. A one-radius oracle selects only the first radius and yields NRMSEinfinity because the reference range is zero. This is a retained technical contract defect; no external solver result is judged a model failure.",
+    "The21 recorded losses match metrics.json final_loss0.001163493492640555. Source optimizer logs the pre-update mean squared residual components across the entire masked grid; this differs from the valid-pixel mean Euclidean displacement. Saved43.05133056640625um displacement cannot be independently replayed without raw intersections and masks. No convergence curve is a new optimizer run.",
+    "Fixed32x32 fringe fixture phase agrees modulo2pi within1e-12; recovered mean intensity100 and returned b2500 show that b is squared modulation, not amplitude50. The crop fixture reproduces the saved center value. These synthetic controls do not stand in for native measurement pixels.",
+    "L1-L3 seeding copies available data including ground_truth.npz and the lens prescription, while omitting source/evaluation. All installer commands are intercepted. Raw camera stacks and unacquired display pattern files remain absent from the audit workspace, so staging inspection does not claim a complete runnable packet.",
+    "Full public upstream archive size3221226050 bytes comes from Drive viewer metadata. A64KiB capped Python range attempt failed with TLS EOF; curl failed before receiving headers. No full archive was downloaded. This is a transport/access observation, not proof of account-wide unavailability.",
+    "An operation-specific teaching story can use separately labeled rendered camera panels, exact calibration/parameter records and synthetic phase controls. It must preserve the missing raw-data/replay boundary, generic scorer defect, visible truth and original source attribution; it is not yet authored or accepted."
+  ]
+}
