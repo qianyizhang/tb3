@@ -9818,50 +9818,102 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "astronomy",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "pending-operation-review",
+      "source_asset_readiness": "19 task files,60 shared sources and all40 released assets verified. Native visibilities, per-scan closures, all six comparison images and references are available; fixed operator/fixture arithmetic, scorers and local staging audited.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-eht-black-hole-original.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A 2D radio-brightness image.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "blocking_dependency": null,
+      "remaining_work": "Author the static closure-imaging story with native measurements and saved cal/corrupt comparisons; disclose flux/scorer conventions, scan grouping and answer access. Export and inspect desktop/mobile/no-GPU/playback before acceptance.",
       "contract_projection": {
-        "raw": "Sparse complex interferometric observations with station-gain effects.",
-        "helpers": "Baseline geometry and closure quantities that reduce gain dependence. The assistance level can add an approach and software design.",
-        "tools": "Python and the task’s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README’s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "A 2D radio-brightness image.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "title": "Reconstruct black-hole radio brightness",
+        "goal": "Recover a **64×64 radio-brightness image** from sparse, gain-corrupted Fourier\nmeasurements of one synthetic M87-like ring.",
+        "value": "Closure quantities cancel station gain factors, helping separate source structure\nfrom telescope calibration effects.",
+        "raw": "**421 complex visibility samples across 21 station pairs**, with Fourier\ncoordinates, station IDs and noise estimates. Both calibrated and corrupted\nobservations are supplied.",
+        "helpers": "The release includes **269 per-scan closure phases and 233 log amplitude ratios**,\ntheir uncertainties and Fourier coordinates. Metadata declares 2 μas pixels and\n0.6 Jy total flux. **All L1–L3 also copy `data/ground_truth.npz` into the solver\nworkspace.** L2 adds an approach; L3 adds software design.",
+        "tools": "Python and declared numerical dependencies. This audit used fixed arithmetic;\nno observation simulation, optimizer, runtime installation or agent trial ran.",
+        "reference": "Saved comparison images and fixtures remain outside initial staging. Ground truth\ninside `data/` is solver-visible; a reader reveal cannot make it private.",
+        "spec": "Implement the Fourier operator and regularized image fitting. Compare visibility,\namplitude-plus-phase and closure-only data terms while preserving scan identity.",
+        "output": "The live harness requires `output/reconstruction.npy`, shape **(64, 64)**. Its\nreference sums to **one**; the separate physical image sums to **0.6 Jy**.\nThe README's Jy/pixel label does not distinguish these conventions.",
+        "score": "Saved corrupted closure-only output has cosine NCC **0.604421**. Its live\nrange-normalized error is **0.114238**; the published flux-normalized convention\ngives **0.1384**. No pass thresholds are supplied. These are saved-array replays,\nnot a fresh reconstruction or evidence of general method superiority.",
+        "challenge": "Sparse Fourier coverage and nonlinear closure losses leave substantial dependence\non image priors. Exact gain cancellation does not establish noise immunity,\nunique reconstruction or blind inference when answers are supplied.",
+        "families": "One synthetic static source, two supplied observation conditions and three retained\ncomparison methods across L1–L3 assistance. This astronomy task is non-medical.",
+        "gap": "Canonical story, Explorer integration and video acceptance remain pending. The\naudit retains inconsistent metric denominators, a malformed forward fixture,\na factor-of-two visibility-loss convention and a TV-gradient sign defect.\nThe six main saved comparisons use entropy regularizers, so the TV defect alone\ndoes not explain their outcomes. Optimizer convergence and Docker fallback\nexecution are unverified; source discrepancies are not repaired scientific evidence.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect sparse Fourier samples and the two supplied observation conditions.",
+          "Combine simultaneous baselines into gain-canceling closure quantities.",
+          "Reveal saved reconstructions, truth, flux differences and scoring limits."
+        ],
         "variants": [
           {
             "name": "L1 · README",
-            "helper": "README, data description and method hints.",
-            "remaining": "Choose and implement a workable algorithm."
+            "helper": "README, observations, closures, metadata and ground truth.",
+            "remaining": "Implement imaging; answer copying is possible."
           },
           {
             "name": "L2 · + approach",
-            "helper": "A proposed algorithmic approach is added.",
-            "remaining": "Design the software and implement the method."
+            "helper": "L1 plus algorithm guidance.",
+            "remaining": "Design and implement the method."
           },
           {
             "name": "L3 · + design",
-            "helper": "Approach and software design are added.",
-            "remaining": "Implement the specified design and numerical details."
+            "helper": "L2 plus interfaces and numerical details.",
+            "remaining": "Implement and reconcile source conventions."
           }
         ],
         "sources": [
           [
-            "Pinned task README",
+            "Pinned task definition",
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/eht_black_hole_original/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Released forward operator",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/eht_black_hole_original/src/physics_model.py"
+          ],
+          [
+            "Live reference scorer",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+          ],
+          [
+            "Local staging",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py"
+          ],
+          [
+            "Source, fixture and saved-array audit",
+            "presentation/external-tasks/sources/imaging101-eht-original-audit.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
+        "html": {
+          "goal": "<p>Recover a <strong>64×64 radio-brightness image</strong> from sparse, gain-corrupted Fourier measurements of one synthetic M87-like ring.</p>",
+          "value": "<p>Closure quantities cancel station gain factors, helping separate source structure from telescope calibration effects.</p>",
+          "raw": "<p><strong>421 complex visibility samples across 21 station pairs</strong>, with Fourier coordinates, station IDs and noise estimates. Both calibrated and corrupted observations are supplied.</p>",
+          "helpers": "<p>The release includes <strong>269 per-scan closure phases and 233 log amplitude ratios</strong>, their uncertainties and Fourier coordinates. Metadata declares 2 μas pixels and 0.6 Jy total flux. <strong>All L1–L3 also copy <code>data/ground_truth.npz</code> into the solver workspace.</strong> L2 adds an approach; L3 adds software design.</p>",
+          "tools": "<p>Python and declared numerical dependencies. This audit used fixed arithmetic; no observation simulation, optimizer, runtime installation or agent trial ran.</p>",
+          "reference": "<p>Saved comparison images and fixtures remain outside initial staging. Ground truth inside <code>data/</code> is solver-visible; a reader reveal cannot make it private.</p>",
+          "spec": "<p>Implement the Fourier operator and regularized image fitting. Compare visibility, amplitude-plus-phase and closure-only data terms while preserving scan identity.</p>",
+          "output": "<p>The live harness requires <code>output/reconstruction.npy</code>, shape <strong>(64, 64)</strong>. Its reference sums to <strong>one</strong>; the separate physical image sums to <strong>0.6 Jy</strong>. The README&#x27;s Jy/pixel label does not distinguish these conventions.</p>",
+          "score": "<p>Saved corrupted closure-only output has cosine NCC <strong>0.604421</strong>. Its live range-normalized error is <strong>0.114238</strong>; the published flux-normalized convention gives <strong>0.1384</strong>. No pass thresholds are supplied. These are saved-array replays, not a fresh reconstruction or evidence of general method superiority.</p>",
+          "challenge": "<p>Sparse Fourier coverage and nonlinear closure losses leave substantial dependence on image priors. Exact gain cancellation does not establish noise immunity, unique reconstruction or blind inference when answers are supplied.</p>",
+          "families": "<p>One synthetic static source, two supplied observation conditions and three retained comparison methods across L1–L3 assistance. This astronomy task is non-medical.</p>",
+          "gap": "<p>Canonical story, Explorer integration and video acceptance remain pending. The audit retains inconsistent metric denominators, a malformed forward fixture, a factor-of-two visibility-loss convention and a TV-gradient sign defect. The six main saved comparisons use entropy regularizers, so the TV defect alone does not explain their outcomes. Optimizer convergence and Docker fallback execution are unverified; source discrepancies are not repaired scientific evidence.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>Native arrays are available and inspected. No conjugate measurements are added. The stored calibrated/corrupted closures differ because the source generates noisy observations; they are not a pure gain-only control.</p>",
+          "helpers": "<p>Use the supplied per-scan closure arrays. The small preprocessing helper instead selects the first occurrence of each station pair, producing only 35 triangles and 35 quadrangles and mixing Fourier coordinates from different scans.</p>",
+          "answer": "<p>Preserve the 64×64 array, 128 μas field and stored pixel sums. Label any flux normalization or logarithmic display. Distinguish retained reference outputs from agent predictions, and show truth only on an explicit reader reveal.</p>"
+        },
+        "missing_media": []
       },
-      "source_brief_sha256": "3b4847d562b9aa674cea4edfe2b35697966f5f9836092ff75f3eb9a112998aac",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval."
+      "source_brief_sha256": "a07bd91d31554525d59ada8ee5fac55e062362296739f57511d6b8de50be2247",
+      "blocker_resolution": "Exact release data, output conventions, retained references and local staging are audited. Source defects and inconsistent metric paths remain explicit. Canonical story and visual acceptance are pending.",
+      "source_review": {
+        "date": "2026-09-29",
+        "reviewer": "assistant",
+        "receipt": "presentation/external-tasks/sources/imaging101-eht-original-audit.json",
+        "sha256": "4340fc7a95b969914121d30ce95ed5efa0934cd396700a9da06596598ff2edc7",
+        "status": "source-audited-native-arrays-available"
+      }
     },
     {
       "entry_id": "imaging101-eht-black-hole-tomography",
@@ -16374,8 +16426,9 @@
   "counts": {
     "reviewed-scripted-planar": 43,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 96,
-    "blocked-source-input": 53
+    "blocked-source-contract": 95,
+    "blocked-source-input": 53,
+    "pending-operation-review": 1
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -17301,6 +17354,16 @@
         "export_receipt_sha256": "59e3a45cfd5109291652a32ef8b91fd86dc38287bc16d25bc52e553447abfed7",
         "reviewed_entries": 56,
         "next_entry": "imaging101-eht-black-hole-original"
+      },
+      {
+        "date": "2026-09-29",
+        "entry_id": "imaging101-eht-black-hole-original",
+        "stage": "source-audit-complete",
+        "receipt": "presentation/external-tasks/sources/imaging101-eht-original-audit.json",
+        "receipt_sha256": "4340fc7a95b969914121d30ce95ed5efa0934cd396700a9da06596598ff2edc7",
+        "reviewed_entries": 56,
+        "next_entry": "imaging101-eht-black-hole-original",
+        "note": "Pinned assets, native closure operators, saved comparisons, metric/fixture defects and answer visibility audited; diagnostic images inspected. Canonical story/export acceptance pending."
       }
     ]
   }
