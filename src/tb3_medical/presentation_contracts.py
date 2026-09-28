@@ -514,6 +514,24 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class CtContextChannels(TypedDict):
+    view: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class CtContextBeat(ExpansionBeat):
+    channels: CtContextChannels
+    scene: Literal[
+        "inputs", "headers", "liver", "surgery", "fields", "reference", "validator", "limits"
+    ]
+
+
+class CtContextPlan(ExpansionPlan):
+    recipe: Literal["ct-context-v1"]
+    beats: list[CtContextBeat]
+
+
 class HistorySourcingChannels(TypedDict):
     view: tuple[float, float]
     output: tuple[float, float]
@@ -930,6 +948,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | CtContextPlan
     | HistorySourcingPlan
     | MriImporterPlan
     | LocalizedCtPlan

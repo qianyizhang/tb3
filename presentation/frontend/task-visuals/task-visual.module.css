@@ -2500,3 +2500,211 @@
     padding: 8px 4px;
   }
 }
+/* Native CT context assessment: evidence, claim and metadata remain separate. */
+.player[data-recipe='ct-context-v1'] .storyLayout {
+  grid-template-columns: minmax(0, 1fr) 280px;
+}
+.player[data-recipe='ct-context-v1'] .storyOperation {
+  overflow: hidden;
+}
+.contextScene {
+  padding: 16px 24px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #243a31;
+}
+.contextScene h4 {
+  font-size: 23px;
+  line-height: 1.15;
+  margin: 0 0 14px;
+}
+.contextScene p {
+  margin: 9px 0;
+}
+.contextPair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.contextPair figure {
+  margin: 0;
+  min-width: 0;
+  background: #101816;
+  color: #f1f5ee;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.contextPair svg {
+  display: block;
+  width: 100%;
+  height: 200px;
+  background: #000;
+}
+.contextPair figcaption {
+  padding: 7px 10px;
+  font-size: 12px;
+}
+.contextPair figcaption span {
+  display: block;
+  font-size: 10px;
+  margin-top: 3px;
+}
+.contextCards {
+  display: flex;
+  gap: 12px;
+}
+.contextCards article {
+  flex: 1;
+  min-width: 0;
+  padding: 16px;
+  background: #f1f5ef;
+  border: 1px solid #ccd8cf;
+  border-radius: 7px;
+}
+.contextCards code {
+  font-size: 12px;
+  line-height: 1.7;
+}
+.contextCards small {
+  font-size: 11px;
+}
+.contextCallout {
+  padding: 10px 12px;
+  background: #fff3db;
+  border-left: 3px solid #bd7b27;
+}
+.contextChain {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+.contextChain article {
+  flex: 1;
+}
+.contextChain p {
+  margin: 3px 0;
+}
+.contextChain > span {
+  font-size: 28px;
+  color: #a16b21;
+}
+.contextFields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.contextFields > div {
+  padding: 8px;
+  background: #f3f6f1;
+  border: 1px solid #cbd4cd;
+  border-radius: 5px;
+  font-size: 12px;
+}
+.contextFields small {
+  display: block;
+}
+.contextFields [data-selected='true'] {
+  border-color: #bb7a25;
+  background: #fff0d2;
+}
+.contextClaim {
+  margin-top: 10px;
+  padding: 12px 16px;
+  border: 1px solid #bc7d31;
+  background: #fffcf6;
+  border-radius: 7px;
+}
+.contextClaim h5 {
+  font-size: 21px;
+  margin: 7px 0;
+}
+.contextLock {
+  padding: 40px 25px;
+  border: 1px dashed #60796c;
+  background: #f4f6f0;
+}
+.contextLock > b {
+  font-size: 23px;
+}
+.contextTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.contextTable :is(td, th) {
+  padding: 12px 8px;
+  border-bottom: 1px solid #cbd8cf;
+  text-align: left;
+}
+.contextAside {
+  font-size: 12px;
+  line-height: 1.45;
+  padding: 16px;
+}
+.contextAside p {
+  margin: 6px 0 10px;
+}
+.contextAside small {
+  font-size: 10px;
+  color: #536b60;
+}
+.player[data-recipe='ct-context-v1'] :global(.scene-steps) {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+:global([data-explainer-export-frame]) .player[data-recipe='ct-context-v1'] .storyHeading {
+  height: 116px;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='ct-context-v1']
+  :global(.scene-steps button) {
+  min-height: 31px;
+  padding-block: 4px;
+}
+@container task-visual (max-width:900px) {
+  .player[data-recipe='ct-context-v1'] .storyLayout {
+    grid-template-columns: 1fr;
+  }
+  .player[data-recipe='ct-context-v1'] :global(.scene-steps) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .contextScene {
+    padding: 14px;
+    font-size: 13px;
+  }
+  .contextScene h4 {
+    font-size: 19px;
+  }
+  .contextPair {
+    grid-template-columns: 1fr;
+  }
+  .contextPair svg {
+    height: auto;
+    max-height: 280px;
+  }
+  .contextCards {
+    flex-direction: column;
+  }
+  .contextFields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .contextClaim h5 {
+    font-size: 19px;
+  }
+  .contextTable {
+    font-size: 11px;
+  }
+  .contextTable :is(td, th) {
+    padding: 9px 4px;
+  }
+}
+.contextPair figcaption {
+  display: block;
+  color: #f1f5ee;
+}
+.contextPair figcaption b {
+  color: #f1f5ee;
+}
+.contextPair figcaption span {
+  color: #d1dfd4;
+}

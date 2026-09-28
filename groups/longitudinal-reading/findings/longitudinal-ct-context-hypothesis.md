@@ -202,3 +202,21 @@ supplied-context digest `ffdf321ba2637b46484309d8ec2c39fdffd5234b99e3152842c245a
 
 CT source: Longitudinal-CT v3, Küstner, Peisen, Gatidis et al., University Hospital
 Tübingen / FDAT, CC BY-NC 4.0. Generated media remain local with source hashes.
+
+## Retrospective context reader, 2026-09-28
+
+The assistant-authored [CT-only context story](../presentation/stories/ct-context.story.md)
+explains this condition independently of the lesion rerun. Its
+[source audit](../presentation/sources/ct-context-audit.json) verifies 24 source/snapshot
+file copies, retained output/trace hashes and native geometry. The original
+schema result replays exactly. Four temporary author variants confirm the declared
+mechanical boundary: all-unknown and unsupported observed assertions pass;
+unknown with a non-null value and a missing report fail. These checks do not
+rescore clinical correctness or constitute new model attempts.
+
+Four native axial crops at the agent's cited liver and groin planes were inspected
+alongside its retained coordinate PNGs. The reader adds amber point/region markers
+only when explaining the output, then reveals patient metadata separately from
+cohort context and absent individual history. No reference contour or new clinical
+adjudication is implied. Confidence remains an uncalibrated self-assessment.
+The original scientific interpretation, frozen payloads and rewards are unchanged.

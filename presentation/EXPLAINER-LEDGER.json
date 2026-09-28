@@ -3771,15 +3771,15 @@
       ],
       "illustration_kind": "report",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "ct-context",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "76 source pins; 24 source/snapshot file copies; exact saved-validator replay; four native CT crops and all nine retained fields; patient/cohort/unavailable reference separation and four author schema diagnostics.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/034-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Return broad/specific context claims with evidence, confidence, alternatives and unknowns.",
+      "remaining_work": "No outstanding explainer work for this retained condition. Individual surgical history and clinical adjudication remain unavailable; no new trial implied. Remote delivery pending at program level.",
       "contract_projection": {
         "raw": "Two deidentified full CT volumes and retained headers.",
         "helpers": "No supplied clinical diagnosis, dates, locations or prior output; explicit permission to answer unknown.",
@@ -3802,7 +3802,97 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "f74f9232fd98d38aca70ade4ddc2c6a2c6f4e75060df5bb0f9466578e883107f"
+      "source_brief_sha256": "f74f9232fd98d38aca70ade4ddc2c6a2c6f4e75060df5bb0f9466578e883107f",
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "receipt": "groups/longitudinal-reading/presentation/sources/ct-context-audit.json",
+        "sha256": "9fd8a45af035b471c92251259709428d163323563293912db2c27734905130a7",
+        "status": "source-audit-complete"
+      },
+      "acceptance_scope": "Source, visual and engineering review of one retained CT-only context assessment; not clinical adjudication, new model execution or confidence calibration.",
+      "visual_review": "Eight chapters and full 142-second playback; four native crops, all nine fields, delayed metadata, schema-only diagnostics; desktop/mobile/locale/Explorer/no-GPU inspected.",
+      "reviewed_contract_projection": {
+        "title": "Infer only clinical context supported by CT",
+        "goal": "**A CT-only context assessment should connect each claim to evidence and retain justified unknowns.** In the one retained Astra-medium attempt, two of nine fields were inferred and seven marked unknown. Those counts are not an accuracy score.",
+        "value": "Not yet specified.",
+        "raw": "deidentified baseline and follow-up full CT volumes, 512 × 512 × 615 and 512 × 512 × 743 voxels, with cleaned NIfTI headers. Native i/j/k axes increase L/P/S; affines map to RAS millimeters.",
+        "helpers": "earlier/later ordering only; explicit permission to answer unknown. No clinical record, dates, demographics, diagnosis, locations, reference masks or earlier model output.",
+        "tools": "installed NiBabel, NumPy and Pillow were used for header inspection, sampled axial/coronal surveys and focused views. This was not exhaustive lesion review.",
+        "reference": "independently retained patient CSV age/sex/interval and cohort diagnosis/treatment/purpose were withheld. Individual operative records, treatment dates and regimen are unavailable. The independent context-supplied lesion session did not receive this inference output.",
+        "spec": "Inspect available images and headers. Separate visible observations from hypotheses and unavailable history. Return `context.json` with all nine requested fields: broad diagnosis, specific primary, age, recorded sex, interval, baseline/follow-up purposes, systemic treatment and surgical context. Each has status, value, confidence, basis and alternatives; unknown uses a null value. The companion report states method, limits and zero-based native evidence coordinates.",
+        "output": "`context.json` with all nine field records and a companion `report.md` with method, native coordinates and limits.\n\nThe retained answer infers suspected metastatic liver disease and probable prior right inguinal/local intervention. It leaves the other seven fields unknown; melanoma is an alternative, not exact identification. Numeric confidences describe the submitted assessments and have no measured calibration. The surgical suggestion lacks an individual reference for adjudication.",
+        "score": "**Mechanical validity only:** the frozen validator checks field structure and a nonempty report; it returns no scientific score. Its saved result replays exactly. Author-created all-unknown and unsupported-assertion outputs both pass; inconsistent unknown/value and missing-report variants fail. These four diagnostics are saved-output checks, not new model trials or corrections to original rewards.\n\nThe model and oracle originally received reward 1; no-op received 0. One model session took 207.37 seconds and retained 14 image observation blocks, including montages. Blocks do not count distinct native slices. Coincidental agreement with hidden metadata does not establish CT-only identifiability; one patient cannot establish diagnostic performance.",
+        "challenge": "Plausible image hypotheses are weaker than a clinical record. Missing history may justify abstention; a schema pass cannot adjudicate diagnostic support.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect native images and headers without private context.",
+          "Connect qualified claims and unknowns to evidence.",
+          "Reveal source levels and explain the mechanical validator boundary."
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "earlier/later ordering only; explicit permission to answer unknown. No clinical record, dates, demographics, diagnosis, locations, reference masks or earlier model output.",
+            "remaining": "Inspect available images and headers. Separate visible observations from hypotheses and unavailable history. Return `context.json` with all nine requested fields: broad diagnosis, specific primary, age, recorded sex, interval, baseline/follow-up purposes, systemic treatment and surgical context. Each has status, value, confidence, basis and alternatives; unknown uses a null value. The companion report states method, limits and zero-based native evidence coordinates."
+          }
+        ],
+        "sources": [
+          [
+            "Frozen experiment condition",
+            "groups/longitudinal-reading/experiments/longitudinal-ct-context-inference-astra-medium/protocol.md"
+          ],
+          [
+            "Exact instruction",
+            "groups/longitudinal-reading/methods/longitudinal-ct-context-v1/inference-instruction.md"
+          ],
+          [
+            "Predeclared two-condition design",
+            "groups/longitudinal-reading/methods/longitudinal-ct-context-v1/protocol.md"
+          ],
+          [
+            "Existing finding and field-by-field interpretation",
+            "groups/longitudinal-reading/findings/longitudinal-ct-context-hypothesis.md"
+          ],
+          [
+            "Retained source audit and saved-output diagnostics",
+            "groups/longitudinal-reading/presentation/sources/ct-context-audit.json"
+          ],
+          [
+            "Source derivation and license",
+            "presentation/task-explorer/ct-context/NOTICE.md"
+          ]
+        ],
+        "html": {
+          "goal": "<p><strong>A CT-only context assessment should connect each claim to evidence and retain justified unknowns.</strong> In the one retained Astra-medium attempt, two of nine fields were inferred and seven marked unknown. Those counts are not an accuracy score.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>deidentified baseline and follow-up full CT volumes, 512 × 512 × 615 and 512 × 512 × 743 voxels, with cleaned NIfTI headers. Native i/j/k axes increase L/P/S; affines map to RAS millimeters.</p>",
+          "helpers": "<p>earlier/later ordering only; explicit permission to answer unknown. No clinical record, dates, demographics, diagnosis, locations, reference masks or earlier model output.</p>",
+          "tools": "<p>installed NiBabel, NumPy and Pillow were used for header inspection, sampled axial/coronal surveys and focused views. This was not exhaustive lesion review.</p>",
+          "reference": "<p>independently retained patient CSV age/sex/interval and cohort diagnosis/treatment/purpose were withheld. Individual operative records, treatment dates and regimen are unavailable. The independent context-supplied lesion session did not receive this inference output.</p>",
+          "spec": "<p>Inspect available images and headers. Separate visible observations from hypotheses and unavailable history. Return <code>context.json</code> with all nine requested fields: broad diagnosis, specific primary, age, recorded sex, interval, baseline/follow-up purposes, systemic treatment and surgical context. Each has status, value, confidence, basis and alternatives; unknown uses a null value. The companion report states method, limits and zero-based native evidence coordinates.</p>",
+          "output": "<p><code>context.json</code> with all nine field records and a companion <code>report.md</code> with method, native coordinates and limits.</p>\n<p>The retained answer infers suspected metastatic liver disease and probable prior right inguinal/local intervention. It leaves the other seven fields unknown; melanoma is an alternative, not exact identification. Numeric confidences describe the submitted assessments and have no measured calibration. The surgical suggestion lacks an individual reference for adjudication.</p>",
+          "score": "<p><strong>Mechanical validity only:</strong> the frozen validator checks field structure and a nonempty report; it returns no scientific score. Its saved result replays exactly. Author-created all-unknown and unsupported-assertion outputs both pass; inconsistent unknown/value and missing-report variants fail. These four diagnostics are saved-output checks, not new model trials or corrections to original rewards.</p>\n<p>The model and oracle originally received reward 1; no-op received 0. One model session took 207.37 seconds and retained 14 image observation blocks, including montages. Blocks do not count distinct native slices. Coincidental agreement with hidden metadata does not establish CT-only identifiability; one patient cannot establish diagnostic performance.</p>",
+          "challenge": "<p>Plausible image hypotheses are weaker than a clinical record. Missing history may justify abstention; a schema pass cannot adjudicate diagnostic support.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
+      },
+      "completion_review": {
+        "date": "2026-09-28",
+        "source_brief_sha256": "b7ffb0c2d1bb03cfe9171c6001e39fc3fb110f3d04e6da8447a651221404f15a",
+        "source_story_sha256": "c33726f846dd033e8b56001ce4bea8b0ea4bd98f86a023ee84163ce89e6550d4",
+        "acceptance_receipt_sha256": "13055f1bf3d4eaa919ffb672cf3da0a91e0a076d834e5893922111296b217fbe"
+      }
     },
     {
       "entry_id": "tb3-report-backed-reading",
@@ -14130,10 +14220,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 28,
+    "reviewed-scripted-planar": 29,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 107,
-    "pending-operation-review": 9,
+    "pending-operation-review": 8,
     "blocked-source-input": 48
   },
   "completion_program": {
@@ -14153,7 +14243,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-ct-context-inference",
+    "active_entry": "tb3-report-backed-reading",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -14795,6 +14885,15 @@
         "export_receipt_sha256": "f26ff092c1fbc072000549c91fd9189b62fb6637250cec3d0e05078348950e44",
         "reviewed_entries": 41,
         "next_entry": "tb3-ct-context-inference"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-ct-context-inference",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/034-acceptance.json",
+        "export_receipt_sha256": "4c08ee2b7a38a14267dbe4dd5061333df4b8dadece534e5073b75c2c4b0d9356",
+        "reviewed_entries": 42,
+        "next_entry": "tb3-report-backed-reading"
       }
     ]
   }

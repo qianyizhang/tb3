@@ -1,4 +1,12 @@
 export {
+  contextInputs,
+  contextOutput,
+  contextReference,
+  contextFields,
+  contextSelection,
+  contextPixel,
+} from '../presentation/frontend/task-visuals/ct-context';
+export {
   historySource,
   historyReference,
   historySelection,

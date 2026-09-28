@@ -259,3 +259,18 @@ Reader crops remove search; reference and saved-output roles remain explicit. Co
 Assistant analysis, not a user research decision: the [localized reader audit](../presentation/sources/localized-ct-audit.json) verifies exact source/CT/cache identity, selected-reference geometry and saved-score replays. Four saved montages reconstruct byte-for-byte. The [existing finding](../findings/longitudinal-ct-v2-and-localized.md#localized-reader-audit--2026-09-28) now records a reproduced verifier gap: judgment fields and masks are validated separately, so synthetic negative judgments plus oracle masks still validate. The actual saved rejection/empty-output combination is consistent; frozen evidence and original scores remain unchanged.
 
 The reader explanation separates supplied-location assistance, actual displayed views, attributed model judgments and delayed private reference. Source annotators had clinical reports; the solver did not. Reopen clinical interpretation only with appropriate adjudication or new inspectable evidence, and repair the consistency check only in a deliberately new task revision before any separately authorized trial. Explanation work implies no additional model run.
+
+## CT-only context explanation, 2026-09-28
+
+Assistant explanation under the user-selected explainer completion program:
+[canonical context story](../presentation/stories/ct-context.story.md) and
+[source audit](../presentation/sources/ct-context-audit.json) now isolate the
+context-inference operation from the independent context-supplied lesion trial.
+Four native views link the retained liver/groin claims to their cited locations;
+patient metadata, cohort descriptions and unavailable individual history remain
+separate. Seven unknowns and two inferences are not a 2/9 score. The unchanged
+validator accepts unsupported author assertions because its declared contract is
+structural; four saved-output diagnostics and exact original replay demonstrate
+that boundary without changing rewards. Suggested surgery remains unadjudicated.
+No further model attempt or clinical conclusion is selected here. Reopen only
+with relevant individual records or a separately selected study condition.

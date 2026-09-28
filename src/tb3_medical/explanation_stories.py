@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "ct-context-v1": "retained-ct-context-v1",
     "history-sourcing-v1": "retained-history-sourcing-v1",
     "mri-importer-v1": "retained-mri-importer-v1",
     "localized-ct-v1": "retained-localized-ct-v1",
@@ -82,6 +83,11 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-ct-context-v1": (
+        "source-slices",
+        "reference.json",
+        {"inputs.json", "output.json", "reference.json", "NOTICE.md", "DATA-LICENSE.txt"},
+    ),
     "retained-history-sourcing-v1": (
         "source-records",
         "reference.json",
@@ -486,6 +492,12 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class CtContextChannels(Closed):
+    view: Pair
+    output: Pair
+    reference: Pair
 
 
 class HistorySourcingChannels(Closed):
@@ -938,6 +950,24 @@ class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
         return self
 
 
+class CtContextBeat(ExpansionBeat[CtContextChannels]):
+    scene: Literal[
+        "inputs", "headers", "liver", "surgery", "fields", "reference", "validator", "limits"
+    ]
+
+
+class CtContextStory(Story[CtContextChannels]):
+    recipe: Literal["ct-context-v1"]
+    beats: tuple[CtContextBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class HistorySourcingBeat(ExpansionBeat[HistorySourcingChannels]):
     scene: Literal[
         "retrieval",
@@ -1333,6 +1363,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | CtContextStory
     | HistorySourcingStory
     | MriImporterStory
     | LocalizedCtStory
@@ -1372,6 +1403,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | CtContextStory
     | HistorySourcingStory
     | MriImporterStory
     | LocalizedCtStory
@@ -1571,6 +1603,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | CtContextStory
     | HistorySourcingStory
     | MriImporterStory
     | LocalizedCtStory
@@ -1654,6 +1687,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         frame, data_license, label_license = {
+            "retained-ct-context-v1": ("RAS", "CC-BY-NC-4.0", "CC-BY-NC-4.0"),
             "retained-history-sourcing-v1": (
                 "source-record",
                 "LicenseRef-TB3-retained-records",

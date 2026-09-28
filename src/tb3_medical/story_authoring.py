@@ -152,6 +152,7 @@ def new(
         if recipe == "history-sourcing-v1":
             beat["scene"] = "retrieval"
         if recipe in {
+            "ct-context-v1",
             "mri-importer-v1",
             "localized-ct-v1",
             "aneurysm-localization-v1",

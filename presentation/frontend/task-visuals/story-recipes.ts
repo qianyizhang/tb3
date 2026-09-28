@@ -17,6 +17,7 @@ import {
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
   return !(
+    (state.recipe === 'ct-context-v1' && state.scene === 'reference' && state.reference <= 0.5) ||
     (state.recipe === 'history-sourcing-v1' &&
       state.scene === 'reference' &&
       state.reference <= 0.5) ||
@@ -34,6 +35,7 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'ct-context-v1',
     'history-sourcing-v1',
     'mri-importer-v1',
     'localized-ct-v1',
@@ -109,6 +111,15 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'ct-context-v1':
+      return {
+        heading: 'What context can these CTs support?',
+        corner: 'Native CT pair · qualified output · separate metadata reveal',
+        legend: [
+          ['#ffc35b', 'Agent evidence point · cross'],
+          ['#ffc35b', 'Agent evidence region · dashed', true],
+        ],
+      };
     case 'history-sourcing-v1':
       return {
         heading: 'From history to bounded task evidence',

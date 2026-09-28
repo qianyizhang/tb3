@@ -198,6 +198,53 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     localizedReference,
     localizedOutput,
   } = await loadFrontend('expansion_fixture.mjs');
+  const {
+    contextInputs,
+    contextOutput,
+    contextReference,
+    contextFields,
+    contextSelection,
+    contextPixel,
+  } = await loadFrontend('expansion_fixture.mjs');
+  const cp = plans.find((p) => p.recipe === 'ct-context-v1');
+  assert.ok(cp);
+  assert.deepEqual(JSON.parse(JSON.stringify(contextOutput.counts)), {
+    observed: 0,
+    inferred: 2,
+    unknown: 7,
+  });
+  assert.deepEqual(
+    Array.from(contextFields, (f) => f[0]),
+    Object.keys(contextOutput.fields),
+  );
+  assert.equal(contextInputs.images.length, 4);
+  for (const v of contextInputs.images) {
+    assert.equal(v.width, v.bounds[1] - v.bounds[0]);
+    assert.equal(v.height, v.bounds[3] - v.bounds[2]);
+    if (v.point) {
+      const [x, y] = contextPixel(v, v.point);
+      assert.ok(x > 0 && x < v.width && y > 0 && y < v.height);
+    }
+  }
+  assert.deepEqual(
+    Array.from(contextReference.diagnostics, (d) => d.contract_valid),
+    [true, true, false, false],
+  );
+  assert.ok(contextReference.diagnostics.every((d) => d.scientific_score === null));
+  assert.deepEqual(
+    Array.from(contextReference.rewards, (d) => d.reward),
+    [1, 1, 0],
+  );
+  const contextFieldsBeat = cp.beats.find((b) => b.scene === 'fields'),
+    seen = new Set();
+  for (let f = contextFieldsBeat.startFrame; f < contextFieldsBeat.endFrame; f++)
+    seen.add(contextSelection(sampleStory(cp, f)).field);
+  assert.deepEqual([...seen], [0, 1, 2, 3, 4, 5, 6, 7, 8]);
+  const contextRevealBeat = cp.beats.find((b) => b.scene === 'reference');
+  for (let f = 0; f <= contextRevealBeat.startFrame; f++)
+    assert.equal(contextSelection(sampleStory(cp, f)).reference, false);
+  assert.equal(contextSelection(sampleStory(cp, contextRevealBeat.endFrame - 1)).reference, true);
+  assert.equal(contextSelection(sampleStory(cp, 0)).output, false);
   const { historySource, historyReference, historySelection } =
     await loadFrontend('expansion_fixture.mjs');
   const historyPlan = plans.find((p) => p.recipe === 'history-sourcing-v1');
