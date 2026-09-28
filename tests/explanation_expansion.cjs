@@ -18,6 +18,9 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    nlosReveal,
+    nlosInputs,
+    nlosContract,
     carsReveal,
     carsResidual,
     carsInput,
@@ -1629,6 +1632,20 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       slice.region_cells.includes('M74,74h1v1h-1z'),
       'Witness must lie in displayed reference',
     );
+  }
+  const nlos = plans.find((p) => p.recipe === 'imaging101-nlos-v1');
+  assert(nlos);
+  const nb = nlos.beats.find((b) => b.scene === 'reference');
+  assert.equal(nlosReveal(sampleStory(nlos, nb.startFrame)), false);
+  assert.equal(nlosReveal(sampleStory(nlos, nb.endFrame - 1)), true);
+  assert.equal(nlosReveal(sampleStory(nlos, 0)), false);
+  for (const h of nlosInputs.histograms) {
+    for (let i = 0; i < h.aligned.length; i++)
+      assert.equal(h.aligned[i], h.raw[(i - h.shift_bins) % h.raw.length]);
+  }
+  for (const p of nlosContract.stolt.probes) {
+    assert.ok(p.sample_kf > p.kz && p.weight > 0 && p.weight < 1);
+    assert.ok(Math.abs(p.sample_kf * p.weight - p.kz) < 1e-12);
   }
   const cars = plans.find((p) => p.recipe === 'imaging101-cars-v1');
   assert(cars);

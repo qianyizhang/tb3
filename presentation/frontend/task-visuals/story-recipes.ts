@@ -17,6 +17,9 @@ import {
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
   return !(
+    (state.recipe === 'imaging101-nlos-v1' &&
+      state.scene === 'reference' &&
+      state.reference <= 0.5) ||
     (state.recipe === 'imaging101-cars-v1' &&
       state.scene === 'reference' &&
       state.reference <= 0.5) ||
@@ -45,6 +48,7 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'imaging101-nlos-v1',
     'imaging101-cars-v1',
     'rex-topcow-v1',
     'automed-multiorgan-v1',
@@ -126,6 +130,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'imaging101-nlos-v1':
+      return {
+        heading: 'Reconstruct a hidden scene from timed light',
+        corner: 'Published measurements and saved volume',
+        legend: [
+          ['#264b43', 'Measured / saved · solid'],
+          ['#b9521e', 'Selected sample · marker'],
+          ['#8052a1', 'Baseline reference · dashed', true],
+        ],
+      };
     case 'imaging101-cars-v1':
       return {
         heading: 'Infer temperature from a CARS spectrum',

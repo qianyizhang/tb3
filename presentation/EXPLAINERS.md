@@ -1,5 +1,14 @@
 # Canonical task explainers
 
+`imaging101-nlos-v1` uses exact confocal histograms, calibration shifts and
+Stolt-map probes with the released saved-volume projections. The
+[source notice](task-explorer/imaging101-nlos/NOTICE.md) retains Stanford data
+terms, source coordinates, native-pixel display transforms and the identical
+baseline/reference boundary. Its `view` channel selects measured points,
+frequency samples, projection axes and scoring controls; `reference` reveals
+the baseline only in its chapter. Small operator checks and saved-output replay
+do not establish a fresh full-size reconstruction or independent scene truth.
+
 The operation library preserves the original `ours` route pilot and adds explicit
 spatial and planar stories. [The candidate map](EXPLAINER-CANDIDATES.md) and
 [per-entry ledger](EXPLAINER-LEDGER.json) use all **205 entries** as the denominator.

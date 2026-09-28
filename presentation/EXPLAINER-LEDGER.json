@@ -7968,15 +7968,15 @@
       ],
       "illustration_kind": "nlos",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "imaging101-nlos",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reconstruction-other",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-confocal-nlos-fk.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A 3D hidden-scene reflectivity volume.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Pinned measurements, saved volume, baseline and metadata acquired; actual L1-L3 file seeding and generic scoring replayed; small source operator fixture checked.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/044-acceptance.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work for the pinned NLOS source condition. Missing pass thresholds, fresh full-size reconstruction, independent scene truth and original-author byte equivalence are not claimed. Remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "A wall-scanned transient light measurement cube, indexed by wall position and arrival time.",
         "helpers": "Wall dimensions, time-of-flight calibration and Fourier migration method guidance. The assistance level can add an approach and software design.",
@@ -8014,7 +8014,107 @@
         "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
       },
       "source_brief_sha256": "989164c2d38293bd01b59dfe6921bfe58eb84da2b40106371cfb277d5fc95e48",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval."
+      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "receipt": "presentation/external-tasks/sources/imaging101-nlos-audit.json",
+        "sha256": "74d4e73fc696b13f7afb6c0c8cfb39950fa8c920abc738cef573c3ff9c142750",
+        "status": "source-audit-complete"
+      },
+      "acceptance_scope": "Assistant source, numerical, visual and engineering review of one pinned Imaging101 confocal NLOS case, saved volume and explicit diagnostic controls. No agent, full-size inverse, hidden-reference validity, independent ground truth or benchmark pass.",
+      "visual_review": "Eight chapters: native counts, exact alignment, Stolt probes, saved volume projections, baseline reveal, staging, scoring controls and limits; desktop/mobile/locale/Explorer/no-GPU and 176-second playback inspected.",
+      "reviewed_contract_projection": {
+        "title": "Reconstruct an object hidden around a corner",
+        "goal": "Implement confocal f-k migration from timed relay-wall measurements to a 3D\nreflectivity volume. The pinned release supplies one measurement cube and a saved\nreconstruction; this explanation audits those artifacts without a fresh full-size solve.",
+        "value": "Time of flight constrains indirect light paths. Calibration, array order and the\nStolt frequency map connect those measurements to a spatial reconstruction.",
+        "raw": "`raw_data.npz:meas` is float32 `(128,128,2048)` in `(y,x,time)` order,\nwith observed counts from 0 to 42. The wall spans 2 m × 2 m; each time bin is\n32 ps. Source metadata attributes the cube to an outdoor scene with a 10 minute\nexposure. The original MAT-to-NPZ conversion receipt was not acquired.",
+        "helpers": "Wall size, bin width, float64 `(128,128)` `tofgrid` delays in picoseconds,\nand a metadata file specifying a 512-bin crop. The README calls `tofgrid`\nfloat32, but the acquired array is float64. L2 adds approach prose and L3 adds\nsoftware design. All three local levels also copy the baseline reconstruction.",
+        "tools": "The released task uses Python, NumPy and SciPy. End-to-end, function-level and\nplanning modes are separate. This review intercepts installation commands and\nexecutes only selected seeding, scoring, three histograms and a small operator fixture.",
+        "reference": "There is no independent scene ground truth. `baseline_reference.npz` contains\n`reconstruction` `(1,512,128,128)`. Its batch-zero array is exactly equal to both\nsaved `reconstruction.npz:fk` and `fk_reference.npy`.\n\nThe selected released `LocalRunner.start` copies the entire data directory,\nincluding this baseline, for L1–L3. Every external command was intercepted during\nthe reproduction. Docker source mounts the whole task read-only at `/workspace_src`;\nthat path was inspected, not executed. Reader reference reveal is a display choice,\nnot a hidden-reference evaluation claim.",
+        "spec": "For each histogram, circularly roll by `-floor(tofgrid / 32 ps)`, retain the first\n512 bins and transpose to `(time,y,x)`. The three illustrated native points\n`(32,32)`, `(64,64)` and `(96,96)` shift by −748, −816 and −903 bins.\n\nThe source operator applies square-root amplitude/depth weighting, pads 2×,\ntakes a 3D FFT, samples the Stolt map with linear interpolation, applies a positive\nfrequency mask and Jacobian, then inverse-transforms and squares the magnitude.\nThe full input inverse was not executed. The published `(16,8,8)` solver fixture\nagrees within `4.62e-14` absolute difference; this is a bounded operator check.\n\nSource display axes use inclusive endpoints: x,y −1 to1 m and z0 to2.4576 m after\ncropping. Metadata's 9.8304 m depth range describes the original 2048 bins.\nForward-model half-bin centers are a separate convention.",
+        "output": "Active local end-to-end scoring expects `output/reconstruction.npy`, one real\nnumeric volume `(512,128,128)`; a singleton batch axis is squeezed. A 2D maximum\nprojection fails shape matching. The task-native saved archive instead uses key `fk`.",
+        "score": "The active generic scorer selects `evaluation/reference_outputs/reconstruction.npz`\nahead of the baseline file, uses cosine NCC and range-normalized RMSE, and retains\namplitude. Selected saved-output replays establish:\n\n| Diagnostic | Generic NCC | Generic NRMSE | Interpretation |\n| --- | ---: | ---: | --- |\n| Saved array | 1 | 0 | Identical stored arrays |\n| Copied baseline | 1 | 0 | Visible-reference no-op control |\n| Half amplitude | 1 | 0.020574 | Correlation alone does not check scale |\n| Front projection | — | — | Shape error: 128×128 versus 512×128×128 |\n\nNative `main.py` centers NCC and max-normalizes each volume first. Its half-amplitude\ncontrol gives NCC1 / NRMSE0. These are different metric conventions.\n\nThe retained metric file reports NCC≈1, NRMSE0 and 19.6 seconds. That runtime is\nhistorical, not measured here. It has no pass boundary keys. `main.py` could write\n0.9 / 0.1 boundaries on execution, but it was not run or used to replace the original\nrecord. Current pass status remains unavailable. No fresh solver or agent success.",
+        "challenge": "Very weak indirect light and timing errors can place a surface at the wrong depth.",
+        "families": "One scientific task definition across L1/L2/L3 assistance. This collection includes non-medical astronomy, optics and Earth-science tasks as well as medical imaging.",
+        "gap": "Independent ground truth, capture-conversion lineage, fresh full-size reconstruction\nand benchmark pass remain unestablished. The saved peak lies in the last depth plane.\nOriginal MATLAB swaps lateral axes and removes the final eleven depth planes before\noutput; the released Python adaptation does not. Original-author byte equivalence\nand independent scene-depth accuracy are therefore not claimed.\n\nOriginal Stanford academic/non-commercial data terms are retained separately from\nthe benchmark MIT label. No model run, runtime installation or historical rewrite.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Native wall-count map and three exact timed histograms.",
+          "Calibration roll/crop, Stolt samples and saved-volume projections.",
+          "Explicit baseline reveal, copied-input boundary, metric controls and limits."
+        ],
+        "variants": [
+          {
+            "name": "L1 · README",
+            "helper": "README, requirements, complete data/ including baseline.",
+            "remaining": "Choose and implement an algorithm; reference is exposed."
+          },
+          {
+            "name": "L2 · + approach",
+            "helper": "Same packet plus approach.md.",
+            "remaining": "Design and implement; reference is exposed."
+          },
+          {
+            "name": "L3 · + design",
+            "helper": "Same packet plus design.md.",
+            "remaining": "Implement specified details; reference is exposed."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/confocal-nlos-fk/README.md"
+          ],
+          [
+            "Evaluation modes and assistance",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+          ],
+          [
+            "Source and replay audit",
+            "presentation/external-tasks/sources/imaging101-nlos-audit.json"
+          ],
+          [
+            "Canonical story",
+            "presentation/external-tasks/stories/imaging101-nlos.story.md"
+          ],
+          [
+            "Derived asset provenance and terms",
+            "presentation/task-explorer/imaging101-nlos/NOTICE.md"
+          ],
+          [
+            "Original code and dataset terms",
+            "https://github.com/computational-imaging/nlos-fk/blob/d34d49fed5a86f4ebddf85d461cff6923de5367d/LICENSE"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Implement confocal f-k migration from timed relay-wall measurements to a 3D reflectivity volume. The pinned release supplies one measurement cube and a saved reconstruction; this explanation audits those artifacts without a fresh full-size solve.</p>",
+          "value": "<p>Time of flight constrains indirect light paths. Calibration, array order and the Stolt frequency map connect those measurements to a spatial reconstruction.</p>",
+          "raw": "<p><code>raw_data.npz:meas</code> is float32 <code>(128,128,2048)</code> in <code>(y,x,time)</code> order, with observed counts from 0 to 42. The wall spans 2 m × 2 m; each time bin is 32 ps. Source metadata attributes the cube to an outdoor scene with a 10 minute exposure. The original MAT-to-NPZ conversion receipt was not acquired.</p>",
+          "helpers": "<p>Wall size, bin width, float64 <code>(128,128)</code> <code>tofgrid</code> delays in picoseconds, and a metadata file specifying a 512-bin crop. The README calls <code>tofgrid</code> float32, but the acquired array is float64. L2 adds approach prose and L3 adds software design. All three local levels also copy the baseline reconstruction.</p>",
+          "tools": "<p>The released task uses Python, NumPy and SciPy. End-to-end, function-level and planning modes are separate. This review intercepts installation commands and executes only selected seeding, scoring, three histograms and a small operator fixture.</p>",
+          "reference": "<p>There is no independent scene ground truth. <code>baseline_reference.npz</code> contains <code>reconstruction</code> <code>(1,512,128,128)</code>. Its batch-zero array is exactly equal to both saved <code>reconstruction.npz:fk</code> and <code>fk_reference.npy</code>.</p>\n<p>The selected released <code>LocalRunner.start</code> copies the entire data directory, including this baseline, for L1–L3. Every external command was intercepted during the reproduction. Docker source mounts the whole task read-only at <code>/workspace_src</code>; that path was inspected, not executed. Reader reference reveal is a display choice, not a hidden-reference evaluation claim.</p>",
+          "spec": "<p>For each histogram, circularly roll by <code>-floor(tofgrid / 32 ps)</code>, retain the first 512 bins and transpose to <code>(time,y,x)</code>. The three illustrated native points <code>(32,32)</code>, <code>(64,64)</code> and <code>(96,96)</code> shift by −748, −816 and −903 bins.</p>\n<p>The source operator applies square-root amplitude/depth weighting, pads 2×, takes a 3D FFT, samples the Stolt map with linear interpolation, applies a positive frequency mask and Jacobian, then inverse-transforms and squares the magnitude. The full input inverse was not executed. The published <code>(16,8,8)</code> solver fixture agrees within <code>4.62e-14</code> absolute difference; this is a bounded operator check.</p>\n<p>Source display axes use inclusive endpoints: x,y −1 to1 m and z0 to2.4576 m after cropping. Metadata&#x27;s 9.8304 m depth range describes the original 2048 bins. Forward-model half-bin centers are a separate convention.</p>",
+          "output": "<p>Active local end-to-end scoring expects <code>output/reconstruction.npy</code>, one real numeric volume <code>(512,128,128)</code>; a singleton batch axis is squeezed. A 2D maximum projection fails shape matching. The task-native saved archive instead uses key <code>fk</code>.</p>",
+          "score": "<p>The active generic scorer selects <code>evaluation/reference_outputs/reconstruction.npz</code> ahead of the baseline file, uses cosine NCC and range-normalized RMSE, and retains amplitude. Selected saved-output replays establish:</p>\n<div class=\"table\"><table>\n<tr><th>Diagnostic</th><th>Generic NCC</th><th>Generic NRMSE</th><th>Interpretation</th></tr>\n<tr><td>Saved array</td><td>1</td><td>0</td><td>Identical stored arrays</td></tr>\n<tr><td>Copied baseline</td><td>1</td><td>0</td><td>Visible-reference no-op control</td></tr>\n<tr><td>Half amplitude</td><td>1</td><td>0.020574</td><td>Correlation alone does not check scale</td></tr>\n<tr><td>Front projection</td><td>—</td><td>—</td><td>Shape error: 128×128 versus 512×128×128</td></tr>\n</table></div>\n<p>Native <code>main.py</code> centers NCC and max-normalizes each volume first. Its half-amplitude control gives NCC1 / NRMSE0. These are different metric conventions.</p>\n<p>The retained metric file reports NCC≈1, NRMSE0 and 19.6 seconds. That runtime is historical, not measured here. It has no pass boundary keys. <code>main.py</code> could write 0.9 / 0.1 boundaries on execution, but it was not run or used to replace the original record. Current pass status remains unavailable. No fresh solver or agent success.</p>",
+          "challenge": "<p>Very weak indirect light and timing errors can place a surface at the wrong depth.</p>",
+          "families": "<p>One scientific task definition across L1/L2/L3 assistance. This collection includes non-medical astronomy, optics and Earth-science tasks as well as medical imaging.</p>",
+          "gap": "<p>Independent ground truth, capture-conversion lineage, fresh full-size reconstruction and benchmark pass remain unestablished. The saved peak lies in the last depth plane. Original MATLAB swaps lateral axes and removes the final eleven depth planes before output; the released Python adaptation does not. Original-author byte equivalence and independent scene-depth accuracy are therefore not claimed.</p>\n<p>Original Stanford academic/non-commercial data terms are retained separately from the benchmark MIT label. No model run, runtime installation or historical rewrite.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Actual source arrays.</strong> A sum over recorded time at every wall pixel and exact histograms. The count map is not a photograph of the hidden scene.</p>",
+          "helpers": "<p><strong>Given calibration and guidance.</strong> Three exact shifts, physical scales and analytic operator samples are labeled separately from the saved reconstruction.</p>",
+          "answer": "<p><strong>Saved source output and explicit baseline reveal.</strong> Front/top/side maxima retain all native projection pixels and state the collapsed axis. Square-root contrast and 8-bit RGB are display transforms. Baseline values equal the saved volume.</p>"
+        },
+        "missing_media": []
+      },
+      "completion_review": {
+        "date": "2026-09-28",
+        "source_brief_sha256": "c2b0ef3d49a27d3084f5f6817085c7eb8bfc98ec76ea2e0cbfc1f4bd7cef05c5",
+        "source_story_sha256": "b7d4082391d1acf3c403b5d50592781c770232993a688004e180e2ed59b07be6",
+        "acceptance_receipt_sha256": "64f9520ac01d0c7a1b80fb7a2b41236957773fcb33df50f7a3acff1f2265410f"
+      }
     },
     {
       "entry_id": "imaging101-conventional-ptychography",
@@ -15155,9 +15255,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 34,
+    "reviewed-scripted-planar": 35,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 106,
+    "blocked-source-contract": 105,
     "blocked-source-input": 52
   },
   "completion_program": {
@@ -15177,7 +15277,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "imaging101-confocal-nlos-fk",
+    "active_entry": "imaging101-conventional-ptychography",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -15913,6 +16013,15 @@
         "export_receipt_sha256": "91d583922f2604824e78e4cfa6e49b7126cb2a652a17c7d0fafac83e2effaafa",
         "reviewed_entries": 47,
         "next_entry": "imaging101-confocal-nlos-fk"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "imaging101-confocal-nlos-fk",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/044-acceptance.json",
+        "export_receipt_sha256": "53db863f1e76cdd3a0056f1ae7315621214355ff7f0e6ef9ae0e7990e3678613",
+        "reviewed_entries": 48,
+        "next_entry": "imaging101-conventional-ptychography"
       }
     ]
   }
