@@ -1,0 +1,935 @@
+{
+  "schema": 1,
+  "entry_id": "imaging101-conventional-ptychography",
+  "date": "2026-09-28",
+  "reviewer": "assistant",
+  "scope": "Pinned simulated measurements and saved reconstruction; source operators, selected initial-state intensity projections, actual file staging and scoring controls. No inverse iterations or agent.",
+  "source": {
+    "repository": "AI4ImagingLab/imaging-101-release",
+    "revision": "dc2f668939b21e8312e22529615def610f8611df",
+    "tree_sha256": "0ed33133a6dba6c52a44e2955b17b66454d224c8578cbdf5b0dac04242d56f24",
+    "tree_entries": 1722,
+    "truncated": false,
+    "files": [
+      {
+        "path": "tasks/conventional_ptychography/README.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/README.md",
+        "bytes": 3585,
+        "git_blob_sha1": "69e96b884966ad76079ddaf658ee475efebe03d3",
+        "sha256": "98844ce93902e9ec3648b3e6c6504a2c6ca77fbc8f33038c9fd887814820bc06",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/conventional_ptychography/generate_fixtures.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/generate_fixtures.py",
+        "bytes": 2043,
+        "git_blob_sha1": "6ac056bfd5ba76529fd33406510f45cd2aa5f2d7",
+        "sha256": "defb6bf697c79de33d2fe596d97125e952ae71ed4bc6c568057c6f3bb3bec81a",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/conventional_ptychography/main.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/main.py",
+        "bytes": 6951,
+        "git_blob_sha1": "93350928759ab5f8057974f9f5bbaf915d64bc5e",
+        "sha256": "68711ed584803684f288feb8fe2c49ad3edf8e06e4d4a765e34d1f6f1f8b581d",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/conventional_ptychography/plan/approach.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/plan/approach.md",
+        "bytes": 3151,
+        "git_blob_sha1": "8aaa46e467c5ea51efaeb402599661bafcf890b2",
+        "sha256": "992a25510d709c46c6c68504927b8b2894e3b0e27d24c8238275a58e4d09660e",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/conventional_ptychography/plan/design.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/plan/design.md",
+        "bytes": 5130,
+        "git_blob_sha1": "dac624cabb63130a8cdc82568c0ddcf71bf9a568",
+        "sha256": "aa3a3006d9433999a8614da2399309b0512edd494dccd4615ab86a1c9eee8f7f",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/conventional_ptychography/reference_website_github.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/reference_website_github.md",
+        "bytes": 44,
+        "git_blob_sha1": "c337adf178456fcb692cae89a37f4548be47bb55",
+        "sha256": "2ccbc8651a5ad7ea977d4e244e6bd993eb6552aeca9eb95bb914c6bd79480da5",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/conventional_ptychography/requirements.txt",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/requirements.txt",
+        "bytes": 103,
+        "git_blob_sha1": "87551aa80d43a691d6443c72d3419a1e1524eb90",
+        "sha256": "707813a55cc53f233ff64851ec238aef591d07a09aef5a4bc3244e6f4b5a72f4",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/conventional_ptychography/src/generate_data.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/src/generate_data.py",
+        "bytes": 13934,
+        "git_blob_sha1": "a96ff9c57352c2976eb8fe2f7d2673f2f87d8cd1",
+        "sha256": "5db7741192505b52e8387214c1fb025b205f63dd1fe6c62b743e3c804bcf42cb",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/conventional_ptychography/src/physics_model.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/src/physics_model.py",
+        "bytes": 5516,
+        "git_blob_sha1": "bf251dcbe1c8e02e83bc4d77ae0878593ae55d62",
+        "sha256": "df96ab1f34bbdc2b0c9f5f9a298652e23d3c0040337cf50aa6cd0b64553ed618",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/conventional_ptychography/src/preprocessing.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/src/preprocessing.py",
+        "bytes": 8744,
+        "git_blob_sha1": "69d94101dc55a0e36715c1ff3a527642b55b3458",
+        "sha256": "0575b7b71fcf4ae64aeb9f092462e9f880f5218692e1bd7c9f64f0f14524cd54",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/conventional_ptychography/src/solvers.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/src/solvers.py",
+        "bytes": 9025,
+        "git_blob_sha1": "27f3de269e8eeb3cb26ebe357b716aeac27b4322",
+        "sha256": "54674cd784b79a883b22405a10db6f3b7e0ccf73fd00b0a35d203a0dab74a450",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/conventional_ptychography/src/utils.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/src/utils.py",
+        "bytes": 6859,
+        "git_blob_sha1": "88875ff35ef99538b77f13daccd7e1cc4e5a739c",
+        "sha256": "af4c7e9a81876c2f2d7179d6d38073a84e9221867437d7d191f491d4a4070d95",
+        "status": "verified"
+      },
+      {
+        "path": "tasks/conventional_ptychography/src/visualization.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/src/visualization.py",
+        "bytes": 6542,
+        "git_blob_sha1": "55a4d49d0a1bc20b8895f0f2d22e07076224c608",
+        "sha256": "10972b647cf7028585873e1e7a8bb762566be7cb6810ab00609005d3e01d50f0",
+        "status": "verified"
+      }
+    ],
+    "shared_files": [
+      {
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/LICENSE",
+        "bytes": 1076,
+        "git_blob_sha1": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+        "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+        "status": "verified"
+      },
+      {
+        "path": "README.md",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/README.md",
+        "bytes": 7194,
+        "git_blob_sha1": "60233784ecb46358623ee3be1e9de40e23c70eee",
+        "sha256": "33b226ba0171c595b655c52da7bd4e38c7192e1d274051eb677af4aa49681fef",
+        "status": "verified"
+      },
+      {
+        "path": "assets_manifest.json",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/assets_manifest.json",
+        "bytes": 315512,
+        "git_blob_sha1": "6c0d85a9ad9ad8f4ddeeac4a0a8e9953fcf80884",
+        "sha256": "66568d11536efc12c8be6f03fd0e2ece0a6080ca4abeeea05ab73a3f8e98c797",
+        "status": "verified"
+      },
+      {
+        "path": "evaluation_harness/docker_runner.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/docker_runner.py",
+        "bytes": 4792,
+        "git_blob_sha1": "79f71f432b405f40c087b323b6369c4015403729",
+        "sha256": "8c8d5fb663701fa141402416593b69fe2dc4a13f96648fa210e6d66e1f2f1ee4",
+        "status": "verified"
+      },
+      {
+        "path": "evaluation_harness/local_runner.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py",
+        "bytes": 13941,
+        "git_blob_sha1": "6091549a8a97225b9cc9708074067757720a3d9e",
+        "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+        "status": "verified"
+      },
+      {
+        "path": "evaluation_harness/reference_scoring.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py",
+        "bytes": 9172,
+        "git_blob_sha1": "87eb882e79a514f2ab1303080c222d5fd7f00b42",
+        "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+        "status": "verified"
+      },
+      {
+        "path": "evaluation_harness/runner.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/runner.py",
+        "bytes": 15186,
+        "git_blob_sha1": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab",
+        "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+        "status": "verified"
+      },
+      {
+        "path": "evaluation_harness/scorer.py",
+        "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py",
+        "bytes": 23821,
+        "git_blob_sha1": "07125c06b504291288ab8b3d04c046b476446e04",
+        "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+        "status": "verified"
+      }
+    ],
+    "full_shared_receipt": ".local/explainers/completion-20260927/045-source/shared-source-receipt.json",
+    "full_shared_receipt_sha256": "7bb07f3f5e702d17ad5734e09fdaa88b982c98c4722ef6e9c31144c8bf376185"
+  },
+  "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+  "asset_downloads": [
+    {
+      "path": "tasks/conventional_ptychography/data/ground_truth.npy",
+      "hf_path": "tasks/conventional_ptychography/data/ground_truth.npy",
+      "task": "conventional_ptychography",
+      "size": 2350240,
+      "sha256": "d6fcb6371e2be6ca080aa24b33e07afce45a2d27547bd6ec7860765edd2a078e",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/conventional_ptychography/data/ground_truth.npy",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/conventional_ptychography/data/ground_truth.npz",
+      "hf_path": "tasks/conventional_ptychography/data/ground_truth.npz",
+      "task": "conventional_ptychography",
+      "size": 2350378,
+      "sha256": "a8db9d499ae35837361eedbeedfb75626cfdf4c4372a84685890fc46a07ff4e9",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/conventional_ptychography/data/ground_truth.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/conventional_ptychography/data/meta_data.json",
+      "hf_path": "tasks/conventional_ptychography/data/meta_data.json",
+      "task": "conventional_ptychography",
+      "size": 389,
+      "sha256": "8c4e62ba5bd5a953d4206bb0cda0a5a0b9c2d7e0a13012fe5d9947116b4b2e68",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/conventional_ptychography/data/meta_data.json",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/conventional_ptychography/data/positions.npy",
+      "hf_path": "tasks/conventional_ptychography/data/positions.npy",
+      "task": "conventional_ptychography",
+      "size": 1728,
+      "sha256": "6726bc06859481000d64dbe3a66a71cc5d4d22b9187853ba0b5efb21225c8ef3",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/conventional_ptychography/data/positions.npy",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/conventional_ptychography/data/raw_data.npz",
+      "hf_path": "tasks/conventional_ptychography/data/raw_data.npz",
+      "task": "conventional_ptychography",
+      "size": 6554920,
+      "sha256": "25e3cd9f5affcf5634e9069cf99fcf19b1dfa3c72f1ee8036f7c53111a010728",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/conventional_ptychography/data/raw_data.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/conventional_ptychography/data/simu.hdf5",
+      "hf_path": "tasks/conventional_ptychography/data/simu.hdf5",
+      "task": "conventional_ptychography",
+      "size": 6559832,
+      "sha256": "baba5fe6ff2397102d0fed4d5ad72c2b512b345551104690b9edddaf716a882c",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/conventional_ptychography/data/simu.hdf5",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/conventional_ptychography/evaluation/fixtures/basic_pipeline.npz",
+      "hf_path": "tasks/conventional_ptychography/evaluation/fixtures/basic_pipeline.npz",
+      "task": "conventional_ptychography",
+      "size": 84746,
+      "sha256": "3ce0004c3598228cf356be1ac3f2367005c8149f82acec1b8ba07d7f762cd0c3",
+      "url": "https://hf.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/conventional_ptychography/evaluation/fixtures/basic_pipeline.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/conventional_ptychography/evaluation/reference_outputs/metrics.json",
+      "hf_path": "tasks/conventional_ptychography/evaluation/reference_outputs/metrics.json",
+      "task": "conventional_ptychography",
+      "size": 238,
+      "sha256": "396f297fe9c6a71f5cb77d662187d3081c6cd6aacdbe8832f104fc210809fe87",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/conventional_ptychography/evaluation/reference_outputs/metrics.json",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/conventional_ptychography/evaluation/reference_outputs/recon.hdf5",
+      "hf_path": "tasks/conventional_ptychography/evaluation/reference_outputs/recon.hdf5",
+      "task": "conventional_ptychography",
+      "size": 2619176,
+      "sha256": "6c5b11651c0f246c346ac322b3b40a0220c9305f7844646a9aef193f3c60ebc4",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/conventional_ptychography/evaluation/reference_outputs/recon.hdf5",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    }
+  ],
+  "retained_fetch_failure": {
+    "path": "tasks/conventional_ptychography/evaluation/fixtures/basic_pipeline.npz",
+    "hf_path": "tasks/conventional_ptychography/evaluation/fixtures/basic_pipeline.npz",
+    "task": "conventional_ptychography",
+    "size": 84746,
+    "sha256": "3ce0004c3598228cf356be1ac3f2367005c8149f82acec1b8ba07d7f762cd0c3",
+    "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/conventional_ptychography/evaluation/fixtures/basic_pipeline.npz",
+    "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+    "status": "failed",
+    "error": "URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)'))"
+  },
+  "fetch_resolution": "The official hf.co route recovered the fixture with matching manifest size and SHA-256.",
+  "context_downloads": [
+    {
+      "url": "https://api.github.com/repos/PtyLab/PtyLab.py/commits/main",
+      "path": "upstream/commit.json",
+      "bytes": 8752,
+      "sha256": "40a3831fb1c63d4ef790fb077523e389ea06553b1490df7efafac35e50d2f940",
+      "http_status": 200,
+      "status": "verified-fetch"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PtyLab/PtyLab.py/9b60de8696a5b43ca9fc253546df3d9cadb13751/LICENSE",
+      "path": "upstream/LICENSE",
+      "bytes": 7973,
+      "sha256": "d144897e3770ac91d6abe9725a88a3711bbab34cfdf03b4656cc658ae1f739d1",
+      "http_status": 200,
+      "status": "verified-fetch"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PtyLab/PtyLab.py/9b60de8696a5b43ca9fc253546df3d9cadb13751/README.md",
+      "path": "upstream/README.md",
+      "bytes": 3869,
+      "sha256": "6139bb1cd54b71c2f131587d42b9d55605f12c21ea9c0e74c42193c63bc194ae",
+      "http_status": 200,
+      "status": "verified-fetch"
+    }
+  ],
+  "upstream_revision": "9b60de8696a5b43ca9fc253546df3d9cadb13751",
+  "license": {
+    "benchmark_label": "MIT",
+    "upstream_code": "PtyLab Academic License Agreement, academic non-commercial purposes; original text retained, no relicensing claim.",
+    "url": "https://github.com/PtyLab/PtyLab.py/blob/9b60de8696a5b43ca9fc253546df3d9cadb13751/LICENSE",
+    "sha256": "d144897e3770ac91d6abe9725a88a3711bbab34cfdf03b4656cc658ae1f739d1"
+  },
+  "reproduction": {
+    "command": ".venv-br033/bin/python scripts/audit_imaging101_ptychography.py --sources .local/explainers/completion-20260927/045-source --output .local/explainers/completion-20260927/045-audit-v1",
+    "script": "scripts/audit_imaging101_ptychography.py",
+    "script_sha256": "f665e50b61fd2be33d51208377c59790986792fe9acef7f91390a46d97657670",
+    "receipt": ".local/explainers/completion-20260927/045-audit-v1/audit.json",
+    "receipt_sha256": "1ae7184e0c25aa86807a6501fd5294065dceeb452647473b3696720ae48c835b",
+    "result": {
+      "schema": 1,
+      "entry_id": "imaging101-conventional-ptychography",
+      "source_commit": "dc2f668939b21e8312e22529615def610f8611df",
+      "verified_source_files": [
+        "tasks/conventional_ptychography/README.md",
+        "tasks/conventional_ptychography/generate_fixtures.py",
+        "tasks/conventional_ptychography/main.py",
+        "tasks/conventional_ptychography/plan/approach.md",
+        "tasks/conventional_ptychography/plan/design.md",
+        "tasks/conventional_ptychography/reference_website_github.md",
+        "tasks/conventional_ptychography/requirements.txt",
+        "tasks/conventional_ptychography/src/generate_data.py",
+        "tasks/conventional_ptychography/src/physics_model.py",
+        "tasks/conventional_ptychography/src/preprocessing.py",
+        "tasks/conventional_ptychography/src/solvers.py",
+        "tasks/conventional_ptychography/src/utils.py",
+        "tasks/conventional_ptychography/src/visualization.py",
+        "LICENSE",
+        "README.md",
+        "assets_manifest.json",
+        "docs/END2END_EVALUATION.md",
+        "docs/EVALUATION_GUIDE.md",
+        "docs/function_level_evaluation.md",
+        "docs/plan_evaluation.md",
+        "evaluation_harness/Dockerfile",
+        "evaluation_harness/README.md",
+        "evaluation_harness/__init__.py",
+        "evaluation_harness/__main__.py",
+        "evaluation_harness/agent.py",
+        "evaluation_harness/agents/__init__.py",
+        "evaluation_harness/agents/architect_agent.py",
+        "evaluation_harness/agents/base.py",
+        "evaluation_harness/agents/coder_agent.py",
+        "evaluation_harness/agents/judge_agent.py",
+        "evaluation_harness/agents/planner_agent.py",
+        "evaluation_harness/config.py",
+        "evaluation_harness/docker_runner.py",
+        "evaluation_harness/env_manager.py",
+        "evaluation_harness/frameworks/__init__.py",
+        "evaluation_harness/frameworks/claude_code/README.md",
+        "evaluation_harness/frameworks/claude_code/__init__.py",
+        "evaluation_harness/frameworks/claude_code/copilot_prompt.py",
+        "evaluation_harness/frameworks/claude_code/copilot_runner.py",
+        "evaluation_harness/frameworks/claude_code/copilot_scorer.py",
+        "evaluation_harness/frameworks/claude_code/prepare_all.ps1",
+        "evaluation_harness/frameworks/claude_code/prepare_all.sh",
+        "evaluation_harness/frameworks/deepcode/README.md",
+        "evaluation_harness/frameworks/deepcode/__init__.py",
+        "evaluation_harness/frameworks/deepcode/config.py",
+        "evaluation_harness/frameworks/deepcode/deepcode_config.yaml",
+        "evaluation_harness/frameworks/deepcode/runner.py",
+        "evaluation_harness/frameworks/multi_agent/README.md",
+        "evaluation_harness/frameworks/multi_agent/__init__.py",
+        "evaluation_harness/frameworks/multi_agent/agents/__init__.py",
+        "evaluation_harness/frameworks/multi_agent/agents/architect_agent.py",
+        "evaluation_harness/frameworks/multi_agent/agents/base.py",
+        "evaluation_harness/frameworks/multi_agent/agents/coder_agent.py",
+        "evaluation_harness/frameworks/multi_agent/agents/judge_agent.py",
+        "evaluation_harness/frameworks/multi_agent/agents/planner_agent.py",
+        "evaluation_harness/frameworks/multi_agent/multi_agent.py",
+        "evaluation_harness/frameworks/react/README.md",
+        "evaluation_harness/frameworks/react/__init__.py",
+        "evaluation_harness/frameworks/react/prompts.py",
+        "evaluation_harness/llm_client.py",
+        "evaluation_harness/local_runner.py",
+        "evaluation_harness/multi_agent.py",
+        "evaluation_harness/plan_scorer.py",
+        "evaluation_harness/prompts.py",
+        "evaluation_harness/reference_scoring.py",
+        "evaluation_harness/requirements.txt",
+        "evaluation_harness/runner.py",
+        "evaluation_harness/scorer.py",
+        "evaluation_harness/task_recipes.json",
+        "evaluation_harness/task_scoring.py",
+        "evaluation_harness/task_scoring_custom.py",
+        "evaluation_harness/visualizer.py",
+        "scripts/download_assets.py"
+      ],
+      "verified_asset_count": 9,
+      "raw": {
+        "ptychogram": {
+          "shape": [
+            100,
+            128,
+            128
+          ],
+          "dtype": "float32",
+          "range_kind": "value",
+          "min": 5.074645564873137e-11,
+          "max": 32966.0,
+          "nonfinite": 0,
+          "array_bytes_sha256": "fb4a705adceebff2d1e03e5ebe15672aeb187ad85dc9e7b74890f76ada5e4c77"
+        },
+        "encoder": {
+          "shape": [
+            100,
+            2
+          ],
+          "dtype": "float32",
+          "range_kind": "value",
+          "min": -0.0004914909950457513,
+          "max": 0.0004885525559075177,
+          "nonfinite": 0,
+          "array_bytes_sha256": "0d92455b8876c9e6f33a05849a2e82587720e37eac7eade3054b19d47ad25b7e"
+        }
+      },
+      "truth": {
+        "shape": [
+          542,
+          542
+        ],
+        "dtype": "complex64",
+        "range_kind": "magnitude",
+        "min": 1.0,
+        "max": 1.0,
+        "nonfinite": 0,
+        "array_bytes_sha256": "c153eefd0643dda85b8e462696617c32c9d537bbd7f0f5e9bf02b785342be746"
+      },
+      "saved": {
+        "dxp": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "range_kind": "value",
+          "min": 3.4331597222222227e-06,
+          "max": 3.4331597222222227e-06,
+          "nonfinite": 0,
+          "array_bytes_sha256": "35dbb98eeaadeb9077d4d5b39eafb928817753f059f444e730e687ceb22830c0"
+        },
+        "error": {
+          "shape": [
+            350
+          ],
+          "dtype": "float64",
+          "range_kind": "value",
+          "min": 1.8047041712361525,
+          "max": 482.8713815466483,
+          "nonfinite": 0,
+          "array_bytes_sha256": "f7eb2a72b3d2af69494f1e572a42b96b88260432f063ecdc95a4e56eb77565af"
+        },
+        "object": {
+          "shape": [
+            1,
+            1,
+            1,
+            1,
+            542,
+            542
+          ],
+          "dtype": "complex64",
+          "range_kind": "magnitude",
+          "min": 0.002257907297462225,
+          "max": 1.2452654838562012,
+          "nonfinite": 0,
+          "array_bytes_sha256": "f0f4cf40d59bc309715579e697780e852d3dfb30156871badf40b8154ce4f229"
+        },
+        "probe": {
+          "shape": [
+            1,
+            1,
+            1,
+            1,
+            128,
+            128
+          ],
+          "dtype": "complex128",
+          "range_kind": "magnitude",
+          "min": 0.03596198961078775,
+          "max": 26.237266656460815,
+          "nonfinite": 0,
+          "array_bytes_sha256": "e003a60cc0265f2b79c199cf4a0fe06d1ab08cf0e965d40bc63b06620e75a21f"
+        },
+        "wavelength": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "range_kind": "value",
+          "min": 6.328e-07,
+          "max": 6.328e-07,
+          "nonfinite": 0,
+          "array_bytes_sha256": "e206f8e323ebf2080c8a3c3b159c8fa4362e587d168842c10cc67126921bde84"
+        },
+        "zo": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "range_kind": "value",
+          "min": 0.05,
+          "max": 0.05,
+          "nonfinite": 0,
+          "array_bytes_sha256": "7f925b2036e92fe2f1f0697c3aedfff74d719c1ee2cb6b739d7c30484e75972c"
+        }
+      },
+      "metadata": {
+        "wavelength_m": 6.328e-07,
+        "zo_m": 0.05,
+        "Nd": 128,
+        "dxd_m": 7.2e-05,
+        "No": 542,
+        "dxp_m": 3.4331597222222227e-06,
+        "entrance_pupil_diameter_m": 0.00026435,
+        "num_scan_positions": 100,
+        "bit_depth": 14,
+        "propagator": "Fraunhofer",
+        "operation_mode": "CPM",
+        "description": "Synthetic CP dataset: focused probe, USAF 1951 phase object (phi_max=pi/2), Fermat scan grid"
+      },
+      "hdf_metadata": {
+        "Nd": [
+          128
+        ],
+        "No": [
+          542
+        ],
+        "binningFactor": 1,
+        "dxd": [
+          7.200000254670158e-05
+        ],
+        "entrancePupilDiameter": [
+          0.0002643513726070523
+        ],
+        "wavelength": [
+          6.327999813038332e-07
+        ],
+        "zo": [
+          0.05000000074505806
+        ]
+      },
+      "truth_npy_npz_equal": true,
+      "raw_npz_hdf_equal": true,
+      "source_positions_match": true,
+      "pixel_size_um": 3.4331597222222228,
+      "patch_coverage": {
+        "pixels": 144986,
+        "total_pixels": 293764,
+        "max_overlap": 27,
+        "phase_bar_pixels": 11970,
+        "covered_bar_pixels": 11970,
+        "note": "Rectangular 128x128 extraction windows; not an illumination support or accuracy mask."
+      },
+      "published_fixture_max_abs_errors": {
+        "object_patch": 0.0,
+        "exit_wave": 0.0,
+        "detector_field": 1.4043333874306805e-15,
+        "intensity": 1.2434497875801753e-14,
+        "intensity_fm": 1.2434497875801753e-14,
+        "fft_roundtrip": 1.3256011772999124e-15,
+        "circ_mask": 0.0
+      },
+      "selected_projection_diagnostics": [
+        {
+          "scan": 0,
+          "position_rc": [
+            207,
+            207
+          ],
+          "encoder_m": [
+            0.0,
+            0.0
+          ],
+          "before_relative_l1": 0.9960789118329422,
+          "after_relative_l1": 7.1672218936153435e-06,
+          "zero_estimated_pixels": 0,
+          "note": "One intensity projection from source initialization; no object or probe update."
+        },
+        {
+          "scan": 49,
+          "position_rc": [
+            104,
+            185
+          ],
+          "encoder_m": [
+            -0.0003524624917190522,
+            -7.561288657598197e-05
+          ],
+          "before_relative_l1": 0.9960892571306039,
+          "after_relative_l1": 6.997454683927116e-06,
+          "zero_estimated_pixels": 0,
+          "note": "One intensity projection from source initialization; no object or probe update."
+        },
+        {
+          "scan": 99,
+          "position_rc": [
+            70,
+            266
+          ],
+          "encoder_m": [
+            -0.00047063344391062856,
+            0.0002026088914135471
+          ],
+          "before_relative_l1": 0.996172639002147,
+          "after_relative_l1": 7.753131481758628e-08,
+          "zero_estimated_pixels": 0,
+          "note": "One intensity projection from source initialization; no object or probe update."
+        }
+      ],
+      "staging": {
+        "L1": {
+          "visible_paths": [
+            "README.md",
+            "data",
+            "requirements.txt"
+          ],
+          "files": [
+            "README.md",
+            "data/ground_truth.npy",
+            "data/ground_truth.npz",
+            "data/meta_data.json",
+            "data/positions.npy",
+            "data/raw_data.npz",
+            "data/simu.hdf5",
+            "requirements.txt"
+          ],
+          "both_ground_truth_files_copied": true,
+          "commands_intercepted": [
+            "python -m venv /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/045-audit-v1/L1/.venv",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/045-audit-v1/L1/.venv/bin/pip install -q -r /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/045-source/tasks/conventional_ptychography/requirements.txt",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/045-audit-v1/L1/.venv/bin/pip install -q pytest"
+          ]
+        },
+        "L2": {
+          "visible_paths": [
+            "README.md",
+            "data",
+            "requirements.txt",
+            "plan/approach.md"
+          ],
+          "files": [
+            "README.md",
+            "data/ground_truth.npy",
+            "data/ground_truth.npz",
+            "data/meta_data.json",
+            "data/positions.npy",
+            "data/raw_data.npz",
+            "data/simu.hdf5",
+            "plan/approach.md",
+            "requirements.txt"
+          ],
+          "both_ground_truth_files_copied": true,
+          "commands_intercepted": [
+            "python -m venv /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/045-audit-v1/L2/.venv",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/045-audit-v1/L2/.venv/bin/pip install -q -r /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/045-source/tasks/conventional_ptychography/requirements.txt",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/045-audit-v1/L2/.venv/bin/pip install -q pytest"
+          ]
+        },
+        "L3": {
+          "visible_paths": [
+            "README.md",
+            "data",
+            "requirements.txt",
+            "plan"
+          ],
+          "files": [
+            "README.md",
+            "data/ground_truth.npy",
+            "data/ground_truth.npz",
+            "data/meta_data.json",
+            "data/positions.npy",
+            "data/raw_data.npz",
+            "data/simu.hdf5",
+            "plan/approach.md",
+            "plan/design.md",
+            "requirements.txt"
+          ],
+          "both_ground_truth_files_copied": true,
+          "commands_intercepted": [
+            "python -m venv /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/045-audit-v1/L3/.venv",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/045-audit-v1/L3/.venv/bin/pip install -q -r /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/045-source/tasks/conventional_ptychography/requirements.txt",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/045-audit-v1/L3/.venv/bin/pip install -q pytest"
+          ]
+        }
+      },
+      "generic_reference": "tasks/conventional_ptychography/data/ground_truth.npy",
+      "generic_scoring": {
+        "saved-object": {
+          "nrmse": "inf",
+          "ncc": 0.728639,
+          "mse": 0.472549068,
+          "psnr": 3.26,
+          "ssim": 0.003357,
+          "boundaries": {
+            "ncc_boundary": null,
+            "nrmse_boundary": null
+          },
+          "passed": null
+        },
+        "truth-copy": {
+          "nrmse": "inf",
+          "ncc": 1.0,
+          "mse": 0.0,
+          "psnr": "inf",
+          "ssim": 1.0,
+          "boundaries": {
+            "ncc_boundary": null,
+            "nrmse_boundary": null
+          },
+          "passed": null
+        },
+        "phase-erased-unit": {
+          "nrmse": "inf",
+          "ncc": 1.0,
+          "mse": 0.0,
+          "psnr": "inf",
+          "ssim": 1.0,
+          "boundaries": {
+            "ncc_boundary": null,
+            "nrmse_boundary": null
+          },
+          "passed": null
+        },
+        "conjugated-truth": {
+          "nrmse": "inf",
+          "ncc": 1.0,
+          "mse": 0.0,
+          "psnr": "inf",
+          "ssim": 1.0,
+          "boundaries": {
+            "ncc_boundary": null,
+            "nrmse_boundary": null
+          },
+          "passed": null
+        }
+      },
+      "native_phase_controls": {
+        "saved-object": {
+          "ncc": 0.9757168889045715,
+          "nrmse": 0.04341539740562439
+        },
+        "truth-copy": {
+          "ncc": 0.9999982118606567,
+          "nrmse": 0.0
+        },
+        "phase-erased-unit": {
+          "ncc": 0.0,
+          "nrmse": 0.1977035254240036
+        },
+        "conjugated-truth": {
+          "ncc": -0.9999982118606567,
+          "nrmse": 0.3954070508480072
+        }
+      },
+      "historical_metrics": {
+        "final_error": 1.8429170562144048,
+        "num_iterations": 350,
+        "object_shape": [
+          542,
+          542
+        ],
+        "probe_shape": [
+          128,
+          128
+        ],
+        "wavelength_nm": 632.8,
+        "zo_mm": 50.0,
+        "phase_ncc": 0.9757,
+        "phase_nrmse": 0.0434
+      },
+      "saved_forward_diagnostics": {
+        "sum_relative_intensity_l1": 3.442993085267201,
+        "global_squared_amplitude_error": 0.0011056215535293385,
+        "stored_last_iteration_error": 1.8429170562144048,
+        "note": "Fresh forward-only diagnostic of final saved arrays. Stored history accumulates residuals before each sequential update, then constraints; it is not this final-state evaluation."
+      },
+      "source_function_selections": {
+        "utils.py": [
+          {
+            "name": "fft2c",
+            "lines": [
+              16,
+              26
+            ]
+          },
+          {
+            "name": "ifft2c",
+            "lines": [
+              29,
+              39
+            ]
+          },
+          {
+            "name": "circ",
+            "lines": [
+              46,
+              62
+            ]
+          }
+        ],
+        "physics_model.py": [
+          {
+            "name": "get_object_patch",
+            "lines": [
+              27,
+              46
+            ]
+          },
+          {
+            "name": "compute_exit_wave",
+            "lines": [
+              49,
+              70
+            ]
+          },
+          {
+            "name": "fraunhofer_propagate",
+            "lines": [
+              73,
+              94
+            ]
+          },
+          {
+            "name": "compute_detector_intensity",
+            "lines": [
+              126,
+              142
+            ]
+          }
+        ],
+        "preprocessing.py": [
+          {
+            "name": "load_experimental_data",
+            "lines": [
+              62,
+              118
+            ]
+          },
+          {
+            "name": "setup_reconstruction",
+            "lines": [
+              125,
+              195
+            ]
+          }
+        ],
+        "runner.py": [
+          {
+            "name": "_get_visible_paths",
+            "lines": [
+              66,
+              89
+            ]
+          }
+        ],
+        "local_runner.py": [
+          {
+            "name": "start",
+            "lines": [
+              59,
+              97
+            ]
+          }
+        ]
+      },
+      "execution_scope": {
+        "agent": false,
+        "inverse_iterations": 0,
+        "dataset_generation": false,
+        "runtime_install": false,
+        "docker": false,
+        "published_operator_fixture": true,
+        "forward_and_projection_diagnostics": true,
+        "staging_file_copy": true,
+        "saved_scoring_replay": true
+      },
+      "limits": [
+        "One synthetic source case; saved results, not a fresh reconstruction.",
+        "Released L1-L3 packets expose both truth files.",
+        "Generic scoring erases phase; constant truth magnitude gives infinite NRMSE even for exact truth.",
+        "No pass thresholds shipped; no benchmark pass is established.",
+        "Approach text says periodic momentum and amplitude error; solver code uses a 5 percent random trigger and sum of relative intensity L1 residuals.",
+        "Generator source adds a Poisson draw to its expectation, rather than replacing it; full generator was not executed."
+      ]
+    }
+  },
+  "findings": [
+    "100 synthetic 128x128 diffraction frames; 542x542 pure-phase USAF object with 11970 phase-bar pixels. Both truth formats are equal, and all 293764 magnitudes are exactly one.",
+    "Source pixel size is 3.4331597222 micrometers. Rounded encoder positions exactly match positions.npy. Rectangular extraction windows cover144986/293764 pixels and all11970 phase-bar pixels; this is not an illumination or accuracy mask.",
+    "Selected LocalRunner.start copies both ground truth files under data/ at every L1-L3 level. All installation commands were intercepted. Source read-only Docker mount is not proof of a private reference.",
+    "The active local-filesystem scorer selects data/ground_truth.npy and reduces complex inputs to magnitude. Correct truth, phase-erased ones and conjugated truth have identical generic NCC1 and MSE0; constant reference range gives NRMSE infinity for all three.",
+    "Saved phase metrics replay to NCC0.9757168889 and NRMSE0.0434153974, matching the shipped rounded0.9757/0.0434. The native full-frame calculation centers angles but does not register shifts or unwrap phase. Erased phase has NCC0 and NRMSE0.1977035; conjugated truth NCC-0.9999982/NRMSE0.3954071.",
+    "Shipped metrics lack pass boundaries; generic passed is null. An amplitude-only score does not validate the required complex object. No score or stored artifact was rewritten.",
+    "Published32x32 forward/FFT fixture matches to1.25e-14. Three selected initial-state intensity projections are illustrated; they do not update the object/probe or produce the saved output.",
+    "Source solver uses a5 percent random momentum trigger, alternating L2 rounds, and stores a sum of per-position relative intensity L1 residuals before updates. Approach text instead describes periodic momentum and a global amplitude error; these quantities are not interchangeable.",
+    "Source generation adds a Poisson sample to its expected counts; observed maximum32966 exceeds2^14. The full generator and inverse solver were not run.",
+    "The350-point stored history ends1.8429170562. A separate forward-only check of final stored object/probe yields summed relative intensityL1=3.4429930853 and global squared amplitude error0.0011056216; these are different evaluation states and metrics."
+  ],
+  "status": {
+    "source_audit": true,
+    "canonical_story": false,
+    "visual_review": false
+  }
+}

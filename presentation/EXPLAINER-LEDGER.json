@@ -8134,12 +8134,12 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "reconstruction-other",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "pending-operation-review",
+      "source_asset_readiness": "Nine pinned numeric/metadata assets and 13 source files verified. Native complex truth, simulated measurements, saved object/probe and operator fixture are available.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-conventional-ptychography.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A complex object image: both amplitude and phase.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "blocking_dependency": null,
+      "remaining_work": "Author and bind an operation-specific ptychography story with native diffraction, overlap coordinates, labeled initial-state intensity projection, saved amplitude/phase, truth reveal and metric controls. Export fresh HTML/MP4 and review desktop/mobile/no-GPU/playback before acceptance. No source acquisition blocker remains.",
       "contract_projection": {
         "raw": "Diffraction intensity images collected at overlapping scan positions.",
         "helpers": "Probe and scan geometry, sampling metadata and iterative reconstruction guidance. The assistance level can add an approach and software design.",
@@ -8177,7 +8177,100 @@
         "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
       },
       "source_brief_sha256": "cf9f6f92f25da49bdf8c461d09742af0b115a3e39dc4794091202dfc1df37e0c",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval."
+      "blocker_resolution": "Pinned source staging and generic versus native scoring were reproduced. Both truth files are solver-visible in L1-L3; generic magnitude scoring erases phase and yields infinite NRMSE for constant truth magnitude. This resolves the source-contract audit, not the explainer.",
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "receipt": "presentation/external-tasks/sources/imaging101-ptychography-audit.json",
+        "sha256": "89609b9c41b4ace850c9559b63555010ea2b8680fa0d2973cc40ec78a04624b0",
+        "status": "source-audit-complete"
+      },
+      "reviewed_contract_projection": {
+        "title": "Recover a complex image from overlapping diffraction patterns",
+        "goal": "Recover object amplitude and phase from 100 overlapping, simulated far-field\ndiffraction measurements. The released saved result has useful phase structure;\nthe active generic evaluator discards that phase and cannot establish this task's\ncentral requirement.",
+        "value": "Ptychography connects a moving illumination window to intensity-only detector\nmeasurements. Overlap constrains a shared complex object and probe. A metric that\nretains only amplitude can miss the information this particular object encodes.",
+        "raw": "Pinned `raw_data.npz` contains `ptychogram`, float32 `(100,128,128)`, and\n`encoder`, float32 `(100,2)` in meters, ordered row then column. This is a\nsynthetic USAF phase-chart case, not an acquired specimen. The released HDF5\ncontains exactly the same diffraction and encoder values. Counts range from\napproximately 5.07e-11 to 32,966; source generation adds a Poisson draw to its\nexpectation, so the stated 14-bit scale is not a hard upper bound.",
+        "helpers": "Metadata specifies wavelength 632.8 nm, sample-to-detector distance 50 mm,\n128 detector pixels at 72 micrometers, and a 542-pixel object. Object/probe\nsampling is 3.4331597222 micrometers. The initialization estimates the probe from\na circular aperture and focusing phase; the true probe is not a supplied array.\nThe file `positions.npy` agrees exactly with rounded encoder-to-pixel positions.\nL2 adds an approach; L3 also adds a design.",
+        "tools": "Python numerical dependencies. The published 32-pixel forward/FFT fixture and\nselected initial-state intensity projections were checked locally with existing\npackages. No agent, inverse iterations, dataset generation or installation ran.",
+        "reference": "Both `ground_truth.npy` and `ground_truth.npz:object` contain the same complex64\n`(542,542)` synthetic truth. All 293,764 magnitudes are exactly one; 11,970 pixels\nencode bars at phase pi/2 and the others have phase zero. Actual L1/L2/L3 local\nfile seeding copies **both truth files** because they are inside `data/`.\nReader-facing reference reveals must not be mistaken for private evaluation.",
+        "spec": "For each scan, extract a 128-pixel object patch, multiply by the probe, apply the\ncentered unitary 2D FFT and square the magnitude. The source reconstruction\nprojects measured intensity onto its current detector wave, back-propagates,\nupdates object and probe, and applies momentum and constraints. The code uses\na 5% random momentum trigger; the supplied approach's periodic description is\ndifferent. No reconstruction trajectory is synthesized by this explainer audit.",
+        "output": "Scientifically, a complex object image with amplitude and phase, plus the\njointly estimated probe. The source `main.py` saves `recon.hdf5`, with object\nshape `(1,1,1,1,542,542)` and probe shape `(1,1,1,1,128,128)`.\nThe active generic end-to-end harness instead requires `output/reconstruction.npy`\nand compares squeezed, magnitude-reduced arrays. Native HDF5 output and that\nharness contract are distinct.",
+        "score": "The stored 350-iteration object reproduces the native full-frame, mean-centered\nphase NCC **0.9757169** and phase NRMSE **0.0434154**, matching shipped rounded\nvalues. This is saved-output replay, not a new solver result. It performs no\nregistration or phase unwrapping. The phase-erased unit object gives native\nphase NCC **0** and NRMSE **0.1977035**.\n\nThe generic scorer selects `data/ground_truth.npy` and discards complex phase.\nCorrect truth, phase-erased ones and conjugated truth all receive NCC **1** and\nMSE **0**. Their generic NRMSE is **infinity**, even for exact truth, because\nreference magnitude has zero range. The saved reconstruction's generic NCC is\n0.728639. Shipped metrics contain no pass thresholds, so pass status is unavailable.\n\nThe stored error history ends at **1.8429171**. Source code sums relative\nintensity L1 residuals before each sequential update; it is not the amplitude\nmetric described in the approach. A separate forward-only check of final saved\narrays gives summed relative intensity L1 **3.4429931** and global squared\namplitude error **0.00110562**. These use different metrics and evaluation states.",
+        "challenge": "Intensity discards phase. Overlap couples scans to a shared object and probe,\nwhile probe estimation and phase ambiguities complicate recovery. Constant\ntruth amplitude makes magnitude-only metrics particularly uninformative here.",
+        "families": "One synthetic object and its stored reconstruction across released L1/L2/L3\npackets. Nine numeric/metadata assets and 13 task-source files are pinned and\nverified. Original benchmark MIT and upstream PtyLab academic/non-commercial\nlicense texts are retained separately; no relicensing or original-toolbox\nequivalence is claimed.",
+        "gap": "The canonical story, native views, Explorer integration, video and visual review\nremain unfinished. No fresh inverse, agent performance, hidden-reference validity,\nbenchmark pass or general specimen accuracy is established. Original scores and\narrays remain unchanged.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "L1 · README",
+            "helper": "README, requirements and complete data directory, including both truth files.",
+            "remaining": "Implement reconstruction; this packet does not establish hidden-reference evaluation."
+          },
+          {
+            "name": "L2 · + approach",
+            "helper": "L1 plus the proposed algorithm.",
+            "remaining": "Resolve differences between prose and executable behavior, then implement."
+          },
+          {
+            "name": "L3 · + design",
+            "helper": "L2 plus software design.",
+            "remaining": "Implement numerical details; source and evaluation directories are not seeded by the local runner."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/README.md"
+          ],
+          [
+            "Pinned source solver",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/src/solvers.py"
+          ],
+          [
+            "Pinned active scorer",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+          ],
+          [
+            "Pinned numeric assets",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/conventional_ptychography"
+          ],
+          [
+            "Source and numerical audit",
+            "presentation/external-tasks/sources/imaging101-ptychography-audit.json"
+          ],
+          [
+            "Original PtyLab attribution",
+            "https://github.com/PtyLab/PtyLab.py"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Recover object amplitude and phase from 100 overlapping, simulated far-field diffraction measurements. The released saved result has useful phase structure; the active generic evaluator discards that phase and cannot establish this task&#x27;s central requirement.</p>",
+          "value": "<p>Ptychography connects a moving illumination window to intensity-only detector measurements. Overlap constrains a shared complex object and probe. A metric that retains only amplitude can miss the information this particular object encodes.</p>",
+          "raw": "<p>Pinned <code>raw_data.npz</code> contains <code>ptychogram</code>, float32 <code>(100,128,128)</code>, and <code>encoder</code>, float32 <code>(100,2)</code> in meters, ordered row then column. This is a synthetic USAF phase-chart case, not an acquired specimen. The released HDF5 contains exactly the same diffraction and encoder values. Counts range from approximately 5.07e-11 to 32,966; source generation adds a Poisson draw to its expectation, so the stated 14-bit scale is not a hard upper bound.</p>",
+          "helpers": "<p>Metadata specifies wavelength 632.8 nm, sample-to-detector distance 50 mm, 128 detector pixels at 72 micrometers, and a 542-pixel object. Object/probe sampling is 3.4331597222 micrometers. The initialization estimates the probe from a circular aperture and focusing phase; the true probe is not a supplied array. The file <code>positions.npy</code> agrees exactly with rounded encoder-to-pixel positions. L2 adds an approach; L3 also adds a design.</p>",
+          "tools": "<p>Python numerical dependencies. The published 32-pixel forward/FFT fixture and selected initial-state intensity projections were checked locally with existing packages. No agent, inverse iterations, dataset generation or installation ran.</p>",
+          "reference": "<p>Both <code>ground_truth.npy</code> and <code>ground_truth.npz:object</code> contain the same complex64 <code>(542,542)</code> synthetic truth. All 293,764 magnitudes are exactly one; 11,970 pixels encode bars at phase pi/2 and the others have phase zero. Actual L1/L2/L3 local file seeding copies <strong>both truth files</strong> because they are inside <code>data/</code>. Reader-facing reference reveals must not be mistaken for private evaluation.</p>",
+          "spec": "<p>For each scan, extract a 128-pixel object patch, multiply by the probe, apply the centered unitary 2D FFT and square the magnitude. The source reconstruction projects measured intensity onto its current detector wave, back-propagates, updates object and probe, and applies momentum and constraints. The code uses a 5% random momentum trigger; the supplied approach&#x27;s periodic description is different. No reconstruction trajectory is synthesized by this explainer audit.</p>",
+          "output": "<p>Scientifically, a complex object image with amplitude and phase, plus the jointly estimated probe. The source <code>main.py</code> saves <code>recon.hdf5</code>, with object shape <code>(1,1,1,1,542,542)</code> and probe shape <code>(1,1,1,1,128,128)</code>. The active generic end-to-end harness instead requires <code>output/reconstruction.npy</code> and compares squeezed, magnitude-reduced arrays. Native HDF5 output and that harness contract are distinct.</p>",
+          "score": "<p>The stored 350-iteration object reproduces the native full-frame, mean-centered phase NCC <strong>0.9757169</strong> and phase NRMSE <strong>0.0434154</strong>, matching shipped rounded values. This is saved-output replay, not a new solver result. It performs no registration or phase unwrapping. The phase-erased unit object gives native phase NCC <strong>0</strong> and NRMSE <strong>0.1977035</strong>.</p>\n<p>The generic scorer selects <code>data/ground_truth.npy</code> and discards complex phase. Correct truth, phase-erased ones and conjugated truth all receive NCC <strong>1</strong> and MSE <strong>0</strong>. Their generic NRMSE is <strong>infinity</strong>, even for exact truth, because reference magnitude has zero range. The saved reconstruction&#x27;s generic NCC is 0.728639. Shipped metrics contain no pass thresholds, so pass status is unavailable.</p>\n<p>The stored error history ends at <strong>1.8429171</strong>. Source code sums relative intensity L1 residuals before each sequential update; it is not the amplitude metric described in the approach. A separate forward-only check of final saved arrays gives summed relative intensity L1 <strong>3.4429931</strong> and global squared amplitude error <strong>0.00110562</strong>. These use different metrics and evaluation states.</p>",
+          "challenge": "<p>Intensity discards phase. Overlap couples scans to a shared object and probe, while probe estimation and phase ambiguities complicate recovery. Constant truth amplitude makes magnitude-only metrics particularly uninformative here.</p>",
+          "families": "<p>One synthetic object and its stored reconstruction across released L1/L2/L3 packets. Nine numeric/metadata assets and 13 task-source files are pinned and verified. Original benchmark MIT and upstream PtyLab academic/non-commercial license texts are retained separately; no relicensing or original-toolbox equivalence is claimed.</p>",
+          "gap": "<p>The canonical story, native views, Explorer integration, video and visual review remain unfinished. No fresh inverse, agent performance, hidden-reference validity, benchmark pass or general specimen accuracy is established. Original scores and arrays remain unchanged.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Source arrays acquired; visual integration pending.</strong> Three selected native frames at scans 0, 49 and 99, with their actual encoder positions, can illustrate the operation. Rectangular windows cover 144,986/293,764 object pixels; they are not an illumination support or accuracy mask.</p>",
+          "helpers": "<p><strong>Geometry and initialization, not a recovered object.</strong> The selected projection uses the source seed-42 initial state. It changes detector-wave amplitude without updating object or probe. Its measured-intensity agreement is not reconstruction.</p>",
+          "answer": "<p><strong>Saved result and synthetic truth remain separate.</strong> The released complex result is inspected as stored. Truth appears only after a reader reveal in the planned story, with its actual solver-visible staging disclosed.</p>"
+        },
+        "missing_media": []
+      },
+      "acceptance_scope": null
     },
     {
       "entry_id": "imaging101-ct-dual-energy",
@@ -15257,8 +15350,9 @@
   "counts": {
     "reviewed-scripted-planar": 35,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 105,
-    "blocked-source-input": 52
+    "blocked-source-contract": 104,
+    "blocked-source-input": 52,
+    "pending-operation-review": 1
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -16022,6 +16116,16 @@
         "export_receipt_sha256": "53db863f1e76cdd3a0056f1ae7315621214355ff7f0e6ef9ae0e7990e3678613",
         "reviewed_entries": 48,
         "next_entry": "imaging101-conventional-ptychography"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "imaging101-conventional-ptychography",
+        "stage": "source-audit-complete",
+        "receipt": "presentation/external-tasks/sources/imaging101-ptychography-audit.json",
+        "receipt_sha256": "89609b9c41b4ace850c9559b63555010ea2b8680fa0d2973cc40ec78a04624b0",
+        "reviewed_entries": 48,
+        "next_entry": "imaging101-conventional-ptychography",
+        "note": "Source contract and all nine required numeric assets resolved. Canonical authoring and visual review still pending; stay on this entry."
       }
     ]
   }
