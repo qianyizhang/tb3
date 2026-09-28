@@ -39,3 +39,9 @@ Native BINARY SEG parsing and anatomical context interact; five fixed packets sh
 ## Reopen when
 
 BR-003 remains retired after its healthy Terra/high pass. Preserve the separate BR-004 batch timeout and completed single-patient resource screen; dicom-audit-32 is the current observed lead.
+
+## 2026-09-28 retrospective source explanation
+
+Assistant-authored [BR-003 source-study audit](../findings/history-sourcing-calibration.md) links the bounded work-history selection to five candidate contracts and preserves the four original passing calibrations. Eight source excerpts are historical reports, not model trials; the exact recalled SVG and timeout/reroute incidents remain unrecovered. H01 table lineage does not answer H05 authentic vector-crop ownership, which has no executable task or attempt.
+
+This explanation preserves the existing disposition and reopening conditions. It launches no new trial, changes no score and adds no user decision. The [canonical story](../presentation/stories/history-sourcing.story.md) uses record indices and a separate private-outcome reveal.

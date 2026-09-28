@@ -2218,3 +2218,285 @@
   white-space: nowrap;
   min-width: 40px;
 }
+
+.historyScene {
+  padding: 16px 20px;
+  color: #203f3b;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.historyScene h4 {
+  margin: 0 0 15px;
+  font-size: 19px;
+}
+.historyScene p {
+  margin: 10px 0;
+}
+.historyCounts,
+.historyCards,
+.historyStrip {
+  display: grid;
+  gap: 12px;
+}
+.historyCounts {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.historyCounts article,
+.historyCards article,
+.historyStrip > div {
+  background: #f3f6f3;
+  border: 1px solid #c8d5cd;
+  border-radius: 8px;
+  padding: 12px;
+}
+.historyCounts strong {
+  display: block;
+  font-size: 32px;
+  color: #267f72;
+}
+.historyCounts span {
+  display: block;
+  font-size: 12px;
+}
+.historyPartition {
+  display: flex;
+  height: 45px;
+  margin-top: 18px;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+}
+.historyPartition > div {
+  display: grid;
+  place-items: center;
+  background: #607373;
+}
+.historyPartition > div:nth-child(2) {
+  background: #ad6b14;
+}
+.historyPartition > div:nth-child(3) {
+  background: #267f72;
+}
+.historyCallout {
+  border-left: 3px solid #267f72;
+  background: #edf4ee;
+  padding: 10px 12px;
+}
+.historyExcerptStrip {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.historyExcerptStrip span {
+  padding: 6px 8px;
+  background: #eef2ef;
+  border: 1px solid #cad5ce;
+  border-radius: 5px;
+}
+.historyExcerptStrip [data-selected='true'],
+.historyStrip [data-selected='true'] {
+  border-color: #c97b18;
+  background: #fff2da;
+}
+.historyQuote {
+  padding: 16px;
+  background: #fafaf4;
+  border: 1px solid #c97b18;
+  border-radius: 8px;
+}
+.historyQuote blockquote {
+  margin: 14px 0;
+  font-size: 20px;
+  min-height: 84px;
+  font-weight: 550;
+}
+.historyQuote :is(small, code) {
+  display: block;
+  margin-top: 5px;
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+.historyCards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.historyCards b {
+  font-size: 15px;
+}
+.historyStrip {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-bottom: 16px;
+  gap: 6px;
+}
+.historyStrip > div {
+  padding: 8px;
+  font-size: 11px;
+}
+.historyStrip b {
+  display: block;
+  font-size: 14px;
+}
+.historyScene [data-untested='true'] {
+  border: 2px dashed #c97b18;
+}
+.historyContract {
+  border: 1px solid #ccd8d0;
+  border-radius: 8px;
+  padding: 15px;
+}
+.historyContract dl {
+  display: grid;
+  grid-template-columns: 115px 1fr;
+  gap: 12px;
+}
+.historyContract dt {
+  font-weight: 650;
+}
+.historyContract dd {
+  margin: 0;
+}
+.historyLineage {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.historyLineage article {
+  flex: 1;
+  background: #edf4ee;
+  padding: 15px;
+  border: 1px solid #267f72;
+  border-radius: 8px;
+}
+.historyLineage :is(strong, b, small) {
+  display: block;
+}
+.historyLineage strong {
+  font-size: 26px;
+}
+.historyLineage small {
+  font-size: 11px;
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
+.historyLineage > span {
+  color: #267f72;
+  font-size: 24px;
+}
+.historyHash {
+  display: block;
+  margin: 15px 0;
+  overflow-wrap: anywhere;
+  font-size: 11px;
+}
+.historyTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.historyTable :is(td, th) {
+  text-align: left;
+  border-bottom: 1px solid #ccd6cf;
+  padding: 10px 8px;
+}
+.historyTable td:last-child {
+  white-space: nowrap;
+}
+.historyTable small {
+  display: block;
+  font-size: 11px;
+}
+.historyLock {
+  border: 1px dashed #72847a;
+  padding: 40px 25px;
+  background: #f4f6f1;
+}
+.historyLock b {
+  font-size: 24px;
+}
+.historyBranches > article {
+  padding: 12px;
+  background: #f0f4ef;
+  border-bottom: 3px solid #267f72;
+  margin-bottom: 18px;
+}
+.historyBranches .historyCards {
+  grid-template-columns: 1fr 1fr;
+}
+.historyAside {
+  font-size: 13px;
+  line-height: 1.45;
+  padding: 18px;
+}
+.historyAside p {
+  margin: 8px 0 16px;
+}
+.historyAside small {
+  color: #526960;
+  font-size: 11px;
+}
+:global([data-explainer-export-frame]) .player[data-recipe='history-sourcing-v1'] .storyHeading {
+  height: 116px;
+}
+.player[data-recipe='history-sourcing-v1'] :global(.scene-steps) {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='history-sourcing-v1']
+  :global(.scene-steps button) {
+  min-height: 31px;
+  padding-block: 4px;
+}
+@container task-visual (max-width: 900px) {
+  .player[data-recipe='history-sourcing-v1'] .storyLayout {
+    grid-template-columns: 1fr;
+  }
+  .player[data-recipe='history-sourcing-v1'] :global(.scene-steps) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .historyScene {
+    padding: 14px;
+    font-size: 13px;
+  }
+  .historyScene h4 {
+    font-size: 18px;
+  }
+  .historyCounts {
+    grid-template-columns: 1fr 1fr;
+  }
+  .historyCards {
+    grid-template-columns: 1fr;
+  }
+  .historyStrip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .historyQuote blockquote {
+    font-size: 18px;
+  }
+  .historyExcerptStrip {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .historyContract dl {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+  .historyContract dd {
+    margin-bottom: 10px;
+  }
+  .historyLineage {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .historyLineage > span {
+    transform: rotate(90deg);
+    align-self: center;
+  }
+  .historyBranches .historyCards {
+    grid-template-columns: 1fr;
+  }
+  .historyTable {
+    font-size: 11px;
+  }
+  .historyTable :is(td, th) {
+    padding: 8px 4px;
+  }
+}

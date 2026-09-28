@@ -1,0 +1,750 @@
+{
+  "schema": 1,
+  "entry_id": "tb3-history-sourcing",
+  "date": "2026-09-28",
+  "scope": "Read-only source-study provenance and retained outcome audit. No fresh model run, saved-code replay, medical inference or historical authoring execution.",
+  "source_pins": {
+    "docs/evidence/br003-source-audit.json": "5c1ec63c28d7a3dcd8c81951e736d5a58037bc3623946e73bc06fa8b3cccc5c8",
+    "docs/evidence/br003-round-summary.json": "185e67f510730569905eda8e375b3683c5817b877fec9863080075867a39ae9c",
+    "runs/br003-history/session-index.json": "fd64daa75b68943c8359f575441e2077987063a76edafd3a92bdbd5c1839e0f4",
+    "runs/br003-history/019eb077-9394-7c70-bb7e-d6e6a1aa4c0c.messages.json": "d2514ce7595d6d2fd2e1b2a6b92d555620f4c93a0d5790f860fe8469f6f28757",
+    "runs/br003-history/019eb0fe-cc6e-7200-af7b-730241ec2d3b.messages.json": "8306c51a21e55f3e95b2c6142c094019eba3a03503df7d67f5a16f2fb4338461",
+    "runs/br003-history/019ed2fa-e149-79b1-8125-0808f0fe4de8.messages.json": "26b3e9a8737d34133ca4617e920cbdf5c17e90a9a21de30fa249589afa95e8e1",
+    "runs/br003-history/019fbfda-6a0b-7063-bc6b-871291bf5170.messages.json": "f68015339b02e957913e6f1a3554cbe63e056941333a1bc72ded9020d110495f",
+    "runs/br003-history/019fbfe6-fdd9-7690-a023-8120f1219c27.messages.json": "909bfb3ab0e9036945788cfae5109d762e257f4fb3ef94d896ffc650029332a0",
+    "runs/br003-history/019fbff6-9433-7513-9f22-e543fde360ba.messages.json": "944b3ba565ff3dc39c4993ffb36e4dcf45305b908ae9fa42fda6f10a12252191",
+    "runs/br003-history/019fbff8-61bc-7273-8fc7-df627f38c2bf.messages.json": "c8842a22d83bd38bf77164140b6c86f9eb8b598ed6903c0116177ca65c08f833",
+    "runs/br003-history/019fc017-340f-7153-9565-14ecb3bda3d7.messages.json": "6f80ae6996284ac35bf5b5de75ab605156fa0833f3023b2b7a5db94a7ffaa3cb",
+    "runs/br003-history/019fc02b-82ea-7af2-a15b-c15288b05e94.messages.json": "dd02b47a829956955f6628831734a9219c10d5fc9e2ff9e127ce7c4585906e68",
+    "docs/evidence/br003-pdf-freeze.json": "449eb661ce6c0358064e29106c56b4668891a39d79988400c3a0fc3f12ece080",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/authoring/build_fixture.py": "deebea4ccb1cd94324aa97d881f646b82dde8cb5bba03104ca9c522e027006fb",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/authoring/layout-truth.json": "439a9e88483519041c70dfb1092b3cf61624fbeecdfc76c732ea44e52e08a7ef",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/authoring/notes.md": "513c36324f40c69d0afda07e4646554059ce09177601b987577434a57ac391c4",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/authoring/transcribe.py": "ffaa404547093a68a718bb5eaa99d5512a5cdb03240ef98bbdd7dad062a67845",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/environment/Dockerfile": "2e725b7869ef20d5fe7abecfa21739fbb86e33acad4ee777a93a1d8219c76c23",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/environment/render_pages.py": "3140c309ebf68935db83c905198f996fccd6f9896c5b1ff39ecf2f75f5106221",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/environment/survey.pdf": "a4258af1fa1e008f282d402e43dc92d49c5a65d4ff4b850b602099714190ebce",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/environment/tables.json": "1467c4e4c24312f0d59943899c76ead44e775be97d48c3c4a8261f2614ca8ede",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/instruction.md": "61b03add14e90772275843c15d36379ee130370c8349061fdd8442bb24982814",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/solution/solve.sh": "704384b8b7e3ead47b66ab75cd5e0b6d0b8d29102c2379548c560f54a1a48a55",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/solution/tables.json": "678976dbca271aa6debabfbc829e63c4e14145a1fa8091e19e44037e0c95345d",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/task.toml": "4bed2bd6629a004b4b16e93784caba0a4e884ce2f3d8eb403b357a44d052c956",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/tests/Dockerfile": "51e320e86525c90d1a83d6b4f2c12c6ed50d6c260f8fd935a6d2cfdf54397d80",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/tests/tables.json": "678976dbca271aa6debabfbc829e63c4e14145a1fa8091e19e44037e0c95345d",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/tests/test.sh": "d6f79133f941fa6332d21c25acae3169200433bbf9fc82faab05e2c5ec1eb5c7",
+    "archive/legacy/pre-medical/probes/pdf-table-lineage/tests/verifier.py": "bc572b4499b1c17252e79521297fbd588840a3d04092294fa3b564d7f0728dc3",
+    "runs/br003-history/task-snapshots/pdf-table-lineage-v1.tar.gz": "a62d9e717f00b1d493e9ede441047f74b8efe1af12d66853afcc6e55d1ef11bc",
+    "runs/br003-pdf-nop-v1-20260915/pdf-table-lineage__6frBbkG/result.json": "68d322ba187c296a26049779e5ecc4a9f848e3cef9777c972f406773d89e9b55",
+    "runs/br003-pdf-nop-v1-20260915/pdf-table-lineage__6frBbkG/artifacts/app/answer/tables.json": "1467c4e4c24312f0d59943899c76ead44e775be97d48c3c4a8261f2614ca8ede",
+    "runs/br003-pdf-nop-v1-20260915/pdf-table-lineage__6frBbkG/artifacts/manifest.json": "f1f0a2266d34442532cb3f88d164eb7b14869e033ac6858a566ab25202d47af2",
+    "runs/br003-pdf-nop-v1-20260915/pdf-table-lineage__6frBbkG/verifier/reward.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "runs/br003-pdf-nop-v1-20260915/pdf-table-lineage__6frBbkG/verifier/test-stdout.txt": "e4ebb4601557fe561a1310c241738a9aadfacd0f8ffd373faec3aeee999cfb1d",
+    "runs/br003-pdf-oracle-v1-20260915/pdf-table-lineage__Sg3Hgbn/result.json": "e42fcbe7ae36953924892ec887e188475c9f3a12cb5d8d555f6530005daf1e31",
+    "runs/br003-pdf-oracle-v1-20260915/pdf-table-lineage__Sg3Hgbn/artifacts/app/answer/tables.json": "678976dbca271aa6debabfbc829e63c4e14145a1fa8091e19e44037e0c95345d",
+    "runs/br003-pdf-oracle-v1-20260915/pdf-table-lineage__Sg3Hgbn/artifacts/manifest.json": "f1f0a2266d34442532cb3f88d164eb7b14869e033ac6858a566ab25202d47af2",
+    "runs/br003-pdf-oracle-v1-20260915/pdf-table-lineage__Sg3Hgbn/verifier/reward.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "runs/br003-pdf-oracle-v1-20260915/pdf-table-lineage__Sg3Hgbn/verifier/test-stdout.txt": "3ef8e21ff293184437d5710815e94389cf884ab5db53a1369711e993b8a29eff",
+    "runs/br003-pdf-terra-high-v1-20260915/pdf-table-lineage__j8tBEkF/result.json": "7f282e76c20c91e6d11ddc15f50ed31e3d77f3abf87918ff86767dded0e86478",
+    "runs/br003-pdf-terra-high-v1-20260915/pdf-table-lineage__j8tBEkF/agent/codex.txt": "d33304f7f958a188c87a357a761b9a00bf4c7240951fd47c3ccd40a2b23e2831",
+    "runs/br003-pdf-terra-high-v1-20260915/pdf-table-lineage__j8tBEkF/agent/trajectory.json": "09f3dfa7e0a254f3ea10d2539a6281df00c9830af52793855ef637528e8ac01b",
+    "runs/br003-pdf-terra-high-v1-20260915/pdf-table-lineage__j8tBEkF/artifacts/app/answer/tables.json": "8afdc848f521672f88fed7ef2836e64690bc00d9f1171135dd90608c6d9cfe36",
+    "runs/br003-pdf-terra-high-v1-20260915/pdf-table-lineage__j8tBEkF/artifacts/manifest.json": "f1f0a2266d34442532cb3f88d164eb7b14869e033ac6858a566ab25202d47af2",
+    "runs/br003-pdf-terra-high-v1-20260915/pdf-table-lineage__j8tBEkF/verifier/reward.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "runs/br003-pdf-terra-high-v1-20260915/pdf-table-lineage__j8tBEkF/verifier/test-stdout.txt": "3ef8e21ff293184437d5710815e94389cf884ab5db53a1369711e993b8a29eff",
+    "docs/evidence/br003-chat-freeze.json": "5aa55fde4f7c1abe5d77c5286e5498f2f714ce7f2715a9cb45e0ced9a9f9c438",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/authoring/make_cases.py": "cbb2ba748c4bb29b0b6b57ec2a38991ad26527a87b9c7aeb19c53bfe380c8bce",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/authoring/notes.md": "b671ea11ba3333dec828799e106f9c762089824e8d0453c91789c46e3aff0218",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/authoring/validate.py": "f0837f9632b8682a6c1af38c3b25dbffdc7f70aa0315592ab38339e63b9d20a4",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/environment/Dockerfile": "3f0f5d4fcabcc77a0e0ee276e833979e7f485283256337c2086da92983da2dc5",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/environment/check_examples.py": "782996675854abb22c2b838f21520c12fc0b80df1a7551ef1d2151634c1894f4",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/environment/coordinator.py": "12e82045b0fa500cdc8b1274c1dd75550eebcf7fc5ebc362d55640151413ea92",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/environment/driver.py": "17356d65c8ff12e32c3f6dd41106466ede3e8f4fd09894e3aea4244752b0c9d9",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/environment/example.json": "9fede315b22c5500e96b7863458f773dedb605a3619029e4408a4a149fcc8c8c",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/instruction.md": "0c29427881fdb4ad491233dcebc367d5689802e46b6df85a497f351897109104",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/solution/coordinator.py": "beaec97edc11b5bab42998ae7cc1e442b29c8d3b1fdf7a59bd99fb56f38cc1af",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/solution/solve.sh": "29aeb82bb2a7f6e998372542608e7d60df5601e67ba54e0d4ac3b7154d951593",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/task.toml": "9cc37ae773051629a8305a22d77d8147df248cfc617af6bc27ad7b98ecadb4b1",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/tests/Dockerfile": "04012b049638451048bacf7b698f4d97140a674e5f1e823b7fd3033f2c6f4ae3",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/tests/cases.json": "5f55925ea27743f1d6c9b793ec1d63440a7040c3183ceb91695209ff9bd92ae4",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/tests/checks.py": "2fb7731883176797b0917c997c913bdfcd7a3944acd9499c6e3b667b49798e76",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/tests/driver.py": "17356d65c8ff12e32c3f6dd41106466ede3e8f4fd09894e3aea4244752b0c9d9",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/tests/test.sh": "accbd711f54aef0dad005faf90c55620788293c86a538f537f9ea33cbf1704e2",
+    "archive/legacy/pre-medical/probes/chat-round-recovery/tests/verifier.py": "a10cac1391bc96bfd9215942a58ee1aadb5feea38909b10b7cc94bfd4451237c",
+    "runs/br003-history/task-snapshots/chat-round-recovery-v1.tar.gz": "dadf7b8f318388aeb01c229d22b195caa62339ecb750540e9a29461ce23c36e3",
+    "runs/br003-chat-nop-v1-20260915/chat-round-recovery__iTkXUuT/result.json": "2ac6fbd359a791efa82cc9265da0c99159cff8196726f9a8cc9454b988d35c43",
+    "runs/br003-chat-nop-v1-20260915/chat-round-recovery__iTkXUuT/artifacts/app/answer/coordinator.py": "12e82045b0fa500cdc8b1274c1dd75550eebcf7fc5ebc362d55640151413ea92",
+    "runs/br003-chat-nop-v1-20260915/chat-round-recovery__iTkXUuT/artifacts/manifest.json": "f1f0a2266d34442532cb3f88d164eb7b14869e033ac6858a566ab25202d47af2",
+    "runs/br003-chat-nop-v1-20260915/chat-round-recovery__iTkXUuT/verifier/reward.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "runs/br003-chat-nop-v1-20260915/chat-round-recovery__iTkXUuT/verifier/test-stdout.txt": "640cc6f123bea530bd3029eb8e2da6d8d1bdedb36fa4fce4fa66a62236508259",
+    "runs/br003-chat-oracle-v1-20260915/chat-round-recovery__uAaEdc3/result.json": "bb78bb3b3e9f960712a073dcd897094d03d246f9bbe4557c9c3895d2d3a0d219",
+    "runs/br003-chat-oracle-v1-20260915/chat-round-recovery__uAaEdc3/artifacts/app/answer/coordinator.py": "beaec97edc11b5bab42998ae7cc1e442b29c8d3b1fdf7a59bd99fb56f38cc1af",
+    "runs/br003-chat-oracle-v1-20260915/chat-round-recovery__uAaEdc3/artifacts/manifest.json": "f1f0a2266d34442532cb3f88d164eb7b14869e033ac6858a566ab25202d47af2",
+    "runs/br003-chat-oracle-v1-20260915/chat-round-recovery__uAaEdc3/verifier/reward.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "runs/br003-chat-oracle-v1-20260915/chat-round-recovery__uAaEdc3/verifier/test-stdout.txt": "fb66653b5c09608f853f2dc0ef8d338057c9d2e70a26d6c077b6788a3d14099a",
+    "runs/br003-chat-terra-high-v1-20260915/chat-round-recovery__2gF2jhs/result.json": "c5f9788431a2873bc4818cdad70a46d930f6a2fe7604aec44620d852030c5d55",
+    "runs/br003-chat-terra-high-v1-20260915/chat-round-recovery__2gF2jhs/agent/codex.txt": "bb12dd244399053c08b8d364a5f25861c645b6d9a475339dfb37f220444ec2b6",
+    "runs/br003-chat-terra-high-v1-20260915/chat-round-recovery__2gF2jhs/agent/trajectory.json": "f8dc1c8b36f9ff48ced88c6b61e08f8c3931ff33adf306bf580f522cb11e1198",
+    "runs/br003-chat-terra-high-v1-20260915/chat-round-recovery__2gF2jhs/artifacts/app/answer/__pycache__/coordinator.cpython-312.pyc": "4aac6bb7ad90834df313bae397fb4322e80d61be5d12db13ee29f0c68dfc186f",
+    "runs/br003-chat-terra-high-v1-20260915/chat-round-recovery__2gF2jhs/artifacts/app/answer/coordinator.py": "c37c59bd8a309b5343aa0eb1c6203e65cfe2da4c0a17f5d3ac8f13bab7e5d9bb",
+    "runs/br003-chat-terra-high-v1-20260915/chat-round-recovery__2gF2jhs/artifacts/manifest.json": "f1f0a2266d34442532cb3f88d164eb7b14869e033ac6858a566ab25202d47af2",
+    "runs/br003-chat-terra-high-v1-20260915/chat-round-recovery__2gF2jhs/verifier/reward.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "runs/br003-chat-terra-high-v1-20260915/chat-round-recovery__2gF2jhs/verifier/test-stdout.txt": "fb66653b5c09608f853f2dc0ef8d338057c9d2e70a26d6c077b6788a3d14099a",
+    "docs/evidence/br003-auditor-freeze.json": "d8d7192c51d542d14a85dc2dcd19e5ef708b352dce030d8d4b94fcb2b079a18d",
+    "probes/dicom-label-audit/authoring/notes.md": "75f7a0d42414c52602b6d2caf2fa8edf23b6258b07e877aadc3968a44fac225a",
+    "probes/dicom-label-audit/authoring/validate.py": "8e3b7d274b9f9d2194b931235bd55a00089aa7c141c84760573dee9c1a3950af",
+    "probes/dicom-label-audit/environment/DATA-LICENSE.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+    "probes/dicom-label-audit/environment/Dockerfile": "275018de001da4d53946ee04091d6bb04ac156a463d1cf160b8384b34ace2577",
+    "probes/dicom-label-audit/environment/LABEL-LICENSE.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "probes/dicom-label-audit/environment/SOURCE_NOTICE.md": "1978d0254fe7326d7a54618136f602ccb831f83bf9607dd96c64afb6383a903a",
+    "probes/dicom-label-audit/environment/auditor.py": "461adc4ecd6f689c67dba62bb8405cb8cc687c8acc25543ac78c5ade7e6f450f",
+    "probes/dicom-label-audit/environment/data.tar.gz": "3c439a7e4b6108b772a45d4d13da6e178bbb8ee0c048836dd5155270b2075d3e",
+    "probes/dicom-label-audit/environment/driver.py": "57f3adf71d4343838655f927c2a0e4fd66d302f5d6e8b72be55ccae64110ea96",
+    "probes/dicom-label-audit/instruction.md": "23f48dfa745d552ec0785d0b3025d9051daf2833b8983030aa036a26d8eb9975",
+    "probes/dicom-label-audit/solution/auditor.py": "b59e11c56673f3c0b67756dfc3c4bd6a43c07c7cf4b855a4303428bbd3aaa122",
+    "probes/dicom-label-audit/solution/solve.sh": "a2009b11adda1cfdff7818cecad12cb3b41a8f855bb2f3f92c504da0a38854d2",
+    "probes/dicom-label-audit/task.toml": "4bfb2c9a8a48a4503f06d0b42ee1179212a37199190753639f1a97ee515cbb2b",
+    "probes/dicom-label-audit/tests/Dockerfile": "fb97e03441ee9e38d4c2831fcfca96f151b3cb19bf93c126a69921f29b9aff24",
+    "probes/dicom-label-audit/tests/data.tar.gz": "3c439a7e4b6108b772a45d4d13da6e178bbb8ee0c048836dd5155270b2075d3e",
+    "probes/dicom-label-audit/tests/driver.py": "57f3adf71d4343838655f927c2a0e4fd66d302f5d6e8b72be55ccae64110ea96",
+    "probes/dicom-label-audit/tests/expected.json": "284bc1bc9d27b231d17acf147ebd2a39ec111a1dc32724eca6445b6cf17c27ef",
+    "probes/dicom-label-audit/tests/test.sh": "ee97470d390ee44c5a0e85f9216b47b52bda1a2c5bb3086d3767db51ba10ea8c",
+    "probes/dicom-label-audit/tests/verifier.py": "7afabd5d83815fe30b0abc91bffdf5f9b8ba34f25f197f9da4e95acbc656ed41",
+    "runs/br003-history/task-snapshots/dicom-label-audit-v1.tar.gz": "fc962b67cc5d0c7ddc6fb374206f89546d4816756db3baae06ef84aa93dd9a13",
+    "runs/br003-audit-nop-v1-20260915/dicom-label-audit__UUG7JKt/result.json": "7a9e3a10d75debb0b99d1a2c435dbad7374c53d1cf5f7bd266e2998ef554e3d6",
+    "runs/br003-audit-nop-v1-20260915/dicom-label-audit__UUG7JKt/artifacts/app/answer/auditor.py": "461adc4ecd6f689c67dba62bb8405cb8cc687c8acc25543ac78c5ade7e6f450f",
+    "runs/br003-audit-nop-v1-20260915/dicom-label-audit__UUG7JKt/artifacts/manifest.json": "f1f0a2266d34442532cb3f88d164eb7b14869e033ac6858a566ab25202d47af2",
+    "runs/br003-audit-nop-v1-20260915/dicom-label-audit__UUG7JKt/verifier/reward.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "runs/br003-audit-nop-v1-20260915/dicom-label-audit__UUG7JKt/verifier/test-stdout.txt": "21c1c5be2c4b14fd4171b3ddf9d2e68aa51721c8169ae023c26f754e437dd364",
+    "runs/br003-audit-oracle-v1-20260915/dicom-label-audit__mbEhmzs/result.json": "22747bb1077850764e15a0d98fcff0b778dc86d233ee4b939919831c40d656a5",
+    "runs/br003-audit-oracle-v1-20260915/dicom-label-audit__mbEhmzs/artifacts/app/answer/auditor.py": "b59e11c56673f3c0b67756dfc3c4bd6a43c07c7cf4b855a4303428bbd3aaa122",
+    "runs/br003-audit-oracle-v1-20260915/dicom-label-audit__mbEhmzs/artifacts/manifest.json": "f1f0a2266d34442532cb3f88d164eb7b14869e033ac6858a566ab25202d47af2",
+    "runs/br003-audit-oracle-v1-20260915/dicom-label-audit__mbEhmzs/verifier/reward.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "runs/br003-audit-oracle-v1-20260915/dicom-label-audit__mbEhmzs/verifier/test-stdout.txt": "91c1f5465674de72b11a965565c4c3c5a8eca6da7d1f6f9f0038807b14797db7",
+    "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/result.json": "4056087524856857aa4d3ce91288c89f6263509d20f28d86eb3f21cd3b8688a7",
+    "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/agent/codex.txt": "80e81dcbccfea6ca9f2a0271495f70e83c70c04af81411358454e497e38ee98d",
+    "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/agent/trajectory.json": "10fe86499598705c5fe2007d43576304a77d3ccbf3238f66d84832f578cc1f82",
+    "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/artifacts/app/answer/__pycache__/auditor.cpython-312.pyc": "b0e08be3e91a8115559d140d6801230e7cbb45a5b52e7694fc4222ce0a184801",
+    "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/artifacts/app/answer/auditor.py": "40e7566b0829460c4864c72f91b1ed995faa54a23329a8a9fd3031a641263416",
+    "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/artifacts/manifest.json": "f1f0a2266d34442532cb3f88d164eb7b14869e033ac6858a566ab25202d47af2",
+    "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/verifier/reward.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/verifier/test-stdout.txt": "91c1f5465674de72b11a965565c4c3c5a8eca6da7d1f6f9f0038807b14797db7",
+    "docs/evidence/br003-renderer-freeze.json": "6d6a01dcf16f32fc6b9dd0635776972e07fffbd56a6659634e7d1ac60aa9c9bd",
+    "probes/dicom-triplanar-svg/authoring/build_imaging.py": "ea2a57ff3d9d7514bfe61e386603da0b9097262464fc7cc96d7a523ab385be47",
+    "probes/dicom-triplanar-svg/authoring/notes.md": "e815beca993c6fb513c08da07ba342f2789a8ba33d6d3530a248f967e99f24e9",
+    "probes/dicom-triplanar-svg/authoring/validate.py": "6c6673d0724f64885cf21542c4e8ae89cf56a7ee947477f068851e925b13066e",
+    "probes/dicom-triplanar-svg/environment/DATA-LICENSE.txt": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+    "probes/dicom-triplanar-svg/environment/Dockerfile": "9045df2f2eb91d9b720a94775cb6ba718b065466a82da5c0e737632d0fc27dd3",
+    "probes/dicom-triplanar-svg/environment/LABEL-LICENSE.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "probes/dicom-triplanar-svg/environment/SOURCE_NOTICE.md": "1978d0254fe7326d7a54618136f602ccb831f83bf9607dd96c64afb6383a903a",
+    "probes/dicom-triplanar-svg/environment/data.tar.gz": "5f0d0ced8131181c009410c40b78a52de0c49d551bfd7152fcd49dc829108918",
+    "probes/dicom-triplanar-svg/environment/driver.py": "e779d18e799032436f82b2a9067e9712de992b7cad7e628275c5434a7492b3a3",
+    "probes/dicom-triplanar-svg/environment/renderer.py": "c767eb546d8356ef16239fe64559d6338ab450c43620e4c543b88993e11e406b",
+    "probes/dicom-triplanar-svg/environment/requests.json": "ef956e1db218856c130627ded471e0c115fe5937e0a6b58fd6b53ea8a9081484",
+    "probes/dicom-triplanar-svg/instruction.md": "bf0fb7dba24799cad7f7869af68bb11221f34c5ddf16f1a84cf608b4653eeddc",
+    "probes/dicom-triplanar-svg/solution/renderer.py": "5eb8dd075eb278fc7441bad72d6ede56c0f6a7e0552bbb838c884ab1dca960df",
+    "probes/dicom-triplanar-svg/solution/solve.sh": "75b0908be1458cd2aed5516e8f0f57e529daf533c4464d5011ecc63ae2d42db2",
+    "probes/dicom-triplanar-svg/task.toml": "54165babbf1c427f2e32771f2b4a7ec028e3d989d95a84d1f1c909917f962917",
+    "probes/dicom-triplanar-svg/tests/Dockerfile": "9a4d992887af3b98eed3aa3312f357b6f8a2bf898aa719940a3e19abf3945d0f",
+    "probes/dicom-triplanar-svg/tests/compare.py": "e1277319e3dfba6b1eda04182dc0c7f5c4b5d798a1d97d466c2d18be7617e41f",
+    "probes/dicom-triplanar-svg/tests/data.tar.gz": "5f0d0ced8131181c009410c40b78a52de0c49d551bfd7152fcd49dc829108918",
+    "probes/dicom-triplanar-svg/tests/driver.py": "e779d18e799032436f82b2a9067e9712de992b7cad7e628275c5434a7492b3a3",
+    "probes/dicom-triplanar-svg/tests/expected.npz": "76d6e5d5f898812c10d33fbc7064f9eefa206e239769f6ca342900fe0afeeef7",
+    "probes/dicom-triplanar-svg/tests/requests.json": "ef956e1db218856c130627ded471e0c115fe5937e0a6b58fd6b53ea8a9081484",
+    "probes/dicom-triplanar-svg/tests/test.sh": "621b38be1ba0da6ef6a4bd3e7348832cefa6532ae0abdb913e1f243728f73af6",
+    "probes/dicom-triplanar-svg/tests/verifier.py": "4168e9903ed3c4a4a4d924f64bbd6766ef7cbb08986dfa549d0feadd13a4947e",
+    "runs/br003-history/task-snapshots/dicom-triplanar-svg-v1.tar.gz": "c4af8a09c7a98a6501930b9c5a73957eb54b979d799f9fb2cdee32e84fd0bc63",
+    "runs/br003-svg-nop-v1-20260915/dicom-triplanar-svg__WWcwQ49/result.json": "58af475759a6fc74cc5f6b112526718c53ac5d40a38e24755d432c0ee43a8cf2",
+    "runs/br003-svg-nop-v1-20260915/dicom-triplanar-svg__WWcwQ49/artifacts/app/answer/renderer.py": "c767eb546d8356ef16239fe64559d6338ab450c43620e4c543b88993e11e406b",
+    "runs/br003-svg-nop-v1-20260915/dicom-triplanar-svg__WWcwQ49/artifacts/manifest.json": "f1f0a2266d34442532cb3f88d164eb7b14869e033ac6858a566ab25202d47af2",
+    "runs/br003-svg-nop-v1-20260915/dicom-triplanar-svg__WWcwQ49/verifier/dice.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "runs/br003-svg-nop-v1-20260915/dicom-triplanar-svg__WWcwQ49/verifier/reward.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "runs/br003-svg-nop-v1-20260915/dicom-triplanar-svg__WWcwQ49/verifier/test-stdout.txt": "1d74c69159fe2f1dd34e9549c40a10c7de294ced4f9ea7845bdd3b868f7b9a85",
+    "runs/br003-svg-oracle-v1-20260915/dicom-triplanar-svg__yMX2aMX/result.json": "ef43f2762991011fa2de18d4813e60330efff94faa5ffc957c92c3f80ffd13fa",
+    "runs/br003-svg-oracle-v1-20260915/dicom-triplanar-svg__yMX2aMX/artifacts/app/answer/renderer.py": "5eb8dd075eb278fc7441bad72d6ede56c0f6a7e0552bbb838c884ab1dca960df",
+    "runs/br003-svg-oracle-v1-20260915/dicom-triplanar-svg__yMX2aMX/artifacts/manifest.json": "f1f0a2266d34442532cb3f88d164eb7b14869e033ac6858a566ab25202d47af2",
+    "runs/br003-svg-oracle-v1-20260915/dicom-triplanar-svg__yMX2aMX/verifier/dice.json": "5b07622e719a92ab6daf08853fdd7a88814275abb4d74b95d32909e33a2b00e7",
+    "runs/br003-svg-oracle-v1-20260915/dicom-triplanar-svg__yMX2aMX/verifier/reward.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "runs/br003-svg-oracle-v1-20260915/dicom-triplanar-svg__yMX2aMX/verifier/test-stdout.txt": "cf138cbff1285beb8cb8f0ca832be4782097e5754514ddeaa8d3694e9c511171",
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/result.json": "0596644d344daf401e6a534e1c3cb579a6553428908a5cc1c8a8f159f9d696da",
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/agent/codex.txt": "fabb4d2aa626c539cb7c10855fd693031bc641830e8f95b0309bbec8b6c9a65b",
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/agent/trajectory.json": "0d7155165241436ae4d43dc9ac33873212070fa6d8284a5797f6ea94d24e2900",
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/artifacts/app/answer/__pycache__/renderer.cpython-312.pyc": "8dbf9aae17d9e0815b354e056a4b1ce31034ab18c8aa958214e212ba9eb24b37",
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/artifacts/app/answer/renderer.py": "1adde80941115e389bbf1983f66f6bd613b51973d24be3297492febda151d15f",
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/artifacts/manifest.json": "f1f0a2266d34442532cb3f88d164eb7b14869e033ac6858a566ab25202d47af2",
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/verifier/dice.json": "5b07622e719a92ab6daf08853fdd7a88814275abb4d74b95d32909e33a2b00e7",
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/verifier/reward.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/verifier/test-stdout.txt": "cf138cbff1285beb8cb8f0ca832be4782097e5754514ddeaa8d3694e9c511171",
+    "docs/evidence/br003-chat-author-controls.json": "45fca09d9dd128b0fac9e1587a0f9ee6161b1585190740da040db00fda674a67",
+    "docs/evidence/br003-pdf-author-controls.json": "3e1e07482243033dbb8bb868b052ad12f332f6b4186149f856fd220d1f9c23d6",
+    "docs/evidence/br003-audit-author-controls.json": "909da354a59d0cdedf9a7097dae9c9a0836311bbb7cac64a89130a22a3fbf2fa",
+    "docs/evidence/br003-svg-author-controls.json": "dd6082ad730698e4d01d1312a3e22468f9da7ba641ac8587cfc9b372784229cb",
+    "docs/research-rounds/BR-003-work-history.md": "4cf7b2f40e510016cde25a90984982244904748bc0a4f68032f9fca14c1144f2",
+    "docs/evidence/br003-medical-source.json": "cf71397c0956bd23b37711a8dd7cfe525737f4ebcb898c28ebd0062dac0d352a",
+    "docs/evidence/br003-svg-provenance-audit.json": "0ac33ece6914fd7fbbbbc9dff12c3fa34a2c11fa7489df5a4a34119a4012808d",
+    "archive/legacy/pre-medical/catalog/analyses/br003-work-history.md": "767f99f7c08d7cf3ece3682c292d2c18d9b0611e22cb785f660b234ed13e0466",
+    "archive/legacy/pre-medical/catalog/analyses/br003-svg-provenance-audit.md": "6904d90fad2e0e5d29c84d62af8893fa2c29d9e7b08f56192fd6d85128137e12",
+    "groups/anatomy-audit/ideas/idea-dicom-triplanar-svg.md": "f08fe533bca1e33f74842ba663dbb5f2716a4a454006ceb10bf329ee4d5000d6",
+    "groups/anatomy-audit/ideas/idea-dicom-label-audit.md": "7e48049dd7b080c6c6da816eda871d413bb8ff957cd6adfafcf9129a8e5aebb9",
+    "scripts/audit_history_sourcing.py": "0ca6de1916e5bebaa9f42e37a6e1da9f891c717d88b48c947db68bb3d5919ee2"
+  },
+  "retrieval_counts": {
+    "indexed_records": 395,
+    "automatic_reviews": 142,
+    "other_long_titles": 16,
+    "navigable_records": 237,
+    "retained_selected_exports": 9,
+    "exact_original_excerpt_records": 8,
+    "excerpt_sessions": 6
+  },
+  "excerpts": [
+    {
+      "id": "E01",
+      "session_id": "019eb077-9394-7c70-bb7e-d6e6a1aa4c0c",
+      "title": "Process PDFs systematically",
+      "source_path": "/Users/zhangqy/.codex/sessions/2026/06/10/rollout-2026-06-10T15-38-07-019eb077-9394-7c70-bb7e-d6e6a1aa4c0c.jsonl",
+      "line": 423,
+      "raw_record_sha256": "88e755efa3ac6e58af80e76366205d93e76e0434746666ab7cd5496cb7b387bd",
+      "role": "user",
+      "excerpt": "you may double check on the table images, which are mostly over cropped.",
+      "recorded_turn_models": [
+        {
+          "model": "gpt-5.5",
+          "effort": "medium"
+        }
+      ],
+      "evidence_class": "historical user report",
+      "benchmark_trial": false,
+      "original_record_verified": true
+    },
+    {
+      "id": "E02",
+      "session_id": "019eb077-9394-7c70-bb7e-d6e6a1aa4c0c",
+      "title": "Process PDFs systematically",
+      "source_path": "/Users/zhangqy/.codex/sessions/2026/06/10/rollout-2026-06-10T15-38-07-019eb077-9394-7c70-bb7e-d6e6a1aa4c0c.jsonl",
+      "line": 664,
+      "raw_record_sha256": "7f16651e1da6b9eb399058c1040c4821e198b8e53c0e70b666eb0642235fe8d3",
+      "role": "assistant",
+      "excerpt": "Figure 1 is no longer under-cropped, but now it includes unrelated highlighted prose above the flowchart.",
+      "recorded_turn_models": [
+        {
+          "model": "gpt-5.5",
+          "effort": "medium"
+        }
+      ],
+      "evidence_class": "historical assistant diagnosis",
+      "benchmark_trial": false,
+      "original_record_verified": true
+    },
+    {
+      "id": "E03",
+      "session_id": "019eb0fe-cc6e-7200-af7b-730241ec2d3b",
+      "title": "/Users/zhangqy/pkgs/chronical-management/scripts/transcribe_pdf_to_md.py refine the script, figure2 and 3 are obviously wrong, is there more robust way to generate the crops",
+      "source_path": "/Users/zhangqy/.codex/sessions/2026/06/10/rollout-2026-06-10T18-05-49-019eb0fe-cc6e-7200-af7b-730241ec2d3b.jsonl",
+      "line": 185,
+      "raw_record_sha256": "3c0099d2120ee28b9181cf1e0edc51dde03b86c8c64bb690395c853f016ad90c",
+      "role": "user",
+      "excerpt": "now figure 1/6/7/8/9 are  broken, is there more robust lib for this?",
+      "recorded_turn_models": [
+        {
+          "model": "gpt-5.5",
+          "effort": "medium"
+        }
+      ],
+      "evidence_class": "historical user report",
+      "benchmark_trial": false,
+      "original_record_verified": true
+    },
+    {
+      "id": "E04",
+      "session_id": "019fbff6-9433-7513-9f22-e543fde360ba",
+      "title": "i was testing with $tavern-live-lab ; the tavern control ag…",
+      "source_path": "/Users/zhangqy/.codex/sessions/2026/08/02/rollout-2026-08-02T08-53-55-019fbff6-9433-7513-9f22-e543fde360ba.jsonl",
+      "line": 7,
+      "raw_record_sha256": "6211f0b90831c83631c259fdb4250dc616652383ffd01d520a7a0459c912924a",
+      "role": "user",
+      "excerpt": "the tavern control agent seems offline once its alive and sees no work",
+      "recorded_turn_models": [
+        {
+          "model": "gpt-5.6-luna",
+          "effort": "max"
+        }
+      ],
+      "evidence_class": "historical user report",
+      "benchmark_trial": false,
+      "original_record_verified": true
+    },
+    {
+      "id": "E05",
+      "session_id": "019fbff6-9433-7513-9f22-e543fde360ba",
+      "title": "i was testing with $tavern-live-lab ; the tavern control ag…",
+      "source_path": "/Users/zhangqy/.codex/sessions/2026/08/02/rollout-2026-08-02T08-53-55-019fbff6-9433-7513-9f22-e543fde360ba.jsonl",
+      "line": 118,
+      "raw_record_sha256": "f22ab9ec9955815d541dfcf7d3b78e9ff3ae8263719be39a0e58fd76493d32ac",
+      "role": "assistant",
+      "excerpt": "There is no matching resident-control process in the process list.",
+      "recorded_turn_models": [
+        {
+          "model": "gpt-5.6-luna",
+          "effort": "max"
+        }
+      ],
+      "evidence_class": "historical assistant diagnosis",
+      "benchmark_trial": false,
+      "original_record_verified": true
+    },
+    {
+      "id": "E06",
+      "session_id": "019fbff8-61bc-7273-8fc7-df627f38c2bf",
+      "title": "i was testing with $tavern-live-lab ; it was very eager to…",
+      "source_path": "/Users/zhangqy/.codex/sessions/2026/08/02/rollout-2026-08-02T08-55-54-019fbff8-61bc-7273-8fc7-df627f38c2bf.jsonl",
+      "line": 7,
+      "raw_record_sha256": "a3d0f45641dbea5b7aa7f036dd5e24a47158679284b9b393ea841f9fba49e2e1",
+      "role": "user",
+      "excerpt": "it was very eager to jump in to solving the problem and leave my feishu chat unresponsive",
+      "recorded_turn_models": [
+        {
+          "model": "gpt-5.6-luna",
+          "effort": "max"
+        }
+      ],
+      "evidence_class": "historical user report",
+      "benchmark_trial": false,
+      "original_record_verified": true
+    },
+    {
+      "id": "E07",
+      "session_id": "019fc02b-82ea-7af2-a15b-c15288b05e94",
+      "title": "Run Tavern live lab",
+      "source_path": "/Users/zhangqy/.codex/sessions/2026/08/02/rollout-2026-08-02T09-51-44-019fc02b-82ea-7af2-a15b-c15288b05e94.jsonl",
+      "line": 304,
+      "raw_record_sha256": "fe788223a98b3c7abf0e01f047be29ed75db704b754cc35652bfb44eebc267ec",
+      "role": "assistant",
+      "excerpt": "baseline 的 host/welcome/QA/profile 条件已满足，但 resident 报告自身已退出且队列仍有 queued requests；",
+      "recorded_turn_models": [
+        {
+          "model": "gpt-5.6-luna",
+          "effort": "max"
+        }
+      ],
+      "evidence_class": "historical assistant diagnosis",
+      "benchmark_trial": false,
+      "original_record_verified": true
+    },
+    {
+      "id": "E08",
+      "session_id": "019fbfe6-fdd9-7690-a023-8120f1219c27",
+      "title": "lets do a session of [$tavern-live-lab](/Users/zhangqy/pkgs/conversation-workbench/.agents/skills/tavern-live-lab/SKILL.md)",
+      "source_path": "/Users/zhangqy/.codex/sessions/2026/08/02/rollout-2026-08-02T08-36-54-019fbfe6-fdd9-7690-a023-8120f1219c27.jsonl",
+      "line": 263,
+      "raw_record_sha256": "d550eabc02ecf1d44c20f97d216b8ebcb5029c9e3afb13bf9c8684b2b84bf4f8",
+      "role": "user",
+      "excerpt": "the ledger is from last night",
+      "recorded_turn_models": [
+        {
+          "model": "gpt-5.6-luna",
+          "effort": "high"
+        }
+      ],
+      "evidence_class": "historical user report",
+      "benchmark_trial": false,
+      "original_record_verified": true
+    }
+  ],
+  "tasks": [
+    {
+      "task": "pdf-table-lineage",
+      "source_root": "archive/legacy/pre-medical/probes/pdf-table-lineage",
+      "source_files": 16,
+      "freeze": "docs/evidence/br003-pdf-freeze.json",
+      "snapshot": "runs/br003-history/task-snapshots/pdf-table-lineage-v1.tar.gz",
+      "task_checksum": "aeac40d62463571ca32ff1c1a0017aa70ad36b7a1e986a7e2afd77fe20cd6ca3",
+      "trials": [
+        {
+          "job": "br003-pdf-nop-v1-20260915",
+          "source": "runs/br003-pdf-nop-v1-20260915/pdf-table-lineage__6frBbkG/result.json",
+          "task_checksum": "aeac40d62463571ca32ff1c1a0017aa70ad36b7a1e986a7e2afd77fe20cd6ca3",
+          "agent": "nop",
+          "model": null,
+          "reasoning_effort": null,
+          "started_at": "2026-09-14T17:09:06.601687Z",
+          "finished_at": "2026-09-14T17:09:30.775110Z",
+          "agent_seconds": 8.6e-05,
+          "reward": 0.0,
+          "report": {
+            "passed": [],
+            "failures": [
+              "schema: table IDs"
+            ]
+          }
+        },
+        {
+          "job": "br003-pdf-oracle-v1-20260915",
+          "source": "runs/br003-pdf-oracle-v1-20260915/pdf-table-lineage__Sg3Hgbn/result.json",
+          "task_checksum": "aeac40d62463571ca32ff1c1a0017aa70ad36b7a1e986a7e2afd77fe20cd6ca3",
+          "agent": "oracle",
+          "model": null,
+          "reasoning_effort": null,
+          "started_at": "2026-09-14T17:06:55.456099Z",
+          "finished_at": "2026-09-14T17:07:39.531596Z",
+          "agent_seconds": 0.144624,
+          "reward": 1.0,
+          "report": {
+            "passed": [
+              "table-1-content",
+              "table-1-geometry",
+              "table-2-content",
+              "table-2-geometry"
+            ],
+            "failures": []
+          }
+        },
+        {
+          "job": "br003-pdf-terra-high-v1-20260915",
+          "source": "runs/br003-pdf-terra-high-v1-20260915/pdf-table-lineage__j8tBEkF/result.json",
+          "task_checksum": "aeac40d62463571ca32ff1c1a0017aa70ad36b7a1e986a7e2afd77fe20cd6ca3",
+          "agent": "codex",
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "high",
+          "started_at": "2026-09-14T17:11:04.861619Z",
+          "finished_at": "2026-09-14T17:14:37.561583Z",
+          "agent_seconds": 146.065871,
+          "reward": 1.0,
+          "report": {
+            "passed": [
+              "table-1-content",
+              "table-1-geometry",
+              "table-2-content",
+              "table-2-geometry"
+            ],
+            "failures": []
+          }
+        }
+      ]
+    },
+    {
+      "task": "chat-round-recovery",
+      "source_root": "archive/legacy/pre-medical/probes/chat-round-recovery",
+      "source_files": 18,
+      "freeze": "docs/evidence/br003-chat-freeze.json",
+      "snapshot": "runs/br003-history/task-snapshots/chat-round-recovery-v1.tar.gz",
+      "task_checksum": "23648a666c65c6c1726ff581aa3392bfaf29d62dd372c055cdb51d90232ccce0",
+      "trials": [
+        {
+          "job": "br003-chat-nop-v1-20260915",
+          "source": "runs/br003-chat-nop-v1-20260915/chat-round-recovery__iTkXUuT/result.json",
+          "task_checksum": "23648a666c65c6c1726ff581aa3392bfaf29d62dd372c055cdb51d90232ccce0",
+          "agent": "nop",
+          "model": null,
+          "reasoning_effort": null,
+          "started_at": "2026-09-14T17:00:23.977108Z",
+          "finished_at": "2026-09-14T17:00:49.194378Z",
+          "agent_seconds": 9.3e-05,
+          "reward": 0.0,
+          "report": {
+            "passed": [],
+            "failures": [
+              "idle-is-not-termination: event 2 effects: expected [{'kind': 'job', 'id': ['r', 'm', 'x', 1, 'a', 1], 'deadline': 56}], got []",
+              "exact-deadline-late-verdict: event 2 effects: expected [{'kind': 'job', 'id': ['r', 'm', 'x', 2, 'b', 1], 'deadline': 11}], got []",
+              "room-local-identity: event 3 effects: expected [{'kind': 'job', 'id': ['r', 'same', 'x', 1, 'a', 1], 'deadline': 6}, {'kind': 'reply', 'id': ['s', 'same'], 'status': 'ok', 'values': {'x': 'S'}, 'failed': []}], got []",
+              "cancel-unblocks-ready-successor: event 3 effects: expected [{'kind': 'job', 'id': ['r', 'first', 'x', 1, 'a', 1], 'deadline': 6}], got []",
+              "failed-head-and-receipt-order: event 4 effects: expected [{'kind': 'reply', 'id': ['r', 'first'], 'status': 'failed', 'values': {}, 'failed': ['x']}], got []",
+              "lost-receipt-retransmit-only: event 2 effects: expected [{'kind': 'reply', 'id': ['r', 'm'], 'status': 'ok', 'values': {'x': 'A'}, 'failed': []}], got []",
+              "incarnation-replaces-only-live-slots: event 3 effects: expected [{'kind': 'job', 'id': ['r', 'm', 'y', 2, 'a', 2], 'deadline': 8}], got []",
+              "offline-skip-does-not-consume-attempt: event 2 effects: expected [{'kind': 'job', 'id': ['r', 'm', 'x', 1, 'b', 1], 'deadline': 6}], got []",
+              "large-time-jump-one-new-assignment: event 2 effects: expected [{'kind': 'job', 'id': ['r', 'm', 'x', 2, 'b', 1], 'deadline': 105}], got []",
+              "full-assignment-identity-required: event 2 effects: expected [{'kind': 'job', 'id': ['r', 'm', 'x', 1, 'a', 1], 'deadline': 6}], got []",
+              "partial-cancel-keeps-completed-slot: event 3 view: expected [{'room': 'r', 'message': 'm', 'state': 'cancelled', 'slots': {'x': 'done', 'y': 'cancelled'}}], got []",
+              "early-receipt-cannot-ack-new-reply: event 2 effects: expected [{'kind': 'reply', 'id': ['r', 'm'], 'status': 'failed', 'values': {}, 'failed': ['x']}], got []",
+              "partial-results-and-sorted-failures: event 3 effects: expected [{'kind': 'reply', 'id': ['r', 'm'], 'status': 'failed', 'values': {'m': 'M'}, 'failed': ['a', 'z']}], got []",
+              "worker-restart-shared-across-rooms: event 3 effects: expected [{'kind': 'job', 'id': ['r', 'm', 'x', 2, 'a', 2], 'deadline': 8}, {'kind': 'job', 'id': ['s', 'm', 'x', 2, 'a', 2], 'deadline': 8}], got []",
+              "expiration-precedes-incarnation-update: event 2 effects: expected [{'kind': 'job', 'id': ['r', 'm', 'x', 2, 'b', 1], 'deadline': 11}], got []",
+              "identifiers-are-tuples-not-delimited-strings: event 4 effects: expected [{'kind': 'reply', 'id': ['a/b', 'c'], 'status': 'ok', 'values': {'槽:1': 'two'}, 'failed': []}, {'kind': 'reply', 'id': ['a', 'b/c'], 'status': 'ok', 'values': {'槽:1': 'one'}, 'failed': []}], got []",
+              "fanout-order-0: event 4 effects: expected [{'kind': 'reply', 'id': ['r', 'm'], 'status': 'ok', 'values': {'x': 'X', 'y': 'Y', 'z': 'Z'}, 'failed': []}], got []",
+              "fanout-order-1: event 4 effects: expected [{'kind': 'reply', 'id': ['r', 'm'], 'status': 'ok', 'values': {'x': 'X', 'y': 'Y', 'z': 'Z'}, 'failed': []}], got []",
+              "fanout-order-2: event 4 effects: expected [{'kind': 'reply', 'id': ['r', 'm'], 'status': 'ok', 'values': {'x': 'X', 'y': 'Y', 'z': 'Z'}, 'failed': []}], got []",
+              "fanout-order-3: event 4 effects: expected [{'kind': 'reply', 'id': ['r', 'm'], 'status': 'ok', 'values': {'x': 'X', 'y': 'Y', 'z': 'Z'}, 'failed': []}], got []",
+              "fanout-order-4: event 4 effects: expected [{'kind': 'reply', 'id': ['r', 'm'], 'status': 'ok', 'values': {'x': 'X', 'y': 'Y', 'z': 'Z'}, 'failed': []}], got []",
+              "fanout-order-5: event 4 effects: expected [{'kind': 'reply', 'id': ['r', 'm'], 'status': 'ok', 'values': {'x': 'X', 'y': 'Y', 'z': 'Z'}, 'failed': []}], got []"
+            ]
+          }
+        },
+        {
+          "job": "br003-chat-oracle-v1-20260915",
+          "source": "runs/br003-chat-oracle-v1-20260915/chat-round-recovery__uAaEdc3/result.json",
+          "task_checksum": "23648a666c65c6c1726ff581aa3392bfaf29d62dd372c055cdb51d90232ccce0",
+          "agent": "oracle",
+          "model": null,
+          "reasoning_effort": null,
+          "started_at": "2026-09-14T16:59:40.080352Z",
+          "finished_at": "2026-09-14T17:00:05.855425Z",
+          "agent_seconds": 0.152755,
+          "reward": 1.0,
+          "report": {
+            "passed": [
+              "idle-is-not-termination",
+              "exact-deadline-late-verdict",
+              "room-local-identity",
+              "cancel-unblocks-ready-successor",
+              "failed-head-and-receipt-order",
+              "lost-receipt-retransmit-only",
+              "incarnation-replaces-only-live-slots",
+              "offline-skip-does-not-consume-attempt",
+              "large-time-jump-one-new-assignment",
+              "full-assignment-identity-required",
+              "partial-cancel-keeps-completed-slot",
+              "early-receipt-cannot-ack-new-reply",
+              "partial-results-and-sorted-failures",
+              "worker-restart-shared-across-rooms",
+              "expiration-precedes-incarnation-update",
+              "identifiers-are-tuples-not-delimited-strings",
+              "fanout-order-0",
+              "fanout-order-1",
+              "fanout-order-2",
+              "fanout-order-3",
+              "fanout-order-4",
+              "fanout-order-5"
+            ],
+            "failures": []
+          }
+        },
+        {
+          "job": "br003-chat-terra-high-v1-20260915",
+          "source": "runs/br003-chat-terra-high-v1-20260915/chat-round-recovery__2gF2jhs/result.json",
+          "task_checksum": "23648a666c65c6c1726ff581aa3392bfaf29d62dd372c055cdb51d90232ccce0",
+          "agent": "codex",
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "high",
+          "started_at": "2026-09-14T17:01:44.645470Z",
+          "finished_at": "2026-09-14T17:06:09.850421Z",
+          "agent_seconds": 197.25396,
+          "reward": 1.0,
+          "report": {
+            "passed": [
+              "idle-is-not-termination",
+              "exact-deadline-late-verdict",
+              "room-local-identity",
+              "cancel-unblocks-ready-successor",
+              "failed-head-and-receipt-order",
+              "lost-receipt-retransmit-only",
+              "incarnation-replaces-only-live-slots",
+              "offline-skip-does-not-consume-attempt",
+              "large-time-jump-one-new-assignment",
+              "full-assignment-identity-required",
+              "partial-cancel-keeps-completed-slot",
+              "early-receipt-cannot-ack-new-reply",
+              "partial-results-and-sorted-failures",
+              "worker-restart-shared-across-rooms",
+              "expiration-precedes-incarnation-update",
+              "identifiers-are-tuples-not-delimited-strings",
+              "fanout-order-0",
+              "fanout-order-1",
+              "fanout-order-2",
+              "fanout-order-3",
+              "fanout-order-4",
+              "fanout-order-5"
+            ],
+            "failures": []
+          }
+        }
+      ]
+    },
+    {
+      "task": "dicom-label-audit",
+      "source_root": "probes/dicom-label-audit",
+      "source_files": 19,
+      "freeze": "docs/evidence/br003-auditor-freeze.json",
+      "snapshot": "runs/br003-history/task-snapshots/dicom-label-audit-v1.tar.gz",
+      "task_checksum": "688bb007af4d35407b80ba8282ffed33f3814f2dea24e9ee959d331535f63e64",
+      "trials": [
+        {
+          "job": "br003-audit-nop-v1-20260915",
+          "source": "runs/br003-audit-nop-v1-20260915/dicom-label-audit__UUG7JKt/result.json",
+          "task_checksum": "688bb007af4d35407b80ba8282ffed33f3814f2dea24e9ee959d331535f63e64",
+          "agent": "nop",
+          "model": null,
+          "reasoning_effort": null,
+          "started_at": "2026-09-14T17:30:15.439255Z",
+          "finished_at": "2026-09-14T17:30:40.063921Z",
+          "agent_seconds": 8.9e-05,
+          "reward": 0.0,
+          "report": {
+            "passed": [
+              "packet-41",
+              "packet-56"
+            ],
+            "failures": [
+              "packet-73: expected [{'label': 'heart', 'issue': 'missing'}], got []",
+              "packet-28: expected [{'label': 'lung_upper_lobe_left', 'issue': 'wrong_side'}, {'label': 'lung_upper_lobe_right', 'issue': 'wrong_side'}], got []",
+              "packet-92: expected [{'label': 'rib_right_7', 'issue': 'wrong_side'}], got []"
+            ]
+          }
+        },
+        {
+          "job": "br003-audit-oracle-v1-20260915",
+          "source": "runs/br003-audit-oracle-v1-20260915/dicom-label-audit__mbEhmzs/result.json",
+          "task_checksum": "688bb007af4d35407b80ba8282ffed33f3814f2dea24e9ee959d331535f63e64",
+          "agent": "oracle",
+          "model": null,
+          "reasoning_effort": null,
+          "started_at": "2026-09-14T17:27:50.571278Z",
+          "finished_at": "2026-09-14T17:29:42.310869Z",
+          "agent_seconds": 0.155555,
+          "reward": 1.0,
+          "report": {
+            "passed": [
+              "packet-41",
+              "packet-73",
+              "packet-28",
+              "packet-56",
+              "packet-92"
+            ],
+            "failures": []
+          }
+        },
+        {
+          "job": "br003-audit-terra-high-v1-20260915",
+          "source": "runs/br003-audit-terra-high-v1-20260915/dicom-label-audit__PRbFdXR/result.json",
+          "task_checksum": "688bb007af4d35407b80ba8282ffed33f3814f2dea24e9ee959d331535f63e64",
+          "agent": "codex",
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "high",
+          "started_at": "2026-09-14T17:39:59.775681Z",
+          "finished_at": "2026-09-14T17:45:52.048799Z",
+          "agent_seconds": 293.135156,
+          "reward": 1.0,
+          "report": {
+            "passed": [
+              "packet-41",
+              "packet-73",
+              "packet-28",
+              "packet-56",
+              "packet-92"
+            ],
+            "failures": []
+          }
+        }
+      ]
+    },
+    {
+      "task": "dicom-triplanar-svg",
+      "source_root": "probes/dicom-triplanar-svg",
+      "source_files": 23,
+      "freeze": "docs/evidence/br003-renderer-freeze.json",
+      "snapshot": "runs/br003-history/task-snapshots/dicom-triplanar-svg-v1.tar.gz",
+      "task_checksum": "cc30603bc7ff820ce37f93be9610c2146d7ec19710f31b507a3c021bc96f0a11",
+      "trials": [
+        {
+          "job": "br003-svg-nop-v1-20260915",
+          "source": "runs/br003-svg-nop-v1-20260915/dicom-triplanar-svg__WWcwQ49/result.json",
+          "task_checksum": "cc30603bc7ff820ce37f93be9610c2146d7ec19710f31b507a3c021bc96f0a11",
+          "agent": "nop",
+          "model": null,
+          "reasoning_effort": null,
+          "started_at": "2026-09-14T17:30:17.855573Z",
+          "finished_at": "2026-09-14T17:30:42.049324Z",
+          "agent_seconds": 9.5e-05,
+          "reward": 0.0,
+          "report": {
+            "passed": [],
+            "failures": [
+              "point-1__axial: heart Dice=0.00000, expected=1118, actual=0",
+              "point-1__coronal: heart Dice=0.00000, expected=806, actual=0",
+              "point-1__sagittal: heart Dice=0.00000, expected=877, actual=0",
+              "point-2__axial: heart Dice=0.00000, expected=192, actual=0",
+              "point-2__coronal: heart Dice=0.00000, expected=620, actual=0",
+              "point-2__sagittal: heart Dice=0.00000, expected=490, actual=0",
+              "point-3__axial: heart Dice=0.00000, expected=908, actual=0",
+              "point-3__coronal: heart Dice=0.00000, expected=400, actual=0",
+              "point-3__sagittal: lung_upper_lobe_right Dice=0.00000, expected=979, actual=0",
+              "point-4__axial: heart Dice=0.00000, expected=1059, actual=0",
+              "point-4__coronal: heart Dice=0.00000, expected=410, actual=0",
+              "point-4__sagittal: lung_upper_lobe_right Dice=0.00000, expected=1175, actual=0"
+            ]
+          },
+          "label_comparisons": 0,
+          "minimum_dice": null
+        },
+        {
+          "job": "br003-svg-oracle-v1-20260915",
+          "source": "runs/br003-svg-oracle-v1-20260915/dicom-triplanar-svg__yMX2aMX/result.json",
+          "task_checksum": "cc30603bc7ff820ce37f93be9610c2146d7ec19710f31b507a3c021bc96f0a11",
+          "agent": "oracle",
+          "model": null,
+          "reasoning_effort": null,
+          "started_at": "2026-09-14T17:27:46.427492Z",
+          "finished_at": "2026-09-14T17:29:42.180175Z",
+          "agent_seconds": 0.155573,
+          "reward": 1.0,
+          "report": {
+            "passed": [
+              "point-1__axial",
+              "point-1__coronal",
+              "point-1__sagittal",
+              "point-2__axial",
+              "point-2__coronal",
+              "point-2__sagittal",
+              "point-3__axial",
+              "point-3__coronal",
+              "point-3__sagittal",
+              "point-4__axial",
+              "point-4__coronal",
+              "point-4__sagittal"
+            ],
+            "failures": []
+          },
+          "label_comparisons": 72,
+          "minimum_dice": 1.0
+        },
+        {
+          "job": "br003-svg-terra-high-v1-20260915",
+          "source": "runs/br003-svg-terra-high-v1-20260915/dicom-triplanar-svg__hoWg6JJ/result.json",
+          "task_checksum": "cc30603bc7ff820ce37f93be9610c2146d7ec19710f31b507a3c021bc96f0a11",
+          "agent": "codex",
+          "model": "openai/gpt-5.6-terra",
+          "reasoning_effort": "high",
+          "started_at": "2026-09-14T17:35:02.523101Z",
+          "finished_at": "2026-09-14T17:39:37.222575Z",
+          "agent_seconds": 217.430627,
+          "reward": 1.0,
+          "report": {
+            "passed": [
+              "point-1__axial",
+              "point-1__coronal",
+              "point-1__sagittal",
+              "point-2__axial",
+              "point-2__coronal",
+              "point-2__sagittal",
+              "point-3__axial",
+              "point-3__coronal",
+              "point-3__sagittal",
+              "point-4__axial",
+              "point-4__coronal",
+              "point-4__sagittal"
+            ],
+            "failures": []
+          },
+          "label_comparisons": 72,
+          "minimum_dice": 1.0
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "frozen_files_exact": 76,
+    "snapshot_archives_exact": 4,
+    "original_results_exact": 12,
+    "model_attempts": 4,
+    "model_passes": 4,
+    "model_exceptions": 0,
+    "control_attempts": 8,
+    "model_runs_sequential": true
+  },
+  "limits": [
+    "Eight exact excerpt records cover six sessions; the retained selection has nine exports, not an exhaustive audit of 237 records.",
+    "History reports are uncontrolled evidence involving different earlier models, not Terra benchmark failures.",
+    "H01 table lineage does not test authentic vector-diagram crop ownership. H05 remains parked.",
+    "Exact historical verdict-timeout/reroute and SVG incidents were not recovered.",
+    "Four different endpoints cannot be pooled. H03 and H04 share one CT; their observations are correlated.",
+    "Current check verifies retained bytes and recorded outcomes, not container recovery, scorer reexecution or clinical truth."
+  ]
+}

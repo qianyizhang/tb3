@@ -198,6 +198,53 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     localizedReference,
     localizedOutput,
   } = await loadFrontend('expansion_fixture.mjs');
+  const { historySource, historyReference, historySelection } =
+    await loadFrontend('expansion_fixture.mjs');
+  const historyPlan = plans.find((p) => p.recipe === 'history-sourcing-v1');
+  assert.ok(historyPlan);
+  const counts = historySource.counts;
+  assert.equal(
+    counts.indexed_records - counts.automatic_reviews - counts.other_long_titles,
+    counts.navigable_records,
+  );
+  assert.equal(new Set(historySource.excerpts.map((e) => e.raw_record_sha256)).size, 8);
+  assert.equal(new Set(historySource.excerpts.map((e) => e.session_id)).size, 6);
+  assert.equal(historySource.candidates[4].task, null);
+  assert.equal(historySource.candidates[4].endpoint, 'Not tested');
+  assert.equal(historyReference.tasks.length, 4);
+  assert.equal(
+    historyReference.tasks.reduce((n, t) => n + t.source_files, 0),
+    76,
+  );
+  for (const t of historyReference.tasks) {
+    assert.equal(t.trials.length, 3);
+    assert.ok(t.trials.every((r) => r.task_checksum === t.task_checksum));
+    assert.equal(t.trials.find((r) => r.agent === 'codex').reward, 1);
+    assert.equal(t.trials.find((r) => r.agent === 'oracle').reward, 1);
+    assert.equal(t.trials.find((r) => r.agent === 'nop').reward, 0);
+  }
+  for (const [scene, key, count] of [
+    ['excerpts', 'excerpt', 8],
+    ['candidates', 'candidate', 5],
+    ['lineage', 'task', 4],
+    ['controls', 'task', 4],
+  ]) {
+    const b = historyPlan.beats.find((b) => b.scene === scene),
+      seen = new Set();
+    for (let f = b.startFrame; f < b.endFrame; f++)
+      seen.add(historySelection(sampleStory(historyPlan, f))[key]);
+    assert.deepEqual(
+      [...seen],
+      Array.from({ length: count }, (_, i) => i),
+    );
+  }
+  const historyReveal = historyPlan.beats.find((b) => b.scene === 'reference');
+  for (let f = 0; f <= historyReveal.startFrame; f++)
+    assert.equal(historySelection(sampleStory(historyPlan, f)).reference, false);
+  assert.equal(
+    historySelection(sampleStory(historyPlan, historyReveal.endFrame - 1)).reference,
+    true,
+  );
   const { mriInputs, mriOutput, mriSelection, mriSlot, mriPoint, mriCorners, mriGray } =
     await loadFrontend('expansion_fixture.mjs');
   const mrPlan = plans.find((p) => p.recipe === 'mri-importer-v1');

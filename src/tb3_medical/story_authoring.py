@@ -149,6 +149,8 @@ def new(
             beat["show_deformed_target"] = False
         if recipe == "registration-analysis-v1":
             beat["scene"] = "input"
+        if recipe == "history-sourcing-v1":
+            beat["scene"] = "retrieval"
         if recipe in {
             "mri-importer-v1",
             "localized-ct-v1",

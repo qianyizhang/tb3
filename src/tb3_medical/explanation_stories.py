@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "history-sourcing-v1": "retained-history-sourcing-v1",
     "mri-importer-v1": "retained-mri-importer-v1",
     "localized-ct-v1": "retained-localized-ct-v1",
     "aneurysm-localization-v1": "retained-aneurysm-localization-v1",
@@ -81,6 +82,11 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-history-sourcing-v1": (
+        "source-records",
+        "reference.json",
+        {"source.json", "reference.json", "NOTICE.md", "DATA-LICENSE.txt"},
+    ),
     "retained-mri-importer-v1": (
         "source-slices",
         "reference.json",
@@ -480,6 +486,12 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class HistorySourcingChannels(Closed):
+    view: Pair
+    output: Pair
+    reference: Pair
 
 
 class MriImporterChannels(Closed):
@@ -926,6 +938,32 @@ class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
         return self
 
 
+class HistorySourcingBeat(ExpansionBeat[HistorySourcingChannels]):
+    scene: Literal[
+        "retrieval",
+        "excerpts",
+        "classification",
+        "candidates",
+        "lineage",
+        "controls",
+        "reference",
+        "gap",
+        "limits",
+    ]
+
+
+class HistorySourcingStory(Story[HistorySourcingChannels]):
+    recipe: Literal["history-sourcing-v1"]
+    beats: tuple[HistorySourcingBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class MriImporterBeat(ExpansionBeat[MriImporterChannels]):
     scene: Literal[
         "inputs",
@@ -1295,6 +1333,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | HistorySourcingStory
     | MriImporterStory
     | LocalizedCtStory
     | AneurysmStory
@@ -1333,6 +1372,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | HistorySourcingStory
     | MriImporterStory
     | LocalizedCtStory
     | AneurysmStory
@@ -1394,7 +1434,7 @@ class AnatomyPack(Closed):
 class SourceTeachingPack(Closed):
     manifest: str
     retained_files: tuple[str, ...]
-    runtime_geometry: Literal["source-slices", "source-points"]
+    runtime_geometry: Literal["source-slices", "source-points", "source-records"]
 
 
 class PrefabIndex(Closed):
@@ -1531,6 +1571,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | HistorySourcingStory
     | MriImporterStory
     | LocalizedCtStory
     | AneurysmStory
@@ -1613,6 +1654,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         frame, data_license, label_license = {
+            "retained-history-sourcing-v1": (
+                "source-record",
+                "LicenseRef-TB3-retained-records",
+                "LicenseRef-TB3-retained-records",
+            ),
             "retained-mri-importer-v1": (
                 "LPS",
                 "LicenseRef-TB3-authored-fixtures",
@@ -1665,7 +1711,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             or manifest.get("frame") != frame
             or manifest.get("units")
             != (
-                "voxel"
+                "record"
+                if pack_id == "retained-history-sourcing-v1"
+                else "voxel"
                 if pack_id
                 in {
                     "retained-dental-original-v1",

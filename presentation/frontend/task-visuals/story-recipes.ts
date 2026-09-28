@@ -17,6 +17,9 @@ import {
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
   return !(
+    (state.recipe === 'history-sourcing-v1' &&
+      state.scene === 'reference' &&
+      state.reference <= 0.5) ||
     (state.recipe === 'mri-importer-v1' && state.scene === 'reference' && state.reference <= 0.5) ||
     (state.recipe === 'localized-ct-v1' && state.scene === 'reference' && state.reference <= 0.5) ||
     (state.recipe === 'aneurysm-localization-v1' &&
@@ -31,6 +34,7 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'history-sourcing-v1',
     'mri-importer-v1',
     'localized-ct-v1',
     'aneurysm-localization-v1',
@@ -105,6 +109,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'history-sourcing-v1':
+      return {
+        heading: 'From history to bounded task evidence',
+        corner: 'Eight retained excerpts · five candidate contracts · original outcomes',
+        legend: [
+          ['#c97b18', 'Selected record'],
+          ['#267f72', 'Verified provenance'],
+          ['#c97b18', 'Untested branch', true],
+        ],
+      };
     case 'mri-importer-v1':
       return {
         heading: 'Reconstruct MRI frame associations',

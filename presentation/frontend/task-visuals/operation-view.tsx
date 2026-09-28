@@ -1,3 +1,4 @@
+import { HistorySourcingScene, HistorySourcingOutput } from './history-sourcing-panels';
 import { MriImporterScene, MriImporterOutput } from './mri-importer-panels';
 import { LocalizedCtScene, LocalizedCtOutput } from './localized-ct-panels';
 import { AneurysmScene, AneurysmOutput } from './aneurysm-panels';
@@ -127,6 +128,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   if (state.recipe === 'resect-correspondence-v1') return <ResectScene state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisScene state={state} />;
+  if (state.recipe === 'history-sourcing-v1') return <HistorySourcingScene state={state} />;
   if (state.recipe === 'mri-importer-v1') return <MriImporterScene state={state} />;
   if (state.recipe === 'localized-ct-v1') return <LocalizedCtScene state={state} />;
   if (state.recipe === 'aneurysm-localization-v1') return <AneurysmScene state={state} />;
@@ -355,6 +357,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'resect-correspondence-v1') return <ResectOutput state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisOutput state={state} />;
+  if (state.recipe === 'history-sourcing-v1') return <HistorySourcingOutput state={state} />;
   if (state.recipe === 'mri-importer-v1') return <MriImporterOutput state={state} />;
   if (state.recipe === 'localized-ct-v1') return <LocalizedCtOutput state={state} />;
   if (state.recipe === 'aneurysm-localization-v1') return <AneurysmOutput state={state} />;

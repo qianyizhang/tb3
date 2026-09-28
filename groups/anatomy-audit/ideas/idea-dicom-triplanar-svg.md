@@ -43,3 +43,9 @@ Reopen if a newly curated oblique acquisition or sparse SEG source-reference var
 ## Current disposition
 
 The completed patient-coordinate triplanar SVG calibration passed with Terra/high, including Dice 1.0 on all 72 retained label/view comparisons; no follow-up trial is scheduled. Preserve the frozen task and observed outcome. The user accepted parking on 2026-09-21 in [the refinement task](codex://threads/01a0c040-3777-7b72-b932-6e6b118304a2). This does not close the broader scientific question.
+
+## 2026-09-28 retrospective source explanation
+
+Assistant-authored [BR-003 source-study audit](../findings/history-sourcing-calibration.md) links the bounded work-history selection to five candidate contracts and preserves the four original passing calibrations. Eight source excerpts are historical reports, not model trials; the exact recalled SVG and timeout/reroute incidents remain unrecovered. H01 table lineage does not answer H05 authentic vector-crop ownership, which has no executable task or attempt.
+
+This explanation preserves the existing disposition and reopening conditions. It launches no new trial, changes no score and adds no user decision. The [canonical story](../presentation/stories/history-sourcing.story.md) uses record indices and a separate private-outcome reveal.

@@ -1,4 +1,10 @@
 export {
+  historySource,
+  historyReference,
+  historySelection,
+  historyIndex,
+} from '../presentation/frontend/task-visuals/history-sourcing';
+export {
   mriInputs,
   mriOutput,
   mriReference,

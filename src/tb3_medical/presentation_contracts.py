@@ -514,6 +514,32 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class HistorySourcingChannels(TypedDict):
+    view: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class HistorySourcingBeat(ExpansionBeat):
+    channels: HistorySourcingChannels
+    scene: Literal[
+        "retrieval",
+        "excerpts",
+        "classification",
+        "candidates",
+        "lineage",
+        "controls",
+        "reference",
+        "gap",
+        "limits",
+    ]
+
+
+class HistorySourcingPlan(ExpansionPlan):
+    recipe: Literal["history-sourcing-v1"]
+    beats: list[HistorySourcingBeat]
+
+
 class MriImporterChannels(TypedDict):
     view: tuple[float, float]
     output: tuple[float, float]
@@ -904,6 +930,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | HistorySourcingPlan
     | MriImporterPlan
     | LocalizedCtPlan
     | AneurysmPlan

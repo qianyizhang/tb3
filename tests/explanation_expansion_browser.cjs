@@ -49,6 +49,7 @@ withBrowser(async (browser) => {
         ...([
           'mask-screen-v1',
           'anatomy-curation-v1',
+          'history-sourcing-v1',
           'mri-importer-v1',
           'localized-ct-v1',
           'aneurysm-localization-v1',
@@ -85,6 +86,22 @@ withBrowser(async (browser) => {
         ].includes(plan.recipe)
       ) {
         for (const b of plan.beats) frames.push(b.startFrame);
+      }
+      if (plan.recipe === 'history-sourcing-v1') {
+        for (const b of plan.beats) frames.push(b.startFrame);
+        for (const [scene, count] of [
+          ['excerpts', 8],
+          ['candidates', 5],
+          ['lineage', 4],
+          ['controls', 4],
+          ['reference', 4],
+        ]) {
+          const b = plan.beats.find((b) => b.scene === scene);
+          for (let i = 0; i < count; i++)
+            frames.push(
+              Math.floor(b.startFrame + ((i + 0.5) / count) * (b.endFrame - b.startFrame)),
+            );
+        }
       }
       if (plan.recipe === 'mri-importer-v1') {
         for (const b of plan.beats) frames.push(b.startFrame);
@@ -471,6 +488,46 @@ withBrowser(async (browser) => {
           const box = await output.boundingBox();
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
+        }
+        if (plan.recipe === 'history-sourcing-v1') {
+          const scene = page.locator('[data-history-scene]');
+          const reveal = (await scene.getAttribute('data-history-reference')) === 'visible';
+          if (!reveal) assert.equal(await page.locator('[data-history-private]').count(), 0);
+          if ((await scene.getAttribute('data-history-scene')) === 'reference')
+            assert.equal(
+              await page.locator('[data-scene-inline-narration]').count(),
+              reveal ? 1 : 0,
+            );
+          if ((await scene.getAttribute('data-history-scene')) === 'excerpts') {
+            assert.equal(await page.locator('[data-history-excerpt]').count(), 1);
+            assert.ok(
+              (await page.locator('[data-history-excerpt] code').last().textContent()).match(
+                /[a-f0-9]{64}/,
+              ),
+            );
+          }
+          if ((await scene.getAttribute('data-history-scene')) === 'gap')
+            assert.match(
+              await page.locator('[data-history-untested]').textContent(),
+              /No executable task. No attempt. No score./,
+            );
+          for (const selector of [
+            '.scene-player > header',
+            '[data-history-scene]',
+            '[class*="historyAside"]',
+            '.scene-legend',
+          ]) {
+            assert.ok(
+              await page
+                .locator(selector)
+                .evaluate(
+                  (e) => e.scrollHeight <= e.clientHeight && e.scrollWidth <= e.clientWidth,
+                ),
+              'History overflow ' + selector,
+            );
+            const box = await page.locator(selector).boundingBox();
+            assert.ok(box && box.y + box.height <= 720, 'History clipping ' + selector);
+          }
         }
         if (plan.recipe === 'mri-importer-v1') {
           const scene = page.locator('[data-mri-scene]');
@@ -994,6 +1051,37 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'history-sourcing-v1') {
+      for (let step = 1; step < plan.beats.length; step++) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        await page.waitForFunction(
+          (f) =>
+            document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+            String(f),
+          plan.beats[step].startFrame,
+        );
+        assert.ok(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          'History mobile overflow',
+        );
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+        if (plan.beats[step].scene === 'reference') {
+          await page.locator('.scene-play').click();
+          await page.locator('[data-history-private]').first().waitFor();
+          await page.locator('.scene-play').click();
+          assert.ok(
+            await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+            'History mobile reveal overflow',
+          );
+          await page
+            .locator('.scene-player')
+            .screenshot({ path: path.join(out, 'mobile-reference.png') });
+        }
+      }
+    }
+
     if (plan.recipe === 'mri-importer-v1') {
       for (let step = 1; step < plan.beats.length; step++) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -1243,6 +1331,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'history-sourcing-v1',
       'mri-importer-v1',
       'localized-ct-v1',
       'aneurysm-localization-v1',
@@ -1276,6 +1365,29 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'history-sourcing-v1') {
+      assert.equal(await fallback.locator('[data-history-private]').count(), 0);
+      await fallback.locator('[data-story-step="1"]').click();
+      await fallback.locator('[data-history-excerpt]').waitFor();
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-excerpts.png') });
+      await fallback.locator('[data-story-step="5"]').click();
+      await fallback.locator('.scene-play').click();
+      await fallback.locator('[data-history-private]').first().waitFor();
+      await fallback.locator('.scene-play').click();
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('.scene-reset').click();
+      await fallback.waitForFunction(
+        () =>
+          document
+            .querySelector('[data-history-reference]')
+            ?.getAttribute('data-history-reference') === 'hidden',
+      );
+      assert.equal(await fallback.locator('[data-history-private]').count(), 0);
+    }
     if (plan.recipe === 'mri-importer-v1') {
       assert.equal(await fallback.locator('[data-mri-private]').count(), 0);
       await fallback.locator('[data-story-step="2"]').click();
@@ -2174,6 +2286,32 @@ withBrowser(async (browser) => {
   assert.equal(await page.locator('[data-mri-private], [data-mri-output]').count(), 0);
   report.navigation.push({ id: 'tb3-mri-importer', revealAndReset: true });
 
+  await page.evaluate(() => {
+    location.hash = 'tb3-history-sourcing/0/overview?view=repository';
+  });
+  await page.waitForFunction(
+    () =>
+      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+      'history-sourcing-v1',
+  );
+  assert.equal(await page.locator('[data-history-private]').count(), 0);
+  await page.locator('[data-story-step="1"]').click();
+  await page.locator('[data-history-excerpt]').waitFor();
+  await page
+    .locator('.scene-player')
+    .screenshot({ path: path.join(folder, 'integrated-history-sourcing.png') });
+  await page.locator('[data-story-step="5"]').click();
+  await page.locator('.scene-play').click();
+  await page.locator('[data-history-private]').first().waitFor();
+  await page.locator('.scene-play').click();
+  await page.locator('.scene-reset').click();
+  await page.waitForFunction(
+    () =>
+      document.querySelector('[data-history-reference]')?.getAttribute('data-history-reference') ===
+      'hidden',
+  );
+  assert.equal(await page.locator('[data-history-private]').count(), 0);
+  report.navigation.push({ id: 'tb3-history-sourcing', revealAndReset: true });
   await context.close();
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.remote_requests, []);
