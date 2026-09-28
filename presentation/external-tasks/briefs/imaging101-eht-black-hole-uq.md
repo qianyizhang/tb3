@@ -105,6 +105,7 @@ reconstruction claim; sample diversity alone does not establish a calibrated pos
 - [Pinned generic scorer](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py)
 - [Original DPI example](https://github.com/HeSunPU/DPI/tree/1bf3f02a92796af737bd6fe6233d1d0dd778ffd5/dataset/interferometry1)
 - [DPI paper, v2](https://arxiv.org/html/2010.14462v2)
+- [Canonical story](../stories/imaging101-eht-uq.story.md)
 - [Source audit, controls and provenance](../sources/imaging101-eht-uq-audit.json)
 
 ## Coverage

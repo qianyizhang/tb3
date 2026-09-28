@@ -1,5 +1,14 @@
 # Canonical task explainers
 
+`imaging101-eht-uq-v1` uses native sparse Fourier coverage, exact station-gain
+cancellation controls and saved posterior arrays. Its [source notice](task-explorer/imaging101-eht-uq/NOTICE.md)
+retains sky coordinates, sample-file identity, source drift and third-party
+attribution. `view` selects native rows and arithmetic controls; `reference`
+gates supplied truth, error and containment for the reader. Actual L1–L3 expose
+truth. One-image containment is distinct from calibration, and generic image
+scoring does not evaluate uncertainty. No flow training, sampling or NUFFT runs
+in the player.
+
 `imaging101-dti-v1` uses native synthetic signal planes, exact gradient/design
 rows, fixed pixel controls and saved tensor-derived maps. Its [source notice](task-explorer/imaging101-dti/NOTICE.md)
 retains source coordinates, display quantization and contradictory source labels.

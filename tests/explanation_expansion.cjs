@@ -18,6 +18,12 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    ehtInput,
+    ehtData,
+    ehtReference,
+    ehtReveal,
+    ehtGainControl,
+    ehtWrap,
     dtiInput,
     dtiData,
     dtiReference,
@@ -1660,6 +1666,56 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       'Witness must lie in displayed reference',
     );
   }
+  const eht = plans.find((p) => p.recipe === 'imaging101-eht-uq-v1');
+  assert(eht);
+  const ehtRef = eht.beats.find((b) => b.scene === 'reference');
+  const ehtMid = Math.floor((ehtRef.startFrame + ehtRef.endFrame) / 2);
+  assert.equal(ehtReveal(sampleStory(eht, ehtMid - 1)), false);
+  assert.equal(ehtReveal(sampleStory(eht, ehtMid)), true);
+  assert.equal(ehtReveal(sampleStory(eht, 0)), false);
+  for (const kind of ['phase', 'amplitude']) {
+    const w = ehtInput.witnesses[kind];
+    for (let i = 0; i <= 32; i++) {
+      const result = ehtGainControl(w, i / 32, kind);
+      const diff =
+        kind === 'phase' ? ehtWrap(result.value - w.observed) : result.value - w.observed;
+      assert.ok(
+        Math.abs(diff) < 1e-9,
+        'Station gains must cancel at every interpolated control step',
+      );
+    }
+    assert.notEqual(
+      ehtGainControl(w, 0, kind).edges[0].amplitude,
+      ehtGainControl(w, 1, kind).edges[0].amplitude,
+    );
+  }
+  const ehtPixel = ehtData.pixel;
+  const ehtMean = ehtPixel.values.reduce((a, b) => a + b, 0) / ehtPixel.values.length;
+  const ehtStd = Math.sqrt(
+    ehtPixel.values.reduce((a, b) => a + (b - ehtMean) ** 2, 0) / ehtPixel.values.length,
+  );
+  assert.ok(Math.abs(ehtMean - ehtPixel.mean) < 1e-8);
+  assert.ok(Math.abs(ehtStd - ehtPixel.std) < 1e-8);
+  for (const image of [
+    ...ehtData.samples.map((s) => s.image),
+    ehtData.mean,
+    ehtReference.image,
+    ehtInput.retained_prior,
+    ehtInput.current_prior,
+  ]) {
+    assert.deepEqual(Array.from(image.range), [0, 0.04]);
+    assert.deepEqual(Array.from(image.shape), [32, 32]);
+  }
+  for (const kind of ['zero_std', 'one_Jy_std']) {
+    assert.equal(ehtData.generic_metrics[kind].nrmse, ehtData.generic_metrics.saved_mean.nrmse);
+    assert.equal(ehtData.generic_metrics[kind].ncc, ehtData.generic_metrics.saved_mean.ncc);
+  }
+  assert.equal(ehtData.generic_metrics.saved_mean.passed, null);
+  assert.ok(ehtData.generic_metrics.sample_stack.error);
+  assert.equal(
+    ehtReference.within_std / ehtReference.total_pixels,
+    ehtData.native_metrics.calibration,
+  );
   const dti = plans.find((p) => p.recipe === 'imaging101-dti-v1');
   assert(dti);
   const dtiRef = dti.beats.find((b) => b.scene === 'reference');

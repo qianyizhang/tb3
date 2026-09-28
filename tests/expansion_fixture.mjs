@@ -227,3 +227,5 @@ export * from '../presentation/frontend/task-visuals/imaging101-fan-beam';
 export * from '../presentation/frontend/task-visuals/imaging101-deflectometry';
 
 export * from '../presentation/frontend/task-visuals/imaging101-dti';
+
+export * from '../presentation/frontend/task-visuals/imaging101-eht-uq';
