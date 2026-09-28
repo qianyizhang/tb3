@@ -12,7 +12,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class ExpansionTests(unittest.TestCase):
     def test_all_expansion_sources_and_projection(self):
-        for path in ROOT.glob("groups/*/presentation/stories/*.story.md"):
+        for path in [
+            *ROOT.glob("groups/*/presentation/stories/*.story.md"),
+            *ROOT.glob("presentation/external-tasks/stories/*.story.md"),
+        ]:
             plan = stories.compile_story(ROOT, path)
             self.assertEqual(plan["beats"][-1]["endFrame"], plan["durationFrames"])
             self.assertEqual(
@@ -25,6 +28,7 @@ class ExpansionTests(unittest.TestCase):
                     "mask-screen-v1",
                     "anatomy-curation-v1",
                     "ct-context-v1",
+                    "abra-annotation-v1",
                     "history-sourcing-v1",
                     "mri-importer-v1",
                     "localized-ct-v1",
@@ -77,6 +81,7 @@ class ExpansionTests(unittest.TestCase):
 
     def test_source_screen_scene_changes_require_explicit_cuts(self):
         for group, name in [
+            (None, "abra-annotation"),
             ("anatomy-audit", "mask-reasoning-study"),
             ("anatomy-audit", "anatomy-curation"),
             ("anatomy-audit", "history-sourcing"),
@@ -104,7 +109,11 @@ class ExpansionTests(unittest.TestCase):
             ("longitudinal-reading", "longitudinal-ct-original"),
             ("longitudinal-reading", "longitudinal-ct-revised"),
         ]:
-            path = ROOT / f"groups/{group}/presentation/stories/{name}.story.md"
+            path = ROOT / (
+                f"groups/{group}/presentation/stories/{name}.story.md"
+                if group
+                else f"presentation/external-tasks/stories/{name}.story.md"
+            )
             model = stories.parse_expansion(path.read_text())
             data = copy.deepcopy(model.model_dump(by_alias=True))
             index = next(
@@ -140,6 +149,7 @@ class ExpansionTests(unittest.TestCase):
             "registration-analysis",
             "segmentation-calibration",
             "ct-context",
+            "abra-annotation",
             "history-sourcing",
             "mri-importer",
             "localized-ct",
@@ -161,7 +171,7 @@ class ExpansionTests(unittest.TestCase):
         ]:
             path = ROOT / f"presentation/task-explorer/{name}/manifest.json"
             for key, value in [
-                ("frame", "RAS" if name == "mri-importer" else "LPS"),
+                ("frame", "RAS" if name in {"mri-importer", "abra-annotation"} else "LPS"),
                 (
                     "label_license",
                     "CC0-1.0" if name in {"ct-organ", "segmentation-calibration"} else "Apache-2.0",

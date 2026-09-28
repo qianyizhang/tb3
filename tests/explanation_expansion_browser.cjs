@@ -50,6 +50,7 @@ withBrowser(async (browser) => {
           'mask-screen-v1',
           'anatomy-curation-v1',
           'ct-context-v1',
+          'abra-annotation-v1',
           'history-sourcing-v1',
           'mri-importer-v1',
           'localized-ct-v1',
@@ -87,6 +88,26 @@ withBrowser(async (browser) => {
         ].includes(plan.recipe)
       ) {
         for (const b of plan.beats) frames.push(b.startFrame);
+      }
+      if (plan.recipe === 'abra-annotation-v1') {
+        for (const b of plan.beats) frames.push(b.startFrame);
+        for (const [scene, count] of [
+          ['navigate', 3],
+          ['reference', 8],
+          ['oracle', 5],
+          ['scoring', 6],
+        ]) {
+          const b = plan.beats.find((b) => b.scene === scene);
+          for (let i = 0; i < count; i++) {
+            const t = (i + 0.5) / count;
+            frames.push(
+              Math.floor(
+                b.startFrame +
+                  (scene === 'reference' ? 0.5 + t / 2 : t) * (b.endFrame - b.startFrame),
+              ),
+            );
+          }
+        }
       }
       if (plan.recipe === 'ct-context-v1') {
         for (const b of plan.beats) frames.push(b.startFrame);
@@ -502,6 +523,52 @@ withBrowser(async (browser) => {
           const box = await output.boundingBox();
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
+        }
+        if (plan.recipe === 'abra-annotation-v1') {
+          const scene = page.locator('[data-abra-scene]');
+          const name = await scene.getAttribute('data-abra-scene');
+          const visible = (await scene.getAttribute('data-abra-reference-visible')) === 'true';
+          if (['inputs', 'navigate', 'coordinates'].includes(name))
+            assert.equal(
+              await page
+                .locator(
+                  '[data-abra-reference],[data-abra-oracle],[data-abra-output],[data-abra-native^="crop"]',
+                )
+                .count(),
+              0,
+            );
+          if (name === 'reference') {
+            assert.equal(await page.locator('[data-abra-reference]').count(), visible ? 2 : 0);
+            assert.equal(await page.locator('[data-abra-reference-info]').count(), visible ? 1 : 0);
+            assert.equal(
+              await page.locator('[data-scene-inline-narration]').count(),
+              visible ? 1 : 0,
+            );
+          }
+          if (name === 'oracle' && (await page.locator('[data-abra-output]').count()))
+            assert.equal(await page.locator('[data-abra-oracle]').count(), 1);
+          if (name === 'scoring')
+            assert.equal(
+              await page.locator('[data-abra-score] tr[data-current="true"]').count(),
+              1,
+            );
+          for (const selector of [
+            '.scene-player > header',
+            '[data-abra-scene]',
+            '[class*="abraAside"]',
+            '.scene-legend',
+          ]) {
+            assert.ok(
+              await page
+                .locator(selector)
+                .evaluate(
+                  (e) => e.scrollHeight <= e.clientHeight && e.scrollWidth <= e.clientWidth,
+                ),
+              'ABRA overflow ' + selector + ' frame ' + frame,
+            );
+            const b = await page.locator(selector).boundingBox();
+            assert.ok(b && b.y + b.height <= 720, 'ABRA clipping ' + selector + ' frame ' + frame);
+          }
         }
         if (plan.recipe === 'ct-context-v1') {
           const scene = page.locator('[data-context-scene]');
@@ -1111,6 +1178,43 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'abra-annotation-v1') {
+      for (let step = 1; step < plan.beats.length; step++) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        await page.waitForFunction(
+          (f) =>
+            document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+            String(f),
+          plan.beats[step].startFrame,
+        );
+        assert.ok(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          'ABRA mobile overflow',
+        );
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+        if (['reference', 'oracle'].includes(plan.beats[step].scene)) {
+          await page.locator('.scene-play').click();
+          await page
+            .locator(
+              plan.beats[step].scene === 'reference'
+                ? '[data-abra-reference-info]'
+                : '[data-abra-output]',
+            )
+            .first()
+            .waitFor();
+          await page.locator('.scene-play').click();
+          assert.ok(
+            await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+            'ABRA mobile reveal overflow',
+          );
+          await page
+            .locator('.scene-player')
+            .screenshot({ path: path.join(out, `mobile-${plan.beats[step].scene}.png`) });
+        }
+      }
+    }
     if (plan.recipe === 'ct-context-v1') {
       for (let step = 1; step < plan.beats.length; step++) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -1422,6 +1526,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'abra-annotation-v1',
       'ct-context-v1',
       'history-sourcing-v1',
       'mri-importer-v1',
@@ -1457,6 +1562,34 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'abra-annotation-v1') {
+      assert.equal(
+        await fallback
+          .locator('[data-abra-reference],[data-abra-oracle],[data-abra-output]')
+          .count(),
+        0,
+      );
+      for (const [step, selector, name] of [
+        [3, '[data-abra-reference-info]', 'reference'],
+        [5, '[data-abra-output]', 'oracle'],
+      ]) {
+        await fallback.locator(`[data-story-step="${step}"]`).click();
+        await fallback.locator('.scene-play').click();
+        await fallback.locator(selector).first().waitFor();
+        await fallback.locator('.scene-play').click();
+        await fallback
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `no-gpu-${name}.png`) });
+      }
+      await fallback.locator('.scene-reset').click();
+      await fallback.locator('[data-abra-scene="inputs"]').waitFor();
+      assert.equal(
+        await fallback
+          .locator('[data-abra-reference],[data-abra-oracle],[data-abra-output]')
+          .count(),
+        0,
+      );
+    }
     if (plan.recipe === 'ct-context-v1') {
       assert.equal(await fallback.locator('[data-context-private]').count(), 0);
       await fallback.locator('[data-story-step="2"]').click();
@@ -2451,6 +2584,33 @@ withBrowser(async (browser) => {
   );
   assert.equal(await page.locator('[data-context-private]').count(), 0);
   report.navigation.push({ id: 'tb3-ct-context-inference', revealAndReset: true });
+  await page.evaluate(() => {
+    location.hash = 'abra/0/overview?view=repository';
+  });
+  await page.waitForFunction(
+    () =>
+      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'abra-annotation-v1',
+  );
+  assert.equal(
+    await page.locator('[data-abra-reference],[data-abra-oracle],[data-abra-output]').count(),
+    0,
+  );
+  await page.locator('[data-story-step="2"]').click();
+  await page.locator('[data-abra-witness]').waitFor();
+  await page
+    .locator('.scene-player')
+    .screenshot({ path: path.join(folder, 'integrated-abra.png') });
+  await page.locator('[data-story-step="3"]').click();
+  await page.locator('.scene-play').click();
+  await page.locator('[data-abra-reference-info]').waitFor();
+  await page.locator('.scene-play').click();
+  await page.locator('.scene-reset').click();
+  await page.locator('[data-abra-scene="inputs"]').waitFor();
+  assert.equal(
+    await page.locator('[data-abra-reference],[data-abra-oracle],[data-abra-output]').count(),
+    0,
+  );
+  report.navigation.push({ id: 'abra', revealAndReset: true });
   await context.close();
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.remote_requests, []);

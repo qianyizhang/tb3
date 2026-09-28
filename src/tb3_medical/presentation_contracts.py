@@ -514,6 +514,25 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class AbraAnnotationChannels(TypedDict):
+    view: tuple[float, float]
+    helper: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AbraAnnotationBeat(ExpansionBeat):
+    channels: AbraAnnotationChannels
+    scene: Literal[
+        "inputs", "navigate", "coordinates", "reference", "ordinary", "oracle", "scoring", "limits"
+    ]
+
+
+class AbraAnnotationPlan(ExpansionPlan):
+    recipe: Literal["abra-annotation-v1"]
+    beats: list[AbraAnnotationBeat]
+
+
 class CtContextChannels(TypedDict):
     view: tuple[float, float]
     output: tuple[float, float]
@@ -948,6 +967,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | AbraAnnotationPlan
     | CtContextPlan
     | HistorySourcingPlan
     | MriImporterPlan

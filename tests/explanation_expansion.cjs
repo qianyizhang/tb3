@@ -18,6 +18,11 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    abraInputs,
+    abraReference,
+    abraSelection,
+    abraPixel,
+    abraLps,
     landmarkSource,
     landmarkOutputs,
     landmarkReference,
@@ -1607,6 +1612,40 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       'Witness must lie in displayed reference',
     );
   }
+  const abra = plans.find((p) => p.recipe === 'abra-annotation-v1');
+  assert.ok(abra);
+  assert.deepEqual(Array.from(abraPixel([313, 292], true)), [0.5, 0.5]);
+  assert.deepEqual(Array.from(abraPixel([128, 256])), [128.5, 256.5]);
+  assert.deepEqual(
+    Array.from(abraLps([0, 0], 66)),
+    Array.from(abraInputs.full.find((v) => v.k === 66).origin_lps_mm),
+  );
+  assert.equal(abraReference.frames.length, 8);
+  assert.equal(abraReference.frames.find((v) => v.k === 66).pixels, 629);
+  assert.equal(abraReference.ordinary.expected_outcome.slice_index, 66);
+  assert.equal(abraReference.ordinary.max_turns, 15);
+  assert.equal(abraReference.oracle.max_turns, 10);
+  const ordinaryStart = abraSelection(sampleStory(abra, 0));
+  assert.equal(ordinaryStart.k, 0);
+  assert.ok(!ordinaryStart.reference && !ordinaryStart.helper && !ordinaryStart.output);
+  const abraReferenceBeat = abra.beats.find((b) => b.scene === 'reference');
+  const abraVisibleFrames = new Set();
+  for (let f = abraReferenceBeat.startFrame; f < abraReferenceBeat.endFrame; f++) {
+    const selection = abraSelection(sampleStory(abra, f));
+    if (selection.reference) abraVisibleFrames.add(selection.frame);
+  }
+  assert.deepEqual([...abraVisibleFrames], [0, 1, 2, 3, 4, 5, 6, 7]);
+  const abraOracleBeat = abra.beats.find((b) => b.scene === 'oracle');
+  for (let f = abraOracleBeat.startFrame; f < abraOracleBeat.endFrame; f++) {
+    const selection = abraSelection(sampleStory(abra, f));
+    assert.ok(!selection.output || selection.helper, 'Transfer must follow oracle assistance');
+  }
+  assert.deepEqual(
+    Array.from(abraReference.scorer_arithmetic, (r) =>
+      Number(r.reference_copy_polygon_score.toFixed(10)),
+    ),
+    [1, 0.8, 0.6, 0.4, 0, 1],
+  );
   const identity = plans.find((plan) => plan.recipe === 'anatomy-identity-v1');
   assert.ok(identity, 'Exercise supplied-object identity semantics');
   for (const beat of identity.beats.filter((beat) => beat.channels.reveal[1] === 0)) {

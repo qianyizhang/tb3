@@ -5219,15 +5219,15 @@
       ],
       "illustration_kind": "nodule_outline",
       "subject": "chest",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "abra-annotation",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Ten Git-blob-verified pinned source files; two hash/CRC-verified source ZIPs; 140 native CT slices, eight aligned Nodule 1 frames; exact selected consensus/task-generator replay; five full views and eight reference crops.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/037-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: An annotation attached to the correct study and slice.",
+      "remaining_work": "No outstanding explainer work for this scoped overview example. No model run, OHIF interaction, full scorer execution or clinical adjudication is implied; child definitions remain separate. Remote delivery pending at program level.",
       "contract_projection": {
         "raw": "LIDC-IDRI chest CT in the OHIF / Orthanc viewer.",
         "helpers": "The ordinary task names a slice and specifies a lung window. The oracle variant offers reference-derived contours through a tool.",
@@ -5283,7 +5283,118 @@
         ],
         "gap": "CT and source annotation are available. Generated YAML, consensus regeneration, viewer interaction and actual agent annotation remain uncurated. Data acquisition alone does not reproduce those results."
       },
-      "source_brief_sha256": "e125c545825b864d0b64f64e9ac4898539b8a31a82d9f6547083bdbbb7e81e68"
+      "source_brief_sha256": "e125c545825b864d0b64f64e9ac4898539b8a31a82d9f6547083bdbbb7e81e68",
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "receipt": "presentation/external-tasks/sources/abra-annotation-audit.json",
+        "sha256": "a91346cd86bc63b073ac24c2b75afef010b67288e9849ca3264a0ec87e38513e",
+        "status": "source-audit-complete"
+      },
+      "acceptance_scope": "Assistant source, visual and engineering review of one native CT nodule and regenerated ordinary/oracle conditions; not model evaluation, viewer replay, full benchmark scoring or clinical adjudication.",
+      "visual_review": "Eight chapters and full 136-second playback; five native views, eight aligned reference crops, ordinary/oracle separation and six exact penalty cases; desktop/mobile/locale/Explorer/no-GPU inspected.",
+      "reviewed_contract_projection": {
+        "title": "Outline a lung nodule inside an imaging viewer",
+        "goal": "**Identify a boundary on the requested native CT slice and attach a circle or\npolygon annotation.** The ordinary condition requires visual judgment; the\nseparate oracle condition supplies a source-derived contour through a tool.",
+        "value": "A correctly placed annotation combines image interpretation, pixel geometry and\nviewer attachment. Successful tool syntax alone does not establish any of them.",
+        "raw": "LIDC-IDRI-0003 CT from ABRA's pinned study manifest: 140 axial images, each\n512 × 512 pixels. The retained source series has 0.820312 mm in-plane spacing\nand 2.5 mm slice steps. Zero-based slices are ordered by ascending patient-z.\nThe task expects an OHIF/Orthanc environment; this explanation is a calibrated\nsource visualization, not a replay of that environment.",
+        "helpers": "The regenerated ordinary `t3_seg_lidc_idri_0003_nodule_1_s066` prompt names\n**slice 66**, Nodule 1, and lung window width 1500 / center −600 HU. It supplies\nno boundary, target point or reference mask. The initial viewer slice is 0.\n\nThe separate oracle task asks the agent to query an overview, request a contour\nand transfer it to the recommended slice. The prepared oracle uses source\nreference polygons, not fresh pathology-model inference. Its 0.95 overview\nconfidence and per-slice taper are hardcoded, not measured calibration.",
+        "tools": "Series navigation, slice selection, windowing, image retrieval and circle/polygon\nannotation. Coordinates are zero-based **native image pixels**, x=column and y=row.\nThe annotation tool requires a label, slice index and region geometry, and writes\nto the active series' labelmap. Oracle tasks add `query_pathology_model`.",
+        "reference": "The source DICOM SEG is Nodule 1 / Annotation 12. The pinned manifest lists only\none annotator for this nodule. All eight SEG frames match their CT source image\nUID, position, orientation and pixel spacing. Applying the pinned volumetric\n≥50% consensus function therefore reproduces that annotator's mask on slices\n62–69; it does not create independent expert consensus. The generator extracts\nthe largest marching-squares contour per nonempty slice.\n\nThe ordinary solver does not receive those polygons. In the oracle condition,\nthe same reference-derived contour is deliberately exposed by the oracle tool.",
+        "spec": "Select the correct CT series, navigate to the specified slice, apply the lung\nwindow, inspect the image and place a circle or polygon around the nodule.\nThe ordinary single-slice task allows 15 turns and declares vision required.\nThe oracle single-nodule task allows 10 turns and declares vision unnecessary;\nits representative slice is also 66 in this source case.",
+        "output": "An annotation attached to the active CT series and the intended slice. The\npolygon tool takes `label`, `slice_index` and `points: [[x,y], …]`, and declares a\nsegmentation ID, segment index, slice index and filled-pixel count in its return.\nThe explainer's dashed reference-copy polygon is an author illustration of this\ncontract, not a saved agent result. No live OHIF interaction was executed.",
+        "score": "The pinned single-slice scorer selects the highest **raw IoU minus slice penalty**\namong extracted geometries. Polygon outcome uses that nonnegative score directly.\nCircle and rectangle outcomes divide by a reference-derived shape heuristic,\ncapped at 1. The heuristic is not a demonstrated global optimum. The threshold\n0.5 defines a reported hit on the normalized outcome; it is not simply raw IoU.\n\nA same-polygon reference copy has analytical IoU 1. The exact penalty function\nsubtracts 0.2, 0.4 and 0.6 for one-, two- and three-slice offsets, then 1 for larger\noffsets. Adjacent-slice copies can therefore meet the hit threshold. An absent\nslice index has no scorer penalty, although the tool schema requires that field.\nThese are author arithmetic examples, not clinical/model scores or full Shapely\nscorer execution. Full scoring and actual viewer attachment remain unverified.\n\nABRA's overall score combines planning 0.20, execution 0.30 and outcome 0.50.\nNo overall score or model comparison is produced here. Source overlap does not\nestablish diagnostic correctness or completeness of a scan review.",
+        "challenge": "Native-pixel geometry, slice identity and active series must stay consistent.\nOrdinary visual boundary judgment and oracle contour transfer are different\ncapabilities. A score above threshold need not prove exact slice attachment.",
+        "families": "One source nodule and two regenerated conditions at ABRA commit\n`688814615dc368a66276798cb864fe9a587d7e6c`. The full benchmark's other nodules,\nvolumetric tasks and task families are not reproduced by this example.",
+        "gap": "No retained agent output, live OHIF session, full benchmark scorer replay or\nindependent clinical adjudication is claimed. Pure selected generator functions\nand source geometry were checked without launching a trial or installing runtimes.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Navigate from the initial CT view to the supplied slice and lung window.",
+          "Determine a boundary, or query the separate oracle for a supplied contour.",
+          "Attach native-pixel geometry and distinguish overlap from attachment scoring."
+        ],
+        "variants": [
+          {
+            "name": "Ordinary s066",
+            "helper": "Slice 66 and lung window",
+            "remaining": "Judge the boundary and attach an annotation; 15 turns."
+          },
+          {
+            "name": "Oracle Nodule 1",
+            "helper": "Source-derived overview and contour through a tool",
+            "remaining": "Query and transfer the contour to the proper slice; 10 turns."
+          }
+        ],
+        "sources": [
+          [
+            "Source audit, exact hashes and reconstruction limits",
+            "presentation/external-tasks/sources/abra-annotation-audit.json"
+          ],
+          [
+            "Native source derivation and attribution",
+            "presentation/task-explorer/abra-annotation/NOTICE.md"
+          ],
+          [
+            "Original sample acquisition receipt",
+            "presentation/external-tasks/samples.json"
+          ],
+          [
+            "Ordinary and consensus generator",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier3.py"
+          ],
+          [
+            "Oracle generator",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier3_oracle.py"
+          ],
+          [
+            "Pinned outcome scorer",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/scoring/outcome/iou_scorer.py"
+          ],
+          [
+            "Native pixel tool contract",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/tasks/tool_registry.py"
+          ],
+          [
+            "Exact study manifest",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/data/studies/study_manifest.json"
+          ],
+          [
+            "LIDC-IDRI CT data",
+            "https://www.cancerimagingarchive.net/collection/lidc-idri/"
+          ],
+          [
+            "DICOM-LIDC-IDRI-Nodules SEG data",
+            "https://www.cancerimagingarchive.net/analysis-result/dicom-lidc-idri-nodules/"
+          ]
+        ],
+        "html": {
+          "goal": "<p><strong>Identify a boundary on the requested native CT slice and attach a circle or polygon annotation.</strong> The ordinary condition requires visual judgment; the separate oracle condition supplies a source-derived contour through a tool.</p>",
+          "value": "<p>A correctly placed annotation combines image interpretation, pixel geometry and viewer attachment. Successful tool syntax alone does not establish any of them.</p>",
+          "raw": "<p>LIDC-IDRI-0003 CT from ABRA&#x27;s pinned study manifest: 140 axial images, each 512 × 512 pixels. The retained source series has 0.820312 mm in-plane spacing and 2.5 mm slice steps. Zero-based slices are ordered by ascending patient-z. The task expects an OHIF/Orthanc environment; this explanation is a calibrated source visualization, not a replay of that environment.</p>",
+          "helpers": "<p>The regenerated ordinary <code>t3_seg_lidc_idri_0003_nodule_1_s066</code> prompt names <strong>slice 66</strong>, Nodule 1, and lung window width 1500 / center −600 HU. It supplies no boundary, target point or reference mask. The initial viewer slice is 0.</p>\n<p>The separate oracle task asks the agent to query an overview, request a contour and transfer it to the recommended slice. The prepared oracle uses source reference polygons, not fresh pathology-model inference. Its 0.95 overview confidence and per-slice taper are hardcoded, not measured calibration.</p>",
+          "tools": "<p>Series navigation, slice selection, windowing, image retrieval and circle/polygon annotation. Coordinates are zero-based <strong>native image pixels</strong>, x=column and y=row. The annotation tool requires a label, slice index and region geometry, and writes to the active series&#x27; labelmap. Oracle tasks add <code>query_pathology_model</code>.</p>",
+          "reference": "<p>The source DICOM SEG is Nodule 1 / Annotation 12. The pinned manifest lists only one annotator for this nodule. All eight SEG frames match their CT source image UID, position, orientation and pixel spacing. Applying the pinned volumetric ≥50% consensus function therefore reproduces that annotator&#x27;s mask on slices 62–69; it does not create independent expert consensus. The generator extracts the largest marching-squares contour per nonempty slice.</p>\n<p>The ordinary solver does not receive those polygons. In the oracle condition, the same reference-derived contour is deliberately exposed by the oracle tool.</p>",
+          "spec": "<p>Select the correct CT series, navigate to the specified slice, apply the lung window, inspect the image and place a circle or polygon around the nodule. The ordinary single-slice task allows 15 turns and declares vision required. The oracle single-nodule task allows 10 turns and declares vision unnecessary; its representative slice is also 66 in this source case.</p>",
+          "output": "<p>An annotation attached to the active CT series and the intended slice. The polygon tool takes <code>label</code>, <code>slice_index</code> and <code>points: [[x,y], …]</code>, and declares a segmentation ID, segment index, slice index and filled-pixel count in its return. The explainer&#x27;s dashed reference-copy polygon is an author illustration of this contract, not a saved agent result. No live OHIF interaction was executed.</p>",
+          "score": "<p>The pinned single-slice scorer selects the highest <strong>raw IoU minus slice penalty</strong> among extracted geometries. Polygon outcome uses that nonnegative score directly. Circle and rectangle outcomes divide by a reference-derived shape heuristic, capped at 1. The heuristic is not a demonstrated global optimum. The threshold 0.5 defines a reported hit on the normalized outcome; it is not simply raw IoU.</p>\n<p>A same-polygon reference copy has analytical IoU 1. The exact penalty function subtracts 0.2, 0.4 and 0.6 for one-, two- and three-slice offsets, then 1 for larger offsets. Adjacent-slice copies can therefore meet the hit threshold. An absent slice index has no scorer penalty, although the tool schema requires that field. These are author arithmetic examples, not clinical/model scores or full Shapely scorer execution. Full scoring and actual viewer attachment remain unverified.</p>\n<p>ABRA&#x27;s overall score combines planning 0.20, execution 0.30 and outcome 0.50. No overall score or model comparison is produced here. Source overlap does not establish diagnostic correctness or completeness of a scan review.</p>",
+          "challenge": "<p>Native-pixel geometry, slice identity and active series must stay consistent. Ordinary visual boundary judgment and oracle contour transfer are different capabilities. A score above threshold need not prove exact slice attachment.</p>",
+          "families": "<p>One source nodule and two regenerated conditions at ABRA commit <code>688814615dc368a66276798cb864fe9a587d7e6c</code>. The full benchmark&#x27;s other nodules, volumetric tasks and task families are not reproduced by this example.</p>",
+          "gap": "<p>No retained agent output, live OHIF session, full benchmark scorer replay or independent clinical adjudication is claimed. Pure selected generator functions and source geometry were checked without launching a trial or installing runtimes.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>Five native full-field slices illustrate navigation; source pixels are not resampled. A white coordinate witness at (128,256) is an author-chosen ruler point, not a lesion hint. LPS millimeters are derived from native DICOM geometry; annotation arguments remain in image pixels.</p>",
+          "helpers": "<p>Ordinary: slice and window only. Oracle: overview and source-derived contour, revealed separately. A source contour does not appear in the ordinary input view.</p>",
+          "answer": "<p>Reader reference reveal shows the eight source masks and native 111 × 111 crops with origin (313,292). Crops are reference-selected, not solver hints. Slice 66 has 629 labeled pixels. Teal solid is reader reference; yellow dashed is an author reference-copy annotation; blue dotted is the oracle contour.</p>"
+        },
+        "missing_media": []
+      },
+      "completion_review": {
+        "date": "2026-09-28",
+        "source_brief_sha256": "95e8f06d592c42fb11716b4e31388d2bce7a31f1f52ae241e8b05f75000ccbaa",
+        "source_story_sha256": "433f7702c9ac14de543bbd8b71ac9297035953180716ac5e7718d214abc316e6",
+        "acceptance_receipt_sha256": "caadebfa97882d9fd1de3714082ca663f2b09237e8cd684b410823e07278e549"
+      }
     },
     {
       "entry_id": "bcer",
@@ -14392,11 +14503,11 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 29,
+    "reviewed-scripted-planar": 30,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 107,
     "blocked-source-input": 50,
-    "pending-operation-review": 6
+    "pending-operation-review": 5
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -14415,7 +14526,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "abra",
+    "active_entry": "bcer",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -15086,6 +15197,15 @@
         "reviewed_entries": 42,
         "next_entry": "abra",
         "note": "Pinned source contract audited; exact CT/report inputs and delivery terms missing. No visual acceptance."
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "abra",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/037-acceptance.json",
+        "export_receipt_sha256": "d3d732f407544114ce05e5990fb45abab00d96a9e31bc9f9ef9a576ba531e1e5",
+        "reviewed_entries": 43,
+        "next_entry": "bcer"
       }
     ]
   }

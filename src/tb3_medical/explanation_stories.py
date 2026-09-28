@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "abra-annotation-v1": "retained-abra-annotation-v1",
     "ct-context-v1": "retained-ct-context-v1",
     "history-sourcing-v1": "retained-history-sourcing-v1",
     "mri-importer-v1": "retained-mri-importer-v1",
@@ -83,6 +84,11 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-abra-annotation-v1": (
+        "source-slices",
+        "reference.json",
+        {"inputs.json", "reference.json", "NOTICE.md", "DATA-LICENSE.txt"},
+    ),
     "retained-ct-context-v1": (
         "source-slices",
         "reference.json",
@@ -492,6 +498,13 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class AbraAnnotationChannels(Closed):
+    view: Pair
+    helper: Pair
+    output: Pair
+    reference: Pair
 
 
 class CtContextChannels(Closed):
@@ -950,6 +963,24 @@ class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
         return self
 
 
+class AbraAnnotationBeat(ExpansionBeat[AbraAnnotationChannels]):
+    scene: Literal[
+        "inputs", "navigate", "coordinates", "reference", "ordinary", "oracle", "scoring", "limits"
+    ]
+
+
+class AbraAnnotationStory(Story[AbraAnnotationChannels]):
+    recipe: Literal["abra-annotation-v1"]
+    beats: tuple[AbraAnnotationBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class CtContextBeat(ExpansionBeat[CtContextChannels]):
     scene: Literal[
         "inputs", "headers", "liver", "surgery", "fields", "reference", "validator", "limits"
@@ -1363,6 +1394,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | AbraAnnotationStory
     | CtContextStory
     | HistorySourcingStory
     | MriImporterStory
@@ -1403,6 +1435,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | AbraAnnotationStory
     | CtContextStory
     | HistorySourcingStory
     | MriImporterStory
@@ -1603,6 +1636,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | AbraAnnotationStory
     | CtContextStory
     | HistorySourcingStory
     | MriImporterStory
@@ -1687,6 +1721,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         frame, data_license, label_license = {
+            "retained-abra-annotation-v1": ("LPS", "CC-BY-3.0", "CC-BY-3.0"),
             "retained-ct-context-v1": ("RAS", "CC-BY-NC-4.0", "CC-BY-NC-4.0"),
             "retained-history-sourcing-v1": (
                 "source-record",

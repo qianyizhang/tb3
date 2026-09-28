@@ -205,3 +205,5 @@ export * from '../presentation/frontend/task-visuals/dental-v3';
 export * from '../presentation/frontend/task-visuals/segmentation-calibration';
 
 export * from '../presentation/frontend/task-visuals/aneurysm';
+
+export * from '../presentation/frontend/task-visuals/abra-annotation';

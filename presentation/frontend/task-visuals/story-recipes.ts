@@ -17,6 +17,9 @@ import {
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
   return !(
+    (state.recipe === 'abra-annotation-v1' &&
+      state.scene === 'reference' &&
+      state.reference <= 0.5) ||
     (state.recipe === 'ct-context-v1' && state.scene === 'reference' && state.reference <= 0.5) ||
     (state.recipe === 'history-sourcing-v1' &&
       state.scene === 'reference' &&
@@ -35,6 +38,7 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'abra-annotation-v1',
     'ct-context-v1',
     'history-sourcing-v1',
     'mri-importer-v1',
@@ -111,6 +115,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'abra-annotation-v1':
+      return {
+        heading: 'Outline a nodule in native image coordinates',
+        corner: 'Actual CT and source contour · ordinary and oracle conditions',
+        legend: [
+          ['#37c9bc', 'Reader reference · solid'],
+          ['#ffc35b', 'Reference-copy example · dashed', true],
+          ['#78afff', 'Oracle contour · dotted', 'dotted'],
+        ],
+      };
     case 'ct-context-v1':
       return {
         heading: 'What context can these CTs support?',
