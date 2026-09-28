@@ -8966,50 +8966,98 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "quantification",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "pending-operation-review",
+      "source_asset_readiness": "13 task sources, 60 shared sources and all 13 released assets verified. Native signals, gradients, truth and two saved output archives are available; eight fixtures, five selected-pixel controls, evaluator dispatch and L1-L3 staging audited.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-diffusion-mri-dti.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A diffusion tensor field and derived diffusion summaries specified by the task.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "blocking_dependency": null,
+      "remaining_work": "Author a source-specific DTI story showing native signals, gradient/design matrix, fixed-pixel fitting, tensor eigendecomposition, saved scalar maps, explicit truth reveal and scorer/staging limits. Preserve coordinate and source-label discrepancies. Export and inspect desktop/mobile/no-GPU/playback before acceptance.",
       "contract_projection": {
-        "raw": "MRI signals measured under multiple diffusion-encoding directions.",
-        "helpers": "Diffusion gradient directions and b-values, which describe diffusion weighting. The assistance level can add an approach and software design.",
-        "tools": "Python and the task’s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README’s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "A diffusion tensor field and derived diffusion summaries specified by the task.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "title": "Estimate diffusion tensors from MRI",
+        "goal": "Fit diffusion tensors from **31 signal volumes of a synthetic 128×128 phantom**;\nderive fractional anisotropy (FA) and mean diffusivity (MD).",
+        "value": "FA describes directional preference; MD describes average diffusion magnitude.\nThis synthetic example does not establish clinical validity.",
+        "raw": "`raw_data.npz`: float32 signals `(1,128,128,31)`, b-values `(31,)` and gradient\nvectors `(31,3)`. One volume has b=0; 30 have b=1000 s/mm². Metadata declares\nRician noise σ=0.02 and 1.71875 mm pixels over 220 mm.",
+        "helpers": "Gradient table and metadata. **All L1–L3 expose truth FA, MD, tensors and the\n7,186-pixel tissue mask**. The source baseline fits inside this supplied mask.\nL2 adds an approach; L3 adds software design.",
+        "tools": "Python and declared numerical dependencies. This audit used existing NumPy;\nno installation or agent trial.",
+        "reference": "Truth and mask are solver-visible. Saved OLS/WLS outputs and function fixtures\nare not seeded. A reader reveal does not imply a private evaluator.",
+        "spec": "Use `S = S0 exp(−b gᵀDg)`. The audited 31×7 log-signal matrix has rank 7.\nFit `[ln S0,Dxx,Dxy,Dxz,Dyy,Dyz,Dzz]` by OLS or weighted least squares;\nderive FA/MD from eigenvalues.",
+        "output": "Native files contain six tensor components `(1,128,128,6)` in mm²/s, FA\n`(1,128,128)` dimensionless and MD `(1,128,128)` in mm²/s. The local generic\nharness instead requests one `output/reconstruction.npy`.",
+        "score": "| Saved method | Masked FA NCC | Masked FA NRMSE |\n|---|---:|---:|\n| OLS | 0.997834 | 0.061319 |\n| WLS | 0.998025 | 0.058487 |\n\nSaved-array replays cover **7,186/16,384 pixels**, not agent results.\nThe task-specific helper checks FA only: zero MD/tensors do not affect its score.\nThe local generic scorer includes background and selects **FA even for a correct\nMD map**. Its WLS FA NRMSE is 0.038734. The fallback without a host workspace\ncannot find the required `.npy` truth. **No thresholds file is published**;\nnotebook boundaries are historical. See the audit for controls and exact dispatch.",
+        "challenge": "Noisy directional signals must determine six components and a baseline intensity.\nThe truth-exposed condition does not establish blind reconstruction difficulty.",
+        "families": "One synthetic phantom; 13 task sources, 60 shared sources and 13 assets verified.\nEight helper fixtures and five post-hoc selected pixels replayed; no full-image\nfit, phantom generation or patient study.",
+        "gap": "Canonical story, teaching assets and visual/export review remain unfinished.\nScoring and reference-access limits remain explicit; original evidence is unchanged.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect native signals and supplied gradients.",
+          "Follow one pixel through fitting and tensor eigendecomposition.",
+          "Reveal saved maps, reference comparisons and scoring limits."
+        ],
         "variants": [
           {
             "name": "L1 · README",
-            "helper": "README, data description and method hints.",
-            "remaining": "Choose and implement a workable algorithm."
+            "helper": "README, data including truth/mask, requirements.",
+            "remaining": "Implement fitting; reference copying is possible."
           },
           {
             "name": "L2 · + approach",
-            "helper": "A proposed algorithmic approach is added.",
-            "remaining": "Design the software and implement the method."
+            "helper": "L1 plus OLS/WLS method.",
+            "remaining": "Implement fitting and scalar-map derivation."
           },
           {
             "name": "L3 · + design",
-            "helper": "Approach and software design are added.",
-            "remaining": "Implement the specified design and numerical details."
+            "helper": "L2 plus interfaces and numerical details.",
+            "remaining": "Implement the specified design."
           }
         ],
         "sources": [
           [
-            "Pinned task README",
+            "Pinned task and array contract",
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/diffusion_mri_dti/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Pinned fitting implementation",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/diffusion_mri_dti/src/solvers.py"
+          ],
+          [
+            "Pinned generic reference selection",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+          ],
+          [
+            "Source audit, controls and provenance",
+            "presentation/external-tasks/sources/imaging101-dti-audit.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
+        "html": {
+          "goal": "<p>Fit diffusion tensors from <strong>31 signal volumes of a synthetic 128×128 phantom</strong>; derive fractional anisotropy (FA) and mean diffusivity (MD).</p>",
+          "value": "<p>FA describes directional preference; MD describes average diffusion magnitude. This synthetic example does not establish clinical validity.</p>",
+          "raw": "<p><code>raw_data.npz</code>: float32 signals <code>(1,128,128,31)</code>, b-values <code>(31,)</code> and gradient vectors <code>(31,3)</code>. One volume has b=0; 30 have b=1000 s/mm². Metadata declares Rician noise σ=0.02 and 1.71875 mm pixels over 220 mm.</p>",
+          "helpers": "<p>Gradient table and metadata. <strong>All L1–L3 expose truth FA, MD, tensors and the 7,186-pixel tissue mask</strong>. The source baseline fits inside this supplied mask. L2 adds an approach; L3 adds software design.</p>",
+          "tools": "<p>Python and declared numerical dependencies. This audit used existing NumPy; no installation or agent trial.</p>",
+          "reference": "<p>Truth and mask are solver-visible. Saved OLS/WLS outputs and function fixtures are not seeded. A reader reveal does not imply a private evaluator.</p>",
+          "spec": "<p>Use <code>S = S0 exp(−b gᵀDg)</code>. The audited 31×7 log-signal matrix has rank 7. Fit <code>[ln S0,Dxx,Dxy,Dxz,Dyy,Dyz,Dzz]</code> by OLS or weighted least squares; derive FA/MD from eigenvalues.</p>",
+          "output": "<p>Native files contain six tensor components <code>(1,128,128,6)</code> in mm²/s, FA <code>(1,128,128)</code> dimensionless and MD <code>(1,128,128)</code> in mm²/s. The local generic harness instead requests one <code>output/reconstruction.npy</code>.</p>",
+          "score": "<div class=\"table\"><table>\n<tr><th>Saved method</th><th>Masked FA NCC</th><th>Masked FA NRMSE</th></tr>\n<tr><td>OLS</td><td>0.997834</td><td>0.061319</td></tr>\n<tr><td>WLS</td><td>0.998025</td><td>0.058487</td></tr>\n</table></div>\n<p>Saved-array replays cover <strong>7,186/16,384 pixels</strong>, not agent results. The task-specific helper checks FA only: zero MD/tensors do not affect its score. The local generic scorer includes background and selects <strong>FA even for a correct MD map</strong>. Its WLS FA NRMSE is 0.038734. The fallback without a host workspace cannot find the required <code>.npy</code> truth. <strong>No thresholds file is published</strong>; notebook boundaries are historical. See the audit for controls and exact dispatch.</p>",
+          "challenge": "<p>Noisy directional signals must determine six components and a baseline intensity. The truth-exposed condition does not establish blind reconstruction difficulty.</p>",
+          "families": "<p>One synthetic phantom; 13 task sources, 60 shared sources and 13 assets verified. Eight helper fixtures and five post-hoc selected pixels replayed; no full-image fit, phantom generation or patient study.</p>",
+          "gap": "<p>Canonical story, teaching assets and visual/export review remain unfinished. Scoring and reference-access limits remain explicit; original evidence is unchanged.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>Native arrays are audited; the current illustration is still an unreviewed schematic. The operation-specific story is pending.</p>",
+          "helpers": "<p>Use source tensor x/y/z axes and image row/column coordinates. No anatomical affine is supplied. Label the truth mask as supplied help.</p>",
+          "answer": "<p>Saved maps agree with their tensor-derived values within float32 precision. The audit retains notebook probe-label errors and a principal-axis rotation mismatch. Use array-verified probes and axes when illustrating the result.</p>"
+        },
+        "missing_media": []
       },
-      "source_brief_sha256": "bf14b5b1d007bdc3b5497668441b3c457197fe60cdf00661ef5b7149fba4b10e",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval."
+      "source_brief_sha256": "0ccf0211c4a0c9e6bdf91d81355a38e4a64e97b171b200b26aac613b2d7529ee",
+      "blocker_resolution": "Exact data, helper, output and evaluator contracts are audited and native arrays recovered. Source-label and scorer defects are retained as explanatory limits. No canonical story or visual acceptance is claimed.",
+      "source_review": {
+        "date": "2026-09-29",
+        "reviewer": "assistant",
+        "receipt": "presentation/external-tasks/sources/imaging101-dti-audit.json",
+        "sha256": "87daeb34e50bf5206d865b7f26e784e537797e6fc821ea3e62d6f743c72d2acc",
+        "status": "source-audited-native-arrays-available"
+      }
     },
     {
       "entry_id": "imaging101-eht-black-hole-uq",
@@ -15774,8 +15822,9 @@
   "counts": {
     "reviewed-scripted-planar": 39,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 100,
-    "blocked-source-input": 53
+    "blocked-source-contract": 99,
+    "blocked-source-input": 53,
+    "pending-operation-review": 1
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -16625,6 +16674,16 @@
         "export_receipt_sha256": "afcaaf56758427aa3ff59193266a2b6a8b3ea6424ea3808dcbc118ed715e0af8",
         "reviewed_entries": 52,
         "next_entry": "imaging101-diffusion-mri-dti"
+      },
+      {
+        "date": "2026-09-29",
+        "entry_id": "imaging101-diffusion-mri-dti",
+        "stage": "source-audit-complete",
+        "receipt": "presentation/external-tasks/sources/imaging101-dti-audit.json",
+        "receipt_sha256": "87daeb34e50bf5206d865b7f26e784e537797e6fc821ea3e62d6f743c72d2acc",
+        "reviewed_entries": 52,
+        "next_entry": "imaging101-diffusion-mri-dti",
+        "note": "All native assets verified; fixed controls, source orientation/label defects, evaluator/reference boundaries and source-array views audited. Canonical story and visual acceptance pending."
       }
     ]
   }

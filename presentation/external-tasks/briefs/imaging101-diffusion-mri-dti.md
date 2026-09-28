@@ -1,82 +1,114 @@
 # Estimate diffusion tensors from MRI
 
-Implement a computational method to estimate diffusion tensors from MRI.
+Fit diffusion tensors from **31 signal volumes of a synthetic 128×128 phantom**;
+derive fractional anisotropy (FA) and mean diffusivity (MD).
 
 ## Value
 
-This imaging problem tests the computational step between acquired measurements and an interpretable image or physical-property map.
+FA describes directional preference; MD describes average diffusion magnitude.
+This synthetic example does not establish clinical validity.
 
 ## Given
 
 ### Original data
 
-MRI signals measured under multiple diffusion-encoding directions.
+`raw_data.npz`: float32 signals `(1,128,128,31)`, b-values `(31,)` and gradient
+vectors `(31,3)`. One volume has b=0; 30 have b=1000 s/mm². Metadata declares
+Rician noise σ=0.02 and 1.71875 mm pixels over 220 mm.
 
 ### Supplied helpers
 
-Diffusion gradient directions and b-values, which describe diffusion weighting. The assistance level can add an approach and software design.
+Gradient table and metadata. **All L1–L3 expose truth FA, MD, tensors and the
+7,186-pixel tissue mask**. The source baseline fits inside this supplied mask.
+L2 adds an approach; L3 adds software design.
 
 ### Callable tools
 
-Python and the task’s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.
+Python and declared numerical dependencies. This audit used existing NumPy;
+no installation or agent trial.
 
 ### Reference-only material
 
-Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.
+Truth and mask are solver-visible. Saved OLS/WLS outputs and function fixtures
+are not seeded. A reader reveal does not imply a private evaluator.
 
 ## Task specification
 
-Implement the linked README’s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.
+Use `S = S0 exp(−b gᵀDg)`. The audited 31×7 log-signal matrix has rank 7.
+Fit `[ln S0,Dxx,Dxy,Dxz,Dyy,Dyz,Dzz]` by OLS or weighted least squares;
+derive FA/MD from eigenvalues.
 
 ## Expected output
 
-A diffusion tensor field and derived diffusion summaries specified by the task.
+Native files contain six tensor components `(1,128,128,6)` in mm²/s, FA
+`(1,128,128)` dimensionless and MD `(1,128,128)` in mm²/s. The local generic
+harness instead requests one `output/reconstruction.npy`.
 
 ## Evaluation
 
-End-to-end mode compares numerical outputs where a reference exists; the project uses metrics including correlation and normalized error. Function tests and plan judgments are separate. Task-specific metric availability has not been replayed.
+| Saved method | Masked FA NCC | Masked FA NRMSE |
+|---|---:|---:|
+| OLS | 0.997834 | 0.061319 |
+| WLS | 0.998025 | 0.058487 |
+
+Saved-array replays cover **7,186/16,384 pixels**, not agent results.
+The task-specific helper checks FA only: zero MD/tensors do not affect its score.
+The local generic scorer includes background and selects **FA even for a correct
+MD map**. Its WLS FA NRMSE is 0.038734. The fallback without a host workspace
+cannot find the required `.npy` truth. **No thresholds file is published**;
+notebook boundaries are historical. See the audit for controls and exact dispatch.
 
 ## Visual explanation
 
 ### Workflow
 
-- MRI signals measured under multiple diffusion-encoding directions
-- Estimate diffusion tensors from MRI
-- A diffusion tensor field and derived diffusion summaries specified by the task
+- Inspect native signals and supplied gradients.
+- Follow one pixel through fitting and tensor eigendecomposition.
+- Reveal saved maps, reference comparisons and scoring limits.
 
 ### Input
 
-**Contract view; native sample not yet illustrated.** MRI signals measured under multiple diffusion-encoding directions.
+Native arrays are audited; the current illustration is still an unreviewed
+schematic. The operation-specific story is pending.
 
 ### Supplied helpers
 
-**Given material, not an answer reveal.** Diffusion gradient directions and b-values, which describe diffusion weighting. The assistance level can add an approach and software design.
+Use source tensor x/y/z axes and image row/column coordinates. No anatomical
+affine is supplied. Label the truth mask as supplied help.
 
 ### Reference or output
 
-**Expected artifact, not an actual prediction.** A diffusion tensor field and derived diffusion summaries specified by the task.
+Saved maps agree with their tensor-derived values within float32 precision.
+The audit retains notebook probe-label errors and a principal-axis rotation
+mismatch. Use array-verified probes and axes when illustrating the result.
 
 ## Conditions
 
 | Condition | Supplied help | Work remaining |
 |---|---|---|
-| L1 · README | README, data description and method hints. | Choose and implement a workable algorithm. |
-| L2 · + approach | A proposed algorithmic approach is added. | Design the software and implement the method. |
-| L3 · + design | Approach and software design are added. | Implement the specified design and numerical details. |
+| L1 · README | README, data including truth/mask, requirements. | Implement fitting; reference copying is possible. |
+| L2 · + approach | L1 plus OLS/WLS method. | Implement fitting and scalar-map derivation. |
+| L3 · + design | L2 plus interfaces and numerical details. | Implement the specified design. |
 
 ## Difficulty
 
-Fit a physically plausible tensor despite noise and weak directional signal.
+Noisy directional signals must determine six components and a baseline intensity.
+The truth-exposed condition does not establish blind reconstruction difficulty.
 
 ## Sources
 
-- [Pinned task README](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/diffusion_mri_dti/README.md)
-- [Evaluation modes and assistance](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md)
+- [Pinned task and array contract](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/diffusion_mri_dti/README.md)
+- [Pinned fitting implementation](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/diffusion_mri_dti/src/solvers.py)
+- [Pinned generic reference selection](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py)
+- [Source audit, controls and provenance](../sources/imaging101-dti-audit.json)
 
 ## Coverage
 
-One scientific task definition across L1/L2/L3 assistance. This collection includes non-medical astronomy, optics and Earth-science tasks as well as medical imaging.
+One synthetic phantom; 13 task sources, 60 shared sources and 13 assets verified.
+Eight helper fixtures and five post-hoc selected pixels replayed; no full-image
+fit, phantom generation or patient study.
 
 ## Gaps
 
-Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched.
+Canonical story, teaching assets and visual/export review remain unfinished.
+Scoring and reference-access limits remain explicit; original evidence is unchanged.
