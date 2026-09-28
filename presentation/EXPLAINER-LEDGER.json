@@ -1221,15 +1221,15 @@
       ],
       "illustration_kind": "etl",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "mri-importer",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "34 source pins; 17 original frozen files; 40 exact source encodings and 16749 sample values; three exact saved-report replays; public frame routes and oblique coordinates; first-party synthetic source pack.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/032-acceptance-final-v3.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Repair reconstruct(ds): return pixels [time, echo, slice, row, column], affine_lps, temporal_indices and echo_ms.",
+      "remaining_work": "No outstanding explainer work for the retained synthetic importer. Full clinical DICOM conformance and broader robustness remain outside the parked study; remote delivery pending at program level.",
       "contract_projection": {
         "raw": "Decoded pydicom dataset with shuffled frames and functional-group metadata.",
         "helpers": "Documented synthetic metadata profile, public examples and adapter; geometry can be oblique.",
@@ -1252,7 +1252,85 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "1b874d0865b2574973128825cbae1728499558aa59391e25565d0eecd63f51d1"
+      "source_brief_sha256": "1b874d0865b2574973128825cbae1728499558aa59391e25565d0eecd63f51d1",
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "receipt": "groups/anatomy-audit/presentation/sources/mri-importer-audit.json",
+        "sha256": "c47f1751c647e87244eff847ac145f8d528c1240428770448864509c4a56dc22",
+        "status": "source-audit-complete"
+      },
+      "acceptance_scope": "Source, visual and engineering review of the retained synthetic MRI importer. No new medical/model trial, runtime install, task promotion or publication.",
+      "visual_review": "Ten chapters and full 140-second playback; all twelve frame associations, eight oblique corners, public output, delayed private grades, controls and trace roundoff; desktop/mobile/locale/Explorer/no-GPU inspected.",
+      "reviewed_contract_projection": {
+        "title": "Reconstruct canonical MRI frame associations",
+        "goal": "Repair an importer so equivalent encodings preserve every sample and its acquisition/physical coordinate. One retained Terra/high repair passes the bounded synthetic task.",
+        "value": "Makes equivalent frame ordering and functional-group placement yield the same canonical acquisition.",
+        "raw": "A decoded pydicom Dataset with signed int16 pixels paired with per-frame metadata. One stack, constant orthonormal orientation, equally spaced parallel slices and a complete time × echo × slice acquisition; no rescaling or compression.",
+        "helpers": "The exact reconstruction metadata profile, editable starter, unchanged JSON adapter and four public examples with expected outputs. Public examples represent two acquisitions. Time and echo each have 1–3 values, slices 2–5, rows 3–7 and columns 4–8. Geometry may be oblique with unequal row/column spacing.",
+        "tools": "Python 3.12, NumPy 2.2.6, pydicom 3.0.1 and NiBabel 5.3.2 in the original environment. Other legitimate methods are allowed; added dependencies must be self-contained under the transferred answer directory. Online solutions or hints specific to the task are forbidden. Original agent limit: 1800 seconds.",
+        "reference": "Thirty-six private fixtures from twelve acquisitions, each serialized three ways, with original canonical arrays generated before serialization. Public expected outputs are solver-visible; private test arrays and the verifier are separate. Reader HTML is not a solver packet.",
+        "spec": "Repair `reconstruct(ds)` in `/app/answer/solution.py`. Sort actual TemporalPositionIndex and EffectiveEchoTime values; dimension descriptor ordinals do not necessarily equal actual values or their numerical order. Sort slices by increasing position projected onto the orientation normal. Preserve the pairing of each pixel frame and its metadata. Support shared or per-frame geometry according to the documented profile.",
+        "output": "Return exact `pixels[time,echo,slice,row,column]`, ascending actual `temporal_indices` and `echo_ms`, and `affine_lps[4,4]` mapping `[column,row,slice,1]` to LPS mm. The first orientation vector advances columns and PixelSpacing is `[row,column]`. Origin is the first sorted slice’s first pixel centre. Singleton time/echo axes stay present.",
+        "score": "Exact pixel/temporal shapes and values; echo error ≤10⁻⁹ ms; eight corner landmark errors ≤10⁻⁵ mm; finite outputs and exact affine homogeneous row. The 36-input batch has 90 seconds on two CPUs and receives reward 1 only when every case passes. Retained Terra/high and oracle pass 36/36; starter passes 12/36. This is importer correctness, not clinical accuracy.",
+        "challenge": "Storage order, descriptor order, logical ordinals and actual acquisition labels are separate. Correct sample association must coexist with physical geometry and permitted macro placement. There is no remaining model-failure claim for this completed calibration.",
+        "families": "Twelve private acquisitions have three correlated encodings each; four public inputs cover two further acquisitions. One completed Terra/high attempt supports a bounded pass. Full Enhanced MR IOD conformance, missing/duplicate slices, multiple stacks and clinical robustness are outside scope. The user parked the study.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "The exact reconstruction metadata profile, editable starter, unchanged JSON adapter and four public examples with expected outputs. Public examples represent two acquisitions. Time and echo each have 1–3 values, slices 2–5, rows 3–7 and columns 4–8. Geometry may be oblique with unequal row/column spacing.",
+            "remaining": "Repair `reconstruct(ds)` in `/app/answer/solution.py`. Sort actual TemporalPositionIndex and EffectiveEchoTime values; dimension descriptor ordinals do not necessarily equal actual values or their numerical order. Sort slices by increasing position projected onto the orientation normal. Preserve the pairing of each pixel frame and its metadata. Support shared or per-frame geometry according to the documented profile."
+          }
+        ],
+        "sources": [
+          [
+            "MRI frame association",
+            "groups/anatomy-audit/experiments/mr-frame-association/protocol.md"
+          ],
+          [
+            "Frozen instructions",
+            "probes/mr-frame-association/instruction.md"
+          ],
+          [
+            "Retained result and read-only audit",
+            "groups/anatomy-audit/findings/mri-importer-calibration.md"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Repair an importer so equivalent encodings preserve every sample and its acquisition/physical coordinate. One retained Terra/high repair passes the bounded synthetic task.</p>",
+          "value": "<p>Makes equivalent frame ordering and functional-group placement yield the same canonical acquisition.</p>",
+          "raw": "<p>A decoded pydicom Dataset with signed int16 pixels paired with per-frame metadata. One stack, constant orthonormal orientation, equally spaced parallel slices and a complete time × echo × slice acquisition; no rescaling or compression.</p>",
+          "helpers": "<p>The exact reconstruction metadata profile, editable starter, unchanged JSON adapter and four public examples with expected outputs. Public examples represent two acquisitions. Time and echo each have 1–3 values, slices 2–5, rows 3–7 and columns 4–8. Geometry may be oblique with unequal row/column spacing.</p>",
+          "tools": "<p>Python 3.12, NumPy 2.2.6, pydicom 3.0.1 and NiBabel 5.3.2 in the original environment. Other legitimate methods are allowed; added dependencies must be self-contained under the transferred answer directory. Online solutions or hints specific to the task are forbidden. Original agent limit: 1800 seconds.</p>",
+          "reference": "<p>Thirty-six private fixtures from twelve acquisitions, each serialized three ways, with original canonical arrays generated before serialization. Public expected outputs are solver-visible; private test arrays and the verifier are separate. Reader HTML is not a solver packet.</p>",
+          "spec": "<p>Repair <code>reconstruct(ds)</code> in <code>/app/answer/solution.py</code>. Sort actual TemporalPositionIndex and EffectiveEchoTime values; dimension descriptor ordinals do not necessarily equal actual values or their numerical order. Sort slices by increasing position projected onto the orientation normal. Preserve the pairing of each pixel frame and its metadata. Support shared or per-frame geometry according to the documented profile.</p>",
+          "output": "<p>Return exact <code>pixels[time,echo,slice,row,column]</code>, ascending actual <code>temporal_indices</code> and <code>echo_ms</code>, and <code>affine_lps[4,4]</code> mapping <code>[column,row,slice,1]</code> to LPS mm. The first orientation vector advances columns and PixelSpacing is <code>[row,column]</code>. Origin is the first sorted slice’s first pixel centre. Singleton time/echo axes stay present.</p>",
+          "score": "<p>Exact pixel/temporal shapes and values; echo error ≤10⁻⁹ ms; eight corner landmark errors ≤10⁻⁵ mm; finite outputs and exact affine homogeneous row. The 36-input batch has 90 seconds on two CPUs and receives reward 1 only when every case passes. Retained Terra/high and oracle pass 36/36; starter passes 12/36. This is importer correctness, not clinical accuracy.</p>",
+          "challenge": "<p>Storage order, descriptor order, logical ordinals and actual acquisition labels are separate. Correct sample association must coexist with physical geometry and permitted macro placement. There is no remaining model-failure claim for this completed calibration.</p>",
+          "families": "<p>Twelve private acquisitions have three correlated encodings each; four public inputs cover two further acquisitions. One completed Terra/high attempt supports a bounded pass. Full Enhanced MR IOD conformance, missing/duplicate slices, multiple stacks and clinical robustness are outside scope. The user parked the study.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
+      },
+      "completion_review": {
+        "date": "2026-09-28",
+        "source_brief_sha256": "6e1a68f4ec58960d78fc6bccd48ffe48df9581a744fdc5d1772b2aa357924ee1",
+        "source_story_sha256": "aad535e91b0c550786ff14a4664f399f13bc50707a4c4b0ec368c147290375dd",
+        "acceptance_receipt_sha256": "c4be45bf5d94b99f38bc82a4633524535d90f00b72fcfc6720f940cbaf140d95"
+      }
     },
     {
       "entry_id": "tb3-segmentation-calibration",
@@ -13970,9 +14048,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 26,
+    "reviewed-scripted-planar": 27,
     "reviewed-scripted-spatial": 13,
-    "pending-operation-review": 11,
+    "pending-operation-review": 10,
     "blocked-source-contract": 107,
     "blocked-source-input": 48
   },
@@ -13993,7 +14071,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-mri-importer",
+    "active_entry": "tb3-history-sourcing",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -14608,6 +14686,24 @@
         "export_receipt_sha256": "e31dd25a7acc8ad83f551849d48899425bf514cbc76f68376adf07c8f88fee1b",
         "reviewed_entries": 39,
         "next_entry": "tb3-mri-importer"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-mri-importer",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/032-acceptance.json",
+        "export_receipt_sha256": "f9db21b8da3d4679f995533c5b8b8fab3cbbaa534cf9082837d27a402db088e7",
+        "reviewed_entries": 40,
+        "next_entry": "tb3-history-sourcing"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-mri-importer",
+        "stage": "acceptance-refreshed-source-links",
+        "receipt": ".local/explainers/completion-20260927/032-acceptance-final-v3.json",
+        "export_receipt_sha256": "11718b3e4720876d2e2eb02f4bd61f476be9fd05019e5fe3fdb3014d09b01997",
+        "reviewed_entries": 40,
+        "next_entry": "tb3-history-sourcing"
       }
     ]
   }

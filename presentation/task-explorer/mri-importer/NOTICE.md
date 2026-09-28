@@ -1,0 +1,9 @@
+# MRI importer teaching records
+
+These are exact retained synthetic fixture samples, not patient MRI, reconstructed anatomy or a generic ETL schematic. Source fingerprints and independent checks are in `groups/anatomy-audit/presentation/sources/mri-importer-audit.json`; the builder verifies them before writing. No historical authoring module is executed and no frozen input is rewritten.
+
+`inputs.json` retains all four public encodings, their actual pixel values, storage indices, descriptor ordinals, actual time/echo labels and physical geometry. `output.json` retains outputs from local replay of the saved Terra/high answer. The original solver also received the public expected arrays. `reference.json` contains private aggregate grades and diagnostic controls, revealed separately in the reader. The HTML embeds this material and is not a solver packet.
+
+Pixel stamps use a fixed signed sample window [-3000,3000]; they are numerical tiles, not anatomical evidence. Arrays retain [time,echo,slice,row,column] axes. Native pixel geometry uses row/column spacing; the affine maps [column,row,slice,1] to LPS mm. Association highlights traverse actual storage frames and their exact destination indices. They are a teaching traversal, not a solver optimization history. Spatial projections are explicitly labelled diagrams; coordinate arithmetic uses the original full affine.
+
+The three private encodings per acquisition are correlated. One retained Terra/high attempt passed 36/36 fixtures from 12 acquisitions. The oracle passed 36/36 and the starter 12/36. Local saved-code replay uses existing pydicom 3.0.2 versus frozen 3.0.1 and reproduces every report; it does not establish container recovery or a fresh model pass. Full Enhanced MR conformance, clinical robustness, missing slices, multiple stacks and compressed pixels are outside the declared profile. The idea remains parked.

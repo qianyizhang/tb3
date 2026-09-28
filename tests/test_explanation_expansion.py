@@ -24,6 +24,7 @@ class ExpansionTests(unittest.TestCase):
                     "prototype-identity-v1",
                     "mask-screen-v1",
                     "anatomy-curation-v1",
+                    "mri-importer-v1",
                     "localized-ct-v1",
                     "aneurysm-localization-v1",
                     "segmentation-calibration-v1",
@@ -76,6 +77,7 @@ class ExpansionTests(unittest.TestCase):
         for group, name in [
             ("anatomy-audit", "mask-reasoning-study"),
             ("anatomy-audit", "anatomy-curation"),
+            ("anatomy-audit", "mri-importer"),
             ("longitudinal-reading", "localized-ct"),
             ("lesion-localization", "aneurysm-localization"),
             ("anatomy-audit", "segmentation-calibration"),
@@ -133,6 +135,7 @@ class ExpansionTests(unittest.TestCase):
             "respiratory",
             "registration-analysis",
             "segmentation-calibration",
+            "mri-importer",
             "localized-ct",
             "aneurysm-localization",
             "dental-v3",
@@ -152,7 +155,7 @@ class ExpansionTests(unittest.TestCase):
         ]:
             path = ROOT / f"presentation/task-explorer/{name}/manifest.json"
             for key, value in [
-                ("frame", "LPS"),
+                ("frame", "RAS" if name == "mri-importer" else "LPS"),
                 (
                     "label_license",
                     "CC0-1.0" if name in {"ct-organ", "segmentation-calibration"} else "Apache-2.0",

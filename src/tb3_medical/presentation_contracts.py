@@ -514,6 +514,33 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class MriImporterChannels(TypedDict):
+    view: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class MriImporterBeat(ExpansionBeat):
+    channels: MriImporterChannels
+    scene: Literal[
+        "inputs",
+        "ordinals",
+        "association",
+        "geometry",
+        "placement",
+        "outputs",
+        "reference",
+        "controls",
+        "trace",
+        "limits",
+    ]
+
+
+class MriImporterPlan(ExpansionPlan):
+    recipe: Literal["mri-importer-v1"]
+    beats: list[MriImporterBeat]
+
+
 class LocalizedCtChannels(TypedDict):
     view: tuple[float, float]
     output: tuple[float, float]
@@ -877,6 +904,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | MriImporterPlan
     | LocalizedCtPlan
     | AneurysmPlan
     | SegmentationCalibrationPlan

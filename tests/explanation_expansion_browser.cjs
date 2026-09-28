@@ -49,6 +49,7 @@ withBrowser(async (browser) => {
         ...([
           'mask-screen-v1',
           'anatomy-curation-v1',
+          'mri-importer-v1',
           'localized-ct-v1',
           'aneurysm-localization-v1',
           'segmentation-calibration-v1',
@@ -84,6 +85,20 @@ withBrowser(async (browser) => {
         ].includes(plan.recipe)
       ) {
         for (const b of plan.beats) frames.push(b.startFrame);
+      }
+      if (plan.recipe === 'mri-importer-v1') {
+        for (const b of plan.beats) frames.push(b.startFrame);
+        for (const [scene, count] of [
+          ['association', 12],
+          ['geometry', 8],
+          ['reference', 4],
+        ]) {
+          const b = plan.beats.find((b) => b.scene === scene);
+          for (let i = 0; i < count; i++)
+            frames.push(
+              Math.floor(b.startFrame + ((i + 0.5) / count) * (b.endFrame - b.startFrame)),
+            );
+        }
       }
       if (plan.recipe === 'localized-ct-v1') {
         for (const b of plan.beats) frames.push(b.startFrame);
@@ -456,6 +471,46 @@ withBrowser(async (browser) => {
           const box = await output.boundingBox();
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
+        }
+        if (plan.recipe === 'mri-importer-v1') {
+          const scene = page.locator('[data-mri-scene]');
+          const reveal = (await scene.getAttribute('data-mri-reference')) === 'visible';
+          if (!reveal) assert.equal(await page.locator('[data-mri-private]').count(), 0);
+          if (frame === 0) assert.equal(await page.locator('[data-mri-output]').count(), 0);
+          if ((await scene.getAttribute('data-mri-scene')) === 'reference')
+            assert.equal(
+              await page.locator('[data-scene-inline-narration]').count(),
+              reveal ? 1 : 0,
+            );
+          if ((await scene.getAttribute('data-mri-scene')) === 'association') {
+            const selected = page.locator('[data-mri-grid] article[data-selected="true"]');
+            assert.equal(await selected.count(), 2);
+            assert.equal(
+              await selected.nth(0).getAttribute('data-storage'),
+              await selected.nth(1).getAttribute('data-storage'),
+            );
+            assert.equal(
+              await selected.nth(0).getAttribute('data-target'),
+              await selected.nth(1).getAttribute('data-target'),
+            );
+          }
+          for (const selector of [
+            '.scene-player > header',
+            '[data-mri-scene]',
+            '[class*="mriAside"]',
+            '.scene-legend',
+          ]) {
+            assert.ok(
+              await page
+                .locator(selector)
+                .evaluate(
+                  (e) => e.scrollHeight <= e.clientHeight && e.scrollWidth <= e.clientWidth,
+                ),
+              'MR overflow ' + selector,
+            );
+            const box = await page.locator(selector).boundingBox();
+            assert.ok(box && box.y + box.height <= 720, 'MR clipping ' + selector);
+          }
         }
         if (plan.recipe === 'localized-ct-v1') {
           const scene = page.locator('[data-localized-scene]');
@@ -939,6 +994,51 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'mri-importer-v1') {
+      for (let step = 1; step < plan.beats.length; step++) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        await page.waitForFunction(
+          (f) =>
+            document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+            String(f),
+          plan.beats[step].startFrame,
+        );
+        assert.ok(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          'MR mobile overflow',
+        );
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+        if (step === 7) {
+          assert.ok(
+            await page.locator('[data-mri-controls] tbody td:nth-child(2)').evaluateAll((cells) =>
+              cells.every((cell) => {
+                const r = document.createRange();
+                r.selectNodeContents(cell);
+                return (
+                  r.getBoundingClientRect().height <=
+                  parseFloat(getComputedStyle(cell).lineHeight) + 1
+                );
+              }),
+            ),
+            'MR score denominator wraps across lines',
+          );
+        }
+        if (step === 6) {
+          await page.locator('.scene-play').click();
+          await page.locator('[data-mri-private]').first().waitFor();
+          await page.locator('.scene-play').click();
+          assert.ok(
+            await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+            'MR mobile reference overflow',
+          );
+          await page
+            .locator('.scene-player')
+            .screenshot({ path: path.join(out, 'mobile-reference.png') });
+        }
+      }
+    }
     if (plan.recipe === 'localized-ct-v1') {
       for (let step = 1; step < plan.beats.length; step++) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -1143,6 +1243,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'mri-importer-v1',
       'localized-ct-v1',
       'aneurysm-localization-v1',
       'segmentation-calibration-v1',
@@ -1175,6 +1276,31 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'mri-importer-v1') {
+      assert.equal(await fallback.locator('[data-mri-private]').count(), 0);
+      await fallback.locator('[data-story-step="2"]').click();
+      assert.equal(
+        await fallback.locator('[data-mri-grid] article[data-selected="true"]').count(),
+        2,
+      );
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-association.png') });
+      await fallback.locator('[data-story-step="6"]').click();
+      await fallback.locator('.scene-play').click();
+      await fallback.locator('[data-mri-private]').first().waitFor();
+      await fallback.locator('.scene-play').click();
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('.scene-reset').click();
+      await fallback.waitForFunction(
+        () =>
+          document.querySelector('[data-mri-reference]')?.getAttribute('data-mri-reference') ===
+          'hidden',
+      );
+      assert.equal(await fallback.locator('[data-mri-private]').count(), 0);
+    }
     if (plan.recipe === 'localized-ct-v1') {
       assert.equal(await fallback.locator('[data-localized-private]').count(), 0);
       assert.equal(await fallback.locator('[data-localized-point]').count(), 2);
@@ -2024,6 +2150,30 @@ withBrowser(async (browser) => {
   );
   assert.equal(await page.locator('[data-localized-private], [data-localized-output]').count(), 0);
   report.navigation.push({ id: 'tb3-localized-candidate-recognition', revealAndReset: true });
+  await page.evaluate(() => {
+    location.hash = 'tb3-mri-importer/0/overview?view=repository';
+  });
+  await page.waitForFunction(
+    () =>
+      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'mri-importer-v1',
+  );
+  assert.equal(await page.locator('[data-mri-private], [data-mri-output]').count(), 0);
+  await page.locator('[data-story-step="2"]').click();
+  assert.equal(await page.locator('[data-mri-grid] article[data-selected="true"]').count(), 2);
+  await page
+    .locator('.scene-player')
+    .screenshot({ path: path.join(folder, 'integrated-mri-importer.png') });
+  await page.locator('[data-story-step="7"]').click();
+  await page.locator('[data-mri-private]').first().waitFor();
+  await page.locator('.scene-reset').click();
+  await page.waitForFunction(
+    () =>
+      document.querySelector('[data-mri-reference]')?.getAttribute('data-mri-reference') ===
+      'hidden',
+  );
+  assert.equal(await page.locator('[data-mri-private], [data-mri-output]').count(), 0);
+  report.navigation.push({ id: 'tb3-mri-importer', revealAndReset: true });
+
   await context.close();
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.remote_requests, []);

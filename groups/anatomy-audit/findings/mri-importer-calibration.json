@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "analysis_kind": "result",
+  "id": "mri-importer-calibration",
+  "group_id": "anatomy-audit",
+  "title": "A repaired importer preserves the retained acquisition associations",
+  "claim": "One retained Terra/high repair passed all 36 private synthetic MR fixtures from 12 acquisitions, preserving exact samples and canonical labels within the frozen physical-coordinate tolerance. Matched oracle and starter controls passed 36/36 and 12/36. This bounded result does not support the proposed association-failure hypothesis.",
+  "experiment_ids": [
+    "anatomy-audit-mr-frame-association"
+  ],
+  "evidence": [
+    {
+      "path": "groups/anatomy-audit/findings/evidence/mri-importer-calibration.json",
+      "sha256": "52983ce0078718b5235720a93f76ae34c25ab03851f61443882e44163d24b7d5"
+    },
+    {
+      "path": "groups/anatomy-audit/presentation/sources/mri-importer-audit.json",
+      "sha256": "c47f1751c647e87244eff847ac145f8d528c1240428770448864509c4a56dc22"
+    }
+  ],
+  "limitations": [
+    "Twelve acquisitions have three correlated encodings each; one completed model attempt is not 36 independent trials.",
+    "The declared reconstruction metadata profile excludes clinical IOD conformance, multiple stacks, missing or duplicate slices, compression and rescaling.",
+    "Local saved-code replay uses existing pydicom 3.0.2 versus frozen 3.0.1. Exact saved reports match; no fresh model execution or container-recovery claim.",
+    "The user parked the study. This assistant-authored explanation does not reopen it or change original scores."
+  ],
+  "links": [
+    {
+      "label": "Analysis report",
+      "path": "groups/anatomy-audit/findings/mri-importer-calibration.md"
+    }
+  ]
+}

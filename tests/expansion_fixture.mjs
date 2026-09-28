@@ -1,4 +1,14 @@
 export {
+  mriInputs,
+  mriOutput,
+  mriReference,
+  mriSelection,
+  mriSlot,
+  mriPoint,
+  mriCorners,
+  mriGray,
+} from '../presentation/frontend/task-visuals/mri-importer';
+export {
   localizedVisits,
   localizedReference,
   localizedOutput,

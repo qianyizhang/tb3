@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "mri-importer-v1": "retained-mri-importer-v1",
     "localized-ct-v1": "retained-localized-ct-v1",
     "aneurysm-localization-v1": "retained-aneurysm-localization-v1",
     "segmentation-calibration-v1": "retained-segmentation-calibration-v1",
@@ -80,6 +81,11 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-mri-importer-v1": (
+        "source-slices",
+        "reference.json",
+        {"inputs.json", "output.json", "reference.json", "NOTICE.md", "DATA-LICENSE.txt"},
+    ),
     "retained-localized-ct-v1": (
         "source-slices",
         "reference.json",
@@ -474,6 +480,12 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class MriImporterChannels(Closed):
+    view: Pair
+    output: Pair
+    reference: Pair
 
 
 class LocalizedCtChannels(Closed):
@@ -914,6 +926,33 @@ class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
         return self
 
 
+class MriImporterBeat(ExpansionBeat[MriImporterChannels]):
+    scene: Literal[
+        "inputs",
+        "ordinals",
+        "association",
+        "geometry",
+        "placement",
+        "outputs",
+        "reference",
+        "controls",
+        "trace",
+        "limits",
+    ]
+
+
+class MriImporterStory(Story[MriImporterChannels]):
+    recipe: Literal["mri-importer-v1"]
+    beats: tuple[MriImporterBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class LocalizedCtBeat(ExpansionBeat[LocalizedCtChannels]):
     scene: Literal[
         "inputs",
@@ -1256,6 +1295,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | MriImporterStory
     | LocalizedCtStory
     | AneurysmStory
     | SegmentationCalibrationStory
@@ -1293,6 +1333,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | MriImporterStory
     | LocalizedCtStory
     | AneurysmStory
     | SegmentationCalibrationStory
@@ -1490,6 +1531,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | MriImporterStory
     | LocalizedCtStory
     | AneurysmStory
     | SegmentationCalibrationStory
@@ -1571,6 +1613,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         frame, data_license, label_license = {
+            "retained-mri-importer-v1": (
+                "LPS",
+                "LicenseRef-TB3-authored-fixtures",
+                "LicenseRef-TB3-authored-fixtures",
+            ),
             "retained-localized-ct-v1": ("RAS", "CC-BY-NC-4.0", "CC-BY-NC-4.0"),
             "retained-aneurysm-localization-v1": ("native-ijk", "CC0-1.0", "CC0-1.0"),
             "retained-segmentation-calibration-v1": ("native-ijk", "CC-BY-4.0", "Apache-2.0"),

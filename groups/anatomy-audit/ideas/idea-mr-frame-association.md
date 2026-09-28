@@ -39,3 +39,7 @@ Reopen if a concrete equivalent DICOM encoding exposes a reproduced association 
 ## Current disposition
 
 The completed MR frame-association calibration passed cleanly with Terra/high; no follow-up trial is scheduled. Preserve the frozen task and observed outcome. The user accepted parking on 2026-09-21 in [the refinement task](codex://threads/01a0c040-3777-7b72-b932-6e6b118304a2). This does not close the broader scientific question.
+
+## Explainer source review — 2026-09-28
+
+Assistant analysis: the [retained result audit](../findings/mri-importer-calibration.md) verifies all 17 frozen files, 40 source encodings and 16,749 samples, and exactly replays model/oracle/starter reports (36/36, 36/36, 12/36). The public per-frame exact-equality failure is reproduced as numerical roundoff within the specified tolerance. A [source-derived story](../presentation/stories/mri-importer.story.md) explains sample routing, actual labels and LPS geometry. This adds explanation evidence only; the accepted parking decision and original reopening conditions remain unchanged.

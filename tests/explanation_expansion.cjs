@@ -198,6 +198,60 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     localizedReference,
     localizedOutput,
   } = await loadFrontend('expansion_fixture.mjs');
+  const { mriInputs, mriOutput, mriSelection, mriSlot, mriPoint, mriCorners, mriGray } =
+    await loadFrontend('expansion_fixture.mjs');
+  const mrPlan = plans.find((p) => p.recipe === 'mri-importer-v1');
+  assert.ok(mrPlan);
+  assert.equal(mriSelection(sampleStory(mrPlan, 0)).reference, false);
+  assert.equal(mriSelection(sampleStory(mrPlan, 0)).output, false);
+  for (const [scene, key, count] of [
+    ['association', 'frame', 12],
+    ['geometry', 'corner', 8],
+  ]) {
+    const b = mrPlan.beats.find((b) => b.scene === scene),
+      seen = new Set();
+    for (let f = b.startFrame; f < b.endFrame; f++)
+      seen.add(mriSelection(sampleStory(mrPlan, f))[key]);
+    assert.deepEqual(
+      [...seen],
+      Array.from({ length: count }, (_, i) => i),
+    );
+  }
+  const mrOutputBeat = mrPlan.beats.find((b) => b.scene === 'outputs');
+  assert.deepEqual(
+    Array.from(
+      mriInputs.cases[1].rows[mriSelection(sampleStory(mrPlan, mrOutputBeat.endFrame - 1)).frame]
+        .target,
+    ),
+    [0, 0, 0],
+  );
+  const mrReveal = mrPlan.beats.find((b) => b.scene === 'reference');
+  assert.equal(mriSelection(sampleStory(mrPlan, mrReveal.startFrame)).reference, false);
+  assert.equal(mriSelection(sampleStory(mrPlan, mrReveal.endFrame - 1)).reference, true);
+  for (let ci = 0; ci < mriInputs.cases.length; ci++) {
+    const c = mriInputs.cases[ci],
+      answer = mriOutput.cases[ci];
+    assert.equal(new Set(c.rows.map((f) => mriSlot(f, c.shape))).size, c.rows.length);
+    for (const f of c.rows) {
+      assert.deepEqual(f.pixels, answer.pixels[f.target[0]][f.target[1]][f.target[2]]);
+      assert.equal(answer.temporal_indices[f.target[0]], f.time);
+      assert.equal(answer.echo_ms[f.target[1]], f.echo_ms);
+      assert.ok(
+        mriPoint(answer.affine_lps, [0, 0, f.target[2]]).every(
+          (v, i) => Math.abs(v - f.position_lps[i]) < 1e-10,
+        ),
+      );
+    }
+    assert.equal(mriCorners(c.shape).length, 8);
+    assert.ok(
+      mriCorners(c.shape).some((p) =>
+        p.every((v, i) => v === [c.shape[4] - 1, c.shape[3] - 1, c.shape[2] - 1][i]),
+      ),
+    );
+  }
+  assert.equal(mriGray(-3000), 0);
+  assert.equal(mriGray(3000), 255);
+  assert.equal(mriGray(0), 128);
   const localizedPlan = plans.find((p) => p.recipe === 'localized-ct-v1');
   assert.ok(localizedPlan);
   assert.equal(localizedSelection(sampleStory(localizedPlan, 0)).reference, false);
