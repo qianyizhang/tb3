@@ -3896,7 +3896,7 @@
     },
     {
       "entry_id": "tb3-report-backed-reading",
-      "title": "Read imaging with supplied clinical reports",
+      "title": "Read imaging against private clinical reports",
       "catalogue": "groups/longitudinal-reading/presentation/catalog.json",
       "brief": "groups/longitudinal-reading/presentation/briefs/tb3-report-backed-reading.md",
       "brief_exists": true,
@@ -3912,12 +3912,12 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "blocked-source-input",
+      "source_asset_readiness": "All five archived scaffold files match recovery hashes. Zero admitted image/report pairs, freezes or attempts in the retained experiment. No case-specific source assets available.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Produce an evidence-qualified diagnostic reading under a defined report-assistance boundary.",
+      "blocking_dependency": "No admitted image/report pair, patient-level claim ledger or demonstrated runtime reference boundary. CT-RATE public card remains gated; no authenticated account access or source selection was established. A protocol-only scope decision is pending.",
+      "remaining_work": "After source admission or an explicit user scope change, author and integrate the operation-specific canonical story, export and inspect it. Keep this entry unfinished; source audit and schematic are not visual acceptance.",
       "contract_projection": {
         "raw": "Proposed images plus source clinical reports.",
         "helpers": "Reports supply context and may disclose target facts; exact staged boundary was unfinished.",
@@ -3940,7 +3940,91 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "0b2e286bcf37a66a4137008f00a3eb41fb120dfa542f80ee1383c966df71bacf"
+      "source_brief_sha256": "0b2e286bcf37a66a4137008f00a3eb41fb120dfa542f80ee1383c966df71bacf",
+      "blocker_resolution": "Authorized admitted source pair and case contract, or explicit user approval of protocol-only explanation. Continue healthagentbench while this entry remains in the unfinished denominator.",
+      "audited_contract_projection": {
+        "title": "Read imaging against private clinical reports",
+        "goal": "**This is an archived, unexecuted proposal: zero admitted cases and zero model\ntrials.** The solver would read a complete examination and safe pre-exam context.\nThe original radiologist report would remain private for evaluation. “Report-backed”\ndescribes the reference, not report assistance to the solver.",
+        "value": "Assess source-grounded findings, unsupported specificity and incomplete image\nsearch beyond a focused anatomical task. Report agreement is not independent\nclinical adjudication or proof that every image abnormality was reported.",
+        "raw": "Proposed complete native examinations, with chest CT the author's recommended\nfirst source. The proposed 12-patient mix and CT-RATE route were not a recorded\nuser source selection. No case manifest, admitted image/report pair or frozen\npatient claim ledger is retained for this experiment.",
+        "helpers": "Only verified pre-exam context: age, sex, indication, technique and available\ncomparisons, omitting unknown values. The archived packer allowlists those fields\nand anonymously names examination files. No target diagnosis, lesion count,\nsegmentation labels, expected findings or source report would be supplied.",
+        "tools": "The archived CT viewer specifies orientation-aware axial, coronal and sagittal\ndisplay, window/level and physical RAS-millimetre slices. It logs rendered views;\nthe runtime would separately have to retain images actually delivered to the\nsolver. General numerical tools were proposed; no specialist diagnostic model\nwas supplied. Neither a renderer nor sibling folders enforce runtime isolation.",
+        "reference": "The original clinical report, source mapping, patient key and curator-extracted\nclaim table belong outside the solver's runtime. Claims would preserve the\nreport's negation, uncertainty, laterality and exact supporting excerpts.\nRadiologist impressions, image observations and independently confirmed outcomes\nremain distinct. No completed specialist review or clinical scoring is retained.",
+        "spec": "Inspect the complete examination without source lookup. Write findings and a\nprioritized impression with evidence locations, measurements where relevant,\nuncertainty, limitations and a concise evidence summary. Preserve possible and\nindeterminate findings; missing prior studies can make individual temporal claims\nunscorable. No case-specific coordinate or output example is currently available.",
+        "output": "The archived prompt requests `answer.json` with `findings`, `impression`,\n`limitations` and `evidence_summary`. Each finding includes observation, location,\ncertainty (`present`, `possible` or `indeterminate`) and evidence with an image\nfilename plus view/slice or physical coordinates. These are proposed fields,\nnot a retained model answer or a frozen schema validator.",
+        "score": "The protocol proposes two separate comparisons. Expected report claims would be\nmatched, missed, contradicted or unresolved. Solver additions would be supported,\nexplicitly contradicted or unmentioned and needing review. Report omission alone\ndoes not establish a false positive. Unresolved findings must not be forced into\nclinical precision or an automatic diagnostic pass/fail.\n\nEmpty, indiscriminately positive and deliberately contradictory reports were\nproposed evaluator controls. A copied source report would be a host-only reference\nbaseline. None is a retained clinical evaluation result. The archived packer and\nthree synthetic mechanical tests do not implement diagnostic grading, certify\ndeidentification or show a clinical/model trial occurred.",
+        "challenge": "Complete-volume search, evidence-grounded conclusions and calibrated uncertainty\nmust remain separate from fluent report writing. The intended report isolation is\nclear in the retained protocol, but no admitted case or enforced runtime boundary\nhas been demonstrated.",
+        "families": "The original proposal specified 12 distinct patients across four report strata,\nthen a matched Terra/Sol comparison. This is a plan, not a sample denominator or\nobserved model comparison. No trial, data acquisition or source change is implied\nby this explanation audit.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Review complete images and safe pre-exam context without the private report.",
+          "Return evidence-qualified findings, impression and explicit limitations.",
+          "Compare against preserved report claims, retaining unresolved additions."
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "Only verified pre-exam context: age, sex, indication, technique and available\ncomparisons, omitting unknown values. The archived packer allowlists those fields\nand anonymously names examination files. No target diagnosis, lesion count,\nsegmentation labels, expected findings or source report would be supplied.",
+            "remaining": "Inspect the complete examination without source lookup. Write findings and a\nprioritized impression with evidence locations, measurements where relevant,\nuncertainty, limitations and a concise evidence summary. Preserve possible and\nindeterminate findings; missing prior studies can make individual temporal claims\nunscorable. No case-specific coordinate or output example is currently available."
+          }
+        ],
+        "sources": [
+          [
+            "BR-018 — Report-backed diagnostic reading",
+            "groups/longitudinal-reading/experiments/br018/protocol.md"
+          ],
+          [
+            "Original proposal and exact reference boundary",
+            "docs/research-rounds/BR-018-report-backed-diagnosis.md"
+          ],
+          [
+            "Source audit and archive hashes",
+            "groups/longitudinal-reading/presentation/sources/report-backed-reading-audit.json"
+          ],
+          [
+            "Recovery manifest",
+            "archive/manifest.json"
+          ],
+          [
+            "CT-RATE retained access screen",
+            "datasets/ct-rate.json"
+          ],
+          [
+            "Current explanation decision and reopening conditions",
+            "groups/longitudinal-reading/ideas/report-backed-diagnostic-reading.md"
+          ]
+        ],
+        "html": {
+          "goal": "<p><strong>This is an archived, unexecuted proposal: zero admitted cases and zero model trials.</strong> The solver would read a complete examination and safe pre-exam context. The original radiologist report would remain private for evaluation. “Report-backed” describes the reference, not report assistance to the solver.</p>",
+          "value": "<p>Assess source-grounded findings, unsupported specificity and incomplete image search beyond a focused anatomical task. Report agreement is not independent clinical adjudication or proof that every image abnormality was reported.</p>",
+          "raw": "<p>Proposed complete native examinations, with chest CT the author&#x27;s recommended first source. The proposed 12-patient mix and CT-RATE route were not a recorded user source selection. No case manifest, admitted image/report pair or frozen patient claim ledger is retained for this experiment.</p>",
+          "helpers": "<p>Only verified pre-exam context: age, sex, indication, technique and available comparisons, omitting unknown values. The archived packer allowlists those fields and anonymously names examination files. No target diagnosis, lesion count, segmentation labels, expected findings or source report would be supplied.</p>",
+          "tools": "<p>The archived CT viewer specifies orientation-aware axial, coronal and sagittal display, window/level and physical RAS-millimetre slices. It logs rendered views; the runtime would separately have to retain images actually delivered to the solver. General numerical tools were proposed; no specialist diagnostic model was supplied. Neither a renderer nor sibling folders enforce runtime isolation.</p>",
+          "reference": "<p>The original clinical report, source mapping, patient key and curator-extracted claim table belong outside the solver&#x27;s runtime. Claims would preserve the report&#x27;s negation, uncertainty, laterality and exact supporting excerpts. Radiologist impressions, image observations and independently confirmed outcomes remain distinct. No completed specialist review or clinical scoring is retained.</p>",
+          "spec": "<p>Inspect the complete examination without source lookup. Write findings and a prioritized impression with evidence locations, measurements where relevant, uncertainty, limitations and a concise evidence summary. Preserve possible and indeterminate findings; missing prior studies can make individual temporal claims unscorable. No case-specific coordinate or output example is currently available.</p>",
+          "output": "<p>The archived prompt requests <code>answer.json</code> with <code>findings</code>, <code>impression</code>, <code>limitations</code> and <code>evidence_summary</code>. Each finding includes observation, location, certainty (<code>present</code>, <code>possible</code> or <code>indeterminate</code>) and evidence with an image filename plus view/slice or physical coordinates. These are proposed fields, not a retained model answer or a frozen schema validator.</p>",
+          "score": "<p>The protocol proposes two separate comparisons. Expected report claims would be matched, missed, contradicted or unresolved. Solver additions would be supported, explicitly contradicted or unmentioned and needing review. Report omission alone does not establish a false positive. Unresolved findings must not be forced into clinical precision or an automatic diagnostic pass/fail.</p>\n<p>Empty, indiscriminately positive and deliberately contradictory reports were proposed evaluator controls. A copied source report would be a host-only reference baseline. None is a retained clinical evaluation result. The archived packer and three synthetic mechanical tests do not implement diagnostic grading, certify deidentification or show a clinical/model trial occurred.</p>",
+          "challenge": "<p>Complete-volume search, evidence-grounded conclusions and calibrated uncertainty must remain separate from fluent report writing. The intended report isolation is clear in the retained protocol, but no admitted case or enforced runtime boundary has been demonstrated.</p>",
+          "families": "<p>The original proposal specified 12 distinct patients across four report strata, then a matched Terra/Sol comparison. This is a plan, not a sample denominator or observed model comparison. No trial, data acquisition or source change is implied by this explanation audit.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
+      },
+      "source_review": {
+        "date": "2026-09-28",
+        "actor": "assistant",
+        "receipt": "groups/longitudinal-reading/presentation/sources/report-backed-reading-audit.json",
+        "receipt_sha256": "ae37e9e71a95fad2c416199622023aa035dfe2871a4be16f08d0859b207c95d1",
+        "brief_sha256": "1dda31dc0b39c1993e680e4ddbc0165288aee5c94cf9d69ebe80c6827f9aac92",
+        "no_visual_acceptance": true
+      }
     },
     {
       "entry_id": "tb3-oblique-pose",
@@ -14223,8 +14307,8 @@
     "reviewed-scripted-planar": 29,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 107,
-    "pending-operation-review": 8,
-    "blocked-source-input": 48
+    "blocked-source-input": 49,
+    "pending-operation-review": 7
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -14243,7 +14327,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-report-backed-reading",
+    "active_entry": "healthagentbench",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -14894,6 +14978,16 @@
         "export_receipt_sha256": "4c08ee2b7a38a14267dbe4dd5061333df4b8dadece534e5073b75c2c4b0d9356",
         "reviewed_entries": 42,
         "next_entry": "tb3-report-backed-reading"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-report-backed-reading",
+        "stage": "blocked-source-input",
+        "receipt": "groups/longitudinal-reading/presentation/sources/report-backed-reading-audit.json",
+        "receipt_sha256": "ae37e9e71a95fad2c416199622023aa035dfe2871a4be16f08d0859b207c95d1",
+        "reviewed_entries": 42,
+        "next_entry": "healthagentbench",
+        "note": "Corrected reference visibility; no visual acceptance or scope substitution. User scope question pending."
       }
     ]
   }

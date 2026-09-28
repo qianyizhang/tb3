@@ -42,3 +42,7 @@ disagreement and incomplete rendered coverage remain distinct explanations.
 all-size inventory goal and permissive candidate policy retain additional
 uncertainty, but recovery stays 3/22. One target is gained and another rejected
 as vascular; exact events fall to 1/15 because the gained target is unresolved.
+
+[Report-backed reading proposal](ideas/report-backed-diagnostic-reading.md): BR-018
+keeps source reports private for evaluation. Its recovered preparation scaffold
+has no admitted case or model trial; the case-backed explainer remains unfinished.
