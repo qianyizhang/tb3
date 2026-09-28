@@ -115,8 +115,8 @@ to retained scores or a claim of clinical validity.
 
 ### Input
 
-**Native source arrays available; canonical visuals pending.** Keep detector-bin
-and angle axes explicit. Photon counts, material line integrals and reconstructed
+**Native source views.** Paired count sinograms retain detector-bin
+and angle axes. Photon counts, material line integrals and reconstructed
 densities are separate quantities with separate scales.
 
 ### Supplied helpers
@@ -151,6 +151,7 @@ score can overlook an incomplete output or incorrect density scale.
 - [Pinned source solver](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_dual_energy/src/solvers.py)
 - [Pinned active scorer](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py)
 - [Pinned numeric assets](https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_dual_energy)
+- [Canonical story](../stories/imaging101-dual-energy.story.md)
 - [Source and numerical audit](../sources/imaging101-dual-energy-audit.json)
 - [NIST tissue mass attenuation](https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/tissue.html)
 - [NIST cortical bone mass attenuation](https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/bone.html)
@@ -166,7 +167,7 @@ MIT notices retain their respective copyright holders.
 
 ## Gaps
 
-Canonical story, exports and visual acceptance remain pending. The small
+The canonical story illustrates this pinned source condition. The small
 `solvers_decompose.npz` fixture was unavailable after bounded TLS/connect-timeout
 attempts; material optimization was not executed. All measurements, truth, saved
 results and forward fixtures needed for the explainer are available. No fresh

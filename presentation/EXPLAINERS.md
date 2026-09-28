@@ -1,5 +1,14 @@
 # Canonical task explainers
 
+`imaging101-dual-energy-v1` uses paired native count sinograms, supplied spectra
+and attenuation curves, selected saved-ray forward checks and both saved material
+maps. The [source notice](task-explorer/imaging101-dual-energy/NOTICE.md) preserves
+pixel geometry, physical units, approximate calibration and separate MIT notices.
+Its `view` channel selects rays, energy bins, saved domains and scoring controls;
+`reference` gates truth before matched tissue and bone comparisons. Actual staging
+exposes the truth archive at every assistance level. Saved FBP replay and the
+shape-dependent generic scorer do not establish fresh decomposition or a pass.
+
 `imaging101-ptychography-v1` uses native simulated diffraction, exact encoder
 windows, labeled initial-state intensity projections and the saved complex object.
 Its [source notice](task-explorer/imaging101-ptychography/NOTICE.md) preserves pixel

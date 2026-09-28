@@ -18,6 +18,12 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    dualEnergyReveal,
+    dualEnergyInput,
+    dualEnergyData,
+    dualEnergyReference,
+    dualEnergyRayPixel,
+    dualEnergyExpected,
     ptychographyReveal,
     ptychographyInput,
     ptychographyData,
@@ -1637,6 +1643,29 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       'Witness must lie in displayed reference',
     );
   }
+  const dual = plans.find((p) => p.recipe === 'imaging101-dual-energy-v1');
+  assert(dual);
+  const dualRef = dual.beats.find((b) => b.scene === 'reference');
+  assert.equal(dualEnergyReveal(sampleStory(dual, dualRef.startFrame)), false);
+  assert.equal(dualEnergyReveal(sampleStory(dual, dualRef.endFrame - 1)), true);
+  assert.equal(dualEnergyReveal(sampleStory(dual, 0)), false);
+  for (const ray of dualEnergyData.rays) {
+    const p = dualEnergyRayPixel(ray.detector_bin, ray.angle_degrees);
+    assert.ok(p.x > 48 && p.x < 300 && p.y > 20 && p.y < 200);
+    const expected = dualEnergyExpected(ray.saved_material_integrals_g_cm2);
+    expected.forEach((v, i) => assert.ok(Math.abs(v - ray.saved_predicted_counts[i]) < 1e-8));
+  }
+  for (let m = 0; m < 2; m++) {
+    assert.deepEqual(dualEnergyData.maps[m].shape, dualEnergyReference.maps[m].shape);
+    assert.deepEqual(dualEnergyData.maps[m].range, dualEnergyReference.maps[m].range);
+  }
+  assert.equal(dualEnergyInput.energies.length, dualEnergyInput.mus[0].length);
+  assert.equal(dualEnergyData.native['half-density'].mean_ncc, 1);
+  assert.ok(dualEnergyData.native['half-density'].mean_nrmse > 0.3);
+  assert.deepEqual(dualEnergyData.native['outside-body-added'], dualEnergyData.native.saved);
+  assert.ok(dualEnergyData.generic['two-truth-maps'].error);
+  assert.equal(dualEnergyData.generic['truth-bone-sinogram'].ncc, 1);
+  assert.equal(dualEnergyData.generic['truth-tissue-only'].ncc, 1);
   const ptychography = plans.find((p) => p.recipe === 'imaging101-ptychography-v1');
   assert(ptychography);
   const ptychographyReferenceBeat = ptychography.beats.find((b) => b.scene === 'reference');

@@ -17,6 +17,16 @@ export function sampleStory(plan: StoryPlan, requested: number) {
   const eased = progress * progress * (3 - 2 * progress);
   const channel = (pair: readonly number[]) => pair[0] + (pair[1] - pair[0]) * eased;
   switch (plan.recipe) {
+    case 'imaging101-dual-energy-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        view: b.channels.view[0] + (b.channels.view[1] - b.channels.view[0]) * progress,
+        reference: channel(b.channels.reference),
+      });
+    }
     case 'imaging101-ptychography-v1': {
       const b = plan.beats[index];
       return Object.freeze({

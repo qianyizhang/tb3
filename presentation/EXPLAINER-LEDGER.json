@@ -8298,15 +8298,15 @@
       ],
       "illustration_kind": "dualct",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "imaging101-dual-energy",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "Twelve pinned task source files, 60 shared files and ten numeric/metadata assets verified. Measurements, calibration, truth and saved two-material results are available; optional inverse fixture unavailable.",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Pinned count sinograms, spectra, material coefficients, truth and saved maps/sinograms verified. Forward fixtures, saved FBP, actual staging and native/generic scores replayed; optional inverse fixture unavailable.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/046-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Author and bind a native dual-energy CT story with paired count sinograms, supplied calibration, selected saved-ray spectral attenuation, saved material FBP, separate truth reveal, actual staging and two-material scoring controls. Export and inspect desktop/mobile/no-GPU/playback before acceptance. Optional unavailable inverse fixture is outside the planned saved-output scope.",
+      "remaining_work": "No outstanding explainer work for the pinned synthetic dual-energy condition. Optional inverse fixture, fresh optimization, hidden-reference validity, benchmark pass and patient accuracy remain unclaimed. Remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "CT projections acquired with two X-ray energy spectra.",
         "helpers": "Energy spectra and material attenuation coefficients. The assistance level can add an approach and software design.",
@@ -8352,7 +8352,111 @@
         "sha256": "f4d2e76cd10ce1afa54b281b9d821101f8cab450ea4f799594f40f6e3d3a4269",
         "status": "source-audit-complete"
       },
-      "acceptance_scope": null
+      "acceptance_scope": "Assistant source, numerical, visual and engineering review of one pinned Imaging101 synthetic dual-energy CT case, saved two-material reconstruction and explicit forward/scoring controls. No fresh material optimization, agent capability, hidden-reference validity, benchmark pass or patient accuracy.",
+      "visual_review": "Eight chapters: paired counts, calibration, saved-ray spectral attenuation, material sinograms/maps, matched truth reveals, staging, score controls and limits. Desktop/mobile/locale/Explorer/no-GPU and 188-second playback inspected.",
+      "reviewed_contract_projection": {
+        "title": "Separate bone and soft tissue with dual-energy CT",
+        "goal": "Recover two material-density maps from paired synthetic photon-count sinograms.\nThe saved result supports inspection of the source operation; the active generic\nscorer does not evaluate the complete two-material output contract.",
+        "value": "Two spectra weight material attenuation differently. The task first estimates\none tissue and one bone line integral for each ray, then reconstructs each\nmaterial map. Calibration, units and preserving both material identities matter.",
+        "raw": "One synthetic parallel-beam phantom, not an acquired patient scan.\n`raw_data.npz` contains float64 `sinogram_low` and `sinogram_high`, each\n`(1,128,180)`: case, detector bin, projection angle. Angles are 0 through 179\ndegrees. Observed counts range from **23,369 to 1,003,718** at low energy and\n**115,531 to 1,504,357** at high energy. Values are photon counts, not HU.",
+        "helpers": "The raw archive also supplies two spectra and two mass-attenuation curves,\n`(1,2,131)`, over 20–150 keV in 1 keV bins. Simplified Gaussian spectra peak at\n55 and 90 keV, cut off above 80 and 140 keV, and sum to approximately 1 million\nand 1.5 million incident photons per ray. Density-map pixels are **0.1 cm** wide.\n\nThe released attenuation coefficients, in cm²/g, exactly match the source's\nlinearly interpolated approximate tables. They are not exact NIST ICRU-44 values:\nat 20 keV the released tissue/bone values are 0.770/3.200, versus NIST\n0.823/4.001. The audit retains the released calibration unchanged.\nL2 adds an approach; L3 also adds software design.",
+        "tools": "Python numerical dependencies. The local audit used existing packages to replay\nforward fixtures, saved-intermediate filtered backprojection and score controls.\nIt did not run material optimization, an agent, dataset generation or installation.",
+        "reference": "`data/ground_truth.npz` contains tissue and bone maps `(1,128,128)` in g/cm³,\nplus their sinograms `(1,128,180)` in g/cm². They describe geometric regions,\nnot annotated patient anatomy. The published phantom fixture equals these maps.\nActual L1/L2/L3 file seeding copies **this complete truth archive** with `data/`.\nA reader-facing reveal therefore does not establish a private evaluator boundary.",
+        "spec": "For each ray and energy, add the products of material line integral and mass\nattenuation, exponentiate the negative sum, multiply by each supplied spectrum,\nand sum over energy. The source generator samples Poisson counts from this\nexpectation. The full generator was inspected but not executed.\n\nThe source inverse uses a nonnegative Newton-style update for the two material\nline integrals. Its executable Hessian includes second derivatives of expected\ncounts. Each material sinogram is divided by the **0.1 cm** pixel width before\nramp-filtered backprojection; reconstructed negative densities are clipped to\nzero. No synthetic optimization trajectory is claimed by this audit.",
+        "output": "Separate tissue and bone density maps. Native `main.py` writes\n`output/reconstructed_maps.npz` with both maps and both material sinograms.\nThe released saved archive has a leading singleton case axis. The active generic\nend-to-end harness instead requires a single `output/reconstruction.npy` and\nmatches a squeezed array to a reference by shape and key ranking.",
+        "score": "Both saved maps reproduce **exactly** from the saved material sinograms through\nthe source backprojection wrapper with scikit-image 0.25.2 and nonnegative\nclipping. This is saved-intermediate replay, not fresh material decomposition.\n\nNative metrics evaluate both maps inside the truth-derived body mask:\n**8,797/16,384 pixels**, where tissue plus bone density exceeds 0.01 g/cm³.\nThe native NCC is cosine similarity without mean centering; NRMSE is divided by\neach reference's range inside that mask.\n\n| Saved map | Native NCC | Native NRMSE |\n| --- | ---: | ---: |\n| Tissue | 0.9980 | 0.0620 |\n| Bone | 0.9886 | 0.0404 |\n| Mean of the two material scores | 0.9933 | 0.0512 |\n\nThese are newly replayed scores. No `evaluation/metrics.json` or pass thresholds\nare listed in the pinned source tree or asset manifest. There are no shipped\nhistorical metrics against which to verify these values, and no benchmark pass.\n\nThe actual generic scorer selects `ground_truth.npz:tissue_map` for any\n128×128 output, including a submitted bone map. For a 128×180 output it selects\n`bone_sinogram`; a stacked `(2,128,128)` output fails reference matching.\nTissue truth alone and bone-sinogram truth alone each receive generic NCC **1**\nand MSE **0**, despite neither being the complete requested pair of density maps.\nNative NPZ alone fails the generic filename check. The separate non-filesystem\nfallback looks for the absent `ground_truth.npy` and reports that error.\n\nControls also delimit native metrics: halving both true density maps leaves\nnative mean NCC **1** but gives mean NRMSE **0.3058**. Erasing bone gives mean NCC\n**0.5**. Adding density only outside the truth body leaves native scores unchanged;\nthe generic whole-image score changes. These are scope checks, not corrections\nto retained scores or a claim of clinical validity.",
+        "challenge": "Both materials attenuate both spectra. The inverse depends on their distinct\nenergy responses, count noise and calibration. A single-map or correlation-only\nscore can overlook an incomplete output or incorrect density scale.",
+        "families": "One synthetic 128×128 phantom and saved reconstruction. Twelve task source files,\n60 shared files and ten numeric/metadata assets are verified. The cited upstream\nsimulator uses Siddon ray tracing and fan-beam reconstruction; this benchmark's\nparallel-beam adaptation is not claimed to be equivalent. Benchmark and upstream\nMIT notices retain their respective copyright holders.",
+        "gap": "The canonical story illustrates this pinned source condition. The small\n`solvers_decompose.npz` fixture was unavailable after bounded TLS/connect-timeout\nattempts; material optimization was not executed. All measurements, truth, saved\nresults and forward fixtures needed for the explainer are available. No fresh\nagent result, private-reference validity, benchmark pass or patient accuracy is\nestablished. Original arrays remain unchanged.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "L1 · README",
+            "helper": "README, requirements and complete data directory, including both truth maps and sinograms.",
+            "remaining": "Implement decomposition and reconstruction; this packet does not establish hidden-reference evaluation."
+          },
+          {
+            "name": "L2 · + approach",
+            "helper": "L1 plus an algorithmic approach.",
+            "remaining": "Implement the numerical method and resolve executable details."
+          },
+          {
+            "name": "L3 · + design",
+            "helper": "L2 plus software design.",
+            "remaining": "Implement the specified interfaces; source and evaluation directories are not seeded by the local runner."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_dual_energy/README.md"
+          ],
+          [
+            "Pinned source solver",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_dual_energy/src/solvers.py"
+          ],
+          [
+            "Pinned active scorer",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+          ],
+          [
+            "Pinned numeric assets",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_dual_energy"
+          ],
+          [
+            "Canonical story",
+            "presentation/external-tasks/stories/imaging101-dual-energy.story.md"
+          ],
+          [
+            "Source and numerical audit",
+            "presentation/external-tasks/sources/imaging101-dual-energy-audit.json"
+          ],
+          [
+            "NIST tissue mass attenuation",
+            "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/tissue.html"
+          ],
+          [
+            "NIST cortical bone mass attenuation",
+            "https://physics.nist.gov/PhysRefData/XrayMassCoef/ComTab/bone.html"
+          ],
+          [
+            "Cited upstream simulator",
+            "https://github.com/gjadick/dex-ct-sim/tree/d247c0b36053adfe63d36d74e8be08a2903cf280"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Recover two material-density maps from paired synthetic photon-count sinograms. The saved result supports inspection of the source operation; the active generic scorer does not evaluate the complete two-material output contract.</p>",
+          "value": "<p>Two spectra weight material attenuation differently. The task first estimates one tissue and one bone line integral for each ray, then reconstructs each material map. Calibration, units and preserving both material identities matter.</p>",
+          "raw": "<p>One synthetic parallel-beam phantom, not an acquired patient scan. <code>raw_data.npz</code> contains float64 <code>sinogram_low</code> and <code>sinogram_high</code>, each <code>(1,128,180)</code>: case, detector bin, projection angle. Angles are 0 through 179 degrees. Observed counts range from <strong>23,369 to 1,003,718</strong> at low energy and <strong>115,531 to 1,504,357</strong> at high energy. Values are photon counts, not HU.</p>",
+          "helpers": "<p>The raw archive also supplies two spectra and two mass-attenuation curves, <code>(1,2,131)</code>, over 20–150 keV in 1 keV bins. Simplified Gaussian spectra peak at 55 and 90 keV, cut off above 80 and 140 keV, and sum to approximately 1 million and 1.5 million incident photons per ray. Density-map pixels are <strong>0.1 cm</strong> wide.</p>\n<p>The released attenuation coefficients, in cm²/g, exactly match the source&#x27;s linearly interpolated approximate tables. They are not exact NIST ICRU-44 values: at 20 keV the released tissue/bone values are 0.770/3.200, versus NIST 0.823/4.001. The audit retains the released calibration unchanged. L2 adds an approach; L3 also adds software design.</p>",
+          "tools": "<p>Python numerical dependencies. The local audit used existing packages to replay forward fixtures, saved-intermediate filtered backprojection and score controls. It did not run material optimization, an agent, dataset generation or installation.</p>",
+          "reference": "<p><code>data/ground_truth.npz</code> contains tissue and bone maps <code>(1,128,128)</code> in g/cm³, plus their sinograms <code>(1,128,180)</code> in g/cm². They describe geometric regions, not annotated patient anatomy. The published phantom fixture equals these maps. Actual L1/L2/L3 file seeding copies <strong>this complete truth archive</strong> with <code>data/</code>. A reader-facing reveal therefore does not establish a private evaluator boundary.</p>",
+          "spec": "<p>For each ray and energy, add the products of material line integral and mass attenuation, exponentiate the negative sum, multiply by each supplied spectrum, and sum over energy. The source generator samples Poisson counts from this expectation. The full generator was inspected but not executed.</p>\n<p>The source inverse uses a nonnegative Newton-style update for the two material line integrals. Its executable Hessian includes second derivatives of expected counts. Each material sinogram is divided by the <strong>0.1 cm</strong> pixel width before ramp-filtered backprojection; reconstructed negative densities are clipped to zero. No synthetic optimization trajectory is claimed by this audit.</p>",
+          "output": "<p>Separate tissue and bone density maps. Native <code>main.py</code> writes <code>output/reconstructed_maps.npz</code> with both maps and both material sinograms. The released saved archive has a leading singleton case axis. The active generic end-to-end harness instead requires a single <code>output/reconstruction.npy</code> and matches a squeezed array to a reference by shape and key ranking.</p>",
+          "score": "<p>Both saved maps reproduce <strong>exactly</strong> from the saved material sinograms through the source backprojection wrapper with scikit-image 0.25.2 and nonnegative clipping. This is saved-intermediate replay, not fresh material decomposition.</p>\n<p>Native metrics evaluate both maps inside the truth-derived body mask: <strong>8,797/16,384 pixels</strong>, where tissue plus bone density exceeds 0.01 g/cm³. The native NCC is cosine similarity without mean centering; NRMSE is divided by each reference&#x27;s range inside that mask.</p>\n<div class=\"table\"><table>\n<tr><th>Saved map</th><th>Native NCC</th><th>Native NRMSE</th></tr>\n<tr><td>Tissue</td><td>0.9980</td><td>0.0620</td></tr>\n<tr><td>Bone</td><td>0.9886</td><td>0.0404</td></tr>\n<tr><td>Mean of the two material scores</td><td>0.9933</td><td>0.0512</td></tr>\n</table></div>\n<p>These are newly replayed scores. No <code>evaluation/metrics.json</code> or pass thresholds are listed in the pinned source tree or asset manifest. There are no shipped historical metrics against which to verify these values, and no benchmark pass.</p>\n<p>The actual generic scorer selects <code>ground_truth.npz:tissue_map</code> for any 128×128 output, including a submitted bone map. For a 128×180 output it selects <code>bone_sinogram</code>; a stacked <code>(2,128,128)</code> output fails reference matching. Tissue truth alone and bone-sinogram truth alone each receive generic NCC <strong>1</strong> and MSE <strong>0</strong>, despite neither being the complete requested pair of density maps. Native NPZ alone fails the generic filename check. The separate non-filesystem fallback looks for the absent <code>ground_truth.npy</code> and reports that error.</p>\n<p>Controls also delimit native metrics: halving both true density maps leaves native mean NCC <strong>1</strong> but gives mean NRMSE <strong>0.3058</strong>. Erasing bone gives mean NCC <strong>0.5</strong>. Adding density only outside the truth body leaves native scores unchanged; the generic whole-image score changes. These are scope checks, not corrections to retained scores or a claim of clinical validity.</p>",
+          "challenge": "<p>Both materials attenuate both spectra. The inverse depends on their distinct energy responses, count noise and calibration. A single-map or correlation-only score can overlook an incomplete output or incorrect density scale.</p>",
+          "families": "<p>One synthetic 128×128 phantom and saved reconstruction. Twelve task source files, 60 shared files and ten numeric/metadata assets are verified. The cited upstream simulator uses Siddon ray tracing and fan-beam reconstruction; this benchmark&#x27;s parallel-beam adaptation is not claimed to be equivalent. Benchmark and upstream MIT notices retain their respective copyright holders.</p>",
+          "gap": "<p>The canonical story illustrates this pinned source condition. The small <code>solvers_decompose.npz</code> fixture was unavailable after bounded TLS/connect-timeout attempts; material optimization was not executed. All measurements, truth, saved results and forward fixtures needed for the explainer are available. No fresh agent result, private-reference validity, benchmark pass or patient accuracy is established. Original arrays remain unchanged.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Native source views.</strong> Paired count sinograms retain detector-bin and angle axes. Photon counts, material line integrals and reconstructed densities are separate quantities with separate scales.</p>",
+          "helpers": "<p><strong>Released calibration, not a clinical scanner model.</strong> Preserve actual spectra, approximate coefficients, 1 mm pixels and parallel-beam geometry. Forward checks at saved rays do not constitute an optimization trace.</p>",
+          "answer": "<p><strong>Saved output and synthetic truth remain separate.</strong> Show both material identities and matched density scales. Disclose the solver-visible truth archive when presenting a reader reveal.</p>"
+        },
+        "missing_media": []
+      },
+      "completion_review": {
+        "date": "2026-09-28",
+        "source_brief_sha256": "24015e7d452a7a5675bde5b46e94e86f436f4f615317276f4fb787e8286ff3e5",
+        "source_story_sha256": "b2588e428d8e86a4a34b8afa33e08670be8f6508ab01f9490b21e1fa27231b4a",
+        "acceptance_receipt_sha256": "f4943878b6171816b45dd0c94e0b76a2316c87bba2e6b03072a4e372d33caae0"
+      }
     },
     {
       "entry_id": "imaging101-ct-fan-beam",
@@ -15367,11 +15471,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 36,
+    "reviewed-scripted-planar": 37,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 103,
-    "blocked-source-input": 52,
-    "pending-operation-review": 1
+    "blocked-source-input": 52
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -15390,7 +15493,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "imaging101-ct-dual-energy",
+    "active_entry": "imaging101-ct-fan-beam",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -16164,6 +16267,15 @@
         "reviewed_entries": 49,
         "next_entry": "imaging101-ct-dual-energy",
         "note": "Native measurements, truth, saved result and forward fixtures verified. Canonical authoring and visual review remain pending. Optional inverse fixture unavailable; no material optimizer executed."
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "imaging101-ct-dual-energy",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/046-acceptance.json",
+        "export_receipt_sha256": "3e3796cc5330e730ec82868461cab334cf7f89cd4ee55da179d10d59c26b0e8e",
+        "reviewed_entries": 50,
+        "next_entry": "imaging101-ct-fan-beam"
       }
     ]
   }

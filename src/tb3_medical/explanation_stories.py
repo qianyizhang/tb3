@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "imaging101-dual-energy-v1": "retained-imaging101-dual-energy-v1",
     "imaging101-ptychography-v1": "retained-imaging101-ptychography-v1",
     "imaging101-nlos-v1": "retained-imaging101-nlos-v1",
     "imaging101-cars-v1": "retained-imaging101-cars-v1",
@@ -98,6 +99,18 @@ SOURCE_INPUT_PACKS = {
     ),
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-imaging101-dual-energy-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "inputs.json",
+            "reference.json",
+            "contract.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+            "BENCHMARK-LICENSE.txt",
+        },
+    ),
     "retained-imaging101-ptychography-v1": (
         "source-records",
         "reference.json",
@@ -551,6 +564,11 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class Imaging101DualEnergyChannels(Closed):
+    view: Pair
+    reference: Pair
 
 
 class Imaging101PtychographyChannels(Closed):
@@ -1036,6 +1054,24 @@ class RegistrationAnalysisBeat(ExpansionBeat[RegistrationAnalysisChannels]):
 class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
     recipe: Literal["registration-analysis-v1"]
     beats: tuple[RegistrationAnalysisBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class Imaging101DualEnergyBeat(ExpansionBeat[Imaging101DualEnergyChannels]):
+    scene: Literal[
+        "inputs", "calibration", "forward", "output", "reference", "staging", "scoring", "limits"
+    ]
+
+
+class Imaging101DualEnergyStory(Story[Imaging101DualEnergyChannels]):
+    recipe: Literal["imaging101-dual-energy-v1"]
+    beats: tuple[Imaging101DualEnergyBeat, ...]
 
     @model_validator(mode="after")
     def scene_cuts(self) -> Self:
@@ -1598,6 +1634,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101DualEnergyStory
     | Imaging101PtychographyStory
     | Imaging101NlosStory
     | Imaging101CarsStory
@@ -1645,6 +1682,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101DualEnergyStory
     | Imaging101PtychographyStory
     | Imaging101NlosStory
     | Imaging101CarsStory
@@ -1852,6 +1890,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101DualEnergyStory
     | Imaging101PtychographyStory
     | Imaging101NlosStory
     | Imaging101CarsStory
@@ -1944,6 +1983,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = source_packs[pack_id]
         frame, data_license, label_license = {
+            "retained-imaging101-dual-energy-v1": ("source-record", "MIT", "MIT"),
             "retained-imaging101-ptychography-v1": (
                 "source-record",
                 "PtyLab academic/non-commercial",

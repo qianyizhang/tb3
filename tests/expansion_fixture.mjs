@@ -219,3 +219,5 @@ export * from '../presentation/frontend/task-visuals/imaging101-cars';
 export * from '../presentation/frontend/task-visuals/imaging101-nlos';
 
 export * from '../presentation/frontend/task-visuals/imaging101-ptychography';
+
+export * from '../presentation/frontend/task-visuals/imaging101-dual-energy';

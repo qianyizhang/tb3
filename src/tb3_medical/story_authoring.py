@@ -153,6 +153,7 @@ def new(
         if recipe == "history-sourcing-v1":
             beat["scene"] = "retrieval"
         if recipe in {
+            "imaging101-dual-energy-v1",
             "imaging101-ptychography-v1",
             "imaging101-nlos-v1",
             "imaging101-cars-v1",
