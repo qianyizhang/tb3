@@ -17,6 +17,9 @@ import {
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
   return !(
+    (state.recipe === 'imaging101-cars-v1' &&
+      state.scene === 'reference' &&
+      state.reference <= 0.5) ||
     (state.recipe === 'rex-topcow-v1' && state.scene === 'reference' && state.reference <= 0.5) ||
     (state.recipe === 'automed-multiorgan-v1' &&
       state.scene === 'reference' &&
@@ -42,6 +45,7 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'imaging101-cars-v1',
     'rex-topcow-v1',
     'automed-multiorgan-v1',
     'bcer-workflow-v1',
@@ -122,6 +126,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'imaging101-cars-v1':
+      return {
+        heading: 'Infer temperature from a CARS spectrum',
+        corner: 'Published synthetic data · saved fit · audited harness',
+        legend: [
+          ['#264b43', 'Measured · points'],
+          ['#b9521e', 'Saved fit · solid'],
+          ['#8052a1', 'Clean reference · dashed', true],
+        ],
+      };
     case 'rex-topcow-v1':
       return {
         heading: 'Learn named vessels from CTA',

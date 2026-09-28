@@ -514,6 +514,21 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class Imaging101CarsChannels(TypedDict):
+    view: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class Imaging101CarsBeat(ExpansionBeat):
+    channels: Imaging101CarsChannels
+    scene: Literal["inputs", "staging", "forward", "fit", "reference", "scoring", "shape", "limits"]
+
+
+class Imaging101CarsPlan(ExpansionPlan):
+    recipe: Literal["imaging101-cars-v1"]
+    beats: list[Imaging101CarsBeat]
+
+
 class RexTopcowChannels(TypedDict):
     view: tuple[float, float]
     reference: tuple[float, float]
@@ -1033,6 +1048,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | Imaging101CarsPlan
     | RexTopcowPlan
     | AutomedMultiorganPlan
     | BcerWorkflowPlan

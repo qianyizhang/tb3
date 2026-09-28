@@ -1,0 +1,195 @@
+.scene {
+  height: 442px;
+  box-sizing: border-box;
+  padding: 18px 24px;
+  overflow: hidden;
+  color: #203d32;
+  background: #f6f7ef;
+}
+.scene h3 {
+  font-size: 23px;
+  line-height: 1.2;
+  margin: 0 0 16px;
+}
+.scene h4 {
+  font-size: 17px;
+  line-height: 1.25;
+  margin: 6px 0 10px;
+}
+.scene p,
+.scene li {
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 8px 0;
+}
+.scene ol {
+  padding-left: 20px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 18px;
+}
+.columns article,
+.cards article,
+.levels article {
+  min-width: 0;
+  padding: 12px;
+  background: white;
+  border: 1px solid #d0d9cb;
+}
+.plot {
+  margin: 0;
+  align-self: center;
+  min-width: 0;
+}
+.plot svg {
+  width: 100%;
+  display: block;
+}
+.plot text {
+  fill: #203d32;
+  font-size: 11px;
+}
+.plot figcaption {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  line-height: 1.5;
+  padding-top: 6px;
+}
+.plot figcaption span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.plot i {
+  display: inline-block;
+  width: 12px;
+  height: 4px;
+}
+.plot .dashed {
+  border-top: 2px dashed #8052a1;
+  height: 0;
+}
+.kicker {
+  font-size: 10px !important;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+.callout {
+  background: #fff0d7;
+  border-left: 3px solid #b67a22;
+  padding: 9px 12px;
+}
+.scene dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 12px;
+  gap: 7px;
+}
+.scene dd {
+  margin: 0;
+  font-weight: 700;
+}
+.levels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.levels b {
+  font-size: 13px;
+}
+.levels [data-current='true'],
+.scene tr[data-current='true'] {
+  background: #dfede3;
+  border-color: #3f7262;
+}
+.file {
+  background: #e4eae0;
+  padding: 15px;
+  margin-top: 16px;
+  font:
+    12px/1.8 ui-monospace,
+    monospace;
+  overflow-wrap: anywhere;
+}
+.number {
+  padding: 10px;
+  background: #e3ece4;
+  display: grid;
+  gap: 5px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.number strong {
+  color: #a1264e;
+}
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 18px 0;
+}
+.scene table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.scene td,
+.scene th {
+  text-align: left;
+  padding: 10px 7px;
+  border-bottom: 1px solid #cbd6c7;
+}
+.aside {
+  padding: 17px 20px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #23473e;
+}
+.aside p {
+  margin: 10px 0;
+  font-size: 12px;
+}
+.aside small {
+  display: block;
+  font-size: 10px;
+  color: #526f63;
+}
+@container task-visual (max-width:900px) {
+  .scene {
+    height: auto;
+    min-height: 442px;
+    overflow: visible;
+  }
+  .columns {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .scene {
+    height: auto;
+    padding: 16px;
+    overflow: visible;
+  }
+  .scene h3 {
+    font-size: 20px;
+  }
+  .columns,
+  .cards,
+  .levels {
+    grid-template-columns: 1fr;
+  }
+  .scene table {
+    font-size: 10px;
+  }
+  .scene td,
+  .scene th {
+    padding: 7px 3px;
+  }
+  .plot text {
+    font-size: 12px;
+  }
+}

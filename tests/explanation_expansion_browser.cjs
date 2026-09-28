@@ -50,6 +50,7 @@ withBrowser(async (browser) => {
           'mask-screen-v1',
           'anatomy-curation-v1',
           'ct-context-v1',
+          'imaging101-cars-v1',
           'rex-topcow-v1',
           'automed-multiorgan-v1',
           'bcer-workflow-v1',
@@ -91,6 +92,13 @@ withBrowser(async (browser) => {
         ].includes(plan.recipe)
       ) {
         for (const b of plan.beats) frames.push(b.startFrame);
+      }
+      if (plan.recipe === 'imaging101-cars-v1') {
+        for (const b of plan.beats) {
+          frames.push(b.startFrame);
+          for (const fraction of [1 / 6, 1 / 2, 5 / 6])
+            frames.push(Math.floor(b.startFrame + fraction * (b.endFrame - b.startFrame)));
+        }
       }
       if (plan.recipe === 'rex-topcow-v1') {
         for (const b of plan.beats) frames.push(b.startFrame);
@@ -584,6 +592,54 @@ withBrowser(async (browser) => {
           const box = await output.boundingBox();
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
+        }
+        if (plan.recipe === 'imaging101-cars-v1') {
+          const name = await page.locator('[data-cars-scene]').getAttribute('data-cars-scene');
+          const beat = plan.beats.find((b) => b.scene === name);
+          const revealed =
+            name === 'reference' &&
+            frame > beat.startFrame + (beat.endFrame - beat.startFrame - 1) / 2;
+          assert.equal(await page.locator('[data-cars-reference]').count(), revealed ? 1 : 0);
+          if (name === 'fit') assert.equal(await page.locator('[data-cars-residual]').count(), 1);
+          for (const selector of [
+            '.scene-player > header',
+            '[data-cars-scene]',
+            '[data-cars-aside]',
+            '.scene-legend',
+          ]) {
+            const box = await page.locator(selector).boundingBox();
+            assert.ok(
+              box && box.y + box.height <= 720,
+              'CARS clipping ' + selector + ' frame ' + frame,
+            );
+            assert.ok(
+              await page.locator(selector).evaluate((e) => {
+                if (!e.hasAttribute('data-cars-scene'))
+                  return e.scrollHeight <= e.clientHeight && e.scrollWidth <= e.clientWidth;
+                // Overflowing trailing padding does not clip content. Check rendered
+                // text fragments and image bounds against the actual clipping box.
+                const box = e.getBoundingClientRect();
+                const inside = (r) =>
+                  r.width === 0 ||
+                  r.height === 0 ||
+                  (r.left >= box.left &&
+                    r.top >= box.top &&
+                    r.right <= box.right &&
+                    r.bottom <= box.bottom);
+                const walker = document.createTreeWalker(e, NodeFilter.SHOW_TEXT);
+                while (walker.nextNode()) {
+                  if (!walker.currentNode.textContent.trim()) continue;
+                  const range = document.createRange();
+                  range.selectNodeContents(walker.currentNode);
+                  if (!Array.from(range.getClientRects()).every(inside)) return false;
+                }
+                return Array.from(e.querySelectorAll('svg,img')).every((n) =>
+                  inside(n.getBoundingClientRect()),
+                );
+              }),
+              'CARS overflow ' + selector + ' frame ' + frame,
+            );
+          }
         }
         if (plan.recipe === 'rex-topcow-v1') {
           const name = await page.locator('[data-rex-scene]').getAttribute('data-rex-scene');
@@ -1402,6 +1458,39 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'imaging101-cars-v1') {
+      for (let step = 1; step < plan.beats.length; step++) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        await page.waitForFunction(
+          (f) =>
+            document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+            String(f),
+          plan.beats[step].startFrame,
+        );
+        assert.ok(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          'CARS mobile overflow',
+        );
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+      }
+      await page.locator('[data-story-step="4"]').click();
+      assert.equal(await page.locator('[data-cars-reference]').count(), 0);
+      await page.locator('.scene-play').click();
+      await page.locator('[data-cars-reference]').waitFor({ timeout: 20000 });
+      await page.locator('.scene-play').click();
+      assert.equal(await page.locator('[data-cars-reference]').count(), 1);
+      assert.ok(
+        await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+        'CARS mobile reference overflow',
+      );
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'mobile-reference-revealed.png') });
+      await page.locator('.scene-reset').click();
+      assert.equal(await page.locator('[data-cars-reference],[data-cars-reference]').count(), 0);
+    }
     if (plan.recipe === 'rex-topcow-v1') {
       for (let step = 1; step < plan.beats.length; step++) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -1828,6 +1917,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-cars-v1',
       'rex-topcow-v1',
       'automed-multiorgan-v1',
       'bcer-workflow-v1',
@@ -1867,6 +1957,17 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'imaging101-cars-v1') {
+      for (const step of [2, 5, 6]) {
+        await fallback.locator(`[data-story-step="${step}"]`).click();
+        await fallback.locator(`[data-cars-scene="${plan.beats[step].scene}"]`).waitFor();
+        await fallback
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `no-gpu-${plan.beats[step].scene}.png`) });
+      }
+      await fallback.locator('.scene-reset').click();
+      await fallback.locator('[data-cars-scene="inputs"]').waitFor();
+    }
     if (plan.recipe === 'rex-topcow-v1') {
       for (const step of [2, 5, 6]) {
         await fallback.locator(`[data-story-step="${step}"]`).click();
@@ -2999,6 +3100,23 @@ withBrowser(async (browser) => {
   await page.locator('[data-rex-scene="inputs"]').waitFor();
   assert.equal(await page.locator('[data-rex-reference],[data-rex-crop]').count(), 0);
   report.navigation.push({ id: 'rexmle', fixturesAndReset: true });
+  await page.evaluate(() => {
+    location.hash = 'imaging101-cars-spectroscopy/0/overview?view=repository';
+  });
+  await page.waitForFunction(
+    () =>
+      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'imaging101-cars-v1',
+  );
+  await page.locator('[data-story-step="3"]').click();
+  await page.locator('[data-cars-residual]').waitFor({ state: 'attached' });
+  await page.locator('[data-cars-scene="fit"] svg').waitFor();
+  await page
+    .locator('.scene-player')
+    .screenshot({ path: path.join(folder, 'integrated-cars.png') });
+  await page.locator('.scene-reset').click();
+  await page.locator('[data-cars-scene="inputs"]').waitFor();
+  assert.equal(await page.locator('[data-cars-reference],[data-cars-fit]').count(), 0);
+  report.navigation.push({ id: 'imaging101-cars-spectroscopy', residualAndReset: true });
   await context.close();
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.remote_requests, []);

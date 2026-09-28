@@ -7801,15 +7801,15 @@
       ],
       "illustration_kind": "temperature",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "imaging101-cars",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "quantification",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-cars-spectroscopy.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: Estimated gas temperature from the fitted spectrum.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Pinned source and synthetic arrays verified; actual L1-L3 seeding reproduced with exec intercepted; saved-fit and scorer controls replayed; four bounded forward evaluations.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/043-acceptance.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work for the pinned synthetic CARS condition. Missing pass thresholds, fresh agent/optimizer execution and hidden-reference validity are not claimed. Remote delivery remains pending at program level.",
       "contract_projection": {
         "raw": "Nitrogen coherent anti-Stokes Raman spectra.",
         "helpers": "Spectral calibration, measurement parameters and a molecular spectrum model. The assistance level can add an approach and software design.",
@@ -7847,7 +7847,111 @@
         "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
       },
       "source_brief_sha256": "c90975940c5361228c97c64c7798e6fce19b19409bdb0f021d492fe47481e2d7",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval."
+      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "receipt": "presentation/external-tasks/sources/imaging101-cars-audit.json",
+        "sha256": "be03fdb2f94b68e0b7a32326bec87b730b9cca3ab9a4ddbc0c60f034c7cf56e9",
+        "status": "source-audit-complete"
+      },
+      "acceptance_scope": "Assistant source, numerical, visual and engineering review of the pinned Imaging101 CARS condition using one published synthetic spectrum, upstream saved fit and explicit contract controls. No agent, inverse optimization, hidden-reference validity, clinical claim or benchmark pass.",
+      "visual_review": "Eight chapters, 200 source samples, forward proposals, exact residuals, explicit reader reference, distinct scorer paths, output shapes and limits; desktop/mobile/locale/Explorer/no-GPU and 176-second playback inspected.",
+      "reviewed_contract_projection": {
+        "title": "Estimate gas temperature from Raman spectra",
+        "goal": "Infer temperature from one published synthetic nitrogen CARS spectrum. The saved\nreference fit and released end-to-end harness have different output and scoring\ncontracts; the explainer keeps those conditions explicit.",
+        "value": "Connect a temperature-dependent molecular spectrum to measured intensity, then\nseparate a physically meaningful parameter estimate from spectral agreement.",
+        "raw": "`raw_data.npz` contains float64 `measurements` and `nu_axis`, each shape `(1, 200)`.\nThe axis spans 2280–2330 cm⁻¹; intensities are dimensionless and max-normalized.\nThis is source-generated synthetic gas data, not a measured experimental spectrum.",
+        "helpers": "README and metadata supply the molecular/universal constants, N₂ species,\n10 bar pressure, 1 cm⁻¹ pump linewidth, 0.5 cm⁻¹ slit width, noise level 0.02 and\nseed 42. L2 adds `plan/approach.md`, which explicitly names the true 2400 K;\nL3 also adds software design. The source implementation itself is not seeded\ninto the L1–L3 writable workspace.",
+        "tools": "The selected source condition uses Python/numerical dependencies and a command\nrunner to implement the pipeline. The source solver uses bounded SciPy\n`least_squares(method='trf', max_nfev=100)`; L2 prose calls it LM. No runtime\ninstallation, inverse optimization or agent execution was performed for this tour.",
+        "reference": "Scientifically, `ground_truth.npz` holds the clean spectrum, true temperature\n2400 K and mole fraction 0.79. **Released staging copies it to the solver:**\nL1–L3 all copy the entire `data/` directory. Three executions of the selected\nfile-seeding method reproduce this, with installation commands intercepted.\nThe Docker source also mounts the entire task directory read-only; this is not\nhidden-reference isolation. Its runtime was not launched.\n\nThe player initially hides the clean curve for teaching, then reveals it explicitly.\nThat reader-facing reveal must not be mistaken for a private solver reference.",
+        "spec": "Implement a forward spectrum and invert the observed spectrum for temperature.\nThe pinned implementation uses 30 rotational states, two vibrational levels,\nQ/O/S branches, a relaxation matrix, coherent nonresonant background, pump/slit\noperations and local-mean downsampling from a 0.05 cm⁻¹ grid. It fits temperature,\nmole fraction, spectral shift and slit width within explicit bounds.\n\nTwo bounded forward curves at 2000 and 2800 K show the operation with other\nparameters fixed. These teaching diagnostics are not optimizer iterates.",
+        "output": "The active local end-to-end prompt/scorer expects `output/reconstruction.npy`:\na numeric reconstructed spectral array. Retain `(1, 200)` for this acquired case.\nA separate CARS adapter expects `reconstruction.npz` containing `y_pred` and\n`temperature_pred`. Do not treat these formats as interchangeable.\n\nThe published source fit is 2391.5641794510043 K, with a saved `(1, 200)` spectrum.\nIt is retained source output, not a new agent result.",
+        "score": "| Condition | Comparison | Replayed saved-fit result |\n|---|---|---|\n| Active local generic scorer | Fitted array versus clean spectrum | NCC 0.999979; NRMSE 0.002403; no Kelvin-error field |\n| Separate native CARS adapter | Fitted spectrum versus measurements, plus temperature versus truth | NCC 0.998361; NRMSE 0.018240; absolute temperature error 8.435821 K |\n| Generic raw-data no-op control | Noisy measurements versus clean spectrum | NCC 0.998346; NRMSE 0.018418; not a fitted result |\n\nNCC is cosine similarity; NRMSE divides RMSE by reference dynamic range.\nThe generic reader squeezes only arrays with more than two dimensions:\nflattening the saved fit to `(200,)` fails reference-shape selection. A `(1,)`\ntemperature output selects a scalar reference and gives infinite range-normalized\nNRMSE, not a Kelvin-error metric. These are retained contract diagnostics.\n\nNo CARS `metrics.json` or evaluation tests appear in the pinned Git tree or asset\nmanifest. The HF directory listing timed out, so this does not establish absence\nfrom every external store. No threshold or pass/fail was invented. The inspected\nDocker fallback requires `ground_truth.npy`; the acquired reference is NPZ.",
+        "challenge": "Temperature, shift and slit width affect spectral shape. In this pinned forward\nimplementation, max normalization cancels the mole-fraction amplitude factor:\nchanging x from 0.79 to 0.20 at fixed temperature changed the normalized curve by\nat most 2.23 × 10⁻¹⁶. This implementation diagnostic does not establish general\nphysical identifiability. A small spectral error alone is insufficient evidence\nfor every fitted parameter.",
+        "families": "One synthetic gas case, its saved fit and selected source contracts. Function-level\nfixtures and plan judgments are separate modes, not reproduced benchmark outcomes.",
+        "gap": "No new agent result, inverse solve, Docker execution or benchmark pass. Missing\nthresholds remain unresolved. Forward diagnostics emitted retained NumPy matmul\nwarnings; all returned samples were finite and the 2400 K curve reproduced the\nsource clean spectrum within 1.34 × 10⁻¹¹. No uncertainty interval or general\ncapability estimate follows from this single saved result.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "L1 · README",
+            "helper": "README, requirements, all data including ground truth",
+            "remaining": "Choose and implement the computational method; held-out validity is not established."
+          },
+          {
+            "name": "L2 · + approach",
+            "helper": "L1 plus algorithmic approach naming true 2400 K",
+            "remaining": "Design and implement the proposed approach."
+          },
+          {
+            "name": "L3 · + design",
+            "helper": "L2 plus function signatures and data flow",
+            "remaining": "Implement the specified interfaces and numerical details."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/README.md"
+          ],
+          [
+            "Pinned runner staging",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/runner.py"
+          ],
+          [
+            "Active generic scorer",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+          ],
+          [
+            "Native CARS scoring adapter",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/task_scoring.py"
+          ],
+          [
+            "Pinned data release",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/cars_spectroscopy"
+          ],
+          [
+            "Source audit and exact receipts",
+            "presentation/external-tasks/sources/imaging101-cars-audit.json"
+          ],
+          [
+            "Numerical asset provenance",
+            "presentation/task-explorer/imaging101-cars/NOTICE.md"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Infer temperature from one published synthetic nitrogen CARS spectrum. The saved reference fit and released end-to-end harness have different output and scoring contracts; the explainer keeps those conditions explicit.</p>",
+          "value": "<p>Connect a temperature-dependent molecular spectrum to measured intensity, then separate a physically meaningful parameter estimate from spectral agreement.</p>",
+          "raw": "<p><code>raw_data.npz</code> contains float64 <code>measurements</code> and <code>nu_axis</code>, each shape <code>(1, 200)</code>. The axis spans 2280–2330 cm⁻¹; intensities are dimensionless and max-normalized. This is source-generated synthetic gas data, not a measured experimental spectrum.</p>",
+          "helpers": "<p>README and metadata supply the molecular/universal constants, N₂ species, 10 bar pressure, 1 cm⁻¹ pump linewidth, 0.5 cm⁻¹ slit width, noise level 0.02 and seed 42. L2 adds <code>plan/approach.md</code>, which explicitly names the true 2400 K; L3 also adds software design. The source implementation itself is not seeded into the L1–L3 writable workspace.</p>",
+          "tools": "<p>The selected source condition uses Python/numerical dependencies and a command runner to implement the pipeline. The source solver uses bounded SciPy <code>least_squares(method=&#x27;trf&#x27;, max_nfev=100)</code>; L2 prose calls it LM. No runtime installation, inverse optimization or agent execution was performed for this tour.</p>",
+          "reference": "<p>Scientifically, <code>ground_truth.npz</code> holds the clean spectrum, true temperature 2400 K and mole fraction 0.79. <strong>Released staging copies it to the solver:</strong> L1–L3 all copy the entire <code>data/</code> directory. Three executions of the selected file-seeding method reproduce this, with installation commands intercepted. The Docker source also mounts the entire task directory read-only; this is not hidden-reference isolation. Its runtime was not launched.</p>\n<p>The player initially hides the clean curve for teaching, then reveals it explicitly. That reader-facing reveal must not be mistaken for a private solver reference.</p>",
+          "spec": "<p>Implement a forward spectrum and invert the observed spectrum for temperature. The pinned implementation uses 30 rotational states, two vibrational levels, Q/O/S branches, a relaxation matrix, coherent nonresonant background, pump/slit operations and local-mean downsampling from a 0.05 cm⁻¹ grid. It fits temperature, mole fraction, spectral shift and slit width within explicit bounds.</p>\n<p>Two bounded forward curves at 2000 and 2800 K show the operation with other parameters fixed. These teaching diagnostics are not optimizer iterates.</p>",
+          "output": "<p>The active local end-to-end prompt/scorer expects <code>output/reconstruction.npy</code>: a numeric reconstructed spectral array. Retain <code>(1, 200)</code> for this acquired case. A separate CARS adapter expects <code>reconstruction.npz</code> containing <code>y_pred</code> and <code>temperature_pred</code>. Do not treat these formats as interchangeable.</p>\n<p>The published source fit is 2391.5641794510043 K, with a saved <code>(1, 200)</code> spectrum. It is retained source output, not a new agent result.</p>",
+          "score": "<div class=\"table\"><table>\n<tr><th>Condition</th><th>Comparison</th><th>Replayed saved-fit result</th></tr>\n<tr><td>Active local generic scorer</td><td>Fitted array versus clean spectrum</td><td>NCC 0.999979; NRMSE 0.002403; no Kelvin-error field</td></tr>\n<tr><td>Separate native CARS adapter</td><td>Fitted spectrum versus measurements, plus temperature versus truth</td><td>NCC 0.998361; NRMSE 0.018240; absolute temperature error 8.435821 K</td></tr>\n<tr><td>Generic raw-data no-op control</td><td>Noisy measurements versus clean spectrum</td><td>NCC 0.998346; NRMSE 0.018418; not a fitted result</td></tr>\n</table></div>\n<p>NCC is cosine similarity; NRMSE divides RMSE by reference dynamic range. The generic reader squeezes only arrays with more than two dimensions: flattening the saved fit to <code>(200,)</code> fails reference-shape selection. A <code>(1,)</code> temperature output selects a scalar reference and gives infinite range-normalized NRMSE, not a Kelvin-error metric. These are retained contract diagnostics.</p>\n<p>No CARS <code>metrics.json</code> or evaluation tests appear in the pinned Git tree or asset manifest. The HF directory listing timed out, so this does not establish absence from every external store. No threshold or pass/fail was invented. The inspected Docker fallback requires <code>ground_truth.npy</code>; the acquired reference is NPZ.</p>",
+          "challenge": "<p>Temperature, shift and slit width affect spectral shape. In this pinned forward implementation, max normalization cancels the mole-fraction amplitude factor: changing x from 0.79 to 0.20 at fixed temperature changed the normalized curve by at most 2.23 × 10⁻¹⁶. This implementation diagnostic does not establish general physical identifiability. A small spectral error alone is insufficient evidence for every fitted parameter.</p>",
+          "families": "<p>One synthetic gas case, its saved fit and selected source contracts. Function-level fixtures and plan judgments are separate modes, not reproduced benchmark outcomes.</p>",
+          "gap": "<p>No new agent result, inverse solve, Docker execution or benchmark pass. Missing thresholds remain unresolved. Forward diagnostics emitted retained NumPy matmul warnings; all returned samples were finite and the 2400 K curve reproduced the source clean spectrum within 1.34 × 10⁻¹¹. No uncertainty interval or general capability estimate follows from this single saved result.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>Exact published samples plotted at their original wavenumbers, without resampling.</p>",
+          "helpers": "<p>Metadata constants and assistance levels are distinct from the source implementation and from the two diagnostic forward curves.</p>",
+          "answer": "<p>Saved fit is solid orange; clean reference is dashed purple; measured samples are dark-green points. True parameters and clean reference appear under an explicit reader reveal. Staging exposure remains labeled in that scene.</p>"
+        },
+        "missing_media": []
+      },
+      "completion_review": {
+        "date": "2026-09-28",
+        "source_brief_sha256": "5921713a7db7138a159573a8d69a65cfb372404723614327a45fcffb928a144d",
+        "source_story_sha256": "e20526ed53d639277e7580f2532d771776f5e47f2d223888f5c7ab664cf6a45a",
+        "acceptance_receipt_sha256": "b8e11a99b2b0480eae0bcd0342821d6d4f93bc8e852cd57dcef385ab4bd94306"
+      }
     },
     {
       "entry_id": "imaging101-confocal-nlos-fk",
@@ -15051,9 +15155,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 33,
+    "reviewed-scripted-planar": 34,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 107,
+    "blocked-source-contract": 106,
     "blocked-source-input": 52
   },
   "completion_program": {
@@ -15073,7 +15177,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "imaging101-cars-spectroscopy",
+    "active_entry": "imaging101-confocal-nlos-fk",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -15800,6 +15904,15 @@
         "export_receipt_sha256": "a204290046980d557767a992a5a49da921018683549192bd1ef56bb83f8caace",
         "reviewed_entries": 46,
         "next_entry": "imaging101-cars-spectroscopy"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "imaging101-cars-spectroscopy",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/043-acceptance.json",
+        "export_receipt_sha256": "91d583922f2604824e78e4cfa6e49b7126cb2a652a17c7d0fafac83e2effaafa",
+        "reviewed_entries": 47,
+        "next_entry": "imaging101-confocal-nlos-fk"
       }
     ]
   }

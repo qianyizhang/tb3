@@ -18,6 +18,10 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    carsReveal,
+    carsResidual,
+    carsInput,
+    carsContract,
     rexInputs,
     rexReference,
     rexContract,
@@ -1626,6 +1630,17 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       'Witness must lie in displayed reference',
     );
   }
+  const cars = plans.find((p) => p.recipe === 'imaging101-cars-v1');
+  assert(cars);
+  const cb = cars.beats.find((b) => b.scene === 'reference');
+  assert.equal(carsReveal(sampleStory(cars, cb.startFrame)), false);
+  assert.equal(carsReveal(sampleStory(cars, cb.endFrame - 1)), true);
+  assert.equal(carsReveal(sampleStory(cars, 0)), false);
+  for (const i of [50, 113, 182])
+    assert.equal(carsResidual(i), carsContract.fit[i] - carsInput.measured[i]);
+  assert.equal(carsInput.nu.length, 200);
+  assert.equal(carsInput.nu[0], 2280);
+  assert.equal(carsInput.nu[199], 2330);
   const rex = plans.find((p) => p.recipe === 'rex-topcow-v1');
   assert.equal(rex.reference_policy, 'reader-reference-reveal');
   assert.deepEqual(

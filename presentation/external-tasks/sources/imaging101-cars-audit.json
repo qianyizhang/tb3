@@ -1,0 +1,1229 @@
+{
+  "schema": 1,
+  "entry_id": "imaging101-cars-spectroscopy",
+  "actor": "assistant",
+  "date": "2026-09-28",
+  "source_repository": "AI4ImagingLab/imaging-101-release",
+  "source_commit": "dc2f668939b21e8312e22529615def610f8611df",
+  "scope": "Pinned source audit, retained synthetic arrays, saved-output scoring, intercepted file staging and four deterministic forward evaluations. No optimizer, model run, installation, Docker launch or visual acceptance.",
+  "source_tree": {
+    "path": ".local/explainers/completion-20260927/043-source/github-tree.json",
+    "sha256": "0ed33133a6dba6c52a44e2955b17b66454d224c8578cbdf5b0dac04242d56f24",
+    "entries": 1722,
+    "truncated": false
+  },
+  "source_files": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/LICENSE",
+      "bytes": 1076,
+      "git_blob_sha1": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "status": "verified"
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/README.md",
+      "bytes": 7194,
+      "git_blob_sha1": "60233784ecb46358623ee3be1e9de40e23c70eee",
+      "sha256": "33b226ba0171c595b655c52da7bd4e38c7192e1d274051eb677af4aa49681fef",
+      "status": "verified"
+    },
+    {
+      "path": "assets_manifest.json",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/assets_manifest.json",
+      "bytes": 315512,
+      "git_blob_sha1": "6c0d85a9ad9ad8f4ddeeac4a0a8e9953fcf80884",
+      "sha256": "66568d11536efc12c8be6f03fd0e2ece0a6080ca4abeeea05ab73a3f8e98c797",
+      "status": "verified"
+    },
+    {
+      "path": "docs/END2END_EVALUATION.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/docs/END2END_EVALUATION.md",
+      "bytes": 8188,
+      "git_blob_sha1": "912fb91731f4427c9190c51997372cfb974f1818",
+      "sha256": "d4a07d6b25bb4b983f1c47cf9b858486e93500554e19ac6421bd40fc69cd987a",
+      "status": "verified"
+    },
+    {
+      "path": "docs/EVALUATION_GUIDE.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/docs/EVALUATION_GUIDE.md",
+      "bytes": 4894,
+      "git_blob_sha1": "48195e9f098f46fd957b69e2754dbf7eba0a9340",
+      "sha256": "28c32eda23906b2c69b86af28f7f66da4fa8ab3d024de885619340cfcf4b92d9",
+      "status": "verified"
+    },
+    {
+      "path": "docs/function_level_evaluation.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/docs/function_level_evaluation.md",
+      "bytes": 9348,
+      "git_blob_sha1": "45d1e24102c55b278986e2af7aa1bdf86c8bc78a",
+      "sha256": "799ecaa32db6bf05784c4789692ab98493161b027fcaf66f26cf4cf57ab4e267",
+      "status": "verified"
+    },
+    {
+      "path": "docs/plan_evaluation.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/docs/plan_evaluation.md",
+      "bytes": 8733,
+      "git_blob_sha1": "fa9a00275d21acb0e8111d92def6fc268b037bbe",
+      "sha256": "d51b5efb8d349de27251454c706e0e5d6446c9fb0a054c2dace1fe63297d0b37",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/Dockerfile",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/Dockerfile",
+      "bytes": 166,
+      "git_blob_sha1": "7763c091e48fbd4d6580befd971a73d2cf87652c",
+      "sha256": "3c9b4ee8e87a022a383597e33531c5e6a61c64c6a445f45a383be165f57e09fa",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/README.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/README.md",
+      "bytes": 5199,
+      "git_blob_sha1": "4175991a54ea3f28197acf100db2e2f2ac99ee4a",
+      "sha256": "4758ca8e26e8464f3c3bba57b03b52357c953aaa5c3e100b63ce7bc4f7634bd0",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/__init__.py",
+      "bytes": 199,
+      "git_blob_sha1": "8cf86e231ca72c897f1ff6204349f6ce1b24eb0d",
+      "sha256": "6638875de491c616d5e44b271a2f76324464871e26fa8a867e0cd34cc66dd874",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/__main__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/__main__.py",
+      "bytes": 28282,
+      "git_blob_sha1": "634fdf98a3f04a55556c2243f91546a52ba1da3d",
+      "sha256": "f25a61fbda26b216e1aee6817a50dd9bb7d3b681412d1a4eef819c3dd18b4445",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agent.py",
+      "bytes": 32610,
+      "git_blob_sha1": "ee4c8d2f0cb34f411587f59b92ff659a65c4d761",
+      "sha256": "ffeea0d6c3261589833f0887b91c42ebc1cf7190a118ad23cfc7924cb765db15",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/agents/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/__init__.py",
+      "bytes": 392,
+      "git_blob_sha1": "3908f884bcf6ceaa9bd4631f33e5ff32155ceded",
+      "sha256": "6a4ade3870198ea9376196d524a0b90d50cfcf782a5702f570f9ffe31dfce123",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/agents/architect_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/architect_agent.py",
+      "bytes": 4029,
+      "git_blob_sha1": "27e043a670636c1881d7dbd746560896fb10556e",
+      "sha256": "62eb96c2b4f279e75ef3b212cf74cbe809fcbefe24872c1e032b0fd89162e590",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/agents/base.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/base.py",
+      "bytes": 3948,
+      "git_blob_sha1": "a53f1309245a22ceb85109341573fb775d48d49b",
+      "sha256": "f22cd120705acb77052af47b56b2a1a4a926c82c8769c6dc1962a6f5efa8a90a",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/agents/coder_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/coder_agent.py",
+      "bytes": 9187,
+      "git_blob_sha1": "79a670932420d85358ae035c0bbdbd719f10eb83",
+      "sha256": "94d297f20e38d3ec65a8d1c9b5f7c9113c476819cd75f6a6ca54ed0bcf2a34e7",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/agents/judge_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/judge_agent.py",
+      "bytes": 8924,
+      "git_blob_sha1": "7356c46ce8698dd34cf922690a3ebc17f623f1ac",
+      "sha256": "3c5651e839a24cec006b8e45c1ba4f129e612c5ebbc86f39da5843ef6ece3182",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/agents/planner_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/agents/planner_agent.py",
+      "bytes": 11747,
+      "git_blob_sha1": "4a26bd9ee47ace344dfa978378c99577b59b4b19",
+      "sha256": "b2f0b308d4b6603cd3af3e9f98e5c1454a2070e49bae8791448eb9a57c5d96f8",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/config.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/config.py",
+      "bytes": 1765,
+      "git_blob_sha1": "c78bc04b8c82a1649c7106d3900525441bdcbabf",
+      "sha256": "428bacdcd01f4a24e132fa50ac59ad3ff5023e2850494b7e42421b60f1710584",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/docker_runner.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/docker_runner.py",
+      "bytes": 4792,
+      "git_blob_sha1": "79f71f432b405f40c087b323b6369c4015403729",
+      "sha256": "8c8d5fb663701fa141402416593b69fe2dc4a13f96648fa210e6d66e1f2f1ee4",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/env_manager.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/env_manager.py",
+      "bytes": 8475,
+      "git_blob_sha1": "cee2df4d5392093571807dcebdfac42e5582d377",
+      "sha256": "c6fa6d5e855eb302a3d7a4de23d1bfecf5f91222e6196652fbfb99a987c40252",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/__init__.py",
+      "bytes": 489,
+      "git_blob_sha1": "4b1f462e03a91a3170ca87b19c92362fdd054af0",
+      "sha256": "81f25389770abe1051f4a0e1c9cd4f09466f5b34f55ec58107b16acc7d533d44",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/claude_code/README.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/README.md",
+      "bytes": 2729,
+      "git_blob_sha1": "7f7d4a313beb4cb3de04917c0f23a738c6c497dc",
+      "sha256": "285f8474c75570a8ae5c720414a95f518d9c5570ab69ebadc0b727187faf7923",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/claude_code/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/__init__.py",
+      "bytes": 1036,
+      "git_blob_sha1": "f6e0403cc65d270f4a1998a16f68edd1de0ac546",
+      "sha256": "b0e1e174619b1d3135b6a95de9e8b732938773f96f3c253df1a8c41449c042ef",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/claude_code/copilot_prompt.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/copilot_prompt.py",
+      "bytes": 10492,
+      "git_blob_sha1": "a14f50e7ec54a42d487c8a130bc9b8d1202f1516",
+      "sha256": "12d4d2b0094523184196b9eda88108f783123b40ae7f0f34fba2a829de4847be",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/claude_code/copilot_runner.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/copilot_runner.py",
+      "bytes": 20758,
+      "git_blob_sha1": "83a10cfa613135abfc4222fa4831d6195d179d77",
+      "sha256": "adc54b3971bcc9c8a7ee303b36cfbe2650948e77c4c5f162bc8d0b5c29fb1a6b",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/claude_code/copilot_scorer.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/copilot_scorer.py",
+      "bytes": 6937,
+      "git_blob_sha1": "15ff30434cff0f3391acbefda225bfd443face34",
+      "sha256": "c4c2cc9047f28be087c38b594d86dadfe6be0ab673ee7d1d903742dfd4615e58",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/claude_code/prepare_all.ps1",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/prepare_all.ps1",
+      "bytes": 2321,
+      "git_blob_sha1": "ce499961c2297e5a76503c6fee1d95108dc4f2f7",
+      "sha256": "0c1618624ba1f4bd55779ff717456b9ba07fe9382d873c53d2c2150a1d87e937",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/claude_code/prepare_all.sh",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/claude_code/prepare_all.sh",
+      "bytes": 1714,
+      "git_blob_sha1": "9e291b1a576d41c43cef4cd0b687e2c206315270",
+      "sha256": "39b91bb48c11a8e6f23a1a862e129731472cfb23c86928c5a399aef60fc71137",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/deepcode/README.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/README.md",
+      "bytes": 4279,
+      "git_blob_sha1": "19e3c6413dba14037e4c0a70f2cd25a256e642f0",
+      "sha256": "6585e2263da08f394aec6b33a5ab0caa01b25552fc921b0499520576b5c90471",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/deepcode/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/__init__.py",
+      "bytes": 579,
+      "git_blob_sha1": "d707c57d116f16f11b7f1d5f36f97528d208a584",
+      "sha256": "392f28d3e9246e0b0eaa03531feb9c649eb055d0c99a223d1213a69323d92859",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/deepcode/config.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/config.py",
+      "bytes": 2315,
+      "git_blob_sha1": "891e02faf339340019b7fb26fcf8452432475c70",
+      "sha256": "b312a79bddba3d28d7e6702827173f80338cf6738c64fc3a9e35f81d7487ee05",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/deepcode/deepcode_config.yaml",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/deepcode_config.yaml",
+      "bytes": 719,
+      "git_blob_sha1": "ec5dbf57cbd1202cab89edd4a970f309c34c3c0b",
+      "sha256": "0c1a7169f4e1db3f7ca452e4833a8e9351b19241d5e8be32d8ee2a8ebac1ca99",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/deepcode/runner.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/deepcode/runner.py",
+      "bytes": 8726,
+      "git_blob_sha1": "fa20e36cfec7bbb8d58237ce35a44a26d10416f4",
+      "sha256": "53e2aa4ad727587a6e515110f29511a280cfa014c4e1c3bf61411503fbecc2d9",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/README.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/README.md",
+      "bytes": 2507,
+      "git_blob_sha1": "dd38dbbc37edd50c15039bff35e3d0ab882f30f8",
+      "sha256": "d440eb7124a8877ce5a4f4feea2eb8d58bea0a92a75f71a46d7fe9f10119071f",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/__init__.py",
+      "bytes": 441,
+      "git_blob_sha1": "3cbce98e7b78f4987605217409c9746aaf2d9cac",
+      "sha256": "30411fceb45df21d37556003631e323a9ff145cb9f1a7c8d33f296b47da6a7a5",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/agents/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/__init__.py",
+      "bytes": 392,
+      "git_blob_sha1": "3908f884bcf6ceaa9bd4631f33e5ff32155ceded",
+      "sha256": "6a4ade3870198ea9376196d524a0b90d50cfcf782a5702f570f9ffe31dfce123",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/agents/architect_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/architect_agent.py",
+      "bytes": 4029,
+      "git_blob_sha1": "27e043a670636c1881d7dbd746560896fb10556e",
+      "sha256": "62eb96c2b4f279e75ef3b212cf74cbe809fcbefe24872c1e032b0fd89162e590",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/agents/base.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/base.py",
+      "bytes": 3965,
+      "git_blob_sha1": "8343b0b8ac43c90db74f6894a0708866334f6f54",
+      "sha256": "68a0f5f9f230c84f2cea8378c45a22a79100c09dfd40ebb49ef148aa5a7d91b9",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/agents/coder_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/coder_agent.py",
+      "bytes": 9187,
+      "git_blob_sha1": "79a670932420d85358ae035c0bbdbd719f10eb83",
+      "sha256": "94d297f20e38d3ec65a8d1c9b5f7c9113c476819cd75f6a6ca54ed0bcf2a34e7",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/agents/judge_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/judge_agent.py",
+      "bytes": 8924,
+      "git_blob_sha1": "7356c46ce8698dd34cf922690a3ebc17f623f1ac",
+      "sha256": "3c5651e839a24cec006b8e45c1ba4f129e612c5ebbc86f39da5843ef6ece3182",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/agents/planner_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/agents/planner_agent.py",
+      "bytes": 11747,
+      "git_blob_sha1": "4a26bd9ee47ace344dfa978378c99577b59b4b19",
+      "sha256": "b2f0b308d4b6603cd3af3e9f98e5c1454a2070e49bae8791448eb9a57c5d96f8",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/multi_agent/multi_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/multi_agent/multi_agent.py",
+      "bytes": 55097,
+      "git_blob_sha1": "017a4c8063437c31d4d6b201c400bff7b707edd7",
+      "sha256": "733c142dc593621aafffb8719455e0d51b8d04f06cf33c598d3c6de0aecd14f7",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/react/README.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/react/README.md",
+      "bytes": 1173,
+      "git_blob_sha1": "1e49b02b31d75c98998a6f37e1e673551753a38b",
+      "sha256": "fcdaf2708c65f975a6e2a840a85251d4a68cd89e15508114668b08cc07aa7bf3",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/react/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/react/__init__.py",
+      "bytes": 347,
+      "git_blob_sha1": "1babd4cfc3c6444f9e07a75cb33cb9326058589a",
+      "sha256": "ad12c82942ebc1285fb09358212faa79c2227383013799a3a500f9cb712f0ecc",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/frameworks/react/prompts.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/react/prompts.py",
+      "bytes": 14489,
+      "git_blob_sha1": "62400053d5ab984c96ec3eca91bc6a0c685e172f",
+      "sha256": "3bfc53d6dff130ea7176d90cdfb126f3d01e9929f2b0fe6d02c65e6a5115f3b8",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/llm_client.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/llm_client.py",
+      "bytes": 5658,
+      "git_blob_sha1": "56c3a932bcdf48dcb0ba7a08da7f413bfc22a943",
+      "sha256": "0c9abc3e725bdaf712912c3e34381f75975eb82ad74b91093c4621afd85fcf43",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/local_runner.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py",
+      "bytes": 13941,
+      "git_blob_sha1": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/multi_agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/multi_agent.py",
+      "bytes": 55044,
+      "git_blob_sha1": "3bb2d18281b365ec4ec39c4cf8b8009e256155ae",
+      "sha256": "cedf8a0db70f1c4f399e33f10d2fc4a9b6d5f8dfbef0636213ef0b9a4f9de0ab",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/plan_scorer.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/plan_scorer.py",
+      "bytes": 11956,
+      "git_blob_sha1": "9cfb772a8604f201aae1d992cd6263581c3098c9",
+      "sha256": "ab374d64dae2a4dd5758e4d56b54d8d1ef529d3dc80b1c1fa377df05528700d1",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/prompts.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/prompts.py",
+      "bytes": 14489,
+      "git_blob_sha1": "62400053d5ab984c96ec3eca91bc6a0c685e172f",
+      "sha256": "3bfc53d6dff130ea7176d90cdfb126f3d01e9929f2b0fe6d02c65e6a5115f3b8",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/reference_scoring.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py",
+      "bytes": 9172,
+      "git_blob_sha1": "87eb882e79a514f2ab1303080c222d5fd7f00b42",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/requirements.txt",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/requirements.txt",
+      "bytes": 15,
+      "git_blob_sha1": "b18d513474f4804f996a469c7424a69097eaa717",
+      "sha256": "af1d882a2cc1717c9da20d96d963d2bf7f83b28f2a191612a17599e0e44ff3a5",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/runner.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/runner.py",
+      "bytes": 15186,
+      "git_blob_sha1": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/scorer.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py",
+      "bytes": 23821,
+      "git_blob_sha1": "07125c06b504291288ab8b3d04c046b476446e04",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/task_recipes.json",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/task_recipes.json",
+      "bytes": 9844,
+      "git_blob_sha1": "58b0536442c89c59f5d4d5ee2d106bb0fcc82851",
+      "sha256": "3086bb41906ff096b80f9d53ab4d69fd6eb86256d4826959b11df0f0332f3c3c",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/task_scoring.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/task_scoring.py",
+      "bytes": 19005,
+      "git_blob_sha1": "d5f5043d353d9a29ff9f9044def53334f79d96d0",
+      "sha256": "04596307728d59880ad09376ec511f90400f0527c48887f16ce57c8a6d9d4f6b",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/task_scoring_custom.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/task_scoring_custom.py",
+      "bytes": 31984,
+      "git_blob_sha1": "fe69b4d4a1dd537815f8e5c496bbffef0125d732",
+      "sha256": "d9ca21d8350d6600bbc9acce82875c821828f9e44e1b886347fd5a4fa06087cf",
+      "status": "verified"
+    },
+    {
+      "path": "evaluation_harness/visualizer.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/visualizer.py",
+      "bytes": 20288,
+      "git_blob_sha1": "7e50750d5405fb009f2789559d1cf2dea40d23c5",
+      "sha256": "a73bd8c63e87353eab4e2b68f0639e32af08973e1774e39fd9e57072ca541cd6",
+      "status": "verified"
+    },
+    {
+      "path": "scripts/download_assets.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/scripts/download_assets.py",
+      "bytes": 4068,
+      "git_blob_sha1": "93c7b4bb01304f9709362aef04052149907cac32",
+      "sha256": "8c45517a99a8bfc4d8baf2384156e8e5ff7c5ead1737a9e1ff04fb2c3e780480",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/README.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/README.md",
+      "bytes": 4211,
+      "git_blob_sha1": "6be82496a64f7516252e9b87f62dc2c862f3691b",
+      "sha256": "70794fbbee3d392f254513209e26e5aff0c72854fbeacc3a373aa8622fbd5c4d",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/main.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/main.py",
+      "bytes": 4454,
+      "git_blob_sha1": "382db00987f040263e9df3aa2bc026c5916a6106",
+      "sha256": "b78b3ede76f168504c0bc55c4e50aa573f17d566176c54f6ff9d1908add2c66b",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/notebooks/cars_spectroscopy.ipynb",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/notebooks/cars_spectroscopy.ipynb",
+      "bytes": 252549,
+      "git_blob_sha1": "c52b3d8a92e93fd167a4549b150a6e298be93fe1",
+      "sha256": "eaf772880089cace0c410c2954dcd1558a9c783cd5474fcbca5f66bf6bb39d7d",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/plan/approach.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/plan/approach.md",
+      "bytes": 2673,
+      "git_blob_sha1": "939492b4304e763d1720316ec8a1b27ba9632ae2",
+      "sha256": "46c60b995793bb1008eaa928ae7e9f199f4ef8ef66e1691c6947d0fa2e24f6c3",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/plan/design.md",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/plan/design.md",
+      "bytes": 2632,
+      "git_blob_sha1": "bb5e32893fb4980abab33311ca6579428a5aa759",
+      "sha256": "bf55e9d5eebaf2df5eb45fa6ae8d9f004080a3f3e0a94629cb5f6f66c6691669",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/requirements.txt",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/requirements.txt",
+      "bytes": 69,
+      "git_blob_sha1": "b2f2b4e0f3656b9e64167e82d3fa6397762282cf",
+      "sha256": "764bff2f7690db93a217672706a42bb0d0b18b04561b8ce797a0b3b5adcde573",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/src/__init__.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/src/__init__.py",
+      "bytes": 0,
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/src/generate_data.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/src/generate_data.py",
+      "bytes": 2687,
+      "git_blob_sha1": "ed3d3b83321e06f125fd53d8b08a2b1c07558df9",
+      "sha256": "3aa9b76c582f92ce499a7d621e29f60f2f73acd373693c01664b9debe67b1e26",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/src/physics_model.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/src/physics_model.py",
+      "bytes": 10450,
+      "git_blob_sha1": "077e0bb3ac1593602f711551079c21e299f570d0",
+      "sha256": "70568e90f8886c8b085e905629c1d8b2849d0ad773d060ab8cd550790cf19be4",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/src/preprocessing.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/src/preprocessing.py",
+      "bytes": 862,
+      "git_blob_sha1": "bd50be005e4dea5160a39be2bf957d446d38c6e8",
+      "sha256": "5444b0ee49b12ff564caeb88b594c2019fb445c72146762974db613c570016d4",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/src/solvers.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/src/solvers.py",
+      "bytes": 2475,
+      "git_blob_sha1": "fb64787716198c70e03e0ac4f0f16888b8e81259",
+      "sha256": "f127cf3a3f72620f968891a6d402d77bc75de537f1d508c9e263d168c650501b",
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/src/visualization.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/src/visualization.py",
+      "bytes": 2837,
+      "git_blob_sha1": "eb5590c9e18a2b5415c40edd7853dcfb25e8c8c3",
+      "sha256": "b156e62631ad43cf931a089032b0c9bc71bd0f6e34cef7e8926b40b98f7ef104",
+      "status": "verified"
+    }
+  ],
+  "source_fetch_failures": [
+    {
+      "path": "evaluation_harness/frameworks/react/agent.py",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/react/agent.py",
+      "status": "failed",
+      "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
+    }
+  ],
+  "asset_downloads": [
+    {
+      "path": "tasks/cars_spectroscopy/data/ground_truth.npz",
+      "hf_path": "tasks/cars_spectroscopy/data/ground_truth.npz",
+      "task": "cars_spectroscopy",
+      "size": 2382,
+      "sha256": "99f21ffd06c375f8652a9a14ab3e96e737c2ca246f3bef89f8cecd28943b4b3d",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/cars_spectroscopy/data/ground_truth.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/data/meta_data.json",
+      "hf_path": "tasks/cars_spectroscopy/data/meta_data.json",
+      "task": "cars_spectroscopy",
+      "size": 1347,
+      "sha256": "3f7e004e56f7992c989fc7f75ffb6c44dd704d55b255e59a0922dca6e0552e12",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/cars_spectroscopy/data/meta_data.json",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/data/raw_data.npz",
+      "hf_path": "tasks/cars_spectroscopy/data/raw_data.npz",
+      "task": "cars_spectroscopy",
+      "size": 3724,
+      "sha256": "1d73725572bfe88856fda3a833174b223273b8b2f5924a553e0f0432effa77c0",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/cars_spectroscopy/data/raw_data.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/evaluation/fixtures/physics_model_fixtures.npz",
+      "hf_path": "tasks/cars_spectroscopy/evaluation/fixtures/physics_model_fixtures.npz",
+      "task": "cars_spectroscopy",
+      "size": 20614,
+      "sha256": "5c24b808a282fde87c2199f843e9c33bbdcc6120cee394b79b2f2f5c3278a2ff",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/cars_spectroscopy/evaluation/fixtures/physics_model_fixtures.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/evaluation/fixtures/preprocessing_fixtures.npz",
+      "hf_path": "tasks/cars_spectroscopy/evaluation/fixtures/preprocessing_fixtures.npz",
+      "task": "cars_spectroscopy",
+      "size": 1194,
+      "sha256": "0863da346876f7b7c1e8f6b69c0b54e9f62d74c1b24adcb36bd0936d5a358f0e",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/cars_spectroscopy/evaluation/fixtures/preprocessing_fixtures.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "status": "failed",
+      "error": "URLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)'))"
+    },
+    {
+      "path": "tasks/cars_spectroscopy/evaluation/reference_outputs/reconstruction.npz",
+      "hf_path": "tasks/cars_spectroscopy/evaluation/reference_outputs/reconstruction.npz",
+      "task": "cars_spectroscopy",
+      "size": 2138,
+      "sha256": "3750c92a1010c54c34d40a9def1a59dd6534111b75ee5d1b71324463dfc06059",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/cars_spectroscopy/evaluation/reference_outputs/reconstruction.npz",
+      "revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "http_status": 200,
+      "status": "verified"
+    }
+  ],
+  "claims": [
+    {
+      "id": "native-input",
+      "observation": "Published synthetic N2 spectrum, not an experimental gas measurement: float64 measurements and nu_axis each (1,200), 2280 to 2330 cm^-1. Metadata gives 10 bar, 1 cm^-1 pump linewidth, 0.5 cm^-1 slit width and noise level 0.02. Ground-truth temperature is int64, despite README float64 claim.",
+      "evidence": [
+        {
+          "path": "tasks/cars_spectroscopy/README.md",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/README.md"
+        },
+        {
+          "path": "tasks/cars_spectroscopy/src/generate_data.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/src/generate_data.py"
+        }
+      ]
+    },
+    {
+      "id": "assistance-and-staging",
+      "observation": "Selected BenchmarkRunner L1/L2/L3 visible paths all include data/. Actual LocalRunner.start copied the complete acquired data directory, including ground_truth.npz, in three retained fixtures. Exec was intercepted: no install or runner command executed. L2 adds approach, which explicitly states true 2400 K; L3 adds design. These levels are not demonstrated hidden-reference evaluations.",
+      "evidence": [
+        {
+          "path": "evaluation_harness/runner.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/runner.py",
+          "symbol": "_get_visible_paths",
+          "lines": [
+            66,
+            89
+          ]
+        },
+        {
+          "path": "evaluation_harness/local_runner.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py",
+          "symbol": "start",
+          "lines": [
+            59,
+            97
+          ]
+        },
+        {
+          "path": "tasks/cars_spectroscopy/plan/approach.md",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/plan/approach.md"
+        }
+      ]
+    },
+    {
+      "id": "docker-boundary",
+      "observation": "Docker source mounts the entire task directory read-only at /workspace_src, in addition to seeding selected paths. Read-only does not hide references. No Docker container was launched and no OS isolation claim is made.",
+      "evidence": [
+        {
+          "path": "evaluation_harness/docker_runner.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/docker_runner.py",
+          "symbol": "start",
+          "lines": [
+            34,
+            71
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forward",
+      "observation": "Pinned forward_operator uses 30 rotational states, two vibrational levels and Q/O/S branches with a temperature-dependent relaxation matrix. It combines resonant and nonresonant amplitudes, applies the implemented pump/slit operations, locally averages a 0.05 cm^-1 fine grid and max-normalizes. Four deterministic evaluations reproduce the clean spectrum within 1.34e-11; no inverse solve was run.",
+      "evidence": [
+        {
+          "path": "tasks/cars_spectroscopy/src/physics_model.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/src/physics_model.py",
+          "symbol": "forward_operator",
+          "lines": [
+            163,
+            293
+          ]
+        }
+      ]
+    },
+    {
+      "id": "identifiability",
+      "observation": "In this implementation both susceptibility terms scale linearly with x_mol; final max normalization cancels that amplitude factor. At T=2400 K, x_mol=0.79 and 0.2 produce normalized curves differing by at most 2.23e-16. This is an implementation diagnostic, not a general physical identifiability claim.",
+      "evidence": [
+        {
+          "path": "tasks/cars_spectroscopy/src/physics_model.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/src/physics_model.py",
+          "symbol": "forward_operator",
+          "lines": [
+            163,
+            293
+          ]
+        }
+      ]
+    },
+    {
+      "id": "source-fit",
+      "observation": "Retained reference output contains a (1,200) fitted spectrum and temperature 2391.5641794510043 K. Replaying task compute_metrics against the measured spectrum gives NCC 0.998360879739001, NRMSE 0.01823990675524816 and 8.435820548995707 K error versus 2400 K. No new fitting, LLM attempt or success-rate claim.",
+      "evidence": [
+        {
+          "path": "tasks/cars_spectroscopy/main.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/main.py",
+          "symbol": "main",
+          "lines": [
+            34,
+            129
+          ]
+        },
+        {
+          "path": "tasks/cars_spectroscopy/src/visualization.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/src/visualization.py",
+          "symbol": "compute_metrics",
+          "lines": [
+            4,
+            49
+          ]
+        }
+      ]
+    },
+    {
+      "id": "optimizer-contract",
+      "observation": "Source run_inversion fits temperature, mole fraction, spectral shift and slit width using bounded scipy least_squares(method=trf,max_nfev=100). Bounds are [300,3500] K, [0.1,1], [-5,5] cm^-1 and [0.01,5] cm^-1. L2 prose calls it LM, but executable source chooses trf. We did not execute the optimizer.",
+      "evidence": [
+        {
+          "path": "tasks/cars_spectroscopy/src/solvers.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/src/solvers.py",
+          "symbol": "run_inversion",
+          "lines": [
+            6,
+            75
+          ]
+        },
+        {
+          "path": "tasks/cars_spectroscopy/plan/approach.md",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/cars_spectroscopy/plan/approach.md"
+        }
+      ]
+    },
+    {
+      "id": "live-local-scoring",
+      "observation": "Scorer._compute_quality_metrics calls reference_scoring.score_reconstruction for a filesystem workspace. It expects output/reconstruction.npy and compares shape-selected references. For (1,200), ground_truth.npz:spectrum is selected, giving saved-fit NRMSE 0.002403 rather than the task-native measured-spectrum 0.018240. No temperature-error field is emitted.",
+      "evidence": [
+        {
+          "path": "evaluation_harness/scorer.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py",
+          "symbol": "_compute_quality_metrics",
+          "lines": [
+            194,
+            218
+          ]
+        },
+        {
+          "path": "evaluation_harness/reference_scoring.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py",
+          "symbol": "score_reconstruction",
+          "lines": [
+            165,
+            187
+          ]
+        },
+        {
+          "path": "evaluation_harness/reference_scoring.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py",
+          "symbol": "load_reference_array",
+          "lines": [
+            122,
+            135
+          ]
+        }
+      ]
+    },
+    {
+      "id": "native-adapter-distinct",
+      "observation": "A separate task_scoring CARS adapter expects reconstruction.npz with y_pred and temperature_pred, compares to measured spectrum and checks absolute temperature error. Scorer defines _score_task_aware but the active quality-metric method does not call it. Same saved curve plus a constructed 300 K temperature retains native NCC yet yields 2100 K error.",
+      "evidence": [
+        {
+          "path": "evaluation_harness/task_scoring.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/task_scoring.py",
+          "symbol": "_recipe_cars",
+          "lines": [
+            153,
+            171
+          ]
+        },
+        {
+          "path": "evaluation_harness/scorer.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py",
+          "symbol": "_score_task_aware",
+          "lines": [
+            221,
+            243
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shape-and-scalar",
+      "observation": "Generic preprocessing squeezes only ndim>2. Flattened (200,) fitted output fails to match either multi-array NPZ; (1,200) works. A (1,) temperature array selects temperature by shape, produces infinite range-normalized NRMSE and no Kelvin-error metric. Preserve the batch axis for the spectral reconstruction contract.",
+      "evidence": [
+        {
+          "path": "evaluation_harness/reference_scoring.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py",
+          "symbol": "_prepare_metric_array",
+          "lines": [
+            56,
+            68
+          ]
+        },
+        {
+          "path": "evaluation_harness/reference_scoring.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py",
+          "symbol": "_load_array_file",
+          "lines": [
+            82,
+            119
+          ]
+        }
+      ]
+    },
+    {
+      "id": "threshold-and-fallback",
+      "observation": "Pinned Git tree and pinned assets_manifest contain no CARS metrics.json or evaluation/tests files. Therefore generic saved-output replay has no pass/fail and native _check_pass yields None without thresholds. A live HF directory listing timed out, so absence across all external stores is not established. Docker fallback inspects only ground_truth.npy, while acquired CARS reference is NPZ; no Docker path was executed.",
+      "evidence": [
+        {
+          "path": "evaluation_harness/reference_scoring.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py",
+          "symbol": "_apply_boundaries",
+          "lines": [
+            190,
+            210
+          ]
+        },
+        {
+          "path": "evaluation_harness/scorer.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py",
+          "symbol": "_compute_quality_metrics_generic",
+          "lines": [
+            246,
+            329
+          ]
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "observation": "Raw no-op gives generic NCC 0.998346 and NRMSE 0.018418. Clean-reference oracle gives zero error; it is a diagnostic that must not be presented as solver evidence. All results are stored with exact array shapes and origin.",
+      "evidence": [
+        {
+          "path": "evaluation_harness/reference_scoring.py",
+          "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py",
+          "symbol": "compute_quality_metrics_from_arrays",
+          "lines": [
+            138,
+            162
+          ]
+        }
+      ]
+    }
+  ],
+  "reproduction": {
+    "script": "scripts/audit_imaging101_cars.py",
+    "script_sha256": "5742a4dcacb609f1e924caf26f95b4689a08fed74d8423a889857b94ea2f4094",
+    "receipt": ".local/explainers/completion-20260927/043-audit-v4/audit.json",
+    "receipt_sha256": "6a0b57edc113341a171e7ba22035267df921a9c719f70c3c849a453862ab9a19",
+    "result": {
+      "source_commit": "dc2f668939b21e8312e22529615def610f8611df",
+      "source_files_verified": 72,
+      "source_fetch_failures": [
+        {
+          "path": "evaluation_harness/frameworks/react/agent.py",
+          "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/frameworks/react/agent.py",
+          "status": "failed",
+          "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
+        }
+      ],
+      "selections": {
+        "runner.py": [
+          {
+            "name": "_get_visible_paths",
+            "lines": [
+              66,
+              89
+            ]
+          }
+        ],
+        "local_runner.py": [
+          {
+            "name": "start",
+            "lines": [
+              59,
+              97
+            ]
+          }
+        ],
+        "task_scoring.py": [
+          {
+            "name": "_recon_bases",
+            "lines": [
+              126,
+              129
+            ]
+          },
+          {
+            "name": "_find_recon",
+            "lines": [
+              132,
+              138
+            ]
+          },
+          {
+            "name": "_recipe_cars",
+            "lines": [
+              153,
+              171
+            ]
+          },
+          {
+            "name": "_check_pass",
+            "lines": [
+              393,
+              407
+            ]
+          }
+        ]
+      },
+      "staging": {
+        "L1": {
+          "visible_paths": [
+            "README.md",
+            "data",
+            "requirements.txt"
+          ],
+          "copied_files": [
+            "README.md",
+            "data/ground_truth.npz",
+            "data/meta_data.json",
+            "data/raw_data.npz",
+            "requirements.txt"
+          ],
+          "ground_truth_copied": true,
+          "installation_commands_intercepted": [
+            "python -m venv /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/043-audit-v4/L1/.venv",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/043-audit-v4/L1/.venv/bin/pip install -q -r /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/043-source/tasks/cars_spectroscopy/requirements.txt",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/043-audit-v4/L1/.venv/bin/pip install -q pytest"
+          ]
+        },
+        "L2": {
+          "visible_paths": [
+            "README.md",
+            "data",
+            "requirements.txt",
+            "plan/approach.md"
+          ],
+          "copied_files": [
+            "README.md",
+            "data/ground_truth.npz",
+            "data/meta_data.json",
+            "data/raw_data.npz",
+            "plan/approach.md",
+            "requirements.txt"
+          ],
+          "ground_truth_copied": true,
+          "installation_commands_intercepted": [
+            "python -m venv /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/043-audit-v4/L2/.venv",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/043-audit-v4/L2/.venv/bin/pip install -q -r /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/043-source/tasks/cars_spectroscopy/requirements.txt",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/043-audit-v4/L2/.venv/bin/pip install -q pytest"
+          ]
+        },
+        "L3": {
+          "visible_paths": [
+            "README.md",
+            "data",
+            "requirements.txt",
+            "plan"
+          ],
+          "copied_files": [
+            "README.md",
+            "data/ground_truth.npz",
+            "data/meta_data.json",
+            "data/raw_data.npz",
+            "plan/approach.md",
+            "plan/design.md",
+            "requirements.txt"
+          ],
+          "ground_truth_copied": true,
+          "installation_commands_intercepted": [
+            "python -m venv /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/043-audit-v4/L3/.venv",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/043-audit-v4/L3/.venv/bin/pip install -q -r /Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/043-source/tasks/cars_spectroscopy/requirements.txt",
+            "/Users/zhangqy/pkgs/tb3/.local/explainers/completion-20260927/043-audit-v4/L3/.venv/bin/pip install -q pytest"
+          ]
+        }
+      },
+      "array_schema": {
+        "raw": {
+          "measurements": {
+            "shape": [
+              1,
+              200
+            ],
+            "dtype": "float64"
+          },
+          "nu_axis": {
+            "shape": [
+              1,
+              200
+            ],
+            "dtype": "float64"
+          }
+        },
+        "ground_truth": {
+          "spectrum": {
+            "shape": [
+              1,
+              200
+            ],
+            "dtype": "float64"
+          },
+          "temperature": {
+            "shape": [
+              1
+            ],
+            "dtype": "int64"
+          },
+          "x_mol": {
+            "shape": [
+              1
+            ],
+            "dtype": "float64"
+          }
+        },
+        "saved_fit": {
+          "y_pred": {
+            "shape": [
+              1,
+              200
+            ],
+            "dtype": "float64"
+          },
+          "temperature_pred": {
+            "shape": [
+              1
+            ],
+            "dtype": "float64"
+          }
+        }
+      },
+      "generic_scoring": {
+        "saved-fit": {
+          "shape": [
+            1,
+            200
+          ],
+          "generic": {
+            "nrmse": 0.002403,
+            "ncc": 0.999979,
+            "mse": 5.7597e-06,
+            "psnr": 52.4,
+            "ssim": 0.999941
+          }
+        },
+        "raw-no-op": {
+          "shape": [
+            1,
+            200
+          ],
+          "generic": {
+            "nrmse": 0.018418,
+            "ncc": 0.998346,
+            "mse": 0.0003382385,
+            "psnr": 34.71,
+            "ssim": 0.99597
+          }
+        },
+        "clean-reference-control": {
+          "shape": [
+            1,
+            200
+          ],
+          "generic": {
+            "nrmse": 0.0,
+            "ncc": 1.0,
+            "mse": 0.0,
+            "psnr": "inf",
+            "ssim": 1.0
+          }
+        },
+        "flattened-fit": {
+          "shape": [
+            200
+          ],
+          "generic": {
+            "error": "Failed to load reference array: reference array not usable; tried ground_truth.npy, ground_truth.npz, ground_truth.npy, ground_truth.npz, reference.npy, reference.npz, reference_reconstruction.npy, reference_reconstruction.npz, reconstruction.npy, reconstruction.npz; errors: ground_truth.npz: ground_truth.npz has no array matching output shape (200,); available shapes: {'spectrum': [1, 200], 'temperature': [1], 'x_mol': [1]} | reconstruction.npz: reconstruction.npz has no array matching output shape (200,); available shapes: {'y_pred': [1, 200], 'temperature_pred': [1]}"
+          }
+        },
+        "temperature-only": {
+          "shape": [
+            1
+          ],
+          "generic": {
+            "nrmse": "inf",
+            "ncc": 1.0,
+            "mse": 71.1630683349,
+            "psnr": 49.08,
+            "ssim": 0.999994
+          }
+        }
+      },
+      "native_saved_output_replay": {
+        "ncc": 0.998360879739001,
+        "nrmse": 0.01823990675524816,
+        "temperature_error_K": 8.435820548995707
+      },
+      "native_wrong_temperature_control": {
+        "ncc": 0.998360879739001,
+        "nrmse": 0.01823990675524816,
+        "temperature_error_K": 2100.0
+      },
+      "saved_temperature_K": 2391.5641794510043,
+      "ground_truth_temperature_K": 2400.0,
+      "forward_diagnostic": {
+        "warnings": [
+          "divide by zero encountered in matmul",
+          "invalid value encountered in matmul",
+          "overflow encountered in matmul"
+        ],
+        "all_outputs_finite": true,
+        "temperatures_K": [
+          2000,
+          2400,
+          2800
+        ],
+        "fixed_x_mol": 0.79,
+        "other_x_mol": 0.2,
+        "same_temperature_max_difference": 2.220446049250313e-16,
+        "ground_truth_max_difference": 1.3330558878976717e-11,
+        "file": "forward-proposals.npz",
+        "sha256": "2bb3d9785a9a75e4c30e8ebeff1f0d4bd4cc3a5649225918fbe6b25f2887a38a"
+      },
+      "thresholds": "Neither pinned Git tree nor downloaded asset manifest contains cars_spectroscopy/evaluation/metrics.json; do not regenerate it or infer a pass.",
+      "limits": "Saved-output replay, file seeding with all exec commands intercepted, and four deterministic forward evaluations only. No inverse optimization, agent run, Docker launch, runtime installation or full benchmark execution. The clean-reference diagnostic is an oracle control, never model evidence.",
+      "all_assertions_passed": true
+    }
+  },
+  "availability": {
+    "published_synthetic_input": true,
+    "saved_fit": true,
+    "source_reference": true,
+    "scoring_threshold_file": false,
+    "canonical_story": false,
+    "visual_review": false
+  },
+  "limits": [
+    "One published synthetic gas spectrum; no clinical interpretation or population claim.",
+    "Forward evaluations emitted upstream NumPy matmul warnings; all returned values were finite and clean/reference difference stayed below 1.34e-11. Warnings retained in receipt.",
+    "One unrelated React agent file and one preprocessing fixture failed TLS fetching; neither is executed or needed for the scoped reproduced methods.",
+    "HF task-directory listing timed out after 40 s. Missing threshold claim is limited to pinned Git tree and asset manifest."
+  ],
+  "terms": {
+    "license": "MIT",
+    "repository_license": {
+      "path": "LICENSE",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    "dataset_card": "https://huggingface.co/datasets/starpacker52/imaging-101",
+    "originals_local": true
+  },
+  "disposition": "source-contract-resolved; operation story and review pending"
+}

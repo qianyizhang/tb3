@@ -359,3 +359,11 @@ the crop is a reader aid, not solver assistance. Five toy arrays distinguish cla
 Dice, binary clDice, B0 and simplified presence/IoU topology. Eight selected metrics,
 a geometry fragment and a rank tie were reproduced; HD95 and the full grader were
 not executed. The planar recipe requires no WebGL and implies no model run.
+
+`imaging101-cars-v1` plots [exact CARS spectral arrays](task-explorer/imaging101-cars/NOTICE.md),
+fixed forward proposals and saved-fit residuals. Eight explicit scenes separate
+input units, L1–L3 staging, forward operations, retained fit, reader reference,
+scoring paths, array shapes and limitations. `view` advances discrete conditions;
+`reference` reveals the clean curve halfway through its chapter and resets hidden.
+This display boundary is not solver privacy: audited staging copies ground truth.
+No inverse solve or agent result is produced; missing thresholds remain unresolved.

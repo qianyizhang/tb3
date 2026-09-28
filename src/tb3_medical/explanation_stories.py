@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "imaging101-cars-v1": "retained-imaging101-cars-v1",
     "rex-topcow-v1": "retained-rex-topcow-v1",
     "automed-multiorgan-v1": "retained-automed-multiorgan-v1",
     "bcer-workflow-v1": "retained-bcer-workflow-v1",
@@ -95,6 +96,11 @@ SOURCE_INPUT_PACKS = {
     ),
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-imaging101-cars-v1": (
+        "source-records",
+        "reference.json",
+        {"inputs.json", "reference.json", "contract.json", "NOTICE.md", "DATA-LICENSE.txt"},
+    ),
     "retained-rex-topcow-v1": (
         "source-slices",
         "reference.json",
@@ -519,6 +525,11 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class Imaging101CarsChannels(Closed):
+    view: Pair
+    reference: Pair
 
 
 class RexTopcowChannels(Closed):
@@ -989,6 +1000,22 @@ class RegistrationAnalysisBeat(ExpansionBeat[RegistrationAnalysisChannels]):
 class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
     recipe: Literal["registration-analysis-v1"]
     beats: tuple[RegistrationAnalysisBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class Imaging101CarsBeat(ExpansionBeat[Imaging101CarsChannels]):
+    scene: Literal["inputs", "staging", "forward", "fit", "reference", "scoring", "shape", "limits"]
+
+
+class Imaging101CarsStory(Story[Imaging101CarsChannels]):
+    recipe: Literal["imaging101-cars-v1"]
+    beats: tuple[Imaging101CarsBeat, ...]
 
     @model_validator(mode="after")
     def scene_cuts(self) -> Self:
@@ -1499,6 +1526,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101CarsStory
     | RexTopcowStory
     | AutomedMultiorganStory
     | BcerWorkflowStory
@@ -1543,6 +1571,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101CarsStory
     | RexTopcowStory
     | AutomedMultiorganStory
     | BcerWorkflowStory
@@ -1747,6 +1776,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101CarsStory
     | RexTopcowStory
     | AutomedMultiorganStory
     | BcerWorkflowStory
@@ -1836,6 +1866,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = source_packs[pack_id]
         frame, data_license, label_license = {
+            "retained-imaging101-cars-v1": ("source-record", "MIT", "MIT"),
             "retained-rex-topcow-v1": (
                 "RAS",
                 "LicenseRef-TopCoW-OpenDataSwiss",
@@ -1902,7 +1933,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             or manifest.get("frame") != frame
             or manifest.get("units")
             != (
-                "record"
+                "cm^-1"
+                if pack_id == "retained-imaging101-cars-v1"
+                else "record"
                 if pack_id == "retained-history-sourcing-v1"
                 else "voxel"
                 if pack_id
