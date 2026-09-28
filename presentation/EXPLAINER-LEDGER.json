@@ -9166,50 +9166,106 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "astronomy",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "pending-operation-review",
+      "source_asset_readiness": "14 task sources, 60 shared sources, three upstream sources and 28 assets verified. Native closures, supplied reference, two distinct saved sample sets and retained mean/std available; fixed losses, gain control, evaluator and L1-L3 staging audited.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-eht-black-hole-uq.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A distribution of plausible brightness images rather than one best image.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "blocking_dependency": null,
+      "remaining_work": "Author the operation-specific EHT UQ story with native Fourier coverage, closure gain cancellation, explicit prior drift, verified saved sample sequence, mean/std/reference/error reveal and scorer limits. Export and inspect desktop/mobile/no-GPU/playback before acceptance.",
       "contract_projection": {
-        "raw": "Radio-interferometry closure-phase and log-closure-amplitude measurements.",
-        "helpers": "Interferometer geometry and likelihood/model guidance. The assistance level can add an approach and software design.",
-        "tools": "Python and the task’s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README’s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "A distribution of plausible brightness images rather than one best image.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "title": "Estimate uncertainty in a black-hole image",
+        "goal": "Infer a distribution of **32×32 radio-brightness images** from sparse\ninterferometric measurements in the bundled DPI example.",
+        "value": "Different images can explain similar telescope measurements. Their variation\nhelps describe ambiguity under the chosen likelihood, prior and model.",
+        "raw": "938 complex visibilities, 465 closure phases and 485 log closure amplitudes;\nnine stations and 100 timestamps. A visibility samples one spatial frequency.\nClosure combinations cancel multiplicative station gains, but retain noise.",
+        "helpers": "Baseline coordinates, noise estimates and 160 μas field-of-view metadata.\n**All L1–L3 expose the supplied reference image**, including `ground_truth.npz`\nand `gt.fits`. L2 adds an approach; L3 adds software design.",
+        "tools": "Python, PyTorch and declared Fourier dependencies. Existing NumPy/CPU PyTorch\nreplayed fixed controls; no installation, network training or sampling occurred.",
+        "reference": "Saved posterior arrays and fixtures are not seeded. The reference image is\nsolver-visible; a reader reveal is not an evaluator privacy boundary.",
+        "spec": "Approximate an image distribution with a Real-NVP flow. Balance closure-data\nagreement, image priors and an entropy term. Use degrees for phase and natural\nlogarithms for amplitude ratios; source indices determine baseline order.",
+        "output": "Native output: image samples, mean and population standard deviation in Jy/pixel\non a 32×32 grid, **5 μas/pixel**. The local end-to-end harness instead requests\none `output/reconstruction.npy` and does not assess posterior uncertainty.",
+        "score": "| Saved mean replay | NCC | NRMSE |\n|---|---:|---:|\n| Task-native helper | 0.656499 | 0.134476 |\n| Local generic scorer | 0.714299 | 0.090637 |\n\nDefinitions differ: native scoring peak-normalizes and centers correlation;\ngeneric scoring uses absolute intensity and cosine similarity. Neither score\nchecks uncertainty. No current pass thresholds are published.\n\n**180/1,024 reference pixels** fall within saved mean ± one standard deviation.\nThis single-image containment is not proof of calibration. The mean/std match\nall 1,024 images in `posterior_samples.npy`; the similarly named\n`posterior_samples_1024.npy` contains a different set.",
+        "challenge": "Sparse nonlinear constraints permit ambiguity. Truth exposure prevents a blind\nreconstruction claim; sample diversity alone does not establish a calibrated posterior.",
+        "families": "One bundled example: 14 task sources, 60 shared sources, three upstream sources\nand 28 assets verified. Both FITS files match the original DPI example exactly.\nFixed closure/loss controls, saved-array statistics and L1–L3 staging were replayed.",
+        "gap": "The task's real-2015-observation claim remains unverified. `main.py` has a syntax\nerror; its solver expects an obsolete `obs` object absent from current preprocessing.\nPrior flux also differs from retained fixtures. The unavailable NUFFT runtime\nprevents replaying forward fixtures; no astrophysical or agent success is claimed.\nExplainer acceptance is recorded separately in the completion ledger.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect native Fourier coverage and closure measurements.",
+          "Follow station-gain cancellation, priors and stored image samples.",
+          "Reveal reference comparisons and the limits of uncertainty scoring."
+        ],
         "variants": [
           {
             "name": "L1 · README",
-            "helper": "README, data description and method hints.",
-            "remaining": "Choose and implement a workable algorithm."
+            "helper": "README, data including reference, requirements.",
+            "remaining": "Implement inference; reference copying is possible."
           },
           {
             "name": "L2 · + approach",
-            "helper": "A proposed algorithmic approach is added.",
-            "remaining": "Design the software and implement the method."
+            "helper": "L1 plus flow, likelihood and prior guidance.",
+            "remaining": "Design and implement the method."
           },
           {
             "name": "L3 · + design",
-            "helper": "Approach and software design are added.",
-            "remaining": "Implement the specified design and numerical details."
+            "helper": "L2 plus interfaces and numerical details.",
+            "remaining": "Implement the specified design."
           }
         ],
         "sources": [
           [
-            "Pinned task README",
+            "Pinned task and array contract",
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/eht_black_hole_UQ/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Pinned preprocessing",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/eht_black_hole_UQ/src/preprocessing.py"
+          ],
+          [
+            "Pinned generic scorer",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+          ],
+          [
+            "Original DPI example",
+            "https://github.com/HeSunPU/DPI/tree/1bf3f02a92796af737bd6fe6233d1d0dd778ffd5/dataset/interferometry1"
+          ],
+          [
+            "DPI paper, v2",
+            "https://arxiv.org/html/2010.14462v2"
+          ],
+          [
+            "Source audit, controls and provenance",
+            "presentation/external-tasks/sources/imaging101-eht-uq-audit.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
+        "html": {
+          "goal": "<p>Infer a distribution of <strong>32×32 radio-brightness images</strong> from sparse interferometric measurements in the bundled DPI example.</p>",
+          "value": "<p>Different images can explain similar telescope measurements. Their variation helps describe ambiguity under the chosen likelihood, prior and model.</p>",
+          "raw": "<p>938 complex visibilities, 465 closure phases and 485 log closure amplitudes; nine stations and 100 timestamps. A visibility samples one spatial frequency. Closure combinations cancel multiplicative station gains, but retain noise.</p>",
+          "helpers": "<p>Baseline coordinates, noise estimates and 160 μas field-of-view metadata. <strong>All L1–L3 expose the supplied reference image</strong>, including <code>ground_truth.npz</code> and <code>gt.fits</code>. L2 adds an approach; L3 adds software design.</p>",
+          "tools": "<p>Python, PyTorch and declared Fourier dependencies. Existing NumPy/CPU PyTorch replayed fixed controls; no installation, network training or sampling occurred.</p>",
+          "reference": "<p>Saved posterior arrays and fixtures are not seeded. The reference image is solver-visible; a reader reveal is not an evaluator privacy boundary.</p>",
+          "spec": "<p>Approximate an image distribution with a Real-NVP flow. Balance closure-data agreement, image priors and an entropy term. Use degrees for phase and natural logarithms for amplitude ratios; source indices determine baseline order.</p>",
+          "output": "<p>Native output: image samples, mean and population standard deviation in Jy/pixel on a 32×32 grid, <strong>5 μas/pixel</strong>. The local end-to-end harness instead requests one <code>output/reconstruction.npy</code> and does not assess posterior uncertainty.</p>",
+          "score": "<div class=\"table\"><table>\n<tr><th>Saved mean replay</th><th>NCC</th><th>NRMSE</th></tr>\n<tr><td>Task-native helper</td><td>0.656499</td><td>0.134476</td></tr>\n<tr><td>Local generic scorer</td><td>0.714299</td><td>0.090637</td></tr>\n</table></div>\n<p>Definitions differ: native scoring peak-normalizes and centers correlation; generic scoring uses absolute intensity and cosine similarity. Neither score checks uncertainty. No current pass thresholds are published.</p>\n<p><strong>180/1,024 reference pixels</strong> fall within saved mean ± one standard deviation. This single-image containment is not proof of calibration. The mean/std match all 1,024 images in <code>posterior_samples.npy</code>; the similarly named <code>posterior_samples_1024.npy</code> contains a different set.</p>",
+          "challenge": "<p>Sparse nonlinear constraints permit ambiguity. Truth exposure prevents a blind reconstruction claim; sample diversity alone does not establish a calibrated posterior.</p>",
+          "families": "<p>One bundled example: 14 task sources, 60 shared sources, three upstream sources and 28 assets verified. Both FITS files match the original DPI example exactly. Fixed closure/loss controls, saved-array statistics and L1–L3 staging were replayed.</p>",
+          "gap": "<p>The task&#x27;s real-2015-observation claim remains unverified. <code>main.py</code> has a syntax error; its solver expects an obsolete <code>obs</code> object absent from current preprocessing. Prior flux also differs from retained fixtures. The unavailable NUFFT runtime prevents replaying forward fixtures; no astrophysical or agent success is claimed. Explainer acceptance is recorded separately in the completion ledger.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>Retain the native u/v coordinates in wavelengths. Derived conjugate points are not additional observations. Closure rows are not independent repeated trials.</p>",
+          "helpers": "<p>Distinguish the retained 2.044481 Jy prior target from the current source&#x27;s 0.273831 Jy target. The former uses the APEX–ALMA baseline; the latter takes the median over all visibilities.</p>",
+          "answer": "<p>Use saved sample rows in their original order, without claiming a time sequence. Display relative RA decreasing left-to-right and Dec increasing bottom-to-top. Label sample spread, absolute error and the supplied reference separately.</p>"
+        },
+        "missing_media": []
       },
-      "source_brief_sha256": "2f0c4b80fcfdf3a6efbd5eabbd3a36cb4f4395613b92634a6bde56711f2018f6",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval."
+      "source_brief_sha256": "6949b427d668756af65c4c4aa6602d8d4148deb26db63716ecb9e4291060839c",
+      "blocker_resolution": "Exact inputs, helper, output and evaluator contracts are audited. Native arrays support a bounded retained-evidence explanation; source reproducibility and real-data provenance defects remain explicit. No canonical story or visual acceptance is claimed.",
+      "source_review": {
+        "date": "2026-09-29",
+        "reviewer": "assistant",
+        "receipt": "presentation/external-tasks/sources/imaging101-eht-uq-audit.json",
+        "sha256": "2e4a3b106bc838daf1569b75cc024fff44ed8131567a309346de015e485e00c8",
+        "status": "source-audited-native-arrays-available"
+      }
     },
     {
       "entry_id": "imaging101-eht-black-hole-dynamic",
@@ -15911,8 +15967,9 @@
   "counts": {
     "reviewed-scripted-planar": 40,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 99,
-    "blocked-source-input": 53
+    "blocked-source-contract": 98,
+    "blocked-source-input": 53,
+    "pending-operation-review": 1
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -16781,6 +16838,16 @@
         "export_receipt_sha256": "7cce52244fecbf7b310daca3c6e10a604c28ebce3fd4e193369de83d133a5337",
         "reviewed_entries": 53,
         "next_entry": "imaging101-eht-black-hole-uq"
+      },
+      {
+        "date": "2026-09-29",
+        "entry_id": "imaging101-eht-black-hole-uq",
+        "stage": "source-audit-complete",
+        "receipt": "presentation/external-tasks/sources/imaging101-eht-uq-audit.json",
+        "receipt_sha256": "2e4a3b106bc838daf1569b75cc024fff44ed8131567a309346de015e485e00c8",
+        "reviewed_entries": 53,
+        "next_entry": "imaging101-eht-black-hole-uq",
+        "note": "Native arrays, exact source and upstream identities, closure/loss controls, saved statistics, source drift and evaluator/staging audited. Canonical story, export and visual acceptance pending."
       }
     ]
   }
