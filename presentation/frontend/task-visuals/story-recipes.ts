@@ -17,6 +17,7 @@ import {
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
   return !(
+    (state.recipe === 'localized-ct-v1' && state.scene === 'reference' && state.reference <= 0.5) ||
     (state.recipe === 'aneurysm-localization-v1' &&
       state.scene === 'reference' &&
       state.reference <= 0.5) ||
@@ -29,6 +30,7 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'localized-ct-v1',
     'aneurysm-localization-v1',
     'segmentation-calibration-v1',
     'dental-v3-v1',
@@ -101,6 +103,15 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'localized-ct-v1':
+      return {
+        heading: 'Judge a supplied CT candidate',
+        corner: 'Full CT pair + two points · saved decisions · private reference reveal',
+        legend: [
+          ['#ff626b', 'Supplied point · cross'],
+          ['#36dcdd', 'Private reference · solid'],
+        ],
+      };
     case 'aneurysm-localization-v1':
       return {
         heading: 'Aneurysm search and localization',

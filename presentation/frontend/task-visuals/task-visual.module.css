@@ -1962,3 +1962,110 @@
     font-size: 11px;
   }
 }
+
+.localizedScene {
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.localizedScene h4 {
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+.localizedPair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.localizedPair article {
+  min-width: 0;
+}
+.localizedPair b {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.localizedImage {
+  display: block;
+  width: 100%;
+  height: 230px;
+  background: #090e16;
+  border: 1px solid #74818a;
+}
+.localizedPair small {
+  display: block;
+  font-size: 10px;
+  line-height: 1.4;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+.localizedFlow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.localizedFlow article {
+  flex: 1 1 140px;
+  min-width: 0;
+  border-top: 3px solid #3f8391;
+  padding: 12px;
+  background: #eff4f5;
+  overflow-wrap: anywhere;
+}
+.localizedTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 10px 0;
+}
+.localizedTable td,
+.localizedTable th {
+  border-bottom: 1px solid #cbd3d6;
+  padding: 8px 5px;
+  text-align: left;
+}
+.localizedAside {
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.localizedAside p {
+  margin: 9px 0;
+}
+.localizedAside pre {
+  font-size: 11px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+:global([data-explainer-export-frame]) .player[data-recipe='localized-ct-v1'] .storyHeading {
+  height: 130px;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='localized-ct-v1']
+  :global(.scene-steps button) {
+  min-height: 31px;
+  padding-block: 4px;
+}
+.player[data-recipe='localized-ct-v1'] :global(.scene-step-index) {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.player[data-recipe='localized-ct-v1'] :global(.scene-steps) {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+@container task-visual (max-width:900px) {
+  .player[data-recipe='localized-ct-v1'] .storyLayout {
+    grid-template-columns: 1fr;
+  }
+  .player[data-recipe='localized-ct-v1'] :global(.scene-steps) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@container task-visual (max-width:600px) {
+  .localizedPair {
+    grid-template-columns: 1fr;
+  }
+  .localizedImage {
+    height: 255px;
+  }
+}

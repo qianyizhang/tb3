@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "localized-ct-v1": "retained-localized-ct-v1",
     "aneurysm-localization-v1": "retained-aneurysm-localization-v1",
     "segmentation-calibration-v1": "retained-segmentation-calibration-v1",
     "dental-v3-v1": "retained-dental-v3-v1",
@@ -79,6 +80,18 @@ RECIPE_PACKS = {
     "registration-analysis-v1": "retained-registration-analysis-v1",
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-localized-ct-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "baseline.json",
+            "followup.json",
+            "output.json",
+            "reference.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+        },
+    ),
     "retained-aneurysm-localization-v1": (
         "source-slices",
         "reference.json",
@@ -461,6 +474,12 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class LocalizedCtChannels(Closed):
+    view: Pair
+    output: Pair
+    reference: Pair
 
 
 class AneurysmChannels(Closed):
@@ -895,6 +914,34 @@ class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
         return self
 
 
+class LocalizedCtBeat(ExpansionBeat[LocalizedCtChannels]):
+    scene: Literal[
+        "inputs",
+        "rules",
+        "axial",
+        "orthogonal",
+        "serial",
+        "judgments",
+        "outputs",
+        "reference",
+        "scoring",
+        "context",
+        "limits",
+    ]
+
+
+class LocalizedCtStory(Story[LocalizedCtChannels]):
+    recipe: Literal["localized-ct-v1"]
+    beats: tuple[LocalizedCtBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class AneurysmBeat(ExpansionBeat[AneurysmChannels]):
     scene: Literal[
         "inputs",
@@ -1209,6 +1256,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | LocalizedCtStory
     | AneurysmStory
     | SegmentationCalibrationStory
     | DentalV3Story
@@ -1245,6 +1293,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | LocalizedCtStory
     | AneurysmStory
     | SegmentationCalibrationStory
     | DentalV3Story
@@ -1441,6 +1490,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | LocalizedCtStory
     | AneurysmStory
     | SegmentationCalibrationStory
     | DentalV3Story
@@ -1521,6 +1571,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
         frame, data_license, label_license = {
+            "retained-localized-ct-v1": ("RAS", "CC-BY-NC-4.0", "CC-BY-NC-4.0"),
             "retained-aneurysm-localization-v1": ("native-ijk", "CC0-1.0", "CC0-1.0"),
             "retained-segmentation-calibration-v1": ("native-ijk", "CC-BY-4.0", "Apache-2.0"),
             "retained-dental-v3-v1": ("native-ijk", "CC-BY-NC-SA-4.0", None),

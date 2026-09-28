@@ -191,6 +191,54 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     dentalV2Stages,
     dentalV2Outputs,
   } = await loadFrontend('expansion_fixture.mjs');
+  const {
+    localizedVisits,
+    localizedSelection,
+    localizedPixel,
+    localizedReference,
+    localizedOutput,
+  } = await loadFrontend('expansion_fixture.mjs');
+  const localizedPlan = plans.find((p) => p.recipe === 'localized-ct-v1');
+  assert.ok(localizedPlan);
+  assert.equal(localizedSelection(sampleStory(localizedPlan, 0)).reference, false);
+  assert.equal(localizedSelection(sampleStory(localizedPlan, 0)).output, false);
+  for (const [scene, key, expected] of [
+    ['axial', 'axial', [0, 1, 2, 3]],
+    ['orthogonal', 'orthogonal', ['i-0', 'i-1', 'i-2', 'j-0', 'j-1', 'j-2']],
+    ['serial', 'serial', Array.from({ length: 12 }, (_, i) => i)],
+  ]) {
+    const b = localizedPlan.beats.find((b) => b.scene === scene),
+      seen = new Set();
+    for (let f = b.startFrame; f < b.endFrame; f++)
+      seen.add(localizedSelection(sampleStory(localizedPlan, f))[key]);
+    assert.deepEqual([...seen], expected);
+  }
+  const localizedReveal = localizedPlan.beats.find((b) => b.scene === 'reference');
+  assert.equal(
+    localizedSelection(sampleStory(localizedPlan, localizedReveal.startFrame)).reference,
+    false,
+  );
+  assert.equal(
+    localizedSelection(sampleStory(localizedPlan, localizedReveal.endFrame - 1)).reference,
+    true,
+  );
+  for (const visit of Object.values(localizedVisits))
+    for (const p of Object.values(visit.views)) {
+      const pos = localizedPixel(p, visit.native_ijk, visit.spacing_mm);
+      assert.ok(pos.x > 0 && pos.x < p.width && pos.y > 0 && pos.y < p.height);
+      assert.equal(pos.x + p.bounds[2 * p.u_axis] - 0.5, visit.native_ijk[p.u_axis]);
+      assert.equal(
+        p.flip_v ? p.bounds[2 * p.v_axis + 1] - pos.y - 0.5 : pos.y + p.bounds[2 * p.v_axis] - 0.5,
+        visit.native_ijk[p.v_axis],
+      );
+      assert.equal(pos.offset, (p.index - visit.native_ijk[p.axis]) * visit.spacing_mm[p.axis]);
+      assert.equal(p.extent_mm[0], p.width * visit.spacing_mm[p.u_axis]);
+      assert.equal(p.extent_mm[1], p.height * visit.spacing_mm[p.v_axis]);
+    }
+  assert.equal(localizedOutput.events.groups.length, 0);
+  assert.ok(localizedOutput.judgments.candidates.every((r) => r.judgment === 'normal_or_benign'));
+  assert.equal(localizedReference.controls['rejected-with-oracle-masks'].valid, true);
+  assert.equal(localizedReference.controls['rejected-with-oracle-masks'].detected, 2);
   const aneurysmPlan = plans.find((p) => p.recipe === 'aneurysm-localization-v1');
   assert.ok(aneurysmPlan);
   assert.equal(aneurysmSelection(sampleStory(aneurysmPlan, 0)).output, false);

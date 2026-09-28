@@ -24,6 +24,7 @@ class ExpansionTests(unittest.TestCase):
                     "prototype-identity-v1",
                     "mask-screen-v1",
                     "anatomy-curation-v1",
+                    "localized-ct-v1",
                     "aneurysm-localization-v1",
                     "segmentation-calibration-v1",
                     "dental-v3-v1",
@@ -75,6 +76,7 @@ class ExpansionTests(unittest.TestCase):
         for group, name in [
             ("anatomy-audit", "mask-reasoning-study"),
             ("anatomy-audit", "anatomy-curation"),
+            ("longitudinal-reading", "localized-ct"),
             ("lesion-localization", "aneurysm-localization"),
             ("anatomy-audit", "segmentation-calibration"),
             ("anatomy-audit", "dental-v3"),
@@ -131,6 +133,7 @@ class ExpansionTests(unittest.TestCase):
             "respiratory",
             "registration-analysis",
             "segmentation-calibration",
+            "localized-ct",
             "aneurysm-localization",
             "dental-v3",
             "dental-original",

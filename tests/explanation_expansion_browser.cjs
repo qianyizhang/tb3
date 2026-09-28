@@ -49,6 +49,7 @@ withBrowser(async (browser) => {
         ...([
           'mask-screen-v1',
           'anatomy-curation-v1',
+          'localized-ct-v1',
           'aneurysm-localization-v1',
           'segmentation-calibration-v1',
           'dental-v3-v1',
@@ -83,6 +84,21 @@ withBrowser(async (browser) => {
         ].includes(plan.recipe)
       ) {
         for (const b of plan.beats) frames.push(b.startFrame);
+      }
+      if (plan.recipe === 'localized-ct-v1') {
+        for (const b of plan.beats) frames.push(b.startFrame);
+        for (const [scene, count] of [
+          ['axial', 4],
+          ['orthogonal', 6],
+          ['serial', 12],
+          ['reference', 4],
+        ]) {
+          const b = plan.beats.find((b) => b.scene === scene);
+          for (let i = 0; i < count; i++)
+            frames.push(
+              Math.floor(b.startFrame + ((i + 0.5) / count) * (b.endFrame - b.startFrame)),
+            );
+        }
       }
       if (plan.recipe === 'aneurysm-localization-v1') {
         for (const b of plan.beats) frames.push(b.startFrame);
@@ -440,6 +456,37 @@ withBrowser(async (browser) => {
           const box = await output.boundingBox();
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
+        }
+        if (plan.recipe === 'localized-ct-v1') {
+          const scene = page.locator('[data-localized-scene]');
+          const reveal = (await scene.getAttribute('data-localized-reference')) === 'visible';
+          if (!reveal) assert.equal(await page.locator('[data-localized-private]').count(), 0);
+          if (frame === 0) {
+            assert.equal(await page.locator('[data-localized-output]').count(), 0);
+            assert.equal(await page.locator('[data-localized-point]').count(), 2);
+          }
+          if ((await scene.getAttribute('data-localized-scene')) === 'reference')
+            assert.equal(
+              await page.locator('[data-scene-inline-narration]').count(),
+              reveal ? 1 : 0,
+            );
+          for (const selector of [
+            '.scene-player > header',
+            '[data-localized-scene]',
+            '[class*="localizedAside"]',
+            '.scene-legend',
+          ]) {
+            assert.ok(
+              await page
+                .locator(selector)
+                .evaluate(
+                  (e) => e.scrollHeight <= e.clientHeight && e.scrollWidth <= e.clientWidth,
+                ),
+              'Localized CT overflow ' + selector,
+            );
+            const box = await page.locator(selector).boundingBox();
+            assert.ok(box && box.y + box.height <= 720, 'Localized CT clipping ' + selector);
+          }
         }
         if (plan.recipe === 'aneurysm-localization-v1') {
           const scene = page.locator('[data-aneurysm-scene]');
@@ -892,6 +939,24 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'localized-ct-v1') {
+      for (let step = 1; step < plan.beats.length; step++) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        await page.waitForFunction(
+          (f) =>
+            document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+            String(f),
+          plan.beats[step].startFrame,
+        );
+        assert.ok(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          'Localized mobile overflow',
+        );
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+      }
+    }
     if (plan.recipe === 'aneurysm-localization-v1') {
       for (const step of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -1078,6 +1143,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'localized-ct-v1',
       'aneurysm-localization-v1',
       'segmentation-calibration-v1',
       'dental-v3-v1',
@@ -1109,6 +1175,26 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'localized-ct-v1') {
+      assert.equal(await fallback.locator('[data-localized-private]').count(), 0);
+      assert.equal(await fallback.locator('[data-localized-point]').count(), 2);
+      await fallback.locator('[data-story-step="7"]').click();
+      await fallback.locator('.scene-play').click();
+      await fallback.locator('path[data-localized-private]').first().waitFor();
+      await fallback.locator('.scene-play').click();
+      assert.equal(await fallback.locator('path[data-localized-private]').count(), 2);
+      await fallback
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'no-gpu-reference.png') });
+      await fallback.locator('.scene-reset').click();
+      await fallback.waitForFunction(
+        () =>
+          document
+            .querySelector('[data-localized-reference]')
+            ?.getAttribute('data-localized-reference') === 'hidden',
+      );
+      assert.equal(await fallback.locator('[data-localized-private]').count(), 0);
+    }
     if (plan.recipe === 'aneurysm-localization-v1') {
       assert.equal(
         await fallback.locator('[data-aneurysm-point], [data-aneurysm-private]').count(),
@@ -1915,6 +2001,29 @@ withBrowser(async (browser) => {
   assert.equal(await page.locator('[data-aneurysm-point], [data-aneurysm-private]').count(), 0);
   report.navigation.push({ id: 'tb3-aneurysm-localization', revealAndReset: true });
 
+  await page.evaluate(() => {
+    location.hash = 'tb3-localized-candidate-recognition/0/overview?view=repository';
+  });
+  await page.waitForFunction(
+    () =>
+      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'localized-ct-v1',
+  );
+  assert.equal(await page.locator('[data-localized-private], [data-localized-output]').count(), 0);
+  assert.equal(await page.locator('[data-localized-point]').count(), 2);
+  await page.locator('[data-story-step="8"]').click();
+  await page.locator('[data-localized-private]').first().waitFor();
+  await page
+    .locator('.scene-player')
+    .screenshot({ path: path.join(folder, 'integrated-localized-ct.png') });
+  await page.locator('.scene-reset').click();
+  await page.waitForFunction(
+    () =>
+      document
+        .querySelector('[data-localized-reference]')
+        ?.getAttribute('data-localized-reference') === 'hidden',
+  );
+  assert.equal(await page.locator('[data-localized-private], [data-localized-output]').count(), 0);
+  report.navigation.push({ id: 'tb3-localized-candidate-recognition', revealAndReset: true });
   await context.close();
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.remote_requests, []);

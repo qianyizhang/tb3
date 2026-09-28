@@ -341,3 +341,5 @@ denominators; a separately labeled common-union diagnostic and pooled pulp score
 do not replace them. The story qualifies unequal realized compute, one-target
 scope and unresolved reference conventions, and supports explicit reference
 reveal/reset in the shared planar player without WebGL.
+
+`localized-ct-v1` explains supplied-location candidate judgment using [native retained views](task-explorer/localized-ct/NOTICE.md). Its `view` channel selects discrete axial, orthogonal and serial planes, while `output` and `reference` keep saved judgments and private source labels separate. Supplied points remain fixed in 3D; native affine directions, physical aspect and signed plane offsets distinguish off-plane projection from point containment. Four saved JPEG montages reconstruct exactly. The decision-first contract, empty output, reference disagreement, verifier consistency gap and clinical-report context gap remain distinct. This planar recipe works without WebGL and implies no new trial or clinical adjudication.

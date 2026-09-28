@@ -514,6 +514,34 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class LocalizedCtChannels(TypedDict):
+    view: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class LocalizedCtBeat(ExpansionBeat):
+    channels: LocalizedCtChannels
+    scene: Literal[
+        "inputs",
+        "rules",
+        "axial",
+        "orthogonal",
+        "serial",
+        "judgments",
+        "outputs",
+        "reference",
+        "scoring",
+        "context",
+        "limits",
+    ]
+
+
+class LocalizedCtPlan(ExpansionPlan):
+    recipe: Literal["localized-ct-v1"]
+    beats: list[LocalizedCtBeat]
+
+
 class AneurysmChannels(TypedDict):
     view: tuple[float, float]
     output: tuple[float, float]
@@ -849,6 +877,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | LocalizedCtPlan
     | AneurysmPlan
     | SegmentationCalibrationPlan
     | DentalV3Plan

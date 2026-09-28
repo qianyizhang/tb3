@@ -1,4 +1,12 @@
 export {
+  localizedVisits,
+  localizedReference,
+  localizedOutput,
+  localizedSelection,
+  localizedPixel,
+  localizedIndex,
+} from '../presentation/frontend/task-visuals/localized-ct';
+export {
   cavityCases,
   cavityOutputs,
   cavityReferences,

@@ -3473,15 +3473,15 @@
       ],
       "illustration_kind": "candidate_judgment",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "localized-ct",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "88 source fingerprints; 39 frozen-file checks; exact complete source/input/cached arrays and affines; model/oracle replay and explicit no-op path normalization; six synthetic controls; 46 licensed native views with pixel/contour round trips and four exact JPEG reconstructions.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/031-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Judge tumor / normal-or-benign / indeterminate with image evidence, then segment and link accepted tumor candidates.",
+      "remaining_work": "No outstanding explainer work for the retained localized probe. Clinical/reference disagreement, case-specific clinical context and causal effect remain unresolved; remote delivery pending at program level.",
       "contract_projection": {
         "raw": "The original full CT pair plus two native-coordinate candidate centers.",
         "helpers": "R01/R02 centers remove whole-volume discovery for the selected candidate; no guaranteed-positive statement.",
@@ -3504,7 +3504,97 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "d16fc1e042313a216fba63f238a3e3437556f25b05d0e48bb5a9e70cc1fb8bde"
+      "source_brief_sha256": "d16fc1e042313a216fba63f238a3e3437556f25b05d0e48bb5a9e70cc1fb8bde",
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "receipt": "groups/longitudinal-reading/presentation/sources/localized-ct-audit.json",
+        "sha256": "c235cdeac64947c550da3b41c3cbc27dda42ae91d6c11f64e03874f5eb8d0845",
+        "status": "source-audit-complete"
+      },
+      "acceptance_scope": "Source, visual and engineering review of one retained localized-CT candidate at two visits. No new medical/model trial, runtime install, clinical adjudication or publication.",
+      "visual_review": "Eleven chapters and full 156-second playback; four axial, six orthogonal and twelve serial source selections, judgments and empty outputs, delayed private-reference reveal, separate scores and verifier gap; desktop/mobile/locale/Explorer/no-GPU reviewed.",
+      "reviewed_contract_projection": {
+        "title": "Judge supplied CT candidates before linking them",
+        "goal": "Inspect two supplied native CT locations, record explicit judgments, and segment/link only accepted tumor candidates. The retained result is a disagreement with the selected source reference after location assistance; clinical correctness remains unresolved.",
+        "value": "Separates an unexplained whole-volume omission from explicit rejection of an indicated structure. This is an adaptive diagnostic condition, not an independent detection benchmark.",
+        "raw": "The same full Longitudinal-CT v3 case 0a09c8844b baseline/follow-up CT pair used in the earlier revised whole-volume task. Native grids are 512×512×261 and 512×512×274, with 0.822265625/0.84765625 mm in-plane spacing and 3 mm through-plane spacing. Visits are not registered.",
+        "helpers": "R01 baseline [304,263,213] and R02 follow-up [302,221,216], zero-based native voxel indices. These are exact localization assistance, selected as the reference voxel nearest each voxel-index centroid after a predeclared omission trigger. No diagnosis, anatomical label, source identity, prior result, mask or guaranteed-positive statement was supplied. Other findings are outside scope.",
+        "tools": "Installed Python/imaging tools and local image rendering under the frozen protocol. The full CTs were available. Target-source lookup, external retrieval and additional model downloads were blocked; the model transport route remained allowed. One fresh Astra/medium attempt, two-hour cap, no retry/resume.",
+        "reference": "The new private reference retained source label 3 at both visits and its persistent event; all other labels were zeroed only in this separate freeze. Two visit instances represent one focus. The original source labels, whole-volume references and scores remain unchanged. Reader reference overlays are never solver assistance.",
+        "spec": "First judge each candidate as `tumor`, `normal_or_benign` or `indeterminate`, with a nonempty image-based reason. Segment only `tumor` candidates; rejected/indeterminate candidates get no tumor mask. Include full visible extent on the exact native grid/affine. IDs are local to each visit; identity requires explicit events. `persistent` means identity, not unchanged size.",
+        "output": "Five files: baseline/follow-up integer instance NIfTIs, `events.json`, `report.md`, and `candidate_judgments.json`. Every positive ID appears once in the appropriate event list. Zero masks with empty events and supported negative/indeterminate judgments are permitted; they do not declare disappearance or absence of other disease.",
+        "score": "The saved model answer rejected 2/2 indicated candidates and produced exact-grid uint16 zero masks and empty events. Replay retains 0/2 source-positive acceptance, 0/2 localization and 0/1 end-to-end links/events. No conditional link/group is eligible; conditional scores and specificity are undefined. No negative reference controls exist.\n\nMechanical reward is output validity, not scientific success. Fresh offline controls additionally reproduce an enforcement gap: rejected judgments paired with oracle masks still validate and detect 2/2, while tumor judgments paired with empty masks report 2/2 acceptance and 0/2 detection. Judgment/mask consistency is not checked by the frozen wrapper. The actual saved answer is internally consistent, so this finding does not replace its original scores.",
+        "challenge": "The supplied centers remove discovery for this selected focus, while image interpretation and inclusion remain. Saved step-11 orthogonal views and step-14 center montages display the target locations; step 16 explicitly rejects them. The model's normal-soft-tissue explanation is an attributed interpretation, not a clinical verdict.",
+        "families": "One selected focus in one patient, two visits, one normally completed attempt (200.206477 seconds of recorded agent time). Selection depended on an earlier result: the persistent group had zero foreground coverage at both visits under the <10% omission trigger. This supports recognition/inclusion disagreement after assistance, not isolated search causality, population sensitivity, specificity or conditional segmentation/linking ability.\n\nThe source annotation protocol used CT and clinical examination reports. The solver had CT and points only. Case-specific reports and clinical/reference adjudication remain unavailable; exact geometry and score replay do not resolve image-only target suitability.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "R01 baseline [304,263,213] and R02 follow-up [302,221,216], zero-based native voxel indices. These are exact localization assistance, selected as the reference voxel nearest each voxel-index centroid after a predeclared omission trigger. No diagnosis, anatomical label, source identity, prior result, mask or guaranteed-positive statement was supplied. Other findings are outside scope.",
+            "remaining": "First judge each candidate as `tumor`, `normal_or_benign` or `indeterminate`, with a nonempty image-based reason. Segment only `tumor` candidates; rejected/indeterminate candidates get no tumor mask. Include full visible extent on the exact native grid/affine. IDs are local to each visit; identity requires explicit events. `persistent` means identity, not unchanged size."
+          }
+        ],
+        "sources": [
+          [
+            "Localized protocol",
+            "groups/longitudinal-reading/experiments/longitudinal-ct-localized-astra-medium/protocol.md"
+          ],
+          [
+            "Exact solver instruction",
+            "groups/longitudinal-reading/experiments/longitudinal-ct-localized-astra-medium/instruction.md"
+          ],
+          [
+            "Existing result and appended reader audit",
+            "groups/longitudinal-reading/findings/longitudinal-ct-v2-and-localized.md"
+          ],
+          [
+            "Source, freeze and replay audit",
+            "groups/longitudinal-reading/presentation/sources/localized-ct-audit.json"
+          ],
+          [
+            "Native view derivation and terms",
+            "presentation/task-explorer/localized-ct/NOTICE.md"
+          ],
+          [
+            "Longitudinal-CT v3: annotation protocol and source terms",
+            "https://fdat.uni-tuebingen.de/records/qe950-g4h94"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Inspect two supplied native CT locations, record explicit judgments, and segment/link only accepted tumor candidates. The retained result is a disagreement with the selected source reference after location assistance; clinical correctness remains unresolved.</p>",
+          "value": "<p>Separates an unexplained whole-volume omission from explicit rejection of an indicated structure. This is an adaptive diagnostic condition, not an independent detection benchmark.</p>",
+          "raw": "<p>The same full Longitudinal-CT v3 case 0a09c8844b baseline/follow-up CT pair used in the earlier revised whole-volume task. Native grids are 512×512×261 and 512×512×274, with 0.822265625/0.84765625 mm in-plane spacing and 3 mm through-plane spacing. Visits are not registered.</p>",
+          "helpers": "<p>R01 baseline [304,263,213] and R02 follow-up [302,221,216], zero-based native voxel indices. These are exact localization assistance, selected as the reference voxel nearest each voxel-index centroid after a predeclared omission trigger. No diagnosis, anatomical label, source identity, prior result, mask or guaranteed-positive statement was supplied. Other findings are outside scope.</p>",
+          "tools": "<p>Installed Python/imaging tools and local image rendering under the frozen protocol. The full CTs were available. Target-source lookup, external retrieval and additional model downloads were blocked; the model transport route remained allowed. One fresh Astra/medium attempt, two-hour cap, no retry/resume.</p>",
+          "reference": "<p>The new private reference retained source label 3 at both visits and its persistent event; all other labels were zeroed only in this separate freeze. Two visit instances represent one focus. The original source labels, whole-volume references and scores remain unchanged. Reader reference overlays are never solver assistance.</p>",
+          "spec": "<p>First judge each candidate as <code>tumor</code>, <code>normal_or_benign</code> or <code>indeterminate</code>, with a nonempty image-based reason. Segment only <code>tumor</code> candidates; rejected/indeterminate candidates get no tumor mask. Include full visible extent on the exact native grid/affine. IDs are local to each visit; identity requires explicit events. <code>persistent</code> means identity, not unchanged size.</p>",
+          "output": "<p>Five files: baseline/follow-up integer instance NIfTIs, <code>events.json</code>, <code>report.md</code>, and <code>candidate_judgments.json</code>. Every positive ID appears once in the appropriate event list. Zero masks with empty events and supported negative/indeterminate judgments are permitted; they do not declare disappearance or absence of other disease.</p>",
+          "score": "<p>The saved model answer rejected 2/2 indicated candidates and produced exact-grid uint16 zero masks and empty events. Replay retains 0/2 source-positive acceptance, 0/2 localization and 0/1 end-to-end links/events. No conditional link/group is eligible; conditional scores and specificity are undefined. No negative reference controls exist.</p>\n<p>Mechanical reward is output validity, not scientific success. Fresh offline controls additionally reproduce an enforcement gap: rejected judgments paired with oracle masks still validate and detect 2/2, while tumor judgments paired with empty masks report 2/2 acceptance and 0/2 detection. Judgment/mask consistency is not checked by the frozen wrapper. The actual saved answer is internally consistent, so this finding does not replace its original scores.</p>",
+          "challenge": "<p>The supplied centers remove discovery for this selected focus, while image interpretation and inclusion remain. Saved step-11 orthogonal views and step-14 center montages display the target locations; step 16 explicitly rejects them. The model&#x27;s normal-soft-tissue explanation is an attributed interpretation, not a clinical verdict.</p>",
+          "families": "<p>One selected focus in one patient, two visits, one normally completed attempt (200.206477 seconds of recorded agent time). Selection depended on an earlier result: the persistent group had zero foreground coverage at both visits under the &lt;10% omission trigger. This supports recognition/inclusion disagreement after assistance, not isolated search causality, population sensitivity, specificity or conditional segmentation/linking ability.</p>\n<p>The source annotation protocol used CT and clinical examination reports. The solver had CT and points only. Case-specific reports and clinical/reference adjudication remain unavailable; exact geometry and score replay do not resolve image-only target suitability.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
+      },
+      "completion_review": {
+        "date": "2026-09-28",
+        "source_brief_sha256": "abf4482f466f667137d1071253eef8e2673b737e2d50cf73d419852d5532e58e",
+        "source_story_sha256": "6c03a1eb6a455c495519697fb4b2fb82d3dcecd5cbabcf59121e5c6d927954f1",
+        "acceptance_receipt_sha256": "f867cb67b50cc8e65c88061c6d617257ff8c49d94f252597adab62eb7801c87c"
+      }
     },
     {
       "entry_id": "tb3-ct-context-inference",
@@ -13880,9 +13970,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 25,
+    "reviewed-scripted-planar": 26,
     "reviewed-scripted-spatial": 13,
-    "pending-operation-review": 12,
+    "pending-operation-review": 11,
     "blocked-source-contract": 107,
     "blocked-source-input": 48
   },
@@ -13903,7 +13993,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-localized-candidate-recognition",
+    "active_entry": "tb3-mri-importer",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -14509,6 +14599,15 @@
         "export_receipt_sha256": "463ed786d78b75278bd1842abb17a345978edf97864c4fe6781640ea5ed8f970",
         "reviewed_entries": 38,
         "next_entry": "tb3-localized-candidate-recognition"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-localized-candidate-recognition",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/031-acceptance.json",
+        "export_receipt_sha256": "e31dd25a7acc8ad83f551849d48899425bf514cbc76f68376adf07c8f88fee1b",
+        "reviewed_entries": 39,
+        "next_entry": "tb3-mri-importer"
       }
     ]
   }

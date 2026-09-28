@@ -203,3 +203,13 @@ Localized digest:
 · [Reproduction methods](../methods/longitudinal-ct-image-only-v2/README.md).
 
 [Machine-readable results, exact trace statements and source hashes](evidence/longitudinal-ct-v2-and-localized.json).
+
+## Localized reader audit — 2026-09-28
+
+Assistant explanation, not a new trial or clinical adjudication: the [localized source audit](../presentation/sources/localized-ct-audit.json) checks 88 retained fingerprints and 39 files across the revised/localized freezes. Whole source CTs, frozen inputs and agent caches agree exactly; the scoped reference is exactly source label 3. R01/R02 are the voxels nearest their reference centroids in voxel-index distance, not physical-distance minimization. Earlier foreground coverage is zero at both visits.
+
+The saved model and oracle metrics replay exactly. The no-op replay differs only in the answer-root path inside its missing-judgment error. Six new offline controls preserve their synthetic status. In particular, rejected judgments paired with oracle masks still produce `valid=true` and 2/2 detection; tumor judgments paired with empty masks yield 2/2 acceptance and 0/2 detection. The wrapper validates fields and mask geometry separately without enforcing conditional mask eligibility. The actual saved negative judgments and empty masks are consistent, so no original score or outcome is replaced.
+
+Four complete saved center/MPR JPEG montages reconstruct byte-for-byte. The reader views retain native slice/crop coordinates, fixed window, physical aspect and signed point-plane offsets. Step 11 displayed orthogonal views; step 14 displayed the center montages; step 16 explicitly rejected both candidates. These observations establish presentation and a recorded judgment, not internal attention or clinical correctness.
+
+The source [annotation protocol](https://fdat.uni-tuebingen.de/records/qe950-g4h94) used clinical examination reports with CT. The localized solver received CT and points only. Clinical/reference adjudication and case-specific reports remain unavailable. This information gap stays beside the recognition disagreement; it is not resolved by exact replay or by the separately open abdominal instance-partition review. Conditional segmentation and linking after positive acceptance remain untested.
