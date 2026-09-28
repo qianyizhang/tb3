@@ -1831,3 +1831,134 @@
     font-size: 11px;
   }
 }
+
+.aneurysmScene {
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.aneurysmScene h4 {
+  font-size: 16px;
+  margin: 0 0 12px;
+}
+.aneurysmCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.aneurysmCards[data-columns='2'] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.aneurysmCards[data-columns='1'] {
+  grid-template-columns: 1fr;
+}
+.aneurysmCards article {
+  min-width: 0;
+}
+.aneurysmCards b,
+.aneurysmAside article b {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+.aneurysmImage {
+  display: block;
+  width: 100%;
+  height: 200px;
+  background: #090e16;
+  border: 1px solid #74818a;
+}
+.aneurysmCards[data-columns='1'] .aneurysmImage {
+  height: 250px;
+}
+.aneurysmScene small,
+.aneurysmAside small {
+  display: block;
+  font-size: 10px;
+  line-height: 1.45;
+  margin-top: 5px;
+  overflow-wrap: anywhere;
+}
+.aneurysmTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 12px 0;
+}
+.aneurysmTable td,
+.aneurysmTable th {
+  border-bottom: 1px solid #cbd3d6;
+  padding: 9px 5px;
+  text-align: left;
+}
+.aneurysmFlow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.aneurysmFlow article {
+  flex: 1 1 140px;
+  border-top: 3px solid #3f8391;
+  padding: 12px;
+  background: #eff4f5;
+}
+.aneurysmFlow code {
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.aneurysmAside {
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.aneurysmAside .aneurysmImage {
+  height: 130px;
+  margin-top: 8px;
+}
+.aneurysmAside p {
+  margin: 8px 0;
+}
+.aneurysmAside pre {
+  font-size: 11px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='aneurysm-localization-v1']
+  .storyHeading {
+  height: 140px;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='aneurysm-localization-v1']
+  :global(.scene-steps button) {
+  min-height: 31px;
+  padding-block: 4px;
+}
+.player[data-recipe='aneurysm-localization-v1'] :global(.scene-step-index) {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.player[data-recipe='aneurysm-localization-v1'] :global(.scene-steps) {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+@container task-visual (max-width:900px) {
+  .player[data-recipe='aneurysm-localization-v1'] .storyLayout {
+    grid-template-columns: 1fr;
+  }
+  .player[data-recipe='aneurysm-localization-v1'] :global(.scene-steps) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@container task-visual (max-width:600px) {
+  .aneurysmCards,
+  .aneurysmCards[data-columns='2'] {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .aneurysmImage {
+    height: 245px;
+  }
+  .aneurysmTable {
+    font-size: 11px;
+  }
+}

@@ -514,6 +514,35 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class AneurysmChannels(TypedDict):
+    view: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AneurysmBeat(ExpansionBeat):
+    channels: AneurysmChannels
+    scene: Literal[
+        "inputs",
+        "projections",
+        "slabs",
+        "candidate",
+        "depth",
+        "outputs",
+        "reference",
+        "miss",
+        "coverage",
+        "negative",
+        "matching",
+        "limits",
+    ]
+
+
+class AneurysmPlan(ExpansionPlan):
+    recipe: Literal["aneurysm-localization-v1"]
+    beats: list[AneurysmBeat]
+
+
 class SegmentationCalibrationChannels(TypedDict):
     view: tuple[float, float]
     condition: tuple[float, float]
@@ -820,6 +849,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | AneurysmPlan
     | SegmentationCalibrationPlan
     | DentalV3Plan
     | DentalV2Plan

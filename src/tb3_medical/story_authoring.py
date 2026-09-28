@@ -150,6 +150,7 @@ def new(
         if recipe == "registration-analysis-v1":
             beat["scene"] = "input"
         if recipe in {
+            "aneurysm-localization-v1",
             "segmentation-calibration-v1",
             "dental-v3-v1",
             "dental-v2-v1",

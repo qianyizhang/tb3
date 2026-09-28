@@ -17,6 +17,9 @@ import {
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
   return !(
+    (state.recipe === 'aneurysm-localization-v1' &&
+      state.scene === 'reference' &&
+      state.reference <= 0.5) ||
     (state.recipe === 'segmentation-calibration-v1' &&
       state.scene === 'reference' &&
       state.reference <= 0.5) ||
@@ -26,6 +29,7 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'aneurysm-localization-v1',
     'segmentation-calibration-v1',
     'dental-v3-v1',
     'dental-v2-v1',
@@ -97,6 +101,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'aneurysm-localization-v1':
+      return {
+        heading: 'Aneurysm search and localization',
+        corner: 'Native MRA · three retained cases · separate reference reveal',
+        legend: [
+          ['#32d8e2', 'Submitted point · cross'],
+          ['#9beb72', 'Weak region · dashed', true],
+          ['#f5d76e', '+1 mm acceptance · dotted', 'dotted'],
+        ],
+      };
     case 'segmentation-calibration-v1':
       return {
         heading: 'Box-to-mask calibration',

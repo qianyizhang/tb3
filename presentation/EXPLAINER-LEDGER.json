@@ -2437,15 +2437,15 @@
       ],
       "illustration_kind": "landmark_point",
       "subject": "brain-vessels",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "aneurysm-localization",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "pending-operation-review",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "149 original fingerprints; 75 frozen-file checks; six exact complete input arrays; independent weak-region expansions; nine exact saved-grade replays; 45 licensed source views with pixel and contour round trips.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/completion-20260927/030-acceptance.json",
       "blocking_dependency": null,
-      "remaining_work": "Operation-specific authoring and visual review remain unfinished. Do not interpret this as an external blocker or a completed legacy fallback. Required result: Return the requested aneurysm presence/localization findings, including supported negative results.",
+      "remaining_work": "No outstanding explainer work for the three retained cases. Clinical visibility/completeness, miss cause and training overlap remain qualified; remote delivery pending at program level.",
       "contract_projection": {
         "raw": "Full angiographic imaging in the frozen lesion-localization packets.",
         "helpers": "Image and source-assistance boundaries differ by condition; a negative answer can be source-assisted.",
@@ -2468,7 +2468,97 @@
         ],
         "gap": "Not yet specified."
       },
-      "source_brief_sha256": "6716a261604b7ae8625637bb5a02ce376c0a12f86bbda9aeed5716c618affe21"
+      "source_brief_sha256": "6716a261604b7ae8625637bb5a02ce376c0a12f86bbda9aeed5716c618affe21",
+      "source_review": {
+        "date": "2026-09-28",
+        "reviewer": "assistant",
+        "receipt": "groups/lesion-localization/presentation/sources/aneurysm-audit.json",
+        "sha256": "dc093b29742b23871dae959f62360d912d9954599cbeff2fac6bb262140c72fc",
+        "status": "source-audit-complete"
+      },
+      "acceptance_scope": "Source, visual and engineering review of three retained BR-016 aneurysm-localization cases. No new medical/model trial, runtime install, clinical adjudication or publication.",
+      "visual_review": "Twelve chapters and full 167-second playback; full-volume MRA, all twelve slabs and seven selected depths, point output, delayed weak-region reveal, distinct reference miss and source-assisted negative, controls and limits; desktop/mobile/locale/Explorer/no-GPU reviewed.",
+      "reviewed_contract_projection": {
+        "title": "Search for aneurysms and preserve negative cases",
+        "goal": "Search a complete native TOF-MRA examination, check candidate structures in\nmultiple planes, and return one voxel coordinate per finding or an empty list.\nThe retained pilot contains one reference miss, one successful localization and\none negative answer after public-source identification. Keep those conditions separate.",
+        "value": "Connect full-volume visual search with a numerical deliverable. This task stops\nat localization; it does not estimate rupture risk, segment sac boundaries or\nchoose treatment. No dedicated aneurysm detector was supplied or observed.",
+        "raw": "Three distinct public OpenNeuro ds003949 examinations. Each task includes original\nand source skull-stripped TOF-MRA, with unchanged sample values and RAS affine.\n\n| Case | Native grid | Spacing i/j/k, mm |\n| --- | --- | --- |\n| N01 | 350 × 448 × 144 | 0.46875 / 0.46875 / 0.70000 |\n| N02 | 512 × 512 × 140 | 0.41016 / 0.41016 / 0.55000 |\n| N03 | 350 × 448 × 160 | 0.46875 / 0.46875 / 0.70000 |",
+        "helpers": "Metadata, three full-volume maximum-intensity projections (MIPs), twelve equal\naxial-slab MIPs covering the entire scan, and a slice/MIP helper. No lesion-centred\ncrop, lesion count or private reference mask was supplied. A source notice named\nthe public dataset while omitting patient identifiers.",
+        "tools": "Python, image rendering and public network access; four CPU cores, 4 GiB memory,\nno GPU. Three completed `gpt-5.6-sol` / `xhigh` attempts had a 1,800-second agent\nlimit. The agent could author views and numerical checks. N03 used allowed lookup.",
+        "reference": "Source masks and frozen acceptance regions belong to the separate evaluator.\nReference-centred crops, outlines and scores are post-result reader aids. A\nsource-derived crop can remove the search problem even with its outline hidden.\nThe selected source regions are coarse annotations, not exact sac boundaries.",
+        "spec": "Write exactly `{\"aneurysms\": [[i,j,k], ...]}`. Return an empty list for no findings.\nIndices are zero-based native voxel centres; axes increase Right, Anterior,\nSuperior. Display horizontal follows the first remaining array axis and vertical\npoints upward along the second. This is an explicitly labelled coordinate display,\nnot the usual radiological left-right convention. Preserve anisotropic spacing.\n\nCheck projection candidates in individual sections or smaller slabs. A MIP\ncollapses depth and can superimpose unrelated structures. No abnormality is injected.",
+        "output": "| Case | Saved points | TP / FP / FN | Evidence condition |\n| --- | --- | --- | --- |\n| N01 | `[]` | 0 / 0 / 1 | Reference miss; no source lookup observed |\n| N02 | `[[312,213,94]]` | 1 / 0 / 0 | Matching localization; no source lookup observed |\n| N03 | `[]` | 0 / 0 / 0 | Negative after source and annotation-inventory exposure |\n\nAll three completed normally; one attempt per selected scan. Do not convert the\nthree outcomes into a population success-rate estimate or causal method ranking.",
+        "score": "Round each finite coordinate with `floor(x + 0.5)`. Match its rounded voxel to a\nreleased source region or its **1 mm Euclidean voxel-centre expansion**, one point\nper region. All regions must match and no extra detections may remain. Duplicates\ncannot match the same region twice. This is not exact-centre or contour scoring.\n\nN02's point is **2.1625 mm from the reference centroid** and inside the released\nregion itself. The [fresh replay audit](../sources/aneurysm-audit.json) verifies\n75 frozen-file checks, six exact source-to-input arrays, independent acceptance\nregions and nine saved grades. Three oracles pass; three `{}` no-ops fail schema\nvalidation. An empty valid list passes N03, while an added corner detection fails.\nInvalid-schema no-op failure does not establish a difficult negative case.\n\nV1's oracle failed on a missing separate-verifier Dockerfile. V2 adds the file\nand changes task naming, preserving image, instruction, reference and scorer\nbytes. No model attempted v1. Preserve the setup failure separately.",
+        "challenge": "N02 trace steps 14–15 generate and display candidate views in three planes. The\nexplainer reconstructs selected native sections using that exact crop/window;\npoint-centred reader sections are a separate post-result view. Further branch\nsurveys and threshold/centroid checks preceded the submitted point.\n\nN01's final candidate montages, steps 28–29, focus near `[192,248,74]` and\n`[166,309,100]`, away from reference centroid `[166,273,84]`. Earlier views included\nthe region. Coverage does not prove discernibility, attention or recognition;\nits empty answer is a reference miss regardless of precise tolerance.\n\nN03 reads the public manual-mask inventory at step 42 and confirms source array\nequality at step 48 before submission. No negative answer was frozen before lookup.\nIts pass supports source-assisted exclusion, not isolated image-only interpretation.",
+        "families": "Fixed source-order curation admitted two positives and one control. A multilesion\ncase with a roughly 2 mm weak label was held before trials. No outcome-selected\nreplacement or model retry occurred. The [source paper](https://doi.org/10.1007/s12021-022-09597-0)\ndescribes radiologist annotations checked by a senior neuroradiologist and weak\nspheres enclosing lesions. That protocol does not adjudicate these pilot outcomes.\nIndependent clinical reference/visibility review and training overlap remain\nunresolved. The pilot supplied MRA, not every clinical record available during\nsource-cohort construction. These views are teaching aids, not clinical validation.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "Metadata, three full-volume maximum-intensity projections (MIPs), twelve equal\naxial-slab MIPs covering the entire scan, and a slice/MIP helper. No lesion-centred\ncrop, lesion count or private reference mask was supplied. A source notice named\nthe public dataset while omitting patient identifiers.",
+            "remaining": "Write exactly `{\"aneurysms\": [[i,j,k], ...]}`. Return an empty list for no findings.\nIndices are zero-based native voxel centres; axes increase Right, Anterior,\nSuperior. Display horizontal follows the first remaining array axis and vertical\npoints upward along the second. This is an explicitly labelled coordinate display,\nnot the usual radiological left-right convention. Preserve anisotropic spacing.\n\nCheck projection candidates in individual sections or smaller slabs. A MIP\ncollapses depth and can superimpose unrelated structures. No abnormality is injected."
+          }
+        ],
+        "sources": [
+          [
+            "BR-016 protocol",
+            "groups/lesion-localization/experiments/br016/protocol.md"
+          ],
+          [
+            "Retained case and trace results",
+            "docs/research-rounds/BR-016-results.md"
+          ],
+          [
+            "Measured ledger",
+            "docs/evidence/br016-results.json"
+          ],
+          [
+            "Current synthesis",
+            "groups/lesion-localization/findings/lesion-localization-current-synthesis.md"
+          ],
+          [
+            "Independent saved-evidence audit",
+            "groups/lesion-localization/presentation/sources/aneurysm-audit.json"
+          ],
+          [
+            "Source dataset",
+            "https://github.com/OpenNeuroDatasets/ds003949"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Search a complete native TOF-MRA examination, check candidate structures in multiple planes, and return one voxel coordinate per finding or an empty list. The retained pilot contains one reference miss, one successful localization and one negative answer after public-source identification. Keep those conditions separate.</p>",
+          "value": "<p>Connect full-volume visual search with a numerical deliverable. This task stops at localization; it does not estimate rupture risk, segment sac boundaries or choose treatment. No dedicated aneurysm detector was supplied or observed.</p>",
+          "raw": "<p>Three distinct public OpenNeuro ds003949 examinations. Each task includes original and source skull-stripped TOF-MRA, with unchanged sample values and RAS affine.</p>\n<div class=\"table\"><table>\n<tr><th>Case</th><th>Native grid</th><th>Spacing i/j/k, mm</th></tr>\n<tr><td>N01</td><td>350 × 448 × 144</td><td>0.46875 / 0.46875 / 0.70000</td></tr>\n<tr><td>N02</td><td>512 × 512 × 140</td><td>0.41016 / 0.41016 / 0.55000</td></tr>\n<tr><td>N03</td><td>350 × 448 × 160</td><td>0.46875 / 0.46875 / 0.70000</td></tr>\n</table></div>",
+          "helpers": "<p>Metadata, three full-volume maximum-intensity projections (MIPs), twelve equal axial-slab MIPs covering the entire scan, and a slice/MIP helper. No lesion-centred crop, lesion count or private reference mask was supplied. A source notice named the public dataset while omitting patient identifiers.</p>",
+          "tools": "<p>Python, image rendering and public network access; four CPU cores, 4 GiB memory, no GPU. Three completed <code>gpt-5.6-sol</code> / <code>xhigh</code> attempts had a 1,800-second agent limit. The agent could author views and numerical checks. N03 used allowed lookup.</p>",
+          "reference": "<p>Source masks and frozen acceptance regions belong to the separate evaluator. Reference-centred crops, outlines and scores are post-result reader aids. A source-derived crop can remove the search problem even with its outline hidden. The selected source regions are coarse annotations, not exact sac boundaries.</p>",
+          "spec": "<p>Write exactly <code>{&quot;aneurysms&quot;: [[i,j,k], ...]}</code>. Return an empty list for no findings. Indices are zero-based native voxel centres; axes increase Right, Anterior, Superior. Display horizontal follows the first remaining array axis and vertical points upward along the second. This is an explicitly labelled coordinate display, not the usual radiological left-right convention. Preserve anisotropic spacing.</p>\n<p>Check projection candidates in individual sections or smaller slabs. A MIP collapses depth and can superimpose unrelated structures. No abnormality is injected.</p>",
+          "output": "<div class=\"table\"><table>\n<tr><th>Case</th><th>Saved points</th><th>TP / FP / FN</th><th>Evidence condition</th></tr>\n<tr><td>N01</td><td><code>[]</code></td><td>0 / 0 / 1</td><td>Reference miss; no source lookup observed</td></tr>\n<tr><td>N02</td><td><code>[[312,213,94]]</code></td><td>1 / 0 / 0</td><td>Matching localization; no source lookup observed</td></tr>\n<tr><td>N03</td><td><code>[]</code></td><td>0 / 0 / 0</td><td>Negative after source and annotation-inventory exposure</td></tr>\n</table></div>\n<p>All three completed normally; one attempt per selected scan. Do not convert the three outcomes into a population success-rate estimate or causal method ranking.</p>",
+          "score": "<p>Round each finite coordinate with <code>floor(x + 0.5)</code>. Match its rounded voxel to a released source region or its <strong>1 mm Euclidean voxel-centre expansion</strong>, one point per region. All regions must match and no extra detections may remain. Duplicates cannot match the same region twice. This is not exact-centre or contour scoring.</p>\n<p>N02&#x27;s point is <strong>2.1625 mm from the reference centroid</strong> and inside the released region itself. The <span class=\"unavailable\">fresh replay audit (local artifact)</span> verifies 75 frozen-file checks, six exact source-to-input arrays, independent acceptance regions and nine saved grades. Three oracles pass; three <code>{}</code> no-ops fail schema validation. An empty valid list passes N03, while an added corner detection fails. Invalid-schema no-op failure does not establish a difficult negative case.</p>\n<p>V1&#x27;s oracle failed on a missing separate-verifier Dockerfile. V2 adds the file and changes task naming, preserving image, instruction, reference and scorer bytes. No model attempted v1. Preserve the setup failure separately.</p>",
+          "challenge": "<p>N02 trace steps 14–15 generate and display candidate views in three planes. The explainer reconstructs selected native sections using that exact crop/window; point-centred reader sections are a separate post-result view. Further branch surveys and threshold/centroid checks preceded the submitted point.</p>\n<p>N01&#x27;s final candidate montages, steps 28–29, focus near <code>[192,248,74]</code> and <code>[166,309,100]</code>, away from reference centroid <code>[166,273,84]</code>. Earlier views included the region. Coverage does not prove discernibility, attention or recognition; its empty answer is a reference miss regardless of precise tolerance.</p>\n<p>N03 reads the public manual-mask inventory at step 42 and confirms source array equality at step 48 before submission. No negative answer was frozen before lookup. Its pass supports source-assisted exclusion, not isolated image-only interpretation.</p>",
+          "families": "<p>Fixed source-order curation admitted two positives and one control. A multilesion case with a roughly 2 mm weak label was held before trials. No outcome-selected replacement or model retry occurred. The <a href=\"https://doi.org/10.1007/s12021-022-09597-0\">source paper</a> describes radiologist annotations checked by a senior neuroradiologist and weak spheres enclosing lesions. That protocol does not adjudicate these pilot outcomes. Independent clinical reference/visibility review and training overlap remain unresolved. The pilot supplied MRA, not every clinical record available during source-cohort construction. These views are teaching aids, not clinical validation.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
+      },
+      "completion_review": {
+        "date": "2026-09-28",
+        "source_brief_sha256": "419c3a875fc1a197e3c62c7bfc960308c3014c35182449c057d3c29aa3ae8d54",
+        "source_story_sha256": "addc8926df256132af658b72eda4faf3aac700fab924e5c6544e7afe8ebafb72",
+        "acceptance_receipt_sha256": "356e82bf5d3164805ec41c4c73448fbfccf1711ca2f8400954939c6b79dcc356"
+      }
     },
     {
       "entry_id": "wsi-camelyon-search",
@@ -13790,9 +13880,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 24,
+    "reviewed-scripted-planar": 25,
     "reviewed-scripted-spatial": 13,
-    "pending-operation-review": 13,
+    "pending-operation-review": 12,
     "blocked-source-contract": 107,
     "blocked-source-input": 48
   },
@@ -13813,7 +13903,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "tb3-aneurysm-localization",
+    "active_entry": "tb3-localized-candidate-recognition",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -14410,6 +14500,15 @@
         "export_receipt_sha256": "e7acf8ebbbecba1815a3cfc5229ff98bec3d7a188a7d90fc98807633cb08bf37",
         "reviewed_entries": 37,
         "next_entry": "tb3-aneurysm-localization"
+      },
+      {
+        "date": "2026-09-28",
+        "entry_id": "tb3-aneurysm-localization",
+        "stage": "reviewed-scripted-planar",
+        "receipt": ".local/explainers/completion-20260927/030-acceptance.json",
+        "export_receipt_sha256": "463ed786d78b75278bd1842abb17a345978edf97864c4fe6781640ea5ed8f970",
+        "reviewed_entries": 38,
+        "next_entry": "tb3-localized-candidate-recognition"
       }
     ]
   }

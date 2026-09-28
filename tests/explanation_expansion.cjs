@@ -172,6 +172,12 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     dentalDisplayedItems,
   } = await loadFrontend('expansion_fixture.mjs');
   const {
+    aneurysmSelection,
+    aneurysmCases,
+    aneurysmOutputs,
+    aneurysmReference,
+    aneurysmPixel,
+    aneurysmDepths,
     calibrationSelection,
     calibrationSource,
     calibrationOutput,
@@ -185,6 +191,72 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     dentalV2Stages,
     dentalV2Outputs,
   } = await loadFrontend('expansion_fixture.mjs');
+  const aneurysmPlan = plans.find((p) => p.recipe === 'aneurysm-localization-v1');
+  assert.ok(aneurysmPlan);
+  assert.equal(aneurysmSelection(sampleStory(aneurysmPlan, 0)).output, false);
+  assert.equal(aneurysmSelection(sampleStory(aneurysmPlan, 0)).reference, false);
+  for (const [scene, field, expected] of [
+    ['slabs', 'slab', Array.from({ length: 12 }, (_, i) => i)],
+    ['depth', 'depth', Array.from(aneurysmDepths)],
+  ]) {
+    const beat = aneurysmPlan.beats.find((b) => b.scene === scene),
+      seen = new Set();
+    for (let f = beat.startFrame; f < beat.endFrame; f++)
+      seen.add(aneurysmSelection(sampleStory(aneurysmPlan, f))[field]);
+    assert.deepEqual([...seen], expected);
+  }
+  const aneurysmReveal = aneurysmPlan.beats.find((b) => b.scene === 'reference');
+  assert.equal(
+    aneurysmSelection(sampleStory(aneurysmPlan, aneurysmReveal.startFrame)).reference,
+    false,
+  );
+  assert.equal(
+    aneurysmSelection(sampleStory(aneurysmPlan, aneurysmReveal.endFrame - 1)).reference,
+    true,
+  );
+  const aneurysmPoint = aneurysmOutputs.cases.n02.answer.aneurysms[0];
+  for (const id of ['n01', 'n02', 'n03']) {
+    assert.equal(aneurysmOutputs.cases[id].answer.aneurysms.length, id === 'n02' ? 1 : 0);
+    assert.equal(aneurysmOutputs.cases[id].trace.annotation_inventory_exposed, id === 'n03');
+  }
+  for (let axis = 0; axis < 3; axis++) {
+    const plane = aneurysmCases.n02.views[`point-${axis}`];
+    const pixel = aneurysmPixel(plane, aneurysmPoint, aneurysmCases.n02.spacing_mm);
+    assert.equal(pixel.offset_mm, 0);
+    assert.ok(pixel.x > 0 && pixel.x < plane.width && pixel.y > 0 && pixel.y < plane.height);
+    assert.equal(pixel.x + plane.bounds[plane.u_axis * 2] - 0.5, aneurysmPoint[plane.u_axis]);
+    assert.equal(plane.bounds[plane.v_axis * 2 + 1] - pixel.y - 0.5, aneurysmPoint[plane.v_axis]);
+  }
+  const aneurysmDistance = Math.hypot(
+    ...aneurysmPoint.map(
+      (p, a) =>
+        (p - aneurysmReference.cases.n02.regions[0].center_ijk[a]) *
+        aneurysmCases.n02.spacing_mm[a],
+    ),
+  );
+  assert.ok(Math.abs(aneurysmDistance - aneurysmReference.n02_point_to_centroid_mm) < 1e-12);
+  assert.equal(aneurysmReference.n02_inside_source_region, true);
+  const slabCoverage = Array(aneurysmCases.n02.shape[2]).fill(0);
+  for (let i = 0; i < 12; i++) {
+    const b = aneurysmCases.n02.views[`slab-${i}`].bounds;
+    for (let k = b[4]; k < b[5]; k++) slabCoverage[k]++;
+  }
+  assert.ok(
+    slabCoverage.every((n) => n === 1),
+    'Every native axial slice belongs to one slab',
+  );
+  for (const [key, ref] of Object.entries(aneurysmReference.views)) {
+    const [id, name] = key.split('/'),
+      plane = aneurysmCases[id].views[name];
+    assert.ok(ref.weak.pixels <= ref.accepted.pixels);
+    for (const region of [ref.weak, ref.accepted])
+      for (const path of region.paths)
+        for (const [x, y] of path)
+          assert.ok(
+            x >= 0 && y >= 0 && x <= plane.width && y <= plane.height,
+            key + ' contour bounds',
+          );
+  }
   const calPlan = plans.find((p) => p.recipe === 'segmentation-calibration-v1');
   assert.ok(calPlan);
   const calStart = calibrationSelection(sampleStory(calPlan, 0));
