@@ -95,7 +95,7 @@ amplitude error **0.00110562**. These use different metrics and evaluation state
 
 ### Input
 
-**Source arrays acquired; visual integration pending.** Three selected native
+**Native source views.** Three selected native
 frames at scans 0, 49 and 99, with their actual encoder positions, can illustrate
 the operation. Rectangular windows cover 144,986/293,764 object pixels; they are
 not an illumination support or accuracy mask.
@@ -109,7 +109,7 @@ updating object or probe. Its measured-intensity agreement is not reconstruction
 ### Reference or output
 
 **Saved result and synthetic truth remain separate.** The released complex result
-is inspected as stored. Truth appears only after a reader reveal in the planned
+is inspected as stored. Truth appears only after a reader reveal in the canonical
 story, with its actual solver-visible staging disclosed.
 
 ## Conditions
@@ -132,6 +132,7 @@ truth amplitude makes magnitude-only metrics particularly uninformative here.
 - [Pinned source solver](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/conventional_ptychography/src/solvers.py)
 - [Pinned active scorer](https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py)
 - [Pinned numeric assets](https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/conventional_ptychography)
+- [Canonical story](../stories/imaging101-ptychography.story.md)
 - [Source and numerical audit](../sources/imaging101-ptychography-audit.json)
 - [Original PtyLab attribution](https://github.com/PtyLab/PtyLab.py)
 
@@ -145,7 +146,7 @@ equivalence is claimed.
 
 ## Gaps
 
-The canonical story, native views, Explorer integration, video and visual review
-remain unfinished. No fresh inverse, agent performance, hidden-reference validity,
+The canonical story illustrates this pinned source condition. No fresh inverse,
+agent performance, hidden-reference validity,
 benchmark pass or general specimen accuracy is established. Original scores and
 arrays remain unchanged.

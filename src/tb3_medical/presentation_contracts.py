@@ -514,6 +514,23 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class Imaging101PtychographyChannels(TypedDict):
+    view: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class Imaging101PtychographyBeat(ExpansionBeat):
+    channels: Imaging101PtychographyChannels
+    scene: Literal[
+        "inputs", "overlap", "projection", "output", "reference", "staging", "scoring", "limits"
+    ]
+
+
+class Imaging101PtychographyPlan(ExpansionPlan):
+    recipe: Literal["imaging101-ptychography-v1"]
+    beats: list[Imaging101PtychographyBeat]
+
+
 class Imaging101NlosChannels(TypedDict):
     view: tuple[float, float]
     reference: tuple[float, float]
@@ -1065,6 +1082,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | Imaging101PtychographyPlan
     | Imaging101NlosPlan
     | Imaging101CarsPlan
     | RexTopcowPlan

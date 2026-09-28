@@ -17,6 +17,9 @@ import {
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
   return !(
+    (state.recipe === 'imaging101-ptychography-v1' &&
+      state.scene === 'reference' &&
+      state.reference <= 0.5) ||
     (state.recipe === 'imaging101-nlos-v1' &&
       state.scene === 'reference' &&
       state.reference <= 0.5) ||
@@ -48,6 +51,7 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'imaging101-ptychography-v1',
     'imaging101-nlos-v1',
     'imaging101-cars-v1',
     'rex-topcow-v1',
@@ -130,6 +134,16 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'imaging101-ptychography-v1':
+      return {
+        heading: 'Recover phase from overlapping diffraction',
+        corner: 'Synthetic measurements · saved complex object',
+        legend: [
+          ['#264b43', 'Source / saved · solid'],
+          ['#b9521e', 'Selected scan · orange'],
+          ['#8052a1', 'Synthetic truth · dashed', true],
+        ],
+      };
     case 'imaging101-nlos-v1':
       return {
         heading: 'Reconstruct a hidden scene from timed light',

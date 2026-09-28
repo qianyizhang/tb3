@@ -1,3 +1,4 @@
+import { PtychographyScene, PtychographyOutput } from './imaging101-ptychography-panels';
 import { NlosScene, NlosOutput } from './imaging101-nlos-panels';
 import { CarsScene, CarsOutput } from './imaging101-cars-panels';
 import { RexScene, RexOutput } from './rex-topcow-panels';
@@ -135,6 +136,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   if (state.recipe === 'resect-correspondence-v1') return <ResectScene state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisScene state={state} />;
+  if (state.recipe === 'imaging101-ptychography-v1') return <PtychographyScene state={state} />;
   if (state.recipe === 'imaging101-nlos-v1') return <NlosScene state={state} />;
   if (state.recipe === 'imaging101-cars-v1') return <CarsScene state={state} />;
   if (state.recipe === 'rex-topcow-v1') return <RexScene state={state} />;
@@ -371,6 +373,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'resect-correspondence-v1') return <ResectOutput state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisOutput state={state} />;
+  if (state.recipe === 'imaging101-ptychography-v1') return <PtychographyOutput state={state} />;
   if (state.recipe === 'imaging101-nlos-v1') return <NlosOutput state={state} />;
   if (state.recipe === 'imaging101-cars-v1') return <CarsOutput state={state} />;
   if (state.recipe === 'rex-topcow-v1') return <RexOutput state={state} />;

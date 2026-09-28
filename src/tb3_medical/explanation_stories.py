@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "imaging101-ptychography-v1": "retained-imaging101-ptychography-v1",
     "imaging101-nlos-v1": "retained-imaging101-nlos-v1",
     "imaging101-cars-v1": "retained-imaging101-cars-v1",
     "rex-topcow-v1": "retained-rex-topcow-v1",
@@ -97,6 +98,18 @@ SOURCE_INPUT_PACKS = {
     ),
 }
 SOURCE_REFERENCE_PACKS = {
+    "retained-imaging101-ptychography-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "inputs.json",
+            "reference.json",
+            "contract.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+            "BENCHMARK-LICENSE.txt",
+        },
+    ),
     "retained-imaging101-nlos-v1": (
         "source-records",
         "reference.json",
@@ -538,6 +551,11 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class Imaging101PtychographyChannels(Closed):
+    view: Pair
+    reference: Pair
 
 
 class Imaging101NlosChannels(Closed):
@@ -1018,6 +1036,24 @@ class RegistrationAnalysisBeat(ExpansionBeat[RegistrationAnalysisChannels]):
 class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
     recipe: Literal["registration-analysis-v1"]
     beats: tuple[RegistrationAnalysisBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class Imaging101PtychographyBeat(ExpansionBeat[Imaging101PtychographyChannels]):
+    scene: Literal[
+        "inputs", "overlap", "projection", "output", "reference", "staging", "scoring", "limits"
+    ]
+
+
+class Imaging101PtychographyStory(Story[Imaging101PtychographyChannels]):
+    recipe: Literal["imaging101-ptychography-v1"]
+    beats: tuple[Imaging101PtychographyBeat, ...]
 
     @model_validator(mode="after")
     def scene_cuts(self) -> Self:
@@ -1562,6 +1598,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101PtychographyStory
     | Imaging101NlosStory
     | Imaging101CarsStory
     | RexTopcowStory
@@ -1608,6 +1645,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101PtychographyStory
     | Imaging101NlosStory
     | Imaging101CarsStory
     | RexTopcowStory
@@ -1814,6 +1852,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101PtychographyStory
     | Imaging101NlosStory
     | Imaging101CarsStory
     | RexTopcowStory
@@ -1905,6 +1944,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = source_packs[pack_id]
         frame, data_license, label_license = {
+            "retained-imaging101-ptychography-v1": (
+                "source-record",
+                "PtyLab academic/non-commercial",
+                "MIT",
+            ),
             "retained-imaging101-nlos-v1": (
                 "source-record",
                 "Stanford academic/non-commercial",
@@ -1977,7 +2021,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             or manifest.get("frame") != frame
             or manifest.get("units")
             != (
-                "m"
+                "um"
+                if pack_id == "retained-imaging101-ptychography-v1"
+                else "m"
                 if pack_id == "retained-imaging101-nlos-v1"
                 else "cm^-1"
                 if pack_id == "retained-imaging101-cars-v1"

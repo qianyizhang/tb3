@@ -28,6 +28,7 @@ class ExpansionTests(unittest.TestCase):
                     "mask-screen-v1",
                     "anatomy-curation-v1",
                     "ct-context-v1",
+                    "imaging101-ptychography-v1",
                     "imaging101-nlos-v1",
                     "imaging101-cars-v1",
                     "rex-topcow-v1",
@@ -85,6 +86,7 @@ class ExpansionTests(unittest.TestCase):
 
     def test_source_screen_scene_changes_require_explicit_cuts(self):
         for group, name in [
+            (None, "imaging101-ptychography"),
             (None, "imaging101-nlos"),
             (None, "imaging101-cars"),
             (None, "rex-topcow"),
@@ -158,6 +160,7 @@ class ExpansionTests(unittest.TestCase):
             "registration-analysis",
             "segmentation-calibration",
             "ct-context",
+            "imaging101-ptychography",
             "imaging101-nlos",
             "imaging101-cars",
             "rex-topcow",

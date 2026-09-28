@@ -1,5 +1,14 @@
 # Canonical task explainers
 
+`imaging101-ptychography-v1` uses native simulated diffraction, exact encoder
+windows, labeled initial-state intensity projections and the saved complex object.
+Its [source notice](task-explorer/imaging101-ptychography/NOTICE.md) preserves pixel
+geometry, phase scales and original attribution. `view` selects source scans,
+saved views or controls; `reference` reveals synthetic truth only in its chapter.
+Actual released staging exposes that truth at every assistance level. Generic
+magnitude scoring and native phase scoring remain separate; no fresh inverse or
+benchmark pass is implied.
+
 `imaging101-nlos-v1` uses exact confocal histograms, calibration shifts and
 Stolt-map probes with the released saved-volume projections. The
 [source notice](task-explorer/imaging101-nlos/NOTICE.md) retains Stanford data

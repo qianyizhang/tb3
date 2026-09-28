@@ -18,6 +18,10 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    ptychographyReveal,
+    ptychographyInput,
+    ptychographyData,
+    ptychographyCorner,
     nlosReveal,
     nlosInputs,
     nlosContract,
@@ -1633,6 +1637,38 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       'Witness must lie in displayed reference',
     );
   }
+  const ptychography = plans.find((p) => p.recipe === 'imaging101-ptychography-v1');
+  assert(ptychography);
+  const ptychographyReferenceBeat = ptychography.beats.find((b) => b.scene === 'reference');
+  assert.equal(
+    ptychographyReveal(sampleStory(ptychography, ptychographyReferenceBeat.startFrame)),
+    false,
+  );
+  assert.equal(
+    ptychographyReveal(sampleStory(ptychography, ptychographyReferenceBeat.endFrame - 1)),
+    true,
+  );
+  assert.equal(ptychographyReveal(sampleStory(ptychography, 0)), false);
+  for (let j = 0; j < ptychographyInput.positions.length; j++)
+    assert.deepEqual(
+      ptychographyCorner(ptychographyInput.encoders[j]),
+      ptychographyInput.positions[j],
+    );
+  for (const sample of ptychographyInput.samples) {
+    assert.deepEqual(sample.measured.shape, sample.projected.shape);
+    assert.deepEqual(sample.measured.range, sample.projected.range);
+    assert.ok(sample.after_relative_l1 < sample.before_relative_l1 / 1000);
+  }
+  assert.deepEqual(
+    ptychographyData.generic['truth-copy'],
+    ptychographyData.generic['phase-erased-unit'],
+  );
+  assert.deepEqual(
+    ptychographyData.generic['truth-copy'],
+    ptychographyData.generic['conjugated-truth'],
+  );
+  assert.equal(ptychographyData.native_phase['phase-erased-unit'].ncc, 0);
+  assert.ok(ptychographyData.native_phase['conjugated-truth'].ncc < -0.999);
   const nlos = plans.find((p) => p.recipe === 'imaging101-nlos-v1');
   assert(nlos);
   const nb = nlos.beats.find((b) => b.scene === 'reference');

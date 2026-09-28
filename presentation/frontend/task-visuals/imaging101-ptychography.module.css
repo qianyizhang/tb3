@@ -1,0 +1,177 @@
+.scene {
+  height: 442px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #f6f7ef;
+  padding: 14px 24px;
+  color: #264b43;
+  font-size: 13px;
+}
+.scene h3 {
+  margin: 0 0 12px;
+  font-size: 23px;
+  line-height: 1.2;
+}
+.scene h4 {
+  margin: 5px 0 8px;
+  font-size: 17px;
+  line-height: 1.25;
+}
+.scene p {
+  margin: 7px 0;
+  line-height: 1.4;
+}
+.scene small {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+.three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.card {
+  background: #fff;
+  border: 1px solid #d0d5ca;
+  padding: 12px;
+  min-width: 0;
+}
+.note {
+  padding: 9px 12px;
+  border-left: 3px solid #c38825;
+  background: #fff3dc;
+}
+.flow {
+  padding: 10px 12px;
+  background: #e7eadf;
+}
+.plane {
+  margin: 0;
+  min-width: 0;
+  text-align: center;
+}
+.plane svg {
+  display: block;
+  width: 100%;
+  height: 290px;
+}
+.plane figcaption {
+  margin: 0;
+  font-size: 12px;
+}
+.scene svg text {
+  fill: #264b43;
+  font-size: 11px;
+  font-family: inherit;
+}
+.scene dl {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px;
+  margin: 10px 0;
+}
+.scene dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.scene pre {
+  background: #edf0e8;
+  padding: 12px;
+  font-size: 13px;
+}
+.scale {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+}
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+.table th,
+.table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #dce0d6;
+}
+.active {
+  background: #e2eee7;
+  outline: 1px solid #86a49a;
+}
+.aside {
+  color: #345148;
+  padding: 22px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.aside b {
+  font-size: 12px;
+}
+.aside small {
+  display: block;
+  color: #6c8178;
+  font-size: 11px;
+}
+@container task-visual (max-width:900px) {
+  .scene {
+    height: auto;
+    overflow: visible;
+    padding: 16px;
+  }
+  .two,
+  .three {
+    grid-template-columns: 1fr;
+  }
+  .scene h3 {
+    font-size: 21px;
+  }
+  .table {
+    font-size: 11px;
+  }
+  .table th,
+  .table td {
+    padding: 7px 4px;
+  }
+  .plane svg {
+    height: 310px;
+  }
+}
+
+.scale i {
+  display: block;
+  width: 95px;
+  height: 12px;
+  background: linear-gradient(to right, #000, #fff);
+  border: 1px solid #9baa9f;
+}
+.map,
+.history {
+  display: block;
+  width: 100%;
+  height: 320px;
+}
+.scene[data-ptychography-scene='projection'] .plane svg {
+  height: 220px;
+}
+.scene[data-ptychography-scene='projection'] .note {
+  padding-block: 6px;
+}
+@container task-visual (max-width:900px) {
+  .scene[data-ptychography-scene='projection'] .plane svg {
+    height: 300px;
+  }
+  .scale {
+    flex-wrap: wrap;
+  }
+}

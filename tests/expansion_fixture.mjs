@@ -217,3 +217,5 @@ export * from '../presentation/frontend/task-visuals/rex-topcow';
 export * from '../presentation/frontend/task-visuals/imaging101-cars';
 
 export * from '../presentation/frontend/task-visuals/imaging101-nlos';
+
+export * from '../presentation/frontend/task-visuals/imaging101-ptychography';
