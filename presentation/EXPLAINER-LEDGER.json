@@ -8655,34 +8655,47 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "blocked-source-input",
+      "source_asset_readiness": "13 task and 60 shared source files verified. Four of six numerical/metadata assets match the manifest; raw data and truth match pinned HF LFS identities but fail benchmark SHA-256 checks. The release mixes 1000- and 300-photon conditions.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-ct-poisson-lowdose.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A 2D attenuation reconstruction.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "blocking_dependency": "Missing manifest-matching 300-photon raw data and truth; downloaded 1000-photon arrays cannot be paired with the saved 300-photon fixture/results. Units and solver/output provenance also conflict.",
+      "remaining_work": "Recover the two expected asset hashes or a coherent revised source condition, reconcile units and saved-output provenance, then author/export/review a native story. Continue the ordered queue while this entry remains incomplete.",
       "contract_projection": {
-        "raw": "Low-dose CT projection data with photon-counting noise.",
-        "helpers": "Acquisition geometry and the task’s noise/weighting model. The assistance level can add an approach and software design.",
-        "tools": "Python and the task’s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README’s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "A 2D attenuation reconstruction.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "title": "Reconstruct CT from noisy photon counts",
+        "goal": "Recover an attenuation slice from noisy projections, giving lower-count rays less\nweight. **Source-input blocker:** the pinned release mixes two acquisition conditions.",
+        "value": "Low photon counts make projection uncertainty uneven; weighting changes how\nstrongly each ray constrains the reconstructed image.",
+        "raw": "Post-log sinograms and count weights: `(1, 256, 367)`; angles: `(1, 256)`.\nThe downloaded raw data use **1,000** incident photons, while manifest-verified\nmetadata says **300**. Raw-data and truth hashes disagree with the benchmark manifest.",
+        "helpers": "Parallel-beam geometry; expected counts `I0 × exp(-Ax)`; post-log transform\n`-log(counts/I0)`; count-derived weights. Source code floors counts at one.",
+        "tools": "Python with NumPy and SVMBIR projectors. No reconstruction was executed in this audit.",
+        "reference": "**Truth is solver-visible:** L1–L3 copy the entire `data` directory, including\n`ground_truth.npz`. Fixtures and saved outputs remain outside the seeded workspace.",
+        "spec": "Implement reconstruction from the measurements. Resolve the contradictory dose,\ntruth and units before treating any saved output as a matched result.",
+        "output": "One real `256 × 256` array at `output/reconstruction.npy` for end-to-end scoring.\nThe task's separate native archive uses reconstruction keys.",
+        "score": "Live generic scoring uses the full image. The separate task-aware helper crops\nto `204 × 204` and reports cosine NCC and reference-range NRMSE. Neither pinned\nrepository supplies `metrics.json`; historical notebook thresholds establish no\ncurrent pass/fail.",
+        "challenge": "Weighting, regularization and count clipping affect the solution. The release\ninconsistency prevents attributing saved differences to weighting alone.",
+        "families": "One synthetic 256-pixel CT task; 13 task sources and 60 shared files verified.\nFour numerical/metadata assets match the manifest; two do not. No patient or\nagent capability claim.",
+        "gap": "Recover manifest-matching raw data and truth, or obtain an explicitly revised,\ncoherent source condition. Reconcile `cm^-1` prose versus `mm^-1` metadata,\nsolver/output provenance and scoring boundaries before canonical authoring.\nThis entry remains incomplete; no scope exclusion has been approved.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect photon counts, post-log projections and geometry",
+          "Weight rays and reconstruct attenuation",
+          "Compare only against a matched reference condition"
+        ],
         "variants": [
           {
             "name": "L1 · README",
-            "helper": "README, data description and method hints.",
-            "remaining": "Choose and implement a workable algorithm."
+            "helper": "README, complete data directory, requirements.",
+            "remaining": "Choose and implement reconstruction."
           },
           {
             "name": "L2 · + approach",
-            "helper": "A proposed algorithmic approach is added.",
-            "remaining": "Design the software and implement the method."
+            "helper": "Adds an SVMBIR/q-GGMRF approach.",
+            "remaining": "Resolve differences from the supplied TV implementation."
           },
           {
             "name": "L3 · + design",
-            "helper": "Approach and software design are added.",
-            "remaining": "Implement the specified design and numerical details."
+            "helper": "Adds the software plan.",
+            "remaining": "Resolve outdated function names and implement the method."
           }
         ],
         "sources": [
@@ -8691,14 +8704,49 @@
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_poisson_lowdose/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Pinned dataset files",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_poisson_lowdose"
+          ],
+          [
+            "Pinned end-to-end scorer",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py"
+          ],
+          [
+            "Source audit and reopening conditions",
+            "presentation/external-tasks/sources/imaging101-poisson-lowdose-audit.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
+        "html": {
+          "goal": "<p>Recover an attenuation slice from noisy projections, giving lower-count rays less weight. <strong>Source-input blocker:</strong> the pinned release mixes two acquisition conditions.</p>",
+          "value": "<p>Low photon counts make projection uncertainty uneven; weighting changes how strongly each ray constrains the reconstructed image.</p>",
+          "raw": "<p>Post-log sinograms and count weights: <code>(1, 256, 367)</code>; angles: <code>(1, 256)</code>. The downloaded raw data use <strong>1,000</strong> incident photons, while manifest-verified metadata says <strong>300</strong>. Raw-data and truth hashes disagree with the benchmark manifest.</p>",
+          "helpers": "<p>Parallel-beam geometry; expected counts <code>I0 × exp(-Ax)</code>; post-log transform <code>-log(counts/I0)</code>; count-derived weights. Source code floors counts at one.</p>",
+          "tools": "<p>Python with NumPy and SVMBIR projectors. No reconstruction was executed in this audit.</p>",
+          "reference": "<p><strong>Truth is solver-visible:</strong> L1–L3 copy the entire <code>data</code> directory, including <code>ground_truth.npz</code>. Fixtures and saved outputs remain outside the seeded workspace.</p>",
+          "spec": "<p>Implement reconstruction from the measurements. Resolve the contradictory dose, truth and units before treating any saved output as a matched result.</p>",
+          "output": "<p>One real <code>256 × 256</code> array at <code>output/reconstruction.npy</code> for end-to-end scoring. The task&#x27;s separate native archive uses reconstruction keys.</p>",
+          "score": "<p>Live generic scoring uses the full image. The separate task-aware helper crops to <code>204 × 204</code> and reports cosine NCC and reference-range NRMSE. Neither pinned repository supplies <code>metrics.json</code>; historical notebook thresholds establish no current pass/fail.</p>",
+          "challenge": "<p>Weighting, regularization and count clipping affect the solution. The release inconsistency prevents attributing saved differences to weighting alone.</p>",
+          "families": "<p>One synthetic 256-pixel CT task; 13 task sources and 60 shared files verified. Four numerical/metadata assets match the manifest; two do not. No patient or agent capability claim.</p>",
+          "gap": "<p>Recover manifest-matching raw data and truth, or obtain an explicitly revised, coherent source condition. Reconcile <code>cm^-1</code> prose versus <code>mm^-1</code> metadata, solver/output provenance and scoring boundaries before canonical authoring. This entry remains incomplete; no scope exclusion has been approved.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Unresolved source pairing.</strong> The native 1,000-photon measurements are retained separately from manifest-verified 300-photon metadata and fixtures.</p>",
+          "helpers": "<p><strong>Given material.</strong> Geometry and statistical weights constrain reconstruction; they do not repair the release&#x27;s conflicting provenance.</p>",
+          "answer": "<p><strong>Saved arrays, not agent predictions.</strong> The fixture phantom matches the saved FBP/PWLS metric crops, but differs from downloaded truth. No matched native story has been accepted. The existing CT drawing is conceptual, not a dataset sample.</p>"
+        },
+        "missing_media": []
       },
-      "source_brief_sha256": "6903a04a53091a060f6385d673c72f06e3b037c419dedd3955eccd84b3b0c848",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval."
+      "source_brief_sha256": "ee18cf131766009a5b5c9603d34685d0c01db5ae0f11139d7cf0ede29274b79e",
+      "blocker_resolution": "Staging and scoring contracts are audited: truth is visible in L1-L3; live generic full-image scoring differs from the cropped task-aware helper. The remaining dependency is a coherent source packet, not permission to run a solver. No exclusion or alternate completion scope approved.",
+      "source_review": {
+        "date": "2026-09-29",
+        "reviewer": "assistant",
+        "receipt": "presentation/external-tasks/sources/imaging101-poisson-lowdose-audit.json",
+        "sha256": "0e3ecd661a5e19d05df51f71b15ec479ad8b9d91dc6dc164bc085f33b9c2ae0c",
+        "status": "source-audited-inputs-inconsistent"
+      }
     },
     {
       "entry_id": "imaging101-differentiable-deflectometry",
@@ -15589,8 +15637,8 @@
   "counts": {
     "reviewed-scripted-planar": 38,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 102,
-    "blocked-source-input": 52
+    "blocked-source-contract": 101,
+    "blocked-source-input": 53
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -15609,7 +15657,7 @@
       "blocked-source-input": 48
     },
     "execution": "sequential",
-    "active_entry": "imaging101-ct-poisson-lowdose",
+    "active_entry": "imaging101-differentiable-deflectometry",
     "delivery": {
       "commit": "27fcca9",
       "status": "awaiting-explicit-push-approval",
@@ -16411,6 +16459,16 @@
         "export_receipt_sha256": "33e38b532238a1b7ee4ff030f6bd63ab3bb85623f3ad7e1caecfb22d22cbe1ff",
         "reviewed_entries": 51,
         "next_entry": "imaging101-ct-poisson-lowdose"
+      },
+      {
+        "date": "2026-09-29",
+        "entry_id": "imaging101-ct-poisson-lowdose",
+        "stage": "source-audited-inputs-inconsistent",
+        "receipt": "presentation/external-tasks/sources/imaging101-poisson-lowdose-audit.json",
+        "receipt_sha256": "0e3ecd661a5e19d05df51f71b15ec479ad8b9d91dc6dc164bc085f33b9c2ae0c",
+        "reviewed_entries": 51,
+        "next_entry": "imaging101-differentiable-deflectometry",
+        "note": "Two asset hash failures confirmed against pinned HF LFS records; source conditions cannot be silently mixed. Entry remains incomplete. No solver or installation executed."
       }
     ]
   }
