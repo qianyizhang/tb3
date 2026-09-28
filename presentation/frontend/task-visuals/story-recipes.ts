@@ -38,6 +38,7 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'bcer-workflow-v1',
     'abra-annotation-v1',
     'ct-context-v1',
     'history-sourcing-v1',
@@ -115,6 +116,15 @@ export function storyPresentation(plan: StoryPlan): {
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'bcer-workflow-v1':
+      return {
+        heading: 'Complete a prostate MRI workflow',
+        corner: 'Native MRI · public contract · nonclinical validator replay',
+        legend: [
+          ['#ffffff', 'Header-coordinate witness · cross'],
+          ['#267f72', 'Selected public dependency'],
+        ],
+      };
     case 'abra-annotation-v1':
       return {
         heading: 'Outline a nodule in native image coordinates',

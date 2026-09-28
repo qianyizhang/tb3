@@ -50,6 +50,7 @@ withBrowser(async (browser) => {
           'mask-screen-v1',
           'anatomy-curation-v1',
           'ct-context-v1',
+          'bcer-workflow-v1',
           'abra-annotation-v1',
           'history-sourcing-v1',
           'mri-importer-v1',
@@ -88,6 +89,21 @@ withBrowser(async (browser) => {
         ].includes(plan.recipe)
       ) {
         for (const b of plan.beats) frames.push(b.startFrame);
+      }
+      if (plan.recipe === 'bcer-workflow-v1') {
+        for (const b of plan.beats) frames.push(b.startFrame);
+        for (const [scene, count] of [
+          ['geometry', 3],
+          ['dependencies', 8],
+          ['artifacts', 4],
+          ['metrics', 5],
+        ]) {
+          const b = plan.beats.find((b) => b.scene === scene);
+          for (let i = 0; i < count; i++)
+            frames.push(
+              Math.floor(b.startFrame + ((i + 0.5) / count) * (b.endFrame - b.startFrame)),
+            );
+        }
       }
       if (plan.recipe === 'abra-annotation-v1') {
         for (const b of plan.beats) frames.push(b.startFrame);
@@ -523,6 +539,59 @@ withBrowser(async (browser) => {
           const box = await output.boundingBox();
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
+        }
+        if (plan.recipe === 'bcer-workflow-v1') {
+          const name = await page.locator('[data-bcer-scene]').getAttribute('data-bcer-scene');
+          if (name === 'geometry')
+            assert.equal(await page.locator('[data-bcer-witness]').count(), 3);
+          if (name === 'dependencies')
+            assert.equal(await page.locator('[data-bcer-node][data-current="true"]').count(), 1);
+          if (name === 'artifacts')
+            assert.equal(
+              await page.locator('[data-bcer-artifact][data-current="true"]').count(),
+              1,
+            );
+          if (name === 'metrics')
+            assert.equal(
+              await page.locator('[data-bcer-metrics] tr[data-current="true"]').count(),
+              1,
+            );
+          for (const selector of [
+            '.scene-player > header',
+            '[data-bcer-scene]',
+            '[data-bcer-aside]',
+            '.scene-legend',
+          ]) {
+            assert.ok(
+              await page.locator(selector).evaluate((e) => {
+                if (!e.hasAttribute('data-bcer-scene'))
+                  return e.scrollHeight <= e.clientHeight && e.scrollWidth <= e.clientWidth;
+                // Overflowing trailing padding does not clip content. Check rendered
+                // text fragments and image bounds against the actual clipping box.
+                const box = e.getBoundingClientRect();
+                const inside = (r) =>
+                  r.width === 0 ||
+                  r.height === 0 ||
+                  (r.left >= box.left &&
+                    r.top >= box.top &&
+                    r.right <= box.right &&
+                    r.bottom <= box.bottom);
+                const walker = document.createTreeWalker(e, NodeFilter.SHOW_TEXT);
+                while (walker.nextNode()) {
+                  if (!walker.currentNode.textContent.trim()) continue;
+                  const range = document.createRange();
+                  range.selectNodeContents(walker.currentNode);
+                  if (!Array.from(range.getClientRects()).every(inside)) return false;
+                }
+                return Array.from(e.querySelectorAll('svg,img')).every((n) =>
+                  inside(n.getBoundingClientRect()),
+                );
+              }),
+              'BCER overflow ' + selector + ' frame ' + frame,
+            );
+            const b = await page.locator(selector).boundingBox();
+            assert.ok(b && b.y + b.height <= 720, 'BCER clipping ' + selector + ' frame ' + frame);
+          }
         }
         if (plan.recipe === 'abra-annotation-v1') {
           const scene = page.locator('[data-abra-scene]');
@@ -1178,6 +1247,33 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    if (plan.recipe === 'bcer-workflow-v1') {
+      for (let step = 1; step < plan.beats.length; step++) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        await page.waitForFunction(
+          (f) =>
+            document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+            String(f),
+          plan.beats[step].startFrame,
+        );
+        assert.ok(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          'BCER mobile overflow',
+        );
+        if (plan.beats[step].scene === 'dependencies') {
+          const optional = page.locator('[data-bcer-scene] li[data-required="false"]');
+          assert.equal(await optional.count(), 2);
+          assert.ok(
+            await optional.evaluateAll((nodes) =>
+              nodes.every((e) => getComputedStyle(e).borderTopStyle === 'dashed'),
+            ),
+          );
+        }
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+      }
+    }
     if (plan.recipe === 'abra-annotation-v1') {
       for (let step = 1; step < plan.beats.length; step++) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -1526,6 +1622,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'bcer-workflow-v1',
       'abra-annotation-v1',
       'ct-context-v1',
       'history-sourcing-v1',
@@ -1562,6 +1659,17 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    if (plan.recipe === 'bcer-workflow-v1') {
+      for (const step of [2, 3, 5]) {
+        await fallback.locator(`[data-story-step="${step}"]`).click();
+        await fallback.locator(`[data-bcer-scene="${plan.beats[step].scene}"]`).waitFor();
+        await fallback
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `no-gpu-${plan.beats[step].scene}.png`) });
+      }
+      await fallback.locator('.scene-reset').click();
+      await fallback.locator('[data-bcer-scene="inputs"]').waitFor();
+    }
     if (plan.recipe === 'abra-annotation-v1') {
       assert.equal(
         await fallback
@@ -2611,6 +2719,23 @@ withBrowser(async (browser) => {
     0,
   );
   report.navigation.push({ id: 'abra', revealAndReset: true });
+  await page.evaluate(() => {
+    location.hash = 'bcer/0/overview?view=repository';
+  });
+  await page.waitForFunction(
+    () =>
+      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'bcer-workflow-v1',
+  );
+  await page.locator('[data-story-step="2"]').click();
+  await page.locator('[data-bcer-witness]').first().waitFor();
+  await page
+    .locator('.scene-player')
+    .screenshot({ path: path.join(folder, 'integrated-bcer.png') });
+  await page.locator('[data-story-step="5"]').click();
+  assert.equal(await page.locator('[data-bcer-metrics] tbody tr').count(), 5);
+  await page.locator('.scene-reset').click();
+  await page.locator('[data-bcer-scene="inputs"]').waitFor();
+  report.navigation.push({ id: 'bcer', contractsAndReset: true });
   await context.close();
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.remote_requests, []);

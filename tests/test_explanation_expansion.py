@@ -81,6 +81,7 @@ class ExpansionTests(unittest.TestCase):
 
     def test_source_screen_scene_changes_require_explicit_cuts(self):
         for group, name in [
+            (None, "bcer-workflow"),
             (None, "abra-annotation"),
             ("anatomy-audit", "mask-reasoning-study"),
             ("anatomy-audit", "anatomy-curation"),
@@ -149,6 +150,7 @@ class ExpansionTests(unittest.TestCase):
             "registration-analysis",
             "segmentation-calibration",
             "ct-context",
+            "bcer-workflow",
             "abra-annotation",
             "history-sourcing",
             "mri-importer",
@@ -171,7 +173,12 @@ class ExpansionTests(unittest.TestCase):
         ]:
             path = ROOT / f"presentation/task-explorer/{name}/manifest.json"
             for key, value in [
-                ("frame", "RAS" if name in {"mri-importer", "abra-annotation"} else "LPS"),
+                (
+                    "frame",
+                    "RAS"
+                    if name in {"mri-importer", "abra-annotation", "bcer-workflow"}
+                    else "LPS",
+                ),
                 (
                     "label_license",
                     "CC0-1.0" if name in {"ct-organ", "segmentation-calibration"} else "Apache-2.0",
@@ -183,6 +190,19 @@ class ExpansionTests(unittest.TestCase):
                 with patch.object(stories.json, "loads", return_value=manifest):
                     with self.assertRaisesRegex(ValueError, "exact provenance, terms"):
                         stories.resolve_assets(ROOT, f"retained-{name}-v1")
+
+    def test_public_input_pack_has_no_hidden_reference(self):
+        import json
+        from unittest.mock import patch
+
+        manifest = json.loads(
+            (ROOT / "presentation/task-explorer/bcer-workflow/manifest.json").read_text()
+        )
+        self.assertTrue(all(a["role"] == "illustration" for a in manifest["assets"]))
+        manifest["reference_policy"] = "reader-reference-reveal"
+        with patch.object(stories.json, "loads", return_value=manifest):
+            with self.assertRaisesRegex(ValueError, "exact provenance, terms"):
+                stories.resolve_assets(ROOT, "retained-bcer-workflow-v1")
 
     def test_nested_planar_binding_survives_projection(self):
         data = task_briefs.load(ROOT)

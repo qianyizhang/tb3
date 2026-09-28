@@ -23,7 +23,8 @@ A bound story is not automatically accepted; unresolved entries remain visible.
   route owner, seven selected mathematical fixture packs and the existing anatomy
   owner. Topology checks the original route hash; anatomy checks its common source
   case/frame and exact parts/notices. Explicit source-reference packs require a
-  recipe-specific reader-only reveal; they are not solver inputs.
+  recipe-specific reader-only reveal; they are not solver inputs. Public input/contract
+  packs declare `no-reference-assets` and reject reference-role assets.
 - `story-timeline.ts` returns an immutable, recipe-discriminated absolute state.
   `use-scene-player.ts` owns the single clock, seek, visibility, reduced motion and
   cleanup for both spatial and planar content.
@@ -345,3 +346,5 @@ reveal/reset in the shared planar player without WebGL.
 `localized-ct-v1` explains supplied-location candidate judgment using [native retained views](task-explorer/localized-ct/NOTICE.md). Its `view` channel selects discrete axial, orthogonal and serial planes, while `output` and `reference` keep saved judgments and private source labels separate. Supplied points remain fixed in 3D; native affine directions, physical aspect and signed plane offsets distinguish off-plane projection from point containment. Four saved JPEG montages reconstruct exactly. The decision-first contract, empty output, reference disagreement, verifier consistency gap and clinical-report context gap remain distinct. This planar recipe works without WebGL and implies no new trial or clinical adjudication.
 
 `mri-importer-v1` uses [retained synthetic frame records](task-explorer/mri-importer/NOTICE.md) to separate storage order, descriptor ordinals, actual acquisition labels and physical LPS coordinates. Closed scene cuts retain the original task and saved-code replay. `view` visits each actual frame or physical corner discretely; `output` reveals replayed public results and `reference` reveals private aggregate grades. Numerical tiles are exact source samples; projected geometry is labelled as a diagram. The no-GPU view uses the same SVG/DOM data. No new model execution or clinical DICOM conformance claim is implied.
+
+`bcer-workflow-v1` uses [native PI-CAI MRI and public BCER contracts](task-explorer/bcer-workflow/NOTICE.md). Eight closed scenes trace modality names, physical-header coordinates, the exact eight-node template, four artifact keys and five nonclinical validator fixtures. Its single `view` channel selects discrete source points, nodes, artifacts or fixtures. Base stage success, ten-part TCR and five artifact invariants remain independent; a source documentation discrepancy is explicit. No patient mask or private reference is supplied, so this source-derived pack uses `no-reference-assets`. Synthetic grids are separate from native MRI. The planar recipe works without WebGL and implies no medical tool, model or controller run.

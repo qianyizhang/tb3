@@ -2924,3 +2924,35 @@
     padding: 16px;
   }
 }
+.player[data-recipe='bcer-workflow-v1'] .storyLayout {
+  grid-template-columns: minmax(0, 1fr) 280px;
+}
+.player[data-recipe='bcer-workflow-v1'] .storyOperation {
+  overflow: hidden;
+}
+.player[data-recipe='bcer-workflow-v1'] :global(.scene-steps) {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+:global([data-explainer-export-frame]) .player[data-recipe='bcer-workflow-v1'] .storyHeading {
+  height: 116px;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='bcer-workflow-v1']
+  :global(.scene-steps button) {
+  min-height: 31px;
+  padding-block: 4px;
+}
+@container task-visual (max-width:900px) {
+  .player[data-recipe='bcer-workflow-v1'] .storyLayout {
+    grid-template-columns: 1fr;
+  }
+  .player[data-recipe='bcer-workflow-v1'] :global(.scene-steps) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.player[data-recipe='bcer-workflow-v1'] :global(.scene-legend > span:first-child i) {
+  background: #163d30 !important;
+  border: 1px solid #163d30;
+  box-shadow: inset 0 0 0 1px white;
+}

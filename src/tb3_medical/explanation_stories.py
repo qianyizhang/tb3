@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "bcer-workflow-v1": "retained-bcer-workflow-v1",
     "abra-annotation-v1": "retained-abra-annotation-v1",
     "ct-context-v1": "retained-ct-context-v1",
     "history-sourcing-v1": "retained-history-sourcing-v1",
@@ -82,6 +83,14 @@ RECIPE_PACKS = {
     "anatomy-curation-v1": "retained-anatomy-curation-v1",
     "respiratory-v1": "retained-respiratory-v1",
     "registration-analysis-v1": "retained-registration-analysis-v1",
+}
+# Public input/contract packs carry no hidden reference assets.
+SOURCE_INPUT_PACKS = {
+    "retained-bcer-workflow-v1": (
+        "source-slices",
+        None,
+        {"inputs.json", "contract.json", "NOTICE.md", "DATA-LICENSE.txt", "BCER-LICENSE.txt"},
+    ),
 }
 SOURCE_REFERENCE_PACKS = {
     "retained-abra-annotation-v1": (
@@ -498,6 +507,10 @@ class RegistrationAnalysisChannels(Closed):
     reference: Pair
     bounds: Pair
     curve: Pair
+
+
+class BcerWorkflowChannels(Closed):
+    view: Pair
 
 
 class AbraAnnotationChannels(Closed):
@@ -963,6 +976,31 @@ class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
         return self
 
 
+class BcerWorkflowBeat(ExpansionBeat[BcerWorkflowChannels]):
+    scene: Literal[
+        "inputs",
+        "manifest",
+        "geometry",
+        "dependencies",
+        "artifacts",
+        "metrics",
+        "provenance",
+        "limits",
+    ]
+
+
+class BcerWorkflowStory(Story[BcerWorkflowChannels]):
+    recipe: Literal["bcer-workflow-v1"]
+    beats: tuple[BcerWorkflowBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class AbraAnnotationBeat(ExpansionBeat[AbraAnnotationChannels]):
     scene: Literal[
         "inputs", "navigate", "coordinates", "reference", "ordinary", "oracle", "scoring", "limits"
@@ -1394,6 +1432,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | BcerWorkflowStory
     | AbraAnnotationStory
     | CtContextStory
     | HistorySourcingStory
@@ -1435,6 +1474,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | BcerWorkflowStory
     | AbraAnnotationStory
     | CtContextStory
     | HistorySourcingStory
@@ -1636,6 +1676,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | BcerWorkflowStory
     | AbraAnnotationStory
     | CtContextStory
     | HistorySourcingStory
@@ -1717,10 +1758,12 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
     manifest_path = storage.inside(root, pack.manifest)
     manifest = json.loads(manifest_path.read_text())
     if isinstance(pack, SourceTeachingPack):
-        if pack_id not in SOURCE_REFERENCE_PACKS:
+        source_packs = {**SOURCE_REFERENCE_PACKS, **SOURCE_INPUT_PACKS}
+        if pack_id not in source_packs:
             raise ValueError("Unknown source teaching pack")
-        geometry, reference_file, required = SOURCE_REFERENCE_PACKS[pack_id]
+        geometry, reference_file, required = source_packs[pack_id]
         frame, data_license, label_license = {
+            "retained-bcer-workflow-v1": ("LPS", "CC-BY-NC-4.0", None),
             "retained-abra-annotation-v1": ("LPS", "CC-BY-3.0", "CC-BY-3.0"),
             "retained-ct-context-v1": ("RAS", "CC-BY-NC-4.0", "CC-BY-NC-4.0"),
             "retained-history-sourcing-v1": (
@@ -1795,7 +1838,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id in {"retained-hubmap-inventory-v1", "retained-tiger-context-v1"}
                 else "mm"
             )
-            or manifest.get("reference_policy") != "reader-reference-reveal"
+            or manifest.get("reference_policy")
+            != ("reader-reference-reveal" if reference_file else "no-reference-assets")
             or not manifest.get("sources")
             or set(pack.retained_files) != required
             or len(pack.retained_files) != len(required)
@@ -1928,7 +1972,9 @@ def compile_story(root: Path, path: Path) -> StoryPlan:
         if story.asset_pack != expected_pack:
             raise ValueError("Recipe asset pack mismatch")
         if (
-            story.asset_pack == "retained-anatomy-v1" or story.asset_pack in SOURCE_REFERENCE_PACKS
+            story.asset_pack == "retained-anatomy-v1"
+            or story.asset_pack in SOURCE_REFERENCE_PACKS
+            or story.asset_pack in SOURCE_INPUT_PACKS
         ) != (story.source_class == "source-derived-teaching"):
             raise ValueError("Recipe provenance mismatch")
         if (story.asset_pack in SOURCE_REFERENCE_PACKS) != (

@@ -120,6 +120,7 @@ def new(
             "source-derived-teaching"
             if spec.asset_pack == "retained-anatomy-v1"
             or spec.asset_pack in stories.SOURCE_REFERENCE_PACKS
+            or spec.asset_pack in stories.SOURCE_INPUT_PACKS
             else "procedural-teaching"
         ),
         "reference_policy": (
@@ -152,6 +153,7 @@ def new(
         if recipe == "history-sourcing-v1":
             beat["scene"] = "retrieval"
         if recipe in {
+            "bcer-workflow-v1",
             "abra-annotation-v1",
             "ct-context-v1",
             "mri-importer-v1",

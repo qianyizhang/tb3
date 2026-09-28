@@ -1,0 +1,1376 @@
+{
+  "schema": 1,
+  "entry_id": "bcer",
+  "task": "long_prostate_full",
+  "commit": "d10816712793a9e27f2e70640f9afc06f08a0c5c",
+  "source_files": [
+    {
+      "path": "docs/METRICS.md",
+      "encoding": "utf-8",
+      "sha": "19288fb64b421ced292befb27482eee141712ce3",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/docs/METRICS.md",
+      "display_title": "METRICS.md",
+      "sha256": "00f86e4c6226a09a40caa83642a051a07d89cce766673ecd21195e58527cabe8",
+      "bytes": 6592,
+      "local_path": ".local/explainers/completion-20260927/038-source/docs/METRICS.md"
+    },
+    {
+      "path": "docs/DATASETS.md",
+      "encoding": "utf-8",
+      "sha": "70935bddb7aea494642b1b3fb78548bdf16f82d5",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/docs/DATASETS.md",
+      "display_title": "DATASETS.md",
+      "sha256": "c84cca650f47f7a2b8197e1f8a3c0a0fa5c8d930e093c6f82965cb7bb2a12841",
+      "bytes": 6459,
+      "local_path": ".local/explainers/completion-20260927/038-source/docs/DATASETS.md"
+    },
+    {
+      "path": "configs/tasks_registry.json",
+      "encoding": "utf-8",
+      "sha": "482ddae8e89b23316815579055b6967c8cbd7c1b",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/configs/tasks_registry.json",
+      "display_title": "tasks_registry.json",
+      "sha256": "dd69419af8e633d24e7f41c38d24a7d84ba9c20b9726a91a6b2f726e37fc669c",
+      "bytes": 23613,
+      "local_path": ".local/explainers/completion-20260927/038-source/configs/tasks_registry.json"
+    },
+    {
+      "path": "benchmark/benchmark_suite.template.json",
+      "encoding": "utf-8",
+      "sha": "e762df18426d3d0d5e156205aff82f5c84d39072",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/benchmark/benchmark_suite.template.json",
+      "display_title": "benchmark_suite.template.json",
+      "sha256": "5de4af9c82b592895dd38a77a8628be0e0aa6fe92881bf848b76df2a4258909a",
+      "bytes": 3852,
+      "local_path": ".local/explainers/completion-20260927/038-source/benchmark/benchmark_suite.template.json"
+    },
+    {
+      "path": "benchmark/benchmark_runner.py",
+      "encoding": "utf-8",
+      "sha": "5b01ab12976ee0d82e72c7fa38ea4b27415238a7",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/benchmark/benchmark_runner.py",
+      "display_title": "benchmark_runner.py",
+      "sha256": "288539631cf0bdd802cbb6570a52a0dcdba25e7377eeab9e29c66395724fbde6",
+      "bytes": 99840,
+      "local_path": ".local/explainers/completion-20260927/038-source/benchmark/benchmark_runner.py"
+    },
+    {
+      "path": "LICENSE",
+      "encoding": "utf-8",
+      "sha": "658f819ffeea8fc79d9a95aa4b4dffc91c16bb88",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/LICENSE",
+      "display_title": "LICENSE",
+      "sha256": "b1099da8a60c97630f5e5f65a523fe21085e27c00a6b025ff0ef96055e7414a5",
+      "bytes": 1079,
+      "local_path": ".local/explainers/completion-20260927/038-source/LICENSE"
+    },
+    {
+      "path": "agent/plans/templates/prostate_full_pipeline.json",
+      "encoding": "utf-8",
+      "sha": "9bbc9cdba680ec3ddc174aa10df5c2dace3a43f4",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/agent/plans/templates/prostate_full_pipeline.json",
+      "display_title": "prostate_full_pipeline.json",
+      "sha256": "b8e85df1916a94b6e17477e29cff31f2b5d6503ab0f18b29530c63fd360a9dfa",
+      "bytes": 3562,
+      "local_path": ".local/explainers/completion-20260927/038-source/agent/plans/templates/prostate_full_pipeline.json"
+    },
+    {
+      "path": "tools/prostate_lesion_candidates.py",
+      "encoding": "utf-8",
+      "sha": "4a407287cabe783442242e7cab61d7264fc6ce4b",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/prostate_lesion_candidates.py",
+      "display_title": "prostate_lesion_candidates.py",
+      "sha256": "5af820c6619a6a83e589338b51dc51782bd41596c45b1b42b8ef9941d6414217",
+      "bytes": 51620,
+      "local_path": ".local/explainers/completion-20260927/038-source/tools/prostate_lesion_candidates.py"
+    },
+    {
+      "path": "tools/registration.py",
+      "encoding": "utf-8",
+      "sha": "e123c8699b62114c4405b1563941c406da619b68",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/registration.py",
+      "display_title": "registration.py",
+      "sha256": "c9d13efdf8c34a80febbf98ba2a58966b5f6a869d9327af235d67fee1c9ec060",
+      "bytes": 25523,
+      "local_path": ".local/explainers/completion-20260927/038-source/tools/registration.py"
+    },
+    {
+      "path": "tools/roi_features.py",
+      "encoding": "utf-8",
+      "sha": "0e8c88e7d04785401ef0b4fe18eaed2d2217f99b",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/roi_features.py",
+      "display_title": "roi_features.py",
+      "sha256": "ef5651fc7bc04a55d332aa6995bd646f6a6a9ab2d22030cf00405ff10529ba1d",
+      "bytes": 74554,
+      "local_path": ".local/explainers/completion-20260927/038-source/tools/roi_features.py"
+    },
+    {
+      "path": "tools/report_generation.py",
+      "encoding": "utf-8",
+      "sha": "99bf97db640c0fa8c7502871eef732e91bf56fcb",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/report_generation.py",
+      "display_title": "report_generation.py",
+      "sha256": "fe156d0e0af926774621b618f7c0451cb4331603f753680d81eb7b5f4f627286",
+      "bytes": 226095,
+      "local_path": ".local/explainers/completion-20260927/038-source/tools/report_generation.py"
+    },
+    {
+      "path": "tools/arg_models.py",
+      "encoding": "utf-8",
+      "sha": "4740cf95b8fb964a5e27e7ed215886d2eefe987a",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/arg_models.py",
+      "display_title": "arg_models.py",
+      "sha256": "50eda392d4630b27f8e168e6f7ada7de785ea1c40de84a203d39305ed820a023",
+      "bytes": 62171,
+      "local_path": ".local/explainers/completion-20260927/038-source/tools/arg_models.py"
+    },
+    {
+      "path": "scripts/manifest_builder.py",
+      "encoding": "utf-8",
+      "sha": "c33449e2bc9474e3e5616f5a48392c1cace2a389",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/scripts/manifest_builder.py",
+      "display_title": "manifest_builder.py",
+      "sha256": "f34e6458cfd0c8c5ae877086a5d4b9c1d130a44b4ea9d569e76afc7935145af2",
+      "bytes": 20167,
+      "local_path": ".local/explainers/completion-20260927/038-source/scripts/manifest_builder.py"
+    },
+    {
+      "path": "tools/prostate_segmentation.py",
+      "encoding": "utf-8",
+      "sha": "4dbc699d059e9dcb4aea19ad93d9e508ad5d1473",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/prostate_segmentation.py",
+      "display_title": "prostate_segmentation.py",
+      "sha256": "a446caec3e0f51a6bcbdf21d5fec0257f7d0738255ca4e53008a1e38517070ab",
+      "bytes": 20345,
+      "local_path": ".local/explainers/completion-20260927/038-source/tools/prostate_segmentation.py"
+    },
+    {
+      "path": "tools/dicom_ingest.py",
+      "sha": "637e7182fb99f1768a06598ab55fc1926490aa56",
+      "display_url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/dicom_ingest.py",
+      "sha256": "78d885b509e745b074b02b93469dfe5cab7f87ed4ee56c572b9e6fd3daa01fb9",
+      "bytes": 45208,
+      "local_path": ".local/explainers/completion-20260927/038-source/tools/dicom_ingest.py"
+    }
+  ],
+  "source_pins": {
+    "runs/task-brief-samples/bcer/10001_1000001_t2w.mha": "92099e209995a24c2b1a9ba366a5994c499715c5575fdcd82be0d89f1392564c",
+    "runs/task-brief-samples/bcer/prepared/10001/T2w.nii.gz": "c1f777431d22a015da6279f6fa9237efa880f132c03666887b2373cb81756b3f",
+    "runs/task-brief-samples/bcer/10001_1000001_adc.mha": "890de579e15d0daf06a76a5351e2bf6e2cb2bc4eb7144029b0c7f13758289783",
+    "runs/task-brief-samples/bcer/prepared/10001/ADC.nii.gz": "b4ac7d921fb5d35e7b3e8de5fea2f4dc5313428438fd649411025ee422868c0d",
+    "runs/task-brief-samples/bcer/10001_1000001_hbv.mha": "7c1ae10ed71eecf1be4d809fde6172784e8f79cdbfd1c4cf0069ece292fe322e",
+    "runs/task-brief-samples/bcer/prepared/10001/DWI_bhigh.nii.gz": "9dc9e3dbc59310c61481f91883aa2161890fd032b832dadce059db5aa7439c49",
+    "runs/task-brief-samples/bcer/cases_manifest.jsonl": "0ca3ed5f28f1d90761f92efdba9c06b2a11806c838c34a29431117807e46d20d"
+  },
+  "selected_functions": {
+    "scripts/manifest_builder.py": {
+      "_is_high_b_text": {
+        "sha256": "a6851bd740f6c07cf027e6496052457131aa2c240f177820f7abcb3308b4b76b",
+        "lines": [
+          224,
+          234
+        ]
+      },
+      "_infer_prostate_modalities": {
+        "sha256": "859e5a5240af209f49b1e387211b67144938f017ea0f010153c0b0d040980c25",
+        "lines": [
+          237,
+          255
+        ]
+      },
+      "_normalize_domain_field": {
+        "sha256": "66b20ddc404815d0444f3c5b781321fbb1a1bfd23cc011ed4f383b89b4c62989",
+        "lines": [
+          324,
+          335
+        ]
+      },
+      "_eval_modal_rule": {
+        "sha256": "fd48157b866dab8185d20f7720012711d122442200e370e1748008ad219f2866",
+        "lines": [
+          338,
+          358
+        ]
+      },
+      "_task_supported": {
+        "sha256": "c482d001dca53da064cb8389582ee541307c85d6e430d8afb254ecb8b6ee99ff",
+        "lines": [
+          361,
+          376
+        ]
+      }
+    },
+    "benchmark/benchmark_runner.py": {
+      "_stage_sort_key": {
+        "sha256": "32f76740abd56787efddc5b2c3551edae05add4afd0e3f61affdecacd9391ba1",
+        "lines": [
+          918,
+          922
+        ]
+      },
+      "_tool_success": {
+        "sha256": "9838d3db0965191195f23e6db36d4a6d8dca0dbe2e8d6ce4a48ea2a2d03b9f6c",
+        "lines": [
+          925,
+          935
+        ]
+      },
+      "_latest_tool_data": {
+        "sha256": "6888786222e30ea11b8e2f9c425e5703b4c2da7870a7966af6185b2da3ef976f",
+        "lines": [
+          938,
+          951
+        ]
+      },
+      "_coerce_path": {
+        "sha256": "8d499d5d2c59af14f30a9124da8f4640eb573249cec612e9cb73809290ee2591",
+        "lines": [
+          954,
+          977
+        ]
+      },
+      "_resolve_tool_data_path": {
+        "sha256": "ba9a34abcb856727a20d66b8098c552e1e344941167c876475b19dc19a1f00b9",
+        "lines": [
+          980,
+          982
+        ]
+      },
+      "_resolve_path_spec": {
+        "sha256": "825e5d82b8f709b779346a6bc5e7d4a0f0b793685e8890c19d01606d66a878c9",
+        "lines": [
+          985,
+          1000
+        ]
+      },
+      "_check_required_artifact": {
+        "sha256": "dac4b1463ff79f2a7d2368b632bac4ed8e6f612e3284165434a0cd07e39c0670",
+        "lines": [
+          1003,
+          1027
+        ]
+      },
+      "_nifti_nonempty": {
+        "sha256": "84db793a8becc7a3fe682f38e1495b1f26286e225fb2e2fe19d65bee049b4bf3",
+        "lines": [
+          1030,
+          1044
+        ]
+      },
+      "_nifti_spacing_match": {
+        "sha256": "aac9bacba0f77a28e3148ecb60330fa38e468c87cf1d6a5b69f79720adf879a6",
+        "lines": [
+          1047,
+          1074
+        ]
+      },
+      "_nifti_affine_match": {
+        "sha256": "7f44f0d4432c4def629498d9e5ad1e345f5919359065990981ff1c7fc4b647c9",
+        "lines": [
+          1077,
+          1095
+        ]
+      },
+      "_csv_non_empty": {
+        "sha256": "978496f1847ae28ca5fd200c72e68cd4b61532150fa3e5f038378c5f65165657",
+        "lines": [
+          1098,
+          1109
+        ]
+      },
+      "_json_field": {
+        "sha256": "ebc078de0c8b0b759670df44348c5cdb5d3bb7941d966c426471e46a77dfcddb",
+        "lines": [
+          1112,
+          1121
+        ]
+      },
+      "_evaluate_invariant": {
+        "sha256": "9237156f8bfcf38c8924192cbee7b63a3758a03429e0190c87121ef8a609dfa6",
+        "lines": [
+          1124,
+          1253
+        ]
+      },
+      "_evaluate_success_rule": {
+        "sha256": "188e93742dbf027f715cdfa34eee61984ce11b2924dc6dce640238ebb02b2c63",
+        "lines": [
+          1256,
+          1313
+        ]
+      },
+      "_compute_tcr": {
+        "sha256": "d1506541eb3fbcbcc882e9bc7b1c892b3c773770ade5d1a35ce89b6941ab5138",
+        "lines": [
+          1316,
+          1342
+        ]
+      }
+    }
+  },
+  "case": "PI-CAI 10001_1000001",
+  "sequences": [
+    {
+      "name": "T2w",
+      "original": "runs/task-brief-samples/bcer/10001_1000001_t2w.mha",
+      "prepared": "runs/task-brief-samples/bcer/prepared/10001/T2w.nii.gz",
+      "size_xyz": [
+        640,
+        640,
+        21
+      ],
+      "spacing_xyz_mm": [
+        0.30000001192093,
+        0.30000001192093,
+        3.6000000778884846
+      ],
+      "origin_lps_mm": [
+        -119.80861242576,
+        -65.872387498812,
+        -38.779758120899
+      ],
+      "direction_lps": [
+        0.9996148108062515,
+        -1.6670999975453016e-11,
+        -0.02775301815627119,
+        0.00043710598429775216,
+        0.999875963366245,
+        0.01574378673580096,
+        0.027749575765060076,
+        -0.015749853409600077,
+        0.9994908219500744
+      ],
+      "witness_ijk": [
+        319.49999999999994,
+        319.5,
+        10.000000000000014
+      ],
+      "slice_k": 10,
+      "display_percentiles": [
+        1,
+        99.5
+      ],
+      "display_range": [
+        15.0,
+        829.0
+      ],
+      "display_scope": "whole native volume; sequence-specific arbitrary intensities",
+      "mha_nifti_voxels_equal": true,
+      "mha_nifti_geometry_max_errors": {
+        "spacing": 6.516266282119432e-08,
+        "origin": 3.4169709408615745e-06,
+        "direction": 2.408979800361255e-09
+      }
+    },
+    {
+      "name": "ADC",
+      "original": "runs/task-brief-samples/bcer/10001_1000001_adc.mha",
+      "prepared": "runs/task-brief-samples/bcer/prepared/10001/ADC.nii.gz",
+      "size_xyz": [
+        120,
+        128,
+        21
+      ],
+      "spacing_xyz_mm": [
+        2.0,
+        2.0,
+        3.6000000778885344
+      ],
+      "origin_lps_mm": [
+        -143.79936407135,
+        -97.878905054263,
+        -38.941752584377
+      ],
+      "direction_lps": [
+        0.9996148108062515,
+        -1.6670999975453016e-11,
+        -0.02775301815627119,
+        0.00043710598429775216,
+        0.999875963366245,
+        0.01574378673580096,
+        0.027749575765060076,
+        -0.015749853409600077,
+        0.9994908219500744
+      ],
+      "witness_ijk": [
+        59.92499999702057,
+        63.924999997019704,
+        9.99999999999959
+      ],
+      "slice_k": 10,
+      "display_percentiles": [
+        1,
+        99.5
+      ],
+      "display_range": [
+        0.0,
+        2844.0
+      ],
+      "display_scope": "whole native volume; sequence-specific arbitrary intensities",
+      "mha_nifti_voxels_equal": true,
+      "mha_nifti_geometry_max_errors": {
+        "spacing": 6.516261308320281e-08,
+        "origin": 1.8887328110395174e-06,
+        "direction": 1.0306596062714668e-09
+      }
+    },
+    {
+      "name": "DWI_highb",
+      "original": "runs/task-brief-samples/bcer/10001_1000001_hbv.mha",
+      "prepared": "runs/task-brief-samples/bcer/prepared/10001/DWI_bhigh.nii.gz",
+      "size_xyz": [
+        120,
+        128,
+        21
+      ],
+      "spacing_xyz_mm": [
+        2.0,
+        2.0,
+        3.6000000778885344
+      ],
+      "origin_lps_mm": [
+        -143.79936407135,
+        -97.878905054263,
+        -38.941752584377
+      ],
+      "direction_lps": [
+        0.9996148108062515,
+        -1.6670999975453016e-11,
+        -0.02775301815627119,
+        0.00043710598429775216,
+        0.999875963366245,
+        0.01574378673580096,
+        0.027749575765060076,
+        -0.015749853409600077,
+        0.9994908219500744
+      ],
+      "witness_ijk": [
+        59.92499999702057,
+        63.924999997019704,
+        9.99999999999959
+      ],
+      "slice_k": 10,
+      "display_percentiles": [
+        1,
+        99.5
+      ],
+      "display_range": [
+        0.0,
+        55.0
+      ],
+      "display_scope": "whole native volume; sequence-specific arbitrary intensities",
+      "mha_nifti_voxels_equal": true,
+      "mha_nifti_geometry_max_errors": {
+        "spacing": 6.516261308320281e-08,
+        "origin": 1.8887328110395174e-06,
+        "direction": 1.0306596062714668e-09
+      }
+    }
+  ],
+  "witness_lps_mm": [
+    -24.99463767955082,
+    30.574400343118498,
+    -1.6479143187334344
+  ],
+  "manifest": {
+    "original": {
+      "case_id": "prostate__10001",
+      "domain": "prostate",
+      "case_root": "/Users/zhangqy/pkgs/tb3/runs/task-brief-samples/bcer/prepared/10001",
+      "input_format": "nifti",
+      "modalities": {
+        "t2w": true,
+        "adc": true,
+        "dwi": true,
+        "t1c": false
+      },
+      "supports_tasks": [
+        "short_denoise",
+        "short_superres",
+        "medium_register_prostate",
+        "long_prostate_full"
+      ]
+    },
+    "original_task_supported": false,
+    "derived": {
+      "case_id": "prostate__10001",
+      "domain": "prostate",
+      "case_root": "/Users/zhangqy/pkgs/tb3/runs/task-brief-samples/bcer/prepared/10001",
+      "input_format": "nifti",
+      "modalities": {
+        "T2w": true,
+        "ADC": true,
+        "DWI_highb": true
+      },
+      "supports_tasks": [
+        "long_prostate_full"
+      ],
+      "notes": "Author representative PI-CAI sample; exact selected modality rules replayed; not an official BCER split or pipeline run. Only this task was checked."
+    },
+    "derived_task_supported": true,
+    "original_bytes_preserved": true
+  },
+  "contract": {
+    "domain": [
+      "prostate"
+    ],
+    "toolchain": "long",
+    "request_type": "full_pipeline",
+    "required_modalities": {
+      "prostate": {
+        "all_of": [
+          "T2w"
+        ],
+        "any_of": [
+          "ADC",
+          "DWI_highb"
+        ]
+      }
+    },
+    "goal_template": "Task: long_prostate_full. Requested workflow type: full_pipeline. Domain: {domain}. Case ID: {case_id}. Execute identify->register->segment->lesion->features->report. Case root: {case_root}.",
+    "notoken_input_aliases": {
+      "prostate": [
+        "t2w_nifti",
+        "adc_nifti",
+        "dwi_highb_nifti"
+      ]
+    },
+    "success_criteria": {
+      "all": [
+        {
+          "type": "tool_success",
+          "tool": "identify_sequences"
+        },
+        {
+          "type": "tool_success",
+          "tool": "register_to_reference"
+        },
+        {
+          "type": "tool_success",
+          "tool": "segment_prostate"
+        },
+        {
+          "type": "tool_success",
+          "tool": "detect_lesion_candidates"
+        },
+        {
+          "type": "tool_success",
+          "tool": "extract_roi_features"
+        },
+        {
+          "type": "tool_success",
+          "tool": "generate_report"
+        }
+      ]
+    },
+    "required_artifacts": [
+      {
+        "id": "prostate_mask",
+        "tool": "segment_prostate",
+        "data_key": "prostate_mask_path",
+        "must_exist": true
+      },
+      {
+        "id": "lesion_candidates",
+        "tool": "detect_lesion_candidates",
+        "data_key": "candidates_path",
+        "must_exist": true
+      },
+      {
+        "id": "feature_table",
+        "tool": "extract_roi_features",
+        "data_key": "feature_table_path",
+        "must_exist": true
+      },
+      {
+        "id": "report_json",
+        "tool": "generate_report",
+        "data_key": "report_json_path",
+        "must_exist": true
+      }
+    ],
+    "required_stage_success": [
+      "identify_sequences",
+      "register_to_reference",
+      "segment_prostate",
+      "detect_lesion_candidates",
+      "extract_roi_features",
+      "generate_report"
+    ],
+    "invariants": [
+      {
+        "id": "prostate_mask_non_empty",
+        "type": "nifti_nonempty",
+        "tool": "segment_prostate",
+        "data_key": "prostate_mask_path"
+      },
+      {
+        "id": "prostate_affine_consistent",
+        "type": "nifti_affine_match",
+        "lhs": {
+          "tool": "segment_prostate",
+          "data_key": "prostate_mask_path"
+        },
+        "rhs": {
+          "tool": "segment_prostate",
+          "data_key": "t2w_input_path"
+        }
+      },
+      {
+        "id": "lesion_candidates_valid",
+        "type": "candidates_json_valid",
+        "tool": "detect_lesion_candidates",
+        "data_key": "candidates_path"
+      },
+      {
+        "id": "features_non_empty",
+        "type": "csv_non_empty",
+        "tool": "extract_roi_features",
+        "data_key": "feature_table_path",
+        "min_rows": 1
+      },
+      {
+        "id": "report_non_empty",
+        "type": "json_non_empty",
+        "tool": "generate_report",
+        "data_key": "report_json_path"
+      }
+    ],
+    "fault_profiles": {
+      "token_mutation": {
+        "enabled": true,
+        "token_pairs": [
+          [
+            "@runtime.case_state_path",
+            "@state.path"
+          ],
+          [
+            "@seq.T2w",
+            "@seq.T2"
+          ],
+          [
+            "@case.input",
+            "@case.root"
+          ]
+        ]
+      },
+      "path_mutation": {
+        "enabled": true,
+        "modes": [
+          "in_root_semantic",
+          "missing",
+          "scope_escape"
+        ]
+      },
+      "argument_omission": {
+        "enabled": true,
+        "omit_keys": [
+          "t2w_nifti",
+          "adc_nifti",
+          "prostate_mask_nifti"
+        ]
+      },
+      "semantic_swap": {
+        "enabled": true,
+        "swap_pairs": [
+          [
+            "fixed",
+            "moving"
+          ]
+        ],
+        "min_impact": 95
+      },
+      "space_mismatch": {
+        "enabled": true,
+        "mutate_interpolation": true
+      },
+      "missing_modality": {
+        "enabled": true
+      },
+      "scope_violation": {
+        "enabled": true
+      }
+    }
+  },
+  "template": {
+    "template_id": "prostate_full_pipeline",
+    "template_version": "1.0.0",
+    "domain": "prostate",
+    "request_type": "full_pipeline",
+    "notes": [
+      "Baseline prostate full-pipeline skeleton."
+    ],
+    "nodes": [
+      {
+        "node_id": "identify_sequences_001",
+        "tool_name": "identify_sequences",
+        "stage": "identify",
+        "arguments": {
+          "dicom_case_dir": "@case.input",
+          "convert_to_nifti": true,
+          "output_subdir": "ingest"
+        },
+        "required": true,
+        "depends_on": [],
+        "label": "Identify and map prostate sequences"
+      },
+      {
+        "node_id": "register_adc_010",
+        "tool_name": "register_to_reference",
+        "stage": "register",
+        "arguments": {
+          "fixed": "T2w",
+          "moving": "ADC",
+          "output_subdir": "registration/ADC",
+          "split_by_bvalue": false,
+          "save_png_qc": true
+        },
+        "required": true,
+        "depends_on": [
+          "identify_sequences_001"
+        ],
+        "label": "Register ADC to T2w"
+      },
+      {
+        "node_id": "register_dwi_020",
+        "tool_name": "register_to_reference",
+        "stage": "register",
+        "arguments": {
+          "fixed": "T2w",
+          "moving": "DWI",
+          "output_subdir": "registration/DWI",
+          "split_by_bvalue": true,
+          "save_png_qc": true
+        },
+        "required": false,
+        "depends_on": [
+          "identify_sequences_001"
+        ],
+        "label": "Register DWI/high-b to T2w"
+      },
+      {
+        "node_id": "segment_prostate_030",
+        "tool_name": "segment_prostate",
+        "stage": "segment",
+        "arguments": {
+          "t2w_ref": "T2w",
+          "output_subdir": "segmentation"
+        },
+        "required": true,
+        "depends_on": [
+          "identify_sequences_001"
+        ],
+        "label": "Segment whole-gland prostate mask"
+      },
+      {
+        "node_id": "extract_features_040",
+        "tool_name": "extract_roi_features",
+        "stage": "extract",
+        "arguments": {
+          "output_subdir": "features"
+        },
+        "required": false,
+        "depends_on": [
+          "segment_prostate_030"
+        ],
+        "label": "Extract ROI/radiomics features"
+      },
+      {
+        "node_id": "detect_lesions_050",
+        "tool_name": "detect_lesion_candidates",
+        "stage": "lesion",
+        "arguments": {
+          "t2w_nifti": "@node.segment_prostate_030.t2w_input_path",
+          "adc_nifti": "@node.register_adc_010.resampled_path",
+          "highb_nifti": "@node.register_dwi_020.resampled_path",
+          "prostate_mask_nifti": "@node.segment_prostate_030.prostate_mask_path",
+          "output_subdir": "lesion"
+        },
+        "required": true,
+        "depends_on": [
+          "segment_prostate_030",
+          "register_adc_010",
+          "register_dwi_020"
+        ],
+        "label": "Detect lesion candidates"
+      },
+      {
+        "node_id": "package_evidence_060",
+        "tool_name": "package_vlm_evidence",
+        "stage": "package",
+        "arguments": {
+          "case_state_path": "@runtime.case_state_path",
+          "output_subdir": "vlm"
+        },
+        "required": true,
+        "depends_on": [
+          "segment_prostate_030",
+          "detect_lesions_050"
+        ],
+        "label": "Package VLM evidence"
+      },
+      {
+        "node_id": "generate_report_070",
+        "tool_name": "generate_report",
+        "stage": "report",
+        "arguments": {
+          "case_state_path": "@runtime.case_state_path",
+          "output_subdir": "report",
+          "domain": "prostate"
+        },
+        "required": true,
+        "depends_on": [
+          "package_evidence_060"
+        ],
+        "label": "Generate prostate report"
+      }
+    ]
+  },
+  "validator_examples": [
+    {
+      "id": "missing-files",
+      "base_success_rule": true,
+      "tcr": {
+        "completed": 6,
+        "total": 10,
+        "ratio": 0.6,
+        "pass": false,
+        "required_stage_success": [
+          {
+            "tool": "identify_sequences",
+            "ok": true
+          },
+          {
+            "tool": "register_to_reference",
+            "ok": true
+          },
+          {
+            "tool": "segment_prostate",
+            "ok": true
+          },
+          {
+            "tool": "detect_lesion_candidates",
+            "ok": true
+          },
+          {
+            "tool": "extract_roi_features",
+            "ok": true
+          },
+          {
+            "tool": "generate_report",
+            "ok": true
+          }
+        ],
+        "required_artifacts": [
+          {
+            "id": "prostate_mask",
+            "ok": false,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/missing-files/prostate_mask.nii.gz"
+          },
+          {
+            "id": "lesion_candidates",
+            "ok": false,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/missing-files/lesion_candidates.json"
+          },
+          {
+            "id": "feature_table",
+            "ok": false,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/missing-files/feature_table.csv"
+          },
+          {
+            "id": "report_json",
+            "ok": false,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/missing-files/report_json.json"
+          }
+        ]
+      },
+      "invariants_passed": 0,
+      "invariants": [
+        {
+          "id": "prostate_mask_non_empty",
+          "type": "nifti_nonempty",
+          "ok": false,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/missing-files/prostate_mask.nii.gz",
+          "detail": "missing_path"
+        },
+        {
+          "id": "prostate_affine_consistent",
+          "type": "nifti_affine_match",
+          "ok": false,
+          "lhs": ".local/explainers/completion-20260927/038-audit-v1/missing-files/prostate_mask.nii.gz",
+          "rhs": ".local/explainers/completion-20260927/038-audit-v1/missing-files/synthetic-grid.nii.gz",
+          "detail": "missing_path"
+        },
+        {
+          "id": "lesion_candidates_valid",
+          "type": "candidates_json_valid",
+          "ok": false,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/missing-files/lesion_candidates.json",
+          "detail": "missing_path"
+        },
+        {
+          "id": "features_non_empty",
+          "type": "csv_non_empty",
+          "ok": false,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/missing-files/feature_table.csv",
+          "detail": "missing_path"
+        },
+        {
+          "id": "report_non_empty",
+          "type": "json_non_empty",
+          "ok": false,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/missing-files/report_json.json",
+          "detail": "missing_path"
+        }
+      ]
+    },
+    {
+      "id": "empty-files",
+      "base_success_rule": true,
+      "tcr": {
+        "completed": 10,
+        "total": 10,
+        "ratio": 1.0,
+        "pass": true,
+        "required_stage_success": [
+          {
+            "tool": "identify_sequences",
+            "ok": true
+          },
+          {
+            "tool": "register_to_reference",
+            "ok": true
+          },
+          {
+            "tool": "segment_prostate",
+            "ok": true
+          },
+          {
+            "tool": "detect_lesion_candidates",
+            "ok": true
+          },
+          {
+            "tool": "extract_roi_features",
+            "ok": true
+          },
+          {
+            "tool": "generate_report",
+            "ok": true
+          }
+        ],
+        "required_artifacts": [
+          {
+            "id": "prostate_mask",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/empty-files/prostate_mask.nii.gz"
+          },
+          {
+            "id": "lesion_candidates",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/empty-files/lesion_candidates.json"
+          },
+          {
+            "id": "feature_table",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/empty-files/feature_table.csv"
+          },
+          {
+            "id": "report_json",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/empty-files/report_json.json"
+          }
+        ]
+      },
+      "invariants_passed": 0,
+      "invariants": [
+        {
+          "id": "prostate_mask_non_empty",
+          "type": "nifti_nonempty",
+          "ok": false,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/empty-files/prostate_mask.nii.gz",
+          "detail": {
+            "fallback": "file_size",
+            "bytes": 0,
+            "error": "RuntimeError"
+          }
+        },
+        {
+          "id": "prostate_affine_consistent",
+          "type": "nifti_affine_match",
+          "ok": false,
+          "lhs": ".local/explainers/completion-20260927/038-audit-v1/empty-files/prostate_mask.nii.gz",
+          "rhs": ".local/explainers/completion-20260927/038-audit-v1/empty-files/synthetic-grid.nii.gz",
+          "detail": "missing_path"
+        },
+        {
+          "id": "lesion_candidates_valid",
+          "type": "candidates_json_valid",
+          "ok": false,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/empty-files/lesion_candidates.json",
+          "detail": "JSONDecodeError"
+        },
+        {
+          "id": "features_non_empty",
+          "type": "csv_non_empty",
+          "ok": false,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/empty-files/feature_table.csv",
+          "detail": {
+            "rows": 0,
+            "min_rows": 1
+          }
+        },
+        {
+          "id": "report_non_empty",
+          "type": "json_non_empty",
+          "ok": false,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/empty-files/report_json.json",
+          "detail": "JSONDecodeError"
+        }
+      ]
+    },
+    {
+      "id": "structural-pass",
+      "base_success_rule": true,
+      "tcr": {
+        "completed": 10,
+        "total": 10,
+        "ratio": 1.0,
+        "pass": true,
+        "required_stage_success": [
+          {
+            "tool": "identify_sequences",
+            "ok": true
+          },
+          {
+            "tool": "register_to_reference",
+            "ok": true
+          },
+          {
+            "tool": "segment_prostate",
+            "ok": true
+          },
+          {
+            "tool": "detect_lesion_candidates",
+            "ok": true
+          },
+          {
+            "tool": "extract_roi_features",
+            "ok": true
+          },
+          {
+            "tool": "generate_report",
+            "ok": true
+          }
+        ],
+        "required_artifacts": [
+          {
+            "id": "prostate_mask",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/structural-pass/prostate_mask.nii.gz"
+          },
+          {
+            "id": "lesion_candidates",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/structural-pass/lesion_candidates.json"
+          },
+          {
+            "id": "feature_table",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/structural-pass/feature_table.csv"
+          },
+          {
+            "id": "report_json",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/structural-pass/report_json.json"
+          }
+        ]
+      },
+      "invariants_passed": 5,
+      "invariants": [
+        {
+          "id": "prostate_mask_non_empty",
+          "type": "nifti_nonempty",
+          "ok": true,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/structural-pass/prostate_mask.nii.gz",
+          "detail": {
+            "nonzero_voxels": 1
+          }
+        },
+        {
+          "id": "prostate_affine_consistent",
+          "type": "nifti_affine_match",
+          "ok": true,
+          "lhs": ".local/explainers/completion-20260927/038-audit-v1/structural-pass/prostate_mask.nii.gz",
+          "rhs": ".local/explainers/completion-20260927/038-audit-v1/structural-pass/synthetic-grid.nii.gz",
+          "detail": {
+            "same_size": true,
+            "same_spacing": true,
+            "same_origin": true,
+            "same_direction": true
+          }
+        },
+        {
+          "id": "lesion_candidates_valid",
+          "type": "candidates_json_valid",
+          "ok": true,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/structural-pass/lesion_candidates.json",
+          "detail": {
+            "has_num_candidates": true,
+            "num_candidates": 0,
+            "num_ok": true,
+            "has_candidates_list": true,
+            "n_candidates": 0
+          }
+        },
+        {
+          "id": "features_non_empty",
+          "type": "csv_non_empty",
+          "ok": true,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/structural-pass/feature_table.csv",
+          "detail": {
+            "rows": 1,
+            "min_rows": 1
+          }
+        },
+        {
+          "id": "report_non_empty",
+          "type": "json_non_empty",
+          "ok": true,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/structural-pass/report_json.json"
+        }
+      ]
+    },
+    {
+      "id": "shifted-origin",
+      "base_success_rule": true,
+      "tcr": {
+        "completed": 10,
+        "total": 10,
+        "ratio": 1.0,
+        "pass": true,
+        "required_stage_success": [
+          {
+            "tool": "identify_sequences",
+            "ok": true
+          },
+          {
+            "tool": "register_to_reference",
+            "ok": true
+          },
+          {
+            "tool": "segment_prostate",
+            "ok": true
+          },
+          {
+            "tool": "detect_lesion_candidates",
+            "ok": true
+          },
+          {
+            "tool": "extract_roi_features",
+            "ok": true
+          },
+          {
+            "tool": "generate_report",
+            "ok": true
+          }
+        ],
+        "required_artifacts": [
+          {
+            "id": "prostate_mask",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/shifted-origin/prostate_mask.nii.gz"
+          },
+          {
+            "id": "lesion_candidates",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/shifted-origin/lesion_candidates.json"
+          },
+          {
+            "id": "feature_table",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/shifted-origin/feature_table.csv"
+          },
+          {
+            "id": "report_json",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/shifted-origin/report_json.json"
+          }
+        ]
+      },
+      "invariants_passed": 4,
+      "invariants": [
+        {
+          "id": "prostate_mask_non_empty",
+          "type": "nifti_nonempty",
+          "ok": true,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/shifted-origin/prostate_mask.nii.gz",
+          "detail": {
+            "nonzero_voxels": 1
+          }
+        },
+        {
+          "id": "prostate_affine_consistent",
+          "type": "nifti_affine_match",
+          "ok": false,
+          "lhs": ".local/explainers/completion-20260927/038-audit-v1/shifted-origin/prostate_mask.nii.gz",
+          "rhs": ".local/explainers/completion-20260927/038-audit-v1/shifted-origin/synthetic-grid.nii.gz",
+          "detail": {
+            "same_size": true,
+            "same_spacing": true,
+            "same_origin": false,
+            "same_direction": true
+          }
+        },
+        {
+          "id": "lesion_candidates_valid",
+          "type": "candidates_json_valid",
+          "ok": true,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/shifted-origin/lesion_candidates.json",
+          "detail": {
+            "has_num_candidates": true,
+            "num_candidates": 0,
+            "num_ok": true,
+            "has_candidates_list": true,
+            "n_candidates": 0
+          }
+        },
+        {
+          "id": "features_non_empty",
+          "type": "csv_non_empty",
+          "ok": true,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/shifted-origin/feature_table.csv",
+          "detail": {
+            "rows": 1,
+            "min_rows": 1
+          }
+        },
+        {
+          "id": "report_non_empty",
+          "type": "json_non_empty",
+          "ok": true,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/shifted-origin/report_json.json"
+        }
+      ]
+    },
+    {
+      "id": "report-stage-failed",
+      "base_success_rule": false,
+      "tcr": {
+        "completed": 9,
+        "total": 10,
+        "ratio": 0.9,
+        "pass": false,
+        "required_stage_success": [
+          {
+            "tool": "identify_sequences",
+            "ok": true
+          },
+          {
+            "tool": "register_to_reference",
+            "ok": true
+          },
+          {
+            "tool": "segment_prostate",
+            "ok": true
+          },
+          {
+            "tool": "detect_lesion_candidates",
+            "ok": true
+          },
+          {
+            "tool": "extract_roi_features",
+            "ok": true
+          },
+          {
+            "tool": "generate_report",
+            "ok": false
+          }
+        ],
+        "required_artifacts": [
+          {
+            "id": "prostate_mask",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/report-stage-failed/prostate_mask.nii.gz"
+          },
+          {
+            "id": "lesion_candidates",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/report-stage-failed/lesion_candidates.json"
+          },
+          {
+            "id": "feature_table",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/report-stage-failed/feature_table.csv"
+          },
+          {
+            "id": "report_json",
+            "ok": true,
+            "path": ".local/explainers/completion-20260927/038-audit-v1/report-stage-failed/report_json.json"
+          }
+        ]
+      },
+      "invariants_passed": 5,
+      "invariants": [
+        {
+          "id": "prostate_mask_non_empty",
+          "type": "nifti_nonempty",
+          "ok": true,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/report-stage-failed/prostate_mask.nii.gz",
+          "detail": {
+            "nonzero_voxels": 1
+          }
+        },
+        {
+          "id": "prostate_affine_consistent",
+          "type": "nifti_affine_match",
+          "ok": true,
+          "lhs": ".local/explainers/completion-20260927/038-audit-v1/report-stage-failed/prostate_mask.nii.gz",
+          "rhs": ".local/explainers/completion-20260927/038-audit-v1/report-stage-failed/synthetic-grid.nii.gz",
+          "detail": {
+            "same_size": true,
+            "same_spacing": true,
+            "same_origin": true,
+            "same_direction": true
+          }
+        },
+        {
+          "id": "lesion_candidates_valid",
+          "type": "candidates_json_valid",
+          "ok": true,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/report-stage-failed/lesion_candidates.json",
+          "detail": {
+            "has_num_candidates": true,
+            "num_candidates": 0,
+            "num_ok": true,
+            "has_candidates_list": true,
+            "n_candidates": 0
+          }
+        },
+        {
+          "id": "features_non_empty",
+          "type": "csv_non_empty",
+          "ok": true,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/report-stage-failed/feature_table.csv",
+          "detail": {
+            "rows": 1,
+            "min_rows": 1
+          }
+        },
+        {
+          "id": "report_non_empty",
+          "type": "json_non_empty",
+          "ok": true,
+          "path": ".local/explainers/completion-20260927/038-audit-v1/report-stage-failed/report_json.json"
+        }
+      ]
+    }
+  ],
+  "scope": "Native representative inputs plus selected pure validator/manifest replay. Five author nonclinical 8-cube fixtures; no pipeline, model, registration, segmentation, lesion detection or report generation was executed. No clinical ground truth or measured model accuracy.",
+  "observations": [
+    "Pinned documentation describes SR as requiring TCR=1. The selected contract uses six tool_success rules; the runner computes success, TCR and invariants separately. Fixtures exercise that base rule, not the whole controller or fault harness.",
+    "A tool_success rule accepts any ok=true record. Artifact paths come from the latest stage's last record. TCR counts six stage checks plus four path-existence checks; five invariants are separate.",
+    "The template has eight nodes; DWI registration and feature extraction are optional there. The benchmark contract still requires feature extraction; template optionality is not a benchmark exemption.",
+    "Candidates validity checks a nonnegative integer count and a list, not anatomy or count/list equality. CSV checks row count; report checks a truthy JSON value. NIfTI-read failure has a positive-file-size fallback in the nonempty test.",
+    "The segmentation source has an explicitly degraded geometric fallback when the MONAI dependency check raises. Its ellipse uses array dimensions; no such fallback was executed here. Missing weights with an available stack raise separately."
+  ]
+}

@@ -207,3 +207,5 @@ export * from '../presentation/frontend/task-visuals/segmentation-calibration';
 export * from '../presentation/frontend/task-visuals/aneurysm';
 
 export * from '../presentation/frontend/task-visuals/abra-annotation';
+
+export * from '../presentation/frontend/task-visuals/bcer-workflow';

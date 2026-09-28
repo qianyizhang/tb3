@@ -4,7 +4,7 @@ Identify sequences, align them, segment the prostate, detect candidates, extract
 
 ## Value
 
-This assembles intermediate imaging products that can support review. The inspected contract measures workflow and artifact validity.
+This assembles intermediate imaging products that can support review. The pinned implementation reports stage success, path completeness and artifact invariants separately. None establishes clinical accuracy.
 
 ## Given
 
@@ -34,7 +34,9 @@ Prostate mask, lesion-candidate JSON, feature table and report JSON.
 
 ## Evaluation
 
-Required-stage success plus checks such as nonempty masks, matching geometry and valid candidate JSON. These checks do not independently establish diagnostic accuracy.
+For `long_prostate_full`, the base success rule checks six tool-success flags. TCR counts six stage checks and four path-existence checks, for a denominator of ten. Five invariants are computed separately: nonempty mask, matching geometry, basic candidate JSON, a CSV data row and truthy report JSON. The metrics documentation describes SR as requiring TCR=1; this is not the selected contract and runner behavior reproduced by the bounded audit. Fault-specific handling is outside this replay.
+
+Five author nonclinical fixtures reproduce `(base success, TCR, invariants)`: missing files `(pass, 6/10, 0/5)`; empty files `(pass, 10/10, 0/5)`; one-voxel grid and trivial records `(pass, 10/10, 5/5)`; shifted mask origin `(pass, 10/10, 4/5)`; failed report stage `(fail, 9/10, 5/5)`. These are mechanical examples, not model outcomes.
 
 ## Visual explanation
 
@@ -52,7 +54,13 @@ PI-CAI 10001_1000001: T2 anatomy, ADC diffusion map and high-b diffusion image. 
 
 ### Supplied helpers
 
-A locally prepared example manifest records case 10001, domain prostate and T2w/ADC/DWI availability. Original MHA files are retained; geometry-preserving NIfTI copies match BCER’s documented formats. This preparation is ours, not a released BCER run.
+The original locally authored manifest uses lowercase `t2w/adc/dwi` keys; exact selected-rule replay does not recognize them. Its bytes are preserved. A fresh derived example uses canonical `T2w/ADC/DWI_highb` keys inferred from the prepared filenames and satisfies the selected contract. Filename inference does not validate acquisition metadata. Original MHA arrays and prepared NIfTI arrays match exactly; geometry agrees within 1e-5. This preparation is ours, not a released BCER run.
+
+### Contract and provenance
+
+The eight-node planning template makes DWI registration and feature extraction optional, while the benchmark contract requires feature extraction. Dependency arrows refer to this static template, not a run trace. Lesion detection consumes typed registration and mask paths.
+
+The segmentation source includes an explicitly degraded geometric fallback when the MONAI dependency check raises; it creates an ellipse from array dimensions. Missing model weights with an available stack raise separately. No medical fallback is executed here. Preserve degraded-mode flags, warnings and source revision when interpreting outputs.
 
 ### Reference or output
 
@@ -69,6 +77,12 @@ No BCER run was launched. Mask, candidates, feature table and report would be ge
 A wrong sequence, spatial mismatch or broken artifact dependency can derail a later stage. This differs from recognizing anatomy without specialist tools.
 
 ## Sources
+
+- [Source and validator audit](../sources/bcer-workflow-audit.json)
+- [Native source asset notice](../../task-explorer/bcer-workflow/NOTICE.md)
+- [Pinned benchmark runner](https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/benchmark/benchmark_runner.py#L918-L1349)
+- [Pinned planning template](https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/agent/plans/templates/prostate_full_pipeline.json)
+- [Segmentation implementation](https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/prostate_segmentation.py)
 
 - [Preview image notices](../../../presentation/task-explorer/assets/NOTICES.md)
 - [Preview image manifest](../../../presentation/task-explorer/assets/manifest.json)

@@ -18,6 +18,10 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    bcerInputs,
+    bcerContract,
+    bcerSelection,
+    bcerPixel,
     abraInputs,
     abraReference,
     abraSelection,
@@ -1610,6 +1614,51 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     assert.ok(
       slice.region_cells.includes('M74,74h1v1h-1z'),
       'Witness must lie in displayed reference',
+    );
+  }
+  const bcer = plans.find((p) => p.recipe === 'bcer-workflow-v1');
+  assert.equal(bcer.reference_policy, 'no-reference-assets');
+  assert.deepEqual(Array.from(bcerPixel([0, 0])), [0.5, 0.5]);
+  assert.equal(bcerInputs.sequences.length, 3);
+  assert.deepEqual(
+    Array.from(bcerInputs.sequences, (s) => Array.from(s.size_xyz)),
+    [
+      [640, 640, 21],
+      [120, 128, 21],
+      [120, 128, 21],
+    ],
+  );
+  assert.equal(bcerContract.template.nodes.length, 8);
+  assert.equal(bcerContract.contract.required_artifacts.length, 4);
+  assert.equal(bcerContract.template.nodes[4].required, false);
+  assert.ok(bcerContract.contract.required_stage_success.includes('extract_roi_features'));
+  assert.deepEqual(
+    Array.from(bcerContract.validator_examples, (r) => [
+      r.base_success_rule,
+      r.tcr.completed,
+      r.invariants_passed,
+    ]),
+    [
+      [true, 6, 0],
+      [true, 10, 0],
+      [true, 10, 5],
+      [true, 10, 4],
+      [false, 9, 5],
+    ],
+  );
+  for (const [scene, count] of [
+    ['geometry', 3],
+    ['dependencies', 8],
+    ['artifacts', 4],
+    ['metrics', 5],
+  ]) {
+    const beat = bcer.beats.find((b) => b.scene === scene),
+      seen = new Set();
+    for (let f = beat.startFrame; f < beat.endFrame; f++)
+      seen.add(bcerSelection(sampleStory(bcer, f)));
+    assert.deepEqual(
+      [...seen],
+      Array.from({ length: count }, (_, i) => i),
     );
   }
   const abra = plans.find((p) => p.recipe === 'abra-annotation-v1');

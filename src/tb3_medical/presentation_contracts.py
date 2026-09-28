@@ -514,6 +514,29 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class BcerWorkflowChannels(TypedDict):
+    view: tuple[float, float]
+
+
+class BcerWorkflowBeat(ExpansionBeat):
+    channels: BcerWorkflowChannels
+    scene: Literal[
+        "inputs",
+        "manifest",
+        "geometry",
+        "dependencies",
+        "artifacts",
+        "metrics",
+        "provenance",
+        "limits",
+    ]
+
+
+class BcerWorkflowPlan(ExpansionPlan):
+    recipe: Literal["bcer-workflow-v1"]
+    beats: list[BcerWorkflowBeat]
+
+
 class AbraAnnotationChannels(TypedDict):
     view: tuple[float, float]
     helper: tuple[float, float]
@@ -967,6 +990,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | BcerWorkflowPlan
     | AbraAnnotationPlan
     | CtContextPlan
     | HistorySourcingPlan
