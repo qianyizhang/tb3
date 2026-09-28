@@ -9382,50 +9382,106 @@
       "story_id": null,
       "observed_binding_state": "legacy-illustration-unreviewed",
       "proposed_operation_group": "astronomy",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "pending-operation-review",
+      "source_asset_readiness": "13 task sources, 60 shared sources and all 18 released assets verified. Native per-frame visibilities, supplied truth and saved static/StarWarps videos are available; eight fixtures, scoring controls and L1-L3 staging audited.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-eht-black-hole-dynamic.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A sequence of source-brightness images.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "blocking_dependency": null,
+      "remaining_work": "Author the operation-specific dynamic EHT story with native Fourier time series, temporal model, retained videos, explicit reference reveal, brightness/flux diagnostics and oracle scoring controls. Export and inspect desktop/mobile/no-GPU/playback before acceptance.",
       "contract_projection": {
-        "raw": "Time-indexed radio-interferometry measurements.",
-        "helpers": "Observation geometry and a temporal reconstruction model. The assistance level can add an approach and software design.",
-        "tools": "Python and the task’s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README’s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "A sequence of source-brightness images.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "title": "Reconstruct a changing black-hole image",
+        "goal": "Recover **12 brightness frames, each 30×30 pixels**, from the released synthetic\nradio-interferometry measurements of a rotating crescent.",
+        "value": "Changing telescope coverage and changing source brightness both change the\nmeasurements. A temporal model shares information across sparse snapshots.",
+        "raw": "28 complex visibilities per frame, with baseline coordinates, station pairs and\nnoise estimates. Twelve epochs span **0–6 hours**; eight EHT-inspired stations\nprovide **336 complex measurements** in total. This is a synthetic source,\nnot an observed movie of Sgr A*.",
+        "helpers": "Metadata specifies the grid, time stamps and 2 Jy source flux. **All L1–L3 copy\n`data/ground_truth.npz` into the solver workspace.** L2 adds an algorithmic\napproach; L3 adds software design. Source code and evaluation outputs are not seeded.",
+        "tools": "Python and declared numerical dependencies. The audit used existing NumPy for\nsmall fixtures and saved-array controls; no reconstruction or installation ran.",
+        "reference": "Saved static and StarWarps reconstructions, fixtures and historical notebook\noutputs support comparison. The supplied reference video itself is solver-visible;\na reader reveal does not create a private evaluation boundary.",
+        "spec": "For each time, map brightness to complex Fourier samples with the supplied\nbaseline geometry. Couple neighboring images through a Gaussian Markov model:\na parameterized warp predicts the next image, with process noise allowing change.\nStarWarps alternates forward/backward inference and warp optimization. The current\nsource defaults to **four affine parameters without translation**.",
+        "output": "One `output/reconstruction.npy`, shape **(12, 30, 30)**, in **Jy/pixel** and original\ntime order. Pixels span **3.4 μas**, giving a 102 μas field. Each frame has 900 real\nunknowns but only 56 real measurement components. The native solver API also\nreturns uncertainty and warp parameters; the released output arrays and live\nlocal scorer cover the video.",
+        "score": "| Saved-array replay | Mean native NCC ↑ | Mean native NRMSE ↓ |\n|---|---:|---:|\n| Independent static frames | 0.850741 | 0.070963 |\n| StarWarps | 0.881699 | 0.063803 |\n| Oracle time-average image repeated | 0.986929 | 0.018853 |\n\nThe native report averages framewise centered correlation and range-normalized\nerror. The oracle control uses the answer and has **no motion**; its high scores\nshow that similarity alone does not establish correct dynamics.\n\nThe local generic scorer instead uses video-wide cosine correlation and error:\nStarWarps **NCC 0.882934 / NRMSE 0.063114**. Published pass thresholds are absent.\nThe older runner fallback requires a 2D image; cross-runner equivalence is unverified.",
+        "challenge": "Sparse sampling makes priors consequential. Better image scores, smoother motion\nand correct dynamics are separate properties; one synthetic example cannot\nestablish general superiority or blind reconstruction ability.",
+        "families": "13 task sources, 60 shared sources and all 18 released assets verified. Eight\nfixture archives, original per-frame scores, saved-video controls and L1–L3\nstaging were checked. Two fixtures lack complete inputs for exact replay.",
+        "gap": "Pinned `main.py` has a syntax error at line 31. Original output arrays and scores\nremain unchanged; no fresh EM execution or benchmark pass is claimed. Source-array\nviews have been inspected locally. Canonical story, export and visual acceptance\nremain pending in the completion ledger.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect native Fourier coverage and time-indexed visibility measurements.",
+          "Follow the temporal prior and compare retained static and dynamic videos.",
+          "Reveal the supplied reference, motion diagnostics and scoring controls."
+        ],
         "variants": [
           {
             "name": "L1 · README",
-            "helper": "README, data description and method hints.",
-            "remaining": "Choose and implement a workable algorithm."
+            "helper": "README, data including reference, requirements.",
+            "remaining": "Implement reconstruction; reference copying is possible."
           },
           {
             "name": "L2 · + approach",
-            "helper": "A proposed algorithmic approach is added.",
-            "remaining": "Design the software and implement the method."
+            "helper": "L1 plus temporal-model and EM guidance.",
+            "remaining": "Design and implement the method."
           },
           {
             "name": "L3 · + design",
-            "helper": "Approach and software design are added.",
-            "remaining": "Implement the specified design and numerical details."
+            "helper": "L2 plus interfaces and numerical details.",
+            "remaining": "Implement the specified design."
           }
         ],
         "sources": [
           [
-            "Pinned task README",
+            "Pinned task and array contract",
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/eht_black_hole_dynamic/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Pinned temporal solver",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/eht_black_hole_dynamic/src/solvers.py"
+          ],
+          [
+            "Pinned generator and noise convention",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/eht_black_hole_dynamic/src/generate_data.py"
+          ],
+          [
+            "Pinned generic scorer",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+          ],
+          [
+            "StarWarps paper, v2",
+            "https://arxiv.org/abs/1711.01357v2"
+          ],
+          [
+            "Source audit, controls and provenance",
+            "presentation/external-tasks/sources/imaging101-eht-dynamic-audit.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
+        "html": {
+          "goal": "<p>Recover <strong>12 brightness frames, each 30×30 pixels</strong>, from the released synthetic radio-interferometry measurements of a rotating crescent.</p>",
+          "value": "<p>Changing telescope coverage and changing source brightness both change the measurements. A temporal model shares information across sparse snapshots.</p>",
+          "raw": "<p>28 complex visibilities per frame, with baseline coordinates, station pairs and noise estimates. Twelve epochs span <strong>0–6 hours</strong>; eight EHT-inspired stations provide <strong>336 complex measurements</strong> in total. This is a synthetic source, not an observed movie of Sgr A*.</p>",
+          "helpers": "<p>Metadata specifies the grid, time stamps and 2 Jy source flux. <strong>All L1–L3 copy <code>data/ground_truth.npz</code> into the solver workspace.</strong> L2 adds an algorithmic approach; L3 adds software design. Source code and evaluation outputs are not seeded.</p>",
+          "tools": "<p>Python and declared numerical dependencies. The audit used existing NumPy for small fixtures and saved-array controls; no reconstruction or installation ran.</p>",
+          "reference": "<p>Saved static and StarWarps reconstructions, fixtures and historical notebook outputs support comparison. The supplied reference video itself is solver-visible; a reader reveal does not create a private evaluation boundary.</p>",
+          "spec": "<p>For each time, map brightness to complex Fourier samples with the supplied baseline geometry. Couple neighboring images through a Gaussian Markov model: a parameterized warp predicts the next image, with process noise allowing change. StarWarps alternates forward/backward inference and warp optimization. The current source defaults to <strong>four affine parameters without translation</strong>.</p>",
+          "output": "<p>One <code>output/reconstruction.npy</code>, shape <strong>(12, 30, 30)</strong>, in <strong>Jy/pixel</strong> and original time order. Pixels span <strong>3.4 μas</strong>, giving a 102 μas field. Each frame has 900 real unknowns but only 56 real measurement components. The native solver API also returns uncertainty and warp parameters; the released output arrays and live local scorer cover the video.</p>",
+          "score": "<div class=\"table\"><table>\n<tr><th>Saved-array replay</th><th>Mean native NCC ↑</th><th>Mean native NRMSE ↓</th></tr>\n<tr><td>Independent static frames</td><td>0.850741</td><td>0.070963</td></tr>\n<tr><td>StarWarps</td><td>0.881699</td><td>0.063803</td></tr>\n<tr><td>Oracle time-average image repeated</td><td>0.986929</td><td>0.018853</td></tr>\n</table></div>\n<p>The native report averages framewise centered correlation and range-normalized error. The oracle control uses the answer and has <strong>no motion</strong>; its high scores show that similarity alone does not establish correct dynamics.</p>\n<p>The local generic scorer instead uses video-wide cosine correlation and error: StarWarps <strong>NCC 0.882934 / NRMSE 0.063114</strong>. Published pass thresholds are absent. The older runner fallback requires a 2D image; cross-runner equivalence is unverified.</p>",
+          "challenge": "<p>Sparse sampling makes priors consequential. Better image scores, smoother motion and correct dynamics are separate properties; one synthetic example cannot establish general superiority or blind reconstruction ability.</p>",
+          "families": "<p>13 task sources, 60 shared sources and all 18 released assets verified. Eight fixture archives, original per-frame scores, saved-video controls and L1–L3 staging were checked. Two fixtures lack complete inputs for exact replay.</p>",
+          "gap": "<p>Pinned <code>main.py</code> has a syntax error at line 31. Original output arrays and scores remain unchanged; no fresh EM execution or benchmark pass is claimed. Source-array views have been inspected locally. Canonical story, export and visual acceptance remain pending in the completion ledger.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>Show the 28 native u/v points at each epoch in wavelengths. Conjugate points, if shown, are derived and do not increase the measurement count.</p>",
+          "helpers": "<p>Label the Gaussian prior, warp and process noise as modeling choices. The generator&#x27;s complex-RMS noise convention differs by a factor of two in variance from the source helper&#x27;s real/imaginary covariance; retain that discrepancy.</p>",
+          "answer": "<p>Preserve all twelve frames, the native grid and a common Jy/pixel scale. Use array coordinates with row zero at the bottom, matching the source plots. A descriptive brightness-direction diagnostic changes <strong>57.88°</strong> for saved StarWarps and <strong>90°</strong> for truth; this is not a fitted warp or an astrophysical position angle.</p>"
+        },
+        "missing_media": []
       },
-      "source_brief_sha256": "1fa68580b52bfcb7d328ccf31855288f8c05cac9d7f340b8e83fda20886dcec5",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval."
+      "source_brief_sha256": "8697e73e8142ee6c5e0786aec7ab21a5519e4e2b1acdbd34f475b0b05a6f0f71",
+      "blocker_resolution": "Exact input, temporal model, output and local evaluator contracts are audited. Native arrays support a retained-evidence explanation; source syntax, noise, motion and runner discrepancies remain explicit. No canonical story or visual acceptance is claimed.",
+      "source_review": {
+        "date": "2026-09-29",
+        "reviewer": "assistant",
+        "receipt": "presentation/external-tasks/sources/imaging101-eht-dynamic-audit.json",
+        "sha256": "8f445934348b7d8b0afba329b677ccd94c76c80e83f00265c82e743b174e6ea8",
+        "status": "source-audited-native-arrays-available"
+      }
     },
     {
       "entry_id": "imaging101-eht-black-hole-feature-extraction-dynamic",
@@ -16064,8 +16120,9 @@
   "counts": {
     "reviewed-scripted-planar": 41,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 98,
-    "blocked-source-input": 53
+    "blocked-source-contract": 97,
+    "blocked-source-input": 53,
+    "pending-operation-review": 1
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
@@ -16953,6 +17010,16 @@
         "export_receipt_sha256": "470b1cc710ee42840580a8abe7d7f36110e56f60e10c0df61653cda7874d3c03",
         "reviewed_entries": 54,
         "next_entry": "imaging101-eht-black-hole-dynamic"
+      },
+      {
+        "date": "2026-09-29",
+        "entry_id": "imaging101-eht-black-hole-dynamic",
+        "stage": "source-audit-complete",
+        "receipt": "presentation/external-tasks/sources/imaging101-eht-dynamic-audit.json",
+        "receipt_sha256": "8f445934348b7d8b0afba329b677ccd94c76c80e83f00265c82e743b174e6ea8",
+        "reviewed_entries": 54,
+        "next_entry": "imaging101-eht-black-hole-dynamic",
+        "note": "Pinned native arrays, fixtures, saved video scores, motion diagnostics, source discrepancies and evaluator/staging audited. Canonical story, export and visual acceptance pending."
       }
     ]
   }
