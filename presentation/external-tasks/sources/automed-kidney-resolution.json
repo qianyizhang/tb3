@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "automedbench",
+  "illustration_basis": "source-derived",
+  "reference_policy": "reader-reference-reveal",
+  "license": "CC-BY-NC-SA-4.0; local noncommercial interpretation",
+  "actual_data_gap": "Matching KiTS19 case_00000 CT and source annotation recovered. No materialized pinned AutoMedBench staging, saved model prediction, agent trace or judge result; root-recipe and task-loader data paths differ.",
+  "acquisition_route": "https://github.com/neheller/kits19",
+  "attempts": [
+    {
+      "action": "Verify 35 retained AutoMedBench source files against pinned SHA256 values",
+      "source": "presentation/external-tasks/sources/automed-kidney-audit.json",
+      "attempted_at": "2026-09-29T03:11:49.128116+00:00",
+      "outcome": "35/35 files match; six nonclinical contract fixtures retained. No model or judge run."
+    },
+    {
+      "action": "Read official KiTS19 repository and dataset route",
+      "source": "https://github.com/neheller/kits19",
+      "attempted_at": "2026-09-29T03:11:49.128116+00:00",
+      "outcome": "Official repository directs imaging to neheller/KiTS-Challenge-Imaging; source data license CC-BY-NC-SA-4.0."
+    },
+    {
+      "action": "Approved bounded download of pinned case_00000 source annotation",
+      "source": "https://raw.githubusercontent.com/neheller/kits19/456b293435b25303bbc7995f094f83a0afdff0eb/data/case_00000/segmentation.nii.gz",
+      "attempted_at": "2026-09-29T03:11:49.128116+00:00",
+      "outcome": "HTTP 200; 775587 bytes; SHA256 d1019d9a690e193e167cadf3518499e9ed54c1c7757ce520152a3ed072159e09. Retained segmentation-attempt.log."
+    },
+    {
+      "action": "Approved metadata request and matching CT download at reported revision",
+      "source": "https://huggingface.co/datasets/neheller/KiTS-Challenge-Imaging/resolve/65f1f295873a326230153c7e1de0c7dba10f0b29/images/case_00000.nii.gz",
+      "attempted_at": "2026-09-29T03:11:49.128116+00:00",
+      "outcome": "Metadata HTTP 200, gated=false; CT HTTP 200; 225959569 bytes; SHA256 cdae5f3e0fbc7c98ab0430b3de42677abda2c1cf93ae0f86bd29fb8606688cb7. Retained metadata and imaging-attempt.log."
+    },
+    {
+      "action": "Inspect NIfTI geometry and released labels",
+      "source": ".local/explainers/core-20260929/kidney-source/geometry-review.json",
+      "attempted_at": "2026-09-29T03:11:49.128116+00:00",
+      "outcome": "CT and annotation both 611x512x512, same affine and 0.5x0.919921875x0.919921875 mm spacing, native I/P/L axes; labels 0/1/2. Source annotation is reader-only."
+    }
+  ],
+  "source_files": {
+    "imaging.nii.gz": {"bytes": 225959569, "sha256": "cdae5f3e0fbc7c98ab0430b3de42677abda2c1cf93ae0f86bd29fb8606688cb7"},
+    "segmentation.nii.gz": {"bytes": 775587, "sha256": "d1019d9a690e193e167cadf3518499e9ed54c1c7757ce520152a3ed072159e09"}
+  },
+  "previous_audits": [
+    {"path": "presentation/external-tasks/sources/automed-kidney-audit.json", "sha256": "1849dc0a39b3d3a6d7a2d825735397779b9e63264419506b9ab60cea245b953e"}
+  ],
+  "geometry_review": {"path": ".local/explainers/core-20260929/kidney-source/geometry-review.json", "sha256": "30d86bc5e027b113e10ac6d5357fa7ff86b0d3e7524f9506f7392b9bd5f0cb9c"},
+  "data_license": {"path": ".local/explainers/completion-20260927/039-source/kits19/data/LICENSE", "sha256": "b74fbcfc8ced6f7893b729b2685fc23cf221c72bcd716bd04cd884bf8a33bd48"},
+  "staged_asset_pack": "retained-automed-kidney-v1",
+  "reopening_condition": "Reconcile actual AutoMedBench staging paths and acquire a separately authorized saved model output before making model or clinical performance claims."
+}

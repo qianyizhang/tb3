@@ -1,4 +1,7 @@
-# Read imaging against private clinical reports
+# Proposed image reading against private clinical reports
+
+> **Symbolic protocol illustration — no admitted CT/report pair is available here.**
+> Request real data through the [official CT-RATE access page](https://huggingface.co/datasets/ibrahimhamamci/CT-RATE), then verify case admission before any patient-specific depiction.
 
 **This is an archived, unexecuted proposal: zero admitted cases and zero model
 trials.** The solver would read a complete examination and safe pre-exam context.
@@ -98,15 +101,24 @@ by this explanation audit.
 ### Missing source views
 
 No admitted examination, source report or case-specific answer is available.
-The legacy schematic is not an accepted explainer. This entry remains unfinished
-pending an authorized source pair and case contract, or an explicit user decision
-to limit its scope to a protocol-only explanation.
+The [staged story](../stories/report-backed-reading.story.md) and
+[symbolic pack](../../../../presentation/task-explorer/report-reading/manifest.json)
+explain only the proposed input, evidence-location operation, empty answer schema,
+private report role and bidirectional comparison categories. Every chapter retains
+the acquisition warning. This is not a patient examination, generated diagnosis
+or model result; integrated visual review and acceptance remain pending.
+
+An approved unauthenticated HEAD to the exact retained CT-RATE candidate URL
+returned HTTP 401 with `GatedRepo`, confirming authenticated access is required.
+That candidate is from a separate access screen, not an admitted BR-018 case.
+The earlier sandbox proxy failure remains a distinct transport receipt.
 
 ## Sources
 
 - [BR-018 — Report-backed diagnostic reading](../../experiments/br018/protocol.md)
 - [Original proposal and exact reference boundary](../../../../docs/research-rounds/BR-018-report-backed-diagnosis.md)
 - [Source audit and archive hashes](../sources/report-backed-reading-audit.json)
+- [Source-resolution receipt](../sources/report-backed-reading-resolution.json)
 - [Recovery manifest](../../../../archive/manifest.json)
 - [CT-RATE retained access screen](../../../../datasets/ct-rate.json)
 - [Current explanation decision and reopening conditions](../../ideas/report-backed-diagnostic-reading.md)

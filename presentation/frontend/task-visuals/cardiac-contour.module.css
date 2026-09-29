@@ -1,0 +1,253 @@
+.scene,
+.output {
+  color: #243e49;
+  font: inherit;
+}
+.scene {
+  padding: 10px;
+}
+.mast {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  margin: 0 0 10px;
+}
+.mast span {
+  font-size: 0.78rem;
+  color: #536a73;
+}
+.pair,
+.four {
+  display: grid;
+  gap: 10px;
+}
+.pair {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.scan {
+  margin: 0;
+  min-width: 0;
+  border: 1px solid #d7e2e4;
+  border-radius: 10px;
+  padding: 6px;
+  background: #f5f8f8;
+}
+.scan figcaption {
+  font-size: 0.76rem;
+  font-weight: 700;
+  min-height: 2.4em;
+}
+.scan svg {
+  display: block;
+  width: 100%;
+  height: 255px;
+  background: #121b20;
+}
+.scan small {
+  display: block;
+  font-size: 0.67rem;
+  color: #566d77;
+  padding-top: 3px;
+}
+.legend,
+.key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+  font-size: 0.73rem;
+}
+.legend span,
+.key span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.legend b,
+.key i {
+  display: inline-block;
+  width: 12px;
+  height: 3px;
+}
+.note {
+  font-size: 0.77rem;
+  line-height: 1.35;
+  color: #536a73;
+}
+.output {
+  padding: 12px;
+}
+.output h3 {
+  margin: 0 0 7px;
+  font-size: 1rem;
+}
+.output p {
+  margin: 7px 0;
+}
+.curveWrap {
+  max-width: 430px;
+}
+.curve {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.curve text {
+  font-size: 10px;
+  fill: #435963;
+}
+.scores {
+  font-size: 0.72rem;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+}
+.scores th,
+.scores td {
+  text-align: right;
+  padding: 4px;
+  border-bottom: 1px solid #d8e2e4;
+}
+.scores th:first-child {
+  text-align: left;
+}
+.scores thead th {
+  font-weight: 700;
+}
+.depth {
+  padding: 8px;
+  border-left: 3px solid #18c6d4;
+  background: #edf7f8;
+}
+@media (max-width: 650px) {
+  .pair,
+  .four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .mast {
+    display: block;
+  }
+  .mast span {
+    display: block;
+    margin-top: 3px;
+  }
+  .scores {
+    font-size: 0.62rem;
+  }
+  .scores th,
+  .scores td {
+    padding: 3px 2px;
+  }
+}
+.operation {
+  display: grid;
+  grid-template-columns: 1fr 0.7fr 1fr;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+  padding: 9px;
+  border: 1px solid #cddfe2;
+  border-radius: 10px;
+  background: #f0f7f8;
+}
+.operation strong {
+  font-size: 0.78rem;
+}
+.operation p {
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+.arrow {
+  font-size: 1.5rem;
+  color: #4293a3;
+}
+.surface {
+  margin: 0;
+  min-width: 0;
+}
+.surface figcaption {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.surface svg {
+  display: block;
+  width: 100%;
+  height: 255px;
+  max-height: 255px;
+}
+.surface small {
+  display: block;
+  font-size: 0.65rem;
+  color: #56717b;
+}
+.depthPair {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 8px;
+  border: 1px solid #cddfe2;
+  border-radius: 10px;
+  background: #f0f7f8;
+}
+.depthPair p {
+  grid-column: 1/-1;
+  margin: 0;
+  font-size: 0.73rem;
+}
+@media (max-width: 650px) {
+  .operation {
+    grid-template-columns: 1fr;
+  }
+  .arrow {
+    display: none;
+  }
+  .depthPair {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.scene[data-cardiac-contour-scene='curves'] .scan svg,
+.scene[data-cardiac-contour-scene='limits'] .scan svg {
+  height: 130px;
+}
+.scene .scores {
+  font-size: 13px;
+}
+.scene .scores th,
+.scene .scores td {
+  padding: 4px 6px;
+  white-space: nowrap;
+}
+.method {
+  font-size: 13px;
+  line-height: 1.45;
+}
+.output .curve {
+  max-height: 175px;
+}
+@container task-visual (max-width: 650px) {
+  .scan svg {
+    height: auto;
+    max-height: 260px;
+  }
+  .operation,
+  .depthPair {
+    grid-template-columns: 1fr;
+  }
+  .scene .scores {
+    font-size: 10px;
+  }
+  .scene .scores th,
+  .scene .scores td {
+    padding: 3px 2px;
+    white-space: normal;
+  }
+  .surface svg {
+    height: 200px;
+  }
+}

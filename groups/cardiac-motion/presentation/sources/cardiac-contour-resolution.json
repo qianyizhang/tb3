@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "tb3-cardiac-contour-feasibility",
+  "resolved_at": "2026-09-29T02:35:31Z",
+  "illustration_basis": "source-derived",
+  "actual_data_gap": "The selected Patient001 images, source masks and saved BR-025 author outputs are present locally and were used. No original-data gap remains for this local interpretation. Exact onward redistribution permission for the teaching pack remains unresolved.",
+  "acquisition_route": "https://zenodo.org/records/21322299 (FeEcho4D release linked from https://feecho4d.github.io/Website/)",
+  "source_revision": "Zenodo record 21322299; retained Patient001 partial archive extraction and 2026-09-27 saved-output audit",
+  "source_review_scope": "Local noncommercial task interpretation only; this receipt does not authorize public redistribution, model execution or clinical claims.",
+  "attempts": [
+    {
+      "action": "Inspect retained native case and checksum selected source members against the source member receipt; build a new teaching pack from saved outputs",
+      "source": "runs/br025-cardiac/source/native/Patient001 and runs/br025-cardiac/pilot-v1",
+      "attempted_at": "2026-09-29T02:34:00Z",
+      "outcome": "Available locally: 30 frames; four supplied native input planes and one withheld image plane packed at every frame. The builder verified every selected image/mask SHA-256 against datasets/receipts/feecho4d-members.json, three saved NPZs and curves.json against the retained audit, and emitted source/output/reference files without a model run.",
+      "support": {
+        "prior_audit": "groups/cardiac-motion/presentation/sources/cardiac-contour-audit.json",
+        "prior_audit_sha256": "39920e028b3536593ec36ab07f97779de34971654ab6b2b8c6d1e61166f79d11",
+        "member_receipt_sha256": "1af472b1aea598fdeb327ff3f063158f9c128915b5a2e7147c74e519be936025",
+        "manifest": "presentation/task-explorer/cardiac-contour/manifest.json",
+        "sample_input_sha256": "ab0b873be21908a705790b70950ef69ed0bca02fcef8948d6794f9c2aa134fdc",
+        "sample_withheld_mask_sha256": "a525174b3e7873d32ef8ad47870042ac1d729735fca5e24a39ac1e7df045cd8f"
+      }
+    },
+    {
+      "action": "Read the official project dataset access and licensing section",
+      "source": "https://feecho4d.github.io/Website/#access",
+      "attempted_at": "2026-09-29T02:22:00Z",
+      "outcome": "The project links the Zenodo release for noncommercial research use and describes the radial images, LV cavity label 127 and source annotation workflow. This supports local research interpretation; the page does not state an explicit onward redistribution license for this derived teaching pack."
+    },
+    {
+      "action": "Open the native release page and compare the retained Zenodo API metadata audit",
+      "source": "https://zenodo.org/records/21322299",
+      "attempted_at": "2026-09-29T02:22:00Z",
+      "outcome": "The current browser fetch returned an internal error; this is not evidence that the release is unavailable. The retained 2026-09-27 API response identifies open access but no explicit license field, so redistribution remains unverified.",
+      "support": {
+        "retained_api_receipt": ".local/explainers/completion-20260927/018-zenodo-record.json",
+        "retained_api_sha256": "8c1d5d810bf4377b2fcf97788eebe2092650ddd659e13278be3bcb3c7b897607"
+      }
+    }
+  ],
+  "pack": {
+    "path": "presentation/task-explorer/cardiac-contour/manifest.json",
+    "source_class": "source-derived-teaching",
+    "reference_policy": "reader-reference-reveal",
+    "status": "local review asset; public redistribution unverified"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "tb3-report-backed-reading",
+  "reviewed_at": "2026-09-29",
+  "status": "gated-source-input-unavailable; staged symbolic-protocol explainer for local review",
+  "scope": "Symbolic protocol authoring only; no case admission, clinical adjudication, model trial, installation, browser test, publication or acceptance",
+  "illustration_basis_proposed": "symbolic",
+  "actual_data_gap": "BR-018 has zero admitted image/report pairs, no case manifest, no frozen patient claim table and no retained model answer. The proposed CT-RATE route was an author recommendation, not a user-selected or acquired BR-018 case. No case-specific diagnostic content may be depicted as evidence.",
+  "acquisition_route": "Official CT-RATE access page: https://huggingface.co/datasets/ibrahimhamamci/CT-RATE . Access requires signing in and accepting the dataset conditions. After authorization, a case still needs exact CT/report pairing, geometry/correction review, private report separation and a frozen claim ledger before source-derived story authoring.",
+  "warning_text_proposed": "Symbolic protocol illustration \u2014 no admitted CT/report pair is available here; request the real data through the official CT-RATE access page.",
+  "prior_audit": {
+    "path": "groups/longitudinal-reading/presentation/sources/report-backed-reading-audit.json",
+    "sha256": "ae37e9e71a95fad2c416199622023aa035dfe2871a4be16f08d0859b207c95d1",
+    "pins_verified_currently": 11,
+    "missing_pins": 0,
+    "mismatched_pins": 0
+  },
+  "attempts": [
+    {
+      "action": "Inspect retained BR-018 audit, recovered scaffold, experiment directory, source declarations and local file inventory; verify all 11 pinned source hashes",
+      "source": "groups/longitudinal-reading/presentation/sources/report-backed-reading-audit.json; groups/longitudinal-reading/experiments/br018; runs/br018-diagnostic",
+      "attempted_at": "2026-09-29",
+      "outcome": "All 11 retained document/scaffold pins match. The declared preparation root runs/br018-diagnostic does not exist. The experiment directory contains protocol.md and experiment.toml only. Local matching CT/report case and model output remain absent; documentation copies and old schematic PNGs are not source pairs."
+    },
+    {
+      "action": "Read official current CT-RATE dataset card and acquisition conditions",
+      "source": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE",
+      "attempted_at": "2026-09-29",
+      "outcome": "Public card describes CT volumes with corresponding radiology reports, but files require login and acceptance of access conditions/contact sharing. Displayed CC-BY-NC-SA-4.0 metadata coexists with additional terms forbidding redistribution of the dataset or any portion. No conditions were accepted and no authenticated access was tested."
+    },
+    {
+      "action": "Attempt a HEAD request through the configured local network route for the exact retained CT-RATE example URL",
+      "source": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE/resolve/deeca4d89e9f978d4d1bccd88a55071ddbb146bb/dataset/valid_fixed/valid_16/valid_16_a/valid_16_a_1.nii.gz",
+      "attempted_at": "2026-09-29",
+      "outcome": "curl exit 7: could not connect to configured 127.0.0.1:10808 proxy. This is a local transport failure and gives no current dataset authorization verdict. The retained earlier unauthenticated HEAD returned 401 for this HealthAgentBench candidate, which is not an admitted BR-018 case. No bytes downloaded."
+    },
+    {
+      "action": "Approved unauthenticated HEAD to exact retained CT-RATE candidate URL through configured proxy",
+      "source": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE/resolve/deeca4d89e9f978d4d1bccd88a55071ddbb146bb/dataset/valid_fixed/valid_16/valid_16_a/valid_16_a_1.nii.gz",
+      "attempted_at": "2026-09-29T03:06:18Z",
+      "outcome": "HTTP 401, X-Error-Code: GatedRepo, X-Error-Message says dataset access is restricted and authentication is required. This candidate file belongs to a different retained access screen and is not admitted into BR-018. No bytes downloaded; no account terms accepted.",
+      "receipt": ".local/explainers/core-20260929/report-reading-source/approved-head-attempt.log"
+    }
+  ],
+  "source_roles": {
+    "proposed_solver_input": "Complete native examination and only verified pre-exam age, sex, indication, technique and available comparisons; anonymous files and generic orientation-aware viewer. No source report, target list, seed, answer or disease label.",
+    "private_evaluator_reference": "Original clinical report, source/patient mapping and curator-extracted claim table with exact excerpts, negation, uncertainty and laterality. Not solver assistance and not independent pathology truth.",
+    "proposed_output": "answer.json findings, impression, limitations and evidence_summary with image/slice or RAS-mm evidence locations; no retained answer exists.",
+    "controls": "Empty, indiscriminately positive and deliberately contradictory reports plus a copied-reference baseline were proposed only. No clinical grader or control result was executed."
+  },
+  "reopen_condition": "For a source-derived case: documented authenticated access and dataset-terms review; selected paired examination/report with exact revisions and hashes; native geometry/correction review; a frozen private claim ledger; and verified solver/reference isolation. Otherwise retain the explicit symbolic protocol scope.",
+  "limits": [
+    "Current authorization for local noncommercial task interpretation does not grant CT-RATE gated access or permission to redistribute any dataset portion.",
+    "The exact CT-RATE file in the retained access check belongs to a different candidate task; it is an access probe, not BR-018 case selection.",
+    "A symbolic workflow can explain roles and comparison logic but cannot show patient findings, report claims, model answers or performance.",
+    "The proposed 12-patient sample is a plan, not an observed denominator."
+  ],
+  "illustration_basis": "symbolic",
+  "draft_pack": "presentation/task-explorer/report-reading/manifest.json",
+  "warning_text": "Symbolic illustration \u2014 no CT/report pair has been admitted; request candidate data through the official CT-RATE access page.",
+  "scientific_provenance": "The compiler source-derived-teaching class refers to pinned protocol documents and empty schemas, not patient-derived pixels. All task illustrations are symbolic; there are zero admitted cases and zero trials.",
+  "prior_contract_sources": [
+    {
+      "path": "groups/longitudinal-reading/presentation/briefs/tb3-report-backed-reading.md",
+      "sha256": "1dda31dc0b39c1993e680e4ddbc0165288aee5c94cf9d69ebe80c6827f9aac92"
+    },
+    {
+      "path": "groups/longitudinal-reading/ideas/report-backed-diagnostic-reading.md",
+      "sha256": "4bf3a6161b481e491378052dd8c8dc1bfb64792dd2277f386b8079ff7e23b7e3"
+    }
+  ]
+}

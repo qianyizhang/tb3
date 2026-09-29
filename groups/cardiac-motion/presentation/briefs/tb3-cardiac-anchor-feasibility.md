@@ -128,11 +128,15 @@ material strain, clinical validity or performance on new patients.
 
 ## Coverage
 
-The package and saved-output audit is complete. The operation-specific story,
-integrated review and export remain unfinished. FeEcho4D onward redistribution
-rights remain unresolved under the [shared source review](../sources/cardiac-contour-audit.json).
-Raw images and derived mesh assets remain local pending documented permission or
-an explicit private-only final-scope decision. This entry remains incomplete.
+The package and saved-output audit is complete. The [source-resolution receipt](../sources/cardiac-anchor-resolution.json)
+confirms the matching FeEcho4D Patient001 inputs and saved author outputs are
+available for local noncommercial interpretation. The [canonical story](../stories/cardiac-anchor-feasibility.story.md)
+and [local source pack](../../../../presentation/task-explorer/cardiac-anchor/NOTICE.md)
+use actual retained images, anchors and predictions. Integrated visual review and
+export remain unfinished. FeEcho4D onward redistribution rights remain unresolved
+under the [shared source review](../sources/cardiac-contour-audit.json); this
+locally generated pack carries no public redistribution claim. This entry remains
+incomplete until reviewer sign-off.
 
 ## Sources
 

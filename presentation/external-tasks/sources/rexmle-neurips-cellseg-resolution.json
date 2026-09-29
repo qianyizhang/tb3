@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "status": "source-recovered-staged-explainer",
+  "reviewed_at": "2026-09-29T04:21:58+00:00",
+  "source_commit": "b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53",
+  "source_archive": {
+    "path": "pinned-source/rex-mle-b3d8f7c-source.tar.gz",
+    "url": "https://codeload.github.com/rajpurkarlab/ReX-MLE/tar.gz/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53",
+    "sha256": "82d18d7bfb3a69719284ed33e29feb33d409f1c8f7e49961b9357832a1141bac",
+    "bytes": 12204410
+  },
+  "git_tree": {
+    "path": "pinned-source/github-tree.json",
+    "url": "https://api.github.com/repos/rajpurkarlab/ReX-MLE/git/trees/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53?recursive=1",
+    "sha256": "6550c5e942c71cef1ba6795a0c43df4c066169779213d76e609ffaabfe2c6463",
+    "all_adapter_git_blobs_verified": true
+  },
+  "clinical_structure_audit": {
+    "path": ".local/explainers/core-20260929/clinical-structure-source/resolution-draft.json",
+    "sha256": "8695ada6bbc01d31af7381a252ad2a73aab8d9fbc1ca5b03fb3d81c7029a8056"
+  },
+  "model_run": false,
+  "preparer_run": false,
+  "grader_run": false,
+  "acceptance_run": false,
+  "entry_id": "rexmle-neurips-cellseg",
+  "illustration_basis": "mixed",
+  "source_files": [
+    {
+      "path": "pinned-source/adapters/neurips-cellseg/description.md",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/neurips-cellseg/description.md",
+      "sha256": "cc5a6a868911168b4192335b0ca2b62ae8ffcf24c0f2a06e80f0dfffd841a5c1"
+    },
+    {
+      "path": "pinned-source/adapters/neurips-cellseg/prepare.py",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/neurips-cellseg/prepare.py",
+      "sha256": "1e2ad00bc3e0cedd4a0264af01d755edf4fe235148412341fe116d540161ed00"
+    },
+    {
+      "path": "pinned-source/adapters/neurips-cellseg/grade.py",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/neurips-cellseg/grade.py",
+      "sha256": "e12b59e010e655bd0e7685a6642131e8b944202f419fc540e83dc621ffc26906"
+    },
+    {
+      "path": "pinned-source/adapters/neurips-cellseg/config.yaml",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/neurips-cellseg/config.yaml",
+      "sha256": "d9c7b60dd700708beb8565f300d9fb91ba8967b625fddb3ae8acb33e1beb60f4"
+    },
+    {
+      "path": "pinned-source/adapters/neurips-cellseg/metric_config.json",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/neurips-cellseg/metric_config.json",
+      "sha256": "f77b2901e19a4aa175b8402a9b590aa0067c58ec7c423d53d91327618c671f38"
+    }
+  ],
+  "actual_data_gap": "One exact original Training-labeled CellSeg microscopy image and matching instance TIFF are retained; full source archives, a confirmed prepared public/test case, agent prediction and score are not. ReX preparer was not run. The sample is expected to be public training under reconstructed seeded split, but its actual staged path was not executed.",
+  "acquisition_route": "https://zenodo.org/records/10719375 ; open CC BY-NC-ND 4.0 dataset; exact original Training-labeled.zip 2,019,653,600 bytes, accessed via bounded byte ranges selecting one image-label pair.",
+  "top_warning": "Actual official CellSeg training image and label are shown only as a source training example; no retained ReX held-out prediction or score. Full original data: https://zenodo.org/records/10719375.",
+  "source_roles": {
+    "original_input": "Original training-labeled image cell_00944.png is a real 512x512 RGB microscopy patch; no test input is retained.",
+    "supplied_helper": "Its matching cell_00944_label.tiff is a source training annotation (36 nonzero instance IDs), never an answer to a held-out test case. ReX staging also exposes labeled public train and unlabeled public test images.",
+    "answer_owned_output": "submission.csv with image_id,predicted_mask_path and per-case instance mask; no saved prediction here.",
+    "private_reference": "ReX prepared private test labels and grading CSV; none retained. The original label sample is training help, not test truth.",
+    "evaluator": "Pinned grade.py computes per-case instance F1 at IoU thresholds 0.5..0.9, with boundary removal and large-image tiling."
+  },
+  "contract": {
+    "prep": "Requires Training-labeled, Tuning, Testing original directories; combines 1000 Training-labeled + 101 Tuning image-label pairs, prefixes tuning IDs, sorted 80/20 split random_state=42. Original Testing and unlabeled archives are downloaded/extracted but not copied into prepared public/test by pinned prepare.py.",
+    "submission_columns": [
+      "image_id",
+      "predicted_mask_path"
+    ],
+    "sample_prediction_name": "predictions/<image_id>_label.tiff",
+    "mask_semantics": "0 background; positive integer IDs designate separate cells",
+    "grader": "Hungarian instance matching at IoU 0.5,0.6,0.7,0.8,0.9; excludes cells touching 2-pixel boundary; at least 25 million-pixel masks tiled in 2000x2000 ROIs. Resizes mismatched prediction shape nearest neighbor. Overall is mean leaderboard position if leaderboard exists, else -mean F1@0.5. Runtime described by challenge but not measured by pinned grade.py."
+  },
+  "source_sample": {
+    "image_path": "pinned-source/cellseg-sample/cell_00944.png",
+    "image_sha256": "598be2ef95d7632d49c5efc76f1f82205d45d72a83e43562a57f1ce5792c5b47",
+    "label_path": "pinned-source/cellseg-sample/cell_00944_label.tiff",
+    "label_sha256": "14ad94efdc53203552fd12dda1c6a04392e6dfc75ac2e9c48cf97ff4bf2a8b57",
+    "image_shape": [
+      512,
+      512,
+      3
+    ],
+    "image_mode": "RGB",
+    "label_shape": [
+      512,
+      512
+    ],
+    "label_mode": "I;16",
+    "label_ids": "0 background and 1..36 distinct positive instance IDs",
+    "original_archive": "Training-labeled.zip",
+    "original_members": [
+      "Training-labeled/images/cell_00944.png",
+      "Training-labeled/labels/cell_00944_label.tiff"
+    ],
+    "verified_via": "official HTTP 206 byte ranges, ZIP local-header parse, DEFLATE decompression and central-directory CRC32; archive MD5 metadata 8eb178393f004a4634acc8fc75abfdee",
+    "reconstructed_rex_split": "Training-labeled 1000 pairs + Tuning 101 pairs = 1101 sorted IDs; NumPy RandomState(42) shuffle and ceil 20% holdout yields 880 train/221 held-out; cell_00944 expected public train, not yet staging-executed",
+    "range_provenance": {
+      "archive_url": "https://zenodo.org/api/records/10719375/files/Training-labeled.zip/content",
+      "central_directory_range": "2019414235-2019653577",
+      "central_directory_sha256": "daf364672eac45a599fa8139f3ea27cc2efd395b96f809fe1be03d2aced85a2f",
+      "image_member_range": "1534708709-1534730167",
+      "image_window_sha256": "633a839f7445221e18d406d3b9bbadb71b4a92d35360a3a0893de51eece0715e",
+      "label_member_range": "14314358-14317021",
+      "label_window_sha256": "9675971999a24216da8d69da3434dd885255d0f665df5b47e42016e937ae7251",
+      "verification": "HTTP 206 Content-Range and lengths; ZIP central and local headers; raw DEFLATE; per-member uncompressed length and CRC32",
+      "full_archive_md5_verified": false
+    },
+    "reconstructed_rex_split_evidence": {
+      "training_archive_image_label_pairs": 1000,
+      "tuning_archive_image_label_pairs": 101,
+      "tuning_tail_range": "624550724-624616259",
+      "tuning_tail_sha256": "d526838edb5538b3f4c83e15e59d6b538e4846ea8458e7ae46a20fd68abd6294",
+      "sorting": "image_id ascending after tuning_ prefix",
+      "random_state": 42,
+      "test_size": 0.2,
+      "test_count": 221,
+      "train_count": 880,
+      "selected_id": "cell_00944",
+      "selected_reconstructed_role": "public-train",
+      "preparer_executed": false
+    }
+  },
+  "official_dataset": {
+    "record": "https://zenodo.org/records/10719375",
+    "api_path": "pinned-source/zenodo-10719375.json",
+    "api_sha256": "d3af5fc886c8f0c9ee1de4a09847ad6b62b8174b9ac37253800e7fd12120957a",
+    "access": "open",
+    "license": "CC-BY-NC-ND-4.0",
+    "local_use": "noncommercial local task interpretation; do not infer derivative redistribution permission"
+  },
+  "attempts": [
+    {
+      "attempted_at": "2026-09-29T04:12:59+00:00",
+      "action": "fetch pinned ReX source archive and verify five CellSeg adapter Git blobs",
+      "source": "https://codeload.github.com/rajpurkarlab/ReX-MLE/tar.gz/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53",
+      "outcome": "HTTP 200, 12 MB archive; all five adapter files match pinned Git tree SHA-1 blobs and have SHA-256 pins"
+    },
+    {
+      "attempted_at": "2026-09-29T04:14:26+00:00",
+      "action": "inspect official CellSeg Zenodo API metadata and download 5.1 kB ReadMe",
+      "source": "https://zenodo.org/api/records/10719375",
+      "outcome": "HTTP 200, open CC-BY-NC-ND-4.0; Training-labeled.zip 2.0 GB; official ReadMe downloaded SHA 8cb4212b05480c061e628bfa0be73a30bf5a5eb40ffdcda5861fa5986d021b41"
+    },
+    {
+      "attempted_at": "2026-09-29T04:15:48+00:00",
+      "action": "fetch only ZIP central directory for original Training-labeled archive",
+      "source": "https://zenodo.org/api/records/10719375/files/Training-labeled.zip/content",
+      "outcome": "HTTP 206 byte range; 1000 image-label pairs listed; original archive not downloaded in full"
+    },
+    {
+      "attempted_at": "2026-09-29T04:16:45+00:00",
+      "action": "fetch only Tuning ZIP directory and reconstruct pinned 80/20 source-ID split",
+      "source": "https://zenodo.org/api/records/10719375/files/Tuning.zip/content",
+      "outcome": "HTTP 206 byte range; 101 tuning image-label pairs; predicted cell_00944 public-train under random_state42, preparer not run"
+    },
+    {
+      "attempted_at": "2026-09-29T04:17:45+00:00",
+      "action": "fetch one exact original CellSeg image and label by bounded ZIP byte ranges",
+      "source": "https://zenodo.org/api/records/10719375/files/Training-labeled.zip/content",
+      "outcome": "HTTP 206 for both members; DEFLATE and CRC32 verified; retained 512x512 RGB image and I;16 label with IDs 0..36"
+    }
+  ],
+  "reopen_condition": "For a held-out case story, acquire full matching archives under terms and execute preparation in an authorized isolated environment or pin its exact public/private manifests; retain native test image, private reference separately and any answer-owned prediction before making result claims.",
+  "source_code_license": "No LICENSE file in pinned ReX-MLE Git tree; code license not independently established in this audit.",
+  "reference_policy": "no-reference-assets",
+  "license": "CC-BY-NC-ND-4.0; local noncommercial interpretation only",
+  "warning_text": "Actual official CellSeg training image and label are shown only as a source training example; no retained ReX held-out prediction or score. Full original data: https://zenodo.org/records/10719375.",
+  "staged_asset_pack": "retained-rexmle-neurips-cellseg-v1",
+  "previous_brief": {
+    "path": "presentation/external-tasks/briefs/rexmle-neurips-cellseg.md",
+    "sha256": "339a3af745355451d41c1f2bf16c0b16909c5e9d29381513d45d2c238667f65c"
+  },
+  "staged_brief": {
+    "path": "presentation/external-tasks/briefs/rexmle-neurips-cellseg.md",
+    "sha256": "de464ee7c8db4bab237e317862e4a35928e5d944bb84b8a29c43c4eb0b7aa7c0"
+  },
+  "source_audit_root": ".local/explainers/core-20260929/rex-cellseg-panther-source",
+  "reopening_condition": "For a held-out case story, acquire full matching archives under terms and execute preparation in an authorized isolated environment or pin its exact public/private manifests; retain native test image, private reference separately and any answer-owned prediction before making result claims."
+}

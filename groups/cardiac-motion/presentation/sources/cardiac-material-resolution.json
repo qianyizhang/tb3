@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "draft": true,
+  "entry_id": "tb3-cardiac-material-feasibility",
+  "reviewed_at": "2026-09-29",
+  "illustration_basis": "source-derived",
+  "actual_data_gap": "None for local task interpretation: 120 public synthetic ultrasound PNGs, initial material mesh, saved video-affine and tissue-fit arrays, and private healthy simulator reference are present and audit-pinned.",
+  "source_revision": "Retained STRAUS patient01_healthy file receipts and BR-029 corrected saved-mechanics audit",
+  "acquisition_route": "https://humanheart-project.creatis.insa-lyon.fr/multimodalityStraus.html",
+  "attempts": [
+    {
+      "date": "2026-09-29",
+      "source": "datasets/receipts/straus-patient01_healthy.json and runs/br029-dynamic-heart/public-video/manifest.json",
+      "action": "Read retained source audit and recheck local package/selected saved hashes during deterministic pack build",
+      "outcome": "Prior audit verifies 90/90 healthy native files and 123/123 public payloads. Builder freshly verified selected initial, reference, video-affine, tissue-fit and full-tensor arrays against pinned SHA-256; all 120 local PNG bytes were hashed into the draft manifest. No download was needed.",
+      "attempted_at": "2026-09-29"
+    }
+  ],
+  "prior_audit": {
+    "path": "groups/cardiac-motion/presentation/sources/cardiac-material-audit.json",
+    "sha256": "51df0ab9c42a48fcbbc75f365a9926ac7920db7d64552393c7e7fc1f508f0f86"
+  },
+  "draft_pack": "presentation/task-explorer/cardiac-material/manifest.json",
+  "rights": "The STRAUS project is publicly browsable/downloadable, but inspected project/collection/root metadata did not state onward redistribution terms. This pack is staged for local noncommercial explanation only.",
+  "status": "Ready for main-thread integration and visual review; no story binding, model run, clinical validation, publication or acceptance inferred."
+}

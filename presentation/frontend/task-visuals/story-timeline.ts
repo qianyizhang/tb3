@@ -290,6 +290,160 @@ export function sampleStory(plan: StoryPlan, requested: number) {
         reference: channel(b.channels.reference),
       });
     }
+    case 'cardiac-contour-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        phase: b.channels.phase[0] + (b.channels.phase[1] - b.channels.phase[0]) * progress,
+        helper: channel(b.channels.helper),
+        output: channel(b.channels.output),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'cardiac-real-echo-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        phase: b.channels.phase[0] + (b.channels.phase[1] - b.channels.phase[0]) * progress,
+        planes: channel(b.channels.planes),
+        output: channel(b.channels.output),
+        alternative: channel(b.channels.alternative),
+        review: channel(b.channels.review),
+        control: channel(b.channels.control),
+      });
+    }
+    case 'cardiac-mask-mechanics-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        phase: b.channels.phase[0] + (b.channels.phase[1] - b.channels.phase[0]) * progress,
+        condition: channel(b.channels.condition),
+        output: channel(b.channels.output),
+        reference: channel(b.channels.reference),
+        clinical: channel(b.channels.clinical),
+      });
+    }
+    case 'report-reading-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        phase: b.channels.phase[0] + (b.channels.phase[1] - b.channels.phase[0]) * progress,
+        helper: channel(b.channels.helper),
+        output: channel(b.channels.output),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'automed-kidney-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        view: b.channels.view[0] + (b.channels.view[1] - b.channels.view[0]) * progress,
+        helper: channel(b.channels.helper),
+        step: channel(b.channels.step),
+        reference: channel(b.channels.reference),
+        fixture: channel(b.channels.fixture),
+      });
+    }
+    case 'bcer-brain-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        view: channel(b.channels.view),
+      });
+    }
+    case 'bcer-prostate-registration-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        view: channel(b.channels.view),
+        moving: channel(b.channels.moving),
+        operation: channel(b.channels.operation),
+        swap: channel(b.channels.swap),
+      });
+    }
+    case 'abra-longitudinal-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        baseline: channel(b.channels.baseline),
+        followup: channel(b.channels.followup),
+        task: channel(b.channels.task),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'rexmle-dentex-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        box: channel(b.channels.box),
+        labels: channel(b.channels.labels),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'rex-isles22-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        slice: channel(b.channels.slice),
+        flair: channel(b.channels.flair),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'rexmle-neurips-cellseg-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        helper: channel(b.channels.helper),
+        instance: channel(b.channels.instance),
+        metric: channel(b.channels.metric),
+      });
+    }
+    case 'cardiac-material-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        phase: b.channels.phase[0] + (b.channels.phase[1] - b.channels.phase[0]) * progress,
+        helper: channel(b.channels.helper),
+        output: channel(b.channels.output),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'cardiac-anchor-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        phase: b.channels.phase[0] + (b.channels.phase[1] - b.channels.phase[0]) * progress,
+        helper: channel(b.channels.helper),
+        output: channel(b.channels.output),
+        reference: channel(b.channels.reference),
+      });
+    }
     case 'clinical-cavity-v1': {
       const b = plan.beats[index];
       return Object.freeze({

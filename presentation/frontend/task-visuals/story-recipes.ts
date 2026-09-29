@@ -1,3 +1,4 @@
+import { reportSource } from './report-reading';
 import { createClinicalCavityPrefab } from './clinical-cavity-prefab';
 import type { StoryPlan } from '../types';
 import type { StoryState } from './story-timeline';
@@ -72,6 +73,19 @@ export function showInlineNarration(state: StoryState): boolean {
 }
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
+    'cardiac-anchor-v1',
+    'cardiac-material-v1',
+    'rexmle-neurips-cellseg-v1',
+    'rex-isles22-v1',
+    'rexmle-dentex-v1',
+    'abra-longitudinal-v1',
+    'bcer-prostate-registration-v1',
+    'bcer-brain-v1',
+    'automed-kidney-v1',
+    'report-reading-v1',
+    'cardiac-mask-mechanics-v1',
+    'cardiac-real-echo-v1',
+    'cardiac-contour-v1',
     'imaging101-eht-features-dynamic-v1',
     'imaging101-eht-dynamic-v1',
     'imaging101-eht-uq-v1',
@@ -158,10 +172,180 @@ export function nativeFactory(plan: StoryPlan) {
 }
 export function storyPresentation(plan: StoryPlan): {
   heading: string;
+  warning?: { label: string; text: string; url: string; link_label: string };
   corner: string;
   legend: [string, string, (boolean | 'dotted')?][];
 } {
   switch (plan.recipe) {
+    case 'cardiac-real-echo-v1':
+      return {
+        heading: 'Interpret calibrated image planes and inspect saved geometry',
+        corner: 'EchoSlicer · one retained acquisition',
+        legend: [
+          ['#22d7e0', 'Saved primary surface'],
+          ['#f3ad73', 'Saved basal alternative'],
+          ['#9daec2', 'Static format control'],
+          ['#e7be5c', 'Withheld image-only review; no GT'],
+        ],
+      };
+    case 'cardiac-mask-mechanics-v1':
+      return {
+        heading: 'Separate occupied shape from inferred material correspondence',
+        corner: 'STRAUS wall · distinct clinical cavity transfer',
+        legend: [
+          ['#f4bc49', 'Supplied occupancy mask'],
+          ['#22d7e0', 'Saved answer geometry and fields'],
+          ['#b797f0', 'Reader-only simulator material reference', true],
+        ],
+      };
+    case 'report-reading-v1':
+      return {
+        heading: 'Explain a proposed evidence-linked reading protocol',
+        corner: 'BR-018 · no admitted case or model result',
+        warning: reportSource.warning,
+        legend: [
+          ['#75a4d5', 'Proposed solver input'],
+          ['#13afbd', 'Empty answer schema'],
+          ['#d99722', 'Reader-only report reference role'],
+        ],
+      };
+    case 'automed-kidney-v1':
+      return {
+        heading: 'Build a native CT segmentation pipeline',
+        corner: 'KiTS19 · actual source and contract fixtures',
+        legend: [
+          ['#9caaba', 'Native CT input'],
+          ['#1fbbc5', 'Reader-only kidney tissue'],
+          ['#fab738', 'Reader-only lesion'],
+        ],
+      };
+    case 'bcer-brain-v1':
+      return {
+        heading: 'Map four MRI sequences into a segmentation workflow',
+        corner: 'BCER · pinned source contract',
+        warning: {
+          label: 'Symbolic explanation',
+          text: 'No matching four-sequence BraTS case is retained.',
+          url: 'https://www.med.upenn.edu/cbica/brats2021/',
+          link_label: 'Request official BraTS data',
+        },
+        legend: [
+          ['#78bcda', 'Symbolic modality slots'],
+          ['#14b8a6', 'Public label semantics'],
+          ['#cf8f68', 'Missing case evidence'],
+        ],
+      };
+    case 'bcer-prostate-registration-v1':
+      return {
+        heading: 'Map diffusion MRI into the T2w grid',
+        corner: 'BCER · representative PI-CAI inputs',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Real PI-CAI inputs; no BCER registration output or alignment reference is retained.',
+          url: 'https://zenodo.org/records/6624726',
+          link_label: 'Acquire source MRI',
+        },
+        legend: [
+          ['#9caaba', 'Actual native MRI inputs'],
+          ['#f4c54e', 'Header-coordinate witness'],
+          ['#60a9b9', 'Symbolic resampling grid'],
+        ],
+      };
+    case 'abra-longitudinal-v1':
+      return {
+        heading: 'Compare independently navigated longitudinal CT studies',
+        corner: 'ABRA · exact NLST source pair',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Real NLST CT; no ABRA answer or verified viewer-index-to-DICOM reference mapping.',
+          url: 'https://www.cancerimagingarchive.net/collection/nlst/',
+          link_label: 'Acquire original CT',
+        },
+        legend: [
+          ['#78a9cc', 'Native CT inputs'],
+          ['#16a6a9', 'Empty answer schema'],
+          ['#e3b457', 'Reader-only source reference'],
+        ],
+      };
+    case 'rexmle-dentex-v1':
+      return {
+        heading: 'Find and label abnormalities in a panoramic radiograph',
+        corner: 'DENTEX · exact ReX-split source input',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Real DENTEX image; no prediction or validated AP. Source and scorer category IDs disagree.',
+          url: 'https://zenodo.org/records/7812323',
+          link_label: 'Acquire source data',
+        },
+        legend: [
+          ['#9aabba', 'Actual panoramic image'],
+          ['#57d4e0', 'Coordinate ruler'],
+          ['#f4bc49', 'Dashed source reference boxes'],
+        ],
+      };
+    case 'rex-isles22-v1':
+      return {
+        heading: 'Segment ischemic stroke in native multimodal MRI',
+        corner: 'ISLES22 · exact ReX test input',
+        warning: {
+          label: 'Source illustration',
+          text: 'Actual ISLES22 test input and source mask; no retained prediction or score.',
+          url: 'https://zenodo.org/records/7960856',
+          link_label: 'Acquire source MRI',
+        },
+        legend: [
+          ['#8aa4b2', 'Native MRI inputs'],
+          ['#4b97a5', 'Empty output schema'],
+          ['#ffbe4b', 'Reader-only source mask'],
+        ],
+      };
+    case 'rexmle-neurips-cellseg-v1':
+      return {
+        heading: 'Separate cell instances and specify the held-out output',
+        corner: 'CellSeg · public training example',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Real training image and labels; prepared held-out images, predictions and F1 are absent.',
+          url: 'https://zenodo.org/records/10719375',
+          link_label: 'Acquire original data',
+        },
+        legend: [
+          ['#91a6ae', 'Actual training image'],
+          ['#2b9f85', 'Training labels (instance colors)'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'cardiac-material-v1':
+      return {
+        heading: 'Track supplied material IDs through sparse image observations',
+        corner: 'STRAUS simulation · saved author methods',
+        legend: [
+          ['#9caaba', 'Supplied initial material body'],
+          ['#37b8ec', 'Saved video affine'],
+          ['#18c6d4', 'Saved tissue fit'],
+          ['#f4bc49', 'Reader-only simulator reference'],
+        ],
+      };
+    case 'cardiac-anchor-v1':
+      return {
+        heading: 'Recover motion between sparse contour anchors',
+        corner: 'Native FeEcho4D · retained feasibility study',
+        legend: [
+          ['#89a6e6', 'Supplied anchors · solid'],
+          ['#22d7e0', 'Saved reconstruction · solid'],
+          ['#ffbe4b', 'Reader-only comparator · solid'],
+        ],
+      };
+    case 'cardiac-contour-v1':
+      return {
+        heading: 'Rebuild a cavity from supplied contours',
+        corner: 'Native FeEcho4D · retained feasibility study',
+        legend: [
+          ['#8398ad', 'Supplied contours · solid'],
+          ['#18c6d4', 'Saved reconstruction · solid'],
+          ['#f4bc49', 'Withheld source mask · solid'],
+        ],
+      };
     case 'imaging101-eht-features-dynamic-v1':
       return {
         heading: 'Follow a changing crescent and its uncertainty',

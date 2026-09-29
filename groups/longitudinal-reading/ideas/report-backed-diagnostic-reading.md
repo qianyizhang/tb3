@@ -6,7 +6,7 @@ group_id = "longitudinal-reading"
 title = "Read complete examinations against private clinical reports"
 idea_state = "parked"
 source = "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
-next_action = "Obtain an authorized admitted image/report pair and case contract, or an explicit user decision for a protocol-only explainer. No trial authorized by the explainer work."
+next_action = "Review the authorized symbolic protocol explainer with its top source-gap warning. Real-case admission remains a separate unresolved dependency; no model trial is authorized."
 +++
 
 # Read complete examinations against private clinical reports
@@ -48,3 +48,21 @@ specified; and explanation assets can be retained under the intended delivery
 scope. Alternatively, record an explicit user decision for a protocol-only
 explanation, visibly preserving zero cases and zero trials. Neither option
 authorizes model execution, new clinical adjudication or silent source replacement.
+
+## Symbolic explanation authorized — 2026-09-29
+
+Actor: user, [core completion goal](codex://threads/01a0eaf9-dfdf-7290-aee7-6fdec7ab97da).
+The goal permits scientifically faithful symbolic explanation after source-resolution
+attempts, with a concise top warning and the official acquisition route. This
+resolves the earlier protocol-only presentation scope question; it does not admit
+a patient case or authorize model execution.
+
+Actor: assistant. An approved unauthenticated request to the retained CT-RATE
+candidate returned **401 GatedRepo**; the candidate was never a BR-018 case. The
+[resolution receipt](../presentation/sources/report-backed-reading-resolution.json)
+preserves both the earlier local transport failure and the later access response.
+The new story illustrates complete-volume search, empty answer fields and
+bidirectional private-report concordance roles. It explicitly retains **zero
+admitted pairs and zero trials**, fallible report reference, and unexecuted
+controls. Visual acceptance is separate and remains pending until recorded in
+the explainer ledger. The real-case reopening conditions above still apply.

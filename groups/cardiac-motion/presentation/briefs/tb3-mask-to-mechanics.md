@@ -185,11 +185,13 @@ not establish absence from pretraining.
 
 The [source audit](../sources/mask-mechanics-audit.json) records exact file pins,
 input derivation and saved-score checks. Source-only imagery, supplied-mask
-overlays and result curves were inspected locally. STRAUS onward redistribution
-or explicit private-local final scope remains unresolved under the existing
-question in this chat. The canonical operation story, portable assets, export,
-full-motion/mobile/no-GPU review and acceptance remain pending. This source audit
-is not an accepted explainer and does not reduce the unfinished count.
+overlays and result curves were inspected locally. Current user scope permits
+local noncommercial interpretation; inspected STRAUS metadata still do not
+establish onward redistribution rights. A staged source-derived story and local
+pack now show the saved answer's selected tetrahedra and fields, with private
+material probes revealed separately. Integration, export, full-motion/mobile/
+no-GPU review and visual acceptance remain pending. This draft does not reduce
+the unfinished count.
 
 ## Sources
 

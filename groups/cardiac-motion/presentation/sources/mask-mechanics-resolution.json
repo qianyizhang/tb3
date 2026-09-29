@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "tb3-mask-to-mechanics",
+  "experiment_id": "BR-035",
+  "review_date": "2026-09-29",
+  "status": "matching local inputs, saved outputs, and private references available; source-only handoff",
+  "illustration_basis": "source-derived",
+  "acquisition": {
+    "needed": false,
+    "reason": "All matching source, output, and reference files inspected for this bounded audit are present and hash-match their retained pins.",
+    "official_straus_route": "https://humanheart-project.creatis.insa-lyon.fr/multimodalityStraus.html",
+    "official_clinical_route": "https://github.com/Ahus-AIM/EchoXFlow",
+    "attempts": []
+  },
+  "source_terms": {
+    "straus": "Project access/download is public, but the inspected project/collection/root metadata did not state an onward redistribution license. Current authorized use is local noncommercial interpretation; keep native and derived STRAUS assets local unless scope changes.",
+    "straus_terms_authority": "groups/cardiac-motion/presentation/sources/cardiac-material-audit.json",
+    "echoxflow": "The pinned clinical source audit records CC-BY-NC-SA-4.0; attribute and retain noncommercial share-alike boundaries for any separately distributed clinical derivative.",
+    "clinical_terms_authority": "groups/cardiac-motion/presentation/sources/clinical-cavity-audit.json"
+  },
+  "checked_files": [
+    {
+      "role": "supplied synthetic wall masks",
+      "path": "runs/br035-segmentation-mechanics/prepared/synthetic_masks.npz",
+      "sha256": "28009e101c4f3737e4a17badaa73052e8c82118e221398b41d1ee12669b51cbe",
+      "outcome": "matched retained pin; bool [30,86,81,85]"
+    },
+    {
+      "role": "optional same-grid synthetic ultrasound",
+      "path": "runs/br035-segmentation-mechanics/prepared/synthetic_images.npy",
+      "sha256": "e5facbcd2abb130bf7dbe0e52bcdd3613b9cf32d75f968fda9851cd4256b8777",
+      "outcome": "matched retained pin; float32 [30,86,81,85]"
+    },
+    {
+      "role": "private synthetic material reference",
+      "path": "runs/br035-segmentation-mechanics/prepared/truth.npz",
+      "sha256": "ea673d4fd788304b3da899d2f5fa10d88e360814d21ff7c84053ece041d6a244",
+      "outcome": "matched retained pin; points [30,11370,3], tetra [47186,4], directions [3,47186,3], labels/weights [47186]"
+    },
+    {
+      "role": "saved masks-only answer",
+      "path": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-c73a7ef0c267fd9eb63eb652/answer/prediction.npz",
+      "sha256": "65490f7ad2cf9038fe35cf44870034b771de692c5f38fe860192092a5af3e2c5",
+      "outcome": "matched retained pin; points [30,63326,3], tetra [233865,4], F/E [30,233865,3,3], J [30,233865]"
+    },
+    {
+      "role": "saved masks-plus-images answer",
+      "path": ".local/inputs/reproduction/cardiac-motion-br035/saved/attempt-fb9e01e19f28f2dc5575df6a/answer/prediction.npz",
+      "sha256": "5fe8ec5300f9d04259b5d36706ef96f9606edb0fbffb8a22f5829a142a1bf0e8",
+      "outcome": "matched retained pin; points [30,63326,3], tetra [280638,4], F/E [30,280638,3,3], J [30,280638]"
+    },
+    {
+      "role": "supplied clinical cavity masks",
+      "path": "runs/br035-segmentation-mechanics/prepared/clinical_masks.npz",
+      "sha256": "d35001173c670cf04096b075a6d53ab5ee3499846b20d43eb270169129f4cb9a",
+      "outcome": "matched retained pin; bool [18,90,55,63]"
+    },
+    {
+      "role": "optional clinical images",
+      "path": "runs/br035-segmentation-mechanics/prepared/clinical_images.npy",
+      "sha256": "a89abb3922128f69724bf90c8e751c62a8d5cb56d9dc82c6b8304c56514a4de2",
+      "outcome": "matched retained pin; float32 [18,90,55,63]"
+    },
+    {
+      "role": "saved clinical masks-only transfer",
+      "path": "runs/br035-segmentation-mechanics/replays/masks/output/prediction.npz",
+      "sha256": "14f2af915364867b8b115b13e87ee789973d756c28bfe56061fb8bf19b10b673",
+      "outcome": "matched retained pin; points [18,40569,3], tetra [180725,4], F/E/J saved"
+    },
+    {
+      "role": "saved clinical masks-plus-images transfer",
+      "path": "runs/br035-segmentation-mechanics/replays/masks-images/output/prediction.npz",
+      "sha256": "8fb514a4a4f96124e923cedff117d198f499f1ff2daa75c2e51ff4c2f3df55ab",
+      "outcome": "matched retained pin; tetra [216870,4], F/E/J saved"
+    },
+    {
+      "role": "privileged exact-source control",
+      "path": "runs/br035-segmentation-mechanics/controls/oracle.npz",
+      "sha256": "4805e53335fead2deaac812b1d3e5507db9529e0f2afec54bebc02123a1e5619",
+      "outcome": "matched retained pin; reference-only control"
+    },
+    {
+      "role": "static control",
+      "path": "runs/br035-segmentation-mechanics/controls/static.npz",
+      "sha256": "27312bcc223c48f1b7ede839cc5a8627838465f0b804149493fe67e807c6afec",
+      "outcome": "matched retained pin; fails construction"
+    }
+  ],
+  "spatial_contract": {
+    "array_order": "T,Z,Y,X",
+    "synthetic": {
+      "semantics": "myocardial_wall",
+      "origin_xyz_mm": [
+        81,
+        -108,
+        95
+      ],
+      "spacing_xyz_mm": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "reference_frame": 0,
+      "phase_count": 30,
+      "physical_timestamps_s": null
+    },
+    "clinical": {
+      "semantics": "lv_cavity",
+      "origin_xyz_mm": [
+        -47,
+        -39,
+        -70
+      ],
+      "spacing_xyz_mm": [
+        1.5,
+        1.5,
+        1.5
+      ],
+      "phase_count": 18,
+      "first_timestamp_s": 0,
+      "last_timestamp_s": 0.751282
+    }
+  },
+  "outcome_and_boundary": {
+    "construction_reward": {
+      "masks_only": 1,
+      "masks_plus_images": 1
+    },
+    "material_coverage_pct": {
+      "masks_only": 98.0557,
+      "masks_plus_images": 98.0557
+    },
+    "motion_rmse_mm": {
+      "masks_only": 1.6148,
+      "masks_plus_images": 1.7166
+    },
+    "radial_directional_mae_pp": {
+      "masks_only": 7.3712,
+      "masks_plus_images": 5.4454,
+      "target_max": 5
+    },
+    "clinical_transfer": "The source all-phase cavity masks already encode the volume curve and approximately 45.3313% EF. No myocardial wall/material motion is available; myocardial_strain_supported=false in both saved assessments.",
+    "source_reference_boundary": "Reference points, tetrahedra, AHA labels, directions and weights are private evaluator material. They must never appear in an initial input view or be used as a legal masks-only initial mesh.",
+    "interpretation": "A fixed-connectivity mesh and recomputed F/E/J can pass construction while a plausible moving domain misses the simulator material-motion diagnostic. This is a selected synthetic case, not measured patient strain."
+  },
+  "receipt_method": "Read-only local SHA-256 and NumPy shape/dtype inspection on 2026-09-29; no author module import, solver run, fitting, model trial, download, install, or browser launch.",
+  "reviewed_at": "2026-09-29",
+  "actual_data_gap": "No matching local input/output/reference gap. Independent clinical myocardial material truth is absent by task design; synthetic simulator reference remains private.",
+  "acquisition_route": "All matching local STRAUS and EchoXFlow assets were available; official STRAUS project https://humanheart-project.creatis.insa-lyon.fr/multimodalityStraus.html and clinical source https://github.com/Ahus-AIM/EchoXFlow .",
+  "attempts": [
+    {
+      "action": "Inspect retained BR-035 preparation, saved answers, controls and audit; compare current SHA-256 with pinned source-resolution hashes",
+      "source": "groups/cardiac-motion/presentation/sources/mask-mechanics-audit.json; runs/br035-segmentation-mechanics/prepared; .local/inputs/reproduction/cardiac-motion-br035/saved",
+      "attempted_at": "2026-09-29",
+      "outcome": "Matching synthetic wall masks, same-grid optional ultrasound, both saved answers, private material reference, clinical cavity masks and controls are present and match pins; no download or model run needed."
+    }
+  ]
+}

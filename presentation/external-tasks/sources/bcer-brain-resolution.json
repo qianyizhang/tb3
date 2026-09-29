@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "status": "production-draft-source-resolution",
+  "resolved_at": "2026-09-29T03:29:50+00:00",
+  "source_commit": "d10816712793a9e27f2e70640f9afc06f08a0c5c",
+  "sources": [
+    {
+      "role": "task-contract",
+      "path": "configs/tasks_registry.json",
+      "sha256": "dd69419af8e633d24e7f41c38d24a7d84ba9c20b9726a91a6b2f726e37fc669c",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/configs/tasks_registry.json"
+    },
+    {
+      "role": "evaluator",
+      "path": "benchmark/benchmark_runner.py",
+      "sha256": "288539631cf0bdd802cbb6570a52a0dcdba25e7377eeab9e29c66395724fbde6",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/benchmark/benchmark_runner.py"
+    },
+    {
+      "role": "dataset-layout",
+      "path": "docs/DATASETS.md",
+      "sha256": "c84cca650f47f7a2b8197e1f8a3c0a0fa5c8d930e093c6f82965cb7bb2a12841",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/docs/DATASETS.md"
+    },
+    {
+      "role": "BCER-code-license",
+      "path": "LICENSE",
+      "sha256": "b1099da8a60c97630f5e5f65a523fe21085e27c00a6b025ff0ef96055e7414a5",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/LICENSE"
+    }
+  ],
+  "local_audit": {
+    "path": "presentation/external-tasks/sources/bcer-workflow-audit.json",
+    "sha256": "d927b7f053943b14cedfabe6f616e96a80a604cf7edb67a721e4581f7ec8190d",
+    "scope": "long_prostate_full prior audit; reused source pins and representative prostate inputs, not target-task outputs"
+  },
+  "source_hash_check": {
+    "pinned_bcer_source_files_verified": 15,
+    "pinned_data_files_verified": 7,
+    "mismatches": []
+  },
+  "clinical_or_model_run": false,
+  "acceptance_run": false,
+  "private_reference_visible_at_initial_state": false,
+  "entry_id": "bcer-short-segment-brain",
+  "task": "short_segment_brain",
+  "illustration_basis": "symbolic",
+  "actual_data_gap": "No local matching four-sequence BraTS case, task output, or case-matched reference annotation.",
+  "acquisition_route": "https://www.med.upenn.edu/cbica/brats2021/ \u2014 Task 1 Synapse account and official data-request form; no anonymous case URL discovered.",
+  "brief": {
+    "path": "presentation/external-tasks/briefs/bcer-short-segment-brain.md",
+    "sha256": "1c866779749af72242ac0c2d3a69344ed4dfe2b28d6afe7958cf39684caacbf9",
+    "role": "revised staged brief"
+  },
+  "task_contract": {
+    "required_modalities_all_of": [
+      "T1",
+      "T1c",
+      "T2",
+      "FLAIR"
+    ],
+    "input_aliases": [
+      "t1_nifti",
+      "t1c_nifti",
+      "t2_nifti",
+      "flair_nifti"
+    ],
+    "goal": "identify_sequences -> brats_mri_segmentation only",
+    "required_stage_success": [
+      "identify_sequences",
+      "brats_mri_segmentation"
+    ],
+    "required_artifacts": [
+      "seg_path",
+      "wt_mask_path"
+    ],
+    "invariants": [
+      "seg_exists",
+      "seg_non_empty",
+      "wt_non_empty"
+    ],
+    "semantic_fault": "T1c versus FLAIR swap"
+  },
+  "tool_source": {
+    "path": "tools/brain_tumor_segmentation.py",
+    "local_path": ".local/explainers/core-20260929/bcer-source/bcer-short-segment-brain/pinned-brain-tumor-segmentation.py",
+    "sha256": "b89e305bc50ec0b053cff85c35d885d5130fc28d32785826398c362b2f43c497",
+    "git_blob_sha": "dc295d584d9f3ca459067fb9f080e2874f988b37",
+    "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/brain_tumor_segmentation.py"
+  },
+  "label_semantics": {
+    "seg_path": "0 background; 1 necrotic tumor core; 2 edema/invaded tissue; 4 enhancing tumor",
+    "wt_mask_path": "binary union of labels 1, 2, 4",
+    "tc_mask_path": "binary union of 1 and 4; optional tool output, not registry required",
+    "reference": "BraTS annotations use same label convention, but no matching annotation is present"
+  },
+  "source_roles": {
+    "solver_input": "four MRI modalities plus manifest/runtime; absent locally",
+    "supplied_helper": "case manifest, typed artifact refs, identify and segmentation tools",
+    "answer_owned_output": "seg_path and wt_mask_path; absent locally",
+    "private_reference": "case-matched BraTS training annotation if acquired; absent locally",
+    "evaluator": "BCER stage/path/nonzero checks, not anatomical accuracy"
+  },
+  "attempts": [
+    {
+      "attempted_at": "2026-09-29T03:29:50+00:00",
+      "action": "local inventory",
+      "outcome": "No complete four-modality BraTS case found in runs/datasets/local input roots; a single unrelated T1c archive cannot serve as this task case.",
+      "source": "Local runs, datasets and input roots"
+    },
+    {
+      "attempted_at": "2026-09-29T03:29:50+00:00",
+      "action": "official BraTS 2021 source route inspection",
+      "url": "https://www.med.upenn.edu/cbica/brats2021/",
+      "outcome": "Task 1 training access requires Synapse account and request form; no anonymous small case URL was supplied. No form, account action, terms acceptance, or image download.",
+      "source": "https://www.med.upenn.edu/cbica/brats2021/"
+    },
+    {
+      "attempted_at": "2026-09-29T03:29:50+00:00",
+      "action": "fetch pinned 14,493-byte BCER tool source from official GitHub",
+      "outcome": "HTTP success; SHA-256 and Git blob SHA verified; retained source-only copy.",
+      "source": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/brain_tumor_segmentation.py"
+    },
+    {
+      "attempted_at": "2026-09-29T04:32:45.549600+00:00",
+      "action": "Recheck official BraTS acquisition route and follow the linked data-request form without submitting it",
+      "source": "https://www.med.upenn.edu/cbica/brats2021/; https://forms.gle/FRabNXU3LL5trypm9",
+      "outcome": "Official page was retrieved and specifies Synapse account plus registration form for Task1. The generic Synapse landing page exposes no matching anonymous case download. The linked form redirected to Google Forms and the web fetch failed with a non-retryable safe-open error. No image bytes, credentials or terms submission; failure is not a dataset-access denial. Source discovery remains blocked before a concrete case download URL."
+    }
+  ],
+  "scientific_boundaries": [
+    "No patient brain pixels or observed BCER output.",
+    "MONAI dependency failure can trigger heuristic T1c+FLAIR fallback; no mode was exercised.",
+    "nifti_nonempty can pass by file size if NIfTI reading fails.",
+    "No overlap or boundary metric in this BCER task evaluator."
+  ],
+  "top_warning": "Symbolic BCER workflow: no matching four-sequence BraTS case or retained segmentation output. Acquire through the official BraTS data-request route before any patient image or case comparison.",
+  "proposed_scenes": [
+    "four-modality-input-contract",
+    "identify-sequences-and-swap",
+    "segment-tool-and-mode-branch",
+    "label-union-reveal",
+    "structural-evaluator-limit"
+  ],
+  "source_audit_kind": "source-only; no MRI or BCER task output acquired",
+  "acquisition_warning": "The official BraTS 2021 Task 1 route requires registration; source-only inspection did not authorize or perform account/form actions.",
+  "kind": "explainer-source-resolution",
+  "warning_text": "Symbolic illustration \u2014 no matching four-sequence BraTS case is available here; request the actual data through the official BraTS access page.",
+  "reopening_condition": "Recover an authorized matching four-modality case with native geometry and separately retained annotation, then rebuild source-derived views; a BCER model/output result requires a separately authorized run."
+}

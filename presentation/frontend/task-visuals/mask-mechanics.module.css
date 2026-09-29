@@ -1,0 +1,269 @@
+.root {
+  width: 100%;
+  min-height: 0;
+  padding: 0.45rem;
+  color: #e7f0ed;
+  background: #0c1b24;
+  border-radius: 0.55rem;
+}
+.tag {
+  margin: 0 0 0.42rem;
+  color: #bed6d7;
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.46rem;
+}
+.slice,
+.mesh,
+.tetra {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  background: #10232d;
+  border: 1px solid #42606b;
+  border-radius: 0.48rem;
+}
+.slice svg {
+  display: block;
+  width: 100%;
+  height: 246px;
+  background: #0b1720;
+  image-rendering: pixelated;
+}
+.slice figcaption,
+.mesh figcaption,
+.tetra figcaption {
+  padding: 0.32rem 0.45rem;
+  color: #d7e5e5;
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+.slice figcaption small,
+.mesh figcaption small {
+  display: block;
+  color: #9eb9bc;
+  font-size: 0.68rem;
+}
+.meshStage {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.46rem;
+}
+.meshStage .slice svg {
+  height: 222px;
+}
+.mesh svg {
+  display: block;
+  width: 100%;
+  height: 222px;
+}
+.mesh svg text,
+.tetra svg text {
+  fill: #c8dce0;
+  font-size: 10px;
+}
+.axis {
+  stroke: #d7e5e5;
+  fill: none;
+  stroke-width: 1;
+}
+.note {
+  margin: 0.42rem 0 0;
+  color: #d4e4e4;
+  font-size: 0.77rem;
+  line-height: 1.28;
+}
+.tensorStage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 0.5rem;
+}
+.tetra svg {
+  display: block;
+  width: 100%;
+  height: 226px;
+}
+.tensor {
+  padding: 0.55rem;
+  border: 1px solid #42606b;
+  border-radius: 0.48rem;
+  background: #10232d;
+  font-size: 0.77rem;
+  line-height: 1.3;
+}
+.tensorCols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin-top: 0.45rem;
+}
+.tensorCols b,
+.tensorCols small {
+  display: block;
+}
+.tensorCols small {
+  color: #a9c5c8;
+}
+.matrix {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.1rem;
+  margin: 0.3rem 0;
+  padding: 0.28rem;
+  border: 1px solid #526e78;
+  border-radius: 0.25rem;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.matrix span {
+  min-width: 0;
+  overflow: hidden;
+}
+.tensor p {
+  margin: 0.42rem 0 0;
+}
+.ambiguity {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 0.6rem;
+  align-items: center;
+  min-height: 235px;
+}
+.ambiguity svg {
+  width: 100%;
+  height: 235px;
+}
+.ambiguity svg text {
+  fill: #d8e7e7;
+  font-size: 14px;
+}
+.ambiguity p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+.reference {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 0.55rem;
+}
+.referenceText {
+  padding: 0.55rem;
+  border: 1px solid #42606b;
+  border-radius: 0.48rem;
+  background: #10232d;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+.referenceText p {
+  margin: 0.4rem 0;
+}
+.referenceText small {
+  color: #c7d8da;
+}
+.hidden {
+  min-height: 235px;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  border: 1px dashed #67818a;
+  border-radius: 0.45rem;
+  color: #c2d4d8;
+}
+.chart {
+  display: block;
+  width: 100%;
+  height: 245px;
+  padding: 0.3rem;
+  background: #10232d;
+  border: 1px solid #42606b;
+  border-radius: 0.48rem;
+}
+.chart text {
+  fill: #c8dcdf;
+  font-size: 10px;
+}
+.gridline {
+  stroke: #3c5460;
+  stroke-width: 0.7;
+  fill: none;
+}
+.output {
+  color: #24343b;
+  font-size: 0.84rem;
+  line-height: 1.34;
+}
+.output p {
+  margin: 0.38rem 0;
+}
+.output small {
+  display: block;
+  color: #536a73;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.7rem;
+  color: #536a73;
+  font-size: 0.74rem;
+}
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.legend i {
+  display: inline-block;
+  width: 1rem;
+  height: 0.18rem;
+}
+.legend i.dashed {
+  height: 0;
+  border-top: 2px dashed;
+}
+@media (max-width: 700px) {
+  .grid,
+  .meshStage {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .slice svg,
+  .meshStage .slice svg,
+  .mesh svg {
+    height: 140px;
+  }
+  .grid .chart {
+    grid-column: 1 / -1;
+    height: 145px;
+  }
+  .tensorStage,
+  .reference,
+  .ambiguity {
+    grid-template-columns: 1fr;
+  }
+  .tetra svg {
+    height: 160px;
+  }
+  .tensor {
+    font-size: 0.69rem;
+  }
+  .reference .chart {
+    height: 160px;
+  }
+  .referenceText {
+    font-size: 0.72rem;
+  }
+  .ambiguity svg {
+    height: 155px;
+  }
+  .ambiguity p {
+    font-size: 0.72rem;
+  }
+  .tag,
+  .note {
+    font-size: 0.72rem;
+  }
+}

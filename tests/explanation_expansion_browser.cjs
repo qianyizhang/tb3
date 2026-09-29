@@ -8,7 +8,14 @@ const { withBrowser } = require('../presentation/tooling/browser.mts');
 const { captureComposedFrame } = require('../presentation/tooling/media/capture.mts');
 const folder = path.resolve(process.argv[2]),
   explorer = path.resolve(process.argv[3]);
+const entryOnly = process.argv[4] === '--entry-only';
+assert.ok(
+  process.argv.length === 4 || (process.argv.length === 5 && entryOnly),
+  'Unsupported browser matrix arguments',
+);
+const currentBatch = JSON.parse(fs.readFileSync(path.join(folder, 'batch.json')));
 const report = {
+  navigation_scope: entryOnly ? 'current-entry' : 'full-regression',
   stories: [],
   errors: [],
   remote_requests: [],
@@ -16,6 +23,335 @@ const report = {
   navigation: [],
 };
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
+
+const cardiacRecipes = new Set([
+  'cardiac-contour-v1',
+  'cardiac-anchor-v1',
+  'cardiac-material-v1',
+  'rexmle-neurips-cellseg-v1',
+  'rex-isles22-v1',
+  'rexmle-dentex-v1',
+  'abra-longitudinal-v1',
+  'bcer-prostate-registration-v1',
+  'bcer-brain-v1',
+  'automed-kidney-v1',
+  'report-reading-v1',
+  'cardiac-mask-mechanics-v1',
+  'cardiac-real-echo-v1',
+]);
+if (entryOnly) {
+  assert.ok(currentBatch.entries.length > 0, 'Entry-only review requires entries');
+  for (const entry of currentBatch.entries)
+    assert.ok(
+      cardiacRecipes.has(entry.recipe),
+      `Entry-only interaction coverage missing: ${entry.recipe}`,
+    );
+}
+function cardiacSelectors(plan) {
+  if (plan.recipe === 'rexmle-neurips-cellseg-v1')
+    return {
+      scene: 'data-cellseg-scene',
+      reference: '[data-cellseg-private-reference]',
+      referenceChannel: null,
+      output: '[data-cellseg-empty-test-output]',
+      aside: '[data-cellseg-output]',
+    };
+  if (plan.recipe === 'rex-isles22-v1')
+    return {
+      scene: 'data-isles-scene',
+      reference: '[data-isles-reference]',
+      output: '[data-isles-output-schema]',
+      aside: '[data-isles-output]',
+    };
+  if (plan.recipe === 'rexmle-dentex-v1')
+    return {
+      scene: 'data-dentex-scene',
+      reference: '[data-dentex-reference]',
+      output: '[data-dentex-output-schema]',
+      aside: '[data-dentex-output]',
+    };
+  if (plan.recipe === 'abra-longitudinal-v1')
+    return {
+      scene: 'data-abra-scene',
+      reference: '[data-abra-private-reference]',
+      output: '[data-abra-empty-output-schema]',
+      aside: '[data-abra-output]',
+    };
+  if (plan.recipe === 'bcer-prostate-registration-v1')
+    return {
+      scene: 'data-bcer-prostate-scene',
+      reference: '[data-bcer-prostate-private-reference]',
+      referenceChannel: null,
+      output: '[data-bcer-prostate-empty-output]',
+      aside: '[data-bcer-prostate-output]',
+    };
+  if (plan.recipe === 'bcer-brain-v1')
+    return {
+      scene: 'data-bcer-brain-scene',
+      reference: '[data-bcer-brain-private-reference]',
+      referenceChannel: null,
+      output: '[data-bcer-brain-label-semantics]',
+      aside: '[data-bcer-brain-output]',
+    };
+  if (plan.recipe === 'automed-kidney-v1')
+    return {
+      scene: 'data-kidney-scene',
+      reference: '[data-kidney-private-reference], [data-kidney-reference-revealed]',
+      output: '[data-kidney-empty-output]',
+      aside: '[data-kidney-output]',
+    };
+  if (plan.recipe === 'report-reading-v1')
+    return {
+      scene: 'data-report-reading-scene',
+      reference: '[data-report-reading-reference]',
+      output: '[data-report-reading-answer-schema]',
+      aside: '[data-report-reading-output]',
+    };
+  if (plan.recipe === 'cardiac-mask-mechanics-v1')
+    return {
+      scene: 'data-mask-mechanics-scene',
+      reference: '[data-mask-mechanics-reference]',
+      output:
+        '[data-mask-mechanics-saved-output], [data-mask-mechanics-saved-occupancy], [data-mask-mechanics-tensor]',
+      aside: '[data-mask-mechanics-output]',
+    };
+  if (plan.recipe === 'cardiac-real-echo-v1')
+    return {
+      scene: 'data-real-echo-scene',
+      reference: '[data-real-echo-review]',
+      output: '[data-real-echo-saved-output]',
+      aside: '[data-real-echo-output]',
+      referenceChannel: 'review',
+    };
+  if (plan.recipe === 'cardiac-material-v1')
+    return {
+      scene: 'data-material-scene',
+      reference: '[data-material-reference]',
+      output: '[data-material-output]',
+      aside: '[data-material-output-panel]',
+    };
+  const contour = plan.recipe === 'cardiac-contour-v1';
+  return {
+    scene: contour ? 'data-cardiac-contour-scene' : 'data-cardiac-anchor-scene',
+    reference: contour
+      ? '[data-contour-reference]'
+      : '[data-cardiac-anchor-reference-boundary], [data-cardiac-anchor-reference-curve]',
+    output: contour ? '[data-contour-output]' : '[data-cardiac-anchor-output-boundary]',
+    aside: contour ? '[data-cardiac-contour-output]' : '[data-cardiac-anchor-output]',
+  };
+}
+async function checkSourceWarning(page, plan) {
+  const config = {
+    'rexmle-neurips-cellseg-v1': [
+      /Real training image and labels/,
+      'https://zenodo.org/records/10719375',
+      'data-cellseg-scene',
+      false,
+    ],
+    'rex-isles22-v1': [
+      /Actual ISLES22 test input/,
+      'https://zenodo.org/records/7960856',
+      'data-isles-scene',
+      false,
+    ],
+    'rexmle-dentex-v1': [
+      /Real DENTEX image; no prediction/,
+      'https://zenodo.org/records/7812323',
+      'data-dentex-scene',
+      false,
+    ],
+    'abra-longitudinal-v1': [
+      /Real NLST CT; no ABRA answer/,
+      'https://www.cancerimagingarchive.net/collection/nlst/',
+      'data-abra-scene',
+      false,
+    ],
+    'bcer-prostate-registration-v1': [
+      /Real PI-CAI inputs; no BCER registration output/,
+      'https://zenodo.org/records/6624726',
+      'data-bcer-prostate-scene',
+      false,
+    ],
+    'report-reading-v1': [
+      /no CT\/report pair has been admitted/,
+      'https://huggingface.co/datasets/ibrahimhamamci/CT-RATE',
+      'data-report-reading-scene',
+    ],
+    'bcer-brain-v1': [
+      /No matching four-sequence BraTS case/,
+      'https://www.med.upenn.edu/cbica/brats2021/',
+      'data-bcer-brain-scene',
+    ],
+  }[plan.recipe];
+  if (!config) return;
+  const player = page.locator('.scene-player');
+  const warning = player.locator('[data-symbolic-source-warning]');
+  assert.equal(await warning.count(), 1);
+  assert.match(await warning.innerText(), config[0]);
+  assert.equal(await warning.locator('a').getAttribute('href'), config[1]);
+  const box = await warning.boundingBox(),
+    title = await player.locator('header h3').boundingBox();
+  assert.ok(
+    box && title && box.y + box.height <= title.y + 1,
+    'source warning must precede illustration title',
+  );
+  assert.ok(
+    await warning.evaluate(
+      (e) => e.scrollWidth <= e.clientWidth + 1 && e.scrollHeight <= e.clientHeight + 1,
+    ),
+  );
+  if (config[3] !== false) {
+    assert.equal(
+      await player
+        .locator(`[${config[2]}] img, [${config[2]}] image, [${config[2]}] canvas`)
+        .count(),
+      0,
+      'symbolic source contract must contain no patient raster',
+    );
+  }
+  const detail = page.locator('.task-detail');
+  if (await detail.count()) {
+    assert.ok(
+      await detail.evaluate((e) =>
+        e.firstElementChild?.hasAttribute('data-symbolic-source-warning'),
+      ),
+      'warning must be first task content',
+    );
+  }
+}
+async function checkCardiacFrame(page, plan, frame) {
+  if (!cardiacRecipes.has(plan.recipe)) return;
+  await checkSourceWarning(page, plan);
+  const selectors = cardiacSelectors(plan);
+  const beat = plan.beats.find((b) => frame >= b.startFrame && frame < b.endFrame);
+  const p = (frame - beat.startFrame) / (beat.endFrame - beat.startFrame - 1);
+  const ease = p * p * (3 - 2 * p);
+  const reference =
+    selectors.referenceChannel === null
+      ? 0
+      : beat.channels[selectors.referenceChannel || 'reference'][0] +
+        (beat.channels[selectors.referenceChannel || 'reference'][1] -
+          beat.channels[selectors.referenceChannel || 'reference'][0]) *
+          ease;
+  assert.equal(
+    await page.locator(`[${selectors.scene}]`).getAttribute(selectors.scene),
+    beat.scene,
+  );
+  if (reference <= 0.5)
+    assert.equal(
+      await page.locator(selectors.reference).count(),
+      0,
+      `${plan.id}: hidden reference mounted at ${frame}`,
+    );
+  if (frame === 0)
+    assert.equal(
+      await page.locator(selectors.output).count(),
+      0,
+      `${plan.id}: prediction visible in input`,
+    );
+  const output = page.locator(selectors.aside);
+  assert.ok(
+    await output.evaluate((e) => e.scrollHeight <= e.clientHeight + 1),
+    `${plan.id}: output overflow at ${frame}`,
+  );
+  const box = await output.boundingBox();
+  assert.ok(box && box.y + box.height <= 721, `${plan.id}: output clipped at ${frame}`);
+  const stage = await page.locator('.scene-stage').boundingBox();
+  assert.ok(stage && stage.y + stage.height <= 721, `${plan.id}: stage clipped at ${frame}`);
+  const legend = await page.locator('.scene-legend').boundingBox();
+  assert.ok(legend && legend.y + legend.height <= 720, `${plan.id}: legend clipped at ${frame}`);
+  assert.ok(
+    await page.locator(`[${selectors.scene}]`).evaluate((element) => {
+      const box = element.getBoundingClientRect();
+      const inside = (r) =>
+        !r.width ||
+        !r.height ||
+        (r.left >= box.left - 1 &&
+          r.top >= box.top - 1 &&
+          r.right <= box.right + 1 &&
+          r.bottom <= box.bottom + 1);
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        if (!walker.currentNode.textContent.trim()) continue;
+        const range = document.createRange();
+        range.selectNodeContents(walker.currentNode);
+        if (!Array.from(range.getClientRects()).every(inside)) return false;
+      }
+      return Array.from(element.querySelectorAll('svg,img')).every((node) =>
+        inside(node.getBoundingClientRect()),
+      );
+    }),
+    `${plan.id}: scene content clipped at ${frame}`,
+  );
+}
+async function reviewCardiacInteractions(page, plan, output, label) {
+  if (!cardiacRecipes.has(plan.recipe)) return;
+  await checkSourceWarning(page, plan);
+  const selectors = cardiacSelectors(plan);
+  for (const [index, beat] of plan.beats.entries()) {
+    await page.locator(`[data-story-step="${index}"]`).click();
+    await page.waitForFunction(
+      ([attribute, scene]) =>
+        document.querySelector(`[${attribute}]`)?.getAttribute(attribute) === scene,
+      [selectors.scene, beat.scene],
+    );
+    assert.ok(
+      await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+      `${plan.id}: ${label} overflow in ${beat.scene}`,
+    );
+    if (
+      selectors.referenceChannel === null ||
+      beat.channels[selectors.referenceChannel || 'reference'][0] <= 0.5
+    )
+      assert.equal(
+        await page.locator(selectors.reference).count(),
+        0,
+        `${plan.id}: ${label} early reference in ${beat.scene}`,
+      );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (selectors.referenceChannel === null) {
+    assert.equal(plan.reference_policy, 'no-reference-assets');
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
+    );
+    assert.equal(await page.locator(selectors.reference).count(), 0);
+    assert.equal(await page.locator(selectors.output).count(), 0);
+    return;
+  }
+  const revealIndex = plan.beats.findIndex(
+    (b) => b.channels[selectors.referenceChannel || 'reference'][1] === 1,
+  );
+  assert.ok(revealIndex >= 0, `${plan.id}: explicit reference reveal required`);
+  await page.locator('.scene-reset').click();
+  await page.waitForFunction(
+    () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
+  );
+  assert.equal(await page.locator(selectors.reference).count(), 0);
+  await page.locator(`[data-story-step="${revealIndex}"]`).click();
+  if (plan.beats[revealIndex].channels[selectors.referenceChannel || 'reference'][0] <= 0.5) {
+    assert.equal(await page.locator(selectors.reference).count(), 0);
+    await page.locator('.scene-play').click();
+    await page.locator(selectors.reference).first().waitFor();
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+  } else {
+    await page.locator(selectors.reference).first().waitFor();
+  }
+  await page
+    .locator('.scene-player')
+    .screenshot({ path: path.join(output, `${label}-reference-revealed.png`) });
+  await page.locator('.scene-reset').click();
+  await page.waitForFunction(
+    () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
+  );
+  assert.equal(await page.locator(selectors.reference).count(), 0);
+  assert.equal(await page.locator(selectors.output).count(), 0);
+}
+
 withBrowser(async (browser) => {
   report.browser = browser.version();
   const context = await browser.newContext({
@@ -74,6 +410,19 @@ withBrowser(async (browser) => {
           'dental-original-v1',
           'ct-organ-v1',
           'named-landmarks-v1',
+          'cardiac-contour-v1',
+          'cardiac-anchor-v1',
+          'cardiac-material-v1',
+          'rexmle-neurips-cellseg-v1',
+          'rex-isles22-v1',
+          'rexmle-dentex-v1',
+          'abra-longitudinal-v1',
+          'bcer-prostate-registration-v1',
+          'bcer-brain-v1',
+          'automed-kidney-v1',
+          'report-reading-v1',
+          'cardiac-mask-mechanics-v1',
+          'cardiac-real-echo-v1',
           'clinical-cavity-v1',
           'respiratory-v1',
           'registration-analysis-v1',
@@ -101,6 +450,19 @@ withBrowser(async (browser) => {
         ].includes(plan.recipe)
       ) {
         for (const b of plan.beats) frames.push(b.startFrame);
+      }
+      if (cardiacRecipes.has(plan.recipe)) {
+        for (const b of plan.beats) {
+          frames.push(b.startFrame);
+          const reveal = b.channels[cardiacSelectors(plan).referenceChannel || 'reference'] || [
+            0, 0,
+          ];
+          if (reveal[0] !== reveal[1])
+            frames.push(
+              Math.floor((b.startFrame + b.endFrame) / 2) - 1,
+              Math.floor((b.startFrame + b.endFrame) / 2),
+            );
+        }
       }
       if (plan.recipe === 'imaging101-eht-features-dynamic-v1') {
         const selections = {
@@ -747,6 +1109,7 @@ withBrowser(async (browser) => {
           assert.ok(box && box.y + box.height <= 720, 'Analysis output clipped');
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
         }
+        await checkCardiacFrame(page, plan, frame);
         if (plan.recipe === 'imaging101-eht-features-dynamic-v1') {
           const name = await page
             .locator('[data-features-scene]')
@@ -2144,6 +2507,7 @@ withBrowser(async (browser) => {
       'mobile overflow ' + id,
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
+    await reviewCardiacInteractions(page, plan, out, 'mobile');
     if (plan.recipe === 'imaging101-eht-features-dynamic-v1') {
       for (let step = 1; step < plan.beats.length; step++) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -2933,6 +3297,19 @@ withBrowser(async (browser) => {
       'mask-screen-v1',
       'anatomy-curation-v1',
       'named-landmarks-v1',
+      'cardiac-contour-v1',
+      'cardiac-anchor-v1',
+      'cardiac-material-v1',
+      'rexmle-neurips-cellseg-v1',
+      'rex-isles22-v1',
+      'rexmle-dentex-v1',
+      'abra-longitudinal-v1',
+      'bcer-prostate-registration-v1',
+      'bcer-brain-v1',
+      'automed-kidney-v1',
+      'report-reading-v1',
+      'cardiac-mask-mechanics-v1',
+      'cardiac-real-echo-v1',
       'clinical-cavity-v1',
       'respiratory-v1',
       'registration-analysis-v1',
@@ -2949,6 +3326,7 @@ withBrowser(async (browser) => {
       'mixed-tissue-v1',
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
+    await reviewCardiacInteractions(fallback, plan, out, 'no-gpu');
     if (plan.recipe === 'imaging101-eht-features-dynamic-v1') {
       for (const step of [1, 3, 6]) {
         await fallback.locator(`[data-story-step="${step}"]`).click();
@@ -3745,622 +4123,667 @@ withBrowser(async (browser) => {
     report.stories.push(row);
     console.log('Reviewed matrix: ' + id);
   }
-  await page.goto(
-    pathToFileURL(explorer).href + '?lang=en#tb3-named-coronary/0/overview?view=repository',
-  );
-  await page.locator('.scene-player[data-rendered="true"]').waitFor();
-  assert.equal(await page.evaluate(() => typeof window.__tb3ExplainerCapture), 'undefined');
-  for (let pass = 0; pass < 3; pass++)
-    for (const id of [
-      'tb3-named-coronary',
-      'wsi-hiesd-patches',
-      'tb3-oblique-pose',
-      'tb3-label-audit',
-      'tb3-supplied-object-identity',
-      'tb3-mixed-tissue-audit',
-      'tb3-unlabeled-anatomy-prototype',
-      'tb3-mask-reasoning-study',
-      'tb3-anatomy-curation',
-      'tb3-respiratory-correspondence',
-      'tb3-registration-analysis',
-      'tb3-clinical-cavity-adaptation',
-    ]) {
-      await page.evaluate((id) => {
-        location.hash = `${id}/0/overview?view=repository`;
-      }, id);
-      await page.waitForFunction(
-        (id) => document.querySelector('.task-detail')?.dataset.brief === id,
-        id,
-      );
-      await page.locator('.scene-player[data-rendered="true"]').waitFor();
-      const state = await page.locator('.scene-player').evaluate(
-        (e, id) => ({
+  if (!entryOnly) {
+    await page.goto(
+      pathToFileURL(explorer).href + '?lang=en#tb3-named-coronary/0/overview?view=repository',
+    );
+    await page.locator('.scene-player[data-rendered="true"]').waitFor();
+    assert.equal(await page.evaluate(() => typeof window.__tb3ExplainerCapture), 'undefined');
+    for (let pass = 0; pass < 3; pass++)
+      for (const id of [
+        'tb3-named-coronary',
+        'wsi-hiesd-patches',
+        'tb3-oblique-pose',
+        'tb3-label-audit',
+        'tb3-supplied-object-identity',
+        'tb3-mixed-tissue-audit',
+        'tb3-unlabeled-anatomy-prototype',
+        'tb3-mask-reasoning-study',
+        'tb3-anatomy-curation',
+        'tb3-respiratory-correspondence',
+        'tb3-registration-analysis',
+        'tb3-clinical-cavity-adaptation',
+      ]) {
+        await page.evaluate((id) => {
+          location.hash = `${id}/0/overview?view=repository`;
+        }, id);
+        await page.waitForFunction(
+          (id) => document.querySelector('.task-detail')?.dataset.brief === id,
           id,
-          renderer: e.dataset.surfaceRenderer,
-          roots: e.dataset.nativeRoots,
-          canvases: e.querySelectorAll('canvas').length,
-        }),
-        id,
-      );
-      assert.equal(state.canvases, 1);
-      if (state.renderer === 'webgl') assert.equal(state.roots, '1');
-      if (id === 'tb3-clinical-cavity-adaptation') {
-        assert.equal(
-          await page.locator('.scene-player').getAttribute('data-recipe'),
-          'clinical-cavity-v1',
         );
-        assert.equal(
-          await page.locator('[data-cavity-output]').getAttribute('data-cavity-reference'),
-          'hidden',
+        await page.locator('.scene-player[data-rendered="true"]').waitFor();
+        const state = await page.locator('.scene-player').evaluate(
+          (e, id) => ({
+            id,
+            renderer: e.dataset.surfaceRenderer,
+            roots: e.dataset.nativeRoots,
+            canvases: e.querySelectorAll('canvas').length,
+          }),
+          id,
         );
-        if (pass === 0) {
-          await page.locator('[data-story-step="4"]').click();
-          await page.waitForFunction(
-            () =>
-              document
-                .querySelector('[data-cavity-output]')
-                ?.getAttribute('data-cavity-reference') === 'revealed',
+        assert.equal(state.canvases, 1);
+        if (state.renderer === 'webgl') assert.equal(state.roots, '1');
+        if (id === 'tb3-clinical-cavity-adaptation') {
+          assert.equal(
+            await page.locator('.scene-player').getAttribute('data-recipe'),
+            'clinical-cavity-v1',
           );
-          assert.match(await page.locator('[data-cavity-output]').innerText(), /45.31%/);
-          const playerBox = await page.locator('.scene-player').boundingBox();
-          const stageBox = await page.locator('.scene-stage').boundingBox();
-          const outputBox = await page.locator('[data-cavity-output]').boundingBox();
-          if (playerBox.width <= 900)
-            assert.ok(
-              outputBox.y >= stageBox.y + stageBox.height - 1,
-              'Narrow Explorer must stack the cavity measurements beneath the stage',
+          assert.equal(
+            await page.locator('[data-cavity-output]').getAttribute('data-cavity-reference'),
+            'hidden',
+          );
+          if (pass === 0) {
+            await page.locator('[data-story-step="4"]').click();
+            await page.waitForFunction(
+              () =>
+                document
+                  .querySelector('[data-cavity-output]')
+                  ?.getAttribute('data-cavity-reference') === 'revealed',
             );
+            assert.match(await page.locator('[data-cavity-output]').innerText(), /45.31%/);
+            const playerBox = await page.locator('.scene-player').boundingBox();
+            const stageBox = await page.locator('.scene-stage').boundingBox();
+            const outputBox = await page.locator('[data-cavity-output]').boundingBox();
+            if (playerBox.width <= 900)
+              assert.ok(
+                outputBox.y >= stageBox.y + stageBox.height - 1,
+                'Narrow Explorer must stack the cavity measurements beneath the stage',
+              );
 
-          await page
-            .locator('.scene-player')
-            .screenshot({ path: path.join(folder, 'explorer-clinical-reference.png') });
-          await page.locator('.scene-reset').click();
-          await page.waitForFunction(
-            () =>
-              document
-                .querySelector('[data-cavity-output]')
-                ?.getAttribute('data-cavity-reference') === 'hidden',
-          );
+            await page
+              .locator('.scene-player')
+              .screenshot({ path: path.join(folder, 'explorer-clinical-reference.png') });
+            await page.locator('.scene-reset').click();
+            await page.waitForFunction(
+              () =>
+                document
+                  .querySelector('[data-cavity-output]')
+                  ?.getAttribute('data-cavity-reference') === 'hidden',
+            );
+          }
         }
+        report.navigation.push(state);
       }
-      report.navigation.push(state);
-    }
-  await page.evaluate(() => {
-    location.hash = 'tb3-named-landmarks/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'named-landmarks-v1',
-  );
-  assert.equal(await page.locator('[data-landmark-mark]').count(), 0);
-  await page.locator('[data-story-step="5"]').click();
-  await page.waitForFunction(
-    () =>
-      document
-        .querySelector('[data-landmark-reference]')
-        ?.getAttribute('data-landmark-reference') === 'visible',
-  );
-  assert.match(await page.locator('[data-landmark-output]').innerText(), /visible miss/);
-  assert.equal(await page.locator('[data-landmark-mark="sol"]').count(), 0);
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-landmarks.png') });
-  await page.locator('.scene-reset').click();
-  await page.waitForFunction(
-    () =>
-      document
-        .querySelector('[data-landmark-reference]')
-        ?.getAttribute('data-landmark-reference') === 'hidden',
-  );
-  report.navigation.push({ id: 'tb3-named-landmarks', revealAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'tb3-ct-organ-segmentation/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () => document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'ct-organ-v1',
-  );
-  assert.equal(await page.locator('[data-ct-layer]').count(), 0);
-  await page.locator('[data-story-step="6"]').click();
-  await page.waitForFunction(
-    () =>
-      document.querySelector('[data-ct-reference]')?.getAttribute('data-ct-reference') ===
-      'visible',
-  );
-  assert.equal(await page.locator('[data-ct-layer="reference"]').count(), 2);
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-ct-organ.png') });
-  await page.locator('.scene-reset').click();
-  await page.waitForFunction(
-    () =>
-      document.querySelector('[data-ct-reference]')?.getAttribute('data-ct-reference') === 'hidden',
-  );
-  assert.equal(await page.locator('[data-ct-layer]').count(), 0);
-  report.navigation.push({ id: 'tb3-ct-organ-segmentation', revealAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'tb3-dental-original/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'dental-original-v1',
-  );
-  assert.equal(await page.locator('[data-dental-layer]').count(), 0);
-  await page.locator('[data-story-step="5"]').click();
-  await page.waitForFunction(
-    () =>
-      document.querySelector('[data-dental-reference]')?.getAttribute('data-dental-reference') ===
-      'visible',
-  );
-  assert.ok((await page.locator('[data-dental-layer="reference"]').count()) > 0);
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-dental-original.png') });
-  await page.locator('.scene-reset').click();
-  await page.waitForFunction(
-    () =>
-      document.querySelector('[data-dental-reference]')?.getAttribute('data-dental-reference') ===
-      'hidden',
-  );
-  assert.equal(await page.locator('[data-dental-layer]').count(), 0);
-  report.navigation.push({ id: 'tb3-dental-original', revealAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'tb3-dental-v2/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () => document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'dental-v2-v1',
-  );
-  assert.equal(await page.locator('[data-dental-v2-layer]').count(), 0);
-  await page.locator('[data-story-step="9"]').click();
-  await page.waitForFunction(
-    () =>
-      document
-        .querySelector('[data-dental-v2-reference]')
-        ?.getAttribute('data-dental-v2-reference') === 'visible',
-  );
-  assert.ok((await page.locator('[data-dental-v2-layer="reference"]').count()) > 0);
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-dental-v2.png') });
-  await page.locator('.scene-reset').click();
-  await page.waitForFunction(
-    () =>
-      document
-        .querySelector('[data-dental-v2-reference]')
-        ?.getAttribute('data-dental-v2-reference') === 'hidden',
-  );
-  assert.equal(await page.locator('[data-dental-v2-layer]').count(), 0);
-  report.navigation.push({ id: 'tb3-dental-v2', revealAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'tb3-named-landmarks/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'named-landmarks-v1',
+    );
+    assert.equal(await page.locator('[data-landmark-mark]').count(), 0);
+    await page.locator('[data-story-step="5"]').click();
+    await page.waitForFunction(
+      () =>
+        document
+          .querySelector('[data-landmark-reference]')
+          ?.getAttribute('data-landmark-reference') === 'visible',
+    );
+    assert.match(await page.locator('[data-landmark-output]').innerText(), /visible miss/);
+    assert.equal(await page.locator('[data-landmark-mark="sol"]').count(), 0);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-landmarks.png') });
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () =>
+        document
+          .querySelector('[data-landmark-reference]')
+          ?.getAttribute('data-landmark-reference') === 'hidden',
+    );
+    report.navigation.push({ id: 'tb3-named-landmarks', revealAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'tb3-ct-organ-segmentation/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'ct-organ-v1',
+    );
+    assert.equal(await page.locator('[data-ct-layer]').count(), 0);
+    await page.locator('[data-story-step="6"]').click();
+    await page.waitForFunction(
+      () =>
+        document.querySelector('[data-ct-reference]')?.getAttribute('data-ct-reference') ===
+        'visible',
+    );
+    assert.equal(await page.locator('[data-ct-layer="reference"]').count(), 2);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-ct-organ.png') });
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () =>
+        document.querySelector('[data-ct-reference]')?.getAttribute('data-ct-reference') ===
+        'hidden',
+    );
+    assert.equal(await page.locator('[data-ct-layer]').count(), 0);
+    report.navigation.push({ id: 'tb3-ct-organ-segmentation', revealAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'tb3-dental-original/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'dental-original-v1',
+    );
+    assert.equal(await page.locator('[data-dental-layer]').count(), 0);
+    await page.locator('[data-story-step="5"]').click();
+    await page.waitForFunction(
+      () =>
+        document.querySelector('[data-dental-reference]')?.getAttribute('data-dental-reference') ===
+        'visible',
+    );
+    assert.ok((await page.locator('[data-dental-layer="reference"]').count()) > 0);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-dental-original.png') });
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () =>
+        document.querySelector('[data-dental-reference]')?.getAttribute('data-dental-reference') ===
+        'hidden',
+    );
+    assert.equal(await page.locator('[data-dental-layer]').count(), 0);
+    report.navigation.push({ id: 'tb3-dental-original', revealAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'tb3-dental-v2/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'dental-v2-v1',
+    );
+    assert.equal(await page.locator('[data-dental-v2-layer]').count(), 0);
+    await page.locator('[data-story-step="9"]').click();
+    await page.waitForFunction(
+      () =>
+        document
+          .querySelector('[data-dental-v2-reference]')
+          ?.getAttribute('data-dental-v2-reference') === 'visible',
+    );
+    assert.ok((await page.locator('[data-dental-v2-layer="reference"]').count()) > 0);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-dental-v2.png') });
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () =>
+        document
+          .querySelector('[data-dental-v2-reference]')
+          ?.getAttribute('data-dental-v2-reference') === 'hidden',
+    );
+    assert.equal(await page.locator('[data-dental-v2-layer]').count(), 0);
+    report.navigation.push({ id: 'tb3-dental-v2', revealAndReset: true });
 
-  await page.evaluate(() => {
-    location.hash = 'tb3-dental-v3/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () => document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'dental-v3-v1',
-  );
-  assert.equal(await page.locator('[data-dental-v3-layer]').count(), 0);
-  await page.locator('[data-story-step="9"]').click();
-  await page.waitForFunction(
-    () =>
-      document
-        .querySelector('[data-dental-v3-reference]')
-        ?.getAttribute('data-dental-v3-reference') === 'visible',
-  );
-  assert.ok((await page.locator('[data-dental-v3-layer="reference"]').count()) > 0);
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-dental-v3.png') });
-  await page.locator('.scene-reset').click();
-  await page.waitForFunction(
-    () =>
-      document
-        .querySelector('[data-dental-v3-reference]')
-        ?.getAttribute('data-dental-v3-reference') === 'hidden',
-  );
-  assert.equal(await page.locator('[data-dental-v3-layer]').count(), 0);
-  report.navigation.push({ id: 'tb3-dental-v3', revealAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'tb3-segmentation-calibration/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
-      'segmentation-calibration-v1',
-  );
-  assert.equal(await page.locator('[data-calibration-layer]').count(), 0);
-  await page.locator('[data-story-step="7"]').click();
-  await page.waitForFunction(
-    () =>
-      document
-        .querySelector('[data-calibration-reference]')
-        ?.getAttribute('data-calibration-reference') === 'visible',
-  );
-  assert.ok((await page.locator('[data-calibration-layer="reference"]').count()) > 0);
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-calibration.png') });
-  await page.locator('.scene-reset').click();
-  await page.waitForFunction(
-    () =>
-      document
-        .querySelector('[data-calibration-reference]')
-        ?.getAttribute('data-calibration-reference') === 'hidden',
-  );
-  assert.equal(await page.locator('[data-calibration-layer]').count(), 0);
-  report.navigation.push({ id: 'tb3-segmentation-calibration', revealAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'tb3-aneurysm-localization/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
-      'aneurysm-localization-v1',
-  );
-  assert.equal(await page.locator('[data-aneurysm-point], [data-aneurysm-private]').count(), 0);
-  await page.locator('[data-story-step="7"]').click();
-  await page.waitForFunction(
-    () =>
-      document
-        .querySelector('[data-aneurysm-reference]')
-        ?.getAttribute('data-aneurysm-reference') === 'visible',
-  );
-  assert.ok((await page.locator('[data-aneurysm-private]').count()) > 0);
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-aneurysm.png') });
-  await page.locator('.scene-reset').click();
-  await page.waitForFunction(
-    () =>
-      document
-        .querySelector('[data-aneurysm-reference]')
-        ?.getAttribute('data-aneurysm-reference') === 'hidden',
-  );
-  assert.equal(await page.locator('[data-aneurysm-point], [data-aneurysm-private]').count(), 0);
-  report.navigation.push({ id: 'tb3-aneurysm-localization', revealAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'tb3-dental-v3/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'dental-v3-v1',
+    );
+    assert.equal(await page.locator('[data-dental-v3-layer]').count(), 0);
+    await page.locator('[data-story-step="9"]').click();
+    await page.waitForFunction(
+      () =>
+        document
+          .querySelector('[data-dental-v3-reference]')
+          ?.getAttribute('data-dental-v3-reference') === 'visible',
+    );
+    assert.ok((await page.locator('[data-dental-v3-layer="reference"]').count()) > 0);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-dental-v3.png') });
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () =>
+        document
+          .querySelector('[data-dental-v3-reference]')
+          ?.getAttribute('data-dental-v3-reference') === 'hidden',
+    );
+    assert.equal(await page.locator('[data-dental-v3-layer]').count(), 0);
+    report.navigation.push({ id: 'tb3-dental-v3', revealAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'tb3-segmentation-calibration/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'segmentation-calibration-v1',
+    );
+    assert.equal(await page.locator('[data-calibration-layer]').count(), 0);
+    await page.locator('[data-story-step="7"]').click();
+    await page.waitForFunction(
+      () =>
+        document
+          .querySelector('[data-calibration-reference]')
+          ?.getAttribute('data-calibration-reference') === 'visible',
+    );
+    assert.ok((await page.locator('[data-calibration-layer="reference"]').count()) > 0);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-calibration.png') });
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () =>
+        document
+          .querySelector('[data-calibration-reference]')
+          ?.getAttribute('data-calibration-reference') === 'hidden',
+    );
+    assert.equal(await page.locator('[data-calibration-layer]').count(), 0);
+    report.navigation.push({ id: 'tb3-segmentation-calibration', revealAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'tb3-aneurysm-localization/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'aneurysm-localization-v1',
+    );
+    assert.equal(await page.locator('[data-aneurysm-point], [data-aneurysm-private]').count(), 0);
+    await page.locator('[data-story-step="7"]').click();
+    await page.waitForFunction(
+      () =>
+        document
+          .querySelector('[data-aneurysm-reference]')
+          ?.getAttribute('data-aneurysm-reference') === 'visible',
+    );
+    assert.ok((await page.locator('[data-aneurysm-private]').count()) > 0);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-aneurysm.png') });
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () =>
+        document
+          .querySelector('[data-aneurysm-reference]')
+          ?.getAttribute('data-aneurysm-reference') === 'hidden',
+    );
+    assert.equal(await page.locator('[data-aneurysm-point], [data-aneurysm-private]').count(), 0);
+    report.navigation.push({ id: 'tb3-aneurysm-localization', revealAndReset: true });
 
-  await page.evaluate(() => {
-    location.hash = 'tb3-localized-candidate-recognition/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'localized-ct-v1',
-  );
-  assert.equal(await page.locator('[data-localized-private], [data-localized-output]').count(), 0);
-  assert.equal(await page.locator('[data-localized-point]').count(), 2);
-  await page.locator('[data-story-step="8"]').click();
-  await page.locator('[data-localized-private]').first().waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-localized-ct.png') });
-  await page.locator('.scene-reset').click();
-  await page.waitForFunction(
-    () =>
-      document
-        .querySelector('[data-localized-reference]')
-        ?.getAttribute('data-localized-reference') === 'hidden',
-  );
-  assert.equal(await page.locator('[data-localized-private], [data-localized-output]').count(), 0);
-  report.navigation.push({ id: 'tb3-localized-candidate-recognition', revealAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'tb3-mri-importer/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'mri-importer-v1',
-  );
-  assert.equal(await page.locator('[data-mri-private], [data-mri-output]').count(), 0);
-  await page.locator('[data-story-step="2"]').click();
-  assert.equal(await page.locator('[data-mri-grid] article[data-selected="true"]').count(), 2);
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-mri-importer.png') });
-  await page.locator('[data-story-step="7"]').click();
-  await page.locator('[data-mri-private]').first().waitFor();
-  await page.locator('.scene-reset').click();
-  await page.waitForFunction(
-    () =>
-      document.querySelector('[data-mri-reference]')?.getAttribute('data-mri-reference') ===
-      'hidden',
-  );
-  assert.equal(await page.locator('[data-mri-private], [data-mri-output]').count(), 0);
-  report.navigation.push({ id: 'tb3-mri-importer', revealAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'tb3-localized-candidate-recognition/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'localized-ct-v1',
+    );
+    assert.equal(
+      await page.locator('[data-localized-private], [data-localized-output]').count(),
+      0,
+    );
+    assert.equal(await page.locator('[data-localized-point]').count(), 2);
+    await page.locator('[data-story-step="8"]').click();
+    await page.locator('[data-localized-private]').first().waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-localized-ct.png') });
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () =>
+        document
+          .querySelector('[data-localized-reference]')
+          ?.getAttribute('data-localized-reference') === 'hidden',
+    );
+    assert.equal(
+      await page.locator('[data-localized-private], [data-localized-output]').count(),
+      0,
+    );
+    report.navigation.push({ id: 'tb3-localized-candidate-recognition', revealAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'tb3-mri-importer/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'mri-importer-v1',
+    );
+    assert.equal(await page.locator('[data-mri-private], [data-mri-output]').count(), 0);
+    await page.locator('[data-story-step="2"]').click();
+    assert.equal(await page.locator('[data-mri-grid] article[data-selected="true"]').count(), 2);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-mri-importer.png') });
+    await page.locator('[data-story-step="7"]').click();
+    await page.locator('[data-mri-private]').first().waitFor();
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () =>
+        document.querySelector('[data-mri-reference]')?.getAttribute('data-mri-reference') ===
+        'hidden',
+    );
+    assert.equal(await page.locator('[data-mri-private], [data-mri-output]').count(), 0);
+    report.navigation.push({ id: 'tb3-mri-importer', revealAndReset: true });
 
-  await page.evaluate(() => {
-    location.hash = 'tb3-history-sourcing/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
-      'history-sourcing-v1',
-  );
-  assert.equal(await page.locator('[data-history-private]').count(), 0);
-  await page.locator('[data-story-step="1"]').click();
-  await page.locator('[data-history-excerpt]').waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-history-sourcing.png') });
-  await page.locator('[data-story-step="5"]').click();
-  await page.locator('.scene-play').click();
-  await page.locator('[data-history-private]').first().waitFor();
-  await page.locator('.scene-play').click();
-  await page.locator('.scene-reset').click();
-  await page.waitForFunction(
-    () =>
-      document.querySelector('[data-history-reference]')?.getAttribute('data-history-reference') ===
-      'hidden',
-  );
-  assert.equal(await page.locator('[data-history-private]').count(), 0);
-  report.navigation.push({ id: 'tb3-history-sourcing', revealAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'tb3-ct-context-inference/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () => document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'ct-context-v1',
-  );
-  assert.equal(await page.locator('[data-context-private]').count(), 0);
-  await page.locator('[data-story-step="2"]').click();
-  await page.locator('[data-context-point]').first().waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-ct-context.png') });
-  await page.locator('[data-story-step="5"]').click();
-  await page.locator('.scene-play').click();
-  await page.locator('[data-context-private]').first().waitFor();
-  await page.locator('.scene-play').click();
-  await page.locator('.scene-reset').click();
-  await page.waitForFunction(
-    () =>
-      document.querySelector('[data-context-reference]')?.getAttribute('data-context-reference') ===
-      'hidden',
-  );
-  assert.equal(await page.locator('[data-context-private]').count(), 0);
-  report.navigation.push({ id: 'tb3-ct-context-inference', revealAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'abra/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'abra-annotation-v1',
-  );
-  assert.equal(
-    await page.locator('[data-abra-reference],[data-abra-oracle],[data-abra-output]').count(),
-    0,
-  );
-  await page.locator('[data-story-step="2"]').click();
-  await page.locator('[data-abra-witness]').waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-abra.png') });
-  await page.locator('[data-story-step="3"]').click();
-  await page.locator('.scene-play').click();
-  await page.locator('[data-abra-reference-info]').waitFor();
-  await page.locator('.scene-play').click();
-  await page.locator('.scene-reset').click();
-  await page.locator('[data-abra-scene="inputs"]').waitFor();
-  assert.equal(
-    await page.locator('[data-abra-reference],[data-abra-oracle],[data-abra-output]').count(),
-    0,
-  );
-  report.navigation.push({ id: 'abra', revealAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'bcer/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'bcer-workflow-v1',
-  );
-  await page.locator('[data-story-step="2"]').click();
-  await page.locator('[data-bcer-witness]').first().waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-bcer.png') });
-  await page.locator('[data-story-step="5"]').click();
-  assert.equal(await page.locator('[data-bcer-metrics] tbody tr').count(), 5);
-  await page.locator('.scene-reset').click();
-  await page.locator('[data-bcer-scene="inputs"]').waitFor();
-  report.navigation.push({ id: 'bcer', contractsAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'automedbench-tsg/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
-      'automed-multiorgan-v1',
-  );
-  await page.locator('[data-story-step="2"]').click();
-  await page.locator('[data-automed-remap]').waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-automed.png') });
-  await page.locator('[data-story-step="6"]').click();
-  assert.equal(await page.locator('[data-automed-fixtures] tbody tr').count(), 7);
-  await page.locator('.scene-reset').click();
-  assert.equal(await page.locator('[data-automed-reference]').count(), 0);
-  report.navigation.push({ id: 'automedbench-tsg', remapAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'rexmle/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () => document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'rex-topcow-v1',
-  );
-  await page.locator('[data-story-step="5"]').click();
-  assert.equal(await page.locator('[data-rex-fixtures] tbody tr').count(), 5);
-  await page.locator('.scene-player').screenshot({ path: path.join(folder, 'integrated-rex.png') });
-  await page.locator('[data-story-step="4"]').click();
-  assert.equal(await page.locator('[data-rex-reference],[data-rex-crop]').count(), 0);
-  await page.locator('.scene-reset').click();
-  await page.locator('[data-rex-scene="inputs"]').waitFor();
-  assert.equal(await page.locator('[data-rex-reference],[data-rex-crop]').count(), 0);
-  report.navigation.push({ id: 'rexmle', fixturesAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'imaging101-cars-spectroscopy/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'imaging101-cars-v1',
-  );
-  await page.locator('[data-story-step="3"]').click();
-  await page.locator('[data-cars-residual]').waitFor({ state: 'attached' });
-  await page.locator('[data-cars-scene="fit"] svg').waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-cars.png') });
-  await page.locator('.scene-reset').click();
-  await page.locator('[data-cars-scene="inputs"]').waitFor();
-  assert.equal(await page.locator('[data-cars-reference],[data-cars-fit]').count(), 0);
-  report.navigation.push({ id: 'imaging101-cars-spectroscopy', residualAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'imaging101-confocal-nlos-fk/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'imaging101-nlos-v1',
-  );
-  await page.locator('[data-story-step="2"]').click();
-  await page.locator('[data-nlos-stolt-probe]').waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-nlos.png') });
-  await page.locator('.scene-reset').click();
-  await page.locator('[data-nlos-scene="inputs"]').waitFor();
-  assert.equal(await page.locator('[data-nlos-reference]').count(), 0);
-  report.navigation.push({ id: 'imaging101-confocal-nlos-fk', stoltAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'imaging101-conventional-ptychography/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
-      'imaging101-ptychography-v1',
-  );
-  await page.locator('[data-story-step="2"]').click();
-  await page.locator('[data-ptychography-scene="projection"]').waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-ptychography.png') });
-  await page.locator('.scene-reset').click();
-  await page.locator('[data-ptychography-scene="inputs"]').waitFor();
-  assert.equal(await page.locator('[data-ptychography-reference]').count(), 0);
-  report.navigation.push({ id: 'imaging101-conventional-ptychography', projectionAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'imaging101-ct-dual-energy/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
-      'imaging101-dual-energy-v1',
-  );
-  await page.locator('[data-story-step="2"]').click();
-  await page.locator('[data-dual-energy-scene="forward"]').waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-dual-energy.png') });
-  await page.locator('.scene-reset').click();
-  await page.locator('[data-dual-energy-scene="inputs"]').waitFor();
-  assert.equal(await page.locator('[data-dual-energy-reference]').count(), 0);
-  report.navigation.push({ id: 'imaging101-ct-dual-energy', forwardAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'imaging101-ct-fan-beam/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
-      'imaging101-fan-beam-v1',
-  );
-  await page.locator('[data-story-step="1"]').click();
-  await page.locator('[data-fan-beam-scene="geometry"]').waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-fan-beam.png') });
-  await page.locator('.scene-reset').click();
-  await page.locator('[data-fan-beam-scene="inputs"]').waitFor();
-  assert.equal(await page.locator('[data-fan-beam-reference]').count(), 0);
-  report.navigation.push({ id: 'imaging101-ct-fan-beam', geometryAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'imaging101-differentiable-deflectometry/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
-      'imaging101-deflectometry-v1',
-  );
-  await page.locator('[data-story-step="3"]').click();
-  await page.locator('[data-deflectometry-scene="geometry"]').waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-deflectometry.png') });
-  await page.locator('.scene-reset').click();
-  await page.locator('[data-deflectometry-scene="inputs"]').waitFor();
-  assert.equal(await page.locator('[data-deflectometry-reference]').count(), 0);
-  report.navigation.push({ id: 'imaging101-differentiable-deflectometry', geometryAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'imaging101-diffusion-mri-dti/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'imaging101-dti-v1',
-  );
-  await page.locator('[data-story-step="3"]').click();
-  await page.locator('[data-dti-scene="tensor"]').waitFor();
-  await page.locator('.scene-player').screenshot({ path: path.join(folder, 'integrated-dti.png') });
-  await page.locator('.scene-reset').click();
-  await page.locator('[data-dti-scene="inputs"]').waitFor();
-  assert.equal(await page.locator('[data-dti-reference]').count(), 0);
-  report.navigation.push({ id: 'imaging101-diffusion-mri-dti', tensorAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'imaging101-eht-black-hole-uq/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
-      'imaging101-eht-uq-v1',
-  );
-  await page.locator('[data-story-step="1"]').click();
-  await page.locator('[data-eht-scene="closures"]').waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-eht-uq.png') });
-  await page.locator('.scene-reset').click();
-  await page.locator('[data-eht-scene="inputs"]').waitFor();
-  assert.equal(await page.locator('[data-eht-reference]').count(), 0);
-  report.navigation.push({ id: 'imaging101-eht-black-hole-uq', closureAndReset: true });
-  await page.evaluate(() => {
-    location.hash = 'imaging101-eht-black-hole-dynamic/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
-      'imaging101-eht-dynamic-v1',
-  );
-  await page.locator('[data-story-step="2"]').click();
-  await page.locator('[data-dynamic-scene="temporal"]').waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-eht-dynamic.png') });
-  await page.locator('.scene-reset').click();
-  await page.locator('[data-dynamic-scene="inputs"]').waitFor();
-  assert.equal(await page.locator('[data-dynamic-reference]').count(), 0);
-  report.navigation.push({ id: 'imaging101-eht-black-hole-dynamic', temporalAndReset: true });
-  await page.evaluate(() => {
-    location.hash =
-      'imaging101-eht-black-hole-feature-extraction-dynamic/0/overview?view=repository';
-  });
-  await page.waitForFunction(
-    () =>
-      document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
-      'imaging101-eht-features-dynamic-v1',
-  );
-  await page.locator('[data-story-step="2"]').click();
-  await page.locator('[data-features-scene="model"]').waitFor();
-  await page
-    .locator('.scene-player')
-    .screenshot({ path: path.join(folder, 'integrated-eht-features-dynamic.png') });
-  await page.locator('.scene-reset').click();
-  await page.locator('[data-features-scene="inputs"]').waitFor();
-  assert.equal(await page.locator('[data-features-reference]').count(), 0);
-  report.navigation.push({
-    id: 'imaging101-eht-black-hole-feature-extraction-dynamic',
-    modelAndReset: true,
-  });
+    await page.evaluate(() => {
+      location.hash = 'tb3-history-sourcing/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'history-sourcing-v1',
+    );
+    assert.equal(await page.locator('[data-history-private]').count(), 0);
+    await page.locator('[data-story-step="1"]').click();
+    await page.locator('[data-history-excerpt]').waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-history-sourcing.png') });
+    await page.locator('[data-story-step="5"]').click();
+    await page.locator('.scene-play').click();
+    await page.locator('[data-history-private]').first().waitFor();
+    await page.locator('.scene-play').click();
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () =>
+        document
+          .querySelector('[data-history-reference]')
+          ?.getAttribute('data-history-reference') === 'hidden',
+    );
+    assert.equal(await page.locator('[data-history-private]').count(), 0);
+    report.navigation.push({ id: 'tb3-history-sourcing', revealAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'tb3-ct-context-inference/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'ct-context-v1',
+    );
+    assert.equal(await page.locator('[data-context-private]').count(), 0);
+    await page.locator('[data-story-step="2"]').click();
+    await page.locator('[data-context-point]').first().waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-ct-context.png') });
+    await page.locator('[data-story-step="5"]').click();
+    await page.locator('.scene-play').click();
+    await page.locator('[data-context-private]').first().waitFor();
+    await page.locator('.scene-play').click();
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () =>
+        document
+          .querySelector('[data-context-reference]')
+          ?.getAttribute('data-context-reference') === 'hidden',
+    );
+    assert.equal(await page.locator('[data-context-private]').count(), 0);
+    report.navigation.push({ id: 'tb3-ct-context-inference', revealAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'abra/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'abra-annotation-v1',
+    );
+    assert.equal(
+      await page.locator('[data-abra-reference],[data-abra-oracle],[data-abra-output]').count(),
+      0,
+    );
+    await page.locator('[data-story-step="2"]').click();
+    await page.locator('[data-abra-witness]').waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-abra.png') });
+    await page.locator('[data-story-step="3"]').click();
+    await page.locator('.scene-play').click();
+    await page.locator('[data-abra-reference-info]').waitFor();
+    await page.locator('.scene-play').click();
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-abra-scene="inputs"]').waitFor();
+    assert.equal(
+      await page.locator('[data-abra-reference],[data-abra-oracle],[data-abra-output]').count(),
+      0,
+    );
+    report.navigation.push({ id: 'abra', revealAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'bcer/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'bcer-workflow-v1',
+    );
+    await page.locator('[data-story-step="2"]').click();
+    await page.locator('[data-bcer-witness]').first().waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-bcer.png') });
+    await page.locator('[data-story-step="5"]').click();
+    assert.equal(await page.locator('[data-bcer-metrics] tbody tr').count(), 5);
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-bcer-scene="inputs"]').waitFor();
+    report.navigation.push({ id: 'bcer', contractsAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'automedbench-tsg/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'automed-multiorgan-v1',
+    );
+    await page.locator('[data-story-step="2"]').click();
+    await page.locator('[data-automed-remap]').waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-automed.png') });
+    await page.locator('[data-story-step="6"]').click();
+    assert.equal(await page.locator('[data-automed-fixtures] tbody tr').count(), 7);
+    await page.locator('.scene-reset').click();
+    assert.equal(await page.locator('[data-automed-reference]').count(), 0);
+    report.navigation.push({ id: 'automedbench-tsg', remapAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'rexmle/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') === 'rex-topcow-v1',
+    );
+    await page.locator('[data-story-step="5"]').click();
+    assert.equal(await page.locator('[data-rex-fixtures] tbody tr').count(), 5);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-rex.png') });
+    await page.locator('[data-story-step="4"]').click();
+    assert.equal(await page.locator('[data-rex-reference],[data-rex-crop]').count(), 0);
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-rex-scene="inputs"]').waitFor();
+    assert.equal(await page.locator('[data-rex-reference],[data-rex-crop]').count(), 0);
+    report.navigation.push({ id: 'rexmle', fixturesAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'imaging101-cars-spectroscopy/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'imaging101-cars-v1',
+    );
+    await page.locator('[data-story-step="3"]').click();
+    await page.locator('[data-cars-residual]').waitFor({ state: 'attached' });
+    await page.locator('[data-cars-scene="fit"] svg').waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-cars.png') });
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-cars-scene="inputs"]').waitFor();
+    assert.equal(await page.locator('[data-cars-reference],[data-cars-fit]').count(), 0);
+    report.navigation.push({ id: 'imaging101-cars-spectroscopy', residualAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'imaging101-confocal-nlos-fk/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'imaging101-nlos-v1',
+    );
+    await page.locator('[data-story-step="2"]').click();
+    await page.locator('[data-nlos-stolt-probe]').waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-nlos.png') });
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-nlos-scene="inputs"]').waitFor();
+    assert.equal(await page.locator('[data-nlos-reference]').count(), 0);
+    report.navigation.push({ id: 'imaging101-confocal-nlos-fk', stoltAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'imaging101-conventional-ptychography/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'imaging101-ptychography-v1',
+    );
+    await page.locator('[data-story-step="2"]').click();
+    await page.locator('[data-ptychography-scene="projection"]').waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-ptychography.png') });
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-ptychography-scene="inputs"]').waitFor();
+    assert.equal(await page.locator('[data-ptychography-reference]').count(), 0);
+    report.navigation.push({
+      id: 'imaging101-conventional-ptychography',
+      projectionAndReset: true,
+    });
+    await page.evaluate(() => {
+      location.hash = 'imaging101-ct-dual-energy/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'imaging101-dual-energy-v1',
+    );
+    await page.locator('[data-story-step="2"]').click();
+    await page.locator('[data-dual-energy-scene="forward"]').waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-dual-energy.png') });
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-dual-energy-scene="inputs"]').waitFor();
+    assert.equal(await page.locator('[data-dual-energy-reference]').count(), 0);
+    report.navigation.push({ id: 'imaging101-ct-dual-energy', forwardAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'imaging101-ct-fan-beam/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'imaging101-fan-beam-v1',
+    );
+    await page.locator('[data-story-step="1"]').click();
+    await page.locator('[data-fan-beam-scene="geometry"]').waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-fan-beam.png') });
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-fan-beam-scene="inputs"]').waitFor();
+    assert.equal(await page.locator('[data-fan-beam-reference]').count(), 0);
+    report.navigation.push({ id: 'imaging101-ct-fan-beam', geometryAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'imaging101-differentiable-deflectometry/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'imaging101-deflectometry-v1',
+    );
+    await page.locator('[data-story-step="3"]').click();
+    await page.locator('[data-deflectometry-scene="geometry"]').waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-deflectometry.png') });
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-deflectometry-scene="inputs"]').waitFor();
+    assert.equal(await page.locator('[data-deflectometry-reference]').count(), 0);
+    report.navigation.push({
+      id: 'imaging101-differentiable-deflectometry',
+      geometryAndReset: true,
+    });
+    await page.evaluate(() => {
+      location.hash = 'imaging101-diffusion-mri-dti/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'imaging101-dti-v1',
+    );
+    await page.locator('[data-story-step="3"]').click();
+    await page.locator('[data-dti-scene="tensor"]').waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-dti.png') });
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-dti-scene="inputs"]').waitFor();
+    assert.equal(await page.locator('[data-dti-reference]').count(), 0);
+    report.navigation.push({ id: 'imaging101-diffusion-mri-dti', tensorAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'imaging101-eht-black-hole-uq/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'imaging101-eht-uq-v1',
+    );
+    await page.locator('[data-story-step="1"]').click();
+    await page.locator('[data-eht-scene="closures"]').waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-eht-uq.png') });
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-eht-scene="inputs"]').waitFor();
+    assert.equal(await page.locator('[data-eht-reference]').count(), 0);
+    report.navigation.push({ id: 'imaging101-eht-black-hole-uq', closureAndReset: true });
+    await page.evaluate(() => {
+      location.hash = 'imaging101-eht-black-hole-dynamic/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'imaging101-eht-dynamic-v1',
+    );
+    await page.locator('[data-story-step="2"]').click();
+    await page.locator('[data-dynamic-scene="temporal"]').waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-eht-dynamic.png') });
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-dynamic-scene="inputs"]').waitFor();
+    assert.equal(await page.locator('[data-dynamic-reference]').count(), 0);
+    report.navigation.push({ id: 'imaging101-eht-black-hole-dynamic', temporalAndReset: true });
+    await page.evaluate(() => {
+      location.hash =
+        'imaging101-eht-black-hole-feature-extraction-dynamic/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'imaging101-eht-features-dynamic-v1',
+    );
+    await page.locator('[data-story-step="2"]').click();
+    await page.locator('[data-features-scene="model"]').waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-eht-features-dynamic.png') });
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-features-scene="inputs"]').waitFor();
+    assert.equal(await page.locator('[data-features-reference]').count(), 0);
+    report.navigation.push({
+      id: 'imaging101-eht-black-hole-feature-extraction-dynamic',
+      modelAndReset: true,
+    });
+  }
+  for (const entry of currentBatch.entries.filter((e) => cardiacRecipes.has(e.recipe))) {
+    const plan = JSON.parse(fs.readFileSync(path.join(folder, entry.story_id, 'plan.json')));
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto(
+      pathToFileURL(explorer).href + `?lang=en#${entry.entry_id}/0/overview?view=repository`,
+    );
+    await page.waitForFunction(
+      (recipe) => document.querySelector('.scene-player')?.getAttribute('data-recipe') === recipe,
+      entry.recipe,
+    );
+    assert.equal(await page.evaluate(() => typeof window.__tb3ExplainerCapture), 'undefined');
+    await reviewCardiacInteractions(page, plan, folder, `explorer-${entry.story_id}`);
+    await page.setViewportSize({ width: 390, height: 844 });
+    await reviewCardiacInteractions(page, plan, folder, `explorer-mobile-${entry.story_id}`);
+    report.navigation.push({ id: entry.entry_id, chaptersAndReferenceReset: true, mobile: true });
+  }
   await context.close();
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.remote_requests, []);

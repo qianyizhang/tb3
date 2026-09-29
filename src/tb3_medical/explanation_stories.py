@@ -44,6 +44,19 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "rexmle-neurips-cellseg-v1": "retained-rexmle-neurips-cellseg-v1",
+    "rex-isles22-v1": "retained-rex-isles22-v1",
+    "rexmle-dentex-v1": "retained-rexmle-dentex-v1",
+    "abra-longitudinal-v1": "retained-abra-longitudinal-v1",
+    "bcer-prostate-registration-v1": "retained-bcer-prostate-registration-v1",
+    "bcer-brain-v1": "retained-bcer-brain-symbolic-v1",
+    "automed-kidney-v1": "retained-automed-kidney-v1",
+    "report-reading-v1": "symbolic-report-reading-v1",
+    "cardiac-mask-mechanics-v1": "retained-mask-mechanics-v1",
+    "cardiac-real-echo-v1": "retained-real-echo-v1",
+    "cardiac-material-v1": "retained-cardiac-material-v1",
+    "cardiac-anchor-v1": "retained-cardiac-anchor-v1",
+    "cardiac-contour-v1": "retained-cardiac-contour-v1",
     "imaging101-eht-features-dynamic-v1": "retained-imaging101-eht-features-dynamic-v1",
     "imaging101-eht-dynamic-v1": "retained-imaging101-eht-dynamic-v1",
     "imaging101-eht-uq-v1": "retained-imaging101-eht-uq-v1",
@@ -98,13 +111,193 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-rexmle-neurips-cellseg-v1": (
+        "source-slices",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "cell_00944.png",
+            "cells/instance-36-crop.png",
+            "metric.json",
+            "output.json",
+            "instance-map.png",
+            "helper.json",
+            "source.json",
+            "NOTICE.md",
+            "foreground-map.png",
+            "cell_00944_label.tiff",
+            "cells/instance-21-crop.png",
+            "cells/instance-16-crop.png",
+            "cells/instance-01-crop.png",
+        },
+    ),
+    "retained-bcer-prostate-registration-v1": (
+        "source-slices",
+        None,
+        {"source.json", "operation.json", "NOTICE.md", "DATA-LICENSE.txt", "BCER-LICENSE.txt"},
+    ),
+    "retained-bcer-brain-symbolic-v1": (
+        "source-records",
+        None,
+        {"diagram.json", "contract.json", "NOTICE.md", "BCER-LICENSE.txt"},
+    ),
     "retained-bcer-workflow-v1": (
         "source-slices",
         None,
         {"inputs.json", "contract.json", "NOTICE.md", "DATA-LICENSE.txt", "BCER-LICENSE.txt"},
     ),
 }
+SOURCE_EXTRA_REFERENCE_FILES = {
+    "retained-rex-isles22-v1": {
+        "images/reference-mask-06.png",
+        "images/reference-mask-04.png",
+        "images/reference-mask-02.png",
+        "images/reference-mask-08.png",
+        "images/reference-mask-07.png",
+        "images/reference-mask-01.png",
+        "images/reference-mask-03.png",
+        "images/reference-mask-05.png",
+        "images/reference-mask-00.png",
+    }
+}
+
 SOURCE_REFERENCE_PACKS = {
+    "retained-rex-isles22-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "images/adc-05.png",
+            "images/dwi-06.png",
+            "images/reference-mask-06.png",
+            "images/flair-06.png",
+            "images/reference-mask-07.png",
+            "images/reference-mask-01.png",
+            "images/dwi-05.png",
+            "images/reference-mask-03.png",
+            "images/adc-08.png",
+            "images/dwi-03.png",
+            "images/adc-07.png",
+            "images/reference-mask-04.png",
+            "images/adc-00.png",
+            "NOTICE.md",
+            "images/adc-01.png",
+            "images/dwi-07.png",
+            "images/adc-03.png",
+            "images/dwi-02.png",
+            "images/reference-mask-02.png",
+            "images/flair-05.png",
+            "images/flair-01.png",
+            "images/reference-mask-08.png",
+            "images/flair-00.png",
+            "images/flair-07.png",
+            "images/dwi-00.png",
+            "images/dwi-01.png",
+            "output.json",
+            "source.json",
+            "images/adc-02.png",
+            "images/reference-mask-05.png",
+            "images/flair-04.png",
+            "images/adc-06.png",
+            "images/adc-04.png",
+            "images/flair-02.png",
+            "reference.json",
+            "images/dwi-08.png",
+            "images/flair-03.png",
+            "images/dwi-04.png",
+            "images/flair-08.png",
+            "images/reference-mask-00.png",
+        },
+    ),
+    "retained-rexmle-dentex-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "output.json",
+            "source.json",
+            "reference.json",
+            "DATA-LICENSE.txt",
+            "train_266.png",
+            "NOTICE.md",
+        },
+    ),
+    "retained-abra-longitudinal-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "NLST-LICENSE.txt",
+            "NOTICE.md",
+            "images/baseline-00.png",
+            "images/baseline-01.png",
+            "images/baseline-02.png",
+            "images/baseline-03.png",
+            "images/baseline-04.png",
+            "images/baseline-05.png",
+            "images/baseline-06.png",
+            "images/baseline-07.png",
+            "images/baseline-08.png",
+            "images/baseline-09.png",
+            "images/baseline-10.png",
+            "images/baseline-11.png",
+            "images/baseline-12.png",
+            "images/baseline-13.png",
+            "images/baseline-14.png",
+            "images/baseline-15.png",
+            "images/followup-00.png",
+            "images/followup-01.png",
+            "images/followup-02.png",
+            "images/followup-03.png",
+            "images/followup-04.png",
+            "images/followup-05.png",
+            "images/followup-06.png",
+            "images/followup-07.png",
+            "images/followup-08.png",
+            "images/followup-09.png",
+            "images/followup-10.png",
+            "images/followup-11.png",
+            "images/followup-12.png",
+            "images/followup-13.png",
+            "images/followup-14.png",
+            "images/followup-15.png",
+            "output.json",
+            "reference.json",
+            "source.json",
+        },
+    ),
+    "retained-automed-kidney-v1": (
+        "source-slices",
+        "reference.json",
+        {"source.json", "output.json", "reference.json", "NOTICE.md", "DATA-LICENSE.txt"},
+    ),
+    "symbolic-report-reading-v1": (
+        "source-records",
+        "reference.json",
+        {"source.json", "output.json", "reference.json", "NOTICE.md"},
+    ),
+    "retained-mask-mechanics-v1": (
+        "source-slices",
+        "reference.json",
+        {"source.json", "output.json", "reference.json", "NOTICE.md"},
+    ),
+    "retained-real-echo-v1": (
+        "source-slices",
+        "review.json",
+        {"source.json", "output.json", "review.json", "NOTICE.md"},
+    ),
+    "retained-cardiac-material-v1": (
+        "source-slices",
+        "reference.json",
+        {"source.json", "output.json", "reference.json", "NOTICE.md"},
+    ),
+    "retained-cardiac-anchor-v1": (
+        "source-slices",
+        "reference.json",
+        {"source.json", "output.json", "reference.json", "NOTICE.md"},
+    ),
+    "retained-cardiac-contour-v1": (
+        "source-slices",
+        "reference.json",
+        {"source.json", "output.json", "reference.json", "NOTICE.md"},
+    ),
     "retained-imaging101-eht-features-dynamic-v1": (
         "source-records",
         "reference.json",
@@ -788,6 +981,95 @@ class CtOrganChannels(Closed):
 
 class NamedLandmarksChannels(Closed):
     view: Pair
+    output: Pair
+    reference: Pair
+
+
+class CardiacContourChannels(Closed):
+    phase: Pair
+    helper: Pair
+    output: Pair
+    reference: Pair
+
+
+class CardiacRealEchoChannels(Closed):
+    phase: Pair
+    planes: Pair
+    output: Pair
+    alternative: Pair
+    review: Pair
+    control: Pair
+
+
+class MaskMechanicsChannels(Closed):
+    phase: Pair
+    condition: Pair
+    output: Pair
+    reference: Pair
+    clinical: Pair
+
+
+class ReportReadingChannels(Closed):
+    phase: Pair
+    helper: Pair
+    output: Pair
+    reference: Pair
+
+
+class AutomedKidneyChannels(Closed):
+    view: Pair
+    helper: Pair
+    step: Pair
+    reference: Pair
+    fixture: Pair
+
+
+class BcerBrainChannels(Closed):
+    view: Pair
+
+
+class BcerProstateChannels(Closed):
+    view: Pair
+    moving: Pair
+    operation: Pair
+    swap: Pair
+
+
+class AbraLongitudinalChannels(Closed):
+    baseline: Pair
+    followup: Pair
+    task: Pair
+    reference: Pair
+
+
+class RexDentexChannels(Closed):
+    box: Pair
+    labels: Pair
+    reference: Pair
+
+
+class RexIslesChannels(Closed):
+    slice: Pair
+    flair: Pair
+    reference: Pair
+
+
+class RexCellsegChannels(Closed):
+    helper: Pair
+    instance: Pair
+    metric: Pair
+
+
+class CardiacMaterialChannels(Closed):
+    phase: Pair
+    helper: Pair
+    output: Pair
+    reference: Pair
+
+
+class CardiacAnchorChannels(Closed):
+    phase: Pair
+    helper: Pair
     output: Pair
     reference: Pair
 
@@ -1742,6 +2024,247 @@ class NamedLandmarksStory(Story[NamedLandmarksChannels]):
         return self
 
 
+class CardiacContourBeat(ExpansionBeat[CardiacContourChannels]):
+    scene: Literal["inputs", "views", "reconstruct", "withheld", "curves", "depth", "limits"]
+
+
+class CardiacContourStory(Story[CardiacContourChannels]):
+    recipe: Literal["cardiac-contour-v1"]
+    beats: tuple[CardiacContourBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class CardiacRealEchoBeat(ExpansionBeat[CardiacRealEchoChannels]):
+    scene: Literal[
+        "inputs",
+        "geometry",
+        "interpretation",
+        "reconstruction",
+        "alternatives",
+        "review",
+        "controls",
+        "limits",
+    ]
+
+
+class CardiacRealEchoStory(Story[CardiacRealEchoChannels]):
+    recipe: Literal["cardiac-real-echo-v1"]
+    beats: tuple[CardiacRealEchoBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class MaskMechanicsBeat(ExpansionBeat[MaskMechanicsChannels]):
+    scene: Literal[
+        "input-masks",
+        "input-images",
+        "mesh-construction",
+        "fixed-connectivity",
+        "deformation-gradient",
+        "occupancy",
+        "material-ambiguity",
+        "reference-probes",
+        "clinical-transfer",
+        "limits",
+    ]
+
+
+class MaskMechanicsStory(Story[MaskMechanicsChannels]):
+    recipe: Literal["cardiac-mask-mechanics-v1"]
+    beats: tuple[MaskMechanicsBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class ReportReadingBeat(ExpansionBeat[ReportReadingChannels]):
+    scene: Literal["availability", "input", "viewer", "answer", "reference", "comparison", "limits"]
+
+
+class ReportReadingStory(Story[ReportReadingChannels]):
+    recipe: Literal["report-reading-v1"]
+    beats: tuple[ReportReadingBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class AutomedKidneyBeat(ExpansionBeat[AutomedKidneyChannels]):
+    scene: Literal["inputs", "assistance", "workflow", "schema", "reference", "contract", "limits"]
+
+
+class AutomedKidneyStory(Story[AutomedKidneyChannels]):
+    recipe: Literal["automed-kidney-v1"]
+    beats: tuple[AutomedKidneyBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class BcerBrainBeat(ExpansionBeat[BcerBrainChannels]):
+    scene: Literal["inputs", "identify", "segment", "labels", "checks", "limits"]
+
+
+class BcerBrainStory(Story[BcerBrainChannels]):
+    recipe: Literal["bcer-brain-v1"]
+    beats: tuple[BcerBrainBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class BcerProstateBeat(ExpansionBeat[BcerProstateChannels]):
+    scene: Literal[
+        "availability", "inputs", "select", "coordinates", "resample", "contract", "limits"
+    ]
+
+
+class BcerProstateStory(Story[BcerProstateChannels]):
+    recipe: Literal["bcer-prostate-registration-v1"]
+    beats: tuple[BcerProstateBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class AbraLongitudinalBeat(ExpansionBeat[AbraLongitudinalChannels]):
+    scene: Literal["inputs", "metadata", "counts", "browse", "submit", "reference", "limits"]
+
+
+class AbraLongitudinalStory(Story[AbraLongitudinalChannels]):
+    recipe: Literal["abra-longitudinal-v1"]
+    beats: tuple[AbraLongitudinalBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class RexDentexBeat(ExpansionBeat[RexDentexChannels]):
+    scene: Literal["input", "localize", "encode", "reference", "audit"]
+
+
+class RexDentexStory(Story[RexDentexChannels]):
+    recipe: Literal["rexmle-dentex-v1"]
+    beats: tuple[RexDentexBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class RexIslesBeat(ExpansionBeat[RexIslesChannels]):
+    scene: Literal["inputs", "geometry", "output", "reference", "limits"]
+
+
+class RexIslesStory(Story[RexIslesChannels]):
+    recipe: Literal["rex-isles22-v1"]
+    beats: tuple[RexIslesBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class RexCellsegBeat(ExpansionBeat[RexCellsegChannels]):
+    scene: Literal["input", "helper", "instances", "submission", "scoring", "limits"]
+
+
+class RexCellsegStory(Story[RexCellsegChannels]):
+    recipe: Literal["rexmle-neurips-cellseg-v1"]
+    beats: tuple[RexCellsegBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class CardiacMaterialBeat(ExpansionBeat[CardiacMaterialChannels]):
+    scene: Literal[
+        "inputs", "initial", "tracking", "tetra", "strain", "comparison", "controls", "limits"
+    ]
+
+
+class CardiacMaterialStory(Story[CardiacMaterialChannels]):
+    recipe: Literal["cardiac-material-v1"]
+    beats: tuple[CardiacMaterialBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class CardiacAnchorBeat(ExpansionBeat[CardiacAnchorChannels]):
+    scene: Literal[
+        "inputs",
+        "anchors",
+        "tracking-one",
+        "tracking-two",
+        "surface",
+        "reference",
+        "comparison",
+        "limits",
+    ]
+
+
+class CardiacAnchorStory(Story[CardiacAnchorChannels]):
+    recipe: Literal["cardiac-anchor-v1"]
+    beats: tuple[CardiacAnchorBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class ClinicalCavityBeat(ExpansionBeat[ClinicalCavityChannels]):
     scene: Literal[
         "inputs",
@@ -1876,6 +2399,19 @@ AnyStory = Annotated[
     | DentalOriginalStory
     | CtOrganStory
     | NamedLandmarksStory
+    | CardiacContourStory
+    | CardiacRealEchoStory
+    | MaskMechanicsStory
+    | ReportReadingStory
+    | AutomedKidneyStory
+    | BcerBrainStory
+    | BcerProstateStory
+    | AbraLongitudinalStory
+    | RexDentexStory
+    | RexIslesStory
+    | RexCellsegStory
+    | CardiacMaterialStory
+    | CardiacAnchorStory
     | ClinicalCavityStory
     | RespiratoryStory
     | CurationStory
@@ -1930,6 +2466,19 @@ ADAPTER: TypeAdapter[
     | DentalOriginalStory
     | CtOrganStory
     | NamedLandmarksStory
+    | CardiacContourStory
+    | CardiacRealEchoStory
+    | MaskMechanicsStory
+    | ReportReadingStory
+    | AutomedKidneyStory
+    | BcerBrainStory
+    | BcerProstateStory
+    | AbraLongitudinalStory
+    | RexDentexStory
+    | RexIslesStory
+    | RexCellsegStory
+    | CardiacMaterialStory
+    | CardiacAnchorStory
     | ClinicalCavityStory
     | RespiratoryStory
     | CurationStory
@@ -2144,6 +2693,19 @@ def parse_expansion(
     | DentalOriginalStory
     | CtOrganStory
     | NamedLandmarksStory
+    | CardiacContourStory
+    | CardiacRealEchoStory
+    | MaskMechanicsStory
+    | ReportReadingStory
+    | AutomedKidneyStory
+    | BcerBrainStory
+    | BcerProstateStory
+    | AbraLongitudinalStory
+    | RexDentexStory
+    | RexIslesStory
+    | RexCellsegStory
+    | CardiacMaterialStory
+    | CardiacAnchorStory
     | ClinicalCavityStory
     | RespiratoryStory
     | CurationStory
@@ -2217,7 +2779,61 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if pack_id not in source_packs:
             raise ValueError("Unknown source teaching pack")
         geometry, reference_file, required = source_packs[pack_id]
+        reference_files = (
+            {reference_file} if reference_file else set()
+        ) | SOURCE_EXTRA_REFERENCE_FILES.get(pack_id, set())
+        if not reference_files <= required or (reference_files and not reference_file):
+            raise ValueError("Reference asset classification is inconsistent")
         frame, data_license, label_license = {
+            "retained-real-echo-v1": (
+                "BR032-task-mm",
+                "LicenseRef-EchoSlicer-research-local-terms-unresolved",
+                "LicenseRef-EchoSlicer-research-local-terms-unresolved",
+            ),
+            "retained-mask-mechanics-v1": (
+                "BR035-world-mm",
+                "LicenseRef-STRAUS-local-research-terms-unresolved",
+                "LicenseRef-STRAUS-local-research-terms-unresolved",
+            ),
+            "symbolic-report-reading-v1": (
+                "abstract-orientation-only",
+                "LicenseRef-TB3-symbolic-teaching",
+                "LicenseRef-TB3-symbolic-teaching",
+            ),
+            "retained-automed-kidney-v1": (
+                "KiTS19-case_00000-IPL",
+                "CC-BY-NC-SA-4.0",
+                "CC-BY-NC-SA-4.0",
+            ),
+            "retained-bcer-brain-symbolic-v1": ("symbolic-unit-grid", "MIT", None),
+            "retained-bcer-prostate-registration-v1": ("LPS", "CC-BY-NC-4.0", None),
+            "retained-abra-longitudinal-v1": (
+                "NLST-native-LPS",
+                "CC-BY-4.0",
+                "LicenseRef-ABRA-pair-manifest",
+            ),
+            "retained-rexmle-dentex-v1": ("image-pixel-top-left", "CC-BY-4.0", "CC-BY-4.0"),
+            "retained-rex-isles22-v1": ("ISLES22-native-NIfTI-RAS", "CC-BY-4.0", "CC-BY-4.0"),
+            "retained-rexmle-neurips-cellseg-v1": (
+                "image-pixel-top-left",
+                "CC-BY-NC-ND-4.0",
+                "CC-BY-NC-ND-4.0",
+            ),
+            "retained-cardiac-material-v1": (
+                "STRAUS-patient01-healthy-canonical",
+                "LicenseRef-STRAUS-local-noncommercial",
+                "LicenseRef-STRAUS-local-noncommercial",
+            ),
+            "retained-cardiac-anchor-v1": (
+                "FeEcho4D-native",
+                "LicenseRef-FeEcho4D-noncommercial-research",
+                "LicenseRef-FeEcho4D-noncommercial-research",
+            ),
+            "retained-cardiac-contour-v1": (
+                "FeEcho4D-native",
+                "LicenseRef-FeEcho4D-noncommercial-research",
+                "LicenseRef-FeEcho4D-noncommercial-research",
+            ),
             "retained-imaging101-eht-features-dynamic-v1": (
                 "source-record",
                 "LicenseRef-Imaging101-EHT-feature-sources",
@@ -2322,8 +2938,18 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             or manifest.get("frame") != frame
             or manifest.get("units")
             != (
-                "fraction/pixel"
-                if pack_id == "retained-imaging101-eht-features-dynamic-v1"
+                "unitless"
+                if pack_id
+                in {
+                    "retained-bcer-brain-symbolic-v1",
+                }
+                else "none"
+                if pack_id == "symbolic-report-reading-v1"
+                else "fraction/pixel"
+                if pack_id
+                in {
+                    "retained-imaging101-eht-features-dynamic-v1",
+                }
                 else "Jy/pixel"
                 if pack_id
                 in {"retained-imaging101-eht-uq-v1", "retained-imaging101-eht-dynamic-v1"}
@@ -2349,6 +2975,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 else "px"
                 if pack_id
                 in {
+                    "retained-rexmle-dentex-v1",
+                    "retained-rexmle-neurips-cellseg-v1",
                     "retained-hubmap-inventory-v1",
                     "retained-tiger-context-v1",
                     "retained-imaging101-fan-beam-v1",
@@ -2373,7 +3001,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         for name in pack.retained_files:
             path = storage.inside(manifest_path.parent, name)
             asset = assets[name]
-            role = "reader-reference-reveal" if name == reference_file else "illustration"
+            role = "reader-reference-reveal" if name in reference_files else "illustration"
             if (
                 asset["provenance"] != "source-derived-teaching"
                 or asset["role"] != role

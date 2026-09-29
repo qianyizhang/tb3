@@ -1,0 +1,280 @@
+.scene {
+  height: 430px;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 18px 22px;
+  background: #f2f7fa;
+  color: #183543;
+}
+.scene h3 {
+  font-size: 24px;
+  line-height: 1.15;
+  margin: 0 0 12px;
+}
+.scene h4 {
+  font-size: 17px;
+  line-height: 1.2;
+  margin: 4px 0 9px;
+  overflow-wrap: anywhere;
+}
+.scene p {
+  font-size: 12px;
+  line-height: 1.42;
+  margin: 7px 0;
+}
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.columns article,
+.cards article {
+  background: #fff;
+  border: 1px solid #c7d8df;
+  padding: 13px;
+  min-width: 0;
+}
+.native {
+  margin: 0;
+  max-height: 358px;
+  background: #10232d;
+  padding: 4px;
+  color: #e9f5f8;
+  min-width: 0;
+}
+.scan {
+  height: 313px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.scan svg {
+  display: block;
+  width: min(100%, 313px);
+  height: 313px;
+  background: #000;
+}
+.axes {
+  font-size: 17px;
+  fill: #f5f8fa;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: #152a32;
+  stroke-width: 2px;
+}
+.scene .native figcaption {
+  color: #e9f5f8;
+  text-align: center;
+  font-size: 10px;
+  line-height: 1.35;
+  padding: 2px;
+}
+.kicker {
+  font-size: 10px !important;
+  letter-spacing: 0.7px;
+  font-weight: 800;
+  color: #29627b;
+}
+.note {
+  border-left: 3px solid #d99132;
+  background: #fff3df;
+  padding: 8px 10px;
+}
+.tiers {
+  display: grid;
+  gap: 8px;
+}
+.tiers > div {
+  display: grid;
+  grid-template-columns: 85px 1fr;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid #b5d1db;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.tiers [data-current='true'] {
+  background: #dceff2;
+  border-color: #2aa5b2;
+}
+.steps {
+  display: flex;
+  gap: 6px;
+  margin: 20px 0;
+}
+.steps > div {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 11px 4px;
+  border: 1px solid #aec5d0;
+  background: #fff;
+  font-size: 12px;
+}
+.steps [data-current='true'] {
+  background: #d8eef0;
+  border-color: #168c9c;
+}
+.detail {
+  background: #fff;
+  padding: 15px;
+  border-left: 4px solid #17a9b6;
+  min-height: 66px;
+}
+.fileList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.fileList > div {
+  border: 1px dashed #5b8b9c;
+  background: #f4fafb;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.fileList span {
+  color: #58727e;
+}
+.grid {
+  width: min(100%, 240px);
+  height: auto;
+  margin: 6px auto;
+  display: block;
+  font-size: 11px;
+  fill: #25485a;
+}
+.mapping {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0;
+}
+.mapping > div {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid #bfd4d8;
+  padding: 7px;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+.mapping i {
+  width: 15px;
+  height: 15px;
+  display: block;
+  border-radius: 2px;
+}
+.mapping span {
+  font-family: ui-monospace, monospace;
+}
+.fixtures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+.fixtures > div {
+  font-size: 11px;
+  text-transform: capitalize;
+  border: 1px solid #c4d5da;
+  padding: 7px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fixtures [data-current='true'] {
+  background: #dceff2;
+  border-color: #218fa0;
+  font-weight: 700;
+}
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+}
+.cards article {
+  min-height: 106px;
+}
+.cards b {
+  font-size: 17px;
+}
+.aside {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #254657;
+  padding: 14px 18px;
+}
+.aside p {
+  margin: 7px 0;
+}
+.aside small {
+  font-size: 10px;
+  color: #5d7480;
+  display: block;
+}
+@container task-visual (max-width:900px) {
+  .scene {
+    height: auto;
+    min-height: 430px;
+    overflow: visible;
+  }
+  .columns {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+  .native {
+    max-height: none;
+  }
+  .scan {
+    height: min(66vw, 313px);
+  }
+  .scan svg {
+    height: min(66vw, 313px);
+    width: min(66vw, 313px);
+  }
+  .steps {
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+  .steps > div {
+    flex: 1 0 26%;
+    font-size: 11px;
+  }
+}
+@container task-visual (max-width:480px) {
+  .scene {
+    padding: 14px;
+    min-height: 0;
+  }
+  .scene h3 {
+    font-size: 19px;
+  }
+  .columns article {
+    padding: 10px;
+  }
+  .scan {
+    height: min(82vw, 313px);
+  }
+  .scan svg {
+    height: min(82vw, 313px);
+    width: min(82vw, 313px);
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .cards article {
+    min-height: 0;
+  }
+  .fileList {
+    grid-template-columns: 1fr;
+  }
+  .tiers > div {
+    grid-template-columns: 1fr;
+  }
+}

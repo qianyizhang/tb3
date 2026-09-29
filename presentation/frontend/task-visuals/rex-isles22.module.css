@@ -1,0 +1,479 @@
+.scene {
+  box-sizing: border-box;
+  height: 425px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #f2f7f8;
+  color: #193d4c;
+  padding: 10px 14px;
+  font-family: system-ui, sans-serif;
+}
+.scene h3 {
+  font-size: 20px;
+  line-height: 1.15;
+  margin: 9px 0;
+  color: #173e4e;
+}
+.banner {
+  box-sizing: border-box;
+  min-height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #e3eff2;
+  border-left: 4px solid #3695a9;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 10px;
+  color: #42616e;
+  line-height: 1.3;
+}
+.banner strong {
+  color: #1b5d6c;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.banner span {
+  text-align: right;
+}
+.banner a {
+  color: #35647b;
+  font-weight: 700;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+.scans {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  max-width: 760px;
+  margin: auto;
+}
+.scan {
+  margin: 0;
+  border: 1px solid #bfd1d7;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  min-width: 0;
+}
+.scanHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  padding: 5px 8px;
+  background: #dcebf0;
+  color: #4a6772;
+  font-size: 10px;
+}
+.scanHead b {
+  color: #1f5969;
+  font-size: 12px;
+}
+.scanFrame {
+  height: 225px;
+  position: relative;
+  background: #101d23;
+}
+.scanFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  image-rendering: pixelated;
+}
+.scanFrame img.mask {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.scan figcaption {
+  display: grid;
+  gap: 2px;
+  padding: 5px 7px;
+  font-size: 10px;
+  color: #58717b;
+  line-height: 1.25;
+}
+.scan figcaption b {
+  color: #24596b;
+}
+.rail {
+  display: flex;
+  gap: 2px;
+  height: 12px;
+  align-items: center;
+  margin: 5px 3px;
+}
+.rail span {
+  height: 6px;
+  border-radius: 2px;
+  background: #a8c2ca;
+  flex: 1;
+}
+.rail span[data-current='true'] {
+  height: 11px;
+  background: #db9154;
+  outline: 1px solid #af6d37;
+}
+.note {
+  max-width: 780px;
+  margin: 7px auto 0;
+  color: #536f79;
+  font-size: 11px;
+  line-height: 1.3;
+  text-align: center;
+}
+.geometry {
+  max-width: 760px;
+  margin: auto;
+}
+.geometryScans {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  max-width: 540px;
+  margin: auto;
+}
+.geometryScans .scanFrame {
+  height: 170px;
+}
+.geometryFacts {
+  margin: 8px auto 0;
+  background: #e2eef1;
+  border-left: 4px solid #438e9e;
+  padding: 7px 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px 12px;
+  font-size: 10px;
+  color: #4f6872;
+}
+.geometryFacts strong {
+  grid-column: 1/-1;
+  color: #205769;
+  font-size: 12px;
+}
+.geometryFacts b {
+  grid-column: 1/-1;
+  color: #8a5639;
+}
+.schema {
+  max-width: 740px;
+  margin: auto;
+  background: white;
+  border: 1px solid #bed1d7;
+  border-radius: 7px;
+  overflow: hidden;
+}
+.schemaTitle {
+  background: #dcecf0;
+  color: #205b6b;
+  font-size: 15px;
+  font-weight: 750;
+  padding: 10px 13px;
+}
+.row {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 10px;
+  padding: 9px 13px;
+  border-top: 1px solid #e3edef;
+  align-items: center;
+}
+.row span {
+  font-size: 11px;
+  color: #526d79;
+}
+.row code {
+  font:
+    11px/1.3 ui-monospace,
+    monospace;
+  color: #1e5363;
+  overflow-wrap: anywhere;
+}
+.empty {
+  margin: 9px 13px;
+  border: 2px dashed #91aeb8;
+  border-radius: 5px;
+  padding: 9px;
+  display: grid;
+  gap: 3px;
+  background: #f1f8f9;
+}
+.empty b {
+  font-size: 13px;
+  color: #285c69;
+}
+.empty span {
+  font-size: 11px;
+  color: #526c76;
+}
+.pipeline {
+  margin: 0 13px 10px;
+  font-size: 11px;
+  color: #496d79;
+}
+.pipeline span {
+  color: #ab703d;
+  font-weight: 800;
+  padding: 0 4px;
+}
+.covered {
+  max-width: 630px;
+  margin: 45px auto;
+  padding: 55px 18px;
+  border: 2px dashed #8dabb4;
+  background: #e6f0f2;
+  text-align: center;
+  display: grid;
+  gap: 8px;
+  color: #4c6873;
+}
+.covered b {
+  font-size: 17px;
+  color: #2a6070;
+}
+.covered span {
+  font-size: 11px;
+}
+.reference {
+  max-width: 720px;
+  margin: auto;
+}
+.referenceScans {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 13px;
+  align-items: start;
+}
+.reference .scanFrame {
+  height: 235px;
+}
+.referenceFacts {
+  background: white;
+  border-left: 4px solid #ffbe4b;
+  padding: 11px;
+  display: grid;
+  gap: 9px;
+  color: #556c75;
+  font-size: 11px;
+  line-height: 1.3;
+}
+.referenceFacts b {
+  color: #805b27;
+  font-size: 13px;
+}
+.referenceFacts strong {
+  color: #654e2a;
+  font-size: 15px;
+}
+.referenceFacts small {
+  font-size: 10px;
+}
+.swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #ffbe4b;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.limits {
+  max-width: 760px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.limits article {
+  min-height: 172px;
+  background: white;
+  border-left: 4px solid #4b9ba6;
+  padding: 11px;
+  box-sizing: border-box;
+}
+.limits article:nth-child(2) {
+  border-color: #d5915b;
+}
+.limits article:nth-child(3) {
+  border-color: #bf714d;
+}
+.limits b,
+.limits span {
+  display: block;
+}
+.limits b {
+  font-size: 13px;
+  color: #245969;
+  margin-bottom: 8px;
+}
+.limits span {
+  font-size: 11px;
+  color: #536c76;
+  line-height: 1.35;
+}
+.toy {
+  grid-column: 1/-1;
+  background: #e4eef0;
+  border-left: 4px solid #c07852;
+  padding: 10px 12px;
+}
+.toy b {
+  margin-bottom: 4px;
+}
+.output {
+  box-sizing: border-box;
+  background: #eaf2f3;
+  border: 1px solid #c6d7da;
+  border-radius: 8px;
+  color: #3f5963;
+  padding: 13px;
+  font-size: 11px;
+  line-height: 1.32;
+}
+.output b {
+  display: block;
+  color: #205566;
+  font-size: 12px;
+  margin-top: 8px;
+}
+.output b:first-child {
+  margin-top: 0;
+}
+.output p {
+  margin: 3px 0 7px;
+}
+.output small {
+  color: #617983;
+  font-size: 10px;
+}
+@media (max-width: 650px) {
+  .scene {
+    height: auto;
+    min-height: 425px;
+    padding: 8px;
+  }
+  .scene h3 {
+    font-size: 17px;
+    margin: 8px 0;
+  }
+  .banner {
+    display: block;
+    font-size: 10px;
+    padding: 6px;
+  }
+  .banner strong,
+  .banner span {
+    display: block;
+    text-align: left;
+    white-space: normal;
+  }
+  .banner a {
+    white-space: normal;
+  }
+  .scans {
+    gap: 4px;
+  }
+  .scanHead {
+    display: block;
+    padding: 3px;
+    font-size: 8px;
+  }
+  .scanHead b {
+    display: block;
+    font-size: 10px;
+  }
+  .scanFrame {
+    height: 125px;
+  }
+  .scan figcaption {
+    padding: 3px;
+    font-size: 8px;
+  }
+  .rail {
+    gap: 1px;
+    margin: 4px 2px;
+  }
+  .note {
+    font-size: 10px;
+  }
+  .geometryScans {
+    gap: 5px;
+  }
+  .geometryScans .scanFrame {
+    height: 145px;
+  }
+  .geometryFacts {
+    display: block;
+    font-size: 10px;
+  }
+  .geometryFacts > * {
+    display: block;
+    margin: 3px 0;
+  }
+  .row {
+    grid-template-columns: 100px 1fr;
+    gap: 5px;
+    padding: 7px;
+  }
+  .row span,
+  .row code {
+    font-size: 9px;
+  }
+  .schemaTitle {
+    font-size: 12px;
+    padding: 7px;
+  }
+  .empty {
+    padding: 7px;
+  }
+  .empty span,
+  .pipeline {
+    font-size: 10px;
+  }
+  .referenceScans {
+    grid-template-columns: 46% 1fr;
+    gap: 5px;
+  }
+  .reference .scanFrame {
+    height: 170px;
+  }
+  .referenceFacts {
+    padding: 6px;
+    gap: 4px;
+    font-size: 9px;
+  }
+  .referenceFacts b,
+  .referenceFacts strong {
+    font-size: 10px;
+  }
+  .referenceFacts small {
+    font-size: 9px;
+  }
+  .limits {
+    gap: 4px;
+  }
+  .limits article {
+    min-height: 160px;
+    padding: 5px;
+  }
+  .limits b {
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+  .limits span {
+    font-size: 9px;
+  }
+  .toy {
+    padding: 7px;
+  }
+  .output {
+    padding: 8px;
+    font-size: 10px;
+  }
+  .output b {
+    font-size: 10px;
+  }
+}

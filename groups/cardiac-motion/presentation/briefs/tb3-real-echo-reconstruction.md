@@ -151,10 +151,11 @@ motion, integrated Explorer, mobile and no-GPU acceptance.
 
 The public project and release describe research availability, but the inspected
 repository/release metadata provide no explicit redistribution license. Raw and
-derived source assets remain local. This entry's canonical story, portable
-exports and final visual review remain unfinished pending documented permission
-or an explicit user-approved private-local delivery scope. Audit completion
-alone does not count as explainer completion.
+derived source assets remain local. A staged source-derived story and local pack
+now replay the actual public images, saved meshes and reader-only withheld images.
+They are a **draft for local noncommercial interpretation**; integration, export,
+mobile/no-GPU review and visual acceptance remain outstanding. Audit completion
+or a valid artifact reward alone does not count as explainer completion.
 
 ## Sources
 

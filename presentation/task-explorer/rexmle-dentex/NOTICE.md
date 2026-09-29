@@ -1,0 +1,1 @@
+DENTEX source radiograph and boxes: Zenodo record 7812323, CC-BY-4.0. ReX adapter pinned at b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53. The source-derived private boxes are for explicit reader reveal; no prediction or AP is supplied.

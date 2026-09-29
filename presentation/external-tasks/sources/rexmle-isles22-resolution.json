@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "rexmle-isles22",
+  "status": "task-matched source case and private mask recovered; no prediction or ReX run",
+  "illustration_basis": "source-derived",
+  "reference_policy": "reader-reference-reveal",
+  "source_revision": "ReX-MLE b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53",
+  "source_url": "https://zenodo.org/records/7960856",
+  "source_license": "CC-BY-4.0",
+  "source_archive": "ISLES-2022.zip; Zenodo MD5 302ee280373cdd5c190ab763d72a7a50; archive not downloaded whole",
+  "pinned_adapter_files": {
+    "prepare.py": "4a9d07c655a1020921d19e059359ab25a06b1a1eaa72b31c8aaf63a00e644a4b",
+    "grade.py": "017c591543a5e06bf217d6ee9aba4936a011882b6a19603e3db9930bc716c711",
+    "config.yaml": "f7307ef7e7e3f191fa533f6a7958508d62673a575d9794a588903746679c2c74"
+  },
+  "selected_case": {
+    "source_case_id": "sub-strokecase0186_ses-0001",
+    "rex_case_id": "sub-strokecase0186",
+    "public_inputs": [
+      "test/sub-strokecase0186_dwi.nii.gz",
+      "test/sub-strokecase0186_adc.nii.gz",
+      "test/sub-strokecase0186_flair.nii.gz"
+    ],
+    "private_reference": "test/sub-strokecase0186_msk.nii.gz",
+    "rex_submission_row": {
+      "case_id": "sub-strokecase0186",
+      "predicted_mask_path": "predictions/sub-strokecase0186_pred.nii.gz"
+    },
+    "sha256": {
+      "dwi": "90e2a8f491fd2f5ffc89b2c93a284085d0cd71e2ae7634467c4282edcd7368ff",
+      "adc": "c34c8245408825e8a04ae36342a8d34ad986239a1adae07355e6cac4cb4587b5",
+      "flair": "444c7804f76a6f0a2252ca6fcb22e7a66c8025ec7f43cc89c3ba5bcd9d6da546",
+      "mask": "6e93f1f7e58c39f06773d426bb677ad0de11a65c0298a9656bdd544930e085b3"
+    }
+  },
+  "split_derivation": "Official archive has 250 complete cases. Pinned prepare.py applies sklearn train_test_split to sorted IDs with test_size=0.2, random_state=42 and shuffle=True, yielding 200 public train and 50 private-mask test. Static reproduction with numpy RandomState(42).permutation places selected case in test; no preparer execution.",
+  "geometry": "DWI, ADC and mask share shape 128x128x25 and affine, voxel spacing 1.796875x1.796875x4.8 mm; FLAIR is 224x256x24 at 0.859375x0.859375x6 mm with different affine. Native axis codes LAS. Private mask has 718 positive voxels after rounding NIfTI scaling.",
+  "actual_data_gap": "Exact selected source modalities and reference mask recovered, but no materialized ReX staging, model prediction, trial or judge result. Pinned grader resizes shape-mismatched predictions nearest-neighbor and compares arrays without an affine check; physical registration validity cannot be inferred from its score.",
+  "acquisition_route": "Official Zenodo 7960856 ISLES-2022.zip. Individual members are available via HTTP byte ranges; obtain complete official archive and run pinned preparation only in a separately authorized workflow if complete staging is needed.",
+  "attempts": [
+    {
+      "action": "Fetch pinned ReX source archive",
+      "source": "https://github.com/rajpurkarlab/ReX-MLE/archive/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53.tar.gz",
+      "attempted_at": "2026-09-29T03:53:48Z",
+      "outcome": "Approved network fetch succeeded; 12204410 bytes, SHA256 82d18d7bfb3a69719284ed33e29feb33d409f1c8f7e49961b9357832a1141bac. Time approximate within audit session; exact request timestamp not retained."
+    },
+    {
+      "action": "Fetch official Zenodo API metadata",
+      "source": "https://zenodo.org/api/records/7960856",
+      "attempted_at": "2026-09-29T03:56:51Z",
+      "outcome": "Succeeded; CC-BY-4.0, 7958 bytes, SHA256 da7272bc9c14637465414ee872879d1f1675ad113f4a922aae9d961ceab7be6b. Timestamp is local metadata file completion time, not request start."
+    },
+    {
+      "action": "Range-read official ISLES-2022.zip central directory",
+      "source": "https://zenodo.org/records/7960856/files/ISLES-2022.zip?download=1",
+      "attempted_at": "2026-09-29T03:59:52Z",
+      "outcome": "HTTP 206; 3190 ZIP members indexed from retained 600 KB tail; no full archive download. Headers and index retained locally."
+    },
+    {
+      "action": "Range-read and CRC-verify selected DWI, ADC, FLAIR and mask members",
+      "source": "Official ISLES-2022.zip members for sub-strokecase0186_ses-0001",
+      "attempted_at": "2026-09-29T04:05:09Z",
+      "outcome": "Four members succeeded through 04:05:14Z; uncompressed sizes 117935, 165762, 397162, 4960 bytes respectively. Individual SHA256 values and HTTP 206 headers retained under case-0186."
+    }
+  ],
+  "reviewed_at": "2026-09-29T04:31:18Z"
+}

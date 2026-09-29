@@ -1,0 +1,220 @@
+.scene,
+.output {
+  font: inherit;
+  color: #1e3844;
+}
+.scene {
+  padding: 9px;
+  container-type: inline-size;
+}
+.warning {
+  background: #202f38;
+  color: #fff;
+  border-left: 5px solid #ffc34f;
+  border-radius: 7px;
+  padding: 9px 11px;
+  margin: 0 0 10px;
+  font-size: 0.79rem;
+  line-height: 1.38;
+}
+.warning strong {
+  display: block;
+  color: #ffe09b;
+  font-size: 0.84rem;
+}
+.warning a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 750;
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+  margin: 0 0 9px;
+}
+.head h3 {
+  font-size: 0.99rem;
+  margin: 0;
+}
+.head span {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #57707b;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+.card {
+  min-width: 0;
+  border: 1px solid #d3e0e4;
+  border-radius: 9px;
+  background: #f7fafb;
+  padding: 9px;
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+.card h4 {
+  font-size: 0.78rem;
+  margin: 0 0 6px;
+}
+.card p {
+  margin: 4px 0;
+}
+.slot {
+  border: 1px dashed #8ea6af;
+  border-radius: 6px;
+  background: #fff;
+  padding: 6px;
+  margin: 5px 0;
+  color: #405d69;
+}
+.slot strong {
+  display: block;
+  color: #294956;
+}
+.private {
+  border-color: #dda738;
+  background: #fff8e5;
+}
+.input {
+  border-color: #92b3d7;
+}
+.answer {
+  border-color: #72ccd3;
+}
+.viewer {
+  display: block;
+  width: 100%;
+  height: 235px;
+  border-radius: 6px;
+  background: #eef5f8;
+}
+.viewer text {
+  font-size: 12px;
+  fill: #2e5667;
+}
+.viewer .cube {
+  fill: none;
+  stroke: #5583a5;
+  stroke-width: 2;
+}
+.viewer .plane {
+  fill: #90bad3;
+  fill-opacity: 0.36;
+  stroke: #4d87af;
+  stroke-width: 1.5;
+}
+.viewer .cursor {
+  stroke: #d58520;
+  stroke-width: 2;
+}
+.arrow {
+  font-size: 1.45rem;
+  text-align: center;
+  color: #428a9e;
+}
+.route {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+.route > div {
+  border: 1px solid #d2e0e4;
+  border-radius: 7px;
+  padding: 7px;
+  background: #fff;
+}
+.route strong {
+  font-size: 0.74rem;
+}
+.route ol {
+  margin: 5px 0 0;
+  padding-left: 17px;
+  font-size: 0.7rem;
+}
+.route li {
+  margin: 3px 0;
+}
+.active {
+  background: #e7f4f5;
+  border-left: 3px solid #13afbd;
+  padding-left: 4px;
+}
+.note {
+  font-size: 0.72rem;
+  color: #4d6976;
+  line-height: 1.35;
+  margin: 8px 0 0;
+}
+.badge {
+  display: inline-block;
+  background: #e6f0f5;
+  padding: 3px 6px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 0.67rem;
+}
+.output {
+  padding: 11px;
+}
+.output h3 {
+  font-size: 0.92rem;
+  margin: 0 0 8px;
+}
+.output p {
+  font-size: 0.72rem;
+  line-height: 1.38;
+  margin: 5px 0;
+}
+.code {
+  background: #17303b;
+  color: #e0f4f6;
+  border-radius: 7px;
+  padding: 9px;
+  font-size: 0.68rem;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+.empty {
+  color: #a5e2e6;
+}
+.boundary {
+  font-size: 0.7rem;
+  background: #fff4dc;
+  border-left: 3px solid #dda738;
+  padding: 7px;
+  margin-top: 8px;
+}
+@container (max-width:650px) {
+  .grid,
+  .route {
+    grid-template-columns: 1fr;
+  }
+  .head {
+    display: block;
+  }
+  .head span {
+    display: block;
+    margin-top: 2px;
+  }
+  .viewer {
+    height: 180px;
+  }
+  .warning {
+    font-size: 0.71rem;
+    padding: 7px;
+  }
+  .card {
+    padding: 7px;
+  }
+  .route ol {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3px;
+  }
+}

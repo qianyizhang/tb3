@@ -10,6 +10,7 @@ import {
   showInlineNarration,
 } from './story-recipes';
 import { OperationScene, OperationOutput } from './operation-view';
+import { SourceWarning } from './SourceWarning';
 export interface VisualProps {
   entry: VisualEntry;
   plan?: StoryPlan;
@@ -158,14 +159,19 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
       data-committed-frame={player.storyState?.frame}
       data-playing={String(playing)}
     >
-      <LanguageNote />
+      {!presentation?.warning && <LanguageNote />}
       {plan && (
         <header className={styles.storyHeading} lang="en">
-          <span>{presentation!.heading}</span>
+          {presentation!.warning ? (
+            <SourceWarning warning={presentation!.warning} />
+          ) : (
+            <span>{presentation!.heading}</span>
+          )}
           <h3>{plan.title}</h3>
           <p>{plan.scope}</p>
         </header>
       )}
+      {presentation?.warning && <LanguageNote />}
       <div className="scene-walkthrough-heading">
         <strong lang="en">{story.action}</strong>
         <p lang="en">{story.cue}</p>

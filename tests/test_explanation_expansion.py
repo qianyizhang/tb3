@@ -51,6 +51,16 @@ class ExpansionTests(unittest.TestCase):
                     "dental-original-v1",
                     "ct-organ-v1",
                     "named-landmarks-v1",
+                    "cardiac-contour-v1",
+                    "cardiac-anchor-v1",
+                    "cardiac-material-v1",
+                    "rex-isles22-v1",
+                    "rexmle-dentex-v1",
+                    "abra-longitudinal-v1",
+                    "automed-kidney-v1",
+                    "report-reading-v1",
+                    "cardiac-mask-mechanics-v1",
+                    "cardiac-real-echo-v1",
                     "clinical-cavity-v1",
                     "respiratory-v1",
                     "registration-analysis-v1",
@@ -120,6 +130,19 @@ class ExpansionTests(unittest.TestCase):
             ("anatomy-audit", "dental-original"),
             ("anatomy-audit", "ct-organ-segmentation"),
             ("anatomical-landmarks", "named-landmarks"),
+            ("cardiac-motion", "cardiac-contour-feasibility"),
+            ("cardiac-motion", "cardiac-anchor-feasibility"),
+            ("cardiac-motion", "cardiac-material-feasibility"),
+            (None, "rexmle-neurips-cellseg"),
+            (None, "rexmle-isles22"),
+            (None, "rexmle-dentex"),
+            (None, "abra-longitudinal"),
+            (None, "bcer-medium-register-prostate"),
+            (None, "bcer-short-segment-brain"),
+            (None, "automedbench"),
+            ("longitudinal-reading", "report-backed-reading"),
+            ("cardiac-motion", "mask-to-mechanics"),
+            ("cardiac-motion", "real-echo-reconstruction"),
             ("cardiac-motion", "clinical-cavity-adaptation"),
             ("registration", "respiratory-correspondence"),
             ("registration", "registration-failure-analysis"),
@@ -231,6 +254,25 @@ class ExpansionTests(unittest.TestCase):
                 with patch.object(stories.json, "loads", return_value=manifest):
                     with self.assertRaisesRegex(ValueError, "exact provenance, terms"):
                         stories.resolve_assets(ROOT, f"retained-{name}-v1")
+
+    def test_isles_reference_images_cannot_be_reclassified_as_input(self):
+        import json
+        from unittest.mock import patch
+
+        path = ROOT / "presentation/task-explorer/rex-isles22/manifest.json"
+        for target, bad_role in [
+            ("images/reference-mask-04.png", "illustration"),
+            ("images/dwi-04.png", "reader-reference-reveal"),
+        ]:
+            manifest = json.loads(path.read_text())
+            asset = next(a for a in manifest["assets"] if a["file"] == target)
+            asset["role"] = bad_role
+            with self.subTest(asset=target):
+                with patch.object(stories.json, "loads", return_value=manifest):
+                    with self.assertRaisesRegex(
+                        ValueError, "incorrectly classified source teaching asset"
+                    ):
+                        stories.resolve_assets(ROOT, "retained-rex-isles22-v1")
 
     def test_public_input_pack_has_no_hidden_reference(self):
         import json

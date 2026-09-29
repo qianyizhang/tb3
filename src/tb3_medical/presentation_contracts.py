@@ -1081,6 +1081,258 @@ class NamedLandmarksPlan(ExpansionPlan):
     beats: list[NamedLandmarksBeat]
 
 
+class CardiacContourChannels(TypedDict):
+    phase: tuple[float, float]
+    helper: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class CardiacContourBeat(ExpansionBeat):
+    channels: CardiacContourChannels
+    scene: Literal["inputs", "views", "reconstruct", "withheld", "curves", "depth", "limits"]
+
+
+class CardiacContourPlan(ExpansionPlan):
+    recipe: Literal["cardiac-contour-v1"]
+    beats: list[CardiacContourBeat]
+
+
+class CardiacRealEchoChannels(TypedDict):
+    phase: tuple[float, float]
+    planes: tuple[float, float]
+    output: tuple[float, float]
+    alternative: tuple[float, float]
+    review: tuple[float, float]
+    control: tuple[float, float]
+
+
+class CardiacRealEchoBeat(ExpansionBeat):
+    channels: CardiacRealEchoChannels
+    scene: Literal[
+        "inputs",
+        "geometry",
+        "interpretation",
+        "reconstruction",
+        "alternatives",
+        "review",
+        "controls",
+        "limits",
+    ]
+
+
+class CardiacRealEchoPlan(ExpansionPlan):
+    recipe: Literal["cardiac-real-echo-v1"]
+    beats: list[CardiacRealEchoBeat]
+
+
+class MaskMechanicsChannels(TypedDict):
+    phase: tuple[float, float]
+    condition: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+    clinical: tuple[float, float]
+
+
+class MaskMechanicsBeat(ExpansionBeat):
+    channels: MaskMechanicsChannels
+    scene: Literal[
+        "input-masks",
+        "input-images",
+        "mesh-construction",
+        "fixed-connectivity",
+        "deformation-gradient",
+        "occupancy",
+        "material-ambiguity",
+        "reference-probes",
+        "clinical-transfer",
+        "limits",
+    ]
+
+
+class MaskMechanicsPlan(ExpansionPlan):
+    recipe: Literal["cardiac-mask-mechanics-v1"]
+    beats: list[MaskMechanicsBeat]
+
+
+class ReportReadingChannels(TypedDict):
+    phase: tuple[float, float]
+    helper: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class ReportReadingBeat(ExpansionBeat):
+    channels: ReportReadingChannels
+    scene: Literal["availability", "input", "viewer", "answer", "reference", "comparison", "limits"]
+
+
+class ReportReadingPlan(ExpansionPlan):
+    recipe: Literal["report-reading-v1"]
+    beats: list[ReportReadingBeat]
+
+
+class AutomedKidneyChannels(TypedDict):
+    view: tuple[float, float]
+    helper: tuple[float, float]
+    step: tuple[float, float]
+    reference: tuple[float, float]
+    fixture: tuple[float, float]
+
+
+class AutomedKidneyBeat(ExpansionBeat):
+    channels: AutomedKidneyChannels
+    scene: Literal["inputs", "assistance", "workflow", "schema", "reference", "contract", "limits"]
+
+
+class AutomedKidneyPlan(ExpansionPlan):
+    recipe: Literal["automed-kidney-v1"]
+    beats: list[AutomedKidneyBeat]
+
+
+class BcerBrainChannels(TypedDict):
+    view: tuple[float, float]
+
+
+class BcerBrainBeat(ExpansionBeat):
+    channels: BcerBrainChannels
+    scene: Literal["inputs", "identify", "segment", "labels", "checks", "limits"]
+
+
+class BcerBrainPlan(ExpansionPlan):
+    recipe: Literal["bcer-brain-v1"]
+    beats: list[BcerBrainBeat]
+
+
+class BcerProstateChannels(TypedDict):
+    view: tuple[float, float]
+    moving: tuple[float, float]
+    operation: tuple[float, float]
+    swap: tuple[float, float]
+
+
+class BcerProstateBeat(ExpansionBeat):
+    channels: BcerProstateChannels
+    scene: Literal[
+        "availability", "inputs", "select", "coordinates", "resample", "contract", "limits"
+    ]
+
+
+class BcerProstatePlan(ExpansionPlan):
+    recipe: Literal["bcer-prostate-registration-v1"]
+    beats: list[BcerProstateBeat]
+
+
+class AbraLongitudinalChannels(TypedDict):
+    baseline: tuple[float, float]
+    followup: tuple[float, float]
+    task: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AbraLongitudinalBeat(ExpansionBeat):
+    channels: AbraLongitudinalChannels
+    scene: Literal["inputs", "metadata", "counts", "browse", "submit", "reference", "limits"]
+
+
+class AbraLongitudinalPlan(ExpansionPlan):
+    recipe: Literal["abra-longitudinal-v1"]
+    beats: list[AbraLongitudinalBeat]
+
+
+class RexDentexChannels(TypedDict):
+    box: tuple[float, float]
+    labels: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexDentexBeat(ExpansionBeat):
+    channels: RexDentexChannels
+    scene: Literal["input", "localize", "encode", "reference", "audit"]
+
+
+class RexDentexPlan(ExpansionPlan):
+    recipe: Literal["rexmle-dentex-v1"]
+    beats: list[RexDentexBeat]
+
+
+class RexIslesChannels(TypedDict):
+    slice: tuple[float, float]
+    flair: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexIslesBeat(ExpansionBeat):
+    channels: RexIslesChannels
+    scene: Literal["inputs", "geometry", "output", "reference", "limits"]
+
+
+class RexIslesPlan(ExpansionPlan):
+    recipe: Literal["rex-isles22-v1"]
+    beats: list[RexIslesBeat]
+
+
+class RexCellsegChannels(TypedDict):
+    helper: tuple[float, float]
+    instance: tuple[float, float]
+    metric: tuple[float, float]
+
+
+class RexCellsegBeat(ExpansionBeat):
+    channels: RexCellsegChannels
+    scene: Literal["input", "helper", "instances", "submission", "scoring", "limits"]
+
+
+class RexCellsegPlan(ExpansionPlan):
+    recipe: Literal["rexmle-neurips-cellseg-v1"]
+    beats: list[RexCellsegBeat]
+
+
+class CardiacMaterialChannels(TypedDict):
+    phase: tuple[float, float]
+    helper: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class CardiacMaterialBeat(ExpansionBeat):
+    channels: CardiacMaterialChannels
+    scene: Literal[
+        "inputs", "initial", "tracking", "tetra", "strain", "comparison", "controls", "limits"
+    ]
+
+
+class CardiacMaterialPlan(ExpansionPlan):
+    recipe: Literal["cardiac-material-v1"]
+    beats: list[CardiacMaterialBeat]
+
+
+class CardiacAnchorChannels(TypedDict):
+    phase: tuple[float, float]
+    helper: tuple[float, float]
+    output: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class CardiacAnchorBeat(ExpansionBeat):
+    channels: CardiacAnchorChannels
+    scene: Literal[
+        "inputs",
+        "anchors",
+        "tracking-one",
+        "tracking-two",
+        "surface",
+        "reference",
+        "comparison",
+        "limits",
+    ]
+
+
+class CardiacAnchorPlan(ExpansionPlan):
+    recipe: Literal["cardiac-anchor-v1"]
+    beats: list[CardiacAnchorBeat]
+
+
 class ClinicalCavityChannels(TypedDict):
     phase: tuple[float, float]
     helper: tuple[float, float]
@@ -1226,6 +1478,19 @@ StoryPlan = (
     | DentalOriginalPlan
     | CtOrganPlan
     | NamedLandmarksPlan
+    | CardiacContourPlan
+    | CardiacRealEchoPlan
+    | MaskMechanicsPlan
+    | ReportReadingPlan
+    | AutomedKidneyPlan
+    | BcerBrainPlan
+    | BcerProstatePlan
+    | AbraLongitudinalPlan
+    | RexDentexPlan
+    | RexIslesPlan
+    | RexCellsegPlan
+    | CardiacMaterialPlan
+    | CardiacAnchorPlan
     | ClinicalCavityPlan
     | RespiratoryPlan
     | CurationPlan

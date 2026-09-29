@@ -7,6 +7,8 @@ import { taskSceneMode } from './task-visuals/mode';
 import type { VisualEntry } from './task-visuals/types';
 import type { Dispatch, ExplorerState } from './state';
 import type { TaskEntry, TaskTab, VisualRole } from './types';
+import { SourceWarning } from './task-visuals/SourceWarning';
+import { storyPresentation } from './task-visuals/story-recipes';
 interface DetailProps {
   model: ExplorerModel;
   state: ExplorerState;
@@ -526,8 +528,12 @@ export function TaskDetail(props: DetailProps) {
       .replace(/[.]+$/, '');
   const datasets =
     model.data.datasets?.records.filter((dataset) => dataset.task_ids.includes(entry.id)) || [];
+  const plan = entry.illustration?.story_id
+    ? model.data.explanation_stories?.[entry.illustration.story_id]
+    : undefined;
   return (
     <article className="task-detail" data-brief={entry.id}>
+      <SourceWarning warning={plan ? storyPresentation(plan).warning : undefined} />
       <div className="detail-heading">
         {!entry.id.startsWith('wsi-') && (
           <p className="task-provenance">

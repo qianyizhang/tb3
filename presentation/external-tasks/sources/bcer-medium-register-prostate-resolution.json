@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "bcer-medium-register-prostate",
+  "illustration_basis": "mixed",
+  "reference_policy": "no-reference-assets",
+  "license": "PI-CAI data CC-BY-NC-4.0; BCER code license retained separately; local noncommercial interpretation",
+  "actual_data_gap": "Actual representative PI-CAI T2w, ADC and DWI_highb input images exist; no BCER medium_register_prostate run, transform, resampled patient image or independent alignment reference is retained. Prior input pack belongs to long_prostate_full teaching, not this target run.",
+  "warning_text": "Real PI-CAI inputs; no matching BCER registration output or independent alignment reference is retained.",
+  "acquisition_route": "https://zenodo.org/records/6624726 for original inputs; https://github.com/Albertlongzi/BCER/tree/d10816712793a9e27f2e70640f9afc06f08a0c5c for a new task-specific run and output evidence",
+  "source_commit": "d10816712793a9e27f2e70640f9afc06f08a0c5c",
+  "attempts": [
+    {
+      "action": "Reverify retained BCER audit source and representative PI-CAI input hashes",
+      "source": "presentation/external-tasks/sources/bcer-workflow-audit.json",
+      "attempted_at": "2026-09-29T03:29:50+00:00",
+      "outcome": "15/15 pinned BCER source files and 7/7 input/manifest pins match. Native LPS geometry and three source planes are available; no model or target task run."
+    },
+    {
+      "action": "Search retained artifacts for target medium prostate registration output",
+      "source": ".local/explainers/core-20260929/bcer-source/bcer-medium-register-prostate/source-resolution-draft.json",
+      "attempted_at": "2026-09-29T03:29:50+00:00",
+      "outcome": "No medium_register_prostate transform or resampled artifact; existing bcer-workflow pack is input teaching for long_prostate_full only."
+    },
+    {
+      "action": "Inspect official PI-CAI source route and retained license",
+      "source": "https://zenodo.org/records/6624726",
+      "attempted_at": "2026-09-29T03:29:50+00:00",
+      "outcome": "Existing local source input sufficient for a representative noncommercial interpretation. No new download or task output acquisition."
+    }
+  ],
+  "previous_audits": [
+    {
+      "path": "presentation/external-tasks/sources/bcer-workflow-audit.json",
+      "sha256": "d927b7f053943b14cedfabe6f616e96a80a604cf7edb67a721e4581f7ec8190d"
+    }
+  ],
+  "representative_input": {
+    "id": "PI-CAI 10001_1000001",
+    "frame": "LPS",
+    "units": "mm",
+    "case_role": "actual input previously audited for long_prostate_full, not an official BCER medium split",
+    "original_sha256": {
+      "T2w": "92099e209995a24c2b1a9ba366a5994c499715c5575fdcd82be0d89f1392564c",
+      "ADC": "890de579e15d0daf06a76a5351e2bf6e2cb2bc4eb7144029b0c7f13758289783",
+      "DWI_highb": "7c1ae10ed71eecf1be4d809fde6172784e8f79cdbfd1c4cf0069ece292fe322e"
+    },
+    "prepared_sha256": {
+      "T2w": "c1f777431d22a015da6279f6fa9237efa880f132c03666887b2373cb81756b3f",
+      "ADC": "b4ac7d921fb5d35e7b3e8de5fea2f4dc5313428438fd649411025ee422868c0d",
+      "DWI_highb": "9dc9e3dbc59310c61481f91883aa2161890fd032b832dadce059db5aa7439c49"
+    }
+  },
+  "task_contract": {
+    "required_inputs": "T2w and at least one of ADC/DWI_highb",
+    "fixed": "T2w",
+    "moving": [
+      "ADC",
+      "DWI_highb"
+    ],
+    "default_method": "identity header-based resampling",
+    "default_interpolation": "linear",
+    "required_outputs": [
+      "transform_path",
+      "resampled_path"
+    ],
+    "independent_alignment_reference": null
+  },
+  "staged_asset_pack": "retained-bcer-prostate-registration-v1",
+  "reopening_condition": "Pin a real BCER medium task case/run, tool arguments, transform and resampled image before depicting output; obtain independent correspondences before claiming anatomical alignment.",
+  "brief": {
+    "path": "presentation/external-tasks/briefs/bcer-medium-register-prostate.md",
+    "sha256": "7dfc9d7e6cc980ba06125ba421e801b7403280de7af241cd66bd1ef78a2dfdb8"
+  }
+}

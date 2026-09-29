@@ -90,7 +90,8 @@
         "output": "Spatial label map",
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "multiclass",
-        "subject": "abdomen"
+        "subject": "abdomen",
+        "story_id": "automedbench"
       },
       "role": "task",
       "agent_work": "implementation",
@@ -568,7 +569,8 @@
         "output": "Spatial label map",
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "multiclass",
-        "subject": "brain"
+        "subject": "brain",
+        "story_id": "bcer-short-segment-brain"
       },
       "role": "task",
       "agent_work": "workflow",
@@ -611,7 +613,8 @@
         "kind": "register",
         "input": "Misaligned image pair",
         "output": "Aligned images",
-        "caption": "Match the same anatomy across images without changing its identity."
+        "caption": "Match the same anatomy across images without changing its identity.",
+        "story_id": "bcer-medium-register-prostate"
       },
       "role": "task",
       "agent_work": "workflow",
@@ -762,7 +765,8 @@
         "input": "Earlier and later studies",
         "output": "Matched findings over time",
         "caption": "Distinguish a genuine change from differences in position, slice or appearance.",
-        "subject": "torso"
+        "subject": "torso",
+        "story_id": "abra-longitudinal"
       },
       "role": "task",
       "agent_work": "workflow",
@@ -2041,7 +2045,8 @@
         "input": "Image with possible targets",
         "output": "Boxes and class labels",
         "caption": "The output must describe where each target is, not only whether it exists.",
-        "subject": "teeth"
+        "subject": "teeth",
+        "story_id": "rexmle-dentex"
       },
       "role": "task",
       "agent_work": "implementation",
@@ -2064,7 +2069,8 @@
         "caption": "The output assigns a class to each location, preserving the image geometry.",
         "mask_mode": "binary",
         "subject": "brain",
-        "target": "lesion"
+        "target": "lesion",
+        "story_id": "rexmle-isles22"
       },
       "role": "task",
       "agent_work": "implementation",
@@ -2104,7 +2110,8 @@
         "kind": "instances",
         "input": "Touching cells",
         "output": "Separate cell identities",
-        "caption": "Each object needs its own boundary, including where neighboring cells touch."
+        "caption": "Each object needs its own boundary, including where neighboring cells touch.",
+        "story_id": "rexmle-neurips-cellseg"
       },
       "role": "task",
       "agent_work": "implementation",

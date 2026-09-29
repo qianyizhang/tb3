@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "tb3-cardiac-anchor-feasibility",
+  "reviewed_at": "2026-09-29",
+  "scope": "Local noncommercial task interpretation from retained BR-027 bytes; no source acquisition, model rerun or public redistribution",
+  "illustration_basis": "source-derived",
+  "actual_data_gap": "The selected matching FeEcho4D Patient001 source images, supplied anchor masks and saved author predictions were recovered locally. No missing data is filled symbolically. Independent clinical or material-motion reference remains unavailable.",
+  "acquisition_route": "FeEcho4D project: https://feecho4d.github.io/Website/ . Retained local source tree and package hashes are documented in cardiac-anchor-audit.json; onward redistribution terms remain unresolved.",
+  "prior_source_audit": "groups/cardiac-motion/presentation/sources/cardiac-anchor-audit.json",
+  "attempts": [
+    {
+      "action": "Inspect the retained BR-027 package inventory and exact public manifest",
+      "source": "runs/br027-cardiac/public/one_anchor/manifest.json",
+      "attempted_at": "2026-09-29",
+      "outcome": "present; 120 native video frames and four frame-2 anchor masks in the exact public package; earlier full source identity audit retained",
+      "sha256": "ff05a31919f6ee79856ed52efb94aef2ef448f3d6258762fa922296aafa81de2"
+    },
+    {
+      "action": "Inspect the second retained public package and saved prediction arrays",
+      "source": "runs/br027-cardiac/public/two_anchors/manifest.json",
+      "attempted_at": "2026-09-29",
+      "outcome": "present; the same 120 native frames and eight masks at frames 2 and 17; one- and two-anchor saved DIS arrays are available",
+      "sha256": "e88e1ac346489d19bf24a66b0218768240c9436f83b29c6d75d57fffffab7cf6"
+    },
+    {
+      "action": "Read the retained source/package/saved-output audit and FeEcho4D terms finding",
+      "source": "groups/cardiac-motion/presentation/sources/cardiac-anchor-audit.json",
+      "attempted_at": "2026-09-29",
+      "outcome": "selected matching data available; source-derived local interpretation supported; public onward redistribution unresolved",
+      "sha256": "fdbee2158cbfad7b18bb3c0bf746fe5884527f1218b25e86a651eb23db657524"
+    }
+  ],
+  "limits": [
+    "This receipt records read-only asset and contract resolution, not a new independent source audit or clinical adjudication.",
+    "The exact local pack is intended for private noncommercial review; no public redistribution right is inferred.",
+    "Original BR-027 scores and frozen bytes are unchanged."
+  ]
+}

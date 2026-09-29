@@ -13,8 +13,11 @@ function inside(file: string) {
 }
 let failure: string | undefined;
 try {
-  if (process.argv.length !== 4)
-    throw Error('Usage: node scripts/review_explainer_browser.mts BATCH-DIRECTORY EXPLORER-HTML');
+  const entryOnly = process.argv[4] === '--entry-only';
+  if (process.argv.length !== 4 && !(process.argv.length === 5 && entryOnly))
+    throw Error(
+      'Usage: node scripts/review_explainer_browser.mts BATCH-DIRECTORY EXPLORER-HTML [--entry-only]',
+    );
   const batchDir = path.resolve(process.argv[2]);
   const explorer = path.resolve(process.argv[3]);
   const batchFile = path.join(batchDir, 'batch.json');
@@ -44,10 +47,19 @@ try {
     );
   }
   const pins = Object.fromEntries(paths.map((file) => [inside(file), sha(file)]));
-  execFileSync(process.execPath, ['tests/explanation_expansion_browser.cjs', batchDir, explorer], {
-    cwd: root,
-    stdio: 'inherit',
-  });
+  execFileSync(
+    process.execPath,
+    [
+      'tests/explanation_expansion_browser.cjs',
+      batchDir,
+      explorer,
+      ...(entryOnly ? ['--entry-only'] : []),
+    ],
+    {
+      cwd: root,
+      stdio: 'inherit',
+    },
+  );
   for (const [file, expected] of Object.entries(pins))
     if (sha(file) !== expected) throw Error(`Browser input changed: ${file}`);
   const matrix = JSON.parse(readFileSync(matrixFile, 'utf8')) as {
@@ -62,6 +74,7 @@ try {
       {
         schema: 1,
         kind: 'explainer-browser-witness',
+        navigation_scope: entryOnly ? 'current-entry' : 'full-regression',
         sources: pins,
         batch: inside(batchFile),
         explorer: inside(explorer),

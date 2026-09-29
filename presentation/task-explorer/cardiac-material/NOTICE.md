@@ -1,0 +1,3 @@
+# BR-029 local material teaching pack
+
+Source: Multimodality STRAUS patient01_healthy. Local noncommercial interpretation only; public access does not establish onward redistribution permission. The 120 four-plane PNGs and initial mesh are solver inputs. Later source meshes and simulator reference scores are reader-only. Video-affine and tissue-fit points are retained author outputs, not new trials. Display samples retain fixed source IDs. Three positive-AHA cells have unavailable direction axes, represented as null, not zero. No physical frame duration, clinical strain, flow, force balance, EF or diagnosis is established.

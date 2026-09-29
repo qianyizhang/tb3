@@ -2,6 +2,9 @@
 
 Reconstruct a changing LV cavity from clean contours supplied at every phase.
 This is the **BR-025 author feasibility study on one patient**, with no model attempt.
+The [local source-derived story](../stories/cardiac-contour-feasibility.story.md)
+shows actual Patient001 radial views and saved author projections. Its gold
+withheld source mask is a reader reveal, not an input to the reconstruction.
 
 ## Value
 
@@ -109,12 +112,16 @@ tested. All phases/views belong to one patient, not independent samples.
 
 ## Coverage
 
-The source audit and local reader overlays are complete; the operation-specific
-story, integrated review and export remain unfinished. FeEcho4D's project states
-noncommercial research use, while the public release metadata inspected on
-2026-09-27 has no explicit license field. Raw images and derived meshes remain
-local pending clarification of redistribution rights or an explicit private-only
-delivery decision. Open access alone does not resolve that scope.
+The 2026-09-29 source resolution verified retained local Patient001 inputs and
+saved outputs, then built a source-derived teaching pack and canonical story.
+Its fixed-camera surface is a bounded display sample of the saved mesh; it does
+not run a new fit. Integrated visual review and export remain unfinished.
+The [FeEcho4D project](https://feecho4d.github.io/Website/) states noncommercial
+research use, supporting this local task interpretation. Onward redistribution
+permission for source images and derivatives remains unverified, so the pack is
+local review material. The original data acquisition route is the
+[native Zenodo release](https://zenodo.org/records/21322299); the source is not
+missing from this workspace.
 
 ## Sources
 
@@ -122,5 +129,7 @@ delivery decision. Open access alone does not resolve that scope.
 - [Original source audit](../../../../docs/evidence/br025-source-audit.json)
 - [Original pilot metrics](../../../../docs/evidence/br025-pilot-results.json)
 - [Saved-output and source review](../sources/cardiac-contour-audit.json)
+- [2026-09-29 source-resolution receipt](../sources/cardiac-contour-resolution.json)
+- [Local teaching pack notice](../../../../presentation/task-explorer/cardiac-contour/NOTICE.md)
 - [FeEcho4D project and research-use terms](https://feecho4d.github.io/Website/)
 - [Native release metadata](https://zenodo.org/records/21322299)

@@ -4,7 +4,7 @@ export type TaskTab = "overview" | "requirements" | "examples" | "sources";
 export type BrowseView = "capability" | "repository";
 export type ResearchLane = "tasks" | "supporting" | "all";
 export type BriefField = "goal" | "value" | "raw" | "helpers" | "output" | "challenge" | "spec" | "tools" | "score" | "reference" | "families" | "gap" | "case_note";
-export type StoryPlan = RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan;
+export type StoryPlan = RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan;
 export interface StoryBeat {
   id: string;
   duration: number;
@@ -1696,6 +1696,485 @@ export interface NamedLandmarksPlan {
   recipe: "named-landmarks-v1";
   beats: Array<NamedLandmarksBeat>;
 }
+export interface CardiacContourChannels {
+  phase: [number, number];
+  helper: [number, number];
+  output: [number, number];
+  reference: [number, number];
+}
+export interface CardiacContourBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: CardiacContourChannels;
+  scene: "inputs" | "views" | "reconstruct" | "withheld" | "curves" | "depth" | "limits";
+}
+export interface CardiacContourPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "cardiac-contour-v1";
+  beats: Array<CardiacContourBeat>;
+}
+export interface CardiacRealEchoChannels {
+  phase: [number, number];
+  planes: [number, number];
+  output: [number, number];
+  alternative: [number, number];
+  review: [number, number];
+  control: [number, number];
+}
+export interface CardiacRealEchoBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: CardiacRealEchoChannels;
+  scene: "inputs" | "geometry" | "interpretation" | "reconstruction" | "alternatives" | "review" | "controls" | "limits";
+}
+export interface CardiacRealEchoPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "cardiac-real-echo-v1";
+  beats: Array<CardiacRealEchoBeat>;
+}
+export interface MaskMechanicsChannels {
+  phase: [number, number];
+  condition: [number, number];
+  output: [number, number];
+  reference: [number, number];
+  clinical: [number, number];
+}
+export interface MaskMechanicsBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: MaskMechanicsChannels;
+  scene: "input-masks" | "input-images" | "mesh-construction" | "fixed-connectivity" | "deformation-gradient" | "occupancy" | "material-ambiguity" | "reference-probes" | "clinical-transfer" | "limits";
+}
+export interface MaskMechanicsPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "cardiac-mask-mechanics-v1";
+  beats: Array<MaskMechanicsBeat>;
+}
+export interface ReportReadingChannels {
+  phase: [number, number];
+  helper: [number, number];
+  output: [number, number];
+  reference: [number, number];
+}
+export interface ReportReadingBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: ReportReadingChannels;
+  scene: "availability" | "input" | "viewer" | "answer" | "reference" | "comparison" | "limits";
+}
+export interface ReportReadingPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "report-reading-v1";
+  beats: Array<ReportReadingBeat>;
+}
+export interface AutomedKidneyChannels {
+  view: [number, number];
+  helper: [number, number];
+  step: [number, number];
+  reference: [number, number];
+  fixture: [number, number];
+}
+export interface AutomedKidneyBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: AutomedKidneyChannels;
+  scene: "inputs" | "assistance" | "workflow" | "schema" | "reference" | "contract" | "limits";
+}
+export interface AutomedKidneyPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "automed-kidney-v1";
+  beats: Array<AutomedKidneyBeat>;
+}
+export interface BcerBrainChannels {
+  view: [number, number];
+}
+export interface BcerBrainBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: BcerBrainChannels;
+  scene: "inputs" | "identify" | "segment" | "labels" | "checks" | "limits";
+}
+export interface BcerBrainPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "bcer-brain-v1";
+  beats: Array<BcerBrainBeat>;
+}
+export interface BcerProstateChannels {
+  view: [number, number];
+  moving: [number, number];
+  operation: [number, number];
+  swap: [number, number];
+}
+export interface BcerProstateBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: BcerProstateChannels;
+  scene: "availability" | "inputs" | "select" | "coordinates" | "resample" | "contract" | "limits";
+}
+export interface BcerProstatePlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "bcer-prostate-registration-v1";
+  beats: Array<BcerProstateBeat>;
+}
+export interface AbraLongitudinalChannels {
+  baseline: [number, number];
+  followup: [number, number];
+  task: [number, number];
+  reference: [number, number];
+}
+export interface AbraLongitudinalBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: AbraLongitudinalChannels;
+  scene: "inputs" | "metadata" | "counts" | "browse" | "submit" | "reference" | "limits";
+}
+export interface AbraLongitudinalPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "abra-longitudinal-v1";
+  beats: Array<AbraLongitudinalBeat>;
+}
+export interface RexDentexChannels {
+  box: [number, number];
+  labels: [number, number];
+  reference: [number, number];
+}
+export interface RexDentexBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: RexDentexChannels;
+  scene: "input" | "localize" | "encode" | "reference" | "audit";
+}
+export interface RexDentexPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "rexmle-dentex-v1";
+  beats: Array<RexDentexBeat>;
+}
+export interface RexIslesChannels {
+  slice: [number, number];
+  flair: [number, number];
+  reference: [number, number];
+}
+export interface RexIslesBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: RexIslesChannels;
+  scene: "inputs" | "geometry" | "output" | "reference" | "limits";
+}
+export interface RexIslesPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "rex-isles22-v1";
+  beats: Array<RexIslesBeat>;
+}
+export interface RexCellsegChannels {
+  helper: [number, number];
+  instance: [number, number];
+  metric: [number, number];
+}
+export interface RexCellsegBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: RexCellsegChannels;
+  scene: "input" | "helper" | "instances" | "submission" | "scoring" | "limits";
+}
+export interface RexCellsegPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "rexmle-neurips-cellseg-v1";
+  beats: Array<RexCellsegBeat>;
+}
+export interface CardiacMaterialChannels {
+  phase: [number, number];
+  helper: [number, number];
+  output: [number, number];
+  reference: [number, number];
+}
+export interface CardiacMaterialBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: CardiacMaterialChannels;
+  scene: "inputs" | "initial" | "tracking" | "tetra" | "strain" | "comparison" | "controls" | "limits";
+}
+export interface CardiacMaterialPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "cardiac-material-v1";
+  beats: Array<CardiacMaterialBeat>;
+}
+export interface CardiacAnchorChannels {
+  phase: [number, number];
+  helper: [number, number];
+  output: [number, number];
+  reference: [number, number];
+}
+export interface CardiacAnchorBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: CardiacAnchorChannels;
+  scene: "inputs" | "anchors" | "tracking-one" | "tracking-two" | "surface" | "reference" | "comparison" | "limits";
+}
+export interface CardiacAnchorPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "cardiac-anchor-v1";
+  beats: Array<CardiacAnchorBeat>;
+}
 export interface ClinicalCavityChannels {
   phase: [number, number];
   helper: [number, number];
@@ -2116,7 +2595,7 @@ export interface Inventory {
   repositories?: Array<RepositoryInventory>;
 }
 export interface ExplorerData {
-  explanation_stories?: Record<string, RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan>;
+  explanation_stories?: Record<string, RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan>;
   schema_version: 1;
   title?: string;
   entries: Array<TaskEntry>;

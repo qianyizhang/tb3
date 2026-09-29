@@ -1,79 +1,55 @@
-# Segment brain tumor from four MRI sequences
+# Segment brain tumor subregions from four MRI contrasts
 
-Identify the MRI sequences and call the brain-tumor segmentation tool.
+Resolve four MRI modality paths, call the supplied specialist tools, and retain the tumor label map and whole-tumor mask. This is a symbolic task explanation with no patient or run result.
 
-## Value
-
-Different MRI contrasts expose different tumor components.
+> **Symbolic illustration — no matching four-sequence BraTS case is available here; request the actual data through the [official BraTS access page](https://www.med.upenn.edu/cbica/brats2021/).**
 
 ## Given
 
 ### Original data
 
-Required source modalities — brain: all of T1, T1c, T2, FLAIR.
+The pinned `short_segment_brain` task requires T1, post-contrast T1c, T2 and FLAIR NIfTI volumes. No complete matching local case is available. The tool expects aligned inputs; the symbolic diagrams assert no patient voxels, dimensions, physical affine, intensity or lesion shape.
 
 ### Supplied helpers
 
-A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.
+The case manifest, runtime state and typed artifact references help resolve actual files. Input aliases are `t1_nifti`, `t1c_nifti`, `t2_nifti`, `flair_nifti`. They are not a supplied tumor mask.
 
 ### Callable tools
 
-Registered tools: `identify_sequences`, `brats_mri_segmentation`.
+`identify_sequences` precedes `brats_mri_segmentation`. The segmentation arguments are `t1_path`, `t1c_path`, `t2_path`, `flair_path`. The normal code path uses a MONAI BraTS bundle with T1c,T1,T2,FLAIR ordering. A MONAI-dependency import failure can instead produce a heuristic T1c+FLAIR fallback. Neither path has been executed here.
 
 ### Reference-only material
 
-Evaluation targets are references, not extra solver inputs. Local filesystem visibility has not been audited by running this external task.
+A case-matched BraTS annotation could support a later independent comparison; none is retained. It is not a solver input. Label meanings are public contract information, not a private patient mask.
 
 ## Task specification
 
-Required stage sequence: identify_sequences → brats_mri_segmentation. Resolve actual case paths and pass each artifact to its downstream consumer.
+Identify each modality, map its actual path into the correct argument, call the segmentation tool and preserve both required artifact paths. The source fault profile includes a T1c/FLAIR swap: file existence alone cannot establish modality identity.
 
 ## Expected output
 
-Retain artifacts under these registry keys: `seg_path`, `wt_mask_path`.
+The registry requires `seg_path` and `wt_mask_path`. The source label map uses **0 background, 1 necrotic core, 2 edema/invaded tissue and 4 enhancing tumor**; binary WT is the union of **1, 2 and 4**. TC (1 or 4) and ET masks are optional tool products, not the two registry-required artifacts. Every rendered output socket is empty; there is no saved patient prediction.
 
 ## Evaluation
 
-The registry requires stage success plus path exists, nifti nonempty. These checks establish execution/artifact validity; they do not independently establish anatomical accuracy.
+BCER checks successful identification and segmentation stages, path existence and nonempty NIfTI content for both required outputs. On a NIfTI read error, its nonempty check can fall back to positive file size. These structural workflow checks do not calculate anatomical overlap or boundary accuracy. No pass score, clinical outcome or learned-model performance is claimed.
+
+## Gaps
+
+No matching four-sequence case, BCER segmentation output or case-matched annotation is available. The official BraTS page routes acquisition through Synapse registration and a data-request form; no anonymous case file was exposed by the inspected route. Real-case use requires authorized acquisition, exact case/modalities and geometry review, and separately retained reference. A single unrelated T1c archive cannot stand in for the quartet.
 
 ## Visual explanation
 
 ### Workflow
 
-- Case modalities + runtime manifest
-- Execute 2 required stage(s)
-- Retained image / feature / report artifacts
-
-### Input
-
-**Contract view; native sample not yet illustrated.** Required source modalities — brain: all of T1, T1c, T2, FLAIR.
-
-### Supplied helpers
-
-**Given material, not an answer reveal.** A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.
-
-### Reference or output
-
-**Expected artifact, not an actual prediction.** Retain artifacts under these registry keys: `seg_path`, `wt_mask_path`.
-
-## Conditions
-
-| Condition | Supplied help | Work remaining |
-|---|---|---|
-| Source condition | A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities. | Sequence identity and spatial alignment matter even when segmentation is delegated to a model. |
-
-## Difficulty
-
-Sequence identity and spatial alignment matter even when segmentation is delegated to a model.
+- Identify the four symbolic modality inputs and map their typed paths.
+- Trace the segmentation tool and distinguish its documented normal/fallback paths.
+- Read the empty label/WT output contract and the limits of structural checks.
 
 ## Sources
 
-- [Pinned task registry](https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/configs/tasks_registry.json)
 
-## Coverage
-
-A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.
-
-## Gaps
-
-Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched.
+- [Pinned BCER task registry](https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/configs/tasks_registry.json)
+- [Pinned BCER segmentation tool](https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/brain_tumor_segmentation.py)
+- [Official BraTS 2021 data and annotation description](https://www.med.upenn.edu/cbica/brats2021/)
+- Source hashes, access attempt and scope are pinned in `presentation/external-tasks/sources/bcer-brain-resolution.json`.

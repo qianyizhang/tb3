@@ -1,0 +1,246 @@
+.scene,
+.output {
+  color: #263f49;
+  font: inherit;
+}
+.scene {
+  padding: 10px;
+  container-type: inline-size;
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 9px;
+}
+.head strong {
+  font-size: 0.92rem;
+}
+.head span {
+  font-size: 0.72rem;
+  color: #5d737c;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.card {
+  margin: 0;
+  min-width: 0;
+  border: 1px solid #d2e0e4;
+  background: #f5f9f9;
+  border-radius: 10px;
+  padding: 7px;
+}
+.card figcaption {
+  font-size: 0.76rem;
+  font-weight: 700;
+  min-height: 2.1em;
+}
+.image,
+.mesh {
+  display: block;
+  width: 100%;
+  height: 255px;
+  background: #101c25;
+  border-radius: 6px;
+}
+.image image {
+  image-rendering: auto;
+}
+.mesh text,
+.image text {
+  font-size: 10px;
+  fill: #c5dadd;
+}
+.key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 7px;
+  font-size: 0.69rem;
+}
+.key span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.key i {
+  width: 12px;
+  height: 3px;
+  display: inline-block;
+}
+.note {
+  font-size: 0.74rem;
+  line-height: 1.35;
+  color: #4b6671;
+  margin: 8px 0 0;
+}
+.step {
+  background: #edf7f8;
+  border-left: 3px solid #18c6d4;
+  padding: 8px 9px;
+  margin-top: 9px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+.tensor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 9px;
+}
+.tensor div {
+  background: #edf5f6;
+  padding: 6px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+}
+.tensor strong {
+  display: block;
+  font-size: 0.74rem;
+}
+.tensor code {
+  font-size: 0.68rem;
+  white-space: pre-wrap;
+}
+.output {
+  padding: 12px;
+}
+.output h3 {
+  margin: 0 0 8px;
+  font-size: 0.94rem;
+}
+.output p {
+  font-size: 0.74rem;
+  line-height: 1.4;
+  margin: 5px 0;
+}
+.curve {
+  display: block;
+  width: 100%;
+  max-height: 190px;
+}
+.curve text {
+  font-size: 10px;
+  fill: #4e6770;
+}
+.metrics {
+  font-size: 0.69rem;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 8px;
+}
+.metrics th,
+.metrics td {
+  padding: 3px 4px;
+  border-bottom: 1px solid #d7e3e5;
+  text-align: right;
+}
+.metrics th:first-child,
+.metrics td:first-child {
+  text-align: left;
+}
+.warn {
+  font-size: 0.71rem;
+  background: #fff8e4;
+  border-left: 3px solid #f4bc49;
+  padding: 7px;
+  margin-top: 8px;
+}
+@container (max-width:650px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+  }
+  .tensor {
+    grid-template-columns: 1fr;
+  }
+  .image,
+  .mesh {
+    height: auto;
+    aspect-ratio: 1;
+  }
+  .card {
+    padding: 4px;
+  }
+  .card figcaption {
+    font-size: 0.65rem;
+    min-height: 2.4em;
+  }
+  .head {
+    display: block;
+  }
+  .head span {
+    display: block;
+    margin-top: 2px;
+  }
+  .metrics {
+    font-size: 0.62rem;
+  }
+}
+
+.scene[data-material-scene='inputs'] .grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.scene[data-material-scene='inputs'] .image {
+  height: 200px;
+}
+.scene .mesh {
+  height: 230px;
+}
+.tetraFigure {
+  display: block;
+  width: 100%;
+  height: 230px;
+  background: #101c25;
+  border-radius: 6px;
+}
+.tetraFigure text {
+  fill: #d4e4e4;
+  font-size: 10px;
+}
+.scene[data-material-scene='strain'] .tetraFigure {
+  height: 180px;
+}
+.scene[data-material-scene='strain'] .tensor {
+  margin-top: 0;
+  gap: 5px;
+}
+.scene[data-material-scene='strain'] .tensor code {
+  display: block;
+  line-height: 1.25;
+}
+@container task-visual (max-width:650px) {
+  .scene[data-material-scene='inputs'] .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .scene[data-material-scene='strain'] .grid {
+    grid-template-columns: 1fr;
+  }
+  .scene[data-material-scene='strain'] .tensor {
+    grid-template-columns: 1fr 1fr;
+  }
+  .scene[data-material-scene='inputs'] .image {
+    height: auto;
+    aspect-ratio: 1;
+  }
+  .scene .mesh,
+  .tetraFigure {
+    height: 200px;
+  }
+}
+
+.scene .tensor code {
+  font-size: 12px;
+}
+.output .metrics {
+  font-size: 12px;
+}
+.output .metrics th,
+.output .metrics td {
+  padding: 6px 3px;
+  font-size: 12px;
+}

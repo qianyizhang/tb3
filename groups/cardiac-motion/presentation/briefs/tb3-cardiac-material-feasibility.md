@@ -154,11 +154,19 @@ difficulty. No clinical strain rate, blood flow, force balance or diagnosis is t
 ## Coverage
 
 The source/package/mechanics audit and selected local visual inspection are
-complete. The operation-specific canonical story, integrated review and export
-remain unfinished. The public STRAUS project, collection and root-folder metadata
-inspected on 2026-09-27 supply no explicit redistribution license. Native images,
-meshes and derived source views remain local pending documented permission or an
-explicit private-local final-scope decision. Open download does not resolve that scope.
+complete. A staged [operation-specific canonical story](../stories/cardiac-material-feasibility.story.md)
+and [local source-derived pack](../../../../presentation/task-explorer/cardiac-material/manifest.json)
+show the actual four-plane images, supplied initial mesh, fixed-ID saved motion,
+one valid tetrahedron's F/E/J and directional fields, a missing-axis cell, and
+the private simulator reference after a reader reveal. The display sample is a
+deterministic excerpt of retained arrays; metrics concern the full arrays.
+Integrated review, export and acceptance remain unfinished.
+
+The public STRAUS project, collection and root-folder metadata inspected on
+2026-09-27 supply no explicit redistribution license. The user's current scope
+allows local noncommercial task interpretation without public redistribution;
+native images, meshes and derived source views remain local. Open download does
+not grant onward distribution rights.
 
 ## Sources
 
@@ -168,5 +176,6 @@ explicit private-local final-scope decision. Open download does not resolve that
 - [Tissue-fit metrics](../../../../docs/evidence/br029-dynamic-heart-tissue-results.json)
 - [Original integrity and correction record](../../../../docs/evidence/br029-dynamic-heart-integrity.json)
 - [Source/package/mechanics audit](../sources/cardiac-material-audit.json)
+- [Source-resolution receipt](../sources/cardiac-material-resolution.json)
 - [STRAUS project](https://humanheart-project.creatis.insa-lyon.fr/multimodalityStraus.html)
 - [Human Heart Project access guidance](https://humanheart-project.creatis.insa-lyon.fr/faq.html)

@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "tb3-real-echo-reconstruction",
+  "reviewed_at": "2026-09-29",
+  "scope": "Source resolution for local noncommercial task interpretation using retained inputs and original saved outputs; no new solver, model, refit or publication",
+  "actual_data_gap": "No matching source/output asset gap: selected EchoSlicer A_0.dcm, native decode, 72 solver-visible PNGs, 72 withheld review PNGs, primary saved output, alternatives and controls are retained locally. There is no independent contour, paired 3D geometry, clinical EF, material correspondence or diagnosis reference to recover from this task.",
+  "acquisition_route": "Official EchoSlicer project https://github.com/echonet/3d-echo and v1.0 release https://github.com/echonet/3d-echo/releases/tag/v1.0 . Existing source-receipt.json pins the selected archive member; no new download was needed.",
+  "prior_source_audit": {
+    "path": "groups/cardiac-motion/presentation/sources/real-echo-audit.json",
+    "sha256": "cac57a80d5e037adc23e5a3024951663e6e926642cab23db029af1be85d4c770"
+  },
+  "attempts": [
+    {
+      "action": "Inspect retained source and exact task geometry/inventory; verify selected DICOM, native array, geometry, 72 public inputs and 144 review PNGs against real-echo-audit SHA-256 pins; inspect PNG size and grayscale mode",
+      "source": "runs/br032-real-echo/source/selected.dcm; runs/br032-real-echo/native.npz; runs/br032-real-echo/task/cardiac-real/environment/data/",
+      "attempted_at": "2026-09-29",
+      "outcome": "Present and hashes match. Native uint8 images are [18,404,76,62]; all 72 public PNGs are 256x256 grayscale. Four 18-frame public planes and four 18-frame withheld review planes are separately identified in the retained audit. No acquisition needed.",
+      "selected_dicom_sha256": "cfe78d709e89e9127e5ece5089c0824e677eab3eb90950876df23ff3cdbb3fc1"
+    },
+    {
+      "action": "Verify primary, static-control and review arrays against pinned hashes; inspect array shapes only, without running historical author code",
+      "source": "runs/br032-real-echo-sol-xhigh-v1-20260916/cardiac-real__f4ubmjE/artifacts/app/answer/prediction.npz; runs/br032-real-echo/task/cardiac-real/solution/prediction.npz; runs/br032-real-echo/private-review.npz",
+      "attempted_at": "2026-09-29",
+      "outcome": "Primary saved model array is points[18,1202,3], faces[2400,3], alternatives[3,18,1202,3]. Packaged solution/static format control is points[18,300,3], faces[596,3], alternatives[2,18,300,3]. They must not be conflated. Private review images are [8,18,256,256] and have no contour GT.",
+      "primary_prediction_sha256": "8364e393e2a7247d73c2e329f68dfa0f79cf35bdfe36f3cd99caece0bb2b447a",
+      "static_solution_sha256": "267ada5dc15a5b0276361f7b43674ffec6d0a0b6cfcfa3468d71436603010fca"
+    },
+    {
+      "action": "Inspect current official repository README and v1.0 release page for data route and terms, alongside retained metadata review",
+      "source": "https://github.com/echonet/3d-echo; https://github.com/echonet/3d-echo/releases/tag/v1.0",
+      "attempted_at": "2026-09-29",
+      "outcome": "Repository README describes a released 29-video volunteer research dataset and links dataset.zip; v1.0 release describes 29 recordings. No explicit redistribution license was identified in these inspected pages. Absence of a license notice on those pages is not a complete legal adjudication. Local noncommercial interpretation is the current user-authorized scope; no public redistribution is asserted."
+    }
+  ],
+  "contract": {
+    "source": "One real 3D ultrasound acquisition, resliced into four synchronized solver-visible planes; 18 original frames separated by 161.15 ms. The 18 frames are not by themselves an adjudicated single heartbeat.",
+    "assistance": "geometry.json gives plane origins, unit u/v directions, 0.75 mm native reslice pixel spacing, pixel center 127.5, frame IDs and timestamps. No masks, seed points, initial mesh or pretrained weights are supplied.",
+    "reference_boundary": "Raw DICOM/native array and four more review planes are author-side. The latter are images, not independent anatomy labels. The historical 'oracle' is a static ellipsoid format control, not ground truth.",
+    "output": "18 meshes in task millimetres with common connectivity, alternatives, executable, method and volume summary. Reward 1 checks artifact schema/topology/volume arithmetic only."
+  },
+  "gaps_and_limits": [
+    "No independent cavity contour, paired 3D geometry, chamber adjudication, material tracking, clinical EF or diagnosis truth.",
+    "Original source identifiers were omitted from solver input; source exposure in pretraining is unknown. The prompt's retrieval prohibition was not network isolation.",
+    "Saved static-input replay alters 68 of 72 pixels files but preserves output points exactly; this limits reusable-executable input dependence, not the original trace's image viewing.",
+    "Source-derived images/meshes should stay in local private artifacts until redistribution terms are documented."
+  ],
+  "next_action": "Integrate the drafted source-derived story and pack, then review fresh interactive, exports, mobile and no-GPU artifacts before acceptance.",
+  "illustration_basis": "source-derived",
+  "prior_source_brief": {
+    "path": "groups/cardiac-motion/presentation/briefs/tb3-real-echo-reconstruction.md",
+    "sha256": "fc54c631f14519d63df506039db13dbc34ffd4ef7f8a1d16d4214e16f9263b9a"
+  }
+}

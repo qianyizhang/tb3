@@ -1,0 +1,1 @@
+Original NeurIPS CellSeg sample, Zenodo 10719375, CC-BY-NC-ND-4.0. Local noncommercial teaching only; do not infer derivative redistribution permission. The TIFF is supplied training help, not held-out evaluator truth. No ReX preparation, prediction, grader or score was run.

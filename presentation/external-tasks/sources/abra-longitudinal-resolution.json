@@ -1,0 +1,525 @@
+{
+  "schema": 1,
+  "status": "production-draft",
+  "entry_id": "abra-longitudinal",
+  "resolved_at": "2026-09-29T03:54:47+00:00",
+  "illustration_basis": "mixed",
+  "source_commit": "688814615dc368a66276798cb864fe9a587d7e6c",
+  "task_family": "ABRA tier-4 longitudinal (four task generators)",
+  "actual_data_gap": "Both exact full NLST CT series are retained and header-verified, but no cross-study anatomical registration or justified matched-slice landmarks are available; equal numeric LPS z showed visibly different chest levels. ABRA/OHIF zero-based viewer index 23 to SOP ordering and display axes remain unverified, so the private pixel point cannot be overlaid. No independent radiologic adjudication of newness and no ABRA agent output or score exist.",
+  "acquisition_route": "Official anonymous NLST NBIA getImage for each exact ABRA-selected SeriesInstanceUID; full URL and result hashes in full_native_series. Both HTTP 200 after one recorded follow-up SSL connection timeout.",
+  "top_warning": "Both complete native CT series are available, but equal numerical LPS z across studies can show different anatomy: the saved z \u2212188.4 mm baseline image is mid-lung while the follow-up image is near the apices. Do not call same-z slices matched anatomy or infer lesion change. The private point remains off patient pixels until ABRA/OHIF viewer index 23 maps to a verified SOP and display orientation.",
+  "source_files": [
+    {
+      "role": "task-generator",
+      "upstream_path": "scripts/task_generators/tier4.py",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier4.py",
+      "local_path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/tier4.py",
+      "sha256": "0f778d0ff41acf459ba14d681dc7bf3873cc723a02332ef29c3bf56f0b5ca139"
+    },
+    {
+      "role": "pair-manifest",
+      "upstream_path": "data/annotations/nlst_longct_pairs.json",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/data/annotations/nlst_longct_pairs.json",
+      "local_path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/nlst_longct_pairs.json",
+      "sha256": "2619ff0c6b36f9e1b7f32dcffa66ec9ea5164de6f9de3ba47b0d48d486e77a19"
+    },
+    {
+      "role": "exact-match-scorer",
+      "upstream_path": "src/scoring/outcome/exact_match_scorer.py",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/scoring/outcome/exact_match_scorer.py",
+      "local_path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/exact_match_scorer.py",
+      "sha256": "6d0b7c3f434e23949b781daeb96130f2eefc4bdbd7f8bd9717327e100855e29f"
+    },
+    {
+      "role": "single-lesion-scorer",
+      "upstream_path": "src/scoring/outcome/point_distance_scorer.py",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/scoring/outcome/point_distance_scorer.py",
+      "local_path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/point_distance_scorer.py",
+      "sha256": "dd6c1f70675df0a8666a3e4d84f44d30e8c81e1ea5b992bf2aa20fbf27cd6cb8"
+    },
+    {
+      "role": "multi-lesion-scorer",
+      "upstream_path": "src/scoring/outcome/longitudinal_scorer.py",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/scoring/outcome/longitudinal_scorer.py",
+      "local_path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/longitudinal_scorer.py",
+      "sha256": "24a336b07e1b424ccd0aca23b0f2070b6ce5a4f7c69e79f140bf32b9ab247b54"
+    },
+    {
+      "role": "study-manifest",
+      "upstream_path": "data/studies/study_manifest.json",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/data/studies/study_manifest.json",
+      "local_path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/study_manifest.json",
+      "sha256": "a6f367980f071320295adb9832edfcd9d165d377eb74b071b3ba6384738c3086"
+    },
+    {
+      "role": "pair-structure-and-manifest-loader",
+      "upstream_path": "scripts/task_generators/common.py",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/common.py",
+      "local_path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/common.py",
+      "sha256": "082d7d9c5d9b93f88504f76a512737ee1c2e2da8f74c6428a709f70973b375ba"
+    },
+    {
+      "role": "ABRA-code-license",
+      "upstream_path": "LICENSE",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/LICENSE",
+      "local_path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/LICENSE",
+      "sha256": "616457a4d54a40d0e4ffca06c1f1539abd25cb7a63004e8244653476a941cb69"
+    },
+    {
+      "role": "scorer-base",
+      "upstream_path": "src/scoring/base_scorer.py",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/scoring/base_scorer.py",
+      "local_path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/base_scorer.py",
+      "sha256": "17cd5269db3c815de1e7093a9e8aa162efa0f06fc57fbbf41bf51d326db40066"
+    },
+    {
+      "role": "viewer-and-submission-tool-schema",
+      "upstream_path": "src/tasks/tool_registry.py",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/tasks/tool_registry.py",
+      "local_path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/tool_registry.py",
+      "sha256": "02ef0d672bbecb143e21b1f2f49c8cd53cb64d99e2087eb7346fef1f9db2bf30"
+    },
+    {
+      "role": "OHIF viewer index adapter",
+      "upstream_path": "extensions/agent/src/services/AgentService/AgentService.ts",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/extensions/agent/src/services/AgentService/AgentService.ts",
+      "local_path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/AgentService.ts",
+      "sha256": "6b5106e49c96fd7e8eeffb0f2d424d895b8787933a337bf1ba1256ac2f385913"
+    }
+  ],
+  "existing_annotation_audit": {
+    "path": "presentation/external-tasks/sources/abra-annotation-audit.json",
+    "sha256": "a91346cd86bc63b073ac24c2b75afef010b67288e9849ca3264a0ec87e38513e",
+    "scope": "LIDC-IDRI-0003 single-study nodule annotation; NOT this NLST longitudinal pair"
+  },
+  "existing_manifest": {
+    "path": ".local/explainers/completion-20260927/037-source/data/studies/study_manifest.json",
+    "sha256": "a6f367980f071320295adb9832edfcd9d165d377eb74b071b3ba6384738c3086",
+    "scope": "Pinned ABRA study metadata; all 125 pair study UIDs are represented"
+  },
+  "brief": {
+    "path": "presentation/external-tasks/briefs/abra-longitudinal.md",
+    "sha256": "ee868d1a42c795ef341b5423146e8953e0185cddd14a36368d2809b359d05e1c"
+  },
+  "representative_pair": {
+    "participant_id": "110494",
+    "baseline_study_uid": "1.2.840.113654.2.55.290809647662655328378956880221201678366",
+    "followup_study_uid": "1.2.840.113654.2.55.218114218074755365365153483081746300795",
+    "baseline_series_uid": "1.2.840.113654.2.55.216791194357303579492757053288225818239",
+    "followup_series_uid": "1.2.840.113654.2.55.133425657552434562010061689110986632738",
+    "benchmark_metadata_answer_reference_only": {
+      "time_interval_days": 365,
+      "slice_count_followup_minus_baseline": 1
+    },
+    "private_lesion_reference_from_pair_manifest": [
+      {
+        "lesion_id": "110494_L1",
+        "x": 262.0,
+        "y": 355.0,
+        "slice_index": 23
+      }
+    ],
+    "reference_role": "source-pinned expected outcome; never solver input or initial DOM"
+  },
+  "native_samples": [
+    {
+      "role": "baseline representative native input (not matched anatomical plane)",
+      "study_uid": "1.2.840.113654.2.55.290809647662655328378956880221201678366",
+      "series_uid": "1.2.840.113654.2.55.216791194357303579492757053288225818239",
+      "study_date_yyyymmdd": "19990102",
+      "manifest_ct_instances": 161,
+      "series_description": "0,OPA,SE,VZOOM,B50f,280,2,120,80,40,na",
+      "local_path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/baseline-sample.dcm",
+      "sha256": "bf924af9b99f5fc1d6154a2c86ae1817b190706287d70ed16e8ad52c751b2a5c",
+      "bytes": 526512,
+      "sop_uid": "1.2.840.113654.2.55.51784873350526844493946841763348140169",
+      "instance_number": 64,
+      "image_position_lps_mm": [
+        -148.72656,
+        -299.72656,
+        -154.4
+      ],
+      "orientation_lps": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "pixel_spacing_row_col_mm": [
+        0.546875,
+        0.546875
+      ],
+      "rows": 512,
+      "columns": 512,
+      "rescale_slope": 1.0,
+      "rescale_intercept_hu": -1024.0,
+      "source_url": "https://nlst.cancerimagingarchive.net/nbia-api/services/v1/getSingleImage?SeriesInstanceUID=1.2.840.113654.2.55.216791194357303579492757053288225818239&SOPInstanceUID=1.2.840.113654.2.55.51784873350526844493946841763348140169"
+    },
+    {
+      "role": "followup representative native input (not matched anatomical plane)",
+      "study_uid": "1.2.840.113654.2.55.218114218074755365365153483081746300795",
+      "series_uid": "1.2.840.113654.2.55.133425657552434562010061689110986632738",
+      "study_date_yyyymmdd": "20000102",
+      "manifest_ct_instances": 162,
+      "series_description": "1,OPA,SE,VZOOM,B30f,290,2,120,60,30,na",
+      "local_path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/followup-sample.dcm",
+      "sha256": "ea28afc21c7e03b11645034f2ee122dbb9267579a93de9ecd17da6db7e602769",
+      "bytes": 526492,
+      "sop_uid": "1.2.840.113654.2.55.234478930051720351215547076666405683103",
+      "instance_number": 27,
+      "image_position_lps_mm": [
+        -150.7168,
+        -269.7168,
+        -194.4
+      ],
+      "orientation_lps": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "pixel_spacing_row_col_mm": [
+        0.5664062,
+        0.5664062
+      ],
+      "rows": 512,
+      "columns": 512,
+      "rescale_slope": 1.0,
+      "rescale_intercept_hu": -1024.0,
+      "source_url": "https://nlst.cancerimagingarchive.net/nbia-api/services/v1/getSingleImage?SeriesInstanceUID=1.2.840.113654.2.55.133425657552434562010061689110986632738&SOPInstanceUID=1.2.840.113654.2.55.234478930051720351215547076666405683103"
+    }
+  ],
+  "official_series_metadata": [
+    {
+      "role": "baseline",
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/baseline-metadata.json",
+      "sha256": "93caf37acafcff5647ba49028cbbe8966b227ed46263cfbb1ff803c7e237dfe5",
+      "http_status": 200,
+      "license_name": "Creative Commons Attribution 4.0 International License",
+      "reported_file_size_bytes": 84768928
+    },
+    {
+      "role": "followup",
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/followup-metadata.json",
+      "sha256": "6fa7ed43f7f0c34cd2132fe3cb78756e949874b7b0619a7fcd3a101a9b22a134",
+      "http_status": 200,
+      "license_name": "Creative Commons Attribution 4.0 International License",
+      "reported_file_size_bytes": 85291654
+    }
+  ],
+  "task_contract": {
+    "interval": {
+      "output": "integer days, no other text",
+      "reference_trajectory": [
+        "get_study_metadata",
+        "get_study_metadata",
+        "submit_answer"
+      ],
+      "scorer": "exact_match_scorer",
+      "max_turns": 8
+    },
+    "slice_difference": {
+      "output": "signed integer, follow-up minus baseline",
+      "reference_trajectory": [
+        "get_study_series",
+        "get_study_series",
+        "submit_answer"
+      ],
+      "scorer": "exact_match_scorer",
+      "max_turns": 8
+    },
+    "single_new_lesion": {
+      "output": "submit_longitudinal_finding(new_lesion, follow-up zero-based slice_index, pixel x/y) then complete",
+      "scorer": "point_distance_scorer",
+      "threshold_px": 20,
+      "max_turns": 50,
+      "requires_vision": true,
+      "preprocessor": "lung_window"
+    },
+    "multiple_new_lesions": {
+      "output": "one finding per new lesion then submit_longitudinal_complete",
+      "scorer": "longitudinal_scorer",
+      "threshold_px": 20,
+      "max_turns": 30,
+      "requires_vision": true,
+      "preprocessor": "lung_window"
+    }
+  },
+  "scorer_boundary": [
+    "Metadata scorer normalizes whitespace/case and some units and accepts numeric difference below 0.01; exact-match label is not byte-for-byte.",
+    "Single lesion scorer uses first successful finding, follow-up pixel distance and slice penalty up to five slices; missing slice in trajectory bypasses slice mismatch despite tool schema requiring it.",
+    "Multi-lesion scorer greedily matches points within 20 px and up to five slices, subtracts 0.1 per false positive; it does not independently verify radiologic newness.",
+    "No scorer was executed in this audit."
+  ],
+  "source_roles": {
+    "solver_input": "Complete exact ABRA-selected baseline and follow-up NLST chest CT series, plus supplied UIDs/task prompt; metadata and image tools expose them. Same-z source images are input-only visual samples.",
+    "supplied_helper": "paired study/series identifiers, OHIF/Orthanc navigation, lung_window preprocessor, answer/finding submission tools",
+    "answer_owned_output": "integer day/count answer or new-lesion finding(s), absent here",
+    "private_reference": "Generator expected_outcome dates/count arithmetic or follow-up lesion pixel point/slice, stored in pair manifest. Maintain separate reference-only data; viewer-index mapping unresolved and no point on patient pixels.",
+    "evaluator": "exact_match_scorer, point_distance_scorer or longitudinal_scorer depending on task"
+  },
+  "license": {
+    "source_code": "MIT",
+    "native_NLST_CT": "CC-BY-4.0 per live official series metadata",
+    "lesion_annotation": "source-pinned ABRA pair-coordinate manifest; upstream NLST-New-lesion-LongCT collection relationship requires attribution/recheck for external release"
+  },
+  "attempts": [
+    {
+      "attempted_at": "2026-09-29T03:45:42+00:00",
+      "action": "verified pinned ABRA tier4, pair file and three scorer files against official GitHub tree",
+      "outcome": "five official files fetched, SHA-256 and Git blob matched",
+      "source": "https://github.com/Luab/ABRA/tree/688814615dc368a66276798cb864fe9a587d7e6c"
+    },
+    {
+      "attempted_at": "2026-09-29T03:45:42+00:00",
+      "action": "selected exact 110494 pair from ABRA pair JSON and study manifest",
+      "outcome": "125/125 pair study UIDs represented; selected baseline 161 CT images, follow-up 162; metadata reference 365 days and +1 image",
+      "source": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/data/annotations/nlst_longct_pairs.json"
+    },
+    {
+      "attempted_at": "2026-09-29T03:45:42+00:00",
+      "action": "anonymous official NLST NBIA SOP and series metadata requests",
+      "outcome": "HTTP 200 for both selected series; official response confirms CT, study dates, counts and CC BY 4.0",
+      "source": "https://nlst.cancerimagingarchive.net/nbia-api/services/v1/getSOPInstanceUIDs"
+    },
+    {
+      "attempted_at": "2026-09-29T03:45:42+00:00",
+      "action": "anonymous official NLST getSingleImage, one SOP from each selected series",
+      "outcome": "HTTP 200; retained two 512x512 native DICOM instances, SHA-256 pinned; LPS z -154.4 vs -194.4 mm, so not matching planes",
+      "source": "https://nlst.cancerimagingarchive.net/nbia-api/services/v1/getSingleImage"
+    },
+    {
+      "attempted_at": "2026-09-29T03:45:42+00:00",
+      "action": "local asset inventory",
+      "outcome": "Existing LIDC ABRA annotation case is one different study; local NLST 120547 kernel pair is one acquisition, not this longitudinal task. No full 110494 pair or prior ABRA run found.",
+      "source": ".local/explainers/core-20260929/abra-longitudinal-source/"
+    },
+    {
+      "attempted_at": "2026-09-29T03:49:00+00:00",
+      "action": "anonymous official NLST NBIA getImage baseline exact SeriesInstanceUID; max 180 seconds",
+      "outcome": "HTTP 200, 53,909,019-byte ZIP, SHA-256 b3c696a062acef3a98595535da54fd605cd447a44c36e4410b35af966d55ce22, CRC pass, 161 DICOM members",
+      "source": "https://nlst.cancerimagingarchive.net/nbia-api/services/v1/getImage?SeriesInstanceUID=1.2.840.113654.2.55.216791194357303579492757053288225818239"
+    },
+    {
+      "attempted_at": "2026-09-29T03:50:00+00:00",
+      "action": "anonymous official NLST NBIA getImage follow-up exact SeriesInstanceUID; connect timeout 20 seconds, max 180 seconds",
+      "outcome": "SSL connection timeout at ~20 seconds; HTTP 000, zero bytes, no output file",
+      "source": "https://nlst.cancerimagingarchive.net/nbia-api/services/v1/getImage?SeriesInstanceUID=1.2.840.113654.2.55.133425657552434562010061689110986632738"
+    },
+    {
+      "attempted_at": "2026-09-29T03:51:00+00:00",
+      "action": "retry official follow-up getImage with connect timeout 50 seconds, max 180 seconds",
+      "outcome": "HTTP 200, 50,488,683-byte ZIP, SHA-256 bff7b882f36bfd275178d92a033be671e5ce21d81530b072993f952ea93f61a3, CRC pass, 162 DICOM members",
+      "source": "https://nlst.cancerimagingarchive.net/nbia-api/services/v1/getImage?SeriesInstanceUID=1.2.840.113654.2.55.133425657552434562010061689110986632738"
+    },
+    {
+      "attempted_at": "2026-09-29T03:54:47+00:00",
+      "action": "header audit against exact ABRA and official TCIA SOP lists, plus deterministic source-only same-LPS-z extraction",
+      "outcome": "161/161 baseline and 162/162 follow-up native instances uniquely match expected study/series/SOP sets; 2-mm axial z steps and full geometry verified; paired z -188.4 mm DICOM and fixed lung-window PNGs pinned. TCIA archive order is random relative to anatomy.",
+      "source": ".local/explainers/core-20260929/abra-longitudinal-source/samples/baseline-full-series-inventory.json and followup-full-series-inventory.json"
+    },
+    {
+      "attempted_at": "2026-09-29T03:54:47+00:00",
+      "action": "inspect pinned ABRA AgentService viewer index adapter",
+      "outcome": "setSlice jumps to OHIF imageIndex and getViewportState reads current index, but adapter does not specify display-set imageId/SOP sorting. Private slice 23 therefore remains unbound to exact native SOP.",
+      "source": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/extensions/agent/src/services/AgentService/AgentService.ts"
+    },
+    {
+      "attempted_at": "2026-09-29T03:57:00+00:00",
+      "action": "visual inspection of saved same-numeric-z lung-window inputs",
+      "outcome": "Baseline depicts mid-lung and follow-up upper chest/apices despite both ImagePositionPatient z -188.4 mm; recorded as a coordinate-frame counterexample, not matched anatomy.",
+      "source": ".local/explainers/core-20260929/abra-longitudinal-source/samples/same-z-input-assets.json"
+    }
+  ],
+  "clinical_or_model_run": false,
+  "scorer_run": false,
+  "acceptance_run": false,
+  "reference_initially_visible": false,
+  "official_sop_lists": [
+    {
+      "role": "baseline",
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/baseline-sops.json",
+      "sha256": "5a52a77f5bb0b720af5fccbd138f9760ebfae3aab9367c5ed851225871a27de2",
+      "sop_count": 161,
+      "http_status": 200
+    },
+    {
+      "role": "followup",
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/followup-sops.json",
+      "sha256": "2a66544d8a6282f25d5310b8e9dac6e5f0ee452e69b8d3b7111de9c86b5cbdf1",
+      "sop_count": 162,
+      "http_status": 200
+    }
+  ],
+  "full_series_urls": {
+    "baseline": "https://nlst.cancerimagingarchive.net/nbia-api/services/v1/getImage?SeriesInstanceUID=1.2.840.113654.2.55.216791194357303579492757053288225818239",
+    "followup": "https://nlst.cancerimagingarchive.net/nbia-api/services/v1/getImage?SeriesInstanceUID=1.2.840.113654.2.55.133425657552434562010061689110986632738"
+  },
+  "full_native_series": [
+    {
+      "role": "baseline",
+      "study_uid": "1.2.840.113654.2.55.290809647662655328378956880221201678366",
+      "series_uid": "1.2.840.113654.2.55.216791194357303579492757053288225818239",
+      "official_url": "https://nlst.cancerimagingarchive.net/nbia-api/services/v1/getImage?SeriesInstanceUID=1.2.840.113654.2.55.216791194357303579492757053288225818239",
+      "archive_path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/baseline-full-series.zip",
+      "archive_sha256": "b3c696a062acef3a98595535da54fd605cd447a44c36e4410b35af966d55ce22",
+      "archive_bytes": 53909019,
+      "archive_integrity": "unzip/ZipFile CRC pass; one LICENSE plus all DICOM members",
+      "inventory_path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/baseline-full-series-inventory.json",
+      "inventory_sha256": "54424d3f50c1c9279c379b947419ae893729dfe86ab1baadaea4e8bbdb2efbaa",
+      "instance_count": 161,
+      "unique_sop_count": 161,
+      "official_sop_set_match": true,
+      "official_sop_response_order_equals_zip_member_order": true,
+      "zip_order_is_physical_order": false,
+      "instance_number_range": [
+        1,
+        161
+      ],
+      "image_position_lps_z_min_max_mm": [
+        -348.4,
+        -28.4
+      ],
+      "z_increment_when_sorted_mm": 2.0,
+      "rows_columns": [
+        512,
+        512
+      ],
+      "pixel_spacing_row_col_mm": [
+        0.546875,
+        0.546875
+      ],
+      "orientation_lps": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "rescale_slope": 1,
+      "rescale_intercept_hu": -1024,
+      "native_pixel_bytes_per_instance": 524288,
+      "transfer_syntax": "1.2.840.10008.1.2.1",
+      "license": "CC BY 4.0 per official series metadata and archive LICENSE",
+      "http_status": 200
+    },
+    {
+      "role": "followup",
+      "study_uid": "1.2.840.113654.2.55.218114218074755365365153483081746300795",
+      "series_uid": "1.2.840.113654.2.55.133425657552434562010061689110986632738",
+      "official_url": "https://nlst.cancerimagingarchive.net/nbia-api/services/v1/getImage?SeriesInstanceUID=1.2.840.113654.2.55.133425657552434562010061689110986632738",
+      "archive_path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/followup-full-series.zip",
+      "archive_sha256": "bff7b882f36bfd275178d92a033be671e5ce21d81530b072993f952ea93f61a3",
+      "archive_bytes": 50488683,
+      "archive_integrity": "unzip/ZipFile CRC pass; one LICENSE plus all DICOM members",
+      "inventory_path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/followup-full-series-inventory.json",
+      "inventory_sha256": "b2e88e2dcc80e9223148ff93986c5cc4b863c791dd01bf329d43aac7994458f2",
+      "instance_count": 162,
+      "unique_sop_count": 162,
+      "official_sop_set_match": true,
+      "official_sop_response_order_equals_zip_member_order": true,
+      "zip_order_is_physical_order": false,
+      "instance_number_range": [
+        1,
+        162
+      ],
+      "image_position_lps_z_min_max_mm": [
+        -464.4,
+        -142.4
+      ],
+      "z_increment_when_sorted_mm": 2.0,
+      "rows_columns": [
+        512,
+        512
+      ],
+      "pixel_spacing_row_col_mm": [
+        0.5664062,
+        0.5664062
+      ],
+      "orientation_lps": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "rescale_slope": 1,
+      "rescale_intercept_hu": -1024,
+      "native_pixel_bytes_per_instance": 524288,
+      "transfer_syntax": "1.2.840.10008.1.2.1",
+      "license": "CC BY 4.0 per official series metadata and archive LICENSE",
+      "http_status": 200
+    }
+  ],
+  "same_z_source_input_assets": {
+    "manifest_path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/same-z-input-assets.json",
+    "manifest_sha256": "54c0b3c7c4ad1f22870b152ee587ae332d4186075695e3b4bac591e8259dd893",
+    "assets": [
+      {
+        "role": "baseline",
+        "source_member": "00000038.dcm",
+        "sop_uid": "1.2.840.113654.2.55.205358485145962419652630264848342270390",
+        "instance_number": 81,
+        "image_position_lps_mm": [
+          -148.72656,
+          -299.72656,
+          -188.4
+        ],
+        "pixel_spacing_row_col_mm": [
+          0.546875,
+          0.546875
+        ],
+        "dcm_path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/baseline-same-z-minus188p4.dcm",
+        "dcm_sha256": "95903642aac2b173c85a17655ff8cd073a713898a9304da1748b36becd31daf5",
+        "png_path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/baseline-same-z-minus188p4-lung-window.png",
+        "png_sha256": "fdedf347fa56b7254d1b110cbc19b7acf93b75ed54f6584ab6478e9b0a6db4c5",
+        "display_window_center_hu": -600,
+        "display_window_width_hu": 1500,
+        "display_transform": "clip(round((stored_value - 1024 - (-1350)) * 255 / 1500), 0, 255)"
+      },
+      {
+        "role": "followup",
+        "source_member": "00000062.dcm",
+        "sop_uid": "1.2.840.113654.2.55.117710209568229988124247909099724604584",
+        "instance_number": 24,
+        "image_position_lps_mm": [
+          -150.7168,
+          -269.7168,
+          -188.4
+        ],
+        "pixel_spacing_row_col_mm": [
+          0.5664062,
+          0.5664062
+        ],
+        "dcm_path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/followup-same-z-minus188p4.dcm",
+        "dcm_sha256": "df7c5c82c8099125f1a0ca30641994c9dbaaee34a7775b30d14272f96af35d59",
+        "png_path": ".local/explainers/core-20260929/abra-longitudinal-source/samples/followup-same-z-minus188p4-lung-window.png",
+        "png_sha256": "cb2080a0de4cae21e2addaf44fc85c7a142b8a7ee40998965fe2b356fbaacfba",
+        "display_window_center_hu": -600,
+        "display_window_width_hu": 1500,
+        "display_transform": "clip(round((stored_value - 1024 - (-1350)) * 255 / 1500), 0, 255)"
+      }
+    ],
+    "interpretation": "Actual native baseline and follow-up input images with the same numeric DICOM LPS z (-188.4 mm), separately windowed at center -600 HU/width 1500 HU. Visual inspection shows DIFFERENT anatomic levels (baseline mid-lung, follow-up near apices), proving this z equality is not a valid across-study match. No registration, pixel correspondence, or private-point overlay."
+  },
+  "viewer_slice_order_status": {
+    "status": "unverified",
+    "known": "ABRA AgentService.setSlice passes zero-based sliceIndex to OHIF jumpToImage imageIndex; getViewportState reads OHIF/Cornerstone current index. TCIA ZIP/getSOP order is non-anatomical and cannot be substituted for viewer order. DICOM InstanceNumber 1..N is monotone with decreasing LPS z, but source does not prove OHIF display-set imageId sort direction.",
+    "private_reference_slice_index": 23,
+    "candidate_if_instance_ascending_only": {
+      "followup_instance_number": 24,
+      "followup_lps_z_mm": -188.4,
+      "sop_uid": "1.2.840.113654.2.55.117710209568229988124247909099724604584"
+    },
+    "do_not_overlay_on_patient_pixels": true,
+    "reopening_gate": "Read a pinned ABRA/OHIF display-set imageId mapping or obtain a read-only viewer state showing SOPInstanceUID at set_viewport_slice(23) / get_dicom_image slice_index=23; verify orientation and row/column axes. Only then bind the private (262,355) point to a rendered follow-up slice."
+  },
+  "kind": "explainer-source-resolution",
+  "reviewed_at": "2026-09-29T04:10:14+00:00",
+  "warning_text": "Real NLST CT; no retained ABRA answer and no verified viewer-index-to-DICOM reference mapping."
+}

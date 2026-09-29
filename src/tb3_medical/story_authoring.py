@@ -177,6 +177,10 @@ def new(
             "dental-original-v1",
             "ct-organ-v1",
             "named-landmarks-v1",
+            "cardiac-contour-v1",
+            "cardiac-anchor-v1",
+            "cardiac-material-v1",
+            "cardiac-real-echo-v1",
             "clinical-cavity-v1",
             "respiratory-v1",
             "resect-correspondence-v1",
@@ -190,6 +194,24 @@ def new(
             "longitudinal-mri-v1",
         }:
             beat["scene"] = "inputs"
+        if recipe == "cardiac-mask-mechanics-v1":
+            beat["scene"] = "input-masks"
+        if recipe == "report-reading-v1":
+            beat["scene"] = "availability"
+        if recipe == "automed-kidney-v1":
+            beat["scene"] = "inputs"
+        if recipe == "bcer-brain-v1":
+            beat["scene"] = "inputs"
+        if recipe == "bcer-prostate-registration-v1":
+            beat["scene"] = "availability"
+        if recipe == "abra-longitudinal-v1":
+            beat["scene"] = "inputs"
+        if recipe == "rexmle-dentex-v1":
+            beat["scene"] = "input"
+        if recipe == "rex-isles22-v1":
+            beat["scene"] = "inputs"
+        if recipe == "rexmle-neurips-cellseg-v1":
+            beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":
             beat["scene"] = "pair"
         if recipe == "vessel-source-v1":

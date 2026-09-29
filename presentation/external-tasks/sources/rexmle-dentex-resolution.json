@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "rexmle-dentex",
+  "status": "task-matched source example recovered; ReX scorer category mismatch unresolved",
+  "illustration_basis": "mixed",
+  "reference_policy": "reader-reference-reveal",
+  "source_revision": "ReX-MLE b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53",
+  "source_url": "https://zenodo.org/records/7812323",
+  "source_license": "CC-BY-4.0",
+  "source_archive": "training_data.zip; Zenodo MD5 eba0c44fa4c6e8ec221db3009eccc1f9; archive not downloaded whole",
+  "pinned_adapter_files": {
+    "prepare.py": "0ab695a5e3e911cc9790389e323cc7352e60f65a3640eedc57f46dc83dfeccfe",
+    "grade.py": "4998d876ed2e5444743a093ccfadf00ad72673c3f23dbfe0c5bd5d417c8424d1",
+    "config.yaml": "042ec7fe7913f776227f1b7cdcc23bde749bc6e28e0c16a2935bb368f3fa6484"
+  },
+  "selected_case": {
+    "source_image_id": 142,
+    "source_filename": "train_266.png",
+    "source_image_sha256": "ac62de4d5587c9da20fc0995a01ad0e61e3d7329e5c9e9c59f74330bc234a00c",
+    "source_image_size_px": [
+      1976,
+      976
+    ],
+    "source_annotation_sha256": "6e1f702cfd6c83bc63660d9a0fd79fe5b26d5a54b63d93b954a02cc254314483",
+    "private_reference_excerpt_sha256": "460bd63f3fb14c18a1a2705ba544abd7f385c4dfe0a8592a81b9441bacbce6d1",
+    "private_reference_box_count": 5,
+    "rex_public_input": "test/images/train_266.png",
+    "rex_private_reference": "ground_truth/train_266.json",
+    "rex_submission_row": {
+      "image_id": "train_266",
+      "predictions_json": "predictions/train_266.json"
+    }
+  },
+  "split_derivation": "Pinned prepare.py shuffles 705 fully labeled source image IDs with Python random seed 42, takes 564 public train and 141 private-label test. Selected image is in test. This is a static reproduction of split logic, not an executed ReX preparation.",
+  "actual_data_gap": "One exact source image and its private reference were recovered, but no ReX staging or model prediction/judge run was materialized. Pinned grader declares category IDs 1-based while source annotations are 0-based, so AP meaning remains under review. Original challenge validation/test splits are not the ReX 564/141 split.",
+  "acquisition_route": "Official Zenodo 7812323 training_data.zip; HTTP byte ranges can recover individual archive members. To materialize the complete ReX staging, retrieve the full official archive and run the pinned preparation in a separate authorized workflow, then inspect the category mismatch before using scores.",
+  "attempts": [
+    {
+      "action": "Fetch pinned ReX source archive",
+      "source": "https://github.com/rajpurkarlab/ReX-MLE/archive/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53.tar.gz",
+      "attempted_at": "2026-09-29T03:53:48Z",
+      "outcome": "Approved network fetch succeeded; 12204410 bytes, SHA256 82d18d7bfb3a69719284ed33e29feb33d409f1c8f7e49961b9357832a1141bac. Timestamp is local artifact completion time, not request start."
+    },
+    {
+      "action": "Fetch official Zenodo API metadata",
+      "source": "https://zenodo.org/api/records/7812323",
+      "attempted_at": "2026-09-29T03:56:50Z",
+      "outcome": "Succeeded; CC-BY-4.0, 10471 bytes, SHA256 9fe5baa6acd15a814124fa84bc0c9f446321a0790c08b194ab6cb9e6180f08cd. Timestamp is local metadata file completion time, not request start."
+    },
+    {
+      "action": "Range-read official training_data.zip central directory",
+      "source": "https://zenodo.org/records/7812323/files/training_data.zip?download=1",
+      "attempted_at": "2026-09-29T03:59:51Z",
+      "outcome": "HTTP 206; 3615 ZIP members indexed from retained 600 KB tail; no full archive download. Headers and index retained locally."
+    },
+    {
+      "action": "Range-read and CRC-verify source COCO annotation member",
+      "source": "training_data/quadrant-enumeration-disease/train_quadrant_enumeration_disease.json within official training_data.zip",
+      "attempted_at": "2026-09-29T04:01:38Z",
+      "outcome": "Succeeded; 1188275 uncompressed bytes, SHA256 6e1f702cfd6c83bc63660d9a0fd79fe5b26d5a54b63d93b954a02cc254314483; 705 images and 3529 annotations."
+    },
+    {
+      "action": "Range-read and CRC-verify selected source image member",
+      "source": "training_data/quadrant-enumeration-disease/xrays/train_266.png within official training_data.zip",
+      "attempted_at": "2026-09-29T04:02:46Z",
+      "outcome": "Succeeded; 2424717 uncompressed bytes, SHA256 ac62de4d5587c9da20fc0995a01ad0e61e3d7329e5c9e9c59f74330bc234a00c."
+    }
+  ],
+  "license": "CC-BY-4.0; official DENTEX source, attributed local teaching",
+  "warning_text": "Real DENTEX radiograph and five source reference boxes; no saved prediction or validated AP. The pinned ReX scorer category mapping disagrees with source labels.",
+  "staged_asset_pack": "retained-rexmle-dentex-v1",
+  "reopening_condition": "Resolve category-ID mapping with pinned scorer fixture before claiming AP; separately authorize any model run or runtime visibility audit."
+}
