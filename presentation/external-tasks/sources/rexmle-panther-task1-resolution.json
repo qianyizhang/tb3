@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "status": "symbolic-production-draft",
+  "reviewed_at": "2026-09-29T04:38:00Z",
+  "source_commit": "b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53",
+  "source_archive": {
+    "path": "pinned-source/rex-mle-b3d8f7c-source.tar.gz",
+    "url": "https://codeload.github.com/rajpurkarlab/ReX-MLE/tar.gz/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53",
+    "sha256": "82d18d7bfb3a69719284ed33e29feb33d409f1c8f7e49961b9357832a1141bac",
+    "bytes": 12204410
+  },
+  "git_tree": {
+    "path": "pinned-source/github-tree.json",
+    "url": "https://api.github.com/repos/rajpurkarlab/ReX-MLE/git/trees/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53?recursive=1",
+    "sha256": "6550c5e942c71cef1ba6795a0c43df4c066169779213d76e609ffaabfe2c6463",
+    "all_adapter_git_blobs_verified": true
+  },
+  "clinical_structure_audit": {
+    "path": ".local/explainers/core-20260929/clinical-structure-source/resolution-draft.json",
+    "sha256": "8695ada6bbc01d31af7381a252ad2a73aab8d9fbc1ca5b03fb3d81c7029a8056"
+  },
+  "model_run": false,
+  "preparer_run": false,
+  "grader_run": false,
+  "acceptance_run": false,
+  "entry_id": "rexmle-panther-task1",
+  "illustration_basis": "symbolic",
+  "source_files": [
+    {
+      "path": "pinned-source/adapters/panther-task1/description.md",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task1/description.md",
+      "sha256": "e5d7b0faaa32f3c3dca0dee31154316166b0c1e58ac754d8636a00e0c2e1e0ff"
+    },
+    {
+      "path": "pinned-source/adapters/panther-task1/prepare.py",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task1/prepare.py",
+      "sha256": "0b4b0d21de0f2d2b20edf7b36aff94d926c208d88ed4fd3da7365ebf172361eb"
+    },
+    {
+      "path": "pinned-source/adapters/panther-task1/grade.py",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task1/grade.py",
+      "sha256": "11fa20d2023e89b7e984216a47cf6a259f395255ccf812c2da4d17e2b3bd1eff"
+    },
+    {
+      "path": "pinned-source/adapters/panther-task1/config.yaml",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task1/config.yaml",
+      "sha256": "e293bdd01d1fb5ee87f7f75b04eda8c734d7d4203f4bca991ecce93588e16105"
+    },
+    {
+      "path": "pinned-source/adapters/panther-task1/metric_config.json",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task1/metric_config.json",
+      "sha256": "cc99efc62552091014ac84632b89a476b9870eb5231ed33096d9b8d3602fa255"
+    }
+  ],
+  "brief": {
+    "path": "presentation/external-tasks/briefs/rexmle-panther-task1.md",
+    "sha256": "9a5a6e8cda850cd464442e6c445726e0b05293538d79c8be424f09b45233b7db"
+  },
+  "actual_data_gap": "Exact pinned ReX adapter code is retained and verified, but no task-matched native PANTHER MRI, training label, held-out case or prediction is locally available. Official Zenodo files are restricted and absent from anonymous API metadata; no patient pixels can be used in this explanation.",
+  "acquisition_route": "https://zenodo.org/records/15192302 ; official noncommercial research access request with institution and intended use. No anonymous matching file URL or small sample is exposed.",
+  "top_warning": "Symbolic PANTHER task diagram: no matching native MRI or tumor mask is locally available; request noncommercial access at https://zenodo.org/records/15192302.",
+  "source_roles": {
+    "original_input": "arterial-phase T1 contrast-enhanced diagnostic MRI MHA; patient case absent locally",
+    "supplied_helper": "public training images and masks; optional other-sequence unlabeled training images when ImagesTr_unlabeled exists",
+    "answer_owned_output": "submission.csv columns image_id,predicted_mask_path plus predictions/<image_id>.mha binary tumor mask; no saved output",
+    "private_reference": "private test tumor mask from matched source label; no actual reference pixels retained",
+    "evaluator": "pinned grade.py loads prediction and private label, extracts tumor class 1 from GT, computes mean Dice plus 5-mm Surface Dice, HD95, MASD and tumor-volume RMSE"
+  },
+  "contract": {
+    "source_images_pattern": "*_0001_0000.mha",
+    "label_pattern": "<first-two-ID>.mha",
+    "train_test_split": "73/19 if all 92 match; code sorts matched IDs and uses train_test_split(test_size=0.2, random_state=42)",
+    "submission_columns": [
+      "image_id",
+      "predicted_mask_path"
+    ],
+    "sample_prediction_name": "predictions/<image_id>.mha",
+    "output_mask": "binary 0 background / 1 tumor; GT may also have value 2 pancreas, but grader converts GT == 1",
+    "grader_caveats": "Resizes shape-mismatched predictions nearest neighbor; uses prediction-file spacing for surface and volume metrics, does not validate affine/origin/direction equality. Overall is leaderboard mean position if available, otherwise negative primary Dice. No model or grader executed."
+  },
+  "official_dataset": {
+    "record": "https://zenodo.org/records/15192302",
+    "api_path": "pinned-source/zenodo-15192302.json",
+    "api_sha256": "37c341b64da872e38885231e569413d06180cbdd42da4068c582138652f49f6b",
+    "access": "restricted; API files list empty anonymously",
+    "record_license_id": "cc-by-nc-4.0",
+    "rex_config_license": "CC BY-NC-SA 4.0",
+    "license_boundary": "Do not collapse conflicting licenses; official record requires researcher request and says no redistribution. Local interpretation authorized, no public patient assets."
+  },
+  "attempts": [
+    {
+      "attempted_at": "2026-09-29T04:12:59+00:00",
+      "action": "fetch pinned ReX source archive and verify five exact panther-task1 adapter Git blobs",
+      "source": "https://codeload.github.com/rajpurkarlab/ReX-MLE/tar.gz/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53",
+      "outcome": "HTTP 200; description, prepare, grade, config and metric config SHA-256 pinned; all Git blob IDs match commit"
+    },
+    {
+      "attempted_at": "2026-09-29T04:14:29+00:00",
+      "action": "inspect official PANTHER Zenodo API for matching files and license",
+      "source": "https://zenodo.org/api/records/15192302",
+      "outcome": "HTTP 200 record metadata, access_right restricted, anonymous files list empty; no small matching image/label file exposed"
+    },
+    {
+      "attempted_at": "2026-09-29T04:19:49+00:00",
+      "action": "reuse prior bounded local PANTHER asset audit",
+      "source": ".local/explainers/core-20260929/clinical-structure-source/resolution-draft.json",
+      "outcome": "No matching MHA MRI or tumor mask; AutoMedBench PANTHER tarballs are distinct task code, not ReX source data"
+    }
+  ],
+  "reopen_condition": "After authorized access, retain a task-matched image and training label with case ID, MHA dimensions/spacing/origin/direction, split role, terms and SHA-256; keep held-out reference private. Only then author source-derived patient imagery. Verify executed staging before case-count or score claims.",
+  "source_code_license": "No LICENSE file in pinned ReX-MLE Git tree; code license not independently established in this audit.",
+  "source_class": "source-derived-teaching",
+  "reference_policy": "no-reference-assets",
+  "label_license": null,
+  "runtime_geometry": "source-records",
+  "pack_basis_note": "Document-pinned ReX source contract only. The illustration is symbolic and contains no patient MRI pixels, native geometry or private reference asset."
+}

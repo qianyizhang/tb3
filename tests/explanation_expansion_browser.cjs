@@ -28,6 +28,8 @@ const cardiacRecipes = new Set([
   'cardiac-contour-v1',
   'cardiac-anchor-v1',
   'cardiac-material-v1',
+  'rex-panther-task2-v1',
+  'rex-panther-task1-v1',
   'rexmle-neurips-cellseg-v1',
   'rex-isles22-v1',
   'rexmle-dentex-v1',
@@ -48,6 +50,22 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'rex-panther-task2-v1')
+    return {
+      scene: 'data-panther-scene',
+      reference: '[data-panther-private-reference]',
+      referenceChannel: null,
+      output: '[data-panther-output-schema]',
+      aside: '[data-panther-output]',
+    };
+  if (plan.recipe === 'rex-panther-task1-v1')
+    return {
+      scene: 'data-panther-scene',
+      reference: '[data-panther-private-reference]',
+      referenceChannel: null,
+      output: '[data-panther-output-schema]',
+      aside: '[data-panther-output]',
+    };
   if (plan.recipe === 'rexmle-neurips-cellseg-v1')
     return {
       scene: 'data-cellseg-scene',
@@ -142,6 +160,16 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'rex-panther-task2-v1': [
+      /No matching MRI or tumor mask/,
+      'https://zenodo.org/records/15192302',
+      'data-panther-scene',
+    ],
+    'rex-panther-task1-v1': [
+      /No matching MRI or tumor mask/,
+      'https://zenodo.org/records/15192302',
+      'data-panther-scene',
+    ],
     'rexmle-neurips-cellseg-v1': [
       /Real training image and labels/,
       'https://zenodo.org/records/10719375',
@@ -413,6 +441,8 @@ withBrowser(async (browser) => {
           'cardiac-contour-v1',
           'cardiac-anchor-v1',
           'cardiac-material-v1',
+          'rex-panther-task2-v1',
+          'rex-panther-task1-v1',
           'rexmle-neurips-cellseg-v1',
           'rex-isles22-v1',
           'rexmle-dentex-v1',
@@ -3300,6 +3330,8 @@ withBrowser(async (browser) => {
       'cardiac-contour-v1',
       'cardiac-anchor-v1',
       'cardiac-material-v1',
+      'rex-panther-task2-v1',
+      'rex-panther-task1-v1',
       'rexmle-neurips-cellseg-v1',
       'rex-isles22-v1',
       'rexmle-dentex-v1',

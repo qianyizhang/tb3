@@ -75,6 +75,8 @@ export function isPlanarStory(plan: StoryPlan): boolean {
   return [
     'cardiac-anchor-v1',
     'cardiac-material-v1',
+    'rex-panther-task2-v1',
+    'rex-panther-task1-v1',
     'rexmle-neurips-cellseg-v1',
     'rex-isles22-v1',
     'rexmle-dentex-v1',
@@ -313,6 +315,38 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Actual training image'],
           ['#2b9f85', 'Training labels (instance colors)'],
           ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'rex-panther-task1-v1':
+      return {
+        heading: 'Segment pancreatic tumor on diagnostic T1 MRI',
+        corner: 'PANTHER Task 1 · symbolic source contract',
+        warning: {
+          label: 'Symbolic illustration',
+          text: 'No matching MRI or tumor mask retained; official data requires research access.',
+          url: 'https://zenodo.org/records/15192302',
+          link_label: 'Request source data',
+        },
+        legend: [
+          ['#4f7c89', 'Abstract index grid'],
+          ['#16a6a9', 'Empty output schema'],
+          ['#d08b42', 'Documented evaluator roles'],
+        ],
+      };
+    case 'rex-panther-task2-v1':
+      return {
+        heading: 'Segment pancreatic tumor on MR-Linac T2 MRI',
+        corner: 'PANTHER Task 2 · symbolic source contract',
+        warning: {
+          label: 'Symbolic illustration',
+          text: 'No matching MRI or tumor mask retained; official data requires research access.',
+          url: 'https://zenodo.org/records/15192302',
+          link_label: 'Request source data',
+        },
+        legend: [
+          ['#4f7c89', 'Abstract index grid'],
+          ['#16a6a9', 'Empty output schema'],
+          ['#d08b42', 'Documented evaluator roles'],
         ],
       };
     case 'cardiac-material-v1':

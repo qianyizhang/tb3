@@ -1,28 +1,8 @@
 # Explainer dependency register
 
-Core: **154** · reviewed: **60** · ready: **1** · needs resolution: **93** · deferred: **0**
+Core: **154** · reviewed: **63** · ready: **0** · needs resolution: **91** · deferred: **0**
 
 This is a derived view of EXPLAINER-SCOPE.json and EXPLAINER-LEDGER.json. Deferral does not confer visual acceptance.
-
-## rexmle-panther-task1 — Segment pancreatic tumor on diagnostic MRI
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-contract
-- **Queue state:** needs-resolution
-- **Classification:** contract-audit
-- **Attempt:** task-specific-audit-not-established-by-ledger
-- **Current next action:** Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.
-- **Prior blocker:** Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-panther-task1. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.
-
-## rexmle-panther-task2 — Segment pancreatic tumor on radiotherapy MRI
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-contract
-- **Queue state:** needs-resolution
-- **Classification:** contract-audit
-- **Attempt:** task-specific-audit-not-established-by-ledger
-- **Current next action:** Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.
-- **Prior blocker:** Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-panther-task2. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.
 
 ## rexmle-puma-track1-task1 — Label tissue types in melanoma histology
 

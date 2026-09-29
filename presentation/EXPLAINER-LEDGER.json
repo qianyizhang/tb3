@@ -15034,15 +15034,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "abdomen",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "rexmle-panther-task1",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-panther-task1. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/panther1-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Contrast-enhanced arterial-phase T1-weighted pancreas MRI.",
         "helpers": "Training tumor masks and image-geometry metadata. These are training aids; held-out targets remain evaluation references.",
@@ -15075,14 +15075,105 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T05:53:15.471356+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/rexmle-panther-task1-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "Exact pinned ReX adapter code is retained and verified, but no task-matched native PANTHER MRI, training label, held-out case or prediction is locally available. Official Zenodo files are restricted and absent from anonymous API metadata; no patient pixels can be used in this explanation.",
+      "acquisition_route": "https://zenodo.org/records/15192302 ; official noncommercial research access request with institution and intended use. No anonymous matching file URL or small sample is exposed.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-panther-task1-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/rexmle-panther-task1-resolution.json",
+        "receipt_sha256": "e29fedd4d0f0348277f0023e6f0033b724fe679f8705a8a317aa5fdb8eb4b839",
+        "brief_sha256": "48e4cddb47dd52840886e379d3fe580a4f51401c7a5eca4d31c90bef37a67442",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Symbolic PANTHER task diagram: no matching native MRI or tumor mask is locally available; request noncommercial access at https://zenodo.org/records/15192302.",
+      "acceptance_scope": "Symbolic PANTHER Task 1 explanation pinned to the exact ReX adapter and official restricted-data record. Acceptance covers a 50-second task contract explanation, not patient image interpretation, executed segmentation or a clinical result.",
+      "completion_review": {
+        "date": "2026-09-29T06:06:22.233765+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "4cbb9bdada07f0da4a316867426a666684e7f62da7b395fed89bae534655a882"
+      },
+      "reviewed_contract_projection": {
+        "title": "Segment pancreatic tumor on diagnostic MRI",
+        "goal": "Produce a binary pancreatic tumor mask for held-out arterial-phase contrast-enhanced T1 diagnostic MRI from Siemens scanners. This source-backed explainer is **symbolic** because the official matching MRI and labels are restricted and unavailable locally; [request research access](https://zenodo.org/records/15192302). No patient pixels, prediction or score appear.",
+        "value": "Not yet specified.",
+        "raw": "The pinned ReX preparer expects native MHA volumes named `ImagesTr/*_0001_0000.mha` and matches source labels at `LabelsTr/<first-two-ID>.mha`. The source description names 92 annotated cases. It sorts matched cases and applies `train_test_split(test_size=0.2, random_state=42)`: **73 training / 19 test only if all 92 described cases match**. No preparer run or native case geometry is retained here. Official PANTHER files require noncommercial research access and are absent from the anonymous record's file list.",
+        "helpers": "Public training images and tumor masks. If ImagesTr_unlabeled exists, the pinned preparer also copies other-sequence unlabeled MRI into train_unlabeled/images; these are not paired arterial labels or held-out answers. The held-out input image is public in the ReX staging contract; its label is not.",
+        "tools": "A participant may build and run an allowed image-segmentation method and write MHA predictions in the task environment. This explanation did not install dependencies or run preparation, inference or grading.",
+        "reference": "The pinned preparer stages held-out tumor masks under `private/test/labels` with `test_labels.csv`; those are evaluator material. Source labels may include 0 background, 1 tumor and 2 pancreas; pinned grading extracts `GT == 1`. No held-out label pixels are bundled or revealed as patient imagery. The diagnostic T1 input is distinct from treatment-room MR-Linac T2. No cross-task patient pairing or registration is supplied.",
+        "spec": "Segment tumor on each public held-out arterial-phase contrast-enhanced T1 diagnostic MRI from Siemens scanners. Use the current image's native MHA dimensions, spacing, origin and direction when constructing the answer mask. These values are unknown in this symbolic pack. Public training masks are method help; they do not substitute for a private held-out mask.",
+        "output": "The **pinned ReX adapter**, rather than the prose example in its challenge description, defines `submission/submission.csv` columns `image_id,predicted_mask_path`; each row points to `predictions/<image_id>.mha`. The answer is a binary mask, 0 background and 1 tumor, in the current input grid. Here the CSV and MHA mask are empty schema illustrations, not files produced by an agent.",
+        "score": "The pinned grader defines Dice, 5-mm Surface Dice, HD95, MASD and tumor-volume RMSE. It resizes shape-mismatched predictions by nearest neighbor, reads physical spacing from the **prediction** MHA for surface/volume metrics, and does not compare affine, origin or direction equality. Consequently an array score would not by itself prove physical alignment. No metric result is reported. The original description discusses diagnostic segmentation; this pack does not depict a patient or establish diagnostic accuracy.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "No task-matched MRI, native MHA geometry, training label, held-out case, prediction or score is available locally. The official record lists CC-BY-NC-4.0 and no redistribution for granted files, while the pinned ReX config says CC BY-NC-SA 4.0; these terms are not reconciled here. Source-derived patient views require approved access, exact file/case hashes and verified split roles. The diagrams remain symbolic even though their contract is pinned to source code.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "Public training images and tumor masks. If ImagesTr_unlabeled exists, the pinned preparer also copies other-sequence unlabeled MRI into train_unlabeled/images; these are not paired arterial labels or held-out answers. The held-out input image is public in the ReX staging contract; its label is not.",
+            "remaining": "Segment tumor on each public held-out arterial-phase contrast-enhanced T1 diagnostic MRI from Siemens scanners. Use the current image's native MHA dimensions, spacing, origin and direction when constructing the answer mask. These values are unknown in this symbolic pack. Public training masks are method help; they do not substitute for a private held-out mask."
+          }
+        ],
+        "sources": [
+          [
+            "Official restricted PANTHER record",
+            "https://zenodo.org/records/15192302"
+          ],
+          [
+            "Pinned ReX Task 1 description",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task1/description.md"
+          ],
+          [
+            "Pinned ReX Task 1 preparer",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task1/prepare.py"
+          ],
+          [
+            "Pinned ReX Task 1 grader",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task1/grade.py"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Produce a binary pancreatic tumor mask for held-out arterial-phase contrast-enhanced T1 diagnostic MRI from Siemens scanners. This source-backed explainer is <strong>symbolic</strong> because the official matching MRI and labels are restricted and unavailable locally; <a href=\"https://zenodo.org/records/15192302\">request research access</a>. No patient pixels, prediction or score appear.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The pinned ReX preparer expects native MHA volumes named <code>ImagesTr/*_0001_0000.mha</code> and matches source labels at <code>LabelsTr/&lt;first-two-ID&gt;.mha</code>. The source description names 92 annotated cases. It sorts matched cases and applies <code>train_test_split(test_size=0.2, random_state=42)</code>: <strong>73 training / 19 test only if all 92 described cases match</strong>. No preparer run or native case geometry is retained here. Official PANTHER files require noncommercial research access and are absent from the anonymous record&#x27;s file list.</p>",
+          "helpers": "<p>Public training images and tumor masks. If ImagesTr_unlabeled exists, the pinned preparer also copies other-sequence unlabeled MRI into train_unlabeled/images; these are not paired arterial labels or held-out answers. The held-out input image is public in the ReX staging contract; its label is not.</p>",
+          "tools": "<p>A participant may build and run an allowed image-segmentation method and write MHA predictions in the task environment. This explanation did not install dependencies or run preparation, inference or grading.</p>",
+          "reference": "<p>The pinned preparer stages held-out tumor masks under <code>private/test/labels</code> with <code>test_labels.csv</code>; those are evaluator material. Source labels may include 0 background, 1 tumor and 2 pancreas; pinned grading extracts <code>GT == 1</code>. No held-out label pixels are bundled or revealed as patient imagery. The diagnostic T1 input is distinct from treatment-room MR-Linac T2. No cross-task patient pairing or registration is supplied.</p>",
+          "spec": "<p>Segment tumor on each public held-out arterial-phase contrast-enhanced T1 diagnostic MRI from Siemens scanners. Use the current image&#x27;s native MHA dimensions, spacing, origin and direction when constructing the answer mask. These values are unknown in this symbolic pack. Public training masks are method help; they do not substitute for a private held-out mask.</p>",
+          "output": "<p>The <strong>pinned ReX adapter</strong>, rather than the prose example in its challenge description, defines <code>submission/submission.csv</code> columns <code>image_id,predicted_mask_path</code>; each row points to <code>predictions/&lt;image_id&gt;.mha</code>. The answer is a binary mask, 0 background and 1 tumor, in the current input grid. Here the CSV and MHA mask are empty schema illustrations, not files produced by an agent.</p>",
+          "score": "<p>The pinned grader defines Dice, 5-mm Surface Dice, HD95, MASD and tumor-volume RMSE. It resizes shape-mismatched predictions by nearest neighbor, reads physical spacing from the <strong>prediction</strong> MHA for surface/volume metrics, and does not compare affine, origin or direction equality. Consequently an array score would not by itself prove physical alignment. No metric result is reported. The original description discusses diagnostic segmentation; this pack does not depict a patient or establish diagnostic accuracy.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>No task-matched MRI, native MHA geometry, training label, held-out case, prediction or score is available locally. The official record lists CC-BY-NC-4.0 and no redistribution for granted files, while the pinned ReX config says CC BY-NC-SA 4.0; these terms are not reconciled here. Source-derived patient views require approved access, exact file/case hashes and verified split roles. The diagrams remain symbolic even though their contract is pinned to source code.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -15100,15 +15191,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "abdomen",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "rexmle-panther-task2",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-panther-task2. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/panther2-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "T2-weighted MR-Linac scans acquired for radiotherapy.",
         "helpers": "Training tumor masks and case/scan metadata. These are training aids; held-out targets remain evaluation references.",
@@ -15141,14 +15232,105 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T06:06:42.804475+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/rexmle-panther-task2-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "Exact pinned ReX adapter code is retained and verified, but no task-matched native PANTHER MRI, training label, held-out case or prediction is locally available. Official Zenodo files are restricted and absent from anonymous API metadata; no patient pixels can be used in this explanation.",
+      "acquisition_route": "https://zenodo.org/records/15192302 ; official noncommercial research access request with institution and intended use. No anonymous matching file URL or small sample is exposed.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-panther-task2-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/rexmle-panther-task2-resolution.json",
+        "receipt_sha256": "8bc06a984c3857eda57223018a0064be7eed541ade180d07d6ba3fbdb0c18707",
+        "brief_sha256": "5436f77508f3478638183ee894a9fca0944706f856769bdfd6c3c1a4895f7202",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Symbolic PANTHER task diagram: no matching native MRI or tumor mask is locally available; request noncommercial access at https://zenodo.org/records/15192302.",
+      "acceptance_scope": "Symbolic PANTHER Task 2 explanation pinned to the exact ReX adapter and official restricted-data record. Acceptance covers a 50-second task contract explanation, not patient image interpretation, executed segmentation or a clinical result.",
+      "completion_review": {
+        "date": "2026-09-29T06:12:09.834608+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "87a8d6014fd9a922c7e76a3d227a95ba518ff053639c552953d6ea236f7080d8"
+      },
+      "reviewed_contract_projection": {
+        "title": "Segment pancreatic tumor on MR-Linac MRI",
+        "goal": "Produce a binary pancreatic tumor mask for held-out T2-weighted MRI from an Elekta Unity MR-Linac during radiotherapy. This source-backed explainer is **symbolic** because the official matching MRI and labels are restricted and unavailable locally; [request research access](https://zenodo.org/records/15192302). No patient pixels, prediction or score appear.",
+        "value": "Not yet specified.",
+        "raw": "The pinned ReX preparer expects native MHA volumes named `ImagesTr/*_0000.mha` and matches source labels at `LabelsTr/<patient-ID>.mha`. The source description names 50 annotated cases. It sorts matched cases and applies `train_test_split(test_size=0.2, random_state=42)`: **40 training / 10 test only if all 50 described cases match**. No preparer run or native case geometry is retained here. Official PANTHER files require noncommercial research access and are absent from the anonymous record's file list.",
+        "helpers": "Public current-domain training images and tumor masks, plus case/scan metadata. Diagnostic Task 1 data are a different imaging domain; any transfer method would be a development choice, not a registered same-patient label. The held-out input image is public in the ReX staging contract; its label is not.",
+        "tools": "A participant may build and run an allowed image-segmentation method and write MHA predictions in the task environment. This explanation did not install dependencies or run preparation, inference or grading.",
+        "reference": "The pinned preparer stages held-out tumor masks under `private/test/labels` with `test_labels.csv`; those are evaluator material. Source labels may include 0 background, 1 tumor and 2 pancreas; pinned grading extracts `GT == 1`. No held-out label pixels are bundled or revealed as patient imagery. This task describes a current-session tumor contour, not an adaptive treatment plan, delivery result or cross-session deformation.",
+        "spec": "Segment tumor on each public held-out T2-weighted MRI from an Elekta Unity MR-Linac during radiotherapy. Use the current image's native MHA dimensions, spacing, origin and direction when constructing the answer mask. These values are unknown in this symbolic pack. Public training masks are method help; they do not substitute for a private held-out mask.",
+        "output": "The **pinned ReX adapter**, rather than the prose example in its challenge description, defines `submission/submission.csv` columns `image_id,predicted_mask_path`; each row points to `predictions/<image_id>.mha`. The answer is a binary mask, 0 background and 1 tumor, in the current input grid. Here the CSV and MHA mask are empty schema illustrations, not files produced by an agent.",
+        "score": "The pinned grader defines Dice, 5-mm Surface Dice, HD95, MASD and tumor-volume RMSE. It resizes shape-mismatched predictions by nearest neighbor, reads physical spacing from the **prediction** MHA for surface/volume metrics, and does not compare affine, origin or direction equality. Consequently an array score would not by itself prove physical alignment. No metric result is reported. Inference time matters in the radiotherapy workflow, but the pinned ReX grader does not measure it.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "No task-matched MRI, native MHA geometry, training label, held-out case, prediction or score is available locally. The official record lists CC-BY-NC-4.0 and no redistribution for granted files, while the pinned ReX config says CC BY-NC-SA 4.0; these terms are not reconciled here. Source-derived patient views require approved access, exact file/case hashes and verified split roles. The diagrams remain symbolic even though their contract is pinned to source code.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "Public current-domain training images and tumor masks, plus case/scan metadata. Diagnostic Task 1 data are a different imaging domain; any transfer method would be a development choice, not a registered same-patient label. The held-out input image is public in the ReX staging contract; its label is not.",
+            "remaining": "Segment tumor on each public held-out T2-weighted MRI from an Elekta Unity MR-Linac during radiotherapy. Use the current image's native MHA dimensions, spacing, origin and direction when constructing the answer mask. These values are unknown in this symbolic pack. Public training masks are method help; they do not substitute for a private held-out mask."
+          }
+        ],
+        "sources": [
+          [
+            "Official restricted PANTHER record",
+            "https://zenodo.org/records/15192302"
+          ],
+          [
+            "Pinned ReX Task 2 description",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task2/description.md"
+          ],
+          [
+            "Pinned ReX Task 2 preparer",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task2/prepare.py"
+          ],
+          [
+            "Pinned ReX Task 2 grader",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task2/grade.py"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Produce a binary pancreatic tumor mask for held-out T2-weighted MRI from an Elekta Unity MR-Linac during radiotherapy. This source-backed explainer is <strong>symbolic</strong> because the official matching MRI and labels are restricted and unavailable locally; <a href=\"https://zenodo.org/records/15192302\">request research access</a>. No patient pixels, prediction or score appear.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The pinned ReX preparer expects native MHA volumes named <code>ImagesTr/*_0000.mha</code> and matches source labels at <code>LabelsTr/&lt;patient-ID&gt;.mha</code>. The source description names 50 annotated cases. It sorts matched cases and applies <code>train_test_split(test_size=0.2, random_state=42)</code>: <strong>40 training / 10 test only if all 50 described cases match</strong>. No preparer run or native case geometry is retained here. Official PANTHER files require noncommercial research access and are absent from the anonymous record&#x27;s file list.</p>",
+          "helpers": "<p>Public current-domain training images and tumor masks, plus case/scan metadata. Diagnostic Task 1 data are a different imaging domain; any transfer method would be a development choice, not a registered same-patient label. The held-out input image is public in the ReX staging contract; its label is not.</p>",
+          "tools": "<p>A participant may build and run an allowed image-segmentation method and write MHA predictions in the task environment. This explanation did not install dependencies or run preparation, inference or grading.</p>",
+          "reference": "<p>The pinned preparer stages held-out tumor masks under <code>private/test/labels</code> with <code>test_labels.csv</code>; those are evaluator material. Source labels may include 0 background, 1 tumor and 2 pancreas; pinned grading extracts <code>GT == 1</code>. No held-out label pixels are bundled or revealed as patient imagery. This task describes a current-session tumor contour, not an adaptive treatment plan, delivery result or cross-session deformation.</p>",
+          "spec": "<p>Segment tumor on each public held-out T2-weighted MRI from an Elekta Unity MR-Linac during radiotherapy. Use the current image&#x27;s native MHA dimensions, spacing, origin and direction when constructing the answer mask. These values are unknown in this symbolic pack. Public training masks are method help; they do not substitute for a private held-out mask.</p>",
+          "output": "<p>The <strong>pinned ReX adapter</strong>, rather than the prose example in its challenge description, defines <code>submission/submission.csv</code> columns <code>image_id,predicted_mask_path</code>; each row points to <code>predictions/&lt;image_id&gt;.mha</code>. The answer is a binary mask, 0 background and 1 tumor, in the current input grid. Here the CSV and MHA mask are empty schema illustrations, not files produced by an agent.</p>",
+          "score": "<p>The pinned grader defines Dice, 5-mm Surface Dice, HD95, MASD and tumor-volume RMSE. It resizes shape-mismatched predictions by nearest neighbor, reads physical spacing from the <strong>prediction</strong> MHA for surface/volume metrics, and does not compare affine, origin or direction equality. Consequently an array score would not by itself prove physical alignment. No metric result is reported. Inference time matters in the radiotherapy workflow, but the pinned ReX grader does not measure it.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>No task-matched MRI, native MHA geometry, training label, held-out case, prediction or score is available locally. The official record lists CC-BY-NC-4.0 and no redistribution for granted files, while the pinned ReX config says CC BY-NC-SA 4.0; these terms are not reconciled here. Source-derived patient views require approved access, exact file/case hashes and verified split roles. The diagrams remain symbolic even though their contract is pinned to source code.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -19516,10 +19698,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 56,
+    "reviewed-scripted-planar": 58,
     "reviewed-scripted-spatial": 13,
     "blocked-source-input": 51,
-    "blocked-source-contract": 84,
+    "blocked-source-contract": 82,
     "pending-operation-review": 1
   },
   "completion_program": {

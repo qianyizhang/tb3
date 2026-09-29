@@ -1,79 +1,48 @@
 # Segment pancreatic tumor on diagnostic MRI
 
-Develop and apply a prediction method to segment pancreatic tumor on diagnostic MRI.
-
-## Value
-
-These spatial labels make structures or abnormalities available for quantitative analysis and review. They do not by themselves establish a diagnosis.
+Produce a binary pancreatic tumor mask for held-out arterial-phase contrast-enhanced T1 diagnostic MRI from Siemens scanners. This source-backed explainer is **symbolic** because the official matching MRI and labels are restricted and unavailable locally; [request research access](https://zenodo.org/records/15192302). No patient pixels, prediction or score appear.
 
 ## Given
 
 ### Original data
 
-Contrast-enhanced arterial-phase T1-weighted pancreas MRI.
+The pinned ReX preparer expects native MHA volumes named `ImagesTr/*_0001_0000.mha` and matches source labels at `LabelsTr/<first-two-ID>.mha`. The source description names 92 annotated cases. It sorts matched cases and applies `train_test_split(test_size=0.2, random_state=42)`: **73 training / 19 test only if all 92 described cases match**. No preparer run or native case geometry is retained here. Official PANTHER files require noncommercial research access and are absent from the anonymous record's file list.
 
 ### Supplied helpers
 
-Training tumor masks and image-geometry metadata. These are training aids; held-out targets remain evaluation references.
+Public training images and tumor masks. If ImagesTr_unlabeled exists, the pinned preparer also copies other-sequence unlabeled MRI into train_unlabeled/images; these are not paired arterial labels or held-out answers. The held-out input image is public in the ReX staging contract; its label is not.
 
 ### Callable tools
 
-A medical ML development environment; dependency installation, training and inference resources are task-specific and were not exercised in this survey.
+A participant may build and run an allowed image-segmentation method and write MHA predictions in the task environment. This explanation did not install dependencies or run preparation, inference or grading.
 
 ### Reference-only material
 
-Evaluation targets are references, not extra solver inputs. Local filesystem visibility has not been audited by running this external task.
+The pinned preparer stages held-out tumor masks under `private/test/labels` with `test_labels.csv`; those are evaluator material. Source labels may include 0 background, 1 tumor and 2 pancreas; pinned grading extracts `GT == 1`. No held-out label pixels are bundled or revealed as patient imagery. The diagnostic T1 input is distinct from treatment-room MR-Linac T2. No cross-task patient pairing or registration is supplied.
 
 ## Task specification
 
-Develop the learning/inference pipeline using the allowed training partition, then submit predictions for every required evaluation case. Preserve case IDs, label taxonomy and image geometry.
+Segment tumor on each public held-out arterial-phase contrast-enhanced T1 diagnostic MRI from Siemens scanners. Use the current image's native MHA dimensions, spacing, origin and direction when constructing the answer mask. These values are unknown in this symbolic pack. Public training masks are method help; they do not substitute for a private held-out mask.
 
 ## Expected output
 
-A binary tumor mask per case in MHA format plus a patient-to-file submission CSV.
+The **pinned ReX adapter**, rather than the prose example in its challenge description, defines `submission/submission.csv` columns `image_id,predicted_mask_path`; each row points to `predictions/<image_id>.mha`. The answer is a binary mask, 0 background and 1 tumor, in the current input grid. Here the CSV and MHA mask are empty schema illustrations, not files produced by an agent.
 
 ## Evaluation
 
-Dice is the stated primary score; the description also reports surface accuracy and Hausdorff distance. This statement describes the published task; no new score or equivalence with the original challenge grader is claimed.
+The pinned grader defines Dice, 5-mm Surface Dice, HD95, MASD and tumor-volume RMSE. It resizes shape-mismatched predictions by nearest neighbor, reads physical spacing from the **prediction** MHA for surface/volume metrics, and does not compare affine, origin or direction equality. Consequently an array score would not by itself prove physical alignment. No metric result is reported. The original description discusses diagnostic segmentation; this pack does not depict a patient or establish diagnostic accuracy.
 
 ## Visual explanation
 
-### Workflow
-
-- Contrast-enhanced arterial-phase T1-weighted pancreas MRI
-- Develop and apply a prediction pipeline
-- A binary tumor mask per case in MHA format plus a patient-to-file submission CSV
-
-### Input
-
-**Contract view; native sample not yet illustrated.** Contrast-enhanced arterial-phase T1-weighted pancreas MRI.
-
-### Supplied helpers
-
-**Given material, not an answer reveal.** Training tumor masks and image-geometry metadata. These are training aids; held-out targets remain evaluation references.
-
-### Reference or output
-
-**Expected artifact, not an actual prediction.** A binary tumor mask per case in MHA format plus a patient-to-file submission CSV.
-
-## Conditions
-
-| Condition | Supplied help | Work remaining |
-|---|---|---|
-| Competition workflow | Training tumor masks and image-geometry metadata. | Prepare data, train or adapt a model, validate and produce the final submission. |
-
-## Difficulty
-
-The tumor boundary can be subtle against normal pancreas and nearby tissue; preserve physical geometry.
+A unitless grid shows voxel-index selection, the symbolic MHA index-to-world formula, and an empty same-grid output socket. This is a document-pinned contract illustration, not a source MRI or synthetic patient. The private-reference chapter explains role and label semantics only; there is no reference asset.
 
 ## Sources
 
-- [Pinned challenge description](https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task1/description.md)
-
-## Coverage
-
-A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.
+- [Official restricted PANTHER record](https://zenodo.org/records/15192302)
+- [Pinned ReX Task 1 description](https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task1/description.md)
+- [Pinned ReX Task 1 preparer](https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task1/prepare.py)
+- [Pinned ReX Task 1 grader](https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/panther-task1/grade.py)
 
 ## Gaps
 
-The challenge description was inspected; its local ReX-MLE data-preparation and grading adapters were not replayed. Native example views are not yet attached to this definition.
+No task-matched MRI, native MHA geometry, training label, held-out case, prediction or score is available locally. The official record lists CC-BY-NC-4.0 and no redistribution for granted files, while the pinned ReX config says CC BY-NC-SA 4.0; these terms are not reconciled here. Source-derived patient views require approved access, exact file/case hashes and verified split roles. The diagrams remain symbolic even though their contract is pinned to source code.

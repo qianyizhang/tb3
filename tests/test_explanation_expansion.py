@@ -133,6 +133,8 @@ class ExpansionTests(unittest.TestCase):
             ("cardiac-motion", "cardiac-contour-feasibility"),
             ("cardiac-motion", "cardiac-anchor-feasibility"),
             ("cardiac-motion", "cardiac-material-feasibility"),
+            (None, "rexmle-panther-task2"),
+            (None, "rexmle-panther-task1"),
             (None, "rexmle-neurips-cellseg"),
             (None, "rexmle-isles22"),
             (None, "rexmle-dentex"),

@@ -420,6 +420,26 @@ export function sampleStory(plan: StoryPlan, requested: number) {
         metric: channel(b.channels.metric),
       });
     }
+    case 'rex-panther-task1-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        grid: channel(b.channels.grid),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'rex-panther-task2-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        grid: channel(b.channels.grid),
+        reference: channel(b.channels.reference),
+      });
+    }
     case 'cardiac-material-v1': {
       const b = plan.beats[index];
       return Object.freeze({

@@ -44,6 +44,8 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "rex-panther-task2-v1": "retained-rex-panther-task2-symbolic-v1",
+    "rex-panther-task1-v1": "retained-rex-panther-task1-symbolic-v1",
     "rexmle-neurips-cellseg-v1": "retained-rexmle-neurips-cellseg-v1",
     "rex-isles22-v1": "retained-rex-isles22-v1",
     "rexmle-dentex-v1": "retained-rexmle-dentex-v1",
@@ -111,6 +113,16 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-rex-panther-task2-symbolic-v1": (
+        "source-records",
+        None,
+        {"diagram.json", "output.json", "NOTICE.md", "source.json"},
+    ),
+    "retained-rex-panther-task1-symbolic-v1": (
+        "source-records",
+        None,
+        {"diagram.json", "output.json", "NOTICE.md", "source.json"},
+    ),
     "retained-rexmle-neurips-cellseg-v1": (
         "source-slices",
         None,
@@ -1058,6 +1070,16 @@ class RexCellsegChannels(Closed):
     helper: Pair
     instance: Pair
     metric: Pair
+
+
+class RexPantherTask1Channels(Closed):
+    grid: Pair
+    reference: Pair
+
+
+class RexPantherTask2Channels(Closed):
+    grid: Pair
+    reference: Pair
 
 
 class CardiacMaterialChannels(Closed):
@@ -2222,6 +2244,38 @@ class RexCellsegStory(Story[RexCellsegChannels]):
         return self
 
 
+class RexPantherTask1Beat(ExpansionBeat[RexPantherTask1Channels]):
+    scene: Literal["input", "geometry", "output", "reference", "limits"]
+
+
+class RexPantherTask1Story(Story[RexPantherTask1Channels]):
+    recipe: Literal["rex-panther-task1-v1"]
+    beats: tuple[RexPantherTask1Beat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class RexPantherTask2Beat(ExpansionBeat[RexPantherTask2Channels]):
+    scene: Literal["input", "geometry", "output", "reference", "limits"]
+
+
+class RexPantherTask2Story(Story[RexPantherTask2Channels]):
+    recipe: Literal["rex-panther-task2-v1"]
+    beats: tuple[RexPantherTask2Beat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class CardiacMaterialBeat(ExpansionBeat[CardiacMaterialChannels]):
     scene: Literal[
         "inputs", "initial", "tracking", "tetra", "strain", "comparison", "controls", "limits"
@@ -2410,6 +2464,8 @@ AnyStory = Annotated[
     | RexDentexStory
     | RexIslesStory
     | RexCellsegStory
+    | RexPantherTask1Story
+    | RexPantherTask2Story
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -2477,6 +2533,8 @@ ADAPTER: TypeAdapter[
     | RexDentexStory
     | RexIslesStory
     | RexCellsegStory
+    | RexPantherTask1Story
+    | RexPantherTask2Story
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -2704,6 +2762,8 @@ def parse_expansion(
     | RexDentexStory
     | RexIslesStory
     | RexCellsegStory
+    | RexPantherTask1Story
+    | RexPantherTask2Story
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -2818,6 +2878,16 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "image-pixel-top-left",
                 "CC-BY-NC-ND-4.0",
                 "CC-BY-NC-ND-4.0",
+            ),
+            "retained-rex-panther-task1-symbolic-v1": (
+                "symbolic-unit-grid",
+                "LicenseRef-PANTHER-restricted-unresolved",
+                None,
+            ),
+            "retained-rex-panther-task2-symbolic-v1": (
+                "symbolic-unit-grid",
+                "LicenseRef-PANTHER-restricted-unresolved",
+                None,
             ),
             "retained-cardiac-material-v1": (
                 "STRAUS-patient01-healthy-canonical",
@@ -2942,6 +3012,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id
                 in {
                     "retained-bcer-brain-symbolic-v1",
+                    "retained-rex-panther-task1-symbolic-v1",
+                    "retained-rex-panther-task2-symbolic-v1",
                 }
                 else "none"
                 if pack_id == "symbolic-report-reading-v1"

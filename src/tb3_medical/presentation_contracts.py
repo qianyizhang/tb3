@@ -1288,6 +1288,36 @@ class RexCellsegPlan(ExpansionPlan):
     beats: list[RexCellsegBeat]
 
 
+class RexPantherTask1Channels(TypedDict):
+    grid: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexPantherTask1Beat(ExpansionBeat):
+    channels: RexPantherTask1Channels
+    scene: Literal["input", "geometry", "output", "reference", "limits"]
+
+
+class RexPantherTask1Plan(ExpansionPlan):
+    recipe: Literal["rex-panther-task1-v1"]
+    beats: list[RexPantherTask1Beat]
+
+
+class RexPantherTask2Channels(TypedDict):
+    grid: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexPantherTask2Beat(ExpansionBeat):
+    channels: RexPantherTask2Channels
+    scene: Literal["input", "geometry", "output", "reference", "limits"]
+
+
+class RexPantherTask2Plan(ExpansionPlan):
+    recipe: Literal["rex-panther-task2-v1"]
+    beats: list[RexPantherTask2Beat]
+
+
 class CardiacMaterialChannels(TypedDict):
     phase: tuple[float, float]
     helper: tuple[float, float]
@@ -1489,6 +1519,8 @@ StoryPlan = (
     | RexDentexPlan
     | RexIslesPlan
     | RexCellsegPlan
+    | RexPantherTask1Plan
+    | RexPantherTask2Plan
     | CardiacMaterialPlan
     | CardiacAnchorPlan
     | ClinicalCavityPlan
