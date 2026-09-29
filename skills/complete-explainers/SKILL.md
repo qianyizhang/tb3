@@ -1,8 +1,8 @@
 ---
 name: complete-explainers
-description: Run the TB3 scoped explainer queue with explicit dependency deferral, bounded delegation and source-pinned review. Use for completing or resuming multiple Task Explorer entries.
+description: Run the TB3 scoped explainer queue with source resolution, labelled symbolic fallback, bounded delegation and source-pinned review. Use for completing or resuming multiple Task Explorer entries.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Complete explainers
@@ -15,13 +15,35 @@ dependency reasons. Historical active entries and cached counts cannot select wo
 
 ## Select and prepare
 
-Run `med explainer queue`. Continue through ready entries in its order. When the
-user defers dependency resolution, use `med explainer defer-blocked` with the actual
-actor, source and date; keep every reason and reopening action in the review ledger.
-Do not ask the same pending question again or relabel deferred rows as complete.
-An empty ready queue is an explicit result, not permission to leave core scope.
+Run `med explainer queue`. Follow the current user policy and ordered resolution
+queue before treating missing assets as external barriers. `needs_resolution`
+means actionable investigation; `ready` means production review can be prepared.
+The 2026-09-29 policy authorizes source-resolution attempts and symbolic fallback
+for noncommercial task interpretation. Old deferral records do not override it.
+When the user explicitly postpones resolution, record the actor, source, reason
+and reopening action; do not relabel deferral as completion. An empty production
+queue does not stop resolution work or permit leaving core scope.
 
-Use `med explainer prepare ENTRY --output FRESH-DIRECTORY` for the task packet.
+Inspect retained sources first, then attempt the official dataset/contract route;
+reuse shared dataset receipts across variants. Follow the workspace workflow's
+bounded effort and record actual outcomes. Not downloaded, not audited, timeout,
+access approval and source mismatch are different states. Do not make public
+redistribution of source assets a prerequisite for task interpretation; check terms
+for the actual use.
+Do not repeat a user-scope question already answered.
+
+After a documented unresolved attempt, author a scientifically faithful symbolic
+input/operation/output illustration. Put one concise warning sentence at the very
+top stating why actual data is absent and linking how to acquire it. Preserve it
+in mobile, fallback and exported opening views. Label symbolic values and outputs;
+do not fabricate patient evidence, ground truth or model results. Narrow unsupported
+contract details instead of inventing them. Record the basis, actual-data gap,
+attempt receipt and acquisition route separately from explainer acceptance.
+Defer only a dependency that still prevents this supported explanation, with
+evidence and a reopening condition, then continue to the next core entry.
+
+Use `med explainer prepare ENTRY --output FRESH-DIRECTORY` once the entry reaches
+production review; source-resolution work starts from its queue row and sources.
 Read prior audits before researching sources. Use `author-task-brief` for unresolved
 contracts, `author-task-story` for canonical stories, and `video-explainer` for
 established story exports. Apply only the needed workflow. Task packets and review
@@ -54,8 +76,8 @@ Before committing tooling, stage only owned paths and run the repository gate on
 the intended staged snapshot, isolated from unrelated work when necessary.
 
 Hand off the queue snapshot, owned dirty paths, tested commit/snapshot, receipt
-locations, last successful stage and next action. No model trial, runtime install,
-source acquisition or publication is implied by this workflow.
+locations, last successful stage and next action. Follow the user's source-acquisition
+scope; no model trial, runtime install or publication is implied by this workflow.
 
 At closeout, read [Active lessons](references/feedback-ledger.md). Record only
 material reusable feedback, with the invoked version and source.

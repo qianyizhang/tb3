@@ -28,6 +28,17 @@ in-progress files and later receipts; do not schedule additional nonmedical work
 The live explainer chat must reread this plan at its next selection boundary.
 This document does not interrupt that chat or enforce a runtime scheduler.
 
+The user's subsequent 2026-09-29 clarification replaces blanket dependency
+deferral: **attempt source resolution first, then use a scientifically sound
+symbolic illustration if actual data remains unavailable**. Noncommercial task
+interpretation is the intended use; public redistribution is not required.
+Every symbolic illustration needs a one-sentence warning at the very top stating
+why actual data is absent and how to obtain it. The
+[workflow](EXPLAINER-WORKFLOW.md) defines bounded attempts, evidence records,
+symbolic acceptance and genuinely deferred dependencies. The ledger's
+`dependency_resolution` is current; original blocker and deferral fields retain
+history. No download attempt, rights clearance or visual acceptance is inferred.
+
 No prior review, frozen bytes, score, receipt or source record is invalidated by
 scope exclusion. Candidates require a specific biomedical question and source/
 reference contract before promotion. Generic methods require a concrete medical

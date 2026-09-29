@@ -8,6 +8,7 @@ Audit date: **2026-09-29**. This is a local catalogue/brief scope survey, not a 
 
 - [Scope ledger](EXPLAINER-SCOPE.json) owns membership and group priority. [Review ledger](EXPLAINER-LEDGER.json) owns live review status, blockers and receipts. Join on `entry_id`.
 - Statuses and the queue below are a dated snapshot; refresh them from the review ledger before starting work. The JSON pins the audited ledger hash and each brief hash.
+- The later user clarification routes unfinished entries through source resolution first, then sound symbolic illustrations with a top reason/acquisition warning where actual data remains unavailable. See the current [workflow](EXPLAINER-WORKFLOW.md); historical blocker labels below do not imply proven external barriers.
 - Only `automatic_completion=true` enters the queue. Sort by group order, then review-ledger order; skip already reviewed entries. Unclassified new entries require a scope review. A source blocker remains unfinished.
 - This scope gate supersedes the old all-205 completion sequence. The active black-hole-original entry is excluded; preserve its unfinished files and any later receipts, and do not schedule more nonmedical work.
 - The other chat was actively reviewing that entry during this audit. This file does not interrupt a running chat or enforce a runtime scheduler; it must reread the [completion plan](EXPLAINER-CANDIDATES.md) before its next selection. No message or stop command was sent.

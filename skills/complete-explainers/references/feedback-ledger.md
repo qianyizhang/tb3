@@ -1,13 +1,15 @@
 # Feedback ledger: complete-explainers
 
-- Current skill version: `1.0.0`
+- Current skill version: `1.1.0`
 - Canonical source: `skills/complete-explainers/`
 
 ## Active lessons
 
-Scope and live review state have separate owners. A queue containing only deferred
-dependencies has no production-ready work. Regression pilots exercise tooling and
-preserve the completed-entry count.
+Scope and live review state have separate owners. Distinguish unfinished source
+resolution from demonstrated external barriers; an empty production queue can
+still have actionable resolution work. Honor the current user scope, including
+labelled symbolic explanations when authorized, without inventing source rights.
+Regression pilots exercise tooling and preserve the completed-entry count.
 Declared audit receipts must exist and match their pins. Browser sign-off needs a
 current export/Explorer/harness witness, not a matching story name alone.
 
@@ -36,3 +38,21 @@ current export/Explorer/harness witness, not a matching story name alone.
   batch, export, Explorer and harness; validate coverage and captured image hashes.
 - Validation: Twelve focused Python tests, four Node tests and independent targeted
   re-review passed. Two live regression sign-offs preserved original acceptance.
+
+### EXPLAINER-2026-003
+
+- Date: 2026-09-29
+- Invoked version: `1.0.0`.
+- Source: [user blocker clarification](codex://threads/01a0e024-3705-7a91-9181-d237131801fa).
+- Observation: Blanket deferral classified missing downloads and unfinished audits
+  as blockers, and portable-asset redistribution questions stalled task interpretation.
+- Resolution: Version `1.1.0` separates actionable source resolution from external
+  barriers and applies the user's symbolic fallback with a top reason/acquisition
+  warning. Preserve original evidence and distinguish symbolic acceptance from
+  recovery of actual data.
+- Validation: Queue tests cover selection, preserved history, required external
+  evidence and rejection of premature production preparation. Actual acquisition
+  and symbolic production remain work for the next session.
+- Independent review: A status-only edit could bypass resolution metadata. Require
+  the documented attempt receipt, archived resolution and illustration basis before
+  production preparation; symbolic content also requires warning text.

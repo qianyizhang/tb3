@@ -1,8 +1,13 @@
 # Scoped queue pilot and handoff
 
-**Workflow pilot passed on 2026-09-29. Core status remains 48 reviewed, 106 deferred,
-0 ready out of 154.** This is tooling regression evidence, not new explainer
+**Workflow pilot passed on 2026-09-29. At the time of that pilot, core status was
+48 reviewed, 106 deferred, 0 ready out of 154.** This is tooling regression evidence, not new explainer
 completion, a medical/model trial or a production-throughput benchmark.
+
+The later user clarification supersedes blanket deferral: all **106** unfinished
+entries now enter source resolution first, with symbolic fallback authorized when
+actual data remains unavailable. The earlier pilot results below remain unchanged;
+read the current [workflow](EXPLAINER-WORKFLOW.md) for selection and acceptance.
 
 ## Delivered workflow
 
@@ -74,14 +79,25 @@ goal. The historical all-205 goal remains paused. The 13 candidates and 38 other
 out-of-scope entries do not enter automatically. Preserve the excluded EHT-original
 implementation and receipts; its dirty-path fingerprints are in the ownership record.
 
-**There is currently no ready core work.** The follow-up dependency session must
-resolve or explicitly revise a recorded dependency before production selection can
-advance. Several cardiac entries share FeEcho4D, STRAUS or EchoSlicer delivery-scope
-dependencies; report-backed reading lacks an admitted image/report pair. Other rows
-record their own source/input gaps. Do not silently resume audits, infer answers to
-pending questions or mark the program complete because the ready queue is empty.
+**Start with the source-resolution queue.** The later user instruction authorizes
+attempting missing downloads and unfinished audits, then symbolic explanations with
+a concise top warning if actual data remains unavailable. The cardiac delivery-scope
+question is answered for task interpretation; no public redistribution is required.
+Record observed access limits rather than treating missing files as inaccessible.
+Keep any remaining dependency explicit and move on. This policy does not assert
+source permissions or turn a resolution plan into visual acceptance.
 
 Once an entry becomes ready, use a fresh production packet, bounded workers and
 sequential main-agent acceptance. Keep source/asset/reference distinctions and
 existing medical trial/publication boundaries. Remote delivery and CI remain
 program-level pending work; this pilot establishes local checks only.
+
+Suggested opening request for the new session:
+
+> Set a new goal to finish the remaining core explainers selected by
+> EXPLAINER-SCOPE.json. Follow EXPLAINER-WORKFLOW.md and complete-explainers v1.1.0:
+> first attempt source resolution, then use a sound symbolic illustration with a
+> concise top reason/acquisition warning where actual data remains unavailable.
+> Record any dependency that still prevents a supported explanation and continue.
+> Use bounded Sol workers for independent work, with the main agent integrating
+> and reviewing entries one by one. Preserve existing reviews and excluded work.

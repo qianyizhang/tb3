@@ -101,6 +101,7 @@ class ExplainerQueueTests(unittest.TestCase):
             "catalogue": 5,
             "core": 4,
             "ready": 2,
+            "needs_resolution": 0,
             "deferred": 1,
             "reviewed_core": 1,
             "excluded": 1,
@@ -217,6 +218,275 @@ class ExplainerQueueTests(unittest.TestCase):
         ledger_path.write_text(json.dumps(ledger))
         packet = explainer_queue.prepare(root, "first-ready", "packet-legacy")
         assert packet["source_sha256"][receipt_relative] == storage.sha(receipt)
+
+    def test_resolution_lane_and_external_evidence(self) -> None:
+        root = self.root
+        ledger_path = root / explainer_queue.LEDGER
+        ledger = storage.read_object(ledger_path)
+        ledger["entries"][1]["dependency_resolution"] = {
+            "state": "needs-resolution",
+            "category": "source-input",
+            "attempt_status": "not-yet-attempted",
+            "next_action": "Try local native source recovery",
+        }
+        ledger["entries"][0]["reviewed_disposition"] = "blocked-source-contract"
+        ledger["entries"][0]["blocking_dependency"] = "Earlier broad blocker"
+        ledger["entries"][0]["dependency_resolution"] = {
+            "state": "external-blocked",
+            "category": "source-contract",
+            "attempt_status": "contacted-rights-holder",
+            "next_action": "Await permission or use a symbolic fallback with a source warning",
+            "evidence": "Rights request logged",
+            "reopen_condition": "Written permission received",
+        }
+        ledger_path.write_text(json.dumps(ledger))
+        queue = explainer_queue.inspect_queue(root)
+        assert queue["summary"]["needs_resolution"] == 1
+        assert queue["summary"]["deferred"] == 1
+        assert queue["resolution_ids"] == ["second-blocked"]
+        assert [row["entry_id"] for row in queue["deferred"]] == ["first-ready"]
+        register = explainer_queue.render_dependency_register(queue)
+        assert register.index("## second-blocked") < register.index("## first-ready")
+        assert "Try local native source recovery" in register
+        assert "Earlier broad blocker" in register
+        assert "Rights request logged" in register
+        with self.assertRaisesRegex(MedicalError, "needs-resolution"):
+            explainer_queue.prepare(root, "second-blocked", "packet-resolution")
+        explainer_queue.defer_blocked(
+            root, actor="assistant", source="follow-up", date="2026-09-29"
+        )
+        updated = storage.read_object(ledger_path)
+        assert (
+            updated["entries"][1]["dependency_resolution"]
+            == ledger["entries"][1]["dependency_resolution"]
+        )
+        assert "dependency_deferral" not in updated["entries"][1]
+        assert (
+            updated["entries"][0]["dependency_resolution"]
+            == ledger["entries"][0]["dependency_resolution"]
+        )
+        assert "dependency_deferral" not in updated["entries"][0]
+
+    def test_invalid_resolution_metadata_fails_closed(self) -> None:
+        root = self.root
+        ledger_path = root / explainer_queue.LEDGER
+        for resolution, expected in (
+            (
+                {
+                    "state": ["needs-resolution"],
+                    "category": "input",
+                    "attempt_status": "tried",
+                    "next_action": "Retry",
+                },
+                "state",
+            ),
+            (
+                {
+                    "state": "unknown",
+                    "category": "input",
+                    "attempt_status": "tried",
+                    "next_action": "Retry",
+                },
+                "state",
+            ),
+            (
+                {
+                    "state": "needs-resolution",
+                    "category": "",
+                    "attempt_status": "tried",
+                    "next_action": "Retry",
+                },
+                "category",
+            ),
+            (
+                {
+                    "state": "needs-resolution",
+                    "category": "input",
+                    "attempt_status": "",
+                    "next_action": "Retry",
+                },
+                "attempt_status",
+            ),
+            (
+                {
+                    "state": "needs-resolution",
+                    "category": "input",
+                    "attempt_status": "tried",
+                    "next_action": "",
+                },
+                "next_action",
+            ),
+            (
+                {
+                    "state": "external-blocked",
+                    "category": "input",
+                    "attempt_status": "tried",
+                    "next_action": "Retry",
+                    "reopen_condition": "Input arrives",
+                },
+                "evidence",
+            ),
+            (
+                {
+                    "state": "external-blocked",
+                    "category": "input",
+                    "attempt_status": "tried",
+                    "next_action": "Retry",
+                    "evidence": "Request logged",
+                },
+                "reopen_condition",
+            ),
+        ):
+            ledger = copy.deepcopy(self.ledger)
+            ledger["entries"][1]["dependency_resolution"] = resolution
+            ledger_path.write_text(json.dumps(ledger))
+            with self.subTest(expected=expected), self.assertRaisesRegex(MedicalError, expected):
+                explainer_queue.inspect_queue(root)
+
+    def test_former_blocker_requires_archived_attempt_and_symbolic_warning(self) -> None:
+        root = self.root
+        ledger_path = root / explainer_queue.LEDGER
+        receipt_relative = "presentation/first-ready/source-resolution.json"
+        receipt_path = root / receipt_relative
+        receipt_path.write_text(
+            json.dumps(
+                {
+                    "schema": 1,
+                    "kind": "explainer-source-resolution",
+                    "entry_id": "first-ready",
+                    "attempts": [
+                        {
+                            "action": "Tried source download",
+                            "source": "Official dataset page",
+                            "outcome": "Actual image unavailable locally",
+                            "attempted_at": "2026-09-29",
+                        }
+                    ],
+                }
+            )
+        )
+        valid = copy.deepcopy(self.ledger)
+        row = valid["entries"][0]
+        row.update(
+            dependency_resolution_history=[
+                {
+                    "state": "needs-resolution",
+                    "category": "source-input",
+                    "attempt_status": "attempted",
+                    "next_action": "Use symbolic view",
+                }
+            ],
+            illustration_basis="symbolic",
+            actual_data_gap="Actual image unavailable locally",
+            acquisition_route="Request actual scan from official dataset page",
+            source_resolution_receipt=receipt_relative,
+            source_review={
+                "receipt": receipt_relative,
+                "receipt_sha256": storage.sha(receipt_path),
+            },
+            warning_text="Symbolic view: obtain the actual scan from the official dataset page.",
+        )
+        active = copy.deepcopy(valid)
+        active["entries"][0]["dependency_resolution"] = {
+            "state": "needs-resolution",
+            "category": "source-input",
+            "attempt_status": "attempted",
+            "next_action": "Use symbolic view",
+        }
+        ledger_path.write_text(json.dumps(active))
+        with self.assertRaisesRegex(MedicalError, "must be archived"):
+            explainer_queue.inspect_queue(root)
+        missing_history = copy.deepcopy(valid)
+        missing_history["entries"][0].pop("dependency_resolution_history")
+        missing_history["entries"][0]["dependency_deferral"] = {"status": "deferred-follow-up"}
+        ledger_path.write_text(json.dumps(missing_history))
+        with self.assertRaisesRegex(MedicalError, "resolution history"):
+            explainer_queue.inspect_queue(root)
+        for field, expected in (
+            ("illustration_basis", "illustration basis"),
+            ("warning_text", "warning_text"),
+            ("source_resolution_receipt", "source_resolution_receipt"),
+        ):
+            missing = copy.deepcopy(valid)
+            missing["entries"][0].pop(field)
+            ledger_path.write_text(json.dumps(missing))
+            with self.subTest(field=field), self.assertRaisesRegex(MedicalError, expected):
+                explainer_queue.inspect_queue(root)
+        ledger_path.write_text(json.dumps(valid))
+        queue = explainer_queue.inspect_queue(root)
+        assert "first-ready" in queue["ready_ids"]
+        packet = explainer_queue.prepare(root, "first-ready", "packet-symbolic")
+        assert packet["mode"] == "production"
+        assert packet["source_sha256"][receipt_relative] == storage.sha(receipt_path)
+
+    def test_ready_transition_rejects_source_receipt_mismatch(self) -> None:
+        root = self.root
+        ledger_path = root / explainer_queue.LEDGER
+        receipt_relative = "presentation/first-ready/source-resolution.json"
+        receipt_path = root / receipt_relative
+        receipt = {
+            "schema": 1,
+            "kind": "explainer-source-resolution",
+            "entry_id": "first-ready",
+            "attempts": [
+                {
+                    "action": "Requested source",
+                    "source": "Official page",
+                    "outcome": "Unavailable",
+                    "attempted_at": "2026-09-29",
+                }
+            ],
+        }
+        receipt_path.write_text(json.dumps(receipt))
+        valid = copy.deepcopy(self.ledger)
+        valid["entries"][0].update(
+            dependency_resolution_history=[
+                {
+                    "state": "needs-resolution",
+                    "category": "source-input",
+                    "attempt_status": "attempted",
+                    "next_action": "Use symbolic view",
+                }
+            ],
+            illustration_basis="mixed",
+            actual_data_gap="Actual image unavailable",
+            acquisition_route="Official access request",
+            source_resolution_receipt=receipt_relative,
+            source_review={
+                "receipt": receipt_relative,
+                "receipt_sha256": storage.sha(receipt_path),
+            },
+            warning_text="Only symbolic geometry is shown; request the image through the official page.",
+        )
+        wrong_path = copy.deepcopy(valid)
+        wrong_path["entries"][0]["source_resolution_receipt"] = "presentation/other.json"
+        ledger_path.write_text(json.dumps(wrong_path))
+        with self.assertRaisesRegex(MedicalError, "differs from source review"):
+            explainer_queue.inspect_queue(root)
+        wrong_hash = copy.deepcopy(valid)
+        wrong_hash["entries"][0]["source_review"]["receipt_sha256"] = "0" * 64
+        ledger_path.write_text(json.dumps(wrong_hash))
+        with self.assertRaisesRegex(MedicalError, "Changed source review receipt"):
+            explainer_queue.inspect_queue(root)
+        no_pin = copy.deepcopy(valid)
+        no_pin["entries"][0].pop("source_review")
+        ledger_path.write_text(json.dumps(no_pin))
+        with self.assertRaisesRegex(MedicalError, "Missing source review receipt"):
+            explainer_queue.inspect_queue(root)
+        empty_attempts = copy.deepcopy(receipt)
+        empty_attempts["attempts"] = []
+        receipt_path.write_text(json.dumps(empty_attempts))
+        no_attempt = copy.deepcopy(valid)
+        no_attempt["entries"][0]["source_review"]["receipt_sha256"] = storage.sha(receipt_path)
+        ledger_path.write_text(json.dumps(no_attempt))
+        with self.assertRaisesRegex(MedicalError, "needs attempts"):
+            explainer_queue.inspect_queue(root)
+        receipt["entry_id"] = "someone-else"
+        receipt_path.write_text(json.dumps(receipt))
+        valid["entries"][0]["source_review"]["receipt_sha256"] = storage.sha(receipt_path)
+        ledger_path.write_text(json.dumps(valid))
+        with self.assertRaisesRegex(MedicalError, "receipt entry differs"):
+            explainer_queue.inspect_queue(root)
 
     def test_deferral_is_idempotent_and_preserves_history(self) -> None:
         root, ledger = self.root, self.ledger

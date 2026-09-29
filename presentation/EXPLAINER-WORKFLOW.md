@@ -5,28 +5,116 @@ The [review ledger](EXPLAINER-LEDGER.json) owns live status, exact dependency re
 reopening actions and acceptance receipts. The [completion plan](EXPLAINER-CANDIDATES.md)
 owns the current user scope. Generated queues and dependency registers are projections.
 
-## Deferred dependencies
+## Resolve sources before deferring
 
-The user requested on 2026-09-29 that dependency-blocked entries be explicitly
-marked with their reasons and left for a follow-up session. Continue to the next
-ready core entry. Keep deferred entries in the unfinished denominator; neither
-deferral nor scope exclusion counts as completion. The original all-205 goal remains
-paused and is not this workflow's selection authority.
+The user's later 2026-09-29 instruction supersedes blanket deferral: the next
+session first attempts missing downloads and unfinished source audits. Intended
+use is noncommercial task interpretation; public redistribution is not a completion
+requirement. This resolves the earlier unanswered delivery-scope questions without
+asserting new source rights. Check the terms applicable to the actual local use.
+The original all-205 goal remains paused and is not this workflow's selection authority.
+
+`med explainer queue` separates `needs_resolution` from production `ready` and
+`deferred`. The ledger's `dependency_resolution` owns the current category, attempt
+state and next action; `dependency_deferral` and original blocker wording preserve
+the earlier decision. A missing download or unperformed audit is actionable work,
+not evidence of an external access barrier. All 106 unfinished core entries start
+in the resolution queue; none gains visual acceptance from this policy change.
+
+| Recorded issue at policy change | Entries | First action |
+| --- | ---: | --- |
+| Contract/visibility audit not established | 50 | Read pinned prompt, staging, operator and evaluator; inspect local examples |
+| AutoMedBench Full declares data not included | 46 | Follow the official per-task dataset route; try a small matching sample |
+| Missing case evidence | 4 | Resolve CT/report, CT/label or retained trace pairing |
+| Low-dose CT source/version mismatch | 1 | Find matching 300-photon data and units; do not reuse incompatible 1000-photon results |
+| Cardiac source-asset delivery scope | 5 | Apply interpretation scope; inspect retained audits and applicable local-use terms |
+
+These are local-record classifications, not a fresh access audit. The four case
+gaps are report-backed reading, HealthAgentBench CT-RATE, AutoMedBench KiTS19 and
+RadAgent. An earlier KiTS19 request timed out; CT-RATE account authorization was
+not tested. Neither establishes that acquisition is impossible.
+
+For each entry, inspect retained audits/assets before revisiting the official
+repository and dataset route. Reuse one dataset-level resolution receipt across
+variants, while checking each variant's contract. Try a small task-matched sample
+when access and terms permit. Record source/revision, requested case, URL or local
+path, action/date, outcome and retained receipt; distinguish not attempted, timeout,
+access gate, missing exact version and confirmed restriction. A practical default
+is one focused pass of about 15 minutes per shared dependency, with a second route
+when the first fails transiently; extend when progress is concrete. This is an
+effort guide, not evidence that every alternative was exhausted.
+
+If actual data remains unavailable, use the symbolic route below and continue.
+Only an obstacle that also prevents a sound symbolic explanation stays deferred:
+set `dependency_resolution.state` to `external-blocked`, with concrete `evidence`
+and `reopen_condition`. Preserve attempts and distinguish external access from
+an unresolved scientific contract. Do not ask the same scope question again.
 The [dependency register](EXPLAINER-DEPENDENCIES.md) is a dated generated view;
 regenerate it from the live ledger when dependency state changes.
 
 ```sh
-uv run --no-sync med explainer defer-blocked --actor user \
-  --source codex://threads/01a0e024-3705-7a91-9181-d237131801fa --date 2026-09-29
 uv run --no-sync med explainer queue --output .local/explainers/NEW-QUEUE.json
 uv run --no-sync med explainer dependencies --output .local/explainers/NEW-DEPENDENCIES.md
 ```
 
-Deferral preserves original status and evidence. It records reason, next action,
-actor, source and date on each blocked core row in the existing review ledger.
-The command is idempotent for the same decision. It does not repair missing inputs,
-resolve rights, infer answers to pending questions or launch source research.
-Refresh the artifact-policy hash before staging a changed ledger.
+The historical `defer-blocked` command is for an explicit decision to postpone
+resolution; do not use it to undo this policy. Refresh the artifact-policy hash
+before staging a changed ledger.
+
+## Symbolic fallback and the top warning
+
+The user authorizes symbolic illustrations after a documented resolution attempt.
+Show a visually interpretable, task-specific input → operation → output sequence:
+plausible geometry, correct operator relationships, meaningful labels and units,
+supplied helpers distinct from hidden references, and a clear settled result.
+Use original code/vector/geometry illustrations. A generic decorative animation
+does not explain the task. Do not synthesize purported patient findings, ground
+truth, retained model outputs or performance measurements. Where a contract detail
+remains uncertain, say so and narrow the illustration to the supported mechanism.
+
+At the very top of the task content and standalone illustration, before the first
+visual, place one concise, high-contrast warning sentence with an official source
+link. Keep it visible in mobile/no-GPU layouts and carry it into video opening
+frames and captions. Example (fill with verified, entry-specific facts):
+
+> **Symbolic illustration — the original scan is unavailable here; request the actual data through the linked dataset access page.**
+
+Prefer a specific reason such as “access approval pending,” “matching case absent”
+or “300-photon data missing,” and a specific route such as dataset page, download
+command or access-request page. Do not claim an access restriction from a timeout.
+Retain acquisition details below the concise sticker. Label synthetic coordinates,
+labels and outputs as illustrative and keep references behind explicit reveal.
+
+Record `illustration_basis` as `source-derived`, `symbolic` or `mixed`, along with
+`source_resolution_receipt`, `actual_data_gap`, `acquisition_route` and, for any
+symbolic content, `warning_text` in the ledger. A source record can document the
+unresolved actual-data gap while the explainer is accepted within symbolic scope.
+After authoring a supported contract and assets, move the entry to
+`pending-operation-review`, clear its active `blocking_dependency`, and retain
+the original reason and attempts in the dependency history. Archive its current
+`dependency_resolution` object in `dependency_resolution_history` and remove the
+active object so a ready or accepted entry is not still labelled needs-resolution.
+Pin the resolution receipt through the existing `source_review` path/hash fields;
+preserve previous source audit pointers in the resolution record. The transition
+gate requires the archived resolution, basis/gap/route metadata and a valid pinned
+receipt before a previously blocked row can become production-ready. It does not
+require actual data recovery when symbolic scope is chosen. Prepare a fresh
+production packet and perform the existing visual/export review. Explicitly check
+the sticker's placement/readability and scientific faithfulness in inspection
+observations; identify symbolic scope in `acceptance_scope`. Missing actual-data
+recovery remains separate from completion of the approved task explanation.
+
+The resolution receipt is concise JSON with `schema: 1`,
+`kind: "explainer-source-resolution"`, matching `entry_id` and a nonempty `attempts`
+list. Each attempt records `action`, `source` (URL or retained path), `outcome` and
+`attempted_at`; retain supporting receipts or hashes for substantive claims. Set
+the ledger's `source_resolution_receipt` and `source_review.receipt` to that file
+and `source_review.receipt_sha256` to its hash. An honest unavailable outcome is
+valid evidence for symbolic fallback; an invented or unperformed attempt is not.
+For source-derived content, `actual_data_gap` explicitly states any remaining gap
+or that the selected matching data was recovered. Reviewer inspection establishes
+whether the recorded attempts and symbolic explanation are credible; a schema
+check alone does not.
 
 ## Task packets and ownership
 
@@ -107,9 +195,10 @@ Update the retained ledger's artifact-policy hash before staging acceptance.
 
 ## Resumption and reporting
 
-An empty ready queue is a complete scheduling result with unresolved dependencies,
-not completion of the explainer program. Report ready, deferred, reviewed and outside
-scope separately. Reopen a dependency only after its recorded condition is met.
+An empty production-ready queue does not stop source-resolution work. Report ready,
+needs-resolution, deferred, reviewed and outside scope separately. Report accepted
+source-derived, symbolic and mixed explanations distinctly. Continue to the next
+resolution entry when one external dependency is recorded, without leaving core scope.
 Never restart an attempted batch in place or overwrite earlier review receipts.
 
 Keep a compact local checkpoint containing ownership, tested source hashes, commands,
