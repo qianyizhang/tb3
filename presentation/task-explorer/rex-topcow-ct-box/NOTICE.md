@@ -1,0 +1,3 @@
+# rexmle-topcow-track1-task2 local teaching pack
+
+Exact TopCoW2024 source case012, https://zenodo.org/records/15692630. Noncommercial use with attribution; commercial use requires owner permission. The image is a static test-partition input. Its ROI or edge annotation exists in the full source archive but is private in ReX test staging and may mount only after reader reveal. Nine deterministic native-index source slices are display derivatives. Diagrams are explicitly symbolic; participant JSON, grader run and score are absent. Native source SHA-256 and physical geometry are pinned in source.json/manifest.json.

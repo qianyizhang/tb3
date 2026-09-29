@@ -28,6 +28,10 @@ const cardiacRecipes = new Set([
   'cardiac-contour-v1',
   'cardiac-anchor-v1',
   'cardiac-material-v1',
+  'rex-topcow-mr-edges-v1',
+  'rex-topcow-ct-edges-v1',
+  'rex-topcow-mr-box-v1',
+  'rex-topcow-ct-box-v1',
   'rex-topcow-mr-seg-v1',
   'rex-topbrain-mr-v1',
   'rex-topbrain-ct-v1',
@@ -57,6 +61,38 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'rex-topcow-mr-edges-v1')
+    return {
+      scene: 'data-topcow-scene',
+      reference: '[data-topcow-reference-panel]',
+      referenceChannel: 'reference',
+      output: '[data-topcow-output-schema]',
+      aside: '[data-topcow-output]',
+    };
+  if (plan.recipe === 'rex-topcow-ct-edges-v1')
+    return {
+      scene: 'data-topcow-scene',
+      reference: '[data-topcow-reference-panel]',
+      referenceChannel: 'reference',
+      output: '[data-topcow-output-schema]',
+      aside: '[data-topcow-output]',
+    };
+  if (plan.recipe === 'rex-topcow-mr-box-v1')
+    return {
+      scene: 'data-topcow-scene',
+      reference: '[data-topcow-reference-panel]',
+      referenceChannel: 'reference',
+      output: '[data-topcow-output-schema]',
+      aside: '[data-topcow-output]',
+    };
+  if (plan.recipe === 'rex-topcow-ct-box-v1')
+    return {
+      scene: 'data-topcow-scene',
+      reference: '[data-topcow-reference-panel]',
+      referenceChannel: 'reference',
+      output: '[data-topcow-output-schema]',
+      aside: '[data-topcow-output]',
+    };
   if (plan.recipe === 'rex-topcow-mr-seg-v1')
     return {
       scene: 'data-vascular-scene',
@@ -223,25 +259,49 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
-    'rexmle-topcow-track2-task1-v1': [
+    'rex-topcow-mr-edges-v1': [
+      /Exact test-partition source image/,
+      'https://zenodo.org/records/15692630',
+      'data-topcow-scene',
+      false,
+    ],
+    'rex-topcow-ct-edges-v1': [
+      /Exact test-partition source image/,
+      'https://zenodo.org/records/15692630',
+      'data-topcow-scene',
+      false,
+    ],
+    'rex-topcow-mr-box-v1': [
+      /Exact test-partition source image/,
+      'https://zenodo.org/records/15692630',
+      'data-topcow-scene',
+      false,
+    ],
+    'rex-topcow-ct-box-v1': [
+      /Exact test-partition source image/,
+      'https://zenodo.org/records/15692630',
+      'data-topcow-scene',
+      false,
+    ],
+    'rex-topcow-mr-seg-v1': [
       /Exact source image with separately identified labels/,
       'https://zenodo.org/records/15692630',
       'data-vascular-scene',
       false,
     ],
-    'rexmle-topbrain-track2-v1': [
+    'rex-topbrain-mr-v1': [
       /Exact source image with separately identified labels/,
       'https://zenodo.org/records/16878417',
       'data-vascular-scene',
       false,
     ],
-    'rexmle-topbrain-track1-v1': [
+    'rex-topbrain-ct-v1': [
       /Exact source image with separately identified labels/,
       'https://zenodo.org/records/16878417',
       'data-vascular-scene',
       false,
     ],
-    'rexmle-seg-a-v1': [
+    'rex-seg-a-v1': [
       /Exact source image with separately identified labels/,
       'https://figshare.com/articles/dataset/Aortic_Vessel_Tree_AVT_CTA_Datasets_and_Segmentations/14806362',
       'data-vascular-scene',
@@ -352,10 +412,26 @@ async function checkSourceWarning(page, plan) {
     );
   }
 }
+async function checkTopcowReferenceText(page, plan) {
+  if (!/^rex-topcow-(ct|mr)-(box|edges)-v1$/.test(plan.recipe)) return;
+  if (await page.locator('[data-topcow-reference-panel]').count()) return;
+  const text = await page.locator('.scene-player').innerText();
+  const forbidden = plan.recipe.includes('-box-')
+    ? [
+        /102\s*[×x]\s*65\s*[×x]\s*42/,
+        /86,\s*113,\s*96/,
+        /171\s*[×x]\s*121\s*[×x]\s*38/,
+        /148,\s*158,\s*82/,
+      ]
+    : [/L-A1\s+(?:one|1)\b/, /3rd-A2\s+(?:zero|0)\b/, /R-Pcom\s+(?:zero|0)\b/];
+  for (const pattern of forbidden)
+    assert.doesNotMatch(text, pattern, `${plan.id}: private reference leaked through narration`);
+}
 async function checkCardiacFrame(page, plan, frame) {
   if (!cardiacRecipes.has(plan.recipe)) return;
   await checkSourceWarning(page, plan);
   const selectors = cardiacSelectors(plan);
+  await checkTopcowReferenceText(page, plan);
   const beat = plan.beats.find((b) => frame >= b.startFrame && frame < b.endFrame);
   const p = (frame - beat.startFrame) / (beat.endFrame - beat.startFrame - 1);
   const ease = p * p * (3 - 2 * p);
@@ -441,6 +517,7 @@ async function reviewCardiacInteractions(page, plan, output, label) {
         0,
         `${plan.id}: ${label} early reference in ${beat.scene}`,
       );
+    await checkTopcowReferenceText(page, plan);
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
@@ -546,6 +623,10 @@ withBrowser(async (browser) => {
           'cardiac-contour-v1',
           'cardiac-anchor-v1',
           'cardiac-material-v1',
+          'rex-topcow-mr-edges-v1',
+          'rex-topcow-ct-edges-v1',
+          'rex-topcow-mr-box-v1',
+          'rex-topcow-ct-box-v1',
           'rex-topcow-mr-seg-v1',
           'rex-topbrain-mr-v1',
           'rex-topbrain-ct-v1',
@@ -3442,6 +3523,10 @@ withBrowser(async (browser) => {
       'cardiac-contour-v1',
       'cardiac-anchor-v1',
       'cardiac-material-v1',
+      'rex-topcow-mr-edges-v1',
+      'rex-topcow-ct-edges-v1',
+      'rex-topcow-mr-box-v1',
+      'rex-topcow-ct-box-v1',
       'rex-topcow-mr-seg-v1',
       'rex-topbrain-mr-v1',
       'rex-topbrain-ct-v1',

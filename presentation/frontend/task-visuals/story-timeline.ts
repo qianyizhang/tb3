@@ -513,6 +513,50 @@ export function sampleStory(plan: StoryPlan, requested: number) {
         reference: channel(b.channels.reference),
       });
     }
+    case 'rex-topcow-ct-box-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        slice: channel(b.channels.slice),
+        step: channel(b.channels.step),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'rex-topcow-mr-box-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        slice: channel(b.channels.slice),
+        step: channel(b.channels.step),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'rex-topcow-ct-edges-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        slice: channel(b.channels.slice),
+        step: channel(b.channels.step),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'rex-topcow-mr-edges-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        slice: channel(b.channels.slice),
+        step: channel(b.channels.step),
+        reference: channel(b.channels.reference),
+      });
+    }
     case 'cardiac-material-v1': {
       const b = plan.beats[index];
       return Object.freeze({

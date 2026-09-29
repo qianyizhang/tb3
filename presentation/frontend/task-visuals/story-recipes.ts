@@ -75,6 +75,10 @@ export function isPlanarStory(plan: StoryPlan): boolean {
   return [
     'cardiac-anchor-v1',
     'cardiac-material-v1',
+    'rex-topcow-mr-edges-v1',
+    'rex-topcow-ct-edges-v1',
+    'rex-topcow-mr-box-v1',
+    'rex-topcow-ct-box-v1',
     'rex-topcow-mr-seg-v1',
     'rex-topbrain-mr-v1',
     'rex-topbrain-ct-v1',
@@ -466,6 +470,70 @@ export function storyPresentation(plan: StoryPlan): {
         legend: [
           ['#91a6ae', 'Actual held-out test image'],
           ['#2e6bff', 'Reader-only reference · class color key'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'rex-topcow-ct-box-v1':
+      return {
+        heading: 'Localize the Circle of Willis on native CTA',
+        corner: 'TopCoW · source contract',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Exact test-partition source image; annotation is reader-only. No participant JSON or score.',
+          url: 'https://zenodo.org/records/15692630',
+          link_label: 'Acquire original data',
+        },
+        legend: [
+          ['#91a6ae', 'Actual test-partition image'],
+          ['#ffbd46', 'Reader-only source ROI'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'rex-topcow-mr-box-v1':
+      return {
+        heading: 'Localize the Circle of Willis on native MRA',
+        corner: 'TopCoW · source contract',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Exact test-partition source image; annotation is reader-only. No participant JSON or score.',
+          url: 'https://zenodo.org/records/15692630',
+          link_label: 'Acquire original data',
+        },
+        legend: [
+          ['#91a6ae', 'Actual test-partition image'],
+          ['#ffbd46', 'Reader-only source ROI'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'rex-topcow-ct-edges-v1':
+      return {
+        heading: 'Classify named Circle of Willis connections on CTA',
+        corner: 'TopCoW · source contract',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Exact test-partition source image; annotation is reader-only. No participant JSON or score.',
+          url: 'https://zenodo.org/records/15692630',
+          link_label: 'Acquire original data',
+        },
+        legend: [
+          ['#91a6ae', 'Actual test-partition image'],
+          ['#2aa77f', 'Reader-only source edge bits'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'rex-topcow-mr-edges-v1':
+      return {
+        heading: 'Classify named Circle of Willis connections on MRA',
+        corner: 'TopCoW · source contract',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Exact test-partition source image; annotation is reader-only. No participant JSON or score.',
+          url: 'https://zenodo.org/records/15692630',
+          link_label: 'Acquire original data',
+        },
+        legend: [
+          ['#91a6ae', 'Actual test-partition image'],
+          ['#2aa77f', 'Reader-only source edge bits'],
           ['#16a6a9', 'Empty test output'],
         ],
       };

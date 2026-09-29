@@ -54,6 +54,10 @@ class ExpansionTests(unittest.TestCase):
                     "cardiac-contour-v1",
                     "cardiac-anchor-v1",
                     "cardiac-material-v1",
+                    "rex-topcow-mr-edges-v1",
+                    "rex-topcow-ct-edges-v1",
+                    "rex-topcow-mr-box-v1",
+                    "rex-topcow-ct-box-v1",
                     "rex-topcow-mr-seg-v1",
                     "rex-isles22-v1",
                     "rexmle-dentex-v1",
@@ -134,6 +138,10 @@ class ExpansionTests(unittest.TestCase):
             ("cardiac-motion", "cardiac-contour-feasibility"),
             ("cardiac-motion", "cardiac-anchor-feasibility"),
             ("cardiac-motion", "cardiac-material-feasibility"),
+            (None, "rexmle-topcow-track2-task3"),
+            (None, "rexmle-topcow-track1-task3"),
+            (None, "rexmle-topcow-track2-task2"),
+            (None, "rexmle-topcow-track1-task2"),
             (None, "rexmle-topcow-track2-task1"),
             (None, "rexmle-topbrain-track2"),
             (None, "rexmle-topbrain-track1"),
@@ -302,6 +310,25 @@ class ExpansionTests(unittest.TestCase):
                         ValueError, "incorrectly classified source teaching asset"
                     ):
                         stories.resolve_assets(ROOT, "retained-rex-topcow-mr-seg-v1")
+
+    def test_topcow_roi_reference_images_cannot_be_reclassified_as_input(self):
+        import json
+        from unittest.mock import patch
+
+        path = ROOT / "presentation/task-explorer/rex-topcow-ct-box/manifest.json"
+        for target, bad_role in [
+            ("images/reference-roi-04.png", "illustration"),
+            ("images/input-04.png", "reader-reference-reveal"),
+        ]:
+            manifest = json.loads(path.read_text())
+            asset = next(a for a in manifest["assets"] if a["file"] == target)
+            asset["role"] = bad_role
+            with self.subTest(asset=target):
+                with patch.object(stories.json, "loads", return_value=manifest):
+                    with self.assertRaisesRegex(
+                        ValueError, "incorrectly classified source teaching asset"
+                    ):
+                        stories.resolve_assets(ROOT, "retained-rex-topcow-ct-box-v1")
 
     def test_public_input_pack_has_no_hidden_reference(self):
         import json

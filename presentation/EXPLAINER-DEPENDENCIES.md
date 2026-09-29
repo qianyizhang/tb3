@@ -1,48 +1,8 @@
 # Explainer dependency register
 
-Core: **154** · reviewed: **70** · ready: **0** · needs resolution: **84** · deferred: **0**
+Core: **154** · reviewed: **74** · ready: **0** · needs resolution: **80** · deferred: **0**
 
 This is a derived view of EXPLAINER-SCOPE.json and EXPLAINER-LEDGER.json. Deferral does not confer visual acceptance.
-
-## rexmle-topcow-track1-task2 — Locate the Circle of Willis in a CT volume
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-contract
-- **Queue state:** needs-resolution
-- **Classification:** contract-audit
-- **Attempt:** task-specific-audit-not-established-by-ledger
-- **Current next action:** Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.
-- **Prior blocker:** Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-topcow-track1-task2. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.
-
-## rexmle-topcow-track2-task2 — Locate the Circle of Willis in an MR volume
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-contract
-- **Queue state:** needs-resolution
-- **Classification:** contract-audit
-- **Attempt:** task-specific-audit-not-established-by-ledger
-- **Current next action:** Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.
-- **Prior blocker:** Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-topcow-track2-task2. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.
-
-## rexmle-topcow-track1-task3 — Classify arterial connections from CT angiography
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-contract
-- **Queue state:** needs-resolution
-- **Classification:** contract-audit
-- **Attempt:** task-specific-audit-not-established-by-ledger
-- **Current next action:** Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.
-- **Prior blocker:** Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-topcow-track1-task3. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.
-
-## rexmle-topcow-track2-task3 — Classify arterial connections from MR angiography
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-contract
-- **Queue state:** needs-resolution
-- **Classification:** contract-audit
-- **Attempt:** task-specific-audit-not-established-by-ledger
-- **Current next action:** Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.
-- **Prior blocker:** Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-topcow-track2-task3. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.
 
 ## automedbench-full-bccd-det-task — Locate three blood-cell types in microscopy
 

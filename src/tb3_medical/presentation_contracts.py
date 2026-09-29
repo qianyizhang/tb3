@@ -1426,6 +1426,70 @@ class RexTopcowMrSegPlan(ExpansionPlan):
     beats: list[RexTopcowMrSegBeat]
 
 
+class RexTopcowCtBoxChannels(TypedDict):
+    slice: tuple[float, float]
+    step: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexTopcowCtBoxBeat(ExpansionBeat):
+    channels: RexTopcowCtBoxChannels
+    scene: Literal["inputs", "geometry", "operation", "output", "reference", "limits"]
+
+
+class RexTopcowCtBoxPlan(ExpansionPlan):
+    recipe: Literal["rex-topcow-ct-box-v1"]
+    beats: list[RexTopcowCtBoxBeat]
+
+
+class RexTopcowMrBoxChannels(TypedDict):
+    slice: tuple[float, float]
+    step: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexTopcowMrBoxBeat(ExpansionBeat):
+    channels: RexTopcowMrBoxChannels
+    scene: Literal["inputs", "geometry", "operation", "output", "reference", "limits"]
+
+
+class RexTopcowMrBoxPlan(ExpansionPlan):
+    recipe: Literal["rex-topcow-mr-box-v1"]
+    beats: list[RexTopcowMrBoxBeat]
+
+
+class RexTopcowCtEdgesChannels(TypedDict):
+    slice: tuple[float, float]
+    step: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexTopcowCtEdgesBeat(ExpansionBeat):
+    channels: RexTopcowCtEdgesChannels
+    scene: Literal["inputs", "geometry", "operation", "output", "reference", "limits"]
+
+
+class RexTopcowCtEdgesPlan(ExpansionPlan):
+    recipe: Literal["rex-topcow-ct-edges-v1"]
+    beats: list[RexTopcowCtEdgesBeat]
+
+
+class RexTopcowMrEdgesChannels(TypedDict):
+    slice: tuple[float, float]
+    step: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexTopcowMrEdgesBeat(ExpansionBeat):
+    channels: RexTopcowMrEdgesChannels
+    scene: Literal["inputs", "geometry", "operation", "output", "reference", "limits"]
+
+
+class RexTopcowMrEdgesPlan(ExpansionPlan):
+    recipe: Literal["rex-topcow-mr-edges-v1"]
+    beats: list[RexTopcowMrEdgesBeat]
+
+
 class CardiacMaterialChannels(TypedDict):
     phase: tuple[float, float]
     helper: tuple[float, float]
@@ -1636,6 +1700,10 @@ StoryPlan = (
     | RexTopbrainCtPlan
     | RexTopbrainMrPlan
     | RexTopcowMrSegPlan
+    | RexTopcowCtBoxPlan
+    | RexTopcowMrBoxPlan
+    | RexTopcowCtEdgesPlan
+    | RexTopcowMrEdgesPlan
     | CardiacMaterialPlan
     | CardiacAnchorPlan
     | ClinicalCavityPlan

@@ -1,0 +1,160 @@
+{
+  "entry_id": "rexmle-topcow-track1-task3",
+  "title": "TopCoW CT anterior/posterior edge classification",
+  "reviewed_at": "2026-09-29T04:53:00Z",
+  "source_revision": "b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53",
+  "source_archive_sha256": "82d18d7bfb3a69719284ed33e29feb33d409f1c8f7e49961b9357832a1141bac",
+  "adapter_files": [
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track1-task3/config.yaml",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track1-task3/config.yaml",
+      "bytes": 1284,
+      "sha256": "8be156169a2e0987af1ed2aa733338cd60bb4d0eda085385df0e7da5306d9fea",
+      "git_blob_sha1": "3cd13dbda460f19efa200b190accfb3d39a63244"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track1-task3/description.md",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track1-task3/description.md",
+      "bytes": 2714,
+      "sha256": "f2095a5704c8736591718e7d31c18a9d7fd51b18f590e9cae2a6a5929cde2742",
+      "git_blob_sha1": "44c87bccb71a7c79ddbafd292b8cd5c601e42d3e"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track1-task3/grade.py",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track1-task3/grade.py",
+      "bytes": 17634,
+      "sha256": "ec44444c4b584a4b67524144806e78b3bdb2accdfeb933123a99c86907272097",
+      "git_blob_sha1": "8fa17e88c1c5e54f55333951d6c2f1fd9ef5f9d8"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track1-task3/metric_config.json",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track1-task3/metric_config.json",
+      "bytes": 106,
+      "sha256": "92585e820af6711c8b372c56a5f8d40521eecf7d30978c8d73acbbc37d4b4e20",
+      "git_blob_sha1": "59629ca81a9b665d6a89f6486ca0a7af38d2ffc8"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track1-task3/prepare.py",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track1-task3/prepare.py",
+      "bytes": 10142,
+      "sha256": "bc11193f433adcb9b63e9814ad8b9d155683928c335f20b5cab9deb5d9227686",
+      "git_blob_sha1": "3095616c76335c71679f16f84f203529a6aab5b9"
+    }
+  ],
+  "all_adapter_git_blobs_verified": true,
+  "source_family": "TopCoW 2024",
+  "source_url": "https://zenodo.org/records/15692630",
+  "source_terms": "Official TopCoW2024 DATA-LICENSE.txt: noncommercial use with attribution; commercial use requires owner permission. Retained license SHA-256 6b527078226cc70d90f6938b55002961e8b311aa57fb720e0d4cc8f180919690.",
+  "illustration_basis": "mixed",
+  "status": "source-matched native sample resolved; no retained ReX participant output or score",
+  "attempts": [
+    {
+      "attempted_at": "2026-09-29T04:40:00Z",
+      "route": "retained official Zenodo 15692630 TopCoW2024 ZIP64 directory and local native release files",
+      "outcome": "Exact case012 CT and MR input, segmentation, ROI and graph members match source archive CRC32 and uncompressed size; all native SHA-256 pinned",
+      "receipt_paths": [
+        ".local/explainers/completion-20260927/042-source/topcow-complete-directory.json",
+        "native-geometry-review.json"
+      ],
+      "source": "retained official Zenodo 15692630 TopCoW2024 ZIP64 directory and local native release files",
+      "action": "Inspect official source metadata and recover verified archive members"
+    }
+  ],
+  "actual_data_gap": "No retained ReX participant prediction or score. Case012 reference is source-matched but must remain reader-only in teaching; no grader run.",
+  "reference_boundary": "case012 image is a static held-out test input. Its source annotation exists in full public release but would be private GT in ReX staging. Initial view input only; explicit reader-only reveal may show annotation, never as model output.",
+  "reopening_condition": "A genuine ReX participant output or score requires a separately pinned submission and grade provenance; a public source label alone is not one.",
+  "source_release": "TopCoW2024_Data_Release.zip, official Zenodo record 15692630; full ZIP64 directory retained",
+  "official_archive_bytes": 10512833650,
+  "directory_sha256": "3bc8037e34fbc96dad4d6ce7f33e970fba875fbe96a99c2277da48753c0a2207",
+  "static_split": {
+    "per_modality_total": 125,
+    "train": 100,
+    "test": 25,
+    "case_012": "test",
+    "method": "sorted IDs, train_test_split(test_size=0.2, random_state=42); preparer not run"
+  },
+  "assets": [
+    {
+      "path": "runs/br030-vessel-geometry/sources/TopCoW2024_Data_Release/imagesTr/topcow_ct_012_0000.nii.gz",
+      "bytes": 37109398,
+      "sha256": "fb7ce816c4dcff765179a2154b74d63fef7db649525fcfa4e26e0a583224ca70",
+      "role": "held-out test input",
+      "matching_proof": "Exact retained TopCoW2024 ZIP64 member size and CRC32 match; native file SHA-256 pinned here."
+    },
+    {
+      "path": "runs/br030-vessel-geometry/sources/TopCoW2024_Data_Release/antpos_edges_labelsTr/topcow_ct_012.yml",
+      "bytes": 141,
+      "sha256": "7822c8478093b0492ed69e5851af482883bf46aab086b9635a8fddbb3ebd924d",
+      "role": "private test graph reference",
+      "matching_proof": "Exact retained TopCoW2024 ZIP64 member size and CRC32 match; native file SHA-256 pinned here."
+    }
+  ],
+  "native_geometry": {
+    "path": "runs/br030-vessel-geometry/sources/TopCoW2024_Data_Release/imagesTr/topcow_ct_012_0000.nii.gz",
+    "shape_ijk": [
+      266,
+      371,
+      311
+    ],
+    "spacing_ijk_mm": [
+      0.498046875,
+      0.498046875,
+      0.5
+    ],
+    "sform_code": 2,
+    "affine_rows": [
+      [
+        -0.498046875,
+        0.0,
+        0.0,
+        65.4970703125
+      ],
+      [
+        0.0,
+        -0.498046875,
+        0.0,
+        299.8291015625
+      ],
+      [
+        0.0,
+        0.0,
+        0.5,
+        -239.39999389648438
+      ]
+    ]
+  },
+  "acquisition_route": "https://zenodo.org/records/15692630",
+  "source_annotation": {
+    "anterior": {
+      "L-A1": 1,
+      "Acom": 1,
+      "3rd-A2": 0,
+      "R-A1": 1
+    },
+    "posterior": {
+      "L-Pcom": 1,
+      "L-P1": 1,
+      "R-P1": 1,
+      "R-Pcom": 0
+    }
+  },
+  "output_contract": {
+    "csv": "submission.csv",
+    "columns": [
+      "image_id",
+      "modality",
+      "predicted_edges_path"
+    ],
+    "path_template": "predictions/topcow_ct_<id>_edges.json",
+    "json_schema": "anterior and posterior maps, exactly four named 0/1 edges each",
+    "prediction_role": "unavailable; illustrate empty schema only"
+  },
+  "scorer_contract": "Balanced accuracy for four-bit anterior variant classes and separately for four-bit posterior variant classes, aggregated across cases; not per-edge accuracy. Pinned grader accepts JSON or YAML prediction file.",
+  "production_draft": {
+    "status": "staged-unintegrated",
+    "basis": "actual native test input with symbolic operation and empty answer schema; actual test annotation only at explicit reader reveal",
+    "top_warning": "Exact static-test source input. No participant output or score. Annotation is reader-only."
+  },
+  "schema": 1,
+  "kind": "explainer-source-resolution"
+}

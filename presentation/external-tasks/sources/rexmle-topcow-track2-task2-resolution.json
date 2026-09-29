@@ -1,0 +1,196 @@
+{
+  "entry_id": "rexmle-topcow-track2-task2",
+  "title": "TopCoW MR 3D CoW ROI localization",
+  "reviewed_at": "2026-09-29T04:53:00Z",
+  "source_revision": "b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53",
+  "source_archive_sha256": "82d18d7bfb3a69719284ed33e29feb33d409f1c8f7e49961b9357832a1141bac",
+  "adapter_files": [
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track2-task2/config.yaml",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track2-task2/config.yaml",
+      "bytes": 1269,
+      "sha256": "f8fb7d07c9bd59817d76679e20c4d1502e590618a480ae903d7030a391216f09",
+      "git_blob_sha1": "a4f7c55384f923bf8fe42ae2d84125f730042fd5"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track2-task2/description.md",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track2-task2/description.md",
+      "bytes": 2552,
+      "sha256": "127f67e93616e35a70437328a44935abf97cb33e290338a521b0aaa8379f890a",
+      "git_blob_sha1": "e22affe76377dc2274e6f5a70db1103ffa424303"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track2-task2/grade.py",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track2-task2/grade.py",
+      "bytes": 11036,
+      "sha256": "dd53e2ed90b3645d365837dccc90f3cafe865fc1bef01f196e75192bae0b9ce8",
+      "git_blob_sha1": "e8ef9b03006c9cf85204421de46bc4b186e681f6"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track2-task2/metric_config.json",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track2-task2/metric_config.json",
+      "bytes": 96,
+      "sha256": "0cd026e8f8a7f88fb2c23cc8b9a282fdbdd3a5f27dd3e9f7b0015e7a90c9adaf",
+      "git_blob_sha1": "faff7e6bd1fcda328ffcf98f7d3cd7b6383f88c1"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track2-task2/prepare.py",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track2-task2/prepare.py",
+      "bytes": 11009,
+      "sha256": "a1af03a81d227ba983b61b4d2ad9246477714322792c3dcd9cc7755b7440dbf2",
+      "git_blob_sha1": "d69c8f3fb2696e2f958b015c3cc8f912ac1b5c20"
+    }
+  ],
+  "all_adapter_git_blobs_verified": true,
+  "source_family": "TopCoW 2024",
+  "source_url": "https://zenodo.org/records/15692630",
+  "source_terms": "Official TopCoW2024 DATA-LICENSE.txt: noncommercial use with attribution; commercial use requires owner permission. Retained license SHA-256 6b527078226cc70d90f6938b55002961e8b311aa57fb720e0d4cc8f180919690.",
+  "illustration_basis": "mixed",
+  "status": "source-matched native sample resolved; no retained ReX participant output or score",
+  "attempts": [
+    {
+      "attempted_at": "2026-09-29T04:40:00Z",
+      "route": "retained official Zenodo 15692630 TopCoW2024 ZIP64 directory and local native release files",
+      "outcome": "Exact case012 CT and MR input, segmentation, ROI and graph members match source archive CRC32 and uncompressed size; all native SHA-256 pinned",
+      "receipt_paths": [
+        ".local/explainers/completion-20260927/042-source/topcow-complete-directory.json",
+        "native-geometry-review.json"
+      ],
+      "source": "retained official Zenodo 15692630 TopCoW2024 ZIP64 directory and local native release files",
+      "action": "Inspect official source metadata and recover verified archive members"
+    }
+  ],
+  "actual_data_gap": "No retained ReX participant prediction or score. Case012 reference is source-matched but must remain reader-only in teaching; no grader run.",
+  "reference_boundary": "case012 image is a static held-out test input. Its source annotation exists in full public release but would be private GT in ReX staging. Initial view input only; explicit reader-only reveal may show annotation, never as model output.",
+  "reopening_condition": "A genuine ReX participant output or score requires a separately pinned submission and grade provenance; a public source label alone is not one.",
+  "source_release": "TopCoW2024_Data_Release.zip, official Zenodo record 15692630; full ZIP64 directory retained",
+  "official_archive_bytes": 10512833650,
+  "directory_sha256": "3bc8037e34fbc96dad4d6ce7f33e970fba875fbe96a99c2277da48753c0a2207",
+  "static_split": {
+    "per_modality_total": 125,
+    "train": 100,
+    "test": 25,
+    "case_012": "test",
+    "method": "sorted IDs, train_test_split(test_size=0.2, random_state=42); preparer not run"
+  },
+  "assets": [
+    {
+      "path": "runs/br025-vessel-curation/TopCoW2024_Data_Release/imagesTr/topcow_mr_012_0000.nii.gz",
+      "bytes": 49347570,
+      "sha256": "1aa532b6c76e0fdeba85eebed58951ef355e03aca26425755b69df3505341044",
+      "role": "held-out test input",
+      "matching_proof": "Exact retained TopCoW2024 ZIP64 member size and CRC32 match; native file SHA-256 pinned here."
+    },
+    {
+      "path": "runs/br025-vessel-curation/TopCoW2024_Data_Release/roi_loc_labelsTr/topcow_mr_012.txt",
+      "bytes": 78,
+      "sha256": "b3fe19796f5e52c931689989439581de827ad5d7f31b28ffdcf149157272d59c",
+      "role": "private test ROI reference",
+      "matching_proof": "Exact retained TopCoW2024 ZIP64 member size and CRC32 match; native file SHA-256 pinned here."
+    }
+  ],
+  "native_geometry": {
+    "path": "runs/br025-vessel-curation/TopCoW2024_Data_Release/imagesTr/topcow_mr_012_0000.nii.gz",
+    "shape_ijk": [
+      469,
+      611,
+      174
+    ],
+    "spacing_ijk_mm": [
+      0.296875,
+      0.296875,
+      0.5999979376792908
+    ],
+    "sform_code": 2,
+    "affine_rows": [
+      [
+        -0.29426711797714233,
+        -0.039263613522052765,
+        2.235166496333818e-09,
+        87.70555114746094
+      ],
+      [
+        0.03750768303871155,
+        -0.28110700845718384,
+        -0.17742420732975006,
+        82.41767120361328
+      ],
+      [
+        0.011610566638410091,
+        -0.08701714873313904,
+        0.5731650590896606,
+        -71.19561004638672
+      ]
+    ],
+    "label": {
+      "path": "runs/br025-vessel-curation/TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_012.nii.gz",
+      "shape_ijk": [
+        469,
+        611,
+        174
+      ],
+      "spacing_ijk_mm": [
+        0.296875,
+        0.296875,
+        0.5999979376792908
+      ],
+      "sform_code": 2,
+      "affine_rows": [
+        [
+          -0.29426711797714233,
+          -0.039263613522052765,
+          2.235166496333818e-09,
+          87.70555114746094
+        ],
+        [
+          0.03750768303871155,
+          -0.28110700845718384,
+          -0.17742420732975006,
+          82.41767120361328
+        ],
+        [
+          0.011610566638410091,
+          -0.08701714873313904,
+          0.5731650590896606,
+          -71.19561004638672
+        ]
+      ]
+    }
+  },
+  "acquisition_route": "https://zenodo.org/records/15692630",
+  "source_annotation": {
+    "size_voxels": [
+      171,
+      121,
+      38
+    ],
+    "location_voxels": [
+      148,
+      158,
+      82
+    ]
+  },
+  "output_contract": {
+    "csv": "submission.csv",
+    "columns": [
+      "image_id",
+      "modality",
+      "predicted_bbox_path"
+    ],
+    "path_template": "predictions/topcow_mr_<id>_bbox.json",
+    "json_schema": {
+      "size": "three integer voxel dimensions",
+      "location": "three integer voxel indices"
+    },
+    "prediction_role": "unavailable; illustrate empty schema only"
+  },
+  "scorer_contract": "Scores dilated-box overlap. boundary_iou uses ceil(0.2*box_size) margins; metric named iou uses ceil(0.5*box_size) margins and therefore is not undilated box IoU.",
+  "contract_ambiguity": "Task description calls location box center, but pinned scorer treats location as minimum corner: lower=location-margin, upper=location+size-1+margin. Source TXT says Location (Voxels) without resolving semantics. Present source and scorer interpretations explicitly; do not silently choose one as clinical truth.",
+  "production_draft": {
+    "status": "staged-unintegrated",
+    "basis": "actual native test input with symbolic operation and empty answer schema; actual test annotation only at explicit reader reveal",
+    "top_warning": "Exact static-test source input. No participant output or score. Annotation is reader-only."
+  },
+  "schema": 1,
+  "kind": "explainer-source-resolution"
+}

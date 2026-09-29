@@ -44,6 +44,10 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "rex-topcow-mr-edges-v1": "retained-rex-topcow-mr-edges-v1",
+    "rex-topcow-ct-edges-v1": "retained-rex-topcow-ct-edges-v1",
+    "rex-topcow-mr-box-v1": "retained-rex-topcow-mr-box-v1",
+    "rex-topcow-ct-box-v1": "retained-rex-topcow-ct-box-v1",
     "rex-topcow-mr-seg-v1": "retained-rex-topcow-mr-seg-v1",
     "rex-topbrain-mr-v1": "retained-rex-topbrain-mr-v1",
     "rex-topbrain-ct-v1": "retained-rex-topbrain-ct-v1",
@@ -297,6 +301,30 @@ SOURCE_INPUT_PACKS = {
     ),
 }
 SOURCE_EXTRA_REFERENCE_FILES = {
+    "retained-rex-topcow-mr-edges-v1": set(),
+    "retained-rex-topcow-ct-edges-v1": set(),
+    "retained-rex-topcow-mr-box-v1": {
+        "images/reference-roi-00.png",
+        "images/reference-roi-08.png",
+        "images/reference-roi-05.png",
+        "images/reference-roi-06.png",
+        "images/reference-roi-01.png",
+        "images/reference-roi-07.png",
+        "images/reference-roi-03.png",
+        "images/reference-roi-04.png",
+        "images/reference-roi-02.png",
+    },
+    "retained-rex-topcow-ct-box-v1": {
+        "images/reference-roi-07.png",
+        "images/reference-roi-04.png",
+        "images/reference-roi-00.png",
+        "images/reference-roi-03.png",
+        "images/reference-roi-01.png",
+        "images/reference-roi-08.png",
+        "images/reference-roi-05.png",
+        "images/reference-roi-02.png",
+        "images/reference-roi-06.png",
+    },
     "retained-rex-topcow-mr-seg-v1": {
         "images/reference-08.png",
         "images/reference-05.png",
@@ -322,6 +350,108 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-rex-topcow-mr-edges-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "DATA-LICENSE.txt",
+            "images/input-07.png",
+            "images/input-08.png",
+            "images/input-04.png",
+            "images/input-06.png",
+            "images/input-05.png",
+            "reference.json",
+            "images/input-01.png",
+            "images/input-02.png",
+            "source.json",
+            "NOTICE.md",
+            "diagram.json",
+            "output.json",
+            "images/input-03.png",
+            "images/input-00.png",
+        },
+    ),
+    "retained-rex-topcow-ct-edges-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "reference.json",
+            "DATA-LICENSE.txt",
+            "diagram.json",
+            "images/input-04.png",
+            "NOTICE.md",
+            "images/input-08.png",
+            "output.json",
+            "images/input-02.png",
+            "images/input-01.png",
+            "images/input-07.png",
+            "images/input-06.png",
+            "source.json",
+            "images/input-03.png",
+            "images/input-05.png",
+            "images/input-00.png",
+        },
+    ),
+    "retained-rex-topcow-mr-box-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "images/input-00.png",
+            "images/input-06.png",
+            "images/reference-roi-04.png",
+            "images/input-04.png",
+            "source.json",
+            "images/reference-roi-08.png",
+            "images/reference-roi-06.png",
+            "output.json",
+            "DATA-LICENSE.txt",
+            "images/input-07.png",
+            "images/reference-roi-07.png",
+            "images/input-05.png",
+            "diagram.json",
+            "images/input-03.png",
+            "images/reference-roi-02.png",
+            "images/input-02.png",
+            "images/reference-roi-00.png",
+            "images/reference-roi-03.png",
+            "images/input-08.png",
+            "reference.json",
+            "images/reference-roi-05.png",
+            "images/input-01.png",
+            "images/reference-roi-01.png",
+            "NOTICE.md",
+        },
+    ),
+    "retained-rex-topcow-ct-box-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "images/reference-roi-08.png",
+            "images/input-07.png",
+            "output.json",
+            "images/input-00.png",
+            "diagram.json",
+            "source.json",
+            "images/reference-roi-04.png",
+            "DATA-LICENSE.txt",
+            "images/input-06.png",
+            "images/input-03.png",
+            "images/reference-roi-02.png",
+            "NOTICE.md",
+            "images/reference-roi-06.png",
+            "images/reference-roi-00.png",
+            "images/reference-roi-01.png",
+            "images/reference-roi-03.png",
+            "images/input-04.png",
+            "images/reference-roi-05.png",
+            "images/input-01.png",
+            "images/input-05.png",
+            "images/reference-roi-07.png",
+            "reference.json",
+            "images/input-08.png",
+            "images/input-02.png",
+        },
+    ),
     "retained-rex-topcow-mr-seg-v1": (
         "source-slices",
         "reference.json",
@@ -1294,6 +1424,30 @@ class RexTopbrainMrChannels(Closed):
 
 class RexTopcowMrSegChannels(Closed):
     slice: Pair
+    reference: Pair
+
+
+class RexTopcowCtBoxChannels(Closed):
+    slice: Pair
+    step: Pair
+    reference: Pair
+
+
+class RexTopcowMrBoxChannels(Closed):
+    slice: Pair
+    step: Pair
+    reference: Pair
+
+
+class RexTopcowCtEdgesChannels(Closed):
+    slice: Pair
+    step: Pair
+    reference: Pair
+
+
+class RexTopcowMrEdgesChannels(Closed):
+    slice: Pair
+    step: Pair
     reference: Pair
 
 
@@ -2603,6 +2757,70 @@ class RexTopcowMrSegStory(Story[RexTopcowMrSegChannels]):
         return self
 
 
+class RexTopcowCtBoxBeat(ExpansionBeat[RexTopcowCtBoxChannels]):
+    scene: Literal["inputs", "geometry", "operation", "output", "reference", "limits"]
+
+
+class RexTopcowCtBoxStory(Story[RexTopcowCtBoxChannels]):
+    recipe: Literal["rex-topcow-ct-box-v1"]
+    beats: tuple[RexTopcowCtBoxBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class RexTopcowMrBoxBeat(ExpansionBeat[RexTopcowMrBoxChannels]):
+    scene: Literal["inputs", "geometry", "operation", "output", "reference", "limits"]
+
+
+class RexTopcowMrBoxStory(Story[RexTopcowMrBoxChannels]):
+    recipe: Literal["rex-topcow-mr-box-v1"]
+    beats: tuple[RexTopcowMrBoxBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class RexTopcowCtEdgesBeat(ExpansionBeat[RexTopcowCtEdgesChannels]):
+    scene: Literal["inputs", "geometry", "operation", "output", "reference", "limits"]
+
+
+class RexTopcowCtEdgesStory(Story[RexTopcowCtEdgesChannels]):
+    recipe: Literal["rex-topcow-ct-edges-v1"]
+    beats: tuple[RexTopcowCtEdgesBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class RexTopcowMrEdgesBeat(ExpansionBeat[RexTopcowMrEdgesChannels]):
+    scene: Literal["inputs", "geometry", "operation", "output", "reference", "limits"]
+
+
+class RexTopcowMrEdgesStory(Story[RexTopcowMrEdgesChannels]):
+    recipe: Literal["rex-topcow-mr-edges-v1"]
+    beats: tuple[RexTopcowMrEdgesBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class CardiacMaterialBeat(ExpansionBeat[CardiacMaterialChannels]):
     scene: Literal[
         "inputs", "initial", "tracking", "tetra", "strain", "comparison", "controls", "limits"
@@ -2800,6 +3018,10 @@ AnyStory = Annotated[
     | RexTopbrainCtStory
     | RexTopbrainMrStory
     | RexTopcowMrSegStory
+    | RexTopcowCtBoxStory
+    | RexTopcowMrBoxStory
+    | RexTopcowCtEdgesStory
+    | RexTopcowMrEdgesStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -2876,6 +3098,10 @@ ADAPTER: TypeAdapter[
     | RexTopbrainCtStory
     | RexTopbrainMrStory
     | RexTopcowMrSegStory
+    | RexTopcowCtBoxStory
+    | RexTopcowMrBoxStory
+    | RexTopcowCtEdgesStory
+    | RexTopcowMrEdgesStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3112,6 +3338,10 @@ def parse_expansion(
     | RexTopbrainCtStory
     | RexTopbrainMrStory
     | RexTopcowMrSegStory
+    | RexTopcowCtBoxStory
+    | RexTopcowMrBoxStory
+    | RexTopcowCtEdgesStory
+    | RexTopcowMrEdgesStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3255,6 +3485,26 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "TopCoW2024-native-NIfTI-RAS",
                 "LicenseRef-TopCoW2024-noncommercial",
                 "LicenseRef-TopCoW2024-noncommercial",
+            ),
+            "retained-rex-topcow-ct-box-v1": (
+                "TopCoW2024-native-NIfTI-RAS",
+                "LicenseRef-TopCoW-OpenDataSwiss",
+                "LicenseRef-TopCoW-OpenDataSwiss",
+            ),
+            "retained-rex-topcow-mr-box-v1": (
+                "TopCoW2024-native-NIfTI-RAS",
+                "LicenseRef-TopCoW-OpenDataSwiss",
+                "LicenseRef-TopCoW-OpenDataSwiss",
+            ),
+            "retained-rex-topcow-ct-edges-v1": (
+                "TopCoW2024-native-NIfTI-RAS",
+                "LicenseRef-TopCoW-OpenDataSwiss",
+                "LicenseRef-TopCoW-OpenDataSwiss",
+            ),
+            "retained-rex-topcow-mr-edges-v1": (
+                "TopCoW2024-native-NIfTI-RAS",
+                "LicenseRef-TopCoW-OpenDataSwiss",
+                "LicenseRef-TopCoW-OpenDataSwiss",
             ),
             "retained-cardiac-material-v1": (
                 "STRAUS-patient01-healthy-canonical",

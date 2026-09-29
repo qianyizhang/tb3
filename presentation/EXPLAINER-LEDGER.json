@@ -16427,15 +16427,15 @@
       ],
       "illustration_kind": "box3d",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "rexmle-topcow-track1-task2",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-topcow-track1-task2. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/topcow-ct-box-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Head CT angiography.",
         "helpers": "Training 3D bounding boxes and case metadata. These are training aids; held-out targets remain evaluation references.",
@@ -16468,14 +16468,105 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T08:02:22.993601+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/rexmle-topcow-track1-task2-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "No retained ReX participant prediction or score. Case012 reference is source-matched but must remain reader-only in teaching; no grader run.",
+      "acquisition_route": "https://zenodo.org/records/15692630",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-topcow-track1-task2-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/rexmle-topcow-track1-task2-resolution.json",
+        "receipt_sha256": "1c0358db54c584da7f1b7527ae8a61e58be3d9545edafb37fa342301fd8568ee",
+        "brief_sha256": "5a1fb6db538281706a7587820855d666e50da4b44daf03467ebe7a33f28b7d9d",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Exact static-test source input. No participant output or score. Annotation is reader-only.",
+      "acceptance_scope": "One exact native TopCoW2024 source image in statically reconstructed ReX test partition, task-specific symbolic operation, empty answer schema and explicit reader-only source annotation. This is an explainer review, not a model result, preparation, scoring, clinical or population claim.",
+      "completion_review": {
+        "date": "2026-09-29T08:12:02.045795+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "323fc6257d4042b7e182aa422af94d86b548a44a1ddabda91f53b12cb5247900"
+      },
+      "reviewed_contract_projection": {
+        "title": "Localize the Circle of Willis in CTA",
+        "goal": "Produce the required 3D CoW ROI box for each held-out CTA image in the pinned ReX-MLE adaptation. This one-case source explainer reports no participant result.",
+        "value": "Not yet specified.",
+        "raw": "TopCoW2024 contains 125 source CTA cases. The pinned ReX adapter sorts IDs and uses `train_test_split(test_size=0.2, random_state=42)`, giving 100 train and 25 test cases per modality; static reproduction places illustrated case012 in test. The exact image is 266×371×311 voxels at 0.498046875×0.498046875×0.5 mm. The pack retains its native NIfTI sform, source SHA and nine fixed-index display slices; the preparer was not run.",
+        "helpers": "The ReX adaptation provides public image inputs, training labels and a sample submission/path convention. The illustrated test image is a solver input. Training labels are development aids, not this test answer.",
+        "tools": "A participant may process the volume and write task-specific JSON and CSV files. This source audit did not execute a model, preparer, trial or grader.",
+        "reference": "The full original source release contains case012 ROI text with size 102×65×42 and location 86, 113, 96 in voxel units. The ReX test partition withholds that file from the solver. The explainer shows it only after reader reveal and labels the yellow projection as a scorer interpretation, not an observed prediction.",
+        "spec": "Produce one 3D CoW region box per held-out scan. The JSON has `size` and `location` arrays of three native voxel integers. The pinned grader computes minimum `location` and inclusive maximum `location+size−1`; the task prose instead calls `location` a center. Both readings are shown as abstract grids before source values are revealed.",
+        "output": "`submission.csv` columns are `image_id,modality,predicted_bbox_path`. The expected relative file pattern is `predictions/topcow_ct_<id>_bbox.json`. The JSON must contain size and location arrays, each containing three voxel integers. The path and question-mark schema shown in the explainer are empty examples; no participant file exists here.",
+        "score": "The pinned grader computes `Boundary_IoU` after voxel margins `ceil(0.2×size)` and a metric named `IoU` after `ceil(0.5×size)`, so the latter is not ordinary undilated box IoU. Its minimum-corner geometry conflicts with the description center wording. No box score was produced. The selected source case alone cannot establish population, clinical or model performance.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "No materialized ReX staging, submitted JSON, grader run, score or clinical assessment was retained. Original source images and annotations are exact source-matched local assets; the test annotation remains reader-only in this teaching view. TopCoW terms permit noncommercial use with attribution; commercial use requires owner permission.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect the exact native source image and physical coordinate map.",
+          "Work through the minimum-corner versus center box ambiguity in a labeled symbolic diagram.",
+          "Read the empty output schema, then explicitly reveal the source target and scorer limits."
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "The ReX adaptation provides public image inputs, training labels and a sample submission/path convention. The illustrated test image is a solver input. Training labels are development aids, not this test answer.",
+            "remaining": "Produce one 3D CoW region box per held-out scan. The JSON has `size` and `location` arrays of three native voxel integers. The pinned grader computes minimum `location` and inclusive maximum `location+size−1`; the task prose instead calls `location` a center. Both readings are shown as abstract grids before source values are revealed."
+          }
+        ],
+        "sources": [
+          [
+            "Official TopCoW2024 release and data-use terms",
+            "https://zenodo.org/records/15692630"
+          ],
+          [
+            "Pinned ReX task description",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track1-task2/description.md"
+          ],
+          [
+            "Pinned ReX preparation",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track1-task2/prepare.py"
+          ],
+          [
+            "Pinned ReX grader",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track1-task2/grade.py"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Produce the required 3D CoW ROI box for each held-out CTA image in the pinned ReX-MLE adaptation. This one-case source explainer reports no participant result.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>TopCoW2024 contains 125 source CTA cases. The pinned ReX adapter sorts IDs and uses <code>train_test_split(test_size=0.2, random_state=42)</code>, giving 100 train and 25 test cases per modality; static reproduction places illustrated case012 in test. The exact image is 266×371×311 voxels at 0.498046875×0.498046875×0.5 mm. The pack retains its native NIfTI sform, source SHA and nine fixed-index display slices; the preparer was not run.</p>",
+          "helpers": "<p>The ReX adaptation provides public image inputs, training labels and a sample submission/path convention. The illustrated test image is a solver input. Training labels are development aids, not this test answer.</p>",
+          "tools": "<p>A participant may process the volume and write task-specific JSON and CSV files. This source audit did not execute a model, preparer, trial or grader.</p>",
+          "reference": "<p>The full original source release contains case012 ROI text with size 102×65×42 and location 86, 113, 96 in voxel units. The ReX test partition withholds that file from the solver. The explainer shows it only after reader reveal and labels the yellow projection as a scorer interpretation, not an observed prediction.</p>",
+          "spec": "<p>Produce one 3D CoW region box per held-out scan. The JSON has <code>size</code> and <code>location</code> arrays of three native voxel integers. The pinned grader computes minimum <code>location</code> and inclusive maximum <code>location+size−1</code>; the task prose instead calls <code>location</code> a center. Both readings are shown as abstract grids before source values are revealed.</p>",
+          "output": "<p><code>submission.csv</code> columns are <code>image_id,modality,predicted_bbox_path</code>. The expected relative file pattern is <code>predictions/topcow_ct_&lt;id&gt;_bbox.json</code>. The JSON must contain size and location arrays, each containing three voxel integers. The path and question-mark schema shown in the explainer are empty examples; no participant file exists here.</p>",
+          "score": "<p>The pinned grader computes <code>Boundary_IoU</code> after voxel margins <code>ceil(0.2×size)</code> and a metric named <code>IoU</code> after <code>ceil(0.5×size)</code>, so the latter is not ordinary undilated box IoU. Its minimum-corner geometry conflicts with the description center wording. No box score was produced. The selected source case alone cannot establish population, clinical or model performance.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>No materialized ReX staging, submitted JSON, grader run, score or clinical assessment was retained. Original source images and annotations are exact source-matched local assets; the test annotation remains reader-only in this teaching view. TopCoW terms permit noncommercial use with attribution; commercial use requires owner permission.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -16493,15 +16584,15 @@
       ],
       "illustration_kind": "box3d",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "rexmle-topcow-track2-task2",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-topcow-track2-task2. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/topcow-mr-box-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Head MR angiography.",
         "helpers": "Training 3D bounding boxes and case metadata. These are training aids; held-out targets remain evaluation references.",
@@ -16534,14 +16625,105 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T08:12:40.326654+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/rexmle-topcow-track2-task2-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "No retained ReX participant prediction or score. Case012 reference is source-matched but must remain reader-only in teaching; no grader run.",
+      "acquisition_route": "https://zenodo.org/records/15692630",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-topcow-track2-task2-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/rexmle-topcow-track2-task2-resolution.json",
+        "receipt_sha256": "3543b3bcd3c479019e9eea4aec6d4a0749ed217e9b19456a0faa33ab5c7434f4",
+        "brief_sha256": "9da27aab3a20c4f4879b7c54eb20ed2bbd2fa2b175036762ef33371548d889dc",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Exact static-test source input. No participant output or score. Annotation is reader-only.",
+      "acceptance_scope": "One exact native TopCoW2024 source image in statically reconstructed ReX test partition, task-specific symbolic operation, empty answer schema and explicit reader-only source annotation. This is an explainer review, not a model result, preparation, scoring, clinical or population claim.",
+      "completion_review": {
+        "date": "2026-09-29T08:16:32.368792+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "ab98b9d445e1d1f3f75534003c53147deb0344d79eb21c9555c38a987a8c566a"
+      },
+      "reviewed_contract_projection": {
+        "title": "Localize the Circle of Willis in MRA",
+        "goal": "Produce the required 3D CoW ROI box for each held-out MRA image in the pinned ReX-MLE adaptation. This one-case source explainer reports no participant result.",
+        "value": "Not yet specified.",
+        "raw": "TopCoW2024 contains 125 source MRA cases. The pinned ReX adapter sorts IDs and uses `train_test_split(test_size=0.2, random_state=42)`, giving 100 train and 25 test cases per modality; static reproduction places illustrated case012 in test. The exact image is 469×611×174 voxels at 0.296875×0.296875×0.599998 mm. The pack retains its native NIfTI sform, source SHA and nine fixed-index display slices; the preparer was not run.",
+        "helpers": "The ReX adaptation provides public image inputs, training labels and a sample submission/path convention. The illustrated test image is a solver input. Training labels are development aids, not this test answer.",
+        "tools": "A participant may process the volume and write task-specific JSON and CSV files. This source audit did not execute a model, preparer, trial or grader.",
+        "reference": "The full original source release contains case012 ROI text with size 171×121×38 and location 148, 158, 82 in voxel units. The ReX test partition withholds that file from the solver. The explainer shows it only after reader reveal and labels the yellow projection as a scorer interpretation, not an observed prediction.",
+        "spec": "Produce one 3D CoW region box per held-out scan. The JSON has `size` and `location` arrays of three native voxel integers. The pinned grader computes minimum `location` and inclusive maximum `location+size−1`; the task prose instead calls `location` a center. Both readings are shown as abstract grids before source values are revealed.",
+        "output": "`submission.csv` columns are `image_id,modality,predicted_bbox_path`. The expected relative file pattern is `predictions/topcow_mr_<id>_bbox.json`. The JSON must contain size and location arrays, each containing three voxel integers. The path and question-mark schema shown in the explainer are empty examples; no participant file exists here.",
+        "score": "The pinned grader computes `Boundary_IoU` after voxel margins `ceil(0.2×size)` and a metric named `IoU` after `ceil(0.5×size)`, so the latter is not ordinary undilated box IoU. Its minimum-corner geometry conflicts with the description center wording. No box score was produced. The selected source case alone cannot establish population, clinical or model performance.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "No materialized ReX staging, submitted JSON, grader run, score or clinical assessment was retained. Original source images and annotations are exact source-matched local assets; the test annotation remains reader-only in this teaching view. TopCoW terms permit noncommercial use with attribution; commercial use requires owner permission.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect the exact native source image and physical coordinate map.",
+          "Work through the minimum-corner versus center box ambiguity in a labeled symbolic diagram.",
+          "Read the empty output schema, then explicitly reveal the source target and scorer limits."
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "The ReX adaptation provides public image inputs, training labels and a sample submission/path convention. The illustrated test image is a solver input. Training labels are development aids, not this test answer.",
+            "remaining": "Produce one 3D CoW region box per held-out scan. The JSON has `size` and `location` arrays of three native voxel integers. The pinned grader computes minimum `location` and inclusive maximum `location+size−1`; the task prose instead calls `location` a center. Both readings are shown as abstract grids before source values are revealed."
+          }
+        ],
+        "sources": [
+          [
+            "Official TopCoW2024 release and data-use terms",
+            "https://zenodo.org/records/15692630"
+          ],
+          [
+            "Pinned ReX task description",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track2-task2/description.md"
+          ],
+          [
+            "Pinned ReX preparation",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track2-task2/prepare.py"
+          ],
+          [
+            "Pinned ReX grader",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track2-task2/grade.py"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Produce the required 3D CoW ROI box for each held-out MRA image in the pinned ReX-MLE adaptation. This one-case source explainer reports no participant result.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>TopCoW2024 contains 125 source MRA cases. The pinned ReX adapter sorts IDs and uses <code>train_test_split(test_size=0.2, random_state=42)</code>, giving 100 train and 25 test cases per modality; static reproduction places illustrated case012 in test. The exact image is 469×611×174 voxels at 0.296875×0.296875×0.599998 mm. The pack retains its native NIfTI sform, source SHA and nine fixed-index display slices; the preparer was not run.</p>",
+          "helpers": "<p>The ReX adaptation provides public image inputs, training labels and a sample submission/path convention. The illustrated test image is a solver input. Training labels are development aids, not this test answer.</p>",
+          "tools": "<p>A participant may process the volume and write task-specific JSON and CSV files. This source audit did not execute a model, preparer, trial or grader.</p>",
+          "reference": "<p>The full original source release contains case012 ROI text with size 171×121×38 and location 148, 158, 82 in voxel units. The ReX test partition withholds that file from the solver. The explainer shows it only after reader reveal and labels the yellow projection as a scorer interpretation, not an observed prediction.</p>",
+          "spec": "<p>Produce one 3D CoW region box per held-out scan. The JSON has <code>size</code> and <code>location</code> arrays of three native voxel integers. The pinned grader computes minimum <code>location</code> and inclusive maximum <code>location+size−1</code>; the task prose instead calls <code>location</code> a center. Both readings are shown as abstract grids before source values are revealed.</p>",
+          "output": "<p><code>submission.csv</code> columns are <code>image_id,modality,predicted_bbox_path</code>. The expected relative file pattern is <code>predictions/topcow_mr_&lt;id&gt;_bbox.json</code>. The JSON must contain size and location arrays, each containing three voxel integers. The path and question-mark schema shown in the explainer are empty examples; no participant file exists here.</p>",
+          "score": "<p>The pinned grader computes <code>Boundary_IoU</code> after voxel margins <code>ceil(0.2×size)</code> and a metric named <code>IoU</code> after <code>ceil(0.5×size)</code>, so the latter is not ordinary undilated box IoU. Its minimum-corner geometry conflicts with the description center wording. No box score was produced. The selected source case alone cannot establish population, clinical or model performance.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>No materialized ReX staging, submitted JSON, grader run, score or clinical assessment was retained. Original source images and annotations are exact source-matched local assets; the test annotation remains reader-only in this teaching view. TopCoW terms permit noncommercial use with attribution; commercial use requires owner permission.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -16559,15 +16741,15 @@
       ],
       "illustration_kind": "vesselgraph",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "rexmle-topcow-track1-task3",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "topology",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-topcow-track1-task3. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/topcow-ct-edges-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Head CT angiography.",
         "helpers": "Training graph-edge labels and the source definitions of anterior/posterior connections. These are training aids; held-out targets remain evaluation references.",
@@ -16600,14 +16782,105 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T08:16:40.539947+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/rexmle-topcow-track1-task3-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "No retained ReX participant prediction or score. Case012 reference is source-matched but must remain reader-only in teaching; no grader run.",
+      "acquisition_route": "https://zenodo.org/records/15692630",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-topcow-track1-task3-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/rexmle-topcow-track1-task3-resolution.json",
+        "receipt_sha256": "9218a959138f2abd370f06526e7ecbfb5fe4698b2e787f98f2547bac7cad336b",
+        "brief_sha256": "14a1b8747e27b1705eb6a75fd67c57d0f1b8cddaf6f5bc508adeb78fe7895112",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Exact static-test source input. No participant output or score. Annotation is reader-only.",
+      "acceptance_scope": "One exact native TopCoW2024 source image in statically reconstructed ReX test partition, task-specific symbolic operation, empty answer schema and explicit reader-only source annotation. This is an explainer review, not a model result, preparation, scoring, clinical or population claim.",
+      "completion_review": {
+        "date": "2026-09-29T08:21:38.169949+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "dff3bd3fb2c187434c00d5d0c2be5efa6ec759ddb498bc01b9da19bec421919f"
+      },
+      "reviewed_contract_projection": {
+        "title": "Classify Circle of Willis connections in CTA",
+        "goal": "Produce the required named CoW connection bits for each held-out CTA image in the pinned ReX-MLE adaptation. This one-case source explainer reports no participant result.",
+        "value": "Not yet specified.",
+        "raw": "TopCoW2024 contains 125 source CTA cases. The pinned ReX adapter sorts IDs and uses `train_test_split(test_size=0.2, random_state=42)`, giving 100 train and 25 test cases per modality; static reproduction places illustrated case012 in test. The exact image is 266×371×311 voxels at 0.498046875×0.498046875×0.5 mm. The pack retains its native NIfTI sform, source SHA and nine fixed-index display slices; the preparer was not run.",
+        "helpers": "The ReX adaptation provides public image inputs, training labels and a sample submission/path convention. The illustrated test image is a solver input. Training labels are development aids, not this test answer.",
+        "tools": "A participant may process the volume and write task-specific JSON and CSV files. This source audit did not execute a model, preparer, trial or grader.",
+        "reference": "The full original source release contains case012 YML with four anterior and four posterior 0/1 edge values. The ReX test partition withholds this file from the solver. The explainer shows the bits only after reader reveal; the graph position is schematic and not traced from patient pixels.",
+        "spec": "Classify presence or absence of L-A1, Acom, 3rd-A2 and R-A1 in `anterior`, and L-Pcom, L-P1, R-P1 and R-Pcom in `posterior`. The graph is a named topology schema; no source vessel segmentation is a supplied answer to this task.",
+        "output": "`submission.csv` columns are `image_id,modality,predicted_edges_path`. The expected relative file pattern is `predictions/topcow_ct_<id>_edges.json`. The JSON must contain anterior and posterior maps with the eight exact named zero-or-one edge keys. The path and question-mark schema shown in the explainer are empty examples; no participant file exists here.",
+        "score": "The pinned grader concatenates each region's four edge bits into anterior and posterior variant strings, then scores balanced accuracy separately across cases. It does not report per-edge accuracy from this one case. No graph score was produced. The selected source case alone cannot establish population, clinical or model performance.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "No materialized ReX staging, submitted JSON, grader run, score or clinical assessment was retained. Original source images and annotations are exact source-matched local assets; the test annotation remains reader-only in this teaching view. TopCoW terms permit noncommercial use with attribution; commercial use requires owner permission.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect the exact native source image and physical coordinate map.",
+          "Work through the eight candidate arterial connection keys in a labeled symbolic diagram.",
+          "Read the empty output schema, then explicitly reveal the source target and scorer limits."
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "The ReX adaptation provides public image inputs, training labels and a sample submission/path convention. The illustrated test image is a solver input. Training labels are development aids, not this test answer.",
+            "remaining": "Classify presence or absence of L-A1, Acom, 3rd-A2 and R-A1 in `anterior`, and L-Pcom, L-P1, R-P1 and R-Pcom in `posterior`. The graph is a named topology schema; no source vessel segmentation is a supplied answer to this task."
+          }
+        ],
+        "sources": [
+          [
+            "Official TopCoW2024 release and data-use terms",
+            "https://zenodo.org/records/15692630"
+          ],
+          [
+            "Pinned ReX task description",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track1-task3/description.md"
+          ],
+          [
+            "Pinned ReX preparation",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track1-task3/prepare.py"
+          ],
+          [
+            "Pinned ReX grader",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track1-task3/grade.py"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Produce the required named CoW connection bits for each held-out CTA image in the pinned ReX-MLE adaptation. This one-case source explainer reports no participant result.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>TopCoW2024 contains 125 source CTA cases. The pinned ReX adapter sorts IDs and uses <code>train_test_split(test_size=0.2, random_state=42)</code>, giving 100 train and 25 test cases per modality; static reproduction places illustrated case012 in test. The exact image is 266×371×311 voxels at 0.498046875×0.498046875×0.5 mm. The pack retains its native NIfTI sform, source SHA and nine fixed-index display slices; the preparer was not run.</p>",
+          "helpers": "<p>The ReX adaptation provides public image inputs, training labels and a sample submission/path convention. The illustrated test image is a solver input. Training labels are development aids, not this test answer.</p>",
+          "tools": "<p>A participant may process the volume and write task-specific JSON and CSV files. This source audit did not execute a model, preparer, trial or grader.</p>",
+          "reference": "<p>The full original source release contains case012 YML with four anterior and four posterior 0/1 edge values. The ReX test partition withholds this file from the solver. The explainer shows the bits only after reader reveal; the graph position is schematic and not traced from patient pixels.</p>",
+          "spec": "<p>Classify presence or absence of L-A1, Acom, 3rd-A2 and R-A1 in <code>anterior</code>, and L-Pcom, L-P1, R-P1 and R-Pcom in <code>posterior</code>. The graph is a named topology schema; no source vessel segmentation is a supplied answer to this task.</p>",
+          "output": "<p><code>submission.csv</code> columns are <code>image_id,modality,predicted_edges_path</code>. The expected relative file pattern is <code>predictions/topcow_ct_&lt;id&gt;_edges.json</code>. The JSON must contain anterior and posterior maps with the eight exact named zero-or-one edge keys. The path and question-mark schema shown in the explainer are empty examples; no participant file exists here.</p>",
+          "score": "<p>The pinned grader concatenates each region&#x27;s four edge bits into anterior and posterior variant strings, then scores balanced accuracy separately across cases. It does not report per-edge accuracy from this one case. No graph score was produced. The selected source case alone cannot establish population, clinical or model performance.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>No materialized ReX staging, submitted JSON, grader run, score or clinical assessment was retained. Original source images and annotations are exact source-matched local assets; the test annotation remains reader-only in this teaching view. TopCoW terms permit noncommercial use with attribution; commercial use requires owner permission.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -16625,15 +16898,15 @@
       ],
       "illustration_kind": "vesselgraph",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "rexmle-topcow-track2-task3",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "topology",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-topcow-track2-task3. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/topcow-mr-edges-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Head MR angiography.",
         "helpers": "Training graph-edge labels and definitions of the target arterial connections. These are training aids; held-out targets remain evaluation references.",
@@ -16666,14 +16939,105 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T08:21:46.316062+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/rexmle-topcow-track2-task3-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "No retained ReX participant prediction or score. Case012 reference is source-matched but must remain reader-only in teaching; no grader run.",
+      "acquisition_route": "https://zenodo.org/records/15692630",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-topcow-track2-task3-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/rexmle-topcow-track2-task3-resolution.json",
+        "receipt_sha256": "b53accbf66779687595de1ca31a8cd40daafa3c5ae39a43b777b39cd69d824e6",
+        "brief_sha256": "af636df4bed4da6276367930ac4f27e16e09b8aa118c55880b96ebab18507e23",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Exact static-test source input. No participant output or score. Annotation is reader-only.",
+      "acceptance_scope": "One exact native TopCoW2024 source image in statically reconstructed ReX test partition, task-specific symbolic operation, empty answer schema and explicit reader-only source annotation. This is an explainer review, not a model result, preparation, scoring, clinical or population claim.",
+      "completion_review": {
+        "date": "2026-09-29T08:25:52.869698+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "834048d0da2c2186188bb38064d657f66b6f53bb168f5812857a20ccb7a7a776"
+      },
+      "reviewed_contract_projection": {
+        "title": "Classify Circle of Willis connections in MRA",
+        "goal": "Produce the required named CoW connection bits for each held-out MRA image in the pinned ReX-MLE adaptation. This one-case source explainer reports no participant result.",
+        "value": "Not yet specified.",
+        "raw": "TopCoW2024 contains 125 source MRA cases. The pinned ReX adapter sorts IDs and uses `train_test_split(test_size=0.2, random_state=42)`, giving 100 train and 25 test cases per modality; static reproduction places illustrated case012 in test. The exact image is 469×611×174 voxels at 0.296875×0.296875×0.599998 mm. The pack retains its native NIfTI sform, source SHA and nine fixed-index display slices; the preparer was not run.",
+        "helpers": "The ReX adaptation provides public image inputs, training labels and a sample submission/path convention. The illustrated test image is a solver input. Training labels are development aids, not this test answer.",
+        "tools": "A participant may process the volume and write task-specific JSON and CSV files. This source audit did not execute a model, preparer, trial or grader.",
+        "reference": "The full original source release contains case012 YML with four anterior and four posterior 0/1 edge values. The ReX test partition withholds this file from the solver. The explainer shows the bits only after reader reveal; the graph position is schematic and not traced from patient pixels.",
+        "spec": "Classify presence or absence of L-A1, Acom, 3rd-A2 and R-A1 in `anterior`, and L-Pcom, L-P1, R-P1 and R-Pcom in `posterior`. The graph is a named topology schema; no source vessel segmentation is a supplied answer to this task.",
+        "output": "`submission.csv` columns are `image_id,modality,predicted_edges_path`. The expected relative file pattern is `predictions/topcow_mr_<id>_edges.json`. The JSON must contain anterior and posterior maps with the eight exact named zero-or-one edge keys. The path and question-mark schema shown in the explainer are empty examples; no participant file exists here.",
+        "score": "The pinned grader concatenates each region's four edge bits into anterior and posterior variant strings, then scores balanced accuracy separately across cases. It does not report per-edge accuracy from this one case. No graph score was produced. The selected source case alone cannot establish population, clinical or model performance.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "No materialized ReX staging, submitted JSON, grader run, score or clinical assessment was retained. Original source images and annotations are exact source-matched local assets; the test annotation remains reader-only in this teaching view. TopCoW terms permit noncommercial use with attribution; commercial use requires owner permission.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect the exact native source image and physical coordinate map.",
+          "Work through the eight candidate arterial connection keys in a labeled symbolic diagram.",
+          "Read the empty output schema, then explicitly reveal the source target and scorer limits."
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "The ReX adaptation provides public image inputs, training labels and a sample submission/path convention. The illustrated test image is a solver input. Training labels are development aids, not this test answer.",
+            "remaining": "Classify presence or absence of L-A1, Acom, 3rd-A2 and R-A1 in `anterior`, and L-Pcom, L-P1, R-P1 and R-Pcom in `posterior`. The graph is a named topology schema; no source vessel segmentation is a supplied answer to this task."
+          }
+        ],
+        "sources": [
+          [
+            "Official TopCoW2024 release and data-use terms",
+            "https://zenodo.org/records/15692630"
+          ],
+          [
+            "Pinned ReX task description",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track2-task3/description.md"
+          ],
+          [
+            "Pinned ReX preparation",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track2-task3/prepare.py"
+          ],
+          [
+            "Pinned ReX grader",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track2-task3/grade.py"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Produce the required named CoW connection bits for each held-out MRA image in the pinned ReX-MLE adaptation. This one-case source explainer reports no participant result.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>TopCoW2024 contains 125 source MRA cases. The pinned ReX adapter sorts IDs and uses <code>train_test_split(test_size=0.2, random_state=42)</code>, giving 100 train and 25 test cases per modality; static reproduction places illustrated case012 in test. The exact image is 469×611×174 voxels at 0.296875×0.296875×0.599998 mm. The pack retains its native NIfTI sform, source SHA and nine fixed-index display slices; the preparer was not run.</p>",
+          "helpers": "<p>The ReX adaptation provides public image inputs, training labels and a sample submission/path convention. The illustrated test image is a solver input. Training labels are development aids, not this test answer.</p>",
+          "tools": "<p>A participant may process the volume and write task-specific JSON and CSV files. This source audit did not execute a model, preparer, trial or grader.</p>",
+          "reference": "<p>The full original source release contains case012 YML with four anterior and four posterior 0/1 edge values. The ReX test partition withholds this file from the solver. The explainer shows the bits only after reader reveal; the graph position is schematic and not traced from patient pixels.</p>",
+          "spec": "<p>Classify presence or absence of L-A1, Acom, 3rd-A2 and R-A1 in <code>anterior</code>, and L-Pcom, L-P1, R-P1 and R-Pcom in <code>posterior</code>. The graph is a named topology schema; no source vessel segmentation is a supplied answer to this task.</p>",
+          "output": "<p><code>submission.csv</code> columns are <code>image_id,modality,predicted_edges_path</code>. The expected relative file pattern is <code>predictions/topcow_mr_&lt;id&gt;_edges.json</code>. The JSON must contain anterior and posterior maps with the eight exact named zero-or-one edge keys. The path and question-mark schema shown in the explainer are empty examples; no participant file exists here.</p>",
+          "score": "<p>The pinned grader concatenates each region&#x27;s four edge bits into anterior and posterior variant strings, then scores balanced accuracy separately across cases. It does not report per-edge accuracy from this one case. No graph score was produced. The selected source case alone cannot establish population, clinical or model performance.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>No materialized ReX staging, submitted JSON, grader run, score or clinical assessment was retained. Original source images and annotations are exact source-matched local assets; the test annotation remains reader-only in this teaching view. TopCoW terms permit noncommercial use with attribution; commercial use requires owner permission.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -20311,10 +20675,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 65,
+    "reviewed-scripted-planar": 69,
     "reviewed-scripted-spatial": 13,
     "blocked-source-input": 51,
-    "blocked-source-contract": 75,
+    "blocked-source-contract": 71,
     "pending-operation-review": 1
   },
   "completion_program": {
