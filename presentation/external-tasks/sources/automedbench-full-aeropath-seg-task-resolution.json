@@ -1,0 +1,200 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "automedbench-full-aeropath-seg-task",
+  "status": "source-only-audit-complete; no Full staged case, private reference, model or score",
+  "illustration_basis": "mixed",
+  "reference_policy": "reader-reference-reveal",
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "task_source_ref_declared": "609c2a8df21addfff5dbfb680a7263fb8cf91d99",
+    "staging_manifest_sha256_declared": "ff5ae06883c4c87171dc61a93c12331996670db20f832a2e775e0fb079ef3d03"
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/aeropath-seg-task.tar.gz",
+  "upstream_url": "https://zenodo.org/records/10069289",
+  "source_license": "CC-BY-4.0 in retained license.md; HF card says MIT, preserve conflict",
+  "task_package": {
+    "local_path": ".local/explainers/core-20260929/automed-seg-a-source/packages/aeropath.tar.gz",
+    "bytes": 34643,
+    "sha256": "69974567a0f09a9910ceab4100756f1b5d541528172f4e9bdcc8d90c096dbe72",
+    "manifest_entries": 30,
+    "manifest_mismatches": 0,
+    "dataset_included": false,
+    "data_dir_name": "AeroPath",
+    "input_filename": "ct.nii.gz"
+  },
+  "output_contract": {
+    "path": "agents_outputs/{case_id}/dseg.nii.gz",
+    "role": "required combined integer label map",
+    "full_private_reference": "/data/private; layout is task-specific and not in package",
+    "geometry": "same spatial shape as input; affine should be preserved for physical alignment"
+  },
+  "actual_data_gap": "Official hash-pinned AeroPath case 10 CT/lung/airway exists locally, but its Full AeroPath case membership/staging are unverified.",
+  "acquisition_route": "https://zenodo.org/records/10069289",
+  "attempts": [
+    {
+      "action": "Download pinned Full task harness; verify 30 manifest members",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/aeropath-seg-task.tar.gz",
+      "attempted_at": "2026-09-29T05:19:23Z",
+      "outcome": "Succeeded; 34643 bytes; SHA256 69974567a0f09a9910ceab4100756f1b5d541528172f4e9bdcc8d90c096dbe72. No image or label is included."
+    },
+    {
+      "action": "Verify retained official source CT, lung and airway NIfTI against BR-033 audit",
+      "source": "https://huggingface.co/datasets/andreped/AeroPath/tree/6d0f831ca22bf57918aba3980ae475c94d45b997",
+      "attempted_at": "2026-09-29T05:28:33Z",
+      "outcome": "Succeeded; three source SHA256 digests match retained BR-033 receipt; 512\u00d7512\u00d7241 affine-aligned volumes, z=119 selected by airway count."
+    }
+  ],
+  "source_example": {
+    "files": [
+      {
+        "path": "runs/br033-brain-routing/airway-access/data/10/10_CT_HR.nii.gz",
+        "bytes": 68175557,
+        "sha256": "9702463bf22b1f5689a838c340aef5e3b85701c6ebba274e34c32d8d1c1b4a14",
+        "shape": [
+          512,
+          512,
+          241
+        ],
+        "zooms_mm": [
+          0.703000009059906,
+          0.703000009059906,
+          1.25
+        ],
+        "affine": [
+          [
+            -0.703,
+            0.0,
+            0.0,
+            180.0
+          ],
+          [
+            0.0,
+            -0.703,
+            0.0,
+            162.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.25,
+            -241.5
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "min": -3024.0,
+        "max": 3071.0,
+        "nonzero": 63092699
+      },
+      {
+        "path": "runs/br033-brain-routing/airway-access/data/10/10_CT_HR_label_lungs.nii.gz",
+        "bytes": 747361,
+        "sha256": "88604467aeaf9a04b38f81bffa2ba8278b23eb3226cd1b225d0d0e6885d80b39",
+        "shape": [
+          512,
+          512,
+          241
+        ],
+        "zooms_mm": [
+          0.703000009059906,
+          0.703000009059906,
+          1.25
+        ],
+        "affine": [
+          [
+            -0.703,
+            0.0,
+            0.0,
+            180.0
+          ],
+          [
+            0.0,
+            -0.703,
+            0.0,
+            162.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.25,
+            -241.5
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "min": 0.0,
+        "max": 1.0,
+        "nonzero": 11694025
+      },
+      {
+        "path": "runs/br033-brain-routing/airway-access/data/10/10_CT_HR_label_airways.nii.gz",
+        "bytes": 157786,
+        "sha256": "cacf04268637154efca2d76780e8157027306e6b834c30735d3f2d111b87ad08",
+        "shape": [
+          512,
+          512,
+          241
+        ],
+        "zooms_mm": [
+          0.703000009059906,
+          0.703000009059906,
+          1.25
+        ],
+        "affine": [
+          [
+            -0.703,
+            0.0,
+            0.0,
+            180.0
+          ],
+          [
+            0.0,
+            -0.703,
+            0.0,
+            162.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.25,
+            -241.5
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "min": 0.0,
+        "max": 1.0,
+        "nonzero": 139612
+      }
+    ],
+    "selected_axial_index": 119,
+    "selected_label_count": 2194,
+    "label_values": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "role": "official upstream image and source training/reference labels; not Full private GT",
+    "fusion": "lung=1 then airway=2 overwrites overlap; selected slice has 20 overlapping source voxels",
+    "source_revision": "andreped/AeroPath 6d0f831ca22bf57918aba3980ae475c94d45b997"
+  },
+  "scorer_caveat": "Pinned multiclass scorer averages Dice across configured foreground labels and completed cases. Both empty class masks score 1.0 in dice_coefficient; AeroPath config prose says empty GT classes are skipped, so do not repeat that prose as established scorer behavior."
+}

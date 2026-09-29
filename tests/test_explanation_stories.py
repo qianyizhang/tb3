@@ -56,6 +56,84 @@ class ExplanationStoriesTests(unittest.TestCase):
                 with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                     stories.resolve_assets(root, "retained-mixed-tissue-v1")
 
+    def test_symbolic_input_pack_rejects_reference_and_provenance_leakage(self):
+        pack_id = "retained-automed-full-feta-seg-v1"
+        story = Path("presentation/external-tasks/stories/automedbench-full-feta-seg-task.story.md")
+        plan = stories.compile_story(ROOT, story)
+        self.assertEqual(plan["source_class"], "symbolic-protocol")
+        self.assertEqual(plan["reference_policy"], "no-reference-assets")
+        with tempfile.TemporaryDirectory(dir=ROOT / ".local") as temp:
+            path = Path(temp) / "symbolic.story.md"
+            raw = (ROOT / story).read_text()
+            for before, after in (
+                ("source_class: symbolic-protocol", "source_class: source-derived-teaching"),
+                (
+                    "reference_policy: no-reference-assets",
+                    "reference_policy: reader-reference-reveal",
+                ),
+            ):
+                path.write_text(raw.replace(before, after))
+                with self.subTest(after=after), self.assertRaises(ValueError):
+                    stories.compile_story(ROOT, path)
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp).resolve()
+            source_dir = "presentation/task-explorer/automedbench-full-feta-seg-task"
+            shutil.copytree(ROOT / source_dir, root / source_dir)
+            index_path = root / "presentation/assets/teaching-prefabs.json"
+            index_path.parent.mkdir(parents=True)
+            shutil.copyfile(ROOT / "presentation/assets/teaching-prefabs.json", index_path)
+            manifest_path = root / source_dir / "manifest.json"
+            original = json.loads(manifest_path.read_text())
+            for source_name in original["sources"]:
+                source_copy = root / source_name
+                source_copy.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(ROOT / source_name, source_copy)
+            stories.resolve_assets(root, pack_id)
+            original_index = json.loads(index_path.read_text())
+            escaped_index = copy.deepcopy(original_index)
+            escaped_index["packs"][pack_id]["manifest"] = "../../etc/passwd"
+            index_path.write_text(json.dumps(escaped_index))
+            with self.assertRaises(MedicalError):
+                stories.resolve_assets(root, pack_id)
+            index_path.write_text(json.dumps(original_index))
+            from unittest.mock import patch
+
+            with patch.dict(
+                stories.SOURCE_REFERENCE_PACKS,
+                {
+                    pack_id: (
+                        "source-records",
+                        "reference.json",
+                        {asset["file"] for asset in original["assets"]},
+                    )
+                },
+            ):
+                with self.assertRaisesRegex(ValueError, "cannot contain reference assets"):
+                    stories.resolve_assets(root, pack_id)
+            for mutation in (
+                "asset-provenance",
+                "asset-role",
+                "reference-policy",
+                "self-source-pin",
+                "source-pin",
+            ):
+                changed = copy.deepcopy(original)
+                if mutation == "asset-provenance":
+                    changed["assets"][0]["provenance"] = "source-derived-teaching"
+                elif mutation == "asset-role":
+                    changed["assets"][0]["role"] = "reader-reference-reveal"
+                elif mutation == "reference-policy":
+                    changed["reference_policy"] = "reader-reference-reveal"
+                elif mutation == "self-source-pin":
+                    asset = changed["assets"][0]
+                    changed["sources"] = {f"{source_dir}/{asset['file']}": asset["sha256"]}
+                else:
+                    key = next(iter(changed["sources"]))
+                    changed["sources"][key] = "0" * 64
+                manifest_path.write_text(json.dumps(changed))
+                with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                    stories.resolve_assets(root, pack_id)
+
     def test_schema_dispatch_uses_only_parsed_frontmatter(self):
         route = (ROOT / SOURCE).read_text()
         expansion = (ROOT / "presentation/external-tasks/stories/ct-forward.story.md").read_text()

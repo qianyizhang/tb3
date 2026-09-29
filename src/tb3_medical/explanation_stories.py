@@ -44,6 +44,10 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-full-heart-seg-v1": "retained-automed-full-heart-seg-v1",
+    "automed-full-feta-seg-v1": "retained-automed-full-feta-seg-v1",
+    "automed-full-colon-seg-v1": "retained-automed-full-colon-seg-v1",
+    "automed-full-aeropath-seg-v1": "retained-automed-full-aeropath-seg-v1",
     "automed-full-vindr-cxr-detection-v1": "retained-automed-full-vindr-cxr-detection-v1",
     "automed-full-grazpedwri-detection-v1": "retained-automed-full-grazpedwri-detection-v1",
     "automed-full-dentex-detection-v1": "retained-automed-full-dentex-detection-v1",
@@ -128,6 +132,11 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-automed-full-feta-seg-v1": (
+        "source-records",
+        None,
+        {"source.json", "reference.json", "output.json", "NOTICE.md", "DATA-LICENSE.txt"},
+    ),
     "retained-automed-full-vindr-cxr-detection-v1": (
         "source-slices",
         None,
@@ -309,7 +318,27 @@ SOURCE_INPUT_PACKS = {
         {"inputs.json", "contract.json", "NOTICE.md", "DATA-LICENSE.txt", "BCER-LICENSE.txt"},
     ),
 }
+# Explicitly registered input packs with authored symbolic protocol assets.
+SYMBOLIC_SOURCE_PACKS = frozenset({"retained-automed-full-feta-seg-v1"})
+if not SYMBOLIC_SOURCE_PACKS <= SOURCE_INPUT_PACKS.keys():
+    raise ValueError("Symbolic source pack lacks an input-pack registration")
+
 SOURCE_EXTRA_REFERENCE_FILES = {
+    "retained-automed-full-heart-seg-v1": {
+        "source-label-0.png",
+        "source-label-2.png",
+        "source-label-1.png",
+    },
+    "retained-automed-full-colon-seg-v1": {
+        "source-label-2.png",
+        "source-label-0.png",
+        "source-label-1.png",
+    },
+    "retained-automed-full-aeropath-seg-v1": {
+        "source-label-1.png",
+        "source-label-0.png",
+        "source-label-2.png",
+    },
     "retained-rex-topcow-mr-edges-v1": set(),
     "retained-rex-topcow-ct-edges-v1": set(),
     "retained-rex-topcow-mr-box-v1": {
@@ -359,6 +388,57 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-automed-full-heart-seg-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "slice-1.png",
+            "source-label-2.png",
+            "slice-0.png",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+            "reference.json",
+            "source.json",
+            "slice-2.png",
+            "output.json",
+            "source-label-1.png",
+            "source-label-0.png",
+        },
+    ),
+    "retained-automed-full-colon-seg-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "slice-1.png",
+            "output.json",
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "source-label-2.png",
+            "source.json",
+            "slice-0.png",
+            "reference.json",
+            "slice-2.png",
+            "source-label-0.png",
+            "source-label-1.png",
+        },
+    ),
+    "retained-automed-full-aeropath-seg-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "source-label-1.png",
+            "NOTICE.md",
+            "source-label-0.png",
+            "reference.json",
+            "slice-2.png",
+            "output.json",
+            "slice-0.png",
+            "slice-1.png",
+            "source-label-2.png",
+            "DATA-LICENSE.txt",
+            "source.json",
+        },
+    ),
     "retained-automed-full-grazpedwri-detection-v1": (
         "source-slices",
         "reference.json",
@@ -1520,6 +1600,30 @@ class AutomedDetectionVindrCxrChannels(Closed):
     reference: Pair
 
 
+class AutomedSegAAeropathChannels(Closed):
+    slice: Pair
+    format: Pair
+    reference: Pair
+
+
+class AutomedSegAColonChannels(Closed):
+    slice: Pair
+    format: Pair
+    reference: Pair
+
+
+class AutomedSegAFetaChannels(Closed):
+    slice: Pair
+    format: Pair
+    reference: Pair
+
+
+class AutomedSegAHeartChannels(Closed):
+    slice: Pair
+    format: Pair
+    reference: Pair
+
+
 class CardiacMaterialChannels(Closed):
     phase: Pair
     helper: Pair
@@ -1591,7 +1695,7 @@ class Story[Channels: Closed](Closed):
     purpose: Text
     scope: Text
     asset_pack: Text
-    source_class: Literal["procedural-teaching", "source-derived-teaching"]
+    source_class: Literal["procedural-teaching", "source-derived-teaching", "symbolic-protocol"]
     reference_policy: Literal["no-reference-assets", "reader-reference-reveal"]
     fps: Annotated[StrictInt, Field(ge=12, le=60)]
     source_locators: Annotated[tuple[Text, ...], Field(min_length=1)]
@@ -2954,6 +3058,70 @@ class AutomedDetectionVindrCxrStory(Story[AutomedDetectionVindrCxrChannels]):
         return self
 
 
+class AutomedSegAAeropathBeat(ExpansionBeat[AutomedSegAAeropathChannels]):
+    scene: Literal["input", "stack", "labels", "schema", "reference", "limits"]
+
+
+class AutomedSegAAeropathStory(Story[AutomedSegAAeropathChannels]):
+    recipe: Literal["automed-full-aeropath-seg-v1"]
+    beats: tuple[AutomedSegAAeropathBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class AutomedSegAColonBeat(ExpansionBeat[AutomedSegAColonChannels]):
+    scene: Literal["input", "stack", "labels", "schema", "reference", "limits"]
+
+
+class AutomedSegAColonStory(Story[AutomedSegAColonChannels]):
+    recipe: Literal["automed-full-colon-seg-v1"]
+    beats: tuple[AutomedSegAColonBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class AutomedSegAFetaBeat(ExpansionBeat[AutomedSegAFetaChannels]):
+    scene: Literal["input", "stack", "labels", "schema", "reference", "limits"]
+
+
+class AutomedSegAFetaStory(Story[AutomedSegAFetaChannels]):
+    recipe: Literal["automed-full-feta-seg-v1"]
+    beats: tuple[AutomedSegAFetaBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class AutomedSegAHeartBeat(ExpansionBeat[AutomedSegAHeartChannels]):
+    scene: Literal["input", "stack", "labels", "schema", "reference", "limits"]
+
+
+class AutomedSegAHeartStory(Story[AutomedSegAHeartChannels]):
+    recipe: Literal["automed-full-heart-seg-v1"]
+    beats: tuple[AutomedSegAHeartBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class CardiacMaterialBeat(ExpansionBeat[CardiacMaterialChannels]):
     scene: Literal[
         "inputs", "initial", "tracking", "tetra", "strain", "comparison", "controls", "limits"
@@ -3159,6 +3327,10 @@ AnyStory = Annotated[
     | AutomedDetectionDentexStory
     | AutomedDetectionGrazpedwriStory
     | AutomedDetectionVindrCxrStory
+    | AutomedSegAAeropathStory
+    | AutomedSegAColonStory
+    | AutomedSegAFetaStory
+    | AutomedSegAHeartStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3243,6 +3415,10 @@ ADAPTER: TypeAdapter[
     | AutomedDetectionDentexStory
     | AutomedDetectionGrazpedwriStory
     | AutomedDetectionVindrCxrStory
+    | AutomedSegAAeropathStory
+    | AutomedSegAColonStory
+    | AutomedSegAFetaStory
+    | AutomedSegAHeartStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3487,6 +3663,10 @@ def parse_expansion(
     | AutomedDetectionDentexStory
     | AutomedDetectionGrazpedwriStory
     | AutomedDetectionVindrCxrStory
+    | AutomedSegAAeropathStory
+    | AutomedSegAColonStory
+    | AutomedSegAFetaStory
+    | AutomedSegAHeartStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3567,6 +3747,10 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         ) | SOURCE_EXTRA_REFERENCE_FILES.get(pack_id, set())
         if not reference_files <= required or (reference_files and not reference_file):
             raise ValueError("Reference asset classification is inconsistent")
+        if pack_id in SYMBOLIC_SOURCE_PACKS and (
+            pack_id in SOURCE_REFERENCE_PACKS or reference_file or reference_files
+        ):
+            raise ValueError("Symbolic protocol cannot contain reference assets")
         frame, data_license, label_license = {
             "retained-real-echo-v1": (
                 "BR032-task-mm",
@@ -3666,6 +3850,26 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "symbolic-image-pixel-top-left",
                 "LicenseRef-TB3-symbolic-teaching",
                 None,
+            ),
+            "retained-automed-full-aeropath-seg-v1": (
+                "native-NIfTI-voxel-ijk",
+                "LicenseRef-AeroPath-terms-conflict",
+                "LicenseRef-AeroPath-terms-conflict",
+            ),
+            "retained-automed-full-colon-seg-v1": (
+                "native-NIfTI-voxel-ijk",
+                "CC-BY-SA-4.0",
+                "CC-BY-SA-4.0",
+            ),
+            "retained-automed-full-feta-seg-v1": (
+                "symbolic-NIfTI-grid",
+                "LicenseRef-TB3-symbolic-teaching",
+                None,
+            ),
+            "retained-automed-full-heart-seg-v1": (
+                "native-NIfTI-voxel-ijk",
+                "CC-BY-SA-4.0",
+                "CC-BY-SA-4.0",
             ),
             "retained-cardiac-material-v1": (
                 "STRAUS-patient01-healthy-canonical",
@@ -3819,6 +4023,10 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     "retained-dental-original-v1",
                     "retained-dental-v2-v1",
                     "retained-dental-v3-v1",
+                    "retained-automed-full-aeropath-seg-v1",
+                    "retained-automed-full-colon-seg-v1",
+                    "retained-automed-full-feta-seg-v1",
+                    "retained-automed-full-heart-seg-v1",
                     "retained-segmentation-calibration-v1",
                     "retained-aneurysm-localization-v1",
                 }
@@ -3855,12 +4063,27 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         dependencies = {
             p.relative_to(root).as_posix(): storage.sha(p) for p in (index_path, manifest_path)
         }
+        if pack_id in SYMBOLIC_SOURCE_PACKS:
+            for source_name, expected_sha in manifest["sources"].items():
+                source_path = storage.inside(root, source_name)
+                if source_path.is_relative_to(manifest_path.parent):
+                    raise ValueError(
+                        f"Symbolic source pin points inside its own pack: {source_name}"
+                    )
+                if storage.sha(source_path) != expected_sha:
+                    raise ValueError(f"Stale symbolic source pin: {source_name}")
+                dependencies[source_path.relative_to(root).as_posix()] = expected_sha
         for name in pack.retained_files:
             path = storage.inside(manifest_path.parent, name)
             asset = assets[name]
             role = "reader-reference-reveal" if name in reference_files else "illustration"
             if (
-                asset["provenance"] != "source-derived-teaching"
+                asset["provenance"]
+                != (
+                    "symbolic-protocol"
+                    if pack_id in SYMBOLIC_SOURCE_PACKS
+                    else "source-derived-teaching"
+                )
                 or asset["role"] != role
                 or storage.sha(path) != asset["sha256"]
                 or path.stat().st_size != asset["bytes"]
@@ -3973,11 +4196,18 @@ def compile_story(root: Path, path: Path) -> StoryPlan:
         expected_pack = RECIPE_PACKS[story.recipe]
         if story.asset_pack != expected_pack:
             raise ValueError("Recipe asset pack mismatch")
-        if (
-            story.asset_pack == "retained-anatomy-v1"
-            or story.asset_pack in SOURCE_REFERENCE_PACKS
-            or story.asset_pack in SOURCE_INPUT_PACKS
-        ) != (story.source_class == "source-derived-teaching"):
+        expected_source_class = (
+            "symbolic-protocol"
+            if story.asset_pack in SYMBOLIC_SOURCE_PACKS
+            else "source-derived-teaching"
+            if (
+                story.asset_pack == "retained-anatomy-v1"
+                or story.asset_pack in SOURCE_REFERENCE_PACKS
+                or story.asset_pack in SOURCE_INPUT_PACKS
+            )
+            else "procedural-teaching"
+        )
+        if story.source_class != expected_source_class:
             raise ValueError("Recipe provenance mismatch")
         if (story.asset_pack in SOURCE_REFERENCE_PACKS) != (
             story.reference_policy == "reader-reference-reveal"

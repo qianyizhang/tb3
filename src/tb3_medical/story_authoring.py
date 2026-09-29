@@ -117,7 +117,9 @@ def new(
         "recipe": recipe,
         "asset_pack": spec.asset_pack,
         "source_class": (
-            "source-derived-teaching"
+            "symbolic-protocol"
+            if spec.asset_pack in stories.SYMBOLIC_SOURCE_PACKS
+            else "source-derived-teaching"
             if spec.asset_pack == "retained-anatomy-v1"
             or spec.asset_pack in stories.SOURCE_REFERENCE_PACKS
             or spec.asset_pack in stories.SOURCE_INPUT_PACKS
@@ -245,6 +247,14 @@ def new(
         if recipe == "automed-full-grazpedwri-detection-v1":
             beat["scene"] = "input"
         if recipe == "automed-full-vindr-cxr-detection-v1":
+            beat["scene"] = "input"
+        if recipe == "automed-full-aeropath-seg-v1":
+            beat["scene"] = "input"
+        if recipe == "automed-full-colon-seg-v1":
+            beat["scene"] = "input"
+        if recipe == "automed-full-feta-seg-v1":
+            beat["scene"] = "input"
+        if recipe == "automed-full-heart-seg-v1":
             beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":
             beat["scene"] = "pair"

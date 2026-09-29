@@ -1,60 +1,40 @@
-# Segment the lungs and airway tree
+# Segment lung and airway on CT
 
-Build and run a pipeline to segment the lungs and airway tree.
-
-## Value
-
-Spatial labels support measurement and anatomical review; organ overlap and lesion detection are different capabilities.
+Segment a 3D chest CT into the task's integer labels. The worked material is one official upstream training example; no Full evaluation was run.
 
 ## Given
 
 ### Original data
 
-CT input, stored as `ct.nii.gz` per case.
+The Full package expects `public/{case_id}/ct.nii.gz` under its named data root and declares `dataset.included=false`. Official AeroPath case 10 CT and matching separate lung/airway masks at 512×512×241 voxels. The displayed source is not confirmed as a prepared Full case.
 
 ### Supplied helpers
 
-Task configuration, label/output conventions and stage-specific guidance. Lite names Raidionics CT_Airways + CT_Lungs (AeroPath baseline, ONNX). Standard supplies candidates to investigate; model files may still need provisioning.
+Task configuration and Lite/Standard method guidance are available. The pinned task's target codebook is 0 background, 1 lung, 2 airway. The upstream training label is shown only to the reader after a reveal; it was not supplied as the answer for this Full case.
 
 ### Callable tools
 
-A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.
+The Full workflow permits environment setup, validation and inference. No model, preparer, controller or scorer ran for this explanation.
 
 ### Reference-only material
 
-Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.
+Private Full masks belong to the evaluator. The pack contains upstream public training annotations for reader-only teaching, not Full private labels.
 
 ## Task specification
 
-Complete the source’s plan, setup, validation, inference and submission stages. Use the selected tier’s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: aeropath-seg-task.
+Inspect three preselected native CT planes. They were chosen using the source annotation, so this is not a blind localization test. The task contract fuses lung as 1 before airway as 2. The output must be a combined 3D integer NIfTI on each Full input grid; the upstream example has its own native grid, and a 2D screenshot is only a teaching view.
 
 ## Expected output
 
-Write `agents_outputs/{case_id}/dseg.nii.gz`. Labels: 1=lung, 2=airway; 0=background.
+Write `agents_outputs/{case_id}/dseg.nii.gz` for each case. Valid IDs are 0 background, 1 lung, 2 airway. The task calls for a 3D integer map. The formatter checks rounded unique values against allowed IDs and compares shape only if the input scan is present; it does not separately enforce integer voxels, three dimensions, or affine equality. Preserve the input affine for coherent physical geometry. No output file or result is in this pack.
 
 ## Evaluation
 
-The configuration describes foreground Dice overlap, with task-specific class aggregation. Organ/lesion tasks require both outputs; inspect the selected evaluator for their exact weighting. Planning/setup/validation artifacts are distinct from final prediction quality. The evaluator was not run for this brief.
+Macro mean foreground Dice across lung and airway. Pinned scorer treats both-empty masks as Dice 1.0, though config prose says empty ground-truth classes are skipped. The saved artifact is a scoring contract, not an observed Dice value.
 
 ## Visual explanation
 
-### Workflow
-
-- Staged images + task guidance
-- Plan → set up → validate → infer
-- Submit a label map
-
-### Input
-
-**Contract view; native sample not yet illustrated.** CT input, stored as `ct.nii.gz` per case.
-
-### Supplied helpers
-
-**Given material, not an answer reveal.** Task configuration, label/output conventions and stage-specific guidance. Lite names Raidionics CT_Airways + CT_Lungs (AeroPath baseline, ONNX). Standard supplies candidates to investigate; model files may still need provisioning.
-
-### Reference or output
-
-**Expected artifact, not an actual prediction.** Write `agents_outputs/{case_id}/dseg.nii.gz`. Labels: 1=lung, 2=airway; 0=background.
+An unmarked source slice comes first. Three sampled native-k planes are inspected, then the exact label codebook and empty output path appear. Only explicit reader reveal mounts matching upstream source labels.
 
 ## Conditions
 
@@ -66,16 +46,10 @@ The configuration describes foreground Dice overlap, with task-specific class ag
 
 ## Difficulty
 
-Segment both broad lung regions and thin branching airways. A lung-only model omits one of the two scored structures.
+AeroPath case 10 source hashes match BR-033, but its Full staged-case membership and private reference are not established. The retained license text says CC BY 4.0 while the HF card says MIT.
 
 ## Sources
 
-- [Pinned Full-release task package](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/aeropath-seg-task.tar.gz)
-
-## Coverage
-
-Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.
-
-## Gaps
-
-Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights.
+- [Pinned Full task harness](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/aeropath-seg-task.tar.gz).
+- [Official upstream source](https://zenodo.org/records/10069289) (source terms conflict; see receipt).
+- [Source resolution receipt](../sources/automedbench-full-aeropath-seg-task-resolution.json).

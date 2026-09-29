@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "automedbench-full-colon-seg-task",
+  "status": "source-only-audit-complete; no Full staged case, private reference, model or score",
+  "illustration_basis": "mixed",
+  "reference_policy": "reader-reference-reveal",
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "task_source_ref_declared": "609c2a8df21addfff5dbfb680a7263fb8cf91d99",
+    "staging_manifest_sha256_declared": "ff5ae06883c4c87171dc61a93c12331996670db20f832a2e775e0fb079ef3d03"
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/colon-seg-task.tar.gz",
+  "upstream_url": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task10_Colon.tar",
+  "source_license": "CC-BY-SA-4.0",
+  "task_package": {
+    "local_path": ".local/explainers/core-20260929/automed-seg-a-source/packages/colon.tar.gz",
+    "bytes": 28467,
+    "sha256": "858c85303b5f67a0d38b9e84ffe44511917af6551e47584bd0624a3bf232c181",
+    "manifest_entries": 30,
+    "manifest_mismatches": 0,
+    "dataset_included": false,
+    "data_dir_name": "MSD_Colon",
+    "input_filename": "ct.nii.gz"
+  },
+  "output_contract": {
+    "path": "agents_outputs/{case_id}/dseg.nii.gz",
+    "role": "required combined integer label map",
+    "full_private_reference": "/data/private; layout is task-specific and not in package",
+    "geometry": "same spatial shape as input; affine should be preserved for physical alignment"
+  },
+  "actual_data_gap": "Official MSD Task10 training CT and label colon_219 were range-recovered; Full 20-case selection and private reference are unverified.",
+  "acquisition_route": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task10_Colon.tar",
+  "attempts": [
+    {
+      "action": "Download pinned Full task harness; verify 30 manifest members",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/colon-seg-task.tar.gz",
+      "attempted_at": "2026-09-29T05:19:24Z",
+      "outcome": "Succeeded; 28467 bytes; SHA256 858c85303b5f67a0d38b9e84ffe44511917af6551e47584bd0624a3bf232c181. No image or label is included."
+    },
+    {
+      "action": "HEAD official uncompressed MSD AWS tar and byte-range extract matched public training image+label",
+      "source": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task10_Colon.tar",
+      "attempted_at": "2026-09-29T05:25:33Z",
+      "outcome": "Succeeded; see source_example hashes, native geometry and archive header receipt. Entire 6.24 GB tar not downloaded; source training pair is not a Full private test case."
+    }
+  ],
+  "source_example": {
+    "files": [
+      {
+        "path": ".local/explainers/core-20260929/automed-seg-a-source/colon_219.nii.gz",
+        "bytes": 40333804,
+        "sha256": "d323c02bfdf96c0e26495db63e3f804a364def7cdd1946be6a2369dd3a4bd7d1",
+        "shape": [
+          512,
+          512,
+          137
+        ],
+        "zooms_mm": [
+          0.703125,
+          0.703125,
+          5.0
+        ],
+        "affine": [
+          [
+            0.703125,
+            0.0,
+            0.0,
+            -182.996872
+          ],
+          [
+            0.0,
+            0.703125,
+            0.0,
+            -179.296875
+          ],
+          [
+            0.0,
+            0.0,
+            5.0,
+            -641.5
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "min": -1024.0,
+        "max": 3071.0,
+        "nonzero": 35872584
+      },
+      {
+        "path": ".local/explainers/core-20260929/automed-seg-a-source/colon_219-label.nii.gz",
+        "bytes": 148767,
+        "sha256": "bde7ef2a6d41949f01b855cbcc3867509d74f67ea51f8bbdc4873b7a1e9a7f4c",
+        "shape": [
+          512,
+          512,
+          137
+        ],
+        "zooms_mm": [
+          0.703125,
+          0.703125,
+          5.0
+        ],
+        "affine": [
+          [
+            0.703125,
+            0.0,
+            0.0,
+            -182.996872
+          ],
+          [
+            0.0,
+            0.703125,
+            0.0,
+            -179.296875
+          ],
+          [
+            0.0,
+            0.0,
+            5.0,
+            -641.5
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "min": 0.0,
+        "max": 1.0,
+        "nonzero": 82487
+      }
+    ],
+    "selected_axial_index": 42,
+    "selected_label_count": 5994,
+    "label_values": [
+      [
+        0,
+        1
+      ]
+    ],
+    "role": "official upstream image and source training/reference labels; not Full private GT",
+    "archive_headers_sha256": "ceb6c9fcc5c96fff41432232a0914778a4919e70d417da2bde16c8835bcec7d2"
+  },
+  "scorer_caveat": "Pinned multiclass scorer averages Dice across configured foreground labels and completed cases. Both empty class masks score 1.0 in dice_coefficient; AeroPath config prose says empty GT classes are skipped, so do not repeat that prose as established scorer behavior."
+}

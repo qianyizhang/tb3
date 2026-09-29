@@ -88,7 +88,7 @@ class ExpansionPlan(TypedDict):
     purpose: str
     scope: str
     asset_pack: str
-    source_class: Literal["procedural-teaching", "source-derived-teaching"]
+    source_class: Literal["procedural-teaching", "source-derived-teaching", "symbolic-protocol"]
     reference_policy: Literal["no-reference-assets", "reader-reference-reveal"]
     fps: int
     source_locators: list[str]
@@ -1554,6 +1554,70 @@ class AutomedDetectionVindrCxrPlan(ExpansionPlan):
     beats: list[AutomedDetectionVindrCxrBeat]
 
 
+class AutomedSegAAeropathChannels(TypedDict):
+    slice: tuple[float, float]
+    format: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedSegAAeropathBeat(ExpansionBeat):
+    channels: AutomedSegAAeropathChannels
+    scene: Literal["input", "stack", "labels", "schema", "reference", "limits"]
+
+
+class AutomedSegAAeropathPlan(ExpansionPlan):
+    recipe: Literal["automed-full-aeropath-seg-v1"]
+    beats: list[AutomedSegAAeropathBeat]
+
+
+class AutomedSegAColonChannels(TypedDict):
+    slice: tuple[float, float]
+    format: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedSegAColonBeat(ExpansionBeat):
+    channels: AutomedSegAColonChannels
+    scene: Literal["input", "stack", "labels", "schema", "reference", "limits"]
+
+
+class AutomedSegAColonPlan(ExpansionPlan):
+    recipe: Literal["automed-full-colon-seg-v1"]
+    beats: list[AutomedSegAColonBeat]
+
+
+class AutomedSegAFetaChannels(TypedDict):
+    slice: tuple[float, float]
+    format: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedSegAFetaBeat(ExpansionBeat):
+    channels: AutomedSegAFetaChannels
+    scene: Literal["input", "stack", "labels", "schema", "reference", "limits"]
+
+
+class AutomedSegAFetaPlan(ExpansionPlan):
+    recipe: Literal["automed-full-feta-seg-v1"]
+    beats: list[AutomedSegAFetaBeat]
+
+
+class AutomedSegAHeartChannels(TypedDict):
+    slice: tuple[float, float]
+    format: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedSegAHeartBeat(ExpansionBeat):
+    channels: AutomedSegAHeartChannels
+    scene: Literal["input", "stack", "labels", "schema", "reference", "limits"]
+
+
+class AutomedSegAHeartPlan(ExpansionPlan):
+    recipe: Literal["automed-full-heart-seg-v1"]
+    beats: list[AutomedSegAHeartBeat]
+
+
 class CardiacMaterialChannels(TypedDict):
     phase: tuple[float, float]
     helper: tuple[float, float]
@@ -1772,6 +1836,10 @@ StoryPlan = (
     | AutomedDetectionDentexPlan
     | AutomedDetectionGrazpedwriPlan
     | AutomedDetectionVindrCxrPlan
+    | AutomedSegAAeropathPlan
+    | AutomedSegAColonPlan
+    | AutomedSegAFetaPlan
+    | AutomedSegAHeartPlan
     | CardiacMaterialPlan
     | CardiacAnchorPlan
     | ClinicalCavityPlan

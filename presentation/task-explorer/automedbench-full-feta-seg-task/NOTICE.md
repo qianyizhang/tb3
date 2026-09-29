@@ -1,0 +1,1 @@
+FeTA source restricted; no native case. Zenodo files are restricted and Synapse requires an access agreement. This is a symbolic protocol only; no source MRI, label or Full result is retained. https://zenodo.org/records/4541606

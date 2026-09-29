@@ -1,48 +1,8 @@
 # Explainer dependency register
 
-Core: **154** · reviewed: **78** · ready: **0** · needs resolution: **76** · deferred: **0**
+Core: **154** · reviewed: **82** · ready: **0** · needs resolution: **72** · deferred: **0**
 
 This is a derived view of EXPLAINER-SCOPE.json and EXPLAINER-LEDGER.json. Deferral does not confer visual acceptance.
-
-## automedbench-full-aeropath-seg-task — Segment the lungs and airway tree
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-aeropath-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
-
-## automedbench-full-colon-seg-task — Segment primary colon cancer
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-colon-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
-
-## automedbench-full-feta-seg-task — Label seven fetal brain tissue types
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-feta-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
-
-## automedbench-full-heart-seg-task — Segment the left atrium in cardiac MRI
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-heart-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
 
 ## automedbench-full-hepaticvessel-seg-task — Segment liver vessels and tumors
 

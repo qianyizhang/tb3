@@ -4,7 +4,7 @@ export type TaskTab = "overview" | "requirements" | "examples" | "sources";
 export type BrowseView = "capability" | "repository";
 export type ResearchLane = "tasks" | "supporting" | "all";
 export type BriefField = "goal" | "value" | "raw" | "helpers" | "output" | "challenge" | "spec" | "tools" | "score" | "reference" | "families" | "gap" | "case_note";
-export type StoryPlan = RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan;
+export type StoryPlan = RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | AutomedSegAAeropathPlan | AutomedSegAColonPlan | AutomedSegAFetaPlan | AutomedSegAHeartPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan;
 export interface StoryBeat {
   id: string;
   duration: number;
@@ -46,7 +46,7 @@ export interface ExpansionPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -89,7 +89,7 @@ export interface TopologyPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -126,7 +126,7 @@ export interface CorrespondencePlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -161,7 +161,7 @@ export interface MaterialPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -196,7 +196,7 @@ export interface LongitudinalPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -232,7 +232,7 @@ export interface MultiscalePlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -268,7 +268,7 @@ export interface InversePlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -304,7 +304,7 @@ export interface EditPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -339,7 +339,7 @@ export interface AnatomyPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -374,7 +374,7 @@ export interface IdentityPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -393,7 +393,7 @@ export interface PrototypeIdentityPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -429,7 +429,7 @@ export interface AirwayRepairPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -465,7 +465,7 @@ export interface LongitudinalCtRevisedPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -501,7 +501,7 @@ export interface LongitudinalCtOriginalPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -537,7 +537,7 @@ export interface LongitudinalMriPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -576,7 +576,7 @@ export interface TigerContextPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -607,7 +607,7 @@ export interface HubmapInventoryPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -643,7 +643,7 @@ export interface TopbrainScreenPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -679,7 +679,7 @@ export interface VesselSourcePlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -715,7 +715,7 @@ export interface ResectPilotPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -752,7 +752,7 @@ export interface ResectPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -788,7 +788,7 @@ export interface RegistrationAnalysisPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -823,7 +823,7 @@ export interface Imaging101EhtFeaturesDynamicPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -858,7 +858,7 @@ export interface Imaging101EhtDynamicPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -893,7 +893,7 @@ export interface Imaging101EhtUqPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -928,7 +928,7 @@ export interface Imaging101DtiPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -963,7 +963,7 @@ export interface Imaging101DeflectometryPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -998,7 +998,7 @@ export interface Imaging101FanBeamPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1033,7 +1033,7 @@ export interface Imaging101DualEnergyPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1068,7 +1068,7 @@ export interface Imaging101PtychographyPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1103,7 +1103,7 @@ export interface Imaging101NlosPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1138,7 +1138,7 @@ export interface Imaging101CarsPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1173,7 +1173,7 @@ export interface RexTopcowPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1208,7 +1208,7 @@ export interface AutomedMultiorganPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1242,7 +1242,7 @@ export interface BcerWorkflowPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1279,7 +1279,7 @@ export interface AbraAnnotationPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1315,7 +1315,7 @@ export interface CtContextPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1351,7 +1351,7 @@ export interface HistorySourcingPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1387,7 +1387,7 @@ export interface MriImporterPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1423,7 +1423,7 @@ export interface LocalizedCtPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1459,7 +1459,7 @@ export interface AneurysmPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1497,7 +1497,7 @@ export interface SegmentationCalibrationPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1536,7 +1536,7 @@ export interface DentalV3Plan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1575,7 +1575,7 @@ export interface DentalV2Plan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1613,7 +1613,7 @@ export interface DentalOriginalPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1649,7 +1649,7 @@ export interface CtOrganPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1685,7 +1685,7 @@ export interface NamedLandmarksPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1722,7 +1722,7 @@ export interface CardiacContourPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1761,7 +1761,7 @@ export interface CardiacRealEchoPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1799,7 +1799,7 @@ export interface MaskMechanicsPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1836,7 +1836,7 @@ export interface ReportReadingPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1874,7 +1874,7 @@ export interface AutomedKidneyPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1908,7 +1908,7 @@ export interface BcerBrainPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1945,7 +1945,7 @@ export interface BcerProstatePlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -1982,7 +1982,7 @@ export interface AbraLongitudinalPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2018,7 +2018,7 @@ export interface RexDentexPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2054,7 +2054,7 @@ export interface RexIslesPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2090,7 +2090,7 @@ export interface RexCellsegPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2125,7 +2125,7 @@ export interface RexPantherTask1Plan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2160,7 +2160,7 @@ export interface RexPantherTask2Plan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2196,7 +2196,7 @@ export interface RexPumaTrack1Task1Plan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2232,7 +2232,7 @@ export interface RexPumaTrack1Task2Plan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2268,7 +2268,7 @@ export interface RexPumaTrack2Task2Plan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2303,7 +2303,7 @@ export interface RexSegAPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2338,7 +2338,7 @@ export interface RexTopbrainCtPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2373,7 +2373,7 @@ export interface RexTopbrainMrPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2408,7 +2408,7 @@ export interface RexTopcowMrSegPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2444,7 +2444,7 @@ export interface RexTopcowCtBoxPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2480,7 +2480,7 @@ export interface RexTopcowMrBoxPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2516,7 +2516,7 @@ export interface RexTopcowCtEdgesPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2552,7 +2552,7 @@ export interface RexTopcowMrEdgesPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2588,7 +2588,7 @@ export interface AutomedDetectionBccdPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2624,7 +2624,7 @@ export interface AutomedDetectionDentexPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2660,7 +2660,7 @@ export interface AutomedDetectionGrazpedwriPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2696,7 +2696,7 @@ export interface AutomedDetectionVindrCxrPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2706,6 +2706,150 @@ export interface AutomedDetectionVindrCxrPlan {
   dependencies: Record<string, string>;
   recipe: "automed-full-vindr-cxr-detection-v1";
   beats: Array<AutomedDetectionVindrCxrBeat>;
+}
+export interface AutomedSegAAeropathChannels {
+  slice: [number, number];
+  format: [number, number];
+  reference: [number, number];
+}
+export interface AutomedSegAAeropathBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: AutomedSegAAeropathChannels;
+  scene: "input" | "stack" | "labels" | "schema" | "reference" | "limits";
+}
+export interface AutomedSegAAeropathPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "automed-full-aeropath-seg-v1";
+  beats: Array<AutomedSegAAeropathBeat>;
+}
+export interface AutomedSegAColonChannels {
+  slice: [number, number];
+  format: [number, number];
+  reference: [number, number];
+}
+export interface AutomedSegAColonBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: AutomedSegAColonChannels;
+  scene: "input" | "stack" | "labels" | "schema" | "reference" | "limits";
+}
+export interface AutomedSegAColonPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "automed-full-colon-seg-v1";
+  beats: Array<AutomedSegAColonBeat>;
+}
+export interface AutomedSegAFetaChannels {
+  slice: [number, number];
+  format: [number, number];
+  reference: [number, number];
+}
+export interface AutomedSegAFetaBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: AutomedSegAFetaChannels;
+  scene: "input" | "stack" | "labels" | "schema" | "reference" | "limits";
+}
+export interface AutomedSegAFetaPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "automed-full-feta-seg-v1";
+  beats: Array<AutomedSegAFetaBeat>;
+}
+export interface AutomedSegAHeartChannels {
+  slice: [number, number];
+  format: [number, number];
+  reference: [number, number];
+}
+export interface AutomedSegAHeartBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: AutomedSegAHeartChannels;
+  scene: "input" | "stack" | "labels" | "schema" | "reference" | "limits";
+}
+export interface AutomedSegAHeartPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "automed-full-heart-seg-v1";
+  beats: Array<AutomedSegAHeartBeat>;
 }
 export interface CardiacMaterialChannels {
   phase: [number, number];
@@ -2733,7 +2877,7 @@ export interface CardiacMaterialPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2770,7 +2914,7 @@ export interface CardiacAnchorPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2807,7 +2951,7 @@ export interface ClinicalCavityPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2843,7 +2987,7 @@ export interface RespiratoryPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2878,7 +3022,7 @@ export interface CurationPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2915,7 +3059,7 @@ export interface MaskScreenPlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -2952,7 +3096,7 @@ export interface MixedTissuePlan {
   purpose: string;
   scope: string;
   asset_pack: string;
-  source_class: "procedural-teaching" | "source-derived-teaching";
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
   reference_policy: "no-reference-assets" | "reader-reference-reveal";
   fps: number;
   source_locators: Array<string>;
@@ -3201,7 +3345,7 @@ export interface Inventory {
   repositories?: Array<RepositoryInventory>;
 }
 export interface ExplorerData {
-  explanation_stories?: Record<string, RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan>;
+  explanation_stories?: Record<string, RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | AutomedSegAAeropathPlan | AutomedSegAColonPlan | AutomedSegAFetaPlan | AutomedSegAHeartPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan>;
   schema_version: 1;
   title?: string;
   entries: Array<TaskEntry>;

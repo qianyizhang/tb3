@@ -1,0 +1,1 @@
+Official upstream volume; Full staged case unverified. Source training labels are a reader-only teaching reveal. No Full private reference, prediction or Dice result is retained. https://msd-for-monai.s3-us-west-2.amazonaws.com/Task02_Heart.tar

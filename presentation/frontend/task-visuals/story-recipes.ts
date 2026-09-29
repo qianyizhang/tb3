@@ -1,3 +1,4 @@
+import { segAPacks } from './automed-full-seg-a';
 import { detectionPacks } from './automed-full-detection';
 import { reportSource } from './report-reading';
 import { createClinicalCavityPrefab } from './clinical-cavity-prefab';
@@ -76,6 +77,10 @@ export function isPlanarStory(plan: StoryPlan): boolean {
   return [
     'cardiac-anchor-v1',
     'cardiac-material-v1',
+    'automed-full-heart-seg-v1',
+    'automed-full-feta-seg-v1',
+    'automed-full-colon-seg-v1',
+    'automed-full-aeropath-seg-v1',
     'automed-full-vindr-cxr-detection-v1',
     'automed-full-grazpedwri-detection-v1',
     'automed-full-dentex-detection-v1',
@@ -583,6 +588,50 @@ export function storyPresentation(plan: StoryPlan): {
         legend: [
           ['#91a6ae', 'Symbolic image socket'],
           ['#18c6d4', 'Coordinate contract only'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'automed-full-aeropath-seg-v1':
+      return {
+        heading: 'Segment lungs and airway on CT',
+        corner: 'AutoMed Full · segmentation contract',
+        warning: segAPacks['automed-full-aeropath-seg-v1'].source.notice,
+        legend: [
+          ['#91a6ae', 'Upstream source slice'],
+          ['#f4bc49', 'Reader-only source labels'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'automed-full-colon-seg-v1':
+      return {
+        heading: 'Segment primary colon cancer',
+        corner: 'AutoMed Full · segmentation contract',
+        warning: segAPacks['automed-full-colon-seg-v1'].source.notice,
+        legend: [
+          ['#91a6ae', 'Upstream source slice'],
+          ['#f4bc49', 'Reader-only source labels'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'automed-full-feta-seg-v1':
+      return {
+        heading: 'Specify seven fetal brain tissue labels',
+        corner: 'AutoMed Full · segmentation contract',
+        warning: segAPacks['automed-full-feta-seg-v1'].source.notice,
+        legend: [
+          ['#91a6ae', 'Symbolic volume socket'],
+          ['#18c6d4', 'Symbolic sampling plane'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'automed-full-heart-seg-v1':
+      return {
+        heading: 'Segment the left atrium in MRI',
+        corner: 'AutoMed Full · segmentation contract',
+        warning: segAPacks['automed-full-heart-seg-v1'].source.notice,
+        legend: [
+          ['#91a6ae', 'Upstream source slice'],
+          ['#f4bc49', 'Reader-only source labels'],
           ['#16a6a9', 'Empty test output'],
         ],
       };

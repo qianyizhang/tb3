@@ -19084,15 +19084,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "airways",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-aeropath-seg-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-aeropath-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/full-aeropath-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "CT input, stored as `ct.nii.gz` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names Raidionics CT_Airways + CT_Lungs (AeroPath baseline, ONNX). Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -19134,14 +19134,111 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T10:09:09.223720+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/automedbench-full-aeropath-seg-task-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Official hash-pinned AeroPath case 10 CT/lung/airway exists locally, but its Full AeroPath case membership/staging are unverified.",
+      "acquisition_route": "https://zenodo.org/records/10069289",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-aeropath-seg-task-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-aeropath-seg-task-resolution.json",
+        "receipt_sha256": "f776995012a8b6ebe2d87bb09904531c31f7b2c96f866dba8b873b56ee74aabc",
+        "brief_sha256": "0d1f8a58c8e2719370b985b841885d8783616f29f190b622c1a82459badebea6",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Official upstream volume; Full staged case unverified — Source training labels are a reader-only teaching reveal. No Full private reference, prediction or Dice result is retained.",
+      "acceptance_scope": "Pinned Full segmentation contract, upstream volume or symbolic operation, absent participant NIfTI and explicit boundary from missing Full cases/private labels. An explainer review, not a model, evaluator, patient or population result.",
+      "completion_review": {
+        "date": "2026-09-29T10:39:16.567392+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "faf232312a22c2728e4224c8deb9c135a628a973c76f0945b43b8c7f0bf9a9e4"
+      },
+      "reviewed_contract_projection": {
+        "title": "Segment lung and airway on CT",
+        "goal": "Segment a 3D chest CT into the task's integer labels. The worked material is one official upstream training example; no Full evaluation was run.",
+        "value": "Not yet specified.",
+        "raw": "The Full package expects `public/{case_id}/ct.nii.gz` under its named data root and declares `dataset.included=false`. Official AeroPath case 10 CT and matching separate lung/airway masks at 512×512×241 voxels. The displayed source is not confirmed as a prepared Full case.",
+        "helpers": "Task configuration and Lite/Standard method guidance are available. The pinned task's target codebook is 0 background, 1 lung, 2 airway. The upstream training label is shown only to the reader after a reveal; it was not supplied as the answer for this Full case.",
+        "tools": "The Full workflow permits environment setup, validation and inference. No model, preparer, controller or scorer ran for this explanation.",
+        "reference": "Private Full masks belong to the evaluator. The pack contains upstream public training annotations for reader-only teaching, not Full private labels.",
+        "spec": "Inspect three preselected native CT planes. They were chosen using the source annotation, so this is not a blind localization test. The task contract fuses lung as 1 before airway as 2. The output must be a combined 3D integer NIfTI on each Full input grid; the upstream example has its own native grid, and a 2D screenshot is only a teaching view.",
+        "output": "Write `agents_outputs/{case_id}/dseg.nii.gz` for each case. Valid IDs are 0 background, 1 lung, 2 airway. The task calls for a 3D integer map. The formatter checks rounded unique values against allowed IDs and compares shape only if the input scan is present; it does not separately enforce integer voxels, three dimensions, or affine equality. Preserve the input affine for coherent physical geometry. No output file or result is in this pack.",
+        "score": "Macro mean foreground Dice across lung and airway. Pinned scorer treats both-empty masks as Dice 1.0, though config prose says empty ground-truth classes are skipped. The saved artifact is a scoring contract, not an observed Dice value.",
+        "challenge": "AeroPath case 10 source hashes match BR-033, but its Full staged-case membership and private reference are not established. The retained license text says CC BY 4.0 while the HF card says MIT.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Full · Lite",
+            "helper": "Task-specific Lite guidance: Raidionics CT_Airways + CT_Lungs (AeroPath baseline, ONNX).",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full · Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full task harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/aeropath-seg-task.tar.gz"
+          ],
+          [
+            "Official upstream source",
+            "https://zenodo.org/records/10069289"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-aeropath-seg-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Segment a 3D chest CT into the task&#x27;s integer labels. The worked material is one official upstream training example; no Full evaluation was run.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The Full package expects <code>public/{case_id}/ct.nii.gz</code> under its named data root and declares <code>dataset.included=false</code>. Official AeroPath case 10 CT and matching separate lung/airway masks at 512×512×241 voxels. The displayed source is not confirmed as a prepared Full case.</p>",
+          "helpers": "<p>Task configuration and Lite/Standard method guidance are available. The pinned task&#x27;s target codebook is 0 background, 1 lung, 2 airway. The upstream training label is shown only to the reader after a reveal; it was not supplied as the answer for this Full case.</p>",
+          "tools": "<p>The Full workflow permits environment setup, validation and inference. No model, preparer, controller or scorer ran for this explanation.</p>",
+          "reference": "<p>Private Full masks belong to the evaluator. The pack contains upstream public training annotations for reader-only teaching, not Full private labels.</p>",
+          "spec": "<p>Inspect three preselected native CT planes. They were chosen using the source annotation, so this is not a blind localization test. The task contract fuses lung as 1 before airway as 2. The output must be a combined 3D integer NIfTI on each Full input grid; the upstream example has its own native grid, and a 2D screenshot is only a teaching view.</p>",
+          "output": "<p>Write <code>agents_outputs/{case_id}/dseg.nii.gz</code> for each case. Valid IDs are 0 background, 1 lung, 2 airway. The task calls for a 3D integer map. The formatter checks rounded unique values against allowed IDs and compares shape only if the input scan is present; it does not separately enforce integer voxels, three dimensions, or affine equality. Preserve the input affine for coherent physical geometry. No output file or result is in this pack.</p>",
+          "score": "<p>Macro mean foreground Dice across lung and airway. Pinned scorer treats both-empty masks as Dice 1.0, though config prose says empty ground-truth classes are skipped. The saved artifact is a scoring contract, not an observed Dice value.</p>",
+          "challenge": "<p>AeroPath case 10 source hashes match BR-033, but its Full staged-case membership and private reference are not established. The retained license text says CC BY 4.0 while the HF card says MIT.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -19159,15 +19256,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "abdomen",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-colon-seg-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-colon-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/full-colon-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "CT input, stored as `ct.nii.gz` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names MONAI VISTA3D (label_prompt=[27], colon-cancer primaries). Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -19209,14 +19306,111 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T10:40:10.268995+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/automedbench-full-colon-seg-task-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Official MSD Task10 training CT and label colon_219 were range-recovered; Full 20-case selection and private reference are unverified.",
+      "acquisition_route": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task10_Colon.tar",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-colon-seg-task-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-colon-seg-task-resolution.json",
+        "receipt_sha256": "240d758e09f8c535b5f222e38066c45450512f00f88f6b663b4aa52b48b4b239",
+        "brief_sha256": "5e54ea25b8ae66a7e2051c767f32e53d0eb0bb2368052d9552d7dfb036ed61e2",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Official upstream volume; Full staged case unverified — Source training labels are a reader-only teaching reveal. No Full private reference, prediction or Dice result is retained.",
+      "acceptance_scope": "Pinned Full segmentation contract, upstream volume or symbolic operation, absent participant NIfTI and explicit boundary from missing Full cases/private labels. An explainer review, not a model, evaluator, patient or population result.",
+      "completion_review": {
+        "date": "2026-09-29T11:01:41.009680+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "c4e0f841acdf99ffacbb29cf31f07ac6fa60630ac7e6b6e15bc34f24ec0cce9d"
+      },
+      "reviewed_contract_projection": {
+        "title": "Segment primary colon cancer in CT",
+        "goal": "Segment a 3D abdominal CT into the task's integer labels. The worked material is one official upstream training example; no Full evaluation was run.",
+        "value": "Not yet specified.",
+        "raw": "The Full package expects `public/{case_id}/ct.nii.gz` under its named data root and declares `dataset.included=false`. Official MSD Task10_Colon training CT colon_219 and matching tumor label, 512×512×137 voxels. The displayed source is not confirmed as a prepared Full case.",
+        "helpers": "Task configuration and Lite/Standard method guidance are available. The pinned task's target codebook is 0 background, 1 primary colon cancer. The upstream training label is shown only to the reader after a reveal; it was not supplied as the answer for this Full case.",
+        "tools": "The Full workflow permits environment setup, validation and inference. No model, preparer, controller or scorer ran for this explanation.",
+        "reference": "Private Full masks belong to the evaluator. The pack contains upstream public training annotations for reader-only teaching, not Full private labels.",
+        "spec": "Inspect three preselected native CT planes without a mask. This post-hoc teaching selection does not test finding the tumor in a whole volume; the task target is the primary tumor, not colon organ. The output must be a combined 3D integer NIfTI on each Full input grid; the upstream example has its own native grid, and a 2D screenshot is only a teaching view.",
+        "output": "Write `agents_outputs/{case_id}/dseg.nii.gz` for each case. Valid IDs are 0 background, 1 primary colon cancer. The task calls for a 3D integer map. The formatter checks rounded unique values against allowed IDs and compares shape only if the input scan is present; it does not separately enforce integer voxels, three dimensions, or affine equality. Preserve the input affine for coherent physical geometry. No output file or result is in this pack.",
+        "score": "Foreground Dice on class 1. Both-empty masks yield 1.0 in the pinned scorer. The saved artifact is a scoring contract, not an observed Dice value.",
+        "challenge": "The upstream training pair was recovered by verified byte ranges from official AWS tar. Full 20-case selection and private evaluator reference are not established.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Full · Lite",
+            "helper": "Task-specific Lite guidance: MONAI VISTA3D (label_prompt=[27], colon-cancer primaries).",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full · Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full task harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/colon-seg-task.tar.gz"
+          ],
+          [
+            "Official upstream source",
+            "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task10_Colon.tar"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-colon-seg-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Segment a 3D abdominal CT into the task&#x27;s integer labels. The worked material is one official upstream training example; no Full evaluation was run.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The Full package expects <code>public/{case_id}/ct.nii.gz</code> under its named data root and declares <code>dataset.included=false</code>. Official MSD Task10_Colon training CT colon_219 and matching tumor label, 512×512×137 voxels. The displayed source is not confirmed as a prepared Full case.</p>",
+          "helpers": "<p>Task configuration and Lite/Standard method guidance are available. The pinned task&#x27;s target codebook is 0 background, 1 primary colon cancer. The upstream training label is shown only to the reader after a reveal; it was not supplied as the answer for this Full case.</p>",
+          "tools": "<p>The Full workflow permits environment setup, validation and inference. No model, preparer, controller or scorer ran for this explanation.</p>",
+          "reference": "<p>Private Full masks belong to the evaluator. The pack contains upstream public training annotations for reader-only teaching, not Full private labels.</p>",
+          "spec": "<p>Inspect three preselected native CT planes without a mask. This post-hoc teaching selection does not test finding the tumor in a whole volume; the task target is the primary tumor, not colon organ. The output must be a combined 3D integer NIfTI on each Full input grid; the upstream example has its own native grid, and a 2D screenshot is only a teaching view.</p>",
+          "output": "<p>Write <code>agents_outputs/{case_id}/dseg.nii.gz</code> for each case. Valid IDs are 0 background, 1 primary colon cancer. The task calls for a 3D integer map. The formatter checks rounded unique values against allowed IDs and compares shape only if the input scan is present; it does not separately enforce integer voxels, three dimensions, or affine equality. Preserve the input affine for coherent physical geometry. No output file or result is in this pack.</p>",
+          "score": "<p>Foreground Dice on class 1. Both-empty masks yield 1.0 in the pinned scorer. The saved artifact is a scoring contract, not an observed Dice value.</p>",
+          "challenge": "<p>The upstream training pair was recovered by verified byte ranges from official AWS tar. Full 20-case selection and private evaluator reference are not established.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -19234,15 +19428,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "brain",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-feta-seg-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-feta-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/full-feta-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "MRI_T2w input, stored as `t2w.nii.gz` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names AutoFetal7-nnUNet (nnU-Net v2, FeTA-trained). Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -19284,14 +19478,111 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T11:05:56.059741+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/automedbench-full-feta-seg-task-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "Official FeTA Zenodo files are restricted and acquisition routes through Synapse access agreement. No image, label or Full case is retained.",
+      "acquisition_route": "https://zenodo.org/records/4541606",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-feta-seg-task-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-feta-seg-task-resolution.json",
+        "receipt_sha256": "0a35add0778783935e613c7afb7f595a7e29f0e886542d7648d4ef3d8b37a9f7",
+        "brief_sha256": "84e4d622ccaf7bda849f7e4e5f391994d332653e269a853feeeb6ec1a4d023a2",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "FeTA source restricted; no native case — Zenodo files are restricted and Synapse requires an access agreement. This is a symbolic protocol only; no source MRI, label or Full result is retained.",
+      "acceptance_scope": "Pinned Full segmentation contract, upstream volume or symbolic operation, absent participant NIfTI and explicit boundary from missing Full cases/private labels. An explainer review, not a model, evaluator, patient or population result.",
+      "completion_review": {
+        "date": "2026-09-29T11:16:21.222138+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "9e3607ac1d4d932c5ac8a7d06378c7e5531811433ac0f12645760e2b2a6f0252"
+      },
+      "reviewed_contract_projection": {
+        "title": "Label seven fetal-brain tissues in T2 MRI",
+        "goal": "Segment a 3D fetal T2-weighted super-resolution MRI into the task's integer labels. The worked material is a symbolic protocol only; no Full evaluation was run.",
+        "value": "Not yet specified.",
+        "raw": "The Full package expects `public/{case_id}/t2w.nii.gz` under its named data root and declares `dataset.included=false`. No native source image is retained; official Zenodo metadata report restricted files and a Synapse access route. No native image is shown.",
+        "helpers": "Task configuration and Lite/Standard method guidance are available. The pinned task's target codebook is 0 background; 1 eCSF, 2 GM, 3 WM, 4 LV, 5 CBM, 6 SGM, 7 BS. No source training label was acquired.",
+        "tools": "The Full workflow permits environment setup, validation and inference. No model, preparer, controller or scorer ran for this explanation.",
+        "reference": "Private Full masks belong to the evaluator. No reference file is retained or revealable.",
+        "spec": "Describe mapping each voxel into one of seven mutually exclusive tissue IDs on the native 3D input grid. No numeric anatomy is drawn without an authorized image. The output must be a combined 3D integer NIfTI on each Full input grid; no authorized source image or 2D slice is available in this pack.",
+        "output": "Write `agents_outputs/{case_id}/dseg.nii.gz` for each case. Valid IDs are 0 background; 1 eCSF, 2 GM, 3 WM, 4 LV, 5 CBM, 6 SGM, 7 BS. The task calls for a 3D integer map. The formatter checks rounded unique values against allowed IDs and compares shape only if the input scan is present; it does not separately enforce integer voxels, three dimensions, or affine equality. Preserve the input affine for coherent physical geometry. No output file or result is in this pack.",
+        "score": "Pinned multiclass scorer computes foreground-class Dice and macro mean; no case or class result was produced. The saved artifact is a scoring contract, not an observed Dice value.",
+        "challenge": "FeTA access requires its research/education agreement through the official route. Neither input image, source label, Full private reference, prediction nor score is present.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Full · Lite",
+            "helper": "Task-specific Lite guidance: AutoFetal7-nnUNet (nnU-Net v2, FeTA-trained).",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full · Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full task harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/feta-seg-task.tar.gz"
+          ],
+          [
+            "Official upstream source",
+            "https://zenodo.org/records/4541606"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-feta-seg-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Segment a 3D fetal T2-weighted super-resolution MRI into the task&#x27;s integer labels. The worked material is a symbolic protocol only; no Full evaluation was run.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The Full package expects <code>public/{case_id}/t2w.nii.gz</code> under its named data root and declares <code>dataset.included=false</code>. No native source image is retained; official Zenodo metadata report restricted files and a Synapse access route. No native image is shown.</p>",
+          "helpers": "<p>Task configuration and Lite/Standard method guidance are available. The pinned task&#x27;s target codebook is 0 background; 1 eCSF, 2 GM, 3 WM, 4 LV, 5 CBM, 6 SGM, 7 BS. No source training label was acquired.</p>",
+          "tools": "<p>The Full workflow permits environment setup, validation and inference. No model, preparer, controller or scorer ran for this explanation.</p>",
+          "reference": "<p>Private Full masks belong to the evaluator. No reference file is retained or revealable.</p>",
+          "spec": "<p>Describe mapping each voxel into one of seven mutually exclusive tissue IDs on the native 3D input grid. No numeric anatomy is drawn without an authorized image. The output must be a combined 3D integer NIfTI on each Full input grid; no authorized source image or 2D slice is available in this pack.</p>",
+          "output": "<p>Write <code>agents_outputs/{case_id}/dseg.nii.gz</code> for each case. Valid IDs are 0 background; 1 eCSF, 2 GM, 3 WM, 4 LV, 5 CBM, 6 SGM, 7 BS. The task calls for a 3D integer map. The formatter checks rounded unique values against allowed IDs and compares shape only if the input scan is present; it does not separately enforce integer voxels, three dimensions, or affine equality. Preserve the input affine for coherent physical geometry. No output file or result is in this pack.</p>",
+          "score": "<p>Pinned multiclass scorer computes foreground-class Dice and macro mean; no case or class result was produced. The saved artifact is a scoring contract, not an observed Dice value.</p>",
+          "challenge": "<p>FeTA access requires its research/education agreement through the official route. Neither input image, source label, Full private reference, prediction nor score is present.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -19309,15 +19600,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "heart",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-heart-seg-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-heart-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/full-heart-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "MRI input, stored as `mri.nii.gz` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names nnU-Net v2 (MSD Task02_Heart pretrained). Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -19359,14 +19650,111 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T11:17:14.042173+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/automedbench-full-heart-seg-task-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Official MSD Task02 training MRI and left-atrium label la_007 were range-recovered; Full 20-case selection and private reference are unverified.",
+      "acquisition_route": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task02_Heart.tar",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-heart-seg-task-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-heart-seg-task-resolution.json",
+        "receipt_sha256": "fbc88c9123d07b6a52f0d00880773020c12bb9e138aeeca8572bc2a7327edde0",
+        "brief_sha256": "d14885fe3446c4516de1cefbdf78031b37dc42c266e15a3c9ce4b946e896a283",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Official upstream volume; Full staged case unverified — Source training labels are a reader-only teaching reveal. No Full private reference, prediction or Dice result is retained.",
+      "acceptance_scope": "Pinned Full segmentation contract, upstream volume or symbolic operation, absent participant NIfTI and explicit boundary from missing Full cases/private labels. An explainer review, not a model, evaluator, patient or population result.",
+      "completion_review": {
+        "date": "2026-09-29T11:33:06.641916+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "ec98b9a4e85156b69a0e07c6610abdd1831818c3275ae9a389695378c21617ee"
+      },
+      "reviewed_contract_projection": {
+        "title": "Segment the left atrium in cardiac MRI",
+        "goal": "Segment a 3D cardiac MRI into the task's integer labels. The worked material is one official upstream training example; no Full evaluation was run.",
+        "value": "Not yet specified.",
+        "raw": "The Full package expects `public/{case_id}/mri.nii.gz` under its named data root and declares `dataset.included=false`. Official MSD Task02_Heart training MRI la_007 and matching left-atrium label, 320×320×130 voxels. The displayed source is not confirmed as a prepared Full case.",
+        "helpers": "Task configuration and Lite/Standard method guidance are available. The pinned task's target codebook is 0 background, 1 left atrium (task label heart). The upstream training label is shown only to the reader after a reveal; it was not supplied as the answer for this Full case.",
+        "tools": "The Full workflow permits environment setup, validation and inference. No model, preparer, controller or scorer ran for this explanation.",
+        "reference": "Private Full masks belong to the evaluator. The pack contains upstream public training annotations for reader-only teaching, not Full private labels.",
+        "spec": "Inspect three preselected native MRI planes without a mask. This post-hoc teaching selection does not test locating the left atrium; the task target is left atrium, not whole heart. The output must be a combined 3D integer NIfTI on each Full input grid; the upstream example has its own native grid, and a 2D screenshot is only a teaching view.",
+        "output": "Write `agents_outputs/{case_id}/dseg.nii.gz` for each case. Valid IDs are 0 background, 1 left atrium (task label heart). The task calls for a 3D integer map. The formatter checks rounded unique values against allowed IDs and compares shape only if the input scan is present; it does not separately enforce integer voxels, three dimensions, or affine equality. Preserve the input affine for coherent physical geometry. No output file or result is in this pack.",
+        "score": "Foreground Dice on class 1. Both-empty masks yield 1.0 in the pinned scorer. The saved artifact is a scoring contract, not an observed Dice value.",
+        "challenge": "The upstream training pair was recovered by verified byte ranges from official AWS tar. Full 20-case selection and private evaluator reference are not established.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Full · Lite",
+            "helper": "Task-specific Lite guidance: nnU-Net v2 (MSD Task02_Heart pretrained).",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full · Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full task harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/heart-seg-task.tar.gz"
+          ],
+          [
+            "Official upstream source",
+            "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task02_Heart.tar"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-heart-seg-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Segment a 3D cardiac MRI into the task&#x27;s integer labels. The worked material is one official upstream training example; no Full evaluation was run.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The Full package expects <code>public/{case_id}/mri.nii.gz</code> under its named data root and declares <code>dataset.included=false</code>. Official MSD Task02_Heart training MRI la_007 and matching left-atrium label, 320×320×130 voxels. The displayed source is not confirmed as a prepared Full case.</p>",
+          "helpers": "<p>Task configuration and Lite/Standard method guidance are available. The pinned task&#x27;s target codebook is 0 background, 1 left atrium (task label heart). The upstream training label is shown only to the reader after a reveal; it was not supplied as the answer for this Full case.</p>",
+          "tools": "<p>The Full workflow permits environment setup, validation and inference. No model, preparer, controller or scorer ran for this explanation.</p>",
+          "reference": "<p>Private Full masks belong to the evaluator. The pack contains upstream public training annotations for reader-only teaching, not Full private labels.</p>",
+          "spec": "<p>Inspect three preselected native MRI planes without a mask. This post-hoc teaching selection does not test locating the left atrium; the task target is left atrium, not whole heart. The output must be a combined 3D integer NIfTI on each Full input grid; the upstream example has its own native grid, and a 2D screenshot is only a teaching view.</p>",
+          "output": "<p>Write <code>agents_outputs/{case_id}/dseg.nii.gz</code> for each case. Valid IDs are 0 background, 1 left atrium (task label heart). The task calls for a 3D integer map. The formatter checks rounded unique values against allowed IDs and compares shape only if the input scan is present; it does not separately enforce integer voxels, three dimensions, or affine equality. Preserve the input affine for coherent physical geometry. No output file or result is in this pack.</p>",
+          "score": "<p>Foreground Dice on class 1. Both-empty masks yield 1.0 in the pinned scorer. The saved artifact is a scoring contract, not an observed Dice value.</p>",
+          "challenge": "<p>The upstream training pair was recovered by verified byte ranges from official AWS tar. Full 20-case selection and private evaluator reference are not established.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -21063,9 +21451,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 73,
+    "reviewed-scripted-planar": 77,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-input": 47,
+    "blocked-source-input": 43,
     "blocked-source-contract": 71,
     "pending-operation-review": 1
   },

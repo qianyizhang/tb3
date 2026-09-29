@@ -1,0 +1,323 @@
+.scene {
+  display: grid;
+  align-content: start;
+  gap: 11px;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 425px;
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid #375367;
+  border-radius: 12px;
+  background: #081b2b;
+  color: #eaf4fb;
+}
+.scene h3 {
+  margin: 0;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.15;
+}
+.two {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(235px, 0.8fr);
+  gap: 12px;
+  min-width: 0;
+}
+.slice {
+  margin: 0;
+  min-width: 0;
+  border: 1px solid #425c6d;
+  border-radius: 11px;
+  background: #06101a;
+  overflow: hidden;
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 9px;
+  background: #15283a;
+  color: #cce0ed;
+  font-size: 11px;
+}
+.head b {
+  color: white;
+}
+.canvas {
+  height: min(300px, 35vw);
+  min-height: 210px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #02070e;
+  overflow: hidden;
+}
+.canvas img {
+  display: block;
+  height: 100%;
+  max-height: 300px;
+  max-width: 100%;
+  object-fit: contain;
+  image-rendering: auto;
+}
+.canvas .overlay {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  pointer-events: none;
+}
+.slice figcaption {
+  padding: 5px 9px;
+  color: #b0c1cf;
+  font-size: 10px;
+}
+.card,
+.limits > div {
+  border: 1px solid #375367;
+  border-radius: 10px;
+  background: #102233;
+  padding: 13px;
+  min-width: 0;
+}
+.card b,
+.limits b {
+  color: #fff;
+  font-size: 14px;
+}
+.card p,
+.limits p {
+  font-size: 13px;
+  color: #cad8e3;
+  line-height: 1.45;
+  margin: 9px 0;
+}
+.card code {
+  display: block;
+  padding: 7px 8px;
+  background: #071522;
+  border-radius: 6px;
+  color: #9fe7ed;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+.card small {
+  font-size: 11px;
+  color: #aebdc9;
+}
+.steps {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.steps span {
+  font:
+    12px ui-monospace,
+    monospace;
+  padding: 5px 8px;
+  border: 1px solid #3d6273;
+  border-radius: 5px;
+}
+.steps .active {
+  background: #125266;
+  border-color: #18c6d4;
+  color: #e6fcff;
+}
+.labels {
+  display: grid;
+  gap: 5px;
+  margin: 9px 0;
+}
+.labels > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 7px;
+  border-radius: 5px;
+  background: #091827;
+  font-size: 12px;
+}
+.labels strong {
+  display: grid;
+  place-items: center;
+  min-width: 23px;
+  height: 23px;
+  border-radius: 4px;
+  background: #375467;
+}
+.labels .cyan {
+  background: #44c4de;
+  color: #06101a;
+}
+.labels .amber {
+  background: #f8b93b;
+  color: #06101a;
+}
+.legend {
+  font-size: 11px !important;
+  color: #dbe9ed !important;
+}
+.empty {
+  display: block;
+  margin-top: 12px;
+  color: #ffe2a4;
+}
+.covered,
+.missing {
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 8px;
+  padding: 24px;
+  border: 1px dashed #7790a1;
+  border-radius: 10px;
+  background: repeating-linear-gradient(135deg, #102235, #102235 15px, #162b3d 15px, #162b3d 30px);
+}
+.covered p,
+.missing span {
+  max-width: 410px;
+  margin: 0;
+  color: #c9d8e3;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.limits {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.output {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #375367;
+  border-radius: 10px;
+  background: #102233;
+  color: #eaf4fb;
+  font-size: 12px;
+}
+.output p {
+  margin: 0;
+  color: #cad8e4;
+  line-height: 1.45;
+}
+@media (max-width: 700px) {
+  .scene {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    padding: 10px;
+  }
+  .two,
+  .limits {
+    grid-template-columns: 1fr;
+  }
+  .canvas {
+    height: 260px;
+    min-height: 0;
+  }
+  .canvas img {
+    max-height: 260px;
+  }
+  .card,
+  .limits > div {
+    padding: 10px;
+  }
+}
+
+/* Square limits-card edges avoid Chromium paint-order rounding at repeated frames. */
+.limits > div {
+  border-radius: 0;
+}
+
+.scene h3 {
+  color: #eaf4fb;
+}
+
+.fetaVolume {
+  margin: 0;
+  min-width: 0;
+  border: 1px solid #425c6d;
+  border-radius: 11px;
+  background: #06101a;
+  overflow: hidden;
+}
+.fetaVolume svg {
+  display: block;
+  width: 100%;
+  height: min(300px, 35vw);
+  min-height: 210px;
+  background: #020b16;
+}
+.fetaVolume figcaption {
+  padding: 5px 9px;
+  color: #cbdbe7;
+  font-size: 11px;
+  line-height: 1.35;
+}
+.fetaWire {
+  stroke: #7898ae;
+}
+.fetaGrid {
+  stroke: #38556d;
+  stroke-width: 1;
+}
+.fetaPlane {
+  fill: #18c6d466;
+  stroke: #67e2e8;
+  stroke-width: 2;
+}
+.fetaAxes {
+  fill: none;
+  stroke: #f4bc49;
+  stroke-width: 2;
+}
+.fetaAxisLabel {
+  fill: #ffe1a0;
+  font:
+    700 14px ui-monospace,
+    monospace;
+}
+@media (max-width: 700px) {
+  .fetaVolume svg {
+    height: 260px;
+    min-height: 0;
+  }
+}
+.fetaLegend {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 3px;
+  color: #d5eff0;
+}
+.fetaLegend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #18c6d466;
+  border: 1px solid #67e2e8;
+}
+
+.scene[data-sega-task='feta'] .fetaVolume svg {
+  height: min(280px, 33vw);
+  min-height: 200px;
+}
+.scene[data-sega-task='feta'] .labels {
+  gap: 3px;
+}
+.scene[data-sega-task='feta'] .labels > div {
+  padding: 4px 7px;
+}
+@media (max-width: 700px) {
+  .scene[data-sega-task='feta'] .fetaVolume svg {
+    height: 260px;
+    min-height: 0;
+  }
+}

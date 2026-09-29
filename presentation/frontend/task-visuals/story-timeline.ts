@@ -601,6 +601,50 @@ export function sampleStory(plan: StoryPlan, requested: number) {
         reference: channel(b.channels.reference),
       });
     }
+    case 'automed-full-aeropath-seg-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        slice: channel(b.channels.slice),
+        format: channel(b.channels.format),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'automed-full-colon-seg-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        slice: channel(b.channels.slice),
+        format: channel(b.channels.format),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'automed-full-feta-seg-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        slice: channel(b.channels.slice),
+        format: channel(b.channels.format),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'automed-full-heart-seg-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        slice: channel(b.channels.slice),
+        format: channel(b.channels.format),
+        reference: channel(b.channels.reference),
+      });
+    }
     case 'cardiac-material-v1': {
       const b = plan.beats[index];
       return Object.freeze({

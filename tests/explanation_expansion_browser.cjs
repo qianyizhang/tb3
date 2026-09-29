@@ -28,6 +28,10 @@ const cardiacRecipes = new Set([
   'cardiac-contour-v1',
   'cardiac-anchor-v1',
   'cardiac-material-v1',
+  'automed-full-heart-seg-v1',
+  'automed-full-feta-seg-v1',
+  'automed-full-colon-seg-v1',
+  'automed-full-aeropath-seg-v1',
   'automed-full-vindr-cxr-detection-v1',
   'automed-full-grazpedwri-detection-v1',
   'automed-full-dentex-detection-v1',
@@ -65,6 +69,38 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-full-heart-seg-v1')
+    return {
+      scene: 'data-sega-scene',
+      reference: '[data-sega-reference]',
+      referenceChannel: 'reference',
+      output: '[data-sega-schema]',
+      aside: '[data-sega-output]',
+    };
+  if (plan.recipe === 'automed-full-feta-seg-v1')
+    return {
+      scene: 'data-sega-scene',
+      reference: '[data-sega-reference]',
+      referenceChannel: null,
+      output: '[data-sega-schema]',
+      aside: '[data-sega-output]',
+    };
+  if (plan.recipe === 'automed-full-colon-seg-v1')
+    return {
+      scene: 'data-sega-scene',
+      reference: '[data-sega-reference]',
+      referenceChannel: 'reference',
+      output: '[data-sega-schema]',
+      aside: '[data-sega-output]',
+    };
+  if (plan.recipe === 'automed-full-aeropath-seg-v1')
+    return {
+      scene: 'data-sega-scene',
+      reference: '[data-sega-reference]',
+      referenceChannel: 'reference',
+      output: '[data-sega-schema]',
+      aside: '[data-sega-output]',
+    };
   if (plan.recipe === 'automed-full-vindr-cxr-detection-v1')
     return {
       scene: 'data-detection-scene',
@@ -295,6 +331,30 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-full-heart-seg-v1': [
+      /Full/,
+      'https://msd-for-monai.s3-us-west-2.amazonaws.com/Task02_Heart.tar',
+      'data-sega-scene',
+      false,
+    ],
+    'automed-full-feta-seg-v1': [
+      /FeTA/,
+      'https://zenodo.org/records/4541606',
+      'data-sega-scene',
+      false,
+    ],
+    'automed-full-colon-seg-v1': [
+      /Full/,
+      'https://msd-for-monai.s3-us-west-2.amazonaws.com/Task10_Colon.tar',
+      'data-sega-scene',
+      false,
+    ],
+    'automed-full-aeropath-seg-v1': [
+      /Full/,
+      'https://zenodo.org/records/10069289',
+      'data-sega-scene',
+      false,
+    ],
     'automed-full-vindr-cxr-detection-v1': [
       /PhysioNet requires/,
       'https://physionet.org/content/vindr-cxr/1.0.0/',
@@ -442,8 +502,15 @@ async function checkSourceWarning(page, plan) {
   assert.equal(await warning.count(), 1);
   assert.match(await warning.innerText(), config[0]);
   assert.equal(await warning.locator('a').getAttribute('href'), config[1]);
-  const box = await warning.boundingBox(),
-    title = await player.locator('header h3').boundingBox();
+  // Viewport changes can trigger scroll anchoring between separate protocol calls.
+  // Measure both rectangles in one layout snapshot so the ordering check stays strict.
+  const { box, title } = await warning.evaluate((node) => {
+    const heading = node.closest('.scene-player')?.querySelector('header h3');
+    return {
+      box: node.getBoundingClientRect().toJSON(),
+      title: heading?.getBoundingClientRect().toJSON() || null,
+    };
+  });
   assert.ok(
     box && title && box.y + box.height <= title.y + 1,
     'source warning must precede illustration title',
@@ -683,6 +750,10 @@ withBrowser(async (browser) => {
           'cardiac-contour-v1',
           'cardiac-anchor-v1',
           'cardiac-material-v1',
+          'automed-full-heart-seg-v1',
+          'automed-full-feta-seg-v1',
+          'automed-full-colon-seg-v1',
+          'automed-full-aeropath-seg-v1',
           'automed-full-vindr-cxr-detection-v1',
           'automed-full-grazpedwri-detection-v1',
           'automed-full-dentex-detection-v1',
@@ -3587,6 +3658,10 @@ withBrowser(async (browser) => {
       'cardiac-contour-v1',
       'cardiac-anchor-v1',
       'cardiac-material-v1',
+      'automed-full-heart-seg-v1',
+      'automed-full-feta-seg-v1',
+      'automed-full-colon-seg-v1',
+      'automed-full-aeropath-seg-v1',
       'automed-full-vindr-cxr-detection-v1',
       'automed-full-grazpedwri-detection-v1',
       'automed-full-dentex-detection-v1',

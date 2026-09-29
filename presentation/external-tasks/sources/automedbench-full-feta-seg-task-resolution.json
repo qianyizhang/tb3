@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "automedbench-full-feta-seg-task",
+  "status": "source-only-audit-complete; no Full staged case, private reference, model or score",
+  "illustration_basis": "symbolic",
+  "reference_policy": "no-reference-assets",
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "task_source_ref_declared": "609c2a8df21addfff5dbfb680a7263fb8cf91d99",
+    "staging_manifest_sha256_declared": "ff5ae06883c4c87171dc61a93c12331996670db20f832a2e775e0fb079ef3d03"
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/feta-seg-task.tar.gz",
+  "upstream_url": "https://zenodo.org/records/4541606",
+  "source_license": "Research and education agreement; access restricted",
+  "task_package": {
+    "local_path": ".local/explainers/core-20260929/automed-seg-a-source/packages/feta.tar.gz",
+    "bytes": 29069,
+    "sha256": "03af6ffeada7293fd3090712bd5b4d4746227383d2ca3fa48554a32d3c1905e2",
+    "manifest_entries": 30,
+    "manifest_mismatches": 0,
+    "dataset_included": false,
+    "data_dir_name": "CruzMRI_Feta",
+    "input_filename": "t2w.nii.gz"
+  },
+  "output_contract": {
+    "path": "agents_outputs/{case_id}/dseg.nii.gz",
+    "role": "required combined integer label map",
+    "full_private_reference": "/data/private; layout is task-specific and not in package",
+    "geometry": "same spatial shape as input; affine should be preserved for physical alignment"
+  },
+  "actual_data_gap": "Official FeTA Zenodo files are restricted and acquisition routes through Synapse access agreement. No image, label or Full case is retained.",
+  "acquisition_route": "https://zenodo.org/records/4541606",
+  "attempts": [
+    {
+      "action": "Download pinned Full task harness; verify 30 manifest members",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/feta-seg-task.tar.gz",
+      "attempted_at": "2026-09-29T05:19:25Z",
+      "outcome": "Succeeded; 29069 bytes; SHA256 03af6ffeada7293fd3090712bd5b4d4746227383d2ca3fa48554a32d3c1905e2. No image or label is included."
+    },
+    {
+      "action": "GET official Zenodo record metadata without credentials",
+      "source": "https://zenodo.org/records/4541606",
+      "attempted_at": "2026-09-29T05:26:53Z",
+      "outcome": "Succeeded; 7534 bytes, SHA256 ba41c195c220e761335c44ac479451d7829451343ba5de9032f26f58b9c633f0; files array empty for unauthenticated request, public page states restricted and Synapse agreement route."
+    }
+  ],
+  "scorer_caveat": "Pinned config labels 0..7 and foreground macro Dice; no source image or reference was available to illustrate numeric coverage."
+}

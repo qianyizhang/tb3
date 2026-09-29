@@ -1,60 +1,40 @@
-# Label seven fetal brain tissue types
+# Label seven fetal-brain tissues in T2 MRI
 
-Build and run a pipeline to label seven fetal brain tissue types.
-
-## Value
-
-Spatial labels support measurement and anatomical review; organ overlap and lesion detection are different capabilities.
+Segment a 3D fetal T2-weighted super-resolution MRI into the task's integer labels. The worked material is a symbolic protocol only; no Full evaluation was run.
 
 ## Given
 
 ### Original data
 
-MRI_T2w input, stored as `t2w.nii.gz` per case.
+The Full package expects `public/{case_id}/t2w.nii.gz` under its named data root and declares `dataset.included=false`. No native source image is retained; official Zenodo metadata report restricted files and a Synapse access route. No native image is shown.
 
 ### Supplied helpers
 
-Task configuration, label/output conventions and stage-specific guidance. Lite names AutoFetal7-nnUNet (nnU-Net v2, FeTA-trained). Standard supplies candidates to investigate; model files may still need provisioning.
+Task configuration and Lite/Standard method guidance are available. The pinned task's target codebook is 0 background; 1 eCSF, 2 GM, 3 WM, 4 LV, 5 CBM, 6 SGM, 7 BS. No source training label was acquired.
 
 ### Callable tools
 
-A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.
+The Full workflow permits environment setup, validation and inference. No model, preparer, controller or scorer ran for this explanation.
 
 ### Reference-only material
 
-Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.
+Private Full masks belong to the evaluator. No reference file is retained or revealable.
 
 ## Task specification
 
-Complete the source’s plan, setup, validation, inference and submission stages. Use the selected tier’s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: feta-seg-task.
+Describe mapping each voxel into one of seven mutually exclusive tissue IDs on the native 3D input grid. No numeric anatomy is drawn without an authorized image. The output must be a combined 3D integer NIfTI on each Full input grid; no authorized source image or 2D slice is available in this pack.
 
 ## Expected output
 
-Write `agents_outputs/{case_id}/dseg.nii.gz`. Labels: 1=eCSF, 2=GM, 3=WM, 4=LV, 5=CBM, 6=SGM, 7=BS; 0=background.
+Write `agents_outputs/{case_id}/dseg.nii.gz` for each case. Valid IDs are 0 background; 1 eCSF, 2 GM, 3 WM, 4 LV, 5 CBM, 6 SGM, 7 BS. The task calls for a 3D integer map. The formatter checks rounded unique values against allowed IDs and compares shape only if the input scan is present; it does not separately enforce integer voxels, three dimensions, or affine equality. Preserve the input affine for coherent physical geometry. No output file or result is in this pack.
 
 ## Evaluation
 
-The configuration describes foreground Dice overlap, with task-specific class aggregation. Organ/lesion tasks require both outputs; inspect the selected evaluator for their exact weighting. Planning/setup/validation artifacts are distinct from final prediction quality. The evaluator was not run for this brief.
+Pinned multiclass scorer computes foreground-class Dice and macro mean; no case or class result was produced. The saved artifact is a scoring contract, not an observed Dice value.
 
 ## Visual explanation
 
-### Workflow
-
-- Staged images + task guidance
-- Plan → set up → validate → infer
-- Submit a label map
-
-### Input
-
-**Contract view; native sample not yet illustrated.** MRI_T2w input, stored as `t2w.nii.gz` per case.
-
-### Supplied helpers
-
-**Given material, not an answer reveal.** Task configuration, label/output conventions and stage-specific guidance. Lite names AutoFetal7-nnUNet (nnU-Net v2, FeTA-trained). Standard supplies candidates to investigate; model files may still need provisioning.
-
-### Reference or output
-
-**Expected artifact, not an actual prediction.** Write `agents_outputs/{case_id}/dseg.nii.gz`. Labels: 1=eCSF, 2=GM, 3=WM, 4=LV, 5=CBM, 6=SGM, 7=BS; 0=background.
+An empty image socket comes first. An authored i/j/k wireframe then illustrates a moving sampling plane, with unknown native geometry and no anatomy or inferred labels. The literal output codebook and empty output path follow; no source or private reference is available.
 
 ## Conditions
 
@@ -66,16 +46,10 @@ The configuration describes foreground Dice overlap, with task-specific class ag
 
 ## Difficulty
 
-Choose a model that covers the requested structures, preserve physical geometry and map class IDs correctly. A general organ segmenter may miss the target lesions.
+FeTA access requires its research/education agreement through the official route. Neither input image, source label, Full private reference, prediction nor score is present.
 
 ## Sources
 
-- [Pinned Full-release task package](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/feta-seg-task.tar.gz)
-
-## Coverage
-
-Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.
-
-## Gaps
-
-Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights.
+- [Pinned Full task harness](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/feta-seg-task.tar.gz).
+- [Official upstream source](https://zenodo.org/records/4541606) (restricted research and education agreement).
+- [Source resolution receipt](../sources/automedbench-full-feta-seg-task-resolution.json).
