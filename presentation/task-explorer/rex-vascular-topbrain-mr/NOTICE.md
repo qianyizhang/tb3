@@ -1,0 +1,3 @@
+# rexmle-topbrain-track2 local source teaching pack
+
+Source: https://zenodo.org/records/16878417. Official 2025 License.txt: noncommercial use with attribution; commercial use requires owner permission. Local license SHA-256 ff112837d8c701c0933f0aea73d4b7a0ca8bfd6f666d25d1f0234aa05e50f53c. Exact single-case source image and source annotation were verified by SHA-256 against the resolution receipt. Nine native-index fixed-window sample images show display derivatives only; full arrays remain local. Source label overlays are public training helpers, not held-out answers. No participant prediction, model run, preparer run, grader run or score was retained.

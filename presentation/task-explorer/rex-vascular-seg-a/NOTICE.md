@@ -1,0 +1,3 @@
+# rexmle-seg-a local source teaching pack
+
+Source: https://figshare.com/articles/dataset/Aortic_Vessel_Tree_AVT_CTA_Datasets_and_Segmentations/14806362. Figshare v1 article metadata: CC BY 4.0; preserve source attribution and archive membership. Exact single-case source image and source annotation were verified by SHA-256 against the resolution receipt. Nine native-index fixed-window sample images show display derivatives only; full arrays remain local. Source label overlays are public training helpers, not held-out answers. No participant prediction, model run, preparer run, grader run or score was retained.

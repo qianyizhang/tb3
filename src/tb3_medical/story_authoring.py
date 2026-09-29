@@ -222,6 +222,14 @@ def new(
             beat["scene"] = "input"
         if recipe == "rexmle-puma-track2-task2-v1":
             beat["scene"] = "input"
+        if recipe == "rex-seg-a-v1":
+            beat["scene"] = "inputs"
+        if recipe == "rex-topbrain-ct-v1":
+            beat["scene"] = "inputs"
+        if recipe == "rex-topbrain-mr-v1":
+            beat["scene"] = "inputs"
+        if recipe == "rex-topcow-mr-seg-v1":
+            beat["scene"] = "inputs"
         if recipe == "anatomy-curation-v1":
             beat["scene"] = "pair"
         if recipe == "vessel-source-v1":

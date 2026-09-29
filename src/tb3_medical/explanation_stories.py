@@ -44,6 +44,10 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "rex-topcow-mr-seg-v1": "retained-rex-topcow-mr-seg-v1",
+    "rex-topbrain-mr-v1": "retained-rex-topbrain-mr-v1",
+    "rex-topbrain-ct-v1": "retained-rex-topbrain-ct-v1",
+    "rex-seg-a-v1": "retained-rex-seg-a-v1",
     "rexmle-puma-track2-task2-v1": "retained-rexmle-puma-track2-task2-v1",
     "rexmle-puma-track1-task2-v1": "retained-rexmle-puma-track1-task2-v1",
     "rexmle-puma-track1-task1-v1": "retained-rexmle-puma-track1-task1-v1",
@@ -116,6 +120,92 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-rex-topbrain-mr-v1": (
+        "source-slices",
+        None,
+        {
+            "images/input-05.png",
+            "images/input-02.png",
+            "images/helper-02.png",
+            "images/helper-05.png",
+            "images/helper-06.png",
+            "DATA-LICENSE.txt",
+            "images/helper-04.png",
+            "images/input-06.png",
+            "images/input-03.png",
+            "images/input-08.png",
+            "source.json",
+            "images/helper-00.png",
+            "images/input-00.png",
+            "NOTICE.md",
+            "images/helper-01.png",
+            "images/input-01.png",
+            "images/helper-07.png",
+            "output.json",
+            "images/input-04.png",
+            "images/helper-08.png",
+            "helper.json",
+            "images/input-07.png",
+            "images/helper-03.png",
+        },
+    ),
+    "retained-rex-topbrain-ct-v1": (
+        "source-slices",
+        None,
+        {
+            "images/helper-08.png",
+            "images/helper-01.png",
+            "images/helper-05.png",
+            "images/helper-06.png",
+            "images/helper-00.png",
+            "output.json",
+            "images/input-02.png",
+            "images/input-03.png",
+            "images/input-05.png",
+            "images/helper-07.png",
+            "source.json",
+            "images/input-06.png",
+            "images/input-01.png",
+            "images/input-08.png",
+            "images/helper-04.png",
+            "NOTICE.md",
+            "helper.json",
+            "images/input-04.png",
+            "DATA-LICENSE.txt",
+            "images/input-07.png",
+            "images/helper-03.png",
+            "images/input-00.png",
+            "images/helper-02.png",
+        },
+    ),
+    "retained-rex-seg-a-v1": (
+        "source-slices",
+        None,
+        {
+            "images/helper-05.png",
+            "NOTICE.md",
+            "images/input-07.png",
+            "images/helper-08.png",
+            "images/input-06.png",
+            "images/helper-03.png",
+            "images/input-03.png",
+            "images/helper-06.png",
+            "images/input-02.png",
+            "images/helper-01.png",
+            "images/input-01.png",
+            "images/helper-00.png",
+            "helper.json",
+            "images/input-08.png",
+            "images/input-04.png",
+            "source.json",
+            "images/input-00.png",
+            "images/helper-07.png",
+            "images/helper-04.png",
+            "images/input-05.png",
+            "output.json",
+            "images/helper-02.png",
+        },
+    ),
     "retained-rexmle-puma-track2-task2-v1": (
         "source-slices",
         None,
@@ -207,6 +297,17 @@ SOURCE_INPUT_PACKS = {
     ),
 }
 SOURCE_EXTRA_REFERENCE_FILES = {
+    "retained-rex-topcow-mr-seg-v1": {
+        "images/reference-08.png",
+        "images/reference-05.png",
+        "images/reference-03.png",
+        "images/reference-02.png",
+        "images/reference-04.png",
+        "images/reference-00.png",
+        "images/reference-01.png",
+        "images/reference-07.png",
+        "images/reference-06.png",
+    },
     "retained-rex-isles22-v1": {
         "images/reference-mask-06.png",
         "images/reference-mask-04.png",
@@ -217,10 +318,39 @@ SOURCE_EXTRA_REFERENCE_FILES = {
         "images/reference-mask-03.png",
         "images/reference-mask-05.png",
         "images/reference-mask-00.png",
-    }
+    },
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-rex-topcow-mr-seg-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "images/reference-08.png",
+            "images/input-06.png",
+            "images/reference-01.png",
+            "images/input-05.png",
+            "images/input-03.png",
+            "images/input-00.png",
+            "images/input-08.png",
+            "images/reference-03.png",
+            "images/input-02.png",
+            "images/reference-00.png",
+            "source.json",
+            "images/reference-07.png",
+            "images/reference-06.png",
+            "output.json",
+            "images/input-07.png",
+            "images/input-01.png",
+            "images/reference-02.png",
+            "images/reference-05.png",
+            "images/reference-04.png",
+            "images/input-04.png",
+            "NOTICE.md",
+            "reference.json",
+            "DATA-LICENSE.txt",
+        },
+    ),
     "retained-rex-isles22-v1": (
         "source-slices",
         "reference.json",
@@ -1145,6 +1275,26 @@ class RexPumaTrack2Task2Channels(Closed):
     helper: Pair
     focus: Pair
     metric: Pair
+
+
+class RexSegAChannels(Closed):
+    slice: Pair
+    reference: Pair
+
+
+class RexTopbrainCtChannels(Closed):
+    slice: Pair
+    reference: Pair
+
+
+class RexTopbrainMrChannels(Closed):
+    slice: Pair
+    reference: Pair
+
+
+class RexTopcowMrSegChannels(Closed):
+    slice: Pair
+    reference: Pair
 
 
 class CardiacMaterialChannels(Closed):
@@ -2389,6 +2539,70 @@ class RexPumaTrack2Task2Story(Story[RexPumaTrack2Task2Channels]):
         return self
 
 
+class RexSegABeat(ExpansionBeat[RexSegAChannels]):
+    scene: Literal["inputs", "geometry", "operation", "output", "helper", "limits"]
+
+
+class RexSegAStory(Story[RexSegAChannels]):
+    recipe: Literal["rex-seg-a-v1"]
+    beats: tuple[RexSegABeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class RexTopbrainCtBeat(ExpansionBeat[RexTopbrainCtChannels]):
+    scene: Literal["inputs", "geometry", "operation", "output", "helper", "limits"]
+
+
+class RexTopbrainCtStory(Story[RexTopbrainCtChannels]):
+    recipe: Literal["rex-topbrain-ct-v1"]
+    beats: tuple[RexTopbrainCtBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class RexTopbrainMrBeat(ExpansionBeat[RexTopbrainMrChannels]):
+    scene: Literal["inputs", "geometry", "operation", "output", "helper", "limits"]
+
+
+class RexTopbrainMrStory(Story[RexTopbrainMrChannels]):
+    recipe: Literal["rex-topbrain-mr-v1"]
+    beats: tuple[RexTopbrainMrBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class RexTopcowMrSegBeat(ExpansionBeat[RexTopcowMrSegChannels]):
+    scene: Literal["inputs", "geometry", "operation", "output", "reference", "limits"]
+
+
+class RexTopcowMrSegStory(Story[RexTopcowMrSegChannels]):
+    recipe: Literal["rex-topcow-mr-seg-v1"]
+    beats: tuple[RexTopcowMrSegBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class CardiacMaterialBeat(ExpansionBeat[CardiacMaterialChannels]):
     scene: Literal[
         "inputs", "initial", "tracking", "tetra", "strain", "comparison", "controls", "limits"
@@ -2582,6 +2796,10 @@ AnyStory = Annotated[
     | RexPumaTrack1Task1Story
     | RexPumaTrack1Task2Story
     | RexPumaTrack2Task2Story
+    | RexSegAStory
+    | RexTopbrainCtStory
+    | RexTopbrainMrStory
+    | RexTopcowMrSegStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -2654,6 +2872,10 @@ ADAPTER: TypeAdapter[
     | RexPumaTrack1Task1Story
     | RexPumaTrack1Task2Story
     | RexPumaTrack2Task2Story
+    | RexSegAStory
+    | RexTopbrainCtStory
+    | RexTopbrainMrStory
+    | RexTopcowMrSegStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -2886,6 +3108,10 @@ def parse_expansion(
     | RexPumaTrack1Task1Story
     | RexPumaTrack1Task2Story
     | RexPumaTrack2Task2Story
+    | RexSegAStory
+    | RexTopbrainCtStory
+    | RexTopbrainMrStory
+    | RexTopcowMrSegStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3014,6 +3240,22 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             "retained-rexmle-puma-track1-task1-v1": ("image-pixel-top-left", "CC0-1.0", "CC0-1.0"),
             "retained-rexmle-puma-track1-task2-v1": ("image-pixel-top-left", "CC0-1.0", "CC0-1.0"),
             "retained-rexmle-puma-track2-task2-v1": ("image-pixel-top-left", "CC0-1.0", "CC0-1.0"),
+            "retained-rex-seg-a-v1": ("SEG.A-native-NRRD-LPS", "CC-BY-4.0", "CC-BY-4.0"),
+            "retained-rex-topbrain-ct-v1": (
+                "TopBrain2025-native-NIfTI-RAS",
+                "LicenseRef-TopBrain2025-noncommercial",
+                "LicenseRef-TopBrain2025-noncommercial",
+            ),
+            "retained-rex-topbrain-mr-v1": (
+                "TopBrain2025-native-NIfTI-RAS",
+                "LicenseRef-TopBrain2025-noncommercial",
+                "LicenseRef-TopBrain2025-noncommercial",
+            ),
+            "retained-rex-topcow-mr-seg-v1": (
+                "TopCoW2024-native-NIfTI-RAS",
+                "LicenseRef-TopCoW2024-noncommercial",
+                "LicenseRef-TopCoW2024-noncommercial",
+            ),
             "retained-cardiac-material-v1": (
                 "STRAUS-patient01-healthy-canonical",
                 "LicenseRef-STRAUS-local-noncommercial",

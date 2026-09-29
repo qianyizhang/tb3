@@ -75,6 +75,10 @@ export function isPlanarStory(plan: StoryPlan): boolean {
   return [
     'cardiac-anchor-v1',
     'cardiac-material-v1',
+    'rex-topcow-mr-seg-v1',
+    'rex-topbrain-mr-v1',
+    'rex-topbrain-ct-v1',
+    'rex-seg-a-v1',
     'rexmle-puma-track2-task2-v1',
     'rexmle-puma-track1-task2-v1',
     'rexmle-puma-track1-task1-v1',
@@ -398,6 +402,70 @@ export function storyPresentation(plan: StoryPlan): {
         legend: [
           ['#91a6ae', 'Actual training image'],
           ['#0dc9d3', 'Training nuclei (class colors)'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'rex-seg-a-v1':
+      return {
+        heading: 'Segment the aortic vessel tree on its native CTA grid',
+        corner: 'Vascular segmentation · source teaching',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Exact source image with separately identified labels; no participant prediction or score.',
+          url: 'https://figshare.com/articles/dataset/Aortic_Vessel_Tree_AVT_CTA_Datasets_and_Segmentations/14806362',
+          link_label: 'Acquire original data',
+        },
+        legend: [
+          ['#91a6ae', 'Actual training image'],
+          ['#2e6bff', 'Source aorta label · training help'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'rex-topbrain-ct-v1':
+      return {
+        heading: 'Label cerebral vessels on native CTA',
+        corner: 'Vascular segmentation · source teaching',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Exact source image with separately identified labels; no participant prediction or score.',
+          url: 'https://zenodo.org/records/16878417',
+          link_label: 'Acquire original data',
+        },
+        legend: [
+          ['#91a6ae', 'Actual training image'],
+          ['#2e6bff', 'Source labels · class color key'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'rex-topbrain-mr-v1':
+      return {
+        heading: 'Label cerebral vessels on native MRA',
+        corner: 'Vascular segmentation · source teaching',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Exact source image with separately identified labels; no participant prediction or score.',
+          url: 'https://zenodo.org/records/16878417',
+          link_label: 'Acquire original data',
+        },
+        legend: [
+          ['#91a6ae', 'Actual training image'],
+          ['#2e6bff', 'Source labels · class color key'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'rex-topcow-mr-seg-v1':
+      return {
+        heading: 'Segment the Circle of Willis on native MRA',
+        corner: 'Vascular segmentation · source teaching',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Exact source image with separately identified labels; no participant prediction or score.',
+          url: 'https://zenodo.org/records/15692630',
+          link_label: 'Acquire original data',
+        },
+        legend: [
+          ['#91a6ae', 'Actual held-out test image'],
+          ['#2e6bff', 'Reader-only reference · class color key'],
           ['#16a6a9', 'Empty test output'],
         ],
       };

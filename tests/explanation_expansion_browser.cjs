@@ -28,6 +28,10 @@ const cardiacRecipes = new Set([
   'cardiac-contour-v1',
   'cardiac-anchor-v1',
   'cardiac-material-v1',
+  'rex-topcow-mr-seg-v1',
+  'rex-topbrain-mr-v1',
+  'rex-topbrain-ct-v1',
+  'rex-seg-a-v1',
   'rexmle-puma-track2-task2-v1',
   'rexmle-puma-track1-task2-v1',
   'rexmle-puma-track1-task1-v1',
@@ -53,6 +57,38 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'rex-topcow-mr-seg-v1')
+    return {
+      scene: 'data-vascular-scene',
+      reference: '[data-vascular-reference]',
+      referenceChannel: 'reference',
+      output: '[data-vascular-output-schema]',
+      aside: '[data-vascular-output]',
+    };
+  if (plan.recipe === 'rex-topbrain-mr-v1')
+    return {
+      scene: 'data-vascular-scene',
+      reference: '[data-vascular-reference]',
+      referenceChannel: null,
+      output: '[data-vascular-output-schema]',
+      aside: '[data-vascular-output]',
+    };
+  if (plan.recipe === 'rex-topbrain-ct-v1')
+    return {
+      scene: 'data-vascular-scene',
+      reference: '[data-vascular-reference]',
+      referenceChannel: null,
+      output: '[data-vascular-output-schema]',
+      aside: '[data-vascular-output]',
+    };
+  if (plan.recipe === 'rex-seg-a-v1')
+    return {
+      scene: 'data-vascular-scene',
+      reference: '[data-vascular-reference]',
+      referenceChannel: null,
+      output: '[data-vascular-output-schema]',
+      aside: '[data-vascular-output]',
+    };
   if (plan.recipe === 'rexmle-puma-track2-task2-v1')
     return {
       scene: 'data-puma-scene',
@@ -187,6 +223,30 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'rexmle-topcow-track2-task1-v1': [
+      /Exact source image with separately identified labels/,
+      'https://zenodo.org/records/15692630',
+      'data-vascular-scene',
+      false,
+    ],
+    'rexmle-topbrain-track2-v1': [
+      /Exact source image with separately identified labels/,
+      'https://zenodo.org/records/16878417',
+      'data-vascular-scene',
+      false,
+    ],
+    'rexmle-topbrain-track1-v1': [
+      /Exact source image with separately identified labels/,
+      'https://zenodo.org/records/16878417',
+      'data-vascular-scene',
+      false,
+    ],
+    'rexmle-seg-a-v1': [
+      /Exact source image with separately identified labels/,
+      'https://figshare.com/articles/dataset/Aortic_Vessel_Tree_AVT_CTA_Datasets_and_Segmentations/14806362',
+      'data-vascular-scene',
+      false,
+    ],
     'rexmle-puma-track2-task2-v1': [
       /Public training ROI and annotation/,
       'https://zenodo.org/records/14869398',
@@ -486,6 +546,10 @@ withBrowser(async (browser) => {
           'cardiac-contour-v1',
           'cardiac-anchor-v1',
           'cardiac-material-v1',
+          'rex-topcow-mr-seg-v1',
+          'rex-topbrain-mr-v1',
+          'rex-topbrain-ct-v1',
+          'rex-seg-a-v1',
           'rexmle-puma-track2-task2-v1',
           'rexmle-puma-track1-task2-v1',
           'rexmle-puma-track1-task1-v1',
@@ -3378,6 +3442,10 @@ withBrowser(async (browser) => {
       'cardiac-contour-v1',
       'cardiac-anchor-v1',
       'cardiac-material-v1',
+      'rex-topcow-mr-seg-v1',
+      'rex-topbrain-mr-v1',
+      'rex-topbrain-ct-v1',
+      'rex-seg-a-v1',
       'rexmle-puma-track2-task2-v1',
       'rexmle-puma-track1-task2-v1',
       'rexmle-puma-track1-task1-v1',

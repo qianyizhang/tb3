@@ -1,0 +1,188 @@
+{
+  "entry_id": "rexmle-topcow-track2-task1",
+  "title": "TopCoW MR multiclass CoW segmentation",
+  "reviewed_at": "2026-09-29T04:53:00Z",
+  "source_revision": "b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53",
+  "source_archive_sha256": "82d18d7bfb3a69719284ed33e29feb33d409f1c8f7e49961b9357832a1141bac",
+  "adapter_files": [
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track2-task1/config.yaml",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track2-task1/config.yaml",
+      "bytes": 1266,
+      "sha256": "b8ef766892ccec8104091befe72356d6b98dad4b2442dcb5a1ffdea3a1a94507",
+      "git_blob_sha1": "973b75084001dee07998e9ada4897ed1d59d4aed"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track2-task1/description.md",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track2-task1/description.md",
+      "bytes": 2408,
+      "sha256": "007c0c904bed75b772ca984155b8b32d8030baf7f9217f3f930eff90e6d37eac",
+      "git_blob_sha1": "563964c1087f19579271801dfbc584ea1e2319ad"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track2-task1/grade.py",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track2-task1/grade.py",
+      "bytes": 21736,
+      "sha256": "cf8d50305e6df7503d90bb3d77aa38c47c01b1d370de08ac72db7437533c09af",
+      "git_blob_sha1": "c387b49ca2f06864a4ec30639d5fb17c098303c6"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track2-task1/metric_config.json",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track2-task1/metric_config.json",
+      "bytes": 355,
+      "sha256": "f0822657a2795bda81bbd241d7ace9060120912e467aa14ea62c7071dde44b16",
+      "git_blob_sha1": "6a6c07f0d607fd5ec03f554414a69dfb840818d8"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/topcow-track2-task1/prepare.py",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/topcow-track2-task1/prepare.py",
+      "bytes": 9780,
+      "sha256": "38d911762f434709b37c533dd633525516a192889ed065faa2204f3f18252cf0",
+      "git_blob_sha1": "9c1e9c333b1e0dd172349687ba96ecc225f65f68"
+    }
+  ],
+  "all_adapter_git_blobs_verified": true,
+  "source_family": "TopCoW 2024",
+  "source_url": "https://zenodo.org/records/15692630",
+  "source_terms": "Official TopCoW2024 DATA-LICENSE.txt: noncommercial use with attribution; commercial use requires owner permission. Retained license SHA-256 6b527078226cc70d90f6938b55002961e8b311aa57fb720e0d4cc8f180919690.",
+  "illustration_basis": "mixed",
+  "status": "source-matched native sample resolved; no retained ReX participant output or score",
+  "attempts": [
+    {
+      "attempted_at": "2026-09-29T04:40:00Z",
+      "route": "retained official Zenodo 15692630 TopCoW2024 ZIP64 directory and local native release files",
+      "outcome": "Exact case012 CT and MR input, segmentation, ROI and graph members match source archive CRC32 and uncompressed size; all native SHA-256 pinned",
+      "receipt_paths": [
+        ".local/explainers/completion-20260927/042-source/topcow-complete-directory.json",
+        "native-geometry-review.json"
+      ],
+      "source": "retained official Zenodo 15692630 TopCoW2024 ZIP64 directory and local native release files",
+      "action": "Inspect official source metadata and recover verified archive members"
+    }
+  ],
+  "actual_data_gap": "No retained ReX participant prediction or score. Case012 reference is source-matched but must remain reader-only in teaching; no grader run.",
+  "reference_boundary": "case012 image is a static held-out test input. Its source annotation exists in full public release but would be private GT in ReX staging. Initial view input only; explicit reader-only reveal may show annotation, never as model output.",
+  "reopening_condition": "A genuine ReX participant output or score requires a separately pinned submission and grade provenance; a public source label alone is not one.",
+  "source_release": "TopCoW2024_Data_Release.zip, official Zenodo record 15692630; full ZIP64 directory retained",
+  "official_archive_bytes": 10512833650,
+  "directory_sha256": "3bc8037e34fbc96dad4d6ce7f33e970fba875fbe96a99c2277da48753c0a2207",
+  "static_split": {
+    "per_modality_total": 125,
+    "train": 100,
+    "test": 25,
+    "case_012": "test",
+    "method": "sorted IDs, train_test_split(test_size=0.2, random_state=42); preparer not run"
+  },
+  "assets": [
+    {
+      "path": "runs/br025-vessel-curation/TopCoW2024_Data_Release/imagesTr/topcow_mr_012_0000.nii.gz",
+      "bytes": 49347570,
+      "sha256": "1aa532b6c76e0fdeba85eebed58951ef355e03aca26425755b69df3505341044",
+      "role": "held-out test input",
+      "matching_proof": "Exact retained TopCoW2024 ZIP64 member size and CRC32 match; native file SHA-256 pinned here."
+    },
+    {
+      "path": "runs/br025-vessel-curation/TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_012.nii.gz",
+      "bytes": 243364,
+      "sha256": "c11fc152ec8a293d2dc9547db8b06c1616177253a7be4183946e402e23440db3",
+      "role": "private test segmentation reference",
+      "matching_proof": "Exact retained TopCoW2024 ZIP64 member size and CRC32 match; native file SHA-256 pinned here."
+    }
+  ],
+  "native_geometry": {
+    "path": "runs/br025-vessel-curation/TopCoW2024_Data_Release/imagesTr/topcow_mr_012_0000.nii.gz",
+    "shape_ijk": [
+      469,
+      611,
+      174
+    ],
+    "spacing_ijk_mm": [
+      0.296875,
+      0.296875,
+      0.5999979376792908
+    ],
+    "sform_code": 2,
+    "affine_rows": [
+      [
+        -0.29426711797714233,
+        -0.039263613522052765,
+        2.235166496333818e-09,
+        87.70555114746094
+      ],
+      [
+        0.03750768303871155,
+        -0.28110700845718384,
+        -0.17742420732975006,
+        82.41767120361328
+      ],
+      [
+        0.011610566638410091,
+        -0.08701714873313904,
+        0.5731650590896606,
+        -71.19561004638672
+      ]
+    ],
+    "label": {
+      "path": "runs/br025-vessel-curation/TopCoW2024_Data_Release/cow_seg_labelsTr/topcow_mr_012.nii.gz",
+      "shape_ijk": [
+        469,
+        611,
+        174
+      ],
+      "spacing_ijk_mm": [
+        0.296875,
+        0.296875,
+        0.5999979376792908
+      ],
+      "sform_code": 2,
+      "affine_rows": [
+        [
+          -0.29426711797714233,
+          -0.039263613522052765,
+          2.235166496333818e-09,
+          87.70555114746094
+        ],
+        [
+          0.03750768303871155,
+          -0.28110700845718384,
+          -0.17742420732975006,
+          82.41767120361328
+        ],
+        [
+          0.011610566638410091,
+          -0.08701714873313904,
+          0.5731650590896606,
+          -71.19561004638672
+        ]
+      ]
+    }
+  },
+  "acquisition_route": "https://zenodo.org/records/15692630",
+  "output_contract": {
+    "csv": "submission.csv",
+    "columns": [
+      "image_id",
+      "modality",
+      "predicted_mask_path"
+    ],
+    "path_template": "predictions/topcow_mr_<id>_0000.nii.gz",
+    "prediction_role": "unavailable; illustrate empty schema only"
+  },
+  "scorer_contract": "Per-class Dice, clDice, B0 and HD95, group-2 detection F1, anterior/posterior topology scores and mean leaderboard position. Shape mismatch triggers nearest-neighbor SimpleITK resampling; same-shape predictions receive GT physical metadata via CopyInformation, not independent affine validation.",
+  "source_annotation": "TopCoW multiclass vessel-label NIfTI; distinguish from TopBrain v1 label taxonomy.",
+  "production_draft": {
+    "status": "staged-unintegrated",
+    "basis": "native source image and source annotations plus symbolic empty output schema; no participant output or score",
+    "top_warning": "Exact one-case source teaching view. No participant output or score."
+  },
+  "root_contract_audit": {
+    "reviewer": "Codex main agent",
+    "reviewed_at": "2026-09-29T07:34:22.059633+00:00",
+    "label_vocabulary": "13 foreground CoW classes: IDs 1..12 and 15. The actual case label contains 11 nonzero values, omitting 8 and 15. Different taxonomy from TopBrain v1 despite identical source image bytes.",
+    "aggregation": "Dice/B0/HD95 average only foreground classes present in each GT case, then cases. clDice merges all nonzero labels into a binary vessel mask. Group-2 detection and anterior/posterior topology have separate aggregates; this is not TopBrain union-of-GT-and-prediction class averaging.",
+    "geometry": "SimpleITK nearest-neighbor resamples shape mismatches to the GT physical reference; metrics then unconditionally copy GT metadata to the prediction. An array score is not independent affine validation.",
+    "submission": "The preparer sample includes image_id,modality,predicted_mask_path. The grader explicitly requires image_id and predicted_mask_path, and does not validate modality."
+  },
+  "schema": 1,
+  "kind": "explainer-source-resolution"
+}

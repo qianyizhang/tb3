@@ -1,0 +1,148 @@
+{
+  "entry_id": "rexmle-seg-a",
+  "title": "SEG.A aortic vessel segmentation",
+  "reviewed_at": "2026-09-29T04:53:00Z",
+  "source_revision": "b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53",
+  "source_archive_sha256": "82d18d7bfb3a69719284ed33e29feb33d409f1c8f7e49961b9357832a1141bac",
+  "adapter_files": [
+    {
+      "repo_path": "rex-mle/rexmle/challenges/seg_a/config.yaml",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/seg_a/config.yaml",
+      "bytes": 1601,
+      "sha256": "4fb14d2705969472daea353aff6c9f005cb8753be280aa79f9890425fe9d3d5d",
+      "git_blob_sha1": "50e77702764203f132776df025d6911df0026ee4"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/seg_a/description.md",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/seg_a/description.md",
+      "bytes": 7539,
+      "sha256": "da21504a64f78a0afe9fe8d7e55c1cb4f2db824294ec51e072a5834dcc728d94",
+      "git_blob_sha1": "9281717348d7151c093d8d957a0687a27b4a6d5b"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/seg_a/grade.py",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/seg_a/grade.py",
+      "bytes": 20579,
+      "sha256": "1e7077732538b67b9db2e34a0c569fc85ec09520ff4ac13ca1c7ed20b0ecade8",
+      "git_blob_sha1": "0b0d462a8ecbe06959ef705742c0694bf6894606"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/seg_a/metric_config.json",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/seg_a/metric_config.json",
+      "bytes": 156,
+      "sha256": "a1daed46dbd02cdcccfff0788880493ed5aaaeba24ca89e085ed48f9f15dc3a2",
+      "git_blob_sha1": "d279dbb381aad30de498888125b966780924e7ed"
+    },
+    {
+      "repo_path": "rex-mle/rexmle/challenges/seg_a/prepare.py",
+      "local_path": ".local/explainers/core-20260929/rex-vascular-source/pinned-adapters/seg_a/prepare.py",
+      "bytes": 12435,
+      "sha256": "367f5d52b82424fbfde94851c8977f5c7ed38091d43c59f40b55413fe545dc45",
+      "git_blob_sha1": "59bb6f8b4c2426807691e1f47522da178b37a883"
+    }
+  ],
+  "all_adapter_git_blobs_verified": true,
+  "source_family": "SEG.A",
+  "source_url": "https://figshare.com/articles/dataset/Aortic_Vessel_Tree_AVT_CTA_Datasets_and_Segmentations/14806362",
+  "source_terms": "Figshare v1 article metadata: CC BY 4.0; preserve source attribution and archive membership.",
+  "illustration_basis": "mixed",
+  "status": "source-matched native sample resolved; no retained ReX participant output or score",
+  "attempts": [
+    {
+      "attempted_at": "2026-09-29T04:47:29Z",
+      "route": "https://api.figshare.com/v2/articles/14806362/versions/1 and official ndownloader range requests",
+      "outcome": "HTTP 206 archive tails and exact K20 image/label windows; ZIP directory, decompression, CRC32 and native NRRD bytes verified",
+      "receipt_paths": [
+        "sega-14806362.json",
+        "sega-kits-directory.json",
+        "sega-k20-image.headers",
+        "sega-k20-label.headers"
+      ],
+      "source": "https://api.figshare.com/v2/articles/14806362/versions/1 and official ndownloader range requests",
+      "action": "Inspect official source metadata and recover verified archive members"
+    }
+  ],
+  "actual_data_gap": "No held-out test annotation or participant prediction recovered. K20 is an exact public TRAINING pair, suitable for input/label semantics only.",
+  "reference_boundary": "Show input alone initially. Show any source label, box, or edge annotation only when its task role is explicitly identified; held-out TopCoW annotations require reader reveal. Never present source annotation as a model prediction.",
+  "reopening_condition": "A genuine ReX participant output or score requires a separately pinned submission and grade provenance; a public source label alone is not one.",
+  "source_release": "Figshare article 14806362, version 1; KiTS.zip file 30950821; companion Dongyang and Rider archives inventoried",
+  "source_inventory": {
+    "dongyang_pairs": 18,
+    "kits_pairs": 20,
+    "rider_pairs": 18,
+    "total_pairs": 56,
+    "directory_receipts": [
+      "sega-dongyang-directory.json",
+      "sega-kits-directory.json",
+      "sega-rider-directory.json"
+    ]
+  },
+  "source_metadata_sha256": "b53ffd48f557b978702aefc418bf24e388b3510582349143ff3185c8dde6bdc6",
+  "source_directory_sha256": {
+    "Dongyang.zip": "408de0b1a622666bd331c15b5838a9dda605e0e3032d805c69f19ab6717c8744",
+    "KiTS.zip": "0d5f2d6dd53e2fb0d0f0cd7ddd463cf6f1e44c0f96d015552b066d86416b9bd1",
+    "Rider.zip": "5a6f1cc7a591cdce0c11f7e0a43959b775641ca7d5ff8015c20e7c34eeeda3ee"
+  },
+  "static_split": {
+    "train": 44,
+    "test": 12,
+    "case_K20": "train",
+    "method": "sorted IDs, train_test_split(test_size=0.2, random_state=42); see sega-split-review.json"
+  },
+  "assets": [
+    {
+      "path": ".local/explainers/core-20260929/rex-vascular-source/samples/K20.nrrd",
+      "bytes": 26515534,
+      "sha256": "555e87d99698431e49eeb0709b1a3c3bf65bf4c61a14204d5c90b20e03b266f9",
+      "role": "public training CTA input",
+      "matching_proof": "Exact official KiTS.zip member; HTTP 206 range, ZIP CRC32 and uncompressed size verified",
+      "source_archive_member": "KiTS/K20/K20.nrrd"
+    },
+    {
+      "path": ".local/explainers/core-20260929/rex-vascular-source/samples/K20.seg.nrrd",
+      "bytes": 33588,
+      "sha256": "b3e4e63c26061effe651f45ffb2541378cd9330eea88e5e1336441ea2e62fd11",
+      "role": "public training aorta label helper",
+      "matching_proof": "Exact official KiTS.zip member; HTTP 206 range, ZIP CRC32 and uncompressed size verified",
+      "source_archive_member": "KiTS/K20/K20.seg.nrrd"
+    }
+  ],
+  "native_geometry": {
+    "shape_ijk": [
+      512,
+      512,
+      94
+    ],
+    "space": "LPS",
+    "spacing_ijk_mm": [
+      0.55078125,
+      0.55078125,
+      5.0
+    ],
+    "origin_lps_mm": [
+      -135.724609375,
+      -265.724609375,
+      -484.2
+    ],
+    "label_value_1": "aorta"
+  },
+  "output_contract": {
+    "csv": "submission.csv",
+    "columns": [
+      "image_id",
+      "predicted_mask_path"
+    ],
+    "path_template": "predictions/<image_id>.seg.nrrd",
+    "prediction_role": "unavailable; illustrate empty schema only"
+  },
+  "scorer_contract": "Mean Dice primary and Hausdorff secondary on base test cases; nearest-neighbor array zoom to GT shape when needed, spacing from GT. Pinned adapter does not implement original challenge Sobol perturbation p1/p2 sensitivity; do not imply it does.",
+  "contract_ambiguity": "Preparer comment calls test a fourth institution, but pinned case-level random split mixes institutions.",
+  "acquisition_route": "https://api.figshare.com/v2/articles/14806362/versions/1",
+  "production_draft": {
+    "status": "staged-unintegrated",
+    "basis": "native source image and source annotations plus symbolic empty output schema; no participant output or score",
+    "top_warning": "Exact one-case source teaching view. No participant output or score."
+  },
+  "schema": 1,
+  "kind": "explainer-source-resolution"
+}

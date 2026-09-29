@@ -1,0 +1,3 @@
+# rexmle-topcow-track2-task1 local source teaching pack
+
+Source: https://zenodo.org/records/15692630. Official TopCoW2024 DATA-LICENSE.txt: noncommercial use with attribution; commercial use requires owner permission. Retained license SHA-256 6b527078226cc70d90f6938b55002961e8b311aa57fb720e0d4cc8f180919690. Exact single-case source image and source annotation were verified by SHA-256 against the resolution receipt. Nine native-index fixed-window sample images show display derivatives only; full arrays remain local. Source label overlays are private ReX test reference and require explicit reader reveal. No participant prediction, model run, preparer run, grader run or score was retained.

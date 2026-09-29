@@ -15799,15 +15799,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "aorta",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "rexmle-seg-a",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-seg-a. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/seg-a-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "CT angiography volumes.",
         "helpers": "Training aortic-tree masks and voxel spacing metadata. These are training aids; held-out targets remain evaluation references.",
@@ -15840,14 +15840,105 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T07:12:30.499826+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/rexmle-seg-a-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "No held-out test annotation or participant prediction recovered. K20 is an exact public TRAINING pair, suitable for input/label semantics only.",
+      "acquisition_route": "https://api.figshare.com/v2/articles/14806362/versions/1",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-seg-a-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/rexmle-seg-a-resolution.json",
+        "receipt_sha256": "72fb5d7c97940045df131daf0ec398710d6b3c749d2713919b3e8cfcd82d95fd",
+        "brief_sha256": "f333a3432babd52e873c85f5c63a8b12b980c5a0960414495907e4506f61726f",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Exact one-case source teaching view. No participant output or score.",
+      "acceptance_scope": "One source-matched native vascular image and separately identified source label; pinned task and evaluator contract. Acceptance establishes an explainer review, not a model result, fresh preparation, clinical validity or physical-registration validation.",
+      "completion_review": {
+        "date": "2026-09-29T07:24:12.423480+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "f56b3866703512dd7024a25cd1f6a4c1e338ec93bb76db0828eb12327158aa57"
+      },
+      "reviewed_contract_projection": {
+        "title": "Segment the aortic vessel tree in CTA",
+        "goal": "Produce the requested vessel mask for the pinned ReX-MLE task. This explainer uses one exact source case to explain the input and answer contract; it reports no participant result.",
+        "value": "Not yet specified.",
+        "raw": "56 published case pairs; pinned random 44 train / 12 test split. K20 is train. The illustrated case is K20, a public training CTA volume. Native dimensions are 512×512×94 voxels at 0.55078125×0.55078125×5 mm; the pack retains its full physical header and nine fixed native-index display slices. The image and label file identities are pinned by SHA-256 in the resolution receipt.",
+        "helpers": "The exact source label shown in the helper chapter is labeled public training material. The task also supplies a sample submission and path conventions. Helpers are not participant predictions.",
+        "tools": "A participant may implement and run a segmentation workflow in the task environment. This explainer did not run a model, ReX preparer, trial or grader.",
+        "reference": "The exact illustrated source label is a public training label helper. It is source-derived public training help and is not a held-out ReX answer.",
+        "spec": "Read permitted CTA input and assign binary aortic vessel tree mask, source NRRD value 1 for aorta on the appropriate native grid. Respect the source image's coordinate map; a screen crop or equal array index is not a substitute for physical alignment.",
+        "output": "The submission CSV must have `image_id,predicted_mask_path`. Each relevant row points to `predictions/<image_id>.seg.nrrd` (or the analogous held-out case path). The referenced file must contain the task-specific mask. No such participant file is retained here; the path is a schema illustration only.",
+        "score": "Pinned ReX grader computes base-case mean Dice and Hausdorff distance, with nearest-neighbor array zoom when prediction shape differs. The adapted grader does not implement the original challenge Sobol sensitivity p1/p2. Its random case split mixes institutions despite the description of a fourth-institution test. No score or model behavior is inferred from the displayed source label.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "No ReX participant submission, graded score, independent clinical interpretation or materialized staging was retained. The split role was reproduced statically from the pinned adapter. The source images and labels support this one-case teaching view under CC BY 4.0 terms.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect the exact source volume and physical grid.",
+          "Follow the task-specific segmentation operation and empty output schema.",
+          "Inspect the public training label helper, then read the scorer and single-case limits."
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "The exact source label shown in the helper chapter is labeled public training material. The task also supplies a sample submission and path conventions. Helpers are not participant predictions.",
+            "remaining": "Read permitted CTA input and assign binary aortic vessel tree mask, source NRRD value 1 for aorta on the appropriate native grid. Respect the source image's coordinate map; a screen crop or equal array index is not a substitute for physical alignment."
+          }
+        ],
+        "sources": [
+          [
+            "Official source release and terms",
+            "https://figshare.com/articles/dataset/Aortic_Vessel_Tree_AVT_CTA_Datasets_and_Segmentations/14806362"
+          ],
+          [
+            "Pinned ReX task description",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/seg_a/description.md"
+          ],
+          [
+            "Pinned ReX preparation",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/seg_a/prepare.py"
+          ],
+          [
+            "Pinned ReX grader",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/seg_a/grade.py"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Produce the requested vessel mask for the pinned ReX-MLE task. This explainer uses one exact source case to explain the input and answer contract; it reports no participant result.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>56 published case pairs; pinned random 44 train / 12 test split. K20 is train. The illustrated case is K20, a public training CTA volume. Native dimensions are 512×512×94 voxels at 0.55078125×0.55078125×5 mm; the pack retains its full physical header and nine fixed native-index display slices. The image and label file identities are pinned by SHA-256 in the resolution receipt.</p>",
+          "helpers": "<p>The exact source label shown in the helper chapter is labeled public training material. The task also supplies a sample submission and path conventions. Helpers are not participant predictions.</p>",
+          "tools": "<p>A participant may implement and run a segmentation workflow in the task environment. This explainer did not run a model, ReX preparer, trial or grader.</p>",
+          "reference": "<p>The exact illustrated source label is a public training label helper. It is source-derived public training help and is not a held-out ReX answer.</p>",
+          "spec": "<p>Read permitted CTA input and assign binary aortic vessel tree mask, source NRRD value 1 for aorta on the appropriate native grid. Respect the source image&#x27;s coordinate map; a screen crop or equal array index is not a substitute for physical alignment.</p>",
+          "output": "<p>The submission CSV must have <code>image_id,predicted_mask_path</code>. Each relevant row points to <code>predictions/&lt;image_id&gt;.seg.nrrd</code> (or the analogous held-out case path). The referenced file must contain the task-specific mask. No such participant file is retained here; the path is a schema illustration only.</p>",
+          "score": "<p>Pinned ReX grader computes base-case mean Dice and Hausdorff distance, with nearest-neighbor array zoom when prediction shape differs. The adapted grader does not implement the original challenge Sobol sensitivity p1/p2. Its random case split mixes institutions despite the description of a fourth-institution test. No score or model behavior is inferred from the displayed source label.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>No ReX participant submission, graded score, independent clinical interpretation or materialized staging was retained. The split role was reproduced statically from the pinned adapter. The source images and labels support this one-case teaching view under CC BY 4.0 terms.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -15865,15 +15956,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "brain-vessels",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "rexmle-topbrain-track1",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-topbrain-track1. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/topbrain-ct-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Head CT angiography volumes.",
         "helpers": "Training vessel masks with the source’s 40 foreground vessel labels. These are training aids; held-out targets remain evaluation references.",
@@ -15906,14 +15997,105 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T07:25:35.902428+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/rexmle-topbrain-track1-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "No ReX held-out test label, participant prediction, or score. Exact case012 input and v1 label are public TRAINING help, not test truth. Never substitute 2026 TA36/v2 labels.",
+      "acquisition_route": "https://zenodo.org/records/16878417",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-topbrain-track1-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/rexmle-topbrain-track1-resolution.json",
+        "receipt_sha256": "1488d783c0e5ed34e2864e32d2cf94c7bfa0984eeef921d8ece67344527c0310",
+        "brief_sha256": "f2a1d2cb0b12a5366d0cbe30e0ba1f7fc315c349f9848435350f892a62e934be",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Exact one-case source teaching view. No participant output or score.",
+      "acceptance_scope": "One source-matched native vascular image and separately identified source label; pinned task and evaluator contract. Acceptance establishes an explainer review, not a model result, fresh preparation, clinical validity or physical-registration validation.",
+      "completion_review": {
+        "date": "2026-09-29T07:32:29.262532+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "b5811511cd24fa6d8699bac208bc03d4786beccadf1696ec7241cc9d8088ab8a"
+      },
+      "reviewed_contract_projection": {
+        "title": "Label 40 CTA brain vessel classes",
+        "goal": "Produce the requested vessel mask for the pinned ReX-MLE task. This explainer uses one exact source case to explain the input and answer contract; it reports no participant result.",
+        "value": "Not yet specified.",
+        "raw": "25 source CTA cases; pinned random 20 train / 5 test split. Case 012 is train. The illustrated case is 012, a public training CTA volume. Native dimensions are 266×371×311 voxels at 0.498046875×0.498046875×0.5 mm; the pack retains its full physical header and nine fixed native-index display slices. The image and label file identities are pinned by SHA-256 in the resolution receipt.",
+        "helpers": "The exact source label shown in the helper chapter is labeled public training material. The task also supplies a sample submission and path conventions. Helpers are not participant predictions.",
+        "tools": "A participant may implement and run a segmentation workflow in the task environment. This explainer did not run a model, ReX preparer, trial or grader.",
+        "reference": "The exact illustrated source label is a public training label helper. It is source-derived public training help and is not a held-out ReX answer.",
+        "spec": "Read permitted CTA input and assign TopBrain 2025 v1 40-class vessel-label NIfTI, distinct from TopCoW CoW labels on the appropriate native grid. Respect the source image's coordinate map; a screen crop or equal array index is not a substitute for physical alignment.",
+        "output": "The submission CSV must have `image_id,modality,predicted_mask_path`. Each relevant row points to `predictions/topcow_ct_<id>.nii.gz` (or the analogous held-out case path). The referenced file must contain the task-specific mask. No such participant file is retained here; the path is a schema illustration only.",
+        "score": "Pinned ReX grader evaluates class Dice, clDice, B0, HD95, invalid-neighbor error and side-road F1. The pinned grader nearest-neighbor resamples mismatched shapes and copies GT physical metadata onto predictions, including equal-shape predictions; it does not independently validate affine agreement. Per-case metrics average foreground labels present in GT or prediction before averaging cases; side-road F1 aggregates detection counts. No score or model behavior is inferred from the displayed source label.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "No ReX participant submission, graded score, independent clinical interpretation or materialized staging was retained. The split role was reproduced statically from the pinned adapter. The source images and labels support this one-case teaching view under noncommercial use with attribution terms.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect the exact source volume and physical grid.",
+          "Follow the task-specific segmentation operation and empty output schema.",
+          "Inspect the public training label helper, then read the scorer and single-case limits."
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "The exact source label shown in the helper chapter is labeled public training material. The task also supplies a sample submission and path conventions. Helpers are not participant predictions.",
+            "remaining": "Read permitted CTA input and assign TopBrain 2025 v1 40-class vessel-label NIfTI, distinct from TopCoW CoW labels on the appropriate native grid. Respect the source image's coordinate map; a screen crop or equal array index is not a substitute for physical alignment."
+          }
+        ],
+        "sources": [
+          [
+            "Official source release and terms",
+            "https://zenodo.org/records/16878417"
+          ],
+          [
+            "Pinned ReX task description",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topbrain-track1/description.md"
+          ],
+          [
+            "Pinned ReX preparation",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topbrain-track1/prepare.py"
+          ],
+          [
+            "Pinned ReX grader",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topbrain-track1/grade.py"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Produce the requested vessel mask for the pinned ReX-MLE task. This explainer uses one exact source case to explain the input and answer contract; it reports no participant result.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>25 source CTA cases; pinned random 20 train / 5 test split. Case 012 is train. The illustrated case is 012, a public training CTA volume. Native dimensions are 266×371×311 voxels at 0.498046875×0.498046875×0.5 mm; the pack retains its full physical header and nine fixed native-index display slices. The image and label file identities are pinned by SHA-256 in the resolution receipt.</p>",
+          "helpers": "<p>The exact source label shown in the helper chapter is labeled public training material. The task also supplies a sample submission and path conventions. Helpers are not participant predictions.</p>",
+          "tools": "<p>A participant may implement and run a segmentation workflow in the task environment. This explainer did not run a model, ReX preparer, trial or grader.</p>",
+          "reference": "<p>The exact illustrated source label is a public training label helper. It is source-derived public training help and is not a held-out ReX answer.</p>",
+          "spec": "<p>Read permitted CTA input and assign TopBrain 2025 v1 40-class vessel-label NIfTI, distinct from TopCoW CoW labels on the appropriate native grid. Respect the source image&#x27;s coordinate map; a screen crop or equal array index is not a substitute for physical alignment.</p>",
+          "output": "<p>The submission CSV must have <code>image_id,modality,predicted_mask_path</code>. Each relevant row points to <code>predictions/topcow_ct_&lt;id&gt;.nii.gz</code> (or the analogous held-out case path). The referenced file must contain the task-specific mask. No such participant file is retained here; the path is a schema illustration only.</p>",
+          "score": "<p>Pinned ReX grader evaluates class Dice, clDice, B0, HD95, invalid-neighbor error and side-road F1. The pinned grader nearest-neighbor resamples mismatched shapes and copies GT physical metadata onto predictions, including equal-shape predictions; it does not independently validate affine agreement. Per-case metrics average foreground labels present in GT or prediction before averaging cases; side-road F1 aggregates detection counts. No score or model behavior is inferred from the displayed source label.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>No ReX participant submission, graded score, independent clinical interpretation or materialized staging was retained. The split role was reproduced statically from the pinned adapter. The source images and labels support this one-case teaching view under noncommercial use with attribution terms.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -15931,15 +16113,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "brain-vessels",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "rexmle-topbrain-track2",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-topbrain-track2. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/topbrain-mr-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Head MR angiography volumes.",
         "helpers": "Training vessel masks with the source’s 42 foreground vessel labels. These are training aids; held-out targets remain evaluation references.",
@@ -15972,14 +16154,105 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T07:32:57.795830+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/rexmle-topbrain-track2-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "No ReX held-out test label, participant prediction, or score. Exact case012 input and v1 label are public TRAINING help, not test truth. Never substitute 2026 TA36/v2 labels.",
+      "acquisition_route": "https://zenodo.org/records/16878417",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-topbrain-track2-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/rexmle-topbrain-track2-resolution.json",
+        "receipt_sha256": "3a77e51118d8b28e0cb851d453aa31fda32627c06ffd9c71d5423b53e97c2dac",
+        "brief_sha256": "e1253a757f6d8e68e935326293b3a424c39cde8378788d637b375cb97bd06158",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Exact one-case source teaching view. No participant output or score.",
+      "acceptance_scope": "One source-matched native vascular image and separately identified source label; pinned task and evaluator contract. Acceptance establishes an explainer review, not a model result, fresh preparation, clinical validity or physical-registration validation.",
+      "completion_review": {
+        "date": "2026-09-29T07:37:16.652051+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "ddc81e68187a113b9bba26462b883fb8226c0ab91ea58fe0010db6d637a2f8e5"
+      },
+      "reviewed_contract_projection": {
+        "title": "Label 42 MRA brain vessel classes",
+        "goal": "Produce the requested vessel mask for the pinned ReX-MLE task. This explainer uses one exact source case to explain the input and answer contract; it reports no participant result.",
+        "value": "Not yet specified.",
+        "raw": "25 source MRA cases; pinned random 20 train / 5 test split. Case 012 is train. The illustrated case is 012, a public training MRA volume. Native dimensions are 469×611×174 voxels at 0.296875×0.296875×0.599998 mm; the pack retains its full physical header and nine fixed native-index display slices. The image and label file identities are pinned by SHA-256 in the resolution receipt.",
+        "helpers": "The exact source label shown in the helper chapter is labeled public training material. The task also supplies a sample submission and path conventions. Helpers are not participant predictions.",
+        "tools": "A participant may implement and run a segmentation workflow in the task environment. This explainer did not run a model, ReX preparer, trial or grader.",
+        "reference": "The exact illustrated source label is a public training label helper. It is source-derived public training help and is not a held-out ReX answer.",
+        "spec": "Read permitted MRA input and assign TopBrain 2025 v1 42-class vessel-label NIfTI, distinct from TopCoW CoW labels on the appropriate native grid. Respect the source image's coordinate map; a screen crop or equal array index is not a substitute for physical alignment.",
+        "output": "The submission CSV must have `image_id,modality,predicted_mask_path`. Each relevant row points to `predictions/topcow_mr_<id>.nii.gz` (or the analogous held-out case path). The referenced file must contain the task-specific mask. No such participant file is retained here; the path is a schema illustration only.",
+        "score": "Pinned ReX grader evaluates class Dice, clDice, B0, HD95, invalid-neighbor error and side-road F1. The pinned grader nearest-neighbor resamples mismatched shapes and copies GT physical metadata onto predictions, including equal-shape predictions; it does not independently validate affine agreement. Per-case metrics average foreground labels present in GT or prediction before averaging cases; side-road F1 aggregates detection counts. No score or model behavior is inferred from the displayed source label.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "No ReX participant submission, graded score, independent clinical interpretation or materialized staging was retained. The split role was reproduced statically from the pinned adapter. The source images and labels support this one-case teaching view under noncommercial use with attribution terms.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect the exact source volume and physical grid.",
+          "Follow the task-specific segmentation operation and empty output schema.",
+          "Inspect the public training label helper, then read the scorer and single-case limits."
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "The exact source label shown in the helper chapter is labeled public training material. The task also supplies a sample submission and path conventions. Helpers are not participant predictions.",
+            "remaining": "Read permitted MRA input and assign TopBrain 2025 v1 42-class vessel-label NIfTI, distinct from TopCoW CoW labels on the appropriate native grid. Respect the source image's coordinate map; a screen crop or equal array index is not a substitute for physical alignment."
+          }
+        ],
+        "sources": [
+          [
+            "Official source release and terms",
+            "https://zenodo.org/records/16878417"
+          ],
+          [
+            "Pinned ReX task description",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topbrain-track2/description.md"
+          ],
+          [
+            "Pinned ReX preparation",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topbrain-track2/prepare.py"
+          ],
+          [
+            "Pinned ReX grader",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topbrain-track2/grade.py"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Produce the requested vessel mask for the pinned ReX-MLE task. This explainer uses one exact source case to explain the input and answer contract; it reports no participant result.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>25 source MRA cases; pinned random 20 train / 5 test split. Case 012 is train. The illustrated case is 012, a public training MRA volume. Native dimensions are 469×611×174 voxels at 0.296875×0.296875×0.599998 mm; the pack retains its full physical header and nine fixed native-index display slices. The image and label file identities are pinned by SHA-256 in the resolution receipt.</p>",
+          "helpers": "<p>The exact source label shown in the helper chapter is labeled public training material. The task also supplies a sample submission and path conventions. Helpers are not participant predictions.</p>",
+          "tools": "<p>A participant may implement and run a segmentation workflow in the task environment. This explainer did not run a model, ReX preparer, trial or grader.</p>",
+          "reference": "<p>The exact illustrated source label is a public training label helper. It is source-derived public training help and is not a held-out ReX answer.</p>",
+          "spec": "<p>Read permitted MRA input and assign TopBrain 2025 v1 42-class vessel-label NIfTI, distinct from TopCoW CoW labels on the appropriate native grid. Respect the source image&#x27;s coordinate map; a screen crop or equal array index is not a substitute for physical alignment.</p>",
+          "output": "<p>The submission CSV must have <code>image_id,modality,predicted_mask_path</code>. Each relevant row points to <code>predictions/topcow_mr_&lt;id&gt;.nii.gz</code> (or the analogous held-out case path). The referenced file must contain the task-specific mask. No such participant file is retained here; the path is a schema illustration only.</p>",
+          "score": "<p>Pinned ReX grader evaluates class Dice, clDice, B0, HD95, invalid-neighbor error and side-road F1. The pinned grader nearest-neighbor resamples mismatched shapes and copies GT physical metadata onto predictions, including equal-shape predictions; it does not independently validate affine agreement. Per-case metrics average foreground labels present in GT or prediction before averaging cases; side-road F1 aggregates detection counts. No score or model behavior is inferred from the displayed source label.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>No ReX participant submission, graded score, independent clinical interpretation or materialized staging was retained. The split role was reproduced statically from the pinned adapter. The source images and labels support this one-case teaching view under noncommercial use with attribution terms.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -15997,15 +16270,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "brain-vessels",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "rexmle-topcow-track2-task1",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-topcow-track2-task1. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/topcow-mr-seg-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "MR angiography of the brain’s arterial circulation.",
         "helpers": "Labeled training masks, class IDs and case metadata. These are training aids; held-out targets remain evaluation references.",
@@ -16038,14 +16311,105 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T07:38:42.582113+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/rexmle-topcow-track2-task1-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "No retained ReX participant prediction or score. Case012 reference is source-matched but must remain reader-only in teaching; no grader run.",
+      "acquisition_route": "https://zenodo.org/records/15692630",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-topcow-track2-task1-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/rexmle-topcow-track2-task1-resolution.json",
+        "receipt_sha256": "823c0d7803c00f9aaf6640e105253a3a73ad7b07b88712fb70e6d0ea3683244a",
+        "brief_sha256": "519e466ced9a97e371472668a19d4ea11c3ae39a396c3108705bc9b8d0ccb5b3",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Exact one-case source teaching view. No participant output or score.",
+      "acceptance_scope": "One source-matched native vascular image and separately identified source label; pinned task and evaluator contract. Acceptance establishes an explainer review, not a model result, fresh preparation, clinical validity or physical-registration validation.",
+      "completion_review": {
+        "date": "2026-09-29T07:47:43.478346+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "ceabd43a1530910984b7d956edeab1f2e591e06964755329b3e2417c26755f56"
+      },
+      "reviewed_contract_projection": {
+        "title": "Segment Circle of Willis vessels in MRA",
+        "goal": "Produce the requested vessel mask for the pinned ReX-MLE task. This explainer uses one exact source case to explain the input and answer contract; it reports no participant result.",
+        "value": "Not yet specified.",
+        "raw": "125 source MRA cases; pinned random 100 train / 25 test split. Case 012 is test by static reproduction. The illustrated case is 012, a held-out test MRA volume. Native dimensions are 469×611×174 voxels at 0.296875×0.296875×0.599998 mm; the pack retains its full physical header and nine fixed native-index display slices. The image and label file identities are pinned by SHA-256 in the resolution receipt.",
+        "helpers": "Labeled source training cases are available for development; the selected test label is withheld in ReX staging. The task also supplies a sample submission and path conventions. Helpers are not participant predictions.",
+        "tools": "A participant may implement and run a segmentation workflow in the task environment. This explainer did not run a model, ReX preparer, trial or grader.",
+        "reference": "The exact illustrated source label is a reader-only source reference hidden from the ReX solver. It exists in the public original release, but the ReX test staging withholds it from the solver; the explainer mounts it only after reader reveal.",
+        "spec": "Read permitted MRA input and assign TopCoW 2024 multiclass CoW vessel-label NIfTI, private reference in ReX staging on the appropriate native grid. Respect the source image's coordinate map; a screen crop or equal array index is not a substitute for physical alignment.",
+        "output": "The submission CSV must have `image_id,modality,predicted_mask_path`. Each relevant row points to `predictions/topcow_mr_<id>_0000.nii.gz` (or the analogous held-out case path). The referenced file must contain the task-specific mask. No such participant file is retained here; the path is a schema illustration only.",
+        "score": "Pinned ReX grader evaluates class overlap, centerline and boundary metrics, group-2 detection and anterior/posterior topology. Dice, B0 and HD95 average foreground classes present in GT; clDice merges nonzero labels into a binary vessel mask. The scorer resamples shape mismatches and overwrites same-size prediction physical metadata with the ground-truth map; its array score is not affine validation. No score or model behavior is inferred from the displayed source label.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "No ReX participant submission, graded score, independent clinical interpretation or materialized staging was retained. The split role was reproduced statically from the pinned adapter. The source images and labels support this one-case teaching view under noncommercial use with attribution terms.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect the exact source volume and physical grid.",
+          "Follow the task-specific segmentation operation and empty output schema.",
+          "Explicitly reveal the held-out source reference, then read the scorer and single-case limits."
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "Labeled source training cases are available for development; the selected test label is withheld in ReX staging. The task also supplies a sample submission and path conventions. Helpers are not participant predictions.",
+            "remaining": "Read permitted MRA input and assign TopCoW 2024 multiclass CoW vessel-label NIfTI, private reference in ReX staging on the appropriate native grid. Respect the source image's coordinate map; a screen crop or equal array index is not a substitute for physical alignment."
+          }
+        ],
+        "sources": [
+          [
+            "Official source release and terms",
+            "https://zenodo.org/records/15692630"
+          ],
+          [
+            "Pinned ReX task description",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track2-task1/description.md"
+          ],
+          [
+            "Pinned ReX preparation",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track2-task1/prepare.py"
+          ],
+          [
+            "Pinned ReX grader",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/topcow-track2-task1/grade.py"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Produce the requested vessel mask for the pinned ReX-MLE task. This explainer uses one exact source case to explain the input and answer contract; it reports no participant result.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>125 source MRA cases; pinned random 100 train / 25 test split. Case 012 is test by static reproduction. The illustrated case is 012, a held-out test MRA volume. Native dimensions are 469×611×174 voxels at 0.296875×0.296875×0.599998 mm; the pack retains its full physical header and nine fixed native-index display slices. The image and label file identities are pinned by SHA-256 in the resolution receipt.</p>",
+          "helpers": "<p>Labeled source training cases are available for development; the selected test label is withheld in ReX staging. The task also supplies a sample submission and path conventions. Helpers are not participant predictions.</p>",
+          "tools": "<p>A participant may implement and run a segmentation workflow in the task environment. This explainer did not run a model, ReX preparer, trial or grader.</p>",
+          "reference": "<p>The exact illustrated source label is a reader-only source reference hidden from the ReX solver. It exists in the public original release, but the ReX test staging withholds it from the solver; the explainer mounts it only after reader reveal.</p>",
+          "spec": "<p>Read permitted MRA input and assign TopCoW 2024 multiclass CoW vessel-label NIfTI, private reference in ReX staging on the appropriate native grid. Respect the source image&#x27;s coordinate map; a screen crop or equal array index is not a substitute for physical alignment.</p>",
+          "output": "<p>The submission CSV must have <code>image_id,modality,predicted_mask_path</code>. Each relevant row points to <code>predictions/topcow_mr_&lt;id&gt;_0000.nii.gz</code> (or the analogous held-out case path). The referenced file must contain the task-specific mask. No such participant file is retained here; the path is a schema illustration only.</p>",
+          "score": "<p>Pinned ReX grader evaluates class overlap, centerline and boundary metrics, group-2 detection and anterior/posterior topology. Dice, B0 and HD95 average foreground classes present in GT; clDice merges nonzero labels into a binary vessel mask. The scorer resamples shape mismatches and overwrites same-size prediction physical metadata with the ground-truth map; its array score is not affine validation. No score or model behavior is inferred from the displayed source label.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>No ReX participant submission, graded score, independent clinical interpretation or materialized staging was retained. The split role was reproduced statically from the pinned adapter. The source images and labels support this one-case teaching view under noncommercial use with attribution terms.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -19947,10 +20311,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 61,
+    "reviewed-scripted-planar": 65,
     "reviewed-scripted-spatial": 13,
     "blocked-source-input": 51,
-    "blocked-source-contract": 79,
+    "blocked-source-contract": 75,
     "pending-operation-review": 1
   },
   "completion_program": {

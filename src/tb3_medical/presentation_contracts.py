@@ -1366,6 +1366,66 @@ class RexPumaTrack2Task2Plan(ExpansionPlan):
     beats: list[RexPumaTrack2Task2Beat]
 
 
+class RexSegAChannels(TypedDict):
+    slice: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexSegABeat(ExpansionBeat):
+    channels: RexSegAChannels
+    scene: Literal["inputs", "geometry", "operation", "output", "helper", "limits"]
+
+
+class RexSegAPlan(ExpansionPlan):
+    recipe: Literal["rex-seg-a-v1"]
+    beats: list[RexSegABeat]
+
+
+class RexTopbrainCtChannels(TypedDict):
+    slice: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexTopbrainCtBeat(ExpansionBeat):
+    channels: RexTopbrainCtChannels
+    scene: Literal["inputs", "geometry", "operation", "output", "helper", "limits"]
+
+
+class RexTopbrainCtPlan(ExpansionPlan):
+    recipe: Literal["rex-topbrain-ct-v1"]
+    beats: list[RexTopbrainCtBeat]
+
+
+class RexTopbrainMrChannels(TypedDict):
+    slice: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexTopbrainMrBeat(ExpansionBeat):
+    channels: RexTopbrainMrChannels
+    scene: Literal["inputs", "geometry", "operation", "output", "helper", "limits"]
+
+
+class RexTopbrainMrPlan(ExpansionPlan):
+    recipe: Literal["rex-topbrain-mr-v1"]
+    beats: list[RexTopbrainMrBeat]
+
+
+class RexTopcowMrSegChannels(TypedDict):
+    slice: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexTopcowMrSegBeat(ExpansionBeat):
+    channels: RexTopcowMrSegChannels
+    scene: Literal["inputs", "geometry", "operation", "output", "reference", "limits"]
+
+
+class RexTopcowMrSegPlan(ExpansionPlan):
+    recipe: Literal["rex-topcow-mr-seg-v1"]
+    beats: list[RexTopcowMrSegBeat]
+
+
 class CardiacMaterialChannels(TypedDict):
     phase: tuple[float, float]
     helper: tuple[float, float]
@@ -1572,6 +1632,10 @@ StoryPlan = (
     | RexPumaTrack1Task1Plan
     | RexPumaTrack1Task2Plan
     | RexPumaTrack2Task2Plan
+    | RexSegAPlan
+    | RexTopbrainCtPlan
+    | RexTopbrainMrPlan
+    | RexTopcowMrSegPlan
     | CardiacMaterialPlan
     | CardiacAnchorPlan
     | ClinicalCavityPlan
