@@ -28,6 +28,10 @@ const cardiacRecipes = new Set([
   'cardiac-contour-v1',
   'cardiac-anchor-v1',
   'cardiac-material-v1',
+  'automed-full-vindr-cxr-detection-v1',
+  'automed-full-grazpedwri-detection-v1',
+  'automed-full-dentex-detection-v1',
+  'automed-full-bccd-detection-v1',
   'rex-topcow-mr-edges-v1',
   'rex-topcow-ct-edges-v1',
   'rex-topcow-mr-box-v1',
@@ -61,6 +65,38 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-full-vindr-cxr-detection-v1')
+    return {
+      scene: 'data-detection-scene',
+      reference: '[data-detection-reference]',
+      referenceChannel: null,
+      output: '[data-detection-output-schema]',
+      aside: '[data-detection-output]',
+    };
+  if (plan.recipe === 'automed-full-grazpedwri-detection-v1')
+    return {
+      scene: 'data-detection-scene',
+      reference: '[data-detection-reference]',
+      referenceChannel: 'reference',
+      output: '[data-detection-output-schema]',
+      aside: '[data-detection-output]',
+    };
+  if (plan.recipe === 'automed-full-dentex-detection-v1')
+    return {
+      scene: 'data-detection-scene',
+      reference: '[data-detection-reference]',
+      referenceChannel: 'reference',
+      output: '[data-detection-output-schema]',
+      aside: '[data-detection-output]',
+    };
+  if (plan.recipe === 'automed-full-bccd-detection-v1')
+    return {
+      scene: 'data-detection-scene',
+      reference: '[data-detection-reference]',
+      referenceChannel: 'reference',
+      output: '[data-detection-output-schema]',
+      aside: '[data-detection-output]',
+    };
   if (plan.recipe === 'rex-topcow-mr-edges-v1')
     return {
       scene: 'data-topcow-scene',
@@ -259,6 +295,30 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-full-vindr-cxr-detection-v1': [
+      /PhysioNet requires/,
+      'https://physionet.org/content/vindr-cxr/1.0.0/',
+      'data-detection-scene',
+      false,
+    ],
+    'automed-full-grazpedwri-detection-v1': [
+      /Full private/,
+      'https://figshare.com/articles/dataset/GRAZPEDWRI-DX/14825193',
+      'data-detection-scene',
+      false,
+    ],
+    'automed-full-dentex-detection-v1': [
+      /Full private/,
+      'https://zenodo.org/records/7812323',
+      'data-detection-scene',
+      false,
+    ],
+    'automed-full-bccd-detection-v1': [
+      /Full private/,
+      'https://github.com/Shenggan/BCCD_Dataset',
+      'data-detection-scene',
+      false,
+    ],
     'rex-topcow-mr-edges-v1': [
       /Exact test-partition source image/,
       'https://zenodo.org/records/15692630',
@@ -623,6 +683,10 @@ withBrowser(async (browser) => {
           'cardiac-contour-v1',
           'cardiac-anchor-v1',
           'cardiac-material-v1',
+          'automed-full-vindr-cxr-detection-v1',
+          'automed-full-grazpedwri-detection-v1',
+          'automed-full-dentex-detection-v1',
+          'automed-full-bccd-detection-v1',
           'rex-topcow-mr-edges-v1',
           'rex-topcow-ct-edges-v1',
           'rex-topcow-mr-box-v1',
@@ -3523,6 +3587,10 @@ withBrowser(async (browser) => {
       'cardiac-contour-v1',
       'cardiac-anchor-v1',
       'cardiac-material-v1',
+      'automed-full-vindr-cxr-detection-v1',
+      'automed-full-grazpedwri-detection-v1',
+      'automed-full-dentex-detection-v1',
+      'automed-full-bccd-detection-v1',
       'rex-topcow-mr-edges-v1',
       'rex-topcow-ct-edges-v1',
       'rex-topcow-mr-box-v1',

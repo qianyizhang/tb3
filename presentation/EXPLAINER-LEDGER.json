@@ -17496,15 +17496,15 @@
       ],
       "illustration_kind": "detect",
       "subject": "tissue",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-bccd-det-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-bccd-det-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/full-bccd-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "light_microscopy input, stored as `image.png` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names Single Ultralytics YOLOv8m detector fine-tuned on BCCD blood cells. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -17546,14 +17546,111 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T08:48:21.316453+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/automedbench-full-bccd-det-task-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "An official 640×480 BCCD source image and Pascal VOC label are available; Full Detection100 case membership, PNG conversion and private reference are not materialized.",
+      "acquisition_route": "https://github.com/Shenggan/BCCD_Dataset",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-bccd-det-task-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-bccd-det-task-resolution.json",
+        "receipt_sha256": "715e52775815a12b26f28eac4e979b4fb0635cc1fb204dcdeb1a1167463083e2",
+        "brief_sha256": "11c058ad2d8dfb22b94282c7c3005d86d1debec344f050c50ae23e7eff723ee5",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Official upstream image; Full staged case not established — The source label is a reader-only teaching reference. No Full private box, model prediction or score is retained.",
+      "acceptance_scope": "Pinned Full detection contract, source-specific image or symbolic socket/coordinate operation, empty participant JSON and explicit boundary from missing Full cases/private labels. An explainer review, not a model, evaluator, patient or population result.",
+      "completion_review": {
+        "date": "2026-09-29T09:10:42.786245+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "25429096cf708612814b69a27da4454bf580ad5bd4aa565594c9898cc0ea8f12"
+      },
+      "reviewed_contract_projection": {
+        "title": "Locate blood-cell types in microscopy",
+        "goal": "Build a detector that localizes findings on blood-smear light microscopy images. The worked illustration uses BloodImage_00000.jpg, an official 640 × 480 upstream image; it is not a Full benchmark run.",
+        "value": "Not yet specified.",
+        "raw": "The Full harness expects `public/{case_id}/image.png` under `BCCD_Detection100`. The package declares `dataset.included=false`. This pack displays BloodImage_00000.jpg, an official 640 × 480 upstream image as upstream source evidence, without asserting Full case membership.",
+        "helpers": "Task-specific config and Lite/Standard guidance identify the expected classes and methods. The generic prompt incorrectly repeats a VinDr 14-class example for other tasks. The class contract here is platelets, rbc, wbc. Model weights are not included in the task package; VinDr Lite also declares separate read-only checkpoint/config mounts absent from the package.",
+        "tools": "The task environment permits method setup, validation and inference. No model, preparer, controller or evaluator was run for this explanation.",
+        "reference": "Full evaluator labels are `/data/private/{case_id}/boxes.json`, unavailable in this pack. The matching upstream annotation is a reader-only teaching reveal, never a Full private label or model prediction.",
+        "spec": "For each staged case, search the entire image, assign a task class string, and convert any detector coordinates back to original image pixels. Use the selected Full Lite or Standard condition rather than related ReX or gallery split rules.",
+        "output": "Write `agents_outputs/{case_id}/prediction.json` with `{\"boxes\":[]}` at minimum. Each future box needs string `class` and numeric `x1,y1,x2,y2` with positive width and height inside the source image. Include `score` in `[0,1]` for ranked AP. The checker allows it to be absent, but the scorer treats missing score as `1.0`; the field is `score`, not `confidence`.",
+        "score": "The pinned Full scorer matches same-class boxes greedily at IoU ≥ 0.5, computes 101-point AP per class, and averages classes with ground truth. Case coverage affects aggregate score. No prediction, mAP or clinical result was retained.",
+        "challenge": "The upstream image is not verified as a Full BCCD_Detection100 case. Its VOC boxes are not Full private ground truth.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Full · Lite",
+            "helper": "Task-specific Lite guidance: Single Ultralytics YOLOv8m detector fine-tuned on BCCD blood cells.",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full · Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full task harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/detection/bccd-det-task.tar.gz"
+          ],
+          [
+            "Official upstream source",
+            "https://github.com/Shenggan/BCCD_Dataset"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-bccd-det-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Build a detector that localizes findings on blood-smear light microscopy images. The worked illustration uses BloodImage_00000.jpg, an official 640 × 480 upstream image; it is not a Full benchmark run.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The Full harness expects <code>public/{case_id}/image.png</code> under <code>BCCD_Detection100</code>. The package declares <code>dataset.included=false</code>. This pack displays BloodImage_00000.jpg, an official 640 × 480 upstream image as upstream source evidence, without asserting Full case membership.</p>",
+          "helpers": "<p>Task-specific config and Lite/Standard guidance identify the expected classes and methods. The generic prompt incorrectly repeats a VinDr 14-class example for other tasks. The class contract here is platelets, rbc, wbc. Model weights are not included in the task package; VinDr Lite also declares separate read-only checkpoint/config mounts absent from the package.</p>",
+          "tools": "<p>The task environment permits method setup, validation and inference. No model, preparer, controller or evaluator was run for this explanation.</p>",
+          "reference": "<p>Full evaluator labels are <code>/data/private/{case_id}/boxes.json</code>, unavailable in this pack. The matching upstream annotation is a reader-only teaching reveal, never a Full private label or model prediction.</p>",
+          "spec": "<p>For each staged case, search the entire image, assign a task class string, and convert any detector coordinates back to original image pixels. Use the selected Full Lite or Standard condition rather than related ReX or gallery split rules.</p>",
+          "output": "<p>Write <code>agents_outputs/{case_id}/prediction.json</code> with <code>{&quot;boxes&quot;:[]}</code> at minimum. Each future box needs string <code>class</code> and numeric <code>x1,y1,x2,y2</code> with positive width and height inside the source image. Include <code>score</code> in <code>[0,1]</code> for ranked AP. The checker allows it to be absent, but the scorer treats missing score as <code>1.0</code>; the field is <code>score</code>, not <code>confidence</code>.</p>",
+          "score": "<p>The pinned Full scorer matches same-class boxes greedily at IoU ≥ 0.5, computes 101-point AP per class, and averages classes with ground truth. Case coverage affects aggregate score. No prediction, mAP or clinical result was retained.</p>",
+          "challenge": "<p>The upstream image is not verified as a Full BCCD_Detection100 case. Its VOC boxes are not Full private ground truth.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -17571,15 +17668,15 @@
       ],
       "illustration_kind": "detect",
       "subject": "teeth",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-dentex-det-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-dentex-det-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/full-dentex-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "panoramic_xray input, stored as `image.png` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names Single Ultralytics YOLO11x detector fine-tuned on DENTEX dental panoramic disease detection. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -17621,14 +17718,111 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T09:10:44.109482+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/automedbench-full-dentex-det-task-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "An official DENTEX training image and hierarchical annotation are available from the prior source audit; membership and transformation into Full Detection100 remain unverified, and dataset license notices conflict.",
+      "acquisition_route": "https://huggingface.co/datasets/ibrahimhamamci/DENTEX",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-dentex-det-task-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-dentex-det-task-resolution.json",
+        "receipt_sha256": "f98527a5a04ca0214da962d778dd1ef2de98055299d69c83773f66b4b099a4ab",
+        "brief_sha256": "795719025bf1f31df1a0d17333f3a2a0a506fcbfb2b2839a6172150fe534adb6",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Official upstream image; Full staged case not established — The source label is a reader-only teaching reference. No Full private box, model prediction or score is retained. Full manifest and recovered source license notices differ; version equivalence is unresolved.",
+      "acceptance_scope": "Pinned Full detection contract, source-specific image or symbolic socket/coordinate operation, empty participant JSON and explicit boundary from missing Full cases/private labels. An explainer review, not a model, evaluator, patient or population result.",
+      "completion_review": {
+        "date": "2026-09-29T09:30:00.407569+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "99e0944aa3d5994b9b48e04d20003f225fd939267e6885ea296f1a52cf2b2640"
+      },
+      "reviewed_contract_projection": {
+        "title": "Locate dental disease on a panoramic X-ray",
+        "goal": "Build a detector that localizes findings on panoramic dental X-ray images. The worked illustration uses train_266.png, an official 1976 × 976 upstream image; it is not a Full benchmark run.",
+        "value": "Not yet specified.",
+        "raw": "The Full harness expects `public/{case_id}/image.png` under `DENTEX_Detection100`. The package declares `dataset.included=false`. This pack displays train_266.png, an official 1976 × 976 upstream image as upstream source evidence, without asserting Full case membership.",
+        "helpers": "Task-specific config and Lite/Standard guidance identify the expected classes and methods. The generic prompt incorrectly repeats a VinDr 14-class example for other tasks. The class contract here is Caries, Deep Caries, Periapical Lesion, Impacted. Model weights are not included in the task package; VinDr Lite also declares separate read-only checkpoint/config mounts absent from the package.",
+        "tools": "The task environment permits method setup, validation and inference. No model, preparer, controller or evaluator was run for this explanation.",
+        "reference": "Full evaluator labels are `/data/private/{case_id}/boxes.json`, unavailable in this pack. The matching upstream annotation is a reader-only teaching reveal, never a Full private label or model prediction.",
+        "spec": "For each staged case, search the entire image, assign a task class string, and convert any detector coordinates back to original image pixels. Use the selected Full Lite or Standard condition rather than related ReX or gallery split rules.",
+        "output": "Write `agents_outputs/{case_id}/prediction.json` with `{\"boxes\":[]}` at minimum. Each future box needs string `class` and numeric `x1,y1,x2,y2` with positive width and height inside the source image. Include `score` in `[0,1]` for ranked AP. The checker allows it to be absent, but the scorer treats missing score as `1.0`; the field is `score`, not `confidence`.",
+        "score": "The pinned Full scorer matches same-class boxes greedily at IoU ≥ 0.5, computes 101-point AP per class, and averages classes with ground truth. Case coverage affects aggregate score. No prediction, mAP or clinical result was retained.",
+        "challenge": "Full DENTEX_Detection100 membership and conversion are unverified; upstream and Full terms differ. ReX split and scorer assumptions are unrelated.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Full · Lite",
+            "helper": "Task-specific Lite guidance: Single Ultralytics YOLO11x detector fine-tuned on DENTEX dental panoramic disease detection.",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full · Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full task harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/detection/dentex-det-task.tar.gz"
+          ],
+          [
+            "Official upstream source",
+            "https://zenodo.org/records/7812323"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-dentex-det-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Build a detector that localizes findings on panoramic dental X-ray images. The worked illustration uses train_266.png, an official 1976 × 976 upstream image; it is not a Full benchmark run.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The Full harness expects <code>public/{case_id}/image.png</code> under <code>DENTEX_Detection100</code>. The package declares <code>dataset.included=false</code>. This pack displays train_266.png, an official 1976 × 976 upstream image as upstream source evidence, without asserting Full case membership.</p>",
+          "helpers": "<p>Task-specific config and Lite/Standard guidance identify the expected classes and methods. The generic prompt incorrectly repeats a VinDr 14-class example for other tasks. The class contract here is Caries, Deep Caries, Periapical Lesion, Impacted. Model weights are not included in the task package; VinDr Lite also declares separate read-only checkpoint/config mounts absent from the package.</p>",
+          "tools": "<p>The task environment permits method setup, validation and inference. No model, preparer, controller or evaluator was run for this explanation.</p>",
+          "reference": "<p>Full evaluator labels are <code>/data/private/{case_id}/boxes.json</code>, unavailable in this pack. The matching upstream annotation is a reader-only teaching reveal, never a Full private label or model prediction.</p>",
+          "spec": "<p>For each staged case, search the entire image, assign a task class string, and convert any detector coordinates back to original image pixels. Use the selected Full Lite or Standard condition rather than related ReX or gallery split rules.</p>",
+          "output": "<p>Write <code>agents_outputs/{case_id}/prediction.json</code> with <code>{&quot;boxes&quot;:[]}</code> at minimum. Each future box needs string <code>class</code> and numeric <code>x1,y1,x2,y2</code> with positive width and height inside the source image. Include <code>score</code> in <code>[0,1]</code> for ranked AP. The checker allows it to be absent, but the scorer treats missing score as <code>1.0</code>; the field is <code>score</code>, not <code>confidence</code>.</p>",
+          "score": "<p>The pinned Full scorer matches same-class boxes greedily at IoU ≥ 0.5, computes 101-point AP per class, and averages classes with ground truth. Case coverage affects aggregate score. No prediction, mAP or clinical result was retained.</p>",
+          "challenge": "<p>Full DENTEX_Detection100 membership and conversion are unverified; upstream and Full terms differ. ReX split and scorer assumptions are unrelated.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -17646,15 +17840,15 @@
       ],
       "illustration_kind": "detect",
       "subject": "wrist",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-grazpedwri-det-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-grazpedwri-det-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/full-grazpedwri-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "xray input, stored as `image.png` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names Single Ultralytics YOLOv8x detector fine-tuned on GRAZPEDWRI-DX pediatric wrist trauma. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -17696,14 +17890,111 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T09:30:01.744734+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/automedbench-full-grazpedwri-det-task-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Official source image and matching annotation recovered; Full Detection100 case membership, PNG staging transformation and private reference remain unverified.",
+      "acquisition_route": "https://figshare.com/articles/dataset/GRAZPEDWRI-DX/14825193",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-grazpedwri-det-task-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-grazpedwri-det-task-resolution.json",
+        "receipt_sha256": "beea08ad13f800ecc09a018a1fbb3148c956260b7168fa18dde07b62f967d9a2",
+        "brief_sha256": "a032b5d956dc86124e13d854e71ea6b6ed48ab97283e50581e926f8fa5e478c3",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Official upstream image; Full staged case not established — The source label is a reader-only teaching reference. No Full private box, model prediction or score is retained.",
+      "acceptance_scope": "Pinned Full detection contract, source-specific image or symbolic socket/coordinate operation, empty participant JSON and explicit boundary from missing Full cases/private labels. An explainer review, not a model, evaluator, patient or population result.",
+      "completion_review": {
+        "date": "2026-09-29T09:44:27.941974+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "c1ab94a9961d0261db764f1d3e906869ff2c2ba522d31c20d0489ec37fb63bc6"
+      },
+      "reviewed_contract_projection": {
+        "title": "Locate pediatric wrist findings on radiographs",
+        "goal": "Build a detector that localizes findings on pediatric wrist radiograph images. The worked illustration uses 0001_1297860435_01_WRI-L2_M014.png, an official 536 × 836 upstream image; it is not a Full benchmark run.",
+        "value": "Not yet specified.",
+        "raw": "The Full harness expects `public/{case_id}/image.png` under `GRAZPEDWRI_Detection100`. The package declares `dataset.included=false`. This pack displays 0001_1297860435_01_WRI-L2_M014.png, an official 536 × 836 upstream image as upstream source evidence, without asserting Full case membership.",
+        "helpers": "Task-specific config and Lite/Standard guidance identify the expected classes and methods. The generic prompt incorrectly repeats a VinDr 14-class example for other tasks. The class contract here is boneanomaly, bonelesion, foreignbody, fracture, metal, periostealreaction, pronatorsign, softtissue, text. Model weights are not included in the task package; VinDr Lite also declares separate read-only checkpoint/config mounts absent from the package.",
+        "tools": "The task environment permits method setup, validation and inference. No model, preparer, controller or evaluator was run for this explanation.",
+        "reference": "Full evaluator labels are `/data/private/{case_id}/boxes.json`, unavailable in this pack. The matching upstream annotation is a reader-only teaching reveal, never a Full private label or model prediction.",
+        "spec": "For each staged case, search the entire image, assign a task class string, and convert any detector coordinates back to original image pixels. Use the selected Full Lite or Standard condition rather than related ReX or gallery split rules.",
+        "output": "Write `agents_outputs/{case_id}/prediction.json` with `{\"boxes\":[]}` at minimum. Each future box needs string `class` and numeric `x1,y1,x2,y2` with positive width and height inside the source image. Include `score` in `[0,1]` for ranked AP. The checker allows it to be absent, but the scorer treats missing score as `1.0`; the field is `score`, not `confidence`.",
+        "score": "The pinned Full scorer matches same-class boxes greedily at IoU ≥ 0.5, computes 101-point AP per class, and averages classes with ground truth. Case coverage affects aggregate score. No prediction, mAP or clinical result was retained.",
+        "challenge": "A ZIP byte-range recovered one CRC-verified source image; Full GRAZPEDWRI_Detection100 membership and private boxes are unverified.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Full · Lite",
+            "helper": "Task-specific Lite guidance: Single Ultralytics YOLOv8x detector fine-tuned on GRAZPEDWRI-DX pediatric wrist trauma.",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full · Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full task harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/detection/grazpedwri-det-task.tar.gz"
+          ],
+          [
+            "Official upstream source",
+            "https://figshare.com/articles/dataset/GRAZPEDWRI-DX/14825193"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-grazpedwri-det-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Build a detector that localizes findings on pediatric wrist radiograph images. The worked illustration uses 0001_1297860435_01_WRI-L2_M014.png, an official 536 × 836 upstream image; it is not a Full benchmark run.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The Full harness expects <code>public/{case_id}/image.png</code> under <code>GRAZPEDWRI_Detection100</code>. The package declares <code>dataset.included=false</code>. This pack displays 0001_1297860435_01_WRI-L2_M014.png, an official 536 × 836 upstream image as upstream source evidence, without asserting Full case membership.</p>",
+          "helpers": "<p>Task-specific config and Lite/Standard guidance identify the expected classes and methods. The generic prompt incorrectly repeats a VinDr 14-class example for other tasks. The class contract here is boneanomaly, bonelesion, foreignbody, fracture, metal, periostealreaction, pronatorsign, softtissue, text. Model weights are not included in the task package; VinDr Lite also declares separate read-only checkpoint/config mounts absent from the package.</p>",
+          "tools": "<p>The task environment permits method setup, validation and inference. No model, preparer, controller or evaluator was run for this explanation.</p>",
+          "reference": "<p>Full evaluator labels are <code>/data/private/{case_id}/boxes.json</code>, unavailable in this pack. The matching upstream annotation is a reader-only teaching reveal, never a Full private label or model prediction.</p>",
+          "spec": "<p>For each staged case, search the entire image, assign a task class string, and convert any detector coordinates back to original image pixels. Use the selected Full Lite or Standard condition rather than related ReX or gallery split rules.</p>",
+          "output": "<p>Write <code>agents_outputs/{case_id}/prediction.json</code> with <code>{&quot;boxes&quot;:[]}</code> at minimum. Each future box needs string <code>class</code> and numeric <code>x1,y1,x2,y2</code> with positive width and height inside the source image. Include <code>score</code> in <code>[0,1]</code> for ranked AP. The checker allows it to be absent, but the scorer treats missing score as <code>1.0</code>; the field is <code>score</code>, not <code>confidence</code>.</p>",
+          "score": "<p>The pinned Full scorer matches same-class boxes greedily at IoU ≥ 0.5, computes 101-point AP per class, and averages classes with ground truth. Case coverage affects aggregate score. No prediction, mAP or clinical result was retained.</p>",
+          "challenge": "<p>A ZIP byte-range recovered one CRC-verified source image; Full GRAZPEDWRI_Detection100 membership and private boxes are unverified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -17721,15 +18012,15 @@
       ],
       "illustration_kind": "detect",
       "subject": "chest",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-vindr-cxr-det-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-vindr-cxr-det-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/full-vindr-cxr-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "CXR input, stored as `image.png` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names Single YOLOv5 detector fine-tuned on VinBigData / VinDr-CXR-style 14-class chest abnormality detection. Standard supplies candidates to investigate; model files may still need provisioning. The manifest explicitly lists external runtime assets; the small harness archive does not include them.",
@@ -17771,14 +18062,111 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T09:46:02.842021+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/automedbench-full-vindr-cxr-det-task-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "Official image and label access requires credentialing, training and DUA. An unauthenticated file request returned HTTP 403. Lite runtime checkpoint/config are also absent from package.",
+      "acquisition_route": "https://physionet.org/content/vindr-cxr/1.0.0/",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-vindr-cxr-det-task-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-vindr-cxr-det-task-resolution.json",
+        "receipt_sha256": "d193f3e010b71d0a4d0b26e106faf5ea5fda53a7b1982eaf81c8d18b04c4831a",
+        "brief_sha256": "7be586b72f09e7dcde88f45676fcc1475998b99b4ff9a0310860f411f276047d",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "No accessible VinDr-CXR case — PhysioNet requires credentialing, training and DUA; Full images, private boxes and Lite runtime assets are unavailable.",
+      "acceptance_scope": "Pinned Full detection contract, source-specific image or symbolic socket/coordinate operation, empty participant JSON and explicit boundary from missing Full cases/private labels. An explainer review, not a model, evaluator, patient or population result.",
+      "completion_review": {
+        "date": "2026-09-29T09:53:56.633724+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "d24f93a56fa789c67df01a2e4dfb840098e8342b56fdea5b5c511a581075c6b1"
+      },
+      "reviewed_contract_projection": {
+        "title": "Locate thoracic findings on chest X-rays",
+        "goal": "Build a detector that localizes findings on chest X-ray images. The worked illustration is symbolic because no official image was acquired; it is not a Full benchmark run.",
+        "value": "Not yet specified.",
+        "raw": "The Full harness expects `public/{case_id}/image.png` under `VinDrCXR_Detection100`. The package declares `dataset.included=false`. The official PhysioNet dataset is credentialed and no image is in this pack.",
+        "helpers": "Task-specific config and Lite/Standard guidance identify the expected classes and methods. The generic prompt incorrectly repeats a VinDr 14-class example for other tasks. The class contract here is Aortic enlargement, Atelectasis, Calcification, Cardiomegaly, Consolidation, ILD, Infiltration, Lung Opacity, Nodule/Mass, Other lesion, Pleural effusion, Pleural thickening, Pneumothorax, Pulmonary fibrosis. Model weights are not included in the task package; VinDr Lite also declares separate read-only checkpoint/config mounts absent from the package.",
+        "tools": "The task environment permits method setup, validation and inference. No model, preparer, controller or evaluator was run for this explanation.",
+        "reference": "Full evaluator labels are `/data/private/{case_id}/boxes.json`, unavailable in this pack. No upstream source label or private Full label was acquired.",
+        "spec": "For each staged case, search the entire image, assign a task class string, and convert any detector coordinates back to original image pixels. Use the selected Full Lite or Standard condition rather than related ReX or gallery split rules.",
+        "output": "Write `agents_outputs/{case_id}/prediction.json` with `{\"boxes\":[]}` at minimum. Each future box needs string `class` and numeric `x1,y1,x2,y2` with positive width and height inside the source image. Include `score` in `[0,1]` for ranked AP. The checker allows it to be absent, but the scorer treats missing score as `1.0`; the field is `score`, not `confidence`.",
+        "score": "The pinned Full scorer matches same-class boxes greedily at IoU ≥ 0.5, computes 101-point AP per class, and averages classes with ground truth. Case coverage affects aggregate score. No prediction, mAP or clinical result was retained.",
+        "challenge": "14 thoracic disease categories named in task guidance, with no source annotation acquired. Official data are credentialed; unauthenticated annotation request returned HTTP 403. No native image, private boxes or user-provisioned Lite model files are available.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Full · Lite",
+            "helper": "Task-specific Lite guidance: Single YOLOv5 detector fine-tuned on VinBigData / VinDr-CXR-style 14-class chest abnormality detection.",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full · Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full task harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/detection/vindr-cxr-det-task.tar.gz"
+          ],
+          [
+            "Official upstream source",
+            "https://physionet.org/content/vindr-cxr/1.0.0/"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-vindr-cxr-det-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Build a detector that localizes findings on chest X-ray images. The worked illustration is symbolic because no official image was acquired; it is not a Full benchmark run.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The Full harness expects <code>public/{case_id}/image.png</code> under <code>VinDrCXR_Detection100</code>. The package declares <code>dataset.included=false</code>. The official PhysioNet dataset is credentialed and no image is in this pack.</p>",
+          "helpers": "<p>Task-specific config and Lite/Standard guidance identify the expected classes and methods. The generic prompt incorrectly repeats a VinDr 14-class example for other tasks. The class contract here is Aortic enlargement, Atelectasis, Calcification, Cardiomegaly, Consolidation, ILD, Infiltration, Lung Opacity, Nodule/Mass, Other lesion, Pleural effusion, Pleural thickening, Pneumothorax, Pulmonary fibrosis. Model weights are not included in the task package; VinDr Lite also declares separate read-only checkpoint/config mounts absent from the package.</p>",
+          "tools": "<p>The task environment permits method setup, validation and inference. No model, preparer, controller or evaluator was run for this explanation.</p>",
+          "reference": "<p>Full evaluator labels are <code>/data/private/{case_id}/boxes.json</code>, unavailable in this pack. No upstream source label or private Full label was acquired.</p>",
+          "spec": "<p>For each staged case, search the entire image, assign a task class string, and convert any detector coordinates back to original image pixels. Use the selected Full Lite or Standard condition rather than related ReX or gallery split rules.</p>",
+          "output": "<p>Write <code>agents_outputs/{case_id}/prediction.json</code> with <code>{&quot;boxes&quot;:[]}</code> at minimum. Each future box needs string <code>class</code> and numeric <code>x1,y1,x2,y2</code> with positive width and height inside the source image. Include <code>score</code> in <code>[0,1]</code> for ranked AP. The checker allows it to be absent, but the scorer treats missing score as <code>1.0</code>; the field is <code>score</code>, not <code>confidence</code>.</p>",
+          "score": "<p>The pinned Full scorer matches same-class boxes greedily at IoU ≥ 0.5, computes 101-point AP per class, and averages classes with ground truth. Case coverage affects aggregate score. No prediction, mAP or clinical result was retained.</p>",
+          "challenge": "<p>14 thoracic disease categories named in task guidance, with no source annotation acquired. Official data are credentialed; unauthenticated annotation request returned HTTP 403. No native image, private boxes or user-provisioned Lite model files are available.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -20675,9 +21063,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 69,
+    "reviewed-scripted-planar": 73,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-input": 51,
+    "blocked-source-input": 47,
     "blocked-source-contract": 71,
     "pending-operation-review": 1
   },

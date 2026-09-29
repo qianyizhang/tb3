@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "automedbench-full-grazpedwri-det-task",
+  "status": "source-only-audit-complete; Full staged case and private reference absent",
+  "illustration_basis": "mixed",
+  "reference_policy": "reader-reference-reveal",
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "task_source_ref_declared": "07b8328a87f9c434dc67f1f8a5753939a30ba24e",
+    "staging_manifest_sha256_declared": "4904f7ef2e06be42515fe73183ec7583dd2f633bdcd8679a2dacb71bcfd73d8b"
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/detection/grazpedwri-det-task.tar.gz",
+  "upstream_url": "https://figshare.com/articles/dataset/GRAZPEDWRI-DX/14825193",
+  "source_license": "CC BY 4.0",
+  "task_package": {
+    "local_path": ".local/explainers/core-20260929/automed-detection-source/packages/grazpedwri.tar.gz",
+    "bytes": 25917,
+    "sha256": "43e2a146f20696e9a0a4a4d2d40e154f0529ac9a6a1b120adf87b87af07ddfe2",
+    "manifest_entries": 30,
+    "manifest_mismatches": 0,
+    "config_sha256": "451b35bf820d980202af45beb206e6863bf16c52c2f4d45cc176b0c0951e2c10",
+    "dataset_included": false,
+    "data_dir_name": "GRAZPEDWRI_Detection100"
+  },
+  "output_contract": {
+    "path": "agents_outputs/{case_id}/prediction.json",
+    "json_shape": {
+      "boxes": [
+        {
+          "class": "<canonical class string>",
+          "score": "0..1 optional in format checker; needed for ranked AP",
+          "x1": "original image px",
+          "y1": "original image px",
+          "x2": "original image px",
+          "y2": "original image px"
+        }
+      ]
+    },
+    "iou_threshold": 0.5,
+    "private_reference": "/data/private/{case_id}/boxes.json; not supplied in task package"
+  },
+  "actual_data_gap": "Official source image and matching annotation recovered; Full Detection100 case membership, PNG staging transformation and private reference remain unverified.",
+  "acquisition_route": "https://figshare.com/articles/dataset/GRAZPEDWRI-DX/14825193",
+  "attempts": [
+    {
+      "action": "Download pinned Full task harness and verify all 30 MANIFEST.sha256 entries",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/detection/grazpedwri-det-task.tar.gz",
+      "attempted_at": "2026-09-29T04:55:57Z",
+      "outcome": "Succeeded, 25917 bytes, SHA256 43e2a146f20696e9a0a4a4d2d40e154f0529ac9a6a1b120adf87b87af07ddfe2; no images or private labels included."
+    },
+    {
+      "action": "Read official Figshare metadata and fetch annotation CSV and folder archive",
+      "source": "https://figshare.com/articles/dataset/GRAZPEDWRI-DX/14825193",
+      "attempted_at": "2026-09-29T04:58:35Z",
+      "outcome": "Succeeded; Figshare MD5 verified for both files; four source image ZIPs are 3.85\u20134.21 GB each and were not fetched in bounded sample pass."
+    },
+    {
+      "action": "HTTP byte-range ZIP directory and selected image member read; decompress and verify CRC32",
+      "source": "https://ndownloader.figshare.com/files/34268828 (images_part1.zip), member 0001_1297860435_01_WRI-L2_M014.png",
+      "attempted_at": "2026-09-29T05:04:55Z",
+      "outcome": "Succeeded without full archive download; 709564-byte image, 536\u00d7836 px, SHA256 e892807f0cda635e794b59f078fdf539fababb9cbd8a17fcf8ea8f21c87b7c5d, ZIP CRC32 45bc4cba."
+    }
+  ],
+  "source_example": {
+    "figshare_article_id": 14825193,
+    "files": [
+      {
+        "name": "dataset.csv",
+        "bytes": 1850724,
+        "sha256": "55a53cbe9673e5f29ef0f2f6074ae791f1c27a3b48efadcd0b771225ff6379e8"
+      },
+      {
+        "name": "folder_structure.zip",
+        "bytes": 26304897,
+        "sha256": "eac47bc5dfc01c1487289df53fc6bbfbfefd2e4a3bbcdeaa1b2dd73fe202919a"
+      }
+    ],
+    "annotation_member": "pascalvoc/0001_1297860435_01_WRI-L2_M014.xml",
+    "annotation_labels": [
+      "text",
+      "fracture",
+      "pronatorsign"
+    ],
+    "role": "Official matching source radiograph and Pascal VOC label; Full Detection100 membership unverified",
+    "image": "0001_1297860435_01_WRI-L2_M014.png",
+    "image_size_px": [
+      536,
+      836
+    ],
+    "image_sha256": "e892807f0cda635e794b59f078fdf539fababb9cbd8a17fcf8ea8f21c87b7c5d",
+    "archive_member_crc32": "45bc4cba"
+  }
+}

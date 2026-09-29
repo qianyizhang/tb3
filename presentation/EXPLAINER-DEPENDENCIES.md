@@ -1,48 +1,8 @@
 # Explainer dependency register
 
-Core: **154** · reviewed: **74** · ready: **0** · needs resolution: **80** · deferred: **0**
+Core: **154** · reviewed: **78** · ready: **0** · needs resolution: **76** · deferred: **0**
 
 This is a derived view of EXPLAINER-SCOPE.json and EXPLAINER-LEDGER.json. Deferral does not confer visual acceptance.
-
-## automedbench-full-bccd-det-task — Locate three blood-cell types in microscopy
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-bccd-det-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
-
-## automedbench-full-dentex-det-task — Locate four dental disease categories
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-dentex-det-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
-
-## automedbench-full-grazpedwri-det-task — Locate pediatric wrist trauma findings
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-grazpedwri-det-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
-
-## automedbench-full-vindr-cxr-det-task — Draw boxes around chest X-ray abnormalities
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-vindr-cxr-det-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
 
 ## automedbench-full-aeropath-seg-task — Segment the lungs and airway tree
 

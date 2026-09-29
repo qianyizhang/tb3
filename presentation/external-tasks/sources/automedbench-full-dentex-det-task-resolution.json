@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "automedbench-full-dentex-det-task",
+  "status": "source-only-audit-complete; Full staged case and private reference absent",
+  "illustration_basis": "mixed",
+  "reference_policy": "reader-reference-reveal",
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "task_source_ref_declared": "07b8328a87f9c434dc67f1f8a5753939a30ba24e",
+    "staging_manifest_sha256_declared": "4904f7ef2e06be42515fe73183ec7583dd2f633bdcd8679a2dacb71bcfd73d8b"
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/detection/dentex-det-task.tar.gz",
+  "upstream_url": "https://huggingface.co/datasets/ibrahimhamamci/DENTEX",
+  "source_license": "CC-BY-4.0 for recovered Zenodo image/labels; Full task manifest declares CC BY-NC-SA 4.0; version/terms equivalence unresolved",
+  "task_package": {
+    "local_path": ".local/explainers/core-20260929/automed-detection-source/packages/dentex.tar.gz",
+    "bytes": 26103,
+    "sha256": "9994bc12190b7866548c509f6a75a793f4f45873e40d98752d189ee4b68c9e87",
+    "manifest_entries": 30,
+    "manifest_mismatches": 0,
+    "config_sha256": "0e6a5a0aa2fabb2c1cc71a86b72cf40f25352bd63a6ab3f41103594c9ae6f687",
+    "dataset_included": false,
+    "data_dir_name": "DENTEX_Detection100"
+  },
+  "output_contract": {
+    "path": "agents_outputs/{case_id}/prediction.json",
+    "json_shape": {
+      "boxes": [
+        {
+          "class": "<canonical class string>",
+          "score": "0..1 optional in format checker; needed for ranked AP",
+          "x1": "original image px",
+          "y1": "original image px",
+          "x2": "original image px",
+          "y2": "original image px"
+        }
+      ]
+    },
+    "iou_threshold": 0.5,
+    "private_reference": "/data/private/{case_id}/boxes.json; not supplied in task package"
+  },
+  "actual_data_gap": "An official DENTEX training image and hierarchical annotation are available from the prior source audit; membership and transformation into Full Detection100 remain unverified, and dataset license notices conflict.",
+  "acquisition_route": "https://huggingface.co/datasets/ibrahimhamamci/DENTEX",
+  "attempts": [
+    {
+      "action": "Download pinned Full task harness and verify all 30 MANIFEST.sha256 entries",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/detection/dentex-det-task.tar.gz",
+      "attempted_at": "2026-09-29T04:55:56Z",
+      "outcome": "Succeeded, 26103 bytes, SHA256 9994bc12190b7866548c509f6a75a793f4f45873e40d98752d189ee4b68c9e87; no images or private labels included."
+    },
+    {
+      "action": "Reuse and hash official DENTEX source image from prior source audit",
+      "source": "https://zenodo.org/records/7812323",
+      "attempted_at": "2026-09-29T05:02:10Z",
+      "outcome": "Succeeded locally; 1976\u00d7976 training image and category_3 disease labels match the four disease names in Full model guidance; Full split and terms do not match by proof."
+    }
+  ],
+  "source_example": {
+    "source_filename": "train_266.png",
+    "image_size_px": [
+      1976,
+      976
+    ],
+    "sha256": "ac62de4d5587c9da20fc0995a01ad0e61e3d7329e5c9e9c59f74330bc234a00c",
+    "source_annotation_sha256": "6e1f702cfd6c83bc63660d9a0fd79fe5b26d5a54b63d93b954a02cc254314483",
+    "role": "official source image and label from prior audit; not asserted as Full Detection100 staged case",
+    "source_url": "https://zenodo.org/records/7812323"
+  }
+}

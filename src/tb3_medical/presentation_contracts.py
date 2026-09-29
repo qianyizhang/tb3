@@ -1490,6 +1490,70 @@ class RexTopcowMrEdgesPlan(ExpansionPlan):
     beats: list[RexTopcowMrEdgesBeat]
 
 
+class AutomedDetectionBccdChannels(TypedDict):
+    scan: tuple[float, float]
+    format: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedDetectionBccdBeat(ExpansionBeat):
+    channels: AutomedDetectionBccdChannels
+    scene: Literal["input", "coordinate", "classes", "submission", "reference", "limits"]
+
+
+class AutomedDetectionBccdPlan(ExpansionPlan):
+    recipe: Literal["automed-full-bccd-detection-v1"]
+    beats: list[AutomedDetectionBccdBeat]
+
+
+class AutomedDetectionDentexChannels(TypedDict):
+    scan: tuple[float, float]
+    format: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedDetectionDentexBeat(ExpansionBeat):
+    channels: AutomedDetectionDentexChannels
+    scene: Literal["input", "coordinate", "classes", "submission", "reference", "limits"]
+
+
+class AutomedDetectionDentexPlan(ExpansionPlan):
+    recipe: Literal["automed-full-dentex-detection-v1"]
+    beats: list[AutomedDetectionDentexBeat]
+
+
+class AutomedDetectionGrazpedwriChannels(TypedDict):
+    scan: tuple[float, float]
+    format: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedDetectionGrazpedwriBeat(ExpansionBeat):
+    channels: AutomedDetectionGrazpedwriChannels
+    scene: Literal["input", "coordinate", "classes", "submission", "reference", "limits"]
+
+
+class AutomedDetectionGrazpedwriPlan(ExpansionPlan):
+    recipe: Literal["automed-full-grazpedwri-detection-v1"]
+    beats: list[AutomedDetectionGrazpedwriBeat]
+
+
+class AutomedDetectionVindrCxrChannels(TypedDict):
+    scan: tuple[float, float]
+    format: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedDetectionVindrCxrBeat(ExpansionBeat):
+    channels: AutomedDetectionVindrCxrChannels
+    scene: Literal["input", "coordinate", "classes", "submission", "reference", "limits"]
+
+
+class AutomedDetectionVindrCxrPlan(ExpansionPlan):
+    recipe: Literal["automed-full-vindr-cxr-detection-v1"]
+    beats: list[AutomedDetectionVindrCxrBeat]
+
+
 class CardiacMaterialChannels(TypedDict):
     phase: tuple[float, float]
     helper: tuple[float, float]
@@ -1704,6 +1768,10 @@ StoryPlan = (
     | RexTopcowMrBoxPlan
     | RexTopcowCtEdgesPlan
     | RexTopcowMrEdgesPlan
+    | AutomedDetectionBccdPlan
+    | AutomedDetectionDentexPlan
+    | AutomedDetectionGrazpedwriPlan
+    | AutomedDetectionVindrCxrPlan
     | CardiacMaterialPlan
     | CardiacAnchorPlan
     | ClinicalCavityPlan

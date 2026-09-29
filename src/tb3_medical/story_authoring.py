@@ -238,6 +238,14 @@ def new(
             beat["scene"] = "inputs"
         if recipe == "rex-topcow-mr-edges-v1":
             beat["scene"] = "inputs"
+        if recipe == "automed-full-bccd-detection-v1":
+            beat["scene"] = "input"
+        if recipe == "automed-full-dentex-detection-v1":
+            beat["scene"] = "input"
+        if recipe == "automed-full-grazpedwri-detection-v1":
+            beat["scene"] = "input"
+        if recipe == "automed-full-vindr-cxr-detection-v1":
+            beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":
             beat["scene"] = "pair"
         if recipe == "vessel-source-v1":

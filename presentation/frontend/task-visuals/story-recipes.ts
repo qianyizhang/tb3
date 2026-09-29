@@ -1,3 +1,4 @@
+import { detectionPacks } from './automed-full-detection';
 import { reportSource } from './report-reading';
 import { createClinicalCavityPrefab } from './clinical-cavity-prefab';
 import type { StoryPlan } from '../types';
@@ -75,6 +76,10 @@ export function isPlanarStory(plan: StoryPlan): boolean {
   return [
     'cardiac-anchor-v1',
     'cardiac-material-v1',
+    'automed-full-vindr-cxr-detection-v1',
+    'automed-full-grazpedwri-detection-v1',
+    'automed-full-dentex-detection-v1',
+    'automed-full-bccd-detection-v1',
     'rex-topcow-mr-edges-v1',
     'rex-topcow-ct-edges-v1',
     'rex-topcow-mr-box-v1',
@@ -534,6 +539,50 @@ export function storyPresentation(plan: StoryPlan): {
         legend: [
           ['#91a6ae', 'Actual test-partition image'],
           ['#2aa77f', 'Reader-only source edge bits'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'automed-full-bccd-detection-v1':
+      return {
+        heading: 'Locate blood-cell types in microscopy',
+        corner: 'AutoMed Full · detection contract',
+        warning: detectionPacks['automed-full-bccd-detection-v1'].source.notice,
+        legend: [
+          ['#91a6ae', 'Upstream source image'],
+          ['#f4bc49', 'Reader-only source boxes'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'automed-full-dentex-detection-v1':
+      return {
+        heading: 'Detect disease on a panoramic dental X-ray',
+        corner: 'AutoMed Full · detection contract',
+        warning: detectionPacks['automed-full-dentex-detection-v1'].source.notice,
+        legend: [
+          ['#91a6ae', 'Upstream source image'],
+          ['#f4bc49', 'Reader-only source boxes'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'automed-full-grazpedwri-detection-v1':
+      return {
+        heading: 'Locate pediatric wrist findings',
+        corner: 'AutoMed Full · detection contract',
+        warning: detectionPacks['automed-full-grazpedwri-detection-v1'].source.notice,
+        legend: [
+          ['#91a6ae', 'Upstream source image'],
+          ['#f4bc49', 'Reader-only source boxes'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'automed-full-vindr-cxr-detection-v1':
+      return {
+        heading: 'Specify chest X-ray abnormality boxes',
+        corner: 'AutoMed Full · detection contract',
+        warning: detectionPacks['automed-full-vindr-cxr-detection-v1'].source.notice,
+        legend: [
+          ['#91a6ae', 'Symbolic image socket'],
+          ['#18c6d4', 'Coordinate contract only'],
           ['#16a6a9', 'Empty test output'],
         ],
       };

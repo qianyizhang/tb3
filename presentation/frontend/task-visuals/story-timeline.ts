@@ -557,6 +557,50 @@ export function sampleStory(plan: StoryPlan, requested: number) {
         reference: channel(b.channels.reference),
       });
     }
+    case 'automed-full-bccd-detection-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        scan: channel(b.channels.scan),
+        format: channel(b.channels.format),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'automed-full-dentex-detection-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        scan: channel(b.channels.scan),
+        format: channel(b.channels.format),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'automed-full-grazpedwri-detection-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        scan: channel(b.channels.scan),
+        format: channel(b.channels.format),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'automed-full-vindr-cxr-detection-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        scan: channel(b.channels.scan),
+        format: channel(b.channels.format),
+        reference: channel(b.channels.reference),
+      });
+    }
     case 'cardiac-material-v1': {
       const b = plan.beats[index];
       return Object.freeze({

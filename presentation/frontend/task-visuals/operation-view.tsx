@@ -1,3 +1,4 @@
+import { AutoMedDetectionScene, AutoMedDetectionOutput } from './automed-full-detection-panels';
 import { RexTopcowLocalScene, RexTopcowLocalOutput } from './rex-topcow-localization-panels';
 import { RexVascularSegScene, RexVascularSegOutput } from './rex-vascular-seg-panels';
 import { RexPumaScene, RexPumaOutput } from './rexmle-puma-panels';
@@ -210,6 +211,14 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   if (state.recipe === 'rex-topcow-mr-box-v1') return <RexTopcowLocalScene state={state} />;
   if (state.recipe === 'rex-topcow-ct-edges-v1') return <RexTopcowLocalScene state={state} />;
   if (state.recipe === 'rex-topcow-mr-edges-v1') return <RexTopcowLocalScene state={state} />;
+  if (state.recipe === 'automed-full-bccd-detection-v1')
+    return <AutoMedDetectionScene state={state} />;
+  if (state.recipe === 'automed-full-dentex-detection-v1')
+    return <AutoMedDetectionScene state={state} />;
+  if (state.recipe === 'automed-full-grazpedwri-detection-v1')
+    return <AutoMedDetectionScene state={state} />;
+  if (state.recipe === 'automed-full-vindr-cxr-detection-v1')
+    return <AutoMedDetectionScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
   if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityScene state={state} />;
@@ -481,6 +490,14 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'rex-topcow-mr-box-v1') return <RexTopcowLocalOutput state={state} />;
   if (state.recipe === 'rex-topcow-ct-edges-v1') return <RexTopcowLocalOutput state={state} />;
   if (state.recipe === 'rex-topcow-mr-edges-v1') return <RexTopcowLocalOutput state={state} />;
+  if (state.recipe === 'automed-full-bccd-detection-v1')
+    return <AutoMedDetectionOutput state={state} />;
+  if (state.recipe === 'automed-full-dentex-detection-v1')
+    return <AutoMedDetectionOutput state={state} />;
+  if (state.recipe === 'automed-full-grazpedwri-detection-v1')
+    return <AutoMedDetectionOutput state={state} />;
+  if (state.recipe === 'automed-full-vindr-cxr-detection-v1')
+    return <AutoMedDetectionOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;
   if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityOutput state={state} />;

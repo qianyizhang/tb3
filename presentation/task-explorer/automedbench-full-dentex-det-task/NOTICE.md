@@ -1,0 +1,1 @@
+Official upstream image; Full staged case not established. The source label is a reader-only teaching reference. No Full private box, model prediction or score is retained. Full manifest and recovered source license notices differ; version equivalence is unresolved. https://zenodo.org/records/7812323

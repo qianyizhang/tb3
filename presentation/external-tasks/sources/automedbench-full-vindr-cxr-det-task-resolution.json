@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "automedbench-full-vindr-cxr-det-task",
+  "status": "source-only-audit-complete; Full staged case and private reference absent",
+  "illustration_basis": "symbolic",
+  "reference_policy": "no-reference-assets",
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "task_source_ref_declared": "07b8328a87f9c434dc67f1f8a5753939a30ba24e",
+    "staging_manifest_sha256_declared": "4904f7ef2e06be42515fe73183ec7583dd2f633bdcd8679a2dacb71bcfd73d8b"
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/detection/vindr-cxr-det-task.tar.gz",
+  "upstream_url": "https://physionet.org/content/vindr-cxr/1.0.0/",
+  "source_license": "PhysioNet Credentialed Health Data License 1.5.0",
+  "task_package": {
+    "local_path": ".local/explainers/core-20260929/automed-detection-source/packages/vindr-cxr.tar.gz",
+    "bytes": 26034,
+    "sha256": "33a7793b21fb7dc9e0372a2930830356154c31c21c29685268ab2c0a8f1642e7",
+    "manifest_entries": 30,
+    "manifest_mismatches": 0,
+    "config_sha256": "3850ba01420f8525e2fc1122cde42fe15be6d11275d90fb09fa007ce16ed15f7",
+    "dataset_included": false,
+    "data_dir_name": "VinDrCXR_Detection100"
+  },
+  "output_contract": {
+    "path": "agents_outputs/{case_id}/prediction.json",
+    "json_shape": {
+      "boxes": [
+        {
+          "class": "<canonical class string>",
+          "score": "0..1 optional in format checker; needed for ranked AP",
+          "x1": "original image px",
+          "y1": "original image px",
+          "x2": "original image px",
+          "y2": "original image px"
+        }
+      ]
+    },
+    "iou_threshold": 0.5,
+    "private_reference": "/data/private/{case_id}/boxes.json; not supplied in task package"
+  },
+  "actual_data_gap": "Official image and label access requires credentialing, training and DUA. An unauthenticated file request returned HTTP 403. Lite runtime checkpoint/config are also absent from package.",
+  "acquisition_route": "https://physionet.org/content/vindr-cxr/1.0.0/",
+  "attempts": [
+    {
+      "action": "Download pinned Full task harness and verify all 30 MANIFEST.sha256 entries",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/detection/vindr-cxr-det-task.tar.gz",
+      "attempted_at": "2026-09-29T04:55:59Z",
+      "outcome": "Succeeded, 26034 bytes, SHA256 33a7793b21fb7dc9e0372a2930830356154c31c21c29685268ab2c0a8f1642e7; no images or private labels included."
+    },
+    {
+      "action": "Request official dataset page and unauthenticated annotations_train.csv",
+      "source": "https://physionet.org/files/vindr-cxr/1.0.0/annotations_train.csv",
+      "attempted_at": "2026-09-29T04:59:38Z",
+      "outcome": "Official page accessible and states credentialing/training/DUA required; file GET HTTP 403, 11796-byte HTML response, SHA256 091dd6689ee6b61071a0f51cea801617f3dda929b74e673b2480bb11d565f49e. No personal credentials or DUA used."
+    }
+  ]
+}

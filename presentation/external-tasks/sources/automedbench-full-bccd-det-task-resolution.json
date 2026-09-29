@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "automedbench-full-bccd-det-task",
+  "status": "source-only-audit-complete; Full staged case and private reference absent",
+  "illustration_basis": "mixed",
+  "reference_policy": "reader-reference-reveal",
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "task_source_ref_declared": "07b8328a87f9c434dc67f1f8a5753939a30ba24e",
+    "staging_manifest_sha256_declared": "4904f7ef2e06be42515fe73183ec7583dd2f633bdcd8679a2dacb71bcfd73d8b"
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/detection/bccd-det-task.tar.gz",
+  "upstream_url": "https://github.com/Shenggan/BCCD_Dataset",
+  "source_license": "MIT",
+  "task_package": {
+    "local_path": ".local/explainers/core-20260929/automed-detection-source/packages/bccd.tar.gz",
+    "bytes": 25559,
+    "sha256": "1561ad83dfd9b3d0b70029b317fa38e3df50f35cd352612d5b59f68d3a29abda",
+    "manifest_entries": 30,
+    "manifest_mismatches": 0,
+    "config_sha256": "de7956f6f99cf9ab1698a28265f7a5f72f5e4b60a865dcb45a5b70d7ebbe325b",
+    "dataset_included": false,
+    "data_dir_name": "BCCD_Detection100"
+  },
+  "output_contract": {
+    "path": "agents_outputs/{case_id}/prediction.json",
+    "json_shape": {
+      "boxes": [
+        {
+          "class": "<canonical class string>",
+          "score": "0..1 optional in format checker; needed for ranked AP",
+          "x1": "original image px",
+          "y1": "original image px",
+          "x2": "original image px",
+          "y2": "original image px"
+        }
+      ]
+    },
+    "iou_threshold": 0.5,
+    "private_reference": "/data/private/{case_id}/boxes.json; not supplied in task package"
+  },
+  "actual_data_gap": "An official 640\u00d7480 BCCD source image and Pascal VOC label are available; Full Detection100 case membership, PNG conversion and private reference are not materialized.",
+  "acquisition_route": "https://github.com/Shenggan/BCCD_Dataset",
+  "attempts": [
+    {
+      "action": "Download pinned Full task harness and verify all 30 MANIFEST.sha256 entries",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/detection/bccd-det-task.tar.gz",
+      "attempted_at": "2026-09-29T04:55:53Z",
+      "outcome": "Succeeded, 25559 bytes, SHA256 1561ad83dfd9b3d0b70029b317fa38e3df50f35cd352612d5b59f68d3a29abda; no images or private labels included."
+    },
+    {
+      "action": "Fetch official BCCD source image, VOC annotation and license",
+      "source": "https://github.com/Shenggan/BCCD_Dataset/tree/d272fb14cdff6e473fafeeeba32aba5f560e9e43/BCCD",
+      "attempted_at": "2026-09-29T04:57:48Z",
+      "outcome": "Succeeded; matched BloodImage_00000 image/XML and MIT license, hashes above."
+    }
+  ],
+  "source_example": {
+    "source_repo_commit": "d272fb14cdff6e473fafeeeba32aba5f560e9e43",
+    "image_size_px": [
+      640,
+      480
+    ],
+    "files": [
+      {
+        "name": "BloodImage_00000.jpg",
+        "bytes": 23302,
+        "sha256": "e1dcc488889acba247a895df7be839e514850030217b4025048619f664fd4cb3"
+      },
+      {
+        "name": "BloodImage_00000.xml",
+        "bytes": 4791,
+        "sha256": "655ee0c67cbac5bf3961e017c75b130be1995f824557916eabdbe99d29fae101"
+      },
+      {
+        "name": "LICENSE",
+        "bytes": 1065,
+        "sha256": "e2b611c8f321cb03c8d1b378a343ef488b623cf714c48bee814f04fcf8ba26df"
+      }
+    ],
+    "role": "official upstream source image and training annotation; Full case membership unproved"
+  }
+}

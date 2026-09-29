@@ -44,6 +44,10 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-full-vindr-cxr-detection-v1": "retained-automed-full-vindr-cxr-detection-v1",
+    "automed-full-grazpedwri-detection-v1": "retained-automed-full-grazpedwri-detection-v1",
+    "automed-full-dentex-detection-v1": "retained-automed-full-dentex-detection-v1",
+    "automed-full-bccd-detection-v1": "retained-automed-full-bccd-detection-v1",
     "rex-topcow-mr-edges-v1": "retained-rex-topcow-mr-edges-v1",
     "rex-topcow-ct-edges-v1": "retained-rex-topcow-ct-edges-v1",
     "rex-topcow-mr-box-v1": "retained-rex-topcow-mr-box-v1",
@@ -124,6 +128,11 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-automed-full-vindr-cxr-detection-v1": (
+        "source-slices",
+        None,
+        {"NOTICE.md", "source.json", "DATA-LICENSE.txt", "output.json", "reference.json"},
+    ),
     "retained-rex-topbrain-mr-v1": (
         "source-slices",
         None,
@@ -350,6 +359,42 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-automed-full-grazpedwri-detection-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "output.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+            "source.json",
+            "reference.json",
+            "0001_1297860435_01_WRI-L2_M014.png",
+        },
+    ),
+    "retained-automed-full-dentex-detection-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+            "train_266.png",
+            "output.json",
+            "reference.json",
+            "source.json",
+        },
+    ),
+    "retained-automed-full-bccd-detection-v1": (
+        "source-slices",
+        "reference.json",
+        {
+            "output.json",
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "reference.json",
+            "source.json",
+            "BloodImage_00000.jpg",
+        },
+    ),
     "retained-rex-topcow-mr-edges-v1": (
         "source-slices",
         "reference.json",
@@ -1448,6 +1493,30 @@ class RexTopcowCtEdgesChannels(Closed):
 class RexTopcowMrEdgesChannels(Closed):
     slice: Pair
     step: Pair
+    reference: Pair
+
+
+class AutomedDetectionBccdChannels(Closed):
+    scan: Pair
+    format: Pair
+    reference: Pair
+
+
+class AutomedDetectionDentexChannels(Closed):
+    scan: Pair
+    format: Pair
+    reference: Pair
+
+
+class AutomedDetectionGrazpedwriChannels(Closed):
+    scan: Pair
+    format: Pair
+    reference: Pair
+
+
+class AutomedDetectionVindrCxrChannels(Closed):
+    scan: Pair
+    format: Pair
     reference: Pair
 
 
@@ -2821,6 +2890,70 @@ class RexTopcowMrEdgesStory(Story[RexTopcowMrEdgesChannels]):
         return self
 
 
+class AutomedDetectionBccdBeat(ExpansionBeat[AutomedDetectionBccdChannels]):
+    scene: Literal["input", "coordinate", "classes", "submission", "reference", "limits"]
+
+
+class AutomedDetectionBccdStory(Story[AutomedDetectionBccdChannels]):
+    recipe: Literal["automed-full-bccd-detection-v1"]
+    beats: tuple[AutomedDetectionBccdBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class AutomedDetectionDentexBeat(ExpansionBeat[AutomedDetectionDentexChannels]):
+    scene: Literal["input", "coordinate", "classes", "submission", "reference", "limits"]
+
+
+class AutomedDetectionDentexStory(Story[AutomedDetectionDentexChannels]):
+    recipe: Literal["automed-full-dentex-detection-v1"]
+    beats: tuple[AutomedDetectionDentexBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class AutomedDetectionGrazpedwriBeat(ExpansionBeat[AutomedDetectionGrazpedwriChannels]):
+    scene: Literal["input", "coordinate", "classes", "submission", "reference", "limits"]
+
+
+class AutomedDetectionGrazpedwriStory(Story[AutomedDetectionGrazpedwriChannels]):
+    recipe: Literal["automed-full-grazpedwri-detection-v1"]
+    beats: tuple[AutomedDetectionGrazpedwriBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class AutomedDetectionVindrCxrBeat(ExpansionBeat[AutomedDetectionVindrCxrChannels]):
+    scene: Literal["input", "coordinate", "classes", "submission", "reference", "limits"]
+
+
+class AutomedDetectionVindrCxrStory(Story[AutomedDetectionVindrCxrChannels]):
+    recipe: Literal["automed-full-vindr-cxr-detection-v1"]
+    beats: tuple[AutomedDetectionVindrCxrBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class CardiacMaterialBeat(ExpansionBeat[CardiacMaterialChannels]):
     scene: Literal[
         "inputs", "initial", "tracking", "tetra", "strain", "comparison", "controls", "limits"
@@ -3022,6 +3155,10 @@ AnyStory = Annotated[
     | RexTopcowMrBoxStory
     | RexTopcowCtEdgesStory
     | RexTopcowMrEdgesStory
+    | AutomedDetectionBccdStory
+    | AutomedDetectionDentexStory
+    | AutomedDetectionGrazpedwriStory
+    | AutomedDetectionVindrCxrStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3102,6 +3239,10 @@ ADAPTER: TypeAdapter[
     | RexTopcowMrBoxStory
     | RexTopcowCtEdgesStory
     | RexTopcowMrEdgesStory
+    | AutomedDetectionBccdStory
+    | AutomedDetectionDentexStory
+    | AutomedDetectionGrazpedwriStory
+    | AutomedDetectionVindrCxrStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3342,6 +3483,10 @@ def parse_expansion(
     | RexTopcowMrBoxStory
     | RexTopcowCtEdgesStory
     | RexTopcowMrEdgesStory
+    | AutomedDetectionBccdStory
+    | AutomedDetectionDentexStory
+    | AutomedDetectionGrazpedwriStory
+    | AutomedDetectionVindrCxrStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3506,6 +3651,22 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-TopCoW-OpenDataSwiss",
                 "LicenseRef-TopCoW-OpenDataSwiss",
             ),
+            "retained-automed-full-bccd-detection-v1": ("image-pixel-top-left", "MIT", "MIT"),
+            "retained-automed-full-dentex-detection-v1": (
+                "image-pixel-top-left",
+                "CC-BY-4.0",
+                "CC-BY-4.0",
+            ),
+            "retained-automed-full-grazpedwri-detection-v1": (
+                "image-pixel-top-left",
+                "CC-BY-4.0",
+                "CC-BY-4.0",
+            ),
+            "retained-automed-full-vindr-cxr-detection-v1": (
+                "symbolic-image-pixel-top-left",
+                "LicenseRef-TB3-symbolic-teaching",
+                None,
+            ),
             "retained-cardiac-material-v1": (
                 "STRAUS-patient01-healthy-canonical",
                 "LicenseRef-STRAUS-local-noncommercial",
@@ -3669,6 +3830,10 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     "retained-rexmle-puma-track1-task1-v1",
                     "retained-rexmle-puma-track1-task2-v1",
                     "retained-rexmle-puma-track2-task2-v1",
+                    "retained-automed-full-bccd-detection-v1",
+                    "retained-automed-full-dentex-detection-v1",
+                    "retained-automed-full-grazpedwri-detection-v1",
+                    "retained-automed-full-vindr-cxr-detection-v1",
                     "retained-hubmap-inventory-v1",
                     "retained-tiger-context-v1",
                     "retained-imaging101-fan-beam-v1",
