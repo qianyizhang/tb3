@@ -82,6 +82,34 @@ def build_parser() -> argparse.ArgumentParser:
         b.add_argument("output", type=Path)
         if action == "check":
             b.add_argument("--decode", action="store_true", help="Also fully decode videos")
+    p = sub.add_parser("explainer", help="Select scoped work and record deferred dependencies")
+    explainer_sub = p.add_subparsers(dest="explainer_command", required=True)
+    e = explainer_sub.add_parser("queue", help="Join scope eligibility with live review status")
+    e.add_argument("--output", type=Path, help="Write the complete queue to a new JSON file")
+    e = explainer_sub.add_parser(
+        "dependencies", help="Render the live deferred dependency register"
+    )
+    e.add_argument("--output", type=Path, required=True)
+    e = explainer_sub.add_parser("prepare", help="Prepare a pinned entry task packet")
+    e.add_argument("entry")
+    e.add_argument("--output", type=Path, required=True)
+    e.add_argument(
+        "--regression", action="store_true", help="Reviewed core only; no new completion"
+    )
+    e = explainer_sub.add_parser(
+        "defer-blocked", help="Record explicit deferral of blocked core entries"
+    )
+    e.add_argument("--actor", required=True)
+    e.add_argument("--source", required=True)
+    e.add_argument("--date", required=True)
+    e = explainer_sub.add_parser(
+        "review", help="Validate explicit reviewer sign-off and current evidence"
+    )
+    e.add_argument("--packet", type=Path, required=True)
+    e.add_argument("--batch", type=Path, required=True)
+    e.add_argument("--inspection", type=Path, required=True)
+    e.add_argument("--output", type=Path, required=True)
+    e.add_argument("--accept", action="store_true", help="Production only: update this ledger row")
     p = sub.add_parser("list")
     p.add_argument("query", nargs="?", default="")
     p.add_argument("--kind", choices=sorted(c.KINDS))
@@ -294,6 +322,38 @@ def main(argv: Sequence[str] | None = None) -> int:
                     args.analysis_kind,
                     args.targets,
                 )
+        elif command == "explainer":
+            from . import explainer_queue
+
+            if args.explainer_command == "review":
+                from . import explainer_reviews
+
+                result = explainer_reviews.record(
+                    root, args.packet, args.batch, args.inspection, args.output, accept=args.accept
+                )
+            elif args.explainer_command == "prepare":
+                result = explainer_queue.prepare(
+                    root, args.entry, args.output, regression=args.regression
+                )
+            elif args.explainer_command == "defer-blocked":
+                result = explainer_queue.defer_blocked(
+                    root, actor=args.actor, source=args.source, date=args.date
+                )
+            else:
+                queue = explainer_queue.inspect_queue(root)
+                result = queue
+                if args.output:
+                    relative = args.output
+                    if relative.is_absolute():
+                        relative = relative.relative_to(root)
+                    output = storage.inside(root, relative)
+                    if args.explainer_command == "dependencies":
+                        output.parent.mkdir(parents=True, exist_ok=True)
+                        with output.open("x") as stream:
+                            stream.write(explainer_queue.render_dependency_register(queue))
+                    else:
+                        storage.write_new(output, queue)
+                    result = {"output": str(output), "summary": queue["summary"]}
         elif command == "story":
             from . import story_authoring, story_batches
 

@@ -1,0 +1,3113 @@
+{
+  "schema": 1,
+  "audited_at_utc": "2026-09-28T23:48:11.244614+00:00",
+  "authority": "Scope and group priority for explainer completion. EXPLAINER-LEDGER.json remains authoritative for live review status, blockers and receipts. Join by entry_id; never treat an exclusion as a completed review.",
+  "decision": {
+    "actor": "assistant",
+    "basis": "User requested a scope survey, explicit ledger, group priorities and exclusion of unrelated tasks on 2026-09-29; classifications and priority choices are assistant implementation judgments based on supplied audit and local catalogue/briefs.",
+    "source": "codex://threads/01a0ea66-be74-71a3-a9c0-aa7a6017db91",
+    "prior_program": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+  },
+  "status_snapshot": {
+    "ledger": "presentation/EXPLAINER-LEDGER.json",
+    "sha256": "c4a41368dab4cc130c26ea8eb3c931c962ee39146bfa03d58bdfde657874e883",
+    "catalogue_entries": 205,
+    "counts": {
+      "core": 154,
+      "historical": 1,
+      "excluded-nonimaging": 12,
+      "excluded-nonmedical": 17,
+      "reference-only": 8,
+      "candidate": 13
+    },
+    "core_reviewed": 48,
+    "core_unfinished": 106
+  },
+  "selection_rule": "Select only automatic_completion=true; join current review status; skip reviewed entries; order by group order then existing ledger order. Resolve source blockers explicitly, skipping documented external dependencies. Candidates, references, exclusions and history never enter automatically. New or unmatched entries require scope review.",
+  "groups": [
+    {
+      "group_id": "tb3-research",
+      "priority": "P0",
+      "scope": "core",
+      "title": "Existing TB3 imaging questions and supporting research",
+      "policy": "Resolve the six unfinished internal entries first; preserve reviewed variants and scientific limits.",
+      "entries": 45,
+      "reviewed_at_audit": 39,
+      "unfinished_at_audit": 6
+    },
+    {
+      "group_id": "clinical-structure",
+      "priority": "P1",
+      "scope": "core",
+      "title": "Clinical image localization, segmentation, topology and correspondence",
+      "policy": "Direct image-to-anatomy work, including pathology and cell delineation; prioritize capability coverage over duplicate dataset variants.",
+      "entries": 41,
+      "reviewed_at_audit": 3,
+      "unfinished_at_audit": 38
+    },
+    {
+      "group_id": "clinical-reading",
+      "priority": "P1",
+      "scope": "core",
+      "title": "Image interpretation, reporting and imaging workflow support",
+      "policy": "Image-grounded diagnosis, reporting, VQA, viewer control and metadata support; qualify metadata/tool tasks as workflow support.",
+      "entries": 31,
+      "reviewed_at_audit": 1,
+      "unfinished_at_audit": 30
+    },
+    {
+      "group_id": "image-formation",
+      "priority": "P2",
+      "scope": "core",
+      "title": "Medical image formation, restoration and quantitative maps",
+      "policy": "Lower priority than clinical image understanding; source and medical-use checks precede authoring.",
+      "entries": 37,
+      "reviewed_at_audit": 5,
+      "unfinished_at_audit": 32
+    },
+    {
+      "group_id": "biomedical-microscopy",
+      "priority": "P3",
+      "scope": "candidate",
+      "title": "Biomedical microscopy methods",
+      "policy": "Hold outside automatic completion until a concrete biomedical research question, specimen and evaluation contract are recorded.",
+      "entries": 11,
+      "reviewed_at_audit": 0,
+      "unfinished_at_audit": 11
+    },
+    {
+      "group_id": "biomedical-vqa",
+      "priority": "P3",
+      "scope": "candidate",
+      "title": "Broader biomedical visual questions",
+      "policy": "Hold outside automatic completion until an image-grounded clinical subset and its research value are established.",
+      "entries": 2,
+      "reviewed_at_audit": 0,
+      "unfinished_at_audit": 2
+    },
+    {
+      "group_id": "generic-methods",
+      "priority": null,
+      "scope": "reference-only",
+      "title": "Generic imaging and optical methods",
+      "policy": "Retain as method references; require a concrete medical task and source/GT link before promotion.",
+      "entries": 8,
+      "reviewed_at_audit": 1,
+      "unfinished_at_audit": 7
+    },
+    {
+      "group_id": "nonimaging-healthcare",
+      "priority": null,
+      "scope": "excluded-nonimaging",
+      "title": "Healthcare without imaging",
+      "policy": "Exclude from the imaging completion queue; a separate non-imaging program would require explicit scope.",
+      "entries": 12,
+      "reviewed_at_audit": 0,
+      "unfinished_at_audit": 12
+    },
+    {
+      "group_id": "nonmedical",
+      "priority": null,
+      "scope": "excluded-nonmedical",
+      "title": "Explicitly nonmedical applications",
+      "policy": "Exclude from active medical work; mathematical similarity alone does not establish relevance.",
+      "entries": 17,
+      "reviewed_at_audit": 6,
+      "unfinished_at_audit": 11
+    },
+    {
+      "group_id": "historical",
+      "priority": null,
+      "scope": "historical",
+      "title": "Closed mixed investigation",
+      "policy": "Preserve provenance and reviews; do not reopen the closed investigation as new work.",
+      "entries": 1,
+      "reviewed_at_audit": 1,
+      "unfinished_at_audit": 0
+    }
+  ],
+  "unfinished_queue_at_audit": [
+    "tb3-cardiac-contour-feasibility",
+    "tb3-cardiac-anchor-feasibility",
+    "tb3-cardiac-material-feasibility",
+    "tb3-real-echo-reconstruction",
+    "tb3-mask-to-mechanics",
+    "tb3-report-backed-reading",
+    "automedbench",
+    "bcer-short-segment-brain",
+    "bcer-medium-register-prostate",
+    "abra-longitudinal",
+    "rexmle-dentex",
+    "rexmle-isles22",
+    "rexmle-neurips-cellseg",
+    "rexmle-panther-task1",
+    "rexmle-panther-task2",
+    "rexmle-puma-track1-task1",
+    "rexmle-puma-track1-task2",
+    "rexmle-puma-track2-task2",
+    "rexmle-seg-a",
+    "rexmle-topbrain-track1",
+    "rexmle-topbrain-track2",
+    "rexmle-topcow-track2-task1",
+    "rexmle-topcow-track1-task2",
+    "rexmle-topcow-track2-task2",
+    "rexmle-topcow-track1-task3",
+    "rexmle-topcow-track2-task3",
+    "automedbench-full-bccd-det-task",
+    "automedbench-full-dentex-det-task",
+    "automedbench-full-grazpedwri-det-task",
+    "automedbench-full-vindr-cxr-det-task",
+    "automedbench-full-aeropath-seg-task",
+    "automedbench-full-colon-seg-task",
+    "automedbench-full-feta-seg-task",
+    "automedbench-full-heart-seg-task",
+    "automedbench-full-hepaticvessel-seg-task",
+    "automedbench-full-kidney-seg-task",
+    "automedbench-full-liver-seg-task",
+    "automedbench-full-pancreas-oar-seg-task",
+    "automedbench-full-pancreas-seg-task",
+    "automedbench-full-panther-t1-seg-task",
+    "automedbench-full-panther-t2-seg-task",
+    "automedbench-full-prostate-seg-task",
+    "automedbench-full-spleen-seg-task",
+    "automedbench-full-tsg-multiorgan-seg-task",
+    "healthagentbench",
+    "radagent",
+    "healthagentbench-tumor-tiles",
+    "healthagentbench-cxr-correction",
+    "bcer-medium-brain-grade-classify",
+    "bcer-long-cardiac-full",
+    "bcer-long-brain-full",
+    "abra-viewer-control",
+    "abra-metadata-qa",
+    "abra-vision-probe",
+    "abra-birads",
+    "radagent-vqa",
+    "rexmle-ldct-iqa",
+    "automedbench-full-braintumor-cls-task",
+    "automedbench-full-chest-xray-pneumonia-cls-task",
+    "automedbench-full-crc-histology-cls-task",
+    "automedbench-full-patchcamelyon-cls-task",
+    "automedbench-full-skin-lesion-cls-task",
+    "automedbench-full-chexpert-plus-cxr-task",
+    "automedbench-full-iu-xray-report-task",
+    "automedbench-full-mimic-cxr-report-task",
+    "automedbench-full-pathology-caption-100-task",
+    "automedbench-full-pathology-caption-500-task",
+    "automedbench-full-medframeqa-task",
+    "automedbench-full-medxpertqa-mm-task",
+    "automedbench-full-pathvqa-task",
+    "automedbench-full-slake-task",
+    "automedbench-full-vqa-kvasir-task",
+    "automedbench-full-vqa-omnimedvqa-task",
+    "automedbench-full-vqa-rad-task",
+    "bcer-short-denoise",
+    "bcer-short-superres",
+    "bcer-short-recon-grappa",
+    "imaging101-ct-poisson-lowdose",
+    "imaging101-eit-conductivity-reconstruction",
+    "imaging101-mri-dynamic-dce",
+    "imaging101-mri-grappa",
+    "imaging101-mri-l1-wavelet",
+    "imaging101-mri-noncartesian-cs",
+    "imaging101-mri-pnp-admm",
+    "imaging101-mri-sense",
+    "imaging101-mri-t2-mapping",
+    "imaging101-mri-varnet",
+    "imaging101-pet-mlem",
+    "imaging101-photoacoustic-tomography",
+    "imaging101-plane-wave-ultrasound",
+    "imaging101-pnp-mri-reconstruction",
+    "imaging101-ultrasound-sos-tomography",
+    "imaging101-usct-fwi",
+    "imaging101-xray-tooth-gridrec",
+    "rexmle-usenhance",
+    "automedbench-full-brats-t1c-sr-task",
+    "automedbench-full-deeplesion-denoising-task",
+    "automedbench-full-ixi-t1-sr-task",
+    "automedbench-full-ldct-denoising-task",
+    "automedbench-full-lidc-idri-denoising-task",
+    "automedbench-full-mri-sr-task",
+    "automedbench-full-nih-cxr-sr-task",
+    "automedbench-full-ctorg-ctsr-task",
+    "automedbench-full-msd-pancreas-ctsr-task",
+    "automedbench-full-synthrad2025-mrct-task",
+    "automedbench-full-totalsegmentator-ctsr-task"
+  ],
+  "superseded_active_entry_at_audit": "imaging101-eht-black-hole-original",
+  "entries": [
+    {
+      "entry_id": "tb3-named-landmarks",
+      "title": "Locate named anatomy and detect unavailable targets",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/anatomical-landmarks/presentation/briefs/tb3-named-landmarks.md",
+      "brief_sha256": "56d87936815a5a2552bed4c75f3cdb8f10a60b1986d4580aac496c68dfbe9bdf",
+      "basis": {
+        "input": "Three source subjects under four historical protocols: PDDCA 1.4.1 head/neck CT\n0522c0001, AFIDs SNSX T1 MRI sub-C001 from OpenNeuro ds004470, and VerSe sub-verse823\nCT. Full and cropped conditions reuse their subject's native pixels; they are not\nindependent patients. Inputs are volumes, not the reference-centred teaching panels.\n\nPDDCA is 512×512×107 at approximately 1.12×1.12×3 mm, with positive native axes L/P/S.\nAFIDs is 224×342×342 at approximately 0.700×0.702×0.702 mm, with R/A/S axes. VerSe is\n512×512×1214 at 0.71875×0.71875×0.700012 mm, with L/A/S axes. NIfTI affines map native\nindices to RAS millimetres; RAS orientation does not imply MNI/template alignment.",
+        "output": "BR-036: each required name mapped to an RAS-millimetre triple; crop tasks also accept\nnull/empty responses for outside targets. An explicit outside estimate must be\noutside the actual voxel-cell FOV and within the separate 10 mm hidden-reference\ntolerance. BR-038: `space: voxel_ijk_zero_based` and a complete finite `landmarks`\nmap. BR-039/040: the same declared voxel space with a complete name-to-status/point\nmap. The frozen instructions own JSON spelling and validation; formats must not be\ninterchanged across rounds."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-label-audit",
+      "title": "Audit supplied anatomical labels",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-label-audit.md",
+      "brief_sha256": "8c33d21c4470cf54d33bc9c6e564a8bd8d07c8bb4bb9acf9fdfc3988477ba6ab",
+      "basis": {
+        "input": "Patient DICOM / CT and supplied named spatial labels.",
+        "output": "Return affected label identities and spatial witnesses; allow an empty finding list for a clean case."
+      },
+      "review_status_at_audit": "reviewed-scripted-spatial"
+    },
+    {
+      "entry_id": "tb3-mixed-tissue-audit",
+      "title": "Find foreign tissue inside a named mask",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-mixed-tissue-audit.md",
+      "brief_sha256": "6c2aff500d91d116f3245095838e1b00465e6fba6b0b0df5d3cbfd7440994b9e",
+      "basis": {
+        "input": "Native abdominal CT and proposed named masks from retained TotalSegmentator case\n`s1233`, with voxel-to-LPS affines. Positive LPS axes point left, posterior and\nsuperior; coordinates are millimetres. Arrays are authoritative; PNGs are previews.",
+        "output": "Write `answer.json` with one `findings` list. Each finding has `object_id` (the host,\nnot a remaining donor), `included_label` and three finite `point_lps_mm` numbers.\nReturn `{\"findings\":[]}` for an unchanged control. Do not add prose fields or\nduplicate host/class pairs. No contours or exact volume estimates are required."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-supplied-object-identity",
+      "title": "Name supplied anatomical objects",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-supplied-object-identity.md",
+      "brief_sha256": "3b0d8772ae6c10a9e99a92e0b0a465f21c34fa921e6d5ab213444d0da922b8bf",
+      "basis": {
+        "input": "Anonymous abdominal objects in a shared patient frame. BR-013 A01/A02 supply\nindependent binary masks, an overview, object IDs and a label vocabulary. The\nmask files preserve overlaps and map voxel indices to physical LPS millimetres;\nthe surface rendering is a preview. These conditions supply no CT.",
+        "output": "Write `answer.json` with `assignments`, each containing `object_id` and `label`;\ninclude every target object exactly once. V01's overlapping context mask is not\na target. Labels must match the condition's\nvocabulary. The separate A03 audit uses `corrections` and omits unchanged objects."
+      },
+      "review_status_at_audit": "reviewed-scripted-spatial"
+    },
+    {
+      "entry_id": "tb3-unlabeled-anatomy-prototype",
+      "title": "Assign identities to anonymous anatomical objects",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-unlabeled-anatomy-prototype.md",
+      "brief_sha256": "f4270b45c7d29f71a502e7032aa4cdb37292a4c099fbc5f5af851d978c982c14",
+      "basis": {
+        "input": "An integer occupancy volume (`objects.npz`) derived at **3 mm** resolution from\nretained case **32**, plus **17 PLY surface point clouds**. The affine maps voxel\ncoordinates to physical LPS millimetres: positive left, posterior and superior.\nThere are no CT intensities or anatomical labels in the public object metadata.",
+        "output": "Write `assignments.json` as `{\"assignments\":[{\"object_id\":\"o123\",\"label\":\"label-name\"}]}`,\nwith each of the 17 actual IDs exactly once. The example ID and name above are\nplaceholders. Labels must match the source spelling; row order is irrelevant."
+      },
+      "review_status_at_audit": "reviewed-scripted-spatial"
+    },
+    {
+      "entry_id": "tb3-ct-organ-segmentation",
+      "title": "Segment and name ten organs from CT",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-ct-organ-segmentation.md",
+      "brief_sha256": "108f22b054c9580fb77fc66e4115732a0853a85c8c4df36a28d81863ca048562",
+      "basis": {
+        "input": "One CT, 265 × 265 × 401 voxels at 1.5 mm isotropic spacing, with its RAS affine.\nThe finite dictionary contains spleen, both kidneys, gallbladder, liver, stomach,\npancreas, both adrenal glands and duodenum. Numeric filenames map to organ names.",
+        "output": "`01.nii.gz` through `10.nii.gz`, mapped to the supplied names, plus `method.md`.\nEach mask contains only 0 and 1 and uses the native CT grid."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-dental-original",
+      "title": "Segment dental anatomy — Original contract",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-dental-original.md",
+      "brief_sha256": "55d873338c1d9770f05b1bd880fc61aab5c6d96b506642c589ce470be5f359b1",
+      "basis": {
+        "input": "Two ToothFairy3 cases, named only in author/evaluator records. F018 uses the\nofficial viewer pair: 410 × 410 × 264 voxels. F002 uses its archive pair:\n410 × 410 × 274 voxels. Both have approximately 0.3 mm isotropic spacing.\nThe complete volume is supplied as `ct.nii.gz`; voxel values and affine are\npreserved while descriptive NIfTI fields are removed.\n\nF018 archive and viewer arrays are equal, but their third-axis affine metadata\ndiffers. The original trials consistently pair the viewer CT with viewer labels.\nF002 uses its internally aligned archive pair. No orientation conversion is\napplied to these retained tasks or answers.",
+        "output": "`segmentation.nii.gz`, containing allowed integer IDs on the untouched CT grid,\nand `method.md`, describing the chosen method, limitations and uncertainty."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-dental-v2",
+      "title": "Segment dental anatomy — F002 contract v2",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-dental-v2.md",
+      "brief_sha256": "4ed6799ece6b990697e61e042aa39ea77ff219e78431cba8fb6c10eb0612aa78",
+      "basis": {
+        "input": "The complete F002 ToothFairy3 CBCT: **410 × 410 × 274 voxels**, approximately\n0.3 mm isotropic, supplied as `/app/data/ct.nii.gz`. Both conditions have identical\ntarget, labels, common instructions and private evaluator bytes. Case identifiers\nand source records are author context; solver files use neutral names.",
+        "output": "`/app/answer/segmentation.nii.gz`: one exclusive integer NIfTI using allowed IDs\non the unchanged target grid, preserving affine and qform/sform including codes.\n`/app/answer/method.md` documents the method, uncertainty and omissions."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-dental-v3",
+      "title": "Segment dental anatomy — F018 contract v3",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-dental-v3.md",
+      "brief_sha256": "ee16d8d01a3c4a553a1c422ccdf6fe4813adf1df7388b7d1de0bee0957e84109",
+      "basis": {
+        "input": "ToothFairy3 F_018, supplied under an anonymous filename: a single-channel\n**410 × 410 × 264** CBCT, **0.3 mm isotropic**, with stored scaling applied.\nBoth conditions use byte-identical target CT, dense private reference, sparse\nlabel dictionary and scorer. F018 is the original paired viewer-source package;\nno archive-header variant is substituted. The complete volume is supplied.\nSelected sections in the explainer are post-hoc reader views, not solver crops.",
+        "output": "`/app/answer/segmentation.nii.gz`: integer, finite, exclusive labels on the original\nshape, affine, qform/sform and codes. Background is 0; no invented or renumbered IDs.\nRecord inverses of any internal reformatting and use nearest-neighbour mask sampling.\n`/app/answer/method.md` explains method, transforms, omissions and uncertainty.\nBoth retained answers satisfy the frozen validity checks; missing classes or invalid\nfiles do not explain the remaining geometric disagreements."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-mri-importer",
+      "title": "Reconstruct canonical MRI frame associations",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-mri-importer.md",
+      "brief_sha256": "6e1a68f4ec58960d78fc6bccd48ffe48df9581a744fdc5d1772b2aa357924ee1",
+      "basis": {
+        "input": "A decoded pydicom Dataset with signed int16 pixels paired with per-frame metadata. One stack, constant orthonormal orientation, equally spaced parallel slices and a complete time × echo × slice acquisition; no rescaling or compression.",
+        "output": "Return exact `pixels[time,echo,slice,row,column]`, ascending actual `temporal_indices` and `echo_ms`, and `affine_lps[4,4]` mapping `[column,row,slice,1]` to LPS mm. The first orientation vector advances columns and PixelSpacing is `[row,column]`. Origin is the first sorted slice’s first pixel centre. Singleton time/echo axes stay present."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-segmentation-calibration",
+      "title": "Calibrate promptable segmenters on CT slices",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-segmentation-calibration.md",
+      "brief_sha256": "212fbb96afd43a90742699a7222b88a693be141a061de9b79058be4e0c4e9aed",
+      "basis": {
+        "input": "One known public TotalSegmentator v2.0.1 CT, **s1233**, on its original\n265 × 265 × 401 grid with 1.5 mm isotropic spacing. Six reference labels select\nliver, right kidney, gallbladder, pancreas, right adrenal and duodenum.\nThe 25th, 50th and 75th percentiles of each organ's nonempty slice-index list\ngive **18 correlated organ/slice pairs from one patient**.\n\nEach input is a full 265 × 265 axial section, clipped to **[-160,240] HU**,\nscaled to uint8 and replicated into three grayscale RGB channels. Native\ndisplay x=i, y=j increases down and k identifies the slice. No radiological flip\nor target-mask resampling is applied. Reader detail crops are not model inputs.",
+        "output": "For every model/backend/sample/box: a 265 × 265 Boolean mask, native box and\nslice ID, synchronized encode/decode durations, predicted model quality and\nreference-based measurements. All **116 masks** and their receipts remain local.\nThe model quality-head score is distinct from measured Dice and is not assumed\nto be calibrated confidence."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-history-sourcing",
+      "title": "Investigate historical task sources",
+      "repository_id": "tb3",
+      "group_id": "historical",
+      "automatic_completion": false,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-history-sourcing.md",
+      "brief_sha256": "6609893386f67571f941f44ccf2b2c18bc83f88583b064a10af0ccdc68eca21e",
+      "basis": {
+        "input": "The retained index has 395 records. Excluding 142 automatic reviews and 16 other long-title records leaves 237 navigable records. The historical study selected nine conversation exports; eight exact excerpts from six sessions appear in the explainer.",
+        "output": "An auditable source screen linking eight excerpts to five candidates: table lineage, simulated chat recovery, annotation QA, patient-plane SVG and untested vector-crop ownership. The four executed contracts retain their individual results and controls."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-mask-reasoning-study",
+      "title": "Study geometric shortcuts in mask reasoning",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-mask-reasoning-study.md",
+      "brief_sha256": "dbc0ce1096940e06b6bdfcec1683197667a1a93622e78dd2d686b04ca6275d02",
+      "basis": {
+        "input": "Eight retained, unmodified TotalSegmentator source-label arrays in their physical\nLPS frames: cases 19, 28, 32, 46, 61, 74, 83 and 95. The author screen uses original\nmasks, not the earlier BR-004 planted edits. BR-010 separately audits seven\nhistorical Terra/Sol tool trajectories.",
+        "output": "A provenance-backed author assessment with exact baseline predictions, counterexamples,\nsolver/reference boundaries and reopening conditions. No model answer file is requested."
+      },
+      "review_status_at_audit": "reviewed-scripted-spatial"
+    },
+    {
+      "entry_id": "tb3-anatomy-curation",
+      "title": "Curate source anatomy and reference quality",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/anatomy-audit/presentation/briefs/tb3-anatomy-curation.md",
+      "brief_sha256": "205eae4e0632e4f903d999c6dccd057af80b8ba61f4bb37c31705a675a212148",
+      "basis": {
+        "input": "Seven unchanged vertebral masks, seven centroid JSON files and seven source PNG\npreviews: 406 upper/lower, 547, 585, 581, 642 and 823. Their 145 annotated instances\ninclude three repeated identities across the overlapping 406 scans. Full CT volumes,\nrib/sacral masks and validated fracture grades were not acquired for this screen.",
+        "output": "| Card | Source | Retained decision and reopening condition |\n| --- | --- | --- |\n| C01 | 547 / 585 | Both have 25 objects, but source partitions are 7C/13T/5L and 7C/12T/6L. Needs anonymous rib context or independent proof that supplied facet geometry uniquely resolves the convention. Cross-patient and sampling differences remain. |\n| C02 | 406 | Preservation candidate. T10 volume is 13.79 mL versus T9 37.49 and T11 45.17 mL; posthoc size flagging cannot separate faithful anatomy from error. Upper C1 mask lacks a centroid entry; cause unresolved. |\n| C03 | 823 | Typical-numbering calibration only. Both ordering baselines recover 24/24; no pathology-free certification. |\n| C04 | 642 | Reserve: C5-C7 + 11T + 6L, cropped upper cervical coverage, about 3 mm left-right sampling, missing contextual masks. Needs anchor, morphology and nomenclature checks. |\n| C05 | 581 | Reject an exact mask-only key. Explicit source ambiguity and omission policy for partly sacral-fused vertebrae preclude inventing a missing-object error. An uncertainty task needs an acceptable-answer set. |"
+      },
+      "review_status_at_audit": "reviewed-scripted-spatial"
+    },
+    {
+      "entry_id": "tb3-cardiac-contour-feasibility",
+      "title": "Study cardiac reconstruction with supplied contours",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/cardiac-motion/presentation/briefs/tb3-cardiac-contour-feasibility.md",
+      "brief_sha256": "a4ed5f9ece67e1a42e18f188265c4ef068e22c37008245b7131e523c6f29b409",
+      "basis": {
+        "input": "Calibrated fetal ultrasound views and source-derived contours.",
+        "output": "Construct and assess plausible time-varying cavity geometry."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "tb3-cardiac-anchor-feasibility",
+      "title": "Study motion recovery from sparse contour anchors",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/cardiac-motion/presentation/briefs/tb3-cardiac-anchor-feasibility.md",
+      "brief_sha256": "f722a2d6cfe196c7f8e73e8a8a6368b7a9a0ed4debca45a34442cc20775153d5",
+      "basis": {
+        "input": "Four calibrated image sequences over a cardiac cycle.",
+        "output": "Recover intervening cavity motion and assess geometry/volume errors."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "tb3-cardiac-material-feasibility",
+      "title": "Study dynamic myocardial models and reference mechanics",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/cardiac-motion/presentation/briefs/tb3-cardiac-material-feasibility.md",
+      "brief_sha256": "78c33c90ea498ff9ed81a39feb8b8a38e82f9e9410d86d417061c05f251774df",
+      "basis": {
+        "input": "STRAUS synthetic ultrasound, initial material mesh and reference mechanics for author controls.",
+        "output": "Assess material motion, strain, mesh validity and reference limitations."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "tb3-cardiac-material-motion",
+      "title": "Recover cardiac material motion and compute mechanics",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/cardiac-motion/presentation/briefs/tb3-cardiac-material-motion.md",
+      "brief_sha256": "1616a733ec2532be2e876324f83060f875171236890268b177a4f25cd349b130",
+      "basis": {
+        "input": "Synthetic calibrated ultrasound views or full volumes, depending on stage.",
+        "output": "Produce reusable motion reconstruction and finite-deformation fields with physical consistency."
+      },
+      "review_status_at_audit": "reviewed-scripted-spatial"
+    },
+    {
+      "entry_id": "tb3-real-echo-reconstruction",
+      "title": "Recover a dynamic cavity from real ultrasound",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/cardiac-motion/presentation/briefs/tb3-real-echo-reconstruction.md",
+      "brief_sha256": "fc54c631f14519d63df506039db13dbc34ffd4ef7f8a1d16d4214e16f9263b9a",
+      "basis": {
+        "input": "Calibrated planes from a real 3D echo sequence.",
+        "output": "Produce a dynamic closed LV cavity surface with shared connectivity and uncertainty."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "tb3-clinical-cavity-adaptation",
+      "title": "Adapt a cavity model and measure contraction",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/cardiac-motion/presentation/briefs/tb3-clinical-cavity-adaptation.md",
+      "brief_sha256": "0b683ba7bedc945a198e2c3aca6e9a85fc93fa7f14d1ddc787612f96f137448b",
+      "basis": {
+        "input": "The primary input is `volumes.npy`, **18 consecutive acquired B-mode frames**\non a `[18,134,82,93]` Cartesian grid in `[t,z,y,x]` order. Spatial sampling is\n**1 mm** along each axis. These are resampled native images, not synthetic\nmotion, beat stitching or a segmentation volume.\n\nSource: EchoXFlow `recording_8aef1d9a69fc3bae`. Native indices 3–20 of 25\nframes align with the annotated beat at about 22.6 volumes/s. The author applies\nthe published scanner-to-render convention `(-X,Z,Y)`, then an initial-surface\nPCA basis and an 18 mm padded crop. Both axes and crop use only the initial\nsurface. The local axes are not adjudicated anatomical planes.",
+        "output": "`prediction.npz` contains finite `points[T,N,3]` in mm and shared integer\n`faces[M,3]`, with at most 10,000 vertices and 20,000 triangles. Surfaces must\nbe closed and consistently oriented, including the declared basal closure.\nThe retained outputs have **1,946 vertices and 3,888 triangles** per frame.\n\nAlso provide executable `solve.py --input ... --output ...`, `method.md`,\ninspectable overlays and `summary.json`: one independently calculated mL volume\nper frame, `EF=100*(max(volume)-min(volume))/max(volume)`, zero-based ED/ES indices,\nuncertainty and a bounded functional interpretation. The four supplied pilot\ncategories are EF below 30%, 30–40%, above 40% to below 54%, and at least 54%.\nThese task bins are not a complete clinical guideline or a heart-failure diagnosis."
+      },
+      "review_status_at_audit": "reviewed-scripted-spatial"
+    },
+    {
+      "entry_id": "tb3-mask-to-mechanics",
+      "title": "Construct deforming meshes from supplied masks",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/cardiac-motion/presentation/briefs/tb3-mask-to-mechanics.md",
+      "brief_sha256": "056e44433349f7a8f0dc5f96d026ce151dd1d9d87fa587942f8d8aa6287d748e",
+      "basis": {
+        "input": "Full-cycle binary masks; paired condition adds registered ultrasound.",
+        "output": "Build a shared tetrahedral mesh across phases and compute F, Green–Lagrange E and J."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "tb3-aneurysm-localization",
+      "title": "Search for aneurysms and preserve negative cases",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/lesion-localization/presentation/briefs/tb3-aneurysm-localization.md",
+      "brief_sha256": "419c3a875fc1a197e3c62c7bfc960308c3014c35182449c057d3c29aa3ae8d54",
+      "basis": {
+        "input": "Three distinct public OpenNeuro ds003949 examinations. Each task includes original\nand source skull-stripped TOF-MRA, with unchanged sample values and RAS affine.\n\n| Case | Native grid | Spacing i/j/k, mm |\n| --- | --- | --- |\n| N01 | 350 × 448 × 144 | 0.46875 / 0.46875 / 0.70000 |\n| N02 | 512 × 512 × 140 | 0.41016 / 0.41016 / 0.55000 |\n| N03 | 350 × 448 × 160 | 0.46875 / 0.46875 / 0.70000 |",
+        "output": "| Case | Saved points | TP / FP / FN | Evidence condition |\n| --- | --- | --- | --- |\n| N01 | `[]` | 0 / 0 / 1 | Reference miss; no source lookup observed |\n| N02 | `[[312,213,94]]` | 1 / 0 / 0 | Matching localization; no source lookup observed |\n| N03 | `[]` | 0 / 0 / 0 | Negative after source and annotation-inventory exposure |\n\nAll three completed normally; one attempt per selected scan. Do not convert the\nthree outcomes into a population success-rate estimate or causal method ranking."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "wsi-camelyon-search",
+      "title": "CAMELYON16 · 从全片找转移灶",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/lesion-localization/presentation/briefs/wsi-camelyon-search.md",
+      "brief_sha256": "4cdb12ad5b673000c20c98e351ac2212bc3a9c20a406c005789abacb99b857e3",
+      "basis": {
+        "input": "- **Sample:** `tumor_091`, a positive H&E lymph-node slide.\n- **Image:** pyramidal TIFF, 61,440 × 53,760 pixels at 0.227273 µm/pixel.",
+        "output": "- `lesions.json`: `slide_id` and `detections[]` with `x_px`, `y_px`, `confidence`, and optionally `polygon_px`.\n- Coordinates use level 0, origin at the upper left."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "wsi-hiesd-map",
+      "title": "HiESD · 给每条胃组织建立病变地图",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/lesion-localization/presentation/briefs/wsi-hiesd-map.md",
+      "brief_sha256": "ff23e9fcaee7c0d7e204f3e4c2fee9682f35f6c0552d8d7ac654ef07b3d270a8",
+      "basis": {
+        "input": "- **Sample:** one H&E gastric ESD slide with two tissue strips.\n- **Image:** 39,887 × 28,702-pixel SVS at 0.2458 µm/pixel; a 64× downsampled thumbnail is also available.",
+        "output": "- `strip_map.json`: `strip_id`, `regions[{class, polygon_level0_px, confidence}]`, and a per-strip summary.\n- Multiply XML thumbnail coordinates by 64 to map them to level-0 pixels."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "wsi-hiesd-patches",
+      "title": "HiESD · classify annotated gastric tissue patches",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/lesion-localization/presentation/briefs/wsi-hiesd-patches.md",
+      "brief_sha256": "f0fd49c20c19edb7a92949968f0b8ed06c88ae231d18e7a574c55d111afe7560",
+      "basis": {
+        "input": "One 39,887 × 28,702-pixel H&E SVS, `e4442edf…`, at 0.2458 µm/px.",
+        "output": "`labels.json`: `{\"labels\":[{\"id\":\"patch_ID\",\"class\":1}, ...]}`. Every ID needs\none code from 0–6."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "wsi-hubmap-inventory",
+      "title": "HuBMAP · 清点与测量肾小球",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/lesion-localization/presentation/briefs/wsi-hubmap-inventory.md",
+      "brief_sha256": "0a7827f8d81daa230ece30a350b0ad7a5d2e385fd33c60a3313684a41d28c4dc",
+      "basis": {
+        "input": "PAS kidney training TIFF `aaa6a05cc`: **13,013 × 18,484 level-0 pixels**, with OME spacing **0.65 µm/pixel** on both axes. Upper-left origin; x increases right and y down.",
+        "output": "`glomeruli.geojson` and `inventory.csv`: `id, center_x_px, center_y_px, area_um2`. Use polygon area centroids consistently; **pixel area × 0.65²** gives µm². The displayed worked example comes from source reference, not an agent answer."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "wsi-tiger-context",
+      "title": "TIGER · 在组织区室中计数免疫细胞",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/lesion-localization/presentation/briefs/wsi-tiger-context.md",
+      "brief_sha256": "e7e9b417ae0f19b3405d0cd585c1a0b04fdd21a9283dc808d70ebdf9f73cc24a",
+      "basis": {
+        "input": "- **Sample:** `114S`, a breast H&E whole slide at 0.456694 µm/pixel.\n- **Paired material:** three source-defined ROIs, tissue masks, whole-slide XML, and COCO cell boxes.",
+        "output": "- `cells.csv`: `x_px, y_px, class, compartment`.\n- `regions.geojson`: compartment outlines.\n- `summary.csv`: `compartment, n_cells, area_mm2, density_per_mm2`.\n- Map ROI coordinates back to the whole slide using the crop origin."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-longitudinal-mri",
+      "title": "Compare lesion extent and interpretation across MRI visits",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/longitudinal-reading/presentation/briefs/tb3-longitudinal-mri.md",
+      "brief_sha256": "fa748f36f6185b3db869f006799f57182f3d0dd46ceed02e890b30717b1256c4",
+      "basis": {
+        "input": "Full reconstructed MRI NIfTI volumes for visits V1 and V2, not raw k-space. P01/P02/P03 contain 22/40/122 volumes and 1,288/2,936/1,930 source frames; split localizers account for many small volumes. Metadata supplies sequence names, acquisition phase offsets, voxel spacing, native RAS affines and relative exam days. Cross-examination image positions are not registered. The teaching player shows selected slices, not the complete solver packet.",
+        "output": "/app/answer/assessment.json with observations, primary_location, comparison (including size_measurements_mm), impression and forecast; report.md plus analysis code and key figures. The saved P02 answer reported 31.0 mm at V1 and null at V2. That is valid syntax, not adjudication that the residual extent is unmeasurable."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-longitudinal-ct-original",
+      "title": "Track CT lesions — Original image-only contract",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/longitudinal-reading/presentation/briefs/tb3-longitudinal-ct-original.md",
+      "brief_sha256": "8d0a7a2bf44eca67f1dd7e37f737454be4426f4b01bf9c2a07e804eb24a9d818",
+      "basis": {
+        "input": "`/app/data/baseline.nii.gz` and `followup.nii.gz`: full native CTs, respectively 512 × 512 × 261 and 512 × 512 × 274 voxels. In-plane spacing is 0.822265625 and 0.84765625 mm; both have 3 mm slice spacing. Each native affine maps zero-based voxel centers to RAS mm. Visits are not registered.\n\nSource case 0a09c8844b from Longitudinal-CT v3 is reader provenance, **not solver-visible identity**. Neutral filenames and scrubbed free-text NIfTI metadata preserve all original image pixels and geometry. No dataset name, source identifier, diagnosis, clinical history, target counts or locations were supplied.",
+        "output": "- `baseline_instances.nii.gz` and `followup_instances.nii.gz`: 3D integer maps on each exact input shape/affine. Zero is background; IDs are 1–65535, at most 4096 instances per visit.\n- `events.json`: `schema_version: 1`, complete event groups with per-visit ID lists.\n- `report.md`: method, uncertainty and representative image evidence citing a filename and zero-based native slice index. Preserve scripts and views under `/app/work`.\n\nAn empty mask pair with `groups: []` and a nonempty report can satisfy the artifact contract; validity does not establish a scientific or clinical pass."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-longitudinal-ct-revised",
+      "title": "Track CT lesions — Revised inclusion and instance contract",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/longitudinal-reading/presentation/briefs/tb3-longitudinal-ct-revised.md",
+      "brief_sha256": "a522ac62e38d4823af514a67c703cbf440f6118bf6f1ca07c5778b3d03cfc884",
+      "basis": {
+        "input": "Full native baseline and follow-up CT volumes, named neutrally. The first pair has 261/274 slices at 3 mm spacing; the second has 615/743 slices at 2.0/2.5 mm spacing. Preserve each volume's own grid and affine. Visits are not registered by this explanation.",
+        "output": "- `baseline_instances.nii.gz` and `followup_instances.nii.gz`: exact native shape and affine; integer background 0 and local IDs 1–65535, at most 4096 per visit.\n- `events.json`: schema 1; complete local-ID membership and event cardinalities. Persistent is 1→1, merging ≥2→1, new 0→1 and disappearing 1→0.\n- `report.md`: method, uncertainty, native candidate coordinates, inclusion decisions/reasons and representative filename plus zero-based native-slice evidence. Retain useful scripts/views under the work directory.\n\nThere is **no probability sidecar** in this revision. Empty masks with an empty event list may satisfy the mechanical contract; this does not establish scientific success. The later comprehensive-candidate task is separate."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-longitudinal-ct-candidates",
+      "title": "Track CT lesions — Comprehensive candidate contract",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/longitudinal-reading/presentation/briefs/tb3-longitudinal-ct-candidates.md",
+      "brief_sha256": "4b56eebd1b579e0ab2404a10259c3c945e0019c5eaa2618774dd4b5edea1ec32",
+      "basis": {
+        "input": "Two full native CT volumes at different visits.",
+        "output": "Produce instance masks, links/events, report and one probability/reason sidecar row per candidate."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-localized-candidate-recognition",
+      "title": "Judge supplied CT candidates before linking them",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/longitudinal-reading/presentation/briefs/tb3-localized-candidate-recognition.md",
+      "brief_sha256": "abf4482f466f667137d1071253eef8e2673b737e2d50cf73d419852d5532e58e",
+      "basis": {
+        "input": "The same full Longitudinal-CT v3 case 0a09c8844b baseline/follow-up CT pair used in the earlier revised whole-volume task. Native grids are 512×512×261 and 512×512×274, with 0.822265625/0.84765625 mm in-plane spacing and 3 mm through-plane spacing. Visits are not registered.",
+        "output": "Five files: baseline/follow-up integer instance NIfTIs, `events.json`, `report.md`, and `candidate_judgments.json`. Every positive ID appears once in the appropriate event list. Zero masks with empty events and supported negative/indeterminate judgments are permitted; they do not declare disappearance or absence of other disease."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-ct-context-inference",
+      "title": "Infer only clinical context supported by CT",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/longitudinal-reading/presentation/briefs/tb3-ct-context-inference.md",
+      "brief_sha256": "b7ffb0c2d1bb03cfe9171c6001e39fc3fb110f3d04e6da8447a651221404f15a",
+      "basis": {
+        "input": "deidentified baseline and follow-up full CT volumes, 512 × 512 × 615 and 512 × 512 × 743 voxels, with cleaned NIfTI headers. Native i/j/k axes increase L/P/S; affines map to RAS millimeters.",
+        "output": "`context.json` with all nine field records and a companion `report.md` with method, native coordinates and limits.\n\nThe retained answer infers suspected metastatic liver disease and probable prior right inguinal/local intervention. It leaves the other seven fields unknown; melanoma is an alternative, not exact identification. Numeric confidences describe the submitted assessments and have no measured calibration. The surgical suggestion lacks an individual reference for adjudication."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-report-backed-reading",
+      "title": "Read imaging against private clinical reports",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/longitudinal-reading/presentation/briefs/tb3-report-backed-reading.md",
+      "brief_sha256": "1dda31dc0b39c1993e680e4ddbc0165288aee5c94cf9d69ebe80c6827f9aac92",
+      "basis": {
+        "input": "Proposed images plus source clinical reports.",
+        "output": "Produce an evidence-qualified diagnostic reading under a defined report-assistance boundary."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "tb3-oblique-pose",
+      "title": "Recover the pose of an oblique CT section",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/registration/presentation/briefs/tb3-oblique-pose.md",
+      "brief_sha256": "a91f8be4b1a04efa9de400670dcff12e5d2e1073a9bde797cd8f1bb77108727c",
+      "basis": {
+        "input": "An oblique CT section and a target CT volume.",
+        "output": "Return the rigid pixel-to-patient 4×4 transform."
+      },
+      "review_status_at_audit": "reviewed-scripted-spatial"
+    },
+    {
+      "entry_id": "tb3-respiratory-correspondence",
+      "title": "Transfer landmarks across respiratory deformation",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/registration/presentation/briefs/tb3-respiratory-correspondence.md",
+      "brief_sha256": "6a137e8411eac6c87327e1dd2ca396d9970ca41b33f05f6ccd2cc5cabe7f439c",
+      "basis": {
+        "input": "Learn2Reg LungCT 1.11 supplies paired exhale/inhale CTs and manual corresponding landmarks. The retained cases are cropped, resampled and affine prealigned. Expiration coverage is incomplete. Each volume has shape **192 × 192 × 208**, spacing **1.75 × 1.25 × 1.75 mm**, and its own explicit voxel-to-world matrix. Use the task's **dataset-world** convention; do not assert original patient LPS/RAS.\n\n| Frozen task | Solver-visible source | Target |\n| --- | --- | --- |\n| BR-021 case 1, `deform-2d` | Complete 118 × 171 oblique array, fractional query pixels, `view.json` pose and spacing | Full inhale CT |\n| BR-021 case 1, `deform-3d` | Full exhale CT and exact manual source query coordinates | Same full inhale CT and eight targets |\n| BR-024 case 3, `deform-harder-patient3` | Complete 121 × 189 oblique array, fractional query pixels, pose and spacing | Full inhale CT |\n| BR-028 case 3, `deform-patient3-source3d` | Adds only full source `reference_volume.npz`; retains the BR-024 slice and queries | Identical target, truth and grader |\n\nArray dimensions above are rows × columns. The full-source files contain `hu` and `voxel_to_world`. BR-023 reuses the exact case 1 2D freeze; its four later author component interventions are diagnostic assistance, not four additional model trials or new source contracts.",
+        "output": "Write `/app/answer/points.json` containing `query_ids` and eight finite XYZ rows in `points_world_mm`, in the requested order. Output coordinates are dataset-world millimetres."
+      },
+      "review_status_at_audit": "reviewed-scripted-spatial"
+    },
+    {
+      "entry_id": "tb3-registration-analysis",
+      "title": "Analyze a single-view registration failure",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/registration/presentation/briefs/tb3-registration-analysis.md",
+      "brief_sha256": "dd9c681ac0c91c8100970978d64bc8d640a3ee5ba87c662ccb2967ec94fbcfa4",
+      "basis": {
+        "input": "The original solver received a complete 171 × 118 exhalation CT section, a complete\n192 × 192 × 208 inhalation target CT, eight fractional-pixel queries, 1.25 mm\nin-plane spacing and the known source pose. No full source volume was supplied.\nCoordinates are dataset-world millimetres; native patient LPS/RAS is not asserted.\nThe author additionally retained source code, final answers and reconstructed stages.",
+        "output": "A source-linked attribution report and reader explainer with separate observed\ndefects, controlled comparisons, counterexamples and unresolved alternatives.\nThe underlying solver output remains eight ordered `query_ids` and finite XYZ rows\nin `points_world_mm`, saved to `/app/answer/points.json`."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "resect-mri-us-correspondence",
+      "title": "Audit MRI-to-intraoperative-ultrasound correspondences",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/registration/presentation/briefs/resect-mri-us-correspondence.md",
+      "brief_sha256": "2df30acffc006042d0fd807d966341debdd4be754e331524dfaad6d210269d94",
+      "basis": {
+        "input": "Full native NIfTI volumes: T2-FLAIR MRI (about 1 mm voxels) and tracked B-mode 3D\nultrasound before resection (about 0.2 mm isotropic) from the same operation.\nThe three locally staged cases each contain 15 published point pairs.",
+        "output": "Return `us_voxel_ijk` (three finite continuous native US voxel coordinates),\n`confidence` and a short `evidence` description. The evaluator maps the voxel\ncoordinate through the native US affine into NIfTI RAS+ world millimetres.\n\nFor the selected Case 2 teaching query, the **unchanged control** is\n`us_voxel_ijk = [113.000, 229.394, 164.959]` (rounded for display),\nconfidence 0 and evidence \"Unchanged teaching control; no anatomical claim.\"\nThis is not a model answer or a claim that the initial point is anatomically correct."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-resect-point-pilot",
+      "title": "Correct two MRI-to-ultrasound point correspondences",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/registration/presentation/briefs/tb3-resect-point-pilot.md",
+      "brief_sha256": "aaffebf4c7574e55c08227b04765cb69e54cb80547eb8f9e736798a6d84a3845",
+      "basis": {
+        "input": "Two complete native FLAIR / pre-resection 3D ultrasound pairs, with one MRI\nworld-coordinate query per case. Source Case 1 tag index 1 and Case 3 tag index 12\nwere selected before inference using published paired landmarks and mask centroids.\nThese are two selected public training points, not blinded or held-out sampling.",
+        "output": "Actual output keeps A at `[44.528484,-31.304113,29.970621]` with confidence 0.82\nand moves B to `[-30.7,14.4,14.4]` with confidence 0.71. Confidence is subjective,\nnot calibrated. The retained report cites visual inspection and local correlation."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-vessel-source-screen",
+      "title": "Curate vessel connectivity tasks",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/tubular-anatomy/presentation/briefs/tb3-vessel-source-screen.md",
+      "brief_sha256": "39060c481ebd53c68f44f40a4d87021228c2b7c0886d8e810064dad2c30e5bf0",
+      "basis": {
+        "input": "Four complete public training MRA volumes: `004`, `007`, `009`, `012`, selected\nafter screening twelve edge-label files. Displayed projections use source Circle\nof Willis boxes. CTA labels were checked; CTA images were not reviewed.",
+        "output": "Four `source_candidate_only` records; **zero admitted defects and trials**.\nNo natural faulty prediction or numeric verifier thresholds were obtained.\n\nThe proposed future task gives MRA, a proposed binary mask and a broad editable\nregion → `corrected_mask.nii.gz`, same grid, preserved outside. Reconnect,\ndisconnect and unchanged remain possible. No answer labels or GT-shaped corridor."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-vessel-connection-repair",
+      "title": "Repair a vessel connection without damaging anatomy",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/tubular-anatomy/presentation/briefs/tb3-vessel-connection-repair.md",
+      "brief_sha256": "20adfadc3e1b12bcfa2091382e45b048f669547489f25baef04842c56d81a1f3",
+      "basis": {
+        "input": "Native MRA plus a supplied vessel mask.",
+        "output": "Return a repaired or appropriately unchanged vessel mask."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "ours",
+      "title": "Repair a vessel gap and unfold the route",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/tubular-anatomy/presentation/briefs/br030.md",
+      "brief_sha256": "f2d757aedf18e60690e7f3e97976a6fdc91ec21c64a1a408395b51013df94fee",
+      "basis": {
+        "input": "An ImageCAS CT angiography crop.",
+        "output": "Corrected mask, centerline in physical mm, eight curved CT planes with coordinates/distances, and a closed mesh."
+      },
+      "review_status_at_audit": "reviewed-scripted-spatial"
+    },
+    {
+      "entry_id": "tb3-airway-repair",
+      "title": "Repair an airway route while preserving supplied fragments",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/tubular-anatomy/presentation/briefs/tb3-airway-repair.md",
+      "brief_sha256": "f2d92a1a437cd1116e547d85af11580dfb516832bb59ee17f249da124a0d14c8",
+      "basis": {
+        "input": "AeroPath CT in HU. Three requests, A01–A03, come from **two patients**; A01 and A03\nshare exactly the same CT and prediction crop. The author selected crops using\nsource references. These are natural omissions in the retained released-model\nprediction, with no injected defect.",
+        "output": "Per request: same-grid binary `corrected_mask.nii.gz`, ordered `centerline.npy`\n(N×3 RAS+ mm; 0.05–0.75 mm steps), and `cpr.npz`. CPR HU has shape **8×N×65**, with\nsource coordinates, angles, offsets −8…+8 mm at 0.25 mm, and cumulative arc length.\nThe frozen contract specifies parallel-transport frames and trilinear CT sampling.\nOptional posttrial PLYs are author views, not required outputs."
+      },
+      "review_status_at_audit": "reviewed-scripted-spatial"
+    },
+    {
+      "entry_id": "tb3-topbrain-screen",
+      "title": "Screen TopBrain predictions for a repair task",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/tubular-anatomy/presentation/briefs/tb3-topbrain-screen.md",
+      "brief_sha256": "1cfe79d48424c5598aa16ac31364dd99c079a32d9dc728a3fe0cbcd53ed1e9be",
+      "basis": {
+        "input": "Five public training/development MRA volumes: 004, 007, 012, then 006 and 011.\nThe last two were selected because reference labels identify third-A2/A3 variants.\nImages use native LPS-oriented voxel axes and NIfTI RAS+ physical coordinates in mm.",
+        "output": "A source-screening disposition with case IDs, provenance, candidate mechanism,\nreference ambiguity and admission status. The retained author calibration also\nhas a full labeled NIfTI, 344-point RAS+ centerline, eight 344×51 CPR rasters with\nsource coordinates and signal values, and a BA-plus-R-SCA PLY mesh. These are\ncalibration outputs, not scored coding-agent submissions."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "tb3-named-coronary",
+      "title": "Trace a named coronary artery",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/tubular-anatomy/presentation/briefs/tb3-named-coronary.md",
+      "brief_sha256": "d7cd7f60cc36a37f938ebedf85c952e2831b9b993100402f842a600aebbdba69",
+      "basis": {
+        "input": "Full native coronary CTA.",
+        "output": "Return the requested artery centerline in patient coordinates."
+      },
+      "review_status_at_audit": "reviewed-scripted-spatial"
+    },
+    {
+      "entry_id": "tb3-coronary-inventory",
+      "title": "Discover and name coronary branches",
+      "repository_id": "tb3",
+      "group_id": "tb3-research",
+      "automatic_completion": true,
+      "brief": "groups/tubular-anatomy/presentation/briefs/tb3-coronary-inventory.md",
+      "brief_sha256": "e9e3c92af3a5f6a1e54dfffc3f25a1be6be5f0aa0b9bb0a6206b0499b8055359",
+      "basis": {
+        "input": "Full native CTA.",
+        "output": "Return a coronary branch inventory with labeled centerline polylines."
+      },
+      "review_status_at_audit": "reviewed-scripted-spatial"
+    },
+    {
+      "entry_id": "healthagentbench",
+      "title": "Decide which findings are present in a chest CT",
+      "repository_id": "healthagentbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/healthagentbench.md",
+      "brief_sha256": "0c37712d4834ec0ed52d9cb3cc2c8b4233bc9da2f90668e98f9bdae39bcf62ef",
+      "basis": {
+        "input": "One non-contrast chest CT volume (NIfTI).",
+        "output": "predictions.txt: one exact label name and yes/no answer per line."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "abra",
+      "title": "Outline a lung nodule inside an imaging viewer",
+      "repository_id": "abra",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/abra.md",
+      "brief_sha256": "95e8f06d592c42fb11716b4e31388d2bce7a31f1f52ae241e8b05f75000ccbaa",
+      "basis": {
+        "input": "LIDC-IDRI-0003 CT from ABRA's pinned study manifest: 140 axial images, each\n512 × 512 pixels. The retained source series has 0.820312 mm in-plane spacing\nand 2.5 mm slice steps. Zero-based slices are ordered by ascending patient-z.\nThe task expects an OHIF/Orthanc environment; this explanation is a calibrated\nsource visualization, not a replay of that environment.",
+        "output": "An annotation attached to the active CT series and the intended slice. The\npolygon tool takes `label`, `slice_index` and `points: [[x,y], …]`, and declares a\nsegmentation ID, segment index, slice index and filled-pixel count in its return.\nThe explainer's dashed reference-copy polygon is an author illustration of this\ncontract, not a saved agent result. No live OHIF interaction was executed."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "bcer",
+      "title": "Complete a prostate MRI processing workflow",
+      "repository_id": "bcer",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/bcer.md",
+      "brief_sha256": "820e6cfa35ac392638b874eb476d27447c557a1e852425ed4ba3d6288c2ac2ac",
+      "basis": {
+        "input": "Prostate MRI: T2-weighted plus ADC and/or high-b-value diffusion imaging.",
+        "output": "Prostate mask, lesion-candidate JSON, feature table and report JSON."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "automedbench",
+      "title": "Build a kidney and tumor segmentation pipeline",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench.md",
+      "brief_sha256": "49b75ac01eb5957c0230c15f06ca0cebd63853022aa73495c2201f8ebcac6c68",
+      "basis": {
+        "input": "Abdominal CT inputs; the inspected task config uses ct.nii.gz.",
+        "output": "Kidney/tumor segmentation predictions plus the required staged workflow artifacts; exact submission details belong to the domain branch."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-tsg",
+      "title": "Build a multi-organ CT segmentation pipeline",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-tsg.md",
+      "brief_sha256": "63616e958d93bb11d8cf7f1a0f56d0b9981c9b92591bb88ad1d41b86d32c6a14",
+      "basis": {
+        "input": "Forty CT cases in the packaged Lite release. This example is TSG_00000001, mapped by the release to TotalSegmentator source s1366.",
+        "output": "One dseg.nii.gz per CT, with integer values 0–117; 0 is background."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "imaging101",
+      "title": "Reconstruct an image from sparse CT projections",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101.md",
+      "brief_sha256": "78075bd1f34d3d725453da0f428c05378ca1f50fd67a6a714cce82c974c3e75a",
+      "basis": {
+        "input": "A sparse sinogram of 256 detectors × 30 angles, plus projection angles and acquisition metadata.",
+        "output": "A reconstructed image array. Input and reference data have explicit dimensions in the task README."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "radagent",
+      "title": "Write a chest CT report using specialist tools",
+      "repository_id": "radagent",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/radagent.md",
+      "brief_sha256": "274ff6476bbe8ddc495051ac36f58b88b8b1183d4d59162439528fbed99a0188",
+      "basis": {
+        "input": "A chest CT NIfTI volume readable by the tool services. The pinned minimal-inference agent receives the request and image path as text; its specialist backends read the image. CT-RATE batch mode resolves paths from a report-generation manifest.",
+        "output": "The single-case CLI streams a JSON list of system/user, assistant and tool messages to stdout. The final assistant action contains an `answer` string. Batch mode writes per-case files under `trajectory/` or `fails/`; successful traces append `status: success` and `reward: 0.0`. That zero is placeholder metadata, not a measured report-quality score."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "rexmle",
+      "title": "Learn to label the brain’s arterial ring in CTA",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle.md",
+      "brief_sha256": "cfdcf1e6bb4f442776d485ab3ae23ec4aa11feaabd50113611dba48fd3f6f504",
+      "basis": {
+        "input": "Labeled training CTA volumes and test CTA volumes. The pinned preparer sorts matched CTA filenames and applies an 80/20 split with seed 42. Replaying it on filenames from the complete 125-pair TopCoW 2024 release produces 100 training and 25 test cases.",
+        "output": "`submission.csv` contains `image_id`, `modality` and `predicted_mask_path`, linking each test ID to an integer-label NIfTI in `predictions/`. The source example for 012 uses `CTA` and `predictions/topcow_ct_012_0000.nii.gz`. Preserve native shape, spacing, origin, direction and label identities. The inspected grader checks ID sets and files but does not enforce modality or duplicate row counts; follow the declared contract."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "healthagentbench-trial-matching",
+      "title": "Match a patient to eligible trials",
+      "repository_id": "healthagentbench",
+      "group_id": "nonimaging-healthcare",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/healthagentbench-trial-matching.md",
+      "brief_sha256": "bc871955c9b2cb0220b4f6c5a10244e6fa29a9375066a49d47ef244fa4913b35",
+      "basis": {
+        "input": "One synthetic patient admission note in topic.txt.",
+        "output": "eligible_trials.txt: one NCT identifier per line, ordered by confidence; include all eligible trials and no excluded or unrelated trials."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "healthagentbench-quality-combined",
+      "title": "Find mixed errors in EHR tables",
+      "repository_id": "healthagentbench",
+      "group_id": "nonimaging-healthcare",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/healthagentbench-quality-combined.md",
+      "brief_sha256": "8b468b27a9d995bb39cf155df0c9695704012a53f7ce17a573e6c6313abf3188",
+      "basis": {
+        "input": "Eight compressed EHR tables, including patients, admissions, laboratory values, prescriptions and ICU charted measurements. Rows retain a stable _row_id.",
+        "output": "flagged_rows.csv with columns table and _row_id. Flag affected source rows, not rewritten values."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "healthagentbench-quality-demographic-conflict",
+      "title": "Find demographic contradictions",
+      "repository_id": "healthagentbench",
+      "group_id": "nonimaging-healthcare",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/healthagentbench-quality-demographic-conflict.md",
+      "brief_sha256": "205735f486127d1a56eebb7dd2b6301ace9d29096fc3043a3b93a2f1955ef997",
+      "basis": {
+        "input": "Eight compressed EHR tables, including patients, admissions, laboratory values, prescriptions and ICU charted measurements. Rows retain a stable _row_id.",
+        "output": "flagged_rows.csv with columns table and _row_id. Flag affected source rows, not rewritten values."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "healthagentbench-quality-impossible-value",
+      "title": "Find impossible clinical values",
+      "repository_id": "healthagentbench",
+      "group_id": "nonimaging-healthcare",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/healthagentbench-quality-impossible-value.md",
+      "brief_sha256": "47d98e3d8c02ce1fd6c86cd4aaa3fc085cf4acabda97c945deb446eaa5dae496",
+      "basis": {
+        "input": "Eight compressed EHR tables, including patients, admissions, laboratory values, prescriptions and ICU charted measurements. Rows retain a stable _row_id.",
+        "output": "flagged_rows.csv with columns table and _row_id. Flag affected source rows, not rewritten values."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "healthagentbench-quality-inconsistency",
+      "title": "Find conflicting EHR observations",
+      "repository_id": "healthagentbench",
+      "group_id": "nonimaging-healthcare",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/healthagentbench-quality-inconsistency.md",
+      "brief_sha256": "484545c5c6e867b67de20e1ae08dd544180c402c301263c4855f2219438291ba",
+      "basis": {
+        "input": "Eight compressed EHR tables, including patients, admissions, laboratory values, prescriptions and ICU charted measurements. Rows retain a stable _row_id.",
+        "output": "flagged_rows.csv with columns table and _row_id. Flag affected source rows, not rewritten values."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "healthagentbench-predict-acutemi",
+      "title": "Predict first diagnosis of acute myocardial infarction (heart attack)",
+      "repository_id": "healthagentbench",
+      "group_id": "nonimaging-healthcare",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/healthagentbench-predict-acutemi.md",
+      "brief_sha256": "bf9b8a0d3f42fd16336eaa2667730396e73e2a97507313253e775acefa9c5884",
+      "basis": {
+        "input": "A longitudinal event log and test rows identified by patient_id and prediction_time.",
+        "output": "predictions.csv: patient_id,prediction_time,probability. Submit one continuous value in [0,1] for every test row."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "healthagentbench-predict-celiac",
+      "title": "Predict first diagnosis of celiac disease",
+      "repository_id": "healthagentbench",
+      "group_id": "nonimaging-healthcare",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/healthagentbench-predict-celiac.md",
+      "brief_sha256": "c0a5fb81bb7971b6c882574f07edce89bba96845a26534247563ac9ecedcfc9c",
+      "basis": {
+        "input": "A longitudinal event log and test rows identified by patient_id and prediction_time.",
+        "output": "predictions.csv: patient_id,prediction_time,probability. Submit one continuous value in [0,1] for every test row."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "healthagentbench-predict-hyperlipidemia",
+      "title": "Predict first diagnosis of hyperlipidemia (high blood lipids)",
+      "repository_id": "healthagentbench",
+      "group_id": "nonimaging-healthcare",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/healthagentbench-predict-hyperlipidemia.md",
+      "brief_sha256": "81254518207d254fec3932f814419d6a8730a2a454057d261fd3dd357b5cb6c4",
+      "basis": {
+        "input": "A longitudinal event log and test rows identified by patient_id and prediction_time.",
+        "output": "predictions.csv: patient_id,prediction_time,probability. Submit one continuous value in [0,1] for every test row."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "healthagentbench-predict-hypertension",
+      "title": "Predict first diagnosis of hypertension (high blood pressure)",
+      "repository_id": "healthagentbench",
+      "group_id": "nonimaging-healthcare",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/healthagentbench-predict-hypertension.md",
+      "brief_sha256": "8e6594a7ec8f99bcaf24867f169ee7adbee4a14230ba34fe6065bcc8dac2dbb5",
+      "basis": {
+        "input": "A longitudinal event log and test rows identified by patient_id and prediction_time.",
+        "output": "predictions.csv: patient_id,prediction_time,probability. Submit one continuous value in [0,1] for every test row."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "healthagentbench-predict-lupus",
+      "title": "Predict first diagnosis of systemic lupus erythematosus",
+      "repository_id": "healthagentbench",
+      "group_id": "nonimaging-healthcare",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/healthagentbench-predict-lupus.md",
+      "brief_sha256": "6107e8fdb8aa8cf3832237f2cedd4650d6c98f8b47224701812e84e15f0fd9e7",
+      "basis": {
+        "input": "A longitudinal event log and test rows identified by patient_id and prediction_time.",
+        "output": "predictions.csv: patient_id,prediction_time,probability. Submit one continuous value in [0,1] for every test row."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "healthagentbench-predict-pancan",
+      "title": "Predict first diagnosis of pancreatic cancer",
+      "repository_id": "healthagentbench",
+      "group_id": "nonimaging-healthcare",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/healthagentbench-predict-pancan.md",
+      "brief_sha256": "d0c64be01066fc676e6fe41c9d35603a573238ee80cf870ac5d327eecf18dedb",
+      "basis": {
+        "input": "A longitudinal event log and test rows identified by patient_id and prediction_time.",
+        "output": "predictions.csv: patient_id,prediction_time,probability. Submit one continuous value in [0,1] for every test row."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "healthagentbench-meds-etl",
+      "title": "Convert EHR tables into MEDS events",
+      "repository_id": "healthagentbench",
+      "group_id": "nonimaging-healthcare",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/healthagentbench-meds-etl.md",
+      "brief_sha256": "4c1f66dd4daa7d21e0f9c822e19e661a963b45a0ceda240f29eb7fc8da6b51b3",
+      "basis": {
+        "input": "MIMIC-IV demo tables staged in the task environment.",
+        "output": "A complete MEDS cohort produced using a separate custom configuration, with the required event fields and code prefixes."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "healthagentbench-tumor-tiles",
+      "title": "Find tumor-bearing slide tiles",
+      "repository_id": "healthagentbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/healthagentbench-tumor-tiles.md",
+      "brief_sha256": "c872291f7710bb9b13ed0afe4027896fcbb89660c9fa4a493e7d9c922081f9f4",
+      "basis": {
+        "input": "A whole-slide image, a public task row and an editable submission template.",
+        "output": "submission.json with predicted_tumor_tiles as integer column/row coordinates; retain task_id and instruction."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "healthagentbench-cxr-correction",
+      "title": "Correct an existing chest X-ray findings section",
+      "repository_id": "healthagentbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/healthagentbench-cxr-correction.md",
+      "brief_sha256": "4b176c973243032f4fb41186c1bd1fbf7749d89394acc210137457e97677edda",
+      "basis": {
+        "input": "Chronologically organized chest X-ray studies; the highest study_NN is the target study.",
+        "output": "submission.json with final_answer containing the corrected text and the literal FINDINGS header."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "bcer-short-denoise",
+      "title": "Denoise one MRI volume",
+      "repository_id": "bcer",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/bcer-short-denoise.md",
+      "brief_sha256": "da4371d43afe8a680de0f7268093103bc6154295fd399c3afb20af4aad8c108d",
+      "basis": {
+        "input": "Required source modalities — prostate: one or more of T2w, ADC, DWI_highb; brain: one or more of T1, T1c, T2, FLAIR.",
+        "output": "Retain artifacts under these registry keys: `denoised_nifti`."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "bcer-short-superres",
+      "title": "Resample an MRI volume",
+      "repository_id": "bcer",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/bcer-short-superres.md",
+      "brief_sha256": "d4f419baf98328c0869b782d1ca55b559cd9714d4910e13d38ed1050c9369ac3",
+      "basis": {
+        "input": "Required source modalities — prostate: one or more of T2w, ADC, DWI_highb; brain: one or more of T1, T1c, T2, FLAIR.",
+        "output": "Retain artifacts under these registry keys: `resampled_nifti`."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "bcer-short-segment-brain",
+      "title": "Segment brain tumor from four MRI sequences",
+      "repository_id": "bcer",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/bcer-short-segment-brain.md",
+      "brief_sha256": "3a11a5245908d2ab5013501a254f266d84e03895fc8c73f5d134b5d4a3f17c1c",
+      "basis": {
+        "input": "Required source modalities — brain: all of T1, T1c, T2, FLAIR.",
+        "output": "Retain artifacts under these registry keys: `seg_path`, `wt_mask_path`."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "bcer-short-recon-grappa",
+      "title": "Reconstruct accelerated cardiac MRI",
+      "repository_id": "bcer",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/bcer-short-recon-grappa.md",
+      "brief_sha256": "0b498c88a7c9d3ba49aa4a36ff35f85e84c96012f69e29368aebd8b88fb3cc21",
+      "basis": {
+        "input": "Required source modalities — cardiac: one or more of h5, raw_kspace.",
+        "output": "Retain artifacts under these registry keys: `reconstructed_nifti`."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "bcer-medium-register-prostate",
+      "title": "Align prostate MRI sequences",
+      "repository_id": "bcer",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/bcer-medium-register-prostate.md",
+      "brief_sha256": "2524c281981f6421ab01cf2793c4db102888ffb160be1143319576769c3cdad3",
+      "basis": {
+        "input": "Required source modalities — prostate: all of T2w, one or more of ADC, DWI_highb.",
+        "output": "Retain artifacts under these registry keys: `resampled_path`, `transform_path`."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "bcer-medium-brain-grade-classify",
+      "title": "Predict glioma grade through a tool chain",
+      "repository_id": "bcer",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/bcer-medium-brain-grade-classify.md",
+      "brief_sha256": "6af3f1fcfcaf5244c3be41e48fb7c7361e9ecc091cceea4655ae9dc48eab30c8",
+      "basis": {
+        "input": "Required source modalities — brain: all of T1, T1c, T2, FLAIR.",
+        "output": "Retain artifacts under these registry keys: `feature_table_path`, `classification_path`."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "bcer-long-cardiac-full",
+      "title": "Process cardiac cine MRI into a report",
+      "repository_id": "bcer",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/bcer-long-cardiac-full.md",
+      "brief_sha256": "4c9c1eca594e78a0812e30e14c3e41735bacd142c4fb8dad8a277e45e27fdab3",
+      "basis": {
+        "input": "Required source modalities — cardiac: one or more of cine_nifti, cine_h5.",
+        "output": "Retain artifacts under these registry keys: `seg_path`, `classification_path`, `feature_table_path`, `report_json_path`."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "bcer-long-brain-full",
+      "title": "Process brain MRI into a tumor report",
+      "repository_id": "bcer",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/bcer-long-brain-full.md",
+      "brief_sha256": "c1f23a7f4eabd766d62fcda7bff41e681bf1b0edebdd605c6dcd1d75b3c8f809",
+      "basis": {
+        "input": "Required source modalities — brain: all of T1, T1c, T2, FLAIR.",
+        "output": "Retain artifacts under these registry keys: `seg_path`, `wt_mask_path`, `feature_table_path`, `classification_path`, `report_json_path`."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "abra-viewer-control",
+      "title": "Set the viewer to a requested state",
+      "repository_id": "abra",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/abra-viewer-control.md",
+      "brief_sha256": "44ca3bfe8ca06aad812417d0ef0d08f2201178505c558acd61cc5b5ca40c09b6",
+      "basis": {
+        "input": "A loaded study in an OHIF viewer backed by Orthanc.",
+        "output": "Viewer state matching the requested series, slice and/or window settings."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "abra-metadata-qa",
+      "title": "Answer questions about study metadata",
+      "repository_id": "abra",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/abra-metadata-qa.md",
+      "brief_sha256": "d6ef03aa727ed9e8a55c3f492342d74da2dc530c7b367565d9806f03c84f808d",
+      "basis": {
+        "input": "Study and series metadata accessible through the viewer’s tools.",
+        "output": "An integer count or alphabetically sorted comma-separated modality list, submitted through submit_answer."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "abra-vision-probe",
+      "title": "Recognize an image’s modality or display treatment",
+      "repository_id": "abra",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/abra-vision-probe.md",
+      "brief_sha256": "b32373307f7672ec4180fe44a248049902755b412f1002eb98b1dea35ac645d2",
+      "basis": {
+        "input": "A rendered image or a Gaussian-noise control image.",
+        "output": "One option letter through submit_answer; N/A is the target for noise controls."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "abra-longitudinal",
+      "title": "Compare two imaging studies over time",
+      "repository_id": "abra",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/abra-longitudinal.md",
+      "brief_sha256": "1bc64c73bb337b417cac1cf179d5e1063be95e08224c68e9b3ea9e185097d0b0",
+      "basis": {
+        "input": "A paired current and prior study with source longitudinal metadata.",
+        "output": "An integer interval/count difference for metadata questions, or a new-lesion annotation for image questions."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "abra-birads",
+      "title": "Produce a structured breast MRI assessment",
+      "repository_id": "abra",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/abra-birads.md",
+      "brief_sha256": "3abafa52ebd12b62039bcc8a04dd841b41dfe249516d6b4b5538b3ad4f390053",
+      "basis": {
+        "input": "A breast MRI study containing multiple series, including images before and after contrast injection.",
+        "output": "A submit_birads_report call containing laterality, lesion count, category and enhancement presence."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "radagent-vqa",
+      "title": "Answer a multiple-choice question about chest CT",
+      "repository_id": "radagent",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/radagent-vqa.md",
+      "brief_sha256": "45392501b86fa1f65f76598d40149f08e7ea75806a21dee80831f3119a47d8c7",
+      "basis": {
+        "input": "A CT-RATE volume paired with a VQA question and answer options.",
+        "output": "A final multiple-choice answer with a retained trace of the agent’s tool interactions."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-cars-spectroscopy",
+      "title": "Estimate gas temperature from Raman spectra",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-cars-spectroscopy.md",
+      "brief_sha256": "5921713a7db7138a159573a8d69a65cfb372404723614327a45fcffb928a144d",
+      "basis": {
+        "input": "`raw_data.npz` contains float64 `measurements` and `nu_axis`, each shape `(1, 200)`.\nThe axis spans 2280–2330 cm⁻¹; intensities are dimensionless and max-normalized.\nThis is source-generated synthetic gas data, not a measured experimental spectrum.",
+        "output": "The active local end-to-end prompt/scorer expects `output/reconstruction.npy`:\na numeric reconstructed spectral array. Retain `(1, 200)` for this acquired case.\nA separate CARS adapter expects `reconstruction.npz` containing `y_pred` and\n`temperature_pred`. Do not treat these formats as interchangeable.\n\nThe published source fit is 2391.5641794510043 K, with a saved `(1, 200)` spectrum.\nIt is retained source output, not a new agent result."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "imaging101-confocal-nlos-fk",
+      "title": "Reconstruct an object hidden around a corner",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-confocal-nlos-fk.md",
+      "brief_sha256": "c2b0ef3d49a27d3084f5f6817085c7eb8bfc98ec76ea2e0cbfc1f4bd7cef05c5",
+      "basis": {
+        "input": "`raw_data.npz:meas` is float32 `(128,128,2048)` in `(y,x,time)` order,\nwith observed counts from 0 to 42. The wall spans 2 m × 2 m; each time bin is\n32 ps. Source metadata attributes the cube to an outdoor scene with a 10 minute\nexposure. The original MAT-to-NPZ conversion receipt was not acquired.",
+        "output": "Active local end-to-end scoring expects `output/reconstruction.npy`, one real\nnumeric volume `(512,128,128)`; a singleton batch axis is squeezed. A 2D maximum\nprojection fails shape matching. The task-native saved archive instead uses key `fk`."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "imaging101-conventional-ptychography",
+      "title": "Recover a complex image from overlapping diffraction patterns",
+      "repository_id": "imaging101",
+      "group_id": "generic-methods",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-conventional-ptychography.md",
+      "brief_sha256": "3c4ea776fc2617957bd1a8e896af97a73446b7cca0fe7d27eeeaeee579da3b7e",
+      "basis": {
+        "input": "Pinned `raw_data.npz` contains `ptychogram`, float32 `(100,128,128)`, and\n`encoder`, float32 `(100,2)` in meters, ordered row then column. This is a\nsynthetic USAF phase-chart case, not an acquired specimen. The released HDF5\ncontains exactly the same diffraction and encoder values. Counts range from\napproximately 5.07e-11 to 32,966; source generation adds a Poisson draw to its\nexpectation, so the stated 14-bit scale is not a hard upper bound.",
+        "output": "Scientifically, a complex object image with amplitude and phase, plus the\njointly estimated probe. The source `main.py` saves `recon.hdf5`, with object\nshape `(1,1,1,1,542,542)` and probe shape `(1,1,1,1,128,128)`.\nThe active generic end-to-end harness instead requires `output/reconstruction.npy`\nand compares squeezed, magnitude-reduced arrays. Native HDF5 output and that\nharness contract are distinct."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "imaging101-ct-dual-energy",
+      "title": "Separate bone and soft tissue with dual-energy CT",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-ct-dual-energy.md",
+      "brief_sha256": "24015e7d452a7a5675bde5b46e94e86f436f4f615317276f4fb787e8286ff3e5",
+      "basis": {
+        "input": "One synthetic parallel-beam phantom, not an acquired patient scan.\n`raw_data.npz` contains float64 `sinogram_low` and `sinogram_high`, each\n`(1,128,180)`: case, detector bin, projection angle. Angles are 0 through 179\ndegrees. Observed counts range from **23,369 to 1,003,718** at low energy and\n**115,531 to 1,504,357** at high energy. Values are photon counts, not HU.",
+        "output": "Separate tissue and bone density maps. Native `main.py` writes\n`output/reconstructed_maps.npz` with both maps and both material sinograms.\nThe released saved archive has a leading singleton case axis. The active generic\nend-to-end harness instead requires a single `output/reconstruction.npy` and\nmatches a squeezed array to a reference by shape and key ranking."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "imaging101-ct-fan-beam",
+      "title": "Reconstruct a fan-beam CT slice",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-ct-fan-beam.md",
+      "brief_sha256": "eab13bac1aca8a809f79a075e2a08ff06c3f12171455313f321cb7648bafc2f9",
+      "basis": {
+        "input": "One synthetic 128×128 Shepp–Logan phantom, not an acquired patient scan.\n`raw_data.npz` contains float32 `sino_full` `(1,180,192)` and `sino_short`\n`(1,116,192)`: case, source-angle index, detector bin. Full-scan angles cover\n360° in 2° steps; the short scan covers **232.891°** in approximately 2.008°\nsteps. Both exclude their ending angle. The short scan is separately sampled,\nnot a prefix cropped from the full scan.\n\nValues range from **−4.331 to 52.506** for the full scan and **−3.858 to 54.620**\nfor the short scan. The generator adds Gaussian noise at 2% of the maximum clean\nfull-scan value. Negative measurements are retained. These are simulated\nprojection values in pixel coordinates, not photon counts or HU.",
+        "output": "One 128×128 reconstructed image in the task's relative attenuation scale.\nNative `main.py` writes three NPZ archives under `evaluation/reference_outputs/`:\nfull-scan FBP, short-scan FBP and the TV-labelled short-scan result. Each has\n`reconstruction` `(1,128,128)`; the last also has `loss_history` `(150,)`.\nThese are saved numerical results, not fresh agent outputs.\n\nThe active generic end-to-end scorer requires `output/reconstruction.npy`.\nA native NPZ alone fails that filename check; stacked images and the loss vector\nfail the shape check."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "imaging101-ct-poisson-lowdose",
+      "title": "Reconstruct CT from noisy photon counts",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-ct-poisson-lowdose.md",
+      "brief_sha256": "ee18cf131766009a5b5c9603d34685d0c01db5ae0f11139d7cf0ede29274b79e",
+      "basis": {
+        "input": "Post-log sinograms and count weights: `(1, 256, 367)`; angles: `(1, 256)`.\nThe downloaded raw data use **1,000** incident photons, while manifest-verified\nmetadata says **300**. Raw-data and truth hashes disagree with the benchmark manifest.",
+        "output": "One real `256 × 256` array at `output/reconstruction.npy` for end-to-end scoring.\nThe task's separate native archive uses reconstruction keys."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "imaging101-differentiable-deflectometry",
+      "title": "Recover lens geometry from refracted fringe patterns",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-differentiable-deflectometry.md",
+      "brief_sha256": "6f346c0b2af21d5c2d56dcaf0ce7e355500b6e36acd4d1dbe232ce528447b40f",
+      "basis": {
+        "input": "The README specifies lens-present and lens-absent stacks, each\n`(1, 3, 8, 2, 2048, 2048)`: batch, fringe periods, shifts, cameras, rows, columns.\n**Raw stacks are absent from the pinned benchmark dataset.** Saved notebook\nfigures preserve normalized camera views; they are not raw intensity samples.",
+        "output": "Eight lens parameters: two curvatures (`mm^-1`), thickness and three origin\ncoordinates (`mm`), and two tilts (degrees). The native file is\n`optimized_params.json`; the generic end-to-end format is incompatible with this\nthree-key scalar truth archive."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "imaging101-diffusion-mri-dti",
+      "title": "Estimate diffusion tensors from MRI",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-diffusion-mri-dti.md",
+      "brief_sha256": "5e5ccbda2cc10f212c43857708d4cabc8ce694cba2762e2bb1371fad64c33547",
+      "basis": {
+        "input": "`raw_data.npz`: float32 signals `(1,128,128,31)`, b-values `(31,)` and gradient\nvectors `(31,3)`. One volume has b=0; 30 have b=1000 s/mm². Metadata declares\nRician noise σ=0.02 and 1.71875 mm pixels over 220 mm.",
+        "output": "Native files contain six tensor components `(1,128,128,6)` in mm²/s, FA\n`(1,128,128)` dimensionless and MD `(1,128,128)` in mm²/s. The local generic\nharness instead requests one `output/reconstruction.npy`."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "imaging101-eht-black-hole-uq",
+      "title": "Estimate uncertainty in a black-hole image",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-eht-black-hole-uq.md",
+      "brief_sha256": "d87831cfff463d11765cecdd4d3176d552cdc164a465b0e7d1ef3567675930de",
+      "basis": {
+        "input": "938 complex visibilities, 465 closure phases and 485 log closure amplitudes;\nnine stations and 100 timestamps. A visibility samples one spatial frequency.\nClosure combinations cancel multiplicative station gains, but retain noise.",
+        "output": "Native output: image samples, mean and population standard deviation in Jy/pixel\non a 32×32 grid, **5 μas/pixel**. The local end-to-end harness instead requests\none `output/reconstruction.npy` and does not assess posterior uncertainty."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "imaging101-eht-black-hole-dynamic",
+      "title": "Reconstruct a changing black-hole image",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-eht-black-hole-dynamic.md",
+      "brief_sha256": "8018d26b8ea4b2ab38ba9d0b295e12f87841a1a554cb100ebc92d25553c34928",
+      "basis": {
+        "input": "28 complex visibilities per frame, with baseline coordinates, station pairs and\nnoise estimates. Twelve epochs span **0–6 hours**; eight EHT-inspired stations\nprovide **336 complex measurements** in total. This is a synthetic source,\nnot an observed movie of Sgr A*.",
+        "output": "One `output/reconstruction.npy`, shape **(12, 30, 30)**, in **Jy/pixel** and original\ntime order. Pixels span **3.4 μas**, giving a 102 μas field. Each frame has 900 real\nunknowns but only 56 real measurement components. The native solver API also\nreturns uncertainty and warp parameters; the released output arrays and live\nlocal scorer cover the video."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "imaging101-eht-black-hole-feature-extraction-dynamic",
+      "title": "Infer evolving black-hole image features",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-eht-black-hole-feature-extraction-dynamic.md",
+      "brief_sha256": "1560bc052ac15d9334693b9753d760ac705be7b0b50b0ca179d92fe31ea85cc0",
+      "basis": {
+        "input": "**28 complex visibilities per snapshot**, baseline coordinates, station pairs and\nnoise estimates from eight EHT-inspired stations. Ten epochs span **0–7.2 hours**\nat 0.8-hour intervals within an eight-hour synthetic observation window.",
+        "output": "The native deliverable contains parameter samples **(10, 10000, 4)**, weights\n**(10, 10000)** and mean images **(10, 64, 64)**. Parameter units are μas, μas,\ndimensionless and degrees. Stored images sum to approximately one, despite the\nREADME's Jy/pixel label; the observation generator uses **0.6 Jy**.\n\nThe live local harness instead requests `output/reconstruction.npy`. It accepts\nthe image stack and rejects the native posterior array. These contracts differ."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "imaging101-eht-black-hole-original",
+      "title": "Reconstruct black-hole radio brightness",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-eht-black-hole-original.md",
+      "brief_sha256": "2abde0a0170f788669a72c64f3651c230a31b4c39f339bfc792bf18ca76b5038",
+      "basis": {
+        "input": "**421 complex visibility samples across 21 station pairs**, with Fourier\ncoordinates, station IDs and noise estimates. Both calibrated and corrupted\nobservations are supplied.",
+        "output": "The live harness requires `output/reconstruction.npy`, shape **(64, 64)**. Its\nreference sums to **one**; the separate physical image sums to **0.6 Jy**.\nThe README's Jy/pixel label does not distinguish these conventions."
+      },
+      "review_status_at_audit": "pending-operation-review"
+    },
+    {
+      "entry_id": "imaging101-eht-black-hole-tomography",
+      "title": "Infer a 3D emission field near a black hole",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-eht-black-hole-tomography.md",
+      "brief_sha256": "e03f40caace57d608271d4e8bd4f5cb23004f95b2b28289c7b0bd38c7c38f02f",
+      "basis": {
+        "input": "Time-resolved source image observations.",
+        "output": "A 3D emission representation that explains the observations."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-eit-conductivity-reconstruction",
+      "title": "Reconstruct conductivity from boundary voltages",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-eit-conductivity-reconstruction.md",
+      "brief_sha256": "34c5267bffddf9875fca4c733d4863551c0f5001a79301f947346baba8d01418",
+      "basis": {
+        "input": "Electrical voltages measured at boundary electrodes.",
+        "output": "A 2D electrical-conductivity map."
+      },
+      "review_status_at_audit": "blocked-source-contract",
+      "scope_caveat": "Medical-modality support retained from supplied audit; current brief does not identify a clinical specimen. Verify source specimen and workbench question before authoring; reclassify as candidate if no medical connection is established."
+    },
+    {
+      "entry_id": "imaging101-electron-ptychography",
+      "title": "Recover a specimen from electron diffraction scans",
+      "repository_id": "imaging101",
+      "group_id": "generic-methods",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-electron-ptychography.md",
+      "brief_sha256": "4aa33ec6b7363e4898d9da856179020d8fb043c65264d7528efa4e039cbdac82",
+      "basis": {
+        "input": "A 4D scanning-transmission electron microscopy dataset of gold on carbon.",
+        "output": "A complex specimen transmission image."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-era5-tensorvar",
+      "title": "Forecast atmospheric fields from noisy history",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-era5-tensorvar.md",
+      "brief_sha256": "7e0fc06762af46136b2a2d63b67f7b61360f3a60e4780436c922f7bf8d3686ab",
+      "basis": {
+        "input": "A short history of noisy, multichannel gridded weather fields.",
+        "output": "Five future atmospheric field steps on the specified grid."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-exoplanet-imaging",
+      "title": "Reveal a planet in coronagraphic images",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-exoplanet-imaging.md",
+      "brief_sha256": "3254195f0595e9ea3a5760c8b76a1f7895f3e1ea52f130f4e8c82797e8ce6a47",
+      "basis": {
+        "input": "A time series of star-centered coronagraphic images with field rotation.",
+        "output": "A planet-detection image after stellar-light subtraction."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-fourier-ptychography",
+      "title": "Recover a high-resolution complex microscopy image",
+      "repository_id": "imaging101",
+      "group_id": "biomedical-microscopy",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-fourier-ptychography.md",
+      "brief_sha256": "234ffb89ba92113a7a5a62b9a01c6c86f2065b8f324d9537a3512f3daca6c4fe",
+      "basis": {
+        "input": "Low-resolution intensity images under different LED illuminations.",
+        "output": "A wide-field image with recovered amplitude and phase."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-fpm-inr-reconstruction",
+      "title": "Recover a 3D field from intensity-only microscopy",
+      "repository_id": "imaging101",
+      "group_id": "biomedical-microscopy",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-fpm-inr-reconstruction.md",
+      "brief_sha256": "0f7244670e47343a12830fca0b32e048b75b7b26d52500e03a1ecd5732465f4d",
+      "basis": {
+        "input": "Multiple LED-illuminated microscope images.",
+        "output": "A 3D complex field consistent with the measured intensities."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-hessian-sim",
+      "title": "Reconstruct a structured-illumination image sequence",
+      "repository_id": "imaging101",
+      "group_id": "biomedical-microscopy",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-hessian-sim.md",
+      "brief_sha256": "32130fdf08355ef01cbf902e60698cec0c3c884716e7b7dd200b1ec19b1c6cb8",
+      "basis": {
+        "input": "Fluorescence images acquired at multiple illumination phases over time.",
+        "output": "A higher-resolution fluorescence image sequence."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-insar-phase-unwrapping",
+      "title": "Unwrap interferometric radar phase",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-insar-phase-unwrapping.md",
+      "brief_sha256": "0b49f06325a3b4a6e32ec1e88bb291e764e41608506eb1ef6f2ad1acbd893af4",
+      "basis": {
+        "input": "A wrapped radar-interferometry phase image.",
+        "output": "A continuous phase field consistent with the observed phase modulo 2π."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-lensless-imaging",
+      "title": "Reconstruct a scene from a diffuser-camera measurement",
+      "repository_id": "imaging101",
+      "group_id": "generic-methods",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-lensless-imaging.md",
+      "brief_sha256": "529c003a4ebc01d8141092502091dc384a29600bf716d004660ec0f544e622e7",
+      "basis": {
+        "input": "A lensless camera’s coded sensor image.",
+        "output": "A reconstructed scene image."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-light-field-microscope",
+      "title": "Recover a fluorescence volume from a light-field image",
+      "repository_id": "imaging101",
+      "group_id": "biomedical-microscopy",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-light-field-microscope.md",
+      "brief_sha256": "0fba5ff8227ee88aa0df3dadd49805d39a1a776a605cad8df7c32a98be0fbe31",
+      "basis": {
+        "input": "One 2D light-field microscopy capture.",
+        "output": "A 3D fluorescent-source volume."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-lucky-imaging",
+      "title": "Combine turbulent frames into a sharper lunar image",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-lucky-imaging.md",
+      "brief_sha256": "523e6971814cace545ee6cc50cd4b158f178dd8ebd186a0cb7222ab163c2cbf9",
+      "basis": {
+        "input": "A sequence of short-exposure RGB Moon images.",
+        "output": "A single aligned, combined high-quality lunar image."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-mcr-hyperspectral",
+      "title": "Separate chemical components in a spectral image",
+      "repository_id": "imaging101",
+      "group_id": "generic-methods",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-mcr-hyperspectral.md",
+      "brief_sha256": "9f51d960991da4c6a50fcbb4ac73e8858dd024efe7ccff17c2f5e23c64fd5879",
+      "basis": {
+        "input": "A hyperspectral image cube with mixed component spectra.",
+        "output": "Component spectra and their spatial concentration maps."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-microscope-denoising",
+      "title": "Restore a noisy microscopy image",
+      "repository_id": "imaging101",
+      "group_id": "biomedical-microscopy",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-microscope-denoising.md",
+      "brief_sha256": "67604a22a40527287858e89d91d6e66b380ae58689b442e1e2f3007f37df7141",
+      "basis": {
+        "input": "Noisy fluorescence microscopy measurements with blur.",
+        "output": "A denoised microscopy image."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-mri-dynamic-dce",
+      "title": "Reconstruct a contrast-enhanced MRI time series",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-mri-dynamic-dce.md",
+      "brief_sha256": "79bda05b46d287f0d78649666da4508573f4b9eff9f7edf840133cecc1069eb8",
+      "basis": {
+        "input": "Undersampled MRI frequency measurements over time.",
+        "output": "A dynamic MRI image sequence."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-mri-grappa",
+      "title": "Reconstruct multi-coil MRI with GRAPPA",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-mri-grappa.md",
+      "brief_sha256": "0beb78e95b1aa1c14284c9eb871a8c18d440087ba4f4a282df18583188df7edd",
+      "basis": {
+        "input": "Accelerated multi-coil MRI frequency data.",
+        "output": "A reconstructed MRI image after k-space completion and coil combination."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-mri-l1-wavelet",
+      "title": "Reconstruct MRI with a sparse wavelet prior",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-mri-l1-wavelet.md",
+      "brief_sha256": "7cbca4c7b0862891009f5562c7a41625f531329f4cbdf8ec65791318ea6c4bb4",
+      "basis": {
+        "input": "Strongly undersampled multi-coil MRI measurements.",
+        "output": "An MRI image reconstructed from the incomplete frequency samples."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-mri-noncartesian-cs",
+      "title": "Reconstruct MRI from a non-Cartesian trajectory",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-mri-noncartesian-cs.md",
+      "brief_sha256": "4fef68ab07e2c11b5763db1043e92d9e7fc00bd7b5d5b74ca0442e5a960ae223",
+      "basis": {
+        "input": "Multi-coil MRI samples acquired along radial or other non-grid trajectories.",
+        "output": "A complex MRI image."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-mri-pnp-admm",
+      "title": "Reconstruct brain MRI with a learned denoiser prior",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-mri-pnp-admm.md",
+      "brief_sha256": "8cda89749b72455736e2fb27e9dec631db246221ff0d967a520edb0cbbce93d5",
+      "basis": {
+        "input": "Partially sampled brain MRI frequency measurements.",
+        "output": "A reconstructed brain image."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-mri-sense",
+      "title": "Reconstruct accelerated MRI with coil sensitivities",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-mri-sense.md",
+      "brief_sha256": "f73d831ce68259a641b8952776e31d05aeaccc0cc9b4b590f31526006d289ff3",
+      "basis": {
+        "input": "Undersampled multi-coil MRI frequency data.",
+        "output": "A combined brain MRI image."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-mri-t2-mapping",
+      "title": "Estimate a quantitative T2 relaxation map",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-mri-t2-mapping.md",
+      "brief_sha256": "28149d7336c93c6d775ca158cda97b632b1539d2da000007550446563a089c84",
+      "basis": {
+        "input": "MRI magnitude images acquired at multiple echo times.",
+        "output": "A per-pixel T2 relaxation-time map in the source’s time units."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-mri-tv",
+      "title": "Reconstruct knee MRI with total variation",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-mri-tv.md",
+      "brief_sha256": "5fad702a768dca19b8330fe7908a8603cbe0232780d706a9a357201293bb7916",
+      "basis": {
+        "input": "Accelerated multi-coil knee MRI frequency measurements.",
+        "output": "A knee MRI reconstruction."
+      },
+      "review_status_at_audit": "reviewed-scripted-planar"
+    },
+    {
+      "entry_id": "imaging101-mri-varnet",
+      "title": "Reconstruct MRI with an unrolled variational network",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-mri-varnet.md",
+      "brief_sha256": "ad18c8f792a777aa2cb8ff14e6d2000fdd4c2615ce8ac613eaaa66e050416437",
+      "basis": {
+        "input": "Accelerated multi-coil knee MRI data.",
+        "output": "A reconstructed knee MRI image."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-pet-mlem",
+      "title": "Reconstruct tracer activity from PET counts",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-pet-mlem.md",
+      "brief_sha256": "ee7cb8f8ffd74d580f55cf2d0ddb48b1c5d07c9a37bd9e4bd03ee0718ecdd462",
+      "basis": {
+        "input": "Poisson-distributed PET projection counts.",
+        "output": "A 2D tracer-activity image."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-photoacoustic-tomography",
+      "title": "Reconstruct a photoacoustic pressure image",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-photoacoustic-tomography.md",
+      "brief_sha256": "8a6c76c094362effe46189cb8c3161ac076210948d130223be75bc94ec33976e",
+      "basis": {
+        "input": "Time-domain acoustic signals recorded at detector positions.",
+        "output": "An image of initial acoustic pressure in the target region."
+      },
+      "review_status_at_audit": "blocked-source-contract",
+      "scope_caveat": "Medical-modality support retained from supplied audit; current brief does not identify a clinical specimen. Verify source specimen and workbench question before authoring; reclassify as candidate if no medical connection is established."
+    },
+    {
+      "entry_id": "imaging101-plane-wave-ultrasound",
+      "title": "Form an ultrasound image from plane-wave echoes",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-plane-wave-ultrasound.md",
+      "brief_sha256": "11de5899ed754ab8b546e0f9e8a320c4a06aefb8f446824eba3942cc0251a5b5",
+      "basis": {
+        "input": "Raw radio-frequency echoes indexed by receive element, time and steering angle.",
+        "output": "A B-mode ultrasound image."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-pnp-mri-reconstruction",
+      "title": "Reconstruct MRI with a self-similarity network prior",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-pnp-mri-reconstruction.md",
+      "brief_sha256": "ac524adb66803a5e24fdaa8ee1366b64835ece169fd9532ed92640e7b1fb5c8d",
+      "basis": {
+        "input": "A knee image used to synthesize a 36-line radial frequency-sampling problem.",
+        "output": "A 320×320 knee-image reconstruction."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-raman-cell-phenotyping",
+      "title": "Map chemical components inside cells",
+      "repository_id": "imaging101",
+      "group_id": "biomedical-microscopy",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-raman-cell-phenotyping.md",
+      "brief_sha256": "83710765d8617b2277550fb8871b5e2d4529f30845a6634f70f665631a10dcb6",
+      "basis": {
+        "input": "A spatial Raman spectral dataset.",
+        "output": "Component spectra and abundance maps for DNA-, protein- and lipid-related signals."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-reflection-odt",
+      "title": "Recover refractive index from reflected light",
+      "repository_id": "imaging101",
+      "group_id": "biomedical-microscopy",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-reflection-odt.md",
+      "brief_sha256": "55617b641fa829a09093d1ebc27bb2b5ef91691c8f7903030d2148a044377794",
+      "basis": {
+        "input": "Multi-angle reflection measurements of a specimen.",
+        "output": "A 3D refractive-index distribution."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-s2ism",
+      "title": "Recover a volume from a detector-array microscope",
+      "repository_id": "imaging101",
+      "group_id": "biomedical-microscopy",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-s2ism.md",
+      "brief_sha256": "62f99c0124f5d9f41e2538102f7b7c564d7204171e14b19d884ace45992c7119",
+      "basis": {
+        "input": "Fluorescence measurements from multiple SPAD detector channels.",
+        "output": "A reconstructed 3D fluorescence volume."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-seismic-fwi-original",
+      "title": "Infer subsurface velocity from waveforms",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-seismic-fwi-original.md",
+      "brief_sha256": "63a44ffdb33b0f4eabac3f0d19145774604dacd826f2368ff7abf8719a53570c",
+      "basis": {
+        "input": "Seismic traces recorded for known source/receiver pairs.",
+        "output": "A subsurface P-wave velocity model."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-seismic-lsrtm-original",
+      "title": "Recover subsurface reflectivity",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-seismic-lsrtm-original.md",
+      "brief_sha256": "2b926f151884b0ea4e4ad9dea57d254a912131db3f87dad0f1a2d600cefb7525",
+      "basis": {
+        "input": "Scattered seismic waveforms.",
+        "output": "A 2D reflectivity image."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-seismic-traveltime-tomography",
+      "title": "Infer subsurface velocity from first arrivals",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-seismic-traveltime-tomography.md",
+      "brief_sha256": "27ec25cf3277472607d68cfb1c4ca1c3481f989924d89c9e60043cc2400356d1",
+      "basis": {
+        "input": "First-arrival travel times between seismic sources and receivers.",
+        "output": "A reconstructed velocity field, packaged in output/velocity_reconstructed.npz."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-shack-hartmann",
+      "title": "Recover an optical wavefront from spot shifts",
+      "repository_id": "imaging101",
+      "group_id": "generic-methods",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-shack-hartmann.md",
+      "brief_sha256": "3cddda24a0a50178bdea564395d32740f0c38846cb2057c551d4d81a05c2f0ba",
+      "basis": {
+        "input": "Detector spot images and reference spot images for several aberration levels.",
+        "output": "An estimated phase wavefront."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-shapelet-source-reconstruction",
+      "title": "Recover a galaxy behind a gravitational lens",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-shapelet-source-reconstruction.md",
+      "brief_sha256": "6b684e8448d80b151dd0ead267c74a4b3ea81764ccfdc4dcb8683fc71d39a71a",
+      "basis": {
+        "input": "A noisy, blurred image of a gravitationally lensed galaxy.",
+        "output": "The inferred unlensed source-brightness distribution."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-single-molecule-light-field",
+      "title": "Localize molecules in 3D from light-field views",
+      "repository_id": "imaging101",
+      "group_id": "biomedical-microscopy",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-single-molecule-light-field.md",
+      "brief_sha256": "029dea02d4742ded2d61a92d3b028b1e0fe2f33b1461eafbc9852fee1444fd64",
+      "basis": {
+        "input": "Multi-view 2D detections of fluorescent molecules.",
+        "output": "3D molecule coordinates."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-spectral-snapshot-compressive-imaging",
+      "title": "Recover a spectral cube from one coded image",
+      "repository_id": "imaging101",
+      "group_id": "generic-methods",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-spectral-snapshot-compressive-imaging.md",
+      "brief_sha256": "f7ac69975ffaa0ab395d18f20d977ac610a4e1c789bbe9e71edb4ffc61036252",
+      "basis": {
+        "input": "A single coded-aperture snapshot measurement.",
+        "output": "A spatial image cube with 31 spectral bands."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-ssnp-idt",
+      "title": "Recover 3D refractive index from transmitted intensities",
+      "repository_id": "imaging101",
+      "group_id": "biomedical-microscopy",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-ssnp-idt.md",
+      "brief_sha256": "e2268162872d3f57329f6d98b9adcc2ac28cf0d3cac2df44590e2e3b03c00829",
+      "basis": {
+        "input": "Intensity measurements under multiple illumination angles.",
+        "output": "A reconstructed 3D refractive-index volume."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-ssnp-odt",
+      "title": "Recover 3D refractive index from complex optical fields",
+      "repository_id": "imaging101",
+      "group_id": "biomedical-microscopy",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-ssnp-odt.md",
+      "brief_sha256": "0f1e091f6e2653679c56e997563162d188b53a2526a2ff547d1b4060488af268",
+      "basis": {
+        "input": "Multi-angle measurements containing both amplitude and phase.",
+        "output": "A reconstructed 3D refractive-index volume."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-ultrasound-sos-tomography",
+      "title": "Map sound speed from ultrasound travel times",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-ultrasound-sos-tomography.md",
+      "brief_sha256": "35feb1e39e02acb7143ca59b0179b68dad9a8f90129caccb161bc55c891bde33",
+      "basis": {
+        "input": "Ultrasound travel-time measurements around a breast phantom.",
+        "output": "A 2D map of sound speed."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-usct-fwi",
+      "title": "Recover sound speed from full ultrasound wavefields",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-usct-fwi.md",
+      "brief_sha256": "d527f8160e8cd5bfe5dbf7f804795b847f1dcbe1dd5ae916a23a84afa76bc5b3",
+      "basis": {
+        "input": "Multi-source, multi-receiver complex ultrasound measurements at several frequencies.",
+        "output": "A sound-speed or slowness image on the task’s reconstruction grid."
+      },
+      "review_status_at_audit": "blocked-source-contract",
+      "scope_caveat": "Medical-modality support retained from supplied audit; current brief does not identify a clinical specimen. Verify source specimen and workbench question before authoring; reclassify as candidate if no medical connection is established."
+    },
+    {
+      "entry_id": "imaging101-weather-radar-data-assimilation",
+      "title": "Recover a future radar field from sparse observations",
+      "repository_id": "imaging101",
+      "group_id": "nonmedical",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-weather-radar-data-assimilation.md",
+      "brief_sha256": "812a295da9a0b7ee9d49f3289ea22cec6ca774a82ebbebcc0cf8e2ec5e3a9712",
+      "basis": {
+        "input": "Past radar context and a sparse subset of future radar observations.",
+        "output": "A complete future radar field."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-xray-laminography-tike",
+      "title": "Reconstruct a volume from tilted X-ray projections",
+      "repository_id": "imaging101",
+      "group_id": "generic-methods",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-xray-laminography-tike.md",
+      "brief_sha256": "61371ec32d4598458619b6fff362494d3faa667be4913aa2c2809311c9013628",
+      "basis": {
+        "input": "Complex projections of a simulated specimen in laminographic geometry.",
+        "output": "A 3D complex specimen volume."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-xray-ptychography-tike",
+      "title": "Reconstruct an X-ray specimen from diffraction scans",
+      "repository_id": "imaging101",
+      "group_id": "generic-methods",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/imaging101-xray-ptychography-tike.md",
+      "brief_sha256": "59e47a78bcc38708dfe64255146c56063db3f9810fcdef99336e8bbc0ecbd951",
+      "basis": {
+        "input": "Measured diffraction patterns of a Siemens-star specimen.",
+        "output": "The specimen’s complex transmission image."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "imaging101-xray-tooth-gridrec",
+      "title": "Reconstruct a tooth from X-ray projections",
+      "repository_id": "imaging101",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/imaging101-xray-tooth-gridrec.md",
+      "brief_sha256": "c681292dd260f56d8710c6e094df03cebc34c3e3ec97030cfeed1d2b21f5310a",
+      "basis": {
+        "input": "Raw transmission images of a tooth.",
+        "output": "A tomographic attenuation reconstruction."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-dentex",
+      "title": "Locate and label dental abnormalities",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-dentex.md",
+      "brief_sha256": "34e5bba09957764325c7cc5c8ba8d440dacde3fe493794ad707145322d78b675",
+      "basis": {
+        "input": "Panoramic dental X-rays.",
+        "output": "Bounding boxes with quadrant, tooth identity and diagnosis, indexed by image_id in the required JSON/CSV submission."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-isles22",
+      "title": "Segment ischemic stroke lesions",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-isles22.md",
+      "brief_sha256": "36325890b0bbebe3e5d603cd3472e1123470b03b80df6b155d874533327967a2",
+      "basis": {
+        "input": "Brain DWI, ADC and FLAIR MRI volumes.",
+        "output": "A binary lesion mask in the input image geometry, saved as NIfTI."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-ldct-iqa",
+      "title": "Predict perceived low-dose CT image quality",
+      "repository_id": "rexmle",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-ldct-iqa.md",
+      "brief_sha256": "7a13b8d186bafc12858d6a12523ac1e2dcb0ded0d340d5f128a9d08738e57629",
+      "basis": {
+        "input": "Low-dose CT images containing noise and reconstruction artifacts.",
+        "output": "A CSV with image_id and quality_score."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-neurips-cellseg",
+      "title": "Separate individual cells in microscopy",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-neurips-cellseg.md",
+      "brief_sha256": "339a3af745355451d41c1f2bf16c0b16909c5e9d29381513d45d2c238667f65c",
+      "basis": {
+        "input": "Microscopy images from multiple acquisition modalities.",
+        "output": "An instance mask with a separate integer ID for each cell, in the source image coordinates."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-panther-task1",
+      "title": "Segment pancreatic tumor on diagnostic MRI",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-panther-task1.md",
+      "brief_sha256": "9a5a6e8cda850cd464442e6c445726e0b05293538d79c8be424f09b45233b7db",
+      "basis": {
+        "input": "Contrast-enhanced arterial-phase T1-weighted pancreas MRI.",
+        "output": "A binary tumor mask per case in MHA format plus a patient-to-file submission CSV."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-panther-task2",
+      "title": "Segment pancreatic tumor on radiotherapy MRI",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-panther-task2.md",
+      "brief_sha256": "dd6e28e64707ddfd0aaec2441084a39c6b155d5b1fab0873af405b44e554238d",
+      "basis": {
+        "input": "T2-weighted MR-Linac scans acquired for radiotherapy.",
+        "output": "A binary tumor mask in MHA format plus the required case-to-file submission CSV."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-puma-track1-task1",
+      "title": "Label tissue types in melanoma histology",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-puma-track1-task1.md",
+      "brief_sha256": "fb1566be91be0359111c1ff9ed785576b26a78cde5d7c7cfd6ae15f625b176c5",
+      "basis": {
+        "input": "H&E-stained tissue image regions at high magnification.",
+        "output": "A TIF semantic mask using background 0 and five foreground tissue labels, plus a case-to-mask CSV."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-puma-track1-task2",
+      "title": "Locate and classify nuclei into three groups",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-puma-track1-task2.md",
+      "brief_sha256": "e19e566d509bda61d66679aa86142f1dfc86413f0271f64241d1c9146a578df1",
+      "basis": {
+        "input": "H&E melanoma histology regions.",
+        "output": "Per-case JSON with class-labeled polygons or the supported simplified nucleus-centroid format; confidence is optional. A CSV indexes case_id and predicted_nuclei_path."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-puma-track2-task2",
+      "title": "Locate and classify ten nucleus types",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-puma-track2-task2.md",
+      "brief_sha256": "b57c15c011b163efadb12286f4503e2263a63af2bf4391200573498c7f711782",
+      "basis": {
+        "input": "H&E melanoma histology regions.",
+        "output": "Per-case JSON with class-labeled polygons or the supported simplified nucleus-centroid format; confidence is optional. A CSV indexes case_id and predicted_nuclei_path."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-seg-a",
+      "title": "Segment the aorta and its branches",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-seg-a.md",
+      "brief_sha256": "06feff169a180c327953b901a776a6e19731188d5b9e6d1996af4e6fb30d7c5c",
+      "basis": {
+        "input": "CT angiography volumes.",
+        "output": "Binary vessel-tree NRRD (.seg.nrrd) masks with a CSV mapping source case IDs to files."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-topbrain-track1",
+      "title": "Label brain arteries on CT angiography",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-topbrain-track1.md",
+      "brief_sha256": "2a9f018e7d78d8ece2693890f8919fffd978c8dae4e6a3ba6dc2209bf6f4aa14",
+      "basis": {
+        "input": "Head CT angiography volumes.",
+        "output": "A multiclass NIfTI segmentation with labels 0–40 and a case/modality/file CSV."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-topbrain-track2",
+      "title": "Label brain arteries on MR angiography",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-topbrain-track2.md",
+      "brief_sha256": "1f450d9e0dee5d16fcbd072b11855d542bc0d31bfacdc41137ccbb308b6afc26",
+      "basis": {
+        "input": "Head MR angiography volumes.",
+        "output": "A multiclass NIfTI segmentation with labels 0–42 and a case/modality/file CSV."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-topcow-track2-task1",
+      "title": "Label the Circle of Willis on MR angiography",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-topcow-track2-task1.md",
+      "brief_sha256": "e76b0aaa78e15b30a0ff8371e294868f26cecaa165faa53cfa62d07b0a19b079",
+      "basis": {
+        "input": "MR angiography of the brain’s arterial circulation.",
+        "output": "A multiclass vessel segmentation aligned to the source scan and the required submission index."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-topcow-track1-task2",
+      "title": "Locate the Circle of Willis in a CT volume",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-topcow-track1-task2.md",
+      "brief_sha256": "b913a4acf0b74a28ae2a6893c2ebd2a24ab09a989a0cbc363688978d0fbdf78c",
+      "basis": {
+        "input": "Head CT angiography.",
+        "output": "A JSON box with size:[x,y,z] in voxel counts and location:[x,y,z] as the center in voxel coordinates, plus a case-to-file CSV."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-topcow-track2-task2",
+      "title": "Locate the Circle of Willis in an MR volume",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-topcow-track2-task2.md",
+      "brief_sha256": "883eada0bb7171f9e4bca26fbe68eefeb164628a06101245e8b22b8b9ed2fdfb",
+      "basis": {
+        "input": "Head MR angiography.",
+        "output": "A JSON box with size:[x,y,z] in voxel counts and location:[x,y,z] as the center in voxel coordinates, plus a case-to-file CSV."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-topcow-track1-task3",
+      "title": "Classify arterial connections from CT angiography",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-topcow-track1-task3.md",
+      "brief_sha256": "b8308e8561913b62d95a8974f9e82d2ce3e0bd6eedceddb27dbdeed2bdf17ea9",
+      "basis": {
+        "input": "Head CT angiography.",
+        "output": "A JSON record of binary presence/absence values for the specified graph edges, indexed by case."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-topcow-track2-task3",
+      "title": "Classify arterial connections from MR angiography",
+      "repository_id": "rexmle",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-topcow-track2-task3.md",
+      "brief_sha256": "1263eb67b3bf558eb90cb4c5ce5358da0fecc76efd5be58b1400195c97624320",
+      "basis": {
+        "input": "Head MR angiography.",
+        "output": "A JSON record of binary connection labels with the required case index."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "rexmle-usenhance",
+      "title": "Enhance handheld ultrasound images",
+      "repository_id": "rexmle",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/rexmle-usenhance.md",
+      "brief_sha256": "2eba97d54fba1069e3baf683e1f09825e22a4d89c83b18120b4b4be495293122",
+      "basis": {
+        "input": "Lower-quality handheld ultrasound B-mode images.",
+        "output": "Enhanced images saved as PNG and a CSV with image_id and enhanced_image_path."
+      },
+      "review_status_at_audit": "blocked-source-contract"
+    },
+    {
+      "entry_id": "automedbench-full-braintumor-cls-task",
+      "title": "Classify brain MRI into four tumor categories",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-braintumor-cls-task.md",
+      "brief_sha256": "f73dd26f904c1d1eeefc402a799f567847a8d9aec049dcd290334b15285c9212",
+      "basis": {
+        "input": "MRI input, stored as `image.jpg` per case.",
+        "output": "Write `agents_outputs/predictions.csv`; alternatively `agents_outputs/{case_id}/prediction.json`. Use exactly one canonical class label per case: glioma, meningioma, notumor, pituitary."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-chest-xray-pneumonia-cls-task",
+      "title": "Classify pediatric X-rays as normal or pneumonia",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-chest-xray-pneumonia-cls-task.md",
+      "brief_sha256": "f1a85bc7f3a7b610ffc4f213bbbcab77d7b4b9fb6bce59ebb95b650357dcd0b3",
+      "basis": {
+        "input": "radiography input, stored as `image.jpg` per case.",
+        "output": "Write `agents_outputs/predictions.csv`; alternatively `agents_outputs/{case_id}/prediction.json`. Use exactly one canonical class label per case: normal, pneumonia."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-crc-histology-cls-task",
+      "title": "Classify colorectal tissue into nine categories",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-crc-histology-cls-task.md",
+      "brief_sha256": "019736c7fc6acf6802f598027caaa3685ece8fbfecd3ac4de2f0c129b6e81c96",
+      "basis": {
+        "input": "H&E histopathology input, stored as `image.jpg` per case.",
+        "output": "Write `agents_outputs/predictions.csv`; alternatively `agents_outputs/{case_id}/prediction.json`. Use exactly one canonical class label per case: adi, back, deb, lym, muc, mus, norm, str, tum."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-patchcamelyon-cls-task",
+      "title": "Detect tumor in a histology tile’s center",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-patchcamelyon-cls-task.md",
+      "brief_sha256": "67b3679366a303280de068618312e83ea2011c4af2a0efdb0c10016baf2ffac0",
+      "basis": {
+        "input": "H&E histopathology input, stored as `image.jpg` per case.",
+        "output": "Write `agents_outputs/predictions.csv`; alternatively `agents_outputs/{case_id}/prediction.json`. Use exactly one canonical class label per case: negative, positive."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-skin-lesion-cls-task",
+      "title": "Classify dermoscopy images into seven lesion types",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-skin-lesion-cls-task.md",
+      "brief_sha256": "407121a0639a81e55ad36a1ed6afbe6acd25d5767666f5905873f724d77e9765",
+      "basis": {
+        "input": "dermoscopy input, stored as `image.jpg` per case.",
+        "output": "Write `agents_outputs/predictions.csv`; alternatively `agents_outputs/{case_id}/prediction.json`. Use exactly one canonical class label per case: actinic_keratoses, basal_cell_carcinoma, benign_keratosis_like_lesions, dermatofibroma, melanoma, melanocytic_nevi, vascular_lesions."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-bccd-det-task",
+      "title": "Locate three blood-cell types in microscopy",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-bccd-det-task.md",
+      "brief_sha256": "c3879b0718870ea1944f3aff1262f5b125b1296ce4c600b1fedc04e29fa67b58",
+      "basis": {
+        "input": "light_microscopy input, stored as `image.png` per case.",
+        "output": "Write `agents_outputs/{case_id}/prediction.json`. Each box records class, confidence, x1,y1,x2,y2 in original-image pixel coordinates."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-dentex-det-task",
+      "title": "Locate four dental disease categories",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-dentex-det-task.md",
+      "brief_sha256": "bf1c04ee851655c4fa089ac6d15ec1442055361483886085f1d911c38ebd79e9",
+      "basis": {
+        "input": "panoramic_xray input, stored as `image.png` per case.",
+        "output": "Write `agents_outputs/{case_id}/prediction.json`. Each box records class, confidence, x1,y1,x2,y2 in original-image pixel coordinates."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-grazpedwri-det-task",
+      "title": "Locate pediatric wrist trauma findings",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-grazpedwri-det-task.md",
+      "brief_sha256": "dc7034532d44bb285bf0b9e204529c618cd66ea2b6ebd5c345f742776bd306c1",
+      "basis": {
+        "input": "xray input, stored as `image.png` per case.",
+        "output": "Write `agents_outputs/{case_id}/prediction.json`. Each box records class, confidence, x1,y1,x2,y2 in original-image pixel coordinates."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-vindr-cxr-det-task",
+      "title": "Draw boxes around chest X-ray abnormalities",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-vindr-cxr-det-task.md",
+      "brief_sha256": "592b803c4541a02ae066f24a48aab64f25b29318849e5003751b6b929a4ff2ac",
+      "basis": {
+        "input": "CXR input, stored as `image.png` per case.",
+        "output": "Write `agents_outputs/{case_id}/prediction.json`. Each box records class, confidence, x1,y1,x2,y2 in original-image pixel coordinates."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-brats-t1c-sr-task",
+      "title": "Super-resolve contrast-enhanced brain-tumor MRI",
+      "repository_id": "automedbench",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-brats-t1c-sr-task.md",
+      "brief_sha256": "f80668876b6a5c1450d4e32b5e74dec95e9151a55a76779f33220ce55841699b",
+      "basis": {
+        "input": "MRI_T1c input, stored as `input.npy` per case. Shape: 128 × 128.",
+        "output": "Write `agents_outputs/{case_id}/enhanced.npy`. Output shape: 256 × 256."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-deeplesion-denoising-task",
+      "title": "Denoise DeepLesion CT slices",
+      "repository_id": "automedbench",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-deeplesion-denoising-task.md",
+      "brief_sha256": "9540447e95e249d40c1acd4183a795ebd90ba2220a3bbdb5732d044068413dc1",
+      "basis": {
+        "input": "CT input, stored as `input.npy` per case. Shape: 512 × 512.",
+        "output": "Write `agents_outputs/{case_id}/enhanced.npy`. Output shape: 512 × 512."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-ixi-t1-sr-task",
+      "title": "Super-resolve T1 brain MRI from IXI",
+      "repository_id": "automedbench",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-ixi-t1-sr-task.md",
+      "brief_sha256": "528ec15a76ac9e00e021bb9b3745ae24dc5a6f4adfc1d52a5e2c882824c3ca20",
+      "basis": {
+        "input": "MRI_T1w input, stored as `input.npy` per case. Shape: 128 × 128.",
+        "output": "Write `agents_outputs/{case_id}/enhanced.npy`. Output shape: 256 × 256."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-ldct-denoising-task",
+      "title": "Denoise simulated low-dose CT slices",
+      "repository_id": "automedbench",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-ldct-denoising-task.md",
+      "brief_sha256": "7a0ad499b976d894a0e2b04c04821a0921c2643047f347822c2209f042d882cc",
+      "basis": {
+        "input": "A 512×512 float32 CT slice in input.npy, with simulated low-dose noise and intensities in Hounsfield units.",
+        "output": "Write `agents_outputs/{case_id}/enhanced.npy`."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-lidc-idri-denoising-task",
+      "title": "Denoise LIDC-IDRI lung CT slices",
+      "repository_id": "automedbench",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-lidc-idri-denoising-task.md",
+      "brief_sha256": "32fef8b65ec55f6013b7812c1afe71f89fb0a703b6235855539e8b7e751107a9",
+      "basis": {
+        "input": "CT input, stored as `input.npy` per case. Shape: 512 × 512.",
+        "output": "Write `agents_outputs/{case_id}/enhanced.npy`. Output shape: 512 × 512."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-mri-sr-task",
+      "title": "Double the resolution of an MRI slice",
+      "repository_id": "automedbench",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-mri-sr-task.md",
+      "brief_sha256": "77241d6f3e75cb0b7e06fee7229d02b4f6e45acf9b355a1fb958331f55fcc51a",
+      "basis": {
+        "input": "MRI input, stored as `input.npy` per case. Shape: 360 × 256.",
+        "output": "Write `agents_outputs/{case_id}/enhanced.npy`. Output shape: 720 × 512."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-nih-cxr-sr-task",
+      "title": "Super-resolve a chest X-ray image",
+      "repository_id": "automedbench",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-nih-cxr-sr-task.md",
+      "brief_sha256": "dc1cbc2a2db6ab8f2efb66432b326041173bb3b400546416ae415b8f0ea868a1",
+      "basis": {
+        "input": "chest_xray input, stored as `input.npy` per case. Shape: 128 × 128.",
+        "output": "Write `agents_outputs/{case_id}/enhanced.npy`. Output shape: 256 × 256."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-chexpert-plus-cxr-task",
+      "title": "Write a report for a frontal CheXpert Plus X-ray",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-chexpert-plus-cxr-task.md",
+      "brief_sha256": "200420dff897b36be8732a24e625bb57174c2e54e9ae6108cd78fbd73acbb255",
+      "basis": {
+        "input": "Case images under the staged `images/` directory; the task configuration names the source dataset and allowed views.",
+        "output": "Write `agent_outputs/{case_id}/report.txt`."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-iu-xray-report-task",
+      "title": "Write an IU/Open-i chest X-ray report",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-iu-xray-report-task.md",
+      "brief_sha256": "f124b081cda4ae8585d3bc38d18731dec206c9b98b9a1d0222e3474266625df5",
+      "basis": {
+        "input": "Case images under the staged `images/` directory; the task configuration names the source dataset and allowed views.",
+        "output": "Write `agent_outputs/{case_id}/report.txt`."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-mimic-cxr-report-task",
+      "title": "Write chest X-ray findings from one or more views",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-mimic-cxr-report-task.md",
+      "brief_sha256": "0ade4312aa7c2242274d8269aad913e6d189b22e7e79a5ea59e12abaf09936f5",
+      "basis": {
+        "input": "Case images under the staged `images/` directory; the task configuration names the source dataset and allowed views.",
+        "output": "Write `agent_outputs/{case_id}/report.txt`."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-pathology-caption-100-task",
+      "title": "Caption histopathology images in the 100-case task",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-pathology-caption-100-task.md",
+      "brief_sha256": "0dd2bdbc0ccbe8568f813476435214758f3806c738f97ad4c9e0dc1957df724e",
+      "basis": {
+        "input": "Case images under the staged `images/` directory; the task configuration names the source dataset and allowed views.",
+        "output": "Write `agent_outputs/{case_id}/report.txt`."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-pathology-caption-500-task",
+      "title": "Caption histopathology images in the 500-case task",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-pathology-caption-500-task.md",
+      "brief_sha256": "c9c4f3b6a65ab9d7aadaa2a1c7210708c085f5dab52f6e1b74941f711d90897f",
+      "basis": {
+        "input": "Case images under the staged `images/` directory; the task configuration names the source dataset and allowed views.",
+        "output": "Write `agent_outputs/{case_id}/report.txt`."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-aeropath-seg-task",
+      "title": "Segment the lungs and airway tree",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-aeropath-seg-task.md",
+      "brief_sha256": "5472d5c19b94e932b390d33b20da3ad83012f5718447c6e6a8f2669437561f07",
+      "basis": {
+        "input": "CT input, stored as `ct.nii.gz` per case.",
+        "output": "Write `agents_outputs/{case_id}/dseg.nii.gz`. Labels: 1=lung, 2=airway; 0=background."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-colon-seg-task",
+      "title": "Segment primary colon cancer",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-colon-seg-task.md",
+      "brief_sha256": "f378f1d03147e93321cb76f21aaf2db6629d4da69e61b55dc59791a55789adf9",
+      "basis": {
+        "input": "CT input, stored as `ct.nii.gz` per case.",
+        "output": "Write `agents_outputs/{case_id}/dseg.nii.gz`. Labels: 1=colon_cancer; 0=background."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-feta-seg-task",
+      "title": "Label seven fetal brain tissue types",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-feta-seg-task.md",
+      "brief_sha256": "aa62966c919d8cb152582124fbf7c877e25682f979e1e3ce0a78e6097d6b0bcb",
+      "basis": {
+        "input": "MRI_T2w input, stored as `t2w.nii.gz` per case.",
+        "output": "Write `agents_outputs/{case_id}/dseg.nii.gz`. Labels: 1=eCSF, 2=GM, 3=WM, 4=LV, 5=CBM, 6=SGM, 7=BS; 0=background."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-heart-seg-task",
+      "title": "Segment the left atrium in cardiac MRI",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-heart-seg-task.md",
+      "brief_sha256": "850a9324a7d75d5c0a45c3012359b6efa45cbd2800afdb831af63a4c69b18705",
+      "basis": {
+        "input": "MRI input, stored as `mri.nii.gz` per case.",
+        "output": "Write `agents_outputs/{case_id}/dseg.nii.gz`. Labels: 1=heart; 0=background."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-hepaticvessel-seg-task",
+      "title": "Segment liver vessels and tumors",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-hepaticvessel-seg-task.md",
+      "brief_sha256": "a7afa2a7c75e003b728b2d3b6316775c0491e30d6bc5cadf6c61b672559113e6",
+      "basis": {
+        "input": "CT input, stored as `ct.nii.gz` per case.",
+        "output": "Write `agents_outputs/{case_id}/dseg.nii.gz`. Labels: 1=hepatic_vessel, 2=hepatic_tumor; 0=background."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-kidney-seg-task",
+      "title": "Segment kidneys and kidney tumors",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-kidney-seg-task.md",
+      "brief_sha256": "dca0f9712e114f4ff2e53c86bbb02e7e5406277f249363ddbaf8fe0204814297",
+      "basis": {
+        "input": "CT input, stored as `ct.nii.gz` per case.",
+        "output": "Write `agents_outputs/{case_id}/organ.nii.gz` and `agents_outputs/{case_id}/lesion.nii.gz`. Preserve scan geometry and map labels to the configuration’s integer taxonomy."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-liver-seg-task",
+      "title": "Segment liver and liver tumors",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-liver-seg-task.md",
+      "brief_sha256": "9cb187b633212f0d4bed7ae3145d7b35fa76f791526e60df624a74199806b80b",
+      "basis": {
+        "input": "CT input, stored as `ct.nii.gz` per case.",
+        "output": "Write `agents_outputs/{case_id}/organ.nii.gz` and `agents_outputs/{case_id}/lesion.nii.gz`. Preserve scan geometry and map labels to the configuration’s integer taxonomy."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-pancreas-oar-seg-task",
+      "title": "Label 21 structures around the pancreas",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-pancreas-oar-seg-task.md",
+      "brief_sha256": "fa4a1b891edb82ab98e1dd47cf5c22d09851c06a34664d617c333eb47f02d54e",
+      "basis": {
+        "input": "CT input, stored as `ct.nii.gz` per case.",
+        "output": "Write `agents_outputs/{case_id}/dseg.nii.gz`. Preserve scan geometry and map labels to the configuration’s integer taxonomy."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-pancreas-seg-task",
+      "title": "Segment pancreas and pancreatic tumors",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-pancreas-seg-task.md",
+      "brief_sha256": "bfaf2e924727027cfb43558f57d2d6cfdd88d417a6029a47a1eff1a3dd603673",
+      "basis": {
+        "input": "CT input, stored as `ct.nii.gz` per case.",
+        "output": "Write `agents_outputs/{case_id}/organ.nii.gz` and `agents_outputs/{case_id}/lesion.nii.gz`. Preserve scan geometry and map labels to the configuration’s integer taxonomy."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-panther-t1-seg-task",
+      "title": "Segment pancreas and tumor on arterial T1 MRI",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-panther-t1-seg-task.md",
+      "brief_sha256": "62687ba5a7a427342ce4e5029c70edaf44e5deb11208cacfaf6788a75af4d234",
+      "basis": {
+        "input": "MRI input, stored as `mri.nii.gz` per case.",
+        "output": "Write `agents_outputs/{case_id}/organ.nii.gz` and `agents_outputs/{case_id}/lesion.nii.gz`. Preserve scan geometry and map labels to the configuration’s integer taxonomy."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-panther-t2-seg-task",
+      "title": "Segment pancreas and tumor on MR-Linac T2 MRI",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-panther-t2-seg-task.md",
+      "brief_sha256": "273e090df749acfdd269fa04710e2955272c701f8db4c355c99fd0a4e9bcd65b",
+      "basis": {
+        "input": "MRI input, stored as `mri.nii.gz` per case.",
+        "output": "Write `agents_outputs/{case_id}/organ.nii.gz` and `agents_outputs/{case_id}/lesion.nii.gz`. Preserve scan geometry and map labels to the configuration’s integer taxonomy."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-prostate-seg-task",
+      "title": "Label prostate zones on two-channel MRI",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-prostate-seg-task.md",
+      "brief_sha256": "7f1b2ad7b396cb55aa1625e1e92371b05d018416f9def6b95aaaf47f150bd884",
+      "basis": {
+        "input": "A 4D MRI NIfTI: channel 0 is T2-weighted and channel 1 is ADC (a diffusion-derived contrast).",
+        "output": "Write `agents_outputs/{case_id}/dseg.nii.gz`. Labels: 1=peripheral_zone, 2=transition_zone; 0=background."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-spleen-seg-task",
+      "title": "Segment the spleen in CT",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-spleen-seg-task.md",
+      "brief_sha256": "b2e9f3804abf4b4f60082382b2fd087b3479e3916cc57dbb59b50ac1c1524170",
+      "basis": {
+        "input": "CT input, stored as `ct.nii.gz` per case.",
+        "output": "Write `agents_outputs/{case_id}/dseg.nii.gz`. Labels: 1=spleen; 0=background."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-tsg-multiorgan-seg-task",
+      "title": "Label 117 anatomical structures in CT",
+      "repository_id": "automedbench",
+      "group_id": "clinical-structure",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-tsg-multiorgan-seg-task.md",
+      "brief_sha256": "60789f295e30479fd64a2b0ff4cbd3261259c055b0961f092b8a50e8cda1d723",
+      "basis": {
+        "input": "CT input, stored as `ct.nii.gz` per case.",
+        "output": "Write `agents_outputs/{case_id}/dseg.nii.gz`. Preserve scan geometry and map labels to the configuration’s integer taxonomy."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-ctorg-ctsr-task",
+      "title": "Restore degraded CT-ORG volumes",
+      "repository_id": "automedbench",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-ctorg-ctsr-task.md",
+      "brief_sha256": "7c347331adc439700159c208609f31e234f4ee00cbecaf8740587e9e91384539",
+      "basis": {
+        "input": "A CT NIfTI volume with synthetic fourfold resolution degradation, resampled onto the public image grid.",
+        "output": "Write `agents_outputs/{case_id}/sct.nii.gz`."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-msd-pancreas-ctsr-task",
+      "title": "Restore degraded pancreas CT volumes",
+      "repository_id": "automedbench",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-msd-pancreas-ctsr-task.md",
+      "brief_sha256": "bded5e35ba8fa1b4c2e65e8c5fccfd933169d9ffe31d46bf8b954a384560cac7",
+      "basis": {
+        "input": "A CT NIfTI volume with synthetic fourfold resolution degradation, resampled onto the public image grid.",
+        "output": "Write `agents_outputs/{case_id}/sct.nii.gz`."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-synthrad2025-mrct-task",
+      "title": "Synthesize head-and-neck CT from MRI",
+      "repository_id": "automedbench",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-synthrad2025-mrct-task.md",
+      "brief_sha256": "df62b9149a7e1a40c6d3b5ed5cb421633971a97f038c6efb2bdf8176fd851785",
+      "basis": {
+        "input": "MRI input, stored as `mr.nii.gz` per case.",
+        "output": "Write `agents_outputs/{case_id}/sct.nii.gz`."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-totalsegmentator-ctsr-task",
+      "title": "Restore degraded TotalSegmentator CT volumes",
+      "repository_id": "automedbench",
+      "group_id": "image-formation",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-totalsegmentator-ctsr-task.md",
+      "brief_sha256": "928dd9ae6fd479feb9f8b7fc0b82fbc1927abe7aad8315761a71294250ca3cfd",
+      "basis": {
+        "input": "A CT NIfTI volume with synthetic fourfold resolution degradation, resampled onto the public image grid.",
+        "output": "Write `agents_outputs/{case_id}/sct.nii.gz`."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-medframeqa-task",
+      "title": "Answer medical questions using multiple image frames",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-medframeqa-task.md",
+      "brief_sha256": "c470e85ccb056a163821e113af94af4bd977c105121751f145a14ee2262ae31a",
+      "basis": {
+        "input": "question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: MedFrameQA.",
+        "output": "Write `{question_id}/answer.json`. predicted_label is one allowed option letter; predicted_answer must match the selected option text."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-medxpertqa-mm-task",
+      "title": "Answer expert-level multimodal medical questions",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-medxpertqa-mm-task.md",
+      "brief_sha256": "3601df21a4c9fe972695497a71e4c55645d6e5f2423efd31c786ce5ae9298ea3",
+      "basis": {
+        "input": "question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: MedXpertQA.",
+        "output": "Write `{question_id}/answer.json`. predicted_label is one allowed option letter; predicted_answer must match the selected option text."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-pathvqa-task",
+      "title": "Answer questions about pathology images",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-pathvqa-task.md",
+      "brief_sha256": "accd260fbd328d8a1ddc41b8cff48d167075a8b96026767d6e65c57a5d3a4c76",
+      "basis": {
+        "input": "question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: PathVQA.",
+        "output": "Write `{question_id}/answer.json`. Keep predicted_label empty; predicted_answer is a concise normalized phrase or exactly yes/no for binary questions."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-slake-task",
+      "title": "Answer English radiology questions from SLAKE",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-slake-task.md",
+      "brief_sha256": "1c7674d507e9524776a4876ca3a454a50515029289e15484a8ed3c9e301732f8",
+      "basis": {
+        "input": "question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: SLAKE-EN.",
+        "output": "Write `{question_id}/answer.json`. Keep predicted_label empty; predicted_answer is a concise normalized phrase or exactly yes/no for binary questions."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-vqa-kvasir-task",
+      "title": "Answer questions about endoscopy images",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-vqa-kvasir-task.md",
+      "brief_sha256": "be3589c05e38931ab8dacc1a6cc4518f9877607b8cc49a8acaf20b7dfb548597",
+      "basis": {
+        "input": "question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: Kvasir-VQA.",
+        "output": "Write `{question_id}/answer.json`. Keep predicted_label empty; predicted_answer is a concise normalized phrase or exactly yes/no for binary questions."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-vqa-mmmu-medical-task",
+      "title": "Answer medical-domain MMMU multiple-choice questions",
+      "repository_id": "automedbench",
+      "group_id": "biomedical-vqa",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-vqa-mmmu-medical-task.md",
+      "brief_sha256": "ca76113f9b920a430426f7181288bd69f7051f81356cba0aa6f8fa83c35b64f5",
+      "basis": {
+        "input": "question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: MMMU medical validation subsets.",
+        "output": "Write `{question_id}/answer.json`. predicted_label is one allowed option letter; predicted_answer must match the selected option text."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-vqa-omnimedvqa-task",
+      "title": "Answer medical image questions across authorized datasets",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-vqa-omnimedvqa-task.md",
+      "brief_sha256": "bdfbca6fb88697859e77eef1f4bdb7ef8e028f0325c604aa2a139e409540d2e8",
+      "basis": {
+        "input": "question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: OmniMedVQA.",
+        "output": "Write `{question_id}/answer.json`. predicted_label is one allowed option letter; predicted_answer must match the selected option text."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-vqa-pmc-vqa-task",
+      "title": "Answer questions about biomedical publication figures",
+      "repository_id": "automedbench",
+      "group_id": "biomedical-vqa",
+      "automatic_completion": false,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-vqa-pmc-vqa-task.md",
+      "brief_sha256": "184993ddfbbfd5fd743e1cbd1acb2c6b9ac526b96cb5856006a9078bd8ead2dc",
+      "basis": {
+        "input": "question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: PMC-VQA.",
+        "output": "Write `{question_id}/answer.json`. predicted_label is one allowed option letter; predicted_answer must match the selected option text."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    },
+    {
+      "entry_id": "automedbench-full-vqa-rad-task",
+      "title": "Answer short questions about radiology images",
+      "repository_id": "automedbench",
+      "group_id": "clinical-reading",
+      "automatic_completion": true,
+      "brief": "presentation/external-tasks/briefs/automedbench-full-vqa-rad-task.md",
+      "brief_sha256": "c9ff9a365bf99e66b8dd77de5f548d9dfc8ef00179c419bc14132b4e8e30c40a",
+      "basis": {
+        "input": "question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: VQA-RAD.",
+        "output": "Write `{question_id}/answer.json`. Keep predicted_label empty; predicted_answer is a concise normalized phrase or exactly yes/no for binary questions."
+      },
+      "review_status_at_audit": "blocked-source-input"
+    }
+  ]
+}

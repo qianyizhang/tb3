@@ -45,3 +45,13 @@ These commands use the installed native CLI and never launch a trial.
 The explorer also has [dataset learning pages](../datasets/README.md): a searchable
 source index, selected sample provenance, input/reference explanations and links
 back to the tasks. Dataset pages are included in standalone and integrated builds.
+
+## Explainer completion scope
+
+Use the [scope and priority register](EXPLAINER-SCOPE.md) before selecting work.
+It separates core clinical imaging, related candidates and excluded/reference
+material across all 205 catalogue entries. The [completion plan](EXPLAINER-CANDIDATES.md)
+joins scope eligibility with live [review status](EXPLAINER-LEDGER.json); historical
+all-entry sequences do not override the scope gate.
+Use the [scoped workflow](EXPLAINER-WORKFLOW.md) for queue commands, dependency
+deferral, worker ownership and reusable review collection.

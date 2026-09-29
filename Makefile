@@ -62,6 +62,7 @@ js-check:
 	node tests/scene_player.cjs
 	node tests/explanation_story.cjs
 	node tests/explanation_expansion.cjs
+	node tests/story_review.cjs
 	node tests/media_export.mts
 	node --test tests/tooling.mts
 

@@ -1,13 +1,40 @@
 # Explainer completion plan
 
-Complete the **192 of 205 catalogue entries unfinished at the start**, one entry at a time.
-The [ledger](EXPLAINER-LEDGER.json) is the single authority for entry status,
-source blockers, bindings and acceptance receipts. Its `completion_program.sequence`
-enumerates every unfinished entry exactly once in execution order. This plan was
-authorized by the user on 2026-09-27 in chat
-`01a0e024-3705-7a91-9181-d237131801fa`.
+Complete the **106 unfinished core entries** identified by the 2026-09-29 scope
+audit, one at a time. The [scope register](EXPLAINER-SCOPE.md) classifies all 205
+entries; its [machine-readable ledger](EXPLAINER-SCOPE.json) owns queue eligibility
+and group priority. The [review ledger](EXPLAINER-LEDGER.json) remains the single
+authority for live review status, source blockers, bindings and acceptance receipts.
 
-## Starting point and scope
+## Current scope gate
+
+The user's 2026-09-29 request to classify, prioritize and exclude unrelated tasks
+supersedes the original all-entry completion objective. Detailed membership and
+priority are assistant judgments recorded in the scope ledger. **154 entries are
+core**, **13 are held candidates**, and **38 are outside automatic completion**.
+The audited core snapshot has **48 reviewed and 106 unfinished**; always join
+current review status by `entry_id` before selecting the next entry.
+
+1. **P0 — existing TB3 research:** six unfinished internal entries.
+2. **P1 — clinical image tasks:** 38 structural-task and 30 reading/workflow entries.
+3. **P2 — image formation/restoration:** 32 unfinished entries.
+4. **P3 — candidates:** relevance review only; no automatic explainer completion.
+
+Use scope-ledger group order, then review-ledger entry order; skip reviewed rows.
+The old `completion_program.sequence` and `active_entry` are retained historical
+program state, not selection authority when they conflict with this scope gate.
+In particular, **`imaging101-eht-black-hole-original` is excluded**. Preserve its
+in-progress files and later receipts; do not schedule additional nonmedical work.
+The live explainer chat must reread this plan at its next selection boundary.
+This document does not interrupt that chat or enforce a runtime scheduler.
+
+No prior review, frozen bytes, score, receipt or source record is invalidated by
+scope exclusion. Candidates require a specific biomedical question and source/
+reference contract before promotion. Generic methods require a concrete medical
+application; historical work remains closed. Record subsequent scope decisions
+with actor, source and rationale in the scope ledger.
+
+## Historical starting point
 
 At commit `27fcca9`, the blueprint refactor is committed and locally verified;
 remote delivery/CI remains open. The catalogue has 13 reviewed teaching stories,
@@ -25,9 +52,10 @@ source research and small licensed teaching inputs may resolve dependencies;
 restricted access, unclear rights or large acquisitions need a concrete decision
 if they become necessary. Never relabel missing evidence as completed content.
 
-## Execution order
+## Historical execution order
 
-Counts below describe the initial queue, not a second live progress table.
+Counts below preserve the original 2026-09-27 plan for provenance. They are not
+the current queue; the scope gate above controls all new selection.
 
 | Order | Workstream | Entries | Main completion requirement |
 | --- | --- | ---: | --- |
@@ -81,7 +109,14 @@ verification; stop unchanged relaunches.
 
 ## Dependency handling and resumption
 
-Work sequentially through the ledger's ordered sequence. An entry is complete
+The user's 2026-09-29 follow-up defers all dependency-blocked core entries to a
+later session. Retain each reason and reopening action in the review ledger's
+`dependency_deferral` field; continue to the next ready entry. Use the
+[scoped workflow](EXPLAINER-WORKFLOW.md) to derive the queue and dependency register.
+If no ready core entry remains, report that state explicitly. Regression pilots
+on already reviewed entries validate tooling without adding completions.
+
+Work sequentially through the scope-filtered, priority-ordered queue. An entry is complete
 only when its own integrated explanation and review are supported by receipts.
 A family story, successful compilation, source download or batch receipt alone
 does not complete its siblings. The existing 13 entries remain in final regression
@@ -90,11 +125,13 @@ scope but are not re-entered into the new-work queue.
 For a source blocker, first inspect existing local receipts and the exact pinned
 upstream source. Record the specific unresolved field/input, inspected evidence,
 attempt date and concrete next action in that entry. If external access or a
-user decision is indispensable, ask a concise question with the prepared options
-and continue the next actionable entry. Keep blocked rows in the denominator.
+user decision is indispensable, record it for the deferred dependency session
+and continue the next actionable entry. Preserve existing unanswered questions.
+Keep blocked core rows in the core denominator; retain all 205 inventory records.
 Do not manufacture a reference or adopt a generic/static replacement solely to
-increase completion. A changed deliverable or exclusion requires an explicit
-user decision recorded with its actor and scope.
+increase completion. The current exclusions implement the user’s scope-audit request. Any later
+change must record its actual actor, rationale and scope; do not attribute an
+assistant classification to a user decision.
 
 At each checkpoint, preserve the active entry, completed commit, local artifact
 path and any specific blocker in the ledger/program record. Resume at the first
@@ -103,9 +140,11 @@ dependency or failure. Source audits are inspectable records, not new model runs
 
 ## Final acceptance
 
-- Every entry has its own reviewed disposition and receipt, or an explicitly
-  user-approved alternate scope; unresolved blockers remain incomplete.
-- The 205-entry denominator, story bindings, sources and ledger counts reconcile.
+- Every core entry has its own reviewed disposition and receipt; unresolved
+  core blockers remain incomplete. Candidates and exclusions are reported
+  separately and never counted as completed explainers.
+- The 205-entry inventory, 154-entry core scope, story bindings, sources and
+  both ledgers reconcile. Refresh snapshot counts if review status changes.
 - All exports have source/asset/frontend provenance and verified artifacts.
   Entry review and standalone export review remain distinct.
 - Shared-runtime changes pass relevant Python, TypeScript, browser and media
