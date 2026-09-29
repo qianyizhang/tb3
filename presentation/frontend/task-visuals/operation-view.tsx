@@ -1,3 +1,4 @@
+import { RexPumaScene, RexPumaOutput } from './rexmle-puma-panels';
 import { RexPantherScene, RexPantherOutput } from './rex-panther-panels';
 import { RexCellsegScene, RexCellsegOutput } from './rexmle-cellseg-panels';
 import { RexIslesScene, RexIslesOutput } from './rex-isles22-panels';
@@ -196,6 +197,9 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   if (state.recipe === 'rexmle-neurips-cellseg-v1') return <RexCellsegScene state={state} />;
   if (state.recipe === 'rex-panther-task1-v1') return <RexPantherScene state={state} />;
   if (state.recipe === 'rex-panther-task2-v1') return <RexPantherScene state={state} />;
+  if (state.recipe === 'rexmle-puma-track1-task1-v1') return <RexPumaScene state={state} />;
+  if (state.recipe === 'rexmle-puma-track1-task2-v1') return <RexPumaScene state={state} />;
+  if (state.recipe === 'rexmle-puma-track2-task2-v1') return <RexPumaScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
   if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityScene state={state} />;
@@ -456,6 +460,9 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'rexmle-neurips-cellseg-v1') return <RexCellsegOutput state={state} />;
   if (state.recipe === 'rex-panther-task1-v1') return <RexPantherOutput state={state} />;
   if (state.recipe === 'rex-panther-task2-v1') return <RexPantherOutput state={state} />;
+  if (state.recipe === 'rexmle-puma-track1-task1-v1') return <RexPumaOutput state={state} />;
+  if (state.recipe === 'rexmle-puma-track1-task2-v1') return <RexPumaOutput state={state} />;
+  if (state.recipe === 'rexmle-puma-track2-task2-v1') return <RexPumaOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;
   if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityOutput state={state} />;

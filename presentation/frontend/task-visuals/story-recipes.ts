@@ -75,6 +75,9 @@ export function isPlanarStory(plan: StoryPlan): boolean {
   return [
     'cardiac-anchor-v1',
     'cardiac-material-v1',
+    'rexmle-puma-track2-task2-v1',
+    'rexmle-puma-track1-task2-v1',
+    'rexmle-puma-track1-task1-v1',
     'rex-panther-task2-v1',
     'rex-panther-task1-v1',
     'rexmle-neurips-cellseg-v1',
@@ -347,6 +350,55 @@ export function storyPresentation(plan: StoryPlan): {
           ['#4f7c89', 'Abstract index grid'],
           ['#16a6a9', 'Empty output schema'],
           ['#d08b42', 'Documented evaluator roles'],
+        ],
+      };
+    case 'rexmle-puma-track1-task1-v1':
+      return {
+        heading: 'Paint semantic tissue classes on an H&E ROI',
+        corner: 'PUMA · public training example',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Public training ROI and annotation; held-out input, prediction and score are absent.',
+          url: 'https://zenodo.org/records/14869398',
+          link_label: 'Acquire original data',
+        },
+        legend: [
+          ['#91a6ae', 'Actual training image'],
+          ['#14c6d4', 'Training tissue: tumor'],
+          ['#f4bc49', 'Training tissue: necrosis'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'rexmle-puma-track1-task2-v1':
+      return {
+        heading: 'Detect nuclei in three grouped classes',
+        corner: 'PUMA · public training example',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Public training ROI and annotation; held-out input, prediction and score are absent.',
+          url: 'https://zenodo.org/records/14869398',
+          link_label: 'Acquire original data',
+        },
+        legend: [
+          ['#91a6ae', 'Actual training image'],
+          ['#0dc9d3', 'Training nuclei (class colors)'],
+          ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'rexmle-puma-track2-task2-v1':
+      return {
+        heading: 'Detect nuclei with the ten-class vocabulary',
+        corner: 'PUMA · public training example',
+        warning: {
+          label: 'Mixed illustration',
+          text: 'Public training ROI and annotation; held-out input, prediction and score are absent.',
+          url: 'https://zenodo.org/records/14869398',
+          link_label: 'Acquire original data',
+        },
+        legend: [
+          ['#91a6ae', 'Actual training image'],
+          ['#0dc9d3', 'Training nuclei (class colors)'],
+          ['#16a6a9', 'Empty test output'],
         ],
       };
     case 'cardiac-material-v1':

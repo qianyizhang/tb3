@@ -440,6 +440,39 @@ export function sampleStory(plan: StoryPlan, requested: number) {
         reference: channel(b.channels.reference),
       });
     }
+    case 'rexmle-puma-track1-task1-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        helper: channel(b.channels.helper),
+        focus: channel(b.channels.focus),
+        metric: channel(b.channels.metric),
+      });
+    }
+    case 'rexmle-puma-track1-task2-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        helper: channel(b.channels.helper),
+        focus: channel(b.channels.focus),
+        metric: channel(b.channels.metric),
+      });
+    }
+    case 'rexmle-puma-track2-task2-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        helper: channel(b.channels.helper),
+        focus: channel(b.channels.focus),
+        metric: channel(b.channels.metric),
+      });
+    }
     case 'cardiac-material-v1': {
       const b = plan.beats[index];
       return Object.freeze({

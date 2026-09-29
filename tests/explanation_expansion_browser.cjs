@@ -28,6 +28,9 @@ const cardiacRecipes = new Set([
   'cardiac-contour-v1',
   'cardiac-anchor-v1',
   'cardiac-material-v1',
+  'rexmle-puma-track2-task2-v1',
+  'rexmle-puma-track1-task2-v1',
+  'rexmle-puma-track1-task1-v1',
   'rex-panther-task2-v1',
   'rex-panther-task1-v1',
   'rexmle-neurips-cellseg-v1',
@@ -50,6 +53,30 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'rexmle-puma-track2-task2-v1')
+    return {
+      scene: 'data-puma-scene',
+      reference: '[data-puma-private-reference]',
+      referenceChannel: null,
+      output: '[data-puma-empty-output]',
+      aside: '[data-puma-output]',
+    };
+  if (plan.recipe === 'rexmle-puma-track1-task2-v1')
+    return {
+      scene: 'data-puma-scene',
+      reference: '[data-puma-private-reference]',
+      referenceChannel: null,
+      output: '[data-puma-empty-output]',
+      aside: '[data-puma-output]',
+    };
+  if (plan.recipe === 'rexmle-puma-track1-task1-v1')
+    return {
+      scene: 'data-puma-scene',
+      reference: '[data-puma-private-reference]',
+      referenceChannel: null,
+      output: '[data-puma-empty-output]',
+      aside: '[data-puma-output]',
+    };
   if (plan.recipe === 'rex-panther-task2-v1')
     return {
       scene: 'data-panther-scene',
@@ -160,6 +187,24 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'rexmle-puma-track2-task2-v1': [
+      /Public training ROI and annotation/,
+      'https://zenodo.org/records/14869398',
+      'data-puma-scene',
+      false,
+    ],
+    'rexmle-puma-track1-task2-v1': [
+      /Public training ROI and annotation/,
+      'https://zenodo.org/records/14869398',
+      'data-puma-scene',
+      false,
+    ],
+    'rexmle-puma-track1-task1-v1': [
+      /Public training ROI and annotation/,
+      'https://zenodo.org/records/14869398',
+      'data-puma-scene',
+      false,
+    ],
     'rex-panther-task2-v1': [
       /No matching MRI or tumor mask/,
       'https://zenodo.org/records/15192302',
@@ -441,6 +486,9 @@ withBrowser(async (browser) => {
           'cardiac-contour-v1',
           'cardiac-anchor-v1',
           'cardiac-material-v1',
+          'rexmle-puma-track2-task2-v1',
+          'rexmle-puma-track1-task2-v1',
+          'rexmle-puma-track1-task1-v1',
           'rex-panther-task2-v1',
           'rex-panther-task1-v1',
           'rexmle-neurips-cellseg-v1',
@@ -3330,6 +3378,9 @@ withBrowser(async (browser) => {
       'cardiac-contour-v1',
       'cardiac-anchor-v1',
       'cardiac-material-v1',
+      'rexmle-puma-track2-task2-v1',
+      'rexmle-puma-track1-task2-v1',
+      'rexmle-puma-track1-task1-v1',
       'rex-panther-task2-v1',
       'rex-panther-task1-v1',
       'rexmle-neurips-cellseg-v1',

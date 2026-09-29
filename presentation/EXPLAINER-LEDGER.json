@@ -15348,15 +15348,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "tissue",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "rexmle-puma-track1-task1",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-puma-track1-task1. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/puma-tissue-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "H&E-stained tissue image regions at high magnification.",
         "helpers": "Training region annotations, class definitions and larger context images. These are training aids; held-out targets remain evaluation references.",
@@ -15393,14 +15393,97 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T06:39:17.851167+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/rexmle-puma-track1-task1-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "One source-matched 1024x1024 ROI and tissue GeoJSON annotation retained; source labels are expected public-training help, not held-out test reference. No materialized ReX staging, held-out prediction, private reference or grader result.",
+      "acquisition_route": "https://zenodo.org/records/14869398; official CC0 files; complete image archive is 643,439,374 bytes, one matched ROI recovered by verified HTTP 206 range; full tissue/nuclei archives downloaded and official MD5 checked.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-puma-track1-task1-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/rexmle-puma-track1-task1-resolution.json",
+        "receipt_sha256": "f3a1144632b7bfdace36afb12da24cce0dc6576dfca355ce5a86185ebfe2ec36",
+        "brief_sha256": "38c7f351c9518e43511b4841a8eabd0785a4f4e4e91a829e1898c3fce6d349a4",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Real official PUMA public-training ROI and matching annotation; no held-out prediction or score. ReX split reconstructed from pinned code, not run.",
+      "acceptance_scope": "Source-matched public-training PUMA illustration and pinned task/scorer contract. Acceptance does not establish a held-out prediction, executed ReX preparation or model performance.",
+      "completion_review": {
+        "date": "2026-09-29T06:45:13.224274+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "e22e6698c589c0e258feb6c319728859d744da015309ed516dae84625f35ad6f"
+      },
+      "reviewed_contract_projection": {
+        "title": "Label melanoma tissue regions",
+        "goal": "Develop a semantic mask for melanoma H&E tissue ROIs. This is tissue compartment labeling, not individual nucleus detection or a clinical outcome.",
+        "value": "Not yet specified.",
+        "raw": "The official [PUMA record](https://zenodo.org/records/14869398) reports CC0-1.0. The worked 1024 × 1024 H&E ROI `training_set_metastatic_roi_001.tif` and matching annotations are hash- and archive-verified. Across 205 images paired with both annotation sets, pinned seed-42 splitting reconstructs 164 public train and 41 private-label test cases; this ROI falls in public train. The preparer was not executed.",
+        "helpers": "Public-training GeoJSON tissue polygons and class definitions. This selected ROI has one tumor polygon and one necrosis polygon. A deterministic local mask rendering follows the pinned exterior-fill rule; it is training help, not a model prediction.",
+        "tools": "The task environment supports method development and file submission. No model, ReX preparer or grader was run for this explanation.",
+        "reference": "Held-out labels and test-label CSV belong to the evaluator. None is retained in this pack. The shown annotation is public-training help, not a private answer. Local source recovery does not prove runtime visibility inside an executed ReX task.",
+        "spec": "Paint one 1024 × 1024 pixel class mask per held-out ROI. The pinned adapter maps background 0, stroma 1, blood vessel 2, tumor 3, epidermis 4 and necrosis 5. Its description also says epithelium in prose; ID 4 is `tissue_epidermis` in converter and grader.",
+        "output": "Submit `submission/submission.csv` with `case_id,predicted_mask_path` and a TIF or PNG semantic mask using integer IDs 0–5. The staged example output is empty.",
+        "score": "The pinned grader excludes background, concatenates masks by foreground class, computes class Dice for IDs 1–5, then averages them as primary micro Dice. Macro Dice separately averages case scores. It nearest-neighbor resizes shape mismatches; no prediction or score was run.",
+        "challenge": "Only tumor and necrosis occur in the worked ROI; the full five-class task is broader.",
+        "families": "Not yet specified.",
+        "gap": "Only one matched public-training source ROI is illustrated. The 164/41 split is reconstructed from code, not materialized by running the preparer. No held-out input, private label, model prediction, score or visual acceptance is retained.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "Public-training GeoJSON tissue polygons and class definitions. This selected ROI has one tumor polygon and one necrosis polygon. A deterministic local mask rendering follows the pinned exterior-fill rule; it is training help, not a model prediction.",
+            "remaining": "Paint one 1024 × 1024 pixel class mask per held-out ROI. The pinned adapter maps background 0, stroma 1, blood vessel 2, tumor 3, epidermis 4 and necrosis 5. Its description also says epithelium in prose; ID 4 is `tissue_epidermis` in converter and grader."
+          }
+        ],
+        "sources": [
+          [
+            "Official PUMA Zenodo record",
+            "https://zenodo.org/records/14869398"
+          ],
+          [
+            "Pinned ReX-MLE adapter",
+            "https://github.com/rajpurkarlab/ReX-MLE/tree/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/puma-track1-task1"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Develop a semantic mask for melanoma H&amp;E tissue ROIs. This is tissue compartment labeling, not individual nucleus detection or a clinical outcome.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The official <a href=\"https://zenodo.org/records/14869398\">PUMA record</a> reports CC0-1.0. The worked 1024 × 1024 H&amp;E ROI <code>training_set_metastatic_roi_001.tif</code> and matching annotations are hash- and archive-verified. Across 205 images paired with both annotation sets, pinned seed-42 splitting reconstructs 164 public train and 41 private-label test cases; this ROI falls in public train. The preparer was not executed.</p>",
+          "helpers": "<p>Public-training GeoJSON tissue polygons and class definitions. This selected ROI has one tumor polygon and one necrosis polygon. A deterministic local mask rendering follows the pinned exterior-fill rule; it is training help, not a model prediction.</p>",
+          "tools": "<p>The task environment supports method development and file submission. No model, ReX preparer or grader was run for this explanation.</p>",
+          "reference": "<p>Held-out labels and test-label CSV belong to the evaluator. None is retained in this pack. The shown annotation is public-training help, not a private answer. Local source recovery does not prove runtime visibility inside an executed ReX task.</p>",
+          "spec": "<p>Paint one 1024 × 1024 pixel class mask per held-out ROI. The pinned adapter maps background 0, stroma 1, blood vessel 2, tumor 3, epidermis 4 and necrosis 5. Its description also says epithelium in prose; ID 4 is <code>tissue_epidermis</code> in converter and grader.</p>",
+          "output": "<p>Submit <code>submission/submission.csv</code> with <code>case_id,predicted_mask_path</code> and a TIF or PNG semantic mask using integer IDs 0–5. The staged example output is empty.</p>",
+          "score": "<p>The pinned grader excludes background, concatenates masks by foreground class, computes class Dice for IDs 1–5, then averages them as primary micro Dice. Macro Dice separately averages case scores. It nearest-neighbor resizes shape mismatches; no prediction or score was run.</p>",
+          "challenge": "<p>Only tumor and necrosis occur in the worked ROI; the full five-class task is broader.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Only one matched public-training source ROI is illustrated. The 164/41 split is reconstructed from code, not materialized by running the preparer. No held-out input, private label, model prediction, score or visual acceptance is retained.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -15418,15 +15501,15 @@
       ],
       "illustration_kind": "nuclei",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "rexmle-puma-track1-task2",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-puma-track1-task2. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/puma-coarse-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "H&E melanoma histology regions.",
         "helpers": "Training nucleus annotations and three classes: tumor, tumor-infiltrating lymphocytes and other cells. These are training aids; held-out targets remain evaluation references.",
@@ -15459,14 +15542,97 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T06:46:45.349228+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/rexmle-puma-track1-task2-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "One source-matched 1024x1024 ROI and nuclei GeoJSON annotation retained; source labels are expected public-training help, not held-out test reference. No materialized ReX staging, held-out prediction, private reference or grader result.",
+      "acquisition_route": "https://zenodo.org/records/14869398; official CC0 files; complete image archive is 643,439,374 bytes, one matched ROI recovered by verified HTTP 206 range; full tissue/nuclei archives downloaded and official MD5 checked.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-puma-track1-task2-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/rexmle-puma-track1-task2-resolution.json",
+        "receipt_sha256": "3273b986b44fc80d20872f60a3fce860c3c0c5d953c6a0dc7caa8add5cb5c08c",
+        "brief_sha256": "dcf2c08b94706d1c6abcd745ebd07fb7627b7b5f364b3779a6fe8d6b702a8c21",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Real official PUMA public-training ROI and matching annotation; no held-out prediction or score. ReX split reconstructed from pinned code, not run.",
+      "acceptance_scope": "Source-matched public-training PUMA illustration and pinned task/scorer contract. Acceptance does not establish a held-out prediction, executed ReX preparation or model performance.",
+      "completion_review": {
+        "date": "2026-09-29T06:55:34.762255+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "ba94a80c5b711660e941b2c77258216b90f8d83beddda44be414a1c577429b11"
+      },
+      "reviewed_contract_projection": {
+        "title": "Locate nuclei in three broad classes",
+        "goal": "Detect individual nuclei in melanoma H&E ROIs and classify each as tumor, tumor-infiltrating lymphocyte group, or other. This is per-nucleus localization, not a tissue mask.",
+        "value": "Not yet specified.",
+        "raw": "The official [PUMA record](https://zenodo.org/records/14869398) reports CC0-1.0. The worked 1024 × 1024 H&E ROI `training_set_metastatic_roi_001.tif` and matching annotations are hash- and archive-verified. Across 205 images paired with both annotation sets, pinned seed-42 splitting reconstructs 164 public train and 41 private-label test cases; this ROI falls in public train. The preparer was not executed.",
+        "helpers": "The source training GeoJSON has 633 nucleus features. Pinned Polygon-only conversion keeps 628 and skips five MultiPolygons. In this ROI it maps 498 accepted tumor, 8 TIL and 122 other nuclei. Training centroids and a post-hoc inspection crop are source help, not predictions.",
+        "tools": "The task environment supports method development and file submission. No model, ReX preparer or grader was run for this explanation.",
+        "reference": "Held-out labels and test-label CSV belong to the evaluator. None is retained in this pack. The shown annotation is public-training help, not a private answer. Local source recovery does not prove runtime visibility inside an executed ReX task.",
+        "spec": "Find nucleus locations across the full 1024 × 1024 ROI and assign tumor, TILs or other. The adapter groups source lymphocytes and plasma cells as TILs; other listed non-tumor types become other.",
+        "output": "Submit `submission/submission.csv` with `case_id,predicted_nuclei_path`. The per-case JSON accepts named polygons with `path_points` or simplified class-and-centroid records; confidence is optional. The example JSON is empty.",
+        "score": "The pinned Track 1 grader pairs same-class centroids only when distance is strictly **less than 15 pixels**. For each GT nucleus it favors confidence, then distance, and consumes a prediction once. It averages three class F1 values. It averages each class F1 across every submitted case (both-empty class/case contributes 0), then averages the three classes. No prediction or F1 was run.",
+        "challenge": "Crowded nuclei and grouping source classes are distinct operations; five MultiPolygons in the source case do not enter pinned conversion.",
+        "families": "Not yet specified.",
+        "gap": "Only one matched public-training source ROI is illustrated. The 164/41 split is reconstructed from code, not materialized by running the preparer. No held-out input, private label, model prediction, score or visual acceptance is retained.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "The source training GeoJSON has 633 nucleus features. Pinned Polygon-only conversion keeps 628 and skips five MultiPolygons. In this ROI it maps 498 accepted tumor, 8 TIL and 122 other nuclei. Training centroids and a post-hoc inspection crop are source help, not predictions.",
+            "remaining": "Find nucleus locations across the full 1024 × 1024 ROI and assign tumor, TILs or other. The adapter groups source lymphocytes and plasma cells as TILs; other listed non-tumor types become other."
+          }
+        ],
+        "sources": [
+          [
+            "Official PUMA Zenodo record",
+            "https://zenodo.org/records/14869398"
+          ],
+          [
+            "Pinned ReX-MLE adapter",
+            "https://github.com/rajpurkarlab/ReX-MLE/tree/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/puma-track1-task2"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Detect individual nuclei in melanoma H&amp;E ROIs and classify each as tumor, tumor-infiltrating lymphocyte group, or other. This is per-nucleus localization, not a tissue mask.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The official <a href=\"https://zenodo.org/records/14869398\">PUMA record</a> reports CC0-1.0. The worked 1024 × 1024 H&amp;E ROI <code>training_set_metastatic_roi_001.tif</code> and matching annotations are hash- and archive-verified. Across 205 images paired with both annotation sets, pinned seed-42 splitting reconstructs 164 public train and 41 private-label test cases; this ROI falls in public train. The preparer was not executed.</p>",
+          "helpers": "<p>The source training GeoJSON has 633 nucleus features. Pinned Polygon-only conversion keeps 628 and skips five MultiPolygons. In this ROI it maps 498 accepted tumor, 8 TIL and 122 other nuclei. Training centroids and a post-hoc inspection crop are source help, not predictions.</p>",
+          "tools": "<p>The task environment supports method development and file submission. No model, ReX preparer or grader was run for this explanation.</p>",
+          "reference": "<p>Held-out labels and test-label CSV belong to the evaluator. None is retained in this pack. The shown annotation is public-training help, not a private answer. Local source recovery does not prove runtime visibility inside an executed ReX task.</p>",
+          "spec": "<p>Find nucleus locations across the full 1024 × 1024 ROI and assign tumor, TILs or other. The adapter groups source lymphocytes and plasma cells as TILs; other listed non-tumor types become other.</p>",
+          "output": "<p>Submit <code>submission/submission.csv</code> with <code>case_id,predicted_nuclei_path</code>. The per-case JSON accepts named polygons with <code>path_points</code> or simplified class-and-centroid records; confidence is optional. The example JSON is empty.</p>",
+          "score": "<p>The pinned Track 1 grader pairs same-class centroids only when distance is strictly <strong>less than 15 pixels</strong>. For each GT nucleus it favors confidence, then distance, and consumes a prediction once. It averages three class F1 values. It averages each class F1 across every submitted case (both-empty class/case contributes 0), then averages the three classes. No prediction or F1 was run.</p>",
+          "challenge": "<p>Crowded nuclei and grouping source classes are distinct operations; five MultiPolygons in the source case do not enter pinned conversion.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Only one matched public-training source ROI is illustrated. The 164/41 split is reconstructed from code, not materialized by running the preparer. No held-out input, private label, model prediction, score or visual acceptance is retained.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -15484,15 +15650,15 @@
       ],
       "illustration_kind": "nuclei",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "rexmle-puma-track2-task2",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-puma-track2-task2. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/puma-fine-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "H&E melanoma histology regions.",
         "helpers": "Fine-grained nucleus annotations for ten tumor, immune, stromal and other cell classes. These are training aids; held-out targets remain evaluation references.",
@@ -15525,14 +15691,97 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-29T06:55:54.223984+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/rexmle-puma-track2-task2-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "One source-matched 1024x1024 ROI and nuclei GeoJSON annotation retained; source labels are expected public-training help, not held-out test reference. No materialized ReX staging, held-out prediction, private reference or grader result.",
+      "acquisition_route": "https://zenodo.org/records/14869398; official CC0 files; complete image archive is 643,439,374 bytes, one matched ROI recovered by verified HTTP 206 range; full tissue/nuclei archives downloaded and official MD5 checked.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-puma-track2-task2-resolution.json",
+      "source_review": {
+        "date": "2026-09-29",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/rexmle-puma-track2-task2-resolution.json",
+        "receipt_sha256": "be01b9f9170989389b63b54e5f9780ae4fcf4ade33c8e15a0b454f9fd86ba2ee",
+        "brief_sha256": "799c707453331a2d2afd1d8782f4eea374ff61ddb24afeaa31d34a0a62047cd7",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Real official PUMA public-training ROI and matching annotation; no held-out prediction or score. ReX split reconstructed from pinned code, not run.",
+      "acceptance_scope": "Source-matched public-training PUMA illustration and pinned task/scorer contract. Acceptance does not establish a held-out prediction, executed ReX preparation or model performance.",
+      "completion_review": {
+        "date": "2026-09-29T07:01:13.735805+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "e3df05743ac0ea8f4a13e6b1554421bc5c4e4b2ccf1713f3534243db40f38176"
+      },
+      "reviewed_contract_projection": {
+        "title": "Locate nuclei in ten fine classes",
+        "goal": "Detect individual nuclei in melanoma H&E ROIs and assign a fine-grained cell type. These identities support tissue analysis but do not establish treatment response.",
+        "value": "Not yet specified.",
+        "raw": "The official [PUMA record](https://zenodo.org/records/14869398) reports CC0-1.0. The worked 1024 × 1024 H&E ROI `training_set_metastatic_roi_001.tif` and matching annotations are hash- and archive-verified. Across 205 images paired with both annotation sets, pinned seed-42 splitting reconstructs 164 public train and 41 private-label test cases; this ROI falls in public train. The preparer was not executed.",
+        "helpers": "The same official training ROI has 633 source nucleus features; pinned Polygon-only conversion keeps 628 and skips five MultiPolygons. Accepted labels in this ROI are 498 tumor, 119 apoptotic cells, 8 lymphocytes and 3 endothelium.",
+        "tools": "The task environment supports method development and file submission. No model, ReX preparer or grader was run for this explanation.",
+        "reference": "Held-out labels and test-label CSV belong to the evaluator. None is retained in this pack. The shown annotation is public-training help, not a private answer. Local source recovery does not prove runtime visibility inside an executed ReX task.",
+        "spec": "Search the full 1024 × 1024 ROI and keep ten classes distinct: tumor, lymphocytes, plasma cells, histiocytes, melanophages, neutrophils, stromal cells, epithelium, endothelium and apoptotic cells. The post-hoc crop is an inspection view, not a supplied target location.",
+        "output": "Submit `submission/submission.csv` with `case_id,predicted_nuclei_path`. The per-case JSON accepts class-named polygons or simplified centroids with optional confidence. The example JSON is empty.",
+        "score": "The pinned Track 2 grader pairs same-class centroids at distance **less than or equal to 15 pixels**, then averages F1 across ten classes. It orders eligible predictions by confidence then distance and consumes each match once. For each class it averages only cases where that class appears in GT or predictions; it then averages the ten class means. A class absent across every case contributes 0. This case denominator differs from Track 1. No prediction or F1 was run.",
+        "challenge": "Only four of ten classes appear in this selected ROI. The five MultiPolygons excluded by conversion must not be counted as predictions or evaluator outcomes.",
+        "families": "Not yet specified.",
+        "gap": "Only one matched public-training source ROI is illustrated. The 164/41 split is reconstructed from code, not materialized by running the preparer. No held-out input, private label, model prediction, score or visual acceptance is retained.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "The same official training ROI has 633 source nucleus features; pinned Polygon-only conversion keeps 628 and skips five MultiPolygons. Accepted labels in this ROI are 498 tumor, 119 apoptotic cells, 8 lymphocytes and 3 endothelium.",
+            "remaining": "Search the full 1024 × 1024 ROI and keep ten classes distinct: tumor, lymphocytes, plasma cells, histiocytes, melanophages, neutrophils, stromal cells, epithelium, endothelium and apoptotic cells. The post-hoc crop is an inspection view, not a supplied target location."
+          }
+        ],
+        "sources": [
+          [
+            "Official PUMA Zenodo record",
+            "https://zenodo.org/records/14869398"
+          ],
+          [
+            "Pinned ReX-MLE adapter",
+            "https://github.com/rajpurkarlab/ReX-MLE/tree/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/puma-track2-task2"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Detect individual nuclei in melanoma H&amp;E ROIs and assign a fine-grained cell type. These identities support tissue analysis but do not establish treatment response.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The official <a href=\"https://zenodo.org/records/14869398\">PUMA record</a> reports CC0-1.0. The worked 1024 × 1024 H&amp;E ROI <code>training_set_metastatic_roi_001.tif</code> and matching annotations are hash- and archive-verified. Across 205 images paired with both annotation sets, pinned seed-42 splitting reconstructs 164 public train and 41 private-label test cases; this ROI falls in public train. The preparer was not executed.</p>",
+          "helpers": "<p>The same official training ROI has 633 source nucleus features; pinned Polygon-only conversion keeps 628 and skips five MultiPolygons. Accepted labels in this ROI are 498 tumor, 119 apoptotic cells, 8 lymphocytes and 3 endothelium.</p>",
+          "tools": "<p>The task environment supports method development and file submission. No model, ReX preparer or grader was run for this explanation.</p>",
+          "reference": "<p>Held-out labels and test-label CSV belong to the evaluator. None is retained in this pack. The shown annotation is public-training help, not a private answer. Local source recovery does not prove runtime visibility inside an executed ReX task.</p>",
+          "spec": "<p>Search the full 1024 × 1024 ROI and keep ten classes distinct: tumor, lymphocytes, plasma cells, histiocytes, melanophages, neutrophils, stromal cells, epithelium, endothelium and apoptotic cells. The post-hoc crop is an inspection view, not a supplied target location.</p>",
+          "output": "<p>Submit <code>submission/submission.csv</code> with <code>case_id,predicted_nuclei_path</code>. The per-case JSON accepts class-named polygons or simplified centroids with optional confidence. The example JSON is empty.</p>",
+          "score": "<p>The pinned Track 2 grader pairs same-class centroids at distance <strong>less than or equal to 15 pixels</strong>, then averages F1 across ten classes. It orders eligible predictions by confidence then distance and consumes each match once. For each class it averages only cases where that class appears in GT or predictions; it then averages the ten class means. A class absent across every case contributes 0. This case denominator differs from Track 1. No prediction or F1 was run.</p>",
+          "challenge": "<p>Only four of ten classes appear in this selected ROI. The five MultiPolygons excluded by conversion must not be counted as predictions or evaluator outcomes.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Only one matched public-training source ROI is illustrated. The 164/41 split is reconstructed from code, not materialized by running the preparer. No held-out input, private label, model prediction, score or visual acceptance is retained.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -19698,10 +19947,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 58,
+    "reviewed-scripted-planar": 61,
     "reviewed-scripted-spatial": 13,
     "blocked-source-input": 51,
-    "blocked-source-contract": 82,
+    "blocked-source-contract": 79,
     "pending-operation-review": 1
   },
   "completion_program": {

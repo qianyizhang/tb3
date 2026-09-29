@@ -1,0 +1,1 @@
+Official PUMA record 14869398, CC0-1.0. This locally reconstructed public-training example uses one image and its matching source annotation. The ReX preparer, model, grader and score were not run. Derived masks/points are source teaching views, not predictions.

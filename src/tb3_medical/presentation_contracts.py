@@ -1318,6 +1318,54 @@ class RexPantherTask2Plan(ExpansionPlan):
     beats: list[RexPantherTask2Beat]
 
 
+class RexPumaTrack1Task1Channels(TypedDict):
+    helper: tuple[float, float]
+    focus: tuple[float, float]
+    metric: tuple[float, float]
+
+
+class RexPumaTrack1Task1Beat(ExpansionBeat):
+    channels: RexPumaTrack1Task1Channels
+    scene: Literal["input", "helper", "operation", "submission", "scoring", "limits"]
+
+
+class RexPumaTrack1Task1Plan(ExpansionPlan):
+    recipe: Literal["rexmle-puma-track1-task1-v1"]
+    beats: list[RexPumaTrack1Task1Beat]
+
+
+class RexPumaTrack1Task2Channels(TypedDict):
+    helper: tuple[float, float]
+    focus: tuple[float, float]
+    metric: tuple[float, float]
+
+
+class RexPumaTrack1Task2Beat(ExpansionBeat):
+    channels: RexPumaTrack1Task2Channels
+    scene: Literal["input", "helper", "operation", "submission", "scoring", "limits"]
+
+
+class RexPumaTrack1Task2Plan(ExpansionPlan):
+    recipe: Literal["rexmle-puma-track1-task2-v1"]
+    beats: list[RexPumaTrack1Task2Beat]
+
+
+class RexPumaTrack2Task2Channels(TypedDict):
+    helper: tuple[float, float]
+    focus: tuple[float, float]
+    metric: tuple[float, float]
+
+
+class RexPumaTrack2Task2Beat(ExpansionBeat):
+    channels: RexPumaTrack2Task2Channels
+    scene: Literal["input", "helper", "operation", "submission", "scoring", "limits"]
+
+
+class RexPumaTrack2Task2Plan(ExpansionPlan):
+    recipe: Literal["rexmle-puma-track2-task2-v1"]
+    beats: list[RexPumaTrack2Task2Beat]
+
+
 class CardiacMaterialChannels(TypedDict):
     phase: tuple[float, float]
     helper: tuple[float, float]
@@ -1521,6 +1569,9 @@ StoryPlan = (
     | RexCellsegPlan
     | RexPantherTask1Plan
     | RexPantherTask2Plan
+    | RexPumaTrack1Task1Plan
+    | RexPumaTrack1Task2Plan
+    | RexPumaTrack2Task2Plan
     | CardiacMaterialPlan
     | CardiacAnchorPlan
     | ClinicalCavityPlan

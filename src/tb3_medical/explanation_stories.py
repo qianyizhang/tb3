@@ -44,6 +44,9 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "rexmle-puma-track2-task2-v1": "retained-rexmle-puma-track2-task2-v1",
+    "rexmle-puma-track1-task2-v1": "retained-rexmle-puma-track1-task2-v1",
+    "rexmle-puma-track1-task1-v1": "retained-rexmle-puma-track1-task1-v1",
     "rex-panther-task2-v1": "retained-rex-panther-task2-symbolic-v1",
     "rex-panther-task1-v1": "retained-rex-panther-task1-symbolic-v1",
     "rexmle-neurips-cellseg-v1": "retained-rexmle-neurips-cellseg-v1",
@@ -113,6 +116,50 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-rexmle-puma-track2-task2-v1": (
+        "source-slices",
+        None,
+        {
+            "output.json",
+            "NOTICE.md",
+            "training-zoom.png",
+            "source.json",
+            "helper.json",
+            "training-roi.png",
+            "DATA-LICENSE.txt",
+            "metric.json",
+        },
+    ),
+    "retained-rexmle-puma-track1-task2-v1": (
+        "source-slices",
+        None,
+        {
+            "metric.json",
+            "source.json",
+            "training-roi.png",
+            "DATA-LICENSE.txt",
+            "training-zoom.png",
+            "NOTICE.md",
+            "output.json",
+            "helper.json",
+        },
+    ),
+    "retained-rexmle-puma-track1-task1-v1": (
+        "source-slices",
+        None,
+        {
+            "output.json",
+            "DATA-LICENSE.txt",
+            "metric.json",
+            "training-roi.png",
+            "training-tissue-overlay.png",
+            "training-tissue-mask.png",
+            "training-zoom.png",
+            "source.json",
+            "helper.json",
+            "NOTICE.md",
+        },
+    ),
     "retained-rex-panther-task2-symbolic-v1": (
         "source-records",
         None,
@@ -1080,6 +1127,24 @@ class RexPantherTask1Channels(Closed):
 class RexPantherTask2Channels(Closed):
     grid: Pair
     reference: Pair
+
+
+class RexPumaTrack1Task1Channels(Closed):
+    helper: Pair
+    focus: Pair
+    metric: Pair
+
+
+class RexPumaTrack1Task2Channels(Closed):
+    helper: Pair
+    focus: Pair
+    metric: Pair
+
+
+class RexPumaTrack2Task2Channels(Closed):
+    helper: Pair
+    focus: Pair
+    metric: Pair
 
 
 class CardiacMaterialChannels(Closed):
@@ -2276,6 +2341,54 @@ class RexPantherTask2Story(Story[RexPantherTask2Channels]):
         return self
 
 
+class RexPumaTrack1Task1Beat(ExpansionBeat[RexPumaTrack1Task1Channels]):
+    scene: Literal["input", "helper", "operation", "submission", "scoring", "limits"]
+
+
+class RexPumaTrack1Task1Story(Story[RexPumaTrack1Task1Channels]):
+    recipe: Literal["rexmle-puma-track1-task1-v1"]
+    beats: tuple[RexPumaTrack1Task1Beat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class RexPumaTrack1Task2Beat(ExpansionBeat[RexPumaTrack1Task2Channels]):
+    scene: Literal["input", "helper", "operation", "submission", "scoring", "limits"]
+
+
+class RexPumaTrack1Task2Story(Story[RexPumaTrack1Task2Channels]):
+    recipe: Literal["rexmle-puma-track1-task2-v1"]
+    beats: tuple[RexPumaTrack1Task2Beat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class RexPumaTrack2Task2Beat(ExpansionBeat[RexPumaTrack2Task2Channels]):
+    scene: Literal["input", "helper", "operation", "submission", "scoring", "limits"]
+
+
+class RexPumaTrack2Task2Story(Story[RexPumaTrack2Task2Channels]):
+    recipe: Literal["rexmle-puma-track2-task2-v1"]
+    beats: tuple[RexPumaTrack2Task2Beat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class CardiacMaterialBeat(ExpansionBeat[CardiacMaterialChannels]):
     scene: Literal[
         "inputs", "initial", "tracking", "tetra", "strain", "comparison", "controls", "limits"
@@ -2466,6 +2579,9 @@ AnyStory = Annotated[
     | RexCellsegStory
     | RexPantherTask1Story
     | RexPantherTask2Story
+    | RexPumaTrack1Task1Story
+    | RexPumaTrack1Task2Story
+    | RexPumaTrack2Task2Story
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -2535,6 +2651,9 @@ ADAPTER: TypeAdapter[
     | RexCellsegStory
     | RexPantherTask1Story
     | RexPantherTask2Story
+    | RexPumaTrack1Task1Story
+    | RexPumaTrack1Task2Story
+    | RexPumaTrack2Task2Story
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -2764,6 +2883,9 @@ def parse_expansion(
     | RexCellsegStory
     | RexPantherTask1Story
     | RexPantherTask2Story
+    | RexPumaTrack1Task1Story
+    | RexPumaTrack1Task2Story
+    | RexPumaTrack2Task2Story
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -2889,6 +3011,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-PANTHER-restricted-unresolved",
                 None,
             ),
+            "retained-rexmle-puma-track1-task1-v1": ("image-pixel-top-left", "CC0-1.0", "CC0-1.0"),
+            "retained-rexmle-puma-track1-task2-v1": ("image-pixel-top-left", "CC0-1.0", "CC0-1.0"),
+            "retained-rexmle-puma-track2-task2-v1": ("image-pixel-top-left", "CC0-1.0", "CC0-1.0"),
             "retained-cardiac-material-v1": (
                 "STRAUS-patient01-healthy-canonical",
                 "LicenseRef-STRAUS-local-noncommercial",
@@ -3049,6 +3174,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 in {
                     "retained-rexmle-dentex-v1",
                     "retained-rexmle-neurips-cellseg-v1",
+                    "retained-rexmle-puma-track1-task1-v1",
+                    "retained-rexmle-puma-track1-task2-v1",
+                    "retained-rexmle-puma-track2-task2-v1",
                     "retained-hubmap-inventory-v1",
                     "retained-tiger-context-v1",
                     "retained-imaging101-fan-beam-v1",

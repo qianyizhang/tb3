@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "rexmle-puma-track1-task1",
+  "illustration_basis": "mixed",
+  "reference_policy": "no-reference-assets",
+  "license": "CC0-1.0, official PUMA Zenodo data",
+  "source_commit": "b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53",
+  "source_url": "https://zenodo.org/records/14869398",
+  "status": "exact training image and matching annotation recovered; no ReX run",
+  "warning_text": "Real official PUMA public-training ROI and matching annotation; no held-out prediction or score. ReX split reconstructed from pinned code, not run.",
+  "acquisition_route": "https://zenodo.org/records/14869398; official CC0 files; complete image archive is 643,439,374 bytes, one matched ROI recovered by verified HTTP 206 range; full tissue/nuclei archives downloaded and official MD5 checked.",
+  "actual_data_gap": "One source-matched 1024x1024 ROI and tissue GeoJSON annotation retained; source labels are expected public-training help, not held-out test reference. No materialized ReX staging, held-out prediction, private reference or grader result.",
+  "task_contract": {
+    "task": "semantic tissue segmentation",
+    "submission_columns": "case_id,predicted_mask_path",
+    "metric": "micro Dice, five foreground tissue classes; background 0 excluded",
+    "source_case_id": "training_set_metastatic_roi_001",
+    "source_case_role": "reconstructed public train",
+    "split": "205 matched original images with both annotation sets; pinned random_state=42 train_test_split test_size=0.2 yields 164 train/41 private-label test; preparer not executed",
+    "class_caveat": "Pinned mask ID 4 is tissue_epidermis; description objective uses epithelium elsewhere."
+  },
+  "source_files": [
+    {
+      "path": ".local/explainers/core-20260929/rex-puma-source/training_set_metastatic_roi_001.tif",
+      "sha256": "dc07459d37e79b0d070f6c34fb2f7a04db7fa115aa61654d5519fe75d482c61d",
+      "bytes": 4194606
+    },
+    {
+      "path": ".local/explainers/core-20260929/rex-puma-source/training_set_metastatic_roi_001_tissue.geojson",
+      "sha256": "a7311d7c7934ff536923850cd3179c7ee84712eb5f2d1eb06fafcb62bb16c95c",
+      "bytes": 122225
+    }
+  ],
+  "pinned_adapter": [
+    {
+      "path": "pinned/puma-track1-task1/config.yaml",
+      "sha256": "23eb0c87e6c348d29300ed18659a8b1a98613ee042e5d5af21c11ce96bb11e20",
+      "bytes": 2188
+    },
+    {
+      "path": "pinned/puma-track1-task1/description.md",
+      "sha256": "378900a29164fd5b71f820cd974c4802fdd938d455cd4a2a7aa31cbf3b662748",
+      "bytes": 4877
+    },
+    {
+      "path": "pinned/puma-track1-task1/grade.py",
+      "sha256": "8cbccf4a197334a06bb205c757d9a85cef7570b0fcf946d4f09a228370d92023",
+      "bytes": 14821
+    },
+    {
+      "path": "pinned/puma-track1-task1/metric_config.json",
+      "sha256": "933e6eda6fd789005935d9af9e1dd57e0285e8d73d64ce58fb51494b195c7a6c",
+      "bytes": 60
+    },
+    {
+      "path": "pinned/puma-track1-task1/prepare.py",
+      "sha256": "3f045b6ce03cf798fc62d9954f2600d745ff6a3ab8851ae5af33aee55b20c9b2",
+      "bytes": 12802
+    }
+  ],
+  "attempts": [
+    {
+      "action": "Extract and hash 15 relevant pinned adapter files from retained ReX source archive",
+      "source": ".local/explainers/core-20260929/rex-dentex-isles-source/rex-pinned-source.tar.gz",
+      "attempted_at": "2026-09-29T04:41:15Z",
+      "outcome": "Static tar extraction succeeded; archive SHA256 82d18d7bfb3a69719284ed33e29feb33d409f1c8f7e49961b9357832a1141bac; 15 files indexed in rex-puma-source/pinned-index.json. Timestamp is local extracted-file completion time, not network fetch."
+    },
+    {
+      "action": "Fetch official PUMA Zenodo API metadata",
+      "source": "https://zenodo.org/api/records/14869398",
+      "attempted_at": "2026-09-29T04:41:40Z",
+      "outcome": "Approved network HTTP 200; official API reports open CC0-1.0 and four files. Timestamp is local metadata file completion time; 8654 bytes, SHA256 1ce9c7facc80eabf6a70d2e8217fc7d1ca6f1a8478d6aa3bc71b4c2d82166038"
+    },
+    {
+      "action": "Download complete official tissue annotation ZIP and verify Zenodo MD5",
+      "source": "https://zenodo.org/api/records/14869398/files/01_training_dataset_geojson_tissue.zip/content",
+      "attempted_at": "2026-09-29T04:42:01Z",
+      "outcome": "HTTP 200; 3216582 bytes, MD5 bc8bc686c77935380c53aa9b009742be, SHA256 881df157224dae22dd7070b29d75c1bae786f70561b22118dd9ee9bc42b8fe4b; timestamp local download completion."
+    },
+    {
+      "action": "Download complete official nuclei annotation ZIP and verify Zenodo MD5",
+      "source": "https://zenodo.org/api/records/14869398/files/01_training_dataset_geojson_nuclei.zip/content",
+      "attempted_at": "2026-09-29T04:42:28Z",
+      "outcome": "HTTP 200; 15917551 bytes, MD5 7f47ccc71d94061b4dae058b5dc8f628, SHA256 5824978c256ccb85b91cfdbd5a7319c75112c5561d12fce3e7e09b4064035828; timestamp local download completion."
+    },
+    {
+      "action": "Read official image ZIP central directory by range",
+      "source": "https://zenodo.org/api/records/14869398/files/01_training_dataset_tif_ROIs.zip/content",
+      "attempted_at": "2026-09-29T04:42:43Z",
+      "outcome": "HTTP 206 Content-Range bytes 643308302-643439373/643439374; 205 TIF image members; retained headers, 131072-byte tail and parsed central index."
+    },
+    {
+      "action": "Read selected image ZIP member by range and verify CRC32",
+      "source": "01_training_dataset_tif_ROIs/training_set_metastatic_roi_001.tif",
+      "attempted_at": "2026-09-29T04:43:36Z",
+      "outcome": "HTTP 206 Content-Range bytes 91-3344500/643439374; DEFLATE uncompressed 4194606 bytes, CRC32 2d9343b2 verified; SHA256 dc07459d37e79b0d070f6c34fb2f7a04db7fa115aa61654d5519fe75d482c61d"
+    }
+  ],
+  "staged_asset_pack": "retained-rexmle-puma-track1-task1-v1",
+  "reopening_condition": "Run pinned ReX preparation only with separate authorization to verify actual visibility; acquire held-out prediction and grader receipt before any score claim.",
+  "pinned_archive": {
+    "path": ".local/explainers/core-20260929/rex-dentex-isles-source/rex-pinned-source.tar.gz",
+    "sha256": "82d18d7bfb3a69719284ed33e29feb33d409f1c8f7e49961b9357832a1141bac",
+    "bytes": 12204410,
+    "commit": "b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53",
+    "note": "Reused retained GitHub source archive; 15 PUMA adapter files extracted into owned rex-puma-source/pinned and SHA256-indexed. No author modules imported or run."
+  }
+}
