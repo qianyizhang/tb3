@@ -1923,6 +1923,22 @@ class InterpretationBBcerLongBrainFullPlan(ExpansionPlan):
     beats: list[InterpretationBBcerLongBrainFullBeat]
 
 
+class AutomedPcamClsChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedPcamClsBeat(ExpansionBeat):
+    channels: AutomedPcamClsChannels
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class AutomedPcamClsPlan(ExpansionPlan):
+    recipe: Literal["automed-pcam-cls-v1"]
+    beats: list[AutomedPcamClsBeat]
+
+
 class AutomedCrcClsChannels(TypedDict):
     progress: tuple[float, float]
     detail: tuple[float, float]
@@ -2307,6 +2323,7 @@ StoryPlan = (
     | InterpretationBBcerMediumBrainGradeClassifyPlan
     | InterpretationBBcerLongCardiacFullPlan
     | InterpretationBBcerLongBrainFullPlan
+    | AutomedPcamClsPlan
     | AutomedCrcClsPlan
     | AutomedPneumoniaPlan
     | AutomedBrainClsPlan

@@ -1,0 +1,37 @@
+{
+  "checkpoint": null,
+  "checkpoint_id2label": null,
+  "class_descriptions": {
+    "negative": "No tumor pixel in central32x32",
+    "positive": "At least one tumor pixel in central32x32"
+  },
+  "classes": [
+    "negative",
+    "positive"
+  ],
+  "figure": "figure.jpg",
+  "figure_partition": null,
+  "figure_row_ids": null,
+  "figure_shape_px": [
+    1600,
+    400
+  ],
+  "index_boundary": "Map0 to negative and1 to positive; verify checkpoint ordering and center-preserving crop/resize",
+  "role": "official-upstream-label-marked-figure-not-Full-reference",
+  "source_mapping": {
+    "0": "negative",
+    "1": "positive"
+  },
+  "split_boundary": "Upstream splits are WSI-disjoint with 50/50 labels; balance of the Full 100-case subset is unverified.",
+  "splits": {
+    "test": 32768,
+    "train": 262144,
+    "validation": 32768
+  },
+  "tiers": {
+    "lite": "ResNet18_Weights.IMAGENET1K_V1, replace two-class head; train official train only",
+    "standard": "ResNet50 / DenseNet121 / ConvNeXtTiny; select on public validation"
+  },
+  "training_label": null,
+  "training_labels": "Collage green boxes indicate source positives; no exact training or Fullcase annotation retained"
+}

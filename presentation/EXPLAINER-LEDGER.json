@@ -18713,15 +18713,15 @@
       ],
       "illustration_kind": "classify",
       "subject": "tissue",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-patchcamelyon-cls-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-patchcamelyon-cls-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Verified official label-marked collage as covered public helper with source-pinned symbolic center/tier/output/metric controls accepted after main visual/export/mobile/noGPU/boundary review; native matched Full tile/results absent.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/pcam/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "H&E histopathology input, stored as `image.jpg` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names torchvision ResNet-18. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -18754,7 +18754,7 @@
         ],
         "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights. The source has not frozen all evaluation/sample identifiers."
       },
-      "source_brief_sha256": "67b3679366a303280de068618312e83ea2011c4af2a0efdb0c10016baf2ffac0",
+      "source_brief_sha256": "6a4974a85d1bf02b04c6359475032a71ea50cbadfd5290f5d0f0c262d803b76a",
       "dependency_deferral": {
         "actor": "user",
         "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
@@ -18763,14 +18763,107 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "No matched 96x96 training row or frozen Full 100-case tile is recovered. Only the official annotated README collage is retained; private labels, checkpoint, predictions and scores absent.",
+      "acquisition_route": "https://github.com/basveeling/pcam",
+      "warning_text": "No matched 96x96 training row or frozen Full 100-case tile is recovered. Only the official annotated README collage is retained; private labels, checkpoint, predictions and scores absent.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-patchcamelyon-cls-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-patchcamelyon-cls-task-resolution.json",
+        "receipt_sha256": "7cb52c7d6286df399d1061cfca6057916fdf59c33eab44d189811f201b124356",
+        "reviewer": "Codex main agent",
+        "no_visual_acceptance": true,
+        "retained_audit": ".local/explainers/goal-20260930/pcam/source-validation-01.json"
+      },
+      "acceptance_scope": "Task-specific symbolic PCam label-center and classification contract, with exact official labelled collage as reader-controlled helper; no matching Full tile/result.",
+      "completion_review": {
+        "date": "2026-09-30T19:23:38.979617+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "511801fb7af82612f45519fe2aacc2602a3926d222f6b5e3adab0b93b3debf51"
+      },
+      "reviewed_contract_projection": {
+        "title": "Detect tumor in a histology tile's center",
+        "goal": "Predict one canonical label per Full PCam tile. **Full tile absent; upstream figure only.** [Official acquisition](https://github.com/basveeling/pcam).",
+        "value": "Patch-label agreement assesses this classification target. It does not establish patient diagnosis, clinical benefit, localization or whole-slide detection performance.",
+        "raw": "Full requires image.jpg, a 96 x 96 color H&E tile. No indexed native dataset row or frozen Full case is retained. A symbolic frame shows only the central 32 x 32 labeling window. The official 1600 x 400 README collage includes source positive markings, so it appears only behind a reader reveal. Its row IDs and partition are unknown. No physical calibration or WSI coordinates are claimed.",
+        "helpers": "Upstream 0 maps to negative; 1 maps to positive. Positive means at least one annotated tumor pixel in the central 32 x 32 region. Outer tumor alone does not set positive. Public train and validation annotations support development. The complete public train_y gzip matches its pinned checksum, but no verified paired image row was extracted; no individual label is used here.\n\nLite fixes ImageNet ResNet18_Weights.IMAGENET1K_V1 with a replacement two-class head, trained only on official train. Standard considers ResNet50, DenseNet121 and ConvNeXtTiny, using public validation. No checkpoint is retained. Record class indices and crop/resize behavior while preserving the center-label semantics.",
+        "tools": "The Full terminal/model-development workflow. No installation, model execution, inference or grading occurred.",
+        "reference": "Private Full label.json or ground_truth.csv is evaluator-only. Upstream train 262144 / validation 32768 / test 32768 are WSI-disjoint and 50/50 balanced according to the pinned README. Full declares 100 test-source cases, with exact IDs unresolved. Public access to upstream test labels does not authorize fitting to Full evaluation targets. Runtime visibility remains unaudited.",
+        "spec": "Preserve whole-slide-disjoint splits, exclude frozen Full IDs, and verify class mapping and preprocessing before inference. In a 96-pixel grid, the central half-open bounds are 32 <= x < 64 and 32 <= y < 64. The illustrated frame is a geometry rule, not an actual tumor mask.",
+        "output": "agents_outputs/predictions.csv with patient_id,label, or per-case prediction.json with label. Full requires negative/positive strings; upstream numeric labels need mapping. Both values remain unset. patient_id is a schema identifier, not proof of patient independence.",
+        "score": "Accuracy = correct / all supplied case IDs, counting missing predictions as wrong. Balanced accuracy averages only classes with positive true support; absent-class recall is null. Values are 0..1 fractions rounded to four decimals. Incomplete nonempty valid output can pass format; empty output fails. CSV is preferred per ID with JSON fallback; duplicate CSV IDs overwrite. Private GT JSON is preferred over GT CSV. No score is measured.\n\nDefault workflow includes S1-S3 None as zero in the full step denominator. S4/S5 alone contribute at most .25; overall = .5 workflow + .5 accuracy. Generic .85/.50 thresholds are provisional. The clinical_score field measures dataset agreement, not clinical validation.",
+        "challenge": "Crop/resize can change what occupies the decision window. WSI leakage can invalidate comparisons; upstream balance does not prove Full subset balance.",
+        "families": "Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.",
+        "gap": "The bounded attempt recovered a complete 21 KB training-label gzip and 256 KiB image-gzip prefix, insufficient to verify the chunk-addressed image-row identity. No guessed native extraction was used. Full IDs, private targets, checkpoint and outputs remain absent. The README declares data CC0 and repository MIT; exact figure bytes and provenance are retained separately. Verify an indexed x/y pair before replacing the symbolic input.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Symbolic 96 x 96 input and central 32 x 32 rule",
+          "Reader-revealed annotated source figure and permitted split/model guidance",
+          "Unfilled CSV/JSON output and all-case scoring boundary"
+        ],
+        "variants": [
+          {
+            "name": "Full \u00b7 Lite",
+            "helper": "Task-specific Lite guidance: torchvision ResNet-18.",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full \u00b7 Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/patchcamelyon-cls-task.tar.gz"
+          ],
+          [
+            "Pinned official README",
+            "https://github.com/basveeling/pcam/blob/521af5fc74c20cc6df83974f20abb1d394797612/README.md"
+          ],
+          [
+            "Official mirror",
+            "https://zenodo.org/records/2546921"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Predict one canonical label per Full PCam tile. <strong>Full tile absent; upstream figure only.</strong> <a href=\"https://github.com/basveeling/pcam\">Official acquisition</a>.</p>",
+          "value": "<p>Patch-label agreement assesses this classification target. It does not establish patient diagnosis, clinical benefit, localization or whole-slide detection performance.</p>",
+          "raw": "<p>Full requires image.jpg, a 96 x 96 color H&amp;E tile. No indexed native dataset row or frozen Full case is retained. A symbolic frame shows only the central 32 x 32 labeling window. The official 1600 x 400 README collage includes source positive markings, so it appears only behind a reader reveal. Its row IDs and partition are unknown. No physical calibration or WSI coordinates are claimed.</p>",
+          "helpers": "<p>Upstream 0 maps to negative; 1 maps to positive. Positive means at least one annotated tumor pixel in the central 32 x 32 region. Outer tumor alone does not set positive. Public train and validation annotations support development. The complete public train_y gzip matches its pinned checksum, but no verified paired image row was extracted; no individual label is used here.</p>\n<p>Lite fixes ImageNet ResNet18_Weights.IMAGENET1K_V1 with a replacement two-class head, trained only on official train. Standard considers ResNet50, DenseNet121 and ConvNeXtTiny, using public validation. No checkpoint is retained. Record class indices and crop/resize behavior while preserving the center-label semantics.</p>",
+          "tools": "<p>The Full terminal/model-development workflow. No installation, model execution, inference or grading occurred.</p>",
+          "reference": "<p>Private Full label.json or ground_truth.csv is evaluator-only. Upstream train 262144 / validation 32768 / test 32768 are WSI-disjoint and 50/50 balanced according to the pinned README. Full declares 100 test-source cases, with exact IDs unresolved. Public access to upstream test labels does not authorize fitting to Full evaluation targets. Runtime visibility remains unaudited.</p>",
+          "spec": "<p>Preserve whole-slide-disjoint splits, exclude frozen Full IDs, and verify class mapping and preprocessing before inference. In a 96-pixel grid, the central half-open bounds are 32 &lt;= x &lt; 64 and 32 &lt;= y &lt; 64. The illustrated frame is a geometry rule, not an actual tumor mask.</p>",
+          "output": "<p>agents_outputs/predictions.csv with patient_id,label, or per-case prediction.json with label. Full requires negative/positive strings; upstream numeric labels need mapping. Both values remain unset. patient_id is a schema identifier, not proof of patient independence.</p>",
+          "score": "<p>Accuracy = correct / all supplied case IDs, counting missing predictions as wrong. Balanced accuracy averages only classes with positive true support; absent-class recall is null. Values are 0..1 fractions rounded to four decimals. Incomplete nonempty valid output can pass format; empty output fails. CSV is preferred per ID with JSON fallback; duplicate CSV IDs overwrite. Private GT JSON is preferred over GT CSV. No score is measured.</p>\n<p>Default workflow includes S1-S3 None as zero in the full step denominator. S4/S5 alone contribute at most .25; overall = .5 workflow + .5 accuracy. Generic .85/.50 thresholds are provisional. The clinical_score field measures dataset agreement, not clinical validation.</p>",
+          "challenge": "<p>Crop/resize can change what occupies the decision window. WSI leakage can invalidate comparisons; upstream balance does not prove Full subset balance.</p>",
+          "families": "<p>Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.</p>",
+          "gap": "<p>The bounded attempt recovered a complete 21 KB training-label gzip and 256 KiB image-gzip prefix, insufficient to verify the chunk-addressed image-row identity. No guessed native extraction was used. Full IDs, private targets, checkpoint and outputs remain absent. The README declares data CC0 and repository MIT; exact figure bytes and provenance are retained separately. Verify an indexed x/y pair before replacing the symbolic input.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>Center/context geometry only; no fabricated tissue pixels.</p>",
+          "helpers": "<p>The official label-marked figure is covered until reader reveal. It has no matched dataset rows or Full labels.</p>",
+          "answer": "<p>An unsubmitted schema with private targets absent. No prediction, confidence, metric or diagnosis is invented.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -23774,10 +23867,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 103,
+    "reviewed-scripted-planar": 104,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 60,
-    "blocked-source-input": 28,
+    "blocked-source-input": 27,
     "pending-operation-review": 1
   },
   "completion_program": {

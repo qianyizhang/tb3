@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-pcam-cls-v1',
   'automed-crc-cls-v1',
   'automed-pneumonia-cls-v1',
   'automed-brain-cls-v1',
@@ -95,6 +96,14 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-pcam-cls-v1')
+    return {
+      scene: 'data-pcam-cls-scene',
+      reference: '[data-pcam-cls-private-reference]',
+      referenceChannel: null,
+      output: '[data-pcam-cls-output-schema]',
+      aside: '[data-pcam-cls-output]',
+    };
   if (plan.recipe === 'automed-crc-cls-v1')
     return {
       scene: 'data-crc-cls-scene',
@@ -560,6 +569,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-pcam-cls-v1': [
+      /No matched 96x96 training row or frozen Full 100-case tile is recovered.*official annotated README collage.*private labels, checkpoint, predictions and scores absent/s,
+      'https://github.com/basveeling/pcam',
+      'data-pcam-cls-scene',
+      false,
+    ],
     'automed-crc-cls-v1': [
       /One official training patch is retained; frozen Full 100-case IDs, private labels, checkpoint, predictions and scores are absent/s,
       'https://zenodo.org/records/1214456',
@@ -1049,6 +1064,176 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'automed-pcam-cls-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const step = (scene) => plan.beats.findIndex((b) => b.scene === scene);
+    const classes = ['negative', 'positive'];
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await page.locator('[data-pcam-cls-input] img').count(), 0);
+    const geometry = page.locator('[data-pcam-cls-input] svg');
+    assert.equal(await geometry.count(), 1);
+    assert.equal(await geometry.getAttribute('viewBox'), '0 0 112 112');
+    const center = geometry.locator('rect').nth(1);
+    assert.deepEqual(
+      await center.evaluate((e) => ['x', 'y', 'width', 'height'].map((k) => e.getAttribute(k))),
+      ['40', '40', '32', '32'],
+    );
+    const windows = page.getByRole('group', { name: 'PCam label window' });
+    for (const name of ['Outer context', 'Label center']) {
+      const button = windows.getByRole('button', { name, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await page.locator('[data-pcam-cls-window]').innerText(),
+        name === 'Label center'
+          ? /at least one annotated tumor pixel.*center/
+          : /Outer tumor alone does not set positive/,
+      );
+      assert.equal(await center.getAttribute('stroke-dasharray'), '2 2');
+      await page.locator('.scene-player').screenshot({
+        path: path.join(output, `${label}-window-${name.replaceAll(' ', '-')}.png`),
+      });
+    }
+    assert.doesNotMatch(
+      await page.locator('.scene-player').innerText(),
+      /1600 x 400 source collage|green boxes source positives/,
+    );
+    await page.locator(`[data-story-step="${step('helper')}"]`).click();
+    assert.equal(await page.locator('[data-pcam-cls-figure-revealed]').count(), 0);
+    assert.match(
+      await page.locator('[data-pcam-cls-helper]').innerText(),
+      /0.*negative.*1.*positive/s,
+    );
+    assert.equal(await page.locator('[data-pcam-cls-helper] img').count(), 0);
+    await page.getByRole('button', { name: 'Reveal annotated source figure', exact: true }).click();
+    const figure = page.locator('[data-pcam-cls-figure-revealed]');
+    assert.match(
+      await figure.innerText(),
+      /1600 x 400 source collage.*green boxes source positives.*no row\/Full IDs or partition match/s,
+    );
+    assert.deepEqual(
+      await figure.locator('img').evaluate((e) => [e.naturalWidth, e.naturalHeight]),
+      [1600, 400],
+    );
+    assert.match(
+      await page.locator('[data-pcam-cls-output]').innerText(),
+      /patient_id\s+unset\s+label\s+unset/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-figure-revealed.png`) });
+    await page.getByRole('button', { name: 'Hide annotated source figure', exact: true }).click();
+    assert.equal(await page.locator('[data-pcam-cls-figure-revealed]').count(), 0);
+    await page.getByRole('button', { name: 'Reveal annotated source figure', exact: true }).click();
+    await page.locator('.scene-play').click();
+    await page.waitForFunction(
+      (frame) =>
+        Number(document.querySelector('.scene-player')?.getAttribute('data-committed-frame')) >
+        frame,
+      plan.beats[step('helper')].startFrame + 4,
+    );
+    await page.locator('.scene-play').click();
+    await page.locator(`[data-story-step="${step('helper')}"]`).click();
+    assert.equal(
+      await page.locator('[data-pcam-cls-figure-revealed]').count(),
+      0,
+      'Backward seek must cover training annotation',
+    );
+    await page.getByRole('button', { name: 'Reveal annotated source figure', exact: true }).click();
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await page.locator('[data-pcam-cls-figure-revealed]').count(), 0);
+    await page.locator(`[data-story-step="${step('operation')}"]`).click();
+    const tiers = page.getByRole('group', { name: 'PCam classification assistance' });
+    for (const name of ['standard', 'lite']) {
+      const button = tiers.getByRole('button', { name, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(await page.locator('[data-pcam-cls-operation]').innerText(), new RegExp(name));
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-tier-${name}.png`) });
+    }
+    const token = page.getByRole('combobox', { name: 'Hypothetical canonical token' });
+    for (const c of classes) {
+      await token.selectOption(c);
+      assert.equal(
+        await page.locator('[data-pcam-cls-map]').innerText(),
+        `Canonical spelling: ${c}`,
+      );
+      assert.match(
+        await page.locator('[data-pcam-cls-output]').innerText(),
+        /patient_id\s+unset\s+label\s+unset/s,
+      );
+    }
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-mapping.png`) });
+    await page.locator(`[data-story-step="${step('output')}"]`).click();
+    const formats = page.getByRole('group', { name: 'PCam classification submission format' });
+    for (const name of ['json', 'csv']) {
+      const button = formats.getByRole('button', { name, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await page.locator('[data-pcam-cls-format]').innerText(),
+        name === 'csv' ? /predictions\.csv/ : /prediction\.json/,
+      );
+      assert.match(
+        await page.locator('[data-pcam-cls-output-schema]').innerText(),
+        /label\s+unset/s,
+      );
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-format-${name}.png`) });
+    }
+    await page.locator(`[data-story-step="${step('limits')}"]`).click();
+    const metrics = page.getByRole('group', { name: 'Classification metric denominator' });
+    for (const name of ['balanced accuracy', 'accuracy']) {
+      const button = metrics.getByRole('button', { name, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await page.locator('[data-pcam-cls-metric]').innerText(),
+        name === 'accuracy' ? /all.*IDs/i : /positive|support|present/i,
+      );
+      assert.match(await page.locator('[data-pcam-cls-limits]').innerText(), /0\.\.1|0–1/);
+      await page.locator('.scene-player').screenshot({
+        path: path.join(output, `${label}-metric-${name.replaceAll(' ', '-')}.png`),
+      });
+    }
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
+    );
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(
+      await windows
+        .getByRole('button', { name: 'Label center', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator(`[data-story-step="${step('helper')}"]`).click();
+    assert.equal(await page.locator('[data-pcam-cls-figure-revealed]').count(), 0);
+    await page.locator(`[data-story-step="${step('operation')}"]`).click();
+    assert.equal(await token.inputValue(), '');
+    assert.equal(
+      await tiers.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator(`[data-story-step="${step('output')}"]`).click();
+    assert.equal(
+      await formats.getByRole('button', { name: 'csv', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator(`[data-story-step="${step('limits')}"]`).click();
+    assert.equal(
+      await metrics
+        .getByRole('button', { name: 'accuracy', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
   }
   if (plan.recipe === 'automed-crc-cls-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -5196,6 +5381,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-pcam-cls-v1',
       'automed-crc-cls-v1',
       'automed-pneumonia-cls-v1',
       'automed-brain-cls-v1',

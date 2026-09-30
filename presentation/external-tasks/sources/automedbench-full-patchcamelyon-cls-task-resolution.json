@@ -1,0 +1,336 @@
+{
+  "acquisition_route": "https://github.com/basveeling/pcam",
+  "actual_data_gap": "No matched 96x96 training row or frozen Full 100-case tile is recovered. Only the official annotated README collage is retained; private labels, checkpoint, predictions and scores absent.",
+  "attempts": [
+    {
+      "action": "retrieve exact pinned Full task harness and verify MANIFEST.sha256",
+      "attempted_at": "2026-09-29T06:31:45Z",
+      "outcome": "HTTP 200; 23096 bytes; dataset.included=false; all extracted manifest hashes verify",
+      "receipt": {
+        "bytes": 3423,
+        "path": ".local/explainers/core-20260929/interpretation-e-source/packages/patchcamelyon-cls-task.headers",
+        "sha256": "2d16051a609992e8e9a650e31438f9c01585966d276aa73b05c1be6e73b263a4"
+      },
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/patchcamelyon-cls-task.tar.gz"
+    },
+    {
+      "action": "HEAD official upstream acquisition route",
+      "attempted_at": "2026-09-29T06:33:53Z",
+      "outcome": "HTTP 200 landing route; no case ID, image, source license or Full split acquired by HEAD",
+      "receipt": {
+        "bytes": 5125,
+        "path": ".local/explainers/core-20260929/interpretation-e-source/pcam-official.headers",
+        "sha256": "9c94a6933d1cb443d45f5bd75e8f710f28383d9be6dc0fd916315a767e1b6593"
+      },
+      "source": "https://github.com/basveeling/pcam"
+    },
+    {
+      "action": "GET pinned upstream README example collage",
+      "attempted_at": "2026-09-29T06:34:53Z",
+      "outcome": "HTTP 200; 1600\u00d7400 JPEG, 511688 bytes; upstream figure only, not Full case",
+      "receipt": {
+        "bytes": 927,
+        "path": ".local/explainers/core-20260929/interpretation-e-source/pcam-example.headers",
+        "sha256": "57942a36eba753a4b13a50847541f329d960cefddf7a5b23404ddb6541f11346"
+      },
+      "source": "https://raw.githubusercontent.com/basveeling/pcam/521af5fc74c20cc6df83974f20abb1d394797612/pcam.jpg"
+    },
+    {
+      "action": "request LICENSE at pinned PCam root",
+      "attempted_at": "2026-09-29T06:35:27Z",
+      "outcome": "HTTP 404 at this filename; README states data CC0 and remainder of repository MIT; no broader license denial inferred",
+      "receipt": {
+        "bytes": 835,
+        "path": ".local/explainers/core-20260929/interpretation-e-source/pcam-license.headers",
+        "sha256": "ff1af0dbb965e6428f2bba59a4c972328b22fdb7a82bf618070e53105c6c02f2"
+      },
+      "source": "https://raw.githubusercontent.com/basveeling/pcam/521af5fc74c20cc6df83974f20abb1d394797612/LICENSE"
+    },
+    {
+      "source": "https://zenodo.org/api/records/2546921",
+      "attempted_at": "2026-09-30T12:45:03.933615+00:00",
+      "action": "bounded anonymous official metadata read",
+      "cap_bytes": 65536,
+      "status": 200,
+      "bytes": 6244,
+      "sha256": "a5ba07edbc86c5c13f150de36b3e950e52548ee2851ff4367664c58fdf7c13da",
+      "content_type": "application/json",
+      "content_range": null,
+      "outcome": "Captured at most cap bytes; stopped without acquiring complete image archive. Content validity/paired index still require audit."
+    },
+    {
+      "source": "https://zenodo.org/api/records/2546921/files/camelyonpatch_level_2_split_train_y.h5.gz/content",
+      "attempted_at": "2026-09-30T12:45:05.471839+00:00",
+      "action": "bounded anonymous official train-labels read",
+      "cap_bytes": 65536,
+      "status": 206,
+      "bytes": 21378,
+      "sha256": "b74126d2c01b20d3661f9b46765d29cf4e4fba6faba29c8e0d09d406331ab75a",
+      "content_type": "application/octet-stream",
+      "content_range": "bytes 0-21377/21378",
+      "outcome": "Captured at most cap bytes; stopped without acquiring complete image archive. Content validity/paired index still require audit."
+    },
+    {
+      "source": "https://zenodo.org/api/records/2546921/files/camelyonpatch_level_2_split_train_x.h5.gz/content",
+      "attempted_at": "2026-09-30T12:45:07.403576+00:00",
+      "action": "bounded anonymous official train-image-prefix read",
+      "cap_bytes": 262144,
+      "status": 206,
+      "bytes": 262144,
+      "sha256": "9e8b5bdf245b019a94ec35bf3317387f42da10855e0ac6b9d11f3c318877c952",
+      "content_type": "application/octet-stream",
+      "content_range": "bytes 0-262143/6421353462",
+      "outcome": "Captured at most cap bytes; stopped without acquiring complete image archive. Content validity/paired index still require audit."
+    },
+    {
+      "action": "audit bounded paired training HDF5 bytes without installing libraries",
+      "source": "https://zenodo.org/records/2546921",
+      "attempted_at": "2026-09-30T12:50:58.768027+00:00",
+      "outcome": "Complete training-label gzip MD5 equals pinned README 35c2d7259d906cfc8143347bb8e05be7. Image prefix 262144 compressed bytes inflates to295179 bytes; gzip incomplete. Chunked HDF5 x B-tree root at0x578 has child metadata outside prefix. No exact row-to-image address/paired native patch verified; labels not shown as paired findings. No guessed data offset or larger archive fetch."
+    }
+  ],
+  "browser_review": false,
+  "entry_id": "automedbench-full-patchcamelyon-cls-task",
+  "grader_run": false,
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "pack_license": "LicenseRef-PCam-CC0-data-MIT-figure",
+  "participant_output_retained": false,
+  "preparer_run": false,
+  "reference_policy": "no-reference-assets",
+  "reviewed_at": "2026-09-29T06:37:00Z",
+  "schema": 1,
+  "source_class": "source-derived-teaching",
+  "source_example": {
+    "caption": "Official PCam README says green boxes mark positive labels; no individual tile ID or Full split match.",
+    "path": ".local/explainers/core-20260929/interpretation-e-source/pcam-example.jpg",
+    "role": "official-upstream-readme-collage-not-Full-case",
+    "sha256": "8d57bf035630a506aa6f4b4679e78b4ab40332a7f640a72f318c6221ba181d47",
+    "shape_px": [
+      1600,
+      400
+    ]
+  },
+  "source_revision": {
+    "config_path": "source/patchcamelyon-cls-task/config.yaml",
+    "config_sha256": "60fea70b9248e67b38fcfdab1a5e7a06b093ce2bb983eb881ecae35b4ff87ed0",
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "ref": "release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78",
+    "staging_manifest_sha256": "a2b3bdb29a2665af1a18dc0781abbcfdca4e8c189a308f951068fdf8e08a79ff"
+  },
+  "source_roles": {
+    "answer_owned_output": "agents_outputs/predictions.csv patient_id,label or agents_outputs/<case_id>/prediction.json; values absent",
+    "private_reference": "private per-case label.json or ground_truth.csv; not bundled",
+    "scorer": "accuracy = correct / all case IDs; missing prediction counts wrong; central 32\u00d732 tumor-pixel rule defines positive label; no score observed",
+    "solver_input": "Full public/<case_id>/image.jpg H&E 96\u00d796 tile; no exact Full case locally",
+    "supplied_helper": "Lite ResNet-18 guidance, public train/validation partition and fixed negative/positive order; official PCam collage is reader teaching imagery only"
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/patchcamelyon-cls-task.tar.gz",
+  "task_contract": {
+    "center_rule_px": [
+      32,
+      32
+    ],
+    "classes": [
+      "negative",
+      "positive"
+    ],
+    "evaluation_case_count_declared": 100,
+    "evaluation_ids": "unresolved",
+    "input_size_px": [
+      96,
+      96
+    ],
+    "metric": "accuracy",
+    "output_columns": [
+      "patient_id",
+      "label"
+    ],
+    "split_boundary": "upstream WSI-disjoint train/val/test; Full case map not frozen",
+    "tiers": [
+      "lite",
+      "standard"
+    ],
+    "source_ref": "release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78"
+  },
+  "task_package": {
+    "archive": {
+      "bytes": 23096,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/patchcamelyon-cls-task.tar.gz",
+      "sha256": "59527edf718b9ae8a3026e95c2c175c5aadc377cae0da712146809804198243d"
+    },
+    "manifest": {
+      "bytes": 2999,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/patchcamelyon-cls-task/automedbench-task/MANIFEST.sha256",
+      "sha256": "fb876d9d0bdd961e617d47712637935863d022ff5ff4b3d15ef4a3e8f4d67216"
+    },
+    "task_json": {
+      "dataset": {
+        "access": "public",
+        "data_dir_name": "PatchCamelyon",
+        "included": false,
+        "license": "CC0",
+        "policy": "redistributable",
+        "private_mount": "/data/private",
+        "public_mount": "/data/public",
+        "release_gate": "Release-owned harness; freeze 100-case split",
+        "upstream": "PatchCamelyon",
+        "upstream_url": "https://github.com/basveeling/pcam"
+      },
+      "evaluator": {
+        "adapter": "classification",
+        "entrypoint": "source/run_eval.py",
+        "network_required": false
+      },
+      "evaluator_task_id": "patchcamelyon-cls-task",
+      "input_contract": {
+        "filename": "image.jpg",
+        "unit": "case"
+      },
+      "output_contract": {
+        "alternatives": [
+          {
+            "paths": [
+              "predictions.csv"
+            ],
+            "root": "agents_outputs",
+            "type": "all_paths"
+          },
+          {
+            "paths": [
+              "{case_id}/prediction.json"
+            ],
+            "root": "agents_outputs",
+            "type": "all_paths"
+          }
+        ],
+        "type": "one_of"
+      },
+      "package_type": "automedbench_task_harness",
+      "runtime_assets": [],
+      "schema_version": 2,
+      "source": {
+        "config_path": "source/patchcamelyon-cls-task/config.yaml",
+        "config_sha256": "60fea70b9248e67b38fcfdab1a5e7a06b093ce2bb983eb881ecae35b4ff87ed0",
+        "ref": "release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78",
+        "staging_manifest_sha256": "a2b3bdb29a2665af1a18dc0781abbcfdca4e8c189a308f951068fdf8e08a79ff"
+      },
+      "tiers": [
+        "lite",
+        "standard"
+      ],
+      "track": "classification",
+      "website_task_id": "classification-pcam-metastasis"
+    }
+  },
+  "top_warning": {
+    "label": "Full tile absent; upstream figure only",
+    "text": "No matched 96x96 training row or frozen Full 100-case tile is recovered. Only the official annotated README collage is retained; private labels, checkpoint, predictions and scores absent.",
+    "url": "https://github.com/basveeling/pcam",
+    "link_label": "Official dataset acquisition"
+  },
+  "source_pins": [
+    {
+      "bytes": 1570,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/patchcamelyon-cls-task/automedbench-task/task.json",
+      "sha256": "440f0483c276bd17cd5153d1d77a2095991501443837c8a41f18c2797085ae3d"
+    },
+    {
+      "bytes": 1534,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/patchcamelyon-cls-task/automedbench-task/source/patchcamelyon-cls-task/config.yaml",
+      "sha256": "60fea70b9248e67b38fcfdab1a5e7a06b093ce2bb983eb881ecae35b4ff87ed0"
+    },
+    {
+      "bytes": 10595,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/patchcamelyon-cls-task/automedbench-task/source/run_eval.py",
+      "sha256": "663ecbac107c296dc3b5d201654ed8d782f7e490b90b6cb2522e7d6919c2d218"
+    },
+    {
+      "bytes": 2602,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/patchcamelyon-cls-task/automedbench-task/source/format_checker.py",
+      "sha256": "2ff6daeb06016e969d66a4082941c5bf8caeac8b01422d04093fe8f424f52b3c"
+    },
+    {
+      "bytes": 6125,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/patchcamelyon-cls-task/automedbench-task/source/acc_scorer.py",
+      "sha256": "b96c40478cfdfbd57a0d21f66d78272a9e12e5ea7e5ad8acd44dafa2936d414c"
+    },
+    {
+      "bytes": 9425,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/pcam-README.md",
+      "sha256": "eec25c8a5d9bd6e1674e0089a82af384095f41106e71f2006bbc78e5d34eea6a"
+    },
+    {
+      "bytes": 511688,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/pcam-example.jpg",
+      "sha256": "8d57bf035630a506aa6f4b4679e78b4ab40332a7f640a72f318c6221ba181d47"
+    },
+    {
+      "bytes": 23096,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/patchcamelyon-cls-task.tar.gz",
+      "sha256": "59527edf718b9ae8a3026e95c2c175c5aadc377cae0da712146809804198243d",
+      "role": "pinned-Full-package-archive"
+    },
+    {
+      "bytes": 2999,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/patchcamelyon-cls-task/automedbench-task/MANIFEST.sha256",
+      "sha256": "fb876d9d0bdd961e617d47712637935863d022ff5ff4b3d15ef4a3e8f4d67216",
+      "role": "pinned-Full-package-manifest"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/patchcamelyon-cls-task/automedbench-task/source/aggregate.py",
+      "bytes": 7046,
+      "sha256": "06e51ec2c9f27587100b0a306c4d07fe260bd792c3d330e16b32c438d35c0f3f",
+      "role": "additional-executable-contract",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/patchcamelyon-cls-task.tar.gz"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/patchcamelyon-cls-task/automedbench-task/source/medal_tier.py",
+      "bytes": 1546,
+      "sha256": "027da48a6ebb7cb608b2a694ee44fa4e1b27aa5e29b41a339c3f5a788bc660de",
+      "role": "additional-executable-contract",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/patchcamelyon-cls-task.tar.gz"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/patchcamelyon-cls-task/automedbench-task/source/patchcamelyon-cls-task/model_info.yaml",
+      "bytes": 1139,
+      "sha256": "c12799689f4e3fcc528922fa54cd809e16407ecb546067dfaf8e5bff45e09c58",
+      "role": "additional-executable-contract",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/patchcamelyon-cls-task.tar.gz"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-patchcamelyon-cls-task/source-evidence/metadata.bin",
+      "bytes": 6244,
+      "sha256": "a5ba07edbc86c5c13f150de36b3e950e52548ee2851ff4367664c58fdf7c13da",
+      "role": "current-bounded-native-acquisition-receipt"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-patchcamelyon-cls-task/source-evidence/train-labels.bin",
+      "bytes": 21378,
+      "sha256": "b74126d2c01b20d3661f9b46765d29cf4e4fba6faba29c8e0d09d406331ab75a",
+      "role": "current-bounded-native-acquisition-receipt"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-patchcamelyon-cls-task/source-evidence/train-image-prefix.bin",
+      "bytes": 262144,
+      "sha256": "9e8b5bdf245b019a94ec35bf3317387f42da10855e0ac6b9d11f3c318877c952",
+      "role": "current-bounded-native-acquisition-receipt"
+    }
+  ],
+  "resolved_at": "2026-09-30T12:50:58.768027+00:00",
+  "contract_audit": {
+    "source_class_map": "upstream0\u2192negative,1\u2192positive; canonical strings required for Full output",
+    "center_rule": "96x96 input, central32x32 positive iff at least1 annotated tumor pixel; outside tumor alone irrelevant; geometryillustration is symbolic, not a mask",
+    "splits": "262144train,32768validation,32768test,50/50 upstreamlabels; WSI-disjoint; Full100test-source IDs unresolved",
+    "figure": "1600x400 JPEG officialREADME labeled collage; unknown row IDs/partition, greenpositive markings; helperreveal only, not extracted nativepatch",
+    "label_data": "publictrain_y complete MD5verified; no pairedimage row, no individual label used in UI",
+    "models": "Lite fixed torchvisionResNet18_Weights.IMAGENET1K_V1 +2classhead trainedofficialtrain; StandardResNet50/DenseNet121/ConvNeXtTiny selects publicvalidation; preserve label-center undercrop/resize",
+    "accuracy": "correct/all suppliedcaseIDs includingmissingpredictions; emptylist0; balancedaccuracy averages supportedtrueclasses only;0..1fractions rounded4digits",
+    "format": "canonical case-insensitive strings; numeric0/1 not declaredFullclasses; incomplete nonemptyvalid maypass,emptyfails; CSVprecedence+JSONfallback; duplicateCSVlastwins",
+    "aggregate": "headlineaccuracy; provisionalgeneric.85/.50; fullworkflowdenominatorcountsS1-S3Nonezero,S4/S5alone max.25; overall=.5workflow+.5accuracy; clinical_scorefieldnotclinicalvalidation",
+    "visibility": "publictrain/validationhelps; officialtestsource for Fullfrozen subset; privateFull label.json/ground_truth.csv evaluatoronly; runtimevisibility nottested",
+    "units": "pixelgeometryonly; no independentlycalibratedMPP orWSIcoordinates"
+  },
+  "reopening_condition": "Recover an exact indexed official train x/y pair with verified HDF5 dataset address, or freeze exact Full100test IDs; preserve WSI-disjoint splits, verify private visibility and checkpoint mapping/crop/resize; separately authorize execution before measured outputs."
+}
