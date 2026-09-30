@@ -1,28 +1,8 @@
 # Explainer dependency register
 
-Core: **154** · reviewed: **90** · ready: **0** · needs resolution: **64** · deferred: **0**
+Core: **154** · reviewed: **92** · ready: **0** · needs resolution: **62** · deferred: **0**
 
 This is a derived view of EXPLAINER-SCOPE.json and EXPLAINER-LEDGER.json. Deferral does not confer visual acceptance.
-
-## automedbench-full-spleen-seg-task — Segment the spleen in CT
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-spleen-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
-
-## automedbench-full-tsg-multiorgan-seg-task — Label 117 anatomical structures in CT
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-tsg-multiorgan-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
 
 ## healthagentbench — Decide which findings are present in a chest CT
 

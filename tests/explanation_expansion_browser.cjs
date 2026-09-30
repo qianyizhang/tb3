@@ -25,6 +25,8 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-full-tsg-multiorgan-v1',
+  'automed-full-spleen-v1',
   'automed-full-prostate-seg-v1',
   'automed-full-panther-t2-seg-v1',
   'automed-full-panther-t1-seg-v1',
@@ -77,6 +79,22 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-full-tsg-multiorgan-v1')
+    return {
+      scene: 'data-automed-d-scene',
+      reference: '[data-automed-d-training-label]',
+      referenceChannel: null,
+      output: '[data-automed-d-empty-output]',
+      aside: '[data-automed-d-output]',
+    };
+  if (plan.recipe === 'automed-full-spleen-v1')
+    return {
+      scene: 'data-automed-d-scene',
+      reference: '[data-automed-d-training-label]',
+      referenceChannel: 'reference',
+      output: '[data-automed-d-empty-output]',
+      aside: '[data-automed-d-output]',
+    };
   if (plan.recipe === 'automed-full-prostate-seg-v1')
     return {
       scene: 'data-segc-scene',
@@ -403,6 +421,18 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-full-tsg-multiorgan-v1': [
+      /Full|MSD|TotalSegmentator|upstream/i,
+      'https://zenodo.org/records/10047263',
+      'data-automed-d-scene',
+      false,
+    ],
+    'automed-full-spleen-v1': [
+      /Full|MSD|TotalSegmentator|upstream/i,
+      'https://msd-for-monai.s3-us-west-2.amazonaws.com/Task09_Spleen.tar',
+      'data-automed-d-scene',
+      false,
+    ],
     'automed-full-prostate-seg-v1': [
       /Full|PanTS|PANTHER|MSD/i,
       'https://msd-for-monai.s3-us-west-2.amazonaws.com/Task05_Prostate.tar',
@@ -812,6 +842,26 @@ async function reviewCardiacInteractions(page, plan, output, label) {
       () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
     );
     assert.equal(await page.locator('[data-segc-training-helper]').count(), 0);
+  }
+  if (plan.recipe === 'automed-full-tsg-multiorgan-v1') {
+    const mappingIndex = plan.beats.findIndex((b) => b.scene === 'mapping');
+    await page.locator(`[data-story-step="${mappingIndex}"]`).click();
+    const picker = page.getByRole('combobox', { name: 'Full class mapping' });
+    await picker.waitFor();
+    assert.equal(await picker.locator('option').count(), 117);
+    await picker.selectOption('116');
+    assert.equal(await page.locator('[data-automed-d-class-id]').innerText(), '117');
+    assert.equal(await page.locator('[data-automed-d-class-name]').innerText(), 'vertebrae T9');
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-class-117.png`) });
+    await picker.selectOption('0');
+    assert.equal(await page.locator('[data-automed-d-class-id]').innerText(), '1');
+    assert.equal(
+      await page.locator('[data-automed-d-class-name]').innerText(),
+      'adrenal gland left',
+    );
+    await page.getByRole('button', { name: 'Follow playback' }).click();
   }
   if (selectors.referenceChannel === null) {
     assert.equal(plan.reference_policy, 'no-reference-assets');
@@ -3794,6 +3844,8 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-full-tsg-multiorgan-v1',
+      'automed-full-spleen-v1',
       'automed-full-prostate-seg-v1',
       'automed-full-panther-t2-seg-v1',
       'automed-full-panther-t1-seg-v1',

@@ -1,3 +1,4 @@
+import { segDData } from './automed-seg-d';
 import { segCPacks } from './automed-full-seg-c';
 import { segBData } from './automed-seg-b';
 import { segAPacks } from './automed-full-seg-a';
@@ -86,6 +87,8 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'automed-full-panther-t1-seg-v1',
     'automed-full-panther-t2-seg-v1',
     'automed-full-prostate-seg-v1',
+    'automed-full-spleen-v1',
+    'automed-full-tsg-multiorgan-v1',
     'cardiac-material-v1',
     'automed-full-heart-seg-v1',
     'automed-full-feta-seg-v1',
@@ -755,6 +758,34 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Upstream T2 and ADC'],
           ['#2fcee6', 'Revealed source training zones'],
           ['#18c6d4', 'Empty output schema'],
+        ],
+      };
+    case 'automed-full-spleen-v1':
+      return {
+        heading: 'Segment the spleen in CT',
+        corner: 'AutoMed Full · segmentation contract',
+        warning: {
+          ...segDData['spleen'].source.notice,
+          link_label: 'Official source / acquire data',
+        },
+        legend: [
+          ['#91a6ae', 'Upstream CT'],
+          ['#ee8dbd', 'Revealed public training label'],
+          ['#18c6d4', 'Empty output schema'],
+        ],
+      };
+    case 'automed-full-tsg-multiorgan-v1':
+      return {
+        heading: 'Map 117 structures in CT',
+        corner: 'AutoMed Full · segmentation contract',
+        warning: {
+          ...segDData['tsg-multiorgan'].source.notice,
+          link_label: 'Official source / acquire data',
+        },
+        legend: [
+          ['#91a6ae', 'Upstream CT'],
+          ['#18c6d4', 'Required 117-class output'],
+          ['#7ba4b8', 'No prediction'],
         ],
       };
     case 'cardiac-material-v1':

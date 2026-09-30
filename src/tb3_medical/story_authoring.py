@@ -272,6 +272,10 @@ def new(
             beat["scene"] = "input"
         if recipe == "automed-full-prostate-seg-v1":
             beat["scene"] = "input"
+        if recipe == "automed-full-spleen-v1":
+            beat["scene"] = "inputs"
+        if recipe == "automed-full-tsg-multiorgan-v1":
+            beat["scene"] = "inputs"
         if recipe == "anatomy-curation-v1":
             beat["scene"] = "pair"
         if recipe == "vessel-source-v1":

@@ -733,6 +733,28 @@ export function sampleStory(plan: StoryPlan, requested: number) {
         output: channel(b.channels.output),
       });
     }
+    case 'automed-full-spleen-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        view: channel(b.channels.view),
+        label: channel(b.channels.label),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'automed-full-tsg-multiorgan-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        view: channel(b.channels.view),
+        label: channel(b.channels.label),
+        reference: channel(b.channels.reference),
+      });
+    }
     case 'cardiac-material-v1': {
       const b = plan.beats[index];
       return Object.freeze({

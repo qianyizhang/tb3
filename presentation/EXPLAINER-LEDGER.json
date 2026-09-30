@@ -21142,15 +21142,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "abdomen",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-spleen-seg-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-spleen-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/full-spleen-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "CT input, stored as `ct.nii.gz` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names TotalSegmentator v2 (`-ta total`, spleen subset). Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -21192,14 +21192,107 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-30T03:19:34.668755+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/automedbench-full-spleen-seg-task-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Matched public MSD Task09 training CT/label recovered; Full 20-case selection, private GT, participant prediction and score remain unverified.",
+      "acquisition_route": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task09_Spleen.tar",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-spleen-seg-task-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-spleen-seg-task-resolution.json",
+        "receipt_sha256": "c24686d91ca03b8d094d68d1ec3a4679ff50f1ccabeb3552d5b416bc333ffd46",
+        "brief_sha256": "86c3173e90294897d92e64d0e37a9461a7ff9bdd37c659bfea261b697c9bdc3d",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Matched public MSD Task09 training CT/label recovered; Full 20-case selection, private GT, participant prediction and score remain unverified.",
+      "acceptance_scope": "Individually reviewed task explainer, exact pinned contract, input/helper/output boundaries, exported video and integrated interaction. No Full staged case, private target, inference or clinical performance claim.",
+      "completion_review": {
+        "date": "2026-09-30T03:34:06.759098+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "829df1e274bda27ad19a08f2befa8788d584fc77a2a5b1cec6b278abefa8363f"
+      },
+      "reviewed_contract_projection": {
+        "title": "Segment the spleen in CT",
+        "goal": "The task requests a CT segmentation. This is a source-backed explanation with **no completed Full model result**.",
+        "value": "Not yet specified.",
+        "raw": "A recovered official MSD Task09 public training pair is spleen_19. The CT and 0/1 label share a 512 × 512 × 51 voxel grid, 0.796875 × 0.796875 × 5 mm spacing and identical affine. Three axial planes at native k 20, 26 and 32 were selected after inspecting the released training label, for teaching at display WL 40 and WW 400; their locations are not solver-provided. Raw NIfTI scaling is 1/0 and source values span -1024 to 1372; this display is not an independent HU calibration check. The Full harness includes no images and does not prove this case belongs to its staged split.",
+        "helpers": "The public MSD training label is a source helper for understanding label 1. It is held behind an explicit reader reveal. The Full Lite condition names TotalSegmentator v2 spleen subset; Standard offers choices to investigate. No model is executed here.",
+        "tools": "The Full task harness defines submission files and a 3,600-second budget. No model, preparer, evaluator, judge or clinical tool is run for this explanation.",
+        "reference": "The explicit reader reveal can show a pink layer from the released MSD training label on the matched source CT. Before that control is used, the CT has no label overlay. This layer is a teaching helper, not Full private ground truth or a participant output.",
+        "spec": "Public MSD training case and label recovered; exact Full staged-case membership, private GT, prediction and score remain unverified. The public source view and Full staged input are kept distinct.",
+        "output": "Submit agents_outputs/{case_id}/dseg.nii.gz on each Full case's own CT grid with integer values 0 background and 1 spleen. This pack keeps that output empty because no participant prediction exists.",
+        "score": "The task requires integer IDs. The formatter rounds values before its allowed-ID test and checks shape only when the input exists; it does not compare affines. The scorer rounds combined outputs, fuses available private class masks at >0.5 with higher IDs winning overlap, and includes every foreground class with both-empty Dice 1. A missing class file contributes no foreground if another class exists. Absent/unreadable pairs are skipped; shape-error pairs contribute zero and count as completed. Aggregate scales per-class and macro means by completed-pair fraction and combines workflow and clinical scores equally; medal uses unscaled macro Dice. No evaluator was executed.\n\nThe pinned multiclass scorer fuses separated private spleen masks and compares one combined 0/1 prediction by array shape and Dice. It does not compare NIfTI affines. The format checker rounds voxel values before its allowed-ID test, so that test alone does not prove integer-valued input. No Full case output, private mask, evaluator call or score is retained.",
+        "challenge": "Not yet specified.",
+        "families": "Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect source CT and native geometry before any label layer.",
+          "Map source-defined label names to output voxel IDs.",
+          "Keep public helper labels, private Full reference and participant output distinct."
+        ],
+        "variants": [
+          {
+            "name": "Full · Lite",
+            "helper": "Task-specific Lite guidance: TotalSegmentator v2 (`-ta total`, spleen subset).",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full · Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Exact pinned AutoMedBench Full task archive",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation"
+          ],
+          [
+            "Official upstream acquisition route",
+            "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task09_Spleen.tar"
+          ]
+        ],
+        "html": {
+          "goal": "<p>The task requests a CT segmentation. This is a source-backed explanation with <strong>no completed Full model result</strong>.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>A recovered official MSD Task09 public training pair is spleen_19. The CT and 0/1 label share a 512 × 512 × 51 voxel grid, 0.796875 × 0.796875 × 5 mm spacing and identical affine. Three axial planes at native k 20, 26 and 32 were selected after inspecting the released training label, for teaching at display WL 40 and WW 400; their locations are not solver-provided. Raw NIfTI scaling is 1/0 and source values span -1024 to 1372; this display is not an independent HU calibration check. The Full harness includes no images and does not prove this case belongs to its staged split.</p>",
+          "helpers": "<p>The public MSD training label is a source helper for understanding label 1. It is held behind an explicit reader reveal. The Full Lite condition names TotalSegmentator v2 spleen subset; Standard offers choices to investigate. No model is executed here.</p>",
+          "tools": "<p>The Full task harness defines submission files and a 3,600-second budget. No model, preparer, evaluator, judge or clinical tool is run for this explanation.</p>",
+          "reference": "<p>The explicit reader reveal can show a pink layer from the released MSD training label on the matched source CT. Before that control is used, the CT has no label overlay. This layer is a teaching helper, not Full private ground truth or a participant output.</p>",
+          "spec": "<p>Public MSD training case and label recovered; exact Full staged-case membership, private GT, prediction and score remain unverified. The public source view and Full staged input are kept distinct.</p>",
+          "output": "<p>Submit agents_outputs/{case_id}/dseg.nii.gz on each Full case&#x27;s own CT grid with integer values 0 background and 1 spleen. This pack keeps that output empty because no participant prediction exists.</p>",
+          "score": "<p>The task requires integer IDs. The formatter rounds values before its allowed-ID test and checks shape only when the input exists; it does not compare affines. The scorer rounds combined outputs, fuses available private class masks at &gt;0.5 with higher IDs winning overlap, and includes every foreground class with both-empty Dice 1. A missing class file contributes no foreground if another class exists. Absent/unreadable pairs are skipped; shape-error pairs contribute zero and count as completed. Aggregate scales per-class and macro means by completed-pair fraction and combines workflow and clinical scores equally; medal uses unscaled macro Dice. No evaluator was executed.</p>\n<p>The pinned multiclass scorer fuses separated private spleen masks and compares one combined 0/1 prediction by array shape and Dice. It does not compare NIfTI affines. The format checker rounds voxel values before its allowed-ID test, so that test alone does not prove integer-valued input. No Full case output, private mask, evaluator call or score is retained.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>Actual upstream CT planes are labeled by their native index and source role; no Full case equivalence is implied.</p>",
+          "helpers": "<p>The exact Full class names, IDs and file path are contract material. The public MSD training label is a source helper for understanding label 1. It is held behind an explicit reader reveal. The Full Lite condition names TotalSegmentator v2 spleen subset; Standard offers choices to investigate. No model is executed here.</p>",
+          "answer": "<p>The prediction slot remains empty. The explicit reader reveal can show a pink layer from the released MSD training label on the matched source CT. Before that control is used, the CT has no label overlay. This layer is a teaching helper, not Full private ground truth or a participant output.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -21217,15 +21310,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "abdomen",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-tsg-multiorgan-seg-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-tsg-multiorgan-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/full-tsg-multiorgan-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "CT input, stored as `ct.nii.gz` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names TotalSegmentator v2 (nnU-Net v2 ensemble). Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -21267,14 +21360,107 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-30T03:40:16.660277+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/automedbench-full-tsg-multiorgan-seg-task-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Hash-verified TotalSegmentator source CT s1366 retained from the separately reviewed Lite context, but Full 40-case source-ID mapping is private; Full case identity, private GT, participant prediction and score are unverified. No Lite private-mask asset is reused.",
+      "acquisition_route": "https://zenodo.org/records/10047263",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-tsg-multiorgan-seg-task-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-tsg-multiorgan-seg-task-resolution.json",
+        "receipt_sha256": "698479277f105314bd9b69bdec4ace277b5253df6576ce532c8722f1806f1648",
+        "brief_sha256": "6011b63f0feb48f57135391bc1664114882c1019f8c57ec31c279d49adb44e2c",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Hash-verified TotalSegmentator source CT s1366 retained from the separately reviewed Lite context, but Full 40-case source-ID mapping is private; Full case identity, private GT, participant prediction and score are unverified. No Lite private-mask asset is reused.",
+      "acceptance_scope": "Individually reviewed task explainer, exact pinned contract, input/helper/output boundaries, exported video and integrated interaction. No Full staged case, private target, inference or clinical performance claim.",
+      "completion_review": {
+        "date": "2026-09-30T04:05:13.817394+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "49bbfbcf59f0bcfe643029bc8c18c08a257026c1247b5546302f0dd1cafadd71"
+      },
+      "reviewed_contract_projection": {
+        "title": "Label 117 anatomical structures in CT",
+        "goal": "The task requests a CT segmentation. This is a source-backed explanation with **no completed Full model result**.",
+        "value": "Not yet specified.",
+        "raw": "A previously hash-verified TotalSegmentator source CT s1366 supplies three fixed native coronal views. Its 333 × 333 × 336 grid has 1.5 mm isotropic spacing and a RAS affine. The center plane was selected post hoc in an earlier Lite review using kidney reference information; it is only a teaching view and not a solver-provided location. The exact Full harness names a 40-case small-v2.0.1 selection but keeps its source-ID mapping private, so this CT is not proven to be a Full case.",
+        "helpers": "The exact Full configuration enumerates integer IDs 1 through 117, from adrenal_gland_left through vertebrae_T9. Its complete name-to-ID mapping exactly matches the retained separately reviewed Lite config. The Full Lite condition names a TotalSegmentator v2 nnU-Net ensemble; no model is run here.",
+        "tools": "The Full task harness defines submission files and a 3,600-second budget. No model, preparer, evaluator, judge or clinical tool is run for this explanation.",
+        "reference": "No source label or Full private-reference pixels are shown. The center-plane selection used earlier Lite reference information, but no mask pixels or locations are presented as a Full answer. Five masks in that earlier audit are not relabeled as Full ground truth or participant output.",
+        "spec": "The public source CT is retained, but Full case/source-ID equivalence is unverified; private GT, participant prediction and score are unavailable. The public source view and Full staged input are kept distinct.",
+        "output": "Submit agents_outputs/{case_id}/dseg.nii.gz as one combined integer NIfTI map with 0 background and the exact 117 source-defined foreground IDs, on each Full case's own CT grid. Preserving its physical frame matters anatomically, although the pinned checker does not compare affines. This pack contains no participant prediction.",
+        "score": "The task requires integer IDs. The formatter rounds values before its allowed-ID test and checks shape only when the input exists; it does not compare affines. The scorer rounds combined outputs, fuses available private class masks at >0.5 with higher IDs winning overlap, and includes every foreground class with both-empty Dice 1. A missing class file contributes no foreground if another class exists. Absent/unreadable pairs are skipped; shape-error pairs contribute zero and count as completed. Aggregate scales per-class and macro means by completed-pair fraction and combines workflow and clinical scores equally; medal uses unscaled macro Dice. No evaluator was executed.\n\nThe Full config describes macro Dice over GT-nonempty classes, but the pinned scorer loops all 117 foreground IDs and gives both-empty masks Dice 1. It checks array shape, not affine. The format checker rounds voxel values before its allowed-ID test, so the required integer map is stricter than that check. The config also declares gt_subdir=masks, while run_eval passes gt_dir unchanged and the separated loader reads gt_dir/pid/class.nii.gz. The caller may supply the masks base; its Full invocation is unavailable. These denominator and path-base contracts remain unresolved, and no Full score is computed.",
+        "challenge": "Not yet specified.",
+        "families": "Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect source CT and native geometry before any label layer.",
+          "Map source-defined label names to output voxel IDs.",
+          "Keep public helper labels, private Full reference and participant output distinct."
+        ],
+        "variants": [
+          {
+            "name": "Full · Lite",
+            "helper": "Task-specific Lite guidance: TotalSegmentator v2 (nnU-Net v2 ensemble).",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full · Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Exact pinned AutoMedBench Full task archive",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation"
+          ],
+          [
+            "Official upstream acquisition route",
+            "https://zenodo.org/records/10047263"
+          ]
+        ],
+        "html": {
+          "goal": "<p>The task requests a CT segmentation. This is a source-backed explanation with <strong>no completed Full model result</strong>.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>A previously hash-verified TotalSegmentator source CT s1366 supplies three fixed native coronal views. Its 333 × 333 × 336 grid has 1.5 mm isotropic spacing and a RAS affine. The center plane was selected post hoc in an earlier Lite review using kidney reference information; it is only a teaching view and not a solver-provided location. The exact Full harness names a 40-case small-v2.0.1 selection but keeps its source-ID mapping private, so this CT is not proven to be a Full case.</p>",
+          "helpers": "<p>The exact Full configuration enumerates integer IDs 1 through 117, from adrenal_gland_left through vertebrae_T9. Its complete name-to-ID mapping exactly matches the retained separately reviewed Lite config. The Full Lite condition names a TotalSegmentator v2 nnU-Net ensemble; no model is run here.</p>",
+          "tools": "<p>The Full task harness defines submission files and a 3,600-second budget. No model, preparer, evaluator, judge or clinical tool is run for this explanation.</p>",
+          "reference": "<p>No source label or Full private-reference pixels are shown. The center-plane selection used earlier Lite reference information, but no mask pixels or locations are presented as a Full answer. Five masks in that earlier audit are not relabeled as Full ground truth or participant output.</p>",
+          "spec": "<p>The public source CT is retained, but Full case/source-ID equivalence is unverified; private GT, participant prediction and score are unavailable. The public source view and Full staged input are kept distinct.</p>",
+          "output": "<p>Submit agents_outputs/{case_id}/dseg.nii.gz as one combined integer NIfTI map with 0 background and the exact 117 source-defined foreground IDs, on each Full case&#x27;s own CT grid. Preserving its physical frame matters anatomically, although the pinned checker does not compare affines. This pack contains no participant prediction.</p>",
+          "score": "<p>The task requires integer IDs. The formatter rounds values before its allowed-ID test and checks shape only when the input exists; it does not compare affines. The scorer rounds combined outputs, fuses available private class masks at &gt;0.5 with higher IDs winning overlap, and includes every foreground class with both-empty Dice 1. A missing class file contributes no foreground if another class exists. Absent/unreadable pairs are skipped; shape-error pairs contribute zero and count as completed. Aggregate scales per-class and macro means by completed-pair fraction and combines workflow and clinical scores equally; medal uses unscaled macro Dice. No evaluator was executed.</p>\n<p>The Full config describes macro Dice over GT-nonempty classes, but the pinned scorer loops all 117 foreground IDs and gives both-empty masks Dice 1. It checks array shape, not affine. The format checker rounds voxel values before its allowed-ID test, so the required integer map is stricter than that check. The config also declares gt_subdir=masks, while run_eval passes gt_dir unchanged and the separated loader reads gt_dir/pid/class.nii.gz. The caller may supply the masks base; its Full invocation is unavailable. These denominator and path-base contracts remain unresolved, and no Full score is computed.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>Actual upstream CT planes are labeled by their native index and source role; no Full case equivalence is implied.</p>",
+          "helpers": "<p>The exact Full class names, IDs and file path are contract material. The exact Full configuration enumerates integer IDs 1 through 117, from adrenal_gland_left through vertebrae_T9. Its complete name-to-ID mapping exactly matches the retained separately reviewed Lite config. The Full Lite condition names a TotalSegmentator v2 nnU-Net ensemble; no model is run here.</p>",
+          "answer": "<p>The prediction slot remains empty. No source label or Full private-reference pixels are shown. The center-plane selection used earlier Lite reference information, but no mask pixels or locations are presented as a Full answer. Five masks in that earlier audit are not relabeled as Full ground truth or participant output.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -22221,9 +22407,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 85,
+    "reviewed-scripted-planar": 87,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-input": 35,
+    "blocked-source-input": 33,
     "blocked-source-contract": 71,
     "pending-operation-review": 1
   },

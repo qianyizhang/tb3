@@ -1762,6 +1762,38 @@ class AutomedSegCProstatePlan(ExpansionPlan):
     beats: list[AutomedSegCProstateBeat]
 
 
+class AutomedSegDSpleenChannels(TypedDict):
+    view: tuple[float, float]
+    label: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedSegDSpleenBeat(ExpansionBeat):
+    channels: AutomedSegDSpleenChannels
+    scene: Literal["inputs", "mapping", "output", "reference", "scorer", "limits"]
+
+
+class AutomedSegDSpleenPlan(ExpansionPlan):
+    recipe: Literal["automed-full-spleen-v1"]
+    beats: list[AutomedSegDSpleenBeat]
+
+
+class AutomedSegDTsgMultiorganChannels(TypedDict):
+    view: tuple[float, float]
+    label: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedSegDTsgMultiorganBeat(ExpansionBeat):
+    channels: AutomedSegDTsgMultiorganChannels
+    scene: Literal["inputs", "mapping", "output", "reference", "scorer", "limits"]
+
+
+class AutomedSegDTsgMultiorganPlan(ExpansionPlan):
+    recipe: Literal["automed-full-tsg-multiorgan-v1"]
+    beats: list[AutomedSegDTsgMultiorganBeat]
+
+
 class CardiacMaterialChannels(TypedDict):
     phase: tuple[float, float]
     helper: tuple[float, float]
@@ -1992,6 +2024,8 @@ StoryPlan = (
     | AutomedSegCPantherT1Plan
     | AutomedSegCPantherT2Plan
     | AutomedSegCProstatePlan
+    | AutomedSegDSpleenPlan
+    | AutomedSegDTsgMultiorganPlan
     | CardiacMaterialPlan
     | CardiacAnchorPlan
     | ClinicalCavityPlan

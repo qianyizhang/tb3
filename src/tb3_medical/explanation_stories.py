@@ -44,6 +44,8 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-full-tsg-multiorgan-v1": "retained-automed-full-tsg-multiorgan-seg-v1",
+    "automed-full-spleen-v1": "retained-automed-full-spleen-seg-v1",
     "automed-full-prostate-seg-v1": "retained-automed-full-prostate-seg-v1",
     "automed-full-panther-t2-seg-v1": "retained-automed-full-panther-t2-seg-v1",
     "automed-full-panther-t1-seg-v1": "retained-automed-full-panther-t1-seg-v1",
@@ -140,6 +142,11 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-automed-full-tsg-multiorgan-seg-v1": (
+        "source-slices",
+        None,
+        {"DATA-LICENSE.txt", "NOTICE.md", "output.json", "source.json"},
+    ),
     "retained-automed-full-prostate-seg-v1": (
         "source-slices",
         None,
@@ -472,6 +479,11 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-automed-full-spleen-seg-v1": (
+        "source-slices",
+        "reference.json",
+        {"DATA-LICENSE.txt", "NOTICE.md", "output.json", "reference.json", "source.json"},
+    ),
     "retained-automed-full-liver-seg-v1": (
         "source-slices",
         "reference.json",
@@ -1764,6 +1776,18 @@ class AutomedSegCProstateChannels(Closed):
     slice: Pair
     helper: Pair
     output: Pair
+
+
+class AutomedSegDSpleenChannels(Closed):
+    view: Pair
+    label: Pair
+    reference: Pair
+
+
+class AutomedSegDTsgMultiorganChannels(Closed):
+    view: Pair
+    label: Pair
+    reference: Pair
 
 
 class CardiacMaterialChannels(Closed):
@@ -3392,6 +3416,38 @@ class AutomedSegCProstateStory(Story[AutomedSegCProstateChannels]):
         return self
 
 
+class AutomedSegDSpleenBeat(ExpansionBeat[AutomedSegDSpleenChannels]):
+    scene: Literal["inputs", "mapping", "output", "reference", "scorer", "limits"]
+
+
+class AutomedSegDSpleenStory(Story[AutomedSegDSpleenChannels]):
+    recipe: Literal["automed-full-spleen-v1"]
+    beats: tuple[AutomedSegDSpleenBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class AutomedSegDTsgMultiorganBeat(ExpansionBeat[AutomedSegDTsgMultiorganChannels]):
+    scene: Literal["inputs", "mapping", "output", "reference", "scorer", "limits"]
+
+
+class AutomedSegDTsgMultiorganStory(Story[AutomedSegDTsgMultiorganChannels]):
+    recipe: Literal["automed-full-tsg-multiorgan-v1"]
+    beats: tuple[AutomedSegDTsgMultiorganBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class CardiacMaterialBeat(ExpansionBeat[CardiacMaterialChannels]):
     scene: Literal[
         "inputs", "initial", "tracking", "tetra", "strain", "comparison", "controls", "limits"
@@ -3609,6 +3665,8 @@ AnyStory = Annotated[
     | AutomedSegCPantherT1Story
     | AutomedSegCPantherT2Story
     | AutomedSegCProstateStory
+    | AutomedSegDSpleenStory
+    | AutomedSegDTsgMultiorganStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3705,6 +3763,8 @@ ADAPTER: TypeAdapter[
     | AutomedSegCPantherT1Story
     | AutomedSegCPantherT2Story
     | AutomedSegCProstateStory
+    | AutomedSegDSpleenStory
+    | AutomedSegDTsgMultiorganStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3961,6 +4021,8 @@ def parse_expansion(
     | AutomedSegCPantherT1Story
     | AutomedSegCPantherT2Story
     | AutomedSegCProstateStory
+    | AutomedSegDSpleenStory
+    | AutomedSegDTsgMultiorganStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -4205,6 +4267,12 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "CC-BY-SA-4.0",
                 "CC-BY-SA-4.0",
             ),
+            "retained-automed-full-spleen-seg-v1": (
+                "native-NIfTI-voxel-ijk",
+                "CC-BY-SA-4.0",
+                "CC-BY-SA-4.0",
+            ),
+            "retained-automed-full-tsg-multiorgan-seg-v1": ("RAS", "CC-BY-4.0", None),
             "retained-cardiac-material-v1": (
                 "STRAUS-patient01-healthy-canonical",
                 "LicenseRef-STRAUS-local-noncommercial",
@@ -4368,6 +4436,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     "retained-automed-full-panther-t1-seg-v1",
                     "retained-automed-full-panther-t2-seg-v1",
                     "retained-automed-full-prostate-seg-v1",
+                    "retained-automed-full-spleen-seg-v1",
                     "retained-automed-full-feta-seg-v1",
                     "retained-automed-full-heart-seg-v1",
                     "retained-segmentation-calibration-v1",

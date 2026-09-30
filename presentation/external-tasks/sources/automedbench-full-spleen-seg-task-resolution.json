@@ -1,0 +1,240 @@
+{
+  "acquisition_route": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task09_Spleen.tar",
+  "actual_data_gap": "Matched public MSD Task09 training CT/label recovered; Full 20-case selection, private GT, participant prediction and score remain unverified.",
+  "attempts": [
+    {
+      "action": "Approved download exact Full harness and verify all SHA manifest members",
+      "attempted_at": "2026-09-29T05:51:49Z",
+      "outcome": "HTTP 200; 27847 bytes; 30/30 members match; dataset.included=false.",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/spleen-seg-task.tar.gz"
+    },
+    {
+      "action": "Resolve bounded official upstream source",
+      "attempted_at": "2026-09-29T06:05:43Z",
+      "outcome": "Matched public MSD Task09 training CT/label recovered; Full 20-case selection, private GT, participant prediction and score remain unverified.",
+      "source": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task09_Spleen.tar"
+    }
+  ],
+  "class_map": {
+    "1": "spleen"
+  },
+  "entry_id": "automedbench-full-spleen-seg-task",
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "label_license": "CC-BY-SA-4.0",
+  "local_use": "Noncommercial source interpretation; no public redistribution or Full result claim requested.",
+  "manifest_members_verified": 30,
+  "official_range_extract": {
+    "archive_bytes": 1610352640,
+    "archive_url": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task09_Spleen.tar",
+    "ct_bytes": 15006227,
+    "ct_data_offset": 483338752,
+    "ct_member": "Task09_Spleen/imagesTr/spleen_19.nii.gz",
+    "header_receipt_sha256": "ec00c69868baa3a3efd6153328b9b566b8ab2f88ce00c2f5eb1f0b98df16421e",
+    "label_bytes": 18554,
+    "label_data_offset": 1609082368,
+    "label_member": "Task09_Spleen/labelsTr/spleen_19.nii.gz"
+  },
+  "reference_policy": "reader-reference-reveal",
+  "reopening_condition": "Obtain and verify the Full 20-case source-ID mapping and private-reference provenance before treating spleen_19 as a Full case. Keep its training label behind the reader reveal; participant outputs require a separately evidenced run.",
+  "reviewed_at": "2026-09-29T06:05:43Z",
+  "schema": 1,
+  "scorer_boundary": "One-class Dice includes both-empty=1. Partial submissions scale clinical Dice by completion; medal uses unscaled Dice. No affine comparison or observed score.",
+  "source_class": "source-derived-teaching",
+  "source_files": {
+    "config": {
+      "path": ".local/explainers/core-20260929/automed-seg-d-source/packages/spleen/automedbench-task/source/spleen-seg-task/config.yaml",
+      "sha256": "16a406503f03355efabcc910494e184a86aa152486919b950ad0cd310c36c9e4"
+    },
+    "ct": {
+      "bytes": 15006227,
+      "geometry": {
+        "affine": [
+          [
+            0.796875,
+            0.0,
+            0.0,
+            -407.203125
+          ],
+          [
+            0.0,
+            0.796875,
+            0.0,
+            -407.203125
+          ],
+          [
+            0.0,
+            0.0,
+            5.0,
+            0.0
+          ]
+        ],
+        "datatype": 16,
+        "shape": [
+          512,
+          512,
+          51
+        ],
+        "spacing_mm": [
+          0.796875,
+          0.796875,
+          5.0
+        ]
+      },
+      "path": ".local/explainers/core-20260929/automed-seg-d-source/spleen_19.nii.gz",
+      "sha256": "c9b8971df161334ad5277547353a17d621c32d51b752490f767a7d852e472fbc"
+    },
+    "runner": {
+      "path": ".local/explainers/core-20260929/automed-seg-d-source/packages/spleen/automedbench-task/source/run_eval.py",
+      "sha256": "fa549062ba9f8c0587da2c028d0cfcb6dc19b58334d35462782b6526f59f28ed"
+    },
+    "scorer": {
+      "path": ".local/explainers/core-20260929/automed-seg-d-source/packages/spleen/automedbench-task/source/dice_scorer.py",
+      "sha256": "37fd86c11238213293792997db3acbc9a442241935502ad70511d186dc357287"
+    },
+    "task_json": {
+      "path": ".local/explainers/core-20260929/automed-seg-d-source/packages/spleen/automedbench-task/task.json",
+      "sha256": "a692c543e0c2b97e023f4ed924611fd83c59bf0c16f0895d485bf280c61c111a"
+    },
+    "task_package": {
+      "bytes": 27847,
+      "path": ".local/explainers/core-20260929/automed-seg-d-source/packages/spleen.tar.gz",
+      "sha256": "7a75ce7a9f5275f64243a416d13435087edc7eb610c60a23eb03bac08fafcb00"
+    },
+    "training_label": {
+      "bytes": 18554,
+      "geometry": {
+        "affine": [
+          [
+            0.796875,
+            0.0,
+            0.0,
+            -407.203125
+          ],
+          [
+            0.0,
+            0.796875,
+            0.0,
+            -407.203125
+          ],
+          [
+            0.0,
+            0.0,
+            5.0,
+            0.0
+          ]
+        ],
+        "datatype": 2,
+        "shape": [
+          512,
+          512,
+          51
+        ],
+        "spacing_mm": [
+          0.796875,
+          0.796875,
+          5.0
+        ]
+      },
+      "path": ".local/explainers/core-20260929/automed-seg-d-source/spleen_19-label.nii.gz",
+      "sha256": "24f987600b28ee2aafa82f295d00aad0d4589b6db55667749d3d0dec64828c06"
+    },
+    "formatter": {
+      "path": ".local/explainers/core-20260929/automed-seg-d-source/packages/spleen/automedbench-task/source/format_checker.py",
+      "sha256": "ed930d195ecf0b9ef2c461093ba15f42c5ec858549d3c8aa709b2538fe959799"
+    },
+    "aggregate": {
+      "path": ".local/explainers/core-20260929/automed-seg-d-source/packages/spleen/automedbench-task/source/aggregate.py",
+      "sha256": "3e2ef80e395e7da8ac2df401003add35de2dd9a9df16aec6458b128a98b71489"
+    }
+  },
+  "source_license": "CC-BY-SA-4.0",
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "staging_manifest_sha256_declared": "ff5ae06883c4c87171dc61a93c12331996670db20f832a2e775e0fb079ef3d03",
+    "task_source_ref_declared": "609c2a8df21addfff5dbfb680a7263fb8cf91d99"
+  },
+  "source_roles": {
+    "private_reference": "Full /data/private masks unavailable",
+    "required_output": "agents_outputs/{case_id}/dseg.nii.gz",
+    "solver_input": "Full staged ct.nii.gz per case; no exact Full staged image included in harness",
+    "upstream_example": "public training CT and source label helper; source label is reader-revealed, not Full private GT"
+  },
+  "task_package": {
+    "dataset": {
+      "access": "public",
+      "data_dir_name": "MSD_Spleen",
+      "included": false,
+      "license": "CC BY-SA 4.0",
+      "policy": "redistributable",
+      "private_mount": "/data/private",
+      "public_mount": "/data/public",
+      "release_gate": "Include attribution and share-alike license",
+      "upstream": "MSD Task09 Spleen",
+      "upstream_url": "https://medicaldecathlon.com/"
+    },
+    "evaluator": {
+      "adapter": "segmentation",
+      "entrypoint": "source/run_eval.py",
+      "network_required": false
+    },
+    "evaluator_task_id": "spleen-seg-task",
+    "input_contract": {
+      "filename": "ct.nii.gz",
+      "unit": "case"
+    },
+    "output_contract": {
+      "paths": [
+        "{case_id}/dseg.nii.gz"
+      ],
+      "root": "agents_outputs",
+      "type": "all_paths"
+    },
+    "package_type": "automedbench_task_harness",
+    "runtime_assets": [],
+    "schema_version": 2,
+    "source": {
+      "config_path": "source/spleen-seg-task/config.yaml",
+      "config_sha256": "16a406503f03355efabcc910494e184a86aa152486919b950ad0cd310c36c9e4",
+      "ref": "609c2a8df21addfff5dbfb680a7263fb8cf91d99",
+      "staging_manifest_sha256": "ff5ae06883c4c87171dc61a93c12331996670db20f832a2e775e0fb079ef3d03"
+    },
+    "tiers": [
+      "lite",
+      "standard"
+    ],
+    "track": "segmentation",
+    "website_task_id": "spleen",
+    "pinned_files": {
+      "task.json": {
+        "sha256": "a692c543e0c2b97e023f4ed924611fd83c59bf0c16f0895d485bf280c61c111a",
+        "bytes": 1288
+      },
+      "source/spleen-seg-task/config.yaml": {
+        "sha256": "16a406503f03355efabcc910494e184a86aa152486919b950ad0cd310c36c9e4",
+        "bytes": 847
+      },
+      "source/format_checker.py": {
+        "sha256": "ed930d195ecf0b9ef2c461093ba15f42c5ec858549d3c8aa709b2538fe959799",
+        "bytes": 8016
+      },
+      "source/dice_scorer.py": {
+        "sha256": "37fd86c11238213293792997db3acbc9a442241935502ad70511d186dc357287",
+        "bytes": 11863
+      },
+      "source/aggregate.py": {
+        "sha256": "3e2ef80e395e7da8ac2df401003add35de2dd9a9df16aec6458b128a98b71489",
+        "bytes": 12559
+      },
+      "source/run_eval.py": {
+        "sha256": "fa549062ba9f8c0587da2c028d0cfcb6dc19b58334d35462782b6526f59f28ed",
+        "bytes": 9414
+      }
+    }
+  },
+  "root_contract_audit": {
+    "path": ".local/explainers/core-20260929/full-spleen-source-audit-v1.json",
+    "sha256": "463d84d69d3caf024a4cfd473e34050f466a724217d54a8c2a3fad9d4676f183"
+  },
+  "root_scoring_details": "The task requires integer IDs. The formatter rounds values before its allowed-ID test and checks shape only when the input exists; it does not compare affines. The scorer rounds combined outputs, fuses available private class masks at >0.5 with higher IDs winning overlap, and includes every foreground class with both-empty Dice 1. A missing class file contributes no foreground if another class exists. Absent/unreadable pairs are skipped; shape-error pairs contribute zero and count as completed. Aggregate scales per-class and macro means by completed-pair fraction and combines workflow and clinical scores equally; medal uses unscaled macro Dice."
+}

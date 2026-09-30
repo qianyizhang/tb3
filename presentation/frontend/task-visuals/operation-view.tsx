@@ -1,3 +1,4 @@
+import { AutomedSegDScene, AutomedSegDOutput } from './automed-seg-d-panels';
 import { AutoMedSegCScene, AutoMedSegCOutput } from './automed-full-seg-c-panels';
 import { AutomedSegBScene, AutomedSegBOutput } from './automed-seg-b-panels';
 import { AutoMedSegAScene, AutoMedSegAOutput } from './automed-full-seg-a-panels';
@@ -238,6 +239,10 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   if (state.recipe === 'automed-full-panther-t1-seg-v1') return <AutoMedSegCScene state={state} />;
   if (state.recipe === 'automed-full-panther-t2-seg-v1') return <AutoMedSegCScene state={state} />;
   if (state.recipe === 'automed-full-prostate-seg-v1') return <AutoMedSegCScene state={state} />;
+  if (state.recipe === 'automed-full-spleen-v1')
+    return <AutomedSegDScene task={'spleen'} state={state} />;
+  if (state.recipe === 'automed-full-tsg-multiorgan-v1')
+    return <AutomedSegDScene task={'tsg-multiorgan'} state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
   if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityScene state={state} />;
@@ -533,6 +538,10 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'automed-full-panther-t1-seg-v1') return <AutoMedSegCOutput state={state} />;
   if (state.recipe === 'automed-full-panther-t2-seg-v1') return <AutoMedSegCOutput state={state} />;
   if (state.recipe === 'automed-full-prostate-seg-v1') return <AutoMedSegCOutput state={state} />;
+  if (state.recipe === 'automed-full-spleen-v1')
+    return <AutomedSegDOutput task={'spleen'} state={state} />;
+  if (state.recipe === 'automed-full-tsg-multiorgan-v1')
+    return <AutomedSegDOutput task={'tsg-multiorgan'} state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;
   if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityOutput state={state} />;

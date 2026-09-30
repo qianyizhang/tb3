@@ -1,0 +1,223 @@
+.scene {
+  display: grid;
+  gap: 10px;
+  color: #183645;
+  min-width: 0;
+}
+.scene h3 {
+  font-size: clamp(1.13rem, 2vw, 1.55rem);
+  margin: 0;
+  line-height: 1.18;
+}
+.columns {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.95fr) minmax(260px, 1.05fr);
+  gap: 16px;
+  align-items: start;
+  min-width: 0;
+}
+.columns article,
+.outputBody,
+.scoreCards article {
+  padding: 13px 16px;
+  background: #f1f6f7;
+  border: 1px solid #dce7eb;
+  border-radius: 12px;
+  min-width: 0;
+}
+.columns article p,
+.outputBody p,
+.scoreCards p {
+  font-size: 0.89rem;
+  line-height: 1.42;
+  margin: 7px 0;
+}
+.columns article h4 {
+  font-size: 1.15rem;
+  margin: 4px 0;
+}
+.kicker {
+  font-size: 0.72rem !important;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  color: #296877;
+  margin: 0 0 6px !important;
+}
+.smallNote {
+  color: #536a73;
+}
+.scanFigure {
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  min-width: 0;
+}
+.scanFrame {
+  height: min(32vh, 260px);
+  width: min(100%, 260px);
+  padding: 4px;
+  background: #20384b;
+  border-radius: 9px;
+  box-sizing: border-box;
+}
+.scanFrame svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.symbolic {
+  display: block;
+  height: min(32vh, 260px);
+  width: min(100%, 390px);
+}
+.scanFigure figcaption {
+  text-align: center;
+  color: #425f6e;
+  font-size: 0.75rem;
+  line-height: 1.32;
+  margin-top: 5px;
+}
+.labelArea {
+  min-width: 0;
+}
+.labelPicker {
+  display: grid;
+  gap: 5px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.labelPicker select {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  font: inherit;
+  padding: 7px;
+  border: 1px solid #97afbd;
+  background: #fff;
+  color: #183645;
+}
+.fileGrid {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+.fileCard {
+  border: 2px solid #97afbd;
+  background: #fff;
+  border-radius: 10px;
+  padding: 9px 13px;
+  min-width: 145px;
+  display: grid;
+  gap: 2px;
+}
+.fileCard b {
+  font-size: 0.7rem;
+  color: #657f8b;
+  text-transform: uppercase;
+}
+.fileCard span {
+  font-size: 0.85rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+.fileCard small {
+  font-size: 0.7rem;
+  color: #536a73;
+}
+.arrow {
+  align-self: center;
+  font-weight: 900;
+  color: #3c8391;
+}
+.legend {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+.legend span {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 0.8rem;
+}
+.legend i {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 3px;
+}
+.cyan {
+  background: #1fbbc5;
+}
+.gold {
+  background: #fab738;
+}
+.scoreCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.scoreCards article {
+  padding: 10px 13px;
+}
+.scoreCards b {
+  font-size: 0.9rem;
+}
+.scoreCards p {
+  overflow-wrap: anywhere;
+}
+.scoreCards a {
+  color: #21697b;
+}
+.aside {
+  color: #536a73;
+}
+.aside b {
+  color: #244757;
+}
+.aside p {
+  margin: 4px 0;
+}
+.aside small {
+  color: #627982;
+}
+@media (max-width: 720px) {
+  .columns,
+  .scoreCards {
+    grid-template-columns: 1fr;
+  }
+  .scanFrame {
+    height: 220px;
+    width: 220px;
+  }
+  .symbolic {
+    height: 205px;
+  }
+  .scene h3 {
+    font-size: 1.15rem;
+  }
+  .columns article,
+  .outputBody,
+  .scoreCards article {
+    padding: 10px 12px;
+  }
+  .fileGrid {
+    gap: 6px;
+  }
+  .fileCard {
+    min-width: 125px;
+  }
+}
+
+.pink {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #ee8dbd;
+  vertical-align: middle;
+  margin-right: 5px;
+}

@@ -1,0 +1,1 @@
+Public source example; Full case unverified. Hash-verified TotalSegmentator source CT s1366 retained from the separately reviewed Lite context, but Full 40-case source-ID mapping is private; Full case identity, private GT, participant prediction and score are unverified. No Lite private-mask asset is reused. https://zenodo.org/records/10047263

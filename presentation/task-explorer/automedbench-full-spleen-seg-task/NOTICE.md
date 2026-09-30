@@ -1,0 +1,1 @@
+Public source example; Full case unverified. Matched public MSD Task09 training CT/label recovered; Full 20-case selection, private GT, participant prediction and score remain unverified. https://msd-for-monai.s3-us-west-2.amazonaws.com/Task09_Spleen.tar
