@@ -1,0 +1,278 @@
+{
+  "acquisition_attempt": {
+    "bytes": 126,
+    "metadata": {
+      "path": "/Users/zhangqy/pkgs/tb3/.local/explainers/goal-20260930/workers/automedbench-full-pathology-caption-100-task/pathcap-metadata.json",
+      "revision": "17205b19b89ab4ad812a81e9b166d0bcbdaa928e",
+      "sha256": "bf1316a4c197777fc0263bf76699585bde936d05897f55400e736da373d125af"
+    },
+    "response_sha256": "e46eb94ca4c2ac7a07b6566da027de741dec275513e9a94571f5d8dd6917c114",
+    "status": 401,
+    "terms_accepted": false,
+    "url": "https://huggingface.co/datasets/jamessyx/PathCap/resolve/17205b19b89ab4ad812a81e9b166d0bcbdaa928e/data.json"
+  },
+  "acquisition_route": "https://huggingface.co/datasets/jamessyx/PathCap",
+  "actual_data_gap": "Matching histology image/caption and selected100case IDs absent. Retained historical anonymous PathCap annotation read returned401;100/500 membership and pathology-compatible metric assets unresolved. No output or score.",
+  "attempts": [
+    {
+      "action": "read-only retained source/acquisition/caption-correction validation",
+      "attempted_at": "2026-09-30T21:56:59.907600+00:00",
+      "outcome": "22Full MANIFEST members/all22source files/exact archive136e24... and6retained pins validated; metadata17205b19/historical anonymous401 (original timestamp not recorded) outcome retained, no image/caption acquired; no upstream Git byte-equivalence claimed.",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/report/pathology-caption-100-task.tar.gz ; https://huggingface.co/datasets/jamessyx/PathCap/resolve/17205b19b89ab4ad812a81e9b166d0bcbdaa928e/data.json"
+    }
+  ],
+  "baseline_commit": "0ad0600af861332d2b117182b5787fbdc8420328",
+  "brief_sha256": "16b3b59f8893ae8b6b85542b9a2a6bedc939e1b28f8b60b039e9590ef0d064b1",
+  "browser_review": false,
+  "declared_authority_ref": {
+    "config_path": "source/tasks/pathology-caption-100-task/config.yaml",
+    "config_sha256": "147b0c655a65c8a9d958e7c2b9d7872dfd7bdb8714376c0e97707f732c4bfde0",
+    "ref": "release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78",
+    "staging_manifest_sha256": "f1facdf48a1453104c4d01840b4f473e6d2e95158deacd8dcb266d2a03a11262"
+  },
+  "entry_id": "automedbench-full-pathology-caption-100-task",
+  "historical_acquisition_attempt": {
+    "bytes": 126,
+    "metadata": {
+      "path": "/Users/zhangqy/pkgs/tb3/.local/explainers/goal-20260930/workers/automedbench-full-pathology-caption-100-task/pathcap-metadata.json",
+      "revision": "17205b19b89ab4ad812a81e9b166d0bcbdaa928e",
+      "sha256": "bf1316a4c197777fc0263bf76699585bde936d05897f55400e736da373d125af"
+    },
+    "response_sha256": "e46eb94ca4c2ac7a07b6566da027de741dec275513e9a94571f5d8dd6917c114",
+    "status": 401,
+    "terms_accepted": false,
+    "url": "https://huggingface.co/datasets/jamessyx/PathCap/resolve/17205b19b89ab4ad812a81e9b166d0bcbdaa928e/data.json"
+  },
+  "illustration_basis": "symbolic",
+  "kind": "explainer-source-resolution",
+  "main_source_qualification": {
+    "actor": "Codex main agent",
+    "at": "2026-09-30T22:11:06.169454+00:00",
+    "original_acquisition_preserved": true,
+    "prior_receipt_sha256": "d0ecb07868b5c3b26f7fa23170f924dc3900b9d4c650e4bb93b1d85dfcffa1e5",
+    "request_timestamp": "Original historical401 object has no request timestamp; new attempted_at belongs solely to retained validation.",
+    "terms": "Pinned official metadata supportsauto-gate/CCBYNC2.0/noncommercial-use/citationfields; exact additional clickthrough grant not inferred."
+  },
+  "model_run": false,
+  "native_examples": {
+    "actual_cases": 0,
+    "images": 0,
+    "reports": 0
+  },
+  "reference_policy": "no-reference-assets",
+  "retained_source_pins": {
+    "archive": "136e24a88165a427ce4e4d278d2708edc69880382cf110f532a11a502e9cdb26",
+    "config_yaml": "147b0c655a65c8a9d958e7c2b9d7872dfd7bdb8714376c0e97707f732c4bfde0",
+    "format_checker": "78f61b3c7f06614766bc53f6164fc40eab2a06e2da42a724534cae00c49eb797",
+    "manifest": "78cb26bbc870fd5b9dd197ab94f597f473425d4f1b7e47691cbe5cc269fa4823",
+    "run_eval": "c33a520df46666524ac4d836f8a02a57fa760d20779c97fd9243cc2c17b62e6c",
+    "task_json": "000716e69e88705142ab6256d41a8260debcfc8d6b992b3c220d3e99c9e2db7d"
+  },
+  "runtime_discrepancy": "Equal seven metrics are declared; backend/weights/schema bindings absent. Executable defaults to .7 CXR-regex observation F1 + .3 token-LCS similarity, not a validated pathology score.",
+  "schema": 1,
+  "selection": {
+    "expected_case_count": 100,
+    "expected_count_enforced_by_evaluator": false,
+    "grouping_unit": "image",
+    "relationship_to_500": "unknown",
+    "split": "release_owned_100_unstaged",
+    "views_per_case": "exactly_one"
+  },
+  "source_class": "symbolic-protocol",
+  "source_files": [
+    {
+      "bytes": 41,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/__init__.py",
+      "sha256": "c8189828cc67747e822b65adad075100aaaed0bd3231471e0d0e9e3ec218abfe"
+    },
+    {
+      "bytes": 5869,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/aggregate.py",
+      "sha256": "31a0ce12d69eea19949493bf6e9321c4fb9aedc5da4adaea078b127b5311e441"
+    },
+    {
+      "bytes": 3391,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/config_io.py",
+      "sha256": "80f68d5c17e9b185459d1ab8657d02f91bb098ee07cf27eeabfd63506c0a0770"
+    },
+    {
+      "bytes": 1410,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/failure_classifier.py",
+      "sha256": "035f4f238e892b4fee6361e9201c1a0c45df287d6f3be2e4378c76c385903c83"
+    },
+    {
+      "bytes": 3113,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/format_checker.py",
+      "sha256": "78f61b3c7f06614766bc53f6164fc40eab2a06e2da42a724534cae00c49eb797"
+    },
+    {
+      "bytes": 3685,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/mlrg_metrics.py",
+      "sha256": "318f1c4784aa7b4b4484910b97d8a1320d977762e10ea83b9692f11b275bd3cd"
+    },
+    {
+      "bytes": 6578,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/observation_schemas/ct_18class.yaml",
+      "sha256": "1f25ea2e2aa7348a7aba0176e4c92a2e033e06652b45f1fe754b9d937577d432"
+    },
+    {
+      "bytes": 4058,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/observation_schemas/cxr_12class.yaml",
+      "sha256": "6f26530caec969fade723da40962a97c51a49cdabe569fe347391a6c381b04f9"
+    },
+    {
+      "bytes": 15742,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/report_scorer.py",
+      "sha256": "9fcaf315e6ce485d2cfe81392e82ed7b9e8435ce6a22929094924704ace43622"
+    },
+    {
+      "bytes": 7118,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/run_eval.py",
+      "sha256": "c33a520df46666524ac4d836f8a02a57fa760d20779c97fd9243cc2c17b62e6c"
+    },
+    {
+      "bytes": 240,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/splits/pilot_10_studies.txt",
+      "sha256": "bbf2f4605e79b5ab0f69e64a170e61e26a84ac39e4c1f245c332e5b23a7e1942"
+    },
+    {
+      "bytes": 2616,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/task_loader.py",
+      "sha256": "6543fa631f1f77eea2de3a4887443e957fd2162d364d8099c9d83a1c24a1749e"
+    },
+    {
+      "bytes": 1521,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/tasks/pathology-caption-100-task/config.yaml",
+      "sha256": "147b0c655a65c8a9d958e7c2b9d7872dfd7bdb8714376c0e97707f732c4bfde0"
+    },
+    {
+      "bytes": 328,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/tasks/pathology-caption-100-task/lite_s1.md",
+      "sha256": "081e758e9b433d9760563a160329aaf9131535c37fd9652870563d37b2ba2196"
+    },
+    {
+      "bytes": 323,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/tasks/pathology-caption-100-task/lite_s2.md",
+      "sha256": "c7193d858f96076ac86c0de71a5e87b6fe1db3e5b8ff9462b4e82f23f6a86be2"
+    },
+    {
+      "bytes": 316,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/tasks/pathology-caption-100-task/lite_s3.md",
+      "sha256": "3f82e8060af2ee8fd00faf686972acfa08a028dbd777e9f77b2c52443f81a783"
+    },
+    {
+      "bytes": 914,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/tasks/pathology-caption-100-task/model_info.yaml",
+      "sha256": "1db561a945e60182fd9d19c60ffd304dc535a50e1e16f561cd13edd9b1181fba"
+    },
+    {
+      "bytes": 84,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/tasks/pathology-caption-100-task/requirements.txt",
+      "sha256": "7d9ed9b7b6a8279a47f8724bf2d6b6fa1f3a24a30bd201ec647e05f31059baf1"
+    },
+    {
+      "bytes": 347,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/tasks/pathology-caption-100-task/standard_s1.md",
+      "sha256": "ecf056e0dfb4238883e2a013bd4fe83ef2cb2c26cf06cf066c3fde75ee41ef51"
+    },
+    {
+      "bytes": 305,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/tasks/pathology-caption-100-task/standard_s3.md",
+      "sha256": "266e794d0fd79b506c8fb139f29d61cb6c0fcf648baa29dfcf8c227ecac39e6b"
+    },
+    {
+      "bytes": 1524,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/source/tier_config.py",
+      "sha256": "82de029ca58a0121c368e84c983b92cd7dc578b6098c92acbc0e2568101ea904"
+    },
+    {
+      "bytes": 1388,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/pathology-caption-100-task/automedbench-task/task.json",
+      "sha256": "000716e69e88705142ab6256d41a8260debcfc8d6b992b3c220d3e99c9e2db7d"
+    }
+  ],
+  "source_revision": "f894057807cc334421784e702ead2c1883583e1b",
+  "source_roles": {
+    "helper": "Release-owned BLIP inference-only baseline and public method research; no training captions/images acquired",
+    "input": "Exactly one JPEG per Full case;100 selected IDs unstaged; no native image",
+    "output": "agent_outputs/<case_id>/report.txt; actual caption null",
+    "reference": "Private evaluator report.txt/labels.json absent; public captions also absent, later reader reveal only",
+    "scorer": "Equal seven metrics are declared; backend/weights/schema bindings absent. Executable defaults to .7 CXR-regex observation F1 + .3 token-LCS similarity, not a validated pathology score."
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/report/pathology-caption-100-task.tar.gz",
+  "status": "local-source-preparation",
+  "task_contract": {
+    "actual_case_count": null,
+    "expected_case_count": 100,
+    "metric_components": [
+      "bleu",
+      "meteor",
+      "rouge_l",
+      "f1_radgraph",
+      "micro_precision",
+      "micro_recall",
+      "micro_f1"
+    ],
+    "report_bounds": [
+      1,
+      8000,
+      1
+    ],
+    "set_relation": "unknown",
+    "split": "release_owned_100_unstaged"
+  },
+  "task_package": {
+    "dataset": {
+      "access": "auto_gated",
+      "data_dir_name": "Pathology_Caption",
+      "included": false,
+      "license": "CC BY-NC 2.0 plus click-through",
+      "policy": "restricted",
+      "private_mount": "/data/private",
+      "public_mount": "/data/public",
+      "release_gate": "Missing harness; current staging does not distinguish 100 and 500",
+      "upstream": "PathCap",
+      "upstream_url": "https://huggingface.co/datasets/jamessyx/PathCap"
+    },
+    "evaluator": {
+      "adapter": "report",
+      "entrypoint": "source/run_eval.py",
+      "network_required": false
+    },
+    "evaluator_task_id": "pathology-caption-100-task",
+    "input_contract": {
+      "filename": null,
+      "unit": "case"
+    },
+    "output_contract": {
+      "paths": [
+        "{case_id}/report.txt"
+      ],
+      "root": "agent_outputs",
+      "type": "all_paths"
+    },
+    "package_type": "automedbench_task_harness",
+    "runtime_assets": [],
+    "schema_version": 2,
+    "source": {
+      "config_path": "source/tasks/pathology-caption-100-task/config.yaml",
+      "config_sha256": "147b0c655a65c8a9d958e7c2b9d7872dfd7bdb8714376c0e97707f732c4bfde0",
+      "ref": "release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78",
+      "staging_manifest_sha256": "f1facdf48a1453104c4d01840b4f473e6d2e95158deacd8dcb266d2a03a11262"
+    },
+    "tiers": [
+      "lite",
+      "standard"
+    ],
+    "track": "report",
+    "website_task_id": "pathology-caption-100-task"
+  },
+  "task_run": false,
+  "top_warning": {
+    "label": "Native image/caption absent \u00b7 symbolic protocol",
+    "link_label": "Official PathCap acquisition",
+    "text": "Native image/caption and selected100 IDs absent; symbolic protocol. Official PathCap acquisition required.",
+    "url": "https://huggingface.co/datasets/jamessyx/PathCap"
+  },
+  "warning_text": "Native image/caption and selected100 IDs absent; symbolic protocol. Official PathCap acquisition required."
+}

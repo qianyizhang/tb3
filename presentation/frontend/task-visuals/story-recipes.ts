@@ -1,3 +1,4 @@
+import { automedPathology100Pack } from './automedbench-full-pathology-caption-100-task';
 import { automedMimicReportPack } from './automed-mimic-report';
 import { automedIuReportPack } from './automedbench-full-iu-xray-report-task';
 import { automedChexpertReportPack } from './automed-chexpert-report';
@@ -115,6 +116,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-pathology-caption-100-v1',
     'automed-mimic-report-v1',
     'automed-iu-xray-report-v1',
     'automed-chexpert-report-v1',
@@ -1064,6 +1066,13 @@ export function storyPresentation(plan: StoryPlan): {
         heading: 'Generate multi-view MIMIC findings',
         corner: 'Symbolic Full report workflow',
         warning: automedMimicReportPack.source.notice,
+        legend: [],
+      };
+    case 'automed-pathology-caption-100-v1':
+      return {
+        heading: 'One image, one pathology caption',
+        corner: 'PathCap100; native image/caption absent, split unstaged',
+        warning: automedPathology100Pack.source.notice,
         legend: [],
       };
     case 'bcer-brain-full-v1':
