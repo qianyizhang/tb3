@@ -1,0 +1,24 @@
+{
+  "CSV_precedence": "CSV nonempty label preferred per ID; JSON fallback; duplicate CSV ID last row wins",
+  "accuracy": "correct / all supplied Full case IDs; missing predictions count wrong",
+  "balanced_accuracy": "mean recall over configured classes with positive true-class support; absent-class recall null",
+  "clinical_boundary": "clinical_score is dataset agreement, not clinical validation",
+  "format_boundary": "Missing cases can pass format if at least one valid prediction is present; wholly empty output fails",
+  "formats": {
+    "csv": "agents_outputs/predictions.csv: patient_id,label",
+    "json": "agents_outputs/{case_id}/prediction.json: label"
+  },
+  "metric_discrepancy": "Executable config/aggregate headline accuracy; data-policy prose and Standard selection request balanced accuracy. Preserve unresolved discrepancy.",
+  "overall": "0.5 workflow + 0.5 configured accuracy",
+  "prediction": null,
+  "private_reference": null,
+  "role": "required-schema-not-observed-output",
+  "score": null,
+  "tiers": "provisional generic accuracy thresholds .85/.50; not achieved CRC outcomes",
+  "units": "0..1 fractions, rounded to four decimals",
+  "values": {
+    "label": null,
+    "patient_id": null
+  },
+  "workflow": "S1-S3 None count as zero in full default denominator; S4 .15 and S5 .10 give maximum .25 when those alone complete"
+}

@@ -1,0 +1,200 @@
+{
+  "acceptance_run": false,
+  "acquisition_route": "https://zenodo.org/records/1214456",
+  "actual_data_gap": "One official training patch is retained; frozen Full 100-case IDs, private labels, checkpoint, predictions and scores are absent.",
+  "attempts": [
+    {
+      "action": "fetch pinned Full task package",
+      "attempted_at": "2026-09-29T06:40:36.069877+00:00",
+      "outcome": "HTTP 200; 23192 bytes; all internal MANIFEST.sha256 entries verified.",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz"
+    },
+    {
+      "action": "official CRC training ZIP byte-range extraction",
+      "attempted_at": "2026-09-29T06:40:36.069877+00:00",
+      "outcome": "HTTP 206 first 1 MB; extracted NCT-CRC-HE-100K/ADI/ADI-AAAMHQMK.tif. ZIP local header CRC 603B437A verified; 224x224 RGB. Folder ADI is public upstream training label, not Full held-out truth.",
+      "source": "https://zenodo.org/api/records/1214456/files/NCT-CRC-HE-100K.zip/content"
+    },
+    {
+      "action": "bounded current official dataset page inspection",
+      "source": "https://zenodo.org/records/1214456",
+      "attempted_at": "2026-09-30T12:33:20.283732+00:00",
+      "outcome": "Official page fetched successfully. Confirms 224x224 at 0.5 MPP, nine tissue tokens, Macenko-normalized 100K train versus independent-patient 7K validation source; retained small CRC-verified training extraction reused. No full 11.7 GB training archive downloaded."
+    }
+  ],
+  "entry_id": "automedbench-full-crc-histology-cls-task",
+  "evaluator_run": false,
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "preparer_run": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Freeze exact Full 100-case evaluation manifest and exclude those IDs from training; verify private label isolation, checkpoint class map and stain/preprocessing, adjudicate headline-metric discrepancy; separately authorize execution before results.",
+  "resolved_at": "2026-09-30T12:33:20.283732+00:00",
+  "schema": 1,
+  "source_license": "CC-BY-4.0",
+  "source_pins": [
+    {
+      "bytes": 23192,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/crc-histology-cls-task.tar.gz",
+      "role": "pinned-Full-harness-archive",
+      "sha256": "46f2d3746ef95662c57d21b05baa384bf3d5906bb5430c7cc1f5684015f88aab",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz"
+    },
+    {
+      "bytes": 1600,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/crc-histology-cls-task/automedbench-task/task.json",
+      "role": "task-envelope",
+      "sha256": "33aeb939bf9bdfb12345af353e9b6ea679f9897b1f3f479e1506eb8ff21b4a7a",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz"
+    },
+    {
+      "bytes": 1628,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/crc-histology-cls-task/automedbench-task/source/crc-histology-cls-task/config.yaml",
+      "role": "task-config",
+      "sha256": "8e70625a667262db973993e8e22847cca5a0d0eace7cad5a29d7c5c4ec84e83f",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz"
+    },
+    {
+      "bytes": 1162,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/crc-histology-cls-task/automedbench-task/source/crc-histology-cls-task/model_info.yaml",
+      "role": "tier-model-guidance",
+      "sha256": "af7d85df43b0a8d16c18e6bd880978e5e53157d099266458982b6a8e8f2c66c5",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz"
+    },
+    {
+      "bytes": 6125,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/crc-histology-cls-task/automedbench-task/source/acc_scorer.py",
+      "role": "executable-accuracy-scorer",
+      "sha256": "b96c40478cfdfbd57a0d21f66d78272a9e12e5ea7e5ad8acd44dafa2936d414c",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz"
+    },
+    {
+      "bytes": 7046,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/crc-histology-cls-task/automedbench-task/source/aggregate.py",
+      "role": "executable-aggregate",
+      "sha256": "06e51ec2c9f27587100b0a306c4d07fe260bd792c3d330e16b32c438d35c0f3f",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz"
+    },
+    {
+      "bytes": 2602,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/crc-histology-cls-task/automedbench-task/source/format_checker.py",
+      "role": "submission-format-checker",
+      "sha256": "2ff6daeb06016e969d66a4082941c5bf8caeac8b01422d04093fe8f424f52b3c",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz"
+    },
+    {
+      "bytes": 2999,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/crc-histology-cls-task/automedbench-task/MANIFEST.sha256",
+      "role": "package-manifest",
+      "sha256": "6e056cfc67bb1d4e5736c22cb9468e08f103d6d2bf96e1015dc79932c3748222",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz"
+    },
+    {
+      "bytes": 152228,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/crc-train.tif",
+      "role": "official-upstream-training-tile",
+      "sha256": "b0f3ace8a899b1b2f88e4c2ae7f506e087bce81257a640f869493585caf9be5e",
+      "url": "https://zenodo.org/records/1214456"
+    },
+    {
+      "bytes": 8534,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/crc-metadata.json",
+      "role": "official-Zenodo-metadata",
+      "sha256": "8d9bcb6544d9569ee48800950bcf3bf28b3bb8849e04d991bea7c3ea2d5c9c8b",
+      "url": "https://zenodo.org/api/records/1214456"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/crc-histology-cls-task/automedbench-task/source/run_eval.py",
+      "bytes": 10595,
+      "sha256": "663ecbac107c296dc3b5d201654ed8d782f7e490b90b6cb2522e7d6919c2d218",
+      "role": "additional-executable-contract",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/crc-histology-cls-task/automedbench-task/source/medal_tier.py",
+      "bytes": 1546,
+      "sha256": "027da48a6ebb7cb608b2a694ee44fa4e1b27aa5e29b41a339c3f5a788bc660de",
+      "role": "additional-executable-contract",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/crc-histology-cls-task/automedbench-task/source/task_loader.py",
+      "bytes": 5066,
+      "sha256": "c647fca7260afb6cfd17076329c8af767c396746c6c6c4fad84d8295b2e1abcc",
+      "role": "additional-executable-contract",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "empty one-label-per-case CSV or JSON schema",
+    "evaluator": "pinned Full format checker and accuracy scorer, not executed",
+    "helper": "task config/model guidance and public training labels",
+    "input": "actual public NCT-CRC-HE-100K training tile, not a Full test case",
+    "private_reference": "Full /data/private labels, absent"
+  },
+  "status": "production-draft-source-resolution",
+  "task_contract": {
+    "classes": [
+      "adi",
+      "back",
+      "deb",
+      "lym",
+      "muc",
+      "mus",
+      "norm",
+      "str",
+      "tum"
+    ],
+    "dataset_included": false,
+    "full_evaluation_ids": "unresolved",
+    "ground_truth": "/data/private/<case_id>/label.json or ground_truth.csv, not solver-visible",
+    "input_filename": "image.jpg",
+    "metric": "accuracy",
+    "metric_caveat": "Config score_metric=accuracy; data-policy prose says balanced accuracy. Executable aggregate reads score_metric and therefore selects accuracy. Preserve discrepancy.",
+    "output_csv": "agents_outputs/predictions.csv header patient_id,label",
+    "output_json": "agents_outputs/{case_id}/prediction.json containing label",
+    "package_type": "automedbench_task_harness",
+    "public_training_label_role": "upstream class folder/helper only for genuine training examples",
+    "scorer": "accuracy=correct/all cases (missing prediction wrong); balanced_accuracy=mean recall over true classes; aggregate headline uses config score_metric",
+    "source_ref": "release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78",
+    "task_id": "crc-histology-cls-task",
+    "tiers": [
+      "lite",
+      "standard"
+    ],
+    "unit": "case"
+  },
+  "top_warning": {
+    "label": "Training patch only; Full test absent",
+    "text": "One official training patch is retained; frozen Full 100-case IDs, private labels, checkpoint, predictions and scores are absent.",
+    "url": "https://zenodo.org/records/1214456",
+    "link_label": "Official dataset acquisition"
+  },
+  "class_descriptions": {
+    "adi": "adipose",
+    "back": "background",
+    "deb": "debris",
+    "lym": "lymphocytes",
+    "muc": "mucus",
+    "mus": "smooth muscle",
+    "norm": "normal colon mucosa",
+    "str": "cancer-associated stroma",
+    "tum": "colorectal adenocarcinoma epithelium"
+  },
+  "contract_audit": {
+    "native": "224x224 RGB official upstream training patch; 0.5 micrometers/pixel source description; no Full ID or native WSI coordinates",
+    "label": "ADI folder source annotation maps to configured adi; public training helper behind reader reveal, not pathology adjudication/model prediction/private test truth",
+    "normalization": "100K archive Macenko color-normalized; NONORM tile selections are not identical; no further stain transform or resizing in preview",
+    "partition": "train 100K; evaluation source 7K independent-patient upstream set; exact Full 100-case subset unresolved",
+    "checkpoint": "Lite fixed torchvision ResNet50_Weights.IMAGENET1K_V2 + nine-class head fine-tuned only authorized train; record class map. Standard chooses ResNet50/ConvNeXtTiny/ViTB16 using balanced accuracy on train-derived validation",
+    "headline": "config/run_eval/aggregate use accuracy; data-policy prose calls balanced accuracy headline; preserve discrepancy",
+    "accuracy": "correct divided by all supplied case IDs; missing predictions wrong; missing GT also remains denominator",
+    "balanced": "mean recall over configured true classes with positive support; zero-support recall null",
+    "units": "0..1 fractions rounded four decimals; no automatic percent conversion",
+    "format": "incomplete nonempty valid output may pass; empty fails; CSV preferred per ID with JSON fallback; duplicate IDs last CSV row wins",
+    "aggregate": "default full S1-S5 denominator counts None as zero, only S4/S5 max .25 workflow; overall=.5workflow+.5accuracy; clinical_score field is dataset agreement, not clinical validation",
+    "thresholds": "generic provisional .85/.50, not established CRC performance targets",
+    "private": "private label.json/ground_truth.csv evaluator-only, filesystem isolation not executed"
+  }
+}

@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-crc-cls-v1": "retained-automed-crc-cls-v1",
     "automed-pneumonia-cls-v1": "retained-automed-full-pneumonia-source-v1",
     "automed-brain-cls-v1": "symbolic-automed-brain-cls-v1",
     "rex-ldct-iqa-v1": "retained-rexmle-ldct-iqa-interpretation-v1",
@@ -158,6 +159,19 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-automed-crc-cls-v1": (
+        "source-slices",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "source.json",
+            "helper.json",
+            "image.png",
+        },
+    ),
     "retained-automed-full-pneumonia-source-v1": (
         "source-records",
         None,
@@ -2022,6 +2036,12 @@ class InterpretationBBcerLongBrainFullChannels(Closed):
     reference: Pair
 
 
+class AutomedCrcClsChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
 class AutomedPneumoniaChannels(Closed):
     progress: Pair
     detail: Pair
@@ -3872,6 +3892,24 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AutomedCrcClsBeat(ExpansionBeat[AutomedCrcClsChannels]):
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class AutomedCrcClsStory(Story[AutomedCrcClsChannels]):
+    recipe: Literal["automed-crc-cls-v1"]
+    beats: tuple[AutomedCrcClsBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(beat.channels.reference != (0.0, 0.0) for beat in self.beats):
+            raise ValueError("CRC classification has no private reference assets or reveal")
+        return self
+
+
 class AutomedPneumoniaBeat(ExpansionBeat[AutomedPneumoniaChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -4258,6 +4296,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedCrcClsStory
     | AutomedPneumoniaStory
     | AutomedBrainClsStory
     | RexLdctIqaStory
@@ -4372,6 +4411,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedCrcClsStory
     | AutomedPneumoniaStory
     | AutomedBrainClsStory
     | RexLdctIqaStory
@@ -4646,6 +4686,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedCrcClsStory
     | AutomedPneumoniaStory
     | AutomedBrainClsStory
     | RexLdctIqaStory
@@ -4939,6 +4980,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-automed-crc-cls-v1": (
+                "upstream-training-tile-grid",
+                "CC-BY-4.0",
+                None,
+            ),
             "retained-automed-full-pneumonia-source-v1": (
                 "symbolic-unit-grid",
                 "CC-BY-4.0",
@@ -5124,6 +5170,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "0.5 um/pixel and px"
+                if pack_id == "retained-automed-crc-cls-v1"
                 else "unitless"
                 if pack_id == "retained-automed-full-pneumonia-source-v1"
                 else "unitless"
@@ -5220,6 +5268,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-automed-crc-cls-v1"
             or pack_id == "retained-automed-full-pneumonia-source-v1"
             or pack_id == "symbolic-automed-brain-cls-v1"
             or pack_id == "retained-rexmle-ldct-iqa-interpretation-v1"

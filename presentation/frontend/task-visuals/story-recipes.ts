@@ -1,3 +1,4 @@
+import { automedCrcClsPack } from './automed-crc-cls';
 import { automedPneumoniaPack } from './automedbench-full-chest-xray-pneumonia-cls-task';
 import { automedBrainClsPack } from './automed-brain-cls';
 import { rexLdctIqaPack } from './rex-ldct-iqa';
@@ -109,6 +110,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-crc-cls-v1',
     'automed-pneumonia-cls-v1',
     'automed-brain-cls-v1',
     'rex-ldct-iqa-v1',
@@ -990,6 +992,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Public training image and label'],
           ['#18c6d4', 'Two-class mapping, private labels absent'],
           ['#7ba4b8', 'Canonical class files; output absent'],
+        ],
+      };
+    case 'automed-crc-cls-v1':
+      return {
+        heading: 'Classify colorectal tissue categories',
+        corner: 'Official training patch and symbolic workflow',
+        warning: automedCrcClsPack.source.notice,
+        legend: [
+          ['#91a6ae', 'Official public training patch'],
+          ['#18c6d4', 'Unsubmitted CSV schema'],
+          ['#7ba4b8', 'Public label; no held-out result'],
         ],
       };
     case 'bcer-brain-full-v1':

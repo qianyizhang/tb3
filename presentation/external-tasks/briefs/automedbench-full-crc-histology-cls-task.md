@@ -1,60 +1,62 @@
-# Classify colorectal tissue into nine categories
+# Classify colorectal tissue into nine source categories
 
-Build and run a pipeline to classify colorectal tissue into nine categories.
+Assign one canonical tissue label per Full histology patch. **Training patch only; Full test absent.** [Official acquisition](https://zenodo.org/records/1214456).
 
 ## Value
 
-A fixed taxonomy makes image-level decisions easy to score, while hiding localization and uncertainty unless separately requested.
+Patch-label agreement can compare classification methods; it does not establish patient diagnosis, slide localization, clinical benefit or independent reference adjudication.
 
 ## Given
 
 ### Original data
 
-H&E histopathology input, stored as `image.jpg` per case.
+A retained official NCT-CRC-HE-100K training patch is 224 x 224 RGB pixels; the dataset reports 0.5 micrometers per pixel and Macenko color normalization. Preview preserves decoded pixels without resizing/stain processing. No WSI coordinates or Full case ID are available. The NONORM archive is not an exact unnormalized counterpart: stochastic patch selections differ.
 
 ### Supplied helpers
 
-Task configuration, label/output conventions and stage-specific guidance. Lite names torchvision ResNet-50. Standard supplies candidates to investigate; model files may still need provisioning.
+Nine configured tokens map to adipose (adi), background (back), debris (deb), lymphocytes (lym), mucus (muc), smooth muscle (mus), normal colon mucosa (norm), cancer-associated stroma (str), colorectal adenocarcinoma epithelium (tum). The retained patch's public source-folder annotation is available only after helper reader reveal; it is not a model or Full test label. Lite fixes ImageNet-initialized torchvision ResNet50_Weights.IMAGENET1K_V2 with a replaced nine-class head and authorized-training fine-tuning. Standard considers ResNet50, ConvNeXtTiny and ViTB16, selecting by balanced accuracy on train-derived validation. No checkpoint is retained. Record and verify checkpoint class-index mapping.
 
 ### Callable tools
 
-A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.
+Full terminal/model-development workflow; no training, model, preparation or evaluation was run here.
 
 ### Reference-only material
 
-Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.
+Private /data/private/{case_id}/label.json or ground_truth.csv is evaluator-only. NCT-CRC-HE-100K is training; CRC-VAL-HE-7K is the designated evaluation source with independent patients upstream. The exact Full 100-case subset remains unfrozen. Runtime filesystem isolation was not audited.
 
 ## Task specification
 
-Complete the source’s plan, setup, validation, inference and submission stages. Use the selected tier’s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: crc-histology-cls-task.
+Preserve exact IDs and canonical tissue names. Freeze evaluation IDs before training, exclude them, and document stain/resize and checkpoint label mapping. The source envelope has no embedded pixels, model weights or private targets.
 
 ## Expected output
 
-Write `agents_outputs/predictions.csv`; alternatively `agents_outputs/{case_id}/prediction.json`. Use exactly one canonical class label per case: adi, back, deb, lym, muc, mus, norm, str, tum.
+agents_outputs/predictions.csv with patient_id,label, alternatively per-case prediction.json with label. Both illustrated values remain unset. patient_id is a case identifier, not proof of independent patients.
 
 ## Evaluation
 
-Configured headline metric: accuracy. Planning/setup/validation artifacts are distinct from final prediction quality. The evaluator was not run for this brief.
+Executable config/run_eval/aggregate select accuracy, while data-policy prose calls balanced accuracy headline. Preserve this discrepancy; Standard uses balanced accuracy for method selection. Accuracy counts all supplied case IDs, with missing predictions wrong. Balanced accuracy averages only configured true classes with nonzero support; absent-class recall null. Both are fractions 0..1 rounded four decimals. Format can pass for incomplete nonempty valid output; zero output fails. CSV nonempty label preferred per ID with JSON fallback; duplicate IDs overwrite. Private JSON preferred over GT CSV.
+
+Default workflow retains full S1-S5 weight denominator with S1-S3 None as zero; completed S4/S5 alone max .25. Overall=.5workflow+.5configured accuracy; clinical_score is dataset agreement, not clinical validation. The .85/.50 class-quality thresholds are provisional generic defaults, not measured CRC outcomes.
 
 ## Visual explanation
 
 ### Workflow
 
-- Staged images + task guidance
-- Plan → set up → validate → infer
-- Submit the task-specific prediction artifact
+- Official training RGB patch with absent Full-ID socket
+- Inspect tissue taxonomy, reveal public annotation and verify model mapping
+- Unfilled CSV/JSON artifact and distinct scoring denominators
 
 ### Input
 
-**Contract view; native sample not yet illustrated.** H&E histopathology input, stored as `image.jpg` per case.
+Native pixel-preserving preview with source-reported scale, no tissue label in first-view metadata or alt text.
 
 ### Supplied helpers
 
-**Given material, not an answer reveal.** Task configuration, label/output conventions and stage-specific guidance. Lite names torchvision ResNet-50. Standard supplies candidates to investigate; model files may still need provisioning.
+Public annotation behind reader reveal; source category legend and tier guidance are independent of predictions.
 
 ### Reference or output
 
-**Expected artifact, not an actual prediction.** Write `agents_outputs/predictions.csv`; alternatively `agents_outputs/{case_id}/prediction.json`. Use exactly one canonical class label per case: adi, back, deb, lym, muc, mus, norm, str, tum.
+Empty output and private target sockets; no logits, scores or clinical claims.
 
 ## Conditions
 
@@ -66,11 +68,12 @@ Configured headline metric: accuracy. Planning/setup/validation artifacts are di
 
 ## Difficulty
 
-Match the source class semantics and input normalization. A plausible label in the wrong taxonomy is still incorrect.
+Stain/domain differences and roughly balanced classes complicate interpretation. Source patch categories are not patient diagnoses or slide segmentation labels.
 
 ## Sources
 
-- [Pinned Full-release task package](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz)
+- [Pinned Full harness](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz)
+- [Official dataset](https://zenodo.org/records/1214456), Kather, Halama and Marx, DOI 10.5281/zenodo.1214456, CC BY 4.0
 
 ## Coverage
 
@@ -78,4 +81,4 @@ Full-release definition with Lite and Standard conditions. Related gallery/branc
 
 ## Gaps
 
-Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights. The source has not frozen all evaluation/sample identifiers. Source inconsistency: score_metric says accuracy, while the data-policy note calls balanced accuracy the headline; resolve against the executable scorer before a trial.
+One verified public training tile is available. Full evaluation IDs/private labels/checkpoint/predictions/scores absent. Freeze exact subset and resolve accuracy-versus-balanced policy before a trial. No source label is promoted to a diagnostic or model finding.

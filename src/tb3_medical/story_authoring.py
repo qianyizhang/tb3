@@ -297,6 +297,7 @@ def new(
             "abra-birads-v1",
             "rex-ldct-iqa-v1",
             "automed-brain-cls-v1",
+            "automed-crc-cls-v1",
         }:
             beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":

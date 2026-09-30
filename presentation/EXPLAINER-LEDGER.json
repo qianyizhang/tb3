@@ -18549,15 +18549,15 @@
       ],
       "illustration_kind": "classify",
       "subject": "tissue",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-crc-histology-cls-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-crc-histology-cls-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Native public CRC training patch and pinned taxonomy/method/submission/scoring rules accepted after main visual/export/mobile/noGPU/boundary review; Full test/results absent.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/crc-histology/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "H&E histopathology input, stored as `image.jpg` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names torchvision ResNet-50. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -18590,7 +18590,7 @@
         ],
         "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights. The source has not frozen all evaluation/sample identifiers. Source inconsistency: score_metric says accuracy, while the data-policy note calls balanced accuracy the headline; resolve against the executable scorer before a trial."
       },
-      "source_brief_sha256": "019736c7fc6acf6802f598027caaa3685ece8fbfecd3ac4de2f0c129b6e81c96",
+      "source_brief_sha256": "b11fb05c201246818280257d3036fc2bc8b1e8ea18776f9892cd45d539e2d868",
       "dependency_deferral": {
         "actor": "user",
         "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
@@ -18599,14 +18599,103 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "One official training patch is retained; frozen Full 100-case IDs, private labels, checkpoint, predictions and scores are absent.",
+      "acquisition_route": "https://zenodo.org/records/1214456",
+      "warning_text": "One official training patch is retained; frozen Full 100-case IDs, private labels, checkpoint, predictions and scores are absent.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-crc-histology-cls-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-crc-histology-cls-task-resolution.json",
+        "receipt_sha256": "f85e6f50552121a193d8e92dde4e963b7dc714f498ae4aaded79c19b2281d426",
+        "reviewer": "Codex main agent",
+        "no_visual_acceptance": true,
+        "retained_audit": ".local/explainers/goal-20260930/crc-histology/source-validation-01.json"
+      },
+      "acceptance_scope": "Native official public CRC training patch with source-pinned task-specific classification workflow and scorer explanation; absent Full data/results explicitly qualified.",
+      "completion_review": {
+        "date": "2026-09-30T18:41:10.732064+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "d741f25b5127cd2ba61e7d1835dd125f3d3acf325ebdb579ea4fafaf2323cbfd"
+      },
+      "reviewed_contract_projection": {
+        "title": "Classify colorectal tissue into nine source categories",
+        "goal": "Assign one canonical tissue label per Full histology patch. **Training patch only; Full test absent.** [Official acquisition](https://zenodo.org/records/1214456).",
+        "value": "Patch-label agreement can compare classification methods; it does not establish patient diagnosis, slide localization, clinical benefit or independent reference adjudication.",
+        "raw": "A retained official NCT-CRC-HE-100K training patch is 224 x 224 RGB pixels; the dataset reports 0.5 micrometers per pixel and Macenko color normalization. Preview preserves decoded pixels without resizing/stain processing. No WSI coordinates or Full case ID are available. The NONORM archive is not an exact unnormalized counterpart: stochastic patch selections differ.",
+        "helpers": "Nine configured tokens map to adipose (adi), background (back), debris (deb), lymphocytes (lym), mucus (muc), smooth muscle (mus), normal colon mucosa (norm), cancer-associated stroma (str), colorectal adenocarcinoma epithelium (tum). The retained patch's public source-folder annotation is available only after helper reader reveal; it is not a model or Full test label. Lite fixes ImageNet-initialized torchvision ResNet50_Weights.IMAGENET1K_V2 with a replaced nine-class head and authorized-training fine-tuning. Standard considers ResNet50, ConvNeXtTiny and ViTB16, selecting by balanced accuracy on train-derived validation. No checkpoint is retained. Record and verify checkpoint class-index mapping.",
+        "tools": "Full terminal/model-development workflow; no training, model, preparation or evaluation was run here.",
+        "reference": "Private /data/private/{case_id}/label.json or ground_truth.csv is evaluator-only. NCT-CRC-HE-100K is training; CRC-VAL-HE-7K is the designated evaluation source with independent patients upstream. The exact Full 100-case subset remains unfrozen. Runtime filesystem isolation was not audited.",
+        "spec": "Preserve exact IDs and canonical tissue names. Freeze evaluation IDs before training, exclude them, and document stain/resize and checkpoint label mapping. The source envelope has no embedded pixels, model weights or private targets.",
+        "output": "agents_outputs/predictions.csv with patient_id,label, alternatively per-case prediction.json with label. Both illustrated values remain unset. patient_id is a case identifier, not proof of independent patients.",
+        "score": "Executable config/run_eval/aggregate select accuracy, while data-policy prose calls balanced accuracy headline. Preserve this discrepancy; Standard uses balanced accuracy for method selection. Accuracy counts all supplied case IDs, with missing predictions wrong. Balanced accuracy averages only configured true classes with nonzero support; absent-class recall null. Both are fractions 0..1 rounded four decimals. Format can pass for incomplete nonempty valid output; zero output fails. CSV nonempty label preferred per ID with JSON fallback; duplicate IDs overwrite. Private JSON preferred over GT CSV.\n\nDefault workflow retains full S1-S5 weight denominator with S1-S3 None as zero; completed S4/S5 alone max .25. Overall=.5workflow+.5configured accuracy; clinical_score is dataset agreement, not clinical validation. The .85/.50 class-quality thresholds are provisional generic defaults, not measured CRC outcomes.",
+        "challenge": "Stain/domain differences and roughly balanced classes complicate interpretation. Source patch categories are not patient diagnoses or slide segmentation labels.",
+        "families": "Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.",
+        "gap": "One verified public training tile is available. Full evaluation IDs/private labels/checkpoint/predictions/scores absent. Freeze exact subset and resolve accuracy-versus-balanced policy before a trial. No source label is promoted to a diagnostic or model finding.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Official training RGB patch with absent Full-ID socket",
+          "Inspect tissue taxonomy, reveal public annotation and verify model mapping",
+          "Unfilled CSV/JSON artifact and distinct scoring denominators"
+        ],
+        "variants": [
+          {
+            "name": "Full \u00b7 Lite",
+            "helper": "Task-specific Lite guidance: torchvision ResNet-50.",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full \u00b7 Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/crc-histology-cls-task.tar.gz"
+          ],
+          [
+            "Official dataset",
+            "https://zenodo.org/records/1214456"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Assign one canonical tissue label per Full histology patch. <strong>Training patch only; Full test absent.</strong> <a href=\"https://zenodo.org/records/1214456\">Official acquisition</a>.</p>",
+          "value": "<p>Patch-label agreement can compare classification methods; it does not establish patient diagnosis, slide localization, clinical benefit or independent reference adjudication.</p>",
+          "raw": "<p>A retained official NCT-CRC-HE-100K training patch is 224 x 224 RGB pixels; the dataset reports 0.5 micrometers per pixel and Macenko color normalization. Preview preserves decoded pixels without resizing/stain processing. No WSI coordinates or Full case ID are available. The NONORM archive is not an exact unnormalized counterpart: stochastic patch selections differ.</p>",
+          "helpers": "<p>Nine configured tokens map to adipose (adi), background (back), debris (deb), lymphocytes (lym), mucus (muc), smooth muscle (mus), normal colon mucosa (norm), cancer-associated stroma (str), colorectal adenocarcinoma epithelium (tum). The retained patch&#x27;s public source-folder annotation is available only after helper reader reveal; it is not a model or Full test label. Lite fixes ImageNet-initialized torchvision ResNet50_Weights.IMAGENET1K_V2 with a replaced nine-class head and authorized-training fine-tuning. Standard considers ResNet50, ConvNeXtTiny and ViTB16, selecting by balanced accuracy on train-derived validation. No checkpoint is retained. Record and verify checkpoint class-index mapping.</p>",
+          "tools": "<p>Full terminal/model-development workflow; no training, model, preparation or evaluation was run here.</p>",
+          "reference": "<p>Private /data/private/{case_id}/label.json or ground_truth.csv is evaluator-only. NCT-CRC-HE-100K is training; CRC-VAL-HE-7K is the designated evaluation source with independent patients upstream. The exact Full 100-case subset remains unfrozen. Runtime filesystem isolation was not audited.</p>",
+          "spec": "<p>Preserve exact IDs and canonical tissue names. Freeze evaluation IDs before training, exclude them, and document stain/resize and checkpoint label mapping. The source envelope has no embedded pixels, model weights or private targets.</p>",
+          "output": "<p>agents_outputs/predictions.csv with patient_id,label, alternatively per-case prediction.json with label. Both illustrated values remain unset. patient_id is a case identifier, not proof of independent patients.</p>",
+          "score": "<p>Executable config/run_eval/aggregate select accuracy, while data-policy prose calls balanced accuracy headline. Preserve this discrepancy; Standard uses balanced accuracy for method selection. Accuracy counts all supplied case IDs, with missing predictions wrong. Balanced accuracy averages only configured true classes with nonzero support; absent-class recall null. Both are fractions 0..1 rounded four decimals. Format can pass for incomplete nonempty valid output; zero output fails. CSV nonempty label preferred per ID with JSON fallback; duplicate IDs overwrite. Private JSON preferred over GT CSV.</p>\n<p>Default workflow retains full S1-S5 weight denominator with S1-S3 None as zero; completed S4/S5 alone max .25. Overall=.5workflow+.5configured accuracy; clinical_score is dataset agreement, not clinical validation. The .85/.50 class-quality thresholds are provisional generic defaults, not measured CRC outcomes.</p>",
+          "challenge": "<p>Stain/domain differences and roughly balanced classes complicate interpretation. Source patch categories are not patient diagnoses or slide segmentation labels.</p>",
+          "families": "<p>Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.</p>",
+          "gap": "<p>One verified public training tile is available. Full evaluation IDs/private labels/checkpoint/predictions/scores absent. Freeze exact subset and resolve accuracy-versus-balanced policy before a trial. No source label is promoted to a diagnostic or model finding.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>Native pixel-preserving preview with source-reported scale, no tissue label in first-view metadata or alt text.</p>",
+          "helpers": "<p>Public annotation behind reader reveal; source category legend and tier guidance are independent of predictions.</p>",
+          "answer": "<p>Empty output and private target sockets; no logits, scores or clinical claims.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -23685,10 +23774,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 102,
+    "reviewed-scripted-planar": 103,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 60,
-    "blocked-source-input": 29,
+    "blocked-source-input": 28,
     "pending-operation-review": 1
   },
   "completion_program": {

@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-crc-cls-v1',
   'automed-pneumonia-cls-v1',
   'automed-brain-cls-v1',
   'rex-ldct-iqa-v1',
@@ -94,6 +95,14 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-crc-cls-v1')
+    return {
+      scene: 'data-crc-cls-scene',
+      reference: '[data-crc-cls-private-reference]',
+      referenceChannel: null,
+      output: '[data-crc-cls-output-schema]',
+      aside: '[data-crc-cls-output]',
+    };
   if (plan.recipe === 'automed-pneumonia-cls-v1')
     return {
       scene: 'data-pneumonia-scene',
@@ -551,6 +560,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-crc-cls-v1': [
+      /One official training patch is retained; frozen Full 100-case IDs, private labels, checkpoint, predictions and scores are absent/s,
+      'https://zenodo.org/records/1214456',
+      'data-crc-cls-scene',
+      false,
+    ],
     'automed-pneumonia-cls-v1': [
       /Training-source example only.*frozen Full evaluation IDs, test labels and results absent/s,
       'https://data.mendeley.com/datasets/rscbjbr9sj/2',
@@ -1034,6 +1049,153 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'automed-crc-cls-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const step = (scene) => plan.beats.findIndex((b) => b.scene === scene);
+    const classes = ['adi', 'back', 'deb', 'lym', 'muc', 'mus', 'norm', 'str', 'tum'];
+    await page.locator('[data-story-step="0"]').click();
+    assert.deepEqual(
+      await page
+        .locator('[data-crc-cls-input] img')
+        .evaluate((e) => [e.naturalWidth, e.naturalHeight]),
+      [224, 224],
+    );
+    assert.match(
+      await page.locator('[data-crc-cls-input]').innerText(),
+      /0\.5.*µm.*source description/s,
+    );
+    assert.doesNotMatch(
+      await page.locator('.scene-player').innerText(),
+      /ADI-AAAMHQMK|Source folder ADI/,
+    );
+    await page.locator(`[data-story-step="${step('helper')}"]`).click();
+    assert.equal(await page.locator('[data-crc-cls-training-revealed]').count(), 0);
+    for (const c of classes)
+      assert.match(
+        await page.locator('[data-crc-cls-helper]').innerText(),
+        new RegExp(`${c.toUpperCase()}.*${c}`),
+      );
+    await page.getByRole('button', { name: 'Reveal training annotation', exact: true }).click();
+    assert.match(
+      await page.locator('[data-crc-cls-training-revealed]').innerText(),
+      /Source folder ADI.*adi.*Public source annotation only/s,
+    );
+    assert.match(
+      await page.locator('[data-crc-cls-output]').innerText(),
+      /patient_id\s+unset\s+label\s+unset/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-training-revealed.png`) });
+    await page.getByRole('button', { name: 'Hide training annotation', exact: true }).click();
+    assert.equal(await page.locator('[data-crc-cls-training-revealed]').count(), 0);
+    await page.getByRole('button', { name: 'Reveal training annotation', exact: true }).click();
+    await page.locator('.scene-play').click();
+    await page.waitForFunction(
+      (frame) =>
+        Number(document.querySelector('.scene-player')?.getAttribute('data-committed-frame')) >
+        frame,
+      plan.beats[step('helper')].startFrame + 4,
+    );
+    await page.locator('.scene-play').click();
+    await page.locator(`[data-story-step="${step('helper')}"]`).click();
+    assert.equal(
+      await page.locator('[data-crc-cls-training-revealed]').count(),
+      0,
+      'Backward seek must cover training annotation',
+    );
+    await page.getByRole('button', { name: 'Reveal training annotation', exact: true }).click();
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await page.locator('[data-crc-cls-training-revealed]').count(), 0);
+    await page.locator(`[data-story-step="${step('operation')}"]`).click();
+    const tiers = page.getByRole('group', { name: 'CRC classification assistance' });
+    for (const name of ['standard', 'lite']) {
+      const button = tiers.getByRole('button', { name, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(await page.locator('[data-crc-cls-operation]').innerText(), new RegExp(name));
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-tier-${name}.png`) });
+    }
+    const token = page.getByRole('combobox', { name: 'Hypothetical tissue token' });
+    for (const c of classes) {
+      await token.selectOption(c);
+      assert.equal(
+        await page.locator('[data-crc-cls-map]').innerText(),
+        `Canonical spelling: ${c}`,
+      );
+      assert.match(
+        await page.locator('[data-crc-cls-output]').innerText(),
+        /patient_id\s+unset\s+label\s+unset/s,
+      );
+    }
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-mapping.png`) });
+    await page.locator(`[data-story-step="${step('output')}"]`).click();
+    const formats = page.getByRole('group', { name: 'CRC classification submission format' });
+    for (const name of ['json', 'csv']) {
+      const button = formats.getByRole('button', { name, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await page.locator('[data-crc-cls-format]').innerText(),
+        name === 'csv' ? /predictions\.csv/ : /prediction\.json/,
+      );
+      assert.match(
+        await page.locator('[data-crc-cls-output-schema]').innerText(),
+        /label\s+unset/s,
+      );
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-format-${name}.png`) });
+    }
+    await page.locator(`[data-story-step="${step('limits')}"]`).click();
+    const metrics = page.getByRole('group', { name: 'Classification metric denominator' });
+    for (const name of ['balanced accuracy', 'accuracy']) {
+      const button = metrics.getByRole('button', { name, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await page.locator('[data-crc-cls-metric]').innerText(),
+        name === 'accuracy' ? /all.*IDs/i : /positive|support|present/i,
+      );
+      assert.match(
+        await page.locator('[data-crc-cls-limits]').innerText(),
+        /headline accuracy.*balanced accuracy.*discrepancy/s,
+      );
+      assert.match(await page.locator('[data-crc-cls-limits]').innerText(), /0\.\.1|0–1/);
+      await page.locator('.scene-player').screenshot({
+        path: path.join(output, `${label}-metric-${name.replaceAll(' ', '-')}.png`),
+      });
+    }
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
+    );
+    await page.locator(`[data-story-step="${step('helper')}"]`).click();
+    assert.equal(await page.locator('[data-crc-cls-training-revealed]').count(), 0);
+    await page.locator(`[data-story-step="${step('operation')}"]`).click();
+    assert.equal(await token.inputValue(), '');
+    assert.equal(
+      await tiers.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator(`[data-story-step="${step('output')}"]`).click();
+    assert.equal(
+      await formats.getByRole('button', { name: 'csv', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator(`[data-story-step="${step('limits')}"]`).click();
+    assert.equal(
+      await metrics
+        .getByRole('button', { name: 'accuracy', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
   }
   if (plan.recipe === 'automed-pneumonia-cls-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -5034,6 +5196,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-crc-cls-v1',
       'automed-pneumonia-cls-v1',
       'automed-brain-cls-v1',
       'rex-ldct-iqa-v1',

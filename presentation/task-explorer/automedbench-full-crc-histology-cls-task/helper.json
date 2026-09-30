@@ -1,0 +1,37 @@
+{
+  "checkpoint": null,
+  "checkpoint_id2label": null,
+  "class_descriptions": {
+    "adi": "adipose",
+    "back": "background",
+    "deb": "debris",
+    "lym": "lymphocytes",
+    "muc": "mucus",
+    "mus": "smooth muscle",
+    "norm": "normal colon mucosa",
+    "str": "cancer-associated stroma",
+    "tum": "colorectal adenocarcinoma epithelium"
+  },
+  "classes": [
+    "adi",
+    "back",
+    "deb",
+    "lym",
+    "muc",
+    "mus",
+    "norm",
+    "str",
+    "tum"
+  ],
+  "evaluation_source": "CRC-VAL-HE-7K",
+  "index_boundary": "Record and verify checkpoint class order; config tokens do not prove arbitrary checkpoint index mapping",
+  "role": "public-upstream-training-folder-not-Full-reference",
+  "source_member": "NCT-CRC-HE-100K/ADI/ADI-AAAMHQMK.tif",
+  "tiers": {
+    "lite": "ResNet50_Weights.IMAGENET1K_V2, replace nine-class head and fine-tune authorized train only",
+    "standard": "ResNet50 / ConvNeXtTiny / ViTB16; select with balanced accuracy on train-derived validation"
+  },
+  "training_label": "adi",
+  "training_labels": "Source ADI folder is public training annotation only; no Full held-out truth retained",
+  "training_partition": "NCT-CRC-HE-100K"
+}
