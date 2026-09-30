@@ -1,0 +1,24 @@
+{
+  "classes": [
+    "support_devices",
+    "no_acute_process",
+    "clear_lungs",
+    "low_lung_volumes",
+    "consolidation",
+    "pleural_effusion",
+    "pneumothorax",
+    "pulmonary_edema",
+    "cardiomegaly",
+    "adenopathy_or_mass",
+    "granuloma_or_calcified_nodule",
+    "post_surgical_changes"
+  ],
+  "patient_labels": null,
+  "rules": "Positive match without any global negative match =>1. Uncertain wording may match positive; no ternary uncertainty interpretation.",
+  "schema_boundary": "12 binary text regex concepts differ from original 14 MIMIC CheXpert/NegBio annotations; no image-derived finding or patient answer",
+  "tiers": {
+    "lite": "Lite compares suitable report-generation pipelines; no fixed checkpoint. Weights/availability unverified.",
+    "standard": "Standard compares at least 3: MLRG, CXRMate, HERGen, R2-LLM; multi-view/longitudinal support if relevant, official checkpoint/export. No performance measured."
+  },
+  "training_labels": "No source annotation acquired; upstream 14 labels/uncertainty differ from Full 12-rule regex. No patient label or Full answer."
+}

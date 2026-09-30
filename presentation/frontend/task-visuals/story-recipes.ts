@@ -1,3 +1,4 @@
+import { automedMimicReportPack } from './automed-mimic-report';
 import { automedIuReportPack } from './automedbench-full-iu-xray-report-task';
 import { automedChexpertReportPack } from './automed-chexpert-report';
 import { automedSkinLesionPack } from './automedbench-full-skin-lesion-cls-task';
@@ -114,6 +115,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-mimic-report-v1',
     'automed-iu-xray-report-v1',
     'automed-chexpert-report-v1',
     'automed-skin-lesion-cls-v1',
@@ -1056,6 +1058,13 @@ export function storyPresentation(plan: StoryPlan): {
           ['#18c6d4', 'Text validity; metric binding gap'],
           ['#7ba4b8', 'One text file per case; output absent'],
         ],
+      };
+    case 'automed-mimic-report-v1':
+      return {
+        heading: 'Generate multi-view MIMIC findings',
+        corner: 'Symbolic Full report workflow',
+        warning: automedMimicReportPack.source.notice,
+        legend: [],
       };
     case 'bcer-brain-full-v1':
       return {

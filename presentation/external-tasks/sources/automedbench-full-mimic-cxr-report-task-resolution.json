@@ -1,0 +1,266 @@
+{
+  "acquisition_route": "https://physionet.org/content/mimic-cxr/2.1.0/",
+  "actual_data_gap": "Credentialed MIMIC source images and exact Full study/view manifest absent; anonymous official JPEG read returned403. No generated report, private reference or score. Independent authorized acquisition required.",
+  "attempts": [
+    {
+      "action": "bounded anonymous source/contract read",
+      "attempted_at": "2026-09-30T13:37:45.561840+00:00",
+      "bytes": 51293,
+      "cap_bytes": 131072,
+      "content_type": "text/html; charset=utf-8",
+      "outcome": "Captured bounded metadata/page bytes; does not establish exact Full case identity, licensing or image acquisition",
+      "sha256": "5d2ff2d874e921f42f47a275b66c0cb8295cc1725401ad6d08d1fe8c0e89e6c3",
+      "source": "https://physionet.org/content/mimic-cxr/2.1.0/",
+      "status": 200
+    },
+    {
+      "action": "bounded anonymous source/contract read",
+      "attempted_at": "2026-09-30T13:37:48.218599+00:00",
+      "bytes": 68092,
+      "cap_bytes": 131072,
+      "content_type": "text/html; charset=utf-8",
+      "outcome": "Captured bounded metadata/page bytes; does not establish exact Full case identity, licensing or image acquisition",
+      "sha256": "dea1d3a70edbdeb0380a7c6352fe0b3d2aecc2d9d5e65f594d24fe6fd53db0a0",
+      "source": "https://physionet.org/content/mimic-cxr-jpg/2.1.0/",
+      "status": 200
+    },
+    {
+      "action": "bounded anonymous source/contract read",
+      "attempted_at": "2026-09-30T13:37:50.013224+00:00",
+      "cap_bytes": 1048576,
+      "outcome": "HTTP Error 403: Forbidden",
+      "source": "https://physionet.org/files/mimic-cxr-jpg/2.1.0/files/p10/p10000032/s50414267/02aa804e-bde0afdd-112c0b34-7bc16630-4e384014.jpg"
+    },
+    {
+      "action": "read-only retained archive/source receipt validation",
+      "attempted_at": "2026-09-30T21:17:16.431749+00:00",
+      "outcome": "17source pins and22Full MANIFEST members verified; no image/report/model or evaluator executed",
+      "source": "retained pinned Full archive and source receipts; original HTTP attempts preserved verbatim in historical_acquisition_attempts"
+    }
+  ],
+  "brief_sha256": "63e5c1dc89a70aacb76f7ccee9c186f36fa40ad82bacf38ce3858b7742e65e2a",
+  "contract_audit": {
+    "access": "Official pages require credentialing/training/DUA; anonymous documented example JPEG403; no account or human entitlement audit",
+    "backend": "lightweight; not MLRG/RadGraph",
+    "clinical_score": ".7 macro observation F1 + .3 macro ROUGE-L; all-case invalidity gate",
+    "findings_target": "findings_only declared; text selector Findings-first else fulltext, format checker does not enforce strict section",
+    "format": "UTF8 plus ASCII string.printable, 40..8000 chars, >=20 alpha; every discovered case valid, total>0",
+    "grouping": "declared first_three_underscore_fields; actual Full staging/subject-study-image join absent",
+    "labels": "12 text-regex concepts, not original 14 labels; no ternary uncertainty conversion; global negative overrides positive",
+    "method": "Lite compares report methods; Standard compares at least 3; configured lightweight despite MLRG prose",
+    "micro": "pooled TP/FP/FN diagnostic, distinct from macro and may remain after aggregate gate",
+    "output": "agent_outputs/<case_id>/report.txt",
+    "private": "report.txt / labels.json / manifest.json absent",
+    "rating": "valid required, clinical thresholds .80/.55; any invalid => F",
+    "selector": "nonempty Findings preferred, otherwise full text; no distinct Impression selector",
+    "unit": "study; one or more JPEG views; no independent-patient claim",
+    "workflow": "five weights .25/.15/.35/.15/.10, S1-S3 default0 absent judge; overall .5workflow+.5clinical",
+    "zero_positive": "both positive sets empty => F1=1 by convention"
+  },
+  "dataset_metadata": {
+    "access": "credentialed_DUA",
+    "data_dir_name": "MIMIC_CXR_Report",
+    "included": false,
+    "license": "DUA prohibits sharing",
+    "policy": "restricted",
+    "private_mount": "/data/private",
+    "public_mount": "/data/public",
+    "release_gate": "Authorized users must acquire data independently",
+    "upstream": "MIMIC-CXR",
+    "upstream_url": "https://physionet.org/content/mimic-cxr/2.1.0/"
+  },
+  "entry_id": "automedbench-full-mimic-cxr-report-task",
+  "historical_acquisition_attempts": [
+    {
+      "attempted_at": "2026-09-29T06:47:26.927914Z",
+      "manifest_verified": true,
+      "outcome": "downloaded and MANIFEST.sha256 verified; transient proxy failures retained in local headers",
+      "route": "pinned Full archive",
+      "sha256": "6788e37daea15232a82413d30e6148660a60491ef4ad15d3e9770e5235bfdaad",
+      "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/report/mimic-cxr-report-task.tar.gz"
+    },
+    {
+      "attempted_at": "2026-09-29T06:51:15.729565Z",
+      "outcome": "official landing HEAD 200 only; gated or DUA source not acquired",
+      "route": "https://physionet.org/content/mimic-cxr/2.1.0/"
+    },
+    {
+      "action": "bounded anonymous source/contract read",
+      "attempted_at": "2026-09-30T13:37:45.561840+00:00",
+      "bytes": 51293,
+      "cap_bytes": 131072,
+      "content_type": "text/html; charset=utf-8",
+      "outcome": "Captured bounded metadata/page bytes; does not establish exact Full case identity, licensing or image acquisition",
+      "sha256": "5d2ff2d874e921f42f47a275b66c0cb8295cc1725401ad6d08d1fe8c0e89e6c3",
+      "source": "https://physionet.org/content/mimic-cxr/2.1.0/",
+      "status": 200
+    },
+    {
+      "action": "bounded anonymous source/contract read",
+      "attempted_at": "2026-09-30T13:37:48.218599+00:00",
+      "bytes": 68092,
+      "cap_bytes": 131072,
+      "content_type": "text/html; charset=utf-8",
+      "outcome": "Captured bounded metadata/page bytes; does not establish exact Full case identity, licensing or image acquisition",
+      "sha256": "dea1d3a70edbdeb0380a7c6352fe0b3d2aecc2d9d5e65f594d24fe6fd53db0a0",
+      "source": "https://physionet.org/content/mimic-cxr-jpg/2.1.0/",
+      "status": 200
+    },
+    {
+      "action": "bounded anonymous source/contract read",
+      "attempted_at": "2026-09-30T13:37:50.013224+00:00",
+      "cap_bytes": 1048576,
+      "outcome": "HTTP Error 403: Forbidden",
+      "source": "https://physionet.org/files/mimic-cxr-jpg/2.1.0/files/p10/p10000032/s50414267/02aa804e-bde0afdd-112c0b34-7bc16630-4e384014.jpg"
+    }
+  ],
+  "illustration_basis": "symbolic",
+  "kind": "explainer-source-resolution",
+  "license_context": {
+    "observed_native_attempt": "anonymous documented example403; no credential/account audit",
+    "official_dicom": "https://physionet.org/content/mimic-cxr/2.1.0/",
+    "official_jpg": "https://physionet.org/content/mimic-cxr-jpg/2.1.0/",
+    "pack": "Original task-specific symbolic teaching records only",
+    "underlying_source": "PhysioNet Credentialed Health Data License1.5.0 and signed DUA; no patient data redistribution"
+  },
+  "pack_license": "LicenseRef-TB3-symbolic-teaching",
+  "pinned_harness_source": {
+    "config_path": "source/tasks/mimic-cxr-report-task/config.yaml",
+    "config_sha256": "1f8f861516aecad16d9c7258158f60f3d70ee220f0cff7b2b7189739dc1d8ece",
+    "ref": "0fa32bb2a194c3ffb3cfb67e5e49a7c215dc7072",
+    "staging_manifest_sha256": "f1facdf48a1453104c4d01840b4f473e6d2e95158deacd8dcb266d2a03a11262"
+  },
+  "reference_policy": "no-reference-assets",
+  "reopening_condition": "Recover independently authorized MIMIC views and exact staged study/case manifest, preserve private report/label isolation, verify grouping/section adapter and native joins; execution and clinical validation require separate evidence.",
+  "resolved_at": "2026-09-30T13:41:18.265077+00:00",
+  "reviewed_at": "2026-09-29T07:02:00Z",
+  "schema": 1,
+  "source_boundary": "No answer, report, score, model result or private reference asset is included.",
+  "source_class": "symbolic-protocol",
+  "source_hashes": {
+    "archive": "6788e37daea15232a82413d30e6148660a60491ef4ad15d3e9770e5235bfdaad",
+    "config_yaml": "1f8f861516aecad16d9c7258158f60f3d70ee220f0cff7b2b7189739dc1d8ece",
+    "format_checker": "78f61b3c7f06614766bc53f6164fc40eab2a06e2da42a724534cae00c49eb797",
+    "manifest": "e96b56b987b7431f84b8f43531297a6a19c31dffc17349020352f8da65693ae6",
+    "run_eval": "c33a520df46666524ac4d836f8a02a57fa760d20779c97fd9243cc2c17b62e6c",
+    "task_json": "8e0b0c5d720fc1a2a578e90f0b97a37c440a27bff49a8fb6ef336d2193ec4401"
+  },
+  "source_pins": [
+    {
+      "bytes": 1334,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/mimic-cxr-report-task/automedbench-task/task.json",
+      "sha256": "8e0b0c5d720fc1a2a578e90f0b97a37c440a27bff49a8fb6ef336d2193ec4401"
+    },
+    {
+      "bytes": 2195,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/mimic-cxr-report-task/automedbench-task/MANIFEST.sha256",
+      "sha256": "e96b56b987b7431f84b8f43531297a6a19c31dffc17349020352f8da65693ae6"
+    },
+    {
+      "bytes": 7118,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/mimic-cxr-report-task/automedbench-task/source/run_eval.py",
+      "sha256": "c33a520df46666524ac4d836f8a02a57fa760d20779c97fd9243cc2c17b62e6c"
+    },
+    {
+      "bytes": 3113,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/mimic-cxr-report-task/automedbench-task/source/format_checker.py",
+      "sha256": "78f61b3c7f06614766bc53f6164fc40eab2a06e2da42a724534cae00c49eb797"
+    },
+    {
+      "bytes": 15742,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/mimic-cxr-report-task/automedbench-task/source/report_scorer.py",
+      "sha256": "9fcaf315e6ce485d2cfe81392e82ed7b9e8435ce6a22929094924704ace43622"
+    },
+    {
+      "bytes": 5869,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/mimic-cxr-report-task/automedbench-task/source/aggregate.py",
+      "sha256": "31a0ce12d69eea19949493bf6e9321c4fb9aedc5da4adaea078b127b5311e441"
+    },
+    {
+      "bytes": 2616,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/mimic-cxr-report-task/automedbench-task/source/task_loader.py",
+      "sha256": "6543fa631f1f77eea2de3a4887443e957fd2162d364d8099c9d83a1c24a1749e"
+    },
+    {
+      "bytes": 4058,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/mimic-cxr-report-task/automedbench-task/source/observation_schemas/cxr_12class.yaml",
+      "sha256": "6f26530caec969fade723da40962a97c51a49cdabe569fe347391a6c381b04f9"
+    },
+    {
+      "bytes": 1435,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/mimic-cxr-report-task/automedbench-task/source/tasks/mimic-cxr-report-task/config.yaml",
+      "sha256": "1f8f861516aecad16d9c7258158f60f3d70ee220f0cff7b2b7189739dc1d8ece"
+    },
+    {
+      "bytes": 2425,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/mimic-cxr-report-task/automedbench-task/source/tasks/mimic-cxr-report-task/model_info.yaml",
+      "sha256": "781912034ae415483c5436f8d655170311d0e513006745d1aa2dd80cce7374ce"
+    },
+    {
+      "bytes": 3006,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/mimic-cxr-report-task/automedbench-task/source/tasks/mimic-cxr-report-task/lite_s1.md",
+      "sha256": "97ca5fa095bb13a42b687f6057419870e0a9daeb5b282ba13b5d7d5913ae7d4b"
+    },
+    {
+      "bytes": 2521,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/mimic-cxr-report-task/automedbench-task/source/tasks/mimic-cxr-report-task/standard_s1.md",
+      "sha256": "50d00ecafe715046b5733671551ef2ccb69fcb2d159bef9721938a8127250024"
+    },
+    {
+      "bytes": 2617,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/mimic-cxr-report-task/automedbench-task/source/tasks/mimic-cxr-report-task/lite_s3.md",
+      "sha256": "4c85fa94a6b5f98812e8567d68f40b8ca2ac713180b98654c8369b5fea5a0454"
+    },
+    {
+      "bytes": 23414,
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/mimic-cxr-report-task.tar.gz",
+      "role": "pinned-Full-harness",
+      "sha256": "6788e37daea15232a82413d30e6148660a60491ef4ad15d3e9770e5235bfdaad"
+    },
+    {
+      "bytes": 1361,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-mimic-cxr-report-task/source-evidence/attempts.json",
+      "role": "fresh-anonymous-source-contract-receipt",
+      "sha256": "52cea7055800b63df3594a3f658eb12c371cd71a0a9396b289e7c18a066c7ec6"
+    },
+    {
+      "bytes": 51293,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-mimic-cxr-report-task/source-evidence/official-dicom.bin",
+      "role": "fresh-anonymous-source-contract-receipt",
+      "sha256": "5d2ff2d874e921f42f47a275b66c0cb8295cc1725401ad6d08d1fe8c0e89e6c3"
+    },
+    {
+      "bytes": 68092,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-mimic-cxr-report-task/source-evidence/official-jpg.bin",
+      "role": "fresh-anonymous-source-contract-receipt",
+      "sha256": "dea1d3a70edbdeb0380a7c6352fe0b3d2aecc2d9d5e65f594d24fe6fd53db0a0"
+    }
+  ],
+  "source_revision": "f894057807cc334421784e702ead2c1883583e1b",
+  "source_roles": {
+    "answer_owned_output": "agent_outputs/<case_id>/report.txt, UTF-8, 40\u20138000 chars and at least 20 alphabetic.",
+    "original_input": "One or more JPEG chest X-ray views grouped by first three underscore fields; findings-only task.",
+    "private_reference": "Private report.txt, labels.json and manifest.json per case; not supplied.",
+    "scorer": "Configured lightweight clinical score: 0.7 observation F1 plus 0.3 report similarity; all-case output check, invalid/missing forces F. Not executed.",
+    "supplied_helpers": "Pinned Full task config and output checker; no participant execution."
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/report/mimic-cxr-report-task.tar.gz",
+  "task_contract": {
+    "case_count": null,
+    "case_count_boundary": "Split name only; no staged case manifest recovered",
+    "grouping": "first_three_underscore_fields",
+    "report_bounds": [
+      40,
+      8000,
+      20
+    ],
+    "split": "test_mimic_100_v4"
+  },
+  "top_warning": {
+    "label": "Credentialed images absent \u00b7 symbolic findings task",
+    "link_label": "Official MIMIC-CXR acquisition",
+    "text": "Credentialed MIMIC source images and exact Full study/view manifest absent; anonymous official JPEG read returned403. No generated report, private reference or score. Independent authorized acquisition required.",
+    "url": "https://physionet.org/content/mimic-cxr/2.1.0/"
+  },
+  "upstream_example": null
+}

@@ -20617,15 +20617,15 @@
       ],
       "illustration_kind": "report",
       "subject": "chest",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-mimic-cxr-report-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-mimic-cxr-report-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Accepted source-pinned symbolic MIMIC study/view, reporting and lightweight evaluator explanation after main visual/export/mobile/noGPU/reference review. Official credentialed DICOM/JPG terms and bounded anonymous403 retained; exact Full staged views/joins, private references, model outputs and scores remain absent.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/mimic-cxr/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Case images under the staged `images/` directory; the task configuration names the source dataset and allowed views.",
         "helpers": "Task configuration and report-generation model candidates. Even Lite asks the agent to compare suitable public pipelines; it is not a fixed-checkpoint condition.",
@@ -20667,14 +20667,112 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "source_class": "symbolic-protocol",
+      "actual_data_gap": "Credentialed MIMIC source images and exact Full study/view manifest absent; anonymous official JPEG read returned403. No generated report, private reference or score. Independent authorized acquisition required.",
+      "acquisition_route": "https://physionet.org/content/mimic-cxr/2.1.0/",
+      "warning_text": "Credentialed MIMIC source images and exact Full study/view manifest absent; anonymous official JPEG read returned403. No generated report, private reference or score. Independent authorized acquisition required.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-mimic-cxr-report-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-mimic-cxr-report-task-resolution.json",
+        "receipt_sha256": "dfc857be1c8957e7aad04d6c5d3a6e314feba32a7bd95a853fe929b828cc5661",
+        "reviewer": "Codex main agent",
+        "reviewed_at": "2026-09-30T21:24:53.940475+00:00",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Source-pinned symbolic MIMIC study/view reporting and lightweight text-evaluator contract; matching Full images/joins/private references/model outputs absent.",
+      "completion_review": {
+        "date": "2026-09-30T21:49:51.083772+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "4cd056c7cf5981dfe2cd06b736880fe8f8a75a460965cb4122f209aaf09365f2"
+      },
+      "reviewed_contract_projection": {
+        "title": "Generate findings from one or more MIMIC-CXR views",
+        "goal": "**Symbolic explanation \u2014 exact staged JPEG, case mapping and reference report are absent.** [Official source and acquisition](https://physionet.org/content/mimic-cxr/2.1.0/). Official credentialed source requires training and signed DUA; anonymous documented JPEG read returned HTTP403. No patient data was acquired.\n\nGenerate one report per staged study from one or more JPEG views, preserving the task's declared method condition and submitting all required reports. This draft illustrates the pinned contract; no image finding, patient report, model output or score is available.",
+        "value": "Image-grounded reporting connects an image input to a readable text artifact. Fluency, format acceptance and text-proxy similarity do not establish factual or clinical accuracy.",
+        "raw": "The Full config stages `MIMIC_CXR_Report/test_mimic_100_v4/public/<case_id>/images/` with manifest.json and one or more JPEG views. Its grouping unit is study. No exact case list, patient join or staged image is recovered. `test_mimic_100_v4` is a configured name, not proof of a 100-case denominator. The named pilot file is absent, while discovery uses public directories; this is not a demonstrated loader failure. Multiple images may belong to one study, and multiple studies to one patient; exact Full joins remain unknown.\n\nNative MIMIC subject_id, study_id and image/dicom_id are distinct units. Config declares grouping_rule first_three_underscore_fields, but exact filename grouping and Full native join require the missing staging manifest. Use every view listed in the actual manifest without assuming frontal/lateral, view count or longitudinal priors. Random study IDs are not temporal order.\n\nOfficial MIMIC-CXR is DICOM with reports; MIMIC-CXR-JPG is a processed derivative. Its documented unsigned 0..255 mapping, inversion and equalization describe display values, not HU or quantitative intensity; Full's unstaged conversion is unverified. Source annotations include uncertain/absent/unmentioned distinctions and are not interchangeable with this Full 12-rule regex scorer.",
+        "helpers": "Pinned config, public 12-concept regex schema and tier guidance. Lite compares suitable report pipelines and has no fixed checkpoint. Standard compares at least 3 candidates from MLRG, CXRMate, HERGen and R2-LLM, recording multi-view/longitudinal support when relevant, official checkpoint/inference/export and source evidence in plan.md. These are task instructions; availability and performance are unverified. Pro prose mentions MLRG metrics, but envelope tiers are Lite/Standard and configured backend is lightweight. No model weight is bundled or used.",
+        "tools": "Terminal and provisioned task-specific model/library tooling, followed by filesystem report submission. This explanation executes no model, image preprocessing, source loader, private scorer or optional LLM judge.",
+        "reference": "Private `<case_id>/report.txt`, labels.json and manifest.json are evaluator material. None is packaged or displayed. The public regex schema is a scoring rule, not a patient diagnosis or private answer. No public training annotation or report is acquired. Future authorized training annotations require explicit reader reveal, exact partition identity and permission; private evaluator reports/labels remain excluded.",
+        "spec": "Complete the plan, setup, validation, inference and submission stages under Lite or Standard conditions. Generate a report from the allowed supplied views. The target is findings-only text. The source selector prefers nonempty Findings but otherwise accepts full stripped text; format does not strictly enforce a Findings-only section. These boundaries remain distinct from the authoring target. The staged image boundary remains separate from the private reference report and labels.",
+        "output": "Write singular `agent_outputs/<case_id>/report.txt` for every discovered case. The format checker requires UTF-8 decoding, 40..8000 characters, at least20 alphabetic characters, nonblank content and characters in Python string.printable plus newline/tab. Most non-ASCII characters fail that printable test despite valid UTF-8 encoding. The explanation's report remains empty; no fabricated clinical narrative is supplied.",
+        "score": "All cases must have valid output and the case count must be positive. Completion is valid cases divided by all discovered cases, not inferred from the split name. Any missing/invalid case forces rating F and gates aggregate clinical components to zero; some raw micro diagnostics may remain in the report.\n\nConfigured lightweight score is **0.7 mean observation F1 + 0.3 mean ROUGE-L F1**, averaged across all case IDs. Observation flags come from 12 binary regex concepts, distinct from the original 14 CheXpert labels: support_devices, no_acute_process, clear_lungs, low_lung_volumes, consolidation, pleural_effusion, pneumothorax, pulmonary_edema, cardiomegaly, adenopathy_or_mass, granuloma_or_calcified_nodule and post_surgical_changes. A negative match globally overrides a positive match; uncertain wording can match positive. There is no independently verified original-label uncertainty conversion or image-finding adjudication.\n\nThe selector prefers nonempty Findings; otherwise it uses the entire stripped report, rather than independently selecting Impression. Truthy private labels are used when present; otherwise flags are extracted from the private report. Empty positive sets on both sides receive F1=1 by convention. Micro F1 pools TP/FP/FN separately. ROUGE-L uses normalized-token longest-common-subsequence F1; text overlap is not clinical factuality. MLRG/RadGraph is not the configured backend.\n\nWorkflow weights are .25/.15/.35/.15/.10 across five stages. S1-S3 are zero without the optional judge. S4=.5completion+.5format and S5=.5anyvalid+.5format. Overall=.5workflow+.5clinical; valid-report clinical thresholds .80/.55 determine good/okay. These are rules, not observed results. No evaluator was run.",
+        "challenge": "One or more study views limit available visual information. Preprocessing, report generation and full-submission format must agree with source requirements; generic text overlap and regex agreement do not establish diagnostic quality or calibration.",
+        "families": "Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.",
+        "gap": "Credentialed source views, exact Full case/study/view manifest, patient join, generated report, private reference and score absent. Official pages GET200 and documented anonymous native JPEG GET403 retained; no login, DUA acceptance or account entitlement audit. Reopen after independent authorized acquisition and exact staging/view mapping, separated private evaluator and verified section adapter. Clinical findings require independent evidence.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Study image socket and method guidance",
+          "Multi-view report-generation operation",
+          "Unsubmitted text artifact and all-case scoring contract"
+        ],
+        "variants": [
+          {
+            "name": "Full \u00b7 Lite",
+            "helper": "Candidate report-generation methods, rather than one fixed checkpoint.",
+            "remaining": "Compare suitable pipelines, select one and validate findings-only generation."
+          },
+          {
+            "name": "Full \u00b7 Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full task package",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/report/mimic-cxr-report-task.tar.gz"
+          ],
+          [
+            "Official MIMIC-CXR acquisition",
+            "https://physionet.org/content/mimic-cxr/2.1.0/"
+          ],
+          [
+            "JPG derivative and label contract",
+            "https://physionet.org/content/mimic-cxr-jpg/2.1.0/"
+          ],
+          [
+            "Source acquisition/contract receipt",
+            "presentation/external-tasks/sources/automedbench-full-mimic-cxr-report-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p><strong>Symbolic explanation \u2014 exact staged JPEG, case mapping and reference report are absent.</strong> <a href=\"https://physionet.org/content/mimic-cxr/2.1.0/\">Official source and acquisition</a>. Official credentialed source requires training and signed DUA; anonymous documented JPEG read returned HTTP403. No patient data was acquired.</p>\n<p>Generate one report per staged study from one or more JPEG views, preserving the task&#x27;s declared method condition and submitting all required reports. This draft illustrates the pinned contract; no image finding, patient report, model output or score is available.</p>",
+          "value": "<p>Image-grounded reporting connects an image input to a readable text artifact. Fluency, format acceptance and text-proxy similarity do not establish factual or clinical accuracy.</p>",
+          "raw": "<p>The Full config stages <code>MIMIC_CXR_Report/test_mimic_100_v4/public/&lt;case_id&gt;/images/</code> with manifest.json and one or more JPEG views. Its grouping unit is study. No exact case list, patient join or staged image is recovered. <code>test_mimic_100_v4</code> is a configured name, not proof of a 100-case denominator. The named pilot file is absent, while discovery uses public directories; this is not a demonstrated loader failure. Multiple images may belong to one study, and multiple studies to one patient; exact Full joins remain unknown.</p>\n<p>Native MIMIC subject_id, study_id and image/dicom_id are distinct units. Config declares grouping_rule first_three_underscore_fields, but exact filename grouping and Full native join require the missing staging manifest. Use every view listed in the actual manifest without assuming frontal/lateral, view count or longitudinal priors. Random study IDs are not temporal order.</p>\n<p>Official MIMIC-CXR is DICOM with reports; MIMIC-CXR-JPG is a processed derivative. Its documented unsigned 0..255 mapping, inversion and equalization describe display values, not HU or quantitative intensity; Full&#x27;s unstaged conversion is unverified. Source annotations include uncertain/absent/unmentioned distinctions and are not interchangeable with this Full 12-rule regex scorer.</p>",
+          "helpers": "<p>Pinned config, public 12-concept regex schema and tier guidance. Lite compares suitable report pipelines and has no fixed checkpoint. Standard compares at least 3 candidates from MLRG, CXRMate, HERGen and R2-LLM, recording multi-view/longitudinal support when relevant, official checkpoint/inference/export and source evidence in plan.md. These are task instructions; availability and performance are unverified. Pro prose mentions MLRG metrics, but envelope tiers are Lite/Standard and configured backend is lightweight. No model weight is bundled or used.</p>",
+          "tools": "<p>Terminal and provisioned task-specific model/library tooling, followed by filesystem report submission. This explanation executes no model, image preprocessing, source loader, private scorer or optional LLM judge.</p>",
+          "reference": "<p>Private <code>&lt;case_id&gt;/report.txt</code>, labels.json and manifest.json are evaluator material. None is packaged or displayed. The public regex schema is a scoring rule, not a patient diagnosis or private answer. No public training annotation or report is acquired. Future authorized training annotations require explicit reader reveal, exact partition identity and permission; private evaluator reports/labels remain excluded.</p>",
+          "spec": "<p>Complete the plan, setup, validation, inference and submission stages under Lite or Standard conditions. Generate a report from the allowed supplied views. The target is findings-only text. The source selector prefers nonempty Findings but otherwise accepts full stripped text; format does not strictly enforce a Findings-only section. These boundaries remain distinct from the authoring target. The staged image boundary remains separate from the private reference report and labels.</p>",
+          "output": "<p>Write singular <code>agent_outputs/&lt;case_id&gt;/report.txt</code> for every discovered case. The format checker requires UTF-8 decoding, 40..8000 characters, at least20 alphabetic characters, nonblank content and characters in Python string.printable plus newline/tab. Most non-ASCII characters fail that printable test despite valid UTF-8 encoding. The explanation&#x27;s report remains empty; no fabricated clinical narrative is supplied.</p>",
+          "score": "<p>All cases must have valid output and the case count must be positive. Completion is valid cases divided by all discovered cases, not inferred from the split name. Any missing/invalid case forces rating F and gates aggregate clinical components to zero; some raw micro diagnostics may remain in the report.</p>\n<p>Configured lightweight score is <strong>0.7 mean observation F1 + 0.3 mean ROUGE-L F1</strong>, averaged across all case IDs. Observation flags come from 12 binary regex concepts, distinct from the original 14 CheXpert labels: support_devices, no_acute_process, clear_lungs, low_lung_volumes, consolidation, pleural_effusion, pneumothorax, pulmonary_edema, cardiomegaly, adenopathy_or_mass, granuloma_or_calcified_nodule and post_surgical_changes. A negative match globally overrides a positive match; uncertain wording can match positive. There is no independently verified original-label uncertainty conversion or image-finding adjudication.</p>\n<p>The selector prefers nonempty Findings; otherwise it uses the entire stripped report, rather than independently selecting Impression. Truthy private labels are used when present; otherwise flags are extracted from the private report. Empty positive sets on both sides receive F1=1 by convention. Micro F1 pools TP/FP/FN separately. ROUGE-L uses normalized-token longest-common-subsequence F1; text overlap is not clinical factuality. MLRG/RadGraph is not the configured backend.</p>\n<p>Workflow weights are .25/.15/.35/.15/.10 across five stages. S1-S3 are zero without the optional judge. S4=.5completion+.5format and S5=.5anyvalid+.5format. Overall=.5workflow+.5clinical; valid-report clinical thresholds .80/.55 determine good/okay. These are rules, not observed results. No evaluator was run.</p>",
+          "challenge": "<p>One or more study views limit available visual information. Preprocessing, report generation and full-submission format must agree with source requirements; generic text overlap and regex agreement do not establish diagnostic quality or calibration.</p>",
+          "families": "<p>Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.</p>",
+          "gap": "<p>Credentialed source views, exact Full case/study/view manifest, patient join, generated report, private reference and score absent. Official pages GET200 and documented anonymous native JPEG GET403 retained; no login, DUA acceptance or account entitlement audit. Reopen after independent authorized acquisition and exact staging/view mapping, separated private evaluator and verified section adapter. Clinical findings require independent evidence.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Symbolic input; exact staged views absent.</strong> Empty image socket and unresolved Full case/patient join, with official source route permanently visible.</p>",
+          "helpers": "<p><strong>Public guidance, not an answer.</strong> Inspect the named tier paths and 12 regex concepts without exposing a patient narrative or private label.</p>",
+          "answer": "<p><strong>Required output schema, not a prediction.</strong> Empty report path, explicit character constraints, all-case denominator and text-proxy limits. No reference report, generated report or measured score.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -24165,10 +24263,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 107,
+    "reviewed-scripted-planar": 108,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 60,
-    "blocked-source-input": 24,
+    "blocked-source-input": 23,
     "pending-operation-review": 1
   },
   "completion_program": {

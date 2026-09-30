@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-mimic-report-v1',
   'automed-iu-xray-report-v1',
   'automed-chexpert-report-v1',
   'automed-skin-lesion-cls-v1',
@@ -99,6 +100,14 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-mimic-report-v1')
+    return {
+      scene: 'data-mimic-scene',
+      reference: '[data-mimic-private-reference]',
+      referenceChannel: null,
+      output: '[data-mimic-output-schema]',
+      aside: '[data-mimic-output]',
+    };
   if (plan.recipe === 'automed-iu-xray-report-v1')
     return {
       scene: 'data-iu-report-scene',
@@ -594,6 +603,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-mimic-report-v1': [
+      /Credentialed MIMIC source images and exact Full study\/view manifest absent.*returned403.*No generated report, private reference or score/s,
+      'https://physionet.org/content/mimic-cxr/2.1.0/',
+      'data-mimic-scene',
+      true,
+    ],
     'automed-iu-xray-report-v1': [
       /Symbolic IU study.*matching images\/reports and Full staging absent/s,
       'https://openi.nlm.nih.gov/faq',
@@ -1107,6 +1122,134 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'automed-mimic-report-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const beat = (name) => plan.beats.findIndex((b) => b.scene === name);
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await page.locator('[data-mimic-input] img').count(), 0);
+    assert.match(
+      await page.locator('[data-mimic-input]').innerText(),
+      /first_three_underscore_fields.*Unknown views\/count.*no independent-patient, geometry or temporal-order/s,
+    );
+    assert.match(
+      await page.locator('[data-mimic-input]').innerText(),
+      /test_mimic_100_v4.*actual discovered case count absent/s,
+    );
+    assert.match(
+      await page.locator('[data-mimic-output]').innerText(),
+      /Report text.*unset.*fractions 0–1.*no clinical accuracy/s,
+    );
+    await page.locator(`[data-story-step="${beat('helper')}"]`).click();
+    const classes = [
+      'support_devices',
+      'no_acute_process',
+      'clear_lungs',
+      'low_lung_volumes',
+      'consolidation',
+      'pleural_effusion',
+      'pneumothorax',
+      'pulmonary_edema',
+      'cardiomegaly',
+      'adenopathy_or_mass',
+      'granuloma_or_calcified_nodule',
+      'post_surgical_changes',
+    ];
+    assert.deepEqual(await page.locator('[data-mimic-helper] code').allTextContents(), classes);
+    assert.match(
+      await page.locator('[data-mimic-helper]').innerText(),
+      /12 binary text regex.*original 14.*no image-derived finding/s,
+    );
+    assert.match(
+      await page.locator('[data-mimic-helper]').innerText(),
+      /global negative.*Uncertain wording/s,
+    );
+    await page.locator(`[data-story-step="${beat('operation')}"]`).click();
+    const tiers = page.getByRole('group', { name: 'MIMIC method guidance' });
+    assert.match(
+      await page.locator('[data-mimic-tier]').innerText(),
+      /compares.*no fixed checkpoint/,
+    );
+    await tiers.getByRole('button', { name: 'standard', exact: true }).click();
+    assert.match(
+      await page.locator('[data-mimic-tier]').innerText(),
+      /at least 3.*MLRG.*CXRMate.*HERGen.*R2-LLM.*No performance measured/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-tier-standard.png`) });
+    const stages = [
+      'Verify all manifest views and declared filename grouping',
+      'Provision tier method and its preprocessing',
+      'Generate report under text constraints',
+      'Submit every discovered case without reading private references',
+    ];
+    for (let i = 0; i < 4; i++) {
+      const button = page.locator(`[data-mimic-step="${i}"]`);
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(await page.locator('[data-mimic-currentstage]').innerText(), stages[i]);
+      assert.equal(await page.locator('[data-mimic-private-reference]').count(), 0);
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-stage-${i}.png`) });
+    }
+    await page.locator(`[data-story-step="${beat('output')}"]`).click();
+    const format = page.getByRole('button', { name: 'Inspect format constraints', exact: true });
+    assert.equal(await page.locator('[data-mimic-format]').count(), 0);
+    await format.click();
+    assert.match(
+      await page.locator('[data-mimic-format]').innerText(),
+      /UTF8.*ASCII.*40\.\.8000.*20 alphabetic/s,
+    );
+    assert.match(
+      await page.locator('[data-mimic-output-schema]').innerText(),
+      /agent_outputs\/<case_id>\/report.txt.*No report text.*count>0.*rating F/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-format-revealed.png`) });
+    await page.locator(`[data-story-step="${beat('limits')}"]`).click();
+    const metrics = page.getByRole('group', { name: 'Report metric aggregation' });
+    await metrics.getByRole('button', { name: 'micro', exact: true }).click();
+    assert.match(
+      await page.locator('[data-mimic-metric]').innerText(),
+      /Pool TP\/FP\/FN.*separate diagnostic.*not configured clinical score/s,
+    );
+    assert.match(
+      await page.locator('[data-mimic-limits]').innerText(),
+      /Nonempty Findings.*otherwise entire report.*No separate Impression.*Both positive sets empty.*F1=1.*No scores, ratings or outcomes measured/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-micro.png`) });
+    await page.locator(`[data-story-step="${beat('output')}"]`).click();
+    assert.equal(await page.locator('[data-mimic-format]').count(), 0);
+    await page.locator(`[data-story-step="${beat('limits')}"]`).click();
+    assert.equal(
+      await metrics
+        .getByRole('button', { name: 'macro', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    assert.match(
+      await page.locator('[data-mimic-metric]').innerText(),
+      /\.7 mean per-case observation F1.*\.3 mean per-case ROUGE-L F1.*all case_ids/s,
+    );
+    await page.locator('.scene-reset').click();
+    await page.locator(`[data-story-step="${beat('operation')}"]`).click();
+    assert.equal(
+      await tiers.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('[data-mimic-step="3"]').click();
+    await page.locator('[data-mimic-step="0"]').click();
+    assert.equal(
+      await tiers.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('[data-story-step="0"]').click();
   }
   if (plan.recipe === 'automed-iu-xray-report-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -5784,6 +5927,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-mimic-report-v1',
       'automed-iu-xray-report-v1',
       'automed-chexpert-report-v1',
       'automed-skin-lesion-cls-v1',

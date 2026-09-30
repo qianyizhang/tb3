@@ -1,0 +1,16 @@
+{
+  "boundary": "Text regex agreement/ROUGE are proxies, not independent clinical image interpretation or patient benefit",
+  "completeness": "Every discovered case valid and count>0; any missing/invalid => rating F and zeroed aggregate clinical components",
+  "empty_positive": "Both positive sets empty => F1=1 convention; no result observed",
+  "format": "UTF8 decode + ASCII printable characters; 40..8000 chars, >=20 alphabetic, nonblank",
+  "macro": ".7 mean per-case observation F1 + .3 mean per-case ROUGE-L F1; all case_ids denominator, max(n,1)",
+  "micro": "Pool TP/FP/FN across cases; separate diagnostic, not configured clinical score; raw values may persist after gate",
+  "overall": ".5 workflow + .5 lightweight clinical_score; valid required, .80/.55 rating thresholds",
+  "path": "agent_outputs/<case_id>/report.txt",
+  "private_reference": null,
+  "rating": null,
+  "score": null,
+  "selector": "Nonempty Findings preferred; otherwise entire report. No separate Impression selection.",
+  "text": null,
+  "workflow": "S1-S3 default0 absent optional judge; weights .25/.15/.35/.15/.10"
+}
