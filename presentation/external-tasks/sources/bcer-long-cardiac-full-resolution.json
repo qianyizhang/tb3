@@ -1,0 +1,249 @@
+{
+  "acceptance_run": false,
+  "acquisition_route": "https://www.creatis.insa-lyon.fr/Challenge/acdc/databases.html",
+  "actual_data_gap": "No case-matched cardiac cine NIfTI/H5, BCER output, independent expert mask or clinical group retained.",
+  "attempts": [
+    {
+      "action": "local BCER domain inventory",
+      "attempted_at": "2026-09-29T06:11:43.025466+00:00",
+      "outcome": "Representative retained BCER prostate images do not satisfy cardiac cine input; local TB3 synthetic/cardiac assets are not proven task-matched.",
+      "source": "BCER representative assets and TB3 local assets"
+    },
+    {
+      "action": "official ACDC pages GET",
+      "attempted_at": "2026-09-29T06:11:43.025466+00:00",
+      "outcome": "Official database and training pages HTTP 200; download directs to HumanHeart collection interface, with no small anonymous case file URL on inspected pages. No case bytes downloaded.",
+      "source": "https://www.creatis.insa-lyon.fr/Challenge/acdc/databases.html"
+    },
+    {
+      "action": "retrieve and verify pinned BCER tool source",
+      "attempted_at": "2026-09-29T06:22:21.284618+00:00",
+      "outcome": "HTTP 200; 22912 bytes; SHA-256 and Git blob SHA verified against pinned repository tree.",
+      "source": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/cardiac_cine_classification.py"
+    },
+    {
+      "action": "retrieve and verify pinned BCER tool source",
+      "attempted_at": "2026-09-29T06:22:21.284618+00:00",
+      "outcome": "HTTP 200; 23873 bytes; SHA-256 and Git blob SHA verified against pinned repository tree.",
+      "source": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/cardiac_cine_segmentation.py"
+    }
+  ],
+  "brief": {
+    "path": "presentation/external-tasks/briefs/bcer-long-cardiac-full.md",
+    "role": "staged revised brief",
+    "sha256": "b24a12270a53751fa73dd8e86a8a4395b45488707c82de6377e33109e30d2517"
+  },
+  "classifier_mechanism": {
+    "group_field_boundary": "Source classifier reads Info.cfg Group if present, writes ground_truth_group and ground_truth_match alongside predicted_group. This is not an independent validation result or proof of isolation.",
+    "input_paths": "Explicit paired ED/ES segmentations, multi-frame segmentation directory, or single segmentation path. Does not read feature_table_path.",
+    "measurements": "ACDC source labels 1 RV, 2 myocardium, 3 LV; voxel count x spacing product / 1000 for volumes ml; LV/RV EF = (EDV-ESV)/EDV x 100 where EDV positive; myocardial thickness/mass and local contraction proxy. No case metrics retained.",
+    "phase_resolution": "Explicit 1-based phase arguments, then Info.cfg ED/ES, then LV-volume extrema where frames available; single phase returns index 0 for both.",
+    "review_flag": "needs_vlm_review is a source rule flag, not clinical adjudication.",
+    "rule_outputs": [
+      "NOR",
+      "MINF",
+      "DCM",
+      "HCM",
+      "RV",
+      "UNCLASSIFIED"
+    ]
+  },
+  "entry_id": "bcer-long-cardiac-full",
+  "evaluator_run": false,
+  "illustration_basis": "symbolic",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Acquire authorized case-matched cine, verify geometry and ED/ES provenance, separate label-bearing Info.cfg Group from solver-visible helpers for an accuracy study, and retain independent mask/group reference before source-image or accuracy illustration.",
+  "report_mechanism": "Pinned report tool reads case_state and available artifacts and writes report JSON. Its content is answer-owned output, not an independent clinical reference.",
+  "resolved_at": "2026-09-30T06:26:16.929689+00:00",
+  "schema": 1,
+  "segmentation_mechanism": {
+    "label_ids": {
+      "1": "RV",
+      "2": "myocardium",
+      "3": "LV"
+    },
+    "label_role": "Source output convention, not verified expert truth.",
+    "nifti_3d": "Single phase, no temporal curve implied.",
+    "nifti_4d": "Split to 3D frames. Default ED/ES-only uses valid 1-based Info.cfg values; if none valid, processes all frames.",
+    "raw_h5": "Task goal conditionally reconstructs H5 to NIfTI; no reconstruction among required stage-success keys. Retained pinned tree has no separately named cardiac-H5 reconstruction tool source, so no loader shape/conversion behavior is asserted. No conversion executed."
+  },
+  "source_alignment_caveat": "ACDC examples may be ED/ES 3D NIfTI, whereas tool also supports 4D cine. A single 3D phase is not a temporal curve. Classifier uses segmentation frames directly; feature CSV is parallel required artifact.",
+  "source_commit": "d10816712793a9e27f2e70640f9afc06f08a0c5c",
+  "source_license": "MIT BCER code; no patient image bytes redistributed",
+  "source_pins": [
+    {
+      "bytes": 23613,
+      "path": ".local/explainers/completion-20260927/038-source/configs/tasks_registry.json",
+      "role": "task-contract",
+      "sha256": "dd69419af8e633d24e7f41c38d24a7d84ba9c20b9726a91a6b2f726e37fc669c",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/configs/tasks_registry.json"
+    },
+    {
+      "bytes": 99840,
+      "path": ".local/explainers/completion-20260927/038-source/benchmark/benchmark_runner.py",
+      "role": "benchmark-evaluator",
+      "sha256": "288539631cf0bdd802cbb6570a52a0dcdba25e7377eeab9e29c66395724fbde6",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/benchmark/benchmark_runner.py"
+    },
+    {
+      "bytes": 6459,
+      "path": ".local/explainers/completion-20260927/038-source/docs/DATASETS.md",
+      "role": "dataset-layout",
+      "sha256": "c84cca650f47f7a2b8197e1f8a3c0a0fa5c8d930e093c6f82965cb7bb2a12841",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/docs/DATASETS.md"
+    },
+    {
+      "bytes": 1079,
+      "path": ".local/explainers/completion-20260927/038-source/LICENSE",
+      "role": "code-license",
+      "sha256": "b1099da8a60c97630f5e5f65a523fe21085e27c00a6b025ff0ef96055e7414a5",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/LICENSE"
+    },
+    {
+      "bytes": 226095,
+      "path": ".local/explainers/completion-20260927/038-source/tools/report_generation.py",
+      "role": "report-tool-source",
+      "sha256": "fe156d0e0af926774621b618f7c0451cb4331603f753680d81eb7b5f4f627286",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/report_generation.py"
+    },
+    {
+      "bytes": 22912,
+      "git_blob_sha": "f22a764eead1bbaa2c978cd92b608475407e3b9e",
+      "path": ".local/explainers/core-20260929/interpretation-b-source/bcer-long-cardiac-full/cardiac_cine_classification.py",
+      "role": "pinned-tool-source",
+      "sha256": "609257adbd807c0923e15a4d497532ea571d9ca88d2266f06181019b1c0f7342",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/cardiac_cine_classification.py"
+    },
+    {
+      "bytes": 23873,
+      "git_blob_sha": "9662c6c526872165e73e822f1c6427dba81d5eb6",
+      "path": ".local/explainers/core-20260929/interpretation-b-source/bcer-long-cardiac-full/cardiac_cine_segmentation.py",
+      "role": "pinned-tool-source",
+      "sha256": "4759b7bf90b42f3ffa851cbc23fd37dba43b89eb8d2ef03b76d9111c1a2dd23b",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/cardiac_cine_segmentation.py"
+    },
+    {
+      "bytes": 74554,
+      "git_blob_sha": "0e8c88e7d04785401ef0b4fe18eaed2d2217f99b",
+      "local_path": ".local/explainers/completion-20260927/038-source/tools/roi_features.py",
+      "path": ".local/explainers/completion-20260927/038-source/tools/roi_features.py",
+      "role": "roi-feature-tool-source",
+      "sha256": "ef5651fc7bc04a55d332aa6995bd646f6a6a9ab2d22030cf00405ff10529ba1d",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/roi_features.py"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "Generated segmentation NIfTI, ROI-feature CSV, classification JSON, report JSON, and tool trace; all absent.",
+    "evaluator": "Pinned structural checks: five stage successes + four artifact paths for TCR denominator nine, separate five-tool success criteria and four nonempty invariants. No independent clinical comparison.",
+    "helper": "Case manifest, state/artifact registry, callable tools; optional Info.cfg ED/ES phase metadata. Info.cfg Group is answer-bearing and source classifier may read/echo it; no executed isolation proof.",
+    "input": "One case-matched cine NIfTI or raw cine H5, absent here. Cine image is task input, not a private reference.",
+    "private_reference": "A separate expert segmentation and independently established cardiac disease group would be references for accuracy; neither retained. Pinned source code can read Info.cfg Group, so no assertion of runtime separation."
+  },
+  "status": "reviewable-refined-symbolic-draft",
+  "task": "long_cardiac_full",
+  "task_contract": {
+    "benchmark_runner_contract_source": "configs/tasks_registry.json, selected by benchmark_runner.py --tasks-registry default",
+    "conditional_registration": null,
+    "domain": [
+      "cardiac"
+    ],
+    "evaluation_boundary": "TCR is five stage-success plus four artifact-path checks; separate five-tool success and four nonempty invariants. No segmentation-overlap, independent disease-group or report-quality comparison.",
+    "goal_template": "Task: long_cardiac_full. Requested workflow type: full_pipeline. Domain: {domain}. Case ID: {case_id}. Execute identify->(reconstruct_if_cine_h5)->cardiac_seg->features->classify->report on cine input. Case root: {case_root}.",
+    "invariants": [
+      {
+        "data_key": "seg_path",
+        "id": "cardiac_seg_non_empty",
+        "tool": "segment_cardiac_cine",
+        "type": "nifti_nonempty"
+      },
+      {
+        "data_key": "classification_path",
+        "id": "classification_pred_non_empty",
+        "json_field": "predicted_group",
+        "tool": "classify_cardiac_cine_disease",
+        "type": "json_field_non_empty"
+      },
+      {
+        "data_key": "feature_table_path",
+        "id": "cardiac_features_non_empty",
+        "min_rows": 1,
+        "tool": "extract_roi_features",
+        "type": "csv_non_empty"
+      },
+      {
+        "data_key": "report_json_path",
+        "id": "cardiac_report_non_empty",
+        "tool": "generate_report",
+        "type": "json_non_empty"
+      }
+    ],
+    "required_artifacts": [
+      {
+        "data_key": "seg_path",
+        "id": "cardiac_seg",
+        "must_exist": true,
+        "tool": "segment_cardiac_cine"
+      },
+      {
+        "data_key": "classification_path",
+        "id": "cardiac_classification",
+        "must_exist": true,
+        "tool": "classify_cardiac_cine_disease"
+      },
+      {
+        "data_key": "feature_table_path",
+        "id": "cardiac_features",
+        "must_exist": true,
+        "tool": "extract_roi_features"
+      },
+      {
+        "data_key": "report_json_path",
+        "id": "cardiac_report",
+        "must_exist": true,
+        "tool": "generate_report"
+      }
+    ],
+    "required_modalities": {
+      "cardiac": {
+        "any_of": [
+          "cine_nifti",
+          "cine_h5"
+        ]
+      }
+    },
+    "required_stage_success": [
+      "identify_sequences",
+      "segment_cardiac_cine",
+      "extract_roi_features",
+      "classify_cardiac_cine_disease",
+      "generate_report"
+    ],
+    "success_criteria": {
+      "all": [
+        {
+          "tool": "identify_sequences",
+          "type": "tool_success"
+        },
+        {
+          "tool": "segment_cardiac_cine",
+          "type": "tool_success"
+        },
+        {
+          "tool": "extract_roi_features",
+          "type": "tool_success"
+        },
+        {
+          "tool": "classify_cardiac_cine_disease",
+          "type": "tool_success"
+        },
+        {
+          "tool": "generate_report",
+          "type": "tool_success"
+        }
+      ]
+    }
+  },
+  "top_warning": "Symbolic BCER cardiac workflow: no matched cine MRI, task output, or independent expert reference retained. Obtain authorized source from official ACDC route; no patient result is depicted."
+}

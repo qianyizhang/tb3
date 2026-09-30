@@ -1,0 +1,269 @@
+{
+  "acceptance_run": false,
+  "acquisition_route": "https://www.med.upenn.edu/cbica/brats2021/",
+  "actual_data_gap": "No matching complete four-modality BraTS case, BCER saved output, or case-matched reference annotation retained.",
+  "attempts": [
+    {
+      "action": "reuse verified prior exact-domain source inventory",
+      "attempted_at": "2026-09-29T06:11:43.025466+00:00",
+      "outcome": "No matching four-modality BraTS case; source audit checked local roots. A single unrelated T1c does not constitute a case.",
+      "source": ".local/explainers/core-20260929/bcer-source/bcer-short-segment-brain/source-resolution-draft.json"
+    },
+    {
+      "action": "official BraTS access route review",
+      "attempted_at": "2026-09-29T06:11:43.025466+00:00",
+      "outcome": "Official route requires Synapse registration/data request; no anonymous matching case URL available from retained audit. No credential, form, or terms action.",
+      "source": "https://www.med.upenn.edu/cbica/brats2021/"
+    },
+    {
+      "action": "retrieve and verify pinned BCER tool source",
+      "attempted_at": "2026-09-29T06:22:21.284618+00:00",
+      "outcome": "HTTP 200; 7045 bytes; SHA-256 and Git blob SHA verified against pinned repository tree.",
+      "source": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/brain_glioma_grade_classification.py"
+    }
+  ],
+  "brief": {
+    "path": "presentation/external-tasks/briefs/bcer-long-brain-full.md",
+    "role": "staged revised brief",
+    "sha256": "a490137a6ff2bdf169a623d39e46db7e9f59cb549fa1eb7f205d5e5bf8ec1aec"
+  },
+  "entry_id": "bcer-long-brain-full",
+  "evaluator_run": false,
+  "illustration_basis": "symbolic",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Acquire authorized matching source images and preserve geometry, then independently verify target/output and reference roles before source-derived render.",
+  "resolved_at": "2026-09-29T06:11:43.025466+00:00",
+  "schema": 1,
+  "source_alignment_caveat": "BraTS 2021 Task 2 predicts MGMT, not BCER HGG/LGG. The segmenter may use a T1c/FLAIR heuristic fallback when dependencies are unavailable and can create a synthetic ellipsoid. A source comment says missing bundle triggers fallback, but with dependencies present bundle failure raises. The report helper reads run state, sequence mapping, segmentation status and feature evidence; it does not directly fetch predicted_grade.",
+  "source_commit": "d10816712793a9e27f2e70640f9afc06f08a0c5c",
+  "source_license": "MIT BCER code; no patient image bytes redistributed",
+  "source_pins": [
+    {
+      "bytes": 1079,
+      "path": ".local/explainers/completion-20260927/038-source/LICENSE",
+      "role": "code-license",
+      "sha256": "b1099da8a60c97630f5e5f65a523fe21085e27c00a6b025ff0ef96055e7414a5",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/LICENSE"
+    },
+    {
+      "bytes": 99840,
+      "path": ".local/explainers/completion-20260927/038-source/benchmark/benchmark_runner.py",
+      "role": "benchmark-evaluator",
+      "sha256": "288539631cf0bdd802cbb6570a52a0dcdba25e7377eeab9e29c66395724fbde6",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/benchmark/benchmark_runner.py"
+    },
+    {
+      "bytes": 23613,
+      "path": ".local/explainers/completion-20260927/038-source/configs/tasks_registry.json",
+      "role": "task-contract",
+      "sha256": "dd69419af8e633d24e7f41c38d24a7d84ba9c20b9726a91a6b2f726e37fc669c",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/configs/tasks_registry.json"
+    },
+    {
+      "bytes": 6459,
+      "path": ".local/explainers/completion-20260927/038-source/docs/DATASETS.md",
+      "role": "dataset-layout",
+      "sha256": "c84cca650f47f7a2b8197e1f8a3c0a0fa5c8d930e093c6f82965cb7bb2a12841",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/docs/DATASETS.md"
+    },
+    {
+      "bytes": 7045,
+      "git_blob_sha": "9d41db38714f6652df9d0c0cc6a228de3c5b16a5",
+      "path": ".local/explainers/core-20260929/interpretation-b-source/bcer-medium-brain-grade-classify/brain_glioma_grade_classification.py",
+      "role": "pinned-tool-source",
+      "sha256": "115bb472a4d8ce5322d49cbdc42cfd07a02b11ca30b43720e88c54a2d17e92c3",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/brain_glioma_grade_classification.py"
+    },
+    {
+      "bytes": 14493,
+      "path": ".local/explainers/core-20260929/bcer-source/bcer-short-segment-brain/pinned-brain-tumor-segmentation.py",
+      "role": "segmentation-tool-source",
+      "sha256": "b89e305bc50ec0b053cff85c35d885d5130fc28d32785826398c362b2f43c497",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/brain_tumor_segmentation.py",
+      "git_blob_sha": "dc295d584d9f3ca459067fb9f080e2874f988b37"
+    },
+    {
+      "bytes": 25523,
+      "git_blob_sha": "e123c8699b62114c4405b1563941c406da619b68",
+      "path": ".local/explainers/completion-20260927/038-source/tools/registration.py",
+      "role": "conditional-registration-tool-source",
+      "sha256": "c9d13efdf8c34a80febbf98ba2a58966b5f6a869d9327af235d67fee1c9ec060",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/registration.py"
+    },
+    {
+      "bytes": 226095,
+      "git_blob_sha": "99bf97db640c0fa8c7502871eef732e91bf56fcb",
+      "path": ".local/explainers/completion-20260927/038-source/tools/report_generation.py",
+      "role": "report-tool-source",
+      "sha256": "fe156d0e0af926774621b618f7c0451cb4331603f753680d81eb7b5f4f627286",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/report_generation.py"
+    },
+    {
+      "bytes": 74554,
+      "git_blob_sha": "0e8c88e7d04785401ef0b4fe18eaed2d2217f99b",
+      "path": ".local/explainers/completion-20260927/038-source/tools/roi_features.py",
+      "role": "feature-tool-source",
+      "sha256": "ef5651fc7bc04a55d332aa6995bd646f6a6a9ab2d22030cf00405ff10529ba1d",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/roi_features.py"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "required output files and tool-stage trace; absent",
+    "evaluator": "pinned BCER structural task checks; not clinical accuracy",
+    "helper": "BCER case manifest, modality map, state/artifact registry, callable tools; conditional registration only for geometry mismatch",
+    "input": "case-matched four-sequence BraTS MRI",
+    "private_reference": "case-matched expert tumor annotation and independently established HGG/LGG grade, absent; never solver input"
+  },
+  "status": "production-draft-source-resolution",
+  "task": "long_brain_full",
+  "task_contract": {
+    "benchmark_runner_contract_source": "configs/tasks_registry.json, selected by benchmark_runner.py --tasks-registry default",
+    "conditional_registration": "register_to_reference is deliberately NOT a required stage: BraTS-style inputs arrive already co-registered at 1x1x1 mm, so a correct plan skips it. Scoring keys off the segmentation/feature/grade/report stages, which are mandatory regardless of input geometry.",
+    "domain": [
+      "brain"
+    ],
+    "evaluation_boundary": "tool success, path/format and nonempty fields; no image overlap, grade truth or diagnostic adjudication",
+    "goal_template": "Task: long_brain_full. Requested workflow type: full_pipeline. Domain: {domain}. Case ID: {case_id}. Execute identify->(register T2,FLAIR->T1c if not already co-registered)->brats-segment->features->grade-classify->report using T1/T1c/T2/FLAIR. Case root: {case_root}.",
+    "invariants": [
+      {
+        "data_key": "seg_path",
+        "id": "seg_exists",
+        "tool": "brats_mri_segmentation",
+        "type": "path_exists"
+      },
+      {
+        "data_key": "seg_path",
+        "id": "seg_non_empty",
+        "tool": "brats_mri_segmentation",
+        "type": "nifti_nonempty"
+      },
+      {
+        "data_key": "wt_mask_path",
+        "id": "wt_non_empty",
+        "tool": "brats_mri_segmentation",
+        "type": "nifti_nonempty"
+      },
+      {
+        "id": "seg_wt_affine_consistent",
+        "lhs": {
+          "data_key": "seg_path",
+          "tool": "brats_mri_segmentation"
+        },
+        "rhs": {
+          "data_key": "wt_mask_path",
+          "tool": "brats_mri_segmentation"
+        },
+        "type": "nifti_affine_match"
+      },
+      {
+        "data_key": "feature_table_path",
+        "id": "brain_features_non_empty",
+        "min_rows": 1,
+        "tool": "extract_roi_features",
+        "type": "csv_non_empty"
+      },
+      {
+        "data_key": "classification_path",
+        "id": "brain_grade_non_empty",
+        "json_field": "predicted_grade",
+        "tool": "classify_brain_glioma_grade",
+        "type": "json_field_non_empty"
+      },
+      {
+        "data_key": "report_json_path",
+        "id": "report_non_empty",
+        "tool": "generate_report",
+        "type": "json_non_empty"
+      }
+    ],
+    "required_artifacts": [
+      {
+        "data_key": "seg_path",
+        "id": "brain_seg",
+        "must_exist": true,
+        "tool": "brats_mri_segmentation"
+      },
+      {
+        "data_key": "wt_mask_path",
+        "id": "brain_wt",
+        "must_exist": true,
+        "tool": "brats_mri_segmentation"
+      },
+      {
+        "data_key": "feature_table_path",
+        "id": "brain_features",
+        "must_exist": true,
+        "tool": "extract_roi_features"
+      },
+      {
+        "data_key": "classification_path",
+        "id": "brain_grade",
+        "must_exist": true,
+        "tool": "classify_brain_glioma_grade"
+      },
+      {
+        "data_key": "report_json_path",
+        "id": "report_json",
+        "must_exist": true,
+        "tool": "generate_report"
+      }
+    ],
+    "required_modalities": {
+      "brain": {
+        "all_of": [
+          "T1",
+          "T1c",
+          "T2",
+          "FLAIR"
+        ]
+      }
+    },
+    "required_stage_success": [
+      "identify_sequences",
+      "brats_mri_segmentation",
+      "extract_roi_features",
+      "classify_brain_glioma_grade",
+      "generate_report"
+    ],
+    "success_criteria": {
+      "all": [
+        {
+          "tool": "identify_sequences",
+          "type": "tool_success"
+        },
+        {
+          "tool": "brats_mri_segmentation",
+          "type": "tool_success"
+        },
+        {
+          "tool": "extract_roi_features",
+          "type": "tool_success"
+        },
+        {
+          "tool": "classify_brain_glioma_grade",
+          "type": "tool_success"
+        },
+        {
+          "tool": "generate_report",
+          "type": "tool_success"
+        }
+      ]
+    },
+    "suite_template_discrepancy": "benchmark_suite.template.json lists register_to_reference among stages, while tasks_registry.json explicitly excludes it for pre-registered BraTS-style inputs. Runner loads the registry task contract; this explainer follows that contract.",
+    "segmentation_fallback": "MONAI bundle preferred; heuristic fallback only when dependency check fails. Threshold WT<=32 voxels can be replaced by an ellipsoid, so nonempty mask is not anatomical validation.",
+    "grade_rule": "Whole-tumor feature volume threshold with texture fallback; confidence is code-derived, not calibrated clinical probability.",
+    "report_consumption": {
+      "reads": "case_state records, identify_sequences mapping, optional registration record, brats_mri_segmentation success, extract_roi_features result/CSV previews, ROI WT/TC/ET volumes and optional structured image QC",
+      "does_not_directly_read": "classify_brain_glioma_grade predicted_grade/classification_path",
+      "report_json": "case/run/domain, sequence mapping, feature path, stage status (including optional registration), brain_assessment segmentation flag and WT/TC/ET volumes; not grade truth",
+      "caution": "A correctly skipped conditional registration can appear missing in generic report stage_status; this is not task failure.",
+      "model_boundary": "Brain defaults llm_mode to server and may attempt structured report/image QC through configured adapter; separate from deterministic report JSON. No model or adapter was executed."
+    },
+    "tcr_checks": 10,
+    "success_rule_tool_checks": 5,
+    "invariant_checks": 7
+  },
+  "top_warning": "Symbolic BCER workflow: matched four-modality MRI, output and independent HGG/LGG truth are unavailable. Obtain authorized MRI through the official BraTS route; its MGMT labels are a different target."
+}

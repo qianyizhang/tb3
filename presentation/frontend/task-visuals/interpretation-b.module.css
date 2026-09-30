@@ -1,0 +1,198 @@
+.scene {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-width: 0;
+  padding: 14px;
+  border-radius: 12px;
+  background: #0e2633;
+  color: #e8f5f7;
+}
+.scene h3 {
+  color: #e8f5f7;
+  font-size: clamp(1.12rem, 2vw, 1.55rem);
+  margin: 0;
+  line-height: 1.2;
+}
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(230px, 0.85fr);
+  gap: 14px;
+  min-width: 0;
+}
+.columns > *,
+.modalities > * {
+  min-width: 0;
+}
+.card {
+  border: 1px solid #466476;
+  border-radius: 12px;
+  background: #132432;
+  padding: 16px;
+  line-height: 1.4;
+  font-size: 12px;
+}
+.card b {
+  color: #b5eef1;
+}
+.card p {
+  margin: 9px 0;
+}
+.card small {
+  color: #a7bdc9;
+}
+.card strong {
+  color: #ffe09b;
+}
+.card code,
+.keyList code {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  color: #82e2e7;
+  overflow-wrap: anywhere;
+}
+.emptyImage {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px dashed #6e91a0;
+  background: repeating-linear-gradient(135deg, #19303e, #19303e 9px, #1b3443 9px, #1b3443 18px);
+  border-radius: 10px;
+  text-align: center;
+  padding: 18px;
+  color: #d9eef1;
+}
+.emptyImage small {
+  color: #a9bfcb;
+}
+.modalities {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+  margin-bottom: 9px;
+}
+.modality {
+  min-height: 74px;
+  padding: 9px;
+  background: #1c3443;
+  border: 1px solid #55778b;
+  border-radius: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.modality b {
+  color: #7fdae5;
+  font-size: 0.75rem;
+}
+.modality span {
+  font-weight: 700;
+}
+.modality small {
+  font-size: 0.7rem;
+  color: #a9bfcb;
+}
+.stages {
+  display: flex;
+  gap: 5px;
+  overflow: hidden;
+}
+.stages > div {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #486778;
+  border-radius: 9px;
+  padding: 10px;
+  background: #183140;
+  display: grid;
+  gap: 5px;
+}
+.stages > div.active {
+  border-color: #70d8df;
+  background: #225162;
+}
+.stages span {
+  font-size: 0.7rem;
+  color: #7fdae5;
+}
+.stages b {
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+.stages small {
+  color: #a9bfcb;
+  font-size: 0.7rem;
+}
+.branch {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+  background: #263743;
+  border-left: 3px solid #e9bc69;
+  padding: 12px;
+  border-radius: 5px;
+  line-height: 1.35;
+}
+.branch b {
+  white-space: nowrap;
+  color: #ffdfaa;
+}
+.keyList {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+.keyList div {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  border-bottom: 1px solid #355469;
+  padding: 7px 0;
+}
+.keyList span {
+  color: #b7c9d2;
+  text-align: right;
+}
+.aside {
+  border: 1px solid #436071;
+  background: #18303f;
+  border-radius: 0;
+  font-size: 12px;
+  padding: 12px;
+  line-height: 1.35;
+}
+.aside b {
+  color: #b5eef1;
+}
+.aside p {
+  margin: 7px 0;
+  color: #e8f5f7;
+  overflow-wrap: anywhere;
+}
+.aside small {
+  color: #a9bfcb;
+}
+@media (max-width: 700px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+  .stages {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .modalities {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .emptyImage {
+    min-height: 135px;
+  }
+  .card {
+    padding: 12px;
+  }
+  .scene {
+    gap: 9px;
+  }
+}

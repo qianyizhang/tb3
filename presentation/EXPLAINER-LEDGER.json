@@ -8839,15 +8839,15 @@
       ],
       "illustration_kind": "classify",
       "subject": "brain",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "bcer-medium-brain-grade-classify",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for bcer-medium-brain-grade-classify. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/brain-grade-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Required source modalities — brain: all of T1, T1c, T2, FLAIR.",
         "helpers": "A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.",
@@ -8880,14 +8880,105 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-30T06:06:31.823223+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/bcer-medium-brain-grade-classify-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "No case-matched complete four-modality MRI, saved BCER mask/features/classification or independent annotation/true grade retained.",
+      "acquisition_route": "https://www.med.upenn.edu/cbica/brats2021/",
+      "source_resolution_receipt": "presentation/external-tasks/sources/bcer-medium-brain-grade-classify-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/bcer-medium-brain-grade-classify-resolution.json",
+        "receipt_sha256": "050c4a967723b30125c27a24c65ba441d04c9526f8e27d83048bc75e87aa12ef",
+        "brief_sha256": "7b5926980bb7d878a078b9bda26c0f929b235eb70aef5d564b8a721fcca4bd9e",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Symbolic BCER workflow: no case-matched four-modality MRI, participant output, or independent grade reference. Obtain authorized data through official BraTS route; BraTS MGMT labels do not supply HGG/LGG truth.",
+      "acceptance_scope": "Individually reviewed source-code-derived symbolic brain-grade workflow, interactive stage controls, exports, mobile/fallback and boundaries. No patient data, classifier or evaluator execution.",
+      "completion_review": {
+        "date": "2026-09-30T06:48:38.022176+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "fb9843d28f30c78bd833d937038848bf2e7d6129c0ff5373b6c12aa4b9a74912"
+      },
+      "reviewed_contract_projection": {
+        "title": "Classify brain glioma grade through BCER tools",
+        "goal": "The BCER medium workflow orders four MRI modalities through segmentation, ROI features, and a rule-based HGG/LGG output. This is a **symbolic source-code explanation**: no matching case, feature table, classification, reference grade, model run, or score was retained.",
+        "value": "Not yet specified.",
+        "raw": "One case-matched NIfTI set containing **T1, contrast-enhanced T1c, T2, and FLAIR**. The four modality identities matter; an unrelated T1c image does not complete a case. No such four-sequence case is available here. The [official BraTS 2021 route](https://www.med.upenn.edu/cbica/brats2021/) requires registration/data access; BraTS Task 2 targets MGMT methylation, **not** this BCER HGG/LGG output.",
+        "helpers": "The BCER case manifest, runtime state, typed artifact registry, and registered tool interfaces guide routing. They do not supply a tumor mask, feature measurement, or grade answer. Fault profiles may mutate tokens, paths, arguments, or T1c/FLAIR bindings, so a file existing at a path does not prove correct modality meaning.",
+        "tools": "`identify_sequences` → `brats_mri_segmentation` → `extract_roi_features` → `classify_brain_glioma_grade`. No tool was called for this explainer. Segmentation output defines the tumor ROI for feature extraction; the grade tool reads a CSV and writes classification JSON. The pinned segmentation source has a dependency-unavailable heuristic fallback using FLAIR and T1c intensities; its bundled-model branch is separate. A missing bundle in that branch is not itself a fallback trigger. Neither branch was run here or establishes a clinically valid mask.",
+        "reference": "For any **accuracy** study, a case-matched tumor annotation and independently established true HGG/LGG grade would be separate references. Neither is retained and neither is used by the pinned BCER structural scorer. Their absence here does not prove an executed runtime filesystem-isolation property.",
+        "spec": "Bind all four sequences to the correct roles, obtain tumor subregions, extract at least one ROI-feature row, then write a grade-classification artifact. The pinned feature tool resamples the selected ROI mask into each image grid and computes `volume_ml` from selected voxels times that image’s spacing product divided by 1,000. The pinned grade tool prefers rows marked as whole tumor; if none are marked, it uses all CSV rows. From valid nonnegative `volume_ml` values it takes the **maximum** and predicts HGG at or above the default **35 ml** threshold, otherwise LGG. If no valid volume exists, it selects HGG when at least two of four named texture-feature fields are present, otherwise LGG. This is a transparent heuristic, **not a trained or clinically validated grade model**. The optional `confidence` is formula-derived, not calibrated probability. This explanation never instantiates a case value or grade.",
+        "output": "The artifact registry must carry `feature_table_path` to a CSV with at least one row and `classification_path` to JSON with a nonempty `predicted_grade`. Both are **outputs**, not supplied truth; neither file exists in this pack.",
+        "score": "The task-completion ratio checks **four required tool-stage successes and two required artifact paths** (six structural items). Separately, `success_criteria` requires `classify_brain_glioma_grade` tool success. Two invariants check a nonempty feature CSV and a `predicted_grade` JSON field whose value is not null, an empty string, empty list, or empty object. This invariant does not itself enforce an HGG/LGG enum. These are path, format, and workflow checks; they do **not** compare segmentation with an annotation, compare grade with a diagnosis, or measure HGG/LGG accuracy. A nonempty feature CSV can reach the grade tool even when no valid volume exists, triggering its texture-availability fallback.",
+        "challenge": "The workflow depends on modality identity and propagation of the segmentation/feature artifacts. Structural completion is distinct from anatomical correctness and independent grade validity. Source-code rule transparency does not supply clinical evidence.",
+        "families": "A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Source condition",
+            "helper": "A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.",
+            "remaining": "Correct artifact propagation is distinct from whether the features support the clinical grade."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned BCER task contract",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/configs/tasks_registry.json"
+          ],
+          [
+            "Pinned BCER grade-tool source",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/brain_glioma_grade_classification.py"
+          ],
+          [
+            "Official BraTS 2021 data route",
+            "https://www.med.upenn.edu/cbica/brats2021/"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/bcer-medium-brain-grade-classify-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>The BCER medium workflow orders four MRI modalities through segmentation, ROI features, and a rule-based HGG/LGG output. This is a <strong>symbolic source-code explanation</strong>: no matching case, feature table, classification, reference grade, model run, or score was retained.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>One case-matched NIfTI set containing <strong>T1, contrast-enhanced T1c, T2, and FLAIR</strong>. The four modality identities matter; an unrelated T1c image does not complete a case. No such four-sequence case is available here. The <a href=\"https://www.med.upenn.edu/cbica/brats2021/\">official BraTS 2021 route</a> requires registration/data access; BraTS Task 2 targets MGMT methylation, <strong>not</strong> this BCER HGG/LGG output.</p>",
+          "helpers": "<p>The BCER case manifest, runtime state, typed artifact registry, and registered tool interfaces guide routing. They do not supply a tumor mask, feature measurement, or grade answer. Fault profiles may mutate tokens, paths, arguments, or T1c/FLAIR bindings, so a file existing at a path does not prove correct modality meaning.</p>",
+          "tools": "<p><code>identify_sequences</code> → <code>brats_mri_segmentation</code> → <code>extract_roi_features</code> → <code>classify_brain_glioma_grade</code>. No tool was called for this explainer. Segmentation output defines the tumor ROI for feature extraction; the grade tool reads a CSV and writes classification JSON. The pinned segmentation source has a dependency-unavailable heuristic fallback using FLAIR and T1c intensities; its bundled-model branch is separate. A missing bundle in that branch is not itself a fallback trigger. Neither branch was run here or establishes a clinically valid mask.</p>",
+          "reference": "<p>For any <strong>accuracy</strong> study, a case-matched tumor annotation and independently established true HGG/LGG grade would be separate references. Neither is retained and neither is used by the pinned BCER structural scorer. Their absence here does not prove an executed runtime filesystem-isolation property.</p>",
+          "spec": "<p>Bind all four sequences to the correct roles, obtain tumor subregions, extract at least one ROI-feature row, then write a grade-classification artifact. The pinned feature tool resamples the selected ROI mask into each image grid and computes <code>volume_ml</code> from selected voxels times that image’s spacing product divided by 1,000. The pinned grade tool prefers rows marked as whole tumor; if none are marked, it uses all CSV rows. From valid nonnegative <code>volume_ml</code> values it takes the <strong>maximum</strong> and predicts HGG at or above the default <strong>35 ml</strong> threshold, otherwise LGG. If no valid volume exists, it selects HGG when at least two of four named texture-feature fields are present, otherwise LGG. This is a transparent heuristic, <strong>not a trained or clinically validated grade model</strong>. The optional <code>confidence</code> is formula-derived, not calibrated probability. This explanation never instantiates a case value or grade.</p>",
+          "output": "<p>The artifact registry must carry <code>feature_table_path</code> to a CSV with at least one row and <code>classification_path</code> to JSON with a nonempty <code>predicted_grade</code>. Both are <strong>outputs</strong>, not supplied truth; neither file exists in this pack.</p>",
+          "score": "<p>The task-completion ratio checks <strong>four required tool-stage successes and two required artifact paths</strong> (six structural items). Separately, <code>success_criteria</code> requires <code>classify_brain_glioma_grade</code> tool success. Two invariants check a nonempty feature CSV and a <code>predicted_grade</code> JSON field whose value is not null, an empty string, empty list, or empty object. This invariant does not itself enforce an HGG/LGG enum. These are path, format, and workflow checks; they do <strong>not</strong> compare segmentation with an annotation, compare grade with a diagnosis, or measure HGG/LGG accuracy. A nonempty feature CSV can reach the grade tool even when no valid volume exists, triggering its texture-availability fallback.</p>",
+          "challenge": "<p>The workflow depends on modality identity and propagation of the segmentation/feature artifacts. Structural completion is distinct from anatomical correctness and independent grade validity. Source-code rule transparency does not supply clinical evidence.</p>",
+          "families": "<p>A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -8905,15 +8996,15 @@
       ],
       "illustration_kind": "workflow",
       "subject": "heart",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "bcer-long-cardiac-full",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for bcer-long-cardiac-full. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/cardiac-full-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Required source modalities — cardiac: one or more of cine_nifti, cine_h5.",
         "helpers": "A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.",
@@ -8946,14 +9037,109 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-30T06:50:43.041920+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/bcer-long-cardiac-full-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "No case-matched cardiac cine NIfTI/H5, BCER output, independent expert mask or clinical group retained.",
+      "acquisition_route": "https://www.creatis.insa-lyon.fr/Challenge/acdc/databases.html",
+      "source_resolution_receipt": "presentation/external-tasks/sources/bcer-long-cardiac-full-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/bcer-long-cardiac-full-resolution.json",
+        "receipt_sha256": "acd6397842d57b648ecf9e986aa980894497af3eb5197c89737c5e8fa946994f",
+        "brief_sha256": "d8b0ae088d0ec943a5961730e91636df91e4402d297ae1b066f77c04fdd6b70e",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Symbolic BCER cardiac workflow: no matched cine MRI, task output, or independent expert reference retained. Obtain authorized source from official ACDC route; no patient result is depicted.",
+      "acceptance_scope": "Individually reviewed source-pinned symbolic cine workflow with explicit phase and artifact dependencies; no patient case or task execution.",
+      "completion_review": {
+        "date": "2026-09-30T07:16:47.605992+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "0cfb21725064bbe43f6317a0db28eced8d5e3fdc9309518419d2fff1d4b72442"
+      },
+      "reviewed_contract_projection": {
+        "title": "Turn cardiac cine MRI into BCER segmentation, a disease-group rule, and a report",
+        "goal": "This is a **symbolic, source-code-backed workflow explanation**. No matched cine, BCER-generated mask, feature table, classification, report, expert mask, disease-group reference, or run is retained.",
+        "value": "Not yet specified.",
+        "raw": "One case-matched cardiac cine NIfTI or raw cine H5. The H5 branch needs reconstruction to NIfTI before cine segmentation; reconstruction is conditional and is not one of the five required success stages. The BCER dataset documentation gives ACDC ED/ES 3D NIfTI examples, but one 3D phase does not establish a 4D temporal curve. No matching case is available here. [Official ACDC data route](https://www.creatis.insa-lyon.fr/Challenge/acdc/databases.html).",
+        "helpers": "The case manifest, runtime state/artifact registry, callable tools, and `Info.cfg` phase metadata when available. ED/ES values in `Info.cfg` are 1-based and are converted to zero-based frame indices. The same file may contain `Group`, an answer-bearing disease-group field. The pinned classifier reads and echoes it as `ground_truth_group`/`ground_truth_match` if present; this source behavior does **not** establish independent validation or enforced answer isolation.",
+        "tools": "`identify_sequences` → conditional raw-H5 reconstruction → `segment_cardiac_cine` → `extract_roi_features` → `classify_cardiac_cine_disease` → `generate_report`. None was called for this explainer. The segmentation source accepts a 3D phase or splits a 4D cine into 3D frames. With default ED/ES-only processing it uses valid phase metadata; otherwise all frames are processed. Its declared ACDC labels are 1 RV, 2 myocardium, 3 LV. A label declaration is not expert truth.",
+        "reference": "A case-matched expert segmentation and independently established clinical disease group would be needed for accuracy. Neither is retained. Because the pinned classifier may read `Info.cfg Group`, the historical source code alone does not prove that an answer-bearing field is isolated from the solver. This explainer has no reference asset.",
+        "spec": "Produce segmentation, a feature CSV, rule-based group classification, then report JSON. ROI-feature extraction uses masks and image grids for a separate required CSV. The classifier **does not consume that CSV**: it computes LV/RV EDV, ESV and EF, myocardial measures and a contraction proxy from segmentation frames. It chooses ED/ES from explicit paths/indices, valid `Info.cfg`, or LV-volume extrema when available; one 3D phase can map ED and ES to the same frame and cannot support a temporal curve. The group rule can output NOR, MINF, DCM, HCM, RV, or **UNCLASSIFIED**. Its `needs_vlm_review` flag is a rule output, not adjudication. `generate_report` reads run state and artifacts to write report JSON; that report is answer-owned output, not a clinical reference.",
+        "output": "`seg_path` NIfTI, `feature_table_path` CSV, `classification_path` JSON with `predicted_group`, and `report_json_path` JSON. All four paths are empty in this teaching pack. No patient phase volume, disease group, report finding, or metric is instantiated.",
+        "score": "The task-completion ratio has **five required tool-stage successes plus four required artifact paths = nine checks**. A separate success rule requires those five tools to succeed. Four invariants test nonempty segmentation NIfTI, feature CSV (at least one row), classification JSON `predicted_group`, and report JSON. A nonempty `UNCLASSIFIED` group may satisfy the JSON-field invariant. None compares segmentation with an expert mask, group with an independent diagnosis, or report with clinical truth. The structural scorer therefore does not establish diagnostic correctness.",
+        "challenge": "Modality and phase identity, segmentation geometry, feature/report artifacts, and label-bearing metadata must be tracked separately. Static rule visibility is not evidence of a correct mask or disease group.",
+        "families": "A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Source condition",
+            "helper": "A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.",
+            "remaining": "Every stage depends on earlier masks and temporal data; a completed report need not be medically correct."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned BCER task contract",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/configs/tasks_registry.json"
+          ],
+          [
+            "Pinned cine segmentation source",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/cardiac_cine_segmentation.py"
+          ],
+          [
+            "classifier source",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/cardiac_cine_classification.py"
+          ],
+          [
+            "Official ACDC source route",
+            "https://www.creatis.insa-lyon.fr/Challenge/acdc/databases.html"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/bcer-long-cardiac-full-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>This is a <strong>symbolic, source-code-backed workflow explanation</strong>. No matched cine, BCER-generated mask, feature table, classification, report, expert mask, disease-group reference, or run is retained.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>One case-matched cardiac cine NIfTI or raw cine H5. The H5 branch needs reconstruction to NIfTI before cine segmentation; reconstruction is conditional and is not one of the five required success stages. The BCER dataset documentation gives ACDC ED/ES 3D NIfTI examples, but one 3D phase does not establish a 4D temporal curve. No matching case is available here. <a href=\"https://www.creatis.insa-lyon.fr/Challenge/acdc/databases.html\">Official ACDC data route</a>.</p>",
+          "helpers": "<p>The case manifest, runtime state/artifact registry, callable tools, and <code>Info.cfg</code> phase metadata when available. ED/ES values in <code>Info.cfg</code> are 1-based and are converted to zero-based frame indices. The same file may contain <code>Group</code>, an answer-bearing disease-group field. The pinned classifier reads and echoes it as <code>ground_truth_group</code>/<code>ground_truth_match</code> if present; this source behavior does <strong>not</strong> establish independent validation or enforced answer isolation.</p>",
+          "tools": "<p><code>identify_sequences</code> → conditional raw-H5 reconstruction → <code>segment_cardiac_cine</code> → <code>extract_roi_features</code> → <code>classify_cardiac_cine_disease</code> → <code>generate_report</code>. None was called for this explainer. The segmentation source accepts a 3D phase or splits a 4D cine into 3D frames. With default ED/ES-only processing it uses valid phase metadata; otherwise all frames are processed. Its declared ACDC labels are 1 RV, 2 myocardium, 3 LV. A label declaration is not expert truth.</p>",
+          "reference": "<p>A case-matched expert segmentation and independently established clinical disease group would be needed for accuracy. Neither is retained. Because the pinned classifier may read <code>Info.cfg Group</code>, the historical source code alone does not prove that an answer-bearing field is isolated from the solver. This explainer has no reference asset.</p>",
+          "spec": "<p>Produce segmentation, a feature CSV, rule-based group classification, then report JSON. ROI-feature extraction uses masks and image grids for a separate required CSV. The classifier <strong>does not consume that CSV</strong>: it computes LV/RV EDV, ESV and EF, myocardial measures and a contraction proxy from segmentation frames. It chooses ED/ES from explicit paths/indices, valid <code>Info.cfg</code>, or LV-volume extrema when available; one 3D phase can map ED and ES to the same frame and cannot support a temporal curve. The group rule can output NOR, MINF, DCM, HCM, RV, or <strong>UNCLASSIFIED</strong>. Its <code>needs_vlm_review</code> flag is a rule output, not adjudication. <code>generate_report</code> reads run state and artifacts to write report JSON; that report is answer-owned output, not a clinical reference.</p>",
+          "output": "<p><code>seg_path</code> NIfTI, <code>feature_table_path</code> CSV, <code>classification_path</code> JSON with <code>predicted_group</code>, and <code>report_json_path</code> JSON. All four paths are empty in this teaching pack. No patient phase volume, disease group, report finding, or metric is instantiated.</p>",
+          "score": "<p>The task-completion ratio has <strong>five required tool-stage successes plus four required artifact paths = nine checks</strong>. A separate success rule requires those five tools to succeed. Four invariants test nonempty segmentation NIfTI, feature CSV (at least one row), classification JSON <code>predicted_group</code>, and report JSON. A nonempty <code>UNCLASSIFIED</code> group may satisfy the JSON-field invariant. None compares segmentation with an expert mask, group with an independent diagnosis, or report with clinical truth. The structural scorer therefore does not establish diagnostic correctness.</p>",
+          "challenge": "<p>Modality and phase identity, segmentation geometry, feature/report artifacts, and label-bearing metadata must be tracked separately. Static rule visibility is not evidence of a correct mask or disease group.</p>",
+          "families": "<p>A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -8971,15 +9157,15 @@
       ],
       "illustration_kind": "workflow",
       "subject": "brain",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "bcer-long-brain-full",
+      "observed_binding_state": "bound-story-unreviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
+      "reviewed_disposition": "pending-operation-review",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
       "rendered_mode": "not-measured",
       "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for bcer-long-brain-full. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "blocking_dependency": null,
+      "remaining_work": "Review source/reference/output boundaries, interactive mechanism, full exports, mobile/fallback and source-gap notice where applicable.",
       "contract_projection": {
         "raw": "Required source modalities — brain: all of T1, T1c, T2, FLAIR.",
         "helpers": "A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.",
@@ -9012,15 +9198,33 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
-      }
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-30T07:19:41.416188+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/bcer-long-brain-full-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "No matching complete four-modality BraTS case, BCER saved output, or case-matched reference annotation retained.",
+      "acquisition_route": "https://www.med.upenn.edu/cbica/brats2021/",
+      "source_resolution_receipt": "presentation/external-tasks/sources/bcer-long-brain-full-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/bcer-long-brain-full-resolution.json",
+        "receipt_sha256": "e5728c67274a0cf48992e811058bcd454de59785c58b51347b0c2788d5b1f27a",
+        "brief_sha256": "a490137a6ff2bdf169a623d39e46db7e9f59cb549fa1eb7f205d5e5bf8ec1aec",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Symbolic BCER workflow: matched four-modality MRI, output and independent HGG/LGG truth are unavailable. Obtain authorized MRI through the official BraTS route; its MGMT labels are a different target."
     },
     {
       "entry_id": "abra-viewer-control",
@@ -22676,11 +22880,11 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 91,
+    "reviewed-scripted-planar": 93,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 69,
-    "blocked-source-input": 31,
-    "pending-operation-review": 1
+    "blocked-source-contract": 66,
+    "pending-operation-review": 2,
+    "blocked-source-input": 31
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",

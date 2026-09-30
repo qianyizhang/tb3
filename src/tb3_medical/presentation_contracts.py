@@ -514,6 +514,23 @@ class RegistrationAnalysisPlan(ExpansionPlan):
     beats: list[RegistrationAnalysisBeat]
 
 
+class Imaging101EhtOriginalChannels(TypedDict):
+    view: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class Imaging101EhtOriginalBeat(ExpansionBeat):
+    channels: Imaging101EhtOriginalChannels
+    scene: Literal[
+        "inputs", "closures", "observables", "imaging", "outputs", "reference", "scoring", "limits"
+    ]
+
+
+class Imaging101EhtOriginalPlan(ExpansionPlan):
+    recipe: Literal["imaging101-eht-original-v1"]
+    beats: list[Imaging101EhtOriginalBeat]
+
+
 class Imaging101EhtFeaturesDynamicChannels(TypedDict):
     view: tuple[float, float]
     reference: tuple[float, float]
@@ -1858,6 +1875,54 @@ class InterpretationAHealthagentbenchCxrCorrectionPlan(ExpansionPlan):
     beats: list[InterpretationAHealthagentbenchCxrCorrectionBeat]
 
 
+class InterpretationBBcerMediumBrainGradeClassifyChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class InterpretationBBcerMediumBrainGradeClassifyBeat(ExpansionBeat):
+    channels: InterpretationBBcerMediumBrainGradeClassifyChannels
+    scene: Literal["input", "route", "operation", "output", "limits"]
+
+
+class InterpretationBBcerMediumBrainGradeClassifyPlan(ExpansionPlan):
+    recipe: Literal["bcer-brain-grade-v1"]
+    beats: list[InterpretationBBcerMediumBrainGradeClassifyBeat]
+
+
+class InterpretationBBcerLongCardiacFullChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class InterpretationBBcerLongCardiacFullBeat(ExpansionBeat):
+    channels: InterpretationBBcerLongCardiacFullChannels
+    scene: Literal["input", "route", "operation", "output", "limits"]
+
+
+class InterpretationBBcerLongCardiacFullPlan(ExpansionPlan):
+    recipe: Literal["bcer-cardiac-full-v1"]
+    beats: list[InterpretationBBcerLongCardiacFullBeat]
+
+
+class InterpretationBBcerLongBrainFullChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class InterpretationBBcerLongBrainFullBeat(ExpansionBeat):
+    channels: InterpretationBBcerLongBrainFullChannels
+    scene: Literal["input", "route", "operation", "output", "limits"]
+
+
+class InterpretationBBcerLongBrainFullPlan(ExpansionPlan):
+    recipe: Literal["bcer-brain-full-v1"]
+    beats: list[InterpretationBBcerLongBrainFullBeat]
+
+
 class CardiacMaterialChannels(TypedDict):
     phase: tuple[float, float]
     helper: tuple[float, float]
@@ -2023,6 +2088,7 @@ StoryPlan = (
     | ResectPilotPlan
     | ResectPlan
     | RegistrationAnalysisPlan
+    | Imaging101EhtOriginalPlan
     | Imaging101EhtFeaturesDynamicPlan
     | Imaging101EhtDynamicPlan
     | Imaging101EhtUqPlan
@@ -2094,6 +2160,9 @@ StoryPlan = (
     | InterpretationARadagentPlan
     | InterpretationAHealthagentbenchTumorTilesPlan
     | InterpretationAHealthagentbenchCxrCorrectionPlan
+    | InterpretationBBcerMediumBrainGradeClassifyPlan
+    | InterpretationBBcerLongCardiacFullPlan
+    | InterpretationBBcerLongBrainFullPlan
     | CardiacMaterialPlan
     | CardiacAnchorPlan
     | ClinicalCavityPlan

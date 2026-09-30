@@ -1,6 +1,6 @@
 # Feedback ledger: complete-explainers
 
-- Current skill version: `1.1.0`
+- Current skill version: `1.2.0`
 - Canonical source: `skills/complete-explainers/`
 
 ## Active lessons
@@ -12,6 +12,8 @@ labelled symbolic explanations when authorized, without inventing source rights.
 Regression pilots exercise tooling and preserve the completed-entry count.
 Declared audit receipts must exist and match their pins. Browser sign-off needs a
 current export/Explorer/harness witness, not a matching story name alone.
+Default delegated workers to GPT-6.1 Sol (`gpt-6.1-sol`) at medium effort,
+while preserving explicit user model and effort choices.
 
 ## History
 
@@ -56,3 +58,13 @@ current export/Explorer/harness witness, not a matching story name alone.
 - Independent review: A status-only edit could bypass resolution metadata. Require
   the documented attempt receipt, archived resolution and illustration basis before
   production preparation; symbolic content also requires warning text.
+
+### EXPLAINER-2026-004
+
+- Date: 2026-09-30
+- Invoked version: `1.1.0` instruction maintenance.
+- Source: [user cleanup and default-model request](codex://threads/01a0f1d0-6a1c-7f33-9209-80df1413ca94).
+- Observation: The user requested GPT-6.1 Sol as the skill's default.
+- Resolution: Version `1.2.0` names `gpt-6.1-sol` for delegated workers,
+  retains medium effort and preserves explicit user overrides.
+- Validation: Skill metadata and portable resource checks; no model trial implied.

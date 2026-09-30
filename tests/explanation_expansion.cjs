@@ -1686,6 +1686,96 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       'Witness must lie in displayed reference',
     );
   }
+  const ehtOriginal = plans.find((p) => p.recipe === 'imaging101-eht-original-v1');
+  assert(ehtOriginal);
+  for (const b of ehtOriginal.beats) {
+    const seen = new Set();
+    const count = {
+      inputs: 21,
+      closures: 6,
+      observables: 2,
+      imaging: 4,
+      outputs: 3,
+      reference: 3,
+      scoring: 4,
+      limits: 4,
+    }[b.scene];
+    for (let frame = b.startFrame; frame < b.endFrame; frame++) {
+      const state = sampleStory(ehtOriginal, frame);
+      const expected =
+        b.scene === 'scoring' ||
+        (b.scene === 'reference' && frame >= (b.startFrame + b.endFrame) / 2);
+      assert.equal(originalReveal(state), expected);
+      if (b.scene !== 'reference') seen.add(originalIndex(state, count));
+      else if (expected) seen.add(originalReferenceIndex(state));
+    }
+    assert.deepEqual(
+      [...seen],
+      Array.from({ length: count }, (_, i) => i),
+      'Every native selection reachable: ' + b.scene,
+    );
+  }
+  assert.equal(originalReveal(sampleStory(ehtOriginal, 0)), false);
+  assert.equal(originalPairs.length, 21);
+  assert.equal(originalInput.uv_Glambda.length, 421);
+  assert.ok(originalInput.uv_Glambda.flat().every((v) => Math.abs(v) < 9));
+  assert.ok(
+    [...originalInput.vis_cal_abs_Jy, ...originalInput.vis_corrupt_abs_Jy].every(
+      (v) => v >= 0 && v < 0.95,
+    ),
+  );
+  assert.equal(originalInput.observed.cp_values_deg.length, 269);
+  assert.equal(originalInput.observed.lca_values.length, 233);
+  assert.ok(
+    [
+      ...originalInput.observed.cp_values_deg,
+      ...originalInput.observed.cp_corrupt_values_deg,
+    ].every((v) => v >= -180 && v <= 180),
+  );
+  assert.ok(
+    [...originalInput.observed.lca_values, ...originalInput.observed.lca_corrupt_values].every(
+      (v) => v >= -18 && v <= 3,
+    ),
+    'Full log-amplitude outlier range retained',
+  );
+  for (const c of originalInput.closure_controls) {
+    const order = originalStationOrder(c);
+    assert.equal(new Set(order).size, c.stations.length);
+    if (c.kind === 'amplitude') {
+      for (const [i, pair] of c.pairs.entries()) {
+        const positions = pair.map((v) => order.indexOf(v));
+        if (c.signs[i] < 0)
+          assert.equal(
+            positions[0] % 2,
+            positions[1] % 2,
+            'Negative edges use separate vertical columns',
+          );
+        else
+          assert.equal(
+            Math.floor(positions[0] / 2),
+            Math.floor(positions[1] / 2),
+            'Positive edges use separate horizontal rows',
+          );
+      }
+    }
+    assert.ok(Math.abs(c.combined_before - c.combined_after) < 1e-10);
+    assert.ok(c.pairs.flat().every((s) => c.stations.includes(s)));
+    assert.ok(c.baseline_indices.every((i) => i >= 0 && i < 421));
+  }
+  assert.equal(originalData.images.length, 6);
+  for (const image of [...originalData.images, originalReference.truth]) {
+    assert.deepEqual(Array.from(image.shape), [64, 64]);
+    assert.deepEqual(Array.from(image.range), [1e-6, 0.34]);
+    assert.ok(image.stored_sum > 0);
+  }
+  assert.ok(originalReference.generic.every((s) => s.passed === null));
+  assert.equal(originalReference.physical_truth.ncc, 1);
+  assert.ok(
+    originalReference.physical_truth.nrmse > 0,
+    'Physical and scorer reference scales differ',
+  );
+  assert.notEqual(originalReference.native[5].nrmse, originalReference.generic[5].nrmse);
+  assert.ok(originalReference.fallback.nrmse > 1);
   const features = plans.find((p) => p.recipe === 'imaging101-eht-features-dynamic-v1');
   assert(features);
   for (const scene of ['inputs', 'reference']) {

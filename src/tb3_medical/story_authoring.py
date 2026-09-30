@@ -155,6 +155,7 @@ def new(
         if recipe == "history-sourcing-v1":
             beat["scene"] = "retrieval"
         if recipe in {
+            "imaging101-eht-original-v1",
             "imaging101-eht-features-dynamic-v1",
             "imaging101-eht-dynamic-v1",
             "imaging101-eht-uq-v1",
@@ -283,6 +284,8 @@ def new(
         if recipe == "healthagentbench-tumor-tiles-v1":
             beat["scene"] = "input"
         if recipe == "healthagentbench-cxr-correction-v1":
+            beat["scene"] = "input"
+        if recipe in {"bcer-brain-grade-v1", "bcer-cardiac-full-v1", "bcer-brain-full-v1"}:
             beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":
             beat["scene"] = "pair"

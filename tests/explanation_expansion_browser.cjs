@@ -25,6 +25,9 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'bcer-brain-full-v1',
+  'bcer-cardiac-full-v1',
+  'bcer-brain-grade-v1',
   'healthagentbench-cxr-correction-v1',
   'healthagentbench-tumor-tiles-v1',
   'radagent-report-v1',
@@ -83,6 +86,30 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'bcer-brain-full-v1')
+    return {
+      scene: 'data-intb-scene',
+      reference: '[data-intb-private-reference]',
+      referenceChannel: null,
+      output: '[data-intb-output-schema]',
+      aside: '[data-intb-aside]',
+    };
+  if (plan.recipe === 'bcer-cardiac-full-v1')
+    return {
+      scene: 'data-intb-scene',
+      reference: '[data-intb-private-reference]',
+      referenceChannel: null,
+      output: '[data-intb-output-schema]',
+      aside: '[data-intb-aside]',
+    };
+  if (plan.recipe === 'bcer-brain-grade-v1')
+    return {
+      scene: 'data-intb-scene',
+      reference: '[data-intb-private-reference]',
+      referenceChannel: null,
+      output: '[data-intb-output-schema]',
+      aside: '[data-intb-aside]',
+    };
   if (plan.recipe === 'healthagentbench-cxr-correction-v1')
     return {
       scene: 'data-inta-scene',
@@ -457,6 +484,24 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'bcer-brain-full-v1': [
+      /BCER|ABRA|source|unavailable|metadata/i,
+      'https://www.med.upenn.edu/cbica/brats2021/',
+      'data-intb-scene',
+      false,
+    ],
+    'bcer-cardiac-full-v1': [
+      /BCER|ABRA|source|unavailable|metadata/i,
+      'https://www.creatis.insa-lyon.fr/Challenge/acdc/databases.html',
+      'data-intb-scene',
+      false,
+    ],
+    'bcer-brain-grade-v1': [
+      /BCER|ABRA|source|unavailable|metadata/i,
+      'https://www.med.upenn.edu/cbica/brats2021/',
+      'data-intb-scene',
+      false,
+    ],
     'healthagentbench-cxr-correction-v1': [
       /CT-RATE|MIMIC|CAMELYON|source|unavailable|gated|upstream/i,
       'https://physionet.org/content/mimic-cxr/2.1.0/',
@@ -903,6 +948,109 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     );
     assert.equal(await page.locator('[data-segc-training-helper]').count(), 0);
   }
+  if (plan.recipe === 'bcer-brain-full-v1') {
+    const operationIndex = plan.beats.findIndex((b) => b.scene === 'operation');
+    await page.locator(`[data-story-step="${operationIndex}"]`).click();
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const panel = page.locator('[data-brain-full-focus]');
+    assert.equal(await panel.getAttribute('data-brain-full-focus'), 'registration');
+    await page.getByRole('button', { name: '04 Report', exact: true }).click();
+    assert.match(
+      await panel.innerText(),
+      /does not directly read the grade classifier.*skipped conditional registration/s,
+    );
+    assert.match(await panel.innerText(), /VLM\/QC.*none ran/s);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-brain-report.png`) });
+    await page.getByRole('button', { name: '02 Segmentation', exact: true }).click();
+    assert.match(await panel.innerText(), /ellipsoid.*Missing bundle.*raise/s);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-brain-fallback.png`) });
+    await page.getByRole('button', { name: '03 Features → grade', exact: true }).click();
+    assert.match(await panel.innerText(), /uncalibrated.*unset/s);
+    await page.getByRole('button', { name: 'Follow story focus', exact: true }).click();
+    assert.equal(await panel.getAttribute('data-brain-full-focus'), 'registration');
+    await page.getByRole('button', { name: '04 Report', exact: true }).click();
+    await page.locator('[data-story-step="0"]').click();
+    await page.locator(`[data-story-step="${operationIndex}"]`).click();
+    assert.equal(await panel.getAttribute('data-brain-full-focus'), 'registration');
+    assert.equal(await page.locator('[data-intb-scene] img').count(), 0);
+  }
+  if (plan.recipe === 'bcer-cardiac-full-v1') {
+    const operationIndex = plan.beats.findIndex((b) => b.scene === 'operation');
+    await page.locator(`[data-story-step="${operationIndex}"]`).click();
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    assert.equal(
+      await page.locator('[data-phase-mode]').getAttribute('data-phase-mode'),
+      'single_3d',
+    );
+    await page.getByRole('button', { name: 'Raw cine H5', exact: true }).click();
+    assert.match(await page.locator('[data-cine-route]').innerText(), /Conditional reconstruction/);
+    await page.getByRole('button', { name: '4D without valid ED/ES', exact: true }).click();
+    assert.match(
+      await page.locator('[data-phase-mode]').innerText(),
+      /all frames.*LV-volume extrema/,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-cine-branches.png`) });
+    await page.getByRole('button', { name: '4D with valid Info.cfg ED/ES', exact: true }).click();
+    assert.match(await page.locator('[data-phase-mode]').innerText(), /1-based.*zero-based/);
+    await page.getByRole('button', { name: 'One 3D phase', exact: true }).click();
+    assert.match(await page.locator('[data-phase-mode]').innerText(), /No temporal curve/);
+    assert.match(
+      await page.locator('[data-cardiac-cine-mechanism]').innerText(),
+      /Parallel required artifact.*Classifier does not read feature CSV/s,
+    );
+    await page.getByRole('button', { name: 'Follow story focus', exact: true }).click();
+    assert.equal(await page.locator('[data-cine-route]').getAttribute('data-cine-route'), 'nifti');
+    await page.getByRole('button', { name: 'Raw cine H5', exact: true }).click();
+    await page.locator('[data-story-step="0"]').click();
+    await page.locator(`[data-story-step="${operationIndex}"]`).click();
+    assert.equal(await page.locator('[data-cine-route]').getAttribute('data-cine-route'), 'nifti');
+    assert.equal(
+      await page.locator('[data-phase-mode]').getAttribute('data-phase-mode'),
+      'single_3d',
+    );
+    const limitsIndex = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${limitsIndex}"]`).click();
+    assert.match(
+      await page.locator('[data-intb-limits]').innerText(),
+      /Info.cfg Group.*ground_truth_group.*does not prove answer isolation/s,
+    );
+    assert.equal(await page.locator('[data-intb-scene] img').count(), 0);
+  }
+  if (plan.recipe === 'bcer-brain-grade-v1') {
+    const operationIndex = plan.beats.findIndex((b) => b.scene === 'operation');
+    await page.locator(`[data-story-step="${operationIndex}"]`).click();
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const focus = page.locator('[data-stage-focus]');
+    assert.equal(await focus.getAttribute('data-stage-focus'), 'identify_sequences');
+    await page.getByRole('button', { name: '4. classify brain glioma grade', exact: true }).click();
+    assert.equal(await focus.getAttribute('data-stage-focus'), 'classify_brain_glioma_grade');
+    assert.match(await focus.innerText(), /≥35 ml.*texture fields.*uncalibrated/s);
+    assert.match(await focus.innerText(), /Predicted grade: unset/);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-grade-rule.png`) });
+    await page.getByRole('button', { name: '3. extract roi features', exact: true }).click();
+    assert.match(await focus.innerText(), /resampled.*spacing product/s);
+    await page.getByRole('button', { name: '2. brats mri segmentation', exact: true }).click();
+    assert.match(await focus.innerText(), /heuristic fallback.*Missing bundle/s);
+    await page.getByRole('button', { name: 'Follow story focus', exact: true }).click();
+    assert.equal(await focus.getAttribute('data-stage-focus'), 'identify_sequences');
+    await page.getByRole('button', { name: '4. classify brain glioma grade', exact: true }).click();
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await page.locator('[data-intb-image-state="unavailable"]').count(), 1);
+    await page.locator(`[data-story-step="${operationIndex}"]`).click();
+    assert.equal(await focus.getAttribute('data-stage-focus'), 'identify_sequences');
+    assert.equal(await page.locator('[data-intb-scene] img').count(), 0);
+  }
   if (plan.recipe === 'healthagentbench-cxr-correction-v1') {
     const operationIndex = plan.beats.findIndex((b) => b.scene === 'operation');
     await page.locator(`[data-story-step="${operationIndex}"]`).click();
@@ -1115,6 +1263,7 @@ withBrowser(async (browser) => {
           'mask-screen-v1',
           'anatomy-curation-v1',
           'ct-context-v1',
+          'imaging101-eht-original-v1',
           'imaging101-eht-features-dynamic-v1',
           'imaging101-eht-dynamic-v1',
           'imaging101-eht-uq-v1',
@@ -1221,6 +1370,32 @@ withBrowser(async (browser) => {
           Math.floor((helper.startFrame + helper.endFrame) / 2),
           helper.startFrame + Math.floor(0.85 * (helper.endFrame - helper.startFrame)),
         );
+      }
+      if (plan.recipe === 'imaging101-eht-original-v1') {
+        const selections = {
+          inputs: 21,
+          closures: 6,
+          observables: 2,
+          imaging: 4,
+          outputs: 3,
+          scoring: 4,
+          limits: 4,
+        };
+        for (const b of plan.beats) {
+          frames.push(b.startFrame);
+          if (b.scene === 'reference') {
+            frames.push(Math.floor((b.startFrame + b.endFrame) / 2) - 1);
+            frames.push(Math.floor((b.startFrame + b.endFrame) / 2));
+            for (const fraction of Array.from({ length: 3 }, (_, i) => 0.5 + (i + 0.5) / 6))
+              frames.push(Math.floor(b.startFrame + fraction * (b.endFrame - b.startFrame)));
+          } else {
+            const count = selections[b.scene];
+            for (let i = 0; i < count; i++)
+              frames.push(
+                Math.floor(b.startFrame + ((i + 0.5) / count) * (b.endFrame - b.startFrame)),
+              );
+          }
+        }
       }
       if (plan.recipe === 'imaging101-eht-features-dynamic-v1') {
         const selections = {
@@ -1868,6 +2043,75 @@ withBrowser(async (browser) => {
           if (frame === 0) assert.equal(await page.locator('[data-analysis-reference]').count(), 0);
         }
         await checkCardiacFrame(page, plan, frame);
+        if (plan.recipe === 'imaging101-eht-original-v1') {
+          const name = await page
+            .locator('[data-original-scene]')
+            .getAttribute('data-original-scene');
+          const beat = plan.beats.find((b) => b.scene === name);
+          const progress = (frame - beat.startFrame) / (beat.endFrame - beat.startFrame - 1);
+          const revealed = name === 'scoring' || (name === 'reference' && progress > 0.5);
+          assert.equal(await page.locator('[data-original-reference]').count(), revealed ? 1 : 0);
+          if (name === 'imaging')
+            assert.equal(await page.locator('[data-original-panel]').count(), 1);
+          if (name === 'outputs')
+            assert.equal(await page.locator('[data-original-panel]').count(), 2);
+          if (name === 'reference' && revealed) {
+            assert.equal(await page.locator('[data-original-panel]').count(), 3);
+            assert.equal(
+              Number(
+                await page.locator('[data-original-choice]').getAttribute('data-original-choice'),
+              ),
+              Math.min(2, Math.max(0, Math.floor((progress - 0.5) * 6))),
+            );
+          }
+          const choices = { closures: 6, imaging: 4, outputs: 3, scoring: 4, limits: 4 };
+          if (choices[name])
+            assert.equal(
+              Number(
+                await page.locator('[data-original-choice]').getAttribute('data-original-choice'),
+              ),
+              Math.min(choices[name] - 1, Math.floor(progress * choices[name])),
+            );
+          for (const selector of [
+            '.scene-player > header',
+            '[data-original-scene]',
+            '[data-original-output]',
+            '.scene-legend',
+          ]) {
+            const box = await page.locator(selector).boundingBox();
+            assert.ok(
+              box && box.y + box.height <= 720,
+              'Static closure clipping ' + selector + ' frame ' + frame,
+            );
+            assert.ok(
+              await page.locator(selector).evaluate((e) => {
+                if (!e.hasAttribute('data-original-scene'))
+                  return e.scrollHeight <= e.clientHeight && e.scrollWidth <= e.clientWidth;
+                // Overflowing trailing padding does not clip content. Check rendered
+                // text fragments and image bounds against the actual clipping box.
+                const box = e.getBoundingClientRect();
+                const inside = (r) =>
+                  r.width === 0 ||
+                  r.height === 0 ||
+                  (r.left >= box.left &&
+                    r.top >= box.top &&
+                    r.right <= box.right &&
+                    r.bottom <= box.bottom);
+                const walker = document.createTreeWalker(e, NodeFilter.SHOW_TEXT);
+                while (walker.nextNode()) {
+                  if (!walker.currentNode.textContent.trim()) continue;
+                  const range = document.createRange();
+                  range.selectNodeContents(walker.currentNode);
+                  if (!Array.from(range.getClientRects()).every(inside)) return false;
+                }
+                return Array.from(e.querySelectorAll('svg,img')).every((n) =>
+                  inside(n.getBoundingClientRect()),
+                );
+              }),
+              'Static closure overflow ' + selector + ' frame ' + frame,
+            );
+          }
+        }
         if (plan.recipe === 'imaging101-eht-features-dynamic-v1') {
           const name = await page
             .locator('[data-features-scene]')
@@ -3266,6 +3510,39 @@ withBrowser(async (browser) => {
     );
     await page.locator('.scene-player').screenshot({ path: path.join(out, 'mobile.png') });
     await reviewCardiacInteractions(page, plan, out, 'mobile');
+    if (plan.recipe === 'imaging101-eht-original-v1') {
+      for (let step = 1; step < plan.beats.length; step++) {
+        await page.locator(`[data-story-step="${step}"]`).click();
+        await page.waitForFunction(
+          (f) =>
+            document.querySelector('.scene-player')?.getAttribute('data-committed-frame') ===
+            String(f),
+          plan.beats[step].startFrame,
+        );
+        assert.ok(
+          await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+          'Static closure mobile overflow',
+        );
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `mobile-chapter-${step}.png`) });
+      }
+      await page.locator('[data-story-step="5"]').click();
+      assert.equal(await page.locator('[data-original-reference]').count(), 0);
+      await page.locator('.scene-play').click();
+      await page.locator('[data-original-reference]').first().waitFor({ timeout: 20000 });
+      await page.locator('.scene-play').click();
+      assert.equal(await page.locator('[data-original-reference]').count(), 1);
+      assert.ok(
+        await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+        'Static closure mobile reference overflow',
+      );
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(out, 'mobile-reference-revealed.png') });
+      await page.locator('.scene-reset').click();
+      assert.equal(await page.locator('[data-original-reference]').count(), 0);
+    }
     if (plan.recipe === 'imaging101-eht-features-dynamic-v1') {
       for (let step = 1; step < plan.beats.length; step++) {
         await page.locator(`[data-story-step="${step}"]`).click();
@@ -4022,6 +4299,9 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'bcer-brain-full-v1',
+      'bcer-cardiac-full-v1',
+      'bcer-brain-grade-v1',
       'healthagentbench-cxr-correction-v1',
       'healthagentbench-tumor-tiles-v1',
       'radagent-report-v1',
@@ -4036,6 +4316,7 @@ withBrowser(async (browser) => {
       'automed-full-liver-v1',
       'automed-full-kidney-v1',
       'automed-full-hepaticvessel-v1',
+      'imaging101-eht-original-v1',
       'imaging101-eht-features-dynamic-v1',
       'imaging101-eht-dynamic-v1',
       'imaging101-eht-uq-v1',
@@ -4120,6 +4401,17 @@ withBrowser(async (browser) => {
     ].includes(plan.recipe);
     assert.equal(renderer, planar ? 'planar' : 'poster');
     await reviewCardiacInteractions(fallback, plan, out, 'no-gpu');
+    if (plan.recipe === 'imaging101-eht-original-v1') {
+      for (const step of [1, 3, 6]) {
+        await fallback.locator(`[data-story-step="${step}"]`).click();
+        await fallback.locator(`[data-original-scene="${plan.beats[step].scene}"]`).waitFor();
+        await fallback
+          .locator('.scene-player')
+          .screenshot({ path: path.join(out, `no-gpu-${plan.beats[step].scene}.png`) });
+      }
+      await fallback.locator('.scene-reset').click();
+      await fallback.locator('[data-original-scene="inputs"]').waitFor();
+    }
     if (plan.recipe === 'imaging101-eht-features-dynamic-v1') {
       for (const step of [1, 3, 6]) {
         await fallback.locator(`[data-story-step="${step}"]`).click();
@@ -5560,6 +5852,23 @@ withBrowser(async (browser) => {
       id: 'imaging101-eht-black-hole-feature-extraction-dynamic',
       modelAndReset: true,
     });
+    await page.evaluate(() => {
+      location.hash = 'imaging101-eht-black-hole-original/0/overview?view=repository';
+    });
+    await page.waitForFunction(
+      () =>
+        document.querySelector('.scene-player')?.getAttribute('data-recipe') ===
+        'imaging101-eht-original-v1',
+    );
+    await page.locator('[data-story-step="1"]').click();
+    await page.locator('[data-original-scene="closures"]').waitFor();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(folder, 'integrated-eht-original.png') });
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-original-scene="inputs"]').waitFor();
+    assert.equal(await page.locator('[data-original-reference]').count(), 0);
+    report.navigation.push({ id: 'imaging101-eht-black-hole-original', closuresAndReset: true });
   }
   for (const entry of currentBatch.entries.filter((e) => cardiacRecipes.has(e.recipe))) {
     const plan = JSON.parse(fs.readFileSync(path.join(folder, entry.story_id, 'plan.json')));

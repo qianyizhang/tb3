@@ -28,6 +28,7 @@ class ExpansionTests(unittest.TestCase):
                     "mask-screen-v1",
                     "anatomy-curation-v1",
                     "ct-context-v1",
+                    "imaging101-eht-original-v1",
                     "imaging101-eht-features-dynamic-v1",
                     "imaging101-eht-dynamic-v1",
                     "imaging101-eht-uq-v1",
@@ -117,6 +118,7 @@ class ExpansionTests(unittest.TestCase):
 
     def test_source_screen_scene_changes_require_explicit_cuts(self):
         for group, name in [
+            (None, "imaging101-eht-original"),
             (None, "imaging101-eht-features-dynamic"),
             (None, "imaging101-eht-dynamic"),
             (None, "imaging101-eht-uq"),
@@ -164,6 +166,9 @@ class ExpansionTests(unittest.TestCase):
             (None, "radagent"),
             (None, "healthagentbench-tumor-tiles"),
             (None, "healthagentbench-cxr-correction"),
+            (None, "bcer-medium-brain-grade-classify"),
+            (None, "bcer-long-cardiac-full"),
+            (None, "bcer-long-brain-full"),
             (None, "automedbench-full-aeropath-seg-task"),
             (None, "automedbench-full-vindr-cxr-det-task"),
             (None, "automedbench-full-grazpedwri-det-task"),
@@ -246,6 +251,7 @@ class ExpansionTests(unittest.TestCase):
             "registration-analysis",
             "segmentation-calibration",
             "ct-context",
+            "imaging101-eht-original",
             "imaging101-eht-features-dynamic",
             "imaging101-eht-dynamic",
             "imaging101-eht-uq",

@@ -1,5 +1,13 @@
 # Canonical task explainers
 
+`imaging101-eht-original-v1` uses all 421 native visibility rows, per-scan closures,
+six UV-matched gain controls and the six saved calibrated/corrupted outputs.
+Its [source notice](task-explorer/imaging101-eht-original/NOTICE.md) records log
+image display, original pixel sums and distinct metric conventions. `view`
+selects station pairs, controls or methods; `reference` gates truth and scores
+for readers. Actual L1–L3 expose truth. The fitting diagram is conceptual;
+no optimizer runs or new method-performance claims are implied.
+
 `imaging101-eht-features-dynamic-v1` preserves ten native snapshots, fixed station-gain
 cancellation controls, four parameter examples and histograms of every retained
 weighted sample. Its [source notice](task-explorer/imaging101-eht-features-dynamic/NOTICE.md)

@@ -2,7 +2,7 @@
 name: complete-explainers
 description: Run the TB3 scoped explainer queue with source resolution, labelled symbolic fallback, bounded delegation and source-pinned review. Use for completing or resuming multiple Task Explorer entries.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Complete explainers
@@ -52,8 +52,9 @@ receipts are execution records; they do not replace the scientific source.
 ## Delegate and integrate
 
 For authorized multi-entry production, use two bounded subagents when their work
-can proceed independently. Start with GPT-6 Sol at medium effort; raise effort for
-difficult numerical or evaluator reasoning. Give each a compact packet, exact write
+can proceed independently. Default to GPT-6.1 Sol (`gpt-6.1-sol`) at medium effort;
+preserve an explicit user model or effort choice. Raise effort for difficult
+numerical or evaluator reasoning. Give each a compact packet, exact write
 ownership, evidence requirements and a stopping condition. No recursive delegation.
 Workers must preserve concurrent edits and return files, checks, findings and gaps.
 

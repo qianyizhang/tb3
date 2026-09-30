@@ -1,0 +1,191 @@
+{
+  "acceptance_run": false,
+  "acquisition_route": "https://www.med.upenn.edu/cbica/brats2021/",
+  "actual_data_gap": "No case-matched complete four-modality MRI, saved BCER mask/features/classification or independent annotation/true grade retained.",
+  "attempts": [
+    {
+      "action": "reuse verified prior exact-domain source inventory",
+      "attempted_at": "2026-09-29T06:11:43.025466+00:00",
+      "outcome": "No matching four-modality BraTS case; source audit checked local roots. A single unrelated T1c does not constitute a case.",
+      "source": ".local/explainers/core-20260929/bcer-source/bcer-short-segment-brain/source-resolution-draft.json"
+    },
+    {
+      "action": "official BraTS access route review",
+      "attempted_at": "2026-09-29T06:11:43.025466+00:00",
+      "outcome": "Official route requires Synapse registration/data request; no anonymous matching case URL available from retained audit. No credential, form, or terms action.",
+      "source": "https://www.med.upenn.edu/cbica/brats2021/"
+    },
+    {
+      "action": "retrieve and verify pinned BCER tool source",
+      "attempted_at": "2026-09-29T06:22:21.284618+00:00",
+      "outcome": "HTTP 200; 7045 bytes; SHA-256 and Git blob SHA verified against pinned repository tree.",
+      "source": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/brain_glioma_grade_classification.py"
+    }
+  ],
+  "brief": {
+    "path": "presentation/external-tasks/briefs/bcer-medium-brain-grade-classify.md",
+    "role": "staged revised brief",
+    "sha256": "c4d91d2a32b20cea7d2609898c5ce9a62fb8cfa7346eb9c14d036c37c3843d84"
+  },
+  "entry_id": "bcer-medium-brain-grade-classify",
+  "evaluator_run": false,
+  "feature_tool_rule": {
+    "mask_alignment": "Resamples selected ROI mask into each image sequence grid before feature extraction.",
+    "source": "tools/roi_features.py",
+    "volume_ml": "Selected ROI voxel count \u00d7 image-grid spacing product in mm3 \u00f7 1000. No patient value retained."
+  },
+  "grade_tool_rule": {
+    "confidence": "Deterministic 0.60 base + volume-margin term when volume exists + up to 0.10 texture-availability bonus, capped at 0.95; not calibrated.",
+    "default_threshold_ml": 35.0,
+    "missing_volume_fallback": "At least two of four named texture fields have parseable values \u2192 HGG; otherwise LGG. Presence count, not learned radiomic threshold or tie-breaker.",
+    "observed_case_grade": null,
+    "row_selection": "Prefer whole-tumor aliases; otherwise all CSV rows.",
+    "source": "tools/brain_glioma_grade_classification.py",
+    "threshold_comparison": "inclusive >= predicts HGG; below predicts LGG",
+    "volume_selection": "Maximum valid nonnegative volume_ml from selected rows."
+  },
+  "illustration_basis": "symbolic",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Acquire authorized matching source images and preserve geometry, then independently verify target/output and reference roles before source-derived render.",
+  "resolved_at": "2026-09-30T05:56:59.361372+00:00",
+  "schema": 1,
+  "segmentation_caveat": "Pinned segmentation source runs a heuristic FLAIR/T1c fallback only when required libraries are unavailable. Its bundle branch may re-raise on missing bundle; a comment suggesting missing-bundle fallback is not operative proof. Source labels 1/2/4 are declared outputs, not verified ground truth. Neither branch executed for this explainer.",
+  "source_alignment_caveat": "The official BraTS 2021 Task 2 predicts MGMT methylation, not HGG/LGG. BCER grade classification is its own rule-based HGG/LGG workflow; a BraTS image alone does not provide case-matched HGG/LGG truth.",
+  "source_commit": "d10816712793a9e27f2e70640f9afc06f08a0c5c",
+  "source_license": "MIT BCER code; no patient image bytes redistributed",
+  "source_pins": [
+    {
+      "bytes": 23613,
+      "path": ".local/explainers/completion-20260927/038-source/configs/tasks_registry.json",
+      "role": "task-contract",
+      "sha256": "dd69419af8e633d24e7f41c38d24a7d84ba9c20b9726a91a6b2f726e37fc669c",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/configs/tasks_registry.json"
+    },
+    {
+      "bytes": 99840,
+      "path": ".local/explainers/completion-20260927/038-source/benchmark/benchmark_runner.py",
+      "role": "benchmark-evaluator",
+      "sha256": "288539631cf0bdd802cbb6570a52a0dcdba25e7377eeab9e29c66395724fbde6",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/benchmark/benchmark_runner.py"
+    },
+    {
+      "bytes": 6459,
+      "path": ".local/explainers/completion-20260927/038-source/docs/DATASETS.md",
+      "role": "dataset-layout",
+      "sha256": "c84cca650f47f7a2b8197e1f8a3c0a0fa5c8d930e093c6f82965cb7bb2a12841",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/docs/DATASETS.md"
+    },
+    {
+      "bytes": 1079,
+      "path": ".local/explainers/completion-20260927/038-source/LICENSE",
+      "role": "code-license",
+      "sha256": "b1099da8a60c97630f5e5f65a523fe21085e27c00a6b025ff0ef96055e7414a5",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/LICENSE"
+    },
+    {
+      "bytes": 14493,
+      "path": ".local/explainers/core-20260929/bcer-source/bcer-short-segment-brain/pinned-brain-tumor-segmentation.py",
+      "role": "segmentation-tool-source",
+      "sha256": "b89e305bc50ec0b053cff85c35d885d5130fc28d32785826398c362b2f43c497",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/brain_tumor_segmentation.py"
+    },
+    {
+      "bytes": 7045,
+      "git_blob_sha": "9d41db38714f6652df9d0c0cc6a228de3c5b16a5",
+      "path": ".local/explainers/core-20260929/interpretation-b-source/bcer-medium-brain-grade-classify/brain_glioma_grade_classification.py",
+      "role": "pinned-tool-source",
+      "sha256": "115bb472a4d8ce5322d49cbdc42cfd07a02b11ca30b43720e88c54a2d17e92c3",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/brain_glioma_grade_classification.py"
+    },
+    {
+      "bytes": 74554,
+      "git_blob_sha": "0e8c88e7d04785401ef0b4fe18eaed2d2217f99b",
+      "local_path": ".local/explainers/completion-20260927/038-source/tools/roi_features.py",
+      "path": ".local/explainers/completion-20260927/038-source/tools/roi_features.py",
+      "role": "pinned-feature-tool-source",
+      "sha256": "ef5651fc7bc04a55d332aa6995bd646f6a6a9ab2d22030cf00405ff10529ba1d",
+      "url": "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/roi_features.py"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "Participant-produced tumor mask, ROI-feature CSV, classification JSON and stage trace; none retained.",
+    "evaluator": "Four required stage-success checks plus two artifact-path checks determine structural TCR denominator 6; grade-tool success and two format invariants separately. No grade-truth comparison.",
+    "helper": "BCER case manifest, state/artifact registry, callable tools and pinned source code. No retained case feature values.",
+    "input": "One case-matched T1, T1c, T2 and FLAIR MRI set, absent locally. These are the task input, not a private reference.",
+    "private_reference": "An independent case-matched tumor annotation and true HGG/LGG grade would be references for accuracy questions; neither retained or used by the pinned structural scorer. This is a role/absence claim, not proof of runtime filesystem isolation."
+  },
+  "status": "reviewable-refined-symbolic-draft",
+  "structural_score_boundary": {
+    "accuracy": "No comparison to independent annotation or grade diagnosis.",
+    "invariants": "feature CSV at least one row; predicted_grade JSON field value not in (None, empty string, empty list, empty object). This does not enforce HGG/LGG enum.",
+    "success_criteria": "grade-classification tool success separately",
+    "tcr_denominator": "4 required tool successes + 2 artifact-path checks = 6"
+  },
+  "task": "medium_brain_grade_classify",
+  "task_contract": {
+    "benchmark_runner_contract_source": "configs/tasks_registry.json, selected by benchmark_runner.py --tasks-registry default",
+    "conditional_registration": null,
+    "domain": [
+      "brain"
+    ],
+    "evaluation_boundary": "tool success, path/format and nonempty fields; no image overlap, grade truth or diagnostic adjudication",
+    "goal_template": "Task: medium_brain_grade_classify. Requested workflow type: classify. Domain: {domain}. Case ID: {case_id}. Run identify->segment->features->grade-classify chain and predict HGG or LGG from tumor features. Case root: {case_root}.",
+    "invariants": [
+      {
+        "data_key": "feature_table_path",
+        "id": "brain_features_non_empty",
+        "min_rows": 1,
+        "tool": "extract_roi_features",
+        "type": "csv_non_empty"
+      },
+      {
+        "data_key": "classification_path",
+        "id": "brain_grade_non_empty",
+        "json_field": "predicted_grade",
+        "tool": "classify_brain_glioma_grade",
+        "type": "json_field_non_empty"
+      }
+    ],
+    "required_artifacts": [
+      {
+        "data_key": "feature_table_path",
+        "id": "brain_features",
+        "must_exist": true,
+        "tool": "extract_roi_features"
+      },
+      {
+        "data_key": "classification_path",
+        "id": "brain_grade",
+        "must_exist": true,
+        "tool": "classify_brain_glioma_grade"
+      }
+    ],
+    "required_modalities": {
+      "brain": {
+        "all_of": [
+          "T1",
+          "T1c",
+          "T2",
+          "FLAIR"
+        ]
+      }
+    },
+    "required_stage_success": [
+      "identify_sequences",
+      "brats_mri_segmentation",
+      "extract_roi_features",
+      "classify_brain_glioma_grade"
+    ],
+    "success_criteria": {
+      "all": [
+        {
+          "tool": "classify_brain_glioma_grade",
+          "type": "tool_success"
+        }
+      ]
+    }
+  },
+  "top_warning": "Symbolic BCER workflow: no case-matched four-modality MRI, participant output, or independent grade reference. Obtain authorized data through official BraTS route; BraTS MGMT labels do not supply HGG/LGG truth."
+}

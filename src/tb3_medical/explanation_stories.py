@@ -44,6 +44,9 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "bcer-brain-full-v1": "retained-bcer-long-brain-full-workflow-v1",
+    "bcer-cardiac-full-v1": "retained-bcer-long-cardiac-full-workflow-v1",
+    "bcer-brain-grade-v1": "retained-bcer-medium-brain-grade-classify-workflow-v1",
     "healthagentbench-cxr-correction-v1": "retained-healthagentbench-cxr-correction-interpretation-v1",
     "healthagentbench-tumor-tiles-v1": "retained-healthagentbench-tumor-tiles-symbolic-v2",
     "radagent-report-v1": "retained-radagent-interpretation-v1",
@@ -92,6 +95,7 @@ RECIPE_PACKS = {
     "cardiac-material-v1": "retained-cardiac-material-v1",
     "cardiac-anchor-v1": "retained-cardiac-anchor-v1",
     "cardiac-contour-v1": "retained-cardiac-contour-v1",
+    "imaging101-eht-original-v1": "retained-imaging101-eht-original-v1",
     "imaging101-eht-features-dynamic-v1": "retained-imaging101-eht-features-dynamic-v1",
     "imaging101-eht-dynamic-v1": "retained-imaging101-eht-dynamic-v1",
     "imaging101-eht-uq-v1": "retained-imaging101-eht-uq-v1",
@@ -146,6 +150,21 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-bcer-long-brain-full-workflow-v1": (
+        "source-records",
+        None,
+        {"DATA-LICENSE.txt", "NOTICE.md", "operation.json", "output.json", "source.json"},
+    ),
+    "retained-bcer-long-cardiac-full-workflow-v1": (
+        "source-records",
+        None,
+        {"DATA-LICENSE.txt", "NOTICE.md", "operation.json", "output.json", "source.json"},
+    ),
+    "retained-bcer-medium-brain-grade-classify-workflow-v1": (
+        "source-records",
+        None,
+        {"DATA-LICENSE.txt", "NOTICE.md", "operation.json", "output.json", "source.json"},
+    ),
     "retained-healthagentbench-cxr-correction-interpretation-v1": (
         "source-records",
         None,
@@ -883,6 +902,18 @@ SOURCE_REFERENCE_PACKS = {
         "reference.json",
         {"source.json", "output.json", "reference.json", "NOTICE.md"},
     ),
+    "retained-imaging101-eht-original-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "inputs.json",
+            "reference.json",
+            "contract.json",
+            "NOTICE.md",
+            "DATA-LICENSE.txt",
+            "BENCHMARK-LICENSE.txt",
+        },
+    ),
     "retained-imaging101-eht-features-dynamic-v1": (
         "source-records",
         "reference.json",
@@ -1423,6 +1454,11 @@ class RegistrationAnalysisChannels(Closed):
     curve: Pair
 
 
+class Imaging101EhtOriginalChannels(Closed):
+    view: Pair
+    reference: Pair
+
+
 class Imaging101EhtFeaturesDynamicChannels(Closed):
     view: Pair
     reference: Pair
@@ -1849,6 +1885,24 @@ class InterpretationAHealthagentbenchCxrCorrectionChannels(Closed):
     reference: Pair
 
 
+class InterpretationBBcerMediumBrainGradeClassifyChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class InterpretationBBcerLongCardiacFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
 class CardiacMaterialChannels(Closed):
     phase: Pair
     helper: Pair
@@ -2234,6 +2288,24 @@ class RegistrationAnalysisBeat(ExpansionBeat[RegistrationAnalysisChannels]):
 class RegistrationAnalysisStory(Story[RegistrationAnalysisChannels]):
     recipe: Literal["registration-analysis-v1"]
     beats: tuple[RegistrationAnalysisBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class Imaging101EhtOriginalBeat(ExpansionBeat[Imaging101EhtOriginalChannels]):
+    scene: Literal[
+        "inputs", "closures", "observables", "imaging", "outputs", "reference", "scoring", "limits"
+    ]
+
+
+class Imaging101EhtOriginalStory(Story[Imaging101EhtOriginalChannels]):
+    recipe: Literal["imaging101-eht-original-v1"]
+    beats: tuple[Imaging101EhtOriginalBeat, ...]
 
     @model_validator(mode="after")
     def scene_cuts(self) -> Self:
@@ -3579,6 +3651,60 @@ class InterpretationAHealthagentbenchCxrCorrectionStory(
         return self
 
 
+class InterpretationBBcerMediumBrainGradeClassifyBeat(
+    ExpansionBeat[InterpretationBBcerMediumBrainGradeClassifyChannels]
+):
+    scene: Literal["input", "route", "operation", "output", "limits"]
+
+
+class InterpretationBBcerMediumBrainGradeClassifyStory(
+    Story[InterpretationBBcerMediumBrainGradeClassifyChannels]
+):
+    recipe: Literal["bcer-brain-grade-v1"]
+    beats: tuple[InterpretationBBcerMediumBrainGradeClassifyBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class InterpretationBBcerLongCardiacFullBeat(
+    ExpansionBeat[InterpretationBBcerLongCardiacFullChannels]
+):
+    scene: Literal["input", "route", "operation", "output", "limits"]
+
+
+class InterpretationBBcerLongCardiacFullStory(Story[InterpretationBBcerLongCardiacFullChannels]):
+    recipe: Literal["bcer-cardiac-full-v1"]
+    beats: tuple[InterpretationBBcerLongCardiacFullBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class InterpretationBBcerLongBrainFullBeat(ExpansionBeat[InterpretationBBcerLongBrainFullChannels]):
+    scene: Literal["input", "route", "operation", "output", "limits"]
+
+
+class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFullChannels]):
+    recipe: Literal["bcer-brain-full-v1"]
+    beats: tuple[InterpretationBBcerLongBrainFullBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class CardiacMaterialBeat(ExpansionBeat[CardiacMaterialChannels]):
     scene: Literal[
         "inputs", "initial", "tracking", "tetra", "strain", "comparison", "controls", "limits"
@@ -3731,6 +3857,7 @@ AnyStory = Annotated[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101EhtOriginalStory
     | Imaging101EhtFeaturesDynamicStory
     | Imaging101EhtDynamicStory
     | Imaging101EhtUqStory
@@ -3802,6 +3929,9 @@ AnyStory = Annotated[
     | InterpretationARadagentStory
     | InterpretationAHealthagentbenchTumorTilesStory
     | InterpretationAHealthagentbenchCxrCorrectionStory
+    | InterpretationBBcerMediumBrainGradeClassifyStory
+    | InterpretationBBcerLongCardiacFullStory
+    | InterpretationBBcerLongBrainFullStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3833,6 +3963,7 @@ ADAPTER: TypeAdapter[
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101EhtOriginalStory
     | Imaging101EhtFeaturesDynamicStory
     | Imaging101EhtDynamicStory
     | Imaging101EhtUqStory
@@ -3904,6 +4035,9 @@ ADAPTER: TypeAdapter[
     | InterpretationARadagentStory
     | InterpretationAHealthagentbenchTumorTilesStory
     | InterpretationAHealthagentbenchCxrCorrectionStory
+    | InterpretationBBcerMediumBrainGradeClassifyStory
+    | InterpretationBBcerLongCardiacFullStory
+    | InterpretationBBcerLongBrainFullStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -4095,6 +4229,7 @@ def parse_expansion(
     | ResectPilotStory
     | ResectStory
     | RegistrationAnalysisStory
+    | Imaging101EhtOriginalStory
     | Imaging101EhtFeaturesDynamicStory
     | Imaging101EhtDynamicStory
     | Imaging101EhtUqStory
@@ -4166,6 +4301,9 @@ def parse_expansion(
     | InterpretationARadagentStory
     | InterpretationAHealthagentbenchTumorTilesStory
     | InterpretationAHealthagentbenchCxrCorrectionStory
+    | InterpretationBBcerMediumBrainGradeClassifyStory
+    | InterpretationBBcerLongCardiacFullStory
+    | InterpretationBBcerLongBrainFullStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -4436,6 +4574,21 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-TB3-symbolic-teaching",
                 "LicenseRef-TB3-symbolic-teaching",
             ),
+            "retained-bcer-medium-brain-grade-classify-workflow-v1": (
+                "symbolic-task-workflow",
+                "LicenseRef-BCER-MIT-symbolic-teaching",
+                None,
+            ),
+            "retained-bcer-long-cardiac-full-workflow-v1": (
+                "symbolic-task-workflow",
+                "LicenseRef-BCER-MIT-symbolic-teaching",
+                None,
+            ),
+            "retained-bcer-long-brain-full-workflow-v1": (
+                "symbolic-task-workflow",
+                "LicenseRef-BCER-MIT-symbolic-teaching",
+                None,
+            ),
             "retained-cardiac-material-v1": (
                 "STRAUS-patient01-healthy-canonical",
                 "LicenseRef-STRAUS-local-noncommercial",
@@ -4450,6 +4603,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "FeEcho4D-native",
                 "LicenseRef-FeEcho4D-noncommercial-research",
                 "LicenseRef-FeEcho4D-noncommercial-research",
+            ),
+            "retained-imaging101-eht-original-v1": (
+                "source-record",
+                "LicenseRef-Imaging101-EHT-original-sources",
+                "MIT",
             ),
             "retained-imaging101-eht-features-dynamic-v1": (
                 "source-record",
@@ -4571,11 +4729,18 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 else "none"
                 if pack_id == "retained-healthagentbench-cxr-correction-interpretation-v1"
                 else "none"
+                if pack_id == "retained-bcer-medium-brain-grade-classify-workflow-v1"
+                else "none"
+                if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
+                else "none"
+                if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "none"
                 if pack_id == "symbolic-report-reading-v1"
                 else "fraction/pixel"
                 if pack_id
                 in {
                     "retained-imaging101-eht-features-dynamic-v1",
+                    "retained-imaging101-eht-original-v1",
                 }
                 else "Jy/pixel"
                 if pack_id

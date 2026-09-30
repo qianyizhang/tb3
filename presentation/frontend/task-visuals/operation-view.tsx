@@ -1,3 +1,4 @@
+import { InterpretationBScene, InterpretationBOutput } from './interpretation-b-panels';
 import { InterpretationAScene, InterpretationAOutput } from './interpretation-a-panels';
 import { AutomedSegDScene, AutomedSegDOutput } from './automed-seg-d-panels';
 import { AutoMedSegCScene, AutoMedSegCOutput } from './automed-full-seg-c-panels';
@@ -21,6 +22,7 @@ import { CardiacRealEchoScene, CardiacRealEchoOutput } from './cardiac-real-echo
 import { CardiacMaterialScene, CardiacMaterialOutput } from './cardiac-material-panels';
 import { CardiacAnchorScene, CardiacAnchorOutput } from './cardiac-anchor-panels';
 import { CardiacContourScene, CardiacContourOutput } from './cardiac-contour-panels';
+import { EhtOriginalScene, EhtOriginalOutput } from './imaging101-eht-original-panels';
 import { EhtFeaturesScene, EhtFeaturesOutput } from './imaging101-eht-features-dynamic-panels';
 import { EhtDynamicScene, EhtDynamicOutput } from './imaging101-eht-dynamic-panels';
 import { EhtScene, EhtOutput } from './imaging101-eht-uq-panels';
@@ -166,6 +168,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   if (state.recipe === 'resect-correspondence-v1') return <ResectScene state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisScene state={state} />;
+  if (state.recipe === 'imaging101-eht-original-v1') return <EhtOriginalScene state={state} />;
   if (state.recipe === 'imaging101-eht-features-dynamic-v1')
     return <EhtFeaturesScene state={state} />;
   if (state.recipe === 'imaging101-eht-dynamic-v1') return <EhtDynamicScene state={state} />;
@@ -251,6 +254,9 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
     return <InterpretationAScene state={state} />;
   if (state.recipe === 'healthagentbench-cxr-correction-v1')
     return <InterpretationAScene state={state} />;
+  if (state.recipe === 'bcer-brain-grade-v1') return <InterpretationBScene state={state} />;
+  if (state.recipe === 'bcer-cardiac-full-v1') return <InterpretationBScene state={state} />;
+  if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
   if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityScene state={state} />;
@@ -472,6 +478,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'resect-correspondence-v1') return <ResectOutput state={state} />;
   if (state.recipe === 'registration-analysis-v1')
     return <RegistrationAnalysisOutput state={state} />;
+  if (state.recipe === 'imaging101-eht-original-v1') return <EhtOriginalOutput state={state} />;
   if (state.recipe === 'imaging101-eht-features-dynamic-v1')
     return <EhtFeaturesOutput state={state} />;
   if (state.recipe === 'imaging101-eht-dynamic-v1') return <EhtDynamicOutput state={state} />;
@@ -557,6 +564,9 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
     return <InterpretationAOutput state={state} />;
   if (state.recipe === 'healthagentbench-cxr-correction-v1')
     return <InterpretationAOutput state={state} />;
+  if (state.recipe === 'bcer-brain-grade-v1') return <InterpretationBOutput state={state} />;
+  if (state.recipe === 'bcer-cardiac-full-v1') return <InterpretationBOutput state={state} />;
+  if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;
   if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityOutput state={state} />;

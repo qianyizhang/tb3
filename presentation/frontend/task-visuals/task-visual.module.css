@@ -3345,11 +3345,49 @@
   }
 }
 
+.player[data-recipe='imaging101-eht-original-v1'] .storyLayout {
+  grid-template-columns: minmax(0, 1fr) 280px;
+}
+.player[data-recipe='imaging101-eht-original-v1'] .storyOperation {
+  overflow: hidden;
+}
+.player[data-recipe='imaging101-eht-original-v1'] :global(.scene-steps) {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='imaging101-eht-original-v1']
+  .storyHeading {
+  height: 104px;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='imaging101-eht-original-v1']
+  .storyHeading
+  h3 {
+  line-height: 1.2;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='imaging101-eht-original-v1']
+  :global(.scene-steps button) {
+  min-height: 31px;
+  padding-block: 4px;
+}
+@container task-visual (max-width:900px) {
+  .player[data-recipe='imaging101-eht-original-v1'] .storyLayout {
+    grid-template-columns: 1fr;
+  }
+  .player[data-recipe='imaging101-eht-original-v1'] :global(.scene-steps) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 /* Source-derived cardiac studies share export framing, while their mechanisms differ. */
 .player:is(
     [data-recipe='cardiac-contour-v1'],
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
+    [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='bcer-cardiac-full-v1'],
+    [data-recipe='bcer-brain-grade-v1'],
     [data-recipe='healthagentbench-cxr-correction-v1'],
     [data-recipe='healthagentbench-tumor-tiles-v1'],
     [data-recipe='radagent-report-v1'],
@@ -3403,6 +3441,9 @@
     [data-recipe='cardiac-contour-v1'],
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
+    [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='bcer-cardiac-full-v1'],
+    [data-recipe='bcer-brain-grade-v1'],
     [data-recipe='healthagentbench-cxr-correction-v1'],
     [data-recipe='healthagentbench-tumor-tiles-v1'],
     [data-recipe='radagent-report-v1'],
@@ -3457,6 +3498,9 @@
     [data-recipe='cardiac-contour-v1'],
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
+    [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='bcer-cardiac-full-v1'],
+    [data-recipe='bcer-brain-grade-v1'],
     [data-recipe='healthagentbench-cxr-correction-v1'],
     [data-recipe='healthagentbench-tumor-tiles-v1'],
     [data-recipe='radagent-report-v1'],
@@ -3511,6 +3555,9 @@
     [data-recipe='cardiac-contour-v1'],
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
+    [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='bcer-cardiac-full-v1'],
+    [data-recipe='bcer-brain-grade-v1'],
     [data-recipe='healthagentbench-cxr-correction-v1'],
     [data-recipe='healthagentbench-tumor-tiles-v1'],
     [data-recipe='radagent-report-v1'],
@@ -3566,6 +3613,9 @@
     [data-recipe='cardiac-contour-v1'],
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
+    [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='bcer-cardiac-full-v1'],
+    [data-recipe='bcer-brain-grade-v1'],
     [data-recipe='healthagentbench-cxr-correction-v1'],
     [data-recipe='healthagentbench-tumor-tiles-v1'],
     [data-recipe='radagent-report-v1'],
@@ -3621,6 +3671,9 @@
     [data-recipe='cardiac-contour-v1'],
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
+    [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='bcer-cardiac-full-v1'],
+    [data-recipe='bcer-brain-grade-v1'],
     [data-recipe='healthagentbench-cxr-correction-v1'],
     [data-recipe='healthagentbench-tumor-tiles-v1'],
     [data-recipe='radagent-report-v1'],
@@ -3675,6 +3728,9 @@
       [data-recipe='cardiac-contour-v1'],
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
+      [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='bcer-cardiac-full-v1'],
+      [data-recipe='bcer-brain-grade-v1'],
       [data-recipe='healthagentbench-cxr-correction-v1'],
       [data-recipe='healthagentbench-tumor-tiles-v1'],
       [data-recipe='radagent-report-v1'],
@@ -3728,6 +3784,9 @@
       [data-recipe='cardiac-contour-v1'],
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
+      [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='bcer-cardiac-full-v1'],
+      [data-recipe='bcer-brain-grade-v1'],
       [data-recipe='healthagentbench-cxr-correction-v1'],
       [data-recipe='healthagentbench-tumor-tiles-v1'],
       [data-recipe='radagent-report-v1'],
@@ -4161,5 +4220,26 @@
 :global([data-explainer-export-frame])
   .player[data-recipe='healthagentbench-cxr-correction-v1']
   .storyOutput {
+  height: 394px;
+}
+
+:global([data-explainer-export-frame]) .player[data-recipe='bcer-brain-grade-v1'] .storyHeading {
+  height: 140px;
+}
+:global([data-explainer-export-frame]) .player[data-recipe='bcer-brain-grade-v1'] .storyOutput {
+  height: 394px;
+}
+
+:global([data-explainer-export-frame]) .player[data-recipe='bcer-cardiac-full-v1'] .storyHeading {
+  height: 140px;
+}
+:global([data-explainer-export-frame]) .player[data-recipe='bcer-cardiac-full-v1'] .storyOutput {
+  height: 394px;
+}
+
+:global([data-explainer-export-frame]) .player[data-recipe='bcer-brain-full-v1'] .storyHeading {
+  height: 140px;
+}
+:global([data-explainer-export-frame]) .player[data-recipe='bcer-brain-full-v1'] .storyOutput {
   height: 394px;
 }

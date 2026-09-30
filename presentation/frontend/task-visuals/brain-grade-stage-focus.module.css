@@ -1,0 +1,81 @@
+.root {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: 10px;
+  min-height: 270px;
+  color: #e8f4f8;
+  background: #102633;
+  padding: 10px;
+  font-size: 12px;
+  line-height: 1.35;
+}
+.stages {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+}
+.stages button {
+  appearance: none;
+  text-align: left;
+  border: 1px solid #49687a;
+  background: #193847;
+  color: #e8f4f8;
+  padding: 7px 9px;
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1.35;
+}
+.stages button[aria-pressed='true'] {
+  border-color: #18c6d4;
+  background: #235364;
+}
+.detail {
+  border: 1px solid #49687a;
+  background: #173441;
+  padding: 9px;
+  min-width: 0;
+}
+.detail h3 {
+  margin: 0 0 7px;
+  font-size: 1rem;
+  color: #fff;
+}
+.detail .stageTitle {
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.2;
+}
+.detail dl {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 4px;
+  margin: 0;
+}
+.detail dt {
+  color: #9bc3d2;
+}
+.detail dd {
+  margin: 0;
+}
+.detail p {
+  margin: 8px 0 0;
+  line-height: 1.35;
+}
+.rule {
+  border-top: 1px solid #49687a;
+  margin-top: 8px;
+}
+.unset {
+  color: #f4bc49;
+}
+@media (max-width: 650px) {
+  .root {
+    grid-template-columns: 1fr;
+  }
+  .stages {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .detail dl {
+    grid-template-columns: 70px 1fr;
+  }
+}

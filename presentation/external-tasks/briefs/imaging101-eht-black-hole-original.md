@@ -53,6 +53,8 @@ not a fresh reconstruction or evidence of general method superiority.
 
 ## Visual explanation
 
+[Canonical story](../stories/imaging101-eht-original.story.md).
+
 ### Workflow
 
 - Inspect sparse Fourier samples and the two supplied observation conditions.
@@ -106,8 +108,7 @@ comparison methods across L1–L3 assistance. This astronomy task is non-medical
 
 ## Gaps
 
-Canonical story, Explorer integration and video acceptance remain pending. The
-audit retains inconsistent metric denominators, a malformed forward fixture,
+The audit retains inconsistent metric denominators, a malformed forward fixture,
 a factor-of-two visibility-loss convention and a TV-gradient sign defect.
 The six main saved comparisons use entropy regularizers, so the TV defect alone
 does not explain their outcomes. Optimizer convergence and Docker fallback

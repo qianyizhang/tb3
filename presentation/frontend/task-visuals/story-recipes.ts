@@ -1,3 +1,4 @@
+import { interpretationBPacks } from './interpretation-b';
 import { interpretationAPacks } from './interpretation-a';
 import { segDData } from './automed-seg-d';
 import { segCPacks } from './automed-full-seg-c';
@@ -24,6 +25,9 @@ import {
 export function showInlineNarration(state: StoryState): boolean {
   // The identity chapter reveals its reference midway through playback.
   return !(
+    (state.recipe === 'imaging101-eht-original-v1' &&
+      state.scene === 'reference' &&
+      state.reference <= 0.5) ||
     (state.recipe === 'imaging101-eht-features-dynamic-v1' &&
       state.scene === 'reference' &&
       state.reference <= 0.5) ||
@@ -94,6 +98,9 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'radagent-report-v1',
     'healthagentbench-tumor-tiles-v1',
     'healthagentbench-cxr-correction-v1',
+    'bcer-brain-grade-v1',
+    'bcer-cardiac-full-v1',
+    'bcer-brain-full-v1',
     'cardiac-material-v1',
     'automed-full-heart-seg-v1',
     'automed-full-feta-seg-v1',
@@ -127,6 +134,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'cardiac-mask-mechanics-v1',
     'cardiac-real-echo-v1',
     'cardiac-contour-v1',
+    'imaging101-eht-original-v1',
     'imaging101-eht-features-dynamic-v1',
     'imaging101-eht-dynamic-v1',
     'imaging101-eht-uq-v1',
@@ -852,6 +860,48 @@ export function storyPresentation(plan: StoryPlan): {
           ['#7ba4b8', 'No prediction'],
         ],
       };
+    case 'bcer-brain-grade-v1':
+      return {
+        heading: 'Map brain MRI to grade artifacts',
+        corner: 'Source-bounded workflow contract',
+        warning: {
+          ...interpretationBPacks['bcer-brain-grade-v1'].source.notice,
+          link_label: interpretationBPacks['bcer-brain-grade-v1'].source.notice.link_label,
+        },
+        legend: [
+          ['#91a6ae', 'Unavailable case images'],
+          ['#18c6d4', 'Required workflow artifacts'],
+          ['#7ba4b8', 'No prediction'],
+        ],
+      };
+    case 'bcer-cardiac-full-v1':
+      return {
+        heading: 'Trace the cardiac cine workflow',
+        corner: 'Source-bounded workflow contract',
+        warning: {
+          ...interpretationBPacks['bcer-cardiac-full-v1'].source.notice,
+          link_label: interpretationBPacks['bcer-cardiac-full-v1'].source.notice.link_label,
+        },
+        legend: [
+          ['#91a6ae', 'Unavailable case images'],
+          ['#18c6d4', 'Required workflow artifacts'],
+          ['#7ba4b8', 'No prediction'],
+        ],
+      };
+    case 'bcer-brain-full-v1':
+      return {
+        heading: 'Trace the full brain MRI workflow',
+        corner: 'Source-bounded workflow contract',
+        warning: {
+          ...interpretationBPacks['bcer-brain-full-v1'].source.notice,
+          link_label: interpretationBPacks['bcer-brain-full-v1'].source.notice.link_label,
+        },
+        legend: [
+          ['#91a6ae', 'Unavailable case images'],
+          ['#18c6d4', 'Required workflow artifacts'],
+          ['#7ba4b8', 'No prediction'],
+        ],
+      };
     case 'cardiac-material-v1':
       return {
         heading: 'Track supplied material IDs through sparse image observations',
@@ -881,6 +931,16 @@ export function storyPresentation(plan: StoryPlan): {
           ['#8398ad', 'Supplied contours · solid'],
           ['#18c6d4', 'Saved reconstruction · solid'],
           ['#f4bc49', 'Withheld source mask · solid'],
+        ],
+      };
+    case 'imaging101-eht-original-v1':
+      return {
+        heading: 'Recover structure through gain-canceling closures',
+        corner: 'Static synthetic source · retained comparisons',
+        legend: [
+          ['#264b43', 'Calibrated / measured · green'],
+          ['#b9521e', 'Corrupted / control · orange'],
+          ['#8052a1', 'Supplied truth · dashed', true],
         ],
       };
     case 'imaging101-eht-features-dynamic-v1':
