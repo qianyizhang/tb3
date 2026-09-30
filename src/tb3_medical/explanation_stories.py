@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "abra-vision-probe-v1": "retained-abra-vision-probe-source-example-v3",
     "abra-metadata-qa-v1": "retained-abra-metadata-qa-contract-v2",
     "abra-viewer-control-v1": "retained-abra-viewer-control-workflow-v1",
     "bcer-brain-full-v1": "retained-bcer-long-brain-full-workflow-v1",
@@ -152,6 +153,29 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-abra-vision-probe-source-example-v3": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "output.json",
+            "source.json",
+            "fixture.json",
+            "geometry.json",
+            "previews.json",
+            "lung-14.png",
+            "soft-14.png",
+            "lung-42.png",
+            "soft-42.png",
+            "lung-70.png",
+            "soft-70.png",
+            "lung-98.png",
+            "soft-98.png",
+            "lung-126.png",
+            "soft-126.png",
+        },
+    ),
     "retained-abra-metadata-qa-contract-v2": (
         "source-records",
         None,
@@ -1924,6 +1948,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class AbraVisionProbeChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -3743,6 +3773,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AbraVisionProbeBeat(ExpansionBeat[AbraVisionProbeChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class AbraVisionProbeStory(Story[AbraVisionProbeChannels]):
+    recipe: Literal["abra-vision-probe-v1"]
+    beats: tuple[AbraVisionProbeBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Probe evaluator reveal is limited to the reference scene")
+        return self
+
+
 class AbraMetadataQaBeat(ExpansionBeat[AbraMetadataQaChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -4009,6 +4060,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AbraVisionProbeStory
     | AbraMetadataQaStory
     | AbraViewerControlStory
     | CardiacMaterialStory
@@ -4117,6 +4169,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AbraVisionProbeStory
     | AbraMetadataQaStory
     | AbraViewerControlStory
     | CardiacMaterialStory
@@ -4385,6 +4438,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AbraVisionProbeStory
     | AbraMetadataQaStory
     | AbraViewerControlStory
     | CardiacMaterialStory
@@ -4672,6 +4726,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-abra-vision-probe-source-example-v3": (
+                "symbolic-unit-grid",
+                "CC-BY-3.0",
+                None,
+            ),
             "retained-abra-metadata-qa-contract-v2": (
                 "symbolic-unit-grid",
                 "LicenseRef-ABRA-MIT-LIDC-IDRI-CC-BY-3.0-metadata-teaching",
@@ -4827,6 +4886,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "unitless"
+                if pack_id == "retained-abra-vision-probe-source-example-v3"
                 else "none"
                 if pack_id == "retained-abra-metadata-qa-contract-v2"
                 else "mm and zero-based viewer index"
@@ -4911,6 +4972,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-abra-vision-probe-source-example-v3"
             or pack_id == "retained-abra-metadata-qa-contract-v2"
         ):
             for source_name, expected_sha in manifest["sources"].items():
@@ -4929,6 +4991,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "input-preview"
                 if pack_id == "retained-abra-viewer-control-workflow-v1"
                 and name == "source_preview.png"
+                else "input-preview"
+                if pack_id == "retained-abra-vision-probe-source-example-v3"
+                and (name.endswith(".png") or name == "previews.json")
                 else "reader-reference-reveal"
                 if name in reference_files
                 else "illustration"
@@ -4942,6 +5007,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     else "symbolic-protocol"
                     if pack_id == "retained-abra-metadata-qa-contract-v2"
                     and name == "formatting-fixture.json"
+                    else "symbolic-protocol"
+                    if pack_id == "retained-abra-vision-probe-source-example-v3"
+                    and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS
                     else "source-derived-teaching"

@@ -1,3 +1,4 @@
+import { abraVisionProbePack } from './abra-vision-probe';
 import { abraMetadataPack } from './abra-metadata-qa';
 import { abraViewerPack } from './abra-viewer-control';
 import { interpretationBPacks } from './interpretation-b';
@@ -103,6 +104,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'abra-vision-probe-v1',
     'abra-metadata-qa-v1',
     'abra-viewer-control-v1',
     'cardiac-material-v1',
@@ -912,6 +914,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Source study / series / instance counts'],
           ['#18c6d4', 'Permitted metadata derivation'],
           ['#7ba4b8', 'Participant / generated reference absent'],
+        ],
+      };
+    case 'abra-vision-probe-v1':
+      return {
+        heading: 'Compare matched CT window transfers',
+        corner: 'Source CT examples; task PNG absent',
+        warning: abraVisionProbePack.source.notice,
+        legend: [
+          ['#91a6ae', 'Source CT, exact task PNG absent'],
+          ['#18c6d4', 'Lung/soft-tissue transfer at native size'],
+          ['#7ba4b8', 'One letter; participant absent'],
         ],
       };
     case 'bcer-brain-full-v1':

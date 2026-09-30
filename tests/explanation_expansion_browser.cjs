@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'abra-vision-probe-v1',
   'abra-metadata-qa-v1',
   'abra-viewer-control-v1',
   'bcer-brain-full-v1',
@@ -88,6 +89,13 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'abra-vision-probe-v1')
+    return {
+      scene: 'data-abra-vision-probe-scene',
+      reference: '[data-abra-vision-probe-reference-revealed]',
+      output: '[data-abra-vision-probe-empty-output]',
+      aside: '[data-abra-vision-probe-output]',
+    };
   if (plan.recipe === 'abra-metadata-qa-v1')
     return {
       scene: 'data-abra-metadata-scene',
@@ -501,6 +509,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'abra-vision-probe-v1': [
+      /exact task\/control PNGs and results absent/s,
+      'https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/README.md#2-download-datasets',
+      'data-abra-vision-probe-scene',
+      false,
+    ],
     'abra-metadata-qa-v1': [
       /generated ABRA task and live metadata response are absent/s,
       'https://github.com/Luab/ABRA/tree/688814615dc368a66276798cb864fe9a587d7e6c',
@@ -948,6 +962,98 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'abra-vision-probe-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    await page.locator('[data-story-step="0"]').click();
+    const conditions = [
+      'Modality · normal',
+      'Modality · replacement noise',
+      'Display · lung window',
+      'Display · soft tissue',
+      'Display · breast MRI',
+      'Display · replacement noise',
+    ];
+    const indices = [14, 42, 70, 98, 126];
+    const pack = JSON.parse(
+      fs.readFileSync(
+        path.resolve('presentation/task-explorer/abra-vision-probe/previews.json'),
+        'utf8',
+      ),
+    );
+    for (const [condition, name] of conditions.entries()) {
+      await page.getByRole('button', { name, exact: true }).click();
+      for (const [slot, index] of indices.entries()) {
+        const beat = plan.beats.find(
+          (b) => b.scene === 'operation' && Math.round(b.channels.progress[0] * 5) === condition,
+        );
+        const frame = beat.startFrame + Math.round((slot / 4) * (beat.frames - 1));
+        await page.getByRole('button', { name: `Index ${index}`, exact: true }).click();
+        await page.waitForFunction(
+          (frame) =>
+            Number(document.querySelector('.scene-player').getAttribute('data-committed-frame')) ===
+            frame,
+          frame,
+        );
+        assert.equal(
+          await page.getByRole('button', { name, exact: true }).getAttribute('aria-pressed'),
+          'true',
+        );
+        assert.equal(
+          await page
+            .getByRole('button', { name: `Index ${index}`, exact: true })
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        const scene = page.locator('[data-abra-vision-probe-scene]');
+        const text = await scene.innerText();
+        const imgs = scene.locator('img');
+        if ([2, 3].includes(condition)) {
+          assert.equal(await imgs.count(), 2);
+          assert.equal(await imgs.nth(0).getAttribute('src'), pack.instances[slot].lung.data_uri);
+          assert.equal(await imgs.nth(1).getAttribute('src'), pack.instances[slot].soft.data_uri);
+          assert.ok(text.includes(`selected index ${index}`));
+        } else {
+          assert.equal(await imgs.count(), 0);
+          assert.match(
+            text,
+            condition === 0
+              ? /Exact normal-modality default PNG absent/
+              : condition === 4
+                ? /signal intensity, not HU/
+                : /not Gaussian or additive noise/,
+          );
+        }
+        assert.equal(await page.locator('[data-abra-vision-probe-reference-revealed]').count(), 0);
+        assert.equal(await page.locator('[data-abra-vision-probe-empty-output]').count(), 0);
+        assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+      }
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-condition-${condition}.png`) });
+    }
+    const ref = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ref}"]`).click();
+    assert.equal(await page.locator('[data-abra-vision-probe-reference-revealed]').count(), 1);
+    assert.match(
+      await page.locator('[data-abra-vision-probe-reference-revealed]').innerText(),
+      /not an observed answer or clinical image adjudication/,
+    );
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await page.locator('[data-abra-vision-probe-reference-revealed]').count(), 0);
+    await page.locator(`[data-story-step="${ref}"]`).click();
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
+    );
+    assert.equal(await page.locator('[data-abra-vision-probe-reference-revealed]').count(), 0);
+    assert.equal(
+      await page
+        .getByRole('button', { name: conditions[0], exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
   }
   if (plan.recipe === 'abra-metadata-qa-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -4443,6 +4549,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'abra-vision-probe-v1',
       'abra-metadata-qa-v1',
       'abra-viewer-control-v1',
       'bcer-brain-full-v1',

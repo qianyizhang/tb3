@@ -9625,15 +9625,15 @@
       ],
       "illustration_kind": "classify",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "abra-vision-probe",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for abra-vision-probe. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Ten verified matched-source CT derivatives and pinned contract integrated; visual/export acceptance pending.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/abra-vision-probe/acceptance-02.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "A rendered image or a Gaussian-noise control image.",
         "helpers": "Four answer options. Slice selection and preprocessing are performed by the task generator.",
@@ -9666,14 +9666,107 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Exact generated vision-probe task, selected sidecar/control PNG, participant answer and score absent. UID-matched LIDC-IDRI-0003 CT source-example derivatives are available for five selected indices and two pinned windows; they are not recovered task PNGs. MRI/DX examples remain absent.",
+      "acquisition_route": "https://github.com/Luab/ABRA/tree/688814615dc368a66276798cb864fe9a587d7e6c#2-download-datasets ; obtain configured LIDC/Duke series, verify manifest, generate tasks, then recover selected sidecar /dicom/slice PNG with declared preprocessor. Raw CT archive is already local; rendered probe remains missing.",
+      "warning_text": "Source CT examples only — exact task/control PNGs and results absent; recover through official ABRA setup.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/abra-vision-probe-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/abra-vision-probe-resolution.json",
+        "receipt_sha256": "f7548b866a0924d7c9da11388b1675188b0cf1b9770aed3e99b41ad781d582f3",
+        "brief_sha256": "3db30c5e010763afbf38123fee474cb35346290b14e2c6750ce42ef950abe42a",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Matched-source native CT window derivatives plus task-specific symbolic unavailable conditions; no recovered original task/control PNG, participant response, generated reference or score.",
+      "completion_review": {
+        "date": "2026-09-30T13:17:37.198830+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "c1fc70ff0a0a87aa7722022ae7cc9ac1aaa8cf6f3846c04bf5812916ebed9c42"
+      },
+      "reviewed_contract_projection": {
+        "title": "Identify an ABRA image modality or display treatment",
+        "goal": "Classify one preselected image with one option letter. The operation separates modality recognition from display-pipeline recognition; it makes no diagnosis.",
+        "value": "Not yet specified.",
+        "raw": "The controller injects a selected sidecar PNG into the first user message. Five UID-matched LIDC-IDRI-0003 source CT instances are shown through two pinned window formulas, at native 512×512 size. These are independently derived source examples, not recovered selected task PNGs. Exact generated probe task and control PNG remain absent; MRI/DX image examples remain missing.",
+        "helpers": "The generator selects the series, index and pipeline, supplies four options, and removes volume search. For 140 instances, its five indices are 14, 42, 70, 98 and 126. Indices follow stack-normal position order, falling back to InstanceNumber, not ZIP order. The seed does not change the selection formula.",
+        "tools": "Only `submit_answer`, with three turns. No BI-RADS oracle tool is supplied. The image payload metadata is not injected with the first image; the system prompt may separately contain initial viewport window/level and study context. Exact realized hints are unverified without a run.",
+        "reference": "Generator state maps known modality or pipeline to a letter; the noise condition maps to N/A. No generated answer or participant result is bundled. This is a metadata-derived label, not clinical adjudication.",
+        "spec": "| Question | A | B | C | D |\n|---|---|---|---|---|\n| Modality | CT | MRI (including MR) | DX | N/A |\n| Display treatment | Lung window | Soft tissue window | Breast MRI | N/A |\n\nNormal modality probes use `dicom_preprocessor=default`; that transfer is not established by the retained pins, so its exact condition remains a missing socket. Lung/soft examples do not reconstruct it.\n\nNormal CT display probes use rescaled HU with lung C=-600/W=1500 or soft-tissue C=40/W=400. Breast MRI uses the 1st–99th intensity percentiles, with flat-image fallback; its units are not HU. DX has modality probes only.\n\n**Naming discrepancy:** `noise_gaussian` actually ignores input values and produces uniform integer noise in [0,255], seeded with 42 by default, at the same dimensions. It is neither Gaussian nor additive scan noise. No anatomy survives this replacement.",
+        "output": "One `submit_answer.arguments.answer` string containing only A/B/C/D. The participant field stays empty; any interactive letter choice is visibly illustrative and is never sent to ABRA.",
+        "score": "The last submit_answer is compared with the generated expected string after lowercase/whitespace normalization. No participant score is shown. A label match cannot establish diagnosis, navigation skill or a causal effect of noise.",
+        "challenge": "Not yet specified.",
+        "families": "One probe definition with source-supported normal/control branches; no exhaustive case recovery or measured performance.",
+        "gap": "No exact generated task, sidecar PNG, actual control PNG, participant answer or score. Numerical transfer checks reproduce an abstract formula, not the original viewer image. Initial system window/level may offer information; no strict image-only claim is made. The task's “Gaussian” label differs from its implementation.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Modality, normal/replacement noise",
+            "helper": "Selected image, four modality options",
+            "remaining": "Judge visual category or N/A from supplied view"
+          },
+          {
+            "name": "Display, normal/replacement noise",
+            "helper": "Selected processed image, four display options",
+            "remaining": "Identify treatment or N/A; no volume search"
+          }
+        ],
+        "sources": [
+          [
+            "Pinned generator",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/vision_probe.py"
+          ],
+          [
+            "Pinned actual noise implementation",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/preprocessor/pipelines/noise_gaussian.py"
+          ],
+          [
+            "Official data/setup route",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/README.md#2-download-datasets"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/abra-vision-probe-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Classify one preselected image with one option letter. The operation separates modality recognition from display-pipeline recognition; it makes no diagnosis.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The controller injects a selected sidecar PNG into the first user message. Five UID-matched LIDC-IDRI-0003 source CT instances are shown through two pinned window formulas, at native 512×512 size. These are independently derived source examples, not recovered selected task PNGs. Exact generated probe task and control PNG remain absent; MRI/DX image examples remain missing.</p>",
+          "helpers": "<p>The generator selects the series, index and pipeline, supplies four options, and removes volume search. For 140 instances, its five indices are 14, 42, 70, 98 and 126. Indices follow stack-normal position order, falling back to InstanceNumber, not ZIP order. The seed does not change the selection formula.</p>",
+          "tools": "<p>Only <code>submit_answer</code>, with three turns. No BI-RADS oracle tool is supplied. The image payload metadata is not injected with the first image; the system prompt may separately contain initial viewport window/level and study context. Exact realized hints are unverified without a run.</p>",
+          "reference": "<p>Generator state maps known modality or pipeline to a letter; the noise condition maps to N/A. No generated answer or participant result is bundled. This is a metadata-derived label, not clinical adjudication.</p>",
+          "spec": "<div class=\"table\"><table>\n<tr><th>Question</th><th>A</th><th>B</th><th>C</th><th>D</th></tr>\n<tr><td>Modality</td><td>CT</td><td>MRI (including MR)</td><td>DX</td><td>N/A</td></tr>\n<tr><td>Display treatment</td><td>Lung window</td><td>Soft tissue window</td><td>Breast MRI</td><td>N/A</td></tr>\n</table></div>\n<p>Normal modality probes use <code>dicom_preprocessor=default</code>; that transfer is not established by the retained pins, so its exact condition remains a missing socket. Lung/soft examples do not reconstruct it.</p>\n<p>Normal CT display probes use rescaled HU with lung C=-600/W=1500 or soft-tissue C=40/W=400. Breast MRI uses the 1st–99th intensity percentiles, with flat-image fallback; its units are not HU. DX has modality probes only.</p>\n<p><strong>Naming discrepancy:</strong> <code>noise_gaussian</code> actually ignores input values and produces uniform integer noise in [0,255], seeded with 42 by default, at the same dimensions. It is neither Gaussian nor additive scan noise. No anatomy survives this replacement.</p>",
+          "output": "<p>One <code>submit_answer.arguments.answer</code> string containing only A/B/C/D. The participant field stays empty; any interactive letter choice is visibly illustrative and is never sent to ABRA.</p>",
+          "score": "<p>The last submit_answer is compared with the generated expected string after lowercase/whitespace normalization. No participant score is shown. A label match cannot establish diagnosis, navigation skill or a causal effect of noise.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>One probe definition with source-supported normal/control branches; no exhaustive case recovery or measured performance.</p>",
+          "gap": "<p>No exact generated task, sidecar PNG, actual control PNG, participant answer or score. Numerical transfer checks reproduce an abstract formula, not the original viewer image. Initial system window/level may offer information; no strict image-only claim is made. The task&#x27;s “Gaussian” label differs from its implementation.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -23132,9 +23225,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 96,
+    "reviewed-scripted-planar": 97,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 64,
+    "blocked-source-contract": 63,
     "blocked-source-input": 31,
     "pending-operation-review": 1
   },

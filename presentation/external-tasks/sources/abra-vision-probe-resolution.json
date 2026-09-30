@@ -1,0 +1,257 @@
+{
+  "acquisition_route": "https://github.com/Luab/ABRA/tree/688814615dc368a66276798cb864fe9a587d7e6c#2-download-datasets ; obtain configured LIDC/Duke series, verify manifest, generate tasks, then recover selected sidecar /dicom/slice PNG with declared preprocessor. Raw CT archive is already local; rendered probe remains missing.",
+  "actual_data_gap": "Exact generated vision-probe task, selected sidecar/control PNG, participant answer and score absent. UID-matched LIDC-IDRI-0003 CT source-example derivatives are available for five selected indices and two pinned windows; they are not recovered task PNGs. MRI/DX examples remain absent.",
+  "attempts": [
+    {
+      "action": "inspect pinned vision_probe generator and local ABRA image inventory",
+      "attempted_at": "2026-09-29T06:16:00Z",
+      "outcome": "five-slice and normal/noise contracts verified; no matching rendered probe sample identified",
+      "source": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/vision_probe.py"
+    },
+    {
+      "action": "Fresh official pinned source acquisition and read-only retained-pin audit; bounded AST/numerical contract attempt",
+      "source": ".local/explainers/goal-20260930/workers/abra-vision-probe/verification/contract-check.json",
+      "outcome": "9 official setup/worker/preprocessor files acquired and Git-blob verified; 4 prior source pins verified. Selection, 60 toy tasks, window transfer and uniform replacement-noise behavior checked. Original probe PNG still missing; no viewer/runtime/agent execution.",
+      "attempted_at": "2026-09-30T11:13:38.503883+00:00"
+    }
+  ],
+  "browser_review": false,
+  "entry_id": "abra-vision-probe",
+  "grader_run": false,
+  "illustration_basis": "source-derived-teaching with explicitly authored symbolic unavailable conditions",
+  "kind": "explainer-source-resolution",
+  "license_context": {
+    "ABRA_code": "MIT; pinned root LICENSE retained",
+    "Duke_or_LIDC_dataset": "Data terms not independently cleared for redistribution; this draft remains local teaching",
+    "clinical_spreadsheet": "TCIA public download retained locally for provenance; bytes not included in pack"
+  },
+  "model_run": false,
+  "participant_output_retained": false,
+  "preparer_run": false,
+  "reviewed_at": "2026-09-30T11:13:38.503883+00:00",
+  "schema": 1,
+  "source_commit": "688814615dc368a66276798cb864fe9a587d7e6c",
+  "source_files": [
+    {
+      "bytes": 7624,
+      "git_blob_sha1": "4cfd1b2251949d0a4cf8b5e78507ba4966ef112e",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/interpretation-c-source/abra/vision_probe.py",
+      "sha256": "a7415c19411bb713f63fb2af2a253967cf54cacfb49ffa206d8944f99590d1dd",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/vision_probe.py"
+    },
+    {
+      "bytes": 2106,
+      "git_blob_sha1": "5ea40e94dad7276ea4629f20f7e5be701e110264",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/interpretation-c-source/abra/exact_match_scorer.py",
+      "sha256": "6d0b7c3f434e23949b781daeb96130f2eefc4bdbd7f8bd9717327e100855e29f",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/scoring/outcome/exact_match_scorer.py"
+    },
+    {
+      "bytes": 317217,
+      "git_blob_sha1": "8f4373a57b83c681cee3737b0fab103e0223fc37",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/study_manifest.json",
+      "sha256": "a6f367980f071320295adb9832edfcd9d165d377eb74b071b3ba6384738c3086",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/data/studies/study_manifest.json"
+    },
+    {
+      "bytes": 1069,
+      "git_blob_sha1": "61c68c7caf9631ca1dc7fb16adc58c1c8bf1c924",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/LICENSE",
+      "sha256": "616457a4d54a40d0e4ffca06c1f1539abd25cb7a63004e8244653476a941cb69",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/LICENSE"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-vision-probe/official/noise_gaussian.py",
+      "bytes": 1276,
+      "sha256": "bb21154eb8b0f16f38b9c3cd48a723566a6812def1d82744131798ed48f6c02c",
+      "git_blob_sha1": "30b45960787bf0be151849d7ebe2c6e2b9aad5b5",
+      "git_blob_verified": true,
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/preprocessor/pipelines/noise_gaussian.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-vision-probe/official/lung_window.py",
+      "bytes": 890,
+      "sha256": "df78d627c73fb17befc6ef46d43a7b2e4de12feb6ced4885af3f262567106fa0",
+      "git_blob_sha1": "d3b6a662ffa00bff877c81f4a3cac60b3548c2ee",
+      "git_blob_verified": true,
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/preprocessor/pipelines/lung_window.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-vision-probe/official/soft_tissue_window.py",
+      "bytes": 882,
+      "sha256": "eed2114a33e28de6d5db73d303921a0c463c02943a79387616e7caff7ba2e150",
+      "git_blob_sha1": "6a286b2507e16527d0899ea2c96d1f3316b422e5",
+      "git_blob_verified": true,
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/preprocessor/pipelines/soft_tissue_window.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-vision-probe/official/breast_mri.py",
+      "bytes": 1870,
+      "sha256": "ca4d6f9bc2d1bdf9f0baa2de622e95a0974e3f6f61760de12925dd6f78c6a26d",
+      "git_blob_sha1": "5d724a7602e35a303fa334b7505c6345b35e3e7a",
+      "git_blob_verified": true,
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/preprocessor/pipelines/breast_mri.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-vision-probe/official/base.py",
+      "bytes": 5398,
+      "sha256": "068f713183eab723eddf038e39d0e2db900045c4db3188d57c0edd6162e0409d",
+      "git_blob_sha1": "2aa957a92700c74eb69d6ee544830ef1e6607a81",
+      "git_blob_verified": true,
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/preprocessor/pipelines/base.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-vision-probe/official/task_worker.py",
+      "bytes": 15298,
+      "sha256": "beb1dfc8bb3bcb4bbcf5f7144cc1dd323e7e3ab45201b6c4d1ebac2b98460dd9",
+      "git_blob_sha1": "5cc914f123e78e0fa266b7aa02c9e3a589db759e",
+      "git_blob_verified": true,
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/controller/task_worker.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-vision-probe/official/base_agent.py",
+      "bytes": 7038,
+      "sha256": "1c6ee97eae9b6603ee4d625b40c4e1906345dfc8f7696979afcae98ae09a3f1f",
+      "git_blob_sha1": "fe17cb1b71dca628526860a34a07ae3e08e72ead",
+      "git_blob_verified": true,
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/agents/base_agent.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-vision-probe/official/main.py",
+      "bytes": 9665,
+      "sha256": "d5fe11788ce970d565ec3d0e87b5b4c538fbba847e68828f41153105c4614f08",
+      "git_blob_sha1": "dc434bffd1c16c36225fd372e37b519ea73940bc",
+      "git_blob_verified": true,
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/preprocessor/main.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-vision-probe/official/README.md",
+      "bytes": 8380,
+      "sha256": "9ae49e239c2b1f3246245b7f59d814b8861ac41382ec5c8b5688c40bbf4ed25c",
+      "git_blob_sha1": "34ce0fc3cc8f1e900a473add661ff794ab62d0ab",
+      "git_blob_verified": true,
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/README.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/tool_registry.py",
+      "bytes": 25343,
+      "sha256": "02ef0d672bbecb143e21b1f2f49c8cd53cb64d99e2087eb7346fef1f9db2bf30",
+      "git_blob_sha1": "2080d50ea2a76e5e6ce225604335682824a052a1",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/tasks/tool_registry.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/common.py",
+      "bytes": 12257,
+      "sha256": "082d7d9c5d9b93f88504f76a512737ee1c2e2da8f74c6428a709f70973b375ba",
+      "git_blob_sha1": "f88353b5e3619b6c08c163dc979a4c3d96b4341e",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/common.py"
+    }
+  ],
+  "source_roles": {
+    "helper": "Four option labels, generator-selected series/index/pipeline and initial system context remove free navigation; matching CT raw input is retained but no probe PNG.",
+    "input": "Controller injects task prompt + selected sidecar PNG into first user message. It does not attach the preprocessor payload metadata. System prompt may separately include initial viewport windowCenter/windowWidth and study context; no fresh run establishes exact realized hints.",
+    "output": "one option letter via submit_answer; no answer retained",
+    "reference": "Generator maps source modality/pipeline name to expected A/B/C/D letter; noise maps to D. This metadata rule is not clinical image adjudication. Actual generated task reference not bundled.",
+    "scorer": "same ABRA normalized exact_match_scorer, no task run",
+    "oracle": "No oracle tool for vision_probe: tool_registry exposes only submit_answer. query_birads_model and oracle_data belong to distinct BI-RADS tasks, not this probe."
+  },
+  "task_contract": {
+    "conditions": [
+      "modality normal",
+      "modality Gaussian noise",
+      "preprocessing normal",
+      "preprocessing Gaussian noise"
+    ],
+    "max_turns": 3,
+    "modalities": [
+      "CT",
+      "MR/MRI",
+      "DX"
+    ],
+    "output": "A/B/C/D letter through submit_answer",
+    "preprocessing": [
+      "lung_window",
+      "soft_tissue_window",
+      "breast_mri",
+      "noise_gaussian"
+    ],
+    "preselected_indices": "n<=5: all indices; n>5: int((n/5)*i+n/10), i=0..4; series stack-normal order (fallback InstanceNumber), not ZIP order",
+    "noise_implementation": "Source name noise_gaussian; actual rng.integers(0,256,uint8), seed=42, ignores DICOM values, preserves dimensions, metadata={}. Not Gaussian or additive noise.",
+    "display_transformations": {
+      "lung_window": "rescale slope/intercept; C=-600 HU,W=1500 HU; clip [-1350,150]; scale/truncate uint8",
+      "soft_tissue_window": "rescale slope/intercept; C=40 HU,W=400 HU; clip [-160,240]; scale/truncate uint8",
+      "breast_mri": "optional non-default rescale; 1st–99th percentiles, flat-image fallback min/max then +1; no HU or enhancement label implied",
+      "modality_normal": "default preprocessor; native modality comes from source series; MR and MRI share option B"
+    }
+  },
+  "task_run": false,
+  "top_warning": "Symbolic illustration — exact selected/preprocessed probe PNG and task result are absent; recover them through official ABRA setup.",
+  "warning_text": "Source CT examples only — exact task/control PNGs and results absent; recover through official ABRA setup.",
+  "verification_receipt": {
+    "path": ".local/explainers/goal-20260930/workers/abra-vision-probe/verification/contract-check.json",
+    "sha256": "78c053183fc7a3a64db8d765e15ae8aaf0c9957213907237f355a76620e52fe9"
+  },
+  "brief_sha256": "3db30c5e010763afbf38123fee474cb35346290b14e2c6750ce42ef950abe42a",
+  "proposal_v2": {
+    "scope": "Complete guarded symbolic integration, no new acquisition or original image recovery",
+    "canonical_controls": "Six fixed condition beats, detail sweeps the five selected index sockets; no local state"
+  },
+  "prior_actual_data_gap": "Matching LIDC CT raw archive exists locally, but exact generated vision-probe task, selected/preprocessed PNG, actual noise-control PNG, participant answer and score are absent. Existing NLST views are a different task. No sidecar or viewer reconstruction was run.",
+  "source_example": {
+    "archive_path": "runs/task-brief-samples/abra/ct.zip",
+    "archive_sha256": "a780bd9438313d98e1b86302c6ed64a9c7d9941f6c418ac93054ec2628b9bb3b",
+    "viewer_integrity": {
+      "all_dicoms_pixel_spacing_mm": [
+        0.820312,
+        0.820312
+      ],
+      "all_dicoms_rows_columns": [
+        512,
+        512
+      ],
+      "all_dicoms_same_study_series": true,
+      "all_dicoms_slope_intercept": [
+        1,
+        -1024
+      ],
+      "all_dicoms_unique_image_positions": 140,
+      "all_dicoms_unique_instance_numbers": 140,
+      "archive_crc": "all members passed",
+      "archive_member_count": 141,
+      "dicom_member_count": 140,
+      "embedded_license_sha256": "549adb2471a8adc13da32860115c5559971b06097bba2922634a5e49f1800e0b",
+      "pixel_dtype": "signed int16",
+      "selected_member": "00000001.dcm",
+      "selected_member_crc32": "0e51ae51",
+      "selected_member_image_position_lps_mm": [
+        -228.800003,
+        -210.0,
+        -229.0
+      ],
+      "selected_member_instance_number": 80,
+      "selected_member_sha256": "54894c22dae09ae8cc99fea77a01c7a64db0b3da9ed22492d9de86317caa2c8c",
+      "selected_member_window_center_hu": -600,
+      "selected_member_window_width_hu": 1600,
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.170706757615202213033480003264",
+      "study_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.101370605276577556143013894866",
+      "transfer_syntax": "1.2.840.10008.1.2.1 explicit VR little endian, uncompressed"
+    },
+    "indices": [
+      14,
+      42,
+      70,
+      98,
+      126
+    ],
+    "role": "matched-source-example derivatives, no generated task identity/reference/output",
+    "sort": "ascending dot(ImagePositionPatient,cross(row,column)); InstanceNumber fallback if any position/orientation absent",
+    "size": "native 512x512, no resizing, interpolation, orientation flip or cropping",
+    "window": "pinned base.py float32 rescale, clip(C-W/2,C+W/2), ((clip-low)/W*255).astype(uint8)",
+    "licence_file_sha256": "0e600dbda042199ba71c86afeeb1f65dd302381750fc565c66a4b3ca1b4f49a8"
+  },
+  "default_condition_limit": "Generator modality-normal uses default; no default pipeline module pinned or transfer asserted. Lung/soft previews are separate source examples, not reconstruction of default condition."
+}
