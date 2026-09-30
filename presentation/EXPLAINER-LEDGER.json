@@ -9158,14 +9158,14 @@
       "illustration_kind": "workflow",
       "subject": "brain",
       "story_id": "bcer-long-brain-full",
-      "observed_binding_state": "bound-story-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "pending-operation-review",
+      "reviewed_disposition": "reviewed-scripted-planar",
       "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/bcer-long-brain-full/acceptance-03.json",
       "blocking_dependency": null,
-      "remaining_work": "Review source/reference/output boundaries, interactive mechanism, full exports, mobile/fallback and source-gap notice where applicable.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Required source modalities — brain: all of T1, T1c, T2, FLAIR.",
         "helpers": "A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.",
@@ -9224,7 +9224,76 @@
         "brief_sha256": "a490137a6ff2bdf169a623d39e46db7e9f59cb549fa1eb7f205d5e5bf8ec1aec",
         "no_visual_acceptance": true
       },
-      "warning_text": "Symbolic BCER workflow: matched four-modality MRI, output and independent HGG/LGG truth are unavailable. Obtain authorized MRI through the official BraTS route; its MGMT labels are a different target."
+      "warning_text": "Symbolic BCER workflow: matched four-modality MRI, output and independent HGG/LGG truth are unavailable. Obtain authorized MRI through the official BraTS route; its MGMT labels are a different target.",
+      "acceptance_scope": "Individually reviewed symbolic BCER long-brain task workflow from pinned code; no case-matched MRI, observed tool execution, output, expert annotation, true grade or score.",
+      "completion_review": {
+        "date": "2026-09-30T11:10:44.608317+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "89b937bafa2ea5838aa2221be77401ff18e20d6c95c37747b9e253d091fba33f"
+      },
+      "reviewed_contract_projection": {
+        "title": "Build the BCER brain tumor artifact and report chain",
+        "goal": "Build the BCER brain tumor artifact and report chain. This symbolic explanation is a task-contract illustration; no model, task tool or evaluator was run.",
+        "value": "Not yet specified.",
+        "raw": "A single BraTS-style case with T1, T1c, T2 and FLAIR NIfTI inputs; no matched four-sequence case is local.",
+        "helpers": "Case manifest, modality map and typed artifact registry.",
+        "tools": "identify_sequences → conditional register_to_reference → brats_mri_segmentation → extract_roi_features → classify_brain_glioma_grade → generate_report.",
+        "reference": "Case-matched tumor mask and true grade are separate reference material, absent from this pack.",
+        "spec": "Map all four modalities; register T2/FLAIR to T1c only when geometry requires it. The segmenter may use its MONAI bundle or, when dependencies are absent, a T1c/FLAIR heuristic that can fill an empty threshold mask with a synthetic ellipsoid. Produce segmentation and WT mask, feature CSV, rule-based grade output, then a run report. The fallback and rule output are not patient truth.",
+        "output": "seg_path and wt_mask_path NIfTI; feature_table_path CSV; classification_path JSON with predicted_grade; report_json_path JSON. No files were generated.",
+        "score": "The completion ratio has five required stage successes plus five artifact paths (10 checks). The separate success rule names those five tool successes. Seven invariants require the segmentation and WT paths/nonempty masks/affine match, a feature CSV row, nonempty predicted_grade, and nonempty report JSON. Registration is conditional, absent from the required-stage list for co-registered BraTS-style input. None of these checks compares a mask or grade against truth, and a nonempty fallback mask is not validation of MONAI segmentation.",
+        "challenge": "No matching complete four-modality BraTS case, BCER saved output, or case-matched reference annotation/grade retained. The source-code comment says a missing MONAI bundle triggers heuristic fallback, but the executable branch only falls back when dependencies fail; a missing bundle with dependencies present raises. The report helper may mark optional registration missing when correctly skipped, and its brain report JSON does not directly include predicted_grade. BraTS 2021 Task 2 is MGMT methylation, not the BCER HGG/LGG grade target; an image alone would not supply latter truth. Reopen when an authorized matching source case and separately preserved output/reference roles are available.",
+        "families": "A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Source condition",
+            "helper": "A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.",
+            "remaining": "Maintaining sequence identity and artifact provenance across the full chain is central; report completion alone is weak anatomical evidence."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned task source",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/configs/tasks_registry.json"
+          ],
+          [
+            "Official source route",
+            "https://www.med.upenn.edu/cbica/brats2021/"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/bcer-long-brain-full-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Build the BCER brain tumor artifact and report chain. This symbolic explanation is a task-contract illustration; no model, task tool or evaluator was run.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>A single BraTS-style case with T1, T1c, T2 and FLAIR NIfTI inputs; no matched four-sequence case is local.</p>",
+          "helpers": "<p>Case manifest, modality map and typed artifact registry.</p>",
+          "tools": "<p>identify_sequences → conditional register_to_reference → brats_mri_segmentation → extract_roi_features → classify_brain_glioma_grade → generate_report.</p>",
+          "reference": "<p>Case-matched tumor mask and true grade are separate reference material, absent from this pack.</p>",
+          "spec": "<p>Map all four modalities; register T2/FLAIR to T1c only when geometry requires it. The segmenter may use its MONAI bundle or, when dependencies are absent, a T1c/FLAIR heuristic that can fill an empty threshold mask with a synthetic ellipsoid. Produce segmentation and WT mask, feature CSV, rule-based grade output, then a run report. The fallback and rule output are not patient truth.</p>",
+          "output": "<p>seg_path and wt_mask_path NIfTI; feature_table_path CSV; classification_path JSON with predicted_grade; report_json_path JSON. No files were generated.</p>",
+          "score": "<p>The completion ratio has five required stage successes plus five artifact paths (10 checks). The separate success rule names those five tool successes. Seven invariants require the segmentation and WT paths/nonempty masks/affine match, a feature CSV row, nonempty predicted_grade, and nonempty report JSON. Registration is conditional, absent from the required-stage list for co-registered BraTS-style input. None of these checks compares a mask or grade against truth, and a nonempty fallback mask is not validation of MONAI segmentation.</p>",
+          "challenge": "<p>No matching complete four-modality BraTS case, BCER saved output, or case-matched reference annotation/grade retained. The source-code comment says a missing MONAI bundle triggers heuristic fallback, but the executable branch only falls back when dependencies fail; a missing bundle with dependencies present raises. The report helper may mark optional registration missing when correctly skipped, and its brain report JSON does not directly include predicted_grade. BraTS 2021 Task 2 is MGMT methylation, not the BCER HGG/LGG grade target; an image alone would not supply latter truth. Reopen when an authorized matching source case and separately preserved output/reference roles are available.</p>",
+          "families": "<p>A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
+      }
     },
     {
       "entry_id": "abra-viewer-control",
@@ -22880,11 +22949,11 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 93,
+    "reviewed-scripted-planar": 94,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 66,
-    "pending-operation-review": 2,
-    "blocked-source-input": 31
+    "blocked-source-input": 31,
+    "pending-operation-review": 1
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",

@@ -22,7 +22,7 @@ source_locators:
 id: input
 scene: input
 frames: 264
-caption: "Four matched modalities, unavailable here"
+caption: "Symbolic: matching MRI absent; acquire via med.upenn.edu/cbica/brats2021/."
 narration: "All four brain MRI sequences are required. No patient pixels or case-matched annotation are shown."
 visual: "Task-specific schema/operation; no patient or output invented."
 channels:
