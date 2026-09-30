@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'abra-metadata-qa-v1',
   'abra-viewer-control-v1',
   'bcer-brain-full-v1',
   'bcer-cardiac-full-v1',
@@ -87,6 +88,13 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'abra-metadata-qa-v1')
+    return {
+      scene: 'data-abra-metadata-scene',
+      reference: '[data-abra-metadata-comparison-revealed]',
+      output: '[data-abra-metadata-empty-output]',
+      aside: '[data-abra-metadata-output]',
+    };
   if (plan.recipe === 'abra-viewer-control-v1')
     return {
       scene: 'data-abra-viewer-scene',
@@ -493,6 +501,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'abra-metadata-qa-v1': [
+      /generated ABRA task and live metadata response are absent/s,
+      'https://github.com/Luab/ABRA/tree/688814615dc368a66276798cb864fe9a587d7e6c',
+      'data-abra-metadata-scene',
+      true,
+    ],
     'abra-viewer-control-v1': [
       /source CT is retained.*OHIF viewport and slice mapping are missing/s,
       'https://www.cancerimagingarchive.net/collection/lidc-idri/',
@@ -934,6 +948,84 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'abra-metadata-qa-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    await page.locator('[data-story-step="0"]').click();
+    const pack = JSON.parse(
+      fs.readFileSync(
+        path.resolve('presentation/task-explorer/abra-metadata-qa/source.json'),
+        'utf8',
+      ),
+    );
+    const source = pack.source_example;
+    const firstCT = source.series.find((series) => series.modality === 'CT');
+    const values = [
+      String(firstCT.num_instances),
+      String(source.series.length),
+      [...new Set(source.series.map((series) => series.modality))].sort().join(', '),
+      source.study_date,
+      firstCT.series_uid,
+    ];
+    const labels = [
+      'CT instance count',
+      'All-series count',
+      'Distinct modalities',
+      'Study date',
+      'First CT series UID',
+    ];
+    for (const [index, name] of labels.entries()) {
+      const beat = plan.beats.find(
+        (b) => b.scene === 'operation' && Math.round(b.channels.progress[0] * 4) === index,
+      );
+      await page.getByRole('button', { name, exact: true }).click();
+      await page.waitForFunction(
+        (frame) =>
+          Number(document.querySelector('.scene-player').getAttribute('data-committed-frame')) ===
+          frame,
+        beat.startFrame,
+      );
+      assert.equal(
+        await page.getByRole('button', { name, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.ok(
+        (await page.locator('[data-abra-metadata-source-value]').innerText()).includes(
+          values[index],
+        ),
+      );
+      assert.equal(await page.locator('[data-abra-metadata-comparison-revealed]').count(), 0);
+      assert.equal(await page.locator('[data-abra-metadata-empty-output]').count(), 0);
+      assert.ok(
+        await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+        `${plan.id}: ${label} query overflow`,
+      );
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-query-${index}.png`) });
+    }
+    const refIndex = plan.beats.findIndex((beat) => beat.scene === 'reference');
+    await page.locator(`[data-story-step="${refIndex}"]`).click();
+    assert.equal(await page.locator('[data-abra-metadata-comparison-revealed]').count(), 1);
+    assert.match(
+      await page.locator('[data-abra-metadata-comparison-revealed]').innerText(),
+      /authored records, no patient\/model\/reference evidence/,
+    );
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await page.locator('[data-abra-metadata-comparison-revealed]').count(), 0);
+    await page.locator(`[data-story-step="${refIndex}"]`).click();
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
+    );
+    assert.equal(await page.locator('[data-abra-metadata-comparison-revealed]').count(), 0);
+    assert.equal(
+      await page
+        .getByRole('button', { name: 'CT instance count', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
   }
   if (plan.recipe === 'abra-viewer-control-v1') {
     const operationIndex = plan.beats.findIndex((beat) => beat.scene === 'operation');
@@ -4351,6 +4443,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'abra-metadata-qa-v1',
       'abra-viewer-control-v1',
       'bcer-brain-full-v1',
       'bcer-cardiac-full-v1',

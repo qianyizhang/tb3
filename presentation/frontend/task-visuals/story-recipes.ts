@@ -1,3 +1,4 @@
+import { abraMetadataPack } from './abra-metadata-qa';
 import { abraViewerPack } from './abra-viewer-control';
 import { interpretationBPacks } from './interpretation-b';
 import { interpretationAPacks } from './interpretation-a';
@@ -102,6 +103,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'abra-metadata-qa-v1',
     'abra-viewer-control-v1',
     'cardiac-material-v1',
     'automed-full-heart-seg-v1',
@@ -899,6 +901,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Fixed native CT source'],
           ['#18c6d4', 'Symbolic requested state'],
           ['#7ba4b8', 'Observed state absent'],
+        ],
+      };
+    case 'abra-metadata-qa-v1':
+      return {
+        heading: 'Read the right metadata level',
+        corner: 'Manifest teaching and illustrative format',
+        warning: abraMetadataPack.source.notice,
+        legend: [
+          ['#91a6ae', 'Source study / series / instance counts'],
+          ['#18c6d4', 'Permitted metadata derivation'],
+          ['#7ba4b8', 'Participant / generated reference absent'],
         ],
       };
     case 'bcer-brain-full-v1':

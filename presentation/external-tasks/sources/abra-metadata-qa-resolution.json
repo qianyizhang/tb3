@@ -1,0 +1,352 @@
+{
+  "acquisition_route": "https://github.com/Luab/ABRA/tree/688814615dc368a66276798cb864fe9a587d7e6c ; obtain configured Orthanc study and generated task JSON through official ABRA setup.",
+  "actual_data_gap": "Pinned source manifest and a matching local 140-DICOM CT archive exist, but no exact generated task instance, OHIF/Orthanc tool response, participant trajectory, submitted answer or score is retained. The raw archive is not in the pack.",
+  "attempts": [
+    {
+      "action": "read pinned ABRA generator, scorer and study manifest",
+      "attempted_at": "2026-09-29T06:16:00Z",
+      "outcome": "source code and study record retained; no generated task instance or participant output identified",
+      "source": "https://github.com/Luab/ABRA/tree/688814615dc368a66276798cb864fe9a587d7e6c"
+    },
+    {
+      "action": "Fresh read-only retained source hash, Git blob and archive contract check",
+      "source": ".local/explainers/goal-20260930/workers/abra-metadata-qa/verification/source-contract-check.json",
+      "outcome": "All seven pinned source files match; CT archive SHA/CRC and 140 DICOM members verified; manifest has 1 study, 27 series and 166 instances (140 CT, 13 SEG, 13 SR). Exact generated task, tool response and submission still absent.",
+      "attempted_at": "2026-09-30T11:01:21.539817+00:00"
+    },
+    {
+      "action": "Bounded official pinned-generator fetch using configured proxy (30-second maximum)",
+      "source": "https://github.com/Luab/ABRA/tree/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier2.py",
+      "outcome": "curl exit 7: unavailable loopback proxy 127.0.0.1:10808; no bytes acquired. This is local transport failure, not source access restriction.",
+      "attempted_at": "2026-09-30T11:01:21.539817+00:00"
+    },
+    {
+      "action": "Second bounded pinned-generator fetch without proxy (20-second maximum)",
+      "source": "https://raw.githubusercontent.com/Luab/ABRA/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier2.py",
+      "outcome": "curl exit 6: DNS resolution failed in restricted shell; no bytes acquired. Retained pinned bytes remain available.",
+      "attempted_at": "2026-09-30T11:01:21.539817+00:00"
+    },
+    {
+      "action": "Bounded pure-source generator/scorer execution on authored records (AST-selected functions; no imports or runtime)",
+      "source": ".local/explainers/goal-20260930/workers/abra-metadata-qa/verification/synthetic-contract-check.json",
+      "outcome": "Five generator formats and four illustrative modality comparisons checked. Sorted comma+space passes, unsorted and missing comma spaces fail; not a participant or clinical result.",
+      "attempted_at": "2026-09-30T11:05:02.187374+00:00"
+    }
+  ],
+  "browser_review": false,
+  "entry_id": "abra-metadata-qa",
+  "grader_run": false,
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "license_context": {
+    "ABRA_code": "MIT; pinned root LICENSE retained",
+    "Duke_or_LIDC_dataset": "Data terms not independently cleared for redistribution; this draft remains local teaching",
+    "clinical_spreadsheet": "TCIA public download retained locally for provenance; bytes not included in pack",
+    "LIDC_archive": "Local CT ZIP embeds a CC BY 3.0 LIDC-IDRI/TCIA usage-and-attribution notice; raw DICOM and its patient metadata stay local, no image asset is distributed in this pack."
+  },
+  "model_run": false,
+  "participant_output_retained": false,
+  "preparer_run": false,
+  "reviewed_at": "2026-09-30T11:01:21.539817+00:00",
+  "schema": 1,
+  "source_commit": "688814615dc368a66276798cb864fe9a587d7e6c",
+  "source_example": {
+    "patient_id": "LIDC-IDRI-0003",
+    "role": "ABRA source-manifest record, not a retained generated task instance or answer",
+    "series": [
+      {
+        "description": "Segmentation of Nodule 1 - Annotation 12",
+        "modality": "SEG",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89502.1553284149.555761"
+      },
+      {
+        "description": "Nodule 1 - Annotation 12 evaluations",
+        "modality": "SR",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89503.1553284151.261488"
+      },
+      {
+        "description": "Segmentation of Nodule 2 - Annotation Nodule 001",
+        "modality": "SEG",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89504.1553284153.248397"
+      },
+      {
+        "description": "Nodule 2 - Annotation Nodule 001 evaluations",
+        "modality": "SR",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89505.1553284154.901163"
+      },
+      {
+        "description": "Segmentation of Nodule 2 - Annotation IL057_130591",
+        "modality": "SEG",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89506.1553284156.900794"
+      },
+      {
+        "description": "Nodule 2 - Annotation IL057_130591 evaluations",
+        "modality": "SR",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89508.1553284158.489613"
+      },
+      {
+        "description": "Segmentation of Nodule 2 - Annotation MI014_16588",
+        "modality": "SEG",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89509.1553284160.366467"
+      },
+      {
+        "description": "Nodule 2 - Annotation MI014_16588 evaluations",
+        "modality": "SR",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89510.1553284162.138602"
+      },
+      {
+        "description": "Segmentation of Nodule 2 - Annotation 0",
+        "modality": "SEG",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89511.1553284164.398726"
+      },
+      {
+        "description": "Nodule 2 - Annotation 0 evaluations",
+        "modality": "SR",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89512.1553284166.2500"
+      },
+      {
+        "description": "Segmentation of Nodule 3 - Annotation Nodule 003",
+        "modality": "SEG",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89513.1553284167.746149"
+      },
+      {
+        "description": "Nodule 3 - Annotation Nodule 003 evaluations",
+        "modality": "SR",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89514.1553284169.410174"
+      },
+      {
+        "description": "Segmentation of Nodule 3 - Annotation IL057_130602",
+        "modality": "SEG",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89515.1553284171.114003"
+      },
+      {
+        "description": "Nodule 3 - Annotation IL057_130602 evaluations",
+        "modality": "SR",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89516.1553284172.759773"
+      },
+      {
+        "description": "Segmentation of Nodule 3 - Annotation MI014_16599",
+        "modality": "SEG",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89517.1553284174.504200"
+      },
+      {
+        "description": "Nodule 3 - Annotation MI014_16599 evaluations",
+        "modality": "SR",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89518.1553284176.137598"
+      },
+      {
+        "description": "Segmentation of Nodule 3 - Annotation 8",
+        "modality": "SEG",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89519.1553284177.903792"
+      },
+      {
+        "description": "Nodule 3 - Annotation 8 evaluations",
+        "modality": "SR",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89520.1553284179.713210"
+      },
+      {
+        "description": "Segmentation of Nodule 4 - Annotation Nodule 002",
+        "modality": "SEG",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89521.1553284181.490943"
+      },
+      {
+        "description": "Nodule 4 - Annotation Nodule 002 evaluations",
+        "modality": "SR",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89522.1553284183.52851"
+      },
+      {
+        "description": "Segmentation of Nodule 4 - Annotation IL057_130598",
+        "modality": "SEG",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89523.1553284184.847267"
+      },
+      {
+        "description": "Nodule 4 - Annotation IL057_130598 evaluations",
+        "modality": "SR",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89524.1553284186.490228"
+      },
+      {
+        "description": "Segmentation of Nodule 4 - Annotation MI014_16595",
+        "modality": "SEG",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89525.1553284188.247904"
+      },
+      {
+        "description": "Nodule 4 - Annotation MI014_16595 evaluations",
+        "modality": "SR",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89526.1553284189.943356"
+      },
+      {
+        "description": "Segmentation of Nodule 4 - Annotation 9",
+        "modality": "SEG",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89527.1553284191.867649"
+      },
+      {
+        "description": "Nodule 4 - Annotation 9 evaluations",
+        "modality": "SR",
+        "num_instances": 1,
+        "series_uid": "1.2.276.0.7230010.3.1.3.0.89565.1553284193.486473"
+      },
+      {
+        "description": "",
+        "modality": "CT",
+        "num_instances": 140,
+        "series_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.170706757615202213033480003264"
+      }
+    ],
+    "study_date": "20000101",
+    "study_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.101370605276577556143013894866",
+    "counts": {
+      "study_count": 1,
+      "series_count": 27,
+      "instances_total": 166,
+      "series_by_modality": {
+        "SEG": 13,
+        "SR": 13,
+        "CT": 1
+      },
+      "instances_by_modality": {
+        "SEG": 13,
+        "SR": 13,
+        "CT": 140
+      }
+    }
+  },
+  "source_files": [
+    {
+      "bytes": 5177,
+      "git_blob_sha1": "bf3b29181f984d0bc2c11e412bea782d52bd2870",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/interpretation-c-source/abra/tier2.py",
+      "sha256": "591e136c32a16f4f768d1d88d34652daa992943d68eb01f1f1d2b642226378fa",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier2.py"
+    },
+    {
+      "bytes": 2106,
+      "git_blob_sha1": "5ea40e94dad7276ea4629f20f7e5be701e110264",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/interpretation-c-source/abra/exact_match_scorer.py",
+      "sha256": "6d0b7c3f434e23949b781daeb96130f2eefc4bdbd7f8bd9717327e100855e29f",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/scoring/outcome/exact_match_scorer.py"
+    },
+    {
+      "bytes": 317217,
+      "git_blob_sha1": "8f4373a57b83c681cee3737b0fab103e0223fc37",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/study_manifest.json",
+      "sha256": "a6f367980f071320295adb9832edfcd9d165d377eb74b071b3ba6384738c3086",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/data/studies/study_manifest.json"
+    },
+    {
+      "bytes": 1069,
+      "git_blob_sha1": "61c68c7caf9631ca1dc7fb16adc58c1c8bf1c924",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/LICENSE",
+      "sha256": "616457a4d54a40d0e4ffca06c1f1539abd25cb7a63004e8244653476a941cb69",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/LICENSE"
+    },
+    {
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/common.py",
+      "bytes": 12257,
+      "sha256": "082d7d9c5d9b93f88504f76a512737ee1c2e2da8f74c6428a709f70973b375ba",
+      "git_blob_sha1": "f88353b5e3619b6c08c163dc979a4c3d96b4341e",
+      "git_blob_verified": true,
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/common.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/tool_registry.py",
+      "bytes": 25343,
+      "sha256": "02ef0d672bbecb143e21b1f2f49c8cd53cb64d99e2087eb7346fef1f9db2bf30",
+      "git_blob_sha1": "2080d50ea2a76e5e6ce225604335682824a052a1",
+      "git_blob_verified": true,
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/tasks/tool_registry.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/AgentService.ts",
+      "bytes": 36593,
+      "sha256": "6b5106e49c96fd7e8eeffb0f2d424d895b8787933a337bf1ba1256ac2f385913",
+      "git_blob_sha1": "3703f7f10abdbd22c721eb2c3fe06b1ddd27c0e8",
+      "git_blob_verified": true,
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/extensions/agent/src/services/AgentService/AgentService.ts"
+    }
+  ],
+  "source_roles": {
+    "helper": "Exact answer-format instruction plus get_study_metadata/get_study_series; each requires study_uid, returns study/series tags and counts, get_study_series includes only first three instance samples per series but gives instanceCount.",
+    "input": "Generated task provides StudyInstanceUID and query; get_study_metadata/get_study_series expose solver-visible source metadata and can contain the answer-bearing field. LIDC-IDRI-0003 manifest and CT archive corroborate a teaching example, not an observed generated task.",
+    "output": "submit_answer.arguments.answer string, terminal; no participant call or submitted answer retained.",
+    "reference": "Generator expected_outcome.answer is evaluator state, derived from source StudyInfo; no private reference asset or generated instance answer in pack.",
+    "scorer": "exact_match_scorer lowercases/collapses whitespace and accepts numeric difference <0.01 after suffix normalization"
+  },
+  "task_contract": {
+    "families": [
+      "first CT series slice count",
+      "all series count",
+      "sorted distinct modalities",
+      "StudyDate YYYYMMDD",
+      "first CT SeriesInstanceUID"
+    ],
+    "max_turns": 8,
+    "output": "submit_answer.arguments.answer string",
+    "tools": [
+      "get_study_series",
+      "get_study_metadata",
+      "submit_answer"
+    ],
+    "tool_api": "get_study_metadata returns StudyDate, seriesCount and series list; get_study_series returns series metadata including instanceCount and up to three sample instances. Both take study_uid. submit_answer ends task.",
+    "availability_boundary": "ABRA manifest num_instances and retained CT ZIP member count corroborate an example; OHIF/Orthanc metadata tool response and task instance were not run. Do not equate ZIP file order with viewer slice index."
+  },
+  "task_run": false,
+  "top_warning": "Mixed teaching illustration \u2014 the generated ABRA task and live metadata response are absent here; obtain the configured study and generate the task through official ABRA setup.",
+  "source_archive_evidence": {
+    "path": "runs/task-brief-samples/abra/ct.zip",
+    "sha256": "a780bd9438313d98e1b86302c6ed64a9c7d9941f6c418ac93054ec2628b9bb3b",
+    "dicom_members": 140,
+    "zip_crc": "clean",
+    "study_uid_matches_manifest": true,
+    "ct_series_uid_matches_manifest": true,
+    "first_member_is_not_first_instance": true,
+    "license_member_sha256": "549adb2471a8adc13da32860115c5559971b06097bba2922634a5e49f1800e0b",
+    "role": "local raw corroboration; never packed or mounted as an observed task instance",
+    "inspected_by": "independent source agent 2026-09-30; archive SHA/CRC/member count/license SHA rechecked read-only"
+  },
+  "brief_sha256": "5e887e523ff0eee74b24d7909350e9ef55f69faafbee4cc33b2b254486627e3c",
+  "warning_text": "Mixed teaching illustration \u2014 the generated ABRA task and live metadata response are absent here; obtain the configured study and generate the task through official ABRA setup.",
+  "verification_receipt": {
+    "path": ".local/explainers/goal-20260930/workers/abra-metadata-qa/verification/source-contract-check.json",
+    "sha256": "fa607bc897e8b460fa20be6a00f9256dc1a2f8f266d793f375000031b5bcd69f"
+  },
+  "synthetic_contract_receipt": {
+    "path": ".local/explainers/goal-20260930/workers/abra-metadata-qa/verification/synthetic-contract-check.json",
+    "sha256": "ec0a73d0723ea861c0b6adbaf719136cd53d8b96faafba52b6add99711538032"
+  },
+  "integration_notes": [
+    {
+      "actor": "Codex main agent",
+      "date": "2026-09-30",
+      "change": "Normalize Original data, Task specification, Expected output and Sources headings to maintained Task Brief schema; scientific source claims unchanged."
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+.scene {
+  display: grid;
+  gap: 0.6rem;
+  min-width: 0;
+  font-size: 0.88rem;
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background: #f5f7f1;
+  color: #203d42;
+}
+.scene h3,
+.scene h4,
+.scene p {
+  margin: 0;
+}
+.scene h3,
+.scene h4 {
+  color: #203d42;
+}
+.aside {
+  background: #18323f;
+  color: #d9eef3;
+}
+.aside b {
+  color: #d9eef3;
+}
+.aside small {
+  color: #b8cbd3;
+}
+.scene table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+.scene th,
+.scene td {
+  text-align: left;
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid #c2d1d4;
+  overflow-wrap: anywhere;
+}
+.scene caption {
+  text-align: left;
+  font-size: 0.8rem;
+  color: #49616a;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.controls button {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #b8c8cd;
+  border-radius: 0.35rem;
+  background: #f7f9fa;
+  color: #223c43;
+}
+.controls button[aria-pressed='true'] {
+  border: 2px solid #157c82;
+  background: #e3f4f1;
+}
+.scene code {
+  overflow-wrap: anywhere;
+}
+.scene small {
+  color: #49616a;
+}
+@media (max-width: 600px) {
+  .scene {
+    font-size: 0.85rem;
+  }
+  .controls button {
+    min-height: 44px;
+  }
+}

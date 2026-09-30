@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "abra-metadata-qa-v1": "retained-abra-metadata-qa-contract-v2",
     "abra-viewer-control-v1": "retained-abra-viewer-control-workflow-v1",
     "bcer-brain-full-v1": "retained-bcer-long-brain-full-workflow-v1",
     "bcer-cardiac-full-v1": "retained-bcer-long-cardiac-full-workflow-v1",
@@ -151,6 +152,18 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-abra-metadata-qa-contract-v2": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "diagram.json",
+            "output.json",
+            "source.json",
+            "formatting-fixture.json",
+        },
+    ),
     "retained-abra-viewer-control-workflow-v1": (
         "source-records",
         None,
@@ -1911,6 +1924,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class AbraMetadataQaChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -3724,6 +3743,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AbraMetadataQaBeat(ExpansionBeat[AbraMetadataQaChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class AbraMetadataQaStory(Story[AbraMetadataQaChannels]):
+    recipe: Literal["abra-metadata-qa-v1"]
+    beats: tuple[AbraMetadataQaBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Metadata comparison reveal is limited to the reference scene")
+        return self
+
+
 class AbraViewerControlBeat(ExpansionBeat[AbraViewerControlChannels]):
     scene: Literal["input", "route", "operation", "output", "limits"]
 
@@ -3969,6 +4009,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AbraMetadataQaStory
     | AbraViewerControlStory
     | CardiacMaterialStory
     | CardiacAnchorStory
@@ -4076,6 +4117,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AbraMetadataQaStory
     | AbraViewerControlStory
     | CardiacMaterialStory
     | CardiacAnchorStory
@@ -4343,6 +4385,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AbraMetadataQaStory
     | AbraViewerControlStory
     | CardiacMaterialStory
     | CardiacAnchorStory
@@ -4629,6 +4672,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-abra-metadata-qa-contract-v2": (
+                "symbolic-unit-grid",
+                "LicenseRef-ABRA-MIT-LIDC-IDRI-CC-BY-3.0-metadata-teaching",
+                None,
+            ),
             "retained-abra-viewer-control-workflow-v1": (
                 "LIDC-IDRI-0003-DICOM-LPS-plus-symbolic-viewport",
                 "LicenseRef-ABRA-MIT-plus-LIDC-IDRI-CC-BY-3.0-TCIA",
@@ -4779,6 +4827,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "none"
+                if pack_id == "retained-abra-metadata-qa-contract-v2"
                 else "mm and zero-based viewer index"
                 if pack_id == "retained-abra-viewer-control-workflow-v1"
                 else "none"
@@ -4861,6 +4911,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-abra-metadata-qa-contract-v2"
         ):
             for source_name, expected_sha in manifest["sources"].items():
                 source_path = storage.inside(root, source_name)
@@ -4888,6 +4939,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     "source-derived"
                     if pack_id == "retained-abra-viewer-control-workflow-v1"
                     and name in {"source.json", "source_preview.png"}
+                    else "symbolic-protocol"
+                    if pack_id == "retained-abra-metadata-qa-contract-v2"
+                    and name == "formatting-fixture.json"
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS
                     else "source-derived-teaching"

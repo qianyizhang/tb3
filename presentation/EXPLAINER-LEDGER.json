@@ -9471,15 +9471,15 @@
       ],
       "illustration_kind": "metadata",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "abra-metadata-qa",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for abra-metadata-qa. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Source-manifest metadata teaching and symbolic formatter controls integrated; source and private-result boundaries pinned.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/abra-metadata-qa/acceptance-02.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Study and series metadata accessible through the viewer’s tools.",
         "helpers": "Study identifiers and a precise answer-format instruction.",
@@ -9512,14 +9512,102 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Pinned source manifest and a matching local 140-DICOM CT archive exist, but no exact generated task instance, OHIF/Orthanc tool response, participant trajectory, submitted answer or score is retained. The raw archive is not in the pack.",
+      "acquisition_route": "https://github.com/Luab/ABRA/tree/688814615dc368a66276798cb864fe9a587d7e6c ; obtain configured Orthanc study and generated task JSON through official ABRA setup.",
+      "warning_text": "Mixed teaching illustration — the generated ABRA task and live metadata response are absent here; obtain the configured study and generate the task through official ABRA setup.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/abra-metadata-qa-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/abra-metadata-qa-resolution.json",
+        "receipt_sha256": "eb57d580422891a86967befb233f9fc7d6d31019ea484e0dc81b583117979e7b",
+        "brief_sha256": "5e887e523ff0eee74b24d7909350e9ef55f69faafbee4cc33b2b254486627e3c",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Source-manifest metadata teaching with authored symbolic formatting controls; generated task, live tool response, participant answer, reference answer and score absent.",
+      "completion_review": {
+        "date": "2026-09-30T12:16:58.079965+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "9a6ad37765db2b4f2e131e87a438bd2e8b437193677434ecd1a483fb326c0e0a"
+      },
+      "reviewed_contract_projection": {
+        "title": "Answer questions about ABRA study metadata",
+        "goal": "Find the requested field at the study, series or instance level, then submit one formatted answer. The pinned LIDC-IDRI-0003 manifest is a real source-metadata teaching example; it is **not** an observed generated task, viewer response or participant result.",
+        "value": "Not yet specified.",
+        "raw": "A generated ABRA task gives a StudyInstanceUID and a metadata question. The configured OHIF/Orthanc study is meant to be queried through `get_study_metadata` or `get_study_series`. A retained source manifest has **1 study, 27 series and 166 instances**: 1 CT series with 140 instances, 13 SEG series with 1 instance each, and 13 SR series with 1 instance each. These are manifest counts; only 140 CT DICOMs are locally recovered. A local CT ZIP corroborates its study/CT-series UIDs and 140 DICOM members, but its pixels and raw patient metadata are not in this teaching pack. Neither a generated task instance nor a viewer tool response was run or retained.",
+        "helpers": "The task specifies the requested answer format. `get_study_metadata(study_uid)` exposes StudyDate, seriesCount and a series summary; `get_study_series(study_uid)` exposes each series' Modality, SeriesInstanceUID and instanceCount (with only the first three instance examples). These are legitimate solver-visible fields, even when one contains the requested answer. The manifest example is reader context, not a saved tool response.",
+        "tools": "`get_study_metadata`, `get_study_series` and terminal `submit_answer`; the generator sets an eight-turn limit. No task, tool, participant or scorer run is represented here.",
+        "reference": "The generator constructs `expected_outcome.answer` from its `StudyInfo` record. That evaluator field and any participant submission are not bundled. Deriving an answer from permitted metadata is the work, not a reference leak.",
+        "spec": "The five generator families ask for: first CT series instance count; all-series count; sorted distinct modalities; StudyDate as `YYYYMMDD`; or first CT SeriesInstanceUID. Count all modalities for the series question, but instances only within the selected CT series for the slice-count question.",
+        "output": "Output is a single `submit_answer.arguments.answer` string: an integer, date, comma-separated modality list or exact UID as requested. This pack leaves the participant answer slot empty. The modality operation deduplicates series Modality values and sorts lexicographically before joining with comma + space; it does not sort patient slices or series UIDs. The source-derived teaching list is `CT, SEG, SR`.",
+        "score": "The pinned exact-match scorer searches the trajectory backwards for the last `submit_answer` call, normalizes lowercase and whitespace, removes common numeric unit suffixes, and also accepts numeric difference strictly below 0.01. It scores that submitted string against generator state. It does not establish image interpretation quality, and no score is retained here.",
+        "challenge": "Not yet specified.",
+        "families": "This defines one metadata-QA task family. The source example is not evidence that every generated case or its viewer state was recovered.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Metadata QA",
+            "helper": "Study UID, precise query, answer format and two metadata tools.",
+            "remaining": "Select the right hierarchy level, read the right field and submit only its requested string."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned generator",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier2.py"
+          ],
+          [
+            "Pinned scorer",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/scoring/outcome/exact_match_scorer.py"
+          ],
+          [
+            "Pinned tool registry",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/tasks/tool_registry.py"
+          ],
+          [
+            "Source receipt",
+            "presentation/external-tasks/sources/abra-metadata-qa-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Find the requested field at the study, series or instance level, then submit one formatted answer. The pinned LIDC-IDRI-0003 manifest is a real source-metadata teaching example; it is <strong>not</strong> an observed generated task, viewer response or participant result.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>A generated ABRA task gives a StudyInstanceUID and a metadata question. The configured OHIF/Orthanc study is meant to be queried through <code>get_study_metadata</code> or <code>get_study_series</code>. A retained source manifest has <strong>1 study, 27 series and 166 instances</strong>: 1 CT series with 140 instances, 13 SEG series with 1 instance each, and 13 SR series with 1 instance each. These are manifest counts; only 140 CT DICOMs are locally recovered. A local CT ZIP corroborates its study/CT-series UIDs and 140 DICOM members, but its pixels and raw patient metadata are not in this teaching pack. Neither a generated task instance nor a viewer tool response was run or retained.</p>",
+          "helpers": "<p>The task specifies the requested answer format. <code>get_study_metadata(study_uid)</code> exposes StudyDate, seriesCount and a series summary; <code>get_study_series(study_uid)</code> exposes each series&#x27; Modality, SeriesInstanceUID and instanceCount (with only the first three instance examples). These are legitimate solver-visible fields, even when one contains the requested answer. The manifest example is reader context, not a saved tool response.</p>",
+          "tools": "<p><code>get_study_metadata</code>, <code>get_study_series</code> and terminal <code>submit_answer</code>; the generator sets an eight-turn limit. No task, tool, participant or scorer run is represented here.</p>",
+          "reference": "<p>The generator constructs <code>expected_outcome.answer</code> from its <code>StudyInfo</code> record. That evaluator field and any participant submission are not bundled. Deriving an answer from permitted metadata is the work, not a reference leak.</p>",
+          "spec": "<p>The five generator families ask for: first CT series instance count; all-series count; sorted distinct modalities; StudyDate as <code>YYYYMMDD</code>; or first CT SeriesInstanceUID. Count all modalities for the series question, but instances only within the selected CT series for the slice-count question.</p>",
+          "output": "<p>Output is a single <code>submit_answer.arguments.answer</code> string: an integer, date, comma-separated modality list or exact UID as requested. This pack leaves the participant answer slot empty. The modality operation deduplicates series Modality values and sorts lexicographically before joining with comma + space; it does not sort patient slices or series UIDs. The source-derived teaching list is <code>CT, SEG, SR</code>.</p>",
+          "score": "<p>The pinned exact-match scorer searches the trajectory backwards for the last <code>submit_answer</code> call, normalizes lowercase and whitespace, removes common numeric unit suffixes, and also accepts numeric difference strictly below 0.01. It scores that submitted string against generator state. It does not establish image interpretation quality, and no score is retained here.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>This defines one metadata-QA task family. The source example is not evidence that every generated case or its viewer state was recovered.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -23044,9 +23132,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 95,
+    "reviewed-scripted-planar": 96,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 65,
+    "blocked-source-contract": 64,
     "blocked-source-input": 31,
     "pending-operation-review": 1
   },

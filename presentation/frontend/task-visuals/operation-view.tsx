@@ -1,3 +1,4 @@
+import { AbraMetadataScene, AbraMetadataOutput } from './abra-metadata-qa-panels';
 import { AbraViewerScene, AbraViewerOutput } from './abra-viewer-control-panels';
 import { InterpretationBScene, InterpretationBOutput } from './interpretation-b-panels';
 import { InterpretationAScene, InterpretationAOutput } from './interpretation-a-panels';
@@ -156,7 +157,15 @@ function NavigationScene({ state }: { state: Extract<StoryState, { recipe: 'mult
   );
 }
 /** Fallbacks are data-derived views of the current canonical frame, not separate stories. */
-export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryState }) {
+export function OperationScene({
+  plan,
+  state,
+  onSeekFrame,
+}: {
+  plan: StoryPlan;
+  state: StoryState;
+  onSeekFrame?: (frame: number) => void;
+}) {
   if (state.recipe === 'longitudinal-ct-revised-v1') return <RevisedCtScene state={state} />;
   if (state.recipe === 'longitudinal-ct-original-v1') return <CtOriginalScene state={state} />;
   if (state.recipe === 'longitudinal-mri-v1') return <MriScene state={state} />;
@@ -258,6 +267,8 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   if (state.recipe === 'bcer-brain-grade-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'bcer-cardiac-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'abra-viewer-control-v1') return <AbraViewerScene state={state} />;
+  if (state.recipe === 'abra-metadata-qa-v1')
+    return <AbraMetadataScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -569,6 +580,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'bcer-brain-grade-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'bcer-cardiac-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'abra-viewer-control-v1') return <AbraViewerOutput state={state} />;
+  if (state.recipe === 'abra-metadata-qa-v1') return <AbraMetadataOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

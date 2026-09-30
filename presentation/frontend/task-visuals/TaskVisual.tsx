@@ -209,7 +209,11 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
         <div className="scene-stage" hidden={fallback && !projected}>
           {(planar || projected) && plan && player.storyState && (
             <>
-              <OperationScene plan={plan} state={player.storyState} />
+              <OperationScene
+                plan={plan}
+                state={player.storyState}
+                onSeekFrame={(frame) => actions.current?.seekFrame(frame)}
+              />
               {showInlineNarration(player.storyState) && (
                 <p className={styles.mobileNarration} data-scene-inline-narration>
                   {player.storyState.narration}
@@ -314,7 +318,11 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
                   )}
             </p>
             {plan && plan.recipe !== 'route-unfold-v1' && player.storyState ? (
-              <OperationScene plan={plan} state={player.storyState} />
+              <OperationScene
+                plan={plan}
+                state={player.storyState}
+                onSeekFrame={(frame) => actions.current?.seekFrame(frame)}
+              />
             ) : plan ? (
               <figure>
                 <img
